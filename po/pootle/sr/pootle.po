@@ -1,0 +1,1338 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2006-08-07 12:36+0200\n"
+"PO-Revision-Date: 2006-08-07 14:58+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;;\n"
+"X-Generator: Translate Toolkit 0.9rc1\n"
+
+#: adminpages.py:35 adminpages.py:71 adminpages.py:126 adminpages.py:187
+#: adminpages.py:273 adminpages.py:333 indexpage.py:58 indexpage.py:77
+#: indexpage.py:112 indexpage.py:166 indexpage.py:226 indexpage.py:312
+#: pagelayout.py:59 users.py:38 users.py:71 users.py:104 users.py:125
+#: translatepage.py:91
+msgid "Pootle Demo"
+msgstr "Pootle демонстрација"
+
+#: adminpages.py:43 adminpages.py:79 adminpages.py:134 adminpages.py:195
+#: pagelayout.py:36
+msgid "Home"
+msgstr "Дом"
+
+#: adminpages.py:44 adminpages.py:197
+msgid "Users"
+msgstr "Корисници"
+
+#: adminpages.py:45 adminpages.py:81 indexpage.py:75
+msgid "Languages"
+msgstr "Језици"
+
+#: adminpages.py:46 adminpages.py:136 indexpage.py:76
+msgid "Projects"
+msgstr "Пројекти"
+
+#: adminpages.py:47
+#, fuzzy
+msgid "General options"
+msgstr "Опште поставке"
+
+#: adminpages.py:48 users.py:129
+msgid "Option"
+msgstr "Поставка"
+
+#: adminpages.py:49 users.py:130
+msgid "Current value"
+msgstr "Текућа вредност"
+
+#: adminpages.py:50 adminpages.py:82 adminpages.py:137 adminpages.py:198
+#: users.py:142
+msgid "Save changes"
+msgstr "Спаси промене"
+
+#: adminpages.py:54
+msgid "Title"
+msgstr "Наслов"
+
+#: adminpages.py:54
+msgid "Description"
+msgstr "Опис"
+
+#: adminpages.py:54
+msgid "Base URL"
+msgstr "Базни URL"
+
+#: adminpages.py:54
+msgid "Home Page"
+msgstr "Домаћа страна"
+
+#: adminpages.py:80 adminpages.py:135 adminpages.py:196
+#, fuzzy
+msgid "Main admin page"
+msgstr "Главна страна за управника"
+
+#: adminpages.py:86
+msgid "ISO Code"
+msgstr "ISO код"
+
+#: adminpages.py:87 adminpages.py:142 adminpages.py:203 users.py:80
+msgid "Full Name"
+msgstr "Пуно име"
+
+#: adminpages.py:87
+msgid "(add language here)"
+msgstr "(додај језик овде)"
+
+#: adminpages.py:88
+msgid "Special Chars"
+msgstr "Посебни знакови"
+
+#: adminpages.py:88
+msgid "(special characters)"
+msgstr "(посебни знакови)"
+
+#: adminpages.py:89 indexpage.py:189
+msgid "Number of Plurals"
+msgstr "Број множина"
+
+#: adminpages.py:89
+msgid "(number of plurals)"
+msgstr "(број множина)"
+
+#: adminpages.py:90 indexpage.py:190
+msgid "Plural Equation"
+msgstr "Једначина за множину"
+
+#: adminpages.py:90
+msgid "(plural equation)"
+msgstr "(једначина за множину)"
+
+#: adminpages.py:91
+#, fuzzy
+msgid "Remove Language"
+msgstr "Уклони језик"
+
+#. l10n: The parameter is a languagecode, projectcode or username
+#: adminpages.py:106 adminpages.py:168 adminpages.py:229 adminpages.py:392
+#, python-format
+msgid "Remove %s"
+msgstr "Уклони %s"
+
+#: adminpages.py:124
+msgid "Standard"
+msgstr "Стандард"
+
+#: adminpages.py:141
+msgid "Project Code"
+msgstr "Код пројекта"
+
+#: adminpages.py:142
+msgid "(add project here)"
+msgstr "(додај пројекат овде)"
+
+#: adminpages.py:143
+msgid "Project Description"
+msgstr "Опис пројекта"
+
+#: adminpages.py:143
+msgid "(project description)"
+msgstr "(опис пројекта)"
+
+#: adminpages.py:144
+msgid "Checker Style"
+msgstr "Стил кучице за потврду"
+
+#: adminpages.py:145
+msgid "Create MO Files"
+msgstr "Направи MO датотеке"
+
+#: adminpages.py:146
+#, fuzzy
+msgid "Remove Project"
+msgstr "Уклони пројекат"
+
+#: adminpages.py:202 users.py:46
+msgid "Login"
+msgstr "Пријавите се"
+
+#: adminpages.py:203 users.py:274
+msgid "(add full name here)"
+msgstr "(додај пуно име овде)"
+
+#: adminpages.py:204 users.py:77
+msgid "Email Address"
+msgstr "Е-поштанска адреса"
+
+#: adminpages.py:204 users.py:277
+msgid "(add email here)"
+msgstr "(додај ел. адресу овде)"
+
+#: adminpages.py:205 users.py:83
+msgid "Password"
+msgstr "Лозинка"
+
+#: adminpages.py:205 users.py:271
+msgid "(add password here)"
+msgstr "(додај лозинку овде)"
+
+#: adminpages.py:206
+msgid "Activated"
+msgstr "Покренут"
+
+#: adminpages.py:206
+msgid "Activate New User"
+msgstr "Активирај новог корисника"
+
+#: adminpages.py:207
+#, fuzzy
+msgid "Remove User"
+msgstr "Уклони %s"
+
+#: adminpages.py:261
+msgid "Back to main page"
+msgstr "Назад на главну страну"
+
+#: adminpages.py:262
+msgid "Existing languages"
+msgstr "Постојећи језици"
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:266
+msgid "Update Languages"
+msgstr "Освежи језике"
+
+#: adminpages.py:267
+#, python-format
+msgid "Pootle Admin: %s"
+msgstr "Pootle управник: %s %s"
+
+#: adminpages.py:268 adminpages.py:330
+msgid "You do not have the rights to administer this project."
+msgstr "Немате права да управљате овим пројектом."
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:270
+msgid "Update from templates"
+msgstr "Освежи из шаблона"
+
+#: adminpages.py:278
+msgid "Add Language"
+msgstr "Додај језик"
+
+#. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
+#: adminpages.py:310
+#, python-format
+msgid "Pootle Admin: %s %s"
+msgstr "Pootle управник: %s %s"
+
+#: adminpages.py:311
+msgid "Project home page"
+msgstr "Домаћа страна пројекта"
+
+#: adminpages.py:329
+#, python-format
+msgid "Cannot set rights for username %s - user does not exist"
+msgstr "Не могу да подесим права за корисничко име %s - корисник не постоји"
+
+#: adminpages.py:346
+msgid "This is a GNU-style project (one directory, files named per language)."
+msgstr ""
+"Ово је пројекат типа GNU (један директоријум, датотеке назване по језику)."
+
+#: adminpages.py:348
+msgid "This is a standard style project (one directory per language)."
+msgstr "Ово је стандардни тип пројекта (један директоријум по језику)."
+
+#: adminpages.py:349
+msgid "User Permissions"
+msgstr "Овлашћења корисника"
+
+#: adminpages.py:350 users.py:74 users.py:107
+msgid "Username"
+msgstr "Корисничко име"
+
+#: adminpages.py:351
+msgid "(select to add user)"
+msgstr ""
+
+#: adminpages.py:352
+msgid "Rights"
+msgstr "Права"
+
+#: adminpages.py:353 indexpage.py:929
+msgid "Remove"
+msgstr "Уклони"
+
+#: adminpages.py:373
+msgid "Update Rights"
+msgstr "Освежи права"
+
+#: indexpage.py:49
+msgid "About Pootle"
+msgstr "О Pootle-у"
+
+#: indexpage.py:50
+msgid ""
+"<strong>Pootle</strong> is a simple web portal that should allow you to "
+"<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
+"you can download it and run your own copy if you like. You can also help "
+"participate in the development in many ways (you don't have to be able to "
+"program)."
+msgstr ""
+"<strong>Pootle</strong> је једноставна  мрежна врата која вам дозвољавају да "
+"<strong>преводите</strong>! Пошто је Pootle <strong>Слободни програм</"
+"strong>, можете га преузети и користити личну копију ако желите. Можете "
+"такође помоћи у развоју на многе друге начине (не морате бити програмер)."
+
+#: indexpage.py:51
+msgid ""
+"The Pootle project itself is hosted at <a href=\"http://translate."
+"sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
+"details about source code, mailing lists etc."
+msgstr ""
+"Pootle се налази на <a href=\"http://translate.sourceforge.net/\">translate."
+"sourceforge.net</a> страници где можете наћи детаље у вези изворног кода, "
+"дописног друштва итд."
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
+#: indexpage.py:53
+msgid ""
+"The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
+"thechestnut.com/flumps.htm\">this</a>."
+msgstr ""
+"Име долази од <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, PO-базирани мрежни преводиоц локализатор, али "
+"можда будете морали прочитати <a href=\"http://www.thechestnut.com/flumps.htm"
+"\">ово</a>."
+
+#: indexpage.py:54
+msgid "Versions"
+msgstr "Верзија"
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
+#: indexpage.py:56
+#, fuzzy, python-format
+#, python-format
+msgid ""
+"This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+msgstr ""
+"Ова вебна страница користи:<br/>Pootle %s</br>jToolkit %s</br>Python %s (on %"
+"s/%s)"
+
+#: indexpage.py:74
+msgid "About this Pootle server"
+msgstr "О овом Pootle серверу"
+
+#: indexpage.py:107
+#, python-format
+msgid "User Page for: %s"
+msgstr "Корисничка страница за:%s"
+
+#: indexpage.py:109
+msgid "Change options"
+msgstr "Промени поставке"
+
+#: indexpage.py:110
+msgid "Admin page"
+msgstr "Управникова страна"
+
+#: indexpage.py:111
+msgid "Quick Links"
+msgstr "Брзе везе"
+
+#: indexpage.py:115
+msgid "Please click on 'Change options' and select some languages and projects"
+msgstr ""
+"Молимо притисните „Промени поставке“ и изаберите неке језике и пројекте"
+
+#: indexpage.py:164
+#, python-format
+msgid "%d project, average %d%% translated"
+msgid_plural "%d projects, average %d%% translated"
+msgstr[0] "%d пројекат, просек %d%% преведено"
+msgstr[1] "%d пројекта, просек %d%% преведено"
+
+#. l10n: The first parameter is the name of the installation
+#. l10n: The second parameter is the name of the project/language
+#. l10n: This is used as a page title. Most languages won't need to change this
+#: indexpage.py:170 indexpage.py:230
+#, fuzzy, python-format
+#, python-format
+msgid "%s: %s"
+msgstr "%s %s"
+
+#: indexpage.py:172 indexpage.py:232 pagelayout.py:40 pagelayout.py:140
+msgid "Admin"
+msgstr "Управник"
+
+#: indexpage.py:186
+#, fuzzy
+msgid "Language Code"
+msgstr "Језици"
+
+#: indexpage.py:187
+#, fuzzy
+msgid "Language Name"
+msgstr "Језици"
+
+#: indexpage.py:224
+#, python-format
+msgid "%d language, average %d%% translated"
+msgid_plural "%d languages, average %d%% translated"
+msgstr[0] "%d језик, просек %d%% преведено"
+msgstr[1] "%d језика, просек %d%% преведено"
+
+#: indexpage.py:235
+#, fuzzy
+msgid "Language"
+msgstr "Језици"
+
+#. l10n: The first parameter is the name of the installation (like "Pootle")
+#: indexpage.py:314
+#, fuzzy, python-format
+#, python-format
+msgid "%s: Project %s, Language %s"
+msgstr "Pootle: Пројекат %s, Језик %s"
+
+#. l10n: text next to search field
+#: indexpage.py:322 translatepage.py:121
+msgid "Search"
+msgstr "Тражи"
+
+#: indexpage.py:369
+msgid "Cannot upload file, no file attached"
+msgstr "Не могу да закачим датотеку, ни једна датотека није закачена"
+
+#: indexpage.py:375
+msgid "Can only upload PO files and zips of PO files"
+msgstr "Не могу да закачим PO датотеке и запаковане PO датотеке"
+
+#: indexpage.py:483 indexpage.py:486 translatepage.py:199 translatepage.py:202
+msgid "Assign Strings"
+msgstr "Додели низку"
+
+#: indexpage.py:484 translatepage.py:201
+msgid "Assign Action"
+msgstr "Додели радњу"
+
+#: indexpage.py:485 translatepage.py:200
+msgid "Assign to User"
+msgstr "Додели кориснику"
+
+#: indexpage.py:491
+#, fuzzy
+msgid "goals"
+msgstr "Циљеви"
+
+#: indexpage.py:491
+msgid "Enter goal name"
+msgstr "Унеси име циља"
+
+#: indexpage.py:491
+msgid "Add Goal"
+msgstr "Додај циљ"
+
+#: indexpage.py:495 indexpage.py:497
+msgid "Upload File"
+msgstr "Закачи датотеку"
+
+#: indexpage.py:496
+msgid "Select file to upload"
+msgstr "Изаберите датотеку коју ћете закачити"
+
+#: indexpage.py:599
+#, fuzzy
+msgid "Not in a goal"
+msgstr "Нема циља"
+
+#: indexpage.py:620
+msgid "Add User"
+msgstr "Додај корисника"
+
+#: indexpage.py:658
+msgid "PO file"
+msgstr "PO датотека"
+
+#: indexpage.py:662
+msgid "XLIFF file"
+msgstr "XLIFF датотека"
+
+#: indexpage.py:666
+msgid "Qt .ts file"
+msgstr ""
+
+#: indexpage.py:670
+msgid "CSV file"
+msgstr "CSV датотека"
+
+#: indexpage.py:675
+msgid "MO file"
+msgstr "MO датотека"
+
+#: indexpage.py:679
+msgid "Update"
+msgstr "Освежи"
+
+#: indexpage.py:683 projects.py:141
+msgid "Commit"
+msgstr ""
+
+#: indexpage.py:720
+msgid "All Strings"
+msgstr "Све ниске"
+
+#: indexpage.py:720 pagelayout.py:218
+msgid "Untranslated"
+msgstr "Непреведено"
+
+#: indexpage.py:720
+msgid "Unassigned"
+msgstr "Недодељено"
+
+#: indexpage.py:720
+msgid "Unassigned and Untranslated"
+msgstr "Непреведено и недодељено"
+
+#: indexpage.py:727
+msgid "Set Goal"
+msgstr "Намести циљ"
+
+#: indexpage.py:733
+msgid "Assign To"
+msgstr "Додели"
+
+#: indexpage.py:762
+msgid "Show Editing Functions"
+msgstr ""
+
+#: indexpage.py:762
+#, fuzzy
+msgid "Show Statistics"
+msgstr "Покажи канале"
+
+#: indexpage.py:763
+msgid "Show Tracks"
+msgstr "Покажи канале"
+
+#: indexpage.py:763
+msgid "Hide Tracks"
+msgstr "Сакриј канале"
+
+#. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
+#: indexpage.py:765
+msgid "Show Checks"
+msgstr "Покажи провере"
+
+#: indexpage.py:765
+msgid "Hide Checks"
+msgstr "Сакриј провере"
+
+#: indexpage.py:766
+msgid "Show Goals"
+msgstr "Покажи циљеве"
+
+#: indexpage.py:766
+msgid "Hide Goals"
+msgstr "Сакриј циљеве"
+
+#: indexpage.py:767
+msgid "Show Assigns"
+msgstr "Покажи доделе"
+
+#: indexpage.py:767
+msgid "Hide Assigns"
+msgstr "Сакриј доделе"
+
+#: indexpage.py:776
+#, python-format
+msgid "All Goals: %s"
+msgstr "Сви циљеви: %s"
+
+#: indexpage.py:782
+msgid "Translate My Strings"
+msgstr "Преведи моју ниску"
+
+#: indexpage.py:784
+msgid "View My Strings"
+msgstr "Покажи моју ниску"
+
+#: indexpage.py:789
+msgid "No strings assigned to you"
+msgstr "Нема ниских додељених вама"
+
+#: indexpage.py:793
+msgid "Quick Translate My Strings"
+msgstr "Брзо превођење мојих ниских"
+
+#: indexpage.py:797
+msgid "No untranslated strings assigned to you"
+msgstr "Нема непреведених ниских додељених вама"
+
+#: indexpage.py:801
+msgid "Review Suggestions"
+msgstr "Прегледај предлоге"
+
+#: indexpage.py:803
+msgid "View Suggestions"
+msgstr "Види предлоге"
+
+#: indexpage.py:808
+msgid "Quick Translate"
+msgstr "Брзи превод"
+
+#: indexpage.py:810
+msgid "View Untranslated"
+msgstr "Види непреведено"
+
+#: indexpage.py:814
+msgid "No untranslated items"
+msgstr "Нема непреведених ставки"
+
+#: indexpage.py:817
+msgid "Translate All"
+msgstr "Преведи све"
+
+#: indexpage.py:832
+msgid "ZIP of goal"
+msgstr "Запакуј циљ"
+
+#: indexpage.py:834
+msgid "ZIP of folder"
+msgstr "Запакуј фасциклу"
+
+#: indexpage.py:841
+msgid "Generate SDF"
+msgstr ""
+
+#: indexpage.py:894
+#, python-format
+msgid "%d string (%d%%) failed"
+msgid_plural "%d strings (%d%%) failed"
+msgstr[0] "%d ниска (%d%%) неуспешна"
+msgstr[1] "%d ниске (%d%%) неуспешне"
+
+#: indexpage.py:924
+#, python-format
+msgid "%d/%d words (%d%%) assigned"
+msgstr "%d/%d речи (%d%%) дедељених"
+
+#: indexpage.py:925 indexpage.py:927
+#, python-format
+msgid "[%d/%d strings]"
+msgstr "[%d/%d низова знакова]"
+
+#: indexpage.py:926 pagelayout.py:204
+#, python-format
+msgid "%d/%d words (%d%%) translated"
+msgstr "%d/%d речи (%d%%) преведено"
+
+#: pagelayout.py:37
+#, fuzzy
+msgid "All projects"
+msgstr "Сви пројекти"
+
+#: pagelayout.py:38
+#, fuzzy
+msgid "All languages"
+msgstr "Сви језици"
+
+#: pagelayout.py:39
+msgid "My account"
+msgstr ""
+
+#: pagelayout.py:41
+#, fuzzy
+msgid "Docs & help"
+msgstr "Документи и помоћ"
+
+#: pagelayout.py:42
+#, fuzzy
+msgid "Log out"
+msgstr "Одјавите се"
+
+#: pagelayout.py:43
+#, fuzzy
+msgid "Log in"
+msgstr "Пријавите се"
+
+#. l10n: Verb, as in "to register"
+#: pagelayout.py:45
+msgid "Register"
+msgstr "Упишите се"
+
+#: pagelayout.py:46
+msgid "Activate"
+msgstr "Укључи"
+
+#: pagelayout.py:63
+#, fuzzy
+msgid "Pootle Logo"
+msgstr "Pootle демонстрација"
+
+#: pagelayout.py:64
+#, fuzzy
+msgid "WordForge Translation Project"
+msgstr "<b>Текући превод:</b>"
+
+#: pagelayout.py:129
+msgid "All goals"
+msgstr "Сви циљеви"
+
+#: pagelayout.py:200
+#, python-format
+msgid "%d/%d files"
+msgstr "%d/%d датотека"
+
+#: pagelayout.py:203
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "%d датотека"
+msgstr[1] "%d датотеке"
+
+#: pagelayout.py:205
+#, python-format
+msgid "%d/%d strings"
+msgstr "[%d/%d низова знакова]"
+
+#: pagelayout.py:211 users.py:131
+msgid "Name"
+msgstr "Име"
+
+#: pagelayout.py:212
+#, fuzzy
+msgid "Translated"
+msgstr "Преведи"
+
+#: pagelayout.py:213
+#, fuzzy
+msgid "Translated percentage"
+msgstr "Преведи моју ниску"
+
+#: pagelayout.py:214
+#, fuzzy
+msgid "Translated words"
+msgstr "Преведи"
+
+#: pagelayout.py:215
+msgid "Fuzzy"
+msgstr ""
+
+#: pagelayout.py:216
+msgid "Fuzzy percentage"
+msgstr ""
+
+#: pagelayout.py:217
+msgid "Fuzzy words"
+msgstr ""
+
+#: pagelayout.py:219
+#, fuzzy
+msgid "Untranslated percentage"
+msgstr "Непреведено"
+
+#: pagelayout.py:220
+#, fuzzy
+msgid "Untranslated words"
+msgstr "Непреведено"
+
+#: pagelayout.py:221
+#, fuzzy
+msgid "Total"
+msgstr "Циљеви"
+
+#: pagelayout.py:222
+msgid "Total words"
+msgstr ""
+
+#: pagelayout.py:223
+msgid "Graph"
+msgstr ""
+
+#: pootle.py:226
+msgid "Login failed"
+msgstr ""
+
+#: pootle.py:270 pootle.py:296
+msgid "Redirecting to login..."
+msgstr ""
+
+#: pootle.py:273
+msgid "Need to log in to access home page"
+msgstr ""
+
+#: pootle.py:299
+msgid "Need to log in to access admin page"
+msgstr ""
+
+#: pootle.py:306
+msgid "Redirecting to home..."
+msgstr ""
+
+#: pootle.py:309
+msgid "You do not have the rights to administer pootle."
+msgstr "Немате права да руководите pootle."
+
+#: projects.py:133
+msgid "View"
+msgstr "Преглед"
+
+#: projects.py:134 translatepage.py:570
+msgid "Suggest"
+msgstr "Предложи"
+
+#: projects.py:135
+msgid "Translate"
+msgstr "Преведи"
+
+#: projects.py:136
+msgid "Review"
+msgstr "Прегледај"
+
+#: projects.py:137
+msgid "Archive"
+msgstr "Архива"
+
+#: projects.py:138
+msgid "Compile PO files"
+msgstr "Компајлирај PO датотеку"
+
+#: projects.py:139
+msgid "Assign"
+msgstr "Додели"
+
+#: projects.py:140
+msgid "Administrate"
+msgstr "Уређуј"
+
+#: projects.py:197
+msgid "You cannot remove the \"nobody\" or \"default\" user"
+msgstr "Не можете уклонити „нико“ или „подразумеваног“ корисника"
+
+#: projects.py:334 projects.py:394
+msgid "You do not have rights to alter goals here"
+msgstr "Немате права да мељате циљеве овде"
+
+#: projects.py:454
+msgid "You do not have rights to upload files here"
+msgstr "Немате права да закачите датотеке овде"
+
+#: projects.py:457
+msgid "You do not have rights to upload new files here"
+msgstr "Немате права да закачите нове датотеке овде"
+
+#: projects.py:466
+msgid "You do not have rights to update files here"
+msgstr "Немате права да освежите датотеке овде"
+
+#: projects.py:536
+#, fuzzy
+msgid "You do not have rights to commit files here"
+msgstr "Немате права да закачите датотеке овде"
+
+#: projects.py:864 projects.py:905
+msgid "You do not have rights to alter assignments here"
+msgstr "Немате права да мењате додељене задатке овде"
+
+#: projects.py:1109
+msgid "You do not have rights to change translations here"
+msgstr "Немате права да промените преводе овде"
+
+#: projects.py:1119
+msgid "You do not have rights to suggest changes here"
+msgstr "Немате права да предложите промене овде"
+
+#: projects.py:1135 projects.py:1158
+msgid "You do not have rights to review suggestions here"
+msgstr "Немате права да прегледате промене овде"
+
+#: users.py:36
+msgid "Login to Pootle"
+msgstr "Пријави се на Pootle"
+
+#: users.py:41
+#, fuzzy
+msgid "Username:"
+msgstr "Корисничко име"
+
+#: users.py:43
+#, fuzzy
+msgid "Password:"
+msgstr "Лозинка"
+
+#: users.py:44
+#, fuzzy
+msgid "Language:"
+msgstr "Језици"
+
+#: users.py:53
+msgid "Default"
+msgstr ""
+
+#: users.py:65
+msgid "Please enter your registration details"
+msgstr "Молимо вас унесите важе детаље за регистрацију"
+
+#: users.py:68
+msgid "Pootle Registration"
+msgstr "Pootle регистрација"
+
+#: users.py:75 users.py:108
+msgid "Your requested username"
+msgstr "Ваше тражено корисничко име"
+
+#: users.py:78
+msgid "Must be a valid email address"
+msgstr "Мора бити важећа ел. адреса"
+
+#: users.py:81
+msgid "Your full name"
+msgstr "Ваше пуно име"
+
+#: users.py:84
+msgid "Your desired password"
+msgstr "Ваша жељена лозинка"
+
+#: users.py:86
+#, fuzzy
+msgid "Register Account"
+msgstr "Активирајте рачун"
+
+#: users.py:95
+msgid "Please enter your activation details"
+msgstr "Молимо вас да унесете детаље за активацију"
+
+#: users.py:100
+msgid "Pootle Account Activation"
+msgstr "Pootle активација рачуна"
+
+#: users.py:110
+msgid "Activation Code"
+msgstr "Код за активацију"
+
+#: users.py:111
+msgid "The activation code you received"
+msgstr "Код за активацију који сте примили"
+
+#: users.py:113
+msgid "Activate Account"
+msgstr "Активирајте рачун"
+
+#: users.py:123
+#, python-format
+msgid "Options for: %s"
+msgstr "Поставке за: %s"
+
+#: users.py:128
+msgid "Personal Details"
+msgstr "Лични детаљи"
+
+#: users.py:133
+msgid "Email"
+msgstr "Ел. адреса"
+
+#: users.py:135
+msgid "Translation Interface Configuration"
+msgstr "Подешавање сучеља за превод"
+
+#: users.py:136
+msgid "User Interface language"
+msgstr ""
+
+#: users.py:137
+msgid "My Projects"
+msgstr "Моји пројекти"
+
+#: users.py:139
+msgid "My Languages"
+msgstr "Моји језици"
+
+#: users.py:141
+msgid "Home page"
+msgstr "Домаћа страна"
+
+#: users.py:175
+#, fuzzy
+msgid "Input Height (in lines)"
+msgstr "Висина уноса"
+
+#: users.py:175
+msgid "Input Width (in characters)"
+msgstr ""
+
+#: users.py:176
+msgid "Number of rows in view mode"
+msgstr "Број редова у моду за преглед"
+
+#: users.py:177
+msgid "Number of rows in translate mode"
+msgstr "Број редова у моду за превођење"
+
+#: users.py:230
+msgid "You need to be siteadmin to change users"
+msgstr "Морате бити управник веб странице да би променили кориснике"
+
+#: users.py:307
+msgid ""
+"You (or someone else) attempted to register an account with your username.\n"
+msgstr ""
+
+#: users.py:308
+msgid "We don't store your actual password but only a hash of it.\n"
+msgstr ""
+
+#: users.py:310
+#, python-format
+msgid "If you have a problem with registration, please contact %s.\n"
+msgstr ""
+
+#: users.py:312
+msgid ""
+"If you have a problem with registration, please contact the site "
+"administrator.\n"
+msgstr ""
+
+#: users.py:313
+msgid ""
+"That username already exists. An email will be sent to the registered email "
+"address.\n"
+msgstr ""
+
+#: users.py:315
+#, python-format
+msgid "Proceeding to <a href='%s'>login</a>\n"
+msgstr ""
+
+#: users.py:319
+#, python-format
+msgid "You must supply a valid password of at least %d characters."
+msgstr ""
+
+#: users.py:323
+msgid "A Pootle account has been created for you using this email address.\n"
+msgstr ""
+
+#: users.py:325
+msgid "To activate your account, follow this link:\n"
+msgstr ""
+
+#: users.py:331
+#, fuzzy, python-format
+#, python-format
+msgid ""
+"Your activation code is:\n"
+"%s\n"
+msgstr "Код за активацију"
+
+#: users.py:333
+msgid ""
+"If you are unable to follow the link, please enter the above code at the "
+"activation page.\n"
+msgstr ""
+
+#: users.py:334
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message.\n"
+msgstr ""
+
+#: users.py:336
+#, python-format
+msgid ""
+"Account created. You will be emailed login details and an activation code. "
+"Please enter your activation code on the <a href='%s'>activation page</a>."
+msgstr ""
+
+#: users.py:338
+msgid "(Or simply click on the activation link in the email)"
+msgstr ""
+
+#: users.py:340
+#, fuzzy, python-format
+#, python-format
+msgid "Your user name is: %s\n"
+msgstr "Ваше пуно име"
+
+#: users.py:342
+#, fuzzy, python-format
+#, python-format
+msgid "Your password is: %s\n"
+msgstr "Ваша жељена лозинка"
+
+#: users.py:343
+#, python-format
+msgid "Your registered email address is: %s\n"
+msgstr ""
+
+#: users.py:367
+msgid "Redirecting to Registration Page..."
+msgstr ""
+
+#: users.py:391
+msgid "Redirecting to login Page..."
+msgstr ""
+
+#: users.py:394
+msgid "Your account has been activated! Redirecting to login..."
+msgstr ""
+
+#: users.py:398
+msgid "The activation information was not valid."
+msgstr ""
+
+#: users.py:399
+#, fuzzy
+msgid "Activation Failed"
+msgstr "Код за активацију"
+
+#: users.py:493
+msgid "Input height must be numeric"
+msgstr "Висина уноса мора бити број"
+
+#: users.py:494
+msgid "Input width must be numeric"
+msgstr "Ширина уноса мора бити број"
+
+#: users.py:495
+msgid "The number of rows displayed in view mode must be numeric"
+msgstr "Број редова приказаних у моду за преглед мора бити број"
+
+#: users.py:496
+msgid "The number of rows displayed in translate mode must be numeric"
+msgstr "Број редова приказаних у моду за превод мора бити број"
+
+#: translatepage.py:80
+#, python-format
+msgid ""
+"%d/%d translated\n"
+"(%d blank, %d fuzzy)"
+msgstr ""
+"%d/%d преведено\n"
+"(%d празно, %d нејасно)"
+
+#. l10n: first parameter: name of the installation (like "Pootle")
+#. l10n: second parameter: project name
+#. l10n: third parameter: target language
+#. l10n: fourth parameter: file name
+#: translatepage.py:96
+#, fuzzy, python-format
+#, python-format
+msgid "%s: translating %s into %s: %s"
+msgstr "Pootle: преводим %s у %s: %s"
+
+#: translatepage.py:110
+#, fuzzy
+msgid "Original"
+msgstr "изворни"
+
+#: translatepage.py:111
+#, fuzzy
+msgid "Translation"
+msgstr "превод"
+
+#: translatepage.py:114
+#, fuzzy
+msgid "Accept"
+msgstr "прихвати"
+
+#: translatepage.py:115
+#, fuzzy
+msgid "Reject"
+msgstr "одбиј"
+
+#. l10n: This heading refers to related translations and terminology
+#: translatepage.py:117
+msgid "Related"
+msgstr ""
+
+#. l10n: "batch" refers to the set of translations that were reviewed
+#: translatepage.py:135
+msgid "End of batch"
+msgstr "Крај пакета команди"
+
+#: translatepage.py:137
+msgid "Click here to return to the index"
+msgstr "Притисните овде да се вратите на индекс"
+
+#. l10n: noun (the start)
+#: translatepage.py:150 translatepage.py:153
+msgid "Start"
+msgstr "Почетак"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:157 translatepage.py:160
+#, python-format
+msgid "Previous %d"
+msgstr "Предходни %d"
+
+#. l10n: the third parameter refers to the total number of messages in the file
+#: translatepage.py:162
+#, python-format
+msgid "Items %d to %d of %d"
+msgstr "Ставке %d до %d од %d"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:167 translatepage.py:170
+#, python-format
+msgid "Next %d"
+msgstr "Следећи %d"
+
+#. l10n: noun (the end)
+#: translatepage.py:173 translatepage.py:176
+msgid "End"
+msgstr "Крај"
+
+#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
+#: translatepage.py:192
+#, python-format
+msgid "checking %s"
+msgstr "проверавам %s"
+
+#: translatepage.py:334
+#, python-format
+msgid "There are no items matching that search ('%s')"
+msgstr "Нема ставких са које подударају претрагу („%s“)"
+
+#: translatepage.py:336
+msgid "You have finished going through the items you selected"
+msgstr "Звршилисте пролаз кроз све ставке које сте изабрали"
+
+#: translatepage.py:534
+msgid "Singular"
+msgstr "Једнина"
+
+#: translatepage.py:535
+msgid "Plural"
+msgstr "Множина"
+
+#. l10n: verb
+#: translatepage.py:549
+msgid "Edit"
+msgstr "Уреди"
+
+#. l10n: verb
+#: translatepage.py:566
+#, fuzzy
+msgid "Copy"
+msgstr "умножи"
+
+#: translatepage.py:567 translatepage.py:741
+#, fuzzy
+msgid "Skip"
+msgstr "прескочи"
+
+#. l10n: verb
+#: translatepage.py:569 translatepage.py:740
+msgid "Back"
+msgstr ""
+
+#: translatepage.py:571
+#, fuzzy
+msgid "Submit"
+msgstr "проследи"
+
+#. l10n: action that increases the height of the textarea
+#: translatepage.py:576
+msgid "Grow"
+msgstr "Увећај"
+
+#. l10n: action that decreases the height of the textarea
+#: translatepage.py:578
+msgid "Shrink"
+msgstr "Смањи"
+
+#. l10n: action that increases the width of the textarea
+#: translatepage.py:580
+msgid "Broaden"
+msgstr "Рашири"
+
+#. l10n: action that decreases the width of the textarea
+#: translatepage.py:582
+msgid "Narrow"
+msgstr "Сузи"
+
+#. l10n: action that resets the size of the textarea
+#: translatepage.py:584
+msgid "Reset"
+msgstr "Врати на почетну вредност"
+
+#: translatepage.py:602 translatepage.py:695 translatepage.py:729
+#: translatepage.py:762
+#, python-format
+msgid "Plural Form %d"
+msgstr "Облик множине %d"
+
+#: translatepage.py:617
+msgid ""
+"Translation not possible because plural information for your language is not "
+"available. Please contact the site administrator."
+msgstr ""
+
+#: translatepage.py:699
+#, fuzzy
+msgid "Current Translation:"
+msgstr "<b>Текући превод:</b>"
+
+#: translatepage.py:710
+#, python-format
+msgid "Suggestion %d by %s:"
+msgstr "Предлог %d од %s:"
+
+#: translatepage.py:712
+#, python-format
+msgid "Suggestion %d:"
+msgstr "Предлог %d:"
+
+#: translatepage.py:715
+#, python-format
+msgid "Suggestion by %s:"
+msgstr "%s предлог:"
+
+#: translatepage.py:717
+msgid "Suggestion:"
+msgstr "Предлог:"
+
+#: indexpage.py:731
+msgid "Select Multiple"
+msgstr "Многоструки избор"
+
+#~ msgid "Pootle"
+#~ msgstr "Pootle"
+
+#~ msgid "Pootle: %s"
+#~ msgstr "Pootle: %s"
+
+#~ msgid "Pootle Admin Page"
+#~ msgstr "Управничка страница за Pootle"
+
+#~ msgid "Pootle Languages Admin Page"
+#~ msgstr "Pootle страна за управљане језицима"
+
+#~ msgid "Pootle Projects Admin Page"
+#~ msgstr "Pootle страна за управљање пројеката"
+
+#~ msgid "You do not have the rights to administer Pootle."
+#~ msgstr "Немате права да управљате Pootle."
+
+#~ msgid "Pootle User Admin Page"
+#~ msgstr "Pootle страна за управљање корисника"
+
+#~ msgid "not logged in"
+#~ msgstr "нисте пријављени"
+
+#~ msgid "Log In"
+#~ msgstr "Пријавите се"
+
+#~ msgid "suggest"
+#~ msgstr "предложи"
+
+#~ msgid "Input Width"
+#~ msgstr "Ширина уноса"

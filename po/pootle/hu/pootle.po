@@ -1,0 +1,1332 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2006-08-07 12:36+0200\n"
+"PO-Revision-Date: 2006-07-16 10:07+0200\n"
+"Last-Translator: Dani Zsolt <dzsolt@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Generated-By: pygettext.py 1.1\n"
+"X-Generator: Pootle 0.9\n"
+
+#: adminpages.py:35 adminpages.py:71 adminpages.py:126 adminpages.py:187
+#: adminpages.py:273 adminpages.py:333 indexpage.py:58 indexpage.py:77
+#: indexpage.py:112 indexpage.py:166 indexpage.py:226 indexpage.py:312
+#: pagelayout.py:59 users.py:38 users.py:71 users.py:104 users.py:125
+#: translatepage.py:91
+msgid "Pootle Demo"
+msgstr "Pootle Bemutató"
+
+#: adminpages.py:43 adminpages.py:79 adminpages.py:134 adminpages.py:195
+#: pagelayout.py:36
+msgid "Home"
+msgstr "Kezdőlap"
+
+#: adminpages.py:44 adminpages.py:197
+msgid "Users"
+msgstr "Felhasználók"
+
+#: adminpages.py:45 adminpages.py:81 indexpage.py:75
+msgid "Languages"
+msgstr "Nyelvek"
+
+#: adminpages.py:46 adminpages.py:136 indexpage.py:76
+msgid "Projects"
+msgstr "Projektek"
+
+#: adminpages.py:47
+msgid "General options"
+msgstr "Általános opciók"
+
+#: adminpages.py:48 users.py:129
+msgid "Option"
+msgstr "Opció"
+
+#: adminpages.py:49 users.py:130
+msgid "Current value"
+msgstr "Érvényes érték"
+
+#: adminpages.py:50 adminpages.py:82 adminpages.py:137 adminpages.py:198
+#: users.py:142
+msgid "Save changes"
+msgstr "Változások mentése"
+
+#: adminpages.py:54
+msgid "Title"
+msgstr "Cím"
+
+#: adminpages.py:54
+msgid "Description"
+msgstr "Megjegyzés"
+
+#: adminpages.py:54
+msgid "Base URL"
+msgstr "Alap URL"
+
+#: adminpages.py:54
+msgid "Home Page"
+msgstr "Honlap"
+
+#: adminpages.py:80 adminpages.py:135 adminpages.py:196
+msgid "Main admin page"
+msgstr "Adminisztráció"
+
+#: adminpages.py:86
+msgid "ISO Code"
+msgstr "ISO kód"
+
+#: adminpages.py:87 adminpages.py:142 adminpages.py:203 users.py:80
+msgid "Full Name"
+msgstr "Teljes név"
+
+#: adminpages.py:87
+msgid "(add language here)"
+msgstr "(nyelv hozzáadása)"
+
+#: adminpages.py:88
+msgid "Special Chars"
+msgstr "Egyedi jelek"
+
+#: adminpages.py:88
+msgid "(special characters)"
+msgstr "(egyedi jelek, karakterek)"
+
+#: adminpages.py:89 indexpage.py:189
+msgid "Number of Plurals"
+msgstr "Többesszám száma"
+
+#: adminpages.py:89
+msgid "(number of plurals)"
+msgstr "(többes számúak száma)"
+
+#: adminpages.py:90 indexpage.py:190
+msgid "Plural Equation"
+msgstr "Többszörös kiegyenlítés"
+
+#: adminpages.py:90
+msgid "(plural equation)"
+msgstr "(többszörös kiegyenlítés)"
+
+#: adminpages.py:91
+msgid "Remove Language"
+msgstr "Nyelv eltávolítása"
+
+#. l10n: The parameter is a languagecode, projectcode or username
+#: adminpages.py:106 adminpages.py:168 adminpages.py:229 adminpages.py:392
+#, python-format
+msgid "Remove %s"
+msgstr "%s eltávolítása"
+
+#: adminpages.py:124
+msgid "Standard"
+msgstr "Szabvány"
+
+#: adminpages.py:141
+msgid "Project Code"
+msgstr "Projekt kód"
+
+#: adminpages.py:142
+msgid "(add project here)"
+msgstr "(projekt hozzáadása)"
+
+#: adminpages.py:143
+msgid "Project Description"
+msgstr "Projekt megjegyzés"
+
+#: adminpages.py:143
+msgid "(project description)"
+msgstr "(projekt megjegyzés)"
+
+#: adminpages.py:144
+msgid "Checker Style"
+msgstr "Ellenőrzés stílusa"
+
+#: adminpages.py:145
+msgid "Create MO Files"
+msgstr "MO fájl létrehozása"
+
+#: adminpages.py:146
+msgid "Remove Project"
+msgstr "Projekt eltávolítása"
+
+#: adminpages.py:202 users.py:46
+msgid "Login"
+msgstr "Bejelentkezés"
+
+#: adminpages.py:203 users.py:274
+msgid "(add full name here)"
+msgstr "(teljes név hozzáadása)"
+
+#: adminpages.py:204 users.py:77
+msgid "Email Address"
+msgstr "E-mail cím"
+
+#: adminpages.py:204 users.py:277
+msgid "(add email here)"
+msgstr "(e-mail cím hozzáadása)"
+
+#: adminpages.py:205 users.py:83
+msgid "Password"
+msgstr "Jelszó"
+
+#: adminpages.py:205 users.py:271
+msgid "(add password here)"
+msgstr "(jelszó hozzáadása)"
+
+#: adminpages.py:206
+msgid "Activated"
+msgstr "Aktiválva"
+
+#: adminpages.py:206
+msgid "Activate New User"
+msgstr "Új felhasználó aktiválása"
+
+#: adminpages.py:207
+msgid "Remove User"
+msgstr "Felhasználó eltávolítása"
+
+#: adminpages.py:261
+msgid "Back to main page"
+msgstr "Vissza a főoldalra"
+
+#: adminpages.py:262
+msgid "Existing languages"
+msgstr "Létező nyelvek"
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:266
+msgid "Update Languages"
+msgstr "Nyelvek aktualizálása"
+
+#: adminpages.py:267
+#, python-format
+msgid "Pootle Admin: %s"
+msgstr "Pootle adminisztrátor: %s"
+
+#: adminpages.py:268 adminpages.py:330
+msgid "You do not have the rights to administer this project."
+msgstr "Önnek nincs joga e projektet adminisztrálni."
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:270
+msgid "Update from templates"
+msgstr "Aktualizálás sablonból"
+
+#: adminpages.py:278
+msgid "Add Language"
+msgstr "Nyelv hozzáadása"
+
+#. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
+#: adminpages.py:310
+#, python-format
+msgid "Pootle Admin: %s %s"
+msgstr "Pootle adminisztrátor: %s %s"
+
+#: adminpages.py:311
+msgid "Project home page"
+msgstr "Projekt honlap"
+
+#: adminpages.py:329
+#, python-format
+msgid "Cannot set rights for username %s - user does not exist"
+msgstr "Nem tudom beállítani %s jogait - felhasználó nem létezik"
+
+#: adminpages.py:346
+msgid "This is a GNU-style project (one directory, files named per language)."
+msgstr ""
+"Ez egy GNU stílusú projekt (egy könyvtár, fájlok elnevezve nyelvenként)."
+
+#: adminpages.py:348
+msgid "This is a standard style project (one directory per language)."
+msgstr "Ez egy sztenderd stílusú projekt (egy könyvtár nyelvenként)."
+
+#: adminpages.py:349
+msgid "User Permissions"
+msgstr "Felhasználói engedélyek"
+
+#: adminpages.py:350 users.py:74 users.py:107
+msgid "Username"
+msgstr "Felhasználónév"
+
+#: adminpages.py:351
+msgid "(select to add user)"
+msgstr "(kiválasztott felhasználó hozzáadása)"
+
+#: adminpages.py:352
+msgid "Rights"
+msgstr "Jogok"
+
+#: adminpages.py:353 indexpage.py:929
+msgid "Remove"
+msgstr "Eltávolít"
+
+#: adminpages.py:373
+msgid "Update Rights"
+msgstr "Jogok aktualizálása"
+
+#: indexpage.py:49
+msgid "About Pootle"
+msgstr "Pootle-ről"
+
+#: indexpage.py:50
+msgid ""
+"<strong>Pootle</strong> is a simple web portal that should allow you to "
+"<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
+"you can download it and run your own copy if you like. You can also help "
+"participate in the development in many ways (you don't have to be able to "
+"program)."
+msgstr ""
+"<strong>Pootle</strong> egy egyszerű WebPortál, ami hozzájárul az Ön "
+"<strong>fordításaihoz</strong>! Mivel a Pootle <strong>Szabad Szoftver</"
+"strong>, töltse le és használja sajátjaként, ha szeretné. You can also help "
+"participate in the development in many ways (you don't have to be able to "
+"program)."
+
+#: indexpage.py:51
+msgid ""
+"The Pootle project itself is hosted at <a href=\"http://translate."
+"sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
+"details about source code, mailing lists etc."
+msgstr ""
+"A Pootle projekt honlapja <a href=\"http://translate.sourceforge.net/"
+"\">translate.sourceforge.net</a> helyen található, ahol részletek találhatók "
+"a forráskódról, levelezőlistákról, egyebekről."
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
+#: indexpage.py:53
+msgid ""
+"The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
+"thechestnut.com/flumps.htm\">this</a>."
+msgstr ""
+"A név jelentése <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, /PO bázisú, Web alapú Fordító/Honosító Motor/, "
+"de elolvashatja még <a>href=\"http://www.thechestnut.com/flumps.htm\">ezt</"
+"a> is."
+
+#: indexpage.py:54
+msgid "Versions"
+msgstr "Verziók"
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
+#: indexpage.py:56
+#, fuzzy, python-format
+msgid ""
+"This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+msgstr ""
+"Ezen a weboldalon <br/>Pootle %s<br/> fut. Fordító eszközkészlet %s<br/"
+">jToolkit %s<br/>Python %s (on %s/%s)."
+
+#: indexpage.py:74
+msgid "About this Pootle server"
+msgstr "Erről a Pootle szerverről"
+
+#: indexpage.py:107
+#, python-format
+msgid "User Page for: %s"
+msgstr "%s felhasználó oldala"
+
+#: indexpage.py:109
+msgid "Change options"
+msgstr "Opciók változtatása"
+
+#: indexpage.py:110
+msgid "Admin page"
+msgstr "Admin oldal"
+
+#: indexpage.py:111
+msgid "Quick Links"
+msgstr "Gyors linkek"
+
+#: indexpage.py:115
+msgid "Please click on 'Change options' and select some languages and projects"
+msgstr ""
+"Kattintson az 'Opciók változtatása' gombra és válasszon valamilyen nyelvet "
+"és projektet"
+
+#: indexpage.py:164
+#, python-format
+msgid "%d project, average %d%% translated"
+msgid_plural "%d projects, average %d%% translated"
+msgstr[0] "%d projekt, átlag %d%% lefordítva"
+msgstr[1] "%d projektek, átlag %d%% lefordítva"
+
+#. l10n: The first parameter is the name of the installation
+#. l10n: The second parameter is the name of the project/language
+#. l10n: This is used as a page title. Most languages won't need to change this
+#: indexpage.py:170 indexpage.py:230
+#, fuzzy, python-format
+msgid "%s: %s"
+msgstr "%s %s"
+
+#: indexpage.py:172 indexpage.py:232 pagelayout.py:40 pagelayout.py:140
+msgid "Admin"
+msgstr "Adminisztáció"
+
+#: indexpage.py:186
+msgid "Language Code"
+msgstr "Nyelv kódja"
+
+#: indexpage.py:187
+msgid "Language Name"
+msgstr "Nyelv neve"
+
+#: indexpage.py:224
+#, python-format
+msgid "%d language, average %d%% translated"
+msgid_plural "%d languages, average %d%% translated"
+msgstr[0] "%d nyelv, átlag %d%% lefordítva"
+msgstr[1] "%d nyelvek, átlag %d%% lefordítva"
+
+#: indexpage.py:235
+#, fuzzy
+msgid "Language"
+msgstr "Nyelv:"
+
+#. l10n: The first parameter is the name of the installation (like "Pootle")
+#: indexpage.py:314
+#, fuzzy, python-format
+msgid "%s: Project %s, Language %s"
+msgstr "Pootle: Projekt %s, Nyelv %s"
+
+#. l10n: text next to search field
+#: indexpage.py:322 translatepage.py:121
+msgid "Search"
+msgstr "Keresés"
+
+#: indexpage.py:369
+msgid "Cannot upload file, no file attached"
+msgstr "Nem tudom feltölteni a fájlt, nincs fájl csatolva"
+
+#: indexpage.py:375
+msgid "Can only upload PO files and zips of PO files"
+msgstr "Csak PO és PO-t tartalmazó zip fájlt tudok feltölteni"
+
+#: indexpage.py:483 indexpage.py:486 translatepage.py:199 translatepage.py:202
+msgid "Assign Strings"
+msgstr "Kiosztott mondatok"
+
+#: indexpage.py:484 translatepage.py:201
+msgid "Assign Action"
+msgstr "Kiosztott feladatok"
+
+#: indexpage.py:485 translatepage.py:200
+msgid "Assign to User"
+msgstr "Felhasználónak kiosztva"
+
+#: indexpage.py:491
+msgid "goals"
+msgstr "cél"
+
+#: indexpage.py:491
+msgid "Enter goal name"
+msgstr "Cél neve"
+
+#: indexpage.py:491
+msgid "Add Goal"
+msgstr "Cél hozzáadása"
+
+#: indexpage.py:495 indexpage.py:497
+msgid "Upload File"
+msgstr "Fájl feltöltése"
+
+#: indexpage.py:496
+msgid "Select file to upload"
+msgstr "Feltöltendő fájl kiválasztása"
+
+#: indexpage.py:599
+msgid "Not in a goal"
+msgstr "Nincs célban"
+
+#: indexpage.py:620
+msgid "Add User"
+msgstr "Felhasználó hozzáadása"
+
+#: indexpage.py:658
+msgid "PO file"
+msgstr "PO fájl"
+
+#: indexpage.py:662
+msgid "XLIFF file"
+msgstr "XLIFF fájl"
+
+#: indexpage.py:666
+msgid "Qt .ts file"
+msgstr "Qt .ts fájl"
+
+#: indexpage.py:670
+msgid "CSV file"
+msgstr "CSV fájl"
+
+#: indexpage.py:675
+msgid "MO file"
+msgstr "MO fájl"
+
+#: indexpage.py:679
+msgid "Update"
+msgstr "Aktualizál"
+
+#: indexpage.py:683 projects.py:141
+msgid "Commit"
+msgstr ""
+
+#: indexpage.py:720
+msgid "All Strings"
+msgstr "Minden mondat"
+
+#: indexpage.py:720 pagelayout.py:218
+msgid "Untranslated"
+msgstr "Fordítatlan"
+
+#: indexpage.py:720
+msgid "Unassigned"
+msgstr "Kiosztatlan"
+
+#: indexpage.py:720
+msgid "Unassigned and Untranslated"
+msgstr "Kiosztatlan és fordítatlan"
+
+#: indexpage.py:727
+msgid "Set Goal"
+msgstr "Cél beállítás"
+
+#: indexpage.py:731
+#, fuzzy
+msgid "Select Multiple"
+msgstr "Feltöltendő fájl kiválasztása"
+
+#: indexpage.py:733
+msgid "Assign To"
+msgstr "Kioszt"
+
+#: indexpage.py:762
+msgid "Show Editing Functions"
+msgstr ""
+
+#: indexpage.py:762
+#, fuzzy
+msgid "Show Statistics"
+msgstr "Nyomkövetés bemutatása"
+
+#: indexpage.py:763
+msgid "Show Tracks"
+msgstr "Nyomkövetés bemutatása"
+
+#: indexpage.py:763
+msgid "Hide Tracks"
+msgstr "Nyomkövetés elrejtése"
+
+#. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
+#: indexpage.py:765
+msgid "Show Checks"
+msgstr "Ellenőrzések megjelenítése"
+
+#: indexpage.py:765
+msgid "Hide Checks"
+msgstr "Ellenőrzések elrejtése"
+
+#: indexpage.py:766
+msgid "Show Goals"
+msgstr "Cél megjelenítése"
+
+#: indexpage.py:766
+msgid "Hide Goals"
+msgstr "Cél elrejtése"
+
+#: indexpage.py:767
+msgid "Show Assigns"
+msgstr "Megbízások mutatása"
+
+#: indexpage.py:767
+msgid "Hide Assigns"
+msgstr "Megbízások elrejtése"
+
+#: indexpage.py:776
+#, python-format
+msgid "All Goals: %s"
+msgstr "Összes cél: %s"
+
+#: indexpage.py:782
+msgid "Translate My Strings"
+msgstr "Mondataim fordítása"
+
+#: indexpage.py:784
+msgid "View My Strings"
+msgstr "Mondataim megtekintése"
+
+#: indexpage.py:789
+msgid "No strings assigned to you"
+msgstr "Nincsenek mondatok Önnek kiosztva"
+
+#: indexpage.py:793
+msgid "Quick Translate My Strings"
+msgstr "Mondataim gyorsfordítása"
+
+#: indexpage.py:797
+msgid "No untranslated strings assigned to you"
+msgstr "Nincsenek fordítatlan mondatok Önnek kiosztva"
+
+#: indexpage.py:801
+msgid "Review Suggestions"
+msgstr "Javaslatok áttekintése"
+
+#: indexpage.py:803
+msgid "View Suggestions"
+msgstr "Javaslatok megjelenítése"
+
+#: indexpage.py:808
+msgid "Quick Translate"
+msgstr "Gyorsfordítás"
+
+#: indexpage.py:810
+msgid "View Untranslated"
+msgstr "Fordítás nélküliek megjelenítése"
+
+#: indexpage.py:814
+msgid "No untranslated items"
+msgstr "Nincs fordítatlan tétel"
+
+#: indexpage.py:817
+msgid "Translate All"
+msgstr "Mindet lefordít"
+
+#: indexpage.py:832
+msgid "ZIP of goal"
+msgstr "Célból ZIP"
+
+#: indexpage.py:834
+msgid "ZIP of folder"
+msgstr "Könyvtárból ZIP"
+
+#: indexpage.py:841
+msgid "Generate SDF"
+msgstr "SDF generálás"
+
+#: indexpage.py:894
+#, python-format
+msgid "%d string (%d%%) failed"
+msgid_plural "%d strings (%d%%) failed"
+msgstr[0] "%d mondat (%d%%) hiányzik"
+msgstr[1] "%d mondat (%d%%) hiányzik"
+
+#: indexpage.py:924
+#, python-format
+msgid "%d/%d words (%d%%) assigned"
+msgstr "%d/%d szó (%d%%) kiosztva"
+
+#: indexpage.py:925 indexpage.py:927
+#, python-format
+msgid "[%d/%d strings]"
+msgstr "[%d/%d mondat]"
+
+#: indexpage.py:926 pagelayout.py:204
+#, python-format
+msgid "%d/%d words (%d%%) translated"
+msgstr "%d/%d szó (%d%%) lefordítva"
+
+#: pagelayout.py:37
+msgid "All projects"
+msgstr "Minden projekt"
+
+#: pagelayout.py:38
+msgid "All languages"
+msgstr "Minden nyelv"
+
+#: pagelayout.py:39
+msgid "My account"
+msgstr "Saját adatok"
+
+#: pagelayout.py:41
+msgid "Docs & help"
+msgstr "Doksi és súgó"
+
+#: pagelayout.py:42
+msgid "Log out"
+msgstr "Kijelentkezés"
+
+#: pagelayout.py:43
+msgid "Log in"
+msgstr "Bejelentkezés"
+
+#. l10n: Verb, as in "to register"
+#: pagelayout.py:45
+msgid "Register"
+msgstr "Regisztráció"
+
+#: pagelayout.py:46
+msgid "Activate"
+msgstr "Aktivál"
+
+#: pagelayout.py:63
+#, fuzzy
+msgid "Pootle Logo"
+msgstr "Pootle Bemutató"
+
+#: pagelayout.py:64
+#, fuzzy
+msgid "WordForge Translation Project"
+msgstr "Jelenlegi fordítás:"
+
+#: pagelayout.py:129
+msgid "All goals"
+msgstr "Minden cél"
+
+#: pagelayout.py:200
+#, python-format
+msgid "%d/%d files"
+msgstr "%d/%d fájl"
+
+#: pagelayout.py:203
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "%d fájl"
+msgstr[1] "%d fájl"
+
+#: pagelayout.py:205
+#, python-format
+msgid "%d/%d strings"
+msgstr "%d/%d mondat"
+
+#: pagelayout.py:211 users.py:131
+msgid "Name"
+msgstr "Név"
+
+#: pagelayout.py:212
+#, fuzzy
+msgid "Translated"
+msgstr "Lefordít"
+
+#: pagelayout.py:213
+#, fuzzy
+msgid "Translated percentage"
+msgstr "Mondataim fordítása"
+
+#: pagelayout.py:214
+#, fuzzy
+msgid "Translated words"
+msgstr "Lefordít"
+
+#: pagelayout.py:215
+msgid "Fuzzy"
+msgstr ""
+
+#: pagelayout.py:216
+msgid "Fuzzy percentage"
+msgstr ""
+
+#: pagelayout.py:217
+msgid "Fuzzy words"
+msgstr ""
+
+#: pagelayout.py:219
+#, fuzzy
+msgid "Untranslated percentage"
+msgstr "Fordítatlan"
+
+#: pagelayout.py:220
+#, fuzzy
+msgid "Untranslated words"
+msgstr "Fordítatlan"
+
+#: pagelayout.py:221
+#, fuzzy
+msgid "Total"
+msgstr "cél"
+
+#: pagelayout.py:222
+msgid "Total words"
+msgstr ""
+
+#: pagelayout.py:223
+msgid "Graph"
+msgstr ""
+
+#: pootle.py:226
+msgid "Login failed"
+msgstr ""
+
+#: pootle.py:270 pootle.py:296
+msgid "Redirecting to login..."
+msgstr "Átirányítás a bejelentkezéshez..."
+
+#: pootle.py:273
+msgid "Need to log in to access home page"
+msgstr "A honlap hozzáfáféréséhez szükség van bejelentkezésre"
+
+#: pootle.py:299
+msgid "Need to log in to access admin page"
+msgstr "Az adminisztrációs lap hozzáfáféréséhez szükség van bejelentkezésre"
+
+#: pootle.py:306
+msgid "Redirecting to home..."
+msgstr "Átirányítás a kezdőlapra"
+
+#: pootle.py:309
+msgid "You do not have the rights to administer pootle."
+msgstr "Önnek nincs joga adminisztrálni a pootle-t"
+
+#: projects.py:133
+msgid "View"
+msgstr "Nézet"
+
+#: projects.py:134 translatepage.py:570
+msgid "Suggest"
+msgstr "Javaslat"
+
+#: projects.py:135
+msgid "Translate"
+msgstr "Lefordít"
+
+#: projects.py:136
+msgid "Review"
+msgstr "Áttekintés"
+
+#: projects.py:137
+msgid "Archive"
+msgstr "Arhívum"
+
+#: projects.py:138
+msgid "Compile PO files"
+msgstr "PO fájlok szerkesztése"
+
+#: projects.py:139
+msgid "Assign"
+msgstr "Kioszt"
+
+#: projects.py:140
+msgid "Administrate"
+msgstr "Adminisztráció"
+
+#: projects.py:197
+msgid "You cannot remove the \"nobody\" or \"default\" user"
+msgstr "Ön nem tudja eltávolítani a \"nobody\" vagy \"default\" felhasználót"
+
+#: projects.py:334 projects.py:394
+msgid "You do not have rights to alter goals here"
+msgstr "Ön itt nem rendelkezik jogokkal a cél módosításához"
+
+#: projects.py:454
+msgid "You do not have rights to upload files here"
+msgstr "Ön itt nem rendelkezik jogokkal fájl feltöltéshez"
+
+#: projects.py:457
+msgid "You do not have rights to upload new files here"
+msgstr "Ön itt nem rendelkezik jogokkal új fájl feltöltéshez"
+
+#: projects.py:466
+msgid "You do not have rights to update files here"
+msgstr "Ön itt nem rendelkezik jogokkal fájl aktualizáláshoz"
+
+#: projects.py:536
+#, fuzzy
+msgid "You do not have rights to commit files here"
+msgstr "Ön itt nem rendelkezik jogokkal fájl feltöltéshez"
+
+#: projects.py:864 projects.py:905
+msgid "You do not have rights to alter assignments here"
+msgstr "Ön itt nem rendelkezik jogokkal kijelölt feladat megváltoztatásához"
+
+#: projects.py:1109
+msgid "You do not have rights to change translations here"
+msgstr "Ön itt nem rendelkezik jogokkal fordítás megváltoztatásához"
+
+#: projects.py:1119
+msgid "You do not have rights to suggest changes here"
+msgstr "Ön itt nem rendelkezik jogokkal javaslat megváltoztatásához"
+
+#: projects.py:1135 projects.py:1158
+msgid "You do not have rights to review suggestions here"
+msgstr "Ön itt nem rendelkezik jogokkal javaslatok bírálatához"
+
+#: users.py:36
+msgid "Login to Pootle"
+msgstr "Pootle bejelentkezés"
+
+#: users.py:41
+msgid "Username:"
+msgstr "Felhasználónév:"
+
+#: users.py:43
+msgid "Password:"
+msgstr "Jelszó:"
+
+#: users.py:44
+msgid "Language:"
+msgstr "Nyelv:"
+
+#: users.py:53
+msgid "Default"
+msgstr "Alapértelmezés"
+
+#: users.py:65
+msgid "Please enter your registration details"
+msgstr "Adja meg regisztrációs adatait"
+
+#: users.py:68
+msgid "Pootle Registration"
+msgstr "Pootle regisztráció"
+
+#: users.py:75 users.py:108
+msgid "Your requested username"
+msgstr "A kért felhasználónév"
+
+#: users.py:78
+msgid "Must be a valid email address"
+msgstr "Valós e-mail cím szükséges"
+
+#: users.py:81
+msgid "Your full name"
+msgstr "Az Ön teljes neve"
+
+#: users.py:84
+msgid "Your desired password"
+msgstr "Kért jelszó"
+
+#: users.py:86
+msgid "Register Account"
+msgstr "Hozzáférés regisztrálása"
+
+#: users.py:95
+msgid "Please enter your activation details"
+msgstr "Adja meg aktiválási adatait"
+
+#: users.py:100
+msgid "Pootle Account Activation"
+msgstr "Pootle hozzáférés aktiválása"
+
+#: users.py:110
+msgid "Activation Code"
+msgstr "Aktiválási kód"
+
+#: users.py:111
+msgid "The activation code you received"
+msgstr "A kapott aktiválási kód"
+
+#: users.py:113
+msgid "Activate Account"
+msgstr "Hozzáférés aktiválása"
+
+#: users.py:123
+#, python-format
+msgid "Options for: %s"
+msgstr "%s opciói"
+
+#: users.py:128
+msgid "Personal Details"
+msgstr "Személyes részletek"
+
+#: users.py:133
+msgid "Email"
+msgstr "Email"
+
+#: users.py:135
+msgid "Translation Interface Configuration"
+msgstr "Fordító felület konfiguráció"
+
+#: users.py:136
+msgid "User Interface language"
+msgstr "Felhasználói felület nyelve"
+
+#: users.py:137
+msgid "My Projects"
+msgstr "Saját projektek"
+
+#: users.py:139
+msgid "My Languages"
+msgstr "Saját nyelvek"
+
+#: users.py:141
+msgid "Home page"
+msgstr "Honlap"
+
+#: users.py:175
+msgid "Input Height (in lines)"
+msgstr "Beviteli magasság (sorokban)"
+
+#: users.py:175
+msgid "Input Width (in characters)"
+msgstr "Beviteli szélesség (karakterekben)"
+
+#: users.py:176
+msgid "Number of rows in view mode"
+msgstr "Sorok száma áttekintés módban"
+
+#: users.py:177
+msgid "Number of rows in translate mode"
+msgstr "Sorok száma fordítás módban"
+
+#: users.py:230
+msgid "You need to be siteadmin to change users"
+msgstr "Önnek szüksége lesz a rendszergazdára a felhasználó váltáshoz"
+
+#: users.py:307
+msgid ""
+"You (or someone else) attempted to register an account with your username.\n"
+msgstr ""
+
+#: users.py:308
+msgid "We don't store your actual password but only a hash of it.\n"
+msgstr ""
+
+#: users.py:310
+#, python-format
+msgid "If you have a problem with registration, please contact %s.\n"
+msgstr ""
+
+#: users.py:312
+msgid ""
+"If you have a problem with registration, please contact the site "
+"administrator.\n"
+msgstr ""
+
+#: users.py:313
+msgid ""
+"That username already exists. An email will be sent to the registered email "
+"address.\n"
+msgstr ""
+
+#: users.py:315
+#, python-format
+msgid "Proceeding to <a href='%s'>login</a>\n"
+msgstr ""
+
+#: users.py:319
+#, python-format
+msgid "You must supply a valid password of at least %d characters."
+msgstr ""
+
+#: users.py:323
+msgid "A Pootle account has been created for you using this email address.\n"
+msgstr ""
+
+#: users.py:325
+msgid "To activate your account, follow this link:\n"
+msgstr ""
+
+#: users.py:331
+#, fuzzy, python-format
+msgid ""
+"Your activation code is:\n"
+"%s\n"
+msgstr "Aktiválási kód"
+
+#: users.py:333
+msgid ""
+"If you are unable to follow the link, please enter the above code at the "
+"activation page.\n"
+msgstr ""
+
+#: users.py:334
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message.\n"
+msgstr ""
+
+#: users.py:336
+#, python-format
+msgid ""
+"Account created. You will be emailed login details and an activation code. "
+"Please enter your activation code on the <a href='%s'>activation page</a>."
+msgstr ""
+
+#: users.py:338
+msgid "(Or simply click on the activation link in the email)"
+msgstr ""
+
+#: users.py:340
+#, fuzzy, python-format
+msgid "Your user name is: %s\n"
+msgstr "Az Ön teljes neve"
+
+#: users.py:342
+#, fuzzy, python-format
+msgid "Your password is: %s\n"
+msgstr "Kért jelszó"
+
+#: users.py:343
+#, python-format
+msgid "Your registered email address is: %s\n"
+msgstr ""
+
+#: users.py:367
+msgid "Redirecting to Registration Page..."
+msgstr "Átirányítás a regisztrációs lapra"
+
+#: users.py:391
+msgid "Redirecting to login Page..."
+msgstr "Átirányítás a bejelentkező lapra"
+
+#: users.py:394
+msgid "Your account has been activated! Redirecting to login..."
+msgstr "Az Ön hozzáférése aktiválva! Átirányítás bejelentkezéshez..."
+
+#: users.py:398
+#, fuzzy
+msgid "The activation information was not valid."
+msgstr "Az aktiválás hivatkozása nem érvényes"
+
+#: users.py:399
+msgid "Activation Failed"
+msgstr "Aktiválás hiányzik"
+
+#: users.py:493
+msgid "Input height must be numeric"
+msgstr "Beviteli magasságot számokkal kell megadni"
+
+#: users.py:494
+msgid "Input width must be numeric"
+msgstr "Beviteli szélességet számokkal kell megadni"
+
+#: users.py:495
+msgid "The number of rows displayed in view mode must be numeric"
+msgstr "A sorok számát az áttekintés módhoz számokkal kell megadni"
+
+#: users.py:496
+msgid "The number of rows displayed in translate mode must be numeric"
+msgstr "A sorok számát a fordító módhoz számokkal kell megadni"
+
+#: translatepage.py:80
+#, python-format
+msgid ""
+"%d/%d translated\n"
+"(%d blank, %d fuzzy)"
+msgstr ""
+"%d/%d lefordítva\n"
+"(%d üres, %d bizonytalan)"
+
+#. l10n: first parameter: name of the installation (like "Pootle")
+#. l10n: second parameter: project name
+#. l10n: third parameter: target language
+#. l10n: fourth parameter: file name
+#: translatepage.py:96
+#, fuzzy, python-format
+msgid "%s: translating %s into %s: %s"
+msgstr "Pootle: %s fordítása %s-ba: %s"
+
+#: translatepage.py:110
+msgid "Original"
+msgstr "Eredeti"
+
+#: translatepage.py:111
+msgid "Translation"
+msgstr "Mindet lefordít"
+
+#: translatepage.py:114
+msgid "Accept"
+msgstr "Elfogad"
+
+#: translatepage.py:115
+msgid "Reject"
+msgstr "Elvet"
+
+#. l10n: This heading refers to related translations and terminology
+#: translatepage.py:117
+msgid "Related"
+msgstr ""
+
+#. l10n: "batch" refers to the set of translations that were reviewed
+#: translatepage.py:135
+msgid "End of batch"
+msgstr "Köteg vége"
+
+#: translatepage.py:137
+msgid "Click here to return to the index"
+msgstr "Visszatérés a tartalomjegyzékhez"
+
+#. l10n: noun (the start)
+#: translatepage.py:150 translatepage.py:153
+msgid "Start"
+msgstr "Kezd"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:157 translatepage.py:160
+#, python-format
+msgid "Previous %d"
+msgstr "Előző %d"
+
+#. l10n: the third parameter refers to the total number of messages in the file
+#: translatepage.py:162
+#, python-format
+msgid "Items %d to %d of %d"
+msgstr "%d-%d elem a %d-ból/ből"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:167 translatepage.py:170
+#, python-format
+msgid "Next %d"
+msgstr "Következő %d"
+
+#. l10n: noun (the end)
+#: translatepage.py:173 translatepage.py:176
+msgid "End"
+msgstr "Vége"
+
+#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
+#: translatepage.py:192
+#, python-format
+msgid "checking %s"
+msgstr "%s ellenőrzése"
+
+#: translatepage.py:334
+#, python-format
+msgid "There are no items matching that search ('%s')"
+msgstr "Nincs a ('%s') feltételnek megfelelő találat"
+
+#: translatepage.py:336
+msgid "You have finished going through the items you selected"
+msgstr "Végigért a kiválasztott elemeken"
+
+#: translatepage.py:534
+msgid "Singular"
+msgstr "Páratlan"
+
+#: translatepage.py:535
+msgid "Plural"
+msgstr "Többszörös"
+
+#. l10n: verb
+#: translatepage.py:549
+msgid "Edit"
+msgstr "Szerkeszt"
+
+#. l10n: verb
+#: translatepage.py:566
+msgid "Copy"
+msgstr "Másol"
+
+#: translatepage.py:567 translatepage.py:741
+msgid "Skip"
+msgstr "Átugrás"
+
+#. l10n: verb
+#: translatepage.py:569 translatepage.py:740
+msgid "Back"
+msgstr ""
+
+#: translatepage.py:571
+msgid "Submit"
+msgstr "Állít"
+
+#. l10n: action that increases the height of the textarea
+#: translatepage.py:576
+msgid "Grow"
+msgstr "Növel"
+
+#. l10n: action that decreases the height of the textarea
+#: translatepage.py:578
+msgid "Shrink"
+msgstr "Zsugorít"
+
+#. l10n: action that increases the width of the textarea
+#: translatepage.py:580
+msgid "Broaden"
+msgstr "Szélesít"
+
+#. l10n: action that decreases the width of the textarea
+#: translatepage.py:582
+msgid "Narrow"
+msgstr "Keskeny"
+
+#. l10n: action that resets the size of the textarea
+#: translatepage.py:584
+msgid "Reset"
+msgstr "Alaphelyzet"
+
+#: translatepage.py:602 translatepage.py:695 translatepage.py:729
+#: translatepage.py:762
+#, python-format
+msgid "Plural Form %d"
+msgstr "Többszörös forma %d"
+
+#: translatepage.py:617
+msgid ""
+"Translation not possible because plural information for your language is not "
+"available. Please contact the site administrator."
+msgstr ""
+
+#: translatepage.py:699
+msgid "Current Translation:"
+msgstr "Jelenlegi fordítás:"
+
+#: translatepage.py:710
+#, python-format
+msgid "Suggestion %d by %s:"
+msgstr "%d. javaslat %s által:"
+
+#: translatepage.py:712
+#, python-format
+msgid "Suggestion %d:"
+msgstr "%d. javaslat:"
+
+#: translatepage.py:715
+#, python-format
+msgid "Suggestion by %s:"
+msgstr "%s javaslata:"
+
+#: translatepage.py:717
+msgid "Suggestion:"
+msgstr "Javaslat:"
+
+#~ msgid "Pootle"
+#~ msgstr "Pootle"
+
+#~ msgid "Pootle: %s"
+#~ msgstr "Pootle: %s"
+
+#~ msgid ""
+#~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
+#~ "<strong>translate</strong>!"
+#~ msgstr ""
+#~ "A <strong>Pootle</strong> egy egyszerű portál, aminek segítségével "
+#~ "<strong>fordítani</strong> lehet!"
+
+#~ msgid "parent folder"
+#~ msgstr "szülő mappa"
+
+#~ msgid "<h3 class=\"title\">Projects</h3>"
+#~ msgstr "<h3 class=\"title\">Projektek</h3>"
+
+#~ msgid "%d files, %d/%d strings (%d%%) translated"
+#~ msgstr "%d fájl, %d/%d bejegyzés (%d%%) lefordítva"
+
+#~ msgid "%d strings (%d%%) failed"
+#~ msgstr "%d bejegyzés (%d%%) hibás"
+
+#~ msgid "this is a demo installation of pootle"
+#~ msgstr "ez a pootle bemutató célú telepítése"
+
+#~ msgid "current folder"
+#~ msgstr "jelenlegi mappa"
+
+#~ msgid "login status"
+#~ msgstr "bejelentkezési állapot"
+
+#~ msgid "project root"
+#~ msgstr "projekt kezdete"
+
+#~ msgid "you do not have rights to suggest changes here"
+#~ msgstr "nincs joga változtatást javasolni itt"
+
+#~ msgid "you do not have rights to change translations here"
+#~ msgstr "nincs joga a fordítást megváltoztatni itt"
+
+#~ msgid "%d/%d strings (%d%%) translated"
+#~ msgstr "%d/%d bejegyzés (%d%%) lefordítva"
+
+#~ msgid "%d files, "
+#~ msgstr "%d fájl,"
+
+#~ msgid "<h3 class=\"title\">Languages</h3>"
+#~ msgstr "<h3 class=\"title\">Nyelvek</h3>"
+
+#~ msgid "current file"
+#~ msgstr "jelenlegi fájl"
+
+#~ msgid "not logged in"
+#~ msgstr "nincs bejelentkezve"

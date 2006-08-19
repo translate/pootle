@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-06-13 14:54-0500\n"
+"PO-Revision-Date: 2006-08-12 12:35+0200\n"
+"Last-Translator: Zhang Le <robert.zhangle@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Pootle 0.10rc2\n"
+
+#: web/server.py:57
+#, python-format
+msgid "Login for %s"
+msgstr "Meld aan vir %s"
+
+#: web/server.py:91
+msgid "Cancel this action and start a new session"
+msgstr "Kanselleer hierdie aksie en begin 'n nuwe sessie"
+
+#: web/server.py:92
+msgid "Instead of confirming this action, log out and start from scratch"
+msgstr "Meld af en begin op nuut eerder as om hierdie aksie te bevestig."
+
+#: web/server.py:97
+msgid "Exit application"
+msgstr "Verlaat toepassing"
+
+#: web/server.py:98
+msgid "Exit this application and return to the parent application"
+msgstr "Verlaat hierdie toepassing en gaan terug na die ouertoepassing"
+
+#: web/server.py:105
+msgid ", please confirm login"
+msgstr ", bevestig asb. aanmeldinligting"
+
+#: web/server.py:110
+msgid "Login"
+msgstr "Meld aan"
+
+#: web/server.py:123
+msgid "Username:"
+msgstr "Gebruikersnaam:"
+
+#: web/server.py:125
+msgid "Password:"
+msgstr "Wagwoord:"
+
+#: web/server.py:130
+msgid "Language:"
+msgstr "Taal:"
+
+#: web/server.py:551 web/server.py:642
+msgid "Select Application"
+msgstr "Kies toepassing"
+
+#: web/server.py:637
+msgid "Logout"
+msgstr "Meld af"
+
+#: web/server.py:639
+msgid "Exit"
+msgstr "Verlaat"
+
+#: web/session.py:191 web/session.py:344 web/session.py:350
+#, python-format
+msgid "logged in as <b>%s</b>"
+msgstr "ingeteken as <b>%s</b>"
+
+#: web/session.py:193
+msgid "couldn't add new session"
+msgstr "kon nie nuwe sessie byvoeg nie"
+
+#: web/session.py:214
+msgid "logged out"
+msgstr "afgemeld"
+
+#: web/session.py:234
+msgid "connected"
+msgstr "gekonnekteer"
+
+#: web/session.py:269
+msgid "exited parent session"
+msgstr "het ouertoepassing verlaat"
+
+#: web/session.py:314
+msgid "need to define the users or userprefs entry on the server config"
+msgstr ""
+"u moet die gebruikers- of gebruikersvoorkeure-opsie in die bediener-"
+"konfigurasie instel"
+
+#: web/session.py:321 web/session.py:453
+#, python-format
+msgid "user does not exist (%r)"
+msgstr "gebruiker bestaan nie (%r)"
+
+#: web/session.py:362
+msgid "invalid username and/or password"
+msgstr "ongeldige gebruikersnaam en/of wagwoord"
+
+#: web/session.py:433 web/session.py:437
+msgid "failed login confirmation"
+msgstr "bevestiging van aanmelding het misluk"
+
+#: widgets/form.py:79 widgets/thumbgallery.py:292
+msgid "No"
+msgstr "Nee"
+
+#: widgets/form.py:80 widgets/thumbgallery.py:293
+msgid "Yes"
+msgstr "Ja"
+
+#: widgets/thumbgallery.py:233 attachments.py:348
+msgid "remove"
+msgstr "verwyder"
+
+#: widgets/thumbgallery.py:289 attachments.py:322
+msgid "(no attachment)"
+msgstr "(geen aanhangsel)"
+
+#: attachments.py:70
+msgid "attachment is too large"
+msgstr "aanhangsel is te groot"
+
+#: attachments.py:349
+msgid "remove this attachment"
+msgstr "verwyder hierdie aanhangsel"
+
+#: attachments.py:350
+msgid "restore"
+msgstr "herstel"
+
+#: attachments.py:351
+msgid "this attachment has been removed. click here to restore it"
+msgstr "Hierdie aanhangsel is verwyder. Kliek hier om dit te herstel."
+
+#: attachments.py:362
+msgid "attach a file"
+msgstr "heg 'n lêer aan"
+
+#~ msgid "need to define the users entry on the server config"
+#~ msgstr ""
+#~ "gebruiker se inskrywing moet gedefineer word in die bedieneropstelling"
