@@ -1,0 +1,464 @@
+# -*- coding: utf-8 -*-
+# jToolkit preferences file
+# showing jBrowser fields
+
+importmodules:
+  pootleserver = 'Pootle.pootle'
+
+Pootle:
+  serverclass = pootleserver.PootleServer
+  sessionkey='p00tl3'
+
+  # Set to the URL from which people will access Pootle
+  baseurl = "/"
+
+  # The name of this instance of Pootle. This will appear on the title bar of
+  # most Pootle pages.
+  title = "Pootle"
+
+  # A short description of this instance of Pootle
+  description = "this is a demo installation of pootle"
+
+  # The default language that will be used on this
+  # instance of Pootle.  Users may change this to another language on login but
+  # this will be the default for users that are not logged in.  if not present
+  # Pootle will run in English
+  # defaultlanguage = "en"
+
+  # When users register their details will be sent from "fromaddress" using the
+  # SMTP server "smtpserver"
+  # If specified, "supportaddress" will be given in registration emails as the
+  # address to contact with queries
+  registration:
+    fromaddress = "pootle-registration@localhost"
+    smtpserver = "localhost"
+  # supportaddress = "pootle-admin@yourdomain.org"
+
+  # Where users are directed by default when they login
+  homepage = "home/"
+
+  # The file that contains the user preferences.
+  userprefs = "users.prefs"
+
+  # All projects are stored in this directory in this layout:
+  #   $podirectory/$project/$language
+  podirectory = "po"
+
+  # The projects section defines what projects are available on this instance
+  # of Pootle.  This describes the fields listed in the following pootle
+  # project.
+  #
+  # pootle:
+  # This is the projects internal name and corresponds to the
+  # directory entry that stores all the translations.
+  #
+  #   fullname = "Pootle
+  # The human readable version of the projects internal name.
+  #
+  #   description = "Web translation software"
+  # A short description of the project
+  #
+  #   checkerstyle = "standard"
+  # Defines what checks should be used for this project.  One of: mozilla, kde,
+  # openoffice or standard
+  projects:
+    pootle:
+      fullname = "Pootle"
+      description = "Web translation software"
+      checkstyle = "standard"
+
+    terminology:
+      fullname = "Terminology"
+      description = "Terminology project that Pootle should use to suggest terms"
+      checkstyle = "standard"
+
+  # The languages section defines the languages being translated into on this
+  # instance of Pootle.  This describes the fields listed in the following
+  # language.
+  #
+  # af:
+  # Languages are defined by using their ISO639 language code, thus af is for
+  # Afrikaans
+  #
+  #   fullname = Afrikaans"
+  # The fullname of the language, also from ISO639 but can be the name of the
+  # language in your language not necessarily in English.
+  #
+  #   specialchars = "ÄËÏÖÜäëïöü ÂÊÎÔÛâêîôû"
+  # Special characters used by the language that you wish users to be able to
+  # see when they are editing translations. Useful for people who do not have
+  # a properly configured keyboard for the language.
+  # 
+  #   nplurals = 2
+  # This defines the number of plural forms for the language.  You need this in
+  # order to edit plural form messages.  Don't know about plural forms? Read
+  # about them in the Gettext manual.  This value will also be used to set the
+  # value in the PO header if it is not already set.  Also note that the header
+  # value should take precedence no matter what is set here.
+  #
+  #   pluralequation = "(n != 1)"
+  # As above in nplural this relates to plural forms.  This defines the
+  # equation that the application will use to determine which one of the N
+  # plurals it should use.  If you are unsure of what value to use have a look
+  # in other PO files for your language.
+  # 
+  languages:
+
+# Afrikaans
+    af.fullname = "Afrikaans"
+    af.specialchars = "ÄËÏÖÜäëïöü ÂÊÎÔÛâêîôû"
+    af.nplurals = 2
+    af.pluralequation = "(n != 1)"
+
+# Arabic
+    ar.fullname = u'العربية'
+    ar.nplurals = '6'
+    ar.pluralequation ='n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5'
+
+# Azerbaijani
+#    az.fullname = u'Azərbaycan'
+#    az.nplurals = '2'
+#    az.pluralequation ='(n != 1)'
+
+# Belarusian
+#    be.fullname = u'Беларуская'
+#    be.nplurals = '3'
+#    be.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
+
+# Bulgarian
+#    bg.fullname = u'Български'
+#    bg.nplurals = '2'
+#    bg.pluralequation ='(n != 1)'
+
+# Bengali
+#    bn.fullname = u'বাংলা'
+#    bn.nplurals = '2'
+#    bn.pluralequation ='(n != 1)'
+
+# Tibetan
+#    bo.fullname = u'Tibetan'
+#    bo.nplurals = '1'
+#    bo.pluralequation ='0'
+
+# Bosnian
+#    bs.fullname = u'Bosanski'
+#    bs.nplurals = '3'
+#    bs.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
+
+# Catalan
+    ca.fullname = u'Català'
+    ca.nplurals = '2'
+    ca.pluralequation ='(n != 1)'
+
+# Czech
+#    cs.fullname = u'Česky'
+#    cs.nplurals = '3'
+#    cs.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
+
+# Welsh
+#    cy.fullname = u'Cymraeg'
+#    cy.nplurals = '2'
+#    cy.pluralequation ='(n==2) ? 1 : 0'
+
+# Danish
+    da.fullname = u'Dansk'
+    da.nplurals = '2'
+    da.pluralequation ='(n != 1)'
+
+# German
+    de.fullname = u'Deutsch'
+    de.nplurals = '2'
+    de.pluralequation ='(n != 1)'
+
+# Dzongkha
+#    dz.fullname = u'ང་ཁ'
+#    dz.nplurals = '1'
+#    dz.pluralequation ='0'
+
+# Greek
+#    el.fullname = u'Ελληνικά'
+#    el.nplurals = '2'
+#    el.pluralequation ='(n != 1)'
+
+# English
+#    en.fullname = u'English'
+#    en.nplurals = '2'
+#    en.pluralequation ='(n != 1)'
+
+# English (British)
+#    en_GB.fullname = u'English (British)'
+#    en_GB.nplurals = '2'
+#    en_GB.pluralequation ='(n != 1)'
+
+# English (South African)
+#    en_ZA.fullname = u'English (South African)'
+#    en_ZA.nplurals = '2'
+#    en_ZA.pluralequation ='(n != 1)'
+
+# Esperanto
+#    eo.fullname = u'Esperanto'
+#    eo.nplurals = '2'
+#    eo.pluralequation ='(n != 1)'
+
+# Spanish
+    es.fullname = u'Español'
+    es.nplurals = '2'
+    es.pluralequation ='(n != 1)'
+
+# Estonian
+#    et.fullname = u'Eesti'
+#    et.nplurals = '2'
+#    et.pluralequation ='(n != 1)'
+
+# Basque
+    eu.fullname = u'Euskara'
+    eu.nplurals = '2'
+    eu.pluralequation ='(n != 1)'
+
+# Persian
+#    fa.fullname = u'فارسی'
+#    fa.nplurals = '1'
+#    fa.pluralequation ='0'
+
+# Finnish
+#    fi.fullname = u'Suomi'
+#    fi.nplurals = '2'
+#    fi.pluralequation ='(n != 1)'
+
+# Faroese
+#    fo.fullname = u'Føroyskt'
+#    fo.nplurals = '2'
+#    fo.pluralequation ='(n != 1)'
+
+# French
+    fr.fullname = u'Français'
+    fr.nplurals = '2'
+    fr.pluralequation ='(n > 1)'
+
+# Friulian
+    fur.fullname = u'Furlan'
+    fur.nplurals = '2'
+    fur.pluralequation ='(n != 1)'
+
+# Frisian
+#    fy.fullname = u'Frysk'
+#    fy.nplurals = '2'
+#    fy.pluralequation ='(n != 1)'
+
+# Irish
+#    ga.fullname = u'Gaeilge'
+#    ga.nplurals = '3'
+#    ga.pluralequation ='n==1 ? 0 : n==2 ? 1 : 2'
+
+# Galician
+    gl.fullname = u'Galego'
+    gl.nplurals = '2'
+    gl.pluralequation ='(n != 1)'
+
+# Gujarati
+#    gu.fullname = u'ગુજરાતી'
+#    gu.nplurals = '2'
+#    gu.pluralequation ='(n != 1)'
+
+# Hebrew
+#    he.fullname = u'עברית'
+#    he.nplurals = '2'
+#    he.pluralequation ='(n != 1)'
+
+# Hindi
+#    hi.fullname = u'हिन्दी'
+#    hi.nplurals = '2'
+#    hi.pluralequation ='(n != 1)'
+
+# Croatian
+    hr.fullname = u'Hrvatski'
+    hr.nplurals = '3'
+    hr.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
+
+# Hungarian
+#    hu.fullname = u'Magyar'
+#    hu.nplurals = '1'
+#    hu.pluralequation ='0'
+
+# Indonesian
+#    id.fullname = u'Bahasa Indonesia'
+#    id.nplurals = '1'
+#    id.pluralequation ='0'
+
+# Italian
+    it.fullname = u'Italiano'
+    it.nplurals = '2'
+    it.pluralequation ='(n != 1)'
+
+# Japanese
+    ja.fullname = u'日本語'
+    ja.nplurals = '1'
+    ja.pluralequation ='0'
+
+# Georgian
+#    ka.fullname = u'ქართული'
+#    ka.nplurals = '1'
+#    ka.pluralequation ='0'
+
+# Korean
+#    ko.fullname = u'한국어'
+#    ko.nplurals = '1'
+#    ko.pluralequation ='0'
+
+# Kurdish (Kurdî / كوردي)
+#    ku.fullname = u'Kurdish'
+#    ku.nplurals = '2'
+#    ku.pluralequation ='(n!= 1)'
+
+# Letzeburgesch
+#    lb.fullname = u'Lëtzebuergesch'
+#    lb.nplurals = '2'
+#    lb.pluralequation ='(n != 1)'
+
+# Lithuanian
+#    lt.fullname = u'Lietuvių'
+#    lt.nplurals = '3'
+#    lt.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)'
+
+# Latvian
+#    lv.fullname = u'Latviešu'
+#    lv.nplurals = '3'
+#    lv.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2)'
+
+# Mongolian
+#    mn.fullname = u'Монгол'
+#    mn.nplurals = '2'
+#    mn.pluralequation ='(n != 1)'
+
+# Maltese
+    mt.fullname = u'Malti'
+    mt.nplurals = '4'
+    mt.pluralequation ='(n==1 ? 0 : n==0 || ( n%100>1 && n%100<11) ? 1 : (n%100>10 && n%100<20 ) ? 2 : 3)'
+
+# Nahuatl
+#    nah.fullname = u'Nahuatl'
+#    nah.nplurals = '2'
+#    nah.pluralequation ='(n != 1)'
+
+# Norwegian Bokmal
+#    nb.fullname = u'Bokmål'
+#    nb.nplurals = '2'
+#    nb.pluralequation ='(n != 1)'
+
+# Dutch
+#    nl.fullname = u'Nederlands'
+#    nl.nplurals = '2'
+#    nl.pluralequation ='(n != 1)'
+
+# Norwegian Nynorsk
+#    nn.fullname = u'Nynorsk'
+#    nn.nplurals = '2'
+#    nn.pluralequation ='(n != 1)'
+
+# Northern Sotho
+#    nso.fullname = u'Sesotho sa Leboa'
+#    nso.nplurals = '2'
+#    nso.pluralequation ='(n > 1)'
+
+# Oriya
+#    or.fullname = u'Oriya'
+#    or.nplurals = '2'
+#    or.pluralequation ='(n != 1)'
+
+# Punjabi
+#    pa.fullname = u'Punjabi'
+#    pa.nplurals = '2'
+#    pa.pluralequation ='(n != 1)'
+
+# Polish
+    pl.fullname = u'Polski'
+    pl.nplurals = '3'
+    pl.pluralequation ='(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
+
+# Portuguese
+    pt.fullname = u'Português'
+    pt.nplurals = '2'
+    pt.pluralequation ='(n != 1)'
+
+# Brazilian Portuguese
+#    pt_BR.fullname = u'Português do Brasil'
+#    pt_BR.nplurals = '2'
+#    pt_BR.pluralequation ='(n > 1)'
+
+# Romanian
+#    ro.fullname = u'Română'
+#    ro.nplurals = '3'
+#    ro.pluralequation ='(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);'
+
+# Russian
+#    ru.fullname = u'Русский'
+#    ru.nplurals = '3'
+#    ru.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
+
+# Slovak
+#    sk.fullname = u'Slovenčina'
+#    sk.nplurals = '3'
+#    sk.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
+
+# Slovenian
+    sl.fullname = u'Slovenščina'
+    sl.nplurals = '4'
+    sl.pluralequation ='(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3)'
+
+# Albanian
+#    sq.fullname = u'Shqip'
+#    sq.nplurals = '2'
+#    sq.pluralequation ='(n != 1)'
+
+# Serbian (Српски / Srpski)
+    sr.fullname = u'Serbian'
+    sr.nplurals = '3'
+    sr.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
+
+# Swedish
+    sv.fullname = u'Svenska'
+    sv.nplurals = '2'
+    sv.pluralequation ='(n != 1)'
+
+# Tamil
+#    ta.fullname = u'தமிழ்'
+#    ta.nplurals = '2'
+#    ta.pluralequation ='(n != 1)'
+
+# Turkmen (Туркмен / تركمن)
+#    tk.fullname = u'Turkmen'
+#    tk.nplurals = '2'
+#    tk.pluralequation ='(n != 1)'
+
+# Turkish
+    tr.fullname = u'Türkçe'
+    tr.nplurals = '1'
+    tr.pluralequation ='0'
+
+# Ukrainian
+#    uk.fullname = u'Українська'
+#    uk.nplurals = '3'
+#    uk.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
+
+# Vietnamese
+    vi.fullname = u'Vietnamese'
+    vi.nplurals = '1'
+    vi.pluralequation ='0'
+
+# Walloon
+#    wa.fullname = u'Walon'
+#    wa.nplurals = '2'
+#    wa.pluralequation ='(n > 1)'
+
+# Simplified Chinese (China mainland used below, but also used in Singapore and Malaysia)
+#    zh_CN.fullname = u'简体中文'
+#    zh_CN.nplurals = '1'
+#    zh_CN.pluralequation ='0'
+
+# Traditional Chinese (Taiwan used below, but also used in Hong Kong and Macau)
+#    zh_TW.fullname = u'繁體中文'
+#    zh_TW.nplurals = '1'
+#    zh_TW.pluralequation ='0'
+
+  # This is a "language" that gives people access to the (untranslated) template files
+    templates.fullname = u'Templates'
