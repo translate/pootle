@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns:over="http://dev.sjsoft.com/ns/overlay" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
+
+  <title py:content="pagetitle">Pootle</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="${description}" />
+  <meta name="keywords" content="${', '.join(keywords)}" />
+  <link rel="stylesheet" type="text/css" href="/pootle.css" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="/js/correctpng.js"></script>
+  <![endif]-->
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div id="banner" over:include="pootlepage#banner"/>
+
+  <div id="content" dir="$uidir" lang="$uilanguage">
+    <div class="intro">
+      <a href="/about.html" py:content="aboutlink">About this Pootle server</a>
+    </div>
+
+    <div class="contents">
+      <h3 class="title"><a href="languages/" py:content="languagelink">Languages</a></h3>
+
+      <div class="item-description">
+        <span py:for="l in languages" py:strip="True"><a href="${l.code}/" py:content="l.name">Language</a>${l.sep}</span>
+      </div>
+    </div>
+
+    <div class="contents">
+      <h3 class="title"><a href="projects/" py:content="projectlink">Projects</a></h3>
+
+      <div class="item-description">
+        <span py:for="p in projects" py:strip="True">
+          <a href="projects/${p.code}/" title="${p.description}" py:content="p.name">Project</a>${p.sep}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div id="links" over:include="pootlepage#links"/>
+</body>
+</html>
