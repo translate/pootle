@@ -559,7 +559,6 @@ class TranslatePage(pagelayout.PootleNavPage):
     specialchars = getattr(getattr(self.session.instance.languages, self.project.languagecode, None), "specialchars", "")
     if isinstance(specialchars, str):
       specialchars = specialchars.decode("utf-8")
-    usernode = self.getusernode()
     return {"desired": desiredbuttons,
             "item": item,
             # l10n: verb
@@ -570,8 +569,6 @@ class TranslatePage(pagelayout.PootleNavPage):
             "suggest": self.localize("Suggest"),
             "submit": self.localize("Submit"),
             "specialchars": specialchars,
-            "rows": getattr(usernode, "inputheight", 5),
-            "cols": getattr(usernode, "inputwidth", 40),
             # l10n: action that increases the height of the textarea
             "grow": self.localize("Grow"),
             # l10n: action that decreases the height of the textarea
@@ -586,10 +583,13 @@ class TranslatePage(pagelayout.PootleNavPage):
 
   def gettransedit(self, item, trans):
     """returns a widget for editing the given item and translation"""
+    transdict = {
+                "rows": 5,
+                "cols": 40,
+                }
     if "translate" in self.rights or "suggest" in self.rights:
       usernode = self.getusernode()
       transdict = {
-                  "isplural": len(trans) > 1 or None,
                   "rows": getattr(usernode, "inputheight", 5),
                   "cols": getattr(usernode, "inputwidth", 40),
                   }
@@ -624,7 +624,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       transdict["focusbox"] = focusbox
     else:
       # TODO: work out how to handle this (move it up?)
-      transdict = self.gettransview(item, trans, textarea=True)
+      transdict.update(self.gettransview(item, trans, textarea=True))
       buttons = self.gettransbuttons(item, ["back", "skip"])
     transdict["buttons"] = buttons
     return transdict
