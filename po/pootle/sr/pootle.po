@@ -1,17 +1,16 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2006-08-07 12:36+0200\n"
-"PO-Revision-Date: 2006-08-07 14:58+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2006-08-21 17:42+0200\n"
+"Last-Translator: Nikola M <nikola_navezi@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;;\n"
-"X-Generator: Translate Toolkit 0.9rc1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10< =4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 0.10rc3\n"
 
 #: adminpages.py:35 adminpages.py:71 adminpages.py:126 adminpages.py:187
 #: adminpages.py:273 adminpages.py:333 indexpage.py:58 indexpage.py:77
@@ -24,7 +23,7 @@ msgstr "Pootle демонстрација"
 #: adminpages.py:43 adminpages.py:79 adminpages.py:134 adminpages.py:195
 #: pagelayout.py:36
 msgid "Home"
-msgstr "Дом"
+msgstr "Кућа"
 
 #: adminpages.py:44 adminpages.py:197
 msgid "Users"
@@ -39,7 +38,6 @@ msgid "Projects"
 msgstr "Пројекти"
 
 #: adminpages.py:47
-#, fuzzy
 msgid "General options"
 msgstr "Опште поставке"
 
@@ -54,7 +52,7 @@ msgstr "Текућа вредност"
 #: adminpages.py:50 adminpages.py:82 adminpages.py:137 adminpages.py:198
 #: users.py:142
 msgid "Save changes"
-msgstr "Спаси промене"
+msgstr "Сними промене"
 
 #: adminpages.py:54
 msgid "Title"
@@ -73,9 +71,8 @@ msgid "Home Page"
 msgstr "Домаћа страна"
 
 #: adminpages.py:80 adminpages.py:135 adminpages.py:196
-#, fuzzy
 msgid "Main admin page"
-msgstr "Главна страна за управника"
+msgstr "Главна страна за управљање"
 
 #: adminpages.py:86
 msgid "ISO Code"
@@ -87,15 +84,15 @@ msgstr "Пуно име"
 
 #: adminpages.py:87
 msgid "(add language here)"
-msgstr "(додај језик овде)"
+msgstr "(овде додај језик)"
 
 #: adminpages.py:88
 msgid "Special Chars"
-msgstr "Посебни знакови"
+msgstr "Посебни знаци"
 
 #: adminpages.py:88
 msgid "(special characters)"
-msgstr "(посебни знакови)"
+msgstr "(посебни знаци)"
 
 #: adminpages.py:89 indexpage.py:189
 msgid "Number of Plurals"
@@ -146,7 +143,7 @@ msgstr "(опис пројекта)"
 
 #: adminpages.py:144
 msgid "Checker Style"
-msgstr "Стил кучице за потврду"
+msgstr "Изглед квачице за потврду"
 
 #: adminpages.py:145
 msgid "Create MO Files"
@@ -167,11 +164,11 @@ msgstr "(додај пуно име овде)"
 
 #: adminpages.py:204 users.py:77
 msgid "Email Address"
-msgstr "Е-поштанска адреса"
+msgstr "Адреса Ел.поште"
 
 #: adminpages.py:204 users.py:277
 msgid "(add email here)"
-msgstr "(додај ел. адресу овде)"
+msgstr "(овде додај адресу ел. поште)"
 
 #: adminpages.py:205 users.py:83
 msgid "Password"
@@ -187,7 +184,7 @@ msgstr "Покренут"
 
 #: adminpages.py:206
 msgid "Activate New User"
-msgstr "Активирај новог корисника"
+msgstr "Укључи новог корисника"
 
 #: adminpages.py:207
 #, fuzzy
@@ -196,7 +193,7 @@ msgstr "Уклони %s"
 
 #: adminpages.py:261
 msgid "Back to main page"
-msgstr "Назад на главну страну"
+msgstr "Врати се на главну страну"
 
 #: adminpages.py:262
 msgid "Existing languages"
@@ -210,7 +207,7 @@ msgstr "Освежи језике"
 #: adminpages.py:267
 #, python-format
 msgid "Pootle Admin: %s"
-msgstr "Pootle управник: %s %s"
+msgstr "Pootle одржавање: %s %s"
 
 #: adminpages.py:268 adminpages.py:330
 msgid "You do not have the rights to administer this project."
@@ -229,7 +226,7 @@ msgstr "Додај језик"
 #: adminpages.py:310
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr "Pootle управник: %s %s"
+msgstr "Pootle одржавање: %s %s"
 
 #: adminpages.py:311
 msgid "Project home page"
@@ -242,12 +239,11 @@ msgstr "Не могу да подесим права за корисничко �
 
 #: adminpages.py:346
 msgid "This is a GNU-style project (one directory, files named per language)."
-msgstr ""
-"Ово је пројекат типа GNU (један директоријум, датотеке назване по језику)."
+msgstr "Ово је пројекат типа GNU (једна фасцикла, датотеке назване по језику)."
 
 #: adminpages.py:348
 msgid "This is a standard style project (one directory per language)."
-msgstr "Ово је стандардни тип пројекта (један директоријум по језику)."
+msgstr "Ово је стандардни тип пројекта (једна фасцикла по језику)."
 
 #: adminpages.py:349
 msgid "User Permissions"
@@ -259,7 +255,7 @@ msgstr "Корисничко име"
 
 #: adminpages.py:351
 msgid "(select to add user)"
-msgstr ""
+msgstr "(изабери корисника за додавање)"
 
 #: adminpages.py:352
 msgid "Rights"
@@ -284,21 +280,14 @@ msgid ""
 "you can download it and run your own copy if you like. You can also help "
 "participate in the development in many ways (you don't have to be able to "
 "program)."
-msgstr ""
-"<strong>Pootle</strong> је једноставна  мрежна врата која вам дозвољавају да "
-"<strong>преводите</strong>! Пошто је Pootle <strong>Слободни програм</"
-"strong>, можете га преузети и користити личну копију ако желите. Можете "
-"такође помоћи у развоју на многе друге начине (не морате бити програмер)."
+msgstr "<strong>Pootle</strong> је једноставна  мрежна страна који вам дозвољава да <strong>преводите</strong>! Пошто је Pootle <strong>Слободни програм</strong>, можете га преузети и користити свој, само ваш, Pootle ако желите. Можете такође да помогнете у развоју и на многе друге начине (не морате да будете програмер)."
 
 #: indexpage.py:51
 msgid ""
 "The Pootle project itself is hosted at <a href=\"http://translate."
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
-msgstr ""
-"Pootle се налази на <a href=\"http://translate.sourceforge.net/\">translate."
-"sourceforge.net</a> страници где можете наћи детаље у вези изворног кода, "
-"дописног друштва итд."
+msgstr "Pootle се налази на <a href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> страници где можете наћи детаље у вези изворног кода, дописног друштва преко е-поште, итд."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
 #: indexpage.py:53
@@ -306,26 +295,19 @@ msgid ""
 "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
-msgstr ""
-"Име долази од <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-"b>ocalization <b>E</b>ngine, PO-базирани мрежни преводиоц локализатор, али "
-"можда будете морали прочитати <a href=\"http://www.thechestnut.com/flumps.htm"
-"\">ово</a>."
+msgstr "Име долази од <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, PO-базирани мрежни преводиоц локализатор, али можда ћете морати да прочитате и: <a href=\"http://www.thechestnut.com/flumps.htm\">ово</a>."
 
 #: indexpage.py:54
 msgid "Versions"
-msgstr "Верзија"
+msgstr "Издања"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
 #: indexpage.py:56
-#, fuzzy, python-format
 #, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
-msgstr ""
-"Ова вебна страница користи:<br/>Pootle %s</br>jToolkit %s</br>Python %s (on %"
-"s/%s)"
+msgstr "Ова мрежна страница користи:<br/>Pootle %s</br>jToolkit %s</br>Python %s (on %s/%s)"
 
 #: indexpage.py:74
 msgid "About this Pootle server"
@@ -342,11 +324,11 @@ msgstr "Промени поставке"
 
 #: indexpage.py:110
 msgid "Admin page"
-msgstr "Управникова страна"
+msgstr "Страна за управљање"
 
 #: indexpage.py:111
 msgid "Quick Links"
-msgstr "Брзе везе"
+msgstr "Брзе пречице"
 
 #: indexpage.py:115
 msgid "Please click on 'Change options' and select some languages and projects"
@@ -364,7 +346,6 @@ msgstr[1] "%d пројекта, просек %d%% преведено"
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
 #: indexpage.py:170 indexpage.py:230
-#, fuzzy, python-format
 #, python-format
 msgid "%s: %s"
 msgstr "%s %s"
@@ -374,14 +355,12 @@ msgid "Admin"
 msgstr "Управник"
 
 #: indexpage.py:186
-#, fuzzy
 msgid "Language Code"
-msgstr "Језици"
+msgstr "Код језика"
 
 #: indexpage.py:187
-#, fuzzy
 msgid "Language Name"
-msgstr "Језици"
+msgstr "Име Језика"
 
 #: indexpage.py:224
 #, python-format
@@ -409,15 +388,15 @@ msgstr "Тражи"
 
 #: indexpage.py:369
 msgid "Cannot upload file, no file attached"
-msgstr "Не могу да закачим датотеку, ни једна датотека није закачена"
+msgstr "Не могу да спојим датотеку, ни једна датотека није спојена"
 
 #: indexpage.py:375
 msgid "Can only upload PO files and zips of PO files"
-msgstr "Не могу да закачим PO датотеке и запаковане PO датотеке"
+msgstr "Не могу да закачим \"PO\" датотеке и запаковане \"PO\" датотеке"
 
 #: indexpage.py:483 indexpage.py:486 translatepage.py:199 translatepage.py:202
 msgid "Assign Strings"
-msgstr "Додели низку"
+msgstr "Додели низове"
 
 #: indexpage.py:484 translatepage.py:201
 msgid "Assign Action"
@@ -428,7 +407,6 @@ msgid "Assign to User"
 msgstr "Додели кориснику"
 
 #: indexpage.py:491
-#, fuzzy
 msgid "goals"
 msgstr "Циљеви"
 
@@ -442,16 +420,15 @@ msgstr "Додај циљ"
 
 #: indexpage.py:495 indexpage.py:497
 msgid "Upload File"
-msgstr "Закачи датотеку"
+msgstr "Постави датотеку"
 
 #: indexpage.py:496
 msgid "Select file to upload"
-msgstr "Изаберите датотеку коју ћете закачити"
+msgstr "Изаберите датотеку коју ћете поставити"
 
 #: indexpage.py:599
-#, fuzzy
 msgid "Not in a goal"
-msgstr "Нема циља"
+msgstr "Нема у циља"
 
 #: indexpage.py:620
 msgid "Add User"
@@ -467,7 +444,7 @@ msgstr "XLIFF датотека"
 
 #: indexpage.py:666
 msgid "Qt .ts file"
-msgstr ""
+msgstr "Qt .ts датотека"
 
 #: indexpage.py:670
 msgid "CSV file"
@@ -483,11 +460,11 @@ msgstr "Освежи"
 
 #: indexpage.py:683 projects.py:141
 msgid "Commit"
-msgstr ""
+msgstr "Потврди"
 
 #: indexpage.py:720
 msgid "All Strings"
-msgstr "Све ниске"
+msgstr "Сви низови"
 
 #: indexpage.py:720 pagelayout.py:218
 msgid "Untranslated"
@@ -511,12 +488,11 @@ msgstr "Додели"
 
 #: indexpage.py:762
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "Прикажи алате за обраду"
 
 #: indexpage.py:762
-#, fuzzy
 msgid "Show Statistics"
-msgstr "Покажи канале"
+msgstr "Прикажи статистику"
 
 #: indexpage.py:763
 msgid "Show Tracks"
@@ -545,11 +521,11 @@ msgstr "Сакриј циљеве"
 
 #: indexpage.py:767
 msgid "Show Assigns"
-msgstr "Покажи доделе"
+msgstr "Прикажи додељене задатке"
 
 #: indexpage.py:767
 msgid "Hide Assigns"
-msgstr "Сакриј доделе"
+msgstr "Сакриј додељене задатке"
 
 #: indexpage.py:776
 #, python-format
@@ -558,23 +534,23 @@ msgstr "Сви циљеви: %s"
 
 #: indexpage.py:782
 msgid "Translate My Strings"
-msgstr "Преведи моју ниску"
+msgstr "Преведи мој низ"
 
 #: indexpage.py:784
 msgid "View My Strings"
-msgstr "Покажи моју ниску"
+msgstr "Покажи мој низ"
 
 #: indexpage.py:789
 msgid "No strings assigned to you"
-msgstr "Нема ниских додељених вама"
+msgstr "Нема низова који су додељени Вама"
 
 #: indexpage.py:793
 msgid "Quick Translate My Strings"
-msgstr "Брзо превођење мојих ниских"
+msgstr "Брзи превод мојих низова"
 
 #: indexpage.py:797
 msgid "No untranslated strings assigned to you"
-msgstr "Нема непреведених ниских додељених вама"
+msgstr "Нема непреведених низова који су додељени Вама"
 
 #: indexpage.py:801
 msgid "Review Suggestions"
@@ -582,7 +558,7 @@ msgstr "Прегледај предлоге"
 
 #: indexpage.py:803
 msgid "View Suggestions"
-msgstr "Види предлоге"
+msgstr "Погледај предлоге"
 
 #: indexpage.py:808
 msgid "Quick Translate"
@@ -590,7 +566,7 @@ msgstr "Брзи превод"
 
 #: indexpage.py:810
 msgid "View Untranslated"
-msgstr "Види непреведено"
+msgstr "Погледај непреведено"
 
 #: indexpage.py:814
 msgid "No untranslated items"
@@ -610,24 +586,25 @@ msgstr "Запакуј фасциклу"
 
 #: indexpage.py:841
 msgid "Generate SDF"
-msgstr ""
+msgstr "Направи PDF"
 
 #: indexpage.py:894
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] "%d ниска (%d%%) неуспешна"
-msgstr[1] "%d ниске (%d%%) неуспешне"
+msgstr[0] "%d низ (%d%%) неуспешан"
+msgstr[1] "%d низови (%d%%) неуспешни"
+msgstr[2] ""
 
 #: indexpage.py:924
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr "%d/%d речи (%d%%) дедељених"
+msgstr "%d/%d речи (%d%%) дедељено"
 
 #: indexpage.py:925 indexpage.py:927
 #, python-format
 msgid "[%d/%d strings]"
-msgstr "[%d/%d низова знакова]"
+msgstr "[%d/%d низова]"
 
 #: indexpage.py:926 pagelayout.py:204
 #, python-format
@@ -635,31 +612,26 @@ msgid "%d/%d words (%d%%) translated"
 msgstr "%d/%d речи (%d%%) преведено"
 
 #: pagelayout.py:37
-#, fuzzy
 msgid "All projects"
 msgstr "Сви пројекти"
 
 #: pagelayout.py:38
-#, fuzzy
 msgid "All languages"
 msgstr "Сви језици"
 
 #: pagelayout.py:39
 msgid "My account"
-msgstr ""
+msgstr "Мој налог"
 
 #: pagelayout.py:41
-#, fuzzy
 msgid "Docs & help"
 msgstr "Документи и помоћ"
 
 #: pagelayout.py:42
-#, fuzzy
 msgid "Log out"
-msgstr "Одјавите се"
+msgstr "Одјави се"
 
 #: pagelayout.py:43
-#, fuzzy
 msgid "Log in"
 msgstr "Пријавите се"
 
@@ -673,9 +645,8 @@ msgid "Activate"
 msgstr "Укључи"
 
 #: pagelayout.py:63
-#, fuzzy
 msgid "Pootle Logo"
-msgstr "Pootle демонстрација"
+msgstr "Pootle заштитни знак"
 
 #: pagelayout.py:64
 #, fuzzy
@@ -1302,7 +1273,7 @@ msgstr "Предлог:"
 
 #: indexpage.py:731
 msgid "Select Multiple"
-msgstr "Многоструки избор"
+msgstr "Вишеструки избор"
 
 #~ msgid "Pootle"
 #~ msgstr "Pootle"

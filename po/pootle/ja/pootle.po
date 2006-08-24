@@ -314,7 +314,7 @@ msgstr "バージョン"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
 #: indexpage.py:56
-#, , python-format
+#, python-format
 #, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
@@ -357,7 +357,7 @@ msgstr[1] "%d プロジェクト, 平均 %d%% 翻訳済"
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
 #: indexpage.py:170 indexpage.py:230
-#, , python-format
+#, python-format
 #, python-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -387,7 +387,7 @@ msgstr "言語"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:314
-#, , python-format
+#, python-format
 #, python-format
 msgid "%s: Project %s, Language %s"
 msgstr "%s: プロジェクト %s, 言語 %s"

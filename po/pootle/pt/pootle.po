@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2006-08-07 12:36+0200\n"
-"PO-Revision-Date: 2006-08-15 09:06+0200\n"
-"Last-Translator: F Wolff <friedel@translate.org.za>\n"
+"PO-Revision-Date: 2006-08-22 21:57+0200\n"
+"Last-Translator: Miguel Figueiredo <elmig@debianpt.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-Generator: Pootle 0.10rc2\n"
+"X-Generator: Pootle 0.10rc3\n"
 
 #: adminpages.py:35 adminpages.py:71 adminpages.py:126 adminpages.py:187
 #: adminpages.py:273 adminpages.py:333 indexpage.py:58 indexpage.py:77
@@ -73,7 +73,7 @@ msgstr "Página inicial"
 
 #: adminpages.py:80 adminpages.py:135 adminpages.py:196
 msgid "Main admin page"
-msgstr "Página principal do Administrador"
+msgstr "Página principal de administração"
 
 #: adminpages.py:86
 msgid "ISO Code"
@@ -105,11 +105,11 @@ msgstr "(número de plurais)"
 
 #: adminpages.py:90 indexpage.py:190
 msgid "Plural Equation"
-msgstr "Equação Plural"
+msgstr "Formação de Plural"
 
 #: adminpages.py:90
 msgid "(plural equation)"
-msgstr "(equação plural)"
+msgstr "(formação de equação)"
 
 #: adminpages.py:91
 msgid "Remove Language"
@@ -127,7 +127,7 @@ msgstr "Padrão"
 
 #: adminpages.py:141
 msgid "Project Code"
-msgstr "Código do Projeto"
+msgstr "Código do Projecto"
 
 #: adminpages.py:142
 msgid "(add project here)"
@@ -301,7 +301,7 @@ msgstr "Versões"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
 #: indexpage.py:56
-#, , python-format
+#, python-format
 #, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
@@ -344,7 +344,7 @@ msgstr[1] "%d Projectos, média de %d%% traduzido"
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
 #: indexpage.py:170 indexpage.py:230
-#, , python-format
+#, python-format
 #, python-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -374,7 +374,7 @@ msgstr "Idioma"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:314
-#, , python-format
+#, python-format
 #, python-format
 msgid "%s: Project %s, Language %s"
 msgstr "%s: Prejecto %s, Idioma %s"
@@ -987,7 +987,7 @@ msgstr ""
 "Para activar a sua conta, siga este link:\n"
 
 #: users.py:331
-#, , python-format
+#, python-format
 #, python-format
 msgid ""
 "Your activation code is:\n"
@@ -1021,14 +1021,14 @@ msgid "(Or simply click on the activation link in the email)"
 msgstr "(Ou simplesmente clique no link de activação no email)"
 
 #: users.py:340
-#, , python-format
+#, python-format
 #, python-format
 msgid "Your user name is: %s\n"
 msgstr ""
 "O seu nome de utilizador é: %s\n"
 
 #: users.py:342
-#, , python-format
+#, python-format
 #, python-format
 msgid "Your password is: %s\n"
 msgstr ""
@@ -1090,7 +1090,7 @@ msgstr ""
 #. l10n: third parameter: target language
 #. l10n: fourth parameter: file name
 #: translatepage.py:96
-#, , python-format
+#, python-format
 #, python-format
 msgid "%s: translating %s into %s: %s"
 msgstr "%s: a traduzir %s para %s: %s"

@@ -309,7 +309,7 @@ msgstr "版本"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
 #: indexpage.py:56
-#, , python-format
+#, python-format
 #, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
@@ -351,7 +351,7 @@ msgstr[0] "%d个项目，平均%d%%已经翻译"
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
 #: indexpage.py:170 indexpage.py:230
-#, , python-format
+#, python-format
 #, python-format
 msgid "%s: %s"
 msgstr "%s：%s"
@@ -380,7 +380,7 @@ msgstr "语言"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:314
-#, , python-format
+#, python-format
 #, python-format
 msgid "%s: Project %s, Language %s"
 msgstr "%s：项目 %s，语言 %s"
@@ -991,7 +991,7 @@ msgstr ""
 "要激活你的帐户，点击这个连接：\n"
 
 #: users.py:331
-#, , python-format
+#, python-format
 #, python-format
 msgid ""
 "Your activation code is:\n"
@@ -1026,14 +1026,14 @@ msgid "(Or simply click on the activation link in the email)"
 msgstr "（或者点击email里的激活连接）"
 
 #: users.py:340
-#, , python-format
+#, python-format
 #, python-format
 msgid "Your user name is: %s\n"
 msgstr ""
 "您的用户名是：%s\n"
 
 #: users.py:342
-#, , python-format
+#, python-format
 #, python-format
 msgid "Your password is: %s\n"
 msgstr ""
@@ -1095,7 +1095,7 @@ msgstr ""
 #. l10n: third parameter: target language
 #. l10n: fourth parameter: file name
 #: translatepage.py:96
-#, , python-format
+#, python-format
 #, python-format
 msgid "%s: translating %s into %s: %s"
 msgstr "%s：将%s翻译为%s：%s"

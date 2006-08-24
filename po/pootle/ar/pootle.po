@@ -1,17 +1,16 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2006-08-07 12:36+0200\n"
-"PO-Revision-Date: 2006-08-07 14:41+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2006-08-22 18:15+0200\n"
+"Last-Translator: Fawaz Abdel Rahman <fawazarahman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
-"X-Generator: Pootle 0.9\n"
+"X-Generator: Pootle 0.10rc3\n"
 
 #: adminpages.py:35 adminpages.py:71 adminpages.py:126 adminpages.py:187
 #: adminpages.py:273 adminpages.py:333 indexpage.py:58 indexpage.py:77
@@ -19,7 +18,7 @@ msgstr ""
 #: pagelayout.py:59 users.py:38 users.py:71 users.py:104 users.py:125
 #: translatepage.py:91
 msgid "Pootle Demo"
-msgstr "عرض بوتل"
+msgstr "عرض تجريبي لبوتل"
 
 #: adminpages.py:43 adminpages.py:79 adminpages.py:134 adminpages.py:195
 #: pagelayout.py:36
@@ -171,7 +170,7 @@ msgstr "(أضف البريد الإلكتروني هنا)"
 
 #: adminpages.py:205 users.py:83
 msgid "Password"
-msgstr "كلمة السر"
+msgstr "كلمة المرور"
 
 #: adminpages.py:205 users.py:271
 msgid "(add password here)"
@@ -241,7 +240,7 @@ msgstr "هذا مشروع من نمط GNU (دليل واحد، ملفات مسم
 
 #: adminpages.py:348
 msgid "This is a standard style project (one directory per language)."
-msgstr "هذا مشروع من نمط معياري (دليل واحد لكل لغة)"
+msgstr "هذا مشروع ذو نمط قياسي (دليل واحد لكل لغة)"
 
 #: adminpages.py:349
 msgid "User Permissions"
@@ -508,7 +507,7 @@ msgstr "تعيين إلى"
 
 #: indexpage.py:762
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "إظهار وظائف التحرير"
 
 #: indexpage.py:762
 #, fuzzy
@@ -669,14 +668,12 @@ msgid "Activate"
 msgstr "تنشيط"
 
 #: pagelayout.py:63
-#, fuzzy
 msgid "Pootle Logo"
-msgstr "عرض بوتل"
+msgstr "شعار بوتل"
 
 #: pagelayout.py:64
-#, fuzzy
 msgid "WordForge Translation Project"
-msgstr "الترجمة الحالية:"
+msgstr "مشروع ترجمة \"ورد فورج\""
 
 #: pagelayout.py:129
 msgid "All goals"
@@ -708,58 +705,52 @@ msgid "Name"
 msgstr "الإسم"
 
 #: pagelayout.py:212
-#, fuzzy
 msgid "Translated"
-msgstr "ترجمة"
+msgstr "مترجم"
 
 #: pagelayout.py:213
-#, fuzzy
 msgid "Translated percentage"
-msgstr "ترجمة سلاسلي"
+msgstr "نسبة العمل المترجم"
 
 #: pagelayout.py:214
-#, fuzzy
 msgid "Translated words"
-msgstr "ترجمة"
+msgstr "الكلمات المترجمة"
 
 #: pagelayout.py:215
 msgid "Fuzzy"
-msgstr ""
+msgstr "غير واضحة"
 
 #: pagelayout.py:216
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "سبة الملفات الغير واضحة"
 
 #: pagelayout.py:217
 msgid "Fuzzy words"
-msgstr ""
+msgstr "كلمات غير واضحة"
 
 #: pagelayout.py:219
-#, fuzzy
 msgid "Untranslated percentage"
-msgstr "غير مترجمة"
+msgstr "نسبة العمل الغير مترجم"
 
 #: pagelayout.py:220
-#, fuzzy
 msgid "Untranslated words"
-msgstr "غير مترجمة"
+msgstr "الكلمات غير المترجمة"
 
 #: pagelayout.py:221
-#, fuzzy
 msgid "Total"
-msgstr "أهداف"
+msgstr "المجموع الكلي"
 
 #: pagelayout.py:222
 msgid "Total words"
-msgstr ""
+msgstr "المجموع الكلي للكلمات"
 
 #: pagelayout.py:223
 msgid "Graph"
-msgstr ""
+msgstr "المؤشر الرسومي"
 
 #: pootle.py:226
 msgid "Login failed"
-msgstr ""
+msgstr "فشل عملية الدخول"
 
 #: pootle.py:270 pootle.py:296
 msgid "Redirecting to login..."
@@ -767,15 +758,15 @@ msgstr "إعادة التوجيه إلى الدخول..."
 
 #: pootle.py:273
 msgid "Need to log in to access home page"
-msgstr "يجب الدخول لولوج الصفحة الرئيسية"
+msgstr "للوصول الي الصفحة الرئيسية يجب ان تدخل كمستخدم مسجل بالموقع"
 
 #: pootle.py:299
 msgid "Need to log in to access admin page"
-msgstr "يجب الدخول لولوج صفحة المدير"
+msgstr "للوصول الي صفحة المدير يجب ان تدخل كمستخدم مسجل بالموقع"
 
 #: pootle.py:306
 msgid "Redirecting to home..."
-msgstr "إعادة توجيه إلى الرئيسية"
+msgstr "إعادة توجيه إلى الصفحة الرئيسية"
 
 #: pootle.py:309
 msgid "You do not have the rights to administer pootle."
@@ -973,12 +964,13 @@ msgstr "عدد السطور في نمط الترجمة"
 
 #: users.py:230
 msgid "You need to be siteadmin to change users"
-msgstr "يجب أن تكون مدير موقع (siteadmin) من أجل تغيير المستخدمين"
+msgstr "يجب أن تكون مدير الموقع  من أجل تغيير حسابات المستخدمين"
 
 #: users.py:307
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
 msgstr ""
+"أنت (أو شخص آخر) حاول التسجيل لحساب مستخدما إسم المستخدم الخاص بك. \n"
 
 #: users.py:308
 msgid "We don't store your actual password but only a hash of it.\n"
@@ -1086,23 +1078,23 @@ msgstr "وصلة التنشيط التي أدخلت غير صحيحة"
 
 #: users.py:399
 msgid "Activation Failed"
-msgstr "فشل التنشيط"
+msgstr "فشلت عملية تفعليل أشتراكك"
 
 #: users.py:493
 msgid "Input height must be numeric"
-msgstr "يجب أن يكون ارتفاع حيز الإدخال عدديا"
+msgstr "يجب أن يكون ارتفاع حيز الإدخال بصيغة عددية"
 
 #: users.py:494
 msgid "Input width must be numeric"
-msgstr "يجب أن يكون عرض حيز الإدخال عدديا"
+msgstr "يجب أن يكون عرض حيز الإدخال بصيغة عددية"
 
 #: users.py:495
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr "يجب أن يكون عدد السطور الظاهرة في نمط العرض عدديا"
+msgstr "يجب أن يكون عدد الصفوف الظاهرة في نمط العرض بصيغة عددية"
 
 #: users.py:496
 msgid "The number of rows displayed in translate mode must be numeric"
-msgstr "يجب أن يكون عدد السطور الظاهرة في نمط الترجمة عدديا"
+msgstr "يجب أن يكون عدد الصفوف الظاهرة في نمط الترجمة بصيغة عددية"
 
 #: translatepage.py:80
 #, python-format
@@ -1142,12 +1134,12 @@ msgstr "رفض"
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:117
 msgid "Related"
-msgstr ""
+msgstr "مصطلحات وترجمات ذات صلة"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:135
 msgid "End of batch"
-msgstr "نهاية الدفعة"
+msgstr "نهاية نتائج البحث"
 
 #: translatepage.py:137
 msgid "Click here to return to the index"
@@ -1216,12 +1208,12 @@ msgstr "نسخ"
 
 #: translatepage.py:567 translatepage.py:741
 msgid "Skip"
-msgstr "تخط"
+msgstr "تخطي"
 
 #. l10n: verb
 #: translatepage.py:569 translatepage.py:740
 msgid "Back"
-msgstr ""
+msgstr "رجوع"
 
 #: translatepage.py:571
 msgid "Submit"
@@ -1230,7 +1222,7 @@ msgstr "إرسال"
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:576
 msgid "Grow"
-msgstr "نمو"
+msgstr "زيادة"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:578
@@ -1250,7 +1242,7 @@ msgstr "تضييق"
 #. l10n: action that resets the size of the textarea
 #: translatepage.py:584
 msgid "Reset"
-msgstr "مسح"
+msgstr "استعادة الوضع الإفتراضي"
 
 #: translatepage.py:602 translatepage.py:695 translatepage.py:729
 #: translatepage.py:762
@@ -1262,7 +1254,7 @@ msgstr "الجمع %d"
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
-msgstr ""
+msgstr "الترجمة غير متاحة لأن معلومات صيغة الجمع للغتك غير متوفرة. من فضلك. أتصل بمدير الموقع."
 
 #: translatepage.py:699
 msgid "Current Translation:"

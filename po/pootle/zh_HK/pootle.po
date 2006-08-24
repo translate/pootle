@@ -1077,7 +1077,7 @@ msgstr ""
 #. l10n: third parameter: target language
 #. l10n: fourth parameter: file name
 #: translatepage.py:96
-#, , python-format
+#, python-format
 #, python-format
 msgid "%s: translating %s into %s: %s"
 msgstr "%s: 將 %s 翻譯成%s: %s"
