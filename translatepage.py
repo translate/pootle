@@ -83,7 +83,8 @@ class TranslatePage(pagelayout.PootleNavPage):
       pagelinks = self.getpagelinks("?translate=1&view=1", rows)
       icon="file"
     else:
-      pagelinks = []
+      rows = self.getdisplayrows("translate")
+      pagelinks = self.getpagelinks("?translate=1&view=1", rows)
       icon="edit"
     navbarpath_dict = self.makenavbarpath_dict(self.project, self.session, self.pofilename)
     # templatising
