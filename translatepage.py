@@ -103,7 +103,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         "language": language,
         "pofilename": self.pofilename,
         # navigation bar
-        "navitems": [{"icon": "edit", "path": navbarpath_dict, "actions": {}, "stats": stats}],
+        "navitems": [{"icon": icon, "path": navbarpath_dict, "actions": {}, "stats": stats}],
         "pagelinks": pagelinks,
         # translation form
         "actionurl": formaction,
