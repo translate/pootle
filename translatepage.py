@@ -188,6 +188,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     if self.pofilename is not None:
       if matchnames:
         checknames = [matchname.replace("check-", "", 1) for matchname in matchnames]
+        # TODO: put the following parameter in quotes, since it will be foreign in all target languages
         # l10n: the parameter is the name of one of the quality checks, like "fuzzy"
         self.templatevars["checking_text"] = self.localize("checking %s", ", ".join(checknames))
 
@@ -614,6 +615,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       else:
         # Perhaps there is no plural information available
         buttons = self.gettransbuttons(item, ["back", "skip"])
+        # l10n: This is an error message that will display if the relevant problem occurs
         transdict["text"] = self.escapefortextarea(self.localize("Translation not possible because plural information for your language is not available. Please contact the site administrator."))
         textid = "trans%d" % item
         focusbox = textid
@@ -707,11 +709,14 @@ class TranslatePage(pagelayout.PootleNavPage):
       suggestedby = self.project.getsuggester(self.pofilename, item, suggid)
       if len(suggestions) > 1:
         if suggestedby:
+          # l10n: First parameter: number
+          # l10n: Second parameter: name of translator
           suggtitle = self.localize("Suggestion %d by %s:", suggid+1, suggestedby)
         else:
           suggtitle = self.localize("Suggestion %d:", suggid+1)
       else:
         if suggestedby:
+          # l10n: parameter: name of translator
           suggtitle = self.localize("Suggestion by %s:", suggestedby)
         else:
           suggtitle = self.localize("Suggestion:")

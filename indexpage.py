@@ -49,12 +49,15 @@ class AboutPage(pagelayout.PootlePage):
     keywords = ["Pootle", "WordForge", "translate", "translation", "localisation",
                 "localization", "l10n", "traduction", "traduire"]
     abouttitle = self.localize("About Pootle")
+    # l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
     introtext = self.localize("<strong>Pootle</strong> is a simple web portal that should allow you to <strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, you can download it and run your own copy if you like. You can also help participate in the development in many ways (you don't have to be able to program).")
     hosttext = self.localize('The Pootle project itself is hosted at <a href="http://translate.sourceforge.net/">translate.sourceforge.net</a> where you can find the details about source code, mailing lists etc.')
-    # l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
+    # l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+    # l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
     nametext = self.localize('The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="http://www.thechestnut.com/flumps.htm">this</a>.')
     versiontitle = self.localize("Versions")
-    # l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly
+    # l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+    # l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
     versiontext = self.localize("This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)", pootleversion.ver, toolkitversion.ver, jtoolkitversion.ver, kidversion, ElementTree.VERSION, sys.version, sys.platform, os.name)
     templatename = "about"
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
@@ -497,7 +500,9 @@ class ProjectIndex(pagelayout.PootleNavPage):
 
   def getgoalbox(self):
     """adds a box that lets the user add a new goal"""
-    return {"title": self.localize('goals'), "name-title": self.localize("Enter goal name"), "button": self.localize("Add Goal")}
+    return {"title": self.localize('goals'), 
+            "name-title": self.localize("Enter goal name"), 
+            "button": self.localize("Add Goal")}
 
   def getuploadbox(self):
     """adds a box that lets the user assign strings"""
@@ -684,10 +689,12 @@ class ProjectIndex(pagelayout.PootleNavPage):
         actionlinks.append(molink)
     if "update" in linksrequired and "admin" in self.rights:
       if versioncontrol.hasversioning(os.path.join(self.project.podir, self.dirname)):
+        # l10n: Update from version control (like CVS or Subversion)
         updatelink = {"href": "index.html?editing=1&doupdate=1&updatefile=%s" % (basename), "text": self.localize('Update')}
         actionlinks.append(updatelink)
     if "commit" in linksrequired and "commit" in self.rights:
       if versioncontrol.hasversioning(os.path.join(self.project.podir, self.dirname)):
+        # l10n: Commit to version control (like CVS or Subversion)
         commitlink = {"href": "index.html?editing=1&docommit=1&commitfile=%s" % (basename), "text": self.localize('Commit')}
         actionlinks.append(commitlink)
     # update the separators
@@ -725,7 +732,10 @@ class ProjectIndex(pagelayout.PootleNavPage):
       useroptions += [username for username in assignusers if username not in useroptions]
       if len(assignusers) > 1:
         multiusers = "multiple"
-      assignwhich = [('all', self.localize("All Strings")), ('untranslated', self.localize("Untranslated")), ('unassigned', self.localize('Unassigned')), ('unassigneduntranslated', self.localize("Unassigned and Untranslated"))]
+      assignwhich = [('all', self.localize("All Strings")), 
+                     ('untranslated', self.localize("Untranslated")),
+                     ('unassigned', self.localize('Unassigned')), 
+                     ('unassigneduntranslated', self.localize("Unassigned and Untranslated"))]
     return {
      "name": goalformname,
      "filename": basename,
@@ -767,7 +777,8 @@ class ProjectIndex(pagelayout.PootleNavPage):
           link = {"href": self.makelink(baseindexlink, **{attrname:1}), "text": showtext}
         link["sep"] = " | "
         actionlinks.append(link)
-    addoptionlink("editing", None, "editing", self.localize("Show Editing Functions"), self.localize("Show Statistics"))
+    addoptionlink("editing", None, "editing", self.localize("Show Editing Functions"), 
+                                              self.localize("Show Statistics"))
     addoptionlink("track", None, "showtracks", self.localize("Show Tracks"), self.localize("Hide Tracks"))
     # l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
     addoptionlink("check", "translate", "showchecks", self.localize("Show Checks"), self.localize("Hide Checks"))

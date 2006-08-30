@@ -131,10 +131,13 @@ class TranslationProject(object):
   def getrightnames(self, session):
     """gets the available rights and their localized names"""
     localize = session.localize
+    # l10n: Verb
     return [("view", localize("View")),
             ("suggest", localize("Suggest")),
             ("translate", localize("Translate")),
+            # l10n: Verb
             ("review", localize("Review")),
+            # l10n: Verb
             ("archive", localize("Archive")),
             ("pocompile", localize("Compile PO files")),
             ("assign", localize("Assign")),
@@ -194,6 +197,7 @@ class TranslationProject(object):
 
   def delrights(self, session, username):
     """deletes teh rights for the given username"""
+    # l10n: Don't translate "nobody" or "default"
     if username == "nobody" or username == "default":
       # l10n: Don't translate "nobody" or "default"
       raise RightsError(session.localize('You cannot remove the "nobody" or "default" user'))
