@@ -412,6 +412,8 @@ class TranslationProject(object):
 
   def setgoalusers(self, session, goalname, goalusers):
     """sets the goalusers for the given goalname"""
+    if isinstance(goalname, unicode):
+      goalname = goalname.encode('utf-8')
     if "admin" not in self.getrights(session):
       raise RightsError(session.localize("You do not have rights to alter goals here"))
     if isinstance(goalusers, list):
