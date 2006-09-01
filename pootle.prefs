@@ -16,8 +16,12 @@ Pootle:
   # most Pootle pages.
   title = "Pootle"
 
-  # A short description of this instance of Pootle
-  description = "this is a demo installation of pootle"
+  # A short description of this instance of Pootle. This is displayed on the 
+  # about page, and can contain markup. Be sure to test it as incorrect markup
+  # (like unbalanced quotes or HTML tags) will prevent the page from displaying
+  # at all. A non-markup version is also used in the meta description tags of
+  # a few pages.
+  description = "This is a demo installation of Pootle. Also visit the official <a href='http://pootle.wordforge.org'>Pootle server of WordForge</a>."
 
   # The default language that will be used on this
   # instance of Pootle.  Users may change this to another language on login but

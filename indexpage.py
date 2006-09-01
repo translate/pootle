@@ -31,6 +31,7 @@ from kid import __version__ as kidversion
 from elementtree import ElementTree
 import os
 import sys
+import sre
 
 def summarizestats(statslist, totalstats=None):
   if totalstats is None:
@@ -46,6 +47,7 @@ class AboutPage(pagelayout.PootlePage):
     self.localize = session.localize
     pagetitle = getattr(session.instance, "title")
     description = getattr(session.instance, "description")
+    meta_description = sre.sub("<[^>]*>", "", description)
     keywords = ["Pootle", "WordForge", "translate", "translation", "localisation",
                 "localization", "l10n", "traduction", "traduire"]
     abouttitle = self.localize("About Pootle")
@@ -63,7 +65,7 @@ class AboutPage(pagelayout.PootlePage):
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle, "description": description,
-        "description": description, "keywords": keywords,
+        "meta_description": meta_description, "keywords": keywords,
         "abouttitle": abouttitle, "introtext": introtext,
         "hosttext": hosttext, "nametext": nametext, "versiontitle": versiontitle, "versiontext": versiontext,
         "session": sessionvars, "instancetitle": instancetitle}
@@ -78,6 +80,7 @@ class PootleIndex(pagelayout.PootlePage):
     self.nlocalize = session.nlocalize
     templatename = "index"
     description = getattr(session.instance, "description")
+    meta_description = sre.sub("<[^>]*>", "", description)
     keywords = ["Pootle", "WordForge", "translate", "translation", "localisation", "localization",
                 "l10n", "traduction", "traduire"] + self.getprojectnames()
     aboutlink = self.localize("About this Pootle server")
@@ -90,7 +93,7 @@ class PootleIndex(pagelayout.PootlePage):
     if languages:
       languages[-1]["sep"] = ""
     templatevars = {"pagetitle": pagetitle, "aboutlink": aboutlink,
-        "description": description, "keywords": keywords,
+        "meta_description": meta_description, "keywords": keywords,
         "languagelink": languagelink, "languages": languages,
         "projectlink": projectlink, "projects": self.getprojects(),
         "session": sessionvars, "instancetitle": instancetitle}

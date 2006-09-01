@@ -6,7 +6,7 @@
 
   <title>${pagetitle}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="description" content="${description}" />
+  <meta name="description" content="${meta_description}" />
   <meta name="keywords" content="${', '.join(keywords)}" />
   <link rel="stylesheet" type="text/css" href="/pootle.css" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -22,7 +22,7 @@
     <div class="contents">
       <h3 class="title" py:content="pagetitle">Pootle</h3>
 
-      <div class="intro" py:content="description">
+      <div class="intro" py:content="XML(description)">
         this is a demo installation of pootle
       </div>
 
