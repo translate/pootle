@@ -92,7 +92,8 @@ class PootleIndex(pagelayout.PootlePage):
     languages = [{"code": code, "name": name, "sep": ", "} for code, name in self.potree.getlanguages()]
     if languages:
       languages[-1]["sep"] = ""
-    templatevars = {"pagetitle": pagetitle, "aboutlink": aboutlink,
+    templatevars = {"pagetitle": pagetitle, "description": description, 
+        "aboutlink": aboutlink,
         "meta_description": meta_description, "keywords": keywords,
         "languagelink": languagelink, "languages": languages,
         "projectlink": projectlink, "projects": self.getprojects(),
