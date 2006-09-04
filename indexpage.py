@@ -41,13 +41,21 @@ def summarizestats(statslist, totalstats=None):
       totalstats[name] = totalstats.get(name, 0) + count
   return totalstats
 
+def shortdescription(descr):
+  """Returns a short description by removing markup and only including up 
+  to the first br-tag"""
+  stopsign = descr.find("<br")
+  if stopsign >= 0:
+    descr = descr[:stopsign]
+  return sre.sub("<[^>]*>", "", descr).strip()
+  
 class AboutPage(pagelayout.PootlePage):
   """the bar at the side describing current login details etc"""
   def __init__(self, session):
     self.localize = session.localize
     pagetitle = getattr(session.instance, "title")
     description = getattr(session.instance, "description")
-    meta_description = sre.sub("<[^>]*>", "", description)
+    meta_description = shortdescription(description)
     keywords = ["Pootle", "WordForge", "translate", "translation", "localisation",
                 "localization", "l10n", "traduction", "traduire"]
     abouttitle = self.localize("About Pootle")
@@ -80,7 +88,7 @@ class PootleIndex(pagelayout.PootlePage):
     self.nlocalize = session.nlocalize
     templatename = "index"
     description = getattr(session.instance, "description")
-    meta_description = sre.sub("<[^>]*>", "", description)
+    meta_description = shortdescription(description)
     keywords = ["Pootle", "WordForge", "translate", "translation", "localisation", "localization",
                 "l10n", "traduction", "traduire"] + self.getprojectnames()
     aboutlink = self.localize("About this Pootle server")
@@ -105,7 +113,7 @@ class PootleIndex(pagelayout.PootlePage):
     projects = []
     for projectcode in self.potree.getprojectcodes():
       projectname = self.potree.getprojectname(projectcode)
-      description = self.potree.getprojectdescription(projectcode)
+      description = shortdescription(self.potree.getprojectdescription(projectcode))
       projects.append({"code": projectcode, "name": projectname, "description": description, "sep": ", "})
     if projects:
       projects[-1]["sep"] = ""
@@ -220,7 +228,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
   def getprojectitem(self, projectcode):
     href = '%s/' % projectcode
     projectname = self.potree.getprojectname(projectcode)
-    projectdescription = self.potree.getprojectdescription(projectcode)
+    projectdescription = shortdescription(self.potree.getprojectdescription(projectcode))
     project = self.potree.getproject(self.languagecode, projectcode)
     pofilenames = project.browsefiles()
     projectstats = project.getquickstats()
@@ -240,6 +248,8 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     average = self.getpagestats()
     projectstats = self.nlocalize("%d language, average %d%% translated", "%d languages, average %d%% translated", self.languagecount, self.languagecount, average)
     projectname = self.potree.getprojectname(self.projectcode)
+    description = self.potree.getprojectdescription(projectcode)
+    meta_description = shortdescription(description)
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     # l10n: The first parameter is the name of the installation
     # l10n: The second parameter is the name of the project/language
@@ -252,6 +262,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     statsheadings["name"] = self.localize("Language")
     templatevars = {"pagetitle": pagetitle,
         "project": {"code": projectcode, "name": projectname, "stats": projectstats},
+	"description": description, "meta_description": meta_description, 
         "adminlink": adminlink, "languages": languages,
         "session": sessionvars, "instancetitle": instancetitle, 
         "statsheadings": statsheadings}
