@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # jToolkit preferences file
 # showing jBrowser fields
+#
+# Lines with '#' are comments.
 
 importmodules:
   pootleserver = 'Pootle.pootle'
@@ -9,30 +11,47 @@ Pootle:
   serverclass = pootleserver.PootleServer
   sessionkey='p00tl3'
 
-  # Set to the URL from which people will access Pootle
+  # Pootle.baseurl
+  # 
+  # Set to the URL from which people will access Pootle. Ensure that it starts
+  # with "http://". If there is no clickable link in registration e-mails, this
+  # setting could be wrong.
   baseurl = "/"
 
+  # Pootle.title
+  # 
   # The name of this instance of Pootle. This will appear on the title bar of
-  # most Pootle pages.
+  # most Pootle pages. You can use something short like 
+  #   "$(Your Projectname) Pootle"
   title = "Pootle"
 
+  # Pootle.description
+  # 
   # A short description of this instance of Pootle. This is displayed on the 
-  # about page, and can contain markup. Be sure to test it as incorrect markup
-  # (like unbalanced quotes or HTML tags) will prevent the page from displaying
-  # at all. A non-markup version is also used in the meta description tags of
-  # a few pages.
-  description = "This is a demo installation of Pootle. Also visit the official <a href='http://pootle.wordforge.org'>Pootle server of WordForge</a>."
+  # front page, the about page and it can contain markup, which may be useful
+  # to provide links to mailinglists, a wiki, etc. for the project. Be sure to 
+  # test it well, as incorrect markup (like unbalanced quotes or HTML tags) 
+  # could prevent the page from displaying at all. The text up to the first 
+  # "br" tag is also displayed in the meta description tags of these pages.
+  description = "This is a demo installation of Pootle.<br /> Also visit the official <a href='http://pootle.wordforge.org'>Pootle server of WordForge</a>."
 
-  # The default language that will be used on this
-  # instance of Pootle.  Users may change this to another language on login but
-  # this will be the default for users that are not logged in.  if not present
-  # Pootle will run in English
+  # Pootle.defaultlanguage
+  # 
+  # The default language that will be used on this instance of Pootle.  Pootle
+  # will try to serve pages in the language of the user's browser, and users 
+  # may change this to another language on login but this will be the default
+  # for users without a language preference in their browsers, or when their 
+  # preferred language is not available. When nothing is found, Pootle will run 
+  # in English. Only languages that are enabled on this server (see below) will
+  # be accessible to users.
   # defaultlanguage = "en"
 
-  # When users register their details will be sent from "fromaddress" using the
-  # SMTP server "smtpserver"
+  # Pootle.registration
+  # 
+  # When users register, their details will be sent from "fromaddress" using the
+  # SMTP server "smtpserver".
   # If specified, "supportaddress" will be given in registration emails as the
-  # address to contact with queries
+  # address to contact with queries.
   registration:
     fromaddress = "pootle-registration@localhost"
     smtpserver = "localhost"
@@ -44,10 +63,16 @@ Pootle:
   # The file that contains the user preferences.
   userprefs = "users.prefs"
 
+  # pootle.podirectory
+  #
   # All projects are stored in this directory in this layout:
   #   $podirectory/$project/$language
+  # Projects can also be stored according to the GNU convention with one PO file
+  # per language, and all files in one directory. 
   podirectory = "po"
 
+  # pootle.projects
+  #
   # The projects section defines what projects are available on this instance
   # of Pootle.  This describes the fields listed in the following pootle
   # project.
@@ -56,29 +81,52 @@ Pootle:
   # This is the projects internal name and corresponds to the
   # directory entry that stores all the translations.
   #
-  #   fullname = "Pootle
-  # The human readable version of the projects internal name.
+  #   fullname = "Pootle"
+  # The human readable version of the project's internal name.
   #
   #   description = "Web translation software"
-  # A short description of the project
+  # A description of the project.  It can include markup, which may be useful 
+  # to provide links to mailinglists, a wiki, etc. for the project. The whole 
+  # description will be used when viewing the project page, but only the text 
+  # up to the first "br" tag will be used for the page's meta description and 
+  # for tooltips in some Pootle pages.  Be sure to test it well, as incorrect 
+  # markup (like unbalanced quotes or HTML tags) could prevent the page from 
+  # displaying at all.
   #
   #   checkerstyle = "standard"
   # Defines what checks should be used for this project.  One of: mozilla, kde,
-  # openoffice or standard
+  # openoffice or standard. This affects the tests for accelerator keys and
+  # variables
+
   projects:
+  # The project called "pootle" is necessary for Pootle to be localised.  The 
+  # Pootle interface will be available in the languages that are defined below 
+  # and present in the Pootle project.  If you don't want people to change the 
+  # Pootle translations on your server, remove the translate right in the admin
+  # interface.
     pootle:
       fullname = "Pootle"
-      description = "Web translation software"
+      description = "Web translation software of <a href='http://wordforge.org'>WordForge</a>. <br /> See the <a href='http://pootle.wordforge.org'>official Pootle server</a> for the translations of Pootle."
       checkstyle = "standard"
 
+  # The optional project called "terminology" will be used by Pootle to do 
+  # terminology matching for the languages that have files in this project. To
+  # use different terms in a certain project, simply include a file called 
+  # "pootle-terminology.po" in that project's directory, and Pootle will only 
+  # use that file for terminology matching for that project.
     terminology:
       fullname = "Terminology"
       description = "Terminology project that Pootle should use to suggest terms"
       checkstyle = "standard"
 
+  # pootle.languages
+  #
   # The languages section defines the languages being translated into on this
   # instance of Pootle.  This describes the fields listed in the following
-  # language.
+  # language. Preconfigured settings for many languages are included below. The
+  # plural settings are based on the page on the wiki at
+  #   http://translate.sourceforge.net/wiki/l10n/pluralforms
+  # Please also update the page there if anything can be improved.
   #
   # af:
   # Languages are defined by using their ISO639 language code, thus af is for
