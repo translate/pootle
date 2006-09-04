@@ -213,12 +213,14 @@ textarea.translate-translation-fuzzy
 {
 	background-color: #b0d6de;
 	margin-top: 10px;
+	overflow: auto;
 }
 .translate-locations
 {
 	background-color: #DDD;
 	font-family: monospace;
 	margin-top: 10px;
+	overflow: auto;
 }
 .translate-diff-replace
 {
