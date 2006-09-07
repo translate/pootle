@@ -21,7 +21,7 @@
       You do not have the rights to administer Pootle
     </div>
   </div>
-  <div id="content" py:if="session.issiteadmin" dir="$uidir" lang="$uilanguage">
+  <div id="fullwidthcontent" py:if="session.issiteadmin" dir="$uidir" lang="$uilanguage">
     <div class="intro">
       <a href="../home/" py:content="text.home">Home page</a>
     </div>
@@ -30,7 +30,7 @@
       <a href="index.html" py:content="text.admin">Main Admin page</a>
     </div>
 
-    <div class="contents">
+    <div class="fullwidthcontents">
       <h3 class="title" py:content="text.projects">Projects</h3>
 
       <form action="" method="post" name="projects" id="projects">
@@ -63,9 +63,6 @@
                 <select name="${option.newname}" value="${option.newvalue}" py:if="'selectoptions' in option">
                   <option py:for="o in option.selectoptions" value="${o.value}" py:content="o.description"/>
                 </select>
-              </span>
-              <span style="visibility: hidden;" py:if="'newname' not in option">
-                ------------------------------              
               </span>
             </td>
           </tr>
