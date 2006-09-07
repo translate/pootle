@@ -92,6 +92,11 @@ div.contents
 	width:84%;
 	padding:15px;
 }
+div.fullwidthcontents
+{
+	width:100%;
+	padding:15px;
+}
 div.item
 {
 	margin-bottom:5px;
@@ -293,6 +298,13 @@ div.intro {
 {
 	float: left;
 	width: 72%;
+	margin-right:0px;
+	padding-bottom:10px;
+}
+#fullwidthcontent
+{
+	float: left;
+	width: 100%;
 	margin-right:0px;
 	padding-bottom:10px;
 }
