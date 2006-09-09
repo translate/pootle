@@ -132,7 +132,7 @@ Pootle:
   # Languages are defined by using their ISO639 language code, thus af is for
   # Afrikaans
   #
-  #   fullname = Afrikaans"
+  #   fullname = "Afrikaans"
   # The fullname of the language, also from ISO639 but can be the name of the
   # language in your language not necessarily in English.
   #

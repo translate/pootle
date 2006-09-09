@@ -43,7 +43,7 @@
 #  have provided such a user called startup with a password of startup.  You 
 #  may use this user by uncommenting the the lines below.  
 #  
-#  Once your site is configure please remove this user by deleting the startup
+#  Once your site is configured, please remove this user by deleting the startup
 #  user using the admin interface or by manually deleting the lines from this 
 #  file.  Please also ensure that you have a user with siteadmin rights.
 # 
