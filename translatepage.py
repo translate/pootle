@@ -598,7 +598,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       focusbox = ""
       spellargs = {"standby_url": "spellingstandby.html", "js_url": "/js/spellui.js", "target_url": "spellcheck.html"}
       if len(trans) > 1:
-        buttons = self.gettransbuttons(item, ["back", "skip", "suggest", "translate"])
+        buttons = self.gettransbuttons(item, ["back", "skip", "copy", "suggest", "translate"])
         forms = []
         for pluralitem, pluraltext in enumerate(trans):
           pluralform = self.localize("Plural Form %d", pluralitem)
