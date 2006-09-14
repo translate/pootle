@@ -52,6 +52,10 @@ def languagedir(language):
     if language.startswith(code):
       return "rtl"
   return "ltr"
+
+def weblanguage(language):
+  """Reformats the language from locale style (pt_BR) to web style (pt-BR)"""
+  return language.replace("_", "-")
     
 def completetemplatevars(templatevars, session, bannerheight=135):
   """fill out default values for template variables"""
@@ -63,7 +67,7 @@ def completetemplatevars(templatevars, session, bannerheight=135):
   banner_layout["logo_alttext"] = session.localize("Pootle Logo")
   banner_layout["banner_alttext"] = session.localize("WordForge Translation Project")
   templatevars.update(banner_layout)
-  templatevars["uilanguage"] = session.language
+  templatevars["uilanguage"] = weblanguage(session.language)
   templatevars["uidir"] = languagedir(session.language)
   templatevars["links"] = localize_links(session)
   if "search" not in templatevars:

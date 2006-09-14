@@ -95,7 +95,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     # l10n: third parameter: target language
     # l10n: fourth parameter: file name
     pagetitle = self.localize("%s: translating %s into %s: %s", instancetitle, self.project.projectname, self.project.languagename, self.pofilename)
-    language = {"code": self.project.languagecode, "name": self.project.languagename, "dir": pagelayout.languagedir(self.project.languagecode)}
+    language = {"code": pagelayout.weblanguage(self.project.languagecode), "name": self.project.languagename, "dir": pagelayout.languagedir(self.project.languagecode)}
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     stats = {"summary": mainstats, "checks": [], "tracks": [], "assigns": []}
     templatevars = {"pagetitle": pagetitle,
