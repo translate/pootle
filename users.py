@@ -135,6 +135,8 @@ class UserOptions(pagelayout.PootlePage):
         "fullname": self.session.prefs.name,
         "email_title": self.localize("Email"),
         "email": self.session.prefs.email,
+        "password_title": self.localize("Password"),
+        "passwordconfirm_title": self.localize("Confirm Password"),
         "interface_title": self.localize("Translation Interface Configuration"),
         "uilanguage_heading": self.localize("User Interface language"),
         "projects_title": self.localize("My Projects"),
@@ -520,6 +522,9 @@ class PootleSession(session.LoginSession):
     setattr(self.prefs, "name", name)
     email = argdict.get("option-email", "")
     setattr(self.prefs, "email", email)
+    if argdict.get("option-password") and argdict.get("option-password") == argdict.get("option-passwordconfirm"):
+      passwdhash = session.md5hexdigest(argdict.get("option-password", ""))
+      setattr(self.prefs, "passwdhash", passwdhash)
     self.saveprefs()
 
   def setinterfaceoptions(self, argdict):
