@@ -26,7 +26,26 @@ from jToolkit import prefs
 from Pootle import pagelayout
 
 class RegistrationError(ValueError):
-  pass
+  def __init__(self, message):
+    message = message.encode('utf-8')
+    ValueError.__init__(self, message)
+
+# This mimimum passwordlength is mandated by the interface when registering or 
+# changing password
+minpasswordlen = 6
+
+def validatepassword(session, password, passwordconfirm):
+  if not password or len(password) < minpasswordlen:
+    raise RegistrationError(session.localize("You must supply a valid password of at least %d characters.", minpasswordlen))
+  if not password == passwordconfirm:
+    raise RegistrationError(session.localize("The password is not the same as the confirmation."))
+
+def forcemessage(message):
+  """Tries to extract some kind of message and converts to unicode"""
+  if message and not isinstance(message, unicode):
+    return str(message).decode('utf-8')
+  else:
+    return message
 
 class LoginPage(pagelayout.PootlePage):
   """wraps the normal login page in a PootlePage layout"""
@@ -35,6 +54,7 @@ class LoginPage(pagelayout.PootlePage):
     self.languagenames = languagenames
     pagetitle = self.localize("Login to Pootle")
     templatename = "login"
+    message = forcemessage(message)
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle, "introtext": message,
@@ -64,7 +84,7 @@ class RegisterPage(pagelayout.PootlePage):
     if not message:
       introtext = self.localize("Please enter your registration details")
     else:
-      introtext = message
+      introtext = forcemessage(message)
     pagetitle = self.localize("Pootle Registration")
     self.argdict = argdict
     templatename = "register"
@@ -97,7 +117,7 @@ class ActivatePage(pagelayout.PootlePage):
     if not message:
       introtext = self.localize("Please enter your activation details")
     else:
-      introtext = message
+      introtext = forcemessage(message)
     self.argdict = argdict
     if title is None:
       pagetitle = self.localize("Pootle Account Activation")
@@ -119,15 +139,16 @@ class ActivatePage(pagelayout.PootlePage):
 
 class UserOptions(pagelayout.PootlePage):
   """page for user to change their options"""
-  def __init__(self, potree, session):
+  def __init__(self, potree, session, message=None):
     self.potree = potree
     self.session = session
     self.localize = session.localize
+    message = forcemessage(message)
     pagetitle = self.localize("Options for: %s", session.username)
     templatename = "options"
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
-    templatevars = {"pagetitle": pagetitle,
+    templatevars = {"pagetitle": pagetitle, "introtext": message,
         "detailstitle": self.localize("Personal Details"),
         "option_heading": self.localize("Option"),
         "value_heading": self.localize("Current value"),
@@ -357,11 +378,7 @@ class OptionalLoginAppServer(server.LoginAppServer):
       redirecturl = "login.html?username=%s" % username
       displaymessage += session.localize("Proceeding to <a href='%s'>login</a>\n", redirecturl)
     else:
-      minpasswordlen = 6
-      if not password or len(password) < minpasswordlen:
-        raise RegistrationError(session.localize("You must supply a valid password of at least %d characters.", minpasswordlen))
-      if not password == passwordconfirm:
-        raise RegistrationError(session.localize("The password is not the same as the confirmation."))
+      validatepassword(session, password, passwordconfirm)
       self.adduser(users, username, fullname, email, password)
       activationcode = self.makeactivationcode(users, username)
       activationlink = ""
@@ -519,10 +536,15 @@ class PootleSession(session.LoginSession):
   def setpersonaloptions(self, argdict):
     """sets the users personal details"""
     name = argdict.get("option-name", "")
-    setattr(self.prefs, "name", name)
     email = argdict.get("option-email", "")
+    password = argdict.get("option-password", "")
+    passwordconfirm = argdict.get("option-passwordconfirm", "")
+
+    if password or passwordconfirm:
+      validatepassword(self, password, passwordconfirm)
+    setattr(self.prefs, "name", name)
     setattr(self.prefs, "email", email)
-    if argdict.get("option-password") and argdict.get("option-password") == argdict.get("option-passwordconfirm"):
+    if password:
       passwdhash = session.md5hexdigest(argdict.get("option-password", ""))
       setattr(self.prefs, "passwdhash", passwdhash)
     self.saveprefs()
