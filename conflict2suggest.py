@@ -33,18 +33,21 @@ def processfile(filename):
   pofile.readpofile()
   conflictitems = []
   for item, poentry in enumerate(pofile.transelements):
-    msgstrs = poentry.unquotedmsgstr
-    for msgstr in msgstrs:
-      if conflictmarker in msgstr:
-        conflictitems.append((item, msgstrs))
+    if poentry.hasplural():
+      targets = poentry.target.strings
+    else:
+      targets = [poentry.target]
+    for target in targets:
+      if conflictmarker in target:
+        conflictitems.append((item, targets))
         break
-  for item, msgstrs in conflictitems:
-    replacemsgstrs = []
-    for msgstr in msgstrs:
-      if conflictmarker not in msgstr:
-        replacemsgstrs.append(msgstr)
+  for item, targets in conflictitems:
+    replacetargets = []
+    for target in targets:
+      if conflictmarker not in target:
+        replacetargets.append(target)
         continue
-      lines = msgstr.split("\n")
+      lines = target.split("\n")
       parts = []
       marker, part = "", ""
       for line in lines:
@@ -59,8 +62,8 @@ def processfile(filename):
         parts.append((marker, part))
       for marker, part in parts:
         pofile.addsuggestion(item, part, marker.strip())
-      replacemsgstrs.append("")
-    pofile.setmsgstr(item, replacemsgstrs, None, None)
+      replacetargets.append("")
+    pofile.setmsgstr(item, replacetargets, None, None)
 
 def processdir(dirname):
   for filename in os.listdir(dirname):
@@ -79,5 +82,6 @@ if __name__ == "__main__":
       processfile(filename)
     else:
       print >>sys.stderr, "cannot process", filename
+
 
 
