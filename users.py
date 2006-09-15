@@ -95,7 +95,7 @@ class RegisterPage(pagelayout.PootlePage):
         "username_tooltip": self.localize("Your requested username"),
         "username": self.argdict.get("username", ""),
         "email_title": self.localize("Email Address"),
-        "email_tooltip": self.localize("Must be a valid email address"),
+        "email_tooltip": self.localize("You must supply a valid email address"),
         "email": self.argdict.get("email", ""),
         "fullname_title": self.localize("Full Name"),
         "fullname_tooltip": self.localize("Your full name"),
@@ -157,7 +157,7 @@ class UserOptions(pagelayout.PootlePage):
         "email_title": self.localize("Email"),
         "email": self.session.prefs.email,
         "password_title": self.localize("Password"),
-        "passwordconfirm_title": self.localize("Confirm Password"),
+        "passwordconfirm_title": self.localize("Confirm password"),
         "interface_title": self.localize("Translation Interface Configuration"),
         "uilanguage_heading": self.localize("User Interface language"),
         "projects_title": self.localize("My Projects"),
@@ -353,7 +353,7 @@ class OptionalLoginAppServer(server.LoginAppServer):
     supportaddress = getattr(self.instance.registration, 'supportaddress', "")
     username = argdict.get("username", "")
     if not username or not username.isalnum() or not username[0].isalpha():
-      raise RegistrationError(session.localize("Username must be alphanumeric, and must start with an alphabetic character"))
+      raise RegistrationError(session.localize("Username must be alphanumeric, and must start with an alphabetic character."))
     fullname = argdict.get("name", "")
     email = argdict.get("email", "")
     password = argdict.get("password", "")
