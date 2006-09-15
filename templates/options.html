@@ -17,6 +17,10 @@
   <div id="banner" over:include="pootlepage#banner"/>
 
   <div id="content" dir="$uidir" lang="$uilanguage">
+    <div py:if="introtext" class="intro" py:content="introtext">
+      Please edit your options as desired below.
+    </div>
+    
     <div class="contents">
       <h3 class="title" py:content="detailstitle">Personal Details</h3>
 
