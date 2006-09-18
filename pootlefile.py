@@ -43,45 +43,6 @@ def wordcount(unquotedstr):
 
 class pootleelement(po.pounit, object):
   """a pounit with helpful methods for pootle"""
-  def getunquotedmsgid(self, joinwithlinebreak=False):
-    """returns the msgid as a list of unquoted strings (one per plural form present)"""
-    if self.hasplural():
-      return self.source.strings
-    else:
-      return [self.source]
-  unquotedmsgid = property(getunquotedmsgid)
-
-  def getunquotedmsgstr(self, joinwithlinebreak=False):
-    """returns the msgstr as a list of unquoted strings (one per plural form present)"""
-    if self.hasplural() and isinstance(self.target, multistring):
-      return self.target.strings
-    else:
-      return [self.target]
-
-  def setunquotedmsgstr(self, text):
-    """quotes text in po-style"""
-    if isinstance(text, dict):
-      quotedtext = {}
-      for pluralid in text:
-        pluraltext = text[pluralid].replace("\r\n", "\n")
-        quotedtext[pluralid] = po.quoteforpo(pluraltext)
-      self.msgstr = quotedtext
-    elif isinstance(text, list):
-      if self.hasplural():
-        for i, pluraltext in enumerate(text):
-          if i > len(self.msgstr):
-            self.msgstr.append(po.quoteforpo(pluraltext))
-          else:
-            self.msgstr[i] = po.quoteforpo(pluraltext)
-      else:
-        if len(text) != 1:
-          raise ValueError("po element has no plural but msgstr has %d elements (%s)" % (len(text), text))
-        self.msgstr = po.quoteforpo(text[0])
-    else:
-      text = text.replace("\r\n", "\n")
-      self.msgstr = po.quoteforpo(text)
-
-  unquotedmsgstr = property(getunquotedmsgstr, setunquotedmsgstr)
 
   def classify(self, checker):
     """returns all classify keys that this element should match, using the checker"""
@@ -93,11 +54,11 @@ class pootleelement(po.pounit, object):
     if not ("fuzzy" in classes or "blank" in classes):
       classes.append("translated")
     # TODO: we don't handle checking plurals at all yet, as this is tricky...
-    unquotedid = self.unquotedmsgid[0]
-    unquotedstr = self.unquotedmsgstr[0]
-    if isinstance(unquotedid, str) and isinstance(unquotedstr, unicode):
-      unquotedid = unquotedid.decode(getattr(self, "encoding", "utf-8"))
-    filterresult = checker.run_filters(self, unquotedid, unquotedstr)
+    source = self.source
+    target = self.target
+    if isinstance(source, str) and isinstance(target, unicode):
+      source = source.decode(getattr(self, "encoding", "utf-8"))
+    filterresult = checker.run_filters(self, source, target)
     for filtername, filtermessage in filterresult:
       classes.append("check-" + filtername)
     return classes
@@ -414,11 +375,11 @@ class pootlefile(po.pofile):
     assignsfile.writelines(assignstrings)
     assignsfile.close()
 
-  def setmsgstr(self, item, newmsgstr, userprefs, languageprefs):
-    """updates a translation with a new msgstr value"""
+  def setmsgstr(self, item, newtarget, userprefs, languageprefs):
+    """updates a translation with a new target value"""
     self.pofreshen()
     thepo = self.transelements[item]
-    thepo.unquotedmsgstr = newmsgstr
+    thepo.target = newtarget
     thepo.markfuzzy(False)
     po_revision_date = time.strftime("%F %H:%M%z")
     headerupdates = {"PO_Revision_Date": po_revision_date, "X_Generator": self.x_generator}
@@ -460,14 +421,14 @@ class pootlefile(po.pofile):
     self.msgidwordcounts = []
     self.msgstrwordcounts = []
     for poel in self.transelements:
-      self.msgidwordcounts.append([wordcount(text) for text in poel.unquotedmsgid])
-      self.msgstrwordcounts.append([wordcount(text) for text in poel.unquotedmsgstr])
+      self.msgidwordcounts.append([wordcount(text) for text in poel.source.strings])
+      self.msgstrwordcounts.append([wordcount(text) for text in poel.target.strings])
 
   def reclassifyelement(self, item):
     """updates the classification of poel in self.classify"""
     poel = self.transelements[item]
-    self.msgidwordcounts[item] = [wordcount(text) for text in poel.unquotedmsgid]
-    self.msgstrwordcounts[item] = [wordcount(text) for text in poel.unquotedmsgstr]
+    self.msgidwordcounts[item] = [wordcount(text) for text in poel.source.strings]
+    self.msgstrwordcounts[item] = [wordcount(text) for text in poel.target.strings]
     classes = poel.classify(self.checker)
     if self.getsuggestions(item):
       classes.append("has-suggestion")
@@ -509,14 +470,14 @@ class pootlefile(po.pofile):
     suggestpos = [suggestpo for suggestpo in self.pendingfile.units if suggestpo.getlocations() == locations]
     return suggestpos
 
-  def addsuggestion(self, item, suggmsgstr, username):
+  def addsuggestion(self, item, suggtarget, username):
     """adds a new suggestion for the given item to the pendingfile"""
     self.readpendingfile()
     thepo = self.transelements[item]
     newpo = thepo.copy()
     if username is not None:
       newpo.msgidcomments.append('"_: suggested by %s\\n"' % username)
-    newpo.unquotedmsgstr = suggmsgstr
+    newpo.target = suggtarget
     newpo.markfuzzy(False)
     self.pendingfile.units.append(newpo)
     self.savependingfile()
@@ -636,9 +597,9 @@ class pootlefile(po.pofile):
       if not foundid:
         # We can't use the multistring, because it might contain more than two
         # entries in a PO xliff file. Rather use the singular.
-        msgid = unicode(newpo.source)
-        if msgid in self.sourceindex:
-          oldpo = self.sourceindex[msgid]
+        source = unicode(newpo.source)
+        if source in self.sourceindex:
+          oldpo = self.sourceindex[source]
           matches.append((oldpo, newpo))
         else:
           matches.append((None, newpo))
