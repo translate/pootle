@@ -393,8 +393,8 @@ class TranslatePage(pagelayout.PootleNavPage):
       suggestions = {self.item: self.project.getsuggestions(self.pofilename, self.item)}
     for row, thepo in enumerate(self.translations):
       tmsuggestions = []
-      orig = thepo.unquotedmsgid
-      trans = thepo.unquotedmsgstr
+      orig = thepo.source.strings
+      trans = thepo.target.strings
       nplurals, plurals = self.project.getpofile(self.pofilename).getheaderplural()
       try:
         if len(orig) > 1:
@@ -420,7 +420,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         tmsuggestions.extend(self.project.getterminology(self.session, self.pofilename, self.item))
         
         if self.reviewmode:
-          itemsuggestions = [suggestion.unquotedmsgstr for suggestion in suggestions[item]]
+          itemsuggestions = [suggestion.target.strings for suggestion in suggestions[item]]
           transmerge = self.gettransreview(item, trans, itemsuggestions)
         else:
           transmerge = self.gettransedit(item, trans)

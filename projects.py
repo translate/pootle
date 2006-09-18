@@ -531,8 +531,8 @@ class TranslationProject(object):
                 newmatches.append((newpo, localpo))
                 continue
         if not foundsource:
-          msgid = origpo.unquotedmsgid
-          if msgid in newpofile.sourceindex:
+          source = origpo.source.strings
+          if source in newpofile.sourceindex:
             newpo = newpofile.sourceindex[msgid]
             newmatches.append((newpo, localpo))
           else:
@@ -769,12 +769,8 @@ class TranslationProject(object):
     for itemno in items:
       thepo = pofile.transelements[itemno]
       doc = {"pofilename": pofilename, "pomtime": str(pomtime), "itemno": str(itemno)}
-      if thepo.hasplural():
-        orig = "\n".join(thepo.source.strings)
-        trans = "\n".join(thepo.target.strings)
-      else:
-        orig = thepo.source
-        trans = thepo.target
+      orig = "\n".join(thepo.source.strings)
+      trans = "\n".join(thepo.target.strings)
       doc["msgid"] = orig
       doc["msgstr"] = trans
       addlist.append(doc)
