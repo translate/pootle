@@ -137,7 +137,7 @@
                   <!-- No plurals -->
                   <span py:if="not item.trans.isplural" py:strip="True">
                     <!--! TODO: spell checking -->
-		    <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}"  rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(item.trans.text)">
+                    <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}"  rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(item.trans.text)">
                       translatable text
                     </textarea>
                   </span>
