@@ -473,7 +473,9 @@ class PootleSession(session.LoginSession):
     """gets the users prefs into self.prefs"""
     if self.isopen:
       self.prefs = self.loginchecker.users.__getattr__(self.username)
-      self.setlanguage(self.language_set)
+      uilanguage = getattr(self.prefs, "uilanguage", None)
+      if uilanguage:
+        self.setlanguage(uilanguage)
     else:
       self.prefs = None
 
@@ -554,6 +556,7 @@ class PootleSession(session.LoginSession):
     value = argdict.get("option-uilanguage", "")
     if value:
       self.prefs.uilanguage = value
+      self.setlanguage(value)
     def setinterfacevalue(name, errormessage):
       value = argdict.get("option-%s" % name, "")
       if value != "":
