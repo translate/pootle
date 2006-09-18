@@ -237,3 +237,33 @@ function copyorigtranslation(elementNumber)
 		trelement = document.getElementById("areatrans" + elementNumber + "." + i );
 	}
 }
+
+var focusedElement;
+function setfocusedelement(element)
+{
+	focusedElement = element;
+}
+
+function writespecial(specialchar, elementnumber)
+{
+	var element = document.getElementById("areatrans" + elementnumber );
+	if (focusedElement)
+		insertatposition(focusedElement, specialchar, 0);
+}
+
+function insertatposition(element, text, rollback) 
+{
+	var wholetext = element.value;
+	var cursorposition = element.selectionStart;
+	var finalposition = cursorposition + text.length - rollback;
+
+	var before = wholetext.substr(0, cursorposition);
+	var after = wholetext.substr(cursorposition, wholetext.length);
+	
+	if (before != after) { //check that the browser got it right
+		element.value = before + text + after;
+		element.setSelectionRange(finalposition, finalposition);
+	}
+	element.focus();
+}
+
