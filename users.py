@@ -241,8 +241,8 @@ class OptionalLoginAppServer(server.LoginAppServer):
           "refresh": 30,
           "refreshurl": refreshurl,
           "message": errormessage,
-	  "traceback": browsertraceback,
-	  "back": session.localize("Back"),
+          "traceback": browsertraceback,
+          "back": session.localize("Back"),
           }
       pagelayout.completetemplatevars(templatevars, session)
       page = server.Redirect(refreshurl, withtemplate=(templatename, templatevars))
@@ -474,7 +474,7 @@ class PootleSession(session.LoginSession):
     if self.isopen:
       self.prefs = self.loginchecker.users.__getattr__(self.username)
       uilanguage = getattr(self.prefs, "uilanguage", None)
-      if uilanguage:
+      if uilanguage and not self.language:
         self.setlanguage(uilanguage)
     else:
       self.prefs = None
