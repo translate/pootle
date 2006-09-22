@@ -67,6 +67,7 @@ def completetemplatevars(templatevars, session, bannerheight=135):
   banner_layout["logo_alttext"] = session.localize("Pootle Logo")
   banner_layout["banner_alttext"] = session.localize("WordForge Translation Project")
   templatevars.update(banner_layout)
+  templatevars["aboutlink"] = session.localize("About this Pootle server")
   templatevars["uilanguage"] = weblanguage(session.language)
   templatevars["uidir"] = languagedir(session.language)
   templatevars["links"] = localize_links(session)

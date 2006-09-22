@@ -4,10 +4,9 @@
 <head>
   <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
-  <title py:content="pagetitle">Pootle</title>
+  <title py:content="pagetitle">Error</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="description" content="${meta_description}" />
-  <meta name="keywords" content="${', '.join(keywords)}" />
+  <meta py:if="refresh" http-equiv="Refresh" content="${refresh}; URL=${refreshurl}" />
   <link rel="stylesheet" type="text/css" href="/pootle.css" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <!--[if lt IE 7.]>
@@ -20,28 +19,10 @@
   <div id="banner" over:include="pootlepage#banner"/>
 
   <div id="content" dir="$uidir" lang="$uilanguage">
-    <div class="contents">
-      <h3 class="title" py:content="pagetitle">Pootle</h3>
-
-      <div class="intro" py:content="XML(description)">
-        this is a demo installation of pootle
-      </div>
-
-      <h3 class="title"><a href="languages/" py:content="languagelink">Languages</a></h3>
-
-      <div class="item-description">
-        <span py:for="l in languages" py:strip="True"><a href="${l.code}/" py:content="l.name">Language</a>${l.sep}</span>
-      </div>
-    </div>
-
-    <div class="contents">
-      <h3 class="title"><a href="projects/" py:content="projectlink">Projects</a></h3>
-
-      <div class="item-description">
-        <span py:for="p in projects" py:strip="True">
-          <a href="projects/${p.code}/" title="${p.description}" py:content="p.name">Project</a>${p.sep}
-        </span>
-      </div>
+    <div class="contents"><h3 class="title" py:content="pagetitle">Error</h3>
+      <div class="item-description" py:if="message" py:content="message">An error occured</div>
+      <div class="item-description" py:if="traceback"><pre py:content="traceback">Traceback (most recent call last):</pre></div>
+      <a href="javascript:history.back();" py:content="back">Back</a>
     </div>
   </div>
 

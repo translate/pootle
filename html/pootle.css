@@ -62,6 +62,25 @@ a:link		{ color: #004077; text-decoration: none; }
 a:visited	{ color: #004077; text-decoration: none; }
 a:hover[href]	{ color: #004077; text-decoration: underline; }
 a:active[href]	{ color: #004077; text-decoration: underline; }
+html {
+	height: 98%;
+	min-height: 98%;
+}
+body {
+	height: 98%;
+	min-height: 98%;
+}
+#abovefooter
+{
+	min-height: 98%;
+}
+#about {
+	position: relative;
+	text-align: center;
+	bottom: 0;
+	clear: both;
+}
+
 h1, h2, h3
 {
 	margin: 0px;
@@ -298,7 +317,7 @@ div.intro {
 {
 	float: left;
 	width: 72%;
-	margin-right:0px;
+	margin-right: 27%;
 	padding-bottom:10px;
 }
 #fullwidthcontent

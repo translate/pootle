@@ -14,6 +14,7 @@
 </head>
 
 <body bgcolor="#FFFFFF">
+  <div id="abovefooter">
   <div id="banner" over:include="pootlepage#banner"/>
 
   <div id="content" py:if="not session.issiteadmin" dir="$uidir" lang="$uilanguage">
@@ -62,6 +63,8 @@
     </div>
   </div>
 
+  </div>
   <div id="links" over:include="pootlepage#links"/>
+  <div id="about" over:include="pootlepage#about"/>
 </body>
 </html>

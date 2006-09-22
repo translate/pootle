@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st January 2004), see www.w3.org" />
 
-  <title>Pootle Languages Admin Page</title>
+  <title>Pootle Admin Page</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="/pootle.css" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -22,41 +22,45 @@
       You do not have the rights to administer Pootle
     </div>
   </div>
-  <div id="fullwidthcontent" py:if="session.issiteadmin" dir="$uidir" lang="$uilanguage">
+  <div id="content" py:if="session.issiteadmin" dir="$uidir" lang="$uilanguage">
     <div class="intro">
-      <a href="../home/" py:content="text.home">Home page</a>
+      <a href="../home/" py:content="text.home">Home</a>
     </div>
 
     <div class="intro">
-      <a href="index.html" py:content="text.admin">Main Admin page</a>
+      <a href="users.html" py:content="text.users">Users</a>
     </div>
 
-    <div class="fullwidthcontents">
-      <h3 class="title" py:content="text.languages">Languages</h3>
+    <div class="intro">
+      <a href="languages.html" py:content="text.languages">Languages</a>
+    </div>
 
-      <form action="" method="post" name="languages" id="languages">
+    <div class="intro">
+      <a href="projects.html" py:content="text.projects">Projects</a>
+    </div>
+
+    <div class="contents">
+      <h3 class="title" py:content="text.generaloptions">General Options</h3>
+
+      <form action="" method="post" name="general" id="general">
         <table cellpadding="1" cellspacing="1">
           <tr>
-            <td colspan="1" rowspan="1" py:for="option in options">
-              <h3 class="title" py:content="option.title">ISO Code</h3>
+            <td colspan="1" rowspan="1">
+              <h3 class="title" py:content="text.option">Option</h3>
+            </td>
+
+            <td colspan="1" rowspan="1">
+              <h3 class="title" py:content="text.currentvalue">Current value</h3>
             </td>
           </tr>
 
-          <tr py:for="language in languages">
-            <td colspan="1" rowspan="1" py:content="language.code">code</td>
+          <tr py:for="option in options">
+            <td colspan="1" rowspan="1" py:content="option.title">Description</td>
 
-            <td colspan="1" rowspan="1" py:for="option in language.options">
-               <input name="${option.name}" type="${option.type}" value="${option.value}"/>
-               <span py:if="option.label" py:content="option.label"/>
-            </td>
+            <td colspan="1" rowspan="1"><input type="text" name="${option.name}" value="${option.value}"/></td>
           </tr>
 
-          <tr>
-            <td colspan="1" rowspan="1" style="min-width: 6em;" py:for="option in options">
-              <input type="text" py:if="option.newname" name="${option.newname}" value="${option.newvalue}" size="${option.size}"/>
-            </td>
-          </tr>
-        </table><input type="submit" name="changelanguages" value="${text.savechanges}" />
+        </table><input type="submit" name="changegeneral" value="${text.savechanges}" />
       </form>
     </div>
   </div>

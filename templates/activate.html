@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns:over="http://dev.sjsoft.com/ns/overlay" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
+
+  <title py:content="pagetitle">Pootle Account Activation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/pootle.css" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="/js/correctpng.js"></script>
+  <![endif]-->
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div id="abovefooter">
+  <div id="banner" over:include="pootlepage#banner"/>
+
+  <div id="content" dir="$uidir" lang="$uilanguage">
+    <div class="intro" py:content="introtext">
+      Please enter your activation details
+    </div>
+
+    <form action="" enctype="multipart/form-data" method="post" name="activate" id="activate">
+      <table cellpadding="1" width="100%" border="0" cellspacing="1">
+        <tr>
+          <td colspan="1" style="width: 33%" rowspan="1" valign="top">
+            <span title="${username_tooltip}" py:content="username_title">Username</span>
+          </td>
+
+          <td colspan="1" style="width: 66%" rowspan="1" valign="top">
+             <input style="width: 100%" type="text" name="username" value="${username}" />
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="1" style="width: 33%" rowspan="1" valign="top">
+            <span title="${code_tooltip}" py:content="code_title">Activation Code</span>
+          </td>
+
+          <td colspan="1" style="width: 66%" rowspan="1" valign="top">
+            <input style="width: 100%" type="text" name="activationcode" value="${code}" />
+          </td>
+        </tr>
+      </table><input type="submit" name="activate" value="${activate_text}" />
+    </form>
+  </div>
+
+  </div>
+  <div id="links" over:include="pootlepage#links"/>
+  <div id="about" over:include="pootlepage#about"/>
+</body>
+</html>

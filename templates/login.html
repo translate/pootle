@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns:over="http://dev.sjsoft.com/ns/overlay" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
+
+  <title py:content="pagetitle">Login to Pootle</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/pootle.css" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="/js/correctpng.js"></script>
+  <![endif]-->
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div id="abovefooter">
+  <div id="banner" over:include="pootlepage#banner"/>
+
+  <div id="content" dir="$uidir" lang="$uilanguage">
+    <div class="intro" py:content="introtext">
+      Login failed
+    </div>
+      <form action="" method="post" name="loginform" id="loginform">
+        <table cellpadding="1" cellspacing="1">
+          <tr>
+            <td colspan="1" rowspan="1" py:content="username_title">Username:</td>
+
+            <td colspan="1" rowspan="1"><input type="text" name="username" value="${username}" /></td>
+          </tr>
+
+          <tr>
+            <td colspan="1" rowspan="1" py:content="password_title">Password:</td>
+
+            <td colspan="1" rowspan="1"><input type="password" name="password" value="" /></td>
+          </tr>
+
+          <tr>
+            <td colspan="1" rowspan="1" py:content="language_title">Language:</td>
+
+            <td colspan="1" rowspan="1">
+              <select name="language">
+                <option py:for="l in languages" py:attrs="selected=l.selected" value="${l.code}" py:content="l.name">
+                  Language Name
+                </option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <input type="submit" name="Login" value="${login_text}" />
+        <input type="hidden" name="islogin" value="true" />
+      </form>
+  </div>
+
+  </div>
+  <div id="links" over:include="pootlepage#links"/>
+  <div id="about" over:include="pootlepage#about"/>
+</body>
+</html>
+

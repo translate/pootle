@@ -91,7 +91,6 @@ class PootleIndex(pagelayout.PootlePage):
     meta_description = shortdescription(description)
     keywords = ["Pootle", "WordForge", "translate", "translation", "localisation", "localization",
                 "l10n", "traduction", "traduire"] + self.getprojectnames()
-    aboutlink = self.localize("About this Pootle server")
     languagelink = self.localize('Languages')
     projectlink = self.localize('Projects')
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
@@ -101,7 +100,6 @@ class PootleIndex(pagelayout.PootlePage):
     if languages:
       languages[-1]["sep"] = ""
     templatevars = {"pagetitle": pagetitle, "description": description, 
-        "aboutlink": aboutlink,
         "meta_description": meta_description, "keywords": keywords,
         "languagelink": languagelink, "languages": languages,
         "projectlink": projectlink, "projects": self.getprojects(),

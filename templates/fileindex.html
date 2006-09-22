@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns:over="http://dev.sjsoft.com/ns/overlay" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
+
+  <title py:content="pagetitle">Pootle: Project ${project.name}, Language ${language.name}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/pootle.css" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <script type="text/javascript" src="/js/sorttable.js"></script>
+  <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="/js/correctpng.js"></script>
+  <![endif]-->
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div id="abovefooter">
+  <div id="banner" over:include="pootlepage#banner"/>
+
+  <div id="content" dir="$uidir" lang="$uilanguage">
+    <div class="intro" py:if="message" py:content="message">Message</div>
+
+    <div class="navbar" py:for="item in navitems">
+      <!-- search form -->
+      <div py:if="search" class="searchform" dir="$uidir" lang="$uilanguage">
+        <form action="translate.html" method="post" name="searchform" id="searchform">
+          ${search.title}
+          <input type="text" size="15" name="searchtext" value="" />
+        </form>
+      </div>
+      <!-- Navigation bar -->
+      <div over:include="navbar#item">
+        <h3 over:replace="itemtitle" class="title">
+          <span py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</span>
+          <span py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</span>
+          <span py:strip="True" py:for="pathlink in item.path.pathlinks">
+            <a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
+          </span>
+          <i py:if="item.path.goal"><a href="${item.path.goal.href}">${item.path.goal.text}</a></i>
+        </h3>
+      </div>
+      <div over:include="navbar#itemstats"/>
+    </div>
+
+    <!-- The statistics view -->
+    <div py:if="not editing and children">
+      <br clear="all" />     
+      <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th class="stats">${statsheadings.name}</th>
+            <th class="stats">${statsheadings.translated}</th>
+	    <th class="stats" title="${statsheadings.translatedpercentage}">%</th>
+            <th class="stats">${statsheadings.fuzzy}</th>
+            <th class="stats" title="${statsheadings.fuzzypercentage}">%</th>
+            <th class="stats">${statsheadings.untranslated}</th>
+            <th class="stats" title="${statsheadings.untranslatedpercentage}">%</th>
+            <th class="stats">${statsheadings.total}</th>
+            <th class="stats">${statsheadings.graph}</th>
+          </tr>
+        </thead>
+        <tbody class="stats">
+          <div py:for="item in children" py:strip="True">
+            <tr  class="item item-${item.parity}">
+              <div over:include="navbar#itemdata"/>
+            </tr>
+          </div>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- The editing view -->
+    <div py:if="editing" py:for="item in children" py:strip="True">
+      <div py:if="'isgoal' in item" class="goalitem">
+        <div over:include="navbar#item">
+          <div py:if="item.goal.users or item.goal.show_adduser">
+            <img src="/images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+            <span py:for="user in item.goal.users" py:strip="True">${user.name}${user.sep}</span>
+            <form py:if="item.goal.show_adduser" action="" method="post" name="goaluserform">
+              <input type="hidden" name="editgoalname" value="${item.goal.name}"/>
+              <select name="newgoaluser">
+                <option py:for="user in item.goal.otherusers" py:content="user">Username</option>
+              </select>
+              <input type="submit" name="doeditgoalusers" value="${item.goal.adduser_title}"/>
+            </form>
+          </div>
+        </div>
+        <div over:include="navbar#itemstats"/>
+      </div>
+
+      <div py:if="'isdir' in item" class="item item-${item.parity}">
+        <div over:include="navbar#item"/>
+        <div over:include="navbar#itemstats"/>
+      </div>
+
+      <div py:if="'isfile' in item" class="item item-${item.parity}">
+        <div over:include="navbar#item"/>
+        <div over:include="navbar#itemstats"/>
+      </div>
+    </div>
+  </div>
+
+  <div id="links" over:include="pootlepage#links">
+    <div class="sidetitle" py:if="assign" py:content="assign.title">
+      Assign Strings
+    </div>
+
+    <form py:if="assign" action="" method="post" name="assignform">
+      <select name="assignto" title="${assign.users_text}">
+        <option py:for="user in assign.users" value="${user}" py:content="user">Username</option>
+      </select>
+      <input type="text" name="action" value="translate" title="${assign.action_text}" />
+      <input type="submit" name="doassign" value="${assign.button}" />
+    </form>
+
+    <div class="sidetitle" py:if="goals" py:content="goals.title">
+      Goals
+    </div>
+
+    <form py:if="goals" action="" method="post" name="goalform">
+      <input type="text" name="newgoal" title="${goals.name_title}" />
+      <input type="submit" name="doaddgoal" value="${goals.button}" />
+    </form>
+
+    <div class="sidetitle" py:if="upload" py:content="upload.title">
+      Upload File
+    </div>
+
+    <form py:if="upload" action="" method="post" name="uploadform" enctype="multipart/form-data">
+      <div>
+        <input type="file" name="uploadfile" size="15" class="upload" title="${upload.file_title}" />
+      </div>
+      <input type="submit" name="doupload" value="${upload.button}" />
+    </form>
+
+  </div>
+  </div>
+  <div id="about" over:include="pootlepage#about"/>
+</body>
+</html>
