@@ -663,7 +663,7 @@ class pootlefile(po.pofile):
     headerstoaccept = {}
     ownheader = self.parseheader()
     for (key, value) in newfile.parseheader().items():
-      if key in updatekeys or (not key in ownheader or not ownheader[key]) and key in self.header_order:
+      if key in updatekeys or (not key in ownheader or not ownheader[key]) and key in po.poheader.header_order:
         headerstoaccept[key] = value
     self.updateheader(add=True, **headerstoaccept)
     
