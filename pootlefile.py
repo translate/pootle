@@ -22,8 +22,8 @@
 """manages po files and their associated files"""
 
 from translate.storage import po
-from translate.misc import quote
 from translate.misc.multistring import multistring
+from translate.tools import pocount
 from translate.filters import checks
 from Pootle import __version__
 from jToolkit import timecache
@@ -36,10 +36,6 @@ def getmodtime(filename, default=None):
     return os.stat(filename)[os.path.stat.ST_MTIME]
   else:
     return default
-
-def wordcount(unquotedstr):
-  """returns the number of words in an unquoted str"""
-  return len(unquotedstr.split())
 
 class pootleelement(po.pounit, object):
   """a pounit with helpful methods for pootle"""
@@ -421,14 +417,14 @@ class pootlefile(po.pofile):
     self.msgidwordcounts = []
     self.msgstrwordcounts = []
     for poel in self.transelements:
-      self.msgidwordcounts.append([wordcount(text) for text in poel.source.strings])
-      self.msgstrwordcounts.append([wordcount(text) for text in poel.target.strings])
+      self.msgidwordcounts.append([pocount.wordcount(text) for text in poel.source.strings])
+      self.msgstrwordcounts.append([pocount.wordcount(text) for text in poel.target.strings])
 
   def reclassifyelement(self, item):
     """updates the classification of poel in self.classify"""
     poel = self.transelements[item]
-    self.msgidwordcounts[item] = [wordcount(text) for text in poel.source.strings]
-    self.msgstrwordcounts[item] = [wordcount(text) for text in poel.target.strings]
+    self.msgidwordcounts[item] = [pocount.wordcount(text) for text in poel.source.strings]
+    self.msgstrwordcounts[item] = [pocount.wordcount(text) for text in poel.target.strings]
     classes = poel.classify(self.checker)
     if self.getsuggestions(item):
       classes.append("has-suggestion")
