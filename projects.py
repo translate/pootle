@@ -765,9 +765,9 @@ class TranslationProject(object):
     pofile.pofreshen()
     addlist = []
     if items is None:
-      items = range(len(pofile.transelements))
+      items = range(len(pofile.transunits))
     for itemno in items:
-      thepo = pofile.transelements[itemno]
+      thepo = pofile.transunits[itemno]
       doc = {"pofilename": pofilename, "pomtime": str(pomtime), "itemno": str(itemno)}
       orig = "\n".join(thepo.source.strings)
       trans = "\n".join(thepo.target.strings)
@@ -869,7 +869,7 @@ class TranslationProject(object):
             continue
         # TODO: move this to iteritems
         if search.searchtext:
-          thepo = pofile.transelements[item]
+          thepo = pofile.transunits[item]
           if pogrepfilter.filterelement(thepo):
             yield pofilename, item
         else:
@@ -910,7 +910,7 @@ class TranslationProject(object):
         # TODO: move this to iteritems
         if search.searchtext:
           validitem = False
-          thepo = pofile.transelements[item]
+          thepo = pofile.transunits[item]
           if pogrepfilter.filterelement(thepo):
             validitem = True
           if not validitem:
@@ -936,7 +936,7 @@ class TranslationProject(object):
       for item in pofile.iteritems(search, None):
         # TODO: move this to iteritems
         if search.searchtext:
-          thepo = pofile.transelements[item]
+          thepo = pofile.transunits[item]
           if pogrepfilter.filterelement(thepo):
             pofile.unassign(item, assignedto, action)
             assigncount += 1
@@ -1097,12 +1097,12 @@ class TranslationProject(object):
     """returns number of items in the given pofilename"""
     # TODO: needn't parse the file for this ...
     pofile = self.getpofile(pofilename)
-    return len(pofile.transelements)
+    return len(pofile.transunits)
 
   def getitem(self, pofilename, item):
     """returns a particular item from a particular po file's orig, trans strings as a tuple"""
     pofile = self.getpofile(pofilename)
-    thepo = pofile.transelements[item]
+    thepo = pofile.transunits[item]
     orig, trans = self.source, self.target
     return orig, trans
 
@@ -1125,8 +1125,8 @@ class TranslationProject(object):
   def getitems(self, pofilename, itemstart, itemstop):
     """returns a set of items from the pofile, converted to original and translation strings"""
     pofile = self.getpofile(pofilename)
-    elements = pofile.transelements[max(itemstart,0):itemstop]
-    return elements
+    units = pofile.transunits[max(itemstart,0):itemstop]
+    return units
 
   def updatetranslation(self, pofilename, item, trans, session):
     """updates a translation with a new value..."""
@@ -1243,7 +1243,7 @@ class TranslationProject(object):
       if isinstance(pofile, (str, unicode)):
         pofilename = pofile
         pofile = self.getpofile(pofilename)
-        return termmatcher.matches(pofile.transelements[item].source)
+        return termmatcher.matches(pofile.transunits[item].source)
     except Exception, e:
       session.server.errorhandler.logerror(traceback.format_exc())
       return []

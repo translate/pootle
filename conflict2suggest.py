@@ -32,7 +32,7 @@ def processfile(filename):
   pofile = pootlefile.pootlefile(dummyproject, os.path.basename(filename))
   pofile.readpofile()
   conflictitems = []
-  for item, poentry in enumerate(pofile.transelements):
+  for item, poentry in enumerate(pofile.transunits):
     if poentry.hasplural():
       targets = poentry.target.strings
     else:

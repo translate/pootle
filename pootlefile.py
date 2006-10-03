@@ -37,11 +37,11 @@ def getmodtime(filename, default=None):
   else:
     return default
 
-class pootleelement(po.pounit, object):
+class pootleunit(po.pounit, object):
   """a pounit with helpful methods for pootle"""
 
   def classify(self, checker):
-    """returns all classify keys that this element should match, using the checker"""
+    """returns all classify keys that this unit should match, using the checker"""
     classes = ["total"]
     if self.isfuzzy():
       classes.append("fuzzy")
@@ -62,8 +62,8 @@ class pootleelement(po.pounit, object):
 class pootlefile(po.pofile):
   """this represents a pootle-managed .po file and its associated files"""
   x_generator = "Pootle %s" % __version__.ver
-  def __init__(self, project=None, pofilename=None, stats=True):
-    po.pofile.__init__(self, unitclass=pootleelement)
+  def __init__(self, project=None, pofilename=None, generatestats=True):
+    po.pofile.__init__(self, unitclass=pootleunit)
     self.pofilename = pofilename
     if project is None:
       from Pootle import projects
@@ -85,7 +85,7 @@ class pootlefile(po.pofile):
     self.classify = {}
     self.msgidwordcounts = []
     self.msgstrwordcounts = []
-    if stats:
+    if generatestats:
       self.getstats()
     self.getassigns()
     self.tracker = timecache.timecache(20*60)
@@ -102,8 +102,8 @@ class pootlefile(po.pofile):
     pomtime = getmodtime(self.filename)
     self.parse(open(self.filename, 'r'))
     # we ignore all the headers by using this filtered set
-    self.transelements = [poel for poel in self.units if not (poel.isheader() or poel.isblank())]
-    self.classifyelements()
+    self.transunits = [poel for poel in self.units if not (poel.isheader() or poel.isblank())]
+    self.classifyunits()
     self.pomtime = pomtime
 
   def savepofile(self):
@@ -374,7 +374,7 @@ class pootlefile(po.pofile):
   def setmsgstr(self, item, newtarget, userprefs, languageprefs):
     """updates a translation with a new target value"""
     self.pofreshen()
-    thepo = self.transelements[item]
+    thepo = self.transunits[item]
     thepo.target = newtarget
     thepo.markfuzzy(False)
     po_revision_date = time.strftime("%F %H:%M%z")
@@ -389,10 +389,10 @@ class pootlefile(po.pofile):
       if nplurals and pluralequation:
         self.updateheaderplural(nplurals, pluralequation)
     self.savepofile()
-    self.reclassifyelement(item)
+    self.reclassifyunit(item)
 
-  def classifyelements(self):
-    """makes a dictionary of which elements fall into which classifications"""
+  def classifyunits(self):
+    """makes a dictionary of which units fall into which classifications"""
     self.classify = {}
     self.classify["fuzzy"] = []
     self.classify["blank"] = []
@@ -401,7 +401,7 @@ class pootlefile(po.pofile):
     self.classify["total"] = []
     for checkname in self.checker.getfilters().keys():
       self.classify["check-" + checkname] = []
-    for item, poel in enumerate(self.transelements):
+    for item, poel in enumerate(self.transunits):
       classes = poel.classify(self.checker)
       if self.getsuggestions(item):
         classes.append("has-suggestion")
@@ -413,16 +413,16 @@ class pootlefile(po.pofile):
     self.countwords()
 
   def countwords(self):
-    """counts the words in each of the elements"""
+    """counts the words in each of the units"""
     self.msgidwordcounts = []
     self.msgstrwordcounts = []
-    for poel in self.transelements:
+    for poel in self.transunits:
       self.msgidwordcounts.append([pocount.wordcount(text) for text in poel.source.strings])
       self.msgstrwordcounts.append([pocount.wordcount(text) for text in poel.target.strings])
 
-  def reclassifyelement(self, item):
+  def reclassifyunit(self, item):
     """updates the classification of poel in self.classify"""
-    poel = self.transelements[item]
+    poel = self.transunits[item]
     self.msgidwordcounts[item] = [pocount.wordcount(text) for text in poel.source.strings]
     self.msgstrwordcounts[item] = [pocount.wordcount(text) for text in poel.target.strings]
     classes = poel.classify(self.checker)
@@ -445,9 +445,9 @@ class pootlefile(po.pofile):
     for thesugg in self.pendingfile.units:
       locations = tuple(thesugg.getlocations())
       sugglocations[locations] = thesugg
-    suggitems = [item for item in self.transelements if tuple(item.getlocations()) in sugglocations]
+    suggitems = [item for item in self.transunits if tuple(item.getlocations()) in sugglocations]
     havesuggestions = self.classify["has-suggestion"]
-    for item, poel in enumerate(self.transelements):
+    for item, poel in enumerate(self.transunits):
       if (poel in suggitems) != (item in havesuggestions):
         if poel in suggitems:
           havesuggestions.append(item)
@@ -460,7 +460,7 @@ class pootlefile(po.pofile):
   def getsuggestions(self, item):
     """find all the suggestion items submitted for the given (pofile or pofilename) and item"""
     self.readpendingfile()
-    thepo = self.transelements[item]
+    thepo = self.transunits[item]
     locations = thepo.getlocations()
     # TODO: review the matching method
     suggestpos = [suggestpo for suggestpo in self.pendingfile.units if suggestpo.getlocations() == locations]
@@ -469,7 +469,7 @@ class pootlefile(po.pofile):
   def addsuggestion(self, item, suggtarget, username):
     """adds a new suggestion for the given item to the pendingfile"""
     self.readpendingfile()
-    thepo = self.transelements[item]
+    thepo = self.transunits[item]
     newpo = thepo.copy()
     if username is not None:
       newpo.msgidcomments.append('"_: suggested by %s\\n"' % username)
@@ -477,24 +477,24 @@ class pootlefile(po.pofile):
     newpo.markfuzzy(False)
     self.pendingfile.units.append(newpo)
     self.savependingfile()
-    self.reclassifyelement(item)
+    self.reclassifyunit(item)
 
   def deletesuggestion(self, item, suggitem):
     """removes the suggestion from the pending file"""
     self.readpendingfile()
-    thepo = self.transelements[item]
+    thepo = self.transunits[item]
     locations = thepo.getlocations()
     # TODO: remove the suggestion in a less brutal manner
     pendingitems = [pendingitem for pendingitem, suggestpo in enumerate(self.pendingfile.units) if suggestpo.getlocations() == locations]
     pendingitem = pendingitems[suggitem]
     del self.pendingfile.units[pendingitem]
     self.savependingfile()
-    self.reclassifyelement(item)
+    self.reclassifyunit(item)
 
   def gettmsuggestions(self, item):
     """find all the tmsuggestion items submitted for the given item"""
     self.readtmfile()
-    thepo = self.transelements[item]
+    thepo = self.transunits[item]
     locations = thepo.getlocations()
     # TODO: review the matching method
     # Can't simply use the location index, because we want multiple matches
@@ -504,8 +504,8 @@ class pootlefile(po.pofile):
   def getitemslen(self):
     """gets the number of items in the file"""
     # TODO: simplify this, and use wherever its needed
-    if hasattr(self, "transelements"):
-      return len(self.transelements)
+    if hasattr(self, "transunits"):
+      return len(self.transunits)
     elif hasattr(self, "stats") and "total" in self.stats:
       return len(self.stats["total"])
     elif hasattr(self, "classify") and "total" in self.classify:
@@ -536,9 +536,9 @@ class pootlefile(po.pofile):
       minitem = 0
     else:
       minitem = lastitem + 1
-    maxitem = len(self.transelements)
+    maxitem = len(self.transunits)
     validitems = range(minitem, maxitem)
-    if search.assignedto or search.assignedaction: 
+    if search.assignedto or search.assignedaction:
       # search.assignedto == [None] means assigned to nobody
       if search.assignedto == [None]:
         assignitems = self.getunassigned(search.assignedaction)
@@ -613,7 +613,7 @@ class pootlefile(po.pofile):
     if not oldpo.target or not newpo.target or oldpo.isheader() or newpo.isheader() or unchanged:
       oldpo.merge(newpo)
     else:
-      for item, matchpo in enumerate(self.transelements):
+      for item, matchpo in enumerate(self.transunits):
         if matchpo == oldpo:
           strings = getattr(newpo.target, "strings", [newpo.target])
           self.addsuggestion(item, strings, username)
@@ -669,7 +669,7 @@ class pootlefile(po.pofile):
     if header is None and not newheader is None:
       header = self.UnitClass("", encoding=self.encoding)
       header.target = ""
-    if header:  
+    if header:
       header.initallcomments(blankall=True)
       if newheader:
         for i in range(len(header.allcomments)):
