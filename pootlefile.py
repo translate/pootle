@@ -21,6 +21,7 @@
 
 """manages po files and their associated files"""
 
+from translate.storage import base
 from translate.storage import po
 from translate.misc.multistring import multistring
 from translate.tools import pocount
@@ -37,8 +38,63 @@ def getmodtime(filename, default=None):
   else:
     return default
 
-class pootleunit(po.pounit, object):
+class Wrapper(object):
+  """An object which wraps an inner object, delegating to the encapsulated methods, etc"""
+  def __getattr__(self, attrname, *args):
+    if attrname in self.__dict__:
+      return self.__dict__[attrname]
+    return getattr(self.__dict__["__innerobj__"], attrname, *args)
+
+  def __setattr__(self, attrname, value):
+    if attrname == "__innerobj__":
+      self.__dict__[attrname] = value
+    elif attrname in self.__dict__:
+      if isinstance(self.__dict__[attrname], property):
+        self.__dict__[attrname].fset(value)
+      else:
+        self.__dict__[attrname] = value
+    elif attrname in self.__class__.__dict__:
+      if isinstance(self.__class__.__dict__[attrname], property):
+        self.__class__.__dict__[attrname].fset(self, value)
+      else:
+        self.__dict__[attrname] = value
+    else:
+      return setattr(self.__dict__["__innerobj__"], attrname, value)
+
+class pootleunit(Wrapper):
   """a pounit with helpful methods for pootle"""
+  WrapUnitClass = po.pounit
+  def __init__(self, source=None, encoding="UTF-8", wrapunit=None):
+    # self.__innerobj__ must be the first attribute set
+    if wrapunit is None:
+      self.__innerobj__ = self.WrapUnitClass()
+    else:
+      self.__innerobj__ = wrapunit
+    self.encoding = po.encodingToUse(encoding)
+    if source is not None:
+      self.source = source
+
+  def __getattr__(self, attrname, *args):
+    if attrname in self.__dict__:
+      return self.__dict__[attrname]
+    return getattr(self.__dict__["__innerobj__"], attrname, *args)
+
+  def __setattr__(self, attrname, value):
+    if attrname == "__innerobj__":
+      self.__dict__[attrname] = value
+    elif attrname in self.__dict__:
+      if isinstance(self.__dict__[attrname], property):
+        self.__dict__[attrname].fset(value)
+      else:
+        self.__dict__[attrname] = value
+    elif attrname in self.__class__.__dict__:
+      if isinstance(self.__class__.__dict__[attrname], property):
+        self.__class__.__dict__[attrname].fset(self, value)
+      else:
+        self.__dict__[attrname] = value
+    else:
+      return setattr(self.__dict__["__innerobj__"], attrname, value)
+
 
   def classify(self, checker):
     """returns all classify keys that this unit should match, using the checker"""
