@@ -95,6 +95,8 @@ class pootleunit(Wrapper):
     else:
       return setattr(self.__dict__["__innerobj__"], attrname, value)
 
+  def __str__(self):
+    return self.__innerobj__.__str__()
 
   def classify(self, checker):
     """returns all classify keys that this unit should match, using the checker"""
