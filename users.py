@@ -225,14 +225,19 @@ class OptionalLoginAppServer(server.LoginAppServer):
       errormessage = str(e).decode("utf-8")
       traceback = self.errorhandler.traceback_str().decode('utf-8')
       browsertraceback = ""
-      if self.options.browsererrors == 'traceback':
-        browsertraceback = traceback
-      if self.options.logerrors == 'traceback':
+      options = getattr(self, "options", None)
+      # with unit tests we might not have self.options, therefore this test
+      if options:
+        if self.options.browsererrors == 'traceback':
+          browsertraceback = traceback
+        if self.options.logerrors == 'traceback':
+          self.errorhandler.logerror(traceback)
+        elif self.options.logerrors == 'exception':
+          self.errorhandler.logerror(exceptionstr)
+        elif self.options.logerrors == 'message':
+          self.errorhandler.logerror(errormessage)
+      else:
         self.errorhandler.logerror(traceback)
-      elif self.options.logerrors == 'exception':
-        self.errorhandler.logerror(exceptionstr)
-      elif self.options.logerrors == 'message':
-        self.errorhandler.logerror(errormessage)
       
       refreshurl = req.headers_in.getheader('Referer') or "/"
       templatename = "error"
