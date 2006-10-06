@@ -142,37 +142,6 @@ class pootlefile(po.pofile):
     self.getassigns()
     self.tracker = timecache.timecache(20*60)
 
-  def readpendingfile(self):
-    """reads and parses the pending file corresponding to this po file"""
-    if os.path.exists(self.pendingfilename):
-      pendingmtime = getmodtime(self.pendingfilename)
-      if pendingmtime == getattr(self, "pendingmtime", None):
-        return
-      inputfile = open(self.pendingfilename, "r")
-      self.pendingmtime, self.pendingfile = pendingmtime, po.pofile(inputfile, unitclass=self.UnitClass)
-      if self.pomtime:
-        self.reclassifysuggestions()
-    else:
-      self.pendingfile = po.pofile(unitclass=self.UnitClass)
-      self.savependingfile()
-
-  def savependingfile(self):
-    """saves changes to disk..."""
-    output = str(self.pendingfile)
-    open(self.pendingfilename, "w").write(output)
-    self.pendingmtime = getmodtime(self.pendingfilename)
-
-  def readtmfile(self):
-    """reads and parses the tm file corresponding to this po file"""
-    if os.path.exists(self.tmfilename):
-      tmmtime = getmodtime(self.tmfilename)
-      if tmmtime == getattr(self, "tmmtime", None):
-        return
-      inputfile = open(self.tmfilename, "r")
-      self.tmmtime, self.tmfile = tmmtime, po.pofile(inputfile, unitclass=self.UnitClass)
-    else:
-      self.tmfile = po.pofile(unitclass=self.UnitClass)
-
   def getstats(self):
     """reads the stats if neccessary or returns them from the cache"""
     if os.path.exists(self.statsfilename):
@@ -462,61 +431,36 @@ class pootlefile(po.pofile):
       unassigneditems = [item for item in unassigneditems if item not in assigneditems]
     return unassigneditems
 
-  def track(self, item, message):
-    """sets the tracker message for the given item"""
-    self.tracker[item] = message
+  def readpendingfile(self):
+    """reads and parses the pending file corresponding to this po file"""
+    if os.path.exists(self.pendingfilename):
+      pendingmtime = getmodtime(self.pendingfilename)
+      if pendingmtime == getattr(self, "pendingmtime", None):
+        return
+      inputfile = open(self.pendingfilename, "r")
+      self.pendingmtime, self.pendingfile = pendingmtime, po.pofile(inputfile, unitclass=self.UnitClass)
+      if self.pomtime:
+        self.reclassifysuggestions()
+    else:
+      self.pendingfile = po.pofile(unitclass=self.UnitClass)
+      self.savependingfile()
 
-  def readpofile(self):
-    """reads and parses the main po file"""
-    # make sure encoding is reset so it is read from the file
-    self.encoding = None
-    self.units = []
-    pomtime = getmodtime(self.filename)
-    self.parse(open(self.filename, 'r'))
-    # we ignore all the headers by using this filtered set
-    self.transunits = [poel for poel in self.units if not (poel.isheader() or poel.isblank())]
-    self.classifyunits()
-    self.pomtime = pomtime
+  def savependingfile(self):
+    """saves changes to disk..."""
+    output = str(self.pendingfile)
+    open(self.pendingfilename, "w").write(output)
+    self.pendingmtime = getmodtime(self.pendingfilename)
 
-  def savepofile(self):
-    """saves changes to the main file to disk..."""
-    output = str(self)
-    open(self.filename, "w").write(output)
-    # don't need to reread what we saved
-    self.pomtime = getmodtime(self.filename)
-
-  def pofreshen(self):
-    """makes sure we have a freshly parsed pofile"""
-    if not os.path.exists(self.filename):
-      # the file has been removed, update the project index (and fail below)
-      self.project.scanpofiles()
-    if self.pomtime != getmodtime(self.filename):
-      self.readpofile()
-
-  def getoutput(self):
-    """returns pofile output"""
-    self.pofreshen()
-    return super(pootlefile, self).getoutput()
-
-  def setmsgstr(self, item, newtarget, userprefs, languageprefs):
-    """updates a translation with a new target value"""
-    self.pofreshen()
-    thepo = self.transunits[item]
-    thepo.target = newtarget
-    thepo.markfuzzy(False)
-    po_revision_date = time.strftime("%F %H:%M%z")
-    headerupdates = {"PO_Revision_Date": po_revision_date, "X_Generator": self.x_generator}
-    if userprefs:
-      if getattr(userprefs, "name", None) and getattr(userprefs, "email", None):
-        headerupdates["Last_Translator"] = "%s <%s>" % (userprefs.name, userprefs.email)
-    self.updateheader(add=True, **headerupdates)
-    if languageprefs:
-      nplurals = getattr(languageprefs, "nplurals", None)
-      pluralequation = getattr(languageprefs, "pluralequation", None)
-      if nplurals and pluralequation:
-        self.updateheaderplural(nplurals, pluralequation)
-    self.savepofile()
-    self.reclassifyunit(item)
+  def readtmfile(self):
+    """reads and parses the tm file corresponding to this po file"""
+    if os.path.exists(self.tmfilename):
+      tmmtime = getmodtime(self.tmfilename)
+      if tmmtime == getattr(self, "tmmtime", None):
+        return
+      inputfile = open(self.tmfilename, "r")
+      self.tmmtime, self.tmfile = tmmtime, po.pofile(inputfile, unitclass=self.UnitClass)
+    else:
+      self.tmfile = po.pofile(unitclass=self.UnitClass)
 
   def reclassifysuggestions(self):
     """shortcut to only update classification of has-suggestion for all items"""
@@ -580,6 +524,62 @@ class pootlefile(po.pofile):
     # Can't simply use the location index, because we want multiple matches
     suggestpos = [suggestpo for suggestpo in self.tmfile.units if suggestpo.getlocations() == locations]
     return suggestpos
+
+  def track(self, item, message):
+    """sets the tracker message for the given item"""
+    self.tracker[item] = message
+
+  def readpofile(self):
+    """reads and parses the main po file"""
+    # make sure encoding is reset so it is read from the file
+    self.encoding = None
+    self.units = []
+    pomtime = getmodtime(self.filename)
+    self.parse(open(self.filename, 'r'))
+    # we ignore all the headers by using this filtered set
+    self.transunits = [poel for poel in self.units if not (poel.isheader() or poel.isblank())]
+    self.classifyunits()
+    self.pomtime = pomtime
+
+  def savepofile(self):
+    """saves changes to the main file to disk..."""
+    output = str(self)
+    open(self.filename, "w").write(output)
+    # don't need to reread what we saved
+    self.pomtime = getmodtime(self.filename)
+
+  def pofreshen(self):
+    """makes sure we have a freshly parsed pofile"""
+    if not os.path.exists(self.filename):
+      # the file has been removed, update the project index (and fail below)
+      self.project.scanpofiles()
+    if self.pomtime != getmodtime(self.filename):
+      self.readpofile()
+
+  def getoutput(self):
+    """returns pofile output"""
+    self.pofreshen()
+    return super(pootlefile, self).getoutput()
+
+  def setmsgstr(self, item, newtarget, userprefs, languageprefs):
+    """updates a translation with a new target value"""
+    self.pofreshen()
+    thepo = self.transunits[item]
+    thepo.target = newtarget
+    thepo.markfuzzy(False)
+    po_revision_date = time.strftime("%F %H:%M%z")
+    headerupdates = {"PO_Revision_Date": po_revision_date, "X_Generator": self.x_generator}
+    if userprefs:
+      if getattr(userprefs, "name", None) and getattr(userprefs, "email", None):
+        headerupdates["Last_Translator"] = "%s <%s>" % (userprefs.name, userprefs.email)
+    self.updateheader(add=True, **headerupdates)
+    if languageprefs:
+      nplurals = getattr(languageprefs, "nplurals", None)
+      pluralequation = getattr(languageprefs, "pluralequation", None)
+      if nplurals and pluralequation:
+        self.updateheaderplural(nplurals, pluralequation)
+    self.savepofile()
+    self.reclassifyunit(item)
 
   def iteritems(self, search, lastitem=None):
     """iterates through the items in this pofile starting after the given lastitem, using the given search"""
