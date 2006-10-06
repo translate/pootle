@@ -121,8 +121,7 @@ class pootlefile(po.pofile):
     if project is None:
       from Pootle import projects
       self.project = projects.DummyProject(None)
-      #self.checker = None
-      self.checker = self.project.checker
+      self.checker = None
       self.filename = self.pofilename
     else:
       self.project = project
