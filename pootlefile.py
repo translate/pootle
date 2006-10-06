@@ -74,29 +74,24 @@ class pootleunit(Wrapper):
     if source is not None:
       self.source = source
 
-  def __getattr__(self, attrname, *args):
-    if attrname in self.__dict__:
-      return self.__dict__[attrname]
-    return getattr(self.__dict__["__innerobj__"], attrname, *args)
-
-  def __setattr__(self, attrname, value):
-    if attrname == "__innerobj__":
-      self.__dict__[attrname] = value
-    elif attrname in self.__dict__:
-      if isinstance(self.__dict__[attrname], property):
-        self.__dict__[attrname].fset(value)
-      else:
-        self.__dict__[attrname] = value
-    elif attrname in self.__class__.__dict__:
-      if isinstance(self.__class__.__dict__[attrname], property):
-        self.__class__.__dict__[attrname].fset(self, value)
-      else:
-        self.__dict__[attrname] = value
-    else:
-      return setattr(self.__dict__["__innerobj__"], attrname, value)
+  def __eq__(self, other):
+    return self.__innerobj__.__eq__(other)
 
   def __str__(self):
     return self.__innerobj__.__str__()
+
+  def merge(self, otherunit, overwrite=False, comments=True):
+    """We have to override this to pass the innerobj because a type test will 
+    be done on it."""
+    if isinstance(otherunit, pootleunit):
+      return self.__innerobj__.merge(otherunit.__innerobj__, overwrite=overwrite, comments=comments)
+    else:
+      return self.__innerobj__.merge(otherunit, overwrite=overwrite, comments=comments)
+
+  def buildfromunit(cls, unit):
+    """We have to override this, because we don't have an inner object to delegate to"""
+    return cls.WrapUnitClass.buildfromunit(unit)
+  buildfromunit = classmethod(buildfromunit)
 
   def classify(self, checker):
     """returns all classify keys that this unit should match, using the checker"""
