@@ -237,7 +237,22 @@ class ServerTester:
 		xlfcontents = '''<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
  
-<file datatype="po" original="test_existing.po" source-language="en-US"><body><trans-unit id="1" xml:space="preserve"><source>test</source><target state="translated">rested</target><context-group name="po-reference" purpose="location"><context context-type="sourcefile">test.c</context></context-group></trans-unit><trans-unit id="2" xml:space="preserve"><source>slink</source><target state="translated">stink</target><context-group name="po-reference" purpose="location"><context context-type="sourcefile">toad.c</context></context-group></trans-unit></body></file></xliff>
+<file datatype="po" original="test_existing.po" source-language="en-US"><body>
+<trans-unit id="1" xml:space="preserve">
+ <source>test</source>
+ <target state="translated">rested</target>
+ <context-group name="po-reference" purpose="location">
+  <context context-type="sourcefile">test.c</context>
+ </context-group>
+</trans-unit>
+<trans-unit id="2" xml:space="preserve">
+ <source>slink</source>
+ <target state="translated">stink</target>
+ <context-group name="po-reference" purpose="location">
+  <context context-type="sourcefile">toad.c</context>
+ </context-group>
+ </trans-unit>
+</body></file></xliff>
 '''
 		fields = [("doupload", "Upload File")]
 		files = [("uploadfile", "test_existing.xlf", xlfcontents)]
@@ -257,7 +272,7 @@ class ServerTester:
 		assert open(pendingfile_storename).read().find(suggestedcontents) >= 0
 		pocontents_download = self.fetch_page("zxx/testproject/test_existing.po")
 		assert pocontents_download.find(mergedcontents) >= 0
-	test_upload_over_file.userprefs = {"rights.siteadmin": True}
+	test_upload_xliff_over_file.userprefs = {"rights.siteadmin": True}
 
 	def test_submit_translation(self):
 		"""tests that we can upload a new file into a project"""
