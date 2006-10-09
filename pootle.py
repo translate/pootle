@@ -239,6 +239,16 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
       csspage.sendfile_path = cssfile
       csspage.allowcaching = True
       return csspage
+    elif top == 'selenium':
+      pathwords = pathwords[1:]
+      picturefile = os.path.join(filelocations.htmldir, 'selenium', *pathwords)
+      picture = widgets.SendFile(picturefile)
+      if picturefile.endswith(".html"):
+        picture.content_type = 'text/html'
+      elif picturefile.endswith(".js"):
+        picture.content_type = 'text/javascript'
+      picture.allowcaching = True
+      return picture
     elif top == 'images':
       pathwords = pathwords[1:]
       picturefile = os.path.join(filelocations.htmldir, 'images', *pathwords)
