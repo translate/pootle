@@ -755,7 +755,7 @@ class TranslationProject(object):
     gooditems = self.searcher.search(gooditemsquery, "itemno")
     allitems = self.searcher.search(pofilenamequery, "itemno")
     if items is None:
-      if len(gooditems) == len(allitems) == pofile.getitemslen():
+      if len(gooditems) == len(allitems) == pofile.statistics.getitemslen():
         return
       print "updating", self.projectcode, self.languagecode, "index for", pofilename
       self.searcher.deleteDoc({"pofilename": pofilename})
@@ -788,9 +788,9 @@ class TranslationProject(object):
     # search.assignedto == [None] means assigned to nobody
     if search.assignedto or search.assignedaction:
       if search.assignedto == [None]:
-        assigns = self.pofiles[pofilename].getunassigned(search.assignedaction)
+        assigns = self.pofiles[pofilename].assigns.getunassigned(search.assignedaction)
       else:
-        assigns = self.pofiles[pofilename].getassigns()
+        assigns = self.pofiles[pofilename].assigns.getassigns()
         if search.assignedto is not None:
           if search.assignedto not in assigns:
             return False
@@ -895,7 +895,7 @@ class TranslationProject(object):
     assigncount = 0
     if not usercount:
       return assigncount
-    docountwords = lambda pofilename: self.countwords([(pofilename, item) for item in range(self.pofiles[pofilename].getitemslen())])
+    docountwords = lambda pofilename: self.countwords([(pofilename, item) for item in range(self.pofiles[pofilename].statistics.getitemslen())])
     pofilenames = [pofilename for pofilename in self.searchpofilenames(None, search, includelast=True)]
     wordcounts = [(pofilename, docountwords(pofilename)) for pofilename in pofilenames]
     totalwordcount = sum([wordcount for pofilename, wordcount in wordcounts])
@@ -920,7 +920,7 @@ class TranslationProject(object):
           usernum = min(usernum+1, len(assignto)-1)
           userwords = 0
         userwords += itemwordcount
-        pofile.assignto(item, assignto[usernum], action)
+        pofile.assigns.assignto(item, assignto[usernum], action)
         assigncount += 1
     return assigncount
 
@@ -938,10 +938,10 @@ class TranslationProject(object):
         if search.searchtext:
           thepo = pofile.transunits[item]
           if pogrepfilter.filterelement(thepo):
-            pofile.unassign(item, assignedto, action)
+            pofile.assigns.unassign(item, assignedto, action)
             assigncount += 1
         else:
-          pofile.unassign(item, assignedto, action)
+          pofile.assigns.unassign(item, assignedto, action)
           assigncount += 1
     return assigncount
 
@@ -997,7 +997,7 @@ class TranslationProject(object):
       alltotalwords += totalwords
       alltotal += total
     for pofilename in slowfiles:
-      self.pofiles[pofilename].updatequickstats()
+      self.pofiles[pofilename].statistics.updatequickstats()
       translatedwords, translated, fuzzywords, fuzzy, totalwords, total = self.quickstats[pofilename]
       alltranslatedwords += translatedwords
       alltranslated += translated
@@ -1040,8 +1040,8 @@ class TranslationProject(object):
     wordcount = 0
     for pofilename, item in stats:
       pofile = self.pofiles[pofilename]
-      if 0 <= item < len(pofile.msgidwordcounts):
-        wordcount += sum(pofile.msgidwordcounts[item])
+      if 0 <= item < len(pofile.statistics.msgidwordcounts):
+        wordcount += sum(pofile.statistics.msgidwordcounts[item])
     return wordcount
 
   def getpomtime(self):
@@ -1070,12 +1070,12 @@ class TranslationProject(object):
 
   def getpostats(self, pofilename):
     """calculates translation statistics for the given po file"""
-    return self.pofiles[pofilename].getstats()
+    return self.pofiles[pofilename].statistics.getstats()
 
   def getassignstats(self, pofilename, action=None):
     """calculates translation statistics for the given po file (can filter by action if given)"""
     polen = len(self.getpostats(pofilename)["total"])
-    assigns = self.pofiles[pofilename].getassigns()
+    assigns = self.pofiles[pofilename].assigns.getassigns()
     assignstats = {}
     for username, userassigns in assigns.iteritems():
       allitems = []

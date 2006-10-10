@@ -28,6 +28,7 @@ from translate.tools import pocount
 from translate.filters import checks
 from Pootle import __version__
 from jToolkit import timecache
+from jToolkit import glock
 import time
 import os
 
@@ -112,35 +113,18 @@ class pootleunit(Wrapper):
       classes.append("check-" + filtername)
     return classes
 
-class pootlefile(po.pofile):
-  """this represents a pootle-managed .po file and its associated files"""
-  x_generator = "Pootle %s" % __version__.ver
-  def __init__(self, project=None, pofilename=None, generatestats=True):
-    po.pofile.__init__(self, unitclass=pootleunit)
-    self.pofilename = pofilename
-    if project is None:
-      from Pootle import projects
-      self.project = projects.DummyProject(None)
-      self.checker = None
-      self.filename = self.pofilename
-    else:
-      self.project = project
-      self.checker = self.project.checker
-      self.filename = os.path.join(self.project.podir, self.pofilename)
-    self.statsfilename = self.filename + os.extsep + "stats"
-    self.pendingfilename = self.filename + os.extsep + "pending"
-    self.tmfilename = self.filename + os.extsep + "tm"
-    self.assignsfilename = self.filename + os.extsep + "assigns"
-    self.pendingfile = None
-    # we delay parsing until it is required
-    self.pomtime = None
+class pootlestatistics:
+  """this represents the statistics known about a file"""
+  def __init__(self, basefile, generatestats=True):
+    """constructs statistic object for the given file"""
+    # TODO: try and remove circular references between basefile and this class
+    self.basefile = basefile
+    self.statsfilename = self.basefile.filename + os.extsep + "stats"
     self.classify = {}
     self.msgidwordcounts = []
     self.msgstrwordcounts = []
     if generatestats:
       self.getstats()
-    self.getassigns()
-    self.tracker = timecache.timecache(20*60)
 
   def getstats(self):
     """reads the stats if neccessary or returns them from the cache"""
@@ -151,10 +135,10 @@ class pootlefile(po.pofile):
         print "Error reading stats from %s, so recreating (Error was %s)" % (self.statsfilename, e)
         raise
         self.statspomtime = None
-    pomtime = getmodtime(self.filename)
-    pendingmtime = getmodtime(self.pendingfilename, None)
+    pomtime = getmodtime(self.basefile.filename)
+    pendingmtime = getmodtime(self.basefile.pendingfilename, None)
     if hasattr(self, "pendingmtime"):
-      self.readpendingfile()
+      self.basefile.readpendingfile()
     lastpomtime = getattr(self, "statspomtime", None)
     lastpendingmtime = getattr(self, "statspendingmtime", None)
     if pomtime is None or pomtime != lastpomtime or pendingmtime != lastpendingmtime:
@@ -201,13 +185,13 @@ class pootlefile(po.pofile):
       self.calcstats()
       self.savestats()
     if (len(msgidwordcounts) < len(totalitems)) or (len(msgstrwordcounts) < len(totalitems)):
-      self.pofreshen()
+      self.basefile.pofreshen()
       self.countwords()
       self.savestats()
 
   def savestats(self):
     """saves the current statistics to file"""
-    if not os.path.exists(self.filename):
+    if not os.path.exists(self.basefile.filename):
       if os.path.exists(self.statsfilename):
         os.remove(self.statsfilename)
       return
@@ -217,10 +201,10 @@ class pootlefile(po.pofile):
       wordcountsstring = "msgidwordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.msgidwordcounts])
       wordcountsstring += "\nmsgstrwordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.msgstrwordcounts])
       statsfile = open(self.statsfilename, "w")
-      if os.path.exists(self.pendingfilename):
-        statsfile.write("%d %d\n" % (getmodtime(self.filename), getmodtime(self.pendingfilename)))
+      if os.path.exists(self.basefile.pendingfilename):
+        statsfile.write("%d %d\n" % (getmodtime(self.basefile.filename), getmodtime(self.basefile.pendingfilename)))
       else:
-        statsfile.write("%d\n" % getmodtime(self.filename))
+        statsfile.write("%d\n" % getmodtime(self.basefile.filename))
       statsfile.write(postatsstring + "\n" + wordcountsstring)
       statsfile.close()
     except IOError:
@@ -235,14 +219,17 @@ class pootlefile(po.pofile):
     translatedwords = sum([sum(self.msgidwordcounts[item]) for item in translated if 0 <= item < len(self.msgidwordcounts)])
     fuzzywords = sum([sum(self.msgidwordcounts[item]) for item in fuzzy if 0 <= item < len(self.msgidwordcounts)])
     totalwords = sum([sum(partcounts) for partcounts in self.msgidwordcounts])
-    self.project.updatequickstats(self.pofilename, 
+    self.basefile.project.updatequickstats(self.basefile.pofilename, 
         translatedwords, len(translated), 
         fuzzywords, len(fuzzy), 
         totalwords, len(self.msgidwordcounts))
 
   def calcstats(self):
     """calculates translation statistics for the given po file"""
-    self.pofreshen()
+    # handle this being called when self.basefile.statistics is being set and calcstats is called from self.__init__
+    if not hasattr(self.basefile, "statistics"):
+      self.basefile.statistics = self
+    self.basefile.pofreshen()
     postats = dict([(name, items) for name, items in self.classify.iteritems()])
     self.stats = postats
 
@@ -254,11 +241,11 @@ class pootlefile(po.pofile):
     self.classify["translated"] = []
     self.classify["has-suggestion"] = []
     self.classify["total"] = []
-    for checkname in self.checker.getfilters().keys():
+    for checkname in self.basefile.checker.getfilters().keys():
       self.classify["check-" + checkname] = []
-    for item, poel in enumerate(self.transunits):
-      classes = poel.classify(self.checker)
-      if self.getsuggestions(item):
+    for item, poel in enumerate(self.basefile.transunits):
+      classes = poel.classify(self.basefile.checker)
+      if self.basefile.getsuggestions(item):
         classes.append("has-suggestion")
       for classname in classes:
         if classname in self.classify:
@@ -271,17 +258,17 @@ class pootlefile(po.pofile):
     """counts the words in each of the units"""
     self.msgidwordcounts = []
     self.msgstrwordcounts = []
-    for poel in self.transunits:
+    for poel in self.basefile.transunits:
       self.msgidwordcounts.append([pocount.wordcount(text) for text in poel.source.strings])
       self.msgstrwordcounts.append([pocount.wordcount(text) for text in poel.target.strings])
 
   def reclassifyunit(self, item):
     """updates the classification of poel in self.classify"""
-    poel = self.transunits[item]
+    poel = self.basefile.transunits[item]
     self.msgidwordcounts[item] = [pocount.wordcount(text) for text in poel.source.strings]
     self.msgstrwordcounts[item] = [pocount.wordcount(text) for text in poel.target.strings]
-    classes = poel.classify(self.checker)
-    if self.getsuggestions(item):
+    classes = poel.classify(self.basefile.checker)
+    if self.basefile.getsuggestions(item):
       classes.append("has-suggestion")
     for classname, matchingitems in self.classify.items():
       if (classname in classes) != (item in matchingitems):
@@ -296,8 +283,8 @@ class pootlefile(po.pofile):
   def getitemslen(self):
     """gets the number of items in the file"""
     # TODO: simplify this, and use wherever its needed
-    if hasattr(self, "transunits"):
-      return len(self.transunits)
+    if hasattr(self.basefile, "transunits"):
+      return len(self.basefile.transunits)
     elif hasattr(self, "stats") and "total" in self.stats:
       return len(self.stats["total"])
     elif hasattr(self, "classify") and "total" in self.classify:
@@ -306,6 +293,50 @@ class pootlefile(po.pofile):
       # we hadn't read stats...
       return len(self.getstats()["total"])
 
+class LockedFile:
+  """locked interaction with a filesystem file"""
+  def __init__(self, filename):
+    self.filename = filename
+    self.lock = glock.GlobalLock(self.filename + os.extsep + "lock")
+
+  def readmodtime(self):
+    """returns the modification time of the file (locked operation)"""
+    self.lock.acquire()
+    try:
+      return getmodtime(self.filename)
+    finally:
+      self.lock.forcerelease()
+
+  def getcontents(self):
+    """returns modtime, contents tuple (locked operation)"""
+    self.lock.acquire()
+    try:
+      pomtime = getmodtime(self.filename)
+      filecontents = open(self.filename, 'r').read()
+      return pomtime, filecontents
+    finally:
+      self.lock.forcerelease()
+
+  def writecontents(self, contents):
+    """writes contents to file, returning modification time (locked operation)"""
+    self.lock.acquire()
+    try:
+      f = open(self.filename, 'w')
+      f.write(contents)
+      f.close()
+      pomtime = getmodtime(self.filename)
+      return pomtime
+    finally:
+      self.lock.release()
+
+class pootleassigns:
+  """this represents the assignments for a file"""
+  def __init__(self, basefile):
+    """constructs assignments object for the given file"""
+    # TODO: try and remove circular references between basefile and this class
+    self.basefile = basefile
+    self.assignsfilename = self.basefile.filename + os.extsep + "assigns"
+    self.getassigns()
 
   def getassigns(self):
     """reads the assigns if neccessary or returns them from the cache"""
@@ -419,7 +450,7 @@ class pootlefile(po.pofile):
 
   def getunassigned(self, action=None):
     """gets all strings that are unassigned (for the given action if given)"""
-    unassigneditems = range(0, self.getitemslen())
+    unassigneditems = range(0, self.basefile.statistics.getitemslen())
     assigns = self.getassigns()
     for username in self.assigns:
       if action is not None:
@@ -430,6 +461,69 @@ class pootlefile(po.pofile):
           assigneditems += actionitems
       unassigneditems = [item for item in unassigneditems if item not in assigneditems]
     return unassigneditems
+
+  def finditems(self, search):
+    """returns items that match the .assignedto and/or .assignedaction criteria in the searchobject"""
+    # search.assignedto == [None] means assigned to nobody
+    if search.assignedto == [None]:
+      assignitems = self.getunassigned(search.assignedaction)
+    else:
+      # filter based on assign criteria
+      assigns = self.getassigns()
+      if search.assignedto:
+        usernames = [search.assignedto]
+      else:
+        usernames = assigns.iterkeys()
+      assignitems = []
+      for username in usernames:
+        if search.assignedaction:
+          actionitems = assigns[username].get(search.assignedaction, [])
+          assignitems.extend(actionitems)
+        else:
+          for actionitems in assigns[username].itervalues():
+            assignitems.extend(actionitems)
+    return assignitems
+
+class pootlefile(base.TranslationStore, Wrapper):
+  """this represents a pootle-managed .po file and its associated files"""
+  UnitClass = pootleunit
+  WrapStoreClass = po.pofile
+  x_generator = "Pootle %s" % __version__.ver
+  def __init__(self, project=None, pofilename=None, generatestats=True):
+    self.__innerobj__ = po.pofile(unitclass=self.UnitClass)
+    self.pofilename = pofilename
+    if project is None:
+      from Pootle import projects
+      self.project = projects.DummyProject(None)
+      self.checker = None
+      self.filename = self.pofilename
+    else:
+      self.project = project
+      self.checker = self.project.checker
+      self.filename = os.path.join(self.project.podir, self.pofilename)
+    
+    self.lockedfile = LockedFile(self.filename)
+    # we delay parsing until it is required
+    self.pomtime = None
+    self.assigns = pootleassigns(self)
+
+    self.pendingfilename = self.filename + os.extsep + "pending"
+    self.pendingfile = None
+    self.statistics = pootlestatistics(self, generatestats)
+    self.tmfilename = self.filename + os.extsep + "tm"
+    # we delay parsing until it is required
+    self.pomtime = None
+    self.tracker = timecache.timecache(20*60)
+
+  def __str__(self):
+    return self.__innerobj__.__str__()
+
+  def parsestring(cls, storestring):
+    newstore = cls()
+    newstore.parse(storestring)
+    return newstore
+  parsestring = classmethod(parsestring)
+
 
   def readpendingfile(self):
     """reads and parses the pending file corresponding to this po file"""
@@ -501,7 +595,7 @@ class pootlefile(po.pofile):
     newpo.markfuzzy(False)
     self.pendingfile.units.append(newpo)
     self.savependingfile()
-    self.reclassifyunit(item)
+    self.statistics.reclassifyunit(item)
 
   def deletesuggestion(self, item, suggitem):
     """removes the suggestion from the pending file"""
@@ -513,7 +607,7 @@ class pootlefile(po.pofile):
     pendingitem = pendingitems[suggitem]
     del self.pendingfile.units[pendingitem]
     self.savependingfile()
-    self.reclassifyunit(item)
+    self.statistics.reclassifyunit(item)
 
   def gettmsuggestions(self, item):
     """find all the tmsuggestion items submitted for the given item"""
@@ -534,26 +628,25 @@ class pootlefile(po.pofile):
     # make sure encoding is reset so it is read from the file
     self.encoding = None
     self.units = []
-    pomtime = getmodtime(self.filename)
-    self.parse(open(self.filename, 'r'))
+    pomtime, filecontents = self.lockedfile.getcontents()
+    # note: we rely on this not resetting the filename, which we set earlier, when given a string
+    self.parse(filecontents)
     # we ignore all the headers by using this filtered set
     self.transunits = [poel for poel in self.units if not (poel.isheader() or poel.isblank())]
-    self.classifyunits()
+    self.statistics.classifyunits()
     self.pomtime = pomtime
 
   def savepofile(self):
     """saves changes to the main file to disk..."""
     output = str(self)
-    open(self.filename, "w").write(output)
-    # don't need to reread what we saved
-    self.pomtime = getmodtime(self.filename)
+    self.pomtime = self.lockedfile.writecontents(output)
 
   def pofreshen(self):
     """makes sure we have a freshly parsed pofile"""
     if not os.path.exists(self.filename):
       # the file has been removed, update the project index (and fail below)
       self.project.scanpofiles()
-    if self.pomtime != getmodtime(self.filename):
+    if self.pomtime != self.lockedfile.readmodtime():
       self.readpofile()
 
   def getoutput(self):
@@ -579,12 +672,12 @@ class pootlefile(po.pofile):
       if nplurals and pluralequation:
         self.updateheaderplural(nplurals, pluralequation)
     self.savepofile()
-    self.reclassifyunit(item)
+    self.statistics.reclassifyunit(item)
 
   def iteritems(self, search, lastitem=None):
     """iterates through the items in this pofile starting after the given lastitem, using the given search"""
     # update stats if required
-    self.getstats()
+    self.statistics.getstats()
     if lastitem is None:
       minitem = 0
     else:
@@ -592,31 +685,14 @@ class pootlefile(po.pofile):
     maxitem = len(self.transunits)
     validitems = range(minitem, maxitem)
     if search.assignedto or search.assignedaction:
-      # search.assignedto == [None] means assigned to nobody
-      if search.assignedto == [None]:
-        assignitems = self.getunassigned(search.assignedaction)
-      else:
-        # filter based on assign criteria
-        self.getassigns()
-        if search.assignedto:
-          usernames = [search.assignedto]
-        else:
-          usernames = self.assigns.iterkeys()
-        assignitems = []
-        for username in usernames:
-          if search.assignedaction:
-            actionitems = self.assigns[username].get(search.assignedaction, [])
-            assignitems.extend(actionitems)
-          else:
-            for actionitems in self.assigns[username].itervalues():
-              assignitems.extend(actionitems)
+      assignitems = self.assigns.finditems(search)
       validitems = [item for item in validitems if item in assignitems]
     # loop through, filtering on matchnames if required
     for item in validitems:
       if not search.matchnames:
         yield item
       for name in search.matchnames:
-        if item in self.classify[name]:
+        if item in self.statistics.classify[name]:
           yield item
 
   def matchitems(self, newfile, uselocations=False):
