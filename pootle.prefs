@@ -162,6 +162,11 @@ Pootle:
     af.nplurals = 2
     af.pluralequation = "(n != 1)"
 
+# Akan
+#    ak.fullname = u'Akan'
+#    ak.pluralequation = u'(n != 1)'
+#    ak.nplurals = u'2'
+
 # Arabic
     ar.fullname = u'العربية'
     ar.nplurals = '6'
@@ -337,6 +342,11 @@ Pootle:
 #    id.nplurals = '1'
 #    id.pluralequation ='0'
 
+# Icelandic
+    is.fullname = u'Icelandic'
+    is.nplurals = '2'
+    is.pluralequation = '(n != 1)'
+
 # Italian
     it.fullname = u'Italiano'
     it.nplurals = '2'
@@ -349,6 +359,11 @@ Pootle:
 
 # Georgian
 #    ka.fullname = u'ქართული'
+#    ka.nplurals = '1'
+#    ka.pluralequation ='0'
+
+# Khmer
+#    km.fullname = u'Khmer'
 #    ka.nplurals = '1'
 #    ka.pluralequation ='0'
 
@@ -382,6 +397,17 @@ Pootle:
 #    mn.nplurals = '2'
 #    mn.pluralequation ='(n != 1)'
 
+# Marathi
+#    mr.specialchars = u''
+#    mr.fullname = u'Marathi'
+#    mr.nplurals = u'2'
+#    mr.pluralequation = u'(n != 1)'
+
+# Malay
+#    ms.fullname = u'Malay'
+#    ms.nplurals = u'1'
+#    ms.pluralequation = u'0'
+
 # Maltese
     mt.fullname = u'Malti'
     mt.nplurals = '4'
@@ -396,6 +422,11 @@ Pootle:
 #    nb.fullname = u'Bokmål'
 #    nb.nplurals = '2'
 #    nb.pluralequation ='(n != 1)'
+
+# Nepali
+#    ne.fullname = u'Nepali'
+#    ne.nplurals = u'2'
+#    ne.pluralequation = u'(n != 1)'
 
 # Dutch
     nl.fullname = u'Nederlands'
