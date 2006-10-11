@@ -17,12 +17,19 @@
 *
 {
 	font-family:  verdana, arial, tahoma, sans-serif;
+	font-size: small;
 }
 
 /* Language specific settings (see http://translate.sourceforge.net/wiki/l10n/displaysettings) */
 :lang(ar)
 {
 	font-family: Tahoma, Nazli, "DejaVu Sans", inherit;
+}
+:lang(bn)
+{
+	font-family: FreeSans, MuktiNarrow, Vrinda, inherit;
+	font-size: medium;
+	line-height: 110%;
 }
 :lang(el)
 {
@@ -31,11 +38,15 @@
 :lang(fa)
 {
 	font-family: Terafik, Traffic, Roya, Nazli, Nazanin, sans;
-	font-size: 120%;
+	font-size: large;
 }
-:lang(ja), :lang(ko), :lang(zh)
+:lang(ja), :lang(ko)
 {
-	font-size: 120%;
+	font-size: medium;
+}
+:lang(zh)
+{
+	font-size: large;
 }
 :lang(km)
 {
@@ -88,16 +99,18 @@ h1, h2, h3
 }
 .title
 {
-	font-size: small;
 	color: #004077;
 }
 .icon
 {
 	float: left;
+	padding-right: 2px;
 }
 .icon[dir="rtl"]
 {
 	float: right;
+	padding-right: 0px;
+	padding-left: 2px;
 }
 div.autoexpand
 {
@@ -150,7 +163,6 @@ div.contentsitem
 {
 	font-size:small;
 	font-weight:normal;
-  	line-height:100%;
 }
 div.item-description
 {
@@ -168,7 +180,6 @@ div.item-statistics
 div.translate-form
 {
 	font-size: x-small; 
-  	line-height:150%;
 	direction: ltr;
 }
 table.translate-table
@@ -267,6 +278,7 @@ table.stats
 	width: 100%;
 	border-spacing: 0;
 	padding: 0;
+	text-size: small;
 }
 th.stats
 {
@@ -278,10 +290,12 @@ td.stats
 {
 	text-align: right;
 	border: 1px dotted #999;
+	font-size: small;
 }
-td.stats-name
+.stats-name
 {
 	border: 1px dotted #999;
+	font-size: small;
 }
 td.stats-graph
 {
@@ -291,7 +305,6 @@ td.stats-graph
 div.intro {
 	color:#000;
 	font-weight:normal;
-	line-height:140%;
 	margin-bottom:15px;
 	margin-left:15px;
 	margin-right: 15px;
@@ -449,6 +462,16 @@ div.translation-action
 div.translation-action[dir="rtl"]
 {
 	float: left;
+}
+.specialchars
+{
+	line-height: 150%;
+	margin-top: 5px;
+}
+.extraspace
+{
+	margin-left: 7px;
+	margin-right: 7px;
 }
 .translation-highlight-space
 {
