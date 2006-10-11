@@ -136,7 +136,7 @@ class UserIndex(pagelayout.PootlePage):
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
 
   def getquicklinks(self):
-    return new_getquicklinks(session)
+    return new_getquicklinks(self.session)
 
 class ProjectsIndex(PootleIndex):
   """the list of languages"""
