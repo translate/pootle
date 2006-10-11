@@ -166,8 +166,11 @@
                       <input py:if="'suggest' in buttons.desired" type="submit" name="submitsuggest${buttons.item}" accesskey="e" value="${buttons.suggest}"/>
                       <input py:if="'translate' in buttons.desired" type="submit" name="submit${buttons.item}" accesskey="s" value="${buttons.submit}"/>
                     </div>
-                    <div py:if="'specialchars' in buttons" class="specialchars">
-                      <a py:for="specialchar in buttons.specialchars" py:content="specialchar" onclick="writespecial('${specialchar}', '${buttons.item}'); return false;" href="#">spc</a>
+                    <div py:if="'specialchars' in buttons" class="specialchars" lang="$language.code">
+                      <span py:for="specialchar in buttons.specialchars" py:strip="True">
+                        <a py:if="not specialchar.isspace()" py:content="specialchar" onclick="writespecial('${specialchar}', '${buttons.item}'); return false;" href="#">spc</a>
+                        <span py:if="specialchar.isspace()" class="extraspace"> </span>
+                      </span>
                     </div>
                     <span py:if="'resize' in buttons.desired" py:strip="True">
                       <a href='#' onclick="return expandtextarea(this)" accesskey="=" py:content="buttons.grow">Grow</a>
