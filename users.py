@@ -478,8 +478,11 @@ class PootleSession(session.LoginSession):
     """gets the users prefs into self.prefs"""
     if self.isopen:
       self.prefs = self.loginchecker.users.__getattr__(self.username)
+      if self.language_set:
+        self.setlanguage(self.language_set)
+        return
       uilanguage = getattr(self.prefs, "uilanguage", None)
-      if uilanguage and not self.language:
+      if uilanguage:
         self.setlanguage(uilanguage)
     else:
       self.prefs = None
