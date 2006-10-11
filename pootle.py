@@ -36,6 +36,7 @@ from Pootle import projects
 from Pootle import potree
 from Pootle import users
 from Pootle import filelocations
+from Pootle.conf import instance
 # Versioning information
 from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
