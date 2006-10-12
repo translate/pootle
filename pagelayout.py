@@ -19,12 +19,6 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from Pootle.storage_client import getstats as new_getstats
-from Pootle.utils import getbrowseurl as new_getbrowseurl
-from Pootle.utils import makelink as new_makelink
-from Pootle.utils import makenavbarpath_dict as new_makenavbarpath_dict
-from Pootle.utils import deprecated
-
 def layout_banner(maxheight):
   """calculates dimensions, image name for banner"""
   logo_width, logo_height = min((98*maxheight/130, maxheight), (98, 130))
@@ -36,7 +30,6 @@ def layout_banner(maxheight):
   return {"logo_width": logo_width, "logo_height": logo_height,
     "banner_width": banner_width, "banner_height": banner_height, "logo_image": logo_image}
 
-# replaced with gettext in Django
 def localize_links(session):
   """Localize all the generic links"""
   links = {}
@@ -53,7 +46,6 @@ def localize_links(session):
   links["activate"] = session.localize("Activate")
   return links
 
-# this is replaced with request.LANGUAGE_BIDI in Django
 def languagedir(language):
   """Returns whether the language is right to left"""
   for code in ["ar", "fa", "he", "ks", "ps", "ur", "yi"]:
@@ -65,7 +57,6 @@ def weblanguage(language):
   """Reformats the language from locale style (pt_BR) to web style (pt-BR)"""
   return language.replace("_", "-")
     
-# this is replaced with context_processors in Django
 def completetemplatevars(templatevars, session, bannerheight=135):
   """fill out default values for template variables"""
   if not "instancetitle" in templatevars:
@@ -99,7 +90,6 @@ class PootlePage:
     if hasattr(self, "templatevars"):
       completetemplatevars(self.templatevars, self.session, bannerheight=bannerheight)
 
-  # this is replaced by templatetag in Django
   def polarizeitems(self, itemlist):
     """take an item list and alternate the background colour"""
     polarity = False
@@ -112,18 +102,71 @@ class PootlePage:
     return itemlist
 
 class PootleNavPage(PootlePage):
-  # migration note: no variables referenced from self, just methods
-  def makenavbarpath_dict(self, project=None, session=None, currentfolder=None, language=None, argdict={}):
-    return new_makenavbarpath_dict(project, session, currentfolder, language, argdict)
-  makenavbarpath_dict = deprecated(makenavbarpath_dict)
+  def makenavbarpath_dict(self, project=None, session=None, currentfolder=None, language=None, argdict=None):
+    """create the navbar location line"""
+    rootlink = ""
+    paramstring = ""
+    if argdict:
+      paramstring = "?" + "&".join(["%s=%s" % (arg, value) for arg, value in argdict.iteritems() if arg.startswith("show") or arg == "editing"])
+
+    links = {"admin": None, "project": [], "language": [], "goal": [], "pathlinks": []}
+    if currentfolder:
+      pathlinks = []
+      dirs = currentfolder.split("/")
+      depth = len(dirs)
+      if currentfolder.endswith(".po"):
+        depth = depth - 1
+      rootlink = "/".join([".."] * depth)
+      if rootlink:
+        rootlink += "/"
+      for backlinkdir in dirs:
+        if backlinkdir.endswith(".po"):
+          backlinks = "../" * depth + backlinkdir
+        else:
+          backlinks = "../" * depth + backlinkdir + "/"
+        depth = depth - 1
+        pathlinks.append({"href": self.getbrowseurl(backlinks), "text": backlinkdir, "sep": " / "})
+      if pathlinks:
+        pathlinks[-1]["sep"] = ""
+      links["pathlinks"] = pathlinks
+    if argdict and "goal" in argdict:
+      # goallink = {"href": self.getbrowseurl("", goal=goal), "text": goal}
+      links["goal"] = {"href": self.getbrowseurl(""), "text": self.localize("All goals")}
+    if project:
+      if isinstance(project, tuple):
+        projectcode, projectname = project
+        links["project"] = {"href": "/projects/%s/%s" % (projectcode, paramstring), "text": projectname}
+      else:
+        links["language"] = {"href": rootlink + "../index.html", "text": project.languagename}
+        # don't getbrowseurl on the project link, so sticky options won't apply here
+        links["project"] = {"href": (rootlink or "index.html") + paramstring, "text": project.projectname}
+        if session:
+          if "admin" in project.getrights(session) or session.issiteadmin():
+            links["admin"] = {"href": rootlink + "admin.html", "text": self.localize("Admin")}
+    elif language:
+      languagecode, languagename = language
+      links["language"] = {"href": "/%s/" % languagecode, "text": languagename}
+    return links
 
   def getbrowseurl(self, basename, **newargs):
-    return new_getbrowseurl(self.argdict, basename, **newargs)
-  getbrowseurl = deprecated(getbrowseurl)
+    """gets the link to browse the item"""
+    if not basename or basename.endswith("/"):
+      return self.makelink(basename or "index.html", **newargs)
+    else:
+      return self.makelink(basename, translate=1, view=1, **newargs)
 
   def makelink(self, link, **newargs):
-    return new_makelink(self.argdict, link, **newargs)
-  makelink = deprecated(makelink)
+    """constructs a link that keeps sticky arguments e.g. showchecks"""
+    combinedargs = self.argdict.copy()
+    combinedargs.update(newargs)
+    if '?' in link:
+      if not (link.endswith("&") or link.endswith("?")):
+        link += "&"
+    else:
+      link += '?'
+    # TODO: check escaping
+    link += "&".join(["%s=%s" % (arg, value) for arg, value in combinedargs.iteritems() if arg != "allowmultikey"])
+    return link
 
   def initpagestats(self):
     """initialise the top level (language/project) stats"""
@@ -189,6 +232,32 @@ class PootleNavPage(PootlePage):
   def getstats(self, project, projectstats, numfiles):
     """returns a list with the data items to fill a statistics table
     Remember to update getstatsheadings() above as needed"""
-    # now in storage_client
-    return new_getstats(project, projectstats, numfiles)
+    wanted = ["translated", "fuzzy", "untranslated", "total"]
+    gotten = {}
+    for key in wanted:
+      gotten[key] = projectstats.get(key, [])
+      wordkey = key + "words"
+      if wordkey in projectstats:
+        gotten[wordkey] = projectstats[wordkey]
+      else:
+        count = projectstats.get(key, [])
+        gotten[wordkey] = project.countwords(count)
+      if isinstance(gotten[key], list):
+        #TODO: consider carefully:
+        gotten[key] = len(gotten[key])
+
+    gotten["untranslated"] = gotten["total"] - gotten["translated"] - gotten["fuzzy"]
+    gotten["untranslatedwords"] = gotten["totalwords"] - gotten["translatedwords"] - gotten["fuzzywords"]
+
+    for key in wanted[:-1]:
+      percentkey = key + "percentage"
+      wordkey = key + "words"
+      gotten[percentkey] = gotten[wordkey]*100/max(gotten["totalwords"], 1)
+
+    for key in gotten:
+      if key.find("check-") == 0:
+        value = gotten.pop(key)
+        gotten[key[len("check-"):]] = value
+
+    return gotten
 

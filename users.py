@@ -24,10 +24,6 @@ from jToolkit.web import session
 from jToolkit import mailer
 from jToolkit import prefs
 from Pootle import pagelayout
-from Pootle.storage_client import getlanguageselector as new_getlanguageselector
-from Pootle.storage_client import getlanguageoptions as new_getlanguageoptions
-from Pootle.storage_client import getprojectoptions as new_getprojectoptions
-from Pootle.storage_client import getotheroptions as new_getotheroptions
 
 class RegistrationError(ValueError):
   def __init__(self, message):
@@ -72,7 +68,14 @@ class LoginPage(pagelayout.PootlePage):
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
 
   def getlanguageoptions(self, session):
-    return new_getlanguageselector(self.languagenames, session)
+    """returns the language selector..."""
+    # TODO: work out how we handle localization of language names...
+    languageoptions = [('', session.localize("Default"))]
+    if isinstance(self.languagenames, dict):
+      languageoptions += self.languagenames.items()
+    else:
+      languageoptions += self.languagenames
+    return [{"code": key, "name": value, "selected": key==session.language or None} for key, value in languageoptions]
 
 class RegisterPage(pagelayout.PootlePage):
   """page for new registrations"""
@@ -169,13 +172,40 @@ class UserOptions(pagelayout.PootlePage):
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
 
   def getprojectoptions(self):
-    return new_getprojectoptions(self.session)
+    """gets the options box to change the user's projects"""
+    projectoptions = []
+    userprojects = self.session.getprojects()
+    for projectcode in self.potree.getprojectcodes():
+      projectname = self.potree.getprojectname(projectcode)
+      projectoptions.append({"code": projectcode, "name": projectname, "selected": projectcode in userprojects or None})
+    return projectoptions
 
   def getlanguageoptions(self):
-    return new_getlanguageoptions(self.session)
+    """returns options for languages"""
+    userlanguages = self.session.getlanguages()
+    languageoptions = self.potree.getlanguages()
+    languages = []
+    for language, name in languageoptions:
+      languages.append({"code": language, "name": name, "selected": language in userlanguages or None})
+    return languages
 
   def getotheroptions(self):
-    return new_getotheroptions(self.session)
+    uilanguage = getattr(self.session.prefs, "uilanguage", "")
+    if not uilanguage:
+      userlanguages = self.session.getlanguages()
+      if userlanguages:
+        uilanguage = userlanguages[0]
+    languageoptions = [{"code": '', "name": ''}]
+    for code, name in self.potree.getlanguages():
+      languageoptions.append({"code": code, "name": name, "selected": uilanguage == code or None})
+    options = {"inputheight": self.localize("Input Height (in lines)"), "inputwidth": self.localize("Input Width (in characters)"),
+          "viewrows": self.localize("Number of rows in view mode"), 
+          "translaterows": self.localize("Number of rows in translate mode")}
+    optionlist = []
+    for option, description in options.items():
+      optionvalue = getattr(self.session.prefs, option, "")
+      optionlist.append({"code": option, "description": description, "value": optionvalue})
+    return {"uilanguage": uilanguage, "uilanguage_options": languageoptions, "other_options": optionlist}
 
 class OptionalLoginAppServer(server.LoginAppServer):
   """a server that enables login but doesn't require it except for specified pages"""
