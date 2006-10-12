@@ -106,6 +106,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
       return
 
     for langpref in acceptlanguageheader.split(","):
+      langpref = pagelayout.localelanguage(langpref)
       pos = langpref.find(";")
       if pos >= 0:
         langpref = langpref[:pos]
