@@ -18,20 +18,6 @@ class TestPootleUnit(test_po.TestPOUnit):
         pofile = po.pofile(dummyfile, unitclass=self.UnitClass)
         return pofile
 
-    def test_classify(self):
-        """Test basic classification"""
-        dummy_checker = pofilter.POTeeChecker()
-        unit = self.UnitClass("Glue")
-        classes = unit.classify(dummy_checker)
-        assert 'blank' in classes
-        unit.target = "Gom"
-        classes = unit.classify(dummy_checker)
-        assert 'translated' in classes
-        assert 'blank' not in classes
-        unit.markfuzzy()
-        classes = unit.classify(dummy_checker)
-        assert 'fuzzy' in classes
-
 class TestPootleFile(test_po.TestPO):
     class pootletestfile(pootlefile.pootlefile):
         def __init__(self):
@@ -108,6 +94,23 @@ msgstr ""'''
         assert thepo.getlocations() == ["test.c"]
         assert thepo.source == "test"
         assert thepo.target == "rest"
+
+    def test_classify(self):
+        """Test basic classification"""
+        posource = 'msgid "test"\nmsgstr ""\n'
+        pofile = self.poparse(posource)
+        pofile.project.checker = pofilter.POTeeChecker()
+        unit = pofile.units[0]
+        classify = pofile.statistics.classifyunit
+        classes = classify(unit)
+        assert 'blank' in classes
+        unit.target = "Gom"
+        classes = classify(unit)
+        assert 'translated' in classes
+        assert 'blank' not in classes
+        unit.markfuzzy()
+        classes = classify(unit)
+        assert 'fuzzy' in classes
 
     def test_classifyunits(self):
         "Tests basic use of classifyunits."
