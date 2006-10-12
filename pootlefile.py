@@ -216,13 +216,13 @@ class pootlestatistics:
     self.stats = postats
 
   def classifyunit(self, unit):
-    """returns all classify keys that this unit should match"""
+    """returns all classify keys that the unit should match"""
     classes = ["total"]
     if unit.isfuzzy():
       classes.append("fuzzy")
     if unit.isblankmsgstr():
       classes.append("blank")
-    if not ("fuzzy" in classes or "blank" in classes):
+    if unit.istranslated():
       classes.append("translated")
     # TODO: we don't handle checking plurals at all yet, as this is tricky...
     source = unit.source
