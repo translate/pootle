@@ -181,6 +181,29 @@ class TranslationProject(object):
         rights.append("admin")
     return rights
 
+  def getuserswithinterest(self, session):
+    """returns all the users who registered for this language and project"""
+
+    def usableuser(user, userprefs):
+      if username in ["__dummy__", "default", "nobody"]:
+        return False
+      return self.languagecode in getattr(userprefs, "languages", []) and \
+            self.projectcode in getattr(userprefs, "projects", [])
+
+    users = {}
+    for username, userprefs in session.loginchecker.users.iteritems():
+      if usableuser(username, userprefs):
+        # Let's build a nice descriptive name for use in the interface. It will
+        # contain both the usernaame and the full name, if available.
+        name = getattr(userprefs, "name", None)
+        if name:
+          description = "%s (%s)" % (name, username)
+        else:
+          description = username
+        setattr(userprefs, "description", description)
+        users[username] = userprefs
+    return users
+
   def getuserswithrights(self):
     """gets all users that have rights defined for this project"""
     return [username for username, user_rights in getattr(self.prefs, "rights", {}).iteritems()]

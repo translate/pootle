@@ -70,7 +70,7 @@
           <td colspan="1" rowspan="1">
             <select name="rightsnew-username">
               <option value="" selected="selected" py:content="adduser_text">(select to add user)</option>
-              <option py:for="username in users_without_rights" py:attrs="value=username" py:content="user_details[username].fullname"/>
+              <option py:for="username in users_without_rights" py:attrs="value=username" py:content="user_details[username].description"/>
             </select>
           </td>
 

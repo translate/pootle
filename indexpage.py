@@ -506,8 +506,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
 
   def getassignbox(self):
     """adds a box that lets the user assign strings"""
-    users = [username for username, userprefs in self.session.loginchecker.users.iteritems() if username != "__dummy__"]
-    users.sort()
+    users = self.project.getuserswithinterest(self.session)
     return {
       "users": users,
       "title": self.localize("Assign Strings"),
@@ -641,11 +640,10 @@ class ProjectIndex(pagelayout.PootleNavPage):
     goal["goal"]["users"] = goaluserslist
     if goalname and self.currentgoal == goalname:
       if "admin" in self.rights:
-        unassignedusers = [username for username, userprefs in self.session.loginchecker.users.iteritems() if username != "__dummy__"]
+        unassignedusers = self.project.getuserswithinterest(self.session)
         for user in goalusers:
           if user in unassignedusers:
-            unassignedusers.remove(user)
-        unassignedusers.sort()
+            unassignedusers.pop(user)
         goal["goal"]["show_adduser"] = True
         goal["goal"]["otherusers"] = unassignedusers
         goal["goal"]["adduser_title"] = self.localize("Add User")

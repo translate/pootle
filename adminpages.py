@@ -367,9 +367,9 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
       if username in ("nobody", "default"): continue
       users_with_rights.append(username)
       rights[username] = self.project.getrights(username=username)
-    users = self.session.loginchecker.users.iteritems(sorted=True)
+    users = self.project.getuserswithinterest(self.session)
     user_details = {"nobody": nobody_dict, "default": default_dict}
-    for username, usernode in users:
+    for username, usernode in users.iteritems():
       if not isinstance(username, unicode):
         username = username.decode("utf-8")
       user_dict = self.getuserdict(username, usernode=usernode)
@@ -396,7 +396,7 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     """gets a dictionary for the given user given user's rights"""
     # l10n: The parameter is a languagecode, projectcode or username
     remove_text = self.localize("Remove %s", username)
-    fullname = getattr(usernode, "name", None) or username
-    userdict = {"username": username, "delete": delete or None, "remove_text": remove_text, "fullname": fullname}
+    description = getattr(usernode, "description", None) or username
+    userdict = {"username": username, "delete": delete or None, "remove_text": remove_text, "description": description}
     return userdict
 
