@@ -145,7 +145,8 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
       try:
         return self.potree.getproject(language, 'pootle')
       except:
-        self.errorhandler.logerror("Could not get translation for language %r" % language)
+        if not language.startswith('en'):
+          self.errorhandler.logerror("Could not get translation for language %r" % language)
         return self.translation
 
   def refreshstats(self, args):
