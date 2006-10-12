@@ -23,6 +23,7 @@
 
 from Pootle import projects
 from Pootle import pootlefile
+from Pootle import pagelayout
 from translate.misc import autoencode
 import os
 import sre
@@ -83,7 +84,7 @@ class POTree:
         if not languagecode.strip():
           continue
         if not languagecode.isalpha():
-          languagecode = languagecode.replace("-", "_")
+          languagecode = pagelayout.localelanguage(languagecode)
           if languagecode.find("_") >= 0:
             for part in languagecode.split("_"):
               if not part.isalpha():
