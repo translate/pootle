@@ -26,6 +26,9 @@
         <div py:if="language.projects" class="item-description">
           <span py:for="project in language.projects" py:strip="True">
             <a href="../${language.code}/${project.code}/" py:content="project.name">Language Project</a>
+            <span py:if="project.isprojectadmin" py:strip="True">
+              (<a href="../${language.code}/${project.code}/admin.html/" py:content="admintext">Admin</a>)
+            </span>
             <span py:replace="XML(project.sep)"/>
           </span>
         </div>

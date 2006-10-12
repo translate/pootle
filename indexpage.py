@@ -131,13 +131,15 @@ class UserIndex(pagelayout.PootlePage):
     templatename = "home"
     optionslink = self.localize("Change options")
     adminlink = self.localize("Admin page")
+    admintext = self.localize("Administrate")
     quicklinkstitle = self.localize("Quick Links")
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     quicklinks = self.getquicklinks()
     setoptionstext = self.localize("Please click on 'Change options' and select some languages and projects")
     templatevars = {"pagetitle": pagetitle, "optionslink": optionslink,
-        "adminlink": adminlink, "quicklinkstitle": quicklinkstitle,
+        "adminlink": adminlink, "admintext": admintext, 
+        "quicklinkstitle": quicklinkstitle,
         "quicklinks": quicklinks, "setoptionstext": setoptionstext,
         "session": sessionvars, "instancetitle": instancetitle}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
@@ -152,9 +154,12 @@ class UserIndex(pagelayout.PootlePage):
       langlinks = []
       for projectcode in self.session.getprojects():
         if self.potree.hasproject(languagecode, projectcode):
-          projectname = self.potree.getprojectname(projectcode)
-          projecttitle = projectname
-          langlinks.append({"code": projectcode, "name": projecttitle, "sep": "<br />"})
+          projecttitle = self.potree.getprojectname(projectcode)
+          project = self.potree.getproject(languagecode, projectcode)
+          isprojectadmin = "admin" in project.getrights(session=self.session) \
+                            or self.session.issiteadmin()
+          langlinks.append({"code": projectcode, "name": projecttitle, 
+                            "isprojectadmin": isprojectadmin, "sep": "<br />"})
       if langlinks:
         langlinks[-1]["sep"] = ""
       quicklinks.append({"code": languagecode, "name": languagename, "projects": langlinks})
@@ -260,7 +265,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     statsheadings["name"] = self.localize("Language")
     templatevars = {"pagetitle": pagetitle,
         "project": {"code": projectcode, "name": projectname, "stats": projectstats},
-	"description": description, "meta_description": meta_description, 
+        "description": description, "meta_description": meta_description, 
         "adminlink": adminlink, "languages": languages,
         "session": sessionvars, "instancetitle": instancetitle, 
         "statsheadings": statsheadings}
