@@ -19,10 +19,11 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-"""manages po files and their associated files"""
+"""manages a translation file and its associated files"""
 
 from translate.storage import base
 from translate.storage import po
+from translate.storage import factory
 from translate.misc.multistring import multistring
 from translate.tools import pocount
 from translate.filters import checks
@@ -93,25 +94,6 @@ class pootleunit(Wrapper):
     """We have to override this, because we don't have an inner object to delegate to"""
     return cls.WrapUnitClass.buildfromunit(unit)
   buildfromunit = classmethod(buildfromunit)
-
-  def classify(self, checker):
-    """returns all classify keys that this unit should match, using the checker"""
-    classes = ["total"]
-    if self.isfuzzy():
-      classes.append("fuzzy")
-    if self.isblankmsgstr():
-      classes.append("blank")
-    if not ("fuzzy" in classes or "blank" in classes):
-      classes.append("translated")
-    # TODO: we don't handle checking plurals at all yet, as this is tricky...
-    source = self.source
-    target = self.target
-    if isinstance(source, str) and isinstance(target, unicode):
-      source = source.decode(getattr(self, "encoding", "utf-8"))
-    filterresult = checker.run_filters(self, source, target)
-    for filtername, filtermessage in filterresult:
-      classes.append("check-" + filtername)
-    return classes
 
 class pootlestatistics:
   """this represents the statistics known about a file"""
@@ -225,13 +207,32 @@ class pootlestatistics:
         totalwords, len(self.msgidwordcounts))
 
   def calcstats(self):
-    """calculates translation statistics for the given po file"""
+    """calculates translation statistics for the given file"""
     # handle this being called when self.basefile.statistics is being set and calcstats is called from self.__init__
     if not hasattr(self.basefile, "statistics"):
       self.basefile.statistics = self
     self.basefile.pofreshen()
     postats = dict([(name, items) for name, items in self.classify.iteritems()])
     self.stats = postats
+
+  def classifyunit(self, unit):
+    """returns all classify keys that this unit should match"""
+    classes = ["total"]
+    if unit.isfuzzy():
+      classes.append("fuzzy")
+    if unit.isblankmsgstr():
+      classes.append("blank")
+    if not ("fuzzy" in classes or "blank" in classes):
+      classes.append("translated")
+    # TODO: we don't handle checking plurals at all yet, as this is tricky...
+    source = unit.source
+    target = unit.target
+    if isinstance(source, str) and isinstance(target, unicode):
+      source = source.decode(getattr(unit, "encoding", "utf-8"))
+    filterresult = self.basefile.checker.run_filters(unit, source, target)
+    for filtername, filtermessage in filterresult:
+      classes.append("check-" + filtername)
+    return classes
 
   def classifyunits(self):
     """makes a dictionary of which units fall into which classifications"""
@@ -244,7 +245,7 @@ class pootlestatistics:
     for checkname in self.basefile.checker.getfilters().keys():
       self.classify["check-" + checkname] = []
     for item, poel in enumerate(self.basefile.transunits):
-      classes = poel.classify(self.basefile.checker)
+      classes = self.classifyunit(poel)
       if self.basefile.getsuggestions(item):
         classes.append("has-suggestion")
       for classname in classes:
@@ -267,7 +268,7 @@ class pootlestatistics:
     poel = self.basefile.transunits[item]
     self.msgidwordcounts[item] = [pocount.wordcount(text) for text in poel.source.strings]
     self.msgstrwordcounts[item] = [pocount.wordcount(text) for text in poel.target.strings]
-    classes = poel.classify(self.basefile.checker)
+    classes = self.classifyunit(poel)
     if self.basefile.getsuggestions(item):
       classes.append("has-suggestion")
     for classname, matchingitems in self.classify.items():
@@ -485,12 +486,16 @@ class pootleassigns:
     return assignitems
 
 class pootlefile(base.TranslationStore, Wrapper):
-  """this represents a pootle-managed .po file and its associated files"""
+  """this represents a pootle-managed file and its associated files"""
   UnitClass = pootleunit
-  WrapStoreClass = po.pofile
   x_generator = "Pootle %s" % __version__.ver
   def __init__(self, project=None, pofilename=None, generatestats=True):
-    self.__innerobj__ = po.pofile(unitclass=self.UnitClass)
+    if pofilename:
+      innerclass = factory.getclass(pofilename)
+      self.__innerobj__ = innerclass(unitclass=self.UnitClass)
+    else:
+      self.__innerobj__ = po.pofile(unitclass=self.UnitClass)
+    
     self.pofilename = pofilename
     if project is None:
       from Pootle import projects
@@ -526,13 +531,13 @@ class pootlefile(base.TranslationStore, Wrapper):
 
 
   def readpendingfile(self):
-    """reads and parses the pending file corresponding to this po file"""
+    """reads and parses the pending file corresponding to this file"""
     if os.path.exists(self.pendingfilename):
       pendingmtime = getmodtime(self.pendingfilename)
       if pendingmtime == getattr(self, "pendingmtime", None):
         return
       inputfile = open(self.pendingfilename, "r")
-      self.pendingmtime, self.pendingfile = pendingmtime, po.pofile(inputfile, unitclass=self.UnitClass)
+      self.pendingmtime, self.pendingfile = pendingmtime, factory.getobject(inputfile, ignore=".pending")
       if self.pomtime:
         self.reclassifysuggestions()
     else:
@@ -546,13 +551,13 @@ class pootlefile(base.TranslationStore, Wrapper):
     self.pendingmtime = getmodtime(self.pendingfilename)
 
   def readtmfile(self):
-    """reads and parses the tm file corresponding to this po file"""
+    """reads and parses the tm file corresponding to this file"""
     if os.path.exists(self.tmfilename):
       tmmtime = getmodtime(self.tmfilename)
       if tmmtime == getattr(self, "tmmtime", None):
         return
       inputfile = open(self.tmfilename, "r")
-      self.tmmtime, self.tmfile = tmmtime, po.pofile(inputfile, unitclass=self.UnitClass)
+      self.tmmtime, self.tmfile = tmmtime, factory.getobject(inputfile, ignore=".tm")
     else:
       self.tmfile = po.pofile(unitclass=self.UnitClass)
 
@@ -624,7 +629,7 @@ class pootlefile(base.TranslationStore, Wrapper):
     self.tracker[item] = message
 
   def readpofile(self):
-    """reads and parses the main po file"""
+    """reads and parses the main file"""
     # make sure encoding is reset so it is read from the file
     self.encoding = None
     self.units = []
