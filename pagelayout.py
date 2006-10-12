@@ -54,9 +54,16 @@ def languagedir(language):
   return "ltr"
 
 def weblanguage(language):
-  """Reformats the language from locale style (pt_BR) to web style (pt-BR)"""
+  """Reformats the language code from locale style (pt_BR) to web style (pt-br)"""
   return language.replace("_", "-")
-    
+
+def localelanguage(language):
+  """Reformats the language code from web style (pt-br) to locale style (pt_BR)"""
+  dashindex = language.find("-")
+  if dashindex >= 0:
+    language = language[:dashindex] + "_" + language[dashindex+1:].upper()
+  return language
+
 def completetemplatevars(templatevars, session, bannerheight=135):
   """fill out default values for template variables"""
   if not "instancetitle" in templatevars:
