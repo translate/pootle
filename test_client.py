@@ -146,7 +146,7 @@ class ServerTester:
 		content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
 		headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
 		response = self.post_request("zxx/testproject/", upload_contents, headers)
-		assert '<a href="test_upload.po?' in response
+		assert ' href="test_upload.po?' in response
 		pofile_storename = os.path.join(podir, "test_upload.po")
 		assert os.path.isfile(pofile_storename)
 		assert open(pofile_storename).read() == pocontents
@@ -165,7 +165,7 @@ class ServerTester:
 		content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
 		headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
 		response = self.post_request("zxx/testproject/", upload_contents, headers)
-		assert '<a href="test_upload.po?' in response
+		assert ' href="test_upload.po?' in response
 		pofile_storename = os.path.join(podir, "test_upload.po")
 		assert os.path.isfile(pofile_storename)
 		assert open(pofile_storename).read() == xliffcontents
@@ -215,7 +215,7 @@ class ServerTester:
 		# It may be a good idea to change this
 		mergedcontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
 		suggestedcontents = '#: test.c\nmsgid ""\n"_: suggested by testuser\\n"\n"test"\nmsgstr "rested"\n'
-		assert '<a href="test_existing.po?' in response
+		assert ' href="test_existing.po?' in response
 		pofile_storename = os.path.join(podir, "test_existing.po")
 		assert os.path.isfile(pofile_storename)
 		assert open(pofile_storename).read().find(mergedcontents) >= 0
@@ -263,7 +263,7 @@ class ServerTester:
 		# It may be a good idea to change this
 		mergedcontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
 		suggestedcontents = '#: test.c\nmsgid ""\n"_: suggested by testuser\\n"\n"test"\nmsgstr "rested"\n'
-		assert '<a href="test_existing.po?' in response
+		assert ' href="test_existing.po?' in response
 		pofile_storename = os.path.join(podir, "test_existing.po")
 		assert os.path.isfile(pofile_storename)
 		assert open(pofile_storename).read().find(mergedcontents) >= 0
