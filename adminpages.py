@@ -374,6 +374,13 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
         username = username.decode("utf-8")
       user_dict = self.getuserdict(username, usernode=usernode)
       user_details[username] = user_dict
+    # We need to make sure that users_with_rights are also in user_details,
+    # since they might not be there yet or anymore
+    for username in users_with_rights:
+      if username in user_details:
+        continue
+      user_dict = self.getuserdict(username, usernode=None)
+      user_details[username] = user_dict
     users_without_rights = [username for username in user_details if username not in users_with_rights]
     newuser_dict = self.getuserdict(None, delete=False)
     updaterights_text = self.localize("Update Rights")
