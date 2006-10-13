@@ -190,7 +190,7 @@ class ServerTester:
 		headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
 		response = self.post_request("zxx/testproject/", upload_contents, headers)
 		for filename, contents in [("test.po", po1contents), ("frog.po", po2contents)]:
-			assert ('<a href="%s?' % filename) in response
+			assert (' href="%s?' % filename) in response
 			pofile_storename = os.path.join(podir, filename)
 			assert os.path.isfile(pofile_storename)
 			assert open(pofile_storename).read() == contents
