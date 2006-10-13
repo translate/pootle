@@ -187,8 +187,7 @@ class TranslationProject(object):
     def usableuser(user, userprefs):
       if username in ["__dummy__", "default", "nobody"]:
         return False
-      return self.languagecode in getattr(userprefs, "languages", []) and \
-            self.projectcode in getattr(userprefs, "projects", [])
+      return self.languagecode in getattr(userprefs, "languages", [])
 
     users = {}
     for username, userprefs in session.loginchecker.users.iteritems():
