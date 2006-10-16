@@ -95,6 +95,15 @@ msgstr ""'''
         assert thepo.source == "test"
         assert thepo.target == "rest"
 
+    def test_filename(self):
+        """checks and tests the filename API"""
+        posource = '#: test.c\nmsgid "hidden"\nmsgstr "hisomu"\n'
+        w = open('test.po', 'w')
+        w.write(posource)
+        pofile = self.poparse(posource)
+        assert pofile.getfilename(path=True) == pofile.filename
+        assert pofile.getext() == ".po"
+
     def test_classify(self):
         """Test basic classification"""
         posource = 'msgid "test"\nmsgstr ""\n'
@@ -134,4 +143,7 @@ msgstr ""'''
         assert classify['fuzzy'] == [1]
         assert classify['blank'] == [2]
         assert len(classify['total']) == 3
-
+        #cleanup remaining files
+        os.remove("test.po.lock")
+        os.remove("test.po")
+        os.remove("test.po.pending")

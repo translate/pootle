@@ -813,6 +813,22 @@ class pootlefile(base.TranslationStore, Wrapper):
     # the easiest way to recalculate everything
     self.readpofile()
 
+  def getfilename(self, path=None):
+    """Checks for and returns filename or path of pootlefile"""
+    if not os.path.exists(self.filename):
+      return None
+    if path:
+      return self.filename
+    else:
+      return self.filename.split("/")[-1]
+
+  def getext(self):
+    """Returns the extension of the pootlefile"""
+    if not os.path.exists(self.filename):
+      return None
+    else:
+      return os.path.splitext(self.filename)[1]
+
 class Search:
   """an object containing all the searching information"""
   def __init__(self, dirfilter=None, matchnames=[], assignedto=None, assignedaction=None, searchtext=None):
