@@ -164,7 +164,7 @@ Pootle:
 
 # Akan
 #    ak.fullname = u'Akan'
-#    ak.pluralequation = u'(n != 1)'
+#    ak.pluralequation = u'(n > 1)'
 #    ak.nplurals = u'2'
 
 # Arabic
