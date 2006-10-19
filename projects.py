@@ -617,6 +617,7 @@ class TranslationProject(object):
         pofilename = self.languagecode + os.extsep + "po"
       else:
         pofilename = potfilename[:-len(os.extsep+"pot")] + os.extsep + "po"
+        pofilename = os.path.basename(pofilename)
       origpofilename = os.path.join(self.podir, pofilename)
       if os.path.exists(origpofilename):
         origpofile = open(origpofilename)
@@ -624,7 +625,7 @@ class TranslationProject(object):
         origpofile = None
       pot2po.convertpot(inputfile, outputfile, origpofile)
       dirname, potfilename = os.path.dirname(potfilename), os.path.basename(potfilename)
-      self.uploadfile(session, dirname, os.path.basename(pofilename), outputfile.getvalue())
+      self.uploadfile(session, dirname, pofilename), outputfile.getvalue())
 
   def filtererrorhandler(self, functionname, str1, str2, e):
     print "error in filter %s: %r, %r, %s" % (functionname, str1, str2, e)
