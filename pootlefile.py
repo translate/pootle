@@ -212,8 +212,7 @@ class pootlestatistics:
     if not hasattr(self.basefile, "statistics"):
       self.basefile.statistics = self
     self.basefile.pofreshen()
-    postats = dict([(name, items) for name, items in self.classify.iteritems()])
-    self.stats = postats
+    self.stats = dict([(name, items) for name, items in self.classify.iteritems()])
 
   def classifyunit(self, unit):
     """returns all classify keys that the unit should match"""
