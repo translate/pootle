@@ -1367,7 +1367,7 @@ class TranslationProject(object):
           thepo = pofile.sourceindex.get(singular, None)
           if not thepo or thepo.isblankmsgstr() or thepo.isfuzzy():
             continue
-          tmsg = po.unquotefrompo(thepo.msgstr[pluralfn(n)])
+          tmsg = thepo.target.strings[pluralfn(n)]
           if tmsg is not None:
             if isinstance(tmsg, unicode):
               return tmsg
