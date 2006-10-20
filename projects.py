@@ -1129,24 +1129,6 @@ class TranslationProject(object):
     orig, trans = self.source, self.target
     return orig, trans
 
-# No users of this function, so commenting in preperation for removal
-# 
-#  def getitemclasses(self, pofilename, item):
-#    """returns which classes this item belongs to"""
-#    # TODO: needn't parse the file for this ...
-#    pofile = self.getpofile(pofilename)
-#    return [classname for (classname, classitems) in pofile.classify.iteritems() if item in classitems]
-
-  def unquotefrompo(self, postr):
-    """extracts a po-quoted string to normal text"""
-    if isinstance(postr, dict):
-      quotedpo = {}
-      for pluralid in postr:
-        quotedpo[pluralid] = self.unquotefrompo(postr[pluralid])
-      return quotedpo
-    else:
-      return po.unquotefrompo(postr)
-
   def getitems(self, pofilename, itemstart, itemstop):
     """returns a set of items from the pofile, converted to original and translation strings"""
     pofile = self.getpofile(pofilename)
