@@ -166,6 +166,10 @@
                       <input py:if="'suggest' in buttons.desired" type="submit" name="submitsuggest${buttons.item}" accesskey="e" value="${buttons.suggest}"/>
                       <input py:if="'translate' in buttons.desired" type="submit" name="submit${buttons.item}" accesskey="s" value="${buttons.submit}"/>
                     </div>
+                    <div>
+                      <input type="checkbox" checked="${item.fuzzy}" name="fuzzy${buttons.item}" accesskey="f" />
+                      ${fuzzytext}
+                    </div>
                     <div py:if="'specialchars' in buttons" class="specialchars" lang="$language.code">
                       <span py:for="specialchar in buttons.specialchars" py:strip="True">
                         <a py:if="not specialchar.isspace()" py:content="specialchar" onclick="writespecial('${specialchar}', '${buttons.item}'); return false;" href="#">spc</a>

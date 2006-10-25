@@ -658,12 +658,12 @@ class pootlefile(base.TranslationStore, Wrapper):
     self.pofreshen()
     return super(pootlefile, self).getoutput()
 
-  def setmsgstr(self, item, newtarget, userprefs, languageprefs):
+  def setmsgstr(self, item, newtarget, userprefs, languageprefs, fuzzy=False):
     """updates a translation with a new target value"""
     self.pofreshen()
     thepo = self.transunits[item]
     thepo.target = newtarget
-    thepo.markfuzzy(False)
+    thepo.markfuzzy(fuzzy)
     po_revision_date = time.strftime("%F %H:%M%z")
     headerupdates = {"PO_Revision_Date": po_revision_date, "X_Generator": self.x_generator}
     if userprefs:

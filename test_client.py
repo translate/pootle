@@ -291,6 +291,48 @@ class ServerTester:
                 pofile = project.getpofile("test_upload.po")
 		assert str(pofile.units[1]) == expected_pocontents
 
+	def test_submit_fuzzy(self):
+		"""tests that we can mark a unit as fuzzy"""
+		self.login()
+		podir = self.setup_testproject_dir()
+		pofile_storename = os.path.join(podir, "test_fuzzy.po")
+		pocontents = '#: test.c\nmsgid "fuzzy"\nmsgstr "wuzzy"\n'
+		open(pofile_storename, "w").write(pocontents)
+		expected_pocontents = '#: test.c\n#, fuzzy\nmsgid "fuzzy"\nmsgstr "wuzzy"\n'
+
+		# Fetch the page and check that the fuzzy checkbox is NOT checked.
+		translatepage = self.fetch_page("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
+		assert '<input accesskey="f" type="checkbox" name="fuzzy0" />' in translatepage
+
+		fields = {"orig-pure0.0": "fuzzy", "trans0": "wuzzy", "submit0": "submit", "fuzzy0": "on", "pofilename": "test_fuzzy.po"}
+		content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+		headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
+		translatepage = self.post_request("zxx/testproject/test_fuzzy.po?translate=1&editing=1", post_contents, headers)
+
+		# Fetch the page again and check that the fuzzy checkbox IS checked.
+		translatepage = self.fetch_page("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
+		assert '<input type="checkbox" accesskey="f" checked="checked" name="fuzzy0" />' in translatepage
+
+		tree = potree.POTree(self.prefs.Pootle)
+		project = projects.TranslationProject("zxx", "testproject", tree)
+                pofile = project.getpofile("test_fuzzy.po")
+		assert str(pofile.units[1]) == expected_pocontents
+		assert pofile.units[1].isfuzzy()
+
+		# Submit the translation again, without the fuzzy checkbox checked
+		fields = {"orig-pure0.0": "fuzzy", "trans0": "wuzzy", "submit0": "submit", "pofilename": "test_fuzzy.po"}
+		content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+		headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
+		translatepage = self.post_request("zxx/testproject/test_fuzzy.po?translate=1&editing=1", post_contents, headers)
+
+		# Fetch the page once more and check that the fuzzy checkbox is NOT checked.
+		translatepage = self.fetch_page("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
+		assert '<input accesskey="f" type="checkbox" name="fuzzy0" />' in translatepage
+		tree = potree.POTree(self.prefs.Pootle)
+		project = projects.TranslationProject("zxx", "testproject", tree)
+                pofile = project.getpofile("test_fuzzy.po")
+		assert not pofile.units[1].isfuzzy()
+
 def MakeServerTester(baseclass):
 	"""Makes a new Server Tester class using the base class to setup webserver etc"""
 	class TestServer(baseclass, ServerTester):

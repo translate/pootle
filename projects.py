@@ -1135,14 +1135,14 @@ class TranslationProject(object):
     units = pofile.transunits[max(itemstart,0):itemstop]
     return units
 
-  def updatetranslation(self, pofilename, item, trans, session):
+  def updatetranslation(self, pofilename, item, trans, session, fuzzy=False):
     """updates a translation with a new value..."""
     if "translate" not in self.getrights(session):
       raise RightsError(session.localize("You do not have rights to change translations here"))
     pofile = self.pofiles[pofilename]
     pofile.track(item, "edited by %s" % session.username)
     languageprefs = getattr(session.instance.languages, self.languagecode, None)
-    pofile.setmsgstr(item, trans, session.prefs, languageprefs)
+    pofile.setmsgstr(item, trans, session.prefs, languageprefs, fuzzy)
     self.updateindex(pofilename, [item])
 
   def suggesttranslation(self, pofilename, item, trans, session):

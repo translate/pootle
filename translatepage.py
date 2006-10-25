@@ -114,6 +114,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         "reviewmode": self.reviewmode,
         "accept_button": self.localize("Accept"),
         "reject_button": self.localize("Reject"),
+        "fuzzytext": self.localize("Fuzzy"),
         # l10n: This heading refers to related translations and terminology
         "related_title": self.localize("Related"),
         # optional sections, will appear if these values are replaced
@@ -286,7 +287,15 @@ class TranslatePage(pagelayout.PootleNavPage):
       value = translations[item]
       if isinstance(value, dict) and len(value) == 1 and 0 in value:
         value = value[0]
-      self.project.updatetranslation(self.pofilename, item, value, self.session)
+
+      # Get the fuzzy bool value from the user supplied form variables.
+      fuzzyvalue = self.argdict.pop('fuzzy'+str(item), None)
+      fuzzy = False
+      if (fuzzyvalue==u'on'):
+        fuzzy = True
+
+      self.project.updatetranslation(self.pofilename, item, value, self.session, fuzzy)
+      
       self.lastitem = item
     for item, suggid in rejects:
       value = suggestions[item, suggid]
@@ -443,8 +452,10 @@ class TranslatePage(pagelayout.PootleNavPage):
         focus_class = ""
       
       state_class = ""
+      fuzzy = None
       if thepo.isfuzzy():
         state_class += "translate-translation-fuzzy"
+        fuzzy = "checked"
 
       itemdict = {
                  "itemid": item,
@@ -454,6 +465,7 @@ class TranslatePage(pagelayout.PootleNavPage):
                  "focus_class": focus_class,
                  "editable": item in self.editable,
                  "state_class": state_class,
+                 "fuzzy": fuzzy,
                  "comments": comments,
                  "locations": locations,
                  "tm": tmsuggestions,
