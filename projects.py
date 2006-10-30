@@ -98,6 +98,7 @@ class TranslationProject(object):
     self.projectcheckerstyle = self.potree.getprojectcheckerstyle(self.projectcode)
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), pofilter.StandardPOChecker]
     self.checker = pofilter.POTeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler)
+    self.fileext = self.potree.getprojectlocalfiletype(self.projectcode)
     self.quickstats = {}
     # terminology matcher
     self.termmatcher = None
@@ -460,15 +461,15 @@ class TranslationProject(object):
       if not pofilename in self.pofilenames:
         del self.pofiles[pofilename]
 
-  def getuploadpath(self, dirname, pofilename):
+  def getuploadpath(self, dirname, localfilename):
     """gets the path of a po file being uploaded securely, creating directories as neccessary"""
     if os.path.isabs(dirname) or dirname.startswith("."):
       raise ValueError("invalid/insecure file path: %s" % dirname)
-    if os.path.basename(pofilename) != pofilename or pofilename.startswith("."):
-      raise ValueError("invalid/insecure file name: %s" % pofilename)
+    if os.path.basename(localfilename) != localfilename or localfilename.startswith("."):
+      raise ValueError("invalid/insecure file name: %s" % localfilename)
     if self.filestyle == "gnu":
-      if not self.potree.languagematch(self.languagecode, pofilename[:-len(".po")]):
-        raise ValueError("invalid GNU-style file name %s: must match '%s.po' or '%s[_-][A-Z]{2,3}.po'" % (pofilename, self.languagecode, self.languagecode))
+      if not self.potree.languagematch(self.languagecode, localfilename[:-len("."+self.fileext)]):
+        raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" % (localfilename, self.fileext, self.languagecode, self.languagecode, self.fileext))
     dircheck = self.podir
     for part in dirname.split(os.sep):
       dircheck = os.path.join(dircheck, part)
@@ -481,7 +482,7 @@ class TranslationProject(object):
     pathname = self.getuploadpath(dirname, filename)
     for extention in ["xliff", "xlf"]:
       if filename.endswith(extention):
-        pofilename = filename[:-len(os.extsep+extention)] + os.extsep + "po"
+        pofilename = filename[:-len(os.extsep+extention)] + os.extsep + self.fileext
         popathname = self.getuploadpath(dirname, pofilename)
         break
     else:
@@ -1215,7 +1216,7 @@ class TranslationProject(object):
           termfile.pofreshen()
         return self
     else:
-      termfilename = "pootle-terminology.po"
+      termfilename = "pootle-terminology."+self.fileext
       if termfilename in self.pofiles:
         termfile = self.getpofile(termfilename, freshen=True)
         return termfile
@@ -1256,7 +1257,7 @@ class TranslationProject(object):
       return []
 
   def savepofile(self, pofilename):
-    """saves changes to disk..."""
+    """saves changes to disk"""
     pofile = self.getpofile(pofilename)
     pofile.savepofile()
 

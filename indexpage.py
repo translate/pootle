@@ -533,7 +533,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       depth = 0
     else:
       depth = dirfilter.count(os.path.sep)
-      if not dirfilter.endswith(os.path.extsep + "po"):
+      if not dirfilter.endswith(os.path.extsep + self.project.fileext):
         depth += 1
     diritems = []
     for childdir in self.project.browsefiles(dirfilter=dirfilter, depth=depth, includedirs=True, includefiles=False):
@@ -553,7 +553,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     """gets the listed dir and fileitems"""
     diritems, fileitems = [], []
     for item in itempaths:
-      if item.endswith(os.path.extsep + "po"):
+      if item.endswith(os.path.extsep + self.project.fileext):
         fileitem = self.getfileitem(item, linksrequired=linksrequired, **newargs)
         fileitems.append((item, fileitem))
       else:
@@ -573,7 +573,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       depth = 0
     else:
       depth = dirfilter.count(os.path.sep)
-      if not dirfilter.endswith(os.path.extsep + "po"):
+      if not dirfilter.endswith(os.path.extsep + self.project.fileext):
         depth += 1
     allitems = []
     goalchildren = {}
@@ -583,7 +583,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     for childname in self.project.browsefiles(dirfilter=dirfilter, depth=depth, includedirs=False, includefiles=True):
       allchildren.append(childname)
     initial = dirfilter
-    if initial and not initial.endswith(os.path.extsep + "po"):
+    if initial and not initial.endswith(os.path.extsep + self.project.fileext):
       initial += os.path.sep
     if initial:
       maxdepth = initial.count(os.path.sep)
