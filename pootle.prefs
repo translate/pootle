@@ -97,6 +97,14 @@ Pootle:
   # Defines what checks should be used for this project.  One of: mozilla, kde,
   # openoffice or standard. This affects the tests for accelerator keys and
   # variables
+  #
+  #   localfiletype = "po"
+  # The localfiletype attribute allows for a project admin to designate the
+  # allowed filetype for the project (e.g PO, or Xliff). By default, po is
+  # assumed for projects.
+  #
+  # NOTE: Once a file type is selected for localfiletype, files not matching
+  #       the type selected will not be displayed within pootle.
 
   projects:
   # The project called "pootle" is necessary for Pootle to be localised.  The 
@@ -108,6 +116,7 @@ Pootle:
       fullname = "Pootle"
       description = "Web translation software of <a href='http://wordforge.org'>WordForge</a>. <br /> See the <a href='http://pootle.wordforge.org'>official Pootle server</a> for the translations of Pootle."
       checkstyle = "standard"
+      localfiletype = "po"
 
   # The optional project called "terminology" will be used by Pootle to do 
   # terminology matching for the languages that have files in this project. To
@@ -118,6 +127,7 @@ Pootle:
       fullname = "Terminology"
       description = "Terminology project that Pootle should use to suggest terms"
       checkstyle = "standard"
+      localfiletype = "po"
 
   # pootle.languages
   #
