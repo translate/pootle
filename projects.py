@@ -475,7 +475,7 @@ class TranslationProject(object):
       dircheck = os.path.join(dircheck, part)
       if dircheck and not os.path.isdir(dircheck):
         os.mkdir(dircheck)
-    return os.path.join(self.podir, dirname, pofilename)
+    return os.path.join(self.podir, dirname, localfilename)
 
   def uploadfile(self, session, dirname, filename, contents):
     """uploads an individual file"""
