@@ -97,13 +97,19 @@ class ServerTester:
 		assert testproject_present
 		testproject2_present = '<a href="../projects/testproject2/admin.html">testproject2</a>' in projects_list
 		assert not testproject2_present
+		assert projects_list.count(""""selected" value="po""") == 1
 		add_dict = {"newprojectcode": "testproject2", "newprojectname": "Test Project 2",
-			"newprojectdescription": "Test Project Addition", "changeprojects": "Save changes"}
-                add_args = "&".join(["%s=%s" % (key, urllib.quote_plus(value)) for key, value in add_dict.items()])
+			"newprojectdescription": "Test Project Addition","newprojectfiletype": "xliff", "changeprojects": "Save changes"}
+		add_args = "&".join(["%s=%s" % (key, urllib.quote_plus(value)) for key, value in add_dict.items()])
 		add_url = "admin/projects.html?" + add_args
 		add_result = self.fetch_page(add_url)
 		testproject2_present = '<a href="../projects/testproject2/admin.html">testproject2</a>' in add_result
 		assert testproject2_present
+		projects_list = self.fetch_page("admin/projects.html")
+		# The asserts below may fail if output framework changes, html checking does not checking the 'selected' value,
+		# but instead relying on the projected 'value' in the project's name
+		assert """projectfiletype-testproject" value="po">""" in projects_list
+		assert """projectfiletype-testproject2" value="xliff">""" in projects_list
 	test_add_project.userprefs = {"rights.siteadmin": True}
 
 	def test_add_project_language(self):
