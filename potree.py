@@ -147,6 +147,12 @@ class POTree:
           projectcheckerstyle = self.getprojectcheckerstyle(projectcode)
           if projectcheckerstyle != value:
             self.setprojectcheckerstyle(projectcode, value)
+      elif key.startswith("projectfiletype-"):
+        projectcode = key.replace("projectfiletype-", "", 1)
+        if hasattr(self.projects, projectcode):
+          projectlocalfiletype = self.getprojectlocalfiletype(projectcode)
+          if projectlocalfiletype != value:
+            self.setprojectlocalfiletype(projectcode, value)
       elif key.startswith("projectcreatemofiles-"):
         projectcode = key.replace("projectcreatemofiles-", "", 1)
         if hasattr(self.projects, projectcode):
@@ -160,10 +166,12 @@ class POTree:
         if hasattr(self.projects, projectcode):
           raise ValueError("Already have project with the code %s" % projectcode)
         projectname = argdict.get("newprojectname", projectcode)
+        projecttype = argdict.get("newprojectfiletype", "")
         projectdescription = argdict.get("newprojectdescription", "")
         projectcheckerstyle = argdict.get("newprojectcheckerstyle", "")
         projectcreatemofiles = argdict.get("newprojectcreatemofiles", "")
         setattr(self.projects, projectcode + ".fullname", projectname)
+        setattr(self.projects, projectcode + ".localfiletype", projecttype)
         setattr(self.projects, projectcode + ".description", projectdescription)
         setattr(self.projects, projectcode + ".checkerstyle", projectcheckerstyle)
         setattr(self.projects, projectcode + ".createmofiles", projectcreatemofiles)
@@ -332,6 +340,16 @@ class POTree:
     """returns the project description"""
     projectprefs = getattr(self.projects, projectcode)
     setattr(projectprefs, "description", projectdescription)
+
+  def getprojectlocalfiletype(self, projectcode):
+    """returns the project allowed file type"""
+    projectprefs = getattr(self.projects, projectcode)
+    return getattr(projectprefs, "localfiletype", projectcode)
+
+  def setprojectlocalfiletype(self, projectcode, projectfiletype):
+    """sets the allowed file type for the project"""
+    projectprefs = getattr(self.projects, projectcode)
+    setattr(projectprefs, "localfiletype", projectfiletype)
 
   def getprojectcheckerstyle(self, projectcode):
     """returns the project checker style"""

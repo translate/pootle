@@ -124,8 +124,10 @@ class ProjectsAdminPage(pagelayout.PootlePage):
     self.instance = instance
     self.localize = session.localize
     templatename = "adminprojects"
+    projectfiletypes = ["po","xliff"]
     self.allchecks = [{"value": check, "description": check} for check in checks.projectcheckers.keys()]
     self.allchecks.insert(0, {"value": "", "description": self.localize("Standard")})
+    self.alltypes = [{"value": check, "description": check} for check in projectfiletypes]
     sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
     instancetitle = getattr(self.instance, "title", session.localize("Pootle Demo"))
     text = self.gettext(session)
@@ -147,6 +149,7 @@ class ProjectsAdminPage(pagelayout.PootlePage):
                                 "newvalue": self.localize("(add project here)")},
                {"name": "description", "title": self.localize("Project Description"), "newvalue": self.localize("(project description)")},
                {"name": "checkerstyle", "title": self.localize("Checker Style"), "selectoptions": self.allchecks, "newvalue": ""},
+               {"name": "filetypes", "title": self.localize("File Type"), "selectoptions": self.alltypes, "newvalue": ""},
                {"name": "createmofiles", "title": self.localize("Create MO Files"), "type": "checkbox", "newvalue": ""},
                {"name": "remove", "title": self.localize("Remove Project")}]
     for option in options:
@@ -164,6 +167,7 @@ class ProjectsAdminPage(pagelayout.PootlePage):
       projectdescription = self.potree.getprojectdescription(projectcode)
       projectname = self.potree.getprojectname(projectcode)
       projectcheckerstyle = self.potree.getprojectcheckerstyle(projectcode)
+      projectfiletype = self.potree.getprojectlocalfiletype(projectcode)
       if self.potree.getprojectcreatemofiles(projectcode):
         projectcreatemofiles = "checked"
       else:
@@ -174,6 +178,7 @@ class ProjectsAdminPage(pagelayout.PootlePage):
       projectoptions = [{"name": "projectname-%s" % projectcode, "value": projectname, "type": "text"},
                         {"name": "projectdescription-%s" % projectcode, "value": projectdescription, "type": "text"},
                         {"name": "projectcheckerstyle-%s" % projectcode, "value": projectcheckerstyle, "selectoptions": self.allchecks},
+                        {"name": "projectfiletype-%s" % projectcode, "value": projectfiletype, "selectoptions": self.alltypes},
                         {"name": "projectcreatemofiles-%s" % projectcode, "value": projectcreatemofiles, "type": "checkbox", projectcreatemofiles: projectcreatemofiles},
                         {"name": "projectremove-%s" % projectcode, "value": projectremove, "type": "checkbox", "label": removelabel}]
       projects.append({"code": projectcode, "adminlink": projectadminlink, "options": projectoptions})

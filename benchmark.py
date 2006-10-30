@@ -67,6 +67,7 @@ Pootle:
     fullname = "Benchmark"
     description = "Benchmark auto-created files"
     checkstyle = "standard"
+    localfiletype = "po"
   languages.zxx.fullname = "Test Language"
 """ % (self.test_dir)
         open(prefsfile, "w").write(pootleprefsstr)
