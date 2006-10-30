@@ -462,7 +462,7 @@ class TranslationProject(object):
         del self.pofiles[pofilename]
 
   def getuploadpath(self, dirname, localfilename):
-    """gets the path of a po file being uploaded securely, creating directories as neccessary"""
+    """gets the path of a translation file being uploaded securely, creating directories as neccessary"""
     if os.path.isabs(dirname) or dirname.startswith("."):
       raise ValueError("invalid/insecure file path: %s" % dirname)
     if os.path.basename(localfilename) != localfilename or localfilename.startswith("."):
