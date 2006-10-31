@@ -344,7 +344,7 @@ class POTree:
   def getprojectlocalfiletype(self, projectcode):
     """returns the project allowed file type"""
     projectprefs = getattr(self.projects, projectcode)
-    return getattr(projectprefs, "localfiletype", projectcode)
+    return getattr(projectprefs, "localfiletype", "po")
 
   def setprojectlocalfiletype(self, projectcode, projectfiletype):
     """sets the allowed file type for the project"""
