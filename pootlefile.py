@@ -219,7 +219,7 @@ class pootlestatistics:
     classes = ["total"]
     if unit.isfuzzy():
       classes.append("fuzzy")
-    if unit.isblankmsgstr():
+    if unit.gettargetlen() == 0:
       classes.append("blank")
     if unit.istranslated():
       classes.append("translated")
