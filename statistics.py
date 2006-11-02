@@ -9,13 +9,34 @@ def getmodtime(filename, default=None):
   else:
     return default
 
+class StatsFile:
+  """Manages a statistics data file"""
+  def __init__(self, basefile):
+    self.basefile = basefile
+    self.refname = self.basefile.filename
+    self.filename = self.refname + os.extsep + "stats"
+
+  def read(self):
+    """return the contents of the stats file"""
+    return open(self.filename, "r").read()
+
+  def save(self, statsstring):
+    """save the stats data"""
+    sfile = open(self.filename, "w")
+    if os.path.exists(self.basefile.pendingfilename):
+      sfile.write("%d %d\n" % (getmodtime(self.basefile.filename), getmodtime(self.basefile.pendingfilename)))
+    else:
+      sfile.write("%d\n" % getmodtime(self.basefile.filename))
+    sfile.write(statsstring)
+    sfile.close()
+
 class pootlestatistics:
   """this represents the statistics known about a file"""
   def __init__(self, basefile, generatestats=True):
     """constructs statistic object for the given file"""
     # TODO: try and remove circular references between basefile and this class
     self.basefile = basefile
-    self.statsfilename = self.basefile.filename + os.extsep + "stats"
+    self.sfile = StatsFile(self.basefile)
     self.classify = {}
     self.msgidwordcounts = []
     self.msgstrwordcounts = []
@@ -24,11 +45,11 @@ class pootlestatistics:
 
   def getstats(self):
     """reads the stats if neccessary or returns them from the cache"""
-    if os.path.exists(self.statsfilename):
+    if os.path.exists(self.sfile.filename):
       try:
         self.readstats()
       except Exception, e:
-        print "Error reading stats from %s, so recreating (Error was %s)" % (self.statsfilename, e)
+        print "Error reading stats from %s, so recreating (Error was %s)" % (self.sfile.filename, e)
         raise
         self.statspomtime = None
     pomtime = getmodtime(self.basefile.filename)
@@ -44,10 +65,10 @@ class pootlestatistics:
 
   def readstats(self):
     """reads the stats from the associated stats file, setting the required variables"""
-    statsmtime = getmodtime(self.statsfilename)
+    statsmtime = getmodtime(self.sfile.filename)
     if statsmtime == getattr(self, "statsmtime", None):
       return
-    stats = open(self.statsfilename, "r").read()
+    stats = self.sfile.read()
     mtimes, postatsstring = stats.split("\n", 1)
     mtimes = mtimes.strip().split()
     if len(mtimes) == 1:
@@ -63,7 +84,7 @@ class pootlestatistics:
       if not line.strip():
         continue
       if not ":" in line:
-        print "invalid stats line in", self.statsfilename,line
+        print "invalid stats line in", self.sfile.filename,line
         continue
       name, items = line.split(":", 1)
       if name == "msgidwordcounts":
@@ -88,21 +109,15 @@ class pootlestatistics:
   def savestats(self):
     """saves the current statistics to file"""
     if not os.path.exists(self.basefile.filename):
-      if os.path.exists(self.statsfilename):
-        os.remove(self.statsfilename)
+      if os.path.exists(self.sfile.filename):
+        os.remove(self.sfile.filename)
       return
     # assumes self.stats is up to date
     try:
       postatsstring = "\n".join(["%s:%s" % (name, ",".join(map(str,items))) for name, items in self.stats.iteritems()])
       wordcountsstring = "msgidwordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.msgidwordcounts])
       wordcountsstring += "\nmsgstrwordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.msgstrwordcounts])
-      statsfile = open(self.statsfilename, "w")
-      if os.path.exists(self.basefile.pendingfilename):
-        statsfile.write("%d %d\n" % (getmodtime(self.basefile.filename), getmodtime(self.basefile.pendingfilename)))
-      else:
-        statsfile.write("%d\n" % getmodtime(self.basefile.filename))
-      statsfile.write(postatsstring + "\n" + wordcountsstring)
-      statsfile.close()
+      self.sfile.save(postatsstring + "\n" + wordcountsstring)
     except IOError:
       # TODO: log a warning somewhere. we don't want an error as this is an optimization
       pass
