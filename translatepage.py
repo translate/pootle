@@ -281,20 +281,23 @@ class TranslatePage(pagelayout.PootleNavPage):
       value = translations[item]
       self.project.suggesttranslation(self.pofilename, item, value, self.session)
       self.lastitem = item
+      
     for item in submits:
       if item in skips or item not in translations:
         continue
-      value = translations[item]
-      if isinstance(value, dict) and len(value) == 1 and 0 in value:
-        value = value[0]
+
+      newvalues = {}
+      newvalues["target"] = translations[item]
+      if isinstance(newvalues["target"], dict) and len(newvalues["target"]) == 1 and 0 in newvalues["target"]:
+        newvalues["target"] = newvalues["target"][0]
 
       # Get the fuzzy bool value from the user supplied form variables.
       fuzzyvalue = self.argdict.pop('fuzzy'+str(item), None)
-      fuzzy = False
+      newvalues["fuzzy"] = False
       if (fuzzyvalue==u'on'):
-        fuzzy = True
+        newvalues["fuzzy"] = True
 
-      self.project.updatetranslation(self.pofilename, item, value, self.session, fuzzy)
+      self.project.updatetranslation(self.pofilename, item, newvalues, self.session)
       
       self.lastitem = item
     for item, suggid in rejects:

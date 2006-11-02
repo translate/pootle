@@ -63,7 +63,9 @@ def processfile(filename):
       for marker, part in parts:
         pofile.addsuggestion(item, part, marker.strip())
       replacetargets.append("")
-    pofile.setmsgstr(item, replacetargets, None, None)
+
+    newvalues = {"target": replacetargets}
+    pofile.updateunit(item, newvalues, None, None)
 
 def processdir(dirname):
   for filename in os.listdir(dirname):
