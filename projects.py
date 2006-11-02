@@ -33,6 +33,7 @@ from translate.convert import po2oo
 from translate.tools import pocompile
 from translate.tools import pogrep
 from translate.search import match
+from Pootle import statistics
 from Pootle import pootlefile
 from Pootle import versioncontrol
 from jToolkit import timecache
@@ -770,7 +771,7 @@ class TranslationProject(object):
     needsupdate = True
     pofile = self.pofiles[pofilename]
     # check if the pomtime in the index == the latest pomtime
-    pomtime = pootlefile.getmodtime(pofile.filename)
+    pomtime = statistics.getmodtime(pofile.filename)
     pofilenamequery = self.searcher.makeQuery([("pofilename", pofilename)], True)
     pomtimequery = self.searcher.makeQuery([("pomtime", str(pomtime))], True)
     if items is not None:
@@ -1271,8 +1272,8 @@ class TranslationProject(object):
     destfilename = pofilename[:-len(self.fileext)] + destformat
     pofile = self.getpofile(pofilename, freshen=False)
     destfilename = pofile.filename[:-len(self.fileext)] + destformat
-    destmtime = pootlefile.getmodtime(destfilename)
-    pomtime = pootlefile.getmodtime(pofile.filename)
+    destmtime = statistics.getmodtime(destfilename)
+    pomtime = statistics.getmodtime(pofile.filename)
     if pomtime and destmtime == pomtime:
       try:
         return pomtime, destfilename
@@ -1300,7 +1301,7 @@ class TranslationProject(object):
   def gettext(self, message):
     """uses the project as a live translator for the given message"""
     for pofilename, pofile in self.pofiles.iteritems():
-      if pofile.pomtime != pootlefile.getmodtime(pofile.filename):
+      if pofile.pomtime != statistics.getmodtime(pofile.filename):
         pofile.readpofile()
         pofile.makeindex()
       elif not hasattr(pofile, "sourceindex"):
@@ -1317,7 +1318,7 @@ class TranslationProject(object):
     """gets the translation of the message by searching through all the pofiles (unicode version)"""
     for pofilename, pofile in self.pofiles.iteritems():
       try:
-        if pofile.pomtime != pootlefile.getmodtime(pofile.filename):
+        if pofile.pomtime != statistics.getmodtime(pofile.filename):
           pofile.readpofile()
           pofile.makeindex()
         elif not hasattr(pofile, "sourceindex"):
@@ -1339,7 +1340,7 @@ class TranslationProject(object):
     """gets the plural translation of the message by searching through all the pofiles (unicode version)"""
     for pofilename, pofile in self.pofiles.iteritems():
       try:
-        if pofile.pomtime != pootlefile.getmodtime(pofile.filename):
+        if pofile.pomtime != statistics.getmodtime(pofile.filename):
           pofile.readpofile()
           pofile.makeindex()
         elif not hasattr(pofile, "sourceindex"):
