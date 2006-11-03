@@ -14,6 +14,8 @@ from translate.misc import wStringIO
 import urllib
 import urllib2
 import os
+import re
+
 try:
 	import cookielib
 except ImportError:
@@ -338,6 +340,21 @@ class ServerTester:
 		project = projects.TranslationProject("zxx", "testproject", tree)
                 pofile = project.getpofile("test_fuzzy.po")
 		assert not pofile.units[1].isfuzzy()
+		
+	def test_navigation_url_parameters(self):
+		"""tests that the navigation urls (next/end etc) has the necessary parameters"""
+		self.login()
+		podir = self.setup_testproject_dir()
+		pofile_storename = os.path.join(podir, "test_nav_url.po")
+		pocontents = '#: test.c\nmsgid "test1"\nmsgstr "rest"\n'
+		pocontents += '\n#. Second Unit\nmsgid "test2"\nmsgstr "rest2"\n'
+		open(pofile_storename, "w").write(pocontents)
+		self.prefs.setvalue("Pootle.users.testuser.viewrows", 1)		
+		translatepage = self.fetch_page("zxx/testproject/test_nav_url.po?translate=1&view=1")
+		patterns = re.findall('<a href=".(.*)".*Next 1.*</a>', translatepage)
+		parameters = patterns[0].split('&amp;')
+		assert 'pofilename=test_nav_url.po' in parameters
+		assert 'item=1' in parameters
 
 def MakeServerTester(baseclass):
 	"""Makes a new Server Tester class using the base class to setup webserver etc"""
