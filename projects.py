@@ -1065,8 +1065,8 @@ class TranslationProject(object):
     wordcount = 0
     for pofilename, item in stats:
       pofile = self.pofiles[pofilename]
-      if 0 <= item < len(pofile.statistics.msgidwordcounts):
-        wordcount += sum(pofile.statistics.msgidwordcounts[item])
+      if 0 <= item < len(pofile.statistics.sourcewordcounts):
+        wordcount += sum(pofile.statistics.sourcewordcounts[item])
     return wordcount
 
   def getpomtime(self):

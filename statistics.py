@@ -47,8 +47,8 @@ class pootlestatistics:
     self.basefile = basefile
     self.sfile = StatsFile(self.basefile)
     self.classify = {}
-    self.msgidwordcounts = []
-    self.msgstrwordcounts = []
+    self.sourcewordcounts = []
+    self.targetwordcounts = []
     if generatestats:
       self.getstats()
 
@@ -87,8 +87,8 @@ class pootlestatistics:
       frompomtime = int(mtimes[0])
       frompendingmtime = int(mtimes[1])
     postats = {}
-    msgidwordcounts = []
-    msgstrwordcounts = []
+    sourcewordcounts = []
+    targetwordcounts = []
     for line in postatsstring.split("\n"):
       if not line.strip():
         continue
@@ -96,21 +96,21 @@ class pootlestatistics:
         print "invalid stats line in", self.sfile.filename,line
         continue
       name, items = line.split(":", 1)
-      if name == "msgidwordcounts":
-        msgidwordcounts = [[int(subitem.strip()) for subitem in item.strip().split("/")] for item in items.strip().split(",") if item]
-      elif name == "msgstrwordcounts":
-        msgstrwordcounts = [[int(subitem.strip()) for subitem in item.strip().split("/")] for item in items.strip().split(",") if item]
+      if name == "msgidwordcounts" or name == "sourcewordcounts":
+        sourcewordcounts = [[int(subitem.strip()) for subitem in item.strip().split("/")] for item in items.strip().split(",") if item]
+      elif name == "msgstrwordcounts" or name == "targetwordcounts":
+        targetwordcounts = [[int(subitem.strip()) for subitem in item.strip().split("/")] for item in items.strip().split(",") if item]
       else:
         items = [int(item.strip()) for item in items.strip().split(",") if item]
         postats[name.strip()] = items
     # save all the read times, data simultaneously
-    self.statspomtime, self.statspendingmtime, self.statsmtime, self.stats, self.msgidwordcounts, self.msgstrwordcounts = frompomtime, frompendingmtime, statsmtime, postats, msgidwordcounts, msgstrwordcounts
+    self.statspomtime, self.statspendingmtime, self.statsmtime, self.stats, self.sourcewordcounts, self.targetwordcounts = frompomtime, frompendingmtime, statsmtime, postats, sourcewordcounts, targetwordcounts
     # if in old-style format (counts instead of items), recalculate
     totalitems = postats.get("total", [])
     if len(totalitems) == 1 and totalitems[0] != 0:
       self.calcstats()
       self.savestats()
-    if (len(msgidwordcounts) < len(totalitems)) or (len(msgstrwordcounts) < len(totalitems)):
+    if (len(sourcewordcounts) < len(totalitems)) or (len(targetwordcounts) < len(totalitems)):
       self.basefile.pofreshen()
       self.countwords()
       self.savestats()
@@ -122,8 +122,8 @@ class pootlestatistics:
     # assumes self.stats is up to date
     try:
       postatsstring = "\n".join(["%s:%s" % (name, ",".join(map(str,items))) for name, items in self.stats.iteritems()])
-      wordcountsstring = "msgidwordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.msgidwordcounts])
-      wordcountsstring += "\nmsgstrwordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.msgstrwordcounts])
+      wordcountsstring = "sourcewordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.sourcewordcounts])
+      wordcountsstring += "\ntargetwordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.targetwordcounts])
       self.sfile.save(postatsstring + "\n" + wordcountsstring)
     except IOError:
       # TODO: log a warning somewhere. we don't want an error as this is an optimization
@@ -134,13 +134,13 @@ class pootlestatistics:
     """updates the project's quick stats on this file"""
     translated = self.stats.get("translated")
     fuzzy = self.stats.get("fuzzy")
-    translatedwords = sum([sum(self.msgidwordcounts[item]) for item in translated if 0 <= item < len(self.msgidwordcounts)])
-    fuzzywords = sum([sum(self.msgidwordcounts[item]) for item in fuzzy if 0 <= item < len(self.msgidwordcounts)])
-    totalwords = sum([sum(partcounts) for partcounts in self.msgidwordcounts])
+    translatedwords = sum([sum(self.sourcewordcounts[item]) for item in translated if 0 <= item < len(self.sourcewordcounts)])
+    fuzzywords = sum([sum(self.sourcewordcounts[item]) for item in fuzzy if 0 <= item < len(self.sourcewordcounts)])
+    totalwords = sum([sum(partcounts) for partcounts in self.sourcewordcounts])
     self.basefile.project.updatequickstats(self.basefile.pofilename, 
         translatedwords, len(translated), 
         fuzzywords, len(fuzzy), 
-        totalwords, len(self.msgidwordcounts))
+        totalwords, len(self.sourcewordcounts))
 
   def calcstats(self):
     """calculates translation statistics for the given file"""
@@ -192,17 +192,17 @@ class pootlestatistics:
 
   def countwords(self):
     """counts the words in each of the units"""
-    self.msgidwordcounts = []
-    self.msgstrwordcounts = []
+    self.sourcewordcounts = []
+    self.targetwordcounts = []
     for poel in self.basefile.transunits:
-      self.msgidwordcounts.append([pocount.wordcount(text) for text in poel.source.strings])
-      self.msgstrwordcounts.append([pocount.wordcount(text) for text in poel.target.strings])
+      self.sourcewordcounts.append([pocount.wordcount(text) for text in poel.source.strings])
+      self.targetwordcounts.append([pocount.wordcount(text) for text in poel.target.strings])
 
   def reclassifyunit(self, item):
     """updates the classification of poel in self.classify"""
     poel = self.basefile.transunits[item]
-    self.msgidwordcounts[item] = [pocount.wordcount(text) for text in poel.source.strings]
-    self.msgstrwordcounts[item] = [pocount.wordcount(text) for text in poel.target.strings]
+    self.sourcewordcounts[item] = [pocount.wordcount(text) for text in poel.source.strings]
+    self.targetwordcounts[item] = [pocount.wordcount(text) for text in poel.target.strings]
     classes = self.classifyunit(poel)
     if self.basefile.getsuggestions(item):
       classes.append("has-suggestion")
