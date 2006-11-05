@@ -78,7 +78,7 @@ class pootlestatistics:
     if statsmtime == getattr(self, "statsmtime", None):
       return
     stats = self.sfile.read()
-    mtimes, postatsstring = stats.split("\n", 1)
+    mtimes, statsstring = stats.split("\n", 1)
     mtimes = mtimes.strip().split()
     if len(mtimes) == 1:
       frompomtime = int(mtimes[0])
@@ -86,10 +86,10 @@ class pootlestatistics:
     elif len(mtimes) == 2:
       frompomtime = int(mtimes[0])
       frompendingmtime = int(mtimes[1])
-    postats = {}
+    stats = {}
     sourcewordcounts = []
     targetwordcounts = []
-    for line in postatsstring.split("\n"):
+    for line in statsstring.split("\n"):
       if not line.strip():
         continue
       if not ":" in line:
@@ -102,11 +102,11 @@ class pootlestatistics:
         targetwordcounts = [[int(subitem.strip()) for subitem in item.strip().split("/")] for item in items.strip().split(",") if item]
       else:
         items = [int(item.strip()) for item in items.strip().split(",") if item]
-        postats[name.strip()] = items
+        stats[name.strip()] = items
     # save all the read times, data simultaneously
-    self.statspomtime, self.statspendingmtime, self.statsmtime, self.stats, self.sourcewordcounts, self.targetwordcounts = frompomtime, frompendingmtime, statsmtime, postats, sourcewordcounts, targetwordcounts
+    self.statspomtime, self.statspendingmtime, self.statsmtime, self.stats, self.sourcewordcounts, self.targetwordcounts = frompomtime, frompendingmtime, statsmtime, stats, sourcewordcounts, targetwordcounts
     # if in old-style format (counts instead of items), recalculate
-    totalitems = postats.get("total", [])
+    totalitems = stats.get("total", [])
     if len(totalitems) == 1 and totalitems[0] != 0:
       self.calcstats()
       self.savestats()
@@ -121,10 +121,10 @@ class pootlestatistics:
       return
     # assumes self.stats is up to date
     try:
-      postatsstring = "\n".join(["%s:%s" % (name, ",".join(map(str,items))) for name, items in self.stats.iteritems()])
+      statsstring = "\n".join(["%s:%s" % (name, ",".join(map(str,items))) for name, items in self.stats.iteritems()])
       wordcountsstring = "sourcewordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.sourcewordcounts])
       wordcountsstring += "\ntargetwordcounts:" + ",".join(["/".join(map(str,subitems)) for subitems in self.targetwordcounts])
-      self.sfile.save(postatsstring + "\n" + wordcountsstring)
+      self.sfile.save(statsstring + "\n" + wordcountsstring)
     except IOError:
       # TODO: log a warning somewhere. we don't want an error as this is an optimization
       pass
