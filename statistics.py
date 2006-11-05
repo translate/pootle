@@ -30,14 +30,14 @@ class StatsFile:
     sfile.write(statsstring)
     sfile.close()
 
-  def remove(self):
-    """delete a stats file if it is no longer needed and return True if it was removed"""
-    removed = False
-    if not os.path.exists(self.basefile.filename):
+  def hasparent(self):
+    """check if the stats file has a parent data file, if not delete it"""
+    if os.path.exists(self.basefile.filename):
+      return True
+    else:
       if os.path.exists(self.filename):
         os.remove(self.filename)
-      removed = True
-    return removed
+      return False
 
 class pootlestatistics:
   """this represents the statistics known about a file"""
@@ -117,7 +117,7 @@ class pootlestatistics:
 
   def savestats(self):
     """saves the current statistics to file"""
-    if self.sfile.remove():
+    if not self.sfile.hasparent():
       return
     # assumes self.stats is up to date
     try:

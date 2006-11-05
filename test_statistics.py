@@ -6,6 +6,7 @@
 from py import test
 from Pootle import statistics
 from translate.storage import po
+import os
 
 class TestStatsFile:
     """Tests StatsFile"""
@@ -17,10 +18,18 @@ class TestStatsFile:
         sfile = statistics.StatsFile(pofile)
         assert sfile.filename == "file/test.po.stats"
 
-    def test_removal(self):
-        """if there associated reference file no longer exists then we remove it"""
-        pofile = po.pofile()
-        pofile.filename = "file/test.po"
-        sfile = statistics.StatsFile(pofile)
-        assert sfile.remove() == True
+    def test_hasparent(self):
+        """check that we manage the associated stats file for a translatable file"""
+        posource = '''msgid "Simple String"\nmsgstr "Dimpled ring"\n'''
+        pofile = open("test.po", "w")
+        pofile.write(posource)
+        pofile.close()
+        pofile = open("test.po", "r")
+        poobj = po.pofile(pofile)
+        print poobj
+        sfile = statistics.StatsFile(poobj)
+        assert sfile.hasparent() == True
+        os.remove("test.po")
+        assert not sfile.hasparent()
+        assert not os.path.exists("test.po.stats")
         
