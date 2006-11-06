@@ -55,38 +55,6 @@ class Wrapper(object):
     else:
       return setattr(self.__dict__["__innerobj__"], attrname, value)
 
-class pootleunit(Wrapper):
-  """a pounit with helpful methods for pootle"""
-  WrapUnitClass = po.pounit
-  def __init__(self, source=None, encoding="UTF-8", wrapunit=None):
-    # self.__innerobj__ must be the first attribute set
-    if wrapunit is None:
-      self.__innerobj__ = self.WrapUnitClass()
-    else:
-      self.__innerobj__ = wrapunit
-    self.encoding = po.encodingToUse(encoding)
-    if source is not None:
-      self.source = source
-
-  def __eq__(self, other):
-    return self.__innerobj__.__eq__(other)
-
-  def __str__(self):
-    return self.__innerobj__.__str__()
-
-  def merge(self, otherunit, overwrite=False, comments=True):
-    """We have to override this to pass the innerobj because a type test will 
-    be done on it."""
-    if isinstance(otherunit, pootleunit):
-      return self.__innerobj__.merge(otherunit.__innerobj__, overwrite=overwrite, comments=comments)
-    else:
-      return self.__innerobj__.merge(otherunit, overwrite=overwrite, comments=comments)
-
-  def buildfromunit(cls, unit):
-    """We have to override this, because we don't have an inner object to delegate to"""
-    return cls.WrapUnitClass.buildfromunit(unit)
-  buildfromunit = classmethod(buildfromunit)
-
 class LockedFile:
   """locked interaction with a filesystem file"""
   def __init__(self, filename):
@@ -280,14 +248,13 @@ class pootleassigns:
 
 class pootlefile(base.TranslationStore, Wrapper):
   """this represents a pootle-managed file and its associated files"""
-  UnitClass = pootleunit
+  innerclass = po.pofile
   x_generator = "Pootle %s" % __version__.ver
   def __init__(self, project=None, pofilename=None, generatestats=True):
     if pofilename:
       innerclass = factory.getclass(pofilename)
-      self.__innerobj__ = innerclass(unitclass=self.UnitClass)
-    else:
-      self.__innerobj__ = po.pofile(unitclass=self.UnitClass)
+    self.__innerobj__ = innerclass()
+    self.UnitClass = innerclass.UnitClass
     
     self.pofilename = pofilename
     if project is None:
@@ -334,7 +301,7 @@ class pootlefile(base.TranslationStore, Wrapper):
       if self.pomtime:
         self.reclassifysuggestions()
     else:
-      self.pendingfile = po.pofile(unitclass=self.UnitClass)
+      self.pendingfile = po.pofile()
       self.savependingfile()
 
   def savependingfile(self):
@@ -352,7 +319,7 @@ class pootlefile(base.TranslationStore, Wrapper):
       inputfile = open(self.tmfilename, "r")
       self.tmmtime, self.tmfile = tmmtime, factory.getobject(inputfile, ignore=".tm")
     else:
-      self.tmfile = po.pofile(unitclass=self.UnitClass)
+      self.tmfile = po.pofile()
 
   def reclassifysuggestions(self):
     """shortcut to only update classification of has-suggestion for all items"""
