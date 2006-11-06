@@ -179,8 +179,8 @@ class pootlestatistics:
     self.classify["total"] = []
     for checkname in self.basefile.checker.getfilters().keys():
       self.classify["check-" + checkname] = []
-    for item, poel in enumerate(self.basefile.transunits):
-      classes = self.classifyunit(poel)
+    for item, unit in enumerate(self.basefile.transunits):
+      classes = self.classifyunit(unit)
       if self.basefile.getsuggestions(item):
         classes.append("has-suggestion")
       for classname in classes:
@@ -194,16 +194,16 @@ class pootlestatistics:
     """counts the words in each of the units"""
     self.sourcewordcounts = []
     self.targetwordcounts = []
-    for poel in self.basefile.transunits:
-      self.sourcewordcounts.append([pocount.wordcount(text) for text in poel.source.strings])
-      self.targetwordcounts.append([pocount.wordcount(text) for text in poel.target.strings])
+    for unit in self.basefile.transunits:
+      self.sourcewordcounts.append([pocount.wordcount(text) for text in unit.source.strings])
+      self.targetwordcounts.append([pocount.wordcount(text) for text in unit.target.strings])
 
   def reclassifyunit(self, item):
-    """updates the classification of poel in self.classify"""
-    poel = self.basefile.transunits[item]
-    self.sourcewordcounts[item] = [pocount.wordcount(text) for text in poel.source.strings]
-    self.targetwordcounts[item] = [pocount.wordcount(text) for text in poel.target.strings]
-    classes = self.classifyunit(poel)
+    """updates the classification of a unit in self.classify"""
+    unit = self.basefile.transunits[item]
+    self.sourcewordcounts[item] = [pocount.wordcount(text) for text in unit.source.strings]
+    self.targetwordcounts[item] = [pocount.wordcount(text) for text in unit.target.strings]
+    classes = self.classifyunit(unit)
     if self.basefile.getsuggestions(item):
       classes.append("has-suggestion")
     for classname, matchingitems in self.classify.items():
