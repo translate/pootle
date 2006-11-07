@@ -246,15 +246,16 @@ class pootleassigns:
             assignitems.extend(actionitems)
     return assignitems
 
-class pootlefile(base.TranslationStore, Wrapper):
+class pootlefile(Wrapper):
   """this represents a pootle-managed file and its associated files"""
   innerclass = po.pofile
   x_generator = "Pootle %s" % __version__.ver
   def __init__(self, project=None, pofilename=None, generatestats=True):
     if pofilename:
       innerclass = factory.getclass(pofilename)
-    self.__innerobj__ = innerclass()
-    self.UnitClass = innerclass.UnitClass
+    innerobj = innerclass()
+    self.__innerobj__ = innerobj
+    self.UnitClass = innerobj.UnitClass
     
     self.pofilename = pofilename
     if project is None:
@@ -289,6 +290,16 @@ class pootlefile(base.TranslationStore, Wrapper):
     return newstore
   parsestring = classmethod(parsestring)
 
+  def parsefile(cls, storefile):
+    """Reads the given file (or opens the given filename) and parses back to an object"""
+    if isinstance(storefile, basestring):
+        storefile = open(storefile, "r")
+    if "r" in getattr(storefile, "mode", "r"):
+      storestring = storefile.read()
+    else:
+      storestring = ""
+    return cls.parsestring(storestring)
+  parsefile = classmethod(parsefile)
 
   def readpendingfile(self):
     """reads and parses the pending file corresponding to this file"""
