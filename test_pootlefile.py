@@ -10,14 +10,6 @@ from translate.misc import wStringIO
 
 import os
 
-class TestPootleUnit(test_po.TestPOUnit):
-    UnitClass = pootlefile.pootleunit
-    def poparse(self, posource):
-        """helper that parses po source without requiring files"""
-        dummyfile = wStringIO.StringIO(posource)
-        pofile = po.pofile(dummyfile, unitclass=self.UnitClass)
-        return pofile
-
 class TestPootleFile(test_po.TestPO):
     class pootletestfile(pootlefile.pootlefile):
         def __init__(self):
