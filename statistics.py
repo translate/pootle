@@ -87,8 +87,6 @@ class pootlestatistics:
       frompomtime = int(mtimes[0])
       frompendingmtime = int(mtimes[1])
     stats = {}
-    sourcewordcounts = []
-    targetwordcounts = []
     for line in statsstring.split("\n"):
       if not line.strip():
         continue
@@ -97,20 +95,20 @@ class pootlestatistics:
         continue
       name, items = line.split(":", 1)
       if name == "msgidwordcounts" or name == "sourcewordcounts":
-        sourcewordcounts = [[int(subitem.strip()) for subitem in item.strip().split("/")] for item in items.strip().split(",") if item]
+        stats["sourcewordcounts"] = [[int(subitem.strip()) for subitem in item.strip().split("/")] for item in items.strip().split(",") if item]
       elif name == "msgstrwordcounts" or name == "targetwordcounts":
-        targetwordcounts = [[int(subitem.strip()) for subitem in item.strip().split("/")] for item in items.strip().split(",") if item]
+        stats["targetwordcounts"] = [[int(subitem.strip()) for subitem in item.strip().split("/")] for item in items.strip().split(",") if item]
       else:
         items = [int(item.strip()) for item in items.strip().split(",") if item]
         stats[name.strip()] = items
     # save all the read times, data simultaneously
-    self.statspomtime, self.statspendingmtime, self.statsmtime, self.stats, self.sourcewordcounts, self.targetwordcounts = frompomtime, frompendingmtime, statsmtime, stats, sourcewordcounts, targetwordcounts
+    self.statspomtime, self.statspendingmtime, self.statsmtime, self.stats, self.sourcewordcounts, self.targetwordcounts = frompomtime, frompendingmtime, statsmtime, stats, stats["sourcewordcounts"], stats["targetwordcounts"]
     # if in old-style format (counts instead of items), recalculate
     totalitems = stats.get("total", [])
     if len(totalitems) == 1 and totalitems[0] != 0:
       self.calcstats()
       self.savestats()
-    if (len(sourcewordcounts) < len(totalitems)) or (len(targetwordcounts) < len(totalitems)):
+    if (len(stats["sourcewordcounts"]) < len(totalitems)) or (len(stats["targetwordcounts"]) < len(totalitems)):
       self.basefile.pofreshen()
       self.countwords()
       self.savestats()
