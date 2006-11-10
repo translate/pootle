@@ -115,6 +115,9 @@ class TranslatePage(pagelayout.PootleNavPage):
         "accept_button": self.localize("Accept"),
         "reject_button": self.localize("Reject"),
         "fuzzytext": self.localize("Fuzzy"),
+        # l10n: Heading above the textarea for translator comments.
+        "translator_comments_title": self.localize("Translator comments"),
+        "developer_comments_title": self.localize("Developer comments"),
         # l10n: This heading refers to related translations and terminology
         "related_title": self.localize("Related"),
         # optional sections, will appear if these values are replaced
@@ -297,6 +300,9 @@ class TranslatePage(pagelayout.PootleNavPage):
       if (fuzzyvalue==u'on'):
         newvalues["fuzzy"] = True
 
+      # Get the translator comments from the form. We need to remove carriage returns from the input.
+      newvalues["translator_comments"] = self.argdict.pop('translator_comments'+str(item), "").replace("\r", "")
+
       self.project.updatetranslation(self.pofilename, item, newvalues, self.session)
       
       self.lastitem = item
@@ -426,19 +432,23 @@ class TranslatePage(pagelayout.PootleNavPage):
       item = self.firstitem + row
       origdict = self.getorigdict(item, orig, item in self.editable)
       transmerge = {}
+
       if item in self.editable:
-        comments = self.escapetext(thepo.getnotes(), stripescapes=True)
+        translator_comments = thepo.getnotes(origin="translator")
+        developer_comments = self.escapetext(thepo.getnotes(origin="developer"), stripescapes=True)
         locations = " ".join(thepo.getlocations())
         tmsuggestions = self.project.gettmsuggestions(self.pofilename, self.item)
         tmsuggestions.extend(self.project.getterminology(self.session, self.pofilename, self.item))
         
         if self.reviewmode:
+          translator_comments = self.escapetext(thepo.getnotes(origin="translator"), stripescapes=True)
           itemsuggestions = [suggestion.target.strings for suggestion in suggestions[item]]
           transmerge = self.gettransreview(item, trans, itemsuggestions)
         else:
           transmerge = self.gettransedit(item, trans)
       else:
-        comments = thepo.getnotes()
+        translator_comments = thepo.getnotes(origin="translator")
+        developer_comments = thepo.getnotes(origin="developer")
         locations = ""
         transmerge = self.gettransview(item, trans)
       transdict = {"itemid": "trans%d" % item,
@@ -469,7 +479,8 @@ class TranslatePage(pagelayout.PootleNavPage):
                  "editable": item in self.editable,
                  "state_class": state_class,
                  "fuzzy": fuzzy,
-                 "comments": comments,
+                 "translator_comments": translator_comments,
+                 "developer_comments": developer_comments,
                  "locations": locations,
                  "tm": tmsuggestions,
                  }

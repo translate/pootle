@@ -244,12 +244,18 @@ textarea.translate-translation-fuzzy
 {
 	background-color: #DDD;
 }
-.translate-comments
+.translator-comments
+{
+	background-color: #b0d6de;
+	overflow: auto;
+}
+.developer-comments
 {
 	background-color: #b0d6de;
 	margin-top: 10px;
 	overflow: auto;
 }
+
 .translate-locations
 {
 	background-color: #DDD;

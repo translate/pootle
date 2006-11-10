@@ -439,6 +439,10 @@ class pootlefile(Wrapper):
       thepo.target = newvalues["target"]
     if newvalues.has_key("fuzzy"):
       thepo.markfuzzy(newvalues["fuzzy"])
+    if newvalues.has_key("translator_comments"):
+      thepo.removenotes()
+      if newvalues["translator_comments"]:
+        thepo.addnote(newvalues["translator_comments"])
       
     po_revision_date = time.strftime("%F %H:%M%z")
     headerupdates = {"PO_Revision_Date": po_revision_date, "X_Generator": self.x_generator}

@@ -340,7 +340,25 @@ class ServerTester:
         project = projects.TranslationProject("zxx", "testproject", tree)
         pofile = project.getpofile("test_fuzzy.po")
         assert not pofile.units[1].isfuzzy()
-        
+ 
+    def test_submit_translator_comments(self):
+        """tests that we can edit translator comments"""
+        self.login()
+        podir = self.setup_testproject_dir()
+        pofile_storename = os.path.join(podir, "test_upload.po")
+        pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
+        open(pofile_storename, "w").write(pocontents)
+        expected_pocontents = '# Some test comment\n# test comment line 2\n#: test.c\nmsgid "test"\nmsgstr "rest"\n'
+        fields = {"orig-pure0.0": "test", "trans0": "rest", "translator_comments0": "Some test comment\ntest comment line 2", "submit0": "submit", "pofilename": "test_upload.po"}
+        content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+        headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
+        translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
+        tree = potree.POTree(self.prefs.Pootle)
+        project = projects.TranslationProject("zxx", "testproject", tree)
+        pofile = project.getpofile("test_upload.po")
+        assert str(pofile.units[1]) == expected_pocontents
+
+       
     def test_navigation_url_parameters(self):
         """tests that the navigation urls (next/end etc) has the necessary parameters"""
         self.login()
