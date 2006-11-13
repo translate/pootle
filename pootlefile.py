@@ -301,6 +301,15 @@ class pootlefile(Wrapper):
     return cls.parsestring(storestring)
   parsefile = classmethod(parsefile)
 
+  def getheaderplural(self):
+    """returns values for nplural and plural values.  It tries to see if the 
+    file has it specified (in a po header or similar)."""
+    method = getattr(self.__innerobj__, "getheaderplural", None)
+    if method and callable(method):
+      return self.__innerobj__.getheaderplural()
+    else:
+      return None, None
+
   def readpendingfile(self):
     """reads and parses the pending file corresponding to this file"""
     if os.path.exists(self.pendingfilename):
