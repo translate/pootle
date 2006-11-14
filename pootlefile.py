@@ -310,6 +310,20 @@ class pootlefile(Wrapper):
     else:
       return None, None
 
+  def updateheaderplural(self, *args, **kwargs):
+    """updates the file header. If there is an updateheader function in the 
+    underlying store it will be delegated there."""
+    method = getattr(self.__innerobj__, "updateheaderplural", None)
+    if method and callable(method):
+      self.__innerobj__.updateheaderplural(*args, **kwargs)
+
+  def updateheader(self, **kwargs):
+    """updates the file header. If there is an updateheader function in the 
+    underlying store it will be delegated there."""
+    method = getattr(self.__innerobj__, "updateheader", None)
+    if method and callable(method):
+      self.__innerobj__.updateheader(**kwargs)
+
   def readpendingfile(self):
     """reads and parses the pending file corresponding to this file"""
     if os.path.exists(self.pendingfilename):
