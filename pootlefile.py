@@ -252,8 +252,8 @@ class pootlefile(Wrapper):
   x_generator = "Pootle %s" % __version__.ver
   def __init__(self, project=None, pofilename=None, generatestats=True):
     if pofilename:
-      innerclass = factory.getclass(pofilename)
-    innerobj = innerclass()
+      self.innerclass = factory.getclass(pofilename)
+    innerobj = self.innerclass()
     self.__innerobj__ = innerobj
     self.UnitClass = innerobj.UnitClass
     
