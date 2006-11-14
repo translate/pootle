@@ -272,6 +272,10 @@ class TranslatePage(pagelayout.PootleNavPage):
       else:
         continue
       delkeys.append(key)
+
+    # Get the translator comments from the form. We need to remove carriage returns from the input.
+    translator_comments = self.argdict.pop('translator_comments'+str(item), "").replace("\r", "")
+
     for key in delkeys:
       del self.argdict[key]
     for item in skips:
@@ -300,8 +304,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       if (fuzzyvalue==u'on'):
         newvalues["fuzzy"] = True
 
-      # Get the translator comments from the form. We need to remove carriage returns from the input.
-      newvalues["translator_comments"] = self.argdict.pop('translator_comments'+str(item), "").replace("\r", "")
+      newvalues["translator_comments"] = translator_comments
 
       self.project.updatetranslation(self.pofilename, item, newvalues, self.session)
       
