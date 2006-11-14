@@ -299,6 +299,41 @@ class ServerTester:
         pofile = project.getpofile("test_upload.po")
         assert str(pofile.units[1]) == expected_pocontents
 
+    def test_submit_plural_translation(self):
+        """tests that we can submit a translation with plurals"""
+        self.login()
+        podir = self.setup_testproject_dir()
+        pofile_storename = os.path.join(podir, "test_upload.po")
+        pocontents = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud string"\nmsgstr[1] "meervoud boodskap"\n'
+        open(pofile_storename, "w").write(pocontents)
+        expected_pocontents = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud"\nmsgstr[1] "meervoud"\n'
+        fields = {"orig-pure0.0": "singular", "trans0.0": "enkelvoud", "trans0.1": "meervoud", "submit0": "submit", "pofilename": "test_upload.po"}
+        content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+        headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
+        translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
+        tree = potree.POTree(self.prefs.Pootle)
+        project = projects.TranslationProject("zxx", "testproject", tree)
+        pofile = project.getpofile("test_upload.po")
+        assert str(pofile.units[1]) == expected_pocontents
+
+    def test_submit_plural_to_singular_lang(self):
+        """tests that we can submit a translation with plurals to a language without plurals."""
+        self.login()
+        podir = self.setup_testproject_dir()
+        pofile_storename = os.path.join(podir, "test_upload.po")
+        pocontents = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud string"\n'
+        open(pofile_storename, "w").write(pocontents)
+        expected_pocontents = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud"\n'
+        fields = {"orig-pure0.0": "singular", "trans0.0": "enkelvoud", "submit0": "submit", "pofilename": "test_upload.po"}
+        content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+        headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
+        translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
+        tree = potree.POTree(self.prefs.Pootle)
+        project = projects.TranslationProject("zxx", "testproject", tree)
+        pofile = project.getpofile("test_upload.po")
+        assert str(pofile.units[1]) == expected_pocontents
+
+
     def test_submit_fuzzy(self):
         """tests that we can mark a unit as fuzzy"""
         self.login()
