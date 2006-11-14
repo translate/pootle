@@ -214,10 +214,10 @@
                 <div py:if="item.editable and item.developer_comments" class="developer-comments" py:content="XML(item.developer_comments)">
                    Developer comments.
                 </div>
+              </span>
                 <div py:if="item.editable and item.locations" class="translate-locations" py:content="item.locations">
                    Locations
                 </div>
-              </span>
             </td>
             <td class="translate-translation translate-translation-${item.polarity} ${item.focus_class}">
               <div py:content="translator_comments_title">Translator comments:</div>
