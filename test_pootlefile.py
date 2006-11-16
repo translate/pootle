@@ -139,3 +139,41 @@ msgstr ""'''
         os.remove("test.po.lock")
         os.remove("test.po")
         os.remove("test.po.pending")
+
+    def test_updateunit(self):
+        """Test the updateunit() method."""
+        posource = '#: test.c\nmsgid "upd"\nmsgstr "update"\n'
+        testdir = os.path.join(self.testdir, 'unittest_project', 'xx')
+        filename = self.filename
+        filepath = os.path.join(testdir, filename)
+        file(filepath, 'w').write(posource)
+        dummy_project = projects.DummyProject(podir=testdir)
+        pofile = pootlefile.pootlefile(project=dummy_project, pofilename=filename)
+
+        newvalues = {}
+        pofile.updateunit(0, newvalues, None, None)
+        translation_unit = pofile.units[1]
+        assert translation_unit.target == "update"
+        assert not translation_unit.isfuzzy()
+        assert str(translation_unit) == posource
+
+        newvalues = {"target": "opdateer"}
+        pofile.updateunit(0, newvalues, None, None)
+        assert translation_unit.target == "opdateer"
+        assert not translation_unit.isfuzzy()
+        expected_posource = '#: test.c\nmsgid "upd"\nmsgstr "opdateer"\n'
+        assert str(translation_unit) == expected_posource
+
+        newvalues = {"fuzzy": True}
+        pofile.updateunit(0, newvalues, None, None)
+        assert translation_unit.target == "opdateer"
+        assert translation_unit.isfuzzy()
+        expected_posource = '#: test.c\n#, fuzzy\nmsgid "upd"\nmsgstr "opdateer"\n'
+        assert str(translation_unit) == expected_posource
+
+        newvalues = {"translator_comments": "Test comment."}
+        pofile.updateunit(0, newvalues, None, None)
+        assert translation_unit.target == "opdateer"
+        assert translation_unit.isfuzzy()
+        expected_posource = '# Test comment.\n#: test.c\n#, fuzzy\nmsgid "upd"\nmsgstr "opdateer"\n'
+        assert str(translation_unit) == expected_posource
