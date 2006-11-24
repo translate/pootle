@@ -377,8 +377,8 @@ class pootlefile(Wrapper):
   def getsuggestions(self, item):
     """find all the suggestion items submitted for the given (pofile or pofilename) and item"""
     self.readpendingfile()
-    thepo = self.transunits[item]
-    locations = thepo.getlocations()
+    unit = self.transunits[item]
+    locations = unit.getlocations()
     # TODO: review the matching method
     suggestpos = [suggestpo for suggestpo in self.pendingfile.units if suggestpo.getlocations() == locations]
     return suggestpos
@@ -386,8 +386,8 @@ class pootlefile(Wrapper):
   def addsuggestion(self, item, suggtarget, username):
     """adds a new suggestion for the given item to the pendingfile"""
     self.readpendingfile()
-    thepo = self.transunits[item]
-    newpo = thepo.copy()
+    unit = self.transunits[item]
+    newpo = unit.copy()
     if username is not None:
       newpo.msgidcomments.append('"_: suggested by %s\\n"' % username)
     newpo.target = suggtarget
@@ -399,8 +399,8 @@ class pootlefile(Wrapper):
   def deletesuggestion(self, item, suggitem):
     """removes the suggestion from the pending file"""
     self.readpendingfile()
-    thepo = self.transunits[item]
-    locations = thepo.getlocations()
+    unit = self.transunits[item]
+    locations = unit.getlocations()
     # TODO: remove the suggestion in a less brutal manner
     pendingitems = [pendingitem for pendingitem, suggestpo in enumerate(self.pendingfile.units) if suggestpo.getlocations() == locations]
     pendingitem = pendingitems[suggitem]
@@ -411,8 +411,8 @@ class pootlefile(Wrapper):
   def gettmsuggestions(self, item):
     """find all the tmsuggestion items submitted for the given item"""
     self.readtmfile()
-    thepo = self.transunits[item]
-    locations = thepo.getlocations()
+    unit = self.transunits[item]
+    locations = unit.getlocations()
     # TODO: review the matching method
     # Can't simply use the location index, because we want multiple matches
     suggestpos = [suggestpo for suggestpo in self.tmfile.units if suggestpo.getlocations() == locations]
@@ -456,16 +456,16 @@ class pootlefile(Wrapper):
   def updateunit(self, item, newvalues, userprefs, languageprefs):
     """updates a translation with a new target value"""
     self.pofreshen()
-    thepo = self.transunits[item]
+    unit = self.transunits[item]
 
     if newvalues.has_key("target"):
-      thepo.target = newvalues["target"]
+      unit.target = newvalues["target"]
     if newvalues.has_key("fuzzy"):
-      thepo.markfuzzy(newvalues["fuzzy"])
+      unit.markfuzzy(newvalues["fuzzy"])
     if newvalues.has_key("translator_comments"):
-      thepo.removenotes()
+      unit.removenotes()
       if newvalues["translator_comments"]:
-        thepo.addnote(newvalues["translator_comments"])
+        unit.addnote(newvalues["translator_comments"])
       
     po_revision_date = time.strftime("%F %H:%M%z")
     headerupdates = {"PO_Revision_Date": po_revision_date, "X_Generator": self.x_generator}

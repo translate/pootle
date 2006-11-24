@@ -792,10 +792,10 @@ class TranslationProject(object):
     if items is None:
       items = range(len(pofile.transunits))
     for itemno in items:
-      thepo = pofile.transunits[itemno]
+      unit = pofile.transunits[itemno]
       doc = {"pofilename": pofilename, "pomtime": str(pomtime), "itemno": str(itemno)}
-      orig = "\n".join(thepo.source.strings)
-      trans = "\n".join(thepo.target.strings)
+      orig = "\n".join(unit.source.strings)
+      trans = "\n".join(unit.target.strings)
       doc["msgid"] = orig
       doc["msgstr"] = trans
       addlist.append(doc)
@@ -872,7 +872,7 @@ class TranslationProject(object):
   def searchpoitems(self, pofilename, item, search):
     """finds the next item matching the given search"""
     if search.searchtext:
-      pogrepfilter = pogrep.pogrepfilter(search.searchtext, None, ignorecase=True)
+      grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
     for pofilename in self.searchpofilenames(pofilename, search, includelast=True):
       pofile = self.getpofile(pofilename)
       if indexer.HAVE_INDEXER:
@@ -894,8 +894,8 @@ class TranslationProject(object):
             continue
         # TODO: move this to iteritems
         if search.searchtext:
-          thepo = pofile.transunits[item]
-          if pogrepfilter.filterelement(thepo):
+          unit = pofile.transunits[item]
+          if grepfilter.filterelement(unit):
             yield pofilename, item
         else:
           yield pofilename, item
@@ -913,7 +913,7 @@ class TranslationProject(object):
     if not "assign" in self.getrights(session):
       raise RightsError(session.localize("You do not have rights to alter assignments here"))
     if search.searchtext:
-      pogrepfilter = pogrep.pogrepfilter(search.searchtext, None, ignorecase=True)
+      grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
     if not isinstance(assignto, list):
       assignto = [assignto]
     usercount = len(assignto)
@@ -935,8 +935,8 @@ class TranslationProject(object):
         # TODO: move this to iteritems
         if search.searchtext:
           validitem = False
-          thepo = pofile.transunits[item]
-          if pogrepfilter.filterelement(thepo):
+          unit = pofile.transunits[item]
+          if grepfilter.filterelement(unit):
             validitem = True
           if not validitem:
             continue
@@ -954,15 +954,15 @@ class TranslationProject(object):
     if not "assign" in self.getrights(session):
       raise RightsError(session.localize("You do not have rights to alter assignments here"))
     if search.searchtext:
-      pogrepfilter = pogrep.pogrepfilter(search.searchtext, None, ignorecase=True)
+      grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
     assigncount = 0
     for pofilename in self.searchpofilenames(None, search, includelast=True):
       pofile = self.getpofile(pofilename)
       for item in pofile.iteritems(search, None):
         # TODO: move this to iteritems
         if search.searchtext:
-          thepo = pofile.transunits[item]
-          if pogrepfilter.filterelement(thepo):
+          unit = pofile.transunits[item]
+          if grepfilter.filterelement(unit):
             pofile.assigns.unassign(item, assignedto, action)
             assigncount += 1
         else:
@@ -1127,7 +1127,7 @@ class TranslationProject(object):
   def getitem(self, pofilename, item):
     """returns a particular item from a particular po file's orig, trans strings as a tuple"""
     pofile = self.getpofile(pofilename)
-    thepo = pofile.transunits[item]
+    unit = pofile.transunits[item]
     orig, trans = self.source, self.target
     return orig, trans
 
@@ -1306,10 +1306,10 @@ class TranslationProject(object):
         pofile.makeindex()
       elif not hasattr(pofile, "sourceindex"):
         pofile.makeindex()
-      thepo = pofile.sourceindex.get(message, None)
-      if not thepo or thepo.isblankmsgstr():
+      unit = pofile.sourceindex.get(message, None)
+      if not unit or unit.isblankmsgstr():
         continue
-      tmsg = thepo.target
+      tmsg = unit.target
       if tmsg is not None:
         return tmsg
     return message
@@ -1323,10 +1323,10 @@ class TranslationProject(object):
           pofile.makeindex()
         elif not hasattr(pofile, "sourceindex"):
           pofile.makeindex()
-        thepo = pofile.sourceindex.get(message, None)
-        if not thepo or thepo.isblankmsgstr() or thepo.isfuzzy():
+        unit = pofile.sourceindex.get(message, None)
+        if not unit or unit.isblankmsgstr() or unit.isfuzzy():
           continue
-        tmsg = thepo.target
+        tmsg = unit.target
         if tmsg is not None:
           if isinstance(tmsg, unicode):
             return tmsg
@@ -1348,10 +1348,10 @@ class TranslationProject(object):
         nplural, pluralequation = pofile.getheaderplural()
         if pluralequation:
           pluralfn = gettext.c2py(pluralequation)
-          thepo = pofile.sourceindex.get(singular, None)
-          if not thepo or thepo.isblankmsgstr() or thepo.isfuzzy():
+          unit = pofile.sourceindex.get(singular, None)
+          if not unit or unit.isblankmsgstr() or unit.isfuzzy():
             continue
-          tmsg = thepo.target.strings[pluralfn(n)]
+          tmsg = unit.target.strings[pluralfn(n)]
           if tmsg is not None:
             if isinstance(tmsg, unicode):
               return tmsg

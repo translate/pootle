@@ -82,10 +82,10 @@ msgstr ""'''
         posource = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
         pofile = self.poparse(posource)
         assert len(pofile.units) == 1
-        thepo = pofile.units[0]
-        assert thepo.getlocations() == ["test.c"]
-        assert thepo.source == "test"
-        assert thepo.target == "rest"
+        unit = pofile.units[0]
+        assert unit.getlocations() == ["test.c"]
+        assert unit.source == "test"
+        assert unit.target == "rest"
 
     def test_filename(self):
         """checks and tests the filename API"""

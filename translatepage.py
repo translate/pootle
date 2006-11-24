@@ -413,10 +413,10 @@ class TranslatePage(pagelayout.PootleNavPage):
     items = []
     if self.reviewmode and self.item is not None:
       suggestions = {self.item: self.project.getsuggestions(self.pofilename, self.item)}
-    for row, thepo in enumerate(self.translations):
+    for row, unit in enumerate(self.translations):
       tmsuggestions = []
-      orig = thepo.source.strings
-      trans = thepo.target.strings
+      orig = unit.source.strings
+      trans = unit.target.strings
       nplurals, plurals = self.project.getpofile(self.pofilename).getheaderplural()
       try:
         if len(orig) > 1:
@@ -437,21 +437,21 @@ class TranslatePage(pagelayout.PootleNavPage):
       transmerge = {}
 
       if item in self.editable:
-        translator_comments = thepo.getnotes(origin="translator")
-        developer_comments = self.escapetext(thepo.getnotes(origin="developer"), stripescapes=True)
-        locations = " ".join(thepo.getlocations())
+        translator_comments = unit.getnotes(origin="translator")
+        developer_comments = self.escapetext(unit.getnotes(origin="developer"), stripescapes=True)
+        locations = " ".join(unit.getlocations())
         tmsuggestions = self.project.gettmsuggestions(self.pofilename, self.item)
         tmsuggestions.extend(self.project.getterminology(self.session, self.pofilename, self.item))
         
         if self.reviewmode:
-          translator_comments = self.escapetext(thepo.getnotes(origin="translator"), stripescapes=True)
+          translator_comments = self.escapetext(unit.getnotes(origin="translator"), stripescapes=True)
           itemsuggestions = [suggestion.target.strings for suggestion in suggestions[item]]
           transmerge = self.gettransreview(item, trans, itemsuggestions)
         else:
           transmerge = self.gettransedit(item, trans)
       else:
-        translator_comments = thepo.getnotes(origin="translator")
-        developer_comments = thepo.getnotes(origin="developer")
+        translator_comments = unit.getnotes(origin="translator")
+        developer_comments = unit.getnotes(origin="developer")
         locations = ""
         transmerge = self.gettransview(item, trans)
       transdict = {"itemid": "trans%d" % item,
@@ -469,7 +469,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       
       state_class = ""
       fuzzy = None
-      if thepo.isfuzzy():
+      if unit.isfuzzy():
         state_class += "translate-translation-fuzzy"
         fuzzy = "checked"
 
