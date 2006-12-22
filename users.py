@@ -518,6 +518,7 @@ class PootleSession(session.LoginSession):
       if not getattr(self.prefs, "uilanguage", "") and self.language_set:
         self.setinterfaceoptions({"option-uilanguage": self.language_set})
     self.translation = self.server.gettranslation(self.language)
+    self.checkstatus(None, None)
 
   def validate(self):
     """checks if this session is valid (which means the user must be activated)"""
