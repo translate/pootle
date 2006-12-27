@@ -1172,19 +1172,14 @@ class TranslationProject(object):
       pofile = self.getpofile(pofilename)
     pofile.track(item, "suggestion by %s accepted by %s" % (self.getsuggester(pofile, item, suggitem), session.username))
     pofile.deletesuggestion(item, suggitem)
-    self.updatetranslation(pofilename, item, newtrans, session)
+    self.updatetranslation(pofilename, item, {"target": newtrans, "fuzzy": False}, session)
 
   def getsuggester(self, pofile, item, suggitem):
     """returns who suggested the given item's suggitem if recorded, else None"""
     if isinstance(pofile, (str, unicode)):
       pofilename = pofile
       pofile = self.getpofile(pofilename)
-    suggestionpo = pofile.getsuggestions(item)[suggitem]
-    for msgidcomment in suggestionpo.msgidcomments:
-      if msgidcomment.find("suggested by ") != -1:
-        suggestedby = po.unquotefrompo([msgidcomment]).replace("_:", "", 1).replace("suggested by ", "", 1).strip()
-        return suggestedby
-    return None
+    return pofile.getsuggester(item, suggitem)
 
   def rejectsuggestion(self, pofile, item, suggitem, newtrans, session):
     """rejects the suggestion and removes it from the pending file"""

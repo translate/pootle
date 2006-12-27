@@ -23,6 +23,7 @@
 
 from translate.storage import base
 from translate.storage import po
+from translate.storage import xliff
 from translate.storage import factory
 from translate.misc.multistring import multistring
 from Pootle import __version__
@@ -363,7 +364,7 @@ class pootlefile(Wrapper):
       locations = tuple(thesugg.getlocations())
       sugglocations[locations] = thesugg
     suggitems = [item for item in self.transunits if tuple(item.getlocations()) in sugglocations]
-    havesuggestions = self.classify["has-suggestion"]
+    havesuggestions = self.statistics.classify["has-suggestion"]
     for item, poel in enumerate(self.transunits):
       if (poel in suggitems) != (item in havesuggestions):
         if poel in suggitems:
@@ -371,22 +372,31 @@ class pootlefile(Wrapper):
         else:
           havesuggestions.remove(item)
         havesuggestions.sort()
-    self.calcstats()
-    self.savestats()
+    self.statistics.calcstats()
+    self.statistics.savestats()
 
   def getsuggestions(self, item):
-    """find all the suggestion items submitted for the given (pofile or pofilename) and item"""
-    self.readpendingfile()
+    """find all the suggestion items submitted for the given item"""
     unit = self.transunits[item]
+    if isinstance(unit, xliff.xliffunit):
+      return unit.getalttrans()
+
     locations = unit.getlocations()
+    self.readpendingfile()
     # TODO: review the matching method
     suggestpos = [suggestpo for suggestpo in self.pendingfile.units if suggestpo.getlocations() == locations]
     return suggestpos
 
   def addsuggestion(self, item, suggtarget, username):
-    """adds a new suggestion for the given item to the pendingfile"""
-    self.readpendingfile()
+    """adds a new suggestion for the given item"""
     unit = self.transunits[item]
+    if isinstance(unit, xliff.xliffunit):
+      unit.addalttrans(suggtarget, origin=username)
+      self.statistics.reclassifyunit(item)
+      self.savepofile()
+      return
+
+    self.readpendingfile()
     newpo = unit.copy()
     if username is not None:
       newpo.msgidcomments.append('"_: suggested by %s\\n"' % username)
@@ -398,15 +408,31 @@ class pootlefile(Wrapper):
 
   def deletesuggestion(self, item, suggitem):
     """removes the suggestion from the pending file"""
-    self.readpendingfile()
     unit = self.transunits[item]
-    locations = unit.getlocations()
-    # TODO: remove the suggestion in a less brutal manner
-    pendingitems = [pendingitem for pendingitem, suggestpo in enumerate(self.pendingfile.units) if suggestpo.getlocations() == locations]
-    pendingitem = pendingitems[suggitem]
-    del self.pendingfile.units[pendingitem]
-    self.savependingfile()
+    if hasattr(unit, "xmlelement"):
+      suggestions = self.getsuggestions(item)
+      unit.delalttrans(suggestions[suggitem])
+    else:
+      self.readpendingfile()
+      locations = unit.getlocations()
+      # TODO: remove the suggestion in a less brutal manner
+      pendingitems = [pendingitem for pendingitem, suggestpo in enumerate(self.pendingfile.units) if suggestpo.getlocations() == locations]
+      pendingitem = pendingitems[suggitem]
+      del self.pendingfile.units[pendingitem]
+      self.savependingfile()
     self.statistics.reclassifyunit(item)
+
+  def getsuggester(self, item, suggitem):
+    """returns who suggested the given item's suggitem if recorded, else None"""
+    unit = self.getsuggestions(item)[suggitem]
+    if hasattr(unit, "xmlelement"):
+      return unit.xmlelement.getAttribute("origin")
+
+    for msgidcomment in unit.msgidcomments:
+      if msgidcomment.find("suggested by ") != -1:
+        suggestedby = po.unquotefrompo([msgidcomment]).replace("_:", "", 1).replace("suggested by ", "", 1).strip()
+        return suggestedby
+    return None
 
   def gettmsuggestions(self, item):
     """find all the tmsuggestion items submitted for the given item"""
