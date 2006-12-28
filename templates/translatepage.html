@@ -27,7 +27,7 @@
       <div py:if="search" class="searchform" dir="$uidir" lang="$uilanguage">
         <form action="translate.html" method="post" name="searchform" id="searchform">
           ${search.title}
-          <input type="text" size="15" name="searchtext" value="" />
+          <input type="text" size="15" name="searchtext" value="${searchtext}" />
           <input type="hidden" name="pofilename" value="${pofilename}" />
         </form>
       </div>
