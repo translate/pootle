@@ -222,7 +222,8 @@ class TranslatePage(pagelayout.PootleNavPage):
     rejects = []
     translations = {}
     suggestions = {}
-    pluralitems = {}
+    comments = {}
+    fuzzies = {}
     keymatcher = sre.compile("(\D+)([0-9.]+)")
     def parsekey(key):
       match = keymatcher.match(key)
@@ -258,6 +259,12 @@ class TranslatePage(pagelayout.PootleNavPage):
         accepts.append((item, pointitem))
       elif keytype == "reject":
         rejects.append((item, pointitem))
+      elif keytype == "translator_comments":
+        # We need to remove carriage returns from the input.
+        value = value.replace("\r", "")
+        comments[item] = value
+      elif keytype == "fuzzy":
+        fuzzies[item] = value
       elif keytype == "trans":
         value = self.unescapesubmition(value)
         if pointitem is not None:
@@ -273,8 +280,6 @@ class TranslatePage(pagelayout.PootleNavPage):
         continue
       delkeys.append(key)
 
-    # Get the translator comments from the form. We need to remove carriage returns from the input.
-    translator_comments = self.argdict.pop('translator_comments'+str(item), "").replace("\r", "")
 
     for key in delkeys:
       del self.argdict[key]
@@ -298,13 +303,13 @@ class TranslatePage(pagelayout.PootleNavPage):
       if isinstance(newvalues["target"], dict) and len(newvalues["target"]) == 1 and 0 in newvalues["target"]:
         newvalues["target"] = newvalues["target"][0]
 
-      # Get the fuzzy bool value from the user supplied form variables.
-      fuzzyvalue = self.argdict.pop('fuzzy'+str(item), None)
       newvalues["fuzzy"] = False
-      if (fuzzyvalue==u'on'):
+      if (fuzzies.get(item) == u'on'):
         newvalues["fuzzy"] = True
 
-      newvalues["translator_comments"] = translator_comments
+      translator_comments = comments.get(item)
+      if translator_comments:
+        newvalues["translator_comments"] = translator_comments
 
       self.project.updatetranslation(self.pofilename, item, newvalues, self.session)
       
