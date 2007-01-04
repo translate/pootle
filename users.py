@@ -431,6 +431,8 @@ class OptionalLoginAppServer(server.LoginAppServer):
       redirectpage = pagelayout.PootlePage("Redirecting...", {}, session)
       redirectpage.templatename = "redirect"
       redirectpage.templatevars = {
+          # BUG: We won't redirect to registration page, we will go to 
+          # activation or login
           "pagetitle": session.localize("Redirecting to Registration Page..."),
           "refresh": 10,
           "refreshurl": redirecturl,
