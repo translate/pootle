@@ -80,6 +80,9 @@
                   <span class="translation-text" py:content="XML(item.orig.plural_text)">plural text</span><br />
                 </span>
               </div>
+                <div py:if="item.editable and item.message_context" class="translate-context" py:content="item.message_context">
+                   Message Context
+                </div>
             </td>
 
             <!-- Cell with translation (view/suggest/review/edit) -->

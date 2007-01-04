@@ -256,6 +256,14 @@ textarea.translate-translation-fuzzy
 	overflow: auto;
 }
 
+.translate-context
+{
+	background-color: #EEE;
+	font-family: monospace;
+	margin-top: 10px;
+	overflow: auto;
+}
+
 .translate-locations
 {
 	background-color: #DDD;

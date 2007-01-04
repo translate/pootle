@@ -24,6 +24,7 @@ from jToolkit import spellcheck
 from Pootle import pagelayout
 from Pootle import projects
 from Pootle import pootlefile
+from translate.storage import po
 import difflib
 import urllib
 
@@ -441,10 +442,13 @@ class TranslatePage(pagelayout.PootleNavPage):
       origdict = self.getorigdict(item, orig, item in self.editable)
       transmerge = {}
 
+      message_context = ""
       if item in self.editable:
         translator_comments = unit.getnotes(origin="translator")
         developer_comments = self.escapetext(unit.getnotes(origin="developer"), stripescapes=True)
         locations = " ".join(unit.getlocations())
+        if isinstance(unit, po.pounit):
+          message_context = "".join(unit.getcontext())
         tmsuggestions = self.project.gettmsuggestions(self.pofilename, self.item)
         tmsuggestions.extend(self.project.getterminology(self.session, self.pofilename, self.item))
         
@@ -490,6 +494,7 @@ class TranslatePage(pagelayout.PootleNavPage):
                  "translator_comments": translator_comments,
                  "developer_comments": developer_comments,
                  "locations": locations,
+                 "message_context": message_context,
                  "tm": tmsuggestions,
                  }
       items.append(itemdict)
