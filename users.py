@@ -230,13 +230,13 @@ class OptionalLoginAppServer(server.LoginAppServer):
       options = getattr(self, "options", None)
       # with unit tests we might not have self.options, therefore this test
       if options:
-        if self.options.browsererrors == 'traceback':
+        if options.browsererrors == 'traceback':
           browsertraceback = traceback
-        if self.options.logerrors == 'traceback':
+        if options.logerrors == 'traceback':
           self.errorhandler.logerror(traceback)
-        elif self.options.logerrors == 'exception':
+        elif options.logerrors == 'exception':
           self.errorhandler.logerror(exceptionstr)
-        elif self.options.logerrors == 'message':
+        elif options.logerrors == 'message':
           self.errorhandler.logerror(errormessage)
       else:
         self.errorhandler.logerror(traceback)
