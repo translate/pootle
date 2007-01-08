@@ -535,7 +535,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     """adds a box that lets the user assign strings"""
     return {"title": self.localize("Upload File"),
             "file_title": self.localize("Select file to upload"),
-            "overwrite_title": self.localize("Overwrite File"),
+            "overwrite_title": self.localize("Overwrite File?"),
             "overwrite_true": self.localize("Yes"),
             "overwrite_false": self.localize("No"),
             "overwrite_buttontype": "radio",
