@@ -195,7 +195,7 @@ class TranslationProject(object):
     for username, userprefs in session.loginchecker.users.iteritems():
       if usableuser(username, userprefs):
         # Let's build a nice descriptive name for use in the interface. It will
-        # contain both the usernaame and the full name, if available.
+        # contain both the username and the full name, if available.
         name = getattr(userprefs, "name", None)
         if name:
           description = "%s (%s)" % (name, username)
