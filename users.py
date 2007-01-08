@@ -75,7 +75,7 @@ class LoginPage(pagelayout.PootlePage):
       languageoptions += self.languagenames.items()
     else:
       languageoptions += self.languagenames
-    return [{"code": key, "name": value, "selected": key==session.language or None} for key, value in languageoptions]
+    return [{"code": key, "name": value, "selected": key==session.language or None} for key, value in languageoptions if key != 'templates']
 
 class RegisterPage(pagelayout.PootlePage):
   """page for new registrations"""
@@ -197,6 +197,8 @@ class UserOptions(pagelayout.PootlePage):
         uilanguage = userlanguages[0]
     languageoptions = [{"code": '', "name": ''}]
     for code, name in self.potree.getlanguages():
+      if code == "templates":
+        continue
       languageoptions.append({"code": code, "name": name, "selected": uilanguage == code or None})
     options = {"inputheight": self.localize("Input Height (in lines)"), "inputwidth": self.localize("Input Width (in characters)"),
           "viewrows": self.localize("Number of rows in view mode"), 
