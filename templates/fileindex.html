@@ -80,7 +80,7 @@
             <form py:if="item.goal.show_adduser" action="" method="post" name="goaluserform">
               <input type="hidden" name="editgoalname" value="${item.goal.name}"/>
               <select name="newgoaluser">
-                <option py:for="user in item.goal.otherusers" py:content="item.goal.otherusers[user].description">Username</option>
+                <option py:for="user in item.goal.otherusers" value="${user}" py:content="item.goal.otherusers[user].description">Username</option>
               </select>
               <input type="submit" name="doeditgoalusers" value="${item.goal.adduser_title}"/>
             </form>
