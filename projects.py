@@ -172,7 +172,7 @@ class TranslationProject(object):
           if self.languagecode == "en":
             rights = "view, archive, pocompile"
           else:
-            rights = "view, review, translate, archive, pocompile"
+            rights = "view, suggest, review, translate, archive, pocompile"
         else:
           rights = getattr(rightstree, "default", None)
       else:
