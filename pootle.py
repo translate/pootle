@@ -170,6 +170,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
             reldirname = dirname.replace(dummyproject.podir, "")
             for fname in fnames:
               fpath = os.path.join(reldirname, fname)
+              #TODO: PO specific
               if fname.endswith(".po") and not os.path.isdir(os.path.join(dummyproject.podir, fpath)):
                 print "refreshing stats for", fpath
                 projects.pootlefile.pootlefile(dummyproject, fpath).updatequickstats()
@@ -522,8 +523,8 @@ class PootleOptionParser(simplewebserver.WebOptionParser):
 
 def checkversions():
   """Checks that version dependencies are met"""
-  if not hasattr(toolkitversion, "build") or toolkitversion.build < 9900:
-    raise RuntimeError("requires Translate Toolkit version >= 0.10.  Current installed version is: %s" % toolkitversion.ver)
+  if not hasattr(toolkitversion, "build") or toolkitversion.build < 10000:
+    raise RuntimeError("requires Translate Toolkit version >= 1.0.  Current installed version is: %s" % toolkitversion.ver)
 
 def usepsyco(options):
   # options.psyco == None means the default, which is "full", but don't give a warning...
