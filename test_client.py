@@ -154,8 +154,8 @@ class ServerTester:
     def test_upload_new_file(self):
         """tests that we can upload a new file into a project"""
         self.login()
-        podir = self.setup_testproject_dir(perms="view, translate")
-        fields = [("doupload", "Upload File"), ("dooverwrite", "No")]
+        podir = self.setup_testproject_dir(perms="view, translate, admin")
+        fields = [("doupload", "Upload File")]
         pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
         files = [("uploadfile", "test_upload.po", pocontents)]
         content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
@@ -171,8 +171,8 @@ class ServerTester:
     def test_upload_new_xlifffile(self):
         """tests that we can upload a new xliff file into a project"""
         self.login()
-        podir = self.setup_testproject_dir(perms="view, translate")
-        fields = [("doupload", "Upload File"),("dooverwrite", "No")]
+        podir = self.setup_testproject_dir(perms="view, translate, admin")
+        fields = [("doupload", "Upload File")]
         xliffcontents = '''<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1"><file datatype="po" original="test_upload.po" source-language="en-US"><body><trans-unit id="1" xml:space="preserve"><source>test</source><target state="translated">rest</target><context-group name="po-reference" purpose="location"><context context-type="sourcefile">test.c</context></context-group></trans-unit></body></file></xliff>'''
         pocontents_expected = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
@@ -191,15 +191,22 @@ class ServerTester:
     def test_upload_overwrite(self):
         """tests that we can overwrite a file in a project"""
         self.login()
-        transdir = self.setup_testproject_dir(perms="view, translate")
-        fields = [("doupload", "Upload File"),("dooverwrite", "No")]
+        podir = self.setup_testproject_dir(perms="view, translate, overwrite")
 
-        pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n#: test.c\nmsgid "zoidburg"\nmsgstr "wbuwbuwbu"'
+        tree = potree.POTree(self.prefs.Pootle)
+        project = projects.TranslationProject("zxx", "testproject", tree)
+        po1contents = '#: test.c\nmsgid "test"\nmsgstr ""\n'
+        open(os.path.join(podir, "test_upload.po"), "w").write(po1contents)
+
+        fields = [("doupload", "Upload File"),("dooverwrite", "No")]
+        pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
         files = [("uploadfile", "test_upload.po", pocontents)]
         content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/", upload_contents, headers)
         assert ' href="test_upload.po?' in response
+        # Now we only test with 'in' since the header is added
+        assert pocontents in self.fetch_page("zxx/testproject/test_upload.po")
         firstpofile = self.fetch_page("zxx/testproject/test_upload.po")
 
         fields = [("doupload", "Upload File"),("dooverwrite", "Yes")]
@@ -208,14 +215,13 @@ class ServerTester:
         content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/", upload_contents, headers)
-        secondpofile = self.fetch_page("zxx/testproject/test_upload.po")
-        assert "zoidburg" not in secondpofile
+        assert pocontents == self.fetch_page("zxx/testproject/test_upload.po")
 
     def test_upload_new_archive(self):
         """tests that we can upload a new archive of files into a project"""
         self.login()
-        podir = self.setup_testproject_dir(perms="view, translate")
-        fields = [("doupload", "Upload File"), ("dooverwrite", "No")]
+        podir = self.setup_testproject_dir(perms="view, translate, admin")
+        fields = [("doupload", "Upload File")]
         po1contents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
         po2contents = '#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
         archivefile = wStringIO.StringIO()
@@ -244,7 +250,7 @@ class ServerTester:
         po1contents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
         open(os.path.join(podir, "test_existing.po"), "w").write(po1contents)
         po2contents = '#: test.c\nmsgid "test"\nmsgstr "rested"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
-        fields = [("doupload", "Upload File"), ("dooverwrite", "No")]
+        fields = [("doupload", "Upload File")]
         files = [("uploadfile", "test_existing.po", po2contents)]
         content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
@@ -292,7 +298,7 @@ class ServerTester:
  </trans-unit>
 </body></file></xliff>
 '''
-        fields = [("doupload", "Upload File"), ("dooverwrite", "No")]
+        fields = [("doupload", "Upload File")]
         files = [("uploadfile", "test_existing.xlf", xlfcontents)]
         content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
