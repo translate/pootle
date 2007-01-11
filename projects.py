@@ -137,6 +137,7 @@ class TranslationProject(object):
     return [("view", localize("View")),
             ("suggest", localize("Suggest")),
             ("translate", localize("Translate")),
+            ("overwrite", localize("Overwrite")),
             # l10n: Verb
             ("review", localize("Review")),
             # l10n: Verb
@@ -489,19 +490,24 @@ class TranslationProject(object):
     else:
       pofilename = filename
       popathname = pathname
+
+    rights = self.getrights(session)
+
     if os.path.exists(popathname) and not overwrite:
       origpofile = self.getpofile(os.path.join(dirname, pofilename))
       newfileclass = factory.getclass(pathname)
       infile = cStringIO.StringIO(contents)
       newfile = newfileclass.parsefile(infile)
-      if "admin" in self.getrights(session):
+      if "admin" in rights:
         origpofile.mergefile(newfile, session.username)
-      elif "translate" in self.getrights(session):
+      elif "translate" in rights:
         origpofile.mergefile(newfile, session.username, allownewstrings=False)
       else:
         raise RightsError(session.localize("You do not have rights to upload files here"))
     else:
-      if "admin" not in self.getrights(session):
+      if overwrite and not ("admin" in rights or "overwrite" in rights):
+        raise RightsError(session.localize("You do not have rights to overwrite files here"))
+      elif not os.path.exists(popathname) and not ("admin" in rights or "overwrite" in rights):
         raise RightsError(session.localize("You do not have rights to upload new files here"))
       outfile = open(popathname, "wb")
       outfile.write(contents)
