@@ -540,10 +540,14 @@ class ProjectIndex(pagelayout.PootleNavPage):
             }
     if "admin" in self.rights or "overwrite" in self.rights:
       uploadbox.update({
-            "overwrite_title": self.localize("Overwrite File?"),
-            "overwrite_true": self.localize("Yes"),
-            "overwrite_false": self.localize("No"),
-            "overwrite_buttontype": "radio"
+            #l10n: radio button text
+            "overwrite": self.localize("Overwrite"),
+            #l10n: tooltip
+            "overwrite_title": self.localize("Overwrite the current file if it exists"),
+            #l10n: radio button text
+            "merge": self.localize("Merge"),
+            #l10n: tooltip
+            "merge_title": self.localize("Merge the file with the current file and turn conflicts into suggestions"),
             })
     return uploadbox
 

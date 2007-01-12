@@ -131,10 +131,9 @@
       <div>
         <input type="file" name="uploadfile" size="15" class="upload" title="${upload.file_title}" />
       </div>
-      <div py:if="upload.overwrite_title">
-        <span py:content="upload.overwrite_title" />
-        <input type="${upload.overwrite_buttontype}" name="dooverwrite" value="Yes" py:content="upload.overwrite_true"/>
-        <input type="${upload.overwrite_buttontype}" name="dooverwrite" checked="checked" value="No" py:content="upload.overwrite_false"/>
+      <div py:if="upload.overwrite">
+        <input type="radio" name="dooverwrite" value="Yes" title="${upload.overwrite_title}" py:content="upload.overwrite"/>
+        <input type="radio" name="dooverwrite" checked="checked" value="No" title="${upload.merge_title}" py:content="upload.merge"/>
       </div>
       <input type="submit" name="doupload" value="${upload.upload_button}" />
     </form>
