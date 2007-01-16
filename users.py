@@ -19,8 +19,8 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from jToolkit import web
 from jToolkit.web import server
-from jToolkit.web import session
 from jToolkit import mailer
 from jToolkit import prefs
 from Pootle import pagelayout
@@ -279,7 +279,7 @@ class OptionalLoginAppServer(server.LoginAppServer):
     usernode = self.getusernode(users, username)
     usernode.name = fullname
     usernode.email = email
-    usernode.passwdhash = session.md5hexdigest(password)
+    usernode.passwdhash = web.session.md5hexdigest(password)
 
   def makeactivationcode(self, users, username):
     """makes a new activation code for the user and returns it"""
@@ -322,7 +322,7 @@ class OptionalLoginAppServer(server.LoginAppServer):
         if self.hasuser(users, username):
           usernode = self.getusernode(users, username)
           if value and value.strip():
-            usernode.passwdhash = session.md5hexdigest(value.strip())
+            usernode.passwdhash = web.session.md5hexdigest(value.strip())
       elif key.startswith("useractivated-"):
         username = key.replace("useractivated-", "", 1)
         self.activate(users, username)
@@ -471,7 +471,7 @@ class OptionalLoginAppServer(server.LoginAppServer):
     else:
       return ActivatePage(session, argdict)
 
-class PootleSession(session.LoginSession):
+class PootleSession(web.session.LoginSession):
   """a session object that knows about Pootle"""
   def __init__(self, sessioncache, server, sessionstring = None, loginchecker = None):
     """sets up the session and remembers the users prefs"""
@@ -560,7 +560,7 @@ class PootleSession(session.LoginSession):
     setattr(self.prefs, "name", name)
     setattr(self.prefs, "email", email)
     if password:
-      passwdhash = session.md5hexdigest(argdict.get("option-password", ""))
+      passwdhash = web.session.md5hexdigest(argdict.get("option-password", ""))
       setattr(self.prefs, "passwdhash", passwdhash)
     self.saveprefs()
 

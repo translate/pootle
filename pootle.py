@@ -533,9 +533,9 @@ def usepsyco(options):
     return
   try:
     import psyco
-  except Exception:
+  except ImportError:
     if options.psyco is not None:
-      self.warning("psyco unavailable", options, sys.exc_info())
+      print "Warning: psyco unavailable. We shall boldly continue without psychotic performance boosts...\n"
     return
   if options.psyco is None:
     options.psyco = "full"

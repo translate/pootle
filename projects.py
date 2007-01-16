@@ -21,7 +21,6 @@
 
 """manages projects and files and translations"""
 
-from translate.storage import po
 from translate.storage import factory
 from translate.filters import checks
 from translate.filters import pofilter
@@ -44,7 +43,6 @@ import cStringIO
 import traceback
 import gettext
 from jToolkit.data import indexer
-from jToolkit import glock
 
 class RightsError(ValueError):
   pass
@@ -188,7 +186,7 @@ class TranslationProject(object):
     """returns all the users who registered for this language and project"""
 
     def usableuser(user, userprefs):
-      if username in ["__dummy__", "default", "nobody"]:
+      if user in ["__dummy__", "default", "nobody"]:
         return False
       return self.languagecode in getattr(userprefs, "languages", [])
 
@@ -254,7 +252,7 @@ class TranslationProject(object):
     expanddirs specifies whether to expand directories and return all files in them
     includepartial specifies whether to return directories that are not in the goal, but have files below maxdepth in the goal"""
     if not goalname:
-      return self.getnogoalfiles(dirfilter=dirfilter, maxdepth=maxdepth, includedirs=includedirs, expanddirs=expanddirs, includepartial=includepartial)
+      return self.getnogoalfiles(dirfilter=dirfilter, maxdepth=maxdepth, includedirs=includedirs, expanddirs=expanddirs)
     goals = getattr(self.prefs, "goals", {})
     poext = os.extsep + self.fileext
     pathsep = os.path.sep
@@ -295,12 +293,11 @@ class TranslationProject(object):
         return unique(goalfiles)
     return []
 
-  def getnogoalfiles(self, dirfilter=None, maxdepth=None, includedirs=True, expanddirs=False, includepartial=False):
+  def getnogoalfiles(self, dirfilter=None, maxdepth=None, includedirs=True, expanddirs=False):
     """Returns the files that are not in a goal. This works with getgoalfiles
     and therefre the API resembles that closely"""
     all = self.browsefiles(dirfilter=dirfilter, maxdepth=maxdepth, includedirs=includedirs)
     pathsep = os.path.sep
-    goals = getattr(self.prefs, "goals", {})
     for testgoalname in self.getgoals():
       goalfiles = self.getgoalfiles(testgoalname, dirfilter=dirfilter, maxdepth=maxdepth, includedirs=includedirs, expanddirs=expanddirs, includepartial=False)
       for goalfile in goalfiles:
@@ -551,6 +548,8 @@ class TranslationProject(object):
           localmsgstr = localpo.target
           if origmsgstr == localmsgstr:
             continue
+
+        # FIXME: Figure out what this block does and why usesources is undefined.
         foundsource = False
         if usesources:
           for location in origpo.getlocations():
@@ -563,7 +562,7 @@ class TranslationProject(object):
         if not foundsource:
           source = origpo.source.strings
           if source in newpofile.sourceindex:
-            newpo = newpofile.sourceindex[msgid]
+            newpo = newpofile.sourceindex[source]
             newmatches.append((newpo, localpo))
           else:
             newmatches.append((None, localpo))
@@ -774,7 +773,6 @@ class TranslationProject(object):
     """updates the index with the contents of pofilename (limit to items if given)"""
     if not indexer.HAVE_INDEXER:
       return
-    needsupdate = True
     pofile = self.pofiles[pofilename]
     # check if the pomtime in the index == the latest pomtime
     pomtime = statistics.getmodtime(pofile.filename)
@@ -1002,7 +1000,7 @@ class TranslationProject(object):
         items = line.split(",")
         if len(items) != 7:
           #Must be an old format style without the fuzzy stats
-          quickstats = self.getquickstats()
+          self.quickstats = self.getquickstats()
           self.savequickstats()
           break
         else:
@@ -1129,13 +1127,6 @@ class TranslationProject(object):
     # TODO: needn't parse the file for this ...
     pofile = self.getpofile(pofilename)
     return len(pofile.transunits)
-
-  def getitem(self, pofilename, item):
-    """returns a particular item from a particular po file's orig, trans strings as a tuple"""
-    pofile = self.getpofile(pofilename)
-    unit = pofile.transunits[item]
-    orig, trans = self.source, self.target
-    return orig, trans
 
   def getitems(self, pofilename, itemstart, itemstop):
     """returns a set of items from the pofile, converted to original and translation strings"""
@@ -1420,6 +1411,8 @@ class TemplatesProject(TranslationProject):
   def getrights(self, session=None, username=None, usedefaults=True):
     """gets the rights for the given user (name or session, or not-logged-in if username is None)"""
     # internal admin sessions have all rights
+    # We don't send the usedefaults parameter through, because we don't want users of this method to
+    # change the default behaviour in a template project. Yes, I know: ignorance and deceit.
     rights = super(TemplatesProject, self).getrights(session=session, username=username)
     if rights is not None:
       rights = [right for right in rights if right not in ["translate", "suggest", "pocompile"]]

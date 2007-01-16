@@ -133,7 +133,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     if self.showassigns and "assign" in self.rights:
       templatevars["assign"] = self.getassignbox()
     pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=81)
-    self.addfilelinks(self.pofilename, self.matchnames)
+    self.addfilelinks()
 
   def getfinishedtext(self, stoppedby):
     """gets notice to display when the translation is finished"""
@@ -188,13 +188,13 @@ class TranslatePage(pagelayout.PootleNavPage):
         pagelink["sep"] = ""
     return pagelinks
 
-  def addfilelinks(self, pofilename, matchnames):
+  def addfilelinks(self):
     """adds a section on the current file, including any checks happening"""
     if self.showassigns and "assign" in self.rights:
       self.templatevars["assigns"] = self.getassignbox()
     if self.pofilename is not None:
-      if matchnames:
-        checknames = [matchname.replace("check-", "", 1) for matchname in matchnames]
+      if self.matchnames:
+        checknames = [matchname.replace("check-", "", 1) for matchname in self.matchnames]
         # TODO: put the following parameter in quotes, since it will be foreign in all target languages
         # l10n: the parameter is the name of one of the quality checks, like "fuzzy"
         self.templatevars["checking_text"] = self.localize("checking %s", ", ".join(checknames))
@@ -469,8 +469,6 @@ class TranslatePage(pagelayout.PootleNavPage):
                   }
       transdict.update(transmerge)
       polarity = oddoreven(item)
-      origcell_class = "translate-original translate-original-%s" % polarity
-      transcell_class = "translate-translation translate-translation-%s" % polarity
       if item in self.editable:
         focus_class = "translate-focus"
       else:

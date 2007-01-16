@@ -214,7 +214,7 @@ class pootleassigns:
   def getunassigned(self, action=None):
     """gets all strings that are unassigned (for the given action if given)"""
     unassigneditems = range(0, self.basefile.statistics.getitemslen())
-    assigns = self.getassigns()
+    self.assigns = self.getassigns()
     for username in self.assigns:
       if action is not None:
         assigneditems = self.assigns[username].get(action, [])

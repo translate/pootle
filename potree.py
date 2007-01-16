@@ -437,7 +437,6 @@ class POTree:
     projectdir = os.path.join(self.podirectory, projectcode)
     if not os.path.exists(projectdir):
       raise IndexError("directory not found for project %s" % (projectcode))
-      return None
     languagedir = os.path.join(projectdir, languagecode)
     if not os.path.exists(languagedir):
       languagedirs = [languagedir for languagedir in os.listdir(projectdir) if self.languagematch(languagecode, languagedir)]

@@ -59,8 +59,8 @@ class pootlestatistics:
         self.readstats()
       except Exception, e:
         print "Error reading stats from %s, so recreating (Error was %s)" % (self.sfile.filename, e)
-        raise
         self.statspomtime = None
+        raise
     pomtime = getmodtime(self.basefile.filename)
     pendingmtime = getmodtime(self.basefile.pendingfilename, None)
     if hasattr(self, "pendingmtime"):
