@@ -87,7 +87,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       rows = self.getdisplayrows("translate")
       pagelinks = self.getpagelinks("?translate=1&view=1", rows)
       icon="edit"
-    navbarpath_dict = self.makenavbarpath_dict(self.project, self.session, self.pofilename)
+    navbarpath_dict = self.makenavbarpath_dict(self.project, self.session, self.pofilename, dirfilter=self.dirfilter or "")
     # templatising
     templatename = "translatepage"
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))

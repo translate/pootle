@@ -109,8 +109,9 @@ class PootlePage:
     return itemlist
 
 class PootleNavPage(PootlePage):
-  def makenavbarpath_dict(self, project=None, session=None, currentfolder=None, language=None, argdict=None):
+  def makenavbarpath_dict(self, project=None, session=None, currentfolder=None, language=None, argdict=None, dirfilter=None):
     """create the navbar location line"""
+    #FIXME: Still lots of PO specific references here!
     rootlink = ""
     paramstring = ""
     if argdict:
@@ -120,18 +121,27 @@ class PootleNavPage(PootlePage):
     if currentfolder:
       pathlinks = []
       dirs = currentfolder.split("/")
-      depth = len(dirs)
-      if currentfolder.endswith(".po"):
+      if dirfilter is None:
+        dirfilter = currentfolder
+      
+      depth = dirfilter.count('/') + 1
+      if dirfilter == "":
+        depth -= 1
+      elif dirfilter.endswith(".po"):
         depth = depth - 1
+
       rootlink = "/".join([".."] * depth)
       if rootlink:
         rootlink += "/"
+      backlinks = ""
       for backlinkdir in dirs:
-        if backlinkdir.endswith(".po"):
+        if depth >= 0:
           backlinks = "../" * depth + backlinkdir
+          depth -= 1
         else:
-          backlinks = "../" * depth + backlinkdir + "/"
-        depth = depth - 1
+          backlinks += backlinkdir
+        if not backlinkdir.endswith(".po") and not backlinks.endswith("/"):
+          backlinks = backlinks + "/"
         pathlinks.append({"href": self.getbrowseurl(backlinks), "text": backlinkdir, "sep": " / "})
       if pathlinks:
         pathlinks[-1]["sep"] = ""
