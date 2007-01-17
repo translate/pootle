@@ -22,18 +22,15 @@ requirements for translatathon:
     - comment to explain rejection
 
 other:
-  add ability to mark/unmark things as fuzzy
   move the sidebar to be like distributed proofreaders (at the top, small)
   test with apache multiprocess
   store a history file
   maybe have a separate file to track who translated each string
   display results of checks for each string on submission
   handle project versions
-  have clickable characters to add for a language (mostly useful for diacritics)
   a reviewer can mark a string as fuzzy but not provide a translation (in
     order to browse and fixup things like af KDE.
   integrate with KBabel/POEdit
-  show KDE comment (_:...\n)
   create .qm (compiled Qt .ts files).  See lrelease which is GPL'd for Qt .qm files
   create XPI files automatically when updates are made
   Add X-Poedit style tags in the header when you download so that people using
