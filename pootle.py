@@ -36,6 +36,7 @@ from Pootle import projects
 from Pootle import potree
 from Pootle import users
 from Pootle import filelocations
+from translate.misc import optrecurse
 # Versioning information
 from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
@@ -535,7 +536,7 @@ def usepsyco(options):
     import psyco
   except ImportError:
     if options.psyco is not None:
-      print "Warning: psyco unavailable. We shall boldly continue without psychotic performance boosts...\n"
+      optrecurse.RecursiveOptionParser(formats={}).warning("psyco unavailable", options, sys.exc_info())
     return
   if options.psyco is None:
     options.psyco = "full"
@@ -552,6 +553,7 @@ def main():
   checkversions()
   parser = PootleOptionParser()
   options, args = parser.parse_args()
+  options.errorlevel = options.logerrors
   usepsyco(options)
   if options.action != "runwebserver":
     options.servertype = "dummy"
