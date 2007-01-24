@@ -48,9 +48,11 @@ def localize_links(session):
 
 def languagedir(language):
   """Returns whether the language is right to left"""
-  for code in ["ar", "fa", "he", "ks", "ps", "ur", "yi"]:
-    if language.startswith(code):
-      return "rtl"
+  shortcode = language[:3]
+  if not shortcode.isalpha():
+    shortcode = language[:2]
+  if shortcode in ["ar", "arc", "dv", "fa", "he", "ks", "ps", "ur", "yi"]:
+    return "rtl"
   return "ltr"
 
 def weblanguage(language):

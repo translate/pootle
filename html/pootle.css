@@ -1,5 +1,7 @@
 /* Language codes that are styled with right-to-left (rtl) layout:
    ar (Arabic)
+   arc (Aramaic)
+   dv (Dhivehi)
    fa (Persian)
    he (Hebrew)
    ks (Kashmir)
@@ -9,7 +11,7 @@
    also see pagelayout.py::languagedir()
 */
 /* Doesn't work: [dir="rtl"]*/
-*:lang(ar), *:lang(fa), *:lang(he), *:lang(ks), *:lang(ps), *:lang(ur), *:lang(yi)
+*:lang(ar), *:lang(arc), *:lang(dv), *:lang(fa), *:lang(he), *:lang(ks), *:lang(ps), *:lang(ur), *:lang(yi)
 {
 	unicode-bidi: embed;
 }
