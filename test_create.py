@@ -120,7 +120,7 @@ class TestCreate(object):
         prefs.setvalue("Pootle.projects.testproject.localfiletype", "po")
         prefs.setvalue("Pootle.users.testuser.activated", 1)
         testuserprefs = instance.users.testuser
-        testuserprefs.passwdhash = users.session.md5hexdigest("")
+        testuserprefs.passwdhash = session.md5hexdigest("")
         instance.podirectory = cls.podir
         return prefs
     make_prefs = classmethod(make_prefs)
