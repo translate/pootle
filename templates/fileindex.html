@@ -6,11 +6,11 @@
 
   <title py:content="pagetitle">Pootle: Project ${project.name}, Language ${language.name}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="/pootle.css" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <script type="text/javascript" src="/js/sorttable.js"></script>
+  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
+  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
   <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="/js/correctpng.js"></script>
+    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
 </head>
 
@@ -75,7 +75,7 @@
       <div py:if="'isgoal' in item" class="goalitem">
         <div over:include="navbar#item">
           <div py:if="item.goal.users or item.goal.show_adduser">
-            <img src="/images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+            <img src="${baseurl}images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
             <span py:for="user in item.goal.users" py:strip="True">${user.name}${user.sep}</span>
             <form py:if="item.goal.show_adduser" action="" method="post" name="goaluserform">
               <input type="hidden" name="editgoalname" value="${item.goal.name}"/>

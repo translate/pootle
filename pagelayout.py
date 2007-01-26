@@ -72,6 +72,10 @@ def completetemplatevars(templatevars, session, bannerheight=135):
     templatevars["instancetitle"] = getattr(session.instance, "title", session.localize("Pootle Demo"))
   if not "session" in templatevars:
     templatevars["session"] = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
+  if not "baseurl" in templatevars:
+    templatevars["baseurl"] = getattr(session.instance, "baseurl", "/")
+    if not templatevars["baseurl"].endswith("/"):
+    	templatevars["baseurl"] += "/"
   banner_layout = layout_banner(bannerheight)
   banner_layout["logo_alttext"] = session.localize("Pootle Logo")
   banner_layout["banner_alttext"] = session.localize("WordForge Translation Project")

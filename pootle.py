@@ -47,6 +47,7 @@ from elementtree import ElementTree
 import kid
 import sys
 import os
+import sre
 import random
 import pprint
 
@@ -213,9 +214,15 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
        value = value.decode("utf-8")
       newargdict[key] = value
     argdict = newargdict
-    # TODO: strip off the initial path properly
-    while pathwords and pathwords[0] == "pootle":
+
+    # Strip of the base url
+    baseurl = sre.sub('http://[^/]', '', self.instance.baseurl)
+    # Split up and remove empty parts
+    basepathwords = filter(None, baseurl.split('/'))
+    while pathwords and basepathwords and basepathwords[0] == pathwords[0]:
+      basepathwords = basepathwords[1:]
       pathwords = pathwords[1:]
+
     if pathwords:
       top = pathwords[0]
     else:

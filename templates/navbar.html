@@ -4,12 +4,12 @@
 <head>
   <title>Pootle Navigation Bar</title>
   <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="/js/correctpng.js"></script>
+    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
 </head>
 <body>
   <div id="item" class="contentsitem">
-    <img src="/images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+    <img src="${baseurl}images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
     <h3 id="itemtitle" class="title"><a href="${item.href}">${item.title}</a></h3>
     <div id="actionlinks" class="item-description" py:if="item.actions">
       <span py:for="link in item.actions.basic" py:strip="True">
@@ -62,7 +62,7 @@
   </div>
   <div id="itemdata" class="item-statistics" py:strip="True">
     <td class="stats-name">
-      <img src="/images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+      <img src="${baseurl}images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
       <a href="${item.href}" lang="en" dir="ltr">${item.title}</a>
     </td>
     <span py:if="item.data" py:strip="True">
@@ -73,9 +73,9 @@
       <td class="stats-graph">
         <span class="sortkey">${item.data.translatedpercentage}</span>
         <table border="0" cellpadding="0" cellspacing="0"><tr>
-<!--!        <td bgcolor="green"><img src="/images/green.png" class="data" bgcolor="green" height="20" width="${item.data.translatedpercentage}" /></td>-->
-<!--!        <td bgcolor="grey"><img src="/images/grey.png" class="data" height="20" width="${item.data.fuzzypercentage}" /></td>-->
-<!--!        <td bgcolor="red"><img src="/images/red.png" class="data" height="20" width="${item.data.untranslatedpercentage}" /></td>-->
+<!--!        <td bgcolor="green"><img src="${baseurl}images/green.png" class="data" bgcolor="green" height="20" width="${item.data.translatedpercentage}" /></td>-->
+<!--!        <td bgcolor="grey"><img src="${baseurl}images/grey.png" class="data" height="20" width="${item.data.fuzzypercentage}" /></td>-->
+<!--!        <td bgcolor="red"><img src="${baseurl}images/red.png" class="data" height="20" width="${item.data.untranslatedpercentage}" /></td>-->
             <td bgcolor="green" class="data" height="20" width="${item.data.translatedpercentage}" />
             <td bgcolor="lightgray" class="data" height="20" width="${item.data.fuzzypercentage}" py:if="item.data.fuzzypercentage"/>
             <td bgcolor="red" class="data" height="20" width="${item.data.untranslatedpercentage}" py:if="item.data.untranslatedpercentage"/>
@@ -83,7 +83,7 @@
           
         <!--! The following is simpler, but kid reformats the img tags which inserts spaces between them -->
 
-<!--!        <img src="/images/green.png" class="data" height="20" width="${item.data.translatedpercentage}" background="green" /><img src="/images/grey.png" class="data" height="20" width="${item.data.fuzzypercentage}" background="grey" /><img src="/images/red.png" class="data" height="20" width="${item.data.untranslatedpercentage}" background="red" />-->
+<!--!        <img src="${baseurl}images/green.png" class="data" height="20" width="${item.data.translatedpercentage}" background="green" /><img src="$baseurl/images/grey.png" class="data" height="20" width="${item.data.fuzzypercentage}" background="grey" /><img src="$baseurl/images/red.png" class="data" height="20" width="${item.data.untranslatedpercentage}" background="red" />-->
       </td>      
     </span>
   </div>
