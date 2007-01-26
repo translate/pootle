@@ -444,8 +444,12 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
             try:
               return translatepage.TranslatePage(project, session, argdict, dirfilter=pofilename)
             except projects.RightsError, stoppedby:
+              if len(pathwords) > 1:
+                dirfilter = os.path.join(*pathwords[:-1])
+              else:
+                dirfilter = ""
               argdict["message"] = str(stoppedby)
-              return indexpage.ProjectIndex(project, session, argdict, dirfilter=pofilename)
+              return indexpage.ProjectIndex(project, session, argdict, dirfilter=dirfilter)
           elif argdict.get("index", 0):
             return indexpage.ProjectIndex(project, session, argdict, dirfilter=pofilename)
           else:
