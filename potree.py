@@ -40,6 +40,7 @@ class POTree:
       self.saveprefs()
     self.projects = instance.projects
     self.podirectory = instance.podirectory
+    self.instance = instance
     self.projectcache = {}
 
   def saveprefs(self):
@@ -482,6 +483,10 @@ class POTree:
     else:
       os.path.walk(podir, addfiles, podir)
     return pofilenames
+
+  def getdefaultrights(self):
+    """Returns the default rights for a logged in user on this Pootle server."""
+    return getattr(self.instance, "defaultrights", "view, suggest, archive, pocompile")
 
   def refreshstats(self):
     """manually refreshes (all or missing) the stats files"""
