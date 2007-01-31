@@ -63,6 +63,18 @@ Pootle:
   # The file that contains the user preferences.
   userprefs = "users.prefs"
 
+  # defaultrights
+  # 
+  # This is the default permissions (access rights) that will be used for 
+  # logged in users unless other rights are specified for the project. The 
+  # recommended default is
+  # defaultrights = "view, suggest, archive, pocompile"
+  # This will allow logged in users to view the translations, suggest changes,
+  # download archives of the whole project and download .mo files.
+  # If you want any logged in user to be able to translate by default, you 
+  # should add the "translate" right, for example
+  defaultrights = "view, suggest, archive, pocompile"
+
   # pootle.podirectory
   #
   # All projects are stored in this directory in this layout:
