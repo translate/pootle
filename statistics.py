@@ -18,7 +18,10 @@ class StatsFile:
 
   def read(self):
     """return the contents of the stats file"""
-    return open(self.filename, "r").read()
+    sfile =  open(self.filename, "r")
+    contents = sfile.read()
+    sfile.close()
+    return contents
 
   def save(self, statsstring):
     """save the stats data"""
