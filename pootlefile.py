@@ -75,7 +75,9 @@ class LockedFile:
     self.lock.acquire()
     try:
       pomtime = statistics.getmodtime(self.filename)
-      filecontents = open(self.filename, 'r').read()
+      fp = open(self.filename, 'r')
+      filecontents = fp.read()
+      fp.close()
       return pomtime, filecontents
     finally:
       self.lock.forcerelease()
@@ -118,7 +120,9 @@ class pootleassigns:
     assignsmtime = statistics.getmodtime(self.assignsfilename)
     if assignsmtime == getattr(self, "assignsmtime", None):
       return
-    assignsstring = open(self.assignsfilename, "r").read()
+    assignsfile = open(self.assignsfilename, "r")
+    assignsstring = assignsfile.read()
+    assignsfile.close()
     poassigns = {}
     itemcount = len(getattr(self, "classify", {}).get("total", []))
     for line in assignsstring.split("\n"):
