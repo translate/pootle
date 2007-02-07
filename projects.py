@@ -549,18 +549,17 @@ class TranslationProject(object):
           if origmsgstr == localmsgstr:
             continue
 
-        # FIXME: Figure out what this block does and why usesources is undefined.
         foundsource = False
-        if usesources:
-          for location in origpo.getlocations():
-            if location in newpofile.locationindex:
-              newpo = newpofile.locationindex[location]
-              if newpo is not None:
-                foundsource = True
-                newmatches.append((newpo, localpo))
-                continue
+        # First try to find a match on location
+        for location in origpo.getlocations():
+          if location in newpofile.locationindex:
+            newpo = newpofile.locationindex[location]
+            if newpo is not None and newpo.source == localpo.source:
+              foundsource = True
+              newmatches.append((newpo, localpo))
+              continue
         if not foundsource:
-          source = origpo.source.strings
+          source = origpo.source
           if source in newpofile.sourceindex:
             newpo = newpofile.sourceindex[source]
             newmatches.append((newpo, localpo))
