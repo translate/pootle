@@ -13,7 +13,7 @@
 /* Doesn't work: [dir="rtl"]*/
 *:lang(ar), *:lang(arc), *:lang(dv), *:lang(fa), *:lang(he), *:lang(ks), *:lang(ps), *:lang(ur), *:lang(yi)
 {
-	unicode-bidi: embed;
+	/* If any styling is necessary for the rtl languages, add it here */
 }
 /* Default settings */
 *
@@ -102,6 +102,10 @@ h1, h2, h3
 .title
 {
 	color: #004077;
+}
+.title a
+{
+       unicode-bidi: embed;
 }
 .icon
 {
