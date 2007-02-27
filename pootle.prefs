@@ -189,28 +189,33 @@ Pootle:
 #    ak.pluralequation = u'(n > 1)'
 #    ak.nplurals = u'2'
 
+# العربية
 # Arabic
-    ar.fullname = u'العربية'
+    ar.fullname = u'Arabic'
     ar.nplurals = '6'
     ar.pluralequation ='n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5'
 
+# Azərbaycan
 # Azerbaijani
-#    az.fullname = u'Azərbaycan'
+#    az.fullname = u'Azerbaijani'
 #    az.nplurals = '2'
 #    az.pluralequation ='(n != 1)'
 
+# Беларуская
 # Belarusian
-#    be.fullname = u'Беларуская'
+#    be.fullname = u'Belarusian'
 #    be.nplurals = '3'
 #    be.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
+# Български
 # Bulgarian
-#    bg.fullname = u'Български'
+#    bg.fullname = u'Bulgarian'
 #    bg.nplurals = '2'
 #    bg.pluralequation ='(n != 1)'
 
+# বাংলা
 # Bengali
-#    bn.fullname = u'বাংলা'
+#    bn.fullname = u'Bengali'
 #    bn.nplurals = '2'
 #    bn.pluralequation ='(n != 1)'
 
@@ -219,50 +224,58 @@ Pootle:
 #    bo.nplurals = '1'
 #    bo.pluralequation ='0'
 
+# Bosanski
 # Bosnian
-#    bs.fullname = u'Bosanski'
+#    bs.fullname = u'Bosnian'
 #    bs.nplurals = '3'
 #    bs.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
+# Català
 # Catalan
-    ca.fullname = u'Català'
+    ca.fullname = u'Catalan'
     ca.nplurals = '2'
     ca.pluralequation ='(n != 1)'
 
+# Česky
 # Czech
-#    cs.fullname = u'Česky'
-#    cs.nplurals = '3'
-#    cs.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
+    cs.fullname = u'Czech'
+    cs.nplurals = '3'
+    cs.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
 
+# Cymraeg
 # Welsh
-#    cy.fullname = u'Cymraeg'
+#    cy.fullname = u'Welsh'
 #    cy.nplurals = '2'
 #    cy.pluralequation ='(n==2) ? 1 : 0'
 
+# Dansk
 # Danish
-    da.fullname = u'Dansk'
+    da.fullname = u'Danish'
     da.nplurals = '2'
     da.pluralequation ='(n != 1)'
 
+# Deutsch
 # German
-    de.fullname = u'Deutsch'
+    de.fullname = u'German'
     de.nplurals = '2'
     de.pluralequation ='(n != 1)'
 
+# ང་ཁ
 # Dzongkha
-#    dz.fullname = u'ང་ཁ'
+#    dz.fullname = u'Dzongkha'
 #    dz.nplurals = '1'
 #    dz.pluralequation ='0'
 
+# Ελληνικά
 # Greek
-#    el.fullname = u'Ελληνικά'
+#    el.fullname = u'Greek'
 #    el.nplurals = '2'
 #    el.pluralequation ='(n != 1)'
 
 # English
-#    en.fullname = u'English'
-#    en.nplurals = '2'
-#    en.pluralequation ='(n != 1)'
+    en.fullname = u'English'
+    en.nplurals = '2'
+    en.pluralequation ='(n != 1)'
 
 # English (British)
 #    en_GB.fullname = u'English (British)'
@@ -270,97 +283,114 @@ Pootle:
 #    en_GB.pluralequation ='(n != 1)'
 
 # English (South African)
-#    en_ZA.fullname = u'English (South African)'
-#    en_ZA.nplurals = '2'
-#    en_ZA.pluralequation ='(n != 1)'
+    en_ZA.fullname = u'English (South African)'
+    en_ZA.nplurals = '2'
+    en_ZA.pluralequation ='(n != 1)'
 
 # Esperanto
 #    eo.fullname = u'Esperanto'
 #    eo.nplurals = '2'
 #    eo.pluralequation ='(n != 1)'
 
+# Español
 # Spanish
-    es.fullname = u'Español'
+    es.fullname = u'Spanish'
     es.nplurals = '2'
     es.pluralequation ='(n != 1)'
 
+# Eesti
 # Estonian
-#    et.fullname = u'Eesti'
+#    et.fullname = u'Estonian'
 #    et.nplurals = '2'
 #    et.pluralequation ='(n != 1)'
 
+# Euskara
 # Basque
-    eu.fullname = u'Euskara'
+    eu.fullname = u'Basque'
     eu.nplurals = '2'
     eu.pluralequation ='(n != 1)'
 
+# فارسی
 # Persian
-#    fa.fullname = u'فارسی'
+#    fa.fullname = u'Persian'
 #    fa.nplurals = '1'
 #    fa.pluralequation ='0'
 
+# Suomi
 # Finnish
-    fi.fullname = u'Suomi'
+    fi.fullname = u'Finnish'
     fi.nplurals = '2'
     fi.pluralequation ='(n != 1)'
 
+# Føroyskt
 # Faroese
-#    fo.fullname = u'Føroyskt'
+#    fo.fullname = u'Faroese'
 #    fo.nplurals = '2'
 #    fo.pluralequation ='(n != 1)'
 
+# Français
 # French
-    fr.fullname = u'Français'
+    fr.fullname = u'French'
     fr.nplurals = '2'
     fr.pluralequation ='(n > 1)'
 
+# Furlan
 # Friulian
-#    fur.fullname = u'Furlan'
-#    fur.nplurals = '2'
-#    fur.pluralequation ='(n != 1)'
+    fur.fullname = u'Friulian'
+    fur.nplurals = '2'
+    fur.pluralequation ='(n != 1)'
 
+# Frysk
 # Frisian
-#    fy.fullname = u'Frysk'
+#    fy.fullname = u'Frisian'
 #    fy.nplurals = '2'
 #    fy.pluralequation ='(n != 1)'
 
+# Gaeilge
 # Irish
-#    ga.fullname = u'Gaeilge'
+#    ga.fullname = u'Irish'
 #    ga.nplurals = '3'
 #    ga.pluralequation ='n==1 ? 0 : n==2 ? 1 : 2'
 
+# Galego
 # Galician
-    gl.fullname = u'Galego'
+    gl.fullname = u'Galician'
     gl.nplurals = '2'
     gl.pluralequation ='(n != 1)'
 
+# ગુજરાતી
 # Gujarati
-#    gu.fullname = u'ગુજરાતી'
+#    gu.fullname = u'Gujarati'
 #    gu.nplurals = '2'
 #    gu.pluralequation ='(n != 1)'
 
+# עברית
 # Hebrew
-#    he.fullname = u'עברית'
+#    he.fullname = u'Hebrew'
 #    he.nplurals = '2'
 #    he.pluralequation ='(n != 1)'
 
+# हिन्दी
 # Hindi
-#    hi.fullname = u'हिन्दी'
+#    hi.fullname = u'Hindi'
 #    hi.nplurals = '2'
 #    hi.pluralequation ='(n != 1)'
 
+# Hrvatski
 # Croatian
-#    hr.fullname = u'Hrvatski'
+#    hr.fullname = u'Croatian'
 #    hr.nplurals = '3'
 #    hr.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
+# Magyar
 # Hungarian
-    hu.fullname = u'Magyar'
-    hu.nplurals = '1'
-    hu.pluralequation ='0'
+#    hu.fullname = u'Hungarian'
+#    hu.nplurals = '1'
+#    hu.pluralequation ='0'
 
+# Bahasa Indonesia
 # Indonesian
-#    id.fullname = u'Bahasa Indonesia'
+#    id.fullname = u'Indonesian'
 #    id.nplurals = '1'
 #    id.pluralequation ='0'
 
@@ -369,58 +399,68 @@ Pootle:
     is.nplurals = '2'
     is.pluralequation = '(n != 1)'
 
+# Italiano
 # Italian
-    it.fullname = u'Italiano'
+    it.fullname = u'Italian'
     it.nplurals = '2'
     it.pluralequation ='(n != 1)'
 
+# 日本語 
 # Japanese
-    ja.fullname = u'日本語'
+    ja.fullname = u'Japanese'
     ja.nplurals = '1'
     ja.pluralequation ='0'
 
+# ქართული
 # Georgian
-#    ka.fullname = u'ქართული'
-#    ka.nplurals = '1'
-#    ka.pluralequation ='0'
+    ka.fullname = u'Georgian'
+    ka.nplurals = '1'
+    ka.pluralequation ='0'
 
+
+# ភាសា
 # Khmer
 #    km.fullname = u'Khmer'
 #    ka.nplurals = '1'
 #    ka.pluralequation ='0'
 
+# 한국어
 # Korean
-#    ko.fullname = u'한국어'
+#    ko.fullname = u'Korean'
 #    ko.nplurals = '1'
 #    ko.pluralequation ='0'
 
-# Kurdish (Kurdî / كوردي)
+# Kurdî / كوردي
+# Kurdish
 #    ku.fullname = u'Kurdish'
 #    ku.nplurals = '2'
 #    ku.pluralequation ='(n!= 1)'
 
+# Lëtzebuergesch
 # Letzeburgesch
-#    lb.fullname = u'Lëtzebuergesch'
+#    lb.fullname = u'Letzeburgesch'
 #    lb.nplurals = '2'
 #    lb.pluralequation ='(n != 1)'
 
+# Lietuvių
 # Lithuanian
-#    lt.fullname = u'Lietuvių'
+#    lt.fullname = u'Lithuanian'
 #    lt.nplurals = '3'
 #    lt.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
+# Latviešu
 # Latvian
-#    lv.fullname = u'Latviešu'
+#    lv.fullname = u'Latvian'
 #    lv.nplurals = '3'
 #    lv.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2)'
 
+# Монгол
 # Mongolian
-#    mn.fullname = u'Монгол'
+#    mn.fullname = u'Mongolian'
 #    mn.nplurals = '2'
 #    mn.pluralequation ='(n != 1)'
 
 # Marathi
-#    mr.specialchars = u''
 #    mr.fullname = u'Marathi'
 #    mr.nplurals = u'2'
 #    mr.pluralequation = u'(n != 1)'
@@ -430,8 +470,9 @@ Pootle:
 #    ms.nplurals = u'1'
 #    ms.pluralequation = u'0'
 
+# Malti
 # Maltese
-    mt.fullname = u'Malti'
+    mt.fullname = u'Maltese'
     mt.nplurals = '4'
     mt.pluralequation ='(n==1 ? 0 : n==0 || ( n%100>1 && n%100<11) ? 1 : (n%100>10 && n%100<20 ) ? 2 : 3)'
 
@@ -440,8 +481,9 @@ Pootle:
 #    nah.nplurals = '2'
 #    nah.pluralequation ='(n != 1)'
 
+# Bokmål
 # Norwegian Bokmal
-#    nb.fullname = u'Bokmål'
+#    nb.fullname = u'Norwegian Bokmal'
 #    nb.nplurals = '2'
 #    nb.pluralequation ='(n != 1)'
 
@@ -450,18 +492,21 @@ Pootle:
 #    ne.nplurals = u'2'
 #    ne.pluralequation = u'(n != 1)'
 
+# Nederlands
 # Dutch
-    nl.fullname = u'Nederlands'
+    nl.fullname = u'Dutch'
     nl.nplurals = '2'
     nl.pluralequation ='(n != 1)'
 
+# Nynorsk
 # Norwegian Nynorsk
-#    nn.fullname = u'Nynorsk'
+#    nn.fullname = u'Norwegian Nynorsk'
 #    nn.nplurals = '2'
 #    nn.pluralequation ='(n != 1)'
 
+# Sesotho sa Leboa
 # Northern Sotho
-#    nso.fullname = u'Sesotho sa Leboa'
+#    nso.fullname = u'Northern Sotho'
 #    nso.nplurals = '2'
 #    nso.pluralequation ='(n > 1)'
 
@@ -475,73 +520,87 @@ Pootle:
 #    pa.nplurals = '2'
 #    pa.pluralequation ='(n != 1)'
 
+# Polski
 # Polish
-#    pl.fullname = u'Polski'
-#    pl.nplurals = '3'
-#    pl.pluralequation ='(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
+    pl.fullname = u'Polish'
+    pl.nplurals = '3'
+    pl.pluralequation ='(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
+# Português
 # Portuguese
-    pt.fullname = u'Português'
+    pt.fullname = u'Portuguese'
     pt.nplurals = '2'
     pt.pluralequation ='(n != 1)'
 
+# Português do Brasil
 # Brazilian Portuguese
-#    pt_BR.fullname = u'Português do Brasil'
-#    pt_BR.nplurals = '2'
-#    pt_BR.pluralequation ='(n > 1)'
+    pt_BR.fullname = u'Brazilian Portuguese'
+    pt_BR.nplurals = '2'
+    pt_BR.pluralequation ='(n > 1)'
 
+# Română
 # Romanian
-#    ro.fullname = u'Română'
+#    ro.fullname = u'Romanian'
 #    ro.nplurals = '3'
 #    ro.pluralequation ='(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);'
 
+# Русский
 # Russian
-#    ru.fullname = u'Русский'
-#    ru.nplurals = '3'
-#    ru.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
+    ru.fullname = u'Russian'
+    ru.nplurals = '3'
+    ru.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
+# Slovenčina
 # Slovak
-#    sk.fullname = u'Slovenčina'
-#    sk.nplurals = '3'
-#    sk.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
+    sk.fullname = u'Slovak'
+    sk.nplurals = '3'
+    sk.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
 
+# Slovenščina
 # Slovenian
-    sl.fullname = u'Slovenščina'
+    sl.fullname = u'Slovenian'
     sl.nplurals = '4'
     sl.pluralequation ='(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3)'
 
+# Shqip
 # Albanian
-#    sq.fullname = u'Shqip'
+#    sq.fullname = u'Albanian'
 #    sq.nplurals = '2'
 #    sq.pluralequation ='(n != 1)'
 
-# Serbian (Српски / Srpski)
+# Српски / Srpski
+# Serbian
 #    sr.fullname = u'Serbian'
 #    sr.nplurals = '3'
 #    sr.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
+# Svenska
 # Swedish
-    sv.fullname = u'Svenska'
+    sv.fullname = u'Swedish'
     sv.nplurals = '2'
     sv.pluralequation ='(n != 1)'
 
+# தமிழ்
 # Tamil
-#    ta.fullname = u'தமிழ்'
+#    ta.fullname = u'Tamil'
 #    ta.nplurals = '2'
 #    ta.pluralequation ='(n != 1)'
 
-# Turkmen (Туркмен / تركمن)
+# Туркмен / تركمن
+# Turkmen
 #    tk.fullname = u'Turkmen'
 #    tk.nplurals = '2'
 #    tk.pluralequation ='(n != 1)'
 
+# Türkçe
 # Turkish
-#    tr.fullname = u'Türkçe'
+#    tr.fullname = u'Turkish'
 #    tr.nplurals = '1'
 #    tr.pluralequation ='0'
 
+# Українська
 # Ukrainian
-#    uk.fullname = u'Українська'
+#    uk.fullname = u'Ukrainian'
 #    uk.nplurals = '3'
 #    uk.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
@@ -550,20 +609,29 @@ Pootle:
     vi.nplurals = '1'
     vi.pluralequation ='0'
 
+# Walon
 # Walloon
-#    wa.fullname = u'Walon'
+#    wa.fullname = u'Waloon'
 #    wa.nplurals = '2'
 #    wa.pluralequation ='(n > 1)'
 
+# 简体中文
 # Simplified Chinese (China mainland used below, but also used in Singapore and Malaysia)
-    zh_CN.fullname = u'简体中文'
+    zh_CN.fullname = u'Chinese (China)'
     zh_CN.nplurals = '1'
     zh_CN.pluralequation ='0'
 
+# 繁體中文
 # Traditional Chinese (Hong Kong used below, but also used in Taiwan and Macau)
-    zh_HK.fullname = u'繁體中文'
+    zh_HK.fullname = u'Chinese (Hong Kong)'
     zh_HK.nplurals = '1'
     zh_HK.pluralequation ='0'
 
-  # This is a "language" that gives people access to the (untranslated) template files
+# 繁體中文
+# Traditional Chinese (Taiwan used below, but also used in Hong Kong and Macau)
+    zh_TW.fullname = u'Chinese (Taiwan)'
+    zh_TW.nplurals = '1'
+    zh_TW.pluralequation ='0'
+
+# This is a "language" that gives people access to the (untranslated) template files
     templates.fullname = u'Templates'
