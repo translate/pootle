@@ -33,7 +33,10 @@ Pootle:
   # test it well, as incorrect markup (like unbalanced quotes or HTML tags) 
   # could prevent the page from displaying at all. The text up to the first 
   # "br" tag is also displayed in the meta description tags of these pages.
-  description = "This is a demo installation of Pootle.<br /> Also visit the official <a href='http://pootle.wordforge.org'>Pootle server of WordForge</a>."
+  # Consider adding <span dir="ltr"> ... </span> around any text in a left-to-
+  # right language to guarantee good rendering for users of right-to-left 
+  # languages and vice versa if you put a message in a right-to-left language.
+  description = "<span dir='ltr'>This is a demo installation of Pootle.<br /> Also visit the official <a href='http://pootle.wordforge.org'>Pootle server of WordForge</a>.</span>"
 
   # Pootle.defaultlanguage
   # 
@@ -104,6 +107,9 @@ Pootle:
   # for tooltips in some Pootle pages.  Be sure to test it well, as incorrect 
   # markup (like unbalanced quotes or HTML tags) could prevent the page from 
   # displaying at all.
+  # Consider adding <span dir="ltr"> ... </span> around any text in a left-to-
+  # right language to guarantee good rendering for users of right-to-left 
+  # languages and vice versa if you put a message in a right-to-left language.
   #
   #   checkerstyle = "standard"
   # Defines what checks should be used for this project.  One of: mozilla, kde,
@@ -126,7 +132,7 @@ Pootle:
   # interface.
     pootle:
       fullname = "Pootle"
-      description = "Web translation software of <a href='http://wordforge.org'>WordForge</a>. <br /> See the <a href='http://pootle.wordforge.org'>official Pootle server</a> for the translations of Pootle."
+      description = "<span dir='ltr'>Web translation software of <a href='http://wordforge.org'>WordForge</a>. <br /> See the <a href='http://pootle.wordforge.org'>official Pootle server</a> for the translations of Pootle.</span>"
       checkstyle = "standard"
       localfiletype = "po"
 
