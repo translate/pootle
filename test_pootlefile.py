@@ -136,7 +136,8 @@ msgstr ""'''
         assert classify['blank'] == [2]
         assert len(classify['total']) == 3
         #cleanup remaining files
-        os.remove("test.po.lock")
+        #commented while locking code is removed:
+        #os.remove("test.po.lock")
         os.remove("test.po")
         os.remove("test.po.pending")
 
