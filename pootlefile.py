@@ -60,18 +60,30 @@ class LockedFile:
   """locked interaction with a filesystem file"""
   def __init__(self, filename):
     self.filename = filename
+    self.lock = None
+
+  def initlock(self):
     self.lock = glock.GlobalLock(self.filename + os.extsep + "lock")
+
+  def dellock(self):
+    del self.lock
+    self.lock = None
 
   def readmodtime(self):
     """returns the modification time of the file (locked operation)"""
+    if not self.lock:
+      self.initlock()
     self.lock.acquire()
     try:
       return statistics.getmodtime(self.filename)
     finally:
       self.lock.forcerelease()
+      self.dellock()
 
   def getcontents(self):
     """returns modtime, contents tuple (locked operation)"""
+    if not self.lock:
+      self.initlock()
     self.lock.acquire()
     try:
       pomtime = statistics.getmodtime(self.filename)
@@ -81,9 +93,12 @@ class LockedFile:
       return pomtime, filecontents
     finally:
       self.lock.forcerelease()
+      self.dellock()
 
   def writecontents(self, contents):
     """writes contents to file, returning modification time (locked operation)"""
+    if not self.lock:
+      self.initlock()
     self.lock.acquire()
     try:
       f = open(self.filename, 'w')
@@ -93,6 +108,7 @@ class LockedFile:
       return pomtime
     finally:
       self.lock.release()
+      self.dellock()
 
 class pootleassigns:
   """this represents the assignments for a file"""
