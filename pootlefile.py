@@ -58,6 +58,9 @@ class Wrapper(object):
 
 class LockedFile:
   """locked interaction with a filesystem file"""
+  #Locking is disabled for now since it impacts performance negatively and was
+  #not complete yet anyway. Reverse svn revision 5271 to regain the locking 
+  #code here.
   def __init__(self, filename):
     self.filename = filename
     self.lock = None
@@ -71,44 +74,23 @@ class LockedFile:
 
   def readmodtime(self):
     """returns the modification time of the file (locked operation)"""
-    if not self.lock:
-      self.initlock()
-    self.lock.acquire()
-    try:
-      return statistics.getmodtime(self.filename)
-    finally:
-      self.lock.forcerelease()
-      self.dellock()
+    return statistics.getmodtime(self.filename)
 
   def getcontents(self):
     """returns modtime, contents tuple (locked operation)"""
-    if not self.lock:
-      self.initlock()
-    self.lock.acquire()
-    try:
-      pomtime = statistics.getmodtime(self.filename)
-      fp = open(self.filename, 'r')
-      filecontents = fp.read()
-      fp.close()
-      return pomtime, filecontents
-    finally:
-      self.lock.forcerelease()
-      self.dellock()
+    pomtime = statistics.getmodtime(self.filename)
+    fp = open(self.filename, 'r')
+    filecontents = fp.read()
+    fp.close()
+    return pomtime, filecontents
 
   def writecontents(self, contents):
     """writes contents to file, returning modification time (locked operation)"""
-    if not self.lock:
-      self.initlock()
-    self.lock.acquire()
-    try:
-      f = open(self.filename, 'w')
-      f.write(contents)
-      f.close()
-      pomtime = statistics.getmodtime(self.filename)
-      return pomtime
-    finally:
-      self.lock.release()
-      self.dellock()
+    f = open(self.filename, 'w')
+    f.write(contents)
+    f.close()
+    pomtime = statistics.getmodtime(self.filename)
+    return pomtime
 
 class pootleassigns:
   """this represents the assignments for a file"""
