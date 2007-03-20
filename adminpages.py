@@ -124,7 +124,7 @@ class ProjectsAdminPage(pagelayout.PootlePage):
     self.instance = instance
     self.localize = session.localize
     templatename = "adminprojects"
-    projectfiletypes = ["po","xliff"]
+    projectfiletypes = ["po","xlf"]
     self.allchecks = [{"value": check, "description": check} for check in checks.projectcheckers.keys()]
     self.allchecks.insert(0, {"value": "", "description": self.localize("Standard")})
     self.alltypes = [{"value": check, "description": check} for check in projectfiletypes]
