@@ -133,7 +133,7 @@ class PootleNavPage(PootlePage):
       depth = dirfilter.count('/') + 1
       if dirfilter == "":
         depth -= 1
-      elif dirfilter.endswith(".po"):
+      elif dirfilter.endswith(".po") or dirfilter.endswith(".xlf"):
         depth = depth - 1
 
       rootlink = "/".join([".."] * depth)
@@ -146,7 +146,7 @@ class PootleNavPage(PootlePage):
           depth -= 1
         else:
           backlinks += backlinkdir
-        if not backlinkdir.endswith(".po") and not backlinks.endswith("/"):
+        if not (backlinkdir.endswith(".po") or backlinkdir.endswith(".xlf")) and not backlinks.endswith("/"):
           backlinks = backlinks + "/"
         pathlinks.append({"href": self.getbrowseurl(backlinks), "text": backlinkdir, "sep": " / "})
       if pathlinks:
