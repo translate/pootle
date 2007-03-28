@@ -149,7 +149,7 @@ class ProjectsAdminPage(pagelayout.PootlePage):
                                 "newvalue": self.localize("(add project here)")},
                {"name": "description", "title": self.localize("Project Description"), "newvalue": self.localize("(project description)")},
                {"name": "checkerstyle", "title": self.localize("Checker Style"), "selectoptions": self.allchecks, "newvalue": ""},
-               {"name": "filetypes", "title": self.localize("File Type"), "selectoptions": self.alltypes, "newvalue": ""},
+               {"name": "filetype", "title": self.localize("File Type"), "selectoptions": self.alltypes, "newvalue": ""},
                {"name": "createmofiles", "title": self.localize("Create MO Files"), "type": "checkbox", "newvalue": ""},
                {"name": "remove", "title": self.localize("Remove Project")}]
     for option in options:
