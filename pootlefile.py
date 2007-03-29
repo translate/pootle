@@ -416,6 +416,7 @@ class pootlefile(Wrapper):
     if hasattr(unit, "xmlelement"):
       suggestions = self.getsuggestions(item)
       unit.delalttrans(suggestions[suggitem])
+      self.savepofile()
     else:
       self.readpendingfile()
       locations = unit.getlocations()
