@@ -393,6 +393,8 @@ class pootlefile(Wrapper):
     """adds a new suggestion for the given item"""
     unit = self.transunits[item]
     if isinstance(unit, xliff.xliffunit):
+      if isinstance(suggtarget, list) and (len(suggtarget) > 0):
+        suggtarget = suggtarget[0]
       unit.addalttrans(suggtarget, origin=username)
       self.statistics.reclassifyunit(item)
       self.savepofile()
