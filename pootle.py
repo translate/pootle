@@ -456,7 +456,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
             pofile = project.getpofile(pofilename, freshen=False)
             page = widgets.SendFile(pofile.filename)
             page.etag = str(pofile.pomtime)
-            encoding = pofile.encoding or "UTF-8"
+            encoding = getattr(pofile, "encoding", "UTF-8")
             page.content_type = "text/plain; charset=%s" % encoding
             return page
         elif bottom.endswith(".csv") or bottom.endswith(".xlf") or bottom.endswith(".ts") or bottom.endswith("mo"):
