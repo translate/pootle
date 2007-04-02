@@ -137,6 +137,14 @@ def svnreadfile(path, revision=None):
     raise IOError("Subversion error running '%s': %s" % (command, error))
   return output
 
+def darcsreadfile(path):
+  """Get a clean version of a file from the darcs repository"""
+  command = "cat _darcs/pristine/%s" % shellescape(path)
+  output, error = pipe(command)
+  if error:
+    raise IOError("darcs error running '%s': %s" % (command, error))
+  return output
+
 def svnupdatefile(path, revision=None):
   """Does a clean update of the given path"""
   path = shellescape(path)
@@ -149,6 +157,14 @@ def svnupdatefile(path, revision=None):
   output, error = pipe(command)
   if error:
     raise IOError("Subversion error running '%s': %s" % (command, error))
+  return output
+
+def darcsupdatefile(path):
+  """Does a clean update of the given path"""
+  command = "darcs revert -a %s ; darcs pull -a" % shellescape(path)
+  output, error = pipe(command)
+  if error:
+    raise IOError("darcs error running '%s': %s" % (command, error))
   return output
 
 def svncommitfile(path, message=None):
@@ -167,6 +183,16 @@ def svncommitfile(path, message=None):
   if error:
     raise IOError("Error running SVN command '%s': %s" % (command, error))
 
+def darcscommitfile(path, message=None):
+  """Commits the file and supplies the given commit message if present"""
+  file = shellescape(path)
+  if message is None:
+    message = ""
+  command = "darcs record -a --skip-long-comment -m '%s' %s; darcs push -a" % (message, file)
+  output, error = pipe(command)
+  if error:
+    raise IOError("Error running darcs command '%s': %s" % (command, error))
+
 def hascvs(parentdir):
   cvsdir = os.path.join(parentdir, "CVS")
   return os.path.isdir(cvsdir)
@@ -175,8 +201,12 @@ def hassvn(parentdir):
   svndir = os.path.join(parentdir, ".svn")
   return os.path.isdir(svndir)
 
+def hasdarcs(parentdir):
+  darcsdir = os.path.join(parentdir, "../../../_darcs")
+  return os.path.isdir(darcsdir)
+
 def hasversioning(parentdir):
-  return hascvs(parentdir) or hassvn(parentdir)
+  return hascvs(parentdir) or hassvn(parentdir) or hasdarcs(parentdir)
 
 def getcleanfile(filename, revision=None):
   parentdir = os.path.dirname(filename)
@@ -195,6 +225,8 @@ def getcleanfile(filename, revision=None):
     return cvsreadfile(cvsroot, cvsfilename, revision)
   if hassvn(parentdir):
     return svnreadfile(filename, revision)
+  if hasdarcs(parentdir):
+    return darcsreadfile(filename)
   raise IOError("Could not find version control information")
 
 def updatefile(filename, revision=None):
@@ -203,6 +235,8 @@ def updatefile(filename, revision=None):
     return cvsupdatefile(filename, revision)
   if hassvn(parentdir):
     return svnupdatefile(filename, revision)
+  if hasdarcs(parentdir):
+    return darcsupdatefile(filename)
   raise IOError("Could not find version control information")
 
 def commitfile(filename, message=None):
@@ -211,6 +245,8 @@ def commitfile(filename, message=None):
     return cvscommitfile(filename, message)
   if hassvn(parentdir):
     return svncommitfile(filename, message)
+  if hasdarcs(parentdir):
+    return darcscommitfile(filename, message)
   raise IOError("Could not find version control information")
   
 if __name__ == "__main__":
