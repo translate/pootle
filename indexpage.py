@@ -700,7 +700,10 @@ class ProjectIndex(pagelayout.PootleNavPage):
   def getfileitem(self, fileentry, linksrequired=None, **newargs):
     """returns an item showing a file entry"""
     if linksrequired is None:
-      linksrequired = ["mine", "review", "quick", "all", "po", "xliff", "ts", "csv", "mo", "update", "commit"]
+      if fileentry.endswith('.po'):
+        linksrequired = ["mine", "review", "quick", "all", "po", "xliff", "ts", "csv", "mo", "update", "commit"]
+      else:
+        linksrequired = ["mine", "review", "quick", "all", "xliff", "update", "commit"]
     basename = os.path.basename(fileentry)
     projectstats = self.project.combinestats([fileentry])
     browseurl = self.getbrowseurl(basename, **newargs)
