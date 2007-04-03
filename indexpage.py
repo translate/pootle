@@ -427,10 +427,10 @@ class ProjectIndex(pagelayout.PootleNavPage):
       commitfile = self.argdict.pop("commitfile", None)
       if not commitfile:
         raise ValueError("cannot commit file, no file specified")
-      if commitfile.endswith(".po"):
+      if commitfile.endswith("." + self.project.fileext):
         self.project.commitpofile(self.session, self.dirname, commitfile)
       else:
-        raise ValueError("can only commit PO files")
+        raise ValueError("can only commit files with extension ." + self.project.fileext)
       del self.argdict["docommit"]
     if "doaddgoal" in self.argdict:
       goalname = self.argdict.pop("newgoal", None)
