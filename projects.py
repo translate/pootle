@@ -26,6 +26,7 @@ from translate.filters import checks
 from translate.filters import pofilter
 from translate.convert import po2csv
 from translate.convert import po2xliff
+from translate.convert import xliff2po
 from translate.convert import po2ts
 from translate.convert import pot2po
 from translate.convert import po2oo
@@ -1260,7 +1261,6 @@ class TranslationProject(object):
 
   def convert(self, pofilename, destformat):
     """converts the pofile to the given format, returning (etag_if_filepath, filepath_or_contents)"""
-    destfilename = pofilename[:-len(self.fileext)] + destformat
     pofile = self.getpofile(pofilename, freshen=False)
     destfilename = pofile.filename[:-len(self.fileext)] + destformat
     destmtime = statistics.getmodtime(destfilename)
@@ -1271,7 +1271,7 @@ class TranslationProject(object):
       except Exception, e:
         print "error reading cached converted file %s: %s" % (destfilename, e)
     pofile.pofreshen()
-    converters = {"csv": po2csv.po2csv, "xlf": po2xliff.po2xliff, "ts": po2ts.po2ts, "mo": pocompile.POCompile}
+    converters = {"csv": po2csv.po2csv, "xlf": po2xliff.po2xliff, "po": xliff2po.xliff2po, "ts": po2ts.po2ts, "mo": pocompile.POCompile}
     converterclass = converters.get(destformat, None)
     if converterclass is None:
       raise ValueError("No converter available for %s" % destfilename)

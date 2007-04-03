@@ -703,7 +703,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       if fileentry.endswith('.po'):
         linksrequired = ["mine", "review", "quick", "all", "po", "xliff", "ts", "csv", "mo", "update", "commit"]
       else:
-        linksrequired = ["mine", "review", "quick", "all", "xliff", "update", "commit"]
+        linksrequired = ["mine", "review", "quick", "all", "po", "xliff", "update", "commit"]
     basename = os.path.basename(fileentry)
     projectstats = self.project.combinestats([fileentry])
     browseurl = self.getbrowseurl(basename, **newargs)
@@ -711,8 +711,9 @@ class ProjectIndex(pagelayout.PootleNavPage):
     actions = self.getactionlinks(basename, projectstats, linksrequired=linksrequired)
     actionlinks = actions["extended"]
     if "po" in linksrequired:
-      downloadlink = {"href": basename, "text": self.localize('PO file')}
-      actionlinks.append(downloadlink)
+      poname = basename.replace(".xlf", ".po")
+      polink = {"href": poname, "text": self.localize('PO file')}
+      actionlinks.append(polink)
     if "xliff" in linksrequired and "translate" in self.rights:
       xliffname = basename.replace(".po", ".xlf")
       xlifflink = {"href": xliffname, "text": self.localize('XLIFF file')}

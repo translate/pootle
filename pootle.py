@@ -459,7 +459,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
             encoding = getattr(pofile, "encoding", "UTF-8")
             page.content_type = "text/plain; charset=%s" % encoding
             return page
-        elif bottom.endswith(".csv") or bottom.endswith(".xlf") or bottom.endswith(".ts") or bottom.endswith("mo"):
+        elif bottom.endswith(".csv") or bottom.endswith(".xlf") or bottom.endswith(".ts") or bottom.endswith("po") or bottom.endswith("mo"):
           destfilename = os.path.join(*pathwords)
           basename, extension = os.path.splitext(destfilename)
           pofilename = basename + os.extsep + project.fileext
@@ -473,12 +473,13 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
             page.etag = str(etag)
           else:
             page = widgets.PlainContents(filepath_or_contents)
-          if extension == "csv":
+          if extension == "po" or extension == "csv":
             page.content_type = "text/plain; charset=UTF-8"
           elif extension == "xlf" or extension == "ts":
             page.content_type = "text/xml; charset=UTF-8"
           elif extension == "mo":
             page.content_type = "application/octet-stream"
+          print page.content_type
           return page
         elif bottom.endswith(".zip"):
           if not "archive" in project.getrights(session):
