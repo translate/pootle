@@ -418,10 +418,10 @@ class ProjectIndex(pagelayout.PootleNavPage):
       updatefile = self.argdict.pop("updatefile", None)
       if not updatefile:
         raise ValueError("cannot update file, no file specified")
-      if updatefile.endswith(".po"):
+      if updatefile.endswith("." + self.project.fileext):
         self.project.updatepofile(self.session, self.dirname, updatefile)
       else:
-        raise ValueError("can only update PO files")
+        raise ValueError("can only update files with extension ." + self.project.fileext)
       del self.argdict["doupdate"]
     if "docommit" in self.argdict:
       commitfile = self.argdict.pop("commitfile", None)
