@@ -75,7 +75,11 @@ class LoginPage(pagelayout.PootlePage):
       languageoptions += self.languagenames.items()
     else:
       languageoptions += self.languagenames
-    return [{"code": key, "name": value, "selected": key==session.language or None} for key, value in languageoptions if key != 'templates']
+    if session.language in ["en", session.server.defaultlanguage]:
+        preferredlanguage = ""
+    else:
+        preferredlanguage = session.language
+    return [{"code": key, "name": value, "selected": key==preferredlanguage or None} for key, value in languageoptions if key != 'templates']
 
 class RegisterPage(pagelayout.PootlePage):
   """page for new registrations"""
