@@ -282,14 +282,14 @@ class ServerTester:
 <xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
  
 <file datatype="po" original="test_existing.po" source-language="en-US"><body>
-<trans-unit id="1" xml:space="preserve">
+<trans-unit id="1" xml:space="preserve" approved="yes">
  <source>test</source>
  <target state="translated">rested</target>
  <context-group name="po-reference" purpose="location">
   <context context-type="sourcefile">test.c</context>
  </context-group>
 </trans-unit>
-<trans-unit id="2" xml:space="preserve">
+<trans-unit id="2" xml:space="preserve" approved="yes">
  <source>slink</source>
  <target state="translated">stink</target>
  <context-group name="po-reference" purpose="location">
