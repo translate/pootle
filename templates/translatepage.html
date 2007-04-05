@@ -58,8 +58,7 @@
         <a href="${notice.finishedlink}">${notice.returnlink}</a>
       </div>
       <form py:if="not notice" action="${actionurl}" method="post" name="translate" id="translate">
-        <br clear="left" style="height: 0px;" />
-        <table cellpadding="10" cellspacing="1" class="translate-table">
+        <table cellpadding="0" cellspacing="0" class="translate-table">
           <tr>
             <th colspan="1" rowspan="1" class="translate-table-title" py:content="original_title">original</th>
 
@@ -200,10 +199,10 @@
                   <div dir="$language.dir" lang="$language.code" py:if="not item.trans.isplural" class="translation-text" py:content="XML(item.trans.text)">
                     text
                   </div>
-                  <span py:if="item.trans.isplural" class="translation-text">
+                  <span py:if="item.trans.isplural">
                     <span py:for="form in item.trans.forms" py:strip="True">
                       <span class="translation-text-headers" py:content="form.title">Plural Form ${form.n}</span><br />
-                      <span py:replace="XML(form.text)">Text</span><br />
+                      <span class="translation-text" py:content="XML(form.text)">Text</span><br />
                     </span>
                   </span>
                 </div>
@@ -211,7 +210,7 @@
             </td>
           </tr>
           <tr py:if="item.editable">
-            <td  class="translate-original translate-original-${item.polarity} ${item.focus_class}">
+            <td  class="translate-original translate-original-${item.polarity} comments">
               <span py:if="item.developer_comments" py:strip="True">
                 <div py:content="developer_comments_title">Developer comments:</div>
                 <div py:if="item.editable and item.developer_comments" class="developer-comments" py:content="XML(item.developer_comments)">
@@ -222,9 +221,9 @@
                    Locations
                 </div>
             </td>
-            <td class="translate-translation translate-translation-${item.polarity} ${item.focus_class}">
+            <td class="translate-translation translate-translation-${item.polarity} comments">
               <div py:content="translator_comments_title">Translator comments:</div>
-                   <textarea py:if="not reviewmode" dir="$language.dir" lang="$language.code" name="translator_comments${item.itemid}" id="translator_comments${item.itemid}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="item.translator_comments">
+                   <textarea py:if="not reviewmode" dir="$language.dir" lang="$language.code" name="translator_comments${item.itemid}" id="translator_comments${item.itemid}" rows="2" cols="${item.trans.cols}" py:content="item.translator_comments">
                     Translator comments.
                    </textarea>
                    <div py:if="reviewmode" py:content="XML(item.translator_comments)"  class="translator-comments">Translator comments</div>
