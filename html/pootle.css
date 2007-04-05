@@ -145,7 +145,6 @@ div.item
 }
 div.navbar
 {
-	margin-bottom:10px;
 	background-color: #cfd1d3;
 	padding: 5px;
 	min-height: 1.8em;
@@ -195,7 +194,7 @@ table.translate-table
 	border-spacing:1px;
 	border:0;
 }
-td.translate-table-title
+.translate-table-title
 {
 	font-weight: bold;
 	color: #004077;
@@ -212,7 +211,10 @@ td.translate-original
 td.translate-focus
 {
 	border-top:1px solid #000000;
-	border-bottom:1px solid #000000;
+}
+td.comments
+{
+        border-bottom:1px solid #000000;
 }
 .translate-original-odd
 {
@@ -335,10 +337,6 @@ div.intro {
 	font-size:large;
 	font-weight:normal;
 	text-align:left;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	border-top:1px dotted #999;
-	border-bottom:1px dotted #999;
 	width: 72%;
 	direction: ltr;
 }
@@ -449,6 +447,7 @@ textarea.translation
 	max-width: 100%;
 	overflow: auto;
 /*        white-space: pre-wrap;*/
+	padding: 10px;
 }
 .translation-space
 {
