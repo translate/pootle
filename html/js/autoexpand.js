@@ -107,7 +107,7 @@ function mouseGoesOver()
 	if (this.partner)
 		if (this.partner.timeevent)
 			clearTimeout(this.partner.timeevent);
-	this.timeevent = setTimeout('timedexpansion("'+this.id+'")', 300);
+	this.timeevent = setTimeout('timedexpansion("'+this.id+'")', 500);
 }
 
 function mouseGoesOut()
