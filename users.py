@@ -204,7 +204,7 @@ class UserOptions(pagelayout.PootlePage):
       if code == "templates":
         continue
       languageoptions.append({"code": code, "name": name, "selected": uilanguage == code or None})
-    options = {"inputheight": self.localize("Input Height (in lines)"), "inputwidth": self.localize("Input Width (in characters)"),
+    options = {"inputheight": self.localize("Input Height (in lines)"), 
           "viewrows": self.localize("Number of rows in view mode"), 
           "translaterows": self.localize("Number of rows in translate mode")}
     optionlist = []

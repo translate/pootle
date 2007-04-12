@@ -618,11 +618,6 @@ class TranslatePage(pagelayout.PootleNavPage):
             # l10n: action that decreases the height of the textarea
             "shrink": self.localize("Shrink"),
             # l10n: action that increases the width of the textarea
-            "broaden": self.localize("Broaden"),
-            # l10n: action that decreases the width of the textarea
-            "narrow": self.localize("Narrow"),
-            # l10n: action that resets the size of the textarea
-            "reset": self.localize("Reset")
            }
 
   def gettransedit(self, item, trans):

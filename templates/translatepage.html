@@ -175,9 +175,6 @@
                     <span py:if="'resize' in buttons.desired" py:strip="True">
                       <a href='#' onclick="return expandtextarea(this)" accesskey="=" py:content="buttons.grow">Grow</a>
                       <a href='#' onclick="return contracttextarea(this)" accesskey="-" py:content="buttons.shrink">Shrink</a>
-                      <a href='#' onclick="return broadentextarea(this)" accesskey="+" py:content="buttons.broaden">Broaden</a>
-                      <a href='#' onclick="return narrowtextarea(this)" accesskey="_" py:content="buttons.narrow">Narrow</a>
-                      <a href='#' onclick="return resettextarea(this, ${buttons.rows}, ${buttons.cols})" py:content="buttons.reset">Reset</a>
                     </span>
                   </span>
                   <script type="text/javascript">

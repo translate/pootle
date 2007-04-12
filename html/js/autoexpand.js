@@ -181,40 +181,6 @@ function contracttextarea(link)
 	return false;
 }
 
-function broadentextarea(link)
-{
-	if (link == null) alert("link is null");
-	var textarea = findsiblingtextarea(link);
-	if (textarea == null) return true;
-	if (textarea.cols >= 40)
-		textarea.cols += 10;
-	else
-		textarea.cols += 5;
-	return false;
-}
-
-function narrowtextarea(link)
-{
-	if (link == null) alert("link is null");
-	var textarea = findsiblingtextarea(link);
-	if (textarea == null) return true;
-	if (textarea.cols > 40)
-		textarea.cols -= 10;
-	else if (textarea.cols > 1)
-		textarea.cols -= 5;
-	return false;
-}
-
-function resettextarea(link, rows, cols)
-{
-	if (link == null) alert("link is null");
-	var textarea = findsiblingtextarea(link);
-	if (textarea == null) return true;
-	textarea.rows = rows;
-	textarea.cols = cols;
-	return false;
-}
-
 function copyorigtranslation(elementNumber)
 {
 	var i = 0;
