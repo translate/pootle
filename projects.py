@@ -141,6 +141,7 @@ class TranslationProject(object):
             ("review", localize("Review")),
             # l10n: Verb
             ("archive", localize("Archive")),
+            # l10n: This refers to generating the binary .mo file
             ("pocompile", localize("Compile PO files")),
             ("assign", localize("Assign")),
             ("admin", localize("Administrate")),

@@ -110,7 +110,9 @@ class TranslatePage(pagelayout.PootleNavPage):
         # translation form
         "actionurl": formaction,
         "notice": notice,
+        # l10n: Heading above the table column with the source language
         "original_title": self.localize("Original"),
+        # l10n: Heading above the table column with the target language
         "translation_title": self.localize("Translation"),
         "items": items,
         "reviewmode": self.reviewmode,
@@ -119,6 +121,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         "fuzzytext": self.localize("Fuzzy"),
         # l10n: Heading above the textarea for translator comments.
         "translator_comments_title": self.localize("Translator comments"),
+        # l10n: Heading above the comments extracted from the programing source code
         "developer_comments_title": self.localize("Developer comments"),
         # l10n: This heading refers to related translations and terminology
         "related_title": self.localize("Related"),
