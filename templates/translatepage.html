@@ -220,7 +220,7 @@
             </td>
             <td class="translate-translation translate-translation-${item.polarity} comments">
               <div py:content="translator_comments_title">Translator comments:</div>
-                   <textarea py:if="not reviewmode" dir="$language.dir" lang="$language.code" name="translator_comments${item.itemid}" id="translator_comments${item.itemid}" rows="2" cols="${item.trans.cols}" py:content="item.translator_comments">
+                   <textarea py:if="not reviewmode" dir="$language.dir" lang="$language.code" name="translator_comments${item.itemid}" id="translator_comments${item.itemid}" rows="2" cols="${item.trans.cols}" class="comments" py:content="item.translator_comments">
                     Translator comments.
                    </textarea>
                    <div py:if="reviewmode" py:content="XML(item.translator_comments)"  class="translator-comments">Translator comments</div>

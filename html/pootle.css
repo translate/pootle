@@ -216,6 +216,11 @@ td.comments
 {
         border-bottom:1px solid #000000;
 }
+textarea.comments
+{
+	max-width: 100%;
+	width: 100%;
+}
 .translate-original-odd
 {
 	background-color: #ffffff;
@@ -441,6 +446,7 @@ div.intro {
 textarea.translation
 {
 	max-width: 100%;
+	width: 100%;
 }
 .translation-text
 {
