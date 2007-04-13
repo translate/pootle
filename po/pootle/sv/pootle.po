@@ -1,0 +1,1493 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2007-01-17 14:02+0200\n"
+"PO-Revision-Date: 2007-01-22 00:32+0100\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: pygettext.py 1.1\n"
+"X-Generator: Pootle 0.11rc\n"
+
+#. l10n: Verb
+#: projects.py:135
+msgid "View"
+msgstr "Visa"
+
+#: projects.py:136 translatepage.py:572
+msgid "Suggest"
+msgstr "Föreslå"
+
+#: projects.py:137
+msgid "Translate"
+msgstr "Översätt"
+
+#. l10n: radio button text
+#: projects.py:138 indexpage.py:544
+msgid "Overwrite"
+msgstr "Skriv över"
+
+#. l10n: Verb
+#: projects.py:140
+msgid "Review"
+msgstr "Granska"
+
+#. l10n: Verb
+#: projects.py:142
+msgid "Archive"
+msgstr "Arkiv"
+
+#: projects.py:143
+msgid "Compile PO files"
+msgstr "Bygg PO-filer"
+
+#: projects.py:144
+msgid "Assign"
+msgstr "Tilldela"
+
+#: projects.py:145 indexpage.py:134
+msgid "Administrate"
+msgstr "Administrera"
+
+#. l10n: Commit to version control (like CVS or Subversion)
+#: projects.py:146 indexpage.py:738
+msgid "Commit"
+msgstr "Verkställ"
+
+#. l10n: Don't translate "nobody" or "default"
+#: projects.py:226
+msgid "You cannot remove the \"nobody\" or \"default\" user"
+msgstr "Du kan inte ta bort användarna \"nobody\" eller \"default\""
+
+#: projects.py:379 projects.py:441
+msgid "You do not have rights to alter goals here"
+msgstr "Du har inte rättigheter att ändra mål här"
+
+#: projects.py:504
+msgid "You do not have rights to upload files here"
+msgstr "Du har inte rättigheter att skicka upp filer här"
+
+#: projects.py:507
+msgid "You do not have rights to overwrite files here"
+msgstr "Du har inte rättigheter att skriva över filer här"
+
+#: projects.py:509
+msgid "You do not have rights to upload new files here"
+msgstr "Du har inte rättigheter att skicka upp nya filer här"
+
+#: projects.py:518
+msgid "You do not have rights to update files here"
+msgstr "Du har inte rättigheter att uppdatera filer här"
+
+#: projects.py:588
+msgid "You do not have rights to commit files here"
+msgstr "Du har inte rättigheter att verkställa ändringar i filer här"
+
+#: projects.py:922 projects.py:963
+msgid "You do not have rights to alter assignments here"
+msgstr "Du har inte rättigheter att ändra tilldelningar här"
+
+#: projects.py:1167
+msgid "You do not have rights to change translations here"
+msgstr "Du har inte rättigheter att ändra översättare här"
+
+#: projects.py:1177
+msgid "You do not have rights to suggest changes here"
+msgstr "Du har inte rättigheter att föreslå ändringar här"
+
+#: projects.py:1193 projects.py:1216
+msgid "You do not have rights to review suggestions here"
+msgstr "Du har inte rättigheter att granska förslag här"
+
+#: translatepage.py:80
+#, python-format
+msgid ""
+"%d/%d translated\n"
+"(%d blank, %d fuzzy)"
+msgstr ""
+"%d/%d översatta\n"
+"(%d blanka, %d luddiga)"
+
+#: translatepage.py:92 adminpages.py:35 adminpages.py:74 adminpages.py:130
+#: adminpages.py:192 adminpages.py:279 adminpages.py:339 pagelayout.py:70
+#: users.py:58 users.py:91 users.py:127 users.py:149 indexpage.py:73
+#: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
+#: indexpage.py:342
+msgid "Pootle Demo"
+msgstr "Demo av Pootle"
+
+#. l10n: first parameter: name of the installation (like "Pootle")
+#. l10n: second parameter: project name
+#. l10n: third parameter: target language
+#. l10n: fourth parameter: file name
+#: translatepage.py:97
+#, python-format
+msgid "%s: translating %s into %s: %s"
+msgstr "%s: översätter %s till %s: %s"
+
+#: translatepage.py:111
+msgid "Original"
+msgstr "Original"
+
+#: translatepage.py:112
+msgid "Translation"
+msgstr "Översättning"
+
+#: translatepage.py:115
+msgid "Accept"
+msgstr "Godkänn"
+
+#: translatepage.py:116
+msgid "Reject"
+msgstr "Vägra"
+
+#. l10n: This heading refers to related translations and terminology
+#: translatepage.py:118
+msgid "Related"
+msgstr "Relaterad"
+
+#. l10n: text next to search field
+#: translatepage.py:122 indexpage.py:352
+msgid "Search"
+msgstr "Sök"
+
+#. l10n: "batch" refers to the set of translations that were reviewed
+#: translatepage.py:136
+msgid "End of batch"
+msgstr "Slut på sats"
+
+#: translatepage.py:138
+msgid "Click here to return to the index"
+msgstr "Klicka här för att återgå till indexet"
+
+#. l10n: noun (the start)
+#: translatepage.py:152 translatepage.py:155
+msgid "Start"
+msgstr "Första"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:159 translatepage.py:162
+#, python-format
+msgid "Previous %d"
+msgstr "Föregående %d"
+
+#. l10n: the third parameter refers to the total number of messages in the file
+#: translatepage.py:164
+#, python-format
+msgid "Items %d to %d of %d"
+msgstr "Posterna %d till %d av %d"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:169 translatepage.py:172
+#, python-format
+msgid "Next %d"
+msgstr "Nästa %d"
+
+#. l10n: noun (the end)
+#: translatepage.py:175 translatepage.py:178
+msgid "End"
+msgstr "Sista"
+
+#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
+#: translatepage.py:195
+#, python-format
+msgid "checking %s"
+msgstr "kontrollerar %s"
+
+#: translatepage.py:202 translatepage.py:205 indexpage.py:522 indexpage.py:525
+msgid "Assign Strings"
+msgstr "Tilldela strängar"
+
+#: translatepage.py:203 indexpage.py:524
+msgid "Assign to User"
+msgstr "Tilldela till användare"
+
+#: translatepage.py:204 indexpage.py:523
+msgid "Assign Action"
+msgstr "Tilldela åtgärd"
+
+#: translatepage.py:337
+#, python-format
+msgid "There are no items matching that search ('%s')"
+msgstr "Det finns inga poster som matchar den sökningen (\"%s\")"
+
+#: translatepage.py:339
+msgid "You have finished going through the items you selected"
+msgstr "Du har färdigställt alla poster du valde"
+
+#: translatepage.py:537
+msgid "Singular"
+msgstr "Singular"
+
+#: translatepage.py:538
+msgid "Plural"
+msgstr "Plural"
+
+#. l10n: verb
+#: translatepage.py:552
+msgid "Edit"
+msgstr "Redigera"
+
+#. l10n: verb
+#: translatepage.py:568
+msgid "Copy"
+msgstr "Kopiera"
+
+#: translatepage.py:569 translatepage.py:748
+msgid "Skip"
+msgstr "Hoppa över"
+
+#. l10n: verb
+#: translatepage.py:571 translatepage.py:747 users.py:252
+msgid "Back"
+msgstr "Tillbaka"
+
+#: translatepage.py:573
+msgid "Submit"
+msgstr "Skicka"
+
+#. l10n: action that increases the height of the textarea
+#: translatepage.py:576
+msgid "Grow"
+msgstr "Öka"
+
+#. l10n: action that decreases the height of the textarea
+#: translatepage.py:578
+msgid "Shrink"
+msgstr "Minska"
+
+#. l10n: action that increases the width of the textarea
+#: translatepage.py:580
+msgid "Broaden"
+msgstr "Bredare"
+
+#. l10n: action that decreases the width of the textarea
+#: translatepage.py:582
+msgid "Narrow"
+msgstr "Smalare"
+
+#. l10n: action that resets the size of the textarea
+#: translatepage.py:584
+msgid "Reset"
+msgstr "Återställ"
+
+#: translatepage.py:605 translatepage.py:699 translatepage.py:736
+#: translatepage.py:769
+#, python-format
+msgid "Plural Form %d"
+msgstr "Pluralform %d"
+
+#. l10n: This is an error message that will display if the relevant problem occurs
+#: translatepage.py:621
+msgid ""
+"Translation not possible because plural information for your language is not "
+"available. Please contact the site administrator."
+msgstr ""
+"Översättning är inte möjlig därför att information om pluralformer för ditt "
+"språk inte finns tillgängligt. Kontakta systemadministratören."
+
+#: translatepage.py:703
+msgid "Current Translation:"
+msgstr "Aktuell översättning:"
+
+#. l10n: First parameter: number
+#. l10n: Second parameter: name of translator
+#: translatepage.py:716
+#, python-format
+msgid "Suggestion %d by %s:"
+msgstr "Förslag %d från %s:"
+
+#: translatepage.py:718
+#, python-format
+msgid "Suggestion %d:"
+msgstr "Förslag %d:"
+
+#. l10n: parameter: name of translator
+#: translatepage.py:722
+#, python-format
+msgid "Suggestion by %s:"
+msgstr "Förslag från %s:"
+
+#: translatepage.py:724
+msgid "Suggestion:"
+msgstr "Förslag:"
+
+#: adminpages.py:43 adminpages.py:82 adminpages.py:138 adminpages.py:200
+#: pagelayout.py:36
+msgid "Home"
+msgstr "Hem"
+
+#: adminpages.py:44 adminpages.py:202
+msgid "Users"
+msgstr "Användare"
+
+#: adminpages.py:45 adminpages.py:84 indexpage.py:94
+msgid "Languages"
+msgstr "Språk"
+
+#: adminpages.py:46 adminpages.py:140 indexpage.py:95
+msgid "Projects"
+msgstr "Projekt"
+
+#: adminpages.py:47
+msgid "General options"
+msgstr "Allmänna inställningar"
+
+#: adminpages.py:48 users.py:153
+msgid "Option"
+msgstr "Alternativ"
+
+#: adminpages.py:49 users.py:154
+msgid "Current value"
+msgstr "Aktuellt värde"
+
+#: adminpages.py:50 adminpages.py:85 adminpages.py:141 adminpages.py:203
+#: users.py:168
+msgid "Save changes"
+msgstr "Spara ändringar"
+
+#: adminpages.py:54
+msgid "Title"
+msgstr "Titel"
+
+#: adminpages.py:55
+msgid "Description"
+msgstr "Beskrivning"
+
+#: adminpages.py:56
+msgid "Base URL"
+msgstr "Bas-URL"
+
+#: adminpages.py:57
+msgid "Home Page"
+msgstr "Hemsida"
+
+#: adminpages.py:83 adminpages.py:139 adminpages.py:201
+msgid "Main admin page"
+msgstr "Huvudadministrationssida"
+
+#: adminpages.py:89
+msgid "ISO Code"
+msgstr "ISO-kod"
+
+#: adminpages.py:90 adminpages.py:146 adminpages.py:208 users.py:100
+msgid "Full Name"
+msgstr "Fullständigt namn"
+
+#: adminpages.py:91
+msgid "(add language here)"
+msgstr "(lägg till språk här)"
+
+#: adminpages.py:92
+msgid "Special Chars"
+msgstr "Specialtecken"
+
+#: adminpages.py:92
+msgid "(special characters)"
+msgstr "(specialtecken)"
+
+#: adminpages.py:93 indexpage.py:217
+msgid "Number of Plurals"
+msgstr "Antal pluralformer"
+
+#: adminpages.py:93
+msgid "(number of plurals)"
+msgstr "(antal pluralformer)"
+
+#: adminpages.py:94 indexpage.py:218
+msgid "Plural Equation"
+msgstr "Pluralekvation"
+
+#: adminpages.py:94
+msgid "(plural equation)"
+msgstr "(pluralekvation)"
+
+#: adminpages.py:95
+msgid "Remove Language"
+msgstr "Ta bort språk"
+
+#. l10n: The parameter is a languagecode, projectcode or username
+#: adminpages.py:110 adminpages.py:173 adminpages.py:235 adminpages.py:405
+#, python-format
+msgid "Remove %s"
+msgstr "Ta bort %s"
+
+#: adminpages.py:128
+msgid "Standard"
+msgstr "Standard"
+
+#: adminpages.py:145
+msgid "Project Code"
+msgstr "Projektkod"
+
+#: adminpages.py:147
+msgid "(add project here)"
+msgstr "(lägg till projekt här)"
+
+#: adminpages.py:148
+msgid "Project Description"
+msgstr "Projektbeskrivning"
+
+#: adminpages.py:148
+msgid "(project description)"
+msgstr "(projektbeskrivning)"
+
+#: adminpages.py:149
+msgid "Checker Style"
+msgstr "Kontrolltyp"
+
+#: adminpages.py:150
+msgid "Create MO Files"
+msgstr "Skapa MO-filer"
+
+#: adminpages.py:151
+msgid "Remove Project"
+msgstr "Ta bort projekt"
+
+#: adminpages.py:207 users.py:66
+msgid "Login"
+msgstr "Logga in"
+
+#: adminpages.py:209 users.py:343
+msgid "(add full name here)"
+msgstr "(lägg till fullständigt namn här)"
+
+#: adminpages.py:210 users.py:97
+msgid "Email Address"
+msgstr "E-postadress"
+
+#: adminpages.py:210 users.py:346
+msgid "(add email here)"
+msgstr "(lägg till e-postadress här)"
+
+#: adminpages.py:211 users.py:103 users.py:159
+msgid "Password"
+msgstr "Lösenord"
+
+#: adminpages.py:211 users.py:340
+msgid "(add password here)"
+msgstr "(lägg till lösenord här)"
+
+#: adminpages.py:212
+msgid "Activated"
+msgstr "Aktiverad"
+
+#: adminpages.py:212
+msgid "Activate New User"
+msgstr "Aktivera ny användare"
+
+#: adminpages.py:213
+msgid "Remove User"
+msgstr "Ta bort användare"
+
+#: adminpages.py:267
+msgid "Back to main page"
+msgstr "Tillbaka till huvudsidan"
+
+#: adminpages.py:268
+msgid "Existing languages"
+msgstr "Existerande språk"
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:272
+msgid "Update Languages"
+msgstr "Uppdatera språk"
+
+#: adminpages.py:273
+#, python-format
+msgid "Pootle Admin: %s"
+msgstr "Pootle-administratör: %s"
+
+#: adminpages.py:274 adminpages.py:336
+msgid "You do not have the rights to administer this project."
+msgstr "Du har inte rättigheter att administrera detta projekt."
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:276
+msgid "Update from templates"
+msgstr "Uppdatera från mallar"
+
+#: adminpages.py:284
+msgid "Add Language"
+msgstr "Lägg till språk"
+
+#. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
+#: adminpages.py:316
+#, python-format
+msgid "Pootle Admin: %s %s"
+msgstr "Pootle-admin: %s %s"
+
+#: adminpages.py:317
+msgid "Project home page"
+msgstr "Projektets hemsida"
+
+#: adminpages.py:335
+#, python-format
+msgid "Cannot set rights for username %s - user does not exist"
+msgstr ""
+"Kan inte ställa in rättigheter för användaren %s - användare finns inte"
+
+#: adminpages.py:352
+msgid "This is a GNU-style project (one directory, files named per language)."
+msgstr ""
+"Detta är ett projekt av GNU-typ (en katalog, filer namngivna efter språk)."
+
+#: adminpages.py:354
+msgid "This is a standard style project (one directory per language)."
+msgstr "Detta är ett projekt av standardtyp (en katalog per språk)."
+
+#: adminpages.py:355
+msgid "User Permissions"
+msgstr "Rättigheter för användare"
+
+#: adminpages.py:356 users.py:94 users.py:130
+msgid "Username"
+msgstr "Användarnamn"
+
+#: adminpages.py:357
+msgid "(select to add user)"
+msgstr "(välj för att lägga till användare)"
+
+#: adminpages.py:358
+msgid "Rights"
+msgstr "Rättigheter"
+
+#: adminpages.py:359 indexpage.py:988
+msgid "Remove"
+msgstr "Ta bort"
+
+#: adminpages.py:386
+msgid "Update Rights"
+msgstr "Uppdatera rättigheter"
+
+#: pagelayout.py:37
+msgid "All projects"
+msgstr "Alla projekt"
+
+#: pagelayout.py:38
+msgid "All languages"
+msgstr "Alla språk"
+
+#: pagelayout.py:39
+msgid "My account"
+msgstr "Mitt konto"
+
+#: pagelayout.py:40 pagelayout.py:162 indexpage.py:200 indexpage.py:262
+msgid "Admin"
+msgstr "Admin"
+
+#: pagelayout.py:41
+msgid "Docs & help"
+msgstr "Dokument & hjälp"
+
+#: pagelayout.py:42
+msgid "Log out"
+msgstr "Logga ut"
+
+#: pagelayout.py:43
+msgid "Log in"
+msgstr "Logga in"
+
+#. l10n: Verb, as in "to register"
+#: pagelayout.py:45
+msgid "Register"
+msgstr "Registrera"
+
+#: pagelayout.py:46
+msgid "Activate"
+msgstr "Aktivera"
+
+#: pagelayout.py:74
+msgid "Pootle Logo"
+msgstr "Pootle-logo"
+
+#: pagelayout.py:75
+msgid "WordForge Translation Project"
+msgstr "Översättningsprojektet WordForge"
+
+#: pagelayout.py:77
+msgid "About this Pootle server"
+msgstr "Om den här Pootle-servern"
+
+#: pagelayout.py:151
+msgid "All goals"
+msgstr "Alla mål"
+
+#: pagelayout.py:222
+#, python-format
+msgid "%d/%d files"
+msgstr "%d/%d filer"
+
+#: pagelayout.py:225
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "%d fil"
+msgstr[1] "%d filer"
+
+#: pagelayout.py:226 indexpage.py:985
+#, python-format
+msgid "%d/%d words (%d%%) translated"
+msgstr "%d/%d ord (%d%%) översatta"
+
+#: pagelayout.py:227
+#, python-format
+msgid "%d/%d strings"
+msgstr "%d/%d strängar"
+
+#: pagelayout.py:233 users.py:155
+msgid "Name"
+msgstr "Namn"
+
+#: pagelayout.py:234
+msgid "Translated"
+msgstr "Översatta"
+
+#: pagelayout.py:235
+msgid "Translated percentage"
+msgstr "Översatta i procent"
+
+#: pagelayout.py:236
+msgid "Translated words"
+msgstr "Översatta ord"
+
+#: pagelayout.py:237
+msgid "Fuzzy"
+msgstr "Luddiga"
+
+#: pagelayout.py:238
+msgid "Fuzzy percentage"
+msgstr "Luddiga i procent"
+
+#: pagelayout.py:239
+msgid "Fuzzy words"
+msgstr "Luddiga ord"
+
+#: pagelayout.py:240 indexpage.py:776
+msgid "Untranslated"
+msgstr "Ej översatta"
+
+#: pagelayout.py:241
+msgid "Untranslated percentage"
+msgstr "Ej översatta i procent"
+
+#: pagelayout.py:242
+msgid "Untranslated words"
+msgstr "Ej översatta ord"
+
+#: pagelayout.py:243
+msgid "Total"
+msgstr "Totalt"
+
+#: pagelayout.py:244
+msgid "Total words"
+msgstr "Totalt antal ord"
+
+#. l10n: noun. The graphical representation of translation status
+#: pagelayout.py:246
+msgid "Graph"
+msgstr "Diagram"
+
+#: users.py:39
+#, python-format
+msgid "You must supply a valid password of at least %d characters."
+msgstr "Du måste ange ett giltigt lösenord med åtminstone %d tecken."
+
+#: users.py:41
+msgid "The password is not the same as the confirmation."
+msgstr "Lösenordet är inte det samma som bekräftelsen."
+
+#: users.py:55
+msgid "Login to Pootle"
+msgstr "Logga in i Pootle"
+
+#: users.py:61
+msgid "Username:"
+msgstr "Användarnamn:"
+
+#: users.py:63
+msgid "Password:"
+msgstr "Lösenord:"
+
+#: users.py:64
+msgid "Language:"
+msgstr "Språk:"
+
+#: users.py:73
+msgid "Default"
+msgstr "Standard"
+
+#: users.py:85
+msgid "Please enter your registration details"
+msgstr "Ange dina registreringsdetaljer"
+
+#: users.py:88 users.py:415
+msgid "Pootle Registration"
+msgstr "Registrering i Pootle"
+
+#: users.py:95 users.py:131
+msgid "Your requested username"
+msgstr "Ditt begärda användarnamn"
+
+#: users.py:98
+msgid "Must be a valid email address"
+msgstr "Måste vara en giltig e-postadress"
+
+#: users.py:101
+msgid "Your full name"
+msgstr "Ditt fullständiga namn"
+
+#: users.py:104
+msgid "Your desired password"
+msgstr "Ditt önskade lösenord"
+
+#: users.py:106 users.py:160
+msgid "Confirm password"
+msgstr "Bekräfta lösenord"
+
+#: users.py:107
+msgid "Type your password again to ensure it is entered correctly"
+msgstr ""
+"Ange ditt lösenord igen för att försäkra dig om att det har matats in korrekt"
+
+#: users.py:109
+msgid "Register Account"
+msgstr "Registrera konto"
+
+#: users.py:118
+msgid "Please enter your activation details"
+msgstr "Ange dina aktiveringsdetaljer"
+
+#: users.py:123
+msgid "Pootle Account Activation"
+msgstr "Kontoaktivering för Pootle"
+
+#: users.py:133
+msgid "Activation Code"
+msgstr "Aktiveringskod"
+
+#: users.py:134
+msgid "The activation code you received"
+msgstr "Aktiveringskoden som du tog emot"
+
+#: users.py:136
+msgid "Activate Account"
+msgstr "Aktivera konto"
+
+#: users.py:147
+#, python-format
+msgid "Options for: %s"
+msgstr "Alternativ för: %s"
+
+#: users.py:152
+msgid "Personal Details"
+msgstr "Personlig information"
+
+#: users.py:157
+msgid "Email"
+msgstr "E-post"
+
+#: users.py:161
+msgid "Translation Interface Configuration"
+msgstr "Konfiguration av översättningsgränssnittet"
+
+#: users.py:162
+msgid "User Interface language"
+msgstr "Språk för användargränssnitt"
+
+#: users.py:163
+msgid "My Projects"
+msgstr "Mina projekt"
+
+#: users.py:165
+msgid "My Languages"
+msgstr "Mina språk"
+
+#: users.py:167
+msgid "Home page"
+msgstr "Hemsida"
+
+#: users.py:203
+msgid "Input Height (in lines)"
+msgstr "Inmatningshöjd (i rader)"
+
+#: users.py:203
+msgid "Input Width (in characters)"
+msgstr "Inmatningsbredd (i tecken)"
+
+#: users.py:204
+msgid "Number of rows in view mode"
+msgstr "Antal rader i visningsläge"
+
+#: users.py:205
+msgid "Number of rows in translate mode"
+msgstr "Antal rader i översättningsläge"
+
+#: users.py:247
+msgid "Error"
+msgstr "Fel"
+
+#: users.py:299
+msgid "You need to be siteadmin to change users"
+msgstr "Du behöver vara siteadmin för att ändra användare"
+
+#: users.py:363
+msgid ""
+"Username must be alphanumeric, and must start with an alphabetic character."
+msgstr ""
+"Användarnamn måste vara alfanumeriska, och måste börja med ett alfabetiskt "
+"tecken."
+
+#: users.py:369
+msgid "You must supply a valid email address"
+msgstr "Du måste ange en giltig e-postadress"
+
+#: users.py:378
+msgid ""
+"You (or someone else) attempted to register an account with your username.\n"
+msgstr ""
+"Du (eller någon annan) försökte att registrera ett konto med ditt "
+"användarnamn.\n"
+
+#: users.py:379
+msgid "We don't store your actual password but only a hash of it.\n"
+msgstr ""
+"Vi lagrar inte ditt faktiska lösenord utan endast ett hashvärde av det.\n"
+
+#: users.py:381
+#, python-format
+msgid "If you have a problem with registration, please contact %s.\n"
+msgstr "Kontakta %s om du har problem med att registrera dig.\n"
+
+#: users.py:383
+msgid ""
+"If you have a problem with registration, please contact the site "
+"administrator.\n"
+msgstr ""
+"Kontakta systemadministratören om du har problem med att registrera dig.\n"
+
+#: users.py:384
+msgid ""
+"That username already exists. An email will be sent to the registered email "
+"address.\n"
+msgstr ""
+"Det användarnamnet finns redan. Ett e-postmeddelande kommer att skickas till "
+"den registrerade e-postadressen.\n"
+
+#: users.py:386
+#, python-format
+msgid "Proceeding to <a href='%s'>login</a>\n"
+msgstr "Fortsätter till <a href='%s'>inloggningssidan</a>\n"
+
+#: users.py:392
+msgid "A Pootle account has been created for you using this email address.\n"
+msgstr "Ett Pootle-konto har skapats åt dig med denna e-postadressen.\n"
+
+#: users.py:394
+msgid "To activate your account, follow this link:\n"
+msgstr "För att aktivera ditt konto, följ denna länken:\n"
+
+#: users.py:400
+#, python-format
+msgid ""
+"Your activation code is:\n"
+"%s\n"
+msgstr ""
+"Din aktiveringskod är:\n"
+"%s\n"
+
+#: users.py:402
+msgid ""
+"If you are unable to follow the link, please enter the above code at the "
+"activation page.\n"
+msgstr ""
+"Om du inte kan följa länken kan du ange koden ovan på aktiveringssidan.\n"
+
+#: users.py:403
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message.\n"
+msgstr ""
+"Detta meddelande skickas till dig för att validera att e-postadressen är "
+"korrekt. Om du inte vill registrera ett konto kan du helt enkelt ignorera "
+"detta meddelande.\n"
+
+#: users.py:405
+#, python-format
+msgid ""
+"Account created. You will be emailed login details and an activation code. "
+"Please enter your activation code on the <a href='%s'>activation page</a>."
+msgstr ""
+"Kontot har skapats. Du kommer att få inloggningsuppgifter och en "
+"aktiveringskod skickad till dig via e-post. Ange din aktiveringskod på <a "
+"href='%s'>aktiveringssidan</a>."
+
+#: users.py:407
+msgid "(Or simply click on the activation link in the email)"
+msgstr "(eller klicka helt enkelt på aktiveringslänken i e-postmeddelandet)"
+
+#: users.py:409
+#, python-format
+msgid "Your user name is: %s\n"
+msgstr "Ditt användarnamn är: %s\n"
+
+#: users.py:411
+#, python-format
+msgid "Your password is: %s\n"
+msgstr "Ditt lösenord är: %s\n"
+
+#: users.py:412
+#, python-format
+msgid "Your registered email address is: %s\n"
+msgstr "Din registrerade e-postadress är: %s\n"
+
+#: users.py:436
+msgid "Redirecting to Registration Page..."
+msgstr "Omdirigerar till registreringssidan..."
+
+#: users.py:460
+msgid "Redirecting to login Page..."
+msgstr "Omdirigerar till inloggningssidan..."
+
+#: users.py:463
+msgid "Your account has been activated! Redirecting to login..."
+msgstr "Ditt konto har aktiverats! Omdirigerar till inloggingssidan..."
+
+#: users.py:467
+msgid "The activation information was not valid."
+msgstr "Aktiveringsinformationen du angav var inte giltig."
+
+#: users.py:468
+msgid "Activation Failed"
+msgstr "Aktivering misslyckades"
+
+#: users.py:577
+msgid "Input height must be numeric"
+msgstr "Inmatningshöjd måste vara numerisk"
+
+#: users.py:578
+msgid "Input width must be numeric"
+msgstr "Inmatningsbredd måste vara numerisk"
+
+#: users.py:579
+msgid "The number of rows displayed in view mode must be numeric"
+msgstr "Antal rader som visas i visningsläget måste vara numeriskt"
+
+#: users.py:580
+msgid "The number of rows displayed in translate mode must be numeric"
+msgstr "Antal rader som visas i översättningsläget måste vara numeriskt"
+
+#: pootle.py:275
+msgid "Login failed"
+msgstr "Inloggning misslyckades"
+
+#: pootle.py:319 pootle.py:350
+msgid "Redirecting to login..."
+msgstr "Omdirigerar till inloggningssida..."
+
+#: pootle.py:322
+msgid "Need to log in to access home page"
+msgstr "Inloggning behövs för att komma åt hemsidan"
+
+#: pootle.py:335
+msgid "Personal details updated"
+msgstr "Personlig information har uppdaterats"
+
+#: pootle.py:353
+msgid "Need to log in to access admin page"
+msgstr "Inloggning behövs för att komma åt administrationssidan"
+
+#: pootle.py:360
+msgid "Redirecting to home..."
+msgstr "Omdirigerar till hemsidan..."
+
+#: pootle.py:363
+msgid "You do not have the rights to administer pootle."
+msgstr "Du har inte rättigheter att administrera Pootle."
+
+#: indexpage.py:61
+msgid "About Pootle"
+msgstr "Om Pootle"
+
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:63
+msgid ""
+"<strong>Pootle</strong> is a simple web portal that should allow you to "
+"<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
+"you can download it and run your own copy if you like. You can also help "
+"participate in the development in many ways (you don't have to be able to "
+"program)."
+msgstr ""
+"<strong>Pootle</strong> är en enkel webbportal som låter dig "
+"<strong>översätta</strong>! Eftersom Pootle är <strong>fri programvara</"
+"strong>, kan du hämta det och köra din egna kopia av det om du så önskar. Du "
+"kan även hjälp till i utveckling på många olika sätt (du behöver inte kunna "
+"programmera)."
+
+#: indexpage.py:64
+msgid ""
+"The Pootle project itself is hosted at <a href=\"http://translate."
+"sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
+"details about source code, mailing lists etc."
+msgstr ""
+"Själva Pootle-projektet finns på <a href=\"http://translate.sourceforge.net/"
+"\">translate.sourceforge.net</a> där du kan finna detaljer om källkod, "
+"sändlistor etc."
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:67
+msgid ""
+"The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
+"thechestnut.com/flumps.htm\">this</a>."
+msgstr ""
+"Namnet står för <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, men du kanske behöver läsa <a href=\"http://www."
+"thechestnut.com/flumps.htm\">detta</a>."
+
+#: indexpage.py:68
+msgid "Versions"
+msgstr "Versioner"
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:71
+#, python-format
+msgid ""
+"This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+msgstr ""
+"Detta system kör:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %"
+"s<br />Kid %s<br />ElementTree %s<br />Python %s (på %s/%s)"
+
+#: indexpage.py:130
+#, python-format
+msgid "User Page for: %s"
+msgstr "Användarsida för: %s"
+
+#: indexpage.py:132
+msgid "Change options"
+msgstr "Ändra alternativ"
+
+#: indexpage.py:133
+msgid "Admin page"
+msgstr "Administrationssida"
+
+#: indexpage.py:135
+msgid "Quick Links"
+msgstr "Snabblänkar"
+
+#: indexpage.py:139
+msgid "Please click on 'Change options' and select some languages and projects"
+msgstr "Klicka på \"Ändra alternativ\" och välj några språk och projekt"
+
+#: indexpage.py:192
+#, python-format
+msgid "%d project, average %d%% translated"
+msgid_plural "%d projects, average %d%% translated"
+msgstr[0] "%d projekt, genomsnitt %d%% översatta"
+msgstr[1] "%d projekt, genomsnitt %d%% översatta"
+
+#. l10n: The first parameter is the name of the installation
+#. l10n: The second parameter is the name of the project/language
+#. l10n: This is used as a page title. Most languages won't need to change this
+#: indexpage.py:198 indexpage.py:260
+#, python-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: indexpage.py:214
+msgid "Language Code"
+msgstr "Språkkod"
+
+#: indexpage.py:215
+msgid "Language Name"
+msgstr "Språknamn"
+
+#: indexpage.py:252
+#, python-format
+msgid "%d language, average %d%% translated"
+msgid_plural "%d languages, average %d%% translated"
+msgstr[0] "%d språk, genomsnitt %d%% översatta"
+msgstr[1] "%d språk, genomsnitt %d%% översatta"
+
+#: indexpage.py:265
+msgid "Language"
+msgstr "Språk"
+
+#. l10n: The first parameter is the name of the installation (like "Pootle")
+#: indexpage.py:344
+#, python-format
+msgid "%s: Project %s, Language %s"
+msgstr "%s: Projekt %s, Språk %s"
+
+#: indexpage.py:409
+msgid "Cannot upload file, no file attached"
+msgstr "Kan inte skicka upp fil, ingen fil bifogad"
+
+#: indexpage.py:415
+msgid "Can only upload PO files and zips of PO files"
+msgstr "Kan endast skicka upp PO-filer och arkiverade PO-filer (ZIP)"
+
+#: indexpage.py:530
+msgid "goals"
+msgstr "mål"
+
+#: indexpage.py:531
+msgid "Enter goal name"
+msgstr "Ange namn på målet"
+
+#: indexpage.py:532
+msgid "Add Goal"
+msgstr "Lägg till mål"
+
+#: indexpage.py:537 indexpage.py:539
+msgid "Upload File"
+msgstr "Skicka upp fil"
+
+#: indexpage.py:538
+msgid "Select file to upload"
+msgstr "Välj fil att skicka upp"
+
+#. l10n: tooltip
+#: indexpage.py:546
+msgid "Overwrite the current file if it exists"
+msgstr "Skriv över aktuell fil om den finns"
+
+#. l10n: radio button text
+#: indexpage.py:548
+msgid "Merge"
+msgstr "Sammanfoga"
+
+#. l10n: tooltip
+#: indexpage.py:550
+msgid ""
+"Merge the file with the current file and turn conflicts into suggestions"
+msgstr "Sammanfoga filen med den aktuella filen och gör konflikter till förslag"
+
+#: indexpage.py:653
+msgid "Not in a goal"
+msgstr "Inte ett mål"
+
+#: indexpage.py:673
+msgid "Add User"
+msgstr "Lägg till användare"
+
+#: indexpage.py:711
+msgid "PO file"
+msgstr "PO-fil"
+
+#: indexpage.py:715
+msgid "XLIFF file"
+msgstr "XLIFF-fil"
+
+#: indexpage.py:719
+msgid "Qt .ts file"
+msgstr "Qt .ts-fil"
+
+#: indexpage.py:723
+msgid "CSV file"
+msgstr "CSV-fil"
+
+#: indexpage.py:728
+msgid "MO file"
+msgstr "MO-fil"
+
+#. l10n: Update from version control (like CVS or Subversion)
+#: indexpage.py:733
+msgid "Update"
+msgstr "Uppdatera"
+
+#: indexpage.py:775
+msgid "All Strings"
+msgstr "Alla strängar"
+
+#: indexpage.py:777
+msgid "Unassigned"
+msgstr "Ej tilldelade"
+
+#: indexpage.py:778
+msgid "Unassigned and Untranslated"
+msgstr "Ej tilldelade och ej översatta"
+
+#: indexpage.py:785
+msgid "Set Goal"
+msgstr "Ställ in mål"
+
+#: indexpage.py:789
+msgid "Select Multiple"
+msgstr "Välj flera"
+
+#: indexpage.py:791
+msgid "Assign To"
+msgstr "Tilldela till"
+
+#: indexpage.py:820
+msgid "Show Editing Functions"
+msgstr "Visa redigeringsfunktioner"
+
+#: indexpage.py:821
+msgid "Show Statistics"
+msgstr "Visa statistik"
+
+#: indexpage.py:822
+msgid "Show Tracks"
+msgstr "Visa spår"
+
+#: indexpage.py:822
+msgid "Hide Tracks"
+msgstr "Dölj spår"
+
+#. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
+#: indexpage.py:824
+msgid "Show Checks"
+msgstr "Visa kontroller"
+
+#: indexpage.py:824
+msgid "Hide Checks"
+msgstr "Dölj kontroller"
+
+#: indexpage.py:825
+msgid "Show Goals"
+msgstr "Visa mål"
+
+#: indexpage.py:825
+msgid "Hide Goals"
+msgstr "Dölj mål"
+
+#: indexpage.py:826
+msgid "Show Assigns"
+msgstr "Visa tilldelningar"
+
+#: indexpage.py:826
+msgid "Hide Assigns"
+msgstr "Dölj tilldelningar"
+
+#: indexpage.py:835
+#, python-format
+msgid "All Goals: %s"
+msgstr "Alla mål: %s"
+
+#: indexpage.py:841
+msgid "Translate My Strings"
+msgstr "Översätt mina strängar"
+
+#: indexpage.py:843
+msgid "View My Strings"
+msgstr "Visa mina strängar"
+
+#: indexpage.py:848
+msgid "No strings assigned to you"
+msgstr "Inga strängar tilldelade till dig"
+
+#: indexpage.py:852
+msgid "Quick Translate My Strings"
+msgstr "Snabböversätt mina strängar"
+
+#: indexpage.py:856
+msgid "No untranslated strings assigned to you"
+msgstr "Inga ej översatta strängar tilldelade till dig"
+
+#: indexpage.py:860
+msgid "Review Suggestions"
+msgstr "Granska förslag"
+
+#: indexpage.py:862
+msgid "View Suggestions"
+msgstr "Visa förslag"
+
+#: indexpage.py:867
+msgid "Quick Translate"
+msgstr "Snabböversätt"
+
+#: indexpage.py:869
+msgid "View Untranslated"
+msgstr "Visa ej översatta"
+
+#: indexpage.py:873
+msgid "No untranslated items"
+msgstr "Inga ej översatta poster"
+
+#: indexpage.py:876
+msgid "Translate All"
+msgstr "Översätt alla"
+
+#: indexpage.py:891
+msgid "ZIP of goal"
+msgstr "ZIP-fil av mål"
+
+#: indexpage.py:893
+msgid "ZIP of folder"
+msgstr "ZIP-fil av mapp"
+
+#: indexpage.py:900
+msgid "Generate SDF"
+msgstr "Skapa SDF"
+
+#: indexpage.py:953
+#, python-format
+msgid "%d string (%d%%) failed"
+msgid_plural "%d strings (%d%%) failed"
+msgstr[0] "%d sträng (%d%%) misslyckades"
+msgstr[1] "%d strängar (%d%%) misslyckades"
+
+#: indexpage.py:983
+#, python-format
+msgid "%d/%d words (%d%%) assigned"
+msgstr "%d/%d ord (%d%%) tilldelade"
+
+#: indexpage.py:984 indexpage.py:986
+#, python-format
+msgid "[%d/%d strings]"
+msgstr "[%d/%d strängar]"
+
+#~ msgid "Pootle"
+#~ msgstr "Pootle"
+
+#~ msgid "Pootle: %s"
+#~ msgstr "Pootle: %s"
+
+#~ msgid ""
+#~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
+#~ "<strong>translate</strong>!"
+#~ msgstr ""
+#~ "<strong>Pootle</strong> är en enkel webbportal som låter dig "
+#~ "<strong>översätta</strong>!"
+
+#~ msgid "parent folder"
+#~ msgstr "föräldramapp"
+
+#~ msgid "<h3 class=\"title\">Projects</h3>"
+#~ msgstr "<h3 class=\"title\">Projekt</h3>"
+
+#~ msgid "%d files, %d/%d strings (%d%%) translated"
+#~ msgstr "%d filer, %d/%d strängar (%d%%) översatta"
+
+#~ msgid "%s language"
+#~ msgstr "%s språk"
+
+#~ msgid "%d strings (%d%%) failed"
+#~ msgstr "%d strängar (%d%%) misslyckades"
+
+#~ msgid "this is a demo installation of pootle"
+#~ msgstr "det här är en demoinstallation av pootle"
+
+#~ msgid "current folder"
+#~ msgstr "aktuell mapp"
+
+#~ msgid "Log In"
+#~ msgstr "Logga in"
+
+#~ msgid "Log Out"
+#~ msgstr "Logga ut"
+
+#~ msgid "login status"
+#~ msgstr "inloggningsstatus"
+
+#~ msgid "project root"
+#~ msgstr "projektrot"
+
+#~ msgid "%s project"
+#~ msgstr "%s projekt"
+
+#~ msgid "<b>Current Translation:</b>"
+#~ msgstr "<b>Aktuell översättning:</b>"
+
+#~ msgid "you do not have rights to suggest changes here"
+#~ msgstr "du har inte rättigheter att föreslå ändringar här"
+
+#~ msgid "you do not have rights to change translations here"
+#~ msgstr "du har inte rättigheter att ändra översättningar här"
+
+#~ msgid "%d/%d strings (%d%%) translated"
+#~ msgstr "%d/%d strängar (%d%%) översatta"
+
+#~ msgid "%d files, "
+#~ msgstr "%d filer, "
+
+#~ msgid "<h3 class=\"title\">Languages</h3>"
+#~ msgstr "<h3 class=\"title\">Språk</h3>"
+
+#~ msgid "current file"
+#~ msgstr "aktuell fil"
+
+#~ msgid "not logged in"
+#~ msgstr "inte inloggad"
+
+#~ msgid "Pootle Admin Page"
+#~ msgstr "Administration av Pootle"
+
+#~ msgid "General Options"
+#~ msgstr "Allmänna inställningar"
+
+#~ msgid "Main Admin page"
+#~ msgstr "Huvudadministrationssida"
+
+#~ msgid "Pootle Languages Admin Page"
+#~ msgstr "Administrera språk i Pootle"
+
+#~ msgid "Remove language"
+#~ msgstr "Ta bort språk"
+
+#~ msgid "Pootle Projects Admin Page"
+#~ msgstr "Projektadministrationssida"
+
+#~ msgid "Remove project"
+#~ msgstr "Ta bort projekt"
+
+#~ msgid "You do not have the rights to administer Pootle."
+#~ msgstr "Du har inte rättigheter att administrera Pootle."
+
+#~ msgid "Pootle User Admin Page"
+#~ msgstr "Användaradministrationssida"
+
+#~ msgid ""
+#~ "This site is running:<br/>Pootle %s</br>jToolkit %s</br>Python %s (on %s/%"
+#~ "s)"
+#~ msgstr ""
+#~ "Detta webbplats kör:<br/>Pootle %s</br>jToolkit %s</br>Python %s (på %s/%"
+#~ "s)"
+
+#~ msgid "No goal"
+#~ msgstr "Inget mål"
+
+#~ msgid "Docs & Help"
+#~ msgstr "Dok & Hjälp"
+
+#~ msgid "All Projects"
+#~ msgstr "Alla projekt"
+
+#~ msgid "All Languages"
+#~ msgstr "Alla språk"
+
+#~ msgid "translation"
+#~ msgstr "översättning"
+
+#~ msgid "skip"
+#~ msgstr "hoppa över"
+
+#~ msgid "copy"
+#~ msgstr "kopiera"
+
+#~ msgid "suggest"
+#~ msgstr "föreslå"
+
+#~ msgid "submit"
+#~ msgstr "skicka in"
+
+#~ msgid "accept"
+#~ msgstr "acceptera"
+
+#~ msgid "reject"
+#~ msgstr "vägra"
+
+#~ msgid "Input Height"
+#~ msgstr "Inmatningshöjd"
+
+#~ msgid "Input Width"
+#~ msgstr "Inmatningsbredd"
