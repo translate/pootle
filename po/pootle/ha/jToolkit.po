@@ -1,0 +1,144 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR St James Software
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-06-13 14:54-0500\n"
+"PO-Revision-Date: 2006-12-18 11:39+0100\n"
+"Last-Translator: Mustapha Abubakar <mustymni@yahoo.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 0.10.1\n"
+
+#: web/server.py:57
+#, python-format
+msgid "Login for %s"
+msgstr "Kashiga da%s"
+
+#: web/server.py:91
+msgid "Cancel this action and start a new session"
+msgstr "Katsaida wannan sannan ka soma sabon zango"
+
+#: web/server.py:92
+msgid "Instead of confirming this action, log out and start from scratch"
+msgstr "Amaimakon ka tabbatar da wannan aikin,ka fita sannan ka sake daga farko"
+
+#: web/server.py:97
+msgid "Exit application"
+msgstr "Fita daga abinda Kake nema"
+
+#: web/server.py:98
+msgid "Exit this application and return to the parent application"
+msgstr "Fita daga abinda Kake nema sannan ka koma ainihin abin neman"
+
+#: web/server.py:105
+msgid ", please confirm login"
+msgstr "ka tabbatar da shiganka"
+
+#: web/server.py:110
+msgid "Login"
+msgstr "Shiga"
+
+#: web/server.py:123
+msgid "Username:"
+msgstr "Sunan mai aiki dashi"
+
+#: web/server.py:125
+msgid "Password:"
+msgstr "Mabuɗina"
+
+#: web/server.py:130
+msgid "Language:"
+msgstr "Yare"
+
+#: web/server.py:551 web/server.py:642
+msgid "Select Application"
+msgstr "Zaɓi abin da kake nema"
+
+#: web/server.py:637
+msgid "Logout"
+msgstr "Ka fita"
+
+#: web/server.py:639
+msgid "Exit"
+msgstr "Fita"
+
+#: web/session.py:191 web/session.py:344 web/session.py:350
+#, python-format
+msgid "logged in as <b>%s</b>"
+msgstr "Ka shiga a matsayin <b>%s</b>"
+
+#: web/session.py:193
+msgid "couldn't add new session"
+msgstr "Bazai iya ƙara wani zangon ba"
+
+#: web/session.py:214
+msgid "logged out"
+msgstr "Ka fita"
+
+#: web/session.py:234
+msgid "connected"
+msgstr "Ya hada"
+
+#: web/session.py:269
+msgid "exited parent session"
+msgstr "An riga an fita daga jigon zango"
+
+#: web/session.py:314
+msgid "need to define the users or userprefs entry on the server config"
+msgstr "Ana buƙatar Masu aiki dashi ko masu aikin da irinsu dasu yi ƙari a saba"
+
+#: web/session.py:321 web/session.py:453
+#, python-format
+msgid "user does not exist (%r)"
+msgstr "Mai wannan aikin baya nan(%r)"
+
+#: web/session.py:362
+msgid "invalid username and/or password"
+msgstr "Wannan sunan da/ko harruffan sirri ba mai kyau bane"
+
+#: web/session.py:433 web/session.py:437
+msgid "failed login confirmation"
+msgstr "Yakasa tabbatar da shiga"
+
+#: widgets/form.py:79 widgets/thumbgallery.py:292
+msgid "No"
+msgstr "AA"
+
+#: widgets/form.py:80 widgets/thumbgallery.py:293
+msgid "Yes"
+msgstr "Ƙwarai"
+
+#: widgets/thumbgallery.py:233 attachments.py:348
+msgid "remove"
+msgstr "Cire"
+
+#: widgets/thumbgallery.py:289 attachments.py:322
+msgid "(no attachment)"
+msgstr "(Babu abinda aka maƙala)"
+
+#: attachments.py:70
+msgid "attachment is too large"
+msgstr "abin da aka maƙala masa yayi girma"
+
+#: attachments.py:349
+msgid "remove this attachment"
+msgstr "Cire abinda a maƙala"
+
+#: attachments.py:350
+msgid "restore"
+msgstr "Maida shi"
+
+#: attachments.py:351
+msgid "this attachment has been removed. click here to restore it"
+msgstr "abinda aka maƙala masa ya cire.ka taɓa nan don a gyara shi"
+
+#: attachments.py:362
+msgid "attach a file"
+msgstr "ka maƙala fayil"
