@@ -61,7 +61,7 @@ class InternalAdminSession:
     return True
 
 class potimecache(timecache.timecache):
-  """caches pootlefile objects, remembers time, and reverts back to statistics when neccessary..."""
+  """Caches pootlefile objects, remembers time, and reverts back to statistics when necessary..."""
   def __init__(self, expiryperiod, project):
     """initialises the cache to keep objects for the given expiryperiod, and point back to the project"""
     timecache.timecache.__init__(self, expiryperiod)
@@ -1010,7 +1010,7 @@ class TranslationProject(object):
               translatedwords, translated, fuzzywords, fuzzy, totalwords, total])
 
   def getquickstats(self, pofilenames=None):
-    """gets translated and total stats and wordcouts without doing calculations returning dictionary"""
+    """Gets translated and total stats and wordcounts without doing calculations returning dictionary."""
     if pofilenames is None:
       pofilenames = self.pofilenames
     alltranslatedwords, alltranslated, allfuzzywords, allfuzzy, alltotalwords, alltotal = 0, 0, 0, 0, 0, 0
