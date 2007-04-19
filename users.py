@@ -24,6 +24,7 @@ from jToolkit.web import server
 from jToolkit import mailer
 from jToolkit import prefs
 from Pootle import pagelayout
+from email.Header import Header
 
 class RegistrationError(ValueError):
   def __init__(self, message):
@@ -416,7 +417,9 @@ class OptionalLoginAppServer(server.LoginAppServer):
     message += session.localize("Your registered email address is: %s\n", email)
     smtpserver = self.instance.registration.smtpserver
     fromaddress = self.instance.registration.fromaddress
-    messagedict = {"from": fromaddress, "to": [email], "subject": session.localize("Pootle Registration"), "body": message}
+    subject = Header(session.localize("Pootle Registration"),
+                     "utf-8").encode()
+    messagedict = {"from": fromaddress, "to": [email], "subject": subject, "body": message}
     if supportaddress:
       messagedict["reply-to"] = supportaddress
     fullmessage = mailer.makemessage(messagedict)
