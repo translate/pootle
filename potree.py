@@ -378,6 +378,25 @@ class POTree:
 
   def hasgnufiles(self, podir, languagecode=None, depth=0, maxdepth=3, poext="po"):
     """returns whether this directory contains gnu-style PO filenames for the given language"""
+    try:
+      if (podir.startswith(self.podirectory)):
+        def getprojectcode(podir=podir):
+          """Get the projectcode using the supplied podir."""
+          dirs = podir[len(self.podirectory):].split(os.sep)
+          if len(dirs[0]):
+            projectcode = dirs[0]
+          else:
+            projectcode = dirs[1]
+          return projectcode
+        projectprefs = getattr(self.projects, getprojectcode())
+        style = getattr(projectprefs, "treestyle")
+        if    style == "gnu"    \
+           or style == "nongnu":
+          return style
+        else:
+          print "Unsupported treestyle value (project %s): %s"%(projectcode,style)
+    except:
+      pass
     #Let's check to see if we specifically find the correct gnu file
     foundgnufile = False
     if not os.path.isdir(podir):
