@@ -19,16 +19,28 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-def layout_banner(maxheight):
+def layout_banner(maxheight, session):
   """calculates dimensions, image name for banner"""
   logo_width, logo_height = min((98*maxheight/130, maxheight), (98, 130))
   banner_width, banner_height = min((290*maxheight/160, maxheight), (290, 160))
+
   if logo_width <= 61:
-    logo_image = "pootle-medium.png"
+    try:
+      logo_image = getattr(session.instance.logos, "medium")
+    except AttributeError:
+      logo_image = "/images/pootle-medium.png"
   else:
-    logo_image = "pootle.png"
+    try:
+      logo_image = getattr(session.instance.logos, "normal")
+    except AttributeError:
+      logo_image = "/images/pootle.png"
+  try:
+    banner_image = getattr(session.instance.logos, "banner")
+  except AttributeError:
+    banner_image = "/images/WordForge-white.png"
   return {"logo_width": logo_width, "logo_height": logo_height,
-    "banner_width": banner_width, "banner_height": banner_height, "logo_image": logo_image}
+    "banner_width": banner_width, "banner_height": banner_height,
+    "logo_image": logo_image, "banner_image": banner_image}
 
 def localize_links(session):
   """Localize all the generic links"""
@@ -76,7 +88,7 @@ def completetemplatevars(templatevars, session, bannerheight=135):
     templatevars["baseurl"] = getattr(session.instance, "baseurl", "/")
     if not templatevars["baseurl"].endswith("/"):
     	templatevars["baseurl"] += "/"
-  banner_layout = layout_banner(bannerheight)
+  banner_layout = layout_banner(bannerheight, session)
   banner_layout["logo_alttext"] = session.localize("Pootle Logo")
   banner_layout["banner_alttext"] = session.localize("WordForge Translation Project")
   templatevars.update(banner_layout)
