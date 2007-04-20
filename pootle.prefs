@@ -126,8 +126,8 @@ Pootle:
   #
   #   localfiletype = "po"
   # The localfiletype attribute allows for a project admin to designate the
-  # allowed filetype for the project (e.g PO, or Xliff). By default, po is
-  # assumed for projects.
+  # allowed filetype for the project, either "po" or "xlf".
+  # By default, po is assumed for projects.
   #
   # NOTE: Once a file type is selected for localfiletype, files not matching
   #       the type selected will not be displayed within pootle.
