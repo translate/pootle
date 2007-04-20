@@ -25,19 +25,10 @@ def layout_banner(maxheight, session):
   banner_width, banner_height = min((290*maxheight/160, maxheight), (290, 160))
 
   if logo_width <= 61:
-    try:
-      logo_image = getattr(session.instance.logos, "medium")
-    except AttributeError:
-      logo_image = "/images/pootle-medium.png"
+    logo_image = getattr(getattr(session.instance, "logos", None), "medium", "/images/pootle-medium.png")
   else:
-    try:
-      logo_image = getattr(session.instance.logos, "normal")
-    except AttributeError:
-      logo_image = "/images/pootle.png"
-  try:
-    banner_image = getattr(session.instance.logos, "banner")
-  except AttributeError:
-    banner_image = "/images/WordForge-white.png"
+    logo_image = getattr(getattr(session.instance, "logos", None), "normal", "/images/pootle.png")
+  banner_image = getattr(getattr(session.instance, "logos", None), "banner", "/images/WordForge-white.png")
   return {"logo_width": logo_width, "logo_height": logo_height,
     "banner_width": banner_width, "banner_height": banner_height,
     "logo_image": logo_image, "banner_image": banner_image}
