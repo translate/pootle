@@ -305,7 +305,7 @@ table.stats
 	width: 100%;
 	border-spacing: 0;
 	padding: 0;
-	text-size: small;
+	font-size: small;
 }
 th.stats
 {
