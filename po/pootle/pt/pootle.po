@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-01-17 14:02+0200\n"
-"PO-Revision-Date: 2007-02-26 23:36+0100\n"
-"Last-Translator: Miguel Figueiredo <elmig@debianpt.org>\n"
+"PO-Revision-Date: 2007-04-20 01:23+0200\n"
+"Last-Translator: Pedro Bragança Tender <ptender@portasecreta.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-Generator: Pootle 0.11rc2\n"
+"X-Generator: Pootle 0.11\n"
 
 #. l10n: Verb
 #: projects.py:135
@@ -61,47 +61,47 @@ msgstr "Submeter"
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:226
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr "Você não pode remover o utilizador \"ninguém\" ou \"default\""
+msgstr "Você não pode remover os utilizadores \"nobody\" ou \"default\""
 
 #: projects.py:379 projects.py:441
 msgid "You do not have rights to alter goals here"
-msgstr "Você não tem direitos para alterar metas aqui"
+msgstr "Você não tem permissões para alterar metas aqui"
 
 #: projects.py:504
 msgid "You do not have rights to upload files here"
-msgstr "Você não tem direitos de enviar ficheiros aqui"
+msgstr "Você não tem permissões para enviar ficheiros aqui"
 
 #: projects.py:507
 msgid "You do not have rights to overwrite files here"
-msgstr "Você não tem direitos para sobreescrever ficheiros aqui"
+msgstr "Você não tem permissões para sobreescrever ficheiros aqui"
 
 #: projects.py:509
 msgid "You do not have rights to upload new files here"
-msgstr "Você não tem direitos para enviar novos ficheiros aqui"
+msgstr "Você não tem permissões para enviar novos ficheiros aqui"
 
 #: projects.py:518
 msgid "You do not have rights to update files here"
-msgstr "Você não tem direitos para actualizar ficheiros aqui"
+msgstr "Você não tem permissões para actualizar ficheiros aqui"
 
 #: projects.py:588
 msgid "You do not have rights to commit files here"
-msgstr "Você não tem direitos para submeter ficheiros aqui"
+msgstr "Você não tem permissões para submeter ficheiros aqui"
 
 #: projects.py:922 projects.py:963
 msgid "You do not have rights to alter assignments here"
-msgstr "Você não tem direitos para alterar designações aqui"
+msgstr "Você não tem permissões para alterar designações aqui"
 
 #: projects.py:1167
 msgid "You do not have rights to change translations here"
-msgstr "Você não tem direitos de mudar traduções aqui"
+msgstr "Você não tem permissões para mudar traduções aqui"
 
 #: projects.py:1177
 msgid "You do not have rights to suggest changes here"
-msgstr "Você não tem direitos para sugerir mudanças aqui"
+msgstr "Você não tem permissões para sugerir mudanças aqui"
 
 #: projects.py:1193 projects.py:1216
 msgid "You do not have rights to review suggestions here"
-msgstr "Você não tem direitos para rever sugestões aqui"
+msgstr "Você não tem permissões para rever sugestões aqui"
 
 #: translatepage.py:80
 #, python-format
@@ -528,8 +528,7 @@ msgstr "Página inicial do projecto"
 #: adminpages.py:335
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr ""
-"Não pode configurar direitos para o utilizador %s - o utilizador não existe"
+msgstr "Não pode configurar permissões para o utilizador %s - o utilizador não existe"
 
 #: adminpages.py:352
 msgid "This is a GNU-style project (one directory, files named per language)."
@@ -555,7 +554,7 @@ msgstr "(seleccionar para adicionar utilizador)"
 
 #: adminpages.py:358
 msgid "Rights"
-msgstr "Direitos"
+msgstr "Permissões"
 
 #: adminpages.py:359 indexpage.py:988
 msgid "Remove"
@@ -563,11 +562,11 @@ msgstr "Remover"
 
 #: adminpages.py:386
 msgid "Update Rights"
-msgstr "Actualizar Direitos"
+msgstr "Actualizar Permissões"
 
 #: pagelayout.py:37
 msgid "All projects"
-msgstr "Todos os Projetos"
+msgstr "Todos os Projectos"
 
 #: pagelayout.py:38
 msgid "All languages"
@@ -627,8 +626,8 @@ msgstr "%d/%d ficheiros"
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] "Ficheiro %d"
-msgstr[1] "Ficheiros %d"
+msgstr[0] "ficheiro %d"
+msgstr[1] "ficheiros %d"
 
 #: pagelayout.py:226 indexpage.py:985
 #, python-format
@@ -724,7 +723,7 @@ msgstr "Por omissão"
 
 #: users.py:85
 msgid "Please enter your registration details"
-msgstr "Por favor introduza os seus detalhes de registo"
+msgstr "Por favor introduza os detalhes do seu registo"
 
 #: users.py:88 users.py:415
 msgid "Pootle Registration"
@@ -760,7 +759,7 @@ msgstr "Registar conta"
 
 #: users.py:118
 msgid "Please enter your activation details"
-msgstr "Por favor introduza os seus detalhes de activação"
+msgstr "Por favor introduza os detalhes da sua activação"
 
 #: users.py:123
 msgid "Pootle Account Activation"
@@ -833,12 +832,12 @@ msgstr "Erro"
 
 #: users.py:299
 msgid "You need to be siteadmin to change users"
-msgstr "Você precisa ser o administrador do site para alterar utilizadores"
+msgstr "Você precisa de ser administrador do site para alterar utilizadores"
 
 #: users.py:363
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
-msgstr "O nome do utilizador é alfanumérico e tem que iniciar por uma letra."
+msgstr "O nome do utilizador é alfanumérico e tem que começar com uma letra."
 
 #: users.py:369
 msgid "You must supply a valid email address"
@@ -895,7 +894,8 @@ msgstr "Para activar a sua conta, siga este link:\n"
 msgid ""
 "Your activation code is:\n"
 "%s\n"
-msgstr "O sei código de activação é:\n"
+msgstr ""
+"O seu código de activação é:\n"
 
 #: users.py:402
 msgid ""
@@ -1006,7 +1006,7 @@ msgstr "A redireccionar para a home..."
 
 #: pootle.py:363
 msgid "You do not have the rights to administer pootle."
-msgstr "Você não tem direitos para administrar o pootle."
+msgstr "Você não tem permissões para gerir o pootle."
 
 #: indexpage.py:61
 msgid "About Pootle"
@@ -1020,22 +1020,14 @@ msgid ""
 "you can download it and run your own copy if you like. You can also help "
 "participate in the development in many ways (you don't have to be able to "
 "program)."
-msgstr ""
-"<strong>Pootle</strong> é um portal da internet simples que permite a você "
-"<strong>traduzir</strong>! Como o Pootle é um <strong>Programa Livre</"
-"strong>, você pode fazer download e correr a sua própria cópia se você "
-"quiser. Você também pode ajudar participando do desenvolvimento de muitas "
-"maneiras (você não precisa de saber programar)."
+msgstr "<strong>Pootle</strong> é um portal da internet simples que permite a você <strong>traduzir</strong>! Como o Pootle é um <strong>Programa Livre</strong>, você pode fazer download e correr a sua própria cópia se você quiser. Poderá também ajudar participando no seu desenvolvimento de muitas maneiras (você não precisa de saber programar)."
 
 #: indexpage.py:64
 msgid ""
 "The Pootle project itself is hosted at <a href=\"http://translate."
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
-msgstr ""
-"O projeto Pootle em si está hospedado em <a href=\"http://translate."
-"sourceforge.net/\">translate.souceforge.net</a> onde você pode encontrar "
-"detalhes sobre o código fonte, lista de correspondência etc."
+msgstr "O projeto Pootle em si está alojado em <a href=\"http://translate.sourceforge.net/\">translate.souceforge.net</a> onde poderá encontrar detalhes sobre o código fonte, lista de correspondência etc."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1044,10 +1036,7 @@ msgid ""
 "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
-msgstr ""
-"O nome significa <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-"b>ocalization <b>E</b>ngine, mas você pode precisar de ler <a href=\"http://"
-"www.thechestnut.com/flumps.htm\">isto</a>."
+msgstr "O nome significa <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, mas poderá precisar de ler <a href=\"http://www.thechestnut.com/flumps.htm\">isto</a>."
 
 #: indexpage.py:68
 msgid "Versions"
@@ -1124,7 +1113,7 @@ msgstr "Idioma"
 #: indexpage.py:344
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr "%s: Prejecto %s, Idioma %s"
+msgstr "%s: Projecto %s, Idioma %s"
 
 #: indexpage.py:409
 msgid "Cannot upload file, no file attached"
@@ -1172,7 +1161,7 @@ msgstr "Juntar o ficheiro com o ficheiro actual e tornar os conflitos em sugest�
 
 #: indexpage.py:653
 msgid "Not in a goal"
-msgstr "Não num objectivo"
+msgstr "Não numa meta"
 
 #: indexpage.py:673
 msgid "Add User"
@@ -1225,7 +1214,7 @@ msgstr "Escolha Múltipla"
 
 #: indexpage.py:791
 msgid "Assign To"
-msgstr "Designado a"
+msgstr "Designar a"
 
 #: indexpage.py:820
 msgid "Show Editing Functions"
@@ -1283,15 +1272,15 @@ msgstr "Ver as Minhas Frases"
 
 #: indexpage.py:848
 msgid "No strings assigned to you"
-msgstr "Nenhum frase designada a você"
+msgstr "Nenhuma frase lhe foi designada"
 
 #: indexpage.py:852
 msgid "Quick Translate My Strings"
-msgstr "Traduzir Rápido As Minhas Frases"
+msgstr "Traduzir Rápido as Minhas Frases"
 
 #: indexpage.py:856
 msgid "No untranslated strings assigned to you"
-msgstr "Nenhuma frase sem tradução designada a você"
+msgstr "Nenhuma frase sem tradução lhe foi designada"
 
 #: indexpage.py:860
 msgid "Review Suggestions"
