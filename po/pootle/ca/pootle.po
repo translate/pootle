@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-01-17 14:02+0200\n"
+"POT-Creation-Date: 2007-04-13 12:24+0200\n"
 "PO-Revision-Date: 2007-02-20 19:28+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,100 +10,101 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Generated-By: pygettext.py 1.1\n"
 "X-Generator: Pootle 0.11rc2\n"
+"Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
-#: projects.py:135
+#: projects.py:136
 msgid "View"
 msgstr "Mostra"
 
-#: projects.py:136 translatepage.py:572
+#: projects.py:137 translatepage.py:613
 msgid "Suggest"
 msgstr "Suggereix"
 
-#: projects.py:137
+#: projects.py:138
 msgid "Translate"
 msgstr "Tradueix"
 
 #. l10n: radio button text
-#: projects.py:138 indexpage.py:544
+#: projects.py:139 indexpage.py:548
 msgid "Overwrite"
 msgstr "Sobreescriu"
 
 #. l10n: Verb
-#: projects.py:140
+#: projects.py:141
 msgid "Review"
 msgstr "Revisa"
 
 #. l10n: Verb
-#: projects.py:142
+#: projects.py:143
 msgid "Archive"
 msgstr "Arxiva"
 
-#: projects.py:143
+#. l10n: This refers to generating the binary .mo file
+#: projects.py:145
 msgid "Compile PO files"
 msgstr "Compila fitxers PO"
 
-#: projects.py:144
+#: projects.py:146
 msgid "Assign"
 msgstr "Assigna"
 
-#: projects.py:145 indexpage.py:134
+#: projects.py:147 indexpage.py:134
 msgid "Administrate"
 msgstr "Administra"
 
 #. l10n: Commit to version control (like CVS or Subversion)
-#: projects.py:146 indexpage.py:738
+#: projects.py:148 indexpage.py:748
 msgid "Commit"
 msgstr "Confirma"
 
 #. l10n: Don't translate "nobody" or "default"
-#: projects.py:226
+#: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
 msgstr "No podeu suprimir els usuaris \"nobody\" i \"default\""
 
-#: projects.py:379 projects.py:441
+#: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
 msgstr "No teniu permisos per modificar aquí objectius"
 
-#: projects.py:504
+#: projects.py:505
 msgid "You do not have rights to upload files here"
 msgstr "No teniu permisos per penjar aquí fitxers"
 
-#: projects.py:507
+#: projects.py:508
 msgid "You do not have rights to overwrite files here"
 msgstr "No teniu permisos per sobreescriure fitxers aquí"
 
-#: projects.py:509
+#: projects.py:510
 msgid "You do not have rights to upload new files here"
 msgstr "No teniu permisos per penjar nous fitxers"
 
-#: projects.py:518
+#: projects.py:519
 msgid "You do not have rights to update files here"
 msgstr "No teniu permisos per actualitzar fitxers"
 
-#: projects.py:588
+#: projects.py:590
 msgid "You do not have rights to commit files here"
 msgstr "No teniu permisos per guardar aquí fitxers"
 
-#: projects.py:922 projects.py:963
+#: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
 msgstr "No teniu permisos per canviar les assignacions"
 
-#: projects.py:1167
+#: projects.py:1141
 msgid "You do not have rights to change translations here"
 msgstr "No teniu permisos per modificar traduccions"
 
-#: projects.py:1177
+#: projects.py:1151
 msgid "You do not have rights to suggest changes here"
 msgstr "No teniu permisos per suggerir modificacions"
 
-#: projects.py:1193 projects.py:1216
+#: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
 msgstr "No teniu permisos per revisar suggeriments"
 
-#: translatepage.py:80
+#: translatepage.py:89
 #, python-format
 msgid ""
 "%d/%d translated\n"
@@ -112,11 +113,11 @@ msgstr ""
 "%d de %d traduïdes\n"
 "(%d en blanc, %d difuses)"
 
-#: translatepage.py:92 adminpages.py:35 adminpages.py:74 adminpages.py:130
-#: adminpages.py:192 adminpages.py:279 adminpages.py:339 pagelayout.py:70
-#: users.py:58 users.py:91 users.py:127 users.py:149 indexpage.py:73
+#: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
+#: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
+#: users.py:58 users.py:95 users.py:131 users.py:153 indexpage.py:73
 #: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
-#: indexpage.py:342
+#: indexpage.py:346
 msgid "Pootle Demo"
 msgstr "Demostració de Pootle"
 
@@ -124,165 +125,166 @@ msgstr "Demostració de Pootle"
 #. l10n: second parameter: project name
 #. l10n: third parameter: target language
 #. l10n: fourth parameter: file name
-#: translatepage.py:97
+#: translatepage.py:99
 #, python-format
 msgid "%s: translating %s into %s: %s"
 msgstr "%s: traduint %s a %s: %s"
 
-#: translatepage.py:111
+#. l10n: Heading above the table column with the source language
+#: translatepage.py:114
 msgid "Original"
 msgstr "Original"
 
-#: translatepage.py:112
+#. l10n: Heading above the table column with the target language
+#: translatepage.py:116
 msgid "Translation"
 msgstr "Traducció"
 
-#: translatepage.py:115
+#: translatepage.py:119
 msgid "Accept"
 msgstr "Accepta"
 
-#: translatepage.py:116
+#: translatepage.py:120
 msgid "Reject"
 msgstr "Rebutja"
 
+#: translatepage.py:121 pagelayout.py:243
+msgid "Fuzzy"
+msgstr "Dubtosa"
+
+#. l10n: Heading above the textarea for translator comments.
+#: translatepage.py:123
+msgid "Translator comments"
+msgstr ""
+
+#. l10n: Heading above the comments extracted from the programing source code
+#: translatepage.py:125
+msgid "Developer comments"
+msgstr ""
+
 #. l10n: This heading refers to related translations and terminology
-#: translatepage.py:118
+#: translatepage.py:127
 msgid "Related"
 msgstr "Relacionats"
 
 #. l10n: text next to search field
-#: translatepage.py:122 indexpage.py:352
+#: translatepage.py:131 indexpage.py:356
 msgid "Search"
 msgstr "Cerca"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
-#: translatepage.py:136
+#: translatepage.py:145
 msgid "End of batch"
 msgstr "Fi del lot"
 
-#: translatepage.py:138
+#: translatepage.py:147
 msgid "Click here to return to the index"
 msgstr "Feu clic aquí per tornar a l'índex"
 
 #. l10n: noun (the start)
-#: translatepage.py:152 translatepage.py:155
+#: translatepage.py:161 translatepage.py:164
 msgid "Start"
 msgstr "Inici"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:159 translatepage.py:162
+#: translatepage.py:168 translatepage.py:171
 #, python-format
 msgid "Previous %d"
 msgstr "Anteriors %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
-#: translatepage.py:164
+#: translatepage.py:173
 #, python-format
 msgid "Items %d to %d of %d"
 msgstr "Elements %d a %d de %d"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:169 translatepage.py:172
+#: translatepage.py:178 translatepage.py:181
 #, python-format
 msgid "Next %d"
 msgstr "%d següents"
 
 #. l10n: noun (the end)
-#: translatepage.py:175 translatepage.py:178
+#: translatepage.py:184 translatepage.py:187
 msgid "End"
 msgstr "Fi"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-#: translatepage.py:195
+#: translatepage.py:204
 #, python-format
 msgid "checking %s"
 msgstr "comprovant %s"
 
-#: translatepage.py:202 translatepage.py:205 indexpage.py:522 indexpage.py:525
+#: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
 msgid "Assign Strings"
 msgstr "Assigna cadenes"
 
-#: translatepage.py:203 indexpage.py:524
+#: translatepage.py:212 indexpage.py:528
 msgid "Assign to User"
 msgstr "Assigna a un usuari"
 
-#: translatepage.py:204 indexpage.py:523
+#: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
 msgstr "Assigna una acció"
 
-#: translatepage.py:337
+#: translatepage.py:368
 #, python-format
 msgid "There are no items matching that search ('%s')"
 msgstr "No hi ha elements que encaixin amb aquesta cerca ('%s')"
 
-#: translatepage.py:339
+#: translatepage.py:370
 msgid "You have finished going through the items you selected"
 msgstr "Heu acabat de veure els elements que havieu seleccionat"
 
-#: translatepage.py:537
+#: translatepage.py:578
 msgid "Singular"
 msgstr "Singular"
 
-#: translatepage.py:538
+#: translatepage.py:579
 msgid "Plural"
 msgstr "Plural"
 
 #. l10n: verb
-#: translatepage.py:552
+#: translatepage.py:593
 msgid "Edit"
 msgstr "Edita"
 
 #. l10n: verb
-#: translatepage.py:568
+#: translatepage.py:609
 msgid "Copy"
 msgstr "Copia"
 
-#: translatepage.py:569 translatepage.py:748
+#: translatepage.py:610 translatepage.py:784
 msgid "Skip"
 msgstr "Omet"
 
 #. l10n: verb
-#: translatepage.py:571 translatepage.py:747 users.py:252
+#: translatepage.py:612 translatepage.py:783 users.py:256
 msgid "Back"
 msgstr "Endarrere"
 
-#: translatepage.py:573
+#: translatepage.py:614
 msgid "Submit"
 msgstr "Envia"
 
 #. l10n: action that increases the height of the textarea
-#: translatepage.py:576
+#: translatepage.py:617
 msgid "Grow"
 msgstr "Més alt"
 
 #. l10n: action that decreases the height of the textarea
-#: translatepage.py:578
+#: translatepage.py:619
 msgid "Shrink"
 msgstr "Més baix"
 
-#. l10n: action that increases the width of the textarea
-#: translatepage.py:580
-msgid "Broaden"
-msgstr "Més ample"
-
-#. l10n: action that decreases the width of the textarea
-#: translatepage.py:582
-msgid "Narrow"
-msgstr "Més estret"
-
-#. l10n: action that resets the size of the textarea
-#: translatepage.py:584
-msgid "Reset"
-msgstr "Reinicia"
-
-#: translatepage.py:605 translatepage.py:699 translatepage.py:736
-#: translatepage.py:769
+#: translatepage.py:641 translatepage.py:735 translatepage.py:772
+#: translatepage.py:805
 #, python-format
 msgid "Plural Form %d"
 msgstr "Formes de plural %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
-#: translatepage.py:621
+#: translatepage.py:657
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
@@ -290,38 +292,38 @@ msgstr ""
 "No s'ha pogut traduir degut a que la informació de plurals per la vostra "
 "llengua no està disponible. Contacteu amb l'administrador del lloc."
 
-#: translatepage.py:703
+#: translatepage.py:739
 msgid "Current Translation:"
 msgstr "Traducció Actual:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
-#: translatepage.py:716
+#: translatepage.py:752
 #, python-format
 msgid "Suggestion %d by %s:"
 msgstr "Suggeriment %d de %s:"
 
-#: translatepage.py:718
+#: translatepage.py:754
 #, python-format
 msgid "Suggestion %d:"
 msgstr "Suggeriment %d:"
 
 #. l10n: parameter: name of translator
-#: translatepage.py:722
+#: translatepage.py:758
 #, python-format
 msgid "Suggestion by %s:"
 msgstr "Suggeriment de %s:"
 
-#: translatepage.py:724
+#: translatepage.py:760
 msgid "Suggestion:"
 msgstr "Suggeriment:"
 
-#: adminpages.py:43 adminpages.py:82 adminpages.py:138 adminpages.py:200
+#: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
 #: pagelayout.py:36
 msgid "Home"
 msgstr "Inici"
 
-#: adminpages.py:44 adminpages.py:202
+#: adminpages.py:44 adminpages.py:207
 msgid "Users"
 msgstr "Usuaris"
 
@@ -329,7 +331,7 @@ msgstr "Usuaris"
 msgid "Languages"
 msgstr "Llengües"
 
-#: adminpages.py:46 adminpages.py:140 indexpage.py:95
+#: adminpages.py:46 adminpages.py:142 indexpage.py:95
 msgid "Projects"
 msgstr "Projectes"
 
@@ -337,16 +339,16 @@ msgstr "Projectes"
 msgid "General options"
 msgstr "Opcions generals"
 
-#: adminpages.py:48 users.py:153
+#: adminpages.py:48 users.py:157
 msgid "Option"
 msgstr "Opció"
 
-#: adminpages.py:49 users.py:154
+#: adminpages.py:49 users.py:158
 msgid "Current value"
 msgstr "Valor actual"
 
-#: adminpages.py:50 adminpages.py:85 adminpages.py:141 adminpages.py:203
-#: users.py:168
+#: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
+#: users.py:172
 msgid "Save changes"
 msgstr "Desa els canvis"
 
@@ -366,7 +368,7 @@ msgstr "URL de base"
 msgid "Home Page"
 msgstr "Pàgina d'inici"
 
-#: adminpages.py:83 adminpages.py:139 adminpages.py:201
+#: adminpages.py:83 adminpages.py:141 adminpages.py:206
 msgid "Main admin page"
 msgstr "Pàgina principal de l'administrador"
 
@@ -374,7 +376,7 @@ msgstr "Pàgina principal de l'administrador"
 msgid "ISO Code"
 msgstr "Codi ISO"
 
-#: adminpages.py:90 adminpages.py:146 adminpages.py:208 users.py:100
+#: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
 msgid "Full Name"
 msgstr "Nom sencer"
 
@@ -411,156 +413,160 @@ msgid "Remove Language"
 msgstr "Suprimeix l'idioma"
 
 #. l10n: The parameter is a languagecode, projectcode or username
-#: adminpages.py:110 adminpages.py:173 adminpages.py:235 adminpages.py:405
+#: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
 #, python-format
 msgid "Remove %s"
 msgstr "Suprimeix %s"
 
-#: adminpages.py:128
+#: adminpages.py:129
 msgid "Standard"
 msgstr "Estàndard"
 
-#: adminpages.py:145
+#: adminpages.py:147
 msgid "Project Code"
 msgstr "Codi del projecte"
 
-#: adminpages.py:147
+#: adminpages.py:149
 msgid "(add project here)"
 msgstr "(afegiu aquí un projecte)"
 
-#: adminpages.py:148
+#: adminpages.py:150
 msgid "Project Description"
 msgstr "Descripció del projecte"
 
-#: adminpages.py:148
+#: adminpages.py:150
 msgid "(project description)"
 msgstr "(descripció del projecte)"
 
-#: adminpages.py:149
+#: adminpages.py:151
 msgid "Checker Style"
 msgstr "Comprovador d'estil"
 
-#: adminpages.py:150
+#: adminpages.py:152
+msgid "File Type"
+msgstr ""
+
+#: adminpages.py:153
 msgid "Create MO Files"
 msgstr "Crea fitxers MO"
 
-#: adminpages.py:151
+#: adminpages.py:154
 msgid "Remove Project"
 msgstr "Suprimeix un projecte"
 
-#: adminpages.py:207 users.py:66
+#: adminpages.py:212 users.py:66
 msgid "Login"
 msgstr "Entra"
 
-#: adminpages.py:209 users.py:343
+#: adminpages.py:214 users.py:347
 msgid "(add full name here)"
 msgstr "(afegiu aquí el nom sencer)"
 
-#: adminpages.py:210 users.py:97
+#: adminpages.py:215 users.py:101
 msgid "Email Address"
 msgstr "Adreça de correu electrònic"
 
-#: adminpages.py:210 users.py:346
+#: adminpages.py:215 users.py:350
 msgid "(add email here)"
 msgstr "(afegiu aquí l'adreça de correu electrònic)"
 
-#: adminpages.py:211 users.py:103 users.py:159
+#: adminpages.py:216 users.py:107 users.py:163
 msgid "Password"
 msgstr "Contrasenya"
 
-#: adminpages.py:211 users.py:340
+#: adminpages.py:216 users.py:344
 msgid "(add password here)"
 msgstr "(afegiu aquó la contrasenya)"
 
-#: adminpages.py:212
+#: adminpages.py:217
 msgid "Activated"
 msgstr "Activat"
 
-#: adminpages.py:212
+#: adminpages.py:217
 msgid "Activate New User"
 msgstr "Activa un usuari nou"
 
-#: adminpages.py:213
+#: adminpages.py:218
 msgid "Remove User"
 msgstr "Suprimeix un usuari"
 
-#: adminpages.py:267
+#: adminpages.py:272
 msgid "Back to main page"
 msgstr "Torna a la pàgina principal"
 
-#: adminpages.py:268
+#: adminpages.py:273
 msgid "Existing languages"
 msgstr "Llengues existents"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:272
+#: adminpages.py:277
 msgid "Update Languages"
 msgstr "Actualitza les llengues"
 
-#: adminpages.py:273
+#: adminpages.py:278
 #, python-format
 msgid "Pootle Admin: %s"
 msgstr "Administrador de Pootle: %s"
 
-#: adminpages.py:274 adminpages.py:336
+#: adminpages.py:279 adminpages.py:341
 msgid "You do not have the rights to administer this project."
 msgstr "No teniu permisos d'administrador d'aquest projecte."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:276
+#: adminpages.py:281
 msgid "Update from templates"
 msgstr "Actualitza mitjançant les plantilles"
 
-#: adminpages.py:284
+#: adminpages.py:289
 msgid "Add Language"
 msgstr "Afegeix una llengua"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
-#: adminpages.py:316
+#: adminpages.py:321
 #, python-format
 msgid "Pootle Admin: %s %s"
 msgstr "Administrador de Pootle: %s %s"
 
-#: adminpages.py:317
+#: adminpages.py:322
 msgid "Project home page"
 msgstr "Pàgina d'inici del projecte"
 
-#: adminpages.py:335
+#: adminpages.py:340
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr "No es poden concedir aquests permisos a l'usuari %s ja que no existeix"
 
-#: adminpages.py:352
+#: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
 "Això és un projecte de tipus GNU (un directori i el fitxers reben el nom en "
 "funció de la llengua)."
 
-#: adminpages.py:354
+#: adminpages.py:359
 msgid "This is a standard style project (one directory per language)."
 msgstr "Això és un projecte estàndard (un directori per llengua)."
 
-#: adminpages.py:355
+#: adminpages.py:360
 msgid "User Permissions"
 msgstr "Permisos d'usuari"
 
-#: adminpages.py:356 users.py:94 users.py:130
+#: adminpages.py:361 users.py:98 users.py:134
 msgid "Username"
 msgstr "Nom d'usuari"
 
-#: adminpages.py:357
+#: adminpages.py:362
 msgid "(select to add user)"
 msgstr "(selecciona per afegir un usuari)"
 
-#: adminpages.py:358
+#: adminpages.py:363
 msgid "Rights"
 msgstr "Permisos"
 
-#: adminpages.py:359 indexpage.py:988
+#: adminpages.py:364 indexpage.py:998
 msgid "Remove"
 msgstr "Suprimeix"
 
-#: adminpages.py:386
+#: adminpages.py:391
 msgid "Update Rights"
 msgstr "Permisos d'actualització"
 
@@ -576,7 +582,7 @@ msgstr "Totes les llengües"
 msgid "My account"
 msgstr "El meu compte"
 
-#: pagelayout.py:40 pagelayout.py:162 indexpage.py:200 indexpage.py:262
+#: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
 msgid "Admin"
 msgstr "Administrador"
 
@@ -601,94 +607,90 @@ msgstr "Registra't"
 msgid "Activate"
 msgstr "Activa"
 
-#: pagelayout.py:74
+#: pagelayout.py:80
 msgid "Pootle Logo"
 msgstr "Logotip de pootle"
 
-#: pagelayout.py:75
+#: pagelayout.py:81
 msgid "WordForge Translation Project"
 msgstr "Projecte de traducció WordForge"
 
-#: pagelayout.py:77
+#: pagelayout.py:83
 msgid "About this Pootle server"
 msgstr "Quant a aquest servidor Pootle"
 
-#: pagelayout.py:151
+#: pagelayout.py:157
 msgid "All goals"
 msgstr "Tots els objectius"
 
-#: pagelayout.py:222
+#: pagelayout.py:228
 #, python-format
 msgid "%d/%d files"
 msgstr "%d de %d fitxers"
 
-#: pagelayout.py:225
+#: pagelayout.py:231
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d fitxer"
 msgstr[1] "%d fitxers"
 
-#: pagelayout.py:226 indexpage.py:985
+#: pagelayout.py:232 indexpage.py:995
 #, python-format
 msgid "%d/%d words (%d%%) translated"
 msgstr "%d de %d paraules traduïdes (%d%%)"
 
-#: pagelayout.py:227
+#: pagelayout.py:233
 #, python-format
 msgid "%d/%d strings"
 msgstr "%d de %d cadenes"
 
-#: pagelayout.py:233 users.py:155
+#: pagelayout.py:239 users.py:159
 msgid "Name"
 msgstr "Nom"
 
-#: pagelayout.py:234
+#: pagelayout.py:240
 msgid "Translated"
 msgstr "Traduït"
 
-#: pagelayout.py:235
+#: pagelayout.py:241
 msgid "Translated percentage"
 msgstr "Percentatge de traduccions"
 
-#: pagelayout.py:236
+#: pagelayout.py:242
 msgid "Translated words"
 msgstr "Paraules traduïdes"
 
-#: pagelayout.py:237
-msgid "Fuzzy"
-msgstr "Dubtosa"
-
-#: pagelayout.py:238
+#: pagelayout.py:244
 msgid "Fuzzy percentage"
 msgstr "Percentatge de dubtoses"
 
-#: pagelayout.py:239
+#: pagelayout.py:245
 msgid "Fuzzy words"
 msgstr "Paraules dubtoses"
 
-#: pagelayout.py:240 indexpage.py:776
+#: pagelayout.py:246 indexpage.py:786
 msgid "Untranslated"
 msgstr "Sense traduir"
 
-#: pagelayout.py:241
+#: pagelayout.py:247
 msgid "Untranslated percentage"
 msgstr "Percentatge sense traduir"
 
-#: pagelayout.py:242
+#: pagelayout.py:248
 msgid "Untranslated words"
 msgstr "Paraules sense traduir"
 
-#: pagelayout.py:243
+#: pagelayout.py:249
 msgid "Total"
 msgstr "Total"
 
-#: pagelayout.py:244
+#: pagelayout.py:250
 msgid "Total words"
 msgstr "Nombre de paraules"
 
 #. l10n: noun. The graphical representation of translation status
-#: pagelayout.py:246
+#: pagelayout.py:252
 msgid "Graph"
 msgstr "Gràfica"
 
@@ -721,147 +723,139 @@ msgstr "Llengua:"
 msgid "Default"
 msgstr "Predeterminat"
 
-#: users.py:85
+#: users.py:89
 msgid "Please enter your registration details"
 msgstr "Entreu els vostres detalls de registre"
 
-#: users.py:88 users.py:415
+#: users.py:92 users.py:419
 msgid "Pootle Registration"
 msgstr "Registre amb Pootle"
 
-#: users.py:95 users.py:131
+#: users.py:99 users.py:135
 msgid "Your requested username"
 msgstr "El vostre nom d'usuari sol·licitat"
 
-#: users.py:98
-msgid "Must be a valid email address"
-msgstr "Ha de ser un adreça de correu electrònic vàlida"
+#: users.py:102 users.py:373
+msgid "You must supply a valid email address"
+msgstr "S'ha d'informar amb una adreça de correu electrònic vàlida"
 
-#: users.py:101
+#: users.py:105
 msgid "Your full name"
 msgstr "El vostre nom sencer"
 
-#: users.py:104
+#: users.py:108
 msgid "Your desired password"
 msgstr "La vostra contrasenya desitjada"
 
-#: users.py:106 users.py:160
+#: users.py:110 users.py:164
 msgid "Confirm password"
 msgstr "Confirmeu la contrasenya"
 
-#: users.py:107
+#: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
 msgstr "Entreu un altre cop la contrasenya per garantir que és correcte"
 
-#: users.py:109
+#: users.py:113
 msgid "Register Account"
 msgstr "Activa el compte"
 
-#: users.py:118
+#: users.py:122
 msgid "Please enter your activation details"
 msgstr "Si us plau, entreu els vostres detalls d'activació"
 
-#: users.py:123
+#: users.py:127
 msgid "Pootle Account Activation"
 msgstr "Activació del Compte de Pootle"
 
-#: users.py:133
+#: users.py:137
 msgid "Activation Code"
 msgstr "Codi d'activació"
 
-#: users.py:134
+#: users.py:138
 msgid "The activation code you received"
 msgstr "El codi d'activació que heu rebut"
 
-#: users.py:136
+#: users.py:140
 msgid "Activate Account"
 msgstr "Activa el compte"
 
-#: users.py:147
+#: users.py:151
 #, python-format
 msgid "Options for: %s"
 msgstr "Opcions per: %s"
 
-#: users.py:152
+#: users.py:156
 msgid "Personal Details"
 msgstr "Detalls personals"
 
-#: users.py:157
+#: users.py:161
 msgid "Email"
 msgstr "Correu electrònic"
 
-#: users.py:161
+#: users.py:165
 msgid "Translation Interface Configuration"
 msgstr "Configuració de la interfície de traducció"
 
-#: users.py:162
+#: users.py:166
 msgid "User Interface language"
 msgstr "Llengua de la interfície d'usuari"
 
-#: users.py:163
+#: users.py:167
 msgid "My Projects"
 msgstr "Els meus projectes"
 
-#: users.py:165
+#: users.py:169
 msgid "My Languages"
 msgstr "Els meus llenguatges"
 
-#: users.py:167
+#: users.py:171
 msgid "Home page"
 msgstr "Pàgina d'inici"
 
-#: users.py:203
+#: users.py:207
 msgid "Input Height (in lines)"
 msgstr "Alçada de la finestra d'entrada (en línies)"
 
-#: users.py:203
-msgid "Input Width (in characters)"
-msgstr "Amplada de la finestra d'entrada (en caràcters)"
-
-#: users.py:204
+#: users.py:208
 msgid "Number of rows in view mode"
 msgstr "Nombre de files en el mode de visualització"
 
-#: users.py:205
+#: users.py:209
 msgid "Number of rows in translate mode"
 msgstr "Nombre de files en el mode de traducció"
 
-#: users.py:247
+#: users.py:251
 msgid "Error"
 msgstr "Error"
 
-#: users.py:299
+#: users.py:303
 msgid "You need to be siteadmin to change users"
 msgstr "Cal que sigueu administrador del lloc (siteadmin) per canviar usuaris"
 
-#: users.py:363
+#: users.py:367
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
 "Cal que el nom d'usuari sigui alfanumèric i que comenci per un caracter "
 "alfabètic."
 
-#: users.py:369
-msgid "You must supply a valid email address"
-msgstr "S'ha d'informar amb una adreça de correu electrònic vàlida"
-
-#: users.py:378
+#: users.py:382
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
 msgstr ""
 "Vostè (o algú altre) ha intentat registrar un compte amb el vostre nom "
 "d'usuari.\n"
 
-#: users.py:379
+#: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
 msgstr "No guardem la vostra contrasenya, tant sols un xifrat (hash) d'ella.\n"
 
-#: users.py:381
+#: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
 msgstr "Si teniu algun problema amb el registre contacteu amb %s.\n"
 
-#: users.py:383
+#: users.py:387
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
@@ -869,7 +863,7 @@ msgstr ""
 "Si teniu algun problema amb el registre contacteu amb l'administrador del "
 "lloc.\n"
 
-#: users.py:384
+#: users.py:388
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
@@ -877,21 +871,21 @@ msgstr ""
 "El nom d'usuari ja existeix. S'enviarà un correu a l'adreça d'aquest "
 "usuari.\n"
 
-#: users.py:386
+#: users.py:390
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
 msgstr "Procedint amb l'<a href='%s'>entrada</a>\n"
 
-#: users.py:392
+#: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
 msgstr ""
 "S'us ha creat un compte a Pootle emprant aquesta adreça de correu electrònic."
 
-#: users.py:394
+#: users.py:398
 msgid "To activate your account, follow this link:\n"
 msgstr "Per activar el vostre compte seguiu aquest enllaç:\n"
 
-#: users.py:400
+#: users.py:404
 #, python-format
 msgid ""
 "Your activation code is:\n"
@@ -900,14 +894,14 @@ msgstr ""
 "El vostre codi d'activació és:\n"
 "%s\n"
 
-#: users.py:402
+#: users.py:406
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
 msgstr ""
 "Si no podeu seguir l'enllaç entreu el següent codi a la pàgina d'activació.\n"
 
-#: users.py:403
+#: users.py:407
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
@@ -916,7 +910,7 @@ msgstr ""
 "electrònic és correcte. Si no voleu registrar un compte només cal que "
 "ignoreu aquest missatge.\n"
 
-#: users.py:405
+#: users.py:409
 #, python-format
 msgid ""
 "Account created. You will be emailed login details and an activation code. "
@@ -926,86 +920,86 @@ msgstr ""
 "amb el codi d'activació. Entreu el vostre codi d'activació a la <a href='%"
 "s'>pàgina d'activació</a>."
 
-#: users.py:407
+#: users.py:411
 msgid "(Or simply click on the activation link in the email)"
 msgstr "(O simplement feu clic a l'enllaç d'activació del correu)"
 
-#: users.py:409
+#: users.py:413
 #, python-format
 msgid "Your user name is: %s\n"
 msgstr "El vostre nom d'usuari és: %s\n"
 
-#: users.py:411
+#: users.py:415
 #, python-format
 msgid "Your password is: %s\n"
 msgstr "La vostra contrasenya és: %s\n"
 
-#: users.py:412
+#: users.py:416
 #, python-format
 msgid "Your registered email address is: %s\n"
 msgstr "La vostrew adreça de correu registrada és: %s\n"
 
-#: users.py:436
+#: users.py:442
 msgid "Redirecting to Registration Page..."
 msgstr "Redirigint cap a la pàgina de registre..."
 
-#: users.py:460
+#: users.py:466
 msgid "Redirecting to login Page..."
 msgstr "Redirigint cap a la pàgina d'entrada..."
 
-#: users.py:463
+#: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
 msgstr "S'ha activa el vostre compte. Redirigint-vos cap a l'entrada..."
 
-#: users.py:467
+#: users.py:473
 msgid "The activation information was not valid."
 msgstr "La informació d'activació no és vàlida."
 
-#: users.py:468
+#: users.py:474
 msgid "Activation Failed"
 msgstr "Activació fallida"
 
-#: users.py:577
+#: users.py:583
 msgid "Input height must be numeric"
 msgstr "L'alçada ha de ser numèrica"
 
-#: users.py:578
+#: users.py:584
 msgid "Input width must be numeric"
 msgstr "L'amplada ha de ser numèrica"
 
-#: users.py:579
+#: users.py:585
 msgid "The number of rows displayed in view mode must be numeric"
 msgstr "El nombre de files en mode de visualització ha de ser numèrica"
 
-#: users.py:580
+#: users.py:586
 msgid "The number of rows displayed in translate mode must be numeric"
 msgstr "El nombre de files en mode de traducció ha de ser numèrica"
 
-#: pootle.py:275
+#: pootle.py:293
 msgid "Login failed"
 msgstr "L'entrada ha estat fallida"
 
-#: pootle.py:319 pootle.py:350
+#: pootle.py:337 pootle.py:368
 msgid "Redirecting to login..."
 msgstr "Redirigint cap a l'entrada..."
 
-#: pootle.py:322
+#: pootle.py:340
 msgid "Need to log in to access home page"
 msgstr "Cal entrar per accedir a la pàgina d'inici"
 
-#: pootle.py:335
+#: pootle.py:353
 msgid "Personal details updated"
 msgstr "S'han actualitzat els seves dades personals"
 
-#: pootle.py:353
+#: pootle.py:371
 msgid "Need to log in to access admin page"
 msgstr "Cal entrar per accedir a la pàgina d'administració"
 
-#: pootle.py:360
+#: pootle.py:378
 msgid "Redirecting to home..."
 msgstr "Redirigint cap a inici..."
 
-#: pootle.py:363
+#: pootle.py:381
 msgid "You do not have the rights to administer pootle."
 msgstr "No teniu permisos d'administrador de Pootle."
 
@@ -1124,230 +1118,246 @@ msgid "Language"
 msgstr "Llengua"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
-#: indexpage.py:344
+#: indexpage.py:348
 #, python-format
 msgid "%s: Project %s, Language %s"
 msgstr "%s: Projecte %s, llengua %s"
 
-#: indexpage.py:409
+#: indexpage.py:413
 msgid "Cannot upload file, no file attached"
 msgstr "No es pot penjar el fitxer, no s'ha adjuntat cap fitxer"
 
-#: indexpage.py:415
+#: indexpage.py:419
 msgid "Can only upload PO files and zips of PO files"
 msgstr "Només es poden penjar fitxers PO o arxius zips de fitxers PO"
 
-#: indexpage.py:530
+#: indexpage.py:534
 msgid "goals"
 msgstr "objectius"
 
-#: indexpage.py:531
+#: indexpage.py:535
 msgid "Enter goal name"
 msgstr "Introduïu el nom de l'objectiu"
 
-#: indexpage.py:532
+#: indexpage.py:536
 msgid "Add Goal"
 msgstr "Afegeix un objectiu"
 
-#: indexpage.py:537 indexpage.py:539
+#: indexpage.py:541 indexpage.py:543
 msgid "Upload File"
 msgstr "Penja un fitxer"
 
-#: indexpage.py:538
+#: indexpage.py:542
 msgid "Select file to upload"
 msgstr "Seleccioneu un fitxer per carregar"
 
 #. l10n: tooltip
-#: indexpage.py:546
+#: indexpage.py:550
 msgid "Overwrite the current file if it exists"
 msgstr "Sobreescriu el fitxer actual si aquest existeix"
 
 #. l10n: radio button text
-#: indexpage.py:548
+#: indexpage.py:552
 msgid "Merge"
 msgstr "Uneix"
 
 #. l10n: tooltip
-#: indexpage.py:550
+#: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr "Uneix el fitxer amb l'actual i transforma els conflictes en suggeriments"
+msgstr ""
+"Uneix el fitxer amb l'actual i transforma els conflictes en suggeriments"
 
-#: indexpage.py:653
+#: indexpage.py:657
 msgid "Not in a goal"
 msgstr "En cap objectiu"
 
-#: indexpage.py:673
+#: indexpage.py:677
 msgid "Add User"
 msgstr "Afegeix un usuari"
 
-#: indexpage.py:711
+#: indexpage.py:719
 msgid "PO file"
 msgstr "Fitxer PO"
 
-#: indexpage.py:715
+#: indexpage.py:723
 msgid "XLIFF file"
 msgstr "Fitxer XLIFF"
 
-#: indexpage.py:719
+#: indexpage.py:727
 msgid "Qt .ts file"
 msgstr "Fitxer Qt .ts"
 
-#: indexpage.py:723
+#: indexpage.py:731
 msgid "CSV file"
 msgstr "Fitxer CSV"
 
-#: indexpage.py:728
+#: indexpage.py:736
 msgid "MO file"
 msgstr "Fitxer MO"
 
 #. l10n: Update from version control (like CVS or Subversion)
-#: indexpage.py:733
+#: indexpage.py:742
 msgid "Update"
 msgstr "Actualitza"
 
-#: indexpage.py:775
+#: indexpage.py:785
 msgid "All Strings"
 msgstr "Totes les cadenes"
 
-#: indexpage.py:777
+#: indexpage.py:787
 msgid "Unassigned"
 msgstr "Sense assignar"
 
-#: indexpage.py:778
+#: indexpage.py:788
 msgid "Unassigned and Untranslated"
 msgstr "Sense assignar ni traduir"
 
-#: indexpage.py:785
+#: indexpage.py:795
 msgid "Set Goal"
 msgstr "Estabeix un objectiu"
 
-#: indexpage.py:789
+#: indexpage.py:799
 msgid "Select Multiple"
 msgstr "Selecció múltiple"
 
-#: indexpage.py:791
+#: indexpage.py:801
 msgid "Assign To"
 msgstr "Assigna a"
 
-#: indexpage.py:820
+#: indexpage.py:830
 msgid "Show Editing Functions"
 msgstr "Mostra les funcions d'edició"
 
-#: indexpage.py:821
+#: indexpage.py:831
 msgid "Show Statistics"
 msgstr "Mostra les estadístiques"
 
-#: indexpage.py:822
+#: indexpage.py:832
 msgid "Show Tracks"
 msgstr "Mostra les pistes"
 
-#: indexpage.py:822
+#: indexpage.py:832
 msgid "Hide Tracks"
 msgstr "Oculta les pistes"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
-#: indexpage.py:824
+#: indexpage.py:834
 msgid "Show Checks"
 msgstr "Mostra les comprovacions"
 
-#: indexpage.py:824
+#: indexpage.py:834
 msgid "Hide Checks"
 msgstr "Oculta les comprovacions"
 
-#: indexpage.py:825
+#: indexpage.py:835
 msgid "Show Goals"
 msgstr "Mostra els objectius"
 
-#: indexpage.py:825
+#: indexpage.py:835
 msgid "Hide Goals"
 msgstr "Oculta els objectius"
 
-#: indexpage.py:826
+#: indexpage.py:836
 msgid "Show Assigns"
 msgstr "Mostra les assignacions"
 
-#: indexpage.py:826
+#: indexpage.py:836
 msgid "Hide Assigns"
 msgstr "Oculta les assignacions"
 
-#: indexpage.py:835
+#: indexpage.py:845
 #, python-format
 msgid "All Goals: %s"
 msgstr "Tots els objectius: %s"
 
-#: indexpage.py:841
+#: indexpage.py:851
 msgid "Translate My Strings"
 msgstr "Tradueix les meues cadenes"
 
-#: indexpage.py:843
+#: indexpage.py:853
 msgid "View My Strings"
 msgstr "Mostra les meues cadenes"
 
-#: indexpage.py:848
+#: indexpage.py:858
 msgid "No strings assigned to you"
 msgstr "No s'us ha assignat cap cadena"
 
-#: indexpage.py:852
+#: indexpage.py:862
 msgid "Quick Translate My Strings"
 msgstr "Traducció ràpida de les meues cadenes"
 
-#: indexpage.py:856
+#: indexpage.py:866
 msgid "No untranslated strings assigned to you"
 msgstr "No s'us ha assignat cap cadena sense traduir"
 
-#: indexpage.py:860
+#: indexpage.py:870
 msgid "Review Suggestions"
 msgstr "Repassa els suggeriments"
 
-#: indexpage.py:862
+#: indexpage.py:872
 msgid "View Suggestions"
 msgstr "Mostra els suggeriments"
 
-#: indexpage.py:867
+#: indexpage.py:877
 msgid "Quick Translate"
 msgstr "Traducció ràpida"
 
-#: indexpage.py:869
+#: indexpage.py:879
 msgid "View Untranslated"
 msgstr "Mostra els no traduïts"
 
-#: indexpage.py:873
+#: indexpage.py:883
 msgid "No untranslated items"
 msgstr "Cap element sense traduir"
 
-#: indexpage.py:876
+#: indexpage.py:886
 msgid "Translate All"
 msgstr "Traduex-ho tot"
 
-#: indexpage.py:891
+#: indexpage.py:901
 msgid "ZIP of goal"
 msgstr "ZIP de l'objectiu"
 
-#: indexpage.py:893
+#: indexpage.py:903
 msgid "ZIP of folder"
 msgstr "ZIP de la carpeta"
 
-#: indexpage.py:900
+#: indexpage.py:910
 msgid "Generate SDF"
 msgstr "Genera un SDF"
 
-#: indexpage.py:953
+#: indexpage.py:963
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
 msgstr[0] "%d cadena (%d%%) fallida"
 msgstr[1] "%d cadenes (%d%%) fallides"
 
-#: indexpage.py:983
+#: indexpage.py:993
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
 msgstr "%d de %d paraules assignades (%d%%)"
 
-#: indexpage.py:984 indexpage.py:986
+#: indexpage.py:994 indexpage.py:996
 #, python-format
 msgid "[%d/%d strings]"
 msgstr "[%d de %d cadenes]"
+
+#~ msgid "Broaden"
+#~ msgstr "Més ample"
+
+#~ msgid "Narrow"
+#~ msgstr "Més estret"
+
+#~ msgid "Reset"
+#~ msgstr "Reinicia"
+
+#~ msgid "Must be a valid email address"
+#~ msgstr "Ha de ser un adreça de correu electrònic vàlida"
+
+#~ msgid "Input Width (in characters)"
+#~ msgstr "Amplada de la finestra d'entrada (en caràcters)"
 
 #~ msgid "Pootle"
 #~ msgstr "Pootle"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-01-17 14:02+0200\n"
+"POT-Creation-Date: 2007-04-13 12:24+0200\n"
 "PO-Revision-Date: 2007-03-31 18:03+0200\n"
 "Last-Translator: Deepak <buddy132@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,108 +15,112 @@ msgstr ""
 "X-Generator: Pootle 0.11\n"
 
 #. l10n: Verb
-#: projects.py:135
+#: projects.py:136
 msgid "View"
 msgstr "हेर्नुहोस्"
 
-#: projects.py:136 translatepage.py:572
+#: projects.py:137 translatepage.py:613
 msgid "Suggest"
 msgstr "सुझाव"
 
-#: projects.py:137
+#: projects.py:138
 msgid "Translate"
 msgstr "उल्था"
 
 #. l10n: radio button text
-#: projects.py:138 indexpage.py:544
+#: projects.py:139 indexpage.py:548
 msgid "Overwrite"
 msgstr ""
 
 #. l10n: Verb
-#: projects.py:140
+#: projects.py:141
 msgid "Review"
 msgstr "पुनरावलोकन"
 
 #. l10n: Verb
-#: projects.py:142
+#: projects.py:143
 msgid "Archive"
 msgstr "संग्रह"
 
-#: projects.py:143
+#. l10n: This refers to generating the binary .mo file
+#: projects.py:145
 msgid "Compile PO files"
 msgstr ""
 
-#: projects.py:144
+#: projects.py:146
 msgid "Assign"
 msgstr "खटाउनुहोस्"
 
-#: projects.py:145 indexpage.py:134
+#: projects.py:147 indexpage.py:134
 msgid "Administrate"
 msgstr "प्रशासन"
 
 #. l10n: Commit to version control (like CVS or Subversion)
-#: projects.py:146 indexpage.py:738
+#: projects.py:148 indexpage.py:748
 msgid "Commit"
 msgstr "निधो गर्नुहोस्"
 
 #. l10n: Don't translate "nobody" or "default"
-#: projects.py:226
+#: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
 msgstr "तपाईंले \"nobody\" अथवा \"default\" प्रयोगकर्तालाई हटाउन सक्नुहुँदैन ।"
 
-#: projects.py:379 projects.py:441
+#: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
 msgstr "तपाईलाई यहाँ उद्देश्य परिवर्तन गर्ने अनुमति छैन"
 
-#: projects.py:504
+#: projects.py:505
 msgid "You do not have rights to upload files here"
 msgstr "तपाईलाई फाईल अपलोड गर्ने अनुति छैन"
 
-#: projects.py:507
+#: projects.py:508
 msgid "You do not have rights to overwrite files here"
 msgstr "तपाइँ लाई पोटल प्रशासित गर्ने अधिकार छैन ।"
 
-#: projects.py:509
+#: projects.py:510
+#, fuzzy
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "तपाईलाई फाईल अपलोड गर्ने अनुति छैन"
 
-#: projects.py:518
+#: projects.py:519
+#, fuzzy
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "तपाईलाई फाईल अपलोड गर्ने अनुति छैन"
 
-#: projects.py:588
+#: projects.py:590
 #, fuzzy
 msgid "You do not have rights to commit files here"
 msgstr "तपाइँ लाई पोटल प्रशासित गर्ने अधिकार छैन ।"
 
-#: projects.py:922 projects.py:963
+#: projects.py:919 projects.py:960
+#, fuzzy
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "तपाईलाई यहाँ उद्देश्य परिवर्तन गर्ने अनुमति छैन"
 
-#: projects.py:1167
+#: projects.py:1141
 msgid "You do not have rights to change translations here"
 msgstr "तपाईलाई उल्था परिवर्तन गर्ने अनुमति छैन"
 
-#: projects.py:1177
+#: projects.py:1151
 msgid "You do not have rights to suggest changes here"
 msgstr "तपाईंलाई सुझाव परिवर्तन गर्ने अनुमति छैन"
 
-#: projects.py:1193 projects.py:1216
+#: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
 msgstr "तपाईंलाई सुझाव पुनरावलोकन गर्ने अनुमति छैन"
 
-#: translatepage.py:80
+#: translatepage.py:89
 #, python-format
 msgid ""
 "%d/%d translated\n"
 "(%d blank, %d fuzzy)"
 msgstr ""
 
-#: translatepage.py:92 adminpages.py:35 adminpages.py:74 adminpages.py:130
-#: adminpages.py:192 adminpages.py:279 adminpages.py:339 pagelayout.py:70
-#: users.py:58 users.py:91 users.py:127 users.py:149 indexpage.py:73
+#: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
+#: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
+#: users.py:58 users.py:95 users.py:131 users.py:153 indexpage.py:73
 #: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
-#: indexpage.py:342
+#: indexpage.py:346
 msgid "Pootle Demo"
 msgstr "पूतल प्रदर्शन"
 
@@ -124,202 +128,203 @@ msgstr "पूतल प्रदर्शन"
 #. l10n: second parameter: project name
 #. l10n: third parameter: target language
 #. l10n: fourth parameter: file name
-#: translatepage.py:97
+#: translatepage.py:99
 #, python-format
 msgid "%s: translating %s into %s: %s"
 msgstr "%s: %s लाई %s: %s मा उल्था गर्दै"
 
-#: translatepage.py:111
+#. l10n: Heading above the table column with the source language
+#: translatepage.py:114
 msgid "Original"
 msgstr "सक्कल"
 
-#: translatepage.py:112
+#. l10n: Heading above the table column with the target language
+#: translatepage.py:116
 msgid "Translation"
 msgstr "उल्था"
 
-#: translatepage.py:115
+#: translatepage.py:119
 msgid "Accept"
 msgstr "सहमत"
 
-#: translatepage.py:116
+#: translatepage.py:120
 msgid "Reject"
 msgstr "असहमत"
 
+#: translatepage.py:121 pagelayout.py:243
+msgid "Fuzzy"
+msgstr "अस्पस्ट"
+
+#. l10n: Heading above the textarea for translator comments.
+#: translatepage.py:123
+msgid "Translator comments"
+msgstr ""
+
+#. l10n: Heading above the comments extracted from the programing source code
+#: translatepage.py:125
+msgid "Developer comments"
+msgstr ""
+
 #. l10n: This heading refers to related translations and terminology
-#: translatepage.py:118
+#: translatepage.py:127
 msgid "Related"
 msgstr "सम्बन्धित"
 
 #. l10n: text next to search field
-#: translatepage.py:122 indexpage.py:352
+#: translatepage.py:131 indexpage.py:356
 msgid "Search"
 msgstr "खोजी"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
-#: translatepage.py:136
+#: translatepage.py:145
 msgid "End of batch"
 msgstr ""
 
-#: translatepage.py:138
+#: translatepage.py:147
 msgid "Click here to return to the index"
 msgstr "index मा फर्कन यहाँ क्लिक गर्नुहोस्"
 
 #. l10n: noun (the start)
-#: translatepage.py:152 translatepage.py:155
+#: translatepage.py:161 translatepage.py:164
 msgid "Start"
 msgstr "सुरू"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:159 translatepage.py:162
+#: translatepage.py:168 translatepage.py:171
 #, python-format
 msgid "Previous %d"
 msgstr "पहिलेका"
 
 #. l10n: the third parameter refers to the total number of messages in the file
-#: translatepage.py:164
+#: translatepage.py:173
 #, python-format
 msgid "Items %d to %d of %d"
 msgstr "जम्म %d मध्ये %d देखि %d सम्म"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:169 translatepage.py:172
+#: translatepage.py:178 translatepage.py:181
 #, python-format
 msgid "Next %d"
 msgstr ""
 
 #. l10n: noun (the end)
-#: translatepage.py:175 translatepage.py:178
+#: translatepage.py:184 translatepage.py:187
 msgid "End"
 msgstr "अन्त्य"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-#: translatepage.py:195
+#: translatepage.py:204
 #, python-format
 msgid "checking %s"
 msgstr "जाँच गर्दै"
 
-#: translatepage.py:202 translatepage.py:205 indexpage.py:522 indexpage.py:525
+#: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
 msgid "Assign Strings"
 msgstr ""
 
-#: translatepage.py:203 indexpage.py:524
+#: translatepage.py:212 indexpage.py:528
 msgid "Assign to User"
 msgstr ""
 
-#: translatepage.py:204 indexpage.py:523
+#: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
 msgstr ""
 
-#: translatepage.py:337
+#: translatepage.py:368
 #, python-format
 msgid "There are no items matching that search ('%s')"
 msgstr "('%s') खोजीसँग मिल्ने कुनै बस्तु भेटिएन "
 
-#: translatepage.py:339
+#: translatepage.py:370
 msgid "You have finished going through the items you selected"
 msgstr "तपाईं आफूले छानेका बस्तुहरू सबै हेरी सक्नुभयो"
 
-#: translatepage.py:537
+#: translatepage.py:578
 msgid "Singular"
 msgstr "एकबचन"
 
-#: translatepage.py:538
+#: translatepage.py:579
 msgid "Plural"
 msgstr "बहुबचन"
 
 #. l10n: verb
-#: translatepage.py:552
+#: translatepage.py:593
 msgid "Edit"
 msgstr "सम्पादन गर्नुहोस्"
 
 #. l10n: verb
-#: translatepage.py:568
+#: translatepage.py:609
 msgid "Copy"
 msgstr "कपी गर्नुहोस्"
 
-#: translatepage.py:569 translatepage.py:748
+#: translatepage.py:610 translatepage.py:784
 msgid "Skip"
 msgstr "छोड्नुहोस्"
 
 #. l10n: verb
-#: translatepage.py:571 translatepage.py:747 users.py:252
+#: translatepage.py:612 translatepage.py:783 users.py:256
 msgid "Back"
 msgstr "फर्कनुहोस्"
 
-#: translatepage.py:573
+#: translatepage.py:614
 msgid "Submit"
 msgstr ""
 
 #. l10n: action that increases the height of the textarea
-#: translatepage.py:576
+#: translatepage.py:617
 msgid "Grow"
 msgstr "बढाउनुहोस्"
 
 #. l10n: action that decreases the height of the textarea
-#: translatepage.py:578
+#: translatepage.py:619
 msgid "Shrink"
 msgstr "घटाउनुहोस्"
 
-#. l10n: action that increases the width of the textarea
-#: translatepage.py:580
-msgid "Broaden"
-msgstr "फराकिलो बनाउनुहोस्"
-
-#. l10n: action that decreases the width of the textarea
-#: translatepage.py:582
-msgid "Narrow"
-msgstr "साँघुरो बनाउनुहोस्"
-
-#. l10n: action that resets the size of the textarea
-#: translatepage.py:584
-msgid "Reset"
-msgstr ""
-
-#: translatepage.py:605 translatepage.py:699 translatepage.py:736
-#: translatepage.py:769
+#: translatepage.py:641 translatepage.py:735 translatepage.py:772
+#: translatepage.py:805
 #, python-format
 msgid "Plural Form %d"
 msgstr "%d बहुबचन"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
-#: translatepage.py:621
+#: translatepage.py:657
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
 
-#: translatepage.py:703
+#: translatepage.py:739
 msgid "Current Translation:"
 msgstr "हालको उल्था"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
-#: translatepage.py:716
+#: translatepage.py:752
 #, python-format
 msgid "Suggestion %d by %s:"
 msgstr "%s: बाट %d सुझाव"
 
-#: translatepage.py:718
+#: translatepage.py:754
 #, python-format
 msgid "Suggestion %d:"
 msgstr "सुझाव %d:"
 
 #. l10n: parameter: name of translator
-#: translatepage.py:722
+#: translatepage.py:758
 #, python-format
 msgid "Suggestion by %s:"
 msgstr "%s: बाट सुझाव"
 
-#: translatepage.py:724
+#: translatepage.py:760
 msgid "Suggestion:"
 msgstr "सुझाव:"
 
-#: adminpages.py:43 adminpages.py:82 adminpages.py:138 adminpages.py:200
+#: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
 #: pagelayout.py:36
 msgid "Home"
 msgstr "मुख्य पृष्ठ"
 
-#: adminpages.py:44 adminpages.py:202
+#: adminpages.py:44 adminpages.py:207
 msgid "Users"
 msgstr "प्रयोगकर्ताहरु"
 
@@ -327,7 +332,7 @@ msgstr "प्रयोगकर्ताहरु"
 msgid "Languages"
 msgstr "भाषाहरु"
 
-#: adminpages.py:46 adminpages.py:140 indexpage.py:95
+#: adminpages.py:46 adminpages.py:142 indexpage.py:95
 msgid "Projects"
 msgstr "परियोजनाहरू"
 
@@ -335,16 +340,16 @@ msgstr "परियोजनाहरू"
 msgid "General options"
 msgstr "सामान्य विकल्पहरू"
 
-#: adminpages.py:48 users.py:153
+#: adminpages.py:48 users.py:157
 msgid "Option"
 msgstr "विकल्प"
 
-#: adminpages.py:49 users.py:154
+#: adminpages.py:49 users.py:158
 msgid "Current value"
 msgstr "चालु मान"
 
-#: adminpages.py:50 adminpages.py:85 adminpages.py:141 adminpages.py:203
-#: users.py:168
+#: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
+#: users.py:172
 msgid "Save changes"
 msgstr "परिवर्तनहरु वचत गर्नुहोस"
 
@@ -364,7 +369,7 @@ msgstr "आधार युआरएल"
 msgid "Home Page"
 msgstr "गृह पृष्ठ॒"
 
-#: adminpages.py:83 adminpages.py:139 adminpages.py:201
+#: adminpages.py:83 adminpages.py:141 adminpages.py:206
 #, fuzzy
 msgid "Main admin page"
 msgstr "मुख्य प्रशासन पृष्ठ"
@@ -373,7 +378,7 @@ msgstr "मुख्य प्रशासन पृष्ठ"
 msgid "ISO Code"
 msgstr "ISO कोड"
 
-#: adminpages.py:90 adminpages.py:146 adminpages.py:208 users.py:100
+#: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
 msgid "Full Name"
 msgstr "पूरा नाम"
 
@@ -396,7 +401,7 @@ msgstr "बहुवचनहरुको संख्या"
 #: adminpages.py:93
 #, fuzzy
 msgid "(number of plurals)"
-msgstr "संख्या को"
+msgstr "बहुवचनहरुको संख्या"
 
 #: adminpages.py:94 indexpage.py:218
 msgid "Plural Equation"
@@ -412,167 +417,171 @@ msgid "Remove Language"
 msgstr "भाषा हटाउनुहोस्"
 
 #. l10n: The parameter is a languagecode, projectcode or username
-#: adminpages.py:110 adminpages.py:173 adminpages.py:235 adminpages.py:405
+#: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
 #, python-format
 msgid "Remove %s"
 msgstr "%s हटाउनुहोस्"
 
-#: adminpages.py:128
+#: adminpages.py:129
 msgid "Standard"
 msgstr "मानक"
 
-#: adminpages.py:145
+#: adminpages.py:147
 msgid "Project Code"
 msgstr "परियोजना कोड"
 
-#: adminpages.py:147
+#: adminpages.py:149
 msgid "(add project here)"
 msgstr "(परियोजना यहाँ थप्नुहोस् )"
 
-#: adminpages.py:148
+#: adminpages.py:150
 #, fuzzy
 msgid "Project Description"
-msgstr "परियोजनाको बर्णन"
+msgstr "(परियोजना बर्णन)"
 
-#: adminpages.py:148
+#: adminpages.py:150
 msgid "(project description)"
 msgstr "(परियोजना बर्णन)"
 
-#: adminpages.py:149
+#: adminpages.py:151
 msgid "Checker Style"
 msgstr "जाँचक शैलि"
 
-#: adminpages.py:150
+#: adminpages.py:152
+msgid "File Type"
+msgstr ""
+
+#: adminpages.py:153
 msgid "Create MO Files"
 msgstr "MO फाईलहरू सृजना गर्नुहोस्"
 
-#: adminpages.py:151
+#: adminpages.py:154
 #, fuzzy
 msgid "Remove Project"
 msgstr "परियोजना हटाउनुहोस्"
 
-#: adminpages.py:207 users.py:66
+#: adminpages.py:212 users.py:66
 msgid "Login"
 msgstr "लगइन"
 
-#: adminpages.py:209 users.py:343
+#: adminpages.py:214 users.py:347
 msgid "(add full name here)"
 msgstr "(यहाँ पूरा नाम थप्नुहोस् )"
 
-#: adminpages.py:210 users.py:97
+#: adminpages.py:215 users.py:101
 msgid "Email Address"
 msgstr "इमेल ठेगाना"
 
-#: adminpages.py:210 users.py:346
+#: adminpages.py:215 users.py:350
 msgid "(add email here)"
 msgstr "(इमेल यहाँ थप्नुहोस्)"
 
-#: adminpages.py:211 users.py:103 users.py:159
+#: adminpages.py:216 users.py:107 users.py:163
 msgid "Password"
 msgstr "पासवर्ड"
 
-#: adminpages.py:211 users.py:340
+#: adminpages.py:216 users.py:344
 msgid "(add password here)"
 msgstr "(पासवर्ड यहाँ थप्नुहोस् )"
 
-#: adminpages.py:212
+#: adminpages.py:217
 msgid "Activated"
 msgstr "कृयाशील"
 
-#: adminpages.py:212
+#: adminpages.py:217
 msgid "Activate New User"
 msgstr "नयाँ प्रयोगकर्ता सक्रिय पार्नुहोस्"
 
-#: adminpages.py:213
+#: adminpages.py:218
 #, fuzzy
 msgid "Remove User"
 msgstr "%s हटाउनुहोस्"
 
-#: adminpages.py:267
+#: adminpages.py:272
 msgid "Back to main page"
 msgstr "मुख्य पृष्ठमा फर्किनुहोस्"
 
-#: adminpages.py:268
+#: adminpages.py:273
 msgid "Existing languages"
 msgstr "भैरहेका भाषाहरू"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:272
+#: adminpages.py:277
 #, fuzzy
 msgid "Update Languages"
 msgstr "अपडेट भाषाहरु"
 
-#: adminpages.py:273
+#: adminpages.py:278
 #, fuzzy, python-format
 msgid "Pootle Admin: %s"
 msgstr "एस एस"
 
-#: adminpages.py:274 adminpages.py:336
+#: adminpages.py:279 adminpages.py:341
 #, fuzzy
 msgid "You do not have the rights to administer this project."
 msgstr "तपाइँ होइन लाई परियोजना."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:276
+#: adminpages.py:281
 #, fuzzy
 msgid "Update from templates"
 msgstr "अपडेट"
 
-#: adminpages.py:284
+#: adminpages.py:289
 #, fuzzy
 msgid "Add Language"
 msgstr "भाषा थप्नु"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
-#: adminpages.py:316
+#: adminpages.py:321
 #, fuzzy, python-format
 msgid "Pootle Admin: %s %s"
 msgstr "एस एस"
 
-#: adminpages.py:317
+#: adminpages.py:322
 #, fuzzy
 msgid "Project home page"
 msgstr "परियोजना घर पृष्ठ"
 
-#: adminpages.py:335
+#: adminpages.py:340
 #, fuzzy, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr "सेट लागि प्रयोगकर्ता को नाम एस प्रयोगकर्ता होइन"
 
-#: adminpages.py:352
+#: adminpages.py:357
 #, fuzzy
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr "छ/हो ए जिएनयु परियोजना फाइलहरु."
 
-#: adminpages.py:354
+#: adminpages.py:359
 #, fuzzy
 msgid "This is a standard style project (one directory per language)."
 msgstr "छ/हो ए परियोजना."
 
-#: adminpages.py:355
+#: adminpages.py:360
 #, fuzzy
 msgid "User Permissions"
 msgstr "प्रयोगकर्ता अनुमति"
 
-#: adminpages.py:356 users.py:94 users.py:130
+#: adminpages.py:361 users.py:98 users.py:134
 #, fuzzy
 msgid "Username"
 msgstr "प्रयोगकर्ताको नाम"
 
-#: adminpages.py:357
+#: adminpages.py:362
 msgid "(select to add user)"
 msgstr ""
 
-#: adminpages.py:358
+#: adminpages.py:363
 msgid "Rights"
 msgstr ""
 
-#: adminpages.py:359 indexpage.py:988
+#: adminpages.py:364 indexpage.py:998
 #, fuzzy
 msgid "Remove"
 msgstr "हटाऊ"
 
-#: adminpages.py:386
+#: adminpages.py:391
 #, fuzzy
 msgid "Update Rights"
 msgstr "अपडेट"
@@ -591,7 +600,7 @@ msgstr "भाषाहरु"
 msgid "My account"
 msgstr "मेरो खाता"
 
-#: pagelayout.py:40 pagelayout.py:162 indexpage.py:200 indexpage.py:262
+#: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
 msgid "Admin"
 msgstr "प्रशासन"
 
@@ -616,94 +625,90 @@ msgstr "दर्ता गर्नुहोस्"
 msgid "Activate"
 msgstr "चालु"
 
-#: pagelayout.py:74
+#: pagelayout.py:80
 msgid "Pootle Logo"
 msgstr "पूतल लोगो"
 
-#: pagelayout.py:75
+#: pagelayout.py:81
 msgid "WordForge Translation Project"
 msgstr "WordForge उल्था परियोजना"
 
-#: pagelayout.py:77
+#: pagelayout.py:83
 msgid "About this Pootle server"
 msgstr "Pootle सर्भरका बारेमा"
 
-#: pagelayout.py:151
+#: pagelayout.py:157
 msgid "All goals"
 msgstr "सबै उद्दश्यहरू"
 
-#: pagelayout.py:222
+#: pagelayout.py:228
 #, python-format
 msgid "%d/%d files"
 msgstr "%d/%d फाईलहरू"
 
-#: pagelayout.py:225
+#: pagelayout.py:231
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d फाईल"
 msgstr[1] "%d फाईलहरू"
 
-#: pagelayout.py:226 indexpage.py:985
+#: pagelayout.py:232 indexpage.py:995
 #, python-format
 msgid "%d/%d words (%d%%) translated"
 msgstr "%d/%d शब्दहरू (%d%%) उल्था गरिएको"
 
-#: pagelayout.py:227
+#: pagelayout.py:233
 #, python-format
 msgid "%d/%d strings"
 msgstr ""
 
-#: pagelayout.py:233 users.py:155
+#: pagelayout.py:239 users.py:159
 msgid "Name"
 msgstr "नाम"
 
-#: pagelayout.py:234
+#: pagelayout.py:240
 msgid "Translated"
 msgstr "उल्था"
 
-#: pagelayout.py:235
+#: pagelayout.py:241
 msgid "Translated percentage"
 msgstr "उल्था गरिएको प्रतिशत"
 
-#: pagelayout.py:236
+#: pagelayout.py:242
 msgid "Translated words"
 msgstr "उल्था गरिएका शब्दहरू"
 
-#: pagelayout.py:237
-msgid "Fuzzy"
-msgstr "अस्पस्ट"
-
-#: pagelayout.py:238
+#: pagelayout.py:244
 msgid "Fuzzy percentage"
 msgstr "अस्पस्ट प्रतिशत"
 
-#: pagelayout.py:239
+#: pagelayout.py:245
 msgid "Fuzzy words"
 msgstr "अस्पस्ट शब्दहरू"
 
-#: pagelayout.py:240 indexpage.py:776
+#: pagelayout.py:246 indexpage.py:786
 msgid "Untranslated"
 msgstr "उल्था नगरिएका"
 
-#: pagelayout.py:241
+#: pagelayout.py:247
 msgid "Untranslated percentage"
 msgstr "उल्था नगरिएको प्रतिशत"
 
-#: pagelayout.py:242
+#: pagelayout.py:248
 msgid "Untranslated words"
 msgstr "उल्था नगरिएका शब्दहरू"
 
-#: pagelayout.py:243
+#: pagelayout.py:249
 msgid "Total"
 msgstr "जम्मा"
 
-#: pagelayout.py:244
+#: pagelayout.py:250
 msgid "Total words"
 msgstr "जम्मा शब्दहरू"
 
 #. l10n: noun. The graphical representation of translation status
-#: pagelayout.py:246
+#: pagelayout.py:252
 msgid "Graph"
 msgstr "ग्राफ"
 
@@ -739,274 +744,268 @@ msgstr "भाषाहरु"
 msgid "Default"
 msgstr ""
 
-#: users.py:85
+#: users.py:89
 msgid "Please enter your registration details"
 msgstr ""
 
-#: users.py:88 users.py:415
+#: users.py:92 users.py:419
 msgid "Pootle Registration"
 msgstr ""
 
-#: users.py:95 users.py:131
+#: users.py:99 users.py:135
 msgid "Your requested username"
 msgstr ""
 
-#: users.py:98
-msgid "Must be a valid email address"
+#: users.py:102 users.py:373
+msgid "You must supply a valid email address"
 msgstr ""
 
-#: users.py:101
+#: users.py:105
 msgid "Your full name"
 msgstr ""
 
-#: users.py:104
+#: users.py:108
 msgid "Your desired password"
 msgstr ""
 
-#: users.py:106 users.py:160
+#: users.py:110 users.py:164
 msgid "Confirm password"
 msgstr ""
 
-#: users.py:107
+#: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
 msgstr ""
 
-#: users.py:109
+#: users.py:113
 msgid "Register Account"
 msgstr ""
 
-#: users.py:118
+#: users.py:122
 msgid "Please enter your activation details"
 msgstr ""
 
-#: users.py:123
+#: users.py:127
 msgid "Pootle Account Activation"
 msgstr ""
 
-#: users.py:133
+#: users.py:137
 msgid "Activation Code"
 msgstr ""
 
-#: users.py:134
+#: users.py:138
 msgid "The activation code you received"
 msgstr ""
 
-#: users.py:136
+#: users.py:140
 msgid "Activate Account"
 msgstr ""
 
-#: users.py:147
+#: users.py:151
 #, python-format
 msgid "Options for: %s"
 msgstr ""
 
-#: users.py:152
+#: users.py:156
 msgid "Personal Details"
 msgstr ""
 
-#: users.py:157
+#: users.py:161
 msgid "Email"
 msgstr ""
 
-#: users.py:161
+#: users.py:165
 msgid "Translation Interface Configuration"
 msgstr ""
 
-#: users.py:162
+#: users.py:166
 msgid "User Interface language"
 msgstr ""
 
-#: users.py:163
+#: users.py:167
 msgid "My Projects"
 msgstr ""
 
-#: users.py:165
+#: users.py:169
+#, fuzzy
 msgid "My Languages"
-msgstr ""
+msgstr "भाषाहरु"
 
-#: users.py:167
+#: users.py:171
 msgid "Home page"
 msgstr "मुख्य पृष्ठ "
 
-#: users.py:203
+#: users.py:207
 msgid "Input Height (in lines)"
 msgstr ""
 
-#: users.py:203
-msgid "Input Width (in characters)"
-msgstr ""
-
-#: users.py:204
+#: users.py:208
 msgid "Number of rows in view mode"
 msgstr ""
 
-#: users.py:205
+#: users.py:209
 msgid "Number of rows in translate mode"
 msgstr ""
 
-#: users.py:247
+#: users.py:251
 msgid "Error"
 msgstr ""
 
-#: users.py:299
+#: users.py:303
 msgid "You need to be siteadmin to change users"
 msgstr ""
 
-#: users.py:363
+#: users.py:367
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
 
-#: users.py:369
-msgid "You must supply a valid email address"
-msgstr ""
-
-#: users.py:378
+#: users.py:382
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
 msgstr ""
 
-#: users.py:379
+#: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
 msgstr ""
 
-#: users.py:381
+#: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
 msgstr ""
 
-#: users.py:383
+#: users.py:387
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
 msgstr ""
 
-#: users.py:384
+#: users.py:388
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
 msgstr ""
 
-#: users.py:386
+#: users.py:390
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
 msgstr ""
 
-#: users.py:392
+#: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
 msgstr ""
 
-#: users.py:394
+#: users.py:398
 msgid "To activate your account, follow this link:\n"
 msgstr ""
 
-#: users.py:400
+#: users.py:404
 #, python-format
 msgid ""
 "Your activation code is:\n"
 "%s\n"
 msgstr ""
 
-#: users.py:402
+#: users.py:406
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
 msgstr ""
 
-#: users.py:403
+#: users.py:407
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr ""
 
-#: users.py:405
+#: users.py:409
 #, python-format
 msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
 
-#: users.py:407
+#: users.py:411
 msgid "(Or simply click on the activation link in the email)"
 msgstr ""
 
-#: users.py:409
+#: users.py:413
 #, python-format
 msgid "Your user name is: %s\n"
 msgstr ""
 
-#: users.py:411
+#: users.py:415
 #, python-format
 msgid "Your password is: %s\n"
 msgstr ""
 
-#: users.py:412
+#: users.py:416
 #, python-format
 msgid "Your registered email address is: %s\n"
 msgstr ""
 
-#: users.py:436
+#: users.py:442
 msgid "Redirecting to Registration Page..."
 msgstr ""
 
-#: users.py:460
+#: users.py:466
+#, fuzzy
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "लग-ईन तर्फ लैजाँदै..."
 
-#: users.py:463
+#: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
 msgstr ""
 
-#: users.py:467
+#: users.py:473
 msgid "The activation information was not valid."
 msgstr ""
 
-#: users.py:468
+#: users.py:474
 #, fuzzy
 msgid "Activation Failed"
 msgstr "कृयाशील"
 
-#: users.py:577
+#: users.py:583
 msgid "Input height must be numeric"
 msgstr ""
 
-#: users.py:578
+#: users.py:584
 msgid "Input width must be numeric"
 msgstr ""
 
-#: users.py:579
+#: users.py:585
 msgid "The number of rows displayed in view mode must be numeric"
 msgstr ""
 
-#: users.py:580
+#: users.py:586
 msgid "The number of rows displayed in translate mode must be numeric"
 msgstr ""
 
-#: pootle.py:275
+#: pootle.py:293
 msgid "Login failed"
 msgstr "लग-ईन असफल भयो"
 
-#: pootle.py:319 pootle.py:350
+#: pootle.py:337 pootle.py:368
 msgid "Redirecting to login..."
 msgstr "लग-ईन तर्फ लैजाँदै..."
 
-#: pootle.py:322
+#: pootle.py:340
 msgid "Need to log in to access home page"
 msgstr "मुख्य पृष्ठमा पहुँचको लागि लग-ईन गर्नु पर्छ"
 
-#: pootle.py:335
+#: pootle.py:353
 msgid "Personal details updated"
 msgstr "व्यक्तिगत जानकारीहरू अध्यावधिक गरियो"
 
-#: pootle.py:353
+#: pootle.py:371
 msgid "Need to log in to access admin page"
 msgstr "प्रसाशनिक पृष्ठमा पहुँचको लागि लग-ईन गर्नु पर्छ"
 
-#: pootle.py:360
+#: pootle.py:378
 msgid "Redirecting to home..."
 msgstr "मुख्य पृष्ठतर्फ लैजादै..."
 
-#: pootle.py:363
+#: pootle.py:381
 msgid "You do not have the rights to administer pootle."
 msgstr "तपाईँ संग पोटललाई प्रशासित गर्ने अधिकार छैन ।"
 
@@ -1109,11 +1108,11 @@ msgid "Language Name"
 msgstr "भाषाको नाम"
 
 #: indexpage.py:252
-#, python-format
+#, fuzzy
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d परियोजना, औसत %d%% उल्था गरिएको"
+msgstr[1] "%d परियोजनाहरू, औसत %d%% उल्था गरिएको"
 
 #: indexpage.py:265
 #, fuzzy
@@ -1121,230 +1120,236 @@ msgid "Language"
 msgstr "भाषाहरु"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
-#: indexpage.py:344
+#: indexpage.py:348
 #, python-format
 msgid "%s: Project %s, Language %s"
 msgstr "%s: परियोजनाहरू %s, भाषाहरू %s"
 
-#: indexpage.py:409
+#: indexpage.py:413
 msgid "Cannot upload file, no file attached"
 msgstr "फाईल अपलोड गर्न सकिएन, कुनै फाईल संलग्न गरिएको छैन"
 
-#: indexpage.py:415
+#: indexpage.py:419
 msgid "Can only upload PO files and zips of PO files"
 msgstr "PO फाईल तथा तिनका जिप फाईल मात्र अपलोड गर्न सकिन्छ"
 
-#: indexpage.py:530
+#: indexpage.py:534
 msgid "goals"
 msgstr "उद्देश्यहरू"
 
-#: indexpage.py:531
+#: indexpage.py:535
 msgid "Enter goal name"
 msgstr "उद्देश्यका नाम लेख्नुहोस्"
 
-#: indexpage.py:532
+#: indexpage.py:536
 msgid "Add Goal"
 msgstr "उद्देश्य थप्नुहोस्"
 
-#: indexpage.py:537 indexpage.py:539
+#: indexpage.py:541 indexpage.py:543
 msgid "Upload File"
 msgstr "फाईल अपलोड"
 
-#: indexpage.py:538
+#: indexpage.py:542
 msgid "Select file to upload"
 msgstr "अपलोड गर्न फाईल छान्नुहोस्"
 
 #. l10n: tooltip
-#: indexpage.py:546
+#: indexpage.py:550
 msgid "Overwrite the current file if it exists"
 msgstr "हाल भैरहेको फाईल बिस्थापित गर्नुहोस्"
 
 #. l10n: radio button text
-#: indexpage.py:548
+#: indexpage.py:552
 msgid "Merge"
 msgstr "संबन्ध जोड्नुहोस्"
 
 #. l10n: tooltip
-#: indexpage.py:550
+#: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
 
-#: indexpage.py:653
+#: indexpage.py:657
 msgid "Not in a goal"
 msgstr ""
 
-#: indexpage.py:673
+#: indexpage.py:677
 msgid "Add User"
 msgstr "प्रयोगकर्ता थप्नुहोस्"
 
-#: indexpage.py:711
+#: indexpage.py:719
 msgid "PO file"
 msgstr "PO फाईल"
 
-#: indexpage.py:715
+#: indexpage.py:723
 msgid "XLIFF file"
 msgstr "XLIFF फाईल"
 
-#: indexpage.py:719
+#: indexpage.py:727
 msgid "Qt .ts file"
 msgstr "Qt .ts फाईल"
 
-#: indexpage.py:723
+#: indexpage.py:731
 msgid "CSV file"
 msgstr "CSV फाईल"
 
-#: indexpage.py:728
+#: indexpage.py:736
 msgid "MO file"
 msgstr "MO फाईल"
 
 #. l10n: Update from version control (like CVS or Subversion)
-#: indexpage.py:733
+#: indexpage.py:742
 msgid "Update"
 msgstr "अपडेट"
 
-#: indexpage.py:775
+#: indexpage.py:785
 msgid "All Strings"
 msgstr ""
 
-#: indexpage.py:777
+#: indexpage.py:787
 msgid "Unassigned"
 msgstr ""
 
-#: indexpage.py:778
+#: indexpage.py:788
 msgid "Unassigned and Untranslated"
 msgstr ""
 
-#: indexpage.py:785
+#: indexpage.py:795
 msgid "Set Goal"
 msgstr ""
 
-#: indexpage.py:789
+#: indexpage.py:799
 msgid "Select Multiple"
 msgstr ""
 
-#: indexpage.py:791
+#: indexpage.py:801
 msgid "Assign To"
 msgstr ""
 
-#: indexpage.py:820
+#: indexpage.py:830
 msgid "Show Editing Functions"
 msgstr ""
 
-#: indexpage.py:821
+#: indexpage.py:831
 msgid "Show Statistics"
 msgstr ""
 
-#: indexpage.py:822
+#: indexpage.py:832
 msgid "Show Tracks"
 msgstr ""
 
-#: indexpage.py:822
+#: indexpage.py:832
 msgid "Hide Tracks"
 msgstr ""
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
-#: indexpage.py:824
+#: indexpage.py:834
 msgid "Show Checks"
 msgstr ""
 
-#: indexpage.py:824
+#: indexpage.py:834
 msgid "Hide Checks"
 msgstr ""
 
-#: indexpage.py:825
+#: indexpage.py:835
 msgid "Show Goals"
 msgstr ""
 
-#: indexpage.py:825
+#: indexpage.py:835
 msgid "Hide Goals"
 msgstr ""
 
-#: indexpage.py:826
+#: indexpage.py:836
 msgid "Show Assigns"
 msgstr ""
 
-#: indexpage.py:826
+#: indexpage.py:836
 msgid "Hide Assigns"
 msgstr ""
 
-#: indexpage.py:835
+#: indexpage.py:845
 #, python-format
 msgid "All Goals: %s"
 msgstr ""
 
-#: indexpage.py:841
+#: indexpage.py:851
 msgid "Translate My Strings"
 msgstr ""
 
-#: indexpage.py:843
+#: indexpage.py:853
 msgid "View My Strings"
 msgstr "आफ्नो शब्द हेर्नुहोस्"
 
-#: indexpage.py:848
+#: indexpage.py:858
 msgid "No strings assigned to you"
 msgstr ""
 
-#: indexpage.py:852
+#: indexpage.py:862
 msgid "Quick Translate My Strings"
 msgstr ""
 
-#: indexpage.py:856
+#: indexpage.py:866
 msgid "No untranslated strings assigned to you"
 msgstr ""
 
-#: indexpage.py:860
+#: indexpage.py:870
 msgid "Review Suggestions"
 msgstr ""
 
-#: indexpage.py:862
+#: indexpage.py:872
 msgid "View Suggestions"
 msgstr ""
 
-#: indexpage.py:867
+#: indexpage.py:877
 msgid "Quick Translate"
 msgstr "छिटो उल्था"
 
-#: indexpage.py:869
+#: indexpage.py:879
 msgid "View Untranslated"
 msgstr "उल्था नभएका हेर्नुहोस्"
 
-#: indexpage.py:873
+#: indexpage.py:883
 msgid "No untranslated items"
 msgstr "उल्था नभएका कुनै छैनन्"
 
-#: indexpage.py:876
+#: indexpage.py:886
 msgid "Translate All"
 msgstr "सबै उल्था गर्नुहोस्"
 
-#: indexpage.py:891
+#: indexpage.py:901
 msgid "ZIP of goal"
 msgstr ""
 
-#: indexpage.py:893
+#: indexpage.py:903
 msgid "ZIP of folder"
 msgstr ""
 
-#: indexpage.py:900
+#: indexpage.py:910
 msgid "Generate SDF"
 msgstr ""
 
-#: indexpage.py:953
+#: indexpage.py:963
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: indexpage.py:983
-#, python-format
+#: indexpage.py:993
+#, fuzzy
 msgid "%d/%d words (%d%%) assigned"
-msgstr ""
+msgstr "%d/%d शब्दहरू (%d%%) उल्था गरिएको"
 
-#: indexpage.py:984 indexpage.py:986
+#: indexpage.py:994 indexpage.py:996
 #, python-format
 msgid "[%d/%d strings]"
 msgstr ""
+
+#~ msgid "Broaden"
+#~ msgstr "फराकिलो बनाउनुहोस्"
+
+#~ msgid "Narrow"
+#~ msgstr "साँघुरो बनाउनुहोस्"
 
 #~ msgid "Pootle Admin Page"
 #~ msgstr "पोटल प्रशासन पृष्ठ"
