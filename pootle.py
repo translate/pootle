@@ -479,7 +479,6 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
             page.content_type = "text/xml; charset=UTF-8"
           elif extension == "mo":
             page.content_type = "application/octet-stream"
-          print page.content_type
           return page
         elif bottom.endswith(".zip"):
           if not "archive" in project.getrights(session):
