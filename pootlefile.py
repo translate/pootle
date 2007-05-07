@@ -344,7 +344,9 @@ class pootlefile(Wrapper):
   def savependingfile(self):
     """saves changes to disk..."""
     output = str(self.pendingfile)
-    open(self.pendingfilename, "w").write(output)
+    outputfile = open(self.pendingfilename, "w")
+    outputfile.write(output)
+    outputfile.close()
     self.pendingmtime = statistics.getmodtime(self.pendingfilename)
 
   def readtmfile(self):
