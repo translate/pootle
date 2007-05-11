@@ -42,12 +42,23 @@ def localize_links(session):
   links["account"] = session.localize("My account")
   links["admin"] = session.localize("Admin")
   links["doc"] = session.localize("Docs & help")
+  links["doclang"] = getdoclang(session.language)
   links["logout"] = session.localize("Log out")
   links["login"] = session.localize("Log in")
   #l10n: Verb, as in "to register"
   links["register"] = session.localize("Register")
   links["activate"] = session.localize("Activate")
   return links
+
+def getdoclang(language):
+  """Get the language code that the docs should be displayed in."""
+
+  #TODO: Determine the available languages programmatically.
+  available_languages = ["en"]
+  if language in available_languages:
+    return language
+  else:
+    return "en"
 
 def languagedir(language):
   """Returns whether the language is right to left"""
