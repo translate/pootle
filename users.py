@@ -218,6 +218,7 @@ class OptionalLoginAppServer(server.LoginAppServer):
   """a server that enables login but doesn't require it except for specified pages"""
   def handle(self, req, pathwords, argdict):
     """handles the request and returns a page object in response"""
+    session = None
     try:
       argdict = self.processargs(argdict)
       session = self.getsession(req, argdict)
@@ -228,6 +229,11 @@ class OptionalLoginAppServer(server.LoginAppServer):
         self.initlanguage(req, session)
       page = self.getpage(pathwords, session, argdict)
     except Exception, e:
+      # Because of the exception, 'session' might not be initialised. So let's
+      # play extra safe
+      if not session:
+          raise Exception("Could not initialise session.\nDetail:%s" % str(e))
+
       exceptionstr = self.errorhandler.exception_str()
       errormessage = str(e).decode("utf-8")
       traceback = self.errorhandler.traceback_str().decode('utf-8')
