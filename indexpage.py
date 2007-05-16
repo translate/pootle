@@ -32,6 +32,7 @@ from elementtree import ElementTree
 import os
 import sys
 import sre
+import locale
 
 def summarizestats(statslist, totalstats=None):
   if totalstats is None:
@@ -86,6 +87,7 @@ class PootleIndex(pagelayout.PootlePage):
     self.potree = potree
     self.localize = session.localize
     self.nlocalize = session.nlocalize
+    self.tr_lang = session.tr_lang
     templatename = "index"
     description = getattr(session.instance, "description")
     meta_description = shortdescription(description)
@@ -96,7 +98,8 @@ class PootleIndex(pagelayout.PootlePage):
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     pagetitle = instancetitle
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
-    languages = [{"code": code, "name": name, "sep": ", "} for code, name in self.potree.getlanguages()]
+    languages = [{"code": code, "name": self.tr_lang(name), "sep": ", "} for code, name in self.potree.getlanguages()]
+    languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     if languages:
       languages[-1]["sep"] = ""
     templatevars = {"pagetitle": pagetitle, "description": description, 
@@ -125,6 +128,7 @@ class UserIndex(pagelayout.PootlePage):
   def __init__(self, potree, session):
     self.potree = potree
     self.session = session
+    self.tr_lang = session.tr_lang
     self.localize = session.localize
     self.nlocalize = session.nlocalize
     pagetitle = self.localize("User Page for: %s", session.username)
@@ -162,7 +166,8 @@ class UserIndex(pagelayout.PootlePage):
                             "isprojectadmin": isprojectadmin, "sep": "<br />"})
       if langlinks:
         langlinks[-1]["sep"] = ""
-      quicklinks.append({"code": languagecode, "name": languagename, "projects": langlinks})
+      quicklinks.append({"code": languagecode, "name": self.tr_lang(languagename), "projects": langlinks})
+      quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     return quicklinks
 
 class ProjectsIndex(PootleIndex):
@@ -184,6 +189,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
     self.languagecode = languagecode
     self.localize = session.localize
     self.nlocalize = session.nlocalize
+    self.tr_lang = session.tr_lang
     self.languagename = self.potree.getlanguagename(self.languagecode)
     self.initpagestats()
     languageprojects = self.getprojects()
@@ -195,12 +201,12 @@ class LanguageIndex(pagelayout.PootleNavPage):
     # l10n: The first parameter is the name of the installation
     # l10n: The second parameter is the name of the project/language
     # l10n: This is used as a page title. Most languages won't need to change this
-    pagetitle =  self.localize("%s: %s", instancetitle, self.languagename)
+    pagetitle =  self.localize("%s: %s", instancetitle, self.tr_lang(self.languagename))
     templatename = "language"
     adminlink = self.localize("Admin")
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle,
-        "language": {"code": languagecode, "name": self.languagename, "stats": languagestats, "info": languageinfo},
+        "language": {"code": languagecode, "name": self.tr_lang(self.languagename), "stats": languagestats, "info": languageinfo},
         "projects": languageprojects, 
         "statsheadings": self.getstatsheadings(),
         "session": sessionvars, "instancetitle": instancetitle}
@@ -212,7 +218,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
     nplurals = self.potree.getlanguagenplurals(self.languagecode)
     pluralequation = self.potree.getlanguagepluralequation(self.languagecode)
     infoparts = [(self.localize("Language Code"), self.languagecode),
-                 (self.localize("Language Name"), self.languagename),
+                 (self.localize("Language Name"), self.tr_lang(self.languagename)),
                  # (self.localize("Special Characters"), specialchars),
                  (self.localize("Number of Plurals"), str(nplurals)),
                  (self.localize("Plural Equation"), pluralequation),
@@ -246,6 +252,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     self.projectcode = projectcode
     self.localize = session.localize
     self.nlocalize = session.nlocalize
+    self.tr_lang = session.tr_lang
     self.initpagestats()
     languages = self.getlanguages()
     average = self.getpagestats()
@@ -276,6 +283,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     languages = self.potree.getlanguages(self.projectcode)
     self.languagecount = len(languages)
     languageitems = [self.getlanguageitem(languagecode, languagename) for languagecode, languagename in languages]
+    languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["title"])
     for n, item in enumerate(languageitems):
       item["parity"] = ["even", "odd"][n % 2]
     return languageitems
@@ -286,7 +294,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     quickstats = language.getquickstats()
     data = self.getstats(language, quickstats, len(language.pofilenames))
     self.updatepagestats(data["translatedwords"], data["totalwords"])
-    return {"code": languagecode, "icon": "language", "href": href, "title": languagename, "data": data}
+    return {"code": languagecode, "icon": "language", "href": href, "title": self.tr_lang(languagename), "data": data}
 
 class ProjectIndex(pagelayout.PootleNavPage):
   """The main page of a project in a specific language"""
@@ -295,6 +303,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     self.session = session
     self.localize = session.localize
     self.nlocalize = session.nlocalize
+    self.tr_lang = session.tr_lang
     self.rights = self.project.getrights(self.session)
     message = argdict.get("message", "")
     if dirfilter == "":
@@ -341,12 +350,12 @@ class ProjectIndex(pagelayout.PootleNavPage):
       childitems = self.getchilditems(dirfilter)
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     # l10n: The first parameter is the name of the installation (like "Pootle")
-    pagetitle = self.localize("%s: Project %s, Language %s", instancetitle, self.project.projectname, self.project.languagename)
+    pagetitle = self.localize("%s: Project %s, Language %s", instancetitle, self.project.projectname, self.tr_lang(self.project.languagename))
     templatename = "fileindex"
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle,
         "project": {"code": self.project.projectcode, "name": self.project.projectname},
-        "language": {"code": self.project.languagecode, "name": self.project.languagename},
+        "language": {"code": self.project.languagecode, "name": self.tr_lang(self.project.languagename)},
         # optional sections, will appear if these values are replaced
         "assign": None, "goals": None, "upload": None,
         "search": {"title": self.localize("Search")}, "message": message,

@@ -24,7 +24,9 @@ from jToolkit.web import server
 from jToolkit import mailer
 from jToolkit import prefs
 from Pootle import pagelayout
+from translate.lang import data as langdata
 from email.Header import Header
+import locale
 
 class RegistrationError(ValueError):
   def __init__(self, message):
@@ -148,6 +150,7 @@ class UserOptions(pagelayout.PootlePage):
     self.potree = potree
     self.session = session
     self.localize = session.localize
+    self.tr_lang = session.tr_lang
     message = forcemessage(message)
     pagetitle = self.localize("Options for: %s", session.username)
     templatename = "options"
@@ -191,7 +194,8 @@ class UserOptions(pagelayout.PootlePage):
     languageoptions = self.potree.getlanguages()
     languages = []
     for language, name in languageoptions:
-      languages.append({"code": language, "name": name, "selected": language in userlanguages or None})
+      languages.append({"code": language, "name": self.tr_lang(name), "selected": language in userlanguages or None})
+    languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     return languages
 
   def getotheroptions(self):
@@ -204,7 +208,8 @@ class UserOptions(pagelayout.PootlePage):
     for code, name in self.potree.getlanguages():
       if code == "templates":
         continue
-      languageoptions.append({"code": code, "name": name, "selected": uilanguage == code or None})
+      languageoptions.append({"code": code, "name": self.tr_lang(name), "selected": uilanguage == code or None})
+    languageoptions.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     options = {"inputheight": self.localize("Input Height (in lines)"), 
           "viewrows": self.localize("Number of rows in view mode"), 
           "translaterows": self.localize("Number of rows in translate mode")}
@@ -535,6 +540,12 @@ class PootleSession(web.session.LoginSession):
       if not getattr(self.prefs, "uilanguage", "") and self.language_set:
         self.setinterfaceoptions({"option-uilanguage": self.language_set})
     self.translation = self.server.gettranslation(self.language)
+    self.tr_lang = langdata.tr_lang(self.language)
+    try:
+        locale.setlocale(locale.LC_ALL, str(self.language))
+    except locale.Error:
+        # The system might not have the locale installed
+        pass
     self.checkstatus(None, None)
 
   def validate(self):

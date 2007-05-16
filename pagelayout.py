@@ -174,7 +174,7 @@ class PootleNavPage(PootlePage):
         projectcode, projectname = project
         links["project"] = {"href": "/projects/%s/%s" % (projectcode, paramstring), "text": projectname}
       else:
-        links["language"] = {"href": rootlink + "../index.html", "text": project.languagename}
+        links["language"] = {"href": rootlink + "../index.html", "text": session.tr_lang(project.languagename)}
         # don't getbrowseurl on the project link, so sticky options won't apply here
         links["project"] = {"href": (rootlink or "index.html") + paramstring, "text": project.projectname}
         if session:
@@ -182,7 +182,7 @@ class PootleNavPage(PootlePage):
             links["admin"] = {"href": rootlink + "admin.html", "text": self.localize("Admin")}
     elif language:
       languagecode, languagename = language
-      links["language"] = {"href": "/%s/" % languagecode, "text": languagename}
+      links["language"] = {"href": "/%s/" % languagecode, "text": session.tr_lang(languagename)}
     return links
 
   def getbrowseurl(self, basename, **newargs):
