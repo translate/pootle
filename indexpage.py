@@ -31,7 +31,7 @@ from kid import __version__ as kidversion
 from elementtree import ElementTree
 import os
 import sys
-import sre
+import re
 import locale
 
 def summarizestats(statslist, totalstats=None):
@@ -48,7 +48,7 @@ def shortdescription(descr):
   stopsign = descr.find("<br")
   if stopsign >= 0:
     descr = descr[:stopsign]
-  return sre.sub("<[^>]*>", "", descr).strip()
+  return re.sub("<[^>]*>", "", descr).strip()
   
 class AboutPage(pagelayout.PootlePage):
   """the bar at the side describing current login details etc"""

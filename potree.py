@@ -26,10 +26,10 @@ from Pootle import pootlefile
 from Pootle import pagelayout
 from translate.misc import autoencode
 import os
-import sre
+import re
 
-languagere = sre.compile("^[a-z]{2,3}([_-][A-Z]{2,3}|)$")
-regionre = sre.compile("^[_-][A-Z]{2,3}$")
+languagere = re.compile("^[a-z]{2,3}([_-][A-Z]{2,3}|)$")
+regionre = re.compile("^[_-][A-Z]{2,3}$")
 
 class POTree:
   """Manages the tree of projects and languages"""

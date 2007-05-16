@@ -19,7 +19,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-import sre
+import re
 from jToolkit import spellcheck
 from Pootle import pagelayout
 from Pootle import projects
@@ -229,7 +229,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     suggestions = {}
     comments = {}
     fuzzies = {}
-    keymatcher = sre.compile("(\D+)([0-9.]+)")
+    keymatcher = re.compile("(\D+)([0-9.]+)")
     def parsekey(key):
       match = keymatcher.match(key)
       if match:
@@ -534,13 +534,13 @@ class TranslatePage(pagelayout.PootleNavPage):
   def addfancyspaces(self, text):
     """Insert fancy spaces"""
     #More than two consecutive:
-    text = sre.sub("[ ]{2,}", self.fancyspaces, text)
+    text = re.sub("[ ]{2,}", self.fancyspaces, text)
     #At start of string
-    text = sre.sub("^[ ]+", self.fancyspaces, text)
+    text = re.sub("^[ ]+", self.fancyspaces, text)
     #After newline
-    text = sre.sub("\\n([ ]+)", self.fancyspaces, text)
+    text = re.sub("\\n([ ]+)", self.fancyspaces, text)
     #At end of string
-    text = sre.sub("[ ]+$", self.fancyspaces, text)
+    text = re.sub("[ ]+$", self.fancyspaces, text)
     return text
 
   def escapefortextarea(self, text):

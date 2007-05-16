@@ -47,7 +47,7 @@ from elementtree import ElementTree
 import kid
 import sys
 import os
-import sre
+import re
 import random
 import pprint
 
@@ -216,7 +216,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     argdict = newargdict
 
     # Strip of the base url
-    baseurl = sre.sub('http://[^/]', '', self.instance.baseurl)
+    baseurl = re.sub('http://[^/]', '', self.instance.baseurl)
     # Split up and remove empty parts
     basepathwords = filter(None, baseurl.split('/'))
     while pathwords and basepathwords and basepathwords[0] == pathwords[0]:
