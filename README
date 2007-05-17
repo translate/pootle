@@ -74,7 +74,9 @@ For Debian users: if you do not have setuptools installed, try:
 or
 	wget http://files.turbogears.org/eggs/setuptools-0.6a11-py2.4.egg
 
-Installation of PyLucene is optional, but helps to speed up searching.
+Installation of PyLucene is optional, but helps to speed up searching. jToolkit 
+is not yet compatible with the newest version of PyLucene, so be sure to use 
+a version before PyLucene version 2.0.
 
 To install Pootle itself, run
 
