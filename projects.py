@@ -880,7 +880,7 @@ class TranslationProject(object):
       grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
     for pofilename in self.searchpofilenames(pofilename, search, includelast=True):
       pofile = self.getpofile(pofilename)
-      if indexer.HAVE_INDEXER:
+      if indexer.HAVE_INDEXER and (search.searchtext or search.matchnames):
         filesearch = search.copy()
         filesearch.dirfilter = pofilename
         hits = self.indexsearch(filesearch, "itemno")
