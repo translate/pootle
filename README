@@ -26,10 +26,13 @@ Mail Archives: http://sourceforge.net/mailarchive/forum.php?forum=translate-poot
 
 Requirements/Installation
 -------------------------
-Please read http://translate.sourceforge.net/wiki/pootleadmin for the lastest instructions.
+Please read http://translate.sourceforge.net/wiki/pootle/installation for the 
+lastest instructions.
 
 Pootle requires the Translate Toolkit package from 
-http://translate.sourceforge.net as it uses most of the other modules.
+http://translate.sourceforge.net/
+Note all the optional dependencies of the Translate Toolkit for optimal 
+performance and functionality in Pootle.
 
 The Translate Toolkit requires Python 2.2 or higher, but Pootle itself 
 probably only works with Python 2.3 or higher.  The Translate Toolkit must 
@@ -38,12 +41,15 @@ will normally be accomplished by installing from source:
 
 	python setup.py install
 	
-For Debian users: if you get this error ("Unable to open /usr/lib/python2.N/config/Makefile
-(no such file or directory)"), while running setup.py, you need to install python-dev library.
-Try apt-get install python2.N-dev.
+If you get this error along the lines of
+Unable to open /usr/lib/python2.N/config/Makefile (no such file or directory)
+while running setup.py, you need to install python-dev or libpython2.N-devel
+package. Try to install python2.N-dev or libpython2.N-devel or something 
+similar with your distribution's package manager.
 
-For the web interface, Pootle requires jToolkit (http://jtoolkit.sourceforge.net/)
-jToolkit can run applications either via Apache using mod_python, or standalone 
+For the web interface, Pootle requires jToolkit 
+(http://jtoolkit.sourceforge.net/)
+jToolkit can run applications either via Apache using mod_python, or standalone
 from the command line.  Pootle works best at the moment being run from the 
 command line since we don't handle inter-process locking etc.  It's also 
 much easier! To install jToolkit run:
