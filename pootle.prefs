@@ -194,7 +194,7 @@ Pootle:
 
 # Afrikaans
     af.fullname = "Afrikaans"
-    af.specialchars = "ÄËÏÖÜäëïöü ÂÊÎÔÛâêîôû"
+    af.specialchars = "ëïêôûáéíóúý"
     af.nplurals = 2
     af.pluralequation = "(n != 1)"
 
@@ -430,7 +430,6 @@ Pootle:
     ka.fullname = u'Georgian'
     ka.nplurals = '1'
     ka.pluralequation ='0'
-
 
 # ភាសា
 # Khmer
