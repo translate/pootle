@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-03-14 21:20+0100\n"
-"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
+"PO-Revision-Date: 2007-05-12 14:12+0200\n"
+"Last-Translator: Seo Hyun Tae <acrab001@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 0.11\n"
+"X-Generator: Pootle 1.0rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -39,7 +39,7 @@ msgstr "검토"
 #. l10n: Verb
 #: projects.py:143
 msgid "Archive"
-msgstr "저장"
+msgstr "파일로 받기"
 
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
@@ -74,7 +74,7 @@ msgstr "여기에 파일을 올릴 권한이 없습니다"
 
 #: projects.py:508
 msgid "You do not have rights to overwrite files here"
-msgstr "여기에 파일을 덮어 쓸 권한이 없습니다"
+msgstr "여기 있는 파일을 덮어 쓸 권한이 없습니다"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
@@ -82,7 +82,7 @@ msgstr "여기에 새로운 파일을 올릴 권한이 없습니다"
 
 #: projects.py:519
 msgid "You do not have rights to update files here"
-msgstr "여기에 파일을 올릴 권한이 없습니다"
+msgstr "여기 있는 파일을 업데이트할 권한이 없습니다"
 
 #: projects.py:590
 msgid "You do not have rights to commit files here"
@@ -90,26 +90,28 @@ msgstr "여기에 파일을 제출할 권한이 없습니다"
 
 #: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
-msgstr "여기서 할당된 임무를 변경할 권한이 없습니다"
+msgstr "여기 있는 할당된 임무를 변경할 권한이 없습니다"
 
 #: projects.py:1141
 msgid "You do not have rights to change translations here"
-msgstr "여기의 변역을 변경할 권한이 없습니다"
+msgstr "여기 있는 번역을 변경할 권한이 없습니다"
 
 #: projects.py:1151
 msgid "You do not have rights to suggest changes here"
-msgstr "여기서 변경을 제안할 권한이 없습니다"
+msgstr "여기에 변경을 제안할 권한이 없습니다"
 
 #: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
-msgstr "여기서 제안들을 검토할 권한이 없습니다"
+msgstr "여기 있는 제안을 검토할 권한이 없습니다"
 
 #: translatepage.py:89
 #, python-format
 msgid ""
 "%d/%d translated\n"
 "(%d blank, %d fuzzy)"
-msgstr "%d/%d개 번역함 (%d 공백, %d 퍼지)"
+msgstr ""
+"%d/%d개 번역됨\n"
+"(번역 안 됨 %d개, 모호한 항목 %d개)"
 
 #: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
 #: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
@@ -126,12 +128,12 @@ msgstr "Pootle 데모"
 #: translatepage.py:99
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "%s: %s %s 언어로 번역: %s"
+msgstr "%s: %s을(를) %s(으)로 번역: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
 msgid "Original"
-msgstr "원본"
+msgstr "원문"
 
 #. l10n: Heading above the table column with the target language
 #: translatepage.py:116
@@ -148,17 +150,17 @@ msgstr "거부"
 
 #: translatepage.py:121 pagelayout.py:243
 msgid "Fuzzy"
-msgstr "퍼지"
+msgstr "모호함"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "번역자 주석"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "개발자 주석"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -173,7 +175,7 @@ msgstr "찾기"
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:145
 msgid "End of batch"
-msgstr "배치의 끝"
+msgstr "선택된 작업 완료"
 
 #: translatepage.py:147
 msgid "Click here to return to the index"
@@ -182,7 +184,7 @@ msgstr "색인으로 가려면 여기를 누르세요"
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
 msgid "Start"
-msgstr "시작"
+msgstr "처음"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:168 translatepage.py:171
@@ -194,7 +196,7 @@ msgstr "이전 %d개"
 #: translatepage.py:173
 #, python-format
 msgid "Items %d to %d of %d"
-msgstr "%d번째 항목 (%d/%d)"
+msgstr "%d에서 %d번째 항목 (전체 %d개)"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:178 translatepage.py:181
@@ -223,12 +225,12 @@ msgstr "사용자에게 할당"
 
 #: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
-msgstr "활동 할당"
+msgstr "작업 유형 할당"
 
 #: translatepage.py:368
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr "그 찾기에 ('%s') 해당하는 항목이 없습니다"
+msgstr "('%s') 해당하는 항목을 찾을 수 없습니다"
 
 #: translatepage.py:370
 msgid "You have finished going through the items you selected"
@@ -254,7 +256,7 @@ msgstr "복사"
 
 #: translatepage.py:610 translatepage.py:784
 msgid "Skip"
-msgstr "건너뛰기"
+msgstr "건너 뛰기"
 
 #. l10n: verb
 #: translatepage.py:612 translatepage.py:783 users.py:256
@@ -268,7 +270,7 @@ msgstr "제출"
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:617
 msgid "Grow"
-msgstr "늘리기"
+msgstr "늘이기"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:619
@@ -279,7 +281,7 @@ msgstr "줄이기"
 #: translatepage.py:805
 #, python-format
 msgid "Plural Form %d"
-msgstr "복수 형태 %d"
+msgstr "복수 형태 %d개"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:657
@@ -348,7 +350,7 @@ msgstr "현재 값"
 #: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
 #: users.py:172
 msgid "Save changes"
-msgstr "저장"
+msgstr "변경 사항 저장"
 
 #: adminpages.py:54
 msgid "Title"
@@ -376,11 +378,11 @@ msgstr "ISO 코드"
 
 #: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
 msgid "Full Name"
-msgstr "성함"
+msgstr "이름(성명)"
 
 #: adminpages.py:91
 msgid "(add language here)"
-msgstr "(여기에 다른언어를 더하세요)"
+msgstr "(여기에 다른 언어 추가)"
 
 #: adminpages.py:92
 msgid "Special Chars"
@@ -388,7 +390,7 @@ msgstr "특수 문자"
 
 #: adminpages.py:92
 msgid "(special characters)"
-msgstr "(특별 케릭터)"
+msgstr "(특수 문자)"
 
 #: adminpages.py:93 indexpage.py:217
 msgid "Number of Plurals"
@@ -442,7 +444,7 @@ msgstr "검사 스타일"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "파일 유형"
 
 #: adminpages.py:153
 msgid "Create MO Files"
@@ -458,7 +460,7 @@ msgstr "로그인"
 
 #: adminpages.py:214 users.py:347
 msgid "(add full name here)"
-msgstr "(여기 전체 이름 추가)"
+msgstr "(여기에 이름 추가)"
 
 #: adminpages.py:215 users.py:101
 msgid "Email Address"
@@ -466,7 +468,7 @@ msgstr "전자메일 주소"
 
 #: adminpages.py:215 users.py:350
 msgid "(add email here)"
-msgstr "(여기 전자메일 추가)"
+msgstr "(여기에 전자메일 추가)"
 
 #: adminpages.py:216 users.py:107 users.py:163
 msgid "Password"
@@ -474,11 +476,11 @@ msgstr "비밀번호"
 
 #: adminpages.py:216 users.py:344
 msgid "(add password here)"
-msgstr "(여기 비밀번호 추가)"
+msgstr "(여기에 비밀번호 추가)"
 
 #: adminpages.py:217
 msgid "Activated"
-msgstr "활성화함"
+msgstr "활성화됨"
 
 #: adminpages.py:217
 msgid "Activate New User"
@@ -532,7 +534,7 @@ msgstr "프로젝트 홈페이지"
 #: adminpages.py:340
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr "사용자 이름 %s에 대해 권한을 설정할 수 없습니다 - 사용자가 없습니다"
+msgstr "아이디 %s에 대해 권한을 설정할 수 없습니다 - 사용자가 존재하지 않습니다"
 
 #: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
@@ -546,9 +548,10 @@ msgstr "표준 스타일 프로젝트입니다. (각 언어마다 디렉토리 1
 msgid "User Permissions"
 msgstr "사용자 권한"
 
+# 실명을 적는 Full Name 항목과 혼동을 피하기 위해 '사용자 이름' 대신 '사용자 아이디'를 추천
 #: adminpages.py:361 users.py:98 users.py:134
 msgid "Username"
-msgstr "사용자 이름"
+msgstr "아이디"
 
 #: adminpages.py:362
 msgid "(select to add user)"
@@ -613,7 +616,7 @@ msgstr "WordForge 번역 프로젝트"
 
 #: pagelayout.py:83
 msgid "About this Pootle server"
-msgstr "이 Pootle 서버 정보"
+msgstr "이 Pootle 서버의 정보"
 
 #: pagelayout.py:157
 msgid "All goals"
@@ -628,12 +631,12 @@ msgstr "%d/%d개 파일"
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] "%d개 파일"
+msgstr[0] "%d개의 파일"
 
 #: pagelayout.py:232 indexpage.py:995
 #, python-format
 msgid "%d/%d words (%d%%) translated"
-msgstr "%d/%d개 단어 (%d%%) 번역함"
+msgstr "%d/%d개 단어 (%d%%) 번역됨"
 
 #: pagelayout.py:233
 #, python-format
@@ -646,35 +649,35 @@ msgstr "이름"
 
 #: pagelayout.py:240
 msgid "Translated"
-msgstr "번역함"
+msgstr "번역됨"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
-msgstr "번역한 퍼센트"
+msgstr "번역된 부분 (%)"
 
 #: pagelayout.py:242
 msgid "Translated words"
-msgstr "번역한 단어"
+msgstr "번역된 단어"
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
-msgstr "퍼지 퍼센트"
+msgstr "모호한 항목 (%)"
 
 #: pagelayout.py:245
 msgid "Fuzzy words"
-msgstr "퍼지 단어"
+msgstr "모호한 단어"
 
 #: pagelayout.py:246 indexpage.py:786
 msgid "Untranslated"
-msgstr "번역 안 함"
+msgstr "번역 안 됨"
 
 #: pagelayout.py:247
 msgid "Untranslated percentage"
-msgstr "번역 안 한 퍼센트"
+msgstr "번역 안 된 부분 (%)"
 
 #: pagelayout.py:248
 msgid "Untranslated words"
-msgstr "번역 안 한 단어"
+msgstr "번역 안 된 단어"
 
 #: pagelayout.py:249
 msgid "Total"
@@ -692,11 +695,11 @@ msgstr "그래프"
 #: users.py:39
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
-msgstr "최소한 길이가 %d개 문자인 올바른 비밀번호를 입력해야 합니다."
+msgstr "최소한 길이가 %d 문자인 올바른 비밀번호를 입력해야 합니다."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
-msgstr "비밀번호가 확인과 다릅니다."
+msgstr "비밀번호가 재확인란과 다릅니다."
 
 #: users.py:55
 msgid "Login to Pootle"
@@ -704,7 +707,7 @@ msgstr "Pootle 로그인"
 
 #: users.py:61
 msgid "Username:"
-msgstr "사용자 이름:"
+msgstr "아이디:"
 
 #: users.py:63
 msgid "Password:"
@@ -720,7 +723,7 @@ msgstr "기본값"
 
 #: users.py:89
 msgid "Please enter your registration details"
-msgstr "자세한 등록 정보를 입력하십시오"
+msgstr "등록 세부 사항을 입력하십시오"
 
 #: users.py:92 users.py:419
 msgid "Pootle Registration"
@@ -728,7 +731,7 @@ msgstr "Pootle 등록"
 
 #: users.py:99 users.py:135
 msgid "Your requested username"
-msgstr "요청한 사용자 이름"
+msgstr "요청한 아이디"
 
 #: users.py:102 users.py:373
 msgid "You must supply a valid email address"
@@ -736,15 +739,15 @@ msgstr "올바른 전자메일 주소를 입력해야 합니다."
 
 #: users.py:105
 msgid "Your full name"
-msgstr "전체 이름"
+msgstr "당신의 이름(성명)"
 
 #: users.py:108
 msgid "Your desired password"
-msgstr "사용하고 싶은 비밀 번호"
+msgstr "사용하고 싶은 비밀번호"
 
 #: users.py:110 users.py:164
 msgid "Confirm password"
-msgstr "비밀번호 확인"
+msgstr "비밀번호 재확인"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
@@ -830,35 +833,35 @@ msgstr "사용자를 바꾸려면 사이트 관리자여야 합니다"
 #: users.py:367
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
-msgstr "사용자 이름은 알파벳과 숫자여야 하고, 알파벳으로 시작해야 합니다."
+msgstr "아이디는 알파벳과 숫자여야 하고, 알파벳으로 시작해야 합니다."
 
 #: users.py:382
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
 msgstr ""
-"내 사용자 이름으로 (본인 아니면 다른 누군가가) 계정 등록을 시도했습니다.\n"
+"당신의 아이디로 (본인 아니면 다른 누군가가) 계정 등록을 시도했습니다.\n"
 
 #: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr "이 사이트는 열쇠글 원본을 저장하지 않고 해시값만을 저장합니다.\n"
+msgstr "이 사이트는 비밀번호의 실제 값을 저장하지 않고 해시된 값만을 저장합니다.\n"
 
 #: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr "등록에 문제가 있으면 %s에 연락하십시오.\n"
+msgstr "등록에 문제가 있으면 %s에게 연락하십시오.\n"
 
 #: users.py:387
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr "등록에 문제가 있으면 사이트 관리자에게 연락하십시오."
+msgstr "등록에 문제가 있으면 사이트 관리자에게 연락하십시오.\n"
 
 #: users.py:388
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
 msgstr ""
-"사용자 이름이 이미 사용중입니다. 등록한 전자메일 주소로 전자메일을 보냈습니"
+"그 아이디는 이미 사용중입니다. 등록된 전자메일 주소로 메일을 보냈습니"
 "다.\n"
 
 #: users.py:390
@@ -868,7 +871,7 @@ msgstr "<a href='%s'>로그인</a>으로 계속\n"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr "이 전자메일 주소를 사용해 Pootle 계정을 만들어습니다\n"
+msgstr "이 전자메일 주소를 사용해 Pootle 계정이 만들어졌습니다.\n"
 
 #: users.py:398
 msgid "To activate your account, follow this link:\n"
@@ -894,8 +897,8 @@ msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr ""
-"전자메일 주소가 정말로 맞는지 확인하기 위해 이 메세지를 보냅니다. 계정을 등록"
-"하고 싶지 않다면, 그냥 이 메세지를 무시해 주십시오.\n"
+"이 메시지는 전자메일 주소가 정말로 맞는지 검증하기 위하여 보내졌습니다. 계정을 등록하고 싶지 않다면, 그냥 이 메시지를 무시해 "
+"주십시오.\n"
 
 #: users.py:409
 #, python-format
@@ -903,7 +906,7 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
-"계정을 만들었습니다. 로그인 정보와 활성화 코드를 전자메일로 받게 될 것입니"
+"계정이 만들어졌습니다. 로그인 정보와 활성화 코드를 전자메일로 받게 될 것입니"
 "다. 받은 해당 활성화 코드를 <a href='%s'>활성화 페이지</a>에서 입력하십시오."
 
 #: users.py:411
@@ -913,12 +916,12 @@ msgstr "(아니면 전자메일에 들어 있는 활성화 링크를 누르십�
 #: users.py:413
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr "사용자 이름은: %s\n"
+msgstr "당신의 아이디는: %s\n"
 
 #: users.py:415
 #, python-format
 msgid "Your password is: %s\n"
-msgstr "비밀번호는: %s\n"
+msgstr "당신의 비밀번호는: %s\n"
 
 #: users.py:416
 #, python-format
@@ -935,7 +938,7 @@ msgstr "로그인 페이지로 이동합니다..."
 
 #: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
-msgstr "계정을 활성화했습니다! 로그인으로 이동합니다..."
+msgstr "계정이 활성화 되었습니다! 로그인으로 이동합니다..."
 
 #: users.py:473
 msgid "The activation information was not valid."
@@ -955,11 +958,11 @@ msgstr "입력 너비는 숫자로 써야 합니다"
 
 #: users.py:585
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr "보기 모드에서 줄 수는 숫자로 써야 합니다"
+msgstr "보기 모드에서의 줄 수는 숫자로 써야 합니다"
 
 #: users.py:586
 msgid "The number of rows displayed in translate mode must be numeric"
-msgstr "번역 모드에서 줄 수는 숫자로 써야 합니다"
+msgstr "번역 모드에서의 줄 수는 숫자로 써야 합니다"
 
 #: pootle.py:293
 msgid "Login failed"
@@ -975,7 +978,7 @@ msgstr "홈페이지를 보려면 로그인해야 합니다"
 
 #: pootle.py:353
 msgid "Personal details updated"
-msgstr "개인 정보를 업데이트했습니다"
+msgstr "개인 정보가 업데이트 되었습니다"
 
 #: pootle.py:371
 msgid "Need to log in to access admin page"
@@ -1069,7 +1072,7 @@ msgstr "'설정 바꾸기'를 눌러 언어와 프로젝트를 선택하십시�
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] "%d개 프로젝트, 평균 %d%% 번역함"
+msgstr[0] "%d개의 프로젝트, 평균 %d%% 번역됨"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -1091,7 +1094,7 @@ msgstr "언어 이름"
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] "%d개 언어, 평균 %d%% 번역함"
+msgstr[0] "%d개 언어, 평균 %d%% 번역됨"
 
 #: indexpage.py:265
 msgid "Language"
@@ -1145,11 +1148,11 @@ msgstr "합치기"
 #: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr "파일을 현재 파일과 합쳐서 충돌한 사항을 제안사항으로 만듭니다"
+msgstr "파일을 현재 파일과 합치고 충돌이 있는 항목은 제안 사항으로 만듭니다"
 
 #: indexpage.py:657
 msgid "Not in a goal"
-msgstr "목표에 없음"
+msgstr "목표에 지정되지 않은 항목"
 
 #: indexpage.py:677
 msgid "Add User"
@@ -1186,11 +1189,11 @@ msgstr "모든 문자열"
 
 #: indexpage.py:787
 msgid "Unassigned"
-msgstr "할당하지 않음"
+msgstr "할당되지 않음"
 
 #: indexpage.py:788
 msgid "Unassigned and Untranslated"
-msgstr "할당하지 않았고 번역하지 않음"
+msgstr "할당되지 않은 미번역"
 
 #: indexpage.py:795
 msgid "Set Goal"
@@ -1206,24 +1209,24 @@ msgstr "할당할 사람"
 
 #: indexpage.py:830
 msgid "Show Editing Functions"
-msgstr "편집 옵션 보기"
+msgstr "편집 기능 표시"
 
 #: indexpage.py:831
 msgid "Show Statistics"
-msgstr "통계 보기"
+msgstr "통계 표시"
 
 #: indexpage.py:832
 msgid "Show Tracks"
-msgstr "기록 보기"
+msgstr "트랙 표시"
 
 #: indexpage.py:832
 msgid "Hide Tracks"
-msgstr "기록 감추기"
+msgstr "트랙 감추기"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:834
 msgid "Show Checks"
-msgstr "검사 결과 보기"
+msgstr "검사 결과 표시"
 
 #: indexpage.py:834
 msgid "Hide Checks"
@@ -1231,7 +1234,7 @@ msgstr "검사 결과 감추기"
 
 #: indexpage.py:835
 msgid "Show Goals"
-msgstr "목표 보기"
+msgstr "목표 표시"
 
 #: indexpage.py:835
 msgid "Hide Goals"
@@ -1239,7 +1242,7 @@ msgstr "목표 감추기"
 
 #: indexpage.py:836
 msgid "Show Assigns"
-msgstr "할당 보기"
+msgstr "할당 표시"
 
 #: indexpage.py:836
 msgid "Hide Assigns"
@@ -1260,7 +1263,7 @@ msgstr "내 문자열 보기"
 
 #: indexpage.py:858
 msgid "No strings assigned to you"
-msgstr "내게 할당된 문자열이 없습니다"
+msgstr "당신에게 할당된 문자열이 없습니다"
 
 #: indexpage.py:862
 msgid "Quick Translate My Strings"
@@ -1268,7 +1271,7 @@ msgstr "내 문자열 빠른 번역"
 
 #: indexpage.py:866
 msgid "No untranslated strings assigned to you"
-msgstr "내게 할당된 번역하지 않은 문자열이 없습니다"
+msgstr "당신에게 할당된 미번역 문자열이 없습니다"
 
 #: indexpage.py:870
 msgid "Review Suggestions"
@@ -1284,11 +1287,11 @@ msgstr "빠른 번역"
 
 #: indexpage.py:879
 msgid "View Untranslated"
-msgstr "번역하지 않은 항목 보기"
+msgstr "번역되지 않은 항목 보기"
 
 #: indexpage.py:883
 msgid "No untranslated items"
-msgstr "번역하지 않은 항목이 없습니다"
+msgstr "번역되지 않은 항목이 없습니다"
 
 #: indexpage.py:886
 msgid "Translate All"
@@ -1296,26 +1299,26 @@ msgstr "모두 번역"
 
 #: indexpage.py:901
 msgid "ZIP of goal"
-msgstr "목표 ZIP"
+msgstr "목표의 ZIP 압축 받기"
 
 #: indexpage.py:903
 msgid "ZIP of folder"
-msgstr "폴더 ZIP"
+msgstr "폴더의 ZIP 압축 받기"
 
 #: indexpage.py:910
 msgid "Generate SDF"
-msgstr "SDF 만들기"
+msgstr "SDF 생성"
 
 #: indexpage.py:963
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] "%d개 문자열 (%d%%) 실패"
+msgstr[0] "%d개의 문자열 (%d%%) 걸림"
 
 #: indexpage.py:993
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr "%d/%d개 단어 (%d%%) 할당"
+msgstr "%d/%d개 단어 (%d%%) 할당됨"
 
 #: indexpage.py:994 indexpage.py:996
 #, python-format

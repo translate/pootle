@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2006-10-17 09:20+0200\n"
-"Last-Translator: Sharon Bahagi <tamino73@gmx.net>\n"
+"PO-Revision-Date: 2007-05-05 02:47+0200\n"
+"Last-Translator: Lars Kruse <devel@sumpfralle.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.10.1\n"
+"X-Generator: Pootle 1.0rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -29,7 +29,7 @@ msgstr "Übersetzen"
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "Überschreiben"
 
 #. l10n: Verb
 #: projects.py:141
@@ -54,10 +54,13 @@ msgstr "Zuweisen"
 msgid "Administrate"
 msgstr "Verwalten"
 
+# Direct translations: "transfer", "transmit", "convey"
+# This should be more appropriate for "commit", than "Bestätigen" (the previous value - it means: "approve").
+# It is used by svn and tortoisesvn as the german translation of "commit".
 #. l10n: Commit to version control (like CVS or Subversion)
 #: projects.py:148 indexpage.py:748
 msgid "Commit"
-msgstr "Bestätigen"
+msgstr "Übertragen"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
@@ -75,9 +78,8 @@ msgid "You do not have rights to upload files here"
 msgstr "Sie haben nicht die Rechte um hier Dateien hochzuladen"
 
 #: projects.py:508
-#, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr "Sie haben nicht die Rechte um hier Dateien hochzuladen"
+msgstr "Sie haben keine Berechtigung zum Überschreiben dieser Dateien"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
@@ -87,9 +89,10 @@ msgstr "Sie haben nicht die Rechte um hier neue Dateien hochzuladen"
 msgid "You do not have rights to update files here"
 msgstr "Sie haben nicht die Rechte um hier Dateien zu aktualisieren"
 
+# "commit" -> "übertragen" (transfer, transmit, convey)
 #: projects.py:590
 msgid "You do not have rights to commit files here"
-msgstr "Sie haben nicht die Rechte um hier Dateien hochzuladen"
+msgstr "Sie haben nicht die Rechte um hier Dateien zu übertragen"
 
 #: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
@@ -158,12 +161,12 @@ msgstr "Vage"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Anmerkungen des Übersetzers"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Anmerkungen des Entwicklers"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -257,9 +260,11 @@ msgstr "Bearbeiten"
 msgid "Copy"
 msgstr "Kopieren"
 
+# the previous translation was "Weiter". It means "continue" or "forward".
+# "Überspringen" means "skip", "leave out" or "omit".
 #: translatepage.py:610 translatepage.py:784
 msgid "Skip"
-msgstr "Weiter"
+msgstr "Überspringen"
 
 #. l10n: verb
 #: translatepage.py:612 translatepage.py:783 users.py:256
@@ -447,7 +452,7 @@ msgstr "Überprüfungs-Stil"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Dateiformat"
 
 #: adminpages.py:153
 msgid "Create MO Files"
@@ -513,7 +518,7 @@ msgstr "Pootle-Administrator: %s"
 
 #: adminpages.py:279 adminpages.py:341
 msgid "You do not have the rights to administer this project."
-msgstr "Sie haben nicht die Rechte dieses Projekt zu administrieren."
+msgstr "Sie haben nicht die Rechte, dieses Projekt zu administrieren."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:281
@@ -714,15 +719,16 @@ msgstr "in Pootle einloggen"
 
 #: users.py:61
 msgid "Username:"
-msgstr "Benutzername:"
+msgstr "Nutzername:"
 
 #: users.py:63
 msgid "Password:"
 msgstr "Passwort:"
 
+# previous translation was "Muttersprache" - that means "mother tongue". 
 #: users.py:64
 msgid "Language:"
-msgstr "Muttersprache:"
+msgstr "Sprache:"
 
 #: users.py:73
 msgid "Default"
@@ -738,7 +744,7 @@ msgstr "Pootle-Registrierung"
 
 #: users.py:99 users.py:135
 msgid "Your requested username"
-msgstr "Ihr gewünschter Benutzername"
+msgstr "Ihr gewünschter Nutzername"
 
 #: users.py:102 users.py:373
 msgid "You must supply a valid email address"
@@ -758,11 +764,13 @@ msgstr "Passwort bestätigen"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
-msgstr "Geben Sie Ihr Passwort erneut ein damit die Schreibweise korrekt ist"
+msgstr ""
+"Wiederholen Sie Ihr Passwort, um sicherzugehen, dass die Schreibweise "
+"korrekt ist"
 
 #: users.py:113
 msgid "Register Account"
-msgstr "Konto Registrieren"
+msgstr "Konto registrieren"
 
 #: users.py:122
 msgid "Please enter your activation details"
@@ -835,13 +843,14 @@ msgstr "Fehler"
 
 #: users.py:303
 msgid "You need to be siteadmin to change users"
-msgstr "Sie müssen Administrator dieser Seite sein um Benutzer zu ändern"
+msgstr "Sie müssen Administrator sein, um Nutzer zu ändern"
 
 #: users.py:367
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
-"Der Benutzername muss alfanumerisch sein und mit einem Buchstaben anfangen."
+""
+"Der Nutzername muss alphanumerisch sein und mit einem Buchstaben anfangen."
 
 #: users.py:382
 msgid ""
@@ -871,17 +880,17 @@ msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
 msgstr ""
-"Der Benutzername ist schon vergeben. Eine Email wird an die registrierte "
-"Email gesendet.\n"
+"Der Nutzername ist schon vergeben. Eine Email wird an die registrierte "
+"Email-Adresse gesendet.\n"
 
 #: users.py:390
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr "Fortfahren zum <a href='%s'>login</a>"
+msgstr "Fortfahren zum <a href='%s'>login</a>\n"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr "Es wurde ein Pootle Account mit dieser Email Adresse erstellt.\n"
+msgstr "Es wurde ein Pootle-Account mit dieser Email-Adresse erstellt.\n"
 
 #: users.py:398
 msgid "To activate your account, follow this link:\n"
@@ -910,7 +919,8 @@ msgid ""
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr ""
 "Diese Nachricht wurde zur Verfikation Ihrer Emailadresse versendet. Wenn die "
-"Registrierung nicht von Ihnen beabsichtigt war, ignorieren Sie diese email "
+""
+"Registrierung nicht von Ihnen beabsichtigt war, ignorieren Sie diese Email "
 "einfach.\n"
 
 #: users.py:409
@@ -919,23 +929,24 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
-"Konto eingerichtet. Sie bekommen Ihr Logindaten und einen "
-"Aktivierungsschlüssel zugesandt. Bitte bestätigen Sie diesen auf der <a "
+""
+"Konto eingerichtet. Sie bekommen Ihre Login-Daten und einen Aktivierungscode"
+" zugesandt. Bitte bestätigen Sie diesen auf der <a "
 "href='%s'>Aktivierungsseite</a>."
 
 #: users.py:411
 msgid "(Or simply click on the activation link in the email)"
-msgstr "(Oder klicken Sie einfach auf den Aktivierungslink in der email)"
+msgstr "(Oder klicken Sie einfach auf den Aktivierungslink in der Email)"
 
 #: users.py:413
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr "Ihr vollständiger Name ist: %s\n"
+msgstr "Ihr Nutzername ist: %s\n"
 
 #: users.py:415
 #, python-format
 msgid "Your password is: %s\n"
-msgstr "Ihr gewünschtes Passwort: %s\n"
+msgstr "Ihr gewünschtes Passwort ist: %s\n"
 
 #: users.py:416
 #, python-format
@@ -944,11 +955,11 @@ msgstr "Ihre registrierte Email-Adresse ist: %s\n"
 
 #: users.py:442
 msgid "Redirecting to Registration Page..."
-msgstr "Zurück zur Registrierungs-Seite..."
+msgstr "Weiterleitung zur Registrierungs-Seite..."
 
 #: users.py:466
 msgid "Redirecting to login Page..."
-msgstr "Zurück zur Login-Seite..."
+msgstr "Weiterleitung zur Login-Seite..."
 
 #: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
@@ -984,11 +995,11 @@ msgstr "Login fehlgeschlagen"
 
 #: pootle.py:337 pootle.py:368
 msgid "Redirecting to login..."
-msgstr "Zurück zum Login..."
+msgstr "Weiterleiten zum Login..."
 
 #: pootle.py:340
 msgid "Need to log in to access home page"
-msgstr "Sie müssen sich erst einloggen auf die Seite zuzugreifen"
+msgstr "Sie müssen sich erst einloggen, um auf die Seite zuzugreifen"
 
 #: pootle.py:353
 msgid "Personal details updated"
@@ -997,15 +1008,16 @@ msgstr "Persönliche Daten aktualisiert"
 #: pootle.py:371
 msgid "Need to log in to access admin page"
 msgstr ""
-"Sie müssen sich erst einloggen um auf die Administrationsseite zuzugreifen"
+""
+"Sie müssen sich erst einloggen, um auf die Administrationsseite zuzugreifen"
 
 #: pootle.py:378
 msgid "Redirecting to home..."
-msgstr "Zurück zur Hauptseite..."
+msgstr "Weiterleitung zur Hauptseite..."
 
 #: pootle.py:381
 msgid "You do not have the rights to administer pootle."
-msgstr "Sie haben nicht die Rechte Pootle zu verwalten."
+msgstr "Sie haben nicht die Rechte, Pootle zu verwalten."
 
 #: indexpage.py:61
 msgid "About Pootle"
@@ -1020,10 +1032,11 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
-"<strong>Pootle</strong> ist ein einfaches Web-Portal für die "
-"<strong>Übersetzung</strong> von Programmen!<br /><br />Da Pootle "
-"<strong>freie Software</strong> ist, können Sie sie herunterladen und Ihre "
-"eigene Kopie ausführen wenn Sie wollen. Auch können Sie bei der Entwicklung "
+""
+"<strong>Pootle</strong> ist ein einfaches Web-Portal zum "
+"<strong>Übersetzungen</strong>!<br /><br />Da Pootle <strong>Freie "
+"Software</strong> ist, können Sie sie herunterladen und Ihre eigene Kopie "
+"nutzen wenn Sie wollen. Auch können Sie bei der Entwicklung "
 "auf verschiedene Weise mithelfen (Sie müssen dazu nicht programmieren "
 "können)."
 
@@ -1062,13 +1075,13 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
-"Diese Seite läuft auf:<br/>Pootle %s<br/>Translate Toolkit %s<br/>jToolkit %"
-"s<br/>Python %s (auf %s/%s)"
+"Diese Seite läuft auf:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %"
+"s<br />Python %s (auf %s/%s)"
 
 #: indexpage.py:130
 #, python-format
 msgid "User Page for: %s"
-msgstr "Benutzer-Seite für: %s"
+msgstr "Nutzer-Seite für: %s"
 
 #: indexpage.py:132
 msgid "Change options"
@@ -1120,7 +1133,7 @@ msgstr[1] "%d Sprachen, durchschnittlich %d%% übersetzt"
 
 #: indexpage.py:265
 msgid "Language"
-msgstr "Muttersprache"
+msgstr "Sprache"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:348
@@ -1160,18 +1173,19 @@ msgstr "Datei zum Hochladen auswählen"
 #. l10n: tooltip
 #: indexpage.py:550
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "Datei überschreiben, falls eine gleichnamige bereits exisitiert"
 
 #. l10n: radio button text
 #: indexpage.py:552
 msgid "Merge"
-msgstr ""
+msgstr "Zusammenführen"
 
 #. l10n: tooltip
 #: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr ""
+msgstr "Führe die Datei mit der aktuellen Version zusammen und verwandle alle "
+"Konflikte in Vorschläge"
 
 #: indexpage.py:657
 msgid "Not in a goal"
@@ -1179,7 +1193,7 @@ msgstr "Nicht im Ziel"
 
 #: indexpage.py:677
 msgid "Add User"
-msgstr "Benutzer hinzufügen"
+msgstr "Nutzer hinzufügen"
 
 #: indexpage.py:719
 msgid "PO file"
@@ -1294,7 +1308,7 @@ msgstr "Meine Zeichenketten schnell übersetzen"
 
 #: indexpage.py:866
 msgid "No untranslated strings assigned to you"
-msgstr "Ihnen wurde keine nicht übersetzte Zeichenketten zugewiesen"
+msgstr "Ihnen wurden keine nicht übersetzte Zeichenketten zugewiesen"
 
 #: indexpage.py:870
 msgid "Review Suggestions"

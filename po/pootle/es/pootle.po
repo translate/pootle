@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-04-21 21:09+0200\n"
-"Last-Translator: Roberto Muñoz <munoz.roberto+pootle@gmail.com>\n"
+"PO-Revision-Date: 2007-05-04 21:46+0200\n"
+"Last-Translator: Daniel Espinosa Ortiz <esodan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.11\n"
+"X-Generator: Pootle 1.0rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -152,15 +152,16 @@ msgstr "Rechazar"
 msgid "Fuzzy"
 msgstr "Con Imprecisiones"
 
+# Comentarios al Desarrollador
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Comentarios al Traductor"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Comentarios al Desarrollador"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -444,7 +445,7 @@ msgstr "Estilo del Verificador"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Tipo de Archivo"
 
 #: adminpages.py:153
 msgid "Create MO Files"
@@ -1063,13 +1064,15 @@ msgstr "Versiones"
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:71
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
-"Este sitio está ejecutando:<br />Pootle %s<br />Herramientas de Traducción "
-"(Toolkit) %s<br />jToolkit %s<br />Python %s (en %s/%s)"
+""
+"Este sitio está ejecutando:<br />Pootle %s<br />Herramientas (Toolkit) de "
+"Traducción %s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python "
+"%s (on %s/%s)"
 
 #: indexpage.py:130
 #, python-format

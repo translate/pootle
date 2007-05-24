@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2007-03-12 19:42+0100\n"
-"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
+"PO-Revision-Date: 2007-05-07 09:11+0200\n"
+"Last-Translator: Seo Hyun Tae <acrab001@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 1.0rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Pootle 0.11\n"
 
 #: web/server.py:57
 #, python-format
@@ -44,7 +44,7 @@ msgstr "로그인"
 
 #: web/server.py:123
 msgid "Username:"
-msgstr "사용자 이름:"
+msgstr "아이디:"
 
 #: web/server.py:125
 msgid "Password:"
@@ -69,7 +69,7 @@ msgstr "나가기"
 #: web/session.py:191 web/session.py:344 web/session.py:350
 #, python-format
 msgid "logged in as <b>%s</b>"
-msgstr "<b>%s</b> 로그인"
+msgstr "<b>%s</b>(으)로 로그인 중"
 
 #: web/session.py:193
 msgid "couldn't add new session"
@@ -98,7 +98,7 @@ msgstr "사용자가 존재하지 않습니다 (%r)"
 
 #: web/session.py:362
 msgid "invalid username and/or password"
-msgstr "사용자 이름 혹은 사용자 암호가 틀림"
+msgstr "아이디 혹은 비밀번호가 틀림"
 
 #: web/session.py:433 web/session.py:437
 msgid "failed login confirmation"

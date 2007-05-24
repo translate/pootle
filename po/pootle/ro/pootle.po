@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 0.11\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-04-23 09:49+0300\n"
+"PO-Revision-Date: 2007-05-21 10:11+0200\n"
 "Last-Translator: Alexandru Szasz <alexxed@gmail.com>\n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Pootle 0.11\n"
+"X-Generator: Pootle 1.0rc1\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -161,12 +161,12 @@ msgstr "Fuzzy"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Comentariile traducătorului"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Comentariile dezvoltatorului"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -271,7 +271,7 @@ msgstr "Înapoi"
 
 #: translatepage.py:614
 msgid "Submit"
-msgstr "Trimite"
+msgstr "Postează"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:617
@@ -450,7 +450,7 @@ msgstr "Verficator de stil"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Tip fişier"
 
 #: adminpages.py:153
 msgid "Create MO Files"

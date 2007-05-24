@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-03-13 16:05+0100\n"
+"PO-Revision-Date: 2007-05-04 19:57+0200\n"
 "Last-Translator: F Wolff <friedel@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.11\n"
+"X-Generator: Pootle 1.0rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -155,12 +155,12 @@ msgstr "Wasig"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Vertaler se kommentaar"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Programmeerder se kommentaar"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -444,7 +444,7 @@ msgstr "Toetserstyl"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Lêertipe"
 
 #: adminpages.py:153
 msgid "Create MO Files"
@@ -698,7 +698,7 @@ msgstr "Grafiek"
 #: users.py:39
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
-msgstr "U moet 'n wagwoord van minstens % karakters voorsien."
+msgstr "U moet 'n wagwoord van minstens %d karakters voorsien."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
@@ -875,7 +875,7 @@ msgstr ""
 #: users.py:390
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr "Gaan nou voortgaan na <a href='%s'>aanmelding</a>"
+msgstr "Gaan nou voortgaan na <a href='%s'>aanmelding</a>\n"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"

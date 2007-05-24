@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-01-31 00:49+0100\n"
+"PO-Revision-Date: 2007-05-06 00:16+0200\n"
 "Last-Translator: Jussi Aalto <jta_lnx@dnainternet.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.11rc\n"
+"X-Generator: Pootle 1.0rc1\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -154,12 +154,12 @@ msgstr "Sumeita"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Kääntäjän kommentit"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Kehittäjän kommentit"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -443,7 +443,7 @@ msgstr "Tarkistustyyli"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Tiedostotyyppi"
 
 #: adminpages.py:153
 msgid "Create MO Files"
