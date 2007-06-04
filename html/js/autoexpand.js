@@ -188,7 +188,7 @@ function copyorigtranslation(elementNumber)
 	//no plurals
 	var trelement = document.getElementById("areatrans" + elementNumber );
 	if (trelement){
-		trelement.value = enelement.value;
+		trelement.value = enelement.value.replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
 		trelement.focus();
 		return;
 	}
@@ -198,7 +198,7 @@ function copyorigtranslation(elementNumber)
 	while (trelement)
 	{
 		trelement.focus(); //it will go to the last one
-		trelement.value = enelement.value;
+		trelement.value = enelement.value.replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
 		i++;
 		trelement = document.getElementById("areatrans" + elementNumber + "." + i );
 	}
