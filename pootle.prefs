@@ -439,9 +439,9 @@ Pootle:
 
 # 한국어
 # Korean
-   ko.fullname = u'Korean'
-   ko.nplurals = '1'
-   ko.pluralequation ='0'
+    ko.fullname = u'Korean'
+    ko.nplurals = '1'
+    ko.pluralequation ='0'
 
 # Kurdî / كوردي
 # Kurdish
@@ -553,9 +553,9 @@ Pootle:
 
 # Română
 # Romanian
-   ro.fullname = u'Romanian'
-   ro.nplurals = '3'
-   ro.pluralequation ='(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);'
+    ro.fullname = u'Romanian'
+    ro.nplurals = '3'
+    ro.pluralequation ='(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);'
 
 # Русский
 # Russian
@@ -613,9 +613,9 @@ Pootle:
 
 # Türkçe
 # Turkish
-   tr.fullname = u'Turkish'
-   tr.nplurals = '1'
-   tr.pluralequation ='0'
+    tr.fullname = u'Turkish'
+    tr.nplurals = '1'
+    tr.pluralequation ='0'
 
 # Українська
 # Ukrainian
