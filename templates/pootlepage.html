@@ -64,8 +64,8 @@
       <a href="${baseurl}" py:content="links.home">Home</a> 
       | <a href="${baseurl}projects/" py:content="links.projects">All Projects</a> 
       | <a href="${baseurl}languages/" py:content="links.languages">All Languages</a> 
-      <span py:if="session.isopen"> | <a href="${baseurl}home/" py:content="links.account">My account</a> </span> 
-      <span py:if="session.issiteadmin"> | <a href="${baseurl}admin/" py:content="links.admin">Admin</a> </span>
+      <span py:if="session.isopen" py:strip="True"> | <a href="${baseurl}home/" py:content="links.account">My account</a> </span> 
+      <span py:if="session.issiteadmin" py:strip="True"> | <a href="${baseurl}admin/" py:content="links.admin">Admin</a> </span>
       | <a href="/doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a>
     </div>
 
