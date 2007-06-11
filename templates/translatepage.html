@@ -126,7 +126,7 @@
                   <!-- Translation memory -->
                   <div py:if="item.tm" id="tm">
                     <div class="sidetitle" py:content="related_title">Related</div>
-                    <div py:for ="unit in item.tm" class="tm-unit" title="${unit.getnotes()}" dir="ltr" lang="en">
+                    <div py:for ="unit in item.tm" class="tm-unit" title="${unit.getnotes()}" dir="ltr" lang="en" onclick="writespecial('${unit.target}', '${item.trans.itemid}');">
                       <span class="tm-original">${unit.source}</span>
                       <span class="tm-translation" dir="$language.dir" lang="$language.code">${unit.target}</span>
                     </div>
@@ -168,7 +168,7 @@
                     </div>
                     <div py:if="'specialchars' in buttons" class="specialchars" lang="$language.code">
                       <span py:for="specialchar in buttons.specialchars" py:strip="True">
-                        <a py:if="not specialchar.isspace()" py:content="specialchar" onclick="writespecial('${specialchar}', '${buttons.item}'); return false;" href="#">spc</a>
+                        <a py:if="not specialchar.isspace()" py:content="specialchar" onclick="writespecial('${specialchar}', '${item.trans.itemid}'); return false;" href="#">spc</a>
                         <span py:if="specialchar.isspace()" class="extraspace"> </span>
                       </span>
                     </div>

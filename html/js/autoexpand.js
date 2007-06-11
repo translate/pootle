@@ -212,7 +212,8 @@ function setfocusedelement(element)
 
 function writespecial(specialchar, elementnumber)
 {
-	var element = document.getElementById("areatrans" + elementnumber );
+        //elementnumber will be something like "trans4"
+	var element = document.getElementById("area" + elementnumber);
 	if (focusedElement)
 		insertatposition(focusedElement, specialchar, 0);
 }
