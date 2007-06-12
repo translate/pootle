@@ -73,9 +73,9 @@
       <td class="stats-graph">
         <span class="sortkey">${item.data.translatedpercentage}</span>
         <table border="0" cellpadding="0" cellspacing="0"><tr>
-            <td bgcolor="green" class="data" height="20" width="${item.data.translatedpercentage} or int(bool(item.data.translatedwords))" />
+            <td bgcolor="green" class="data" height="20" width="${item.data.translatedpercentage or int(bool(item.data.translatedwords))}" />
             <td bgcolor="lightgray" class="data" height="20" width="${item.data.fuzzypercentage or int(bool(item.data.fuzzywords))}" py:if="item.data.fuzzywords"/>
-            <td bgcolor="red" class="data" height="20" width="${item.data.untranslatedpercentage or int(bool(item.data.untraslatedwords))}" py:if="item.data.untranslatedwords"/>
+            <td bgcolor="red" class="data" height="20" width="${item.data.untranslatedpercentage or int(bool(item.data.untranslatedwords))}" py:if="item.data.untranslatedwords" />
         </tr></table>
       </td>      
     </span>
