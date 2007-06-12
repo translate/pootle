@@ -163,7 +163,7 @@
                       <input py:if="'translate' in buttons.desired" type="submit" name="submit${buttons.item}" accesskey="s" value="${buttons.submit}"/>
                     </div>
                     <div>
-                      <input type="checkbox" checked="${item.fuzzy}" name="fuzzy${buttons.item}" accesskey="f" />
+                      <input type="checkbox" disabled="${not 'translate' in buttons.desired}" checked="${item.fuzzy}" name="fuzzy${buttons.item}" accesskey="f" />
                       ${fuzzytext}
                     </div>
                     <div py:if="'specialchars' in buttons and ('translate' in buttons.desired or 'suggest' in buttons.desired)" class="specialchars" lang="$language.code">
