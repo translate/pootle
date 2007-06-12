@@ -166,7 +166,7 @@
                       <input type="checkbox" checked="${item.fuzzy}" name="fuzzy${buttons.item}" accesskey="f" />
                       ${fuzzytext}
                     </div>
-                    <div py:if="'specialchars' in buttons" class="specialchars" lang="$language.code">
+                    <div py:if="'specialchars' in buttons and ('translate' in buttons.desired or 'suggest' in buttons.desired)" class="specialchars" lang="$language.code">
                       <span py:for="specialchar in buttons.specialchars" py:strip="True">
                         <a py:if="not specialchar.isspace()" py:content="specialchar" onclick="writespecial('${specialchar}', '${item.trans.itemid}'); return false;" href="#">spc</a>
                         <span py:if="specialchar.isspace()" class="extraspace"> </span>
