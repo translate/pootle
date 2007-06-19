@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2007-01-03 18:02+0100\n"
-"Last-Translator: Ivo Simsons <ssimss@gmail.com>\n"
+"PO-Revision-Date: 2007-06-13 15:51+0200\n"
+"Last-Translator: Miķelis Zaļais <mik@prog.lv>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
-"X-Generator: Pootle 0.10.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+"X-Generator: Pootle 1.0.1rc1\n"
 
 #: web/server.py:57
 #, python-format
@@ -27,7 +28,7 @@ msgstr ""
 
 #: web/server.py:97
 msgid "Exit application"
-msgstr ""
+msgstr "Iziet no programmas"
 
 #: web/server.py:98
 msgid "Exit this application and return to the parent application"
@@ -117,7 +118,7 @@ msgstr "novākt"
 
 #: widgets/thumbgallery.py:289 attachments.py:322
 msgid "(no attachment)"
-msgstr ""
+msgstr "(nav piesaistnes)"
 
 #: attachments.py:70
 msgid "attachment is too large"
@@ -125,7 +126,7 @@ msgstr "Piesaistne ir par lielu"
 
 #: attachments.py:349
 msgid "remove this attachment"
-msgstr ""
+msgstr "noņemt šo piesaistni"
 
 #: attachments.py:350
 msgid "restore"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2006-11-06 08:51+0100\n"
-"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"PO-Revision-Date: 2007-06-15 05:21+0200\n"
+"Last-Translator: Lê Quốc Thái <lquocthai@ioit.ac.vn>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 0.10.1\n"
+"X-Generator: Pootle 1.0.1rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -34,7 +34,7 @@ msgstr "Dịch"
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "Ghi đè"
 
 #. l10n: Verb
 #: projects.py:141
@@ -62,7 +62,7 @@ msgstr "Quản trị"
 #. l10n: Commit to version control (like CVS or Subversion)
 #: projects.py:148 indexpage.py:748
 msgid "Commit"
-msgstr "Gài vào"
+msgstr "Gửi đi"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
@@ -80,9 +80,8 @@ msgid "You do not have rights to upload files here"
 msgstr "Bạn không có quyền tải tập tin lên đây."
 
 #: projects.py:508
-#, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr "Bạn không có quyền gài tập tin vào đây."
+msgstr "Bạn không có quyền ghi đè lên tâp tin ở đây."
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
@@ -94,7 +93,7 @@ msgstr "Bạn không có quyền cập nhật tập tin ở đây."
 
 #: projects.py:590
 msgid "You do not have rights to commit files here"
-msgstr "Bạn không có quyền gài tập tin vào đây."
+msgstr "Bạn không có quyền chuyển/gửi tập tin vào đây."
 
 #: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
@@ -136,7 +135,7 @@ msgstr "Thao diễn Pootle"
 #: translatepage.py:99
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "%s: hiện thời dịch %s sang %s: %s"
+msgstr "%s: đang dịch %s sang %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
@@ -163,12 +162,12 @@ msgstr "Mờ"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Ghi chú của dịch giả "
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Nhà phát triển ghi chú"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -452,7 +451,7 @@ msgstr "Kiểu dạng kiểm tra"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Kiểu tập tin"
 
 #: adminpages.py:153
 msgid "Create MO Files"
@@ -1161,18 +1160,20 @@ msgstr "Hãy chọn tập tin cần tải lên"
 #. l10n: tooltip
 #: indexpage.py:550
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "Ghi đè lên tập tin hiện thời, nếu có"
 
 #. l10n: radio button text
 #: indexpage.py:552
 msgid "Merge"
-msgstr ""
+msgstr "Trộn"
 
 #. l10n: tooltip
 #: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
+"Trộn tập tin với tập tin hiện thời, cũng làm cho các việc xung đột trở thành "
+"lời đề nghị"
 
 #: indexpage.py:657
 msgid "Not in a goal"

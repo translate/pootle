@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-01-24 15:08+0100\n"
-"Last-Translator: Cecilia Saltori <csaltori@gmail.com>\n"
+"PO-Revision-Date: 2007-06-06 11:44+0200\n"
+"Last-Translator: Donatello Bianco <d.bianco@tuotempo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.11rc\n"
+"X-Generator: Pootle 1.0\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -155,12 +155,12 @@ msgstr "Intelligente"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Note del Traduttore"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Note dello Sviluppatore"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -184,13 +184,13 @@ msgstr "Clicca qui per ritornare all'indice"
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
 msgid "Start"
-msgstr "Inizia"
+msgstr "Inizio"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:168 translatepage.py:171
 #, python-format
 msgid "Previous %d"
-msgstr "Precedente %d"
+msgstr "%d Precendenti"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:173
@@ -202,7 +202,7 @@ msgstr "Voce da %d a %d di %d"
 #: translatepage.py:178 translatepage.py:181
 #, python-format
 msgid "Next %d"
-msgstr "Prossimo %d"
+msgstr "Prossimi %d"
 
 #. l10n: noun (the end)
 #: translatepage.py:184 translatepage.py:187
@@ -256,12 +256,12 @@ msgstr "Copia"
 
 #: translatepage.py:610 translatepage.py:784
 msgid "Skip"
-msgstr "Salta"
+msgstr "Prossimo"
 
 #. l10n: verb
 #: translatepage.py:612 translatepage.py:783 users.py:256
 msgid "Back"
-msgstr "Indietro"
+msgstr "Precedente"
 
 #: translatepage.py:614
 msgid "Submit"
@@ -444,7 +444,7 @@ msgstr "Stile Controllo"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Tipo di File"
 
 #: adminpages.py:153
 msgid "Create MO Files"
