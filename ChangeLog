@@ -1,3 +1,87 @@
+2007-06-19 12:38  friedelwolff
+
+	* po/pootle/ml, po/pootle/ml/jToolkit.po, po/pootle/ml/pootle.po:
+	  Add new translation for Malayalam (ml)
+
+2007-06-19 09:33  friedelwolff
+
+	* po/pootle/cs/pootle.po, po/pootle/fr/pootle.po,
+	  po/pootle/it/pootle.po, po/pootle/lv/jToolkit.po,
+	  po/pootle/lv/pootle.po, po/pootle/nl/pootle.po,
+	  po/pootle/st/jToolkit.po, po/pootle/st/pootle.po,
+	  po/pootle/vi/pootle.po: Update existing translations from
+	  http://pootle.wordforge.org/
+
+2007-06-19 08:39  friedelwolff
+
+	* __version__.py: Version 1.0.1
+
+2007-06-19 08:17  friedelwolff
+
+	* CREDITS: Update entries for Lars and Lucas to be clearer
+
+2007-06-18 10:39  friedelwolff
+
+	* templates/fileindex.html, templates/translatepage.html:
+	  [Contributed by Lars Kruse] Fix the missing links section that
+	  sometimes dissapear on Internet Explorer. This fixes bug 253
+
+2007-06-14 12:11  friedelwolff
+
+	* test_client.py: Update tests to expect new disabled attribute in
+	  test_submit_fuzzy
+
+2007-06-12 15:41  friedelwolff
+
+	* templates/navbar.html: Fix some minor bugs in the graphing of
+	  minute (smaller than 1%) values
+
+2007-06-12 10:40  friedelwolff
+
+	* templates/translatepage.html: disable the fuzzy control if the
+	  user does not have translate rights
+
+2007-06-12 09:46  friedelwolff
+
+	* templates/translatepage.html: Only show special characters if the
+	  user has translate or suggest rights. This fixes bug 192.
+
+2007-06-11 16:04  friedelwolff
+
+	* __version__.py: Version 1.0.1rc1
+
+2007-06-11 14:55  friedelwolff
+
+	* templates/pootlepage.html: strip out unnecessary span tags
+
+2007-06-11 14:46  friedelwolff
+
+	* html/js/autoexpand.js, templates/translatepage.html: Insert the
+	  suggested text into the focused textarea if the user clicks on
+	  it. This fixes bug 187.
+
+2007-06-04 14:57  friedelwolff
+
+	* html/js/autoexpand.js: Escape newlines and tabs. Fix for bug 180
+
+2007-06-04 13:11  friedelwolff
+
+	* templates/navbar.html: Ensure that each part of the graph always
+	  shows, even if it represents something less than 1%. This fixes
+	  bug 228
+
+2007-06-04 09:54  friedelwolff
+
+	* pootle.prefs: Fix wrong indentation. Should fix bug 247
+
+2007-05-25 11:36  friedelwolff
+
+	* CREDITS: Remove duplicate entry for Capel
+
+2007-05-25 09:56  friedelwolff
+
+	* ChangeLog: Update ChangeLog before 1.0 release
+
 2007-05-25 09:36  friedelwolff
 
 	* src/trunk/Pootle/CREDITS: Credit Capel Brunker
