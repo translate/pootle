@@ -34,6 +34,7 @@ from Pootle import translatepage
 from Pootle import pagelayout
 from Pootle import projects
 from Pootle import potree
+from Pootle import pootlefile
 from Pootle import users
 from Pootle import filelocations
 from translate.misc import optrecurse
@@ -172,10 +173,11 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
             reldirname = dirname.replace(dummyproject.podir, "")
             for fname in fnames:
               fpath = os.path.join(reldirname, fname)
+              fullpath = os.path.join(dummyproject.podir, fpath)
               #TODO: PO specific
-              if fname.endswith(".po") and not os.path.isdir(os.path.join(dummyproject.podir, fpath)):
+              if fname.endswith(".po") and not os.path.isdir(fullpath):
                 print "refreshing stats for", fpath
-                projects.pootlefile.pootlefile(dummyproject, fpath).updatequickstats()
+                pootlefile.pootlefile(dummyproject, fpath).statistics.updatequickstats()
           os.path.walk(arg, refreshdir, None)
           if projectcode and languagecode:
             dummyproject.savequickstats()
