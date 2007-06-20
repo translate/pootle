@@ -480,13 +480,18 @@ class POTree:
 
   def getpofiles(self, languagecode, projectcode, poext="po"):
     """returns a list of po files for the project and language"""
+
     def addfiles(podir, dirname, fnames):
       """adds the files to the set of files for this project"""
       basedirname = dirname.replace(podir, "", 1)
       while basedirname.startswith(os.sep):
         basedirname = basedirname.replace(os.sep, "", 1)
-      ponames = [fname for fname in fnames if fname.endswith(os.extsep+poext)]
+      #check that it has the correct extention and actually exists (to avoid
+      #problems with broken symbolic links, for example)
+      ponames = [fname for fname in fnames if fname.endswith(os.extsep+poext) and 
+                                os.path.exists(os.path.join(dirname, fname))]
       pofilenames.extend([os.path.join(basedirname, poname) for poname in ponames])
+
     def addgnufiles(podir, dirname, fnames):
       """adds the files to the set of files for this project"""
       basedirname = dirname.replace(podir, "", 1)
@@ -495,6 +500,7 @@ class POTree:
       ext = os.extsep + poext
       ponames = [fn for fn in fnames if fn.endswith(ext) and self.languagematch(languagecode, fn[:-len(ext)])]
       pofilenames.extend([os.path.join(basedirname, poname) for poname in ponames])
+
     pofilenames = []
     podir = self.getpodir(languagecode, projectcode)
     if self.hasgnufiles(podir, languagecode) == "gnu":
