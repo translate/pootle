@@ -176,6 +176,9 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
               fullpath = os.path.join(dummyproject.podir, fpath)
               #TODO: PO specific
               if fname.endswith(".po") and not os.path.isdir(fullpath):
+                if not os.path.exists(fullpath):
+                  print "file does not exist:", fullpath
+                  return
                 print "refreshing stats for", fpath
                 pootlefile.pootlefile(dummyproject, fpath).statistics.updatequickstats()
           os.path.walk(arg, refreshdir, None)

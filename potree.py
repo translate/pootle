@@ -486,10 +486,15 @@ class POTree:
       basedirname = dirname.replace(podir, "", 1)
       while basedirname.startswith(os.sep):
         basedirname = basedirname.replace(os.sep, "", 1)
-      #check that it has the correct extention and actually exists (to avoid
-      #problems with broken symbolic links, for example)
-      ponames = [fname for fname in fnames if fname.endswith(os.extsep+poext) and 
-                                os.path.exists(os.path.join(dirname, fname))]
+      ponames = []
+      for fname in fnames:
+        #check that it actually exists (to avoid problems with broken symbolic 
+        # links, for example)
+        if not os.path.exists(os.path.join(dirname, fname)):
+          print "file does not exist:", os.path.join(dirname, fname)
+          continue
+        if fname.endswith(os.extsep+poext):
+          ponames.append(fname)
       pofilenames.extend([os.path.join(basedirname, poname) for poname in ponames])
 
     def addgnufiles(podir, dirname, fnames):
