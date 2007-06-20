@@ -1,3 +1,22 @@
+2007-06-20 08:41  friedelwolff
+
+	* pootle.py, potree.py: Print error on missing files (like broken
+	  symbolic links)
+
+2007-06-20 08:37  friedelwolff
+
+	* pootle.py: Fix incorrect function call [reported by Nicolas
+	  François]
+
+2007-06-20 08:16  friedelwolff
+
+	* potree.py: Handle the problem of broken symbolic links better by
+	  ignoring the files. Space for readability.
+
+2007-06-19 12:52  friedelwolff
+
+	* ChangeLog: Update ChangeLog before the release of 1.0.1
+
 2007-06-19 12:38  friedelwolff
 
 	* po/pootle/ml, po/pootle/ml/jToolkit.po, po/pootle/ml/pootle.po:
