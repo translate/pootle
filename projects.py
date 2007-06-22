@@ -645,7 +645,9 @@ class TranslationProject(object):
     try:
       # using zip command line is fast
       os.system("cd %s ; zip -r - %s > %s" % (self.podir, " ".join(pofilenames), tempzipfile))
-      return open(tempzipfile, "r").read()
+      filedata = open(tempzipfile, "r").read()
+      if filedata:
+        return filedata
     finally:
       if os.path.exists(tempzipfile):
         os.remove(tempzipfile)
