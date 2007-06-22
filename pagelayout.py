@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # 
-# Copyright 2004-2006 Zuza Software Foundation
+# Copyright 2004-2007 Zuza Software Foundation
 # 
 # This file is part of translate.
 #
@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+import os
 
 def layout_banner(maxheight, session):
   """calculates dimensions, image name for banner"""
@@ -140,11 +142,11 @@ class PootleNavPage(PootlePage):
     links = {"admin": None, "project": [], "language": [], "goal": [], "pathlinks": []}
     if currentfolder:
       pathlinks = []
-      dirs = currentfolder.split("/")
+      dirs = currentfolder.split(os.path.sep)
       if dirfilter is None:
         dirfilter = currentfolder
       
-      depth = dirfilter.count('/') + 1
+      depth = dirfilter.count(os.path.sep) + 1
       if dirfilter == "":
         depth -= 1
       elif dirfilter.endswith(".po") or dirfilter.endswith(".xlf"):
