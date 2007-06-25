@@ -19,14 +19,25 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-"""manages projects and files and translations"""
+"""This module manages interaction with version control systems.
+
+To implement support for a new version control system, override the class
+GenericVersionControlSystem. 
+
+TODO:
+    * move to the translate toolkit and split into different files
+    * avoid to use the shell for executing commands (by using arrays instead of
+      strings for popen2)
+    * replace shell commands with python functions (e.g. "mv")
+    * replace unix-only pieces (e.g.: replace "/" with os.path.sep)
+"""
 
 import re
 import os
 import popen2
 
 def pipe(command):
-    """runs a command and returns the output and the error as a tuple"""
+    """Runs a command and returns the output and the error as a tuple."""
     # p = subprocess.Popen(command, shell=True, close_fds=True,
     #     stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     p = popen2.Popen3(command, True)
@@ -40,12 +51,12 @@ def pipe(command):
     return output, error
 
 def shellescape(path):
-    """Shell-escape any non-alphanumeric characters"""
+    """Shell-escape any non-alphanumeric characters."""
     return re.sub(r'(\W)', r'\\\1', path)
 
 
 class GenericVersionControlSystem:
-    """should be the super class for all version control classes"""
+    """The super class for all version control classes."""
 
     # as long as noone overrides this, the test below always succeeds
     MARKER_DIR = "."
@@ -53,10 +64,10 @@ class GenericVersionControlSystem:
     def __init__(self, location):
         """Default version control checker: test if self.MARKER_DIR exists.
         
-        Most version control systems depend on the existence of a specific directory
-        thus you will most likely not need to touch this check - just call it.
-        The IOError exception indicates that the specified file is not controlled
-        by the given version control system.
+        Most version control systems depend on the existence of a specific 
+        directory thus you will most likely not need to touch this check - just 
+        call it. The IOError exception indicates that the specified file is not 
+        controlled by the given version control system.
         """
         parent_dir = os.path.dirname(os.path.abspath(location))
         if not os.path.isdir(os.path.join(parent_dir, self.MARKER_DIR)):
@@ -64,7 +75,7 @@ class GenericVersionControlSystem:
 
 
 class CVS(GenericVersionControlSystem):
-    """manage items versioned by CVS"""
+    """Class to manage items under revision control of CVS."""
 
     MARKER_DIR = "CVS"
 
@@ -76,7 +87,8 @@ class CVS(GenericVersionControlSystem):
 
     def _readfile(self, cvsroot, path, revision=None):
         """
-        Read a single file from the CVS repository without checking out a full working directory
+        Read a single file from the CVS repository without checking out a full 
+        working directory.
         
         @param: cvsroot: the CVSROOT for the repository
         @param path: path to the file relative to cvs root
@@ -159,8 +171,8 @@ class CVS(GenericVersionControlSystem):
         return None
 
     def _getcvstag(self, cvsentries):
-        """returns the sticky tag the file was checked out with by looking in the 
-        lines of cvsentries
+        """Returns the sticky tag the file was checked out with by looking in 
+        the lines of cvsentries.
         """
         filename = os.path.basename(self.location)
         for cvsentry in cvsentries:
@@ -174,7 +186,7 @@ class CVS(GenericVersionControlSystem):
 
 
 class SVN(GenericVersionControlSystem):
-    """manage items that are under revision control of Subversion"""
+    """Class to manage items under revision control of Subversion."""
 
     MARKER_DIR = ".svn"
 
@@ -228,7 +240,7 @@ class SVN(GenericVersionControlSystem):
 
 
 class DARCS(GenericVersionControlSystem):
-    """manage items that are under revision control of darcs"""
+    """Class to manage items under revision control of darcs."""
 
     # This assumes that the whole PO directory is stored in darcs so we need to 
     # reach the _darcs dir from po/project/language. That results in this 
