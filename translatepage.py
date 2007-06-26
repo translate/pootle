@@ -510,7 +510,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     return '<span class="translation-space"> </span>\n' * len(spaces)
 
   def escapetext(self, text, fancyspaces=True, stripescapes=False):
-    """Replace special characters &, <, >, add and handle quotes if asked"""
+    """Replace special characters &, <, >, add and handle escapes if asked."""
     text = text.replace("&", "&amp;") # Must be done first!
     text = text.replace("<", "&lt;").replace(">", "&gt;")
     
@@ -518,10 +518,13 @@ class TranslatePage(pagelayout.PootleNavPage):
       text = text.replace("\n", '<br />')
       text = text.replace("\r", '<br />')
     else:
-      text = text.replace("\r\n", '\\r\\n<br />')
-      text = text.replace("\n", '\\n<br />')
-      text = text.replace("\r", '\\r<br />')
-      text = text.replace("\t", '\\t')
+      fancyescape = lambda escape: \
+          '<span class="translation-highlight-escape">%s</span>' % escape
+
+      text = text.replace("\r\n", fancyescape('\\r\\n') + '<br />')
+      text = text.replace("\n", fancyescape('\\n') + '<br />')
+      text = text.replace("\r", fancyescape('\\r') + '<br />')
+      text = text.replace("\t", fancyescape('\\t'))
     text = text.replace("<br />", '<br />\n')
     # we don't need it at the end of the string
     if text.endswith("<br />\n"):
