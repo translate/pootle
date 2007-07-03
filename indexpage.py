@@ -310,7 +310,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       dirfilter = None
     self.dirfilter = dirfilter
     if dirfilter and dirfilter.endswith(".po"):
-      self.dirname = "/".join(dirfilter.split("/")[:-1])
+      self.dirname = os.path.dirname(dirfilter)
     else:
       self.dirname = dirfilter or ""
     self.argdict = argdict
@@ -612,7 +612,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     goalchildren = {}
     allchildren = []
     for childname in self.project.browsefiles(dirfilter=dirfilter, depth=depth, includedirs=True, includefiles=False):
-      allchildren.append(childname+"/")
+      allchildren.append(childname + os.path.sep)
     for childname in self.project.browsefiles(dirfilter=dirfilter, depth=depth, includedirs=False, includefiles=True):
       allchildren.append(childname)
     initial = dirfilter
@@ -890,12 +890,12 @@ class ProjectIndex(pagelayout.PootleNavPage):
       actionlinks.append(translatelink)
     if "zip" in linksrequired and "archive" in self.rights:
       if filepath and filepath.endswith(".po"):
-        currentfolder = "/".join(filepath.split("/")[:-1])
+        currentfolder = os.path.dirname(filepath)
       else:
         currentfolder = filepath
       archivename = "%s-%s" % (self.project.projectcode, self.project.languagecode)
       if currentfolder:
-        archivename += "-%s" % currentfolder.replace("/", "-")
+        archivename += "-%s" % currentfolder.replace(os.path.sep, "-")
       if goal:
         archivename += "-%s" % goal
       archivename += ".zip"
