@@ -14,9 +14,9 @@ class TestStatsFile:
     def test_creation(self):
         """we create the object and storage file correctly"""
         pofile = po.pofile()
-        pofile.filename = "file/test.po"
+        pofile.filename = os.path.join("file", "test.po")
         sfile = statistics.StatsFile(pofile)
-        assert sfile.filename == "file/test.po.stats"
+        assert sfile.filename == pofile.filename + ".stats"
 
     def test_hasparent(self):
         """check that we manage the associated stats file for a translatable file"""
