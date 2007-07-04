@@ -655,7 +655,7 @@ class pootlefile(Wrapper):
     if path:
       return self.filename
     else:
-      return self.filename.split("/")[-1]
+      return os.path.basename(self.filename)
 
   def getext(self):
     """Returns the extension of the pootlefile"""
