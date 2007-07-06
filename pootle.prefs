@@ -641,18 +641,21 @@ Pootle:
     zh_CN.fullname = u'Chinese (China)'
     zh_CN.nplurals = '1'
     zh_CN.pluralequation ='0'
+    zh_TW.specialchars = "←→↔×÷©…—‘’“”【】《》"
 
 # 繁體中文
 # Traditional Chinese (Hong Kong used below, but also used in Taiwan and Macau)
     zh_HK.fullname = u'Chinese (Hong Kong)'
     zh_HK.nplurals = '1'
     zh_HK.pluralequation ='0'
+    zh_HK.specialchars = "←→↔×÷©…—‘’“”「」『』【】《》"
 
 # 繁體中文
 # Traditional Chinese (Taiwan used below, but also used in Hong Kong and Macau)
     zh_TW.fullname = u'Chinese (Taiwan)'
     zh_TW.nplurals = '1'
     zh_TW.pluralequation ='0'
+    zh_TW.specialchars = "←→↔×÷©…—‘’“”「」『』【】《》"
 
 # This is a "language" that gives people access to the (untranslated) template files
     templates.fullname = u'Templates'
