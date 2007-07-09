@@ -535,6 +535,11 @@ Pootle:
 #    pa.nplurals = '2'
 #    pa.pluralequation ='(n != 1)'
 
+# Papiamento
+#    pap.fullname = u'Papiamento'
+#    pap.nplurals = '2'
+#    pap.pluralequation ='(n != 1)'
+
 # Polski
 # Polish
     pl.fullname = u'Polish'
