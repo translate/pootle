@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-06-13 15:51+0200\n"
+"PO-Revision-Date: 2007-06-26 17:56+0200\n"
 "Last-Translator: Miķelis Zaļais <mik@prog.lv>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,48 +11,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Pootle 1.0.1rc1\n"
+"X-Generator: Pootle 1.0.1\n"
 
 #. l10n: Verb
 #: projects.py:136
 msgid "View"
-msgstr ""
+msgstr "Skatīt"
 
 #: projects.py:137 translatepage.py:613
 msgid "Suggest"
-msgstr ""
+msgstr "Ieteikt"
 
 #: projects.py:138
 msgid "Translate"
-msgstr ""
+msgstr "Tulkot"
 
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "Pārrakstīt"
 
 #. l10n: Verb
 #: projects.py:141
 msgid "Review"
-msgstr ""
+msgstr "Pārskatīt"
 
 #. l10n: Verb
 #: projects.py:143
 msgid "Archive"
-msgstr ""
+msgstr "Arhivēt"
 
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
 msgid "Compile PO files"
-msgstr ""
+msgstr "Kompilēt PO failus"
 
 #: projects.py:146
 msgid "Assign"
-msgstr ""
+msgstr "Piešķirt"
 
 #: projects.py:147 indexpage.py:134
 msgid "Administrate"
-msgstr ""
+msgstr "Administrēt"
 
 #. l10n: Commit to version control (like CVS or Subversion)
 #: projects.py:148 indexpage.py:748
@@ -110,6 +110,8 @@ msgid ""
 "%d/%d translated\n"
 "(%d blank, %d fuzzy)"
 msgstr ""
+"%d/%d iztulkoti\n"
+"(%d tukši, %d ne gluži)"
 
 #: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
 #: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
@@ -126,7 +128,7 @@ msgstr "Pootle demo"
 #: translatepage.py:99
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr ""
+msgstr "%s: tulko projektu %s uz %s valodu: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
@@ -148,17 +150,17 @@ msgstr "Noraidīt"
 
 #: translatepage.py:121 pagelayout.py:243
 msgid "Fuzzy"
-msgstr ""
+msgstr "Ne gluži"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Tulkotāja komentāri"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Izstrādātāja komentāri"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -173,11 +175,11 @@ msgstr "Meklēt"
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:145
 msgid "End of batch"
-msgstr ""
+msgstr "Pēdējais rindā"
 
 #: translatepage.py:147
 msgid "Click here to return to the index"
-msgstr ""
+msgstr "Spied šeit, lai atgrieztos pie satura"
 
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
@@ -190,11 +192,12 @@ msgstr "Sākums"
 msgid "Previous %d"
 msgstr "Iepriekšējie %d"
 
+# What about LV plural-forms?
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:173
 #, python-format
 msgid "Items %d to %d of %d"
-msgstr ""
+msgstr "Ieraksti %d līdz %d no %d"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:178 translatepage.py:181
@@ -211,15 +214,15 @@ msgstr "Beigas"
 #: translatepage.py:204
 #, python-format
 msgid "checking %s"
-msgstr ""
+msgstr "pārbauda %s"
 
 #: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
 msgid "Assign Strings"
-msgstr ""
+msgstr "Nodot virknes"
 
 #: translatepage.py:212 indexpage.py:528
 msgid "Assign to User"
-msgstr ""
+msgstr "Nodot lietotājam"
 
 #: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
@@ -228,11 +231,11 @@ msgstr ""
 #: translatepage.py:368
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr ""
+msgstr "Nav ierakstu, kas atbilst šim vaicājumam ('%s')"
 
 #: translatepage.py:370
 msgid "You have finished going through the items you selected"
-msgstr ""
+msgstr "Tu esi pabeidzis iet cauri izvēlētajiem ierakstiem"
 
 #: translatepage.py:578
 msgid "Singular"
@@ -268,18 +271,18 @@ msgstr "Iesniegt"
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:617
 msgid "Grow"
-msgstr ""
+msgstr "Palielināt"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:619
 msgid "Shrink"
-msgstr ""
+msgstr "Samazināt"
 
 #: translatepage.py:641 translatepage.py:735 translatepage.py:772
 #: translatepage.py:805
 #, python-format
 msgid "Plural Form %d"
-msgstr ""
+msgstr "Daudzskaitļa forma %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:657
@@ -287,32 +290,34 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
+"Tulkošana nav iespējama, jo nav pieejama daudzskaitļu formu informācija "
+"priekš tavas valodas. Lūdzu sazinies ar vietnes administratoru."
 
 #: translatepage.py:739
 msgid "Current Translation:"
-msgstr ""
+msgstr "Patreizējais tulkojums:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
 #: translatepage.py:752
 #, python-format
 msgid "Suggestion %d by %s:"
-msgstr ""
+msgstr "Lietotājam %s %d ieteikumi:"
 
 #: translatepage.py:754
 #, python-format
 msgid "Suggestion %d:"
-msgstr ""
+msgstr "Ieteikums %d:"
 
 #. l10n: parameter: name of translator
 #: translatepage.py:758
 #, python-format
 msgid "Suggestion by %s:"
-msgstr ""
+msgstr "Ieteica lietotājs %s:"
 
 #: translatepage.py:760
 msgid "Suggestion:"
-msgstr ""
+msgstr "Ieteikums:"
 
 #: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
 #: pagelayout.py:36
@@ -333,15 +338,15 @@ msgstr "Projekti"
 
 #: adminpages.py:47
 msgid "General options"
-msgstr ""
+msgstr "Vispārējie iestatījumi"
 
 #: adminpages.py:48 users.py:157
 msgid "Option"
-msgstr ""
+msgstr "opcija"
 
 #: adminpages.py:49 users.py:158
 msgid "Current value"
-msgstr ""
+msgstr "Patreizējā vērtība"
 
 #: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
 #: users.py:172
@@ -358,19 +363,19 @@ msgstr "Apraksts"
 
 #: adminpages.py:56
 msgid "Base URL"
-msgstr ""
+msgstr "Bāzes URL"
 
 #: adminpages.py:57
 msgid "Home Page"
-msgstr ""
+msgstr "Sākumlapa"
 
 #: adminpages.py:83 adminpages.py:141 adminpages.py:206
 msgid "Main admin page"
-msgstr ""
+msgstr "Galvenā administrēšanas lapa"
 
 #: adminpages.py:89
 msgid "ISO Code"
-msgstr ""
+msgstr "ISO kods"
 
 #: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
 msgid "Full Name"
@@ -378,61 +383,61 @@ msgstr "Pilns vārds"
 
 #: adminpages.py:91
 msgid "(add language here)"
-msgstr ""
+msgstr "(pievienot valodu šeit)"
 
 #: adminpages.py:92
 msgid "Special Chars"
-msgstr ""
+msgstr "Speciālie simboli"
 
 #: adminpages.py:92
 msgid "(special characters)"
-msgstr ""
+msgstr "(speciālie simboli)"
 
 #: adminpages.py:93 indexpage.py:217
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Daudzskaitļu formu skaits"
 
 #: adminpages.py:93
 msgid "(number of plurals)"
-msgstr ""
+msgstr "(daudzskaitļu formu skaits)"
 
 #: adminpages.py:94 indexpage.py:218
 msgid "Plural Equation"
-msgstr ""
+msgstr "Daudzskaitļu formula"
 
 #: adminpages.py:94
 msgid "(plural equation)"
-msgstr ""
+msgstr "(daudzskaitļu formula)"
 
 #: adminpages.py:95
 msgid "Remove Language"
-msgstr ""
+msgstr "Dzēst valodu"
 
 #. l10n: The parameter is a languagecode, projectcode or username
 #: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
 #, python-format
 msgid "Remove %s"
-msgstr ""
+msgstr "Dzēst %s"
 
 #: adminpages.py:129
 msgid "Standard"
-msgstr ""
+msgstr "Standarts"
 
 #: adminpages.py:147
 msgid "Project Code"
-msgstr ""
+msgstr "Projekta kods"
 
 #: adminpages.py:149
 msgid "(add project here)"
-msgstr ""
+msgstr "(šeit pievienot projektu)"
 
 #: adminpages.py:150
 msgid "Project Description"
-msgstr ""
+msgstr "Projekta apraksts"
 
 #: adminpages.py:150
 msgid "(project description)"
-msgstr ""
+msgstr "(projekta apraksts)"
 
 #: adminpages.py:151
 msgid "Checker Style"
@@ -440,15 +445,15 @@ msgstr ""
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Faila tips"
 
 #: adminpages.py:153
 msgid "Create MO Files"
-msgstr ""
+msgstr "Izveidot MO failus"
 
 #: adminpages.py:154
 msgid "Remove Project"
-msgstr ""
+msgstr "Dzēst projektu"
 
 #: adminpages.py:212 users.py:66
 msgid "Login"
@@ -456,7 +461,7 @@ msgstr "Pieslēgties"
 
 #: adminpages.py:214 users.py:347
 msgid "(add full name here)"
-msgstr ""
+msgstr "(pievienot šeit pilnu vārdu)"
 
 #: adminpages.py:215 users.py:101
 msgid "Email Address"
@@ -464,7 +469,7 @@ msgstr "E-pasta adrese"
 
 #: adminpages.py:215 users.py:350
 msgid "(add email here)"
-msgstr ""
+msgstr "(šeit ievadīt e-pastu)"
 
 #: adminpages.py:216 users.py:107 users.py:163
 msgid "Password"
@@ -472,7 +477,7 @@ msgstr "Parole"
 
 #: adminpages.py:216 users.py:344
 msgid "(add password here)"
-msgstr ""
+msgstr "(šeit pievienot paroli)"
 
 #: adminpages.py:217
 msgid "Activated"
@@ -480,15 +485,15 @@ msgstr "Aktivizēts"
 
 #: adminpages.py:217
 msgid "Activate New User"
-msgstr ""
+msgstr "Aktivizēt jaunu lietotāju"
 
 #: adminpages.py:218
 msgid "Remove User"
-msgstr ""
+msgstr "Dzēst lietotāju"
 
 #: adminpages.py:272
 msgid "Back to main page"
-msgstr ""
+msgstr "Atgriezties galvenajā lapā"
 
 #: adminpages.py:273
 msgid "Existing languages"
@@ -497,40 +502,40 @@ msgstr "Esošās valodas"
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:277
 msgid "Update Languages"
-msgstr ""
+msgstr "Atjaunot valodas"
 
 #: adminpages.py:278
 #, python-format
 msgid "Pootle Admin: %s"
-msgstr ""
+msgstr "Pootle administrēšana: %s"
 
 #: adminpages.py:279 adminpages.py:341
 msgid "You do not have the rights to administer this project."
-msgstr ""
+msgstr "Tev nav tiesības administrēt šo projektu."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:281
 msgid "Update from templates"
-msgstr ""
+msgstr "Atjaunot no sagatavēm"
 
 #: adminpages.py:289
 msgid "Add Language"
-msgstr ""
+msgstr "Pievienot valodu"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:321
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr ""
+msgstr "Pootle administrēšana: %s %s"
 
 #: adminpages.py:322
 msgid "Project home page"
-msgstr ""
+msgstr "Projekta sākumlapa"
 
 #: adminpages.py:340
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr ""
+msgstr "Nevar uzstādīt tiesības lietotājam %s - lietotājs neeksistē"
 
 #: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
@@ -542,7 +547,7 @@ msgstr ""
 
 #: adminpages.py:360
 msgid "User Permissions"
-msgstr ""
+msgstr "Lietotāju tiesības"
 
 #: adminpages.py:361 users.py:98 users.py:134
 msgid "Username"
@@ -550,19 +555,19 @@ msgstr "Lietotājvārds"
 
 #: adminpages.py:362
 msgid "(select to add user)"
-msgstr ""
+msgstr "(ievēlies lietotāju)"
 
 #: adminpages.py:363
 msgid "Rights"
-msgstr ""
+msgstr "Tiesības"
 
 #: adminpages.py:364 indexpage.py:998
 msgid "Remove"
-msgstr ""
+msgstr "Dzēst"
 
 #: adminpages.py:391
 msgid "Update Rights"
-msgstr ""
+msgstr "Atjaunošanas tiesības"
 
 #: pagelayout.py:37
 msgid "All projects"
@@ -578,11 +583,11 @@ msgstr "Mans konts"
 
 #: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
 msgid "Admin"
-msgstr ""
+msgstr "Administrēt"
 
 #: pagelayout.py:41
 msgid "Docs & help"
-msgstr ""
+msgstr "Dokumentācija un palīdzība"
 
 #: pagelayout.py:42
 msgid "Log out"
@@ -590,45 +595,45 @@ msgstr "Beigt darbu"
 
 #: pagelayout.py:43
 msgid "Log in"
-msgstr ""
+msgstr "Pieslēgties"
 
 #. l10n: Verb, as in "to register"
 #: pagelayout.py:45
 msgid "Register"
-msgstr ""
+msgstr "Reģistrēties"
 
 #: pagelayout.py:46
-#, fuzzy
 msgid "Activate"
 msgstr "Aktivizēts"
 
 #: pagelayout.py:80
 msgid "Pootle Logo"
-msgstr ""
+msgstr "Pootle logo"
 
 #: pagelayout.py:81
 msgid "WordForge Translation Project"
-msgstr ""
+msgstr "WordForge Tulkošanas Projekts"
 
 #: pagelayout.py:83
 msgid "About this Pootle server"
-msgstr ""
+msgstr "Par šo Pootle serveri"
 
 #: pagelayout.py:157
 msgid "All goals"
-msgstr ""
+msgstr "Visi mērķi"
 
 #: pagelayout.py:228
 #, python-format
 msgid "%d/%d files"
-msgstr ""
+msgstr "%d/%d faili"
 
 #: pagelayout.py:231
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d failu"
+msgstr[1] "%d fails"
+msgstr[2] "%d faili"
 
 #: pagelayout.py:232 indexpage.py:995
 #, python-format
@@ -703,9 +708,8 @@ msgid "Login to Pootle"
 msgstr ""
 
 #: users.py:61
-#, fuzzy
 msgid "Username:"
-msgstr "Lietotājvārds"
+msgstr "Lietotājvārds:"
 
 #: users.py:63
 #, fuzzy
@@ -719,7 +723,7 @@ msgstr "Valodas"
 
 #: users.py:73
 msgid "Default"
-msgstr ""
+msgstr "Noklusējums"
 
 #: users.py:89
 msgid "Please enter your registration details"

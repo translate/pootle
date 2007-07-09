@@ -1,18 +1,17 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2006-06-14 14:25+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2007-06-19 14:00+0200\n"
+"Last-Translator: Yannis Kaskamanidis <ttnfy17@sch.gr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0.1rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Translate Toolkit 0.9rc1\n"
 
 #: web/server.py:57
 #, python-format
@@ -31,15 +30,15 @@ msgstr ""
 
 #: web/server.py:97
 msgid "Exit application"
-msgstr "Έξοδος"
+msgstr "Έξοδος από την εφαρμογή"
 
 #: web/server.py:98
 msgid "Exit this application and return to the parent application"
-msgstr ""
+msgstr "Έξοδος και επιστροφή στην κεντρική εφαρμογή"
 
 #: web/server.py:105
 msgid ", please confirm login"
-msgstr ""
+msgstr ", παρακαλώ επιβεβαιώστε τη σύνδεση"
 
 #: web/server.py:110
 msgid "Login"
@@ -51,7 +50,7 @@ msgstr "Όνομα χρήστη:"
 
 #: web/server.py:125
 msgid "Password:"
-msgstr "Κωδικός"
+msgstr "Κωδικός:"
 
 #: web/server.py:130
 msgid "Language:"
@@ -76,7 +75,7 @@ msgstr "Συνδεθήκατε σαν <b>%s</b>"
 
 #: web/session.py:193
 msgid "couldn't add new session"
-msgstr ""
+msgstr "δεν είναι δυνατή η προσθήκη νέας συνεδρίας"
 
 #: web/session.py:214
 msgid "logged out"
@@ -88,24 +87,25 @@ msgstr "Έχει γίνει σύνδεση"
 
 #: web/session.py:269
 msgid "exited parent session"
-msgstr ""
+msgstr "εξήχθη από την αρχική συνεδρία"
 
 #: web/session.py:314
+#, fuzzy
 msgid "need to define the users or userprefs entry on the server config"
-msgstr ""
+msgstr "υποχρέωση ορισμού της εισόδου χρηστών ή "
 
 #: web/session.py:321 web/session.py:453
 #, python-format
 msgid "user does not exist (%r)"
-msgstr "ο χρήστης δεν υπάρχει(%r)"
+msgstr "ο χρήστης δεν υπάρχει (%r)"
 
 #: web/session.py:362
 msgid "invalid username and/or password"
-msgstr "Λανθασμένος κωδικός ή/και όνομα χρήστη"
+msgstr "λανθασμένος κωδικός ή/και όνομα χρήστη"
 
 #: web/session.py:433 web/session.py:437
 msgid "failed login confirmation"
-msgstr "Αποτυχία επαλήθευσης σύνδεσης"
+msgstr "αποτυχία επαλήθευσης σύνδεσης"
 
 #: widgets/form.py:79 widgets/thumbgallery.py:292
 msgid "No"
@@ -142,7 +142,7 @@ msgstr ""
 
 #: attachments.py:362
 msgid "attach a file"
-msgstr "Επισύναψη"
+msgstr "επισύναψη αρχείου"
 
 #~ msgid "need to define the users entry on the server config"
 #~ msgstr ""
