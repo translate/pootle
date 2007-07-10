@@ -43,7 +43,7 @@ from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
 from jToolkit import __version__ as jtoolkitversion
 try:
-  from xml.etree.ElementTree import ElementTree
+  from xml.etree import ElementTree
 except ImportError:
   from elementtree import ElementTree
 # We don't need kid in this file, but this will show quickly if it is not 

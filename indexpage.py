@@ -29,7 +29,7 @@ from translate import __version__ as toolkitversion
 from jToolkit import __version__ as jtoolkitversion
 from kid import __version__ as kidversion
 try:
-  from xml.etree.ElementTree import ElementTree
+  from xml.etree import ElementTree
 except ImportError:
   from elementtree import ElementTree
 import os
