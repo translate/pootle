@@ -635,6 +635,11 @@ Pootle:
     vi.nplurals = '1'
     vi.pluralequation ='0'
 
+# Wolof
+    wo.fullname = u'Wolof'
+    wo.nplurals = '2'
+    wo.pluralequation ='(n != 1)'
+
 # Walon
 # Walloon
 #    wa.fullname = u'Waloon'
