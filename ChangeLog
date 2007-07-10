@@ -1,3 +1,145 @@
+2007-07-10 10:16  friedelwolff
+
+	* README: Mention that ElementTree is not needed with Python 2.5
+
+2007-07-10 09:40  friedelwolff
+
+	* indexpage.py, pootle.py: Fix the ElementTree import for Python
+	  2.5
+
+2007-07-10 07:21  dwaynebailey
+
+	* indexpage.py, pootle.py: Fix ElementTree import for Python 2.5
+	  users.
+
+2007-07-09 15:39  friedelwolff
+
+	* po/pootle/wo/pootle.po: Provisionaly add plural information.
+	  nplural=2 should be right, but the equation is a guess at (n !=
+	  1) for the moment
+
+2007-07-09 14:59  friedelwolff
+
+	* po/pootle/wo, po/pootle/wo/jToolkit.po, po/pootle/wo/pootle.po:
+	  Add Wolof (wo) translation
+
+2007-07-09 14:47  friedelwolff
+
+	* po/pootle/el/jToolkit.po, po/pootle/el/pootle.po,
+	  po/pootle/lv/pootle.po: Update Greek (el) and Latvian (lv)
+	  translations from http://pootle.wordforge.org/
+
+2007-07-09 13:08  friedelwolff
+
+	* __version__.py: Version 1.0.2
+
+2007-07-09 12:59  friedelwolff
+
+	* pootle.prefs: Add the (commented) information for Papiamento
+
+2007-07-09 07:37  friedelwolff
+
+	* CREDITS: Credit Abel Cheung
+
+2007-07-06 15:01  friedelwolff
+
+	* pagelayout.py, pootle.prefs: [Contributed by Lars Kruse] show
+	  banner image for a configured baseurl. Part of the fixes for bug
+	  113.
+
+2007-07-06 14:59  friedelwolff
+
+	* html/js/sorttable.js, templates/fileindex.html,
+	  templates/language.html, templates/project.html: [Contributed by
+	  Lars Kruse] Make the javascript aware of the baseurl. Part of the
+	  fixes for bug 113.
+
+2007-07-06 14:44  friedelwolff
+
+	* html/doc/en/howto.html, templates/pootlepage.html: [Contributed
+	  by Lars Kruse] Make documentation work with the configured
+	  baseurl. Part of the fixes for bug 113.
+
+2007-07-06 13:04  friedelwolff
+
+	* pootle.prefs: [Contributed by Abel Cheung] Add some special
+	  characters for all Chinese locales that can't be easily typed
+	  with input methods
+
+2007-07-04 15:26  friedelwolff
+
+	* pootlefile.py: [Contributed by Lars Kruse] Handle path in
+	  portable way
+
+2007-07-04 06:35  friedelwolff
+
+	* test_statistics.py: [Contributed by Lars Kruse] Use platform
+	  independent path seperators for test_creation()
+
+2007-07-03 13:18  friedelwolff
+
+	* __version__.py: Update to version 1.0.2rc1
+
+2007-07-03 13:17  friedelwolff
+
+	* indexpage.py: [Contributed by Lars Kruse] Handle path seperators
+	  in a platform independent way
+
+2007-07-03 13:12  friedelwolff
+
+	* test_client.py: Adapt test to not expect the disabled attribute
+	  of the fuzzy checkbox
+
+2007-07-03 09:13  friedelwolff
+
+	* templates/translatepage.html: Only use add the disabled attribute
+	  to the fuzzy check box if the user does not have translate
+	  rights. This fixes bug 266.
+
+2007-07-02 09:00  friedelwolff
+
+	* pootle.prefs: Mention in the default description that contact
+	  details were not provided and should be done by the server
+	  administrator
+
+2007-06-26 08:29  friedelwolff
+
+	* translatepage.py: Support styling of basic escapes (\t, \n, and
+	  \r). It uses the already defined styling in pootle.css (just
+	  purple colour). Fix docstring.
+
+2007-06-25 09:33  friedelwolff
+
+	* versioncontrol.py: Update docstrings
+
+2007-06-25 09:20  friedelwolff
+
+	* versioncontrol.py: Change the indenting to four spaces while the
+	  diff with older versions is mostly useless now anyway
+
+2007-06-25 09:11  friedelwolff
+
+	* versioncontrol.py: [Contributed by Lars Kruse]
+	  Rewrite the version control support to have an object oriented
+	  design.
+	  Symlinked targets are now also supported to ease integration with
+	  checkouts at
+	  other locations. No new dependencies are introduced.
+
+2007-06-22 14:36  friedelwolff
+
+	* pagelayout.py: Use os.path.sep instead of the hard coded '/'
+	  [based on the initial work by Lars Kruse]
+
+2007-06-22 12:26  friedelwolff
+
+	* projects.py: Test whether the commandline ZIP command actually
+	  worked before we return the output
+
+2007-06-20 08:45  friedelwolff
+
+	* ChangeLog: Update ChangeLog with the latest changes before 1.0.1
+
 2007-06-20 08:41  friedelwolff
 
 	* pootle.py, potree.py: Print error on missing files (like broken
