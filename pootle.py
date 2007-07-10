@@ -42,7 +42,10 @@ from translate.misc import optrecurse
 from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
 from jToolkit import __version__ as jtoolkitversion
-from elementtree import ElementTree
+try:
+  from xml.etree.ElementTree import ElementTree
+except ImportError:
+  from elementtree import ElementTree
 # We don't need kid in this file, but this will show quickly if it is not 
 # installed. jToolkit won't complain, so we have to stop here if we don't have kid
 import kid

@@ -28,7 +28,10 @@ from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
 from jToolkit import __version__ as jtoolkitversion
 from kid import __version__ as kidversion
-from elementtree import ElementTree
+try:
+  from xml.etree.ElementTree import ElementTree
+except ImportError:
+  from elementtree import ElementTree
 import os
 import sys
 import re
