@@ -63,7 +63,8 @@ integration with CVS and/or Subversion, the relevant version control client
 must be installed and accessible from the PATH.
 
 From version 0.9 of Pootle, kid (http://kid.lesscode.org/), and elementtree
-(http://effbot.org/downloads/#elementtree) are also needed.
+(http://effbot.org/downloads/#elementtree) are also needed.  Elementtree is
+not needed with Python 2.5.
 
 To install "elementtree", run
 	tar xvfz elementtree-N.N.N.tar.gz
