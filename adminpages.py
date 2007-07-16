@@ -23,6 +23,8 @@ from Pootle import pagelayout
 from Pootle import projects
 from translate.filters import checks
 
+import locale
+
 class AdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
   def __init__(self, potree, session, instance):
@@ -253,6 +255,7 @@ class ProjectAdminPage(pagelayout.PootlePage):
     self.projectcode = projectcode
     self.session = session
     self.localize = session.localize
+    self.tr_lang = session.tr_lang
     projectname = self.potree.getprojectname(self.projectcode)
     if self.session.issiteadmin():
       if "doaddlanguage" in argdict:
@@ -294,7 +297,10 @@ class ProjectAdminPage(pagelayout.PootlePage):
   def getexistinglanguages(self):
     """gets the info on existing languages"""
     languages = self.potree.getlanguages(self.projectcode)
-    languageitems = [{"code": languagecode, "name": languagename} for languagecode, languagename in languages]
+    languageitems = [{"code": languagecode, "name": self.tr_lang(languagename)} for languagecode, languagename in languages]
+    # rewritten for compatibility with Python 2.3
+    # languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    languageitems.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     for n, item in enumerate(languageitems):
       item["parity"] = ["even", "odd"][n % 2]
     return languageitems
@@ -306,7 +312,10 @@ class ProjectAdminPage(pagelayout.PootlePage):
     newcodes = [code for code in allcodes if not (code in existingcodes or code == "templates")]
     newoptions = [(self.potree.getlanguagename(code), code) for code in newcodes]
     newoptions.sort()
-    newoptions = [{"code": code, "name": languagename} for (languagename, code) in newoptions]
+    newoptions = [{"code": code, "name": self.tr_lang(languagename)} for (languagename, code) in newoptions]
+    # rewritten for compatibility with Python 2.3
+    # newoptions.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    newoptions.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     return newoptions
 
 class TranslationProjectAdminPage(pagelayout.PootlePage):
