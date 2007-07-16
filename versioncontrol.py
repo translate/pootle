@@ -245,14 +245,52 @@ class DARCS(GenericVersionControlSystem):
     # This assumes that the whole PO directory is stored in darcs so we need to 
     # reach the _darcs dir from po/project/language. That results in this 
     # relative path
-    MARKER_DIR = "../../../_darcs"
+    MARKER_DIR = "_darcs"
     
     def __init__(self, location):
-        GenericVersionControlSystem.__init__(self, location)
-        self.darcsdir = os.path.join(os.path.dirname(os.path.abspath(location)),
-                self.MARKER_DIR)
-        self.location = os.path.abspath(location)
-
+        self.location = None
+        try:
+            # this works only, if the po file is in the root of the repository
+            GenericVersionControlSystem.__init__(self, location)
+            self.darcsdir = os.path.join(os.path.dirname(os.path.abspath(location)),
+                    self.MARKER_DIR)
+            self.location = os.path.abspath(location)
+            # we finished successfully
+        except IOError, err_msg:
+            # the following code scans all directories above the po file for the
+            # common '_darcs' directory
+            # first: resolve possible symlinks
+            current_dir = os.path.realpath(os.path.dirname(location))
+            # avoid any dead loops (could this happen?)
+            max_depth = 64
+            while not os.path.isdir(os.path.join(current_dir, self.MARKER_DIR)):
+                if os.path.samefile(current_dir, \
+                        os.path.join(current_dir, os.path.pardir)):
+                    # we reached the root directory - stop
+                    break
+                if max_depth <= 0:
+                    # some kind of dead loop or a _very_ deep directory structure
+                    break
+                # go to the next higher level
+                current_dir = os.path.dirname(current_dir)
+            else:
+                # we found the MARKER_DIR
+                self.darcsdir = current_dir
+                # retrieve the relative path of the po file based on self.darcsdir
+                realpath_pofile = os.path.realpath(location)
+                basedir = self.darcsdir + os.path.sep
+                if realpath_pofile.startswith(basedir):
+                    # remove the base directory (including the trailing slash)
+                    self.location = realpath_pofile.replace(basedir, "", 1)
+                    # successfully finished
+                else:
+                    # this should never happen
+                    raise IOError("Darcs: unexpected path names: '%s' and '%s'" \
+                            % (self.darcsdir, basedir))
+            if self.location is None:
+                # we did not find a '_darcs' directory
+                raise IOError(err_msg)
+                    
     def update(self, revision=None):
         """Does a clean update of the given path"""
         # TODO: check if 'revert' and 'pull' work without specifying '--repodir'
