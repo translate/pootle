@@ -54,6 +54,7 @@ class LoginPage(pagelayout.PootlePage):
   """wraps the normal login page in a PootlePage layout"""
   def __init__(self, session, languagenames=None, message=None):
     self.localize = session.localize
+    self.tr_lang = session.tr_lang
     self.languagenames = languagenames
     pagetitle = self.localize("Login to Pootle")
     templatename = "login"
@@ -72,8 +73,10 @@ class LoginPage(pagelayout.PootlePage):
 
   def getlanguageoptions(self, session):
     """returns the language selector..."""
-    # TODO: work out how we handle localization of language names...
-    languageoptions = [('', session.localize("Default"))]
+    tr_default = session.localize("Default")
+    if tr_default != "Default":
+        tr_default = u"%s | \u202dDefault" % tr_default
+    languageoptions = [('', tr_default)]
     if isinstance(self.languagenames, dict):
       languageoptions += self.languagenames.items()
     else:
@@ -82,7 +85,23 @@ class LoginPage(pagelayout.PootlePage):
         preferredlanguage = ""
     else:
         preferredlanguage = session.language
-    return [{"code": key, "name": value, "selected": key==preferredlanguage or None} for key, value in languageoptions if key != 'templates']
+    finallist = []
+    for key, value in languageoptions:
+        if key == 'templates':
+            continue
+        tr_name = session.tr_lang(value)
+        if tr_name != value:
+            # We have to use the LRO (left-to-right override) to ensure that 
+            # brackets in the English part of the name is rendered correctly
+            # in an RTL layout like Arabic. We can't use markup because this 
+            # is used inside an option tag.
+            value = u"%s | \u202d%s" % (tr_name, value)
+        selected = key==preferredlanguage or None
+        finallist.append({"code": key, "name": value, "selected": selected})
+    # rewritten for compatibility with Python 2.3
+    # finallist.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    finallist.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
+    return finallist
 
 class RegisterPage(pagelayout.PootlePage):
   """page for new registrations"""
@@ -195,7 +214,9 @@ class UserOptions(pagelayout.PootlePage):
     languages = []
     for language, name in languageoptions:
       languages.append({"code": language, "name": self.tr_lang(name), "selected": language in userlanguages or None})
-    languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    # rewritten for compatibility with Python 2.3
+    # languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    languages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     return languages
 
   def getotheroptions(self):
@@ -209,7 +230,9 @@ class UserOptions(pagelayout.PootlePage):
       if code == "templates":
         continue
       languageoptions.append({"code": code, "name": self.tr_lang(name), "selected": uilanguage == code or None})
-    languageoptions.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    # rewritten for compatibility with Python 2.3
+    # languageoptions.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    languageoptions.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     options = {"inputheight": self.localize("Input Height (in lines)"), 
           "viewrows": self.localize("Number of rows in view mode"), 
           "translaterows": self.localize("Number of rows in translate mode")}
