@@ -1,5 +1,6 @@
 import os
 from translate.tools import pocount
+from translate.storage import statsdb
 from translate.filters import checks
 
 def getmodtime(filename, default=None):
@@ -196,14 +197,14 @@ class pootlestatistics:
     self.sourcewordcounts = []
     self.targetwordcounts = []
     for unit in self.basefile.transunits:
-      self.sourcewordcounts.append([pocount.wordcount(text) for text in unit.source.strings])
-      self.targetwordcounts.append([pocount.wordcount(text) for text in unit.target.strings])
+      self.sourcewordcounts.append([statsdb.wordcount(text) for text in unit.source.strings])
+      self.targetwordcounts.append([statsdb.wordcount(text) for text in unit.target.strings])
 
   def reclassifyunit(self, item):
     """updates the classification of a unit in self.classify"""
     unit = self.basefile.transunits[item]
-    self.sourcewordcounts[item] = [pocount.wordcount(text) for text in unit.source.strings]
-    self.targetwordcounts[item] = [pocount.wordcount(text) for text in unit.target.strings]
+    self.sourcewordcounts[item] = [statsdb.wordcount(text) for text in unit.source.strings]
+    self.targetwordcounts[item] = [statsdb.wordcount(text) for text in unit.target.strings]
     classes = self.classifyunit(unit)
     if self.basefile.getsuggestions(item):
       classes.append("has-suggestion")
