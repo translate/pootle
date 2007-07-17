@@ -102,7 +102,9 @@ class PootleIndex(pagelayout.PootlePage):
     pagetitle = instancetitle
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     languages = [{"code": code, "name": self.tr_lang(name), "sep": ", "} for code, name in self.potree.getlanguages()]
-    languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    # rewritten for compatibility with Python 2.3
+    # languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    languages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     if languages:
       languages[-1]["sep"] = ""
     templatevars = {"pagetitle": pagetitle, "description": description, 
@@ -170,7 +172,9 @@ class UserIndex(pagelayout.PootlePage):
       if langlinks:
         langlinks[-1]["sep"] = ""
       quicklinks.append({"code": languagecode, "name": self.tr_lang(languagename), "projects": langlinks})
-      quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+      # rewritten for compatibility with Python 2.3
+      # quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+      quicklinks.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     return quicklinks
 
 class ProjectsIndex(PootleIndex):
@@ -286,7 +290,9 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     languages = self.potree.getlanguages(self.projectcode)
     self.languagecount = len(languages)
     languageitems = [self.getlanguageitem(languagecode, languagename) for languagecode, languagename in languages]
-    languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["title"])
+    # rewritten for compatibility with Python 2.3
+    # languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["title"])
+    languageitems.sort(lambda x,y: locale.strcoll(x["title"], y["title"]))
     for n, item in enumerate(languageitems):
       item["parity"] = ["even", "odd"][n % 2]
     return languageitems
