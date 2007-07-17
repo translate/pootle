@@ -36,6 +36,8 @@ Pootle:
   # Consider adding <span dir="ltr"> ... </span> around any text in a left-to-
   # right language to guarantee good rendering for users of right-to-left 
   # languages and vice versa if you put a message in a right-to-left language.
+  # For multilingual servers, you might also want to indicate the language of
+  # your description to ensure proper rendering and for better accessibility.
   # Be sure to include all contact information that users would need to contact 
   # you for support (adding languages or projects).
   description = "<span dir='ltr'>This is a demo installation of Pootle.<br /> Also visit the official <a href='http://pootle.wordforge.org'>Pootle server of WordForge</a>. The server administrator has not provided a description or contact information. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</span>"
@@ -120,6 +122,8 @@ Pootle:
   # Consider adding <span dir="ltr"> ... </span> around any text in a left-to-
   # right language to guarantee good rendering for users of right-to-left 
   # languages and vice versa if you put a message in a right-to-left language.
+  # For multilingual servers, you might also want to indicate the language of
+  # your description to ensure proper rendering and for better accessibility.
   #
   #   checkerstyle = "standard"
   # Defines what checks should be used for this project.  One of: mozilla, kde,
