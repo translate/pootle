@@ -166,7 +166,7 @@ class pootlestatistics:
     target = unit.target
     if isinstance(source, str) and isinstance(target, unicode):
       source = source.decode(getattr(unit, "encoding", "utf-8"))
-    checkresult = self.basefile.checker.run_filters(unit, source, target)
+    checkresult = self.basefile.checker.run_filters(unit)
     for checkname, checkmessage in checkresult:
       classes.append("check-" + checkname)
     return classes
