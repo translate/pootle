@@ -162,7 +162,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
       def filtererrorhandler(functionname, str1, str2, e):
         print "error in filter %s: %r, %r, %s" % (functionname, str1, str2, e)
         return False
-      checkerclasses = [projects.checks.StandardChecker, projects.pofilter.StandardPOChecker]
+      checkerclasses = [projects.checks.StandardChecker, projects.checks.StandardUnitChecker]
       stdchecker = projects.pofilter.POTeeChecker(checkerclasses=checkerclasses, errorhandler=filtererrorhandler)
       for arg in args:
         if not os.path.exists(arg):

@@ -96,8 +96,8 @@ class TranslationProject(object):
     self.projectdescription = self.potree.getprojectdescription(self.projectcode)
     self.pofiles = potimecache(15*60, self)
     self.projectcheckerstyle = self.potree.getprojectcheckerstyle(self.projectcode)
-    checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), pofilter.StandardPOChecker]
-    self.checker = pofilter.POTeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
+    checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
+    self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
     self.fileext = self.potree.getprojectlocalfiletype(self.projectcode)
     self.quickstats = {}
     # terminology matcher
