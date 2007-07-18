@@ -1368,7 +1368,7 @@ class DummyProject(TranslationProject):
     """initializes the project with the given podir"""
     self.podir = podir
     if checker is None:
-      self.checker = pofilter.POTeeChecker()
+      self.checker = checks.TeeChecker()
     else:
       self.checker = checker
     self.projectcode = projectcode

@@ -5,7 +5,7 @@ from Pootle import pootle
 from Pootle import projects
 from translate.storage import po
 from translate.storage import test_po
-from translate.filters import pofilter
+from translate.filters import checks
 from translate.misc import wStringIO
 
 import os
@@ -65,8 +65,8 @@ msgstr ""'''
             print "error in filter %s: %r, %r, %s" % (functionname, str1, str2, e)
             return False
 
-        checkerclasses = [projects.checks.StandardChecker, projects.checks.StandardUnitChecker]
-        stdchecker = projects.pofilter.POTeeChecker(checkerclasses=checkerclasses, errorhandler=filtererrorhandler)
+        checkerclasses = [checks.StandardChecker, checks.StandardUnitChecker]
+        stdchecker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=filtererrorhandler)
         dummyproject = projects.DummyStatsProject(self.rundir, stdchecker, "unittest_project", "xx")
 
         pofile = pootlefile.pootlefile(dummyproject, "test.po", generatestats=False)
@@ -91,7 +91,7 @@ msgstr ""'''
         """Test basic classification"""
         posource = 'msgid "test"\nmsgstr ""\n'
         pofile = self.poparse(posource)
-        pofile.project.checker = pofilter.POTeeChecker()
+        pofile.project.checker = checks.TeeChecker()
         unit = pofile.units[0]
         classify = pofile.statistics.classifyunit
         classes = classify(unit)
