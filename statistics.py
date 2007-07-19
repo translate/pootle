@@ -1,5 +1,4 @@
 import os
-from translate.tools import pocount
 from translate.storage import statsdb
 from translate.filters import checks
 
