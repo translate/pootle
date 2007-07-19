@@ -588,7 +588,7 @@ class TranslationProject(object):
     if "commit" not in self.getrights(session):
       raise RightsError(session.localize("You do not have rights to commit files here"))
     pathname = self.getuploadpath(dirname, pofilename)
-    stats = self.getquickstats([pofilename])
+    stats = self.getquickstats([os.path.join(dirname, pofilename)])
     statsstring = "%d of %d messages translated (%d fuzzy)." % \
         (stats["translated"], stats["total"], stats["fuzzy"])
     versioncontrol.commitfile(pathname, message="Commit from %s by user %s. %s" % 
