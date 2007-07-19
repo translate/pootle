@@ -264,8 +264,7 @@ class DARCS(GenericVersionControlSystem):
             # avoid any dead loops (could this happen?)
             max_depth = 64
             while not os.path.isdir(os.path.join(current_dir, self.MARKER_DIR)):
-                if os.path.samefile(current_dir, \
-                        os.path.join(current_dir, os.path.pardir)):
+                if os.path.dirname(current_dir) == current_dir:
                     # we reached the root directory - stop
                     break
                 if max_depth <= 0:
