@@ -34,10 +34,10 @@ http://translate.sourceforge.net/
 Note all the optional dependencies of the Translate Toolkit for optimal 
 performance and functionality in Pootle.
 
-The Translate Toolkit requires Python 2.2 or higher, but Pootle itself 
-probably only works with Python 2.3 or higher.  The Translate Toolkit must 
-be installed properly i.e. it needs to be accessible in your Python Path. This
-will normally be accomplished by installing from source:
+The Translate Toolkit requires Python 2.3 or higher, but Pootle itself might 
+only work with Python 2.4 or higher.  The Translate Toolkit must be installed 
+properly i.e. it needs to be accessible in your Python Path. This will normally
+be accomplished by installing from source:
 
 	python setup.py install
 	
@@ -64,7 +64,7 @@ must be installed and accessible from the PATH.
 
 From version 0.9 of Pootle, kid (http://kid.lesscode.org/), and elementtree
 (http://effbot.org/downloads/#elementtree) are also needed.  Elementtree is
-not needed with Python 2.5.
+not needed anymore with Python 2.5.
 
 To install "elementtree", run
 	tar xvfz elementtree-N.N.N.tar.gz
