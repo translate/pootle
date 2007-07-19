@@ -23,7 +23,6 @@
 
 from translate.storage import factory
 from translate.filters import checks
-from translate.filters import pofilter
 from translate.convert import po2csv
 from translate.convert import po2xliff
 from translate.convert import xliff2po
