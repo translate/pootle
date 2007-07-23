@@ -160,11 +160,6 @@ class pootlestatistics:
       classes.append("blank")
     if unit.istranslated():
       classes.append("translated")
-    # TODO: we don't handle checking plurals at all yet, as this is tricky...
-    source = unit.source
-    target = unit.target
-    if isinstance(source, str) and isinstance(target, unicode):
-      source = source.decode(getattr(unit, "encoding", "utf-8"))
     checkresult = self.basefile.checker.run_filters(unit)
     for checkname, checkmessage in checkresult:
       classes.append("check-" + checkname)
