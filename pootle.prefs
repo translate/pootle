@@ -463,15 +463,20 @@ Pootle:
 
 # Lietuvių
 # Lithuanian
-#    lt.fullname = u'Lithuanian'
-#    lt.nplurals = '3'
-#    lt.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)'
+    lt.fullname = u'Lithuanian'
+    lt.nplurals = '3'
+    lt.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
 # Latviešu
 # Latvian
 #    lv.fullname = u'Latvian'
 #    lv.nplurals = '3'
 #    lv.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2)'
+
+# Malagasy
+#    mg.fullname = u'Malagasy'
+#    mg.nplurals = '2'
+#    mg.pluralequation ='(n > 1)'
 
 # Монгол
 # Mongolian
@@ -576,9 +581,9 @@ Pootle:
 
 # Slovenčina
 # Slovak
-#     sk.fullname = u'Slovak'
-#     sk.nplurals = '3'
-#     sk.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
+#    sk.fullname = u'Slovak'
+#    sk.nplurals = '3'
+#    sk.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
 
 # Slovenščina
 # Slovenian
@@ -655,7 +660,7 @@ Pootle:
     zh_CN.fullname = u'Chinese (China)'
     zh_CN.nplurals = '1'
     zh_CN.pluralequation ='0'
-    zh_TW.specialchars = "←→↔×÷©…—‘’“”【】《》"
+    zh_CN.specialchars = "←→↔×÷©…—‘’“”【】《》"
 
 # 繁體中文
 # Traditional Chinese (Hong Kong used below, but also used in Taiwan and Macau)
