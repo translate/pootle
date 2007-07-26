@@ -196,13 +196,13 @@ table.translate-table
 }
 .translate-table-title
 {
-	font-weight: bold;
+	font-weight: bolder;
 	color: #004077;
 	text-align: center;
 }
 div.translate-original-focus
 {
-/*        font-weight: bold;*/
+/*        font-weight: bolder;*/
 }
 td.translate-original
 {
@@ -309,7 +309,7 @@ table.stats
 }
 th.stats
 {
-	font-weight: bold;
+	font-weight: bolder;
 	color: #004077;
 	text-align: center;
 }
@@ -397,7 +397,7 @@ div.intro {
 {
 	color:#004077;
 	font-size: small;
-	font-weight:bold;
+	font-weight:bolder;
 	padding:2px;
 	margin-top:10px;
 	letter-spacing: .1em;
@@ -433,11 +433,11 @@ div.intro {
 }
 .tm-original
 {
-	font-weight: bold;
+	font-weight: bolder;
 }
 .tm-translation
 {
-	font-style: italic;
+	font-style: oblique;
 }
 .tm-translation[dir="rtl"]
 {
@@ -465,7 +465,7 @@ textarea.translation
 }
 .translation-text-headers
 {
-	font-weight: bold;
+	font-weight: bolder;
 	color: #006699;
 }
 a.translation-action
