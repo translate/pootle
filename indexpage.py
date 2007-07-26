@@ -249,7 +249,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
     pofilenames = project.browsefiles()
     projectstats = project.getquickstats()
     projectdata = self.getstats(project, projectstats)
-    self.updatepagestats(projectdata["translatedwords"], projectdata["totalwords"])
+    self.updatepagestats(projectdata["translatedsourcewords"], projectdata["totalsourcewords"])
     return {"code": projectcode, "href": href, "icon": "folder", "title": projectname, "description": projectdescription, "data": projectdata, "isproject": True}
 
 class ProjectLanguageIndex(pagelayout.PootleNavPage):
@@ -302,7 +302,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     href = "../../%s/%s/" % (languagecode, self.projectcode)
     quickstats = language.getquickstats()
     data = self.getstats(language, quickstats)
-    self.updatepagestats(data["translatedwords"], data["totalwords"])
+    self.updatepagestats(data["translatedsourcewords"], data["totalsourcewords"])
     return {"code": languagecode, "icon": "language", "href": href, "title": self.tr_lang(languagename), "data": data}
 
 class ProjectIndex(pagelayout.PootleNavPage):
