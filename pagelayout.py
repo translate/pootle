@@ -230,12 +230,12 @@ class PootleNavPage(PootlePage):
     """returns a sentence summarizing item statistics"""
     translated = projectstats.get("translated", [])
     total = projectstats.get("total", [])
-    if "translatedwords" in projectstats:
-      translatedwords = projectstats["translatedwords"]
+    if "translatedsourcewords" in projectstats:
+      translatedwords = projectstats["translatedsourcewords"]
     else:
       translatedwords = project.countwords(translated)
-    if "totalwords" in projectstats:
-      totalwords = projectstats["totalwords"]
+    if "totalsourcewords" in projectstats:
+      totalwords = projectstats["totalsourcewords"]
     else:
       totalwords = project.countwords(total)
     if isinstance(translated, list):
@@ -273,14 +273,14 @@ class PootleNavPage(PootlePage):
                 "graph": self.localize("Graph")}
     return headings
 
-  def getstats(self, project, projectstats, numfiles):
+  def getstats(self, project, projectstats):
     """returns a list with the data items to fill a statistics table
     Remember to update getstatsheadings() above as needed"""
     wanted = ["translated", "fuzzy", "untranslated", "total"]
     gotten = {}
     for key in wanted:
       gotten[key] = projectstats.get(key, [])
-      wordkey = key + "words"
+      wordkey = key + "sourcewords"
       if wordkey in projectstats:
         gotten[wordkey] = projectstats[wordkey]
       else:
@@ -291,12 +291,12 @@ class PootleNavPage(PootlePage):
         gotten[key] = len(gotten[key])
 
     gotten["untranslated"] = gotten["total"] - gotten["translated"] - gotten["fuzzy"]
-    gotten["untranslatedwords"] = gotten["totalwords"] - gotten["translatedwords"] - gotten["fuzzywords"]
+    gotten["untranslatedsourcewords"] = gotten["totalsourcewords"] - gotten["translatedsourcewords"] - gotten["fuzzysourcewords"]
 
     for key in wanted[:-1]:
       percentkey = key + "percentage"
-      wordkey = key + "words"
-      gotten[percentkey] = gotten[wordkey]*100/max(gotten["totalwords"], 1)
+      wordkey = key + "sourcewords"
+      gotten[percentkey] = gotten[wordkey]*100/max(gotten["totalsourcewords"], 1)
 
     for key in gotten:
       if key.find("check-") == 0:

@@ -1036,9 +1036,9 @@ class TranslationProject(object):
       allfuzzy += fuzzy
       alltotalwords += totalwords
       alltotal += total
-    return {"translatedwords": alltranslatedwords, "translated": alltranslated, 
-            "fuzzywords": allfuzzywords, "fuzzy": allfuzzy, 
-            "totalwords": alltotalwords, "total": alltotal}
+    return {"translatedsourcewords": alltranslatedwords, "translated": alltranslated, 
+            "fuzzysourcewords": allfuzzywords, "fuzzy": allfuzzy, 
+            "totalsourcewords": alltotalwords, "total": alltotal}
 
   def combinestats(self, pofilenames=None):
     """combines translation statistics for the given po files (or all if None given)"""
