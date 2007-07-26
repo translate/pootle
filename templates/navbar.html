@@ -66,16 +66,16 @@
       <a href="${item.href}" lang="en" dir="ltr">${item.title}</a>
     </td>
     <span py:if="item.data" py:strip="True">
-      <td class="stats">${item.data.translatedwords}</td><td class="stats">${item.data.translatedpercentage}%</td>
-      <td class="stats">${item.data.fuzzywords}</td><td class="stats">${item.data.fuzzypercentage}%</td>
-      <td class="stats">${item.data.untranslatedwords}</td><td class="stats">${item.data.untranslatedpercentage}%</td>
-      <td class="stats">${item.data.totalwords}</td>
+      <td class="stats">${item.data.translatedsourcewords}</td><td class="stats">${item.data.translatedpercentage}%</td>
+      <td class="stats">${item.data.fuzzysourcewords}</td><td class="stats">${item.data.fuzzypercentage}%</td>
+      <td class="stats">${item.data.untranslatedsourcewords}</td><td class="stats">${item.data.untranslatedpercentage}%</td>
+      <td class="stats">${item.data.totalsourcewords}</td>
       <td class="stats-graph">
         <span class="sortkey">${item.data.translatedpercentage}</span>
         <table border="0" cellpadding="0" cellspacing="0"><tr>
-            <td bgcolor="green" class="data" height="20" width="${item.data.translatedpercentage or int(bool(item.data.translatedwords))}" />
-            <td bgcolor="lightgray" class="data" height="20" width="${item.data.fuzzypercentage or int(bool(item.data.fuzzywords))}" py:if="item.data.fuzzywords"/>
-            <td bgcolor="red" class="data" height="20" width="${item.data.untranslatedpercentage or int(bool(item.data.untranslatedwords))}" py:if="item.data.untranslatedwords" />
+            <td bgcolor="green" class="data" height="20" width="${item.data.translatedpercentage or int(bool(item.data.translatedsourcewords))}" />
+            <td bgcolor="lightgray" class="data" height="20" width="${item.data.fuzzypercentage or int(bool(item.data.fuzzysourcewords))}" py:if="item.data.fuzzysourcewords"/>
+            <td bgcolor="red" class="data" height="20" width="${item.data.untranslatedpercentage or int(bool(item.data.untranslatedsourcewords))}" py:if="item.data.untranslatedsourcewords" />
         </tr></table>
       </td>      
     </span>
