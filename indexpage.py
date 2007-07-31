@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # 
-# Copyright 2004-2006 Zuza Software Foundation
+# Copyright 2004-2007 Zuza Software Foundation
 # 
 # This file is part of translate.
 #
@@ -29,6 +29,7 @@ from translate import __version__ as toolkitversion
 from jToolkit import __version__ as jtoolkitversion
 from kid import __version__ as kidversion
 try:
+  # ElementTree is part of Python 2.5, so let's try that first
   from xml.etree import ElementTree
 except ImportError:
   from elementtree import ElementTree
@@ -36,14 +37,6 @@ import os
 import sys
 import re
 import locale
-
-def summarizestats(statslist, totalstats=None):
-  if totalstats is None:
-    totalstats = {}
-  for statsdict in statslist:
-    for name, count in statsdict.iteritems():
-      totalstats[name] = totalstats.get(name, 0) + count
-  return totalstats
 
 def shortdescription(descr):
   """Returns a short description by removing markup and only including up 
