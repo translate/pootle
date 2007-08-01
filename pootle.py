@@ -137,8 +137,8 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
       try:
         self.translation = self.potree.getproject(self.defaultlanguage, 'pootle')
         return
-      except:
-        self.errorhandler.logerror("Could not initialize translation")
+      except Exception, e:
+        self.errorhandler.logerror("Could not initialize translation:\n%s" % str(e))
     # if no translation available, set up a blank translation
     super(PootleServer, self).inittranslation()
     # the inherited method overwrites self.languagenames, so we have to redo it
@@ -151,9 +151,9 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     else:
       try:
         return self.potree.getproject(language, 'pootle')
-      except:
+      except Exception, e:
         if not language.startswith('en'):
-          self.errorhandler.logerror("Could not get translation for language %r" % language)
+          self.errorhandler.logerror("Could not get translation for language %r:\n%s" % (language,str(e)))
         return self.translation
 
   def refreshstats(self, args):
