@@ -80,7 +80,7 @@
 
           <tr>
             <td colspan="1" rowspan="1" py:content="uilanguage_heading">User Interface language</td>
-            <td colspan="1" rowspan="1"><select name="option-uilanguage">
+            <td colspan="1" rowspan="1"><select name="option-uilanguage" style="width: 100%;">
               <option py:for="l in uilanguage_options" value="${l.code}" py:attrs="selected=l.selected" py:content="l.name">
                 Language
               </option>
