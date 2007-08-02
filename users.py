@@ -25,6 +25,7 @@ from jToolkit import mailer
 from jToolkit import prefs
 from Pootle import pagelayout
 from translate.lang import data as langdata
+from translate.lang import factory
 from email.Header import Header
 import locale
 
@@ -570,6 +571,8 @@ class PootleSession(web.session.LoginSession):
         # The system might not have the locale installed
         pass
     self.checkstatus(None, None)
+    if self.language:
+      self.lang = factory.getlanguage(self.language)
 
   def validate(self):
     """checks if this session is valid (which means the user must be activated)"""
