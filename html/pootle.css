@@ -25,7 +25,7 @@
 /* Language specific settings (see http://translate.sourceforge.net/wiki/l10n/displaysettings) */
 :lang(ar)
 {
-	font-family: Tahoma, Nazli, "DejaVu Sans", inherit;
+	font-family: Tahoma, Nazli, KacstOne, "DejaVu Sans", inherit;
 }
 :lang(bn)
 {
