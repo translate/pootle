@@ -14,26 +14,12 @@
   <div lang="und" id="banner">
     <table cellpadding="0" width="100%" border="0" cellspacing="0">
       <tr>
-        <td rowspan="1" colspan="1" align="left" width="${logo_width}" valign="top">
-          <img src="${logo_image}" height="${logo_height}" width="${logo_width}" alt="${logo_alttext}" style="padding-top:5px;" />
+        <td rowspan="1" colspan="1" align="left" width="${logo_width}" valign="center">
+          <img src="${logo_image}" height="${logo_height}" width="${logo_width}" alt="${logo_alttext}" style="padding-right: 5px;" />
         </td>
 
-        <td colspan="1" rowspan="1" width="5">
-          <img src="${baseurl}images/gap.png" height="5" width="5" alt="" />
-        </td>
-
-        <td colspan="1" rowspan="1" width="100%">
-          <table cellspacing="0" style="height: ${banner_height}px" width="100%" cellpadding="0" border="0" class="header">
-            <tr>
-              <td colspan="1" align="center" rowspan="1" valign="middle">
-                 <img src="${banner_image}" height="${banner_height}" alt="${banner_alttext}" style="padding-top:5px;"/>
-              </td>
-            </tr>
-
-            <tr>
-              <td rowspan="1" colspan="1" align="right" valign="middle" class="border_top"/>
-            </tr>
-          </table>
+        <td colspan="1" rowspan="1" width="100%" align="center" valign="middle" class="header">
+          <img src="${banner_image}" height="${banner_height}" alt="${banner_alttext}" style="padding-top:5px;"/>
         </td>
       </tr>
     </table>
@@ -61,7 +47,7 @@
       Pootle
     </div>
     <div class="side">
-      <a href="${baseurl}" py:content="links.home">Home</a> 
+        <a href="${baseurl}" py:content="links.home">Home</a> 
       | <a href="${baseurl}projects/" py:content="links.projects">All Projects</a> 
       | <a href="${baseurl}languages/" py:content="links.languages">All Languages</a> 
       <span py:if="session.isopen" py:strip="True"> | <a href="${baseurl}home/" py:content="links.account">My account</a> </span> 
