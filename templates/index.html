@@ -37,7 +37,7 @@
     <div class="contents">
       <h3 class="title"><a href="projects/" py:content="projectlink">Projects</a></h3>
 
-      <div class="item-description">
+      <div class="item-description" lang="en">
         <span py:for="p in projects" py:strip="True">
           <a href="projects/${p.code}/" title="${p.description}" py:content="p.name">Project</a>${p.sep}
         </span>
