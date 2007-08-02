@@ -84,6 +84,7 @@ class PootleIndex(pagelayout.PootlePage):
     self.localize = session.localize
     self.nlocalize = session.nlocalize
     self.tr_lang = session.tr_lang
+    self.listseperator = session.lang.listseperator
     templatename = "index"
     description = getattr(session.instance, "description")
     meta_description = shortdescription(description)
@@ -94,7 +95,7 @@ class PootleIndex(pagelayout.PootlePage):
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     pagetitle = instancetitle
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
-    languages = [{"code": code, "name": self.tr_lang(name), "sep": ", "} for code, name in self.potree.getlanguages()]
+    languages = [{"code": code, "name": self.tr_lang(name), "sep": self.listseperator} for code, name in self.potree.getlanguages()]
     # rewritten for compatibility with Python 2.3
     # languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     languages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
@@ -113,7 +114,7 @@ class PootleIndex(pagelayout.PootlePage):
     for projectcode in self.potree.getprojectcodes():
       projectname = self.potree.getprojectname(projectcode)
       description = shortdescription(self.potree.getprojectdescription(projectcode))
-      projects.append({"code": projectcode, "name": projectname, "description": description, "sep": ", "})
+      projects.append({"code": projectcode, "name": projectname, "description": description, "sep": self.listseperator})
     if projects:
       projects[-1]["sep"] = ""
     return projects
