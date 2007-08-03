@@ -60,7 +60,8 @@
       <a py:if="astats.remove" href="${astats.remove.href}">${astats.remove.text}</a>
     </span>
   </div>
-  <div id="itemdata" class="item-statistics" py:strip="True">
+
+  <div id="itemdata" py:strip="True">
     <td class="stats-name">
       <img src="${baseurl}images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
       <a href="${item.href}" lang="en" dir="ltr">${item.title}</a>
@@ -74,7 +75,7 @@
         <span class="sortkey">${item.data.translatedpercentage}</span>
         <table border="0" cellpadding="0" cellspacing="0"><tr>
             <td bgcolor="green" class="data" height="20" width="${item.data.translatedpercentage or int(bool(item.data.translatedsourcewords))}" />
-            <td bgcolor="lightgray" class="data" height="20" width="${item.data.fuzzypercentage or int(bool(item.data.fuzzysourcewords))}" py:if="item.data.fuzzysourcewords"/>
+            <td bgcolor="#d3d3d3" class="data" height="20" width="${item.data.fuzzypercentage or int(bool(item.data.fuzzysourcewords))}" py:if="item.data.fuzzysourcewords"/>
             <td bgcolor="red" class="data" height="20" width="${item.data.untranslatedpercentage or int(bool(item.data.untranslatedsourcewords))}" py:if="item.data.untranslatedsourcewords" />
         </tr></table>
       </td>      
