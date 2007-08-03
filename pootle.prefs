@@ -581,9 +581,9 @@ Pootle:
 
 # Slovenčina
 # Slovak
-#    sk.fullname = u'Slovak'
-#    sk.nplurals = '3'
-#    sk.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
+    sk.fullname = u'Slovak'
+    sk.nplurals = '3'
+    sk.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
 
 # Slovenščina
 # Slovenian
