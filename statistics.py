@@ -161,7 +161,7 @@ class pootlestatistics:
     if unit.istranslated():
       classes.append("translated")
     checkresult = self.basefile.checker.run_filters(unit)
-    for checkname, checkmessage in checkresult:
+    for checkname, checkmessage in checkresult.iteritems():
       classes.append("check-" + checkname)
     return classes
 
