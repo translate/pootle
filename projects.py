@@ -901,7 +901,7 @@ class TranslationProject(object):
         # TODO: move this to iteritems
         if search.searchtext:
           unit = pofile.transunits[item]
-          if grepfilter.filterelement(unit):
+          if grepfilter.filterunit(unit):
             yield pofilename, item
         else:
           yield pofilename, item
@@ -942,7 +942,7 @@ class TranslationProject(object):
         if search.searchtext:
           validitem = False
           unit = pofile.transunits[item]
-          if grepfilter.filterelement(unit):
+          if grepfilter.filterunit(unit):
             validitem = True
           if not validitem:
             continue
@@ -968,7 +968,7 @@ class TranslationProject(object):
         # TODO: move this to iteritems
         if search.searchtext:
           unit = pofile.transunits[item]
-          if grepfilter.filterelement(unit):
+          if grepfilter.filterunit(unit):
             pofile.assigns.unassign(item, assignedto, action)
             assigncount += 1
         else:
