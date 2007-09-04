@@ -26,29 +26,50 @@ GenericVersionControlSystem.
 
 TODO:
     * move to the translate toolkit and split into different files
-    * avoid to use the shell for executing commands (by using arrays instead of
-      strings for popen2)
-    * replace shell commands with python functions (e.g. "mv")
-    * replace unix-only pieces (e.g.: replace "/" with os.path.sep)
 """
 
 import re
 import os
-import popen2
 
-def pipe(command):
-    """Runs a command and returns the output and the error as a tuple."""
-    # p = subprocess.Popen(command, shell=True, close_fds=True,
-    #     stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    p = popen2.Popen3(command, True)
-    (c_stdin, c_stdout, c_stderr) = (p.tochild, p.fromchild, p.childerr)
-    output = c_stdout.read()
-    error = c_stderr.read()
-    ret = p.wait()
-    c_stdout.close()
-    c_stderr.close()
-    c_stdin.close()
-    return output, error
+# The subprocess module allows to use cross-platform command execution without 
+# using the shell (which increases security).
+# p = subprocess.Popen(shell=False, close_fds=True, stdin=subprocess.PIPE,
+#       stdout=subprocess.PIPE, stderr=subprocess.PIPE, args = command)
+# This is only available since python 2.4, so we won't rely on it yet.
+try:
+    import subprocess
+
+    def pipe(command):
+        """Runs a command (array of program name and arguments) and returns the
+        exitcode, the output and the error as a tuple.
+        """
+        # ok - we use "subprocess"
+        proc = subprocess.Popen(args = command,
+                stdout = subprocess.PIPE,
+                stderr = subprocess.PIPE,
+                stdin = subprocess.PIPE)
+        (output, error) = proc.communicate()
+        ret = proc.returncode
+        return ret, output, error
+
+except ImportError:
+    # fallback for python < 2.4
+    import popen2
+
+    def pipe(command):
+        """Runs a command (array of program name and arguments) and returns the
+        exitcode, the output and the error as a tuple.
+        """
+        escaped_command = " ".join([shellescape(arg) for arg in command])
+        proc = popen2.Popen3(escaped_command, True)
+        (c_stdin, c_stdout, c_stderr) = (proc.tochild, proc.fromchild, proc.childerr)
+        output = c_stdout.read()
+        error = c_stderr.read()
+        ret = proc.wait()
+        c_stdout.close()
+        c_stderr.close()
+        c_stdin.close()
+        return ret, output, error
 
 def shellescape(path):
     """Shell-escape any non-alphanumeric characters."""
@@ -59,7 +80,7 @@ class GenericVersionControlSystem:
     """The super class for all version control classes."""
 
     # as long as noone overrides this, the test below always succeeds
-    MARKER_DIR = "."
+    MARKER_DIR = os.path.curdir
 
     def __init__(self, location):
         """Default version control checker: test if self.MARKER_DIR exists.
@@ -94,16 +115,15 @@ class CVS(GenericVersionControlSystem):
         @param path: path to the file relative to cvs root
         @param revision: revision or tag to get (retrieves from HEAD if None)
         """
-        path = shellescape(path)
         if revision:
-            command = "cvs -d %s -Q co -p -r%s %s" % (cvsroot, revision, path)
+            command = ["cvs", "-d", cvsroot, "-Q", "co", "-p" "-r",
+                    revision, path]
         else:
-            command = "cvs -d %s -Q co -p %s" % (cvsroot, path)
-        output, error = pipe(command)
-        if error.startswith('cvs checkout'):
-            raise IOError("Could not read %s from %s: %s" % (path, cvsroot, output))
-        elif error.startswith('cvs [checkout aborted]'):
-            raise IOError("Could not read %s from %s: %s" % (path, cvsroot, output))
+            command = ["cvs", "-d", cvsroot, "-Q", "co", "-p", path]
+        exitcode, output, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[CVS] Could not read '%s' from '%s': %s / %s" % \
+                    (path, cvsroot, output, error))
         return output
 
     def getcleanfile(self, revision=None):
@@ -123,39 +143,92 @@ class CVS(GenericVersionControlSystem):
 
     def update(self, revision=None):
         """Does a clean update of the given path"""
-        dirname = shellescape(os.path.dirname(self.location))
-        filename = shellescape(os.path.basename(self.location))
-        basecommand = ""
-        if dirname:
-            basecommand = "cd %s ; " % dirname
-        command = basecommand + "mv %s %s.bak ; " % (filename, filename)
+        working_dir = os.path.dirname(self.location)
+        filename = os.path.basename(self.location)
+        filename_backup = filename + os.path.extsep + "bak"
+        original_dir = os.getcwd()
+        if working_dir:
+            try:
+                # first: check if we are allowed to _change_ to the current dir
+                # (of course, we are already here, but that does not mean so much)
+                os.chdir(original_dir)
+            except OSError, error:
+                raise IOError("[CVS] could not change to directory (%s): %s" \
+                        % (original_dir, error))
+            try:
+                # change to the parent directory of the CVS managed file
+                os.chdir(working_dir)
+            except OSError, error:
+                raise IOError("[CVS] could not change to directory (%s): %s" \
+                        % (working_dir, error))
+        try:
+            os.rename(filename, filename_backup)
+        except OSError, error:
+            # something went wrong - go back to the original directory
+            try:
+                os.chdir(original_dir)
+            except OSError:
+                pass
+            raise IOError("[CVS] could not move the file '%s' to '%s': %s" % \
+                    (filename, filename_backup, error))
         if revision:
-            command += "cvs -Q update -C -r%s %s" % (revision, filename)
+            command = ["cvs", "-Q", "update", "-C", "-r", revision, filename]
         else:
-            command += "cvs -Q update -C %s" % (filename)
-        output, error = pipe(command)
-        if error:
-            pipe(basecommand + "mv %s.bak %s" % (filename, filename))
-            raise IOError("Error running CVS command '%s': %s" % (command, error))
-        pipe(basecommand + "rm %s.bak" % filename)
-        return output
+            command = ["cvs", "-Q", "update", "-C", filename]
+        exitcode, output, error = pipe(command)
+        # restore backup in case of an error - remove backup for success
+        try:
+            if error:
+                os.rename(filename_backup, filename)
+            else:
+                os.remove(filename_backup)
+        except OSError:
+            pass
+        # always go back to the original directory
+        try:
+            os.chdir(original_dir)
+        except OSError:
+            pass
+        # raise an error or return successfully - depending on the CVS command
+        if exitcode != 0:
+            raise IOError("[CVS] Error running CVS command '%s': %s" % (command, error))
+        else:
+            return output
 
     def commit(self, message=None):
         """Commits the file and supplies the given commit message if present"""
-        dirname = shellescape(os.path.dirname(self.location))
-        filename = shellescape(os.path.basename(self.location))
-        basecommand = ""
-        if dirname:
-            basecommand = "cd %s ; " % dirname
+        working_dir = os.path.dirname(self.location)
+        filename = os.path.basename(self.location)
+        original_dir = os.getcwd()
+        if working_dir:
+            try:
+                # first: check if we are allowed to _change_ to the current dir
+                # (of course, we are already here, but that does not mean so much)
+                os.chdir(original_dir)
+            except OSError, error:
+                raise IOError("[CVS] could not change to directory (%s): %s" \
+                        % (original_dir, error))
+            try:
+                # change to the parent directory of the CVS managed file
+                os.chdir(working_dir)
+            except OSError, error:
+                raise IOError("[CVS] could not change to directory (%s): %s" \
+                        % (working_dir, error))
         if message:
-            message = ' -m "%s" ' % message
+            command = ["cvs", "-Q", "commit", "-m", message, filename]
         elif message is None:
-            message = ""
-        command = basecommand + "cvs -Q commit %s %s" % (message, filename)
-        output, error = pipe(command)
-        if error:
-            raise IOError("Error running CVS command '%s': %s" % (command, error))
-        return output
+            command = ["cvs", "-Q", "commit", filename]
+        exitcode, output, error = pipe(command)
+        # always go back to the original directory
+        try:
+            os.chdir(original_dir)
+        except OSError:
+            pass
+        # raise an error or return successfully - depending on the CVS command
+        if exitcode != 0:
+            raise IOError("[CVS] Error running CVS command '%s': %s" % (command, error))
+        else:
+            return output
 
     def _getcvsrevision(self, cvsentries):
         """returns the revision number the file was checked out with by looking
@@ -163,6 +236,8 @@ class CVS(GenericVersionControlSystem):
         """
         filename = os.path.basename(self.location)
         for cvsentry in cvsentries:
+            # an entries line looks like the following:
+            #  /README.TXT/1.19/Sun Dec 16 06:00:12 2001//
             cvsentryparts = cvsentry.split("/")
             if len(cvsentryparts) < 6:
                 continue
@@ -176,6 +251,8 @@ class CVS(GenericVersionControlSystem):
         """
         filename = os.path.basename(self.location)
         for cvsentry in cvsentries:
+            # an entries line looks like the following:
+            #  /README.TXT/1.19/Sun Dec 16 06:00:12 2001//
             cvsentryparts = cvsentry.split("/")
             if len(cvsentryparts) < 6:
                 continue
@@ -199,43 +276,42 @@ class SVN(GenericVersionControlSystem):
     def update(self, revision=None):
         """update the working copy - remove local modifications if necessary"""
         # revert the local copy (remove local changes)
-        path = shellescape(self.location)
-        command = "svn revert %s" % path
-        # update the working copy to the given revision
-        if revision is None:
-            command += "; svn update %s" % (path,)
-        else:
-            command += "; svn update -r%s %s" % (revision, path)
-        output, error = pipe(command)
+        command = ["svn", "revert", self.location]
+        exitcode, output_revert, error = pipe(command)
         # any error messages?
         if error:
-            raise IOError("Subversion error running '%s': %s" % (command, error))
-        return output
+            raise IOError("[SVN] Subversion error running '%s': %s" % (command, error))
+        # update the working copy to the given revision
+        if revision is None:
+            command = ["svn", "update", self.location]
+        else:
+            command = ["svn", "update", "-r", revision, self.location]
+        exitcode, output_update, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[SVN] Subversion error running '%s': %s" % (command, error))
+        return output_revert + output_update
 
     def commit(self, message=None):
         """commit the file and return the given message if present"""
-        path = shellescape(self.location)
         if message is None:
-            message_param = ""
+            command = ["svn", "-q", "--non-interactive", "commit", self.location]
         else:
-            message_param = "-m %s" % shellescape(message)
-        command = "svn -q --non-interactive commit %s %s" % \
-                (message_param, path)
-        output, error = pipe(command)
-        if error:
-            raise IOError("Error running SVN command '%s': %s" % (command, error))
+            command = ["svn", "-q", "--non-interactive", "commit", "-m",
+                    message, self.location]
+        exitcode, output, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[SVN] Error running SVN command '%s': %s" % (command, error))
         return output
     
     def getcleanfile(self, revision=None):
         """return the content of the 'head' revision of the file"""
-        path = shellescape(self.location)
         if revision is None:
-            command = "svn cat %s" % path
+            command = ["svn", "cat", self.location]
         else:
-            command = "svn cat -r %s %s" % (shellescape(revision), path)
-        output, error = pipe(command)
-        if error:
-            raise IOError("Subversion error running '%s': %s" % (command, error))
+            command = ["svn", "cat", "-r", revision, self.location]
+        exitcode, output, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[SVN] Subversion error running '%s': %s" % (command, error))
         return output
 
 
@@ -284,38 +360,60 @@ class DARCS(GenericVersionControlSystem):
                     # successfully finished
                 else:
                     # this should never happen
-                    raise IOError("Darcs: unexpected path names: '%s' and '%s'" \
+                    raise IOError("[Darcs] unexpected path names: '%s' and '%s'" \
                             % (self.darcsdir, basedir))
             if self.location is None:
                 # we did not find a '_darcs' directory
                 raise IOError(err_msg)
                     
     def update(self, revision=None):
-        """Does a clean update of the given path"""
+        """Does a clean update of the given path
+        @param: revision: ignored for darcs
+        """
         # TODO: check if 'revert' and 'pull' work without specifying '--repodir'
-        command = "darcs revert -a %s ; darcs pull -a" % shellescape(self.location)
-        output, error = pipe(command)
-        if error:
-            raise IOError("darcs error running '%s': %s" % (command, error))
-        return output
+        # revert local changes (avoids conflicts)
+        command = ["darcs", "revert", "-a", self.location]
+        exitcode, output_revert, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[Darcs] error running '%s': %s" % (command, error))
+        # pull new patches
+        command = ["darcs", "pull", "-a"]
+        exitcode, output_pull, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[Darcs] error running '%s': %s" % (command, error))
+        return output_revert + output_pull
 
     def commit(self, message=None):
         """Commits the file and supplies the given commit message if present"""
         if message is None:
             message = ""
-        command = "darcs record -a --skip-long-comment -m '%s' %s; darcs push -a" \
-                % (message, shellescape(self.location))
-        output, error = pipe(command)
-        if error:
-            raise IOError("Error running darcs command '%s': %s" % (command, error))
-        return output
+        # set change message
+        command = ["darcs", "record", "-a", "--skip-long-comment", "-m",
+                message, self.location]
+        exitcode, output_record, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[Darcs] Error running darcs command '%s': %s" \
+                    % (command, error))
+        # push changes
+        command = ["darcs", "push", "-a"]
+        exitcode, output_push, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[Darcs] Error running darcs command '%s': %s" \
+                    % (command, error))
+        return output_record + output_push
 
     def getcleanfile(self, revision=None):
-        """Get a clean version of a file from the darcs repository"""
-        command = "cat _darcs/pristine/%s" % shellescape(self.location)
-        output, error = pipe(command)
-        if error:
-            raise IOError("darcs error running '%s': %s" % (command, error))
+        """Get a clean version of a file from the darcs repository
+        @param: revision: ignored for darcs
+        """
+        filename = os.path.join('_darcs', 'pristine', self.location)
+        try:
+            darcs_file = open(filename)
+            output = darcs_file.read()
+            darcs_file.close()
+        except IOError, error:
+            raise IOError("[Darcs] error reading original file '%s': %s" % \
+                    (filename, error))
         return output
 
 class GIT(GenericVersionControlSystem):
@@ -363,7 +461,7 @@ class GIT(GenericVersionControlSystem):
                     # successfully finished
                 else:
                     # this should never happen
-                    raise IOError("Git: unexpected path names: '%s' and '%s'" \
+                    raise IOError("[GIT] unexpected path names: '%s' and '%s'" \
                             % (self.gitdir, basedir))
             if self.location is None:
                 # we did not find a '.git' directory
@@ -371,31 +469,61 @@ class GIT(GenericVersionControlSystem):
                     
     def update(self, revision=None):
         """Does a clean update of the given path"""
-        command = "git checkout %s ; git pull" % shellescape(self.location)
-        output, error = pipe(command)
-        if error:
-            raise IOError("git error running '%s': %s" % (command, error))
-        return output
+        # git checkout
+        command = ["git", "checkout", self.location]
+        exitcode, output_checkout, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[GIT] checkout failed (%s): %s" % (command, error))
+        # pull changes
+        command = ["git", "pull"]
+        exitcode, output_pull, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[GIT] pull failed (%s): %s" % (command, error))
+        return output_checkout + output_pull
 
     def commit(self, message=None):
         """Commits the file and supplies the given commit message if present"""
+        # add the file
+        command = ["git", "add", self.location]
+        exitcode, output_add, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[GIT] add of '%s' failed: %s" % (self.location, error))
+        # commit file
         if message is None:
-            message = ""
-        command = "git add %s; git commit -m '%s'; git push 2>/dev/null" \
-                % (shellescape(self.location), message)
-        output, error = pipe(command)
-        if error:
-            raise IOError("Error running git command '%s': %s" % (command, error))
-        return output
+            command = ["git", "commit"]
+        else:
+            command = ["git", "commit", "-m", message]
+        exitcode, output_commit, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[GIT] commit of '%s' failed: %s" % (self.location, error))
+        # push changes
+        command = ["git", "push"]
+        exitcode, output_push, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[GIT] push of '%s' failed: %s" % (self.location, error))
+        return output_add + output_commit + output_push
 
     def getcleanfile(self, revision=None):
         """Get a clean version of a file from the git repository"""
-        command = "git cat-file blob $(git ls-tree HEAD %s|sed 's/.* \([a-f0-9]\{40\}\)\t.*/\1/')" \
-			% shellescape(self.location)
-        output, error = pipe(command)
-        if error:
-            raise IOError("git error running '%s': %s" % (command, error))
-        return output
+        # get ls-tree HEAD
+        command = ["git", "ls-tree", "HEAD", self.location]
+        exitcode, output_ls, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[GIT] ls-tree failed for '%s': %s" \
+                    % self.location, error)
+        # determine the id
+        match = re.search(" ([a-f0-9]{40})\t", output_ls)
+        if not match:
+            raise IOError("[GIT] failed to get git id for '%s'" % self.location)
+        # remove whitespace around
+        git_id = match.groups()[0].strip()
+        # run cat-file
+        command = ["git", "cat-file", "blob", git_id]
+        exitcode, output_cat, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[GIT] cat-file failed for ('%s', %s): %s" \
+                    % (self.location, git_id, error))
+        return output_ls + output_cat
 
 class BZR(GenericVersionControlSystem):
     """Class to manage items under revision control of bzr."""
@@ -442,7 +570,7 @@ class BZR(GenericVersionControlSystem):
                     # successfully finished
                 else:
                     # this should never happen
-                    raise IOError("Git: unexpected path names: '%s' and '%s'" \
+                    raise IOError("[BZR] unexpected path names: '%s' and '%s'" \
                             % (self.bzrdir, basedir))
             if self.location is None:
                 # we did not find a '.bzr' directory
@@ -450,30 +578,47 @@ class BZR(GenericVersionControlSystem):
                     
     def update(self, revision=None):
         """Does a clean update of the given path"""
-        command = "bzr revert %s ; bzr pull" % shellescape(self.location)
-        output, error = pipe(command)
-        if error:
-            raise IOError("bzr error running '%s': %s" % (command, error))
-        return output
+        # bazaar revert
+        command = ["bzr", "revert", self.location]
+        exitcode, output_revert, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[BZR] revert of '%s' failed: %s" \
+                    % (self.location, error))
+        # bazaar pull
+        command = ["bzr", "pull"]
+        exitcode, output_pull, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[BZR] pull of '%s' failed: %s" \
+                    % (self.location, error))
+        return output_revert + output_pull
 
     def commit(self, message=None):
         """Commits the file and supplies the given commit message if present"""
+        # bzr commit
         if message is None:
-            message = ""
-        command = "bzr commit -m '%s' %s 2>/dev/null; bzr push 2>/dev/null" \
-                % (message, shellescape(self.location))
-        output, error = pipe(command)
-        if error:
-            raise IOError("Error running bzr command '%s': %s" % (command, error))
-        return output
+            command = ["bzr", "commit", self.location]
+        else:
+            command = ["bzr", "commit", "-m", message, self.location]
+        exitcode, output_commit, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[BZR] commit of '%s' failed: %s" \
+                    % (self.location, error))
+        # bzr push
+        command = ["bzr", "push"]
+        exitcode, output_push, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[BZR] push of '%s' failed: %s" \
+                    % (self.location, error))
+        return output_commit + output_push
 
     def getcleanfile(self, revision=None):
         """Get a clean version of a file from the bzr repository"""
-        command = "bzr cat %s" \
-			% shellescape(self.location)
-        output, error = pipe(command)
-        if error:
-            raise IOError("bzr error running '%s': %s" % (command, error))
+        # bzr cat
+        command = ["bzr", "cat", self.location]
+        exitcode, output, error = pipe(command)
+        if exitcode != 0:
+            raise IOError("[BZR] cat failed for '%s': %s" \
+                    % (self.location, error))
         return output
 
 # which versioning systems are supported by default?
