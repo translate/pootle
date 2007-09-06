@@ -21,8 +21,8 @@
 
 """This module manages interaction with version control systems.
 
-To implement support for a new version control system, override the class
-GenericVersionControlSystem. 
+To implement support for a new version control system, inherit the class
+GenericRevisionControlSystem. 
 
 TODO:
     * move to the translate toolkit and split into different files
@@ -31,13 +31,13 @@ TODO:
 import re
 import os
 
-# The subprocess module allows to use cross-platform command execution without 
-# using the shell (which increases security).
-# p = subprocess.Popen(shell=False, close_fds=True, stdin=subprocess.PIPE,
-#       stdout=subprocess.PIPE, stderr=subprocess.PIPE, args = command)
-# This is only available since python 2.4, so we won't rely on it yet.
+# use either 'popen2' or 'subprocess' for command execution
 try:
+    # available for python >= 2.4
     import subprocess
+
+    # The subprocess module allows to use cross-platform command execution
+    # without using the shell (increases security).
 
     def pipe(command):
         """Runs a command (array of program name and arguments) and returns the
@@ -76,35 +76,148 @@ def shellescape(path):
     return re.sub(r'(\W)', r'\\\1', path)
 
 
-class GenericVersionControlSystem:
-    """The super class for all version control classes."""
+class GenericRevisionControlSystem:
+    """The super class for all version control classes.
 
-    # as long as noone overrides this, the test below always succeeds
-    MARKER_DIR = os.path.curdir
+    Always inherit from this class to implement another RC interface.
+
+    At least the two attributes "RCS_METADIR" and "SCAN_PARENTS" must be 
+    overriden by all implementations that derive from this class.
+
+    By default, all implementations can rely on the following attributes:
+        root_dir: the parent of the metadata directory of the working copy
+        location_abs: the absolute path of the RCS object
+        location_rel: the path of the RCS object relative to 'root_dir'
+    """
+
+    RCS_METADIR = None
+    """The name of the metadata directory of the RCS
+
+    e.g.: for Subversion -> ".svn"
+    """
+
+    SCAN_PARENTS = None
+    """whether to check the parent directories for the metadata directory of
+    the RCS working copy
+    
+    some revision control systems store their metadata directory only
+    in the base of the working copy (e.g. bzr, GIT and Darcs)
+    use "True" for these RCS
+
+    other RCS store a metadata directory in every single directory of
+    the working copy (e.g. Subversion and CVS)
+    use "False" for these RCS
+    """
 
     def __init__(self, location):
-        """Default version control checker: test if self.MARKER_DIR exists.
+        """find the relevant information about this RCS object
         
-        Most version control systems depend on the existence of a specific 
-        directory thus you will most likely not need to touch this check - just 
-        call it. The IOError exception indicates that the specified file is not 
-        controlled by the given version control system.
+        The IOError exception indicates that the specified object (file or
+        directory) is not controlled by the given version control system.
         """
-        parent_dir = os.path.dirname(os.path.abspath(location))
-        if not os.path.isdir(os.path.join(parent_dir, self.MARKER_DIR)):
-            raise IOError("Could not find version control information: %s" % location)
+        # check if the implementation looks ok - otherwise raise IOError
+        self._self_check()
+        # search for the repository information
+        result = self._find_rcs_directory(location)
+        if result is None:
+            raise IOError("Could not find revision control information: %s" \
+                    % location)
+        else:
+            self.root_dir, self.location_abs, self.location_rel = result
+
+    def _find_rcs_directory(self, rcs_obj):
+        """Try to find the metadata directory of the RCS
+
+        returns a tuple:
+            the absolute path of the directory, that contains the metadata directory
+            the absolute path of the RCS object
+            the relative path of the RCS object based on the directory above
+        """
+        rcs_obj_dir = os.path.dirname(os.path.abspath(rcs_obj))
+        if os.path.isdir(os.path.join(rcs_obj_dir, self.RCS_METADIR)):
+            # is there a metadir next to the rcs_obj?
+            # (for Subversion, CVS, ...)
+            location_abs = os.path.abspath(rcs_obj)
+            location_rel = os.path.basename(location_abs)
+            return (rcs_obj_dir, location_abs, location_rel)
+        elif self.SCAN_PARENTS:
+            # scan for the metadir in parent directories
+            # (for bzr, GIT, Darcs, ...)
+            return self._find_rcs_in_parent_directories(rcs_obj)
+        else:
+            # no RCS metadata found
+            return None
+    
+    def _find_rcs_in_parent_directories(self, rcs_obj):
+        """Try to find the metadata directory in all parent directories"""
+        # first: resolve possible symlinks
+        current_dir = os.path.dirname(os.path.realpath(rcs_obj))
+        # prevent infite loops
+        max_depth = 64
+        # stop as soon as we find the metadata directory
+        while not os.path.isdir(os.path.join(current_dir, self.RCS_METADIR)):
+            if os.path.dirname(current_dir) == current_dir:
+                # we reached the root directory - stop
+                return None
+            if max_depth <= 0:
+                # some kind of dead loop or a _very_ deep directory structure
+                return None
+            # go to the next higher level
+            current_dir = os.path.dirname(current_dir)
+        # the loop was finished successfully
+        # i.e.: we found the metadata directory
+        rcs_dir = current_dir
+        location_abs = os.path.realpath(rcs_obj)
+        # strip the base directory from the path of the rcs_obj
+        basedir = rcs_dir + os.path.sep
+        if location_abs.startswith(basedir):
+            # remove the base directory (including the trailing slash)
+            location_rel = location_abs.replace(basedir, "", 1)
+            # successfully finished
+            return (rcs_dir, location_abs, location_rel)
+        else:
+            # this should never happen
+            return None
+        
+    def _self_check(self):
+        """Check if all necessary attributes are defined
+
+        Useful to make sure, that a new implementation does not forget
+        something like "RCS_METADIR"
+        """
+        if self.RCS_METADIR is None:
+            raise IOError("Incomplete RCS interface implementation: " \
+                    + "self.RCS_METADIR is None")
+        if self.SCAN_PARENTS is None:
+            raise IOError("Incomplete RCS interface implementation: " \
+                    + "self.SCAN_PARENTS is None")
+        # we do not check for implemented functions - they raise
+        # NotImplementedError exceptions anyway
+        return True
+                    
+    def getcleanfile(self, revision=None):
+        """Dummy to be overridden by real implementations"""
+        raise NotImplementedError("Incomplete RCS interface implementation:" \
+                + " 'getcleanfile' is missing")
 
 
-class CVS(GenericVersionControlSystem):
+    def commit(self, revision=None):
+        """Dummy to be overridden by real implementations"""
+        raise NotImplementedError("Incomplete RCS interface implementation:" \
+                + " 'commit' is missing")
+
+
+    def update(self, revision=None):
+        """Dummy to be overridden by real implementations"""
+        raise NotImplementedError("Incomplete RCS interface implementation:" \
+                + " 'update' is missing")
+
+
+class CVS(GenericRevisionControlSystem):
     """Class to manage items under revision control of CVS."""
 
-    MARKER_DIR = "CVS"
-
-    def __init__(self, location):
-        GenericVersionControlSystem.__init__(self, location)
-        self.cvsdir = os.path.join(os.path.dirname(os.path.abspath(location)),
-                self.MARKER_DIR)
-        self.location = os.path.abspath(location)
+    RCS_METADIR = "CVS"
+    SCAN_PARENTS = False
 
     def _readfile(self, cvsroot, path, revision=None):
         """
@@ -115,11 +228,11 @@ class CVS(GenericVersionControlSystem):
         @param path: path to the file relative to cvs root
         @param revision: revision or tag to get (retrieves from HEAD if None)
         """
+        command = ["cvs", "-d", cvsroot, "-Q", "co", "-p"]
         if revision:
-            command = ["cvs", "-d", cvsroot, "-Q", "co", "-p" "-r",
-                    revision, path]
-        else:
-            command = ["cvs", "-d", cvsroot, "-Q", "co", "-p", path]
+            command.extend(["-r", revision])
+        # the path is the last argument
+        command.append(path)
         exitcode, output, error = pipe(command)
         if exitcode != 0:
             raise IOError("[CVS] Could not read '%s' from '%s': %s / %s" % \
@@ -128,11 +241,11 @@ class CVS(GenericVersionControlSystem):
 
     def getcleanfile(self, revision=None):
         """Get the content of the file for the given revision"""
-        parentdir = os.path.dirname(self.location)
+        parentdir = os.path.dirname(self.location_abs)
         cvsdir = os.path.join(parentdir, "CVS")
         cvsroot = open(os.path.join(cvsdir, "Root"), "r").read().strip()
         cvspath = open(os.path.join(cvsdir, "Repository"), "r").read().strip()
-        cvsfilename = os.path.join(cvspath, os.path.basename(self.location))
+        cvsfilename = os.path.join(cvspath, os.path.basename(self.location_abs))
         if revision is None:
             cvsentries = open(os.path.join(cvsdir, "Entries"), "r").readlines()
             revision = self._getcvstag(cvsentries)
@@ -143,8 +256,8 @@ class CVS(GenericVersionControlSystem):
 
     def update(self, revision=None):
         """Does a clean update of the given path"""
-        working_dir = os.path.dirname(self.location)
-        filename = os.path.basename(self.location)
+        working_dir = os.path.dirname(self.location_abs)
+        filename = os.path.basename(self.location_abs)
         filename_backup = filename + os.path.extsep + "bak"
         original_dir = os.getcwd()
         if working_dir:
@@ -171,14 +284,15 @@ class CVS(GenericVersionControlSystem):
                 pass
             raise IOError("[CVS] could not move the file '%s' to '%s': %s" % \
                     (filename, filename_backup, error))
+        command = ["cvs", "-Q", "update", "-C"]
         if revision:
-            command = ["cvs", "-Q", "update", "-C", "-r", revision, filename]
-        else:
-            command = ["cvs", "-Q", "update", "-C", filename]
+            command.extend(["-r", revision])
+        # the filename is the last argument
+        command.append(filename)
         exitcode, output, error = pipe(command)
         # restore backup in case of an error - remove backup for success
         try:
-            if error:
+            if exitcode != 0:
                 os.rename(filename_backup, filename)
             else:
                 os.remove(filename_backup)
@@ -197,8 +311,8 @@ class CVS(GenericVersionControlSystem):
 
     def commit(self, message=None):
         """Commits the file and supplies the given commit message if present"""
-        working_dir = os.path.dirname(self.location)
-        filename = os.path.basename(self.location)
+        working_dir = os.path.dirname(self.location_abs)
+        filename = os.path.basename(self.location_abs)
         original_dir = os.getcwd()
         if working_dir:
             try:
@@ -214,10 +328,11 @@ class CVS(GenericVersionControlSystem):
             except OSError, error:
                 raise IOError("[CVS] could not change to directory (%s): %s" \
                         % (working_dir, error))
+        command = ["cvs", "-Q", "commit"]
         if message:
-            command = ["cvs", "-Q", "commit", "-m", message, filename]
-        elif message is None:
-            command = ["cvs", "-Q", "commit", filename]
+            command.extend(["-m", message])
+        # the filename is the last argument
+        command.append(filename)
         exitcode, output, error = pipe(command)
         # always go back to the original directory
         try:
@@ -234,7 +349,7 @@ class CVS(GenericVersionControlSystem):
         """returns the revision number the file was checked out with by looking
         in the lines of cvsentries
         """
-        filename = os.path.basename(self.location)
+        filename = os.path.basename(self.location_abs)
         for cvsentry in cvsentries:
             # an entries line looks like the following:
             #  /README.TXT/1.19/Sun Dec 16 06:00:12 2001//
@@ -249,7 +364,7 @@ class CVS(GenericVersionControlSystem):
         """Returns the sticky tag the file was checked out with by looking in 
         the lines of cvsentries.
         """
-        filename = os.path.basename(self.location)
+        filename = os.path.basename(self.location_abs)
         for cvsentry in cvsentries:
             # an entries line looks like the following:
             #  /README.TXT/1.19/Sun Dec 16 06:00:12 2001//
@@ -262,42 +377,40 @@ class CVS(GenericVersionControlSystem):
         return None
 
 
-class SVN(GenericVersionControlSystem):
+class SVN(GenericRevisionControlSystem):
     """Class to manage items under revision control of Subversion."""
 
-    MARKER_DIR = ".svn"
-
-    def __init__(self, location):
-        GenericVersionControlSystem.__init__(self, location)
-        self.svndir = os.path.join(os.path.dirname(os.path.abspath(location)),
-                self.MARKER_DIR)
-        self.location = os.path.abspath(location)
+    RCS_METADIR = ".svn"
+    SCAN_PARENTS = False
 
     def update(self, revision=None):
         """update the working copy - remove local modifications if necessary"""
         # revert the local copy (remove local changes)
-        command = ["svn", "revert", self.location]
+        command = ["svn", "revert", self.location_abs]
         exitcode, output_revert, error = pipe(command)
-        # any error messages?
-        if error:
-            raise IOError("[SVN] Subversion error running '%s': %s" % (command, error))
+        # any errors?
+        if exitcode != 0:
+            raise IOError("[SVN] Subversion error running '%s': %s" \
+                    % (command, error))
         # update the working copy to the given revision
-        if revision is None:
-            command = ["svn", "update", self.location]
-        else:
-            command = ["svn", "update", "-r", revision, self.location]
+        command = ["svn", "update"]
+        if not revision is None:
+            command.extend(["-r", revision])
+        # the filename is the last argument
+        command.append(self.location_abs)
         exitcode, output_update, error = pipe(command)
         if exitcode != 0:
-            raise IOError("[SVN] Subversion error running '%s': %s" % (command, error))
+            raise IOError("[SVN] Subversion error running '%s': %s" \
+                    % (command, error))
         return output_revert + output_update
 
     def commit(self, message=None):
         """commit the file and return the given message if present"""
-        if message is None:
-            command = ["svn", "-q", "--non-interactive", "commit", self.location]
-        else:
-            command = ["svn", "-q", "--non-interactive", "commit", "-m",
-                    message, self.location]
+        command = ["svn", "-q", "--non-interactive", "commit"]
+        if message:
+            command.extend(["-m", message])
+        # the location is the last argument
+        command.append(self.location_abs)
         exitcode, output, error = pipe(command)
         if exitcode != 0:
             raise IOError("[SVN] Error running SVN command '%s': %s" % (command, error))
@@ -305,79 +418,36 @@ class SVN(GenericVersionControlSystem):
     
     def getcleanfile(self, revision=None):
         """return the content of the 'head' revision of the file"""
-        if revision is None:
-            command = ["svn", "cat", self.location]
-        else:
-            command = ["svn", "cat", "-r", revision, self.location]
+        command = ["svn", "cat"]
+        if not revision is None:
+            command.extend(["-r", revision])
+        # the filename is the last argument
+        command.append(self.location_abs)
         exitcode, output, error = pipe(command)
         if exitcode != 0:
             raise IOError("[SVN] Subversion error running '%s': %s" % (command, error))
         return output
 
 
-class DARCS(GenericVersionControlSystem):
+class DARCS(GenericRevisionControlSystem):
     """Class to manage items under revision control of darcs."""
 
-    # This assumes that the whole PO directory is stored in darcs so we need to 
-    # reach the _darcs dir from po/project/language. That results in this 
-    # relative path
-    MARKER_DIR = "_darcs"
+    RCS_METADIR = "_darcs"
+    SCAN_PARENTS = True
     
-    def __init__(self, location):
-        self.location = None
-        try:
-            # this works only, if the po file is in the root of the repository
-            GenericVersionControlSystem.__init__(self, location)
-            self.darcsdir = os.path.join(os.path.dirname(os.path.abspath(location)),
-                    self.MARKER_DIR)
-            self.location = os.path.abspath(location)
-            # we finished successfully
-        except IOError, err_msg:
-            # the following code scans all directories above the po file for the
-            # common '_darcs' directory
-            # first: resolve possible symlinks
-            current_dir = os.path.realpath(os.path.dirname(location))
-            # avoid any dead loops (could this happen?)
-            max_depth = 64
-            while not os.path.isdir(os.path.join(current_dir, self.MARKER_DIR)):
-                if os.path.dirname(current_dir) == current_dir:
-                    # we reached the root directory - stop
-                    break
-                if max_depth <= 0:
-                    # some kind of dead loop or a _very_ deep directory structure
-                    break
-                # go to the next higher level
-                current_dir = os.path.dirname(current_dir)
-            else:
-                # we found the MARKER_DIR
-                self.darcsdir = current_dir
-                # retrieve the relative path of the po file based on self.darcsdir
-                realpath_pofile = os.path.realpath(location)
-                basedir = self.darcsdir + os.path.sep
-                if realpath_pofile.startswith(basedir):
-                    # remove the base directory (including the trailing slash)
-                    self.location = realpath_pofile.replace(basedir, "", 1)
-                    # successfully finished
-                else:
-                    # this should never happen
-                    raise IOError("[Darcs] unexpected path names: '%s' and '%s'" \
-                            % (self.darcsdir, basedir))
-            if self.location is None:
-                # we did not find a '_darcs' directory
-                raise IOError(err_msg)
-                    
     def update(self, revision=None):
         """Does a clean update of the given path
+
         @param: revision: ignored for darcs
         """
-        # TODO: check if 'revert' and 'pull' work without specifying '--repodir'
         # revert local changes (avoids conflicts)
-        command = ["darcs", "revert", "-a", self.location]
+        command = ["darcs", "revert", "--repodir", self.root_dir, 
+                "-a", self.location_rel]
         exitcode, output_revert, error = pipe(command)
         if exitcode != 0:
             raise IOError("[Darcs] error running '%s': %s" % (command, error))
         # pull new patches
-        command = ["darcs", "pull", "-a"]
+        command = ["darcs", "pull", "--repodir", self.root_dir, "-a"]
         exitcode, output_pull, error = pipe(command)
         if exitcode != 0:
             raise IOError("[Darcs] error running '%s': %s" % (command, error))
@@ -388,14 +458,14 @@ class DARCS(GenericVersionControlSystem):
         if message is None:
             message = ""
         # set change message
-        command = ["darcs", "record", "-a", "--skip-long-comment", "-m",
-                message, self.location]
+        command = ["darcs", "record", "-a", "--repodir", self.root_dir,
+                "--skip-long-comment", "-m", message, self.location_rel]
         exitcode, output_record, error = pipe(command)
         if exitcode != 0:
             raise IOError("[Darcs] Error running darcs command '%s': %s" \
                     % (command, error))
         # push changes
-        command = ["darcs", "push", "-a"]
+        command = ["darcs", "push", "-a", "--repodir", self.root_dir]
         exitcode, output_push, error = pipe(command)
         if exitcode != 0:
             raise IOError("[Darcs] Error running darcs command '%s': %s" \
@@ -404,9 +474,11 @@ class DARCS(GenericVersionControlSystem):
 
     def getcleanfile(self, revision=None):
         """Get a clean version of a file from the darcs repository
+
         @param: revision: ignored for darcs
         """
-        filename = os.path.join('_darcs', 'pristine', self.location)
+        filename = os.path.join(self.root_dir, self.RCS_METADIR, 'pristine',
+                self.location_rel)
         try:
             darcs_file = open(filename)
             output = darcs_file.read()
@@ -416,66 +488,27 @@ class DARCS(GenericVersionControlSystem):
                     (filename, error))
         return output
 
-class GIT(GenericVersionControlSystem):
+class GIT(GenericRevisionControlSystem):
     """Class to manage items under revision control of git."""
 
-    # This assumes that the whole PO directory is stored in git so we need to 
-    # reach the .git dir from po/project/language. That results in this 
-    # relative path
-    MARKER_DIR = ".git"
+    RCS_METADIR = ".git"
+    SCAN_PARENTS = True
+
+    def _get_git_dir(self):
+        """git requires the git metadata directory for every operation
+        """
+        return os.path.join(self.root_dir, self.RCS_METADIR)
     
-    def __init__(self, location):
-        self.location = None
-        try:
-            # this works only, if the po file is in the root of the repository
-            GenericVersionControlSystem.__init__(self, location)
-            self.gitdir = os.path.join(os.path.dirname(os.path.abspath(location)),
-                    self.MARKER_DIR)
-            self.location = os.path.abspath(location)
-            # we finished successfully
-        except IOError, err_msg:
-            # the following code scans all directories above the po file for the
-            # common '.git' directory
-            # first: resolve possible symlinks
-            current_dir = os.path.realpath(os.path.dirname(location))
-            # avoid any dead loops (could this happen?)
-            max_depth = 64
-            while not os.path.isdir(os.path.join(current_dir, self.MARKER_DIR)):
-                if os.path.dirname(current_dir) == current_dir:
-                    # we reached the root directory - stop
-                    break
-                if max_depth <= 0:
-                    # some kind of dead loop or a _very_ deep directory structure
-                    break
-                # go to the next higher level
-                current_dir = os.path.dirname(current_dir)
-            else:
-                # we found the MARKER_DIR
-                self.gitdir = current_dir
-                # retrieve the relative path of the po file based on self.gitdir
-                realpath_pofile = os.path.realpath(location)
-                basedir = self.gitdir + os.path.sep
-                if realpath_pofile.startswith(basedir):
-                    # remove the base directory (including the trailing slash)
-                    self.location = realpath_pofile.replace(basedir, "", 1)
-                    # successfully finished
-                else:
-                    # this should never happen
-                    raise IOError("[GIT] unexpected path names: '%s' and '%s'" \
-                            % (self.gitdir, basedir))
-            if self.location is None:
-                # we did not find a '.git' directory
-                raise IOError(err_msg)
-                    
     def update(self, revision=None):
         """Does a clean update of the given path"""
         # git checkout
-        command = ["git", "checkout", self.location]
+        command = ["git", "--git-dir", self._get_git_dir(),
+                "checkout", self.location_rel]
         exitcode, output_checkout, error = pipe(command)
         if exitcode != 0:
             raise IOError("[GIT] checkout failed (%s): %s" % (command, error))
         # pull changes
-        command = ["git", "pull"]
+        command = ["git", "--git-dir", self._get_git_dir(), "pull"]
         exitcode, output_pull, error = pipe(command)
         if exitcode != 0:
             raise IOError("[GIT] pull failed (%s): %s" % (command, error))
@@ -484,141 +517,89 @@ class GIT(GenericVersionControlSystem):
     def commit(self, message=None):
         """Commits the file and supplies the given commit message if present"""
         # add the file
-        command = ["git", "add", self.location]
+        command = ["git", "--git-dir", self._get_git_dir(),
+                "add", self.location_rel]
         exitcode, output_add, error = pipe(command)
         if exitcode != 0:
-            raise IOError("[GIT] add of '%s' failed: %s" % (self.location, error))
+            raise IOError("[GIT] add of ('%s', '%s') failed: %s" \
+                    % (self.root_dir, self.location_rel, error))
         # commit file
-        if message is None:
-            command = ["git", "commit"]
-        else:
-            command = ["git", "commit", "-m", message]
+        command = ["git", "--git-dir", self._get_git_dir(), "commit"]
+        if message:
+            command.extend(["-m", message])
         exitcode, output_commit, error = pipe(command)
         if exitcode != 0:
-            raise IOError("[GIT] commit of '%s' failed: %s" % (self.location, error))
+            raise IOError("[GIT] commit of ('%s', '%s') failed: %s" \
+                    % (self.root_dir, self.location_rel, error))
         # push changes
-        command = ["git", "push"]
+        command = ["git", "--git-dir", self._get_git_dir(), "push"]
         exitcode, output_push, error = pipe(command)
         if exitcode != 0:
-            raise IOError("[GIT] push of '%s' failed: %s" % (self.location, error))
+            raise IOError("[GIT] push of ('%s', '%s') failed: %s" \
+                    % (self.root_dir, self.location_rel, error))
         return output_add + output_commit + output_push
 
     def getcleanfile(self, revision=None):
         """Get a clean version of a file from the git repository"""
-        # get ls-tree HEAD
-        command = ["git", "ls-tree", "HEAD", self.location]
-        exitcode, output_ls, error = pipe(command)
+        # run git-show
+        command = ["git", "--git-dir", self._get_git_dir(), "show",
+                "HEAD:%s" % self.location_rel]
+        exitcode, output, error = pipe(command)
         if exitcode != 0:
-            raise IOError("[GIT] ls-tree failed for '%s': %s" \
-                    % self.location, error)
-        # determine the id
-        match = re.search(" ([a-f0-9]{40})\t", output_ls)
-        if not match:
-            raise IOError("[GIT] failed to get git id for '%s'" % self.location)
-        # remove whitespace around
-        git_id = match.groups()[0].strip()
-        # run cat-file
-        command = ["git", "cat-file", "blob", git_id]
-        exitcode, output_cat, error = pipe(command)
-        if exitcode != 0:
-            raise IOError("[GIT] cat-file failed for ('%s', %s): %s" \
-                    % (self.location, git_id, error))
-        return output_ls + output_cat
+            raise IOError("[GIT] 'show' failed for ('%s', %s): %s" \
+                    % (self.root_dir, self.location_rel, error))
+        return output
 
-class BZR(GenericVersionControlSystem):
+class BZR(GenericRevisionControlSystem):
     """Class to manage items under revision control of bzr."""
 
-    # This assumes that the whole PO directory is stored in bzr so we need to 
-    # reach the .git dir from po/project/language. That results in this 
-    # relative path
-    MARKER_DIR = ".bzr"
+    RCS_METADIR = ".bzr"
+    SCAN_PARENTS = True
     
-    def __init__(self, location):
-        self.location = None
-        try:
-            # this works only, if the po file is in the root of the repository
-            GenericVersionControlSystem.__init__(self, location)
-            self.bzrdir = os.path.join(os.path.dirname(os.path.abspath(location)),
-                    self.MARKER_DIR)
-            self.location = os.path.abspath(location)
-            # we finished successfully
-        except IOError, err_msg:
-            # the following code scans all directories above the po file for the
-            # common '.bzr' directory
-            # first: resolve possible symlinks
-            current_dir = os.path.realpath(os.path.dirname(location))
-            # avoid any dead loops (could this happen?)
-            max_depth = 64
-            while not os.path.isdir(os.path.join(current_dir, self.MARKER_DIR)):
-                if os.path.dirname(current_dir) == current_dir:
-                    # we reached the root directory - stop
-                    break
-                if max_depth <= 0:
-                    # some kind of dead loop or a _very_ deep directory structure
-                    break
-                # go to the next higher level
-                current_dir = os.path.dirname(current_dir)
-            else:
-                # we found the MARKER_DIR
-                self.bzrdir = current_dir
-                # retrieve the relative path of the po file based on self.bzrdir
-                realpath_pofile = os.path.realpath(location)
-                basedir = self.bzrdir + os.path.sep
-                if realpath_pofile.startswith(basedir):
-                    # remove the base directory (including the trailing slash)
-                    self.location = realpath_pofile.replace(basedir, "", 1)
-                    # successfully finished
-                else:
-                    # this should never happen
-                    raise IOError("[BZR] unexpected path names: '%s' and '%s'" \
-                            % (self.bzrdir, basedir))
-            if self.location is None:
-                # we did not find a '.bzr' directory
-                raise IOError(err_msg)
-                    
     def update(self, revision=None):
         """Does a clean update of the given path"""
-        # bazaar revert
-        command = ["bzr", "revert", self.location]
+        # bzr revert
+        command = ["bzr", "revert", self.location_abs]
         exitcode, output_revert, error = pipe(command)
         if exitcode != 0:
             raise IOError("[BZR] revert of '%s' failed: %s" \
-                    % (self.location, error))
-        # bazaar pull
+                    % (self.location_abs, error))
+        # bzr pull
         command = ["bzr", "pull"]
         exitcode, output_pull, error = pipe(command)
         if exitcode != 0:
             raise IOError("[BZR] pull of '%s' failed: %s" \
-                    % (self.location, error))
+                    % (self.location_abs, error))
         return output_revert + output_pull
 
     def commit(self, message=None):
         """Commits the file and supplies the given commit message if present"""
         # bzr commit
-        if message is None:
-            command = ["bzr", "commit", self.location]
-        else:
-            command = ["bzr", "commit", "-m", message, self.location]
+        command = ["bzw", "commit"]
+        if message:
+            command.extend(["-m", message])
+        # the filename is the last argument
+        command.append(self.location_abs)
         exitcode, output_commit, error = pipe(command)
         if exitcode != 0:
             raise IOError("[BZR] commit of '%s' failed: %s" \
-                    % (self.location, error))
+                    % (self.location_abs, error))
         # bzr push
         command = ["bzr", "push"]
         exitcode, output_push, error = pipe(command)
         if exitcode != 0:
             raise IOError("[BZR] push of '%s' failed: %s" \
-                    % (self.location, error))
+                    % (self.location_abs, error))
         return output_commit + output_push
 
     def getcleanfile(self, revision=None):
         """Get a clean version of a file from the bzr repository"""
         # bzr cat
-        command = ["bzr", "cat", self.location]
+        command = ["bzr", "cat", self.location_abs]
         exitcode, output, error = pipe(command)
         if exitcode != 0:
             raise IOError("[BZR] cat failed for '%s': %s" \
-                    % (self.location, error))
+                    % (self.location_abs, error))
         return output
 
 # which versioning systems are supported by default?
@@ -666,5 +647,6 @@ if __name__ == "__main__":
     filenames = sys.argv[1:]
     for filename in filenames:
         contents = getcleanfile(filename)
+        sys.stdout.write("\n\n******** %s ********\n\n" % filename)
         sys.stdout.write(contents)
 
