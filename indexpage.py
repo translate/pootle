@@ -340,7 +340,6 @@ class ProjectIndex(pagelayout.PootleNavPage):
         # a common case: plain stats table we can take a shortcut
         pofilenames = self.project.browsefiles()
         projectstats = self.project.getquickstats()
-        print "indexpage roep project.getquickstats():" ,projectstats
       if self.editing:
         actionlinks = self.getactionlinks("", projectstats, ["editing", "mine", "review", "check", "assign", "goal", "quick", "all", "zip", "sdf"], dirfilter)
       else: 
