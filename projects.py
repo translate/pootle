@@ -34,7 +34,7 @@ from translate.tools import pogrep
 from translate.search import match
 from Pootle import statistics
 from Pootle import pootlefile
-from Pootle import versioncontrol
+from translate.storage import versioncontrol
 from jToolkit import timecache
 from jToolkit import prefs
 import time

@@ -22,7 +22,7 @@
 from Pootle import pagelayout
 from Pootle import projects
 from Pootle import pootlefile
-from Pootle import versioncontrol
+from translate.storage import versioncontrol
 # Versioning information
 from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
