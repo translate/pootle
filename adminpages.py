@@ -292,7 +292,7 @@ class ProjectAdminPage(pagelayout.PootlePage):
         "update_button": update_button, "add_button": self.localize("Add Language"),
         "main_link": main_link, "update_link": update_link,
         "session": sessionvars, "instancetitle": instancetitle}
-    pagelayout.PootlePage.__init__(self, templatename, templatevars, session, bannerheight=81)
+    pagelayout.PootlePage.__init__(self, templatename, templatevars, session, bannerheight=80)
 
   def getexistinglanguages(self):
     """gets the info on existing languages"""
@@ -357,7 +357,7 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
         "main_link": main_link,
         "session": sessionvars, "instancetitle": instancetitle}
     templatevars.update(self.getoptions())
-    pagelayout.PootlePage.__init__(self, templatename, templatevars, session, bannerheight=81)
+    pagelayout.PootlePage.__init__(self, templatename, templatevars, session, bannerheight=80)
 
   def getoptions(self):
     """returns a box that describes the options"""

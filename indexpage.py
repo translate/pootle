@@ -211,7 +211,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
         "projects": languageprojects, 
         "statsheadings": self.getstatsheadings(),
         "session": sessionvars, "instancetitle": instancetitle}
-    pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=81)
+    pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=80)
 
   def getlanguageinfo(self):
     """returns information defined for the language"""
@@ -277,7 +277,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
         "adminlink": adminlink, "languages": languages,
         "session": sessionvars, "instancetitle": instancetitle, 
         "statsheadings": statsheadings}
-    pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=81)
+    pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=80)
 
   def getlanguages(self):
     """gets the stats etc of the languages"""
@@ -372,7 +372,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         "statsheadings": self.getstatsheadings(), 
         # general vars
         "session": sessionvars, "instancetitle": instancetitle}
-    pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=81)
+    pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=80)
     if self.showassigns and "assign" in self.rights:
       self.templatevars["assign"] = self.getassignbox()
     if "admin" in self.rights:
