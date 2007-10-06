@@ -24,7 +24,7 @@ from Pootle import potree
 from Pootle import pootle
 from Pootle import users
 from translate.storage import po
-from jToolkit.data import indexer
+from translate.search import indexer
 import os
 import profile
 import pstats

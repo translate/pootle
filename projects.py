@@ -32,6 +32,7 @@ from translate.convert import po2oo
 from translate.tools import pocompile
 from translate.tools import pogrep
 from translate.search import match
+from translate.search import indexer
 from Pootle import statistics
 from Pootle import pootlefile
 from translate.storage import versioncontrol
@@ -42,7 +43,6 @@ import os
 import cStringIO
 import traceback
 import gettext
-from jToolkit.data import indexer
 
 class RightsError(ValueError):
   pass
