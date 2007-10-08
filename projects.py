@@ -814,6 +814,7 @@ class TranslationProject(object):
 
   def matchessearch(self, pofilename, search):
     """returns whether any items in the pofilename match the search (based on collected stats etc)"""
+    # wrong file location in a "dirfilter" search?
     if search.dirfilter is not None and not pofilename.startswith(search.dirfilter):
       return False
     # search.assignedto == [None] means assigned to nobody
