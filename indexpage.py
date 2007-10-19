@@ -744,12 +744,14 @@ class ProjectIndex(pagelayout.PootleNavPage):
         molink = {"href": moname, "text": self.localize('MO file')}
         actionlinks.append(molink)
     if "update" in linksrequired and "admin" in self.rights:
-      if versioncontrol.hasversioning(os.path.join(self.project.podir, self.dirname)):
+      if versioncontrol.hasversioning(os.path.join(self.project.podir,
+              self.dirname, basename)):
         # l10n: Update from version control (like CVS or Subversion)
         updatelink = {"href": "index.html?editing=1&doupdate=1&updatefile=%s" % (basename), "text": self.localize('Update')}
         actionlinks.append(updatelink)
     if "commit" in linksrequired and "commit" in self.rights:
-      if versioncontrol.hasversioning(os.path.join(self.project.podir, self.dirname)):
+      if versioncontrol.hasversioning(os.path.join(self.project.podir,
+              self.dirname, basename)):
         # l10n: Commit to version control (like CVS or Subversion)
         commitlink = {"href": "index.html?editing=1&docommit=1&commitfile=%s" % (basename), "text": self.localize('Commit')}
         actionlinks.append(commitlink)
