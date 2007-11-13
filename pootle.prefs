@@ -209,6 +209,7 @@ Pootle:
 # Akan
 #    ak.fullname = u'Akan'
 #    ak.pluralequation = u'(n > 1)'
+#    ak.specialchars = "ɛɔƐƆ"
 #    ak.nplurals = u'2'
 
 # العربية
