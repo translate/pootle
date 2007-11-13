@@ -23,6 +23,10 @@
 }
 
 /* Language specific settings (see http://translate.sourceforge.net/wiki/l10n/displaysettings) */
+:lang(ak)
+{
+	font-family: Lucida, "DejaVu Sans", inherit;
+}
 :lang(ar)
 {
 	font-family: Tahoma, Nazli, KacstOne, "DejaVu Sans", inherit;
