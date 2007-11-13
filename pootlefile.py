@@ -638,7 +638,7 @@ class pootlefile(Wrapper):
       header = self.UnitClass("", encoding=self.encoding)
       header.target = ""
     if header:
-      header.initallcomments(blankall=True)
+      header._initallcomments(blankall=True)
       if newheader:
         for i in range(len(header.allcomments)):
           header.allcomments[i].extend(newheader.allcomments[i])
