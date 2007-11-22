@@ -610,7 +610,7 @@ Pootle:
 # Sotho
     st.fullname = u'Sotho'
     st.nplurals = '2'
-    st.pluralequation ='(n != 1'
+    st.pluralequation ='(n != 1)'
 
 # Svenska
 # Swedish
