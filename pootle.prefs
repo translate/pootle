@@ -40,7 +40,7 @@ Pootle:
   # your description to ensure proper rendering and for better accessibility.
   # Be sure to include all contact information that users would need to contact 
   # you for support (adding languages or projects).
-  description = "<span dir='ltr'>This is a demo installation of Pootle.<br /> Also visit the official <a href='http://pootle.wordforge.org'>Pootle server of WordForge</a>. The server administrator has not provided a description or contact information. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</span>"
+  description = "<span dir='ltr' lang='en'>This is a demo installation of Pootle.<br /> Also visit the official <a href='http://pootle.wordforge.org'>Pootle server of WordForge</a>. The server administrator has not provided a description or contact information. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</span>"
 
   # Pootle.defaultlanguage
   # 
@@ -157,7 +157,7 @@ Pootle:
   # interface.
     pootle:
       fullname = "Pootle"
-      description = "<span dir='ltr'>Web translation software of <a href='http://wordforge.org'>WordForge</a>. <br /> See the <a href='http://pootle.wordforge.org'>official Pootle server</a> for the translations of Pootle.</span>"
+      description = "<span dir='ltr' lang='en'>Web translation software of <a href='http://wordforge.org'>WordForge</a>. <br /> See the <a href='http://pootle.wordforge.org'>official Pootle server</a> for the translations of Pootle.</span>"
       checkstyle = "standard"
       localfiletype = "po"
 
@@ -168,7 +168,7 @@ Pootle:
   # use that file for terminology matching for that project.
     terminology:
       fullname = "Terminology"
-      description = "Terminology project that Pootle should use to suggest terms"
+      description = "<span dir='ltr' lang='en'>Terminology project that Pootle should use to suggest terms</span>"
       checkstyle = "standard"
       localfiletype = "po"
 
