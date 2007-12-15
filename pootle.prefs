@@ -413,9 +413,9 @@ Pootle:
 
 # Bahasa Indonesia
 # Indonesian
-#    id.fullname = u'Indonesian'
-#    id.nplurals = '1'
-#    id.pluralequation ='0'
+    id.fullname = u'Indonesian'
+    id.nplurals = '1'
+    id.pluralequation ='0'
 
 # Icelandic
     is.fullname = u'Icelandic'
@@ -443,8 +443,8 @@ Pootle:
 # ភាសា
 # Khmer
 #    km.fullname = u'Khmer'
-#    ka.nplurals = '1'
-#    ka.pluralequation ='0'
+#    km.nplurals = '1'
+#    km.pluralequation ='0'
 
 # 한국어
 # Korean
