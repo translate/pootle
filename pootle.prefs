@@ -139,6 +139,15 @@ Pootle:
   #
   # NOTE: Once a file type is selected for localfiletype, files not matching
   #       the type selected will not be displayed within pootle.
+  #
+  #   treestyle = "nongnu"
+  # The treestyle attribute is used to force Pootle to follow the specified
+  # directory tree layout, without trying to determine it (this can be slow
+  # for projects with lots of files and directories. Possible choices: "gnu"
+  # (one file per language in a directory) or "nongnu" (each language has a 
+  # separate direcotory with its own tree structure. This attribute does not
+  # need to be specified. If it is not specified, Pootle will try to determine
+  # the layout that the project uses.
 
   projects:
   # The project called "pootle" is necessary for Pootle to be localised.  The 
