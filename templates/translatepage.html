@@ -51,14 +51,14 @@
       </div>
     </div>
 
-    <div class="translate-form" dir="ltr">
+    <div class="translate-form">
       <div py:if="notice" dir="$uidir">
         <h3 class="title">${notice.title}</h3>
         <div class="intro">${notice.stoppedby}</div>
         <a href="${notice.finishedlink}">${notice.returnlink}</a>
       </div>
       <form py:if="not notice" action="${actionurl}" method="post" name="translate" id="translate">
-        <table cellpadding="0" cellspacing="0" class="translate-table">
+        <table cellpadding="0" cellspacing="0" class="translate-table" dir="$uidir">
           <tr>
             <th colspan="1" rowspan="1" class="translate-table-title" py:content="original_title">original</th>
 
@@ -68,7 +68,7 @@
           <span  py:for="item in items" py:strip="True">
           <tr title="${item.translator_comments + '\n' + item.developer_comments}">
             <!-- Cell with original -->
-            <td colspan="1" rowspan="1" class="translate-original translate-original-${item.polarity} ${item.focus_class}">
+            <td colspan="1" rowspan="1" class="translate-original translate-original-${item.polarity} ${item.focus_class}" dir="ltr">
               <div id="${item.orig.itemid}" class="translate-original ${item.orig.focus_class}" lang="en">
                 <input py:for="field in item.orig.pure" type="hidden" name="${field.pureid}" value="${field.value}" id="${field.pureid}"/>
                 <div py:if="not item.orig.isplural" class="translation-text" py:content="XML(item.orig.text)"></div>
@@ -124,7 +124,7 @@
                 <!-- Begin: Normal editing -->
                 <span py:if="item.editable and not reviewmode" py:strip="True">
                   <!-- Translation memory -->
-                  <div py:if="item.tm" id="tm">
+                  <div py:if="item.tm" id="tm" class="sidebar" dir="$uidir">
                     <div class="sidetitle" py:content="related_title">Related</div>
                     <div py:for ="unit in item.tm" class="tm-unit" title="${unit.getnotes()}" dir="ltr" lang="en" onclick="writespecial('${unit.target}', '${item.trans.itemid}');">
                       <span class="tm-original">${unit.source}</span>
@@ -194,7 +194,7 @@
                   action = "document.location='%s';"
                 ?>
                 <div py:if="not item.editable" class="${item.state_class}" style="min-height: 1.5em;" ondblclick="${not item.trans.editlink or action % item.trans.editlink.href}">
-                  <div dir="$language.dir" lang="$language.code" class="translation-action">
+                  <div dir="$uidir" lang="$language.code" class="translation-action">
                     <a py:if="item.trans.editlink" lang="$uilanguage" dir="$uidir" href="${item.trans.editlink.href}" class="translation-action" py:content="item.trans.editlink.text" id="${item.trans.editlink.linkid}">Edit</a>
                   </div>
                   <div dir="$language.dir" lang="$language.code" py:if="not item.trans.isplural" class="translation-text" py:content="XML(item.trans.text)">
