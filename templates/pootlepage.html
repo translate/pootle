@@ -11,21 +11,21 @@
   <![endif]-->
 </head>
 <body>
-  <div lang="und" id="banner">
-    <table cellpadding="0" width="100%" border="0" cellspacing="0">
-      <tr>
-        <td rowspan="1" colspan="1" align="left" width="${logo_width}" valign="center">
-          <img src="${logo_image}" height="${logo_height}" width="${logo_width}" alt="${logo_alttext}" style="padding-right: 5px;" />
-        </td>
-
-        <td colspan="1" rowspan="1" width="100%" align="center" valign="middle" class="header">
-          <img src="${banner_image}" height="${banner_height}" alt="${banner_alttext}" style="padding-top:5px;"/>
-        </td>
-      </tr>
-    </table>
+  <div id="banner" lang="$uilanguage" dir="$uidir">
+    <h1 py:content="instancetitle" dir="ltr">
+        Distribution se Pootle
+    </h1>
+    <div class="side">
+        <a href="${baseurl}" py:content="links.home">Home</a> 
+      | <a href="${baseurl}projects/" py:content="links.projects">All Projects</a> 
+      | <a href="${baseurl}languages/" py:content="links.languages">All Languages</a> 
+      <span py:if="session.isopen" py:strip="True"> | <a href="${baseurl}home/" py:content="links.account">My account</a> </span> 
+      <span py:if="session.issiteadmin" py:strip="True"> | <a href="${baseurl}admin/" py:content="links.admin">Admin</a> </span>
+      | <a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a>
+    </div>
   </div>
 
-  <div id="links" dir="$uidir" lang="$uilanguage">
+  <div id="links" class="sidebar" dir="$uidir" lang="$uilanguage">
     <!-- Account information -->
     <div class="account">
     <div class="side">
@@ -40,19 +40,6 @@
       <a href="${baseurl}register.html" py:content="links.register">Register</a> | 
       <a href="${baseurl}activate.html" py:content="links.activate">Activate</a>
     </div>
-    </div>
-    <br clear="all" />
-    
-    <div class="sidetitle" py:content="instancetitle">
-      Pootle
-    </div>
-    <div class="side">
-        <a href="${baseurl}" py:content="links.home">Home</a> 
-      | <a href="${baseurl}projects/" py:content="links.projects">All Projects</a> 
-      | <a href="${baseurl}languages/" py:content="links.languages">All Languages</a> 
-      <span py:if="session.isopen" py:strip="True"> | <a href="${baseurl}home/" py:content="links.account">My account</a> </span> 
-      <span py:if="session.issiteadmin" py:strip="True"> | <a href="${baseurl}admin/" py:content="links.admin">Admin</a> </span>
-      | <a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a>
     </div>
 
   </div>
