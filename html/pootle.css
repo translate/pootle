@@ -80,16 +80,19 @@ a:visited	{ color: #004077; text-decoration: none; }
 a:hover[href]	{ color: #004077; text-decoration: underline; }
 a:active[href]	{ color: #004077; text-decoration: underline; }
 html {
-	height: 98%;
-	min-height: 98%;
+/*	height: 98%;*/
+/*	min-height: 98%;*/
 }
 body {
-	height: 98%;
-	min-height: 98%;
+/*	height: 98%;*/
+/*	min-height: 98%;*/
+	background: url(/images/gradient2.png) repeat-x scroll;
+	margin: 0px;
+	padding: 0px;
 }
 #abovefooter
 {
-	min-height: 98%;
+/*	min-height: 98%;*/
 }
 #about {
 	position: relative;
@@ -189,7 +192,7 @@ div.item-statistics
 div.translate-form
 {
 	font-size: x-small; 
-	direction: ltr;
+/*	direction: ltr;*/
 }
 table.translate-table
 {
@@ -206,7 +209,7 @@ table.translate-table
 }
 div.translate-original-focus
 {
-/*        font-weight: bolder;*/
+/*	font-weight: bolder;*/
 }
 td.translate-original
 {
@@ -335,30 +338,57 @@ td.stats-graph
 
 div.intro {
 	color:#000;
+	background: #FFFFDD;
+	border: solid #777 1px;
 	font-weight:normal;
 	margin-bottom:15px;
 	margin-left:15px;
 	margin-right: 15px;
+	padding: 10px;
+}
+div.info {
+	color:#000;
+	font-weight:normal;
+	margin-left:15px;
+	margin-right: 15px;
+	padding: 10px;
 }
 #banner
 {
-	background-color: #FFF;
-	font-size:large;
-	font-weight:normal;
-	text-align:left;
-	width: 72%;
-	direction: ltr;
+	min-height: 60px;
 }
-.header
+#banner > h1
 {
-	background-color: #00b6de;
+	background: url(/images/pootle-medium.png) no-repeat scroll left top;
+	padding-left: 80px;
+	font-size: xx-large;
+	color: black;
+	min-height: 62px;
+	text-align: left;
+}
+#banner[dir="rtl"] > h1
+{
+	background: url(/images/pootle-medium.png) no-repeat scroll right top;
+	padding-right: 80px;
+	padding-left: 0px;
+	text-align: right;
 }
 #content
 {
-	float: left;
 	width: 72%;
-	margin-right: 27%;
 	padding-bottom:10px;
+	/* ltr: */
+	float: left;
+	margin-right: 27%;
+	padding-left: 5px;
+}
+#content[dir="rtl"]
+{
+	float: right;
+	margin-left: 27%;
+	margin-right: 0%;
+	padding-right: 5px;
+	padding-left: 0px;
 }
 #fullwidthcontent
 {
@@ -367,35 +397,35 @@ div.intro {
 	margin-right:0px;
 	padding-bottom:10px;
 }
-
-#links
+.sidebar
 {
-	position: absolute;
-	right: 0px;
-	top: 0px;
-	padding-right:15px;
-	padding-left:15px;
+	padding-right:10px;
+	padding-left:10px;
 	margin-left:0px;
 	margin-right:0px;
 	padding-bottom:10px;
-	border-left: 1px dotted #999;
 	border-bottom:1px dotted #999;
 	width:22%;
+}
+.sidebar[dir="ltr"]
+{
+	right: 0px;
+	border-left: 1px dotted #999;
+}
+.sidebar[dir="rtl"]
+{
+	left: 0px;
+	border-right: 1px dotted #999;
+}
+#links
+{
+	position: absolute;
+	top: 0px;
 }
 #tm
 {
 	position: absolute;
-	right: 0px;
-	padding-right:15px;
-	padding-left:15px;
-	margin-left:0px;
-	margin-right:0px;
-	padding-bottom:5px;
 	border-top: 1px dotted #999;
-	border-left: 1px dotted #999;
-	border-bottom:1px dotted #999;
-	width: 22%;
-	/* IE and Opera versions before 9.0 calculates 20% of wrong value :-( */
 }
 .sidetitle
 {
@@ -419,8 +449,6 @@ div.intro {
 }
 .account
 {
-	float: right;
-	text-align: right;
 }
 .upload
 {
@@ -428,12 +456,10 @@ div.intro {
 }
 .tm-unit
 {
-	margin: 5px 0px 5px 2px;
-	padding: 0px 2px 0px 2px;
+	margin: 5px 0px 5px 0px;
+	padding: 0px 2px 0px 0px;
 	background-color: #F7F7F7;
 	position: relative;
-	left: -10px;
-	width: 104%;
 }
 .tm-original
 {
