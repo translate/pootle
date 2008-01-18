@@ -9,8 +9,6 @@
   <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
 <script src="${baseurl}js/autoexpand.js" type="text/javascript">
-<!--
-//-->
 </script>
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
@@ -23,7 +21,7 @@
 
   <div id="content" dir="$uidir" lang="$uilanguage">
     <div class="navbar" py:for="item in navitems">
-      <!-- search form -->
+      <!--! search form -->
       <div py:if="search" class="searchform" dir="$uidir" lang="$uilanguage">
         <form action="translate.html" method="post" name="searchform" id="searchform">
           ${search.title}
@@ -31,7 +29,7 @@
           <input type="hidden" name="pofilename" value="${pofilename}" />
         </form>
       </div>
-      <!-- Navigation bar -->
+      <!--! Navigation bar -->
       <div over:include="navbar#item">
         <h3 over:replace="itemtitle" class="title">
           <span py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</span>
@@ -71,7 +69,7 @@
             comment = '\n'.join(comments) or None
           ?>
           <tr title="${comment}">
-            <!-- Cell with original -->
+            <!--! Cell with original -->
             <td colspan="1" rowspan="1" class="translate-original translate-original-${item.polarity} ${item.focus_class}" dir="ltr">
               <div id="${item.orig.itemid}" class="translate-original ${item.orig.focus_class}" lang="en">
                 <input py:for="field in item.orig.pure" type="hidden" name="${field.pureid}" value="${field.value}" id="${field.pureid}"/>
@@ -88,10 +86,10 @@
                 </div>
             </td>
 
-            <!-- Cell with translation (view/suggest/review/edit) -->
+            <!--! Cell with translation (view/suggest/review/edit) -->
             <td lang="$uilanguage" dir="$uidir" colspan="1" rowspan="1" class="translate-translation translate-translation-${item.polarity} ${item.focus_class}">
               <div id="${item.trans.itemid}" class="translate-translation ${item.orig.focus_class}">
-                <!-- Review suggestions -->
+                <!--! Review suggestions -->
                 <span py:if="item.editable and reviewmode" class="translation-text">
                   <a py:if="item.trans.editlink" href="${item.trans.editlink.href}" class="translation-action" py:content="item.trans.editlink.text" id="${item.trans.editlink.linkid}">Edit</a>
                   <b class="${item.state_class}" py:content="item.trans.current_title">Current Translation:</b><br />
@@ -125,9 +123,9 @@
                   <input py:if="item.trans.skip" type="submit" name="skip${item.trans.skip.item}" accesskey="k" value="${item.trans.skip.text}"/>
                 </span>
 
-                <!-- Begin: Normal editing -->
+                <!--! Begin: Normal editing -->
                 <span py:if="item.editable and not reviewmode" py:strip="True">
-                  <!-- Translation memory -->
+                  <!--! Translation memory -->
                   <div py:if="item.tm" id="tm" class="sidebar" dir="$uidir">
                     <div class="sidetitle" py:content="related_title">Related</div>
                     <div py:for ="unit in item.tm" class="tm-unit" title="${unit.getnotes()}" dir="ltr" lang="en" onclick="writespecial('${unit.target}', '${item.trans.itemid}');">
@@ -135,14 +133,14 @@
                       <span class="tm-translation" dir="$language.dir" lang="$language.code">${unit.target}</span>
                     </div>
                   </div>
-                  <!-- No plurals -->
+                  <!--! No plurals -->
                   <span py:if="not item.trans.isplural" py:strip="True">
                     <!--! TODO: spell checking -->
                     <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}"  rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(item.trans.text)">
                       translatable text
                     </textarea>
                   </span>
-                  <!-- with plurals -->
+                  <!--! with plurals -->
                   <span py:if="item.trans.isplural" py:strip="True">
                     <span py:for="form in item.trans.forms" py:strip="True">
                       <div class="translation-text-headers" py:content="form.title">Plural Form ${form.n}</div><br />
@@ -155,7 +153,7 @@
                     </span>
                   </span>
 
-                  <!-- Buttons, resize links, special characters -->
+                  <!--! Buttons, resize links, special characters -->
                   <span py:strip="True" py:for="buttons in [item.trans.buttons]">
                     <div>
                       <input py:if="'back' in buttons.desired" type="button" name="back${buttons.item}" accesskey="b" value="${buttons.back}" onclick="history.back(); return false;" />
@@ -186,14 +184,14 @@
                     </span>
                   </span>
                   <script type="text/javascript">
-                    <!-- //We should comment this for old browsers, but then kid doesn't evaluate the expression -->
+                    <!--! //We should comment this for old browsers, but then kid doesn't evaluate the expression -->
                     document.forms.translate['${item.trans.focusbox}'].focus()
-                    <!-- //-->
+                    <!--! //-->
                   </script>
                 </span>
-                <!-- End: Normal editing -->
+                <!--! End: Normal editing -->
 
-                <!-- Normal view mode -->
+                <!--! Normal view mode -->
                 <?python
                   action = "document.location='%s';"
                 ?>

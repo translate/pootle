@@ -8,7 +8,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-  <!-- the 'sorttable.js' script depends on the variable 'baseurl' -->
+  <!--! the 'sorttable.js' script depends on the variable 'baseurl' -->
   <script type="text/javascript"> var baseurl = "${baseurl}"; </script>
   <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
   <!--[if lt IE 7.]>
@@ -24,14 +24,14 @@
     <div class="intro" py:if="message" py:content="message">Message</div>
 
     <div class="navbar" py:for="item in navitems">
-      <!-- search form -->
+      <!--! search form -->
       <div py:if="search" class="searchform" dir="$uidir" lang="$uilanguage">
         <form action="translate.html" method="post" name="searchform" id="searchform">
           ${search.title}
           <input type="text" size="15" name="searchtext" value="" />
         </form>
       </div>
-      <!-- Navigation bar -->
+      <!--! Navigation bar -->
       <div over:include="navbar#item">
         <h3 over:replace="itemtitle" class="title">
           <span py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</span>
@@ -45,7 +45,7 @@
       <div over:include="navbar#itemstats"/>
     </div>
 
-    <!-- The statistics view -->
+    <!--! The statistics view -->
     <div py:if="not editing and children">
       <br clear="all" />     
       <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
@@ -72,7 +72,7 @@
       </table>
     </div>
 
-    <!-- The editing view -->
+    <!--! The editing view -->
     <div py:if="editing" py:for="item in children" py:strip="True">
       <div py:if="'isgoal' in item" class="goalitem">
         <div over:include="navbar#item">
