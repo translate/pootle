@@ -10,7 +10,7 @@ from translate.misc import wStringIO
 
 import os
 
-class TestPootleFile(test_po.TestPO):
+class TestPootleFile(test_po.TestPOFile):
     class pootletestfile(pootlefile.pootlefile):
         def __init__(self):
             """wrapper constructor for pootlefile that uses temporary filename"""
