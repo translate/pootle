@@ -66,7 +66,11 @@
           </tr>
 
           <span  py:for="item in items" py:strip="True">
-          <tr title="${item.translator_comments + '\n' + item.developer_comments}">
+          <?python
+            comments = filter(None, [item.translator_comments, item.developer_comments])
+            comment = '\n'.join(comments) or None
+          ?>
+          <tr title="${comment}">
             <!-- Cell with original -->
             <td colspan="1" rowspan="1" class="translate-original translate-original-${item.polarity} ${item.focus_class}" dir="ltr">
               <div id="${item.orig.itemid}" class="translate-original ${item.orig.focus_class}" lang="en">
