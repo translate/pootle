@@ -357,7 +357,7 @@ div.info {
 {
 	min-height: 60px;
 }
-#banner > h1
+#banner h1
 {
 	background: url(/images/pootle-medium.png) no-repeat scroll left top;
 	padding-left: 80px;
@@ -366,7 +366,7 @@ div.info {
 	min-height: 62px;
 	text-align: left;
 }
-#banner[dir="rtl"] > h1
+#banner[dir="rtl"] h1
 {
 	background: url(/images/pootle-medium.png) no-repeat scroll right top;
 	padding-right: 80px;
