@@ -355,7 +355,6 @@ div.info {
 }
 #banner
 {
-	min-height: 60px;
 }
 #banner h1
 {
@@ -363,7 +362,9 @@ div.info {
 	padding-left: 80px;
 	font-size: xx-large;
 	color: black;
+	height: auto !important;
 	min-height: 62px;
+	height: 62px;
 	text-align: left;
 }
 #banner[dir="rtl"] h1
