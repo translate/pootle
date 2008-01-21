@@ -128,8 +128,8 @@
                   <!--! Translation memory -->
                   <div py:if="item.tm" id="tm" class="sidebar" dir="$uidir">
                     <div class="sidetitle" py:content="related_title">Related</div>
-                    <div py:for ="unit in item.tm" class="tm-unit" title="${unit.getnotes()}" dir="ltr" lang="en" onclick="writespecial('${unit.target}', '${item.trans.itemid}');">
-                      <span class="tm-original">${unit.source}</span>
+                    <div py:for ="unit in item.tm" class="tm-unit" title="${unit.getnotes()}" onclick="writespecial('${unit.target}', '${item.trans.itemid}');">
+                      <span class="tm-original" dir="ltr" lang="en">${unit.source}</span>
                       <span class="tm-translation" dir="$language.dir" lang="$language.code">${unit.target}</span>
                     </div>
                   </div>
