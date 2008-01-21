@@ -418,12 +418,12 @@ div.info {
 	left: 0px;
 	border-right: 1px dotted #999;
 }
-#links
+html>body #links
 {
 	position: absolute;
 	top: 0px;
 }
-#tm
+html>body #tm
 {
 	position: absolute;
 	border-top: 1px dotted #999;
