@@ -979,10 +979,11 @@ class TranslationProject(object):
           assigncount += 1
     return assigncount
 
-  def updatequickstats(self, pofilename, translatedwords, translated, fuzzywords, fuzzy, totalwords, total):
+  def updatequickstats(self, pofilename, translatedwords, translated, fuzzywords, fuzzy, totalwords, total, save=True):
     """updates the quick stats on the given file"""
     self.quickstats[pofilename] = (translatedwords, translated, fuzzywords, fuzzy, totalwords, total)
-    self.savequickstats()
+    if save:
+      self.savequickstats()
 
   def savequickstats(self):
     """saves the quickstats"""
@@ -1031,7 +1032,8 @@ class TranslationProject(object):
       alltotalwords += totalwords
       alltotal += total
     for pofilename in slowfiles:
-      self.pofiles[pofilename].statistics.updatequickstats()
+      self.pofiles[pofilename].statistics.updatequickstats(save=False)
+      self.savequickstats()
       translatedwords, translated, fuzzywords, fuzzy, totalwords, total = self.quickstats[pofilename]
       alltranslatedwords += translatedwords
       alltranslated += translated

@@ -131,7 +131,7 @@ class pootlestatistics:
       pass
     self.updatequickstats()
 
-  def updatequickstats(self):
+  def updatequickstats(self, save=True):
     """updates the project's quick stats on this file"""
     translated = self.stats.get("translated")
     fuzzy = self.stats.get("fuzzy")
@@ -141,7 +141,8 @@ class pootlestatistics:
     self.basefile.project.updatequickstats(self.basefile.pofilename, 
         translatedwords, len(translated), 
         fuzzywords, len(fuzzy), 
-        totalwords, len(self.sourcewordcounts))
+        totalwords, len(self.sourcewordcounts),
+        save)
 
   def calcstats(self):
     """calculates translation statistics for the given file"""
