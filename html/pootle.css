@@ -86,7 +86,7 @@ html {
 body {
 /*	height: 98%;*/
 /*	min-height: 98%;*/
-	background: url(/images/gradient2.png) repeat-x scroll;
+	background: url(images/gradient2.png) repeat-x scroll;
 	margin: 0px;
 	padding: 0px;
 }
@@ -358,7 +358,7 @@ div.info {
 }
 #banner h1
 {
-	background: url(/images/pootle-medium.png) no-repeat scroll left top;
+	background: url(images/pootle-medium.png) no-repeat scroll left top;
 	padding-left: 80px;
 	font-size: xx-large;
 	color: black;
@@ -369,7 +369,7 @@ div.info {
 }
 #banner[dir="rtl"] h1
 {
-	background: url(/images/pootle-medium.png) no-repeat scroll right top;
+	background: url(images/pootle-medium.png) no-repeat scroll right top;
 	padding-right: 80px;
 	padding-left: 0px;
 	text-align: right;
