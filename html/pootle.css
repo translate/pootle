@@ -407,23 +407,25 @@ div.info {
 	padding-bottom:10px;
 	border-bottom:1px dotted #999;
 	width:22%;
-}
-.sidebar[dir="ltr"]
-{
+	/* ltr: */
 	right: 0px;
 	border-left: 1px dotted #999;
 }
 .sidebar[dir="rtl"]
 {
+	/* undo ltr: */
+	right: auto;
+	border-left: none;
+	/* rtl: */
 	left: 0px;
 	border-right: 1px dotted #999;
 }
-html>body #links
+#links
 {
 	position: absolute;
 	top: 0px;
 }
-html>body #tm
+#tm
 {
 	position: absolute;
 	border-top: 1px dotted #999;
