@@ -216,11 +216,11 @@
             <td  class="translate-original translate-original-${item.polarity} comments">
               <span py:if="item.developer_comments" py:strip="True">
                 <div py:content="developer_comments_title">Developer comments:</div>
-                <div py:if="item.editable and item.developer_comments" class="developer-comments" py:content="XML(item.developer_comments)">
+                <div py:if="item.editable and item.developer_comments" class="developer-comments" lang="en" dir="ltr" py:content="XML(item.developer_comments)">
                    Developer comments.
                 </div>
               </span>
-                <div py:if="item.editable and item.locations" class="translate-locations" py:content="item.locations">
+                <div py:if="item.editable and item.locations" class="translate-locations" lang="en" dir="ltr" py:content="item.locations">
                    Locations
                 </div>
             </td>
