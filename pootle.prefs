@@ -64,14 +64,6 @@ Pootle:
     smtpserver = "localhost"
   # supportaddress = "pootle-admin@yourdomain.org"
 
-  # logo URLs
-  # Use either a complete URL, or a URL relative to the pootle server's
-  # root directory.
-  logos:
-    medium = "images/pootle-medium.png"
-    normal = "images/pootle.png"
-    banner = "images/WordForge-white.png"
-
   # Where users are directed by default when they login
   homepage = "home/"
 
