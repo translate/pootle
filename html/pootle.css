@@ -222,6 +222,8 @@ td.translate-original
 td.translate-focus
 {
 	border-top:2px solid #000000;
+	padding-top: 1px;
+	vertical-align: top;
 }
 td.comments
 {
