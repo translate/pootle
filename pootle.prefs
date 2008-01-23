@@ -308,13 +308,13 @@ Pootle:
     en.nplurals = '2'
     en.pluralequation ='(n != 1)'
 
-# English (British)
-#    en_GB.fullname = u'English (British)'
+# English (United Kingdom)
+#    en_GB.fullname = u'English (United Kingdom)'
 #    en_GB.nplurals = '2'
 #    en_GB.pluralequation ='(n != 1)'
 
-# English (South African)
-    en_ZA.fullname = u'English (South African)'
+# English (South Africa)
+    en_ZA.fullname = u'English (South Africa)'
     en_ZA.nplurals = '2'
     en_ZA.pluralequation ='(n != 1)'
 
@@ -574,7 +574,7 @@ Pootle:
 
 # Português do Brasil
 # Brazilian Portuguese
-    pt_BR.fullname = u'Brazilian Portuguese'
+    pt_BR.fullname = u'Portuguese (Brazil)'
     pt_BR.nplurals = '2'
     pt_BR.pluralequation ='(n > 1)'
 
