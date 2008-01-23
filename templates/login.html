@@ -18,7 +18,7 @@
   <div id="banner" over:include="pootlepage#banner"/>
 
   <div id="content" dir="$uidir" lang="$uilanguage">
-    <div class="intro" py:content="introtext">
+    <div class="intro" py:if="introtext" py:content="introtext">
       Login failed
     </div>
       <form action="" method="post" name="loginform" id="loginform">
