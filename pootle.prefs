@@ -179,7 +179,14 @@ Pootle:
   #
   #   fullname = "Afrikaans"
   # The fullname of the language, also from ISO639 but can be the name of the
-  # language in your language not necessarily in English.
+  # language in your language not necessarily in English. When the iso-codes
+  # package is installed, translated language names can be provided to 
+  # correspond to the interface language. The exact English names used in the 
+  # iso-codes package has to be used for translation to be successful. The 
+  # language name can also contain a country name in brackets at the back, in 
+  # which case a translation for the country name will similarly be attempted 
+  # using the iso-codes package. For example:
+  #   fullname = "Portuguese (Brazil)"
   #
   #   specialchars = "ÄËÏÖÜäëïöü ÂÊÎÔÛâêîôû"
   # Special characters used by the language that you wish users to be able to
