@@ -21,25 +21,6 @@
 
 import os
 
-def layout_banner(maxheight, session, baseurl):
-  """calculates dimensions, image name for banner"""
-  logo_width, logo_height = min((98*maxheight/130, maxheight), (98, 130))
-  banner_width, banner_height = min((290*maxheight/160, maxheight), (290, 160))
-
-  if logo_width <= 61:
-    logo_image = getattr(getattr(session.instance, "logos", None), "medium", "images/pootle-medium.png")
-  else:
-    logo_image = getattr(getattr(session.instance, "logos", None), "normal", "images/pootle.png")
-  banner_image = getattr(getattr(session.instance, "logos", None), "banner", "images/WordForge-white.png")
-  # non-absolute paths are relative to baseurl
-  if not banner_image.startswith("/"):
-  	banner_image = baseurl + banner_image
-  if not logo_image.startswith("/"):
-  	logo_image = baseurl + logo_image
-  return {"logo_width": logo_width, "logo_height": logo_height,
-    "banner_width": banner_width, "banner_height": banner_height,
-    "logo_image": logo_image, "banner_image": banner_image}
-
 def localize_links(session):
   """Localize all the generic links"""
   links = {}
@@ -97,10 +78,7 @@ def completetemplatevars(templatevars, session, bannerheight=135):
     templatevars["baseurl"] = getattr(session.instance, "baseurl", "/")
     if not templatevars["baseurl"].endswith("/"):
     	templatevars["baseurl"] += "/"
-  banner_layout = layout_banner(bannerheight, session, templatevars["baseurl"])
-  banner_layout["logo_alttext"] = session.localize("Pootle Logo")
-  banner_layout["banner_alttext"] = session.localize("WordForge Translation Project")
-  templatevars.update(banner_layout)
+  templatevars["logo_alttext"] = session.localize("Pootle Logo")
   templatevars["aboutlink"] = session.localize("About this Pootle server")
   templatevars["uilanguage"] = weblanguage(session.language)
   templatevars["uidir"] = languagedir(session.language)
