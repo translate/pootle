@@ -211,6 +211,10 @@ div.translate-original-focus
 {
 /*	font-weight: bolder;*/
 }
+.translate-focus div.translate-original
+{
+	border: 3px solid black;
+}
 td.translate-original
 {
 	width: 50%;
