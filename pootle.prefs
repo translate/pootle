@@ -263,7 +263,7 @@ Pootle:
 
 # Català
 # Catalan
-    ca.fullname = u'Catalan'
+    ca.fullname = u'Catalan; Valencian'
     ca.nplurals = '2'
     ca.pluralequation ='(n != 1)'
 
@@ -325,7 +325,7 @@ Pootle:
 
 # Español
 # Spanish
-    es.fullname = u'Spanish'
+    es.fullname = u'Spanish; Castillian'
     es.nplurals = '2'
     es.pluralequation ='(n != 1)'
 
@@ -373,7 +373,7 @@ Pootle:
 
 # Frysk
 # Frisian
-#    fy.fullname = u'Frisian'
+#    fy.fullname = u'Western Frisian'
 #    fy.nplurals = '2'
 #    fy.pluralequation ='(n != 1)'
 
@@ -529,7 +529,7 @@ Pootle:
 
 # Nederlands
 # Dutch
-    nl.fullname = u'Dutch'
+    nl.fullname = u'Dutch; Flemish'
     nl.nplurals = '2'
     nl.pluralequation ='(n != 1)'
 
@@ -551,7 +551,7 @@ Pootle:
 #    or.pluralequation ='(n != 1)'
 
 # Punjabi
-#    pa.fullname = u'Punjabi'
+#    pa.fullname = u'Panjabi; Punjabi'
 #    pa.nplurals = '2'
 #    pa.pluralequation ='(n != 1)'
 
@@ -616,7 +616,7 @@ Pootle:
 
 # Sesotho
 # Sotho
-    st.fullname = u'Sotho'
+    st.fullname = u'Sotho, Southern'
     st.nplurals = '2'
     st.pluralequation ='(n != 1)'
 
