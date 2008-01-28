@@ -33,14 +33,14 @@ Pootle:
   # test it well, as incorrect markup (like unbalanced quotes or HTML tags) 
   # could prevent the page from displaying at all. The text up to the first 
   # "br" tag is also displayed in the meta description tags of these pages.
-  # Consider adding <span dir="ltr"> ... </span> around any text in a left-to-
+  # Consider adding <div dir="ltr"> ... </div> around any text in a left-to-
   # right language to guarantee good rendering for users of right-to-left 
   # languages and vice versa if you put a message in a right-to-left language.
   # For multilingual servers, you might also want to indicate the language of
   # your description to ensure proper rendering and for better accessibility.
   # Be sure to include all contact information that users would need to contact 
   # you for support (adding languages or projects).
-  description = "<span dir='ltr' lang='en'>This is a demo installation of Pootle.<br /> You can also visit the official <a href='http://pootle.wordforge.org'>Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</span>"
+  description = "<div dir='ltr' lang='en'>This is a demo installation of Pootle.<br /> You can also visit the official <a href='http://pootle.wordforge.org'>Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</div>"
 
   # Pootle.defaultlanguage
   # 
@@ -113,7 +113,7 @@ Pootle:
   # for tooltips in some Pootle pages.  Be sure to test it well, as incorrect 
   # markup (like unbalanced quotes or HTML tags) could prevent the page from 
   # displaying at all.
-  # Consider adding <span dir="ltr"> ... </span> around any text in a left-to-
+  # Consider adding <div dir="ltr"> ... </div> around any text in a left-to-
   # right language to guarantee good rendering for users of right-to-left 
   # languages and vice versa if you put a message in a right-to-left language.
   # For multilingual servers, you might also want to indicate the language of
@@ -149,7 +149,7 @@ Pootle:
   # interface.
     pootle:
       fullname = "Pootle"
-      description = "<span dir='ltr' lang='en'>Web translation software. <br /> See the <a href='http://pootle.wordforge.org'>official Pootle server</a> for the translations of Pootle.</span>"
+      description = "<div dir='ltr' lang='en'>Interface translations for Pootle. <br /> See the <a href='http://pootle.wordforge.org'>official Pootle server</a> for the translations of Pootle.</div>"
       checkstyle = "standard"
       localfiletype = "po"
 
@@ -160,7 +160,7 @@ Pootle:
   # use that file for terminology matching for that project.
     terminology:
       fullname = "Terminology"
-      description = "<span dir='ltr' lang='en'>Terminology project that Pootle should use to suggest terms.<br />There might be useful terminology files on the <a href='http://pootle.wordforge.org/projects/terminology/'>official Pootle server.</span>"
+      description = "<div dir='ltr' lang='en'>Terminology project that Pootle should use to suggest terms.<br />There might be useful terminology files on the <a href='http://pootle.wordforge.org/projects/terminology/'>official Pootle server.</div>"
       checkstyle = "standard"
       localfiletype = "po"
 
