@@ -469,6 +469,7 @@ div.info {
 	padding: 0px 2px 0px 0px;
 	background-color: #F7F7F7;
 	position: relative;
+	cursor: pointer;
 }
 .tm-original
 {
