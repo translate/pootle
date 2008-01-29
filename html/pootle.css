@@ -385,7 +385,10 @@ div.info {
 	width: 72%;
 	padding-bottom:10px;
 	/* ltr: */
-	float: left;
+	/* Removing the float styling fixes the broken account area on 
+	 * about.html in old versions of Internet Explorer. See bug 253.
+	 */
+/*	float: left;*/
 	margin-right: 27%;
 	padding-left: 5px;
 }
