@@ -1301,7 +1301,7 @@ class TranslationProject(object):
     converterclass = converters.get(destformat, None)
     if converterclass is None:
       raise ValueError("No converter available for %s" % destfilename)
-    contents = converterclass().convertfile(pofile)
+    contents = converterclass().convertstore(pofile)
     if not isinstance(contents, basestring):
       contents = str(contents)
     try:
