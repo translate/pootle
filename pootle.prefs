@@ -160,7 +160,7 @@ Pootle:
   # use that file for terminology matching for that project.
     terminology:
       fullname = "Terminology"
-      description = "<div dir='ltr' lang='en'>Terminology project that Pootle should use to suggest terms.<br />There might be useful terminology files on the <a href='http://pootle.wordforge.org/projects/terminology/'>official Pootle server.</div>"
+      description = "<div dir='ltr' lang='en'>Terminology project that Pootle should use to suggest terms.<br />There might be useful terminology files on the <a href='http://pootle.wordforge.org/projects/terminology/'>official Pootle server</a>.</div>"
       checkstyle = "standard"
       localfiletype = "po"
 
