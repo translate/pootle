@@ -538,7 +538,7 @@ class PootleOptionParser(simplewebserver.WebOptionParser):
       import psyco
       self.add_option('', "--psyco", dest="psyco", default=None, choices=psycomodes, metavar="MODE",
                       help="use psyco to speed up the operation, modes: %s" % (", ".join(psycomodes)))
-    except:
+    except ImportError, e:
       return
 
 def checkversions():
