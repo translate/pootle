@@ -28,6 +28,8 @@ from translate.storage import po
 import difflib
 import urllib
 
+xml_re = re.compile("&lt;.*?&gt;")
+
 def oddoreven(polarity):
   if polarity % 2 == 0:
     return "even"
@@ -520,6 +522,9 @@ class TranslatePage(pagelayout.PootleNavPage):
     else:
       fancyescape = lambda escape: \
           '<span class="translation-highlight-escape">%s</span>' % escape
+      fancy_xml = lambda escape: \
+            '<span class="translation-highlight-html">%s</span>' % escape.group()
+      text = xml_re.sub(fancy_xml, text)
 
       text = text.replace("\r\n", fancyescape('\\r\\n') + '<br />')
       text = text.replace("\n", fancyescape('\\n') + '<br />')
