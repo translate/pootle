@@ -500,6 +500,8 @@ class TranslationProject(object):
         origpofile.mergefile(newfile, session.username)
       elif "translate" in rights:
         origpofile.mergefile(newfile, session.username, allownewstrings=False)
+      elif "suggest" in rights:
+        origpofile.mergefile(newfile, session.username, suggestions=True)
       else:
         raise RightsError(session.localize("You do not have rights to upload files here"))
     else:

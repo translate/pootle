@@ -378,7 +378,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     if "admin" in self.rights:
       if self.showgoals:
         self.templatevars["goals"] = self.getgoalbox()
-    if "admin" in self.rights or "translate" in self.rights:
+    if "admin" in self.rights or "translate" in self.rights or "suggest" in self.rights:
       self.templatevars["upload"] = self.getuploadbox()
 
   def handleactions(self):

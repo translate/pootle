@@ -575,12 +575,13 @@ class pootlefile(Wrapper):
         matches.append((oldpo, None))
     return matches
 
-  def mergeitem(self, oldpo, newpo, username):
+  def mergeitem(self, oldpo, newpo, username, suggest=False):
     """merges any changes from newpo into oldpo"""
     unchanged = oldpo.target == newpo.target
-    if not oldpo.target or not newpo.target or oldpo.isheader() or newpo.isheader() or unchanged:
+
+    if not suggest and (not oldpo.target or not newpo.target or oldpo.isheader() or newpo.isheader() or unchanged):
       oldpo.merge(newpo)
-    else:
+    elif not unchanged:
       for item, matchpo in enumerate(self.transunits):
         if matchpo == oldpo:
           strings = getattr(newpo.target, "strings", [newpo.target])
@@ -588,11 +589,16 @@ class pootlefile(Wrapper):
           return
       raise KeyError("Could not find item for merge")
 
-  def mergefile(self, newfile, username, allownewstrings=True):
+  def mergefile(self, newfile, username, allownewstrings=True, suggestions=False):
     """make sure each msgid is unique ; merge comments etc from duplicates into original"""
     self.makeindex()
     matches = self.matchitems(newfile)
     for oldpo, newpo in matches:
+      if suggestions:
+        if oldpo and newpo:
+            self.mergeitem(oldpo, newpo, username, suggest=True)
+        continue
+
       if oldpo is None:
         if allownewstrings:
           if isinstance(newpo, po.pounit):
@@ -608,7 +614,7 @@ class pootlefile(Wrapper):
         if hasattr(newpo, "sourcecomments"):
           oldpo.sourcecomments = newpo.sourcecomments
 
-    if not isinstance(newfile, po.pofile):
+    if not isinstance(newfile, po.pofile) or suggestions:
       #TODO: We don't support updating the header yet.
       self.savepofile()
       # the easiest way to recalculate everything
