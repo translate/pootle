@@ -325,7 +325,7 @@ Pootle:
 
 # Español
 # Spanish
-    es.fullname = u'Spanish; Castillian'
+    es.fullname = u'Spanish; Castilian'
     es.nplurals = '2'
     es.pluralequation ='(n != 1)'
 
