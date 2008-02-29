@@ -757,28 +757,9 @@ class TranslationProject(object):
       yield self.pofilenames[index]
       index += 1
 
-  def check_indexer(self):
-    """test if there is a supported indexing engine
-
-    PyLucene v2.x is not supported yet, since the arguments of QueryParser changed
-    see http://lists.osafoundation.org/pipermail/pylucene-dev/2006-May/001067.html
-    """
-    if not indexer.HAVE_INDEXER:
-        return False
-    try:
-        lucene_version = indexer.indexer.LUCENE_VERSION
-        if lucene_version.startswith("1."):
-            return True
-        else:
-            # PyLucene v2.x is not supported yet
-            return False
-    except AttributeError:
-        # any other indexer is ok
-        return True
-
   def initindex(self):
     """initializes the search index"""
-    if not self.check_indexer():
+    if not indexer.HAVE_INDEXER:
       return
     self.indexdir = os.path.join(self.podir, ".poindex-%s-%s" % (self.projectcode, self.languagecode))
     class indexconfig:
@@ -794,7 +775,7 @@ class TranslationProject(object):
 
   def updateindex(self, pofilename, items=None, optimize=True):
     """updates the index with the contents of pofilename (limit to items if given)"""
-    if not self.check_indexer():
+    if not indexer.HAVE_INDEXER:
       return
     pofile = self.pofiles[pofilename]
     # check if the pomtime in the index == the latest pomtime
@@ -865,7 +846,7 @@ class TranslationProject(object):
 
   def indexsearch(self, search, returnfields):
     """returns the results from searching the index with the given search"""
-    if not self.check_indexer():
+    if not indexer.HAVE_INDEXER:
       return False
     searchparts = []
     if search.searchtext:
