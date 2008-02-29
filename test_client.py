@@ -188,6 +188,30 @@ class ServerTester:
 #                pocontents_download = self.fetch_page("zxx/testproject/test_upload.po")
 #                assert pocontents_download == pocontents_expected
 
+    def test_upload_suggestions(self):
+        """tests that we can upload when we only have suggest rights"""
+        self.login()
+        podir = self.setup_testproject_dir(perms="view, suggest")
+
+        tree = potree.POTree(self.prefs.Pootle)
+        project = projects.TranslationProject("zxx", "testproject", tree)
+        po1contents = '#: test.c\nmsgid "test"\nmsgstr ""\n'
+        open(os.path.join(podir, "test_upload.po"), "w").write(po1contents)
+
+        fields = [("doupload", "Upload File")]
+        pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
+        files = [("uploadfile", "test_upload.po", pocontents)]
+        content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
+        headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
+        response = self.post_request("zxx/testproject/", upload_contents, headers)
+        assert ' href="test_upload.po?' in response
+        # Check that the orignal file didn't take the new suggestion.
+        # We test with 'in' since the header is added
+        assert po1contents in self.fetch_page("zxx/testproject/test_upload.po")
+        suggestions_content = open(os.path.join(podir, "test_upload.po.pending"), 'r').read()
+        assert 'msgstr "rest"' in suggestions_content
+    test_upload_suggestions.userprefs = {"rights.siteadmin": False}
+
     def test_upload_overwrite(self):
         """tests that we can overwrite a file in a project"""
         self.login()
