@@ -408,7 +408,7 @@ class pootlefile(Wrapper):
       newpo.msgidcomments.append('"_: suggested by %s\\n"' % username)
     newpo.target = suggtarget
     newpo.markfuzzy(False)
-    self.pendingfile.units.append(newpo)
+    self.pendingfile.addunit(newpo)
     self.savependingfile()
     self.statistics.reclassifyunit(item)
 
@@ -582,6 +582,7 @@ class pootlefile(Wrapper):
     if not suggest and (not oldpo.target or not newpo.target or oldpo.isheader() or newpo.isheader() or unchanged):
       oldpo.merge(newpo)
     elif not unchanged:
+      #XXX: this is very inefficient!
       for item, matchpo in enumerate(self.transunits):
         if matchpo == oldpo:
           strings = getattr(newpo.target, "strings", [newpo.target])
@@ -602,9 +603,9 @@ class pootlefile(Wrapper):
       if oldpo is None:
         if allownewstrings:
           if isinstance(newpo, po.pounit):
-            self.units.append(newpo)
+            self.addunit(newpo)
           else:
-            self.units.append(self.UnitClass.buildfromunit(newpo))
+            self.addunit(self.UnitClass.buildfromunit(newpo))
       elif newpo is None:
         # TODO: mark the old one as obsolete
         pass
