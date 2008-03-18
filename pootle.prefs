@@ -416,8 +416,8 @@ Pootle:
 # Magyar
 # Hungarian
     hu.fullname = u'Hungarian'
-    hu.nplurals = '1'
-    hu.pluralequation ='0'
+    hu.nplurals = '2'
+    hu.pluralequation ='(n !=1)'
 
 # Bahasa Indonesia
 # Indonesian
