@@ -415,9 +415,9 @@ Pootle:
 
 # Magyar
 # Hungarian
-#    hu.fullname = u'Hungarian'
-#    hu.nplurals = '1'
-#    hu.pluralequation ='0'
+    hu.fullname = u'Hungarian'
+    hu.nplurals = '1'
+    hu.pluralequation ='0'
 
 # Bahasa Indonesia
 # Indonesian
