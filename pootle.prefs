@@ -544,6 +544,7 @@ Pootle:
 #    nso.fullname = u'Northern Sotho'
 #    nso.nplurals = '2'
 #    nso.pluralequation ='(n > 1)'
+#    nso.specialchars = "šŠ"
 
 # Oriya
 #    or.fullname = u'Oriya'
