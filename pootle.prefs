@@ -484,6 +484,11 @@ Pootle:
 #    lv.nplurals = '3'
 #    lv.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2)'
 
+# Malayalam
+    ml.fullname = u'Malayalam'
+    ml.nplurals = '2'
+    ml.pluralequation = '(n != 1)'
+
 # Malagasy
 #    mg.fullname = u'Malagasy'
 #    mg.nplurals = '2'
