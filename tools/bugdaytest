@@ -1,0 +1,45 @@
+#!/bin/bash
+# this is a script for running repeated tests on different hosts for bugday
+timestamp=`date '+%Y%m%d-%H%M'`
+bugday=`date '+%Y%m%d'`
+hostname=`hostname`
+dest=sourceforge:translate/html/bugdays/${bugday}
+scriptdir="`dirname "$0"`"
+srcdir="`cd "${scriptdir}" ; cd .. ; pwd`"
+
+logfile=${hostname}-${timestamp}.log
+
+versions=$(PootleServer --version)
+
+cd "$srcdir"
+mkdir -p testlogs
+echo ${timestamp} ${logfile}
+(
+  echo -n "automated test at ${timestamp} on "
+  uname -snmo
+  echo
+  echo -n "With "
+  python -V
+  echo "cvs branches:"
+  pootlebranch=`[[ -f Pootle/CVS/Tag ]] && cat Pootle/CVS/Tag || echo HEAD`
+  toolkitbranch=`[[ -f translate/CVS/Tag ]] && cat translate/CVS/Tag || echo HEAD`
+  echo "Pootle is on branch:" $pootlebranch
+  echo "Translate Toolkit is on branch:" $toolkitbranch
+  echo
+  echo "Versions:"
+  echo $versions
+  echo
+  echo "cvs update:"
+  echo "-----------"
+  cvs -q up translate Pootle | grep -v ^?
+  echo "local changes:"
+  echo "--------------"
+  cvs -q diff -u translate Pootle | grep -v ^?
+  echo "running tests:"
+  echo "--------------"
+  py.test translate Pootle
+  echo
+  echo "done"
+) 2>&1 | tee testlogs/${logfile}
+scp -p testlogs/${logfile} ${dest}/$logfile
+

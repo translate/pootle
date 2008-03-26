@@ -1,0 +1,39 @@
+spelld - Spelling Server
+========================
+
+Server
+------
+
+  ./spelld.py
+
+Will start a server on port 8008 serving spell checker results for the following
+spellcheckers:
+
+  * Remote Google (it acts as a proxy).  Default for languages served by Google.
+  * Local Enchant spellers
+  * Locale Microsoft Spellers over OLE (Note: not a CSAPI checker).  Currently not
+    working since we've just ported the code.
+
+--help for other options.
+
+Client
+------
+
+The client is mostly for testing checker queries and results.  It will print the
+query XML query sent and the XML result received.
+
+  ./spellclient -t "Txt to spel" -l en
+
+Is the simplest check this will be by default against Google.
+
+  ./spellclient -t "Txt to spel" -l en -s http://localhost:8008/
+
+Will still check against Google but going through your local spelld.  This 
+will know also use a server based group PWL (ie not a real PWL but one for
+all users of the server).
+
+Change the language, -l to a language not server by Google but for which you have 
+an Enchant spell checker eg af (Afrikaans) and the server will use Enchant and
+return the same result XML but from spelld, not Google.
+
+--help for other options.

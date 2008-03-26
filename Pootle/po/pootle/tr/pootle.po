@@ -1,0 +1,1437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2007-04-13 12:24+0200\n"
+"PO-Revision-Date: 2007-11-14 13:13+0100\n"
+"Last-Translator: Noyan Aydin <noyana@estr.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 1.0.2\n"
+"Generated-By: pygettext.py 1.1\n"
+
+#. l10n: Verb
+#: projects.py:136
+msgid "View"
+msgstr "Görünüm"
+
+#: projects.py:137 translatepage.py:613
+msgid "Suggest"
+msgstr "Öner"
+
+#: projects.py:138
+msgid "Translate"
+msgstr "Çevir"
+
+#. l10n: radio button text
+#: projects.py:139 indexpage.py:548
+msgid "Overwrite"
+msgstr "Üstüne yaz"
+
+#. l10n: Verb
+#: projects.py:141
+msgid "Review"
+msgstr "İncele"
+
+#. l10n: Verb
+#: projects.py:143
+msgid "Archive"
+msgstr "Arşiv"
+
+#. l10n: This refers to generating the binary .mo file
+#: projects.py:145
+msgid "Compile PO files"
+msgstr "PO dosyalarını derle"
+
+#: projects.py:146
+msgid "Assign"
+msgstr "Ata"
+
+#: projects.py:147 indexpage.py:134
+msgid "Administrate"
+msgstr "Yönet"
+
+#. l10n: Commit to version control (like CVS or Subversion)
+#: projects.py:148 indexpage.py:748
+msgid "Commit"
+msgstr "Teslim et"
+
+#. l10n: Don't translate "nobody" or "default"
+#: projects.py:228
+msgid "You cannot remove the \"nobody\" or \"default\" user"
+msgstr "\"nobody\" veya \"default\" kullanıcılarını silemezsiniz"
+
+#: projects.py:380 projects.py:442
+msgid "You do not have rights to alter goals here"
+msgstr "Buradaki hedefleri değiştirme haklarına sahip değilsiniz"
+
+#: projects.py:505
+msgid "You do not have rights to upload files here"
+msgstr "Buraya dosya yükleme haklarına sahip değilsiniz"
+
+#: projects.py:508
+msgid "You do not have rights to overwrite files here"
+msgstr "Buradaki dosyaların üstüne yazma haklarına sahip değilsiniz"
+
+#: projects.py:510
+msgid "You do not have rights to upload new files here"
+msgstr "Buraya yeni dosya yükleme haklarına sahip değilsiniz"
+
+#: projects.py:519
+msgid "You do not have rights to update files here"
+msgstr "Buradaki dosyaları güncelleştirme haklarına sahip değilsiniz"
+
+#: projects.py:590
+msgid "You do not have rights to commit files here"
+msgstr "Buraya dosyaları teslim etme haklarına sahip değilsiniz"
+
+#: projects.py:919 projects.py:960
+msgid "You do not have rights to alter assignments here"
+msgstr "Buradaki atamaları değiştirme haklarına sahip değilsiniz"
+
+#: projects.py:1141
+msgid "You do not have rights to change translations here"
+msgstr "Buradaki çevirileri değiştirme haklarına sahip değilsiniz"
+
+#: projects.py:1151
+msgid "You do not have rights to suggest changes here"
+msgstr "Buradaki değişiklik önerme haklarına sahip değilsiniz"
+
+#: projects.py:1167 projects.py:1185
+msgid "You do not have rights to review suggestions here"
+msgstr "Buradaki önerileri inceleme haklarına sahip değilsiniz"
+
+#: translatepage.py:89
+#, python-format
+msgid ""
+"%d/%d translated\n"
+"(%d blank, %d fuzzy)"
+msgstr ""
+"%d/%d çevrildi\n"
+"(%d boş, %d bulanık)"
+
+#: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
+#: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
+#: users.py:58 users.py:95 users.py:131 users.py:153 indexpage.py:73
+#: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
+#: indexpage.py:346
+msgid "Pootle Demo"
+msgstr "Pootle Demo"
+
+#. l10n: first parameter: name of the installation (like "Pootle")
+#. l10n: second parameter: project name
+#. l10n: third parameter: target language
+#. l10n: fourth parameter: file name
+#: translatepage.py:99
+#, python-format
+msgid "%s: translating %s into %s: %s"
+msgstr "%s: %s ifadesini %s olarak çeviriyor: %s"
+
+#. l10n: Heading above the table column with the source language
+#: translatepage.py:114
+msgid "Original"
+msgstr "Özgün"
+
+#. l10n: Heading above the table column with the target language
+#: translatepage.py:116
+msgid "Translation"
+msgstr "Çeviri"
+
+#: translatepage.py:119
+msgid "Accept"
+msgstr "Onayla"
+
+#: translatepage.py:120
+msgid "Reject"
+msgstr "Reddet"
+
+#: translatepage.py:121 pagelayout.py:243
+msgid "Fuzzy"
+msgstr "Bulanık"
+
+#. l10n: Heading above the textarea for translator comments.
+#: translatepage.py:123
+msgid "Translator comments"
+msgstr "Çevirmen notları"
+
+#. l10n: Heading above the comments extracted from the programing source code
+#: translatepage.py:125
+msgid "Developer comments"
+msgstr "Geliştirici notları"
+
+#. l10n: This heading refers to related translations and terminology
+#: translatepage.py:127
+msgid "Related"
+msgstr "İlgili"
+
+#. l10n: text next to search field
+#: translatepage.py:131 indexpage.py:356
+msgid "Search"
+msgstr "Arama"
+
+#. l10n: "batch" refers to the set of translations that were reviewed
+#: translatepage.py:145
+msgid "End of batch"
+msgstr "Toplu iş sonu"
+
+#: translatepage.py:147
+msgid "Click here to return to the index"
+msgstr "Dizin'e dönmek için tıklayın"
+
+#. l10n: noun (the start)
+#: translatepage.py:161 translatepage.py:164
+msgid "Start"
+msgstr "Başlangıç"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:168 translatepage.py:171
+#, python-format
+msgid "Previous %d"
+msgstr "Önceki %d"
+
+#. l10n: the third parameter refers to the total number of messages in the file
+#: translatepage.py:173
+#, python-format
+msgid "Items %d to %d of %d"
+msgstr "%d ile %d arası, toplam %d"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:178 translatepage.py:181
+#, python-format
+msgid "Next %d"
+msgstr "Sonraki %d"
+
+#. l10n: noun (the end)
+#: translatepage.py:184 translatepage.py:187
+msgid "End"
+msgstr "Son"
+
+#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
+#: translatepage.py:204
+#, python-format
+msgid "checking %s"
+msgstr "%s denetleniyor.."
+
+#: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
+msgid "Assign Strings"
+msgstr "Dizgileri Ata"
+
+#: translatepage.py:212 indexpage.py:528
+msgid "Assign to User"
+msgstr "Kullanıcıya Ata"
+
+#: translatepage.py:213 indexpage.py:527
+msgid "Assign Action"
+msgstr "Eylem Ata"
+
+#: translatepage.py:368
+#, python-format
+msgid "There are no items matching that search ('%s')"
+msgstr "('%s') aramasına uyan bir şey bulunamadı"
+
+#: translatepage.py:370
+msgid "You have finished going through the items you selected"
+msgstr "Seçmiş olduklarınızı bitirmişsiniz"
+
+#: translatepage.py:578
+msgid "Singular"
+msgstr "Tekil"
+
+#: translatepage.py:579
+msgid "Plural"
+msgstr "Çoğul"
+
+#. l10n: verb
+#: translatepage.py:593
+msgid "Edit"
+msgstr "Düzenle"
+
+#. l10n: verb
+#: translatepage.py:609
+msgid "Copy"
+msgstr "Kopyala"
+
+#: translatepage.py:610 translatepage.py:784
+msgid "Skip"
+msgstr "Atla"
+
+#. l10n: verb
+#: translatepage.py:612 translatepage.py:783 users.py:256
+msgid "Back"
+msgstr "Geri"
+
+#: translatepage.py:614
+msgid "Submit"
+msgstr "Gönder"
+
+#. l10n: action that increases the height of the textarea
+#: translatepage.py:617
+msgid "Grow"
+msgstr "Büyüt"
+
+#. l10n: action that decreases the height of the textarea
+#: translatepage.py:619
+msgid "Shrink"
+msgstr "Küçült"
+
+#: translatepage.py:641 translatepage.py:735 translatepage.py:772
+#: translatepage.py:805
+#, python-format
+msgid "Plural Form %d"
+msgstr "Çoğul biçim %d"
+
+#. l10n: This is an error message that will display if the relevant problem occurs
+#: translatepage.py:657
+msgid ""
+"Translation not possible because plural information for your language is not "
+"available. Please contact the site administrator."
+msgstr ""
+"Diliniz için çoğul bilgisi bulunmadığı için çeviri olası değildir. Lütfen "
+"site yöneticisi ile iletişim kurunuz."
+
+#: translatepage.py:739
+msgid "Current Translation:"
+msgstr "Güncel Çeviri:"
+
+#. l10n: First parameter: number
+#. l10n: Second parameter: name of translator
+#: translatepage.py:752
+#, python-format
+msgid "Suggestion %d by %s:"
+msgstr "% s den öneri %d:"
+
+#: translatepage.py:754
+#, python-format
+msgid "Suggestion %d:"
+msgstr "Öneri %d:"
+
+#. l10n: parameter: name of translator
+#: translatepage.py:758
+#, python-format
+msgid "Suggestion by %s:"
+msgstr "%s den öneri:"
+
+#: translatepage.py:760
+msgid "Suggestion:"
+msgstr "Öneri:"
+
+#: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
+#: pagelayout.py:36
+msgid "Home"
+msgstr "Baş'a Dön"
+
+#: adminpages.py:44 adminpages.py:207
+msgid "Users"
+msgstr "Kullanıcılar"
+
+#: adminpages.py:45 adminpages.py:84 indexpage.py:94
+msgid "Languages"
+msgstr "Diller"
+
+#: adminpages.py:46 adminpages.py:142 indexpage.py:95
+msgid "Projects"
+msgstr "Projeler"
+
+#: adminpages.py:47
+msgid "General options"
+msgstr "Genel seçenekler"
+
+#: adminpages.py:48 users.py:157
+msgid "Option"
+msgstr "Seçenek"
+
+#: adminpages.py:49 users.py:158
+msgid "Current value"
+msgstr "Güncel değer"
+
+#: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
+#: users.py:172
+msgid "Save changes"
+msgstr "Değişiklikleri sakla"
+
+#: adminpages.py:54
+msgid "Title"
+msgstr "Başlık"
+
+#: adminpages.py:55
+msgid "Description"
+msgstr "Açıklama"
+
+#: adminpages.py:56
+msgid "Base URL"
+msgstr "Temel adres"
+
+#: adminpages.py:57
+msgid "Home Page"
+msgstr "Ana Sayfa"
+
+#: adminpages.py:83 adminpages.py:141 adminpages.py:206
+msgid "Main admin page"
+msgstr "Ana yönetim sayfası"
+
+#: adminpages.py:89
+msgid "ISO Code"
+msgstr "ISO Kod'u"
+
+#: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
+msgid "Full Name"
+msgstr "Tam İsim"
+
+#: adminpages.py:91
+msgid "(add language here)"
+msgstr "(dili buraya ekleyin)"
+
+#: adminpages.py:92
+msgid "Special Chars"
+msgstr "Özel Karakterler"
+
+#: adminpages.py:92
+msgid "(special characters)"
+msgstr "(özel karakterler)"
+
+#: adminpages.py:93 indexpage.py:217
+msgid "Number of Plurals"
+msgstr "Çoğullar'ın Sayısı"
+
+#: adminpages.py:93
+msgid "(number of plurals)"
+msgstr "(çoğulların sayısı)"
+
+#: adminpages.py:94 indexpage.py:218
+msgid "Plural Equation"
+msgstr "Çoğul Eşitliği"
+
+#: adminpages.py:94
+msgid "(plural equation)"
+msgstr "(çoğul eşitliği)"
+
+#: adminpages.py:95
+msgid "Remove Language"
+msgstr "Dili Kaldır"
+
+#. l10n: The parameter is a languagecode, projectcode or username
+#: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
+#, python-format
+msgid "Remove %s"
+msgstr "Sil: %s"
+
+#: adminpages.py:129
+msgid "Standard"
+msgstr "Standart"
+
+#: adminpages.py:147
+msgid "Project Code"
+msgstr "Proje Kodu"
+
+#: adminpages.py:149
+msgid "(add project here)"
+msgstr "(buraya proje ekleyin)"
+
+#: adminpages.py:150
+msgid "Project Description"
+msgstr "Proje Açıklaması"
+
+#: adminpages.py:150
+msgid "(project description)"
+msgstr "(proje açıklaması)"
+
+#: adminpages.py:151
+msgid "Checker Style"
+msgstr "Denetleyici Biçemi"
+
+#: adminpages.py:152
+msgid "File Type"
+msgstr "Dosya tipi"
+
+#: adminpages.py:153
+msgid "Create MO Files"
+msgstr "MO Dosyaları Oluştur"
+
+#: adminpages.py:154
+msgid "Remove Project"
+msgstr "Projeyi Sil"
+
+#: adminpages.py:212 users.py:66
+msgid "Login"
+msgstr "Oturum Aç"
+
+#: adminpages.py:214 users.py:347
+msgid "(add full name here)"
+msgstr "(buraya tam adı yazın)"
+
+#: adminpages.py:215 users.py:101
+msgid "Email Address"
+msgstr "E-posta Adresi"
+
+#: adminpages.py:215 users.py:350
+msgid "(add email here)"
+msgstr "(buraya e-posta ekleyin)"
+
+#: adminpages.py:216 users.py:107 users.py:163
+msgid "Password"
+msgstr "Parola"
+
+#: adminpages.py:216 users.py:344
+msgid "(add password here)"
+msgstr "(buraya parola ekle)"
+
+#: adminpages.py:217
+msgid "Activated"
+msgstr "Etkinleştirildi"
+
+#: adminpages.py:217
+msgid "Activate New User"
+msgstr "Yeni Kullanıcıyı Etkinleştir"
+
+#: adminpages.py:218
+msgid "Remove User"
+msgstr "Kullanıcıyı Sil"
+
+#: adminpages.py:272
+msgid "Back to main page"
+msgstr "Ana sayfa'ya dön"
+
+#: adminpages.py:273
+msgid "Existing languages"
+msgstr "Mevcut diller"
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:277
+msgid "Update Languages"
+msgstr "Dilleri Güncelle"
+
+#: adminpages.py:278
+#, python-format
+msgid "Pootle Admin: %s"
+msgstr "Pootle Yöneticisi: %s"
+
+#: adminpages.py:279 adminpages.py:341
+msgid "You do not have the rights to administer this project."
+msgstr "Bu projeyi yönetme haklarına sahip değilsiniz."
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:281
+msgid "Update from templates"
+msgstr "Şablonlardan Güncelle"
+
+#: adminpages.py:289
+msgid "Add Language"
+msgstr "Dil Ekle"
+
+#. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
+#: adminpages.py:321
+#, python-format
+msgid "Pootle Admin: %s %s"
+msgstr "Pootle Yöneticisi: %s %s"
+
+#: adminpages.py:322
+msgid "Project home page"
+msgstr "Proje ana sayfası"
+
+#: adminpages.py:340
+#, python-format
+msgid "Cannot set rights for username %s - user does not exist"
+msgstr "%s kullanıcısı için haklar ayarlanamıyor, -kullanıcı mevcut değil."
+
+#: adminpages.py:357
+msgid "This is a GNU-style project (one directory, files named per language)."
+msgstr ""
+"Bu proje, GNU-biçemlidir (bir dizin, dosyalar her-bir dil için "
+"adlandırılmış)."
+
+#: adminpages.py:359
+msgid "This is a standard style project (one directory per language)."
+msgstr "Bu proje, standart biçemlidir ( her-bir dil için bir dizin)."
+
+#: adminpages.py:360
+msgid "User Permissions"
+msgstr "Kullanıcı İzinleri"
+
+#: adminpages.py:361 users.py:98 users.py:134
+msgid "Username"
+msgstr "Kullanıcı adı"
+
+#: adminpages.py:362
+msgid "(select to add user)"
+msgstr "(kullancı eklemek için seç)"
+
+#: adminpages.py:363
+msgid "Rights"
+msgstr "Haklar"
+
+#: adminpages.py:364 indexpage.py:998
+msgid "Remove"
+msgstr "Kaldır"
+
+#: adminpages.py:391
+msgid "Update Rights"
+msgstr "Hakları Güncelle"
+
+#: pagelayout.py:37
+msgid "All projects"
+msgstr "Tüm projeler"
+
+#: pagelayout.py:38
+msgid "All languages"
+msgstr "Tüm diller"
+
+#: pagelayout.py:39
+msgid "My account"
+msgstr "Hesabım"
+
+#: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
+msgid "Admin"
+msgstr "Yönetim"
+
+#: pagelayout.py:41
+msgid "Docs & help"
+msgstr "Belgeler & yardım"
+
+#: pagelayout.py:42
+msgid "Log out"
+msgstr "Çıkış"
+
+#: pagelayout.py:43
+msgid "Log in"
+msgstr "Giriş"
+
+#. l10n: Verb, as in "to register"
+#: pagelayout.py:45
+msgid "Register"
+msgstr "Kayıt"
+
+#: pagelayout.py:46
+msgid "Activate"
+msgstr "Etkinleştir"
+
+#: pagelayout.py:80
+msgid "Pootle Logo"
+msgstr "Pootle Logosu"
+
+#: pagelayout.py:81
+msgid "WordForge Translation Project"
+msgstr "WordForge Çeviri Projesi"
+
+#: pagelayout.py:83
+msgid "About this Pootle server"
+msgstr "Bu Pootle Sunucusu Hakkında"
+
+#: pagelayout.py:157
+msgid "All goals"
+msgstr "Tüm Hedefler"
+
+#: pagelayout.py:228
+#, python-format
+msgid "%d/%d files"
+msgstr "%d/%d dosya"
+
+#: pagelayout.py:231
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "%d dosya"
+msgstr[1] "%d dosya"
+
+#: pagelayout.py:232 indexpage.py:995
+#, python-format
+msgid "%d/%d words (%d%%) translated"
+msgstr "%d/%d sözcük (%%%d) çevrildi"
+
+#: pagelayout.py:233
+#, python-format
+msgid "%d/%d strings"
+msgstr "[%d/%d dizgi]"
+
+#: pagelayout.py:239 users.py:159
+msgid "Name"
+msgstr "İsim"
+
+#: pagelayout.py:240
+msgid "Translated"
+msgstr "Çevrilmiş"
+
+#: pagelayout.py:241
+msgid "Translated percentage"
+msgstr "Çevrilmiş yüzde"
+
+#: pagelayout.py:242
+msgid "Translated words"
+msgstr "Çevrilmiş sözcükler"
+
+#: pagelayout.py:244
+msgid "Fuzzy percentage"
+msgstr "Bulanık çeviri yüzdesi"
+
+#: pagelayout.py:245
+msgid "Fuzzy words"
+msgstr "Bulanık sözcükler"
+
+#: pagelayout.py:246 indexpage.py:786
+msgid "Untranslated"
+msgstr "Çevrilmemiş"
+
+#: pagelayout.py:247
+msgid "Untranslated percentage"
+msgstr "Çevrilmemiş yüzdesi"
+
+#: pagelayout.py:248
+msgid "Untranslated words"
+msgstr "Çevrilmemiş sözcükler"
+
+#: pagelayout.py:249
+msgid "Total"
+msgstr "Toplam"
+
+#: pagelayout.py:250
+msgid "Total words"
+msgstr "Toplam sözcükler"
+
+#. l10n: noun. The graphical representation of translation status
+#: pagelayout.py:252
+msgid "Graph"
+msgstr "Grafik"
+
+#: users.py:39
+#, python-format
+msgid "You must supply a valid password of at least %d characters."
+msgstr "En az %d karakterli geçerli bir parola girmelisiniz."
+
+#: users.py:41
+msgid "The password is not the same as the confirmation."
+msgstr "Parola onaylama için girilenle aynı değil."
+
+#: users.py:55
+msgid "Login to Pootle"
+msgstr "Pootle'a giriş yap"
+
+#: users.py:61
+msgid "Username:"
+msgstr "Kullanıcı adı:"
+
+#: users.py:63
+msgid "Password:"
+msgstr "Parola:"
+
+#: users.py:64
+msgid "Language:"
+msgstr "Dil:"
+
+#: users.py:73
+msgid "Default"
+msgstr "Varsayılan"
+
+#: users.py:89
+msgid "Please enter your registration details"
+msgstr "Lütfen kayıt ayrıntılarınızı girin"
+
+#: users.py:92 users.py:419
+msgid "Pootle Registration"
+msgstr "Pootle Kayıt"
+
+#: users.py:99 users.py:135
+msgid "Your requested username"
+msgstr "İstediğiniz kullanıcı adı"
+
+#: users.py:102 users.py:373
+#, fuzzy
+msgid "You must supply a valid email address"
+msgstr "Geçerli bir e-posta adresi olmalı"
+
+#: users.py:105
+msgid "Your full name"
+msgstr "Tam adınız"
+
+#: users.py:108
+msgid "Your desired password"
+msgstr "Tercih ettiğiniz parola"
+
+#: users.py:110 users.py:164
+msgid "Confirm password"
+msgstr "Parola onayı"
+
+#: users.py:111
+msgid "Type your password again to ensure it is entered correctly"
+msgstr "Parolanın doğru tuşlandığından emin olmak için tekrar giriniz"
+
+#: users.py:113
+msgid "Register Account"
+msgstr "Hesap Aç"
+
+#: users.py:122
+msgid "Please enter your activation details"
+msgstr "Lütfen etkinleştime ayrıntılarınızı girin"
+
+#: users.py:127
+msgid "Pootle Account Activation"
+msgstr "Pootle Hesap Etkinleştirme"
+
+#: users.py:137
+msgid "Activation Code"
+msgstr "Etkinleştirme Kodu"
+
+#: users.py:138
+msgid "The activation code you received"
+msgstr "Etkinleştirme kodu alındı"
+
+#: users.py:140
+msgid "Activate Account"
+msgstr "Hesabı Etkinleştir"
+
+#: users.py:151
+#, python-format
+msgid "Options for: %s"
+msgstr "%s için seçenekler:"
+
+#: users.py:156
+msgid "Personal Details"
+msgstr "Kişisel Ayrıntılar"
+
+#: users.py:161
+msgid "Email"
+msgstr "E-posta"
+
+#: users.py:165
+msgid "Translation Interface Configuration"
+msgstr "Çeviri Arabirim Yapılandırması"
+
+#: users.py:166
+msgid "User Interface language"
+msgstr "Kullanıcı Arayüzü dili"
+
+#: users.py:167
+msgid "My Projects"
+msgstr "Projelerim"
+
+#: users.py:169
+msgid "My Languages"
+msgstr "Dillerim"
+
+#: users.py:171
+msgid "Home page"
+msgstr "Ana sayfa"
+
+#: users.py:207
+msgid "Input Height (in lines)"
+msgstr "Yükseklik Gir (satır olarak)"
+
+#: users.py:208
+msgid "Number of rows in view mode"
+msgstr "Görünüm kipinde satır sayısı"
+
+#: users.py:209
+msgid "Number of rows in translate mode"
+msgstr "Çeviri kipinde satır sayısı"
+
+#: users.py:251
+msgid "Error"
+msgstr "Hata"
+
+#: users.py:303
+msgid "You need to be siteadmin to change users"
+msgstr "kullanıcıları değitirebilmek için site-yöneticisi olmanız gerekir"
+
+#: users.py:367
+msgid ""
+"Username must be alphanumeric, and must start with an alphabetic character."
+msgstr ""
+
+#: users.py:382
+msgid ""
+"You (or someone else) attempted to register an account with your username.\n"
+msgstr ""
+
+#: users.py:383
+msgid "We don't store your actual password but only a hash of it.\n"
+msgstr ""
+
+#: users.py:385
+#, python-format
+msgid "If you have a problem with registration, please contact %s.\n"
+msgstr ""
+
+#: users.py:387
+msgid ""
+"If you have a problem with registration, please contact the site "
+"administrator.\n"
+msgstr ""
+
+#: users.py:388
+msgid ""
+"That username already exists. An email will be sent to the registered email "
+"address.\n"
+msgstr ""
+
+#: users.py:390
+#, python-format
+msgid "Proceeding to <a href='%s'>login</a>\n"
+msgstr ""
+
+#: users.py:396
+msgid "A Pootle account has been created for you using this email address.\n"
+msgstr ""
+
+#: users.py:398
+msgid "To activate your account, follow this link:\n"
+msgstr ""
+
+#: users.py:404
+#, python-format
+msgid ""
+"Your activation code is:\n"
+"%s\n"
+msgstr ""
+"Etkinleştirme Kodunuz:\n"
+"%s\n"
+
+#: users.py:406
+msgid ""
+"If you are unable to follow the link, please enter the above code at the "
+"activation page.\n"
+msgstr ""
+
+#: users.py:407
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message.\n"
+msgstr ""
+
+#: users.py:409
+#, python-format
+msgid ""
+"Account created. You will be emailed login details and an activation code. "
+"Please enter your activation code on the <a href='%s'>activation page</a>."
+msgstr ""
+
+#: users.py:411
+msgid "(Or simply click on the activation link in the email)"
+msgstr ""
+
+#: users.py:413
+#, python-format
+msgid "Your user name is: %s\n"
+msgstr "Kullanıcı adınız: %s\n"
+
+#: users.py:415
+#, python-format
+msgid "Your password is: %s\n"
+msgstr "Parolanız: %s\n"
+
+#: users.py:416
+#, python-format
+msgid "Your registered email address is: %s\n"
+msgstr "Kayıtlı e-posta adresiniz: %s\n"
+
+#: users.py:442
+msgid "Redirecting to Registration Page..."
+msgstr "Kayıt sayfasına yönlendiriliyorsunuz..."
+
+#: users.py:466
+msgid "Redirecting to login Page..."
+msgstr "Giriş sayfasına yönlendiriliyorsunuz..."
+
+#: users.py:469
+msgid "Your account has been activated! Redirecting to login..."
+msgstr "Hesabınız etkinleştirildi! Giriş için yönlendiriliyorsunuz..."
+
+#: users.py:473
+msgid "The activation information was not valid."
+msgstr "Etkinleştirme bilgisi geçerli değil."
+
+#: users.py:474
+msgid "Activation Failed"
+msgstr "Etkinleştirme Başarısız"
+
+#: users.py:583
+msgid "Input height must be numeric"
+msgstr "Yükseklik girdisi rakam olmalı"
+
+#: users.py:584
+msgid "Input width must be numeric"
+msgstr "Genişlik girdisi rakam olmalı"
+
+#: users.py:585
+msgid "The number of rows displayed in view mode must be numeric"
+msgstr "Görünüm kipinde gösterilecek satır sayısı girdisi rakam olmalı"
+
+#: users.py:586
+msgid "The number of rows displayed in translate mode must be numeric"
+msgstr "Çeviri kipinde gösterilecek satır sayısı girdisi rakam olmalı"
+
+#: pootle.py:293
+msgid "Login failed"
+msgstr "Giriş Başarısız"
+
+#: pootle.py:337 pootle.py:368
+msgid "Redirecting to login..."
+msgstr "Girişe yönlendiriliyorsunuz..."
+
+#: pootle.py:340
+msgid "Need to log in to access home page"
+msgstr ""
+
+#: pootle.py:353
+msgid "Personal details updated"
+msgstr "Kişisel ayrıntılar güncellendi"
+
+#: pootle.py:371
+msgid "Need to log in to access admin page"
+msgstr ""
+
+#: pootle.py:378
+#, fuzzy
+msgid "Redirecting to home..."
+msgstr "Girişe yönlendiriliyorsunuz..."
+
+#: pootle.py:381
+msgid "You do not have the rights to administer pootle."
+msgstr "Pootle'ı yönetme haklarına sahip değilsiniz."
+
+#: indexpage.py:61
+msgid "About Pootle"
+msgstr "Pootle Hakkında.."
+
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:63
+msgid ""
+"<strong>Pootle</strong> is a simple web portal that should allow you to "
+"<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
+"you can download it and run your own copy if you like. You can also help "
+"participate in the development in many ways (you don't have to be able to "
+"program)."
+msgstr ""
+"<strong>Pootle</strong> basit bir <strong>çeviri</strong> web limanıdır! "
+"<strong>Özgür Yazılım</strong> kapsamındaki Pootle'ı, bilgisayarınıza "
+"indirip çalıştırabilirsiniz. Tadını çıkarın! Bununla beraber, "
+"geliştirmelere  katkıda bulunmak için pek çok yolunuz olduğunu, program "
+"yapmanıza gerek olmadığını unutmayın."
+
+#: indexpage.py:64
+msgid ""
+"The Pootle project itself is hosted at <a href=\"http://translate."
+"sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
+"details about source code, mailing lists etc."
+msgstr ""
+"Pootle projesinin kendisi; <a href=\"http://translate.sourceforge.net/"
+"\">translate.sourceforge.net</a>  adresinde tutulmaktadır. Daha fazla bilgi, "
+"kaynak kod, mektuplaşma listesi vs. için lütfen ziyaret edin.."
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:67
+msgid ""
+"The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
+"thechestnut.com/flumps.htm\">this</a>."
+msgstr ""
+"İsmin açılımı: <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, ama fazlasını şurada okuyabilirsiniz:  <a href="
+"\"http://www.thechestnut.com/flumps.htm\">Tıklayın</a>."
+
+#: indexpage.py:68
+msgid "Versions"
+msgstr "Sürüm Bilgileri"
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:71
+#, fuzzy, python-format
+msgid ""
+"This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+msgstr ""
+"Bu sitede çalışanlar:<br/>Pootle %s</br>jToolkit %s</br>Python %s (%s/%s "
+"üzerinde)"
+
+#: indexpage.py:130
+#, python-format
+msgid "User Page for: %s"
+msgstr "Sayfaların sahibi kullanıcı:%s"
+
+#: indexpage.py:132
+msgid "Change options"
+msgstr "Seçenekleri Değiştir"
+
+#: indexpage.py:133
+msgid "Admin page"
+msgstr "Yönetici Sayfası"
+
+#: indexpage.py:135
+msgid "Quick Links"
+msgstr "Çabuk Bağlantılar"
+
+#: indexpage.py:139
+msgid "Please click on 'Change options' and select some languages and projects"
+msgstr ""
+"Lütfen 'Seçenekleri Değiştir' üzerinde tıklayın ve bazı dil ve projeleri "
+"seçin"
+
+#: indexpage.py:192
+#, python-format
+msgid "%d project, average %d%% translated"
+msgid_plural "%d projects, average %d%% translated"
+msgstr[0] "%d projesi, ortalama %%d% çevrildi"
+msgstr[1] "%d projeleri, ortalama %%d% çevrildi"
+
+#. l10n: The first parameter is the name of the installation
+#. l10n: The second parameter is the name of the project/language
+#. l10n: This is used as a page title. Most languages won't need to change this
+#: indexpage.py:198 indexpage.py:260
+#, python-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: indexpage.py:214
+msgid "Language Code"
+msgstr "Dil Kodu"
+
+#: indexpage.py:215
+msgid "Language Name"
+msgstr "Dil İsmi"
+
+#: indexpage.py:252
+#, python-format
+msgid "%d language, average %d%% translated"
+msgid_plural "%d languages, average %d%% translated"
+msgstr[0] "%d dili, ortalama %%d% çevrildi"
+msgstr[1] "%d dilleri, ortalama %%d% çevrildi"
+
+#: indexpage.py:265
+msgid "Language"
+msgstr "Dil"
+
+#. l10n: The first parameter is the name of the installation (like "Pootle")
+#: indexpage.py:348
+#, python-format
+msgid "%s: Project %s, Language %s"
+msgstr "%s: Proje %s, Dil %s"
+
+#: indexpage.py:413
+msgid "Cannot upload file, no file attached"
+msgstr "Dosya yüklenemedi, -eklenti dosyası içermiyor"
+
+#: indexpage.py:419
+msgid "Can only upload PO files and zips of PO files"
+msgstr ""
+"Sadece PO dosyaları ve onları içeren sıkıştırılmış dosyaları "
+"yükleyebilirsiniz"
+
+#: indexpage.py:534
+msgid "goals"
+msgstr "hedefler"
+
+#: indexpage.py:535
+msgid "Enter goal name"
+msgstr "Hedef adı girin"
+
+#: indexpage.py:536
+msgid "Add Goal"
+msgstr "Hedef Ekle"
+
+#: indexpage.py:541 indexpage.py:543
+msgid "Upload File"
+msgstr "Dosya Üste-Yükle"
+
+#: indexpage.py:542
+msgid "Select file to upload"
+msgstr "Üste-yüklenecek Dosyayı seçin"
+
+#. l10n: tooltip
+#: indexpage.py:550
+msgid "Overwrite the current file if it exists"
+msgstr "Zaten kayıtlıysa aktif dosyayı üzerine yaz"
+
+#. l10n: radio button text
+#: indexpage.py:552
+msgid "Merge"
+msgstr "Birleştir"
+
+#. l10n: tooltip
+#: indexpage.py:554
+msgid ""
+"Merge the file with the current file and turn conflicts into suggestions"
+msgstr "Dosyayı aktif dosyayla birleştir ve çakışmaları önerilere dönüştür"
+
+#: indexpage.py:657
+#, fuzzy
+msgid "Not in a goal"
+msgstr "Hedefte yok"
+
+#: indexpage.py:677
+msgid "Add User"
+msgstr "Kullanıcı Ekle"
+
+#: indexpage.py:719
+msgid "PO file"
+msgstr "PO dosya"
+
+#: indexpage.py:723
+msgid "XLIFF file"
+msgstr "XLIFF dosyası"
+
+#: indexpage.py:727
+msgid "Qt .ts file"
+msgstr "Qt .ts dosyası"
+
+#: indexpage.py:731
+msgid "CSV file"
+msgstr "CSV dosyası"
+
+#: indexpage.py:736
+msgid "MO file"
+msgstr "MO dosyası"
+
+#. l10n: Update from version control (like CVS or Subversion)
+#: indexpage.py:742
+msgid "Update"
+msgstr "Güncelle"
+
+#: indexpage.py:785
+msgid "All Strings"
+msgstr "Tüm Dizgiler"
+
+#: indexpage.py:787
+msgid "Unassigned"
+msgstr "Atanmamış"
+
+#: indexpage.py:788
+msgid "Unassigned and Untranslated"
+msgstr "Atanmamış ve Çevrilmemiş"
+
+#: indexpage.py:795
+msgid "Set Goal"
+msgstr "Hedef Ayarla"
+
+#: indexpage.py:799
+msgid "Select Multiple"
+msgstr "Çoklu Seç"
+
+#: indexpage.py:801
+msgid "Assign To"
+msgstr "Atanacak:"
+
+#: indexpage.py:830
+msgid "Show Editing Functions"
+msgstr "Düzenleme Fonksiyonlarını Göster"
+
+#: indexpage.py:831
+msgid "Show Statistics"
+msgstr "İstatistikleri Göster"
+
+#: indexpage.py:832
+msgid "Show Tracks"
+msgstr "İz'leri Göster"
+
+#: indexpage.py:832
+msgid "Hide Tracks"
+msgstr "İz'leri Gizle"
+
+#. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
+#: indexpage.py:834
+msgid "Show Checks"
+msgstr "Denetlemeleri Göster"
+
+#: indexpage.py:834
+msgid "Hide Checks"
+msgstr "Denetimleri Gizle"
+
+#: indexpage.py:835
+msgid "Show Goals"
+msgstr "Hedefleri Göster"
+
+#: indexpage.py:835
+msgid "Hide Goals"
+msgstr "Hedefleri Gizle"
+
+#: indexpage.py:836
+msgid "Show Assigns"
+msgstr "Atama'ları Göster"
+
+#: indexpage.py:836
+msgid "Hide Assigns"
+msgstr "Atama'ları Gizle"
+
+#: indexpage.py:845
+#, python-format
+msgid "All Goals: %s"
+msgstr "Tüm Hedefler: %s"
+
+#: indexpage.py:851
+msgid "Translate My Strings"
+msgstr "Dizgilerimi Çevir"
+
+#: indexpage.py:853
+msgid "View My Strings"
+msgstr "Dizgilerimi Göster"
+
+#: indexpage.py:858
+msgid "No strings assigned to you"
+msgstr "Size atanmış dizgi yok"
+
+#: indexpage.py:862
+msgid "Quick Translate My Strings"
+msgstr "Dizgilerimi Hızlı Çevir"
+
+#: indexpage.py:866
+msgid "No untranslated strings assigned to you"
+msgstr "Size atanmış çevrilmemiş dizgi yok"
+
+#: indexpage.py:870
+msgid "Review Suggestions"
+msgstr "Önerileri İncele"
+
+#: indexpage.py:872
+msgid "View Suggestions"
+msgstr "Önerileri Görüntüle"
+
+#: indexpage.py:877
+msgid "Quick Translate"
+msgstr "Hızlı çevir"
+
+#: indexpage.py:879
+msgid "View Untranslated"
+msgstr "Çevrilmemiş'leri Görüntüle"
+
+#: indexpage.py:883
+msgid "No untranslated items"
+msgstr "Çevrilmemiş birşey yok"
+
+#: indexpage.py:886
+msgid "Translate All"
+msgstr "Hepsini Çevir"
+
+#: indexpage.py:901
+msgid "ZIP of goal"
+msgstr "Hedefleri sıkıştır"
+
+# http://pootle.wordforge.org/tr/pootle/index.html
+# adresinde,  "Düzenleme Fonksiyonlarını Göster  | Hedefleri Göster  | ZIP of folder  " şeklinde en sonda çıkan ibare.
+#: indexpage.py:903
+msgid "ZIP of folder"
+msgstr "Klasörü sıkıştır"
+
+#: indexpage.py:910
+msgid "Generate SDF"
+msgstr "SDF oluştur"
+
+#: indexpage.py:963
+#, python-format
+msgid "%d string (%d%%) failed"
+msgid_plural "%d strings (%d%%) failed"
+msgstr[0] "%d dizgi (%%d%) başarısız oldu"
+msgstr[1] "%d dizgi (%%d%) başarısız oldu"
+
+#: indexpage.py:993
+#, python-format
+msgid "%d/%d words (%d%%) assigned"
+msgstr "%d/%d sözcük (%%d%) atandı"
+
+#: indexpage.py:994 indexpage.py:996
+#, python-format
+msgid "[%d/%d strings]"
+msgstr "[%d/%d dizgi]"
+
+#~ msgid "Broaden"
+#~ msgstr "Genişlet"
+
+#~ msgid "Narrow"
+#~ msgstr "Daralt"
+
+#~ msgid "Reset"
+#~ msgstr "Sıfırla"
+
+#~ msgid "Must be a valid email address"
+#~ msgstr "Geçerli bir e-posta adresi olmalı"
+
+#~ msgid "Input Width (in characters)"
+#~ msgstr "Genişlik Gir (karakter olarak)"
+
+#~ msgid "Pootle"
+#~ msgstr "Pootle"
+
+#~ msgid "Pootle: %s"
+#~ msgstr "Pootle: %s"
+
+#~ msgid ""
+#~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
+#~ "<strong>translate</strong>!"
+#~ msgstr ""
+#~ "<strong>Pootle</strong>, size <strong>çeviri</strong> konusunda yardımcı "
+#~ "olabilecek küçük bir portaldır!"
+
+#~ msgid "parent folder"
+#~ msgstr "üst dizin"
+
+#~ msgid "<h3 class=\"title\">Projects</h3>"
+#~ msgstr "<h3 class=\"title\">Projeler</h3>"
+
+#~ msgid "%d files, %d/%d strings (%d%%) translated"
+#~ msgstr "%d dosya, %d/%d dizge (%d%%) çevrildi"
+
+#~ msgid "%s language"
+#~ msgstr "%s dili"
+
+#~ msgid "%d strings (%d%%) failed"
+#~ msgstr "%d dizgeleri (%d%%) başarısız oldu"
+
+#~ msgid "this is a demo installation of pootle"
+#~ msgstr "bu pootle'ın deneme kurulumudur"
+
+#~ msgid "current folder"
+#~ msgstr "bulunulan dizin"
+
+#~ msgid "Log In"
+#~ msgstr "Giriş Yap"
+
+#~ msgid "login status"
+#~ msgstr "oturum durumu"
+
+#~ msgid "project root"
+#~ msgstr "proje kökdizini"
+
+#~ msgid "%s project"
+#~ msgstr "%s projesi"
+
+#~ msgid "you do not have rights to suggest changes here"
+#~ msgstr "burada değişiklik önerme hakkına sahip değilsiniz"
+
+#~ msgid "you do not have rights to change translations here"
+#~ msgstr "burada çeviriyi değiştirme hakkına sahip değilsiniz"
+
+#~ msgid "%d/%d strings (%d%%) translated"
+#~ msgstr "%d/%d dizgeleri (%d%%) çevirildi"
+
+#~ msgid "%d files, "
+#~ msgstr "%d dosya, "
+
+#~ msgid "<h3 class=\"title\">Languages</h3>"
+#~ msgstr "<h3 class=\"title\">Diller</h3>"
+
+#~ msgid "current file"
+#~ msgstr "yürürlükteki dosya"
+
+#~ msgid "not logged in"
+#~ msgstr "oturum açılamadı: "
+
+#~ msgid "Pootle Admin Page"
+#~ msgstr "Pootle Yönetici Sayfası"
+
+#~ msgid "Pootle Languages Admin Page"
+#~ msgstr "Pootle Diller Yönetici Sayfası"
+
+#~ msgid "Pootle Projects Admin Page"
+#~ msgstr "Pootle Projeler Yönetici Sayfası"
+
+#~ msgid "You do not have the rights to administer Pootle."
+#~ msgstr "Pootle'ı yönetme haklarına sahip değilsiniz."
+
+#~ msgid "Pootle User Admin Page"
+#~ msgstr "Pootle Kullanıcı Yönetim Sayfası"
+
+#~ msgid "suggest"
+#~ msgstr "öner"
+
+#~ msgid "Input Width"
+#~ msgstr "Genişlik Gir"

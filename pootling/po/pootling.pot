@@ -1,0 +1,2160 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-06-25 11:20+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
+
+#: @default#1
+msgid "&About Pootling"
+msgstr ""
+
+#: @default#2
+msgid "A&uthors"
+msgstr ""
+
+#: @default#3
+msgid "&Thanks To"
+msgstr ""
+
+#: @default#4
+msgid "&Licenses Agreement"
+msgstr ""
+
+#: @default#5
+msgid "&OK"
+msgstr ""
+
+#: @default#6
+msgid "About Pootling"
+msgstr ""
+
+#: @default#7
+msgid "%s Catalog Manager"
+msgstr ""
+
+#: @default#8
+msgid "Name"
+msgstr ""
+
+#: @default#9
+msgid "Translated"
+msgstr ""
+
+#: @default#10
+msgid "Fuzzy"
+msgstr ""
+
+#: @default#11
+msgid "Untranslated"
+msgstr ""
+
+#: @default#12
+msgid "Total"
+msgstr ""
+
+#: @default#13
+msgid "CVS/SVN Status"
+msgstr ""
+
+#: @default#14
+msgid "Last Revision"
+msgstr ""
+
+#: @default#15
+msgid "Last Translator"
+msgstr ""
+
+#: @default#16
+msgid "%s - %s Catalog Manager"
+msgstr ""
+
+#: @default#17
+msgid "Comment"
+msgstr ""
+
+#: @default#18
+msgid "Open File"
+msgstr ""
+
+#: @default#19
+msgid "Find and Replace"
+msgstr ""
+
+#: @default#20
+msgid "Please select first where to search!"
+msgstr ""
+
+#: @default#21
+msgid "Find"
+msgstr ""
+
+#: @default#22
+msgid "Find In Catalog"
+msgstr ""
+
+#: @default#23
+msgid "Please select first of source or target checkbox or both of them!"
+msgstr ""
+
+#: @default#24
+msgid "Header Editor"
+msgstr ""
+
+#: @default#25
+msgid "Key"
+msgstr ""
+
+#: @default#26
+msgid "Value"
+msgstr ""
+
+#: @default#27
+msgid "Information Settings"
+msgstr ""
+
+#: @default#28
+msgid "&What's This?"
+msgstr ""
+
+#: @default#29
+msgid "&"
+msgstr ""
+
+#: @default#30
+msgid "%1[*] - %2"
+msgstr ""
+
+#: @default#31
+msgid "Open"
+msgstr ""
+
+#: @default#32
+msgid "File not found"
+msgstr ""
+
+#: @default#33
+msgid "KDE"
+msgstr ""
+
+#: @default#34
+msgid "GNOME"
+msgstr ""
+
+#: @default#35
+msgid "Other"
+msgstr ""
+
+#: @default#36
+msgid "IniFormat Files(*.ini)"
+msgstr ""
+
+#: @default#37
+msgid "Overview"
+msgstr ""
+
+#: @default#38
+msgid "bold"
+msgstr ""
+
+#: @default#39
+msgid "italic"
+msgstr ""
+
+#: @default#40
+msgid "underline"
+msgstr ""
+
+#: @default#41
+msgid "Preferences"
+msgstr ""
+
+#: @default#42
+msgid "Personalize"
+msgstr ""
+
+#: @default#43
+msgid "Font & Color"
+msgstr ""
+
+#: @default#44
+msgid "TM-Glossary"
+msgstr ""
+
+#: @default#45
+msgid "      Save    "
+msgstr ""
+
+#: @default#46
+msgid "Detail"
+msgstr ""
+
+#: @default#47
+msgid "Glossary Lookup"
+msgstr ""
+
+#: @default#48
+msgid "Term"
+msgstr ""
+
+#: @default#49
+msgid "Definition"
+msgstr ""
+
+#: @default#50
+msgid "TM Lookup"
+msgstr ""
+
+#: @default#51
+msgid "Similarity"
+msgstr ""
+
+#: @default#52
+msgid "Source"
+msgstr ""
+
+#: @default#53
+msgid "Target"
+msgstr ""
+
+#: @default#54
+msgid "Copy search result to target"
+msgstr ""
+
+#: @default#55
+msgid "Edit file"
+msgstr ""
+
+#: @default#56
+msgid "Catalog Settings"
+msgstr ""
+
+#: @default#57
+msgid "Dive into Subfolders"
+msgstr ""
+
+#: @default#58
+msgid "Add TM"
+msgstr ""
+
+#: @default#59
+msgid " &Add"
+msgstr ""
+
+#: @default#60
+msgid "move up"
+msgstr ""
+
+#: @default#61
+msgid " &Up"
+msgstr ""
+
+#: @default#62
+msgid "Locations:"
+msgstr ""
+
+#: @default#63
+msgid "clear list"
+msgstr ""
+
+#: @default#64
+msgid " &Clear"
+msgstr ""
+
+#: @default#65
+msgid "move down"
+msgstr ""
+
+#: @default#66
+msgid " Do&wn"
+msgstr ""
+
+#: @default#67
+msgid "remove TM"
+msgstr ""
+
+#: @default#68
+msgid " De&lete"
+msgstr ""
+
+#: @default#69
+msgid "&File"
+msgstr ""
+
+#: @default#70
+msgid "Show Columns:"
+msgstr ""
+
+#: @default#71
+msgid "Catalog &View"
+msgstr ""
+
+#: @default#72
+msgid ""
+"All Supported Files (*.po *.pot *.xliff *.xlf *.tmx *.tbx);;PO Files and PO "
+"Template Files (*.po *.pot);;XLIFF Files (*.xliff *.xlf);;Translation Memory "
+"eXchange (TMX) Files (*.tmx);;TermBase eXchange (TBX) Files (*.tbx);;All "
+"Files (*)"
+msgstr ""
+
+#: @default#73
+msgid "%1 file name doesn't exist"
+msgstr ""
+
+#: Catalog#1
+msgid "Catalog Manager"
+msgstr ""
+
+#: Catalog#2
+msgid "&Edit"
+msgstr ""
+
+#: Catalog#3
+msgid "&Help"
+msgstr ""
+
+#: Catalog#4
+msgid "&Settings"
+msgstr ""
+
+#: Catalog#5
+msgid "&Project"
+msgstr ""
+
+#: Catalog#6
+msgid "Open &Recent Project"
+msgstr ""
+
+#: Catalog#7
+msgid "&File"
+msgstr ""
+
+#: Catalog#8
+msgid "&Quit"
+msgstr ""
+
+#: Catalog#9
+msgid "Ctrl+Q"
+msgstr ""
+
+#: Catalog#10
+msgid "About"
+msgstr ""
+
+#: Catalog#11
+msgid "About Qt"
+msgstr ""
+
+#: Catalog#12
+msgid "&Reload"
+msgstr ""
+
+#: Catalog#13
+msgid "F5"
+msgstr ""
+
+#: Catalog#14
+msgid "&Configure..."
+msgstr ""
+
+#: Catalog#15
+msgid "&Find in Files..."
+msgstr ""
+
+#: Catalog#16
+msgid "Ctrl+F"
+msgstr ""
+
+#: Catalog#17
+msgid "&Statistics"
+msgstr ""
+
+#: Catalog#18
+msgid "Ctrl+S"
+msgstr ""
+
+#: Catalog#19
+msgid "&Build TM"
+msgstr ""
+
+#: Catalog#20
+msgid "New..."
+msgstr ""
+
+#: Catalog#21
+msgid "Open..."
+msgstr ""
+
+#: Catalog#22
+msgid "Build TM..."
+msgstr ""
+
+#: Catalog#23
+msgid "Configure..."
+msgstr ""
+
+#: Dialog#1
+msgid "Select a file or a location"
+msgstr ""
+
+#: Dialog#2
+msgid "&Close"
+msgstr ""
+
+#: Dialog#3
+msgid "&Add"
+msgstr ""
+
+#: Dialog#4
+msgid "go to Desktop folder"
+msgstr ""
+
+#: Dialog#5
+msgid " &Desktop"
+msgstr ""
+
+#: Dialog#6
+msgid "go to Home folder"
+msgstr ""
+
+#: Dialog#7
+msgid " &Home"
+msgstr ""
+
+#: Dialog#8
+msgid "go to Document folder"
+msgstr ""
+
+#: Dialog#9
+msgid " Docu&ments"
+msgstr ""
+
+#: Form#1
+msgid "Overview"
+msgstr ""
+
+#: Form#2
+msgid ""
+"<h3>Overview</h3>This table shows original messages, translations, and "
+"status of each messages in current file."
+msgstr ""
+
+#: Form#3
+msgid "Glossary"
+msgstr ""
+
+#: Form#4
+msgid ""
+"<h3>Related Words</h3> This table shows all related words highlighted in the "
+"source view of the current unit. Its definition was extracted from the "
+"Glossary file to hint translators to use the same translation."
+msgstr ""
+
+#: Form#5
+msgid "Lookup"
+msgstr ""
+
+#: Form#6
+msgid ""
+"<h3>Search Results</h3>This table shows the results of searching in "
+"translation memory. Similarity tells you about the seach score. 100% means "
+"the source is identical in TM. At the buttom is displayed the location, "
+"translator, and translated date of each candidate, row. This table is "
+"automatically hiden if the option \" Automatically lookup translation in TM\" "
+"under Settings/Preference/TM-Glossary is unchecked."
+msgstr ""
+
+#: MainWindow#1
+msgid "Form"
+msgstr ""
+
+#: MainWindow#2
+msgid "&Bookmarks"
+msgstr ""
+
+#: MainWindow#3
+msgid "&Edit"
+msgstr ""
+
+#: MainWindow#4
+msgid "&View"
+msgstr ""
+
+#: MainWindow#5
+msgid "&Go"
+msgstr ""
+
+#: MainWindow#6
+msgid "&File"
+msgstr ""
+
+#: MainWindow#7
+msgid "Open the file that used to be opened."
+msgstr ""
+
+#: MainWindow#8
+msgid "<h3>Open Recent</h>Use this to open the file that used to be opened."
+msgstr ""
+
+#: MainWindow#9
+msgid "Open &Recent"
+msgstr ""
+
+#: MainWindow#10
+msgid "&Help"
+msgstr ""
+
+#: MainWindow#11
+msgid "&Window"
+msgstr ""
+
+#: MainWindow#12
+msgid "Hide/Show the toolbars"
+msgstr ""
+
+#: MainWindow#13
+msgid "&Toolbars"
+msgstr ""
+
+#: MainWindow#14
+msgid "&Settings"
+msgstr ""
+
+#: MainWindow#15
+msgid "&Tool"
+msgstr ""
+
+#: MainWindow#16
+msgid "&Project"
+msgstr ""
+
+#: MainWindow#17
+msgid "&File Toolbar"
+msgstr ""
+
+#: MainWindow#18
+msgid "Save"
+msgstr ""
+
+#: MainWindow#19
+msgid "<h3>Save File</h3>Save the contents of current editor."
+msgstr ""
+
+#: MainWindow#20
+msgid "&Edit Toolbar"
+msgstr ""
+
+#: MainWindow#21
+msgid "&Navigation Toolbar"
+msgstr ""
+
+#: MainWindow#22
+msgid "Fil&ter Toolbar"
+msgstr ""
+
+#: MainWindow#23
+msgid "&Open..."
+msgstr ""
+
+#: MainWindow#24
+msgid "Open"
+msgstr ""
+
+#: MainWindow#25
+msgid "Open a file."
+msgstr ""
+
+#: MainWindow#26
+msgid "<h3>Open</h3>Use this to open existed file for edit."
+msgstr ""
+
+#: MainWindow#27
+msgid "Ctrl+O"
+msgstr ""
+
+#: MainWindow#28
+msgid "&Save"
+msgstr ""
+
+#: MainWindow#29
+msgid "Save the current file."
+msgstr ""
+
+#: MainWindow#30
+msgid "<h3>Save</h3>Use this to save the current file."
+msgstr ""
+
+#: MainWindow#31
+msgid "Ctrl+S"
+msgstr ""
+
+#: MainWindow#32
+msgid "Save &As..."
+msgstr ""
+
+#: MainWindow#33
+msgid "Save As..."
+msgstr ""
+
+#: MainWindow#34
+msgid "Save the current contents to a new file."
+msgstr ""
+
+#: MainWindow#35
+msgid ""
+"<h3>Save As</h3>Use this to save the current contents to a new file. The "
+"file name can be entered in a file selection dialog."
+msgstr ""
+
+#: MainWindow#36
+msgid "Ctrl+Shift+S"
+msgstr ""
+
+#: MainWindow#37
+msgid "&Quit"
+msgstr ""
+
+#: MainWindow#38
+msgid "Quit"
+msgstr ""
+
+#: MainWindow#39
+msgid "Quit the application."
+msgstr ""
+
+#: MainWindow#40
+msgid ""
+"<h3>Quit</h3>Use this to quit the application. Any unsaved changes will be "
+"prompted."
+msgstr ""
+
+#: MainWindow#41
+msgid "Ctrl+Q"
+msgstr ""
+
+#: MainWindow#42
+msgid "&Undo"
+msgstr ""
+
+#: MainWindow#43
+msgid "Undo the last change."
+msgstr ""
+
+#: MainWindow#44
+msgid "<h3>Undo</h3>Use this to undo the last change done in the editor."
+msgstr ""
+
+#: MainWindow#45
+msgid "Ctrl+Z"
+msgstr ""
+
+#: MainWindow#46
+msgid "Re&do"
+msgstr ""
+
+#: MainWindow#47
+msgid "Redo the last change."
+msgstr ""
+
+#: MainWindow#48
+msgid "<h3>Redo</h3>Use this to redo the last change done in the editor."
+msgstr ""
+
+#: MainWindow#49
+msgid "Ctrl+Shift+Z"
+msgstr ""
+
+#: MainWindow#50
+msgid "Cu&t"
+msgstr ""
+
+#: MainWindow#51
+msgid "Cut the selected text."
+msgstr ""
+
+#: MainWindow#52
+msgid "<h3>Cut</h3>Use this to cut the selected text to the clipboard."
+msgstr ""
+
+#: MainWindow#53
+msgid "Ctrl+X"
+msgstr ""
+
+#: MainWindow#54
+msgid "&Copy"
+msgstr ""
+
+#: MainWindow#55
+msgid "Copy the selected text."
+msgstr ""
+
+#: MainWindow#56
+msgid "<h3>Copy</h3>Use this to copy the selected text to the clipboard."
+msgstr ""
+
+#: MainWindow#57
+msgid "Ctrl+C"
+msgstr ""
+
+#: MainWindow#58
+msgid "&Paste"
+msgstr ""
+
+#: MainWindow#59
+msgid "Paste"
+msgstr ""
+
+#: MainWindow#60
+msgid "Paste the last cut/copied text."
+msgstr ""
+
+#: MainWindow#61
+msgid ""
+"<h3>Paste</h3>Use this to paste the last cut/copies text from the clipboard "
+"to the editor."
+msgstr ""
+
+#: MainWindow#62
+msgid "Ctrl+V"
+msgstr ""
+
+#: MainWindow#63
+msgid "&Find"
+msgstr ""
+
+#: MainWindow#64
+msgid "Find text in the shown strings."
+msgstr ""
+
+#: MainWindow#65
+msgid ""
+"<h3>Find</h3>Use this to find text in the shown strings. The find dialog "
+"will show at the bottom of the editor."
+msgstr ""
+
+#: MainWindow#66
+msgid "Ctrl+F"
+msgstr ""
+
+#: MainWindow#67
+msgid "&About Pootling"
+msgstr ""
+
+#: MainWindow#68
+msgid "Display some information about this software."
+msgstr ""
+
+#: MainWindow#69
+msgid "<h3>About Pootling</h3>Display some information about this software."
+msgstr ""
+
+#: MainWindow#70
+msgid "Show MenuBar"
+msgstr ""
+
+#: MainWindow#71
+msgid "Ctrl+M"
+msgstr ""
+
+#: MainWindow#72
+msgid "Show TUview"
+msgstr ""
+
+#: MainWindow#73
+msgid "Ctrl+T"
+msgstr ""
+
+#: MainWindow#74
+msgid "About &Qt"
+msgstr ""
+
+#: MainWindow#75
+msgid "About Qt"
+msgstr ""
+
+#: MainWindow#76
+msgid "Display some information about the Qt Toolkit."
+msgstr ""
+
+#: MainWindow#77
+msgid "<h3>About Qt</h3>Display some information about the Qt Toolkit."
+msgstr ""
+
+#: MainWindow#78
+msgid "&First"
+msgstr ""
+
+#: MainWindow#79
+msgid "First"
+msgstr ""
+
+#: MainWindow#80
+msgid "Go to the first string."
+msgstr ""
+
+#: MainWindow#81
+msgid "<h3>First</h3>Go to the first string in the table."
+msgstr ""
+
+#: MainWindow#82
+msgid "Ctrl+PgUp"
+msgstr ""
+
+#: MainWindow#83
+msgid "&Previous"
+msgstr ""
+
+#: MainWindow#84
+msgid "Go to the previous string."
+msgstr ""
+
+#: MainWindow#85
+msgid "<h3>Previous</h3>Go to the previous string in the table."
+msgstr ""
+
+#: MainWindow#86
+msgid "PgUp"
+msgstr ""
+
+#: MainWindow#87
+msgid "&Next"
+msgstr ""
+
+#: MainWindow#88
+msgid "Go to the next string."
+msgstr ""
+
+#: MainWindow#89
+msgid "<h3>Next</h3>Go to the next string in the table."
+msgstr ""
+
+#: MainWindow#90
+msgid "PgDown"
+msgstr ""
+
+#: MainWindow#91
+msgid "&Last"
+msgstr ""
+
+#: MainWindow#92
+msgid "Go to the last string."
+msgstr ""
+
+#: MainWindow#93
+msgid "<h3>Last</h3>Go to the last string in the table."
+msgstr ""
+
+#: MainWindow#94
+msgid "Ctrl+PgDown"
+msgstr ""
+
+#: MainWindow#95
+msgid "Cop&y Source To Target"
+msgstr ""
+
+#: MainWindow#96
+msgid "Copy Source To Target"
+msgstr ""
+
+#: MainWindow#97
+msgid "Copy current string from source field to target field."
+msgstr ""
+
+#: MainWindow#98
+msgid ""
+"<h3>Copy Source To Target</h3>Use this to copy current string from source "
+"field to target field."
+msgstr ""
+
+#: MainWindow#99
+msgid "F2"
+msgstr ""
+
+#: MainWindow#100
+msgid "To&ggle Fuzzy"
+msgstr ""
+
+#: MainWindow#101
+msgid "Toggle Fuzzy"
+msgstr ""
+
+#: MainWindow#102
+msgid "Toggle fuzzy for current string."
+msgstr ""
+
+#: MainWindow#103
+msgid ""
+"<h3>Toggle Fuzzy</h3>Use this to set current string to fuzzy or unset it."
+msgstr ""
+
+#: MainWindow#104
+msgid "Ctrl+U"
+msgstr ""
+
+#: MainWindow#105
+msgid "file"
+msgstr ""
+
+#: MainWindow#106
+msgid "Find Previous"
+msgstr ""
+
+#: MainWindow#107
+msgid "Find Next"
+msgstr ""
+
+#: MainWindow#108
+msgid "&Replace"
+msgstr ""
+
+#: MainWindow#109
+msgid "Replace text in the shown strings."
+msgstr ""
+
+#: MainWindow#110
+msgid ""
+"<h3>Replace</h3>Use this to find text in the shown strings to replace. The "
+"find and replace dialog will show at the bottom of the editor."
+msgstr ""
+
+#: MainWindow#111
+msgid "Ctrl+R"
+msgstr ""
+
+#: MainWindow#112
+msgid "Find &Next"
+msgstr ""
+
+#: MainWindow#113
+msgid "Find next occurrance of text."
+msgstr ""
+
+#: MainWindow#114
+msgid ""
+"<h3>Find Next</h3>Use this to find the next occurrance of search text in the "
+"shown strings."
+msgstr ""
+
+#: MainWindow#115
+msgid "F3"
+msgstr ""
+
+#: MainWindow#116
+msgid "Find Pre&vious"
+msgstr ""
+
+#: MainWindow#117
+msgid "Find previous occurrance of text."
+msgstr ""
+
+#: MainWindow#118
+msgid ""
+"<h3>Find Previous</h3>Use this to find the previous occurrance of search "
+"text in the shown strings."
+msgstr ""
+
+#: MainWindow#119
+msgid "Shift+F3"
+msgstr ""
+
+#: MainWindow#120
+msgid "Select &All"
+msgstr ""
+
+#: MainWindow#121
+msgid "Select all text"
+msgstr ""
+
+#: MainWindow#122
+msgid "<h3>Select all text</h3>Select all text in the current window."
+msgstr ""
+
+#: MainWindow#123
+msgid "Ctrl+A"
+msgstr ""
+
+#: MainWindow#124
+msgid "&Header..."
+msgstr ""
+
+#: MainWindow#125
+msgid "Open header dialog."
+msgstr ""
+
+#: MainWindow#126
+msgid ""
+"<h3>Open header dialog</h3>Use this to open the dialog to edit the header "
+"information."
+msgstr ""
+
+#: MainWindow#127
+msgid "Ctrl+H"
+msgstr ""
+
+#: MainWindow#128
+msgid "&Preferences..."
+msgstr ""
+
+#: MainWindow#129
+msgid ""
+"Set common options for personality, font and color, translation memory and "
+"glossary, and save."
+msgstr ""
+
+#: MainWindow#130
+msgid ""
+"<h3>Preferences</h3>Use this to set common options for personality, font and "
+"color, translation memory and glossary, and save."
+msgstr ""
+
+#: MainWindow#131
+msgid "Toolbars"
+msgstr ""
+
+#: MainWindow#132
+msgid "&Fuzzy"
+msgstr ""
+
+#: MainWindow#133
+msgid "Show/Hide fuzzy strings"
+msgstr ""
+
+#: MainWindow#134
+msgid "Show or hide the fuzzy strings."
+msgstr ""
+
+#: MainWindow#135
+msgid "<h3>Fuzzy</h3>Use this to show or hide the fuzzy strings."
+msgstr ""
+
+#: MainWindow#136
+msgid "Ctrl+Alt+F"
+msgstr ""
+
+#: MainWindow#137
+msgid "&Translated"
+msgstr ""
+
+#: MainWindow#138
+msgid "Show/Hide translated strings"
+msgstr ""
+
+#: MainWindow#139
+msgid "Show or hide the translated strings."
+msgstr ""
+
+#: MainWindow#140
+msgid "<h3>Translated</h3>Use this show or hide the translated strings."
+msgstr ""
+
+#: MainWindow#141
+msgid "Ctrl+Alt+T"
+msgstr ""
+
+#: MainWindow#142
+msgid "&Untranslated"
+msgstr ""
+
+#: MainWindow#143
+msgid "Show/Hide untranslated strings"
+msgstr ""
+
+#: MainWindow#144
+msgid "Show or hide the untranslated strings."
+msgstr ""
+
+#: MainWindow#145
+msgid "<h3>Untranslated</h3>Use this to show or hide the untranslated strings."
+msgstr ""
+
+#: MainWindow#146
+msgid "Ctrl+Alt+U"
+msgstr ""
+
+#: MainWindow#147
+msgid "&Close"
+msgstr ""
+
+#: MainWindow#148
+msgid "Close the current opened file."
+msgstr ""
+
+#: MainWindow#149
+msgid ""
+"<h3>Close the current file</h3>Use this to close the current opened file."
+msgstr ""
+
+#: MainWindow#150
+msgid "Ctrl+W"
+msgstr ""
+
+#: MainWindow#151
+msgid "&String Number..."
+msgstr ""
+
+#: MainWindow#152
+msgid "String Number"
+msgstr ""
+
+#: MainWindow#153
+msgid "Go to string number..."
+msgstr ""
+
+#: MainWindow#154
+msgid "<h3>GoTo String</h3>Go to the string number specified by user."
+msgstr ""
+
+#: MainWindow#155
+msgid "Ctrl+G"
+msgstr ""
+
+#: MainWindow#156
+msgid "&Add Bookmarks"
+msgstr ""
+
+#: MainWindow#157
+msgid "Add a bookmark of the current string."
+msgstr ""
+
+#: MainWindow#158
+msgid "<h3>Add Bookmarks</h3>Use this to add a bookmark of the current string"
+msgstr ""
+
+#: MainWindow#159
+msgid "Ctrl+B"
+msgstr ""
+
+#: MainWindow#160
+msgid "&Clear Bookmarks"
+msgstr ""
+
+#: MainWindow#161
+msgid "Clear all the bookmarks."
+msgstr ""
+
+#: MainWindow#162
+msgid "<h3>Clear Bookmarks</h3>Use this to clear all the bookmarks."
+msgstr ""
+
+#: MainWindow#163
+msgid "&Auto Translate"
+msgstr ""
+
+#: MainWindow#164
+msgid "Catalog Manager..."
+msgstr ""
+
+#: MainWindow#165
+msgid "Open catalog manager."
+msgstr ""
+
+#: MainWindow#166
+msgid "<h3>Catalog Manager</h3>Use this to open catalog manager."
+msgstr ""
+
+#: MainWindow#167
+msgid "Build &TM"
+msgstr ""
+
+#: MainWindow#168
+msgid "Gl&ossary"
+msgstr ""
+
+#: MainWindow#169
+msgid "Copy &Translation To Target"
+msgstr ""
+
+#: MainWindow#170
+msgid "Copy Translation To Target"
+msgstr ""
+
+#: MainWindow#171
+msgid "Copy the most similar translation to target field."
+msgstr ""
+
+#: MainWindow#172
+msgid ""
+"<h3>Copy Translation To Target</h3>Use this to copy the most similar "
+"translation to target field."
+msgstr ""
+
+#: MainWindow#173
+msgid "Build &TM..."
+msgstr ""
+
+#: MainWindow#174
+msgid "Build the translation memory."
+msgstr ""
+
+#: MainWindow#175
+msgid "<h3>Build TM</h3>Use this to build the translation memory."
+msgstr ""
+
+#: MainWindow#176
+msgid "Build Gl&ossary..."
+msgstr ""
+
+#: MainWindow#177
+msgid "Build the glossary."
+msgstr ""
+
+#: MainWindow#178
+msgid "<h3>Build Glossary</h3>Use this to build the glossary."
+msgstr ""
+
+#: MainWindow#179
+msgid "Auto Translate"
+msgstr ""
+
+#: MainWindow#180
+msgid "Translate the whole strings automatically."
+msgstr ""
+
+#: MainWindow#181
+msgid "<h3></h3>Use this to translate the whole strings automatically."
+msgstr ""
+
+#: MainWindow#182
+msgid "&New...   "
+msgstr ""
+
+#: MainWindow#183
+msgid "This opens a dialog for entering  the information for a new project."
+msgstr ""
+
+#: MainWindow#184
+msgid ""
+"<h3>New...</h3>Use this to open a dialog for entering  the information for a "
+"new project."
+msgstr ""
+
+#: MainWindow#185
+msgid "&Open...   "
+msgstr ""
+
+#: MainWindow#186
+msgid "This open an existing project."
+msgstr ""
+
+#: MainWindow#187
+msgid "<h3>Open</h3>Use this to open an existing project."
+msgstr ""
+
+#: NewProject#1
+msgid "Dialog"
+msgstr ""
+
+#: NewProject#2
+msgid "This is where your project is located. "
+msgstr ""
+
+#: NewProject#3
+msgid "Project path:"
+msgstr ""
+
+#: NewProject#4
+msgid "Project type:"
+msgstr ""
+
+#: NewProject#5
+msgid "Project name:"
+msgstr ""
+
+#: NewProject#6
+msgid "Languages:"
+msgstr ""
+
+#: NewProject#7
+msgid "Browse path of project for your locate."
+msgstr ""
+
+#: NewProject#8
+msgid ""
+"Choose the localized language into which your project is going to translate."
+msgstr ""
+
+#: NewProject#9
+msgid ""
+"Project name is an identification of project name for you. it is shown in "
+"project path."
+msgstr ""
+
+#: NewProject#10
+msgid "Welcome pootling wizard"
+msgstr ""
+
+#: NewProject#11
+msgid "Add TM"
+msgstr ""
+
+#: NewProject#12
+msgid ""
+"You can add po, xliff files or another folders of files on your local into "
+"listwidget."
+msgstr ""
+
+#: NewProject#13
+msgid " &Add"
+msgstr ""
+
+#: NewProject#14
+msgid "Listwidget is displayed items from user add files or folders."
+msgstr ""
+
+#: NewProject#15
+msgid "clear list"
+msgstr ""
+
+#: NewProject#16
+msgid "You can clear everything in listwidget ."
+msgstr ""
+
+#: NewProject#17
+msgid " &Clear"
+msgstr ""
+
+#: NewProject#18
+msgid "move down"
+msgstr ""
+
+#: NewProject#19
+msgid "You can move iterm in listwidget from down to up ."
+msgstr ""
+
+#: NewProject#20
+msgid " Do&wn"
+msgstr ""
+
+#: NewProject#21
+msgid "move up"
+msgstr ""
+
+#: NewProject#22
+msgid "You can move iterm in listwidget from up to down "
+msgstr ""
+
+#: NewProject#23
+msgid " &Up"
+msgstr ""
+
+#: NewProject#24
+msgid ""
+"Checked/Unchecked of Dive into Subfolders to display files as sub of main "
+"folders"
+msgstr ""
+
+#: NewProject#25
+msgid "Dive into Subfolders"
+msgstr ""
+
+#: NewProject#26
+msgid "Add items into list"
+msgstr ""
+
+#: NewProject#27
+msgid "< &Back"
+msgstr ""
+
+#: NewProject#28
+msgid "Next >"
+msgstr ""
+
+#: NewProject#29
+msgid "&Finish"
+msgstr ""
+
+#: NewProject#30
+msgid "Cancel"
+msgstr ""
+
+#: StatisticsDialog#1
+msgid "Dialog"
+msgstr ""
+
+#: StatisticsDialog#2
+msgid "  Total:"
+msgstr ""
+
+#: StatisticsDialog#3
+msgid "  Untranslated:"
+msgstr ""
+
+#: StatisticsDialog#4
+msgid "  Fuzzy:"
+msgstr ""
+
+#: StatisticsDialog#5
+msgid "  Translated:"
+msgstr ""
+
+#: StatisticsDialog#6
+msgid "  Number of files:"
+msgstr ""
+
+#: StatisticsDialog#7
+msgid "  Statistic of :"
+msgstr ""
+
+#: StatisticsDialog#8
+msgid "&OK"
+msgstr ""
+
+#: StatisticsDialog#9
+msgid "Information of File and Folder"
+msgstr ""
+
+#: TUview#1
+msgid "Detail"
+msgstr ""
+
+#: TUview#2
+msgid ""
+"<h3>Source and Target View</h3>It contains source of unit in the upper text "
+"box, and target of unit in the below text box. If unit is plural, it will "
+"display multi of tabs."
+msgstr ""
+
+#: TUview#3
+msgid "Original Source String"
+msgstr ""
+
+#: TUview#4
+msgid ""
+"<h3>Original Source String</h3>This part of the window shows you the "
+"original string of the currently displayed entry. <br>You can not edit this "
+"string."
+msgstr ""
+
+#: TUview#5
+msgid "Plural 1"
+msgstr ""
+
+#: TUview#6
+msgid "Important Comment"
+msgstr ""
+
+#: TUview#7
+msgid ""
+"<h3>Important Comment</h3>Hints from the developer to the translator are "
+"displayed in this area. This area will be hidden if there is no hint. "
+msgstr ""
+
+#: TUview#8
+msgid "Translated String"
+msgstr ""
+
+#: TUview#9
+msgid ""
+"<h3>Translated String</h3>This editor displays and lets you edit the "
+"translation of the currently displayed string."
+msgstr ""
+
+#: TUview#10
+msgid "Navigate in your file"
+msgstr ""
+
+#: TUview#11
+msgid "Navigation Scrollbar"
+msgstr ""
+
+#: TUview#12
+msgid ""
+"<h3>Navigation Scrollbar</h3>It allows you do navigate in the current file. "
+"If you filter your strings you get only the filtered list. <br>It also gives "
+"you visual feedback about the postion of the current entry. The Tooltip "
+"also shows you the current number and the total numbers of strings."
+msgstr ""
+
+#: catalogSetting#1
+msgid "Catalog Settings"
+msgstr ""
+
+#: catalogSetting#2
+msgid "​"
+msgstr ""
+
+#: catalogSetting#3
+msgid "&File"
+msgstr ""
+
+#: catalogSetting#4
+msgid ""
+"Checked/Unchecked of Dive into Subfolders to display files as sub of main "
+"folders"
+msgstr ""
+
+#: catalogSetting#5
+msgid "Dive into Subfolders"
+msgstr ""
+
+#: catalogSetting#6
+msgid "Add TM"
+msgstr ""
+
+#: catalogSetting#7
+msgid ""
+"You can add po, xliff files or another folders of files on your local into "
+"listwidget."
+msgstr ""
+
+#: catalogSetting#8
+msgid " &Add"
+msgstr ""
+
+#: catalogSetting#9
+msgid "Listwidget is displayed items from user add files or folders."
+msgstr ""
+
+#: catalogSetting#10
+msgid "move up"
+msgstr ""
+
+#: catalogSetting#11
+msgid "You can move iterm in listwidget from up to down "
+msgstr ""
+
+#: catalogSetting#12
+msgid " &Up"
+msgstr ""
+
+#: catalogSetting#13
+msgid "Locations:"
+msgstr ""
+
+#: catalogSetting#14
+msgid "clear list"
+msgstr ""
+
+#: catalogSetting#15
+msgid "You can clear everything in listwidget ."
+msgstr ""
+
+#: catalogSetting#16
+msgid " &Clear"
+msgstr ""
+
+#: catalogSetting#17
+msgid "move down"
+msgstr ""
+
+#: catalogSetting#18
+msgid "You can move iterm in listwidget from down to up ."
+msgstr ""
+
+#: catalogSetting#19
+msgid " Do&wn"
+msgstr ""
+
+#: catalogSetting#20
+msgid "Delete TM"
+msgstr ""
+
+#: catalogSetting#21
+msgid ""
+"You can delete po, xliff files or another folders of files from listwidget."
+msgstr ""
+
+#: catalogSetting#22
+msgid " De&lete"
+msgstr ""
+
+#: catalogSetting#23
+msgid "Catalog &View"
+msgstr ""
+
+#: catalogSetting#24
+msgid "Checked/Unchecked to Display total's files on the catalog manager."
+msgstr ""
+
+#: catalogSetting#25
+msgid "Total"
+msgstr ""
+
+#: catalogSetting#26
+msgid ""
+"Checked/Unchecked to Display last translator's files on the catalog manager."
+msgstr ""
+
+#: catalogSetting#27
+msgid "Translated"
+msgstr ""
+
+#: catalogSetting#28
+msgid ""
+"Checked/Unchecked to Display untranslated's files on the catalog manager."
+msgstr ""
+
+#: catalogSetting#29
+msgid "Fuzzy"
+msgstr ""
+
+#: catalogSetting#30
+msgid "Checked/Unchecked to Display fuzzy's files on the catalog manager."
+msgstr ""
+
+#: catalogSetting#31
+msgid "Untranslated"
+msgstr ""
+
+#: catalogSetting#32
+msgid "Checked/Unchecked to Display name's files on the catalog manager."
+msgstr ""
+
+#: catalogSetting#33
+msgid "CVS/SVN Status"
+msgstr ""
+
+#: catalogSetting#34
+msgid ""
+"Checked/Unchecked to Display last revision's files on the catalog manager."
+msgstr ""
+
+#: catalogSetting#35
+msgid "Last Revision"
+msgstr ""
+
+#: catalogSetting#36
+msgid ""
+"Checked/Unchecked to Display cvs/svn status's files on the catalog manager."
+msgstr ""
+
+#: catalogSetting#37
+msgid "Last Translator"
+msgstr ""
+
+#: catalogSetting#38
+msgid "Checked/Unchecked to Display translated's files on the catalog manager."
+msgstr ""
+
+#: catalogSetting#39
+msgid "Name"
+msgstr ""
+
+#: catalogSetting#40
+msgid "Show Columns:"
+msgstr ""
+
+#: catalogSetting#41
+msgid "&OK"
+msgstr ""
+
+#: frmComment#1
+msgid "Comments"
+msgstr ""
+
+#: frmComment#2
+msgid "Translators' comments"
+msgstr ""
+
+#: frmComment#3
+msgid ""
+"<h3>Translator Comment</h3>This is where translator can leave comments for "
+"other translators or for reviewers."
+msgstr ""
+
+#: frmComment#4
+msgid "String's location"
+msgstr ""
+
+#: frmComment#5
+msgid ""
+"<h3>Location Comment</h3>This non editable comment contains information "
+"about where the message is found in the source code. It will be appeared "
+"once there is comments only. You can hide the comment editor by deactivating "
+"Views - Show Comment."
+msgstr ""
+
+#: frmFind#1
+msgid "Find & Replace"
+msgstr ""
+
+#: frmFind#2
+msgid "&Match case"
+msgstr ""
+
+#: frmFind#3
+msgid "S&ource"
+msgstr ""
+
+#: frmFind#4
+msgid "T&arget"
+msgstr ""
+
+#: frmFind#5
+msgid "&Comment"
+msgstr ""
+
+#: frmFind#6
+msgid "Replace"
+msgstr ""
+
+#: frmFind#7
+msgid " &Next"
+msgstr ""
+
+#: frmFind#8
+msgid "Search"
+msgstr ""
+
+#: frmFind#9
+msgid "  &Previous  "
+msgstr ""
+
+#: frmFind#10
+msgid " &Replace"
+msgstr ""
+
+#: frmFind#11
+msgid " Replace &All"
+msgstr ""
+
+#: frmFind#12
+msgid "Find"
+msgstr ""
+
+#: frmFind#13
+msgid " &Find"
+msgstr ""
+
+#: frmFind#14
+msgid "Find String in Files:"
+msgstr ""
+
+#: frmHeader#1
+msgid "Header"
+msgstr ""
+
+#: frmHeader#2
+msgid "delete row"
+msgstr ""
+
+#: frmHeader#3
+msgid " &Remove"
+msgstr ""
+
+#: frmHeader#4
+msgid "Insert row"
+msgstr ""
+
+#: frmHeader#5
+msgid " &Insert"
+msgstr ""
+
+#: frmHeader#6
+msgid "Move up"
+msgstr ""
+
+#: frmHeader#7
+msgid "&Up"
+msgstr ""
+
+#: frmHeader#8
+msgid "Move down"
+msgstr ""
+
+#: frmHeader#9
+msgid "&Down"
+msgstr ""
+
+#: frmHeader#10
+msgid "Comment"
+msgstr ""
+
+#: frmHeader#11
+msgid "Re&set"
+msgstr ""
+
+#: frmHeader#12
+msgid "&Apply Settings"
+msgstr ""
+
+#: frmHeader#13
+msgid "&OK"
+msgstr ""
+
+#: frmHeader#14
+msgid "&Cancel"
+msgstr ""
+
+#: frmPreference#1
+msgid "Preference"
+msgstr ""
+
+#: frmPreference#2
+msgid "Plural equation:"
+msgstr ""
+
+#: frmPreference#3
+msgid ""
+"<h3>Plural equation</h3>Set plural equation for a specific language. "
+"Pootling tries to set this value for you. If no information provided, you "
+"should fill up by yourself."
+msgstr ""
+
+#: frmPreference#4
+msgid ""
+"<h3>Singular/Plural forms</h3>Set plural forms for a specific language. "
+"Pootling try to set this value for you. If no information provided, you "
+"should fill up by yourself."
+msgstr ""
+
+#: frmPreference#5
+msgid "Number of singular/plural forms:"
+msgstr ""
+
+#: frmPreference#6
+msgid "Setting personal information"
+msgstr ""
+
+#: frmPreference#7
+msgid "Support team"
+msgstr ""
+
+#: frmPreference#8
+msgid "<h3>Support</h3>Type support email address."
+msgstr ""
+
+#: frmPreference#9
+msgid "Language name"
+msgstr ""
+
+#: frmPreference#10
+msgid "Language Code"
+msgstr ""
+
+#: frmPreference#11
+msgid ""
+"<h3>Language Code</h3>Choose your own language code. If your language code "
+"isn't in the list, please type in by yourself. Pootling will try to set the "
+"correct language name, number of singular/plural form and plural equation "
+"for you."
+msgstr ""
+
+#: frmPreference#12
+msgid "Email address"
+msgstr ""
+
+#: frmPreference#13
+msgid "<h3>Email Address</h3>Type your own email."
+msgstr ""
+
+#: frmPreference#14
+msgid "<h3>User Name</h3>Type your full name here."
+msgstr ""
+
+#: frmPreference#15
+msgid "User name"
+msgstr ""
+
+#: frmPreference#16
+msgid ""
+"<h3>Defaults Font</h3>Once this button is clicked, Overview, Source, Target "
+"and Comment will be set to default font, Serif, 10."
+msgstr ""
+
+#: frmPreference#17
+msgid "Defaults Font"
+msgstr ""
+
+#: frmPreference#18
+msgid "Overview header"
+msgstr ""
+
+#: frmPreference#19
+msgid "Overview"
+msgstr ""
+
+#: frmPreference#20
+msgid "Source"
+msgstr ""
+
+#: frmPreference#21
+msgid "Target"
+msgstr ""
+
+#: frmPreference#22
+msgid "Comment"
+msgstr ""
+
+#: frmPreference#23
+msgid ""
+"<h3>Source Color</h3>Click this button  will show up a color dialog box "
+"where you can choose color for source text."
+msgstr ""
+
+#: frmPreference#24
+msgid "Color"
+msgstr ""
+
+#: frmPreference#25
+msgid ""
+"<h3>Comment Color</h3>Click this button  will show up a color dialog box "
+"where you can choose color for comment text."
+msgstr ""
+
+#: frmPreference#26
+msgid ""
+"<h3>Comment Font</h3>Click this button  will show up a font dialog box where "
+"you can select fontname, style and size for comment text."
+msgstr ""
+
+#: frmPreference#27
+msgid "Font"
+msgstr ""
+
+#: frmPreference#28
+msgid ""
+"<h3>Target Font</h3>Click this button  will show up a font dialog box where "
+"you can select fontname, style and size for target text."
+msgstr ""
+
+#: frmPreference#29
+msgid ""
+"<h3>Source Font</h3>Click this button  will show up a font dialog box where "
+"you can select fontname, style and size for source text."
+msgstr ""
+
+#: frmPreference#30
+msgid ""
+"<h3>Overview Font</h3>Click this button  will show up a font dialog box "
+"where you can select fontname, style and size for overview text."
+msgstr ""
+
+#: frmPreference#31
+msgid "Comment Sample"
+msgstr ""
+
+#: frmPreference#32
+msgid ""
+"<h3>Comment Sample</h3>This lable displayed the current font name, style, "
+"size and color sample of comment dock widget."
+msgstr ""
+
+#: frmPreference#33
+msgid "Source Sample"
+msgstr ""
+
+#: frmPreference#34
+msgid ""
+"<h3>Source Sample</h3>This lable displayed the current font name, style, "
+"size and color sample of source dock widget."
+msgstr ""
+
+#: frmPreference#35
+msgid "Overview Sample"
+msgstr ""
+
+#: frmPreference#36
+msgid ""
+"<h3>Overview Sample</h3>This lable displayed the current font name, style, "
+"size and color sample of overview dock widget."
+msgstr ""
+
+#: frmPreference#37
+msgid ""
+"<h3>Overview Header Font</h3>Click this button  will show up a font dialog "
+"box where you can select fontname, style and size for overview header text."
+msgstr ""
+
+#: frmPreference#38
+msgid "Overview Header Sample"
+msgstr ""
+
+#: frmPreference#39
+msgid ""
+"<h3>Overview Header Sample</h3>This lable displayed the current font name, "
+"style, size and color sample of overview header dock widget."
+msgstr ""
+
+#: frmPreference#40
+msgid "Target Sample"
+msgstr ""
+
+#: frmPreference#41
+msgid ""
+"<h3>Target Sample</h3>This lable displayed the current font name, style, "
+"size and color sample of target dock widget."
+msgstr ""
+
+#: frmPreference#42
+msgid ""
+"<h3>Target Color</h3>Click this button  will show up a color dialog box "
+"where you can choose color for target text."
+msgstr ""
+
+#: frmPreference#43
+msgid ""
+"<h3>Overview Color</h3>Click this button  will show up a color dialog box "
+"where you can choose color for overview text."
+msgstr ""
+
+#: frmPreference#44
+msgid ""
+"<h3>Defaults Color</h3>Once this button is clicked, Overview, Source, Target "
+"and Comment will be set to default color, black."
+msgstr ""
+
+#: frmPreference#45
+msgid "Defaults Color"
+msgstr ""
+
+#: frmPreference#46
+msgid "Setting font & color"
+msgstr ""
+
+#: frmPreference#47
+msgid "Detect new terminology"
+msgstr ""
+
+#: frmPreference#48
+msgid "Allow translation suggestion from TM"
+msgstr ""
+
+#: frmPreference#49
+msgid "Add new terminology to glossary"
+msgstr ""
+
+#: frmPreference#50
+msgid "Alert if the terminology's translation doesn't match"
+msgstr ""
+
+#: frmPreference#51
+msgid "Possible to change translation of terminology in glossary"
+msgstr ""
+
+#: frmPreference#52
+msgid "Automatically identify and highlight terminology in glossary"
+msgstr ""
+
+#: frmPreference#53
+msgid "Automatically lookup translation in TM"
+msgstr ""
+
+#: frmPreference#54
+msgid "Don't lookup fuzzy strings"
+msgstr ""
+
+#: frmPreference#55
+msgid "Add new translation to TM"
+msgstr ""
+
+#: frmPreference#56
+msgid " Possible to change translation in TM"
+msgstr ""
+
+#: frmPreference#57
+msgid "Configure translation memory usage"
+msgstr ""
+
+#: frmPreference#58
+msgid "Configure glossary usage"
+msgstr ""
+
+#: frmPreference#59
+msgid "Automatically update header on save"
+msgstr ""
+
+#: frmPreference#60
+msgid "Automatically update TM on save"
+msgstr ""
+
+#: frmPreference#61
+msgid "&OK"
+msgstr ""
+
+#: frmPreference#62
+msgid "&Cancel"
+msgstr ""
+
+#: tmsetting#1
+msgid "Translation Memory and glossary Settings"
+msgstr ""
+
+#: tmsetting#2
+msgid "Dive into Subfolders"
+msgstr ""
+
+#: tmsetting#3
+msgid ""
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-"
+"weight:400; font-style:normal; text-decoration:none;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">clear "
+"path(s)</p></body></html>"
+msgstr ""
+
+#: tmsetting#4
+msgid " Clea&r"
+msgstr ""
+
+#: tmsetting#5
+msgid ""
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-"
+"weight:400; font-style:normal; text-decoration:none;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">delete selected "
+"path(s)</p></body></html>"
+msgstr ""
+
+#: tmsetting#6
+msgid " De&lete"
+msgstr ""
+
+#: tmsetting#7
+msgid ""
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-"
+"weight:400; font-style:normal; text-decoration:none;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Add path for "
+"TM</p></body></html>"
+msgstr ""
+
+#: tmsetting#8
+msgid " &Add"
+msgstr ""
+
+#: tmsetting#9
+msgid "&Cancel"
+msgstr ""
+
+#: tmsetting#10
+msgid "&OK"
+msgstr ""
+
+#: tmsetting#11
+msgid "Options"
+msgstr ""
+
+#: tmsetting#12
+msgid "Maximum string length"
+msgstr ""
+
+#: tmsetting#13
+msgid "Minimum similarity"
+msgstr ""
+
+#: tmsetting#14
+msgid "Maximum search result"
+msgstr ""
+
+#: tmsetting#15
+msgid "Locations:"
+msgstr ""
+
+#: tmsetting#16
+msgid "Progress"
+msgstr ""

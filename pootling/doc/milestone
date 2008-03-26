@@ -1,0 +1,91 @@
+Milestone
+
+Editor
+    1. Simple Editor: (Expected Release Date: 31/08/06)
+        . Open      -- Done
+        . Save      -- Done
+        . Save As       -- done
+        . Cut in Target/ Comment/ Overview          --done
+        . Paste in Target/ Comment/ Overview        --done
+        . Find (where to find: source, target, and comment; option: Case sensitive, From current position, Only whole words, find backwords, high light)
+        . Replace (where to find: source, target, and comment; option: Case sensitive, From current position, Only whole words, find backwords, high light, ask before replacing)
+        . Filter (fuzzy, translated, untranslated, approved)        -- 100%
+        . Status        -- done
+        . Comment (work with po/poxliff file)       -- Done
+        . Toggole Fuzzy         -- Done
+        . Navigation        -- Done
+        . Support XLIFF and Po      -- Done
+        . Open Recent File      
+        . Close File            
+        . Copy Source 2 target          -- Done
+        . Open in new window.  -- Done
+        . Application Icon          --Done 
+        . Run it on Window  --
+        . Create a first release --Done
+        . Linux installer
+        
+    2. Second Editor (Expected Release Date: 30/09/06)
+        . User Interface Profile
+        . Translator Info
+            . Name
+            . Email
+            . History of phase in the whole file
+            . History of phase which worked on the TU.
+        . Visual representation of translation progress in whole document (scrollbar)
+        . Translation Memory
+            . Possilble to import/export tbx file
+            . Use SQL-Lite file as backend
+            . Automatic Lookup the source
+            . Automatic Save the target
+            . save translation to memory
+            . get translation from memory
+            . display translation to view
+             
+    3. Third Editor (Expected Release Date: 31/10/06)
+        . Support more file format
+        . Save as XLIFF or convert back to original format
+        . External Backend for TM
+        . Merging TM
+        . Condense tag and mark color on it
+        . Auto save file
+        . Colorize tags, argument, variable
+        . Set color on the background of source or target
+        . Use custom font for source or target.
+        . Bookmark one TU
+        . When selecting source word, a glossary should show at right side.
+        . Tag should not be modified (when inserted to msgstr)
+        . Auto completion for word already written.
+        . Show control/invisible characters (space/tab/zwsp/zwnj..)
+        . 
+        . 
+        
+    4. Forth Editor (Expected Release Date: 31/11/06)
+        	TRANSLATION QUALITY
+                . Assure translation accuracy: 
+                . underline misspell word
+                . External spell check (interface to existing spell checker)
+                . check the number of tags, tag name...
+                . check the number of arguments, argument name
+                . check leading/trailing spaces analysis
+                . check translation against Glossary
+                . Provide a plugin interface for custom translation quality check 
+                
+            PRINT
+                . Source and Target Language
+                . Print preview
+
+            BACKUP
+                . Translation database
+                . Create backup file
+
+New Application: (Expected Release Date: 31/12/06)
+    1. Catalog Manager
+        . Create new project
+        . Batch conversion to XLIFF format 
+        . Batch conversion to original format
+        . File status (translated info, untranslated info, fuzzy info, Total message, status of translation (symbols identify), Last translator info
+        . Show SVN/CVS status, Last revision info
+        . Normal text search/replace in multiple files
+        . More advanced in multiple files(search in TU, Alt tran, Note..)
+        . FTP: upload and download management
+        . Email with compressed file attached

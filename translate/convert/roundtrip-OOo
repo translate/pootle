@@ -1,0 +1,42 @@
+#!/bin/bash
+
+potdir=pot
+enpodir=en-po
+gsidir=.gsi
+
+mkdir -p $gsidir
+
+cd $gsidir
+
+# Get files from Pavel
+echo "Downloading files:"
+#wget -N --retr-symlinks ftp://ftp.linux.cz/pub/localization/OpenOffice.org/devel/POT/OpenOffice.org-POT-stable-latest.tar.gz
+#wget -N --retr-symlinks ftp://ftp.linux.cz/pub/localization/OpenOffice.org/devel/POT/OpenOffice.org-POT-latest.tar.gz
+
+for gsi in $(ls OpenOffice.org*.tar.gz)
+do
+        echo "### Checking $gsi ###"
+        echo "Untarring"
+	tar xzf $gsi
+	rm -rf pot
+
+	echo "Convert GSI to POT:"
+        mkdir -p $potdir
+	oo2po -P en-US.sdf $potdir
+	
+	echo "Create English version using poen:"
+        rm -rf $enpodir
+        mkdir -p $enpodir
+	poen $potdir $enpodir
+	
+	echo "Create en-XX.sdf:"
+	po2oo -l en-XX -t en-US.sdf $enpodir en-XX.sdf
+	
+	# Check for lines that are not duplicated
+	echo "Analysing:"
+	cut -f11,13,14 en-XX.sdf | uniq -u
+
+	rm -rf pot en-US.sdf $potdir/* $enpodir/*
+done
+
+rm -rf $potdir $enpodir

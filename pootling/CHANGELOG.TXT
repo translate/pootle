@@ -1,0 +1,82 @@
+Date: 31 Jun 2007, release Pootling version 0.2 rc1
+
+There are a lot of significent changes in this release and the highlight points are list below:
+-New features:
+  - Catalog manager: is the overview status of your translation files.
+     It performs the following tasks:
+     - Create new project/ Open existing project
+     - Show statistic of a bundle of file
+     - Find a string through the whole catalog
+     - BuildTM from Catalog
+
+  - Glossary manager:is the intelligent tools helping to improve the translation quality.
+      It provides the ease as bellow:
+     - Indentify and highlight glossary terms in Source of Detail view.
+     - Pop up definition of each term once mouse hoverd 
+     - Copy the definition to clipboard
+     - Replace the term in Target of Detail view with the definition 
+     - Show other related glossary terms in a table Glossary Lookup
+
+  - Translation memory manager: is the usefull tools to make the translation process faster 
+       and more reliable.
+     It provides the ease as bellow:
+     - Auto lookup translation: is a rough translation through the whole file.
+     - An option to ignor lookup translation, if the unit is fuzzy.
+     - Addition info of the string found in Translation Memory is provided as a tooltip
+     - A context menu for Overview to search for string in Translation Memory is created
+
+  - Bookmark:you can bookmark the string in the currently opened file. If the file is closed, 
+	      then the bookmark is gone too. It will be smarter in the next release.
+
+  - Plural forms: Pootling provides as a tab in the Detail view to handle plural form.
+
+  - Colorize: Nice interface to have different color for tag, viable, glossary term, and search
+              string.
+
+  - Internationalization: There is an avialable pootling.po file for internationalization
+              purpose. For other who wants use pootling in his/her language, please help to
+              translate. Thenw e will help to build pootling that can handle multi-languages.
+  
+  - Preference:The look and feel of Preference is greately changed.
+
+  - Manual (How to use pootling) : is distributed in the pdf format.
+  
+  - Running Pootling more easily; One click to get pootling work for you.
+
+  - Installation package in the rpm format is also provided.
+
+-Bugs fixed:
+  - bug #214: Move cusor in TUview.target to the end.
+  - bug #250: Set default Open/Save path to somewhere else besides binary directory
+              (better in /home/<user> for Linux, and 
+               C:/Documents and Settings\<user> for Windows)
+  - bug #219: Rendering unicode problem.
+
+  - More test cases are created and fixed.
+
+Date: 12 January 2007, release Pootling version 0.1.1
+
+There are some changes for this version:
+- Change terminology from editor to pootling in each module where import statement are found.
+- Change the pootling.py to pootling-editor.py to avoid the same name as pootling folder.
+- Correct visible tabulation in TUview source and target.
+- Fix PgUp/PgDown in fuzzy view
+- Add Close submenu under File menu
+- Remove the not working plurals form in preference for this version temporary.
+- When toggle fuzzy, enable save button.
+- Windows Installer.version 0.1.1
+
+
+
+Date: 29 December 2006, release Pootling version 0.1
+
+Enable to do translation with basic features:
+- Open/Save with Po/xliff file
+- View filter message: fuzzy, translated, untranslated
+- Edit header for po and poxliff file
+- Set and View comments
+- Find/Replace
+- Preference Setting
+- Copy source2target
+- Toggle fuzzy
+

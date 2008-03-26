@@ -1,0 +1,59 @@
+#!/bin/bash
+#
+# Copyright 2007 Zuza Software Foundation
+#
+# This file is part of The Translate Toolkit.
+#
+# The Translate Toolkit is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# translate is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with translate; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+# poglossary - takes a directory of PO files and creates a glossary 
+# out of them.  The glossary will only contain short phrases and is output
+# in PO, TMX and CSV formats.
+
+if [ $# -ne 3 ]; then
+	echo "Usage: `basename $0` language-iso-code input-dir project-name"
+	echo "  e.g. `basename $0` zu zu-po firefox"
+	exit 1
+fi
+
+language=$1
+words=2
+input=$2
+project=$3
+rm_accel="-su"
+
+output=glossary
+tmpdir=$(mktemp -d tmp.XXXXXXXXXX)
+scriptpath=$(dirname $0)
+
+pogrep --header --search=msgid -e "^\w+(\s+\w+){0,$words}$" $input $tmpdir/short
+pogrep --header --search=msgid -v -e "^.$" $tmpdir/short $tmpdir/short-clean
+
+$scriptpath/pocompendium -i $rm_accel $tmpdir/$output.po -d $tmpdir/short-clean
+$scriptpath/posplit $tmpdir/$output.po
+rm -f $tmpdir/$output-untranslated.po
+
+pofilter -t compendiumconflicts $tmpdir/$output-fuzzy.po $tmpdir/$output-conflicts.po
+rm $tmpdir/$output-fuzzy.po
+
+sed '/#, fuzzy/d; /\"#-#-#-#-# /d; /# (pofilter) compendiumconflicts:/d; s/\\n"$/, "/' $tmpdir/$output-conflicts.po |
+uniq | msgcat >  $tmpdir/$output-conflicts-clean.po
+rm $tmpdir/$output-conflicts.po
+
+msgcat $tmpdir/$output-translated.po $tmpdir/$output-conflicts-clean.po > $language-$project-$output.po
+po2csv $language-$project-$output.po $language-$project-$output.csv
+po2tmx -l $language $language-$project-$output.po $language-$project-$output.tmx
+
+rm -rf $tmpdir

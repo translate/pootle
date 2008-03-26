@@ -1,0 +1,240 @@
+<ui version="4.0" >
+ <class>catPreferences</class>
+ <widget class="QWidget" name="catPreferences" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>387</width>
+    <height>250</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Catalog Manager Preferences</string>
+  </property>
+  <property name="toolTip" >
+   <string/>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item row="1" column="0" colspan="2" >
+    <widget class="QFrame" name="frame" >
+     <property name="frameShape" >
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="3" column="1" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QCheckBox" name="chbSVN" >
+        <property name="toolTip" >
+         <string>CVS/SVN Status</string>
+        </property>
+        <property name="whatsThis" >
+         <string>&lt;h3>CVS/SVN Status&lt;/h3>Use this to checked/unchecked to display status of file in local or cvs/svn server on the catalog manager.</string>
+        </property>
+        <property name="text" >
+         <string>CVS/SVN Status</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QCheckBox" name="chbname" >
+        <property name="toolTip" >
+         <string>Name</string>
+        </property>
+        <property name="statusTip" >
+         <string/>
+        </property>
+        <property name="whatsThis" >
+         <string>&lt;h3>Name&lt;/h3>Use this to checked/unchecked to display file name on the catalog manager.</string>
+        </property>
+        <property name="text" >
+         <string>Name</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" >
+       <widget class="QCheckBox" name="chbtranslator" >
+        <property name="toolTip" >
+         <string>Last Translator</string>
+        </property>
+        <property name="whatsThis" >
+         <string>&lt;h3>Last Translator&lt;/h3>Use this to checked/unchecked to display last translator's name in file on the catalog manager.</string>
+        </property>
+        <property name="text" >
+         <string>Last Translator</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" >
+       <widget class="QCheckBox" name="chblastrevision" >
+        <property name="toolTip" >
+         <string>Last Revision</string>
+        </property>
+        <property name="whatsThis" >
+         <string>&lt;h3>Last Revision&lt;/h3>Use this to checked/unchecked to display date/time in file was saved by the last translator on the catalog manager.</string>
+        </property>
+        <property name="text" >
+         <string>Last Revision</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QCheckBox" name="chbuntranslated" >
+        <property name="toolTip" >
+         <string>Untranslated</string>
+        </property>
+        <property name="whatsThis" >
+         <string>&lt;h3>Untranslated&lt;/h3>Use this to checked/unchecked to display number of string in file was untranslated on the catalog manager.</string>
+        </property>
+        <property name="text" >
+         <string>Untranslated</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QCheckBox" name="chbfuzzy" >
+        <property name="toolTip" >
+         <string>Fuzzy</string>
+        </property>
+        <property name="whatsThis" >
+         <string>&lt;h3>Fuzzy&lt;/h3>Use this to checked/unchecked to display fuzzy number in file on the catalog manager.</string>
+        </property>
+        <property name="text" >
+         <string>Fuzzy</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QCheckBox" name="chbtranslated" >
+        <property name="toolTip" >
+         <string>Translated</string>
+        </property>
+        <property name="whatsThis" >
+         <string>&lt;h3>Translated&lt;/h3>Use this to checked/unchecked to display number of string in file was translated on the catalog manager.</string>
+        </property>
+        <property name="text" >
+         <string>Translated</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QCheckBox" name="chbtotal" >
+        <property name="toolTip" >
+         <string>Total</string>
+        </property>
+        <property name="whatsThis" >
+         <string>&lt;h3>Total&lt;/h3>Use this to checked/unchecked to display total number of strings in file on the catalog manager.</string>
+        </property>
+        <property name="text" >
+         <string>Total</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>191</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="0" colspan="2" >
+    <widget class="QLabel" name="label" >
+     <property name="sizePolicy" >
+      <sizepolicy>
+       <hsizetype>5</hsizetype>
+       <vsizetype>0</vsizetype>
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text" >
+      <string>Show Columns:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" >
+    <widget class="QPushButton" name="btnOk" >
+     <property name="toolTip" >
+      <string/>
+     </property>
+     <property name="text" >
+      <string>&amp;OK</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>chbname</tabstop>
+  <tabstop>chbtranslated</tabstop>
+  <tabstop>chbfuzzy</tabstop>
+  <tabstop>chbuntranslated</tabstop>
+  <tabstop>chbtotal</tabstop>
+  <tabstop>chbSVN</tabstop>
+  <tabstop>chblastrevision</tabstop>
+  <tabstop>chbtranslator</tabstop>
+  <tabstop>btnOk</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

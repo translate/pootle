@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns:over="http://dev.sjsoft.com/ns/overlay" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st January 2004), see www.w3.org" />
+
+  <title>Pootle Admin Page</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
+  <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+  <![endif]-->
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div id="abovefooter">
+  <div id="banner" over:include="pootlepage#banner"/>
+
+  <div id="fullwidthcontent" py:if="not session.issiteadmin" dir="$uidir" lang="$uilanguage">
+    <div class="intro">
+      You do not have the rights to administer Pootle
+    </div>
+  </div>
+  <div id="fullwidthcontent" py:if="session.issiteadmin" dir="$uidir" lang="$uilanguage">
+    <div class="info">
+      <a href="../home/" py:content="text.home">Home</a>
+    </div>
+
+    <div class="info">
+      <a href="users.html" py:content="text.users">Users</a>
+    </div>
+
+    <div class="info">
+      <a href="languages.html" py:content="text.languages">Languages</a>
+    </div>
+
+    <div class="info">
+      <a href="projects.html" py:content="text.projects">Projects</a>
+    </div>
+
+    <div class="contents">
+      <h3 class="title" py:content="text.generaloptions">General Options</h3>
+
+      <form action="" method="post" name="general" id="general">
+        <table cellpadding="1" cellspacing="1">
+          <tr>
+            <td colspan="1" rowspan="1">
+              <h3 class="title" py:content="text.option">Option</h3>
+            </td>
+
+            <td colspan="1" rowspan="1">
+              <h3 class="title" py:content="text.currentvalue">Current value</h3>
+            </td>
+          </tr>
+
+          <tr py:for="option in options">
+            <td colspan="1" rowspan="1" py:content="option.title">Description</td>
+
+            <td colspan="1" rowspan="1"><input type="text" name="${option.name}" value="${option.value}"/></td>
+          </tr>
+
+        </table><input type="submit" name="changegeneral" value="${text.savechanges}" />
+      </form>
+    </div>
+  </div>
+
+  </div>
+  <div id="links" over:include="pootlepage#links"/>
+  <div id="about" over:include="pootlepage#about"/>
+</body>
+</html>

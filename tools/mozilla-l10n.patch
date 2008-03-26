@@ -1,0 +1,37 @@
+Index: tools/l10n/l10n.mk
+===================================================================
+RCS file: /cvsroot/mozilla/tools/l10n/l10n.mk,v
+retrieving revision 1.1.2.3
+diff -u -3 -p -r1.1.2.3 l10n.mk
+--- tools/l10n/l10n.mk	16 Feb 2006 14:01:04 -0000	1.1.2.3
++++ tools/l10n/l10n.mk	17 Nov 2006 11:39:27 -0000
+@@ -53,8 +53,28 @@ create-%:
+ 	    echo $(TOPSRCDIR)/../l10n/$*/$$mod already exists; \
+ 	  else \
+ 	    echo Creating $(TOPSRCDIR)/../l10n/$*/$$mod from $(TOPSRCDIR)/$$mod/locales/en-US; \
+-	    mkdirhier ../l10n/$*/$$mod; \
++	    mkdir -p ../l10n/$*/$$mod; \
+ 	    cp -r $(TOPSRCDIR)/$$mod/locales/en-US/* $(TOPSRCDIR)/../l10n/$*/$$mod; \
+ 	    find $(TOPSRCDIR)/../l10n/$*/$$mod -name CVS | xargs rm -rf; \
+ 	  fi; \
+ 	done;
++
++pot-create: create-en-US
++	rm -rf $(TOPSRCDIR)/../l10n/pot
++	moz2po -P --duplicates=msgid_comment $(TOPSRCDIR)/../l10n/en-US $(TOPSRCDIR)/../l10n/pot
++
++pot-count:
++	pocount `find $(TOPSRCDIR)/../l10n/pot -name "*.pot"`
++
++po-count-%:
++	pocount `find $(TOPSRCDIR)/../l10n/$*-po -name "*.po"`
++
++po-create-%: create-en-US
++	moz2po --errorlevel=traceback -t $(TOPSRCDIR)/../l10n/en-US $(TOPSRCDIR)/../l10n/$* $(TOPSRCDIR)/../l10n/$*-po
++
++po-l10n-%:
++	po2moz --errorlevel=traceback -t $(TOPSRCDIR)/../l10n/en-US $(TOPSRCDIR)/../l10n/$*-po $(TOPSRCDIR)/../l10n/$*
++
++po-update-%: pot-create
++	mv $(TOPSRCDIR)/../l10n/$*-po $(TOPSRCDIR)/../l10n/$*-po.old
++	pot2po -t $(TOPSRCDIR)/../l10n/$*-po.old $(TOPSRCDIR)/../l10n/pot $(TOPSRCDIR)/../l10n/$*-po
