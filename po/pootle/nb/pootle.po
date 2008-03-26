@@ -3,105 +3,105 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2006-09-04 14:29+0200\n"
-"Last-Translator: Hans Fredrik Nordhaug <Hans.F.Nordhaug@hiMolde.no>\n"
+"PO-Revision-Date: 2007-09-11 01:06+0200\n"
+"Last-Translator: Geir Pedersen <geir.pedersen@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.10rc4\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #. l10n: Verb
 #: projects.py:136
 msgid "View"
-msgstr ""
+msgstr "Vis"
 
 #: projects.py:137 translatepage.py:613
 msgid "Suggest"
-msgstr ""
+msgstr "Foreslå"
 
 #: projects.py:138
 msgid "Translate"
-msgstr ""
+msgstr "Oversett"
 
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "Overskriv"
 
 #. l10n: Verb
 #: projects.py:141
 msgid "Review"
-msgstr ""
+msgstr "Se igjennom"
 
 #. l10n: Verb
 #: projects.py:143
 msgid "Archive"
-msgstr ""
+msgstr "Arkiver"
 
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
 msgid "Compile PO files"
-msgstr ""
+msgstr "Kompiler PO filer"
 
 #: projects.py:146
 msgid "Assign"
-msgstr ""
+msgstr "Tildel"
 
 #: projects.py:147 indexpage.py:134
 msgid "Administrate"
-msgstr ""
+msgstr "Administrer"
 
 #. l10n: Commit to version control (like CVS or Subversion)
 #: projects.py:148 indexpage.py:748
 msgid "Commit"
-msgstr ""
+msgstr "Bekreft"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "Du kan ikke fjerne brukerene \"nobody\" og \"default\""
 
 #: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å endre målene her"
 
 #: projects.py:505
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å laste opp filer her"
 
 #: projects.py:508
 msgid "You do not have rights to overwrite files here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å overskrive filer her"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å laste opp nye filer her"
 
 #: projects.py:519
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å oppdatere filer her"
 
 #: projects.py:590
 msgid "You do not have rights to commit files here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å lagre filer her"
 
 #: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å endre tildelinger her"
 
 #: projects.py:1141
 msgid "You do not have rights to change translations here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å endre oversettelser her"
 
 #: projects.py:1151
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å foreslå endringer her"
 
 #: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Du har ikke rettigheter til å se over forslag her"
 
 #: translatepage.py:89
 #, python-format
@@ -110,7 +110,7 @@ msgid ""
 "(%d blank, %d fuzzy)"
 msgstr ""
 "%d/%d oversatt\n"
-"(%blanke, %d fuzzy)"
+"(%d blanke, %d fuzzy)"
 
 #: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
 #: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
@@ -127,7 +127,7 @@ msgstr "Pootle Demo"
 #: translatepage.py:99
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "Pootle: oversetter %s til %s: %s"
+msgstr "%s: oversetter %s til %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
@@ -149,22 +149,22 @@ msgstr "Avvis"
 
 #: translatepage.py:121 pagelayout.py:243
 msgid "Fuzzy"
-msgstr ""
+msgstr "Omtrentlig"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Oversetterkommentarer"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Utviklerkommentarer"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
 msgid "Related"
-msgstr ""
+msgstr "Relatert"
 
 #. l10n: text next to search field
 #: translatepage.py:131 indexpage.py:356
@@ -237,50 +237,50 @@ msgstr ""
 
 #: translatepage.py:578
 msgid "Singular"
-msgstr ""
+msgstr "Entall"
 
 #: translatepage.py:579
 msgid "Plural"
-msgstr ""
+msgstr "Flertall"
 
 #. l10n: verb
 #: translatepage.py:593
 msgid "Edit"
-msgstr ""
+msgstr "Rediger"
 
 #. l10n: verb
 #: translatepage.py:609
 msgid "Copy"
-msgstr ""
+msgstr "Kopier"
 
 #: translatepage.py:610 translatepage.py:784
 msgid "Skip"
-msgstr ""
+msgstr "Hopp over"
 
 #. l10n: verb
 #: translatepage.py:612 translatepage.py:783 users.py:256
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 #: translatepage.py:614
 msgid "Submit"
-msgstr ""
+msgstr "Send inn"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:617
 msgid "Grow"
-msgstr ""
+msgstr "Voks"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:619
 msgid "Shrink"
-msgstr ""
+msgstr "Krymp"
 
 #: translatepage.py:641 translatepage.py:735 translatepage.py:772
 #: translatepage.py:805
 #, python-format
 msgid "Plural Form %d"
-msgstr ""
+msgstr "Flertallsform %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:657
@@ -291,29 +291,29 @@ msgstr ""
 
 #: translatepage.py:739
 msgid "Current Translation:"
-msgstr ""
+msgstr "Nåværende oversettelse:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
 #: translatepage.py:752
 #, python-format
 msgid "Suggestion %d by %s:"
-msgstr ""
+msgstr "Forslag %d av %s:"
 
 #: translatepage.py:754
 #, python-format
 msgid "Suggestion %d:"
-msgstr ""
+msgstr "Forslag %d:"
 
 #. l10n: parameter: name of translator
 #: translatepage.py:758
 #, python-format
 msgid "Suggestion by %s:"
-msgstr ""
+msgstr "Forslag av %s:"
 
 #: translatepage.py:760
 msgid "Suggestion:"
-msgstr ""
+msgstr "Forslag:"
 
 #: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
 #: pagelayout.py:36
@@ -351,11 +351,11 @@ msgstr ""
 
 #: adminpages.py:54
 msgid "Title"
-msgstr ""
+msgstr "Tittel"
 
 #: adminpages.py:55
 msgid "Description"
-msgstr ""
+msgstr "Beskrivelse"
 
 #: adminpages.py:56
 msgid "Base URL"
@@ -461,7 +461,7 @@ msgstr ""
 
 #: adminpages.py:215 users.py:101
 msgid "Email Address"
-msgstr ""
+msgstr "Epostadresse"
 
 #: adminpages.py:215 users.py:350
 msgid "(add email here)"
@@ -469,7 +469,7 @@ msgstr ""
 
 #: adminpages.py:216 users.py:107 users.py:163
 msgid "Password"
-msgstr ""
+msgstr "Passord"
 
 #: adminpages.py:216 users.py:344
 msgid "(add password here)"
@@ -477,15 +477,15 @@ msgstr ""
 
 #: adminpages.py:217
 msgid "Activated"
-msgstr ""
+msgstr "Aktivert"
 
 #: adminpages.py:217
 msgid "Activate New User"
-msgstr ""
+msgstr "Aktiver ny bruker"
 
 #: adminpages.py:218
 msgid "Remove User"
-msgstr ""
+msgstr "Fjern bruker"
 
 #: adminpages.py:272
 msgid "Back to main page"
@@ -603,9 +603,8 @@ msgid "Activate"
 msgstr ""
 
 #: pagelayout.py:80
-#, fuzzy
 msgid "Pootle Logo"
-msgstr "Pootle Demo"
+msgstr "Pootle-logo"
 
 #: pagelayout.py:81
 msgid "WordForge Translation Project"
@@ -646,18 +645,16 @@ msgid "Name"
 msgstr ""
 
 #: pagelayout.py:240
-#, fuzzy
 msgid "Translated"
-msgstr "Oversettelse"
+msgstr "Oversatt"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
 msgstr ""
 
 #: pagelayout.py:242
-#, fuzzy
 msgid "Translated words"
-msgstr "Oversettelse"
+msgstr "Oversatte ord"
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
@@ -714,9 +711,8 @@ msgid "Password:"
 msgstr ""
 
 #: users.py:64
-#, fuzzy
 msgid "Language:"
-msgstr "Språk"
+msgstr "Språk:"
 
 #: users.py:73
 msgid "Default"
@@ -804,9 +800,8 @@ msgid "My Projects"
 msgstr ""
 
 #: users.py:169
-#, fuzzy
 msgid "My Languages"
-msgstr "Språk"
+msgstr "Mine språk"
 
 #: users.py:171
 msgid "Home page"

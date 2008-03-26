@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-03-06 06:58+0100\n"
-"Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
+"PO-Revision-Date: 2007-11-01 02:33+0100\n"
+"Last-Translator: Reiko Saito <reiko.saito@sun.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 0.11rc2\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -153,12 +153,12 @@ msgstr "ファジー"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "翻訳者のコメント"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "開発者のコメント"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -286,9 +286,7 @@ msgstr "複数形 %d"
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
-msgstr ""
-"その言語では複数形の情報が有効でないため、翻訳できません。サイト管理者にお問"
-"い合わせください。"
+msgstr "この言語に必要な複数形の情報がないため、翻訳できません。サイト管理者にお問い合わせください。"
 
 #: translatepage.py:739
 msgid "Current Translation:"
@@ -442,7 +440,7 @@ msgstr "チェック形式"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "ファイル形式"
 
 #: adminpages.py:153
 msgid "Create MO Files"
@@ -750,7 +748,7 @@ msgstr "パスワード確認"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
-msgstr ""
+msgstr "確認のために、もう一度パスワードを入力してください"
 
 #: users.py:113
 msgid "Register Account"
@@ -841,7 +839,7 @@ msgstr "このユーザ名は既に登録されています。\n"
 
 #: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
+msgstr "実際のパスワードではなく、パスワードのハッシュだけを保存します。"
 
 #: users.py:385
 #, python-format
@@ -863,7 +861,7 @@ msgstr "ユーザ名が既に存在します。登録済みのアドレスに e-
 #: users.py:390
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "<a href='%s'>ログイン</a>に進みます\n"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
@@ -873,24 +871,28 @@ msgstr "Pootle のアカウントをこの e-mail アドレスで作成しまし
 msgid "To activate your account, follow this link:\n"
 msgstr "アカウントを有効にするには、以下のリンクをクリックしてください。\n"
 
+# \n の改行コードは英文どおりに入れておいた方がいいと思いました。
 #: users.py:404
 #, python-format
 msgid ""
 "Your activation code is:\n"
 "%s\n"
-msgstr "あなたの有効化コード:%s"
+msgstr ""
+"あなたの有効化コード:\n"
+"%s\n"
 
 #: users.py:406
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "リンクをたどれない場合は、有効化のページに上記のコードを入力してください。\n"
 
 #: users.py:407
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr ""
+"このメッセージは、E-mail アドレスが正しいかどうかを確認するためのものです。アカウントを登録したくない場合は、このメッセージは無視してください。"
 
 #: users.py:409
 #, python-format

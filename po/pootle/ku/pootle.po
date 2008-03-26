@@ -2,112 +2,109 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2006-09-04 18:31+0200\n"
+"POT-Creation-Date: 2006-09-16 01:51+0200\n"
+"PO-Revision-Date: 2007-12-21 15:59+0000\n"
 "Last-Translator: Erdal Ronahi <erdal.ronahi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!= 1);\n"
-"X-Generator: Pootle 0.10rc4\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #. l10n: Verb
-#: projects.py:136
+#: projects.py:135
 msgid "View"
-msgstr ""
+msgstr "Bibîne"
 
-#: projects.py:137 translatepage.py:613
+#: projects.py:136 translatepage.py:571
 msgid "Suggest"
-msgstr ""
+msgstr "Pêşniyar bike"
 
-#: projects.py:138
+#: projects.py:137
 msgid "Translate"
-msgstr ""
+msgstr "Wergerîne"
 
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "Li ser binivîse"
+
+#. l10n: Verb
+#: projects.py:139
+msgid "Review"
+msgstr "di ber çavan re derbas bike"
 
 #. l10n: Verb
 #: projects.py:141
-msgid "Review"
-msgstr ""
-
-#. l10n: Verb
-#: projects.py:143
 msgid "Archive"
-msgstr ""
+msgstr "Li arşîvê zêde bike"
 
 #. l10n: This refers to generating the binary .mo file
-#: projects.py:145
+#: projects.py:142
 msgid "Compile PO files"
-msgstr ""
+msgstr "Pelên PO compile bike"
 
-#: projects.py:146
+#: projects.py:143
 msgid "Assign"
-msgstr ""
+msgstr "destnîşankirin"
 
-#: projects.py:147 indexpage.py:134
+#: projects.py:144
 msgid "Administrate"
-msgstr ""
+msgstr "Rê ve bibe"
 
 #. l10n: Commit to version control (like CVS or Subversion)
-#: projects.py:148 indexpage.py:748
+#: projects.py:145 indexpage.py:713
 msgid "Commit"
-msgstr ""
+msgstr "xebitandin"
 
 #. l10n: Don't translate "nobody" or "default"
-#: projects.py:228
+#: projects.py:203
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "Tu nikarî bikarhênerên \"nobody\" an \"default\" rakî"
 
-#: projects.py:380 projects.py:442
+#: projects.py:356 projects.py:418
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "Mafên te tuneye ku li vir tu armancan biguherînî"
 
-#: projects.py:505
+#: projects.py:478
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "maftê tuneye ku li vir tu pelan daxînî"
 
 #: projects.py:508
-#, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr "mafa pêşniyarkirina guheranindên a te li vir tune"
+msgstr "Mafê nivîsandina ser pelan ê te li vir tune"
 
-#: projects.py:510
+#: projects.py:481
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "mafê te tuneye ku li vir tu pelê nû daxînî"
 
-#: projects.py:519
+#: projects.py:490
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "maftê te tuneye ku li vir tu pelan rojane bikî"
 
-#: projects.py:590
-#, fuzzy
+#: projects.py:560
 msgid "You do not have rights to commit files here"
-msgstr "mafa pêşniyarkirina guheranindên a te li vir tune"
+msgstr "Mafê şandina pelan ê te li vir tune"
 
-#: projects.py:919 projects.py:960
+#: projects.py:893 projects.py:934
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "li vir mafê te yê guhertinên destnîşankirî tuneye"
 
-#: projects.py:1141
-#, fuzzy
+#: projects.py:1138
 msgid "You do not have rights to change translations here"
-msgstr "mafa guherandina wergerên a te li vir tune"
+msgstr "Mafê guherandina wergerên a te li vir tune"
 
-#: projects.py:1151
+#: projects.py:1148
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "Li vir mafê te yê pêşinyarkirina guhertinan tuneye"
 
-#: projects.py:1167 projects.py:1185
+#: projects.py:1164 projects.py:1187
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Li vir mafê te tuneye tu pêşinyaran di ber çavan re derbas bikî"
 
-#: translatepage.py:89
+#: translatepage.py:80
 #, python-format
 msgid ""
 "%d/%d translated\n"
@@ -116,11 +113,11 @@ msgstr ""
 "%d/%d hat wergerandin\n"
 "(%d vala, %d fuzî)"
 
-#: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
-#: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
-#: users.py:58 users.py:95 users.py:131 users.py:153 indexpage.py:73
-#: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
-#: indexpage.py:346
+#: translatepage.py:92 adminpages.py:35 adminpages.py:74 adminpages.py:130
+#: adminpages.py:192 adminpages.py:279 adminpages.py:339 pagelayout.py:63
+#: users.py:58 users.py:91 users.py:127 users.py:149 indexpage.py:73
+#: indexpage.py:97 indexpage.py:137 indexpage.py:191 indexpage.py:253
+#: indexpage.py:339
 msgid "Pootle Demo"
 msgstr "Pootle Demo"
 
@@ -128,230 +125,231 @@ msgstr "Pootle Demo"
 #. l10n: second parameter: project name
 #. l10n: third parameter: target language
 #. l10n: fourth parameter: file name
-#: translatepage.py:99
-#, fuzzy, python-format
+#: translatepage.py:97
+#, python-format
+#, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "Pootle: %s bi %s tê wergerandin: %s"
+msgstr "%s: %s bi %s tê wergerandin: %s"
 
 #. l10n: Heading above the table column with the source language
-#: translatepage.py:114
+#: translatepage.py:111
 msgid "Original"
 msgstr "Orijînal"
 
 #. l10n: Heading above the table column with the target language
-#: translatepage.py:116
+#: translatepage.py:112
 msgid "Translation"
 msgstr "Werger"
 
-#: translatepage.py:119
+#: translatepage.py:115
 msgid "Accept"
 msgstr "Bipejirîne"
 
-#: translatepage.py:120
+#: translatepage.py:116
 msgid "Reject"
 msgstr "Nepejirîne"
 
-#: translatepage.py:121 pagelayout.py:243
+#: pagelayout.py:219
 msgid "Fuzzy"
-msgstr ""
+msgstr "Nediyar"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Şîroveyên Wergêran"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Şîroveyên Pêşdebiran"
 
 #. l10n: This heading refers to related translations and terminology
-#: translatepage.py:127
+#: translatepage.py:118
 msgid "Related"
-msgstr ""
+msgstr "Girêdayî"
 
 #. l10n: text next to search field
-#: translatepage.py:131 indexpage.py:356
+#: translatepage.py:122 indexpage.py:349
 msgid "Search"
 msgstr "Lêbigere"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
-#: translatepage.py:145
+#: translatepage.py:136
 msgid "End of batch"
-msgstr ""
+msgstr "Dawiya pakêtê"
 
-#: translatepage.py:147
+#: translatepage.py:138
 msgid "Click here to return to the index"
-msgstr ""
+msgstr "ji bo tu li naverokê vegerî , vir tikîne "
 
 #. l10n: noun (the start)
-#: translatepage.py:161 translatepage.py:164
+#: translatepage.py:151 translatepage.py:154
 msgid "Start"
 msgstr "Destpêk"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:168 translatepage.py:171
+#: translatepage.py:158 translatepage.py:161
 #, python-format
 msgid "Previous %d"
-msgstr ""
+msgstr "%d yên berê"
 
 #. l10n: the third parameter refers to the total number of messages in the file
-#: translatepage.py:173
+#: translatepage.py:163
 #, python-format
 msgid "Items %d to %d of %d"
 msgstr "Tiştên %d heta %d ji %d"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:178 translatepage.py:181
+#: translatepage.py:168 translatepage.py:171
 #, python-format
 msgid "Next %d"
 msgstr "Pêş %d"
 
 #. l10n: noun (the end)
-#: translatepage.py:184 translatepage.py:187
+#: translatepage.py:174 translatepage.py:177
 msgid "End"
 msgstr "Dawî"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-#: translatepage.py:204
+#: translatepage.py:194
 #, python-format
 msgid "checking %s"
 msgstr "%s tê kontrolkirin"
 
-#: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
+#: translatepage.py:201 translatepage.py:204 indexpage.py:510 indexpage.py:513
 msgid "Assign Strings"
 msgstr "Hevokan girêbide"
 
-#: translatepage.py:212 indexpage.py:528
+#: translatepage.py:202 indexpage.py:512
 msgid "Assign to User"
 msgstr "Ji bikarhênerê/î re girê bide"
 
-#: translatepage.py:213 indexpage.py:527
+#: translatepage.py:203 indexpage.py:511
 msgid "Assign Action"
 msgstr "Çalakî girê bide"
 
-#: translatepage.py:368
+#: translatepage.py:336
 #, python-format
 msgid "There are no items matching that search ('%s')"
 msgstr "Encama vê lêgerandinê tune ('%s')"
 
-#: translatepage.py:370
+#: translatepage.py:338
 msgid "You have finished going through the items you selected"
 msgstr "Te berçav derbaskirina hemû hevokên hilbijartî bi dawî kir"
 
-#: translatepage.py:578
+#: translatepage.py:536
 msgid "Singular"
-msgstr ""
+msgstr "fer"
 
-#: translatepage.py:579
+#: translatepage.py:537
 msgid "Plural"
-msgstr ""
+msgstr "zo"
 
 #. l10n: verb
-#: translatepage.py:593
+#: translatepage.py:551
 msgid "Edit"
-msgstr ""
+msgstr "Sererast bike"
 
 #. l10n: verb
-#: translatepage.py:609
+#: translatepage.py:567
 msgid "Copy"
-msgstr ""
+msgstr "Ji ber bigire"
 
-#: translatepage.py:610 translatepage.py:784
+#: translatepage.py:568 translatepage.py:747
 msgid "Skip"
-msgstr ""
+msgstr "Derbas be"
 
 #. l10n: verb
-#: translatepage.py:612 translatepage.py:783 users.py:256
+#: translatepage.py:570 translatepage.py:746 users.py:245
 msgid "Back"
-msgstr ""
+msgstr "Paşve"
 
-#: translatepage.py:614
+#: translatepage.py:572
 msgid "Submit"
-msgstr ""
+msgstr "Bişîne"
 
 #. l10n: action that increases the height of the textarea
-#: translatepage.py:617
+#: translatepage.py:575
 msgid "Grow"
-msgstr ""
+msgstr "Bilindtir"
 
 #. l10n: action that decreases the height of the textarea
-#: translatepage.py:619
+#: translatepage.py:577
 msgid "Shrink"
-msgstr ""
+msgstr "Nizmtir"
 
-#: translatepage.py:641 translatepage.py:735 translatepage.py:772
-#: translatepage.py:805
+#: translatepage.py:604 translatepage.py:698 translatepage.py:735
+#: translatepage.py:768
 #, python-format
 msgid "Plural Form %d"
-msgstr ""
+msgstr "%d forma pirhejmar"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
-#: translatepage.py:657
+#: translatepage.py:620
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
+"Wegerandin ne gengaz e ji ber ku ji bo zimanê te agahî der barê pirjimaran "
+"de ne amade ye. Ji kerema xwe bi rêveberiya sîteyê re biaxeve."
 
-#: translatepage.py:739
-#, fuzzy
+#: translatepage.py:702
 msgid "Current Translation:"
-msgstr "<b>Wergera aniha:</b>"
+msgstr "Wergera aniha:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
-#: translatepage.py:752
+#: translatepage.py:715
 #, python-format
 msgid "Suggestion %d by %s:"
 msgstr "Pêşniyara %d a %s:"
 
-#: translatepage.py:754
+#: translatepage.py:717
 #, python-format
 msgid "Suggestion %d:"
 msgstr "Pêşniyara %d:"
 
 #. l10n: parameter: name of translator
-#: translatepage.py:758
+#: translatepage.py:721
 #, python-format
 msgid "Suggestion by %s:"
 msgstr "Pêşniyar a %s:"
 
-#: translatepage.py:760
+#: translatepage.py:723
 msgid "Suggestion:"
 msgstr "Pêşniyar:"
 
-#: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
+#: adminpages.py:43 adminpages.py:82 adminpages.py:138 adminpages.py:200
 #: pagelayout.py:36
 msgid "Home"
 msgstr "Destpêk"
 
-#: adminpages.py:44 adminpages.py:207
+#: adminpages.py:44 adminpages.py:202
 msgid "Users"
 msgstr "Bikarhêner"
 
-#: adminpages.py:45 adminpages.py:84 indexpage.py:94
+#: adminpages.py:45 adminpages.py:84 indexpage.py:95
 msgid "Languages"
 msgstr "Ziman"
 
-#: adminpages.py:46 adminpages.py:142 indexpage.py:95
+#: adminpages.py:46 adminpages.py:140 indexpage.py:96
 msgid "Projects"
 msgstr "Proje"
 
 #: adminpages.py:47
-#, fuzzy
 msgid "General options"
-msgstr "Tercîhên giştî"
+msgstr "Vebijêrkên giştî"
 
-#: adminpages.py:48 users.py:157
+#: adminpages.py:48 users.py:153
 msgid "Option"
 msgstr "Tercîh"
 
-#: adminpages.py:49 users.py:158
+#: adminpages.py:49 users.py:154
 msgid "Current value"
 msgstr "Nirxa aniha"
 
-#: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
-#: users.py:172
+#: adminpages.py:50 adminpages.py:85 adminpages.py:141 adminpages.py:203
+#: users.py:168
 msgid "Save changes"
 msgstr "Guherandinan tomar bike"
 
@@ -371,16 +369,15 @@ msgstr "URL ya bingehîn"
 msgid "Home Page"
 msgstr "Malper"
 
-#: adminpages.py:83 adminpages.py:141 adminpages.py:206
-#, fuzzy
+#: adminpages.py:83 adminpages.py:139 adminpages.py:201
 msgid "Main admin page"
-msgstr "Rûpela admînan"
+msgstr "Rûpela admînan a serekî"
 
 #: adminpages.py:89
 msgid "ISO Code"
 msgstr "Koda ISO"
 
-#: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
+#: adminpages.py:90 adminpages.py:146 adminpages.py:208 users.py:100
 msgid "Full Name"
 msgstr "Tam nav"
 
@@ -396,184 +393,180 @@ msgstr "Tîpên taybet"
 msgid "(special characters)"
 msgstr "(tîpên taybet)"
 
-#: adminpages.py:93 indexpage.py:217
+#: adminpages.py:93 indexpage.py:214
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Hejmara Pirjimaran"
 
 #: adminpages.py:93
 msgid "(number of plurals)"
-msgstr ""
+msgstr "(hejmara pirjimaran)"
 
-#: adminpages.py:94 indexpage.py:218
+#: adminpages.py:94 indexpage.py:215
 msgid "Plural Equation"
-msgstr ""
+msgstr "Hevkêşeya Pirjimaran"
 
 #: adminpages.py:94
 msgid "(plural equation)"
-msgstr ""
+msgstr "hevkêşeya pirjimaran"
 
 #: adminpages.py:95
 msgid "Remove Language"
 msgstr "Ziman rake"
 
 #. l10n: The parameter is a languagecode, projectcode or username
-#: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
+#: adminpages.py:110 adminpages.py:173 adminpages.py:235 adminpages.py:398
 #, python-format
 msgid "Remove %s"
 msgstr "%s rake"
 
-#: adminpages.py:129
+#: adminpages.py:128
 msgid "Standard"
 msgstr "standard"
 
-#: adminpages.py:147
+#: adminpages.py:145
 msgid "Project Code"
 msgstr "Koda projeyê"
 
-#: adminpages.py:149
+#: adminpages.py:147
 msgid "(add project here)"
 msgstr "(li vir projeyê zêde bike)"
 
-#: adminpages.py:150
+#: adminpages.py:148
 msgid "Project Description"
 msgstr "Tarîfa projeyê"
 
-#: adminpages.py:150
+#: adminpages.py:148
 msgid "(project description)"
 msgstr "(daxûyaniya projeyê)"
 
-#: adminpages.py:151
+#: adminpages.py:149
 msgid "Checker Style"
-msgstr "Stîla 'checker'"
+msgstr "Stîla checker"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Cureyê Pelî"
 
-#: adminpages.py:153
+#: adminpages.py:150
 msgid "Create MO Files"
-msgstr "Dosiyên MO çêke"
+msgstr "Pelên MO çêke"
 
-#: adminpages.py:154
+#: adminpages.py:151
 msgid "Remove Project"
 msgstr "Proje rake"
 
-#: adminpages.py:212 users.py:66
+#: adminpages.py:207 users.py:66
 msgid "Login"
 msgstr "Têkeve"
 
-#: adminpages.py:214 users.py:347
+#: adminpages.py:209 users.py:336
 msgid "(add full name here)"
-msgstr ""
+msgstr "li vir nav û başnav binvîse"
 
-#: adminpages.py:215 users.py:101
+#: adminpages.py:210 users.py:97
 msgid "Email Address"
 msgstr "Navnîşana e-peyam"
 
-#: adminpages.py:215 users.py:350
+#: adminpages.py:210 users.py:339
 msgid "(add email here)"
-msgstr ""
+msgstr "li vir e-peyamê binvîse"
 
-#: adminpages.py:216 users.py:107 users.py:163
+#: adminpages.py:211 users.py:103 users.py:159
 msgid "Password"
 msgstr "Şîfre"
 
-#: adminpages.py:216 users.py:344
+#: adminpages.py:211 users.py:333
 msgid "(add password here)"
-msgstr ""
+msgstr "li vir şifreyê binvîse"
 
-#: adminpages.py:217
-#, fuzzy
+#: adminpages.py:212
 msgid "Activated"
-msgstr "Aktîf bike"
+msgstr "Çalakkirî"
 
-#: adminpages.py:217
+#: adminpages.py:212
 msgid "Activate New User"
-msgstr ""
+msgstr "Bikarhênereke nû çalak bike"
 
-#: adminpages.py:218
-#, fuzzy
+#: adminpages.py:213
 msgid "Remove User"
-msgstr "%s rake"
+msgstr "Bikarhênerê/î rake"
 
-#: adminpages.py:272
+#: adminpages.py:267
 msgid "Back to main page"
-msgstr ""
+msgstr "Vegere rûpela bingehîn"
+
+#: adminpages.py:268
+msgid "Existing languages"
+msgstr "Zimanên heyî"
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:272
+msgid "Update Languages"
+msgstr "Zimanan rojane bike"
 
 #: adminpages.py:273
-msgid "Existing languages"
-msgstr ""
-
-#. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:277
-msgid "Update Languages"
-msgstr ""
-
-#: adminpages.py:278
 #, python-format
 msgid "Pootle Admin: %s"
-msgstr "Rûpela admin a Pootle"
+msgstr "Admin a Pootle: %s"
 
-#: adminpages.py:279 adminpages.py:341
-#, fuzzy
+#: adminpages.py:274 adminpages.py:336
 msgid "You do not have the rights to administer this project."
-msgstr "Mafên tê yên admin ên Pootle tune."
+msgstr "Mafên tê yên admin ên vê projeyê tune."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:281
+#: adminpages.py:276
 msgid "Update from templates"
-msgstr ""
+msgstr "ji dirban rojane bike"
 
-#: adminpages.py:289
+#: adminpages.py:284
 msgid "Add Language"
-msgstr ""
+msgstr "Zimanê lê zêde bike"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
-#: adminpages.py:321
-#, fuzzy
+#: adminpages.py:316
 msgid "Pootle Admin: %s %s"
-msgstr "Rûpela admin a Pootle"
+msgstr "Admin a Pootle: %s %s"
 
-#: adminpages.py:322
+#: adminpages.py:317
 msgid "Project home page"
-msgstr ""
+msgstr "Malpera projeyê"
 
-#: adminpages.py:340
+#: adminpages.py:335
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr ""
+msgstr "Nikare maf bide bikarhêner %s - bikarhêner ne derbasbare"
 
-#: adminpages.py:357
+#: adminpages.py:352
 msgid "This is a GNU-style project (one directory, files named per language)."
-msgstr ""
+msgstr "Ev awayê projeya GNU ye"
 
-#: adminpages.py:359
+#: adminpages.py:354
 msgid "This is a standard style project (one directory per language)."
-msgstr ""
+msgstr "Ev awayê standart ê projeyê ye"
 
-#: adminpages.py:360
+#: adminpages.py:355
 msgid "User Permissions"
-msgstr ""
+msgstr "peymanên bikarhêner"
 
-#: adminpages.py:361 users.py:98 users.py:134
+#: adminpages.py:356 users.py:94 users.py:130
 msgid "Username"
 msgstr "Navê bikarhêner"
 
-#: adminpages.py:362
+#: adminpages.py:357
 msgid "(select to add user)"
-msgstr ""
+msgstr "(bikarhênerekî/ê hilbijêre)"
 
-#: adminpages.py:363
+#: adminpages.py:358
 msgid "Rights"
-msgstr ""
+msgstr "Maf"
 
-#: adminpages.py:364 indexpage.py:998
+#: adminpages.py:359 indexpage.py:963
 msgid "Remove"
-msgstr ""
+msgstr "Rake"
 
-#: adminpages.py:391
+#: adminpages.py:379
 msgid "Update Rights"
-msgstr ""
+msgstr "Mafan Rojane bike"
 
 #: pagelayout.py:37
 msgid "All projects"
@@ -587,9 +580,9 @@ msgstr "Hemû ziman"
 msgid "My account"
 msgstr "Hesaba min"
 
-#: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
+#: pagelayout.py:40 pagelayout.py:144 indexpage.py:197 indexpage.py:259
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: pagelayout.py:41
 msgid "Docs & help"
@@ -600,7 +593,6 @@ msgid "Log out"
 msgstr "Derkeve"
 
 #: pagelayout.py:43
-#, fuzzy
 msgid "Log in"
 msgstr "Têkeve"
 
@@ -613,396 +605,385 @@ msgstr "Xwê tomar bike"
 msgid "Activate"
 msgstr "Aktîf bike"
 
-#: pagelayout.py:80
-#, fuzzy
+#: pagelayout.py:67
 msgid "Pootle Logo"
-msgstr "Pootle Demo"
+msgstr "Logo ya Pootle"
 
-#: pagelayout.py:81
-#, fuzzy
+#: pagelayout.py:68
 msgid "WordForge Translation Project"
-msgstr "<b>Wergera aniha:</b>"
+msgstr "Projeya Wergerandina WordForge"
 
-#: pagelayout.py:83
+#: indexpage.py:94
 msgid "About this Pootle server"
 msgstr "Di der barê vê pêşkêşkera Pootleyê de"
 
-#: pagelayout.py:157
+#: pagelayout.py:133
 msgid "All goals"
-msgstr ""
+msgstr "Hemû armanc"
 
-#: pagelayout.py:228
+#: pagelayout.py:204
 #, python-format
 msgid "%d/%d files"
-msgstr ""
+msgstr "%d/%d pel"
 
-#: pagelayout.py:231
+#: pagelayout.py:207
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pel"
+msgstr[1] "%d pel"
 
-#: pagelayout.py:232 indexpage.py:995
-#, fuzzy
+#: pagelayout.py:208 indexpage.py:960
 msgid "%d/%d words (%d%%) translated"
-msgstr "%d/%d hevok (%d%%) hatin wergerandin"
+msgstr "%d/%d peyv (%d%%) hatin wergerandin"
 
-#: pagelayout.py:233
+#: pagelayout.py:209
 #, python-format
 msgid "%d/%d strings"
-msgstr ""
+msgstr "%d/%d hevok"
 
-#: pagelayout.py:239 users.py:159
+#: pagelayout.py:215 users.py:155
 msgid "Name"
-msgstr ""
+msgstr "Nav"
 
-#: pagelayout.py:240
-#, fuzzy
+#: pagelayout.py:216
 msgid "Translated"
-msgstr "Hemû biwergerîne"
+msgstr "Hatin wergerandin"
 
-#: pagelayout.py:241
+#: pagelayout.py:217
 msgid "Translated percentage"
-msgstr ""
+msgstr "Rêjeya wergerandinê"
 
-#: pagelayout.py:242
-#, fuzzy
+#: pagelayout.py:218
 msgid "Translated words"
-msgstr "Hemû biwergerîne"
+msgstr "Peyvên hatin wergerandin"
 
-#: pagelayout.py:244
+#: pagelayout.py:220
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "rêjeya ne diyar"
 
-#: pagelayout.py:245
+#: pagelayout.py:221
 msgid "Fuzzy words"
-msgstr ""
+msgstr "gotinên ne diyar"
 
-#: pagelayout.py:246 indexpage.py:786
+#: pagelayout.py:222 indexpage.py:751
 msgid "Untranslated"
-msgstr ""
+msgstr "Newergerandî"
 
-#: pagelayout.py:247
-#, fuzzy
+#: pagelayout.py:223
 msgid "Untranslated percentage"
-msgstr "Newergerandîyan bibîne"
+msgstr "Rêjeya Newergerandiyan"
 
-#: pagelayout.py:248
-#, fuzzy
+#: pagelayout.py:224
 msgid "Untranslated words"
-msgstr "Newergerandîyan bibîne"
+msgstr "Peyvên newergerandî"
 
-#: pagelayout.py:249
-#, fuzzy
+#: pagelayout.py:225
 msgid "Total"
-msgstr "Sernivîs"
+msgstr "Tevî"
 
-#: pagelayout.py:250
+#: pagelayout.py:226
 msgid "Total words"
-msgstr ""
+msgstr "Hemû gotin"
 
 #. l10n: noun. The graphical representation of translation status
-#: pagelayout.py:252
+#: pagelayout.py:228
 msgid "Graph"
-msgstr ""
+msgstr "Grafîk"
 
 #: users.py:39
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
-msgstr ""
+msgstr "Pêwist e tu ji bo şîfreyê bi kêmanî %d tîpan bi kar bînî."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
-msgstr ""
+msgstr "Şîfre û piştrastkirin hevdu nagirin."
 
 #: users.py:55
 msgid "Login to Pootle"
 msgstr "Têkeve Pootleyê"
 
 #: users.py:61
-#, fuzzy
 msgid "Username:"
-msgstr "Navê bikarhêner"
+msgstr "Navê bikarhêner:"
 
 #: users.py:63
-#, fuzzy
 msgid "Password:"
-msgstr "Şîfre"
+msgstr "Şîfre:"
 
 #: users.py:64
-#, fuzzy
 msgid "Language:"
-msgstr "Ziman"
+msgstr "Ziman:"
 
 #: users.py:73
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
-#: users.py:89
+#: users.py:85
 msgid "Please enter your registration details"
 msgstr "Detayên xwe tomarkirinê binivîse"
 
-#: users.py:92 users.py:419
+#: users.py:88 users.py:408
 msgid "Pootle Registration"
 msgstr "Tomara Pootle"
 
-#: users.py:99 users.py:135
+#: users.py:95 users.py:131
 msgid "Your requested username"
 msgstr "Navê bikarhêner ku te xwest"
 
-#: users.py:102 users.py:373
-#, fuzzy
+#: users.py:362
 msgid "You must supply a valid email address"
-msgstr "Divê navnîşana derbasdar be"
+msgstr "Divê navnîşana email a derbasdar be"
 
-#: users.py:105
+#: users.py:101
 msgid "Your full name"
-msgstr ""
+msgstr "Nav û paşnavê te"
 
-#: users.py:108
+#: users.py:104
 msgid "Your desired password"
 msgstr "Şîfreya te xwest"
 
-#: users.py:110 users.py:164
-#, fuzzy
+#: users.py:106 users.py:160
 msgid "Confirm password"
-msgstr "Şîfreya te xwest"
+msgstr "Şîfreyê piştrast bike"
 
-#: users.py:111
+#: users.py:107
 msgid "Type your password again to ensure it is entered correctly"
-msgstr ""
+msgstr "ji bo piştrastkirinê şifreya xwe dîsa binvîse"
 
-#: users.py:113
-#, fuzzy
+#: users.py:109
 msgid "Register Account"
-msgstr "Hesabê aktîf bike"
+msgstr "Hesabê biqeydîne"
 
-#: users.py:122
+#: users.py:118
 msgid "Please enter your activation details"
 msgstr "Ji kerema xwe detayên aktîfkirinê binivîse"
 
-#: users.py:127
+#: users.py:123
 msgid "Pootle Account Activation"
 msgstr "Aktîfkirina hesaba Pootle"
 
-#: users.py:137
+#: users.py:133
 msgid "Activation Code"
 msgstr "Koda aktîfkirinê"
 
-#: users.py:138
+#: users.py:134
 msgid "The activation code you received"
 msgstr "Koda aktîfkirina ku te stand"
 
-#: users.py:140
+#: users.py:136
 msgid "Activate Account"
 msgstr "Hesabê aktîf bike"
 
-#: users.py:151
+#: users.py:147
 #, python-format
 msgid "Options for: %s"
 msgstr "Tercîhên %s"
 
-#: users.py:156
+#: users.py:152
 msgid "Personal Details"
-msgstr ""
+msgstr "Hûragahiyên kesayetî"
+
+#: users.py:157
+msgid "Email"
+msgstr "E-Peyam"
 
 #: users.py:161
-msgid "Email"
-msgstr ""
-
-#: users.py:165
 msgid "Translation Interface Configuration"
-msgstr ""
+msgstr "mîhenga rûçikê wergerê"
 
-#: users.py:166
+#: users.py:162
 msgid "User Interface language"
-msgstr ""
+msgstr "zimanê bikarhêner"
 
-#: users.py:167
+#: users.py:163
 msgid "My Projects"
 msgstr "Projeyên min"
 
-#: users.py:169
-#, fuzzy
+#: users.py:165
 msgid "My Languages"
-msgstr "Ziman"
+msgstr "Zimanên min"
 
-#: users.py:171
+#: users.py:167
 msgid "Home page"
 msgstr "Serûpel"
 
-#: users.py:207
+#: users.py:201
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "Bilindahiya Têketinê (rêzik)"
 
-#: users.py:208
+#: users.py:202
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "Hejmara rêzikan di mode ya dîtinê de"
 
-#: users.py:209
+#: users.py:203
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "hejmara rêzikan di mode ya wergerê de"
 
-#: users.py:251
+#: users.py:240
 msgid "Error"
-msgstr ""
+msgstr "Çewtî"
 
-#: users.py:303
+#: users.py:292
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "pêwiste tu bibî adminê malperê da tu bikaribî bikarhêneran biguherînî"
 
-#: users.py:367
+#: users.py:356
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
+"Pêwist e navê bikarhêner tenê herf û hejmar bihundirîne, divê tîpa destpêkê "
+"herfek be."
 
-#: users.py:382
+#: users.py:371
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
 msgstr ""
 
-#: users.py:383
+#: users.py:372
 msgid "We don't store your actual password but only a hash of it.\n"
 msgstr ""
 
-#: users.py:385
+#: users.py:374
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
 msgstr ""
 
-#: users.py:387
+#: users.py:376
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
 msgstr ""
 
-#: users.py:388
+#: users.py:377
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
 msgstr ""
 
-#: users.py:390
+#: users.py:379
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "Debasa <a href='%s'>têketinê</a> dibe\n"
 
-#: users.py:396
+#: users.py:385
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "Hesabekî Pootle ji bo te bi vê navnîşana e-peyamê hat afirandin.\n"
 
-#: users.py:398
+#: users.py:387
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "Ji bo çalakkirina hesabê xwe, vê lînkê bişopîne:\n"
 
-#: users.py:404
-#, fuzzy, python-format
+#: users.py:393
+#, python-format
 msgid ""
 "Your activation code is:\n"
 "%s\n"
-msgstr "Koda aktîfkirinê"
+msgstr ""
+"Koda aktîfkirinê ya te:\n"
+"%s\n"
 
-#: users.py:406
+#: users.py:395
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
 msgstr ""
 
-#: users.py:407
+#: users.py:396
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr ""
 
-#: users.py:409
+#: users.py:398
 #, python-format
 msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
 
-#: users.py:411
+#: users.py:400
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "yanjî li ser linka çalakkirinê ya di email de, bitektikîne"
 
-#: users.py:413
+#: users.py:402
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr ""
+msgstr "Navê te yê bikarhêner ev e: %s\n"
 
-#: users.py:415
-#, fuzzy, python-format
+#: users.py:404
+#, python-format
+#, python-format
 msgid "Your password is: %s\n"
-msgstr "Şîfreya te xwest"
+msgstr "Şîfreya te: %s \n"
 
-#: users.py:416
+#: users.py:405
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "Navnîşan email a te ev e: %s\n"
 
-#: users.py:442
+#: users.py:429
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "Rêberî tê nuhkirin ji bo qeyîdkirna rûpêl..."
 
-#: users.py:466
+#: users.py:453
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "Nuhkirna rêberîyê jibo têketina rûpêlê.."
 
-#: users.py:469
+#: users.py:456
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "Konto ya te hate çalakkirin ! Ji bo têketine rêberî tê nuhkirin..."
 
-#: users.py:473
+#: users.py:460
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "Agahîyên çalakkirinê ne dirust bûn."
 
-#: users.py:474
-#, fuzzy
+#: users.py:461
 msgid "Activation Failed"
-msgstr "Koda aktîfkirinê"
+msgstr "Çalakkirin biserneket"
 
-#: users.py:583
+#: users.py:563
 msgid "Input height must be numeric"
 msgstr ""
 
-#: users.py:584
+#: users.py:564
 msgid "Input width must be numeric"
 msgstr ""
 
-#: users.py:585
+#: users.py:565
 msgid "The number of rows displayed in view mode must be numeric"
 msgstr ""
 
-#: users.py:586
+#: users.py:566
 msgid "The number of rows displayed in translate mode must be numeric"
 msgstr ""
 
-#: pootle.py:293
+#: pootle.py:273
 msgid "Login failed"
-msgstr ""
+msgstr "Têketin biserneket"
 
-#: pootle.py:337 pootle.py:368
+#: pootle.py:317 pootle.py:348
 msgid "Redirecting to login..."
-msgstr ""
+msgstr "Nuhkirna rêberîyê jibo têketinê"
 
-#: pootle.py:340
+#: pootle.py:320
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "Jibo gihiştina malperê têketin gereke"
 
-#: pootle.py:353
+#: pootle.py:333
 msgid "Personal details updated"
-msgstr ""
+msgstr "Şayesandinê kesayetî hate rojankirin"
 
-#: pootle.py:371
+#: pootle.py:351
 msgid "Need to log in to access admin page"
-msgstr ""
+msgstr "Ji bo gihiştina rûpela admin têketin pêwist e"
 
-#: pootle.py:378
+#: pootle.py:358
 msgid "Redirecting to home..."
 msgstr ""
 
-#: pootle.py:381
+#: pootle.py:361
 msgid "You do not have the rights to administer pootle."
 msgstr "Mafên tê yên admin ên Pootle tune."
 
@@ -1059,98 +1040,98 @@ msgid ""
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
 
-#: indexpage.py:130
+#: indexpage.py:132
 #, python-format
 msgid "User Page for: %s"
 msgstr "Rûpela Bikarhêner ji bo: %s"
 
-#: indexpage.py:132
+#: indexpage.py:134
 msgid "Change options"
 msgstr "Tercîhan biguherîne"
 
-#: indexpage.py:133
+#: indexpage.py:135
 msgid "Admin page"
 msgstr "Rûpela admînan"
 
-#: indexpage.py:135
+#: indexpage.py:136
 msgid "Quick Links"
 msgstr "Girêdanên bilêz"
 
-#: indexpage.py:139
+#: indexpage.py:140
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
 "Ji kerema xwe ser 'Tercîhan biguherîne' bitike û çend ziman û projê hilbijêre"
 
-#: indexpage.py:192
+#: indexpage.py:189
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d proje, li derdora %d%% hatin wergerandin"
+msgstr[1] "%d proje, li derdora %d%% hatin wergerandin"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
-#: indexpage.py:198 indexpage.py:260
+#: indexpage.py:195 indexpage.py:257
 #, fuzzy, python-format
 msgid "%s: %s"
 msgstr "%s (%s)"
 
-#: indexpage.py:214
+#: indexpage.py:211
 #, fuzzy
 msgid "Language Code"
 msgstr "Ziman"
 
-#: indexpage.py:215
+#: indexpage.py:212
 #, fuzzy
 msgid "Language Name"
 msgstr "Ziman"
 
-#: indexpage.py:252
+#: indexpage.py:249
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Zimanê %d, li derdora %d%% hatin wergerandin"
+msgstr[1] "Zimanên %d, li derdora %d%% hatin wergerandin"
 
-#: indexpage.py:265
+#: indexpage.py:262
 #, fuzzy
 msgid "Language"
 msgstr "Ziman"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
-#: indexpage.py:348
+#: indexpage.py:341
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "%s: Projeya %s, Zimanê %s"
 
-#: indexpage.py:413
+#: indexpage.py:396
 msgid "Cannot upload file, no file attached"
 msgstr ""
 
-#: indexpage.py:419
+#: indexpage.py:402
 msgid "Can only upload PO files and zips of PO files"
 msgstr ""
 
-#: indexpage.py:534
+#: indexpage.py:518
 msgid "goals"
-msgstr ""
+msgstr "armanc"
 
-#: indexpage.py:535
+#: indexpage.py:519
 msgid "Enter goal name"
-msgstr ""
+msgstr "Navê armancê binivîse"
 
-#: indexpage.py:536
+#: indexpage.py:520
 msgid "Add Goal"
-msgstr ""
+msgstr "Armancê lê zêde bike"
 
-#: indexpage.py:541 indexpage.py:543
+#: indexpage.py:524 indexpage.py:526
 msgid "Upload File"
-msgstr ""
+msgstr "Pelî hilkişîne"
 
-#: indexpage.py:542
+#: indexpage.py:525
 msgid "Select file to upload"
-msgstr ""
+msgstr "Pelê ji bo hilkişandinê hilbijêre"
 
 #. l10n: tooltip
 #: indexpage.py:550
@@ -1168,182 +1149,181 @@ msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
 
-#: indexpage.py:657
+#: indexpage.py:627
 msgid "Not in a goal"
-msgstr ""
+msgstr "Di armancê de tune"
 
-#: indexpage.py:677
+#: indexpage.py:648
 msgid "Add User"
-msgstr ""
+msgstr "Bikarhêner lê zêde bike"
 
-#: indexpage.py:719
+#: indexpage.py:686
 msgid "PO file"
-msgstr "Dosyaya PO"
+msgstr "Pelê PO"
 
-#: indexpage.py:723
+#: indexpage.py:690
 msgid "XLIFF file"
-msgstr ""
+msgstr "Pelê XLIFF"
 
-#: indexpage.py:727
+#: indexpage.py:694
 msgid "Qt .ts file"
-msgstr ""
+msgstr "Pelê Qt .ts"
 
-#: indexpage.py:731
+#: indexpage.py:698
 msgid "CSV file"
-msgstr "Dosyaya CSV"
+msgstr "Pelê CSV"
 
-#: indexpage.py:736
-#, fuzzy
+#: indexpage.py:703
 msgid "MO file"
-msgstr "Dosyaya PO"
+msgstr "Pelê MO"
 
 #. l10n: Update from version control (like CVS or Subversion)
-#: indexpage.py:742
+#: indexpage.py:708
 msgid "Update"
-msgstr ""
+msgstr "Rojanekirin"
 
-#: indexpage.py:785
+#: indexpage.py:750
 msgid "All Strings"
-msgstr ""
+msgstr "Hemû Hevok"
 
-#: indexpage.py:787
+#: indexpage.py:752
 msgid "Unassigned"
 msgstr ""
 
-#: indexpage.py:788
+#: indexpage.py:753
 msgid "Unassigned and Untranslated"
 msgstr ""
 
-#: indexpage.py:795
+#: indexpage.py:760
 msgid "Set Goal"
-msgstr ""
+msgstr "Armancê Bixe"
 
-#: indexpage.py:799
+#: indexpage.py:764
 msgid "Select Multiple"
 msgstr ""
 
-#: indexpage.py:801
+#: indexpage.py:766
 msgid "Assign To"
 msgstr ""
 
-#: indexpage.py:830
+#: indexpage.py:795
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "Fonksiyonên Sererastkirinê Nîşan bide"
 
-#: indexpage.py:831
+#: indexpage.py:796
 msgid "Show Statistics"
-msgstr ""
+msgstr "Statîstîkan Nîşan Bide"
 
-#: indexpage.py:832
+#: indexpage.py:797
 msgid "Show Tracks"
 msgstr ""
 
-#: indexpage.py:832
+#: indexpage.py:797
 msgid "Hide Tracks"
 msgstr ""
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
-#: indexpage.py:834
+#: indexpage.py:799
 msgid "Show Checks"
 msgstr "Kontrolan nîşan bide"
 
-#: indexpage.py:834
+#: indexpage.py:799
 msgid "Hide Checks"
 msgstr "Kontrolan veşêre"
 
-#: indexpage.py:835
+#: indexpage.py:800
 msgid "Show Goals"
-msgstr ""
+msgstr "Armancan Nîşan bide"
 
-#: indexpage.py:835
+#: indexpage.py:800
 msgid "Hide Goals"
-msgstr ""
+msgstr "Armancan veşêre"
 
-#: indexpage.py:836
+#: indexpage.py:801
 msgid "Show Assigns"
 msgstr "Têkiliyan nîşan bide"
 
-#: indexpage.py:836
+#: indexpage.py:801
 msgid "Hide Assigns"
 msgstr "Têkiliyan veşêre"
 
-#: indexpage.py:845
+#: indexpage.py:810
 #, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "Hemû Armanc: %s"
 
-#: indexpage.py:851
+#: indexpage.py:816
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Hevokên Min Wergerîne"
 
-#: indexpage.py:853
+#: indexpage.py:818
 msgid "View My Strings"
-msgstr ""
+msgstr "Hevokên Min Bibîne"
 
-#: indexpage.py:858
+#: indexpage.py:823
 msgid "No strings assigned to you"
 msgstr ""
 
-#: indexpage.py:862
+#: indexpage.py:827
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Hevokên Min Bilêz Wergerîne"
 
-#: indexpage.py:866
+#: indexpage.py:831
 msgid "No untranslated strings assigned to you"
 msgstr ""
 
-#: indexpage.py:870
+#: indexpage.py:835
 msgid "Review Suggestions"
 msgstr "Pêşniyaran li ber çavan derbas bike"
 
-#: indexpage.py:872
+#: indexpage.py:837
 msgid "View Suggestions"
 msgstr "Pêşniyaran temaşe bike"
 
-#: indexpage.py:877
+#: indexpage.py:842
 msgid "Quick Translate"
 msgstr "Wergerandina bilez"
 
-#: indexpage.py:879
+#: indexpage.py:844
 msgid "View Untranslated"
 msgstr "Newergerandîyan bibîne"
 
-#: indexpage.py:883
+#: indexpage.py:848
 msgid "No untranslated items"
-msgstr ""
+msgstr "Bendin newergerandî tune ye "
 
-#: indexpage.py:886
+#: indexpage.py:851
 msgid "Translate All"
 msgstr "Hemû biwergerîne"
 
-#: indexpage.py:901
+#: indexpage.py:866
 msgid "ZIP of goal"
-msgstr ""
+msgstr "ZIP a armancê"
 
-#: indexpage.py:903
-#, fuzzy
+#: indexpage.py:868
 msgid "ZIP of folder"
-msgstr "Zipa klasorê"
+msgstr "ZIPa peldankê"
 
-#: indexpage.py:910
+#: indexpage.py:875
 msgid "Generate SDF"
-msgstr ""
+msgstr "SDF'ê çêke"
 
-#: indexpage.py:963
+#: indexpage.py:928
 #, fuzzy
+#, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
 msgstr[0] "%d hevok (%d%%) naxebitin"
 
-#: indexpage.py:993
+#: indexpage.py:958
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
 msgstr ""
 
-#: indexpage.py:994 indexpage.py:996
+#: indexpage.py:959 indexpage.py:961
 #, python-format
 msgid "[%d/%d strings]"
-msgstr ""
+msgstr "[%d/%d hevok]"
 
 #~ msgid "Must be a valid email address"
 #~ msgstr "Divê navnîşana derbasdar be"

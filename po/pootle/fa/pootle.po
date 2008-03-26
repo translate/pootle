@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-05-05 23:50+0200\n"
+"PO-Revision-Date: 2008-01-31 03:22+0100\n"
 "Last-Translator: Mohammad Ebrahim Mohammadi Panah <mebrahim@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -44,7 +44,7 @@ msgstr "بایگانی"
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
 msgid "Compile PO files"
-msgstr "پرونده‌های PO را کامپایل کن"
+msgstr "ترجمهٔ پرونده‌های PO"
 
 #: projects.py:146
 msgid "Assign"
@@ -128,7 +128,7 @@ msgstr "نمایش پوتل"
 #: translatepage.py:99
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "پوتل: درحال ترجمه‌ی %s به %s: %s"
+msgstr "پوتل: درحال ترجمهٔ %s به %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
@@ -179,7 +179,7 @@ msgstr "پایان دسته‌کار"
 
 #: translatepage.py:147
 msgid "Click here to return to the index"
-msgstr "برای بازگشت به صفحه‌ی اصلی این جا کلیک کنید"
+msgstr "برای بازگشت به صفحهٔ اصلی این جا کلیک کنید"
 
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
@@ -252,7 +252,7 @@ msgstr "ویرایش"
 #. l10n: verb
 #: translatepage.py:609
 msgid "Copy"
-msgstr "نسخه‌برداری"
+msgstr "رونوشت‌برداری"
 
 #: translatepage.py:610 translatepage.py:784
 msgid "Skip"
@@ -294,7 +294,7 @@ msgstr ""
 
 #: translatepage.py:739
 msgid "Current Translation:"
-msgstr "ترجمه‌ی کنونی:"
+msgstr "ترجمهٔ کنونی:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
@@ -366,11 +366,11 @@ msgstr "URL مبنا"
 
 #: adminpages.py:57
 msgid "Home Page"
-msgstr "صفحه‌ی آغازه"
+msgstr "صفحهٔ آغازه"
 
 #: adminpages.py:83 adminpages.py:141 adminpages.py:206
 msgid "Main admin page"
-msgstr "صفحه‌ی اصلی مدیریت"
+msgstr "صفحهٔ اصلی مدیریت"
 
 #: adminpages.py:89
 msgid "ISO Code"
@@ -402,11 +402,11 @@ msgstr "(تعداد جمع‌ها)"
 
 #: adminpages.py:94 indexpage.py:218
 msgid "Plural Equation"
-msgstr "معادله‌ی جمع"
+msgstr "معادلهٔ جمع"
 
 #: adminpages.py:94
 msgid "(plural equation)"
-msgstr "(معادله‌ی جمع)"
+msgstr "(معادلهٔ جمع)"
 
 #: adminpages.py:95
 msgid "Remove Language"
@@ -440,7 +440,7 @@ msgstr "(توضیح پروژه)"
 
 #: adminpages.py:151
 msgid "Checker Style"
-msgstr "شیوه‌ی بررسی کننده"
+msgstr "سبک بررسی‌کننده"
 
 #: adminpages.py:152
 msgid "File Type"
@@ -492,7 +492,7 @@ msgstr "کاربر را حذف کن"
 
 #: adminpages.py:272
 msgid "Back to main page"
-msgstr "بازگشت به صفحه‌ی اصلی"
+msgstr "بازگشت به صفحهٔ اصلی"
 
 #: adminpages.py:273
 msgid "Existing languages"
@@ -529,7 +529,7 @@ msgstr "مدیر پوتل: %s %s"
 
 #: adminpages.py:322
 msgid "Project home page"
-msgstr "صفحه‌ی آغازه‌ی پروژه"
+msgstr "صفحهٔ آغازهٔ پروژه"
 
 #: adminpages.py:340
 #, python-format
@@ -539,11 +539,12 @@ msgstr "نمی‌توان حقوق کاربر %s را ثبت کرد - کاربر
 #: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
-"این پروژه به شیوه‌ی GNU است (یک شاخه، پرونده‌ها بر اساس زبان نام گذاری می‌شوند)."
+"این پروژه به شیوهٔ GNU است (یک شاخه، پرونده‌ها بر اساس زبان نام گذاری "
+"می‌شوند)."
 
 #: adminpages.py:359
 msgid "This is a standard style project (one directory per language)."
-msgstr "این پروژه به شیوه‌ی معیار است (یک شاخه برای هر زبان)"
+msgstr "این پروژه به شیوهٔ معیار است (یک شاخه برای هر زبان)"
 
 #: adminpages.py:360
 msgid "User Permissions"
@@ -571,11 +572,11 @@ msgstr "حقوق را به روز کن"
 
 #: pagelayout.py:37
 msgid "All projects"
-msgstr "همه‌ی پروژه‌ها"
+msgstr "همهٔ پروژه‌ها"
 
 #: pagelayout.py:38
 msgid "All languages"
-msgstr "همه‌ی زبان‌ها"
+msgstr "همه‌ٔ زبان‌ها"
 
 #: pagelayout.py:39
 msgid "My account"
@@ -612,15 +613,15 @@ msgstr "نماد پوتل"
 
 #: pagelayout.py:81
 msgid "WordForge Translation Project"
-msgstr "پروژه‌ی ترجمه‌ی WordForge"
+msgstr "پروژهٔ ترجمهٔ WordForge"
 
 #: pagelayout.py:83
 msgid "About this Pootle server"
-msgstr "درباره‌ی این خادم پوتل"
+msgstr "دربارهٔ این خادم پوتل"
 
 #: pagelayout.py:157
 msgid "All goals"
-msgstr "همه‌ی اهداف"
+msgstr "همهٔ اهداف"
 
 #: pagelayout.py:228
 #, python-format
@@ -685,7 +686,7 @@ msgstr "مجموع"
 
 #: pagelayout.py:250
 msgid "Total words"
-msgstr "همه‌ی کلمات"
+msgstr "همهٔ کلمات"
 
 #. l10n: noun. The graphical representation of translation status
 #: pagelayout.py:252
@@ -695,7 +696,7 @@ msgstr "نمودار"
 #: users.py:39
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
-msgstr "شما باید یک گذرواژه‌ی معتبر به طول حداقل %d حرف وارد کنید."
+msgstr "شما باید یک گذرواژهٔ معتبر به طول حداقل %d حرف وارد کنید."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
@@ -735,7 +736,7 @@ msgstr "نام کاربر درخواستی شما"
 
 #: users.py:102 users.py:373
 msgid "You must supply a valid email address"
-msgstr "شما باید یک نشانی رایانامه‌ی معتبر وارد کنید"
+msgstr "شما باید یک نشانی رایانامهٔ معتبر وارد کنید"
 
 #: users.py:105
 msgid "Your full name"
@@ -743,7 +744,7 @@ msgstr "نام کامل شما"
 
 #: users.py:108
 msgid "Your desired password"
-msgstr "گذرواژه‌ی دل‌خواه شما"
+msgstr "گذرواژهٔ دل‌خواه شما"
 
 #: users.py:110 users.py:164
 msgid "Confirm password"
@@ -808,7 +809,7 @@ msgstr "زبان‌های من"
 
 #: users.py:171
 msgid "Home page"
-msgstr "صفحه‌ی آغازه"
+msgstr "صفحهٔ آغازه"
 
 #: users.py:207
 msgid "Input Height (in lines)"
@@ -843,9 +844,8 @@ msgstr ""
 
 #: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
-"ما گذرواژه‌ی شما را نگه‌داری نمی‌کنیم، بلکه فقط شکلی درهم‌ریخته از آن را ذخیره "
-"می‌کنیم.\n"
+msgstr "ما گذرواژهٔ شما را نگه‌داری نمی‌کنیم، بلکه فقط شکلی درهم‌ریخته از آن را "
+"ذخیره می‌کنیم.\n"
 
 #: users.py:385
 #, python-format
@@ -863,7 +863,7 @@ msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
 msgstr ""
-"این نام کاربر قبلاً انتخاب شده است. یک رایانامه به نشانی رایانامه‌ی ثبت شده "
+"این نام کاربر قبلاً انتخاب شده است. یک رایانامه به نشانی رایانامهٔ ثبت شده "
 "فرستاده خواهد ‌شد."
 
 #: users.py:390
@@ -892,8 +892,7 @@ msgstr ""
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
-"اگر شما نمی‌توانید پیوند را دنبال کنید، لطفاً کد بالا را در صفحه‌ی فعال‌سازی "
+msgstr "اگر شما نمی‌توانید پیوند را دنبال کنید، لطفاً کد بالا را در صفحهٔ فعال‌سازی "
 "وارد کنید.\n"
 
 #: users.py:407
@@ -911,7 +910,7 @@ msgid ""
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
 "حساب ساخته شد. رایانامه‌ای حاوی جزئیات ورود و کد فعال‌سازی به شما فرستاده "
-"خواهد شد. لطفاً کد فعال‌سازی خود را در <a href='%s'>صفحه‌ی فعال‌سازی</a> وارد "
+"خواهد شد. لطفاً کد فعال‌سازی خود را در <a href='%s'>صفحهٔ فعال‌سازی</a> وارد "
 "کنید."
 
 #: users.py:411
@@ -926,24 +925,24 @@ msgstr "نام شما: %s\n"
 #: users.py:415
 #, python-format
 msgid "Your password is: %s\n"
-msgstr "گذرواژه‌ی شما: %s\n"
+msgstr "گذرواژهٔ شما: %s\n"
 
 #: users.py:416
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr "نشانی رایانامه‌ی ثبت شده‌ی شما: %s\n"
+msgstr "نشانی رایانامهٔ ثبت شدهٔ شما: %s\n"
 
 #: users.py:442
 msgid "Redirecting to Registration Page..."
-msgstr "در حال هدایت به صفحه‌ی ثبت نام..."
+msgstr "در حال هدایت به صفحهٔ ثبت نام..."
 
 #: users.py:466
 msgid "Redirecting to login Page..."
-msgstr "در حال هدایت به صفحه‌ی ورود..."
+msgstr "در حال هدایت به صفحهٔ ورود..."
 
 #: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
-msgstr "حساب شما فعال شده است. در حال هدایت به صفحه‌ی ورود..."
+msgstr "حساب شما فعال شده است. در حال هدایت به صفحهٔ ورود..."
 
 #: users.py:473
 msgid "The activation information was not valid."
@@ -975,11 +974,11 @@ msgstr "ورود ناموفق بود"
 
 #: pootle.py:337 pootle.py:368
 msgid "Redirecting to login..."
-msgstr "در حال هدایت به صفحه‌ی ورود..."
+msgstr "در حال هدایت به صفحهٔ ورود..."
 
 #: pootle.py:340
 msgid "Need to log in to access home page"
-msgstr "برای دسترسی به صفحه‌ی آغازه باید وارد سامانه شوید"
+msgstr "برای دسترسی به صفحهٔ آغازه باید وارد سامانه شوید"
 
 #: pootle.py:353
 msgid "Personal details updated"
@@ -987,7 +986,7 @@ msgstr "جزئیات شخصی به روز شد"
 
 #: pootle.py:371
 msgid "Need to log in to access admin page"
-msgstr "برای دسترسی به صفحه‌ی مدیریت باید وارد سامانه شوید"
+msgstr "برای دسترسی به صفحهٔ مدیریت باید وارد سامانه شوید"
 
 #: pootle.py:378
 msgid "Redirecting to home..."
@@ -999,7 +998,7 @@ msgstr "شما حق مدیریت پوتل را ندارید."
 
 #: indexpage.py:61
 msgid "About Pootle"
-msgstr "درباره‌ی پوتل"
+msgstr "دربارهٔ پوتل"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:63
@@ -1010,11 +1009,11 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
-"<strong>پوتل</strong> یک درگاه ساده‌ی وب است که باید به شما اجازه بدهد "
-"<strong>ترجمه کنید</strong>! از آن جا که پوتل یک <strong>نرم‌افزار آزاد</"
-"strong> است، شما می‌توانید آن را بارگیری کنید و اگر مایلید نسخه‌ی خودتان را "
-"اجرا نمایید. شما همچنین می‌توانید به روش‌های متعددی در توسعه‌ی آن مشارکت کنید "
-"(شما مجبور نیستید بتوانید برنامه بنویسید)."
+"<strong>پوتل</strong> یک درگاه سادهٔ وب است که باید به شما کمک کند که "
+"<strong>ترجمه کنید</strong>! از آن جا که پوتل یک <strong>نرم‌افزار "
+"آزاد</strong> است، شما می‌توانید آن را بارگیری کنید و اگر مایلید نسخهٔ "
+"خودتان را اجرا نمایید. شما همچنین می‌توانید به روش‌های متعددی در توسعهٔ آن "
+"مشارکت کنید (شما مجبور نیستید بتوانید برنامه بنویسید)."
 
 #: indexpage.py:64
 msgid ""
@@ -1022,9 +1021,10 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
-"خود پروژه‌ی پوتل در <a href=\"http://translate.sourceforge.net/\">translate."
-"sourceforge.net</a> میزبانی می‌شود. در آن‌ جا می‌توانید جزئیات کد منبع، "
-"فهرست‌های نامه‌نگاری و غیره را بیابید."
+"خود پروژهٔ پوتل در <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> "
+"میزبانی می‌شود. در آن‌ جا می‌توانید جزئیات کد منبع، فهرست‌های نامه‌نگاری و "
+"غیره را بیابید."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1058,7 +1058,7 @@ msgstr ""
 #: indexpage.py:130
 #, python-format
 msgid "User Page for: %s"
-msgstr "صفحه‌ی کاربر برای: %s"
+msgstr "صفحهٔ کاربر برای: %s"
 
 #: indexpage.py:132
 msgid "Change options"
@@ -1066,7 +1066,7 @@ msgstr "تغییر انتخاب‌ها"
 
 #: indexpage.py:133
 msgid "Admin page"
-msgstr "صفحه‌ی مدیریت"
+msgstr "صفحهٔ مدیریت"
 
 #: indexpage.py:135
 msgid "Quick Links"
@@ -1112,7 +1112,7 @@ msgstr "زبان"
 #: indexpage.py:348
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr "%s: پروژه‌ی %s، زبان %s"
+msgstr "%s: پروژهٔ %s، زبان %s"
 
 #: indexpage.py:413
 msgid "Cannot upload file, no file attached"
@@ -1158,7 +1158,7 @@ msgstr "ادغام کن"
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
-"پرونده را با پرونده‌ی کنونی ادغام کن و ناسازگاری‌ها را به پیشنهاد تبدیل کن"
+"پرونده را با پروندهٔ کنونی ادغام کن و ناسازگاری‌ها را به پیشنهاد تبدیل کن"
 
 #: indexpage.py:657
 msgid "Not in a goal"
@@ -1170,23 +1170,23 @@ msgstr "کاربر اضافه کن"
 
 #: indexpage.py:719
 msgid "PO file"
-msgstr "پرونده‌ی PO"
+msgstr "پروندهٔ PO"
 
 #: indexpage.py:723
 msgid "XLIFF file"
-msgstr "پرونده‌ی XLIFF"
+msgstr "پروندهٔ XLIFF"
 
 #: indexpage.py:727
 msgid "Qt .ts file"
-msgstr "پرونده‌ی Qt .ts"
+msgstr "پروندهٔ Qt .ts"
 
 #: indexpage.py:731
 msgid "CSV file"
-msgstr "پرونده‌ی CSV"
+msgstr "پروندهٔ CSV"
 
 #: indexpage.py:736
 msgid "MO file"
-msgstr "پرونده‌ی MO"
+msgstr "پروندهٔ MO"
 
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:742
@@ -1195,7 +1195,7 @@ msgstr "به روز کن"
 
 #: indexpage.py:785
 msgid "All Strings"
-msgstr "همه‌ی رشته‌ها"
+msgstr "همهٔ رشته‌ها"
 
 #: indexpage.py:787
 msgid "Unassigned"
@@ -1219,7 +1219,7 @@ msgstr "واگذار کن به"
 
 #: indexpage.py:830
 msgid "Show Editing Functions"
-msgstr "نمایش اعمال ویرایشی"
+msgstr "نمایش اعمال ویراستاری"
 
 #: indexpage.py:831
 msgid "Show Statistics"
@@ -1261,15 +1261,15 @@ msgstr "پنهان‌سازی واگذاری‌ها"
 #: indexpage.py:845
 #, python-format
 msgid "All Goals: %s"
-msgstr "همه‌ی اهداف"
+msgstr "همهٔ اهداف"
 
 #: indexpage.py:851
 msgid "Translate My Strings"
-msgstr "ترجمه‌ی رشته‌های من"
+msgstr "ترجمهٔ رشته‌های من"
 
 #: indexpage.py:853
 msgid "View My Strings"
-msgstr "مشاهده‌ی رشته‌های من"
+msgstr "مشاهدهٔ رشته‌های من"
 
 #: indexpage.py:858
 msgid "No strings assigned to you"
@@ -1277,11 +1277,11 @@ msgstr "هیج رشته‌ای به شما واگذار نشده‌است"
 
 #: indexpage.py:862
 msgid "Quick Translate My Strings"
-msgstr "ترجمه‌ی سریع رشته‌های من"
+msgstr "ترجمهٔ سریع رشته‌های من"
 
 #: indexpage.py:866
 msgid "No untranslated strings assigned to you"
-msgstr "هیج رشته‌‌ی ترجمه‌نشده‌ای به شما واگذار نشده‌است"
+msgstr "هیج رشته‌ٔ ترجمه‌نشده‌ای به شما واگذار نشده‌است"
 
 #: indexpage.py:870
 msgid "Review Suggestions"
@@ -1289,31 +1289,31 @@ msgstr "بازبینی پیشنهادها"
 
 #: indexpage.py:872
 msgid "View Suggestions"
-msgstr "مشاهده‌ی پیشنهادها"
+msgstr "مشاهدهٔ پیشنهادها"
 
 #: indexpage.py:877
 msgid "Quick Translate"
-msgstr "ترجمه‌ی سریع"
+msgstr "ترجمهٔ سریع"
 
 #: indexpage.py:879
 msgid "View Untranslated"
-msgstr "مشاهده‌ی ترجمه‌نشده‌ها"
+msgstr "مشاهدهٔ ترجمه‌نشده‌ها"
 
 #: indexpage.py:883
 msgid "No untranslated items"
-msgstr "رشته‌ی ترجمه‌نشده‌ای نیست"
+msgstr "رشتهٔ ترجمه‌نشده‌ای نیست"
 
 #: indexpage.py:886
 msgid "Translate All"
-msgstr "ترجمه‌ی همه"
+msgstr "ترجمهٔ همه"
 
 #: indexpage.py:901
 msgid "ZIP of goal"
-msgstr "ZIP شده‌ی هدف"
+msgstr "ZIP شدهٔ هدف"
 
 #: indexpage.py:903
 msgid "ZIP of folder"
-msgstr "ZIP شده‌ی پوشه"
+msgstr "ZIP شدهٔ پوشه"
 
 #: indexpage.py:910
 msgid "Generate SDF"

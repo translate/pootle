@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2006-12-28 21:46+0100\n"
-"Last-Translator: Hristo Simeonov Hristov <icobgr@abv.bg>\n"
+"PO-Revision-Date: 2008-03-10 18:56+0000\n"
+"Last-Translator: I Ganchev <ivaylo.ganchev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.10.1\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
 #: web/server.py:57
 #, python-format
@@ -23,7 +23,7 @@ msgstr "Отказ от действието и започване на нова
 
 #: web/server.py:92
 msgid "Instead of confirming this action, log out and start from scratch"
-msgstr ""
+msgstr "Вместо да потвърждавате това действие, излезте и започнете наново"
 
 #: web/server.py:97
 msgid "Exit application"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: web/server.py:110
 msgid "Login"
-msgstr ""
+msgstr "Вход"
 
 #: web/server.py:123
 msgid "Username:"
@@ -59,7 +59,7 @@ msgstr "Изберете приложение"
 
 #: web/server.py:637
 msgid "Logout"
-msgstr ""
+msgstr "Изход"
 
 #: web/server.py:639
 msgid "Exit"
@@ -68,7 +68,7 @@ msgstr "Изход"
 #: web/session.py:191 web/session.py:344 web/session.py:350
 #, python-format
 msgid "logged in as <b>%s</b>"
-msgstr ""
+msgstr "Вписан като <b>%s</b>"
 
 #: web/session.py:193
 msgid "couldn't add new session"
@@ -117,15 +117,15 @@ msgstr "премахване"
 
 #: widgets/thumbgallery.py:289 attachments.py:322
 msgid "(no attachment)"
-msgstr ""
+msgstr "(няма прикачен файл)"
 
 #: attachments.py:70
 msgid "attachment is too large"
-msgstr ""
+msgstr "прикаченият файл е прекалено голям"
 
 #: attachments.py:349
 msgid "remove this attachment"
-msgstr ""
+msgstr "премахване на този прикачен файл"
 
 #: attachments.py:350
 msgid "restore"

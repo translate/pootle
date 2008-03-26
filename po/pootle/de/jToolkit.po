@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2006-10-17 09:30+0200\n"
-"Last-Translator: Sharon Bahagi <tamino73@gmx.net>\n"
+"PO-Revision-Date: 2008-01-08 20:22+0100\n"
+"Last-Translator: Kristina Knaack <Kristina.Knaack@gmx.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Pootle 0.10.1\n"
 
 #: web/server.py:57
 #, python-format
@@ -32,7 +32,9 @@ msgstr "Anwendung beenden"
 
 #: web/server.py:98
 msgid "Exit this application and return to the parent application"
-msgstr "Diese Anwendung beenden und zur übergeordneten Anwendung zurückkehren"
+msgstr ""
+"Beenden Sie diese Anwendung und kehren Sie zur übergeordneten Anwendung "
+"zurück"
 
 #: web/server.py:105
 msgid ", please confirm login"

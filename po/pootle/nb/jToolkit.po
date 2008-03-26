@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2006-11-28 18:43+0100\n"
-"Last-Translator: Stein Magne Bjørklund <steinmb@tbsk.no>\n"
+"PO-Revision-Date: 2007-09-11 01:00+0200\n"
+"Last-Translator: Geir Pedersen <geir.pedersen@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Pootle 0.10.1\n"
 
 #: web/server.py:57
 #, python-format
@@ -32,7 +32,7 @@ msgstr "Avbryt programmet"
 
 #: web/server.py:98
 msgid "Exit this application and return to the parent application"
-msgstr "Afbryt dette programmet og gå tilbake til hovedprogrammet"
+msgstr "Avbryt dette programmet og gå tilbake til hovedprogrammet"
 
 #: web/server.py:105
 msgid ", please confirm login"
@@ -48,7 +48,7 @@ msgstr "Brukernavn:"
 
 #: web/server.py:125
 msgid "Password:"
-msgstr "Kodeord:"
+msgstr "Passord:"
 
 #: web/server.py:130
 msgid "Language:"
@@ -60,11 +60,11 @@ msgstr "Velg program"
 
 #: web/server.py:637
 msgid "Logout"
-msgstr "Log ut"
+msgstr "Avslutt"
 
 #: web/server.py:639
 msgid "Exit"
-msgstr "Utgang"
+msgstr "Avslutt"
 
 #: web/session.py:191 web/session.py:344 web/session.py:350
 #, python-format
@@ -73,7 +73,7 @@ msgstr "Logget inn som <b>%s</b>"
 
 #: web/session.py:193
 msgid "couldn't add new session"
-msgstr "kunne ikke tilføje ny session"
+msgstr "kunne ikke legge til ny session"
 
 #: web/session.py:214
 msgid "logged out"
@@ -85,11 +85,11 @@ msgstr "tilkoblet"
 
 #: web/session.py:269
 msgid "exited parent session"
-msgstr "afbrutt hovedsession"
+msgstr "avbrutt hovedsesjon"
 
 #: web/session.py:314
 msgid "need to define the users or userprefs entry on the server config"
-msgstr ""
+msgstr "må definere bruker eller brukerpreferanse i tjenerens konfigurasjon"
 
 #: web/session.py:321 web/session.py:453
 #, python-format
@@ -98,11 +98,11 @@ msgstr "bruker eksisterer ikke (%r)"
 
 #: web/session.py:362
 msgid "invalid username and/or password"
-msgstr "ugyldigt brukernavn og/eller kodeord"
+msgstr "ugyldig brukernavn og/eller passord"
 
 #: web/session.py:433 web/session.py:437
 msgid "failed login confirmation"
-msgstr "mislykkedes login bekreftigelse"
+msgstr "misslykket login bekreftelse"
 
 #: widgets/form.py:79 widgets/thumbgallery.py:292
 msgid "No"
@@ -118,27 +118,27 @@ msgstr "fjern"
 
 #: widgets/thumbgallery.py:289 attachments.py:322
 msgid "(no attachment)"
-msgstr "(ingen vedheftning)"
+msgstr "(intet vedlegg)"
 
 #: attachments.py:70
 msgid "attachment is too large"
-msgstr "vedheftning er for stor"
+msgstr "vedlegget er for stort"
 
 #: attachments.py:349
 msgid "remove this attachment"
-msgstr "fjern denne vedheftning"
+msgstr "fjern dette vedlegget"
 
 #: attachments.py:350
 msgid "restore"
-msgstr "genskap"
+msgstr "gjenopprett"
 
 #: attachments.py:351
 msgid "this attachment has been removed. click here to restore it"
-msgstr "denne vedheftning er blitt fjernet. klikk her for å genskape den"
+msgstr "dette vedlegget er fjernet. klikk her for å gjenopprette det"
 
 #: attachments.py:362
 msgid "attach a file"
-msgstr "vedheft fil"
+msgstr "legg ved en fil"
 
 #~ msgid "need to define the users entry on the server config"
 #~ msgstr "behov for å definere brukers adgang på serverens config"

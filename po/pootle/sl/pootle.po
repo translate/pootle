@@ -5,15 +5,15 @@ msgstr ""
 "Project-Id-Version: OpenOffice.org\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-02-24 17:47+0100\n"
-"Last-Translator: Robert Ludvik <r@aufbix.org>\n"
+"PO-Revision-Date: 2007-08-04 15:20+0200\n"
+"Last-Translator: Gasper Zejn <zejn@kiberpipa.org>\n"
 "Language-Team: Slovenščina <users@sl.openoffice.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
-"X-Generator: Pootle 0.11rc2\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -76,9 +76,8 @@ msgid "You do not have rights to upload files here"
 msgstr "Nimate pravic za nalaganje datotek"
 
 #: projects.py:508
-#, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr "Nimate pravic za pošiljanje datotek"
+msgstr "Nimate pravic za prepis datotek"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
@@ -159,12 +158,12 @@ msgstr "Ohlapno"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Komentarji prevajalca"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Komentarji razvijalca"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -448,7 +447,7 @@ msgstr "Način preverjanja"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Tip datoteke"
 
 #: adminpages.py:153
 msgid "Create MO Files"
@@ -636,7 +635,9 @@ msgstr "%d/%d datoteke"
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d datoteka"
-msgstr[1] "%d datoteke"
+msgstr[1] "%d datoteki"
+msgstr[2] "%d datoteke"
+msgstr[3] "%d datotek"
 
 #: pagelayout.py:232 indexpage.py:995
 #, python-format
@@ -1050,15 +1051,13 @@ msgstr "Različice"
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:71
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
-"Ta stran poganja:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %"
-"s<br />Python %s (na %s/%s)L10n: Če se vaš jezik zapisuje od desne proti "
-"levi in puščate nize neprevedene lahko besedilo vključite med znački <span "
-"dir=\"ltr\">......</span> da bodo brskalniki to ustrezno prikazali."
+"Ta stran poganja:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (na %s/%s)"
 
 #: indexpage.py:130
 #, python-format
@@ -1087,7 +1086,9 @@ msgstr ""
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
 msgstr[0] "%d projekt, povprečno %d%% prevedeno"
-msgstr[1] "%d projekti, povprečno %d%% prevedeni"
+msgstr[1] "%d projekta, povprečno %d%% prevedena"
+msgstr[2] "%d projekti, povprečno %d%% prevedeni"
+msgstr[3] "%d projektov, povprečno %d%% prevedenih"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -1110,7 +1111,9 @@ msgstr "Ime jezika"
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
 msgstr[0] "%d jezik, povprečno %d%% prevedeno"
-msgstr[1] "%d jeziki, povprečno %d%% prevedeni"
+msgstr[1] "%d jezika, povprečno %d%% prevedena"
+msgstr[2] "%d jeziki, povprečno %d%% prevedeni"
+msgstr[3] "%d jezikov, povprečno %d%% prevedenih"
 
 #: indexpage.py:265
 msgid "Language"
@@ -1152,19 +1155,16 @@ msgstr "Izberi datoteko za nalaganje"
 
 #. l10n: tooltip
 #: indexpage.py:550
-#, fuzzy
 msgid "Overwrite the current file if it exists"
 msgstr "Prepiši trenutno datoteko, če že obstaja"
 
 #. l10n: radio button text
 #: indexpage.py:552
-#, fuzzy
 msgid "Merge"
 msgstr "Spoji"
 
 #. l10n: tooltip
 #: indexpage.py:554
-#, fuzzy
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr "Spoji datoteko s trenutno datoteko in spremeni navzkrižja v predloge"
@@ -1333,7 +1333,9 @@ msgstr "Generiraj SDF"
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
 msgstr[0] "%d niz (%d%%) je spodletel"
-msgstr[1] "%d nizov (%d%%) je spodletelo"
+msgstr[1] "%d niza (%d%%) sta spodletela"
+msgstr[2] "%d nizi (%d%%) so spodleteli"
+msgstr[3] "%d nizov (%d%%) je spodletelo"
 
 #: indexpage.py:993
 #, python-format

@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-05-05 09:20+0200\n"
-"Last-Translator: Piarres Beobide <pi@beobide.net>\n"
+"PO-Revision-Date: 2007-06-29 21:05+0200\n"
+"Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.0.1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -150,7 +150,7 @@ msgstr "Ezetsi"
 
 #: translatepage.py:121 pagelayout.py:243
 msgid "Fuzzy"
-msgstr "Nahasi"
+msgstr "Zalantzazkoa"
 
 # Garatzaile iruzkinak
 #. l10n: Heading above the textarea for translator comments.
@@ -218,15 +218,15 @@ msgstr "%s arakatzen"
 
 #: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
 msgid "Assign Strings"
-msgstr "Kateak Ezarri"
+msgstr "Kateak Esleitu"
 
 #: translatepage.py:212 indexpage.py:528
 msgid "Assign to User"
-msgstr "Erabiltzaileari Ezarri"
+msgstr "Erabiltzaileari Esleitu"
 
 #: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
-msgstr "Ekintza Ezarri"
+msgstr "Ekintza Esleitu"
 
 #: translatepage.py:368
 #, python-format
@@ -290,8 +290,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"Itzulpena ez da posible hizkuntz honetako plural datuak ez bait daude "
-"ezarririk. Harremanetan ipni sistema kudeatzailearekin."
+"Itzulpena ez da posible hizkuntza honetako plural datuak ez baitaude "
+"ezarrita. Jar zaitez harremanetan sistema kudeatzailearekin."
 
 #: translatepage.py:739
 msgid "Current Translation:"
@@ -367,7 +367,7 @@ msgstr "Oinarri URL-a"
 
 #: adminpages.py:57
 msgid "Home Page"
-msgstr "Etxe Orrialdea"
+msgstr "Hasiera Orrialdea"
 
 #: adminpages.py:83 adminpages.py:141 adminpages.py:206
 msgid "Main admin page"
@@ -395,15 +395,15 @@ msgstr "(karaktere bereziak)"
 
 #: adminpages.py:93 indexpage.py:217
 msgid "Number of Plurals"
-msgstr "Plurak Zenbakia"
+msgstr "Plural Kopurua"
 
 #: adminpages.py:93
 msgid "(number of plurals)"
-msgstr "(plural zenbakia)"
+msgstr "(plural kopurua)"
 
 #: adminpages.py:94 indexpage.py:218
 msgid "Plural Equation"
-msgstr "Plural ekuazioa"
+msgstr "Plural Ekuazioa"
 
 #: adminpages.py:94
 msgid "(plural equation)"
@@ -433,11 +433,11 @@ msgstr "(proiektua hemen gehitu)"
 
 #: adminpages.py:150
 msgid "Project Description"
-msgstr "Proiektu Argibideak"
+msgstr "Proiektuaren Azalpena"
 
 #: adminpages.py:150
 msgid "(project description)"
-msgstr "(proiektu argibideak)"
+msgstr "(proiektuaren azalpena)"
 
 #: adminpages.py:151
 msgid "Checker Style"
@@ -481,7 +481,7 @@ msgstr "(pasahitza hemen gehitu)"
 
 #: adminpages.py:217
 msgid "Activated"
-msgstr "Gaiturik"
+msgstr "Gaituta"
 
 #: adminpages.py:217
 msgid "Activate New User"
@@ -516,7 +516,7 @@ msgstr "Ez duzu proiektu hau kudeatzeko baimenik."
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:281
 msgid "Update from templates"
-msgstr "Txantilloietatik eguneratu"
+msgstr "Txantiloietatik eguneratu"
 
 #: adminpages.py:289
 msgid "Add Language"
@@ -530,13 +530,14 @@ msgstr "Pootle Kudeaketa: %s %s"
 
 #: adminpages.py:322
 msgid "Project home page"
-msgstr "Proiektu etxe orrialdea"
+msgstr "Proiektuaren hasiera orrialdea"
 
 #: adminpages.py:340
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr ""
-"Ezin dira %s erabiltzaile izenaren baimenak ezarri - erabiltzailea ez dago"
+"Ezin dira %s erabiltzaile-izenaren baimenak ezarri - erabiltzailea ez da "
+"existitzen"
 
 #: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
@@ -591,7 +592,7 @@ msgstr "Kudeaketa"
 
 #: pagelayout.py:41
 msgid "Docs & help"
-msgstr "Dokumentazio eta Laguntza"
+msgstr "Dokumentazioa eta Laguntza"
 
 #: pagelayout.py:42
 msgid "Log out"
@@ -641,7 +642,7 @@ msgstr[1] "%d fitxategi"
 #: pagelayout.py:232 indexpage.py:995
 #, python-format
 msgid "%d/%d words (%d%%) translated"
-msgstr "%d/%d hitz (%%%d) itzulirik"
+msgstr "%d/%d hitz (%%%d) itzulita"
 
 #: pagelayout.py:233
 #, python-format
@@ -658,7 +659,7 @@ msgstr "Itzulia"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
-msgstr "Itzulitalko ehunekoa"
+msgstr "Itzulitako ehunekoa"
 
 #: pagelayout.py:242
 msgid "Translated words"
@@ -666,11 +667,11 @@ msgstr "Itzulitako hitzak"
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
-msgstr "Nahasi ehunekoa"
+msgstr "Zalantzazkoen ehunekoa"
 
 #: pagelayout.py:245
 msgid "Fuzzy words"
-msgstr "Hitz nahasi"
+msgstr "Zalantzazko hitzak"
 
 #: pagelayout.py:246 indexpage.py:786
 msgid "Untranslated"
@@ -678,11 +679,11 @@ msgstr "Itzuli gabeak"
 
 #: pagelayout.py:247
 msgid "Untranslated percentage"
-msgstr "Itzuligabeko ehunekoa"
+msgstr "Itzuli gabeko ehunekoa"
 
 #: pagelayout.py:248
 msgid "Untranslated words"
-msgstr "Itzuligabeko hitzak"
+msgstr "Itzuli gabeko hitzak"
 
 #: pagelayout.py:249
 msgid "Total"
@@ -704,7 +705,7 @@ msgstr "Gutxienez %d karaktereko baliozko pasahitz bat eman behar duzu."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
-msgstr "Pasahitza eta berrespena ez dira berdinak"
+msgstr "Pasahitza eta berrespena ez datoz bat."
 
 #: users.py:55
 msgid "Login to Pootle"
@@ -740,11 +741,11 @@ msgstr "Eskatutako erabiltzaile izena"
 
 #: users.py:102 users.py:373
 msgid "You must supply a valid email address"
-msgstr "Baliozko ePosta helbide bat idatzi behar duzu"
+msgstr "Baliozko eposta helbide bat idatzi behar duzu"
 
 #: users.py:105
 msgid "Your full name"
-msgstr "Zure Izen Osoa"
+msgstr "Izen osoa"
 
 #: users.py:108
 msgid "Your desired password"
@@ -756,23 +757,23 @@ msgstr "Berretsi pasahitza"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
-msgstr "Idatzi zure pasahitza berriz ongi idatzi duzula ziurtatzeko"
+msgstr "Berridatzi pasahitza ongi idatzi duzula ziurtatzeko"
 
 #: users.py:113
 msgid "Register Account"
-msgstr "Kontu harpidetza"
+msgstr "Kontua Erregistratu"
 
 #: users.py:122
 msgid "Please enter your activation details"
-msgstr "Mesdez ezarri zure gaitze xehetasunak"
+msgstr "Mesedez sar itzazu zure aktibazio xehetasunak"
 
 #: users.py:127
 msgid "Pootle Account Activation"
-msgstr "Pootle kontu gaitzea"
+msgstr "Pootle Kontu Gaitzea"
 
 #: users.py:137
 msgid "Activation Code"
-msgstr "Gaitze gakoa"
+msgstr "Gaitze Gakoa"
 
 #: users.py:138
 msgid "The activation code you received"
@@ -797,11 +798,11 @@ msgstr "ePosta"
 
 #: users.py:165
 msgid "Translation Interface Configuration"
-msgstr "Itzulpen Interfaze Konfigurazioa"
+msgstr "Itzulpen Interfazearen Konfigurazioa"
 
 #: users.py:166
 msgid "User Interface language"
-msgstr "Erabiltzaile interfaze hizkuntza"
+msgstr "Erabiltzaile Interfazearen hizkuntza"
 
 #: users.py:167
 msgid "My Projects"
@@ -809,11 +810,11 @@ msgstr "Nire Proiektuak"
 
 #: users.py:169
 msgid "My Languages"
-msgstr "Nire hizkuntzak"
+msgstr "Nire Hizkuntzak"
 
 #: users.py:171
 msgid "Home page"
-msgstr "Etxe orrialdea"
+msgstr "Hasiera orrialdea"
 
 #: users.py:207
 msgid "Input Height (in lines)"
@@ -854,23 +855,21 @@ msgstr "Guk ez dugu zure pasahitza gordetzen horren egiaztapen bat baizik.\n"
 #: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr "Harpidetzarekin arazorik izan ezkero, harremanetan ipini %s-rekin.\n"
+msgstr "Harpidetzarekin arazorik izanez gero, harremanetan ipini %s-rekin.\n"
 
 #: users.py:387
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
-"Harpidetzarekin arazorik izan ezkero, harremanetan ipini sistema "
+msgstr "Harpidetzarekin arazorik izanez gero, harremanetan ipini sistema "
 "kudeatzailearekin.\n"
 
 #: users.py:388
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
-"Erabiltzaile izen hau badago dagoeneko. Harpidedunan helbidera eposta bat "
-"bidalia izango da.\n"
+msgstr "Erabiltzaile izen hau existitzen da dagoeneko. Harpidedunaren helbidera "
+"eposta bat bidaliko da.\n"
 
 #: users.py:390
 #, python-format
@@ -879,7 +878,7 @@ msgstr "<a href='%s'>Saioa hasten</a>\n"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr "Pootle kontu bat sortua izan da eposta kontu hau erabiliaz.\n"
+msgstr "Pootle kontu bat sortu da eposta kontu hau erabiliz.\n"
 
 #: users.py:398
 msgid "To activate your account, follow this link:\n"
@@ -980,11 +979,11 @@ msgstr "Huts saioa hasterakoan"
 
 #: pootle.py:337 pootle.py:368
 msgid "Redirecting to login..."
-msgstr "Saio haste orrira berbideratzen..."
+msgstr "Saio hasiera orrira berbideratzen..."
 
 #: pootle.py:340
 msgid "Need to log in to access home page"
-msgstr "Saioa hasi behar duzu etxe orrialdera joateko"
+msgstr "Saioa hasi behar duzu hasiera orrialdera joateko"
 
 #: pootle.py:353
 msgid "Personal details updated"
@@ -1017,8 +1016,8 @@ msgid ""
 msgstr ""
 "<strong>Pootle</strong> <strong>itzulpenetan</strong> lagun zaitzaken "
 "webgune sinple bat da! Pootle <strong>Software Librea</strong> denez, nahi "
-"ezkero berau deskargatu eta zure kopia pribatu martxan ipin dezakezu. Bere "
-"garapenean modu ezberdinetan lagundu dezakezu (ez duzu programatzen jakin "
+"izanez gero berau deskargatu eta zure kopia pribatua martxan ipin dezakezu. "
+"Bere garapenean modu ezberdinetan lagun dezakezu (ez duzu programatzen jakin "
 "beharrik)."
 
 #: indexpage.py:64
@@ -1027,9 +1026,10 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
-"Pootle proeiktua <a href=\"http://translate.sourceforge.net/\">translate."
-"sourceforge.net</a>en dago, hemen iturburu kodea, posta zerrendak eta abarri "
-"buruz argibideak aurki daitezke."
+"Pootle proiektua <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a>en "
+"dago, hemen iturburu kodea, posta zerrendak eta abarri buruzko argibideak "
+"aurki daitezke."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1079,14 +1079,14 @@ msgstr "Lotura azkarrak"
 #: indexpage.py:139
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
-"Mesedez 'Aukerak aldatu' saktu eta hizkuntz eta proiektu batenbat hautatu"
+"Mesedez 'Aukerak aldatu' sakatu eta hizkuntz eta proiekturen bat hautatu"
 
 #: indexpage.py:192
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] "Proiektu %d, %%%d itzulirik"
-msgstr[1] "%d proiektu, %%%d itzulirik"
+msgstr[0] "Proiektu %d, %%%d itzulita"
+msgstr[1] "%d proiektu, %%%d itzulita"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -1094,7 +1094,7 @@ msgstr[1] "%d proiektu, %%%d itzulirik"
 #: indexpage.py:198 indexpage.py:260
 #, python-format
 msgid "%s: %s"
-msgstr "%s %s"
+msgstr "%s: %s"
 
 #: indexpage.py:214
 msgid "Language Code"
@@ -1123,7 +1123,7 @@ msgstr "%s: %s proiektua, %s hizkuntza"
 
 #: indexpage.py:413
 msgid "Cannot upload file, no file attached"
-msgstr "Ezinda fitxategia igo, ez da fitxategirik gehitu"
+msgstr "Ezin da fitxategia igo, ez da fitxategirik erantsi"
 
 #: indexpage.py:419
 msgid "Can only upload PO files and zips of PO files"
@@ -1163,7 +1163,7 @@ msgstr "Batu"
 #: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr "Fitxategi berria dagoenarekin batu eta elkarjotzeak gomendio bihurtu"
+msgstr "Fitxategi berria dagoenarekin batu eta gatazkak gomendio bihurtu"
 
 #: indexpage.py:657
 msgid "Not in a goal"
@@ -1204,7 +1204,7 @@ msgstr "Kate Guztiak"
 
 #: indexpage.py:787
 msgid "Unassigned"
-msgstr "Ezarri gabeak"
+msgstr "Esleitu gabeak"
 
 #: indexpage.py:788
 msgid "Unassigned and Untranslated"
@@ -1278,7 +1278,7 @@ msgstr "Nire Kateak Ikusi"
 
 #: indexpage.py:858
 msgid "No strings assigned to you"
-msgstr "Ez duzu katerik ezarririk"
+msgstr "Ez duzu katerik esleituta"
 
 #: indexpage.py:862
 msgid "Quick Translate My Strings"
@@ -1286,7 +1286,7 @@ msgstr "Nire Kateen Itzulpen Azkarra"
 
 #: indexpage.py:866
 msgid "No untranslated strings assigned to you"
-msgstr "Ez duzu itzuli gabeko katerik ezarririk"
+msgstr "Ez duzu itzuli gabeko katerik esleituta"
 
 #: indexpage.py:870
 msgid "Review Suggestions"
@@ -1334,7 +1334,7 @@ msgstr[1] "%d katek (%%%d) huts"
 #: indexpage.py:993
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr "%d/%d hitz (%%%d) ezarririk"
+msgstr "%d/%d hitz (%%%d) esleituta"
 
 #: indexpage.py:994 indexpage.py:996
 #, python-format

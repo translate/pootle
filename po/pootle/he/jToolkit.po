@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2007-04-04 12:49+0200\n"
-"Last-Translator: Dotan <kamberd@yahoo.com>\n"
+"PO-Revision-Date: 2007-08-08 05:27+0200\n"
+"Last-Translator: איתי בלבן <ittaibalaban@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Pootle 0.11\n"
 
 #: web/server.py:57
 #, python-format
@@ -94,11 +94,11 @@ msgstr ""
 #: web/session.py:321 web/session.py:453
 #, python-format
 msgid "user does not exist (%r)"
-msgstr ""
+msgstr "משתמש אינו קיים (%r)"
 
 #: web/session.py:362
 msgid "invalid username and/or password"
-msgstr ""
+msgstr "שם משתמש ו/או סיסמה שגויים"
 
 #: web/session.py:433 web/session.py:437
 msgid "failed login confirmation"
@@ -106,15 +106,15 @@ msgstr ""
 
 #: widgets/form.py:79 widgets/thumbgallery.py:292
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #: widgets/form.py:80 widgets/thumbgallery.py:293
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 #: widgets/thumbgallery.py:233 attachments.py:348
 msgid "remove"
-msgstr ""
+msgstr "הסר"
 
 #: widgets/thumbgallery.py:289 attachments.py:322
 msgid "(no attachment)"

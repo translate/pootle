@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-05-12 01:48+0200\n"
+"PO-Revision-Date: 2007-12-01 12:50+0100\n"
 "Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -290,7 +290,7 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"Переклад не можливий, тому що інформація про множину для вашої мови не "
+"Переклад не можливий, тому що інформація про множину для Вашої мови не "
 "доступна. Будь-ласка, сконтактуйтеся зі системним адміністратором."
 
 #: translatepage.py:739
@@ -302,7 +302,7 @@ msgstr "Поточний переклад:"
 #: translatepage.py:752
 #, python-format
 msgid "Suggestion %d by %s:"
-msgstr "Пропозиція %d для %s:"
+msgstr "Пропозиція %d від %s:"
 
 #: translatepage.py:754
 #, python-format
@@ -313,7 +313,7 @@ msgstr "Запропонувати %d:"
 #: translatepage.py:758
 #, python-format
 msgid "Suggestion by %s:"
-msgstr "Пропозиція для %s:"
+msgstr "Пропозиція від %s:"
 
 #: translatepage.py:760
 msgid "Suggestion:"
@@ -511,7 +511,7 @@ msgstr "Адміністрація Pootle: %s"
 
 #: adminpages.py:279 adminpages.py:341
 msgid "You do not have the rights to administer this project."
-msgstr "Ви не маєте прав для адміністрування цим проектом."
+msgstr "Ви не маєте прав для адміністрування цього проекту."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:281
@@ -536,8 +536,8 @@ msgstr "Домашня сторінка проекту"
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr ""
-"Не можливо встановити права для такого імені користувача %s - користувача не "
-"існує"
+"Неможливо встановити права для такого імені користувача %s - такого "
+"користувача просто не існує"
 
 #: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
@@ -923,7 +923,7 @@ msgid ""
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
 "Обліковий запис створено. Вам буде вислано листа з реєстраційною інформацією "
-"та кодом активації. Введіть, будь-ласка, Ваш код на <a href='%s'>сторінці "
+"та кодом активації. Введіть, будь ласка, Ваш код на <a href='%s'>сторінці "
 "активації</a>."
 
 #: users.py:411
@@ -1158,7 +1158,7 @@ msgstr "Вивантажити файл"
 
 #: indexpage.py:542
 msgid "Select file to upload"
-msgstr "Виберіть файл для пересилки"
+msgstr "Виберіть файл для вивантаження"
 
 #. l10n: tooltip
 #: indexpage.py:550

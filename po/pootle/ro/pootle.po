@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 0.11\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-05-21 10:11+0200\n"
+"PO-Revision-Date: 2007-09-04 20:43+0200\n"
 "Last-Translator: Alexandru Szasz <alexxed@gmail.com>\n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -35,7 +35,7 @@ msgstr "Tradu"
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr "Supreascrie"
+msgstr "Suprascrie"
 
 #. l10n: Verb
 #: projects.py:141
@@ -262,7 +262,7 @@ msgstr "Copiază"
 
 #: translatepage.py:610 translatepage.py:784
 msgid "Skip"
-msgstr "Sări"
+msgstr "Sari"
 
 #. l10n: verb
 #: translatepage.py:612 translatepage.py:783 users.py:256
@@ -594,11 +594,11 @@ msgstr "Admin"
 
 #: pagelayout.py:41
 msgid "Docs & help"
-msgstr "Docuri şi ajutor"
+msgstr "Ajutor"
 
 #: pagelayout.py:42
 msgid "Log out"
-msgstr "Deautentificare"
+msgstr "Ieşire"
 
 #: pagelayout.py:43
 msgid "Log in"

@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2006-12-28 23:50+0100\n"
-"Last-Translator: Hristo Simeonov Hristov <icobgr@abv.bg>\n"
+"PO-Revision-Date: 2008-01-30 11:14+0100\n"
+"Last-Translator: I Ganchev <ivaylo.ganchev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.10.1\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -28,12 +28,13 @@ msgstr "Превод"
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "Презаписване"
 
+# Не е спазено указанието на програмиста, че това е глагол, но въпреки това е спазена условната конвенция на И Балабанов.
 #. l10n: Verb
 #: projects.py:141
 msgid "Review"
-msgstr ""
+msgstr "Преглед"
 
 #. l10n: Verb
 #: projects.py:143
@@ -47,7 +48,7 @@ msgstr ""
 
 #: projects.py:146
 msgid "Assign"
-msgstr ""
+msgstr "Приписване"
 
 #: projects.py:147 indexpage.py:134
 msgid "Administrate"
@@ -61,7 +62,7 @@ msgstr ""
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "Неможете да изтриете \"nobody\" и \"default\" потребителите"
 
 #: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
@@ -69,39 +70,44 @@ msgstr ""
 
 #: projects.py:505
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "Нямате права да качвате файлове тука"
 
+# Трябва ли да се запазва тука ?
 #: projects.py:508
+#, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr ""
+msgstr "Нямате право да променяте файлове"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "Нямате право да качвате нови файлове"
 
 #: projects.py:519
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "Нямате право да обновявате файлове"
 
+# commit = прилагане ?
 #: projects.py:590
+#, fuzzy
 msgid "You do not have rights to commit files here"
-msgstr ""
+msgstr "Нямате право да прилагате файлове"
 
 #: projects.py:919 projects.py:960
+#, fuzzy
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "Нямате право да променяте вписванията"
 
 #: projects.py:1141
 msgid "You do not have rights to change translations here"
-msgstr ""
+msgstr "Нямате право да променяте превода"
 
 #: projects.py:1151
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "Нямате право да давате предложения"
 
 #: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Нямате право да прегледате предложенията"
 
 #: translatepage.py:89
 #, python-format
@@ -109,6 +115,8 @@ msgid ""
 "%d/%d translated\n"
 "(%d blank, %d fuzzy)"
 msgstr ""
+"%d %d преведени\n"
+"(%d празни, %d неясни)"
 
 #: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
 #: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
@@ -125,7 +133,7 @@ msgstr ""
 #: translatepage.py:99
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr ""
+msgstr "%s превежда %s на %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
@@ -145,24 +153,27 @@ msgstr "Приемане"
 msgid "Reject"
 msgstr "Отказване"
 
+# Непотвърдени, временни
 #: translatepage.py:121 pagelayout.py:243
+#, fuzzy
 msgid "Fuzzy"
-msgstr ""
+msgstr "Неясни"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Коментари на преводача"
 
+# Коментари на разработчика
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Коментари на разработчика"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
 msgid "Related"
-msgstr ""
+msgstr "Свързани"
 
 #. l10n: text next to search field
 #: translatepage.py:131 indexpage.py:356
@@ -214,20 +225,20 @@ msgstr ""
 
 #: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
 msgid "Assign Strings"
-msgstr ""
+msgstr "Приписване на низ"
 
 #: translatepage.py:212 indexpage.py:528
 msgid "Assign to User"
-msgstr ""
+msgstr "Приписване на потребител"
 
 #: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
-msgstr ""
+msgstr "Приписване на действие"
 
 #: translatepage.py:368
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr ""
+msgstr "Няма елементи, отговарящи на това търсене ('%s')"
 
 #: translatepage.py:370
 msgid "You have finished going through the items you selected"
@@ -287,9 +298,11 @@ msgid ""
 "available. Please contact the site administrator."
 msgstr ""
 
+# Текущ ?
 #: translatepage.py:739
+#, fuzzy
 msgid "Current Translation:"
-msgstr ""
+msgstr "Настоящ превод"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
@@ -439,11 +452,11 @@ msgstr ""
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Тип на файла"
 
 #: adminpages.py:153
 msgid "Create MO Files"
-msgstr ""
+msgstr "Създаване на МО фаилове"
 
 #: adminpages.py:154
 msgid "Remove Project"
@@ -451,44 +464,43 @@ msgstr "Премахване на проект"
 
 #: adminpages.py:212 users.py:66
 msgid "Login"
-msgstr ""
+msgstr "Влизане"
 
 #: adminpages.py:214 users.py:347
 msgid "(add full name here)"
-msgstr ""
+msgstr "(добавете пълно име)"
 
 #: adminpages.py:215 users.py:101
 msgid "Email Address"
-msgstr ""
+msgstr "Електронна поща"
 
 #: adminpages.py:215 users.py:350
 msgid "(add email here)"
-msgstr ""
+msgstr "(добавете електронна поща)"
 
 #: adminpages.py:216 users.py:107 users.py:163
-#, fuzzy
 msgid "Password"
-msgstr "Парола:"
+msgstr "Парола"
 
 #: adminpages.py:216 users.py:344
 msgid "(add password here)"
-msgstr ""
+msgstr "(добавете парола)"
 
 #: adminpages.py:217
 msgid "Activated"
-msgstr ""
+msgstr "Активиран"
 
 #: adminpages.py:217
 msgid "Activate New User"
-msgstr ""
+msgstr "Активиране на новия потребител"
 
 #: adminpages.py:218
 msgid "Remove User"
-msgstr ""
+msgstr "Премахване на потребител"
 
 #: adminpages.py:272
 msgid "Back to main page"
-msgstr ""
+msgstr "Обратно към главната страница"
 
 #: adminpages.py:273
 msgid "Existing languages"
@@ -506,7 +518,7 @@ msgstr ""
 
 #: adminpages.py:279 adminpages.py:341
 msgid "You do not have the rights to administer this project."
-msgstr ""
+msgstr "Нямате правата да управлявате този проект"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:281
@@ -515,7 +527,7 @@ msgstr ""
 
 #: adminpages.py:289
 msgid "Add Language"
-msgstr ""
+msgstr "Прибавяне на език"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:321
@@ -542,16 +554,16 @@ msgstr ""
 
 #: adminpages.py:360
 msgid "User Permissions"
-msgstr ""
+msgstr "Права на потребителя"
 
 #: adminpages.py:361 users.py:98 users.py:134
 #, fuzzy
 msgid "Username"
-msgstr "Потребител:"
+msgstr "Потребителско име"
 
 #: adminpages.py:362
 msgid "(select to add user)"
-msgstr ""
+msgstr "(изберете за да прибавите потребител)"
 
 #: adminpages.py:363
 msgid "Rights"
@@ -575,32 +587,36 @@ msgstr "Всички езици"
 
 #: pagelayout.py:39
 msgid "My account"
-msgstr "Моята сметка"
+msgstr "Моят профил"
 
 #: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
 msgid "Admin"
-msgstr ""
+msgstr "Администратор"
 
 #: pagelayout.py:41
 msgid "Docs & help"
-msgstr ""
+msgstr "Документация"
 
 #: pagelayout.py:42
 msgid "Log out"
-msgstr ""
+msgstr "Документация"
 
 #: pagelayout.py:43
 msgid "Log in"
 msgstr ""
 
+# Спазвам правилата по съвет на Балабанов : m-balabanov.hit.bg. Други варианти са Регистрация, Регистрирай
 #. l10n: Verb, as in "to register"
 #: pagelayout.py:45
+#, fuzzy
 msgid "Register"
-msgstr ""
+msgstr "Регистриране"
 
+# виж коментар към предната дума
 #: pagelayout.py:46
+#, fuzzy
 msgid "Activate"
-msgstr ""
+msgstr "Активиране"
 
 #: pagelayout.py:80
 msgid "Pootle Logo"
@@ -650,12 +666,12 @@ msgstr "Преведени"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
-msgstr ""
+msgstr "Процент преведени"
 
 #: pagelayout.py:242
 #, fuzzy
 msgid "Translated words"
-msgstr "Непреведени думи"
+msgstr "Преведени думи"
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
@@ -671,7 +687,7 @@ msgstr "Непреведени"
 
 #: pagelayout.py:247
 msgid "Untranslated percentage"
-msgstr ""
+msgstr "Процент непреведени"
 
 #: pagelayout.py:248
 msgid "Untranslated words"
@@ -735,29 +751,32 @@ msgstr ""
 msgid "You must supply a valid email address"
 msgstr "Трябва да предоставите валиден адрес на е-поща"
 
+# трябва ли да се изпусне 'Вашето' или това е част от стила, който сайта желае да придобие.
 #: users.py:105
 msgid "Your full name"
-msgstr ""
+msgstr "Вашето пълно име"
 
 #: users.py:108
 msgid "Your desired password"
-msgstr ""
+msgstr "Желаната от Вас парола"
 
 #: users.py:110 users.py:164
 msgid "Confirm password"
-msgstr ""
+msgstr "Потвърдете паролата"
 
+# много дълго
 #: users.py:111
+#, fuzzy
 msgid "Type your password again to ensure it is entered correctly"
-msgstr ""
+msgstr "Напишете отново паролата, за да е сигурно че сте я въвели правилно"
 
 #: users.py:113
 msgid "Register Account"
-msgstr ""
+msgstr "Регистриране на профила"
 
 #: users.py:122
 msgid "Please enter your activation details"
-msgstr ""
+msgstr "Моля въведете детайлите по активирането"
 
 #: users.py:127
 msgid "Pootle Account Activation"
@@ -765,20 +784,20 @@ msgstr ""
 
 #: users.py:137
 msgid "Activation Code"
-msgstr ""
+msgstr "Код за активиране"
 
 #: users.py:138
 msgid "The activation code you received"
-msgstr ""
+msgstr "Активационният код, който получихте"
 
 #: users.py:140
 msgid "Activate Account"
-msgstr ""
+msgstr "Активиране на профил"
 
 #: users.py:151
 #, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr "Параметри за: %s"
 
 #: users.py:156
 msgid "Personal Details"
@@ -832,6 +851,8 @@ msgstr ""
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
+"Потребителското име трябва да е съставено от цифри и/или букви и да започва "
+"с буква"
 
 #: users.py:382
 msgid ""
@@ -845,19 +866,24 @@ msgstr ""
 #: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr ""
+msgstr "Ако имате проблем с регистрацията, моля обърнете се към %s \n"
 
 #: users.py:387
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "Ако имате проблем с регистрацията, моля обърнете се към администратора на "
+"сайта.\n"
 
+# Много дълго и неясно
 #: users.py:388
+#, fuzzy
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
 msgstr ""
+"Това потребителско име вече съществува. Бе изпратено писмо на обявената "
+"електронната поща."
 
 #: users.py:390
 #, python-format
@@ -870,7 +896,7 @@ msgstr ""
 
 #: users.py:398
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "За да активирате профила, щракнете на тази препратка:\n"
 
 #: users.py:404
 #, python-format
@@ -885,13 +911,16 @@ msgstr ""
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "Ако не можете да щракнете на препратката, моля въведете горният код на "
+"страницата за активиране.\n"
 
 #: users.py:407
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr ""
+"Бе изпратено съобщение, за проверка  на електронната поща. Ако не желаете да "
+"се регистрирате, моля игнорирайте съобщението."
 
 #: users.py:409
 #, python-format
@@ -899,10 +928,14 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"Профил създаден. Ще получите детайли за легитимиране, както и активационен "
+"код. Молявъведете активационният код на <a href='%s'> тази страница</a>"
 
+# Препратка за активиране или активационна препратка
 #: users.py:411
+#, fuzzy
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "(Или просто щракнете на препратката за активиране в писмото)"
 
 #: users.py:413
 #, python-format
@@ -914,30 +947,33 @@ msgstr "Вашето потребителско име е: %s\n"
 msgid "Your password is: %s\n"
 msgstr "Вашата парола е: %s\n"
 
+# Трябва ли да се запази регистриран ?
 #: users.py:416
 #, python-format
+#, fuzzy
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "Вашата елетронна поща е: %s\n"
 
 #: users.py:442
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "Пренасочване към страницата за регистрация..."
 
 #: users.py:466
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "Пренасочване към страницата за влизане"
 
 #: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "Вашият профил бе активиран! Пренасочване към страницата за влизане..."
 
 #: users.py:473
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "Информацията за активиране не е правилна"
 
 #: users.py:474
+#, fuzzy
 msgid "Activation Failed"
-msgstr ""
+msgstr "Активирането се провали"
 
 #: users.py:583
 msgid "Input height must be numeric"
@@ -1088,8 +1124,9 @@ msgid "%s: Project %s, Language %s"
 msgstr "%s: Проект %s, език %s"
 
 #: indexpage.py:413
+#, fuzzy
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "Файлът неможе да се качи - няма прикрепен файл"
 
 #: indexpage.py:419
 msgid "Can only upload PO files and zips of PO files"
@@ -1113,27 +1150,30 @@ msgstr "Качване на файл"
 
 #: indexpage.py:542
 msgid "Select file to upload"
-msgstr "Изберете файл който да качите"
+msgstr "Изберане на файл за качване"
 
 #. l10n: tooltip
 #: indexpage.py:550
 msgid "Overwrite the current file if it exists"
 msgstr ""
 
+# или Слей ?
 #. l10n: radio button text
 #: indexpage.py:552
+#, fuzzy
 msgid "Merge"
-msgstr ""
+msgstr "Сливане"
 
 #. l10n: tooltip
 #: indexpage.py:554
+#, fuzzy
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr ""
+msgstr "Сливане на файла с текущия файл и преобразуване на конфликтите в съвети"
 
 #: indexpage.py:657
 msgid "Not in a goal"
-msgstr ""
+msgstr "Не е в целта"
 
 #: indexpage.py:677
 msgid "Add User"
@@ -1170,23 +1210,23 @@ msgstr "Всички низове"
 
 #: indexpage.py:787
 msgid "Unassigned"
-msgstr ""
+msgstr "Неприписан"
 
 #: indexpage.py:788
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "Неприписано и непреведено"
 
 #: indexpage.py:795
 msgid "Set Goal"
-msgstr ""
+msgstr "Поставяне на цел"
 
 #: indexpage.py:799
 msgid "Select Multiple"
-msgstr ""
+msgstr "Изберане на няколко"
 
 #: indexpage.py:801
 msgid "Assign To"
-msgstr ""
+msgstr "Приписване на"
 
 #: indexpage.py:830
 msgid "Show Editing Functions"
@@ -1215,49 +1255,49 @@ msgstr ""
 
 #: indexpage.py:835
 msgid "Show Goals"
-msgstr ""
+msgstr "Показване на цели"
 
 #: indexpage.py:835
 msgid "Hide Goals"
-msgstr ""
+msgstr "Скриване на цели"
 
 #: indexpage.py:836
 msgid "Show Assigns"
-msgstr ""
+msgstr "Показване на приписвания"
 
 #: indexpage.py:836
 msgid "Hide Assigns"
-msgstr ""
+msgstr "Скриване на приписвания"
 
 #: indexpage.py:845
 #, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "Всички цели: %s"
 
 #: indexpage.py:851
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Превеждане на моите низове"
 
 #: indexpage.py:853
 msgid "View My Strings"
-msgstr ""
+msgstr "Изглед на моите низове"
 
 #: indexpage.py:858
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "Няма низове, които са Ви приписани"
 
 #: indexpage.py:862
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Бързо превеждане на моите низове"
 
 #: indexpage.py:866
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "Няма непреведени низове, които са Ви приписани"
 
 #: indexpage.py:870
 #, fuzzy
 msgid "Review Suggestions"
-msgstr "Показване на предложенията"
+msgstr "Преглед на предложенията"
 
 #: indexpage.py:872
 msgid "View Suggestions"
@@ -1273,7 +1313,7 @@ msgstr "Показване на непреведените"
 
 #: indexpage.py:883
 msgid "No untranslated items"
-msgstr ""
+msgstr "Няма непреведени елементи"
 
 #: indexpage.py:886
 msgid "Translate All"
@@ -1281,15 +1321,15 @@ msgstr "Превод на всички"
 
 #: indexpage.py:901
 msgid "ZIP of goal"
-msgstr ""
+msgstr "ZIP архив на целта"
 
 #: indexpage.py:903
 msgid "ZIP of folder"
-msgstr ""
+msgstr "ZIP архив на папката"
 
 #: indexpage.py:910
 msgid "Generate SDF"
-msgstr ""
+msgstr "Генериране на SDF"
 
 #: indexpage.py:963
 #, python-format

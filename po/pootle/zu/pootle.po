@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-02-07 13:00+0100\n"
-"Last-Translator: F Wolff <friedel@translate.org.za>\n"
+"PO-Revision-Date: 2007-09-20 13:15+0200\n"
+"Last-Translator: F Wólff <friedel BY translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Pootle 0.11rc2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -131,12 +131,12 @@ msgstr ""
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
 msgid "Original"
-msgstr ""
+msgstr "Isisusa"
 
 #. l10n: Heading above the table column with the target language
 #: translatepage.py:116
 msgid "Translation"
-msgstr ""
+msgstr "Ukuhumusha"
 
 #: translatepage.py:119
 msgid "Accept"
@@ -153,22 +153,22 @@ msgstr ""
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Umbono womhumushi"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Umbono womsunguli"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
 msgid "Related"
-msgstr ""
+msgstr "Ahlobene"
 
 #. l10n: text next to search field
 #: translatepage.py:131 indexpage.py:356
 msgid "Search"
-msgstr ""
+msgstr "Cinga"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:145
@@ -182,7 +182,7 @@ msgstr ""
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
 msgid "Start"
-msgstr ""
+msgstr "Ekuqaleni"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:168 translatepage.py:171
@@ -205,7 +205,7 @@ msgstr ""
 #. l10n: noun (the end)
 #: translatepage.py:184 translatepage.py:187
 msgid "End"
-msgstr ""
+msgstr "Ekugcineni"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: translatepage.py:204
@@ -250,20 +250,20 @@ msgstr ""
 #. l10n: verb
 #: translatepage.py:609
 msgid "Copy"
-msgstr ""
+msgstr "Kopisha"
 
 #: translatepage.py:610 translatepage.py:784
 msgid "Skip"
-msgstr ""
+msgstr "Yeqa"
 
 #. l10n: verb
 #: translatepage.py:612 translatepage.py:783 users.py:256
 msgid "Back"
-msgstr ""
+msgstr "Hlehla"
 
 #: translatepage.py:614
 msgid "Submit"
-msgstr ""
+msgstr "Thumela"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:617
@@ -324,9 +324,8 @@ msgid "Users"
 msgstr ""
 
 #: adminpages.py:45 adminpages.py:84 indexpage.py:94
-#, fuzzy
 msgid "Languages"
-msgstr "Ulimi"
+msgstr "Izilimi"
 
 #: adminpages.py:46 adminpages.py:142 indexpage.py:95
 msgid "Projects"
@@ -441,7 +440,7 @@ msgstr ""
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Inhlobo yefayela"
 
 #: adminpages.py:153
 msgid "Create MO Files"
@@ -583,7 +582,7 @@ msgstr ""
 
 #: pagelayout.py:41
 msgid "Docs & help"
-msgstr ""
+msgstr "Izincwadi nosizo"
 
 #: pagelayout.py:42
 msgid "Log out"
@@ -627,8 +626,8 @@ msgstr ""
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ifayela eli-%d"
+msgstr[1] "Amafayela ama-%d"
 
 #: pagelayout.py:232 indexpage.py:995
 #, python-format
@@ -642,12 +641,11 @@ msgstr ""
 
 #: pagelayout.py:239 users.py:159
 msgid "Name"
-msgstr ""
+msgstr "Igama"
 
 #: pagelayout.py:240
-#, fuzzy
 msgid "Translated"
-msgstr "Ukuhumusha"
+msgstr "Ahumushiwe"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
@@ -655,7 +653,7 @@ msgstr ""
 
 #: pagelayout.py:242
 msgid "Translated words"
-msgstr ""
+msgstr "Amagama ahumushiwe"
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
@@ -667,7 +665,7 @@ msgstr ""
 
 #: pagelayout.py:246 indexpage.py:786
 msgid "Untranslated"
-msgstr ""
+msgstr "Angahumushiwe"
 
 #: pagelayout.py:247
 msgid "Untranslated percentage"
@@ -675,7 +673,7 @@ msgstr ""
 
 #: pagelayout.py:248
 msgid "Untranslated words"
-msgstr ""
+msgstr "Amagama angahumushiwe"
 
 #: pagelayout.py:249
 msgid "Total"
@@ -737,7 +735,7 @@ msgstr ""
 
 #: users.py:105
 msgid "Your full name"
-msgstr ""
+msgstr "Lonke igama lakho"
 
 #: users.py:108
 msgid "Your desired password"
@@ -1059,7 +1057,7 @@ msgstr[1] ""
 #: indexpage.py:198 indexpage.py:260
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: indexpage.py:214
 #, fuzzy
@@ -1276,7 +1274,7 @@ msgstr ""
 
 #: indexpage.py:886
 msgid "Translate All"
-msgstr ""
+msgstr "Humusha onke"
 
 #: indexpage.py:901
 msgid "ZIP of goal"

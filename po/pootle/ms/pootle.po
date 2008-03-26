@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-05-05 15:43+0200\n"
-"Last-Translator: sharuzzaman <sharuzzaman@gmail.com>\n"
+"PO-Revision-Date: 2007-08-17 11:19+0200\n"
+"Last-Translator: Rudhuwan Abu Bakar <rudhuwan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -20,92 +20,92 @@ msgstr "Lihat"
 
 #: projects.py:137 translatepage.py:613
 msgid "Suggest"
-msgstr ""
+msgstr "Cadang"
 
 #: projects.py:138
 msgid "Translate"
-msgstr ""
+msgstr "Terjemah"
 
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "Tulis Semula"
 
 #. l10n: Verb
 #: projects.py:141
 msgid "Review"
-msgstr ""
+msgstr "Semak"
 
 #. l10n: Verb
 #: projects.py:143
 msgid "Archive"
-msgstr ""
+msgstr "Arkib"
 
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
 msgid "Compile PO files"
-msgstr ""
+msgstr "Kompil fail PO"
 
 #: projects.py:146
 msgid "Assign"
-msgstr ""
+msgstr "peruntuk"
 
 #: projects.py:147 indexpage.py:134
 msgid "Administrate"
-msgstr ""
+msgstr "Tadbir"
 
 #. l10n: Commit to version control (like CVS or Subversion)
 #: projects.py:148 indexpage.py:748
 msgid "Commit"
-msgstr ""
+msgstr "Lakukan"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "Ahli \"nobody\" atau \"default\" tidak boleh di buang"
 
 #: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "Anda tidak mempunyai hak untuk mengubah objektif di sini"
 
 #: projects.py:505
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "Anda tidak mempunyai hak memuatkan fail ke sini"
 
 #: projects.py:508
 #, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr "anda tidak berhak menyaran perubahan di sini"
+msgstr "Anda tidak mempunyai hak menulis semula fail di sini"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "Anda tidak mempunyai hak memuatkan fail baru ke sini"
 
 #: projects.py:519
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "Anda tidak mempunyai hak mengemaskini fail di sini"
 
 #: projects.py:590
 #, fuzzy
 msgid "You do not have rights to commit files here"
-msgstr "anda tidak berhak menyaran perubahan di sini"
+msgstr "Anda tidak berhak menyaran perubahan di sini"
 
 #: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "Anda tidak mempunyai hak mengubah peruntukan di sini"
 
 #: projects.py:1141
 #, fuzzy
 msgid "You do not have rights to change translations here"
-msgstr "anda tidak berhak mengubah terjemahan di sini"
+msgstr "Anda tidak mempunyai hak mengubah terjemahan di sini"
 
 #: projects.py:1151
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "Anda tidak mempunyai hak untuk mencadangkan perubahan di sini"
 
 #: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Anda tidak mempunyai hak untuk menyemak cadangan di sini"
 
 #: translatepage.py:89
 #, python-format
@@ -122,7 +122,7 @@ msgstr ""
 #: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
 #: indexpage.py:346
 msgid "Pootle Demo"
-msgstr ""
+msgstr "Demo Pootle"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -131,22 +131,22 @@ msgstr ""
 #: translatepage.py:99
 #, fuzzy, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "Pootle: menterjemah %s ke %s: %s"
+msgstr "%s: menterjemah %s ke %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
 msgid "Original"
-msgstr ""
+msgstr "Asal"
 
 #. l10n: Heading above the table column with the target language
 #: translatepage.py:116
 #, fuzzy
 msgid "Translation"
-msgstr "Terjemah Semua"
+msgstr "Terjemahan"
 
 #: translatepage.py:119
 msgid "Accept"
-msgstr ""
+msgstr "Terima"
 
 #: translatepage.py:120
 #, fuzzy
@@ -155,22 +155,22 @@ msgstr "Buang projek"
 
 #: translatepage.py:121 pagelayout.py:243
 msgid "Fuzzy"
-msgstr ""
+msgstr "Samar"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Komen penterjemah"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Komen pembangun"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
 msgid "Related"
-msgstr ""
+msgstr "Berkait"
 
 #. l10n: text next to search field
 #: translatepage.py:131 indexpage.py:356
@@ -180,22 +180,23 @@ msgstr "Cari"
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:145
 msgid "End of batch"
-msgstr ""
+msgstr "Kelompok akhir"
 
 #: translatepage.py:147
 msgid "Click here to return to the index"
-msgstr ""
+msgstr "Klik di sini untuk ke indeks"
 
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
 msgid "Start"
-msgstr ""
+msgstr "Mula"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:168 translatepage.py:171
 #, python-format
+#, fuzzy
 msgid "Previous %d"
-msgstr ""
+msgstr "Sebelum %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:173
@@ -211,8 +212,9 @@ msgstr "Berikutnya %d"
 
 #. l10n: noun (the end)
 #: translatepage.py:184 translatepage.py:187
+#, fuzzy
 msgid "End"
-msgstr ""
+msgstr "Tamat"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: translatepage.py:204
@@ -226,11 +228,11 @@ msgstr ""
 
 #: translatepage.py:212 indexpage.py:528
 msgid "Assign to User"
-msgstr ""
+msgstr "Peruntukan kepada Pengguna"
 
 #: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
-msgstr ""
+msgstr "Peruntuk Aksi"
 
 #: translatepage.py:368
 #, python-format
@@ -243,57 +245,63 @@ msgstr "Anda telah selesai menyemak butiran yang telah dipilih"
 
 #: translatepage.py:578
 msgid "Singular"
-msgstr ""
+msgstr "Satu"
 
 #: translatepage.py:579
+#, fuzzy
 msgid "Plural"
-msgstr ""
+msgstr "Jamak"
 
 #. l10n: verb
 #: translatepage.py:593
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #. l10n: verb
 #: translatepage.py:609
 msgid "Copy"
-msgstr ""
+msgstr "Salin"
 
 #: translatepage.py:610 translatepage.py:784
 msgid "Skip"
-msgstr ""
+msgstr "Langkau"
 
 #. l10n: verb
 #: translatepage.py:612 translatepage.py:783 users.py:256
 msgid "Back"
-msgstr ""
+msgstr "Balik"
 
 #: translatepage.py:614
 msgid "Submit"
-msgstr ""
+msgstr "Hantar"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:617
+#, fuzzy
 msgid "Grow"
-msgstr ""
+msgstr "Besarkan"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:619
 msgid "Shrink"
-msgstr ""
+msgstr "Kecilkan"
 
 #: translatepage.py:641 translatepage.py:735 translatepage.py:772
 #: translatepage.py:805
 #, python-format
+#, fuzzy
 msgid "Plural Form %d"
-msgstr ""
+msgstr "Bentuk Jamak %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:657
+#, fuzzy
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
+"Terjemah tidak boleh di buat kerana bentuk jamak bagi bahasa anda tiada. "
+"Sila hubungi pentadbir."
 
 #: translatepage.py:739
 #, fuzzy
@@ -324,8 +332,9 @@ msgstr "Saranan:"
 
 #: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
 #: pagelayout.py:36
+#, fuzzy
 msgid "Home"
-msgstr ""
+msgstr "Muka Depan"
 
 #: adminpages.py:44 adminpages.py:207
 msgid "Users"
@@ -451,7 +460,7 @@ msgstr "Gaya Penyemak"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Jenis Fail"
 
 #: adminpages.py:153
 msgid "Create MO Files"
@@ -542,40 +551,46 @@ msgstr "Halaman Projek"
 
 #: adminpages.py:340
 #, python-format
+#, fuzzy
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr ""
+msgstr "Tidak dapat mengeset hak bagi pengguna %s - pengguna tidak wujud"
 
 #: adminpages.py:357
+#, fuzzy
 msgid "This is a GNU-style project (one directory, files named per language)."
-msgstr ""
+msgstr "Ini adalah projek GNU ( satu direktori, nama fail bagi setiap bahasa)."
 
 #: adminpages.py:359
 msgid "This is a standard style project (one directory per language)."
 msgstr ""
 
 #: adminpages.py:360
+#, fuzzy
 msgid "User Permissions"
-msgstr ""
+msgstr "Hak Pengguna"
 
 #: adminpages.py:361 users.py:98 users.py:134
 msgid "Username"
 msgstr "Nama pengguna"
 
 #: adminpages.py:362
+#, fuzzy
 msgid "(select to add user)"
-msgstr ""
+msgstr "(pilih untuk tambah pengguna)"
 
 #: adminpages.py:363
+#, fuzzy
 msgid "Rights"
-msgstr ""
+msgstr "Hak"
 
 #: adminpages.py:364 indexpage.py:998
 msgid "Remove"
-msgstr ""
+msgstr "Buang"
 
 #: adminpages.py:391
+#, fuzzy
 msgid "Update Rights"
-msgstr ""
+msgstr "Kemaskini Hak"
 
 #: pagelayout.py:37
 #, fuzzy
@@ -589,7 +604,7 @@ msgstr "Bahasa %s"
 
 #: pagelayout.py:39
 msgid "My account"
-msgstr ""
+msgstr "Akaun Saya"
 
 #: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
 msgid "Admin"
@@ -629,8 +644,9 @@ msgid "WordForge Translation Project"
 msgstr "<b>Terjemahan Semasa:</b>"
 
 #: pagelayout.py:83
+#, fuzzy
 msgid "About this Pootle server"
-msgstr ""
+msgstr "Mengenai Pootle "
 
 #: pagelayout.py:157
 msgid "All goals"
@@ -639,7 +655,7 @@ msgstr ""
 #: pagelayout.py:228
 #, python-format
 msgid "%d/%d files"
-msgstr ""
+msgstr "fail %d/%d"
 
 #: pagelayout.py:231
 #, python-format
@@ -660,7 +676,7 @@ msgstr ""
 
 #: pagelayout.py:239 users.py:159
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 #: pagelayout.py:240
 #, fuzzy
@@ -669,7 +685,7 @@ msgstr "Terjemah Semua"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
-msgstr ""
+msgstr "Peratus diterjemah"
 
 #: pagelayout.py:242
 #, fuzzy
@@ -678,15 +694,15 @@ msgstr "Terjemah Semua"
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "Peratus samar"
 
 #: pagelayout.py:245
 msgid "Fuzzy words"
-msgstr ""
+msgstr "Perkataan samar"
 
 #: pagelayout.py:246 indexpage.py:786
 msgid "Untranslated"
-msgstr ""
+msgstr "Belum diterjemah"
 
 #: pagelayout.py:247
 #, fuzzy
@@ -699,27 +715,27 @@ msgid "Untranslated words"
 msgstr "Lihat Belum Diterjemah"
 
 #: pagelayout.py:249
-#, fuzzy
 msgid "Total"
-msgstr "Tajuk"
+msgstr "Jumlah"
 
 #: pagelayout.py:250
 msgid "Total words"
-msgstr ""
+msgstr "Jumlah perkataan"
 
 #. l10n: noun. The graphical representation of translation status
 #: pagelayout.py:252
 msgid "Graph"
-msgstr ""
+msgstr "Graf"
 
 #: users.py:39
 #, python-format
+#, fuzzy
 msgid "You must supply a valid password of at least %d characters."
-msgstr ""
+msgstr "Anda mesti memberi kata laluan yang sekurang-kurang %d aksara."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
-msgstr ""
+msgstr "Kata laluan tidak sama dengan yang disahkan."
 
 #: users.py:55
 msgid "Login to Pootle"
@@ -741,8 +757,9 @@ msgid "Language:"
 msgstr "Bahasa"
 
 #: users.py:73
+#, fuzzy
 msgid "Default"
-msgstr ""
+msgstr "Lalai"
 
 #: users.py:89
 msgid "Please enter your registration details"
@@ -763,7 +780,7 @@ msgstr "Alamat emel yang sah"
 
 #: users.py:105
 msgid "Your full name"
-msgstr ""
+msgstr "Nama penuh anda"
 
 #: users.py:108
 msgid "Your desired password"
@@ -776,12 +793,11 @@ msgstr "Kata laluan yang diingini"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
-msgstr ""
+msgstr "Taip semula kata laluan anda untuk memastikan ianya betul"
 
 #: users.py:113
-#, fuzzy
 msgid "Register Account"
-msgstr "Aktifkan Akaun"
+msgstr "Daftar Akaun"
 
 #: users.py:122
 msgid "Please enter your activation details"
@@ -806,32 +822,34 @@ msgstr "Aktifkan Akaun"
 #: users.py:151
 #, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr "Pilihan untuk: %s"
 
 #: users.py:156
+#, fuzzy
 msgid "Personal Details"
-msgstr ""
+msgstr "Perincian Anda"
 
 #: users.py:161
 msgid "Email"
-msgstr ""
+msgstr "Emel"
 
 #: users.py:165
+#, fuzzy
 msgid "Translation Interface Configuration"
-msgstr ""
+msgstr "Konfigurasi Antaramuka Terjemahan"
 
 #: users.py:166
+#, fuzzy
 msgid "User Interface language"
-msgstr ""
+msgstr "Antaramuka Bahasa pengguna"
 
 #: users.py:167
 msgid "My Projects"
-msgstr ""
+msgstr "Projek Saya"
 
 #: users.py:169
-#, fuzzy
 msgid "My Languages"
-msgstr "Bahasa"
+msgstr "Bahasa Saya"
 
 #: users.py:171
 msgid "Home page"

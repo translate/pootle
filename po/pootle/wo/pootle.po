@@ -1,23 +1,22 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2007-11-16 15:54+0100\n"
+"Last-Translator: Alf@net <alfanet@anafa.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Generator: Pootle 1.0.2\n"
 
 # giss
 #. l10n: Verb
 #: projects.py:136
 msgid "View"
-msgstr "Guiss guiss"
+msgstr "Wone"
 
 #: projects.py:137 translatepage.py:613
 msgid "Suggest"
@@ -30,26 +29,26 @@ msgstr "Tekki"
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr "Bindat"
+msgstr "Bindaat"
 
 #. l10n: Verb
 #: projects.py:141
 msgid "Review"
-msgstr "Xool"
+msgstr "Nafar"
 
 #. l10n: Verb
 #: projects.py:143
 msgid "Archive"
-msgstr "Deñc"
+msgstr "Bastan"
 
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
 msgid "Compile PO files"
-msgstr "seetlul fisie PO yi"
+msgstr "Dajale dencukaay PO yi"
 
 #: projects.py:146
 msgid "Assign"
-msgstr "Jox"
+msgstr "Digle"
 
 #: projects.py:147 indexpage.py:134
 msgid "Administrate"
@@ -58,7 +57,7 @@ msgstr "Saytu"
 #. l10n: Commit to version control (like CVS or Subversion)
 #: projects.py:148 indexpage.py:748
 msgid "Commit"
-msgstr "Won cëd yi"
+msgstr "Weral"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
@@ -67,11 +66,11 @@ msgstr "Mëno dindi « njariñu kat yi » wala « kuñ fi tekk ki »"
 
 #: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
-msgstr "Mayuŋ la fi nga defarat jublu yi"
+msgstr "Amulo sañ sañu sopi dàkk yi"
 
 #: projects.py:505
 msgid "You do not have rights to upload files here"
-msgstr "Mayuŋ la nga jàllale fi ay fisie"
+msgstr "Amulo sañ sañu jàllale ay dencukaay"
 
 #: projects.py:508
 msgid "You do not have rights to overwrite files here"
@@ -112,7 +111,7 @@ msgid ""
 "(%d blank, %d fuzzy)"
 msgstr ""
 "%d%d kadu yuñu firi\n"
-"(%d kaddu yuñu fire gul, %d ci missal)"
+"(%d wéy, %d ci missal)"
 
 #: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
 #: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72

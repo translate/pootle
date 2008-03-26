@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-05-05 11:00+0200\n"
-"Last-Translator: Rail Aliev <rail@openoffice.org>\n"
+"PO-Revision-Date: 2007-11-14 13:13+0100\n"
+"Last-Translator: Noyan Aydin <noyana@estr.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.0.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -44,7 +44,7 @@ msgstr "Arşiv"
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
 msgid "Compile PO files"
-msgstr "PO dosyaları derle"
+msgstr "PO dosyalarını derle"
 
 #: projects.py:146
 msgid "Assign"
@@ -155,7 +155,7 @@ msgstr "Bulanık"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Çevirmen notları"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
@@ -184,7 +184,7 @@ msgstr "Dizin'e dönmek için tıklayın"
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
 msgid "Start"
-msgstr "Başla"
+msgstr "Başlangıç"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:168 translatepage.py:171
@@ -196,7 +196,7 @@ msgstr "Önceki %d"
 #: translatepage.py:173
 #, python-format
 msgid "Items %d to %d of %d"
-msgstr ""
+msgstr "%d ile %d arası, toplam %d"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:178 translatepage.py:181
@@ -1141,23 +1141,23 @@ msgstr "Üste-yüklenecek Dosyayı seçin"
 #. l10n: tooltip
 #: indexpage.py:550
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "Zaten kayıtlıysa aktif dosyayı üzerine yaz"
 
 #. l10n: radio button text
 #: indexpage.py:552
 msgid "Merge"
-msgstr ""
+msgstr "Birleştir"
 
 #. l10n: tooltip
 #: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr ""
+msgstr "Dosyayı aktif dosyayla birleştir ve çakışmaları önerilere dönüştür"
 
 #: indexpage.py:657
 #, fuzzy
 msgid "Not in a goal"
-msgstr "Hedef yok"
+msgstr "Hedefte yok"
 
 #: indexpage.py:677
 msgid "Add User"
@@ -1177,7 +1177,7 @@ msgstr "Qt .ts dosyası"
 
 #: indexpage.py:731
 msgid "CSV file"
-msgstr "CSV dosya"
+msgstr "CSV dosyası"
 
 #: indexpage.py:736
 msgid "MO file"
@@ -1304,15 +1304,17 @@ msgstr "Hepsini Çevir"
 
 #: indexpage.py:901
 msgid "ZIP of goal"
-msgstr ""
+msgstr "Hedefleri sıkıştır"
 
+# http://pootle.wordforge.org/tr/pootle/index.html
+# adresinde,  "Düzenleme Fonksiyonlarını Göster  | Hedefleri Göster  | ZIP of folder  " şeklinde en sonda çıkan ibare.
 #: indexpage.py:903
 msgid "ZIP of folder"
-msgstr ""
+msgstr "Klasörü sıkıştır"
 
 #: indexpage.py:910
 msgid "Generate SDF"
-msgstr ""
+msgstr "SDF oluştur"
 
 #: indexpage.py:963
 #, python-format
