@@ -1,3 +1,750 @@
+2008-03-26 13:02  friedelwolff
+
+	* __version__.py: Version 1.1.0
+
+2008-03-26 12:42  friedelwolff
+
+	* po/pootle/dz, po/pootle/dz/jToolkit.po, po/pootle/dz/pootle.po,
+	  po/pootle/ga, po/pootle/ga/jToolkit.po, po/pootle/ga/pootle.po,
+	  po/pootle/id, po/pootle/id/jToolkit.po, po/pootle/id/pootle.po,
+	  po/pootle/nso, po/pootle/nso/jToolkit.po,
+	  po/pootle/nso/pootle.po, po/pootle/sk, po/pootle/sk/jToolkit.po,
+	  po/pootle/sk/pootle.po: New translations from
+	  pootle.locamotion.org - Dzonkha (dz), Irish (ga), Indonesian
+	  (id), Northern Sotho (nso), Slovak (sk)
+
+2008-03-26 12:23  friedelwolff
+
+	* po/pootle/ak/pootle.po, po/pootle/ar/pootle.po,
+	  po/pootle/bg/jToolkit.po, po/pootle/bg/pootle.po,
+	  po/pootle/cs/pootle.po, po/pootle/da/pootle.po,
+	  po/pootle/de/jToolkit.po, po/pootle/de/pootle.po,
+	  po/pootle/eo/pootle.po, po/pootle/es/jToolkit.po,
+	  po/pootle/et/pootle.po, po/pootle/eu/jToolkit.po,
+	  po/pootle/eu/pootle.po, po/pootle/fa/jToolkit.po,
+	  po/pootle/fa/pootle.po, po/pootle/fr/pootle.po,
+	  po/pootle/he/jToolkit.po, po/pootle/he/pootle.po,
+	  po/pootle/hu/pootle.po, po/pootle/is/pootle.po,
+	  po/pootle/ja/pootle.po, po/pootle/km/pootle.po,
+	  po/pootle/ku/jToolkit.po, po/pootle/ku/pootle.po,
+	  po/pootle/lt/jToolkit.po, po/pootle/lt/pootle.po,
+	  po/pootle/ml/pootle.po, po/pootle/ms/pootle.po,
+	  po/pootle/nb/jToolkit.po, po/pootle/nb/pootle.po,
+	  po/pootle/ne/pootle.po, po/pootle/pl/jToolkit.po,
+	  po/pootle/pl/pootle.po, po/pootle/pt/pootle.po,
+	  po/pootle/ro/jToolkit.po, po/pootle/ro/pootle.po,
+	  po/pootle/ru/jToolkit.po, po/pootle/ru/pootle.po,
+	  po/pootle/sl/pootle.po, po/pootle/sr/jToolkit.po,
+	  po/pootle/tr/pootle.po, po/pootle/uk/pootle.po,
+	  po/pootle/wo/pootle.po, po/pootle/zh_CN/jToolkit.po,
+	  po/pootle/zh_CN/pootle.po, po/pootle/zh_TW/jToolkit.po,
+	  po/pootle/zu/pootle.po: Updated translations from
+	  pootle.locamotion.org
+
+2008-03-18 21:27  friedelwolff
+
+	* pootle.prefs: Correct plural information for Hungarian
+
+2008-03-18 14:33  friedelwolff
+
+	* pootle.prefs: Enable Hungarian (hu)
+
+2008-03-18 14:32  friedelwolff
+
+	* pootle.prefs: Add Malayalam (ml)
+
+2008-03-18 14:29  friedelwolff
+
+	* pootle.prefs: Add special characters for Northern Sotho (nso)
+
+2008-03-18 14:27  friedelwolff
+
+	* pootle.py: Require at least build number 11000 (Version 1.1) of
+	  the toolkit
+
+2008-03-13 10:13  friedelwolff
+
+	* pootlefile.py: Use .addunit() instead of .units.append. +Note
+	  about inefficient merging code
+
+2008-02-29 12:55  friedelwolff
+
+	* __version__.py: Version 1.1.0rc2
+
+2008-02-29 12:54  friedelwolff
+
+	* indexpage.py, pootlefile.py, projects.py: Provide an upload box
+	  for users that only have the 'suggest' right, and handle such
+	  uploads properly.
+
+2008-02-29 12:52  friedelwolff
+
+	* test_client.py: Test that a user that only has suggest rights can
+	  upload
+
+2008-02-29 08:04  friedelwolff
+
+	* po/pootle/templates/pootle.pot: Update template for the Pootle
+	  project (very little actual change)
+
+2008-02-29 07:59  friedelwolff
+
+	* html/pootle.css: Change the colour of HTML highligting to a dark
+	  red (#A00000)
+
+2008-02-29 07:42  friedelwolff
+
+	* translatepage.py: Implement highlighting of HTML markup in the
+	  translate page
+
+2008-02-29 07:41  friedelwolff
+
+	* pootle.prefs: Allign language name with the iso-codes package for
+	  'Spanish; Castilian' (es)
+
+2008-02-29 07:38  friedelwolff
+
+	* projects.py: Update the indexing code to the newest provided by
+	  the Toolkit that should work with PyLucene 1 and 2.
+
+2008-02-18 11:32  friedelwolff
+
+	* po/pootle/ru/jToolkit.po, po/pootle/ru/pootle.po,
+	  po/pootle/sr/jToolkit.po, po/pootle/sr/pootle.po,
+	  po/pootle/uk/jToolkit.po, po/pootle/uk/pootle.po: Fix broken
+	  spacing in plural equations for ru, sr, uk
+
+2008-02-18 11:26  friedelwolff
+
+	* po/pootle/cs/jToolkit.po, po/pootle/cs/pootle.po: Fix broken
+	  spacing in Czeck (cs) plural equation
+
+2008-02-15 13:48  friedelwolff
+
+	* pootle.py: Only swallow an ImportError - we want to know about
+	  anything else
+
+2008-02-07 15:05  friedelwolff
+
+	* pootle.prefs: Close tags that were causing kid error
+
+2008-01-30 16:15  friedelwolff
+
+	* projects.py: Adapt to API change in the toolkit (convertfile ->
+	  convertstore)
+
+2008-01-29 15:10  friedelwolff
+
+	* html/pootle.css: Comment out float: left; in #content and explain
+	  why. This should fix bug 253.
+
+2008-01-29 09:30  friedelwolff
+
+	* html/pootle.css: Show a pointer (hand) over the related entries
+
+2008-01-28 16:08  friedelwolff
+
+	* html/js/autoexpand.js: Fix text insertion for Internet Explorer
+
+2008-01-28 13:28  friedelwolff
+
+	* pootle.prefs: New Arabic plural formula as given by Arabeyes
+
+2008-01-28 10:40  friedelwolff
+
+	* pootle.prefs: Rather use div than span tags for descriptions -
+	  this ensures correct text alignment in bidi pages
+
+2008-01-28 10:35  friedelwolff
+
+	* templates/about.html: Remove fullwidthcontent in favour of
+	  content. Now this looks better with the new RTL characteristics
+
+2008-01-23 23:01  larskr
+
+	* projects.py: avoid to use PyLucene v2 since the API is not
+	  supported, yet
+
+2008-01-23 12:35  friedelwolff
+
+	* templates/activate.html, templates/login.html,
+	  templates/register.html: Format login, register and activate
+	  forms consistently
+
+2008-01-23 12:15  friedelwolff
+
+	* pootle.prefs: Adapt language names to ensure better alignment
+	  with iso-codes
+
+2008-01-23 12:09  friedelwolff
+
+	* pootle.prefs: Provide proper country names to ensure better
+	  alignment with iso-codes
+
+2008-01-23 11:22  friedelwolff
+
+	* pootle.prefs: Mention translation of language names with the
+	  iso-codes package
+
+2008-01-23 11:16  friedelwolff
+
+	* pootle.prefs: Update and expand some descriptions
+
+2008-01-23 10:44  friedelwolff
+
+	* html/doc/en/howto.html, html/doc/en/index.html,
+	  html/doc/en/resources.html: Mark several sections as 'info'
+	  instead of 'intro'
+
+2008-01-23 10:40  friedelwolff
+
+	* html/doc/en/howto.html, html/doc/en/index.html,
+	  html/doc/en/resources.html: Replace with new banner code
+
+2008-01-23 10:17  friedelwolff
+
+	* pootle.prefs: Remove unnecessary configuration of logos. This is
+	  now entirely in the templates and CSS.
+
+2008-01-23 10:15  friedelwolff
+
+	* pagelayout.py: Remove dead code that handled logos
+
+2008-01-23 10:09  friedelwolff
+
+	* templates/projectlangadmin.html: Mark links as 'info' instead of
+	  'intro'
+
+2008-01-23 10:06  friedelwolff
+
+	* templates/adminlanguages.html, templates/adminprojects.html,
+	  templates/adminusers.html: Mark admin links as 'info' instead of
+	  'intro'
+
+2008-01-23 10:03  friedelwolff
+
+	* templates/adminindex.html: Mark links as 'info' instead of
+	  'intro'
+
+2008-01-23 10:01  friedelwolff
+
+	* templates/home.html: Mark options and admin links as 'info'
+	  instead of 'intro'
+
+2008-01-23 10:00  friedelwolff
+
+	* templates/login.html: Only show intro div if there is some intro
+	  text
+
+2008-01-23 09:00  friedelwolff
+
+	* __version__.py: Version 1.1.0rc1
+
+2008-01-23 08:59  friedelwolff
+
+	* html/pootle.css: Align the source text vertically at the top to
+	  align well with the target text
+
+2008-01-23 08:57  friedelwolff
+
+	* html/pootle.css: Draw a thick black border around the source text
+	  to be translated
+
+2008-01-22 08:40  friedelwolff
+
+	* html/pootle.css: Fix background image url to proper name
+
+2008-01-22 08:27  friedelwolff
+
+	* html/images/WordForge-blue.png, html/images/WordForge-white.png,
+	  html/images/gradient.png: Adapt images to new styling
+
+2008-01-22 08:10  friedelwolff
+
+	* html/pootle.css: Restore some better layout for older versions of
+	  IE, although this will only work in LTR
+
+2008-01-22 07:36  friedelwolff
+
+	* templates/translatepage.html: Mark developer comments and
+	  locations as lang="en" dir="ltr"
+
+2008-01-22 01:41  larskr
+
+	* html/pootle.css: image url should be relative to css file
+	  location due to a potential 'baseurl' setting
+
+2008-01-21 15:43  friedelwolff
+
+	* templates/translatepage.html: Don't add title to related term
+	  unnecessarily (when it is empty)
+
+2008-01-21 15:30  friedelwolff
+
+	* html/pootle.css: Make Tahoma a bit bigger for Arabic by default
+
+2008-01-21 15:22  friedelwolff
+
+	* templates/translatepage.html: Markup language and direction more
+	  precicely
+
+2008-01-21 14:41  friedelwolff
+
+	* html/pootle.css: Exploit IE < 7 bug to somewhat mitigate display
+	  bugs in IE < 7
+
+2008-01-21 10:43  friedelwolff
+
+	* html/pootle.css: Exploit IE bugs to ensure proper banner height
+	  on IE
+
+2008-01-21 10:25  friedelwolff
+
+	* html/pootle.css: Use the descendant selector instead of the child
+	  ('>') selector which is not supported older versions of IE
+
+2008-01-21 09:46  friedelwolff
+
+	* templates/pootlepage.html: Revove dir=ltr where it might not be
+	  what is wanted
+
+2008-01-21 07:21  friedelwolff
+
+	* projects.py, statistics.py: Avoid writing the quickstats file
+	  unnecessarily
+
+2008-01-18 15:13  friedelwolff
+
+	* test_pootlefile.py: Update to namechange in
+	  translate.storage.test_po
+
+2008-01-18 15:12  friedelwolff
+
+	* templates/pootlepage.html: Stop output of unnecessary HTML
+	  comments from kid
+
+2008-01-18 15:11  friedelwolff
+
+	* templates/fileindex.html, templates/language.html,
+	  templates/translatepage.html: Stop output of unnecessary HTML
+	  comments from kid
+
+2008-01-18 14:39  friedelwolff
+
+	* templates/translatepage.html: Only display tooltip if any
+	  comments are present, and don't use newline unnecessarily
+
+2008-01-17 15:17  friedelwolff
+
+	* html/pootle.css: New styling for Pootle
+
+2008-01-17 14:00  friedelwolff
+
+	* templates/translatepage.html: Specify the 'dir' attribute in many
+	  places to fit with the new layout
+
+2008-01-17 13:52  friedelwolff
+
+	* templates/pootlepage.html: Move the main navigation to the left,
+	  below the banner
+
+2008-01-17 13:45  friedelwolff
+
+	* templates/about.html: Only mark first paragraph as introduction.
+	  The rest is in new class 'info'.
+
+2007-12-15 16:47  friedelwolff
+
+	* pootle.prefs: Mark default descriptions as English and
+	  left-to-right to ensure proper display
+
+2007-12-15 16:44  friedelwolff
+
+	* pootle.prefs: Document the treestyle project option
+
+2007-12-15 16:41  friedelwolff
+
+	* pootle.prefs: Enable Indonesian (id) and fix typos in (commented)
+	  Khmer decleration
+
+2007-11-26 15:17  friedelwolff
+
+	* templates/about.html, templates/adminindex.html,
+	  templates/home.html: Use fullwidthcontent in a few cases to
+	  improve layout for right-to-left locales
+
+2007-11-22 22:07  dwaynebailey
+
+	* pootle.prefs: Fix equation error
+
+2007-11-13 15:08  friedelwolff
+
+	* html/pootle.css: Add default styling for Akan (ak)
+
+2007-11-13 12:40  friedelwolff
+
+	* pootlefile.py: Update now that ._initallcomments() is private in
+	  the toolkit
+
+2007-11-13 12:39  friedelwolff
+
+	* pootle.prefs: Add special characters for Akan (ak)
+
+2007-10-22 10:34  friedelwolff
+
+	* projects.py: Don't upload output file after updating from
+	  tepmlates (pot2po), otherwise the merging code of the upload
+	  might retain units that were removed. The upload code just adds
+	  unnecessary processing anyway.
+
+2007-10-19 20:48  larskr
+
+	* indexpage.py: fix revision control support - no versioned files
+	  were detected before
+
+2007-10-09 21:17  larskr
+
+	* tools: ignore pre-compiled python files for svn
+
+2007-10-08 23:34  larskr
+
+	* projects.py: improve some comments
+
+2007-10-08 23:08  larskr
+
+	* po/pootle/af, po/pootle/ak, po/pootle/am, po/pootle/ar,
+	  po/pootle/bg, po/pootle/bn, po/pootle/ca, po/pootle/cs,
+	  po/pootle/da, po/pootle/de, po/pootle/el, po/pootle/en,
+	  po/pootle/en_ZA, po/pootle/eo, po/pootle/es, po/pootle/et,
+	  po/pootle/eu, po/pootle/fa, po/pootle/fi, po/pootle/fr,
+	  po/pootle/fur, po/pootle/gl, po/pootle/ha, po/pootle/he,
+	  po/pootle/hi, po/pootle/hr, po/pootle/hu, po/pootle/hy,
+	  po/pootle/is, po/pootle/it, po/pootle/ja, po/pootle/ka,
+	  po/pootle/kg, po/pootle/km, po/pootle/ko, po/pootle/ku,
+	  po/pootle/lt, po/pootle/lv, po/pootle/ml, po/pootle/mr,
+	  po/pootle/ms, po/pootle/mt, po/pootle/nb, po/pootle/ne,
+	  po/pootle/nl, po/pootle/nn, po/pootle/pa, po/pootle/pl,
+	  po/pootle/pt, po/pootle/pt_BR, po/pootle/ro, po/pootle/ru,
+	  po/pootle/sl, po/pootle/sr, po/pootle/st, po/pootle/sv,
+	  po/pootle/templates, po/pootle/tr, po/pootle/uk, po/pootle/ve,
+	  po/pootle/vi, po/pootle/wo, po/pootle/xh, po/pootle/zh_CN,
+	  po/pootle/zh_HK, po/pootle/zh_TW, po/pootle/zu,
+	  po/terminology/am, po/terminology/am/gnome, po/terminology/ar,
+	  po/terminology/ar/gnome, po/terminology/az,
+	  po/terminology/az/gnome, po/terminology/ca,
+	  po/terminology/ca/gnome, po/terminology/cs,
+	  po/terminology/cs/gnome, po/terminology/da,
+	  po/terminology/da/gnome, po/terminology/eo,
+	  po/terminology/eo/gnome, po/terminology/es,
+	  po/terminology/es/gnome, po/terminology/eu,
+	  po/terminology/eu/gnome, po/terminology/fa,
+	  po/terminology/fa/gnome, po/terminology/fr,
+	  po/terminology/fr/gnome, po/terminology/hi,
+	  po/terminology/hi/gnome, po/terminology/hu,
+	  po/terminology/hu/gnome, po/terminology/it,
+	  po/terminology/it/gnome, po/terminology/ja,
+	  po/terminology/ja/gnome, po/terminology/kn,
+	  po/terminology/kn/gnome, po/terminology/ku,
+	  po/terminology/ku/gnome, po/terminology/mk,
+	  po/terminology/mk/gnome, po/terminology/mr,
+	  po/terminology/mr/gnome, po/terminology/ms,
+	  po/terminology/ms/gnome, po/terminology/nb,
+	  po/terminology/nb/gnome, po/terminology/nl,
+	  po/terminology/nl/gnome, po/terminology/nn,
+	  po/terminology/nn/gnome, po/terminology/pa,
+	  po/terminology/pa/gnome, po/terminology/pl,
+	  po/terminology/pl/gnome, po/terminology/pt,
+	  po/terminology/pt/gnome, po/terminology/pt_BR,
+	  po/terminology/pt_BR/gnome, po/terminology/rw,
+	  po/terminology/rw/gnome, po/terminology/sk,
+	  po/terminology/sk/gnome, po/terminology/sq,
+	  po/terminology/sq/gnome, po/terminology/sv,
+	  po/terminology/sv/gnome, po/terminology/th,
+	  po/terminology/th/gnome, po/terminology/uk,
+	  po/terminology/uk/gnome, po/terminology/vi,
+	  po/terminology/vi/gnome, po/terminology/wa,
+	  po/terminology/wa/gnome, po/terminology/zh_CN,
+	  po/terminology/zh_CN/gnome, po/terminology/zh_HK,
+	  po/terminology/zh_HK/gnome, po/terminology/zh_TW,
+	  po/terminology/zh_TW/gnome: hide irrelevant language files from
+	  svn
+
+2007-10-06 09:30  larskr
+
+	* benchmark.py, projects.py: imported 'jToolkit/data/indexer.py'
+	  from jToolkit 0.7.8
+	  added a copyright note to the new file
+	  imports of 'indexer' adapted
+
+2007-09-26 14:11  friedelwolff
+
+	* adminpages.py, indexpage.py: Make the medium bannerheight be 80
+	  pixels to fit with the current medium graphics size
+
+2007-09-17 10:31  friedelwolff
+
+	* pootle.prefs: Remind the admin to copy the pootle project if the
+	  default podirectory is changed
+
+2007-09-14 09:17  friedelwolff
+
+	* indexpage.py, projects.py: [Contributed by Lars Kruse] Import
+	  version control functionality from the translate toolkit
+
+2007-09-14 09:12  friedelwolff
+
+	* versioncontrol.py: Remove versioncontrol.py from Pootle, now that
+	  it has been moved to the translate toolkit
+
+2007-09-14 08:50  dwaynebailey
+
+	* pootlefile.py, projects.py: Change isblankmsgstr() and use
+	  istranslated() instead; to align with base class.
+
+2007-09-13 11:59  friedelwolff
+
+	* indexpage.py: Remove debugging output
+
+2007-09-06 09:15  friedelwolff
+
+	* versioncontrol.py: [Contributed by Lars Kruse]
+	  Move duplicated filesystem code to the base class.
+	  Provide all infrastructure in the base class to handle relative
+	  and absolute
+	  styles of specifying file parameters.
+
+2007-09-04 08:47  friedelwolff
+
+	* versioncontrol.py: - replace all shell string commands with
+	  arrays of strings
+	  - improve consistency of error messages
+	  - use exitcodes instead of stderr to check for failures
+	  - use python instead of the shell for "cd", "rm", "mv", etc.
+	  - use the subprocess module if available, otherwise fall back to
+	  popen2
+
+2007-08-31 12:54  friedelwolff
+
+	* projects.py: Rename pofilter::filterlement() -> filterunit()
+	  according to API change of r6334
+
+2007-08-31 11:15  friedelwolff
+
+	* statistics.py: Adapt to new pofilter API
+
+2007-08-03 11:09  friedelwolff
+
+	* pootle.prefs: Enable Slovak for the next release as it is
+	  currently at 100%
+
+2007-08-03 10:28  friedelwolff
+
+	* templates/navbar.html: Use a hex colour for proper rendering in
+	  Internet Explorer. Remove the useless class attribute of
+	  itemdata.
+
+2007-08-02 15:22  friedelwolff
+
+	* html/pootle.css: Add KacstOne as a possible font for Arabic after
+	  Nazli but before Dejavu Sans
+
+2007-08-02 13:09  friedelwolff
+
+	* templates/index.html: Remove fancy spacing to avoid incorrect
+	  extra spaces between project names and the (comma) seperators
+
+2007-08-02 13:04  friedelwolff
+
+	* indexpage.py: Use the correct list seperator for the list of
+	  languages and projects
+
+2007-08-02 09:42  friedelwolff
+
+	* users.py: Instantiate the language module for the interface
+	  interface language
+
+2007-08-02 09:34  friedelwolff
+
+	* templates/options.html: Make the language dropdown 100% of the
+	  width of the table cell
+
+2007-08-02 09:33  friedelwolff
+
+	* templates/index.html: Mark the language names as English so that
+	  the styling isn't affected when the interface is in languages
+	  with different styling (such as Chinese and Khmer)
+
+2007-08-02 09:29  friedelwolff
+
+	* templates/pootlepage.html: Simplify the header by removing one
+	  table and the spacer
+
+2007-08-01 20:01  dwaynebailey
+
+	* html/images/pootle-medium.jpg, html/images/pootle-small.jpg,
+	  html/images/pootle.jpg, html/images/pootle.svg,
+	  html/images/top.png: Remove all old Pootle and Translate logos
+
+2007-08-01 13:19  friedelwolff
+
+	* pootle.py: Give more information about the error if a translation
+	  couldn't be initialised
+
+2007-07-31 15:23  friedelwolff
+
+	* indexpage.py: Remove unused function (summarizestats). +Comment,
+	  update copyright dates.
+
+2007-07-31 10:18  friedelwolff
+
+	* pagelayout.py: Simplify getstats() by taking a shortcut in the
+	  calculation
+
+2007-07-31 08:26  friedelwolff
+
+	* CREDITS: Change Miklos' credit line to indicate the complete
+	  breadth of the contributions
+
+2007-07-31 08:24  friedelwolff
+
+	* versioncontrol.py: [Contributed by Miklos Vajna] +Support for bzr
+	  version control system
+
+2007-07-26 11:21  friedelwolff
+
+	* html/pootle.css: Use 'bolder' instead of 'bold' for font-weight
+	  to improve the ability to override per language / tag later
+
+2007-07-26 10:55  friedelwolff
+
+	* indexpage.py: Update indexpage to use new keys for stats
+	  dictionary
+
+2007-07-26 10:51  friedelwolff
+
+	* templates/navbar.html: Use the new dicionary keys for source word
+	  counts
+
+2007-07-26 10:50  friedelwolff
+
+	* pagelayout.py, projects.py: Change the word count keys in stats
+	  dictionaries to reflect the fact that they are source word counts
+
+2007-07-26 10:48  friedelwolff
+
+	* indexpage.py: Don't pass the unnecessary third parameter to
+	  pagelayout.getstats()
+
+2007-07-25 08:45  friedelwolff
+
+	* pootle.prefs: Fix Chinese typo, Slovak indenting. Enable
+	  Lithuanian for next release. +Malagasy (commented).
+
+2007-07-24 06:25  friedelwolff
+
+	* versioncontrol.py: [Contributed by Miklos Vajna] Add support for
+	  Git version control system
+
+2007-07-23 11:14  friedelwolff
+
+	* statistics.py: Remove unneeded handling of source and target
+	  (unneeded because of new checker API)
+
+2007-07-19 10:30  friedelwolff
+
+	* statistics.py: Remove unnecessary import of pocount
+
+2007-07-19 10:10  friedelwolff
+
+	* projects.py: Use the filename with directory name to get
+	  quickstats [reported by Igor Miletic]
+
+2007-07-19 10:06  friedelwolff
+
+	* projects.py: Remove unnecessary import of pofilter
+
+2007-07-19 09:34  friedelwolff
+
+	* README: Update comments about python versions
+
+2007-07-19 07:06  friedelwolff
+
+	* versioncontrol.py: [Contributed by Lars Kruse] Rewrite
+	  os.path.samefile for platform independence
+
+2007-07-18 11:42  friedelwolff
+
+	* statistics.py: Update to the new API for run_filters()
+
+2007-07-18 11:41  friedelwolff
+
+	* pootle.py, projects.py, test_pootlefile.py: Remove references to
+	  POTeeChecker by replacing with a normal TeeChecker
+
+2007-07-18 11:35  friedelwolff
+
+	* pootle.py, projects.py, test_pootlefile.py: Rename POChecker ->
+	  UnitChecker
+
+2007-07-17 10:49  friedelwolff
+
+	* pootlefile.py: Remove unused functions getfilename() and getext()
+
+2007-07-17 10:47  friedelwolff
+
+	* test_pootlefile.py: Remove test_filename() and remove unnecessary
+	  cleanup in test_classifyunits()
+
+2007-07-17 10:44  friedelwolff
+
+	* statistics.py: The counting helper functions moved from
+	  pocount.py to statsdb.py in the toolkit
+
+2007-07-17 10:30  friedelwolff
+
+	* indexpage.py: Sort languages in a way that is compatible with
+	  Python 2.3
+
+2007-07-17 10:29  friedelwolff
+
+	* pootle.prefs: Recommend the use of a language attribute for
+	  server and project descriptions
+
+2007-07-17 09:38  friedelwolff
+
+	* users.py: Provide translated language names on the login page (if
+	  available) with the English version. Sort language names in a way
+	  that is compatible with python 2.3.
+
+2007-07-16 15:17  friedelwolff
+
+	* adminpages.py: Use translated language names in the
+	  administration interface
+
+2007-07-16 13:44  friedelwolff
+
+	* versioncontrol.py: [Contributed by Lars Kruse and Miklos Vajna]
+	  Support different configurations with darcs by traversing the
+	  directory tree upwards in search of the marker directory
+
+2007-07-12 10:19  friedelwolff
+
+	* pootle.py: Ensure that we test for a .po extention otherwise
+	  directories called 'po' could confuse Pootle
+
+2007-07-10 15:13  dwaynebailey
+
+	* createpootlepot: Cleanup. Easier to read and adjust the xgettext
+	  commands. Also output to the correct place in po/
+
+2007-07-10 13:09  friedelwolff
+
+	* pootle.prefs: Enable Wolof in the default installation
+
+2007-07-10 10:31  friedelwolff
+
+	* ChangeLog: Update ChangeLog before 1.0.2 release
+
 2007-07-10 10:16  friedelwolff
 
 	* README: Mention that ElementTree is not needed with Python 2.5
