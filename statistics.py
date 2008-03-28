@@ -1,6 +1,7 @@
 import os
 from translate.storage import statsdb
 from translate.filters import checks
+from translate.misc.multistring import multistring
 
 def getmodtime(filename, default=None):
   """gets the modificationtime of the given file"""
@@ -192,8 +193,17 @@ class pootlestatistics:
     self.sourcewordcounts = []
     self.targetwordcounts = []
     for unit in self.basefile.transunits:
-      self.sourcewordcounts.append([statsdb.wordcount(text) for text in unit.source.strings])
-      self.targetwordcounts.append([statsdb.wordcount(text) for text in unit.target.strings])
+      if isinstance(unit.source, multistring):
+        sourcestrings = unit.source.strings
+      else:
+        sourcestrings = [unit.source]
+      if isinstance(unit.target, multistring):
+        targetstrings = unit.target.strings
+      else:
+        targetstrings = [unit.target]
+          
+      self.sourcewordcounts.append([statsdb.wordcount(text) for text in sourcestrings])
+      self.targetwordcounts.append([statsdb.wordcount(text) for text in targetstrings])
 
   def reclassifyunit(self, item):
     """updates the classification of a unit in self.classify"""
