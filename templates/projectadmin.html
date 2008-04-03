@@ -52,7 +52,7 @@
     </form>
     <form action="" method="post" name="newlangform">
       <select name="newlanguage">
-        <option py:for="l in new_languages" value="${l.code}" py:content="l.name">Language</option>
+        <option py:for="l in new_languages" value="${l.code}" py:content="l.name+ ': '+ l.code">Language</option>
       </select>
       <input type="submit" name="doaddlanguage" value="${add_button}"/>
     </form>
