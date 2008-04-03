@@ -8,6 +8,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
+  <!--! the 'sorttable.js' script depends on the variable 'baseurl' -->
+  <script type="text/javascript"> var baseurl = "${baseurl}"; </script>
+  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
@@ -26,17 +29,24 @@
   <div id="content" py:if="session.issiteadmin" dir="$uidir" lang="$uilanguage">
     <h3 class="title"><a href="index.html" py:content="main_link">Back to main page</a></h3>
 
+    <br clear="all" />     
     <form action="" method="post" name="updatelangform">
-      <div class="contentsitem">
         <h3 class="title" py:content="existing_title">Existing languages</h3>
-        <div py:for="l in existing_languages" class="item item-${l.parity}">
-          <div class="item-description">
-            <a href="../../${l.code}/${project.code}/admin.html" py:content="l.name">Language</a>
-            <input type="checkbox" name="updatelanguage" value="${l.code}"/>
-            <a href="?doupdatelanguage=1&amp;updatelanguage=${l.code}" py:content="update_link">Update from templates</a>
-          </div>
-        </div>
-      </div>
+        <table class="sortable" id="existing_languages">
+          <thead>
+              <tr>
+                  <th py:content="full_name">Complete name</th>
+                  <th py:content="iso_code">ISO Code</th>
+                  </tr>
+          </thead>
+          <tr py:for="l in existing_languages" class="item item-${l.parity}">
+            
+              <td><a href="../../${l.code}/${project.code}/admin.html" py:content="l.name">Language</a></td>
+              <td><span py:content="l.code">code</span></td>
+              <td><input type="checkbox" name="updatelanguage" value="${l.code}"/></td>
+              <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.code}" py:content="update_link">Update from templates</a></td>
+          </tr>
+        </table>
       <input type="submit" name="doupdatelanguage" value="${update_button}"/>
       <input type="hidden" name="allowmultikey" value="updatelanguage"/>
     </form>

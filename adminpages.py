@@ -280,6 +280,8 @@ class ProjectAdminPage(pagelayout.PootlePage):
     update_button = self.localize("Update Languages")
     pagetitle = self.localize("Pootle Admin: %s", projectname)
     norights_text = self.localize("You do not have the rights to administer this project.")
+    iso_code = self.localize("ISO Code")
+    full_name = self.localize("Full Name")
     # l10n: This refers to updating the translation files from the templates like with .pot files
     update_link = self.localize("Update from templates")
     templatename = "projectadmin"
@@ -287,6 +289,7 @@ class ProjectAdminPage(pagelayout.PootlePage):
     instancetitle = getattr(self.session.instance, "title", session.localize("Pootle Demo"))
     templatevars = {"pagetitle": pagetitle, "norights_text": norights_text,
         "project": {"code": projectcode, "name": projectname},
+        "iso_code": iso_code, "full_name": full_name,
         "existing_title": existing_title, "existing_languages": existing_languages,
         "new_languages": new_languages,
         "update_button": update_button, "add_button": self.localize("Add Language"),
