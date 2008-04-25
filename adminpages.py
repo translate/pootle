@@ -211,7 +211,7 @@ class UsersAdminPage(pagelayout.PootlePage):
     return text
     
   def getoptions(self):
-    options = [{"name": "name", "title": self.localize("Login"), "newvalue": "", "size": 6},
+    options = [{"name": "name", "title": self.localize("Username"), "newvalue": "", "size": 6},
                {"name": "fullname", "title": self.localize("Full Name"), 
                                     "newvalue": self.localize("(add full name here)")},
                {"name": "email", "title": self.localize("Email Address"), "newvalue": self.localize("(add email here)")},
