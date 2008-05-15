@@ -121,7 +121,7 @@ class ServerTester:
         assert "Test Language" not in language_list
         assert "Pootle Unit Tests" in language_list
         project_admin = self.fetch_page("projects/testproject/admin.html")
-        assert '<option value="zxx">Test Language</option>' in project_admin
+        assert '<option value="zxx">Test Language: zxx</option>' in project_admin
         add_dict = {"newlanguage": "zxx", "doaddlanguage": "Add Language"}
         add_args = "&".join(["%s=%s" % (key, urllib.quote_plus(value)) for key, value in add_dict.items()])
         add_language = self.fetch_page("projects/testproject/admin.html?" + add_args)
