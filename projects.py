@@ -644,9 +644,12 @@ class TranslationProject(object):
 
   def getarchive(self, pofilenames):
     """returns an archive of the given filenames"""
-    tempzipfile = os.tmpnam()
     try:
       # using zip command line is fast
+      from tempfile import mkstemp
+      # The temporary file below is opened and immediately closed for security reasons
+      fd, tempzipfile = mkstemp(prefix='pootle', suffix='.zip')
+      os.close(fd)
       os.system("cd %s ; zip -r - %s > %s" % (self.podir, " ".join(pofilenames), tempzipfile))
       filedata = open(tempzipfile, "r").read()
       if filedata:
@@ -654,6 +657,7 @@ class TranslationProject(object):
     finally:
       if os.path.exists(tempzipfile):
         os.remove(tempzipfile)
+
     # but if it doesn't work, we can do it from python
     import zipfile
     archivecontents = cStringIO.StringIO()
@@ -666,15 +670,17 @@ class TranslationProject(object):
 
   def uploadarchive(self, session, dirname, archivecontents):
     """uploads the files inside the archive"""
-    try:
-      tempzipfile = os.tmpnam()
-      # using zip command line is fast
-      # os.system("cd %s ; zip -r - %s > %s" % (self.podir, " ".join(pofilenames), tempzipfile))
-      # return open(tempzipfile, "r").read()
-      pass
-    finally:
-      if os.path.exists(tempzipfile):
-        os.remove(tempzipfile)
+    # Bug #402
+    #try:
+    #  from tempfile import mktemp
+    #  tempzipfile = mkstemp()
+    #  using zip command line is fast
+    #  os.system("cd %s ; zip -r - %s > %s" % (self.podir, " ".join(pofilenames), tempzipfile))
+    #  return open(tempzipfile, "r").read()
+    #finally:
+    #  if os.path.exists(tempzipfile):
+    #    os.remove(tempzipfile)
+
     # but if it doesn't work, we can do it from python
     import zipfile
     archivefile = cStringIO.StringIO(archivecontents)
