@@ -8,4 +8,4 @@ xgettext \
 --msgid-bugs-address=translate-pootle@lists.sourceforge.net \
 --copyright-holder="Zuza Software Foundation (Translate.org.za)" \
 -o po/pootle/templates/pootle.pot \
-`find .  -name "*.py"`
+`find .  -name "*.py" | sort`
