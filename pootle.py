@@ -481,12 +481,16 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
             page.etag = str(etag)
           else:
             page = widgets.PlainContents(filepath_or_contents)
-          if extension == "po" or extension == "csv":
-            page.content_type = "text/plain; charset=UTF-8"
-          elif extension == "xlf" or extension == "ts":
-            page.content_type = "text/xml; charset=UTF-8"
+          if extension == "po":
+            page.content_type = "text/x-gettext-translation; charset=UTF-8"
+          elif extension == "csv":
+            page.content_type = "text/csv; charset=UTF-8"
+          elif extension == "xlf":
+            page.content_type = "application/x-xliff; charset=UTF-8"
+          elif extension == "ts":
+            page.content_type = "application/x-linguist; charset=UTF-8"
           elif extension == "mo":
-            page.content_type = "application/octet-stream"
+            page.content_type = "application/x-gettext-translation"
           return page
         elif bottom.endswith(".zip"):
           if not "archive" in project.getrights(session):
