@@ -78,6 +78,8 @@ def completetemplatevars(templatevars, session, bannerheight=135):
     templatevars["baseurl"] = getattr(session.instance, "baseurl", "/")
     if not templatevars["baseurl"].endswith("/"):
     	templatevars["baseurl"] += "/"
+  if not "enablealtsrc" in templatevars:
+     templatevars["enablealtsrc"] = getattr(session.instance, "enablealtsrc", False)
   templatevars["logo_alttext"] = session.localize("Pootle Logo")
   templatevars["aboutlink"] = session.localize("About this Pootle server")
   templatevars["uilanguage"] = weblanguage(session.language)
@@ -91,6 +93,8 @@ class PootlePage:
   def __init__(self, templatename, templatevars, session, bannerheight=135):
     if not hasattr(session.instance, "baseurl"):
       session.instance.baseurl = "/"
+    if not hasattr(session.instance, "enablealtsrc"):
+      session.instance.enablealtsrc = False
     self.localize = session.localize
     self.session = session
     self.templatename = templatename

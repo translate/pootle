@@ -37,6 +37,8 @@
 #   inputheight - the height of the translation input widget in rows
 #   languages - the languages listed on the users home page
 #   projects - the projects listed on the users home page
+#   altsrclanguage - the alternative source language to use. This setting has effect
+#     only if the feature is enabled on the server (enablealtsrc on pootle.prefs)
 #
 # Startup User:
 #  When first starting Pootle it is helpful to have a default user.  Below we

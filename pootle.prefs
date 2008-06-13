@@ -82,6 +82,12 @@ Pootle:
   # should add the "translate" right, for example
   defaultrights = "view, suggest, archive, pocompile"
 
+  # Pootle.enablealtsrc
+  # Enable support for alternative language. Take into account that this might
+  # supposse a considerable performance penalty in big Pootle installations.
+  # Default: "False"
+  # enablealtsrc = "True"
+
   # pootle.podirectory
   #
   # All projects are stored in this directory in this layout:

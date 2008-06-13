@@ -175,6 +175,7 @@ class UserOptions(pagelayout.PootlePage):
     pagetitle = self.localize("Options for: %s", session.username)
     templatename = "options"
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
+    enablealtsrc = getattr(session.instance, "enablealtsrc", False)
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle, "introtext": message,
         "detailstitle": self.localize("Personal Details"),
@@ -194,7 +195,12 @@ class UserOptions(pagelayout.PootlePage):
         "languages": self.getlanguageoptions(),
         "home_link": self.localize("Home page"),
         "submit_button": self.localize("Save changes"),
-        "session": sessionvars, "instancetitle": instancetitle}
+        "session": sessionvars,
+        "instancetitle": instancetitle,
+        "enablealtsrc": enablealtsrc}
+    if enablealtsrc == 'True':
+      templatevars["altsrclanguage_title"] = self.localize("Alternative Source Language")
+      templatevars["altsrclanguages"] = self.getaltsrcoptions()
     otheroptions = self.getotheroptions()
     templatevars.update(otheroptions)
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
@@ -219,6 +225,20 @@ class UserOptions(pagelayout.PootlePage):
     # languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     languages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     return languages
+
+  def getaltsrcoptions(self):
+    """returns options for alternative source languages"""
+    useraltsrc = self.session.getaltsrclanguage()
+    languageoptions = self.potree.getlanguages()
+    altsrclanguages = []
+    for language, name in languageoptions:
+      altsrclanguages.append({"code": language, "name": self.tr_lang(name), "selected": language in useraltsrc and 'selected' or None})
+    # rewritten for compatibility with Python 2.3
+    # altsrclanguages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    altsrclanguages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
+    # l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
+    altsrclanguages.insert(0, {"code": '', "name": self.session.localize("None"), "selected": '' in useraltsrc and 'selected' or None})
+    return altsrclanguages
 
   def getotheroptions(self):
     uilanguage = getattr(self.session.prefs, "uilanguage", "")
@@ -630,6 +650,9 @@ class PootleSession(web.session.LoginSession):
     setinterfacevalue("inputwidth", self.localize("Input width must be numeric"))
     setinterfacevalue("viewrows", self.localize("The number of rows displayed in view mode must be numeric"))
     setinterfacevalue("translaterows", self.localize("The number of rows displayed in translate mode must be numeric"))
+    useraltsrclanguage = argdict.get("altsrclanguage", "")
+    if isinstance(useraltsrclanguage, (str, unicode)):
+      setattr(self.prefs, "altsrclanguage", useraltsrclanguage)
     self.saveprefs()
 
   def getprojects(self):
@@ -641,6 +664,11 @@ class PootleSession(web.session.LoginSession):
     """gets the user's languages"""
     userlanguages = getattr(self.prefs, "languages", "")
     return [languagecode.strip() for languagecode in userlanguages.split(',') if languagecode.strip()]
+
+  def getaltsrclanguage(self):
+    """gets the user's alternative source language"""
+    useraltsrclanguage = getattr(self.prefs, "altsrclanguage", "")
+    return useraltsrclanguage.strip()
 
   def getrights(self):
     """gets the user's rights"""

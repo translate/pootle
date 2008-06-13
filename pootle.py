@@ -92,6 +92,9 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     if not hasattr(self.instance, "baseurl"):
       setattr(self.instance, "baseurl", "/")
       changed = True
+    if not hasattr(self.instance, "enablealtsrc"):
+      setattr(self.instance, "enablealtsrc", False)
+      changed = True
     if changed:
       self.saveprefs()
 

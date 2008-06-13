@@ -87,6 +87,17 @@
             </select></td>
           </tr>
 
+          <tr py:if="enablealtsrc == 'True'">
+            <td colspan="1" rowspan="1" py:content="altsrclanguage_title">Alternative Source Language</td>
+            <td colspan="1" rowspan="1">
+              <select name="altsrclanguage" style="width: 100%;">
+                <option py:for="l in altsrclanguages" value="${l.code}" py:attrs="selected=l.selected" py:content="l.name">
+                  Language Name
+                </option>
+              </select>
+            </td>
+          </tr>
+
           <tr py:for="option in other_options">
             <td colspan="1" rowspan="1" py:content="option.description">Option Name</td>
             <td colspan="1" rowspan="1">
@@ -123,6 +134,7 @@
           <input type="hidden" name="allowmultikey" value="languages" />
         </div>
       </div>
+
       <input type="submit" name="changeoptions" value="${submit_button}" />
     </form>
 
