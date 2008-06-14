@@ -765,48 +765,92 @@ class TranslationProject(object):
       yield self.pofilenames[index]
       index += 1
 
+  def getindexer(self):
+    """get an indexing object for this project
+
+    Since we do not want to keep the indexing databases open for the lifetime of
+    the TranslationProject (it is cached!), it may NOT be part of the Project object,
+    but should be used via a short living local variable.
+    """
+    indexdir = os.path.join(self.podir, ".poindex-%s-%s" % (self.projectcode, self.languagecode))
+    index = indexer.get_indexer(indexdir)
+    index.set_field_analyzers({
+            "pofilename": index.ANALYZER_EXACT,
+            "itemno": index.ANALYZER_EXACT,
+            "pomtime": index.ANALYZER_EXACT})
+    return index
+
   def initindex(self):
     """initializes the search index"""
     if not indexer.HAVE_INDEXER:
       return
-    self.indexdir = os.path.join(self.podir, ".poindex-%s-%s" % (self.projectcode, self.languagecode))
-    class indexconfig:
-      indexdir = self.indexdir
-    self.analyzer = indexer.PerFieldAnalyzer([("pofilename", indexer.ExactAnalyzer())])
-    self.indexer = indexer.Indexer(indexconfig, analyzer=self.analyzer)
-    self.searcher = indexer.Searcher(self.indexdir, analyzer=self.analyzer)
     pofilenames = self.pofiles.keys()
     pofilenames.sort()
     for pofilename in pofilenames:
       self.updateindex(pofilename, optimize=False)
-    self.indexer.optimizeIndex()
 
   def updateindex(self, pofilename, items=None, optimize=True):
-    """updates the index with the contents of pofilename (limit to items if given)"""
+    """updates the index with the contents of pofilename (limit to items if given)
+
+    There are three reasons for calling this function:
+      (A) creating a new instance of "TranslationProject" (see "initindex")
+          -> check if the index is up-to-date / rebuild the index if necessary
+      (B) translating a unit via the web interface
+          -> (re)index only the specified unit(s)
+
+    The argument "items" should be None for (A).
+
+    known problems:
+      1) This function should get called, when the po file changes externally.
+         The function "pofreshen" in pootlefile.py would be the natural place
+         for this. But this causes circular calls between the current (r7514)
+         statistics code and "updateindex" leading to indexing database lock
+         issues. 
+         WARNING: You have to stop the pootle server before manually changing
+         po files, if you want to keep the index database in sync.
+
+    @param pofilename: absolute filename of the po file
+    @type pofilename: str
+    @param items: list of unit numbers within the po file OR None (=rebuild all)
+    @type items: [int]
+    @param optimize: should the indexing database be optimized afterwards
+    @type optimize: bool
+    """
     if not indexer.HAVE_INDEXER:
       return
+    index = self.getindexer()
     pofile = self.pofiles[pofilename]
     # check if the pomtime in the index == the latest pomtime
     pomtime = statistics.getmodtime(pofile.filename)
-    pofilenamequery = self.searcher.makeQuery([("pofilename", pofilename)], True)
-    pomtimequery = self.searcher.makeQuery([("pomtime", str(pomtime))], True)
-    if items is not None:
-      itemsquery = self.searcher.makeQuery([("itemno", str(itemno)) for itemno in items], False)
-    gooditemsquery = self.searcher.makeQuery([pofilenamequery, pomtimequery], True)
-    gooditems = self.searcher.search(gooditemsquery, "itemno")
-    allitems = self.searcher.search(pofilenamequery, "itemno")
-    if items is None:
-      if len(gooditems) == len(allitems) == pofile.statistics.getitemslen():
-        return
-      print "updating", self.projectcode, self.languagecode, "index for", pofilename
-      self.searcher.deleteDoc({"pofilename": pofilename})
-    else:
+    pofilenamequery = index.make_query([("pofilename", pofilename)], True)
+    pomtimequery = index.make_query([("pomtime", str(pomtime))], True)
+    gooditemsquery = index.make_query([pofilenamequery, pomtimequery], True)
+    gooditemsnum = index.get_query_result(gooditemsquery).get_matches_count()
+    # if there is at least one up-to-date indexing item, then the po file
+    # was not changed externally -> no need to update the database
+    if (gooditemsnum > 0) and (not items):
+      # nothing to be done
+      return
+    elif items:
+      # Update only specific items - usually single translation via the web
+      # interface. All other items should still be up-to-date (even with an 
+      # older pomtime).
       print "updating", self.languagecode, "index for", pofilename, "items", items
-      self.searcher.deleteDoc([pofilenamequery, itemsquery])
+      # delete the relevant items from the database
+      itemsquery = index.make_query([("itemno", str(itemno)) for itemno in items], False)
+      index.delete_doc([pofilenamequery, itemsquery])
+    else:
+      # (items is None)
+      # The po file is not indexed - or it was changed externally (see
+      # "pofreshen" in pootlefile.py).
+      print "updating", self.projectcode, self.languagecode, "index for", pofilename
+      # delete all items of this file
+      index.delete_doc({"pofilename": pofilename})
     pofile.pofreshen()
-    addlist = []
     if items is None:
+      # rebuild the whole index
       items = range(len(pofile.transunits))
+    addlist = []
     for itemno in items:
       unit = pofile.transunits[itemno]
       doc = {"pofilename": pofilename, "pomtime": str(pomtime), "itemno": str(itemno)}
@@ -816,11 +860,13 @@ class TranslationProject(object):
       doc["msgstr"] = trans
       addlist.append(doc)
     if addlist:
-      self.indexer.startIndex()
+      index.begin_transaction()
       try:
-        self.indexer.indexFields(addlist)
+        for add_item in addlist:
+            index.index_document(add_item)
       finally:
-        self.indexer.commitIndex(optimize=optimize)
+        index.commit_transaction()
+        index.flush(optimize=optimize)
 
   def matchessearch(self, pofilename, search):
     """returns whether any items in the pofilename match the search (based on collected stats etc)"""
@@ -856,17 +902,18 @@ class TranslationProject(object):
     """returns the results from searching the index with the given search"""
     if not indexer.HAVE_INDEXER:
       return False
+    index = self.getindexer()
     searchparts = []
     if search.searchtext:
-      textquery = self.searcher.makeQuery([("msgid", search.searchtext), ("msgstr", search.searchtext)], False)
+      textquery = index.make_query([("msgid", search.searchtext), ("msgstr", search.searchtext)], False)
       searchparts.append(textquery)
     if search.dirfilter:
       pofilenames = self.browsefiles(dirfilter=search.dirfilter)
-      filequery = self.searcher.makeQuery([("pofilename", pofilename) for pofilename in pofilenames], False)
+      filequery = index.make_query([("pofilename", pofilename) for pofilename in pofilenames], False)
       searchparts.append(filequery)
     # TODO: add other search items
-    limitedquery = self.searcher.makeQuery(searchparts, True)
-    return self.searcher.search(limitedquery, returnfields)
+    limitedquery = index.make_query(searchparts, True)
+    return index.search(limitedquery, returnfields)
 
   def searchpofilenames(self, lastpofilename, search, includelast=False):
     """find the next pofilename that has items matching the given search"""
@@ -876,7 +923,9 @@ class TranslationProject(object):
     if indexer.HAVE_INDEXER and search.searchtext:
       # TODO: move this up a level, use index to manage whole search, so we don't do this twice
       hits = self.indexsearch(search, "pofilename")
-      searchpofilenames = dict.fromkeys([hit["pofilename"] for hit in hits])
+      # there will be only result for the field "pofilename" - so we just
+      # pick the first
+      searchpofilenames = dict.fromkeys([hit["pofilename"][0] for hit in hits])
     else:
       searchpofilenames = None
     for pofilename in self.iterpofilenames(lastpofilename, includelast):
@@ -896,7 +945,9 @@ class TranslationProject(object):
         filesearch = search.copy()
         filesearch.dirfilter = pofilename
         hits = self.indexsearch(filesearch, "itemno")
-        items = [int(doc["itemno"]) for doc in hits]
+        # there will be only result for the field "itemno" - so we just
+        # pick the first
+        items = [int(doc["itemno"][0]) for doc in hits]
         items = [searchitem for searchitem in items if searchitem > item]
         items.sort()
         notextsearch = search.copy()
