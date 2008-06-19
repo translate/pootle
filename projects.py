@@ -86,6 +86,8 @@ class potimecache(timecache.timecache):
 class TranslationProject(object):
   """Manages iterating through the translations in a particular project"""
   fileext = "po"
+  index_directory = ".translation_index"
+
   def __init__(self, languagecode, projectcode, potree, create=False):
     self.languagecode = languagecode
     self.projectcode = projectcode
@@ -772,7 +774,7 @@ class TranslationProject(object):
     the TranslationProject (it is cached!), it may NOT be part of the Project object,
     but should be used via a short living local variable.
     """
-    indexdir = os.path.join(self.podir, ".poindex-%s-%s" % (self.projectcode, self.languagecode))
+    indexdir = os.path.join(self.podir, self.index_directory)
     index = indexer.get_indexer(indexdir)
     index.set_field_analyzers({
             "pofilename": index.ANALYZER_EXACT,
