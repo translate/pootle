@@ -856,8 +856,14 @@ class TranslationProject(object):
     for itemno in items:
       unit = pofile.transunits[itemno]
       doc = {"pofilename": pofilename, "pomtime": str(pomtime), "itemno": str(itemno)}
-      orig = "\n".join(unit.source.strings)
-      trans = "\n".join(unit.target.strings)
+      if unit.hasplural():
+          sources = unit.source.strings
+          targets = unit.target.strings
+      else:
+          sources = unit.source
+          targets = unit.target
+      orig = "\n".join(sources)
+      trans = "\n".join(targets)
       doc["msgid"] = orig
       doc["msgstr"] = trans
       addlist.append(doc)
