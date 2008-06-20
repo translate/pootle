@@ -501,7 +501,7 @@ class pootlefile(Wrapper):
       if newvalues["translator_comments"]:
         unit.addnote(newvalues["translator_comments"])
       
-    po_revision_date = time.strftime("%F %H:%M") + tzstring()
+    po_revision_date = time.strftime("%Y-%m-%d %H:%M") + tzstring()
     headerupdates = {"PO_Revision_Date": po_revision_date, "X_Generator": self.x_generator}
     if userprefs:
       if getattr(userprefs, "name", None) and getattr(userprefs, "email", None):
