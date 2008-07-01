@@ -42,6 +42,7 @@ from translate.misc import optrecurse
 from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
 from jToolkit import __version__ as jtoolkitversion
+from Pootle import statistics
 try:
   from xml.etree import ElementTree
 except ImportError:
@@ -541,6 +542,8 @@ class PootleOptionParser(simplewebserver.WebOptionParser):
     self.add_option('', "--refreshstats", dest="action", action="store_const", const="refreshstats",
         default="runwebserver", help="refresh the stats files instead of running the webserver")
     psycomodes=["none", "full", "profile"]
+    self.add_option('', "--statsdb_file", action="store", type="string", dest="statsdb_file",
+                    default=None, help="Specifies the location of the SQLite stats db file.")
     try:
       import psyco
       self.add_option('', "--psyco", dest="psyco", default=None, choices=psycomodes, metavar="MODE",
@@ -581,6 +584,7 @@ def main():
   options, args = parser.parse_args()
   options.errorlevel = options.logerrors
   usepsyco(options)
+  statistics.STATS_DB_FILE = options.statsdb_file
   if options.action != "runwebserver":
     options.servertype = "dummy"
   server = parser.getserver(options)

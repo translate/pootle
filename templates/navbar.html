@@ -44,7 +44,7 @@
     </div>
   </div>
   <div id="itemstats" class="item-statistics">
-    <span py:replace="XML(item.stats.summary)">
+    <span py:if="item.stats.summary" py:replace="XML(item.stats.summary)">
       2/2 words (100%) translated <span class="string-statistics">[2/2 strings]</span>
     </span>
     <span py:for="check in item.stats.checks" py:strip="True">

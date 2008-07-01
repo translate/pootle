@@ -33,6 +33,7 @@ from translate.tools import pocompile
 from translate.tools import pogrep
 from translate.search import match
 from translate.search import indexer
+from translate.storage import statsdb, base
 from Pootle import statistics
 from Pootle import pootlefile
 from translate.storage import versioncontrol
@@ -455,13 +456,14 @@ class TranslationProject(object):
   def scanpofiles(self):
     """sets the list of pofilenames by scanning the project directory"""
     self.pofilenames = self.potree.getpofiles(self.languagecode, self.projectcode, poext=self.fileext)
-    for pofilename in self.pofilenames:
-      if not pofilename in self.pofiles:
-        self.pofiles[pofilename] = pootlefile.pootlefile(self, pofilename)
+    filename_set = set(self.pofilenames)
+    pootlefile_set = set(self.pofiles.keys())
+    # add any files that we don't have yet
+    for filename in filename_set.difference(pootlefile_set):
+        self.pofiles[filename] = pootlefile.pootlefile(self, filename)
     # remove any files that have been deleted since initialization
-    for pofilename in self.pofiles.keys():
-      if not pofilename in self.pofilenames:
-        del self.pofiles[pofilename]
+    for filename in pootlefile_set.difference(filename_set):
+        del self.pofiles[filename]
 
   def getuploadpath(self, dirname, localfilename):
     """gets the path of a translation file being uploaded securely, creating directories as neccessary"""
@@ -823,58 +825,60 @@ class TranslationProject(object):
     index = self.getindexer()
     pofile = self.pofiles[pofilename]
     # check if the pomtime in the index == the latest pomtime
-    pomtime = statistics.getmodtime(pofile.filename)
-    pofilenamequery = index.make_query([("pofilename", pofilename)], True)
-    pomtimequery = index.make_query([("pomtime", str(pomtime))], True)
-    gooditemsquery = index.make_query([pofilenamequery, pomtimequery], True)
-    gooditemsnum = index.get_query_result(gooditemsquery).get_matches_count()
-    # if there is at least one up-to-date indexing item, then the po file
-    # was not changed externally -> no need to update the database
-    if (gooditemsnum > 0) and (not items):
-      # nothing to be done
-      return
-    elif items:
-      # Update only specific items - usually single translation via the web
-      # interface. All other items should still be up-to-date (even with an 
-      # older pomtime).
-      print "updating", self.languagecode, "index for", pofilename, "items", items
-      # delete the relevant items from the database
-      itemsquery = index.make_query([("itemno", str(itemno)) for itemno in items], False)
-      index.delete_doc([pofilenamequery, itemsquery])
-    else:
-      # (items is None)
-      # The po file is not indexed - or it was changed externally (see
-      # "pofreshen" in pootlefile.py).
-      print "updating", self.projectcode, self.languagecode, "index for", pofilename
-      # delete all items of this file
-      index.delete_doc({"pofilename": pofilename})
-    pofile.pofreshen()
-    if items is None:
-      # rebuild the whole index
-      items = range(len(pofile.transunits))
-    addlist = []
-    for itemno in items:
-      unit = pofile.transunits[itemno]
-      doc = {"pofilename": pofilename, "pomtime": str(pomtime), "itemno": str(itemno)}
-      if unit.hasplural():
-          sources = unit.source.strings
-          targets = unit.target.strings
-      else:
-          sources = unit.source
-          targets = unit.target
-      orig = "\n".join(sources)
-      trans = "\n".join(targets)
-      doc["msgid"] = orig
-      doc["msgstr"] = trans
-      addlist.append(doc)
-    if addlist:
-      index.begin_transaction()
-      try:
-        for add_item in addlist:
-            index.index_document(add_item)
-      finally:
-        index.commit_transaction()
-        index.flush(optimize=optimize)
+    try:
+        pomtime = statistics.getmodtime(pofile.filename)
+        pofilenamequery = index.make_query([("pofilename", pofilename)], True)
+        pomtimequery = index.make_query([("pomtime", str(pomtime))], True)
+        gooditemsquery = index.make_query([pofilenamequery, pomtimequery], True)
+        gooditemsnum = index.get_query_result(gooditemsquery).get_matches_count()
+        # if there is at least one up-to-date indexing item, then the po file
+        # was not changed externally -> no need to update the database
+        if (gooditemsnum > 0) and (not items):
+          # nothing to be done
+          return
+        elif items:
+          # Update only specific items - usually single translation via the web
+          # interface. All other items should still be up-to-date (even with an 
+          # older pomtime).
+          print "updating", self.languagecode, "index for", pofilename, "items", items
+          # delete the relevant items from the database
+          itemsquery = index.make_query([("itemno", str(itemno)) for itemno in items], False)
+          index.delete_doc([pofilenamequery, itemsquery])
+        else:
+          # (items is None)
+          # The po file is not indexed - or it was changed externally (see
+          # "pofreshen" in pootlefile.py).
+          print "updating", self.projectcode, self.languagecode, "index for", pofilename
+          # delete all items of this file
+          index.delete_doc({"pofilename": pofilename})
+        pofile.pofreshen()
+        if items is None:
+          # rebuild the whole index
+          items = range(pofile.statistics.getitemslen())
+        addlist = []
+        for itemno in items:
+          unit = pofile.getitem(itemno)
+          doc = {"pofilename": pofilename, "pomtime": str(pomtime), "itemno": str(itemno)}
+          if unit.hasplural():
+              orig = "\n".join(unit.source.strings)
+              trans = "\n".join(unit.target.strings)
+          else:
+              orig = unit.source
+              trans = unit.target
+          doc["msgid"] = orig
+          doc["msgstr"] = trans
+          addlist.append(doc)
+        if addlist:
+          index.begin_transaction()
+          try:
+            for add_item in addlist:
+                index.index_document(add_item)
+          finally:
+            index.commit_transaction()
+            index.flush(optimize=optimize)
+    except (base.ParseError, IOError, OSError):
+        index.delete_doc({"pofilename": pofilename})
+        print "Not indexing %s, since it is corrupt" % (pofilename,)
 
   def matchessearch(self, pofilename, search):
     """returns whether any items in the pofilename match the search (based on collected stats etc)"""
@@ -884,9 +888,9 @@ class TranslationProject(object):
     # search.assignedto == [None] means assigned to nobody
     if search.assignedto or search.assignedaction:
       if search.assignedto == [None]:
-        assigns = self.pofiles[pofilename].assigns.getunassigned(search.assignedaction)
+        assigns = self.pofiles[pofilename].getassigns().getunassigned(search.assignedaction)
       else:
-        assigns = self.pofiles[pofilename].assigns.getassigns()
+        assigns = self.pofiles[pofilename].getassigns().getassigns()
         if search.assignedto is not None:
           if search.assignedto not in assigns:
             return False
@@ -900,7 +904,7 @@ class TranslationProject(object):
       postats = self.getpostats(pofilename)
       matches = False
       for name in search.matchnames:
-        if postats[name]:
+        if postats.get(name):
           matches = True
       if not matches:
         return False
@@ -970,7 +974,7 @@ class TranslationProject(object):
             continue
         # TODO: move this to iteritems
         if search.searchtext:
-          unit = pofile.transunits[item]
+          unit = pofile.getitem(item)
           if grepfilter.filterunit(unit):
             yield pofilename, item
         else:
@@ -996,9 +1000,8 @@ class TranslationProject(object):
     assigncount = 0
     if not usercount:
       return assigncount
-    docountwords = lambda pofilename: self.countwords([(pofilename, item) for item in range(self.pofiles[pofilename].statistics.getitemslen())])
     pofilenames = [pofilename for pofilename in self.searchpofilenames(None, search, includelast=True)]
-    wordcounts = [(pofilename, docountwords(pofilename)) for pofilename in pofilenames]
+    wordcounts = [(pofilename, self.getpofile(pofilename).statistics.getquickstats()['totalsourcewords']) for pofilename in pofilenames]
     totalwordcount = sum([wordcount for pofilename, wordcount in wordcounts])
 
     wordsperuser = totalwordcount / usercount
@@ -1007,21 +1010,23 @@ class TranslationProject(object):
     userwords = 0
     for pofilename, wordcount in wordcounts:
       pofile = self.getpofile(pofilename)
+      sourcewordcount = pofile.statistics.getunitstats()['sourcewordcount']
       for item in pofile.iteritems(search, None):
         # TODO: move this to iteritems
         if search.searchtext:
           validitem = False
-          unit = pofile.transunits[item]
+          unit = pofile.getitem(item)
           if grepfilter.filterunit(unit):
             validitem = True
           if not validitem:
             continue
-        itemwordcount = self.countwords([(pofilename, item)])
+        itemwordcount = sourcewordcount[item]
+        #itemwordcount = statsdb.wordcount(str(pofile.getitem(item).source))
         if userwords + itemwordcount > wordsperuser:
           usernum = min(usernum+1, len(assignto)-1)
           userwords = 0
         userwords += itemwordcount
-        pofile.assigns.assignto(item, assignto[usernum], action)
+        pofile.getassigns().assignto(item, assignto[usernum], action)
         assigncount += 1
     return assigncount
 
@@ -1037,12 +1042,12 @@ class TranslationProject(object):
       for item in pofile.iteritems(search, None):
         # TODO: move this to iteritems
         if search.searchtext:
-          unit = pofile.transunits[item]
+          unit = pofile.getitem(item)
           if grepfilter.filterunit(unit):
-            pofile.assigns.unassign(item, assignedto, action)
+            pofile.getassigns().unassign(item, assignedto, action)
             assigncount += 1
         else:
-          pofile.assigns.unassign(item, assignedto, action)
+          pofile.getassigns().unassign(item, assignedto, action)
           assigncount += 1
     return assigncount
 
@@ -1100,7 +1105,6 @@ class TranslationProject(object):
       alltotal += total
     for pofilename in slowfiles:
       self.pofiles[pofilename].statistics.updatequickstats(save=False)
-      self.savequickstats()
       translatedwords, translated, fuzzywords, fuzzy, totalwords, total = self.quickstats[pofilename]
       alltranslatedwords += translatedwords
       alltranslated += translated
@@ -1108,43 +1112,56 @@ class TranslationProject(object):
       allfuzzy += fuzzy
       alltotalwords += totalwords
       alltotal += total
+    if slowfiles:
+      self.savequickstats()
     return {"translatedsourcewords": alltranslatedwords, "translated": alltranslated, 
             "fuzzysourcewords": allfuzzywords, "fuzzy": allfuzzy, 
             "totalsourcewords": alltotalwords, "total": alltotal}
 
   def combinestats(self, pofilenames=None):
     """combines translation statistics for the given po files (or all if None given)"""
-    totalstats = {}
     if pofilenames is None:
       pofilenames = self.pofilenames
+    pofilenames = [pofilename for pofilename in pofilenames 
+                   if pofilename != None and not os.path.isdir(pofilename)]
+    total_stats = self.combine_totals(pofilenames)
+    total_stats['units'] = self.combine_unit_stats(pofilenames)
+    total_stats['assign'] = self.combineassignstats(pofilenames)
+    return total_stats
+
+  def combine_totals(self, pofilenames):
+    totalstats = {}
     for pofilename in pofilenames:
-      if not pofilename or os.path.isdir(pofilename):
-        continue
+      pototals = self.getpototals(pofilename)
+      for name, items in pototals.iteritems():
+        totalstats[name] = totalstats.get(name, 0) + pototals[name]
+    return totalstats
+
+  def combine_unit_stats(self, pofilenames):
+    unit_stats = {}
+    for pofilename in pofilenames:
       postats = self.getpostats(pofilename)
       for name, items in postats.iteritems():
-        totalstats[name] = totalstats.get(name, []) + [(pofilename, item) for item in items]
-    assignstats = self.combineassignstats(pofilenames)
-    totalstats.update(assignstats)
-    return totalstats
+        unit_stats.setdefault(name, []).extend([(pofilename, item) for item in items])
+    return unit_stats
 
   def combineassignstats(self, pofilenames=None, action=None):
     """combines assign statistics for the given po files (or all if None given)"""
-    totalstats = {}
-    if pofilenames is None:
-      pofilenames = self.pofilenames
+    assign_stats = {}
     for pofilename in pofilenames:
       assignstats = self.getassignstats(pofilename, action)
       for name, items in assignstats.iteritems():
-        totalstats["assign-"+name] = totalstats.get("assign-"+name, []) + [(pofilename, item) for item in items]
-    return totalstats
+        assign_stats.setdefault(name, []).extend([(pofilename, item) for item in items])
+    return assign_stats
 
   def countwords(self, stats):
     """counts the number of words in the items represented by the stats list"""
     wordcount = 0
     for pofilename, item in stats:
       pofile = self.pofiles[pofilename]
-      if 0 <= item < len(pofile.statistics.sourcewordcounts):
-        wordcount += sum(pofile.statistics.sourcewordcounts[item])
+      if 0 <= item < len(pofile.statistics.getunitstats()['sourcewordcount']):
+        wordcount += pofile.statistics.getunitstats()['sourcewordcount'][item]
+    print "projects::countwords()"
     return wordcount
 
   def getpomtime(self):
@@ -1175,10 +1192,16 @@ class TranslationProject(object):
     """calculates translation statistics for the given po file"""
     return self.pofiles[pofilename].statistics.getstats()
 
+  def getpototals(self, pofilename):
+    """calculates translation statistics for the given po file"""
+    return self.pofiles[pofilename].statistics.getquickstats()
+
   def getassignstats(self, pofilename, action=None):
     """calculates translation statistics for the given po file (can filter by action if given)"""
-    polen = len(self.getpostats(pofilename)["total"])
-    assigns = self.pofiles[pofilename].assigns.getassigns()
+    polen = self.getpototals(pofilename).get("total", 0)
+    # Temporary code to avoid traceback. Was:
+#    polen = len(self.getpostats(pofilename)["total"])
+    assigns = self.pofiles[pofilename].getassigns().getassigns()
     assignstats = {}
     for username, userassigns in assigns.iteritems():
       allitems = []
@@ -1198,14 +1221,13 @@ class TranslationProject(object):
 
   def getpofilelen(self, pofilename):
     """returns number of items in the given pofilename"""
-    # TODO: needn't parse the file for this ...
     pofile = self.getpofile(pofilename)
-    return len(pofile.transunits)
+    return pofile.statistics.getitemslen()
 
   def getitems(self, pofilename, itemstart, itemstop):
     """returns a set of items from the pofile, converted to original and translation strings"""
     pofile = self.getpofile(pofilename)
-    units = pofile.transunits[max(itemstart,0):itemstop]
+    units = [pofile.units[index] for index in pofile.statistics.getstats()["total"][max(itemstart,0):itemstop]]
     return units
 
   def updatetranslation(self, pofilename, item, newvalues, session):
@@ -1318,7 +1340,7 @@ class TranslationProject(object):
       if isinstance(pofile, (str, unicode)):
         pofilename = pofile
         pofile = self.getpofile(pofilename)
-        return termmatcher.matches(pofile.transunits[item].source)
+        return termmatcher.matches(pofile.getitem(item).source)
     except Exception, e:
       session.server.errorhandler.logerror(traceback.format_exc())
       return []

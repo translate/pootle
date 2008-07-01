@@ -332,21 +332,19 @@ class ProjectIndex(pagelayout.PootleNavPage):
       mainstats = ""
       mainicon = "file"
     else:
-      if dirfilter or self.editing or self.showassigns or self.showchecks:
+      pofilenames = self.project.browsefiles(dirfilter)
+      projecttotals = self.project.getquickstats(pofilenames)
+      if self.editing or self.showassigns or self.showchecks:
         # we need the complete stats
-        pofilenames = self.project.browsefiles(dirfilter)
         projectstats = self.project.combinestats(pofilenames)
       else:
-        # a common case: plain stats table we can take a shortcut
-        pofilenames = self.project.browsefiles()
-        projectstats = self.project.getquickstats()
+        projectstats = projecttotals
       if self.editing:
         actionlinks = self.getactionlinks("", projectstats, ["editing", "mine", "review", "check", "assign", "goal", "quick", "all", "zip", "sdf"], dirfilter)
       else: 
         actionlinks = self.getactionlinks("", projectstats, ["editing", "goal", "zip", "sdf"])
-      mainstats = self.getitemstats("", projectstats, len(pofilenames))
-      maindata = self.getstats(self.project, projectstats)
-      mainicon = "folder"
+      mainstats = self.getitemstats("", pofilenames, len(pofilenames))
+      mainstats["summary"] = self.describestats(self.project, projecttotals, len(pofilenames))
     if self.showgoals:
       childitems = self.getgoalitems(dirfilter)
     else:
@@ -490,11 +488,11 @@ class ProjectIndex(pagelayout.PootleNavPage):
       if assignwhich == "all":
         pass
       elif assignwhich == "untranslated":
-        search.matchnames = ["fuzzy", "blank"]
+        search.matchnames = ["fuzzy", "untranslated"]
       elif assignwhich == "unassigned":
         search.assignedto = [None]
       elif assignwhich == "unassigneduntranslated":
-        search.matchnames = ["fuzzy", "blank"]
+        search.matchnames = ["fuzzy", "untranslated"]
         search.assignedto = [None]
       else:
         raise ValueError("unexpected assignwhich")
@@ -683,7 +681,8 @@ class ProjectIndex(pagelayout.PootleNavPage):
         goal["goal"]["show_adduser"] = True
         goal["goal"]["otherusers"] = unassignedusers
         goal["goal"]["adduser_title"] = self.localize("Add User")
-    goal["stats"] = self.getitemstats("", projectstats, len(pofilenames))
+    goal["stats"] = self.getitemstats("", pofilenames, len(pofilenames))
+    projectstats = self.project.getquickstats(pofilenames)
     goal["data"] = self.getstats(self.project, projectstats)
     return goal
 
@@ -694,7 +693,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       goalfilenames = self.project.getgoalfiles(self.currentgoal, dirfilter=direntry, includedirs=False, expanddirs=True)
       projectstats = self.project.combinestats(goalfilenames)
     else:
-      projectstats = self.project.combinestats(pofilenames)
+      projectstats = self.project.combine_totals(pofilenames)
     basename = os.path.basename(direntry)
     browseurl = self.getbrowseurl("%s/" % basename, **newargs)
     diritem = {"href": browseurl, "title": basename, "icon": "folder", "isdir": True}
@@ -702,10 +701,12 @@ class ProjectIndex(pagelayout.PootleNavPage):
     actionlinks = self.getactionlinks(basename, projectstats, linksrequired=linksrequired)
     diritem["actions"] = actionlinks
     if self.showgoals and "goal" in self.argdict:
-      diritem["stats"] = self.getitemstats(basename, projectstats, (len(goalfilenames), len(pofilenames)))
+      diritem["stats"] = self.getitemstats(basename, goalfilenames, (len(goalfilenames), len(pofilenames)))
+      projectstats = self.project.getquickstats(goalfilenames)
       diritem["data"] = self.getstats(self.projects, projectstats)
     else:
-      diritem["stats"] = self.getitemstats(basename, projectstats, len(pofilenames))
+      diritem["stats"] = self.getitemstats(basename, pofilenames, len(pofilenames))
+      projectstats = self.project.getquickstats(pofilenames)
       diritem["data"] = self.getstats(self.project, projectstats)
     return diritem
 
@@ -717,7 +718,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       else:
         linksrequired = ["mine", "review", "quick", "all", "po", "xliff", "update", "commit"]
     basename = os.path.basename(fileentry)
-    projectstats = self.project.combinestats([fileentry])
+    projectstats = self.project.combine_totals([fileentry])
     browseurl = self.getbrowseurl(basename, **newargs)
     fileitem = {"href": browseurl, "title": basename, "icon": "file", "isfile": True}
     actions = self.getactionlinks(basename, projectstats, linksrequired=linksrequired)
@@ -762,7 +763,8 @@ class ProjectIndex(pagelayout.PootleNavPage):
       else:
         actionlink["sep"] = ""
     fileitem["actions"] = actions
-    fileitem["stats"] = self.getitemstats(basename, projectstats, None)
+    fileitem["stats"] = self.getitemstats(basename, [fileentry], None)
+    projectstats = self.project.getquickstats([fileentry])
     fileitem["data"] = self.getstats(self.project, projectstats)
     return fileitem
 
@@ -786,7 +788,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       else:
         action = None
       assignstats = self.project.combineassignstats(assignfilenames, action)
-      assignusers = [username.replace("assign-", "", 1) for username in assignstats.iterkeys()]
+      assignusers = list(assignstats.iterkeys())
       useroptions += [username for username in assignusers if username not in useroptions]
       if len(assignusers) > 1:
         multiusers = "multiple"
@@ -859,34 +861,34 @@ class ProjectIndex(pagelayout.PootleNavPage):
         minelink = self.localize("Translate My Strings")
       else:
         minelink = self.localize("View My Strings")
-      mystats = projectstats.get("assign-%s" % self.session.username, [])
+      mystats = projectstats.get('assign', {}).get(self.session.username, [])
       if len(mystats):
         minelink = {"href": self.makelink(baseactionlink, assignedto=self.session.username), "text": minelink}
       else:
         minelink = {"title": self.localize("No strings assigned to you"), "text": minelink}
       actionlinks.append(minelink)
       if "quick" in linksrequired and "translate" in self.rights:
-        mytranslatedstats = [statsitem for statsitem in mystats if statsitem in projectstats.get("translated", [])]
+        mytranslatedstats = [statsitem for statsitem in mystats if statsitem in projectstats["units"].get("translated", [])]
         quickminelink = self.localize("Quick Translate My Strings")
         if len(mytranslatedstats) < len(mystats):
-          quickminelink = {"href": self.makelink(baseactionlink, assignedto=self.session.username, fuzzy=1, blank=1), "text": quickminelink}
+          quickminelink = {"href": self.makelink(baseactionlink, assignedto=self.session.username, fuzzy=1, untranslated=1), "text": quickminelink}
         else:
           quickminelink = {"title": self.localize("No untranslated strings assigned to you"), "text": quickminelink}
         actionlinks.append(quickminelink)
-    if "review" in linksrequired and projectstats.get("has-suggestion", []):
+    if "review" in linksrequired and projectstats.get("units", {}).get("check-hassuggestion", []):
       if "review" in self.rights:
         reviewlink = self.localize("Review Suggestions")
       else:
         reviewlink = self.localize("View Suggestions")
-      reviewlink = {"href": self.makelink(baseactionlink, review=1, **{"has-suggestion": 1}), "text": reviewlink}
+      reviewlink = {"href": self.makelink(baseactionlink, review=1, **{"hassuggestion": 1}), "text": reviewlink}
       actionlinks.append(reviewlink)
     if "quick" in linksrequired:
       if "translate" in self.rights:
         quicklink = self.localize("Quick Translate")
       else:
         quicklink = self.localize("View Untranslated")
-      if len(projectstats.get("translated", [])) < len(projectstats.get("total", [])):
-        quicklink = {"href": self.makelink(baseactionlink, fuzzy=1, blank=1), "text": quicklink}
+      if projectstats.get("translated", 0) < projectstats.get("total", 0):
+        quicklink = {"href": self.makelink(baseactionlink, fuzzy=1, untranslated=1), "text": quicklink}
       else:
         quicklink = {"title": self.localize("No untranslated items"), "text": quicklink}
       actionlinks.append(quicklink)
@@ -928,17 +930,16 @@ class ProjectIndex(pagelayout.PootleNavPage):
       actions["basic"][-1]["sep"] = ""
     return actions
 
-  def getitemstats(self, basename, projectstats, numfiles):
+  def getitemstats(self, basename, pofilenames, numfiles):
     """returns a widget summarizing item statistics"""
-    statssummary = self.describestats(self.project, projectstats, numfiles)
-    stats = {"summary": statssummary, "checks": [], "tracks": [], "assigns": []}
+    stats = {"checks": [], "tracks": [], "assigns": []}
     if not basename or basename.endswith("/"):
       linkbase = basename + "translate.html?"
     else:
       linkbase = basename + "?translate=1"
-    if projectstats:
+    if pofilenames:
       if self.showchecks:
-        stats["checks"] = self.getcheckdetails(projectstats, linkbase)
+        stats["checks"] = self.getcheckdetails(pofilenames, linkbase)
       if self.showtracks:
         trackfilter = (self.dirfilter or "") + basename
         trackpofilenames = self.project.browsefiles(trackfilter)
@@ -949,15 +950,16 @@ class ProjectIndex(pagelayout.PootleNavPage):
           removelinkbase = "?showassigns=1&removeassigns=1"
         else:
           removelinkbase = "?showassigns=1&removeassigns=1&removefilter=%s" % basename
-        stats["assigns"] = self.getassigndetails(projectstats, linkbase, removelinkbase)
+        stats["assigns"] = self.getassigndetails(pofilenames, linkbase, removelinkbase)
     return stats
 
   def gettrackdetails(self, projecttracks, linkbase):
     """return a list of strings describing the results of tracks"""
     return [trackmessage for trackmessage in projecttracks]
 
-  def getcheckdetails(self, projectstats, linkbase):
+  def getcheckdetails(self, pofilenames, linkbase):
     """return a list of strings describing the results of checks"""
+    projectstats = self.project.combine_unit_stats(pofilenames)
     total = max(len(projectstats.get("total", [])), 1)
     checklinks = []
     keys = projectstats.keys()
@@ -969,31 +971,28 @@ class ProjectIndex(pagelayout.PootleNavPage):
       checkname = checkname.replace("check-", "", 1)
       if total and checkcount:
         stats = self.nlocalize("%d string (%d%%) failed", "%d strings (%d%%) failed", checkcount, checkcount, (checkcount * 100 / total))
-        checklink = {"href": self.makelink(linkbase, **{checkname:1}), "text": checkname, "stats": stats}
+        checklink = {"href": self.makelink(linkbase, **{str(checkname):1}), "text": checkname, "stats": stats}
         checklinks += [checklink]
     return checklinks
 
-  def getassigndetails(self, projectstats, linkbase, removelinkbase):
+  def getassigndetails(self, pofilenames, linkbase, removelinkbase):
     """return a list of strings describing the assigned strings"""
     # TODO: allow setting of action, so goals can only show the appropriate action assigns
-    total = projectstats.get("total", [])
     # quick lookup of what has been translated
-    translated = dict.fromkeys(projectstats.get("translated", []))
-    totalcount = len(total)
-    totalwords = self.project.countwords(total)
+    projectstats = self.project.combinestats(pofilenames)
+    totalcount = projectstats.get("total", 0)
+    totalwords = projectstats.get("totalsourcewords", 0)
+    translated = projectstats['units'].get("translated", [])
     assignlinks = []
-    keys = projectstats.keys()
+    keys = projectstats['assign'].keys()
     keys.sort()
     for assignname in keys:
-      if not assignname.startswith("assign-"):
-        continue
-      assigned = projectstats[assignname]
+      assigned = projectstats['assign'][assignname]
       assigncount = len(assigned)
       assignwords = self.project.countwords(assigned)
       complete = [statsitem for statsitem in assigned if statsitem in translated]
       completecount = len(complete)
       completewords = self.project.countwords(complete)
-      assignname = assignname.replace("assign-", "", 1)
       if totalcount and assigncount:
         assignlink = {"href": self.makelink(linkbase, assignedto=assignname), "text": assignname}
         percentassigned = assignwords * 100 / max(totalwords, 1)

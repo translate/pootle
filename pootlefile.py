@@ -26,6 +26,7 @@ from translate.storage import po
 from translate.storage.poheader import tzstring
 from translate.storage import xliff
 from translate.storage import factory
+from translate.filters import checks
 from translate.misc.multistring import multistring
 from Pootle import __version__
 from Pootle import statistics
@@ -34,28 +35,7 @@ from jToolkit import glock
 import time
 import os
 
-class Wrapper(object):
-  """An object which wraps an inner object, delegating to the encapsulated methods, etc"""
-  def __getattr__(self, attrname, *args):
-    if attrname in self.__dict__:
-      return self.__dict__[attrname]
-    return getattr(self.__dict__["__innerobj__"], attrname, *args)
-
-  def __setattr__(self, attrname, value):
-    if attrname == "__innerobj__":
-      self.__dict__[attrname] = value
-    elif attrname in self.__dict__:
-      if isinstance(self.__dict__[attrname], property):
-        self.__dict__[attrname].fset(value)
-      else:
-        self.__dict__[attrname] = value
-    elif attrname in self.__class__.__dict__:
-      if isinstance(self.__class__.__dict__[attrname], property):
-        self.__class__.__dict__[attrname].fset(self, value)
-      else:
-        self.__dict__[attrname] = value
-    else:
-      return setattr(self.__dict__["__innerobj__"], attrname, value)
+_UNIT_CHECKER = checks.UnitChecker()
 
 class LockedFile:
   """locked interaction with a filesystem file"""
@@ -123,7 +103,7 @@ class pootleassigns:
     assignsstring = assignsfile.read()
     assignsfile.close()
     poassigns = {}
-    itemcount = len(getattr(self, "classify", {}).get("total", []))
+    itemcount = len(getattr(self, "stats", {}).get("total", []))
     for line in assignsstring.split("\n"):
       if not line.strip():
         continue
@@ -250,17 +230,16 @@ class pootleassigns:
             assignitems.extend(actionitems)
     return assignitems
 
-class pootlefile(Wrapper):
+class pootlebase(object):
+  pass
+
+class pootlefile(pootlebase):
   """this represents a pootle-managed file and its associated files"""
-  innerclass = po.pofile
   x_generator = "Pootle %s" % __version__.ver
-  def __init__(self, project=None, pofilename=None, generatestats=True):
+  def __init__(self, project=None, pofilename=None):
     if pofilename:
-      innerclass = factory.getclass(pofilename)
-    innerobj = innerclass()
-    self.__innerobj__ = innerobj
-    self.UnitClass = innerobj.UnitClass
-    
+      self.__class__.__bases__ = (factory.getclass(pofilename),)
+    super(pootlefile, self).__init__()
     self.pofilename = pofilename
     if project is None:
       from Pootle import projects
@@ -275,18 +254,15 @@ class pootlefile(Wrapper):
     self.lockedfile = LockedFile(self.filename)
     # we delay parsing until it is required
     self.pomtime = None
-    self.assigns = pootleassigns(self)
+    self.assigns = None
 
     self.pendingfilename = self.filename + os.extsep + "pending"
     self.pendingfile = None
-    self.statistics = statistics.pootlestatistics(self, generatestats)
+    self.statistics = statistics.pootlestatistics(self)
     self.tmfilename = self.filename + os.extsep + "tm"
     # we delay parsing until it is required
     self.pomtime = None
     self.tracker = timecache.timecache(20*60)
-
-  def __str__(self):
-    return self.__innerobj__.__str__()
 
   def parsestring(cls, storestring):
     newstore = cls()
@@ -308,39 +284,34 @@ class pootlefile(Wrapper):
   def getheaderplural(self):
     """returns values for nplural and plural values.  It tries to see if the 
     file has it specified (in a po header or similar)."""
-    method = getattr(self.__innerobj__, "getheaderplural", None)
-    if method and callable(method):
-      return self.__innerobj__.getheaderplural()
-    else:
+    try:
+      return super(pootlefile, self).getheaderplural()
+    except AttributeError:
       return None, None
 
   def updateheaderplural(self, *args, **kwargs):
     """updates the file header. If there is an updateheader function in the 
     underlying store it will be delegated there."""
-    method = getattr(self.__innerobj__, "updateheaderplural", None)
-    if method and callable(method):
-      self.__innerobj__.updateheaderplural(*args, **kwargs)
+    try:
+      super(pootlefile, self).updateheaderplural(*args, **kwargs)
+    except AttributeError:
+      pass
 
   def updateheader(self, **kwargs):
     """updates the file header. If there is an updateheader function in the 
     underlying store it will be delegated there."""
-    method = getattr(self.__innerobj__, "updateheader", None)
-    if method and callable(method):
-      self.__innerobj__.updateheader(**kwargs)
+    try:
+      super(pootlefile, self).updateheader(**kwargs)
+    except AttributeError:
+      pass
 
   def readpendingfile(self):
     """reads and parses the pending file corresponding to this file"""
     if os.path.exists(self.pendingfilename):
-      pendingmtime = statistics.getmodtime(self.pendingfilename)
-      if pendingmtime == getattr(self, "pendingmtime", None):
-        return
       inputfile = open(self.pendingfilename, "r")
-      self.pendingmtime, self.pendingfile = pendingmtime, factory.getobject(inputfile, ignore=".pending")
-      if self.pomtime:
-        self.reclassifysuggestions()
+      self.pendingfile = factory.getobject(inputfile, ignore=".pending")
     else:
       self.pendingfile = po.pofile()
-      self.savependingfile()
 
   def savependingfile(self):
     """saves changes to disk..."""
@@ -348,7 +319,6 @@ class pootlefile(Wrapper):
     outputfile = open(self.pendingfilename, "w")
     outputfile.write(output)
     outputfile.close()
-    self.pendingmtime = statistics.getmodtime(self.pendingfilename)
 
   def readtmfile(self):
     """reads and parses the tm file corresponding to this file"""
@@ -361,28 +331,9 @@ class pootlefile(Wrapper):
     else:
       self.tmfile = po.pofile()
 
-  def reclassifysuggestions(self):
-    """shortcut to only update classification of has-suggestion for all items"""
-    suggitems = []
-    sugglocations = {}
-    for thesugg in self.pendingfile.units:
-      locations = tuple(thesugg.getlocations())
-      sugglocations[locations] = thesugg
-    suggitems = [item for item in self.transunits if tuple(item.getlocations()) in sugglocations]
-    havesuggestions = self.statistics.classify["has-suggestion"]
-    for item, poel in enumerate(self.transunits):
-      if (poel in suggitems) != (item in havesuggestions):
-        if poel in suggitems:
-          havesuggestions.append(item)
-        else:
-          havesuggestions.remove(item)
-        havesuggestions.sort()
-    self.statistics.calcstats()
-    self.statistics.savestats()
-
   def getsuggestions(self, item):
     """find all the suggestion items submitted for the given item"""
-    unit = self.transunits[item]
+    unit = self.getitem(item)
     if isinstance(unit, xliff.xliffunit):
       return unit.getalttrans()
 
@@ -394,7 +345,7 @@ class pootlefile(Wrapper):
 
   def addsuggestion(self, item, suggtarget, username):
     """adds a new suggestion for the given item"""
-    unit = self.transunits[item]
+    unit = self.getitem(item)
     if isinstance(unit, xliff.xliffunit):
       if isinstance(suggtarget, list) and (len(suggtarget) > 0):
         suggtarget = suggtarget[0]
@@ -415,7 +366,7 @@ class pootlefile(Wrapper):
 
   def deletesuggestion(self, item, suggitem):
     """removes the suggestion from the pending file"""
-    unit = self.transunits[item]
+    unit = self.getitem(item)
     if hasattr(unit, "xmlelement"):
       suggestions = self.getsuggestions(item)
       unit.delalttrans(suggestions[suggitem])
@@ -445,7 +396,7 @@ class pootlefile(Wrapper):
   def gettmsuggestions(self, item):
     """find all the tmsuggestion items submitted for the given item"""
     self.readtmfile()
-    unit = self.transunits[item]
+    unit = self.getitem(item)
     locations = unit.getlocations()
     # TODO: review the matching method
     # Can't simply use the location index, because we want multiple matches
@@ -464,9 +415,6 @@ class pootlefile(Wrapper):
     pomtime, filecontents = self.lockedfile.getcontents()
     # note: we rely on this not resetting the filename, which we set earlier, when given a string
     self.parse(filecontents)
-    # we ignore all the headers by using this filtered set
-    self.transunits = [poel for poel in self.units if not (poel.isheader() or poel.isblank())]
-    self.statistics.classifyunits()
     self.pomtime = pomtime
 
   def savepofile(self):
@@ -476,11 +424,17 @@ class pootlefile(Wrapper):
 
   def pofreshen(self):
     """makes sure we have a freshly parsed pofile"""
-    if not os.path.exists(self.filename):
-      # the file has been removed, update the project index (and fail below)
-      self.project.scanpofiles()
-    if self.pomtime != self.lockedfile.readmodtime():
-      self.readpofile()
+    try:
+        if self.pomtime != self.lockedfile.readmodtime():
+          self.readpofile()
+    except OSError, e:
+        # If this exception is not triggered by a bad
+        # symlink, then we have a missing file on our hands...
+        if not os.path.islink(self.filename):
+            # ...and thus we rescan our files to get rid of the missing filename
+            self.project.scanpofiles()
+        else:
+            print "%s is a broken symlink" % (self.filename,)
 
   def getoutput(self):
     """returns pofile output"""
@@ -490,7 +444,7 @@ class pootlefile(Wrapper):
   def updateunit(self, item, newvalues, userprefs, languageprefs):
     """updates a translation with a new target value"""
     self.pofreshen()
-    unit = self.transunits[item]
+    unit = self.getitem(item)
 
     if newvalues.has_key("target"):
       unit.target = newvalues["target"]
@@ -506,6 +460,12 @@ class pootlefile(Wrapper):
     if userprefs:
       if getattr(userprefs, "name", None) and getattr(userprefs, "email", None):
         headerupdates["Last_Translator"] = "%s <%s>" % (userprefs.name, userprefs.email)
+    # XXX: If we needed to add a header, the index value in item will be one out after
+    # adding the header.
+    # TODO: remove once we force the PO class to always output headers
+    force_recache = False 
+    if not self.header():
+      force_recache = True
     self.updateheader(add=True, **headerupdates)
     if languageprefs:
       nplurals = getattr(languageprefs, "nplurals", None)
@@ -513,27 +473,33 @@ class pootlefile(Wrapper):
       if nplurals and pluralequation:
         self.updateheaderplural(nplurals, pluralequation)
     self.savepofile()
+    if force_recache:
+      self.statistics.purge_totals()
     self.statistics.reclassifyunit(item)
+
+  def getitem(self, item):
+    """Returns a single unit based on the item number."""
+    return self.units[self.statistics.getstats(_UNIT_CHECKER)["total"][item]]
 
   def iteritems(self, search, lastitem=None):
     """iterates through the items in this pofile starting after the given lastitem, using the given search"""
     # update stats if required
-    self.statistics.getstats()
+    translatables = self.statistics.getstats()["total"]
     if lastitem is None:
       minitem = 0
     else:
       minitem = lastitem + 1
-    maxitem = len(self.transunits)
+    maxitem = len(translatables)
     validitems = range(minitem, maxitem)
     if search.assignedto or search.assignedaction:
-      assignitems = self.assigns.finditems(search)
+      assignitems = self.getassigns().finditems(search)
       validitems = [item for item in validitems if item in assignitems]
     # loop through, filtering on matchnames if required
     for item in validitems:
       if not search.matchnames:
         yield item
       for name in search.matchnames:
-        if item in self.statistics.classify[name]:
+        if translatables[item] in self.statistics.getstats()[name]:
           yield item
 
   def matchitems(self, newfile, uselocations=False):
@@ -576,15 +542,19 @@ class pootlefile(Wrapper):
         matches.append((oldpo, None))
     return matches
 
+  def getassigns(self):
+    if self.assigns is None:
+        self.assigns = pootleassigns(self)
+    return self.assigns
+
   def mergeitem(self, oldpo, newpo, username, suggest=False):
     """merges any changes from newpo into oldpo"""
     unchanged = oldpo.target == newpo.target
-
     if not suggest and (not oldpo.target or not newpo.target or oldpo.isheader() or newpo.isheader() or unchanged):
       oldpo.merge(newpo)
-    elif not unchanged:
-      #XXX: this is very inefficient!
-      for item, matchpo in enumerate(self.transunits):
+    else:
+      for item in self.statistics.getstats()["total"]:
+        matchpo = self.units[item]
         if matchpo == oldpo:
           strings = getattr(newpo.target, "strings", [newpo.target])
           self.addsuggestion(item, strings, username)

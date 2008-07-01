@@ -480,22 +480,21 @@ class POTree:
 
   def getpofiles(self, languagecode, projectcode, poext="po"):
     """returns a list of po files for the project and language"""
+    pofilenames = []
+    prefix = os.curdir + os.sep
 
     def addfiles(podir, dirname, fnames):
       """adds the files to the set of files for this project"""
-      basedirname = dirname.replace(podir, "", 1)
-      while basedirname.startswith(os.sep):
-        basedirname = basedirname.replace(os.sep, "", 1)
-      ponames = []
+      if dirname == os.curdir:
+        basedirname = ""
+      else:
+        basedirname = dirname.replace(prefix, "", 1)
       for fname in fnames:
-        #check that it actually exists (to avoid problems with broken symbolic 
+        # check that it actually exists (to avoid problems with broken symbolic 
         # links, for example)
-        if not os.path.exists(os.path.join(dirname, fname)):
-          print "file does not exist:", os.path.join(dirname, fname)
-          continue
+        fpath = os.path.join(basedirname, fname)
         if fname.endswith(os.extsep+poext):
-          ponames.append(fname)
-      pofilenames.extend([os.path.join(basedirname, poname) for poname in ponames])
+          pofilenames.append(fpath)
 
     def addgnufiles(podir, dirname, fnames):
       """adds the files to the set of files for this project"""
@@ -506,12 +505,14 @@ class POTree:
       ponames = [fn for fn in fnames if fn.endswith(ext) and self.languagematch(languagecode, fn[:-len(ext)])]
       pofilenames.extend([os.path.join(basedirname, poname) for poname in ponames])
 
-    pofilenames = []
     podir = self.getpodir(languagecode, projectcode)
     if self.hasgnufiles(podir, languagecode) == "gnu":
       os.path.walk(podir, addgnufiles, podir)
     else:
-      os.path.walk(podir, addfiles, podir)
+      pwd = os.path.abspath(os.curdir)
+      os.chdir(podir)
+      os.path.walk(os.curdir, addfiles, None)
+      os.chdir(pwd)
     return pofilenames
 
   def getdefaultrights(self):

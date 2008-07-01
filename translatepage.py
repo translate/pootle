@@ -98,9 +98,9 @@ class TranslatePage(pagelayout.PootleNavPage):
       icon="edit"
     if self.pofilename is not None:
       postats = self.project.getpostats(self.pofilename)
-      blank, fuzzy = postats["blank"], postats["fuzzy"]
+      untranslated, fuzzy = postats["untranslated"], postats["fuzzy"]
       translated, total = postats["translated"], postats["total"]
-      mainstats = self.localize("%d/%d translated\n(%d blank, %d fuzzy)", len(translated), len(total), len(blank), len(fuzzy))
+      mainstats = self.localize("%d/%d translated\n(%d untranslated, %d fuzzy)", len(translated), len(total), len(untranslated), len(fuzzy))
       pagelinks = self.getpagelinks("?translate=1&view=1", rows)
     navbarpath_dict = self.makenavbarpath_dict(self.project, self.session, self.pofilename, dirfilter=self.dirfilter or "")
     # templatising
@@ -354,7 +354,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     """returns any checker filters the user has asked to match..."""
     matchnames = []
     for checkname in self.argdict:
-      if checkname in ["fuzzy", "blank", "translated", "has-suggestion"]:
+      if checkname in ["fuzzy", "untranslated", "translated"]:
         matchnames.append(checkname)
       elif checkname in checker.getfilters():
         matchnames.append("check-" + checkname)

@@ -87,23 +87,6 @@ msgstr ""'''
         assert unit.source == "test"
         assert unit.target == "rest"
 
-    def test_classify(self):
-        """Test basic classification"""
-        posource = 'msgid "test"\nmsgstr ""\n'
-        pofile = self.poparse(posource)
-        pofile.project.checker = checks.TeeChecker()
-        unit = pofile.units[0]
-        classify = pofile.statistics.classifyunit
-        classes = classify(unit)
-        assert 'blank' in classes
-        unit.target = "Gom"
-        classes = classify(unit)
-        assert 'translated' in classes
-        assert 'blank' not in classes
-        unit.markfuzzy()
-        classes = classify(unit)
-        assert 'fuzzy' in classes
-
     def test_classifyunits(self):
         "Tests basic use of classifyunits."
         posource = r'''#: test.c
@@ -117,15 +100,11 @@ msgstr "tafel"
 msgid "chair"
 msgstr ""'''
         pofile = self.poparse(posource)
-        pofile.transunits = [poel for poel in pofile.units if not (poel.isheader() or poel.isblank())]
-        pofile.statistics.classifyunits()
-        classify = pofile.statistics.classify
-        print classify
-        for i in pofile.units:
-            print str(i)
-        assert classify['fuzzy'] == [1]
-        assert classify['blank'] == [2]
-        assert len(classify['total']) == 3
+        pofile.savepofile()
+        assert pofile.statistics.getstats()['fuzzy'] == [1]
+        assert pofile.statistics.getstats()['untranslated'] == [2]
+        assert pofile.statistics.getstats()['translated'] == [0]
+        assert pofile.statistics.getstats()['total'] == [0, 1, 2]
 
     def test_updateunit(self):
         """Test the updateunit() method."""
