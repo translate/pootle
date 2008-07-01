@@ -479,7 +479,7 @@ class pootlefile(pootlebase):
 
   def getitem(self, item):
     """Returns a single unit based on the item number."""
-    return self.units[self.statistics.getstats(_UNIT_CHECKER)["total"][item]]
+    return self.units[self.statistics.getstats()["total"][item]]
 
   def iteritems(self, search, lastitem=None):
     """iterates through the items in this pofile starting after the given lastitem, using the given search"""
