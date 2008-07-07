@@ -6,7 +6,8 @@ from translate.misc.multistring import multistring
 STATS_DB_FILE = None
 
 def getmodtime(filename):
-    return statsdb.get_mod_info(filename, errors_return_empty=True, empty_return=None)
+    mtime, size = statsdb.get_mod_info(filename, errors_return_empty=True, empty_return=None)
+    return mtime
 
 class pootlestatistics:
   """this represents the statistics known about a file"""
