@@ -385,7 +385,7 @@ class pootlefile(pootlebase):
     """returns who suggested the given item's suggitem if recorded, else None"""
     unit = self.getsuggestions(item)[suggitem]
     if hasattr(unit, "xmlelement"):
-      return unit.xmlelement.getAttribute("origin")
+      return unit.xmlelement.get("origin")
 
     for msgidcomment in unit.msgidcomments:
       if msgidcomment.find("suggested by ") != -1:

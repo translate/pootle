@@ -480,7 +480,12 @@ class TranslatePage(pagelayout.PootleNavPage):
         
         if self.reviewmode:
           translator_comments = self.escapetext(unit.getnotes(origin="translator"), stripescapes=True)
-          itemsuggestions = [suggestion.target.strings for suggestion in suggestions[item]]
+          itemsuggestions = []
+          for suggestion in suggestions[item]:
+            if suggestion.hasplural():
+              itemsuggestions.append(suggestion.target.strings)
+            else:
+              itemsuggestions.append([suggestion.target])
           transmerge = self.gettransreview(item, trans, itemsuggestions)
         else:
           transmerge = self.gettransedit(item, trans)
