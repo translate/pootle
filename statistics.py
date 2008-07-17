@@ -1,13 +1,28 @@
-import os
 from translate.storage import statsdb
-from translate.filters import checks
-from translate.misc.multistring import multistring
 
 STATS_DB_FILE = None
 
 def getmodtime(filename):
-    mtime, size = statsdb.get_mod_info(filename, errors_return_empty=True, empty_return=None)
+  try:
+    mtime, _size = statsdb.get_mod_info(filename)
     return mtime
+  except:
+    return None
+
+def memoize(f):
+  def memoized_f(self, *args):
+    f_name = f.__name__
+    table = self._memoize_table
+    if f_name not in table:
+      table[f_name] = f(self, *args)
+    return table[f_name]
+  return memoized_f
+
+def invalidates_memoization(f):
+  def invalidate_memoization_f(self, *args):
+    self._memoize_table = {}
+    return f(self, *args)
+  return invalidate_memoization_f
 
 class pootlestatistics:
   """this represents the statistics known about a file"""
@@ -19,33 +34,34 @@ class pootlestatistics:
     self._totals = None
     self._unitstats = None
     self.statscache = statsdb.StatsCache(STATS_DB_FILE)
+    self._memoize_table = {}
 
+  @memoize
   def getquickstats(self):
     """returns the quick statistics (totals only)"""
-    if not self._totals:
-      self._totals = self.statscache.filetotals(self.basefile.filename, errors_return_empty=True)
-    return self._totals
-
+    try:
+      return self.statscache.filetotals(self.basefile.filename)
+    except:
+      return statsdb.emptyfiletotals()
+    
+  @memoize
   def getstats(self, checker=None):
     """reads the stats if neccessary or returns them from the cache"""
     if checker == None:
-        checker = self.basefile.checker
-    if not self._stats:
-      self._stats = self.statscache.filestats(self.basefile.filename, checker, errors_return_empty=True)
-    return self._stats
-  
-  def purge_totals(self):
-    """Temporary helper to clean up where needed. We might be able to remove 
-    this after the move to cpo."""
-    self._totals = None
-    self._stats = None
-    self._unitstats = None
+      checker = self.basefile.checker
+    try:
+      return self.statscache.filestats(self.basefile.filename, checker)
+    except:
+      return statsdb.emptystats()
 
+  @memoize
   def getunitstats(self):
-    if not self._unitstats:
-      self._unitstats = self.statscache.unitstats(self.basefile.filename, errors_return_empty=True)
-    return self._unitstats
+    try:
+      return self.statscache.unitstats(self.basefile.filename)
+    except:
+      return statsdb.emptyunitstats()
 
+  @invalidates_memoization
   def updatequickstats(self, save=True):
     """updates the project's quick stats on this file"""
     totals = self.getquickstats()
@@ -55,6 +71,7 @@ class pootlestatistics:
         totals.get("totalsourcewords", 0), totals.get("total", 0),
         save)
 
+  @invalidates_memoization
   def reclassifyunit(self, item):
     """Reclassifies all the information in the database and self._stats about 
     the given unit"""
@@ -69,10 +86,8 @@ class pootlestatistics:
         else:
           self.getstats()[classname].remove(item)
         self.getstats()[classname].sort()
-    # We should be doing better, but for now it is easiet to simply force a 
-    # reload from the database
-    self.purge_totals()
 
+  @memoize
   def getitemslen(self):
     """gets the number of items in the file"""
     return self.getquickstats()["total"]
