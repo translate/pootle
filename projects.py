@@ -1405,10 +1405,7 @@ class TranslationProject(object):
     """gets the translation of the message by searching through all the pofiles (unicode version)"""
     for pofilename, pofile in self.pofiles.iteritems():
       try:
-        if pofile.pomtime != statistics.getmodtime(pofile.filename):
-          pofile.readpofile()
-          pofile.makeindex()
-        elif not hasattr(pofile, "sourceindex"):
+        if pofile.pofreshen() or not hasattr(pofile, "sourceindex"):
           pofile.makeindex()
         unit = pofile.sourceindex.get(message, None)
         if not unit or not unit.istranslated():

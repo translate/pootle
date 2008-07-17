@@ -262,6 +262,9 @@ def make_class(base_class):
       self.pomtime = None
       self.tracker = timecache.timecache(20*60)
   
+    def reset_statistics(self):
+      self.statistics = statistics.pootlestatistics(self)
+  
     def parsestring(cls, storestring):
       newstore = cls()
       newstore.parse(storestring)
@@ -419,12 +422,17 @@ def make_class(base_class):
       """saves changes to the main file to disk..."""
       output = str(self)
       self.pomtime = self.lockedfile.writecontents(output)
+      self.reset_statistics()
   
     def pofreshen(self):
-      """makes sure we have a freshly parsed pofile"""
+      """makes sure we have a freshly parsed pofile
+      
+      @return: True if the file was freshened, False otherwise"""
       try:
           if self.pomtime != self.lockedfile.readmodtime():
+            self.reset_statistics()
             self.readpofile()
+            return True
       except OSError, e:
           # If this exception is not triggered by a bad
           # symlink, then we have a missing file on our hands...
@@ -433,6 +441,7 @@ def make_class(base_class):
               self.project.scanpofiles()
           else:
               print "%s is a broken symlink" % (self.filename,)
+      return False
   
     def getoutput(self):
       """returns pofile output"""
