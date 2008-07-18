@@ -10,18 +10,18 @@ def getmodtime(filename):
     return None
 
 def memoize(f):
-  def memoized_f(self, *args):
+  def memoized_f(self, *args, **kwargs):
     f_name = f.__name__
     table = self._memoize_table
     if f_name not in table:
-      table[f_name] = f(self, *args)
+      table[f_name] = f(self, *args, **kwargs)
     return table[f_name]
   return memoized_f
 
 def invalidates_memoization(f):
-  def invalidate_memoization_f(self, *args):
+  def invalidate_memoization_f(self, *args, **kwargs):
     self._memoize_table = {}
-    return f(self, *args)
+    return f(self, *args, **kwargs)
   return invalidate_memoization_f
 
 class pootlestatistics:
