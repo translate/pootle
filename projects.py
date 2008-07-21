@@ -598,7 +598,8 @@ class TranslationProject(object):
     statsstring = "%d of %d messages translated (%d fuzzy)." % \
         (stats["translated"], stats["total"], stats["fuzzy"])
     versioncontrol.commitfile(pathname, message="Commit from %s by user %s. %s" % 
-        (session.server.instance.title, session.username, statsstring))
+        (session.server.instance.title, session.username, statsstring),
+        author="%s <%s>" % (session.prefs.name, session.prefs.email))
 
   def converttemplates(self, session):
     """creates PO files from the templates"""
