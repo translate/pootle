@@ -85,6 +85,7 @@ class pootlestatistics:
         else:
           self.getstats()[classname].remove(item)
         self.getstats()[classname].sort()
+    self.updatequickstats()
 
   @memoize
   def getitemslen(self):
