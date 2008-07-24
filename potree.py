@@ -25,11 +25,9 @@ from Pootle import projects
 from Pootle import pootlefile
 from Pootle import pagelayout
 from translate.misc import autoencode
-import os
-import re
+from translate.lang import data as langdata
 
-languagere = re.compile("^[a-z]{2,3}([_-][A-Z]{2,3}|)$")
-regionre = re.compile("^[_-][A-Z]{2,3}$")
+import os
 
 class POTree:
   """Manages the tree of projects and languages"""
@@ -473,10 +471,7 @@ class POTree:
 
   def languagematch(self, languagecode, otherlanguagecode):
     """matches a languagecode to another, ignoring regions in the second"""
-    if languagecode is None:
-      return languagere.match(otherlanguagecode)
-    return languagecode == otherlanguagecode or \
-      (otherlanguagecode.startswith(languagecode) and regionre.match(otherlanguagecode[len(languagecode):]))
+    return langdata.languagematch(languagecode, otherlanguagecode)
 
   def getpofiles(self, languagecode, projectcode, poext="po"):
     """returns a list of po files for the project and language"""
