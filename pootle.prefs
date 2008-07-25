@@ -478,6 +478,13 @@ Pootle:
 #    lb.nplurals = '2'
 #    lb.pluralequation ='(n != 1)'
 
+# Luganda
+# Ganda
+    lg.fullname = u'Luganda'
+    lg.nplurals = '2'
+    lg.pluralequation = '(n != 1)'
+    lg.specialchars = "ŋŊ"
+
 # Lietuvių
 # Lithuanian
     lt.fullname = u'Lithuanian'
