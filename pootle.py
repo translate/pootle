@@ -544,6 +544,8 @@ class PootleOptionParser(simplewebserver.WebOptionParser):
     psycomodes=["none", "full", "profile"]
     self.add_option('', "--statsdb_file", action="store", type="string", dest="statsdb_file",
                     default=None, help="Specifies the location of the SQLite stats db file.")
+    self.add_option('', "--profile", action="store", type="string", dest="profile",
+                    help="Perform profiling, storing the result to the supplied filename.")
     try:
       import psyco
       self.add_option('', "--psyco", dest="psyco", default=None, choices=psycomodes, metavar="MODE",
@@ -577,6 +579,34 @@ def usepsyco(options):
   import encodings
   psyco.cannotcompile(encodings.search_function)
 
+def profile_runner(server, options):
+  import cProfile
+  import profiling.lsprofcalltree as lsprofcalltree
+
+  def write_cache_grind(profiler, file):
+    k_cache_grind = lsprofcalltree.KCacheGrind(profiler)
+    k_cache_grind.output(file)
+    file.close()
+
+  def do_profile_run(file):
+    profiler = cProfile.Profile()
+    try:
+      profiler.runcall(simplewebserver.run, server, options)
+    finally:
+      write_cache_grind(profiler, file)
+  
+  try:
+    profile_file = open(options.profile, "w+")
+    do_profile_run(profile_file)
+  except IOError, _e:
+    print "Could not open profiling file %s" % (options.profile,)
+
+def get_runner(options):
+  if getattr(options, "profile", None) != None:
+    return profile_runner
+  else:
+    return simplewebserver.run
+
 def main():
   # run the web server
   checkversions()
@@ -590,7 +620,8 @@ def main():
   server = parser.getserver(options)
   server.options = options
   if options.action == "runwebserver":
-    simplewebserver.run(server, options)
+    run = get_runner(options)
+    run(server, options)  
   elif options.action == "refreshstats":
     server.refreshstats(args)
 
