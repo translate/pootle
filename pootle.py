@@ -581,7 +581,7 @@ def usepsyco(options):
 
 def profile_runner(server, options):
   import cProfile
-  import profiling.lsprofcalltree as lsprofcalltree
+  import Pootle.profiling.lsprofcalltree as lsprofcalltree
 
   def write_cache_grind(profiler, file):
     k_cache_grind = lsprofcalltree.KCacheGrind(profiler)
