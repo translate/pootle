@@ -18,12 +18,6 @@ def memoize(f):
     return table[f_name]
   return memoized_f
 
-def invalidates_memoization(f):
-  def invalidate_memoization_f(self, *args, **kwargs):
-    self._memoize_table = {}
-    return f(self, *args, **kwargs)
-  return invalidate_memoization_f
-
 class pootlestatistics:
   """this represents the statistics known about a file"""
   def __init__(self, basefile):
@@ -70,7 +64,6 @@ class pootlestatistics:
         totals.get("totalsourcewords", 0), totals.get("total", 0),
         save)
 
-  @invalidates_memoization
   def reclassifyunit(self, item):
     """Reclassifies all the information in the database and self._stats about 
     the given unit"""

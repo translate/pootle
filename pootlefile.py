@@ -353,6 +353,7 @@ def make_class(base_class):
         unit.addalttrans(suggtarget, origin=username)
         self.statistics.reclassifyunit(item)
         self.savepofile()
+        self.reset_statistics()
         return
   
       self.readpendingfile()
@@ -364,6 +365,7 @@ def make_class(base_class):
       self.pendingfile.addunit(newpo)
       self.savependingfile()
       self.statistics.reclassifyunit(item)
+      self.reset_statistics()
   
     def deletesuggestion(self, item, suggitem):
       """removes the suggestion from the pending file"""
@@ -381,6 +383,7 @@ def make_class(base_class):
         del self.pendingfile.units[pendingitem]
         self.savependingfile()
       self.statistics.reclassifyunit(item)
+      self.reset_statistics()
   
     def getsuggester(self, item, suggitem):
       """returns who suggested the given item's suggitem if recorded, else None"""
@@ -422,7 +425,6 @@ def make_class(base_class):
       """saves changes to the main file to disk..."""
       output = str(self)
       self.pomtime = self.lockedfile.writecontents(output)
-      self.reset_statistics()
   
     def pofreshen(self):
       """makes sure we have a freshly parsed pofile
@@ -480,9 +482,8 @@ def make_class(base_class):
         if nplurals and pluralequation:
           self.updateheaderplural(nplurals, pluralequation)
       self.savepofile()
-      if force_recache:
-        self.statistics.purge_totals()
       self.statistics.reclassifyunit(item)
+      self.reset_statistics()
   
     def getitem(self, item):
       """Returns a single unit based on the item number."""
@@ -596,6 +597,7 @@ def make_class(base_class):
       if not isinstance(newfile, po.pofile) or suggestions:
         #TODO: We don't support updating the header yet.
         self.savepofile()
+        self.reset_statistics()
         # the easiest way to recalculate everything
         self.readpofile()
         return
@@ -629,6 +631,7 @@ def make_class(base_class):
             header.allcomments[i].extend(newheader.allcomments[i])
       
       self.savepofile()
+      self.reset_statistics()
       # the easiest way to recalculate everything
       self.readpofile()
   return pootlefile
