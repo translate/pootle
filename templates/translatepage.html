@@ -8,11 +8,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-<script src="${baseurl}js/autoexpand.js" type="text/javascript">
-</script>
+  <script src="${baseurl}js/autoexpand.js" type="text/javascript"></script>
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
+  <script src="${baseurl}js/jquery/jquery.js" type="text/javascript"></script>
+  <script src="${baseurl}js/jquery/jquery.color.js" type="text/javascript"></script>
 </head>
 
 <body bgcolor="#FFFFFF">
@@ -148,7 +149,7 @@
                   <!--! No plurals -->
                   <span py:if="not item.trans.isplural" py:strip="True">
                     <!--! TODO: spell checking -->
-                    <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}"  rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(item.trans.text)">
+                    <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(item.trans.text)">
                       translatable text
                     </textarea>
                   </span>
@@ -176,13 +177,14 @@
                       <input py:if="'suggest' in buttons.desired" type="submit" name="submitsuggest${buttons.item}" accesskey="e" value="${buttons.suggest}"/>
                       <input py:if="'translate' in buttons.desired" type="submit" name="submit${buttons.item}" accesskey="s" value="${buttons.submit}"/>
                     </div>
+                    <script py:if="'translate' in buttons.desired" src="${baseurl}js/unfuzzy.js" type="text/javascript"></script>
                     <div py:if="'translate' in buttons.desired">
-                      <input type="checkbox" checked="${item.fuzzy}" name="fuzzy${buttons.item}" accesskey="f" />
-                      ${fuzzytext}
+                      <input type="checkbox" checked="${item.fuzzy}" name="fuzzy${buttons.item}" id="fuzzy${buttons.item}" class="unfuzzy" accesskey="f" />
+                      <label for="fuzzy${buttons.item}">${fuzzytext}</label>
                     </div>
                     <div py:if="not 'translate' in buttons.desired">
-                      <input type="checkbox" disabled="disabled" checked="${item.fuzzy}" name="fuzzy${buttons.item}" />
-                      ${fuzzytext}
+                      <input type="checkbox" disabled="disabled" checked="${item.fuzzy}" name="fuzzy${buttons.item}" id="fuzzy${buttons.item}" />
+                      <label for="fuzzy${buttons.item}">${fuzzytext}</label>
                     </div>
                     <div py:if="'specialchars' in buttons and ('translate' in buttons.desired or 'suggest' in buttons.desired)" class="specialchars" lang="$language.code">
                       <span py:for="specialchar in buttons.specialchars" py:strip="True">
