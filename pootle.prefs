@@ -11,6 +11,11 @@ Pootle:
   serverclass = pootleserver.PootleServer
   sessionkey='p00tl3'
 
+  # Pootle.stats_db
+  #
+  # Set this to the location of the statistics database used by Pootle. 
+  # stats_db = "~"
+
   # Pootle.baseurl
   # 
   # Set to the URL from which people will access Pootle. Ensure that it starts
