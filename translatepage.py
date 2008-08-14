@@ -130,8 +130,8 @@ class TranslatePage(pagelayout.PootleNavPage):
         "translation_title": self.localize("Translation"),
         "items": items,
         "reviewmode": self.reviewmode,
-        "accept_button": self.localize("Accept"),
-        "reject_button": self.localize("Reject"),
+        "accept_title": self.localize("Accept suggestion"),
+        "reject_title": self.localize("Reject suggestion"),
         "fuzzytext": self.localize("Fuzzy"),
         # l10n: Heading above the textarea for translator comments.
         "translator_comments_title": self.localize("Translator comments"),
@@ -148,7 +148,12 @@ class TranslatePage(pagelayout.PootleNavPage):
         "pofilename": givenpofilename,
         # general vars
         "session": sessionvars,
-        "instancetitle": instancetitle}
+        "instancetitle": instancetitle,
+        # l10n: Text displayed when an AJAX petition is being made
+        "ajax_status_text": self.localize("Working..."),
+        # l10n: Text displayed in an alert box when an AJAX petition has failed
+        "ajax_error": self.localize("Error: Something went wrong.")
+        }
 
     if self.showassigns and "assign" in self.rights:
       templatevars["assign"] = self.getassignbox()
@@ -335,7 +340,9 @@ class TranslatePage(pagelayout.PootleNavPage):
       self.project.updatetranslation(self.pofilename, item, newvalues, self.session)
       
       self.lastitem = item
-    for item, suggid in rejects:
+
+    # It's necessary to loop the list reversed in order to selectively remove items
+    for item, suggid in reversed(rejects):
       value = suggestions[item, suggid]
       if isinstance(value, dict) and len(value) == 1 and 0 in value:
         value = value[0]
@@ -437,7 +444,7 @@ class TranslatePage(pagelayout.PootleNavPage):
   def maketable(self):
     self.translations = self.gettranslations()
     items = []
-    if self.reviewmode and self.item is not None:
+    if (self.reviewmode or self.translatemode) and self.item is not None:
       suggestions = {self.item: self.project.getsuggestions(self.pofilename, self.item)}
     for row, unit in enumerate(self.translations):
       tmsuggestions = []
@@ -478,7 +485,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         tmsuggestions = self.project.gettmsuggestions(self.pofilename, self.item)
         tmsuggestions.extend(self.project.getterminology(self.session, self.pofilename, self.item))
         
-        if self.reviewmode:
+        if self.translatemode or self.reviewmode:
           translator_comments = self.escapetext(unit.getnotes(origin="translator"), stripescapes=True)
           itemsuggestions = []
           for suggestion in suggestions[item]:
@@ -487,6 +494,12 @@ class TranslatePage(pagelayout.PootleNavPage):
             else:
               itemsuggestions.append([suggestion.target])
           transmerge = self.gettransreview(item, trans, itemsuggestions)
+          transedit = self.gettransedit(item, trans)
+          # Make sure we don't overwrite the diff attribute in case it's plural
+          if len(trans) > 1:
+            for i, f in enumerate(transedit["forms"]):
+              transedit["forms"][i].update(transmerge["forms"][i])
+          transmerge.update(transedit)
         else:
           transmerge = self.gettransedit(item, trans)
       else:
@@ -510,6 +523,9 @@ class TranslatePage(pagelayout.PootleNavPage):
       if unit.isfuzzy():
         state_class += "translate-translation-fuzzy"
         fuzzy = "checked"
+
+      hassuggestion = len(transdict.get("suggestions", {})) > 0
+
       itemdict = {
                  "itemid": item,
                  "orig": origdict,
@@ -524,6 +540,7 @@ class TranslatePage(pagelayout.PootleNavPage):
                  "locations": locations,
                  "message_context": message_context,
                  "tm": tmsuggestions,
+                 "hassuggestion": hassuggestion
                  }
 
       altsrcdict = {"available": False}

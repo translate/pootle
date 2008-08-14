@@ -79,6 +79,8 @@ a:link		{ color: #004077; text-decoration: none; }
 a:visited	{ color: #004077; text-decoration: none; }
 a:hover[href]	{ color: #004077; text-decoration: underline; }
 a:active[href]	{ color: #004077; text-decoration: underline; }
+a img { border: 0; }
+
 html {
 /*	height: 98%;*/
 /*	min-height: 98%;*/
@@ -90,6 +92,18 @@ body {
 	margin: 0px;
 	padding: 0px;
 }
+
+#working {
+  position: absolute;
+  left: 50%;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  background-color: #cc0000;
+  color: #eeeeec;
+  padding: 3px;
+}
+
 #abovefooter
 {
 /*	min-height: 98%;*/
@@ -266,10 +280,47 @@ textarea.translate-translation-fuzzy
 	border-left: 6px groove gray;
 	padding-left: 3px;
 }
-.translate-suggestion
-{
+
+#translate-original-container,
+#translate-suggestion-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.translate-suggestion-block {
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.translate-suggestion-block .rejectsugg img {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.translate-suggestion-block .rejectsugg img[dir="rtl"] {
+  left: 0px;
+  right: auto;
+}
+
+.translate-suggestion-block .acceptsugg img {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.translate-suggestion-block .acceptsugg img[dir="rtl"] {
+  left: 20px;
+  right: auto;
+}
+
+.translate-suggestion {
 	background-color: #DDD;
 }
+
 .translator-comments
 {
 	background-color: #b0d6de;
@@ -576,3 +627,4 @@ table.sortable img.sortarrow {
 .sortkey {
   display: none;
 }
+
