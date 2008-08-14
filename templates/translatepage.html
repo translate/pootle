@@ -197,7 +197,7 @@
                       <a href='#' onclick="return contracttextarea(this)" accesskey="-" py:content="buttons.shrink">Shrink</a>
                     </span>
                   </span>
-                  <script type="text/javascript">
+                  <script py:if="'translate' in buttons.desired or 'suggest' in buttons.desired" type="text/javascript">
                     <!--! //We should comment this for old browsers, but then kid doesn't evaluate the expression -->
                     document.forms.translate['${item.trans.focusbox}'].focus()
                     <!--! //-->
