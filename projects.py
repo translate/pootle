@@ -867,8 +867,10 @@ class TranslationProject(object):
           else:
               orig = unit.source
               trans = unit.target
-          doc["msgid"] = orig
-          doc["msgstr"] = trans
+          doc["source"] = orig
+          doc["target"] = trans
+          doc["notes"] = unit.getnotes()
+          doc["locations"] = "\n".join(unit.getlocations())
           addlist.append(doc)
         if addlist:
           index.begin_transaction()
@@ -919,7 +921,9 @@ class TranslationProject(object):
     index = self.getindexer()
     searchparts = []
     if search.searchtext:
-      textquery = index.make_query([("msgid", search.searchtext), ("msgstr", search.searchtext)], False)
+      # Generate a list for the query based on the selected fields
+      querylist = [("%s" % f, search.searchtext) for f in search.searchfields]
+      textquery = index.make_query(querylist, False)
       searchparts.append(textquery)
     if search.dirfilter:
       pofilenames = self.browsefiles(dirfilter=search.dirfilter)
@@ -952,7 +956,7 @@ class TranslationProject(object):
   def searchpoitems(self, pofilename, item, search):
     """finds the next item matching the given search"""
     if search.searchtext:
-      grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
+      grepfilter = pogrep.GrepFilter(search.searchtext, search.searchfields, ignorecase=True)
     for pofilename in self.searchpofilenames(pofilename, search, includelast=True):
       pofile = self.getpofile(pofilename)
       if indexer.HAVE_INDEXER and (search.searchtext or search.matchnames):

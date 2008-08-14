@@ -349,6 +349,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       childitems = self.getgoalitems(dirfilter)
     else:
       childitems = self.getchilditems(dirfilter)
+    self.searchfields = self.getsearchfields()
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     # l10n: The first parameter is the name of the installation (like "Pootle")
     pagetitle = self.localize("%s: Project %s, Language %s", instancetitle, self.project.projectname, self.tr_lang(self.project.languagename))
@@ -359,7 +360,10 @@ class ProjectIndex(pagelayout.PootleNavPage):
         "language": {"code": self.project.languagecode, "name": self.tr_lang(self.project.languagename)},
         # optional sections, will appear if these values are replaced
         "assign": None, "goals": None, "upload": None,
-        "search": {"title": self.localize("Search")}, "message": message,
+        "search": {"title": self.localize("Search"),
+                   "advanced_title": self.localize("Advanced Search"),
+                   "fields": self.searchfields },
+        "message": message,
         # navigation bar
         "navitems": [{"icon": "folder", "path": navbarpath_dict, "actions": actionlinks, "stats": mainstats}],
         # children
@@ -1008,4 +1012,35 @@ class ProjectIndex(pagelayout.PootleNavPage):
           removelink = None
         assignlinks.append({"assign": assignlink, "stats": stats, "stringstats": stringstats, "completestats": completestats, "completestringstats": completestringstats, "remove": removelink})
     return assignlinks
+
+  def getsearchfields(self):
+    tmpfields = [{"name": "source",
+                  "text": self.session.localize("Source Text"),
+                  "value": self.argdict.get("source", 0),
+                  "checked": self.argdict.get("source", 0) == "1" and "checked" or None},
+                 {"name": "target",
+                  "text": self.session.localize("Target Text"),
+                  "value": self.argdict.get("target", 0),
+                  "checked": self.argdict.get("target", 0) == "1" and "checked" or None},
+                 {"name": "notes",
+                  "text": self.session.localize("Comments"),
+                  "value": self.argdict.get("notes", 0),
+                  "checked": self.argdict.get("notes", 0) == "1" and "checked" or None},
+                 {"name": "locations",
+                  "text": self.session.localize("Locations"),
+                  "value": self.argdict.get("locations", 0),
+                  "checked": self.argdict.get("locations", 0) == "1" and "checked" or None}]
+
+    somechecked = False
+    for i, v in enumerate(tmpfields):
+      if not somechecked:
+        if tmpfields[i-1]["checked"] is not None:
+          somechecked = True
+    if not somechecked:
+      # set the default search to "source" and "target"
+      tmpfields[0]["checked"] = "checked"
+      tmpfields[1]["checked"] = "checked"
+
+    return tmpfields
+
 

@@ -661,14 +661,15 @@ def pootlefile(project=None, pofilename=None):
 
 class Search:
   """an object containing all the searching information"""
-  def __init__(self, dirfilter=None, matchnames=[], assignedto=None, assignedaction=None, searchtext=None):
+  def __init__(self, dirfilter=None, matchnames=[], assignedto=None, assignedaction=None, searchtext=None, searchfields=["source", "target"]):
     self.dirfilter = dirfilter
     self.matchnames = matchnames
     self.assignedto = assignedto
     self.assignedaction = assignedaction
     self.searchtext = searchtext
+    self.searchfields = searchfields
 
   def copy(self):
     """returns a copy of this search"""
-    return Search(self.dirfilter, self.matchnames, self.assignedto, self.assignedaction, self.searchtext)
+    return Search(self.dirfilter, self.matchnames, self.assignedto, self.assignedaction, self.searchtext, self.searchfields)
 
