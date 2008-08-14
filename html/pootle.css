@@ -170,15 +170,55 @@ div.navbar
 	padding: 5px;
 	min-height: 1.8em;
 }
-div.searchform
-{
-	float: right;
-	max-width: 30%;
+
+div.searchform {
+  float: right;
+  max-width: 30%;
+  /* sets max-height for IE */
+  height: expression( this.scrollHeight > (500/12) * parseInt(document.body.currentStyle.fontSize) ? "1.8em" : "auto" );
+  max-height: 1.8em;
+  background-color:#E4E6E8;
+  padding: 3px;
+  border: 1px solid gray;
 }
-div.searchform[dir="rtl"]
-{
-	float: left;
+
+div.searchform[dir="rtl"] {
+  float: left;
 }
+
+div.advancedsearch {
+  background-color: #E4E6E8;
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  overflow: auto;
+  padding-bottom:3px;
+  padding-left: 3px;
+  padding-right: 8px;
+  position: relative;
+  z-index: 2;
+  display: none;
+}
+
+div.advancedsearch[dir="rtl"] {
+  position: relative;
+  padding-left: 8px;
+  padding-right: 3px;
+}
+
+div.nodefaultsearch {
+  background-color: #f1f3f5 !important;
+}
+
+label.inputHint {
+  display: none;
+}
+
+.togglesearch {
+  cursor: pointer;
+  vertical-align: middle;
+}
+
 div.goalitem 
 {
 	margin-bottom:6px;

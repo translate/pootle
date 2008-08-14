@@ -14,6 +14,8 @@
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
+  <script type="text/javascript" src="${baseurl}js/jquery/jquery.js"></script>
+  <script type="text/javascript" src="${baseurl}js/search.js"></script>
 </head>
 
 <body bgcolor="#FFFFFF">
@@ -27,8 +29,16 @@
       <!--! search form -->
       <div py:if="search" class="searchform" dir="$uidir" lang="$uilanguage">
         <form action="translate.html" method="post" name="searchform" id="searchform">
-          ${search.title}
-          <input type="text" size="15" name="searchtext" value="" />
+          <label class="inputHint" for="searchtext">${search.title}</label>
+          <input type="text" size="15" name="searchtext" id="searchtext" value="" />
+          <a class="advancedlink"><img src="${baseurl}images/bullet_arrow_down.png" title="${search.advanced_title}" class="togglesearch" /></a>
+          <div class="advancedsearch" dir="$uidir">
+          <span py:for="field in search.fields" py:strip="True">
+            <?python checkedflag = field.checked ?>
+            <input type="checkbox" name="${field.name}" id="${field.name}" value="1" py:attrs="checked=checkedflag" />
+            <label dir="$uidir" for="${field.name}" py:content="field.text"></label><br />
+          </span>
+          </div>
         </form>
       </div>
       <!--! Navigation bar -->

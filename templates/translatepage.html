@@ -14,6 +14,7 @@
   <![endif]-->
   <script src="${baseurl}js/jquery/jquery.js" type="text/javascript"></script>
   <script src="${baseurl}js/jquery/jquery.color.js" type="text/javascript"></script>
+  <script src="${baseurl}js/search.js" type="text/javascript"></script>
   <!-- Needed for JavaScript l10n -->
   <script type="text/javascript">
     var AJAX_ERROR = "${ajax_error}";
@@ -28,12 +29,20 @@
 
   <div id="content" dir="$uidir" lang="$uilanguage">
     <div class="navbar" py:for="item in navitems">
-      <!--! search form -->
-      <div py:if="search" class="searchform" dir="$uidir" lang="$uilanguage">
+      <!--! Search form -->
+      <div py:if="search" class="searchform ${search.extra_class}" dir="$uidir" lang="$uilanguage">
         <form action="translate.html" method="post" name="searchform" id="searchform">
-          ${search.title}
-          <input type="text" size="15" name="searchtext" value="${searchtext}" />
+          <label class="inputHint" for="searchtext">${search.title}</label>
+          <input type="text" size="15" name="searchtext" id="searchtext" value="${searchtext}" />
           <input type="hidden" name="pofilename" value="${pofilename}" />
+          <a class="advancedlink"><img src="${baseurl}images/bullet_arrow_down.png" title="${search.advanced_title}" class="togglesearch" /></a>
+          <div class="advancedsearch ${search.extra_class}" dir="$uidir">
+          <span py:for="field in search.fields" py:strip="True">
+            <?python checkedflag = field.checked ?>
+            <input type="checkbox" name="${field.name}" id="${field.name}" value="1" py:attrs="checked=checkedflag" />
+            <label dir="$uidir" for="${field.name}" py:content="field.text"></label><br />
+          </span>
+          </div>
         </form>
       </div>
       <!--! Navigation bar -->
