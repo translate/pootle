@@ -485,10 +485,10 @@ Pootle:
 
 # Luganda
 # Ganda
-    lg.fullname = u'Luganda'
-    lg.nplurals = '2'
-    lg.pluralequation = '(n != 1)'
-    lg.specialchars = "ŋŊ"
+#    lg.fullname = u'Luganda'
+#    lg.nplurals = '2'
+#    lg.pluralequation = '(n != 1)'
+#    lg.specialchars = "ŋŊÿŸ…"
 
 # Lietuvių
 # Lithuanian
@@ -538,6 +538,11 @@ Pootle:
 #    nah.fullname = u'Nahuatl'
 #    nah.nplurals = '2'
 #    nah.pluralequation ='(n != 1)'
+
+# Neapolitan
+    nap.fullname = u'Neapolitan'
+    nap.nplurals = '2'
+    nap.pluralequation ='(n != 1)'
 
 # Bokmål
 # Norwegian Bokmal
@@ -680,6 +685,11 @@ Pootle:
 #    ve.nplurals = '2'
 #    ve.pluralequation ='(n != 1)'
 #    ve.specialchars = "ḓṋḽṱ ḒṊḼṰ ṅṄ"
+
+# Urdu
+#    ur.fullname = u'Urdu'
+#    ur.nplurals = '2'
+#    ur.pluralequation ='(n != 1)'
 
 # Vietnamese
     vi.fullname = u'Vietnamese'
