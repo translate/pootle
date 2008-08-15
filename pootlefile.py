@@ -523,7 +523,7 @@ def make_class(base_class):
         foundid = False
         if uselocations:
           newlocations = newpo.getlocations()
-          mergedlocations = []
+          mergedlocations = set()
           for location in newlocations:
             if location in mergedlocations:
               continue
@@ -532,7 +532,7 @@ def make_class(base_class):
               if oldpo is not None:
                 foundid = True
                 matches.append((oldpo, newpo))
-                mergedlocations.append(location)
+                mergedlocations.add(location)
                 continue
         if not foundid:
           # We can't use the multistring, because it might contain more than two
@@ -544,7 +544,7 @@ def make_class(base_class):
           else:
             matches.append((None, newpo))
       # find items that have been removed
-      matcheditems = [oldpo for oldpo, newpo in matches if oldpo]
+      matcheditems = set(oldpo for oldpo, newpo in matches if oldpo)
       for oldpo in self.units:
         if not oldpo in matcheditems:
           matches.append((oldpo, None))
