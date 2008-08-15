@@ -555,28 +555,28 @@ def make_class(base_class):
           self.assigns = pootleassigns(self)
       return self.assigns
   
-    def mergeitem(self, oldpo, newpo, username, suggest=False):
+    def mergeitem(self, po_position, oldpo, newpo, username, suggest=False):
       """merges any changes from newpo into oldpo"""
       unchanged = oldpo.target == newpo.target
       if not suggest and (not oldpo.target or not newpo.target or oldpo.isheader() or newpo.isheader() or unchanged):
         oldpo.merge(newpo)
       else:
-        for item in self.statistics.getstats()["total"]:
-          matchpo = self.units[item]
-          if matchpo == oldpo:
-            strings = getattr(newpo.target, "strings", [newpo.target])
-            self.addsuggestion(item, strings, username)
-            return
-        raise KeyError("Could not find item for merge")
+        if oldpo in po_position:
+          strings = getattr(newpo.target, "strings", [newpo.target])
+          self.addsuggestion(po_position[oldpo], strings, username)
+        else:
+          raise KeyError("Could not find item for merge")
   
     def mergefile(self, newfile, username, allownewstrings=True, suggestions=False):
       """make sure each msgid is unique ; merge comments etc from duplicates into original"""
       self.makeindex()
+      translatables = (self.units[index] for index in self.statistics.getstats()["total"])
+      po_position = dict((unit, position) for position, unit in enumerate(translatables))
       matches = self.matchitems(newfile)
       for oldpo, newpo in matches:
         if suggestions:
           if oldpo and newpo:
-              self.mergeitem(oldpo, newpo, username, suggest=True)
+              self.mergeitem(po_position, oldpo, newpo, username, suggest=True)
           continue
   
         if oldpo is None:
@@ -589,7 +589,7 @@ def make_class(base_class):
           # TODO: mark the old one as obsolete
           pass
         else:
-          self.mergeitem(oldpo, newpo, username)
+          self.mergeitem(po_position, oldpo, newpo, username)
           # we invariably want to get the ids (source locations) from the newpo
           if hasattr(newpo, "sourcecomments"):
             oldpo.sourcecomments = newpo.sourcecomments

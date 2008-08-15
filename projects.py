@@ -541,6 +541,7 @@ class TranslationProject(object):
       newpofile.pofreshen()
       if not hasattr(newpofile, "sourceindex"):
         newpofile.makeindex()
+      po_position = dict((unit, position) for position, unit in enumerate(newpofile.units))
       newmatches = []
       # sorting through old matches
       for origpo, localpo in matches:
@@ -579,7 +580,7 @@ class TranslationProject(object):
           continue
         if localpo is None:
           continue
-        newpofile.mergeitem(newpo, localpo, "versionmerge")
+        newpofile.mergeitem(po_position, newpo, localpo, "versionmerge")
       # saving
       newpofile.savepofile()
       newpofile.reset_statistics()
