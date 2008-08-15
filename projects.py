@@ -676,35 +676,50 @@ class TranslationProject(object):
 
   def uploadarchive(self, session, dirname, archivecontents):
     """uploads the files inside the archive"""
-    # Bug #402
-    #try:
-    #  from tempfile import mktemp
-    #  tempzipfile = mkstemp()
-    #  using zip command line is fast
-    #  os.system("cd %s ; zip -r - %s > %s" % (self.podir, " ".join(pofilenames), tempzipfile))
-    #  return open(tempzipfile, "r").read()
-    #finally:
-    #  if os.path.exists(tempzipfile):
-    #    os.remove(tempzipfile)
 
-    # but if it doesn't work, we can do it from python
-    import zipfile
-    archivefile = cStringIO.StringIO(archivecontents)
-    archive = zipfile.ZipFile(archivefile, 'r')
-    # TODO: find a better way to return errors...
-    for filename in archive.namelist():
-      if not filename.endswith(os.extsep + self.fileext):
-        print "error adding %s: not a %s file" % (filename, os.extsep + self.fileext)
-        continue
-      contents = archive.read(filename)
-      subdirname, pofilename = os.path.dirname(filename), os.path.basename(filename)
-      try:
-        # TODO: use zipfile info to set the time and date of the file
-        self.uploadfile(session, os.path.join(dirname, subdirname), pofilename, contents)
-      except ValueError, e:
-        print "error adding %s" % filename, e
-        continue
-    archive.close()
+    # First we try to use "unzip" from the system, otherwise fall back to using
+    # the slower zipfile module (below)...
+    from tempfile import mkdtemp, mkstemp
+    tempdir = mkdtemp(prefix='pootle')
+    tempzipfd, tempzipname = mkstemp(prefix='pootle', suffix='.zip')
+
+    try:
+      os.write(tempzipfd, archivecontents)
+      os.close(tempzipfd)
+
+      os.execvp('unzip', (tempzipname, '-d', tempdir))
+
+      def upload(basedir, path, files):
+        for fname in files:
+          if not os.path.isfile(os.path.join(path, fname)):
+            continue
+          if not fname.endswith(os.extsep + self.fileext):
+            print "error adding %s: not a %s file" % (fname, os.extsep + self.fileext)
+            continue
+          fcontents = open(os.path.join(path, fname), 'rb').read()
+          self.uploadfile(session, path[len(basedir)+1:], fname, fcontents)
+      os.path.walk(tempdir, upload, tempdir)
+    except OSError:
+      import zipfile
+      archive = zipfile.ZipFile(cStringIO.StringIO(archivecontents), 'r')
+      # TODO: find a better way to return errors...
+      for filename in archive.namelist():
+        if not filename.endswith(os.extsep + self.fileext):
+          print "error adding %s: not a %s file" % (filename, os.extsep + self.fileext)
+          continue
+        contents = archive.read(filename)
+        subdirname, pofilename = os.path.dirname(filename), os.path.basename(filename)
+        try:
+          # TODO: use zipfile info to set the time and date of the file
+          self.uploadfile(session, os.path.join(dirname, subdirname), pofilename, contents)
+        except ValueError, e:
+          print "error adding %s" % filename, e
+          continue
+      archive.close()
+    finally:
+      # Clean up temporary file and directory used in try-block
+      os.unlink(tempzipname)
+      shutil.rmtree(tempdir)
 
   def ootemplate(self):
     """Tests whether this project has an OpenOffice.org template SDF file in
