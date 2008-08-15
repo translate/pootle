@@ -687,7 +687,8 @@ class TranslationProject(object):
       os.write(tempzipfd, archivecontents)
       os.close(tempzipfd)
 
-      os.execvp('unzip', (tempzipname, '-d', tempdir))
+      import subprocess
+      subprocess.Popen('unzip "%s" -d "%s"' % (tempzipname, tempdir), shell=True)
 
       def upload(basedir, path, files):
         for fname in files:
@@ -699,7 +700,7 @@ class TranslationProject(object):
           fcontents = open(os.path.join(path, fname), 'rb').read()
           self.uploadfile(session, path[len(basedir)+1:], fname, fcontents)
       os.path.walk(tempdir, upload, tempdir)
-    except OSError:
+    except Exception:
       import zipfile
       archive = zipfile.ZipFile(cStringIO.StringIO(archivecontents), 'r')
       # TODO: find a better way to return errors...
@@ -718,6 +719,7 @@ class TranslationProject(object):
       archive.close()
     finally:
       # Clean up temporary file and directory used in try-block
+      import shutil
       os.unlink(tempzipname)
       shutil.rmtree(tempdir)
 
