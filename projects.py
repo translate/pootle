@@ -659,28 +659,29 @@ class TranslationProject(object):
           fcontents = open(os.path.join(path, fname), 'rb').read()
           self.uploadfile(session, path[len(basedir)+1:], fname, fcontents)
       os.path.walk(tempdir, upload, tempdir)
-    except Exception:
-      import zipfile
-      archive = zipfile.ZipFile(cStringIO.StringIO(archivecontents), 'r')
-      # TODO: find a better way to return errors...
-      for filename in archive.namelist():
-        if not filename.endswith(os.extsep + self.fileext):
-          print "error adding %s: not a %s file" % (filename, os.extsep + self.fileext)
-          continue
-        contents = archive.read(filename)
-        subdirname, pofilename = os.path.dirname(filename), os.path.basename(filename)
-        try:
-          # TODO: use zipfile info to set the time and date of the file
-          self.uploadfile(session, os.path.join(dirname, subdirname), pofilename, contents)
-        except ValueError, e:
-          print "error adding %s" % filename, e
-          continue
-      archive.close()
+      return
     finally:
       # Clean up temporary file and directory used in try-block
       import shutil
       os.unlink(tempzipname)
       shutil.rmtree(tempdir)
+
+    import zipfile
+    archive = zipfile.ZipFile(cStringIO.StringIO(archivecontents), 'r')
+    # TODO: find a better way to return errors...
+    for filename in archive.namelist():
+      if not filename.endswith(os.extsep + self.fileext):
+        print "error adding %s: not a %s file" % (filename, os.extsep + self.fileext)
+        continue
+      contents = archive.read(filename)
+      subdirname, pofilename = os.path.dirname(filename), os.path.basename(filename)
+      try:
+        # TODO: use zipfile info to set the time and date of the file
+        self.uploadfile(session, os.path.join(dirname, subdirname), pofilename, contents)
+      except ValueError, e:
+        print "error adding %s" % filename, e
+        continue
+    archive.close()
 
   def ootemplate(self):
     """Tests whether this project has an OpenOffice.org template SDF file in
