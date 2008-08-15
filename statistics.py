@@ -46,7 +46,7 @@ class pootlestatistics:
     try:
       return self.statscache.filestats(self.basefile.filename, checker)
     except:
-      return statsdb.emptystats()
+      return statsdb.emptyfilestats()
 
   @memoize
   def getunitstats(self):
