@@ -533,54 +533,12 @@ class TranslationProject(object):
       originfile = cStringIO.StringIO(origcontents)
       origpofile.parse(originfile)
       # matching current file with BASE version
-      matches = origpofile.matchitems(currentpofile, uselocations=False)
       # TODO: add some locking here...
       # reading new version of file
       versioncontrol.updatefile(pathname)
       newpofile = pootlefile.pootlefile(self, popath)
       newpofile.pofreshen()
-      if not hasattr(newpofile, "sourceindex"):
-        newpofile.makeindex()
-      po_position = dict((unit, position) for position, unit in enumerate(newpofile.units))
-      newmatches = []
-      # sorting through old matches
-      for origpo, localpo in matches:
-        # we need to find the corresponding newpo to see what to merge
-        if localpo is None:
-          continue
-        if origpo is None:
-          # if it wasn't in the original, then use the addition for searching
-          origpo = localpo
-        else:
-          origmsgstr = origpo.target
-          localmsgstr = localpo.target
-          if origmsgstr == localmsgstr:
-            continue
-
-        foundsource = False
-        # First try to find a match on location
-        for location in origpo.getlocations():
-          if location in newpofile.locationindex:
-            newpo = newpofile.locationindex[location]
-            if newpo is not None and newpo.source == localpo.source:
-              foundsource = True
-              newmatches.append((newpo, localpo))
-              continue
-        if not foundsource:
-          source = origpo.source
-          if source in newpofile.sourceindex:
-            newpo = newpofile.sourceindex[source]
-            newmatches.append((newpo, localpo))
-          else:
-            newmatches.append((None, localpo))
-      # finding new matches
-      for newpo, localpo in newmatches:
-        if newpo is None:
-          # TODO: include localpo as obsolete
-          continue
-        if localpo is None:
-          continue
-        newpofile.mergeitem(po_position, newpo, localpo, "versionmerge")
+      newpofile.mergefile(currentpofile, "versionmerge")      
       # saving
       newpofile.savepofile()
       newpofile.reset_statistics()
