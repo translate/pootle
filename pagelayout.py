@@ -288,3 +288,36 @@ class PootleNavPage(PootlePage):
 
     return gotten
 
+  def getsearchfields(self):
+    tmpfields = [{"name": "source",
+                  "text": self.localize("Source Text"),
+                  "value": self.argdict.get("source", 0),
+                  "checked": self.argdict.get("source", 0) == "1" and "checked" or None},
+                 {"name": "target",
+                  "text": self.localize("Target Text"),
+                  "value": self.argdict.get("target", 0),
+                  "checked": self.argdict.get("target", 0) == "1" and "checked" or None},
+                 {"name": "notes",
+                  "text": self.localize("Comments"),
+                  "value": self.argdict.get("notes", 0),
+                  "checked": self.argdict.get("notes", 0) == "1" and "checked" or None},
+                 {"name": "locations",
+                  "text": self.localize("Locations"),
+                  "value": self.argdict.get("locations", 0),
+                  "checked": self.argdict.get("locations", 0) == "1" and "checked" or None}]
+
+    selection = [bool(field["checked"]) for field in tmpfields]
+    if selection == [True, True, False, False]:
+      # use only the default css class for the search form
+      self.extra_class = False
+    elif selection == [False, False, False, False]:
+      # no search field selected - we use the default instead
+      tmpfields[0]["checked"] = "checked"
+      tmpfields[1]["checked"] = "checked"
+      self.extra_class = False
+    else:
+      # add an extra css class to the search form
+      self.extra_class = True
+
+    return tmpfields
+

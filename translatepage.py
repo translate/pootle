@@ -64,7 +64,6 @@ class TranslatePage(pagelayout.PootleNavPage):
       self.showassigns = int(self.showassigns)
     self.session = session
     self.localize = session.localize
-    self.searchfields = self.getsearchfields()
     self.rights = self.project.getrights(self.session)
     self.instance = session.instance
     self.lastitem = None
@@ -145,7 +144,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         # l10n: text next to search field
         "search": {"title": self.localize("Search"),
                    "advanced_title": self.localize("Advanced Search"),
-                   "fields": self.searchfields},
+                   "fields": self.getsearchfields()},
         # hidden widgets
         "searchtext": self.searchtext,
         "pofilename": givenpofilename,
@@ -387,7 +386,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     if item is None:
       try:
         # Retrieve the search fields we want to search for
-        fields = [f["name"] for f in self.searchfields if f["value"] == "1"]
+        fields = [f["name"] for f in self.getsearchfields() if f["value"] == "1"]
         search = pootlefile.Search(dirfilter=self.dirfilter, matchnames=self.matchnames, searchtext=self.searchtext, searchfields=fields)
         # TODO: find a nicer way to let people search stuff assigned to them (does it by default now)
         # search.assignedto = self.argdict.get("assignedto", self.session.username)
@@ -893,40 +892,3 @@ class TranslatePage(pagelayout.PootleNavPage):
         altsrcdict["available"] = True
     return altsrcdict
 
-  def getsearchfields(self):
-    tmpfields = [{"name": "source",
-                  "text": self.localize("Source Text"),
-                  "value": self.argdict.get("source", 0),
-                  "checked": self.argdict.get("source", 0) == "1" and "checked" or None},
-                 {"name": "target",
-                  "text": self.localize("Target Text"),
-                  "value": self.argdict.get("target", 0),
-                  "checked": self.argdict.get("target", 0) == "1" and "checked" or None},
-                 {"name": "notes",
-                  "text": self.localize("Comments"),
-                  "value": self.argdict.get("notes", 0),
-                  "checked": self.argdict.get("notes", 0) == "1" and "checked" or None},
-                 {"name": "locations",
-                  "text": self.localize("Locations"),
-                  "value": self.argdict.get("locations", 0),
-                  "checked": self.argdict.get("locations", 0) == "1" and "checked" or None}]
-
-    somechecked = False
-    self.extra_class = False
-    for i, v in enumerate(tmpfields):
-      if not somechecked:
-        if tmpfields[i-1]["checked"] is not None:
-          somechecked = True
-      if (i - 1 == 0) or (i - 1 == 1):
-        if tmpfields[i-1]["checked"] is None:
-          self.extra_class = True
-      else:
-        if tmpfields[i-1]["checked"] is not None:
-          self.extra_class = True
-    if not somechecked:
-      # set the default search to "source" and "target"
-      tmpfields[0]["checked"] = "checked"
-      tmpfields[1]["checked"] = "checked"
-      self.extra_class = False
-
-    return tmpfields
