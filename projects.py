@@ -847,7 +847,7 @@ class TranslationProject(object):
           doc["source"] = orig
           doc["target"] = trans
           doc["notes"] = unit.getnotes()
-          doc["locations"] = "\n".join(unit.getlocations())
+          doc["locations"] = unit.getlocations()
           addlist.append(doc)
         if addlist:
           index.begin_transaction()
