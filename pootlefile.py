@@ -662,7 +662,9 @@ def pootlefile(project=None, pofilename=None):
 
 class Search:
   """an object containing all the searching information"""
-  def __init__(self, dirfilter=None, matchnames=[], assignedto=None, assignedaction=None, searchtext=None, searchfields=["source", "target"]):
+  def __init__(self, dirfilter=None, matchnames=[], assignedto=None, assignedaction=None, searchtext=None, searchfields=None):
+    if searchfields is None:
+      searchfields = ["source", "target"]
     self.dirfilter = dirfilter
     self.matchnames = matchnames
     self.assignedto = assignedto
