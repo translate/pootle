@@ -899,7 +899,7 @@ class TranslationProject(object):
     searchparts = []
     if search.searchtext:
       # Generate a list for the query based on the selected fields
-      querylist = [("%s" % f, search.searchtext) for f in search.searchfields]
+      querylist = [(f, search.searchtext) for f in search.searchfields]
       textquery = index.make_query(querylist, False)
       searchparts.append(textquery)
     if search.dirfilter:
