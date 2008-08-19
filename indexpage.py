@@ -352,14 +352,12 @@ class ProjectIndex(pagelayout.PootleNavPage):
       mainicon = "file"
     else:
       pofilenames = self.project.browsefiles(dirfilter)
-      projecttotals = self.project.getquickstats(pofilenames)
       projectstats = lazy_stats(self.project, pofilenames)
       if self.editing:
         actionlinks = self.getactionlinks("", projectstats, ["editing", "mine", "review", "check", "assign", "goal", "quick", "all", "zip", "sdf"], dirfilter)
       else:
         actionlinks = self.getactionlinks("", projectstats, ["editing", "goal", "zip", "sdf"])
       mainstats = self.getitemstats("", pofilenames, len(pofilenames))
-      mainstats["summary"] = self.describestats(self.project, projecttotals, len(pofilenames))
     if self.showgoals:
       childitems = self.getgoalitems(dirfilter)
     else:
@@ -943,7 +941,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
 
   def getitemstats(self, basename, pofilenames, numfiles, url_opts={}):
     """returns a widget summarizing item statistics"""
-    stats = {"checks": [], "tracks": [], "assigns": []}
+    stats = {"summary": self.describestats(self.project, self.project.getquickstats(pofilenames), numfiles), "checks": [], "tracks": [], "assigns": []}
     if not basename or basename.endswith("/"):
       linkbase = basename + "translate.html?"
     else:
