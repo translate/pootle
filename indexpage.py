@@ -240,7 +240,6 @@ class LanguageIndex(pagelayout.PootleNavPage):
     projectname = self.potree.getprojectname(projectcode)
     projectdescription = shortdescription(self.potree.getprojectdescription(projectcode))
     project = self.potree.getproject(self.languagecode, projectcode)
-    pofilenames = project.browsefiles()
     projectstats = project.getquickstats()
     projectdata = self.getstats(project, projectstats)
     self.updatepagestats(projectdata["translatedsourcewords"], projectdata["totalsourcewords"])
@@ -415,9 +414,9 @@ class ProjectIndex(pagelayout.PootleNavPage):
       uploadfile = self.argdict.pop("uploadfile", None)
       # multiple translation file extensions check
       if filter(uploadfile.filename.endswith, extensiontypes):
-       transfiles = True
+        transfiles = True
       else:
-       transfiles = False
+        transfiles = False
       if not uploadfile.filename:
         raise ValueError(self.localize("Cannot upload file, no file attached"))
       if transfiles:
