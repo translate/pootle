@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2004-2006 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -47,7 +47,7 @@ try:
   from xml.etree import ElementTree
 except ImportError:
   from elementtree import ElementTree
-# We don't need kid in this file, but this will show quickly if it is not 
+# We don't need kid in this file, but this will show quickly if it is not
 # installed. jToolkit won't complain, so we have to stop here if we don't have kid
 import kid
 import sys
@@ -127,7 +127,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
         session.setlanguage(None)
         return
     session.setlanguage(None)
-        
+
   def inittranslation(self, localedir=None, localedomains=None, defaultlanguage=None):
     """initializes live translations using the Pootle PO files"""
     self.localedomains = ['jToolkit', 'pootle']
@@ -532,6 +532,57 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
           return indexpage.ProjectIndex(project, session, argdict, os.path.join(*pathwords))
     return None
 
+  # I implemented buildpage and sendpage here so that jToolkit's template system could
+  # be circumvented. This code originally comes from jToolkit and is still close to
+  # the original code.
+
+  def buildpage(self, filename, context, loadurl=None, localize=None, innerid=None):
+    """build a response for the template with the vars in context"""
+    context = templateserver.attribify(context)
+    t = kid.Template(filename, **context)
+    try:
+      return t.serialize(output="xhtml")
+    except Exception, e:
+      tb = sys.exc_info()[2]
+      tb_point = tb
+      while tb_point.tb_next:
+          tb_point = tb_point.tb_next
+      ancestors = tb_point.tb_frame.f_locals.get("ancestors", [])
+      xml_traceback = []
+      for ancestor in ancestors:
+          if ancestor is None: continue
+          try:
+            ancestor_str = str(ancestor)
+            #ancestor_str = kid.et.tostring(ancestor)
+          except Exception, e:
+            ancestor_str = "(could not convert %s: %s)" % (str(ancestor), str(e))
+          xml_traceback.append(ancestor_str)
+      context_str = pprint.pformat(context)
+      xml_traceback_str = "  " + "\n  ".join(xml_traceback)
+      self.errorhandler.logerror("Error converting template: %s\nContext\n%s\nXML Ancestors:\n%s\n%s\n" % (e, context_str, xml_traceback_str, self.errorhandler.traceback_str()))
+      if self.webserver.options.debug:
+        import pdb
+        pdb.post_mortem(tb)
+      raise
+
+  def sendpage(self, req, thepage):
+    """bridge to widget code to allow templating to gradually replace it"""
+    if kid is not None and hasattr(thepage, "templatename") and hasattr(thepage, "templatevars"):
+      # renders using templates rather than the underlying widget class
+      kid.enable_import()
+      #template = kid.Template(os.path.join(self.templatedir, thepage.templatename + ".html")) #self.gettemplate(thepage.templatename)
+      loadurl = getattr(thepage, "loadurl", None)
+      if loadurl is None:
+        loadurl = getattr(self, "loadurl", None)
+      pagestring = self.buildpage(os.path.join(self.templatedir, thepage.templatename + ".html"), thepage.templatevars, loadurl, req.session.localize)
+      builtpage = widgets.PlainContents(pagestring)
+      # make sure certain attributes are retained on the built page
+      for copyattr in ('content_type', 'logresponse', 'sendfile_path', 'allowcaching', 'etag'):
+        if hasattr(thepage, copyattr):
+          setattr(builtpage, copyattr, getattr(thepage, copyattr))
+      thepage = builtpage
+    return super(PootleServer, self).sendpage(req, thepage)
+
 class PootleOptionParser(simplewebserver.WebOptionParser):
   def __init__(self):
     versionstring = "%%prog %s\njToolkit %s\nTranslate Toolkit %s\nKid %s\nElementTree %s\nPython %s (on %s/%s)" % (pootleversion.ver, jtoolkitversion.ver, toolkitversion.ver, kid.__version__, ElementTree.VERSION, sys.version, sys.platform, os.name)
@@ -594,7 +645,7 @@ def profile_runner(server, options):
       profiler.runcall(simplewebserver.run, server, options)
     finally:
       write_cache_grind(profiler, file)
-  
+
   try:
     profile_file = open(options.profile, "w+")
     do_profile_run(profile_file)
@@ -613,7 +664,7 @@ def set_stats_db(server, options):
       return options.statsdb_file
     else:
       return getattr(server.instance, 'stats_db', None)
-  
+
   statistics.STATS_DB_FILE = get_stats()
 
 def main():
@@ -630,7 +681,7 @@ def main():
   server.options = options
   if options.action == "runwebserver":
     run = get_runner(options)
-    run(server, options)  
+    run(server, options)
   elif options.action == "refreshstats":
     server.refreshstats(args)
 

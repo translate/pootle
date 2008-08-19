@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?python
+from Pootle.templates import pootlepage, navbar
+?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns:over="http://dev.sjsoft.com/ns/overlay" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
@@ -25,7 +28,7 @@
 <body bgcolor="#FFFFFF">
   <div id="working" style="display: none;">${ajax_status_text}</div>
   <div id="abovefooter">
-  <div id="banner" over:include="pootlepage#banner" />
+  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
 
   <div id="content" dir="$uidir" lang="$uilanguage">
     <div class="navbar" py:for="item in navitems">
@@ -46,17 +49,15 @@
         </form>
       </div>
       <!--! Navigation bar -->
-      <div over:include="navbar#item">
-        <h3 over:replace="itemtitle" class="title">
-          <span py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</span>
-          <span py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</span>
-          <span py:strip="True" py:for="pathlink in item.path.pathlinks">
-            <a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
-          </span>
-        </h3>
-      </div>
-
-      <div over:include="navbar#itemstats"/>
+      <h3 py:def="itemtitle(item)" id="itemtitle" class="title">
+        <span py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</span>
+        <span py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</span>
+        <span py:strip="True" py:for="pathlink in item.path.pathlinks">
+          <a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
+        </span>
+      </h3>
+      <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, itemtitle(item))" class="contentsitem"/>
+      <div py:replace="navbar.itemstats(item)"/>
 
       <div class="item-statistics" py:if="pagelinks">
         <span py:strip="True" py:for="pagelink in pagelinks">
@@ -182,7 +183,7 @@
                       <input py:if="'skip' in buttons.desired" type="submit" name="skip${buttons.item}" accesskey="k" value="${buttons.skip}"/>
                       <input type="button" py:if="'copy' in buttons.desired" accesskey="c"
                         onclick="copyorigtranslation('${buttons.item}'); return false"
-                        value="${buttons.copy_text}" /> 
+                        value="${buttons.copy_text}" />
                       <input py:if="'suggest' in buttons.desired" type="submit" name="submitsuggest${buttons.item}" accesskey="e" value="${buttons.suggest}"/>
                       <input py:if="'translate' in buttons.desired" type="submit" name="submit${buttons.item}" accesskey="s" value="${buttons.submit}"/>
                     </div>
@@ -272,7 +273,8 @@
   </div>
 
   </div>
-  <div id="links" over:include="pootlepage#links">
+
+  <div py:def="show_assigns()">
     <div py:if="defined('assigns')" class="sidetitle" py:content="assigns.title">Assign Strings</div>
     <form py:if="defined('assigns')" action="?index=1" name="assignform">
       <select name="assignto" title="${assigns.user_title}">
@@ -281,11 +283,11 @@
       <input name="action" value="translate" title="${assigns.action_title}"/>
       <input name="doassign" type="submit" value="${assigns.submit_text}"/>
     </form>
-
     <div class="side" py:if="defined('checking_text')" py:content="checking_text">
       checking has-suggestion, etc
     </div>
   </div>
-  <div id="about" over:include="pootlepage#about"/>
+  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl, show_assigns())"/>
+  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
 </body>
 </html>

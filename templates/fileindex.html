@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?python
+from Pootle.templates import pootlepage, navbar
+?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns:over="http://dev.sjsoft.com/ns/overlay" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
@@ -20,7 +23,7 @@
 
 <body bgcolor="#FFFFFF">
   <div id="abovefooter">
-  <div id="banner" over:include="pootlepage#banner"/>
+  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
 
   <div id="content" dir="$uidir" lang="$uilanguage">
     <div class="intro" py:if="message" py:content="message">Message</div>
@@ -42,22 +45,22 @@
         </form>
       </div>
       <!--! Navigation bar -->
-      <div over:include="navbar#item">
-        <h3 over:replace="itemtitle" class="title">
-          <span py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</span>
-          <span py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</span>
-          <span py:strip="True" py:for="pathlink in item.path.pathlinks">
-            <a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
-          </span>
+      <h3 py:def="itemtitle(item)" id="itemtitle" class="title">
+        <a href="${item.href}">${item.title}</a>
+        <span py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</span>
+        <span py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</span>
+        <span py:strip="True" py:for="pathlink in item.path.pathlinks">
+          <a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
           <i py:if="item.path.goal"><a href="${item.path.goal.href}">${item.path.goal.text}</a></i>
-        </h3>
-      </div>
-      <div over:include="navbar#itemstats"/>
+        </span>
+      </h3>
+      <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, itemtitle(item))" class="contentsitem"/>
+      <div py:replace="navbar.itemstats(item)"/>
     </div>
 
     <!--! The statistics view -->
     <div py:if="not editing and children">
-      <br clear="all" />     
+      <br clear="all" />
       <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
         <thead>
           <tr>
@@ -75,7 +78,7 @@
         <tbody class="stats">
           <div py:for="item in children" py:strip="True">
             <tr  class="item item-${item.parity}">
-              <div over:include="navbar#itemdata"/>
+              <div py:replace="navbar.itemdata(item, uidir, uilanguage, baseurl)"/>
             </tr>
           </div>
         </tbody>
@@ -83,38 +86,40 @@
     </div>
 
     <!--! The editing view -->
-    <div py:if="editing" py:for="item in children" py:strip="True">
-      <div py:if="'isgoal' in item" class="goalitem">
-        <div over:include="navbar#item">
-          <div py:if="item.goal.users or item.goal.show_adduser">
+    <div py:def="show_goals(item)">
+        <div py:if="item.goal.users or item.goal.show_adduser">
             <img src="${baseurl}images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
             <span py:for="user in item.goal.users" py:strip="True">${user.name}${user.sep}</span>
             <form py:if="item.goal.show_adduser" action="" method="post" name="goaluserform">
-              <input type="hidden" name="editgoalname" value="${item.goal.name}"/>
-              <select name="newgoaluser">
-                <option py:for="user in item.goal.otherusers" value="${user}" py:content="item.goal.otherusers[user].description">Username</option>
-              </select>
-              <input type="submit" name="doeditgoalusers" value="${item.goal.adduser_title}"/>
+                <input type="hidden" name="editgoalname" value="${item.goal.name}"/>
+                <select name="newgoaluser">
+                    <option py:for="user in item.goal.otherusers" value="${user}" py:content="item.goal.otherusers[user].description">Username</option>
+                </select>
+                <input type="submit" name="doeditgoalusers" value="${item.goal.adduser_title}"/>
             </form>
-          </div>
         </div>
-        <div over:include="navbar#itemstats"/>
+    </div>
+
+    <div py:if="editing" py:for="item in children" py:strip="True">
+      <div py:if="'isgoal' in item" class="goalitem">
+        <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, show_goals(item))"/>
+        <div py:replace="navbar.itemstats(item)"/>
       </div>
 
       <div py:if="'isdir' in item" class="item item-${item.parity}">
-        <div over:include="navbar#item"/>
-        <div over:include="navbar#itemstats"/>
+        <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl)"/>
+        <div py:replace="navbar.itemstats(item)"/>
       </div>
 
       <div py:if="'isfile' in item" class="item item-${item.parity}">
-        <div over:include="navbar#item"/>
-        <div over:include="navbar#itemstats"/>
+        <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl)"/>
+        <div py:replace="navbar.itemstats(item)"/>
       </div>
     </div>
   </div>
 
   </div>
-  <div id="links" over:include="pootlepage#links">
+  <div py:def="extra_links()">
     <div class="sidetitle" py:if="assign" py:content="assign.title">
       Assign Strings
     </div>
@@ -150,8 +155,9 @@
       </div>
       <input type="submit" name="doupload" value="${upload.upload_button}" />
     </form>
-
   </div>
-  <div id="about" over:include="pootlepage#about"/>
+
+  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl, extra_links())"/>
+  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
 </body>
 </html>

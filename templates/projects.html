@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?python
+from Pootle.templates import pootlepage
+?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns:over="http://dev.sjsoft.com/ns/overlay" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
@@ -15,7 +18,7 @@
 
 <body bgcolor="#FFFFFF">
   <div id="abovefooter">
-  <div id="banner" over:include="pootlepage#banner"/>
+  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
 
   <div id="content" dir="$uidir" lang="$uilanguage">
     <div class="contents">
@@ -30,7 +33,7 @@
   </div>
 
   </div>
-  <div id="links" over:include="pootlepage#links"/>
-  <div id="about" over:include="pootlepage#about"/>
+  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
+  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
 </body>
 </html>

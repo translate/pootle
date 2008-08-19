@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?python
+from Pootle.templates import pootlepage, navbar
+?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns:over="http://dev.sjsoft.com/ns/overlay" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
@@ -18,7 +21,7 @@
 
 <body bgcolor="#FFFFFF">
   <div id="abovefooter">
-  <div id="banner" over:include="pootlepage#banner"/>
+  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
 
   <div id="content" py:if="not session.issiteadmin">
     <div class="intro" py:content="norights_text">
@@ -29,7 +32,7 @@
   <div id="content" py:if="session.issiteadmin" dir="$uidir" lang="$uilanguage">
     <h3 class="title"><a href="index.html" py:content="main_link">Back to main page</a></h3>
 
-    <br clear="all" />     
+    <br clear="all" />
     <form action="" method="post" name="updatelangform">
         <h3 class="title" py:content="existing_title">Existing languages</h3>
         <table class="sortable" id="existing_languages">
@@ -40,7 +43,7 @@
                   </tr>
           </thead>
           <tr py:for="l in existing_languages" class="item item-${l.parity}">
-            
+
               <td><a href="../../${l.code}/${project.code}/admin.html" py:content="l.name">Language</a></td>
               <td><span py:content="l.code">code</span></td>
               <td><input type="checkbox" name="updatelanguage" value="${l.code}"/></td>
@@ -59,7 +62,7 @@
   </div>
 
   </div>
-  <div id="links" over:include="pootlepage#links"/>
-  <div id="about" over:include="pootlepage#about"/>
+  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
+  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
 </body>
 </html>
