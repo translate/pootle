@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-08-17 11:19+0200\n"
-"Last-Translator: Rudhuwan Abu Bakar <rudhuwan@gmail.com>\n"
+"PO-Revision-Date: 2008-04-16 10:13+0000\n"
+"Last-Translator: amran abdullah <am@uum.edu.my>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -562,7 +562,7 @@ msgstr "Ini adalah projek GNU ( satu direktori, nama fail bagi setiap bahasa)."
 
 #: adminpages.py:359
 msgid "This is a standard style project (one directory per language)."
-msgstr ""
+msgstr "Ini adalah projek standard (satu direktori bagi setiap bahasa)"
 
 #: adminpages.py:360
 #, fuzzy
@@ -608,7 +608,7 @@ msgstr "Akaun Saya"
 
 #: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: pagelayout.py:41
 msgid "Docs & help"
@@ -636,21 +636,21 @@ msgstr "Aktifkan"
 #: pagelayout.py:80
 #, fuzzy
 msgid "Pootle Logo"
-msgstr "Pootle"
+msgstr "Logo Pootle"
 
 #: pagelayout.py:81
 #, fuzzy
 msgid "WordForge Translation Project"
-msgstr "<b>Terjemahan Semasa:</b>"
+msgstr "Projek Terjemahan WordForge"
 
 #: pagelayout.py:83
 #, fuzzy
 msgid "About this Pootle server"
-msgstr "Mengenai Pootle "
+msgstr "Mengenai server Pootle "
 
 #: pagelayout.py:157
 msgid "All goals"
-msgstr ""
+msgstr "semua matlamat"
 
 #: pagelayout.py:228
 #, python-format
@@ -688,9 +688,8 @@ msgid "Translated percentage"
 msgstr "Peratus diterjemah"
 
 #: pagelayout.py:242
-#, fuzzy
 msgid "Translated words"
-msgstr "Terjemah Semua"
+msgstr "Perkataan diterjemah "
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
@@ -707,12 +706,11 @@ msgstr "Belum diterjemah"
 #: pagelayout.py:247
 #, fuzzy
 msgid "Untranslated percentage"
-msgstr "Lihat Belum Diterjemah"
+msgstr "Peratus Belum Diterjemah"
 
 #: pagelayout.py:248
-#, fuzzy
 msgid "Untranslated words"
-msgstr "Lihat Belum Diterjemah"
+msgstr "Perkataan Belum Diterjemah"
 
 #: pagelayout.py:249
 msgid "Total"
@@ -787,9 +785,8 @@ msgid "Your desired password"
 msgstr "Kata laluan yang diingini"
 
 #: users.py:110 users.py:164
-#, fuzzy
 msgid "Confirm password"
-msgstr "Kata laluan yang diingini"
+msgstr "muktamadkan kata laluan"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
@@ -825,9 +822,8 @@ msgid "Options for: %s"
 msgstr "Pilihan untuk: %s"
 
 #: users.py:156
-#, fuzzy
 msgid "Personal Details"
-msgstr "Perincian Anda"
+msgstr "Maklumat peribadi"
 
 #: users.py:161
 msgid "Email"
@@ -839,9 +835,8 @@ msgid "Translation Interface Configuration"
 msgstr "Konfigurasi Antaramuka Terjemahan"
 
 #: users.py:166
-#, fuzzy
 msgid "User Interface language"
-msgstr "Antaramuka Bahasa pengguna"
+msgstr "Bahasa Antaramuka pengguna"
 
 #: users.py:167
 msgid "My Projects"
@@ -856,34 +851,39 @@ msgid "Home page"
 msgstr "Halaman utama"
 
 #: users.py:207
+#, fuzzy
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "Ketinggian input (dalam baris)"
 
 #: users.py:208
+#, fuzzy
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "bilangan baris dalam mod view"
 
 #: users.py:209
+#, fuzzy
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "bilangan baris dalam mod translate"
 
 #: users.py:251
 msgid "Error"
-msgstr ""
+msgstr "ralat"
 
 #: users.py:303
+#, fuzzy
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "untuk mengubah pengguna anda mestilah siteadmin"
 
 #: users.py:367
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
-msgstr ""
+msgstr "nama pengguna mestilah alpanumerik, dan mesti bermula dengan huruf"
 
 #: users.py:382
+#, fuzzy
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
+msgstr "anda (atau pengguna lain) cuba mendaftar dengan mengguna username anda"
 
 #: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
@@ -892,19 +892,21 @@ msgstr ""
 #: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr ""
+msgstr "sebarang masalah berkaitan pendaftaran, sila hubungi %s.\n"
 
 #: users.py:387
+#, fuzzy
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "sebaran masalah berkaitan pendaftaran, sila hubungi site administrator.\n"
 
 #: users.py:388
+#, fuzzy
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
+msgstr "username sudah wujud. Emel akan dihantar ke alamat email yang didaftarkan.\n"
 
 #: users.py:390
 #, python-format
@@ -913,7 +915,7 @@ msgstr ""
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "Akaun Pootle telah dicipta menggunakan emel ini.\n"
 
 #: users.py:398
 msgid "To activate your account, follow this link:\n"

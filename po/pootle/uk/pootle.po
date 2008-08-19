@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-12-01 12:50+0100\n"
+"PO-Revision-Date: 2008-04-03 12:16+0000\n"
 "Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -63,7 +63,7 @@ msgstr "Передати"
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr "Ви не можете видалити користувачів \"nobody\" та \"default"
+msgstr "Ви не можете вилучити користувачів \"nobody\" та \"default"
 
 #: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
@@ -411,13 +411,13 @@ msgstr "(рівняння форм множини)"
 
 #: adminpages.py:95
 msgid "Remove Language"
-msgstr "Видалити мову"
+msgstr "Вилучити мову"
 
 #. l10n: The parameter is a languagecode, projectcode or username
 #: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
 #, python-format
 msgid "Remove %s"
-msgstr "Видалити %s"
+msgstr "Вилучити %s"
 
 #: adminpages.py:129
 msgid "Standard"
@@ -453,7 +453,7 @@ msgstr "Утворити MO-файли"
 
 #: adminpages.py:154
 msgid "Remove Project"
-msgstr "Видалити проект"
+msgstr "Вилучити проект"
 
 #: adminpages.py:212 users.py:66
 msgid "Login"
@@ -489,7 +489,7 @@ msgstr "Активувати нового користувача"
 
 #: adminpages.py:218
 msgid "Remove User"
-msgstr "Видалити користувача"
+msgstr "Вилучити користувача"
 
 #: adminpages.py:272
 msgid "Back to main page"
@@ -565,7 +565,7 @@ msgstr "Права"
 
 #: adminpages.py:364 indexpage.py:998
 msgid "Remove"
-msgstr "Видалити"
+msgstr "Вилучити"
 
 #: adminpages.py:391
 msgid "Update Rights"

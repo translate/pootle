@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-05-04 21:14+0200\n"
-"Last-Translator: Igor Miletic <grejigl-gnomeprevod@yahoo.ca>\n"
+"PO-Revision-Date: 2008-03-28 01:18+0000\n"
+"Last-Translator: Филип Милетић <filmil@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -234,7 +234,7 @@ msgstr "Нема ставких са које подударају претра�
 
 #: translatepage.py:370
 msgid "You have finished going through the items you selected"
-msgstr "Звршилисте пролаз кроз све ставке које сте изабрали"
+msgstr "Завршили сте пролаз кроз све изабране ставке"
 
 #: translatepage.py:578
 msgid "Singular"

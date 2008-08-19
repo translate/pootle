@@ -619,11 +619,6 @@ msgstr ""
 msgid "Pootle Logo"
 msgstr "पूटल पंजीकरण"
 
-#: pagelayout.py:81
-#, fuzzy
-msgid "WordForge Translation Project"
-msgstr "<b> वर्तमान अनुवाद </b>"
-
 #: pagelayout.py:83
 msgid "About this Pootle server"
 msgstr ""

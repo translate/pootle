@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-11-07 12:24+0100\n"
+"PO-Revision-Date: 2008-04-05 05:47+0000\n"
 "Last-Translator: Jojoo Imbeah <jojoo.imbeah@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #. l10n: Verb
@@ -20,31 +20,31 @@ msgstr "Hwɛ"
 
 #: projects.py:137 translatepage.py:613
 msgid "Suggest"
-msgstr "Kyerɛ adwen"
+msgstr "Susu"
 
 #: projects.py:138
 msgid "Translate"
-msgstr ""
+msgstr "Kyerɛ ase"
 
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "Kyerɛw so"
 
 #. l10n: Verb
 #: projects.py:141
 msgid "Review"
-msgstr ""
+msgstr "Hwɛ mu"
 
 #. l10n: Verb
 #: projects.py:143
 msgid "Archive"
-msgstr ""
+msgstr "Fa sie"
 
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
 msgid "Compile PO files"
-msgstr ""
+msgstr "Kɔmpael PO faels"
 
 #: projects.py:146
 msgid "Assign"
@@ -62,15 +62,15 @@ msgstr ""
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "Worenntumi nnyi obiara ne gyinabew ne \"nobody\" anaaso \"default\""
 
 #: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "Worenntumi nnsesa botae biara wɔ ha"
 
 #: projects.py:505
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "Worenntumi mmfa faels nnto ha"
 
 #: projects.py:508
 #, fuzzy
@@ -79,16 +79,16 @@ msgstr "Wonni kwan sɛ wobesusu nsesa wɔ ha"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "Worenntumi mmfa faels foforo nnto ha"
 
 #: projects.py:519
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "Wonni kwan sɛ wobɛsesa sɛdeɛ faels te wɔ ha"
 
 #: projects.py:590
 #, fuzzy
 msgid "You do not have rights to commit files here"
-msgstr "wonni kwan sɛ wobesusu nsesa wɔ ha"
+msgstr "Wonni kwan sɛ wobesusu nsesa wɔ ha"
 
 #: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
@@ -97,15 +97,15 @@ msgstr ""
 #: projects.py:1141
 #, fuzzy
 msgid "You do not have rights to change translations here"
-msgstr "wonni kwan sɛ wobesesa nkyerɛase wɔ ha"
+msgstr "Wonni kwan sɛ wobesesa nkyerɛase wɔ ha"
 
 #: projects.py:1151
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "Wonni kwan sɛ wobɛkyerɛ w'adwen wɔ nsesae biara ho wɔ ha"
 
 #: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Wonni kwan sɛ wobɛsesa adwenkyerɛ biara wɔ ha"
 
 #: translatepage.py:89
 #, python-format
@@ -135,8 +135,9 @@ msgstr "Pootle: worekyerɛ %s ase sɛ %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
+#, fuzzy
 msgid "Original"
-msgstr ""
+msgstr "Odikamfo"
 
 #. l10n: Heading above the table column with the target language
 #: translatepage.py:116
@@ -146,7 +147,7 @@ msgstr "Kyerɛ Ni Nyinaa Ase"
 
 #: translatepage.py:119
 msgid "Accept"
-msgstr ""
+msgstr "Gye to mu"
 
 #: translatepage.py:120
 #, fuzzy
@@ -155,17 +156,17 @@ msgstr "Yi nkɔsodwuma yi fi mu"
 
 #: translatepage.py:121 pagelayout.py:243
 msgid "Fuzzy"
-msgstr ""
+msgstr "Yɛ Naa"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Asekyerɛaseni adwenkyerɛ"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Kɔmputa kasakyerɛwni adwenkyerɛ"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -179,23 +180,24 @@ msgstr "Hwehwɛ"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:145
+#, fuzzy
 msgid "End of batch"
-msgstr ""
+msgstr "Asekyerɛ wɔ krataafa yi so hɔn ewiei"
 
 #: translatepage.py:147
 msgid "Click here to return to the index"
-msgstr ""
+msgstr "Klik ha na san kɔ indeks"
 
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
 msgid "Start"
-msgstr ""
+msgstr "Hyɛ Ase"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:168 translatepage.py:171
 #, python-format
 msgid "Previous %d"
-msgstr ""
+msgstr "Nea Edi Ekyiri %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:173
@@ -207,12 +209,12 @@ msgstr "Ndeɛma %d kɔ si %d wɔ %d mu"
 #: translatepage.py:178 translatepage.py:181
 #, python-format
 msgid "Next %d"
-msgstr "Nea edi so %d"
+msgstr "Nea Edi So %d"
 
 #. l10n: noun (the end)
 #: translatepage.py:184 translatepage.py:187
 msgid "End"
-msgstr ""
+msgstr "Ewiei"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: translatepage.py:204
@@ -235,24 +237,24 @@ msgstr "Fa Adeyɛe Bata Ho"
 #: translatepage.py:368
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr "Biribiara nni hɔ ɔne no yɛ pɛ ('%s')"
+msgstr "Biribiara nni hɔ a wɔne no yɛ pɛ ('%s')"
 
 #: translatepage.py:370
 msgid "You have finished going through the items you selected"
-msgstr "Ewie dɛ erehwɛ ndeɛma a epawee no"
+msgstr "Wo ewie sɛ worehwɛ ndeɛma a wopawee no"
 
 #: translatepage.py:578
 msgid "Singular"
-msgstr ""
+msgstr "Ankonam"
 
 #: translatepage.py:579
 msgid "Plural"
-msgstr ""
+msgstr "Ɔdodow"
 
 #. l10n: verb
 #: translatepage.py:593
 msgid "Edit"
-msgstr ""
+msgstr "Sesa"
 
 #. l10n: verb
 #: translatepage.py:609
@@ -261,32 +263,32 @@ msgstr ""
 
 #: translatepage.py:610 translatepage.py:784
 msgid "Skip"
-msgstr ""
+msgstr "Bɔ Tra"
 
 #. l10n: verb
 #: translatepage.py:612 translatepage.py:783 users.py:256
 msgid "Back"
-msgstr ""
+msgstr "Kɔ Ekyiri Baako"
 
 #: translatepage.py:614
 msgid "Submit"
-msgstr ""
+msgstr "Fa Ka Ho"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:617
 msgid "Grow"
-msgstr ""
+msgstr "Buei kyerɛwbea no mu"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:619
 msgid "Shrink"
-msgstr ""
+msgstr "Mia kyerɛwbea no mu"
 
 #: translatepage.py:641 translatepage.py:735 translatepage.py:772
 #: translatepage.py:805
 #, python-format
 msgid "Plural Form %d"
-msgstr ""
+msgstr "Ɔdodow Tebea %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:657
@@ -294,6 +296,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
+"Asekyerɛase no renntumi mmba so efiri sɛ wo nnkyerɛɛ wo kasa ne ɔdodow ho "
+"nsɛm mu yie. Mepa wo kyɛw bisa wo saet hwɛdofo."
 
 #: translatepage.py:739
 msgid "Current Translation:"
@@ -865,6 +869,8 @@ msgstr ""
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
+"Ma wo din a wode ba ha no nyɛ nɔmbas ne nkasafua a wɔakeka abɔ mu, na ɛwɔ sɛ "
+"kasafua di wo din no enim."
 
 #: users.py:382
 msgid ""

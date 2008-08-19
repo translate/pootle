@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-07-04 22:29+0200\n"
-"Last-Translator: Yannis Kaskamanidis <ttnfy17@sch.gr>\n"
+"PO-Revision-Date: 2008-04-04 17:17+0000\n"
+"Last-Translator: tsirakis nikos <nikos@tsirakis.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.1\n"
+"X-Generator: Pootle 1.1.0\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
@@ -29,7 +29,7 @@ msgstr "Μετάφρασε"
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "Αντικατάσταση"
 
 #. l10n: Verb
 #: projects.py:141
@@ -44,25 +44,25 @@ msgstr "Αρχειοθέτησε"
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
 msgid "Compile PO files"
-msgstr ""
+msgstr "Μεταγλώττιση αρχείων PO"
 
 #: projects.py:146
 msgid "Assign"
-msgstr ""
+msgstr "Ανάθεση"
 
 #: projects.py:147 indexpage.py:134
 msgid "Administrate"
-msgstr ""
+msgstr "Διαχείριση"
 
 #. l10n: Commit to version control (like CVS or Subversion)
 #: projects.py:148 indexpage.py:748
 msgid "Commit"
-msgstr ""
+msgstr "Υποβολή"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "Δεν μπορείτε να διαγράψετε τους χρήστες \"nobody\" και \"default\""
 
 #: projects.py:380 projects.py:442
 #, fuzzy
@@ -74,7 +74,6 @@ msgid "You do not have rights to upload files here"
 msgstr "Δεν έχετε δικαιώματα για να ανεβάσετε αρχεία εδώ"
 
 #: projects.py:508
-#, fuzzy
 msgid "You do not have rights to overwrite files here"
 msgstr "Δεν έχετε δικαιώματα για να ανανεώσετε αρχεία εδώ"
 
@@ -87,9 +86,8 @@ msgid "You do not have rights to update files here"
 msgstr "Δεν έχετε δικαιώματα για να ανανεώσετε αρχεία εδώ"
 
 #: projects.py:590
-#, fuzzy
 msgid "You do not have rights to commit files here"
-msgstr "Δεν έχετε δικαιώματα για να ανεβάσετε αρχεία εδώ"
+msgstr "Δεν έχετε δικαιώματα για να υποβάλετε αρχεία εδώ"
 
 #: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
@@ -105,7 +103,7 @@ msgstr "Δεν έχετε δικαιώματα για να προτείνετε 
 
 #: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Δεν έχετε δικαιώματα για να επιθεωρήσετε προτάσεις εδώ"
 
 #: translatepage.py:89
 #, python-format
@@ -122,7 +120,7 @@ msgstr ""
 #: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
 #: indexpage.py:346
 msgid "Pootle Demo"
-msgstr "Πούτελ Επίδειξη"
+msgstr "Επίδειξη Pootle"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -131,7 +129,7 @@ msgstr "Πούτελ Επίδειξη"
 #: translatepage.py:99
 #, fuzzy, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "Πούτελ: μεταφράζw το %s στο %s: %s"
+msgstr "Pootle: μετάφραση του %s στο %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
@@ -140,9 +138,8 @@ msgstr "Πρότυπο"
 
 #. l10n: Heading above the table column with the target language
 #: translatepage.py:116
-#, fuzzy
 msgid "Translation"
-msgstr "Μετάφραση Όλων"
+msgstr "Μετάφραση"
 
 #: translatepage.py:119
 msgid "Accept"
@@ -150,11 +147,11 @@ msgstr "Αποδοχή"
 
 #: translatepage.py:120
 msgid "Reject"
-msgstr ""
+msgstr "Απόρριψη"
 
 #: translatepage.py:121 pagelayout.py:243
 msgid "Fuzzy"
-msgstr ""
+msgstr "Ασαφές"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
@@ -164,12 +161,12 @@ msgstr "Σχόλια μεταφραστή"
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Σχόλια προγραμματιστή"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
 msgid "Related"
-msgstr ""
+msgstr "Σχετικά"
 
 #. l10n: text next to search field
 #: translatepage.py:131 indexpage.py:356
@@ -179,28 +176,28 @@ msgstr "Αναζήτηση"
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:145
 msgid "End of batch"
-msgstr ""
+msgstr "Τέλος δέσμης"
 
 #: translatepage.py:147
 msgid "Click here to return to the index"
-msgstr ""
+msgstr "Κάντε κλικ εδώ για να επιστρέψετε στον κατάλογο"
 
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
 msgid "Start"
-msgstr ""
+msgstr "Αρχή"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:168 translatepage.py:171
 #, python-format
 msgid "Previous %d"
-msgstr ""
+msgstr "Προηγούμενα %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:173
 #, python-format
 msgid "Items %d to %d of %d"
-msgstr "Εγγραφές %d έως %d από %d"
+msgstr "Μηνύματα %d έως %d από %d"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:178 translatepage.py:181
@@ -211,7 +208,7 @@ msgstr "Επόμενα %d"
 #. l10n: noun (the end)
 #: translatepage.py:184 translatepage.py:187
 msgid "End"
-msgstr ""
+msgstr "Τέλος"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: translatepage.py:204
@@ -225,33 +222,33 @@ msgstr ""
 
 #: translatepage.py:212 indexpage.py:528
 msgid "Assign to User"
-msgstr ""
+msgstr "Ανάθεση στο Χρήστη"
 
 #: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
-msgstr ""
+msgstr "Προσδιορισμός Ενέργειας"
 
 #: translatepage.py:368
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr ""
+msgstr "Δεν βρέθηκαν μηνύματα που να ταιριάζουν σε αυτή την αναζήτηση ('%s')"
 
 #: translatepage.py:370
 msgid "You have finished going through the items you selected"
-msgstr "Φτάσατε στο τέλος"
+msgstr "Φτάσατε στο τελευταίο από τα μηνύματα που επιλέξατε"
 
 #: translatepage.py:578
 msgid "Singular"
-msgstr ""
+msgstr "Ενικός"
 
 #: translatepage.py:579
 msgid "Plural"
-msgstr ""
+msgstr "Πληθυντικός"
 
 #. l10n: verb
 #: translatepage.py:593
 msgid "Edit"
-msgstr ""
+msgstr "Επεξεργασία"
 
 #. l10n: verb
 #: translatepage.py:609
@@ -274,18 +271,18 @@ msgstr "Υποβολή"
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:617
 msgid "Grow"
-msgstr ""
+msgstr "Αύξηση"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:619
 msgid "Shrink"
-msgstr ""
+msgstr "Συρρίκνωση"
 
 #: translatepage.py:641 translatepage.py:735 translatepage.py:772
 #: translatepage.py:805
 #, python-format
 msgid "Plural Form %d"
-msgstr ""
+msgstr "Πληθυντικός τύπος %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:657
@@ -295,16 +292,14 @@ msgid ""
 msgstr ""
 
 #: translatepage.py:739
-#, fuzzy
 msgid "Current Translation:"
-msgstr "&lt;b&gt;Τωρινή Μετάφραση:&lt;/b&gt;"
+msgstr "Τρέχουσα μετάφραση:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
 #: translatepage.py:752
-#, fuzzy
 msgid "Suggestion %d by %s:"
-msgstr "Πρόταση από %s:"
+msgstr "Πρόταση %d από %s:"
 
 #: translatepage.py:754
 #, python-format
@@ -324,15 +319,15 @@ msgstr "Πρόταση:"
 #: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
 #: pagelayout.py:36
 msgid "Home"
-msgstr ""
+msgstr "Αρχική"
 
 #: adminpages.py:44 adminpages.py:207
 msgid "Users"
-msgstr ""
+msgstr "Χρήστες"
 
 #: adminpages.py:45 adminpages.py:84 indexpage.py:94
 msgid "Languages"
-msgstr ""
+msgstr "Γλώσσες"
 
 #: adminpages.py:46 adminpages.py:142 indexpage.py:95
 msgid "Projects"
@@ -340,60 +335,61 @@ msgstr "Έργα"
 
 #: adminpages.py:47
 msgid "General options"
-msgstr ""
+msgstr "Γενικές επιλογές"
 
 #: adminpages.py:48 users.py:157
 msgid "Option"
-msgstr ""
+msgstr "Επιλογή"
 
 #: adminpages.py:49 users.py:158
 msgid "Current value"
-msgstr ""
+msgstr "Τρέχουσα τιμή"
 
 #: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
 #: users.py:172
 msgid "Save changes"
-msgstr ""
+msgstr "Αποθήκευση αλλαγών"
 
 #: adminpages.py:54
 msgid "Title"
-msgstr ""
+msgstr "Τίτλος"
 
 #: adminpages.py:55
 msgid "Description"
-msgstr ""
+msgstr "Περιγραφή"
 
 #: adminpages.py:56
 msgid "Base URL"
-msgstr ""
+msgstr "Βασικό URL"
 
 #: adminpages.py:57
 msgid "Home Page"
-msgstr ""
+msgstr "Αρχική Σελίδα"
 
 #: adminpages.py:83 adminpages.py:141 adminpages.py:206
 msgid "Main admin page"
-msgstr ""
+msgstr "Κεντρική σελίδα διαχείρισης"
 
 #: adminpages.py:89
 msgid "ISO Code"
-msgstr ""
+msgstr "Κωδικός ISO"
 
 #: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
 msgid "Full Name"
-msgstr ""
+msgstr "Πλήρες Όνομα"
 
 #: adminpages.py:91
+#, fuzzy
 msgid "(add language here)"
-msgstr ""
+msgstr "(πρόσθεσε εδώ μια γλώσσα)"
 
 #: adminpages.py:92
 msgid "Special Chars"
-msgstr ""
+msgstr "Ειδικοί χαρακτήρες"
 
 #: adminpages.py:92
 msgid "(special characters)"
-msgstr ""
+msgstr "(ειδικοί χαρακτήρες)"
 
 #: adminpages.py:93 indexpage.py:217
 msgid "Number of Plurals"
@@ -412,60 +408,60 @@ msgid "(plural equation)"
 msgstr ""
 
 #: adminpages.py:95
-#, fuzzy
 msgid "Remove Language"
-msgstr "Γλώσσα %s"
+msgstr "Αφαίρεση Γλώσσας"
 
 #. l10n: The parameter is a languagecode, projectcode or username
 #: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
 #, python-format
 msgid "Remove %s"
-msgstr ""
+msgstr "Αφαίρεση %s"
 
 #: adminpages.py:129
 msgid "Standard"
-msgstr ""
+msgstr "Πρότυπο"
 
 #: adminpages.py:147
+#, fuzzy
 msgid "Project Code"
-msgstr ""
+msgstr "Κωδικός έργου"
 
 #: adminpages.py:149
 msgid "(add project here)"
-msgstr ""
+msgstr "(προσθέστε εδώ το έργο)"
 
 #: adminpages.py:150
 msgid "Project Description"
-msgstr ""
+msgstr "Περιγραφή έργου"
 
 #: adminpages.py:150
 msgid "(project description)"
-msgstr ""
+msgstr "(περιγραφή έργου)"
 
 #: adminpages.py:151
+#, fuzzy
 msgid "Checker Style"
-msgstr ""
+msgstr "Στυλ διάταξης"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Τύπος αρχείου"
 
 #: adminpages.py:153
 msgid "Create MO Files"
-msgstr ""
+msgstr "Δημιουργία αρχείων MO "
 
 #: adminpages.py:154
-#, fuzzy
 msgid "Remove Project"
-msgstr "Έργα"
+msgstr "Διαγραφή έργου"
 
 #: adminpages.py:212 users.py:66
 msgid "Login"
-msgstr ""
+msgstr "Είσοδος"
 
 #: adminpages.py:214 users.py:347
 msgid "(add full name here)"
-msgstr ""
+msgstr "(εισάγετε εδώ το πλήρες όνομα)"
 
 #: adminpages.py:215 users.py:101
 msgid "Email Address"
@@ -473,7 +469,7 @@ msgstr "Διεύθυνση Email"
 
 #: adminpages.py:215 users.py:350
 msgid "(add email here)"
-msgstr ""
+msgstr "(εισάγετε εδώ το email)"
 
 #: adminpages.py:216 users.py:107 users.py:163
 msgid "Password"
@@ -481,78 +477,81 @@ msgstr "Κωδικός Πρόσβασης"
 
 #: adminpages.py:216 users.py:344
 msgid "(add password here)"
-msgstr ""
+msgstr "(εισάγετε εδώ τον κωδικό πρόσβασης)"
 
 #: adminpages.py:217
-#, fuzzy
 msgid "Activated"
-msgstr "Ενεργοποίηση"
+msgstr "Ενεργοποιημένος"
 
 #: adminpages.py:217
 msgid "Activate New User"
-msgstr ""
+msgstr "Ενεργοποίηση νέου χρήστη"
 
 #: adminpages.py:218
 msgid "Remove User"
-msgstr ""
+msgstr "Διαγραφή χρήστη"
 
 #: adminpages.py:272
 msgid "Back to main page"
-msgstr ""
+msgstr "Επιστροφή στην αρχική σελίδα"
 
 #: adminpages.py:273
 msgid "Existing languages"
-msgstr ""
+msgstr "Υπάρχουσες γλώσσες"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:277
 msgid "Update Languages"
-msgstr ""
+msgstr "Ενημέρωση γλωσσών"
 
 #: adminpages.py:278
 #, python-format
+#, fuzzy
 msgid "Pootle Admin: %s"
-msgstr ""
+msgstr "Διαχειριστής Pootle: %s"
 
 #: adminpages.py:279 adminpages.py:341
 msgid "You do not have the rights to administer this project."
-msgstr ""
+msgstr "Δεν έχετε τα δικαιώματα για να διαχειριστείτε αυτό το έργο."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:281
 msgid "Update from templates"
-msgstr ""
+msgstr "Ενημέρωση από πρότυπα"
 
 #: adminpages.py:289
 msgid "Add Language"
-msgstr ""
+msgstr "Προσθήκη γλώσσας"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:321
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr ""
+msgstr "Διαχείριση Pootle: %s %s"
 
 #: adminpages.py:322
 msgid "Project home page"
-msgstr ""
+msgstr "Αρχική σελίδα έργου"
 
 #: adminpages.py:340
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr ""
+"Δεν είναι δυνατή η ρύθμιση δικαιωμάτων για το όνομα χρήστη %s - ο χρήστης "
+"δεν υπάρχει"
 
 #: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
+"Αυτό είναι ένα έργο στυλ GNU (ένας κατάλογος, ονομασία αρχείων ανά γλώσσα)"
 
 #: adminpages.py:359
 msgid "This is a standard style project (one directory per language)."
-msgstr ""
+msgstr "Αυτό είναι ένα έργο βασικού στυλ (ένας κατάλογος ανά γλώσσα)."
 
 #: adminpages.py:360
 msgid "User Permissions"
-msgstr ""
+msgstr "Δικαιώματα χρήστη"
 
 #: adminpages.py:361 users.py:98 users.py:134
 msgid "Username"
@@ -560,49 +559,46 @@ msgstr "Όνομα Χρήστη"
 
 #: adminpages.py:362
 msgid "(select to add user)"
-msgstr ""
+msgstr "(επιλέξτε για να προσθέσετε ένα χρήστη)"
 
 #: adminpages.py:363
 msgid "Rights"
-msgstr ""
+msgstr "Δικαιώματα"
 
 #: adminpages.py:364 indexpage.py:998
 msgid "Remove"
-msgstr ""
+msgstr "Αφαίρεση"
 
 #: adminpages.py:391
 msgid "Update Rights"
-msgstr ""
+msgstr "Ενημέρωση δικαιωμάτων"
 
 #: pagelayout.py:37
-#, fuzzy
 msgid "All projects"
-msgstr "Έργο %s"
+msgstr "Όλα τα έργα"
 
 #: pagelayout.py:38
-#, fuzzy
 msgid "All languages"
-msgstr "Γλώσσα %s"
+msgstr "Όλες οι γλώσσες"
 
 #: pagelayout.py:39
 msgid "My account"
-msgstr ""
+msgstr "Ο λογαριασμός μου"
 
 #: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
+#, fuzzy
 msgid "Admin"
-msgstr ""
+msgstr "Διαχείριση"
 
 #: pagelayout.py:41
 msgid "Docs & help"
-msgstr ""
+msgstr "Τεκμηρίωση & βοήθεια"
 
 #: pagelayout.py:42
-#, fuzzy
 msgid "Log out"
 msgstr "Αποσύνδεση"
 
 #: pagelayout.py:43
-#, fuzzy
 msgid "Log in"
 msgstr "Σύνδεση"
 
@@ -616,18 +612,16 @@ msgid "Activate"
 msgstr "Ενεργοποίηση"
 
 #: pagelayout.py:80
-#, fuzzy
 msgid "Pootle Logo"
-msgstr "Πούτελ Επίδειξη"
+msgstr "Λογότυπο Pootle"
 
 #: pagelayout.py:81
-#, fuzzy
 msgid "WordForge Translation Project"
-msgstr "&lt;b&gt;Τωρινή Μετάφραση:&lt;/b&gt;"
+msgstr "Έργο μετάφρασης WordForge"
 
 #: pagelayout.py:83
 msgid "About this Pootle server"
-msgstr ""
+msgstr "Σχετικά με αυτόν τον εξυπηρετητή Pootle"
 
 #: pagelayout.py:157
 msgid "All goals"
@@ -636,109 +630,103 @@ msgstr ""
 #: pagelayout.py:228
 #, python-format
 msgid "%d/%d files"
-msgstr ""
+msgstr "%d/%d αρχεία"
 
 #: pagelayout.py:231
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
+msgstr[0] "%d αρχεία"
 msgstr[1] ""
 
 #: pagelayout.py:232 indexpage.py:995
-#, fuzzy
 msgid "%d/%d words (%d%%) translated"
-msgstr "%d/%d μηνύματα (%d%%) μεταφρασμένα"
+msgstr "%d/%d λέξεις (%d%%) έχουν μεταφραστεί"
 
 #: pagelayout.py:233
 #, python-format
+#, fuzzy
 msgid "%d/%d strings"
-msgstr ""
+msgstr "%d/%d συμβολοσειρές"
 
 #: pagelayout.py:239 users.py:159
 msgid "Name"
-msgstr ""
+msgstr "Όνομα"
 
 #: pagelayout.py:240
 #, fuzzy
 msgid "Translated"
-msgstr "Μετάφραση Όλων"
+msgstr "Μεταφρασμένα"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
-msgstr ""
+msgstr "Ποσοστό μετάφρασης"
 
 #: pagelayout.py:242
-#, fuzzy
 msgid "Translated words"
-msgstr "Μετάφραση Όλων"
+msgstr "Μεταφρασμένες λέξεις"
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "Ποσοστό ασαφειών"
 
 #: pagelayout.py:245
 msgid "Fuzzy words"
-msgstr ""
+msgstr "Ασαφείς λέξεις"
 
 #: pagelayout.py:246 indexpage.py:786
 msgid "Untranslated"
-msgstr ""
+msgstr "Μη μεταφρασμένα"
 
 #: pagelayout.py:247
-#, fuzzy
 msgid "Untranslated percentage"
-msgstr "Εμφάνιση Μη-Μεταφρασμένων"
+msgstr "Ποσοστό μη μεταφρασμένων"
 
 #: pagelayout.py:248
-#, fuzzy
 msgid "Untranslated words"
-msgstr "Εμφάνιση Μη-Μεταφρασμένων"
+msgstr "Μη μεταφρασμένες λέξεις"
 
 #: pagelayout.py:249
 msgid "Total"
-msgstr ""
+msgstr "Σύνολο"
 
 #: pagelayout.py:250
 msgid "Total words"
-msgstr ""
+msgstr "Σύνολο λέξεων"
 
 #. l10n: noun. The graphical representation of translation status
 #: pagelayout.py:252
 msgid "Graph"
-msgstr ""
+msgstr "Γράφημα"
 
 #: users.py:39
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
-msgstr ""
+msgstr "Πρέπει να εισάγετε ένα έγκυρο κωδικό μήκους τουλάχιστο %d χαρακτήρων."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
-msgstr ""
+msgstr "Ο κωδικός και η επιβεβαίωσή του δεν ταυτίζονται."
 
 #: users.py:55
 msgid "Login to Pootle"
 msgstr "Είσοδος στο Pootle"
 
 #: users.py:61
-#, fuzzy
 msgid "Username:"
-msgstr "Όνομα Χρήστη"
+msgstr "Όνομα Χρήστη:"
 
 #: users.py:63
-#, fuzzy
 msgid "Password:"
-msgstr "Κωδικός Πρόσβασης"
+msgstr "Κωδικός Πρόσβασης:"
 
 #: users.py:64
-#, fuzzy
 msgid "Language:"
-msgstr "Γλώσσα %s"
+msgstr "Γλώσσα:"
 
 #: users.py:73
 msgid "Default"
-msgstr ""
+msgstr "Προεπιλογή"
 
 #: users.py:89
 msgid "Please enter your registration details"
@@ -753,31 +741,30 @@ msgid "Your requested username"
 msgstr "Το όνομα χρήστη που ζητήσατε"
 
 #: users.py:102 users.py:373
-#, fuzzy
 msgid "You must supply a valid email address"
-msgstr "Πρέπει να είναι έγκυρη διεύθυνση email"
+msgstr "Πρέπει να εισάγετε μια έγκυρη διεύθυνση email"
 
 #: users.py:105
 msgid "Your full name"
-msgstr ""
+msgstr "Το πλήρες όνομά σας"
 
 #: users.py:108
 msgid "Your desired password"
-msgstr "Ο κωδικός που ζητήσατε"
+msgstr "Ο κωδικός που επιθυμείτε"
 
 #: users.py:110 users.py:164
-#, fuzzy
 msgid "Confirm password"
-msgstr "Ο κωδικός που ζητήσατε"
+msgstr "Επιβεβαίωση κωδικού"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
 msgstr ""
+"Πληκτρολογήστε ακόμα μια φορά τον κωδικό σας για να βεβαιωθείτε ότι το "
+"εισάγατε σωστά"
 
 #: users.py:113
-#, fuzzy
 msgid "Register Account"
-msgstr "Ενεργοποίηση Λογαριασμού"
+msgstr "Δημιουργία Λογαριασμού"
 
 #: users.py:122
 msgid "Please enter your activation details"
@@ -785,7 +772,7 @@ msgstr "Παρακαλώ εισάγετε τα στοιχεία ενεργοπο
 
 #: users.py:127
 msgid "Pootle Account Activation"
-msgstr ""
+msgstr "Ενεργοποίηση λογαριασμού Pootle"
 
 #: users.py:137
 msgid "Activation Code"
@@ -802,118 +789,130 @@ msgstr "Ενεργοποίηση Λογαριασμού"
 #: users.py:151
 #, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr "Επιλογές για: %s"
 
 #: users.py:156
 msgid "Personal Details"
-msgstr ""
+msgstr "Προσωπικά στοιχεία"
 
 #: users.py:161
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: users.py:165
 msgid "Translation Interface Configuration"
-msgstr ""
+msgstr "Ρύθμιση διεπαφής μετάφρασης"
 
 #: users.py:166
 msgid "User Interface language"
-msgstr ""
+msgstr "Γλώσσα διεπαφής χρήστη"
 
 #: users.py:167
 msgid "My Projects"
-msgstr ""
+msgstr "Τα έργα μου"
 
 #: users.py:169
 msgid "My Languages"
-msgstr ""
+msgstr "Οι γλώσσες μου"
 
 #: users.py:171
 msgid "Home page"
-msgstr ""
+msgstr "Αρχική σελίδα"
 
 #: users.py:207
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "Ύψος πλαισίου εισόδου (σε γραμμές)"
 
 #: users.py:208
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "Αριθμός γραμμών σε κατάσταση επισκόπισης"
 
 #: users.py:209
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "Αριθμός γραμμών σε κατάσταση μετάφρασης"
 
 #: users.py:251
 msgid "Error"
-msgstr ""
+msgstr "Σφάλμα"
 
 #: users.py:303
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "Πρέπει να είστε siteadmin για να μεταβάλετε χρήστες"
 
 #: users.py:367
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
+"Το όνομα χρήστη πρέπει να είναι αλφαριθμητικό και πρέπει να ξεκινά με έναν "
+"αλφαβητικό χαρακτήρα. "
 
 #: users.py:382
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
+msgstr "Εσείς (ή κάποιος άλλος) προσπαθήσατε να δημιουργήσετε ένα λογαριασμό με το "
+"δικό σας όνομα χρήστη.\n"
 
 #: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
+msgstr "Δεν αποθηκεύεται ο πραγματικός κωδικός σας, αλλά μόνο ένα hash αυτού.\n"
 
 #: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr ""
+msgstr "Αν αντιμετωπίσετε κάποιο πρόβλημα κατά τη δημιουργία του λογαριασμού σας, "
+"παρακαλούμε επικοινωνήστε με τον/την %s.\n"
 
 #: users.py:387
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "Αν αντιμετωπίσετε κάποιο πρόβλημα κατά τη δημιουργία του λογαριασμού σας, "
+"παρακαλούμε επικοινωνήστε με το διαχειριστή του δικτυακού τόπου.\n"
 
 #: users.py:388
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
+msgstr "Αυτό το όνομα χρήστη υπάρχει ήδη. Ένα email θα σταλεί στην αντίστοιχη "
+"διεύθυνση email.\n"
 
 #: users.py:390
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "Προχωράμε στην <a href='%s'>είσοδο</a>\n"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "Ένας λογαριασμός Pootle έχει δημιουργηθεί για εσάς χρησιμοποιώντας αυτή τη "
+"διεύθυνση email.\n"
 
 #: users.py:398
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "Για να ενεργοποιήσετε το λογαριασμό σας, ακολουθήστε αυτό το σύνδεσμο:\n"
 
 #: users.py:404
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your activation code is:\n"
 "%s\n"
-msgstr "Κωδικός Ενεργοποίησης"
+msgstr ""
+"Ο κωδικός ενεργοποίησης του λογαριασμού σας είναι: \n"
+"%s\n"
 
 #: users.py:406
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "Αν δεν μπορείτε να ακολουθήσετε το σύνδεσμο, παρακαλούμε εισάγετε τον "
+"παραπάνω κωδικό στη σελίδα ενεργοποίησης.\n"
 
 #: users.py:407
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
+msgstr "Αυτό το μήνυμα στάλθηκε για να επιβεβαιώθεί ότι αυτή η διεύθυνση email είναι "
+"πράγματι σωστή. Αν δεν θέλετε να δημιουργήσετε λογαριασμό, απλά αγνοήστε "
+"αυτό το μήνυμα.\n"
 
 #: users.py:409
 #, python-format
@@ -921,94 +920,97 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"Ο λογαριασμός δημιουργήθηκε. Θα σας σταλεί email με οδηγίες για την είσοδό "
+"σας στο σύστημα καθώς και ένας κωδικός ενεργοποίησης. Παρακαλούμε εισάγετε "
+"τον κωδικό ενεργοποίησης που θα λάβετε στη <a href='%s'>σελίδα "
+"ενεργοποίησης</a>."
 
 #: users.py:411
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "(ή απλά κάντε κλικ στο σύνδεσμο ενεργοποίησης που περιέχεται στο email)"
 
 #: users.py:413
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr ""
+msgstr "Το όνομα χρήστη σας είναι: %s\n"
 
 #: users.py:415
-#, fuzzy, python-format
+#, python-format
 msgid "Your password is: %s\n"
-msgstr "Ο κωδικός που ζητήσατε"
+msgstr "Ο κωδικός σας είναι: %s\n"
 
 #: users.py:416
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "Η διεύθυνση email σας είναι: %s\n"
 
 #: users.py:442
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "Μετάβαση στη σελίδα ενεργοποίησης..."
 
 #: users.py:466
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "Μετάβαση στη σελίδα σύνδεσης..."
 
 #: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "Ο λογαριασμός σας έχει ενεργοποιηθεί! Μετάβαση στη σελίδα σύνδεσης..."
 
 #: users.py:473
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "Οι πληροφορίες ενεργοποίησης δεν ήταν έγκυρες."
 
 #: users.py:474
-#, fuzzy
 msgid "Activation Failed"
-msgstr "Κωδικός Ενεργοποίησης"
+msgstr "Η ενεργοποίηση απέτυχε"
 
 #: users.py:583
 msgid "Input height must be numeric"
-msgstr ""
+msgstr "Το ύψος του πλαισίου εισόδου πρέπει να είναι αριθμός"
 
 #: users.py:584
 msgid "Input width must be numeric"
-msgstr ""
+msgstr "Το πλάτος του πλαισίου εισόδου πρέπει να είναι αριθμός"
 
 #: users.py:585
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr ""
+msgstr "Ο αριθμός γραμμών στην κατάσταση επισκόπησης πρέπει να είναι αριθμός"
 
 #: users.py:586
 msgid "The number of rows displayed in translate mode must be numeric"
-msgstr ""
+msgstr "Ο αριθμός γραμμών στην κατάσταση μετάφρασης πρέπει να είναι αριθμός"
 
 #: pootle.py:293
 msgid "Login failed"
-msgstr ""
+msgstr "Αποτυχία σύνδεσης"
 
 #: pootle.py:337 pootle.py:368
 msgid "Redirecting to login..."
-msgstr ""
+msgstr "Μετάβαση στη σελίδα σύνδεσης"
 
 #: pootle.py:340
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "Πρέπει να συνδεθείτε για να έχετε πρόσβαση στην αρχική σελίδα"
 
 #: pootle.py:353
 msgid "Personal details updated"
-msgstr ""
+msgstr "Τα προσωπικά στοιχεία ενημερώθηκαν"
 
 #: pootle.py:371
 msgid "Need to log in to access admin page"
-msgstr ""
+msgstr "Πρέπει να συνδεθείτε για να έχετε πρόσβαση στη σελίδα διαχείρισης"
 
 #: pootle.py:378
 msgid "Redirecting to home..."
-msgstr ""
+msgstr "Μετάβαση στην αρχική σελίδα..."
 
 #: pootle.py:381
 msgid "You do not have the rights to administer pootle."
-msgstr ""
+msgstr "Δεν έχετε τα δικαιώματα για να διαχειριστείτε το Pootle."
 
 #: indexpage.py:61
 msgid "About Pootle"
-msgstr ""
+msgstr "Σχετικά με το Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:63
@@ -1019,6 +1021,12 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
+"To <strong>Pootle</strong> είναι μια απλή διαδικτυακή πύλη που σας επιτρέπει "
+"να κάνετε <strong>μεταφράσεις</strong>! Εφόσον το Pootle είναι "
+"<strong>Ελεύθερο Λογισμικό</strong>, μπορείτε να το κατεβάσετε και να "
+"τρέχετε το δικό σας αντίγραφο αν θέλετε. Μπορείτε ακόμα να βοηθήσετε "
+"συμμετέχοντας στην ανάπτυξη του Pootle με πολλούς τρόπους (δεν χρειάζεστε να "
+"έχετε γνώσεις προγραμματισμού)."
 
 #: indexpage.py:64
 msgid ""
@@ -1026,6 +1034,10 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
+"Το έργο Pootle φιλοξενείται στο <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> όπου "
+"μπορείτε να βρείτε λεπτομέρειες σχετικά με τον πηγαίο κώδικα, λίστες "
+"ταχυδρομείου κλπ."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1035,10 +1047,13 @@ msgid ""
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
+"Το όνομα προέρχεται από τη φράση <b>PO</b>-based <b>O</b>nline "
+"<b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, αλλά ίσως πρέπει να "
+"διαβάσετε <a href=\"http://www.thechestnut.com/flumps.htm\">αυτό</a>."
 
 #: indexpage.py:68
 msgid "Versions"
-msgstr ""
+msgstr "Εκδόσεις"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1048,33 +1063,37 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
+"Το site τρέχει:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br "
+"/>Kid %s<br />ElementTree %s<br />Python %s (σε %s/%s)"
 
 #: indexpage.py:130
 #, python-format
 msgid "User Page for: %s"
-msgstr ""
+msgstr "Σελίδα χρήστη για: %s"
 
 #: indexpage.py:132
 msgid "Change options"
-msgstr ""
+msgstr "Αλλαγή επιλογών"
 
 #: indexpage.py:133
 msgid "Admin page"
-msgstr ""
+msgstr "Σελίδα διαχείρισης"
 
 #: indexpage.py:135
 msgid "Quick Links"
-msgstr ""
+msgstr "Συντομεύσεις"
 
 #: indexpage.py:139
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
+"Παρακαλούμε κάντε κλικ στο 'Αλλαγή επιλογών' και επιλέξτε μερικές γλώσσες "
+"και μερικά έργα"
 
 #: indexpage.py:192
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
+msgstr[0] "%d έργα, μέσος όρος %d%% μεταφρασμένα"
 msgstr[1] ""
 
 #. l10n: The first parameter is the name of the installation
@@ -1083,45 +1102,44 @@ msgstr[1] ""
 #: indexpage.py:198 indexpage.py:260
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: indexpage.py:214
 msgid "Language Code"
-msgstr ""
+msgstr "Κωδικός γλώσσας"
 
 #: indexpage.py:215
 msgid "Language Name"
-msgstr ""
+msgstr "Όνομα γλώσσας"
 
 #: indexpage.py:252
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
+msgstr[0] "%d γλώσσες, μέσος όρος %d%% μεταφρασμένες"
 msgstr[1] ""
 
 #: indexpage.py:265
-#, fuzzy
 msgid "Language"
-msgstr "Γλώσσα %s"
+msgstr "Γλώσσα"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:348
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "%s: Έργο %s, Γλώσσα %s"
 
 #: indexpage.py:413
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "Αποτυχία αποστολής αρχείου, δεν έχει επισυναφθεί αρχείο"
 
 #: indexpage.py:419
 msgid "Can only upload PO files and zips of PO files"
-msgstr ""
+msgstr "Μπορείτε μόνο να αποστείλετε αρχεία PO και συμπιεσμένα αρχεία PO"
 
 #: indexpage.py:534
 msgid "goals"
-msgstr ""
+msgstr "σκοποί"
 
 #: indexpage.py:535
 msgid "Enter goal name"
@@ -1133,27 +1151,29 @@ msgstr ""
 
 #: indexpage.py:541 indexpage.py:543
 msgid "Upload File"
-msgstr ""
+msgstr "Αποστολή αρχείου"
 
 #: indexpage.py:542
 msgid "Select file to upload"
-msgstr ""
+msgstr "Επιλέξτε αρχείο για αποστολή"
 
 #. l10n: tooltip
 #: indexpage.py:550
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "Αντικατάσταση υπάρχοντος αρχείου (αν υπάρχει)"
 
 #. l10n: radio button text
 #: indexpage.py:552
 msgid "Merge"
-msgstr ""
+msgstr "Συγχώνευση"
 
 #. l10n: tooltip
 #: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
+"Συγχώνευση του αρχείου με το υπάρχον αρχείο και μετατροπή των συγκρούσεων σε "
+"προτάσεις"
 
 #: indexpage.py:657
 msgid "Not in a goal"
@@ -1161,7 +1181,7 @@ msgstr ""
 
 #: indexpage.py:677
 msgid "Add User"
-msgstr ""
+msgstr "Προσθήκη χρήστη"
 
 #: indexpage.py:719
 msgid "PO file"
@@ -1169,57 +1189,57 @@ msgstr "Αρχείο PO"
 
 #: indexpage.py:723
 msgid "XLIFF file"
-msgstr ""
+msgstr "Αρχείο XLIFF"
 
 #: indexpage.py:727
 msgid "Qt .ts file"
-msgstr ""
+msgstr "Αρχείο Qt .ts"
 
 #: indexpage.py:731
 msgid "CSV file"
 msgstr "Αρχείο CSV"
 
 #: indexpage.py:736
-#, fuzzy
 msgid "MO file"
-msgstr "Αρχείο PO"
+msgstr "Αρχείο MO"
 
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:742
 msgid "Update"
-msgstr ""
+msgstr "Ενημέρωση"
 
 #: indexpage.py:785
+#, fuzzy
 msgid "All Strings"
-msgstr ""
+msgstr "Όλες οι συμβολοσειρές"
 
 #: indexpage.py:787
 msgid "Unassigned"
-msgstr ""
+msgstr "Χωρίς ανάθεση"
 
 #: indexpage.py:788
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "Χωρίς ανάθεση και μη μεταφρασμένο"
 
 #: indexpage.py:795
 msgid "Set Goal"
-msgstr ""
+msgstr "Όρισε σκοπό"
 
 #: indexpage.py:799
 msgid "Select Multiple"
-msgstr ""
+msgstr "Πολλαπλή επιλογή"
 
 #: indexpage.py:801
 msgid "Assign To"
-msgstr ""
+msgstr "Ανάθεση σε"
 
 #: indexpage.py:830
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "Προβολή λειτουργιών επεξεργασίας"
 
 #: indexpage.py:831
 msgid "Show Statistics"
-msgstr ""
+msgstr "Προβολή στατιστικών"
 
 #: indexpage.py:832
 msgid "Show Tracks"
@@ -1248,11 +1268,11 @@ msgstr ""
 
 #: indexpage.py:836
 msgid "Show Assigns"
-msgstr ""
+msgstr "Προβολή αναθέσεων"
 
 #: indexpage.py:836
 msgid "Hide Assigns"
-msgstr ""
+msgstr "Απόκρυψη αναθέσεων"
 
 #: indexpage.py:845
 #, python-format
@@ -1260,32 +1280,37 @@ msgid "All Goals: %s"
 msgstr ""
 
 #: indexpage.py:851
+#, fuzzy
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Μετάφραση των συμβολοσειρών μου"
 
 #: indexpage.py:853
+#, fuzzy
 msgid "View My Strings"
-msgstr ""
+msgstr "Προβολή των συμβολοσειρών μου"
 
 #: indexpage.py:858
+#, fuzzy
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "Δεν σας έχουν ανατεθεί συμβολοσειρές"
 
 #: indexpage.py:862
+#, fuzzy
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Γρήγορη μετάφραση των συμβολοσειρών μου"
 
 #: indexpage.py:866
+#, fuzzy
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "Μη αμετάφραστες συμβολοσειρές που σας έχουν ανατεθει"
 
 #: indexpage.py:870
 msgid "Review Suggestions"
-msgstr ""
+msgstr "Επιθεώρηση προτάσεων"
 
 #: indexpage.py:872
 msgid "View Suggestions"
-msgstr ""
+msgstr "Προβολή προτάσεων"
 
 #: indexpage.py:877
 msgid "Quick Translate"
@@ -1293,11 +1318,11 @@ msgstr "Γρήγορη Μετάφραση"
 
 #: indexpage.py:879
 msgid "View Untranslated"
-msgstr "Εμφάνιση Μη-Μεταφρασμένων"
+msgstr "Προβολή Μη-Μεταφρασμένων"
 
 #: indexpage.py:883
 msgid "No untranslated items"
-msgstr ""
+msgstr "Δεν υπάρχουν μη μεταφρασμένα μηνύματα"
 
 #: indexpage.py:886
 msgid "Translate All"
@@ -1309,22 +1334,23 @@ msgstr ""
 
 #: indexpage.py:903
 msgid "ZIP of folder"
-msgstr ""
+msgstr "ZIP φακέλου"
 
 #: indexpage.py:910
 msgid "Generate SDF"
-msgstr ""
+msgstr "Δημιουργία SDF"
 
 #: indexpage.py:963
 #, fuzzy
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
 msgstr[0] "%d μηνύματα (%d%%) απέτυχαν"
+msgstr[1] ""
 
 #: indexpage.py:993
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr ""
+msgstr "%d/%d λέξει (%d%%) έχουν ανατεθεί"
 
 #: indexpage.py:994 indexpage.py:996
 #, python-format

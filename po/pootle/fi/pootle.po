@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-05-06 00:16+0200\n"
+"PO-Revision-Date: 2008-05-24 01:05+0000\n"
 "Last-Translator: Jussi Aalto <jta_lnx@dnainternet.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.1.0\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -455,7 +455,7 @@ msgstr "Poista projekti"
 
 #: adminpages.py:212 users.py:66
 msgid "Login"
-msgstr "Tunnus"
+msgstr "Kirjaudu"
 
 #: adminpages.py:214 users.py:347
 msgid "(add full name here)"
@@ -603,7 +603,7 @@ msgstr "Rekisteröidy"
 
 #: pagelayout.py:46
 msgid "Activate"
-msgstr "Aktivoi"
+msgstr "Aktivoi käyttäjätili"
 
 #: pagelayout.py:80
 msgid "Pootle Logo"

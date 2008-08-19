@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2006-10-14 15:53+0200\n"
-"Last-Translator: Malkhaz Barkalaya <malxaz@gmail.com>\n"
+"PO-Revision-Date: 2008-04-09 09:02+0000\n"
+"Last-Translator: Aiet Kolkhi <aietkolkhi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 0.10.1\n"
+"X-Generator: Pootle 1.1.0\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -28,7 +28,7 @@ msgstr "თარგმნა"
 #. l10n: radio button text
 #: projects.py:139 indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "თავზე გადაწერა"
 
 #. l10n: Verb
 #: projects.py:141
@@ -74,7 +74,7 @@ msgstr "ფაილების ატვირთვის უფლება 
 #: projects.py:508
 #, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr "ფაილების გაგზავნის უფლება აქ არ გაქვთ"
+msgstr "ფაილების თავზე გადაწერის უფლება აქ არ გაქვთ"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
@@ -155,17 +155,17 @@ msgstr "საეჭვო"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "მთარგმნელის შენიშვნები"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "დეველოპერის შენიშვნები"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
 msgid "Related"
-msgstr "მიმართებები"
+msgstr "დაკავშირებული თარგმანი"
 
 #. l10n: text next to search field
 #: translatepage.py:131 indexpage.py:356
@@ -179,7 +179,7 @@ msgstr "პაკეტის ბოლო"
 
 #: translatepage.py:147
 msgid "Click here to return to the index"
-msgstr "დაწკაპეთ ინდექსზე დასაბრუნებლად"
+msgstr "დააწკაპუნეთ ინდექსზე დასაბრუნებლად"
 
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164

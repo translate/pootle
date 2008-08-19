@@ -4,15 +4,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2006-06-14 14:30+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"Generated-By: pygettext.py 1.5\n"
 "X-Generator: Pootle 0.6.3\n"
+"Generated-By: pygettext.py 1.5\n"
 
 #: web/server.py:57
 #, python-format
@@ -44,16 +44,17 @@ msgid "Login"
 msgstr ""
 
 #: web/server.py:123
+#, fuzzy
 msgid "Username:"
-msgstr ""
+msgstr "Igama loyisebenzisayo:"
 
 #: web/server.py:125
 msgid "Password:"
-msgstr ""
+msgstr "Igama lokungena:"
 
 #: web/server.py:130
 msgid "Language:"
-msgstr ""
+msgstr "Ulimi:"
 
 #: web/server.py:551 web/server.py:642
 msgid "Select Application"
@@ -65,7 +66,7 @@ msgstr ""
 
 #: web/server.py:639
 msgid "Exit"
-msgstr ""
+msgstr "Phuma"
 
 #: web/session.py:191 web/session.py:344 web/session.py:350
 #, python-format
@@ -107,11 +108,11 @@ msgstr ""
 
 #: widgets/form.py:79 widgets/thumbgallery.py:292
 msgid "No"
-msgstr ""
+msgstr "Cha"
 
 #: widgets/form.py:80 widgets/thumbgallery.py:293
 msgid "Yes"
-msgstr ""
+msgstr "Yebo"
 
 #: widgets/thumbgallery.py:233 attachments.py:348
 msgid "remove"

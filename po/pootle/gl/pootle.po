@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-05-12 01:18+0200\n"
+"PO-Revision-Date: 2008-06-04 13:09+0000\n"
 "Last-Translator: Felipe Gil Castiñeira <xil@det.uvigo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.1.0\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -576,7 +576,7 @@ msgstr "Tódolos proxectos"
 
 #: pagelayout.py:38
 msgid "All languages"
-msgstr "Tódolos idiomas"
+msgstr "Todos os idiomas"
 
 #: pagelayout.py:39
 msgid "My account"
@@ -621,7 +621,7 @@ msgstr "Acerca deste servidor Pootle"
 
 #: pagelayout.py:157
 msgid "All goals"
-msgstr "Tódolos obxectivos"
+msgstr "Todos os obxectivos"
 
 #: pagelayout.py:228
 #, python-format
@@ -1124,7 +1124,7 @@ msgstr "%s: Proxecto %s, idioma %s"
 
 #: indexpage.py:413
 msgid "Cannot upload file, no file attached"
-msgstr "Non se pode subir o ficheiro, non hai ficheiro adxunto"
+msgstr "Non se pode subir o ficheiro, non hai ficheiro anexado"
 
 #: indexpage.py:419
 msgid "Can only upload PO files and zips of PO files"

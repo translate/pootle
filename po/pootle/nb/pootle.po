@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-09-11 01:06+0200\n"
-"Last-Translator: Geir Pedersen <geir.pedersen@gmail.com>\n"
+"PO-Revision-Date: 2008-04-15 14:48+0000\n"
+"Last-Translator: Einar Helland Berger <einar@hellandberger.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -43,7 +43,7 @@ msgstr "Arkiver"
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
 msgid "Compile PO files"
-msgstr "Kompiler PO filer"
+msgstr "Kompiler PO-filer"
 
 #: projects.py:146
 msgid "Assign"
@@ -110,7 +110,7 @@ msgid ""
 "(%d blank, %d fuzzy)"
 msgstr ""
 "%d/%d oversatt\n"
-"(%d blanke, %d fuzzy)"
+"(%d blanke, %d uklare)"
 
 #: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
 #: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
@@ -149,7 +149,7 @@ msgstr "Avvis"
 
 #: translatepage.py:121 pagelayout.py:243
 msgid "Fuzzy"
-msgstr "Omtrentlig"
+msgstr "Uklar"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
@@ -174,16 +174,17 @@ msgstr "Søk"
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:145
 msgid "End of batch"
-msgstr "Slutten av batch"
+msgstr "Slutten av bolk"
 
 #: translatepage.py:147
 msgid "Click here to return to the index"
 msgstr "Klikk her for å returnere til indeksen"
 
+# Bruker Første og Siste i steden for Start/slutt, det høres bedre ut i mine ører.
 #. l10n: noun (the start)
 #: translatepage.py:161 translatepage.py:164
 msgid "Start"
-msgstr "Start"
+msgstr "Første"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:168 translatepage.py:171
@@ -195,7 +196,7 @@ msgstr "Forrige %d"
 #: translatepage.py:173
 #, python-format
 msgid "Items %d to %d of %d"
-msgstr ""
+msgstr "Element %d til %d av %d"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:178 translatepage.py:181
@@ -206,17 +207,17 @@ msgstr "Neste %d"
 #. l10n: noun (the end)
 #: translatepage.py:184 translatepage.py:187
 msgid "End"
-msgstr "Slutten"
+msgstr "Siste"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: translatepage.py:204
 #, python-format
 msgid "checking %s"
-msgstr ""
+msgstr "sjekker %s"
 
 #: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
 msgid "Assign Strings"
-msgstr "Tildel Strenge"
+msgstr "Tilordne strenger"
 
 #: translatepage.py:212 indexpage.py:528
 msgid "Assign to User"
@@ -229,11 +230,11 @@ msgstr "Tildel Handling"
 #: translatepage.py:368
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr ""
+msgstr "Det finnes ingen elementer for søkekriteriet («%s»)"
 
 #: translatepage.py:370
 msgid "You have finished going through the items you selected"
-msgstr ""
+msgstr "Du har gått gjennom alle de valgte elementene"
 
 #: translatepage.py:578
 msgid "Singular"
@@ -288,6 +289,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
+"Oversettelse er ikke mulig fordi flertallsinformasjon for ditt språk ikke er "
+"tilgjengelig.  Vennligst ta kontakt med webstedets administrator."
 
 #: translatepage.py:739
 msgid "Current Translation:"
@@ -342,12 +345,12 @@ msgstr "Alternativ"
 
 #: adminpages.py:49 users.py:158
 msgid "Current value"
-msgstr ""
+msgstr "Gjeldende verdi"
 
 #: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
 #: users.py:172
 msgid "Save changes"
-msgstr ""
+msgstr "Lagre endringer"
 
 #: adminpages.py:54
 msgid "Title"
@@ -359,81 +362,83 @@ msgstr "Beskrivelse"
 
 #: adminpages.py:56
 msgid "Base URL"
-msgstr ""
+msgstr "Base-URL"
 
 #: adminpages.py:57
 msgid "Home Page"
-msgstr ""
+msgstr "Hjemmeside"
 
 #: adminpages.py:83 adminpages.py:141 adminpages.py:206
 msgid "Main admin page"
-msgstr ""
+msgstr "Hovedside for administrasjon"
 
 #: adminpages.py:89
 msgid "ISO Code"
-msgstr ""
+msgstr "ISO-kode"
 
 #: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
 msgid "Full Name"
-msgstr ""
+msgstr "Fullt navn"
 
 #: adminpages.py:91
 msgid "(add language here)"
-msgstr ""
+msgstr "(legg til språk her)"
 
 #: adminpages.py:92
 msgid "Special Chars"
-msgstr ""
+msgstr "Spesielle tegn"
 
 #: adminpages.py:92
 msgid "(special characters)"
-msgstr ""
+msgstr "(spesielle tegn)"
 
 #: adminpages.py:93 indexpage.py:217
+#, fuzzy
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Antall flertallsformer"
 
 #: adminpages.py:93
+#, fuzzy
 msgid "(number of plurals)"
-msgstr ""
+msgstr "(antall flertallsformer)"
 
 #: adminpages.py:94 indexpage.py:218
 msgid "Plural Equation"
-msgstr ""
+msgstr "Flertallsformel"
 
 #: adminpages.py:94
 msgid "(plural equation)"
-msgstr ""
+msgstr "(flertallsformel)"
 
 #: adminpages.py:95
 msgid "Remove Language"
-msgstr ""
+msgstr "Fjern språk"
 
 #. l10n: The parameter is a languagecode, projectcode or username
 #: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
 #, python-format
 msgid "Remove %s"
-msgstr ""
+msgstr "Fjern %s"
 
 #: adminpages.py:129
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: adminpages.py:147
 msgid "Project Code"
-msgstr ""
+msgstr "Prosjektkode"
 
 #: adminpages.py:149
 msgid "(add project here)"
-msgstr ""
+msgstr "(legg til prosjekt her)"
 
 #: adminpages.py:150
 msgid "Project Description"
-msgstr ""
+msgstr "Prosjektbeskrivelse"
 
 #: adminpages.py:150
 msgid "(project description)"
-msgstr ""
+msgstr "(prosjektbeskrivelse)"
 
 #: adminpages.py:151
 msgid "Checker Style"
@@ -441,23 +446,23 @@ msgstr ""
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Filtype"
 
 #: adminpages.py:153
 msgid "Create MO Files"
-msgstr ""
+msgstr "Lag MO-filer"
 
 #: adminpages.py:154
 msgid "Remove Project"
-msgstr ""
+msgstr "Fjern prosjekt"
 
 #: adminpages.py:212 users.py:66
 msgid "Login"
-msgstr ""
+msgstr "Brukernavn"
 
 #: adminpages.py:214 users.py:347
 msgid "(add full name here)"
-msgstr ""
+msgstr "(legg til fullt navn her)"
 
 #: adminpages.py:215 users.py:101
 msgid "Email Address"
@@ -465,7 +470,7 @@ msgstr "Epostadresse"
 
 #: adminpages.py:215 users.py:350
 msgid "(add email here)"
-msgstr ""
+msgstr "(legg til epostadresse her)"
 
 #: adminpages.py:216 users.py:107 users.py:163
 msgid "Password"
@@ -473,7 +478,7 @@ msgstr "Passord"
 
 #: adminpages.py:216 users.py:344
 msgid "(add password here)"
-msgstr ""
+msgstr "(legg til passord her)"
 
 #: adminpages.py:217
 msgid "Activated"
@@ -489,160 +494,161 @@ msgstr "Fjern bruker"
 
 #: adminpages.py:272
 msgid "Back to main page"
-msgstr ""
+msgstr "Tilbake til hovedsiden"
 
 #: adminpages.py:273
 msgid "Existing languages"
-msgstr ""
+msgstr "Eksisterende språk"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:277
 msgid "Update Languages"
-msgstr ""
+msgstr "Oppdater språk"
 
 #: adminpages.py:278
 #, python-format
 msgid "Pootle Admin: %s"
-msgstr ""
+msgstr "Pootle-administrator: %s"
 
 #: adminpages.py:279 adminpages.py:341
 msgid "You do not have the rights to administer this project."
-msgstr ""
+msgstr "Du har ikke rettigheter til å administrere dette prosjektet."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:281
 msgid "Update from templates"
-msgstr ""
+msgstr "Oppdater fra maler"
 
 #: adminpages.py:289
 msgid "Add Language"
-msgstr ""
+msgstr "Legg til språk"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:321
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr ""
+msgstr "Pootle-administrator: %s %s"
 
 #: adminpages.py:322
 msgid "Project home page"
-msgstr ""
+msgstr "Prosjekt-hjemmeside"
 
 #: adminpages.py:340
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr ""
+msgstr "Kan ikke sette rettigheter for brukernavn %s - brukeren eksisterer ikke"
 
 #: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
-msgstr ""
+msgstr "Dette er et GNU-type prosjekt (en katalog, filer navngitt per språk)."
 
 #: adminpages.py:359
 msgid "This is a standard style project (one directory per language)."
-msgstr ""
+msgstr "Dette er et standard-type prosjekt (en katalog per språk)."
 
 #: adminpages.py:360
 msgid "User Permissions"
-msgstr ""
+msgstr "Brukertilganger"
 
 #: adminpages.py:361 users.py:98 users.py:134
 msgid "Username"
-msgstr ""
+msgstr "Brukernavn"
 
 #: adminpages.py:362
 msgid "(select to add user)"
-msgstr ""
+msgstr "(velg for å legge til bruker)"
 
 #: adminpages.py:363
 msgid "Rights"
-msgstr ""
+msgstr "Rettigheter"
 
 #: adminpages.py:364 indexpage.py:998
 msgid "Remove"
-msgstr ""
+msgstr "Fjern"
 
 #: adminpages.py:391
 msgid "Update Rights"
-msgstr ""
+msgstr "Oppdater rettigheter"
 
 #: pagelayout.py:37
 msgid "All projects"
-msgstr ""
+msgstr "Alle prosjekter"
 
 #: pagelayout.py:38
 msgid "All languages"
-msgstr ""
+msgstr "Alle språk"
 
 #: pagelayout.py:39
 msgid "My account"
-msgstr ""
+msgstr "Min konto"
 
 #: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: pagelayout.py:41
 msgid "Docs & help"
-msgstr ""
+msgstr "Dok. & hjelp"
 
 #: pagelayout.py:42
 msgid "Log out"
-msgstr ""
+msgstr "Logg ut"
 
 #: pagelayout.py:43
 msgid "Log in"
-msgstr ""
+msgstr "Logg inn"
 
 #. l10n: Verb, as in "to register"
 #: pagelayout.py:45
 msgid "Register"
-msgstr ""
+msgstr "Registrer"
 
 #: pagelayout.py:46
 msgid "Activate"
-msgstr ""
+msgstr "Aktiver"
 
 #: pagelayout.py:80
 msgid "Pootle Logo"
 msgstr "Pootle-logo"
 
 #: pagelayout.py:81
+#, fuzzy
 msgid "WordForge Translation Project"
-msgstr ""
+msgstr "WordForge oversettelsesprosjekt"
 
 #: pagelayout.py:83
 msgid "About this Pootle server"
-msgstr ""
+msgstr "Om denne Pootle-tjeneren"
 
 #: pagelayout.py:157
 msgid "All goals"
-msgstr ""
+msgstr "Alle mål"
 
 #: pagelayout.py:228
 #, python-format
 msgid "%d/%d files"
-msgstr ""
+msgstr "%d/%d filer"
 
 #: pagelayout.py:231
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d fil"
+msgstr[1] "%d filer"
 
 #: pagelayout.py:232 indexpage.py:995
 #, python-format
 msgid "%d/%d words (%d%%) translated"
-msgstr ""
+msgstr "%d/%d ord (%d%%) oversatt"
 
 #: pagelayout.py:233
 #, python-format
 msgid "%d/%d strings"
-msgstr ""
+msgstr "%d/%d strenger"
 
 #: pagelayout.py:239 users.py:159
 msgid "Name"
-msgstr ""
+msgstr "Navn"
 
 #: pagelayout.py:240
 msgid "Translated"
@@ -650,7 +656,7 @@ msgstr "Oversatt"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
-msgstr ""
+msgstr "Oversettelsesprosent"
 
 #: pagelayout.py:242
 msgid "Translated words"
@@ -658,57 +664,57 @@ msgstr "Oversatte ord"
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "Uklar-prosent"
 
 #: pagelayout.py:245
 msgid "Fuzzy words"
-msgstr ""
+msgstr "Uklare ord"
 
 #: pagelayout.py:246 indexpage.py:786
 msgid "Untranslated"
-msgstr ""
+msgstr "Uoversatt"
 
 #: pagelayout.py:247
 msgid "Untranslated percentage"
-msgstr ""
+msgstr "Prosent ikke oversatt"
 
 #: pagelayout.py:248
 msgid "Untranslated words"
-msgstr ""
+msgstr "Ikke-oversatte ord"
 
 #: pagelayout.py:249
 msgid "Total"
-msgstr ""
+msgstr "Totalt"
 
 #: pagelayout.py:250
 msgid "Total words"
-msgstr ""
+msgstr "Totalt antall ord"
 
 #. l10n: noun. The graphical representation of translation status
 #: pagelayout.py:252
 msgid "Graph"
-msgstr ""
+msgstr "Graf"
 
 #: users.py:39
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
-msgstr ""
+msgstr "Du må oppgi et gyldig passord på minst %d tegn."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
-msgstr ""
+msgstr "Passordet er ikke det samme som bekreftelsen."
 
 #: users.py:55
 msgid "Login to Pootle"
-msgstr ""
+msgstr "Logg inn i Pootle"
 
 #: users.py:61
 msgid "Username:"
-msgstr ""
+msgstr "Brukernavn:"
 
 #: users.py:63
 msgid "Password:"
-msgstr ""
+msgstr "Passord:"
 
 #: users.py:64
 msgid "Language:"
@@ -716,88 +722,89 @@ msgstr "Språk:"
 
 #: users.py:73
 msgid "Default"
-msgstr ""
+msgstr "Forvalgt"
 
 #: users.py:89
 msgid "Please enter your registration details"
-msgstr ""
+msgstr "Skriv inn dine registreringsdetaljer"
 
 #: users.py:92 users.py:419
 msgid "Pootle Registration"
-msgstr ""
+msgstr "Pootle-registrering"
 
 #: users.py:99 users.py:135
 msgid "Your requested username"
-msgstr ""
+msgstr "Ditt ønskede brukernavn"
 
 #: users.py:102 users.py:373
 msgid "You must supply a valid email address"
-msgstr ""
+msgstr "Du må oppgi en gyldig epostadresse"
 
 #: users.py:105
 msgid "Your full name"
-msgstr ""
+msgstr "Ditt fulle navn"
 
 #: users.py:108
 msgid "Your desired password"
-msgstr ""
+msgstr "Ditt ønskede passord"
 
 #: users.py:110 users.py:164
 msgid "Confirm password"
-msgstr ""
+msgstr "Bekreft passord"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
 msgstr ""
+"Skriv inn passordet ditt på nytt for å passe på at det er skrevet riktig"
 
 #: users.py:113
 msgid "Register Account"
-msgstr ""
+msgstr "Registrer konto"
 
 #: users.py:122
 msgid "Please enter your activation details"
-msgstr ""
+msgstr "Skriv inn dine aktiveringsdetaljer"
 
 #: users.py:127
 msgid "Pootle Account Activation"
-msgstr ""
+msgstr "Pootle kontoaktivering"
 
 #: users.py:137
 msgid "Activation Code"
-msgstr ""
+msgstr "Aktiveringskode"
 
 #: users.py:138
 msgid "The activation code you received"
-msgstr ""
+msgstr "Den aktiveringskoden du mottok"
 
 #: users.py:140
 msgid "Activate Account"
-msgstr ""
+msgstr "Aktiver konto"
 
 #: users.py:151
 #, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr "Valg for: %s"
 
 #: users.py:156
 msgid "Personal Details"
-msgstr ""
+msgstr "Personlige detaljer"
 
 #: users.py:161
 msgid "Email"
-msgstr ""
+msgstr "E-post"
 
 #: users.py:165
 msgid "Translation Interface Configuration"
-msgstr ""
+msgstr "Innstillinger for oversettelsesgrensesnittet"
 
 #: users.py:166
 msgid "User Interface language"
-msgstr ""
+msgstr "Språk for brukergrensesnitt"
 
 #: users.py:167
 msgid "My Projects"
-msgstr ""
+msgstr "Mine prosjekter"
 
 #: users.py:169
 msgid "My Languages"
@@ -805,71 +812,74 @@ msgstr "Mine språk"
 
 #: users.py:171
 msgid "Home page"
-msgstr ""
+msgstr "Hjemmeside"
 
 #: users.py:207
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "Innskrivingshøyde (i linjer)"
 
 #: users.py:208
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "Antall rader i visningsmodus"
 
 #: users.py:209
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "Antall rader i oversettelsesmodus"
 
 #: users.py:251
 msgid "Error"
-msgstr ""
+msgstr "Feil"
 
 #: users.py:303
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "Du må være nettstedsadministrator for å endre brukere"
 
 #: users.py:367
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
-msgstr ""
+msgstr "Brukernavn må være alfanumerisk og må starte med et alfabetisk tegn."
 
 #: users.py:382
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
+msgstr "Du (eller noen andre) prøvde å registrere en konto med ditt brukernavn.\n"
 
 #: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
+msgstr "Vi lagrer ikke ditt faktiske passord, men bare en enveis-kryptert versjon av "
+"det.\n"
 
 #: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr ""
+msgstr "Hvis du har problemer med registreringen, ta kontakt med %s.\n"
 
 #: users.py:387
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "Hvis du har problemer med registreringen, ta kontakt med "
+"nettstedsadministratoren.\n"
 
 #: users.py:388
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
+msgstr "Brukernavnet eksisterer fra før.  En e-post vil bli sendt til den "
+"registrerte e-postadressen.\n"
 
 #: users.py:390
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "Fortsetter til <a href='%s'>innlogging</a>\n"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "En Pootle-konto har blitt opprettet for deg med denne e-postadressen.\n"
 
 #: users.py:398
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "For å aktivere kontoen din, følg denne linken:\n"
 
 #: users.py:404
 #, python-format
@@ -877,18 +887,23 @@ msgid ""
 "Your activation code is:\n"
 "%s\n"
 msgstr ""
+"Din aktiveringskode er:\n"
+"%s\n"
 
 #: users.py:406
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "Hvis du ikke er i stand til å følge denne linken, vennligst skriv inn koden "
+"over på aktiveringssiden.\n"
 
 #: users.py:407
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
+msgstr "Denne meldingen er sendt for å verifisere at e-postadressen faktisk er "
+"korrekt.  Hvis du ikke ønsker å registrere en konto, kan du ganske enkelt "
+"overse denne meldingen.\n"
 
 #: users.py:409
 #, python-format
@@ -896,45 +911,48 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"Konto opprettet.  Du vil motta en e-post med innloggingsdetaljer og en "
+"aktiveringskode.  Vennligst skriv inn aktiveringskoden på <a "
+"href='%s'>aktiveringssiden</a>."
 
 #: users.py:411
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "(eller klikk ganske enkelt på aktiveringslinken i e-posten)"
 
 #: users.py:413
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr ""
+msgstr "Ditt brukernavn er: %s\n"
 
 #: users.py:415
 #, python-format
 msgid "Your password is: %s\n"
-msgstr ""
+msgstr "Ditt passord er: %s\n"
 
 #: users.py:416
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "Din registrerte e-postadresse er: %s\n"
 
 #: users.py:442
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "Overfører til registreringssiden..."
 
 #: users.py:466
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "Overfører til innloggingssiden..."
 
 #: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "Din konto har blitt aktivert!  Overfører til innlogging..."
 
 #: users.py:473
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "Aktiveringsinformasjonen er ikke gyldig."
 
 #: users.py:474
 msgid "Activation Failed"
-msgstr ""
+msgstr "Aktivering feilet"
 
 #: users.py:583
 msgid "Input height must be numeric"
@@ -946,43 +964,43 @@ msgstr ""
 
 #: users.py:585
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr ""
+msgstr "Antall rader vist i visningsmodus må være numerisk"
 
 #: users.py:586
 msgid "The number of rows displayed in translate mode must be numeric"
-msgstr ""
+msgstr "Antall rader vist i oversettelsesmodus må være numerisk"
 
 #: pootle.py:293
 msgid "Login failed"
-msgstr ""
+msgstr "Innlogging feilet"
 
 #: pootle.py:337 pootle.py:368
 msgid "Redirecting to login..."
-msgstr ""
+msgstr "Videresender til innlogging..."
 
 #: pootle.py:340
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "Må logge inn for å aksessere hjemmeside"
 
 #: pootle.py:353
 msgid "Personal details updated"
-msgstr ""
+msgstr "Personlige detaljer oppdatert"
 
 #: pootle.py:371
 msgid "Need to log in to access admin page"
-msgstr ""
+msgstr "Må logge inn for å aksessere administrasjonsside"
 
 #: pootle.py:378
 msgid "Redirecting to home..."
-msgstr ""
+msgstr "Videresender til hjemmeside..."
 
 #: pootle.py:381
 msgid "You do not have the rights to administer pootle."
-msgstr ""
+msgstr "Du har ikke rettigheter til å administrere pootle"
 
 #: indexpage.py:61
 msgid "About Pootle"
-msgstr ""
+msgstr "Om Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:63
@@ -993,6 +1011,11 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
+"<strong>Pootle</strong> er en enkel webportal som lar deg "
+"<strong>oversette</strong>! Siden Pootle er <strong>Fri "
+"programvare</strong>, kan du laste det ned og kjøre din egen kopi om du vil. "
+" Du kan også hjelpe til med utviklingen på mange måter (du må ikke kunne å "
+"programmere)."
 
 #: indexpage.py:64
 msgid ""
@@ -1000,6 +1023,9 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
+"Pootle-prosjektet drives på  <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> hvor "
+"du kan finne detaljene om kildekode, e-postlister osv."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1009,10 +1035,13 @@ msgid ""
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
+"Navnet står for «<b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+"<b>L</b>ocalization <b>E</b>ngine», men du må kanskje lese <a "
+"href=\"http://www.thechestnut.com/flumps.htm\">dette</a>."
 
 #: indexpage.py:68
 msgid "Versions"
-msgstr ""
+msgstr "Versjoner"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1022,34 +1051,36 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
+"Dette nettstedet kjører:<br />Pootle %s<br />Translate Toolkit %s<br "
+"/>jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (på %s/%s)"
 
 #: indexpage.py:130
 #, python-format
 msgid "User Page for: %s"
-msgstr ""
+msgstr "Brukerside for: %s"
 
 #: indexpage.py:132
 msgid "Change options"
-msgstr ""
+msgstr "Endre valg"
 
 #: indexpage.py:133
 msgid "Admin page"
-msgstr ""
+msgstr "Administrasjonsside"
 
 #: indexpage.py:135
 msgid "Quick Links"
-msgstr ""
+msgstr "Hurtiglinker"
 
 #: indexpage.py:139
 msgid "Please click on 'Change options' and select some languages and projects"
-msgstr ""
+msgstr "Klikk «Endre valg» og velg noen språk og prosjekter"
 
 #: indexpage.py:192
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d prosjekt, i gjennomsnitt %d%% oversatt"
+msgstr[1] "%d prosjekter, i gjennomsnitt %d%% oversatt"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -1057,25 +1088,24 @@ msgstr[1] ""
 #: indexpage.py:198 indexpage.py:260
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: indexpage.py:214
 msgid "Language Code"
-msgstr ""
+msgstr "Språkkode"
 
 #: indexpage.py:215
 msgid "Language Name"
-msgstr ""
+msgstr "Språknavn"
 
 #: indexpage.py:252
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d språk, i gjennomsnitt %d%% oversatt"
+msgstr[1] "%d språk, i gjennomsnitt %d%% oversatt"
 
 #: indexpage.py:265
-#, fuzzy
 msgid "Language"
 msgstr "Språk"
 
@@ -1083,116 +1113,118 @@ msgstr "Språk"
 #: indexpage.py:348
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "%s: Prosjekt %s, språk %s"
 
 #: indexpage.py:413
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "Kan ikke laste opp fil, ingen fil lagt ved"
 
 #: indexpage.py:419
 msgid "Can only upload PO files and zips of PO files"
-msgstr ""
+msgstr "Kan bare laste opp PO-filer og zip-filer med PO-filer"
 
 #: indexpage.py:534
 msgid "goals"
-msgstr ""
+msgstr "mål"
 
 #: indexpage.py:535
 msgid "Enter goal name"
-msgstr ""
+msgstr "Skriv inn navn på mål"
 
 #: indexpage.py:536
 msgid "Add Goal"
-msgstr ""
+msgstr "Legg til mål"
 
 #: indexpage.py:541 indexpage.py:543
 msgid "Upload File"
-msgstr ""
+msgstr "Last opp fil"
 
 #: indexpage.py:542
 msgid "Select file to upload"
-msgstr ""
+msgstr "Velg fil å laste opp"
 
 #. l10n: tooltip
 #: indexpage.py:550
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "Overskriv gjeldende fil om den eksisterer"
 
 #. l10n: radio button text
 #: indexpage.py:552
 msgid "Merge"
-msgstr ""
+msgstr "Flett"
 
 #. l10n: tooltip
 #: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr ""
+msgstr "Flett filen med gjeldende fil og gjør om konflikter til forslag"
 
 #: indexpage.py:657
 msgid "Not in a goal"
-msgstr ""
+msgstr "Ikke i et mål"
 
 #: indexpage.py:677
 msgid "Add User"
-msgstr ""
+msgstr "Legg til bruker"
 
 #: indexpage.py:719
 msgid "PO file"
-msgstr ""
+msgstr "PO-fil"
 
 #: indexpage.py:723
 msgid "XLIFF file"
-msgstr ""
+msgstr "XLIFF-fil"
 
 #: indexpage.py:727
 msgid "Qt .ts file"
-msgstr ""
+msgstr "QT .ts-fil"
 
 #: indexpage.py:731
 msgid "CSV file"
-msgstr ""
+msgstr "CSV-fil"
 
 #: indexpage.py:736
 msgid "MO file"
-msgstr ""
+msgstr "MO-fil"
 
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:742
 msgid "Update"
-msgstr ""
+msgstr "Oppdater"
 
 #: indexpage.py:785
 msgid "All Strings"
-msgstr ""
+msgstr "Alle strenger"
 
 #: indexpage.py:787
+#, fuzzy
 msgid "Unassigned"
-msgstr ""
+msgstr "Ikke tildelt"
 
 #: indexpage.py:788
+#, fuzzy
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "Ikke tildelt og ikke oversatt"
 
 #: indexpage.py:795
 msgid "Set Goal"
-msgstr ""
+msgstr "Sett mål"
 
 #: indexpage.py:799
 msgid "Select Multiple"
-msgstr ""
+msgstr "Velg flere"
 
 #: indexpage.py:801
 msgid "Assign To"
-msgstr ""
+msgstr "Tildel til"
 
 #: indexpage.py:830
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "Vis redigeringsfunksjoner"
 
 #: indexpage.py:831
 msgid "Show Statistics"
-msgstr ""
+msgstr "Vis statistikk"
 
 #: indexpage.py:832
 msgid "Show Tracks"
@@ -1205,76 +1237,76 @@ msgstr ""
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:834
 msgid "Show Checks"
-msgstr ""
+msgstr "Vis feilsjekking"
 
 #: indexpage.py:834
 msgid "Hide Checks"
-msgstr ""
+msgstr "Skjul feilsjekking"
 
 #: indexpage.py:835
 msgid "Show Goals"
-msgstr ""
+msgstr "Vis mål"
 
 #: indexpage.py:835
 msgid "Hide Goals"
-msgstr ""
+msgstr "Skjul mål"
 
 #: indexpage.py:836
 msgid "Show Assigns"
-msgstr ""
+msgstr "Vis tildelinger"
 
 #: indexpage.py:836
 msgid "Hide Assigns"
-msgstr ""
+msgstr "Skjul tildelinger"
 
 #: indexpage.py:845
 #, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "Alle mål: %s"
 
 #: indexpage.py:851
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Oversett mine strenger"
 
 #: indexpage.py:853
 msgid "View My Strings"
-msgstr ""
+msgstr "Vis mine strenger"
 
 #: indexpage.py:858
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "Ingen strenger er tildelt til deg"
 
 #: indexpage.py:862
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Hurtigoversetting av mine strenger"
 
 #: indexpage.py:866
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "Ingen uoversatte strenger er tildelt til deg"
 
 #: indexpage.py:870
 msgid "Review Suggestions"
-msgstr ""
+msgstr "Se over forslag"
 
 #: indexpage.py:872
 msgid "View Suggestions"
-msgstr ""
+msgstr "Vis forslag"
 
 #: indexpage.py:877
 msgid "Quick Translate"
-msgstr ""
+msgstr "Hurtigoversetting"
 
 #: indexpage.py:879
 msgid "View Untranslated"
-msgstr ""
+msgstr "Vis uoversatte"
 
 #: indexpage.py:883
 msgid "No untranslated items"
-msgstr ""
+msgstr "Ingen uoversatte elementer"
 
 #: indexpage.py:886
 msgid "Translate All"
-msgstr ""
+msgstr "Oversett alle"
 
 #: indexpage.py:901
 msgid "ZIP of goal"
@@ -1282,25 +1314,25 @@ msgstr ""
 
 #: indexpage.py:903
 msgid "ZIP of folder"
-msgstr ""
+msgstr "ZIP-fil av mappe"
 
 #: indexpage.py:910
 msgid "Generate SDF"
-msgstr ""
+msgstr "Generer SDF"
 
 #: indexpage.py:963
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d streng (%d%%) feilet"
+msgstr[1] "%d strenger (%d%%) feilet"
 
 #: indexpage.py:993
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr ""
+msgstr "%d/%d ord (%d%%) tildelt"
 
 #: indexpage.py:994 indexpage.py:996
 #, python-format
 msgid "[%d/%d strings]"
-msgstr ""
+msgstr "[%d/%d strenger]"

@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2008-03-15 15:59+0000\n"
+"PO-Revision-Date: 2008-05-19 17:16+0000\n"
 "Last-Translator: Seanán Ó Coistín <seananoc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"X-Generator: Pootle 1.1.0\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -68,43 +68,43 @@ msgstr ""
 
 #: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "Níl cearta agat spriocanna a athrú anseo"
 
 #: projects.py:505
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "Níl cearta agat comhaid a uasluchtú anseo"
 
 #: projects.py:508
 msgid "You do not have rights to overwrite files here"
-msgstr ""
+msgstr "Níl cearta agat comhaid a fhorscríobh anseo"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "Níl cearta agat comhaid nua a uasluchtú anseo"
 
 #: projects.py:519
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "Níl cearta agat comhaid a nuashonrú anseo"
 
 #: projects.py:590
 msgid "You do not have rights to commit files here"
-msgstr ""
+msgstr "Níl cearta agat chun comhaid a chur anseo"
 
 #: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "Níl cearta agat sannacháin a athrú anseo"
 
 #: projects.py:1141
 msgid "You do not have rights to change translations here"
-msgstr ""
+msgstr "Níl cearta agat aistriúcháin a athrú anseo"
 
 #: projects.py:1151
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "Níl cearta agat athruithe a mholadh anseo"
 
 #: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Níl cearta agat moltaí a athbhreithniú anseo"
 
 #: translatepage.py:89
 #, python-format
@@ -112,6 +112,8 @@ msgid ""
 "%d/%d translated\n"
 "(%d blank, %d fuzzy)"
 msgstr ""
+"%d/%d aistrithe\n"
+"(%d bán, %d doiléir)"
 
 #: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
 #: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
@@ -217,15 +219,15 @@ msgstr "ag dearbhú %s"
 
 #: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
 msgid "Assign Strings"
-msgstr "Leithdháil Teaghráin"
+msgstr "Sann Teaghráin"
 
 #: translatepage.py:212 indexpage.py:528
 msgid "Assign to User"
-msgstr "Leithdháil go Úsáideoir"
+msgstr "Sann go Úsáideoir"
 
 #: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
-msgstr "Leithdháil Gníomh"
+msgstr "Sann Gníomh"
 
 #: translatepage.py:368
 #, python-format
@@ -289,6 +291,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
+"Ní féidir aistriú mar níl faisnéis iolraí do do theanga ar fáil. Déan "
+"teagmháil le riarthóir an láithreáin."
 
 #: translatepage.py:739
 msgid "Current Translation:"
@@ -438,7 +442,7 @@ msgstr "(tuairisc ar an tionscadail)"
 
 #: adminpages.py:151
 msgid "Checker Style"
-msgstr ""
+msgstr "Nós an Dearbhála"
 
 #: adminpages.py:152
 msgid "File Type"
@@ -533,14 +537,18 @@ msgstr "Clár cinn an tionscadail"
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr ""
+"Ní féidir cearta don t-ainm úsáideora %s a shocrú - níl an duine seo ann"
 
 #: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
+"Is tionscadal de chineál GNU é seo (comhadlann amháin, comhaid ainmnithe de "
+"réir an béarla)."
 
 #: adminpages.py:359
 msgid "This is a standard style project (one directory per language)."
 msgstr ""
+"Is tionscadal chaighdeánach é seo (comhadlann amháin de réir an béarla)."
 
 #: adminpages.py:360
 msgid "User Permissions"
@@ -552,7 +560,7 @@ msgstr "Ainm Úsáideora"
 
 #: adminpages.py:362
 msgid "(select to add user)"
-msgstr ""
+msgstr "(roghnaigh chun úsáideoir a chur leis)"
 
 #: adminpages.py:363
 msgid "Rights"
@@ -628,8 +636,9 @@ msgstr "%d/%d comhaid"
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d comhaid"
+msgstr[1] "%d comhaid"
+msgstr[2] "%d comhaid"
 
 #: pagelayout.py:232 indexpage.py:995
 #, python-format
@@ -694,10 +703,12 @@ msgstr "Léiriú"
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
 msgstr ""
+"Caithfear focal faire seasmhach ar a laghad %d litreacha ar fhad a "
+"sholáthar."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
-msgstr ""
+msgstr "Ní ionann an focal faire seo agus an ceann sa dheimhniú."
 
 #: users.py:55
 msgid "Login to Pootle"
@@ -796,83 +807,88 @@ msgstr "Cumraíocht Comhéadan an Aistriúcháin"
 
 #: users.py:166
 msgid "User Interface language"
-msgstr ""
+msgstr "Béarla Comhéadan an Úsáideora"
 
 #: users.py:167
 msgid "My Projects"
-msgstr ""
+msgstr "Mo Chuid Tionscadail"
 
 #: users.py:169
 msgid "My Languages"
-msgstr ""
+msgstr "Mo Bhéarlaí"
 
 #: users.py:171
 msgid "Home page"
-msgstr ""
+msgstr "Clár Cinn"
 
 #: users.py:207
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "Airde an Ionchuir (i línte)"
 
 #: users.py:208
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "Líon na sraitheanna i mhodh an amhairc"
 
 #: users.py:209
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "Líon na sraitheanna i mhodh an aistriú"
 
 #: users.py:251
 msgid "Error"
-msgstr ""
+msgstr "Botún"
 
 #: users.py:303
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "Caithfidh tú bheith i bhfeighil an láithréan chun daoine a athrú"
 
 #: users.py:367
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
+"Ní mór litreacha agus uimhreacha amháin a bheith san ainm úsáideora, agus "
+"caithfidh sé tosú le litir."
 
 #: users.py:382
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
+msgstr "Rinne tusa (nó duine eile) iarracht cuntas a chlárú le d'ainm úsáideora.\n"
 
 #: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
+msgstr "Ní chuirimid ach hais de d'fhocal faire i dtaisce.\n"
 
 #: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr ""
+msgstr "Má tá fadhb agat leis an clárúchán, déan teagmháil le %s.\n"
 
 #: users.py:387
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "Má tá fadhb agat leis an clárúchán, déan teagmháil le riarthóir an "
+"láithreáin.\n"
 
 #: users.py:388
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
+msgstr "Tá an ainm úsáideora sin ann cheana. Seolfar ríomhphost chuig an seoladh "
+"ríomhphoist atá cláraithe.\n"
 
 #: users.py:390
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "Ag bualadh chun <a href='%s'>sínigh isteach</a>\n"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "Chruthaíodh cuntas Pootle duit ag baint feidhm as an seoladh ríomhphoist "
+"seo.\n"
 
 #: users.py:398
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "Chun do chuntas a ghníomhachtú, lean an nasc seo:\n"
 
 #: users.py:404
 #, python-format
@@ -880,18 +896,23 @@ msgid ""
 "Your activation code is:\n"
 "%s\n"
 msgstr ""
+"Sé do thagairt ghníomhachtú ná:\n"
+"%s\n"
 
 #: users.py:406
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "Mura bhféidir leat an nasc a leanúint, cuir isteach an tagairt thuas sa "
+"leathanach ghníomhachtú.\n"
 
 #: users.py:407
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
+msgstr "Seoltar an teachtaireacht seo chun deimhniú go bhfuil an seoladh ríomhphoist "
+"ceart. Mura theastaíonn uait cuntas a chlárú, ná bac leis an "
+"teachtaireacht.\n"
 
 #: users.py:409
 #, python-format
@@ -899,53 +920,56 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"Chruthaíodh an cuntas. Seolfar sonraí síniú isteach agus tagairt "
+"ghníomhachtú i ríomhphost. Cuir isteach do thagairt ghníomhachtú ar an "
+"href='%s'>leathanach gníomhachtú</a>."
 
 #: users.py:411
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "(Nó brúigh ar an nasc gníomhachtú sa ríomhphost)"
 
 #: users.py:413
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr ""
+msgstr "Sé d'ainm úsáideora ná: %s\n"
 
 #: users.py:415
 #, python-format
 msgid "Your password is: %s\n"
-msgstr ""
+msgstr "Sé d'fhocal faire ná: %s\n"
 
 #: users.py:416
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "Sé do sheoladh ríomhphoist atá cláraithe ná: %s\n"
 
 #: users.py:442
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "Ag Atreorú chuig an Leathanach Clárúcháin..."
 
 #: users.py:466
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "Ag Atreorú chuig an Leathanach sínigh isteach..."
 
 #: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "Ghníomhachtaíodh do chuntas! Ag atreorú chuig síniú isteach..."
 
 #: users.py:473
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "Ní raibh an fhaisnéis ghníomhachtú seasmhach."
 
 #: users.py:474
 msgid "Activation Failed"
-msgstr ""
+msgstr "Theip ar an Gníomhachtú"
 
 #: users.py:583
 msgid "Input height must be numeric"
-msgstr ""
+msgstr "Ní mór don airde inchur bheith mar uimhir"
 
 #: users.py:584
 msgid "Input width must be numeric"
-msgstr ""
+msgstr "Ní mór don leithead inchur bheith mar uimhir"
 
 #: users.py:585
 msgid "The number of rows displayed in view mode must be numeric"
@@ -957,35 +981,36 @@ msgstr ""
 
 #: pootle.py:293
 msgid "Login failed"
-msgstr ""
+msgstr "Theip ar an síniú isteach"
 
 #: pootle.py:337 pootle.py:368
 msgid "Redirecting to login..."
-msgstr ""
+msgstr "Ag atreorú go dtí síniú isteach..."
 
 #: pootle.py:340
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "Caithfear síniú isteach chun rochtain a fháil ar an clár cinn"
 
 #: pootle.py:353
 msgid "Personal details updated"
-msgstr ""
+msgstr "Nuashonraíodh na sonraí pearsanta"
 
 #: pootle.py:371
 msgid "Need to log in to access admin page"
 msgstr ""
+"Caithfear síniú isteach chun rochtain a fháil ar leathanach an riaracháin"
 
 #: pootle.py:378
 msgid "Redirecting to home..."
-msgstr ""
+msgstr "Ag atreorú go dtí an clár cinn..."
 
 #: pootle.py:381
 msgid "You do not have the rights to administer pootle."
-msgstr ""
+msgstr "Níl aon cearta agat pootle a riar."
 
 #: indexpage.py:61
 msgid "About Pootle"
-msgstr ""
+msgstr "Maidir le Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:63
@@ -996,6 +1021,11 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
+"Is tairseach gréasáin simplí é <strong>Pootle</strong> a ligeann duit "
+"<strong>aistriú</strong>! De bharr gur <strong>Oideasra Saor In "
+"Aisce</strong> é Pootle, is féidir leat é a íosluchtú agus do leagan féin de "
+"a rith más mian leat. Is féidir cabhrú leis an fhorbairt freisin ar mórán "
+"bealaí (ní gá duit bheith in ann ríomhoideas a chruthú)."
 
 #: indexpage.py:64
 msgid ""
@@ -1219,90 +1249,91 @@ msgstr ""
 
 #: indexpage.py:835
 msgid "Hide Goals"
-msgstr ""
+msgstr "Folaigh Spriocanna"
 
 #: indexpage.py:836
 msgid "Show Assigns"
-msgstr ""
+msgstr "Taispeáin Sannaithe"
 
 #: indexpage.py:836
 msgid "Hide Assigns"
-msgstr ""
+msgstr "Folaigh Sannaithe"
 
 #: indexpage.py:845
 #, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "Gach Sprioc: %s"
 
 #: indexpage.py:851
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Aistrigh Mo Chuid Teaghráin"
 
 #: indexpage.py:853
 msgid "View My Strings"
-msgstr ""
+msgstr "Féach Ar Mo Chuid Teaghráin"
 
 #: indexpage.py:858
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "Níl teaghráin sannta duit"
 
 #: indexpage.py:862
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Mear Aistrigh Mo Chuid Teaghráin"
 
 #: indexpage.py:866
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "Níl aon teaghráin neamhaistrithe sannta duit"
 
 #: indexpage.py:870
 msgid "Review Suggestions"
-msgstr ""
+msgstr "Athbhreithnigh na Moltaí"
 
 #: indexpage.py:872
 msgid "View Suggestions"
-msgstr ""
+msgstr "Féach ar na Moltaí"
 
 #: indexpage.py:877
 msgid "Quick Translate"
-msgstr ""
+msgstr "Mear-aistriúchán"
 
 #: indexpage.py:879
 msgid "View Untranslated"
-msgstr ""
+msgstr "Féach ar Neamhaistrithe"
 
 #: indexpage.py:883
 msgid "No untranslated items"
-msgstr ""
+msgstr "Níl mhíreanna neamhaistrithe ann"
 
 #: indexpage.py:886
 msgid "Translate All"
-msgstr ""
+msgstr "Aistrigh Uile"
 
 #: indexpage.py:901
 msgid "ZIP of goal"
-msgstr ""
+msgstr "Comhad ZIP den cúl"
 
 #: indexpage.py:903
 msgid "ZIP of folder"
-msgstr ""
+msgstr "Comhad ZIP den fillteán"
 
 #: indexpage.py:910
 msgid "Generate SDF"
-msgstr ""
+msgstr "Cruthaigh SDF"
 
 #: indexpage.py:963
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d teaghráin (%d%%) teipthe"
+msgstr[1] "%d teaghráin (%d%%) teipthe"
+msgstr[2] "%d teaghráin (%d%%) teipthe"
 
 #: indexpage.py:993
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr ""
+msgstr "%d/%d focail (%d%%) sannta"
 
 #: indexpage.py:994 indexpage.py:996
 #, python-format
 msgid "[%d/%d strings]"
-msgstr ""
+msgstr "[%d/%d teaghráin]"

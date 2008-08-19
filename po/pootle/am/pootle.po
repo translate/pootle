@@ -1,12 +1,11 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2005-04-13 02:17-0500\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-04-20 03:33+0100\n"
+"Last-Translator: tegegne tefera <tefera@mekuria.com>\n"
+"Language-Team: Amharic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,108 +16,140 @@ msgstr ""
 #. l10n: Verb
 #: projects.py:136
 msgid "View"
-msgstr ""
+msgstr "እይታ"
 
-#: projects.py:137 translatepage.py:613
+#: projects.py:137
+#: translatepage.py:613
 msgid "Suggest"
-msgstr ""
+msgstr "ምከር"
 
 #: projects.py:138
 msgid "Translate"
-msgstr ""
+msgstr "ተረጉም"
 
 #. l10n: radio button text
-#: projects.py:139 indexpage.py:548
+#: projects.py:139
+#: indexpage.py:548
 msgid "Overwrite"
-msgstr ""
+msgstr "ተካ"
 
 #. l10n: Verb
 #: projects.py:141
 msgid "Review"
-msgstr ""
+msgstr "አርም"
 
 #. l10n: Verb
 #: projects.py:143
 msgid "Archive"
-msgstr ""
+msgstr "አስቀምጥ"
 
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:145
+#, fuzzy
 msgid "Compile PO files"
-msgstr ""
+msgstr "የትርጉም ፋይሎች (*.po;*.mo)|*.po;*.mo"
 
 #: projects.py:146
 msgid "Assign"
-msgstr ""
+msgstr "መድብ"
 
-#: projects.py:147 indexpage.py:134
+#: projects.py:147
+#: indexpage.py:134
 msgid "Administrate"
-msgstr ""
+msgstr "አስተዳድር"
 
 #. l10n: Commit to version control (like CVS or Subversion)
-#: projects.py:148 indexpage.py:748
+#: projects.py:148
+#: indexpage.py:748
 msgid "Commit"
-msgstr ""
+msgstr "ሰይም"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
 msgstr ""
 
-#: projects.py:380 projects.py:442
+#: projects.py:380
+#: projects.py:442
+#, fuzzy
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
 #: projects.py:505
+#, fuzzy
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
 #: projects.py:508
+#, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
 #: projects.py:510
+#, fuzzy
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
 #: projects.py:519
+#, fuzzy
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
 #: projects.py:590
+#, fuzzy
 msgid "You do not have rights to commit files here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
-#: projects.py:919 projects.py:960
+#: projects.py:919
+#: projects.py:960
+#, fuzzy
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
 #: projects.py:1141
+#, fuzzy
 msgid "You do not have rights to change translations here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
 #: projects.py:1151
+#, fuzzy
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
-#: projects.py:1167 projects.py:1185
+#: projects.py:1167
+#: projects.py:1185
+#, fuzzy
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
 #: translatepage.py:89
 #, python-format
+#, fuzzy, python-format
 msgid ""
 "%d/%d translated\n"
 "(%d blank, %d fuzzy)"
-msgstr ""
+msgstr "%i ሐረጎች (%i ጅምር፣ %i የተበላሹ ምልክቶች፣ %i ያልተተረጎመ)"
 
-#: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
-#: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
-#: users.py:58 users.py:95 users.py:131 users.py:153 indexpage.py:73
-#: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
+#: translatepage.py:94
+#: adminpages.py:35
+#: adminpages.py:74
+#: adminpages.py:132
+#: adminpages.py:197
+#: adminpages.py:284
+#: adminpages.py:344
+#: pagelayout.py:72
+#: users.py:58
+#: users.py:95
+#: users.py:131
+#: users.py:153
+#: indexpage.py:73
+#: indexpage.py:96
+#: indexpage.py:136
+#: indexpage.py:194
+#: indexpage.py:256
 #: indexpage.py:346
 msgid "Pootle Demo"
-msgstr ""
+msgstr "ፑትል መለማመጃ"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -126,13 +157,14 @@ msgstr ""
 #. l10n: fourth parameter: file name
 #: translatepage.py:99
 #, python-format
+#, fuzzy, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr ""
+msgstr "በራስ-ገዝ በመተርጎም ላይ..."
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:114
 msgid "Original"
-msgstr ""
+msgstr "ምንጭ"
 
 #. l10n: Heading above the table column with the target language
 #: translatepage.py:116
@@ -142,72 +174,80 @@ msgstr "ፈጣን ትርጉም"
 
 #: translatepage.py:119
 msgid "Accept"
-msgstr ""
+msgstr "ተቀበል"
 
 #: translatepage.py:120
 msgid "Reject"
-msgstr ""
+msgstr "አትቀበል"
 
-#: translatepage.py:121 pagelayout.py:243
+#: translatepage.py:121
+#: pagelayout.py:243
 msgid "Fuzzy"
-msgstr ""
+msgstr "ጅምር"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "የተርጓሚ አስተያየት"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "የደራሲ አስተያየት"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
 msgid "Related"
-msgstr ""
+msgstr "የተዛመደ"
 
 #. l10n: text next to search field
-#: translatepage.py:131 indexpage.py:356
+#: translatepage.py:131
+#: indexpage.py:356
 msgid "Search"
-msgstr ""
+msgstr "ፈልግ"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:145
 msgid "End of batch"
-msgstr ""
+msgstr "የጥቅል መጨረሻ"
 
 #: translatepage.py:147
+#, fuzzy
 msgid "Click here to return to the index"
-msgstr ""
+msgstr "ወደ ተከላ ምናሌው ለመመለስ \"exit\" ትዕዛዝን ይጠቀሙ።"
 
 #. l10n: noun (the start)
-#: translatepage.py:161 translatepage.py:164
+#: translatepage.py:161
+#: translatepage.py:164
 msgid "Start"
-msgstr ""
+msgstr "ጀምር"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:168 translatepage.py:171
+#: translatepage.py:168
+#: translatepage.py:171
 #, python-format
 msgid "Previous %d"
-msgstr ""
+msgstr "ያለፈው %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:173
 #, python-format
+#, fuzzy, python-format
 msgid "Items %d to %d of %d"
-msgstr ""
+msgstr "እቃዎችን ፓነል ላይ ጨምር"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:178 translatepage.py:181
+#: translatepage.py:178
+#: translatepage.py:181
 #, python-format
 msgid "Next %d"
-msgstr ""
+msgstr "የሚቀጥለው %d"
 
 #. l10n: noun (the end)
-#: translatepage.py:184 translatepage.py:187
+#: translatepage.py:184
+#: translatepage.py:187
 msgid "End"
-msgstr ""
+msgstr "መጨረሻ"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: translatepage.py:204
@@ -215,17 +255,22 @@ msgstr ""
 msgid "checking %s"
 msgstr "%sን በመፈለገ ላይ"
 
-#: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
+#: translatepage.py:211
+#: translatepage.py:214
+#: indexpage.py:526
+#: indexpage.py:529
 msgid "Assign Strings"
-msgstr ""
+msgstr "ሐረጎችን መድብ"
 
-#: translatepage.py:212 indexpage.py:528
+#: translatepage.py:212
+#: indexpage.py:528
 msgid "Assign to User"
-msgstr ""
+msgstr "ለተጠቃሚ መድብ"
 
-#: translatepage.py:213 indexpage.py:527
+#: translatepage.py:213
+#: indexpage.py:527
 msgid "Assign Action"
-msgstr ""
+msgstr "ተግባርን መድብ"
 
 #: translatepage.py:368
 #, python-format
@@ -233,55 +278,61 @@ msgid "There are no items matching that search ('%s')"
 msgstr ""
 
 #: translatepage.py:370
+#, fuzzy
 msgid "You have finished going through the items you selected"
-msgstr ""
+msgstr "የተመረጠው ፓነልና ያቀፋቸው ሁሉ ይሰረዛሉ።"
 
 #: translatepage.py:578
 msgid "Singular"
-msgstr ""
+msgstr "ነጠላ"
 
 #: translatepage.py:579
 msgid "Plural"
-msgstr ""
+msgstr "ብዙ"
 
 #. l10n: verb
 #: translatepage.py:593
 msgid "Edit"
-msgstr ""
+msgstr "አርም"
 
 #. l10n: verb
 #: translatepage.py:609
 msgid "Copy"
-msgstr ""
+msgstr "ኮፒ"
 
-#: translatepage.py:610 translatepage.py:784
+#: translatepage.py:610
+#: translatepage.py:784
 msgid "Skip"
-msgstr ""
+msgstr "ዝለል"
 
 #. l10n: verb
-#: translatepage.py:612 translatepage.py:783 users.py:256
+#: translatepage.py:612
+#: translatepage.py:783
+#: users.py:256
 msgid "Back"
-msgstr ""
+msgstr "ወደኋላ"
 
 #: translatepage.py:614
 msgid "Submit"
-msgstr ""
+msgstr "አቅርብ"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:617
 msgid "Grow"
-msgstr ""
+msgstr "ይደግ"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:619
 msgid "Shrink"
-msgstr ""
+msgstr "ይነስ"
 
-#: translatepage.py:641 translatepage.py:735 translatepage.py:772
+#: translatepage.py:641
+#: translatepage.py:735
+#: translatepage.py:772
 #: translatepage.py:805
 #, python-format
 msgid "Plural Form %d"
-msgstr ""
+msgstr "ብዙ-ቤት"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:657
@@ -292,14 +343,15 @@ msgstr ""
 
 #: translatepage.py:739
 msgid "Current Translation:"
-msgstr ""
+msgstr "ወቅታዊ ትርጉም"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
 #: translatepage.py:752
 #, python-format
+#, fuzzy, python-format
 msgid "Suggestion %d by %s:"
-msgstr ""
+msgstr "ተጠሪ አስተዳዳሪ"
 
 #: translatepage.py:754
 #, fuzzy
@@ -309,102 +361,135 @@ msgstr "አስተያየት"
 #. l10n: parameter: name of translator
 #: translatepage.py:758
 #, python-format
+#, fuzzy, python-format
 msgid "Suggestion by %s:"
-msgstr ""
+msgstr "ተጠሪ አስተዳዳሪ"
 
 #: translatepage.py:760
 msgid "Suggestion:"
 msgstr "አስተያየት"
 
-#: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
+#: adminpages.py:43
+#: adminpages.py:82
+#: adminpages.py:140
+#: adminpages.py:205
 #: pagelayout.py:36
 msgid "Home"
-msgstr ""
+msgstr "ቤት"
 
-#: adminpages.py:44 adminpages.py:207
+#: adminpages.py:44
+#: adminpages.py:207
 msgid "Users"
-msgstr ""
+msgstr "ተጠቃሚዎች"
 
-#: adminpages.py:45 adminpages.py:84 indexpage.py:94
+#: adminpages.py:45
+#: adminpages.py:84
+#: indexpage.py:94
 msgid "Languages"
-msgstr ""
+msgstr "ቋንቋዎች"
 
-#: adminpages.py:46 adminpages.py:142 indexpage.py:95
+#: adminpages.py:46
+#: adminpages.py:142
+#: indexpage.py:95
 msgid "Projects"
-msgstr ""
+msgstr "ፕሮጀክቶች"
 
 #: adminpages.py:47
+#, fuzzy
 msgid "General options"
-msgstr ""
+msgstr "የመጫኛ ምርጫዎች"
 
-#: adminpages.py:48 users.py:157
+#: adminpages.py:48
+#: users.py:157
 msgid "Option"
-msgstr ""
+msgstr "ምርጫ"
 
-#: adminpages.py:49 users.py:158
+#: adminpages.py:49
+#: users.py:158
+#, fuzzy
 msgid "Current value"
-msgstr ""
+msgstr "ውቅታዊ ከባቢ (%s)"
 
-#: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
+#: adminpages.py:50
+#: adminpages.py:85
+#: adminpages.py:143
+#: adminpages.py:208
 #: users.py:172
 msgid "Save changes"
-msgstr ""
+msgstr "ለውጦችን አስቀምጥ"
 
 #: adminpages.py:54
 msgid "Title"
-msgstr ""
+msgstr "ርዕስ"
 
 #: adminpages.py:55
 msgid "Description"
-msgstr ""
+msgstr "መግለጫ"
 
 #: adminpages.py:56
+#, fuzzy
 msgid "Base URL"
-msgstr ""
+msgstr "መሠረታዊ ዱካ:"
 
 #: adminpages.py:57
+#, fuzzy
 msgid "Home Page"
-msgstr ""
+msgstr "መስመር በገጽ"
 
-#: adminpages.py:83 adminpages.py:141 adminpages.py:206
+#: adminpages.py:83
+#: adminpages.py:141
+#: adminpages.py:206
+#, fuzzy
 msgid "Main admin page"
-msgstr ""
+msgstr "መስመር በገጽ"
 
 #: adminpages.py:89
 msgid "ISO Code"
-msgstr ""
+msgstr "ISO ኮድ"
 
-#: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
+#: adminpages.py:90
+#: adminpages.py:148
+#: adminpages.py:213
+#: users.py:104
 msgid "Full Name"
-msgstr ""
+msgstr "ሙሉ ስም"
 
 #: adminpages.py:91
+#, fuzzy
 msgid "(add language here)"
-msgstr ""
+msgstr "(ቀዳሚ ቋንቋን ተጠቀም)"
 
 #: adminpages.py:92
+#, fuzzy
 msgid "Special Chars"
-msgstr ""
+msgstr "ፊደል በመስመር፦"
 
 #: adminpages.py:92
+#, fuzzy
 msgid "(special characters)"
-msgstr ""
-
-#: adminpages.py:93 indexpage.py:217
-msgid "Number of Plurals"
-msgstr ""
+msgstr "የነሲብ ፊደል አስገባ"
 
 #: adminpages.py:93
-msgid "(number of plurals)"
-msgstr ""
+#: indexpage.py:217
+#, fuzzy
+msgid "Number of Plurals"
+msgstr "ይመስመር ቁጥር _L"
 
-#: adminpages.py:94 indexpage.py:218
-msgid "Plural Equation"
-msgstr ""
+#: adminpages.py:93
+#, fuzzy
+msgid "(number of plurals)"
+msgstr "ይመስመር ቁጥር _L"
 
 #: adminpages.py:94
+#: indexpage.py:218
+#, fuzzy
+msgid "Plural Equation"
+msgstr "ብዙ-ቤት፦"
+
+#: adminpages.py:94
+#, fuzzy
 msgid "(plural equation)"
-msgstr ""
+msgstr "ብዙ-ቤት፦"
 
 #: adminpages.py:95
 #, fuzzy
@@ -412,113 +497,140 @@ msgid "Remove Language"
 msgstr "%s ቋንቋ"
 
 #. l10n: The parameter is a languagecode, projectcode or username
-#: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
+#: adminpages.py:110
+#: adminpages.py:177
+#: adminpages.py:240
+#: adminpages.py:410
 #, python-format
 msgid "Remove %s"
-msgstr ""
+msgstr "ሰርዝ %s"
 
 #: adminpages.py:129
 msgid "Standard"
-msgstr ""
+msgstr "ቀዳሚ"
 
 #: adminpages.py:147
+#, fuzzy
 msgid "Project Code"
-msgstr ""
+msgstr "የኮድስም_s፦"
 
 #: adminpages.py:149
+#, fuzzy
 msgid "(add project here)"
-msgstr ""
+msgstr "አዲስ ዕቃ ጨምር"
 
 #: adminpages.py:150
+#, fuzzy
 msgid "Project Description"
-msgstr ""
+msgstr "መርሃ-ግብር ሰርዝ"
 
 #: adminpages.py:150
+#, fuzzy
 msgid "(project description)"
-msgstr ""
+msgstr "መርሃ-ግብር ሰርዝ"
 
 #: adminpages.py:151
+#, fuzzy
 msgid "Checker Style"
-msgstr ""
+msgstr "የትዕዛዝ ማስጫ ስታይል"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "የፋይል ዓይነት"
 
 #: adminpages.py:153
+#, fuzzy
 msgid "Create MO Files"
-msgstr ""
+msgstr "የትርጉም ፋይሎች (*.po;*.mo)|*.po;*.mo"
 
 #: adminpages.py:154
+#, fuzzy
 msgid "Remove Project"
-msgstr ""
+msgstr "መርሃ-ግብር ሰርዝ"
 
-#: adminpages.py:212 users.py:66
+#: adminpages.py:212
+#: users.py:66
+#, fuzzy
 msgid "Login"
-msgstr ""
+msgstr "እንደ ስር መግባትን አስችል፡፡"
 
-#: adminpages.py:214 users.py:347
+#: adminpages.py:214
+#: users.py:347
+#, fuzzy
 msgid "(add full name here)"
-msgstr ""
+msgstr "የአዲሱ ተጠቃሚ ሙሉ ስም፦"
 
-#: adminpages.py:215 users.py:101
+#: adminpages.py:215
+#: users.py:101
 msgid "Email Address"
-msgstr ""
+msgstr "ኤ-መልዕክት አድራሻ"
 
-#: adminpages.py:215 users.py:350
+#: adminpages.py:215
+#: users.py:350
 msgid "(add email here)"
-msgstr ""
+msgstr "(ኤ-መልዕክት አድራሻ እዚህ ይጨምሩ)"
 
-#: adminpages.py:216 users.py:107 users.py:163
+#: adminpages.py:216
+#: users.py:107
+#: users.py:163
 msgid "Password"
-msgstr ""
+msgstr "ማለፊያ ቃል"
 
-#: adminpages.py:216 users.py:344
+#: adminpages.py:216
+#: users.py:344
 msgid "(add password here)"
-msgstr ""
+msgstr "(ማለፊያ ቃልን እዚህ ይጨምሩ)"
 
 #: adminpages.py:217
 msgid "Activated"
 msgstr ""
 
 #: adminpages.py:217
+#, fuzzy
 msgid "Activate New User"
-msgstr ""
+msgstr "የአዲሱ ተጠቃሚ ሙሉ ስም፦"
 
 #: adminpages.py:218
 msgid "Remove User"
-msgstr ""
+msgstr "ተጠቃሚን ሰርዝ"
 
 #: adminpages.py:272
+#, fuzzy
 msgid "Back to main page"
-msgstr ""
+msgstr "ወደ ምናሌው ወደኋላ ልሂድ?"
 
 #: adminpages.py:273
+#, fuzzy
 msgid "Existing languages"
-msgstr ""
+msgstr "የኔ ቋንቋዎች"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:277
 msgid "Update Languages"
-msgstr ""
+msgstr "ቋንቋዎችን አሻሽል"
 
 #: adminpages.py:278
 #, python-format
 msgid "Pootle Admin: %s"
 msgstr ""
 
-#: adminpages.py:279 adminpages.py:341
+#: adminpages.py:279
+#: adminpages.py:341
+#, fuzzy
 msgid "You do not have the rights to administer this project."
 msgstr ""
+"በመርሃ-ግብሩ ውስጥ ያሉ ሁሉንም መዝገቦች\n"
+"ለማሻሻል እንደሚፈልጉ ርግጠኛ ነዎት?"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:281
+#, fuzzy
 msgid "Update from templates"
-msgstr ""
+msgstr "ከምንጩ አሻሽል &U"
 
 #: adminpages.py:289
 msgid "Add Language"
-msgstr ""
+msgstr "ቋንቋ ጨምር"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:321
@@ -527,8 +639,9 @@ msgid "Pootle Admin: %s %s"
 msgstr ""
 
 #: adminpages.py:322
+#, fuzzy
 msgid "Project home page"
-msgstr ""
+msgstr "መስመር በገጽ"
 
 #: adminpages.py:340
 #, python-format
@@ -545,31 +658,36 @@ msgstr ""
 
 #: adminpages.py:360
 msgid "User Permissions"
-msgstr ""
+msgstr "የተጠቃሚ ፈቃዶች"
 
-#: adminpages.py:361 users.py:98 users.py:134
+#: adminpages.py:361
+#: users.py:98
+#: users.py:134
 msgid "Username"
 msgstr "የተጠቃሚ ስም"
 
 #: adminpages.py:362
+#, fuzzy
 msgid "(select to add user)"
-msgstr ""
+msgstr "በዝርዝሩ ውስጥ ዶሴ ጨምር"
 
 #: adminpages.py:363
 msgid "Rights"
-msgstr ""
+msgstr "ፈቃዶች"
 
-#: adminpages.py:364 indexpage.py:998
+#: adminpages.py:364
+#: indexpage.py:998
 msgid "Remove"
-msgstr ""
+msgstr "ሰርዝ"
 
 #: adminpages.py:391
 msgid "Update Rights"
-msgstr ""
+msgstr "ፈቃዶችን አሻሽል"
 
 #: pagelayout.py:37
+#, fuzzy
 msgid "All projects"
-msgstr ""
+msgstr "ሁሉም ፋይሎች"
 
 #: pagelayout.py:38
 #, fuzzy
@@ -577,75 +695,87 @@ msgid "All languages"
 msgstr "%s ቋንቋ"
 
 #: pagelayout.py:39
+#, fuzzy
 msgid "My account"
-msgstr ""
+msgstr "የኔ ቋንቋዎች"
 
-#: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
+#: pagelayout.py:40
+#: pagelayout.py:168
+#: indexpage.py:200
+#: indexpage.py:262
 msgid "Admin"
-msgstr ""
+msgstr "አስተዳዳሪ"
 
 #: pagelayout.py:41
+#, fuzzy
 msgid "Docs & help"
-msgstr ""
+msgstr "/መመሪያ/ ስለ _A"
 
 #: pagelayout.py:42
 msgid "Log out"
-msgstr ""
+msgstr "ሎግውጣ"
 
 #: pagelayout.py:43
+#, fuzzy
 msgid "Log in"
-msgstr ""
+msgstr "በ VG ${VG}"
 
 #. l10n: Verb, as in "to register"
 #: pagelayout.py:45
 msgid "Register"
-msgstr ""
+msgstr "ተመዝገብ"
 
 #: pagelayout.py:46
+#, fuzzy
 msgid "Activate"
-msgstr ""
+msgstr "ያሉ የይዘት ግሩፖች ይነሳሱ?"
 
 #: pagelayout.py:80
 msgid "Pootle Logo"
-msgstr ""
+msgstr "የፑትለ መለያ"
 
 #: pagelayout.py:81
+#, fuzzy
 msgid "WordForge Translation Project"
-msgstr ""
+msgstr "ትርጉሙ ጅምር ነው &f"
 
 #: pagelayout.py:83
+#, fuzzy
 msgid "About this Pootle server"
-msgstr ""
+msgstr "የSSH ተጠሪ መግቢያ ቁልፍ አሻራ፦ {fingerprint}"
 
 #: pagelayout.py:157
+#, fuzzy
 msgid "All goals"
-msgstr ""
+msgstr "ሁሉም ፋይሎች"
 
 #: pagelayout.py:228
 #, python-format
 msgid "%d/%d files"
-msgstr ""
+msgstr "%d/%d ፋይሎች"
 
 #: pagelayout.py:231
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] ""
-msgstr[1] ""
 
-#: pagelayout.py:232 indexpage.py:995
+#: pagelayout.py:232
+#: indexpage.py:995
 #, python-format
+#, fuzzy, python-format
 msgid "%d/%d words (%d%%) translated"
-msgstr ""
+msgstr "በራስ-ገዝ የተተረጎሙ %u ሐረጎች"
 
 #: pagelayout.py:233
 #, python-format
 msgid "%d/%d strings"
-msgstr ""
+msgstr "%d/%d ሐረጎች"
 
-#: pagelayout.py:239 users.py:159
+#: pagelayout.py:239
+#: users.py:159
 msgid "Name"
-msgstr ""
+msgstr "ስም"
 
 #: pagelayout.py:240
 #, fuzzy
@@ -654,7 +784,7 @@ msgstr "ፈጣን ትርጉም"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
-msgstr ""
+msgstr "የተተረጎመው ፐርሰንት"
 
 #: pagelayout.py:242
 #, fuzzy
@@ -662,37 +792,40 @@ msgid "Translated words"
 msgstr "ፈጣን ትርጉም"
 
 #: pagelayout.py:244
+#, fuzzy
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "ጅምር ትርጉም"
 
 #: pagelayout.py:245
 msgid "Fuzzy words"
-msgstr ""
+msgstr "ጅምር ቃላቶች"
 
-#: pagelayout.py:246 indexpage.py:786
+#: pagelayout.py:246
+#: indexpage.py:786
 msgid "Untranslated"
-msgstr ""
+msgstr "ያልተተረጎመ"
 
 #: pagelayout.py:247
 msgid "Untranslated percentage"
-msgstr ""
+msgstr "ያልተተረጎመ ፐርሰንት"
 
 #: pagelayout.py:248
+#, fuzzy
 msgid "Untranslated words"
-msgstr ""
+msgstr "ከፍተኛ የጠፉ ቃላት ቁጥር"
 
 #: pagelayout.py:249
 msgid "Total"
-msgstr ""
+msgstr "አጠቃላይ"
 
 #: pagelayout.py:250
 msgid "Total words"
-msgstr ""
+msgstr "አጠቃላይ ቃላት"
 
 #. l10n: noun. The graphical representation of translation status
 #: pagelayout.py:252
 msgid "Graph"
-msgstr ""
+msgstr "ግራፍ"
 
 #: users.py:39
 #, python-format
@@ -700,8 +833,9 @@ msgid "You must supply a valid password of at least %d characters."
 msgstr ""
 
 #: users.py:41
+#, fuzzy
 msgid "The password is not the same as the confirmation."
-msgstr ""
+msgstr "መስመር %u ከፋይል  '%s' ተበክሏል (%s የተበላሸ መረጃ)."
 
 #: users.py:55
 msgid "Login to Pootle"
@@ -714,7 +848,7 @@ msgstr "የተጠቃሚ ስም"
 
 #: users.py:63
 msgid "Password:"
-msgstr ""
+msgstr "ማለፊያ ቃል፦"
 
 #: users.py:64
 #, fuzzy
@@ -723,35 +857,41 @@ msgstr "%s ቋንቋ"
 
 #: users.py:73
 msgid "Default"
-msgstr ""
+msgstr "ቀዳሚ"
 
 #: users.py:89
 msgid "Please enter your registration details"
 msgstr "እባክዎን የምዝገባ ዝርዝርን ያስገቡ"
 
-#: users.py:92 users.py:419
+#: users.py:92
+#: users.py:419
 msgid "Pootle Registration"
-msgstr ""
+msgstr "ፑትለ ምዝገባ"
 
-#: users.py:99 users.py:135
+#: users.py:99
+#: users.py:135
+#, fuzzy
 msgid "Your requested username"
-msgstr ""
+msgstr "ለመዝገብዎ ተጠቃሚ-ስም፦"
 
-#: users.py:102 users.py:373
+#: users.py:102
+#: users.py:373
+#, fuzzy
 msgid "You must supply a valid email address"
-msgstr ""
+msgstr "ያስገቡት የገትዌይ አድራሻ ሊደረስበት አልተቻለም።"
 
 #: users.py:105
 msgid "Your full name"
-msgstr ""
+msgstr "ሙሉ ስምዎ"
 
 #: users.py:108
 msgid "Your desired password"
-msgstr ""
+msgstr "የሚፈልጉት የማለፊያ ቃል"
 
-#: users.py:110 users.py:164
+#: users.py:110
+#: users.py:164
 msgid "Confirm password"
-msgstr ""
+msgstr "ማለፊያ ቃልን ያረጋግጡ"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
@@ -759,80 +899,91 @@ msgstr ""
 
 #: users.py:113
 msgid "Register Account"
-msgstr ""
+msgstr "መዝገብ ክፈት"
 
 #: users.py:122
 msgid "Please enter your activation details"
 msgstr "የማስነሻ ዝርዝርን ያቅርቡ"
 
 #: users.py:127
+#, fuzzy
 msgid "Pootle Account Activation"
-msgstr ""
+msgstr "ለመዝገብዎ ተጠቃሚ-ስም፦"
 
 #: users.py:137
+#, fuzzy
 msgid "Activation Code"
-msgstr ""
+msgstr "የኮድስም_s፦"
 
 #: users.py:138
 msgid "The activation code you received"
 msgstr "የተቀበሉት የማስጀመሪያ ቁልፍ"
 
 #: users.py:140
+#, fuzzy
 msgid "Activate Account"
-msgstr ""
+msgstr "ለመዝገብዎ ተጠቃሚ-ስም፦"
 
 #: users.py:151
 #, python-format
+#, fuzzy, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr "የመጫኛ ምርጫዎች"
 
 #: users.py:156
+#, fuzzy
 msgid "Personal Details"
-msgstr ""
+msgstr "የቅንብር ዝርዝሩን ተመልከት"
 
 #: users.py:161
 msgid "Email"
-msgstr ""
+msgstr "ኤ-መልዕክት"
 
 #: users.py:165
+#, fuzzy
 msgid "Translation Interface Configuration"
-msgstr ""
+msgstr "የሽቦ አልባ አውታር ማስተካከል"
 
 #: users.py:166
+#, fuzzy
 msgid "User Interface language"
-msgstr ""
+msgstr "ለተጠቃሚ የአስሊ ገጽታ ምርጫዎች"
 
 #: users.py:167
 msgid "My Projects"
-msgstr ""
+msgstr "የኔ ፕሮጀክቶች"
 
 #: users.py:169
 msgid "My Languages"
-msgstr ""
+msgstr "የኔ ቋንቋዎች"
 
 #: users.py:171
 msgid "Home page"
-msgstr ""
+msgstr "የድርገጽ"
 
 #: users.py:207
+#, fuzzy
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "በገቢ ፋይሎች ዝርዝር ውስጥ የሚገኝ ዕቃ፤"
 
 #: users.py:208
+#, fuzzy
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "ይህንን አካል በlayer2  ሞድ ልጠቀም?"
 
 #: users.py:209
+#, fuzzy
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "ይህንን አካል በlayer2  ሞድ ልጠቀም?"
 
 #: users.py:251
 msgid "Error"
-msgstr ""
+msgstr "ስህተት"
 
 #: users.py:303
+#, fuzzy
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "${DEVICE}ን ለመመስጠር ማለፊያቃል መምረጥ ይኖርቦታል።"
 
 #: users.py:367
 msgid ""
@@ -867,8 +1018,9 @@ msgstr ""
 
 #: users.py:390
 #, python-format
+#, fuzzy, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "ሎግባውን ይሰርዙና ወደ ሎግባው ስክሪን ይመለሱ።"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
@@ -910,46 +1062,55 @@ msgstr ""
 
 #: users.py:413
 #, python-format
+#, fuzzy, python-format
 msgid "Your user name is: %s\n"
-msgstr ""
+msgstr "\"${hostname}\" የሚለው ስም የለም።"
 
 #: users.py:415
 #, python-format
+#, fuzzy, python-format
 msgid "Your password is: %s\n"
-msgstr ""
+msgstr "እብክዎ ማለፊያቃልን ያስገቡ፦"
 
 #: users.py:416
 #, python-format
+#, fuzzy, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "ያስገቡት የገትዌይ አድራሻ ሊደረስበት አልተቻለም።"
 
 #: users.py:442
+#, fuzzy
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "በዝርዝሩ ውስጥ ዶሴ ጨምር"
 
 #: users.py:466
+#, fuzzy
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "ሎግባውን ይሰርዙና ወደ ሎግባው ስክሪን ይመለሱ።"
 
 #: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
 msgstr ""
 
 #: users.py:473
+#, fuzzy
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "'%s' ትክክለኛ የPOT ፋይል አይደለም።"
 
 #: users.py:474
+#, fuzzy
 msgid "Activation Failed"
-msgstr ""
+msgstr "መጫን አልተቻለም"
 
 #: users.py:583
+#, fuzzy
 msgid "Input height must be numeric"
-msgstr ""
+msgstr "Boot ክፋይ በext2 ላይ መሆን አለበት"
 
 #: users.py:584
+#, fuzzy
 msgid "Input width must be numeric"
-msgstr ""
+msgstr "Boot ክፋይ በext2 ላይ መሆን አለበት"
 
 #: users.py:585
 msgid "The number of rows displayed in view mode must be numeric"
@@ -960,36 +1121,44 @@ msgid "The number of rows displayed in translate mode must be numeric"
 msgstr ""
 
 #: pootle.py:293
+#, fuzzy
 msgid "Login failed"
-msgstr ""
+msgstr "መጫን አልተቻለም"
 
-#: pootle.py:337 pootle.py:368
+#: pootle.py:337
+#: pootle.py:368
+#, fuzzy
 msgid "Redirecting to login..."
-msgstr ""
+msgstr "ሎግባውን ይሰርዙና ወደ ሎግባው ስክሪን ይመለሱ።"
 
 #: pootle.py:340
+#, fuzzy
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "ወደዚህ ምናሌ ለመመለስ እንደገና ሎግመግባት ያስፈልግዎታል።"
 
 #: pootle.py:353
+#, fuzzy
 msgid "Personal details updated"
-msgstr ""
+msgstr "የቅንብር ዝርዝሩን ተመልከት"
 
 #: pootle.py:371
+#, fuzzy
 msgid "Need to log in to access admin page"
-msgstr ""
+msgstr "ወደዚህ ምናሌ ለመመለስ እንደገና ሎግመግባት ያስፈልግዎታል።"
 
 #: pootle.py:378
+#, fuzzy
 msgid "Redirecting to home..."
-msgstr ""
+msgstr "የ /home ክፋይ ይለይ፦"
 
 #: pootle.py:381
+#, fuzzy
 msgid "You do not have the rights to administer pootle."
-msgstr ""
+msgstr "ለአብዛኛው ጥጥር አካል እዚህ ጋ ምንም ዝርዝር መስጠት አያስፈልግዎትም።"
 
 #: indexpage.py:61
 msgid "About Pootle"
-msgstr ""
+msgstr "ስለ ፑትለ"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:63
@@ -1019,7 +1188,7 @@ msgstr ""
 
 #: indexpage.py:68
 msgid "Versions"
-msgstr ""
+msgstr "ዝርያዎች"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1032,16 +1201,18 @@ msgstr ""
 
 #: indexpage.py:130
 #, python-format
+#, fuzzy, python-format
 msgid "User Page for: %s"
-msgstr ""
+msgstr "የአዲሱ ተጠቃሚ ሙሉ ስም፦"
 
 #: indexpage.py:132
+#, fuzzy
 msgid "Change options"
-msgstr ""
+msgstr "የመጫኛ ምርጫዎች"
 
 #: indexpage.py:133
 msgid "Admin page"
-msgstr ""
+msgstr "የማስተዳደሪያ ገጽ"
 
 #: indexpage.py:135
 msgid "Quick Links"
@@ -1053,32 +1224,35 @@ msgstr ""
 
 #: indexpage.py:192
 #, python-format
+#, fuzzy, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
+msgstr[0] "በራስ-ገዝ የተተረጎሙ %u ሐረጎች"
 msgstr[1] ""
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
-#: indexpage.py:198 indexpage.py:260
+#: indexpage.py:198
+#: indexpage.py:260
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: indexpage.py:214
 msgid "Language Code"
-msgstr ""
+msgstr "የቋንቋ ኮድ"
 
 #: indexpage.py:215
 msgid "Language Name"
-msgstr ""
+msgstr "የቋንቋ ስም"
 
 #: indexpage.py:252
 #, python-format
+#, fuzzy, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
+msgstr[0] "በራስ-ገዝ የተተረጎሙ %u ሐረጎች"
 msgstr[1] ""
 
 #: indexpage.py:265
@@ -1089,12 +1263,14 @@ msgstr "%s ቋንቋ"
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:348
 #, python-format
+#, fuzzy, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "ቋንቋ መረጣ"
 
 #: indexpage.py:413
+#, fuzzy
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "ምንም የስር ፋይል ስርዓት አልተወሰነም፡፡"
 
 #: indexpage.py:419
 msgid "Can only upload PO files and zips of PO files"
@@ -1102,33 +1278,39 @@ msgstr ""
 
 #: indexpage.py:534
 msgid "goals"
-msgstr ""
+msgstr "ግቦች"
 
 #: indexpage.py:535
+#, fuzzy
 msgid "Enter goal name"
-msgstr ""
+msgstr "አዲሱን ስም ጻፍ፦"
 
 #: indexpage.py:536
+#, fuzzy
 msgid "Add Goal"
-msgstr ""
+msgstr "ፋይሎችን ጨምር"
 
-#: indexpage.py:541 indexpage.py:543
+#: indexpage.py:541
+#: indexpage.py:543
+#, fuzzy
 msgid "Upload File"
-msgstr ""
+msgstr "HTML ፋይል (*.html)|*.html"
 
 #: indexpage.py:542
+#, fuzzy
 msgid "Select file to upload"
-msgstr ""
+msgstr "ለማትም ፋይል ምረጥ"
 
 #. l10n: tooltip
 #: indexpage.py:550
+#, fuzzy
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "ፋይልን ከሰረዙት ለዘላለም ይጠፋል።"
 
 #. l10n: radio button text
 #: indexpage.py:552
 msgid "Merge"
-msgstr ""
+msgstr "ግጠም"
 
 #. l10n: tooltip
 #: indexpage.py:554
@@ -1137,24 +1319,27 @@ msgid ""
 msgstr ""
 
 #: indexpage.py:657
+#, fuzzy
 msgid "Not in a goal"
-msgstr ""
+msgstr "አስተያየት ውስጥ አግኝ"
 
 #: indexpage.py:677
 msgid "Add User"
-msgstr ""
+msgstr "ተጠቃሚን ጨምር"
 
 #: indexpage.py:719
 msgid "PO file"
 msgstr "ፒኦ ሰነድ"
 
 #: indexpage.py:723
+#, fuzzy
 msgid "XLIFF file"
-msgstr ""
+msgstr "HTML ፋይል (*.html)|*.html"
 
 #: indexpage.py:727
+#, fuzzy
 msgid "Qt .ts file"
-msgstr ""
+msgstr "%s ፋይልን የመክፈት ስህተት"
 
 #: indexpage.py:731
 msgid "CSV file"
@@ -1168,105 +1353,124 @@ msgstr "ፒኦ ሰነድ"
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:742
 msgid "Update"
-msgstr ""
+msgstr "አሻሽል"
 
 #: indexpage.py:785
 msgid "All Strings"
-msgstr ""
+msgstr "ሁሉም ሐረጎች"
 
 #: indexpage.py:787
 msgid "Unassigned"
-msgstr ""
+msgstr "ያልተመደበ"
 
 #: indexpage.py:788
+#, fuzzy
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "አስቀምጥና ዝጋ _e"
 
 #: indexpage.py:795
 msgid "Set Goal"
-msgstr ""
+msgstr "ግብ ሰይም"
 
 #: indexpage.py:799
+#, fuzzy
 msgid "Select Multiple"
-msgstr ""
+msgstr "ዶሴ ይምረጡ"
 
 #: indexpage.py:801
 msgid "Assign To"
-msgstr ""
+msgstr "መድብ ለ"
 
 #: indexpage.py:830
+#, fuzzy
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "የአስተያየት መስኮቱን አሳይ &c"
 
 #: indexpage.py:831
+#, fuzzy
 msgid "Show Statistics"
-msgstr ""
+msgstr "ተጠቃሽ-መረጃዎችን አሳይ &S"
 
 #: indexpage.py:832
+#, fuzzy
 msgid "Show Tracks"
-msgstr ""
+msgstr "ተጠቃሽ-መረጃዎችን አሳይ &S"
 
 #: indexpage.py:832
+#, fuzzy
 msgid "Hide Tracks"
-msgstr ""
+msgstr "መቆጣጠሪያዎችን ደብቅ"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:834
+#, fuzzy
 msgid "Show Checks"
-msgstr ""
+msgstr "ተጠቃሽ-መረጃዎችን አሳይ &S"
 
 #: indexpage.py:834
+#, fuzzy
 msgid "Hide Checks"
-msgstr ""
+msgstr "መቆጣጠሪያዎችን ደብቅ"
 
 #: indexpage.py:835
+#, fuzzy
 msgid "Show Goals"
-msgstr ""
+msgstr "ተጠቃሽ-መረጃዎችን አሳይ &S"
 
 #: indexpage.py:835
+#, fuzzy
 msgid "Hide Goals"
-msgstr ""
+msgstr "መቆጣጠሪያዎችን ደብቅ"
 
 #: indexpage.py:836
+#, fuzzy
 msgid "Show Assigns"
-msgstr ""
+msgstr "ተጠቃሽ-መረጃዎችን አሳይ &S"
 
 #: indexpage.py:836
+#, fuzzy
 msgid "Hide Assigns"
-msgstr ""
+msgstr "መቆጣጠሪያዎችን ደብቅ"
 
 #: indexpage.py:845
 #, python-format
+#, fuzzy, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "ሁሉም ፋይሎች"
 
 #: indexpage.py:851
+#, fuzzy
 msgid "Translate My Strings"
-msgstr ""
+msgstr "በራስ-ገዝ የተተረጎሙ %u ሐረጎች"
 
 #: indexpage.py:853
+#, fuzzy
 msgid "View My Strings"
-msgstr ""
+msgstr "በራስ-ገዝ የተተረጎሙ %u ሐረጎች"
 
 #: indexpage.py:858
+#, fuzzy
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "መቀጠል ይፈልጋሉ?"
 
 #: indexpage.py:862
+#, fuzzy
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "በምንጭ ሐረጎች ውስጥ ፈልግ"
 
 #: indexpage.py:866
+#, fuzzy
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "መርሃ-ግብሩን መሰረዝ ይፈልጋሉ?"
 
 #: indexpage.py:870
 msgid "Review Suggestions"
-msgstr ""
+msgstr "ምክሮችን አርም"
 
 #: indexpage.py:872
+#, fuzzy
 msgid "View Suggestions"
-msgstr ""
+msgstr "ሙሉ-ስክሪን ዕይታ &F"
 
 #: indexpage.py:877
 msgid "Quick Translate"
@@ -1278,23 +1482,25 @@ msgstr ""
 
 #: indexpage.py:883
 msgid "No untranslated items"
-msgstr ""
+msgstr "ያልተተረጎመ የለም"
 
 #: indexpage.py:886
 msgid "Translate All"
-msgstr ""
+msgstr "ሁሉንም ይተርጉሙ"
 
 #: indexpage.py:901
 msgid "ZIP of goal"
 msgstr ""
 
 #: indexpage.py:903
+#, fuzzy
 msgid "ZIP of folder"
-msgstr ""
+msgstr "አዲስ ዶሴ"
 
 #: indexpage.py:910
+#, fuzzy
 msgid "Generate SDF"
-msgstr ""
+msgstr "መረጃ-ባንክን አመንጭ"
 
 #: indexpage.py:963
 #, fuzzy
@@ -1304,13 +1510,16 @@ msgstr[0] "%d ሐረጎች (%d%d) የተበላሸ ነው"
 
 #: indexpage.py:993
 #, python-format
+#, fuzzy, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr ""
+msgstr "ከፍተኛ የጠፉ ቃላት ቁጥር"
 
-#: indexpage.py:994 indexpage.py:996
+#: indexpage.py:994
+#: indexpage.py:996
 #, python-format
+#, fuzzy, python-format
 msgid "[%d/%d strings]"
-msgstr ""
+msgstr "አዲስ ሐረጎች"
 
 #~ msgid "parent folder"
 #~ msgstr "እናት ዶሴ"

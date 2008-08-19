@@ -3,20 +3,20 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2005-08-18 02:19-0500\n"
-"Last-Translator: Jorunn D. Newth <jorunnd@opera.com>\n"
+"PO-Revision-Date: 2008-08-07 20:25+0000\n"
+"Last-Translator: Kjell <darktear@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.0beta2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.1.0\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #. l10n: Verb
 #: projects.py:136
 msgid "View"
-msgstr ""
+msgstr "Syn"
 
 #: projects.py:137 translatepage.py:613
 msgid "Suggest"

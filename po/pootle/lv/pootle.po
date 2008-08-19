@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2007-06-26 17:56+0200\n"
-"Last-Translator: Miķelis Zaļais <mik@prog.lv>\n"
+"PO-Revision-Date: 2008-08-06 04:57+0000\n"
+"Last-Translator: Imants <imantsgi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Pootle 1.0.1\n"
+"X-Generator: Pootle 1.1.0\n"
 
 #. l10n: Verb
 #: projects.py:136
@@ -57,52 +57,52 @@ msgstr "Administrēt"
 #. l10n: Commit to version control (like CVS or Subversion)
 #: projects.py:148 indexpage.py:748
 msgid "Commit"
-msgstr ""
+msgstr "Iesniegt"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:228
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "Nedrīkst dzēst lietotāju \"nobody\" vai \"default\""
 
 #: projects.py:380 projects.py:442
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "Jums nav tiesību, lai mainītu uzdevumus"
 
 #: projects.py:505
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "Jums nav tiesību, lai augšupielādētu datnes"
 
 #: projects.py:508
 msgid "You do not have rights to overwrite files here"
-msgstr ""
+msgstr "Jums nav tiesību, lai pārrakstītu datnes"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "Jums nav tiesību, lai augšupielādētu jaunas datnes"
 
 #: projects.py:519
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "Jums nav tiesību, lai jauninātu datnes"
 
 #: projects.py:590
 msgid "You do not have rights to commit files here"
-msgstr ""
+msgstr "Jums nav tiesību, lai iesniegtu datnes"
 
 #: projects.py:919 projects.py:960
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "Jums nav tiesību, lai mainītu piešķirtos"
 
 #: projects.py:1141
 msgid "You do not have rights to change translations here"
-msgstr ""
+msgstr "Jums nav tiesību, lai mainītu tulkojumu"
 
 #: projects.py:1151
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "Jums nav tiesību, lai pievienot ieteikumus"
 
 #: projects.py:1167 projects.py:1185
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Jums nav tiesību, lai pārskatītu ieteikumus"
 
 #: translatepage.py:89
 #, python-format
@@ -110,8 +110,8 @@ msgid ""
 "%d/%d translated\n"
 "(%d blank, %d fuzzy)"
 msgstr ""
-"%d/%d iztulkoti\n"
-"(%d tukši, %d ne gluži)"
+"%d/%d iztulkoti vārdi\n"
+"(%d neiztulkoti, %d nepilnīgi iztulkoti)"
 
 #: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
 #: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
@@ -119,7 +119,7 @@ msgstr ""
 #: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
 #: indexpage.py:346
 msgid "Pootle Demo"
-msgstr "Pootle demo"
+msgstr "Pootle demonstrācija"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -150,7 +150,7 @@ msgstr "Noraidīt"
 
 #: translatepage.py:121 pagelayout.py:243
 msgid "Fuzzy"
-msgstr "Ne gluži"
+msgstr "Nepilnīgi iztulkots"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
@@ -226,7 +226,7 @@ msgstr "Nodot lietotājam"
 
 #: translatepage.py:213 indexpage.py:527
 msgid "Assign Action"
-msgstr ""
+msgstr "Piešķirt darbības"
 
 #: translatepage.py:368
 #, python-format
@@ -235,7 +235,7 @@ msgstr "Nav ierakstu, kas atbilst šim vaicājumam ('%s')"
 
 #: translatepage.py:370
 msgid "You have finished going through the items you selected"
-msgstr "Tu esi pabeidzis iet cauri izvēlētajiem ierakstiem"
+msgstr "Jūs esat pabeidzis iet cauri izvēlētajiem ierakstiem"
 
 #: translatepage.py:578
 msgid "Singular"
@@ -295,7 +295,7 @@ msgstr ""
 
 #: translatepage.py:739
 msgid "Current Translation:"
-msgstr "Patreizējais tulkojums:"
+msgstr "Aktīvais tulkojums:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
@@ -330,11 +330,11 @@ msgstr "Lietotāji"
 
 #: adminpages.py:45 adminpages.py:84 indexpage.py:94
 msgid "Languages"
-msgstr "Valodas"
+msgstr "Valodas:"
 
 #: adminpages.py:46 adminpages.py:142 indexpage.py:95
 msgid "Projects"
-msgstr "Projekti"
+msgstr "Projekti:"
 
 #: adminpages.py:47
 msgid "General options"
@@ -342,11 +342,11 @@ msgstr "Vispārējie iestatījumi"
 
 #: adminpages.py:48 users.py:157
 msgid "Option"
-msgstr "opcija"
+msgstr "Iestatījums"
 
 #: adminpages.py:49 users.py:158
 msgid "Current value"
-msgstr "Patreizējā vērtība"
+msgstr "Pašreizējā vērtība"
 
 #: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
 #: users.py:172
@@ -379,11 +379,11 @@ msgstr "ISO kods"
 
 #: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
 msgid "Full Name"
-msgstr "Pilns vārds"
+msgstr "Vārds, uzvārds"
 
 #: adminpages.py:91
 msgid "(add language here)"
-msgstr "(pievienot valodu šeit)"
+msgstr "(pievienot valodu)"
 
 #: adminpages.py:92
 msgid "Special Chars"
@@ -441,7 +441,7 @@ msgstr "(projekta apraksts)"
 
 #: adminpages.py:151
 msgid "Checker Style"
-msgstr ""
+msgstr "Pārbaudes stils"
 
 #: adminpages.py:152
 msgid "File Type"
@@ -497,7 +497,7 @@ msgstr "Atgriezties galvenajā lapā"
 
 #: adminpages.py:273
 msgid "Existing languages"
-msgstr "Esošās valodas"
+msgstr "Pašlaik pieejamās valodas"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:277
@@ -540,10 +540,12 @@ msgstr "Nevar uzstādīt tiesības lietotājam %s - lietotājs neeksistē"
 #: adminpages.py:357
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
+"Šis ir GNU-stila projekts (viena mape, datnes nosauktas un sakārtotas pēc "
+"valodas)."
 
 #: adminpages.py:359
 msgid "This is a standard style project (one directory per language)."
-msgstr ""
+msgstr "Šis ir standarta tipa projekts (viena mape vienai valodai)"
 
 #: adminpages.py:360
 msgid "User Permissions"
@@ -567,7 +569,7 @@ msgstr "Dzēst"
 
 #: adminpages.py:391
 msgid "Update Rights"
-msgstr "Atjaunošanas tiesības"
+msgstr "Atjaunināt lietotāju tiesības"
 
 #: pagelayout.py:37
 msgid "All projects"
@@ -591,7 +593,7 @@ msgstr "Dokumentācija un palīdzība"
 
 #: pagelayout.py:42
 msgid "Log out"
-msgstr "Beigt darbu"
+msgstr "Iziet"
 
 #: pagelayout.py:43
 msgid "Log in"
@@ -604,7 +606,7 @@ msgstr "Reģistrēties"
 
 #: pagelayout.py:46
 msgid "Activate"
-msgstr "Aktivizēts"
+msgstr "Konta aktivizēšana"
 
 #: pagelayout.py:80
 msgid "Pootle Logo"
@@ -620,7 +622,7 @@ msgstr "Par šo Pootle serveri"
 
 #: pagelayout.py:157
 msgid "All goals"
-msgstr "Visi mērķi"
+msgstr "Visi uzdevumi"
 
 #: pagelayout.py:228
 #, python-format
@@ -631,95 +633,93 @@ msgstr "%d/%d faili"
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] "%d failu"
-msgstr[1] "%d fails"
-msgstr[2] "%d faili"
+msgstr[0] "%d datne"
+msgstr[1] "%d datnes"
+msgstr[2] "%d datnes"
 
 #: pagelayout.py:232 indexpage.py:995
 #, python-format
 msgid "%d/%d words (%d%%) translated"
-msgstr ""
+msgstr "%d/%d iztulkoti vārdi (%d%%)"
 
 #: pagelayout.py:233
 #, python-format
 msgid "%d/%d strings"
-msgstr ""
+msgstr "%d/%d rindas"
 
 #: pagelayout.py:239 users.py:159
 msgid "Name"
-msgstr ""
+msgstr "Nosaukums"
 
 #: pagelayout.py:240
 msgid "Translated"
-msgstr ""
+msgstr "Iztulkots"
 
 #: pagelayout.py:241
 msgid "Translated percentage"
-msgstr ""
+msgstr "Iztulkots procentuāli"
 
 #: pagelayout.py:242
 msgid "Translated words"
-msgstr ""
+msgstr "Iztulkotie vārdi"
 
 #: pagelayout.py:244
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "Nepilnīgi iztulkots procentuāli"
 
 #: pagelayout.py:245
 msgid "Fuzzy words"
-msgstr ""
+msgstr "Nepilnīgi iztulkotie vārdi"
 
 #: pagelayout.py:246 indexpage.py:786
 msgid "Untranslated"
-msgstr ""
+msgstr "Neiztulkots"
 
 #: pagelayout.py:247
 msgid "Untranslated percentage"
-msgstr ""
+msgstr "Neiztulkots procentuāli"
 
 #: pagelayout.py:248
 msgid "Untranslated words"
-msgstr ""
+msgstr "Neiztulkotie vārdi"
 
 #: pagelayout.py:249
 msgid "Total"
-msgstr ""
+msgstr "Kopā"
 
 #: pagelayout.py:250
 msgid "Total words"
-msgstr ""
+msgstr "Kopējais vārdu skaits"
 
 #. l10n: noun. The graphical representation of translation status
 #: pagelayout.py:252
 msgid "Graph"
-msgstr ""
+msgstr "Grafiks"
 
 #: users.py:39
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
-msgstr ""
+msgstr "Parolei nepieciešams ievadīt vismaz %d simbolus."
 
 #: users.py:41
 msgid "The password is not the same as the confirmation."
-msgstr ""
+msgstr "Ievadītā parole nav vienāda ar paroles apstiprinājumu."
 
 #: users.py:55
 msgid "Login to Pootle"
-msgstr ""
+msgstr "Pieslēgties"
 
 #: users.py:61
 msgid "Username:"
 msgstr "Lietotājvārds:"
 
 #: users.py:63
-#, fuzzy
 msgid "Password:"
-msgstr "Parole"
+msgstr "Parole:"
 
 #: users.py:64
-#, fuzzy
 msgid "Language:"
-msgstr "Valodas"
+msgstr "Valodas:"
 
 #: users.py:73
 msgid "Default"
@@ -727,157 +727,162 @@ msgstr "Noklusējums"
 
 #: users.py:89
 msgid "Please enter your registration details"
-msgstr ""
+msgstr "Lūdzu ievadiet arī pārējo reģistrācijai nepieciešamo informāciju"
 
 #: users.py:92 users.py:419
 msgid "Pootle Registration"
-msgstr ""
+msgstr "Pootle reģistrācija"
 
 #: users.py:99 users.py:135
 msgid "Your requested username"
-msgstr ""
+msgstr "Lietotājvārds"
 
 #: users.py:102 users.py:373
 msgid "You must supply a valid email address"
-msgstr ""
+msgstr "Nepieciešams ievadīt reālu e-pasta adresi"
 
 #: users.py:105
 msgid "Your full name"
-msgstr ""
+msgstr "Vārds, uzvārds"
 
 #: users.py:108
 msgid "Your desired password"
-msgstr ""
+msgstr "Parole"
 
 #: users.py:110 users.py:164
 msgid "Confirm password"
-msgstr ""
+msgstr "Apstipināt paroli"
 
 #: users.py:111
 msgid "Type your password again to ensure it is entered correctly"
 msgstr ""
+"Ievadiet savu paroli vēlreiz, lai pārliecinātos, ka parole ievadīta pareizi."
 
 #: users.py:113
 msgid "Register Account"
-msgstr ""
+msgstr "Reģistrēt kontu"
 
 #: users.py:122
 msgid "Please enter your activation details"
-msgstr ""
+msgstr "Lūdzu ievadiet aktivizācijas informāciju"
 
 #: users.py:127
 msgid "Pootle Account Activation"
-msgstr ""
+msgstr "Pootle konta aktivizēšana"
 
 #: users.py:137
 msgid "Activation Code"
-msgstr ""
+msgstr "Aktivizācijas kods"
 
 #: users.py:138
 msgid "The activation code you received"
-msgstr ""
+msgstr "Aktivizācijas kods, kuru jūs saņēmāt uz e-pastu."
 
 #: users.py:140
 msgid "Activate Account"
-msgstr ""
+msgstr "Aktivizēt kontu"
 
 #: users.py:151
 #, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr "%s iestatījumi."
 
 #: users.py:156
 msgid "Personal Details"
-msgstr ""
+msgstr "Informācija par personu"
 
 #: users.py:161
 msgid "Email"
-msgstr ""
+msgstr "E-pasts"
 
 #: users.py:165
 msgid "Translation Interface Configuration"
-msgstr ""
+msgstr "Tulkošanas saskarnes konfigurācija"
 
 #: users.py:166
 msgid "User Interface language"
-msgstr ""
+msgstr "Saskarnes valoda"
 
 #: users.py:167
 msgid "My Projects"
-msgstr ""
+msgstr "Mani projekti"
 
 #: users.py:169
-#, fuzzy
 msgid "My Languages"
-msgstr "Valodas"
+msgstr "Manas valodas"
 
 #: users.py:171
 msgid "Home page"
-msgstr ""
+msgstr "Sākumlapa"
 
 #: users.py:207
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "Ievades lauka augstums (līniju skaits)"
 
 #: users.py:208
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "Rindu skaits skatīšanās režīmā"
 
 #: users.py:209
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "Rindu skaits tulkošanas režīmā"
 
 #: users.py:251
 msgid "Error"
-msgstr ""
+msgstr "Kļūda"
 
 #: users.py:303
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "Jums ir jābūt sistēmas administratoram, lai spētu mainīt lietotājus"
 
 #: users.py:367
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
+"Lietotājvārdam ir jāsastāv no burtiem vai burtiem un cipariem un tam ir "
+"jāsākas ar burtu. "
 
 #: users.py:382
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
+msgstr "Jūs (vai kāds cits) mēģināja reģistrēties ar jūsu lietotājvārdu.\n"
 
 #: users.py:383
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
+msgstr "Patiesībā paroles mēs pie sevis nesaglabājam. Tā vietā mēs saglabājam paroļu "
+"hash atslēgas.\n"
 
 #: users.py:385
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr ""
+msgstr "Ja rodas kādas problēmas ar reģistrēšanos, lūdzu ziņojiet %s.\n"
 
 #: users.py:387
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "Ja rodas kādas problēmas ar reģistrēšanos, lūdzu ziņojiet vietnes "
+"administratoram.\n"
 
 #: users.py:388
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
+msgstr "Šāds lietotājvārds jau eksistē. Tiks nosūtīta e-pasta vēstule, lai "
+"reģistrētu e-pasta adresi.\n"
 
 #: users.py:390
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "Turpināt, lai <a href='%s'>pieslēgtos</a>\n"
 
 #: users.py:396
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "Jūsu Pootle konts tika izveidots, izmantojot šo e-pasta adresi.\n"
 
 #: users.py:398
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "Lai veiktu sava konta aktivizēšanu, spiediet uz šī saites:\n"
 
 #: users.py:404
 #, python-format
@@ -885,18 +890,22 @@ msgid ""
 "Your activation code is:\n"
 "%s\n"
 msgstr ""
+"Jūsu konta aktivizēšanas kods ir:\n"
+"%s\n"
 
 #: users.py:406
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "Ja nav iespējams atvērt norādīto saiti, lūdzu, ievadiet augstākminēto kodu "
+"aktivizēšanas lapā.\n"
 
 #: users.py:407
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
+msgstr "Šī vēstule tika nosūtīt, lai pārbaudītu Jūsu e-pasta adreses patiesumu. Ja "
+"nevēlaties reģistrēties, varat vienkārši ignorēt šo vēstuli.\n"
 
 #: users.py:409
 #, python-format
@@ -904,93 +913,96 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"Konts tika izveidots. Jums tiks nosūtīta e-pasta vēstule ar sīkāku "
+"informāciju un konta aktivizēšanas kodu. Lūdzu, ievadiet savu kodu <a "
+"href='%s'>konta aktivizēšanas lapā</a>."
 
 #: users.py:411
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "(Vai vienkārši nospiediet uz konta atvizēšanas saites e-pasta vēstulēl)"
 
 #: users.py:413
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr ""
+msgstr "Jūsu lietotājvārds ir: %s\n"
 
 #: users.py:415
 #, python-format
 msgid "Your password is: %s\n"
-msgstr ""
+msgstr "Jūsu parole ir: %s\n"
 
 #: users.py:416
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "Jūsu reģistrētā e-pasta adrese ir: %s\n"
 
 #: users.py:442
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "Pārejam uz Reģistrācijas lapu..."
 
 #: users.py:466
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "Pārejam uz Pieslēgšanās lapu..."
 
 #: users.py:469
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "Jūsu konts tika veiksmīgi aktivizēts! Pārejam uz Pieslēgšanos..."
 
 #: users.py:473
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "Ievadītā konta aktivizēšanas informācija ir neprecīza."
 
 #: users.py:474
 msgid "Activation Failed"
-msgstr ""
+msgstr "Konta aktivizēšana neizdevās"
 
 #: users.py:583
 msgid "Input height must be numeric"
-msgstr ""
+msgstr "Ievades lauka augstums jānorāda ar cipariem"
 
 #: users.py:584
 msgid "Input width must be numeric"
-msgstr ""
+msgstr "Ievades lauka platums jānorāda ar cipariem"
 
 #: users.py:585
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr ""
+msgstr "Redzamo rindu skaitu skatīšanās režīmam jānorāda ar cipariem"
 
 #: users.py:586
 msgid "The number of rows displayed in translate mode must be numeric"
-msgstr ""
+msgstr "Redzamo rindu skaitu tulkošanas režīmam jānorāda ar cipariem"
 
 #: pootle.py:293
 msgid "Login failed"
-msgstr ""
+msgstr "Pieslēgšanās neizdevās"
 
 #: pootle.py:337 pootle.py:368
 msgid "Redirecting to login..."
-msgstr ""
+msgstr "Pārejam uz Pieslēgšanās lapu..."
 
 #: pootle.py:340
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "Lai piekļūtu sākumlapai, nepieciešams pieslēgties sistēmai"
 
 #: pootle.py:353
 msgid "Personal details updated"
-msgstr ""
+msgstr "Informācija par personu tika atjaunota"
 
 #: pootle.py:371
 msgid "Need to log in to access admin page"
-msgstr ""
+msgstr "Lai piekļūtu administrēšanas lapai, nepieciešams pieslēgties sistēmai"
 
 #: pootle.py:378
 msgid "Redirecting to home..."
-msgstr ""
+msgstr "Pārejam uz Sākumlapu..."
 
 #: pootle.py:381
 msgid "You do not have the rights to administer pootle."
-msgstr ""
+msgstr "Jums nav tiesību, lai administrētu pootle."
 
 #: indexpage.py:61
 msgid "About Pootle"
-msgstr ""
+msgstr "Par Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:63
@@ -1001,6 +1013,11 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
+"<strong>Pootle</strong> ir vienkāršs interneta portāls, kurš sniedz iespēju "
+"<strong>tulkot</strong>! Kopš Pootle ir <strong>Bezmaksas "
+"Programmatūra</strong>, Jūs to drīkstat lejupielādēt un izmantot savu Pootle "
+"kopiju. Jūs arī varat dažādos veidots(nav obligāti jāprot programmēt) "
+"piedalīties un palīdzēt šīs sistēmas veidošanā."
 
 #: indexpage.py:64
 msgid ""
@@ -1008,6 +1025,10 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
+"Pootle projekts atrodams interneta adresē <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a>, kur "
+"ir pieejama sīkāka informāciju par programmas pirmskodu, e-pasta sarakste, "
+"u.c. lietas."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1017,10 +1038,14 @@ msgid ""
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
+"Nosaukums <b>PO</b>- veidots no vārdiem <b>O</b>nline (Tiešsaiste) "
+"<b>T</b>ranslation (Tulkošana) / <b>L</b>ocalization (Lokalizēšana) "
+"<b>E</b>ngine (Dzinējs), bet sīkāk par to variet izlasīt  <a "
+"href=\"http://www.thechestnut.com/flumps.htm\">šeit</a>."
 
 #: indexpage.py:68
 msgid "Versions"
-msgstr ""
+msgstr "Versijas"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1030,34 +1055,38 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
+"Šī interneta vietne darbojas pateicoties:<br />Pootle %s<br />Translate "
+"Toolkit %s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s "
+"(on %s/%s)"
 
 #: indexpage.py:130
 #, python-format
 msgid "User Page for: %s"
-msgstr ""
+msgstr "User Page priekš: %s"
 
 #: indexpage.py:132
 msgid "Change options"
-msgstr ""
+msgstr "Mainīt iestatījumus"
 
 #: indexpage.py:133
 msgid "Admin page"
-msgstr ""
+msgstr "Administrēšanas lapa"
 
 #: indexpage.py:135
 msgid "Quick Links"
-msgstr ""
+msgstr "Ātrā piekļuve:"
 
 #: indexpage.py:139
 msgid "Please click on 'Change options' and select some languages and projects"
-msgstr ""
+msgstr "Nospiediet 'Mainīt iestatījumus' un izvēlieties valodu un projektus."
 
 #: indexpage.py:192
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d projekts, vidēji iztulkoti %d%%"
+msgstr[1] "%d projekti, vidēji iztulkoti %d%%"
+msgstr[2] "%d projekti, vidēji iztulkoti %d%%"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -1065,250 +1094,253 @@ msgstr[1] ""
 #: indexpage.py:198 indexpage.py:260
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: indexpage.py:214
 msgid "Language Code"
-msgstr ""
+msgstr "Valodas kods"
 
 #: indexpage.py:215
 msgid "Language Name"
-msgstr ""
+msgstr "Valodas nosaukums"
 
 #: indexpage.py:252
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d valoda, vidēji iztulkoti %d%%"
+msgstr[1] "%d valodas, vidēji iztulkoti %d%%"
+msgstr[2] "%d valodas, vidēji iztulkoti %d%%"
 
 #: indexpage.py:265
-#, fuzzy
 msgid "Language"
-msgstr "Valodas"
+msgstr "Valoda"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:348
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "%s: Projekts %s, Valoda %s"
 
 #: indexpage.py:413
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "Nav iespējams augšupielādēt datni, datne netika pievienota"
 
 #: indexpage.py:419
 msgid "Can only upload PO files and zips of PO files"
-msgstr ""
+msgstr "Augšupielādēt iespējams tikai PO datnes un PO datņu arhīvus"
 
 #: indexpage.py:534
 msgid "goals"
-msgstr ""
+msgstr "uzdevumi"
 
 #: indexpage.py:535
 msgid "Enter goal name"
-msgstr ""
+msgstr "Ievadiet uzdevuma nosaukumu"
 
 #: indexpage.py:536
 msgid "Add Goal"
-msgstr ""
+msgstr "Pievienot uzdevumu"
 
 #: indexpage.py:541 indexpage.py:543
 msgid "Upload File"
-msgstr ""
+msgstr "Augšupielādēt datni"
 
 #: indexpage.py:542
 msgid "Select file to upload"
-msgstr ""
+msgstr "Izvēlēties augšupielādējamo datni"
 
 #. l10n: tooltip
 #: indexpage.py:550
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "Pārrakstīt jau izmantojamo datni, ja tāda eksistē"
 
 #. l10n: radio button text
 #: indexpage.py:552
 msgid "Merge"
-msgstr ""
+msgstr "Apvienot"
 
 #. l10n: tooltip
 #: indexpage.py:554
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
+"Apvienot šo datni ar jau izmantojamo datni un konfliktus saglabāt kā "
+"ieteikumus"
 
 #: indexpage.py:657
 msgid "Not in a goal"
-msgstr ""
+msgstr "Ārpus uzdevuma"
 
 #: indexpage.py:677
 msgid "Add User"
-msgstr ""
+msgstr "Pievienot lietotāju"
 
 #: indexpage.py:719
 msgid "PO file"
-msgstr ""
+msgstr "PO datne"
 
 #: indexpage.py:723
 msgid "XLIFF file"
-msgstr ""
+msgstr "XLIFF datne"
 
 #: indexpage.py:727
 msgid "Qt .ts file"
-msgstr ""
+msgstr "Qt .ts datne"
 
 #: indexpage.py:731
 msgid "CSV file"
-msgstr ""
+msgstr "CSV datne"
 
 #: indexpage.py:736
 msgid "MO file"
-msgstr ""
+msgstr "MO datne"
 
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:742
 msgid "Update"
-msgstr ""
+msgstr "Atjaunināt"
 
 #: indexpage.py:785
 msgid "All Strings"
-msgstr ""
+msgstr "Visas rindas"
 
 #: indexpage.py:787
 msgid "Unassigned"
-msgstr ""
+msgstr "Nepiešķirtie"
 
 #: indexpage.py:788
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "Nepiešķirtie un neiztulkotie"
 
 #: indexpage.py:795
 msgid "Set Goal"
-msgstr ""
+msgstr "Uzstādīt uzdevumu"
 
 #: indexpage.py:799
 msgid "Select Multiple"
-msgstr ""
+msgstr "Izvēlēties vairākus"
 
 #: indexpage.py:801
 msgid "Assign To"
-msgstr ""
+msgstr "Piešķirt"
 
 #: indexpage.py:830
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "Rādīt rediģēšanas darbības"
 
 #: indexpage.py:831
 msgid "Show Statistics"
-msgstr ""
+msgstr "Rādīt statistiku"
 
 #: indexpage.py:832
 msgid "Show Tracks"
-msgstr ""
+msgstr "Rādīt vēsturi"
 
 #: indexpage.py:832
 msgid "Hide Tracks"
-msgstr ""
+msgstr "Nerādīt vēsturi"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:834
 msgid "Show Checks"
-msgstr ""
+msgstr "Rādīt pārbaudes"
 
 #: indexpage.py:834
 msgid "Hide Checks"
-msgstr ""
+msgstr "Nerādīt pārbaudes"
 
 #: indexpage.py:835
 msgid "Show Goals"
-msgstr ""
+msgstr "Rādīt uzdevumus"
 
 #: indexpage.py:835
 msgid "Hide Goals"
-msgstr ""
+msgstr "Nerādīt uzdevumus"
 
 #: indexpage.py:836
 msgid "Show Assigns"
-msgstr ""
+msgstr "Rādīt piešķirtos"
 
 #: indexpage.py:836
 msgid "Hide Assigns"
-msgstr ""
+msgstr "Nerādīt piešķirtos"
 
 #: indexpage.py:845
 #, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "Visi uzdevumi: %s"
 
 #: indexpage.py:851
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Tulkot savas rindas"
 
 #: indexpage.py:853
 msgid "View My Strings"
-msgstr ""
+msgstr "Skatīties savas rindas"
 
 #: indexpage.py:858
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "Jums nav piešķirta neviena rinda"
 
 #: indexpage.py:862
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Tulkot savas rindas ar \"Ātro tulkošanu'"
 
 #: indexpage.py:866
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "Jums nav piešķirta neviena neiztulkota rinda"
 
 #: indexpage.py:870
 msgid "Review Suggestions"
-msgstr ""
+msgstr "Pārskatīt ieteiktos"
 
 #: indexpage.py:872
 msgid "View Suggestions"
-msgstr ""
+msgstr "Skatīties ieteiktos"
 
 #: indexpage.py:877
 msgid "Quick Translate"
-msgstr ""
+msgstr "Ātrā tulkošana"
 
 #: indexpage.py:879
 msgid "View Untranslated"
-msgstr ""
+msgstr "Skatīt neiztulkotos"
 
 #: indexpage.py:883
 msgid "No untranslated items"
-msgstr ""
+msgstr "Nav neiztulkoto"
 
 #: indexpage.py:886
 msgid "Translate All"
-msgstr ""
+msgstr "Tulkot visu"
 
 #: indexpage.py:901
 msgid "ZIP of goal"
-msgstr ""
+msgstr "Uzdevuma ZIP arhīvs"
 
 #: indexpage.py:903
 msgid "ZIP of folder"
-msgstr ""
+msgstr "Mapes ZIP arhīvs"
 
 #: indexpage.py:910
 msgid "Generate SDF"
-msgstr ""
+msgstr "Izveidot SDF"
 
 #: indexpage.py:963
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d rinda (%d%%) iztulkota kļūdaini"
+msgstr[1] "%d rindas (%d%%) iztulkotas kļūdaini"
+msgstr[2] "%d rindas (%d%%) iztulkotas kļūdaini"
 
 #: indexpage.py:993
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr ""
+msgstr "%d/%d vārdi (%d%%) piešķirti"
 
 #: indexpage.py:994 indexpage.py:996
 #, python-format
 msgid "[%d/%d strings]"
-msgstr ""
+msgstr "[%d/%d rindas]"

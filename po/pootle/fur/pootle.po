@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-04-13 12:24+0200\n"
-"PO-Revision-Date: 2006-10-10 21:28+0200\n"
+"PO-Revision-Date: 2008-04-24 18:25+0000\n"
 "Last-Translator: Andrea Decorte <adecorte@fastwebnet.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.10.1rc1\n"
+"X-Generator: Pootle 1.1.0\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #. l10n: Verb
@@ -74,9 +74,8 @@ msgid "You do not have rights to upload files here"
 msgstr "No tu âs i dirits par cjamâ sù files ca"
 
 #: projects.py:508
-#, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr "No tu âs i dirits par cjamâ sù files ca"
+msgstr "No tu âs i dirits par sorescrivi i files ca"
 
 #: projects.py:510
 msgid "You do not have rights to upload new files here"
@@ -157,12 +156,12 @@ msgstr "Malsigûr"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:123
 msgid "Translator comments"
-msgstr ""
+msgstr "Coments tradutôr"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:125
 msgid "Developer comments"
-msgstr ""
+msgstr "Coments disvilupadôr"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:127
@@ -446,7 +445,7 @@ msgstr "Stîl control"
 
 #: adminpages.py:152
 msgid "File Type"
-msgstr ""
+msgstr "Gjenar di file"
 
 #: adminpages.py:153
 msgid "Create MO Files"
