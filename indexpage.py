@@ -334,14 +334,14 @@ class ProjectIndex(pagelayout.PootleNavPage):
     else:
       pofilenames = self.project.browsefiles(dirfilter)
       projecttotals = self.project.getquickstats(pofilenames)
-      if self.editing or self.showassigns or self.showchecks:
-        # we need the complete stats
-        projectstats = self.project.combinestats(pofilenames)
-      else:
-        projectstats = projecttotals
+      projectstats = projecttotals
+      if self.showassigns:
+        projectstats['assign'] = self.project.combineassignstats(pofilenames)
+      if self.showchecks:
+        projectstats['units'] = self.project.combine_unit_stats(pofilenames)
       if self.editing:
         actionlinks = self.getactionlinks("", projectstats, ["editing", "mine", "review", "check", "assign", "goal", "quick", "all", "zip", "sdf"], dirfilter)
-      else: 
+      else:
         actionlinks = self.getactionlinks("", projectstats, ["editing", "goal", "zip", "sdf"])
       mainstats = self.getitemstats("", pofilenames, len(pofilenames))
       mainstats["summary"] = self.describestats(self.project, projecttotals, len(pofilenames))
