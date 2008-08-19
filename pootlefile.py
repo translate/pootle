@@ -514,6 +514,8 @@ def make_class(base_class):
       else:
         minitem = lastitem + 1
       maxitem = len(translatables)
+      if not 0 <= minitem < maxitem:
+        raise StopIteration
       if search.assignedto or search.assignedaction:
         validitems = xrange(minitem, maxitem)
         assignitems = self.getassigns().finditems(search)
