@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2004-2007 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -39,13 +39,13 @@ import re
 import locale
 
 def shortdescription(descr):
-  """Returns a short description by removing markup and only including up 
+  """Returns a short description by removing markup and only including up
   to the first br-tag"""
   stopsign = descr.find("<br")
   if stopsign >= 0:
     descr = descr[:stopsign]
   return re.sub("<[^>]*>", "", descr).strip()
-  
+
 class AboutPage(pagelayout.PootlePage):
   """the bar at the side describing current login details etc"""
   def __init__(self, session):
@@ -77,7 +77,7 @@ class AboutPage(pagelayout.PootlePage):
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
 
 class PootleIndex(pagelayout.PootlePage):
-  """The main page listing projects and languages. It is also reused for 
+  """The main page listing projects and languages. It is also reused for
   LanguagesIndex and ProjectsIndex"""
   def __init__(self, potree, session):
     self.potree = potree
@@ -101,7 +101,7 @@ class PootleIndex(pagelayout.PootlePage):
     languages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     if languages:
       languages[-1]["sep"] = ""
-    templatevars = {"pagetitle": pagetitle, "description": description, 
+    templatevars = {"pagetitle": pagetitle, "description": description,
         "meta_description": meta_description, "keywords": keywords,
         "languagelink": languagelink, "languages": languages,
         "projectlink": projectlink, "projects": self.getprojects(),
@@ -141,7 +141,7 @@ class UserIndex(pagelayout.PootlePage):
     quicklinks = self.getquicklinks()
     setoptionstext = self.localize("Please click on 'Change options' and select some languages and projects")
     templatevars = {"pagetitle": pagetitle, "optionslink": optionslink,
-        "adminlink": adminlink, "admintext": admintext, 
+        "adminlink": adminlink, "admintext": admintext,
         "quicklinkstitle": quicklinkstitle,
         "quicklinks": quicklinks, "setoptionstext": setoptionstext,
         "session": sessionvars, "instancetitle": instancetitle}
@@ -161,7 +161,7 @@ class UserIndex(pagelayout.PootlePage):
           project = self.potree.getproject(languagecode, projectcode)
           isprojectadmin = "admin" in project.getrights(session=self.session) \
                             or self.session.issiteadmin()
-          langlinks.append({"code": projectcode, "name": projecttitle, 
+          langlinks.append({"code": projectcode, "name": projecttitle,
                             "isprojectadmin": isprojectadmin, "sep": "<br />"})
       if langlinks:
         langlinks[-1]["sep"] = ""
@@ -208,7 +208,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle,
         "language": {"code": languagecode, "name": self.tr_lang(self.languagename), "stats": languagestats, "info": languageinfo},
-        "projects": languageprojects, 
+        "projects": languageprojects,
         "statsheadings": self.getstatsheadings(),
         "session": sessionvars, "instancetitle": instancetitle}
     pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=80)
@@ -273,9 +273,9 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     statsheadings["name"] = self.localize("Language")
     templatevars = {"pagetitle": pagetitle,
         "project": {"code": projectcode, "name": projectname, "stats": projectstats},
-        "description": description, "meta_description": meta_description, 
+        "description": description, "meta_description": meta_description,
         "adminlink": adminlink, "languages": languages,
-        "session": sessionvars, "instancetitle": instancetitle, 
+        "session": sessionvars, "instancetitle": instancetitle,
         "statsheadings": statsheadings}
     pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=80)
 
@@ -370,7 +370,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         # are we in editing mode (otherwise stats)
         "editing": self.editing,
         # stats table headings
-        "statsheadings": self.getstatsheadings(), 
+        "statsheadings": self.getstatsheadings(),
         # general vars
         "session": sessionvars, "instancetitle": instancetitle}
     pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=80)
@@ -504,8 +504,8 @@ class ProjectIndex(pagelayout.PootleNavPage):
         self.project.reassignpoitems(self.session, search, goalusers, action)
       del self.argdict["doedituser"]
     # pop arguments we don't want to propogate through inadvertently...
-    for argname in ("assignto", "action", "assignedto", "removefilter", 
-                    "uploadfile", "updatefile", "commitfile", 
+    for argname in ("assignto", "action", "assignedto", "removefilter",
+                    "uploadfile", "updatefile", "commitfile",
                     "newgoal", "editgoal", "editgoalfile", "editgoalname",
                     "newgoaluser", "editfileuser", "edituserwhich"):
       self.argdict.pop(argname, "")
@@ -518,7 +518,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     elif isinstance(value, int):
       return bool(value)
     elif isinstance(value, (str, unicode)):
-      value = value.lower() 
+      value = value.lower()
       if value.isdigit():
         return bool(int(value))
       if value == "true":
@@ -540,8 +540,8 @@ class ProjectIndex(pagelayout.PootleNavPage):
 
   def getgoalbox(self):
     """adds a box that lets the user add a new goal"""
-    return {"title": self.localize('goals'), 
-            "name-title": self.localize("Enter goal name"), 
+    return {"title": self.localize('goals'),
+            "name-title": self.localize("Enter goal name"),
             "button": self.localize("Add Goal")}
 
   def getuploadbox(self):
@@ -684,7 +684,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         goal["goal"]["show_adduser"] = True
         goal["goal"]["otherusers"] = unassignedusers
         goal["goal"]["adduser_title"] = self.localize("Add User")
-    goal["stats"] = self.getitemstats("", pofilenames, len(pofilenames))
+    goal["stats"] = self.getitemstats("", pofilenames, len(pofilenames), {'goal': goalname})
     projectstats = self.project.getquickstats(pofilenames)
     goal["data"] = self.getstats(self.project, projectstats)
     return goal
@@ -795,9 +795,9 @@ class ProjectIndex(pagelayout.PootleNavPage):
       useroptions += [username for username in assignusers if username not in useroptions]
       if len(assignusers) > 1:
         multiusers = "multiple"
-      assignwhich = [('all', self.localize("All Strings")), 
+      assignwhich = [('all', self.localize("All Strings")),
                      ('untranslated', self.localize("Untranslated")),
-                     ('unassigned', self.localize('Unassigned')), 
+                     ('unassigned', self.localize('Unassigned')),
                      ('unassigneduntranslated', self.localize("Unassigned and Untranslated"))]
     return {
      "name": goalformname,
@@ -840,7 +840,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
           link = {"href": self.makelink(baseindexlink, **{attrname:1}), "text": showtext}
         link["sep"] = " | "
         actionlinks.append(link)
-    addoptionlink("editing", None, "editing", self.localize("Show Editing Functions"), 
+    addoptionlink("editing", None, "editing", self.localize("Show Editing Functions"),
                                               self.localize("Show Statistics"))
     addoptionlink("track", None, "showtracks", self.localize("Show Tracks"), self.localize("Hide Tracks"))
     # l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
@@ -933,7 +933,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       actions["basic"][-1]["sep"] = ""
     return actions
 
-  def getitemstats(self, basename, pofilenames, numfiles):
+  def getitemstats(self, basename, pofilenames, numfiles, url_opts={}):
     """returns a widget summarizing item statistics"""
     stats = {"checks": [], "tracks": [], "assigns": []}
     if not basename or basename.endswith("/"):
@@ -942,7 +942,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       linkbase = basename + "?translate=1"
     if pofilenames:
       if self.showchecks:
-        stats["checks"] = self.getcheckdetails(pofilenames, linkbase)
+        stats["checks"] = self.getcheckdetails(pofilenames, linkbase, url_opts)
       if self.showtracks:
         trackfilter = (self.dirfilter or "") + basename
         trackpofilenames = self.project.browsefiles(trackfilter)
@@ -960,7 +960,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     """return a list of strings describing the results of tracks"""
     return [trackmessage for trackmessage in projecttracks]
 
-  def getcheckdetails(self, pofilenames, linkbase):
+  def getcheckdetails(self, pofilenames, linkbase, url_opts={}):
     """return a list of strings describing the results of checks"""
     projectstats = self.project.combine_unit_stats(pofilenames)
     total = max(len(projectstats.get("total", [])), 1)
@@ -974,7 +974,9 @@ class ProjectIndex(pagelayout.PootleNavPage):
       checkname = checkname.replace("check-", "", 1)
       if total and checkcount:
         stats = self.nlocalize("%d string (%d%%) failed", "%d strings (%d%%) failed", checkcount, checkcount, (checkcount * 100 / total))
-        checklink = {"href": self.makelink(linkbase, **{str(checkname):1}), "text": checkname, "stats": stats}
+        url_opts[str(checkname)] = 1
+        checklink = {"href": self.makelink(linkbase, **url_opts), "text": checkname, "stats": stats}
+        del url_opts[str(checkname)]
         checklinks += [checklink]
     return checklinks
 
