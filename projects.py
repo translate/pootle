@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2004-2006 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -247,7 +247,7 @@ class TranslationProject(object):
     for goalname, goalnode in goals.iteritems():
       newgoals[goalname.decode("utf-8")] = goalnode
     return newgoals
-    
+
   def getgoalfiles(self, goalname, dirfilter=None, maxdepth=None, includedirs=True, expanddirs=False, includepartial=False):
     """gets the files for the given goal, with many options!
     dirfilter limits to files in a certain subdirectory
@@ -538,7 +538,7 @@ class TranslationProject(object):
       versioncontrol.updatefile(pathname)
       newpofile = pootlefile.pootlefile(self, popath)
       newpofile.pofreshen()
-      newpofile.mergefile(currentpofile, "versionmerge")      
+      newpofile.mergefile(currentpofile, "versionmerge")
       # saving
       newpofile.savepofile()
       newpofile.reset_statistics()
@@ -557,7 +557,7 @@ class TranslationProject(object):
     stats = self.getquickstats([os.path.join(dirname, pofilename)])
     statsstring = "%d of %d messages translated (%d fuzzy)." % \
         (stats["translated"], stats["total"], stats["fuzzy"])
-    versioncontrol.commitfile(pathname, message="Commit from %s by user %s. %s" % 
+    versioncontrol.commitfile(pathname, message="Commit from %s by user %s. %s" %
         (session.server.instance.title, session.username, statsstring),
         author="%s <%s>" % (session.prefs.name, session.prefs.email))
 
@@ -788,7 +788,7 @@ class TranslationProject(object):
          The function "pofreshen" in pootlefile.py would be the natural place
          for this. But this causes circular calls between the current (r7514)
          statistics code and "updateindex" leading to indexing database lock
-         issues. 
+         issues.
          WARNING: You have to stop the pootle server before manually changing
          po files, if you want to keep the index database in sync.
 
@@ -817,7 +817,7 @@ class TranslationProject(object):
           return
         elif items:
           # Update only specific items - usually single translation via the web
-          # interface. All other items should still be up-to-date (even with an 
+          # interface. All other items should still be up-to-date (even with an
           # older pomtime).
           print "updating", self.languagecode, "index for", pofilename, "items", items
           # delete the relevant items from the database
@@ -936,7 +936,7 @@ class TranslationProject(object):
       grepfilter = pogrep.GrepFilter(search.searchtext, search.searchfields, ignorecase=True)
     for pofilename in self.searchpofilenames(pofilename, search, includelast=True):
       pofile = self.getpofile(pofilename)
-      if indexer.HAVE_INDEXER and (search.searchtext or search.matchnames):
+      if indexer.HAVE_INDEXER and search.searchtext:
         filesearch = search.copy()
         filesearch.dirfilter = pofilename
         hits = self.indexsearch(filesearch, "itemno")
@@ -1097,15 +1097,15 @@ class TranslationProject(object):
       alltotal += total
     if slowfiles:
       self.savequickstats()
-    return {"translatedsourcewords": alltranslatedwords, "translated": alltranslated, 
-            "fuzzysourcewords": allfuzzywords, "fuzzy": allfuzzy, 
+    return {"translatedsourcewords": alltranslatedwords, "translated": alltranslated,
+            "fuzzysourcewords": allfuzzywords, "fuzzy": allfuzzy,
             "totalsourcewords": alltotalwords, "total": alltotal}
 
   def combinestats(self, pofilenames=None):
     """combines translation statistics for the given po files (or all if None given)"""
     if pofilenames is None:
       pofilenames = self.pofilenames
-    pofilenames = [pofilename for pofilename in pofilenames 
+    pofilenames = [pofilename for pofilename in pofilenames
                    if pofilename != None and not os.path.isdir(pofilename)]
     total_stats = self.combine_totals(pofilenames)
     total_stats['units'] = self.combine_unit_stats(pofilenames)
@@ -1313,7 +1313,7 @@ class TranslationProject(object):
       self.termmatcher = None
       self.termmatchermtime = None
     return self.termmatcher
-    
+
   def getterminology(self, session, pofile, item):
     """find all the terminology for the given (pofile or pofilename) and item"""
     try:
