@@ -30,7 +30,7 @@ import exceptions
 # We don't want to reinitialise the TM each time, so let's store it here.
 tmmatcher = None
 
-def memory(tmfile, max_candidates=4, min_similarity=75, max_length=50):
+def memory(tmfile, max_candidates=4, min_similarity=75, max_length=1000):
     """Returns the TM store to use. Only initialises on first call."""
     global tmmatcher
     # Only initialise first time
@@ -65,7 +65,7 @@ def buildmatches(inputfile, outputfile, matcher):
         return outputfile
     return outputfile
         
-def writematches(inputfile, outputfile, templatefile, tm=None, max_candidates=4, min_similarity=75, max_length=50):
+def writematches(inputfile, outputfile, templatefile, tm=None, max_candidates=4, min_similarity=75, max_length=1000):
     if templatefile:
         raise Warning("Template ignored")
     inputfile = factory.getobject(inputfile)
@@ -90,7 +90,7 @@ def main(argv=None):
     parser.add_option("-s", "--similarity", dest="min_similarity", default=75,
         help="The minimum similarity for inclusion")
     parser.passthrough.append("min_similarity")
-    parser.add_option("", "--length", dest="max_length", default=50,
+    parser.add_option("", "--length", dest="max_length", default=1000,
         help="The maximum string length to consider")
     parser.passthrough.append("min_similarity")
     parser.run(argv)
