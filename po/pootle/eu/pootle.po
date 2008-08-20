@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-04-13 12:24+0200\n"
+"POT-Creation-Date: 2008-08-19 12:36+0200\n"
 "PO-Revision-Date: 2007-06-29 21:05+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,1000 +13,285 @@ msgstr ""
 "X-Generator: Pootle 1.0.1\n"
 "Generated-By: pygettext.py 1.1\n"
 
-#. l10n: Verb
-#: projects.py:136
-msgid "View"
-msgstr "Ikusi"
-
-#: projects.py:137 translatepage.py:613
-msgid "Suggest"
-msgstr "Gomendatu"
-
-#: projects.py:138
-msgid "Translate"
-msgstr "Itzuli"
-
-#. l10n: radio button text
-#: projects.py:139 indexpage.py:548
-msgid "Overwrite"
-msgstr "Gainidatzi"
-
-#. l10n: Verb
-#: projects.py:141
-msgid "Review"
-msgstr "Gainbegiratu"
-
-#. l10n: Verb
-#: projects.py:143
-msgid "Archive"
-msgstr "Artxiboa"
-
-#. l10n: This refers to generating the binary .mo file
-#: projects.py:145
-msgid "Compile PO files"
-msgstr "PO fitxategiak konpilatu"
-
-#: projects.py:146
-msgid "Assign"
-msgstr "Ezarri"
-
-#: projects.py:147 indexpage.py:134
-msgid "Administrate"
-msgstr "Kudeatu"
-
-#. l10n: Commit to version control (like CVS or Subversion)
-#: projects.py:148 indexpage.py:748
-msgid "Commit"
-msgstr "Igo"
-
-#. l10n: Don't translate "nobody" or "default"
-#: projects.py:228
-msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr "Ezin duzu \"nobody\" edo \"default\" erabiltzailea ezabatu"
-
-#: projects.py:380 projects.py:442
-msgid "You do not have rights to alter goals here"
-msgstr "Ez duzu hemen helburuak aldatzeko baimenik"
-
-#: projects.py:505
-msgid "You do not have rights to upload files here"
-msgstr "Ez duzu hemen fitxategirik igotzeko baimenik"
-
-#: projects.py:508
-msgid "You do not have rights to overwrite files here"
-msgstr "Ez duzu hemen fitxategirik gainidazteko baimenik"
-
-#: projects.py:510
-msgid "You do not have rights to upload new files here"
-msgstr "Ez duzu hemen fitxategi berririk igotzeko baimenik"
-
-#: projects.py:519
-msgid "You do not have rights to update files here"
-msgstr "Ez duzu hemen fitxategirik eguneratzeko baimenik"
-
-#: projects.py:590
-msgid "You do not have rights to commit files here"
-msgstr "Ez duzu hemen fitxategirik igotzeko baimenik"
-
-#: projects.py:919 projects.py:960
-msgid "You do not have rights to alter assignments here"
-msgstr "Ez duzu hemen ezarpenik aldatzeko baimenik"
-
-#: projects.py:1141
-msgid "You do not have rights to change translations here"
-msgstr "Ez duzu hemen itzulpenak aldatzeko baimenik"
-
-#: projects.py:1151
-msgid "You do not have rights to suggest changes here"
-msgstr "Ez duzu hemen aldaketak gomendatzeko baimenik"
-
-#: projects.py:1167 projects.py:1185
-msgid "You do not have rights to review suggestions here"
-msgstr "Ez duzu hemen gomendioak berrikusteko baimenik"
-
-#: translatepage.py:89
-#, python-format
-msgid ""
-"%d/%d translated\n"
-"(%d blank, %d fuzzy)"
-msgstr ""
-"%d/%d itzulirik\n"
-"(%d zuri, %d zalantzan)"
-
-#: translatepage.py:94 adminpages.py:35 adminpages.py:74 adminpages.py:132
-#: adminpages.py:197 adminpages.py:284 adminpages.py:344 pagelayout.py:72
-#: users.py:58 users.py:95 users.py:131 users.py:153 indexpage.py:73
-#: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
-#: indexpage.py:346
+#: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
+#: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
+#: indexpage.py:139 indexpage.py:201 indexpage.py:264 indexpage.py:352
+#: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
+#: users.py:177
 msgid "Pootle Demo"
 msgstr "Pootle Demo-a"
 
-#. l10n: first parameter: name of the installation (like "Pootle")
-#. l10n: second parameter: project name
-#. l10n: third parameter: target language
-#. l10n: fourth parameter: file name
-#: translatepage.py:99
-#, python-format
-msgid "%s: translating %s into %s: %s"
-msgstr "%s: %s %s-ra itzultzen: %s"
-
-#. l10n: Heading above the table column with the source language
-#: translatepage.py:114
-msgid "Original"
-msgstr "Jatorrizkoa"
-
-#. l10n: Heading above the table column with the target language
-#: translatepage.py:116
-msgid "Translation"
-msgstr "Itzulpena"
-
-#: translatepage.py:119
-msgid "Accept"
-msgstr "Onartu"
-
-#: translatepage.py:120
-msgid "Reject"
-msgstr "Ezetsi"
-
-#: translatepage.py:121 pagelayout.py:243
-msgid "Fuzzy"
-msgstr "Zalantzazkoa"
-
-# Garatzaile iruzkinak
-#. l10n: Heading above the textarea for translator comments.
-#: translatepage.py:123
-msgid "Translator comments"
-msgstr "Itzultzaile iruzkinak"
-
-#. l10n: Heading above the comments extracted from the programing source code
-#: translatepage.py:125
-msgid "Developer comments"
-msgstr "Garatzaile iruzkinak"
-
-#. l10n: This heading refers to related translations and terminology
-#: translatepage.py:127
-msgid "Related"
-msgstr "Erlazionatua"
-
-#. l10n: text next to search field
-#: translatepage.py:131 indexpage.py:356
-msgid "Search"
-msgstr "Bilatu"
-
-#. l10n: "batch" refers to the set of translations that were reviewed
-#: translatepage.py:145
-msgid "End of batch"
-msgstr "batch amaiera"
-
-#: translatepage.py:147
-msgid "Click here to return to the index"
-msgstr "Hemen klik egin hasierara itzultzeko"
-
-#. l10n: noun (the start)
-#: translatepage.py:161 translatepage.py:164
-msgid "Start"
-msgstr "Hasi"
-
-#. l10n: the parameter refers to the number of messages
-#: translatepage.py:168 translatepage.py:171
-#, python-format
-msgid "Previous %d"
-msgstr "Aurreko %d"
-
-#. l10n: the third parameter refers to the total number of messages in the file
-#: translatepage.py:173
-#, python-format
-msgid "Items %d to %d of %d"
-msgstr "%d-%d bitartea %d elementutatik"
-
-#. l10n: the parameter refers to the number of messages
-#: translatepage.py:178 translatepage.py:181
-#, python-format
-msgid "Next %d"
-msgstr "Hurrengo %d"
-
-#. l10n: noun (the end)
-#: translatepage.py:184 translatepage.py:187
-msgid "End"
-msgstr "Amaiera"
-
-#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-#: translatepage.py:204
-#, python-format
-msgid "checking %s"
-msgstr "%s arakatzen"
-
-#: translatepage.py:211 translatepage.py:214 indexpage.py:526 indexpage.py:529
-msgid "Assign Strings"
-msgstr "Kateak Esleitu"
-
-#: translatepage.py:212 indexpage.py:528
-msgid "Assign to User"
-msgstr "Erabiltzaileari Esleitu"
-
-#: translatepage.py:213 indexpage.py:527
-msgid "Assign Action"
-msgstr "Ekintza Esleitu"
-
-#: translatepage.py:368
-#, python-format
-msgid "There are no items matching that search ('%s')"
-msgstr "Ez dago bilaketaren pareko elementurik ('%s')"
-
-#: translatepage.py:370
-msgid "You have finished going through the items you selected"
-msgstr "Aukeratutako elementuak bukatu dira"
-
-#: translatepage.py:578
-msgid "Singular"
-msgstr "Singularra"
-
-#: translatepage.py:579
-msgid "Plural"
-msgstr "Plurala"
-
-#. l10n: verb
-#: translatepage.py:593
-msgid "Edit"
-msgstr "Editatu"
-
-#. l10n: verb
-#: translatepage.py:609
-msgid "Copy"
-msgstr "Kopiatu"
-
-#: translatepage.py:610 translatepage.py:784
-msgid "Skip"
-msgstr "Salto"
-
-#. l10n: verb
-#: translatepage.py:612 translatepage.py:783 users.py:256
-msgid "Back"
-msgstr "Atzera"
-
-#: translatepage.py:614
-msgid "Submit"
-msgstr "Bidali"
-
-#. l10n: action that increases the height of the textarea
-#: translatepage.py:617
-msgid "Grow"
-msgstr "Luzatu"
-
-#. l10n: action that decreases the height of the textarea
-#: translatepage.py:619
-msgid "Shrink"
-msgstr "Txikitu"
-
-#: translatepage.py:641 translatepage.py:735 translatepage.py:772
-#: translatepage.py:805
-#, python-format
-msgid "Plural Form %d"
-msgstr "%d plural forma"
-
-#. l10n: This is an error message that will display if the relevant problem occurs
-#: translatepage.py:657
-msgid ""
-"Translation not possible because plural information for your language is not "
-"available. Please contact the site administrator."
-msgstr ""
-"Itzulpena ez da posible hizkuntza honetako plural datuak ez baitaude "
-"ezarrita. Jar zaitez harremanetan sistema kudeatzailearekin."
-
-#: translatepage.py:739
-msgid "Current Translation:"
-msgstr "Uneko itzulpena:"
-
-#. l10n: First parameter: number
-#. l10n: Second parameter: name of translator
-#: translatepage.py:752
-#, python-format
-msgid "Suggestion %d by %s:"
-msgstr "%s-ek %d gomendatzen du:"
-
-#: translatepage.py:754
-#, python-format
-msgid "Suggestion %d:"
-msgstr "%d gomendioa:"
-
-#. l10n: parameter: name of translator
-#: translatepage.py:758
-#, python-format
-msgid "Suggestion by %s:"
-msgstr "%s-ren gomendioa:"
-
-#: translatepage.py:760
-msgid "Suggestion:"
-msgstr "Gomendioa:"
-
-#: adminpages.py:43 adminpages.py:82 adminpages.py:140 adminpages.py:205
-#: pagelayout.py:36
+#: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
+#: pagelayout.py:27
 msgid "Home"
 msgstr "Hasiera Orrialdea"
 
-#: adminpages.py:44 adminpages.py:207
+#: adminpages.py:46 adminpages.py:212
 msgid "Users"
 msgstr "Erabiltzaileak"
 
-#: adminpages.py:45 adminpages.py:84 indexpage.py:94
+#: adminpages.py:47 adminpages.py:87 indexpage.py:93
 msgid "Languages"
 msgstr "Hizkuntzak"
 
-#: adminpages.py:46 adminpages.py:142 indexpage.py:95
+#: adminpages.py:48 adminpages.py:146 indexpage.py:94
 msgid "Projects"
 msgstr "Proiektuak"
 
-#: adminpages.py:47
+#: adminpages.py:49
 msgid "General options"
 msgstr "Aukera orokorrak"
 
-#: adminpages.py:48 users.py:157
+#: adminpages.py:50 users.py:182
 msgid "Option"
 msgstr "Aukera"
 
-#: adminpages.py:49 users.py:158
+#: adminpages.py:51 users.py:183
 msgid "Current value"
 msgstr "Uneko balioa"
 
-#: adminpages.py:50 adminpages.py:85 adminpages.py:143 adminpages.py:208
-#: users.py:172
+#: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
+#: users.py:197
 msgid "Save changes"
 msgstr "Aldaketak gorde"
 
-#: adminpages.py:54
+#: adminpages.py:56
 msgid "Title"
 msgstr "Izenburua"
 
-#: adminpages.py:55
+#: adminpages.py:57
 msgid "Description"
 msgstr "Argibideak"
 
-#: adminpages.py:56
+#: adminpages.py:58
 msgid "Base URL"
 msgstr "Oinarri URL-a"
 
-#: adminpages.py:57
+#: adminpages.py:59
 msgid "Home Page"
 msgstr "Hasiera Orrialdea"
 
-#: adminpages.py:83 adminpages.py:141 adminpages.py:206
+#: adminpages.py:77
+msgid "Pootle Languages Admin Page"
+msgstr "Pootle Hizkuntz Kudeaketa Orrialdea"
+
+#: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
 msgstr "Kudeaketa orrialde nagusia"
 
-#: adminpages.py:89
+#: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
 msgstr "ISO kodea"
 
-#: adminpages.py:90 adminpages.py:148 adminpages.py:213 users.py:104
+#: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
+#: users.py:127
 msgid "Full Name"
 msgstr "Izen Osoa"
 
-#: adminpages.py:91
+#: adminpages.py:94
 msgid "(add language here)"
 msgstr "(hemen gehitu hizkuntza)"
 
-#: adminpages.py:92
+#: adminpages.py:95
 msgid "Special Chars"
 msgstr "Karaktere Bereziak"
 
-#: adminpages.py:92
+#: adminpages.py:95
 msgid "(special characters)"
 msgstr "(karaktere bereziak)"
 
-#: adminpages.py:93 indexpage.py:217
+#: adminpages.py:96 indexpage.py:224
 msgid "Number of Plurals"
 msgstr "Plural Kopurua"
 
-#: adminpages.py:93
+#: adminpages.py:96
 msgid "(number of plurals)"
 msgstr "(plural kopurua)"
 
-#: adminpages.py:94 indexpage.py:218
+#: adminpages.py:97 indexpage.py:225
 msgid "Plural Equation"
 msgstr "Plural Ekuazioa"
 
-#: adminpages.py:94
+#: adminpages.py:97
 msgid "(plural equation)"
 msgstr "(plural ekuazioa)"
 
-#: adminpages.py:95
+#: adminpages.py:98
 msgid "Remove Language"
 msgstr "Hizkuntza Ezabatu"
 
 #. l10n: The parameter is a languagecode, projectcode or username
-#: adminpages.py:110 adminpages.py:177 adminpages.py:240 adminpages.py:410
+#: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
 #, python-format
 msgid "Remove %s"
 msgstr "%s ezabatu"
 
-#: adminpages.py:129
+#: adminpages.py:132
 msgid "Standard"
 msgstr "Estandarra"
 
-#: adminpages.py:147
+#: adminpages.py:136
+msgid "Pootle Projects Admin Page"
+msgstr "Pootle Proiektu Kudeaketa Orrialdea"
+
+#: adminpages.py:151
 msgid "Project Code"
 msgstr "Proiektu Gakoa"
 
-#: adminpages.py:149
+#: adminpages.py:153
 msgid "(add project here)"
 msgstr "(proiektua hemen gehitu)"
 
-#: adminpages.py:150
+#: adminpages.py:154
 msgid "Project Description"
 msgstr "Proiektuaren Azalpena"
 
-#: adminpages.py:150
+#: adminpages.py:154
 msgid "(project description)"
 msgstr "(proiektuaren azalpena)"
 
-#: adminpages.py:151
+#: adminpages.py:155
 msgid "Checker Style"
 msgstr "Arakatze Estiloa"
 
-#: adminpages.py:152
+#: adminpages.py:156
 msgid "File Type"
 msgstr "Fitxategi Mota"
 
-#: adminpages.py:153
+#: adminpages.py:157
 msgid "Create MO Files"
 msgstr "MO fitxategiak sortu"
 
-#: adminpages.py:154
+#: adminpages.py:158
 msgid "Remove Project"
 msgstr "Proiektua Ezabatu"
 
-#: adminpages.py:212 users.py:66
-msgid "Login"
-msgstr "Saioa hasi"
+#: adminpages.py:202
+msgid "Pootle User Admin Page"
+msgstr "Pootle Erabiltzaile Kudeaketa Orria"
 
-#: adminpages.py:214 users.py:347
+#: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
+msgid "Username"
+msgstr "Erabiltzaile izena"
+
+#: adminpages.py:219 users.py:403
 msgid "(add full name here)"
 msgstr "(Izen osoa hemen gehitu)"
 
-#: adminpages.py:215 users.py:101
+#: adminpages.py:220 users.py:124
 msgid "Email Address"
 msgstr "ePosta helbidea"
 
-#: adminpages.py:215 users.py:350
+#: adminpages.py:220 users.py:406
 msgid "(add email here)"
 msgstr "(ePosta hemen gehitu)"
 
-#: adminpages.py:216 users.py:107 users.py:163
+#: adminpages.py:221 users.py:130 users.py:188
 msgid "Password"
 msgstr "Pasahitza"
 
-#: adminpages.py:216 users.py:344
+#: adminpages.py:221 users.py:400
 msgid "(add password here)"
 msgstr "(pasahitza hemen gehitu)"
 
-#: adminpages.py:217
+#: adminpages.py:222
 msgid "Activated"
 msgstr "Gaituta"
 
-#: adminpages.py:217
+#: adminpages.py:222
 msgid "Activate New User"
 msgstr "Erabiltzaile Berria Gaitu"
 
-#: adminpages.py:218
+#: adminpages.py:223
 msgid "Remove User"
 msgstr "Erabiltzailea Ezabatu"
 
-#: adminpages.py:272
+#: adminpages.py:278
 msgid "Back to main page"
 msgstr "Itzuli orri nagusia"
 
-#: adminpages.py:273
+#: adminpages.py:279
 msgid "Existing languages"
 msgstr "Dauden Hizkuntzak"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:277
+#: adminpages.py:283
 msgid "Update Languages"
 msgstr "Hizkuntzak Eguneratu"
 
-#: adminpages.py:278
+#: adminpages.py:284
 #, python-format
 msgid "Pootle Admin: %s"
 msgstr "Pootle Kudeatzailea: %s"
 
-#: adminpages.py:279 adminpages.py:341
+#: adminpages.py:285 adminpages.py:356
 msgid "You do not have the rights to administer this project."
 msgstr "Ez duzu proiektu hau kudeatzeko baimenik."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:281
+#: adminpages.py:289
 msgid "Update from templates"
 msgstr "Txantiloietatik eguneratu"
 
-#: adminpages.py:289
+#: adminpages.py:298
 msgid "Add Language"
 msgstr "Hizkuntza gehitu"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
-#: adminpages.py:321
+#: adminpages.py:336
 #, python-format
 msgid "Pootle Admin: %s %s"
 msgstr "Pootle Kudeaketa: %s %s"
 
-#: adminpages.py:322
+#: adminpages.py:337
 msgid "Project home page"
 msgstr "Proiektuaren hasiera orrialdea"
 
-#: adminpages.py:340
+#: adminpages.py:355
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr ""
 "Ezin dira %s erabiltzaile-izenaren baimenak ezarri - erabiltzailea ez da "
 "existitzen"
 
-#: adminpages.py:357
+#: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
 "Hau GNU-estiloko proiektu bat da (direktorio bat fitxategiak hizkuntzez "
 "izendaturik)."
 
-#: adminpages.py:359
+#: adminpages.py:374
 msgid "This is a standard style project (one directory per language)."
 msgstr ""
-"Hau estilo estandarreko proiektu bat da (direktorio bat hizkuntz bakoitzeko)."
+"Hau estilo estandarreko proiektu bat da (direktorio bat hizkuntz "
+"bakoitzeko)."
 
-#: adminpages.py:360
+#: adminpages.py:375
 msgid "User Permissions"
 msgstr "Erabiltzaile baimenak"
 
-#: adminpages.py:361 users.py:98 users.py:134
-msgid "Username"
-msgstr "Erabiltzaile izena"
-
-#: adminpages.py:362
+#: adminpages.py:377
 msgid "(select to add user)"
 msgstr "(erabiltzailea gehitzeko hautatu)"
 
-#: adminpages.py:363
+#: adminpages.py:378
 msgid "Rights"
 msgstr "Baimenak"
 
-#: adminpages.py:364 indexpage.py:998
+#: adminpages.py:379 indexpage.py:1008
 msgid "Remove"
 msgstr "Ezabatu"
 
-#: adminpages.py:391
+#: adminpages.py:406
 msgid "Update Rights"
 msgstr "Baimenak Eguneratu"
 
-#: pagelayout.py:37
-msgid "All projects"
-msgstr "Proiektu guztiak"
-
-#: pagelayout.py:38
-msgid "All languages"
-msgstr "Hizkuntza guztiak"
-
-#: pagelayout.py:39
-msgid "My account"
-msgstr "Nire kontua"
-
-#: pagelayout.py:40 pagelayout.py:168 indexpage.py:200 indexpage.py:262
-msgid "Admin"
-msgstr "Kudeaketa"
-
-#: pagelayout.py:41
-msgid "Docs & help"
-msgstr "Dokumentazioa eta Laguntza"
-
-#: pagelayout.py:42
-msgid "Log out"
-msgstr "Irten"
-
-#: pagelayout.py:43
-msgid "Log in"
-msgstr "Saioa hasi"
-
-#. l10n: Verb, as in "to register"
-#: pagelayout.py:45
-msgid "Register"
-msgstr "Izena Eman"
-
-#: pagelayout.py:46
-msgid "Activate"
-msgstr "Gaitu"
-
-#: pagelayout.py:80
-msgid "Pootle Logo"
-msgstr "Pootle Logo-a"
-
-#: pagelayout.py:81
-msgid "WordForge Translation Project"
-msgstr "WordForge Itzulpen Proiektua"
-
-#: pagelayout.py:83
-msgid "About this Pootle server"
-msgstr "Pootle zerbitzari honi buruz"
-
-#: pagelayout.py:157
-msgid "All goals"
-msgstr "Helburu guztiak"
-
-#: pagelayout.py:228
-#, python-format
-msgid "%d/%d files"
-msgstr "%d/%d fitxategi"
-
-#: pagelayout.py:231
-#, python-format
-msgid "%d file"
-msgid_plural "%d files"
-msgstr[0] "fitxategi %d"
-msgstr[1] "%d fitxategi"
-
-#: pagelayout.py:232 indexpage.py:995
-#, python-format
-msgid "%d/%d words (%d%%) translated"
-msgstr "%d/%d hitz (%%%d) itzulita"
-
-#: pagelayout.py:233
-#, python-format
-msgid "%d/%d strings"
-msgstr "%d/%d kate"
-
-#: pagelayout.py:239 users.py:159
-msgid "Name"
-msgstr "Izena"
-
-#: pagelayout.py:240
-msgid "Translated"
-msgstr "Itzulia"
-
-#: pagelayout.py:241
-msgid "Translated percentage"
-msgstr "Itzulitako ehunekoa"
-
-#: pagelayout.py:242
-msgid "Translated words"
-msgstr "Itzulitako hitzak"
-
-#: pagelayout.py:244
-msgid "Fuzzy percentage"
-msgstr "Zalantzazkoen ehunekoa"
-
-#: pagelayout.py:245
-msgid "Fuzzy words"
-msgstr "Zalantzazko hitzak"
-
-#: pagelayout.py:246 indexpage.py:786
-msgid "Untranslated"
-msgstr "Itzuli gabeak"
-
-#: pagelayout.py:247
-msgid "Untranslated percentage"
-msgstr "Itzuli gabeko ehunekoa"
-
-#: pagelayout.py:248
-msgid "Untranslated words"
-msgstr "Itzuli gabeko hitzak"
-
-#: pagelayout.py:249
-msgid "Total"
-msgstr "Guztira"
-
-#: pagelayout.py:250
-msgid "Total words"
-msgstr "Hitz Guztira"
-
-#. l10n: noun. The graphical representation of translation status
-#: pagelayout.py:252
-msgid "Graph"
-msgstr "Graf"
-
-#: users.py:39
-#, python-format
-msgid "You must supply a valid password of at least %d characters."
-msgstr "Gutxienez %d karaktereko baliozko pasahitz bat eman behar duzu."
-
-#: users.py:41
-msgid "The password is not the same as the confirmation."
-msgstr "Pasahitza eta berrespena ez datoz bat."
-
-#: users.py:55
-msgid "Login to Pootle"
-msgstr "Pootlen saioa hasi"
-
-#: users.py:61
-msgid "Username:"
-msgstr "Erabiltzaile izena:"
-
-#: users.py:63
-msgid "Password:"
-msgstr "Pasahitza:"
-
-#: users.py:64
-msgid "Language:"
-msgstr "Hizkuntza:"
-
-#: users.py:73
-msgid "Default"
-msgstr "Lehenetsia"
-
-#: users.py:89
-msgid "Please enter your registration details"
-msgstr "Mesedez ezarri zure erregistro xehetasunak"
-
-#: users.py:92 users.py:419
-msgid "Pootle Registration"
-msgstr "Pootle Erregistroa"
-
-#: users.py:99 users.py:135
-msgid "Your requested username"
-msgstr "Eskatutako erabiltzaile izena"
-
-#: users.py:102 users.py:373
-msgid "You must supply a valid email address"
-msgstr "Baliozko eposta helbide bat idatzi behar duzu"
-
-#: users.py:105
-msgid "Your full name"
-msgstr "Izen osoa"
-
-#: users.py:108
-msgid "Your desired password"
-msgstr "Aukeratutako pasahitza"
-
-#: users.py:110 users.py:164
-msgid "Confirm password"
-msgstr "Berretsi pasahitza"
-
-#: users.py:111
-msgid "Type your password again to ensure it is entered correctly"
-msgstr "Berridatzi pasahitza ongi idatzi duzula ziurtatzeko"
-
-#: users.py:113
-msgid "Register Account"
-msgstr "Kontua Erregistratu"
-
-#: users.py:122
-msgid "Please enter your activation details"
-msgstr "Mesedez sar itzazu zure aktibazio xehetasunak"
-
-#: users.py:127
-msgid "Pootle Account Activation"
-msgstr "Pootle Kontu Gaitzea"
-
-#: users.py:137
-msgid "Activation Code"
-msgstr "Gaitze Gakoa"
-
-#: users.py:138
-msgid "The activation code you received"
-msgstr "Jasotako aktibazioa gakoa"
-
-#: users.py:140
-msgid "Activate Account"
-msgstr "Kontua gaitu"
-
-#: users.py:151
-#, python-format
-msgid "Options for: %s"
-msgstr "Aukerak: %s"
-
-#: users.py:156
-msgid "Personal Details"
-msgstr "Xeheteasun Pertsonalak"
-
-#: users.py:161
-msgid "Email"
-msgstr "ePosta"
-
-#: users.py:165
-msgid "Translation Interface Configuration"
-msgstr "Itzulpen Interfazearen Konfigurazioa"
-
-#: users.py:166
-msgid "User Interface language"
-msgstr "Erabiltzaile Interfazearen hizkuntza"
-
-#: users.py:167
-msgid "My Projects"
-msgstr "Nire Proiektuak"
-
-#: users.py:169
-msgid "My Languages"
-msgstr "Nire Hizkuntzak"
-
-#: users.py:171
-msgid "Home page"
-msgstr "Hasiera orrialdea"
-
-#: users.py:207
-msgid "Input Height (in lines)"
-msgstr "Sarrera altuera (errenkada)"
-
-#: users.py:208
-msgid "Number of rows in view mode"
-msgstr "Bistaratze moduko kate kopurua"
-
-#: users.py:209
-msgid "Number of rows in translate mode"
-msgstr "Itzulpen moduko kate kopurua"
-
-#: users.py:251
-msgid "Error"
-msgstr "Errorea"
-
-#: users.py:303
-msgid "You need to be siteadmin to change users"
-msgstr "Gune kudeatzailea izan behar zara erabiltzaileak aldatzeko"
-
-#: users.py:367
-msgid ""
-"Username must be alphanumeric, and must start with an alphabetic character."
-msgstr "Erabiltzaile izena alfazenbakizkoa izan eta hizki batez hasi behar da"
-
-#: users.py:382
-msgid ""
-"You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
-"Zu (edo beste norbait) zure erabiltzaile izenaz kontu bat harpidetzen saiatu "
-"da.\n"
-
-#: users.py:383
-msgid "We don't store your actual password but only a hash of it.\n"
-msgstr "Guk ez dugu zure pasahitza gordetzen horren egiaztapen bat baizik.\n"
-
-#: users.py:385
-#, python-format
-msgid "If you have a problem with registration, please contact %s.\n"
-msgstr "Harpidetzarekin arazorik izanez gero, harremanetan ipini %s-rekin.\n"
-
-#: users.py:387
-msgid ""
-"If you have a problem with registration, please contact the site "
-"administrator.\n"
-msgstr "Harpidetzarekin arazorik izanez gero, harremanetan ipini sistema "
-"kudeatzailearekin.\n"
-
-#: users.py:388
-msgid ""
-"That username already exists. An email will be sent to the registered email "
-"address.\n"
-msgstr "Erabiltzaile izen hau existitzen da dagoeneko. Harpidedunaren helbidera "
-"eposta bat bidaliko da.\n"
-
-#: users.py:390
-#, python-format
-msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr "<a href='%s'>Saioa hasten</a>\n"
-
-#: users.py:396
-msgid "A Pootle account has been created for you using this email address.\n"
-msgstr "Pootle kontu bat sortu da eposta kontu hau erabiliz.\n"
-
-#: users.py:398
-msgid "To activate your account, follow this link:\n"
-msgstr "Kontu hau gaitzeko, lotura hau jarraitu:\n"
-
-#: users.py:404
-#, python-format
-msgid ""
-"Your activation code is:\n"
-"%s\n"
-msgstr ""
-"Zure gaitze gakoa:\n"
-"%s\n"
-
-#: users.py:406
-msgid ""
-"If you are unable to follow the link, please enter the above code at the "
-"activation page.\n"
-msgstr ""
-"Ez bazara lotura jarraitzeko gai, mesedez idatzi gaitze gakoa gaitze "
-"orrialdean.\n"
-
-#: users.py:407
-msgid ""
-"This message is sent to verify that the email address is in fact correct. If "
-"you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
-"Mezu hau eposta helbidea benetan baliozkoa den egiaztatzeko bidaltzen da. Ez "
-"baduzu kontu bat harpidetu nahi, alde batetara utz ezazu.\n"
-
-#: users.py:409
-#, python-format
-msgid ""
-"Account created. You will be emailed login details and an activation code. "
-"Please enter your activation code on the <a href='%s'>activation page</a>."
-msgstr ""
-"Kontua sortua. Gaitze kodea eta saio xehetasunekin eposta bat bidaliko "
-"zaizu. Mesedez idatzi zure gaitz kodea <a href='%s'>gaitze orrialdean</a>."
-
-#: users.py:411
-msgid "(Or simply click on the activation link in the email)"
-msgstr "(edo epostako gaitze loturan klikatu)"
-
-#: users.py:413
-#, python-format
-msgid "Your user name is: %s\n"
-msgstr "Zure Erabiltzaile Izena: %s\n"
-
-#: users.py:415
-#, python-format
-msgid "Your password is: %s\n"
-msgstr "Zure pasahitza: %s\n"
-
-#: users.py:416
-#, python-format
-msgid "Your registered email address is: %s\n"
-msgstr "Erregistraturiko eposta helbidea: %s\n"
-
-#: users.py:442
-msgid "Redirecting to Registration Page..."
-msgstr "Harpidetza orrira berbideratzen..."
-
-#: users.py:466
-msgid "Redirecting to login Page..."
-msgstr "Saio hasiera orrira berbideratzen..."
-
-#: users.py:469
-msgid "Your account has been activated! Redirecting to login..."
-msgstr "Zure kontua gaitua izan da! Saio hasiera orrira berbideratzen..."
-
-#: users.py:473
-msgid "The activation information was not valid."
-msgstr "Gaitze informazioa ez da zuzena."
-
-#: users.py:474
-msgid "Activation Failed"
-msgstr "Huts gaitzerakoan"
-
-#: users.py:583
-msgid "Input height must be numeric"
-msgstr "Sarrera altuera zenbakizkoa izan behar da"
-
-#: users.py:584
-msgid "Input width must be numeric"
-msgstr "Sarrera zabalera zenbakizkoa izan behar da"
-
-#: users.py:585
-msgid "The number of rows displayed in view mode must be numeric"
-msgstr "Bistaratze moduko errenkada kopurua zenbakizkoa izan behar da"
-
-#: users.py:586
-msgid "The number of rows displayed in translate mode must be numeric"
-msgstr "Itzulpen moduko errenkada kopurua zenbakizkoa izan behar da"
-
-#: pootle.py:293
-msgid "Login failed"
-msgstr "Huts saioa hasterakoan"
-
-#: pootle.py:337 pootle.py:368
-msgid "Redirecting to login..."
-msgstr "Saio hasiera orrira berbideratzen..."
-
-#: pootle.py:340
-msgid "Need to log in to access home page"
-msgstr "Saioa hasi behar duzu hasiera orrialdera joateko"
-
-#: pootle.py:353
-msgid "Personal details updated"
-msgstr "Xeheteasun pertsonalak egunertaturik"
-
-#: pootle.py:371
-msgid "Need to log in to access admin page"
-msgstr "Saioa hasi behar duzu kudeaketa orrialdera joateko"
-
-#: pootle.py:378
-msgid "Redirecting to home..."
-msgstr "Etxera berbideratzen..."
-
-#: pootle.py:381
-msgid "You do not have the rights to administer pootle."
-msgstr "Ez duzu pootle kudeatzeako baimenik."
-
-#: indexpage.py:61
+#: indexpage.py:58
 msgid "About Pootle"
 msgstr "Pootle-ri Buruz"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:63
+#: indexpage.py:60
 msgid ""
 "<strong>Pootle</strong> is a simple web portal that should allow you to "
 "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
@@ -1020,7 +305,7 @@ msgstr ""
 "Bere garapenean modu ezberdinetan lagun dezakezu (ez duzu programatzen jakin "
 "beharrik)."
 
-#: indexpage.py:64
+#: indexpage.py:61
 msgid ""
 "The Pootle project itself is hosted at <a href=\"http://translate."
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
@@ -1033,55 +318,59 @@ msgstr ""
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:67
+#: indexpage.py:64
 msgid ""
 "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
-"Izenak \"<b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-"b>ocalization <b>E</b>ngine\" esan nahi du, baina agian <a href=\"http://www."
-"thechestnut.com/flumps.htm\">hau irakurri beharko zenuke</a>."
+"Izenak \"<b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+"<b>L</b>ocalization <b>E</b>ngine\" esan nahi du, baina agian <a "
+"href=\"http://www.thechestnut.com/flumps.htm\">hau irakurri beharko "
+"zenuke</a>."
 
-#: indexpage.py:68
+#: indexpage.py:65
 msgid "Versions"
 msgstr "Bertsioak"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:71
+#: indexpage.py:68
 #, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
-"Gunea erabiltzen ari den bertsioak:<br />Pootle %s<br />Translate Toolkit %"
-""
-"s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (%s/%s)"
+"Gunea erabiltzen ari den bertsioak:<br />Pootle %s<br />Translate Toolkit "
+"%s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (%s/%s)"
 
-#: indexpage.py:130
+#: indexpage.py:133
 #, python-format
 msgid "User Page for: %s"
 msgstr "Erabiltzaile orrialdea: %s"
 
-#: indexpage.py:132
+#: indexpage.py:135
 msgid "Change options"
 msgstr "Aukerak aldatu"
 
-#: indexpage.py:133
+#: indexpage.py:136
 msgid "Admin page"
 msgstr "Kudeaketa orrialdea"
 
-#: indexpage.py:135
+#: indexpage.py:137 projects.py:149
+msgid "Administrate"
+msgstr "Kudeatu"
+
+#: indexpage.py:138
 msgid "Quick Links"
 msgstr "Lotura azkarrak"
 
-#: indexpage.py:139
+#: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
 "Mesedez 'Aukerak aldatu' sakatu eta hizkuntz eta proiekturen bat hautatu"
 
-#: indexpage.py:192
+#: indexpage.py:199
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
@@ -1091,255 +380,1022 @@ msgstr[1] "%d proiektu, %%%d itzulita"
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
-#: indexpage.py:198 indexpage.py:260
+#: indexpage.py:205 indexpage.py:268
 #, python-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: indexpage.py:214
+#: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
+msgid "Admin"
+msgstr "Kudeaketa"
+
+#: indexpage.py:221
 msgid "Language Code"
 msgstr "Hizkuntza kodea"
 
-#: indexpage.py:215
+#: indexpage.py:222
 msgid "Language Name"
 msgstr "Hizkuntza Izena"
 
-#: indexpage.py:252
+#: indexpage.py:260
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
 msgstr[0] "Hizkuntza %d, bataz beste %%%d itzulirik"
 msgstr[1] "%d Hizkuntza, bataz beste %%%d itzulirik"
 
-#: indexpage.py:265
+#: indexpage.py:273
 msgid "Language"
 msgstr "Hizkuntza"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
-#: indexpage.py:348
+#: indexpage.py:354
 #, python-format
 msgid "%s: Project %s, Language %s"
 msgstr "%s: %s proiektua, %s hizkuntza"
 
-#: indexpage.py:413
+#. l10n: text next to search field
+#: indexpage.py:362 translatepage.py:145
+msgid "Search"
+msgstr "Bilatu"
+
+#: indexpage.py:363 translatepage.py:146
+msgid "Advanced Search"
+msgstr ""
+
+#: indexpage.py:422
 msgid "Cannot upload file, no file attached"
 msgstr "Ezin da fitxategia igo, ez da fitxategirik erantsi"
 
-#: indexpage.py:419
+#: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
 msgstr "PO fitxategi eta PO fitxategi zipak bakarrik igo ditzakezu"
 
-#: indexpage.py:534
+#: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
+msgid "Assign Strings"
+msgstr "Kateak Esleitu"
+
+#: indexpage.py:536 translatepage.py:239
+msgid "Assign Action"
+msgstr "Ekintza Esleitu"
+
+#: indexpage.py:537 translatepage.py:238
+msgid "Assign to User"
+msgstr "Erabiltzaileari Esleitu"
+
+#: indexpage.py:543
 msgid "goals"
 msgstr "helburuak"
 
-#: indexpage.py:535
+#: indexpage.py:544
 msgid "Enter goal name"
 msgstr "Helburu izena idatzi"
 
-#: indexpage.py:536
+#: indexpage.py:545
 msgid "Add Goal"
 msgstr "Helburua gehitu"
 
-#: indexpage.py:541 indexpage.py:543
+#: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
 msgstr "Fitxategia Igo"
 
-#: indexpage.py:542
+#: indexpage.py:551
 msgid "Select file to upload"
 msgstr "Hautatu igotzeko fitxategia"
 
+#. l10n: radio button text
+#: indexpage.py:557 projects.py:141
+msgid "Overwrite"
+msgstr "Gainidatzi"
+
 #. l10n: tooltip
-#: indexpage.py:550
+#: indexpage.py:559
 msgid "Overwrite the current file if it exists"
 msgstr "Fitxategia balego gainidatzi"
 
 #. l10n: radio button text
-#: indexpage.py:552
+#: indexpage.py:561
 msgid "Merge"
 msgstr "Batu"
 
 #. l10n: tooltip
-#: indexpage.py:554
+#: indexpage.py:563
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr "Fitxategi berria dagoenarekin batu eta gatazkak gomendio bihurtu"
 
-#: indexpage.py:657
+#: indexpage.py:666
 msgid "Not in a goal"
 msgstr "Ez dago helburuan"
 
-#: indexpage.py:677
+#: indexpage.py:686
 msgid "Add User"
 msgstr "Erabiltzailea gehitu"
 
-#: indexpage.py:719
+#: indexpage.py:731
 msgid "PO file"
 msgstr "PO fitxategia"
 
-#: indexpage.py:723
+#: indexpage.py:735
 msgid "XLIFF file"
 msgstr "XLIFF fitxategia"
 
-#: indexpage.py:727
+#: indexpage.py:739
 msgid "Qt .ts file"
 msgstr "Qt .ts fitxategia"
 
-#: indexpage.py:731
+#: indexpage.py:743
 msgid "CSV file"
 msgstr "CSV fitxategia"
 
-#: indexpage.py:736
+#: indexpage.py:748
 msgid "MO file"
 msgstr "MO fitxategia"
 
 #. l10n: Update from version control (like CVS or Subversion)
-#: indexpage.py:742
+#: indexpage.py:754
 msgid "Update"
 msgstr "Eguneratu"
 
-#: indexpage.py:785
+#. l10n: Commit to version control (like CVS or Subversion)
+#: indexpage.py:760 projects.py:150
+msgid "Commit"
+msgstr "Igo"
+
+#: indexpage.py:798
 msgid "All Strings"
 msgstr "Kate Guztiak"
 
-#: indexpage.py:787
+#: indexpage.py:799 pagelayout.py:249
+msgid "Untranslated"
+msgstr "Itzuli gabeak"
+
+#: indexpage.py:800
 msgid "Unassigned"
 msgstr "Esleitu gabeak"
 
-#: indexpage.py:788
+#: indexpage.py:801
 msgid "Unassigned and Untranslated"
 msgstr "Ezarri eta Itzuli gabeak"
 
-#: indexpage.py:795
+#: indexpage.py:808
 msgid "Set Goal"
 msgstr "Helburua Ezarri"
 
-#: indexpage.py:799
+#: indexpage.py:812
 msgid "Select Multiple"
 msgstr "Hautapen Anitz"
 
-#: indexpage.py:801
+#: indexpage.py:814
 msgid "Assign To"
 msgstr "Honi ezarri"
 
-#: indexpage.py:830
+#: indexpage.py:843
 msgid "Show Editing Functions"
 msgstr "Edizio Funtzioak Bistarazi"
 
-#: indexpage.py:831
+#: indexpage.py:844
 msgid "Show Statistics"
 msgstr "Estatistikak Bistarazi"
 
-#: indexpage.py:832
+#: indexpage.py:845
 msgid "Show Tracks"
 msgstr "Pistak Bistarazi"
 
-#: indexpage.py:832
+#: indexpage.py:845
 msgid "Hide Tracks"
 msgstr "Pistak Ezkutatu"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
-#: indexpage.py:834
+#: indexpage.py:847
 msgid "Show Checks"
 msgstr "Ikusi egiaztapenak"
 
-#: indexpage.py:834
+#: indexpage.py:847
 msgid "Hide Checks"
 msgstr "Egiaztapenak ezkutatu"
 
-#: indexpage.py:835
+#: indexpage.py:848
 msgid "Show Goals"
 msgstr "Helburuak Bistarazi"
 
-#: indexpage.py:835
+#: indexpage.py:848
 msgid "Hide Goals"
 msgstr "Helburuak Ezkutatu"
 
-#: indexpage.py:836
+#: indexpage.py:849
 msgid "Show Assigns"
 msgstr "Ezarpenak Bistarazi"
 
-#: indexpage.py:836
+#: indexpage.py:849
 msgid "Hide Assigns"
 msgstr "Ezarpenak Ezkutatu"
 
-#: indexpage.py:845
+#: indexpage.py:858
 #, python-format
 msgid "All Goals: %s"
 msgstr "Helburu Guztiak: %s"
 
-#: indexpage.py:851
+#: indexpage.py:864
 msgid "Translate My Strings"
 msgstr "Nire Kateak Itzuli"
 
-#: indexpage.py:853
+#: indexpage.py:866
 msgid "View My Strings"
 msgstr "Nire Kateak Ikusi"
 
-#: indexpage.py:858
+#: indexpage.py:871
 msgid "No strings assigned to you"
 msgstr "Ez duzu katerik esleituta"
 
-#: indexpage.py:862
+#: indexpage.py:875
 msgid "Quick Translate My Strings"
 msgstr "Nire Kateen Itzulpen Azkarra"
 
-#: indexpage.py:866
+#: indexpage.py:879
 msgid "No untranslated strings assigned to you"
 msgstr "Ez duzu itzuli gabeko katerik esleituta"
 
-#: indexpage.py:870
+#: indexpage.py:883
 msgid "Review Suggestions"
 msgstr "Gomendioak berrikusi"
 
-#: indexpage.py:872
+#: indexpage.py:885
 msgid "View Suggestions"
 msgstr "Gomendioak ikusi"
 
-#: indexpage.py:877
+#: indexpage.py:890
 msgid "Quick Translate"
 msgstr "Itzulpen Azkarra"
 
-#: indexpage.py:879
+#: indexpage.py:892
 msgid "View Untranslated"
 msgstr "Bistarazi Itzuli gabeak"
 
-#: indexpage.py:883
+#: indexpage.py:896
 msgid "No untranslated items"
 msgstr "Ez dago itzuli gabeko elementurik"
 
-#: indexpage.py:886
+#: indexpage.py:899
 msgid "Translate All"
 msgstr "Dana Itzuli"
 
-#: indexpage.py:901
+#: indexpage.py:914
 msgid "ZIP of goal"
 msgstr "Helburu ZIP-a"
 
-#: indexpage.py:903
+#: indexpage.py:916
 msgid "ZIP of folder"
 msgstr "Karpeta ZIP-a"
 
-#: indexpage.py:910
+#: indexpage.py:923
 msgid "Generate SDF"
 msgstr "SDF sortu"
 
-#: indexpage.py:963
+#: indexpage.py:976
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
 msgstr[0] "kate %d-ek (%%%d) huts"
 msgstr[1] "%d katek (%%%d) huts"
 
-#: indexpage.py:993
+#: indexpage.py:1003
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
 msgstr "%d/%d hitz (%%%d) esleituta"
 
-#: indexpage.py:994 indexpage.py:996
+#: indexpage.py:1004 indexpage.py:1006
 #, python-format
 msgid "[%d/%d strings]"
 msgstr "[%d/%d kate]"
+
+#: indexpage.py:1005 pagelayout.py:235
+#, python-format
+msgid "%d/%d words (%d%%) translated"
+msgstr "%d/%d hitz (%%%d) itzulita"
+
+#: pagelayout.py:28
+msgid "All projects"
+msgstr "Proiektu guztiak"
+
+#: pagelayout.py:29
+msgid "All languages"
+msgstr "Hizkuntza guztiak"
+
+#: pagelayout.py:30
+msgid "My account"
+msgstr "Nire kontua"
+
+#: pagelayout.py:32
+msgid "Docs & help"
+msgstr "Dokumentazioa eta Laguntza"
+
+#: pagelayout.py:34
+msgid "Log out"
+msgstr "Irten"
+
+#: pagelayout.py:35
+msgid "Log in"
+msgstr "Saioa hasi"
+
+#. l10n: Verb, as in "to register"
+#: pagelayout.py:37
+msgid "Register"
+msgstr "Izena Eman"
+
+#: pagelayout.py:38
+msgid "Activate"
+msgstr "Gaitu"
+
+#: pagelayout.py:83
+msgid "Pootle Logo"
+msgstr "Pootle Logo-a"
+
+#: pagelayout.py:84
+msgid "About this Pootle server"
+msgstr "Pootle zerbitzari honi buruz"
+
+#: pagelayout.py:160
+msgid "All goals"
+msgstr "Helburu guztiak"
+
+#: pagelayout.py:231
+#, python-format
+msgid "%d/%d files"
+msgstr "%d/%d fitxategi"
+
+#: pagelayout.py:234
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "fitxategi %d"
+msgstr[1] "%d fitxategi"
+
+#: pagelayout.py:236
+#, python-format
+msgid "%d/%d strings"
+msgstr "%d/%d kate"
+
+#: pagelayout.py:242 users.py:184
+msgid "Name"
+msgstr "Izena"
+
+#: pagelayout.py:243
+msgid "Translated"
+msgstr "Itzulia"
+
+#: pagelayout.py:244
+msgid "Translated percentage"
+msgstr "Itzulitako ehunekoa"
+
+#: pagelayout.py:245
+msgid "Translated words"
+msgstr "Itzulitako hitzak"
+
+#: pagelayout.py:246 translatepage.py:135
+msgid "Fuzzy"
+msgstr "Zalantzazkoa"
+
+#: pagelayout.py:247
+msgid "Fuzzy percentage"
+msgstr "Zalantzazkoen ehunekoa"
+
+#: pagelayout.py:248
+msgid "Fuzzy words"
+msgstr "Zalantzazko hitzak"
+
+#: pagelayout.py:250
+msgid "Untranslated percentage"
+msgstr "Itzuli gabeko ehunekoa"
+
+#: pagelayout.py:251
+msgid "Untranslated words"
+msgstr "Itzuli gabeko hitzak"
+
+#: pagelayout.py:252
+msgid "Total"
+msgstr "Guztira"
+
+#: pagelayout.py:253
+msgid "Total words"
+msgstr "Hitz Guztira"
+
+#. l10n: noun. The graphical representation of translation status
+#: pagelayout.py:255
+msgid "Graph"
+msgstr "Graf"
+
+#: pagelayout.py:293
+msgid "Source Text"
+msgstr ""
+
+#: pagelayout.py:297
+msgid "Target Text"
+msgstr ""
+
+#: pagelayout.py:301
+msgid "Comments"
+msgstr ""
+
+#: pagelayout.py:305
+msgid "Locations"
+msgstr ""
+
+#: pootle.py:305
+msgid "Login failed"
+msgstr "Huts saioa hasterakoan"
+
+#: pootle.py:349 pootle.py:380
+msgid "Redirecting to login..."
+msgstr "Saio hasiera orrira berbideratzen..."
+
+#: pootle.py:352
+msgid "Need to log in to access home page"
+msgstr "Saioa hasi behar duzu hasiera orrialdera joateko"
+
+#: pootle.py:365
+msgid "Personal details updated"
+msgstr "Xeheteasun pertsonalak egunertaturik"
+
+#: pootle.py:383
+msgid "Need to log in to access admin page"
+msgstr "Saioa hasi behar duzu kudeaketa orrialdera joateko"
+
+#: pootle.py:390
+msgid "Redirecting to home..."
+msgstr "Etxera berbideratzen..."
+
+#: pootle.py:393
+msgid "You do not have the rights to administer pootle."
+msgstr "Ez duzu pootle kudeatzeako baimenik."
+
+#. l10n: Verb
+#: projects.py:138
+msgid "View"
+msgstr "Ikusi"
+
+#: projects.py:139 translatepage.py:678
+msgid "Suggest"
+msgstr "Gomendatu"
+
+#: projects.py:140
+msgid "Translate"
+msgstr "Itzuli"
+
+#. l10n: Verb
+#: projects.py:143
+msgid "Review"
+msgstr "Gainbegiratu"
+
+#. l10n: Verb
+#: projects.py:145
+msgid "Archive"
+msgstr "Artxiboa"
+
+#. l10n: This refers to generating the binary .mo file
+#: projects.py:147
+msgid "Compile PO files"
+msgstr "PO fitxategiak konpilatu"
+
+#: projects.py:148
+msgid "Assign"
+msgstr "Ezarri"
+
+#. l10n: Don't translate "nobody" or "default"
+#: projects.py:230
+msgid "You cannot remove the \"nobody\" or \"default\" user"
+msgstr "Ezin duzu \"nobody\" edo \"default\" erabiltzailea ezabatu"
+
+#: projects.py:382 projects.py:444
+msgid "You do not have rights to alter goals here"
+msgstr "Ez duzu hemen helburuak aldatzeko baimenik"
+
+#: projects.py:510
+msgid "You do not have rights to upload files here"
+msgstr "Ez duzu hemen fitxategirik igotzeko baimenik"
+
+#: projects.py:513
+msgid "You do not have rights to overwrite files here"
+msgstr "Ez duzu hemen fitxategirik gainidazteko baimenik"
+
+#: projects.py:515
+msgid "You do not have rights to upload new files here"
+msgstr "Ez duzu hemen fitxategi berririk igotzeko baimenik"
+
+#: projects.py:524
+msgid "You do not have rights to update files here"
+msgstr "Ez duzu hemen fitxategirik eguneratzeko baimenik"
+
+#: projects.py:555
+msgid "You do not have rights to commit files here"
+msgstr "Ez duzu hemen fitxategirik igotzeko baimenik"
+
+#: projects.py:977 projects.py:1019
+msgid "You do not have rights to alter assignments here"
+msgstr "Ez duzu hemen ezarpenik aldatzeko baimenik"
+
+#: projects.py:1219
+msgid "You do not have rights to change translations here"
+msgstr "Ez duzu hemen itzulpenak aldatzeko baimenik"
+
+#: projects.py:1229
+msgid "You do not have rights to suggest changes here"
+msgstr "Ez duzu hemen aldaketak gomendatzeko baimenik"
+
+#: projects.py:1245 projects.py:1263
+msgid "You do not have rights to review suggestions here"
+msgstr "Ez duzu hemen gomendioak berrikusteko baimenik"
+
+#: translatepage.py:103
+#, python-format
+#, fuzzy
+msgid ""
+"%d/%d translated\n"
+"(%d untranslated, %d fuzzy)"
+msgstr ""
+"%d/%d itzulirik\n"
+"(%d zuri, %d zalantzan)"
+
+#. l10n: first parameter: name of the installation (like "Pootle")
+#. l10n: second parameter: project name
+#. l10n: third parameter: target language
+#. l10n: fourth parameter: file name
+#: translatepage.py:113
+#, python-format
+msgid "%s: translating %s into %s: %s"
+msgstr "%s: %s %s-ra itzultzen: %s"
+
+#. l10n: Heading above the table column with the source language
+#: translatepage.py:128
+msgid "Original"
+msgstr "Jatorrizkoa"
+
+#. l10n: Heading above the table column with the target language
+#: translatepage.py:130
+msgid "Translation"
+msgstr "Itzulpena"
+
+#: translatepage.py:133
+msgid "Accept suggestion"
+msgstr ""
+
+#: translatepage.py:134
+msgid "Reject suggestion"
+msgstr ""
+
+# Garatzaile iruzkinak
+#. l10n: Heading above the textarea for translator comments.
+#: translatepage.py:137
+msgid "Translator comments"
+msgstr "Itzultzaile iruzkinak"
+
+#. l10n: Heading above the comments extracted from the programing source code
+#: translatepage.py:139
+msgid "Developer comments"
+msgstr "Garatzaile iruzkinak"
+
+#. l10n: This heading refers to related translations and terminology
+#: translatepage.py:141
+msgid "Related"
+msgstr "Erlazionatua"
+
+#. l10n: Text displayed when an AJAX petition is being made
+#: translatepage.py:155
+msgid "Working..."
+msgstr ""
+
+#. l10n: Text displayed in an alert box when an AJAX petition has failed
+#: translatepage.py:157
+msgid "Error: Something went wrong."
+msgstr ""
+
+#. l10n: "batch" refers to the set of translations that were reviewed
+#: translatepage.py:171
+msgid "End of batch"
+msgstr "batch amaiera"
+
+#: translatepage.py:173
+msgid "Click here to return to the index"
+msgstr "Hemen klik egin hasierara itzultzeko"
+
+#. l10n: noun (the start)
+#: translatepage.py:187 translatepage.py:190
+msgid "Start"
+msgstr "Hasi"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:194 translatepage.py:197
+#, python-format
+msgid "Previous %d"
+msgstr "Aurreko %d"
+
+#. l10n: the third parameter refers to the total number of messages in the file
+#: translatepage.py:199
+#, python-format
+msgid "Items %d to %d of %d"
+msgstr "%d-%d bitartea %d elementutatik"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:204 translatepage.py:207
+#, python-format
+msgid "Next %d"
+msgstr "Hurrengo %d"
+
+#. l10n: noun (the end)
+#: translatepage.py:210 translatepage.py:213
+msgid "End"
+msgstr "Amaiera"
+
+#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
+#: translatepage.py:230
+#, python-format
+msgid "checking %s"
+msgstr "%s arakatzen"
+
+#: translatepage.py:398
+#, python-format
+msgid "There are no items matching that search ('%s')"
+msgstr "Ez dago bilaketaren pareko elementurik ('%s')"
+
+#: translatepage.py:400
+msgid "You have finished going through the items you selected"
+msgstr "Aukeratutako elementuak bukatu dira"
+
+#: translatepage.py:643
+msgid "Singular"
+msgstr "Singularra"
+
+#: translatepage.py:644
+msgid "Plural"
+msgstr "Plurala"
+
+#. l10n: verb
+#: translatepage.py:658
+msgid "Edit"
+msgstr "Editatu"
+
+#. l10n: verb
+#: translatepage.py:674
+msgid "Copy"
+msgstr "Kopiatu"
+
+#: translatepage.py:675 translatepage.py:849
+msgid "Skip"
+msgstr "Salto"
+
+#. l10n: verb
+#: translatepage.py:677 translatepage.py:848 users.py:312
+msgid "Back"
+msgstr "Atzera"
+
+#: translatepage.py:679
+msgid "Submit"
+msgstr "Bidali"
+
+#. l10n: action that increases the height of the textarea
+#: translatepage.py:682
+msgid "Grow"
+msgstr "Luzatu"
+
+#. l10n: action that decreases the height of the textarea
+#: translatepage.py:684
+msgid "Shrink"
+msgstr "Txikitu"
+
+#: translatepage.py:706 translatepage.py:800 translatepage.py:837
+#: translatepage.py:870
+#, python-format
+msgid "Plural Form %d"
+msgstr "%d plural forma"
+
+#. l10n: This is an error message that will display if the relevant problem occurs
+#: translatepage.py:722
+msgid ""
+"Translation not possible because plural information for your language is not "
+"available. Please contact the site administrator."
+msgstr ""
+"Itzulpena ez da posible hizkuntza honetako plural datuak ez baitaude "
+"ezarrita. Jar zaitez harremanetan sistema kudeatzailearekin."
+
+#: translatepage.py:804
+msgid "Current Translation:"
+msgstr "Uneko itzulpena:"
+
+#. l10n: First parameter: number
+#. l10n: Second parameter: name of translator
+#: translatepage.py:817
+#, python-format
+msgid "Suggestion %d by %s:"
+msgstr "%s-ek %d gomendatzen du:"
+
+#: translatepage.py:819
+#, python-format
+msgid "Suggestion %d:"
+msgstr "%d gomendioa:"
+
+#. l10n: parameter: name of translator
+#: translatepage.py:823
+#, python-format
+msgid "Suggestion by %s:"
+msgstr "%s-ren gomendioa:"
+
+#: translatepage.py:825
+msgid "Suggestion:"
+msgstr "Gomendioa:"
+
+#: users.py:43
+#, python-format
+msgid "You must supply a valid password of at least %d characters."
+msgstr "Gutxienez %d karaktereko baliozko pasahitz bat eman behar duzu."
+
+#: users.py:45
+msgid "The password is not the same as the confirmation."
+msgstr "Pasahitza eta berrespena ez datoz bat."
+
+#: users.py:60
+msgid "Login to Pootle"
+msgstr "Pootlen saioa hasi"
+
+#: users.py:66
+msgid "Username:"
+msgstr "Erabiltzaile izena:"
+
+#: users.py:68
+msgid "Password:"
+msgstr "Pasahitza:"
+
+#: users.py:69
+msgid "Language:"
+msgstr "Hizkuntza:"
+
+#: users.py:71
+msgid "Login"
+msgstr "Saioa hasi"
+
+#: users.py:77
+msgid "Default"
+msgstr "Lehenetsia"
+
+#: users.py:112
+msgid "Please enter your registration details"
+msgstr "Mesedez ezarri zure erregistro xehetasunak"
+
+#: users.py:115 users.py:475
+msgid "Pootle Registration"
+msgstr "Pootle Erregistroa"
+
+#: users.py:122 users.py:158
+msgid "Your requested username"
+msgstr "Eskatutako erabiltzaile izena"
+
+#: users.py:125 users.py:429
+msgid "You must supply a valid email address"
+msgstr "Baliozko eposta helbide bat idatzi behar duzu"
+
+#: users.py:128
+msgid "Your full name"
+msgstr "Izen osoa"
+
+#: users.py:131
+msgid "Your desired password"
+msgstr "Aukeratutako pasahitza"
+
+#: users.py:133 users.py:189
+msgid "Confirm password"
+msgstr "Berretsi pasahitza"
+
+#: users.py:134
+msgid "Type your password again to ensure it is entered correctly"
+msgstr "Berridatzi pasahitza ongi idatzi duzula ziurtatzeko"
+
+#: users.py:136
+msgid "Register Account"
+msgstr "Kontua Erregistratu"
+
+#: users.py:145
+msgid "Please enter your activation details"
+msgstr "Mesedez sar itzazu zure aktibazio xehetasunak"
+
+#: users.py:150
+msgid "Pootle Account Activation"
+msgstr "Pootle Kontu Gaitzea"
+
+#: users.py:160
+msgid "Activation Code"
+msgstr "Gaitze Gakoa"
+
+#: users.py:161
+msgid "The activation code you received"
+msgstr "Jasotako aktibazioa gakoa"
+
+#: users.py:163
+msgid "Activate Account"
+msgstr "Kontua gaitu"
+
+#: users.py:175
+#, python-format
+msgid "Options for: %s"
+msgstr "Aukerak: %s"
+
+#: users.py:181
+msgid "Personal Details"
+msgstr "Xeheteasun Pertsonalak"
+
+#: users.py:186
+msgid "Email"
+msgstr "ePosta"
+
+#: users.py:190
+msgid "Translation Interface Configuration"
+msgstr "Itzulpen Interfazearen Konfigurazioa"
+
+#: users.py:191
+msgid "User Interface language"
+msgstr "Erabiltzaile Interfazearen hizkuntza"
+
+#: users.py:192
+msgid "My Projects"
+msgstr "Nire Proiektuak"
+
+#: users.py:194
+msgid "My Languages"
+msgstr "Nire Hizkuntzak"
+
+#: users.py:196
+msgid "Home page"
+msgstr "Hasiera orrialdea"
+
+#: users.py:202
+msgid "Alternative Source Language"
+msgstr ""
+
+#. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
+#: users.py:240
+msgid "None"
+msgstr ""
+
+#: users.py:257
+msgid "Input Height (in lines)"
+msgstr "Sarrera altuera (errenkada)"
+
+#: users.py:258
+msgid "Number of rows in view mode"
+msgstr "Bistaratze moduko kate kopurua"
+
+#: users.py:259
+msgid "Number of rows in translate mode"
+msgstr "Itzulpen moduko kate kopurua"
+
+#: users.py:307
+msgid "Error"
+msgstr "Errorea"
+
+#: users.py:359
+msgid "You need to be siteadmin to change users"
+msgstr "Gune kudeatzailea izan behar zara erabiltzaileak aldatzeko"
+
+#: users.py:423
+msgid ""
+"Username must be alphanumeric, and must start with an alphabetic character."
+msgstr "Erabiltzaile izena alfazenbakizkoa izan eta hizki batez hasi behar da"
+
+#: users.py:438
+msgid ""
+"You (or someone else) attempted to register an account with your username.\n"
+msgstr "Zu (edo beste norbait) zure erabiltzaile izenaz kontu bat harpidetzen saiatu "
+"da.\n"
+
+#: users.py:439
+msgid "We don't store your actual password but only a hash of it.\n"
+msgstr "Guk ez dugu zure pasahitza gordetzen horren egiaztapen bat baizik.\n"
+
+#: users.py:441
+#, python-format
+msgid "If you have a problem with registration, please contact %s.\n"
+msgstr "Harpidetzarekin arazorik izanez gero, harremanetan ipini %s-rekin.\n"
+
+#: users.py:443
+msgid ""
+"If you have a problem with registration, please contact the site "
+"administrator.\n"
+msgstr "Harpidetzarekin arazorik izanez gero, harremanetan ipini sistema "
+"kudeatzailearekin.\n"
+
+#: users.py:444
+msgid ""
+"That username already exists. An email will be sent to the registered email "
+"address.\n"
+msgstr "Erabiltzaile izen hau existitzen da dagoeneko. Harpidedunaren helbidera "
+"eposta bat bidaliko da.\n"
+
+#: users.py:446
+#, python-format
+msgid "Proceeding to <a href='%s'>login</a>\n"
+msgstr "<a href='%s'>Saioa hasten</a>\n"
+
+#: users.py:452
+msgid "A Pootle account has been created for you using this email address.\n"
+msgstr "Pootle kontu bat sortu da eposta kontu hau erabiliz.\n"
+
+#: users.py:454
+msgid "To activate your account, follow this link:\n"
+msgstr "Kontu hau gaitzeko, lotura hau jarraitu:\n"
+
+#: users.py:460
+#, python-format
+msgid ""
+"Your activation code is:\n"
+"%s\n"
+msgstr ""
+"Zure gaitze gakoa:\n"
+"%s\n"
+
+#: users.py:462
+msgid ""
+"If you are unable to follow the link, please enter the above code at the "
+"activation page.\n"
+msgstr "Ez bazara lotura jarraitzeko gai, mesedez idatzi gaitze gakoa gaitze "
+"orrialdean.\n"
+
+#: users.py:463
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message.\n"
+msgstr "Mezu hau eposta helbidea benetan baliozkoa den egiaztatzeko bidaltzen da. Ez "
+"baduzu kontu bat harpidetu nahi, alde batetara utz ezazu.\n"
+
+#: users.py:465
+#, python-format
+msgid ""
+"Account created. You will be emailed login details and an activation code. "
+"Please enter your activation code on the <a href='%s'>activation page</a>."
+msgstr ""
+"Kontua sortua. Gaitze kodea eta saio xehetasunekin eposta bat bidaliko "
+"zaizu. Mesedez idatzi zure gaitz kodea <a href='%s'>gaitze orrialdean</a>."
+
+#: users.py:467
+msgid "(Or simply click on the activation link in the email)"
+msgstr "(edo epostako gaitze loturan klikatu)"
+
+#: users.py:469
+#, python-format
+msgid "Your user name is: %s\n"
+msgstr "Zure Erabiltzaile Izena: %s\n"
+
+#: users.py:471
+#, python-format
+msgid "Your password is: %s\n"
+msgstr "Zure pasahitza: %s\n"
+
+#: users.py:472
+#, python-format
+msgid "Your registered email address is: %s\n"
+msgstr "Erregistraturiko eposta helbidea: %s\n"
+
+#: users.py:500
+msgid "Redirecting to Registration Page..."
+msgstr "Harpidetza orrira berbideratzen..."
+
+#: users.py:524
+msgid "Redirecting to login Page..."
+msgstr "Saio hasiera orrira berbideratzen..."
+
+#: users.py:527
+msgid "Your account has been activated! Redirecting to login..."
+msgstr "Zure kontua gaitua izan da! Saio hasiera orrira berbideratzen..."
+
+#: users.py:531
+msgid "The activation information was not valid."
+msgstr "Gaitze informazioa ez da zuzena."
+
+#: users.py:532
+msgid "Activation Failed"
+msgstr "Huts gaitzerakoan"
+
+#: users.py:649
+msgid "Input height must be numeric"
+msgstr "Sarrera altuera zenbakizkoa izan behar da"
+
+#: users.py:650
+msgid "Input width must be numeric"
+msgstr "Sarrera zabalera zenbakizkoa izan behar da"
+
+#: users.py:651
+msgid "The number of rows displayed in view mode must be numeric"
+msgstr "Bistaratze moduko errenkada kopurua zenbakizkoa izan behar da"
+
+#: users.py:652
+msgid "The number of rows displayed in translate mode must be numeric"
+msgstr "Itzulpen moduko errenkada kopurua zenbakizkoa izan behar da"
+
+#~ msgid "Accept"
+#~ msgstr "Onartu"
+
+#~ msgid "Reject"
+#~ msgstr "Ezetsi"
+
+#~ msgid "WordForge Translation Project"
+#~ msgstr "WordForge Itzulpen Proiektua"
 
 #~ msgid "Broaden"
 #~ msgstr "Zabaldu"
@@ -1380,9 +1436,6 @@ msgstr "[%d/%d kate]"
 
 #~ msgid "%s language"
 #~ msgstr "%s hizkuntza"
-
-#~ msgid "%d strings (%d%%) failed"
-#~ msgstr "%d kate (%d%%) huts"
 
 #~ msgid "this is a demo installation of pootle"
 #~ msgstr "hau pootle demostrazio instalazio bat da"
@@ -1438,20 +1491,11 @@ msgstr "[%d/%d kate]"
 #~ msgid "Main Admin page"
 #~ msgstr "Kudeaketa orri nagusia"
 
-#~ msgid "Pootle Languages Admin Page"
-#~ msgstr "Pootle Hizkuntz Kudeaketa Orrialdea"
-
 #~ msgid "Remove language"
 #~ msgstr "Hizkuntza ezabatu"
-
-#~ msgid "Pootle Projects Admin Page"
-#~ msgstr "Pootle Proiektu Kudeaketa Orrialdea"
 
 #~ msgid "Remove project"
 #~ msgstr "Proiektua ezabatu"
 
 #~ msgid "You do not have the rights to administer Pootle."
 #~ msgstr "Ez duzu Pootle kudeatzeko baimenik."
-
-#~ msgid "Pootle User Admin Page"
-#~ msgstr "Pootle Erabiltzaile Kudeaketa Orria"

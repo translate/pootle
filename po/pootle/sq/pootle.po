@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-01-17 14:02+0200\n"
+"POT-Creation-Date: 2008-08-19 12:36+0200\n"
 "PO-Revision-Date: 2008-08-17 07:42+0000\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -14,1070 +14,283 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.1.0\n"
 
-#. l10n: Verb
-#. l10n: Verb
-#: projects.py:135
-msgid "View"
-msgstr "Shfaq"
-
-#: projects.py:136 translatepage.py:572
-msgid "Suggest"
-msgstr "Propozo"
-
-#: projects.py:137
-msgid "Translate"
-msgstr "Përkthe"
-
-#. l10n: radio button text
-#. l10n: radio button text
-#: projects.py:138 indexpage.py:544
-msgid "Overwrite"
-msgstr "Mbishkruaj"
-
-#. l10n: Verb
-#. l10n: Verb
-#: projects.py:140
-msgid "Review"
-msgstr "Rishiko"
-
-#. l10n: Verb
-#. l10n: Verb
-#: projects.py:142
-msgid "Archive"
-msgstr "Arkivo"
-
-#: projects.py:143
-msgid "Compile PO files"
-msgstr "Kompilo file PO"
-
-#: projects.py:144
-msgid "Assign"
-msgstr "Cakto"
-
-#: projects.py:145 indexpage.py:134
-msgid "Administrate"
-msgstr "Administrimi"
-
-#. l10n: Commit to version control (like CVS or Subversion)
-#. l10n: Commit to version control (like CVS or Subversion)
-#: projects.py:146 indexpage.py:738
-msgid "Commit"
-msgstr "Prano"
-
-#. l10n: Don't translate "nobody" or "default"
-#. l10n: Don't translate "nobody" or "default"
-#: projects.py:226
-msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr "Nuk është e mundur heqja e përdoruesve \"nobody\" ose \"default\""
-
-#: projects.py:379 projects.py:441
-msgid "You do not have rights to alter goals here"
-msgstr "Nuk keni të drejta të mjaftueshme për të ndryshuar objektivët këtu"
-
-#: projects.py:504
-msgid "You do not have rights to upload files here"
-msgstr "Nuk keni të drejta të mjaftueshme për të ngarkuar file këtu"
-
-#: projects.py:507
-msgid "You do not have rights to overwrite files here"
-msgstr "Nuk keni të drejta të mjaftueshme për të mbishkruar file këtu"
-
-#: projects.py:509
-msgid "You do not have rights to upload new files here"
-msgstr "Nuk keni të drejta të mjaftueshme për të ngarkuar file të rinj këtu"
-
-#: projects.py:518
-msgid "You do not have rights to update files here"
-msgstr "Nuk keni të drejta të mjaftueshme për të përditësuar file këtu"
-
-#: projects.py:588
-msgid "You do not have rights to commit files here"
-msgstr "Nuk keni të drejta të mjaftueshme për të ngarkuar file këtu"
-
-#: projects.py:922 projects.py:963
-msgid "You do not have rights to alter assignments here"
-msgstr "Nuk keni të drejta të mjaftueshme për të ndryshuar caktimet këtu"
-
-#: projects.py:1167
-msgid "You do not have rights to change translations here"
-msgstr "Nuk keni të drejta të mjaftueshme për të ndryshuar përkthimet këtu"
-
-#: projects.py:1177
-msgid "You do not have rights to suggest changes here"
-msgstr "Nuk keni të drejta të mjaftueshme për të propozuar ndryshime këtu"
-
-#: projects.py:1193 projects.py:1216
-msgid "You do not have rights to review suggestions here"
-msgstr "Nuk keni të drejta të mjaftueshme për të rishikuar propozimet këtu"
-
-#: translatepage.py:80
-#, python-format
-#, python-format
-msgid ""
-"%d/%d translated\n"
-"(%d blank, %d fuzzy)"
-msgstr ""
-"%d/%d përkthyer\n"
-"(%d bosh, %d fuzzy)"
-
-#: translatepage.py:92 adminpages.py:35 adminpages.py:74 adminpages.py:130
-#: adminpages.py:192 adminpages.py:279 adminpages.py:339 pagelayout.py:70
-#: users.py:58 users.py:91 users.py:127 users.py:149 indexpage.py:73
-#: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
-#: indexpage.py:342
+#: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
+#: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
+#: indexpage.py:139 indexpage.py:201 indexpage.py:264 indexpage.py:352
+#: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
+#: users.py:177
 msgid "Pootle Demo"
 msgstr "Demostrim i Pootle"
 
-#. l10n: first parameter: name of the installation (like "Pootle")
-#. l10n: second parameter: project name
-#. l10n: third parameter: target language
-#. l10n: fourth parameter: file name
-#: translatepage.py:97
-#, python-format
-msgid "%s: translating %s into %s: %s"
-msgstr "%s: përkthimi i %s në %s: %s"
-
-#: translatepage.py:111
-msgid "Original"
-msgstr "Orgjinali"
-
-#: translatepage.py:112
-msgid "Translation"
-msgstr "Përkthimi"
-
-#: translatepage.py:115
-msgid "Accept"
-msgstr "Prano"
-
-#: translatepage.py:116
-msgid "Reject"
-msgstr "Refuzo"
-
-#. l10n: This heading refers to related translations and terminology
-#. l10n: This heading refers to related translations and terminology
-#: translatepage.py:118
-msgid "Related"
-msgstr "E ngjashme"
-
-#. l10n: text next to search field
-#. l10n: text next to search field
-#: translatepage.py:122 indexpage.py:352
-msgid "Search"
-msgstr "Kërko"
-
-#. l10n: "batch" refers to the set of translations that were reviewed
-#. l10n: "batch" refers to the set of translations that were reviewed
-#: translatepage.py:136
-msgid "End of batch"
-msgstr "Fundi i batch"
-
-#: translatepage.py:138
-msgid "Click here to return to the index"
-msgstr "Kliko këtu për t'u kthyer tek treguesi"
-
-#. l10n: noun (the start)
-#. l10n: noun (the start)
-#: translatepage.py:152 translatepage.py:155
-msgid "Start"
-msgstr "Fillimi"
-
-#. l10n: the parameter refers to the number of messages
-#. l10n: the parameter refers to the number of messages
-#: translatepage.py:159 translatepage.py:162
-#, python-format
-#, python-format
-msgid "Previous %d"
-msgstr "%d paraardhës"
-
-#. l10n: the third parameter refers to the total number of messages in the file
-#. l10n: the third parameter refers to the total number of messages in the file
-#: translatepage.py:164
-#, python-format
-#, python-format
-msgid "Items %d to %d of %d"
-msgstr "Zërat %d në %d nga %d"
-
-#. l10n: the parameter refers to the number of messages
-#. l10n: the parameter refers to the number of messages
-#: translatepage.py:169 translatepage.py:172
-#, python-format
-#, python-format
-msgid "Next %d"
-msgstr "%d në vijim"
-
-#. l10n: noun (the end)
-#. l10n: noun (the end)
-#: translatepage.py:175 translatepage.py:178
-msgid "End"
-msgstr "Fundi"
-
-#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-#: translatepage.py:195
-#, python-format
-#, python-format
-msgid "checking %s"
-msgstr "duke kontrolluar %s"
-
-#: translatepage.py:202 translatepage.py:205 indexpage.py:522 indexpage.py:525
-msgid "Assign Strings"
-msgstr "Cakto frazat"
-
-#: translatepage.py:203 indexpage.py:524
-msgid "Assign to User"
-msgstr "Caktoja përdoruesit"
-
-#: translatepage.py:204 indexpage.py:523
-msgid "Assign Action"
-msgstr "Cakto veprimin"
-
-#: translatepage.py:337
-#, python-format
-#, python-format
-msgid "There are no items matching that search ('%s')"
-msgstr "Nuk ekzistojnë zëra korrespondues me të kërkuarin ('%s')"
-
-#: translatepage.py:339
-msgid "You have finished going through the items you selected"
-msgstr "Përfunduat udhëtimin midis zërave të zgjedhur"
-
-#: translatepage.py:537
-msgid "Singular"
-msgstr "Njëjës"
-
-#: translatepage.py:538
-msgid "Plural"
-msgstr "Shumës"
-
-#. l10n: verb
-#. l10n: verb
-#: translatepage.py:552
-msgid "Edit"
-msgstr "Ndrysho"
-
-#. l10n: verb
-#. l10n: verb
-#: translatepage.py:568
-msgid "Copy"
-msgstr "Kopjo"
-
-#: translatepage.py:569 translatepage.py:748
-msgid "Skip"
-msgstr "Kapërce"
-
-#. l10n: verb
-#. l10n: verb
-#: translatepage.py:571 translatepage.py:747 users.py:252
-msgid "Back"
-msgstr "Paraardhësi"
-
-#: translatepage.py:573
-msgid "Submit"
-msgstr "Prano"
-
-#. l10n: action that increases the height of the textarea
-#. l10n: action that increases the height of the textarea
-#: translatepage.py:576
-msgid "Grow"
-msgstr "Rrit"
-
-#. l10n: action that decreases the height of the textarea
-#. l10n: action that decreases the height of the textarea
-#: translatepage.py:578
-msgid "Shrink"
-msgstr "Zvogëlo"
-
-#. l10n: action that increases the width of the textarea
-#. l10n: action that increases the width of the textarea
-#: translatepage.py:580
-msgid "Broaden"
-msgstr "Zgjero"
-
-#. l10n: action that decreases the width of the textarea
-#. l10n: action that decreases the width of the textarea
-#: translatepage.py:582
-msgid "Narrow"
-msgstr "Ngushto"
-
-#. l10n: action that resets the size of the textarea
-#. l10n: action that resets the size of the textarea
-#: translatepage.py:584
-msgid "Reset"
-msgstr "Rivendos"
-
-#: translatepage.py:605 translatepage.py:699 translatepage.py:736
-#: translatepage.py:769
-#, python-format
-#, python-format
-msgid "Plural Form %d"
-msgstr "Forma e shumësit %d"
-
-#. l10n: This is an error message that will display if the relevant problem occurs
-#. l10n: This is an error message that will display if the relevant problem occurs
-#: translatepage.py:621
-msgid ""
-"Translation not possible because plural information for your language is not "
-"available. Please contact the site administrator."
-msgstr ""
-"Përkthimi është i pamundur pasi mungojnë informacionet në lidhje me shumësin "
-"e gjuhës suaj. Të lutem vihuni në kontakt me administratorin e sitit."
-
-#: translatepage.py:703
-msgid "Current Translation:"
-msgstr "Përkthimi i tanishëm:"
-
-#. l10n: First parameter: number
-#. l10n: Second parameter: name of translator
-#. l10n: First parameter: number
-#. l10n: Second parameter: name of translator
-#: translatepage.py:716
-#, python-format
-#, python-format
-msgid "Suggestion %d by %s:"
-msgstr "%d propozim nga %s:"
-
-#: translatepage.py:718
-#, python-format
-#, python-format
-msgid "Suggestion %d:"
-msgstr "Propozimi %d:"
-
-#. l10n: parameter: name of translator
-#. l10n: parameter: name of translator
-#: translatepage.py:722
-#, python-format
-#, python-format
-msgid "Suggestion by %s:"
-msgstr "Propozuar nga %s:"
-
-#: translatepage.py:724
-msgid "Suggestion:"
-msgstr "Propozimi:"
-
-#: adminpages.py:43 adminpages.py:82 adminpages.py:138 adminpages.py:200
-#: pagelayout.py:36
+#: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
+#: pagelayout.py:27
 msgid "Home"
 msgstr "Shtëpia"
 
-#: adminpages.py:44 adminpages.py:202
+#: adminpages.py:46 adminpages.py:212
 msgid "Users"
 msgstr "Përdorues"
 
-#: adminpages.py:45 adminpages.py:84 indexpage.py:94
+#: adminpages.py:47 adminpages.py:87 indexpage.py:93
 msgid "Languages"
 msgstr "Gjuhët"
 
-#: adminpages.py:46 adminpages.py:140 indexpage.py:95
+#: adminpages.py:48 adminpages.py:146 indexpage.py:94
 msgid "Projects"
 msgstr "Projekte"
 
-#: adminpages.py:47
+#: adminpages.py:49
 msgid "General options"
 msgstr "Opsionet e përgjithshme"
 
-#: adminpages.py:48 users.py:153
+#: adminpages.py:50 users.py:182
 msgid "Option"
 msgstr "Opsioni"
 
-#: adminpages.py:49 users.py:154
+#: adminpages.py:51 users.py:183
 msgid "Current value"
 msgstr "Vlera e tanishme"
 
-#: adminpages.py:50 adminpages.py:85 adminpages.py:141 adminpages.py:203
-#: users.py:168
+#: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
+#: users.py:197
 msgid "Save changes"
 msgstr "Ruaj ndryshimet"
 
-#: adminpages.py:54
+#: adminpages.py:56
 msgid "Title"
 msgstr "Titulli"
 
-#: adminpages.py:55
+#: adminpages.py:57
 msgid "Description"
 msgstr "Përshkrimi"
 
-#: adminpages.py:56
+#: adminpages.py:58
 msgid "Base URL"
 msgstr "URL bazë"
 
-#: adminpages.py:57
+#: adminpages.py:59
 msgid "Home Page"
 msgstr "Faqja web"
 
-#: adminpages.py:83 adminpages.py:139 adminpages.py:201
+#: adminpages.py:77
+msgid "Pootle Languages Admin Page"
+msgstr ""
+
+#: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
 msgstr "Faqja kryesore e administrimit"
 
-#: adminpages.py:89
+#: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
 msgstr "Kodi ISO"
 
-#: adminpages.py:90 adminpages.py:146 adminpages.py:208 users.py:100
+#: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
+#: users.py:127
 msgid "Full Name"
 msgstr "Emri i plotë"
 
-#: adminpages.py:91
+#: adminpages.py:94
 msgid "(add language here)"
 msgstr "(shto një gjuhë këtu)"
 
-#: adminpages.py:92
+#: adminpages.py:95
 msgid "Special Chars"
 msgstr "Shkronja speciale"
 
-#: adminpages.py:92
+#: adminpages.py:95
 msgid "(special characters)"
 msgstr "(shkronja speciale)"
 
-#: adminpages.py:93 indexpage.py:217
+#: adminpages.py:96 indexpage.py:224
 msgid "Number of Plurals"
 msgstr "Numri i shumësve"
 
-#: adminpages.py:93
+#: adminpages.py:96
 msgid "(number of plurals)"
 msgstr "(numri i shumësve)"
 
-#: adminpages.py:94 indexpage.py:218
+#: adminpages.py:97 indexpage.py:225
 msgid "Plural Equation"
 msgstr "Formula e shumësit"
 
-#: adminpages.py:94
+#: adminpages.py:97
 msgid "(plural equation)"
 msgstr "(formula e shumësit)"
 
-#: adminpages.py:95
+#: adminpages.py:98
 msgid "Remove Language"
 msgstr "Hiq gjuhën"
 
 #. l10n: The parameter is a languagecode, projectcode or username
-#. l10n: The parameter is a languagecode, projectcode or username
-#: adminpages.py:110 adminpages.py:173 adminpages.py:235 adminpages.py:405
-#, python-format
+#: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
 #, python-format
 msgid "Remove %s"
 msgstr "Hiq %s"
 
-#: adminpages.py:128
+#: adminpages.py:132
 msgid "Standard"
 msgstr "Standard"
 
-#: adminpages.py:145
+#: adminpages.py:136
+msgid "Pootle Projects Admin Page"
+msgstr ""
+
+#: adminpages.py:151
 msgid "Project Code"
 msgstr "Kodi i projektit"
 
-#: adminpages.py:147
+#: adminpages.py:153
 msgid "(add project here)"
 msgstr "(shto një projekt këtu)"
 
-#: adminpages.py:148
+#: adminpages.py:154
 msgid "Project Description"
 msgstr "Përshkrimi i projektit"
 
-#: adminpages.py:148
+#: adminpages.py:154
 msgid "(project description)"
 msgstr "(përshkrimi i projektit)"
 
-#: adminpages.py:149
+#: adminpages.py:155
 msgid "Checker Style"
 msgstr "Stili i kontrollit"
 
-#: adminpages.py:150
+#: adminpages.py:156
+msgid "File Type"
+msgstr ""
+
+#: adminpages.py:157
 msgid "Create MO Files"
 msgstr "Krijo me file MO"
 
-#: adminpages.py:151
+#: adminpages.py:158
 msgid "Remove Project"
 msgstr "Hiq projektin"
 
-#: adminpages.py:207 users.py:66
-msgid "Login"
-msgstr "Identifikimi"
+#: adminpages.py:202
+msgid "Pootle User Admin Page"
+msgstr ""
 
-#: adminpages.py:209 users.py:343
+#: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
+msgid "Username"
+msgstr "Emri i përdoruesit"
+
+#: adminpages.py:219 users.py:403
 msgid "(add full name here)"
 msgstr "(shto emrin e plotë këtu)"
 
-#: adminpages.py:210 users.py:97
+#: adminpages.py:220 users.py:124
 msgid "Email Address"
 msgstr "Adresa email"
 
-#: adminpages.py:210 users.py:346
+#: adminpages.py:220 users.py:406
 msgid "(add email here)"
 msgstr "(shto adresën email këtu)"
 
-#: adminpages.py:211 users.py:103 users.py:159
+#: adminpages.py:221 users.py:130 users.py:188
 msgid "Password"
 msgstr "Fjalëkalimi"
 
-#: adminpages.py:211 users.py:340
+#: adminpages.py:221 users.py:400
 msgid "(add password here)"
 msgstr "(shto fjalëkalimin këtu)"
 
-#: adminpages.py:212
+#: adminpages.py:222
 msgid "Activated"
 msgstr "Aktivizuar"
 
-#: adminpages.py:212
+#: adminpages.py:222
 msgid "Activate New User"
 msgstr "Aktivizo përdoruesin e ri"
 
-#: adminpages.py:213
+#: adminpages.py:223
 msgid "Remove User"
 msgstr "Hiq përdoruesin"
 
-#: adminpages.py:267
+#: adminpages.py:278
 msgid "Back to main page"
 msgstr "Kthehu tek faqja kryesore"
 
-#: adminpages.py:268
+#: adminpages.py:279
 msgid "Existing languages"
 msgstr "Gjuhët ekzistuese"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:272
+#: adminpages.py:283
 msgid "Update Languages"
 msgstr "Përditëso gjuhët"
 
-#: adminpages.py:273
-#, python-format
+#: adminpages.py:284
 #, python-format
 msgid "Pootle Admin: %s"
 msgstr "Administratori i Pootle: %s"
 
-#: adminpages.py:274 adminpages.py:336
+#: adminpages.py:285 adminpages.py:356
 msgid "You do not have the rights to administer this project."
 msgstr "Nuk keni të drejta të mjaftueshme për të administruar këtë projekt."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:276
+#: adminpages.py:289
 msgid "Update from templates"
 msgstr "Përditëso nga modelët"
 
-#: adminpages.py:284
+#: adminpages.py:298
 msgid "Add Language"
 msgstr "Shto gjuhën"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
-#. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
-#: adminpages.py:316
-#, python-format
+#: adminpages.py:336
 #, python-format
 msgid "Pootle Admin: %s %s"
 msgstr "Administratori Pootle: %s %s"
 
-#: adminpages.py:317
+#: adminpages.py:337
 msgid "Project home page"
 msgstr "Faqja web e projektit"
 
-#: adminpages.py:335
-#, python-format
+#: adminpages.py:355
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr ""
 "I pamundur përcaktimi i të drejtave për përdoruesin %s - përdoruesi nuk "
 "ekziston"
 
-#: adminpages.py:352
+#: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
 "Ky është një projekt në stil GNU (një directory, files të identifikuar sipas "
 "gjuhës). "
 
-#: adminpages.py:354
+#: adminpages.py:374
 msgid "This is a standard style project (one directory per language)."
 msgstr "Ky është një projekt në stil standard (një directory për gjuhë)."
 
-#: adminpages.py:355
+#: adminpages.py:375
 msgid "User Permissions"
 msgstr "Të drejtat e përdoruesit"
 
-#: adminpages.py:356 users.py:94 users.py:130
-msgid "Username"
-msgstr "Emri i përdoruesit"
-
-#: adminpages.py:357
+#: adminpages.py:377
 msgid "(select to add user)"
 msgstr "(zgjidh për të shtuar përdoruesin)"
 
-#: adminpages.py:358
+#: adminpages.py:378
 msgid "Rights"
 msgstr "Të drejta"
 
-#: adminpages.py:359 indexpage.py:988
+#: adminpages.py:379 indexpage.py:1008
 msgid "Remove"
 msgstr "Hiq"
 
-#: adminpages.py:386
+#: adminpages.py:406
 msgid "Update Rights"
 msgstr "Përditëso të drejtat"
 
-#: pagelayout.py:37
-msgid "All projects"
-msgstr "Të gjithë projektet"
-
-#: pagelayout.py:38
-msgid "All languages"
-msgstr "Të gjitha gjuhët"
-
-#: pagelayout.py:39
-msgid "My account"
-msgstr "Profili im"
-
-#: pagelayout.py:40 pagelayout.py:162 indexpage.py:200 indexpage.py:262
-msgid "Admin"
-msgstr "Administrim"
-
-#: pagelayout.py:41
-msgid "Docs & help"
-msgstr "Dokumentë & ndihmë"
-
-#: pagelayout.py:42
-msgid "Log out"
-msgstr "Dil jashtë"
-
-#: pagelayout.py:43
-msgid "Log in"
-msgstr "Hyrja"
-
-#. l10n: Verb, as in "to register"
-#. l10n: Verb, as in "to register"
-#: pagelayout.py:45
-msgid "Register"
-msgstr "Regjistrimi"
-
-#: pagelayout.py:46
-msgid "Activate"
-msgstr "Aktivizo"
-
-#: pagelayout.py:74
-msgid "Pootle Logo"
-msgstr "Stema e Pootle"
-
-#: pagelayout.py:75
-msgid "WordForge Translation Project"
-msgstr "Projekti përkthimeve WordForge"
-
-#: pagelayout.py:77
-msgid "About this Pootle server"
-msgstr "Informacione në lidhje me këtë server Pootle"
-
-#: pagelayout.py:151
-msgid "All goals"
-msgstr "Të gjithë objektivët"
-
-#: pagelayout.py:222
-#, python-format
-#, python-format
-msgid "%d/%d files"
-msgstr "%d/%d file"
-
-#: pagelayout.py:225
-#, python-format
-#, python-format
-msgid "%d file"
-msgid_plural "%d files"
-msgstr[0] "%d file"
-msgstr[1] "%d file"
-
-#: pagelayout.py:226 indexpage.py:985
-#, python-format
-#, python-format
-msgid "%d/%d words (%d%%) translated"
-msgstr "%d/%d fjalë (%d%%) të përkthyera"
-
-#: pagelayout.py:227
-#, python-format
-#, python-format
-msgid "%d/%d strings"
-msgstr "%d/%d fraza"
-
-#: pagelayout.py:233 users.py:155
-msgid "Name"
-msgstr "Emri"
-
-#: pagelayout.py:234
-msgid "Translated"
-msgstr "Përkthyer"
-
-#: pagelayout.py:235
-msgid "Translated percentage"
-msgstr "Përqind përkthyer"
-
-#: pagelayout.py:236
-msgid "Translated words"
-msgstr "Fjalë të përkthyera"
-
-#: pagelayout.py:237
-msgid "Fuzzy"
-msgstr "Fuzzy"
-
-#: pagelayout.py:238
-msgid "Fuzzy percentage"
-msgstr "Përqind fuzzy"
-
-#: pagelayout.py:239
-msgid "Fuzzy words"
-msgstr "Fjalë për tu kontrolluar"
-
-#: pagelayout.py:240 indexpage.py:776
-msgid "Untranslated"
-msgstr "Papërkthyer"
-
-#: pagelayout.py:241
-msgid "Untranslated percentage"
-msgstr "Përqindja papërkthyer"
-
-#: pagelayout.py:242
-msgid "Untranslated words"
-msgstr "Fjalë të papërkthyera"
-
-#: pagelayout.py:243
-msgid "Total"
-msgstr "Gjithsej"
-
-#: pagelayout.py:244
-msgid "Total words"
-msgstr "Gjthsej fjalë"
-
-#. l10n: noun. The graphical representation of translation status
-#. l10n: noun. The graphical representation of translation status
-#: pagelayout.py:246
-msgid "Graph"
-msgstr "Grafiku"
-
-#: users.py:39
-#, python-format
-#, python-format
-msgid "You must supply a valid password of at least %d characters."
-msgstr ""
-"Duhet të japësh një fjalëkalim të vlefshëm të gjatë të paktën %d simbole."
-
-#: users.py:41
-msgid "The password is not the same as the confirmation."
-msgstr "Fjalëkalimi ndryshon nga ai i konfermimit."
-
-#: users.py:55
-msgid "Login to Pootle"
-msgstr "Hyrja në Pootle"
-
-#: users.py:61
-msgid "Username:"
-msgstr "Përdoruesi:"
-
-#: users.py:63
-msgid "Password:"
-msgstr "Fjalëkalimi:"
-
-#: users.py:64
-msgid "Language:"
-msgstr "Gjuha:"
-
-#: users.py:73
-msgid "Default"
-msgstr "E prezgjedhur"
-
-#: users.py:85
-msgid "Please enter your registration details"
-msgstr "Jepni të dhënat e regjistrimit tuaj"
-
-#: users.py:88 users.py:415
-msgid "Pootle Registration"
-msgstr "Regjistrimi në Pootle"
-
-#: users.py:95 users.py:131
-msgid "Your requested username"
-msgstr "Emri juaj i dëshiruar i përdoruesit"
-
-#: users.py:98
-msgid "Must be a valid email address"
-msgstr "Duhet të jetë një adresë e vlefshme email"
-
-#: users.py:101
-msgid "Your full name"
-msgstr "Emri juaj i plotë"
-
-#: users.py:104
-msgid "Your desired password"
-msgstr "Fjalëkalimi i dëshiruar"
-
-#: users.py:106 users.py:160
-msgid "Confirm password"
-msgstr "Konfirmo fjalëkalimin"
-
-#: users.py:107
-msgid "Type your password again to ensure it is entered correctly"
-msgstr "Shkruaj përsëri fjalëkalimin për të qenë të sigurt që është korrekt"
-
-#: users.py:109
-msgid "Register Account"
-msgstr "Regjistro profilin"
-
-#: users.py:118
-msgid "Please enter your activation details"
-msgstr "Jepni të dhënat tuaja të aktivizimit"
-
-#: users.py:123
-msgid "Pootle Account Activation"
-msgstr "Aktivizimi i profilit Pootle"
-
-#: users.py:133
-msgid "Activation Code"
-msgstr "Kodi i aktivizimit"
-
-#: users.py:134
-msgid "The activation code you received"
-msgstr "Kodi i aktivizimit që morët"
-
-#: users.py:136
-msgid "Activate Account"
-msgstr "Aktivizo profilin"
-
-#: users.py:147
-#, python-format
-#, python-format
-msgid "Options for: %s"
-msgstr "Opsione për: %s"
-
-#: users.py:152
-msgid "Personal Details"
-msgstr "Detaje personalë"
-
-#: users.py:157
-msgid "Email"
-msgstr "Email"
-
-#: users.py:161
-msgid "Translation Interface Configuration"
-msgstr "Konfigurimi i interfaqes së përkthimit"
-
-#: users.py:162
-msgid "User Interface language"
-msgstr "Gjuha e interfaqes së përdoruesit"
-
-#: users.py:163
-msgid "My Projects"
-msgstr "Projektet e mi"
-
-#: users.py:165
-msgid "My Languages"
-msgstr "Gjuhët e mia"
-
-#: users.py:167
-msgid "Home page"
-msgstr "Faqja e nisjes"
-
-#: users.py:203
-msgid "Input Height (in lines)"
-msgstr "Lartësia e Input (në rreshta)"
-
-#: users.py:203
-msgid "Input Width (in characters)"
-msgstr "Gjerësia e Input (në rreshta)"
-
-#: users.py:204
-msgid "Number of rows in view mode"
-msgstr "Numri i rreshtave në modalitet shfaqje"
-
-#: users.py:205
-msgid "Number of rows in translate mode"
-msgstr "Numri i rreshtave në modalitet përkthimi"
-
-#: users.py:247
-msgid "Error"
-msgstr "Gabim"
-
-#: users.py:299
-msgid "You need to be siteadmin to change users"
-msgstr "Dzhet të jeni administratori i sitit për të ndryshuar përdoruesit"
-
-#: users.py:363
-msgid ""
-"Username must be alphanumeric, and must start with an alphabetic character."
-msgstr ""
-"Emri i përdoruesit duhet të jetë alfanumerik, dhe duhet të fillojë me një "
-"gërmë alfabeti."
-
-#: users.py:369
-msgid "You must supply a valid email address"
-msgstr "Duhet të jepni një adresë të vlefshme email"
-
-#: users.py:378
-msgid ""
-"You (or someone else) attempted to register an account with your username.\n"
-msgstr "Ju (apo dikush tjetër) është përpjekur të krijojë një profil me emrin tuaj "
-"të përdoruesit.\n"
-
-#: users.py:379
-msgid "We don't store your actual password but only a hash of it.\n"
-msgstr "Nuk regjistrojmë fjalëkalimin tënd, por vetëm një kodifikim të tij.\n"
-
-#: users.py:381
-#, python-format
-#, python-format
-msgid "If you have a problem with registration, please contact %s.\n"
-msgstr "Nëse ndeshni probleme gjatë regjistrimit, ju lutem vihuni në kontakt me %s.\n"
-
-#: users.py:383
-msgid ""
-"If you have a problem with registration, please contact the site "
-"administrator.\n"
-msgstr "Nëse ndeshni probleme gjatë regjistrimit, ju lutem vihuni në kontakt me "
-"administratorin e sitit.\n"
-
-#: users.py:384
-msgid ""
-"That username already exists. An email will be sent to the registered email "
-"address.\n"
-msgstr "Ky emër përdoruesi ekziston rregullisht. Do të dërgohet një mesazh tek "
-"adresa e regjistruar email.\n"
-
-#: users.py:386
-#, python-format
-#, python-format
-msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr "Duke u <a href='%s'>futur</a>\n"
-
-#: users.py:392
-msgid "A Pootle account has been created for you using this email address.\n"
-msgstr "Një profil Pootle u krijua për ju duke përdorur këtë adresë email.\n"
-
-#: users.py:394
-msgid "To activate your account, follow this link:\n"
-msgstr "Për të aktivizuar profilin, ndiq këtë lidhje:\n"
-
-#: users.py:400
-#, python-format
-#, python-format
-msgid ""
-"Your activation code is:\n"
-"%s\n"
-msgstr ""
-"Kodi juaj i aktivizimit është:\n"
-"%s\n"
-
-#: users.py:402
-msgid ""
-"If you are unable to follow the link, please enter the above code at the "
-"activation page.\n"
-msgstr "Nëse nuk mund të ndiqni lidhjen, të lutem jepni këtë kod tek faqja e "
-"aktivizimit.\n"
-
-#: users.py:403
-msgid ""
-"This message is sent to verify that the email address is in fact correct. If "
-"you did not want to register an account, you may simply ignore the message.\n"
-msgstr "Ky mesazh është dërguar për të verifikuar që adresa email është me të "
-"vërtetë korrekte. Nëse nuk dëshironi të regjistroni një profil, thjesht "
-"shpërfillni këtë mesazh.\n"
-
-#: users.py:405
-#, python-format
-#, python-format
-msgid ""
-"Account created. You will be emailed login details and an activation code. "
-"Please enter your activation code on the <a href='%s'>activation page</a>."
-msgstr ""
-"Profili i krijua. Do t'ju dërgohet nje mesazh me detajet e hyrjes dhe kodin "
-"e aktivizimit. Shkruaj kodin tënd të aktivizimit tek <a href='%s'>faqja e "
-"aktivizimit</a>."
-
-#: users.py:407
-msgid "(Or simply click on the activation link in the email)"
-msgstr "(Ose thjesht kliko tek lidhja e aktivizimit në email)"
-
-#: users.py:409
-#, python-format
-#, python-format
-msgid "Your user name is: %s\n"
-msgstr "Emri i përdoruesit tuaj është: %s\n"
-
-#: users.py:411
-#, python-format
-#, python-format
-msgid "Your password is: %s\n"
-msgstr "Fjalëkalimi juaj është: %s\n"
-
-#: users.py:412
-#, python-format
-#, python-format
-msgid "Your registered email address is: %s\n"
-msgstr "Adresa email e regjistruar është: %s\n"
-
-#: users.py:436
-msgid "Redirecting to Registration Page..."
-msgstr "Duke u ridrejtuar për tek faqja e regjistrimit..."
-
-#: users.py:460
-msgid "Redirecting to login Page..."
-msgstr "Duke u ridrejtuar për tek faqja e hyrjes..."
-
-#: users.py:463
-msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
-"Profili juaj është aktivizuar! Duke u ridrejtuar për tek identifikimi..."
-
-#: users.py:467
-msgid "The activation information was not valid."
-msgstr "Informacioni i aktivizimit nuk është i saktë."
-
-#: users.py:468
-msgid "Activation Failed"
-msgstr "Aktivizimi dështoi"
-
-#: users.py:577
-msgid "Input height must be numeric"
-msgstr "Lartësia e input duhet të jetë një numër"
-
-#: users.py:578
-msgid "Input width must be numeric"
-msgstr "Gjerësia e input duhet të jetë një numër"
-
-#: users.py:579
-msgid "The number of rows displayed in view mode must be numeric"
-msgstr ""
-"Numri i rreshtave të shfaqur në modalitetin shfaqje duhet të jetë një numër"
-
-#: users.py:580
-msgid "The number of rows displayed in translate mode must be numeric"
-msgstr ""
-"Numri i rreshtave të shfaqur në modalitetin përkthim duhet të jetë një numër"
-
-#: pootle.py:275
-msgid "Login failed"
-msgstr "Identifikimi dështoi"
-
-#: pootle.py:319 pootle.py:350
-msgid "Redirecting to login..."
-msgstr "Duke ridrejtuar tek identifikimi..."
-
-#: pootle.py:322
-msgid "Need to log in to access home page"
-msgstr "Është i nevojshëm identifikimi për tu futur tek faqja personale"
-
-#: pootle.py:335
-msgid "Personal details updated"
-msgstr "Informacionet personale u përditësuan"
-
-#: pootle.py:353
-msgid "Need to log in to access admin page"
-msgstr "Është i nevojshëm identifikimi për tu futur tek faqja e administrimit"
-
-#: pootle.py:360
-msgid "Redirecting to home..."
-msgstr "Duke ridrejtuar tek \"home\"..."
-
-#: pootle.py:363
-msgid "You do not have the rights to administer pootle."
-msgstr "Nuk keni të drejtë të administroni pootle."
-
-#: indexpage.py:61
+#: indexpage.py:58
 msgid "About Pootle"
 msgstr "Informacione mbi Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:63
+#: indexpage.py:60
 msgid ""
 "<strong>Pootle</strong> is a simple web portal that should allow you to "
 "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
@@ -1091,7 +304,7 @@ msgstr ""
 "dëshironi. Gjithashtu mund të ndihmoni duke marrë pjesë në zhvillim në "
 "menyra të ndryshme (nuk ka nevojë për këtë të jeni një programues)."
 
-#: indexpage.py:64
+#: indexpage.py:61
 msgid ""
 "The Pootle project itself is hosted at <a href=\"http://translate."
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
@@ -1103,9 +316,7 @@ msgstr ""
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
-#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:67
+#: indexpage.py:64
 msgid ""
 "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
@@ -1116,16 +327,13 @@ msgstr ""
 "në PO), por ndoshta do t'ju duhet të lexoni <a "
 "href=\"http://www.thechestnut.com/flumps.htm\">këtë</a>."
 
-#: indexpage.py:68
+#: indexpage.py:65
 msgid "Versions"
 msgstr "Versionet"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
-#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:71
-#, python-format
+#: indexpage.py:68
 #, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
@@ -1134,30 +342,32 @@ msgstr ""
 "Ky sit është duke përdorur:<br />Pootle %s<br />Translate Toolkit %s<br "
 "/>jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
-#: indexpage.py:130
-#, python-format
+#: indexpage.py:133
 #, python-format
 msgid "User Page for: %s"
 msgstr "Faqja e përdoruesit për: %s"
 
-#: indexpage.py:132
+#: indexpage.py:135
 msgid "Change options"
 msgstr "Ndrysho opsionet"
 
-#: indexpage.py:133
+#: indexpage.py:136
 msgid "Admin page"
 msgstr "Faqja e administrimit"
 
-#: indexpage.py:135
+#: indexpage.py:137 projects.py:149
+msgid "Administrate"
+msgstr "Administrimi"
+
+#: indexpage.py:138
 msgid "Quick Links"
 msgstr "Lidhje të shpejta"
 
-#: indexpage.py:139
+#: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr "Të lutem kliko tek 'Ndrysho opsionet' dhe zgjidh gjuhët dhe projektet"
 
-#: indexpage.py:192
-#, python-format
+#: indexpage.py:199
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
@@ -1167,268 +377,1042 @@ msgstr[1] "%d projekte, mesatarisht %d%% përkthyer"
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
-#. l10n: The first parameter is the name of the installation
-#. l10n: The second parameter is the name of the project/language
-#. l10n: This is used as a page title. Most languages won't need to change this
-#: indexpage.py:198 indexpage.py:260
-#, python-format
+#: indexpage.py:205 indexpage.py:268
 #, python-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: indexpage.py:214
+#: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
+msgid "Admin"
+msgstr "Administrim"
+
+#: indexpage.py:221
 msgid "Language Code"
 msgstr "Kodi i gjuhës"
 
-#: indexpage.py:215
+#: indexpage.py:222
 msgid "Language Name"
 msgstr "Emri i gjuhës"
 
-#: indexpage.py:252
-#, python-format
+#: indexpage.py:260
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
 msgstr[0] "%d gjuhë, mesatarja %d%% përkthyer"
 msgstr[1] "%d gjuhë, mesatarja %d%% përkthyer"
 
-#: indexpage.py:265
+#: indexpage.py:273
 msgid "Language"
 msgstr "Gjuha"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
-#. l10n: The first parameter is the name of the installation (like "Pootle")
-#: indexpage.py:344
-#, python-format
+#: indexpage.py:354
 #, python-format
 msgid "%s: Project %s, Language %s"
 msgstr "%s: Projekti %s, Gjuha %s"
 
-#: indexpage.py:409
+#. l10n: text next to search field
+#: indexpage.py:362 translatepage.py:145
+msgid "Search"
+msgstr "Kërko"
+
+#: indexpage.py:363 translatepage.py:146
+msgid "Advanced Search"
+msgstr ""
+
+#: indexpage.py:422
 msgid "Cannot upload file, no file attached"
 msgstr "I pamundur ngarkimi i file, asnjë file bashkangjitur"
 
-#: indexpage.py:415
+#: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
 msgstr "Mund të ngarkohen vetëm file PO ose arkivë zip me file PO"
 
-#: indexpage.py:530
+#: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
+msgid "Assign Strings"
+msgstr "Cakto frazat"
+
+#: indexpage.py:536 translatepage.py:239
+msgid "Assign Action"
+msgstr "Cakto veprimin"
+
+#: indexpage.py:537 translatepage.py:238
+msgid "Assign to User"
+msgstr "Caktoja përdoruesit"
+
+#: indexpage.py:543
 msgid "goals"
 msgstr "objektivë"
 
-#: indexpage.py:531
+#: indexpage.py:544
 msgid "Enter goal name"
 msgstr "Shkruaj emrin e objektivit"
 
-#: indexpage.py:532
+#: indexpage.py:545
 msgid "Add Goal"
 msgstr "Shto objektivin"
 
-#: indexpage.py:537 indexpage.py:539
+#: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
 msgstr "Ngarko file"
 
-#: indexpage.py:538
+#: indexpage.py:551
 msgid "Select file to upload"
 msgstr "Zgjidh file për tu ngarkuar"
 
+#. l10n: radio button text
+#: indexpage.py:557 projects.py:141
+msgid "Overwrite"
+msgstr "Mbishkruaj"
+
 #. l10n: tooltip
-#. l10n: tooltip
-#: indexpage.py:546
+#: indexpage.py:559
 msgid "Overwrite the current file if it exists"
 msgstr "Mbishkruaj file aktual nëse ekziston"
 
 #. l10n: radio button text
-#. l10n: radio button text
-#: indexpage.py:548
+#: indexpage.py:561
 msgid "Merge"
 msgstr "Bashko"
 
 #. l10n: tooltip
-#. l10n: tooltip
-#: indexpage.py:550
+#: indexpage.py:563
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr "Bashko file me file aktual dhe transformo konfliktet në propozime"
 
-#: indexpage.py:653
+#: indexpage.py:666
 msgid "Not in a goal"
 msgstr "Asnjë objektiv"
 
-#: indexpage.py:673
+#: indexpage.py:686
 msgid "Add User"
 msgstr "Shto përdorues"
 
-#: indexpage.py:711
+#: indexpage.py:731
 msgid "PO file"
 msgstr "File PO"
 
-#: indexpage.py:715
+#: indexpage.py:735
 msgid "XLIFF file"
 msgstr "File XLIFF"
 
-#: indexpage.py:719
+#: indexpage.py:739
 msgid "Qt .ts file"
 msgstr "File Qt .ts"
 
-#: indexpage.py:723
+#: indexpage.py:743
 msgid "CSV file"
 msgstr "File CSV"
 
-#: indexpage.py:728
+#: indexpage.py:748
 msgid "MO file"
 msgstr "File MO"
 
 #. l10n: Update from version control (like CVS or Subversion)
-#: indexpage.py:733
+#: indexpage.py:754
 msgid "Update"
 msgstr "Azhuro"
 
-#: indexpage.py:775
+#. l10n: Commit to version control (like CVS or Subversion)
+#: indexpage.py:760 projects.py:150
+msgid "Commit"
+msgstr "Prano"
+
+#: indexpage.py:798
 msgid "All Strings"
 msgstr "Të gjitha frazat"
 
-#: indexpage.py:777
+#: indexpage.py:799 pagelayout.py:249
+msgid "Untranslated"
+msgstr "Papërkthyer"
+
+#: indexpage.py:800
 msgid "Unassigned"
 msgstr "Pa caktuara"
 
-#: indexpage.py:778
+#: indexpage.py:801
 msgid "Unassigned and Untranslated"
 msgstr "Pa caktuara dhe papërkthyer"
 
-#: indexpage.py:785
+#: indexpage.py:808
 msgid "Set Goal"
 msgstr "Përcakto objektivin"
 
-#: indexpage.py:789
+#: indexpage.py:812
 msgid "Select Multiple"
 msgstr "Zgjedhje shumëfishe"
 
 # Formë tjetër më e qartë?
-#: indexpage.py:791
+#: indexpage.py:814
 msgid "Assign To"
 msgstr "Caktoja"
 
-#: indexpage.py:820
+#: indexpage.py:843
 msgid "Show Editing Functions"
 msgstr "Shfaq opsionet e ndryshimit"
 
-#: indexpage.py:821
+#: indexpage.py:844
 msgid "Show Statistics"
 msgstr "Shfaq statistikat"
 
-#: indexpage.py:822
+#: indexpage.py:845
 msgid "Show Tracks"
 msgstr "Shfaq gjurmët"
 
-#: indexpage.py:822
+#: indexpage.py:845
 msgid "Hide Tracks"
 msgstr "Fshih gjurmët"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
-#. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
-#: indexpage.py:824
+#: indexpage.py:847
 msgid "Show Checks"
 msgstr "Shfaq kontrollet"
 
-#: indexpage.py:824
+#: indexpage.py:847
 msgid "Hide Checks"
 msgstr "Fshih kontrollet"
 
-#: indexpage.py:825
+#: indexpage.py:848
 msgid "Show Goals"
 msgstr "Shfaq objektivët"
 
-#: indexpage.py:825
+#: indexpage.py:848
 msgid "Hide Goals"
 msgstr "Fshih objektivët"
 
-#: indexpage.py:826
+#: indexpage.py:849
 msgid "Show Assigns"
 msgstr "Shfaq caktimet"
 
-#: indexpage.py:826
+#: indexpage.py:849
 msgid "Hide Assigns"
 msgstr "Fshih caktimet"
 
-#: indexpage.py:835
-#, python-format
+#: indexpage.py:858
 #, python-format
 msgid "All Goals: %s"
 msgstr "Të gjith objektivët: %s"
 
-#: indexpage.py:841
+#: indexpage.py:864
 msgid "Translate My Strings"
 msgstr "Përkthe frazat e mia"
 
-#: indexpage.py:843
+#: indexpage.py:866
 msgid "View My Strings"
 msgstr "Shiko frazat e mia"
 
-#: indexpage.py:848
+#: indexpage.py:871
 msgid "No strings assigned to you"
 msgstr "Nuk ju është caktuar asnjë frazë"
 
-#: indexpage.py:852
+#: indexpage.py:875
 msgid "Quick Translate My Strings"
 msgstr "Përkthim i shpejtë i frazave të mia"
 
-#: indexpage.py:856
+#: indexpage.py:879
 msgid "No untranslated strings assigned to you"
 msgstr "Nuk ju është caktuar asnjë frazë e papërkthyer"
 
-#: indexpage.py:860
+#: indexpage.py:883
 msgid "Review Suggestions"
 msgstr "Rishiko propozimet"
 
-#: indexpage.py:862
+#: indexpage.py:885
 msgid "View Suggestions"
 msgstr "Shiko propozimet"
 
-#: indexpage.py:867
+#: indexpage.py:890
 msgid "Quick Translate"
 msgstr "Përkthim i shpejtë"
 
-#: indexpage.py:869
+#: indexpage.py:892
 msgid "View Untranslated"
 msgstr "Shfaq zërat e papërkthyer"
 
-#: indexpage.py:873
+#: indexpage.py:896
 msgid "No untranslated items"
 msgstr "Asnjë zë i papërkthyer"
 
-#: indexpage.py:876
+#: indexpage.py:899
 msgid "Translate All"
 msgstr "Përkthe gjithçka"
 
-#: indexpage.py:891
+#: indexpage.py:914
 msgid "ZIP of goal"
 msgstr "ZIP i objektivit"
 
-#: indexpage.py:893
+#: indexpage.py:916
 msgid "ZIP of folder"
 msgstr "ZIP i kartelës"
 
-#: indexpage.py:900
+#: indexpage.py:923
 msgid "Generate SDF"
 msgstr "Gjenero SDF"
 
-#: indexpage.py:953
-#, python-format
+#: indexpage.py:976
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
 msgstr[0] "%d frazë (%d%%) dështoi"
 msgstr[1] "%d fraza (%d%%) dështuan"
 
-#: indexpage.py:983
-#, python-format
+#: indexpage.py:1003
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
 msgstr "%d/%d fjalë (%d%%) të caktuara"
 
-#: indexpage.py:984 indexpage.py:986
-#, python-format
+#: indexpage.py:1004 indexpage.py:1006
 #, python-format
 msgid "[%d/%d strings]"
 msgstr "[%d/%d fraza]"
+
+#: indexpage.py:1005 pagelayout.py:235
+#, python-format
+msgid "%d/%d words (%d%%) translated"
+msgstr "%d/%d fjalë (%d%%) të përkthyera"
+
+#: pagelayout.py:28
+msgid "All projects"
+msgstr "Të gjithë projektet"
+
+#: pagelayout.py:29
+msgid "All languages"
+msgstr "Të gjitha gjuhët"
+
+#: pagelayout.py:30
+msgid "My account"
+msgstr "Profili im"
+
+#: pagelayout.py:32
+msgid "Docs & help"
+msgstr "Dokumentë & ndihmë"
+
+#: pagelayout.py:34
+msgid "Log out"
+msgstr "Dil jashtë"
+
+#: pagelayout.py:35
+msgid "Log in"
+msgstr "Hyrja"
+
+#. l10n: Verb, as in "to register"
+#: pagelayout.py:37
+msgid "Register"
+msgstr "Regjistrimi"
+
+#: pagelayout.py:38
+msgid "Activate"
+msgstr "Aktivizo"
+
+#: pagelayout.py:83
+msgid "Pootle Logo"
+msgstr "Stema e Pootle"
+
+#: pagelayout.py:84
+msgid "About this Pootle server"
+msgstr "Informacione në lidhje me këtë server Pootle"
+
+#: pagelayout.py:160
+msgid "All goals"
+msgstr "Të gjithë objektivët"
+
+#: pagelayout.py:231
+#, python-format
+msgid "%d/%d files"
+msgstr "%d/%d file"
+
+#: pagelayout.py:234
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "%d file"
+msgstr[1] "%d file"
+
+#: pagelayout.py:236
+#, python-format
+msgid "%d/%d strings"
+msgstr "%d/%d fraza"
+
+#: pagelayout.py:242 users.py:184
+msgid "Name"
+msgstr "Emri"
+
+#: pagelayout.py:243
+msgid "Translated"
+msgstr "Përkthyer"
+
+#: pagelayout.py:244
+msgid "Translated percentage"
+msgstr "Përqind përkthyer"
+
+#: pagelayout.py:245
+msgid "Translated words"
+msgstr "Fjalë të përkthyera"
+
+#: pagelayout.py:246 translatepage.py:135
+msgid "Fuzzy"
+msgstr "Fuzzy"
+
+#: pagelayout.py:247
+msgid "Fuzzy percentage"
+msgstr "Përqind fuzzy"
+
+#: pagelayout.py:248
+msgid "Fuzzy words"
+msgstr "Fjalë për tu kontrolluar"
+
+#: pagelayout.py:250
+msgid "Untranslated percentage"
+msgstr "Përqindja papërkthyer"
+
+#: pagelayout.py:251
+msgid "Untranslated words"
+msgstr "Fjalë të papërkthyera"
+
+#: pagelayout.py:252
+msgid "Total"
+msgstr "Gjithsej"
+
+#: pagelayout.py:253
+msgid "Total words"
+msgstr "Gjthsej fjalë"
+
+#. l10n: noun. The graphical representation of translation status
+#: pagelayout.py:255
+msgid "Graph"
+msgstr "Grafiku"
+
+#: pagelayout.py:293
+msgid "Source Text"
+msgstr ""
+
+#: pagelayout.py:297
+msgid "Target Text"
+msgstr ""
+
+#: pagelayout.py:301
+msgid "Comments"
+msgstr ""
+
+#: pagelayout.py:305
+msgid "Locations"
+msgstr ""
+
+#: pootle.py:305
+msgid "Login failed"
+msgstr "Identifikimi dështoi"
+
+#: pootle.py:349 pootle.py:380
+msgid "Redirecting to login..."
+msgstr "Duke ridrejtuar tek identifikimi..."
+
+#: pootle.py:352
+msgid "Need to log in to access home page"
+msgstr "Është i nevojshëm identifikimi për tu futur tek faqja personale"
+
+#: pootle.py:365
+msgid "Personal details updated"
+msgstr "Informacionet personale u përditësuan"
+
+#: pootle.py:383
+msgid "Need to log in to access admin page"
+msgstr "Është i nevojshëm identifikimi për tu futur tek faqja e administrimit"
+
+#: pootle.py:390
+msgid "Redirecting to home..."
+msgstr "Duke ridrejtuar tek \"home\"..."
+
+#: pootle.py:393
+msgid "You do not have the rights to administer pootle."
+msgstr "Nuk keni të drejtë të administroni pootle."
+
+#. l10n: Verb
+#: projects.py:138
+msgid "View"
+msgstr "Shfaq"
+
+#: projects.py:139 translatepage.py:678
+msgid "Suggest"
+msgstr "Propozo"
+
+#: projects.py:140
+msgid "Translate"
+msgstr "Përkthe"
+
+#. l10n: Verb
+#: projects.py:143
+msgid "Review"
+msgstr "Rishiko"
+
+#. l10n: Verb
+#: projects.py:145
+msgid "Archive"
+msgstr "Arkivo"
+
+#. l10n: This refers to generating the binary .mo file
+#: projects.py:147
+msgid "Compile PO files"
+msgstr "Kompilo file PO"
+
+#: projects.py:148
+msgid "Assign"
+msgstr "Cakto"
+
+#. l10n: Don't translate "nobody" or "default"
+#: projects.py:230
+msgid "You cannot remove the \"nobody\" or \"default\" user"
+msgstr "Nuk është e mundur heqja e përdoruesve \"nobody\" ose \"default\""
+
+#: projects.py:382 projects.py:444
+msgid "You do not have rights to alter goals here"
+msgstr "Nuk keni të drejta të mjaftueshme për të ndryshuar objektivët këtu"
+
+#: projects.py:510
+msgid "You do not have rights to upload files here"
+msgstr "Nuk keni të drejta të mjaftueshme për të ngarkuar file këtu"
+
+#: projects.py:513
+msgid "You do not have rights to overwrite files here"
+msgstr "Nuk keni të drejta të mjaftueshme për të mbishkruar file këtu"
+
+#: projects.py:515
+msgid "You do not have rights to upload new files here"
+msgstr "Nuk keni të drejta të mjaftueshme për të ngarkuar file të rinj këtu"
+
+#: projects.py:524
+msgid "You do not have rights to update files here"
+msgstr "Nuk keni të drejta të mjaftueshme për të përditësuar file këtu"
+
+#: projects.py:555
+msgid "You do not have rights to commit files here"
+msgstr "Nuk keni të drejta të mjaftueshme për të ngarkuar file këtu"
+
+#: projects.py:977 projects.py:1019
+msgid "You do not have rights to alter assignments here"
+msgstr "Nuk keni të drejta të mjaftueshme për të ndryshuar caktimet këtu"
+
+#: projects.py:1219
+msgid "You do not have rights to change translations here"
+msgstr "Nuk keni të drejta të mjaftueshme për të ndryshuar përkthimet këtu"
+
+#: projects.py:1229
+msgid "You do not have rights to suggest changes here"
+msgstr "Nuk keni të drejta të mjaftueshme për të propozuar ndryshime këtu"
+
+#: projects.py:1245 projects.py:1263
+msgid "You do not have rights to review suggestions here"
+msgstr "Nuk keni të drejta të mjaftueshme për të rishikuar propozimet këtu"
+
+#: translatepage.py:103
+#, python-format
+#, fuzzy
+msgid ""
+"%d/%d translated\n"
+"(%d untranslated, %d fuzzy)"
+msgstr ""
+"%d/%d përkthyer\n"
+"(%d bosh, %d fuzzy)"
+
+#. l10n: first parameter: name of the installation (like "Pootle")
+#. l10n: second parameter: project name
+#. l10n: third parameter: target language
+#. l10n: fourth parameter: file name
+#: translatepage.py:113
+#, python-format
+msgid "%s: translating %s into %s: %s"
+msgstr "%s: përkthimi i %s në %s: %s"
+
+#. l10n: Heading above the table column with the source language
+#: translatepage.py:128
+msgid "Original"
+msgstr "Orgjinali"
+
+#. l10n: Heading above the table column with the target language
+#: translatepage.py:130
+msgid "Translation"
+msgstr "Përkthimi"
+
+#: translatepage.py:133
+msgid "Accept suggestion"
+msgstr ""
+
+#: translatepage.py:134
+msgid "Reject suggestion"
+msgstr ""
+
+#. l10n: Heading above the textarea for translator comments.
+#: translatepage.py:137
+msgid "Translator comments"
+msgstr ""
+
+#. l10n: Heading above the comments extracted from the programing source code
+#: translatepage.py:139
+msgid "Developer comments"
+msgstr ""
+
+#. l10n: This heading refers to related translations and terminology
+#: translatepage.py:141
+msgid "Related"
+msgstr "E ngjashme"
+
+#. l10n: Text displayed when an AJAX petition is being made
+#: translatepage.py:155
+msgid "Working..."
+msgstr ""
+
+#. l10n: Text displayed in an alert box when an AJAX petition has failed
+#: translatepage.py:157
+msgid "Error: Something went wrong."
+msgstr ""
+
+#. l10n: "batch" refers to the set of translations that were reviewed
+#: translatepage.py:171
+msgid "End of batch"
+msgstr "Fundi i batch"
+
+#: translatepage.py:173
+msgid "Click here to return to the index"
+msgstr "Kliko këtu për t'u kthyer tek treguesi"
+
+#. l10n: noun (the start)
+#: translatepage.py:187 translatepage.py:190
+msgid "Start"
+msgstr "Fillimi"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:194 translatepage.py:197
+#, python-format
+msgid "Previous %d"
+msgstr "%d paraardhës"
+
+#. l10n: the third parameter refers to the total number of messages in the file
+#: translatepage.py:199
+#, python-format
+msgid "Items %d to %d of %d"
+msgstr "Zërat %d në %d nga %d"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:204 translatepage.py:207
+#, python-format
+msgid "Next %d"
+msgstr "%d në vijim"
+
+#. l10n: noun (the end)
+#: translatepage.py:210 translatepage.py:213
+msgid "End"
+msgstr "Fundi"
+
+#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
+#: translatepage.py:230
+#, python-format
+msgid "checking %s"
+msgstr "duke kontrolluar %s"
+
+#: translatepage.py:398
+#, python-format
+msgid "There are no items matching that search ('%s')"
+msgstr "Nuk ekzistojnë zëra korrespondues me të kërkuarin ('%s')"
+
+#: translatepage.py:400
+msgid "You have finished going through the items you selected"
+msgstr "Përfunduat udhëtimin midis zërave të zgjedhur"
+
+#: translatepage.py:643
+msgid "Singular"
+msgstr "Njëjës"
+
+#: translatepage.py:644
+msgid "Plural"
+msgstr "Shumës"
+
+#. l10n: verb
+#: translatepage.py:658
+msgid "Edit"
+msgstr "Ndrysho"
+
+#. l10n: verb
+#: translatepage.py:674
+msgid "Copy"
+msgstr "Kopjo"
+
+#: translatepage.py:675 translatepage.py:849
+msgid "Skip"
+msgstr "Kapërce"
+
+#. l10n: verb
+#: translatepage.py:677 translatepage.py:848 users.py:312
+msgid "Back"
+msgstr "Paraardhësi"
+
+#: translatepage.py:679
+msgid "Submit"
+msgstr "Prano"
+
+#. l10n: action that increases the height of the textarea
+#: translatepage.py:682
+msgid "Grow"
+msgstr "Rrit"
+
+#. l10n: action that decreases the height of the textarea
+#: translatepage.py:684
+msgid "Shrink"
+msgstr "Zvogëlo"
+
+#: translatepage.py:706 translatepage.py:800 translatepage.py:837
+#: translatepage.py:870
+#, python-format
+msgid "Plural Form %d"
+msgstr "Forma e shumësit %d"
+
+#. l10n: This is an error message that will display if the relevant problem occurs
+#: translatepage.py:722
+msgid ""
+"Translation not possible because plural information for your language is not "
+"available. Please contact the site administrator."
+msgstr ""
+"Përkthimi është i pamundur pasi mungojnë informacionet në lidhje me shumësin "
+"e gjuhës suaj. Të lutem vihuni në kontakt me administratorin e sitit."
+
+#: translatepage.py:804
+msgid "Current Translation:"
+msgstr "Përkthimi i tanishëm:"
+
+#. l10n: First parameter: number
+#. l10n: Second parameter: name of translator
+#: translatepage.py:817
+#, python-format
+msgid "Suggestion %d by %s:"
+msgstr "%d propozim nga %s:"
+
+#: translatepage.py:819
+#, python-format
+msgid "Suggestion %d:"
+msgstr "Propozimi %d:"
+
+#. l10n: parameter: name of translator
+#: translatepage.py:823
+#, python-format
+msgid "Suggestion by %s:"
+msgstr "Propozuar nga %s:"
+
+#: translatepage.py:825
+msgid "Suggestion:"
+msgstr "Propozimi:"
+
+#: users.py:43
+#, python-format
+msgid "You must supply a valid password of at least %d characters."
+msgstr ""
+"Duhet të japësh një fjalëkalim të vlefshëm të gjatë të paktën %d simbole."
+
+#: users.py:45
+msgid "The password is not the same as the confirmation."
+msgstr "Fjalëkalimi ndryshon nga ai i konfermimit."
+
+#: users.py:60
+msgid "Login to Pootle"
+msgstr "Hyrja në Pootle"
+
+#: users.py:66
+msgid "Username:"
+msgstr "Përdoruesi:"
+
+#: users.py:68
+msgid "Password:"
+msgstr "Fjalëkalimi:"
+
+#: users.py:69
+msgid "Language:"
+msgstr "Gjuha:"
+
+#: users.py:71
+msgid "Login"
+msgstr "Identifikimi"
+
+#: users.py:77
+msgid "Default"
+msgstr "E prezgjedhur"
+
+#: users.py:112
+msgid "Please enter your registration details"
+msgstr "Jepni të dhënat e regjistrimit tuaj"
+
+#: users.py:115 users.py:475
+msgid "Pootle Registration"
+msgstr "Regjistrimi në Pootle"
+
+#: users.py:122 users.py:158
+msgid "Your requested username"
+msgstr "Emri juaj i dëshiruar i përdoruesit"
+
+#: users.py:125 users.py:429
+msgid "You must supply a valid email address"
+msgstr "Duhet të jepni një adresë të vlefshme email"
+
+#: users.py:128
+msgid "Your full name"
+msgstr "Emri juaj i plotë"
+
+#: users.py:131
+msgid "Your desired password"
+msgstr "Fjalëkalimi i dëshiruar"
+
+#: users.py:133 users.py:189
+msgid "Confirm password"
+msgstr "Konfirmo fjalëkalimin"
+
+#: users.py:134
+msgid "Type your password again to ensure it is entered correctly"
+msgstr "Shkruaj përsëri fjalëkalimin për të qenë të sigurt që është korrekt"
+
+#: users.py:136
+msgid "Register Account"
+msgstr "Regjistro profilin"
+
+#: users.py:145
+msgid "Please enter your activation details"
+msgstr "Jepni të dhënat tuaja të aktivizimit"
+
+#: users.py:150
+msgid "Pootle Account Activation"
+msgstr "Aktivizimi i profilit Pootle"
+
+#: users.py:160
+msgid "Activation Code"
+msgstr "Kodi i aktivizimit"
+
+#: users.py:161
+msgid "The activation code you received"
+msgstr "Kodi i aktivizimit që morët"
+
+#: users.py:163
+msgid "Activate Account"
+msgstr "Aktivizo profilin"
+
+#: users.py:175
+#, python-format
+msgid "Options for: %s"
+msgstr "Opsione për: %s"
+
+#: users.py:181
+msgid "Personal Details"
+msgstr "Detaje personalë"
+
+#: users.py:186
+msgid "Email"
+msgstr "Email"
+
+#: users.py:190
+msgid "Translation Interface Configuration"
+msgstr "Konfigurimi i interfaqes së përkthimit"
+
+#: users.py:191
+msgid "User Interface language"
+msgstr "Gjuha e interfaqes së përdoruesit"
+
+#: users.py:192
+msgid "My Projects"
+msgstr "Projektet e mi"
+
+#: users.py:194
+msgid "My Languages"
+msgstr "Gjuhët e mia"
+
+#: users.py:196
+msgid "Home page"
+msgstr "Faqja e nisjes"
+
+#: users.py:202
+msgid "Alternative Source Language"
+msgstr ""
+
+#. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
+#: users.py:240
+msgid "None"
+msgstr ""
+
+#: users.py:257
+msgid "Input Height (in lines)"
+msgstr "Lartësia e Input (në rreshta)"
+
+#: users.py:258
+msgid "Number of rows in view mode"
+msgstr "Numri i rreshtave në modalitet shfaqje"
+
+#: users.py:259
+msgid "Number of rows in translate mode"
+msgstr "Numri i rreshtave në modalitet përkthimi"
+
+#: users.py:307
+msgid "Error"
+msgstr "Gabim"
+
+#: users.py:359
+msgid "You need to be siteadmin to change users"
+msgstr "Dzhet të jeni administratori i sitit për të ndryshuar përdoruesit"
+
+#: users.py:423
+msgid ""
+"Username must be alphanumeric, and must start with an alphabetic character."
+msgstr ""
+"Emri i përdoruesit duhet të jetë alfanumerik, dhe duhet të fillojë me një "
+"gërmë alfabeti."
+
+#: users.py:438
+msgid ""
+"You (or someone else) attempted to register an account with your username.\n"
+msgstr "Ju (apo dikush tjetër) është përpjekur të krijojë një profil me emrin tuaj "
+"të përdoruesit.\n"
+
+#: users.py:439
+msgid "We don't store your actual password but only a hash of it.\n"
+msgstr "Nuk regjistrojmë fjalëkalimin tënd, por vetëm një kodifikim të tij.\n"
+
+#: users.py:441
+#, python-format
+msgid "If you have a problem with registration, please contact %s.\n"
+msgstr "Nëse ndeshni probleme gjatë regjistrimit, ju lutem vihuni në kontakt me %s.\n"
+
+#: users.py:443
+msgid ""
+"If you have a problem with registration, please contact the site "
+"administrator.\n"
+msgstr "Nëse ndeshni probleme gjatë regjistrimit, ju lutem vihuni në kontakt me "
+"administratorin e sitit.\n"
+
+#: users.py:444
+msgid ""
+"That username already exists. An email will be sent to the registered email "
+"address.\n"
+msgstr "Ky emër përdoruesi ekziston rregullisht. Do të dërgohet një mesazh tek "
+"adresa e regjistruar email.\n"
+
+#: users.py:446
+#, python-format
+msgid "Proceeding to <a href='%s'>login</a>\n"
+msgstr "Duke u <a href='%s'>futur</a>\n"
+
+#: users.py:452
+msgid "A Pootle account has been created for you using this email address.\n"
+msgstr "Një profil Pootle u krijua për ju duke përdorur këtë adresë email.\n"
+
+#: users.py:454
+msgid "To activate your account, follow this link:\n"
+msgstr "Për të aktivizuar profilin, ndiq këtë lidhje:\n"
+
+#: users.py:460
+#, python-format
+msgid ""
+"Your activation code is:\n"
+"%s\n"
+msgstr ""
+"Kodi juaj i aktivizimit është:\n"
+"%s\n"
+
+#: users.py:462
+msgid ""
+"If you are unable to follow the link, please enter the above code at the "
+"activation page.\n"
+msgstr "Nëse nuk mund të ndiqni lidhjen, të lutem jepni këtë kod tek faqja e "
+"aktivizimit.\n"
+
+#: users.py:463
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message.\n"
+msgstr "Ky mesazh është dërguar për të verifikuar që adresa email është me të "
+"vërtetë korrekte. Nëse nuk dëshironi të regjistroni një profil, thjesht "
+"shpërfillni këtë mesazh.\n"
+
+#: users.py:465
+#, python-format
+msgid ""
+"Account created. You will be emailed login details and an activation code. "
+"Please enter your activation code on the <a href='%s'>activation page</a>."
+msgstr ""
+"Profili i krijua. Do t'ju dërgohet nje mesazh me detajet e hyrjes dhe kodin "
+"e aktivizimit. Shkruaj kodin tënd të aktivizimit tek <a href='%s'>faqja e "
+"aktivizimit</a>."
+
+#: users.py:467
+msgid "(Or simply click on the activation link in the email)"
+msgstr "(Ose thjesht kliko tek lidhja e aktivizimit në email)"
+
+#: users.py:469
+#, python-format
+msgid "Your user name is: %s\n"
+msgstr "Emri i përdoruesit tuaj është: %s\n"
+
+#: users.py:471
+#, python-format
+msgid "Your password is: %s\n"
+msgstr "Fjalëkalimi juaj është: %s\n"
+
+#: users.py:472
+#, python-format
+msgid "Your registered email address is: %s\n"
+msgstr "Adresa email e regjistruar është: %s\n"
+
+#: users.py:500
+msgid "Redirecting to Registration Page..."
+msgstr "Duke u ridrejtuar për tek faqja e regjistrimit..."
+
+#: users.py:524
+msgid "Redirecting to login Page..."
+msgstr "Duke u ridrejtuar për tek faqja e hyrjes..."
+
+#: users.py:527
+msgid "Your account has been activated! Redirecting to login..."
+msgstr ""
+"Profili juaj është aktivizuar! Duke u ridrejtuar për tek identifikimi..."
+
+#: users.py:531
+msgid "The activation information was not valid."
+msgstr "Informacioni i aktivizimit nuk është i saktë."
+
+#: users.py:532
+msgid "Activation Failed"
+msgstr "Aktivizimi dështoi"
+
+#: users.py:649
+msgid "Input height must be numeric"
+msgstr "Lartësia e input duhet të jetë një numër"
+
+#: users.py:650
+msgid "Input width must be numeric"
+msgstr "Gjerësia e input duhet të jetë një numër"
+
+#: users.py:651
+msgid "The number of rows displayed in view mode must be numeric"
+msgstr ""
+"Numri i rreshtave të shfaqur në modalitetin shfaqje duhet të jetë një numër"
+
+#: users.py:652
+msgid "The number of rows displayed in translate mode must be numeric"
+msgstr ""
+"Numri i rreshtave të shfaqur në modalitetin përkthim duhet të jetë një numër"
+
+#~ msgid "Accept"
+#~ msgstr "Prano"
+
+#~ msgid "Reject"
+#~ msgstr "Refuzo"
+
+#~ msgid "Broaden"
+#~ msgstr "Zgjero"
+
+#~ msgid "Narrow"
+#~ msgstr "Ngushto"
+
+#~ msgid "Reset"
+#~ msgstr "Rivendos"
+
+#~ msgid "WordForge Translation Project"
+#~ msgstr "Projekti përkthimeve WordForge"
+
+#~ msgid "Must be a valid email address"
+#~ msgstr "Duhet të jetë një adresë e vlefshme email"
+
+#~ msgid "Input Width (in characters)"
+#~ msgstr "Gjerësia e Input (në rreshta)"
