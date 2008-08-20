@@ -439,6 +439,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
           else:
             dirfilter = ""
           try:
+            argdict["translate"] = 1
             return translatepage.TranslatePage(project, session, argdict, dirfilter)
           except projects.RightsError, stoppedby:
             argdict["message"] = str(stoppedby)

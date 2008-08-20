@@ -77,7 +77,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     # TODO: clean up modes to be one variable
     self.viewmode = self.argdict.get("view", 0) and "view" in self.rights
     self.reviewmode = self.argdict.get("review", 0)
-    self.translatemode = self.argdict.get("translate", 0) or self.argdict.get("searchtext", 0) and ("translate" in self.rights or "suggest" in self.rights)
+    self.translatemode = (self.argdict.get("translate", 0) or self.argdict.get("searchtext", 0)) and ("translate" in self.rights or "suggest" in self.rights)
     notice = {}
     try:
       self.finditem()
