@@ -66,7 +66,7 @@ class AboutPage(pagelayout.PootlePage):
     pagetitle = getattr(session.instance, "title")
     description = getattr(session.instance, "description")
     meta_description = shortdescription(description)
-    keywords = ["Pootle", "WordForge", "translate", "translation", "localisation",
+    keywords = ["Pootle", "locamotion", "translate", "translation", "localisation",
                 "localization", "l10n", "traduction", "traduire"]
     abouttitle = self.localize("About Pootle")
     # l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
