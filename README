@@ -115,7 +115,7 @@ Bug Reporting/Feature requests
 ------------------------------
 You can always report bugs or feature requests on the mailing list but because of the increase
 in users and the fact that bug reports do go missing it is probably best to place your
-bug report in Bugzilla: http://bugs.wordforge.org/
+bug report in Bugzilla: http://bugs.locamotion.org/
 
 If you have a traceback or a patch then please include it.  Also please be quite specific
 about how the bug occured and what you expected to happen.
