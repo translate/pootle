@@ -886,12 +886,11 @@ class TranslatePage(pagelayout.PootleNavPage):
       altsrcdict["dir"] = pagelayout.languagedir(altsrcdict["languagecode"])
       altsrcdict["title"] = self.session.tr_lang(altsrcdict["languagename"])
       if not origdict["isplural"]:
-        orig = origdict["text"]
-        altsrctext = self.escapetext(self.altproject.ugettext(orig))
-      else:
-        altsrctext = None
-      if not origdict["isplural"] and altsrctext != orig and not self.reviewmode:
-        altsrcdict["text"] = altsrctext
-        altsrcdict["available"] = True
+        print origdict["pure"]
+        orig = origdict["pure"][0]["value"]
+        altsrctext = self.altproject.ugettext(orig)
+        if altsrctext != orig and not self.reviewmode:
+          altsrcdict["text"] = self.escapetext(altsrctext)
+          altsrcdict["available"] = True
     return altsrcdict
 
