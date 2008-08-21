@@ -607,7 +607,7 @@ class PootleOptionParser(simplewebserver.WebOptionParser):
 
 def checkversions():
   """Checks that version dependencies are met"""
-  if not hasattr(toolkitversion, "build") or toolkitversion.build < 11000:
+  if not hasattr(toolkitversion, "build") or toolkitversion.build < 12000:
     raise RuntimeError("requires Translate Toolkit version >= 1.1.  Current installed version is: %s" % toolkitversion.ver)
 
 def usepsyco(options):
