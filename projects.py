@@ -933,14 +933,14 @@ class TranslationProject(object):
   def searchpoitems(self, pofilename, lastitem, search):
     """finds the next item matching the given search"""
 
-    def indexed(search):
+    def indexed(pofilename, search, lastitem):
       filesearch = search.copy()
       filesearch.dirfilter = pofilename
       hits = self.indexsearch(filesearch, "itemno")
       # there will be only result for the field "itemno" - so we just
       # pick the first
       all_items = (int(doc["itemno"][0]) for doc in hits)
-      next_items = (search_item for search_item in all_items if search_item > item)
+      next_items = (search_item for search_item in all_items if search_item > lastitem)
       try:
         # Since we will call self.searchpoitems (the method in which we are)
         # every time a user clicks the next button, the loop which calls yield
@@ -950,9 +950,10 @@ class TranslationProject(object):
       except ValueError:
         return []
 
-    def non_indexed(pofile, search, lastitem):
+    def non_indexed(pofilename, search, lastitem):
       # Ask pofile for all the possible items which follow lastitem, based on
       # the criteria in search.
+      pofile = self.getpofile(pofilename)
       items = pofile.iteritems(search, lastitem)
       if search.searchtext:
         # We'll get here if the user is searching for a piece of text and if no indexer
@@ -963,15 +964,15 @@ class TranslationProject(object):
       else:
         return items
 
-    def get_items(pofile, search, lastitem):
+    def get_items(pofilename, search, lastitem):
       if indexer.HAVE_INDEXER and search.searchtext:
         # Return an iterator using the indexer if indexing is available and if there is searchtext.
-        return indexed(search)
+        return indexed(pofilename, search, lastitem)
       else:
-        return non_indexed(pofile, search, lastitem)
+        return non_indexed(pofilename, search, lastitem)
 
     for pofilename in self.searchpofilenames(pofilename, search, includelast=True):
-      for item in get_items(self.getpofile(pofilename), search, lastitem):
+      for item in get_items(pofilename, search, lastitem):
         yield pofilename, item
       # this must be set to None so that the next call to
       # get_items(self.getpofile(pofilename), search, lastitem) [see just above]
