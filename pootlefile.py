@@ -231,6 +231,27 @@ class pootleassigns:
             assignitems.extend(actionitems)
     return assignitems
 
+def member(sorted_set, element):
+  """Check whether element appears in sorted_set."""
+  pos = bisect.bisect_left(sorted_set, element)
+  if pos < len(sorted_set):
+    return sorted_set[pos] == element
+  else:
+    return False
+
+def intersect(set_a, set_b):
+  """Find the intersection of the sorted sets set_a and set_b."""
+  # If both set_a and set_b have elements
+  if len(set_b) != 0 and len(set_a) != 0:
+    # Find the position of the element in set_a that is at least
+    # as large as the minimum element in set_b.
+    start_a = bisect.bisect_left(set_a, set_b[0])
+    # For each element in set_a...
+    for element in set_a[start_a:]:
+      # ...which is also in set_b...
+      if member(set_b, element):
+        yield element
+
 def make_class(base_class):
   class pootlefile(base_class):
     """this represents a pootle-managed file and its associated files"""
@@ -493,41 +514,48 @@ def make_class(base_class):
 
     def iteritems(self, search, lastitem=None):
       """iterates through the items in this pofile starting after the given lastitem, using the given search"""
-
-      def find_min(low, high, translatables, matchname):
-        for index in self.statistics.getstats().get(matchname, []):
-          if low <= index <= high:
-            return bisect.bisect_left(translatables, index)
-        return -1
-
-      def next_item(low, high, translatables, matchnames):
-        indices = (find_min(low, high, translatables, name) for name in matchnames)
-        try:
-          return min(i for i in indices if i > -1)
-        except ValueError:
-          raise StopIteration
-
-      # update stats if required
-      translatables = self.statistics.getstats()["total"]
-      if lastitem is None:
-        minitem = 0
-      else:
-        minitem = lastitem + 1
-      maxitem = len(translatables)
-      if not 0 <= minitem < maxitem:
-        raise StopIteration
-      if search.assignedto or search.assignedaction:
-        validitems = xrange(minitem, maxitem)
-        assignitems = self.getassigns().finditems(search)
-        validitems = [item for item in validitems if item in assignitems]
-      # loop through, filtering on matchnames if required
-      if not search.matchnames:
-        if minitem < len(translatables):
-          yield minitem
+      def get_min(lastitem):
+        if lastitem is None:
+          return 0
         else:
-          raise StopIteration
-      else:
-        yield next_item(translatables[minitem], translatables[maxitem - 1], translatables, search.matchnames)
+          return lastitem + 1
+
+      def narrow_to_last_item_range(translatables, lastitem):
+        return translatables[get_min(lastitem):]
+
+      def narrow_to_assigns(translatables, search):
+        if search.assignedto or search.assignedaction:
+          assignitems = self.getassigns().finditems(search)
+          return list(intersect(assignitems, translatables))
+        else:
+          return translatables
+
+      def narrow_to_matches(translatables, search):
+        if search.matchnames:
+          stats = self.statistics.getstats()
+          matches = reduce(set.__or__, (set(stats[matchname]) for matchname in search.matchnames if matchname in stats))
+          return intersect(sorted(matches), translatables)
+        else:
+          return translatables
+
+      translatables = self.statistics.getstats()["total"]
+
+      # To get the items to iterate, we
+      # 1. filter translatables to the range of elements after lastitem,
+      # 2. filter translatables according to assignments,
+      # 3. filter translatables according to the quality checks (which
+      #    are contained in search.matches)
+      new_translatables = narrow_to_matches(
+        narrow_to_assigns(
+            narrow_to_last_item_range(translatables, lastitem),
+            search),
+        search)
+
+      # translatables contains the indices into the store of the units. We need to
+      # know what indices of these indices are in translatables itself. Since
+      # translatables is sorted, we simply need to perform binary searches to
+      # get the answer.
+      return (bisect.bisect_left(translatables, item) for item in new_translatables)
 
     def matchitems(self, newfile, uselocations=False):
       """matches up corresponding items in this pofile with the given newfile, and returns tuples of matching poitems (None if no match found)"""

@@ -930,39 +930,53 @@ class TranslationProject(object):
       if self.matchessearch(pofilename, search):
         yield pofilename
 
-  def searchpoitems(self, pofilename, item, search):
+  def searchpoitems(self, pofilename, lastitem, search):
     """finds the next item matching the given search"""
-    if search.searchtext:
-      grepfilter = pogrep.GrepFilter(search.searchtext, search.searchfields, ignorecase=True)
-    for pofilename in self.searchpofilenames(pofilename, search, includelast=True):
-      pofile = self.getpofile(pofilename)
-      if indexer.HAVE_INDEXER and search.searchtext:
-        filesearch = search.copy()
-        filesearch.dirfilter = pofilename
-        hits = self.indexsearch(filesearch, "itemno")
-        # there will be only result for the field "itemno" - so we just
-        # pick the first
-        items = [int(doc["itemno"][0]) for doc in hits]
-        items = [searchitem for searchitem in items if searchitem > item]
-        items.sort()
-        notextsearch = search.copy()
-        notextsearch.searchtext = None
-        matchitems = list(pofile.iteritems(notextsearch, item))
+
+    def indexed(search):
+      filesearch = search.copy()
+      filesearch.dirfilter = pofilename
+      hits = self.indexsearch(filesearch, "itemno")
+      # there will be only result for the field "itemno" - so we just
+      # pick the first
+      all_items = (int(doc["itemno"][0]) for doc in hits)
+      next_items = (search_item for search_item in all_items if search_item > item)
+      try:
+        # Since we will call self.searchpoitems (the method in which we are)
+        # every time a user clicks the next button, the loop which calls yield
+        # on indexed will only need a single value from this generator. So we
+        # only return a list with a single item.
+        return [min(next_items)]
+      except ValueError:
+        return []
+
+    def non_indexed(pofile, search, lastitem):
+      # Ask pofile for all the possible items which follow lastitem, based on
+      # the criteria in search.
+      items = pofile.iteritems(search, lastitem)
+      if search.searchtext:
+        # We'll get here if the user is searching for a piece of text and if no indexer
+        # (such as Xapian or Lucene) is usable. First build a grepper...
+        grepfilter = pogrep.GrepFilter(search.searchtext, search.searchfields, ignorecase=True)
+        # ...then filter the items using the grepper.
+        return (item for item in items if grepfilter.filterunit(pofile.getitem(item)))
       else:
-        items = pofile.iteritems(search, item)
-        matchitems = items
-      for item in items:
-        if items != matchitems:
-          if item not in matchitems:
-            continue
-        # TODO: move this to iteritems
-        if search.searchtext:
-          unit = pofile.getitem(item)
-          if grepfilter.filterunit(unit):
-            yield pofilename, item
-        else:
-          yield pofilename, item
-      item = None
+        return items
+
+    def get_items(pofile, search, lastitem):
+      if indexer.HAVE_INDEXER and search.searchtext:
+        # Return an iterator using the indexer if indexing is available and if there is searchtext.
+        return indexed(search)
+      else:
+        return non_indexed(pofile, search, lastitem)
+
+    for pofilename in self.searchpofilenames(pofilename, search, includelast=True):
+      for item in get_items(self.getpofile(pofilename), search, lastitem):
+        yield pofilename, item
+      # this must be set to None so that the next call to
+      # get_items(self.getpofile(pofilename), search, lastitem) [see just above]
+      # will start afresh with the first item in the next pofilename.
+      lastitem = None
 
   def reassignpoitems(self, session, search, assignto, action):
     """reassign all the items matching the search to the assignto user(s) evenly, with the given action"""
