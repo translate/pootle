@@ -81,9 +81,8 @@ For Debian users: if you do not have setuptools installed, try:
 or
 	wget http://files.turbogears.org/eggs/setuptools-0.6a11-py2.4.egg
 
-Installation of PyLucene is optional, but helps to speed up searching. jToolkit 
-is not yet compatible with the newest version of PyLucene, so be sure to use 
-a version before PyLucene version 2.0.
+Installation of an indexing engine (PyLucene or Xapian) is optional, but helps
+to speed up searching.
 
 To install Pootle itself, run
 
@@ -93,13 +92,14 @@ To install Pootle itself, run
 
 Running
 -------
-To run, edit pootle.prefs and specify your languages and projects. The key detail 
-here is the podir for each project.  Then run:
+To run, edit pootle.prefs and specify your languages and projects. The key
+detail here is the podir for each project.  Then run:
 
 	PootleServer
 
-You can also copy pootle.prefs to another directory, allowing you to run Pootle outside
-of the installation directory.  Edit this copy of pootle.prefs as needed.  Then run:
+You can also copy pootle.prefs to another directory, allowing you to run Pootle
+outside of the installation directory.  Edit this copy of pootle.prefs as
+needed. Then run:
 
 	PootleServer --prefsfile=your.prefs
 
@@ -109,19 +109,20 @@ generally work.
 
 Now visit http://localhost:8080/ and begin translating.
 
-To stop, press Ctrl-C. On Windows, it will only react to the Ctrl-C after a webpage is requested.
+To stop, press Ctrl-C. On Windows, it will only react to the Ctrl-C after a
+webpage is requested.
 
 Bug Reporting/Feature requests
 ------------------------------
-You can always report bugs or feature requests on the mailing list but because of the increase
-in users and the fact that bug reports do go missing it is probably best to place your
-bug report in Bugzilla: http://bugs.locamotion.org/
+You can always report bugs or feature requests on the mailing list but because
+of the increase in users and the fact that bug reports do go missing it is
+probably best to place your bug report in Bugzilla: http://bugs.locamotion.org/
 
-If you have a traceback or a patch then please include it.  Also please be quite specific
-about how the bug occured and what you expected to happen.
+If you have a traceback or a patch then please include it. Also please be quite
+specific about how the bug occured and what you expected to happen.
 
-If this is a feature request then try to be specific about how you think this feature should 
-work.
+If this is a feature request then try to be specific about how you think this
+feature should work.
 
 Notes
 -----
