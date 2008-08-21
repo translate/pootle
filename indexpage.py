@@ -997,7 +997,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     keys = projectstats['assign']().keys()
     keys.sort()
     for assignname in keys:
-      assigned = projectstats['assign'][assignname]
+      assigned = projectstats['assign']()[assignname]
       assigncount = len(assigned)
       assignwords = self.project.countwords(assigned)
       complete = [statsitem for statsitem in assigned if statsitem in projectstats['units']().get('translated', [])]
