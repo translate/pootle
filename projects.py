@@ -647,7 +647,7 @@ class TranslationProject(object):
       os.close(tempzipfd)
 
       import subprocess
-      if subprocess.call('unzip "%s" -d "%s"' % (tempzipname, tempdir), shell=True):
+      if subprocess.call(["unzip", tempzipname, "-d", tempdir]):
         raise zipfile.BadZipfile(session.localize("Error while extracting archive"))
 
       def upload(basedir, path, files):
