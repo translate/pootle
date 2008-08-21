@@ -44,6 +44,7 @@ import os
 import cStringIO
 import traceback
 import gettext
+import zipfile
 
 class RightsError(ValueError):
   pass
@@ -624,7 +625,6 @@ class TranslationProject(object):
         os.remove(tempzipfile)
 
     # but if it doesn't work, we can do it from python
-    import zipfile
     archivecontents = cStringIO.StringIO()
     archive = zipfile.ZipFile(archivecontents, 'w', zipfile.ZIP_DEFLATED)
     for pofilename in pofilenames:
@@ -647,7 +647,8 @@ class TranslationProject(object):
       os.close(tempzipfd)
 
       import subprocess
-      subprocess.Popen('unzip "%s" -d "%s"' % (tempzipname, tempdir), shell=True)
+      if subprocess.call('unzip "%s" -d "%s"' % (tempzipname, tempdir), shell=True):
+        raise zipfile.BadZipfile(session.localize("Error while extracting archive"))
 
       def upload(basedir, path, files):
         for fname in files:
@@ -666,7 +667,6 @@ class TranslationProject(object):
       os.unlink(tempzipname)
       shutil.rmtree(tempdir)
 
-    import zipfile
     archive = zipfile.ZipFile(cStringIO.StringIO(archivecontents), 'r')
     # TODO: find a better way to return errors...
     for filename in archive.namelist():
