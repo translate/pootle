@@ -34,8 +34,8 @@ http://translate.sourceforge.net/
 Note all the optional dependencies of the Translate Toolkit for optimal 
 performance and functionality in Pootle.
 
-The Translate Toolkit requires Python 2.3 or higher, but Pootle itself might 
-only work with Python 2.4 or higher.  The Translate Toolkit must be installed 
+The Translate Toolkit requires Python 2.3 or higher, but Pootle itself only
+works with Python 2.4 or higher.  The Translate Toolkit must be installed 
 properly i.e. it needs to be accessible in your Python Path. This will normally
 be accomplished by installing from source:
 
