@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2004-2006 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -91,7 +91,7 @@ class POTree:
             languagecode, countrycode = languagecode.split("_")
             countrycode = countrycode.upper()
             languagecode = "%s_%s" % (languagecode, countrycode)
-          else: 
+          else:
             raise ValueError("Language code must be alphabetic")
         if self.haslanguage(languagecode):
           raise ValueError("Already have language with the code %s" % languagecode)
@@ -485,7 +485,7 @@ class POTree:
       else:
         basedirname = dirname.replace(prefix, "", 1)
       for fname in fnames:
-        # check that it actually exists (to avoid problems with broken symbolic 
+        # check that it actually exists (to avoid problems with broken symbolic
         # links, for example)
         fpath = os.path.join(basedirname, fname)
         if fname.endswith(os.extsep+poext):
@@ -525,6 +525,7 @@ class POTree:
         for pofilename in translationproject.pofilenames:
           translationproject.getpostats(pofilename)
           translationproject.pofiles[pofilename] = pootlefile.pootlefile(translationproject, pofilename)
+          translationproject.pofiles[pofilename].statistics.getstats()
           print ".",
         print
         self.projectcache = {}
