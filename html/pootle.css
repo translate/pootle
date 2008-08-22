@@ -550,6 +550,11 @@ div.info {
 	line-height:150%;
 	padding:2px;
 }
+
+.checkinfo {
+  vertical-align: top;
+}
+
 .account
 {
 }

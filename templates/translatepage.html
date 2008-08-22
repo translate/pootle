@@ -283,8 +283,9 @@ from Pootle.templates import pootlepage, navbar
       <input name="action" value="translate" title="${assigns.action_title}"/>
       <input name="doassign" type="submit" value="${assigns.submit_text}"/>
     </form>
-    <div class="side" py:if="defined('checking_text')" py:content="checking_text">
-      checking has-suggestion, etc
+    <div class="side" py:if="defined('checking_text')">
+      <img src="${baseurl}images/information.png" class="checkinfo" alt="" />
+      <span py:content="XML(checking_text)">checking has-suggestion, etc</span>
     </div>
   </div>
   <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl, show_assigns())"/>
