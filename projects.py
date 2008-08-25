@@ -1269,7 +1269,7 @@ class TranslationProject(object):
       pofilename = pofile
       pofile = self.getpofile(pofilename)
     pofile.track(item, "suggestion by %s accepted by %s" % (self.getsuggester(pofile, item, suggitem), session.username))
-    pofile.deletesuggestion(item, suggitem)
+    pofile.deletesuggestion(item, suggitem, newtrans)
     self.updatetranslation(pofilename, item, {"target": newtrans, "fuzzy": False}, session)
 
   def getsuggester(self, pofile, item, suggitem):
@@ -1287,7 +1287,7 @@ class TranslationProject(object):
       pofilename = pofile
       pofile = self.getpofile(pofilename)
     pofile.track(item, "suggestion by %s rejected by %s" % (self.getsuggester(pofile, item, suggitem), session.username))
-    pofile.deletesuggestion(item, suggitem)
+    pofile.deletesuggestion(item, suggitem, newtrans)
 
   def gettmsuggestions(self, pofile, item):
     """find all the TM suggestions for the given (pofile or pofilename) and item"""

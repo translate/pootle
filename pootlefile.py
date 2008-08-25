@@ -35,8 +35,28 @@ from jToolkit import glock
 import time
 import os
 import bisect
+import weakref
 
 _UNIT_CHECKER = checks.UnitChecker()
+
+suggestion_source_index = weakref.WeakKeyDictionary()
+
+def build_map(store, property):
+  unit_map = {}
+  for unit in store.units:
+    key = property(unit)
+    if key not in unit_map:
+      unit_map[key] = []
+    unit_map[key].append(unit)
+  return unit_map
+
+def build_index(store, index, property):
+  if store not in index:
+    index[store] = build_map(store, property)
+  return index[store]
+
+def get_source_index(store):
+  return build_index(store, suggestion_source_index, lambda unit: unit.source)
 
 class LockedFile:
   """locked interaction with a filesystem file"""
@@ -359,12 +379,9 @@ def make_class(base_class):
       unit = self.getitem(item)
       if isinstance(unit, xliff.xliffunit):
         return unit.getalttrans()
-
-      locations = unit.getlocations()
-      self.readpendingfile()
-      # TODO: review the matching method
-      suggestpos = [suggestpo for suggestpo in self.pendingfile.units if suggestpo.getlocations() == locations]
-      return suggestpos
+      else:
+        self.readpendingfile()
+        return get_source_index(self.pendingfile).get(unit.source, [])
 
     def addsuggestion(self, item, suggtarget, username):
       """adds a new suggestion for the given item"""
@@ -377,7 +394,6 @@ def make_class(base_class):
         self.savepofile()
         self.reset_statistics()
         return
-
       self.readpendingfile()
       newpo = unit.copy()
       if username is not None:
@@ -389,7 +405,7 @@ def make_class(base_class):
       self.statistics.reclassifyunit(item)
       self.reset_statistics()
 
-    def deletesuggestion(self, item, suggitem):
+    def deletesuggestion(self, item, suggitem, newtrans=None):
       """removes the suggestion from the pending file"""
       unit = self.getitem(item)
       if hasattr(unit, "xmlelement"):
@@ -398,12 +414,16 @@ def make_class(base_class):
         self.savepofile()
       else:
         self.readpendingfile()
-        locations = unit.getlocations()
+        # Update the suggestion index
+        get_source_index(self.pendingfile)[unit.source] = [unit for unit in get_source_index(self.pendingfile)[unit.source] if unit.target != newtrans]
         # TODO: remove the suggestion in a less brutal manner
-        pendingitems = [pendingitem for pendingitem, suggestpo in enumerate(self.pendingfile.units) if suggestpo.getlocations() == locations]
-        pendingitem = pendingitems[suggitem]
-        del self.pendingfile.units[pendingitem]
-        self.savependingfile()
+        pendingitems = [pendingitem for pendingitem, suggestpo in enumerate(self.pendingfile.units) if suggestpo.target == newtrans]
+        try:
+          pendingitem = pendingitems[suggitem]
+          del self.pendingfile.units[pendingitem]
+          self.savependingfile()
+        except IndexError:
+          pass # TODO: Print a warning for the user.
       self.statistics.reclassifyunit(item)
       self.reset_statistics()
 
