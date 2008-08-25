@@ -24,9 +24,6 @@ class pootlestatistics:
     """constructs statistic object for the given file"""
     # TODO: try and remove circular references between basefile and this class
     self.basefile = basefile
-    self._stats = None
-    self._totals = None
-    self._unitstats = None
     self.statscache = statsdb.StatsCache(STATS_DB_FILE)
     self._memoize_table = {}
 
@@ -69,15 +66,8 @@ class pootlestatistics:
     the given unit"""
     unit = self.basefile.getitem(item)
     item = self.getstats()["total"][item]
-
-    classes = self.statscache.recacheunit(self.basefile.filename, self.basefile.checker, unit)
-    for classname, matchingitems in self.getstats().items():
-      if (classname in classes) != (item in matchingitems):
-        if classname in classes:
-          self.getstats()[classname].append(item)
-        else:
-          self.getstats()[classname].remove(item)
-        self.getstats()[classname].sort()
+    self.statscache.recacheunit(self.basefile.filename, self.basefile.checker, unit)
+    self._memoize_table = {}
     self.updatequickstats()
 
   @memoize
