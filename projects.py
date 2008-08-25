@@ -540,12 +540,8 @@ class TranslationProject(object):
       newpofile = pootlefile.pootlefile(self, popath)
       newpofile.pofreshen()
       newpofile.mergefile(currentpofile, "versionmerge")
-      # saving
-      newpofile.savepofile()
-      newpofile.reset_statistics()
+
       self.pofiles[pofilename] = newpofile
-      # recalculate everything
-      newpofile.readpofile()
     else:
       versioncontrol.updatefile(pathname)
       self.scanpofiles()
