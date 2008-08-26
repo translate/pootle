@@ -116,7 +116,30 @@ class TranslationProject(object):
     self.readprefs()
     self.scanpofiles()
     self.readquickstats()
-    self.initindex()
+    self._indexing_enabled = True
+    self._index_initialized = False
+
+  def _get_indexer(self):
+    if self._indexing_enabled:
+      try:
+        indexer = self.make_indexer()
+        if not self._index_initialized:
+          self.initindex(indexer)
+          self._index_initialized = True
+        return indexer
+      except Exception, e:
+        print "Could not intialize indexer: %s" % repr(e)
+        self._indexing_enabled = False
+        return None
+    else:
+      return None
+
+  indexer = property(_get_indexer)
+
+  def _has_index(self):
+    return self._indexing_enabled and (self._index_initialized or self.indexer != None)
+
+  has_index = property(_has_index)
 
   def readprefs(self):
     """reads the project preferences"""
@@ -751,7 +774,7 @@ class TranslationProject(object):
       yield self.pofilenames[index]
       index += 1
 
-  def getindexer(self):
+  def make_indexer(self):
     """get an indexing object for this project
 
     Since we do not want to keep the indexing databases open for the lifetime of
@@ -766,16 +789,14 @@ class TranslationProject(object):
             "pomtime": index.ANALYZER_EXACT})
     return index
 
-  def initindex(self):
+  def initindex(self, indexer):
     """initializes the search index"""
-    if not indexing.HAVE_INDEXER:
-      return
     pofilenames = self.pofiles.keys()
     pofilenames.sort()
     for pofilename in pofilenames:
-      self.updateindex(pofilename, optimize=False)
+      self.updateindex(indexer, pofilename, optimize=False)
 
-  def updateindex(self, pofilename, items=None, optimize=True):
+  def updateindex(self, indexer, pofilename, items=None, optimize=True):
     """updates the index with the contents of pofilename (limit to items if given)
 
     There are three reasons for calling this function:
@@ -802,17 +823,16 @@ class TranslationProject(object):
     @param optimize: should the indexing database be optimized afterwards
     @type optimize: bool
     """
-    if not indexing.HAVE_INDEXER:
-      return
-    index = self.getindexer()
+    if indexer == None:
+      return False
     pofile = self.pofiles[pofilename]
     # check if the pomtime in the index == the latest pomtime
     try:
         pomtime = statistics.getmodtime(pofile.filename)
-        pofilenamequery = index.make_query([("pofilename", pofilename)], True)
-        pomtimequery = index.make_query([("pomtime", str(pomtime))], True)
-        gooditemsquery = index.make_query([pofilenamequery, pomtimequery], True)
-        gooditemsnum = index.get_query_result(gooditemsquery).get_matches_count()
+        pofilenamequery = indexer.make_query([("pofilename", pofilename)], True)
+        pomtimequery = indexer.make_query([("pomtime", str(pomtime))], True)
+        gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
+        gooditemsnum = indexer.get_query_result(gooditemsquery).get_matches_count()
         # if there is at least one up-to-date indexing item, then the po file
         # was not changed externally -> no need to update the database
         if (gooditemsnum > 0) and (not items):
@@ -824,15 +844,15 @@ class TranslationProject(object):
           # older pomtime).
           print "updating", self.languagecode, "index for", pofilename, "items", items
           # delete the relevant items from the database
-          itemsquery = index.make_query([("itemno", str(itemno)) for itemno in items], False)
-          index.delete_doc([pofilenamequery, itemsquery])
+          itemsquery = indexer.make_query([("itemno", str(itemno)) for itemno in items], False)
+          indexer.delete_doc([pofilenamequery, itemsquery])
         else:
           # (items is None)
           # The po file is not indexed - or it was changed externally (see
           # "pofreshen" in pootlefile.py).
           print "updating", self.projectcode, self.languagecode, "index for", pofilename
           # delete all items of this file
-          index.delete_doc({"pofilename": pofilename})
+          indexer.delete_doc({"pofilename": pofilename})
         pofile.pofreshen()
         if items is None:
           # rebuild the whole index
@@ -853,15 +873,15 @@ class TranslationProject(object):
           doc["locations"] = unit.getlocations()
           addlist.append(doc)
         if addlist:
-          index.begin_transaction()
+          indexer.begin_transaction()
           try:
             for add_item in addlist:
-                index.index_document(add_item)
+                indexer.index_document(add_item)
           finally:
-            index.commit_transaction()
-            index.flush(optimize=optimize)
+            indexer.commit_transaction()
+            indexer.flush(optimize=optimize)
     except (base.ParseError, IOError, OSError):
-        index.delete_doc({"pofilename": pofilename})
+        indexer.delete_doc({"pofilename": pofilename})
         print "Not indexing %s, since it is corrupt" % (pofilename,)
 
   def matchessearch(self, pofilename, search):
@@ -896,36 +916,43 @@ class TranslationProject(object):
 
   def indexsearch(self, search, returnfields):
     """returns the results from searching the index with the given search"""
-    if not indexing.HAVE_INDEXER:
+    def do_search(indexer):
+      searchparts = []
+      if search.searchtext:
+        # Generate a list for the query based on the selected fields
+        querylist = [(f, search.searchtext) for f in search.searchfields]
+        textquery = indexer.make_query(querylist, False)
+        searchparts.append(textquery)
+      if search.dirfilter:
+        pofilenames = self.browsefiles(dirfilter=search.dirfilter)
+        filequery = indexer.make_query([("pofilename", pofilename) for pofilename in pofilenames], False)
+        searchparts.append(filequery)
+      # TODO: add other search items
+      limitedquery = indexer.make_query(searchparts, True)
+      return indexer.search(limitedquery, returnfields)
+
+    indexer = self.indexer
+    if indexer != None:
+      return do_search(indexer)
+    else:
       return False
-    index = self.getindexer()
-    searchparts = []
-    if search.searchtext:
-      # Generate a list for the query based on the selected fields
-      querylist = [(f, search.searchtext) for f in search.searchfields]
-      textquery = index.make_query(querylist, False)
-      searchparts.append(textquery)
-    if search.dirfilter:
-      pofilenames = self.browsefiles(dirfilter=search.dirfilter)
-      filequery = index.make_query([("pofilename", pofilename) for pofilename in pofilenames], False)
-      searchparts.append(filequery)
-    # TODO: add other search items
-    limitedquery = index.make_query(searchparts, True)
-    return index.search(limitedquery, returnfields)
 
   def searchpofilenames(self, lastpofilename, search, includelast=False):
     """find the next pofilename that has items matching the given search"""
     if lastpofilename and not lastpofilename in self.pofiles:
       # accessing will autoload this file...
       self.pofiles[lastpofilename]
-    if indexing.HAVE_INDEXER and search.searchtext:
-      # TODO: move this up a level, use index to manage whole search, so we don't do this twice
-      hits = self.indexsearch(search, "pofilename")
-      # there will be only result for the field "pofilename" - so we just
-      # pick the first
-      searchpofilenames = dict.fromkeys([hit["pofilename"][0] for hit in hits])
-    else:
-      searchpofilenames = None
+    searchpofilenames = None
+    if self.has_index and search.searchtext:
+      try:
+        # TODO: move this up a level, use index to manage whole search, so we don't do this twice
+        hits = self.indexsearch(search, "pofilename")
+        # there will be only result for the field "pofilename" - so we just
+        # pick the first
+        searchpofilenames = dict.fromkeys([hit["pofilename"][0] for hit in hits])
+      except:
+        print "Could not perform indexed search on %s. Index is corrupt." % lastpofilename
+        self._indexing_enabled = False
     for pofilename in self.iterpofilenames(lastpofilename, includelast):
       if searchpofilenames is not None:
         if pofilename not in searchpofilenames:
@@ -968,11 +995,14 @@ class TranslationProject(object):
         return items
 
     def get_items(pofilename, search, lastitem):
-      if indexing.HAVE_INDEXER and search.searchtext:
-        # Return an iterator using the indexer if indexing is available and if there is searchtext.
-        return indexed(pofilename, search, lastitem)
-      else:
-        return non_indexed(pofilename, search, lastitem)
+      if self.has_index and search.searchtext:
+        try:
+          # Return an iterator using the indexer if indexing is available and if there is searchtext.
+          return indexed(pofilename, search, lastitem)
+        except:
+          print "Could not perform indexed search on %s. Index is corrupt." % pofilename
+          self._indexing_enabled = False
+      return non_indexed(pofilename, search, lastitem)
 
     for pofilename in self.searchpofilenames(pofilename, search, includelast=True):
       for item in get_items(pofilename, search, lastitem):
@@ -1239,7 +1269,7 @@ class TranslationProject(object):
     pofile.track(item, "edited by %s" % session.username)
     languageprefs = getattr(session.instance.languages, self.languagecode, None)
     pofile.updateunit(item, newvalues, session.prefs, languageprefs)
-    self.updateindex(pofilename, [item])
+    self.updateindex(self.indexer, pofilename, [item])
 
   def suggesttranslation(self, pofilename, item, trans, session):
     """stores a new suggestion for a translation..."""

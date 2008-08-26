@@ -523,6 +523,7 @@ class POTree:
         translationproject = self.getproject(languagecode, projectcode)
         translationproject.stats = {}
         for pofilename in translationproject.pofilenames:
+          translationproject.indexer # Force indexing to be initialized
           translationproject.getpostats(pofilename)
           translationproject.pofiles[pofilename] = pootlefile.pootlefile(translationproject, pofilename)
           translationproject.pofiles[pofilename].statistics.getstats()
