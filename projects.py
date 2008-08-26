@@ -32,7 +32,7 @@ from translate.convert import po2oo
 from translate.tools import pocompile
 from translate.tools import pogrep
 from translate.search import match
-from translate.search import indexer
+from translate.search import indexing
 from translate.storage import statsdb, base
 from Pootle import statistics
 from Pootle import pootlefile
@@ -759,7 +759,7 @@ class TranslationProject(object):
     but should be used via a short living local variable.
     """
     indexdir = os.path.join(self.podir, self.index_directory)
-    index = indexer.get_indexer(indexdir)
+    index = indexing.get_indexer(indexdir)
     index.set_field_analyzers({
             "pofilename": index.ANALYZER_EXACT,
             "itemno": index.ANALYZER_EXACT,
@@ -768,7 +768,7 @@ class TranslationProject(object):
 
   def initindex(self):
     """initializes the search index"""
-    if not indexer.HAVE_INDEXER:
+    if not indexing.HAVE_INDEXER:
       return
     pofilenames = self.pofiles.keys()
     pofilenames.sort()
@@ -802,7 +802,7 @@ class TranslationProject(object):
     @param optimize: should the indexing database be optimized afterwards
     @type optimize: bool
     """
-    if not indexer.HAVE_INDEXER:
+    if not indexing.HAVE_INDEXER:
       return
     index = self.getindexer()
     pofile = self.pofiles[pofilename]
@@ -896,7 +896,7 @@ class TranslationProject(object):
 
   def indexsearch(self, search, returnfields):
     """returns the results from searching the index with the given search"""
-    if not indexer.HAVE_INDEXER:
+    if not indexing.HAVE_INDEXER:
       return False
     index = self.getindexer()
     searchparts = []
@@ -918,7 +918,7 @@ class TranslationProject(object):
     if lastpofilename and not lastpofilename in self.pofiles:
       # accessing will autoload this file...
       self.pofiles[lastpofilename]
-    if indexer.HAVE_INDEXER and search.searchtext:
+    if indexing.HAVE_INDEXER and search.searchtext:
       # TODO: move this up a level, use index to manage whole search, so we don't do this twice
       hits = self.indexsearch(search, "pofilename")
       # there will be only result for the field "pofilename" - so we just
@@ -968,7 +968,7 @@ class TranslationProject(object):
         return items
 
     def get_items(pofilename, search, lastitem):
-      if indexer.HAVE_INDEXER and search.searchtext:
+      if indexing.HAVE_INDEXER and search.searchtext:
         # Return an iterator using the indexer if indexing is available and if there is searchtext.
         return indexed(pofilename, search, lastitem)
       else:

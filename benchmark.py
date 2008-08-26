@@ -1,14 +1,14 @@
 #!/usr/bin/env python
-# 
+#
 # Copyright 2004-2006 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -24,7 +24,7 @@ from Pootle import potree
 from Pootle import pootle
 from Pootle import users
 from translate.storage import po
-from translate.search import indexer
+from translate.search import indexing
 import os
 import profile
 import pstats
@@ -119,7 +119,7 @@ Pootle:
     def parse_and_create_stats(self):
         """parses all the po files in the test directory into memory, using pootlefile, which creates Stats"""
         count = 0
-        indexer.HAVE_INDEXER = False
+        indexing.HAVE_INDEXER = False
         for dirpath, subdirs, filenames in os.walk(self.po_dir, topdown=False):
             for name in filenames:
                 pofilename = os.path.join(dirpath, name)
@@ -130,7 +130,7 @@ Pootle:
     def parse_and_create_index(self):
         """parses all the po files in the test directory into memory, using pootlefile, and allow index creation"""
         count = 0
-        indexer.HAVE_INDEXER = True
+        indexing.HAVE_INDEXER = True
         self.server.potree.projectcache.clear()
         project = self.server.potree.getproject("zxx", "benchmark")
         for name in project.browsefiles():
