@@ -515,9 +515,6 @@ def make_class(base_class):
         # XXX: If we needed to add a header, the index value in item will be one out after
         # adding the header.
         # TODO: remove once we force the PO class to always output headers
-        force_recache = False
-        if not self.header():
-          force_recache = True
         self.updateheader(add=True, **headerupdates)
         if languageprefs:
           nplurals = getattr(languageprefs, "nplurals", None)
