@@ -551,11 +551,6 @@ class TranslationProject(object):
     if os.path.exists(pathname):
       popath = os.path.join(dirname, pofilename)
       currentpofile = self.getpofile(popath)
-      # reading BASE version of file
-      origcontents = versioncontrol.getcleanfile(pathname, "BASE")
-      origpofile = pootlefile.pootlefile(self, popath)
-      originfile = cStringIO.StringIO(origcontents)
-      origpofile.parse(originfile)
       # matching current file with BASE version
       # TODO: add some locking here...
       # reading new version of file
@@ -563,7 +558,6 @@ class TranslationProject(object):
       newpofile = pootlefile.pootlefile(self, popath)
       newpofile.pofreshen()
       newpofile.mergefile(currentpofile, "versionmerge")
-
       self.pofiles[pofilename] = newpofile
     else:
       versioncontrol.updatefile(pathname)
