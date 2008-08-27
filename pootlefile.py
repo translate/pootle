@@ -496,6 +496,8 @@ def make_class(base_class):
       """updates a translation with a new target value"""
       self.pofreshen()
       unit = self.getitem(item)
+      # See hack description below
+      recache_file = False
 
       if newvalues.has_key("target"):
         unit.target = newvalues["target"]
@@ -515,6 +517,7 @@ def make_class(base_class):
         # XXX: If we needed to add a header, the index value in item will be one out after
         # adding the header.
         # TODO: remove once we force the PO class to always output headers
+        recache_file = self.header() is None
         self.updateheader(add=True, **headerupdates)
         if languageprefs:
           nplurals = getattr(languageprefs, "nplurals", None)
@@ -522,6 +525,12 @@ def make_class(base_class):
           if nplurals and pluralequation:
             self.updateheaderplural(nplurals, pluralequation)
       self.savepofile()
+      if recache_file:
+        # This is an ugly hack to force stats to be recalculated for a PO file
+        # which lacked a header, but which should just have been saved to disc
+        # with a header.
+        self.reset_statistics()
+        self.statistics.getstats()
       self.statistics.reclassifyunit(item)
       self.reset_statistics()
 
