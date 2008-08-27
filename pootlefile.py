@@ -659,8 +659,6 @@ def make_class(base_class):
         #TODO: We don't support updating the header yet.
         self.savepofile()
         self.reset_statistics()
-        # the easiest way to recalculate everything
-        self.readpofile()
         return
 
       #Let's update selected header entries. Only the ones listed below, and ones
@@ -693,8 +691,6 @@ def make_class(base_class):
 
       self.savepofile()
       self.reset_statistics()
-      # the easiest way to recalculate everything
-      self.readpofile()
   return pootlefile
 
 _pootlefile_classes = {}
