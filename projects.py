@@ -128,7 +128,7 @@ class TranslationProject(object):
           self._index_initialized = True
         return indexer
       except Exception, e:
-        print "Could not intialize indexer: %s" % repr(e)
+        print "Could not intialize indexer for %s in %s: %s" % (self.projectcode, self.languagecode, str(e))
         self._indexing_enabled = False
         return None
     else:
