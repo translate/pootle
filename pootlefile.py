@@ -648,10 +648,7 @@ def make_class(base_class):
 
         if oldpo is None:
           if allownewstrings:
-            if isinstance(newpo, po.pounit):
-              self.addunit(newpo)
-            else:
-              self.addunit(self.UnitClass.buildfromunit(newpo))
+            self.addunit(self.UnitClass.buildfromunit(newpo))
         elif newpo is None:
           # TODO: mark the old one as obsolete
           pass
