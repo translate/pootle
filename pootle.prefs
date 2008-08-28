@@ -14,7 +14,7 @@ Pootle:
   # Pootle.stats_db
   #
   # Set this to the location of the statistics database used by Pootle. 
-  # stats_db = "~"
+  # stats_db = "/var/cache/pootle/stats.db"
 
   # Pootle.baseurl
   # 
