@@ -116,7 +116,7 @@ class TranslationProject(object):
     self.scanpofiles()
     self._indexing_enabled = True
     self._index_initialized = False
-
+   
   def _get_indexer(self):
     if self._indexing_enabled:
       try:
@@ -895,13 +895,11 @@ class TranslationProject(object):
           if search.assignedaction not in assigns:
             return False
     if search.matchnames:
-      postats = self.getpostats(pofilename)
-      matches = False
       for name in search.matchnames:
-        if postats.get(name):
-          matches = True
-      if not matches:
-        return False
+        stripped_name = name[6:]
+        if self.pofiles[pofilename].statistics.file_fails_test(stripped_name):
+          return True
+      return False
     return True
 
   def indexsearch(self, search, returnfields):
@@ -1111,6 +1109,12 @@ class TranslationProject(object):
         unit_stats.setdefault(name, []).extend([(pofilename, item) for item in items])
     return unit_stats
 
+  def combine_file_failures(self, pofilenames, name):
+    for pofilename in pofilenames:
+      if self.pofiles[pofilename].statistics.file_fails_test(name):
+        return True
+    return False
+
   def combineassignstats(self, pofilenames=None, action=None):
     """combines assign statistics for the given po files (or all if None given)"""
     assign_stats = {}
@@ -1188,12 +1192,12 @@ class TranslationProject(object):
   def getpofilelen(self, pofilename):
     """returns number of items in the given pofilename"""
     pofile = self.getpofile(pofilename)
-    return pofile.statistics.getitemslen()
+    return len(pofile.total)
 
   def getitems(self, pofilename, itemstart, itemstop):
     """returns a set of items from the pofile, converted to original and translation strings"""
     pofile = self.getpofile(pofilename)
-    units = [pofile.units[index] for index in pofile.statistics.getstats()["total"][max(itemstart,0):itemstop]]
+    units = [pofile.units[index] for index in pofile.total[max(itemstart,0):itemstop]]
     return units
 
   def updatetranslation(self, pofilename, item, newvalues, session):
