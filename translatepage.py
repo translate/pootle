@@ -97,10 +97,10 @@ class TranslatePage(pagelayout.PootleNavPage):
       rows = self.getdisplayrows("translate")
       icon="edit"
     if self.pofilename is not None:
-      postats = self.project.getpostats(self.pofilename)
-      untranslated, fuzzy = postats["untranslated"], postats["fuzzy"]
+      postats = self.project.getpototals(self.pofilename)
+      untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
       translated, total = postats["translated"], postats["total"]
-      mainstats = self.localize("%d/%d translated\n(%d untranslated, %d fuzzy)", len(translated), len(total), len(untranslated), len(fuzzy))
+      mainstats = self.localize("%d/%d translated\n(%d untranslated, %d fuzzy)", translated, total, untranslated, fuzzy)
       pagelinks = self.getpagelinks("?translate=1&view=1", rows)
     navbarpath_dict = self.makenavbarpath_dict(self.project, self.session, self.pofilename, dirfilter=self.dirfilter or "")
     # templatising
