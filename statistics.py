@@ -9,15 +9,6 @@ def getmodtime(filename):
   except:
     return None
 
-def memoize(f):
-  def memoized_f(self, *args, **kwargs):
-    f_name = f.__name__
-    table = self._memoize_table
-    if f_name not in table:
-      table[f_name] = f(self, *args, **kwargs)
-    return table[f_name]
-  return memoized_f
-
 class pootlestatistics:
   """this represents the statistics known about a file"""
   def __init__(self, basefile):
@@ -25,9 +16,7 @@ class pootlestatistics:
     # TODO: try and remove circular references between basefile and this class
     self.basefile = basefile
     self.statscache = statsdb.StatsCache(STATS_DB_FILE)
-    self._memoize_table = {}
 
-  @memoize
   def getquickstats(self):
     """returns the quick statistics (totals only)"""
     try:
@@ -35,7 +24,15 @@ class pootlestatistics:
     except:
       return statsdb.emptyfiletotals()
 
-  @memoize
+  def file_fails_test(self, name, checker=None):
+    """reads the stats if neccessary or returns them from the cache"""
+    if checker == None:
+      checker = self.basefile.checker
+    try:
+      return self.statscache.file_fails_test(self.basefile.filename, checker, name)
+    except:
+      return False
+
   def getstats(self, checker=None):
     """reads the stats if neccessary or returns them from the cache"""
     if checker == None:
@@ -45,7 +42,6 @@ class pootlestatistics:
     except:
       return statsdb.emptyfilestats()
 
-  @memoize
   def getunitstats(self):
     try:
       return self.statscache.unitstats(self.basefile.filename)
@@ -59,7 +55,6 @@ class pootlestatistics:
     self.statscache.recacheunit(self.basefile.filename, self.basefile.checker, unit)
     self._memoize_table = {}
 
-  @memoize
   def getitemslen(self):
     """gets the number of items in the file"""
     return self.getquickstats()["total"]
