@@ -1,4 +1,5 @@
 from translate.storage import statsdb
+import request_cache
 
 STATS_DB_FILE = None
 
@@ -20,7 +21,7 @@ class pootlestatistics:
   def getquickstats(self):
     """returns the quick statistics (totals only)"""
     try:
-      return self.statscache.filetotals(self.basefile.filename) or statsdb.emptyfiletotals()
+      return request_cache.call(self.statscache.filetotals, self.basefile.filename) or statsdb.emptyfiletotals()
     except:
       return statsdb.emptyfiletotals()
 
@@ -29,7 +30,7 @@ class pootlestatistics:
     if checker == None:
       checker = self.basefile.checker
     try:
-      return self.statscache.file_fails_test(self.basefile.filename, checker, name)
+      return request_cache.call(self.statscache.file_fails_test, self.basefile.filename, checker, name)
     except:
       return False
 
@@ -38,13 +39,13 @@ class pootlestatistics:
     if checker == None:
       checker = self.basefile.checker
     try:
-      return self.statscache.filestats(self.basefile.filename, checker)
+      return request_cache.call(self.statscache.filestats, self.basefile.filename, checker)
     except:
       return statsdb.emptyfilestats()
 
   def getunitstats(self):
     try:
-      return self.statscache.unitstats(self.basefile.filename)
+      return request_cache.call(self.statscache.unitstats, self.basefile.filename)
     except:
       return statsdb.emptyunitstats()
 
