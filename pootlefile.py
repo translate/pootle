@@ -298,6 +298,7 @@ def make_class(base_class):
 
       self.pendingfilename = self.filename + os.extsep + "pending"
       self.pendingfile = None
+      self.pomtime = self.lockedfile.readmodtime()
       self.statistics = statistics.pootlestatistics(self)
       self.tmfilename = self.filename + os.extsep + "tm"
       # we delay parsing until it is required
@@ -392,7 +393,6 @@ def make_class(base_class):
         unit.addalttrans(suggtarget, origin=username)
         self.statistics.reclassifyunit(item)
         self.savepofile()
-        self.reset_statistics()
         return
       self.readpendingfile()
       newpo = unit.copy()
@@ -403,7 +403,6 @@ def make_class(base_class):
       self.pendingfile.addunit(newpo)
       self.savependingfile()
       self.statistics.reclassifyunit(item)
-      self.reset_statistics()
 
     def deletesuggestion(self, item, suggitem, newtrans=None):
       """removes the suggestion from the pending file"""
@@ -425,7 +424,6 @@ def make_class(base_class):
         except IndexError:
           pass # TODO: Print a warning for the user.
       self.statistics.reclassifyunit(item)
-      self.reset_statistics()
 
     def getsuggester(self, item, suggitem):
       """returns who suggested the given item's suggitem if recorded, else None"""
@@ -462,11 +460,15 @@ def make_class(base_class):
       # note: we rely on this not resetting the filename, which we set earlier, when given a string
       self.parse(filecontents)
       self.pomtime = pomtime
+      self.reset_statistics()
 
-    def savepofile(self):
+    def savepofile(self, reset_stats=True):
       """saves changes to the main file to disk..."""
       output = str(self)
       self.pomtime = self.lockedfile.writecontents(output)
+      if reset_stats:
+        self.reset_statistics()
+        self.statistics.updatequickstats()
 
     def pofreshen(self):
       """makes sure we have a freshly parsed pofile
@@ -474,7 +476,6 @@ def make_class(base_class):
       @return: True if the file was freshened, False otherwise"""
       try:
           if self.pomtime != self.lockedfile.readmodtime():
-            self.reset_statistics()
             self.readpofile()
             return True
       except OSError, e:
@@ -496,8 +497,7 @@ def make_class(base_class):
       """updates a translation with a new target value"""
       self.pofreshen()
       unit = self.getitem(item)
-      # See hack description below
-      recache_file = False
+      reset_stats = False
 
       if newvalues.has_key("target"):
         unit.target = newvalues["target"]
@@ -517,22 +517,18 @@ def make_class(base_class):
         # XXX: If we needed to add a header, the index value in item will be one out after
         # adding the header.
         # TODO: remove once we force the PO class to always output headers
-        recache_file = self.header() is None
+        reset_stats = self.header() is None
         self.updateheader(add=True, **headerupdates)
         if languageprefs:
           nplurals = getattr(languageprefs, "nplurals", None)
           pluralequation = getattr(languageprefs, "pluralequation", None)
           if nplurals and pluralequation:
             self.updateheaderplural(nplurals, pluralequation)
-      self.savepofile()
-      if recache_file:
-        # This is an ugly hack to force stats to be recalculated for a PO file
-        # which lacked a header, but which should just have been saved to disc
-        # with a header.
-        self.reset_statistics()
-        self.statistics.getstats()
+      # If we didn't add a header, savepofile doesn't have to reset the stats,
+      # since reclassifyunit will do. This gives us a little speed boost for
+      # the common case.
+      self.savepofile(reset_stats)
       self.statistics.reclassifyunit(item)
-      self.reset_statistics()
 
     def getitem(self, item):
       """Returns a single unit based on the item number."""
@@ -667,7 +663,6 @@ def make_class(base_class):
       if not isinstance(newfile, po.pofile) or suggestions:
         #TODO: We don't support updating the header yet.
         self.savepofile()
-        self.reset_statistics()
         return
 
       #Let's update selected header entries. Only the ones listed below, and ones
@@ -699,7 +694,6 @@ def make_class(base_class):
             header.allcomments[i].extend(newheader.allcomments[i])
 
       self.savepofile()
-      self.reset_statistics()
   return pootlefile
 
 _pootlefile_classes = {}

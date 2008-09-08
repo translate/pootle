@@ -435,8 +435,10 @@ class ProjectIndex(pagelayout.PootleNavPage):
         raise ValueError(self.localize("Cannot upload file, no file attached"))
       if transfiles:
         self.project.uploadfile(self.session, self.dirname, uploadfile.filename, uploadfile.contents, overwrite)
+        self.project.scanpofiles()
       elif uploadfile.filename.endswith(".zip"):
         self.project.uploadarchive(self.session, self.dirname, uploadfile.contents)
+        self.project.scanpofiles()
       else:
         raise ValueError(self.localize("Can only upload PO files and zips of PO files"))
       del self.argdict["doupload"]
@@ -446,6 +448,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         raise ValueError("cannot update file, no file specified")
       if updatefile.endswith("." + self.project.fileext):
         self.project.updatepofile(self.session, self.dirname, updatefile)
+        self.project.scanpofiles()
       else:
         raise ValueError("can only update files with extension ." + self.project.fileext)
       del self.argdict["doupdate"]

@@ -101,7 +101,6 @@ msgid "chair"
 msgstr ""'''
         pofile = self.poparse(posource)
         pofile.savepofile()
-        pofile.reset_statistics()
         assert pofile.statistics.getstats()['fuzzy'] == [1]
         assert pofile.statistics.getstats()['untranslated'] == [2]
         assert pofile.statistics.getstats()['translated'] == [0]

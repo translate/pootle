@@ -52,23 +52,12 @@ class pootlestatistics:
     except:
       return statsdb.emptyunitstats()
 
-  def updatequickstats(self, save=True):
-    """updates the project's quick stats on this file"""
-    totals = self.getquickstats()
-    self.basefile.project.updatequickstats(self.basefile.pofilename,
-        totals.get("translatedsourcewords", 0), totals.get("translated", 0),
-        totals.get("fuzzysourcewords", 0), totals.get("fuzzy", 0),
-        totals.get("totalsourcewords", 0), totals.get("total", 0),
-        save)
-
   def reclassifyunit(self, item):
     """Reclassifies all the information in the database and self._stats about
     the given unit"""
     unit = self.basefile.getitem(item)
-    item = self.getstats()["total"][item]
     self.statscache.recacheunit(self.basefile.filename, self.basefile.checker, unit)
     self._memoize_table = {}
-    self.updatequickstats()
 
   @memoize
   def getitemslen(self):

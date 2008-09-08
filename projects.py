@@ -102,7 +102,6 @@ class TranslationProject(object):
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
     self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
     self.fileext = self.potree.getprojectlocalfiletype(self.projectcode)
-    self.quickstats = {}
     # terminology matcher
     self.termmatcher = None
     self.termmatchermtime = None
@@ -115,7 +114,6 @@ class TranslationProject(object):
       self.filestyle = "std"
     self.readprefs()
     self.scanpofiles()
-    self.readquickstats()
     self._indexing_enabled = True
     self._index_initialized = False
 
@@ -540,7 +538,6 @@ class TranslationProject(object):
       outfile = open(popathname, "wb")
       outfile.write(contents)
       outfile.close()
-      self.scanpofiles()
 
   def updatepofile(self, session, dirname, pofilename):
     """updates an individual PO file from version control"""
@@ -561,7 +558,6 @@ class TranslationProject(object):
       self.pofiles[pofilename] = newpofile
     else:
       versioncontrol.updatefile(pathname)
-      self.scanpofiles()
 
   def commitpofile(self, session, dirname, pofilename):
     """commits an individual PO file to version control"""
@@ -1076,72 +1072,17 @@ class TranslationProject(object):
           assigncount += 1
     return assigncount
 
-  def updatequickstats(self, pofilename, translatedwords, translated, fuzzywords, fuzzy, totalwords, total, save=True):
-    """updates the quick stats on the given file"""
-    self.quickstats[pofilename] = (translatedwords, translated, fuzzywords, fuzzy, totalwords, total)
-    if save:
-      self.savequickstats()
-
-  def savequickstats(self):
-    """saves the quickstats"""
-    self.quickstatsfilename = os.path.join(self.podir, "pootle-%s-%s.stats" % (self.projectcode, self.languagecode))
-    quickstatsfile = open(self.quickstatsfilename, "w")
-    sortedquickstats = self.quickstats.items()
-    sortedquickstats.sort()
-    for pofilename, (translatedwords, translated, fuzzywords, fuzzy, totalwords, total) in sortedquickstats:
-      quickstatsfile.write("%s, %d, %d, %d, %d, %d, %d\n" % \
-          (pofilename, translatedwords, translated, fuzzywords, fuzzy, totalwords, total))
-    quickstatsfile.close()
-
-  def readquickstats(self):
-    """reads the quickstats from disk"""
-    self.quickstats = {}
-    self.quickstatsfilename = os.path.join(self.podir, "pootle-%s-%s.stats" % (self.projectcode, self.languagecode))
-    if os.path.exists(self.quickstatsfilename):
-      quickstatsfile = open(self.quickstatsfilename, "r")
-      for line in quickstatsfile:
-        items = line.split(",")
-        if len(items) != 7:
-          #Must be an old format style without the fuzzy stats
-          self.quickstats = self.getquickstats()
-          self.savequickstats()
-          break
-        else:
-          pofilename, translatedwords, translated, fuzzywords, fuzzy, totalwords, total = items
-          self.quickstats[pofilename] = tuple([int(a.strip()) for a in \
-              translatedwords, translated, fuzzywords, fuzzy, totalwords, total])
-
   def getquickstats(self, pofilenames=None):
     """Gets translated and total stats and wordcounts without doing calculations returning dictionary."""
     if pofilenames is None:
       pofilenames = self.pofilenames
-    alltranslatedwords, alltranslated, allfuzzywords, allfuzzy, alltotalwords, alltotal = 0, 0, 0, 0, 0, 0
-    slowfiles = []
-    for pofilename in pofilenames:
-      if pofilename not in self.quickstats:
-        slowfiles.append(pofilename)
-        continue
-      translatedwords, translated, fuzzywords, fuzzy, totalwords, total = self.quickstats[pofilename]
-      alltranslatedwords += translatedwords
-      alltranslated += translated
-      allfuzzywords += fuzzywords
-      allfuzzy += fuzzy
-      alltotalwords += totalwords
-      alltotal += total
-    for pofilename in slowfiles:
-      self.pofiles[pofilename].statistics.updatequickstats(save=False)
-      translatedwords, translated, fuzzywords, fuzzy, totalwords, total = self.quickstats[pofilename]
-      alltranslatedwords += translatedwords
-      alltranslated += translated
-      allfuzzywords += fuzzywords
-      allfuzzy += fuzzy
-      alltotalwords += totalwords
-      alltotal += total
-    if slowfiles:
-      self.savequickstats()
-    return {"translatedsourcewords": alltranslatedwords, "translated": alltranslated,
-            "fuzzysourcewords": allfuzzywords, "fuzzy": allfuzzy,
-            "totalsourcewords": alltotalwords, "total": alltotal}
+    result =  {"translatedsourcewords": 0, "translated": 0,
+               "fuzzysourcewords": 0, "fuzzy": 0,
+               "totalsourcewords": 0, "total": 0}
+    for stats in (self.pofiles[key].statistics.getquickstats() for key in pofilenames):
+      for key in result:
+        result[key] += stats[key]
+    return result
 
   def combinestats(self, pofilenames=None):
     """combines translation statistics for the given po files (or all if None given)"""
@@ -1488,18 +1429,9 @@ class DummyProject(TranslationProject):
       self.checker = checker
     self.projectcode = projectcode
     self.languagecode = languagecode
-    self.readquickstats()
 
   def scanpofiles(self):
     """A null operation if potree is not present"""
-    pass
-
-  def readquickstats(self):
-    """dummy statistics are empty"""
-    self.quickstats = {}
-
-  def savequickstats(self):
-    """saves quickstats if possible"""
     pass
 
 class DummyStatsProject(DummyProject):
@@ -1507,17 +1439,6 @@ class DummyStatsProject(DummyProject):
   def __init__(self, podir, checker, projectcode=None, languagecode=None):
     """initializes the project with the given podir"""
     DummyProject.__init__(self, podir, checker, projectcode, languagecode)
-
-  def readquickstats(self):
-    """reads statistics from whatever files are available"""
-    self.quickstats = {}
-    if self.projectcode is not None and self.languagecode is not None:
-      TranslationProject.readquickstats(self)
-
-  def savequickstats(self):
-    """saves quickstats if possible"""
-    if self.projectcode is not None and self.languagecode is not None:
-      TranslationProject.savequickstats(self)
 
 class TemplatesProject(TranslationProject):
   """Manages Template files (.pot files) for a project"""
