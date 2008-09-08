@@ -36,6 +36,7 @@ import time
 import os
 import bisect
 import weakref
+import util
 
 _UNIT_CHECKER = checks.UnitChecker()
 
@@ -304,6 +305,13 @@ def make_class(base_class):
       # we delay parsing until it is required
       self.pomtime = None
       self.tracker = timecache.timecache(20*60)
+      self._total = util.undefined # self.statistics.getstats()["total"]
+
+    @util.lazy('_total')
+    def _get_total(self):
+      return self.statistics.getstats()["total"]
+
+    total = property(_get_total)
 
     def reset_statistics(self):
       self.statistics = statistics.pootlestatistics(self)
@@ -456,6 +464,7 @@ def make_class(base_class):
       # make sure encoding is reset so it is read from the file
       self.encoding = None
       self.units = []
+      self._total = util.undefined
       pomtime, filecontents = self.lockedfile.getcontents()
       # note: we rely on this not resetting the filename, which we set earlier, when given a string
       self.parse(filecontents)
@@ -532,7 +541,7 @@ def make_class(base_class):
 
     def getitem(self, item):
       """Returns a single unit based on the item number."""
-      return self.units[self.statistics.getstats()["total"][item]]
+      return self.units[self.total[item]]
 
     def iteritems(self, search, lastitem=None):
       """iterates through the items in this pofile starting after the given lastitem, using the given search"""
@@ -560,7 +569,7 @@ def make_class(base_class):
         else:
           return translatables
 
-      translatables = self.statistics.getstats()["total"]
+      translatables = self.total
 
       # To get the items to iterate, we
       # 1. filter translatables to the range of elements after lastitem,
@@ -639,7 +648,7 @@ def make_class(base_class):
     def mergefile(self, newfile, username, allownewstrings=True, suggestions=False):
       """make sure each msgid is unique ; merge comments etc from duplicates into original"""
       self.makeindex()
-      translatables = (self.units[index] for index in self.statistics.getstats()["total"])
+      translatables = (self.units[index] for index in self.total)
       po_position = dict((unit, position) for position, unit in enumerate(translatables))
       matches = self.matchitems(newfile)
       for oldpo, newpo in matches:
