@@ -37,19 +37,7 @@ import os
 import sys
 import re
 import locale
-
-_undefined = lambda: None
-
-def lazy(f):
-  result = [_undefined]
-
-  def evaluator():
-    if result[0] != _undefined:
-      return result[0]
-    else:
-      result[0] = f()
-      return result[0]
-  return evaluator
+import util  
 
 def shortdescription(descr):
   """Returns a short description by removing markup and only including up
@@ -311,12 +299,34 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     self.updatepagestats(data["translatedsourcewords"], data["totalsourcewords"])
     return {"code": languagecode, "icon": "language", "href": href, "title": self.tr_lang(languagename), "data": data}
 
-def lazy_stats(project, pofilenames):
-  projectstats = {}
-  projectstats['basic']  = lazy(lambda: project.getquickstats(pofilenames))
-  projectstats['assign'] = lazy(lambda: project.combineassignstats(pofilenames))
-  projectstats['units']  = lazy(lambda: project.combine_unit_stats(pofilenames))
-  return projectstats
+class LazyStats(object):
+  def __init__(self, project, pofilenames):
+    self._project = project
+    self._pofilenames = pofilenames
+    self._basic = util.undefined
+    self._assign = util.undefined
+    self._units = util.undefined
+    self._has_suggestion = util.undefined
+  
+  @util.lazy('_basic')
+  def _get_basic(self):
+    return self._project.getquickstats(self._pofilenames)
+  basic = property(_get_basic)
+
+  @util.lazy('_assign')
+  def _get_assign(self):
+    return self._project.combineassignstats(self._pofilenames)
+  assign = property(_get_assign)
+
+  @util.lazy('_units')
+  def _get_units(self):
+    return self._project.combine_unit_stats(self._pofilenames)
+  units = property(_get_units)
+
+  @util.lazy('_has_suggestion')
+  def _get_has_suggestion(self):
+    return self._project.combine_file_failures(self._pofilenames, 'hassuggestion')
+  has_suggestion = property(_get_has_suggestion)
 
 class ProjectIndex(pagelayout.PootleNavPage):
   """The main page of a project in a specific language"""
@@ -352,7 +362,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       mainicon = "file"
     else:
       pofilenames = self.project.browsefiles(dirfilter)
-      projectstats = lazy_stats(self.project, pofilenames)
+      projectstats = LazyStats(self.project, pofilenames)
       if self.editing:
         actionlinks = self.getactionlinks("", projectstats, ["editing", "mine", "review", "check", "assign", "goal", "quick", "all", "zip", "sdf"], dirfilter)
       else:
@@ -681,7 +691,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       goal["title"] = self.localize("Not in a goal")
     goal["href"] = self.makelink("index.html", goal=goalname)
     if pofilenames:
-      actionlinks = self.getactionlinks("", lazy_stats(self.project, pofilenames), linksrequired=["mine", "review", "translate", "zip"], goal=goalname)
+      actionlinks = self.getactionlinks("", LazyStats(self.project, pofilenames), linksrequired=["mine", "review", "translate", "zip"], goal=goalname)
       goal["actions"] = actionlinks
     goaluserslist = []
     if goalusers:
@@ -711,7 +721,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     browseurl = self.getbrowseurl("%s/" % basename, **newargs)
     diritem = {"href": browseurl, "title": basename, "icon": "folder", "isdir": True}
     basename += "/"
-    actionlinks = self.getactionlinks(basename, lazy_stats(self.project, pofilenames), linksrequired=linksrequired)
+    actionlinks = self.getactionlinks(basename, LazyStats(self.project, pofilenames), linksrequired=linksrequired)
     diritem["actions"] = actionlinks
     if self.showgoals and "goal" in self.argdict:
       goalfilenames = self.project.getgoalfiles(self.currentgoal, dirfilter=direntry, includedirs=False, expanddirs=True)
@@ -734,7 +744,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     basename = os.path.basename(fileentry)
     browseurl = self.getbrowseurl(basename, **newargs)
     fileitem = {"href": browseurl, "title": basename, "icon": "file", "isfile": True}
-    actions = self.getactionlinks(basename, lazy_stats(self.project, [fileentry]), linksrequired=linksrequired)
+    actions = self.getactionlinks(basename, LazyStats(self.project, [fileentry]), linksrequired=linksrequired)
     actionlinks = actions["extended"]
     if "po" in linksrequired:
       poname = basename.replace(".xlf", ".po")
@@ -873,21 +883,24 @@ class ProjectIndex(pagelayout.PootleNavPage):
         minelink = self.localize("Translate My Strings")
       else:
         minelink = self.localize("View My Strings")
-      mystats = projectstats['assign']().get(self.session.username, [])
+      mystats = projectstats.assign.get(self.session.username, [])
       if len(mystats):
         minelink = {"href": self.makelink(baseactionlink, assignedto=self.session.username), "text": minelink}
       else:
         minelink = {"title": self.localize("No strings assigned to you"), "text": minelink}
       actionlinks.append(minelink)
       if "quick" in linksrequired and "translate" in self.rights:
-        mytranslatedstats = [statsitem for statsitem in mystats if statsitem in projectstats['units']().get("translated", [])]
+        if len(mystats) > 0: # A little shortcut to avoid the call to projectstats.units if we don't have anything assigned
+          mytranslatedstats = [statsitem for statsitem in mystats if statsitem in projectstats.units.get("translated", [])]
+        else:
+          mytranslatedstats = []
         quickminelink = self.localize("Quick Translate My Strings")
         if len(mytranslatedstats) < len(mystats):
           quickminelink = {"href": self.makelink(baseactionlink, assignedto=self.session.username, fuzzy=1, untranslated=1), "text": quickminelink}
         else:
           quickminelink = {"title": self.localize("No untranslated strings assigned to you"), "text": quickminelink}
         actionlinks.append(quickminelink)
-    if "review" in linksrequired and projectstats['units']().get("check-hassuggestion", []):
+    if "review" in linksrequired and projectstats.has_suggestion:# units.get("check-hassuggestion", []):
       if "review" in self.rights:
         reviewlink = self.localize("Review Suggestions")
       else:
@@ -899,7 +912,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         quicklink = self.localize("Quick Translate")
       else:
         quicklink = self.localize("View Untranslated")
-      if projectstats['basic']().get("translated", 0) < projectstats['basic']().get("total", 0):
+      if projectstats.basic.get("translated", 0) < projectstats.basic.get("total", 0):
         quicklink = {"href": self.makelink(baseactionlink, fuzzy=1, untranslated=1), "text": quicklink}
       else:
         quicklink = {"title": self.localize("No untranslated items"), "text": quicklink}
@@ -993,17 +1006,17 @@ class ProjectIndex(pagelayout.PootleNavPage):
     """return a list of strings describing the assigned strings"""
     # TODO: allow setting of action, so goals can only show the appropriate action assigns
     # quick lookup of what has been translated
-    projectstats = lazy_stats(self.project, pofilenames)
-    totalcount = projectstats['basic']().get("total", 0)
-    totalwords = projectstats['basic']().get("totalsourcewords", 0)
+    projectstats = LazyStats(self.project, pofilenames)
+    totalcount = projectstats.basic.get("total", 0)
+    totalwords = projectstats.basic.get("totalsourcewords", 0)
     assignlinks = []
-    keys = projectstats['assign']().keys()
+    keys = projectstats.assign.keys()
     keys.sort()
     for assignname in keys:
-      assigned = projectstats['assign']()[assignname]
+      assigned = projectstats.assign[assignname]
       assigncount = len(assigned)
       assignwords = self.project.countwords(assigned)
-      complete = [statsitem for statsitem in assigned if statsitem in projectstats['units']().get('translated', [])]
+      complete = [statsitem for statsitem in assigned if statsitem in projectstats.units.get('translated', [])]
       completecount = len(complete)
       completewords = self.project.countwords(complete)
       if totalcount and assigncount:
