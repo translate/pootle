@@ -133,7 +133,6 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     self.localedomains = ['jToolkit', 'pootle']
     self.localedir = None
     self.languagelist = self.potree.getlanguagecodes('pootle')
-    self.languagenames = self.potree.getlanguages()
     self.defaultlanguage = defaultlanguage
     if self.defaultlanguage is None:
       self.defaultlanguage = getattr(self.instance, "defaultlanguage", "en")
@@ -145,8 +144,6 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
         self.errorhandler.logerror("Could not initialize translation:\n%s" % str(e))
     # if no translation available, set up a blank translation
     super(PootleServer, self).inittranslation()
-    # the inherited method overwrites self.languagenames, so we have to redo it
-    self.languagenames = self.potree.getlanguages()
 
   def gettranslation(self, language):
     """returns a translation object for the given language (or default if language is None)"""
@@ -303,7 +300,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
       if 'username' in argdict:
         session.username = argdict["username"]
         message = session.localize("Login failed")
-      return users.LoginPage(session, languagenames=self.languagenames, message=message)
+      return users.LoginPage(session, languagenames=self.potree.getlanguages("pootle"), message=message)
     elif top == "register.html":
       return self.registerpage(session, argdict)
     elif top == "activate.html":
