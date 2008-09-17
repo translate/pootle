@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-09-16 16:40+0200\n"
-"PO-Revision-Date: 2008-09-15 11:43+0200\n"
+"PO-Revision-Date: 2008-09-17 08:11+0200\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: x@example.com\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Boemo"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr "Leqephe la Diprojeke tsa Taolo la pootle"
+msgstr "Leqephe la Diprojeke tsa Taolo la Pootle"
 
 #: adminpages.py:151
 msgid "Project Code"
@@ -243,7 +243,7 @@ msgstr "Eketsa Puo"
 #: adminpages.py:336
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr "Taolo ya pootle: %s %s"
+msgstr "Taolo ya Pootle: %s %s"
 
 #: adminpages.py:337
 msgid "Project home page"
@@ -1141,6 +1141,7 @@ msgid "Please enter your registration details"
 msgstr "Kenya tsa boingodiso ba hao"
 
 #: users.py:115 users.py:476
+#, fuzzy
 msgid "Pootle Registration"
 msgstr "Boingodiso"
 
