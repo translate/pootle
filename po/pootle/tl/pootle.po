@@ -1,0 +1,1393 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2008-08-19 12:36+0200\n"
+"PO-Revision-Date: 2008-09-06 08:18+0000\n"
+"Last-Translator: Cindy Trinidad <cindytrinidad@yahoo.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
+
+#: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
+#: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
+#: indexpage.py:139 indexpage.py:201 indexpage.py:264 indexpage.py:352
+#: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
+#: users.py:177
+msgid "Pootle Demo"
+msgstr "Demo ng Pootle"
+
+#: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
+#: pagelayout.py:27
+msgid "Home"
+msgstr "Home"
+
+#: adminpages.py:46 adminpages.py:212
+msgid "Users"
+msgstr "Mga User"
+
+#: adminpages.py:47 adminpages.py:87 indexpage.py:93
+msgid "Languages"
+msgstr "Mga Lenguwahe"
+
+#: adminpages.py:48 adminpages.py:146 indexpage.py:94
+msgid "Projects"
+msgstr "Mga Proyekto"
+
+#: adminpages.py:49
+msgid "General options"
+msgstr "Mga pangkalahatang opsiyon"
+
+#: adminpages.py:50 users.py:182
+msgid "Option"
+msgstr "Opsiyon"
+
+#: adminpages.py:51 users.py:183
+msgid "Current value"
+msgstr "Kasalukuyang halaga"
+
+#: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
+#: users.py:197
+msgid "Save changes"
+msgstr "I-save ang mga napalitan"
+
+#: adminpages.py:56
+msgid "Title"
+msgstr "Titulo"
+
+#: adminpages.py:57
+msgid "Description"
+msgstr "Pagsasalarawan"
+
+#: adminpages.py:58
+msgid "Base URL"
+msgstr "Base URL"
+
+#: adminpages.py:59
+msgid "Home Page"
+msgstr "Pahinang Home"
+
+#: adminpages.py:77
+msgid "Pootle Languages Admin Page"
+msgstr "Admin na Pahina ng mga Lenguwahe ng Pootle "
+
+#: adminpages.py:86 adminpages.py:145 adminpages.py:211
+msgid "Main admin page"
+msgstr "Pangunahing pahina ng admin"
+
+#: adminpages.py:92 adminpages.py:286
+msgid "ISO Code"
+msgstr "Code ng ISO"
+
+#: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
+#: users.py:127
+msgid "Full Name"
+msgstr "Buong Pangalan"
+
+#: adminpages.py:94
+msgid "(add language here)"
+msgstr "(idagdag ang lenguwahe dito)"
+
+#: adminpages.py:95
+msgid "Special Chars"
+msgstr "Mga Espesyal na Titik"
+
+#: adminpages.py:95
+msgid "(special characters)"
+msgstr "(mga espesyal na titik)"
+
+#: adminpages.py:96 indexpage.py:224
+msgid "Number of Plurals"
+msgstr "Dami ng Plural"
+
+#: adminpages.py:96
+msgid "(number of plurals)"
+msgstr "(dami ng plural)"
+
+#: adminpages.py:97 indexpage.py:225
+msgid "Plural Equation"
+msgstr "Equation ng Plural"
+
+#: adminpages.py:97
+msgid "(plural equation)"
+msgstr "(equation ng plural)"
+
+#: adminpages.py:98
+msgid "Remove Language"
+msgstr "Tanggalin ang Lenguwahe"
+
+#. l10n: The parameter is a languagecode, projectcode or username
+#: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
+#, python-format
+msgid "Remove %s"
+msgstr "Tanggalin %s"
+
+#: adminpages.py:132
+msgid "Standard"
+msgstr "Pamantayan"
+
+#: adminpages.py:136
+msgid "Pootle Projects Admin Page"
+msgstr "Admin na Pahina ng mga Proyektong Pootle"
+
+#: adminpages.py:151
+msgid "Project Code"
+msgstr "Code ng Proyekto"
+
+#: adminpages.py:153
+msgid "(add project here)"
+msgstr "(idagdag ang proyekto dito)"
+
+#: adminpages.py:154
+msgid "Project Description"
+msgstr "Pagsasalarawan ng Proyekto"
+
+#: adminpages.py:154
+msgid "(project description)"
+msgstr "(pagsasalarawan ng proyekto)"
+
+#: adminpages.py:155
+msgid "Checker Style"
+msgstr "Istilo ng Checker"
+
+#: adminpages.py:156
+msgid "File Type"
+msgstr "Tipo ng File"
+
+#: adminpages.py:157
+msgid "Create MO Files"
+msgstr "Gumawa ng mga MO File"
+
+#: adminpages.py:158
+msgid "Remove Project"
+msgstr "Tanggalin ang Proyekto"
+
+#: adminpages.py:202
+msgid "Pootle User Admin Page"
+msgstr "Admin na Pahina ng User ng Pootle"
+
+#: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
+msgid "Username"
+msgstr "Pangalan ng User"
+
+#: adminpages.py:219 users.py:403
+msgid "(add full name here)"
+msgstr "(idagdag ang buong pangalan dito)"
+
+#: adminpages.py:220 users.py:124
+msgid "Email Address"
+msgstr "Email Address"
+
+#: adminpages.py:220 users.py:406
+msgid "(add email here)"
+msgstr "(idagdag ang email dito)"
+
+#: adminpages.py:221 users.py:130 users.py:188
+msgid "Password"
+msgstr "Password"
+
+#: adminpages.py:221 users.py:400
+msgid "(add password here)"
+msgstr "(idagdag ang password dito)"
+
+#: adminpages.py:222
+msgid "Activated"
+msgstr "Aktibo"
+
+#: adminpages.py:222
+msgid "Activate New User"
+msgstr "I-aktibo ang Bagong User"
+
+#: adminpages.py:223
+msgid "Remove User"
+msgstr "Tanggalin ang User"
+
+#: adminpages.py:278
+msgid "Back to main page"
+msgstr "Bumalik sa pangunahing pahina"
+
+#: adminpages.py:279
+msgid "Existing languages"
+msgstr "Kasalukuyang mga lenguwahe"
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:283
+msgid "Update Languages"
+msgstr "I-update ang mga Lenguwahe"
+
+#: adminpages.py:284
+#, python-format
+msgid "Pootle Admin: %s"
+msgstr "Pootle Admin: %s"
+
+#: adminpages.py:285 adminpages.py:356
+msgid "You do not have the rights to administer this project."
+msgstr "Wala kang karapatang pangasiwaan ang proyektong ito."
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:289
+msgid "Update from templates"
+msgstr "I-update mula sa mga template"
+
+#: adminpages.py:298
+msgid "Add Language"
+msgstr "Idagdag ang Lenguwahe"
+
+#. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
+#: adminpages.py:336
+#, python-format
+msgid "Pootle Admin: %s %s"
+msgstr "Pootle Admin: %s %s"
+
+#: adminpages.py:337
+msgid "Project home page"
+msgstr "Home na pahina ng proyekto"
+
+#: adminpages.py:355
+#, python-format
+msgid "Cannot set rights for username %s - user does not exist"
+msgstr ""
+"Hindi mai-set ang karapatan para sa username na %s - walang ganitong user"
+
+#: adminpages.py:372
+msgid "This is a GNU-style project (one directory, files named per language)."
+msgstr ""
+"Ito ay istilong-GNU na proyekto (isang direktoryo, ang mga file ay "
+"nakapangalan bawat lenguwahe)"
+
+#: adminpages.py:374
+msgid "This is a standard style project (one directory per language)."
+msgstr "Ito ay karaniwang istilong proyekto (isang direktoryo bawat lenguwahe)"
+
+#: adminpages.py:375
+msgid "User Permissions"
+msgstr "Mga Pagpayag sa User"
+
+#: adminpages.py:377
+msgid "(select to add user)"
+msgstr "(piliin upang idagdag ang user)"
+
+#: adminpages.py:378
+msgid "Rights"
+msgstr "Mga Karapatan"
+
+#: adminpages.py:379 indexpage.py:1008
+msgid "Remove"
+msgstr "Tanggalin"
+
+#: adminpages.py:406
+msgid "Update Rights"
+msgstr "I-update ang mga Karapatan"
+
+#: indexpage.py:58
+msgid "About Pootle"
+msgstr "Tungkol sa Pootle"
+
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:60
+msgid ""
+"<strong>Pootle</strong> is a simple web portal that should allow you to "
+"<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
+"you can download it and run your own copy if you like. You can also help "
+"participate in the development in many ways (you don't have to be able to "
+"program)."
+msgstr ""
+"Ang <strong>Pootle</strong> ay isang simpleng web portal kung saan maaari "
+"kang <strong>magsalin</strong> ng wika! Dahil sa ang Pootle ay "
+"<strong>Libreng Software</strong>, maaari mo itong i-download at patakbuhin "
+"ang sarili mong kopya kung gusto mo. Maaari ka ring lumahok sa paggawa nito "
+"sa maraming paraan (hindi ka kaililangang marunong mag program)."
+
+#: indexpage.py:61
+msgid ""
+"The Pootle project itself is hosted at <a href=\"http://translate."
+"sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
+"details about source code, mailing lists etc."
+msgstr ""
+"Ang proyektong Pootle project ay naka host sa <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> kung "
+"saan mo makikita ang mga detalye ng source code, mga mailing lists atbp."
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:64
+msgid ""
+"The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
+"thechestnut.com/flumps.htm\">this</a>."
+msgstr ""
+"Ang ibig sabihin ng pangalan ay <b>PO</b>-nakabaseng <b>O</b>nline "
+"<b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, ngunit maaari mo "
+"ring basahin <a href=\"http://www.thechestnut.com/flumps.htm\">ito</a>."
+
+#: indexpage.py:65
+msgid "Versions"
+msgstr "Mga Bersiyon"
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:68
+#, python-format
+msgid ""
+"This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+msgstr ""
+"Ang site na ito ay tumatakbo ng:<br />Pootle %s<br />Toolkit sa Pagsalin "
+"%s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on "
+"%s/%s)"
+
+#: indexpage.py:133
+#, python-format
+msgid "User Page for: %s"
+msgstr "Pahina ng User para sa: %s"
+
+#: indexpage.py:135
+msgid "Change options"
+msgstr "Palitan ang mga opsiyon"
+
+#: indexpage.py:136
+msgid "Admin page"
+msgstr "Pahina ng admin"
+
+#: indexpage.py:137 projects.py:149
+msgid "Administrate"
+msgstr "Pangasiwaan"
+
+#: indexpage.py:138
+msgid "Quick Links"
+msgstr "Mga Quick Link"
+
+#: indexpage.py:142
+msgid "Please click on 'Change options' and select some languages and projects"
+msgstr ""
+"Mangyaring i-click ang 'Palitan ang mga Opsiyon' at piliin ang ilang "
+"lenguwahe at mga proyekto"
+
+#: indexpage.py:199
+#, python-format
+msgid "%d project, average %d%% translated"
+msgid_plural "%d projects, average %d%% translated"
+msgstr[0] ""
+msgstr[1] ""
+
+#. l10n: The first parameter is the name of the installation
+#. l10n: The second parameter is the name of the project/language
+#. l10n: This is used as a page title. Most languages won't need to change this
+#: indexpage.py:205 indexpage.py:268
+#, python-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
+msgid "Admin"
+msgstr "Admin"
+
+#: indexpage.py:221
+msgid "Language Code"
+msgstr "Code ng Lenguwahe"
+
+#: indexpage.py:222
+msgid "Language Name"
+msgstr "Pangalan ng Lenguwahe"
+
+#: indexpage.py:260
+#, python-format
+msgid "%d language, average %d%% translated"
+msgid_plural "%d languages, average %d%% translated"
+msgstr[0] ""
+msgstr[1] ""
+
+#: indexpage.py:273
+msgid "Language"
+msgstr "Lenguwahe"
+
+#. l10n: The first parameter is the name of the installation (like "Pootle")
+#: indexpage.py:354
+#, python-format
+msgid "%s: Project %s, Language %s"
+msgstr "%s: Proyekto %s, Lenguwahe %s"
+
+#. l10n: text next to search field
+#: indexpage.py:362 translatepage.py:145
+msgid "Search"
+msgstr "Hanapin"
+
+#: indexpage.py:363 translatepage.py:146
+msgid "Advanced Search"
+msgstr "Advanced na Paghanap"
+
+#: indexpage.py:422
+msgid "Cannot upload file, no file attached"
+msgstr "Hindi mai-upload ang file, walang naka-attach na file"
+
+#: indexpage.py:428
+msgid "Can only upload PO files and zips of PO files"
+msgstr "Makakapag-upload lamang ng mga PO file at mga zip ng mga PO file"
+
+#: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
+msgid "Assign Strings"
+msgstr "Magdesigna ng mga String"
+
+#: indexpage.py:536 translatepage.py:239
+msgid "Assign Action"
+msgstr "Magdesigna ng Aksiyon"
+
+#: indexpage.py:537 translatepage.py:238
+msgid "Assign to User"
+msgstr "Idesigna sa User"
+
+#: indexpage.py:543
+msgid "goals"
+msgstr "mga layunin"
+
+#: indexpage.py:544
+msgid "Enter goal name"
+msgstr "Ipasok ang pangalan ng layunin"
+
+#: indexpage.py:545
+msgid "Add Goal"
+msgstr "Magdagdag ng layunin"
+
+#: indexpage.py:550 indexpage.py:552
+msgid "Upload File"
+msgstr "Mag-upload ng file"
+
+#: indexpage.py:551
+msgid "Select file to upload"
+msgstr "Pumili ng file na ia-upload"
+
+#. l10n: radio button text
+#: indexpage.py:557 projects.py:141
+msgid "Overwrite"
+msgstr "Patungan"
+
+#. l10n: tooltip
+#: indexpage.py:559
+msgid "Overwrite the current file if it exists"
+msgstr "Patungan ang kasalukuyang file kung mayroon na"
+
+#. l10n: radio button text
+#: indexpage.py:561
+msgid "Merge"
+msgstr "Pagsamahin"
+
+#. l10n: tooltip
+#: indexpage.py:563
+msgid ""
+"Merge the file with the current file and turn conflicts into suggestions"
+msgstr ""
+"Pagsamahin ang file at ang kasalukuyang file at gawing suhestiyon ang mga "
+"hindi pagkakatugma"
+
+#: indexpage.py:666
+msgid "Not in a goal"
+msgstr "Wala sa layunin"
+
+#: indexpage.py:686
+msgid "Add User"
+msgstr "Magdagdag ng User"
+
+#: indexpage.py:731
+msgid "PO file"
+msgstr "PO file"
+
+#: indexpage.py:735
+msgid "XLIFF file"
+msgstr "XLIFF file"
+
+#: indexpage.py:739
+msgid "Qt .ts file"
+msgstr "Qt .ts file"
+
+#: indexpage.py:743
+msgid "CSV file"
+msgstr "CSV file"
+
+#: indexpage.py:748
+msgid "MO file"
+msgstr "MO file"
+
+#. l10n: Update from version control (like CVS or Subversion)
+#: indexpage.py:754
+msgid "Update"
+msgstr "I-update"
+
+#. l10n: Commit to version control (like CVS or Subversion)
+#: indexpage.py:760 projects.py:150
+msgid "Commit"
+msgstr "I-commit"
+
+#: indexpage.py:798
+msgid "All Strings"
+msgstr "Lahat ng mga String"
+
+#: indexpage.py:799 pagelayout.py:249
+msgid "Untranslated"
+msgstr "Hindi Naisalin"
+
+#: indexpage.py:800
+msgid "Unassigned"
+msgstr "Hindi Nadesigna"
+
+#: indexpage.py:801
+msgid "Unassigned and Untranslated"
+msgstr "Hindi Nadesigna at Hindi Nasalin"
+
+#: indexpage.py:808
+msgid "Set Goal"
+msgstr "I-set ang Layunin"
+
+#: indexpage.py:812
+msgid "Select Multiple"
+msgstr "Pumili ng Ilan"
+
+#: indexpage.py:814
+msgid "Assign To"
+msgstr "Idesigna Kay"
+
+#: indexpage.py:843
+msgid "Show Editing Functions"
+msgstr "Ipakita ang mga Gawaing Pang-edit"
+
+#: indexpage.py:844
+msgid "Show Statistics"
+msgstr "Ipakita ang mga Istatistiko"
+
+#: indexpage.py:845
+msgid "Show Tracks"
+msgstr "Ipakita ang mga Track"
+
+#: indexpage.py:845
+msgid "Hide Tracks"
+msgstr "Itago ang mga Track"
+
+#. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
+#: indexpage.py:847
+msgid "Show Checks"
+msgstr "Ipakita ang mga Check"
+
+#: indexpage.py:847
+msgid "Hide Checks"
+msgstr "Itago ang mga Check"
+
+#: indexpage.py:848
+msgid "Show Goals"
+msgstr "Ipakita ang mga Layunin"
+
+#: indexpage.py:848
+msgid "Hide Goals"
+msgstr "Itago ang mga Layunin"
+
+#: indexpage.py:849
+msgid "Show Assigns"
+msgstr "Ipakita ang mga Nakadesigna"
+
+#: indexpage.py:849
+msgid "Hide Assigns"
+msgstr "Itago ang mga Nakadesigna"
+
+#: indexpage.py:858
+#, python-format
+msgid "All Goals: %s"
+msgstr "Lahat ng Layunin: %s"
+
+#: indexpage.py:864
+msgid "Translate My Strings"
+msgstr "Isalin ang Aking mga String"
+
+#: indexpage.py:866
+msgid "View My Strings"
+msgstr "Tingnan ang Aking mga String"
+
+#: indexpage.py:871
+msgid "No strings assigned to you"
+msgstr "Walang nakadesignang string sa iyo"
+
+#: indexpage.py:875
+msgid "Quick Translate My Strings"
+msgstr "Mabilis na Isalin ang Aking mga String"
+
+#: indexpage.py:879
+msgid "No untranslated strings assigned to you"
+msgstr "Walang hindi nakasaling string ang nakadesigna sa iyo"
+
+#: indexpage.py:883
+msgid "Review Suggestions"
+msgstr "Repasuhin ang mga suhestiyon"
+
+#: indexpage.py:885
+msgid "View Suggestions"
+msgstr "Tingnan ang mga Suhestiyon"
+
+#: indexpage.py:890
+msgid "Quick Translate"
+msgstr "Mabilis na Isalin"
+
+#: indexpage.py:892
+msgid "View Untranslated"
+msgstr "Tingnan ang mga Hindi Pa Nakasalin"
+
+#: indexpage.py:896
+msgid "No untranslated items"
+msgstr "Walang terminong hindi pa nakasalin"
+
+#: indexpage.py:899
+msgid "Translate All"
+msgstr "Isalin Lahat"
+
+#: indexpage.py:914
+msgid "ZIP of goal"
+msgstr "ZIP ng layunin"
+
+#: indexpage.py:916
+msgid "ZIP of folder"
+msgstr "ZIP ng folder"
+
+#: indexpage.py:923
+msgid "Generate SDF"
+msgstr "Gumawa ng SDF"
+
+#: indexpage.py:976
+#, python-format
+msgid "%d string (%d%%) failed"
+msgid_plural "%d strings (%d%%) failed"
+msgstr[0] ""
+msgstr[1] ""
+
+#: indexpage.py:1003
+#, python-format
+msgid "%d/%d words (%d%%) assigned"
+msgstr "%d/%d kataga (%d%%) designado na"
+
+#: indexpage.py:1004 indexpage.py:1006
+#, python-format
+msgid "[%d/%d strings]"
+msgstr "[%d/%d mga string]"
+
+#: indexpage.py:1005 pagelayout.py:235
+#, python-format
+msgid "%d/%d words (%d%%) translated"
+msgstr "%d/%d kataga (%d%%) naisalin na"
+
+#: pagelayout.py:28
+msgid "All projects"
+msgstr "Lahat ng proyekto"
+
+#: pagelayout.py:29
+msgid "All languages"
+msgstr "Lahat ng lenguwahe"
+
+#: pagelayout.py:30
+msgid "My account"
+msgstr "Account ko"
+
+#: pagelayout.py:32
+msgid "Docs & help"
+msgstr "Mga dok at tulong"
+
+#: pagelayout.py:34
+msgid "Log out"
+msgstr "Log out"
+
+#: pagelayout.py:35
+msgid "Log in"
+msgstr "Log in"
+
+#. l10n: Verb, as in "to register"
+#: pagelayout.py:37
+msgid "Register"
+msgstr "Magrehistro"
+
+#: pagelayout.py:38
+msgid "Activate"
+msgstr "I-aktibo"
+
+#: pagelayout.py:83
+msgid "Pootle Logo"
+msgstr "Logo ng Pootle"
+
+#: pagelayout.py:84
+msgid "About this Pootle server"
+msgstr "Tungkol sa Pootle server na ito"
+
+#: pagelayout.py:160
+msgid "All goals"
+msgstr "Lahat ng layunin"
+
+#: pagelayout.py:231
+#, python-format
+msgid "%d/%d files"
+msgstr "%d/%d mga file"
+
+#: pagelayout.py:234
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: pagelayout.py:236
+#, python-format
+msgid "%d/%d strings"
+msgstr "%d/%d mga string"
+
+#: pagelayout.py:242 users.py:184
+msgid "Name"
+msgstr "Pangalan"
+
+#: pagelayout.py:243
+msgid "Translated"
+msgstr "Naisalin"
+
+#: pagelayout.py:244
+msgid "Translated percentage"
+msgstr "Porsiyentong naisalin"
+
+#: pagelayout.py:245
+msgid "Translated words"
+msgstr "Katagang naisalin"
+
+#: pagelayout.py:246 translatepage.py:135
+msgid "Fuzzy"
+msgstr "Fuzzy"
+
+#: pagelayout.py:247
+msgid "Fuzzy percentage"
+msgstr "Porsiyentong fuzzy"
+
+#: pagelayout.py:248
+msgid "Fuzzy words"
+msgstr "Katagang fuzzy"
+
+#: pagelayout.py:250
+msgid "Untranslated percentage"
+msgstr "Porsiyentong hindi pa naisalin"
+
+#: pagelayout.py:251
+msgid "Untranslated words"
+msgstr "Katagang hindi pa naisalin"
+
+#: pagelayout.py:252
+msgid "Total"
+msgstr "Kabuuan"
+
+#: pagelayout.py:253
+msgid "Total words"
+msgstr "Kabuuang kataga"
+
+#. l10n: noun. The graphical representation of translation status
+#: pagelayout.py:255
+msgid "Graph"
+msgstr "Graph"
+
+#: pagelayout.py:293
+msgid "Source Text"
+msgstr "Pinagmulang Teksto"
+
+#: pagelayout.py:297
+msgid "Target Text"
+msgstr "Nasaling Teksto"
+
+#: pagelayout.py:301
+msgid "Comments"
+msgstr "Mga komento"
+
+#: pagelayout.py:305
+msgid "Locations"
+msgstr "Mga lokasyon"
+
+#: pootle.py:305
+msgid "Login failed"
+msgstr "Hindi matagumpay na pag-login"
+
+#: pootle.py:349 pootle.py:380
+msgid "Redirecting to login..."
+msgstr "Ni-redirect sa login... "
+
+#: pootle.py:352
+msgid "Need to log in to access home page"
+msgstr "Kailangan mag log in upang ma-access ang pahinang home"
+
+#: pootle.py:365
+msgid "Personal details updated"
+msgstr "Na-update ang personal na detalye"
+
+#: pootle.py:383
+msgid "Need to log in to access admin page"
+msgstr "Kailangan mag log in upang ma-access ang admin na pahina"
+
+#: pootle.py:390
+msgid "Redirecting to home..."
+msgstr "Ni-redirect sa home..."
+
+#: pootle.py:393
+msgid "You do not have the rights to administer pootle."
+msgstr "Wala kang karapatang pangasiwaan ang pootle."
+
+#. l10n: Verb
+#: projects.py:138
+msgid "View"
+msgstr "Tingnan"
+
+#: projects.py:139 translatepage.py:678
+msgid "Suggest"
+msgstr "Suhestiyon"
+
+#: projects.py:140
+msgid "Translate"
+msgstr "Isalin"
+
+#. l10n: Verb
+#: projects.py:143
+msgid "Review"
+msgstr "Repasuhin"
+
+#. l10n: Verb
+#: projects.py:145
+msgid "Archive"
+msgstr "Archive"
+
+#. l10n: This refers to generating the binary .mo file
+#: projects.py:147
+msgid "Compile PO files"
+msgstr "I-compile ang mga PO na file"
+
+#: projects.py:148
+msgid "Assign"
+msgstr "Idesigna"
+
+#. l10n: Don't translate "nobody" or "default"
+#: projects.py:230
+msgid "You cannot remove the \"nobody\" or \"default\" user"
+msgstr "Hindi mo maaaring tanggalin ang \"nobody\" o \"default\" na user"
+
+#: projects.py:382 projects.py:444
+msgid "You do not have rights to alter goals here"
+msgstr "Wala kang karapatang magpalit ng mga layunin dito"
+
+#: projects.py:510
+msgid "You do not have rights to upload files here"
+msgstr "Wala kang karapatang mag-upload ng mga file dito"
+
+#: projects.py:513
+msgid "You do not have rights to overwrite files here"
+msgstr "Wala kang karapatang patungan ang mga file dito"
+
+#: projects.py:515
+msgid "You do not have rights to upload new files here"
+msgstr "Wala kang karapatang mag-upload ng mga bagong file dito"
+
+#: projects.py:524
+msgid "You do not have rights to update files here"
+msgstr "Wala kang karapatang mag-update ng mga file dito"
+
+#: projects.py:555
+msgid "You do not have rights to commit files here"
+msgstr "Wala kang karapatang mag-commit ng mga file dito"
+
+#: projects.py:977 projects.py:1019
+msgid "You do not have rights to alter assignments here"
+msgstr "Wala kang karapatang magpalit ng mga takdang gawain dito"
+
+#: projects.py:1219
+msgid "You do not have rights to change translations here"
+msgstr "Wala kang karapatang magpalit ng mga pagsalin ng wika dito"
+
+#: projects.py:1229
+msgid "You do not have rights to suggest changes here"
+msgstr "Wala kang karapatang mag-bigay ng suhestiyon sa pagpapalit dito"
+
+#: projects.py:1245 projects.py:1263
+msgid "You do not have rights to review suggestions here"
+msgstr "Wala kang karapatang mag-repaso ng mga suhestiyon dito"
+
+#: translatepage.py:103
+#, python-format
+msgid ""
+"%d/%d translated\n"
+"(%d untranslated, %d fuzzy)"
+msgstr ""
+"%d/%d nasalin\n"
+"(%d hindi nasalin, %d fuzzy)"
+
+#. l10n: first parameter: name of the installation (like "Pootle")
+#. l10n: second parameter: project name
+#. l10n: third parameter: target language
+#. l10n: fourth parameter: file name
+#: translatepage.py:113
+#, python-format
+msgid "%s: translating %s into %s: %s"
+msgstr "%s: nagsasalin %s papuntang %s: %s"
+
+#. l10n: Heading above the table column with the source language
+#: translatepage.py:128
+msgid "Original"
+msgstr "Orihinal"
+
+#. l10n: Heading above the table column with the target language
+#: translatepage.py:130
+msgid "Translation"
+msgstr "Pagsasalin"
+
+#: translatepage.py:133
+msgid "Accept suggestion"
+msgstr "Tanggapin ang suhestiyon"
+
+#: translatepage.py:134
+msgid "Reject suggestion"
+msgstr "Tanggihan ang suhestiyon"
+
+#. l10n: Heading above the textarea for translator comments.
+#: translatepage.py:137
+msgid "Translator comments"
+msgstr "Mga komento ng tagasalin"
+
+#. l10n: Heading above the comments extracted from the programing source code
+#: translatepage.py:139
+msgid "Developer comments"
+msgstr "Mga komento ng developer"
+
+#. l10n: This heading refers to related translations and terminology
+#: translatepage.py:141
+msgid "Related"
+msgstr "Magka-ugnay"
+
+#. l10n: Text displayed when an AJAX petition is being made
+#: translatepage.py:155
+msgid "Working..."
+msgstr "Ginagawa..."
+
+#. l10n: Text displayed in an alert box when an AJAX petition has failed
+#: translatepage.py:157
+msgid "Error: Something went wrong."
+msgstr "Error: May maling nangyari."
+
+#. l10n: "batch" refers to the set of translations that were reviewed
+#: translatepage.py:171
+msgid "End of batch"
+msgstr "Dulo ng batch"
+
+#: translatepage.py:173
+msgid "Click here to return to the index"
+msgstr "I-click dito upang bumalik sa indise"
+
+#. l10n: noun (the start)
+#: translatepage.py:187 translatepage.py:190
+msgid "Start"
+msgstr "Simula"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:194 translatepage.py:197
+#, python-format
+msgid "Previous %d"
+msgstr "Nakaraang %d"
+
+#. l10n: the third parameter refers to the total number of messages in the file
+#: translatepage.py:199
+#, python-format
+msgid "Items %d to %d of %d"
+msgstr "Mga item %d hanggang %d ng %d"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:204 translatepage.py:207
+#, python-format
+msgid "Next %d"
+msgstr "Susunod na %d"
+
+#. l10n: noun (the end)
+#: translatepage.py:210 translatepage.py:213
+msgid "End"
+msgstr "Tapos na"
+
+#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
+#: translatepage.py:230
+#, python-format
+msgid "checking %s"
+msgstr "tsine-check %s"
+
+#: translatepage.py:398
+#, python-format
+msgid "There are no items matching that search ('%s')"
+msgstr "Walang item na tumutugma sa paghahanap na iyan ('%s')"
+
+#: translatepage.py:400
+msgid "You have finished going through the items you selected"
+msgstr "Nadaanan mo na ang mga item na napili mo"
+
+#: translatepage.py:643
+msgid "Singular"
+msgstr "Pang-isa"
+
+#: translatepage.py:644
+msgid "Plural"
+msgstr "Pang-marami"
+
+#. l10n: verb
+#: translatepage.py:658
+msgid "Edit"
+msgstr "I-edit"
+
+#. l10n: verb
+#: translatepage.py:674
+msgid "Copy"
+msgstr "Kopyahin"
+
+#: translatepage.py:675 translatepage.py:849
+msgid "Skip"
+msgstr "Laktawan"
+
+#. l10n: verb
+#: translatepage.py:677 translatepage.py:848 users.py:312
+msgid "Back"
+msgstr "Bumalik"
+
+#: translatepage.py:679
+msgid "Submit"
+msgstr "Isumite"
+
+#. l10n: action that increases the height of the textarea
+#: translatepage.py:682
+msgid "Grow"
+msgstr "Palakihin"
+
+#. l10n: action that decreases the height of the textarea
+#: translatepage.py:684
+msgid "Shrink"
+msgstr "Paliitin"
+
+#: translatepage.py:706 translatepage.py:800 translatepage.py:837
+#: translatepage.py:870
+#, python-format
+msgid "Plural Form %d"
+msgstr "Pang-maramihang Form %d"
+
+#. l10n: This is an error message that will display if the relevant problem occurs
+#: translatepage.py:722
+msgid ""
+"Translation not possible because plural information for your language is not "
+"available. Please contact the site administrator."
+msgstr ""
+"Hindi maisasalin dahil walang impormasyon tungkol sa pang-maramihan sa iyong "
+"lenguwahe. Mangyaring makipanayam sa administrador ng iyong site."
+
+#: translatepage.py:804
+msgid "Current Translation:"
+msgstr "Kasalukuyang Pagsasalin:"
+
+#. l10n: First parameter: number
+#. l10n: Second parameter: name of translator
+#: translatepage.py:817
+#, python-format
+msgid "Suggestion %d by %s:"
+msgstr "Suhestiyon %d ni %s:"
+
+#: translatepage.py:819
+#, python-format
+msgid "Suggestion %d:"
+msgstr "Suhestiyon %d:"
+
+#. l10n: parameter: name of translator
+#: translatepage.py:823
+#, python-format
+msgid "Suggestion by %s:"
+msgstr "Suhestiyon ni %s:"
+
+#: translatepage.py:825
+msgid "Suggestion:"
+msgstr "Suhestiyon:"
+
+#: users.py:43
+#, python-format
+msgid "You must supply a valid password of at least %d characters."
+msgstr ""
+"Kailangan mong magbigay ng balidong password na may %d man lamang na titik."
+
+#: users.py:45
+msgid "The password is not the same as the confirmation."
+msgstr "Hindi pareho ang password at ang kumpirmasyon."
+
+#: users.py:60
+msgid "Login to Pootle"
+msgstr "Mag-login sa Pootle"
+
+#: users.py:66
+msgid "Username:"
+msgstr "Username:"
+
+#: users.py:68
+msgid "Password:"
+msgstr "Password:"
+
+#: users.py:69
+msgid "Language:"
+msgstr "Lenguwahe:"
+
+#: users.py:71
+msgid "Login"
+msgstr "Login"
+
+#: users.py:77
+msgid "Default"
+msgstr "Default"
+
+#: users.py:112
+msgid "Please enter your registration details"
+msgstr "Mangyaring ipasok ang detalye ng iyong rehistrasyon"
+
+#: users.py:115 users.py:475
+msgid "Pootle Registration"
+msgstr "Rehistrasyon sa Pootle"
+
+#: users.py:122 users.py:158
+msgid "Your requested username"
+msgstr "Ang hiniling mong username"
+
+#: users.py:125 users.py:429
+msgid "You must supply a valid email address"
+msgstr "Kailangan kang magbigay ng balidong email address"
+
+#: users.py:128
+msgid "Your full name"
+msgstr "Ang buong pangalan mo"
+
+#: users.py:131
+msgid "Your desired password"
+msgstr "Ang ibig mong password"
+
+#: users.py:133 users.py:189
+msgid "Confirm password"
+msgstr "Kumpirmahin ang password"
+
+#: users.py:134
+msgid "Type your password again to ensure it is entered correctly"
+msgstr ""
+"I-type muli ang iyong password upang masiguro na tama ang pagkapasok nito"
+
+#: users.py:136
+msgid "Register Account"
+msgstr "Magrehistro ng Account"
+
+#: users.py:145
+msgid "Please enter your activation details"
+msgstr "Mangyaring ipasok ang detalye ng aktibasyon mo"
+
+#: users.py:150
+msgid "Pootle Account Activation"
+msgstr "Aktibasyon ng Account sa Pootle"
+
+#: users.py:160
+msgid "Activation Code"
+msgstr "Code ng Aktibasyon"
+
+#: users.py:161
+msgid "The activation code you received"
+msgstr "Ang natanggap mong code ng aktibasyon"
+
+#: users.py:163
+msgid "Activate Account"
+msgstr "I-aktiba ang Account"
+
+#: users.py:175
+#, python-format
+msgid "Options for: %s"
+msgstr "Mga opsiyon para sa: %s"
+
+#: users.py:181
+msgid "Personal Details"
+msgstr "Mga Personal na Detalye"
+
+#: users.py:186
+msgid "Email"
+msgstr "Email"
+
+#: users.py:190
+msgid "Translation Interface Configuration"
+msgstr "Kumpigurasyon ng Interface sa Pagsalin"
+
+#: users.py:191
+msgid "User Interface language"
+msgstr "Lenguwahe ng Interface ng User"
+
+#: users.py:192
+msgid "My Projects"
+msgstr "Mga Proyekto Ko"
+
+#: users.py:194
+msgid "My Languages"
+msgstr "Mga Lenguwahe Ko"
+
+#: users.py:196
+msgid "Home page"
+msgstr "Pahinang Home"
+
+#: users.py:202
+msgid "Alternative Source Language"
+msgstr "Alternatibong Pinagmulang Lenguwahe"
+
+#. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
+#: users.py:240
+msgid "None"
+msgstr "Wala"
+
+#: users.py:257
+msgid "Input Height (in lines)"
+msgstr "Ipasok ang Taas (sa dami ng linya)"
+
+#: users.py:258
+msgid "Number of rows in view mode"
+msgstr "Dami ng hilera sa modang view"
+
+#: users.py:259
+msgid "Number of rows in translate mode"
+msgstr "Dami ng hilera sa modang pagsalin"
+
+#: users.py:307
+msgid "Error"
+msgstr "Error"
+
+#: users.py:359
+msgid "You need to be siteadmin to change users"
+msgstr "Kailangan ay siteadmin ka upang magpalit ng mga user"
+
+#: users.py:423
+msgid ""
+"Username must be alphanumeric, and must start with an alphabetic character."
+msgstr "Ang username ay dapat alphanumeric, at kailangan magsimula sa alpabeto."
+
+#: users.py:438
+msgid ""
+"You (or someone else) attempted to register an account with your username.\n"
+msgstr "Ikaw (o ibang tao) ay nagsubok na magrehistro ng account gamit ang iyong "
+"username.\n"
+
+#: users.py:439
+msgid "We don't store your actual password but only a hash of it.\n"
+msgstr "Hindi namin ini-imbak ang iyong aktuwal na password, hash lamang nito.\n"
+
+#: users.py:441
+#, python-format
+msgid "If you have a problem with registration, please contact %s.\n"
+msgstr "Kung may problema ka sa pagrehistro, mangyaring kontakin ang  %s.\n"
+
+#: users.py:443
+msgid ""
+"If you have a problem with registration, please contact the site "
+"administrator.\n"
+msgstr "Kung may problema ka sa pagrehistro, mangyaring kontakin ang administrador "
+"ng site.\n"
+
+#: users.py:444
+msgid ""
+"That username already exists. An email will be sent to the registered email "
+"address.\n"
+msgstr "Mayroon nang ganyang username. May email na ipadadala sa rehistradong email "
+"address.\n"
+
+#: users.py:446
+#, python-format
+msgid "Proceeding to <a href='%s'>login</a>\n"
+msgstr "Tumutuloy sa <a href='%s'>login</a>\n"
+
+#: users.py:452
+msgid "A Pootle account has been created for you using this email address.\n"
+msgstr "May Pootle account na ginawa para sa iyo na gumagamit ng email address na "
+"ito.\n"
+
+#: users.py:454
+msgid "To activate your account, follow this link:\n"
+msgstr "Upang paganahin ang iyong account, sundan ang link na ito:\n"
+
+#: users.py:460
+#, python-format
+msgid ""
+"Your activation code is:\n"
+"%s\n"
+msgstr ""
+"Ang code mo pang aktiba ay:\n"
+"%s\n"
+
+#: users.py:462
+msgid ""
+"If you are unable to follow the link, please enter the above code at the "
+"activation page.\n"
+msgstr "Kung hindi mo masundan ang link na ito, mangyaring ipasok ang code sa itaas "
+"sa pahina ng aktibasyon.\n"
+
+#: users.py:463
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message.\n"
+msgstr "Ang mensaheng ito ay ipinadala upang beripikahin na tama ang email address. "
+"Kung hindi mo ibig na magrehistro ng account, maaaring huwag mo na pansinin "
+"ang mensaheng ito.\n"
+
+#: users.py:465
+#, python-format
+msgid ""
+"Account created. You will be emailed login details and an activation code. "
+"Please enter your activation code on the <a href='%s'>activation page</a>."
+msgstr ""
+"Nagawa na ang account. Makakatanggap ka ng email ng mga detalye ng login "
+"details at code sa aktibasyon. Mangyaring ipasok ang iyong code ng "
+"aktibasyon sa <a href='%s'>pahina ng aktibasyon</a>."
+
+#: users.py:467
+msgid "(Or simply click on the activation link in the email)"
+msgstr "(O i-click na lang ang link sa aktibasyon sa email)"
+
+#: users.py:469
+#, python-format
+msgid "Your user name is: %s\n"
+msgstr "Ang user name mo ay: %s\n"
+
+#: users.py:471
+#, python-format
+msgid "Your password is: %s\n"
+msgstr "Ang password mo ay: %s\n"
+
+#: users.py:472
+#, python-format
+msgid "Your registered email address is: %s\n"
+msgstr "Ang rehistradong email address mo ay: %s\n"
+
+#: users.py:500
+msgid "Redirecting to Registration Page..."
+msgstr "Dadalhin ka sa Pahina ng Rehistrasyon..."
+
+#: users.py:524
+msgid "Redirecting to login Page..."
+msgstr "Dadalhin ka sa login na Pahina..."
+
+#: users.py:527
+msgid "Your account has been activated! Redirecting to login..."
+msgstr "Aktibo na ang iyong account! Dadalhin ka sa login..."
+
+#: users.py:531
+msgid "The activation information was not valid."
+msgstr "Hindi balido ang impormasyon sa aktibasyon mo."
+
+#: users.py:532
+msgid "Activation Failed"
+msgstr "Hindi Matagumpay ang Aktibasyon"
+
+#: users.py:649
+msgid "Input height must be numeric"
+msgstr "Dapat numero ang taas na ininput"
+
+#: users.py:650
+msgid "Input width must be numeric"
+msgstr "Dapat numero ang lapad na ininput"
+
+#: users.py:651
+msgid "The number of rows displayed in view mode must be numeric"
+msgstr "Ang dami ng hilerang pinapakita sa modang view ay dapat numero"
+
+#: users.py:652
+msgid "The number of rows displayed in translate mode must be numeric"
+msgstr "Ang dami ng hilerang pinapakita sa modang pagsalin ay dapat numero"
