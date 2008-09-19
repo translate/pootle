@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-06-12 22:42+0000\n"
+"PO-Revision-Date: 2008-09-16 20:41+0000\n"
 "Last-Translator: Urso Wieske <uwieske@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.1.0\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -76,7 +76,7 @@ msgstr "Home Page"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Pagina di Administrashon di Idiomanan di Pootle"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -84,16 +84,17 @@ msgstr "Pagina prinsipal di admin"
 
 #: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
-msgstr "Kodigo di ISO "
+msgstr "Kodigo di ISO"
 
 #: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
 #: users.py:127
 msgid "Full Name"
 msgstr "Nomber kompleto"
 
+# doorgevoerd
 #: adminpages.py:94
 msgid "(add language here)"
-msgstr "(aggrega idioma aki)"
+msgstr "(agregá idioma aki)"
 
 #: adminpages.py:95
 msgid "Special Chars"
@@ -135,11 +136,12 @@ msgstr "Standard"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Pootle Proyectonan Admin Pagina"
 
+# doorgevoerd
 #: adminpages.py:151
 msgid "Project Code"
-msgstr "Kodigo di proyekto"
+msgstr "Kódigo di proyekto"
 
 #: adminpages.py:153
 msgid "(add project here)"
@@ -171,15 +173,16 @@ msgstr "Kita Proyekto"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Pootle Admin Page pa Usuario"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
 msgstr "Username"
 
+# doorgevoerd
 #: adminpages.py:219 users.py:403
 msgid "(add full name here)"
-msgstr "(aggrega nomber kompleto aki)"
+msgstr "(agregá nòmber kompletu aki)"
 
 #: adminpages.py:220 users.py:124
 msgid "Email Address"
@@ -201,9 +204,10 @@ msgstr "(agrega password aki)"
 msgid "Activated"
 msgstr "Aktivá"
 
+# doorgevoerd
 #: adminpages.py:222
 msgid "Activate New User"
-msgstr "Aktiva Usuario Nobo"
+msgstr "Aktivá Usuario Nobo"
 
 #: adminpages.py:223
 msgid "Remove User"
@@ -257,11 +261,12 @@ msgstr "No por a set derechonan di username %s- usuario no ta eksisti"
 
 #: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
-msgstr "Esaki ta un GNU-style proyekto (un directory, filenan nombrá pa idioma)"
+msgstr ""
+"Esaki ta un GNU-style proyekto (un directory, filenan nombrá pa idioma)."
 
 #: adminpages.py:374
 msgid "This is a standard style project (one directory per language)."
-msgstr "Esaki ta un standard style proyekto (un directory pa idioma)"
+msgstr "Esaki ta un standard style proyekto (un directory pa idioma)."
 
 #: adminpages.py:375
 msgid "User Permissions"
@@ -300,7 +305,7 @@ msgstr ""
 "<strong>tradusí</strong>! Ya ku Pootle ta <strong>Free Software</strong>, bo "
 "mester por download e i draai bo mes kopia si bo ta prefera. Bo por yuda "
 "partisipa den desaroyo den diferente manera (bo no mester programa "
-"nesesariamente).  "
+"nesesariamente)."
 
 #: indexpage.py:61
 msgid ""
@@ -309,7 +314,7 @@ msgid ""
 "details about source code, mailing lists etc."
 msgstr ""
 "E Pootle proyekto mes ta wordu di host na <a "
-"href='http://translate.sourceforge.net/'>translate.sourceforge.net</a> "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> "
 "kaminda bo por hanja e detayenan di source code, mailing listnan etc."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
@@ -320,9 +325,9 @@ msgid ""
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
-"E nomber ta para pa <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation "
+"E nomber ta para pa <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
 "<b>L</b>ocalization <b>E</b>ngine, pero bo por tin nesesidad pa lesa <a "
-"href='http://www.thechestnut.com/flumps.html\">esaki</a>."
+"href=\"http://www.thechestnut.com/flumps.htm\">esaki</a>."
 
 #: indexpage.py:65
 msgid "Versions"
@@ -416,7 +421,7 @@ msgstr "Buska"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Buskeda avansa"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -440,7 +445,7 @@ msgstr "Designa na Usuario"
 
 #: indexpage.py:543
 msgid "goals"
-msgstr "Obgetivonan"
+msgstr "obgetivonan"
 
 #: indexpage.py:544
 msgid "Enter goal name"
@@ -625,7 +630,7 @@ msgstr "Quick Translate"
 
 #: indexpage.py:892
 msgid "View Untranslated"
-msgstr "Mustra no tradusí."
+msgstr "Mustra no tradusí"
 
 #: indexpage.py:896
 msgid "No untranslated items"
@@ -662,7 +667,7 @@ msgstr "%d/%d palabranan (%d%%) designa"
 #: indexpage.py:1004 indexpage.py:1006
 #, python-format
 msgid "[%d/%d strings]"
-msgstr "[%d%d strings]."
+msgstr "[%d%d strings]"
 
 #: indexpage.py:1005 pagelayout.py:235
 #, python-format
@@ -782,19 +787,19 @@ msgstr "Grafiko"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "Kodigo fuente"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "Kodigo destino"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Komentarionan"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Luganan"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -905,7 +910,6 @@ msgstr "Bo no tin derecho pa revisa sugerensianan aki"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
@@ -934,11 +938,11 @@ msgstr "Tradukshon"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Aksepta sugerensia"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Rechasa sugerensia"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -958,12 +962,12 @@ msgstr "Relatá"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "Trahando..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Error: algu a bai robes."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -989,7 +993,7 @@ msgstr "Anterior %d"
 #: translatepage.py:199
 #, python-format
 msgid "Items %d to %d of %d"
-msgstr "Itemnan %d te %d di %d "
+msgstr "Itemnan %d te %d di %d"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:204 translatepage.py:207
@@ -1083,22 +1087,22 @@ msgstr "Tradukshon koriente:"
 #: translatepage.py:817
 #, python-format
 msgid "Suggestion %d by %s:"
-msgstr "Sugerensia: %d door di %s: "
+msgstr "Sugerensia: %d door di %s:"
 
 #: translatepage.py:819
 #, python-format
 msgid "Suggestion %d:"
-msgstr "Sugerensia: %d: "
+msgstr "Sugerensia: %d:"
 
 #. l10n: parameter: name of translator
 #: translatepage.py:823
 #, python-format
 msgid "Suggestion by %s:"
-msgstr "Sugerensia door %s: "
+msgstr "Sugerensia door %s:"
 
 #: translatepage.py:825
 msgid "Suggestion:"
-msgstr "Sugerensia: "
+msgstr "Sugerensia:"
 
 #: users.py:43
 #, python-format
@@ -1115,15 +1119,15 @@ msgstr "Login den Pootle"
 
 #: users.py:66
 msgid "Username:"
-msgstr "Username: "
+msgstr "Username:"
 
 #: users.py:68
 msgid "Password:"
-msgstr "Password: "
+msgstr "Password:"
 
 #: users.py:69
 msgid "Language:"
-msgstr "Idioma: "
+msgstr "Idioma:"
 
 #: users.py:71
 msgid "Login"
@@ -1135,15 +1139,15 @@ msgstr "Default"
 
 #: users.py:112
 msgid "Please enter your registration details"
-msgstr "Por fabor fill in detayenan di registrashon."
+msgstr "Por fabor fill in detayenan di registrashon"
 
 #: users.py:115 users.py:475
 msgid "Pootle Registration"
-msgstr "Pootle Regsitrashon "
+msgstr "Pootle Regsitrashon"
 
 #: users.py:122 users.py:158
 msgid "Your requested username"
-msgstr "Bo a pdi username "
+msgstr "Bo a pdi username"
 
 #: users.py:125 users.py:429
 msgid "You must supply a valid email address"
@@ -1175,7 +1179,7 @@ msgstr "Por fabor fill in bo detayenan di aktivashon"
 
 #: users.py:150
 msgid "Pootle Account Activation"
-msgstr "Pootle Aktivashon di Account "
+msgstr "Pootle Aktivashon di Account"
 
 #: users.py:160
 msgid "Activation Code"
@@ -1208,7 +1212,7 @@ msgstr "Konfigurashon di Interface di Tradukshon"
 
 #: users.py:191
 msgid "User Interface language"
-msgstr "Idioma di User Interface "
+msgstr "Idioma di User Interface"
 
 #: users.py:192
 msgid "My Projects"
@@ -1224,12 +1228,12 @@ msgstr "Home page"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Idioma alternativa di fuente"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Ningun"
 
 #: users.py:257
 msgid "Input Height (in lines)"
@@ -1311,10 +1315,8 @@ msgstr ""
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
-"Si bo no por sigui e link aki, for fabor fill e kodigo eyriba den e pgina di "
+msgstr "Si bo no por sigui e link aki, for fabor fill e kodigo eyriba den e pgina di "
 "aktivashon.\n"
-" "
 
 #: users.py:463
 msgid ""
@@ -1332,7 +1334,7 @@ msgid ""
 msgstr ""
 "Account kreá. Lo bo hanja via di un email detayenan di login i un kodigo "
 "aktivashon. Por fabor fill in obo kodigo di aktivashon den e <a "
-"href='%s'>pagina de aktvashon</a>.  "
+"href='%s'>pagina de aktvashon</a>."
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"
@@ -1351,9 +1353,7 @@ msgstr "Bo password ta: %s\n"
 #: users.py:472
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
-"Bo email adres registrá ta: %s\n"
-" "
+msgstr "Bo email adres registrá ta: %s\n"
 
 #: users.py:500
 msgid "Redirecting to Registration Page..."
@@ -1377,11 +1377,11 @@ msgstr "Aktivashon a Faya"
 
 #: users.py:649
 msgid "Input height must be numeric"
-msgstr "Altura di Input mester ta numériko."
+msgstr "Altura di Input mester ta numériko"
 
 #: users.py:650
 msgid "Input width must be numeric"
-msgstr "Hanchura di Input mester ta numériko."
+msgstr "Hanchura di Input mester ta numériko"
 
 #: users.py:651
 msgid "The number of rows displayed in view mode must be numeric"

@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2007-01-24 12:56+0200\n"
-"Last-Translator: Kholisa Podile <podilk@unisa.ac.za>\n"
+"PO-Revision-Date: 2008-08-28 11:06+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0beta\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -19,7 +19,7 @@ msgstr ""
 #: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
 #: users.py:177
 msgid "Pootle Demo"
-msgstr ""
+msgstr "Umzekelo wokuqala ka Pootle"
 
 #: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
 #: pagelayout.py:27
@@ -28,7 +28,7 @@ msgstr "Ikhaya"
 
 #: adminpages.py:46 adminpages.py:212
 msgid "Users"
-msgstr ""
+msgstr "Abasebenzisi"
 
 #: adminpages.py:47 adminpages.py:87 indexpage.py:93
 msgid "Languages"
@@ -40,7 +40,7 @@ msgstr "Projekthi"
 
 #: adminpages.py:49
 msgid "General options"
-msgstr ""
+msgstr "Ekukhethwa kuko ngokubanzi"
 
 #: adminpages.py:50 users.py:182
 msgid "Option"
@@ -49,12 +49,12 @@ msgstr "Ekukhethwa kuko"
 #: adminpages.py:51 users.py:183
 #, fuzzy
 msgid "Current value"
-msgstr "Ixabiso langoku"
+msgstr "Ixabiso elisekhoyo"
 
 #: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
 #: users.py:197
 msgid "Save changes"
-msgstr ""
+msgstr "Gcina eziguqukileyo"
 
 #: adminpages.py:56
 msgid "Title"
@@ -75,58 +75,58 @@ msgstr "Iphepha lekhaya"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Ikhasi lolawulo lweelwimi zika Pootle "
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
-msgstr ""
+msgstr "Ikhasi eliphambili lolawulo"
 
 #: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
-msgstr ""
+msgstr "Ikhodi ye ISO"
 
 #: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
 #: users.py:127
 msgid "Full Name"
-msgstr ""
+msgstr "Igama elipheleleyo"
 
 #: adminpages.py:94
 msgid "(add language here)"
-msgstr ""
+msgstr "(faka ulwimi apha)"
 
 #: adminpages.py:95
 msgid "Special Chars"
-msgstr ""
+msgstr "Oonobumba abaluhlobo olulodwa"
 
 #: adminpages.py:95
 msgid "(special characters)"
-msgstr ""
+msgstr "(imibhalo enjengonobumba yohlobo olulodwa)"
 
 #: adminpages.py:96 indexpage.py:224
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Inombolo zesinintsi"
 
 #: adminpages.py:96
 msgid "(number of plurals)"
-msgstr ""
+msgstr "(iinombolo zesinintsi)"
 
 #: adminpages.py:97 indexpage.py:225
 msgid "Plural Equation"
-msgstr ""
+msgstr "Isinintsi sokulinganiswa"
 
 #: adminpages.py:97
 msgid "(plural equation)"
-msgstr ""
+msgstr "(isininzi sokulinganiswa)"
 
 #: adminpages.py:98
 msgid "Remove Language"
-msgstr ""
+msgstr "Susa ulwimi"
 
 #. l10n: The parameter is a languagecode, projectcode or username
 #: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
 #, python-format
 msgid "Remove %s"
-msgstr ""
+msgstr "Susa %s"
 
 #: adminpages.py:132
 msgid "Standard"
@@ -142,31 +142,31 @@ msgstr ""
 
 #: adminpages.py:153
 msgid "(add project here)"
-msgstr ""
+msgstr "(faka umsebenzi oyilwayo apha)"
 
 #: adminpages.py:154
 msgid "Project Description"
-msgstr ""
+msgstr "INkcazelo yomsebenzi oyilwayo"
 
 #: adminpages.py:154
 msgid "(project description)"
-msgstr ""
+msgstr "(inkcazelo yomsebenzi oyilwayo)"
 
 #: adminpages.py:155
 msgid "Checker Style"
-msgstr ""
+msgstr "Qwalasela imbo"
 
 #: adminpages.py:156
 msgid "File Type"
-msgstr ""
+msgstr "Uhlono lwefayili"
 
 #: adminpages.py:157
 msgid "Create MO Files"
-msgstr ""
+msgstr "Dala iifayili ze MO"
 
 #: adminpages.py:158
 msgid "Remove Project"
-msgstr ""
+msgstr "Susa umsebenzi oyilwayo"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
@@ -174,19 +174,19 @@ msgstr ""
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
-msgstr "igama lomsebenzisi"
+msgstr "Igama lomsebenzisi"
 
 #: adminpages.py:219 users.py:403
 msgid "(add full name here)"
-msgstr ""
+msgstr "(faka igama elipheleleyo apha)"
 
 #: adminpages.py:220 users.py:124
 msgid "Email Address"
-msgstr "iposi yecomputha"
+msgstr "Iposi yecomputha"
 
 #: adminpages.py:220 users.py:406
 msgid "(add email here)"
-msgstr ""
+msgstr "(faka i-imeyile apha)"
 
 #: adminpages.py:221 users.py:130 users.py:188
 msgid "Password"
@@ -194,100 +194,106 @@ msgstr "inani eliyimfihlo olisebenzisa ukuze ungene endaweni ethile"
 
 #: adminpages.py:221 users.py:400
 msgid "(add password here)"
-msgstr ""
+msgstr "(faka igama lokugqithisa apha)"
 
 #: adminpages.py:222
 #, fuzzy
 msgid "Activated"
-msgstr "sebenzisa"
+msgstr "Ivuselelekile"
 
 #: adminpages.py:222
 msgid "Activate New User"
-msgstr ""
+msgstr "vuselela ukusebenza komsebenzi omtsha"
 
 #: adminpages.py:223
 msgid "Remove User"
-msgstr ""
+msgstr "susa umsebenzisi"
 
 #: adminpages.py:278
 msgid "Back to main page"
-msgstr ""
+msgstr "Buyela kwikhasi elingaphambili"
 
 #: adminpages.py:279
 msgid "Existing languages"
-msgstr ""
+msgstr "Iilwimi ezikhoyo"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:283
 msgid "Update Languages"
-msgstr ""
+msgstr "hlaziya iilwimi"
 
 #: adminpages.py:284
 #, python-format
 msgid "Pootle Admin: %s"
-msgstr ""
+msgstr "Pootle Admin:%s"
 
 #: adminpages.py:285 adminpages.py:356
 msgid "You do not have the rights to administer this project."
-msgstr ""
+msgstr "Awunamalungelo okusebenzisa lo msebenzi"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:289
 msgid "Update from templates"
-msgstr ""
+msgstr "Hlaziya kwimifuziselo"
 
 #: adminpages.py:298
 #, fuzzy
 msgid "Add Language"
-msgstr "Yongeza iilwimi"
+msgstr "Yongeza ulwimi"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:336
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr ""
+msgstr "Pootle Admin: %s %s"
 
 #: adminpages.py:337
 msgid "Project home page"
-msgstr ""
+msgstr "Umsebenzi oyilwayo kwikhasi lokuqala"
 
 #: adminpages.py:355
 #, python-format
+#, fuzzy
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr ""
+msgstr "Ayikwazi ukumisela ekunene ukwenzela umsebenzisi"
 
 #: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
+"Olu luhlobo lomsebenzi weGNU (Uvimba weefayili, iifayile ezithiywe ngolwimi "
+"ngalunye)."
 
 #: adminpages.py:374
 msgid "This is a standard style project (one directory per language)."
 msgstr ""
 
 #: adminpages.py:375
+#, fuzzy
 msgid "User Permissions"
-msgstr ""
+msgstr "Isivumelwano somsebenzisi"
 
 #: adminpages.py:377
+#, fuzzy
 msgid "(select to add user)"
-msgstr ""
+msgstr "Khetha ukudibanisa umsebenzisi"
 
 #: adminpages.py:378
 #, fuzzy
 msgid "Rights"
-msgstr "Ekunene"
+msgstr "Amalungelo"
 
 #: adminpages.py:379 indexpage.py:1008
 msgid "Remove"
 msgstr "Susa"
 
 #: adminpages.py:406
+#, fuzzy
 msgid "Update Rights"
-msgstr ""
+msgstr "Amalungelo okuqhuba umsebenzi"
 
 #: indexpage.py:58
 msgid "About Pootle"
-msgstr ""
+msgstr "Malunga noPootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:60
@@ -305,6 +311,9 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
+"  Umsebenzi oyilwayo ka Pootle wamkelwa kwi <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> where "
+"you can find the details about source code, mailing lists etc."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -315,9 +324,9 @@ msgid ""
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
-"igama elimele u <b>PO</b>-ligxininise<b>o</b>nline<b>T</b>ngine, kodwa "
-"unganqwenela ukufunda <a href=\"http//www.thechestnut.com/flumps.htm\">le</"
-"a>."
+"igama elimele u <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+"<b>L</b>ocalization <b>E</b>ngine, kodwa unganqwenela ukufunda <a "
+"href=\"http//www.thechestnut.com/flumps.htm\">le</a>."
 
 #: indexpage.py:68
 msgid "Versions"
@@ -331,6 +340,8 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
+"Esi siza siqhubeka kule: <br />Pootle %s<br />Translate Toolkit %s<br "
+"/>jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
 #: indexpage.py:133
 #, python-format
@@ -340,30 +351,31 @@ msgstr ""
 #: indexpage.py:135
 #, fuzzy
 msgid "Change options"
-msgstr "Tshintsha intshukumo"
+msgstr "Tshintsha okukhethwayo"
 
 #: indexpage.py:136
 msgid "Admin page"
-msgstr ""
+msgstr "Ulawulo lwekhasi"
 
 #: indexpage.py:137 projects.py:149
 msgid "Administrate"
-msgstr ""
+msgstr "Ukulawula"
 
 #: indexpage.py:138
 msgid "Quick Links"
-msgstr ""
+msgstr "Unxulumelwano olukhawulezileyo"
 
 #: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
+"Sicela ucofe kutshintsho-khetho ukhethe ezinye iilwimi kunye nemisebenzi."
 
 #: indexpage.py:199
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d umsebenzi, umgangatho ophakathi %d%% iguqulelwe"
+msgstr[1] "% imisebenzi, imigangatho ephakathi %d%% iguqulelwe"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -371,11 +383,11 @@ msgstr[1] ""
 #: indexpage.py:205 indexpage.py:268
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
 msgid "Admin"
-msgstr ""
+msgstr "Ulawulo"
 
 #: indexpage.py:221
 #, fuzzy
@@ -385,25 +397,25 @@ msgstr "Ubekelelo lolwimi"
 #: indexpage.py:222
 #, fuzzy
 msgid "Language Name"
-msgstr "Ubekelelo lolwimi"
+msgstr "Igama lolwimi"
 
 #: indexpage.py:260
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ulwimi, umgangatho ophakathi %d%% luguqulelwe"
+msgstr[1] "i%d yeelwimi, yemigangatho ephakathi %d%% eguqulelweyo"
 
 #: indexpage.py:273
 #, fuzzy
 msgid "Language"
-msgstr "ulwimi %s"
+msgstr "Ulwimi"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:354
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "%s: Umsebenzi %s, Ulwimi %s"
 
 #. l10n: text next to search field
 #: indexpage.py:362 translatepage.py:145
@@ -412,39 +424,39 @@ msgstr "khangela"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Ufuno oluphambili"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "ayikwazanga ukulayisha ifayili, ifayili ayifakelekanga"
 
 #: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
-msgstr ""
+msgstr "Ilayisha kuphela iifayili zePO kunye nekhowudi yeposi yefayili zePO"
 
 #: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
 msgid "Assign Strings"
-msgstr ""
+msgstr "Yabela umtya"
 
 #: indexpage.py:536 translatepage.py:239
 msgid "Assign Action"
-msgstr ""
+msgstr "Yabela inyathelo"
 
 #: indexpage.py:537 translatepage.py:238
 msgid "Assign to User"
-msgstr ""
+msgstr "Yabela kumsebenzisi"
 
 #: indexpage.py:543
 msgid "goals"
-msgstr ""
+msgstr "Iinjongo"
 
 #: indexpage.py:544
 msgid "Enter goal name"
-msgstr ""
+msgstr "Faka igama lenjongo"
 
 #: indexpage.py:545
 msgid "Add Goal"
-msgstr ""
+msgstr "Fakela injongo"
 
 #: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
@@ -502,12 +514,12 @@ msgstr "ifayile ye CSV"
 #: indexpage.py:748
 #, fuzzy
 msgid "MO file"
-msgstr "i fayile ye PO"
+msgstr "ifayile yeMO"
 
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:754
 msgid "Update"
-msgstr "Gqiba"
+msgstr "Hlaziya"
 
 #. l10n: Commit to version control (like CVS or Subversion)
 #: indexpage.py:760 projects.py:150
@@ -588,94 +600,94 @@ msgstr ""
 #: indexpage.py:858
 #, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "  Zonke injongo: %s"
 
 #: indexpage.py:864
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Guqulela imitya yam"
 
 #: indexpage.py:866
 msgid "View My Strings"
-msgstr ""
+msgstr "Jonga imitya yam"
 
 #: indexpage.py:871
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "Akukho mitya uyinikiweyo"
 
 #: indexpage.py:875
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Guqulela imitya yam ngokukhawulezileyo"
 
 #: indexpage.py:879
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "Akukho mitya ingaguqulwanga inikwe wena"
 
 #: indexpage.py:883
 msgid "Review Suggestions"
-msgstr ""
+msgstr "Phinda ujonge ingcebiso"
 
 #: indexpage.py:885
 msgid "View Suggestions"
-msgstr ""
+msgstr "Jonga ingcebiso"
 
 #: indexpage.py:890
 msgid "Quick Translate"
-msgstr "khawulezisa ukhumshe"
+msgstr "khawulezisa uguqulele"
 
 #: indexpage.py:892
 msgid "View Untranslated"
-msgstr "yiva okungakhumshwanga"
+msgstr "Jonga okungaguqulelwanga"
 
 #: indexpage.py:896
 msgid "No untranslated items"
-msgstr ""
+msgstr "Akukho zinto zingaguqulelwanga"
 
 #: indexpage.py:899
 msgid "Translate All"
-msgstr "khumsha zonke"
+msgstr "Guqulela zonke"
 
 #: indexpage.py:914
 msgid "ZIP of goal"
-msgstr ""
+msgstr "ZIP ye-njongo"
 
 #: indexpage.py:916
 msgid "ZIP of folder"
-msgstr ""
+msgstr "ZIP yesiqulathi sefayili"
 
 #: indexpage.py:923
 msgid "Generate SDF"
-msgstr ""
+msgstr "Ukwenza iSDF"
 
 #: indexpage.py:976
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sisinye%d umtya (%d%%) Akuphumelelanga"
+msgstr[1] "Isininzi%d umtya (%d%%) Akuphumelanga"
 
 #: indexpage.py:1003
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr ""
+msgstr "%d%d amagama (%d%%) owanikiweyo"
 
 #: indexpage.py:1004 indexpage.py:1006
 #, python-format
 msgid "[%d/%d strings]"
-msgstr ""
+msgstr "[%d%d imitya]"
 
 #: indexpage.py:1005 pagelayout.py:235
 #, python-format
 msgid "%d/%d words (%d%%) translated"
-msgstr ""
+msgstr "%d%d amagama (%d%%) aguqulelweyo"
 
 #: pagelayout.py:28
 msgid "All projects"
-msgstr ""
+msgstr "Yonke imisebenzi oyilwayo"
 
 #: pagelayout.py:29
 #, fuzzy
 msgid "All languages"
-msgstr "ulwimi %s"
+msgstr "Zonke iilwimi"
 
 #: pagelayout.py:30
 msgid "My account"
@@ -704,34 +716,39 @@ msgstr "bhalisa"
 msgid "Activate"
 msgstr "sebenzisa"
 
+# Isixhobo esisetyenziswa kwi-intanethi ukuguqulela amagama afumaneka kwilwimi lwentsusa aguqulelwe kwiilwimi ekujoliselwe kuzo
 #: pagelayout.py:83
+#, fuzzy
 msgid "Pootle Logo"
-msgstr ""
+msgstr "Isixhobo sokugula ulwimi"
 
 #: pagelayout.py:84
+#, fuzzy
 msgid "About this Pootle server"
-msgstr ""
+msgstr "Iinkcukacha ngesixhobo sokuguqulela ulwimi"
 
 #: pagelayout.py:160
+#, fuzzy
 msgid "All goals"
-msgstr ""
+msgstr "Zonke izifezekiso"
 
 #: pagelayout.py:231
 #, python-format
 msgid "%d/%d files"
-msgstr ""
+msgstr "%d/%d ifayili"
 
 #: pagelayout.py:234
 #, python-format
 #, fuzzy
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] "IFayili i-%S"
+msgstr[0] "Ifayili eyi-%d"
+msgstr[1] "Iifayili eziyi-%d"
 
 #: pagelayout.py:236
 #, python-format
 msgid "%d/%d strings"
-msgstr ""
+msgstr "%d/% umtya"
 
 #: pagelayout.py:242 users.py:184
 msgid "Name"
@@ -740,15 +757,15 @@ msgstr "Igama"
 #: pagelayout.py:243
 #, fuzzy
 msgid "Translated"
-msgstr "khumsha zonke"
+msgstr "iguqulelwe kwelinye ulwimi"
 
 #: pagelayout.py:244
 msgid "Translated percentage"
-msgstr ""
+msgstr "Uguqulelo kwe-pesenti kolunye ulwimi"
 
 #: pagelayout.py:245
 msgid "Translated words"
-msgstr ""
+msgstr "Iinguqulelo zamagama"
 
 #: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
@@ -802,7 +819,7 @@ msgstr ""
 #: pootle.py:305
 #, fuzzy
 msgid "Login failed"
-msgstr "Akuphumelelanga ukungena."
+msgstr "Akuphumelelanga ukungena"
 
 #: pootle.py:349 pootle.py:380
 msgid "Redirecting to login..."
@@ -854,44 +871,44 @@ msgstr "Isisele"
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:147
 msgid "Compile PO files"
-msgstr ""
+msgstr "Hlanganisela iifayile zePO"
 
 #: projects.py:148
 msgid "Assign"
-msgstr ""
+msgstr "YABELA"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:230
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "Awunako ukuyisusa i-\"nobody\" okanye i-\"default user\""
 
 #: projects.py:382 projects.py:444
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "Awuvumelekanga ukutshintsha amanqaku apha"
 
 #: projects.py:510
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "Awuvumelekanga ukulayisha ifayile apha"
 
 #: projects.py:513
 msgid "You do not have rights to overwrite files here"
-msgstr ""
+msgstr "Awuvumelekanga ukubhala iifayili ngokugqithisileyo"
 
 #: projects.py:515
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "Awuvumelekanga ukupakisha ifayile ezintsha apha"
 
 #: projects.py:524
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "Awuvumelekenga ukuhlaziya iifayile apha"
 
 #: projects.py:555
 msgid "You do not have rights to commit files here"
-msgstr ""
+msgstr "Awunako ukuqulungqa ifayile apha"
 
 #: projects.py:977 projects.py:1019
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "Awuvumelekanga ukutshintsha ulwabiwo apha"
 
 #: projects.py:1219
 msgid "You do not have rights to change translations here"
@@ -911,7 +928,9 @@ msgstr ""
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
-msgstr "%d/%d zikhumshiwe/n(%d blank,%d fuzzy)"
+msgstr ""
+"%d/%d ziguqulelwe\n"
+" (%d aziguqulelwanga, %d fuzzy)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -1012,7 +1031,7 @@ msgstr "isajonga i %s"
 #, python-format
 #, fuzzy
 msgid "There are no items matching that search ('%s')"
-msgstr "azikho izinto ezihambisana nalento ikhangelwayo"
+msgstr "azikho izinto ezihambisana nalento ikhangelwayo ('%s')"
 
 #: translatepage.py:400
 msgid "You have finished going through the items you selected"
@@ -1124,7 +1143,7 @@ msgstr "inani eliyimfihlo olisebenzisa ukuze ungene endaweni ethile"
 #: users.py:69
 #, fuzzy
 msgid "Language:"
-msgstr "ulwimi %s"
+msgstr "Ulwimi:"
 
 #: users.py:71
 #, fuzzy
@@ -1145,32 +1164,34 @@ msgstr "ukubhalisa kuka pootle"
 
 #: users.py:122 users.py:158
 msgid "Your requested username"
-msgstr "igama lakho eliceliweyo olisebenzisile "
+msgstr "Igama lakho eliceliweyo olisebenzisile"
 
 #: users.py:125 users.py:429
 msgid "You must supply a valid email address"
-msgstr ""
+msgstr "Faka idilesi ye-imeyile eqinisekisiweyo"
 
 #: users.py:128
 msgid "Your full name"
-msgstr ""
+msgstr "Igama lakho elipheleleyo"
 
 #: users.py:131
 msgid "Your desired password"
-msgstr "imfuno yenani lakho eliyimfihlo  "
+msgstr "Igama lokungena lakho elifunekayo"
 
 #: users.py:133 users.py:189
 #, fuzzy
 msgid "Confirm password"
-msgstr "imfuno yenani lakho eliyimfihlo  "
+msgstr "Qinisekisa igama lokungena"
 
 #: users.py:134
 msgid "Type your password again to ensure it is entered correctly"
 msgstr ""
+"Faka igama lakho lokungena kwakhona ukuze uqinisekise  ukuze uqinisekise "
+"ukuba lifakwe kakhuhle"
 
 #: users.py:136
 msgid "Register Account"
-msgstr ""
+msgstr "Bhalisa i-akhawunti"
 
 #: users.py:145
 msgid "Please enter your activation details"
@@ -1178,7 +1199,7 @@ msgstr "nceda ufake iingcombolo ezisetyenzisiweyo"
 
 #: users.py:150
 msgid "Pootle Account Activation"
-msgstr ""
+msgstr "Yenza i-akhawunti kaPootle isebenze"
 
 #: users.py:160
 msgid "Activation Code"
@@ -1195,11 +1216,11 @@ msgstr "sebenzisa i akhawinti"
 #: users.py:175
 #, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr " Okunokukhethwa ukwenzela:%s"
 
 #: users.py:181
 msgid "Personal Details"
-msgstr ""
+msgstr "Iinkcukacha zomntu"
 
 #: users.py:186
 msgid "Email"
@@ -1210,43 +1231,43 @@ msgid "Translation Interface Configuration"
 msgstr ""
 
 #: users.py:191
+#, fuzzy
 msgid "User Interface language"
-msgstr ""
+msgstr "Ulwimi lomsebenzisi we-interface "
 
 #: users.py:192
 msgid "My Projects"
-msgstr ""
+msgstr "Imisebenzi yam"
 
 #: users.py:194
-#, fuzzy
 msgid "My Languages"
-msgstr "Yongeza iilwimi"
+msgstr "Iilwimi zam"
 
 #: users.py:196
 #, fuzzy
 msgid "Home page"
-msgstr "&Iphepha lasekhaya"
+msgstr "Iphepha lasekhaya "
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Olunye ulwimi oluyintsusa"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "ayikho"
 
 #: users.py:257
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "ukufaka ubude"
 
 #: users.py:258
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "umboniso-silayidi ngokwenani lemigca exwesileyo"
 
 #: users.py:259
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "inani lemigca exwesilelyo ngokwemo yenguqulelo"
 
 #: users.py:307
 msgid "Error"
@@ -1254,7 +1275,7 @@ msgstr "Imposiso"
 
 #: users.py:359
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "yiba ngumqulunqi-ndawo ukuze utshintshe abasebenzisi"
 
 #: users.py:423
 msgid ""
@@ -1279,26 +1300,28 @@ msgstr ""
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "Ukuba unengxaki nokubhalisa, nceda udibane nombhalisi kwelo candelo."
 
 #: users.py:444
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
 msgstr ""
+"Elo gama sele likhona. I-email iza kuthunyelwa kwidilesi ye -email "
+"ebhalisiweyo."
 
 #: users.py:446
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "Dlulela ku <a href=%>ngena</a>\n"
 
 #: users.py:452
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "I-akhawunti kaPootle yenzelwe wena usebenzise le dilesi ye-email .\n"
 
 #: users.py:454
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "Ukuyenza isebenze i-akhawunti yakho, landela lo mdibaniso :\\"
 
 #: users.py:460
 #, python-format
@@ -1306,18 +1329,24 @@ msgid ""
 "Your activation code is:\n"
 "%s\n"
 msgstr ""
+"Ikhowudi yokusebenza yile:\n"
+"%n"
 
 #: users.py:462
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "Ukuba akukwazi ukulandela umdibaniso,nceda faka le khowudi ingentla "
+"kwiphepha lokusebenza.\n"
 
 #: users.py:463
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr ""
+" Lo myalezo uthunyelwe uqinisekisa ukuba le dilesi yale-imeyile yiyo ngqo. "
+"Ukuba ubungafuni kubhalisa   akhawunti ungasuka ungawunaki lo myalezo.\n"
+"        "
 
 #: users.py:465
 #, python-format
@@ -1325,6 +1354,9 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"I-akhawunti ivuliwe. Uza kuthunyelelwa iinkcukacha zokungena nekhowudi "
+"yokuyisebenzisa. Nceda faka ikhowudi yakho kwi<a href='%s'>khasi "
+"lokuvuselela</a>.  "
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"
@@ -1333,12 +1365,12 @@ msgstr ""
 #: users.py:469
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr ""
+msgstr "Igama lomsebenzisi ngu: %s/n"
 
 #: users.py:471
 #, python-format
 msgid "Your password is: %s\n"
-msgstr ""
+msgstr "Igama lokugqithisa lakho ngu: %s\n"
 
 #: users.py:472
 #, python-format

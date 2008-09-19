@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-04-09 09:02+0000\n"
+"PO-Revision-Date: 2008-09-09 13:31+0000\n"
 "Last-Translator: Aiet Kolkhi <aietkolkhi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.1.0\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -72,7 +72,7 @@ msgstr "სათაო გვერდი"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Pootle-ს ენათა მართვის გვერდი"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -131,7 +131,7 @@ msgstr "სტანდარტული"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Pootle-ს პროექტთა სამართავი გვერდი"
 
 #: adminpages.py:151
 msgid "Project Code"
@@ -155,7 +155,7 @@ msgstr "შემოწმების სტილი"
 
 #: adminpages.py:156
 msgid "File Type"
-msgstr ""
+msgstr "ფაილის ტიპი"
 
 #: adminpages.py:157
 msgid "Create MO Files"
@@ -167,7 +167,7 @@ msgstr "პროექტის წაშლა"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Pootle-ს მომხმარებელთა მართვის გვერდი"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -411,7 +411,7 @@ msgstr "ძიება"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "გაფართოებული ძიება"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -461,12 +461,12 @@ msgstr "თავზე გადაწერა"
 #. l10n: tooltip
 #: indexpage.py:559
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "თავზე გადაწერა, თუ იგივე სახელის ფაილი არსებობს"
 
 #. l10n: radio button text
 #: indexpage.py:561
 msgid "Merge"
-msgstr ""
+msgstr "გაერთიანება"
 
 #. l10n: tooltip
 #: indexpage.py:563
@@ -779,15 +779,15 @@ msgstr ""
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "სამიზნე ტექსტი"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "შენიშვნები"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "მდებარეობები"
 
 #: pootle.py:305
 msgid "Login failed"

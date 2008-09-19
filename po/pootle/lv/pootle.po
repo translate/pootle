@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-08-06 04:57+0000\n"
+"PO-Revision-Date: 2008-09-01 07:41+0000\n"
 "Last-Translator: Imants <imantsgi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Pootle 1.1.0\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -73,7 +73,7 @@ msgstr "Sākumlapa"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Pootle valodu administrēšanas lapa"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -132,7 +132,7 @@ msgstr "Standarts"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Pootle projektu administrēšanas lapa"
 
 #: adminpages.py:151
 msgid "Project Code"
@@ -168,7 +168,7 @@ msgstr "Dzēst projektu"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Pootle lietotāju administrēšanas lapa"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -268,7 +268,7 @@ msgstr "Lietotāju tiesības"
 
 #: adminpages.py:377
 msgid "(select to add user)"
-msgstr "(ievēlies lietotāju)"
+msgstr "(izvēlies lietotāju)"
 
 #: adminpages.py:378
 msgid "Rights"
@@ -419,7 +419,7 @@ msgstr "Meklēt"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Izvērstā meklēšana"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -789,19 +789,19 @@ msgstr "Grafiks"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "Tulkojamais teksts"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "Iztulkotais teksts"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Komentāri"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Atrašanās vieta"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -910,7 +910,6 @@ msgstr "Jums nav tiesību, lai pārskatītu ieteikumus"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
@@ -939,11 +938,11 @@ msgstr "Tulkojums"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Apstiprināt ieteikto"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Noraidīt ieteikto"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -963,12 +962,12 @@ msgstr "Saistīts"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "Notiek apstrāde..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Kļūda: Kaut kas nogāja greizi."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -1230,12 +1229,12 @@ msgstr "Sākumlapa"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Alternatīva tulkojamā teksta valoda"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Nav"
 
 #: users.py:257
 msgid "Input Height (in lines)"

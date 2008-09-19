@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2007-12-21 15:59+0000\n"
+"PO-Revision-Date: 2008-09-04 22:09+0000\n"
 "Last-Translator: Erdal Ronahi <erdal.ronahi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!= 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -73,7 +73,7 @@ msgstr "Malper"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Rûpela Rêvebirina Zimanan a Pootle"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -114,7 +114,7 @@ msgstr "Hevkêşeya Pirjimaran"
 
 #: adminpages.py:97
 msgid "(plural equation)"
-msgstr "hevkêşeya pirjimaran"
+msgstr "(hevkêşeya pirjimaran)"
 
 #: adminpages.py:98
 msgid "Remove Language"
@@ -128,11 +128,11 @@ msgstr "%s rake"
 
 #: adminpages.py:132
 msgid "Standard"
-msgstr "standard"
+msgstr "Standard"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Rûpela Rêvebirina Projeyan a Pootle"
 
 #: adminpages.py:151
 msgid "Project Code"
@@ -168,7 +168,7 @@ msgstr "Proje rake"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Rûpela Rêvebirina Bikarhêneran a Pootle"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -176,7 +176,7 @@ msgstr "Navê bikarhêner"
 
 #: adminpages.py:219 users.py:403
 msgid "(add full name here)"
-msgstr "li vir nav û başnav binvîse"
+msgstr "(li vir nav û Paşnav binivîse)"
 
 #: adminpages.py:220 users.py:124
 msgid "Email Address"
@@ -184,7 +184,7 @@ msgstr "Navnîşana e-peyam"
 
 #: adminpages.py:220 users.py:406
 msgid "(add email here)"
-msgstr "li vir e-peyamê binvîse"
+msgstr "(li vir e-peyamê binvîse)"
 
 #: adminpages.py:221 users.py:130 users.py:188
 msgid "Password"
@@ -192,7 +192,7 @@ msgstr "Şîfre"
 
 #: adminpages.py:221 users.py:400
 msgid "(add password here)"
-msgstr "li vir şifreyê binvîse"
+msgstr "(li vir şifreyê binvîse)"
 
 #: adminpages.py:222
 msgid "Activated"
@@ -231,7 +231,7 @@ msgstr "Mafên tê yên admin ên vê projeyê tune."
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:289
 msgid "Update from templates"
-msgstr "ji dirban rojane bike"
+msgstr "Ji şablonan rojane bike"
 
 #: adminpages.py:298
 msgid "Add Language"
@@ -254,15 +254,15 @@ msgstr "Nikare maf bide bikarhêner %s - bikarhêner ne derbasbare"
 
 #: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
-msgstr "Ev awayê projeya GNU ye"
+msgstr "Ev awayê projeya GNU ye (peldankek, pelên bi navê zimanan)."
 
 #: adminpages.py:374
 msgid "This is a standard style project (one directory per language)."
-msgstr "Ev awayê standart ê projeyê ye"
+msgstr "Ev awayê standart ê projeyê ye (peldankeke ji bo her zimanî)."
 
 #: adminpages.py:375
 msgid "User Permissions"
-msgstr "peymanên bikarhêner"
+msgstr "Destûrên bikarhêner"
 
 #: adminpages.py:377
 msgid "(select to add user)"
@@ -322,7 +322,7 @@ msgstr ""
 
 #: indexpage.py:65
 msgid "Versions"
-msgstr ""
+msgstr "Guherto"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -332,6 +332,8 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
+"Di vê sîteyê dixebitin:<br />Pootle %s<br />Translate Toolkit %s<br "
+"/>jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
 #: indexpage.py:133
 #, python-format
@@ -372,33 +374,29 @@ msgstr[1] "%d proje, li derdora %d%% hatin wergerandin"
 #. l10n: This is used as a page title. Most languages won't need to change this
 #: indexpage.py:205 indexpage.py:268
 #, python-format
-#, fuzzy
 msgid "%s: %s"
-msgstr "%s (%s)"
+msgstr "%s: %s"
 
 #: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
 msgid "Admin"
 msgstr "Admin"
 
 #: indexpage.py:221
-#, fuzzy
 msgid "Language Code"
-msgstr "Ziman"
+msgstr "Koda Zimên"
 
 #: indexpage.py:222
-#, fuzzy
 msgid "Language Name"
-msgstr "Ziman"
+msgstr "Navê Zimên"
 
 #: indexpage.py:260
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] "Zimanê %d, li derdora %d%% hatin wergerandin"
+msgstr[0] "Zimanê %d, li derdora %d%% hate wergerandin"
 msgstr[1] "Zimanên %d, li derdora %d%% hatin wergerandin"
 
 #: indexpage.py:273
-#, fuzzy
 msgid "Language"
 msgstr "Ziman"
 
@@ -411,11 +409,11 @@ msgstr "%s: Projeya %s, Zimanê %s"
 #. l10n: text next to search field
 #: indexpage.py:362 translatepage.py:145
 msgid "Search"
-msgstr "Lêbigere"
+msgstr "Lêgerîn"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Lêgerîna pêşketî"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -470,7 +468,7 @@ msgstr ""
 #. l10n: radio button text
 #: indexpage.py:561
 msgid "Merge"
-msgstr ""
+msgstr "Yekkirin"
 
 #. l10n: tooltip
 #: indexpage.py:563
@@ -514,7 +512,7 @@ msgstr "Rojanekirin"
 #. l10n: Commit to version control (like CVS or Subversion)
 #: indexpage.py:760 projects.py:150
 msgid "Commit"
-msgstr "xebitandin"
+msgstr "Commit"
 
 #: indexpage.py:798
 msgid "All Strings"
@@ -628,7 +626,7 @@ msgstr "Newergerandîyan bibîne"
 
 #: indexpage.py:896
 msgid "No untranslated items"
-msgstr "Bendin newergerandî tune ye "
+msgstr "Bendin newergerandî tune ye"
 
 #: indexpage.py:899
 msgid "Translate All"
@@ -648,16 +646,15 @@ msgstr "SDF'ê çêke"
 
 #: indexpage.py:976
 #, python-format
-#, fuzzy
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] "%d hevok (%d%%) naxebitin"
+msgstr[0] "%d hevok (%d%%) naxebite"
+msgstr[1] "%d hevok (%d%%) naxebitin"
 
 #: indexpage.py:1003
 #, python-format
-#, fuzzy
 msgid "%d/%d words (%d%%) assigned"
-msgstr "%d/%d peyv (%d%%) hatin wergerandin"
+msgstr "%d/%d peyv (%d%%) hatin assign kirin"
 
 #: indexpage.py:1004 indexpage.py:1006
 #, python-format
@@ -753,11 +750,11 @@ msgstr "Nediyar"
 
 #: pagelayout.py:247
 msgid "Fuzzy percentage"
-msgstr "rêjeya ne diyar"
+msgstr "Rêjeya ne diyar"
 
 #: pagelayout.py:248
 msgid "Fuzzy words"
-msgstr "gotinên ne diyar"
+msgstr "Gotinên ne diyar"
 
 #: pagelayout.py:250
 msgid "Untranslated percentage"
@@ -790,11 +787,11 @@ msgstr ""
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Şîrove"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Cih"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -802,7 +799,7 @@ msgstr "Têketin biserneket"
 
 #: pootle.py:349 pootle.py:380
 msgid "Redirecting to login..."
-msgstr "Nuhkirna rêberîyê jibo têketinê"
+msgstr "Tê şandin têketinê..."
 
 #: pootle.py:352
 msgid "Need to log in to access home page"
@@ -817,9 +814,8 @@ msgid "Need to log in to access admin page"
 msgstr "Ji bo gihiştina rûpela admin têketin pêwist e"
 
 #: pootle.py:390
-#, fuzzy
 msgid "Redirecting to home..."
-msgstr "Nuhkirna rêberîyê jibo têketinê"
+msgstr "Tê şandin malê..."
 
 #: pootle.py:393
 msgid "You do not have the rights to administer pootle."
@@ -832,7 +828,7 @@ msgstr "Bibîne"
 
 #: projects.py:139 translatepage.py:678
 msgid "Suggest"
-msgstr "Pêşniyar bike"
+msgstr "Pêşniyazkirin"
 
 #: projects.py:140
 msgid "Translate"
@@ -841,7 +837,7 @@ msgstr "Wergerîne"
 #. l10n: Verb
 #: projects.py:143
 msgid "Review"
-msgstr "di ber çavan re derbas bike"
+msgstr "Review"
 
 #. l10n: Verb
 #: projects.py:145
@@ -855,7 +851,7 @@ msgstr "Pelên PO compile bike"
 
 #: projects.py:148
 msgid "Assign"
-msgstr "destnîşankirin"
+msgstr "Assign"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:230
@@ -868,7 +864,7 @@ msgstr "Mafên te tuneye ku li vir tu armancan biguherînî"
 
 #: projects.py:510
 msgid "You do not have rights to upload files here"
-msgstr "maftê tuneye ku li vir tu pelan daxînî"
+msgstr "Mafê te tuneye ku li vir tu pelan bar bikî"
 
 #: projects.py:513
 msgid "You do not have rights to overwrite files here"
@@ -876,11 +872,11 @@ msgstr "Mafê nivîsandina ser pelan ê te li vir tune"
 
 #: projects.py:515
 msgid "You do not have rights to upload new files here"
-msgstr "mafê te tuneye ku li vir tu pelê nû daxînî"
+msgstr "Mafê te tuneye ku li vir tu pelên nû bar bikî"
 
 #: projects.py:524
 msgid "You do not have rights to update files here"
-msgstr "maftê te tuneye ku li vir tu pelan rojane bikî"
+msgstr "Mafê te tuneye ku li vir tu pelan rojane bikî"
 
 #: projects.py:555
 msgid "You do not have rights to commit files here"
@@ -888,7 +884,7 @@ msgstr "Mafê şandina pelan ê te li vir tune"
 
 #: projects.py:977 projects.py:1019
 msgid "You do not have rights to alter assignments here"
-msgstr "li vir mafê te yê guhertinên destnîşankirî tuneye"
+msgstr "Mafê te tuneye ku li vir tu assignments biguherînî"
 
 #: projects.py:1219
 msgid "You do not have rights to change translations here"
@@ -904,13 +900,12 @@ msgstr "Li vir mafê te tuneye tu pêşinyaran di ber çavan re derbas bikî"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
-"%d/%d hat wergerandin\n"
-"(%d vala, %d fuzî)"
+"%d/%d hatin wergerandin\n"
+"(%d newergerandî, %d fuzî)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -933,11 +928,11 @@ msgstr "Werger"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Pêşniyazê bipejirîne"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Pêşniyazê nepejirîne"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -957,12 +952,12 @@ msgstr "Girêdayî"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "Dixebite..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Çewtî: Tiştek têk çu."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -971,7 +966,7 @@ msgstr "Dawiya pakêtê"
 
 #: translatepage.py:173
 msgid "Click here to return to the index"
-msgstr "ji bo tu li naverokê vegerî , vir tikîne "
+msgstr "Ji bo tu li naverokê vegerî, vir tikîne"
 
 #. l10n: noun (the start)
 #: translatepage.py:187 translatepage.py:190
@@ -1018,11 +1013,11 @@ msgstr "Te berçav derbaskirina hemû hevokên hilbijartî bi dawî kir"
 
 #: translatepage.py:643
 msgid "Singular"
-msgstr "fer"
+msgstr "Yekjimar"
 
 #: translatepage.py:644
 msgid "Plural"
-msgstr "zo"
+msgstr "Pirjimar"
 
 #. l10n: verb
 #: translatepage.py:658
@@ -1032,7 +1027,7 @@ msgstr "Sererast bike"
 #. l10n: verb
 #: translatepage.py:674
 msgid "Copy"
-msgstr "Ji ber bigire"
+msgstr "Jibergirtin"
 
 #: translatepage.py:675 translatepage.py:849
 msgid "Skip"
@@ -1045,7 +1040,7 @@ msgstr "Paşve"
 
 #: translatepage.py:679
 msgid "Submit"
-msgstr "Bişîne"
+msgstr "Şandin"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:682
@@ -1061,7 +1056,7 @@ msgstr "Nizmtir"
 #: translatepage.py:870
 #, python-format
 msgid "Plural Form %d"
-msgstr "%d forma pirhejmar"
+msgstr "Forma pirhejmar ya %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:722
@@ -1161,7 +1156,7 @@ msgstr "Şîfreyê piştrast bike"
 
 #: users.py:134
 msgid "Type your password again to ensure it is entered correctly"
-msgstr "ji bo piştrastkirinê şifreya xwe dîsa binvîse"
+msgstr "Ji bo piştrastkirinê şifreya xwe dîsa binivîse"
 
 #: users.py:136
 msgid "Register Account"
@@ -1202,11 +1197,11 @@ msgstr "E-Peyam"
 
 #: users.py:190
 msgid "Translation Interface Configuration"
-msgstr "mîhenga rûçikê wergerê"
+msgstr "Mîhengên Navruya Wergerê"
 
 #: users.py:191
 msgid "User Interface language"
-msgstr "zimanê bikarhêner"
+msgstr "Zimanê Navruya Bikarhêneran"
 
 #: users.py:192
 msgid "My Projects"
@@ -1222,12 +1217,12 @@ msgstr "Serûpel"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Zimanê Çavkaniya Alternatîf"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Ne yek"
 
 #: users.py:257
 msgid "Input Height (in lines)"
@@ -1239,7 +1234,7 @@ msgstr "Hejmara rêzikan di mode ya dîtinê de"
 
 #: users.py:259
 msgid "Number of rows in translate mode"
-msgstr "hejmara rêzikan di mode ya wergerê de"
+msgstr "Hejmara rêzikan di moda wergerê de"
 
 #: users.py:307
 msgid "Error"
@@ -1247,7 +1242,7 @@ msgstr "Çewtî"
 
 #: users.py:359
 msgid "You need to be siteadmin to change users"
-msgstr "pêwiste tu bibî adminê malperê da tu bikaribî bikarhêneran biguherînî"
+msgstr "Pêwist e tu bibî adminê malperê da tu bikaribî bikarhêneran biguherînî"
 
 #: users.py:423
 msgid ""
@@ -1325,7 +1320,7 @@ msgstr ""
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"
-msgstr "yanjî li ser linka çalakkirinê ya di email de, bitektikîne"
+msgstr "(Yanjî li ser linka çalakkirinê ya di email de bitikîne)"
 
 #: users.py:469
 #, python-format
@@ -1335,7 +1330,7 @@ msgstr "Navê te yê bikarhêner ev e: %s\n"
 #: users.py:471
 #, python-format
 msgid "Your password is: %s\n"
-msgstr "Şîfreya te: %s \n"
+msgstr "Şîfreya te: %s\n"
 
 #: users.py:472
 #, python-format
@@ -1348,7 +1343,7 @@ msgstr "Rêberî tê nuhkirin ji bo qeyîdkirna rûpêl..."
 
 #: users.py:524
 msgid "Redirecting to login Page..."
-msgstr "Nuhkirna rêberîyê jibo têketina rûpêlê.."
+msgstr "Tê şandin rûpela têketinê..."
 
 #: users.py:527
 msgid "Your account has been activated! Redirecting to login..."

@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-06-30 09:18+0000\n"
+"PO-Revision-Date: 2008-09-06 11:40+0000\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -67,7 +67,7 @@ msgstr "వివరణ"
 
 #: adminpages.py:58
 msgid "Base URL"
-msgstr ""
+msgstr "మూల URL"
 
 #: adminpages.py:59
 msgid "Home Page"
@@ -75,7 +75,7 @@ msgstr "హోమ్ పేజీ"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "పూటిల్ భాషల నిర్వహణ పేజీ"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -130,15 +130,15 @@ msgstr "%sని తొలగించు"
 
 #: adminpages.py:132
 msgid "Standard"
-msgstr ""
+msgstr "ప్రామాణిక"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "పూటిల్ ప్రాజెక్టుల నిర్వహణ పేజీ"
 
 #: adminpages.py:151
 msgid "Project Code"
-msgstr ""
+msgstr "ప్రాజెక్టు సంకేతం"
 
 #: adminpages.py:153
 msgid "(add project here)"
@@ -153,8 +153,9 @@ msgid "(project description)"
 msgstr "(ప్రాజెక్టు వివరణ)"
 
 #: adminpages.py:155
+#, fuzzy
 msgid "Checker Style"
-msgstr ""
+msgstr "చెకర్ శైలి"
 
 #: adminpages.py:156
 msgid "File Type"
@@ -162,7 +163,7 @@ msgstr "ఫైలు రకం"
 
 #: adminpages.py:157
 msgid "Create MO Files"
-msgstr ""
+msgstr "MO ఫైళ్ళను సృష్టించు"
 
 #: adminpages.py:158
 msgid "Remove Project"
@@ -170,7 +171,7 @@ msgstr "ప్రాజెక్టుని తొలగించు"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "పూటిల్ వాడుకరి నిర్వహణ పేజీ"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -233,7 +234,7 @@ msgstr "ఈ ప్రాజెక్టుని నిర్వహించే 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:289
 msgid "Update from templates"
-msgstr ""
+msgstr "మూసలనుండి తాజాకరించు"
 
 #: adminpages.py:298
 msgid "Add Language"
@@ -242,26 +243,25 @@ msgstr "భాషని చేర్చండి"
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:336
 #, python-format
-#, fuzzy
 msgid "Pootle Admin: %s %s"
-msgstr "పూటిల్ నిర్వహణ: %s"
+msgstr "పూటిల్ నిర్వహణ: %s %s"
 
 #: adminpages.py:337
 msgid "Project home page"
-msgstr ""
+msgstr "ప్రాజెక్టు మొదటి పేజీ"
 
 #: adminpages.py:355
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr ""
+msgstr "%s అనే వాడుకరికి హక్కులు ఇవ్వలేము - వాడుకరి లేనే లేరు"
 
 #: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
-msgstr ""
+msgstr "ఇది గ్నూ-తరహా ప్రాజెక్టు (ఒక సంచయం, భాష పేరుతో ఫైళ్ళు)"
 
 #: adminpages.py:374
 msgid "This is a standard style project (one directory per language)."
-msgstr ""
+msgstr "ఇది ప్రామాణిక తరహా ప్రాజెక్టు (భాషకి ఒక సంచయం)"
 
 #: adminpages.py:375
 msgid "User Permissions"
@@ -269,7 +269,7 @@ msgstr "వాడుకరి అనుమతులు"
 
 #: adminpages.py:377
 msgid "(select to add user)"
-msgstr ""
+msgstr "(వాడుకరిని చేర్చడానికి ఎంచుకోండి)"
 
 #: adminpages.py:378
 msgid "Rights"
@@ -296,6 +296,10 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
+"<strong>పూటిల్</strong> అనేది <strong>అనువాదాలకు</strong> వీలుకల్పించే ఓ "
+"సరళమైన అంతర్జాల నెలవు! పూటిల్ <strong>స్వేచ్ఛా మృదు పరికరం</strong> కనుక, "
+"మీరు దీన్ని దిగుమతి చేసుకుని మీ స్వంతంగా నడుపుకోవచ్చు. చాలా విధాలుగా దీని "
+"వికాసంలో మీరు పాలుపంచుకోవచ్చు (మీరు ప్రోగ్రాములు రాయడం వచ్చివుండనక్కరలేదు)."
 
 #: indexpage.py:61
 msgid ""
@@ -303,6 +307,10 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
+"పూటిల్ ప్రాజెక్టు <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> వద్ద "
+"కొలువై ఉంది. అక్కడ మీరు దీని మూల సంకేతం, మెయిలింగు జాబితాలు లాంటి వివరాలు "
+"పొందవచ్చు."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -312,19 +320,25 @@ msgid ""
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
+"పూటిల్ అంటే <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+"<b>L</b>ocalization <b>E</b>ngine, కానీ మీరు <a "
+"href=\"http://www.thechestnut.com/flumps.htm\">ఇది</a> కూడా చదువవచ్చు."
 
 #: indexpage.py:65
 msgid "Versions"
-msgstr ""
+msgstr "సంచికలు"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:68
 #, python-format
+#, fuzzy
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
+"ఈ సైటు నడుస్తున్నది:<br />పూటిల్ %s<br />అనువాద పనిముట్లు %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />పైథాన్ %s (on %s/%s)"
 
 #: indexpage.py:133
 #, python-format
@@ -350,6 +364,7 @@ msgstr "త్వరిత లింకులు"
 #: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
+"'ఎంపికలను మార్చండి' పై నొక్కి కొన్ని భాషలను మరియు ప్రాజెక్టులను ఎంచుకోండి"
 
 #: indexpage.py:199
 #, python-format
@@ -402,27 +417,27 @@ msgstr "అన్వేషణ"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "నిశిత అన్వేషణ"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "ఫైలుని ఎగుమతి చేయలేం, జోడించిన ఫైళ్లు లేవు"
 
 #: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
-msgstr ""
+msgstr "PO ఫైళ్ళను మరియు వాటి జిప్ ఫైళ్ళను మాత్రమే ఎగుమతి చేయగలరు"
 
 #: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
 msgid "Assign Strings"
-msgstr ""
+msgstr "పదాలను అప్పగించు"
 
 #: indexpage.py:536 translatepage.py:239
 msgid "Assign Action"
-msgstr ""
+msgstr "చర్చను అప్పగించు"
 
 #: indexpage.py:537 translatepage.py:238
 msgid "Assign to User"
-msgstr ""
+msgstr "వాడుకరికి అప్పగించు"
 
 #: indexpage.py:543
 msgid "goals"
@@ -438,11 +453,11 @@ msgstr "లక్ష్యాన్ని చేర్చండి"
 
 #: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
-msgstr ""
+msgstr "ఫైలుని ఎగుమతించు"
 
 #: indexpage.py:551
 msgid "Select file to upload"
-msgstr ""
+msgstr "ఎగుమతి చేసే ఫైలుని ఎంచుకోండి"
 
 #. l10n: radio button text
 #: indexpage.py:557 projects.py:141
@@ -452,18 +467,18 @@ msgstr "తిరగరాయి"
 #. l10n: tooltip
 #: indexpage.py:559
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "ప్రస్తుత ఫైలు ఉంటే దాన్ని తిరగరాస్తుంది"
 
 #. l10n: radio button text
 #: indexpage.py:561
 msgid "Merge"
-msgstr ""
+msgstr "విలీనంచేయి"
 
 #. l10n: tooltip
 #: indexpage.py:563
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr ""
+msgstr "ఫైలుని ప్రస్తుత ఫైలులో విలీనంచేసి, సంఘర్షణలని సూచనలుగా మార్చు"
 
 #: indexpage.py:666
 msgid "Not in a goal"
@@ -505,7 +520,7 @@ msgstr ""
 
 #: indexpage.py:798
 msgid "All Strings"
-msgstr ""
+msgstr "అన్ని పదాలు"
 
 #: indexpage.py:799 pagelayout.py:249
 msgid "Untranslated"
@@ -513,15 +528,15 @@ msgstr "అనువాదం కానివి"
 
 #: indexpage.py:800
 msgid "Unassigned"
-msgstr ""
+msgstr "అప్పగించనివి"
 
 #: indexpage.py:801
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "అప్పగించనివి మరియు అనువాదం కానివి"
 
 #: indexpage.py:808
 msgid "Set Goal"
-msgstr ""
+msgstr "లక్ష్యాన్ని నిర్దేశించు"
 
 #: indexpage.py:812
 msgid "Select Multiple"
@@ -562,15 +577,15 @@ msgstr "లక్ష్యాలను చూపించు"
 
 #: indexpage.py:848
 msgid "Hide Goals"
-msgstr ""
+msgstr "లక్ష్యాలను దాచు"
 
 #: indexpage.py:849
 msgid "Show Assigns"
-msgstr ""
+msgstr "అప్పగింతలను చూపించు"
 
 #: indexpage.py:849
 msgid "Hide Assigns"
-msgstr ""
+msgstr "అప్పగింతలను దాచు"
 
 #: indexpage.py:858
 #, python-format
@@ -579,15 +594,15 @@ msgstr "అన్ని లక్ష్యాలు: %s"
 
 #: indexpage.py:864
 msgid "Translate My Strings"
-msgstr ""
+msgstr "నా పదాలను అనువదించు"
 
 #: indexpage.py:866
 msgid "View My Strings"
-msgstr ""
+msgstr "నా పదాలను చూపించు"
 
 #: indexpage.py:871
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "మీకు అప్పగించిన పదాలేమి లేవు"
 
 #: indexpage.py:875
 msgid "Quick Translate My Strings"
@@ -595,7 +610,7 @@ msgstr ""
 
 #: indexpage.py:879
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "అనువాదంకాని పదాలేమీ మీకు అప్పగించబడి లేవు."
 
 #: indexpage.py:883
 msgid "Review Suggestions"
@@ -607,7 +622,7 @@ msgstr "సూచనలను చూడండి"
 
 #: indexpage.py:890
 msgid "Quick Translate"
-msgstr ""
+msgstr "త్వరిత అనువాదం"
 
 #: indexpage.py:892
 msgid "View Untranslated"
@@ -627,11 +642,11 @@ msgstr ""
 
 #: indexpage.py:916
 msgid "ZIP of folder"
-msgstr ""
+msgstr "సంచయపు జిప్"
 
 #: indexpage.py:923
 msgid "Generate SDF"
-msgstr ""
+msgstr "SDF తయారుచేయి"
 
 #: indexpage.py:976
 #, python-format
@@ -642,9 +657,8 @@ msgstr[1] ""
 
 #: indexpage.py:1003
 #, python-format
-#, fuzzy
 msgid "%d/%d words (%d%%) assigned"
-msgstr "%d/%d పదాలు (%d%%) అనువాదమయ్యాయి"
+msgstr "%d/%d పదాలు (%d%%) అన్యాక్రాంతమయ్యాయి"
 
 #: indexpage.py:1004 indexpage.py:1006
 #, python-format
@@ -715,9 +729,8 @@ msgstr[1] ""
 
 #: pagelayout.py:236
 #, python-format
-#, fuzzy
 msgid "%d/%d strings"
-msgstr "[%d/%d పదాలు]"
+msgstr "%d/%d పదాలు"
 
 #: pagelayout.py:242 users.py:184
 msgid "Name"
@@ -737,15 +750,15 @@ msgstr "అనువదించిన పదాలు"
 
 #: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
-msgstr ""
+msgstr "సందేహాత్మకం"
 
 #: pagelayout.py:247
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "సందేహాత్మక శాతం"
 
 #: pagelayout.py:248
 msgid "Fuzzy words"
-msgstr ""
+msgstr "సందేహాత్మక పదాలు"
 
 #: pagelayout.py:250
 msgid "Untranslated percentage"
@@ -770,19 +783,19 @@ msgstr "గ్రాఫు"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "మూల పాఠ్యం"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "లక్ష్యిత పాఠ్యం"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "వ్యాఖ్యలు"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "ప్రాంతాలు"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -794,7 +807,7 @@ msgstr "ప్రవేశపు పేజీకి మళ్ళిస్తు�
 
 #: pootle.py:352
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "మొదటి పేజీని చూడడానికి మీరు లోనికి ప్రవేశించి ఉండాలి"
 
 #: pootle.py:365
 msgid "Personal details updated"
@@ -802,17 +815,15 @@ msgstr "వ్యక్తిగత వివరాలను తాజాకర�
 
 #: pootle.py:383
 msgid "Need to log in to access admin page"
-msgstr ""
+msgstr "నిర్వాహక పేజీని చూడడానికి మీరు లోనికి ప్రవేశించాలి"
 
 #: pootle.py:390
-#, fuzzy
 msgid "Redirecting to home..."
-msgstr "ప్రవేశపు పేజీకి మళ్ళిస్తున్నాం..."
+msgstr "మొదటి పేజీకి మళ్ళిస్తున్నాం..."
 
 #: pootle.py:393
-#, fuzzy
 msgid "You do not have the rights to administer pootle."
-msgstr "ఈ ప్రాజెక్టుని నిర్వహించే అధికారం మీకు లేదు."
+msgstr "పూటిలుని నిర్వహించే అధికారం మీకు లేదు."
 
 #. l10n: Verb
 #: projects.py:138
@@ -844,49 +855,45 @@ msgstr ""
 
 #: projects.py:148
 msgid "Assign"
-msgstr ""
+msgstr "అప్పగించు"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:230
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "మీరు \"nobody\" లేదా \"default\" అన్న వాడుకరిని తొలగించలేరు."
 
 #: projects.py:382 projects.py:444
 msgid "You do not have rights to alter goals here"
-msgstr "లక్ష్యాలు మార్చడానికి మీరు అధికారం లేదు"
+msgstr "ఇక్కడ లక్ష్యాలు మార్చడానికి మీకు అధికారం లేదు"
 
 #: projects.py:510
 msgid "You do not have rights to upload files here"
-msgstr "ఫైళ్ళను ఎగుమతి చేయడానికి మీరు అధికారం లేదు"
+msgstr "ఫైళ్ళను ఎగుమతి చేయడానికి మీకు అధికారం లేదు"
 
 #: projects.py:513
-#, fuzzy
 msgid "You do not have rights to overwrite files here"
-msgstr "ఫైళ్ళను ఎగుమతి చేయడానికి మీరు అధికారం లేదు"
+msgstr "ఇక్కడి ఫైళ్ళను తిరగరాయడానికి మీకు అధికారం లేదు"
 
 #: projects.py:515
-#, fuzzy
 msgid "You do not have rights to upload new files here"
-msgstr "ఫైళ్ళను ఎగుమతి చేయడానికి మీరు అధికారం లేదు"
+msgstr "ఇక్కడ కొత్త ఫైళ్ళను ఎగుమతి చేయడానికి మీకు అధికారం లేదు"
 
 #: projects.py:524
-#, fuzzy
 msgid "You do not have rights to update files here"
-msgstr "ఫైళ్ళను ఎగుమతి చేయడానికి మీరు అధికారం లేదు"
+msgstr "ఇక్కడ ఫైళ్ళను మార్చడానికి మీకు అధికారం లేదు"
 
 #: projects.py:555
 #, fuzzy
 msgid "You do not have rights to commit files here"
-msgstr "ఫైళ్ళను ఎగుమతి చేయడానికి మీరు అధికారం లేదు"
+msgstr "ఇక్కడ ఫైళ్ళను చేర్చడానికి మీకు అధికారం లేదు"
 
 #: projects.py:977 projects.py:1019
-#, fuzzy
 msgid "You do not have rights to alter assignments here"
-msgstr "లక్ష్యాలు మార్చడానికి మీరు అధికారం లేదు"
+msgstr "ఇక్కడ అప్పగింతలు మార్చడానికి మీకు అధికారం లేదు"
 
 #: projects.py:1219
 msgid "You do not have rights to change translations here"
-msgstr "అనువాదాలని మార్చే అధికారం మీకు లేదు"
+msgstr "ఇక్కడ అనువాదాలని మార్చే అధికారం మీకు లేదు"
 
 #: projects.py:1229
 msgid "You do not have rights to suggest changes here"
@@ -898,13 +905,12 @@ msgstr "సూచనలని సమీక్షించే అధికార�
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d అనువాదమయ్యాయి\n"
-"(%d ఖాళీ, %d fuzzy)"
+"(%d అనువాదం కాలేదు, %d సందేహాత్మకం)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -913,7 +919,7 @@ msgstr ""
 #: translatepage.py:113
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr ""
+msgstr "%s: %sని %s లోనికి అనువదిస్తున్నారు: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:128
@@ -927,11 +933,11 @@ msgstr "అనువాదం"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "సలహాని అంగీకరించు"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "సలహాని తిరస్కరించు"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -951,21 +957,21 @@ msgstr "సంబంధించినవి"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "తెస్తున్నాం..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "పొరపాటు: ఏదో తప్పు జరిగింది."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
 msgid "End of batch"
-msgstr ""
+msgstr "బ్యాచ్ యొక్క ముగింపు"
 
 #: translatepage.py:173
 msgid "Click here to return to the index"
-msgstr ""
+msgstr "తిరిగి సూచికకి వెళ్ళడానికి ఇక్కడ నొక్కండి"
 
 #. l10n: noun (the start)
 #: translatepage.py:187 translatepage.py:190
@@ -1004,11 +1010,11 @@ msgstr ""
 #: translatepage.py:398
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr ""
+msgstr "ఆ అన్వేషణ ('%s') కి సరిపోలిన అంశాలేమీ లేవు"
 
 #: translatepage.py:400
 msgid "You have finished going through the items you selected"
-msgstr ""
+msgstr "మీరు ఎంచుకున్న అంశాలని చూడడం ముగించారు"
 
 #: translatepage.py:643
 msgid "Singular"
@@ -1026,7 +1032,7 @@ msgstr "మార్చు"
 #. l10n: verb
 #: translatepage.py:674
 msgid "Copy"
-msgstr ""
+msgstr "కాపీచెయ్యి"
 
 #: translatepage.py:675 translatepage.py:849
 msgid "Skip"
@@ -1063,6 +1069,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
+"మీ భాషకి సంబంధించి బహువచన సమాచారం అందుబాటులో లేనందున అనువాదం అసాధ్యం. దయచేసి "
+"సైటు నిర్వాహకున్ని సంప్రదించండి."
 
 #: translatepage.py:804
 msgid "Current Translation:"
@@ -1182,7 +1190,7 @@ msgstr "ఖాతాని చేతనం చేయ్యండి"
 #: users.py:175
 #, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr "%s యొక్క ఎంపికలు "
 
 #: users.py:181
 msgid "Personal Details"
@@ -1194,11 +1202,11 @@ msgstr "ఈమెయిల్"
 
 #: users.py:190
 msgid "Translation Interface Configuration"
-msgstr ""
+msgstr "అనువాదపు అంతరవర్తి స్వరూపణం"
 
 #: users.py:191
 msgid "User Interface language"
-msgstr ""
+msgstr "వాడుకరి అంతరవర్తి భాష"
 
 #: users.py:192
 msgid "My Projects"
@@ -1214,12 +1222,12 @@ msgstr "హోమ్ పేజీ"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "ప్రత్యామ్నాయ మూల భాష"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "ఏదీ కాదు"
 
 #: users.py:257
 msgid "Input Height (in lines)"
@@ -1227,11 +1235,11 @@ msgstr ""
 
 #: users.py:258
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "చూసేప్పటి స్థితిలో వరుసల సంఖ్య"
 
 #: users.py:259
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "అనువాదపు స్థితిలో వరుసల సంఖ్య"
 
 #: users.py:307
 msgid "Error"
@@ -1239,7 +1247,7 @@ msgstr "పొరపాటు"
 
 #: users.py:359
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "వాడుకరులను మార్చడానికి మీరు సైటు నిర్వాహకుడయి ఉండాలి"
 
 #: users.py:423
 msgid ""
@@ -1255,29 +1263,29 @@ msgstr "మీ వాడుకరిపేరుతో మీరు (లేద�
 
 #: users.py:439
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
+msgstr "మీ అసలు సంకేతపదాన్ని కాకుండా దాని హాష్ ని మాత్రమే భద్రపరుస్తాము.\n"
 
 #: users.py:441
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr "మీకు నమోదవడంలో సమస్యలుంటే, దయచేసని %s ని సంప్రదించండి.\n"
+msgstr "సైటులో నమోదుచేసుకోవడంలో సమస్యలుంటే, దయచేసి %s ని సంప్రదించండి.\n"
 
 #: users.py:443
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "సైటులో నమోదుచేసుకోవడంలో సమస్యలుంటే, దయచేసి సైటు నిర్వాహకుడిని సంప్రదించండి.\n"
 
 #: users.py:444
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
+msgstr "ఆ వాడుకరి పేరు ఇప్పటికే ఉంది. నమోదైన ఈమెయిలు చిరునామాకి ఓ సందేశం పంపిస్తాం.\n"
 
 #: users.py:446
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "<a href='%s'>ప్రవేశము</a>నకు వెళ్తున్నాం\n"
 
 #: users.py:452
 msgid "A Pootle account has been created for you using this email address.\n"
@@ -1293,18 +1301,21 @@ msgid ""
 "Your activation code is:\n"
 "%s\n"
 msgstr ""
+"మీ ఖాతా చేతనపు సంకేతం:\n"
+"%s\n"
 
 #: users.py:462
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "ఈ లింకుని మీరు అనుసరించలేకపోతే, దయచేసి పై సంకేతాన్ని చేతనపు పేజీలో ఇవ్వండి.\n"
 
 #: users.py:463
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
+msgstr "ఈమెయిలు చిరునామా సరైనదని నిర్ధారించుకోడానికి ఈ సందేశం పంపించాము. మీరు ఖాతాని "
+"నమోదు చేసుకోవద్దనుకుంటే, మీ సందేశాన్ని పట్టించుకోకండి.\n"
 
 #: users.py:465
 #, python-format
@@ -1312,6 +1323,8 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"ఖాతాని సృష్టించాం. ప్రవేశపు వివరాలని మరియు చేతనపు సంకేతాన్ని మీకు ఈమెయిలు "
+"చేస్తాం. మీ చేతనపు సంకేతాన్ని <a href='%s'>చేతనపు పేజీ</a>లో ఇవ్వండి."
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"

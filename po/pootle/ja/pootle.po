@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2007-11-01 02:33+0100\n"
-"Last-Translator: Reiko Saito <reiko.saito@sun.com>\n"
+"PO-Revision-Date: 2008-08-29 03:36+0000\n"
+"Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -73,7 +73,7 @@ msgstr "ホームページ"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Pootle 言語管理ページ"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -132,7 +132,7 @@ msgstr "標準"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Pootle プロジェクト管理ページ"
 
 #: adminpages.py:151
 msgid "Project Code"
@@ -168,7 +168,7 @@ msgstr "プロジェクトの削除"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Pootle ユーザ管理ページ"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -408,7 +408,7 @@ msgstr "検索"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "高度な検索"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -458,18 +458,18 @@ msgstr "上書き"
 #. l10n: tooltip
 #: indexpage.py:559
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "既存のファイルが存在するときに上書きする"
 
 #. l10n: radio button text
 #: indexpage.py:561
 msgid "Merge"
-msgstr ""
+msgstr "結合"
 
 #. l10n: tooltip
 #: indexpage.py:563
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr ""
+msgstr "現在のファイルを結合し、競合を提案に変える"
 
 #: indexpage.py:666
 msgid "Not in a goal"
@@ -772,19 +772,19 @@ msgstr "グラフ"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "ソーステキスト"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "ターゲットテキスト"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "コメント"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "位置"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -893,11 +893,10 @@ msgstr "この提案をレビューする権限がありません"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
-msgstr "%d/%d 翻訳済 (未訳 %d, ファジー %d)"
+msgstr "%d/%d 翻訳済(未訳 %d, ファジー %d)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -920,11 +919,11 @@ msgstr "翻訳"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "提案を受諾"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "提案を拒否"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -944,12 +943,12 @@ msgstr "関連"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "作業中..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "エラー: 何か問題が発生しました。"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -1207,12 +1206,12 @@ msgstr "ホームページ"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "別のソース言語"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: users.py:257
 msgid "Input Height (in lines)"
@@ -1307,10 +1306,12 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"アカウントを作成しました。ログイン情報の詳細とアクティベーションコードがメールされます。あなたのアクティベーションコードを <a "
+"href='%s'>アクティベーションページ</a> に入力してください。"
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "(あるいはメール中のアクティベーションリンクを単にクリックしてください)"
 
 #: users.py:469
 #, python-format

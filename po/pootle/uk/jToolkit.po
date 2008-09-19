@@ -3,20 +3,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2007-03-22 19:48+0100\n"
+"PO-Revision-Date: 2008-09-02 10:32+0000\n"
 "Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Pootle 0.11\n"
 
 #: web/server.py:57
 #, python-format
 msgid "Login for %s"
-msgstr "Вхід в систему для %s"
+msgstr "Вхід у систему для %s"
 
 #: web/server.py:91
 msgid "Cancel this action and start a new session"
@@ -24,7 +25,7 @@ msgstr "Відмінити цю дію та відкрити новий сеан
 
 #: web/server.py:92
 msgid "Instead of confirming this action, log out and start from scratch"
-msgstr "Не підтверджувати цю дію, вийти і почати заново"
+msgstr "Не підтверджувати цю дію, вийти з сеансу та почати заново"
 
 #: web/server.py:97
 msgid "Exit application"
@@ -36,7 +37,7 @@ msgstr "Вийти з цієї програми та вернутись на р�
 
 #: web/server.py:105
 msgid ", please confirm login"
-msgstr ", будь ласка, підтвердіть вхід в систему"
+msgstr ", будь ласка, підтвердіть вхід у систему"
 
 #: web/server.py:110
 msgid "Login"
@@ -44,7 +45,7 @@ msgstr "Ваш логін"
 
 #: web/server.py:123
 msgid "Username:"
-msgstr "Ім'я:"
+msgstr "Ім'я користувача:"
 
 #: web/server.py:125
 msgid "Password:"
@@ -56,7 +57,7 @@ msgstr "Мова:"
 
 #: web/server.py:551 web/server.py:642
 msgid "Select Application"
-msgstr "Виберіть Програму"
+msgstr "Виберіть програму"
 
 #: web/server.py:637
 msgid "Logout"
@@ -66,18 +67,19 @@ msgstr "Вихід з системи"
 msgid "Exit"
 msgstr "Вихід"
 
+# Зайдено у систему як <b>%s</b>
 #: web/session.py:191 web/session.py:344 web/session.py:350
 #, python-format
 msgid "logged in as <b>%s</b>"
-msgstr "зареєстрований у системі як <b>%s</b>"
+msgstr "Ви&nbsp;зайшли&nbsp;під&nbsp;іменем&nbsp;<b>%s</b>"
 
 #: web/session.py:193
 msgid "couldn't add new session"
-msgstr "не зміг додати новий сеанс"
+msgstr "не вдалося додати новий сеанс"
 
 #: web/session.py:214
 msgid "logged out"
-msgstr "Ви вийшли з системи"
+msgstr "Ви вийшли із системи"
 
 #: web/session.py:234
 msgid "connected"
@@ -89,7 +91,9 @@ msgstr "завершення головного сеансу"
 
 #: web/session.py:314
 msgid "need to define the users or userprefs entry on the server config"
-msgstr "потрібно визначити користувачів або користувацькі налаштування у серверній конфіґурації"
+msgstr ""
+"потрібно визначити користувачів або користувацькі налаштування у "
+"конфіґурації сервера"
 
 #: web/session.py:321 web/session.py:453
 #, python-format
@@ -98,7 +102,7 @@ msgstr "користувач не існує (%r)"
 
 #: web/session.py:362
 msgid "invalid username and/or password"
-msgstr "невірне ім'я та/або пароль"
+msgstr "невірне ім'я користувача та/або пароль"
 
 #: web/session.py:433 web/session.py:437
 msgid "failed login confirmation"
@@ -114,7 +118,7 @@ msgstr "Так"
 
 #: widgets/thumbgallery.py:233 attachments.py:348
 msgid "remove"
-msgstr "видалити"
+msgstr "вилучити"
 
 #: widgets/thumbgallery.py:289 attachments.py:322
 msgid "(no attachment)"
@@ -126,7 +130,7 @@ msgstr "долучення занадто велике"
 
 #: attachments.py:349
 msgid "remove this attachment"
-msgstr "видалити це долучення"
+msgstr "вилучити це долучення"
 
 #: attachments.py:350
 msgid "restore"
@@ -134,7 +138,7 @@ msgstr "відновити"
 
 #: attachments.py:351
 msgid "this attachment has been removed. click here to restore it"
-msgstr "це долучення було видалено. клікніть сюди, щоб відновити його"
+msgstr "це долучення було вилучено. клацніть тут, щоб його відновити"
 
 #: attachments.py:362
 msgid "attach a file"

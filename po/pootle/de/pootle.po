@@ -3,15 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2007-07-01 04:47+0200\n"
-"Last-Translator: Alexander Klimetschek "
-"<alexander.klimetschek@mindquarry.com>\n"
+"PO-Revision-Date: 2008-08-31 08:27+0000\n"
+"Last-Translator: Robert Förster <Dessa@gmake.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.1\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -70,7 +69,7 @@ msgstr "Basis URL"
 
 #: adminpages.py:59
 msgid "Home Page"
-msgstr "Home Page"
+msgstr "Hauptseite"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
@@ -299,8 +298,8 @@ msgid ""
 "program)."
 msgstr ""
 "<strong>Pootle</strong> ist ein einfaches Web-Portal zum "
-"<strong>Übersetzungen</strong>!<br /><br />Da Pootle <strong>Freie "
-"Software</strong> ist, können Sie sie herunterladen und Ihre eigene Kopie "
+"<strong>Übersetzen</strong>!<br /><br />Da Pootle <strong>Freie "
+"Software</strong> ist, können Sie diese herunterladen und Ihre eigene Kopie "
 "nutzen wenn Sie wollen. Auch können Sie bei der Entwicklung auf verschiedene "
 "Weise mithelfen (Sie müssen dazu nicht programmieren können)."
 
@@ -340,8 +339,8 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
-"Diese Seite läuft auf:<br />Pootle %s<br />Translate Toolkit %s<br "
-"/>jToolkit %s<br />Python %s (auf %s/%s)"
+"Diese Seite benutzt:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Python %s (auf %s/%s)"
 
 #: indexpage.py:133
 #, python-format
@@ -421,7 +420,7 @@ msgstr "Suche"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Erweiterte Suche"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -760,15 +759,15 @@ msgstr "Übersetzte Wörter"
 
 #: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
-msgstr "Vage"
+msgstr "fraglich"
 
 #: pagelayout.py:247
 msgid "Fuzzy percentage"
-msgstr "Vage Prozent"
+msgstr "fraglich Prozent"
 
 #: pagelayout.py:248
 msgid "Fuzzy words"
-msgstr "Vage Wörter"
+msgstr "fragliche Wörter"
 
 #: pagelayout.py:250
 msgid "Untranslated percentage"
@@ -793,19 +792,19 @@ msgstr "Graph"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "Quelltext"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "Zieltext"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Kommentare"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Orte"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -877,54 +876,53 @@ msgstr ""
 
 #: projects.py:382 projects.py:444
 msgid "You do not have rights to alter goals here"
-msgstr "Sie haben nicht die Rechte um hier Ziele zu ändern"
+msgstr "Sie haben keine Berechtigung hier Ziele zu ändern"
 
 #: projects.py:510
 msgid "You do not have rights to upload files here"
-msgstr "Sie haben nicht die Rechte um hier Dateien hochzuladen"
+msgstr "Sie haben keine Berechtigung hier Dateien hochzuladen"
 
 #: projects.py:513
 msgid "You do not have rights to overwrite files here"
-msgstr "Sie haben keine Berechtigung zum Überschreiben dieser Dateien"
+msgstr "Sie haben keine Berechtigung hier Dateien zu Überschreiben"
 
 #: projects.py:515
 msgid "You do not have rights to upload new files here"
-msgstr "Sie haben nicht die Rechte um hier neue Dateien hochzuladen"
+msgstr "Sie haben keine Berechtigung hier neue Dateien hochzuladen"
 
 #: projects.py:524
 msgid "You do not have rights to update files here"
-msgstr "Sie haben nicht die Rechte um hier Dateien zu aktualisieren"
+msgstr "Sie haben keine Berechtigung hier Dateien zu aktualisieren"
 
 # "commit" -> "übertragen" (transfer, transmit, convey)
 #: projects.py:555
 msgid "You do not have rights to commit files here"
-msgstr "Sie haben nicht die Rechte um hier Dateien zu übertragen"
+msgstr "Sie haben keine Berechtigung hier Dateien zu übertragen"
 
 #: projects.py:977 projects.py:1019
 msgid "You do not have rights to alter assignments here"
-msgstr "Sie haben nicht die Rechte um hier Zuweisungen zu ändern"
+msgstr "Sie haben keine Berechtigung hier Zuweisungen zu ändern"
 
 #: projects.py:1219
 msgid "You do not have rights to change translations here"
-msgstr "Sie haben nicht die Rechte um hier Übersetzungen zu ändern"
+msgstr "Sie haben keine Berechtigung hier Übersetzungen zu ändern"
 
 #: projects.py:1229
 msgid "You do not have rights to suggest changes here"
-msgstr "Sie haben nicht die Rechte um hier Änderungen vorzuschlagen"
+msgstr "Sie haben keine Berechtigung hier Änderungen vorzuschlagen"
 
 #: projects.py:1245 projects.py:1263
 msgid "You do not have rights to review suggestions here"
-msgstr "Sie haben nicht die Rechte um hier Vorschläge durchzusehen"
+msgstr "Sie haben keine Berechtigung hier Vorschläge durchzusehen"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d übersetzt\n"
-"(%d fehlen, %d unklar)"
+"(%d fehlen, %d fraglich)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -947,11 +945,11 @@ msgstr "Übersetzung"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Vorschlag annehmen"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Vorschlag ablehnen"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -971,12 +969,12 @@ msgstr "Verwandt"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "Arbeite..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Fehler: Irgendetwas ist schiefgegangen."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -996,7 +994,7 @@ msgstr "Start"
 #: translatepage.py:194 translatepage.py:197
 #, python-format
 msgid "Previous %d"
-msgstr "Vorigen %d"
+msgstr "Vorige %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:199
@@ -1008,7 +1006,7 @@ msgstr "Elemente %d bis %d von %d"
 #: translatepage.py:204 translatepage.py:207
 #, python-format
 msgid "Next %d"
-msgstr "Nächsten %d"
+msgstr "Nächste %d"
 
 #. l10n: noun (the end)
 #: translatepage.py:210 translatepage.py:213
@@ -1024,7 +1022,7 @@ msgstr "überprüfe %s"
 #: translatepage.py:398
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr "Es gibt keine Einträge, die zu dieser Suche passen ('%s') "
+msgstr "Es gibt keine Einträge, die zu dieser Suche passen ('%s')"
 
 #: translatepage.py:400
 msgid "You have finished going through the items you selected"
@@ -1066,7 +1064,7 @@ msgstr "Senden"
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:682
 msgid "Grow"
-msgstr "höher"
+msgstr "größer"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:684
@@ -1241,12 +1239,12 @@ msgstr "Webseite"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Alternative Quellsprache"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Keine"
 
 #: users.py:257
 msgid "Input Height (in lines)"
@@ -1277,7 +1275,8 @@ msgstr ""
 #: users.py:438
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr "Der Benutzername ist schon vergeben.\n"
+msgstr "Sie (oder jemand anderes) hat versucht einen Account mit ihrem Benutzernamen "
+"zu erstellen.\n"
 
 #: users.py:439
 msgid "We don't store your actual password but only a hash of it.\n"

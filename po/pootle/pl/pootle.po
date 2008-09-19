@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-08-07 03:21+0000\n"
+"PO-Revision-Date: 2008-09-17 14:17+0000\n"
 "Last-Translator: M.T <hippie_1968@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 1.1.0\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -419,7 +419,7 @@ msgstr "Szukaj"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Wyszukiwanie zaawansowane"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -787,19 +787,19 @@ msgstr "Wykres"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "Tekst źródłowy"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "Tekst docelowy"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Komentarze"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Miejsca"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -908,13 +908,12 @@ msgstr "Nie masz praw do przeglądu propozycji"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d przetłumaczonych\n"
-"(%d braków, %d niepewnych)"
+"(%d nie przetłumaczonych, %d niepewnych)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -937,11 +936,11 @@ msgstr "Tłumaczenie"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Zaakceptuj sugestię"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Odrzuć sugestię"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -961,12 +960,12 @@ msgstr "Powiązane"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "Pracuję..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Błąd: Coś poszło źle."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -1226,12 +1225,12 @@ msgstr "Strona główna"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Alternatywne źródło języka"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Żaden"
 
 #: users.py:257
 msgid "Input Height (in lines)"

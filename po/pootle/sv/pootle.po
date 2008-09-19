@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2007-05-05 21:54+0200\n"
+"PO-Revision-Date: 2008-08-29 08:30+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -212,7 +212,7 @@ msgstr "Tillbaka till huvudsidan"
 
 #: adminpages.py:279
 msgid "Existing languages"
-msgstr "Existerande språk"
+msgstr "Befintliga språk"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:283
@@ -413,7 +413,7 @@ msgstr "Sök"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Avancerad sökning"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -746,7 +746,7 @@ msgstr "Översatta ord"
 
 #: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
-msgstr "Luddiga"
+msgstr "Luddig"
 
 #: pagelayout.py:247
 msgid "Fuzzy percentage"
@@ -779,19 +779,19 @@ msgstr "Diagram"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "Källtext"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "Måltext"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Kommentarer"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Platser"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -900,13 +900,12 @@ msgstr "Du har inte rättigheter att granska förslag här"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d översatta\n"
-"(%d blanka, %d luddiga)"
+"(%d oöversatta, %d luddiga)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -929,11 +928,11 @@ msgstr "Översättning"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Godkänn förslag"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Avvisa förslag"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -953,12 +952,12 @@ msgstr "Relaterad"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "Arbetar..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Fel: Någonting gick fel."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -1014,11 +1013,11 @@ msgstr "Du har färdigställt alla poster du valde"
 
 #: translatepage.py:643
 msgid "Singular"
-msgstr "Singular"
+msgstr "Singularis"
 
 #: translatepage.py:644
 msgid "Plural"
-msgstr "Plural"
+msgstr "Pluralis"
 
 #. l10n: verb
 #: translatepage.py:658
@@ -1220,12 +1219,12 @@ msgstr "Hemsida"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Alternativt källspråk"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Inget"
 
 #: users.py:257
 msgid "Input Height (in lines)"

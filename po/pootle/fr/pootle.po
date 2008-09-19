@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-02-29 18:41+0100\n"
-"Last-Translator: Jean-Christophe Helary <fusion@mx6.tiki.ne.jp>\n"
+"PO-Revision-Date: 2008-08-27 19:05+0000\n"
+"Last-Translator: Christian Perrier <christian@perrier.eu.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -423,7 +423,7 @@ msgstr "Rechercher"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Recherche avancée"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -792,19 +792,19 @@ msgstr "Graphique"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "Texte source"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "Texte cible"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Commentaires"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Emplacements"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -913,7 +913,6 @@ msgstr "Vous n'avez pas l'autorisation d'examiner les suggestions ici"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
@@ -942,11 +941,11 @@ msgstr "Traduction"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Accepter la suggestion"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Rejeter la suggestion"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -966,12 +965,12 @@ msgstr "Lié à"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "Traitement..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Erreur : un problème est survenu."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -1234,12 +1233,12 @@ msgstr "Page d'accueil"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Langue d'origine alternative"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Aucune"
 
 #: users.py:257
 msgid "Input Height (in lines)"

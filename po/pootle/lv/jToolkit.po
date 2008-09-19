@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2008-07-28 04:40+0000\n"
+"PO-Revision-Date: 2008-09-01 12:29+0000\n"
 "Last-Translator: Imants <imantsgi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Pootle 1.1.0\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 
 #: web/server.py:57
 #, python-format
@@ -69,7 +69,7 @@ msgstr "Iziet"
 #: web/session.py:191 web/session.py:344 web/session.py:350
 #, python-format
 msgid "logged in as <b>%s</b>"
-msgstr "Pieslēdzies kā <b>%s</b>"
+msgstr "Pieslēdzies lietotājs <b>%s</b>"
 
 #: web/session.py:193
 msgid "couldn't add new session"

@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-05-19 17:16+0000\n"
+"PO-Revision-Date: 2008-09-01 15:04+0000\n"
 "Last-Translator: Seanán Ó Coistín <seananoc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -75,7 +75,7 @@ msgstr "Clár Cinn"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Lch Riaracháin Béarlaí Pootle"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -170,7 +170,7 @@ msgstr "Bain Tionscadal"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Lch Riaracháin Úsáideoir Pootle"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -323,7 +323,7 @@ msgstr ""
 
 #: indexpage.py:65
 msgid "Versions"
-msgstr ""
+msgstr "Leagain"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -341,11 +341,11 @@ msgstr ""
 
 #: indexpage.py:135
 msgid "Change options"
-msgstr ""
+msgstr "Athraigh na roghanna"
 
 #: indexpage.py:136
 msgid "Admin page"
-msgstr ""
+msgstr "Lch Riaracháin"
 
 #: indexpage.py:137 projects.py:149
 msgid "Administrate"
@@ -353,7 +353,7 @@ msgstr "Riar"
 
 #: indexpage.py:138
 msgid "Quick Links"
-msgstr ""
+msgstr "Mear Naisc"
 
 #: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
@@ -372,7 +372,7 @@ msgstr[1] ""
 #: indexpage.py:205 indexpage.py:268
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
 msgid "Admin"
@@ -394,15 +394,14 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: indexpage.py:273
-#, fuzzy
 msgid "Language"
-msgstr "Béarlaí"
+msgstr "Béarla"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:354
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "%s: Tionscadal %s, Béarla %s"
 
 #. l10n: text next to search field
 #: indexpage.py:362 translatepage.py:145
@@ -411,11 +410,11 @@ msgstr "Cuardaigh"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Cuardach Casta"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "Ní féidir an comhad a huasluchtú, níl comhad ceangailte leis"
 
 #: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
@@ -435,23 +434,23 @@ msgstr "Sann go Úsáideoir"
 
 #: indexpage.py:543
 msgid "goals"
-msgstr ""
+msgstr "spriocanna"
 
 #: indexpage.py:544
 msgid "Enter goal name"
-msgstr ""
+msgstr "Cuir isteach ainm na sprice"
 
 #: indexpage.py:545
 msgid "Add Goal"
-msgstr ""
+msgstr "Cuir sprioc leis"
 
 #: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
-msgstr ""
+msgstr "Uasluchtaigh Comhad"
 
 #: indexpage.py:551
 msgid "Select file to upload"
-msgstr ""
+msgstr "Roghnaigh comhad le uasluchtú"
 
 #. l10n: radio button text
 #: indexpage.py:557 projects.py:141
@@ -461,12 +460,12 @@ msgstr "Forscríobh"
 #. l10n: tooltip
 #: indexpage.py:559
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "Forscríobh an comhad reatha má tá sé ann cheana"
 
 #. l10n: radio button text
 #: indexpage.py:561
 msgid "Merge"
-msgstr ""
+msgstr "Cumaisc"
 
 #. l10n: tooltip
 #: indexpage.py:563
@@ -476,19 +475,19 @@ msgstr ""
 
 #: indexpage.py:666
 msgid "Not in a goal"
-msgstr ""
+msgstr "Níl sé i sprioc"
 
 #: indexpage.py:686
 msgid "Add User"
-msgstr ""
+msgstr "Cuir duine leis"
 
 #: indexpage.py:731
 msgid "PO file"
-msgstr ""
+msgstr "Comhad PO"
 
 #: indexpage.py:735
 msgid "XLIFF file"
-msgstr ""
+msgstr "Comhad XLIFF"
 
 #: indexpage.py:739
 msgid "Qt .ts file"
@@ -500,12 +499,12 @@ msgstr ""
 
 #: indexpage.py:748
 msgid "MO file"
-msgstr ""
+msgstr "Comhad MO"
 
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:754
 msgid "Update"
-msgstr ""
+msgstr "Nuashonraigh"
 
 #. l10n: Commit to version control (like CVS or Subversion)
 #: indexpage.py:760 projects.py:150
@@ -514,7 +513,7 @@ msgstr "Tiomnaigh"
 
 #: indexpage.py:798
 msgid "All Strings"
-msgstr ""
+msgstr "Gach Teaghrán"
 
 #: indexpage.py:799 pagelayout.py:249
 msgid "Untranslated"
@@ -522,7 +521,7 @@ msgstr "Neamhaistrithe"
 
 #: indexpage.py:800
 msgid "Unassigned"
-msgstr ""
+msgstr "Neamhshannta"
 
 #: indexpage.py:801
 msgid "Unassigned and Untranslated"
@@ -530,15 +529,15 @@ msgstr ""
 
 #: indexpage.py:808
 msgid "Set Goal"
-msgstr ""
+msgstr "Socraigh Sprioc"
 
 #: indexpage.py:812
 msgid "Select Multiple"
-msgstr ""
+msgstr "Roghnaigh Iolrach"
 
 #: indexpage.py:814
 msgid "Assign To"
-msgstr ""
+msgstr "Sann go"
 
 #: indexpage.py:843
 msgid "Show Editing Functions"

@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2007-05-11 08:28+0200\n"
-"Last-Translator: ycs <yuccmember@gmail.com>\n"
+"PO-Revision-Date: 2008-09-02 02:34+0000\n"
+"Last-Translator: Olaf <dl7und@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.0rc1\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -76,7 +76,7 @@ msgstr "首頁"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Pootle語言管理頁面"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -135,7 +135,7 @@ msgstr "標準"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Pootle專案管理頁面"
 
 #: adminpages.py:151
 msgid "Project Code"
@@ -171,7 +171,7 @@ msgstr "移除專案"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Pootle使用者管理頁面"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -410,7 +410,7 @@ msgstr "搜尋"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "進階搜尋"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -774,19 +774,19 @@ msgstr "進度條"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "源文"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "目標文"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "備註"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "位置"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -895,13 +895,12 @@ msgstr "您沒有審核建議的權限"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d 已翻譯\n"
-"(%d 空白, %d 語意模糊)"
+"(%d 未翻譯, %d 語意模糊)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -924,11 +923,11 @@ msgstr "譯文"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "接受建議"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "拒絕建議"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -948,12 +947,12 @@ msgstr "相關詞"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "處理中..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "錯誤：發生意外。"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -1216,7 +1215,7 @@ msgstr ""
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "無"
 
 #: users.py:257
 msgid "Input Height (in lines)"

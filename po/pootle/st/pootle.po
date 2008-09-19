@@ -16,8 +16,8 @@ msgstr ""
 "X-Generator: VirTaal 0.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
-#: adminpages.py:292 adminpages.py:359 indexpage.py:71 indexpage.py:96
-#: indexpage.py:140 indexpage.py:202 indexpage.py:264 indexpage.py:375
+#: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
+#: indexpage.py:139 indexpage.py:201 indexpage.py:264 indexpage.py:352
 #: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
 #: users.py:177
 msgid "Pootle Demo"
@@ -32,11 +32,11 @@ msgstr "Leqephe la lehae"
 msgid "Users"
 msgstr "Basebedisi"
 
-#: adminpages.py:47 adminpages.py:87 indexpage.py:94
+#: adminpages.py:47 adminpages.py:87 indexpage.py:93
 msgid "Languages"
 msgstr "Dipuo"
 
-#: adminpages.py:48 adminpages.py:146 indexpage.py:95
+#: adminpages.py:48 adminpages.py:146 indexpage.py:94
 msgid "Projects"
 msgstr "Diprojeke"
 
@@ -102,7 +102,7 @@ msgstr "Ditlhaku tse kgethehileng"
 msgid "(special characters)"
 msgstr "(ditlhaku tse kgethehileng)"
 
-#: adminpages.py:96 indexpage.py:225
+#: adminpages.py:96 indexpage.py:224
 msgid "Number of Plurals"
 msgstr "Palo ya tse Bongateng"
 
@@ -110,7 +110,7 @@ msgstr "Palo ya tse Bongateng"
 msgid "(number of plurals)"
 msgstr "(palo ya tse bongateng)"
 
-#: adminpages.py:97 indexpage.py:226
+#: adminpages.py:97 indexpage.py:225
 msgid "Plural Equation"
 msgstr "Palopalo ya bongata"
 
@@ -176,7 +176,7 @@ msgstr "Leqephe la Mosebedisi la Taolo ya Pootle"
 msgid "Username"
 msgstr "Lebitso la mosebedisi"
 
-#: adminpages.py:219 users.py:404
+#: adminpages.py:219 users.py:403
 msgid "(add full name here)"
 msgstr "(kenya lebitso ka botlalo mona)"
 
@@ -184,7 +184,7 @@ msgstr "(kenya lebitso ka botlalo mona)"
 msgid "Email Address"
 msgstr "Imeile Aterese"
 
-#: adminpages.py:220 users.py:407
+#: adminpages.py:220 users.py:406
 msgid "(add email here)"
 msgstr "(kenya imeile mona)"
 
@@ -192,7 +192,7 @@ msgstr "(kenya imeile mona)"
 msgid "Password"
 msgstr "Phasewete"
 
-#: adminpages.py:221 users.py:401
+#: adminpages.py:221 users.py:400
 msgid "(add password here)"
 msgstr "(kenya phasewete mona)"
 
@@ -277,7 +277,7 @@ msgstr "(kgetha ho eketsa mosebedisi)"
 msgid "Rights"
 msgstr "Ditokelo"
 
-#: adminpages.py:379 indexpage.py:1031
+#: adminpages.py:379 indexpage.py:1008
 msgid "Remove"
 msgstr "Ntsha"
 
@@ -285,12 +285,12 @@ msgstr "Ntsha"
 msgid "Update Rights"
 msgstr "Etsa Update ya Ditokelo"
 
-#: indexpage.py:59
+#: indexpage.py:58
 msgid "About Pootle"
 msgstr "Ka ha Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:61
+#: indexpage.py:60
 msgid ""
 "<strong>Pootle</strong> is a simple web portal that should allow you to "
 "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
@@ -304,7 +304,7 @@ msgstr ""
 "thusa ho nka karolo kahong ya Pootle ka ditsela tse ngata (ha ho hlokehe "
 "hore o tsebe programming)."
 
-#: indexpage.py:62
+#: indexpage.py:61
 msgid ""
 "The Pootle project itself is hosted at <a href=\"http://translate."
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
@@ -316,7 +316,7 @@ msgstr ""
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:65
+#: indexpage.py:64
 msgid ""
 "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
@@ -326,13 +326,13 @@ msgstr ""
 "<b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, empa ho ka hlokeha "
 "hore o bale <a href=\"http://www.thechestnut.com/flumps.htm\">ena</a>."
 
-#: indexpage.py:66
+#: indexpage.py:65
 msgid "Versions"
 msgstr "Meetso"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:69
+#: indexpage.py:68
 #, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
@@ -341,32 +341,32 @@ msgstr ""
 "Saete ena e sebedisa:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (ho %s/%s)"
 
-#: indexpage.py:134
+#: indexpage.py:133
 #, python-format
 msgid "User Page for: %s"
 msgstr "Leqephe la mosebedise la: %s"
 
-#: indexpage.py:136
+#: indexpage.py:135
 msgid "Change options"
 msgstr "Etsa diphetoho"
 
-#: indexpage.py:137
+#: indexpage.py:136
 msgid "Admin page"
 msgstr "Leqephe la taolo"
 
-#: indexpage.py:138 projects.py:171
+#: indexpage.py:137 projects.py:149
 msgid "Administrate"
 msgstr "Etsa taolo"
 
-#: indexpage.py:139
+#: indexpage.py:138
 msgid "Quick Links"
 msgstr "Mahokela a kapele"
 
-#: indexpage.py:143
+#: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr "Tlelika ho 'Fetola dikgetho' mme o kgethe dipuo le diprojeke tse itseng"
 
-#: indexpage.py:200
+#: indexpage.py:199
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
@@ -376,20 +376,20 @@ msgstr[1] "%d ya diprojeke, palohare %d%% a fetoletsweng"
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
-#: indexpage.py:206 indexpage.py:268
+#: indexpage.py:205 indexpage.py:268
 #, python-format
 msgid "%s: %s"
 msgstr "%s:%s"
 
-#: indexpage.py:208 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
+#: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
 msgid "Admin"
 msgstr "Taolo"
 
-#: indexpage.py:222
+#: indexpage.py:221
 msgid "Language Code"
 msgstr "Khoutu ya Puo"
 
-#: indexpage.py:223
+#: indexpage.py:222
 msgid "Language Name"
 msgstr "Lebitso la Puo"
 
@@ -405,268 +405,268 @@ msgid "Language"
 msgstr "Puo"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
-#: indexpage.py:377
+#: indexpage.py:354
 #, python-format
 msgid "%s: Project %s, Language %s"
 msgstr "%s: Projeke %s, Puo %s"
 
 #. l10n: text next to search field
-#: indexpage.py:385 translatepage.py:145
+#: indexpage.py:362 translatepage.py:145
 msgid "Search"
 msgstr "Etsa search"
 
-#: indexpage.py:386 translatepage.py:146
+#: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
 msgstr "Patlisiso e Tswetseng Pele"
 
-#: indexpage.py:445
+#: indexpage.py:422
 msgid "Cannot upload file, no file attached"
 msgstr "Upload ya file ha e kgone ho phetheha, ha hona file e kentsweng"
 
-#: indexpage.py:453
+#: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
 msgstr "E ka kgona feela ho etsa upload ya PO files le di zip tsa PO files"
 
-#: indexpage.py:561 indexpage.py:564 translatepage.py:240 translatepage.py:243
+#: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
 msgid "Assign Strings"
 msgstr "Fana ka Mantswe"
 
-#: indexpage.py:562 translatepage.py:242
+#: indexpage.py:536 translatepage.py:239
 msgid "Assign Action"
 msgstr "Fana ka Bohato"
 
-#: indexpage.py:563 translatepage.py:241
+#: indexpage.py:537 translatepage.py:238
 msgid "Assign to User"
 msgstr "Efa Mosebedisi"
 
-#: indexpage.py:569
+#: indexpage.py:543
 msgid "goals"
 msgstr "maikemisetso"
 
-#: indexpage.py:570
+#: indexpage.py:544
 msgid "Enter goal name"
 msgstr "Kenya lebitso la boikemisetso"
 
-#: indexpage.py:571
+#: indexpage.py:545
 msgid "Add Goal"
 msgstr "Eketsa Boikemisetso"
 
-#: indexpage.py:576 indexpage.py:578
+#: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
 msgstr "Etsa File Upload"
 
-#: indexpage.py:577
+#: indexpage.py:551
 msgid "Select file to upload"
 msgstr "Kgetha file ho etsa upload"
 
 #. l10n: radio button text
-#: indexpage.py:583 projects.py:163
+#: indexpage.py:557 projects.py:141
 msgid "Overwrite"
 msgstr "Hlakola"
 
 #. l10n: tooltip
-#: indexpage.py:585
+#: indexpage.py:559
 msgid "Overwrite the current file if it exists"
 msgstr "Hlakola faele ya hajwale haeba e ne e se e le teng"
 
 #. l10n: radio button text
-#: indexpage.py:587
+#: indexpage.py:561
 msgid "Merge"
 msgstr "Kopanya"
 
 #. l10n: tooltip
-#: indexpage.py:589
+#: indexpage.py:563
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
 "Kopanya file e ntjha le ya kgale mme o fetole dikgohlano hoba ditlhahiso"
 
-#: indexpage.py:691
+#: indexpage.py:666
 msgid "Not in a goal"
 msgstr "Ha e boikemisetsong"
 
-#: indexpage.py:711
+#: indexpage.py:686
 msgid "Add User"
 msgstr "Eketsa Mosebedisi"
 
-#: indexpage.py:751
+#: indexpage.py:731
 msgid "PO file"
 msgstr "Faele ya PO"
 
-#: indexpage.py:755
+#: indexpage.py:735
 msgid "XLIFF file"
 msgstr "Faele ya XLIFF"
 
-#: indexpage.py:759
+#: indexpage.py:739
 msgid "Qt .ts file"
 msgstr "Qt .ts faele"
 
-#: indexpage.py:763
+#: indexpage.py:743
 msgid "CSV file"
 msgstr "Faele ya CSV"
 
-#: indexpage.py:768
+#: indexpage.py:748
 msgid "MO file"
 msgstr "Faele ya MO"
 
 #. l10n: Update from version control (like CVS or Subversion)
-#: indexpage.py:774
+#: indexpage.py:754
 msgid "Update"
 msgstr "Lokisa"
 
 #. l10n: Commit to version control (like CVS or Subversion)
-#: indexpage.py:780 projects.py:172
+#: indexpage.py:760 projects.py:150
 msgid "Commit"
 msgstr "Netefatsa"
 
-#: indexpage.py:817
+#: indexpage.py:798
 msgid "All Strings"
 msgstr "Mantswe Kaofela"
 
-#: indexpage.py:818 pagelayout.py:246
+#: indexpage.py:799 pagelayout.py:249
 msgid "Untranslated"
 msgstr "Tse sa fetolelwang"
 
-#: indexpage.py:819
+#: indexpage.py:800
 msgid "Unassigned"
 msgstr "Ha e ya fanwa"
 
-#: indexpage.py:820
+#: indexpage.py:801
 msgid "Unassigned and Untranslated"
 msgstr "Ha ea fanwa ebile ha ea fetolelwa"
 
-#: indexpage.py:827
+#: indexpage.py:808
 msgid "Set Goal"
 msgstr "Beha Boikemisetso"
 
-#: indexpage.py:831
+#: indexpage.py:812
 msgid "Select Multiple"
 msgstr "Kgetha ka Bongata"
 
-#: indexpage.py:833
+#: indexpage.py:814
 msgid "Assign To"
 msgstr "Efe"
 
-#: indexpage.py:862
+#: indexpage.py:843
 msgid "Show Editing Functions"
 msgstr "Bontsha Function tsa ho etsa Diphetoho"
 
-#: indexpage.py:863
+#: indexpage.py:844
 msgid "Show Statistics"
 msgstr "Bontsha Dipalopalo"
 
-#: indexpage.py:864
+#: indexpage.py:845
 msgid "Show Tracks"
 msgstr "Bontsha Tracks"
 
-#: indexpage.py:864
+#: indexpage.py:845
 msgid "Hide Tracks"
 msgstr "Pata Tracks"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
-#: indexpage.py:866
+#: indexpage.py:847
 msgid "Show Checks"
 msgstr "Bontsha Ditlhatlhobo"
 
-#: indexpage.py:866
+#: indexpage.py:847
 msgid "Hide Checks"
 msgstr "Pata ditlhatlhobo"
 
-#: indexpage.py:867
+#: indexpage.py:848
 msgid "Show Goals"
 msgstr "Bontsha Maikemisetso"
 
-#: indexpage.py:867
+#: indexpage.py:848
 msgid "Hide Goals"
 msgstr "Pata Maikemisetso"
 
-#: indexpage.py:868
+#: indexpage.py:849
 msgid "Show Assigns"
 msgstr "Bontsha tse Fannweng"
 
-#: indexpage.py:868
+#: indexpage.py:849
 msgid "Hide Assigns"
 msgstr "Pata tse Fannweng"
 
-#: indexpage.py:877
+#: indexpage.py:858
 #, python-format
 msgid "All Goals: %s"
 msgstr "Boikemisetso kaofela: %s"
 
-#: indexpage.py:883
+#: indexpage.py:864
 msgid "Translate My Strings"
 msgstr "Fetolela Mantswe aka"
 
-#: indexpage.py:885
+#: indexpage.py:866
 msgid "View My Strings"
 msgstr "Sheba Mantswe aka"
 
-#: indexpage.py:890
+#: indexpage.py:871
 msgid "No strings assigned to you"
 msgstr "Ha oa fuwa letho"
 
-#: indexpage.py:897
+#: indexpage.py:875
 msgid "Quick Translate My Strings"
 msgstr "Etsa Phetolelo ya Kapele ya Mantswe"
 
-#: indexpage.py:901
+#: indexpage.py:879
 msgid "No untranslated strings assigned to you"
 msgstr "Ha ho le o le filweng le sa fetolelwang"
 
-#: indexpage.py:905
+#: indexpage.py:883
 msgid "Review Suggestions"
 msgstr "Shebisisa Ditlhahiso"
 
-#: indexpage.py:907
+#: indexpage.py:885
 msgid "View Suggestions"
 msgstr "Sheba Ditlhahiso"
 
-#: indexpage.py:912
+#: indexpage.py:890
 msgid "Quick Translate"
 msgstr "Phetolelo ya Kapele"
 
-#: indexpage.py:914
+#: indexpage.py:892
 msgid "View Untranslated"
 msgstr "Sheba tse sa Fetolelwang"
 
-#: indexpage.py:918
+#: indexpage.py:896
 msgid "No untranslated items"
 msgstr "Ha hona tse sa fetolelwang"
 
-#: indexpage.py:921
+#: indexpage.py:899
 msgid "Translate All"
 msgstr "Fetolela Tsohle"
 
-#: indexpage.py:936
+#: indexpage.py:914
 msgid "ZIP of goal"
 msgstr "ZIP ya boikemisetso"
 
-#: indexpage.py:938
+#: indexpage.py:916
 msgid "ZIP of folder"
 msgstr "ZIP ya foldara"
 
-#: indexpage.py:945
+#: indexpage.py:923
 msgid "Generate SDF"
 msgstr "Jenereita SDF"
 
-#: indexpage.py:998
+#: indexpage.py:976
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
 msgstr[0] "%d ya lentswe (%d%%) a feitseng"
 msgstr[1] "%d ya mantswe (%d%%) a feitseng"
 
-#: indexpage.py:1026
+#: indexpage.py:1003
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
 msgstr "%d/%d mantswe a (%d%%) a fannweng"
 
-#: indexpage.py:1027 indexpage.py:1029
+#: indexpage.py:1004 indexpage.py:1006
 #, python-format
 msgid "[%d/%d strings]"
 msgstr "[%d/%d ya mantswe]"
 
-#: indexpage.py:1028 pagelayout.py:232
+#: indexpage.py:1005 pagelayout.py:235
 #, python-format
 msgid "%d/%d words (%d%%) translated"
 msgstr "%d/%d ya mantswe (%d%%) ya a fetoletsweng"
@@ -716,174 +716,174 @@ msgstr "Tsohle ka Pootle server ena"
 msgid "All goals"
 msgstr "Maikemisetso ohle"
 
-#: pagelayout.py:228
+#: pagelayout.py:231
 #, python-format
 msgid "%d/%d files"
 msgstr "%d/%d difaele"
 
-#: pagelayout.py:231
+#: pagelayout.py:234
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d faele"
 msgstr[1] "%d difaele"
 
-#: pagelayout.py:233
+#: pagelayout.py:236
 #, python-format
 msgid "%d/%d strings"
 msgstr "%d/%d ya mantswe"
 
-#: pagelayout.py:239 users.py:184
+#: pagelayout.py:242 users.py:184
 msgid "Name"
 msgstr "Lebitso"
 
-#: pagelayout.py:240
+#: pagelayout.py:243
 msgid "Translated"
 msgstr "Tse fetoletsweng"
 
-#: pagelayout.py:241
+#: pagelayout.py:244
 msgid "Translated percentage"
 msgstr "Persente e fetoletsweng"
 
-#: pagelayout.py:242
+#: pagelayout.py:245
 msgid "Translated words"
 msgstr "Mantswe a fetoletsweng"
 
-#: pagelayout.py:243 translatepage.py:135
+#: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
 msgstr "Tse sa hlakang"
 
-#: pagelayout.py:244
+#: pagelayout.py:247
 msgid "Fuzzy percentage"
 msgstr "Persente ya tse sa hlakang"
 
-#: pagelayout.py:245
+#: pagelayout.py:248
 msgid "Fuzzy words"
 msgstr "Mantswe a sa hlakang"
 
-#: pagelayout.py:247
+#: pagelayout.py:250
 msgid "Untranslated percentage"
 msgstr "Persente ya tse sa fetolelwang"
 
-#: pagelayout.py:248
+#: pagelayout.py:251
 msgid "Untranslated words"
 msgstr "Mantswe a sa fetolelwang"
 
-#: pagelayout.py:249
+#: pagelayout.py:252
 msgid "Total"
 msgstr "Kaofela"
 
-#: pagelayout.py:250
+#: pagelayout.py:253
 msgid "Total words"
 msgstr "Mantswe kaofela"
 
 #. l10n: noun. The graphical representation of translation status
-#: pagelayout.py:252
+#: pagelayout.py:255
 msgid "Graph"
 msgstr "Kerafo"
 
-#: pagelayout.py:290
+#: pagelayout.py:293
 msgid "Source Text"
 msgstr "Mongolo wa Mohlodi"
 
-#: pagelayout.py:294
+#: pagelayout.py:297
 msgid "Target Text"
 msgstr "Mongolo wa Thagete"
 
-#: pagelayout.py:298
+#: pagelayout.py:301
 msgid "Comments"
 msgstr "Dikarabelo"
 
-#: pagelayout.py:302
+#: pagelayout.py:305
 msgid "Locations"
 msgstr "Bodulo"
 
-#: pootle.py:302
+#: pootle.py:305
 msgid "Login failed"
 msgstr "Ho kena ho feitse"
 
-#: pootle.py:346 pootle.py:377
+#: pootle.py:349 pootle.py:380
 msgid "Redirecting to login..."
 msgstr "E lebisa ho keneng..."
 
-#: pootle.py:349
+#: pootle.py:352
 msgid "Need to log in to access home page"
 msgstr "O tlameha ho kena pele o fetela leqepheng la lehae"
 
-#: pootle.py:362
+#: pootle.py:365
 msgid "Personal details updated"
 msgstr "Dintlha tsa boitsebiso di lokisitswe"
 
-#: pootle.py:380
+#: pootle.py:383
 msgid "Need to log in to access admin page"
 msgstr "O tlameha ho kena pele o fetela leqepheng la taolo"
 
-#: pootle.py:387
+#: pootle.py:390
 msgid "Redirecting to home..."
 msgstr "E lebisa leqepheng la lehae..."
 
-#: pootle.py:390
+#: pootle.py:393
 msgid "You do not have the rights to administer pootle."
 msgstr "Ha ona ditokelo tsa ho administer pootle."
 
 #. l10n: Verb
-#: projects.py:160
+#: projects.py:138
 msgid "View"
 msgstr "Sheba"
 
-#: projects.py:161 translatepage.py:681
+#: projects.py:139 translatepage.py:678
 msgid "Suggest"
 msgstr "Hlahisa"
 
-#: projects.py:162
+#: projects.py:140
 msgid "Translate"
 msgstr "Fetolela"
 
 #. l10n: Verb
-#: projects.py:165
+#: projects.py:143
 msgid "Review"
 msgstr "Shebisisa"
 
 #. l10n: Verb
-#: projects.py:167
+#: projects.py:145
 msgid "Archive"
 msgstr "Boloka"
 
 #. l10n: This refers to generating the binary .mo file
-#: projects.py:169
+#: projects.py:147
 msgid "Compile PO files"
 msgstr "Komphaela difaele tsa PO"
 
-#: projects.py:170
+#: projects.py:148
 msgid "Assign"
 msgstr "Fana"
 
 #. l10n: Don't translate "nobody" or "default"
-#: projects.py:252
+#: projects.py:230
 msgid "You cannot remove the \"nobody\" or \"default\" user"
 msgstr "Ha oa dumellwa ho hlakola \"nobody\" kapa \"default\""
 
-#: projects.py:404 projects.py:466
+#: projects.py:382 projects.py:444
 msgid "You do not have rights to alter goals here"
 msgstr "Ha ona ditokelo tsa ho fetola di goals mona"
 
-#: projects.py:532
+#: projects.py:510
 msgid "You do not have rights to upload files here"
 msgstr "Ha ona ditokelo tsa ho kenya difaele mona"
 
-#: projects.py:535
+#: projects.py:513
 msgid "You do not have rights to overwrite files here"
 msgstr "Ha ona ditokelo tsa ho etsa file overwrite mona"
 
-#: projects.py:537
+#: projects.py:515
 msgid "You do not have rights to upload new files here"
 msgstr "Ha ona ditokelo tsa ho kenya difaele tse ntjha mona"
 
-#: projects.py:545
+#: projects.py:524
 msgid "You do not have rights to update files here"
 msgstr "Ha ona ditokelo tsa ho etsa file updates mona"
 
-#: projects.py:565
+#: projects.py:555
 msgid "You do not have rights to commit files here"
 msgstr "Ha ona ditokelo tsa ho netefatsa difaele mona"
 
@@ -891,19 +891,19 @@ msgstr "Ha ona ditokelo tsa ho netefatsa difaele mona"
 msgid "Error while extracting archive"
 msgstr "Phoso ha ho ntshuwa polokelo"
 
-#: projects.py:1013 projects.py:1055
+#: projects.py:977 projects.py:1019
 msgid "You do not have rights to alter assignments here"
 msgstr "Ha ona ditokelo tsa ho etsa diphetoho mona"
 
-#: projects.py:1206
+#: projects.py:1219
 msgid "You do not have rights to change translations here"
 msgstr "Ha ona ditokelo tsa ho fetola diphetolelo mona"
 
-#: projects.py:1216
+#: projects.py:1229
 msgid "You do not have rights to suggest changes here"
 msgstr "Ha ona ditokelo tsa ho etsa ditlhahiso mona"
 
-#: projects.py:1232 projects.py:1250
+#: projects.py:1245 projects.py:1263
 msgid "You do not have rights to review suggestions here"
 msgstr "Ha ona ditokelo tsa ho shebisisa ditlhahiso mona"
 
@@ -1006,69 +1006,69 @@ msgid "End"
 msgstr "Qetellong"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-#: translatepage.py:233
+#: translatepage.py:230
 #, python-format
 msgid "checking %s"
 msgstr "e hlahloba %s"
 
-#: translatepage.py:401
+#: translatepage.py:398
 #, python-format
 msgid "There are no items matching that search ('%s')"
 msgstr "Seo o neng o se batla ha se a fumaneha ('%s')"
 
-#: translatepage.py:403
+#: translatepage.py:400
 msgid "You have finished going through the items you selected"
 msgstr "O se o qetile ka ntho tsohle tseo o neng o di kgethile"
 
-#: translatepage.py:646
+#: translatepage.py:643
 msgid "Singular"
 msgstr "Bonngwe"
 
-#: translatepage.py:647
+#: translatepage.py:644
 msgid "Plural"
 msgstr "Bongata"
 
 #. l10n: verb
-#: translatepage.py:661
+#: translatepage.py:658
 msgid "Edit"
 msgstr "Etsa phetoho"
 
 #. l10n: verb
-#: translatepage.py:677
+#: translatepage.py:674
 msgid "Copy"
 msgstr "Kopitsa"
 
-#: translatepage.py:678 translatepage.py:852
+#: translatepage.py:675 translatepage.py:849
 msgid "Skip"
 msgstr "Tlola"
 
 #. l10n: verb
-#: translatepage.py:680 translatepage.py:851 users.py:313
+#: translatepage.py:677 translatepage.py:848 users.py:312
 msgid "Back"
 msgstr "Morao"
 
-#: translatepage.py:682
+#: translatepage.py:679
 msgid "Submit"
 msgstr "Romela phetolelo ena"
 
 #. l10n: action that increases the height of the textarea
-#: translatepage.py:685
+#: translatepage.py:682
 msgid "Grow"
 msgstr "Hodisa"
 
 #. l10n: action that decreases the height of the textarea
-#: translatepage.py:687
+#: translatepage.py:684
 msgid "Shrink"
 msgstr "Nyenyefatsa |"
 
-#: translatepage.py:709 translatepage.py:803 translatepage.py:840
-#: translatepage.py:873
+#: translatepage.py:706 translatepage.py:800 translatepage.py:837
+#: translatepage.py:870
 #, python-format
 msgid "Plural Form %d"
 msgstr "Bongateng %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
-#: translatepage.py:725
+#: translatepage.py:722
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
@@ -1076,29 +1076,29 @@ msgstr ""
 "Phetolelo ha e dumellehe hobane bongata puong ya hao ha bo fumanehe. "
 "Ikopanye le Site Administrator."
 
-#: translatepage.py:807
+#: translatepage.py:804
 msgid "Current Translation:"
 msgstr "Phetolelo ya hajwale"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
-#: translatepage.py:820
+#: translatepage.py:817
 #, python-format
 msgid "Suggestion %d by %s:"
 msgstr "Tlhahiso %d ka %s:"
 
-#: translatepage.py:822
+#: translatepage.py:819
 #, python-format
 msgid "Suggestion %d:"
 msgstr "Tlhahiso %d:"
 
 #. l10n: parameter: name of translator
-#: translatepage.py:826
+#: translatepage.py:823
 #, python-format
 msgid "Suggestion by %s:"
 msgstr "Thlahiso ka %s:"
 
-#: translatepage.py:828
+#: translatepage.py:825
 msgid "Suggestion:"
 msgstr "Tlhahiso:"
 
@@ -1139,7 +1139,7 @@ msgstr "Ya kamehla"
 msgid "Please enter your registration details"
 msgstr "Kenya tsa boingodiso ba hao"
 
-#: users.py:115 users.py:476
+#: users.py:115 users.py:475
 msgid "Pootle Registration"
 msgstr "Boingodiso ba Pootle"
 
@@ -1147,7 +1147,7 @@ msgstr "Boingodiso ba Pootle"
 msgid "Your requested username"
 msgstr "Lebitso la mosebedisi leo o le batlileng"
 
-#: users.py:125 users.py:430
+#: users.py:125 users.py:429
 msgid "You must supply a valid email address"
 msgstr "Fana ka imeile aterese e nepahetseng"
 
@@ -1245,61 +1245,61 @@ msgstr "Palo ya mela e bontshitsweng"
 msgid "Number of rows in translate mode"
 msgstr "Palo ya mela e phetolelong"
 
-#: users.py:308
+#: users.py:307
 msgid "Error"
 msgstr "Phoso"
 
-#: users.py:360
+#: users.py:359
 msgid "You need to be siteadmin to change users"
 msgstr "O hloka hore o be siteadmin ho fetola basebedisi"
 
-#: users.py:424
+#: users.py:423
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
 "Lebitso la mosebedisi le tlameha hoba alphanumeric mme le qale ka alphabet."
 
-#: users.py:439
+#: users.py:438
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
 msgstr "Wena (kapa emong) o lekile ho ngodisa akhaonte ka lebitso la hao.\n"
 
-#: users.py:440
+#: users.py:439
 msgid "We don't store your actual password but only a hash of it.\n"
 msgstr "Hare boloke phasewete ya hao, empa hash ya teng feela.\n"
 
-#: users.py:442
+#: users.py:441
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
 msgstr "Ha o na le bothata ka boingodiso ikopanye le %s.\n"
 
-#: users.py:444
+#: users.py:443
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
 msgstr "Ha o na le bothata ba ho ingodisa ikopanye le site administrator.\n"
 
-#: users.py:445
+#: users.py:444
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
 msgstr "Lebitso leno la mosebedisi le teng. Imeile e tla romelwa ho imeile aterese e "
 "ngodisitsweng.\n"
 
-#: users.py:447
+#: users.py:446
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
 msgstr "E fetela ho<a href='%s'>kena</a>\n"
 
-#: users.py:453
+#: users.py:452
 msgid "A Pootle account has been created for you using this email address.\n"
 msgstr "Akhaonte ya Pootle e se e ngodisitswe ka imeile aterese ena.\n"
 
-#: users.py:455
+#: users.py:454
 msgid "To activate your account, follow this link:\n"
 msgstr "Ho netefatsa akhaonte ya hao, latela lehokela lena:\n"
 
-#: users.py:461
+#: users.py:460
 #, python-format
 msgid ""
 "Your activation code is:\n"
@@ -1308,21 +1308,21 @@ msgstr ""
 "Khoutu ya ho netefatsa ke:\n"
 "%s\n"
 
-#: users.py:463
+#: users.py:462
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
 msgstr "Haeba ha o kgone ho latela lehokela lena, kenya khoutu ena leqepheng la "
 "netefatso.\n"
 
-#: users.py:464
+#: users.py:463
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr "Molaetsa ona o rometswe ho netefatsa hore imeile aterese ena e nepahetse. "
 "Haeba o ne o sa batle ho ngodisa akhaonte, o ka tlohela molaetsa ona.\n"
 
-#: users.py:466
+#: users.py:465
 #, python-format
 msgid ""
 "Account created. You will be emailed login details and an activation code. "
@@ -1332,58 +1332,58 @@ msgstr ""
 "netefatso. Kenya khoutu ya netefatso <a href='%s'>leqepheng la "
 "netefatso</a>."
 
-#: users.py:468
+#: users.py:467
 msgid "(Or simply click on the activation link in the email)"
 msgstr "(Kapa latela lehokela ya netefatso habonolo feela ho imeile)"
 
-#: users.py:470
+#: users.py:469
 #, python-format
 msgid "Your user name is: %s\n"
 msgstr "Lebitso la hao la mosebedisi ke: %s\n"
 
-#: users.py:472
+#: users.py:471
 #, python-format
 msgid "Your password is: %s\n"
 msgstr "Phasewete ya hao ke: %s\n"
 
-#: users.py:473
+#: users.py:472
 #, python-format
 msgid "Your registered email address is: %s\n"
 msgstr "Imeile aterese ya hao e ngodisitsweng ke: %s\n"
 
-#: users.py:501
+#: users.py:500
 msgid "Redirecting to Registration Page..."
 msgstr "E lebisa ho Leqephe la Boingodiso..."
 
-#: users.py:525
+#: users.py:524
 msgid "Redirecting to login Page..."
 msgstr "E lebisa leqepheng la ho Kena..."
 
-#: users.py:528
+#: users.py:527
 msgid "Your account has been activated! Redirecting to login..."
 msgstr "Akhaonte ya hao e netefaditswe! E lebisa ho keneng..."
 
-#: users.py:532
+#: users.py:531
 msgid "The activation information was not valid."
 msgstr "Dintlha tsa ho netefatsa di fosahetse."
 
-#: users.py:533
+#: users.py:532
 msgid "Activation Failed"
 msgstr "Netefatso e feitse"
 
-#: users.py:650
+#: users.py:649
 msgid "Input height must be numeric"
 msgstr "Bophahamo bo tlameha hoba dinomoro"
 
-#: users.py:651
+#: users.py:650
 msgid "Input width must be numeric"
 msgstr "Bophara bo tlameha hoba dinomoro"
 
-#: users.py:652
+#: users.py:651
 msgid "The number of rows displayed in view mode must be numeric"
 msgstr "Palo ya mela e bontshitsweng e tlameha hoba dinomoro"
 
-#: users.py:653
+#: users.py:652
 msgid "The number of rows displayed in translate mode must be numeric"
 msgstr "Palo ya mela e bontshitsweng phetolelong e tlameha hoba dinomoro"
 
