@@ -310,9 +310,9 @@ Pootle:
 
 # Ελληνικά
 # Greek
-#    el.fullname = u'Greek'
-#    el.nplurals = '2'
-#    el.pluralequation ='(n != 1)'
+    el.fullname = u'Greek'
+    el.nplurals = '2'
+    el.pluralequation ='(n != 1)'
 
 # English
     en.fullname = u'English'
@@ -342,9 +342,9 @@ Pootle:
 
 # Eesti
 # Estonian
-#    et.fullname = u'Estonian'
-#    et.nplurals = '2'
-#    et.pluralequation ='(n != 1)'
+    et.fullname = u'Estonian'
+    et.nplurals = '2'
+    et.pluralequation ='(n != 1)'
 
 # Euskara
 # Basque
@@ -390,9 +390,9 @@ Pootle:
 
 # Gaeilge
 # Irish
-#    ga.fullname = u'Irish'
-#    ga.nplurals = '3'
-#    ga.pluralequation ='n==1 ? 0 : n==2 ? 1 : 2'
+    ga.fullname = u'Irish'
+    ga.nplurals = '3'
+    ga.pluralequation ='n==1 ? 0 : n==2 ? 1 : 2'
 
 # Galego
 # Galician
@@ -473,9 +473,14 @@ Pootle:
 
 # Kurdî / كوردي
 # Kurdish
-#    ku.fullname = u'Kurdish'
-#    ku.nplurals = '2'
-#    ku.pluralequation ='(n!= 1)'
+    ku.fullname = u'Kurdish'
+    ku.nplurals = '2'
+    ku.pluralequation ='(n!= 1)'
+
+# Kyrgyz
+    ky.fullname = u'Kirghiz; Kyrgyz'
+    ky.nplurals = '1'
+    ky.pluralequation = '0'
 
 # Lëtzebuergesch
 # Letzeburgesch
@@ -490,6 +495,13 @@ Pootle:
 #    lg.pluralequation = '(n != 1)'
 #    lg.specialchars = "ŋŊÿŸ…"
 
+# Lingála
+# Lingala
+    ln.fullname = u'Lingala'
+    ln.nplurals = '2'
+    ln.pluralequation = '(n != 1)'
+    ln.specialchars = u'ɛɔƐƆáâǎéêěɛ́ɛ̂ɛ̌íîǐóôǒɔ́ɔ̂ɔ̌ú'
+
 # Lietuvių
 # Lithuanian
     lt.fullname = u'Lithuanian'
@@ -498,9 +510,9 @@ Pootle:
 
 # Latviešu
 # Latvian
-#    lv.fullname = u'Latvian'
-#    lv.nplurals = '3'
-#    lv.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2)'
+    lv.fullname = u'Latvian'
+    lv.nplurals = '3'
+    lv.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2)'
 
 # Malayalam
     ml.fullname = u'Malayalam'
@@ -546,9 +558,9 @@ Pootle:
 
 # Bokmål
 # Norwegian Bokmal
-#    nb.fullname = u'Norwegian Bokmal'
-#    nb.nplurals = '2'
-#    nb.pluralequation ='(n != 1)'
+    nb.fullname = u'Norwegian Bokmal'
+    nb.nplurals = '2'
+    nb.pluralequation ='(n != 1)'
 
 # Nepali
 #    ne.fullname = u'Nepali'
@@ -563,9 +575,9 @@ Pootle:
 
 # Nynorsk
 # Norwegian Nynorsk
-#    nn.fullname = u'Norwegian Nynorsk'
-#    nn.nplurals = '2'
-#    nn.pluralequation ='(n != 1)'
+    nn.fullname = u'Norwegian Nynorsk'
+    nn.nplurals = '2'
+    nn.pluralequation ='(n != 1)'
 
 # Sesotho sa Leboa
 # Northern Sotho
@@ -585,9 +597,9 @@ Pootle:
 #    pa.pluralequation ='(n != 1)'
 
 # Papiamento
-#    pap.fullname = u'Papiamento'
-#    pap.nplurals = '2'
-#    pap.pluralequation ='(n != 1)'
+    pap.fullname = u'Papiamento'
+    pap.nplurals = '2'
+    pap.pluralequation ='(n != 1)'
 
 # Polski
 # Polish
@@ -633,9 +645,9 @@ Pootle:
 
 # Shqip
 # Albanian
-#    sq.fullname = u'Albanian'
-#    sq.nplurals = '2'
-#    sq.pluralequation ='(n != 1)'
+    sq.fullname = u'Albanian'
+    sq.nplurals = '2'
+    sq.pluralequation ='(n != 1)'
 
 # Српски / Srpski
 # Serbian
@@ -661,11 +673,22 @@ Pootle:
 #    ta.nplurals = '2'
 #    ta.pluralequation ='(n != 1)'
 
+# తెలుగు
+# Telugu
+    te.fullname = u'Telugu'
+    te.nplurals = u'2'
+    te.pluralequation = u'(n != 1)'
+
 # Туркмен / تركمن
 # Turkmen
 #    tk.fullname = u'Turkmen'
 #    tk.nplurals = '2'
 #    tk.pluralequation ='(n != 1)'
+
+# Tagalog
+    tl.fullname = u'Tagalog'
+    tl.nplurals = '2'
+    tl.pluralequation = '(n > 1)'
 
 # Türkçe
 # Turkish
@@ -716,10 +739,10 @@ Pootle:
 
 # 繁體中文
 # Traditional Chinese (Hong Kong used below, but also used in Taiwan and Macau)
-    zh_HK.fullname = u'Chinese (Hong Kong)'
-    zh_HK.nplurals = '1'
-    zh_HK.pluralequation ='0'
-    zh_HK.specialchars = "←→↔×÷©…—‘’“”「」『』【】《》"
+#    zh_HK.fullname = u'Chinese (Hong Kong)'
+#    zh_HK.nplurals = '1'
+#    zh_HK.pluralequation ='0'
+#    zh_HK.specialchars = "←→↔×÷©…—‘’“”「」『』【】《》"
 
 # 繁體中文
 # Traditional Chinese (Taiwan used below, but also used in Hong Kong and Macau)
