@@ -895,10 +895,10 @@ class TranslationProject(object):
           if search.assignedaction not in assigns:
             return False
     if search.matchnames:
+      postats = self.getpostats(pofilename)
       for name in search.matchnames:
-        stripped_name = name[6:]
-        if self.pofiles[pofilename].statistics.file_fails_test(stripped_name):
-          return True
+        if postats.get(name):
+          return True        
       return False
     return True
 
@@ -1108,12 +1108,6 @@ class TranslationProject(object):
       for name, items in postats.iteritems():
         unit_stats.setdefault(name, []).extend([(pofilename, item) for item in items])
     return unit_stats
-
-  def combine_file_failures(self, pofilenames, name):
-    for pofilename in pofilenames:
-      if self.pofiles[pofilename].statistics.file_fails_test(name):
-        return True
-    return False
 
   def combineassignstats(self, pofilenames=None, action=None):
     """combines assign statistics for the given po files (or all if None given)"""

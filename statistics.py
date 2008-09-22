@@ -25,15 +25,6 @@ class pootlestatistics:
     except:
       return statsdb.emptyfiletotals()
 
-  def file_fails_test(self, name, checker=None):
-    """reads the stats if neccessary or returns them from the cache"""
-    if checker == None:
-      checker = self.basefile.checker
-    try:
-      return request_cache.call(self.statscache.file_fails_test, self.basefile.filename, checker, name)
-    except:
-      return False
-
   def getstats(self, checker=None):
     """reads the stats if neccessary or returns them from the cache"""
     if checker == None:

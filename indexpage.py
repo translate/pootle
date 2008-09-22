@@ -306,7 +306,6 @@ class LazyStats(object):
     self._basic = util.undefined
     self._assign = util.undefined
     self._units = util.undefined
-    self._has_suggestion = util.undefined
   
   @util.lazy('_basic')
   def _get_basic(self):
@@ -322,11 +321,6 @@ class LazyStats(object):
   def _get_units(self):
     return self._project.combine_unit_stats(self._pofilenames)
   units = property(_get_units)
-
-  @util.lazy('_has_suggestion')
-  def _get_has_suggestion(self):
-    return self._project.combine_file_failures(self._pofilenames, 'hassuggestion')
-  has_suggestion = property(_get_has_suggestion)
 
 class ProjectIndex(pagelayout.PootleNavPage):
   """The main page of a project in a specific language"""
@@ -900,7 +894,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         else:
           quickminelink = {"title": self.localize("No untranslated strings assigned to you"), "text": quickminelink}
         actionlinks.append(quickminelink)
-    if "review" in linksrequired and projectstats.has_suggestion:# units.get("check-hassuggestion", []):
+    if "review" in linksrequired and projectstats.units.get("check-hassuggestion", []):
       if "review" in self.rights:
         reviewlink = self.localize("Review Suggestions")
       else:
