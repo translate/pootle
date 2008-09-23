@@ -475,9 +475,6 @@ def make_class(base_class):
       """saves changes to the main file to disk..."""
       output = str(self)
       self.pomtime = self.lockedfile.writecontents(output)
-      if reset_stats:
-        self.reset_statistics()
-        self.statistics.updatequickstats()
 
     def pofreshen(self):
       """makes sure we have a freshly parsed pofile
