@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2007-06-15 05:21+0200\n"
-"Last-Translator: Lê Quốc Thái <lquocthai@ioit.ac.vn>\n"
+"PO-Revision-Date: 2008-09-20 11:13+0000\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.0.1rc1\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -420,7 +420,7 @@ msgstr "Tìm kiếm"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Tìm cấp cao"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -611,7 +611,7 @@ msgstr "Không có chuỗi được gán cho bạn"
 
 #: indexpage.py:875
 msgid "Quick Translate My Strings"
-msgstr "Dịch nhanh chuỗi mình"
+msgstr "Dịch chuỗi mình còn lại"
 
 #: indexpage.py:879
 msgid "No untranslated strings assigned to you"
@@ -619,15 +619,15 @@ msgstr "Không có chuỗi chưa dịch được gán cho bạn"
 
 #: indexpage.py:883
 msgid "Review Suggestions"
-msgstr "Xem lại các sự góp ý"
+msgstr "Xem lại chuỗi góp"
 
 #: indexpage.py:885
 msgid "View Suggestions"
-msgstr "Xem các sự góp ý"
+msgstr "Xem chuỗi góp"
 
 #: indexpage.py:890
 msgid "Quick Translate"
-msgstr "Dịch nhanh"
+msgstr "Dịch còn lại"
 
 #: indexpage.py:892
 msgid "View Untranslated"
@@ -639,7 +639,7 @@ msgstr "Không có mục chưa dịch"
 
 #: indexpage.py:899
 msgid "Translate All"
-msgstr "Dịch hết"
+msgstr "Dịch tất cả"
 
 #: indexpage.py:914
 msgid "ZIP of goal"
@@ -788,19 +788,19 @@ msgstr "Đồ thị"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "Chuỗi nguồn"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "Chuỗi đích"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Ghi chú"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Vị trí"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -911,13 +911,12 @@ msgstr "Bạn không có quyền xem lại sự góp ý ở đây."
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d đã dịch\n"
-"(%d trắng, %d mờ)"
+"(%d chưa dịch, %d dịch mờ)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -940,11 +939,11 @@ msgstr "Chuỗi dịch"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Chấp nhận chuỗi góp"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Từ chối chuỗi góp"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -964,12 +963,12 @@ msgstr "Liên quan"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "Đang chạy..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Lỗi: cái gì không chạy được."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -1052,7 +1051,7 @@ msgstr "Lùi"
 
 #: translatepage.py:679
 msgid "Submit"
-msgstr "Đệ trình"
+msgstr "Lưu"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:682
@@ -1229,12 +1228,12 @@ msgstr "Trang chủ"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Ngôn ngữ nguồn khác"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Không có"
 
 #: users.py:257
 msgid "Input Height (in lines)"
