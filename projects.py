@@ -495,7 +495,7 @@ class TranslationProject(object):
       raise ValueError("invalid/insecure file name: %s" % localfilename)
     if self.filestyle == "gnu":
       if not self.potree.languagematch(self.languagecode, localfilename[:-len("."+self.fileext)]):
-        raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" % (localfilename, self.fileext, self.languagecode, self.languagecode, self.fileext))
+        raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" % (localfilename, self.languagecode, self.fileext, self.languagecode, self.fileext))
     dircheck = self.podir
     for part in dirname.split(os.sep):
       dircheck = os.path.join(dircheck, part)
