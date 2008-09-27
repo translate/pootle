@@ -790,19 +790,20 @@ class TranslationProject(object):
     """updates the index with the contents of pofilename (limit to items if given)
 
     There are three reasons for calling this function:
-      (A) creating a new instance of "TranslationProject" (see "initindex")
+      1. creating a new instance of L{TranslationProject} (see L{initindex})
           -> check if the index is up-to-date / rebuild the index if necessary
-      (B) translating a unit via the web interface
+      2. translating a unit via the web interface
           -> (re)index only the specified unit(s)
 
-    The argument "items" should be None for (A).
+    The argument L{items} should be None for 1.
 
     known problems:
-      1) This function should get called, when the po file changes externally.
+      1. This function should get called, when the po file changes externally.
          The function "pofreshen" in pootlefile.py would be the natural place
          for this. But this causes circular calls between the current (r7514)
          statistics code and "updateindex" leading to indexing database lock
          issues.
+
          WARNING: You have to stop the pootle server before manually changing
          po files, if you want to keep the index database in sync.
 
