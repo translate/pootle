@@ -516,7 +516,11 @@ def make_class(base_class):
 
       if isinstance(self, po.pofile):
         po_revision_date = time.strftime("%Y-%m-%d %H:%M") + tzstring()
-        headerupdates = {"PO_Revision_Date": po_revision_date, "X_Generator": self.x_generator}
+        headerupdates = {
+                "PO_Revision_Date": po_revision_date,
+                "Language": self.project.languagecode,
+                "X_Generator": self.x_generator,
+        }
         if userprefs:
           if getattr(userprefs, "name", None) and getattr(userprefs, "email", None):
             headerupdates["Last_Translator"] = "%s <%s>" % (userprefs.name, userprefs.email)
