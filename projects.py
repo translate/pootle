@@ -601,12 +601,13 @@ class TranslationProject(object):
         pofilename = self.languagecode + os.extsep + "po"
       else:
         pofilename = potfilename[:-len(os.extsep+"pot")] + os.extsep + "po"
-        pofilename = os.path.basename(pofilename)
       origpofilename = os.path.join(self.podir, pofilename)
       if os.path.exists(origpofilename):
         origpofile = open(origpofilename)
       else:
         origpofile = None
+        if not os.path.exists(os.path.dirname(origpofilename)):
+          os.makedirs(os.path.dirname(origpofilename))
       pot2po.convertpot(inputfile, outputfile, origpofile)
       outfile = open(origpofilename, "wb")
       outfile.write(outputfile.getvalue())
