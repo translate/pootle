@@ -27,6 +27,7 @@ from Pootle import pootlefile
 from translate.storage import po
 from translate.misc.multistring import multistring
 import difflib
+import operator
 import urllib
 
 xml_re = re.compile("&lt;.*?&gt;")
@@ -349,6 +350,8 @@ class TranslatePage(pagelayout.PootleNavPage):
 
       self.lastitem = item
 
+    # Make sure we have rejects list properly sorted
+    rejects.sort(key=operator.itemgetter(1))
     # It's necessary to loop the list reversed in order to selectively remove items
     for item, suggid in reversed(rejects):
       value = suggestions[item, suggid]

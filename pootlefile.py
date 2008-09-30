@@ -424,7 +424,7 @@ def make_class(base_class):
         # Update the suggestion index
         get_source_index(self.pendingfile)[unit.source] = [unit for unit in get_source_index(self.pendingfile)[unit.source] if unit.target != newtrans]
         # TODO: remove the suggestion in a less brutal manner
-        pendingitems = [pendingitem for pendingitem, suggestpo in enumerate(self.pendingfile.units) if suggestpo.target == newtrans]
+        pendingitems = [pendingitem for pendingitem, suggestpo in enumerate(self.pendingfile.units) if suggestpo.source == unit.source]
         try:
           pendingitem = pendingitems[suggitem]
           del self.pendingfile.units[pendingitem]

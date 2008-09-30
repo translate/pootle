@@ -10,6 +10,11 @@ $(document).ready(function() {
     return param;
   }
 
+  function clearPath(path) {
+    parts = path.split("/");
+    return parts[parts.length - 1]
+  }
+
   function rejectSuggestions(requestURL, paramsR, refs, accept) {
     $.ajax({
       type: "POST",
@@ -40,8 +45,8 @@ $(document).ready(function() {
         // Retrieve updated references
         $.ajax({
           type: "GET",
-          url: "translate.html",
-          data: "translate=1&item="+itemID+"&review=1&pofilename="+requestURL,
+          url: requestURL,
+          data: "translate=1&item="+itemID+"&review=1&pofilename="+escape($("input[name='pofilename']").val()),
           dataType: "html",
           success: function(data) {
             // Remove old references
@@ -56,7 +61,7 @@ $(document).ready(function() {
             if (reviewmode) {
               var original = $("#translate-original-container");
               $(".translate-original-block", original).remove();
-              original.html($(".translate-original-block", data));
+              original.append($(".translate-original-block", data));
             }
             // If we also want to accept suggestions, go ahead with it
             if (accept != undefined) {
@@ -64,7 +69,7 @@ $(document).ready(function() {
               // Retrieve updated parameters
               var paramsA = "?review=1&translate=1";
               paramsA += getSiblingParams(ref);
-              paramsA += "&" + $(ref).attr("id") + "=!";
+              paramsA += "&" + $(ref).attr("id");
               acceptSuggestion(requestURL, paramsA, ref);
             }
             },
@@ -119,12 +124,13 @@ $("#translate-suggestion-container").click(function(event) {
     if ($(event.target).parent().is(".rejectsugg")) {
       // Save this object reference
       var reference = $(event.target).parent();
-      var requestURL = $("input[@name=pofilename]").val();
+      var requestURL = clearPath(escape($("input[name='pofilename']").val()));
       // Ideally we could make use of the serialize() method
       // but this isn't a ideal case ;P
       var params = "review=1&translate=1";
       params += getSiblingParams(reference);
       params += "&" + $(reference).attr("id") + "=1";
+      params += "&pofilename=" + escape($("input[name='pofilename']").val());
       // Reject selected suggestion
       rejectSuggestions(requestURL, params, reference, undefined);
       return false;
@@ -134,12 +140,13 @@ $("#translate-suggestion-container").click(function(event) {
       // Save this object reference
       var reference = $(event.target).parent();
       // The url is the po filename itself
-      var requestURL = $("input[@name=pofilename]").val();
+      var requestURL = clearPath(escape($("input[name='pofilename']").val()));
       var reject_others = $(reference).parents(".translate-suggestion-block").siblings(".translate-suggestion-block");
       // There are suggestions to reject
       if (reject_others.length > 0) {
       // Parameters to reject the remaining suggestions
       var paramsReject = "?review=1&translate=1";
+      paramsReject += "&pofilename=" + escape($("input[name='pofilename']").val());
       $.each(reject_others, function() {
         paramsReject += getSiblingParams($(".rejectsugg", this));
         paramsReject += "&" + $(".rejectsugg", this).attr("id") + "=1";
@@ -151,6 +158,7 @@ $("#translate-suggestion-container").click(function(event) {
         var paramsAccept = "?review=1&translate=1";
         paramsAccept += getSiblingParams(reference);
         paramsAccept += "&" + $(reference).attr("id") + "=1";
+        paramsAccept += "&pofilename=" + escape($("input[name='pofilename']").val());
         // Accept selected suggestion
         acceptSuggestion(requestURL, paramsAccept, reference);
       }
