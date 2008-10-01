@@ -567,7 +567,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     """bridge to widget code to allow templating to gradually replace it"""
     if kid is not None and hasattr(thepage, "templatename") and hasattr(thepage, "templatevars"):
       # renders using templates rather than the underlying widget class
-      kid.enable_import()
+      kid.enable_import(path=self.templatedir)
       #template = kid.Template(os.path.join(self.templatedir, thepage.templatename + ".html")) #self.gettemplate(thepage.templatename)
       loadurl = getattr(thepage, "loadurl", None)
       if loadurl is None:
