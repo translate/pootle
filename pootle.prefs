@@ -476,6 +476,7 @@ Pootle:
     ku.fullname = u'Kurdish'
     ku.nplurals = '2'
     ku.pluralequation ='(n!= 1)'
+    ku.specialchars = u'çêîûş ÇÊÎÛŞ'
 
 # Kyrgyz
     ky.fullname = u'Kirghiz; Kyrgyz'
