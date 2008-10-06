@@ -1,3 +1,1208 @@
+2008-10-06 12:40  friedelwolff
+
+	* request_cache.py: Correct the copyright date
+
+2008-10-06 12:39  friedelwolff
+
+	* CREDITS: Credit Daniel Schafer and Wil Clouser for Mozootle work
+
+2008-10-06 12:27  friedelwolff
+
+	* po/pootle/be/pootle.po, po/pootle/cs/pootle.po,
+	  po/pootle/ml/pootle.po, po/pootle/nl/pootle.po,
+	  po/pootle/pt/pootle.po, po/pootle/pt_BR/pootle.po,
+	  po/pootle/te/pootle.po: Translation updates from
+	  pootle.locamotion.org
+
+2008-10-01 10:38  dwaynebailey
+
+	* pootle.prefs: Add special characters for Kurdish
+
+2008-10-01 10:21  winterstream
+
+	* pootle.py, templates/about.html, templates/activate.html,
+	  templates/adminindex.html, templates/adminlanguages.html,
+	  templates/adminprojects.html, templates/adminusers.html,
+	  templates/error.html, templates/fileindex.html,
+	  templates/home.html, templates/index.html,
+	  templates/language.html, templates/languages.html,
+	  templates/login.html, templates/options.html,
+	  templates/project.html, templates/projectadmin.html,
+	  templates/projectlangadmin.html, templates/projects.html,
+	  templates/redirect.html, templates/register.html,
+	  templates/translatepage.html: [Contributed by Nicolas François]
+	  
+	  Nicolas' description:
+	  
+	  On Debian, the templates directory is installed separately from
+	  the Pootle
+	  directory.
+	  (The original reason was that html files could be installed
+	  separately
+	  from the code).
+	  This is just done by changing Pootle/filelocations.py
+	  
+	  To continue supporting this with the kid templates containing
+	  code, I had
+	  to apply the attached patch.
+	  
+	  It restricts and specifies the path containing the file which can
+	  be
+	  imported from the templates, and removes the "from
+	  Pootle.templates " in
+	  front of the import lines in the templates.
+
+2008-09-30 07:55  winterstream
+
+	* html/js/suggestions.js, pootlefile.py, translatepage.py:
+	  [Authors: Wil Clouser & Julen Ruiz Aizpuru]
+	  [Bug URL: http://bugs.locamotion.org/show_bug.cgi?id=490]
+	  
+	  Original problem description:
+	  
+	  I think this was introduced with the patch from bug 427. To
+	  reproduce:
+	  
+	  1) Have a project with .po files in a directory. For example:
+	  /$project/en/somedirectory/messages.po
+	  
+	  2) Make a suggestion for a string in the .po
+	  3) Approve the suggestion via the AJAX link (it will fail)
+	  4) Approve the suggestion via the submit button (it will work)
+	  
+	  I did some debugging on this and it looks like the submit button
+	  is sending
+	  more data via POST than the ajax method. The item it's sending
+	  that matters
+	  here is pofilename. When that isn't set in the POST it ends up
+	  being double up
+	  like so:
+	  /somedirectory/somedirectory/messages.po
+	  
+	  Easy solution is to make the ajax send pofilename. The hard
+	  solution is to dig
+	  through pootle.py and look at the pathwords variable to see why
+	  it's doubling
+	  up. :)
+	  
+	  This patch fixes the suggestion problems.
+
+2008-09-29 21:14  friedelwolff
+
+	* pootlefile.py: Provide the new 'Language' field for the PO header
+	  if we update the file header
+
+2008-09-29 07:14  friedelwolff
+
+	* projects.py: [Contributed by João Miguel Neves] Correctly
+	  maintain directory layout in converttemplates(). This fixes bug
+	  527
+
+2008-09-27 09:43  dwaynebailey
+
+	* projects.py: docstring: proper enumerated list and some links
+
+2008-09-24 20:21  friedelwolff
+
+	* projects.py: Fix wrong ordering of parameters in error message
+
+2008-09-23 15:05  friedelwolff
+
+	* po/pootle/vi/pootle.po: Commit from Pootle 1.2-rc1 by user admin.
+	  299 of 299 messages translated (0 fuzzy).
+
+2008-09-23 14:10  dwaynebailey
+
+	* po/terminology/am/gnome, po/terminology/ar/gnome,
+	  po/terminology/az/gnome, po/terminology/ca/gnome,
+	  po/terminology/cs/gnome, po/terminology/da/gnome,
+	  po/terminology/eo/gnome, po/terminology/es/gnome,
+	  po/terminology/eu/gnome, po/terminology/fa/gnome,
+	  po/terminology/fr/gnome, po/terminology/hi/gnome,
+	  po/terminology/hu/gnome, po/terminology/it/gnome,
+	  po/terminology/ja/gnome, po/terminology/kn/gnome,
+	  po/terminology/ku/gnome, po/terminology/mk/gnome,
+	  po/terminology/mr/gnome, po/terminology/ms/gnome,
+	  po/terminology/nb/gnome, po/terminology/nl/gnome,
+	  po/terminology/nn/gnome, po/terminology/pa/gnome,
+	  po/terminology/pl/gnome, po/terminology/pt/gnome,
+	  po/terminology/pt_BR/gnome, po/terminology/rw/gnome,
+	  po/terminology/sk/gnome, po/terminology/sq/gnome,
+	  po/terminology/sv/gnome, po/terminology/th/gnome,
+	  po/terminology/uk/gnome, po/terminology/vi/gnome,
+	  po/terminology/wa/gnome, po/terminology/zh_CN/gnome,
+	  po/terminology/zh_HK/gnome, po/terminology/zh_TW/gnome: Ignore
+	  *.po.tm
+
+2008-09-23 13:59  dwaynebailey
+
+	* po/pootle/af, po/pootle/ak, po/pootle/am, po/pootle/ar,
+	  po/pootle/az, po/pootle/be, po/pootle/bg, po/pootle/bn,
+	  po/pootle/bo, po/pootle/br, po/pootle/ca, po/pootle/cs,
+	  po/pootle/da, po/pootle/de, po/pootle/dz, po/pootle/el,
+	  po/pootle/en, po/pootle/en_GB, po/pootle/en_ZA, po/pootle/eo,
+	  po/pootle/es, po/pootle/et, po/pootle/eu, po/pootle/fa,
+	  po/pootle/fi, po/pootle/fr, po/pootle/fur, po/pootle/ga,
+	  po/pootle/gl, po/pootle/ha, po/pootle/he, po/pootle/hi,
+	  po/pootle/hr, po/pootle/hu, po/pootle/hy, po/pootle/id,
+	  po/pootle/is, po/pootle/it, po/pootle/ja, po/pootle/ka,
+	  po/pootle/kg, po/pootle/km, po/pootle/ko, po/pootle/ku,
+	  po/pootle/lt, po/pootle/lv, po/pootle/ml, po/pootle/mr,
+	  po/pootle/ms, po/pootle/mt, po/pootle/nap, po/pootle/nb,
+	  po/pootle/ne, po/pootle/nl, po/pootle/nn, po/pootle/nso,
+	  po/pootle/pa, po/pootle/pl, po/pootle/pt, po/pootle/pt_BR,
+	  po/pootle/ro, po/pootle/ru, po/pootle/sk, po/pootle/sl,
+	  po/pootle/sr, po/pootle/st, po/pootle/sv, po/pootle/tr,
+	  po/pootle/uk, po/pootle/ve, po/pootle/vi, po/pootle/wo,
+	  po/pootle/xh, po/pootle/zh_CN, po/pootle/zh_HK, po/pootle/zh_TW,
+	  po/pootle/zu: Update svn:ignore to add *.po.tm and others
+
+2008-09-23 13:28  friedelwolff
+
+	* pootlefile.py: Remove deprecated code that was needed earlier to
+	  update quickstats and for memoization
+
+2008-09-23 13:16  dwaynebailey
+
+	* templates: Ignore *.pyc
+
+2008-09-22 16:45  winterstream
+
+	* indexpage.py, projects.py, statistics.py: file_fails_test doesn't
+	  work correctly. Reverted this code to a previous state so
+	  that it works.
+
+2008-09-19 19:09  friedelwolff
+
+	* html/favicon.ico: Translate logo as favicon
+
+2008-09-19 15:30  friedelwolff
+
+	* __version__.py: Version 1.2.0-rc1
+
+2008-09-19 15:29  friedelwolff
+
+	* pootle.prefs: Add and/or enable some languages to be active in
+	  the default installation: Greek (el), Estonian (et), Irish (ga),
+	  Kurdish (ku), Kyrgyz (ky), Lingala (ln), Latvian (lv), Norwegian
+	  Bokmal (nb), Norwegian Nynorsk (nn), Papiamento (pap), Albanian
+	  (sq), Telugu (te), Tagalog (tl). Disable Chinese (Hong Kong)
+	  (zh_HK) since it dropped below 80% :-(
+
+2008-09-19 14:38  friedelwolff
+
+	* po/pootle/ky, po/pootle/ky/jToolkit.po, po/pootle/ky/pootle.po,
+	  po/pootle/mn, po/pootle/mn/jToolkit.po, po/pootle/mn/pootle.po,
+	  po/pootle/tl, po/pootle/tl/jToolkit.po, po/pootle/tl/pootle.po:
+	  New translations from pootle.locamotion.org: Kyrgyz (ky), Tagalog
+	  (tl), Mongolian (mn)
+
+2008-09-19 14:33  friedelwolff
+
+	* po/pootle/ak/pootle.po, po/pootle/ar/pootle.po,
+	  po/pootle/ca/pootle.po, po/pootle/da/pootle.po,
+	  po/pootle/de/pootle.po, po/pootle/es/pootle.po,
+	  po/pootle/eu/pootle.po, po/pootle/fa/pootle.po,
+	  po/pootle/fi/pootle.po, po/pootle/fr/pootle.po,
+	  po/pootle/ga/pootle.po, po/pootle/gl/pootle.po,
+	  po/pootle/hu/pootle.po, po/pootle/it/pootle.po,
+	  po/pootle/ja/pootle.po, po/pootle/ka/pootle.po,
+	  po/pootle/ko/pootle.po, po/pootle/ku/jToolkit.po,
+	  po/pootle/ku/pootle.po, po/pootle/lv/jToolkit.po,
+	  po/pootle/lv/pootle.po, po/pootle/ml/jToolkit.po,
+	  po/pootle/ml/pootle.po, po/pootle/nap/pootle.po,
+	  po/pootle/nb/pootle.po, po/pootle/nn/jToolkit.po,
+	  po/pootle/nn/pootle.po, po/pootle/pap/jToolkit.po,
+	  po/pootle/pap/pootle.po, po/pootle/pl/pootle.po,
+	  po/pootle/ro/jToolkit.po, po/pootle/ro/pootle.po,
+	  po/pootle/ru/pootle.po, po/pootle/sq/pootle.po,
+	  po/pootle/st/pootle.po, po/pootle/sv/pootle.po,
+	  po/pootle/te/pootle.po, po/pootle/tr/pootle.po,
+	  po/pootle/uk/jToolkit.po, po/pootle/uk/pootle.po,
+	  po/pootle/xh/pootle.po, po/pootle/zh_TW/pootle.po: Update
+	  existing translations from pootle.locamotion.org
+
+2008-09-19 13:42  friedelwolff
+
+	* po/pootle/zu/pootle.po: Commit from Pootle 1.2-beta2 by user
+	  fwolff. 77 of 299 messages translated (21 fuzzy).
+
+2008-09-19 13:40  friedelwolff
+
+	* po/pootle/af/pootle.po: Updated Afrikaans translation from
+	  pootle.locamotion.org. 100% translated
+
+2008-09-18 09:50  dwaynebailey
+
+	* po/pootle/st/pootle.po: Lets credit the person who actually did
+	  the work, not the fact that he used
+	  my laptop!
+
+2008-09-17 09:49  dwaynebailey
+
+	* po/pootle/st/pootle.po: Update
+
+2008-09-17 06:13  dwaynebailey
+
+	* po/pootle/st/pootle.po: Fix some capitalisation and mark aunit
+	  for review
+
+2008-09-17 06:02  dwaynebailey
+
+	* po/pootle/st/pootle.po: Update translations
+
+2008-09-11 12:23  friedelwolff
+
+	* pootle.py: On the login page, only list languages that exist in
+	  the 'pootle' project. Also obtain them fresh every time. This
+	  fixes the bug where a new language in the Pootle page whould not
+	  show up in the list unless the server is restarted.
+
+2008-09-08 11:19  winterstream
+
+	* request_cache.py, statistics.py, users.py: WARNING: This patch
+	  will BREAK in multi-threaded code. Luckily, we
+	  know that Pootle will turn into a multi-process server one day.
+	  Threads are for masochistics.
+	  
+	  A simple per-request cache.
+	  
+	  Some fairly expensive things are computed numerous times with
+	  every
+	  HTTP request. We can reduce this cost by keeping building a cache
+	  which is cleared for every new HTTP request.
+
+2008-09-08 11:18  winterstream
+
+	* projects.py: 1. Committed combine_file_failures, which on which
+	  the previous patch is dependant.
+	  2. Replaced code that used getstats()["total"] with code that
+	  uses pofile.total directly.
+
+2008-09-08 11:18  winterstream
+
+	* indexpage.py: Replaced the old lazy evaluation code with the code
+	  in util.
+	  
+	  Where the old code used a dictionary, the new code uses
+	  attributes.
+	  
+	  There is a new property: has_suggestion. This uses the
+	  new method combine_file_failures in statistics.py to
+	  quickly determine if a file has suggestions. This
+	  replaces a previous check which read all the stats
+	  to determine whether the "hassuggestion" test was
+	  present.
+
+2008-09-08 11:17  winterstream
+
+	* statistics.py: Removed memoization from the stats and added
+	  file_fails_test
+	  which can quickly check to see whether a file contains
+	  any units which fail the test specified by the name
+	  parameter.
+
+2008-09-08 11:16  winterstream
+
+	* translatepage.py: Here we only need the totals of a file, so it's
+	  faster simply to
+	  use getpototals instead of getpostats.
+
+2008-09-08 11:15  winterstream
+
+	* pootlefile.py: We might as well store the totals array - that is,
+	  the mapping from unit indices to their positions in the store -
+	  inside a pootlefile. Thus we can avoid hitting the stats code
+	  every time we need to do such a lookup.
+	  
+	  This code also uses the new lazy evaluation code to defer
+	  loading the totals array until it is needed. Note that
+	  the totals array has to be reset when we reload the po file,
+	  thus we do self._total = util.undefined.
+
+2008-09-08 11:14  winterstream
+
+	* util.py: Added a lazy evaluation decorator and a simple
+	  dictionary cache
+	  which invokes the getter when it a cache miss occurs.
+
+2008-09-08 11:13  winterstream
+
+	* pagelayout.py: Fixed code that still assumed that it had to
+	  compute file totals by
+	  using arrays of data. The old code paths were never taken, so
+	  this
+	  is really only dead code elimination.
+
+2008-09-08 11:12  winterstream
+
+	* indexpage.py, pootlefile.py, projects.py, statistics.py,
+	  test_pootlefile.py: Storing the quick stats in a file leads to
+	  some stats synchronization
+	  nightmares.
+	  
+	  The toolkit already supports storing the quick stats in the stats
+	  database, and so we are moving everything there.
+	  
+	  This commit also includes some other changes:
+	  1. Move scanpofiles down the stack, so that it will only be
+	  called
+	  once when a ZIP file is uploaded (instead of once for every
+	  file).
+	  2. Move stats resetting code to savepofile, so that it is
+	  centralized.
+
+2008-08-28 10:02  dwaynebailey
+
+	* po/pootle/en_GB, po/pootle/en_GB/jToolkit.po,
+	  po/pootle/en_GB/pootle.po: Add British English 'translations'
+
+2008-08-28 09:21  winterstream
+
+	* pootle.prefs: Fix the location of the statsdb in pootle.prefs to
+	  point to a valid database
+	  location.
+
+2008-08-27 16:18  winterstream
+
+	* pootlefile.py: Added an ugly hack to force the recalculation of
+	  the stats of a
+	  PO file which lacks a header and then gains one by being saved
+	  in Pootle.
+
+2008-08-27 16:17  winterstream
+
+	* projects.py: Removed no-op code.
+
+2008-08-27 16:16  winterstream
+
+	* pootlefile.py: We don't need to reread a file to have its stats
+	  recalculated.
+
+2008-08-27 16:15  winterstream
+
+	* pootlefile.py: Removed dead code in pootlefile
+
+2008-08-27 16:14  winterstream
+
+	* pootlefile.py: Don't allow units to be shared between stores.
+	  There be dragons.
+	  
+	  The thing is, this won't work with our libgettext bindings, since
+	  libgettext only provides us with iterators to translation stores.
+	  So that's the real reason we require units to be copied instead
+	  of shared.
+
+2008-08-27 15:39  friedelwolff
+
+	* projects.py: Provide better error message if the indexer could
+	  not be initialised
+
+2008-08-26 15:25  winterstream
+
+	* potree.py, projects.py, test_indexing.py: Change the indexing
+	  system so that we have to ask for project.indexer
+	  if we want to do an indexing query.
+	  
+	  project.indexer computes the index of a project lazily. Thus, if
+	  it
+	  is invoked, it first checks to see whether a project's index is
+	  up to
+	  date (by calling project.initindex).
+	  
+	  project.indexer returns None if there is no indexer for a
+	  project. This
+	  can happen if indexing is not available (that is, if
+	  indexer.HAVE_INDEX
+	  is false) or if the index for a project is corrupt. In this way
+	  we
+	  guard against corrupt indices making Pootle unusable for some
+	  projects.
+	  
+	  The --refreshstats functionality was also updated to force index
+	  initialization, which is required due to the laziness.
+
+2008-08-26 15:15  friedelwolff
+
+	* __version__.py: Version 1.2.0-beta2
+
+2008-08-26 14:36  winterstream
+
+	* benchmark.py, projects.py: Rename the module named indexer to
+	  indexing.
+
+2008-08-25 15:33  friedelwolff
+
+	* CREDITS: Credit Walter Leibbrandt and Wynand Winterbach
+
+2008-08-25 14:04  winterstream
+
+	* statistics.py: Purge the in-memory stats before writing
+	  quickstats to disk. This is necessary, since at this point,
+	  the in-memory stats are old and we need to force Pootle to read
+	  the stats from the database again.
+
+2008-08-25 14:03  winterstream
+
+	* projects.py: [Contributed by David Calavera]. Remove an
+	  unnecessary file save,
+	  since newpofile.mergefile(currentpofile, "versionmerge") already
+	  does it.
+
+2008-08-25 14:02  winterstream
+
+	* pootlefile.py, projects.py: Fixed a mismatch in the way the
+	  quality checks looked at suggestions
+	  and in the way that Pootle looked at suggestions.
+	  
+	  When the suggestion quality check looks at whether a unit has a
+	  suggestion, it simply looks to see whether there exists a
+	  suggestion
+	  with a matching source string.
+	  
+	  In contrast, Pootle also required that the location information
+	  of a unit in a suggestion file matched.
+	  
+	  This caused problems if the location information in translation
+	  files was updated. This is because the quality check mechanism
+	  would report that there were suggestions, while Pootle would
+	  fail to find the suggestions, due to the mismatch of location
+	  information.
+	  
+	  Pootle now also only looks at the source information. This is not
+	  ideal and we need a more fundamental solution. But for now, this
+	  is the best way to go.
+
+2008-08-22 17:14  winterstream
+
+	* projects.py: The zip upload code did not fall back to the Python
+	  implementation if the external unzip failed,
+	  
+	  This has been fixed and the code was slightly refactored.
+
+2008-08-22 16:43  winterstream
+
+	* statistics.py: Modify getquickstats to take into account that
+	  StatsCache.filetotals
+	  may now return an empty dictionary. If it does, then
+	  getquickstats
+	  should return emptyfiletotals, since Pootle expects the
+	  quickstats
+	  dictionary to contain certain values.
+
+2008-08-22 14:11  murgilduta
+
+	* html/images/information.png, html/pootle.css,
+	  templates/translatepage.html, translatepage.py: Provide links to
+	  online documentation when a user is reviewing quality checks.
+	  [Based on Friedel's proposal]
+
+2008-08-21 23:21  sumpfralle
+
+	* projects.py: avoid the shell when calling "unzip"
+
+2008-08-21 23:18  sumpfralle
+
+	* README: Pootle uses the python module "subprocess" - thus it
+	  requires python v2.4
+
+2008-08-21 22:42  sumpfralle
+
+	* test_indexing.py: adapt test to the new indexing interface
+
+2008-08-21 22:33  sumpfralle
+
+	* README: update note regarding indexing engines
+	  fix some line breaks (>80 characters)
+
+2008-08-21 15:33  friedelwolff
+
+	* pootle.py: Expect at least build 12000
+
+2008-08-21 12:50  winterstream
+
+	* projects.py: Fixed an invalid reference to item (it was renamed
+	  to lastitem),
+	  and did minor refactoring of the functions.
+
+2008-08-21 12:13  winterstream
+
+	* potree.py: Fix refreshstats by forcing calculation of the
+	  statistics used in
+	  each project.
+
+2008-08-21 10:38  winterstream
+
+	* indexpage.py: Fixed a lazy evaluation error. We have to add () to
+	  evaluate
+	  a lazy value.
+
+2008-08-21 10:37  winterstream
+
+	* pootlefile.py, projects.py: Refactored and reworked the code to
+	  find the indices.
+	  
+	  This code should be fast and should work when walking through
+	  assignments and tests.
+
+2008-08-21 09:51  friedelwolff
+
+	* projects.py: Replace subprocess.Popen with subprocess.call since
+	  we have to wait for unzip to complete
+
+2008-08-21 09:43  friedelwolff
+
+	* templates/navbar.kid: Always show the itemtitle if it exists
+
+2008-08-20 11:30  winterstream
+
+	* pootle.py, translatepage.py: Fixed a bad boolean expression in
+	  translatepage.py which could make it possible
+	  for someone without authorization to edit units.
+	  
+	  Also added the translate=1 flag then the URL contains
+	  translate.html so that
+	  we get the right behaviour from things like suggestion reviews.
+
+2008-08-20 11:09  friedelwolff
+
+	* __version__.py: Version 1.2.0-beta1
+
+2008-08-20 11:02  friedelwolff
+
+	* indexpage.py: Adapt meta keywords
+
+2008-08-20 10:18  friedelwolff
+
+	* po/pootle/af/pootle.po, po/pootle/ak/pootle.po,
+	  po/pootle/am/pootle.po, po/pootle/ar/pootle.po,
+	  po/pootle/az/pootle.po, po/pootle/be/pootle.po,
+	  po/pootle/bg/pootle.po, po/pootle/bn/pootle.po,
+	  po/pootle/bo/pootle.po, po/pootle/br/pootle.po,
+	  po/pootle/ca/pootle.po, po/pootle/cs/pootle.po,
+	  po/pootle/da/pootle.po, po/pootle/de/pootle.po,
+	  po/pootle/dz/pootle.po, po/pootle/el/pootle.po,
+	  po/pootle/en/pootle.po, po/pootle/en_ZA/pootle.po,
+	  po/pootle/eo/pootle.po, po/pootle/es/pootle.po,
+	  po/pootle/et/pootle.po, po/pootle/eu/pootle.po,
+	  po/pootle/fa/pootle.po, po/pootle/fi/pootle.po,
+	  po/pootle/fr/pootle.po, po/pootle/fur/pootle.po,
+	  po/pootle/ga/pootle.po, po/pootle/gl/pootle.po,
+	  po/pootle/ha/pootle.po, po/pootle/he/pootle.po,
+	  po/pootle/hi/pootle.po, po/pootle/hr/pootle.po,
+	  po/pootle/hu/pootle.po, po/pootle/hy/pootle.po,
+	  po/pootle/id/pootle.po, po/pootle/is/pootle.po,
+	  po/pootle/it/pootle.po, po/pootle/ja/pootle.po,
+	  po/pootle/ka/pootle.po, po/pootle/kg/pootle.po,
+	  po/pootle/km/pootle.po, po/pootle/ko/pootle.po,
+	  po/pootle/ku/pootle.po, po/pootle/ln/pootle.po,
+	  po/pootle/lt/pootle.po, po/pootle/lv/pootle.po,
+	  po/pootle/ml/pootle.po, po/pootle/mr/pootle.po,
+	  po/pootle/ms/pootle.po, po/pootle/mt/pootle.po,
+	  po/pootle/nap/pootle.po, po/pootle/nb/pootle.po,
+	  po/pootle/ne/pootle.po, po/pootle/nl/pootle.po,
+	  po/pootle/nn/pootle.po, po/pootle/nso/pootle.po,
+	  po/pootle/pa/pootle.po, po/pootle/pap/pootle.po,
+	  po/pootle/pl/pootle.po, po/pootle/pt/pootle.po,
+	  po/pootle/pt_BR/pootle.po, po/pootle/ro/pootle.po,
+	  po/pootle/ru/pootle.po, po/pootle/sk/pootle.po,
+	  po/pootle/sl/pootle.po, po/pootle/sq/pootle.po,
+	  po/pootle/sr/pootle.po, po/pootle/st/pootle.po,
+	  po/pootle/sv/pootle.po, po/pootle/te/pootle.po,
+	  po/pootle/th/pootle.po, po/pootle/tr/pootle.po,
+	  po/pootle/uk/pootle.po, po/pootle/ve/pootle.po,
+	  po/pootle/vi/pootle.po, po/pootle/wo/pootle.po,
+	  po/pootle/zh_CN/pootle.po, po/pootle/zh_HK/pootle.po,
+	  po/pootle/zh_TW/pootle.po, po/pootle/zu/pootle.po: Migrate all
+	  translations to the new POT file for Pootle 1.2
+
+2008-08-20 10:07  friedelwolff
+
+	* po/pootle/az/pootle.po, po/pootle/be/pootle.po: Convert windows
+	  newlines to unix newlines
+
+2008-08-20 10:00  murgilduta
+
+	* translatepage.py: Forgot to remove a print statement.
+
+2008-08-20 09:24  murgilduta
+
+	* README: Fix bugzilla URL.
+
+2008-08-20 09:22  murgilduta
+
+	* translatepage.py: Display correctly translations with markup when
+	  using alternative source language.
+
+2008-08-20 09:08  friedelwolff
+
+	* po/pootle/az, po/pootle/az/jToolkit.po, po/pootle/az/pootle.po,
+	  po/pootle/be, po/pootle/be/jToolkit.po, po/pootle/be/pootle.po,
+	  po/pootle/bo, po/pootle/bo/jToolkit.po, po/pootle/bo/pootle.po,
+	  po/pootle/br, po/pootle/br/jToolkit.po, po/pootle/br/pootle.po,
+	  po/pootle/ln, po/pootle/ln/jToolkit.po, po/pootle/ln/pootle.po,
+	  po/pootle/nap, po/pootle/nap/jToolkit.po,
+	  po/pootle/nap/pootle.po, po/pootle/pap,
+	  po/pootle/pap/jToolkit.po, po/pootle/pap/pootle.po, po/pootle/sq,
+	  po/pootle/sq/jToolkit.po, po/pootle/sq/pootle.po, po/pootle/te,
+	  po/pootle/te/jToolkit.po, po/pootle/te/pootle.po, po/pootle/th,
+	  po/pootle/th/jToolkit.po, po/pootle/th/pootle.po: Add new
+	  translations from pootle.locamotion.org (many still incomplete)
+
+2008-08-19 16:13  friedelwolff
+
+	* po/pootle/ak/pootle.po, po/pootle/am/pootle.po,
+	  po/pootle/ar/pootle.po, po/pootle/bg/jToolkit.po,
+	  po/pootle/bg/pootle.po, po/pootle/el/pootle.po,
+	  po/pootle/es/jToolkit.po, po/pootle/es/pootle.po,
+	  po/pootle/et/pootle.po, po/pootle/fi/pootle.po,
+	  po/pootle/fur/pootle.po, po/pootle/ga/pootle.po,
+	  po/pootle/gl/jToolkit.po, po/pootle/gl/pootle.po,
+	  po/pootle/hi/pootle.po, po/pootle/hy/pootle.po,
+	  po/pootle/is/pootle.po, po/pootle/it/pootle.po,
+	  po/pootle/ka/pootle.po, po/pootle/lv/jToolkit.po,
+	  po/pootle/lv/pootle.po, po/pootle/ml/jToolkit.po,
+	  po/pootle/ml/pootle.po, po/pootle/ms/pootle.po,
+	  po/pootle/mt/pootle.po, po/pootle/nb/pootle.po,
+	  po/pootle/nn/pootle.po, po/pootle/pl/pootle.po,
+	  po/pootle/sr/pootle.po, po/pootle/tr/pootle.po,
+	  po/pootle/uk/pootle.po, po/pootle/ve/pootle.po,
+	  po/pootle/zu/jToolkit.po, po/pootle/zu/pootle.po: Update
+	  translations from pootle.locamotion.org before updating to new
+	  POT file
+
+2008-08-19 16:03  winterstream
+
+	* pootlefile.py: Add a check to ensure that we use valid list
+	  indices.
+
+2008-08-19 15:30  winterstream
+
+	* templates/__init__.py, templates/navbar.kid,
+	  templates/pootlepage.kid: Forgot to add these files to a previous
+	  commit.
+
+2008-08-19 14:54  winterstream
+
+	* translatepage.py: Fixed a logical and syntax error.
+
+2008-08-19 14:53  winterstream
+
+	* pootle.py, templates/about.html, templates/activate.html,
+	  templates/adminindex.html, templates/adminlanguages.html,
+	  templates/adminprojects.html, templates/adminusers.html,
+	  templates/error.html, templates/fileindex.html,
+	  templates/home.html, templates/index.html,
+	  templates/language.html, templates/languages.html,
+	  templates/login.html, templates/navbar.html,
+	  templates/options.html, templates/pootlepage.html,
+	  templates/project.html, templates/projectadmin.html,
+	  templates/projectlangadmin.html, templates/projects.html,
+	  templates/redirect.html, templates/register.html,
+	  templates/translatepage.html: Replace jToolkit's template overlay
+	  code with a Kid-only solution.
+	  One less thether to jToolkit!
+
+2008-08-19 14:49  winterstream
+
+	* indexpage.py: Fixed a stats display bug that was introduced when
+	  the diet branch
+	  was merged in.
+
+2008-08-19 14:48  winterstream
+
+	* indexpage.py: Changed one of the stats structures into a lazy
+	  structure which will
+	  only compute a value when it's needed. This saves us from having
+	  to
+	  fret about pushing computations into code areas where their
+	  values
+	  are needed. It also speeds up Pootle :).
+
+2008-08-19 14:47  winterstream
+
+	* indexpage.py: Removed an unnecessary calculation and fixed
+	  indentation.
+
+2008-08-19 14:46  winterstream
+
+	* indexpage.py: Fix in-goal navigation so that the user will only
+	  see the units
+	  in a goal when clicking on something like a quality check related
+	  to a goal.
+
+2008-08-19 14:45  winterstream
+
+	* projects.py: Don't use the indexer when search.matchnames is the
+	  only thing
+	  we're using. search.matchnames contains things like "fuzzy",
+	  "check-spaces" etc.
+
+2008-08-19 14:44  winterstream
+
+	* pootlefile.py: Replaced a linear search with a binary search.
+	  This speeds up
+	  the enumeration of checks on large files significantly.
+
+2008-08-19 14:43  winterstream
+
+	* indexpage.py: Don't perform unnecessary calculations. This should
+	  provide a tiny
+	  speed boost in some cases.
+
+2008-08-19 14:33  friedelwolff
+
+	* po/pootle/xh/pootle.po: Update translation to new POT file (with
+	  some manual tweaks)
+
+2008-08-19 14:31  friedelwolff
+
+	* po/pootle/templates/pootle.pot: Update POT file before 1.2
+	  release
+
+2008-08-19 10:38  friedelwolff
+
+	* translatepage.py: Rewrite ugettext code slightly to avoid getting
+	  a wrong string in pootle.pot with xgettext
+
+2008-08-19 09:08  friedelwolff
+
+	* tools/updatetm.py: Increase the default maximum length to 1000
+	  (same as pot2po)
+
+2008-08-18 14:08  murgilduta
+
+	* indexpage.py, pagelayout.py, translatepage.py: Unify
+	  getsearchfields() function, move it to
+	  pagelayout.py::PootleNavPage, and use it more efficiently
+	  removing unnecessary member variables.
+
+2008-08-18 14:07  murgilduta
+
+	* projects.py: Since we already have a string, we don't need this
+	  stupid conversion.
+
+2008-08-18 14:07  murgilduta
+
+	* projects.py: Index a list of term values instead of a string for
+	  the locations.
+	  
+	  This is possible due to changes introduced in rev 8053.
+
+2008-08-18 14:06  murgilduta
+
+	* pootlefile.py: Do not use mutable objects as default parameters.
+	  
+	  For more information, see "important warning" in
+	  http://docs.python.org/tut/node6.html#SECTION006710000000000000000
+
+2008-08-15 15:01  walter_l
+
+	* projects.py: Replaced Python 2.4-incompatible try-except-finally
+	  block with a try-finally block in
+	  TranslationProject.uploadarchive()
+
+2008-08-15 12:42  winterstream
+
+	* pootlefile.py: Fix pootlefile to work correctly when using XLIFF
+	  files.
+
+2008-08-15 12:42  winterstream
+
+	* projects.py: Replace the merging code used when updating from
+	  version control
+	  with the merging code used when uploading a file.
+
+2008-08-15 12:41  winterstream
+
+	* pootlefile.py: Improve data structures used in matchitems.
+
+2008-08-15 12:40  winterstream
+
+	* pootlefile.py, projects.py: Add a position index for the units so
+	  that, given a unit, we can find
+	  its position in the unit list in O(1) time (instead of the silly
+	  O(n)
+	  system we had in place).
+
+2008-08-15 12:39  winterstream
+
+	* statistics.py: Fixed incorrect empty stats returns in the
+	  statistics module.
+
+2008-08-15 08:58  walter_l
+
+	* projects.py: Replaced os.execvp() with subprocess.Popen() and
+	  added a missing "import shutil" (oops! :P).
+
+2008-08-15 08:43  walter_l
+
+	* projects.py: Try to use "unzip" from the system before falling
+	  back to Python's (_slightly_)
+	  slower zipfile module in TranslationProject.uploadarchive(). This
+	  fixes bug 402.
+
+2008-08-14 18:06  murgilduta
+
+	* html/images/bullet_arrow_down.png,
+	  html/images/bullet_arrow_up.png, html/js/search.js,
+	  html/pootle.css, templates/fileindex.html,
+	  templates/translatepage.html: Allow Pootle search for fields (GUI
+	  part).
+	  
+	  This completes the user interface to the search for fields
+	  enhancement.
+
+2008-08-14 18:04  murgilduta
+
+	* indexpage.py, pootlefile.py, projects.py, translatepage.py: Allow
+	  Pootle to search for fields.
+	  
+	  This is the codebase for implementing search for fields (GUI
+	  follows).
+	  Important note: this commit introduces changes in terms of what
+	  information and under which names is stored by the indexing
+	  engine, so from now on it is necessary to rebuild the search
+	  indexes in order to work this functionality.
+	  Specifically, "msgid" and "msgstr" fields now are known as
+	  "source" and "target". Additionally, "notes" and "locations"
+	  fields have been added.
+
+2008-08-14 16:46  murgilduta
+
+	* html/images/gtk-apply.png, html/images/gtk-cancel.png,
+	  html/js/suggestions.js, html/pootle.css,
+	  templates/translatepage.html, translatepage.py: Added option to
+	  (re)view suggestions made by others while translating.
+	  
+	  Normal users can view suggestions made by others while they
+	  translate.
+	  Users with reviewing privileges will be able to review
+	  suggestions at the moment. Accepting and rejecting suggestions
+	  works through an AJAX interface, so no page reload is needed.
+	  Accepting a suggestion rejects the remaining others.
+	  
+	  This fixes bug 427.
+
+2008-08-14 16:15  friedelwolff
+
+	* templates/translatepage.html: Only focus on the translation area
+	  if we have translate or suggest rights
+
+2008-08-14 15:02  friedelwolff
+
+	* adminpages.py, templates/adminlanguages.html,
+	  templates/adminprojects.html, templates/adminusers.html: Make
+	  previously untranslatable admin page titles translatable
+
+2008-08-14 14:47  friedelwolff
+
+	* pootle.prefs: Disable Luganda (lg) and add more special
+	  characters. Add and enable Neapolitan (nap). Add Urdu (ur)
+	  disabled.
+
+2008-08-11 09:19  winterstream
+
+	* pootle.prefs, pootle.py: Added the ability to specify the stats
+	  database in the Poolte preferences
+	  file.
+
+2008-08-07 06:38  murgilduta
+
+	* html/js/unfuzzy.js, templates/translatepage.html: Mark fuzzy
+	  messages as unfuzzy automatically after editing.
+	  
+	  This fixes bug 456. Anyway, there are some issues with pasting
+	  that will be addressed on bug 473.
+
+2008-08-04 15:12  winterstream
+
+	* pootlefile.py, projects.py, statistics.py, test_pootlefile.py:
+	  Currently, when we reclassify a unit, we recompute the statistics
+	  of an entire file
+	  due to a bug. This is now fixed.
+
+2008-08-04 13:19  winterstream
+
+	* pootle.py: Used an incorrect import statement in the import code.
+	  
+	  This should fix it.
+
+2008-07-29 13:13  winterstream
+
+	* pootle.py, profiling, profiling/__init__.py,
+	  profiling/lsprofcalltree.py: This adds some profiling code to
+	  Poolte. The output can be viewed with
+	  kcachegrind.
+
+2008-07-25 10:23  dwaynebailey
+
+	* pootle.prefs: Add entry for Lugandan
+
+2008-07-24 20:12  friedelwolff
+
+	* potree.py: [Contributed by Suresh Chandrasekharan] Move the
+	  language matching code from Pootle to the toolkit
+
+2008-07-23 10:00  murgilduta
+
+	* html/js/jquery, html/js/jquery/jquery.color.js,
+	  html/js/jquery/jquery.js: Add jQuery library into /js/jquery/.
+	  
+	  In this commit the core library (jquery.js, version 1.2.6) and
+	  the Color Animations plugin (jquery.color.js) have been added.
+
+2008-07-22 15:03  friedelwolff
+
+	* statistics.py: Update the project-level quick stats after
+	  reclassifying a unit
+
+2008-07-22 14:46  friedelwolff
+
+	* statistics.py: Remove invalid/unnecessary
+	  @invalidates_memoization for .updatequickstats()
+
+2008-07-21 00:35  sumpfralle
+
+	* projects.py: add support for the 'author' tag to various revision
+	  control systems (contributed by Miklos Vajna)
+
+2008-07-18 09:48  winterstream
+
+	* statistics.py: Added kwargs to memoization functions
+
+2008-07-17 17:50  winterstream
+
+	* pootlefile.py, projects.py: We make sure to invalidate memoized
+	  stats values when we realize that
+	  a file has changed since we last read its stats.
+
+2008-07-17 17:49  winterstream
+
+	* statistics.py: Improved the memoization a bit by making it
+	  generic.
+
+2008-07-15 21:46  murgilduta
+
+	* translatepage.py: Escape correctly alternative source language
+	  text.
+	  
+	  This fixes bug 449.
+
+2008-07-15 15:27  winterstream
+
+	* pootlefile.py: Fixed a stupid bug which caused projects
+	  containing more than one type of
+	  translation file to experience strange bugs.
+	  
+	  One can indeed be too smart for oneself. pootlefile.pootlefile
+	  was a class
+	  which extended the functionality an existing file store. When the
+	  old code
+	  was asked to load a translation file, it found the translation
+	  store class
+	  corresponding to the file and set pootlefile.pootlefile's base
+	  class to that
+	  class. Thus, if you loaded a PO file, then
+	  pootlefile.pootlefile's class's
+	  __bases__ member was set to (pofile,). This would cause
+	  pootlefile.pootlefile
+	  to behave as a class derived from pofile.
+	  
+	  This worked great in projects with only a single file type. But
+	  if you also
+	  happened to use something like XLIFF, then the base class of
+	  pootlefile.pootlefile would flip between pofile and xlifffile
+	  depending on
+	  the last loaded file type.
+	  
+	  This is obviously not a good thing. So, we need to create
+	  pootlefile classes
+	  for each type of translation store that gets used. We do this at
+	  runtime
+	  by seeing whether such a class already exists; if not, it is
+	  created.
+
+2008-07-15 12:45  murgilduta
+
+	* pootlefile.py, translatepage.py: Fixed retrieval of suggestions
+	  from XLIFF files in reviewing mode.
+
+2008-07-07 10:32  winterstream
+
+	* statistics.py: modinfo in the translate toolkit is now a 2-tuple
+	  containing the mtime and
+	  the size of a file.
+	  
+	  The pootle modtime function used the toolkit's get_mod_info
+	  directly, but
+	  this didn't play nice with existing code that's only interested
+	  in looking
+	  at the mtime of a file. So this has been modified to only give
+	  the mtime
+	  for Poolte.
+
+2008-07-01 14:47  winterstream
+
+	* pootlefile.py: pootlefile.getitem was previously modified not to
+	  trigger full-scale quality checks on a unit,
+	  with the aim of speeding up common operations. At the moment
+	  though, there is no other code
+	  to trigger checks, which means that the quality checking
+	  functionality doesn't work with
+	  these changes.
+	  
+	  We really ought to work on this high coupling that causes so much
+	  unexpected breakage.
+
+2008-07-01 11:23  winterstream
+
+	* benchmark.py, conflict2suggest.py, indexpage.py, pootle.py,
+	  pootlefile.py, potree.py, projects.py, statistics.py,
+	  templates/navbar.html, test_pootlefile.py, test_statistics.py,
+	  translatepage.py: Merged in changes from
+	  branches/Pootle-diet-and-trunk-merge.
+	  
+	  Please see the branch if you are interested in the changes that
+	  led to this commit.
+
+2008-06-20 15:33  friedelwolff
+
+	* projects.py: (Re-)fix XLIFF support in Pootle (where there are
+	  not necessarily multistrings). Probably regressed during merging
+	  of indexing code.
+
+2008-06-20 12:30  walter_l
+
+	* pootlefile.py: Changed the "%F" formatter to the expanded
+	  "%Y-%m-%d" which results in the same
+	  date. The difference is that the former is not supported on
+	  Windows.
+	  
+	  This is related to bug #290.
+
+2008-06-20 11:32  walter_l
+
+	* pootlefile.py: Used translate.storage.poheader.tzstring() to
+	  replace the "%z" date formatting
+	  option.
+	  
+	  This fixes bug #290
+
+2008-06-19 20:52  sumpfralle
+
+	* projects.py: use different sub-directories for databases of
+	  different indexing engines
+	  rename the indexing directory from ".poindex-PROJECT-LANGUAGE" to
+	  ".translation_index"
+	  note for UPGRADING: you have to remove old indexing directories
+	  manually
+	  
+	  these changes are meant to ease migrations from one indexing
+	  engine to another and to
+	  allow different indexing engines to be on the same server
+
+2008-06-14 09:21  friedelwolff
+
+	* projects.py: Update Pootle code to new indexing code by merging
+	  from the translate-search-indexer-generic-merging branch. Check
+	  the branch for individual commits on this file.
+
+2008-06-13 16:45  friedelwolff
+
+	* pagelayout.py, pootle.prefs, pootle.py, templates/options.html,
+	  templates/translatepage.html, translatepage.py, users.prefs,
+	  users.py: Enable translation while displaying an alternative
+	  source language.
+	  
+	  A user option is provided to choose which language should be used
+	  as the
+	  alternative source language. The feature can be enabled/disabled
+	  server wide
+	  with the variable Pootle.enablealtsrc (disabled by default).
+	  
+	  This closes bug 209.
+	  
+	  Known issues:
+	  Plural units are not supported yet (nothing is displayed)
+	  Unit context (such as msgctxt in PO) is not taken into account
+	  The first match from the alternative source language project is
+	  used - not
+	  specifically from the unit or file corresponding to the current
+	  unit
+	  This might need lots of memory and possibly processing power in
+	  large projects
+	  
+	  [Contributed by Julen Ruiz Aizpuru as part of GSoC2008, based on
+	  work by
+	  Sayamindu Dasgupta]
+
+2008-06-06 08:53  dwaynebailey
+
+	* createpootlepot: Prep the .pot fiel with package name and version
+	  number
+
+2008-06-04 19:12  dwaynebailey
+
+	* pootle.py: Use mimetypes for downloads that match those defined
+	  in virtaal.
+
+2008-06-04 19:09  dwaynebailey
+
+	* pootle.prefs: Add Venda as a disables language
+
+2008-06-04 19:07  dwaynebailey
+
+	* createpootlepot: Sort the found files before extracting text.
+
+2008-06-03 09:38  walter_l
+
+	* projects.py: The second commit (for Pootle) to fix bug 350.
+	  Use of the tempfile module has replaced the use of os.tmpnam(),
+	  which is apparently insecure.
+
+2008-05-15 15:20  friedelwolff
+
+	* test_client.py: Update test to new formatting on project admin
+	  page
+
+2008-04-25 07:35  friedelwolff
+
+	* adminpages.py: Fix misnomer 'Login' -> 'Username' [reported by
+	  Jussi Aalto]
+
+2008-04-23 11:35  friedelwolff
+
+	* README: Fix URL to bugzilla
+
+2008-04-03 14:55  friedelwolff
+
+	* templates/projectadmin.html: Show the language code in the
+	  dropdown of languages to add to the project. This closes bug 357
+
+2008-04-03 14:27  friedelwolff
+
+	* adminpages.py, templates/projectadmin.html: Show existing
+	  languages in a sortable table
+
+2008-04-02 15:12  dwaynebailey
+
+	* __init__.py: Fixes to cleanup PKG-INFO. Wrong download URL and
+	  some wording changes.
+
+2008-03-28 13:51  friedelwolff
+
+	* statistics.py, translatepage.py: Fix bugs in .xlf support
+	  (reported by Robert Malovec)
+
+2008-03-27 07:22  friedelwolff
+
+	* pootle.prefs: Update URLs
+
+2008-03-26 13:53  friedelwolff
+
+	* ChangeLog: Update Changelog before release of 1.1.0
+
 2008-03-26 13:02  friedelwolff
 
 	* __version__.py: Version 1.1.0
