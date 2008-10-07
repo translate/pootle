@@ -1,0 +1,669 @@
+#!/bin/bash
+#
+# Copyright 2005 Zuza Software Foundation
+#
+# This file is part of The Translate Toolkit.
+#
+# The Translate Toolkit is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# translate is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with translate; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+
+# phase - is a set of commands that allows you to break up a translation package 
+# and create phases to send to translators.  It will manage the return, checking and
+# integration of changes.  Ultimately this should convert to Python so that
+# other people on less well known platforms like Windows can use them.
+
+
+# Commands error handling
+
+function error_notacommand {
+	echo "$1 is not a valid command"
+	usage
+}
+
+function usagecommands {
+	cat <<EOF
+Commands:
+	makephaselist <template-dir> <new-phase-list-name> -- creates a phase list
+	listphases <phase-list> -- lists the different phases that appear in the phase-list file
+	listfiles <phase-list> <phase-name> -- list all files for the given phase in the phase-list file
+	checkphaselist <language-dir> <phase-list> -- checks to see which files are not included in the phaselist
+	countpo <language-dir> <phase-list> <phase-name> -- counts PO file in the given phase
+	countpot <template-dir> <phase-list> <phase-name> -- counts POT file in the given phase
+	missingpo <language-dir> <phase-list> <phase-name> -- lists files that have not been returned for a phase
+	packpot <template-dir> <phase-list> <phase-name> -- packs all POT files for a given phase into a ZIP file
+	packpo <language-dir> <phase-list> <phase-name> -- packs all PO files for a given phase into a ZIP file
+	packall <template-dir> <phase-list> -- packs all phases found in the phase list
+	packallpo <language-dir> <phase-list> -- packs all phases found in the phase list for the given language
+	countmismatch <language-dir> <template-dir> <phase-list> <phase-name> -- compares the source word count between PO and POT to determine if there are any file errors.
+	editpo <language-dir> <phase-list> <phase-name> -- edit the PO files in a phase
+	editpochecks <language> <phase-list> <phase-name> -- edit the PO checks output by checkpo
+	editconflicts <language-dir> <phase-list> <phase-name> -- edit the extracted conconflict items
+	checkpo <language-dir> <phase-list> <phase-name> [pofilter options] -- run pofilter checks against the given phase
+	greppo <language-dir> <phase-list> <phase-name> [pogrep options] -- run pogrep against the given phase
+	mergepo <language> <phase-list> <phase-name> -- merge the checks back into the main language directory
+	conflictpo <language-dir> <phase-list> <phase-name> [poconflict options] -- run poconflict checks against the given phase
+	diffpo <language-dir> <phase-list> <phase-name> -- perform a cvs diff for the phase
+	cvslog <language-dir> <phase-list> <phase-name> -- perform a cvs log against files in the phase
+	lastlog <language-dir> <phase-list> <phase-name> -- retreives the last cvs log entry for each file in a phase
+	cvsadd <languages-dir> <phase-list> <phase-name> -- CVS adds files and directories that are not already in CVS
+	reviewpo <language-dir> <phase-list> <phase-name> [pofilter options] -- extract items marked for review for the given phase
+	editreviews <language-dir> <phase-list> <phase-name> -- edit the extracted review items
+	countreviews <language-dir> <phase-list> <phase-name> -- count the number of strings and words under review
+	checkinpo <language-dir> <phase-list> <phase-name> -- cvs checkin the files in the given phase
+	creategsi <language-dir> <en-US.gsi> <traget-language> [scp target destination] -- creates a BZ2 GSI/SDF file for the language against the en-US GSI file
+	reviewsinout <language> <phase-name> -- counts the number of review files returned vs sent and shows which are missing 
+	reviewsdiff <language> <phase-name> -- create a diff between what was sent for review and what was returned
+
+Note:
+	A phase-name of ALL will perform the operation against all phases.
+	phase-name can be a regex that usable by egrep eg. "(firefox|thunderbird)"
+EOF
+	#emailpot <template-dir> <phase-list> <phase-name> <emails> -- emails the POT files with wordcount to the addresses
+	#emailpo <language-dir> <phase-list> <phase-name> <emails> -- emails the PO files with wordcount to the addresses
+	#emailreview <language> <phase-name> <emails> -- emails the prepared review files to the addresses
+}
+
+function usage() {
+	programname=`basename $0`
+    	echo "Usage: $programname <command> options"
+	usagecommands
+	exit 1
+}
+
+# Operation
+
+function report {
+	if [ "$*" == "DONE" ]; then
+		echo " done."
+	else
+		echo -n "$* "
+	fi
+}
+
+function getphasefiles {
+	# Returns a list of files that are valid for this phase
+	filelist=$1
+	phase=$2
+	if [ "$phase" != "ALL" ]; then
+                for i in `echo $phase | sed "s/,/ /g"`
+		do
+			egrep --count "^$i\b" $filelist > /dev/null
+			if [ $? -ne 0 ]; then
+				echo "No such phase exists" > /dev/stderr
+				exit 1
+			fi
+			egrep "^$i\b" $filelist
+		done
+	else
+		cat $filelist
+	fi | cut -f 2 | sort
+}
+
+function getphases {
+	# Retuns a list of all the defines phases
+	filelist=$1
+	cut -f1 $filelist | sort | uniq
+}
+
+function countpo {
+	# Counts PO files
+	directory=$1
+	filelist=$2
+	phase=$3
+	files=$(getphasefiles $filelist $phase)
+	cd $directory
+	pocount $files
+}
+
+function countreviews {
+	# Counts PO files for review
+	language=$1
+	filelist=$2
+	phase=$3
+	pocount $(find $language-$phase-review -name "*.po")
+}
+
+function countpot {
+	# Counts POT files
+	directory=$1
+	filelist=$2
+	phase=$3
+	files=$(getphasefiles $filelist $phase | sed "s/\.po$/\.pot/")
+	cd $directory
+	pocount $files
+}
+
+function missingpo {
+	# Reports PO files that are missing from the filelist
+	directory=$1
+	filelist=$2
+	phase=$3
+	files=$(getphasefiles $filelist $phase)
+	cd $directory
+	for file in $files
+	do
+		if [ ! -f $file ]; then
+			echo $file
+			missingfiles=$( echo $missingfiles $file)
+		fi
+	done
+}
+
+function copy_po_to_temp_dir {
+	basedir=$1
+	tempdir=$2
+	shift 2
+	files=$*
+	for file in $files
+	do
+		fromdir=$(dirname $file)	
+		mkdir -p $tempdir/$fromdir
+		cp -p $basedir/$file $tempdir/$fromdir
+	done
+}
+
+function packpot {
+	# Packs POT files that match the file list
+	directory=$1
+	filelist=$2
+	phase=$3
+    	outdir=phase$phase-templates
+	rm -rf $outdir
+	files=$(getphasefiles $filelist $phase | sed "s/\.po$/\.pot/")
+		report "Packpot: creating"
+	copy_po_to_temp_dir $directory $outdir $files
+		report ": wordcount"
+	pocount $(find $outdir -name "*.pot") > $outdir/wordcount.txt
+		report ', PO'
+	for potfile in $(find $outdir -name "*.pot")
+	do
+		pofile=$(echo $potfile | sed "s/\.pot$/\.po/")
+		msginit --no-translator --locale=af_ZA -i $potfile -o $pofile > /dev/null 2>&1
+	done
+		report ", CSV"
+	po2csv --progress=none $outdir $outdir
+		report ", tarball"
+	tar czf $outdir.tar.gz $outdir
+		report ", zip"
+	zip -qr9 $outdir.zip $outdir
+		report DONE
+}	
+
+function packpo {
+	# Packs PO files that match the file list
+	language=$1
+	filelist=$2
+	phase=$3
+	outdir=$language-$phase-translations
+	rm -rf $outdir
+	files=$(getphasefiles $filelist $phase)
+		report "Packpo: creating"
+	copy_po_to_temp_dir $language $outdir $files
+		report ": wordcount"
+	pocount $(find $outdir -name "*.po") > $outdir/wordcount.txt
+		report ", CSV"
+	po2csv --progress=none $outdir $outdir
+		report ", tarball"
+	tar czf $outdir.tar.gz $outdir
+		report ", zip"
+	zip -qr9 $outdir.zip $outdir
+		report DONE
+}	
+
+function packall {
+	# Pack all phases in a project
+		report "Packing all phases:"
+	for phase in $(getphases $2)
+	do
+			report $phase
+		packpot $1 $2 $phase
+	done
+		report DONE
+}
+
+function packallpo {
+	# Pack all phases in a project for a language
+	language=$1
+	filelist=$2
+		report "Packing all phases:"
+	for phase in $(getphases $2)
+	do
+			report $phase
+		packpo $1 $2 $phase
+	done
+		report DONE
+}
+
+function count_source_words {
+	file=$1
+	pocount --csv $file | tail -1 | cut -d"," -f10
+}
+
+function countmismatch {
+	# Checks that the source wordcount matches in each returned file in a phase
+	language=$1
+	templates=$2
+	filelist=$3
+	phase=$4
+	files=$(getphasefiles $filelist $phase)
+	for file in $files
+	do
+		if [ -f $language/$file ]; then
+			powords=$(count_source_words $language/$file)
+		else
+			powords=0
+		fi
+		potfile=$templates/$(echo $file | sed "s/\.po$/.pot/")
+		if [ -f $potfile ]; then
+			potwords=$(count_source_words $potfile)
+		else
+			potwords=0
+		fi
+		if [ $powords -ne $potwords ]; then
+			echo "Mismatch: $file - expected $potwords got $powords"
+		fi
+	done
+}
+
+function editpo {
+	# Edit the PO files for this phase
+	language=$1
+	filelist=$2
+	phase=$3
+	editor="vim"
+	files=$(getphasefiles $filelist $phase)
+	(cd $language; exec $editor $files)
+}
+
+function editreviews {
+	# Edit the PO files for this phase
+	language=$1
+	phaselist=$2
+	phase=$3
+	editor="vim"
+	files=$(getphasefiles $phaselist $phase)
+	if [ -d $language-$phase-review ]; then
+		for file in $files
+		do
+			[ -f $language-$phase-review/$file ] && present_files=$(echo $present_files $file)
+		done
+		(cd $language-$phase-review; exec $editor $present_files)
+	else
+		echo "No reviews present for language $language phase $phase."
+		echo "Run reviewpo to create them"
+		exit 1
+	fi
+}
+
+function editconflicts {
+	# Edit the PO files for this phase
+	language=$1
+	phaselist=$2
+	phase=$3
+	editor="vim"
+	if [ -d $language-$phase-conflicts ]; then
+		(cd $language-$phase-conflicts; exec $editor $(ls *.po))
+	else
+		echo "No conflicts present for language $language phase $phase."
+		echo "Run conflictpo to create them"
+		exit 1
+	fi
+}
+
+function editpochecks {
+	language=$1
+	phaselist=$2
+	phase=$3
+	editor="vim"
+	files=$(getphasefiles $phaselist $phase)
+	if [ -d $language-$phase-check ]; then
+		for file in $files
+		do
+			[ -f $language-$phase-check/$file ] && present_files=$(echo $present_files $file)
+		done
+		(cd $language-$phase-check; exec $editor $(echo $present_files| sort))
+	else
+		echo "No checks present for language $language phase $phase."
+		echo "Run checkpo to create them"
+		exit 1
+	fi
+}
+
+function checkpo {
+	# Uses pofilter to check a language
+	language=$1
+	filelist=$2
+	phase=$3
+	shift 3
+	otheroptions=$*
+	files=$(getphasefiles $filelist $phase)
+	tempdir=`mktemp -d tmp.XXXXXXXXXX`
+	copy_po_to_temp_dir $language $tempdir $files
+	pofilter --excludefilter=untranslated $otheroptions $tempdir $language-$phase-check
+        rm -rf $tempdir
+}
+
+function greppo {
+	# Uses pogrep to grep a language
+	language=$1
+	filelist=$2
+	phase=$3
+	shift 3
+	otheroptions=$*
+	files=$(getphasefiles $filelist $phase)
+	tempdir=`mktemp -d tmp.XXXXXXXXXX`
+	copy_po_to_temp_dir $language $tempdir $files
+	pogrep $otheroptions $tempdir $language-$phase-grep
+        rm -rf $tempdir
+}
+
+function conflictpo {
+	# Uses pofilter to check a language
+	language=$1
+	filelist=$2
+	phase=$3
+	shift 3
+	otheroptions=$*
+	files=$(getphasefiles $filelist $phase)
+	tempdir=`mktemp -d tmp.XXXXXXXXXX`
+	copy_po_to_temp_dir $language $tempdir $files
+        rm -rf $language-$phase-conflicts
+	(curdir=$(pwd); cd $tempdir ; poconflicts $otheroptions . $curdir/$language-$phase-conflicts)
+        rm -rf $tempdir
+        zip -qr9 $language-$phase-conflicts.zip $language-$phase-conflicts
+}
+
+function mergepo {
+	language=$1
+	filelist=$2
+	phase=$3
+	pomerge -t $language -o $language -i $language-$phase-check
+}
+
+function diffpo {
+	language=$1
+	filelist=$2
+	phase=$3
+	files=$(getphasefiles $filelist $phase)
+	for file in $files
+	do
+		if [ -f $language/$file ]; then
+			present_files=$(echo $present_files $file)
+		else
+			echo "Skipping - $file - file not found"
+		fi	
+	done
+	(cd $language; cvs diff -u $present_files)
+}
+
+function reviewpo {
+	# Uses pofilter to extract the review items for a language
+	language=$1
+	filelist=$2
+	phase=$3
+	shift 3
+	otheroptions=$*
+	files=$(getphasefiles $filelist $phase)
+	tempdir=`mktemp -d tmp.XXXXXXXXXX`
+	copy_po_to_temp_dir $language $tempdir $files
+	review_dir=$language-$phase-review
+        rm -rf $review_dir
+	pofilter -t isreview -t untranslated -t blank -t isfuzzy $otheroptions $tempdir $review_dir
+	po2csv $review_dir $review_dir
+	# Transform "#, review" to # REVIEW
+	sed -i "/#, review/s/#, review/# REVIEW/" $(find $review_dir -name "*.po")
+	(cat <<-EOF
+	These are the review comments for $language phase $phase.
+
+	The format of this file is as follows:
+	Each file with errors is introduced with a line starting with the word 'File:'.  Thereafter
+	the errors appear.  Each error is seperated from the next by a blank line.  They should correspond
+	to the lines in the CSV file or the messages in the PO file.  Please edit the corrections taking
+	into consideration the comments in this file.
+
+	The error is presented first with a comment starting with #. This desribes the error.  After
+	the comments you will see a line starting with 'msgid' - this is for information only and is
+	there to assist you in locating the error if you lose your place.  Make all corrections in the
+	CSV or PO file NOT in this file.  This file is simply for your information, not for editing.
+
+	Now for the review comments:
+
+	EOF
+	cd $review_dir; for review_file in $(find . -name "*.po")
+	do
+		echo "File: $review_file (the following comments relate to this file)"
+		echo
+		egrep "^$|^# REVIEW|^#_ |^# \(pofilter\)|^# \(review\)|^msgid \"" $review_file | egrep -v "^#_ isreview"
+	done ) > $review_dir/review-notes.txt
+	unix2dos $review_dir/review-notes.txt
+	pocount $(find $review_dir -name "*.po") > $review_dir/wordcount.txt
+	unix2dos $review_dir/wordcount.txt
+	zip -qr9 $review_dir.zip $review_dir
+        rm -rf tempdir
+}
+
+function checkinpo {
+	# Check the files into CVS but only those in the phase
+	language=$1
+	filelist=$2
+	phase=$3
+	files=$(getphasefiles $filelist $phase)
+	# remove files that are missing
+	for file in $files
+	do
+		if [ -f $language/$file ]; then
+			exists="$exists $file"
+		else
+			echo "$file - missing ignoring"
+		fi
+	done
+	files=$exists
+	(cd $language; cvs ci $files)
+}
+
+function creategsi {
+	# Creates a GSI file for the given language
+	language=$1
+	enusgsi=$2
+	if [ "$3" == "" -o "$3" == "-" ]; then
+		targetgsilanguage=$language
+	else
+		targetgsilanguage=$3
+	fi
+        publish=$4
+	po2oo --filteraction=warn -l $targetgsilanguage -t $enusgsi $language GSI_$targetgsilanguage.sdf && rm -f GSI_$targetgsilanguage.sdf.bz2 && bzip2 GSI_$targetgsilanguage.sdf
+        if [ "$publish" != "" ]; then
+		echo "Publishing GSI"
+		scp -p GSI_$targetgsilanguage.sdf.bz2 $publish
+	fi
+}
+
+function reviewsinout {
+	# Checks which files have not been returned from a review
+	language=$1
+	phase=$2
+	reviewdir=$language-$phase-review
+	returndir=$language-$phase-review-returned
+	reviewlist=`mktemp tmp.XXXXXXXXXX`
+	returnlist=`mktemp tmp.XXXXXXXXXX`
+	(cd $reviewdir; find . -type f -name "*.po" | sort ) > $reviewlist
+	(cd $returndir; find . -type f -name "*.po" | sort ) > $returnlist
+	echo "Reviews out: `cat $reviewlist | wc -l`"
+	echo "Reviews returned: `cat $returnlist | wc -l`"
+	diff -u $reviewlist $returnlist
+	rm $reviewlist $returnlist
+}
+
+function reviewsdiff {
+	# Creates a diff between what was sent for review and what was returned
+	language=$1
+	phase=$2
+	diff -ur $language-$phase-review $language-$phase-review-returned
+}
+
+function checkphaselist {
+	# Checks the files against the phase-list to see wich are in and which are out
+	language=$1
+	phaselist=$2
+	currentlist=`mktemp tmp.XXXXXXXXXX`
+	tempphaselist=`mktemp tmp.XXXXXXXXXX`
+	(cd $language; find . -name "*.po" | sort ) > $currentlist
+	cat $phaselist | cut -f2- | sort > $tempphaselist
+	echo "+ new files that are not in your phaselist (you need to add these)"
+	echo "- files no longer in the destination but in your phaselist (you need to remove these)"
+	diff -u $tempphaselist $currentlist
+	rm $currentlist $tempphaselist
+}
+
+function cvslog {
+	# Run CVS log against a phase so you can see what has happened
+	language=$1
+	phaselist=$2
+	phase=$3
+	options=$4
+	files=$(getphasefiles $phaselist $phase)
+	for file in $files
+	do
+		if [ -f $language/$file ]; then
+			present_files=$(echo $present_files $file)
+		else
+			echo "Skipping - $file - file not found"
+		fi	
+	done
+	(cd $language; cvs log $options $present_files)
+}
+
+function cvsadd {
+	# Run CVS add against a phase so you can add files not already in CVS
+	language=$1
+	phaselist=$2
+	phase=$3
+	files=$(getphasefiles $phaselist $phase)
+	# First check for un-added directories
+	for file in $files
+	do
+		dir=`dirname $file`
+		while [ $dir != "" -a $dir != "." ]
+		do
+			potential_dirs=$(echo $potential_dirs $dir)
+			dir=`dirname $dir`
+		done
+	done
+	for dir in `cd $language; find $potential_dirs -type d | sed "s/\/CVS$//" | sort -u`
+	do
+		if [ ! -d $language/$dir/CVS ]; then
+			dir_to_add=$(echo $dir_to_add $dir)
+		fi	
+	done
+	if [ "$dir_to_add" != "" ]; then
+		(cd $language; cvs add $dir_to_add)
+	fi
+	# Now check and add un-added files
+	for file in $files
+	do
+		filename=`basename $file`
+		cvs_entry=`dirname $file`/CVS/Entries
+		if [ "$(cd $language; egrep $filename $cvs_entry)" == "" ]; then
+			files_to_add=$(echo $files_to_add $file)
+		fi
+	done
+	if [ "$files_to_add" != "" ]; then
+		(cd $language; cvs add $files_to_add)
+	fi
+}
+
+function makephaselist {
+	templatedir=$1
+	newphaselist=$2
+	(cd $templatedir; find . -name "*.pot") | sed "s/\.pot$/.po/" | sed "s/\(^.*$\)/1	\\1/" | sort > $newphaselist
+}
+
+function listphases {
+	phaselist=$1
+	cat $phaselist | cut -d"	" -f 1 | sort | uniq -c
+}
+
+command=$1
+shift
+case $command in
+        -h|--help) usagecommands
+	  	;;
+	makephaselist) makephaselist $1 $2
+		;;
+	listphases) listphases $1
+		;;
+	listfiles) getphasefiles $1 $2
+		;;
+	checkphaselist) checkphaselist $1 $2
+		;;
+	countpo) countpo $1 $2 $3
+		;;
+	countpot) countpot $1 $2 $3
+		;;
+	missingpo) missingpo $1 $2 $3
+		;;
+	packpot) packpot $1 $2 $3
+		;;
+	packpo) packpo $1 $2 $3
+		;;
+	packall) packall $1 $2
+		;;
+	packallpo) packallpo $1 $2
+		;;
+	countmismatch) countmismatch $1 $2 $3 $4
+		;;
+	editpo) editpo $1 $2 $3
+		;;
+	editpochecks) editpochecks $1 $2 $3
+		;;
+	checkpo) checkpo $*
+		;;
+	greppo) greppo $*
+		;;
+	mergepo) mergepo $1 $2 $3
+		;;
+	conflictpo) conflictpo $*
+		;;
+	diffpo) diffpo $1 $2 $3
+		;;
+	cvslog) cvslog $1 $2 $3
+		;;
+	lastlog) cvslog $1 $2 $3 -r
+		;;
+	cvsadd) cvsadd $1 $2 $3
+		;;
+	reviewpo) reviewpo $*
+		;;
+	editreviews) editreviews $1 $2 $3
+		;;
+	editconflicts) editconflicts $1 $2 $3
+		;;
+	countreviews) countreviews $1 $2 $3
+		;;
+	checkinpo) checkinpo $1 $2 $3
+		;;
+	creategsi) creategsi $1 $2 $3 $4
+		;;
+        reviewsinout) reviewsinout $1 $2
+		;;
+	reviewsdiff) reviewsdiff $1 $2
+		;;
+	"") usage
+		;;
+	*) error_notacommand $command
+		;;
+esac
+
+

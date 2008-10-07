@@ -1,0 +1,28 @@
+#!/bin/bash
+# this is a script for running repeated tests on different hosts for bugday
+timestamp=`date '+%Y%m%d-%H%M'`
+bugday=`date '+%Y%m%d'`
+dateiso=`date '+%Y-%m-%d'`
+hostname=`hostname`
+dest=sourceforge:translate/html/bugdays/${bugday}
+scriptdir="`dirname "$0"`"
+srcdir="`cd "${scriptdir}" ; cd .. ; pwd`"
+
+cd "$srcdir"
+mkdir -p testlogs
+
+bugfile=toolkit-bugreport-${timestamp}.html
+wget 'http://bugs.locamotion.org/buglist.cgi?query_format=specific&order=relevance+desc&bug_status=__all__&product=Translate+Toolkit' -O testlogs/${bugfile}
+sed -i 's#href="\([^:]*\)"#href="http://bugs.locamotion.org/\1"#g' testlogs/${bugfile}
+scp -p testlogs/${bugfile} ${dest}/$bugfile
+
+bugfile=pootle-bugreport-${timestamp}.html
+wget 'http://bugs.locamotion.org/buglist.cgi?query_format=specific&order=relevance+desc&bug_status=__all__&product=Pootle' -O testlogs/${bugfile}
+sed -i 's#href="\([^:]*\)"#href="http://bugs.locamotion.org/\1"#g' testlogs/${bugfile}
+scp -p testlogs/${bugfile} ${dest}/$bugfile
+
+for f in ~/.gaim/logs/irc/*@irc.freenode.net/\#pootle.chat/${dateiso}*
+  do
+    rsync --copy-links --perms --times --compress --rsh=ssh "$f" ${dest}/irc-log-`basename "$f"`
+  done
+

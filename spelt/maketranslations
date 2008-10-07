@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Guess the target application if we aren't supplied one
+if [ $# == 1 ]; then
+	targetapp=$1
+else
+	targetapp=$(basename $(pwd))
+fi
+
+share=share/$targetapp
+desktop=$targetapp.desktop
+mimetype=$targetapp-mimetype.xml
+
+cache="--cache po/.intltool-merge-cache"
+
+if [ -d po ]; then
+	if [ -f  $share/${mimetype}.in ]; then
+		intltool-merge --xml-style $cache po $share/${mimetype}.in $share/$mimetype
+	fi
+	if [ -f  $share/${desktop}.in ]; then
+		intltool-merge --desktop-style $cache po $share/${desktop}.in $share/$desktop
+	fi
+else
+	echo "$0: No translation directory"
+fi

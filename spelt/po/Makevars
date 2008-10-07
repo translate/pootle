@@ -1,0 +1,4 @@
+top_builddir = ..
+DOMAIN = spelt
+MSGID_BUGS_ADDRESS = translate-devel@lists.sourceforge.net
+X-PACKAGENAME = Spelt

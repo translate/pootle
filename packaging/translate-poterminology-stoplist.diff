@@ -1,0 +1,12 @@
+diff -ur translate-toolkit-1.2.0.old/translate/tools/poterminology.py translate-toolkit-1.2.0/translate/tools/poterminology.py
+--- translate-toolkit-1.2.0.old/translate/tools/poterminology.py	2008-09-30 11:43:44.000000000 +0200
++++ translate-toolkit-1.2.0/translate/tools/poterminology.py	2008-10-06 22:00:34.000000000 +0200
+@@ -422,7 +422,7 @@
+     parser.stoprelist = []
+     parser.stopfoldtitle = True
+     parser.stopignorecase = False
+-    parser.defaultstopfile = find_installed_file('stoplist-en')
++    parser.defaultstopfile = '/usr/share/translate-toolkit/stoplist-en'
+     parser.add_option("-S", "--stopword-list", type="string", metavar="STOPFILE", 
+         action="callback", callback=parse_stopword_file,
+         help="read stopword (term exclusion) list from STOPFILE (default %s)" % parser.defaultstopfile,

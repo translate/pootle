@@ -1,0 +1,10 @@
+#!/bin/bash
+
+command="lupdate"
+version=`$command -version 2>&1 | cut -d" " -f3 | cut -d"." -f1`
+if [ $version -lt 4 ]; then
+	command="lupdate-qt4"
+fi
+
+$command pootling.pro
+ts2po --errorlevel=traceback -P po/pootling.ts po/pootling.pot

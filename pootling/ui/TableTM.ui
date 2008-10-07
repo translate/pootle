@@ -1,0 +1,58 @@
+<ui version="4.0" >
+ <class>Form</class>
+ <widget class="QWidget" name="Form" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>227</width>
+    <height>100</height>
+   </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy>
+    <hsizetype>13</hsizetype>
+    <vsizetype>13</vsizetype>
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>100</width>
+    <height>50</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>Lookup</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>0</number>
+   </property>
+   <property name="spacing" >
+    <number>0</number>
+   </property>
+   <item row="0" column="0" >
+    <widget class="QTableWidget" name="tblTM" >
+     <property name="whatsThis" >
+      <string>&lt;h3>Search Results&lt;/h3>This table shows the results of searching in translation memory. Similarity tells you about the seach score. 100% means the source is identical in TM. At the buttom is displayed the location, translator, and translated date of each candidate, row. This table is automatically hiden if the option " Automatically lookup translation in TM" under Settings/Preference/TM-Glossary is unchecked.</string>
+     </property>
+     <property name="dragEnabled" >
+      <bool>true</bool>
+     </property>
+     <property name="rowCount" >
+      <number>0</number>
+     </property>
+     <property name="columnCount" >
+      <number>2</number>
+     </property>
+     <column/>
+     <column/>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!--
+This file contains all translation related formats, even those not yet
+supported by Virtaal.
+
+Naming convention:
+* TM -> XXX Translation Memory
+* Translatable file -> XXX Translation File
+* Translation template file -> XXX Translation Template
+* Compiled translations -> XXXX Message File
+* Other files (dual use) -> Traditional name: Java Propeties File, INI File, Windows Resource File
+* Use Title Case
+
+See: http://standards.freedesktop.org/shared-mime-info-spec/shared-mime-info-spec-latest.html
+-->
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+
+  <mime-type type="application/x-tmx">
+    <sub-class-of type="application/xml"/>
+    <_comment>TMX Translation Memory</_comment>
+    <_acronym>TMX</_acronym>
+    <_expanded-acronym>Translation Memory eXchange</_expanded-acronym>
+    <glob pattern="*.tmx"/>
+    <magic priority="80">
+      <match value="&lt;tmx" type="string" offset="0:256"/>
+    </magic>
+    <!-- <root-XML namespaceURI='http://www.lisa.org/tmx14' localName='tmx'/> -->
+  </mime-type>
+
+  <mime-type type="application/x-tbx">
+    <sub-class-of type="application/xml"/>
+    <_comment>TBX Glossary</_comment>
+    <_acronym>TBX</_acronym>
+    <_expanded-acronym>TermBase eXchange</_expanded-acronym>
+    <glob pattern="*.tbx"/>
+    <magic priority="80">
+      <match value="&lt;martif type=&quot;TBX&quot;" type="string" offset="0:256"/>
+    </magic>
+  </mime-type>
+
+  <mime-type type="text/x-wordfast">
+    <sub-class-of type="text/tab-separated-values"/>
+    <_comment>Wordfast Translation Memory</_comment>
+    <glob pattern="*.txt"/>
+    <magic priority="80">
+      <match value="%Wordfast TM" type="string" offset="0:256"/>
+      <match value="\0%\0W\0o\0r\0d\0f\0a\0s\0t\0 \0T\0M" type="string" offset="0:256"/>
+    </magic>
+  </mime-type>
+
+  <!-- Qt Linguist is copied from the standard DB but is yuck there -->
+  <mime-type type="application/x-linguist">
+    <sub-class-of type="application/xml"/>
+    <_comment>Qt Linguist Translation File</_comment>
+    <glob pattern="*.ts"/>
+  </mime-type>
+
+  <mime-type type="application/x-qm">
+    <_comment>Qt Message File</_comment>
+    <glob pattern="*.qm"/>
+  </mime-type>
+
+  <mime-type type="application/x-qph">
+    <_comment>Qt Phrase Book</_comment>
+    <glob pattern="*.qph"/>
+    <magic priority="50">
+      <match value="&lt;QPH&gt;" type="string" offset="0:256"/>
+    </magic>
+  </mime-type>
+
+  <mime-type type="text/x-ini">
+    <sub-class-of type="text/plain"/>
+    <_comment>INI File</_comment>
+    <_acronym>INI</_acronym>
+    <_expanded-acronym>Initialization</_expanded-acronym>
+    <glob pattern="*.ini"/>
+    <!-- <alias type="application/textedit"/> -->
+    <alias type="zz-application/zz-winassoc-ini"/>
+  </mime-type>
+
+  <mime-type type="text/x-properties">
+    <sub-class-of type="text/plain"/>
+    <_comment>Java Properties File</_comment>
+    <glob pattern="*.properties"/>
+  </mime-type>
+
+  <mime-type type="text/x-sdf">
+    <sub-class-of type="text/tab-separated-values"/>
+    <_comment>OpenOffice.org Translation File</_comment>
+    <glob pattern="*.sdf"/>
+  </mime-type>
+
+  <mime-type type="application/x-xliff+xml">
+    <sub-class-of type="application/xml"/>
+    <_comment>XLIFF Translation File</_comment>
+    <_acronym>XLIFF</_acronym>
+    <_expanded-acronym>XML Localization Interchange File Format</_expanded-acronym>
+    <glob pattern="*.xlf"/>
+    <glob pattern="*.xliff"/>
+    <magic priority="80">
+      <match value="&lt;xliff" type="string" offset="0:256"/>
+    </magic>
+    <root-XML namespaceURI='urn:oasis:names:tc:xliff:document:1.' localName='xliff'/>
+    <alias type="application/x-xliff"/>
+  </mime-type>
+
+  <mime-type type="text/x-rc">
+    <sub-class-of type="text/x-csrc"/>
+    <_comment>C++ RC File</_comment>
+    <_acronym>RC</_acronym>
+    <_expanded-acronym>Resource Compiler</_expanded-acronym>
+    <glob pattern="*.rc"/>
+  </mime-type>
+
+  <mime-type type="text/x-msg">
+    <sub-class-of type="text/x-tcl"/>
+    <_comment>Tcl Translation File</_comment>
+    <glob pattern="*.msg"/>
+    <magic priority="50">
+      <match value="::msgcat::mcset" type="string" offset="0:160"/>
+    </magic>
+  </mime-type>
+
+  <mime-type type="application/x-javascript-msg">
+    <sub-class-of type="application/javascript"/>
+    <_comment>JavaScript error message file</_comment>
+    <glob pattern="*.msg"/>
+    <magic priority="50">
+      <match value="MSG_DEF(" type="string" offset="0:2560"/>
+    </magic>
+  </mime-type>
+
+  <mime-type type="text/x-gettext-translation-template">
+    <sub-class-of type="text/plain"/>
+    <_comment>Gettext Translation Template</_comment>
+    <glob pattern="*.pot"/>
+    <magic priority="50">
+      <match value="msgid" type="string" offset="0:256"/>
+      <match value="msgstr" type="string" offset="0:256"/>
+      <match value="msgctxt" type="string" offset="0:256"/>
+    </magic>
+  </mime-type>
+
+  <mime-type type="application/x-ttx">
+    <sub-class-of type="application/xml"/>
+    <_comment>Trados Tag Editor</_comment>
+    <glob pattern="*.ttx"/>
+    <magic priority="50">
+      <match value="&lt;TRADOStag" type="string" offset="0:256"/>
+    </magic>
+  </mime-type>
+
+</mime-info>

@@ -1,0 +1,22 @@
+Introduction
+============
+Virtaal is a graphical program for doing translation. It is meant to be easy 
+to use and powerful at the same time. Although the initial focus is on software
+translation (localisation or l10n), we definitely intend it to be useful for 
+several purposes.
+
+References
+==========
+Website: http://translate.sourceforge.net/wiki/virtaal/index
+Bug tracker: http://bugs.locamotion.org/
+
+Design principles
+=================
+Good looking
+Optimise for the most frequent use cases
+No necessity for mouse
+The most important information must be visible by default
+Only relevant (actional) widgets should be shown
+Maximum functionality without setup
+
+Aanbeveelbaarheid

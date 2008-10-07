@@ -1,0 +1,20 @@
+#!/bin/bash
+
+./intltool-update --pot
+podebug -P --rewrite=xxx -f "" --progress=none virtaal.pot de_DE.po
+podebug -P --rewrite=xxx -f "" --progress=none gtk20-lite.pot de_DE-lite.po
+for po in $(ls *.po | egrep -v lite)
+do
+	modir=mo/$(basename $po .po)/LC_MESSAGES
+        gtklite=$(basename $po .po)-lite.po
+	mkdir -p $modir
+	msgfmt -o $modir/virtaal.mo $po
+        if [ -f $gtklite ]; then
+		msgfmt -o $modir/gtk20.mo $gtklite
+	fi
+done
+
+lang=$1
+export LANGUAGE=../../../$(pwd)/mo/${lang:-de_DE}
+echo $LANGUAGE
+run_virtaal.py

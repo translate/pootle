@@ -1,0 +1,18 @@
+[encoding: UTF-8]
+bin/virtaal
+share/applications/virtaal.desktop.in
+share/virtaal/virtaal.glade
+share/mime/packages/virtaal-mimetype.xml.in
+virtaal/about.py
+virtaal/document.py
+virtaal/formats.py
+virtaal/main_window.py
+virtaal/modes.py
+virtaal/mode_selector.py
+virtaal/pan_app.py
+virtaal/search_mode.py
+virtaal/store_grid.py
+virtaal/support/set_enumerator.py
+virtaal/tips.py
+virtaal/unit_editor.py
+virtaal/unit_layout.py

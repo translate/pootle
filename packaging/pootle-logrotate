@@ -1,0 +1,5 @@
+/var/log/pootle/*.log {
+    missingok
+    notifempty
+}
+

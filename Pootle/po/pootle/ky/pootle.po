@@ -1,0 +1,1386 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2008-08-19 12:36+0200\n"
+"PO-Revision-Date: 2008-09-15 09:39+0000\n"
+"Last-Translator: Timur Jamakeev <ztimur@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
+
+#: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
+#: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
+#: indexpage.py:139 indexpage.py:201 indexpage.py:264 indexpage.py:352
+#: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
+#: users.py:177
+msgid "Pootle Demo"
+msgstr "Pootle демонстрациясы"
+
+#: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
+#: pagelayout.py:27
+msgid "Home"
+msgstr "Башбарак"
+
+#: adminpages.py:46 adminpages.py:212
+msgid "Users"
+msgstr "Колоднуучулар"
+
+#: adminpages.py:47 adminpages.py:87 indexpage.py:93
+msgid "Languages"
+msgstr "Тилдер"
+
+#: adminpages.py:48 adminpages.py:146 indexpage.py:94
+msgid "Projects"
+msgstr "Проектер"
+
+#: adminpages.py:49
+msgid "General options"
+msgstr "Негизги ырастоолор"
+
+#: adminpages.py:50 users.py:182
+msgid "Option"
+msgstr "Ырастоо"
+
+#: adminpages.py:51 users.py:183
+msgid "Current value"
+msgstr "Учурдагы маани"
+
+#: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
+#: users.py:197
+msgid "Save changes"
+msgstr "Өзгөрүүлөрдү сактоо"
+
+#: adminpages.py:56
+msgid "Title"
+msgstr "Башсап"
+
+#: adminpages.py:57
+msgid "Description"
+msgstr "Баян"
+
+#: adminpages.py:58
+msgid "Base URL"
+msgstr "Негизги URL"
+
+#: adminpages.py:59
+msgid "Home Page"
+msgstr "Башкы барак"
+
+#: adminpages.py:77
+msgid "Pootle Languages Admin Page"
+msgstr "Pootle тилдерин башкаруу барагы"
+
+#: adminpages.py:86 adminpages.py:145 adminpages.py:211
+msgid "Main admin page"
+msgstr "Негизги башкаруу барагы"
+
+#: adminpages.py:92 adminpages.py:286
+msgid "ISO Code"
+msgstr "ISO код"
+
+#: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
+#: users.py:127
+msgid "Full Name"
+msgstr "Толук ысым"
+
+#: adminpages.py:94
+msgid "(add language here)"
+msgstr "(тилди бул жерге кошуу)"
+
+#: adminpages.py:95
+msgid "Special Chars"
+msgstr "Атайын символдор"
+
+#: adminpages.py:95
+msgid "(special characters)"
+msgstr "(атайын символдор)"
+
+#: adminpages.py:96 indexpage.py:224
+msgid "Number of Plurals"
+msgstr "Көптүк түрдүн саны"
+
+#: adminpages.py:96
+msgid "(number of plurals)"
+msgstr "(көптүк түрдүн саны)"
+
+#: adminpages.py:97 indexpage.py:225
+msgid "Plural Equation"
+msgstr "Көптүк түрдүн туюнтмасы"
+
+#: adminpages.py:97
+msgid "(plural equation)"
+msgstr "(көптүк түрдүн туюнтмасы)"
+
+#: adminpages.py:98
+msgid "Remove Language"
+msgstr "Тилди жоготуу"
+
+#. l10n: The parameter is a languagecode, projectcode or username
+#: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
+#, python-format
+msgid "Remove %s"
+msgstr "%s жок кылуу"
+
+#: adminpages.py:132
+msgid "Standard"
+msgstr "Стандарттык"
+
+#: adminpages.py:136
+msgid "Pootle Projects Admin Page"
+msgstr "Pootle проектерин башкаруу барагы"
+
+#: adminpages.py:151
+msgid "Project Code"
+msgstr "Проектин коду"
+
+#: adminpages.py:153
+msgid "(add project here)"
+msgstr "(проекти бул жерге кошуу)"
+
+#: adminpages.py:154
+msgid "Project Description"
+msgstr "Проектин баяны"
+
+#: adminpages.py:154
+msgid "(project description)"
+msgstr "(проектин баяны)"
+
+#: adminpages.py:155
+msgid "Checker Style"
+msgstr "Текшерүү модулунун стили"
+
+#: adminpages.py:156
+msgid "File Type"
+msgstr "Файлдын тиби"
+
+#: adminpages.py:157
+msgid "Create MO Files"
+msgstr "MO файлдарын жаратуу"
+
+#: adminpages.py:158
+msgid "Remove Project"
+msgstr "Проекти жок кылуу"
+
+#: adminpages.py:202
+msgid "Pootle User Admin Page"
+msgstr "Pootle колдонуучуларын башкаруу барагы"
+
+#: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
+msgid "Username"
+msgstr "Колдонуучунун ысымы"
+
+#: adminpages.py:219 users.py:403
+msgid "(add full name here)"
+msgstr "(бул жерге толук ысымды киргизиңиз)"
+
+#: adminpages.py:220 users.py:124
+msgid "Email Address"
+msgstr "Электрондук дарек"
+
+#: adminpages.py:220 users.py:406
+msgid "(add email here)"
+msgstr "(бул жерге электрондук даректи киргизиңиз)"
+
+#: adminpages.py:221 users.py:130 users.py:188
+msgid "Password"
+msgstr "Сырсөз"
+
+#: adminpages.py:221 users.py:400
+msgid "(add password here)"
+msgstr "(бул жерге сырсөздү киргизиңиз)"
+
+#: adminpages.py:222
+msgid "Activated"
+msgstr "Активдештирилген"
+
+#: adminpages.py:222
+msgid "Activate New User"
+msgstr "Жаңы колдонуучуну жандандыруу"
+
+#: adminpages.py:223
+msgid "Remove User"
+msgstr "Колдонуучуну жок кылуу"
+
+#: adminpages.py:278
+msgid "Back to main page"
+msgstr "Негизги баракка кайтуу"
+
+#: adminpages.py:279
+msgid "Existing languages"
+msgstr "Учурдагы тилдер"
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:283
+msgid "Update Languages"
+msgstr "Тилдерди жаңылоо"
+
+#: adminpages.py:284
+#, python-format
+msgid "Pootle Admin: %s"
+msgstr "Pootle админи: %s"
+
+#: adminpages.py:285 adminpages.py:356
+msgid "You do not have the rights to administer this project."
+msgstr "Бул проекти башкарууга укугуңуз жетишсиз."
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:289
+msgid "Update from templates"
+msgstr "Калыптардан жаңылоо"
+
+#: adminpages.py:298
+msgid "Add Language"
+msgstr "Тил кошуу"
+
+#. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
+#: adminpages.py:336
+#, python-format
+msgid "Pootle Admin: %s %s"
+msgstr "Pootle админи: %s %s"
+
+#: adminpages.py:337
+msgid "Project home page"
+msgstr "Проектин башкы барагы"
+
+#: adminpages.py:355
+#, python-format
+msgid "Cannot set rights for username %s - user does not exist"
+msgstr "%s колдонуучусу үчүн укуктар орнотулбады - мындай колдонуучу жок"
+
+#: adminpages.py:372
+msgid "This is a GNU-style project (one directory, files named per language)."
+msgstr ""
+"Бул GNU стилиндеги проект (бир каталогдуу, ар-бир тилге тийиштүү файл бар)."
+
+#: adminpages.py:374
+msgid "This is a standard style project (one directory per language)."
+msgstr "Бул стандарттык стилдеги проект (ар-бир тилге өзүнчө каталог)."
+
+#: adminpages.py:375
+msgid "User Permissions"
+msgstr "Уолдонуучунун укуктары"
+
+#: adminpages.py:377
+msgid "(select to add user)"
+msgstr "(колдонуучу кошуу үчүн аны тандаңыз)"
+
+#: adminpages.py:378
+msgid "Rights"
+msgstr "Укукттар"
+
+#: adminpages.py:379 indexpage.py:1008
+msgid "Remove"
+msgstr "Жоготуу"
+
+#: adminpages.py:406
+msgid "Update Rights"
+msgstr "Укуктарды жаңылоо"
+
+#: indexpage.py:58
+msgid "About Pootle"
+msgstr "Pootle жөнүндө"
+
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:60
+msgid ""
+"<strong>Pootle</strong> is a simple web portal that should allow you to "
+"<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
+"you can download it and run your own copy if you like. You can also help "
+"participate in the development in many ways (you don't have to be able to "
+"program)."
+msgstr ""
+"<strong>Pootle</strong> бул жөнөкөй веб портал, ал сизге компьютердик "
+"программаларды <strong>которууга</strong> мүмкүнчүлүк берет! Pootle - "
+"<strong>Эркин программалык жабдык</strong>, эгер кааласаңыз аны жүктөп алып "
+"өзүңүз иштетсеңиз болот. Ошондой эле, аны түзүү ишине сизге ылайыктуу "
+"жолдору менен катышсаңыз болот (бул үчүн программа түзүүнү билүүнүн кажети "
+"деле жок)."
+
+#: indexpage.py:61
+msgid ""
+"The Pootle project itself is hosted at <a href=\"http://translate."
+"sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
+"details about source code, mailing lists etc."
+msgstr ""
+"Pootle проекти <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> "
+"дарегинде жайгашкан. Ал жерде проектин башат коду, электрондук кабар "
+"таркатуу системасы ж.б. жайгашкан."
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:64
+msgid ""
+"The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
+"thechestnut.com/flumps.htm\">this</a>."
+msgstr ""
+"Проектин аталышы төмөнкүчө чечмеленет <b>PO</b>-based <b>O</b>nline "
+"<b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine (PO файлына "
+"негизделген которуу жана локализациялоо онлайн системасы). Ошондой эле <a "
+"href=\"http://www.thechestnut.com/flumps.htm\">бул маалымат</a> менен "
+"таанышууну сунуштайбыз."
+
+#: indexpage.py:65
+msgid "Versions"
+msgstr "Версиялар"
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:68
+#, python-format
+msgid ""
+"This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+msgstr ""
+"Сайтта аткарылууда:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (на %s/%s)"
+
+#: indexpage.py:133
+#, python-format
+msgid "User Page for: %s"
+msgstr "Колдонуучунун барагы: %s"
+
+#: indexpage.py:135
+msgid "Change options"
+msgstr "Ырастоолорду өзгөртүү"
+
+#: indexpage.py:136
+msgid "Admin page"
+msgstr "Админ барагы"
+
+#: indexpage.py:137 projects.py:149
+msgid "Administrate"
+msgstr "Башкаруу"
+
+#: indexpage.py:138
+msgid "Quick Links"
+msgstr "Ыкчам шилтемелер"
+
+#: indexpage.py:142
+msgid "Please click on 'Change options' and select some languages and projects"
+msgstr "'Ырастоолорду өзгөртүү' шилтемесин басып тил жана проект тандаңыз"
+
+#: indexpage.py:199
+#, python-format
+msgid "%d project, average %d%% translated"
+msgid_plural "%d projects, average %d%% translated"
+msgstr[0] "%d проект, орточо %d%% которулган"
+
+#. l10n: The first parameter is the name of the installation
+#. l10n: The second parameter is the name of the project/language
+#. l10n: This is used as a page title. Most languages won't need to change this
+#: indexpage.py:205 indexpage.py:268
+#, python-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
+msgid "Admin"
+msgstr "Админ"
+
+#: indexpage.py:221
+msgid "Language Code"
+msgstr "Тилдин коду"
+
+#: indexpage.py:222
+msgid "Language Name"
+msgstr "Тилдин аты"
+
+#: indexpage.py:260
+#, python-format
+msgid "%d language, average %d%% translated"
+msgid_plural "%d languages, average %d%% translated"
+msgstr[0] "%d тил, орточо %d%% которулган"
+
+#: indexpage.py:273
+msgid "Language"
+msgstr "Тил"
+
+#. l10n: The first parameter is the name of the installation (like "Pootle")
+#: indexpage.py:354
+#, python-format
+msgid "%s: Project %s, Language %s"
+msgstr "%s: Проект %s, тил %s"
+
+#. l10n: text next to search field
+#: indexpage.py:362 translatepage.py:145
+msgid "Search"
+msgstr "Издөө"
+
+#: indexpage.py:363 translatepage.py:146
+msgid "Advanced Search"
+msgstr "Кеңейтилген издөө"
+
+#: indexpage.py:422
+msgid "Cannot upload file, no file attached"
+msgstr "Файлды артууга болбоду, файл тиркелген эмес"
+
+#: indexpage.py:428
+msgid "Can only upload PO files and zips of PO files"
+msgstr "PO файлдарды жана архивделген PO файлдарын гана артууга болот"
+
+#: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
+msgid "Assign Strings"
+msgstr "Саптарды аныктоо"
+
+#: indexpage.py:536 translatepage.py:239
+msgid "Assign Action"
+msgstr "Аракеттерди аныктоо"
+
+#: indexpage.py:537 translatepage.py:238
+msgid "Assign to User"
+msgstr "Колдонуучуга байланыштыруу"
+
+#: indexpage.py:543
+msgid "goals"
+msgstr "маселелер"
+
+#: indexpage.py:544
+msgid "Enter goal name"
+msgstr "Маселенин атын киргииңиз"
+
+#: indexpage.py:545
+msgid "Add Goal"
+msgstr "Маселе кошуу"
+
+#: indexpage.py:550 indexpage.py:552
+msgid "Upload File"
+msgstr "Файл артуу"
+
+#: indexpage.py:551
+msgid "Select file to upload"
+msgstr "Артуу үчүн файл тандаңыз"
+
+#. l10n: radio button text
+#: indexpage.py:557 projects.py:141
+msgid "Overwrite"
+msgstr "Үстүнө жазуу"
+
+#. l10n: tooltip
+#: indexpage.py:559
+msgid "Overwrite the current file if it exists"
+msgstr "Эгер файл бар болсо, анын үстүнө жазуу"
+
+#. l10n: radio button text
+#: indexpage.py:561
+msgid "Merge"
+msgstr "Бириктирүү"
+
+#. l10n: tooltip
+#: indexpage.py:563
+msgid ""
+"Merge the file with the current file and turn conflicts into suggestions"
+msgstr ""
+"Файлды учурдагы файл менен бириктирип, конфликтүү саптарды сунуш катары "
+"белгилөө"
+
+#: indexpage.py:666
+msgid "Not in a goal"
+msgstr "Маселеде эмес"
+
+#: indexpage.py:686
+msgid "Add User"
+msgstr "Колдонуучу кошуу"
+
+#: indexpage.py:731
+msgid "PO file"
+msgstr "PO файл"
+
+#: indexpage.py:735
+msgid "XLIFF file"
+msgstr "XLIFF файл"
+
+#: indexpage.py:739
+msgid "Qt .ts file"
+msgstr "Qt .ts файл"
+
+#: indexpage.py:743
+msgid "CSV file"
+msgstr "CSV файл"
+
+#: indexpage.py:748
+msgid "MO file"
+msgstr "MO файл"
+
+#. l10n: Update from version control (like CVS or Subversion)
+#: indexpage.py:754
+msgid "Update"
+msgstr "Жаңылоо"
+
+#. l10n: Commit to version control (like CVS or Subversion)
+#: indexpage.py:760 projects.py:150
+msgid "Commit"
+msgstr "Бекитүү"
+
+#: indexpage.py:798
+msgid "All Strings"
+msgstr "Бардык саптар"
+
+#: indexpage.py:799 pagelayout.py:249
+msgid "Untranslated"
+msgstr "Которулбаган"
+
+#: indexpage.py:800
+msgid "Unassigned"
+msgstr "Байланышпаган"
+
+#: indexpage.py:801
+msgid "Unassigned and Untranslated"
+msgstr "Байланышпаган жана которулбаган"
+
+#: indexpage.py:808
+msgid "Set Goal"
+msgstr "Маселе коюу"
+
+#: indexpage.py:812
+msgid "Select Multiple"
+msgstr "Бир-нечени тандоо"
+
+#: indexpage.py:814
+msgid "Assign To"
+msgstr "Байланыштыруу"
+
+#: indexpage.py:843
+msgid "Show Editing Functions"
+msgstr "Оңдоо функцияларын көргөзүү"
+
+#: indexpage.py:844
+msgid "Show Statistics"
+msgstr "Статистиканы көргөзүү"
+
+#: indexpage.py:845
+msgid "Show Tracks"
+msgstr "Тарыхты көргөзүү"
+
+#: indexpage.py:845
+msgid "Hide Tracks"
+msgstr "Тарыхты жашыруу"
+
+#. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
+#: indexpage.py:847
+msgid "Show Checks"
+msgstr "Текшерүүнү көргөзүү"
+
+#: indexpage.py:847
+msgid "Hide Checks"
+msgstr "Текшерүүнү жашыруу"
+
+#: indexpage.py:848
+msgid "Show Goals"
+msgstr "Маселелерди көргөзүү"
+
+#: indexpage.py:848
+msgid "Hide Goals"
+msgstr "Маселелерди жашыруу"
+
+#: indexpage.py:849
+msgid "Show Assigns"
+msgstr "Байланыштарды көргөзүү"
+
+#: indexpage.py:849
+msgid "Hide Assigns"
+msgstr "Байланыштарды жашыруу"
+
+#: indexpage.py:858
+#, python-format
+msgid "All Goals: %s"
+msgstr "Бардык маселелер: %s"
+
+#: indexpage.py:864
+msgid "Translate My Strings"
+msgstr "Менин саптарымды которуу"
+
+#: indexpage.py:866
+msgid "View My Strings"
+msgstr "Менин саптарымды көргөзүү"
+
+#: indexpage.py:871
+msgid "No strings assigned to you"
+msgstr "Сиз менен саптар байланыштырылган эмес"
+
+#: indexpage.py:875
+msgid "Quick Translate My Strings"
+msgstr "Менин саптарымды ыкчам которуу"
+
+#: indexpage.py:879
+msgid "No untranslated strings assigned to you"
+msgstr "Сиз менен которулбаган саптар байланышкан эмес"
+
+#: indexpage.py:883
+msgid "Review Suggestions"
+msgstr "Сунуштарды байкоо"
+
+#: indexpage.py:885
+msgid "View Suggestions"
+msgstr "Сунуштарды кароо"
+
+#: indexpage.py:890
+msgid "Quick Translate"
+msgstr "Ыкчам которуу"
+
+#: indexpage.py:892
+msgid "View Untranslated"
+msgstr "Которулбагандарды кароо"
+
+#: indexpage.py:896
+msgid "No untranslated items"
+msgstr "Которулбаган саптар жок"
+
+#: indexpage.py:899
+msgid "Translate All"
+msgstr "Бардыгын которуу"
+
+#: indexpage.py:914
+msgid "ZIP of goal"
+msgstr "Маселелердин ZIP архиви"
+
+#: indexpage.py:916
+msgid "ZIP of folder"
+msgstr "Каталогдордун ZIP архиви"
+
+#: indexpage.py:923
+msgid "Generate SDF"
+msgstr "SDF жаратуу"
+
+#: indexpage.py:976
+#, python-format
+msgid "%d string (%d%%) failed"
+msgid_plural "%d strings (%d%%) failed"
+msgstr[0] "%d сап (%d%%) ишке ашпады"
+
+#: indexpage.py:1003
+#, python-format
+msgid "%d/%d words (%d%%) assigned"
+msgstr "%d/%d сөз (%d%%) байланышкан"
+
+#: indexpage.py:1004 indexpage.py:1006
+#, python-format
+msgid "[%d/%d strings]"
+msgstr "[%d/%d сап]"
+
+#: indexpage.py:1005 pagelayout.py:235
+#, python-format
+msgid "%d/%d words (%d%%) translated"
+msgstr "%d/%d сөз (%d%%) которулган"
+
+#: pagelayout.py:28
+msgid "All projects"
+msgstr "Бардык проектер"
+
+#: pagelayout.py:29
+msgid "All languages"
+msgstr "Бардык тилдер"
+
+#: pagelayout.py:30
+msgid "My account"
+msgstr "Менин каттоом"
+
+#: pagelayout.py:32
+msgid "Docs & help"
+msgstr "Документация жана жардам"
+
+#: pagelayout.py:34
+msgid "Log out"
+msgstr "Сессияны аяктоо"
+
+#: pagelayout.py:35
+msgid "Log in"
+msgstr "Кирүү"
+
+#. l10n: Verb, as in "to register"
+#: pagelayout.py:37
+msgid "Register"
+msgstr "Каттоо"
+
+#: pagelayout.py:38
+msgid "Activate"
+msgstr "Жандандыруу"
+
+#: pagelayout.py:83
+msgid "Pootle Logo"
+msgstr "Pootle логосу"
+
+#: pagelayout.py:84
+msgid "About this Pootle server"
+msgstr "Бул Pootle сервери жөнүндө"
+
+#: pagelayout.py:160
+msgid "All goals"
+msgstr "Бардык маселелер"
+
+#: pagelayout.py:231
+#, python-format
+msgid "%d/%d files"
+msgstr "%d/%d файл"
+
+#: pagelayout.py:234
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "%d файл"
+
+#: pagelayout.py:236
+#, python-format
+msgid "%d/%d strings"
+msgstr "%d/%d сап"
+
+#: pagelayout.py:242 users.py:184
+msgid "Name"
+msgstr "Аты"
+
+#: pagelayout.py:243
+msgid "Translated"
+msgstr "Которулган"
+
+#: pagelayout.py:244
+msgid "Translated percentage"
+msgstr "Которуу проценти"
+
+#: pagelayout.py:245
+msgid "Translated words"
+msgstr "Которулган сөздөр"
+
+#: pagelayout.py:246 translatepage.py:135
+msgid "Fuzzy"
+msgstr "Так эмес"
+
+#: pagelayout.py:247
+msgid "Fuzzy percentage"
+msgstr "Так эмесинин проенти"
+
+#: pagelayout.py:248
+msgid "Fuzzy words"
+msgstr "Так эмес сөздөр"
+
+#: pagelayout.py:250
+msgid "Untranslated percentage"
+msgstr "Которулбаганынын проценти"
+
+#: pagelayout.py:251
+msgid "Untranslated words"
+msgstr "Которулбаган сөздөр"
+
+#: pagelayout.py:252
+msgid "Total"
+msgstr "Бардыгы"
+
+#: pagelayout.py:253
+msgid "Total words"
+msgstr "Бардык сөздөр"
+
+#. l10n: noun. The graphical representation of translation status
+#: pagelayout.py:255
+msgid "Graph"
+msgstr "Графика"
+
+#: pagelayout.py:293
+msgid "Source Text"
+msgstr "Баштапкы текст"
+
+#: pagelayout.py:297
+msgid "Target Text"
+msgstr "Максаттык текст"
+
+#: pagelayout.py:301
+msgid "Comments"
+msgstr "Комментарийлер"
+
+#: pagelayout.py:305
+msgid "Locations"
+msgstr "Жайгашкан жери"
+
+#: pootle.py:305
+msgid "Login failed"
+msgstr "Аутентификация ишке ашкан жок"
+
+#: pootle.py:349 pootle.py:380
+msgid "Redirecting to login..."
+msgstr "Кирүү барагына багыттоо..."
+
+#: pootle.py:352
+msgid "Need to log in to access home page"
+msgstr "Өздүк баракка жетүү үчүн системага кирүү керек"
+
+#: pootle.py:365
+msgid "Personal details updated"
+msgstr "Өздүк маалымат жаңыланды"
+
+#: pootle.py:383
+msgid "Need to log in to access admin page"
+msgstr "Адин барагына жетүү үчүн системага кирүү керек"
+
+#: pootle.py:390
+msgid "Redirecting to home..."
+msgstr "Өздүк баракка багыттоо..."
+
+#: pootle.py:393
+msgid "You do not have the rights to administer pootle."
+msgstr "Pootle башкарууга сиздин укугуңуз жок"
+
+#. l10n: Verb
+#: projects.py:138
+msgid "View"
+msgstr "Кароо"
+
+#: projects.py:139 translatepage.py:678
+msgid "Suggest"
+msgstr "Сунуштоо"
+
+#: projects.py:140
+msgid "Translate"
+msgstr "Которуу"
+
+#. l10n: Verb
+#: projects.py:143
+msgid "Review"
+msgstr "Байкоо"
+
+#. l10n: Verb
+#: projects.py:145
+msgid "Archive"
+msgstr "Архивдөө"
+
+#. l10n: This refers to generating the binary .mo file
+#: projects.py:147
+msgid "Compile PO files"
+msgstr "PO файлдарын компиляциялоо"
+
+#: projects.py:148
+msgid "Assign"
+msgstr "Байланыштыруу"
+
+#. l10n: Don't translate "nobody" or "default"
+#: projects.py:230
+msgid "You cannot remove the \"nobody\" or \"default\" user"
+msgstr "Сиз \"nobody\" же \"default\" колдонуучусун жок кыла албайсыз"
+
+#: projects.py:382 projects.py:444
+msgid "You do not have rights to alter goals here"
+msgstr "Бул жердин маселелерин өзгөртүүгө сиздин укугуңуз жок"
+
+#: projects.py:510
+msgid "You do not have rights to upload files here"
+msgstr "Бул жерге файлдарды артууга сиздин укугуңуз жок"
+
+#: projects.py:513
+msgid "You do not have rights to overwrite files here"
+msgstr "Бул жердин файлдарынын үстүнө жазууга сиздин укугуңуз жок"
+
+#: projects.py:515
+msgid "You do not have rights to upload new files here"
+msgstr "Бул жерге жаңы файлдарды артууга сиздин укугуңуз жок"
+
+#: projects.py:524
+msgid "You do not have rights to update files here"
+msgstr "Бул жердин файлдарын жаңылоого сиздин укугуңуз жок"
+
+#: projects.py:555
+msgid "You do not have rights to commit files here"
+msgstr "Бул жердин файлдарды сактоого сиздин укугуңуз жок"
+
+#: projects.py:977 projects.py:1019
+msgid "You do not have rights to alter assignments here"
+msgstr "Бул жердин байланыштарын өзгөртүүгө сиздин укугуңуз жок"
+
+#: projects.py:1219
+msgid "You do not have rights to change translations here"
+msgstr "Бул жердин котормолорун өзгөртүүгө сиздин укугуңуз жок"
+
+#: projects.py:1229
+msgid "You do not have rights to suggest changes here"
+msgstr "Бул жердин сунуштарын өзгөртүүгө сиздин укугуңуз жок"
+
+#: projects.py:1245 projects.py:1263
+msgid "You do not have rights to review suggestions here"
+msgstr "Бул жердин сунуштарын байкоого сиздин укугуңуз жок"
+
+#: translatepage.py:103
+#, python-format
+msgid ""
+"%d/%d translated\n"
+"(%d untranslated, %d fuzzy)"
+msgstr ""
+"%d/%d которулган\n"
+"(%d которулбаган, %d так эмес)"
+
+#. l10n: first parameter: name of the installation (like "Pootle")
+#. l10n: second parameter: project name
+#. l10n: third parameter: target language
+#. l10n: fourth parameter: file name
+#: translatepage.py:113
+#, python-format
+msgid "%s: translating %s into %s: %s"
+msgstr "%s: %s дан %s га которуу: %s"
+
+#. l10n: Heading above the table column with the source language
+#: translatepage.py:128
+msgid "Original"
+msgstr "Түп нускасы"
+
+#. l10n: Heading above the table column with the target language
+#: translatepage.py:130
+msgid "Translation"
+msgstr "Котормосу"
+
+#: translatepage.py:133
+msgid "Accept suggestion"
+msgstr "Сунуштарды кабылдоо"
+
+#: translatepage.py:134
+msgid "Reject suggestion"
+msgstr "Сунуштарды четке кагуу"
+
+#. l10n: Heading above the textarea for translator comments.
+#: translatepage.py:137
+msgid "Translator comments"
+msgstr "Котормочунун комментарийи"
+
+#. l10n: Heading above the comments extracted from the programing source code
+#: translatepage.py:139
+msgid "Developer comments"
+msgstr "Түзүүчүнүн комментарийи"
+
+#. l10n: This heading refers to related translations and terminology
+#: translatepage.py:141
+msgid "Related"
+msgstr "Байланышкандар"
+
+#. l10n: Text displayed when an AJAX petition is being made
+#: translatepage.py:155
+msgid "Working..."
+msgstr "Аткарылууда..."
+
+#. l10n: Text displayed in an alert box when an AJAX petition has failed
+#: translatepage.py:157
+msgid "Error: Something went wrong."
+msgstr "Ката: Бир нерсеси туура эмес."
+
+#. l10n: "batch" refers to the set of translations that were reviewed
+#: translatepage.py:171
+msgid "End of batch"
+msgstr "Пакеттин аягы"
+
+#: translatepage.py:173
+msgid "Click here to return to the index"
+msgstr "Файлдар тизмесине кайтуу үчүн муну басыңыз"
+
+#. l10n: noun (the start)
+#: translatepage.py:187 translatepage.py:190
+msgid "Start"
+msgstr "Башы"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:194 translatepage.py:197
+#, python-format
+msgid "Previous %d"
+msgstr "Мурунку %d"
+
+#. l10n: the third parameter refers to the total number of messages in the file
+#: translatepage.py:199
+#, python-format
+msgid "Items %d to %d of %d"
+msgstr "%d ден %d чейинки элементтер, бардыгы %d"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:204 translatepage.py:207
+#, python-format
+msgid "Next %d"
+msgstr "Кийинки %d"
+
+#. l10n: noun (the end)
+#: translatepage.py:210 translatepage.py:213
+msgid "End"
+msgstr "Аягы"
+
+#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
+#: translatepage.py:230
+#, python-format
+msgid "checking %s"
+msgstr "текшерүү %s"
+
+#: translatepage.py:398
+#, python-format
+msgid "There are no items matching that search ('%s')"
+msgstr "Издөөгө туура келген элементтер табылбады ('%s')"
+
+#: translatepage.py:400
+msgid "You have finished going through the items you selected"
+msgstr "Тандалган бардык элементтерди карап чыктыңыз"
+
+#: translatepage.py:643
+msgid "Singular"
+msgstr "Жекелик түрү"
+
+#: translatepage.py:644
+msgid "Plural"
+msgstr "Көптүк түрү"
+
+#. l10n: verb
+#: translatepage.py:658
+msgid "Edit"
+msgstr "Оңдоо"
+
+#. l10n: verb
+#: translatepage.py:674
+msgid "Copy"
+msgstr "Көчүрүү"
+
+#: translatepage.py:675 translatepage.py:849
+msgid "Skip"
+msgstr "Өткөрүү"
+
+#. l10n: verb
+#: translatepage.py:677 translatepage.py:848 users.py:312
+msgid "Back"
+msgstr "Артка"
+
+#: translatepage.py:679
+msgid "Submit"
+msgstr "Сактоо"
+
+#. l10n: action that increases the height of the textarea
+#: translatepage.py:682
+msgid "Grow"
+msgstr "Кеңейтүү"
+
+#. l10n: action that decreases the height of the textarea
+#: translatepage.py:684
+msgid "Shrink"
+msgstr "Кичирейтүү"
+
+#: translatepage.py:706 translatepage.py:800 translatepage.py:837
+#: translatepage.py:870
+#, python-format
+msgid "Plural Form %d"
+msgstr "Көптүк түрүнүн саны %d"
+
+#. l10n: This is an error message that will display if the relevant problem occurs
+#: translatepage.py:722
+msgid ""
+"Translation not possible because plural information for your language is not "
+"available. Please contact the site administrator."
+msgstr ""
+"Сиздин тилдин көптүк түрү жөнүндө маалымат жок, ошондуктан которуу мүмкүн "
+"эмес. Сайттын башкаруучусуна кайрылыңыз."
+
+#: translatepage.py:804
+msgid "Current Translation:"
+msgstr "Учурдагы которомо:"
+
+#. l10n: First parameter: number
+#. l10n: Second parameter: name of translator
+#: translatepage.py:817
+#, python-format
+msgid "Suggestion %d by %s:"
+msgstr "%2s %1d сунуш берди:"
+
+#: translatepage.py:819
+#, python-format
+msgid "Suggestion %d:"
+msgstr "%s сунуштары :"
+
+#. l10n: parameter: name of translator
+#: translatepage.py:823
+#, python-format
+msgid "Suggestion by %s:"
+msgstr "%s сунуштары:"
+
+#: translatepage.py:825
+msgid "Suggestion:"
+msgstr "Сунуш:"
+
+#: users.py:43
+#, python-format
+msgid "You must supply a valid password of at least %d characters."
+msgstr "Кеминде %d символдон турган сырсөз киргизүүңүз керек."
+
+#: users.py:45
+msgid "The password is not the same as the confirmation."
+msgstr "Киргизген сырсөзүңүз тактоо үчүн киргизген сырсөзгө дал келбейт."
+
+#: users.py:60
+msgid "Login to Pootle"
+msgstr "Pootle системасына кирүү"
+
+#: users.py:66
+msgid "Username:"
+msgstr "Колдонуучу ысымы:"
+
+#: users.py:68
+msgid "Password:"
+msgstr "Сырсөз:"
+
+#: users.py:69
+msgid "Language:"
+msgstr "Тил:"
+
+#: users.py:71
+msgid "Login"
+msgstr "Логин"
+
+#: users.py:77
+msgid "Default"
+msgstr "Алдыналынган"
+
+#: users.py:112
+msgid "Please enter your registration details"
+msgstr "Катто үчүн маалымат киргизиңиз"
+
+#: users.py:115 users.py:475
+msgid "Pootle Registration"
+msgstr "Pootle каттоосу"
+
+#: users.py:122 users.py:158
+msgid "Your requested username"
+msgstr "Сиз талап кылган колдонуучу аты"
+
+#: users.py:125 users.py:429
+msgid "You must supply a valid email address"
+msgstr "Туура электрондук дарек киргизиңиз"
+
+#: users.py:128
+msgid "Your full name"
+msgstr "Сиздин толук ысымыңыз"
+
+#: users.py:131
+msgid "Your desired password"
+msgstr "Сиз каалаган сырсөз"
+
+#: users.py:133 users.py:189
+msgid "Confirm password"
+msgstr "Сырсөздү тактоо"
+
+#: users.py:134
+msgid "Type your password again to ensure it is entered correctly"
+msgstr "Тууралыгын текшерүү үчүн сырсөзүңүздү дагы бир жолу киргизиңиз"
+
+#: users.py:136
+msgid "Register Account"
+msgstr "Каттоо"
+
+#: users.py:145
+msgid "Please enter your activation details"
+msgstr "Жандандыруу үчүн өзүңүздүн маалыматыңызды киргизиңиз"
+
+#: users.py:150
+msgid "Pootle Account Activation"
+msgstr "Pootle каттоосун жандандыруу"
+
+#: users.py:160
+msgid "Activation Code"
+msgstr "Жандандыруу коду"
+
+#: users.py:161
+msgid "The activation code you received"
+msgstr "Сиз алган жандандыруу коду"
+
+#: users.py:163
+msgid "Activate Account"
+msgstr "Каттоону жандандыруу"
+
+#: users.py:175
+#, python-format
+msgid "Options for: %s"
+msgstr "Ырастоолору: %s"
+
+#: users.py:181
+msgid "Personal Details"
+msgstr "Өздүк маалымат"
+
+#: users.py:186
+msgid "Email"
+msgstr "Электрондук дарек"
+
+#: users.py:190
+msgid "Translation Interface Configuration"
+msgstr "Котормо интерфейсин ырастоо"
+
+#: users.py:191
+msgid "User Interface language"
+msgstr "Колдонуучу интерфейсинин тили"
+
+#: users.py:192
+msgid "My Projects"
+msgstr "Менин проектерим"
+
+#: users.py:194
+msgid "My Languages"
+msgstr "Менин тилдерим"
+
+#: users.py:196
+msgid "Home page"
+msgstr "Башкы барак"
+
+#: users.py:202
+msgid "Alternative Source Language"
+msgstr "Альтернативдик башат тили"
+
+#. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
+#: users.py:240
+msgid "None"
+msgstr "Жок"
+
+#: users.py:257
+msgid "Input Height (in lines)"
+msgstr "Киргизүү талаасынын бийиктиги (сап менен)"
+
+#: users.py:258
+msgid "Number of rows in view mode"
+msgstr "Кароо режиминдеги саптардын саны"
+
+#: users.py:259
+msgid "Number of rows in translate mode"
+msgstr "Которуу режиминдеги саптардын саны"
+
+#: users.py:307
+msgid "Error"
+msgstr "Ката"
+
+#: users.py:359
+msgid "You need to be siteadmin to change users"
+msgstr "Колдонуучуларды өзгөртүү үчүн сиз сайттын админи болушуңуз керек"
+
+#: users.py:423
+msgid ""
+"Username must be alphanumeric, and must start with an alphabetic character."
+msgstr ""
+"Колдонуучу ысымы тамга жана цифралардан туруп, сөз жок тамгадан башталышы "
+"керек."
+
+#: users.py:438
+msgid ""
+"You (or someone else) attempted to register an account with your username.\n"
+msgstr "Сиз (же кимдир бирөө), сиздин атыңыз менен каттоо жүргүзүүгө аракеттенүүдө.\n"
+
+#: users.py:439
+msgid "We don't store your actual password but only a hash of it.\n"
+msgstr "Биз сиздин сырсөзүңүздү өзүн сактабайбыз, анын ордуна биз анын хэш маанисин "
+"алабыз.\n"
+
+#: users.py:441
+#, python-format
+msgid "If you have a problem with registration, please contact %s.\n"
+msgstr "Сизди катоо учурунда проблема пайда болду. Чечүү үчүн %s кайрылыңыз.\n"
+
+#: users.py:443
+msgid ""
+"If you have a problem with registration, please contact the site "
+"administrator.\n"
+msgstr "Сизди катоо учурунда проблема пайда болду. Чечүү үчүн сайттын башкаруучусуна "
+"кайрылыңыз.\n"
+
+#: users.py:444
+msgid ""
+"That username already exists. An email will be sent to the registered email "
+"address.\n"
+msgstr "Мындай колдонуучу аты алдагачан түзүлгөн. Катталган электрондук дарекке "
+"электрондук кат жөнөтүлөт.\n"
+
+#: users.py:446
+#, python-format
+msgid "Proceeding to <a href='%s'>login</a>\n"
+msgstr "<a href='%s'>Кирүү</a> барагына өтүү\n"
+
+#: users.py:452
+msgid "A Pootle account has been created for you using this email address.\n"
+msgstr "Бул электрондук даректи колдонуу менен Pootle катоосу түзүлдү.\n"
+
+#: users.py:454
+msgid "To activate your account, follow this link:\n"
+msgstr "Каттоону жандандыруу үчүн, төмөнкү шилтемени караңыз:\n"
+
+#: users.py:460
+#, python-format
+msgid ""
+"Your activation code is:\n"
+"%s\n"
+msgstr ""
+"Сиздин жандандыруу кодуңуз:\n"
+"%s\n"
+
+#: users.py:462
+msgid ""
+"If you are unable to follow the link, please enter the above code at the "
+"activation page.\n"
+msgstr "Эгер сиз шилтемени карай албасаңыз, жогорудагы кодду жандандыруу барагында "
+"киргизиңиз.\n"
+
+#: users.py:463
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message.\n"
+msgstr "Бул кабар электрондук даректин бар экендигин текшерүү максатында жөнөтүлдү. "
+"Эгер сиз катталууну каалабасаңыз, анда бул кабарды карабай койсоңуз деле "
+"болот.\n"
+
+#: users.py:465
+#, python-format
+msgid ""
+"Account created. You will be emailed login details and an activation code. "
+"Please enter your activation code on the <a href='%s'>activation page</a>."
+msgstr ""
+"Каттоо түзүлдү. Сизге каттоо маалыматтары жана жандандыруу коду жиберилет. "
+"Жандандыруу кодун <a href='%s'>жандандыруу барагына</a> киргизиңиз."
+
+#: users.py:467
+msgid "(Or simply click on the activation link in the email)"
+msgstr "(же жөн гана электрондук кабардагы жандандыруу шилтемесин чертиңиз)"
+
+#: users.py:469
+#, python-format
+msgid "Your user name is: %s\n"
+msgstr "Сиздин колдонуучу ысымыңыз: %s\n"
+
+#: users.py:471
+#, python-format
+msgid "Your password is: %s\n"
+msgstr "Сиздин сырсөзүңүз: %s\n"
+
+#: users.py:472
+#, python-format
+msgid "Your registered email address is: %s\n"
+msgstr "Сиздин катталган электрондук дарегиңиз: %s\n"
+
+#: users.py:500
+msgid "Redirecting to Registration Page..."
+msgstr "Катоо барагына багыттоо..."
+
+#: users.py:524
+msgid "Redirecting to login Page..."
+msgstr "Кирүү барагына багыттоо..."
+
+#: users.py:527
+msgid "Your account has been activated! Redirecting to login..."
+msgstr "Сиздин каттоо жандандырылды! Кирүү барагына багыттоо..."
+
+#: users.py:531
+msgid "The activation information was not valid."
+msgstr "Сиздин жандандыруу маалыматыңыз туура эмес."
+
+#: users.py:532
+msgid "Activation Failed"
+msgstr "Жандандыруу ишке ашпады"
+
+#: users.py:649
+msgid "Input height must be numeric"
+msgstr "Киргизүү талаасынын бийиктиги сан болушу керек"
+
+#: users.py:650
+msgid "Input width must be numeric"
+msgstr "Киргизүү талаасынын жазылыгы сан болушу керек"
+
+#: users.py:651
+msgid "The number of rows displayed in view mode must be numeric"
+msgstr "Көргөзүү режиминдеги көрсөтүлүүчү саптардын саны сан болушу керек"
+
+#: users.py:652
+msgid "The number of rows displayed in translate mode must be numeric"
+msgstr "Которуу режиминдеги көрсөтүлүүчү саптардын саны сан болушу керек"

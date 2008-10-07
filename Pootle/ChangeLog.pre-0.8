@@ -1,0 +1,2389 @@
+2005-04-20 11:16  davidfraser
+
+	* README, TODO, __init__.py, adminpages.py, indexpage.py,
+	  pagelayout.py, pootle.prefs, pootle.py, pootlefile.py, potree.py,
+	  projects.py, translatepage.py, users.py, versioncontrol.py,
+	  html/favicon.ico, html/pootle.css, html/robots.txt,
+	  html/doc/howto.html, html/doc/index.html,
+	  html/doc/resources.html, html/images/edit.png,
+	  html/images/file.png, html/images/folder.png,
+	  html/images/gap.png, html/images/goal.png, html/images/logo.png,
+	  html/images/person.png, html/images/pootle-medium.jpg,
+	  html/images/pootle-small.jpg, html/images/pootle.jpg,
+	  html/images/pootle.svg, html/images/top.png,
+	  html/js/autoexpand.js: removed translate/pootle (moving to
+	  Pootle)
+
+2005-04-19 21:52  davidfraser
+
+	* indexpage.py: added UI for adding users to a goal, showing users
+	  in a goal
+
+2005-04-19 21:23  davidfraser
+
+	* indexpage.py, projects.py: added logic to handle multiple goals
+	  although we actually preserve single goals made it possible to
+	  deallocate something by setting no goal don't display useless
+	  information about goals renamed addfiletogoal to setfilegoals as
+	  that's usually what we want to do
+
+2005-04-19 21:05  davidfraser
+
+	* indexpage.py, projects.py: added infrastructure code to support
+	  users in goals (simple copy of file code) renamed set goal to
+	  setgoalfiles only show goals for a file if the file has multiple
+	  goals
+
+2005-04-19 20:47  davidfraser
+
+	* projects.py: simple code cleaning...
+
+2005-04-19 17:57  davidfraser
+
+	* translatepage.py, html/js/autoexpand.js: added grow and shrink
+	  buttons using javascript made other button captions localizable
+
+2005-04-19 01:14  dwaynebailey
+
+	* users.py: Activate a uer from the admin page.  Does not do
+	  deactivation.
+
+2005-04-19 01:02  dwaynebailey
+
+	* adminpages.py, potree.py: You can now edit: special characters,
+	  the number of plurals and the plural equation from the language
+	  admin page.
+
+2005-04-19 00:46  dwaynebailey
+
+	* pagelayout.py: Added quick links to "All Projects" and "All
+	  Languages"
+
+2005-04-19 00:15  dwaynebailey
+
+	* indexpage.py, pootle.py: Add a page that lists all languages on
+	  the Pootle server.
+
+2005-04-14 09:37  davidfraser
+
+	* pootlefile.py, projects.py, translatepage.py: allow users with
+	  translate rights to upload existing files, but don't add new
+	  strings...  also use username to record who uploaded changes
+	  fixed up call to rejectsuggestion, removed session from assignto
+	  function def
+
+2005-04-14 09:32  davidfraser
+
+	* adminpages.py: added title, link to home page to
+	  TranslationProjectAdminPage
+
+2005-04-14 09:21  davidfraser
+
+	* indexpage.py: added link to administrate the translationproject
+	  if you have the rights redid the layout of baselinks in the
+	  process allow the uploadbox if you have translate rights (this
+	  will deny new files however)
+
+2005-04-14 08:58  davidfraser
+
+	* projects.py, adminpages.py, indexpage.py: added proper rights
+	  controls for uploading/updating files, converting from templates
+	  and setting goals created InternalAdminSession class which
+	  projects can use when it does changes internally without a
+	  session
+
+2005-04-11 17:41  davidfraser
+
+	* translatepage.py: when actually submitting translations, we
+	  should use pofilename that was supplied in the argdict for the
+	  submission, not self.pofilename
+
+2005-04-11 16:41  davidfraser
+
+	* translatepage.py: suggestions seem to be normal strings
+	  sometimes, this should fix it till we find out why
+
+2005-04-11 16:26  davidfraser
+
+	* translatepage.py: only add links to current folder, stats if
+	  self.pofilename is not None (when a search is finished / returns
+	  no items, self.pofilename is None)
+
+2005-04-07 16:54  davidfraser
+
+	* pootlefile.py, projects.py: reset the encoding when rereading the
+	  pofile (otherwise it won't decode properly!) only freshen the
+	  newpofile on versioncontrol update, it should be read by the
+	  constructor
+
+2005-04-07 14:53  davidfraser
+
+	* indexpage.py: added tooltip to explain lack of link when no
+	  untranslated items are present...
+
+2005-04-07 14:53  davidfraser
+
+	* pootle.py: unified return-after-login logic, made it work with no
+	  returnurl
+
+2005-04-05 23:16  davidfraser
+
+	* indexpage.py, projects.py: tried to fix up subdirectory handling
+	  of goals, needs more work
+
+2005-04-05 22:47  davidfraser
+
+	* indexpage.py: renamed setgoal to editgoal
+
+2005-04-05 22:45  davidfraser
+
+	* indexpage.py, projects.py: added ability to set files /
+	  directories exclusively to goals also fixed bnad syntax (calling
+	  list) note that this is not aware of files being contained inside
+	  directories yet
+
+2005-04-05 22:36  davidfraser
+
+	* projects.py, indexpage.py: changed linksrequired for goal items
+	  renamed methods, restructured so files are only accessed in
+	  getgoalfiles make sure goalfiles are not empty string fixed using
+	  username instead of session
+
+2005-04-05 22:32  davidfraser
+
+	* pagelayout.py, html/images/pootle-medium.jpg,
+	  html/images/pootle-small.jpg, html/images/pootle.jpg: added small
+	  and medium versions of pootle image, and updated them all from
+	  new svg logo
+
+2005-04-05 22:15  davidfraser
+
+	* html/images/pootle.svg: added background, changed page layout to
+	  fit image, and centred image (landscape mode now)
+
+2005-04-05 22:03  davidfraser
+
+	* html/images/pootle.svg: changed color of nose and mouth, aligned
+	  them, removed center of mouth made logo on hat smaller combined
+	  two segments of hat, and added outline made background blue, took
+	  away purple border
+
+2005-04-05 22:00  davidfraser
+
+	* html/images/pootle.svg: added SVG logo for Pootle from Lucas
+	  Veietes
+
+2005-04-05 19:28  dwaynebailey
+
+	* indexpage.py: "Quick Translate" is now always visible but
+	  disabled if there are no items to translate.	Should probably be
+	  greyed out instead of just not have a link.
+
+	  As a policy I think we need to ensure that: 1) You only see
+	  things that you are allowed to see with your rights 2) Things do
+	  not disappear they just get disabled.
+
+2005-04-05 17:22  davidfraser
+
+	* indexpage.py, projects.py: fixed up funny empty items in
+	  goalfiles list added ability to show items in goal by clicking on
+	  goal title
+
+2005-04-05 17:11  davidfraser
+
+	* indexpage.py, pootle.py: changed links for goal to include check,
+	  assign, review and zip implemented zip of goal
+
+2005-04-05 17:00  davidfraser
+
+	* indexpage.py: added ability to show goals as entries, to add new
+	  goals, to place goalless files in goals tried to sanitize link
+	  generation for options etc as well
+
+2005-04-05 16:57  davidfraser
+
+	* potree.py: fixed docstring
+
+2005-04-05 16:51  davidfraser
+
+	* pagelayout.py: added tediously inane GoalItem class
+
+2005-04-05 16:50  davidfraser
+
+	* html/images/goal.png: added images for goals
+
+2005-04-05 16:49  davidfraser
+
+	* html/pootle.css: added goal style
+
+2005-04-05 16:20  davidfraser
+
+	* projects.py: modified getrights to the siteadmin always has admin
+	  rights to all projects more enhancements to the goals
+	  functionality (adding files to a goal, getting a specific goal,
+	  etc) fixed setting the attribute to "goalname" instead of
+	  goalname
+
+2005-04-05 14:19  davidfraser
+
+	* pagelayout.py: was only initializing adminlink if
+	  session.issiteadmin() or not session.isopen, changed to
+	  initialize correctly
+
+2005-04-05 12:31  davidfraser
+
+	* translatepage.py: wrong variable name
+
+2005-04-04 10:34  dwaynebailey
+
+	* indexpage.py: You should only be able to remove assigns if you
+	  actaully have the rights to assign them in the first place.
+
+2005-04-03 16:06  dwaynebailey
+
+	* translatepage.py: Use the quotes Luke
+
+2005-04-02 12:51  davidfraser
+
+	* projects.py: added initial goals interface cleaned out blank
+	  lines
+
+2005-04-02 12:44  davidfraser
+
+	* pootlefile.py: updated doc string
+
+2005-04-02 12:40  davidfraser
+
+	* potree.py: do something with the new translationproject created,
+	  and don't store getpodir result when just using it for a check
+
+2005-04-02 12:38  davidfraser
+
+	* pootle.py, potree.py, projects.py: moved POTree into its own new
+	  module, potree
+
+2005-04-02 11:57  davidfraser
+
+	* indexpage.py, pootlefile.py, projects.py, translatepage.py: moved
+	  pootlefile class into its own new file, and adjusted projects etc
+	  also cleaned up links in indexpage
+
+2005-04-02 11:35  davidfraser
+
+	* adminpages.py, indexpage.py, pootle.py, users.py: moved various
+	  classes from indexpage into new module adminpages, and
+	  UserOptions into users
+
+2005-04-01 23:12  davidfraser
+
+	* indexpage.py: removed extraneous function call
+
+2005-04-01 17:23  davidfraser
+
+	* projects.py, indexpage.py, pootle.py, translatepage.py: removed
+	  the terrible concept known as 'TranslationSession' implement
+	  rights checking in the TranslationProject added "assign" and
+	  "admin" rights
+
+2005-04-01 16:45  davidfraser
+
+	* indexpage.py, projects.py: made a method on the project that gets
+	  the rights and localized names available for that project (moved
+	  from indexpage)
+
+2005-04-01 16:28  davidfraser
+
+	* indexpage.py, pootle.py, projects.py: implented permissions
+	  system, with ability for administrator to change permissions each
+	  translation project now has a prefs file
+	  (pootle-projectcode-languagecode.prefs in the po directory) this
+	  has a rights attribute, which stores default rights, nobody
+	  rights, and rights for individual users the administrator can go
+	  to /language/project/admin.html to edit the rights
+
+2005-04-01 13:49  davidfraser
+
+	* projects.py, translatepage.py: if a entry is accessed in
+	  project.pofiles and it is not there, but the file exists, then
+	  update the index (this can happen if the timecache expires for
+	  example) handle files being added / removed more robustly as well
+	  also improved logic for setting and using pofilename in
+	  translatepage (was fairly inconsistent)  - receivetranslations
+	  shouldn't set self.pofilename  - also we now pick up pofilename
+	  from dirfilter if explicitly a PO file
+
+2005-03-31 21:02  dwaynebailey
+
+	* pootle.prefs, translatepage.py: If you define "specialchars" in a
+	  language preferences then those characters will be displayed with
+	  the input widget allowing users to copy and paste these
+	  characters into the translation.  Usefull if you do not have a
+	  keyboard configured with these characters.
+
+2005-03-31 20:15  dwaynebailey
+
+	* translatepage.py: Make sure that end never points to a negative
+	  item.  This happens when the number of items is less than
+	  pagesize.  We disable the link in this case but just fixing this
+	  cause we can and it will stop it biting us later.
+
+2005-03-31 19:02  dwaynebailey
+
+	* TODO: More buglets
+
+2005-03-31 11:54  davidfraser
+
+	* indexpage.py, versioncontrol.py: only show update links if the
+	  directory has version control
+
+2005-03-31 08:56  dwaynebailey
+
+	* translatepage.py: In viewmode navifgation widget: - Start and End
+	  are now disabled if you are at the beginning or end of the
+	  file.
+
+2005-03-31 00:41  dwaynebailey
+
+	* translatepage.py: Make the viewmode navigation more intuative and
+	  user friendly: - Added Start and End links - Next 10 and Previous
+	  10 do not disappear but are disabled if you are at the   start or
+	  end of the file (confusing when they disappear)
+
+2005-03-30 23:04  dwaynebailey
+
+	* indexpage.py: Move Zip of folder up to the navbar.  Remove the
+	  addnavlink method as we have no more need for this.
+
+2005-03-30 19:59  dwaynebailey
+
+	* TODO: Some interesting new TODO items
+
+2005-03-30 17:47  davidfraser
+
+	* versioncontrol.py: backup the file first and restore or remove it
+	  afterwards for cvs update this avoids having lots of
+	  .#filename.rev files left around
+
+2005-03-30 17:24  davidfraser
+
+	* projects.py: don't use sources to match items as thats a nice
+	  idea for Mozilla/OpenOffice which use IDs as sources but a
+	  horrible idea for everything else
+
+2005-03-30 17:13  davidfraser
+
+	* projects.py, versioncontrol.py: updated CVS/svn update method so
+	  that it now actually checks out the new version from CVS, to
+	  update the record of which version is current.  refactored
+	  mergefile and created new matchitems method which mathces up
+	  poitems from two files and returns them use the new matchitems to
+	  extract current changes (equivalent to a cvs diff) and then merge
+	  those with the new file (equivalent to a cvs patch) also moved
+	  local function mergeitem to be a method, made it not try to find
+	  headers check properly for full name and email address when doing
+	  Last_Translator in versioncontrol, created helper shellescape and
+	  added update methods as well as introspecting what version a file
+	  is when getting a clean copy (BASE doesn't work here...)
+
+2005-03-30 13:47  davidfraser
+
+	* TODO, translatepage.py: added a copy button
+
+2005-03-30 11:48  davidfraser
+
+	* indexpage.py, projects.py, versioncontrol.py: added simple
+	  versioncontrol module (CVS method from
+	  http://software.cnx.rice.edu/downloads/python/pycvs/) and added
+	  initial implementation for merging with latest CVS/.svn version -
+	  this runs but what it actually *does* hasn't been tested also a
+	  few cleanups in projects.py
+
+2005-03-30 00:29  dwaynebailey
+
+	* translatepage.py: Make translation column headers translatable
+
+2005-03-29 22:06  dwaynebailey
+
+	* translatepage.py: There are always 7 items on a translatable page
+	  even if you are starting at the beginning.
+
+2005-03-29 19:51  dwaynebailey
+
+	* users.py: Add some value catches for email., password and full
+	  name to ensure that the default example values are not used.
+
+2005-03-29 18:53  dwaynebailey
+
+	* users.py: Correcting some confusing or incorrect wording in user
+	  creation
+
+2005-03-29 16:35  dwaynebailey
+
+	* indexpage.py: Do not display the __dummy__ user Use getattr
+	  function for getting email addresses as it can cope when there is
+	  no value set.
+
+2005-03-29 16:32  dwaynebailey
+
+	* pagelayout.py: Add an "Admin" quicklink if the user is a
+	  siteadmin.
+
+2005-03-28 15:09  dwaynebailey
+
+	* projects.py: The "Last-Translator" header field is now updated
+	  during normal translation.  No update is performed for a
+	  suggestion but probably should be done - but who do we credit the
+	  suggestor or the approver?
+
+2005-03-28 09:56  dwaynebailey
+
+	* indexpage.py: Assignments now appear in alphabetical order
+
+2005-03-27 20:40  dwaynebailey
+
+	* indexpage.py: "Show Checks" is not sorted alphabetically.  had to
+	  eliminate yield, iteritem and others so that we can sort the
+	  dictionary keys.  This should allow us to alternatively sort
+	  these lists by the values also.
+
+2005-03-27 14:01  dwaynebailey
+
+	* indexpage.py, pagelayout.py, pootle.py, translatepage.py: When a
+	  user logs in they will be redirected to the folder that they were
+	  browsing when they decided to login.
+
+	  TODO currently if they are viewing a file they will be returned
+	  to the folder that they started the view from they will not be
+	  returned to the place were they were viewing.
+
+2005-03-24 18:03  davidfraser
+
+	* translatepage.py: since PO files now handle encodings, all the
+	  strings are unicode when grepping, so the searchtext should be
+	  unicode too...
+
+2005-03-24 16:50  dwaynebailey
+
+	* pagelayout.py: Quick link to users home page
+
+2005-03-24 15:32  dwaynebailey
+
+	* indexpage.py: Remove "project root" from the sidebar and
+	  integrate it into the top navbar
+
+2005-03-24 14:34  dwaynebailey
+
+	* indexpage.py: No need for "current folder" and "parent folder" on
+	  indepage as these are know accesibale throught the top directory
+	  navigation bar.
+
+2005-03-24 14:25  dwaynebailey
+
+	* indexpage.py: Make the title base links browsable so that you can
+	  jump straight back to anywhere in the heirachy.
+
+2005-03-22 07:29  dwaynebailey
+
+	* translatepage.py: Translation input textarea will now resize
+	  depending on the size of the original or the translation.  The
+	  maximum is an arbitrary 10 rows.
+
+2005-03-18 18:48  davidfraser
+
+	* TODO: added TODO abuot detecting languages
+
+2005-03-18 18:40  davidfraser
+
+	* users.py: fixed syntax after actually running it :-)
+
+2005-03-18 18:37  davidfraser
+
+	* projects.py: don't allow people to change English, and added TODO
+
+2005-03-18 18:18  davidfraser
+
+	* users.py: don't allow a space in the email address
+
+2005-03-18 15:06  dwaynebailey
+
+	* projects.py: Update PO-Revision-Date with proper timezone info.
+	  Seems that there is a bug in Python where it forgets timezone
+	  info.
+	  http://mail.python.org/pipermail/patches/2003-July/012899.html
+
+2005-03-18 14:45  davidfraser
+
+	* indexpage.py, projects.py: allow updating from templates from
+	  project admin page renamed "create" to "converttemplates" which
+	  is more accurate fixed it so it uses the new uploadpofile removed
+	  debug print statement
+
+2005-03-18 14:34  davidfraser
+
+	* projects.py: merged addnewpofile and mergepofile into
+	  uploadpofile fixed variable name in mergeitems
+
+2005-03-18 14:27  davidfraser
+
+	* indexpage.py, projects.py: added merging ability via mergefile
+	  currently this copies translations if the existing translation is
+	  blank, adds new strings (not in old file), and makes any changed
+	  strings suggestions factored out getuploadpath from addnewpofile,
+	  and added equivalent mergepofile these should probably both be
+	  merged down to uploadpofile also use mergepofile from create,
+	  though this needs development
+
+2005-03-18 13:24  dwaynebailey
+
+	* indexpage.py, pootle.py, projects.py: Only make MO files
+	  available to logged in users.
+
+2005-03-18 13:08  davidfraser
+
+	* TODO: have fixed accepting/rejecting suggestions
+
+2005-03-18 13:00  davidfraser
+
+	* projects.py: remove printout of track messages made
+	  deletesuggestion actually find the relevant suggestion for the
+	  correct item and delete that rather than just using suggitem as
+	  an index into the whole pending file this still needs
+	  improvements, but at least its not always wrong now
+
+2005-03-18 12:38  davidfraser
+
+	* indexpage.py: refactored actions that can take place on IndexPage
+	  into handleactions ensure that actions delete their arguments
+	  from self.argdict, so they aren't placed into other links by
+	  makelinks other argument handling moved to after handleactions
+
+2005-03-16 12:38  davidfraser
+
+	* indexpage.py: added a localizable page title that includes the
+	  projectname and the languagename
+
+2005-03-16 12:19  davidfraser
+
+	* indexpage.py, pootle.py, projects.py: removed unneccessary
+	  construction of translation before we try that construction :-)
+	  added "archive" right which allows people to download zip files,
+	  give it to logged-in users only display link to archive if
+	  allowed to download it
+
+2005-03-15 16:15  davidfraser
+
+	* translatepage.py: handle getting to the end of a translation
+	  (self.item is None) when reviewing, and don't get suggestions
+
+2005-03-15 16:11  davidfraser
+
+	* projects.py: actually create the directory when a new project is
+	  created
+
+2005-03-15 15:23  davidfraser
+
+	* pootle.py: made English the default language
+
+2005-03-15 15:20  davidfraser
+
+	* projects.py: speedup for getlanguagecodes so it doesn't end up
+	  recursing through directories looking for GNU files
+
+2005-03-15 14:44  davidfraser
+
+	* pootle.py: get the correct encoding for PO files and set on the
+	  header
+
+2005-03-13 20:46  dwaynebailey
+
+	* indexpage.py, pootle.py, users.py: Allow users to change their
+	  personal details
+
+2005-03-13 11:21  dwaynebailey
+
+	* users.py: We now capture the users full name at registration.
+	  Reordered the fields into something more logical.
+
+2005-03-11 17:38  dwaynebailey
+
+	* pootle.prefs: Example setup for MO file generation
+
+2005-03-11 17:32  dwaynebailey
+
+	* indexpage.py, pootle.py, projects.py: Allow download of MO files,
+	  compiled on the fly from the PO file.
+
+	  Admin users can specify if a project creates MO files.  Projects
+	  like OpenOffice.org, Mozilla, etc do not need MO file ever.
+
+	  Correct HTTP content header to indicate correct encoding for CSV
+	  and PO files (NOTE: this might cause a problem if the underlying
+	  PO file is not UTF-8 encoded)
+
+2005-03-11 17:22  davidfraser
+
+	* indexpage.py, projects.py: added ability to handle uploading zip
+	  files (needs refinement) moved checking of upload file existence
+	  from indexpage to projects use cStringIO rather than StringIO
+
+2005-03-11 16:58  davidfraser
+
+	* projects.py: made hasgnufiles recurse subdirectories, and also
+	  handle no languagecode (any language) also now uses directories
+	  to detect non-gnustyle languagematch can also match any language
+	  now if languagecode is None, using languagere
+
+2005-03-11 16:57  davidfraser
+
+	* indexpage.py: slight simplification of
+	  ProjectAdminPage.getlanguageitem
+
+2005-03-11 16:41  davidfraser
+
+	* projects.py: implemented adding new languages to project based on
+	  template .pot files added new method isgnustyle which returns
+	  whether a whole project is gnustyle (needed when adding a new
+	  language)
+
+2005-03-11 15:49  davidfraser
+
+	* indexpage.py, pootle.py, projects.py: added project admin page
+	  added ability to add new languages to a project (not yet
+	  available for GNU-style projects) improved logic of hasproject
+
+2005-03-11 15:18  davidfraser
+
+	* projects.py: handle regions being separated with _ and -
+
+2005-03-11 15:10  davidfraser
+
+	* indexpage.py, projects.py: rather create the new file from within
+	  the TranslationProject (this also allows us to add new checks...)
+
+2005-03-11 13:57  davidfraser
+
+	* indexpage.py, projects.py: implemented PO file uploading also
+	  converted the TranslationProject's initpootlefiles method to a
+	  scanpofiles which will add / remove files that have appeared /
+	  disappeared
+
+2005-03-10 17:08  davidfraser
+
+	* translatepage.py: extract the stopped message directly rather
+	  than using str() as the StopIteration won't handle unicode
+	  properly (note that unicode(stoppedby) seems to call str first,
+	  giving the same problem...)
+
+2005-03-10 16:37  davidfraser
+
+	* pootle.py, translatepage.py: instead of returning to the
+	  indexpage mystically when a search is finished, display a message
+	  on the translatepage to indicate that (and display no
+	  translations) this could be cleaned up but it already should make
+	  things a lot cleaner...
+
+2005-03-10 16:11  davidfraser
+
+	* pootle.py: updated to handle change to jToolkit requiring
+	  webserver object (used for locking, logging etc) this will
+	  require jToolkit source from 20050310 or later...
+
+2005-03-09 13:33  dwaynebailey
+
+	* indexpage.py: Incorrect title for the user selected list of
+	  languages
+
+2005-03-09 13:26  dwaynebailey
+
+	* translatepage.py: Make "current folder" localizable
+
+2005-03-08 22:27  davidfraser
+
+	* TODO, indexpage.py: made arguments to indexpage sticky (will be
+	  remembered when going to other links, where sensible) this is
+	  mostly done through the makelink method which can take keyword
+	  arguments and override parameters, but otherwise includes all the
+	  argdict parameters also added a helper getboolarg method for
+	  reading boolean argument values
+
+2005-03-08 21:35  davidfraser
+
+	* indexpage.py, pootle.py: split admin page up so projects and
+	  languages are in separate pages
+
+2005-03-08 16:06  davidfraser
+
+	* TODO: have done English login as default, and running without
+	  Pootle PO files clarified that the PO files that need to be
+	  generated are the Pootle ones
+
+2005-03-08 16:01  davidfraser
+
+	* TODO: added TODOs from Durban feedback
+
+2005-03-08 16:01  davidfraser
+
+	* projects.py: implemented removing languages / projects from
+	  pootle don't try add a language unless a code is given
+
+2005-03-07 22:20  dwaynebailey
+
+	* users.py, indexpage.py: Add capturing of user full name to the
+	  user admin page
+
+2005-03-07 21:31  dwaynebailey
+
+	* pootle.prefs: dummy needs and email address also
+
+2005-03-07 21:26  dwaynebailey
+
+	* indexpage.py: Add missing new project field descriptors.
+
+2005-03-07 16:45  davidfraser
+
+	* pootle.py: handle missing languages for pootle
+
+2005-03-07 16:44  davidfraser
+
+	* pootle.prefs: fixed the dummy user so it doesn't cause problems
+
+2005-03-07 16:24  davidfraser
+
+	* pootle.py, projects.py: add in more error checks and safeguards
+	  for live translation, don't require it for pootle to run
+
+2005-03-07 13:42  davidfraser
+
+	* users.py: replaced wrong variable name ...
+
+2005-03-07 12:52  dwaynebailey
+
+	* indexpage.py: Correcting a localize problem Added entry fields
+	  for project checker on the admin page
+
+2005-03-04 17:16  davidfraser
+
+	* indexpage.py, projects.py, translatepage.py, html/pootle.css:
+	  added the ability to show tracks of what has been changed...
+
+2005-03-04 16:17  davidfraser
+
+	* TODO, indexpage.py, projects.py: added unassignments and remove
+	  links to remove assignments...
+
+2005-03-04 15:49  davidfraser
+
+	* indexpage.py: added link to user admin page
+
+2005-03-04 15:42  davidfraser
+
+	* TODO: added yet more thigns to do :-)
+
+2005-03-04 15:34  davidfraser
+
+	* indexpage.py, pootle.py, users.py: added user admin page where
+	  you can add pages
+
+2005-03-03 18:48  davidfraser
+
+	* projects.py: don't assume classname is in self.classify (from a
+	  traceback, this happened)
+
+2005-03-03 18:42  davidfraser
+
+	* projects.py: updated gettext with real code from ugettext
+
+2005-03-03 13:46  davidfraser
+
+	* projects.py: make regional directory names return the full path,
+	  not just the name
+
+2005-03-02 23:52  davidfraser
+
+	* projects.py: removed debug print statements for ugettext
+
+2005-03-02 23:49  davidfraser
+
+	* translatepage.py: only show assigns box if showassigns is true
+	  (need a way to set this parameter without adding it to the URL
+	  manually) disabled assignments requirement for now...
+
+2005-03-02 09:35  davidfraser
+
+	* projects.py: readpofile got deleted inadvertently in last commit,
+	  restoring
+
+2005-03-01 21:57  davidfraser
+
+	* pootle.py, projects.py: use the pootle project to translate
+	  itself live, by adding the required methods to the
+	  TranslationProject and hooking them up in the server
+
+2005-03-01 20:57  davidfraser
+
+	* pootle.prefs, projects.py: simplified po directory structure
+	  rather than allowing multiple directories, allow only one,
+	  defined on the instance as podirectory also, don't allow/require
+	  the user to specify the $project and $language components of the
+	  directory directories must be defined as project/language under
+	  the main po directory for GNU-style directories, they must simply
+	  be project under the main po directory
+
+2005-02-28 17:20  davidfraser
+
+	* indexpage.py: only show the assignment box if show assigns is
+	  selected
+
+2005-02-26 00:42  davidfraser
+
+	* translatepage.py: added assign box for site admin on translate
+	  page also set default search to only search assignments... this
+	  needs to be fixed up properly!
+
+2005-02-26 00:13  davidfraser
+
+	* indexpage.py, projects.py: added basic interface to let site
+	  admin assign things to users
+
+2005-02-25 23:37  davidfraser
+
+	* indexpage.py, projects.py: added interface to show assignments
+
+2005-02-16 16:54  davidfraser
+
+	* html/doc/resources.html: added a link to the wiki
+
+2005-02-16 12:19  davidfraser
+
+	* html/doc/: index.html, resources.html: added explanation, link to
+	  resources, and took out leftover "up" link
+
+2005-02-16 12:09  davidfraser
+
+	* pagelayout.py: added link to documentation
+
+2005-02-16 12:09  davidfraser
+
+	* html/doc/index.html: added simple doc index
+
+2005-02-16 12:03  davidfraser
+
+	* html/doc/howto.html: fixed links that pointed to html dir
+
+2005-02-14 16:55  davidfraser
+
+	* projects.py: simplified the code for checking language / region
+	  codes using sre
+
+2005-02-14 16:46  davidfraser
+
+	* projects.py: added a function to make filenames with language and
+	  region code match for gnu-style projects note that this implies
+	  that if there is more than one region for a language, all the
+	  regions will match
+
+2005-02-14 14:03  davidfraser
+
+	* projects.py: fixed alphanum -> alnum and allow underscores in
+	  project names
+
+2005-02-11 14:36  dwaynebailey
+
+	* html/doc/howto.html: HOWTO use Pootle by Kamber Dotan
+	  <kamberd@yahoo.com>
+
+2005-02-10 17:45  davidfraser
+
+	* projects.py: added some simple PyLucene-based indexing (only will
+	  run if PyLucene is installed) this needs to be redone to handle
+	  individual items, but already speeds up text search a lot by
+	  skipping over files that don't have the given text
+
+2005-02-04 09:01  davidfraser
+
+	* projects.py: if we don't have a new project code, then ignore the
+	  blank value...
+
+2005-02-04 08:58  davidfraser
+
+	* projects.py: added better check for projectcode (could contain
+	  numbers too)
+
+2005-02-04 08:54  davidfraser
+
+	* indexpage.py: added title for checker style, and actually
+	  retrieve it TODO: get rid of these getter methods, do it sensibly
+	  :-)
+
+2005-02-04 08:49  davidfraser
+
+	* projects.py: fixed pychecker errors (session -> self.session,
+	  unneccessary import, variable misname, unused variable)
+
+2005-01-30 18:34  dwaynebailey
+
+	* indexpage.py, pootle.prefs, projects.py: You can now set the
+	  checker style for the project.  Might be good to later make this
+	  more fine grained so yo can make custom syles.
+
+2005-01-28 18:41  davidfraser
+
+	* indexpage.py: if the user doesn't have any quicklinks, explain
+	  why...
+
+2005-01-28 18:40  davidfraser
+
+	* TODO: now have an admin page :-)
+
+2005-01-28 18:33  davidfraser
+
+	* indexpage.py, pootle.py: added general options section to admin
+	  page, code to change options to PootleServer added default values
+	  for title and description, set them if missing in PootleServer
+
+2005-01-28 18:14  davidfraser
+
+	* indexpage.py, projects.py: ability to add new languages and
+	  projects via the admin page
+
+2005-01-28 18:04  davidfraser
+
+	* indexpage.py: added titles to admin page tables, made sure Remove
+	  %s is localized
+
+2005-01-28 17:58  davidfraser
+
+	* indexpage.py, pootle.py, projects.py: added projects editing to
+	  language page, similar to language editing
+
+2005-01-28 17:50  davidfraser
+
+	* indexpage.py, pootle.py, projects.py: added admin page which
+	  should let the site admin add/remove/change languages/projects
+	  etc underlying changes are done through the potree which can now
+	  save the prefs file
+
+2005-01-28 17:26  davidfraser
+
+	* users.py: a cleaner way of validating the projects and languages
+	  in a user's prefs...
+
+2005-01-28 17:14  davidfraser
+
+	* users.py: make sure that if there are no projects or languages
+	  defined we don't return a "" code...
+
+2005-01-28 17:01  davidfraser
+
+	* indexpage.py, pootle.py: split up the user options into a
+	  separate page took out verbose admin page description
+
+2005-01-28 16:54  davidfraser
+
+	* indexpage.py: replaced all the strange ways of setting up titles
+	  with a simple pagelayout.Title in so doing corrected a h2 ... h3
+	  that caused layout problems
+
+2005-01-28 16:37  davidfraser
+
+	* indexpage.py, pagelayout.py: added pagelayout.Title class to
+	  prevent repitition (only one entry changed) added a link to a
+	  (not yet existing) site admin page if the user is a siteadmin
+
+2005-01-28 16:34  davidfraser
+
+	* users.py: make sure that the session's prefs get updated when the
+	  session is opened or closed add a method to check if the current
+	  user has site admin rights
+
+2005-01-28 16:09  davidfraser
+
+	* pagelayout.py: removed some stuff from the Sidebar (shrinking it
+	  to move it to the top)
+
+2005-01-28 16:07  davidfraser
+
+	* indexpage.py, pootle.py: added about page, with more details
+	  about the pootle project etc (moved some of that off the home
+	  page)
+
+2005-01-28 15:29  davidfraser
+
+	* pootle.py, users.py: changed my/ home directory to home/ (after
+	  all, my/ is Burmese :-)) simplified PootleSession code by adding
+	  .prefs attribute started adding rights code
+
+2005-01-28 15:07  davidfraser
+
+	* pootle.py: go to user page after login
+
+2005-01-25 07:32  davidfraser
+
+	* indexpage.py: added language titles to user quicklinks
+
+2005-01-25 07:23  davidfraser
+
+	* indexpage.py: only show projects that exist in user quicklinks
+
+2005-01-25 07:21  davidfraser
+
+	* indexpage.py: added quick links to project-language combinations
+	  for user fixed up docstrings
+
+2005-01-25 07:02  davidfraser
+
+	* users.py, indexpage.py, pootle.py: movied saveuserprefs onto the
+	  session object added ability to set user languages in my page
+	  save prefs when user changes options
+
+2005-01-24 21:52  davidfraser
+
+	* pootle.py, indexpage.py, users.py: added functions to help store
+	  user prefs added initial /my page where the user can choose
+	  projects
+
+2005-01-24 17:50  davidfraser
+
+	* TODO: added TODO about plurals
+
+2005-01-24 17:36  davidfraser
+
+	* pootle.py, users.py: moved some more registration / activation
+	  code into the users module where it belongs
+
+2005-01-24 17:14  davidfraser
+
+	* projects.py: return the first string for plural msgstr (and added
+	  a TODO to handle this properly)
+
+2005-01-24 16:08  davidfraser
+
+	* users.py: fixed an old session.localize that should have been
+	  self, and was misspelt!
+
+2005-01-20 12:27  davidfraser
+
+	* translatepage.py: reduce needs an initial value in case diffcodes
+	  is empty (no difference)
+
+2005-01-20 10:50  davidfraser
+
+	* html/pootle.css: added border for diff styles so that the
+	  insertion / removal place can be seen in the other string even
+	  though it contains no text
+
+2005-01-20 10:43  davidfraser
+
+	* translatepage.py, html/pootle.css: use tags to represent
+	  different kinds of changes when displaying diffs this gives us
+	  red background for removed text, green for added, yellow for
+	  modified
+
+2005-01-19 22:48  davidfraser
+
+	* indexpage.py: added a link to an archive of the current folder's
+	  po files don't actually need to import projects as we use
+	  everything via the potree object
+
+2005-01-19 22:47  davidfraser
+
+	* pootle.py, projects.py: added ability to make archives of zip
+	  files, either using the zip command line tool or python's zipfile
+	  module (which is slower)
+
+2005-01-19 20:54  davidfraser
+
+	* pootle.py: set localedomains so it's not required in the prefs
+	  file
+
+2005-01-19 20:15  davidfraser
+
+	* TODO: fixed escaping and quoting problems
+
+2005-01-19 20:12  davidfraser
+
+	* projects.py: added methods "unquotefrompo" and "quoteforpo" to
+	  mirror the functions in translate.storage.po, but allow us to
+	  tweak them as desired the only current required tweak is to
+	  ignore the \r before \n sent with submitted text strings
+
+2005-01-19 16:24  davidfraser
+
+	* projects.py: we shouldn't include escapes in unquoted strings...
+
+2005-01-19 14:01  dwaynebailey
+
+	* TODO: Some pointers for compilation
+
+2005-01-19 13:39  davidfraser
+
+	* translatepage.py: try to space out the original text better using
+	  the line breaks from the po file handle quoting of the pofilename
+	  properly when its in a URL (other + will get translated to space)
+
+2005-01-19 12:40  davidfraser
+
+	* projects.py: added a custom filter error handler so errors in
+	  filters don't prevent work happening, they just record the filter
+	  as failing
+
+2005-01-19 11:18  davidfraser
+
+	* translatepage.py: escape orig and trans text properly also escape
+	  inside suggestions which needs to be done when highlighting the
+	  diffs to prevent confusion
+
+2005-01-19 10:52  davidfraser
+
+	* indexpage.py, pagelayout.py: always display the project root, and
+	  give it some proper text (project and language) and description
+	  also display it before the current/parent folder add ability to
+	  have tooltip in folderlinks
+
+2005-01-19 10:51  davidfraser
+
+	* projects.py: store the projectdescription as an attribute on the
+	  TranslationProject
+
+2005-01-19 10:35  davidfraser
+
+	* indexpage.py: added projectdescription in other indexes
+
+2005-01-19 10:32  davidfraser
+
+	* pootle.py, projects.py: check if project exists at all when
+	  looking in projects folder (e.g. 'favicon.ico' is not a project
+	  :-)) ability to check if project exists at all when languagecode
+	  is none in potree.hasproject
+
+2005-01-19 10:31  davidfraser
+
+	* html/pootle.css: make table titles bold centered and colored
+
+2005-01-19 10:24  davidfraser
+
+	* pootle.py: ignoring languagenames if the list is empty has now
+	  been done in jToolkit
+
+2005-01-14 13:08  dwaynebailey
+
+	* indexpage.py, pootle.prefs, projects.py: Projects listed on the
+	  front page now have a tooltip which gives a short description of
+	  the project.
+
+2005-01-14 13:03  davidfraser
+
+	* indexpage.py, pagelayout.py, pootle.py, translatepage.py,
+	  users.py: fixed up localize code - generally use self.localize
+	  instead of session.localize since that isn't available everywhere
+	  if no languages are avilable for login, don't show the dropdown
+	  box
+
+2005-01-14 12:14  davidfraser
+
+	* pagelayout.py, html/favicon.ico: added favicon support
+
+2005-01-13 15:16  dwaynebailey
+
+	* TODO: Bug in searching at the PO files level
+
+2005-01-13 15:08  dwaynebailey
+
+	* TODO: Goto specific message wish
+
+2005-01-12 15:09  dwaynebailey
+
+	* indexpage.py, pagelayout.py, projects.py, translatepage.py,
+	  users.py: Add session.localize everywhere so that we can create
+	  translated versions of Pootle.  Still needs language selection
+	  enabled and checking to see that we have everything and haven't
+	  broken anything.  Then translation can begin. Only about 250
+	  words of translation required.
+
+2005-01-12 14:31  davidfraser
+
+	* TODO: what's the point of a TODO list if it doesn't keep growing?
+	  stuff heather wants, and registration is basically working now
+
+2005-01-12 12:52  davidfraser
+
+	* pootle.py, users.py: started moving user handling code into new
+	  users.py module
+
+2005-01-12 12:03  davidfraser
+
+	* pootle.py: improved some mesages
+
+2005-01-12 12:00  davidfraser
+
+	* pootle.py: remove inadvertent commit
+
+2005-01-12 11:51  davidfraser
+
+	* pootle.py: don't show session status unless it is! show link when
+	  redirecting
+
+2005-01-12 11:44  davidfraser
+
+	* pootle.py: more email cleanup, use mailer support for reply-to so
+	  it works properly
+
+2005-01-12 11:37  davidfraser
+
+	* pootle.py: make registration errors have their own class so we
+	  don't miss underlying errors added support email address improved
+	  messages do real check for email address, only check password on
+	  new registration
+
+2005-01-12 11:09  davidfraser
+
+	* pootle.py: tried to simplify registration / activation process by
+	  automatically filling in username where possible also try to add
+	  a direct activate link to the account creation email, and tried
+	  to improve email error message
+
+2005-01-12 10:49  davidfraser
+
+	* html/robots.txt: exclude search engines from pootle
+
+2005-01-11 16:37  davidfraser
+
+	* TODO: we can now detect languages in GNU-style directories by
+	  checking if there any files for a language
+
+2005-01-11 14:05  davidfraser
+
+	* projects.py: do a full recount for refreshstats handle mismatch
+	  of string type between msgid and msgstr
+
+2005-01-11 13:59  davidfraser
+
+	* projects.py: make sure if a project is gnu-style that we check
+	  that files actually exist before reporting hasproject = True
+
+2005-01-10 16:48  davidfraser
+
+	* pootle.py: extracted main into separate function
+
+2005-01-10 16:47  davidfraser
+
+	* projects.py: added further check on modify time in timecache
+
+2005-01-10 13:06  davidfraser
+
+	* projects.py: added initial code to try and reduce memory
+	  requirements by using a timecache for pofiles and expiring them
+	  (reverting from parsed file to mere stats) after 15 minutes
+
+2005-01-10 12:31  davidfraser
+
+	* translatepage.py: error when search finished didn't include
+	  searchtext
+
+2005-01-10 11:36  davidfraser
+
+	* TODO: have done separate prefs files for users, changed priority
+	  of upload
+
+2005-01-10 10:46  davidfraser
+
+	* pootle.py: updated to work with new loginchecker in jToolkit, and
+	  handle separate userprefs files
+
+2005-01-05 19:41  dwaynebailey
+
+	* TODO: Some wishes and some bugs
+
+2004-12-31 17:21  dwaynebailey
+
+	* TODO: Allow custom headers for downloaded PO files so that users
+	  will not have to configure (or break things) with a po file in
+	  for instance PO edit.
+
+2004-12-20 12:29  davidfraser
+
+	* TODO: added TODO about quotes
+
+2004-12-17 12:48  davidfraser
+
+	* pagelayout.py: added link to Activate since the redirection seems
+	  broken and people can't find it
+
+2004-12-17 10:53  dwaynebailey
+
+	* README: Reflow and other layout fixes.  Make things read a bit
+	  better and ... I'm sure add some spelling mistakes.
+
+2004-12-14 16:30  davidfraser
+
+	* html/images/: edit.png, file.png, folder.png, person.png: added
+	  new icon images
+
+2004-12-14 15:21  davidfraser
+
+	* translatepage.py: show the number of strings in the current po
+	  file in the current position also calculate lastitem correctly if
+	  its the last item in the file
+
+2004-12-09 17:16  davidfraser
+
+	* pagelayout.py, translatepage.py, html/pootle.css: added
+	  background color alternation for translations note that tooltips
+	  for checks are now gone ...
+
+2004-12-09 16:32  davidfraser
+
+	* translatepage.py, pagelayout.py, html/pootle.css: put odd and
+	  even styles into css rather than calculating font colors
+
+2004-12-09 15:30  davidfraser
+
+	* translatepage.py: stopped automatically limiting to assigned work
+	  when logged in instead, use URL parameters. Still need to create
+	  links to these ...
+
+2004-12-09 13:31  davidfraser
+
+	* translatepage.py: added page links to bottom of form too made
+	  page link numbers viewable for humans by adding 1 :-)
+
+2004-12-09 13:13  davidfraser
+
+	* translatepage.py: refactored pagelinks into getpagelinks, added
+	  description of current items
+
+2004-12-09 12:53  davidfraser
+
+	* translatepage.py: don't show translated text as a text area if
+	  you can't change it
+
+2004-12-09 12:52  davidfraser
+
+	* TODO: added TODOs that have come up through testing
+
+2004-12-09 12:49  davidfraser
+
+	* indexpage.py, translatepage.py: changed links for quick
+	  translate, review suggestions so they are present even if user
+	  has no rights, but have a different name don't switch into view
+	  mode if user can't translate, as they can only skip through the
+	  translations anyway
+
+2004-12-09 12:44  davidfraser
+
+	* translatepage.py: implemented more fine-grained rights control
+	  over which buttons are shown added some docstrings allow
+	  reviewmode even if not allowed to review, as only skip buttons
+	  will be shown
+
+2004-12-09 12:34  davidfraser
+
+	* pootle.py, projects.py: generate RightsErrors if people try and
+	  make changes they're not allowed to
+
+2004-12-09 12:28  davidfraser
+
+	* indexpage.py, projects.py, translatepage.py: added basic rights
+	  management.  currently this limits any changes to logged-in
+	  users. it only works by disabling links, more work is needed
+
+2004-12-09 12:08  dwaynebailey
+
+	* TODO: Add wish for download of compiled PO and Qt .ts files
+
+2004-12-08 11:14  davidfraser
+
+	* indexpage.py: fixed main link which should always point to the
+	  current folder
+
+2004-12-08 11:10  davidfraser
+
+	* indexpage.py, pagelayout.py: polarity was done before sort, fixed
+	  it so its easy to set on the item and do it after the sort
+
+2004-12-07 16:58  davidfraser
+
+	* html/images/pootle.jpg: hand-drawn cartoon
+
+2004-12-07 16:53  davidfraser
+
+	* indexpage.py, pagelayout.py, html/pootle.css: added switching
+	  background color for alternating item rows
+
+2004-12-07 16:38  davidfraser
+
+	* indexpage.py: made headings always link to item so we don't need
+	  "Browse/View" added getbrowseurl function to make that easier
+	  added option to say which links are required from getactionlinks
+	  leave out checks by default, only show in heading changed checks
+	  to show/hide checks based on current value fixed showchecks
+	  detection (work if it comes in as unicode)
+
+2004-12-07 16:21  davidfraser
+
+	* html/pootle.css: added icon style (floating)
+
+2004-12-07 16:16  davidfraser
+
+	* indexpage.py, pagelayout.py: added some icons, and sorted
+	  directories and files added an Icon class
+
+2004-12-06 23:03  davidfraser
+
+	* projects.py, translatepage.py: record who suggested a suggestion
+	  in the msgid comment, look it up when displaying it later. fairly
+	  crude
+
+2004-12-06 22:46  davidfraser
+
+	* README, projects.py: keep track of our latest pomtime in
+	  pootlefile so we re-read the file if it changes we use
+	  self.pomtime to reflect whether we have parsed the file as well
+	  (note: this needs to be done with care so that it is only set
+	  after parsing and classification and stats are done) new method
+	  pofreshen can be used to make sure the file is parsed and up to
+	  date updated the README to reflect the fact that reindexing is
+	  now automatic also added a note about how to do assignments
+
+2004-12-06 22:15  davidfraser
+
+	* translatepage.py: set search.assignedaction based on the current
+	  mode (search for things the user has been assigned to
+	  review/suggest)
+
+2004-12-06 22:09  davidfraser
+
+	* projects.py, translatepage.py: refactored pofilename searching
+	  into separate method matchessearch for each pofilename added
+	  assignment searching to pofilename searching replaced
+	  search.assigncondition with search.assignedto and
+	  search.assignedaction improved pootlefile.iteritems to handle
+	  either/both search.assign attributes fixed up docstrings to
+	  reflect new search parameter updated translatepage to use the new
+	  Search syntax
+
+2004-12-06 21:33  davidfraser
+
+	* projects.py, translatepage.py: rearranged all the search
+	  parameters into a single object to make it easier to pass them
+	  around
+
+2004-12-06 20:13  davidfraser
+
+	* translatepage.py: redid editlinks to float at the top right of
+	  the cell ; in this way they don't appear "out the box"
+
+2004-12-06 11:05  davidfraser
+
+	* pootle.py: was sending the submitted password to the original
+	  email address which was nuts we don't have the actual password,
+	  only the md5sum, but send it anyway :-)
+
+2004-12-06 10:46  davidfraser
+
+	* projects.py, translatepage.py: added the ability to search within
+	  a file based on assign conditions (file searches still need this)
+	  added "suggest" assignment search when logged in
+
+2004-12-05 12:17  davidfraser
+
+	* projects.py: added code for handling ".assigns" files which store
+	  who has been assigned what ...
+
+2004-12-05 11:45  davidfraser
+
+	* projects.py: added caching for pending files (if file is updated
+	  it will be re-read) store pending file time in stats file, since
+	  it depends on that too...  added method to reclassify all items'
+	  suggestion status moved project.iterpoitems to pofile.iteritems,
+	  call getstats to update them if required
+
+2004-12-05 10:55  davidfraser
+
+	* projects.py: getmodtime needs absolute, not relative filename
+
+2004-12-05 10:53  davidfraser
+
+	* projects.py: made getmodtime a function that takes a filename so
+	  it is useful for files other than pofile.filename
+
+2004-12-05 10:43  davidfraser
+
+	* projects.py, translatepage.py: removed code storing lastitem,
+	  pofilename on session (since they're stored in the browser state
+	  anyway)
+
+2004-12-05 10:04  davidfraser
+
+	* projects.py: cache the mtime of the stats file as well so if it
+	  is changed it will be re-read automatically this should enable
+	  updating the stats separately to the web server
+
+2004-12-05 09:50  davidfraser
+
+	* indexpage.py: mainstats was passing actual directory rather than
+	  relative one ("") to getitemstats so check links were wrong
+
+2004-12-05 09:42  davidfraser
+
+	* projects.py: fixed up logic for when to read stats, handling
+	  missing stats files save stats after reclassifying elements
+	  removed translationproject's stats cache, renamed initstatscache
+	  to initpootlefiles
+
+2004-12-05 09:22  davidfraser
+
+	* indexpage.py: blank dirfilter should be None so the logic works
+	  right
+
+2004-12-04 22:48  davidfraser
+
+	* projects.py: major refactor of TranslationProject so most of the
+	  POfile-specific stuff gets handled in pootlefile, derived from
+	  pofile bugs remain (it will forget about all your strings) but
+	  once they're fixed it'll be lekka :-)
+
+2004-12-04 22:34  davidfraser
+
+	* translatepage.py, html/pootle.css: made the current editable row
+	  highlighted in light gray (found this in the prototype, looks
+	  leet)
+
+2004-12-03 23:37  davidfraser
+
+	* TODO, projects.py: added basic support for GNU-style
+	  project/languagecode.po this has made the code too complex,
+	  hopefully can be simplified
+
+2004-12-03 23:17  davidfraser
+
+	* pootle.py: remember email address fixed emailing (needs message
+	  to be a proper mail message)
+
+2004-12-03 23:05  davidfraser
+
+	* pootle.prefs: set baseurl to / which should work in most cases
+	  added default smtpserver of localhost (for registration emails
+	  etc)
+
+2004-12-03 23:05  davidfraser
+
+	* pootle.py: added basic system for registration and activation
+	  changed to allow user to specify password added minimum password
+	  length of 6 improved operation in frozen conditions (e.g. py2exe)
+	  by setting directory names properly
+
+2004-12-03 22:29  dwaynebailey
+
+	* TODO: More things to do
+
+2004-12-03 21:44  davidfraser
+
+	* translatepage.py: made suggestion captions start at 1 move skip
+	  button for suggestions to last suggdiv
+
+2004-12-03 21:40  davidfraser
+
+	* projects.py: refactored method to get filenames so its actually
+	  done by potree, not the TranslationProject this should make it
+	  easier to handle the GNU-style layout fixed docstring for
+	  getpodir
+
+2004-12-03 21:12  davidfraser
+
+	* TODO: moved translatathon requirements added requirement for
+	  GNU-style ar.po filenames
+
+2004-12-03 17:43  davidfraser
+
+	* indexpage.py: added stats for the main item (if it's not a po
+	  file, in which case you can see them under the po file) corrected
+	  links for check names (were missing a &)
+
+2004-12-03 16:26  dwaynebailey
+
+	* TODO: More TODO items
+
+2004-12-03 12:46  davidfraser
+
+	* TODO: added more TODOs from dwayne
+
+2004-12-02 22:46  davidfraser
+
+	* indexpage.py, pagelayout.py, html/pootle.css: made the MainItem
+	  stand out ...  link directory titles to Browse that directory
+	  handle dirfilter being None intelligently
+
+2004-12-02 22:29  davidfraser
+
+	* TODO, indexpage.py, html/pootle.css: don't show actionlinks if
+	  dirfilter is a po file, and put them in a standard Item reordered
+	  code to make it more logical, put navlinks into separate function
+	  adjusted stylesheet so margin is below whole item, not only if it
+	  has statistics
+
+2004-12-02 21:55  davidfraser
+
+	* indexpage.py: refactored main action links (at top of page) to
+	  use getactionlinks too factored out new method getchilditems
+	  rather than having this in the constructor checkslink was never
+	  included, also handle basename == "" in getactionlinks
+
+2004-12-02 21:45  davidfraser
+
+	* indexpage.py: refactored ProjectIndex to share more code between
+	  diritem and fileitem
+
+2004-12-02 21:12  davidfraser
+
+	* projects.py: use new keyword arguments to pogrepfilter
+
+2004-12-02 16:20  davidfraser
+
+	* html/pootle.css: removed gratuitous spacing and case-changes
+
+2004-12-02 16:18  davidfraser
+
+	* TODO: added basic diffing, so it's not TODO anymore :-)
+
+2004-11-29 15:42  davidfraser
+
+	* translatepage.py: rearranged breaks in review mode, added skip
+	  button
+
+2004-11-29 15:01  davidfraser
+
+	* translatepage.py: added basic diffs using difflib (tries to
+	  highlight in yellow what has changed) (handles multiple
+	  suggestions in a semi-intelligent way) added breaks between lines
+	  in review...
+
+2004-11-27 23:05  davidfraser
+
+	* translatepage.py: added hidden widget for suggestion text so we
+	  know what it is when processing the form
+
+2004-11-27 22:44  davidfraser
+
+	* projects.py: sort languages and projects by code...
+
+2004-11-27 19:01  davidfraser
+
+	* translatepage.py: changed 'original' in review to 'Current
+	  Translation'
+
+2004-11-27 18:48  davidfraser
+
+	* translatepage.py: simplify suggestions system so they're not
+	  editable text boxes...
+
+2004-11-27 18:24  davidfraser
+
+	* pootle.py, projects.py: added ability to manually refresh all the
+	  stats from the commandline...
+
+2004-11-27 18:06  davidfraser
+
+	* TODO: we need to be able to distinguish between (for example)
+	  pt_BR and pt_PR, and openoffice 1.1.3 and openoffice 2.0
+
+2004-11-27 18:03  davidfraser
+
+	* indexpage.py, pootle.py, projects.py: added a project page for
+	  each project that lists the valid languages added a method to
+	  potree that lets you get the languagecodes for a specific project
+
+2004-11-27 17:31  davidfraser
+
+	* indexpage.py, pootle.prefs, projects.py: changed the structure of
+	  pootle.prefs so instead of having to define every project under
+	  every language, you define:  projects, in its own top-level tree
+	  languages, in its own top-level tree	directories, using
+	  "$project" and "$language" to denote project	  (you can either
+	  just define a directorysearch as a string, or have a node which
+	  defines the project / language and a directory - see the
+	  examples) added links to projects as well (still need to define
+	  index for them...)
+
+2004-11-27 16:53  davidfraser
+
+	* pagelayout.py: use SeparatedList for linking ActionLinks together
+
+2004-11-27 16:36  davidfraser
+
+	* TODO, indexpage.py, projects.py: when suggestions are made or
+	  rejected, delete the stats to invalidate them in indexpage, only
+	  show "review" links if the item has suggestions
+
+2004-11-27 16:14  davidfraser
+
+	* translatepage.py: need access to translations to calculate links,
+	  so making a member of translatepage...
+
+2004-11-26 14:50  davidfraser
+
+	* TODO: added new requirements from Dwayne
+
+2004-11-25 15:00  davidfraser
+
+	* TODO: added TODOs, mostly for what would be needed for a
+	  translatathon
+
+2004-11-25 12:18  davidfraser
+
+	* README, __init__.py, pootle.prefs, pootle.py, server.py: renamed
+	  server.py to pootle.py so it's a more sensible thing to run...
+	  NOTE: this requires change the prefs' import statement (See
+	  pootle.prefs)
+
+2004-11-23 23:32  davidfraser
+
+	* html/images/logo.gif: remove gif file (have png)
+
+2004-11-23 23:30  davidfraser
+
+	* pagelayout.py: replaced gif with png
+
+2004-11-23 23:29  davidfraser
+
+	* html/images/: gap.png, logo.png, top.png: replaced gif with png
+	  and added missing files
+
+2004-11-23 23:27  davidfraser
+
+	* projects.py, translatepage.py: made suggest/submit user
+	  selectable (will be configured later) - separate button to submit
+	  suggestion / change got rid of unused (and confusing!) contents
+	  variable
+
+2004-11-23 23:03  davidfraser
+
+	* projects.py: fixes to logic so has-suggestion statistics are kept
+	  correct, and pending files are saved at the right time
+
+2004-11-23 22:48  davidfraser
+
+	* translatepage.py: remember last item for skips, accepts, rejects,
+	  not just submits made a tooltip on the original text showing the
+	  classes it belongs to...
+
+2004-11-23 22:40  davidfraser
+
+	* projects.py, translatepage.py: require the suggestion item number
+	  for acceptsuggestion and rejectsuggestion, and remove from the
+	  pending file this is fairly brutal and no checks are done rename
+	  TranslatePage.translationsession to .session to save long names
+	  :-)
+
+2004-11-23 22:36  davidfraser
+
+	* indexpage.py: added reviewlink to main toolbar fixed up review
+	  URLs to include the basename properly
+
+2004-11-23 22:34  davidfraser
+
+	* translatepage.py: refactored receivetranslations so it can handle
+	  multiple actions - skip, submit, accept, reject this works by
+	  having an id (item or item.suggid) in each button which will only
+	  be received if the item is clicked moved call to gettranslations
+	  to inside maketable this allows us to call getsuggestions from
+	  there too to handle the review process refactored getorigcell /
+	  gettranscell to only fetch the div specialized gettrans into
+	  gettransedit/review/view replaced all row-based ids with absolute
+	  item-based ids (that actually refer to the item number in the po
+	  file)
+
+2004-11-23 22:32  davidfraser
+
+	* projects.py: added stubs to accept / reject suggestions modified
+	  checks for pofile being a filename to allow unicode too added
+	  existence check before deleting stats added TODO about caching
+	  pending file
+
+2004-11-23 21:16  davidfraser
+
+	* html/pootle.css: make action links invisible by default
+	  (javascript will show them when needed)
+
+2004-11-23 21:13  davidfraser
+
+	* translatepage.py: refactored table generation, moved stuff back
+	  into one method so it can be made more versatile
+
+2004-11-20 17:35  davidfraser
+
+	* indexpage.py, translatepage.py: added initial review support.
+	  currently just prints out suggestions to command line
+
+2004-11-20 17:34  davidfraser
+
+	* projects.py: let getsuggestions receive either a pofile or a
+	  pofilename
+
+2004-11-20 17:27  davidfraser
+
+	* projects.py: added getsuggestions method for looking up
+	  suggestions for a particular item remember a pofile's filename
+	  (should actually do this anyway) added statistics calculation for
+	  suggestions provided more error-handling for stats files
+
+2004-11-20 17:05  davidfraser
+
+	* projects.py: started adding support for suggestions by using
+	  pending files
+
+2004-11-20 16:24  davidfraser
+
+	* translatepage.py: don't return blank and check-blank's blank ...
+	  also sort matchnames so output is consistent...
+
+2004-11-20 15:55  davidfraser
+
+	* projects.py: added method to get list of classes an item belongs
+	  to
+
+2004-11-20 15:54  davidfraser
+
+	* TODO: client ip lookup ability now in jToolkit
+
+2004-11-17 10:42  davidfraser
+
+	* projects.py: added code so when an item is changed, we only have
+	  to reclassify that item, not all the elements in the pofile
+
+2004-11-17 10:33  davidfraser
+
+	* projects.py: refactored classifyelements to use classifyelement
+	  for each element
+
+2004-11-17 10:16  davidfraser
+
+	* projects.py: refactored classification code into classifyelements
+	  method reclassify elements after save...
+
+2004-11-17 08:54  davidfraser
+
+	* html/pootle.css: float the translation text so it lines up better
+	  with the action
+
+2004-11-16 23:08  davidfraser
+
+	* indexpage.py, translatepage.py: fixed up current folder links so
+	  when you are in a .po file they still point to the current folder
+
+2004-11-16 23:00  davidfraser
+
+	* indexpage.py: made quick translate only appear if there are
+	  untranslated (or fuzzy) strings
+
+2004-11-16 22:52  davidfraser
+
+	* pagelayout.py, translatepage.py, html/pootle.css,
+	  html/js/autoexpand.js: tried to make edit links floatable this is
+	  half working but the layout is hard :-)
+
+2004-11-13 17:53  davidfraser
+
+	* TODO, pootle.prefs, projects.py, server.py: beefened up
+	  registration a little ... handles errors, requires proper
+	  username etc
+
+2004-11-13 17:34  davidfraser
+
+	* pootle.prefs: Added demo prefs file
+
+2004-11-13 17:33  davidfraser
+
+	* README, server.py: html is actually underneath this directory
+	  fixed wrong python file name in README added some notes
+
+2004-11-13 17:25  davidfraser
+
+	* README: added simple README
+
+2004-11-13 17:20  davidfraser
+
+	* indexpage.py, pagelayout.py, translatepage.py: refactored folder
+	  links so they're in pagelayout also moved addsearchbox to the
+	  main PootlePage object
+
+2004-11-13 17:07  davidfraser
+
+	* TODO, indexpage.py, pagelayout.py, translatepage.py: moved
+	  searchbox construction into pagelayout added searchbox to index
+	  pages updated TODO
+
+2004-11-13 16:55  davidfraser
+
+	* TODO, projects.py, translatepage.py: TranslationSession seems to
+	  be fading away ... easier to do direct through the project use
+	  project's searchpoitems rather than getnextitems from session,
+	  remember pofilename and last item for page added basic search
+	  using pogrep, to searchpoitems, and added text book to
+	  translation page for it
+
+2004-11-13 16:30  davidfraser
+
+	* indexpage.py, pagelayout.py, html/pootle.css: made special class
+	  for action links so we can separate them out a bit...  changed
+	  CSS so the separators aren't white!
+
+2004-11-13 16:19  davidfraser
+
+	* TODO, projects.py: made each project use an appropriate checker
+	  also use special PO checkers that do checks on the whole poel
+
+2004-11-13 16:10  davidfraser
+
+	* indexpage.py, translatepage.py: refactored links to file, folders
+	  in translatepage added links to current folder, parent folder,
+	  project root in indexpage
+
+2004-11-13 15:47  davidfraser
+
+	* TODO, indexpage.py, projects.py, translatepage.py: did some more
+	  refactoring, got viewing / browsing working readonably got rid of
+	  getitemsbefore / getitemsafter, replaced with getitems move
+	  translationsession.getitem to translationproject where it makes
+	  more sense separated out the item finding in gettranslations to
+	  finditem, save it in self.item
+
+2004-11-13 15:32  davidfraser
+
+	* projects.py, translatepage.py: fixed up page links with the help
+	  of a getpofilelen method
+
+2004-11-13 15:29  davidfraser
+
+	* indexpage.py, translatepage.py: refactored translatepage
+	  gettranslations so the actual html table generation is done by
+	  maketable added link to "view" translations in which case you can
+	  browse through 10 at a time with links to previous / next
+
+2004-11-13 15:05  davidfraser
+
+	* indexpage.py, server.py, translatepage.py: added code to catch
+	  when a set of search items is finished and display a message The
+	  message could probably be clearer but at least it works out if no
+	  items matched at all...
+
+2004-11-13 14:40  davidfraser
+
+	* projects.py: refactored searching methods to create iterators
+	  makes it a lot more logical and coherent, and allows us to catch
+	  StopIteration exceptions elsewhere...
+
+2004-11-13 14:12  davidfraser
+
+	* projects.py: rename translationproject -> project, getlanguage ->
+	  getlanguageprefs for clarity
+
+2004-11-13 14:07  davidfraser
+
+	* indexpage.py, projects.py, server.py, translatepage.py: don't
+	  make language and project prefs accessible through POTree -
+	  rather iterate through codes renamed translationproject to
+	  project in indexpage, server restore showing full names for
+	  language, project where needed
+
+2004-11-13 13:21  davidfraser
+
+	* projects.py, translatepage.py: made the TranslationProject use
+	  the potree to find its podir and other attributes added getpodir
+	  function to POTree renamed "translationproject" to "project" in
+	  translatepage.py
+
+2004-11-13 13:17  davidfraser
+
+	* indexpage.py, projects.py, server.py, translatepage.py: finished
+	  up making sure we don't use the language and project prefnodes
+	  anywhere these are basically only used to get full names for
+	  languages/projects so provided functions to get those
+
+2004-11-13 13:00  davidfraser
+
+	* translatepage.py: never renamed project, subproject to language,
+	  project...
+
+2004-11-13 12:56  davidfraser
+
+	* indexpage.py, server.py: more conversion to potree rather than
+	  using prefnodes directly removed unused cachetables parameter
+
+2004-11-13 12:48  davidfraser
+
+	* projects.py, server.py: filled out iterating methods in POTree
+
+2004-11-13 12:37  davidfraser
+
+	* projects.py, server.py: added default options for startup added
+	  POTree class in projects, use that to manage languages/projects
+	  rather than reading from prefs directly
+
+2004-11-10 09:13  davidfraser
+
+	* projects.py, translatepage.py: did some simplification of
+	  translation session, factored out getitem method made argdict a
+	  member of TranslatePage, to simplify access added Edit link for
+	  each item that lets you go straight to edit that item
+
+2004-11-10 08:53  davidfraser
+
+	* indexpage.py, projects.py, server.py: pass argdict in to
+	  ProjectIndex, use that for showchecks rather than a special
+	  variable use showchecks parameter rather than checks.html to
+	  determine checking allow ProjectIndex to work on a single file
+	  added browse and checks links per file allow projects code to
+	  handle individual po files
+
+2004-11-10 08:30  davidfraser
+
+	* TODO, indexpage.py, projects.py, translatepage.py: instead of
+	  translate page defaulting to quick translate, pass fuzzy and
+	  blank as parameters similarly projects code doesn't default to
+	  fuzzy & blank, it defaults to matchnames=[] which allows
+	  everything DONE: renamed start translate
+
+2004-11-10 08:19  davidfraser
+
+	* indexpage.py: changed "Start Translating" to "Quick Translate"
+	  Don't show the name of the file everywhere for PO files
+
+2004-11-10 08:14  davidfraser
+
+	* projects.py: renamed po2csvmod -> po2csv (filename changed)
+
+2004-11-08 19:00  davidfraser
+
+	* TODO: Added pootle TODO
+
+2004-11-04 22:11  davidfraser
+
+	* server.py: added mani program to allow server to run webserver
+	  itself (will allow deefault options in future)
+
+2004-11-04 16:07  davidfraser
+
+	* projects.py: have made po2csv into po2csvmod.py and po2csv
+
+2004-11-04 16:06  davidfraser
+
+	* translatepage.py: added list of checks in sidebar
+
+2004-11-04 16:00  davidfraser
+
+	* indexpage.py, projects.py, server.py, translatepage.py: create
+	  clickable links to be able to go through files that failed checks
+	  dded matchnames as an option to TranslationSession.getnextitem
+	  only get translationproject once in server
+
+2004-11-04 15:43  davidfraser
+
+	* indexpage.py: factored out check details, apply it to both dirs
+	  and files (also don't say "files" when summarising a file...)
+
+2004-11-04 15:35  davidfraser
+
+	* indexpage.py, projects.py: renamed the checks to check- so we
+	  don't show normal statistics as checks
+
+2004-11-04 15:28  davidfraser
+
+	* indexpage.py, projects.py, server.py, html/pootle.css: added code
+	  to include checks and show statistics on them ...
+
+2004-11-04 14:33  davidfraser
+
+	* projects.py: renamed subproject to project
+
+2004-11-04 10:31  davidfraser
+
+	* indexpage.py: refactored summarizing statistics
+
+2004-11-03 22:44  davidfraser
+
+	* indexpage.py, server.py: finished project->language and
+	  subproject->project rename
+
+2004-11-03 14:50  davidfraser
+
+	* indexpage.py, server.py, translatepage.py: added link to current
+	  folder from translate page made banner height smaller except for
+	  main page
+
+2004-11-03 14:30  davidfraser
+
+	* html/pootle.css: added some missing styles from translate.css
+
+2004-11-03 14:19  davidfraser
+
+	* html/: pootle.css, images/logo.gif, images/pootle.jpg,
+	  js/autoexpand.js: added images
+
+2004-11-03 14:07  davidfraser
+
+	* indexpage.py: fixed language links, misreplaced project/language
+	  names made Start Transating link look nice
+
+2004-11-03 13:59  davidfraser
+
+	* indexpage.py, server.py: renamed "project" to "language"
+
+2004-11-03 11:02  davidfraser
+
+	* server.py: pass the login page class to the underlying server
+
+2004-11-03 10:00  davidfraser
+
+	* server.py: added support for browsing through directories and
+	  files added support for downloading po files and csv files
+	  updated to use non-database user details in prefs files improved
+	  registration -> login redirection made a lot of the required
+	  prefs optional, and added support for saving prefs currently
+	  emailing username + passwords is disabled, the message is printed
+	  on stdout
+
+2004-11-03 09:54  davidfraser
+
+	* pagelayout.py: made a lot of the required prefs optional and have
+	  defaults
+
+2004-11-03 09:45  davidfraser
+
+	* indexpage.py: added support for browsing through the files /
+	  directories in a project this allows browsing or translating at a
+	  given granularity also don't require the project node to have a
+	  fullname attribute
+
+2004-11-03 09:40  davidfraser
+
+	* translatepage.py: refactored generation of translation rows so we
+	  don't have to call before / item / after separately refactored
+	  receivetranslations into a function, handle skipping added
+	  dirfilter support so the translatepage can be used with more
+	  granularity (used when finding the next item)
+
+2004-11-03 09:24  davidfraser
+
+	* projects.py: added dir filtering ability, code to browse through
+	  po filenames and directories in a useful way added support for
+	  skipping translations added pofilenames option for calculatestats
+	  for retrieving stats in finer granularity added support for
+	  getting po file source and converting to csv (needs a po2csv
+	  module) this fits in with other refactoring in the other files
+
+2004-10-28 08:48  davidfraser
+
+	* server.py: passwordgen is in jToolkit not pootle
+
+2004-10-28 08:45  davidfraser
+
+	* pagelayout.py, server.py: added link to register added password
+	  generation and emailing
+
+2004-10-28 07:33  davidfraser
+
+	* indexpage.py, pagelayout.py, server.py, translatepage.py: made
+	  PootlePage automatically wrap the main contents in a #content div
+
+2004-10-27 23:00  davidfraser
+
+	* server.py: added very simple registration (username=password)
+
+2004-10-27 22:49  davidfraser
+
+	* server.py: started adding registration page for new users
+
+2004-10-27 22:40  davidfraser
+
+	* pagelayout.py: sidetitle got changed to sidecontents accidentally
+	  added TranslateForm
+
+2004-10-27 22:37  davidfraser
+
+	* translatepage.py: simplified styles by moving to css
+
+2004-10-27 21:53  davidfraser
+
+	* indexpage.py, pagelayout.py: renamed classes (and css classes) to
+	  be less bloggy renamed title to contents for Division classes
+
+2004-10-27 21:44  davidfraser
+
+	* indexpage.py, pagelayout.py, server.py, translatepage.py: made
+	  little classes for all the div styles, to make stuff simpler...
+
+2004-10-27 21:41  davidfraser
+
+	* projects.py: various minor pochecker fixups...  don't just fall
+	  off the end if no more pofilenames could be found
+
+2004-10-27 21:08  davidfraser
+
+	* indexpage.py, pagelayout.py, server.py, translatepage.py: used
+	  new cls= keyword parameter for Division rather than putting the
+	  class in a dictionary
+
+2004-10-25 18:41  davidfraser
+
+	* indexpage.py: make sure empty projects are handle OK by the stats
+	  pages
+
+2004-10-25 11:58  davidfraser
+
+	* projects.py: when an item is submitted, store the pofilename and
+	  lastitem on the TranslationSession this should make apache
+	  multi-process servers pass state between processes
+
+2004-10-25 11:46  davidfraser
+
+	* translatepage.py: jToolkit has problems with non-unicode in the
+	  TextArea ; manually decoding to unicode for now
+
+2004-10-25 11:08  davidfraser
+
+	* projects.py: added quick route to find next pofilename that
+	  contains matches, so we don't have to parse all those in between
+
+2004-10-25 10:57  davidfraser
+
+	* pagelayout.py, server.py: added spearch url for login page which
+	  redirects back to the index if logged in (this is because the
+	  login page submits to itself in case of error) added link to
+	  logout / login to sidebar
+
+2004-10-25 10:37  davidfraser
+
+	* server.py: added an OptionalLoginAppServer that makes login
+	  optional
+
+2004-10-25 10:25  davidfraser
+
+	* projects.py: need to convert the statsmtime to an integer
+	  otherwise it'll never match
+
+2004-10-25 09:53  davidfraser
+
+	* projects.py: took out __init__ loop through self.pofiles (should
+	  have been self.pofilename) as it would have been too expensive
+	  but it wasn't doing anything as self.pofiles was empty moved
+	  pofile.classify construction to getpofile as we always need the
+	  classifications available
+
+2004-10-23 20:26  davidfraser
+
+	* projects.py: use matchnames for searching for next item, to make
+	  it superfast :-)
+
+2004-10-23 20:09  davidfraser
+
+	* indexpage.py, projects.py, translatepage.py: replaced translated,
+	  total with named stats in a dictionary also keep in each pofile a
+	  classify member that keeps named lists of elements matching
+	  fuzzy, blank, etc this should be useful in optimizing searches
+	  added more info on blank, fuzzy to the sidebar of the translation
+	  page
+
+2004-10-23 19:47  davidfraser
+
+	* indexpage.py, projects.py, translatepage.py: more detailed
+	  statistics invalidate statistics when a file changes
+
+2004-10-23 19:40  davidfraser
+
+	* projects.py: changed to use relative paths for po files,
+	  calculate absolute path when needing to access files
+
+2004-10-23 19:33  davidfraser
+
+	* pagelayout.py, projects.py, translatepage.py: added pofilename to
+	  the links at the side (made them accessible as PootlePage
+	  members) rearranged test for what is translated
+
+2004-10-23 19:26  davidfraser
+
+	* projects.py: separated out receivetranslation so the actual
+	  changes are done from the TranslationProject made new savefile
+	  function which saves the pofile to disk   currently saving after
+	  each change which is not ideal added doc strings
+
+2004-10-23 19:19  davidfraser
+
+	* projects.py: added findnextitem which searches and filters
+	  options through a function this can be slow if you do what it
+	  does at the moment and searches for blank msgstrs...	we should
+	  use the stats to filter out files automatically...
+
+2004-10-23 19:08  davidfraser
+
+	* projects.py: moved logic about moving to next item from session
+	  into project
+
+2004-10-23 14:57  davidfraser
+
+	* indexpage.py, projects.py, translatepage.py: created new class
+	  TranslationSession which represents a users work on a project use
+	  this to keep track of current po file, item rather than doing it
+	  globally in the project added the pofilename as a hidden field so
+	  we know what item is being translated exactly store translatable
+	  elements in pofile.transelements for each pofile to make indexing
+	  easier rather than returning items before and after with the
+	  translatable item, query for them separately also changed
+	  projects.getproject to only take the subproject config item
+
+2004-10-23 13:58  davidfraser
+
+	* projects.py: added call to initstatscache so it is actually used
+	  :-) and make sure the right filenames etc are passed so that it
+	  actually reads the files...
+
+2004-10-23 13:54  davidfraser
+
+	* projects.py: added primitive means of caching statistics in
+	  .stats files with timestamps
+
+2004-10-23 13:43  davidfraser
+
+	* indexpage.py, projects.py, translatepage.py: read all pofiles in
+	  when TranslationProject is constructed added calculation and
+	  display of statistics ; this is currently very slow! renamed
+	  projects.getiterator to getproject
+
+2004-10-23 13:15  davidfraser
+
+	* projects.py: added code to iterate through all the files in a
+	  directory tree rather than just one pofile this changes the pref
+	  name to podir fixed up getiterator to not use self everywhere...
+
+2004-10-23 12:57  davidfraser
+
+	* projects.py, translatepage.py: moved TranslationIterator code
+	  into separate projects module, from whence it will be
+	  transmogrified
+
+2004-10-23 12:46  davidfraser
+
+	* indexpage.py: count the subprojects
+
+2004-10-23 12:45  davidfraser
+
+	* server.py: added login, LoginPage that looks pootley
+
+2004-10-22 11:46  davidfraser
+
+	* server.py, translatepage.py: added hook to receive new
+	  translations calculate translation items correctly, made the row
+	  offset equal to the item in the file
+
+2004-10-22 11:14  davidfraser
+
+	* translatepage.py: removed dummytranslations, now uses
+	  subproject.pofile to get translations from also fixed up some row
+	  calculation problems
+
+2004-10-22 10:51  davidfraser
+
+	* __init__.py, indexpage.py, pagelayout.py, server.py,
+	  translatepage.py: added initial pootle implementation (with
+	  random dummy bork translations)
+

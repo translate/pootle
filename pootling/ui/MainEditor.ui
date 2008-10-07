@@ -1,0 +1,1151 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="enabled" >
+   <bool>true</bool>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>594</width>
+    <height>487</height>
+   </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy>
+    <hsizetype>7</hsizetype>
+    <vsizetype>7</vsizetype>
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="contextMenuPolicy" >
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset>../images/pootling.png</iconset>
+  </property>
+  <property name="toolTip" >
+   <string/>
+  </property>
+  <property name="statusTip" >
+   <string/>
+  </property>
+  <property name="whatsThis" >
+   <string/>
+  </property>
+  <widget class="QWidget" name="centralwidget" />
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>594</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuBookmark" >
+    <property name="title" >
+     <string>&amp;Bookmarks</string>
+    </property>
+    <addaction name="actionAddBookmarks" />
+    <addaction name="actionClearBookmarks" />
+    <addaction name="separator" />
+   </widget>
+   <widget class="QMenu" name="menuGo" >
+    <property name="title" >
+     <string>&amp;Go</string>
+    </property>
+    <addaction name="actionFirst" />
+    <addaction name="actionPrevious" />
+    <addaction name="actionNext" />
+    <addaction name="actionLast" />
+    <addaction name="separator" />
+    <addaction name="actionGoTo" />
+   </widget>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <widget class="QMenu" name="menuOpen_Recent" >
+     <property name="statusTip" >
+      <string>Open the file that used to be opened.</string>
+     </property>
+     <property name="whatsThis" >
+      <string>&lt;h3>Open Recent&lt;/h>Use this to open the file that used to be opened.</string>
+     </property>
+     <property name="title" >
+      <string>Open &amp;Recent</string>
+     </property>
+     <property name="icon" >
+      <iconset>../images/open.png</iconset>
+     </property>
+    </widget>
+    <addaction name="actionOpen" />
+    <addaction name="menuOpen_Recent" />
+    <addaction name="action_Close" />
+    <addaction name="separator" />
+    <addaction name="actionSave" />
+    <addaction name="actionSaveas" />
+    <addaction name="separator" />
+    <addaction name="actionExit" />
+   </widget>
+   <widget class="QMenu" name="menuView" >
+    <property name="enabled" >
+     <bool>true</bool>
+    </property>
+    <property name="title" >
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionFilterUntranslated" />
+    <addaction name="actionFilterFuzzy" />
+    <addaction name="actionFilterTranslated" />
+   </widget>
+   <widget class="QMenu" name="menuEdit" >
+    <property name="title" >
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionUndo" />
+    <addaction name="actionRedo" />
+    <addaction name="separator" />
+    <addaction name="actionCut" />
+    <addaction name="actionCopy" />
+    <addaction name="actionPaste" />
+    <addaction name="separator" />
+    <addaction name="actionFind" />
+    <addaction name="actionFindPrevious" />
+    <addaction name="actionFindNext" />
+    <addaction name="actionReplace" />
+    <addaction name="separator" />
+    <addaction name="actionCopySource2Target" />
+    <addaction name="actionCopySearchResult2Target" />
+    <addaction name="actionToggleFuzzy" />
+    <addaction name="actionClear_Fuzzies" />
+    <addaction name="actionEdit_Header" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout" />
+    <addaction name="actionAboutQT" />
+   </widget>
+   <widget class="QMenu" name="menuWindow" >
+    <property name="title" >
+     <string>&amp;Window</string>
+    </property>
+    <widget class="QMenu" name="menuToolbars" >
+     <property name="statusTip" >
+      <string>Hide/Show the toolbars</string>
+     </property>
+     <property name="title" >
+      <string>&amp;Toolbars</string>
+     </property>
+    </widget>
+    <addaction name="separator" />
+    <addaction name="separator" />
+    <addaction name="menuToolbars" />
+   </widget>
+   <widget class="QMenu" name="menu_Tool" >
+    <property name="title" >
+     <string>&amp;Tool</string>
+    </property>
+    <addaction name="separator" />
+    <addaction name="actionCatalogManager" />
+    <addaction name="actionAuto_translate" />
+   </widget>
+   <widget class="QMenu" name="menuSettings" >
+    <property name="title" >
+     <string>&amp;Settings</string>
+    </property>
+    <addaction name="actionPreferences" />
+    <addaction name="actionBuild_TM" />
+    <addaction name="actionGlossary" />
+   </widget>
+   <widget class="QMenu" name="menuProject" >
+    <property name="title" >
+     <string>&amp;Project</string>
+    </property>
+    <addaction name="actionNewPro" />
+    <addaction name="actionOpenPro" />
+    <addaction name="actionProperties" />
+   </widget>
+   <addaction name="menuFile" />
+   <addaction name="menuEdit" />
+   <addaction name="menuView" />
+   <addaction name="menuGo" />
+   <addaction name="menuBookmark" />
+   <addaction name="menuProject" />
+   <addaction name="menu_Tool" />
+   <addaction name="menuSettings" />
+   <addaction name="menuWindow" />
+   <addaction name="menuHelp" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QToolBar" name="toolFile" >
+   <property name="windowTitle" >
+    <string>&amp;File Toolbar</string>
+   </property>
+   <property name="toolTip" >
+    <string>Save</string>
+   </property>
+   <property name="statusTip" >
+    <string>Save</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Save File&lt;/h3>Save the contents of current editor.</string>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
+   <addaction name="actionSave" />
+   <addaction name="actionSaveas" />
+  </widget>
+  <widget class="QToolBar" name="toolEdit" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="windowTitle" >
+    <string>&amp;Edit Toolbar</string>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
+   <addaction name="actionUndo" />
+   <addaction name="actionRedo" />
+   <addaction name="actionCut" />
+   <addaction name="actionCopy" />
+   <addaction name="actionPaste" />
+  </widget>
+  <widget class="QToolBar" name="toolNavigation" >
+   <property name="contextMenuPolicy" >
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="acceptDrops" >
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle" >
+    <string>&amp;Navigation Toolbar</string>
+   </property>
+   <property name="statusTip" >
+    <string/>
+   </property>
+   <property name="whatsThis" >
+    <string/>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
+   <addaction name="actionFirst" />
+   <addaction name="actionPrevious" />
+   <addaction name="actionNext" />
+   <addaction name="actionLast" />
+  </widget>
+  <widget class="QToolBar" name="toolFilter" >
+   <property name="windowTitle" >
+    <string>Fil&amp;ter Toolbar</string>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
+   <addaction name="actionFilterUntranslated" />
+   <addaction name="actionFilterFuzzy" />
+   <addaction name="actionFilterTranslated" />
+  </widget>
+  <action name="actionOpen" >
+   <property name="icon" >
+    <iconset>../images/open.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Open...</string>
+   </property>
+   <property name="iconText" >
+    <string>Open</string>
+   </property>
+   <property name="toolTip" >
+    <string>Open</string>
+   </property>
+   <property name="statusTip" >
+    <string>Open a file...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Open&lt;/h3>Use this to open existed file for edit.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/save.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Save</string>
+   </property>
+   <property name="statusTip" >
+    <string>Save the current file</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Save&lt;/h3>Use this to save the current file.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveas" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/filesaveas.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Save &amp;As...</string>
+   </property>
+   <property name="iconText" >
+    <string>Save As</string>
+   </property>
+   <property name="toolTip" >
+    <string>Save As</string>
+   </property>
+   <property name="statusTip" >
+    <string>Save the current contents to a new file...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Save As&lt;/h3>Use this to save the current contents to a new file. The file name can be entered in a file selection dialog.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionExit" >
+   <property name="icon" >
+    <iconset>../images/exit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Quit</string>
+   </property>
+   <property name="toolTip" >
+    <string>Quit</string>
+   </property>
+   <property name="statusTip" >
+    <string>Quit the application</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Quit&lt;/h3>Use this to quit the application. Any unsaved changes will be prompted.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionUndo" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/undo.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Undo</string>
+   </property>
+   <property name="statusTip" >
+    <string>Undo the last change</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Undo&lt;/h3>Use this to undo the last change done in the editor.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/redo.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Re&amp;do</string>
+   </property>
+   <property name="statusTip" >
+    <string>Redo the last change</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Redo&lt;/h3>Use this to redo the last change done in the editor.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionCut" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/cut.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Cu&amp;t</string>
+   </property>
+   <property name="statusTip" >
+    <string>Cut the selected text</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Cut&lt;/h3>Use this to cut the selected text to the clipboard.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionCopy" >
+   <property name="checkable" >
+    <bool>false</bool>
+   </property>
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/copy.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Copy</string>
+   </property>
+   <property name="statusTip" >
+    <string>Copy the selected text</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Copy&lt;/h3>Use this to copy the selected text to the clipboard.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/paste.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Paste</string>
+   </property>
+   <property name="iconText" >
+    <string>Paste</string>
+   </property>
+   <property name="toolTip" >
+    <string>Paste</string>
+   </property>
+   <property name="statusTip" >
+    <string>Paste the last cut/copied text</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Paste&lt;/h3>Use this to paste the last cut/copies text from the clipboard to the editor.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionFind" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/find.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Find</string>
+   </property>
+   <property name="statusTip" >
+    <string>Find text in the shown strings...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Find&lt;/h3>Use this to find text in the shown strings. The find dialog will show at the bottom of the editor.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionAbout" >
+   <property name="text" >
+    <string>&amp;About Pootling</string>
+   </property>
+   <property name="statusTip" >
+    <string>Display some information about this software...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>About Pootling&lt;/h3>Display some information about this software.</string>
+   </property>
+   <property name="shortcut" >
+    <string/>
+   </property>
+  </action>
+  <action name="actionShowMenuBar" >
+   <property name="text" >
+    <string>Show MenuBar</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionShowTUview" >
+   <property name="text" >
+    <string>Show TUview</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionAboutQT" >
+   <property name="text" >
+    <string>About &amp;Qt</string>
+   </property>
+   <property name="iconText" >
+    <string>About Qt</string>
+   </property>
+   <property name="statusTip" >
+    <string>Display some information about the Qt Toolkit...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>About Qt&lt;/h3>Display some information about the Qt Toolkit.</string>
+   </property>
+   <property name="shortcut" >
+    <string/>
+   </property>
+  </action>
+  <action name="actionShow_MenuBar" >
+   <property name="text" >
+    <string>Show MenuBar</string>
+   </property>
+  </action>
+  <action name="actionShow_TUview" >
+   <property name="text" >
+    <string>Show TUview</string>
+   </property>
+  </action>
+  <action name="actionFirst" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/first.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;First</string>
+   </property>
+   <property name="toolTip" >
+    <string>First</string>
+   </property>
+   <property name="statusTip" >
+    <string>Go to the first string</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>First&lt;/h3>Go to the first string in the table.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+PgUp</string>
+   </property>
+  </action>
+  <action name="actionPrevious" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/back.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Previous</string>
+   </property>
+   <property name="statusTip" >
+    <string>Go to the previous string</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Previous&lt;/h3>Go to the previous string in the table.</string>
+   </property>
+   <property name="shortcut" >
+    <string>PgUp</string>
+   </property>
+  </action>
+  <action name="actionNext" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/forward.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Next</string>
+   </property>
+   <property name="statusTip" >
+    <string>Go to the next string</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Next&lt;/h3>Go to the next string in the table.</string>
+   </property>
+   <property name="shortcut" >
+    <string>PgDown</string>
+   </property>
+  </action>
+  <action name="actionLast" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/last.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Last</string>
+   </property>
+   <property name="statusTip" >
+    <string>Go to the last string</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Last&lt;/h3>Go to the last string in the table.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+PgDown</string>
+   </property>
+  </action>
+  <action name="actionCopySource2Target" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>Cop&amp;y Source To Target</string>
+   </property>
+   <property name="iconText" >
+    <string>Copy Source To Target</string>
+   </property>
+   <property name="toolTip" >
+    <string>Copy Source To Target</string>
+   </property>
+   <property name="statusTip" >
+    <string>Copy current string from source field to target field</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Copy Source To Target&lt;/h3>Use this to copy current string from source field to target field.</string>
+   </property>
+   <property name="shortcut" >
+    <string>F2</string>
+   </property>
+  </action>
+  <action name="actionToggleFuzzy" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>To&amp;ggle Fuzzy</string>
+   </property>
+   <property name="iconText" >
+    <string>Toggle Fuzzy</string>
+   </property>
+   <property name="toolTip" >
+    <string>Toggle Fuzzy</string>
+   </property>
+   <property name="statusTip" >
+    <string>Toggle fuzzy for current string</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Toggle Fuzzy&lt;/h3>Use this to set current string to fuzzy or unset it.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionFile" >
+   <property name="text" >
+    <string>file</string>
+   </property>
+  </action>
+  <action name="actionFind_Previous" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>Find Previous</string>
+   </property>
+  </action>
+  <action name="actionFind_Next" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>Find Next</string>
+   </property>
+  </action>
+  <action name="actionReplace" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/replace.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Replace</string>
+   </property>
+   <property name="statusTip" >
+    <string>Replace text in the shown strings...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Replace&lt;/h3>Use this to find text in the shown strings to replace. The find and replace dialog will show at the bottom of the editor.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionFindNext" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/next.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Find &amp;Next</string>
+   </property>
+   <property name="iconText" >
+    <string>Find Next</string>
+   </property>
+   <property name="toolTip" >
+    <string>Find Next</string>
+   </property>
+   <property name="statusTip" >
+    <string>Find next occurrance of text.</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Find Next&lt;/h3>Use this to find the next occurrance of search text in the shown strings.</string>
+   </property>
+   <property name="shortcut" >
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="actionFindPrevious" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/previous.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Find Pre&amp;vious</string>
+   </property>
+   <property name="statusTip" >
+    <string>Find previous occurrance of text.</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Find Previous&lt;/h3>Use this to find the previous occurrance of search text in the shown strings.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Shift+F3</string>
+   </property>
+  </action>
+  <action name="actionSelectAll" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>Select &amp;All</string>
+   </property>
+   <property name="statusTip" >
+    <string>Select all text</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Select all text&lt;/h3>Select all text in the current window.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionEdit_Header" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>&amp;Header...</string>
+   </property>
+   <property name="statusTip" >
+    <string>Open header dialog...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Open header dialog&lt;/h3>Use this to open the dialog to edit the header information.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionPreferences" >
+   <property name="icon" >
+    <iconset>../images/configure.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Preferences...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Preferences...</string>
+   </property>
+   <property name="statusTip" >
+    <string>Set common options for personality, font and color, translation memory and glossary, and save.</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Preferences&lt;/h3>Use this to set common options for personality, font and color, translation memory and glossary, and save.</string>
+   </property>
+  </action>
+  <action name="actionToolbars" >
+   <property name="text" >
+    <string>Toolbars</string>
+   </property>
+  </action>
+  <action name="actionFilterFuzzy" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/fuzzy.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Fuzzy</string>
+   </property>
+   <property name="toolTip" >
+    <string>Show/Hide fuzzy strings</string>
+   </property>
+   <property name="statusTip" >
+    <string>Show or hide the fuzzy strings.</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Fuzzy&lt;/h3>Use this to show or hide the fuzzy strings.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+F</string>
+   </property>
+  </action>
+  <action name="actionFilterTranslated" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/translated.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Translated</string>
+   </property>
+   <property name="toolTip" >
+    <string>Show/Hide translated strings</string>
+   </property>
+   <property name="statusTip" >
+    <string>Show or hide the translated strings.</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Translated&lt;/h3>Use this show or hide the translated strings.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+T</string>
+   </property>
+  </action>
+  <action name="actionFilterUntranslated" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/untranslated.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Untranslated</string>
+   </property>
+   <property name="toolTip" >
+    <string>Show/Hide untranslated strings</string>
+   </property>
+   <property name="statusTip" >
+    <string>Show or hide the untranslated strings.</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Untranslated&lt;/h3>Use this to show or hide the untranslated strings.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+U</string>
+   </property>
+  </action>
+  <action name="action_Close" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/fileclose.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Close</string>
+   </property>
+   <property name="statusTip" >
+    <string>Close the current opened file</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Close the current file&lt;/h3>Use this to close the current opened file.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionGoTo" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>&amp;String Number...</string>
+   </property>
+   <property name="iconText" >
+    <string>String Number</string>
+   </property>
+   <property name="toolTip" >
+    <string>String Number</string>
+   </property>
+   <property name="statusTip" >
+    <string>Go to string number...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>GoTo String&lt;/h3>Go to the string number specified by user.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="actionAddBookmarks" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/bookmarkadd.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Add Bookmarks</string>
+   </property>
+   <property name="statusTip" >
+    <string>Add a bookmark of the current string</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Add Bookmarks&lt;/h3>Use this to add a bookmark of the current string</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionClearBookmarks" >
+   <property name="text" >
+    <string>&amp;Clear Bookmarks</string>
+   </property>
+   <property name="statusTip" >
+    <string>Clear all the bookmarks</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Clear Bookmarks&lt;/h3>Use this to clear all the bookmarks.</string>
+   </property>
+   <property name="shortcut" >
+    <string/>
+   </property>
+  </action>
+  <action name="actionAuto_translate" >
+   <property name="text" >
+    <string>&amp;Auto Translate</string>
+   </property>
+  </action>
+  <action name="actionCatalogManager" >
+   <property name="icon" >
+    <iconset>../images/catalog.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Catalog Manager...</string>
+   </property>
+   <property name="statusTip" >
+    <string>Open Catalog Manager window...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Catalog Manager&lt;/h3>Use this to open Catalog Manager window.</string>
+   </property>
+  </action>
+  <action name="actionBuildGlossary" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Gl&amp;ossary</string>
+   </property>
+  </action>
+  <action name="actionCopySearchResult2Target" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/source.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Copy &amp;Translation To Target</string>
+   </property>
+   <property name="iconText" >
+    <string>Copy Translation To Target</string>
+   </property>
+   <property name="toolTip" >
+    <string>Copy Translation To Target</string>
+   </property>
+   <property name="statusTip" >
+    <string>Copy the most similar translation to target field.</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Copy Translation To Target&lt;/h3>Use this to copy the most similar translation to target field.</string>
+   </property>
+  </action>
+  <action name="actionBuild_TM" >
+   <property name="icon" >
+    <iconset>../images/memory.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Build TM...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Build the translation memory.</string>
+   </property>
+   <property name="statusTip" >
+    <string>Build the translation memory.</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Build TM&lt;/h3>Use this to build the translation memory.</string>
+   </property>
+  </action>
+  <action name="actionGlossary" >
+   <property name="text" >
+    <string>Build Gl&amp;ossary...</string>
+   </property>
+   <property name="iconText" >
+    <string>Build Glossary</string>
+   </property>
+   <property name="toolTip" >
+    <string>Build the glossary</string>
+   </property>
+   <property name="statusTip" >
+    <string>Build the glossary</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Build Glossary&lt;/h3>Use this to build the glossary.</string>
+   </property>
+  </action>
+  <action name="actionAuto_translate" >
+   <property name="text" >
+    <string>Auto Translate</string>
+   </property>
+   <property name="statusTip" >
+    <string>Translate the whole strings automatically.</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>&lt;/h3>Use this to translate the whole strings automatically.</string>
+   </property>
+  </action>
+  <action name="actionNewPro" >
+   <property name="icon" >
+    <iconset>../images/projectNew.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;New...   </string>
+   </property>
+   <property name="statusTip" >
+    <string>This opens a dialog for entering  the information for a new project...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>New&lt;/h3>Use this to open a dialog for entering  the information for a new project.</string>
+   </property>
+  </action>
+  <action name="actionOpenPro" >
+   <property name="icon" >
+    <iconset>../images/projectOpen.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Open...   </string>
+   </property>
+   <property name="statusTip" >
+    <string>This open an existing project...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Open&lt;/h3>Use this to open an existing project.</string>
+   </property>
+  </action>
+  <action name="actionClear_Fuzzies" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>Clear All Fuzzy Strings</string>
+   </property>
+   <property name="iconText" >
+    <string>Clear All Fuzzy Strings</string>
+   </property>
+   <property name="toolTip" >
+    <string>Clear All Fuzzy Strings</string>
+   </property>
+   <property name="statusTip" >
+    <string>Clear all fuzzy status</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Clear All Fuzzy Strings&lt;/h3>This will take out the fuzzy status from all strings. You might lose some translation process  information, and this action cannot be undone. You should uncheck all options in Preferences/TM-Glossary for speed improvement. Are you sure you want to clear all fuzzies?</string>
+   </property>
+  </action>
+  <action name="actionProperties" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/properties.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Properties</string>
+   </property>
+   <property name="statusTip" >
+    <string>Open a Project Properties dialog...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Properties&lt;/h3>Use this to open a current project properties dialog. Here, you can change the project name, path, language, files' location.</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

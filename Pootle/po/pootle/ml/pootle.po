@@ -1,0 +1,1408 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2008-08-19 12:36+0200\n"
+"PO-Revision-Date: 2008-09-21 07:51+0000\n"
+"Last-Translator: Praveen Arimbrathodiyil <pravi.a@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.0-beta2\n"
+
+#: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
+#: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
+#: indexpage.py:139 indexpage.py:201 indexpage.py:264 indexpage.py:352
+#: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
+#: users.py:177
+msgid "Pootle Demo"
+msgstr "പൂട്ടില്‍ പ്രവര്‍ത്തനമാതൃക"
+
+#: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
+#: pagelayout.py:27
+msgid "Home"
+msgstr "പൂമുഖം"
+
+#: adminpages.py:46 adminpages.py:212
+msgid "Users"
+msgstr "ഉപയോക്താക്കള്‍"
+
+#: adminpages.py:47 adminpages.py:87 indexpage.py:93
+msgid "Languages"
+msgstr "ഭാഷകള്‍"
+
+#: adminpages.py:48 adminpages.py:146 indexpage.py:94
+msgid "Projects"
+msgstr "പദ്ധതികള്‍"
+
+#: adminpages.py:49
+msgid "General options"
+msgstr "പൊതുവായ ഐച്ഛികങ്ങള്‍"
+
+#: adminpages.py:50 users.py:182
+msgid "Option"
+msgstr "ഐച്ഛികം"
+
+#: adminpages.py:51 users.py:183
+msgid "Current value"
+msgstr "ഇപ്പോഴത്തെ വില"
+
+#: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
+#: users.py:197
+msgid "Save changes"
+msgstr "മാറ്റങ്ങള്‍ സൂക്ഷിക്കുക"
+
+#: adminpages.py:56
+msgid "Title"
+msgstr "തലക്കെട്ട്"
+
+#: adminpages.py:57
+msgid "Description"
+msgstr "വിവരണം"
+
+#: adminpages.py:58
+msgid "Base URL"
+msgstr "അടിസ്ഥാന URL"
+
+#: adminpages.py:59
+msgid "Home Page"
+msgstr "പൂമുഖ താള്‍"
+
+#: adminpages.py:77
+msgid "Pootle Languages Admin Page"
+msgstr "പൂട്ടില്‍ ഭാഷകളുടെ മേല്‍നോട്ട താള്‍"
+
+#: adminpages.py:86 adminpages.py:145 adminpages.py:211
+msgid "Main admin page"
+msgstr "പ്രധാന കൈകാര്യ താള്‍"
+
+#: adminpages.py:92 adminpages.py:286
+msgid "ISO Code"
+msgstr "ISO കോഡ്"
+
+#: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
+#: users.py:127
+msgid "Full Name"
+msgstr "പൂര്‍ണ്ണ നാമം"
+
+#: adminpages.py:94
+msgid "(add language here)"
+msgstr "(ഭാഷ ഇവിടെ നിന്നും ചേര്‍ക്കുക)"
+
+#: adminpages.py:95
+msgid "Special Chars"
+msgstr "പ്രത്യേക അക്ഷരങ്ങള്‍"
+
+#: adminpages.py:95
+msgid "(special characters)"
+msgstr "(പ്രത്യേക അക്ഷരങ്ങള്‍)"
+
+#: adminpages.py:96 indexpage.py:224
+msgid "Number of Plurals"
+msgstr "ബഹുവചനങ്ങളുടെ എണ്ണം"
+
+#: adminpages.py:96
+msgid "(number of plurals)"
+msgstr "(ബഹുവചനങ്ങളുടെ എണ്ണം)"
+
+#: adminpages.py:97 indexpage.py:225
+msgid "Plural Equation"
+msgstr "ബഹുവചന സമവാക്യം"
+
+#: adminpages.py:97
+msgid "(plural equation)"
+msgstr "(ബഹുവചന സമവാക്യം)"
+
+#: adminpages.py:98
+msgid "Remove Language"
+msgstr "ഭാഷ നീക്കം ചെയ്യുക"
+
+#. l10n: The parameter is a languagecode, projectcode or username
+#: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
+#, python-format
+msgid "Remove %s"
+msgstr "%s നീക്കം ചെയ്യുക"
+
+#: adminpages.py:132
+msgid "Standard"
+msgstr "സ്റ്റാന്‍ഡേഡ്"
+
+#: adminpages.py:136
+msgid "Pootle Projects Admin Page"
+msgstr "പൂട്ടില്‍ പ്രോജക്ടുകളുടെ മേല്‍നോട്ട താള്‍"
+
+#: adminpages.py:151
+msgid "Project Code"
+msgstr "പദ്ധതി കോഡ്"
+
+#: adminpages.py:153
+msgid "(add project here)"
+msgstr "(പദ്ധതി ഇവിടെ നിന്നും ചേര്‍ക്കുക)"
+
+#: adminpages.py:154
+msgid "Project Description"
+msgstr "പദ്ധതി വിവരണം"
+
+#: adminpages.py:154
+msgid "(project description)"
+msgstr "(പദ്ധതി വിവരണം)"
+
+#: adminpages.py:155
+msgid "Checker Style"
+msgstr "പരിശോധക രീതി"
+
+#: adminpages.py:156
+msgid "File Type"
+msgstr "ഫയല്‍ തരം"
+
+#: adminpages.py:157
+msgid "Create MO Files"
+msgstr "MO Files നിര്‍മ്മിക്കുക"
+
+#: adminpages.py:158
+msgid "Remove Project"
+msgstr "പദ്ധതി നീക്കം ചെയ്യുക"
+
+#: adminpages.py:202
+msgid "Pootle User Admin Page"
+msgstr "പൂട്ടില്‍ ഉപയോക്താവിന്റെ മേല്‍നോട്ട താള്‍"
+
+#: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
+msgid "Username"
+msgstr "ഉപയോക്തൃനാമം"
+
+#: adminpages.py:219 users.py:403
+msgid "(add full name here)"
+msgstr "(പൂര്‍ണ്ണ നാമം ഇവിടെ ചേര്‍ക്കുക)"
+
+#: adminpages.py:220 users.py:124
+msgid "Email Address"
+msgstr "ഈ-മെയ്‍ല്‍ വിലാസം"
+
+#: adminpages.py:220 users.py:406
+msgid "(add email here)"
+msgstr "(ഈ-മെയ്‍ല്‍ ഇവിടെ ചേര്‍ക്കുക)"
+
+#: adminpages.py:221 users.py:130 users.py:188
+msgid "Password"
+msgstr "പാസ്സ്‍വേഡ്"
+
+#: adminpages.py:221 users.py:400
+msgid "(add password here)"
+msgstr "(പാസ്സ്‍വേഡ് ഇവിടെ ചേര്‍ക്കുക)"
+
+#: adminpages.py:222
+msgid "Activated"
+msgstr "സജീവമാക്കുക"
+
+#: adminpages.py:222
+msgid "Activate New User"
+msgstr "പുതിയ ഉപയോക്താവിനെ സജീവമാക്കുക"
+
+#: adminpages.py:223
+msgid "Remove User"
+msgstr "ഉപയോക്താവിനെ നീക്കം ചെയ്യുക"
+
+#: adminpages.py:278
+msgid "Back to main page"
+msgstr "തിരികെ പൂമുഖത്തിലേക്ക്"
+
+#: adminpages.py:279
+msgid "Existing languages"
+msgstr "ഇപ്പോഴുള്ള ഭാഷകള്‍"
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:283
+msgid "Update Languages"
+msgstr "ഭാഷകള്‍ പുതുക്കുക"
+
+#: adminpages.py:284
+#, python-format
+msgid "Pootle Admin: %s"
+msgstr "പൂട്ടില്‍ കാര്യക്കാരന്‍: %s"
+
+#: adminpages.py:285 adminpages.py:356
+msgid "You do not have the rights to administer this project."
+msgstr "ഈ പദ്ധതി കൈകാര്യം ചെയ്യുവാനുള്ള അവകാശം നിങ്ങള്‍ക്കില്ല."
+
+#. l10n: This refers to updating the translation files from the templates like with .pot files
+#: adminpages.py:289
+msgid "Update from templates"
+msgstr "ടെംപ്ലേറ്റില്‍ നിന്നും പുതുക്കുക"
+
+#: adminpages.py:298
+msgid "Add Language"
+msgstr "ഭാഷ ചേര്‍ക്കുക"
+
+#. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
+#: adminpages.py:336
+#, python-format
+msgid "Pootle Admin: %s %s"
+msgstr "പൂട്ടില്‍ കാര്യക്കാരന്‍:: %s %s"
+
+#: adminpages.py:337
+msgid "Project home page"
+msgstr "പദ്ധതി പൂമുഖ താള്‍"
+
+#: adminpages.py:355
+#, python-format
+msgid "Cannot set rights for username %s - user does not exist"
+msgstr ""
+"%s എന്ന ഉപഭോക്താവിന് അധികാരങ്ങള്‍ നല്‍കുവനായില്ല - അങ്ങനെ ഒരു ഉപയോക്താവ് "
+"നിലനില്ക്കുന്നില്ല"
+
+#: adminpages.py:372
+msgid "This is a GNU-style project (one directory, files named per language)."
+msgstr ""
+"ഇതൊരു GNU-style പദ്ധതി (ഒരു directory, ഫയലുകള്‍ ഓരോ ഭാഷയ്ക്കനുസൃതമായി "
+"നാമകരണം ചെയ്യപ്പെടുന്നു)."
+
+#: adminpages.py:374
+msgid "This is a standard style project (one directory per language)."
+msgstr "ഇതൊരു standard style പദ്ധതി (ഒരു directory ഒരു ഭാഷയ്ക്കു)."
+
+#: adminpages.py:375
+msgid "User Permissions"
+msgstr "ഉപയൊക്താവിനുള്ള അനുവാദങ്ങള്‍"
+
+#: adminpages.py:377
+msgid "(select to add user)"
+msgstr "(ഉപയോക്താവിനെ തിരഞ്ഞു ചേര്‍ക്കൂ)"
+
+#: adminpages.py:378
+msgid "Rights"
+msgstr "അവകാശങ്ങള്‍"
+
+#: adminpages.py:379 indexpage.py:1008
+msgid "Remove"
+msgstr "നീക്കം ചെയ്യുക"
+
+#: adminpages.py:406
+msgid "Update Rights"
+msgstr "അവകാശങ്ങള്‍ പുതുക്കുക"
+
+#: indexpage.py:58
+msgid "About Pootle"
+msgstr "പൂട്ട്‍ലിനെ പറ്റി"
+
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:60
+msgid ""
+"<strong>Pootle</strong> is a simple web portal that should allow you to "
+"<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
+"you can download it and run your own copy if you like. You can also help "
+"participate in the development in many ways (you don't have to be able to "
+"program)."
+msgstr ""
+"<strong>പൂട്ടില്‍</strong> എന്നത് <strong>വിവര്‍ത്തങ്ങള്‍ "
+"നടത്തുവാനുള്ള</strong> വളരെ ലഘുവായിട്ടുള്ള ഒരു വെബ്ബ് പോര്‍ട്ടലാണ്. "
+"പൂട്ടില്‍ ഒരു <strong>സ്വതന്ത്ര സോഫ്റ്റ്‌വെയറാണെന്നതിനാല്‍</strong>, "
+"നിങ്ങള്‍ക്കിത് ഡൗണ്‍ലോഡ് ചെയ്ത് ഇഷ്ടാനുസരണം‌ ഉപയോഗിക്കാവുന്നതാണ്. പൂട്ടില്‍ "
+"വികസന പരിപാടികളിലും നിങ്ങള്‍ക്ക് പങ്ക് ചേരാവുന്നതാണ് (പ്രോഗ്രാം ചെയ്യണമെന്ന് "
+"നിര്‍ബന്ധമില്ല)"
+
+#: indexpage.py:61
+msgid ""
+"The Pootle project itself is hosted at <a href=\"http://translate."
+"sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
+"details about source code, mailing lists etc."
+msgstr ""
+"പൂട്ടില്‍ പദ്ധതി ഹോസ്റ്റ് ചെയ്തിട്ടുള്ളത് <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> ലാണ്. "
+"സോഴ്സ് കോഡിനെ പറ്റിയും, മെയ്‌ലിങ്ങ് ലിസ്റ്റുകളെ പറ്റിയുമൊക്കെ അവിടെ നിന്നും "
+"വിവരങ്ങള്‍ ലഭിക്കുന്നതാണ്."
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:64
+msgid ""
+"The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+"b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
+"thechestnut.com/flumps.htm\">this</a>."
+msgstr ""
+"പൂട്ടില്‍, ഇംഗ്ലീഷില്‍ POOTLE, എന്ന നാമം ഇപ്രകാരമാണ് വന്നത്. <b>PO</b>-based "
+"<b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, "
+"എന്നാലും നിങ്ങള്‍ <a href=\"http://www.thechestnut.com/flumps.htm\">ഇത്</a> "
+"കൂടി വായിച്ചിരിക്കേണ്ട ആവശ്യമുണ്ടാകും."
+
+#: indexpage.py:65
+msgid "Versions"
+msgstr "പതിപ്പുകള്‍"
+
+#. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
+#. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
+#: indexpage.py:68
+#, python-format
+msgid ""
+"This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+msgstr ""
+"ഈ സൈറ്റ് ഓടിക്കുന്നത്: <br />പൂട്ടില്‍ %s<br /> Translate Toolkit %s<br "
+"/>jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+
+#: indexpage.py:133
+#, python-format
+msgid "User Page for: %s"
+msgstr "ഉപയോക്തൃ താള്‍: %s"
+
+#: indexpage.py:135
+msgid "Change options"
+msgstr "സജ്ജീകരണങ്ങള്‍ മാറ്റുക"
+
+#: indexpage.py:136
+msgid "Admin page"
+msgstr "മേല്‍നോട്ട താള്‍"
+
+#: indexpage.py:137 projects.py:149
+msgid "Administrate"
+msgstr "മേല്‍നോട്ടം വഹിക്കുക"
+
+#: indexpage.py:138
+msgid "Quick Links"
+msgstr "ശീഘ്ര കണ്ണികള്‍"
+
+#: indexpage.py:142
+msgid "Please click on 'Change options' and select some languages and projects"
+msgstr ""
+"ദയവായി 'ഉപാധികള്‍ മാറ്റുക' എന്നതില്‍ അമര്‍ത്തി ഭാഷകളും പ്രോജക്ടുകളും "
+"തിരഞ്ഞെടുക്കൂ"
+
+#: indexpage.py:199
+#, python-format
+msgid "%d project, average %d%% translated"
+msgid_plural "%d projects, average %d%% translated"
+msgstr[0] "%d പദ്ധതി, ശരാശരി %d%% പരിഭാഷപ്പെടുത്തിയിരിക്കുന്നു"
+msgstr[1] "%d പദ്ധതികള്‍, ശരാശരി %d%% പരിഭാഷപ്പെടുത്തിയിരിക്കുന്നു"
+
+#. l10n: The first parameter is the name of the installation
+#. l10n: The second parameter is the name of the project/language
+#. l10n: This is used as a page title. Most languages won't need to change this
+#: indexpage.py:205 indexpage.py:268
+#, python-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
+msgid "Admin"
+msgstr "കാര്യക്കാരന്‍"
+
+#: indexpage.py:221
+msgid "Language Code"
+msgstr "ഭാഷാ കോഡ്"
+
+#: indexpage.py:222
+msgid "Language Name"
+msgstr "ഭാഷാ നാമം"
+
+#: indexpage.py:260
+#, python-format
+msgid "%d language, average %d%% translated"
+msgid_plural "%d languages, average %d%% translated"
+msgstr[0] "%d ഭാഷ, ശരാശരി %d%% പരിഭാഷപ്പെടുത്തുയിരിക്കുന്നു"
+msgstr[1] "%d ഭാഷകള്‍, ശരാശരി %d%% പരിഭാഷപ്പെടുത്തിയിരിക്കുന്നു"
+
+#: indexpage.py:273
+msgid "Language"
+msgstr "ഭാഷ"
+
+#. l10n: The first parameter is the name of the installation (like "Pootle")
+#: indexpage.py:354
+#, python-format
+msgid "%s: Project %s, Language %s"
+msgstr "%s: പദ്ധതി %s, ഭാഷ %s"
+
+#. l10n: text next to search field
+#: indexpage.py:362 translatepage.py:145
+msgid "Search"
+msgstr "തിരയുക"
+
+#: indexpage.py:363 translatepage.py:146
+msgid "Advanced Search"
+msgstr "വിദഗ്ധ തിരച്ചില്‍"
+
+#: indexpage.py:422
+msgid "Cannot upload file, no file attached"
+msgstr ""
+"ഫയല്‍ അപ്‌ലോഡ് ചെയ്യുവാന്‍ സാധിക്കുന്നില്ല, ഒരു ഫയലും അറ്റാച്ച് "
+"ചെയ്തിട്ടില്ല"
+
+#: indexpage.py:428
+msgid "Can only upload PO files and zips of PO files"
+msgstr "PO ഫയലുകളോ അവയുടെ ZIP-ഉകളോ മാത്രമേ അപ്‌ലോഡ് ചെയ്യുവാന്‍ പറ്റൂ"
+
+#: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
+msgid "Assign Strings"
+msgstr "സ്ട്രിങ്ങ്സ് ഏര്‍പ്പാടാക്കുക"
+
+#: indexpage.py:536 translatepage.py:239
+msgid "Assign Action"
+msgstr "പ്രവൃത്തി ഏര്‍പ്പാടാക്കുക"
+
+#: indexpage.py:537 translatepage.py:238
+msgid "Assign to User"
+msgstr "ഉപയോക്താവിന് ഏര്‍പ്പടാക്കുക"
+
+#: indexpage.py:543
+msgid "goals"
+msgstr "ലക്ഷ്യങ്ങള്‍"
+
+#: indexpage.py:544
+msgid "Enter goal name"
+msgstr "പദ്ധതി നാമം കൊടുക്കുക"
+
+#: indexpage.py:545
+msgid "Add Goal"
+msgstr "പദ്ധതി ചേര്‍ക്കുക"
+
+#: indexpage.py:550 indexpage.py:552
+msgid "Upload File"
+msgstr "ഫയല്‍ അപ്‍ലോഡ് ചെയ്യുക"
+
+#: indexpage.py:551
+msgid "Select file to upload"
+msgstr "അപ്‍ലോഡ് ചെയ്യുവാന്‍ ഉള്ള ഫയല്‍ തിരഞ്ഞെടുക്കുക"
+
+#. l10n: radio button text
+#: indexpage.py:557 projects.py:141
+msgid "Overwrite"
+msgstr "മേലെഴുതുക"
+
+#. l10n: tooltip
+#: indexpage.py:559
+msgid "Overwrite the current file if it exists"
+msgstr "ഇപ്പോഴത്തെ ഫയല്‍ നിലനില്ക്കുന്നൂവെങ്കില് ‍മേലെഴുതുക"
+
+#. l10n: radio button text
+#: indexpage.py:561
+msgid "Merge"
+msgstr "ലയിപ്പിക്കുക"
+
+#. l10n: tooltip
+#: indexpage.py:563
+msgid ""
+"Merge the file with the current file and turn conflicts into suggestions"
+msgstr "ഇപ്പോഴത്തെ ഫയലുമായി ലയിപ്പിച്ച ശേഷം ഭിന്നതകള്‍ നിര്‍ദ്ദേശങ്ങളാക്കുക"
+
+#: indexpage.py:666
+msgid "Not in a goal"
+msgstr "ലക്ഷ്യത്തിലില്ല"
+
+#: indexpage.py:686
+msgid "Add User"
+msgstr "ഉപയോക്താവിനെ ചേര്‍ക്കുക"
+
+#: indexpage.py:731
+msgid "PO file"
+msgstr "PO ഫയല്‍"
+
+#: indexpage.py:735
+msgid "XLIFF file"
+msgstr "XLIFF ഫയല്‍"
+
+#: indexpage.py:739
+msgid "Qt .ts file"
+msgstr "Qt .ts ഫയല്‍"
+
+#: indexpage.py:743
+msgid "CSV file"
+msgstr "CSV ഫയല്‍"
+
+#: indexpage.py:748
+msgid "MO file"
+msgstr "MO ഫയല്‍"
+
+#. l10n: Update from version control (like CVS or Subversion)
+#: indexpage.py:754
+msgid "Update"
+msgstr "പുതുക്കുക"
+
+#. l10n: Commit to version control (like CVS or Subversion)
+#: indexpage.py:760 projects.py:150
+msgid "Commit"
+msgstr "സമര്‍പ്പിക്കുക"
+
+#: indexpage.py:798
+msgid "All Strings"
+msgstr "എല്ലാ സ്ട്രിങ്ങുകളും"
+
+#: indexpage.py:799 pagelayout.py:249
+msgid "Untranslated"
+msgstr "പരിഭാഷപ്പെടുത്തിയിട്ടില്ലാത്തത്"
+
+#: indexpage.py:800
+msgid "Unassigned"
+msgstr "ഏര്‍പ്പാടക്കാത്തവ"
+
+#: indexpage.py:801
+msgid "Unassigned and Untranslated"
+msgstr "ഏര്‍പ്പാടാക്കത്തവയും പരിഭാഷപ്പെടുത്താത്തവയും"
+
+#: indexpage.py:808
+msgid "Set Goal"
+msgstr "ലക്ഷ്യം ഉറപ്പിക്കുക"
+
+#: indexpage.py:812
+msgid "Select Multiple"
+msgstr "ഒന്നില്‍ കൂടുതല്‍ തിരഞ്ഞെടുക്കുക"
+
+#: indexpage.py:814
+msgid "Assign To"
+msgstr "ഏര്‍പ്പെടുത്തൂ"
+
+#: indexpage.py:843
+msgid "Show Editing Functions"
+msgstr "തിരുത്തിയെഴുതല്‍ പ്രവൃത്തികള്‍ കാണിക്കുക"
+
+#: indexpage.py:844
+msgid "Show Statistics"
+msgstr "സ്ഥിതിവിവരക്കണക്കുകള്‍ കാണിക്കുക"
+
+#: indexpage.py:845
+msgid "Show Tracks"
+msgstr "പിന്നിട്ട വഴികള്‍ കാണിക്കുക"
+
+#: indexpage.py:845
+msgid "Hide Tracks"
+msgstr "പിന്നിട്ട വഴികള്‍ ഒളിപ്പിക്കുക"
+
+#. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
+#: indexpage.py:847
+msgid "Show Checks"
+msgstr "പരിശോധനകള്‍ കാണിക്കുക"
+
+#: indexpage.py:847
+msgid "Hide Checks"
+msgstr "പരിശോധനകള്‍ ഒളിപ്പിക്കുക"
+
+#: indexpage.py:848
+msgid "Show Goals"
+msgstr "ലക്ഷ്യങ്ങള്‍ കാണിക്കുക"
+
+#: indexpage.py:848
+msgid "Hide Goals"
+msgstr "ലക്ഷ്യങ്ങള്‍ ഒളിപ്പിക്കുക"
+
+#: indexpage.py:849
+msgid "Show Assigns"
+msgstr "ഏര്‍പ്പാടുകള്‍ കാണിക്കുക"
+
+#: indexpage.py:849
+msgid "Hide Assigns"
+msgstr "ഏര്‍പ്പാടുകള്‍ ഒളിപ്പിക്കുക"
+
+#: indexpage.py:858
+#, python-format
+msgid "All Goals: %s"
+msgstr "എല്ലാ ലക്ഷ്യങ്ങളും: %s"
+
+#: indexpage.py:864
+msgid "Translate My Strings"
+msgstr "എന്റെ സ്ട്രിങ്ങുകള്‍ പരിഭാഷപ്പെടുത്തുക"
+
+#: indexpage.py:866
+msgid "View My Strings"
+msgstr "എന്റെ സ്ട്രിങ്ങുകള്‍ കാണിക്കുക"
+
+#: indexpage.py:871
+msgid "No strings assigned to you"
+msgstr "നിങ്ങള്ക്ക് ഒരു സ്ട്രിങ്ങിന്റെയും ചുമതലയില്ല"
+
+#: indexpage.py:875
+msgid "Quick Translate My Strings"
+msgstr "എന്റെ സ്ട്രിങ്ങുകള്‍ ശീഘ്ര-വിവര്‍ത്തനം ചെയ്യുക"
+
+#: indexpage.py:879
+msgid "No untranslated strings assigned to you"
+msgstr "നിങ്ങള്‍ക്ക് വിവര്‍ത്തനം ചെയ്യാത്ത സ്ട്രിങ്ങുകളുടെ ചുമതലയൊന്നുമില്ല"
+
+#: indexpage.py:883
+msgid "Review Suggestions"
+msgstr "നിര്‍ദ്ദേശങ്ങള്‍ അവലോകനം ചെയ്യുക"
+
+#: indexpage.py:885
+msgid "View Suggestions"
+msgstr "നിര്‍ദ്ദേശങ്ങള്‍ കാണിക്കുക"
+
+#: indexpage.py:890
+msgid "Quick Translate"
+msgstr "ശീഘ്ര പരിഭാഷ"
+
+#: indexpage.py:892
+msgid "View Untranslated"
+msgstr "പരിഭാഷപ്പെടുത്താത്തവ കാണിക്കുക"
+
+#: indexpage.py:896
+msgid "No untranslated items"
+msgstr "പരിഭാഷപ്പെടുത്താത്തവ ഒന്നുമില്ല"
+
+#: indexpage.py:899
+msgid "Translate All"
+msgstr "എല്ലാം പരിഭാഷപ്പെടുത്തുക"
+
+#: indexpage.py:914
+msgid "ZIP of goal"
+msgstr "ലക്ഷ്യത്തിന്റെ ZIP"
+
+#: indexpage.py:916
+msgid "ZIP of folder"
+msgstr "ഫോള്‍ഡറിന്റെ ZIP"
+
+#: indexpage.py:923
+msgid "Generate SDF"
+msgstr "SDF നിര്‍മ്മിക്കുക"
+
+#: indexpage.py:976
+#, python-format
+msgid "%d string (%d%%) failed"
+msgid_plural "%d strings (%d%%) failed"
+msgstr[0] "%d സ്ട്രിങ്ങ് (%d%%) പരാജയപ്പെട്ടു"
+msgstr[1] "%d വാക്കുകള്‍ (%d%%) പരാജയപ്പെട്ടു"
+
+#: indexpage.py:1003
+#, python-format
+msgid "%d/%d words (%d%%) assigned"
+msgstr "%d/%d വാക്കുകള്‍ (%d%%) ഏര്‍പ്പെടുത്തി"
+
+#: indexpage.py:1004 indexpage.py:1006
+#, python-format
+msgid "[%d/%d strings]"
+msgstr "[%d/%d സ്ത്രിങ്ങുകള്‍]"
+
+#: indexpage.py:1005 pagelayout.py:235
+#, python-format
+msgid "%d/%d words (%d%%) translated"
+msgstr "%d/%d വാക്കുകള്‍ (%d%%) പരിഭാഷപ്പെടുത്തി"
+
+#: pagelayout.py:28
+msgid "All projects"
+msgstr "എല്ലാ പദ്ധതികളും"
+
+#: pagelayout.py:29
+msgid "All languages"
+msgstr "എല്ലാ ഭാഷകളും"
+
+#: pagelayout.py:30
+msgid "My account"
+msgstr "എന്റെ അക്കൌണ്ട്"
+
+#: pagelayout.py:32
+msgid "Docs & help"
+msgstr "രേഖകളും സഹായവും"
+
+#: pagelayout.py:34
+msgid "Log out"
+msgstr "പുറത്ത് കടക്കുക"
+
+#: pagelayout.py:35
+msgid "Log in"
+msgstr "അകത്ത് കടക്കുക"
+
+#. l10n: Verb, as in "to register"
+#: pagelayout.py:37
+msgid "Register"
+msgstr "രജിസ്റ്റര്‍"
+
+#: pagelayout.py:38
+msgid "Activate"
+msgstr "സജീവമാക്കുക"
+
+#: pagelayout.py:83
+msgid "Pootle Logo"
+msgstr "പൂട്ടില്‍ ലോഗോ"
+
+#: pagelayout.py:84
+msgid "About this Pootle server"
+msgstr "ഈ പൂട്ടില്‍ സെര്‍വറിനെ പറ്റി"
+
+#: pagelayout.py:160
+msgid "All goals"
+msgstr "എല്ലാ ലക്ഷ്യങ്ങളും"
+
+#: pagelayout.py:231
+#, python-format
+msgid "%d/%d files"
+msgstr "%d/%d ഫയലുകള്‍"
+
+#: pagelayout.py:234
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "%d ഫയല്‍"
+msgstr[1] "%d ഫയലുകള്‍"
+
+#: pagelayout.py:236
+#, python-format
+msgid "%d/%d strings"
+msgstr "%d/%d സ്ട്രിങ്ങുകള്‍"
+
+#: pagelayout.py:242 users.py:184
+msgid "Name"
+msgstr "നാമം"
+
+#: pagelayout.py:243
+msgid "Translated"
+msgstr "പരിഭാഷപ്പെടുത്തി"
+
+#: pagelayout.py:244
+msgid "Translated percentage"
+msgstr "പരിഭാഷാ ശതമാനം"
+
+#: pagelayout.py:245
+msgid "Translated words"
+msgstr "പരിഭാഷപ്പെടുത്തിയ വാക്കുകള്‍"
+
+#: pagelayout.py:246 translatepage.py:135
+msgid "Fuzzy"
+msgstr "ഫസ്സി"
+
+#: pagelayout.py:247
+msgid "Fuzzy percentage"
+msgstr "ഫസ്സി ശതമാനം"
+
+#: pagelayout.py:248
+msgid "Fuzzy words"
+msgstr "ഫസ്സി വാക്കുകള്‍"
+
+#: pagelayout.py:250
+msgid "Untranslated percentage"
+msgstr "പരിഭാഷപ്പെടുത്തിയിട്ടില്ലാത്ത ശതമാനം"
+
+#: pagelayout.py:251
+msgid "Untranslated words"
+msgstr "പരിഭാഷപ്പെടുത്തിയിട്ടില്ലാത്ത വാക്കുകള്‍"
+
+#: pagelayout.py:252
+msgid "Total"
+msgstr "മുഴുവനും"
+
+#: pagelayout.py:253
+msgid "Total words"
+msgstr "മുഴുവന്‍ വാക്കുകളും"
+
+#. l10n: noun. The graphical representation of translation status
+#: pagelayout.py:255
+msgid "Graph"
+msgstr "ഗ്രാഫ്"
+
+#: pagelayout.py:293
+msgid "Source Text"
+msgstr "മൂലാധാരം"
+
+#: pagelayout.py:297
+msgid "Target Text"
+msgstr "ലക്ഷ്യാധാരം"
+
+#: pagelayout.py:301
+msgid "Comments"
+msgstr "അഭിപ്രായങ്ങള്‍"
+
+#: pagelayout.py:305
+msgid "Locations"
+msgstr "സ്ഥാനങ്ങള്‍"
+
+#: pootle.py:305
+msgid "Login failed"
+msgstr "ലോഗിന്‍ പരാജയപ്പെട്ടിരിക്കുന്നു"
+
+#: pootle.py:349 pootle.py:380
+msgid "Redirecting to login..."
+msgstr "ലോഗിനിലേക്ക് വഴിതിതിരിച്ചു വിടുന്നു..."
+
+#: pootle.py:352
+msgid "Need to log in to access home page"
+msgstr "പൂമുഖ താളില്‍ കയറുവാന്‍ ലോഗിന്‍ ചെയ്യണം"
+
+#: pootle.py:365
+msgid "Personal details updated"
+msgstr "വ്യക്തി വിവരണങ്ങള്‍ പുതുക്കി"
+
+#: pootle.py:383
+msgid "Need to log in to access admin page"
+msgstr "മേല്‍നോട്ട താളില്‍ കയറുവാന്‍ ലോഗിന്‍ ചെയ്യണം"
+
+#: pootle.py:390
+msgid "Redirecting to home..."
+msgstr "പൂമുഖത്തേക്ക് വഴിതിരിച്ചു വിടുന്നു..."
+
+#: pootle.py:393
+msgid "You do not have the rights to administer pootle."
+msgstr "പൂട്ടില്‍ മേല്‍നോട്ടം വഹിക്കുവാന്‍ നിങ്ങള്‍ക്കധികാരമില്ല."
+
+#. l10n: Verb
+#: projects.py:138
+msgid "View"
+msgstr "കാണുക"
+
+#: projects.py:139 translatepage.py:678
+msgid "Suggest"
+msgstr "നിര്‍ദ്ദേശിക്കുക"
+
+#: projects.py:140
+msgid "Translate"
+msgstr "പരിഭാഷപ്പെടുത്തുക"
+
+#. l10n: Verb
+#: projects.py:143
+msgid "Review"
+msgstr "അവലോകനം നടത്തുക"
+
+#. l10n: Verb
+#: projects.py:145
+msgid "Archive"
+msgstr "ശേഖരം"
+
+#. l10n: This refers to generating the binary .mo file
+#: projects.py:147
+msgid "Compile PO files"
+msgstr "PO ഫയലുകള്‍ കംപൈല്‍ ചെയ്യുക"
+
+#: projects.py:148
+msgid "Assign"
+msgstr "ഏര്‍പ്പാടാക്കുക"
+
+#. l10n: Don't translate "nobody" or "default"
+#: projects.py:230
+msgid "You cannot remove the \"nobody\" or \"default\" user"
+msgstr "\"nobody\" അല്ലെങ്കില്‍ \"default\" ഉപയോക്താവിനെ നീക്കം ചെയ്യുവാനാകില്ല"
+
+#: projects.py:382 projects.py:444
+msgid "You do not have rights to alter goals here"
+msgstr "ലക്ഷ്യങ്ങള്‍ മാറ്റുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: projects.py:510
+msgid "You do not have rights to upload files here"
+msgstr "ഫയലുകള്‍ അപ്‍ലോഡ് ചെയ്യുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: projects.py:513
+msgid "You do not have rights to overwrite files here"
+msgstr "ഫയലുകള്‍ മേലെഴുതാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: projects.py:515
+msgid "You do not have rights to upload new files here"
+msgstr "പുതിയ ഫയലുകള്‍ അപ്‍ലോഡ് ചെയ്യുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: projects.py:524
+msgid "You do not have rights to update files here"
+msgstr "ഫയലുകള്‍ പുതുക്കുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: projects.py:555
+msgid "You do not have rights to commit files here"
+msgstr "ഫയലുകള്‍ സമര്‍പ്പിക്കുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: projects.py:977 projects.py:1019
+msgid "You do not have rights to alter assignments here"
+msgstr "ഏര്‍പ്പേടുത്തലുകള്‍ മാറ്റുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: projects.py:1219
+msgid "You do not have rights to change translations here"
+msgstr "പരിഭാഷകള്‍ മാറ്റുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: projects.py:1229
+msgid "You do not have rights to suggest changes here"
+msgstr "മാറ്റങ്ങള്‍ നിര്‍ദ്ദേശിക്കുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: projects.py:1245 projects.py:1263
+msgid "You do not have rights to review suggestions here"
+msgstr "മാറ്റങ്ങള്‍ അവലോകനം ചെയ്യുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
+
+#: translatepage.py:103
+#, python-format
+msgid ""
+"%d/%d translated\n"
+"(%d untranslated, %d fuzzy)"
+msgstr ""
+"%d/%d പരിഭാഷപ്പെടുത്തി\n"
+"(%d ബാക്കി, %d ഫസ്സി)"
+
+#. l10n: first parameter: name of the installation (like "Pootle")
+#. l10n: second parameter: project name
+#. l10n: third parameter: target language
+#. l10n: fourth parameter: file name
+#: translatepage.py:113
+#, python-format
+msgid "%s: translating %s into %s: %s"
+msgstr "%s: %s, %s-ലേക്ക് പരിഭാഷപ്പെടുത്തുന്നു: %s"
+
+#. l10n: Heading above the table column with the source language
+#: translatepage.py:128
+msgid "Original"
+msgstr "യഥാര്‍ത്ഥം"
+
+#. l10n: Heading above the table column with the target language
+#: translatepage.py:130
+msgid "Translation"
+msgstr "പരിഭാഷപ്പെടുത്തല്‍"
+
+#: translatepage.py:133
+msgid "Accept suggestion"
+msgstr "നിര്‍ദ്ദേശം അംഗീകരിക്കുക"
+
+#: translatepage.py:134
+msgid "Reject suggestion"
+msgstr "നിര്‍ദ്ദേശം തള്ളിക്കളയുക"
+
+#. l10n: Heading above the textarea for translator comments.
+#: translatepage.py:137
+msgid "Translator comments"
+msgstr "പരിഭാഷകന്റെ സന്ദേശങ്ങള്‍"
+
+#. l10n: Heading above the comments extracted from the programing source code
+#: translatepage.py:139
+msgid "Developer comments"
+msgstr "വികസിതാവിന്റെ സന്ദേശങ്ങള്‍"
+
+#. l10n: This heading refers to related translations and terminology
+#: translatepage.py:141
+msgid "Related"
+msgstr "ബന്ധപ്പെട്ട"
+
+#. l10n: Text displayed when an AJAX petition is being made
+#: translatepage.py:155
+msgid "Working..."
+msgstr "ജോലി ചെയ്ത് കൊണ്ടിരിക്കുന്നു...."
+
+#. l10n: Text displayed in an alert box when an AJAX petition has failed
+#: translatepage.py:157
+msgid "Error: Something went wrong."
+msgstr "പിഴവു്: എവിടെയോ എന്തോ പിശക് സംഭവിച്ചു"
+
+#. l10n: "batch" refers to the set of translations that were reviewed
+#: translatepage.py:171
+msgid "End of batch"
+msgstr "ബാച്ചിന്റെ അവസാനം"
+
+#: translatepage.py:173
+msgid "Click here to return to the index"
+msgstr "ഇവിടെ ഞെക്കിയാല്‍ പൂമുഖത്തേക്ക് തിരികെ പോകാം"
+
+#. l10n: noun (the start)
+#: translatepage.py:187 translatepage.py:190
+msgid "Start"
+msgstr "തുടങ്ങുക"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:194 translatepage.py:197
+#, python-format
+msgid "Previous %d"
+msgstr "മുന്പത്തെ %d"
+
+#. l10n: the third parameter refers to the total number of messages in the file
+#: translatepage.py:199
+#, python-format
+msgid "Items %d to %d of %d"
+msgstr "%d - ന്റെ %d മുതല്‍ %d വരെയുള്ളവ"
+
+#. l10n: the parameter refers to the number of messages
+#: translatepage.py:204 translatepage.py:207
+#, python-format
+msgid "Next %d"
+msgstr "അടുത്ത %d"
+
+#. l10n: noun (the end)
+#: translatepage.py:210 translatepage.py:213
+msgid "End"
+msgstr "അവസാനം"
+
+#. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
+#: translatepage.py:230
+#, python-format
+msgid "checking %s"
+msgstr "%s പരിശോധിക്കുന്നു"
+
+#: translatepage.py:398
+#, python-format
+msgid "There are no items matching that search ('%s')"
+msgstr "('%s') ആയി സാമ്യമുള്ള ഒന്നുമില്ല"
+
+#: translatepage.py:400
+msgid "You have finished going through the items you selected"
+msgstr "നിങ്ങള്‍ തിരഞ്ഞെടുത്തവയെല്ലാം കണ്ടൂകഴിഞ്ഞിരിക്കുന്നു"
+
+#: translatepage.py:643
+msgid "Singular"
+msgstr "ഒറ്റ"
+
+#: translatepage.py:644
+msgid "Plural"
+msgstr "ബഹു"
+
+#. l10n: verb
+#: translatepage.py:658
+msgid "Edit"
+msgstr "തിരുത്തിയെഴുതുക"
+
+#. l10n: verb
+#: translatepage.py:674
+msgid "Copy"
+msgstr "പകര്‍ത്തിയെഴുതുക"
+
+#: translatepage.py:675 translatepage.py:849
+msgid "Skip"
+msgstr "ഒഴിവാക്കുക"
+
+#. l10n: verb
+#: translatepage.py:677 translatepage.py:848 users.py:312
+msgid "Back"
+msgstr "പിന്നിലേക്ക്"
+
+#: translatepage.py:679
+msgid "Submit"
+msgstr "സമര്‍പ്പിക്കുക"
+
+#. l10n: action that increases the height of the textarea
+#: translatepage.py:682
+msgid "Grow"
+msgstr "വലുതാക്കുക"
+
+#. l10n: action that decreases the height of the textarea
+#: translatepage.py:684
+msgid "Shrink"
+msgstr "ചെറുതാക്കുക"
+
+#: translatepage.py:706 translatepage.py:800 translatepage.py:837
+#: translatepage.py:870
+#, python-format
+msgid "Plural Form %d"
+msgstr "%d ന്റെ ബഹുവചനം"
+
+#. l10n: This is an error message that will display if the relevant problem occurs
+#: translatepage.py:722
+msgid ""
+"Translation not possible because plural information for your language is not "
+"available. Please contact the site administrator."
+msgstr ""
+"ബഹുവചന വിവരങ്ങള്‍ ലഭ്യമല്ലാത്തതിനാല്‍ പരിഭാഷ നടത്തുവാന്‍ സാധ്യമല്ല. ദയവായി "
+"സൈറ്റ് കാര്യക്കാരനെ കാണുക."
+
+#: translatepage.py:804
+msgid "Current Translation:"
+msgstr "ഇപ്പോഴത്തെ പരിഭാഷ:"
+
+#. l10n: First parameter: number
+#. l10n: Second parameter: name of translator
+#: translatepage.py:817
+#, python-format
+msgid "Suggestion %d by %s:"
+msgstr "നിര്‍ദ്ദേശം %d , %s:"
+
+#: translatepage.py:819
+#, python-format
+msgid "Suggestion %d:"
+msgstr "നിര്‍ദ്ദേശം %d:"
+
+#. l10n: parameter: name of translator
+#: translatepage.py:823
+#, python-format
+msgid "Suggestion by %s:"
+msgstr "%s ന്റെ നിര്‍ദ്ദേശം:"
+
+#: translatepage.py:825
+msgid "Suggestion:"
+msgstr "നിര്‍ദ്ദേശം:"
+
+#: users.py:43
+#, python-format
+msgid "You must supply a valid password of at least %d characters."
+msgstr "%d അക്ഷരങ്ങളെങ്കിലും ഉള്ള ഒരു സാധുവായ പാസ്സ്‍വേഡ് കൊടുക്കേണ്ടതാണ്."
+
+#: users.py:45
+msgid "The password is not the same as the confirmation."
+msgstr "പാസ്സ്‍വേഡുകള്‍ രണ്ടും പൊരുത്തപ്പെടുന്നില്ല."
+
+#: users.py:60
+msgid "Login to Pootle"
+msgstr "പൂട്ടിലിന്റെ അകത്ത് കടക്കുക"
+
+#: users.py:66
+msgid "Username:"
+msgstr "ഉപയോക്തൃനാമം:"
+
+#: users.py:68
+msgid "Password:"
+msgstr "പാസ്സ്‍വേഡ്:"
+
+#: users.py:69
+msgid "Language:"
+msgstr "ഭാഷ:"
+
+#: users.py:71
+msgid "Login"
+msgstr "അകത്ത് കടക്കുക"
+
+#: users.py:77
+msgid "Default"
+msgstr "ഡിഫോള്‍ട്ട്"
+
+#: users.py:112
+msgid "Please enter your registration details"
+msgstr "രജിസ്ട്രേഷന്‍ വിവരങ്ങള്‍ ചേര്‍ക്കുക"
+
+#: users.py:115 users.py:475
+msgid "Pootle Registration"
+msgstr "പൂട്ടില്‍ രജിസ്ട്രേഷന്‍"
+
+#: users.py:122 users.py:158
+msgid "Your requested username"
+msgstr "നിങ്ങള്‍ ഉപയോക്തൃനാമം ആവശ്യപ്പെട്ടു"
+
+#: users.py:125 users.py:429
+msgid "You must supply a valid email address"
+msgstr "സാധുതയുള്ള ഒരു ഈ-മെയ്‍ല്‍ വിലാസം നല്‍കേണ്ടതാണ്"
+
+#: users.py:128
+msgid "Your full name"
+msgstr "നിങ്ങളുടെ പൂര്‍ണ്ണ നാമം"
+
+#: users.py:131
+msgid "Your desired password"
+msgstr "നിങ്ങള്‍ക്ക് വേണ്ട പാസ്സ്‍വേഡ്"
+
+#: users.py:133 users.py:189
+msgid "Confirm password"
+msgstr "പാസ്സ്‍വേഡ് ഉറപ്പിക്കുക"
+
+#: users.py:134
+msgid "Type your password again to ensure it is entered correctly"
+msgstr "എഴുതിയത് ശരിയെന്നുറപ്പിക്കുവാന്‍ പാസ്സ്‍വേഡ് വീണ്ടും എഴുതുക"
+
+#: users.py:136
+msgid "Register Account"
+msgstr "അക്കൌണ്ട് രജിസ്റ്റര്‍ ചെയ്യുക"
+
+#: users.py:145
+msgid "Please enter your activation details"
+msgstr "സജീവമാക്കല്‍ വിവരങ്ങള്‍ നല്‍കുക"
+
+#: users.py:150
+msgid "Pootle Account Activation"
+msgstr "പൂട്ട്‍ല്‍ അക്കൌണ്ട് സജീവമാക്കല്‍"
+
+#: users.py:160
+msgid "Activation Code"
+msgstr "സജീവമാക്കല്‍ കോഡ്"
+
+#: users.py:161
+msgid "The activation code you received"
+msgstr "നിങ്ങള്‍ക്ക് ലഭിച്ച സജീവമാക്കല്‍ കോഡ്"
+
+#: users.py:163
+msgid "Activate Account"
+msgstr "അക്കൌണ്ട് സജീവമാക്കുക"
+
+#: users.py:175
+#, python-format
+msgid "Options for: %s"
+msgstr "ഓപ്ഷനുകള്‍: %s"
+
+#: users.py:181
+msgid "Personal Details"
+msgstr "വ്യക്തി വിവരണം"
+
+#: users.py:186
+msgid "Email"
+msgstr "ഈ-മെയ്‍ല്‍"
+
+#: users.py:190
+msgid "Translation Interface Configuration"
+msgstr "പരിഭാഷാ മുഖരൂപ ക്രമീകരണങ്ങള്‍"
+
+#: users.py:191
+msgid "User Interface language"
+msgstr "ഉപയോക്തൃ മുഖരൂപ ഭാഷ"
+
+#: users.py:192
+msgid "My Projects"
+msgstr "എന്റെ പദ്ധതികള്‍"
+
+#: users.py:194
+msgid "My Languages"
+msgstr "എന്റെ ഭാഷകള്‍"
+
+#: users.py:196
+msgid "Home page"
+msgstr "പൂമുഖ താള്‍"
+
+#: users.py:202
+msgid "Alternative Source Language"
+msgstr "ബദല്‍ മൂല ഭാഷ"
+
+#. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
+#: users.py:240
+msgid "None"
+msgstr "ഒന്നുമില്ല"
+
+#: users.py:257
+msgid "Input Height (in lines)"
+msgstr "പൊക്കം (വരികളില്‍)"
+
+#: users.py:258
+msgid "Number of rows in view mode"
+msgstr "view mode-ല്‍ ഉള്ള വരികളുടെ എണ്ണം"
+
+#: users.py:259
+msgid "Number of rows in translate mode"
+msgstr "വിവര്‍ത്തന mode-ല്‍ ഉള്ള വരികളുടെ എണ്ണം"
+
+#: users.py:307
+msgid "Error"
+msgstr "പിശക്"
+
+#: users.py:359
+msgid "You need to be siteadmin to change users"
+msgstr "സൈറ്റ് കാര്യക്കരന്‍ ആയാലേ ഉപയോക്താക്കളെ മാറ്റുവാന്‍ സാധിക്കൂ"
+
+#: users.py:423
+msgid ""
+"Username must be alphanumeric, and must start with an alphabetic character."
+msgstr ""
+"ഉപയോക്തൃനാമം alphanumberic ആയിരിക്കണം, മാത്രവുമല്ല, ഒരു ആല്‍ഫബെറ്റ് കൊണ്ട് "
+"തുടങ്ങുകയും വേണം."
+
+#: users.py:438
+msgid ""
+"You (or someone else) attempted to register an account with your username.\n"
+msgstr "നിങ്ങളോ (മറ്റാരെങ്കിലുമോ) നിങ്ങളുടെ ഉപയോക്തൃനാമം കൊണ്ട് രജിസ്റ്റര്‍ "
+"ചെയ്യുവാന്‍ ശ്രമിച്ചു.\n"
+
+#: users.py:439
+msgid "We don't store your actual password but only a hash of it.\n"
+msgstr "നിങ്ങളുടെ പാസ്സ്‍വേഡ് ഞങ്ങള്‍ സൂക്ഷിക്കില്ല, പകരം അതിന്റെ ഒരു hash മാത്രമെ "
+"സൂക്ഷിക്കുന്നുള്ളൂ.\n"
+
+#: users.py:441
+#, python-format
+msgid "If you have a problem with registration, please contact %s.\n"
+msgstr "രജിസ്ട്രേഷനുമായി ബന്ധപ്പെട്ട് പ്രശ്നങ്ങളുണ്ടെങ്കില്‍ %s അറിയിക്കുക.\n"
+
+#: users.py:443
+msgid ""
+"If you have a problem with registration, please contact the site "
+"administrator.\n"
+msgstr "രജിസ്ട്രേഷനുമായി ബന്ധപ്പെട്ട് പ്രശ്നങ്ങളുണ്ടെങ്കില്‍ സൈറ്റ് കാര്യക്കാരനെ "
+"അറിയിക്കുക.\n"
+
+#: users.py:444
+msgid ""
+"That username already exists. An email will be sent to the registered email "
+"address.\n"
+msgstr "ഈ ഉപയോക്തൃനാമം ഇപ്പോള്‍ നിലനില്ക്കുന്നു. രജിസ്റ്റര്‍ ചെയ്ത ഈ-മെയ്‍ലിലേക്ക് "
+"ഇപ്പോള്‍ ഒരു സന്ദേശം പോകുന്നതാണ്.\n"
+
+#: users.py:446
+#, python-format
+msgid "Proceeding to <a href='%s'>login</a>\n"
+msgstr "<a href='%s'>അകത്തേക്ക്</a> കടക്കുന്നു കൊണ്ടിരിക്കുന്നു\n"
+
+#: users.py:452
+msgid "A Pootle account has been created for you using this email address.\n"
+msgstr "ഈ ഈ-മെയ്‍ല്‍ വിലാസത്തിലേക്കായി ഒരു പൂട്ടില്‍ അക്കൌണ്ട് "
+"ഉണ്ടാക്കിയിരിക്കുന്നു.\n"
+
+#: users.py:454
+msgid "To activate your account, follow this link:\n"
+msgstr "നിങ്ങളുടെ അക്കൌണ്ട് സജീവമാക്കുവാന്‍ ഈ കണ്ണിയില്‍ പോകുക:\n"
+
+#: users.py:460
+#, python-format
+msgid ""
+"Your activation code is:\n"
+"%s\n"
+msgstr ""
+"നിങ്ങളുടെ സജീവമാക്കല്‍ കോഡ്:\n"
+"%s\n"
+
+#: users.py:462
+msgid ""
+"If you are unable to follow the link, please enter the above code at the "
+"activation page.\n"
+msgstr "കണ്ണിയില്‍ പോകുവാന്‍ കഴിഞ്ഞില്ലെങ്കില്‍ മുകളില്‍ പറഞ്ഞിരിക്കുന്ന കോഡ് "
+"സജീവമാക്കല്‍ താളില്‍ കൊടുക്കുക.\n"
+
+#: users.py:463
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message.\n"
+msgstr "ഈ-മെയില്‍ വിലാസം ശരിക്കുള്ളതാണോ എന്നെറിയാന്‍ അയച്ച സന്ദേശം ആണിത്. "
+"രജിസ്റ്റര്‍ ചെയ്യുവാന്‍ ആഗ്രഹം ഇല്ല എങ്കില്‍, ഇതിനെ പറ്റി മറന്നേക്കൂ. \n"
+
+#: users.py:465
+#, python-format
+msgid ""
+"Account created. You will be emailed login details and an activation code. "
+"Please enter your activation code on the <a href='%s'>activation page</a>."
+msgstr ""
+"അക്കൌണ്ട് സൃഷ്ടിക്കപ്പെട്ടിരിക്കുന്നു. ലോഗിന്‍ വിവരങ്ങളും ആക്ടിവേഷന്‍ "
+"കോഡുമായി ഈ-മെയ്‍ല്‍ വരുന്നതാണ്. ദയവായി <a href='%s'>ആക്ടിവേഷന്‍ താളില്‍</a> "
+"കോഡ് നല്‍കേണ്ടതാണ്."
+
+#: users.py:467
+msgid "(Or simply click on the activation link in the email)"
+msgstr "(അല്ലെങ്കില്‍ ഈമെയ്‍ലിലെ സജീവമാക്കല്‍ കണ്ണിയില്‍ ചുമ്മാ ഞെക്കുക)"
+
+#: users.py:469
+#, python-format
+msgid "Your user name is: %s\n"
+msgstr "ഇതാണ് നിങ്ങളുടെ ഉപയോക്തൃനാമം: %s\n"
+
+#: users.py:471
+#, python-format
+msgid "Your password is: %s\n"
+msgstr "ഇതാണ് നിങ്ങളുടെ പാസ്സ്‍വേഡ് : %s\n"
+
+#: users.py:472
+#, python-format
+msgid "Your registered email address is: %s\n"
+msgstr "ഇതാണ് രജിസ്റ്റേഡ് ഈ-മെയ്‍ല്‍ വിലാസം : %s\n"
+
+#: users.py:500
+msgid "Redirecting to Registration Page..."
+msgstr "രജിസ്ട്രേഷന്‍ താളിലേക്ക് വഴിതിരിക്കുന്നു..."
+
+#: users.py:524
+msgid "Redirecting to login Page..."
+msgstr "ലോഗിന്‍ താളിലേക്ക് വഴിതിരിക്കുന്നു..."
+
+#: users.py:527
+msgid "Your account has been activated! Redirecting to login..."
+msgstr ""
+"നിങ്ങളുടെ അക്കൌണ്ട് ആക്ടിവേറ്റ് ചെയ്തിരിക്കുന്നു! ലോഗിന്‍ താളിലേക്ക് "
+"വഴിതിരിക്കുന്നു..."
+
+#: users.py:531
+msgid "The activation information was not valid."
+msgstr "ആക്ടിവേഷന്‍ വിവരം അസാധുവാണ്."
+
+#: users.py:532
+msgid "Activation Failed"
+msgstr "ആക്ടിവേഷന്‍ പരാജയപ്പെട്ടു"
+
+#: users.py:649
+msgid "Input height must be numeric"
+msgstr "പൊക്കം അക്കത്തിലായിരിക്കണം"
+
+#: users.py:650
+msgid "Input width must be numeric"
+msgstr "വീതി അക്കത്തിലായിരിക്കണം"
+
+#: users.py:651
+msgid "The number of rows displayed in view mode must be numeric"
+msgstr "വരികളുടെ എണ്ണം അക്കത്തിലായിരിക്കണം"
+
+#: users.py:652
+msgid "The number of rows displayed in translate mode must be numeric"
+msgstr "വരികളുടെ എണ്ണം അക്കത്തിലായിരിക്കണം"
+
+#~ msgid "Accept"
+#~ msgstr "സമ്മതിക്കുക"
+
+#~ msgid "Reject"
+#~ msgstr "പുറന്തള്ളുക"
+
+#~ msgid "WordForge Translation Project"
+#~ msgstr "വേഡ്‍ഫോര്‍ജ് പരിഭാഷാ പദ്ധതി"

@@ -1,0 +1,439 @@
+<ui version="4.0" >
+ <class>Catalog</class>
+ <widget class="QMainWindow" name="Catalog" >
+  <property name="windowModality" >
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>458</width>
+    <height>431</height>
+   </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy>
+    <hsizetype>7</hsizetype>
+    <vsizetype>7</vsizetype>
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle" >
+   <string>Catalog Manager</string>
+  </property>
+  <property name="toolTip" >
+   <string/>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QGridLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item row="0" column="0" >
+     <widget class="QTreeWidget" name="treeCatalog" >
+      <property name="font" >
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="focusPolicy" >
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="contextMenuPolicy" >
+       <enum>Qt::DefaultContextMenu</enum>
+      </property>
+      <property name="acceptDrops" >
+       <bool>false</bool>
+      </property>
+      <property name="statusTip" >
+       <string/>
+      </property>
+      <property name="whatsThis" >
+       <string>&lt;h3>Catalog Manager&lt;/h3>Catalog Manager is a central place where you can see all files in your project as tree with the statistic information such as the number of untranslated strings, fuzzy strings, translated strings, total number of entries, file location, last revision and last translator.</string>
+      </property>
+      <property name="alternatingRowColors" >
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>458</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuEdit" >
+    <property name="title" >
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionFind_in_Files" />
+    <addaction name="separator" />
+    <addaction name="actionStatistics" />
+    <addaction name="actionReload" />
+    <addaction name="actionStop" />
+   </widget>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionQuit" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout" />
+    <addaction name="actionAboutQt" />
+   </widget>
+   <widget class="QMenu" name="menuSettings" >
+    <property name="title" >
+     <string>&amp;Settings</string>
+    </property>
+    <addaction name="actionPreferences" />
+   </widget>
+   <widget class="QMenu" name="menuProject" >
+    <property name="title" >
+     <string>&amp;Project</string>
+    </property>
+    <widget class="QMenu" name="menuOpenRecentProject" >
+     <property name="enabled" >
+      <bool>false</bool>
+     </property>
+     <property name="toolTip" >
+      <string>This open recent project.</string>
+     </property>
+     <property name="statusTip" >
+      <string>Open the recent project.</string>
+     </property>
+     <property name="whatsThis" >
+      <string>&lt;h3>Open recent project&lt;/h3>Use this to open the project file that was just opened lately.</string>
+     </property>
+     <property name="title" >
+      <string>Open &amp;Recent Project</string>
+     </property>
+    </widget>
+    <addaction name="actionNew" />
+    <addaction name="actionOpen" />
+    <addaction name="menuOpenRecentProject" />
+    <addaction name="actionClose" />
+    <addaction name="separator" />
+    <addaction name="actionProperties" />
+    <addaction name="separator" />
+    <addaction name="actionBuildTM" />
+   </widget>
+   <addaction name="menuFile" />
+   <addaction name="menuEdit" />
+   <addaction name="menuProject" />
+   <addaction name="menuSettings" />
+   <addaction name="menuHelp" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QToolBar" name="toolBar" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="sizePolicy" >
+    <sizepolicy>
+     <hsizetype>5</hsizetype>
+     <vsizetype>5</vsizetype>
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="contextMenuPolicy" >
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="acceptDrops" >
+    <bool>true</bool>
+   </property>
+   <property name="windowTitle" >
+    <string/>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
+   <addaction name="actionNew" />
+   <addaction name="actionOpen" />
+   <addaction name="actionSave" />
+   <addaction name="actionSaveAs" />
+   <addaction name="separator" />
+   <addaction name="actionReload" />
+   <addaction name="actionStop" />
+   <addaction name="separator" />
+   <addaction name="actionFind_in_Files" />
+   <addaction name="actionStatistics" />
+   <addaction name="actionProperties" />
+   <addaction name="actionPreferences" />
+  </widget>
+  <action name="actionQuit" >
+   <property name="icon" >
+    <iconset>../images/exit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Quit</string>
+   </property>
+   <property name="statusTip" >
+    <string>Quit Catalog Manager</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Quit&lt;/h3>Use this to quit Catalog Manager. Any unsaved changes to the current project will be prompted.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionAbout" >
+   <property name="text" >
+    <string>About</string>
+   </property>
+   <property name="statusTip" >
+    <string>Display information about this software...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>About&lt;/h3>Display information about this software.</string>
+   </property>
+  </action>
+  <action name="actionAboutQt" >
+   <property name="text" >
+    <string>About Qt</string>
+   </property>
+   <property name="statusTip" >
+    <string>Display information about the Qt toolkit...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>About Qt&lt;/h3>Display information about the Qt toolkit.</string>
+   </property>
+  </action>
+  <action name="actionReload" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/reload.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Reload</string>
+   </property>
+   <property name="statusTip" >
+    <string>Reload the current project</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Reload&lt;/h3>Set the current project to get the most up-to-date version.</string>
+   </property>
+   <property name="shortcut" >
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="actionFind_in_Files" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/find.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Find in Files...</string>
+   </property>
+   <property name="statusTip" >
+    <string>Find string through files...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Find&lt;/h3>Use this to find a word or a string through all files of the current project in the Catalog Manager. The find dialog will be shown at the bottom of the editor.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionStatistics" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/statistic.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Statistics</string>
+   </property>
+   <property name="statusTip" >
+    <string>Show status of selected file or folder...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Statistics&lt;/h3>Show status of selected file or folder with information about filename, untranslated, fuzzy, translated and total number of strings.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionNew" >
+   <property name="icon" >
+    <iconset>../images/projectNew.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;New...</string>
+   </property>
+   <property name="statusTip" >
+    <string>Create a new project...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>New&lt;/h3>Use this to open a dialog for entering  the information for a new project.</string>
+   </property>
+  </action>
+  <action name="actionOpen" >
+   <property name="icon" >
+    <iconset>../images/projectOpen.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Open...</string>
+   </property>
+   <property name="statusTip" >
+    <string>Open an existing project...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Open&lt;/h3>Use this to open an existing project.</string>
+   </property>
+  </action>
+  <action name="actionPreferences" >
+   <property name="icon" >
+    <iconset>../images/configure.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Preferences...</string>
+   </property>
+   <property name="iconText" >
+    <string>Preferences</string>
+   </property>
+   <property name="toolTip" >
+    <string>Preferences</string>
+   </property>
+   <property name="statusTip" >
+    <string>Set the view of Catalog Manager...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Catalog Manager Preferences&lt;/h3>Open a dialog where you can toogle the view of Catalog Manager.</string>
+   </property>
+  </action>
+  <action name="actionStop" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/stop.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Stop</string>
+   </property>
+   <property name="statusTip" >
+    <string>Stop loading catalog</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Stop&lt;/h3>Stop loading catalog.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionClose" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/fileclose.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Close</string>
+   </property>
+   <property name="statusTip" >
+    <string>Close the current project</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Close&lt;/h3>Use this to close the opening project. The Catalog treeview will be cleared.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionSave" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/save.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Save</string>
+   </property>
+   <property name="statusTip" >
+    <string>Save changes to the current project</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Save&lt;/h3>This action is enable only when you made change to the current project.</string>
+   </property>
+  </action>
+  <action name="actionSaveAs" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/filesaveas.png</iconset>
+   </property>
+   <property name="text" >
+    <string>saveAs</string>
+   </property>
+   <property name="statusTip" >
+    <string>Save the current project to the new one...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Save As&lt;/h3>Save the current project to the new file. The filename can be entered from the file selection dialog.</string>
+   </property>
+  </action>
+  <action name="actionProperties" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/properties.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Properties</string>
+   </property>
+   <property name="statusTip" >
+    <string>Open a Project Properties dialog...</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3>Properties&lt;/h3>Use this to open a current project properties dialog. Here, you can change the project name, path, language, files' location.</string>
+   </property>
+  </action>
+  <action name="actionBuildTM" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../images/memory.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Build TM</string>
+   </property>
+   <property name="statusTip" >
+    <string>Build Translation Memory from Catalog immediately</string>
+   </property>
+   <property name="whatsThis" >
+    <string>&lt;h3> Build TM &lt;/h3>This action will build a new Translation Memory from all locations in the current project. Your old Translation Memory will be lost. This might take long time depended on the number of files in the locations. You will see the progress bar running during building.</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

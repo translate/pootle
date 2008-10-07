@@ -1,0 +1,44 @@
+*do not crash when a not welformed xliff was read.
+
+*Lots of requests to save file when nothing was changed.  Some seem to
+be related to if you have plurals ie the tabs exist
+
+*Hacker
+No tracebacks if there is an issue with the application.  A pain to
+debug and a pain for anyone giving feedback.  We should be able to do
+--errorlevel=traceback
+
+*Plural forms
+Doesn't seem to read header ie if you have nplurals=3 and your editor
+is set to 2 you will only see 2.  Unworkable if you are reviewing a
+file.
+
+The interface is unworkable, it emulates KBable and poEdits
+frustrating interfaces.  Ideally you should see all plurals for source
+and target at once and be able to tab between all of them.  Currently
+you have to use the mouse to click on each tab of both source and target
+plural forms.
+
+*Localisation
+Still many bugs in the messages, the only way to fix this 
+is to actually translate it into Khmer.
+
+*In catalog manager, skip not to display the folder that doesn't have supported file
+
+*Assign shortcut (Ctrl + %d) to copy the glossary definition to clipboard
+
+*Assign shortcut to switch tab for plural tab in Detail view
+
+*Make Pootling able to open ts file directly
+
+*Test cases
+
+* Add the capability to have more than one file open at a time, being able to switch among them and easily copy terms.
+
+* enable search to disregard the "&" character
+ 
+*enable sorting to disregard "&" as well
+
+* enable suggestions from other .po files to show up no matter whether they contain "&" or "[tab]" or keyboard shortcuts.
+
+* Add translation to Translation Memory

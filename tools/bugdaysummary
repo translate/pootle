@@ -1,0 +1,24 @@
+#!/bin/bash
+bugday=`date +'%Y%m%d'`
+cd ~/translate/htdocs/bugdays/${bugday} || exit
+(
+  echo "<html><head><title>Bug Day Summary for ${bugday} at `date`</title><meta http-equiv="refresh" content="60"></head><body>"
+  echo "<h1>Bug Statistics</h1><pre>" 
+  for b in *-bugreport-${bugday}-*
+    do
+      echo -n "<a href='$b'>`basename $b .html`</a>"
+      for f in NEW ASSIGNED RESOLVED VERIFIED
+        do
+          echo -n " " $f `egrep -c '\<'${f:0:4}'\>' $b`
+        done
+      echo "  TOTAL" `grep -c 'show_bug.cgi' $b`
+    done
+  echo "</pre><h1>Test Statistics</h1><pre>"
+  grep -H "tests finished:" *-${bugday}-*.log |  sed 's/==*//g' | sed 's/^\(.*\)[.]log:/<a href="\1.log">\1<\/a> /'
+  echo "</pre><h1>IRC Logs</h1><pre>"
+  for i in irc-log-*
+    do
+      echo "<a href='$i'>`basename $i .html`</a>"
+    done
+  echo "</pre></body></html>"
+) > summary.html

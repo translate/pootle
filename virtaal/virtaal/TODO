@@ -1,0 +1,41 @@
+First release
+=============
+Select group of testers < 10
+Technically confident people (can install)
+Should be able to complete a translation / update task in the tool only
+
+High Priority
+-------------
+
+Modes - quick translate
+
+Navigation  Ctrl+PgUp goes a page up in the document / top of file   Ctrl+UpArrow goes one unit up
+soek met highlighting
+Search/Replace
+multiple files
+Undo
+template
+edit comments
+edit header
+
+pofilter checks
+terminology help 
+TM
+autocomplete
+
+
+Known Issues
+------------
+
+There are artefacts in the drawing of the editor when at the bottom of a document. 
+-> Possibly solve this by moving the editor widget with custom code
+-> Anyone want to write a custom widget? :)
+-> Use a different order of activating the various widgets
+-> Bypass the editing functionality of the treeview widget and replace it with custom
+   editing functionality. You might want to consider using the facilities provided to
+   find the x,y position of a cell in the treeview.
+   
+"Flickering" artefacts when the editor is drawn. This comes about because the the
+treeview draws a block of a different colour before it draws the editor widget. If
+the user quickly moves through the cells, this creates the illusion of flickering.
+

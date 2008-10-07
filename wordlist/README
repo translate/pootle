@@ -1,0 +1,71 @@
+This directory provides the follwoing scripts
+
+* get-words - extract words from PO, PDF, MO, HTML and Lynx DAT files
+* new-words - eliminate existing words from a wordlist
+* sort-length - provide a length sorted wordlist
+* letter-frequency.py - create a letter frequency count for a wordlist
+
+
+get-words
+---------
+Get words will extract words from HTML pages, Gettext PO and MO files, PDF files and
+Lynx -traversal -crawl lnk*.dat files.  We should expand it to allow us to retreive 
+words from Microsoft Office documents.
+
+Various transforms are performed on the input file to ensure that we get the words but
+none of the rubbish.
+
+Requirements:
+ - pdftotext (from xpdf) - to convert PDF files to text
+ - msgunfmt (from gettext) - to convert MO files to PO format for text extraction
+ - msgexec (from gettext) - to extract text from Gettext PO files
+ - lynx - to extract text from HTML files
+
+new-words
+---------
+Designed to highlight new words found by get-words.  The list of new words is filtered 
+against any number of existing word lists to highlight any new words.  The existing lists
+could include:
+ - The language wordlist - to eliminate words already included
+ - Other language wordlist - including the English wordlist would eliminate words 
+                             that might not have been translated
+ - Jargon files - to eliminate Jargon eg computer Jargon or KDE jargon
+ - Proper name lists - eliminate Place and people names
+ - Reject list - words that have already been reviewed and rejected to save re-reviewing
+ - English domain wordlist - the untranslated words from a software domain to eliminate
+                             untranslated entries found in the translated domain
+
+Usage:
+	./new-words new existing-wordlist english-wordlist kde-jargon rejects etc etc
+	as many other lists as required may be added
+
+sort-length
+-----------
+This will produce a sort of a wordlist based on the length of the words.  This may prove useful when
+searching for occurances of new words using the web.
+
+The language wordlist would first be filtered using new-words with all the reject lists being 
+all other language lists available.  This would produce a list of words unique to your language.
+Sorting them against length eliminates potential false postives, although very long words
+may be unique to the wordlist and not be present on the web.
+
+This list would then be used to query search engines.  The returned pages would then be used as 
+potential starting points for finding new words.  
+
+It would probably make sense to evaluate the page to determine if it indeed is in the language under
+investigation.  This could be done by checking the statistical frequency of dictionary words within 
+the page, although this would then depend on a good wordlist for the language.
+
+letter-frequency.py
+-------------------
+This produces a list of letters in decending order of frequency.  You need this for the MySpell TRY 
+entry.  The input can be a single column wordlist or a double column list with the word frequency 
+in the first column and the word in the second column.
+
+It is debatable which is the more correct approach as MySpell uses the list of characters from the 
+TRY entry to take letters and substitute them to try and determine other spelling possibilities.  
+So the true letter frequency as apposed to the wordlist letter freqnuecny might might be more 
+important - but they are quite similar.  If you only have a wordlist then you probably have no other
+choice then to rely on the wordlist letter frequency.
+
+

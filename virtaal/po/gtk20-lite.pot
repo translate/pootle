@@ -1,0 +1,179 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the Virtaal package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GTK+ lite 2.0\n"
+"Report-Msgid-Bugs-To: translate-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2008-07-25 18:31+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Translate to default:RTL if you want your widgets
+#. * to be RTL, otherwise translate to default:LTR.
+#. * Do *not* translate it to "predefinito:LTR", if it
+#. * it isn't default:LTR or default:RTL it will not work
+#.
+#. Configuration: Direction
+msgid "default:LTR"
+msgstr ""
+
+#. File->Open
+msgid "_Open"
+msgstr ""
+
+#. File->Save
+msgid "_Save"
+msgstr ""
+
+#. File->Save As
+msgid "Save _As"
+msgstr ""
+
+#. File->Quit
+msgid "_Quit"
+msgstr ""
+
+#. Help->About
+msgid "_About"
+msgstr ""
+
+#. About Dialog - Title
+msgid "About %s"
+msgstr ""
+
+#. About Dialog - Credits button
+msgid "C_redits"
+msgstr ""
+
+#. About Dialog - License button
+msgid "_License"
+msgstr ""
+
+#. About Dialog - Close button
+msgid "_Close"
+msgstr ""
+
+#. About Dialog - Credits dialog - Title
+msgid "Credits"
+msgstr ""
+
+#. About Dialog - Credits dialog - Tab - Written by
+msgid "Written by"
+msgstr ""
+
+#. About Dialog - Credits dialog - Tab - Translated by
+msgid "Translated by"
+msgstr ""
+
+#. About Dialog - License dialog - Title
+msgid "License"
+msgstr ""
+
+#. File dialog - Cancel button
+msgid "_Cancel"
+msgstr ""
+
+#. File dialog - Add button
+msgid "_Add"
+msgstr ""
+
+#. File dialog - Add button - tooltip
+msgid "Add the folder '%s' to the bookmarks"
+msgstr ""
+
+#. File dialog - Add button - tooltip
+msgid "Add the current folder to the bookmarks"
+msgstr ""
+
+#. File dialog - Remove button
+msgid "_Remove"
+msgstr ""
+
+#. File dialog - Remove button - tooltip
+msgid "Remove the bookmark '%s'"
+msgstr ""
+
+#. File dialog - Remove button - tooltip
+msgid "Remove the selected bookmark"
+msgstr "De geselecteerde bladwijzer verwijderen"
+
+#. File dialog - Location - Label
+msgid "_Location:"
+msgstr ""
+
+#. File dialog - Location - Open/Close button - Tooltip
+msgid "Type a file name"
+msgstr ""
+
+#. File dialog - Places - Grid label - Places
+msgid "_Places"
+msgstr ""
+
+#. File dialog - Places - Entry - Recently used
+msgid "Recently Used"
+msgstr ""
+
+#. File dialog - Places - Entry - Desktop
+msgid "Desktop"
+msgstr ""
+
+#. File dialog - Places - Right-Click - Remove
+msgid "Remove"
+msgstr ""
+
+#. File dialog - Places - Right-Click - Rename...
+msgid "Rename..."
+msgstr ""
+
+#. File dialog - Files - Grid label - Name
+msgid "Name"
+msgstr ""
+
+#. File dialog - Files - Grid label - Modified
+msgid "Modified"
+msgstr ""
+
+#. File dialog - Files - Table - Date formats - Today at
+msgid "Today at %H:%M"
+msgstr ""
+
+#. File dialog - Files - Table - Date formats - Yesterday at
+msgid "Yesterday at %H:%M"
+msgstr ""
+
+#. File dialog - Files - Right click - Show Hidden Files
+msgid "Show _Hidden Files"
+msgstr ""
+
+#. File dialog - Files - Right click - Add to Bookmarks
+msgid "_Add to Bookmarks"
+msgstr ""
+
+#. File dialog - File type list - tooltip
+msgid "Select which types of files are shown"
+msgstr ""
+
+#. File save dialog - Name:
+msgid "_Name:"
+msgstr ""
+
+#. File save dialog - Save in folder:
+msgid "Save in _folder:"
+msgstr ""
+
+#. File save dialog - Browse for other folders
+msgid "_Browse for other folders"
+msgstr ""
+
+#. File save dialog - Create folder button
+msgid "Create Fo_lder"
+msgstr ""
+

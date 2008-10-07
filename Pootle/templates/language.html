@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?python
+import pootlepage, navbar
+?>
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
+
+  <title py:content="pagetitle">Pootle: ${language.name}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
+  <!--! the 'sorttable.js' script depends on the variable 'baseurl' -->
+  <script type="text/javascript"> var baseurl = "${baseurl}"; </script>
+  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
+  <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+  <![endif]-->
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div id="abovefooter">
+  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
+
+  <div id="content" dir="$uidir" lang="$uilanguage">
+    <div class="navbar">
+      <img src="${baseurl}images/language.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+
+      <h3 class="title">[ <a href="${baseurl}${language.code}/" py:content="language.name">Language</a> ]</h3>
+
+      <div class="item-statistics" py:content="language.stats">
+        0 projects, average 0% translated
+      </div>
+    </div>
+
+    <div class="intro">
+      <span py:for="i in language.info" py:strip="True"><b>${i.title}</b>: ${i.value}<br/></span>
+    </div>
+
+      <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th class="stats">${statsheadings.name}</th>
+            <th class="stats">${statsheadings.translated}</th>
+            <th class="stats" title="${statsheadings.translatedpercentage}">%</th>
+            <th class="stats">${statsheadings.fuzzy}</th>
+            <th class="stats" title="${statsheadings.fuzzypercentage}">%</th>
+            <th class="stats">${statsheadings.untranslated}</th>
+            <th class="stats" title="${statsheadings.untranslatedpercentage}">%</th>
+            <th class="stats">${statsheadings.total}</th>
+            <th class="stats">${statsheadings.graph}</th>
+        </tr>
+      </thead>
+      <tbody class="stats">
+        <div py:for="item in projects" py:strip="True">
+          <tr class="item item-${item.parity}" title="${item.description}">
+            <div py:replace="navbar.itemdata(item, uidir, uilanguage, baseurl)"/>
+          </tr>
+        </div>
+      </tbody>
+    </table>
+  </div>
+
+  </div>
+  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
+  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
+</body>
+</html>

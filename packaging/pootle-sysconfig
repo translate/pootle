@@ -1,0 +1,9 @@
+# Set the Pootle port
+#PORT=8080
+
+# Default preference file
+#PREFSFILE=/etc/pootle/pootle.prefs
+
+# Pootle log file
+#LOGFILE=/var/log/pootle/access.log
+#ERRORFILE=/var/log/pootle/errors.log

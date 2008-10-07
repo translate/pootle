@@ -1,0 +1,1389 @@
+<ui version="4.0" >
+ <class>frmPreference</class>
+ <widget class="QDialog" name="frmPreference" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>570</width>
+    <height>372</height>
+   </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy>
+    <hsizetype>7</hsizetype>
+    <vsizetype>7</vsizetype>
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle" >
+   <string>Preferences</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item row="0" column="0" colspan="3" >
+    <widget class="QFrame" name="frame" >
+     <property name="frameShape" >
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="1" >
+       <widget class="QStackedWidget" name="stackedWidget" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>7</hsizetype>
+          <vsizetype>7</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize" >
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="frameShape" >
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWidth" >
+         <number>1</number>
+        </property>
+        <property name="currentIndex" >
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="personal" >
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="2" column="0" >
+           <widget class="QFrame" name="frame_2" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>0</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="focusPolicy" >
+             <enum>Qt::NoFocus</enum>
+            </property>
+            <property name="frameShape" >
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="lineWidth" >
+             <number>1</number>
+            </property>
+            <layout class="QGridLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item row="4" column="2" colspan="2" >
+              <widget class="QSpinBox" name="spinBox" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Singular/Plural forms&lt;/h3>Set plural forms for a specific language. Pootling try to set this value for you. If no information provided, you should fill up by yourself or leave it blank if you are not sure.</string>
+               </property>
+               <property name="maximum" >
+                <number>10</number>
+               </property>
+               <property name="minimum" >
+                <number>1</number>
+               </property>
+               <property name="singleStep" >
+                <number>1</number>
+               </property>
+               <property name="value" >
+                <number>2</number>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0" colspan="4" >
+              <widget class="QLineEdit" name="lineEqaution" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Plural equation&lt;/h3>Set plural equation for a specific language. Pootling tries to set this value for you. If no information provided, you should fill up by yourself or leave it blank if you are not sure.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0" colspan="2" >
+              <widget class="QLabel" name="label_3" >
+               <property name="text" >
+                <string>Number of singular/plural forms:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0" colspan="2" >
+              <widget class="QLabel" name="label_2" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>5</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Plural equation:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" >
+              <widget class="QLabel" name="label1" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>User name</string>
+               </property>
+               <property name="textFormat" >
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="3" >
+              <widget class="QLineEdit" name="UserName" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>User Name&lt;/h3>Type your full name here.</string>
+               </property>
+               <property name="maxLength" >
+                <number>32768</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1" colspan="3" >
+              <widget class="QLineEdit" name="EmailAddress" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Email Address&lt;/h3>Type your own email.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" >
+              <widget class="QLabel" name="label2" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Email address</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3" >
+              <widget class="QLineEdit" name="lineFullLang" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Language name&lt;/h3>Your full language name, for example, "Khmer", an official language of Cambodia.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" >
+              <widget class="QComboBox" name="cbxLanguageCode" >
+               <property name="enabled" >
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="acceptDrops" >
+                <bool>false</bool>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Language Code&lt;/h3>Choose your own language code. If your language code isn't in the list, please type in by yourself. Pootling will try to set the correct language name, number of singular/plural form and plural equation for you.</string>
+               </property>
+               <property name="editable" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" >
+              <widget class="QLabel" name="label4" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Language Code</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2" >
+              <widget class="QLabel" name="label3" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Language name</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" colspan="3" >
+              <widget class="QLineEdit" name="SupportTeam" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Support&lt;/h3>Type support email address.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0" >
+              <widget class="QLabel" name="label5" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Support team</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font" >
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text" >
+             <string>Personal Information</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="Line" name="line" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="interface" >
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="1" column="0" >
+           <widget class="Line" name="line_2" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_4" >
+            <property name="font" >
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text" >
+             <string>Font &amp; Color</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="QFrame" name="frame2" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>7</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QGridLayout" >
+             <property name="margin" >
+              <number>9</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item row="7" column="1" >
+              <widget class="QPushButton" name="bntAdjustAllFont" >
+               <property name="text" >
+                <string>Adjust All Fonts</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="2" >
+              <widget class="QPushButton" name="bntDefaultsFont" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Defaults Font&lt;/h3>Once this button is clicked, Overview, Source, Target and Comment will be set to default font, Serif, 10.</string>
+               </property>
+               <property name="text" >
+                <string>Default Font</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="3" >
+              <widget class="QPushButton" name="bntDefaultsColor" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Defaults Color&lt;/h3>Once this button is clicked, Overview, Source, Target and Comment will be set to default color, black.</string>
+               </property>
+               <property name="text" >
+                <string>Default Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="3" >
+              <widget class="QPushButton" name="btnColorGlossary" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Comment Color&lt;/h3>Click this button  will show up a color dialog box where you can choose color for comment text.</string>
+               </property>
+               <property name="text" >
+                <string>Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" >
+              <widget class="QLabel" name="lblTarget" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>1</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip" >
+                <string>Target Sample</string>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Target Sample&lt;/h3>This lable displayed the current font name, style, size and color sample of target dock widget.</string>
+               </property>
+               <property name="frameShape" >
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" >
+              <widget class="QLabel" name="lblSource" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>1</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip" >
+                <string>Source Sample</string>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Source Sample&lt;/h3>This lable displayed the current font name, style, size and color sample of source dock widget.</string>
+               </property>
+               <property name="frameShape" >
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1" >
+              <widget class="QLabel" name="lblOverView" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>1</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip" >
+                <string>Overview Sample</string>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Overview Sample&lt;/h3>This lable displayed the current font name, style, size and color sample of overview dock widget.</string>
+               </property>
+               <property name="frameShape" >
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2" >
+              <widget class="QPushButton" name="bntFontOverviewHeader" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Overview Header Font&lt;/h3>Click this button  will show up a font dialog box where you can select fontname, style and size for overview header text.</string>
+               </property>
+               <property name="text" >
+                <string>Font</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2" >
+              <widget class="QPushButton" name="bntFontOverview" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Overview Font&lt;/h3>Click this button  will show up a font dialog box where you can select fontname, style and size for overview text.</string>
+               </property>
+               <property name="text" >
+                <string>Font</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2" >
+              <widget class="QPushButton" name="bntFontSource" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Source Font&lt;/h3>Click this button  will show up a font dialog box where you can select fontname, style and size for source text.</string>
+               </property>
+               <property name="text" >
+                <string>Font</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2" >
+              <widget class="QPushButton" name="bntFontTarget" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Target Font&lt;/h3>Click this button  will show up a font dialog box where you can select fontname, style and size for target text.</string>
+               </property>
+               <property name="text" >
+                <string>Font</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3" >
+              <widget class="QPushButton" name="btnColorOverview" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Overview Color&lt;/h3>Click this button  will show up a color dialog box where you can choose color for overview text.</string>
+               </property>
+               <property name="text" >
+                <string>Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3" >
+              <widget class="QPushButton" name="btnColorSource" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Source Color&lt;/h3>Click this button  will show up a color dialog box where you can choose color for source text.</string>
+               </property>
+               <property name="text" >
+                <string>Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="3" >
+              <widget class="QPushButton" name="btnColorTarget" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Target Color&lt;/h3>Click this button  will show up a color dialog box where you can choose color for target text.</string>
+               </property>
+               <property name="text" >
+                <string>Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0" >
+              <widget class="QLabel" name="label4_3" >
+               <property name="text" >
+                <string>Target</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" >
+              <widget class="QLabel" name="label2_5" >
+               <property name="text" >
+                <string>Overview</string>
+               </property>
+               <property name="scaledContents" >
+                <bool>true</bool>
+               </property>
+               <property name="wordWrap" >
+                <bool>true</bool>
+               </property>
+               <property name="indent" >
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" >
+              <widget class="QLabel" name="label2_4" >
+               <property name="text" >
+                <string>Overview header</string>
+               </property>
+               <property name="scaledContents" >
+                <bool>true</bool>
+               </property>
+               <property name="wordWrap" >
+                <bool>true</bool>
+               </property>
+               <property name="indent" >
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" >
+              <widget class="QLabel" name="Source_2" >
+               <property name="text" >
+                <string>Source</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0" >
+              <widget class="QLabel" name="lblsupportteam_2" >
+               <property name="text" >
+                <string>Comment</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1" >
+              <widget class="QLabel" name="lblComment" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>1</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip" >
+                <string>Comment Sample</string>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Comment Sample&lt;/h3>This lable displayed the current font name, style, size and color sample of comment dock widget.</string>
+               </property>
+               <property name="frameShape" >
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="2" >
+              <widget class="QPushButton" name="bntFontComment" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Comment Font&lt;/h3>Click this button  will show up a font dialog box where you can select fontname, style and size for comment text.</string>
+               </property>
+               <property name="text" >
+                <string>Font</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="3" >
+              <widget class="QPushButton" name="btnColorComment" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Comment Color&lt;/h3>Click this button  will show up a color dialog box where you can choose color for comment text.</string>
+               </property>
+               <property name="text" >
+                <string>Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0" >
+              <widget class="QLabel" name="lblsupportteam_3" >
+               <property name="text" >
+                <string>TM Lookup</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1" >
+              <widget class="QLabel" name="lblTM" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>1</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip" >
+                <string>Comment Sample</string>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Comment Sample&lt;/h3>This lable displayed the current font name, style, size and color sample of comment dock widget.</string>
+               </property>
+               <property name="frameShape" >
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="2" >
+              <widget class="QPushButton" name="bntFontTM" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Comment Font&lt;/h3>Click this button  will show up a font dialog box where you can select fontname, style and size for comment text.</string>
+               </property>
+               <property name="text" >
+                <string>Font</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="3" >
+              <widget class="QPushButton" name="btnColorTM" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Comment Color&lt;/h3>Click this button  will show up a color dialog box where you can choose color for comment text.</string>
+               </property>
+               <property name="text" >
+                <string>Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="2" >
+              <widget class="QPushButton" name="bntFontGlossary" >
+               <property name="whatsThis" >
+                <string>&lt;h3>Comment Font&lt;/h3>Click this button  will show up a font dialog box where you can select fontname, style and size for comment text.</string>
+               </property>
+               <property name="text" >
+                <string>Font</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0" >
+              <widget class="QLabel" name="lblsupportteam_4" >
+               <property name="text" >
+                <string>Glossary Lookup</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1" >
+              <widget class="QLabel" name="lblGlossary" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>1</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip" >
+                <string>Comment Sample</string>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Comment Sample&lt;/h3>This lable displayed the current font name, style, size and color sample of comment dock widget.</string>
+               </property>
+               <property name="frameShape" >
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" >
+              <widget class="QLabel" name="lblOverViewHeader" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>1</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip" >
+                <string>Overview Header Sample</string>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Overview Header Sample&lt;/h3>This lable displayed the current font name, style, size and color sample of overview header dock widget.</string>
+               </property>
+               <property name="frameShape" >
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="TM_Glossary " >
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="7" column="0" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="6" column="0" >
+           <widget class="QFrame" name="frame_4" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QGridLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item row="3" column="0" >
+              <widget class="QCheckBox" name="chbDetectTerm" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Detect new terminology</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0" >
+              <widget class="QFrame" name="frame_5" >
+               <property name="frameShape" >
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow" >
+                <enum>QFrame::Raised</enum>
+               </property>
+               <widget class="QCheckBox" name="chbSuggestTranslation" >
+                <property name="geometry" >
+                 <rect>
+                  <x>0</x>
+                  <y>30</y>
+                  <width>223</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text" >
+                 <string>Allow translation suggestion from TM</string>
+                </property>
+               </widget>
+               <widget class="QCheckBox" name="chbAddNewTerm" >
+                <property name="geometry" >
+                 <rect>
+                  <x>0</x>
+                  <y>1</y>
+                  <width>382</width>
+                  <height>16</height>
+                 </rect>
+                </property>
+                <property name="sizePolicy" >
+                 <sizepolicy>
+                  <hsizetype>7</hsizetype>
+                  <vsizetype>0</vsizetype>
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text" >
+                 <string>Add new terminology to glossary</string>
+                </property>
+               </widget>
+              </widget>
+             </item>
+             <item row="2" column="0" >
+              <widget class="QCheckBox" name="chbMatchTerm" >
+               <property name="text" >
+                <string>Alert if the terminology's translation doesn't match</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" >
+              <widget class="QCheckBox" name="chbChangeTerm" >
+               <property name="text" >
+                <string>Possible to change translation of terminology in glossary</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" >
+              <widget class="QCheckBox" name="chbAutoIdentTerm" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Highlight glossary term&lt;/h3> This option is recommended to be used. You will see the green and underlined terms in TUview ( source section). It indicates that those terms are in Glossary.</string>
+               </property>
+               <property name="text" >
+                <string>Highlight glossary term in Detail view</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="0" >
+           <widget class="Line" name="line_3" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="QFrame" name="frame_3" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QGridLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item row="0" column="0" >
+              <widget class="QCheckBox" name="chbAutoTranslate" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Lookup translation in TM&lt;/h3> If this option is checked, you will get a TM Lookup Table soon after clicking on OK button. From that table, you will see the relevent translated unit(s) that had already been built and stored in memory.</string>
+               </property>
+               <property name="text" >
+                <string>Lookup translation in TM</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" >
+              <widget class="QCheckBox" name="chbIgnoreFuzzy" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Ignore Fuzzy Strings&lt;/h3> If this option is checked, the fuzzy string will not be searching for from the Translation Memory.</string>
+               </property>
+               <property name="text" >
+                <string>Don't lookup fuzzy strings</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0" >
+              <widget class="QCheckBox" name="chbAddTraslation" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Add new Translation to Translation Memory&lt;/h3> If this option is checked, all new translation units will be added to the Translation Memory for later use after saving.</string>
+               </property>
+               <property name="text" >
+                <string>Add new translation to TM</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" >
+              <widget class="QCheckBox" name="chbEditTraslation" >
+               <property name="text" >
+                <string>Possible to change translation in TM</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_5" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font" >
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text" >
+             <string>Options for Using Translation Memory</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" >
+           <widget class="QLabel" name="label_6" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font" >
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text" >
+             <string>Options for Using Glossary</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" >
+           <widget class="Line" name="line_4" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="save" >
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="2" column="0" >
+           <widget class="QFrame" name="frame_6" >
+            <layout class="QGridLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item row="0" column="0" >
+              <widget class="QCheckBox" name="chkHeaderAuto" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;h3>Update header on save&lt;/h3>Check this opton to automatically have your header updated while saving. The information will be querried from Personalize tab. </string>
+               </property>
+               <property name="text" >
+                <string>Update header on save</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_7" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font" >
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text" >
+             <string>Options for Saving File</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="Line" name="line_5" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="page" >
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="3" column="0" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="0" >
+           <widget class="QFrame" name="frame_7" >
+            <layout class="QGridLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item row="0" column="0" >
+              <widget class="QCheckBox" name="chkCursorHome" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="whatsThis" >
+                <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
+&lt;p style=" margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:large; font-weight:600;">&lt;span style=" font-size:large;">Options for Editor&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Set to move cursor to the beginning of string after copied source to target, otherwise keep the cursor untouched.&lt;/p>&lt;/body>&lt;/html></string>
+               </property>
+               <property name="text" >
+                <string>Move cursor to the beginning of string after copied source to target.</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="Line" name="line_6" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_8" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font" >
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text" >
+             <string>Options for Editor</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QListWidget" name="listWidget" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>1</hsizetype>
+          <vsizetype>1</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize" >
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="resizeMode" >
+         <enum>QListView::Adjust</enum>
+        </property>
+        <property name="layoutMode" >
+         <enum>QListView::SinglePass</enum>
+        </property>
+        <property name="modelColumn" >
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1" >
+    <widget class="QPushButton" name="okButton" >
+     <property name="sizePolicy" >
+      <sizepolicy>
+       <hsizetype>1</hsizetype>
+       <vsizetype>0</vsizetype>
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text" >
+      <string>&amp;OK</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2" >
+    <widget class="QPushButton" name="cancelButton" >
+     <property name="text" >
+      <string>&amp;Cancel</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>listWidget</tabstop>
+  <tabstop>UserName</tabstop>
+  <tabstop>EmailAddress</tabstop>
+  <tabstop>cbxLanguageCode</tabstop>
+  <tabstop>lineFullLang</tabstop>
+  <tabstop>SupportTeam</tabstop>
+  <tabstop>spinBox</tabstop>
+  <tabstop>lineEqaution</tabstop>
+  <tabstop>bntFontOverviewHeader</tabstop>
+  <tabstop>bntFontOverview</tabstop>
+  <tabstop>btnColorOverview</tabstop>
+  <tabstop>bntFontSource</tabstop>
+  <tabstop>btnColorSource</tabstop>
+  <tabstop>bntFontTarget</tabstop>
+  <tabstop>btnColorTarget</tabstop>
+  <tabstop>bntFontComment</tabstop>
+  <tabstop>btnColorComment</tabstop>
+  <tabstop>bntFontTM</tabstop>
+  <tabstop>btnColorTM</tabstop>
+  <tabstop>bntFontGlossary</tabstop>
+  <tabstop>btnColorGlossary</tabstop>
+  <tabstop>bntAdjustAllFont</tabstop>
+  <tabstop>bntDefaultsFont</tabstop>
+  <tabstop>bntDefaultsColor</tabstop>
+  <tabstop>chbAutoTranslate</tabstop>
+  <tabstop>chbIgnoreFuzzy</tabstop>
+  <tabstop>chbEditTraslation</tabstop>
+  <tabstop>chbAddTraslation</tabstop>
+  <tabstop>chbAutoIdentTerm</tabstop>
+  <tabstop>chbChangeTerm</tabstop>
+  <tabstop>chbMatchTerm</tabstop>
+  <tabstop>chbDetectTerm</tabstop>
+  <tabstop>chbAddNewTerm</tabstop>
+  <tabstop>chbSuggestTranslation</tabstop>
+  <tabstop>chkHeaderAuto</tabstop>
+  <tabstop>chkCursorHome</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
