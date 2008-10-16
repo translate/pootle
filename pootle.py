@@ -37,6 +37,7 @@ from Pootle import potree
 from Pootle import pootlefile
 from Pootle import users
 from Pootle import filelocations
+from Pootle import request_cache
 from translate.misc import optrecurse
 # Versioning information
 from Pootle import __version__ as pootleversion
@@ -55,6 +56,14 @@ import os
 import re
 import random
 import pprint
+
+def use_request_cache(f):
+    def decorated_f(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        finally:
+            request_cache.reset()
+    return decorated_f
 
 class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
   """the Server that serves the Pootle Pages"""
@@ -211,6 +220,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
       content += "Disallow: /%s/\n" % langcode
     return content
 
+  @use_request_cache
   def getpage(self, pathwords, session, argdict):
     """return a page that will be sent to the user"""
     #Ensure we get unicode from argdict
