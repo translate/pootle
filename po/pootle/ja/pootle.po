@@ -904,6 +904,7 @@ msgstr "%d/%d 翻訳済(未訳 %d, ファジー %d)"
 #. l10n: fourth parameter: file name
 #: translatepage.py:113
 #, python-format
+#, fuzzy
 msgid "%s: translating %s into %s: %s"
 msgstr "Pootle: %s を %s に翻訳中: %s"
 
