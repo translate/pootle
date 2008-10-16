@@ -561,7 +561,6 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
           if ancestor is None: continue
           try:
             ancestor_str = str(ancestor)
-            #ancestor_str = kid.et.tostring(ancestor)
           except Exception, e:
             ancestor_str = "(could not convert %s: %s)" % (str(ancestor), str(e))
           xml_traceback.append(ancestor_str)
@@ -577,8 +576,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     """bridge to widget code to allow templating to gradually replace it"""
     if kid is not None and hasattr(thepage, "templatename") and hasattr(thepage, "templatevars"):
       # renders using templates rather than the underlying widget class
-      kid.enable_import(path=self.templatedir)
-      #template = kid.Template(os.path.join(self.templatedir, thepage.templatename + ".html")) #self.gettemplate(thepage.templatename)
+      kid.enable_import()
       loadurl = getattr(thepage, "loadurl", None)
       if loadurl is None:
         loadurl = getattr(self, "loadurl", None)

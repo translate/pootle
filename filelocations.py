@@ -44,4 +44,5 @@ prefsfile = os.path.join(pootledir, 'pootle.prefs')
 
 htmldir = os.path.join(pootledir, "html")
 templatedir = os.path.join(pootledir, "templates")
+sys.path.append(templatedir) # So kid can find our templates
 
