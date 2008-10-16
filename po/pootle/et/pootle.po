@@ -924,6 +924,7 @@ msgstr ""
 #. l10n: fourth parameter: file name
 #: translatepage.py:113
 #, python-format
+#, fuzzy
 msgid "%s: translating %s into %s: %s"
 msgstr "Pootle: %s tõlkimine %s keelde: %s"
 
