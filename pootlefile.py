@@ -28,7 +28,7 @@ from translate.storage import xliff
 from translate.storage import factory
 from translate.filters import checks
 from translate.misc.multistring import multistring
-from Pootle import __version__
+from Pootle import __version__, request_cache
 from Pootle import statistics
 from jToolkit import timecache
 from jToolkit import glock
@@ -475,6 +475,8 @@ def make_class(base_class):
       """saves changes to the main file to disk..."""
       output = str(self)
       self.pomtime = self.lockedfile.writecontents(output)
+      if reset_stats:
+          request_cache.reset()
 
     def pofreshen(self):
       """makes sure we have a freshly parsed pofile
