@@ -140,7 +140,7 @@ class ServerTester:
         os.mkdir(projectdir)
         podir = os.path.join(projectdir, lang)
         os.mkdir(podir)
-	if perms:
+        if perms:
             prefsfile = file(os.path.join(projectdir, lang, "pootle-%s-%s.prefs" % (projectname, lang)), 'w')
             prefsfile.write("# Prefs file for Pootle unit tests\nrights:\n  testuser = '%s'\n" % perms)
             prefsfile.close()
@@ -185,8 +185,8 @@ class ServerTester:
         assert os.path.isfile(pofile_storename)
         assert open(pofile_storename).read() == xliffcontents
         # Well, since it is a new file, it actually now is an xliff file...
-#                pocontents_download = self.fetch_page("zxx/testproject/test_upload.po")
-#                assert pocontents_download == pocontents_expected
+        #pocontents_download = self.fetch_page("zxx/testproject/test_upload.po")
+        #assert pocontents_download == pocontents_expected
 
     def test_upload_suggestions(self):
         """tests that we can upload when we only have suggest rights"""
@@ -453,7 +453,7 @@ class ServerTester:
         pofile = project.getpofile("test_upload.po")
         assert str(pofile.units[1]) == expected_pocontents
 
-       
+
     def test_navigation_url_parameters(self):
         """tests that the navigation urls (next/end etc) has the necessary parameters"""
         self.login()
@@ -462,7 +462,7 @@ class ServerTester:
         pocontents = '#: test.c\nmsgid "test1"\nmsgstr "rest"\n'
         pocontents += '\n#. Second Unit\nmsgid "test2"\nmsgstr "rest2"\n'
         open(pofile_storename, "w").write(pocontents)
-        self.prefs.setvalue("Pootle.users.testuser.viewrows", 1)        
+        self.prefs.setvalue("Pootle.users.testuser.viewrows", 1)
         translatepage = self.fetch_page("zxx/testproject/test_nav_url.po?translate=1&view=1")
         patterns = re.findall('<a href=".(.*)".*Next 1.*</a>', translatepage)
         parameters = patterns[0].split('&amp;')
