@@ -56,23 +56,12 @@ def encode_multipart_formdata(fields, files):
     return content_type, body
 
 class ServerTester:
-    """Tests things directly against the socket of the server. Requires self.baseaddress"""
+    """Tests things directly against the socket of the server. Requires self.baseaddress."""
+
     setup_class = test_create.TestCreate.setup_class
 
-    def setup_cookies(self):
-        """handle cookies etc"""
-        if cookielib:
-            self.cookiejar = cookielib.CookieJar()
-            self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookiejar))
-            self.urlopen = self.opener.open
-        else:
-            self.urlopen = ClientCookie.urlopen
-
-    def setup_prefs(self, method):
-        """sets up any extra preferences required..."""
-        if hasattr(method, "userprefs"):
-            for key, value in method.userprefs.iteritems():
-                self.prefs.setvalue("Pootle.users.testuser." + key, value)
+    # Utility Methods
+    ##################
 
     def fetch_page(self, relative_url):
         """Fetches a page from the webserver installed in the service"""
@@ -95,6 +84,25 @@ class ServerTester:
         """calls the login method with username and password"""
         return self.fetch_page("?islogin=1&username=testuser&password=")
 
+    # Setup and teardown methods
+    #############################
+    def setup_cookies(self):
+        """handle cookies etc"""
+        if cookielib:
+            self.cookiejar = cookielib.CookieJar()
+            self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookiejar))
+            self.urlopen = self.opener.open
+        else:
+            self.urlopen = ClientCookie.urlopen
+
+    def setup_prefs(self, method):
+        """sets up any extra preferences required..."""
+        if hasattr(method, "userprefs"):
+            for key, value in method.userprefs.iteritems():
+                self.prefs.setvalue("Pootle.users.testuser." + key, value)
+
+    # Test methods
+    ###############
     def test_login(self):
         """checks that login works and sets cookies"""
         contents = self.login()
