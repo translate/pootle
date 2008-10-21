@@ -1,5 +1,6 @@
 from translate.storage import statsdb
 import request_cache
+import traceback
 
 STATS_DB_FILE = None
 
@@ -9,6 +10,14 @@ def getmodtime(filename):
     return mtime
   except:
     return None
+
+_complaint_status = set()
+
+def _complain(message, filename):
+  if filename not in _complaint_status:
+    print message % filename
+    _complaint_status.add(filename)
+    traceback.print_exc()
 
 class pootlestatistics:
   """this represents the statistics known about a file"""
@@ -23,6 +32,7 @@ class pootlestatistics:
     try:
       return request_cache.call(self.statscache.filetotals, self.basefile.filename) or statsdb.emptyfiletotals()
     except:
+      _complain(u'Could not compute file totals for %s', self.basefile.filename)
       return statsdb.emptyfiletotals()
 
   def getstats(self, checker=None):
@@ -32,12 +42,14 @@ class pootlestatistics:
     try:
       return request_cache.call(self.statscache.filestats, self.basefile.filename, checker)
     except:
+      _complain(u'Could not compute statistics for %s', self.basefile.filename)
       return statsdb.emptyfilestats()
 
   def getunitstats(self):
     try:
       return request_cache.call(self.statscache.unitstats, self.basefile.filename)
     except:
+      _complain(u'Could not compute word counts for %s', self.basefile.filename)
       return statsdb.emptyunitstats()
 
   def reclassifyunit(self, item):
