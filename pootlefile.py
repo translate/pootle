@@ -471,12 +471,10 @@ def make_class(base_class):
       self.pomtime = pomtime
       self.reset_statistics()
 
-    def savepofile(self, reset_stats=True):
+    def savepofile(self):
       """saves changes to the main file to disk..."""
       output = str(self)
       self.pomtime = self.lockedfile.writecontents(output)
-      if reset_stats:
-          request_cache.reset()
 
     def pofreshen(self):
       """makes sure we have a freshly parsed pofile
@@ -505,7 +503,6 @@ def make_class(base_class):
       """updates a translation with a new target value"""
       self.pofreshen()
       unit = self.getitem(item)
-      reset_stats = False
 
       if newvalues.has_key("target"):
         unit.target = newvalues["target"]
@@ -526,10 +523,11 @@ def make_class(base_class):
         if userprefs:
           if getattr(userprefs, "name", None) and getattr(userprefs, "email", None):
             headerupdates["Last_Translator"] = "%s <%s>" % (userprefs.name, userprefs.email)
-        # XXX: If we needed to add a header, the index value in item will be one out after
-        # adding the header.
-        # TODO: remove once we force the PO class to always output headers
-        reset_stats = self.header() is None
+        # We are about to insert a header. This changes the structure of the PO file and thus
+        # the total array which lists the editable units. We want to force this array to be
+        # reloaded, so we simply set it to undefined.
+        if self.header() is None:
+            self._total = util.undefined
         self.updateheader(add=True, **headerupdates)
         if languageprefs:
           nplurals = getattr(languageprefs, "nplurals", None)
@@ -539,7 +537,7 @@ def make_class(base_class):
       # If we didn't add a header, savepofile doesn't have to reset the stats,
       # since reclassifyunit will do. This gives us a little speed boost for
       # the common case.
-      self.savepofile(reset_stats)
+      self.savepofile()
       self.statistics.reclassifyunit(item)
 
     def getitem(self, item):
