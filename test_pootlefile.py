@@ -11,11 +11,10 @@ from translate.misc import wStringIO
 import os
 
 class TestPootleFile(test_po.TestPOFile):
-    class pootletestfile(pootlefile.pootlefile):
-        def __init__(self):
-            """wrapper constructor for pootlefile that uses temporary filename"""
-            project = projects.DummyProject(self.testdir)
-            return pootlefile.pootlefile.__init__(self, project, self.pofilename)
+    class pootletestfile(po.pofile):
+        def __new__(cls):
+            project = projects.DummyProject(cls.testdir)
+            return pootlefile.pootlefile(project=project, pofilename=cls.pofilename)
 
     StoreClass = pootletestfile
 
@@ -69,7 +68,7 @@ msgstr ""'''
         stdchecker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=filtererrorhandler)
         dummyproject = projects.DummyStatsProject(self.rundir, stdchecker, "unittest_project", "xx")
 
-        pofile = pootlefile.pootlefile(dummyproject, "test.po", generatestats=False)
+        pofile = pootlefile.pootlefile(dummyproject, "test.po")
         pofile.parse(posource)
         return pofile
 
