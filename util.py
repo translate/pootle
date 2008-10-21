@@ -22,6 +22,24 @@
 undefined = lambda: None
 
 def lazy(result_name):
+    """This is used to create an attribute whose value is
+    lazily computed. The parameter names an object variable that
+    will be used to hold the lazily computed value. At the start,
+    this variable should hold the value undefined.
+    
+    TODO: Replace this with a nice Python descriptor.
+    
+    class Person(object):
+        def __init__(self):
+            self.name = 'John'
+            self.surname = 'Doe'
+            self._fullname = undefined
+        
+        @lazy('_fullname')
+        def _get_fullname(self):
+            return self.name + ' ' + self.surname
+    """
+    
     def lazify(f):
         def evaluator(self):
           result = getattr(self, result_name)
