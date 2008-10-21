@@ -8,7 +8,6 @@ from Pootle import test_create
 from Pootle import test_cmdlineserver
 from Pootle import potree
 from Pootle import projects
-from jToolkit.web import postMultipart
 import zipfile
 from translate.misc import wStringIO
 import urllib
@@ -22,6 +21,39 @@ except ImportError:
     # fallback for python before 2.4
     cookielib = None
     import ClientCookie
+
+def encode_multipart_formdata(fields, files):
+    """
+    fields is a sequence of (name, value) elements for regular form fields.
+    files is a sequence of (name, filename, value) elements for data to be uploaded as files
+    Return (content_type, body) ready for httplib.HTTP instance
+    """
+    # Written by Wade Leftwich
+    # Submitted to ASPN Cookbook
+    # Available at the following URL: http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/146306
+    # As far as I can tell, this code is public domain
+    # Copied my Walter Leibbrandt from jToolkit's web/postMultipart.py
+    import mimetypes
+
+    BOUNDARY = '----------ThIs_Is_tHe_bouNdaRY_$'
+    CRLF = '\r\n'
+    L = []
+    for (key, value) in fields:
+        L.append('--' + BOUNDARY)
+        L.append('Content-Disposition: form-data; name="%s"' % key)
+        L.append('')
+        L.append(value)
+    for (key, filename, value) in files:
+        L.append('--' + BOUNDARY)
+        L.append('Content-Disposition: form-data; name="%s"; filename="%s"' % (key, filename))
+        L.append('Content-Type: %s' % (mimetypes.guess_type(filename)[0] or 'application/octet-stream'))
+        L.append('')
+        L.append(value)
+    L.append('--' + BOUNDARY + '--')
+    L.append('')
+    body = CRLF.join(L)
+    content_type = 'multipart/form-data; boundary=%s' % BOUNDARY
+    return content_type, body
 
 class ServerTester:
     """Tests things directly against the socket of the server. Requires self.baseaddress"""
@@ -158,7 +190,7 @@ class ServerTester:
         fields = [("doupload", "Upload File")]
         pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
         files = [("uploadfile", "test_upload.po", pocontents)]
-        content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
+        content_type, upload_contents = encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/", upload_contents, headers)
         assert ' href="test_upload.po?' in response
@@ -177,7 +209,7 @@ class ServerTester:
 <xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1"><file datatype="po" original="test_upload.po" source-language="en-US"><body><trans-unit id="1" xml:space="preserve"><source>test</source><target state="translated">rest</target><context-group name="po-reference" purpose="location"><context context-type="sourcefile">test.c</context></context-group></trans-unit></body></file></xliff>'''
         pocontents_expected = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
         files = [("uploadfile", "test_upload.xlf", xliffcontents)]
-        content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
+        content_type, upload_contents = encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/", upload_contents, headers)
         assert ' href="test_upload.po?' in response
@@ -201,7 +233,7 @@ class ServerTester:
         fields = [("doupload", "Upload File")]
         pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
         files = [("uploadfile", "test_upload.po", pocontents)]
-        content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
+        content_type, upload_contents = encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/", upload_contents, headers)
         assert ' href="test_upload.po?' in response
@@ -225,7 +257,7 @@ class ServerTester:
         fields = [("doupload", "Upload File"),("dooverwrite", "No")]
         pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
         files = [("uploadfile", "test_upload.po", pocontents)]
-        content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
+        content_type, upload_contents = encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/", upload_contents, headers)
         assert ' href="test_upload.po?' in response
@@ -236,7 +268,7 @@ class ServerTester:
         fields = [("doupload", "Upload File"),("dooverwrite", "Yes")]
         pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n#: test.c\nmsgid "azoozoo"\nmsgstr ""'
         files = [("uploadfile", "test_upload.po", pocontents)]
-        content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
+        content_type, upload_contents = encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/", upload_contents, headers)
         assert pocontents == self.fetch_page("zxx/testproject/test_upload.po")
@@ -254,7 +286,7 @@ class ServerTester:
         archive.writestr("frog.po", po2contents)
         archive.close()
         files = [("uploadfile", "upload.zip", archivefile.getvalue())]
-        content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
+        content_type, upload_contents = encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/", upload_contents, headers)
         for filename, contents in [("test.po", po1contents), ("frog.po", po2contents)]:
@@ -276,7 +308,7 @@ class ServerTester:
         po2contents = '#: test.c\nmsgid "test"\nmsgstr "rested"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
         fields = [("doupload", "Upload File")]
         files = [("uploadfile", "test_existing.po", po2contents)]
-        content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
+        content_type, upload_contents = encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/?editing=1", upload_contents, headers)
         # NOTE: this is what we do currently, any altered strings become suggestions.
@@ -324,7 +356,7 @@ class ServerTester:
 '''
         fields = [("doupload", "Upload File")]
         files = [("uploadfile", "test_existing.xlf", xlfcontents)]
-        content_type, upload_contents = postMultipart.encode_multipart_formdata(fields, files)
+        content_type, upload_contents = encode_multipart_formdata(fields, files)
         headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
         response = self.post_request("zxx/testproject/?editing=1", upload_contents, headers)
         # NOTE: this is what we do currently, any altered strings become suggestions.
@@ -351,7 +383,7 @@ class ServerTester:
         open(pofile_storename, "w").write(pocontents)
         expected_pocontents = '#: test.c\nmsgid "test"\nmsgstr "restrain"\n'
         fields = {"orig-pure0.0": "test", "trans0": "restrain", "submit0": "submit", "pofilename": "test_upload.po"}
-        content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+        content_type, post_contents = encode_multipart_formdata(fields.items(), [])
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
         tree = potree.POTree(self.prefs.Pootle)
@@ -368,7 +400,7 @@ class ServerTester:
         open(pofile_storename, "w").write(pocontents)
         expected_pocontents = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud"\nmsgstr[1] "meervoud"\n'
         fields = {"orig-pure0.0": "singular", "trans0.0": "enkelvoud", "trans0.1": "meervoud", "submit0": "submit", "pofilename": "test_upload.po"}
-        content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+        content_type, post_contents = encode_multipart_formdata(fields.items(), [])
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
         tree = potree.POTree(self.prefs.Pootle)
@@ -385,7 +417,7 @@ class ServerTester:
         open(pofile_storename, "w").write(pocontents)
         expected_pocontents = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud"\n'
         fields = {"orig-pure0.0": "singular", "trans0.0": "enkelvoud", "submit0": "submit", "pofilename": "test_upload.po"}
-        content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+        content_type, post_contents = encode_multipart_formdata(fields.items(), [])
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
         tree = potree.POTree(self.prefs.Pootle)
@@ -405,10 +437,11 @@ class ServerTester:
 
         # Fetch the page and check that the fuzzy checkbox is NOT checked.
         translatepage = self.fetch_page("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
+        print '\n\n\n\n%s\n\n\n\n\n' % (translatepage)
         assert '<input class="unfuzzy" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in translatepage
 
         fields = {"orig-pure0.0": "fuzzy", "trans0": "wuzzy", "submit0": "submit", "fuzzy0": "on", "pofilename": "test_fuzzy.po"}
-        content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+        content_type, post_contents = encode_multipart_formdata(fields.items(), [])
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_fuzzy.po?translate=1&editing=1", post_contents, headers)
 
@@ -424,7 +457,7 @@ class ServerTester:
 
         # Submit the translation again, without the fuzzy checkbox checked
         fields = {"orig-pure0.0": "fuzzy", "trans0": "wuzzy", "submit0": "submit", "pofilename": "test_fuzzy.po"}
-        content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+        content_type, post_contents = encode_multipart_formdata(fields.items(), [])
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_fuzzy.po?translate=1&editing=1", post_contents, headers)
 
@@ -445,7 +478,7 @@ class ServerTester:
         open(pofile_storename, "w").write(pocontents)
         expected_pocontents = '# Some test comment\n# test comment line 2\n#: test.c\nmsgid "test"\nmsgstr "rest"\n'
         fields = {"orig-pure0.0": "test", "trans0": "rest", "translator_comments0": "Some test comment\ntest comment line 2", "submit0": "submit", "pofilename": "test_upload.po"}
-        content_type, post_contents = postMultipart.encode_multipart_formdata(fields.items(), [])
+        content_type, post_contents = encode_multipart_formdata(fields.items(), [])
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
         tree = potree.POTree(self.prefs.Pootle)
