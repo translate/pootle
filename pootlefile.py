@@ -313,9 +313,6 @@ def make_class(base_class):
 
     total = property(_get_total)
 
-    def reset_statistics(self):
-      self.statistics = statistics.pootlestatistics(self)
-
     def parsestring(cls, storestring):
       newstore = cls()
       newstore.parse(storestring)
@@ -469,7 +466,6 @@ def make_class(base_class):
       # note: we rely on this not resetting the filename, which we set earlier, when given a string
       self.parse(filecontents)
       self.pomtime = pomtime
-      self.reset_statistics()
 
     def savepofile(self):
       """saves changes to the main file to disk..."""
