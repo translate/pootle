@@ -71,6 +71,10 @@ class ServerTester:
         contents = stream.read()
         return contents
 
+    def login(self):
+        """Utility method that calls the login method with username and password."""
+        return self.fetch_page("?islogin=1&username=testuser&password=")
+
     def post_request(self, relative_url, contents, headers):
         """Utility method that posts a request to the webserver installed in the service."""
         url = "%s/%s" % (self.baseaddress, relative_url)
@@ -79,10 +83,6 @@ class ServerTester:
         stream = self.urlopen(post_request)
         response = stream.read()
         return response
-
-    def login(self):
-        """Utility method that calls the login method with username and password."""
-        return self.fetch_page("?islogin=1&username=testuser&password=")
 
     # Setup and teardown methods
     #############################
@@ -100,6 +100,26 @@ class ServerTester:
         if hasattr(method, "userprefs"):
             for key, value in method.userprefs.iteritems():
                 self.prefs.setvalue("Pootle.users.testuser." + key, value)
+
+    def setup_testproject_dir(self, perms=None):
+        """Sets up a blank test project directory."""
+        projectname = "testproject"
+        lang = "zxx"
+        projectdir = os.path.join(self.podir, projectname)
+
+        os.mkdir(projectdir)
+        podir = os.path.join(projectdir, lang)
+        os.mkdir(podir)
+        if perms:
+            prefsfile = file(os.path.join(projectdir, lang, "pootle-%s-%s.prefs" % (projectname, lang)), 'w')
+            prefsfile.write("# Prefs file for Pootle unit tests\nrights:\n  testuser = '%s'\n" % perms)
+            prefsfile.close()
+        language_page = self.fetch_page("%s/%s/" % (lang, projectname))
+
+        assert "Test Language" in language_page
+        assert "Pootle Unit Tests" in language_page
+        assert "0 files, 0/0 words (0%) translated" in language_page
+        return podir
 
     # Test methods
     ###############
@@ -188,26 +208,6 @@ class ServerTester:
         assert "Pootle Unit Tests" in language_page
         assert "0 files, 0/0 words (0%) translated" in language_page
     test_add_project_language.userprefs = {"rights.siteadmin": True}
-
-    def setup_testproject_dir(self, perms=None):
-        """Sets up a blank test project directory."""
-        projectname = "testproject"
-        lang = "zxx"
-        projectdir = os.path.join(self.podir, projectname)
-
-        os.mkdir(projectdir)
-        podir = os.path.join(projectdir, lang)
-        os.mkdir(podir)
-        if perms:
-            prefsfile = file(os.path.join(projectdir, lang, "pootle-%s-%s.prefs" % (projectname, lang)), 'w')
-            prefsfile.write("# Prefs file for Pootle unit tests\nrights:\n  testuser = '%s'\n" % perms)
-            prefsfile.close()
-        language_page = self.fetch_page("%s/%s/" % (lang, projectname))
-
-        assert "Test Language" in language_page
-        assert "Pootle Unit Tests" in language_page
-        assert "0 files, 0/0 words (0%) translated" in language_page
-        return podir
 
     def test_upload_new_file(self):
         """Tests that we can upload a new file into a project."""
