@@ -561,7 +561,7 @@ class ServerTester:
         assert str(pofile.units[1]) == expected_pocontents
 
     def test_navigation_url_parameters(self):
-        """tests that the navigation urls (next/end etc) has the necessary parameters"""
+        """Tests that the navigation urls (next/end etc) has the necessary parameters."""
         self.login()
 
         podir = self.setup_testproject_dir(perms="view, translate")
