@@ -524,6 +524,7 @@ def make_class(base_class):
         # reloaded, so we simply set it to undefined.
         if self.header() is None:
             self._total = util.undefined
+            request_cache.reset()
         self.updateheader(add=True, **headerupdates)
         if languageprefs:
           nplurals = getattr(languageprefs, "nplurals", None)
