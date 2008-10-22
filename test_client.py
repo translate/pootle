@@ -577,6 +577,39 @@ class ServerTester:
         assert 'pofilename=test_nav_url.po' in parameters
         assert 'item=1' in parameters
 
+    def test_search(self):
+        """Test the searching functionality when results are and are not expected."""
+        self.login()
+
+        # Create initial .po file
+        podir = self.setup_testproject_dir(perms='view')
+        pofile_storename = os.path.join(podir, "test_upload.po")
+        pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
+        open(pofile_storename, "w").write(pocontents)
+
+        test_translation_string = '<div class="translation-text">test</div>'
+        # Test for existing results
+        fields = {
+            'searchtext': 'test',
+            'pofilename': 'test_upload.po',
+            'source': '1'
+        }
+        content_type, post_contents = encode_multipart_formdata(fields.items(), [])
+        headers = { 'Content-Type': content_type, 'Content-Length': len(post_contents) }
+        translatepage = self.post_request('zxx/testproject/translate.html', post_contents, headers)
+        assert test_translation_string in translatepage
+
+        # Test for empty result
+        fields = {
+            'searchtext': 'test',
+            'pofilename': 'test_upload.po',
+            'target': '1'
+        }
+        content_type, post_contents = encode_multipart_formdata(fields.items(), [])
+        headers = { 'Content-Type': content_type, 'Content-Length': len(post_contents) }
+        translatepage = self.post_request('zxx/testproject/translate.html', post_contents, headers)
+        assert test_translation_string not in translatepage
+
 def MakeServerTester(baseclass):
     """Makes a new Server Tester class using the base class to setup webserver etc."""
     class TestServer(baseclass, ServerTester):
