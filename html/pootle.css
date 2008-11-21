@@ -29,7 +29,7 @@
 }
 :lang(ar)
 {
-	font-family: Tahoma 12, Nazli, KacstOne, "DejaVu Sans", inherit;
+	font-family: "Tahoma 12", Nazli, KacstOne, "DejaVu Sans", inherit;
 }
 :lang(bn)
 {
@@ -120,10 +120,6 @@ h1, h2, h3
 	margin: 0px;
 	padding: 0px;
 }
-.title
-{
-	color: #004077;
-}
 .title a
 {
        unicode-bidi: embed;
@@ -141,7 +137,6 @@ h1, h2, h3
 }
 div.autoexpand
 {
-	max-height: 50px;
 	min-height: 1.5em;
 	overflow: hidden;
 	border-bottom: none;
@@ -160,7 +155,7 @@ div.item
 {
 	margin-bottom:5px;
 }
-.item-even
+.item-even, .item-0
 {
 	background-color: #f4f4f4;
 }
@@ -267,7 +262,7 @@ div.translate-original-focus
 }
 .translate-focus div.translate-original
 {
-	border: 3px solid black;
+	font-weight: bold; 
 }
 td.translate-original
 {
@@ -276,11 +271,14 @@ td.translate-original
 td.translate-focus
 {
 	border-top:2px solid #000000;
-	padding-top: 1px;
+	padding-top:.5em;
+	padding-bottom:.5em;
+	padding-left:.5em;
 	vertical-align: top;
 }
 td.comments
 {
+	padding:.5em;
         border-bottom:2px solid #000000;
 }
 textarea.comments
@@ -308,11 +306,17 @@ td.translate-translation
 {
 	background-color: #f4f4f4;
 }
-.translate-translation-fuzzy
+.translate-translation-fuzzy[dir="ltr"]
 {
 	color: #666;
 	border-left: 4px solid #AAA;
 	padding-left: 3px;
+}
+.translate-translation-fuzzy[dir="rtl"]
+{
+	color: #666;
+	border-right: 4px solid #AAA;
+	padding-right: 3px;
 }
 textarea.translate-translation-fuzzy
 {
@@ -410,12 +414,14 @@ table.stats
 	border-spacing: 0;
 	padding: 0;
 	font-size: small;
+	border-collapse: collapse;
 }
 th.stats
 {
 	font-weight: bolder;
 	color: #004077;
 	text-align: center;
+	border: 1px dotted #999;
 }
 td.stats
 {
@@ -431,6 +437,20 @@ td.stats
 td.stats-graph
 {
 	border: 1px dotted #999;
+  width: 100px;
+  min-width: 100px;
+}
+
+/* Stats summary */
+td.stats ul {
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+}
+td.stats ul li.todo {
+    font-weight:bold;
+}
+td.stats ul li.complete {
+    list-style-image: url('../images/complete.png');
 }
 
 div.intro {
@@ -450,9 +470,6 @@ div.info {
 	margin-right: 15px;
 	padding: 10px;
 }
-#banner
-{
-}
 #banner h1
 {
 	background: url(images/pootle-medium.png) no-repeat scroll left top;
@@ -470,6 +487,28 @@ div.info {
 	padding-right: 80px;
 	padding-left: 0px;
 	text-align: right;
+}
+#banner h1.linked 
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#banner h1 a
+{
+	padding-left: 80px;
+	padding-right: 15px;
+	font-size: xx-large;
+	color: black;
+	padding-bottom: 15px;
+}
+#banner[dir="rtl"] h1 a
+{
+	padding-right: 80px;
+	padding-left: 15px;
+}
+#banner h1 a:hover
+{
+	text-decoration: none;
 }
 #content
 {
@@ -497,6 +536,7 @@ div.info {
 	width: 100%;
 	margin-right:0px;
 	padding-bottom:10px;
+    min-width:1000px;
 }
 .sidebar
 {
@@ -589,6 +629,7 @@ textarea.translation
 }
 .translation-text
 {
+  display: inline;
 	max-width: 100%;
 	overflow: auto;
 /*        white-space: pre-wrap;*/
@@ -609,13 +650,17 @@ textarea.translation
 }
 a.translation-action
 {
-	display: none;
 	position: absolute;
-	background: white;
-	border: 1px dotted gray;
-	margin: 2px;
-	padding: 2px;
+	margin: 0px;
 	z-index: 2;
+}
+a.translation-action[dir="ltr"]
+{
+	padding-left: 4px;
+}
+a.translation-action[dir="rtl"]
+{
+	padding-right: 4px;
 }
 div.translation-action
 {
@@ -673,3 +718,185 @@ table.sortable img.sortarrow {
   display: none;
 }
 
+a.loginlink {
+  line-height: 20px;
+}
+
+div#language-list {
+    float:left;
+    border: 1px solid #111;
+    padding: 4px;
+    width: 45%;
+}
+div#project-list {
+    float: left;
+    margin-left: 30px;
+    border: 1px solid #111;
+    padding: 4px;
+    width: 45%;
+}
+
+div.logincont form {
+    display: inline;
+}
+
+table.sortable th {
+  cursor: pointer;
+}
+
+table.sortable th.sorttable_nosort {
+  cursor: default;
+}
+
+/* More pretty graphs, from http://l10n.gnome.org/ */
+span.graph {
+  height: 14px;
+  width: 100px;
+  border: 0px solid black; 
+  position: relative;
+       padding: 2px;   
+}
+
+
+span.translated {
+  position: absolute; 
+  top: 5px;
+  height:100%; 
+  background: #448844;
+  background: url('images/green-bar.png');
+  background-repeat: repeat-x;
+  color: black;
+}
+
+span.goodchange {
+  position: absolute; 
+  top: 5px;
+  height:100%; 
+  background: #55DD55;
+  background: url('images/cyan-bar.png');
+  background-repeat: repeat-x;
+  color: black;
+}
+
+span.fuzzy {
+  position: absolute; 
+  top: 5px;
+  height:100%; 
+  background: #4444AA;
+  background: url('images/purple-bar.png');
+  background-repeat: repeat-x;
+  color: black;
+}
+
+span.untranslated {
+  position: absolute; 
+  height:100%; 
+  top: 5px; 
+  background: #FF4444;
+  background: url('images/red-bar.png');
+  background-repeat: repeat-x;
+  color: black;
+}
+
+span.graph[dir="ltr"] span.translated {
+  left: 0%;
+}
+
+span.graph[dir="rtl"] span.translated {
+  right: 0%;
+}
+
+th[scope="row"][dir="ltr"] {
+  text-align: right;
+  padding-right: 1em;
+}
+
+th[scope="row"][dir="rtl"] {
+  text-align: left;
+  padding-left: 1em;
+}
+
+.topcontributers {
+  clear: both;
+}
+
+.topcontributers h3 {
+  padding: 1em;
+}
+
+.topcontributers table {
+  float: left;
+  width: 150px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.topcontributers caption {
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.topcontributers table thead {
+  display: none;
+}
+
+.topcontributers th[scope="row"] {
+  text-align: left;
+  font-weight: normal;
+}
+
+.topcontributers td {
+  text-align: right;
+}
+
+ul.sugglist {
+  clear: both;
+}
+
+a.sugglink[dir="ltr"] {
+  float: right;
+  padding-right: 1em;
+}
+
+a.sugglink[dir="rtl"] {
+  float: left;
+  padding-left: 1em;
+}
+
+span.suggauthor[dir="ltr"] {
+  float: right;
+}
+
+span.suggauthor[dir="rtl"] {
+  float: left;
+}
+
+div.suggestions {
+  display: inline;
+}
+
+div.translate-translation {
+  min-height: 1.5em;
+}
+
+div.translate-original {
+  min-height: 1.5em;
+}
+
+.cancellink {
+  padding-left: .5em;
+}
+
+.placeholder {
+  color: gray;
+}
+
+.hide {
+    display: none;
+}
+div#translationsummarylegend div img {
+    vertical-align:middle;
+    width: 25px;
+    height: 15px;
+    padding: 0px 5px 0px 5px;
+}

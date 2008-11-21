@@ -29,6 +29,9 @@ from translate.misc.multistring import multistring
 import difflib
 import operator
 import urllib
+import os
+
+from dbclasses import User
 
 xml_re = re.compile("&lt;.*?&gt;")
 
@@ -66,6 +69,8 @@ class TranslatePage(pagelayout.PootleNavPage):
     self.session = session
     self.localize = session.localize
     self.rights = self.project.getrights(self.session)
+    if "view" not in self.rights:
+      raise projects.Rights404Error(None)
     self.instance = session.instance
     self.lastitem = None
     self.pofilename = self.argdict.pop("pofilename", None)
@@ -115,6 +120,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     language = {"code": pagelayout.weblanguage(self.project.languagecode), "name": self.project.languagename, "dir": pagelayout.languagedir(self.project.languagecode)}
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     stats = {"summary": mainstats, "checks": [], "tracks": [], "assigns": []}
+
     templatevars = {"pagetitle": pagetitle,
         "project": {"code": self.project.projectcode, "name": self.project.projectname},
         "language": language,
@@ -134,6 +140,8 @@ class TranslatePage(pagelayout.PootleNavPage):
         "accept_title": self.localize("Accept suggestion"),
         "reject_title": self.localize("Reject suggestion"),
         "fuzzytext": self.localize("Fuzzy"),
+        # l10n: Ajax link for suggestions.  %s is the number of suggestions
+        "viewsuggtext": self.localize("View Suggestions (%s)"),
         # l10n: Heading above the textarea for translator comments.
         "translator_comments_title": self.localize("Translator comments"),
         # l10n: Heading above the comments extracted from the programing source code
@@ -152,10 +160,15 @@ class TranslatePage(pagelayout.PootleNavPage):
         # general vars
         "session": sessionvars,
         "instancetitle": instancetitle,
+        "rights": self.rights,
         # l10n: Text displayed when an AJAX petition is being made
         "ajax_status_text": self.localize("Working..."),
         # l10n: Text displayed in an alert box when an AJAX petition has failed
-        "ajax_error": self.localize("Error: Something went wrong.")
+        "ajax_error": self.localize("Error: Something went wrong."),
+        # l10n: Button label
+        "accept_button": self.localize("Accept"),
+        # l10n: Button label
+        "reject_button": self.localize("Reject")
         }
 
     if self.extra_class:
@@ -235,8 +248,7 @@ class TranslatePage(pagelayout.PootleNavPage):
 
   def getassignbox(self):
     """gets strings if the user can assign strings"""
-    users = [username for username, userprefs in self.session.loginchecker.users.iteritems() if username != "__dummy__"]
-    users.sort()
+    users = self.session.server.alchemysession.query(User.username).order_by(User.username).all()
     return {
       "title": self.localize("Assign Strings"),
       "user_title": self.localize("Assign to User"),
@@ -382,7 +394,7 @@ class TranslatePage(pagelayout.PootleNavPage):
   def getusernode(self):
     """gets the user's prefs node"""
     if self.session.isopen:
-      return getattr(self.session.loginchecker.users, self.session.username.encode("utf-8"), None)
+      return self.session.server.alchemysession.query(User).filter_by(username=self.session.username).first()
     else:
       return None
 
@@ -448,7 +460,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     else:
       self.editable = [self.item]
       rows = self.getdisplayrows("translate")
-      before = rows / 2
+      before = 0; 
       fromitem = self.item - before
       self.firstitem = max(self.item - before, 0)
       toitem = self.firstitem + rows
@@ -457,6 +469,7 @@ class TranslatePage(pagelayout.PootleNavPage):
   def maketable(self):
     self.translations = self.gettranslations()
     items = []
+    suggestions = {}
     if (self.reviewmode or self.translatemode) and self.item is not None:
       suggestions = {self.item: self.project.getsuggestions(self.pofilename, self.item)}
     for row, unit in enumerate(self.translations):
@@ -475,7 +488,7 @@ class TranslatePage(pagelayout.PootleNavPage):
           if not (nplurals and nplurals.isdigit()):
             # The file doesn't have plural information declared. Let's get it from
             # the language
-            nplurals = getattr(getattr(self.session.instance.languages, self.project.languagecode, None), "nplurals", "")
+            nplurals = getattr(self.project.potree.languages[self.project.languagecode], "nplurals", "")
           nplurals = int(nplurals)
           if len(trans) != nplurals:
             # Chop if in case it is too long
@@ -487,6 +500,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       item = self.firstitem + row
       origdict = self.getorigdict(item, orig, item in self.editable)
       transmerge = {}
+      suggestions[item] = self.project.getsuggestions(self.pofilename, item)
 
       message_context = ""
       if item in self.editable:
@@ -498,28 +512,28 @@ class TranslatePage(pagelayout.PootleNavPage):
         tmsuggestions = self.project.gettmsuggestions(self.pofilename, self.item)
         tmsuggestions.extend(self.project.getterminology(self.session, self.pofilename, self.item))
 
-        if self.translatemode or self.reviewmode:
-          translator_comments = self.escapetext(unit.getnotes(origin="translator"), stripescapes=True)
-          itemsuggestions = []
-          for suggestion in suggestions[item]:
-            if suggestion.hasplural():
-              itemsuggestions.append(suggestion.target.strings)
-            else:
-              itemsuggestions.append([suggestion.target])
-          transmerge = self.gettransreview(item, trans, itemsuggestions)
-          transedit = self.gettransedit(item, trans)
-          # Make sure we don't overwrite the diff attribute in case it's plural
-          if len(trans) > 1:
-            for i, f in enumerate(transedit["forms"]):
-              transedit["forms"][i].update(transmerge["forms"][i])
-          transmerge.update(transedit)
-        else:
-          transmerge = self.gettransedit(item, trans)
+        transmerge = self.gettransedit(item, trans)
       else:
         translator_comments = unit.getnotes(origin="translator")
         developer_comments = unit.getnotes(origin="developer")
         locations = ""
         transmerge = self.gettransview(item, trans)
+
+      itemsuggestions = []
+      for suggestion in suggestions[item]:
+        if suggestion.hasplural():
+          itemsuggestions.append(suggestion.target.strings)
+        else:
+          itemsuggestions.append([suggestion.target])
+      transreview = self.gettransreview(item, trans, itemsuggestions)
+      if 'forms' in transmerge.keys():
+        for fnum in range(len(transmerge['forms'])):
+          transreview['forms'][fnum].update(transmerge['forms'][fnum])
+      elif 'text' in transmerge.keys():
+        transreview['forms'][0]['text'] = transmerge['text']
+ 
+      transmerge.update(transreview)
+
       transdict = {"itemid": "trans%d" % item,
                    "focus_class": origdict["focus_class"],
                    "isplural": len(trans) > 1,
@@ -636,7 +650,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     if editable:
       focus_class = "translate-original-focus"
     else:
-      focus_class = "autoexpand"
+      focus_class = ""
     purefields = []
     for pluralid, pluraltext in enumerate(orig):
       pureid = "orig-pure%d.%d" % (item, pluralid)
@@ -671,7 +685,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       desiredbuttons.remove("suggest")
     if "translate" in desiredbuttons and "translate" not in self.rights:
       desiredbuttons.remove("translate")
-    specialchars = getattr(getattr(self.session.instance.languages, self.project.languagecode, None), "specialchars", "")
+    specialchars = getattr(getattr(self.project.potree.languages, self.project.languagecode, None), "specialchars", "")
     if isinstance(specialchars, str):
       specialchars = specialchars.decode("utf-8")
     return {"desired": desiredbuttons,
@@ -717,7 +731,7 @@ class TranslatePage(pagelayout.PootleNavPage):
             focusbox = textid
         transdict["forms"] = forms
       elif trans:
-        buttons = self.gettransbuttons(item, ["back", "skip", "copy", "suggest", "translate", "resize"])
+        buttons = self.gettransbuttons(item, ["back", "skip", "copy", "suggest", "translate"])
         transdict["text"] = self.escapefortextarea(trans[0])
         textid = "trans%d" % item
         focusbox = textid
@@ -843,6 +857,7 @@ class TranslatePage(pagelayout.PootleNavPage):
           form["title"] = self.localize("Plural Form %d", pluralitem)
         forms.append(form)
       suggdict = {"title": suggtitle,
+                  "author": suggestedby,
                   "forms": forms,
                   "suggid": "%d.%d" % (item, suggid),
                   "canreview": "review" in self.rights,
@@ -870,14 +885,33 @@ class TranslatePage(pagelayout.PootleNavPage):
       escapefunction = self.escapetext
     editlink = self.geteditlink(item)
     transdict = {"editlink": editlink}
+
+    cansugg = "suggest" in self.rights 
+    cantrans = "translate" in self.rights
+    ables = ""
+    if cansugg: 
+      ables = "suggestable "+ables
+    if cantrans: 
+      ables = "submitable "+ables
+
     if len(trans) > 1:
       forms = []
       for pluralitem, pluraltext in enumerate(trans):
         form = {"title": self.localize("Plural Form %d", pluralitem), "n": pluralitem, "text": escapefunction(pluraltext)}
+        editclass = ""
+        if cantrans or cansugg: 
+          editclass = ables+"edittrans"+str(item)+"p"+str(pluralitem)
+        form["editclass"] = editclass
+
         forms.append(form)
       transdict["forms"] = forms
     elif trans:
       transdict["text"] = escapefunction(trans[0])
+      editclass = ""
+      if cantrans or cansugg: 
+        editclass = ables+"edittrans"+str(item)
+      transdict["editclass"] = editclass
+
     else:
       # Error, problem with plurals perhaps?
       transdict["text"] = ""

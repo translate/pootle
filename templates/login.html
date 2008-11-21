@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-import navbar, pootlepage
+from Pootle.templates import pootlepage
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
 <head>
-  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
   <title py:content="pagetitle">Login to Pootle</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+
+  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
 </head>
 
-<body bgcolor="#FFFFFF">
-  <div id="abovefooter">
-  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
+<body>
 
-  <div id="content" dir="$uidir" lang="$uilanguage">
-    <div class="intro" py:if="introtext" py:content="introtext">
-      Login failed
+<div id="wrapper">
+<div id="doc">
+    
+  <div py:replace="pootlepage.header(links, session, baseurl, instancetitle)"/>
+
+  <div id="body">
+
+    <div class="site-message" py:if="introtext or message">
+        <div class="error" py:if="introtext" py:content="introtext">Message</div>
+        <div class="info" py:if="message" py:content="XML(message)">Message</div>
     </div>
+
       <form action="" method="post" name="loginform" id="loginform">
         <table cellpadding="1" width="70%" cellspacing="1">
           <tr>
@@ -57,11 +59,22 @@ import navbar, pootlepage
         <input type="submit" name="Login" value="${login_text}" />
         <input type="hidden" name="islogin" value="true" />
       </form>
-  </div>
 
-  </div>
-  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
-  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
+  </div><!-- end #body-->
+
+  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)"/>
+	
+</div><!-- end #doc -->
+</div><!-- end #wrapper -->
+
+  <div py:replace="pootlepage.footer(links, baseurl)"/>
+
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+
+  <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+  <![endif]-->
+
 </body>
 </html>
-

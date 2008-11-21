@@ -21,6 +21,7 @@
 
 from jToolkit import web
 from jToolkit.web import server
+from jToolkit.web import session
 from jToolkit import mailer
 from jToolkit import prefs
 from Pootle import pagelayout
@@ -28,6 +29,11 @@ from translate.lang import data as langdata
 from translate.lang import factory
 from email.Header import Header
 import locale
+import Cookie
+import re
+import time
+
+from dbclasses import User
 
 class RegistrationError(ValueError):
   def __init__(self, message):
@@ -69,6 +75,7 @@ class LoginPage(pagelayout.PootlePage):
         "language_title": self.localize('Language:'),
         "languages": self.getlanguageoptions(session),
         "login_text": self.localize('Login'),
+        "register_text": self.localize('Register'),
         "session": sessionvars, "instancetitle": instancetitle}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
 
@@ -179,12 +186,10 @@ class UserOptions(pagelayout.PootlePage):
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle, "introtext": message,
         "detailstitle": self.localize("Personal Details"),
-        "option_heading": self.localize("Option"),
-        "value_heading": self.localize("Current value"),
         "fullname_title": self.localize("Name"),
-        "fullname": self.session.prefs.name,
+        "fullname": self.session.user.name,
         "email_title": self.localize("Email"),
-        "email": self.session.prefs.email,
+        "email": self.session.user.email,
         "password_title": self.localize("Password"),
         "passwordconfirm_title": self.localize("Confirm password"),
         "interface_title": self.localize("Translation Interface Configuration"),
@@ -197,7 +202,9 @@ class UserOptions(pagelayout.PootlePage):
         "submit_button": self.localize("Save changes"),
         "session": sessionvars,
         "instancetitle": instancetitle,
-        "enablealtsrc": enablealtsrc}
+        "enablealtsrc": enablealtsrc,
+        "logintype": self.session.user.logintype
+        }
     if enablealtsrc == 'True':
       templatevars["altsrclanguage_title"] = self.localize("Alternative Source Language")
       templatevars["altsrclanguages"] = self.getaltsrcoptions()
@@ -241,7 +248,7 @@ class UserOptions(pagelayout.PootlePage):
     return altsrclanguages
 
   def getotheroptions(self):
-    uilanguage = getattr(self.session.prefs, "uilanguage", "")
+    uilanguage = getattr(self.session.user, "uilanguage", "")
     if not uilanguage:
       userlanguages = self.session.getlanguages()
       if userlanguages:
@@ -259,7 +266,7 @@ class UserOptions(pagelayout.PootlePage):
           "translaterows": self.localize("Number of rows in translate mode")}
     optionlist = []
     for option, description in options.items():
-      optionvalue = getattr(self.session.prefs, option, "")
+      optionvalue = getattr(self.session.user, option, "")
       optionlist.append({"code": option, "description": description, "value": optionvalue})
     return {"uilanguage": uilanguage, "uilanguage_options": languageoptions, "other_options": optionlist}
 
@@ -271,9 +278,19 @@ class OptionalLoginAppServer(server.LoginAppServer):
     try:
       argdict = self.processargs(argdict)
       session = self.getsession(req, argdict)
+      if self.instance.baseurl[-1] == '/':
+        session.currenturl = self.instance.baseurl[:-1]+req.path
+      else:
+        session.currenturl = self.instance.baseurl+req.path
+      session.reqpath = req.path
+      if req.path.find("?") >= 0:
+        session.getsuffix = req.path[req.path.find("?"):]
+      else:
+        session.getsuffix = "" 
       if session.isopen:
         session.pagecount += 1
         session.remote_ip = self.getremoteip(req)
+        session.localaddr = self.getlocaladdr(req)
       else:
         self.initlanguage(req, session)
       page = self.getpage(pathwords, session, argdict)
@@ -281,7 +298,7 @@ class OptionalLoginAppServer(server.LoginAppServer):
       # Because of the exception, 'session' might not be initialised. So let's
       # play extra safe
       if not session:
-          raise Exception("Could not initialise session.\nDetail:%s" % str(e))
+          raise
 
       exceptionstr = self.errorhandler.exception_str()
       errormessage = str(e).decode("utf-8")
@@ -321,83 +338,110 @@ class OptionalLoginAppServer(server.LoginAppServer):
     # in PootleServer.
     session.setlanguage("en")
       
-  def hasuser(self, users, username):
+  def hasuser(self, alchemysession, username):
     """returns whether the user exists in users"""
-    return users.__hasattr__(username)
+    return alchemysession.query(User).filter_by(username=username).count() > 0
 
-  def getusernode(self, users, username):
+  def getusernode(self, alchemysession, username):
     """gets the node for the given user"""
-    if not self.hasuser(users, username):
-      usernode = prefs.PrefNode(users, username)
-      users.__setattr__(username, usernode)
+    if not self.hasuser(alchemysession, username):
+      usernode = User()
+      usernode.username = username
+      alchemysession.add(usernode)
+      alchemysession.flush()
     else:
-      usernode = users.__getattr__(username)
+      usernode = alchemysession.query(User).filter_by(username=username).first()
     return usernode
 
-  def adduser(self, users, username, fullname, email, password):
+  def adduser(self, alchemysession, username, fullname, email, password, logintype="hash"):
     """adds the user with the given details"""
-    usernode = self.getusernode(users, username)
+    if logintype == "ldap":
+      return self.addldapuser(alchemysession, username)
+    usernode = self.getusernode(alchemysession, username)
     usernode.name = fullname
     usernode.email = email
+    usernode.logintype = logintype
     usernode.passwdhash = web.session.md5hexdigest(password)
+    return usernode
 
-  def makeactivationcode(self, users, username):
+  def addldapuser(self, alchemysession, username):
+    email = username
+    import mozldap 
+    c = mozldap.MozillaLdap(self.instance.ldap.cn, self.instance.ldap.dn, self.instance.ldap.pw)
+    fullname = c.getFullName(email)
+    usernode = self.getusernode(alchemysession, username)
+    usernode.name = fullname
+    usernode.email = email
+    usernode.logintype = "ldap" 
+    return usernode
+
+  def makeactivationcode(self, alchemysession, username=None):
     """makes a new activation code for the user and returns it"""
-    usernode = self.getusernode(users, username)
-    usernode.activated = 0
+    usernode = self.getusernode(alchemysession, username)
     activationcode = self.generateactivationcode()
+    usernode.activated = 0
     usernode.activationcode = activationcode
+    alchemysession.add(usernode)
+    alchemysession.flush()
     return activationcode
 
-  def activate(self, users, username):
+
+  def activate(self, alchemysession, username):
     """sets the user as activated"""
-    self.getusernode(users, username).activated = 1
+    if self.hasuser(alchemysession, username):
+      usernode = self.getusernode(alchemysession, username)
+      usernode.activated = True
+      alchemysession.add(usernode)
+      alchemysession.flush()
 
   def changeusers(self, session, argdict):
     """handles multiple changes from the site admin"""
     if not session.issiteadmin():
       raise ValueError(session.localize("You need to be siteadmin to change users"))
-    users = session.loginchecker.users
+    alchemysession = session.server.alchemysession
     for key, value in argdict.iteritems():
+      usernode = None
       if key.startswith("userremove-"):
-        usercode = key.replace("userremove-", "", 1)
-        if self.hasuser(users, usercode):
-          raise NotImplementedError("Can't remove users")
+        username = key.replace("userremove-", "", 1)
+        if self.hasuser(alchemysession, username):
+          alchemysession.delete(alchemysession.query(User).filter_by(username=username).first())
       elif key.startswith("username-"):
         username = key.replace("username-", "", 1)
-        if self.hasuser(users, username):
-          usernode = self.getusernode(users, username)
+        if self.hasuser(alchemysession, username):
+          usernode = self.getusernode(alchemysession, username)
           fullname = getattr(usernode, "name", None)
           if fullname != value:
             usernode.name = value
       elif key.startswith("useremail-"):
         username = key.replace("useremail-", "", 1)
-        if self.hasuser(users, username):
-          usernode = self.getusernode(users, username)
+        if self.hasuser(alchemysession, username):
+          usernode = self.getusernode(alchemysession, username)
           useremail = getattr(usernode, "email", None)
           if useremail != value:
             usernode.email = value
       elif key.startswith("userpassword-"):
         username = key.replace("userpassword-", "", 1)
-        if self.hasuser(users, username):
-          usernode = self.getusernode(users, username)
+        if self.hasuser(alchemysession, username):
+          usernode = self.getusernode(alchemysession, username)
           if value and value.strip():
             usernode.passwdhash = web.session.md5hexdigest(value.strip())
       elif key.startswith("useractivated-"):
+        # FIXME This only activates users, cannot deactivate them
         username = key.replace("useractivated-", "", 1)
-        self.activate(users, username)
+        self.activate(alchemysession, username)
       elif key == "newusername":
         username = value.lower()
+        logintype = argdict.get("newuserlogintype","")
         if not username:
           continue
-        if not (username[:1].isalpha() and username.replace("_","").isalnum()):
+        if logintype == "hash" and not (username[:1].isalpha() and username.replace("_","").isalnum()):
           raise ValueError("Login must be alphanumeric and start with an alphabetic character (got %r)" % username)
         if username in ["nobody", "default"]:
           raise ValueError('"%s" is a reserved username.' % username)
-        if self.hasuser(users, username):
+        if self.hasuser(alchemysession, username):
           raise ValueError("Already have user with the login: %s" % username)
         userpassword = argdict.get("newuserpassword", None)
-        if userpassword is None or userpassword == session.localize("(add password here)"):
+        if logintype == "hash" and (userpassword is None or userpassword == session.localize("(add password here)")):
           raise ValueError("You must specify a password")
         userfullname = argdict.get("newuserfullname", None)
         if userfullname == session.localize("(add full name here)"):
@@ -406,17 +450,22 @@ class OptionalLoginAppServer(server.LoginAppServer):
         if useremail == session.localize("(add email here)"):
           raise ValueError("Please set the users email address or leave it blank")
         useractivate = "newuseractivate" in argdict
-        self.adduser(users, username, userfullname, useremail, userpassword)
+        usernode = self.adduser(alchemysession, username, userfullname, useremail, userpassword, logintype)
         if useractivate:
-          self.activate(users, username)
+          usernode.activate = 1
         else:
-          activationcode = self.makeactivationcode(users, username)
-          print "user activation code for %s is %s" % (username, activationcode)
-    session.saveprefs()
+          usernode.activationcode = self.makeactivationcode(alchemysession, username)
+      if usernode:
+        alchemysession.add(usernode)
+      alchemysession.flush()
+    session.saveuser()
 
   def handleregistration(self, session, argdict):
     """handles the actual registration"""
     #TODO: Fix layout, punctuation, spacing and correlation of messages
+    if not hasattr(self.instance, 'hash'):
+      raise RegistrationError(session.localize("Local registration is disable."))
+
     supportaddress = getattr(self.instance.registration, 'supportaddress', "")
     username = argdict.get("username", "")
     if not username or not username.isalnum() or not username[0].isalpha():
@@ -427,10 +476,10 @@ class OptionalLoginAppServer(server.LoginAppServer):
     passwordconfirm = argdict.get("passwordconfirm", "")
     if " " in email or not (email and "@" in email and "." in email):
       raise RegistrationError(session.localize("You must supply a valid email address"))
-    userexists = session.loginchecker.userexists(username)
-    users = session.loginchecker.users
-    if userexists:
-      usernode = self.getusernode(users, username)
+    alchemysession = session.server.alchemysession
+
+    if session.loginchecker.userexists(username):
+      usernode = self.getusernode(alchemysession, username)
       # use the email address on file
       email = getattr(usernode, "email", email)
       password = ""
@@ -446,8 +495,9 @@ class OptionalLoginAppServer(server.LoginAppServer):
       displaymessage += session.localize("Proceeding to <a href='%s'>login</a>\n", redirecturl)
     else:
       validatepassword(session, password, passwordconfirm)
-      self.adduser(users, username, fullname, email, password)
-      activationcode = self.makeactivationcode(users, username)
+      usernode = self.adduser(alchemysession, username, fullname, email, password)
+      activationcode = self.makeactivationcode(alchemysession, username)
+      usernode.activationcode = activationcode
       activationlink = ""
       message = session.localize("A Pootle account has been created for you using this email address.\n")
       if session.instance.baseurl.startswith("http://"):
@@ -465,15 +515,15 @@ class OptionalLoginAppServer(server.LoginAppServer):
       displaymessage = session.localize("Account created. You will be emailed login details and an activation code. Please enter your activation code on the <a href='%s'>activation page</a>.", redirecturl)
       if activationlink:
         displaymessage += " " + session.localize("(Or simply click on the activation link in the email)")
-    session.saveprefs()
+
+      alchemysession.add(usernode)
+      alchemysession.flush()
+
     message += session.localize("Your user name is: %s\n", username)
-    if password.strip():
-      message += session.localize("Your password is: %s\n", password)
     message += session.localize("Your registered email address is: %s\n", email)
     smtpserver = self.instance.registration.smtpserver
     fromaddress = self.instance.registration.fromaddress
-    subject = Header(session.localize("Pootle Registration"),
-                     "utf-8").encode()
+    subject = Header(session.localize("Pootle Registration"), "utf-8").encode()
     messagedict = {"from": fromaddress, "to": [email], "subject": subject, "body": message}
     if supportaddress:
       messagedict["reply-to"] = supportaddress
@@ -512,12 +562,13 @@ class OptionalLoginAppServer(server.LoginAppServer):
     if "username" in argdict and "activationcode" in argdict:
       username = argdict["username"]
       activationcode = argdict["activationcode"]
-      if self.hasuser(session.loginchecker.users, username):
-        usernode = self.getusernode(session.loginchecker.users, username)
+      if self.hasuser(session.server.alchemysession, username):
+        usernode = self.getusernode(session.server.alchemysession, username)
         correctcode = getattr(usernode, "activationcode", "")
         if correctcode and correctcode.strip().lower() == activationcode.strip().lower():
           setattr(usernode, "activated", 1)
-          session.saveprefs()
+          session.server.alchemysession.add(usernode)
+          session.server.alchemysession.flush()
           redirectpage = pagelayout.PootlePage("Redirecting to login...", {}, session)
           redirectpage.templatename = "redirect"
           redirectpage.templatevars = {
@@ -537,38 +588,62 @@ class PootleSession(web.session.LoginSession):
   """a session object that knows about Pootle"""
   def __init__(self, sessioncache, server, sessionstring = None, loginchecker = None):
     """sets up the session and remembers the users prefs"""
-    super(PootleSession, self).__init__(sessioncache, server, sessionstring, loginchecker)
-    self.getprefs()
 
-  def getprefs(self):
+    # In LoginSession's __init__, it defaults loginchecker to LoginChecker;
+    # hence, we default it to ProgressiveLoginChecker first, before we call
+    # LoginSession's __init__.
+    self.server = server
+    self.messages = []
+    if loginchecker == None:
+      import login
+      logindict = {}
+      if hasattr(server.instance, 'hash'):
+        logindict['hash'] = login.HashLoginChecker(self, server.instance)
+      if hasattr(server.instance, 'ldap'):
+        logindict['ldap'] = login.LDAPLoginChecker(self, server.instance)
+      loginchecker = login.ProgressiveLoginChecker(self, server.instance, logindict)
+    super(PootleSession, self).__init__(sessioncache, server, sessionstring, loginchecker)
+    self.getuser()
+
+  def getuser(self):
     """gets the users prefs into self.prefs"""
     if self.isopen:
-      self.prefs = self.loginchecker.users.__getattr__(self.username)
+      self.user = self.server.alchemysession.query(User).filter_by(username=self.username).first()
       if self.language_set:
         self.setlanguage(self.language_set)
         return
-      uilanguage = getattr(self.prefs, "uilanguage", None)
+      uilanguage = getattr(self.user, "uilanguage", None)
       if uilanguage:
         self.setlanguage(uilanguage)
     else:
-      self.prefs = None
+      self.user = None
 
-  def saveprefs(self):
+  def saveuser(self):
     """saves changed preferences back to disk"""
-    # TODO: this is a hack, fix it up nicely :-)
-    prefsfile = self.loginchecker.users.__root__.__dict__["_setvalue"].im_self
-    prefsfile.savefile()
+    if self.user == None:
+      return
+    self.server.alchemysession.add(self.user)
+    self.server.alchemysession.flush()
 
   def open(self):
     """opens the session, along with the users prefs"""
     super(PootleSession, self).open()
-    self.getprefs()
+    self.getuser()
     return self.isopen
 
   def close(self, req):
-    """opens the session, along with the users prefs"""
+    """closes the session, along with the users prefs"""
     super(PootleSession, self).close(req)
-    self.getprefs()
+    self.getuser()
+
+  def addMessage(self, message):
+    self.messages.append(message)
+
+  def getMessages(self, clear=True):
+    messages = self.messages
+    if clear:
+      self.messages = []
+    return messages
 
   def setlanguage(self, language):
     """sets the language for the session"""
@@ -577,11 +652,11 @@ class PootleSession(web.session.LoginSession):
       self.language = language
     elif not getattr(self, "language", None):
       if self.isopen:
-        self.language = getattr(self.prefs, "uilanguage", "") or self.server.defaultlanguage
+        self.language = getattr(self.user, "uilanguage", "") or self.server.defaultlanguage
       else:
         self.language = self.server.defaultlanguage
     if self.isopen:
-      if not getattr(self.prefs, "uilanguage", "") and self.language_set:
+      if not getattr(self.user, "uilanguage", "") and self.language_set:
         self.setinterfaceoptions({"option-uilanguage": self.language_set})
     self.translation = self.server.gettranslation(self.language)
     self.tr_lang = langdata.tr_lang(self.language)
@@ -594,12 +669,15 @@ class PootleSession(web.session.LoginSession):
     if self.language:
       self.lang = factory.getlanguage(self.language)
 
-  def validate(self):
-    """checks if this session is valid (which means the user must be activated)"""
+  def old_validate(self):
+    """DEPRECATED: Checks if this session is valid (which means the user must be activated).
+    
+    This is an older (but sqlalchemy aware) implimentation of validate() that
+    doesn't support LDAP, but might be useful for comparisson."""
     if not super(PootleSession, self).validate():
       return False
-    if self.loginchecker.users.__hasattr__(self.username):
-      usernode = self.loginchecker.users.__getattr__(self.username)
+    usernode = self.server.alchemysession.query(User).filter_by(username=self.username).first()
+    if usernode != None: 
       if getattr(usernode, "activated", 0):
         return self.isvalid
     self.isvalid = False
@@ -608,15 +686,11 @@ class PootleSession(web.session.LoginSession):
 
   def setoptions(self, argdict):
     """sets the user options"""
-    userprojects = argdict.get("projects", [])
-    if isinstance(userprojects, (str, unicode)):
-      userprojects = [userprojects]
-    setattr(self.prefs, "projects", ",".join(userprojects))
-    userlanguages = argdict.get("languages", [])
-    if isinstance(userlanguages, (str, unicode)):
-      userlanguages = [userlanguages]
-    setattr(self.prefs, "languages", ",".join(userlanguages))
-    self.saveprefs()
+    userprojects = argdict.get("projects", []) # A list of the codes
+    setattr(self.user, "projects", map(lambda code: self.server.potree.projects[code], userprojects))
+    userlanguages = argdict.get("languages", []) # A list of the codes
+    setattr(self.user, "languages", map(lambda code: self.server.potree.languages[code], userlanguages))
+    self.saveuser()
 
   def setpersonaloptions(self, argdict):
     """sets the users personal details"""
@@ -627,54 +701,152 @@ class PootleSession(web.session.LoginSession):
 
     if password or passwordconfirm:
       validatepassword(self, password, passwordconfirm)
-    setattr(self.prefs, "name", name)
-    setattr(self.prefs, "email", email)
+    setattr(self.user, "name", name)
+    setattr(self.user, "email", email)
     if password:
       passwdhash = web.session.md5hexdigest(argdict.get("option-password", ""))
-      setattr(self.prefs, "passwdhash", passwdhash)
-    self.saveprefs()
+      setattr(self.user, "passwdhash", passwdhash)
+    self.saveuser()
 
   def setinterfaceoptions(self, argdict):
     """sets the users interface details"""
     value = argdict.get("option-uilanguage", "")
     if value:
-      self.prefs.uilanguage = value
+      self.user.uilanguage = value
       self.setlanguage(value)
     def setinterfacevalue(name, errormessage):
       value = argdict.get("option-%s" % name, "")
       if value != "":
         if not value.isdigit():
           raise ValueError(errormessage)
-        setattr(self.prefs, name, value)
+        setattr(self.user, name, value)
     setinterfacevalue("inputheight", self.localize("Input height must be numeric"))
     setinterfacevalue("inputwidth", self.localize("Input width must be numeric"))
     setinterfacevalue("viewrows", self.localize("The number of rows displayed in view mode must be numeric"))
     setinterfacevalue("translaterows", self.localize("The number of rows displayed in translate mode must be numeric"))
     useraltsrclanguage = argdict.get("altsrclanguage", "")
-    if isinstance(useraltsrclanguage, (str, unicode)):
-      setattr(self.prefs, "altsrclanguage", useraltsrclanguage)
-    self.saveprefs()
+    if isinstance(useraltsrclanguage, (str, unicode)) and useraltsrclanguage != "":
+      setattr(self.user, "altsrclanguage", useraltsrclanguage)
+    self.saveuser()
 
   def getprojects(self):
     """gets the user's projects"""
-    userprojects = getattr(self.prefs, "projects", "")
-    return [projectcode.strip() for projectcode in userprojects.split(',') if projectcode.strip()]
+    userprojects = getattr(self.user, "projects", "")
+    return [p.code for p in userprojects]
 
   def getlanguages(self):
     """gets the user's languages"""
-    userlanguages = getattr(self.prefs, "languages", "")
-    return [languagecode.strip() for languagecode in userlanguages.split(',') if languagecode.strip()]
+    userlanguages = getattr(self.user, "languages", "")
+    return [l.code for l in userlanguages] 
 
   def getaltsrclanguage(self):
     """gets the user's alternative source language"""
-    useraltsrclanguage = getattr(self.prefs, "altsrclanguage", "")
+    useraltsrclanguage = getattr(self.user, "altsrclanguage", "")
     return useraltsrclanguage.strip()
-
-  def getrights(self):
-    """gets the user's rights"""
-    return getattr(self.prefs, "rights", None)
 
   def issiteadmin(self):
     """returns whether the user can administer the site"""
-    return getattr(self.getrights(), "siteadmin", False)
+    return getattr(self.user, "siteadmin", False)
+
+  def validate(self, password=None):
+    """Checks if this session is valid.
+    
+    We are overriding this to accept a password and to make it possible to 
+    defer authentication to ldap, even if the user doesn't exist in our 
+    loginchecker.
+    """
+    # This is roughly based on jToolkit.web.session::LoginSession::validate()
+    self.isvalid = 0
+    if self.markedinvalid:
+      self.status = self.markedinvalid
+      return self.isvalid
+    if not self.isvalid:
+      self.status = self.localize("invalid username and/or password")
+    if self.loginchecker.userexists():
+      if password != None: #If there's a password, this is called from create
+        self.isvalid = self.loginchecker.iscorrectpass(password)
+      else:
+        # It seems the only time validate is called with no password
+        # is when it is called from setsessionstring(); the only
+        # time that seems to be called is in the contructor for a session,
+        # and a session seems to only be constructed if the session string
+        # was not in the cache.  This will happen if the server was restarted
+        # during a session, for example.
+        self.isvalid = self.checksessionid()
+        return self.isvalid
+    elif self.loginchecker.logincheckers.has_key("ldap") and self.loginchecker.logincheckers["ldap"].userexists():
+      if password != None:
+        passcorrect = self.loginchecker.logincheckers["ldap"].iscorrectpass(password)
+        if passcorrect:
+          self.server.addldapuser(self.server.alchemysession, self.username)
+          self.usercreated = True
+          self.saveuser()
+          self.isvalid = True
+    return self.isvalid
+
+  def create(self,username,password,timestamp,language):
+    """Initializes the session with the parameters.
+    
+    We are overriding to be able to pass the password to validate()."""
+    self.username, password, self.timestamp = username, password, timestamp
+    self.setlanguage(language)
+    self.sessionid = self.getsessionid(password)
+    self.validate(password) # Our overridden .validate() can accept a password
+    self.open()
+
+  def updatecookie(self, req, server):
+    """update session string in cookie in req to reflect whether session is open"""
+    if self.isopen:
+      self.sessioncache.setsessioncookie(req, server, self.getsessionstring(), {'path': '/'})
+    else:
+      self.sessioncache.setsessioncookie(req, server, '', {'path': '/', 'expires': int(-time.time()+1)})
+
+  def setsessionstring(self, sessionstring):
+    """sets the session string for this session"""
+    super(PootleSession, self).setsessionstring(sessionstring)
+
+    # If we failed at opening the session, clear out the information we set
+    if not self.isopen:
+      self.username,self.timestamp,self.sessionid,self.parentsessionname = None,None,None,""
+
+class PootleSessionCache(session.SessionCache):
+  def getsession(self, req, argdict, server):
+    """gets the current session"""
+    session = super(PootleSessionCache, self).getsession(req, argdict, server)
+
+    # If the session string is not - (so the cookie claims to have a login)
+    # but the session didn't open (so the login was bad), clear out the login
+    sessionstring = self.getsessioncookie(req, argdict, server)
+    if sessionstring != "-" and not session.isopen:
+      session.updatecookie(req, server)
+    
+    return session
+
+  def setcookie(self, req, cookiedict, attributes={}):
+    """Puts the bits from the cookiedict into Morsels, sets the req cookie
+    
+    All of the attributes that are valid will be added to each morsel
+    (see http://docs.python.org/lib/morsel-objects.html)
+    
+    """
+
+    # construct the cookie from the cookiedict
+    cookie = Cookie.SimpleCookie()
+    for key, value in cookiedict.iteritems():
+      if isinstance(value, unicode): value = value.encode('utf8')
+      if isinstance(key, unicode): key = key.encode('utf8')
+      cookie[key] = value
+    # add the cookie headers to req.headers_out
+    for key, morsel in cookie.iteritems():
+      for k,v in attributes.iteritems():
+        try:
+          morsel[k] = v 
+        except Cookie.CookieError:
+          pass
+      req.headers_out.add('Set-Cookie', morsel.OutputString())
+
+  def setsessioncookie(self, req, server, sessionstring, attributes = {}):
+    """sets the session cookie value"""
+    cookiedict = {self.getsessioncookiename(server): sessionstring}
+    self.setcookie(req, cookiedict, attributes)
 

@@ -1,153 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-import pootlepage, navbar
+from Pootle.templates import pootlepage
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
 <head>
-  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
   <title py:content="pagetitle">Options for: ${username}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+
+  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
+</head>
+
+<body>
+
+<div id="wrapper">
+<div id="doc">
+    
+  <div py:replace="pootlepage.header(links, session, baseurl, instancetitle)"/>
+
+  <div id="body">
+
+    <div py:if="introtext or message" class="site-message">
+        <div class="info" py:if="introtext" py:content="introtext">Message</div>
+        <div class="info" py:if="message" py:content="XML(message)">Message</div>
+    </div>
+
+      <div class="module first clear">
+          <div class="hd"></div>
+          <div class="bd">
+              <h3 class="title" py:content="detailstitle">Personal Details</h3>
+
+              <form py:if="logintype != 'ldap'" action="" method="post" name="personal" id="personal">
+                <table cellpadding="1" cellspacing="1">
+                  <tr>
+                    <td colspan="1" rowspan="1" py:content="fullname_title">Name</td>
+                    <td colspan="1" rowspan="1">
+                      <input type="text" name="option-name" value="${fullname}"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" rowspan="1" py:content="email_title">Email</td>
+                    <td colspan="1" rowspan="1">
+                      <input type="text" name="option-email" value="${email}"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" rowspan="1" py:content="password_title">Password</td>
+                    <td colspan="1" rowspan="1">
+                      <input type="password" name="option-password" value=""/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" rowspan="1" py:content="passwordconfirm_title">Confirm Password</td>
+                    <td colspan="1" rowspan="1">
+                      <input type="password" name="option-passwordconfirm" value=""/>
+                    </td>
+                  </tr>
+                </table><input type="submit" name="changepersonal" value="${submit_button}" />
+              </form>
+
+              <div py:if="logintype == 'ldap'">
+                <table cellpadding="1" cellspacing="1">
+                  <tr>
+                    <td colspan="1" rowspan="1" py:content="fullname_title">Name</td>
+                    <td colspan="1" rowspan="1">${fullname}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" rowspan="1" py:content="email_title">Email</td>
+                    <td colspan="1" rowspan="1">${email}</td>
+                  </tr>
+                </table>
+              </div>
+
+              <h3 class="title" py:content="interface_title">Translation Interface Configuration</h3>
+
+              <form action="" method="post" name="interface" id="interface">
+                <table cellpadding="1" cellspacing="1">
+                  <tr>
+                    <td colspan="1" rowspan="1" py:content="uilanguage_heading">User Interface language</td>
+                    <td colspan="1" rowspan="1"><select name="option-uilanguage" style="width: 100%;">
+                      <option py:for="l in uilanguage_options" value="${l.code}" py:attrs="selected=l.selected" py:content="l.name">
+                        Language
+                      </option>
+                    </select></td>
+                  </tr>
+                  <tr py:if="enablealtsrc == 'True'">
+                    <td colspan="1" rowspan="1" py:content="altsrclanguage_title">Alternative Source Language</td>
+                    <td colspan="1" rowspan="1">
+                      <select name="altsrclanguage" style="width: 100%;">
+                        <option py:for="l in altsrclanguages" value="${l.code}" py:attrs="selected=l.selected" py:content="l.name">
+                          Language Name
+                        </option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr py:for="option in other_options">
+                    <td colspan="1" rowspan="1" py:content="option.description">Option Name</td>
+                    <td colspan="1" rowspan="1">
+                      <input type="text" name="option-${option.code}" value="${option.value}"/>
+                    </td>
+                  </tr>
+                </table><input type="submit" name="changeinterface" value="${submit_button}" />
+              </form>
+
+              <form action="" method="post" name="useroptions" id="useroptions">
+                <div class="contents">
+                  <h3 class="title" py:content="projects_title">My Projects</h3>
+
+                  <div class="item-description">
+                    <select multiple="multiple" name="projects">
+                      <option py:for="p in projects" value="${p.code}" py:attrs="selected=p.selected" py:content="p.name">
+                        Project Name
+                      </option>
+                    </select>
+                    <input type="hidden" name="allowmultikey" value="projects"/>
+                  </div>
+                </div>
+
+                <div class="contents">
+                  <h3 class="title" py:content="languages_title">My Languages</h3>
+
+                  <div class="item-description">
+                    <select multiple="multiple" name="languages">
+                      <option py:for="l in languages" value="${l.code}" py:attrs="selected=l.selected" py:content="l.name">
+                        Language Name
+                      </option>
+                    </select>
+                    <input type="hidden" name="allowmultikey" value="languages" />
+                  </div>
+                </div>
+
+                <input type="submit" name="changeoptions" value="${submit_button}" />
+              </form>
+          </div>
+          <div class="ft"></div>
+      </div>
+
+  </div><!-- end #body-->
+
+  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)"/>
+	
+</div><!-- end #doc -->
+</div><!-- end #wrapper -->
+
+  <div py:replace="pootlepage.footer(links, baseurl)"/>
+
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
-</head>
 
-<body bgcolor="#FFFFFF">
-  <div id="abovefooter">
-  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
-
-  <div id="content" dir="$uidir" lang="$uilanguage">
-    <div py:if="introtext" class="intro" py:content="introtext">
-      Please edit your options as desired below.
-    </div>
-
-    <div class="contents">
-      <h3 class="title" py:content="detailstitle">Personal Details</h3>
-
-      <form action="" method="post" name="personal" id="personal">
-        <table cellpadding="1" cellspacing="1">
-          <tr>
-            <td colspan="1" rowspan="1">
-              <h3 class="title" py:content="option_heading">Option</h3>
-            </td>
-            <td colspan="1" rowspan="1">
-              <h3 class="title" py:content="value_heading">Current value</h3>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="1" rowspan="1" py:content="fullname_title">Name</td>
-            <td colspan="1" rowspan="1">
-              <input type="text" name="option-name" value="${fullname}"/>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="1" rowspan="1" py:content="email_title">Email</td>
-            <td colspan="1" rowspan="1">
-              <input type="text" name="option-email" value="${email}"/>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="1" rowspan="1" py:content="password_title">Password</td>
-            <td colspan="1" rowspan="1">
-              <input type="password" name="option-password" value=""/>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="1" rowspan="1" py:content="passwordconfirm_title">Confirm Password</td>
-            <td colspan="1" rowspan="1">
-              <input type="password" name="option-passwordconfirm" value=""/>
-            </td>
-          </tr>
-        </table><input type="submit" name="changepersonal" value="${submit_button}" />
-      </form>
-
-      <h3 class="title" py:content="interface_title">Translation Interface Configuration</h3>
-
-      <form action="" method="post" name="interface" id="interface">
-        <table cellpadding="1" cellspacing="1">
-          <tr>
-            <td colspan="1" rowspan="1">
-              <h3 class="title" py:content="option_heading">Option</h3>
-            </td>
-            <td colspan="1" rowspan="1">
-              <h3 class="title" py:content="value_heading">Current value</h3>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="1" rowspan="1" py:content="uilanguage_heading">User Interface language</td>
-            <td colspan="1" rowspan="1"><select name="option-uilanguage" style="width: 100%;">
-              <option py:for="l in uilanguage_options" value="${l.code}" py:attrs="selected=l.selected" py:content="l.name">
-                Language
-              </option>
-            </select></td>
-          </tr>
-
-          <tr py:if="enablealtsrc == 'True'">
-            <td colspan="1" rowspan="1" py:content="altsrclanguage_title">Alternative Source Language</td>
-            <td colspan="1" rowspan="1">
-              <select name="altsrclanguage" style="width: 100%;">
-                <option py:for="l in altsrclanguages" value="${l.code}" py:attrs="selected=l.selected" py:content="l.name">
-                  Language Name
-                </option>
-              </select>
-            </td>
-          </tr>
-
-          <tr py:for="option in other_options">
-            <td colspan="1" rowspan="1" py:content="option.description">Option Name</td>
-            <td colspan="1" rowspan="1">
-              <input type="text" name="option-${option.code}" value="${option.value}"/>
-            </td>
-          </tr>
-        </table><input type="submit" name="changeinterface" value="${submit_button}" />
-      </form>
-    </div>
-
-    <form action="" method="post" name="useroptions" id="useroptions">
-      <div class="contents">
-        <h3 class="title" py:content="projects_title">My Projects</h3>
-
-        <div class="item-description">
-          <select multiple="multiple" name="projects">
-            <option py:for="p in projects" value="${p.code}" py:attrs="selected=p.selected" py:content="p.name">
-              Project Name
-            </option>
-          </select>
-          <input type="hidden" name="allowmultikey" value="projects"/>
-        </div>
-      </div>
-
-      <div class="contents">
-        <h3 class="title" py:content="languages_title">My Languages</h3>
-
-        <div class="item-description">
-          <select multiple="multiple" name="languages">
-            <option py:for="l in languages" value="${l.code}" py:attrs="selected=l.selected" py:content="l.name">
-              Language Name
-            </option>
-          </select>
-          <input type="hidden" name="allowmultikey" value="languages" />
-        </div>
-      </div>
-
-      <input type="submit" name="changeoptions" value="${submit_button}" />
-    </form>
-
-    <div class="intro">
-      <a href="index.html" py:content="home_link">Home page</a>
-    </div>
-  </div>
-
-  </div>
-  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
-  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
 </body>
 </html>

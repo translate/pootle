@@ -1,68 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-import pootlepage, navbar
+from Pootle.templates import pootlepage
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
 <head>
-  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
   <title py:content="pagetitle">Pootle Admin: ${project.name}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+
+  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-  <!--! the 'sorttable.js' script depends on the variable 'baseurl' -->
-  <script type="text/javascript"> var baseurl = "${baseurl}"; </script>
+</head>
+
+<body>
+
+<div id="wrapper">
+<div id="doc">
+    
+  <div py:replace="pootlepage.header(links, session, baseurl, instancetitle)"/>
+
+  <div id="body">
+
+    <div py:if="not session.issiteadmin" class="site-message" lang="en" dir="ltr">
+      <div class="info"> You do not have the rights to administer Pootle </div>
+    </div>
+    <div py:if="message" class="site-message">
+        <div class="info" py:if="message" py:content="XML(message)">Message</div>
+    </div>
+
+      <div py:if="session.issiteadmin" class="module first">
+          <div class="hd"> </div>
+          <div class="bd">
+            <h3 class="title"><a href="index.html" py:content="main_link">Back to main page</a></h3>
+
+            <br clear="all" />
+            <form action="" method="post" name="updatelangform">
+                <h3 class="title" py:content="existing_title">Existing languages</h3>
+                <table class="sortable" id="existing_languages">
+                  <thead>
+                      <tr>
+                          <th py:content="full_name">Complete name</th>
+                          <th py:content="iso_code">ISO Code</th>
+                          </tr>
+                  </thead>
+                  <tr py:for="l in existing_languages" class="item item-${l.parity}">
+
+                      <td><a href="../../${l.code}/${project.code}/admin.html" py:content="l.name">Language</a></td>
+                      <td><span py:content="l.code">code</span></td>
+                      <td><input type="checkbox" name="updatelanguage" value="${l.code}"/></td>
+                      <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.code}" py:content="update_link">Update from templates</a></td>
+                      <td><a href="?initialize=1&amp;updatelanguage=${l.code}" py:content="initialize_link">Initialize</a></td>
+                  </tr>
+                </table>
+              <input type="submit" name="doupdatelanguage" value="${update_button}"/>
+              <input type="hidden" name="allowmultikey" value="updatelanguage"/>
+            </form>
+            <form action="" method="post" name="newlangform">
+              <select name="newlanguage">
+                <option py:for="l in new_languages" value="${l.code}" py:content="l.name+ ': '+ l.code">Language</option>
+              </select>
+              <input type="submit" name="doaddlanguage" value="${add_button}"/>
+            </form>
+          </div>
+          <div class="ft"></div>
+      </div>
+
+  </div><!-- end #body-->
+
+  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)"/>
+	
+</div><!-- end #doc -->
+</div><!-- end #wrapper -->
+
+  <div py:replace="pootlepage.footer(links, baseurl)"/>
+
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+
   <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
+
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
-</head>
 
-<body bgcolor="#FFFFFF">
-  <div id="abovefooter">
-  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
-
-  <div id="content" py:if="not session.issiteadmin">
-    <div class="intro" py:content="norights_text">
-      You do not have the rights to administer this project.
-    </div>
-  </div>
-
-  <div id="content" py:if="session.issiteadmin" dir="$uidir" lang="$uilanguage">
-    <h3 class="title"><a href="index.html" py:content="main_link">Back to main page</a></h3>
-
-    <br clear="all" />
-    <form action="" method="post" name="updatelangform">
-        <h3 class="title" py:content="existing_title">Existing languages</h3>
-        <table class="sortable" id="existing_languages">
-          <thead>
-              <tr>
-                  <th py:content="full_name">Complete name</th>
-                  <th py:content="iso_code">ISO Code</th>
-                  </tr>
-          </thead>
-          <tr py:for="l in existing_languages" class="item item-${l.parity}">
-
-              <td><a href="../../${l.code}/${project.code}/admin.html" py:content="l.name">Language</a></td>
-              <td><span py:content="l.code">code</span></td>
-              <td><input type="checkbox" name="updatelanguage" value="${l.code}"/></td>
-              <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.code}" py:content="update_link">Update from templates</a></td>
-          </tr>
-        </table>
-      <input type="submit" name="doupdatelanguage" value="${update_button}"/>
-      <input type="hidden" name="allowmultikey" value="updatelanguage"/>
-    </form>
-    <form action="" method="post" name="newlangform">
-      <select name="newlanguage">
-        <option py:for="l in new_languages" value="${l.code}" py:content="l.name+ ': '+ l.code">Language</option>
-      </select>
-      <input type="submit" name="doaddlanguage" value="${add_button}"/>
-    </form>
-  </div>
-
-  </div>
-  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
-  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
 </body>
 </html>

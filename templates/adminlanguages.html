@@ -1,71 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-import pootlepage
+from Pootle.templates import pootlepage
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
 <head>
-  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st January 2004), see www.w3.org" />
 
   <title py:content="pagetitle">Pootle Languages Admin Page</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+
+  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
+</head>
+
+<body>
+
+<div id="wrapper">
+<div id="doc">
+    
+  <div py:replace="pootlepage.header(links, session, baseurl, instancetitle)"/>
+
+  <div id="body">
+
+    <div py:if="not session.issiteadmin" class="site-message" lang="en" dir="ltr">
+      <div class="info"> You do not have the rights to administer Pootle </div>
+    </div>
+
+      <div py:if="session.issiteadmin" class="module-primary first">
+          <div class="site-message" py:if="message">
+              <div class="info" py:if="message" py:content="XML(message)">Message</div>
+          </div>
+          <div class="hd"> </div>
+          <div class="bd">
+            <ul class="linklist">
+              <li><a href="../home/" py:content="text.home">Home page</a></li>
+              <li><a href="index.html" py:content="text.admin">Main Admin page</a></li>
+            </ul>
+
+            <div class="fullwidthcontents">
+              <h3 class="title" py:content="text.languages">Languages</h3>
+
+              <form action="" method="post" name="languages" id="languages">
+                <table cellpadding="1" cellspacing="1">
+                  <tr>
+                    <td colspan="1" rowspan="1" py:for="option in options">
+                      <h3 class="title" py:content="option.title">ISO Code</h3>
+                    </td>
+                  </tr>
+
+                  <tr py:for="language in languages">
+                    <td colspan="1" rowspan="1" py:content="language.code">code</td>
+
+                    <td colspan="1" rowspan="1" py:for="option in language.options">
+                       <input name="${option.name}" type="${option.type}" value="${option.value}"/>
+                       <span py:if="option.label" py:content="option.label"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="1" rowspan="1" style="min-width: 6em;" py:for="option in options">
+                      <input type="text" py:if="option.newname" name="${option.newname}" value="${option.newvalue}" size="${option.size}"/>
+                    </td>
+                  </tr>
+                </table><input type="submit" name="changelanguages" value="${text.savechanges}" />
+              </form>
+            </div>
+          </div>
+          <div class="ft"></div>
+      </div>
+
+  </div><!-- end #body-->
+
+  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)"/>
+	
+</div><!-- end #doc -->
+</div><!-- end #wrapper -->
+
+  <div py:replace="pootlepage.footer(links, baseurl)"/>
+
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+
+  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
+
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
-</head>
 
-<body bgcolor="#FFFFFF">
-  <div id="abovefooter">
-  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
-
-  <div id="content" py:if="not session.issiteadmin" dir="$uidir" lang="$uilanguage">
-    <div class="intro">
-      You do not have the rights to administer Pootle
-    </div>
-  </div>
-  <div id="fullwidthcontent" py:if="session.issiteadmin" dir="$uidir" lang="$uilanguage">
-    <div class="info">
-      <a href="../home/" py:content="text.home">Home page</a>
-    </div>
-
-    <div class="info">
-      <a href="index.html" py:content="text.admin">Main Admin page</a>
-    </div>
-
-    <div class="fullwidthcontents">
-      <h3 class="title" py:content="text.languages">Languages</h3>
-
-      <form action="" method="post" name="languages" id="languages">
-        <table cellpadding="1" cellspacing="1">
-          <tr>
-            <td colspan="1" rowspan="1" py:for="option in options">
-              <h3 class="title" py:content="option.title">ISO Code</h3>
-            </td>
-          </tr>
-
-          <tr py:for="language in languages">
-            <td colspan="1" rowspan="1" py:content="language.code">code</td>
-
-            <td colspan="1" rowspan="1" py:for="option in language.options">
-               <input name="${option.name}" type="${option.type}" value="${option.value}"/>
-               <span py:if="option.label" py:content="option.label"/>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="1" rowspan="1" style="min-width: 6em;" py:for="option in options">
-              <input type="text" py:if="option.newname" name="${option.newname}" value="${option.newvalue}" size="${option.size}"/>
-            </td>
-          </tr>
-        </table><input type="submit" name="changelanguages" value="${text.savechanges}" />
-      </form>
-    </div>
-  </div>
-
-  </div>
-  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
-  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
 </body>
 </html>

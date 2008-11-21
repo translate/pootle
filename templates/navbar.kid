@@ -76,4 +76,55 @@
     </span>
   </div>
 
+  <div py:def="itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)" py:strip="True">
+    <?python 
+      if uidir == 'ltr':
+        cssaligndir = 'left'
+      else:
+        cssaligndir = 'right'
+    ?>
+    <td class="stats-name">
+      <a href="${item.href}">${item.title}</a>
+    </td>
+    <span py:if="item.data" py:strip="True">
+      <td class="stats-graph">
+        <span class="sortkey">${item.data.translatedpercentage}</span>
+        <span class="graph" title="${item.data.translatedpercentage}% complete" dir="$uidir">
+            <span class="translated" style="width: ${item.data.translatedpercentage or int(bool(item.data.translatedsourcewords))}px" />
+            <span class="fuzzy" style="${cssaligndir}: ${item.data.translatedpercentage or int(bool(item.data.translatedsourcewords))}px; width: ${item.data.fuzzypercentage or int(bool(item.data.fuzzysourcewords))}px" py:if="item.data.fuzzysourcewords"/>
+            <span class="untranslated" style="${cssaligndir}: ${(item.data.translatedpercentage or int(bool(item.data.translatedsourcewords))) + (item.data.fuzzypercentage or int(bool(item.data.fuzzysourcewords)))}px; width: ${100 - ((item.data.translatedpercentage or int(bool(item.data.translatedsourcewords))) + (item.data.fuzzypercentage or int(bool(item.data.fuzzysourcewords))))}px" py:if="item.data.untranslatedsourcewords" />
+        </span>
+      </td>
+      <td class="stats">
+        <?python
+            untranslatedwordstext = untranslatedtext % (item.data.untranslatedsourcewords)
+            fuzzywordstext = fuzzytext % (item.data.fuzzysourcewords)
+
+            # TODO: Need to verify these work for multiple files in the same directory.  It
+            # might be showing all fuzzy files for the whole dir instead of per file
+            untranslatedhref = "translate.html?untranslated=1&editing=1"
+            fuzzyhref = "translate.html?fuzzy=1&editing=1"
+
+            # sigh; here is a cheesy hack.  If item.code exists we're at the root
+            # level of browsing the doc tree (i.e. not looking at a specific locale)
+            if item.code:
+              untranslatedhref = item.href + untranslatedhref
+              fuzzyhref = item.href + fuzzyhref
+        ?>
+        <ul>
+        <span py:if="item.data.untranslatedsourcewords" py:strip="True">
+            <li class="todo"><a href="${untranslatedhref}" py:content="untranslatedwordstext">untranslated words</a></li>
+        </span>
+        <span py:if="item.data.fuzzysourcewords" py:strip="True">
+            <li class="todo"><a href="${fuzzyhref}" py:content="fuzzywordstext">fuzzy words</a></li>
+        </span>
+        <span py:if="item.data.translatedsourcewords == item.data.totalsourcewords" py:strip="True">
+            <li class="complete" py:content="complete">Complete</li>
+        </span>
+        </ul>
+      </td>
+      <td class="stats">${item.data.totalsourcewords}</td>
+    </span>
+  </div>
+
 </include-this>

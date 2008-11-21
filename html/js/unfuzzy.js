@@ -8,17 +8,17 @@ $(document).ready(function() {
   var keepstate = false;
   $("textarea.translation").bind("keyup blur", function() {
     if (!keepstate && $(this).attr("defaultValue") != $(this).val()) {
-      var checkbox = $("input.unfuzzy[checked]");
+      var checkbox = $("input.fuzzycheck[checked]");
       checkbox.removeAttr("checked");
-      checkbox.parent().animate({ backgroundColor: "#dafda5 !important" }, "fast")
-                       .animate({ backgroundColor: "#f4f4f4 !important" }, "slow");
+      checkbox.parent().animate({ backgroundColor: "#dafda5 !important" }, "slow")
+                       .animate({ backgroundColor: "#ffffff !important" }, "slow");
       $("textarea.translate-translation-fuzzy").each(function () {
         $(this).removeClass("translate-translation-fuzzy");
       });
       keepstate = true;
     }
   });
-  $("input.unfuzzy").click(function() {
+  $("input.fuzzycheck").click(function() {
     keepstate = true;
   });
 });

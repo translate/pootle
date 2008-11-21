@@ -34,10 +34,6 @@ function init()
 			divobj.expandaction = expandaction;
 			divobj.contractaction = contractaction;
 			divobj.autoexpandstate = 'mouse';
-			divobj.onmouseover = mouseGoesOver;
-			divobj.onmouseout = mouseGoesOut;
-			divobj.onclick = mouseClick;
-			divobj.makecontracted();
 		}
 	}
 }

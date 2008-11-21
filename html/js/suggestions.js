@@ -144,15 +144,15 @@ $("#translate-suggestion-container").click(function(event) {
       var reject_others = $(reference).parents(".translate-suggestion-block").siblings(".translate-suggestion-block");
       // There are suggestions to reject
       if (reject_others.length > 0) {
-      // Parameters to reject the remaining suggestions
-      var paramsReject = "?review=1&translate=1";
-      paramsReject += "&pofilename=" + escape($("input[name='pofilename']").val());
-      $.each(reject_others, function() {
-        paramsReject += getSiblingParams($(".rejectsugg", this));
-        paramsReject += "&" + $(".rejectsugg", this).attr("id") + "=1";
-        });
-      var refs = reject_others.children(".rejecsugg");
-      rejectSuggestions(requestURL, paramsReject, reject_others, true);
+          // Parameters to reject the remaining suggestions
+          var paramsReject = "?review=1&translate=1";
+          paramsReject += "&pofilename=" + escape($("input[name='pofilename']").val());
+          $.each(reject_others, function() {
+            paramsReject += getSiblingParams($(".rejectsugg", this));
+            paramsReject += "&" + $(".rejectsugg", this).attr("id") + "=1";
+            });
+          var refs = reject_others.children(".rejecsugg");
+          rejectSuggestions(requestURL, paramsReject, reject_others, true);
       } else { // Just accept this one
         // Parameters to accept this suggestion
         var paramsAccept = "?review=1&translate=1";

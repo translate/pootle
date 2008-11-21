@@ -427,6 +427,7 @@ def make_class(base_class):
           del self.pendingfile.units[pendingitem]
           self.savependingfile()
         except IndexError:
+          print "Found an index error attempting to delete a suggestion"
           pass # TODO: Print a warning for the user.
       self.statistics.reclassifyunit(item)
 

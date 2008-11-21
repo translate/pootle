@@ -1,40 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <include xmlns:py="http://purl.org/kid/ns#">
-    <div py:def="banner(instancetitle, links, session, uidir, uilanguage, baseurl)" id="banner" lang="$uilanguage" dir="$uidir">
+
+    <div py:def="header(links, session, baseurl, instancetitle)" py:strip="True">
+        <!-- start header -->
+        <div id="nav-access">
+            <a href="#nav-main" py:content="links.skip_nav">skip to navigation</a>
+        </div>
+        <?python
+            header_attributes = {};
+            if session.isopen:
+                header_attributes = {'class':'logged-in'}
+            if session.issiteadmin:
+                header_attributes = {'class':'logged-in admin'}
+        ?>
+
+        <div id="header" py:attrs="header_attributes">
+            <div>
+                <h1><a href="/" title="${links.home}" py:content="instancetitle">Verbatim</a></h1>
+            
+                <div id="nav-main" class="yuimenubar">
+                  <div class="bd">
+                    <ul class="first-of-type">
+                        <li class="yuimenubaritem"><a href="${baseurl}" py:content="links.home">Home</a></li>
+                        <li class="yuimenubaritem"><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
+                        <span py:if="session.issiteadmin" py:strip="True">
+                            <li class="yuimenubaritem"><a href="${baseurl}admin/" py:content="links.admin">Admin</a></li>
+                        </span>
+                        <span py:if="session.isopen" py:strip="True">
+                            <li class="yuimenubaritem"><a href="${baseurl}home/">My account</a></li>
+                            <li class="yuimenubaritem"><a href="${baseurl}?islogout=1">Log out</a></li>
+                        </span>
+                        <span py:if="not session.isopen" py:strip="True">
+                            <li id="menu-login" class="yuimenubaritem"><a href="${baseurl}login.html"><span>Log in</span></a></li>
+                        </span>
+                    </ul>
+                  </div>
+                </div>	
+            </div>
+        </div>
+        <!--TODO
         <h1 py:content="instancetitle">
             Distribution se Pootle
         </h1>
-        <div class="side">
-            <a href="${baseurl}" py:content="links.home">Home</a> |
-            <a href="${baseurl}projects/" py:content="links.projects">All Projects</a> |
-            <a href="${baseurl}languages/" py:content="links.languages">All Languages</a>
-            <span py:if="session.isopen" py:strip="True"> | <a href="${baseurl}home/" py:content="links.account">My account</a></span>
-            <span py:if="session.issiteadmin" py:strip="True"> |
-            <a href="${baseurl}admin/" py:content="links.admin">Admin</a> </span> |
-            <a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a>
-        </div>
+        -->
+        <!-- end header -->
     </div>
 
-    <div py:def="user_links(links, session, uidir, uilanguage, baseurl, block=None)" id="links" class="sidebar" dir="$uidir" lang="$uilanguage">
-        <!--! Account information -->
-        <div class="account">
-            <div class="side">
-                <img src="${baseurl}images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
-            </div>
-            <div class="side" py:if="session.isopen">
-                <span py:content="XML(session.status)">logged in as <b>somebody</b></span> |
-                <a href="${baseurl}?islogout=1" py:content="links.logout">Log Out</a>
-            </div>
-            <div class="side" py:if="not session.isopen">
-              <a href="${baseurl}login.html" py:content="links.login">Log In</a> |
-              <a href="${baseurl}register.html" py:content="links.register">Register</a> |
-              <a href="${baseurl}activate.html" py:content="links.activate">Activate</a>
+    <div py:def="footer(links, baseurl)" py:strip="True">
+        <!-- start footer -->
+        <div id="footer">
+            <div id="footer-contents">
+                <ul class="nav">
+                    <li><a href="${baseurl}" py:content="links.home">Home</a></li>
+                    <li><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
+                    <li><a href="${baseurl}about.html" py:content="links.about">About this Pootle Server</a></li>
+                </ul>
             </div>
         </div>
-        <div py:if="block != None" py:replace="block"/>
+        <!-- end footer -->
     </div>
 
-    <div py:def="about(aboutlink, uidir, uilanguage, baseurl)" id="about" dir="$uidir" lang="$uilanguage">
-        <a href="${baseurl}about.html" py:content="aboutlink">About this Pootle server</a>
+    <div py:def="login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)" py:strip="True">
+        <!-- start login form -->
+        <div py:if="not session.isopen" py:strip="True">
+            <form action="/login.html" method="post" id="login-form">
+                <p><label for="username" py:content="username_title">Username</label> <input type="text" id="username" name="username" /></p>
+                <p><label for="password" py:content="password_title">Password</label> <input type="password" id="password" name="password" /></p>
+                <p>
+                    <input type="submit" name="islogin" value="${login_text}" />
+                    <input type="submit" name="doregister" value="${register_text}" py:if="canregister" />
+                </p>
+                <input type="hidden" name="islogin" value="true" /> 
+            </form>
+        </div>
+        <!-- end login form -->
     </div>
+
+    <div py:def="translationsummarylegend(legend)" id="translationsummarylegend">
+        <div> <img src="/images/green-bar.png" alt="" />${legend.translated}</div>
+        <div> <img src="/images/purple-bar.png" alt="" />${legend.fuzzy}</div>
+        <div> <img src="/images/red-bar.png" alt="" />${legend.untranslated}</div>
+    </div>
+
+    <div py:def="userstatistics(user, statstext, statstitle)" id="userstatistics">
+      <table>
+        <tr>
+          <th scope="row" py:content="statstext['suggaccepted']">Suggestions Accepted</th>
+          <td>${user.suggestionsAcceptedCount()}</td>
+        </tr>
+        <tr>
+          <th scope="row" py:content="statstext['suggpending']">Suggestions Pending</th>
+          <td>${user.suggestionsPendingCount()}</td>
+        </tr>
+        <tr>
+          <th scope="row" py:content="statstext['suggreviewed']">Suggestions Reviewed</th>
+          <td>${user.suggestionsReviewedCount()}</td>
+        </tr>
+        <tr>
+          <th scope="row" py:content="statstext['submade']">Submissions Made</th>
+          <td>${user.submissionsCount()}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div py:def="topcontributerstable(topstats, topstatsheading)" class="module-primary clear topcontributers">
+        <div class="hd"><h2 py:contents="topstatsheading">Top Contributors</h2></div>
+        <div class="bd">
+          <div py:for="stats in topstats">
+              <div class="statslist">
+                  <h3 py:content="stats['headerlabel']">Top</h3>
+                  <ul py:for="(num, (name, val)) in enumerate(stats['data'])">
+                      <?python
+                        if num % 2:
+                            list_attributes = {'class': 'even'}
+                        else:
+                            list_attributes = {'class': 'odd'}
+                      ?>
+                      <li py:attrs="list_attributes"><span class="name">${name}</span><span class="value">${val}</span></li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+        <div class="ft clear"></div>
+    </div>
+
 </include>

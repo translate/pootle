@@ -22,6 +22,7 @@
 from Pootle import pagelayout
 from Pootle import projects
 from translate.filters import checks
+from dbclasses import User
 
 import locale
 
@@ -152,9 +153,10 @@ class ProjectsAdminPage(pagelayout.PootlePage):
                {"name": "name", "title": self.localize("Full Name"), 
                                 "newvalue": self.localize("(add project here)")},
                {"name": "description", "title": self.localize("Project Description"), "newvalue": self.localize("(project description)")},
+               {"name": "ignoredfiles", "title": self.localize("Ignored Files"), "newvalue": self.localize("(comma separated list)")},
                {"name": "checkerstyle", "title": self.localize("Checker Style"), "selectoptions": self.allchecks, "newvalue": ""},
                {"name": "filetype", "title": self.localize("File Type"), "selectoptions": self.alltypes, "newvalue": ""},
-               {"name": "createmofiles", "title": self.localize("Create MO Files"), "type": "checkbox", "newvalue": ""},
+               {"name": "createmofiles", "title": self.localize("Create MO Files"), "type": "checkbox", "newvalue": "True"},
                {"name": "remove", "title": self.localize("Remove Project")}]
     for option in options:
       if "newvalue" in option:
@@ -169,6 +171,7 @@ class ProjectsAdminPage(pagelayout.PootlePage):
       projectadminlink = "../projects/%s/admin.html" % projectcode
       projectname = self.potree.getprojectname(projectcode)
       projectdescription = self.potree.getprojectdescription(projectcode)
+      projectignoredfiles = ",".join(self.potree.getprojectignoredfiles(projectcode))
       projectname = self.potree.getprojectname(projectcode)
       projectcheckerstyle = self.potree.getprojectcheckerstyle(projectcode)
       projectfiletype = self.potree.getprojectlocalfiletype(projectcode)
@@ -181,6 +184,7 @@ class ProjectsAdminPage(pagelayout.PootlePage):
       removelabel = self.localize("Remove %s", projectcode)
       projectoptions = [{"name": "projectname-%s" % projectcode, "value": projectname, "type": "text"},
                         {"name": "projectdescription-%s" % projectcode, "value": projectdescription, "type": "text"},
+                        {"name": "projectignoredfiles-%s" % projectcode, "value": projectignoredfiles, "type": "text"},
                         {"name": "projectcheckerstyle-%s" % projectcode, "value": projectcheckerstyle, "selectoptions": self.allchecks},
                         {"name": "projectfiletype-%s" % projectcode, "value": projectfiletype, "selectoptions": self.alltypes},
                         {"name": "projectcreatemofiles-%s" % projectcode, "value": projectcreatemofiles, "type": "checkbox", projectcreatemofiles: projectcreatemofiles},
@@ -190,9 +194,9 @@ class ProjectsAdminPage(pagelayout.PootlePage):
 
 class UsersAdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, server, users, session, instance):
+  def __init__(self, server, alchemysession, session, instance):
     self.server = server
-    self.users = users
+    self.alchemysession = alchemysession 
     self.session = session
     self.instance = instance
     self.localize = session.localize
@@ -220,6 +224,7 @@ class UsersAdminPage(pagelayout.PootlePage):
                {"name": "email", "title": self.localize("Email Address"), "newvalue": self.localize("(add email here)")},
                {"name": "password", "title": self.localize("Password"), "newvalue": self.localize("(add password here)")},
                {"name": "activated", "title": self.localize("Activated"), "type": "checkbox", "checked": "true", "newvalue": "", "label": self.localize("Activate New User")},
+               {"name": "logintype", "title": self.localize("Login Type"), "newvalue": "hash"},
                {"name": "remove", "title": self.localize("Remove User"), "type": "checkbox"}]
     for option in options:
       if "newvalue" in option:
@@ -232,9 +237,12 @@ class UsersAdminPage(pagelayout.PootlePage):
 
   def getusersoptions(self):
     users = []
-    for usercode, usernode in self.users.iteritems(sorted=True):
+    q = self.alchemysession.query(User).order_by(User.username).all()
+    for usernode in q: 
+      username = getattr(usernode, "username", "")
       fullname = getattr(usernode, "name", "")
       email = getattr(usernode, "email", "")
+      logintype = getattr(usernode, "logintype", "")
       activated = getattr(usernode, "activated", 0) == 1
       if activated:
         activatedattr = "checked"
@@ -242,13 +250,14 @@ class UsersAdminPage(pagelayout.PootlePage):
         activatedattr = ""
       userremove = None
       # l10n: The parameter is a languagecode, projectcode or username
-      removelabel = self.localize("Remove %s", usercode)
-      useroptions = [{"name": "username-%s" % usercode, "value": fullname, "type": "text"},
-                     {"name": "useremail-%s" % usercode, "value": email, "type": "text"},
-                     {"name": "userpassword-%s" % usercode, "value": None, "type": "text"},
-                     {"name": "useractivated-%s" % usercode, "type": "checkbox", activatedattr: activatedattr},
-                     {"name": "userremove-%s" % usercode, "value": None, "type": "checkbox", "label": removelabel}]
-      users.append({"code": usercode, "options": useroptions})
+      removelabel = self.localize("Remove %s", username)
+      useroptions = [{"name": "username-%s" % username, "value": fullname, "type": "text"},
+                     {"name": "useremail-%s" % username, "value": email, "type": "text"},
+                     {"name": "userpassword-%s" % username, "value": None, "type": "text"},
+                     {"name": "useractivated-%s" % username, "type": "checkbox", activatedattr: activatedattr},
+                     {"name": "userlogintype-%s" % username, "value": logintype, "type": "text"},
+                     {"name": "userremove-%s" % username, "value": None, "type": "checkbox", "label": removelabel}]
+      users.append({"code": username, "options": useroptions})
     return users
 
 class ProjectAdminPage(pagelayout.PootlePage):
@@ -260,7 +269,7 @@ class ProjectAdminPage(pagelayout.PootlePage):
     self.localize = session.localize
     self.tr_lang = session.tr_lang
     projectname = self.potree.getprojectname(self.projectcode)
-    if self.session.issiteadmin():
+    if session.issiteadmin():
       if "doaddlanguage" in argdict:
         newlanguage = argdict.get("newlanguage", None)
         if not newlanguage:
@@ -275,6 +284,16 @@ class ProjectAdminPage(pagelayout.PootlePage):
         for languagecode in languagecodes:
           translationproject = self.potree.getproject(languagecode, self.projectcode)
           translationproject.converttemplates(self.session)
+      if "initialize" in argdict:
+        languagecodes = argdict.get("updatelanguage", None)
+        if not languagecodes:
+          raise ValueError("No languagecode given in doupdatelanguage")
+        if isinstance(languagecodes, (str, unicode)):
+          languagecodes = [languagecodes]
+        for languagecode in languagecodes:
+          translationproject = self.potree.getproject(languagecode, self.projectcode)
+          translationproject.initialize(self.session, languagecode)
+
     main_link = self.localize("Back to main page")
     existing_title = self.localize("Existing languages")
     existing_languages = self.getexistinglanguages()
@@ -287,6 +306,8 @@ class ProjectAdminPage(pagelayout.PootlePage):
     full_name = self.localize("Full Name")
     # l10n: This refers to updating the translation files from the templates like with .pot files
     update_link = self.localize("Update from templates")
+    # l10n: This refers to running an intialization script for the given project+locale
+    initialize_link = self.localize("Initialize")
     templatename = "projectadmin"
     sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
     instancetitle = getattr(self.session.instance, "title", session.localize("Pootle Demo"))
@@ -296,7 +317,8 @@ class ProjectAdminPage(pagelayout.PootlePage):
         "existing_title": existing_title, "existing_languages": existing_languages,
         "new_languages": new_languages,
         "update_button": update_button, "add_button": self.localize("Add Language"),
-        "main_link": main_link, "update_link": update_link,
+        "main_link": main_link, "update_link": update_link, 
+        "initialize_link": initialize_link,
         "session": sessionvars, "instancetitle": instancetitle}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session, bannerheight=80)
 
@@ -324,6 +346,31 @@ class ProjectAdminPage(pagelayout.PootlePage):
     newoptions.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     return newoptions
 
+def updaterights(project, session, argdict):
+  if "admin" in project.getrights(session):
+    if "doupdaterights" in argdict:
+      for key, value in argdict.iteritems():
+        if isinstance(key, str):
+          key = key.decode("utf-8")
+        if key.startswith("rights-"):
+          username = key.replace("rights-", "", 1)
+          if isinstance(value, list):
+            try:
+              value.remove("existence")
+            except:
+              pass
+          project.setrights(username, value)
+        if key.startswith("rightsremove-"):
+          username = key.replace("rightsremove-", "", 1)
+          project.delrights(session, username)
+      username = argdict.get("rightsnew-username", None)
+      if username:
+        username = username.strip()
+        if session.loginchecker.userexists(username):
+          project.setrights(username, argdict.get("rightsnew", ""))
+        else:
+          raise IndexError(session.localize("Cannot set rights for username %s - user does not exist", username))
+ 
 class TranslationProjectAdminPage(pagelayout.PootlePage):
   """admin page for a translation project (project+language)"""
   def __init__(self, potree, project, session, argdict):
@@ -332,27 +379,21 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     self.session = session
     self.localize = session.localize
     self.rightnames = self.project.getrightnames(session)
+
+    if "admin" not in project.getrights(session):
+      raise projects.Rights404Error
+
+    try:
+      if "scanpofiles" in argdict:
+        self.project.scanpofiles()
+    except:
+      pass
+
+    updaterights(project, session, argdict)
     # l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
     pagetitle = self.localize("Pootle Admin: %s %s", self.project.languagename, self.project.projectname)
     main_link = self.localize("Project home page")
-    if "admin" in self.project.getrights(self.session):
-      if "doupdaterights" in argdict:
-        for key, value in argdict.iteritems():
-          if isinstance(key, str):
-            key = key.decode("utf-8")
-          if key.startswith("rights-"):
-            username = key.replace("rights-", "", 1)
-            self.project.setrights(username, value)
-          if key.startswith("rightsremove-"):
-            username = key.replace("rightsremove-", "", 1)
-            self.project.delrights(self.session, username)
-        username = argdict.get("rightsnew-username", None)
-        if username:
-          username = username.strip()
-          if self.session.loginchecker.userexists(username):
-            self.project.setrights(username, argdict.get("rightsnew", ""))
-          else:
-            raise IndexError(self.localize("Cannot set rights for username %s - user does not exist", username))
+    rescan_files_link = self.localize("Rescan project files")
     norights_text = self.localize("You do not have the rights to administer this project.")
     templatename = "projectlangadmin"
     sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
@@ -361,6 +402,7 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
         "project": {"code": self.project.projectcode, "name": self.project.projectname},
         "language": {"code": self.project.languagecode, "name": self.project.languagename},
         "main_link": main_link,
+        "rescan_files_link": rescan_files_link,
         "session": sessionvars, "instancetitle": instancetitle}
     templatevars.update(self.getoptions())
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session, bannerheight=80)

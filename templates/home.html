@@ -1,57 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-import navbar, pootlepage
+from Pootle.templates import pootlepage
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
 <head>
-  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
   <title py:content="pagetitle">User Page for: ${username}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+
+  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
+</head>
+
+<body>
+
+<div id="wrapper">
+<div id="doc">
+    
+  <div py:replace="pootlepage.header(links, session, baseurl, instancetitle)"/>
+
+  <div id="body">
+    <div class="site-message" py:if="message">
+        <div class="info" py:if="message" py:content="XML(message)">Message</div>
+    </div>
+
+      <div class="module first">
+          <div class="hd">
+              <h2 py:content="quicklinkstitle">Quick Links</h2>
+          </div>
+          <div class="bd">
+              <span py:for="language in quicklinks" py:strip="True">
+                  <dl>
+                      <dt> <a href="../${language.code}/" py:content="language.name">Language</a> </dt>
+                      <dd py:for="project in language.projects">
+                        <a href="../${language.code}/${project.code}/" py:content="project.name">Language Project</a>
+                        <span py:if="project.isprojectadmin" py:strip="True">
+                          (<a href="../${language.code}/${project.code}/admin.html" py:content="admintext">Admin</a>)
+                        </span>
+                      </dd>
+                  </dl>
+              </span>
+
+              <div py:if="not quicklinks" class="item-description" py:content="XML(setoptionstext)">
+                You need to <a href="options.html">choose your languages and projects</a>.
+              </div>
+
+              <ul>
+                <li><a href="options.html" py:content="optionslink">Change options</a></li>
+                <li py:if="session.issiteadmin"><a href="../admin/" py:content="adminlink">Admin page</a></li>
+              </ul>
+          </div>
+          <div class="ft"></div>
+      </div>
+
+      <div class="module">
+          <div class="hd">
+              <h2 py:content="statstitle">User Statistics</h2>
+          </div>
+          <div class="bd">
+              <div py:replace="pootlepage.userstatistics(user, statstext, statstitle)"/>
+          </div>
+          <div class="ft"></div>
+      </div>
+
+  </div><!-- end #body-->
+
+  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)"/>
+	
+</div><!-- end #doc -->
+</div><!-- end #wrapper -->
+
+  <div py:replace="pootlepage.footer(links, baseurl)"/>
+
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
-</head>
 
-<body bgcolor="#FFFFFF">
-  <div id="abovefooter">
-  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
-
-  <div id="fullwidthcontent" dir="$uidir" lang="$uilanguage">
-    <div class="contents"><h3 class="title" py:content="quicklinkstitle">Quick Links</h3>
-      <div py:for="language in quicklinks" py:strip="True">
-        <h3 class="title">
-          <a href="../${language.code}/" py:content="language.name">Language</a>
-        </h3>
-        <div py:if="language.projects" class="item-description">
-          <span py:for="project in language.projects" py:strip="True">
-            <a href="../${language.code}/${project.code}/" py:content="project.name">Language Project</a>
-            <span py:if="project.isprojectadmin" py:strip="True">
-              (<a href="../${language.code}/${project.code}/admin.html" py:content="admintext">Admin</a>)
-            </span>
-            <span py:replace="XML(project.sep)"/>
-          </span>
-        </div>
-      </div>
-      <div py:if="not quicklinks" class="item-description" py:content="setoptionstext">
-        Please click on 'Change options' and select some languages and projects
-      </div>
-    </div>
-
-    <div class="info">
-      <a href="options.html" py:content="optionslink">Change options</a>
-    </div>
-
-    <div class="info" py:if="session.issiteadmin">
-      <a href="../admin/" py:content="adminlink">Admin page</a>
-    </div>
-  </div>
-
-  </div>
-  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
-  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
 </body>
 </html>

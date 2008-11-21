@@ -39,6 +39,21 @@ import re
 import locale
 import util  
 
+from dbclasses import *
+
+_undefined = lambda: None
+
+def lazy(f):
+  result = [_undefined]
+
+  def evaluator():
+    if result[0] != _undefined:
+      return result[0]
+    else:
+      result[0] = f()
+      return result[0]
+  return evaluator
+
 def shortdescription(descr):
   """Returns a short description by removing markup and only including up
   to the first br-tag"""
@@ -46,6 +61,15 @@ def shortdescription(descr):
   if stopsign >= 0:
     descr = descr[:stopsign]
   return re.sub("<[^>]*>", "", descr).strip()
+
+def gentopstats(topsugg, topreview, topsub, localize):
+  ranklabel = localize("Rank")
+  namelabel = localize("Name")
+  topstats = []
+  topstats.append({'data':topsugg, 'headerlabel':localize('Suggestions'), 'ranklabel':ranklabel, 'namelabel':namelabel, 'vallabel':localize('Suggestions')})
+  topstats.append({'data':topreview, 'headerlabel':localize('Reviews'), 'ranklabel':ranklabel, 'namelabel':namelabel, 'vallabel':localize('Reviews')})
+  topstats.append({'data':topsub, 'headerlabel':localize('Submissions'), 'ranklabel':ranklabel, 'namelabel':namelabel, 'vallabel':localize('Submissions')})
+  return topstats
 
 class AboutPage(pagelayout.PootlePage):
   """the bar at the side describing current login details etc"""
@@ -96,28 +120,100 @@ class PootleIndex(pagelayout.PootlePage):
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     pagetitle = instancetitle
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
-    languages = [{"code": code, "name": self.tr_lang(name), "sep": self.listseperator} for code, name in self.potree.getlanguages()]
+#@todo - need localized dates
     # rewritten for compatibility with Python 2.3
     # languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
-    languages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
-    if languages:
-      languages[-1]["sep"] = ""
+    
+    asession = self.potree.server.alchemysession
+    topsugg = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsMade)).filter(Suggestion.reviewStatus == 'accepted').group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
+    topreview = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsReviewed)).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
+    topsub = asession.query(User.name, func.count(Submission.id)).join((Submission, User.submissions)).group_by(User.name).order_by(func.count(Submission.id).desc())[:5]
+   
+    topstats = gentopstats(topsugg, topreview, topsub, self.localize) 
+
     templatevars = {"pagetitle": pagetitle, "description": description,
         "meta_description": meta_description, "keywords": keywords,
-        "languagelink": languagelink, "languages": languages,
-        "projectlink": projectlink, "projects": self.getprojects(),
-        "session": sessionvars, "instancetitle": instancetitle}
+        "languagelink": languagelink, "languages": self.getlanguages(session),
+        "projectlink": projectlink, "projects": self.getprojects(session),
+        # top users
+        "topstats": topstats, "topstatsheading": self.localize("Top Contributors"),
+        "session": sessionvars, "instancetitle": instancetitle,
+        "translationlegend": self.gettranslationsummarylegendl10n()
+        }
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
 
-  def getprojects(self):
+  def getlanguages(self,session):
+    languages = []
+    asession = self.potree.server.alchemysession
+    for (langcode, langname, recentsub) in asession.query(Language.code, Language.fullname, func.min(Submission.creationTime)).outerjoin((Submission, Language.submissions)).order_by(Language.fullname).group_by(Language.code).all(): 
+      projectcodes = self.potree.getprojectcodes(langcode)
+      trans = 0
+      fuzzy = 0
+      total = 0
+      viewable = False
+      for projectcode in projectcodes:
+        project = self.potree.getproject(langcode, projectcode)
+        stats = project.getquickstats()
+        trans += stats['translatedsourcewords']
+        fuzzy += stats['fuzzysourcewords']
+        total += stats['totalsourcewords']
+        rights = project.getrights(session)
+        viewable = viewable or ("view" in rights)
+      untrans = total-trans-fuzzy
+      try:
+        transper = int(100*trans/total)
+        fuzzyper = int(100*fuzzy/total)
+        untransper = 100-transper-fuzzyper
+      except ZeroDivisionError:
+        transper = 100
+        fuzzyper = 0 
+        untransper = 0 
+
+      lastact = ""
+      if recentsub != None:
+        lastact = recentsub
+
+      if viewable:
+        languages.append({"code": langcode, "name": self.tr_lang(langname), "lastactivity": lastact, "trans": trans, "fuzzy": fuzzy, "untrans": untrans, "total": total, "transper": transper, "fuzzyper": fuzzyper, "untransper": untransper}) 
+    languages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
+    return languages
+
+  def getprojects(self,session):
     """gets the options for the projects"""
     projects = []
-    for projectcode in self.potree.getprojectcodes():
+    asession = self.potree.server.alchemysession
+    for (projectcode, recentsub) in asession.query(Project.code, func.min(Submission.creationTime)).outerjoin((Submission, Project.submissions)).order_by(Project.fullname).group_by(Project.code).all(): 
+      langcodes = self.potree.getlanguagecodes(projectcode)
+      trans = 0
+      fuzzy = 0
+      total = 0
+      viewable = False
+      for langcode in langcodes:
+        project = self.potree.getproject(langcode, projectcode)
+        stats = project.getquickstats()
+        trans += stats['translatedsourcewords']
+        fuzzy += stats['fuzzysourcewords']
+        total += stats['totalsourcewords']
+        rights = project.getrights(session)
+        viewable = viewable or ("view" in rights)
+      untrans = total-trans-fuzzy
+      try:
+        transper = int(100*trans/total)
+        fuzzyper = int(100*fuzzy/total)
+        untransper = 100-transper-fuzzyper
+      except ZeroDivisionError:
+        transper = 100
+        fuzzyper = 0 
+        untransper = 0 
       projectname = self.potree.getprojectname(projectcode)
       description = shortdescription(self.potree.getprojectdescription(projectcode))
-      projects.append({"code": projectcode, "name": projectname, "description": description, "sep": self.listseperator})
-    if projects:
-      projects[-1]["sep"] = ""
+      
+      lastact = ""
+      if recentsub != None:
+        lastact = recentsub
+      
+      if viewable:
+        projects.append({"code": projectcode, "name": projectname, "description": description, "lastactivity": lastact, "trans": trans, "fuzzy": fuzzy, "untrans": untrans, "total": total, "transper": transper, "fuzzyper": fuzzyper, "untransper": untransper})
     return projects
 
   def getprojectnames(self):
@@ -140,12 +236,24 @@ class UserIndex(pagelayout.PootlePage):
     instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     quicklinks = self.getquicklinks()
-    setoptionstext = self.localize("Please click on 'Change options' and select some languages and projects")
+    setoptionstext = self.localize("You need to <a href='options.html'>choose your languages and projects</a>.")
+    # l10n: %s is the full name of the currently logged in user
+    statstitle = self.localize("%s's Statistics", session.user.name)
+    statstext = {
+                  'suggmade': self.localize("Suggestions Made"),
+                  'suggaccepted': self.localize("Suggestions Accepted"),
+                  'suggpending': self.localize("Suggestions Pending"),
+                  'suggrejected': self.localize("Suggestions Rejected"),
+                  'suggreviewed': self.localize("Suggestions Reviewed"),
+                  'suggper': self.localize("Suggestion Use Percentage"),
+                  'submade': self.localize("Submissions Made"),
+                }
     templatevars = {"pagetitle": pagetitle, "optionslink": optionslink,
         "adminlink": adminlink, "admintext": admintext,
         "quicklinkstitle": quicklinkstitle,
         "quicklinks": quicklinks, "setoptionstext": setoptionstext,
-        "session": sessionvars, "instancetitle": instancetitle}
+        "session": sessionvars, "instancetitle": instancetitle,
+        "statstitle": statstitle, "statstext": statstext}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
 
   def getquicklinks(self):
@@ -160,8 +268,7 @@ class UserIndex(pagelayout.PootlePage):
         if self.potree.hasproject(languagecode, projectcode):
           projecttitle = self.potree.getprojectname(projectcode)
           project = self.potree.getproject(languagecode, projectcode)
-          isprojectadmin = "admin" in project.getrights(session=self.session) \
-                            or self.session.issiteadmin()
+          isprojectadmin = "admin" in project.getrights(session=self.session)
           langlinks.append({"code": projectcode, "name": projecttitle,
                             "isprojectadmin": isprojectadmin, "sep": "<br />"})
       if langlinks:
@@ -194,7 +301,9 @@ class LanguageIndex(pagelayout.PootleNavPage):
     self.tr_lang = session.tr_lang
     self.languagename = self.potree.getlanguagename(self.languagecode)
     self.initpagestats()
-    languageprojects = self.getprojects()
+    languageprojects = self.getprojects(session)
+    if len(languageprojects) == 0:
+      raise projects.Rights404Error
     self.projectcount = len(languageprojects)
     average = self.getpagestats()
     languagestats = self.nlocalize("%d project, average %d%% translated", "%d projects, average %d%% translated", self.projectcount, self.projectcount, average)
@@ -207,11 +316,26 @@ class LanguageIndex(pagelayout.PootleNavPage):
     templatename = "language"
     adminlink = self.localize("Admin")
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
+
+    asession = self.potree.server.alchemysession
+    topsugg = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsMade)).filter(Suggestion.language == self.potree.languages[self.languagecode]).filter(Suggestion.reviewStatus == 'accepted').group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
+    topreview = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsReviewed)).filter(Suggestion.language == self.potree.languages[self.languagecode]).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
+    topsub = asession.query(User.name, func.count(Submission.id)).join((Submission, User.submissions)).filter(Submission.language == self.potree.languages[self.languagecode]).group_by(User.name).order_by(func.count(Submission.id).desc())[:5]
+   
+    topstats = gentopstats(topsugg, topreview, topsub, self.localize) 
+
     templatevars = {"pagetitle": pagetitle,
         "language": {"code": languagecode, "name": self.tr_lang(self.languagename), "stats": languagestats, "info": languageinfo},
         "projects": languageprojects,
         "statsheadings": self.getstatsheadings(),
-        "session": sessionvars, "instancetitle": instancetitle}
+        "untranslatedtext": self.localize("%s untranslated words"),
+        "fuzzytext": self.localize("%s fuzzy words"),
+        "complete": self.localize("Complete"),
+        # top users
+        "topstats": topstats, "topstatsheading": self.localize("Top Contributors"),
+        "session": sessionvars, "instancetitle": instancetitle,
+        "translationlegend": self.gettranslationsummarylegendl10n()
+        }
     pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=80)
 
   def getlanguageinfo(self):
@@ -227,11 +351,12 @@ class LanguageIndex(pagelayout.PootleNavPage):
                 ]
     return [{"title": title, "value": value} for title, value in infoparts]
 
-  def getprojects(self):
+  def getprojects(self,session):
     """gets the info on the projects"""
     projectcodes = self.potree.getprojectcodes(self.languagecode)
     self.projectcount = len(projectcodes)
-    projectitems = [self.getprojectitem(projectcode) for projectcode in projectcodes]
+    projectitems = [self.getprojectitem(projectcode) for projectcode in projectcodes 
+          if "view" in (self.potree.getproject(self.languagecode, projectcode).getrights(session))]
     for n, item in enumerate(projectitems):
       item["parity"] = ["even", "odd"][n % 2]
     return projectitems
@@ -255,7 +380,9 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     self.nlocalize = session.nlocalize
     self.tr_lang = session.tr_lang
     self.initpagestats()
-    languages = self.getlanguages()
+    languages = self.getlanguages(session)
+    if len(languages) == 0:
+      raise projects.Rights404Error
     average = self.getpagestats()
     projectstats = self.nlocalize("%d language, average %d%% translated", "%d languages, average %d%% translated", self.languagecount, self.languagecount, average)
     projectname = self.potree.getprojectname(self.projectcode)
@@ -271,19 +398,36 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     statsheadings = self.getstatsheadings()
     statsheadings["name"] = self.localize("Language")
+
+    asession = self.potree.server.alchemysession
+    topsugg = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsMade)).filter(Suggestion.project == self.potree.projects[self.projectcode]).filter(Suggestion.reviewStatus == 'accepted').group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
+    topreview = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsReviewed)).filter(Suggestion.project == self.potree.projects[self.projectcode]).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
+    topsub = asession.query(User.name, func.count(Submission.id)).join((Submission, User.submissions)).filter(Submission.project == self.potree.projects[self.projectcode]).group_by(User.name).order_by(func.count(Submission.id).desc())[:5]
+   
+    topstats = gentopstats(topsugg, topreview, topsub, self.localize) 
+
     templatevars = {"pagetitle": pagetitle,
         "project": {"code": projectcode, "name": projectname, "stats": projectstats},
         "description": description, "meta_description": meta_description,
         "adminlink": adminlink, "languages": languages,
+        "untranslatedtext": self.localize("%s untranslated words"),
+        "fuzzytext": self.localize("%s fuzzy words"),
+        "complete": self.localize("Complete"),
+        "session": sessionvars, "instancetitle": instancetitle, 
         "session": sessionvars, "instancetitle": instancetitle,
-        "statsheadings": statsheadings}
+        # top users
+        "topstats": topstats, "topstatsheading": self.localize("Top Contributors"),
+        "statsheadings": statsheadings,
+        "translationlegend": self.gettranslationsummarylegendl10n()
+        }
     pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=80)
 
-  def getlanguages(self):
+  def getlanguages(self, session):
     """gets the stats etc of the languages"""
     languages = self.potree.getlanguages(self.projectcode)
     self.languagecount = len(languages)
-    languageitems = [self.getlanguageitem(languagecode, languagename) for languagecode, languagename in languages]
+    languageitems = [self.getlanguageitem(languagecode, languagename) for languagecode, languagename in languages
+          if "view" in (self.potree.getproject(languagecode, self.projectcode).getrights(session))]
     # rewritten for compatibility with Python 2.3
     # languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["title"])
     languageitems.sort(lambda x,y: locale.strcoll(x["title"], y["title"]))
@@ -331,6 +475,8 @@ class ProjectIndex(pagelayout.PootleNavPage):
     self.nlocalize = session.nlocalize
     self.tr_lang = session.tr_lang
     self.rights = self.project.getrights(self.session)
+    if "view" not in self.rights:
+      raise projects.Rights404Error()
     message = argdict.get("message", "")
     if dirfilter == "":
       dirfilter = None
@@ -371,6 +517,18 @@ class ProjectIndex(pagelayout.PootleNavPage):
     pagetitle = self.localize("%s: Project %s, Language %s", instancetitle, self.project.projectname, self.tr_lang(self.project.languagename))
     templatename = "fileindex"
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
+
+    reqstart = u""
+    if dirfilter:
+      reqstart = unicode(dirfilter)
+
+    asession = self.project.potree.server.alchemysession
+    topsugg = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsMade)).filter(Suggestion.language == self.project.language).filter(Suggestion.project == self.project.project).filter(Suggestion.reviewStatus == 'accepted').filter(Suggestion.filename.like(reqstart+"%")).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
+    topreview = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsReviewed)).filter(Suggestion.language == self.project.language).filter(Suggestion.project == self.project.project).filter(Suggestion.filename.like(reqstart+"%")).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
+    topsub = asession.query(User.name, func.count(Submission.id)).join((Submission, User.submissions)).filter(Submission.language == self.project.language).filter(Submission.project == self.project.project).filter(Submission.filename.like(reqstart+"%")).group_by(User.name).order_by(func.count(Submission.id).desc())[:5]
+   
+    topstats = gentopstats(topsugg, topreview, topsub, self.localize) 
+
     templatevars = {"pagetitle": pagetitle,
         "project": {"code": self.project.projectcode, "name": self.project.projectname},
         "language": {"code": self.project.languagecode, "name": self.tr_lang(self.project.languagename)},
@@ -388,8 +546,15 @@ class ProjectIndex(pagelayout.PootleNavPage):
         "editing": self.editing,
         # stats table headings
         "statsheadings": self.getstatsheadings(),
+        # top users
+        "topstats": topstats, "topstatsheading": self.localize("Top Contributors"),
+        "untranslatedtext": self.localize("%s untranslated words"),
+        "fuzzytext": self.localize("%s fuzzy words"),
+        "complete": self.localize("Complete"),
         # general vars
-        "session": sessionvars, "instancetitle": instancetitle}
+        "session": sessionvars, "instancetitle": instancetitle,
+        "translationlegend": self.gettranslationsummarylegendl10n()
+        }
     pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=80)
     if self.showassigns and "assign" in self.rights:
       self.templatevars["assign"] = self.getassignbox()

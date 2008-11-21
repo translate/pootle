@@ -1,101 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-import pootlepage
+from Pootle.templates import pootlepage
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
 <head>
-  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
   <title py:content="pagetitle">Pootle Admin: ${language.name} ${project.name}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+
+  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
+</head>
+
+<body>
+
+<div id="wrapper">
+<div id="doc">
+    
+  <div py:replace="pootlepage.header(links, session, baseurl, instancetitle)"/>
+
+  <div id="body">
+
+      <div class="module first">
+        <div py:if="message" class="site-message">
+            <div class="info" py:if="message" py:content="XML(message)">Message</div>
+        </div>
+          <div class="hd"> </div>
+          <div class="bd">
+            <h3 class="title" py:content="pagetitle">Pootle Admin: ${language.name} ${project.name}</h3>
+
+            <div class="info">
+                <a href="index.html" py:content="main_link">Project home page</a><br />
+                <a href="?scanpofiles=1" py:content="rescan_files_link">Rescan project files</a><br />
+            </div>
+
+            <div class="intro" py:content="filestyle_text">
+              This is a standard style project (one directory per language).
+            </div>
+
+            <form action="" method="post" name="rightsform" id="rightsform">
+              <h3 class="title" py:content="permissions_title">User Permissions</h3>
+
+              <table cellpadding="1" cellspacing="1">
+                <tr>
+                  <td colspan="1" rowspan="1">
+                    <h3 class="title" py:content="username_title">Username</h3>
+                  </td>
+
+                  <td colspan="1" rowspan="1">
+                    <h3 class="title" py:content="rights_title">Rights</h3>
+                  </td>
+
+                  <td colspan="1" rowspan="1">
+                    <h3 class="title" py:content="remove_title">Remove</h3>
+                  </td>
+                </tr>
+
+                <tr py:for="username in users_with_rights">
+                  <td colspan="1" rowspan="1" py:content="username">username</td>
+
+                  <td colspan="1" rowspan="1">
+                    <select multiple="multiple" name="rights-${username}">
+                      <option py:for="rightcode, rightname in rightnames" py:attrs="value=rightcode, selected=rightcode in rights[username] or None" py:content="rightname">
+                        Right
+                      </option>
+                    </select>
+                    <input type="hidden" name="rights-${username}" value="existence"/>
+                    <input type="hidden" name="allowmultikey" value="rights-${username}"/>
+                  </td>
+
+                  <td colspan="1" rowspan="1">
+                    <span py:if="user_details[username].delete" py:strip="True">
+                      <input type="checkbox" name="rightsremove-${username}"/>
+                      <span py:content="user_details[username].remove_text">Remove username</span>
+                    </span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td colspan="1" rowspan="1">
+                    <select name="rightsnew-username">
+                      <option value="" selected="selected" py:content="adduser_text">(select to add user)</option>
+                      <option py:for="username in users_without_rights" py:attrs="value=username" py:content="user_details[username].description"/>
+                    </select>
+                  </td>
+
+                  <td colspan="1" rowspan="1">
+                    <select multiple="multiple" name="rightsnew">
+                      <option py:for="rightcode, rightname in rightnames" py:attrs="value=rightcode, selected=rightcode in rights.default or None" py:content="rightname">
+                        Right
+                      </option>
+                    </select>
+                    <input type="hidden" name="allowmultikey" value="rightsnew"/>
+                  </td>
+
+                  <td colspan="1" rowspan="1" />
+                </tr>
+
+              </table>
+              <input type="submit" name="doupdaterights" value="${updaterights_text}" />
+            </form>
+          </div>
+          <div class="ft"></div>
+      </div>
+
+  </div><!-- end #body-->
+
+  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)"/>
+	
+</div><!-- end #doc -->
+</div><!-- end #wrapper -->
+
+  <div py:replace="pootlepage.footer(links, baseurl)"/>
+
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+
+  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
+
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
-</head>
 
-<body bgcolor="#FFFFFF">
-  <div id="abovefooter">
-  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
-
-  <div id="content" dir="$uidir" lang="$uilanguage">
-    <h3 class="title" py:content="pagetitle">Pootle Admin: ${language.name} ${project.name}</h3>
-
-    <div class="info">
-      <a href="index.html" py:content="main_link">Project home page</a>
-    </div>
-
-    <div class="intro" py:content="filestyle_text">
-      This is a standard style project (one directory per language).
-    </div>
-
-    <form action="" method="post" name="rightsform" id="rightsform">
-      <h3 class="title" py:content="permissions_title">User Permissions</h3>
-
-      <table cellpadding="1" cellspacing="1">
-        <tr>
-          <td colspan="1" rowspan="1">
-            <h3 class="title" py:content="username_title">Username</h3>
-          </td>
-
-          <td colspan="1" rowspan="1">
-            <h3 class="title" py:content="rights_title">Rights</h3>
-          </td>
-
-          <td colspan="1" rowspan="1">
-            <h3 class="title" py:content="remove_title">Remove</h3>
-          </td>
-        </tr>
-
-        <tr py:for="username in users_with_rights">
-          <td colspan="1" rowspan="1" py:content="username">username</td>
-
-          <td colspan="1" rowspan="1">
-            <select multiple="multiple" name="rights-${username}">
-              <option py:for="rightcode, rightname in rightnames" py:attrs="value=rightcode, selected=rightcode in rights[username] or None" py:content="rightname">
-                Right
-              </option>
-            </select>
-            <input type="hidden" name="allowmultikey" value="rights-${username}"/>
-          </td>
-
-          <td colspan="1" rowspan="1">
-            <span py:if="user_details[username].delete" py:strip="True">
-              <input type="checkbox" name="rightsremove-${username}"/>
-              <span py:content="user_details[username].remove_text">Remove username</span>
-            </span>
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="1" rowspan="1">
-            <select name="rightsnew-username">
-              <option value="" selected="selected" py:content="adduser_text">(select to add user)</option>
-              <option py:for="username in users_without_rights" py:attrs="value=username" py:content="user_details[username].description"/>
-            </select>
-          </td>
-
-          <td colspan="1" rowspan="1">
-            <select multiple="multiple" name="rightsnew">
-              <option py:for="rightcode, rightname in rightnames" py:attrs="value=rightcode, selected=rightcode in rights.default or None" py:content="rightname">
-                Right
-              </option>
-            </select>
-            <input type="hidden" name="allowmultikey" value="rightsnew"/>
-          </td>
-
-          <td colspan="1" rowspan="1" />
-        </tr>
-
-      </table>
-      <input type="submit" name="doupdaterights" value="${updaterights_text}" />
-    </form>
-  </div>
-
-  </div>
-  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
-  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
 </body>
 </html>

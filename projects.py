@@ -44,9 +44,25 @@ import os
 import cStringIO
 import traceback
 import gettext
+import subprocess
+import datetime
 import zipfile
 
+from scripts import hooks
+
+from sqlalchemy import *
+from sqlalchemy.exc import *
+from dbclasses import * 
+
 class RightsError(ValueError):
+  pass
+
+class Rights404Error(ValueError):
+  """Throwing this indicates that the user should not know that
+  this page even exists, and hence a 404 should be returned.  This
+  is *not* a subclass of RightsError, as a RightsError implies that
+  the user should be informed an error has occured, and thus is handled
+  completely differently"""
   pass
 
 class InternalAdminSession:
@@ -94,6 +110,8 @@ class TranslationProject(object):
     self.languagecode = languagecode
     self.projectcode = projectcode
     self.potree = potree
+    self.language = self.potree.languages[languagecode]
+    self.project = self.potree.projects[projectcode]
     self.languagename = self.potree.getlanguagename(self.languagecode)
     self.projectname = self.potree.getprojectname(self.projectcode)
     self.projectdescription = self.potree.getprojectdescription(self.projectcode)
@@ -102,6 +120,7 @@ class TranslationProject(object):
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
     self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
     self.fileext = self.potree.getprojectlocalfiletype(self.projectcode)
+    self.asession = self.potree.server.alchemysession
     # terminology matcher
     self.termmatcher = None
     self.termmatchermtime = None
@@ -182,6 +201,7 @@ class TranslationProject(object):
       username = session.username
     if username is None:
       username = "nobody"
+    #FIXME
     rights = None
     rightstree = getattr(self.prefs, "rights", None)
     if rightstree is not None:
@@ -211,28 +231,43 @@ class TranslationProject(object):
   def getuserswithinterest(self, session):
     """returns all the users who registered for this language and project"""
 
-    def usableuser(user, userprefs):
-      if user in ["__dummy__", "default", "nobody"]:
+    def usableuser(user):
+      if user.username in ["__dummy__", "default", "nobody"]:
         return False
-      return self.languagecode in getattr(userprefs, "languages", [])
+      return self.languagecode in map(lambda l: l.code, getattr(user, "languages", []))
 
     users = {}
-    for username, userprefs in session.loginchecker.users.iteritems():
-      if usableuser(username, userprefs):
+    for user in session.server.alchemysession.query(User).all():
+      if usableuser(user):
         # Let's build a nice descriptive name for use in the interface. It will
         # contain both the username and the full name, if available.
-        name = getattr(userprefs, "name", None)
+        username = getattr(user, "username", None)
+        name = getattr(user, "name", None)
         if name:
           description = "%s (%s)" % (name, username)
         else:
           description = username
-        setattr(userprefs, "description", description)
-        users[username] = userprefs
+        setattr(user, "description", description)
+        users[username] = user
     return users
 
   def getuserswithrights(self):
     """gets all users that have rights defined for this project"""
-    return [username for username, user_rights in getattr(self.prefs, "rights", {}).iteritems()]
+
+    # FIXME This is a bit of a hack to fix the .prefs tendency to split on
+    # periods in usernames; the original idea of just looking at all immediate
+    # children of prefs would return "user@domain" if "user@domain.com" were
+    # listed.  This follows the trail until it finds a string or a unicode,
+    # which should be the rights list
+
+    usernames = []
+    for username, node in getattr(self.prefs, "rights", {}).iteritems():
+      name = username
+      while type(node) != str and type(node) != unicode:
+        nextname, node = node.iteritems().next()
+        name = name + "." + nextname
+      usernames.append(name)
+    return usernames
 
   def setrights(self, username, rights):
     """sets the rights for the given username... (or not-logged-in if username is None)"""
@@ -481,8 +516,13 @@ class TranslationProject(object):
     filename_set = set(self.pofilenames)
     pootlefile_set = set(self.pofiles.keys())
     # add any files that we don't have yet
-    for filename in filename_set.difference(pootlefile_set):
-        self.pofiles[filename] = pootlefile.pootlefile(self, filename)
+    try:
+        for filename in filename_set.difference(pootlefile_set):
+            self.pofiles[filename] = pootlefile.pootlefile(self, filename)
+    except UnicodeDecodeError:
+      print "Unicode Error on file %s" % pofilename
+      raise
+
     # remove any files that have been deleted since initialization
     for filename in pootlefile_set.difference(filename_set):
         del self.pofiles[filename]
@@ -543,10 +583,16 @@ class TranslationProject(object):
     """updates an individual PO file from version control"""
     if "admin" not in self.getrights(session):
       raise RightsError(session.localize("You do not have rights to update files here"))
-    pathname = self.getuploadpath(dirname, pofilename)
     # read from version control
+    pathname = self.getuploadpath(dirname, pofilename)
+    try:
+      pathname = hooks.hook(self.projectcode, "preupdate", pathname)
+    except:
+      pass
+
     if os.path.exists(pathname):
       popath = os.path.join(dirname, pofilename)
+
       currentpofile = self.getpofile(popath)
       # matching current file with BASE version
       # TODO: add some locking here...
@@ -559,6 +605,35 @@ class TranslationProject(object):
     else:
       versioncontrol.updatefile(pathname)
 
+    session.addMessage("Updated file: <em>%s</em>" % pofilename)
+
+    try:
+      hooks.hook(self.projectcode, "postupdate", pathname)
+    except:
+      pass
+
+    if newpofile:
+      # Update po index for new file
+      self.stats = {}
+      for xpofilename in self.pofilenames:
+        self.getpostats(xpofilename)
+        self.pofiles[xpofilename] = pootlefile.pootlefile(self, xpofilename)
+        self.pofiles[xpofilename].statistics.getstats()
+        self.updateindex(self.indexer, xpofilename)
+      self.projectcache = {}
+
+  def runprojectscript(self, scriptdir, target, extraargs = []):
+    currdir = os.getcwd()
+    script = os.path.join(scriptdir, self.projectcode)
+    try:
+      os.chdir(scriptdir)
+      cmd = [script, target]
+      cmd.extend(extraargs)
+      subprocess.call(cmd)
+    except:
+      pass # If something goes wrong, we just continue without worrying
+    os.chdir(currdir)
+
   def commitpofile(self, session, dirname, pofilename):
     """commits an individual PO file to version control"""
     if "commit" not in self.getrights(session):
@@ -567,9 +642,39 @@ class TranslationProject(object):
     stats = self.getquickstats([os.path.join(dirname, pofilename)])
     statsstring = "%d of %d messages translated (%d fuzzy)." % \
         (stats["translated"], stats["total"], stats["fuzzy"])
-    versioncontrol.commitfile(pathname, message="Commit from %s by user %s. %s" %
-        (session.server.instance.title, session.username, statsstring),
-        author="%s <%s>" % (session.prefs.name, session.prefs.email))
+
+    message="Commit from %s by user %s, editing po file %s. %s" % (session.server.instance.title, session.username, pofilename, statsstring)
+    author=session.username
+    fulldir = os.path.split(pathname)[0]
+   
+    try:
+      filestocommit = hooks.hook(self.projectcode, "precommit", pathname, author=author, message=message)
+    except ImportError:
+      # Failed to import the hook - we're going to assume there just isn't a hook to
+      # import.  That means we'll commit the original file.
+      filestocommit = [pathname]
+
+    success = True
+    try:
+      for file in filestocommit:
+        versioncontrol.commitfile(file, message=message, author=author)
+        session.addMessage("Committed file: <em>%s</em>" % file)
+    except Exception, e:
+      print "Failed to commit files: %s" % e
+      session.addMessage("Failed to commit file: %s" % e)
+      success = False 
+    try:
+      hooks.hook(self.projectcode, "postcommit", pathname, success=success)
+    except:
+      pass
+
+  def initialize(self, session, languagecode):
+    try:
+      projectdir = os.path.join(self.potree.podirectory, self.projectcode)
+      hooks.hook(self.projectcode, "initialize", projectdir, languagecode)
+      self.scanpofiles()
+    except Exception, e:
+      print "Failed to initialize (%s): %s" % (languagecode, e)
 
   def converttemplates(self, session):
     """creates PO files from the templates"""
@@ -1127,7 +1232,6 @@ class TranslationProject(object):
       pofile = self.pofiles[pofilename]
       if 0 <= item < len(pofile.statistics.getunitstats()['sourcewordcount']):
         wordcount += pofile.statistics.getunitstats()['sourcewordcount'][item]
-    print "projects::countwords()"
     return wordcount
 
   def getpomtime(self):
@@ -1196,14 +1300,32 @@ class TranslationProject(object):
     units = [pofile.units[index] for index in pofile.total[max(itemstart,0):itemstop]]
     return units
 
-  def updatetranslation(self, pofilename, item, newvalues, session):
+  def updatetranslation(self, pofilename, item, newvalues, session, suggObj=None):
     """updates a translation with a new value..."""
     if "translate" not in self.getrights(session):
       raise RightsError(session.localize("You do not have rights to change translations here"))
     pofile = self.pofiles[pofilename]
+    pofile.pofreshen()
     pofile.track(item, "edited by %s" % session.username)
-    languageprefs = getattr(session.instance.languages, self.languagecode, None)
-    pofile.updateunit(item, newvalues, session.prefs, languageprefs)
+    languageprefs = getattr(self.potree.languages, self.languagecode, None)
+    
+    source = pofile.getitem(item).getsource()
+
+    s = Submission()
+    s.creationTime = datetime.datetime.utcnow()
+
+    s.language = self.language 
+    s.project = self.project
+    s.filename = pofile.pofilename
+    s.source = unicode(source)
+    s.trans = unicode(newvalues['target'])
+
+    if session.user != None:
+      s.submitter = session.user
+
+    s.fromsuggestion = suggObj
+
+    pofile.updateunit(item, newvalues, session.user, languageprefs)
     self.updateindex(self.indexer, pofilename, [item])
 
   def suggesttranslation(self, pofilename, item, trans, session):
@@ -1211,8 +1333,33 @@ class TranslationProject(object):
     if "suggest" not in self.getrights(session):
       raise RightsError(session.localize("You do not have rights to suggest changes here"))
     pofile = self.getpofile(pofilename)
-    pofile.track(item, "suggestion made by %s" % session.username)
-    pofile.addsuggestion(item, trans, session.username)
+    source = pofile.getitem(item).getsource()
+
+    s = Suggestion()
+    s.creationTime = datetime.datetime.utcnow()
+
+    s.language = self.language 
+    s.project = self.project
+    s.filename = pofile.pofilename
+    s.source = unicode(source)
+    s.trans = unicode(trans)
+
+    s.reviewStatus = "pending"
+
+    # TODO This is a hack to get around the following issue: When one logs
+    # out, the user is set to None (since the session is no longer open),
+    # but username remains for this query; if someone POSTSs a suggestion
+    # while logging out, it will thus go into the .pending file as one of
+    # that person's submissions, but into the database as anonymous.  This
+    # fixes it by making it an anonymous suggestion in the file.
+    if session.user != None:
+      s.suggester = session.user
+      uname = session.user.username
+    else:
+      uname = None
+
+    pofile.track(item, "suggestion made by %s" % uname)
+    pofile.addsuggestion(item, trans, uname)
 
   def getsuggestions(self, pofile, item):
     """find all the suggestions submitted for the given (pofile or pofilename) and item"""
@@ -1222,6 +1369,35 @@ class TranslationProject(object):
     suggestpos = pofile.getsuggestions(item)
     return suggestpos
 
+  def markSuggestion(self, pofile, item, newtrans, session, suggester, status):
+    """Marks the suggestion specified by the parameters with the given status,
+    and returns that suggestion object"""
+    source = pofile.getitem(item).getsource()
+    
+    query = self.asession.query(Suggestion)
+    query = query.filter_by(language=self.language)
+    query = query.filter_by(project=self.project)
+    query = query.filter_by(source=unicode(source))
+    query = query.filter_by(trans=unicode(newtrans))
+    query = query.filter_by(reviewStatus="pending")
+
+    user = None
+    if suggester != None:
+      user = self.asession.query(User).filter_by(username=suggester).first()
+    query = query.filter_by(suggester=user)
+
+    sugg = query.first()
+    if sugg != None:
+      # If you want to save rejected suggestions in the database, uncomment the following lines and comment out the delete line
+      #sugg.reviewer = session.user
+      #sugg.reviewStatus = status
+      #sugg.reviewTime = datetime.datetime.utcnow()
+      self.asession.delete(sugg)
+    else:
+      print "No database entry for suggestion found; database integrity issue detected!"
+
+    return sugg
+
   def acceptsuggestion(self, pofile, item, suggitem, newtrans, session):
     """accepts the suggestion into the main pofile"""
     if not "review" in self.getrights(session):
@@ -1229,10 +1405,15 @@ class TranslationProject(object):
     if isinstance(pofile, (str, unicode)):
       pofilename = pofile
       pofile = self.getpofile(pofilename)
-    pofile.track(item, "suggestion by %s accepted by %s" % (self.getsuggester(pofile, item, suggitem), session.username))
-    pofile.deletesuggestion(item, suggitem, newtrans)
-    self.updatetranslation(pofilename, item, {"target": newtrans, "fuzzy": False}, session)
+    suggester = self.getsuggester(pofile, item, suggitem)
 
+    suggObj = self.markSuggestion(pofile, item, newtrans, session, suggester, "accepted")
+
+    pofile.track(item, "suggestion by %s accepted by %s" % (suggester, session.username))
+    pofile.deletesuggestion(item, suggitem, newtrans)
+    self.updatetranslation(pofilename, item, {"target": newtrans, "fuzzy": False}, session, suggObj)
+
+  
   def getsuggester(self, pofile, item, suggitem):
     """returns who suggested the given item's suggitem if recorded, else None"""
     if isinstance(pofile, (str, unicode)):
@@ -1247,7 +1428,14 @@ class TranslationProject(object):
     if isinstance(pofile, (str, unicode)):
       pofilename = pofile
       pofile = self.getpofile(pofilename)
-    pofile.track(item, "suggestion by %s rejected by %s" % (self.getsuggester(pofile, item, suggitem), session.username))
+    suggester = self.getsuggester(pofile, item, suggitem)
+
+    # Deletes the suggestion from the database
+    suggObj = self.markSuggestion(pofile, item, newtrans, session, suggester, "rejected")
+
+    pofile.track(item, "suggestion by %s rejected by %s" % (suggester, session.username))
+
+    # Deletes the suggestion from the .pending file
     pofile.deletesuggestion(item, suggitem, newtrans)
 
   def gettmsuggestions(self, pofile, item):

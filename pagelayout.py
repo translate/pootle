@@ -31,11 +31,17 @@ def localize_links(session):
   links["admin"] = session.localize("Admin")
   links["doc"] = session.localize("Docs & help")
   links["doclang"] = getdoclang(session.language)
-  links["logout"] = session.localize("Log out")
-  links["login"] = session.localize("Log in")
+  #links["logout"] = session.localize("Log out")
+  #links["login"] = session.localize("Log in")
+  links["about"] = session.localize("About")
   #l10n: Verb, as in "to register"
   links["register"] = session.localize("Register")
   links["activate"] = session.localize("Activate")
+
+  # accessibility links
+  links["skip_nav"] = session.localize("skip to navigation")
+  links["switch_language"] = session.localize("switch language")
+
   return links
 
 def getdoclang(language):
@@ -74,19 +80,53 @@ def completetemplatevars(templatevars, session, bannerheight=135):
     templatevars["instancetitle"] = getattr(session.instance, "title", session.localize("Pootle Demo"))
   if not "session" in templatevars:
     templatevars["session"] = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
+  if not "unlocalizedurl" in templatevars:
+    templatevars["unlocalizedurl"] = getattr(session.instance, "baseurl", "/")
+    if not templatevars["unlocalizedurl"].endswith("/"):
+    	templatevars["unlocalizedurl"] += "/"
   if not "baseurl" in templatevars:
-    templatevars["baseurl"] = getattr(session.instance, "baseurl", "/")
+    templatevars["baseurl"] = getattr(session, "localizedurl", "/")
     if not templatevars["baseurl"].endswith("/"):
     	templatevars["baseurl"] += "/"
   if not "enablealtsrc" in templatevars:
      templatevars["enablealtsrc"] = getattr(session.instance, "enablealtsrc", False)
-  templatevars["logo_alttext"] = session.localize("Pootle Logo")
   templatevars["aboutlink"] = session.localize("About this Pootle server")
   templatevars["uilanguage"] = weblanguage(session.language)
   templatevars["uidir"] = languagedir(session.language)
+  # TODO FIXME cssaligndir is deprecated?
+  if templatevars["uidir"] == 'ltr':  
+    templatevars["cssaligndir"] = "left"
+  else:
+    templatevars["cssaligndir"] = "right"
+  templatevars["username_title"] = session.localize("Username")
+  try:
+    templatevars["username"] = templatevars["username"]
+  except:
+    templatevars["username"] = "" 
+  templatevars["password_title"] = session.localize("Password")
+  templatevars["login_text"] = session.localize('Log in')
+  templatevars["logout_text"] = session.localize('Log out')
+  templatevars["register_text"] = session.localize('Register')
+  templatevars["canregister"] = hasattr(session.instance, "hash")
   templatevars["links"] = localize_links(session)
+  templatevars["current_url"] = session.currenturl
+  if "?" in session.currenturl: 
+    templatevars["logout_link"] = session.currenturl+"&islogout=1"
+  else:
+    templatevars["logout_link"] = session.currenturl+"?islogout=1"
+  if "user" not in templatevars:
+    templatevars["user"] = session.user
   if "search" not in templatevars:
     templatevars["search"] = None
+
+  # Messaging system
+  if "message" not in templatevars or len(templatevars['message']) == 0:
+    templatevars['message'] = ''
+  else:
+    templatevars['message'] = templatevars['message'] + '<br />'
+  for message in session.getMessages():
+    templatevars['message'] = templatevars['message'] + message + '<br />'
+
 
 class PootlePage:
   """the main page"""
@@ -116,6 +156,15 @@ class PootlePage:
         item.setpolarity(polarity)
       polarity = not polarity
     return itemlist
+  
+  def gettranslationsummarylegendl10n(self):
+    """Returns a dictionary of localized headings.  This is only used because we
+    can't do L10n directly in our templates. :("""
+    headings = {"translated":     self.localize("Translations are complete"),
+                "fuzzy":        self.localize("Translations need to be checked (they are marked fuzzy)"),
+                "untranslated": self.localize("Untranslated") }
+    return headings
+
 
 class PootleNavPage(PootlePage):
   def makenavbarpath_dict(self, project=None, session=None, currentfolder=None, language=None, argdict=None, dirfilter=None):
@@ -249,7 +298,8 @@ class PootleNavPage(PootlePage):
                 "total": self.localize("Total"),
                 "totalwords": self.localize("Total words"),
                 # l10n: noun. The graphical representation of translation status
-                "graph": self.localize("Graph")}
+                "progress": self.localize("Progress"),
+                "summary": self.localize("Summary")}
     return headings
 
   def getstats(self, project, projectstats):
@@ -276,7 +326,7 @@ class PootleNavPage(PootlePage):
     for key in wanted:
       percentkey = key + "percentage"
       wordkey = key + "sourcewords"
-      gotten[percentkey] = gotten[wordkey]*100/max(gotten["totalsourcewords"], 1)
+      gotten[percentkey] = int(gotten[wordkey]*100/max(gotten["totalsourcewords"], 1))
 
     for key in gotten:
       if key.find("check-") == 0:

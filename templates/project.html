@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-import navbar, pootlepage
+from Pootle.templates import navbar, pootlepage
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
 <head>
-  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
   <title py:content="pagetitle">Pootle: ${project.name}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="description" content="${meta_description}" />
-  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+
+  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-  <!-- the 'sorttable.js' script depends on the variable 'baseurl' -->
-  <script type="text/javascript"> var baseurl = "${baseurl}"; </script>
-  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
 </head>
 
-<body bgcolor="#FFFFFF">
-  <div id="abovefooter">
-  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
+<body>
 
-  <div id="content" dir="$uidir" lang="$uilanguage">
-    <div class="navbar">
-      <img src="${baseurl}images/folder.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+<div id="wrapper">
+<div id="doc">
+    
+  <div py:replace="pootlepage.header(links, session, baseurl, instancetitle)"/>
+
+  <div id="body">
+
+    <div py:if="message" class="site-message">
+        <div class="info" py:if="message" py:content="XML(message)">Message</div>
+    </div>
+
+    <div id="nav-secondary">
 
       <h3 class="title">[ <a href="${baseurl}projects/${project.code}/" py:content="project.name">Project</a> ]</h3>
 
@@ -39,37 +38,64 @@ import navbar, pootlepage
       </div>
     </div>
 
-    <div class="intro" py:content="XML(description)">
-      This is the project description
+    <div class="site-message">
+        <div class="info" py:content="XML(description)">
+            This is the project description
+        </div>
     </div>
 
-      <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
-        <thead>
-          <tr>
-            <th class="stats">${statsheadings.name}</th>
-            <th class="stats">${statsheadings.translated}</th>
-	    <th class="stats" title="${statsheadings.translatedpercentage}">%</th>
-            <th class="stats">${statsheadings.fuzzy}</th>
-            <th class="stats" title="${statsheadings.fuzzypercentage}">%</th>
-            <th class="stats">${statsheadings.untranslated}</th>
-            <th class="stats" title="${statsheadings.untranslatedpercentage}">%</th>
-            <th class="stats">${statsheadings.total}</th>
-            <th class="stats">${statsheadings.graph}</th>
-        </tr>
-      </thead>
-      <tbody class="stats">
-        <div py:for="item in languages" py:strip="True">
-          <tr  class="item item-${item.parity}">
-            <div py:replace="navbar.itemdata(item, uidir, uilanguage, baseurl)"/>
-          </tr>
-        </div>
-      </tbody>
-    </table>
+      <div class="module-primary">
+          <div class="hd">
+          </div>
+          <div class="bd">
+              <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th class="stats">${statsheadings.name}</th>
+                    <th class="stats">${statsheadings.progress}</th>
+                    <th class="stats">${statsheadings.summary}</th>
+                    <th class="stats">${statsheadings.totalwords}</th>
+                </tr>
+                </thead>
+                <tbody class="stats">
+                  <div py:for="item in languages" py:strip="True">
+                    <tr  class="item ${item.parity}">
+                      <div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
+                    </tr>
+                  </div>
+                </tbody>
+              </table>
+          </div>
+          <div class="ft"></div>
+      </div>
 
-  </div>
+      <div class="module first clear">
+          <div class="hd"></div>
+          <div class="bd">
+              <div py:replace="pootlepage.translationsummarylegend(translationlegend)" />
+          </div>
+          <div class="ft"></div>
+      </div>
 
-  </div>
-  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
-  <div py:replace="pootlepage.about(aboutlink, uidir, uilanguage, baseurl)"/>
+      <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
+
+  </div><!-- end #body-->
+
+  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)"/>
+	
+</div><!-- end #doc -->
+</div><!-- end #wrapper -->
+
+  <div py:replace="pootlepage.footer(links, baseurl)"/>
+
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+
+  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
+
+  <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+  <![endif]-->
+
 </body>
 </html>

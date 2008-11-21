@@ -65,15 +65,19 @@ class ServerTester:
 
     def fetch_page(self, relative_url):
         """Utility method that fetches a page from the webserver installed in the service."""
-        url = "%s/%s" % (self.baseaddress, relative_url)
-        print "fetching", url
+        url = "%s%s" % (self.baseaddress, relative_url)
+        print "Fetching: ", url
         stream = self.urlopen(url)
         contents = stream.read()
         return contents
 
     def login(self):
         """Utility method that calls the login method with username and password."""
-        return self.fetch_page("?islogin=1&username=testuser&password=")
+        return self.fetch_page("?islogin=1&username=%s&password=" % (self.testuser.username))
+
+    def logout(self):
+        """Utility method that calls the logout method."""
+        return self.fetch_page("?islogout=1")
 
     def post_request(self, relative_url, contents, headers):
         """Utility method that posts a request to the webserver installed in the service."""
@@ -95,11 +99,60 @@ class ServerTester:
         else:
             self.urlopen = ClientCookie.urlopen
 
+    def setup_database(self, method):
+        """Create a new database to test with."""
+        import os, md5
+        from dbclasses import Language, Project, User
+        from initdb import attempt, configDB
+
+        self.alchemysess = configDB(self.prefs.Pootle)
+
+        # Populate database with test data
+        testproject = Project(u"testproject")
+        testproject.fullname = u"Pootle Unit Tests"
+        testproject.description = "Test Project for verifying functionality"
+        testproject.checkstyle = "standard"
+        testproject.localfiletype = "po"
+        attempt(self.alchemysess, testproject)
+
+        zxx = Language("zxx")
+        zxx.fullname = u'Test Language'
+        zxx.nplurals = '1'
+        zxx.pluralequation ='0'
+        attempt(self.alchemysess, zxx)
+
+        adminuser = User(u"adminuser")
+        adminuser.name=u"Administrator"
+        adminuser.activated="True"
+        adminuser.passwdhash=md5.new("").hexdigest()
+        adminuser.logintype="hash"
+        adminuser.siteadmin=True
+        attempt(self.alchemysess, adminuser)
+
+        normaluser = User(u"normaluser")
+        normaluser.name=u"Norman the Normal User"
+        normaluser.activated="True"
+        normaluser.passwdhash=md5.new("").hexdigest()
+        normaluser.logintype="hash"
+        normaluser.siteadmin=False
+        attempt(self.alchemysess, normaluser)
+
+        self.alchemysess.flush()
+
     def setup_prefs(self, method):
         """Sets up any extra preferences required."""
+        from dbclasses import User
         if hasattr(method, "userprefs"):
+            if method.userprefs['rights.siteadmin']:
+                self.testuser = self.alchemysess.query(User).filter(User.username == u'adminuser').first()
+            else:
+                self.testuser = self.alchemysess.query(User).filter(User.username == u'normaluser').first()
+
             for key, value in method.userprefs.iteritems():
-                self.prefs.setvalue("Pootle.users.testuser." + key, value)
+                self.prefs.setvalue("Pootle.users.%s.%s" % (self.testuser.username, key), value)
+        else:
+            self.testuser = self.alchemysess.query(User).filter(User.username == u'normaluser').first()
+        self.alchemysess.close()
 
     def setup_testproject_dir(self, perms=None):
         """Sets up a blank test project directory."""
@@ -112,34 +165,56 @@ class ServerTester:
         os.mkdir(podir)
         if perms:
             prefsfile = file(os.path.join(projectdir, lang, "pootle-%s-%s.prefs" % (projectname, lang)), 'w')
-            prefsfile.write("# Prefs file for Pootle unit tests\nrights:\n  testuser = '%s'\n" % perms)
+            prefsfile.write("# Prefs file for Pootle unit tests\nrights:\n  %s = '%s'\n" % (self.testuser.username, perms))
             prefsfile.close()
         language_page = self.fetch_page("%s/%s/" % (lang, projectname))
 
         assert "Test Language" in language_page
-        assert "Pootle Unit Tests" in language_page
         assert "0 files, 0/0 words (0%) translated" in language_page
         return podir
+
+    def teardown_method(self, method):
+      self.cookiejar.clear()
+      pass
 
     # Test methods
     ###############
     def test_login(self):
         """Checks that login works and sets cookies."""
-        contents = self.login()
+        # make sure we start logged out
+        contents = self.fetch_page("")
+        assert "Log in" in contents
+
         # check login leads us to a normal page
-        assert "Log In" not in contents
+        contents = self.login()
+        assert "Log in" not in contents
+
         # check login is retained on next fetch
         contents = self.fetch_page("")
-        assert "Log In" not in contents
+        assert "Log in" not in contents
+
+    def test_logout(self):
+        """Checks that logout works after logging in."""
+        # make sure we start logged in
+        contents = self.login()
+        assert "Log out" in contents
+
+        # check login leads us to a normal page
+        contents = self.logout()
+        assert "Log in" in contents
 
     def test_non_admin_rights(self):
         """Checks that, without admin rights, we can't access the admin screen."""
-        contents = self.login()
-        adminlink = '<a href="/admin/">Admin</a>' in contents
-        assert not adminlink
+
         contents = self.fetch_page("admin/")
-        denied = "You do not have the rights to administer pootle" in contents
-        assert denied
+        assert "You must log in to administer Pootle" in contents
+
+        contents = self.login()
+        assert not '<a href="/admin/">Admin</a>' in contents
+
+        contents = self.fetch_page("admin/")
+        assert "You do not have the rights to administer pootle" in contents
+    test_non_admin_rights.userprefs = {"rights.siteadmin": False}
 
     def test_admin_rights(self):
         """Checks that admin rights work properly."""
@@ -188,7 +263,7 @@ class ServerTester:
         """Tests that we can add a language to a project, then access its page when there are no files."""
         self.login()
 
-        language_list = self.fetch_page("projects/testproject/")
+        language_list = self.fetch_page("projects/testproject/index.html")
         assert "Test Language" not in language_list
         assert "Pootle Unit Tests" in language_list
 
@@ -270,7 +345,7 @@ class ServerTester:
         self.login()
 
         podir = self.setup_testproject_dir(perms="view, suggest")
-        tree = potree.POTree(self.prefs.Pootle)
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         po1contents = '#: test.c\nmsgid "test"\nmsgstr ""\n'
         open(os.path.join(podir, "test_upload.po"), "w").write(po1contents)
@@ -295,7 +370,7 @@ class ServerTester:
         self.login()
 
         podir = self.setup_testproject_dir(perms="view, translate, overwrite")
-        tree = potree.POTree(self.prefs.Pootle)
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         po1contents = '#: test.c\nmsgid "test"\nmsgstr ""\n'
         open(os.path.join(podir, "test_upload.po"), "w").write(po1contents)
@@ -354,7 +429,7 @@ class ServerTester:
         self.login()
 
         podir = self.setup_testproject_dir(perms="view, translate")
-        tree = potree.POTree(self.prefs.Pootle)
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         po1contents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
         open(os.path.join(podir, "test_existing.po"), "w").write(po1contents)
@@ -370,7 +445,7 @@ class ServerTester:
         # NOTE: this is what we do currently: any altered strings become suggestions.
         # It may be a good idea to change this
         mergedcontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
-        suggestedcontents = '#: test.c\nmsgid ""\n"_: suggested by testuser\\n"\n"test"\nmsgstr "rested"\n'
+        suggestedcontents = '#: test.c\nmsgid ""\n"_: suggested by adminuser\\n"\n"test"\nmsgstr "rested"\n'
         pofile_storename = os.path.join(podir, "test_existing.po")
         assert os.path.isfile(pofile_storename)
         assert open(pofile_storename).read().find(mergedcontents) >= 0
@@ -388,7 +463,7 @@ class ServerTester:
         self.login()
 
         podir = self.setup_testproject_dir(perms="view, translate")
-        tree = potree.POTree(self.prefs.Pootle)
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         pocontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
         open(os.path.join(podir, "test_existing.po"), "w").write(pocontents)
@@ -424,7 +499,7 @@ class ServerTester:
         # NOTE: this is what we do currently: any altered strings become suggestions.
         # It may be a good idea to change this
         mergedcontents = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
-        suggestedcontents = '#: test.c\nmsgid ""\n"_: suggested by testuser\\n"\n"test"\nmsgstr "rested"\n'
+        suggestedcontents = '#: test.c\nmsgid ""\n"_: suggested by adminuser\\n"\n"test"\nmsgstr "rested"\n'
         pofile_storename = os.path.join(podir, "test_existing.po")
         assert os.path.isfile(pofile_storename)
         assert open(pofile_storename).read().find(mergedcontents) >= 0
@@ -452,7 +527,7 @@ class ServerTester:
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
 
-        tree = potree.POTree(self.prefs.Pootle)
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         pofile = project.getpofile("test_upload.po")
         assert str(pofile.units[1]) == expected_pocontents
@@ -472,7 +547,7 @@ class ServerTester:
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
 
-        tree = potree.POTree(self.prefs.Pootle)
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         pofile = project.getpofile("test_upload.po")
         assert str(pofile.units[1]) == expected_pocontents
@@ -492,7 +567,7 @@ class ServerTester:
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
 
-        tree = potree.POTree(self.prefs.Pootle)
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         pofile = project.getpofile("test_upload.po")
         assert str(pofile.units[1]) == expected_pocontents
@@ -508,7 +583,7 @@ class ServerTester:
 
         # Fetch the page and check that the fuzzy checkbox is NOT checked.
         translatepage = self.fetch_page("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
-        assert '<input class="unfuzzy" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in translatepage
+        assert '<input class="fuzzycheck" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in translatepage
 
         fields = {"orig-pure0.0": "fuzzy", "trans0": "wuzzy", "submit0": "submit", "fuzzy0": "on", "pofilename": "test_fuzzy.po"}
         content_type, post_contents = encode_multipart_formdata(fields.items(), [])
@@ -517,9 +592,9 @@ class ServerTester:
 
         # Fetch the page again and check that the fuzzy checkbox IS checked.
         translatepage = self.fetch_page("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
-        assert '<input checked="checked" name="fuzzy0" accesskey="f" type="checkbox" id="fuzzy0" class="unfuzzy" />' in translatepage
+        assert '<input checked="checked" name="fuzzy0" accesskey="f" type="checkbox" id="fuzzy0" class="fuzzycheck" />' in translatepage
 
-        tree = potree.POTree(self.prefs.Pootle)
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         pofile = project.getpofile("test_fuzzy.po")
         expected_pocontents = '#: test.c\n#, fuzzy\nmsgid "fuzzy"\nmsgstr "wuzzy"\n'
@@ -534,8 +609,8 @@ class ServerTester:
 
         # Fetch the page once more and check that the fuzzy checkbox is NOT checked.
         translatepage = self.fetch_page("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
-        assert '<input class="unfuzzy" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in translatepage
-        tree = potree.POTree(self.prefs.Pootle)
+        assert '<input class="fuzzycheck" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in translatepage
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         pofile = project.getpofile("test_fuzzy.po")
         assert not pofile.units[1].isfuzzy()
@@ -555,7 +630,7 @@ class ServerTester:
         headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
         translatepage = self.post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
 
-        tree = potree.POTree(self.prefs.Pootle)
+        tree = potree.POTree(self.prefs.Pootle, self.server)
         project = projects.TranslationProject("zxx", "testproject", tree)
         pofile = project.getpofile("test_upload.po")
         assert str(pofile.units[1]) == expected_pocontents
@@ -567,15 +642,26 @@ class ServerTester:
         podir = self.setup_testproject_dir(perms="view, translate")
         pofile_storename = os.path.join(podir, "test_nav_url.po")
         pocontents = '#: test.c\nmsgid "test1"\nmsgstr "rest"\n'
-        pocontents += '\n#. Second Unit\nmsgid "test2"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test2"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test3"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test4"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test5"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test6"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test7"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test8"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test9"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test10"\nmsgstr "rest2"\n'
+        pocontents += '\nmsgid "test11"\nmsgstr "rest2"\n'
         open(pofile_storename, "w").write(pocontents)
 
-        self.prefs.setvalue("Pootle.users.testuser.viewrows", 1)
+        # Mozootle can't currently use preferences set like this, so commented
+        # out for now:
+        #self.prefs.setvalue("Pootle.users.testuser.viewrows", 1)
         translatepage = self.fetch_page("zxx/testproject/test_nav_url.po?translate=1&view=1")
         patterns = re.findall('<a href=".(.*)".*Next 1.*</a>', translatepage)
         parameters = patterns[0].split('&amp;')
         assert 'pofilename=test_nav_url.po' in parameters
-        assert 'item=1' in parameters
+        assert 'item=10' in parameters
 
     def test_search(self):
         """Test the searching functionality when results are and are not expected."""
@@ -614,6 +700,7 @@ def MakeServerTester(baseclass):
     """Makes a new Server Tester class using the base class to setup webserver etc."""
     class TestServer(baseclass, ServerTester):
         def setup_method(self, method):
+            ServerTester.setup_database(self, method)
             ServerTester.setup_prefs(self, method)
             baseclass.setup_method(self, method)
             ServerTester.setup_cookies(self)

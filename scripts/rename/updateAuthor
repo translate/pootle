@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Special script run after every successful SVN commit; this will update
+# svn:author with whoever was listed in translate:author
+
+AUTHOR=$(svn propget --revprop -rHEAD translate:author $1)
+
+svn propset svn:author $AUTHOR --revprop -rHEAD $1 

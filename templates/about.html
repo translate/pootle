@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-import pootlepage
+from Pootle.templates import pootlepage
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
 <head>
-  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st September 2004), see www.w3.org" />
 
-  <title>${pagetitle}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title py:content="pagetitle">Pootle</title>
+
   <meta name="description" content="${meta_description}" />
   <meta name="keywords" content="${', '.join(keywords)}" />
-  <link rel="stylesheet" type="text/css" href="${baseurl}pootle.css" />
+  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
 </head>
 
-<body bgcolor="#FFFFFF">
-  <div py:replace="pootlepage.banner(instancetitle, links, session, uidir, uilanguage, baseurl)"/>
+<body>
 
-  <div id="content" dir="$uidir" lang="$uilanguage">
-    <div class="contents">
-      <h3 class="title" py:content="pagetitle">Pootle</h3>
+<div id="wrapper">
+<div id="doc">
+    
+  <div py:replace="pootlepage.header(links, session, baseurl, instancetitle)"/>
 
-      <div class="intro" py:content="XML(description)">
-        this is a demo installation of pootle
+  <div id="body">
+
+      <div py:if="message" class="site-message">
+          <div class="info" py:if="message" py:content="XML(message)">Message</div>
       </div>
 
-      <h3 class="title" py:content="abouttitle">About Pootle</h3>
+      <h1 py:content="XML(description)">this is a demo installation of pootle</h1>
+
+      <h2 class="title" py:content="abouttitle">About Pootle</h2>
 
       <div class="info" py:content="XML(introtext)">
         <strong>Pootle</strong> is a simple web portal that should allow you to <strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, you
@@ -47,7 +47,7 @@ import pootlepage
         "http://www.thechestnut.com/flumps.htm">this</a>.
       </div>
 
-      <h3 class="title" py:content="versiontitle">Versions</h3>
+      <h2 class="title" py:content="versiontitle">Versions</h2>
 
       <div class="info" py:content="XML(versiontext)">
         This site is running:<br />
@@ -56,9 +56,21 @@ import pootlepage
         jToolkit<br />
         Python
       </div>
-    </div>
-  </div>
+    </div><!-- end #body-->
 
-  <div py:replace="pootlepage.user_links(links, session, uidir, uilanguage, baseurl)"/>
+  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)"/>
+	
+</div><!-- end #doc -->
+</div><!-- end #wrapper -->
+
+  <div py:replace="pootlepage.footer(links, baseurl)"/>
+
+  <script src="/js/jquery.min.js" type="text/javascript"></script>
+  <script src="/js/script.js"></script>
+
+  <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+  <![endif]-->
+
 </body>
 </html>
