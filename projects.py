@@ -1014,10 +1014,14 @@ class TranslationProject(object):
     def do_search(indexer):
       searchparts = []
       if search.searchtext:
-        # Generate a list for the query based on the selected fields
-        querylist = [(f, search.searchtext) for f in search.searchfields]
-        textquery = indexer.make_query(querylist, False)
-        searchparts.append(textquery)
+        # Split the search expression into single words. Otherwise xapian and
+        # lucene would interprete the whole string as an "OR" combination of
+        # words instead of the desired "AND".
+        for word in search.searchtext.split():
+          # Generate a list for the query based on the selected fields
+          querylist = [(f, word) for f in search.searchfields]
+          textquery = indexer.make_query(querylist, False)
+          searchparts.append(textquery)
       if search.dirfilter:
         pofilenames = self.browsefiles(dirfilter=search.dirfilter)
         filequery = indexer.make_query([("pofilename", pofilename) for pofilename in pofilenames], False)
