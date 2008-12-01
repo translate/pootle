@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-03-12 21:39+0000\n"
-"Last-Translator: Dotan <kamberd@yahoo.com>\n"
+"PO-Revision-Date: 2008-10-24 07:55+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"X-Generator: Pootle 1.2.0-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -73,7 +73,7 @@ msgstr "דף הבית"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "דף ניהול שפות ה־Pootle"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -110,11 +110,11 @@ msgstr "(מספר צורות הרבים)"
 
 #: adminpages.py:97 indexpage.py:225
 msgid "Plural Equation"
-msgstr ""
+msgstr "משוואת הרבים"
 
 #: adminpages.py:97
 msgid "(plural equation)"
-msgstr ""
+msgstr "(משוואת הרבים)"
 
 #: adminpages.py:98
 msgid "Remove Language"
@@ -132,7 +132,7 @@ msgstr "רגיל"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "עמוד ניהול הפרוייקטים ב־Pootle"
 
 #: adminpages.py:151
 msgid "Project Code"
@@ -152,11 +152,11 @@ msgstr "(תיאור הפרויקט)"
 
 #: adminpages.py:155
 msgid "Checker Style"
-msgstr ""
+msgstr "סגנון הבודק"
 
 #: adminpages.py:156
 msgid "File Type"
-msgstr ""
+msgstr "סוג קובץ"
 
 #: adminpages.py:157
 msgid "Create MO Files"
@@ -168,7 +168,7 @@ msgstr "הסרת פרויקט"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "עמוד ניהול המשתמשים ב־Pootle"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -282,7 +282,7 @@ msgstr "עידכון הרשאות"
 
 #: indexpage.py:58
 msgid "About Pootle"
-msgstr ""
+msgstr "אודות Pootle "
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:60
@@ -293,6 +293,10 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
+"<strong>Pootle</strong> הינו פורטל רשת פשוט האמור לאפשר לך "
+"<strong>לתרגם</strong>! מאחר ו־Pootle הינו <strong>תוכנה חופשית</strong>, "
+"תוכל להוריד אותו ולהריץ עותק ממנו משלך אם תרצה. כמו כן תוכל לסייע על ידי "
+"השתתפות בפיתוח בדרכים שונות (אינך דרוש לדעת לתכנת)."
 
 #: indexpage.py:61
 msgid ""
@@ -300,6 +304,9 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
+"הפרוייקט Pootle עצמו מתארח בכתובת <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> שם "
+"תוכל למצוא את כל הפרטים אודות קוד המקור, רשימות הדיוור וכו'."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -315,7 +322,7 @@ msgstr ""
 
 #: indexpage.py:65
 msgid "Versions"
-msgstr ""
+msgstr "גרסאות"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -325,19 +332,21 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
+"אתר זה מריץ:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br "
+"/>Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
 #: indexpage.py:133
 #, python-format
 msgid "User Page for: %s"
-msgstr ""
+msgstr "עמוד המשתמש עבור: %s "
 
 #: indexpage.py:135
 msgid "Change options"
-msgstr ""
+msgstr "שנה אפשרויות"
 
 #: indexpage.py:136
 msgid "Admin page"
-msgstr ""
+msgstr "עמוד הניהול"
 
 #: indexpage.py:137 projects.py:149
 msgid "Administrate"
@@ -345,18 +354,18 @@ msgstr "ניהול"
 
 #: indexpage.py:138
 msgid "Quick Links"
-msgstr ""
+msgstr "קישורים מהירים"
 
 #: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
-msgstr ""
+msgstr "נא לחץ על 'שנה אפשרויות' ובחר בכמה שפות ופרוייקטים"
 
 #: indexpage.py:199
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "פרוייקט %d, ממוצע %d%% מתורגמים"
+msgstr[1] "%d פרוייקטים, ממוצע %d%% מתורגמים"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -364,7 +373,7 @@ msgstr[1] ""
 #: indexpage.py:205 indexpage.py:268
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
 msgid "Admin"
@@ -372,18 +381,18 @@ msgstr "מנהל"
 
 #: indexpage.py:221
 msgid "Language Code"
-msgstr ""
+msgstr "קוד השפה"
 
 #: indexpage.py:222
 msgid "Language Name"
-msgstr ""
+msgstr "שם השפה"
 
 #: indexpage.py:260
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "שפה %d, ממוצע %d%% מתורגמים"
+msgstr[1] "%d שפות, ממוצע %d%% מתורגמים"
 
 #: indexpage.py:273
 msgid "Language"
@@ -393,7 +402,7 @@ msgstr "שפה"
 #: indexpage.py:354
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "%s: פרוייקט %s, שפה %s"
 
 #. l10n: text next to search field
 #: indexpage.py:362 translatepage.py:145
@@ -402,15 +411,15 @@ msgstr "חיפוש"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "חיפוש מתקדם"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "לא ניתן להעלות קובץ, לא צורף קובץ"
 
 #: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
-msgstr ""
+msgstr "ניתן להעלות קבצי PO וקבצי zip של קבצי PO"
 
 #: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
 msgid "Assign Strings"
@@ -426,23 +435,23 @@ msgstr "הקצה למשתמש"
 
 #: indexpage.py:543
 msgid "goals"
-msgstr ""
+msgstr "מטרות"
 
 #: indexpage.py:544
 msgid "Enter goal name"
-msgstr ""
+msgstr "הזן את שם המטרה"
 
 #: indexpage.py:545
 msgid "Add Goal"
-msgstr ""
+msgstr "הוסף מטרה"
 
 #: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
-msgstr ""
+msgstr "העלה קבצים"
 
 #: indexpage.py:551
 msgid "Select file to upload"
-msgstr ""
+msgstr "בחר קובץ להעלאה"
 
 #. l10n: radio button text
 #: indexpage.py:557 projects.py:141
@@ -452,26 +461,26 @@ msgstr "שכתב"
 #. l10n: tooltip
 #: indexpage.py:559
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "שכתב על הקובץ הנוכחי במידה וקיים"
 
 #. l10n: radio button text
 #: indexpage.py:561
 msgid "Merge"
-msgstr ""
+msgstr "מיזוג"
 
 #. l10n: tooltip
 #: indexpage.py:563
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr ""
+msgstr "מזג את הקובץ עם הקובץ הנוכחי והפוך את הסתירות להצעות"
 
 #: indexpage.py:666
 msgid "Not in a goal"
-msgstr ""
+msgstr "לא בתוך המטרה"
 
 #: indexpage.py:686
 msgid "Add User"
-msgstr ""
+msgstr "הוסף משתמש"
 
 #: indexpage.py:731
 msgid "PO file"
@@ -479,34 +488,33 @@ msgstr "קובץ PO"
 
 #: indexpage.py:735
 msgid "XLIFF file"
-msgstr ""
+msgstr "קובץ XLIFF"
 
 #: indexpage.py:739
 msgid "Qt .ts file"
-msgstr ""
+msgstr "קובץ .ts של Qt "
 
 #: indexpage.py:743
 msgid "CSV file"
 msgstr "קובץ CVS"
 
 #: indexpage.py:748
-#, fuzzy
 msgid "MO file"
-msgstr "קובץ PO"
+msgstr "קובץ MO"
 
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:754
 msgid "Update"
-msgstr ""
+msgstr "עדכון"
 
 #. l10n: Commit to version control (like CVS or Subversion)
 #: indexpage.py:760 projects.py:150
 msgid "Commit"
-msgstr "הגשה"
+msgstr "מסירה"
 
 #: indexpage.py:798
 msgid "All Strings"
-msgstr ""
+msgstr "כל המחרוזות"
 
 #: indexpage.py:799 pagelayout.py:249
 msgid "Untranslated"
@@ -514,39 +522,39 @@ msgstr "לא תורגמו"
 
 #: indexpage.py:800
 msgid "Unassigned"
-msgstr ""
+msgstr "לא מוקצה"
 
 #: indexpage.py:801
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "לא מוקצה ולא מתורגם"
 
 #: indexpage.py:808
 msgid "Set Goal"
-msgstr ""
+msgstr "הגדר מטרה"
 
 #: indexpage.py:812
 msgid "Select Multiple"
-msgstr ""
+msgstr "בחר כמה"
 
 #: indexpage.py:814
 msgid "Assign To"
-msgstr ""
+msgstr "הקצה אל"
 
 #: indexpage.py:843
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "הצג פונקציות לעריכה"
 
 #: indexpage.py:844
 msgid "Show Statistics"
-msgstr ""
+msgstr "הצג סטטיסטיקות"
 
 #: indexpage.py:845
 msgid "Show Tracks"
-msgstr ""
+msgstr "הצג מעקבים"
 
 #: indexpage.py:845
 msgid "Hide Tracks"
-msgstr ""
+msgstr "הסתר מעקבים"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:847
@@ -559,44 +567,44 @@ msgstr "הסתר את המסומנים"
 
 #: indexpage.py:848
 msgid "Show Goals"
-msgstr ""
+msgstr "הצג מטרות"
 
 #: indexpage.py:848
 msgid "Hide Goals"
-msgstr ""
+msgstr "הסתר מטרות"
 
 #: indexpage.py:849
 msgid "Show Assigns"
-msgstr ""
+msgstr "הצג הקצאות"
 
 #: indexpage.py:849
 msgid "Hide Assigns"
-msgstr ""
+msgstr "הסתר הקצאות"
 
 #: indexpage.py:858
 #, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "כל המטרות: %s  "
 
 #: indexpage.py:864
 msgid "Translate My Strings"
-msgstr ""
+msgstr "תרגם את המחרוזות שלי"
 
 #: indexpage.py:866
 msgid "View My Strings"
-msgstr ""
+msgstr "הצג את המחרוזות שלי"
 
 #: indexpage.py:871
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "אין מחרוזות המוקצות לך"
 
 #: indexpage.py:875
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "תרגום מהיר של המחרוזות שלי"
 
 #: indexpage.py:879
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "אין מחרוזות שאינן מתורגמות המוקצות לך"
 
 #: indexpage.py:883
 msgid "Review Suggestions"
@@ -616,7 +624,7 @@ msgstr "צפה במחרוזות שלא תורגמו"
 
 #: indexpage.py:896
 msgid "No untranslated items"
-msgstr ""
+msgstr "אין פריטים שאינם מתורגמים"
 
 #: indexpage.py:899
 msgid "Translate All"
@@ -624,34 +632,32 @@ msgstr "תרגם הכל"
 
 #: indexpage.py:914
 msgid "ZIP of goal"
-msgstr ""
+msgstr "ZIP של המטרה"
 
 #: indexpage.py:916
 msgid "ZIP of folder"
-msgstr ""
+msgstr "ZIP של התיקייה"
 
 #: indexpage.py:923
 msgid "Generate SDF"
-msgstr ""
+msgstr "ייצר SDF"
 
 #: indexpage.py:976
 #, python-format
-#, fuzzy
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] "%d מחרוזות (%d%%) כשלו"
+msgstr[0] "מחרוזת %d (%d%%) כשלו"
+msgstr[1] "%d מחרוזות (%d%%) כשלו"
 
 #: indexpage.py:1003
 #, python-format
-#, fuzzy
 msgid "%d/%d words (%d%%) assigned"
-msgstr "%d/%d מילים (%d%%) תורגמו"
+msgstr "%d/%d מילים (%d%%) הוקצו"
 
 #: indexpage.py:1004 indexpage.py:1006
 #, python-format
-#, fuzzy
 msgid "[%d/%d strings]"
-msgstr "%d/%d מחרוזות"
+msgstr "[%d/%d מחרוזות]"
 
 #: indexpage.py:1005 pagelayout.py:235
 #, python-format
@@ -771,48 +777,47 @@ msgstr "גרף"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "טקסט המקור"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "טקסט היעד"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "הערות"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "מיקומים"
 
 #: pootle.py:305
 msgid "Login failed"
-msgstr ""
+msgstr "ההתחברות נכשלה"
 
 #: pootle.py:349 pootle.py:380
 msgid "Redirecting to login..."
-msgstr ""
+msgstr "מפנה אל ההתחברות..."
 
 #: pootle.py:352
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "יש להתחבר כדי לגשת אל עמוד הבית"
 
 #: pootle.py:365
 msgid "Personal details updated"
-msgstr ""
+msgstr "הפרטים האישיים עודכנו"
 
 #: pootle.py:383
 msgid "Need to log in to access admin page"
-msgstr ""
+msgstr "יש להתחבר כדי לגשת לעמוד הניהול"
 
 #: pootle.py:390
 msgid "Redirecting to home..."
-msgstr ""
+msgstr "מפנה אל עמוד הבית..."
 
 #: pootle.py:393
-#, fuzzy
 msgid "You do not have the rights to administer pootle."
-msgstr "אי לך הרשאות לניהול הפרויקט"
+msgstr "אי לך הרשאות לניהול ה־pootle."
 
 #. l10n: Verb
 #: projects.py:138
@@ -893,13 +898,12 @@ msgstr "אין לך הרשאות לסקור הצעות כאן"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d תורגמו\n"
-"(%d ריקים, %d בספק)"
+"(%d לא מתורגמים, %d בספק)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -922,21 +926,21 @@ msgstr "תרגום"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "קבל את ההצעה"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "דחה את ההצעה"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
 msgid "Translator comments"
-msgstr ""
+msgstr "הערות המתרגם"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:139
 msgid "Developer comments"
-msgstr ""
+msgstr "הערות המפתח"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:141
@@ -946,12 +950,12 @@ msgstr "קשורים"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "עובד..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "שגיאה: משהו השתבש."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -1211,12 +1215,12 @@ msgstr "דף הבית"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "שפת מקור חלופית"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "ללא"
 
 #: users.py:257
 msgid "Input Height (in lines)"
@@ -1255,32 +1259,32 @@ msgstr "איננו שומרים את סיסמתך אלא רק את חתימתה.
 #: users.py:441
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr ""
+msgstr "אם אתה נתקל בבעיות בהרשמה, צור קשר עם %s.\n"
 
 #: users.py:443
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "אם אתה נתקל בבעיות בהרשמה, צור קשר עם מנהל האתר.\n"
 
 #: users.py:444
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
+msgstr "שם משתמש זה כבר קיים. תשלח הודעת דואל אל כתובת הדואל הרשומה.\n"
 
 #: users.py:446
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "ממשיך על עמוד ה<a href='%s'>התחברות</a>\n"
 
 #: users.py:452
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "נוצר חשבון Pootle עבורך באמצעות כתובת דואל זו.\n"
 
 #: users.py:454
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "על מנת להפעיל את חשבונך, עקוב אחר קישור זה:\n"
 
 #: users.py:460
 #, python-format
@@ -1295,13 +1299,14 @@ msgstr ""
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "אם אינך מצליח לעקוב אחר הקישור, אנא הזן את הקוד שלהלן בעמוד ההפעלה.\n"
 
 #: users.py:463
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
+msgstr "הודעה זו נשלחה כדי לוודא שכתובת הדואל שלך נכונה. אם לא רצית לרשום חשבון, "
+"תוכל להתעלם מהודעה זו.\n"
 
 #: users.py:465
 #, python-format
@@ -1309,15 +1314,19 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"החשבון נוצר. הודעת דואל תשלח אליך בה יופיעו פרטי ההתחברות שלך וקוד ההפעלה. "
+"אנא הזן את קוד ההפעלה ב<a href='%s'>עמוד ההפעלה</a>."
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "(או פשוט לחץ על קישור ההפעלה בהודעת הדואל)"
 
 #: users.py:469
 #, python-format
 msgid "Your user name is: %s\n"
 msgstr ""
+"שם המשתמש שלך הינו: %s\n"
+" "
 
 #: users.py:471
 #, python-format
@@ -1327,43 +1336,43 @@ msgstr "הסיסמה שבחרת היא: %s\n"
 #: users.py:472
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "כתובת הדואל הרשומה עבורך הינה: %s\n"
 
 #: users.py:500
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "מפנה אל עמוד ההרשמה..."
 
 #: users.py:524
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "מפנה אל עמוד ההתחברות..."
 
 #: users.py:527
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "החשבון שלך הופעל! מפנה אל ההתחברות..."
 
 #: users.py:531
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "נתוני ההפעלה הינם שגויים."
 
 #: users.py:532
 msgid "Activation Failed"
-msgstr "הפעלה כשלה"
+msgstr "ההפעלה נכשלה"
 
 #: users.py:649
 msgid "Input height must be numeric"
-msgstr ""
+msgstr "גובה הקלט חייב להיות מספרי"
 
 #: users.py:650
 msgid "Input width must be numeric"
-msgstr ""
+msgstr "רוחב הקלט חייב להיות מספרי"
 
 #: users.py:651
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr ""
+msgstr "מספר השורות שיוצגו במצב התצוגה חייב להיות מספרי"
 
 #: users.py:652
 msgid "The number of rows displayed in translate mode must be numeric"
-msgstr ""
+msgstr "מספר השורות שיוצגו במצב התרגום חייב להיות מספרי"
 
 #~ msgid "Accept"
 #~ msgstr "קבלה"

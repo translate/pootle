@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2006-10-14 14:41+0200\n"
-"Last-Translator: Malkhaz Barkalaya <malxaz@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-10-28 00:23+0300\n"
+"Last-Translator: Giasher <giasher@gmail.com>\n"
+"Language-Team: Georgian <www.gia.ge>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,7 +53,8 @@ msgstr "პაროლი:"
 msgid "Language:"
 msgstr "ენა:"
 
-#: web/server.py:551 web/server.py:642
+#: web/server.py:551
+#: web/server.py:642
 msgid "Select Application"
 msgstr "პროგრამის არჩევა"
 
@@ -65,7 +66,9 @@ msgstr "გასვლა"
 msgid "Exit"
 msgstr "გასვლა"
 
-#: web/session.py:191 web/session.py:344 web/session.py:350
+#: web/session.py:191
+#: web/session.py:344
+#: web/session.py:350
 #, python-format
 msgid "logged in as <b>%s</b>"
 msgstr "შემოსული ხართ როგორც <b>%s</b>"
@@ -90,7 +93,8 @@ msgstr "გასვლა ძირეული სეანსიდან"
 msgid "need to define the users or userprefs entry on the server config"
 msgstr "საჭიროა მომხმარებლის ან პარამეტრების მითითება სერვერის კონფიგურაციაში"
 
-#: web/session.py:321 web/session.py:453
+#: web/session.py:321
+#: web/session.py:453
 #, python-format
 msgid "user does not exist (%r)"
 msgstr "მომხმარებელი არ არსებობს (%r)"
@@ -99,23 +103,28 @@ msgstr "მომხმარებელი არ არსებობს (%r
 msgid "invalid username and/or password"
 msgstr "მცდარი სახელი და/ან პაროლი"
 
-#: web/session.py:433 web/session.py:437
+#: web/session.py:433
+#: web/session.py:437
 msgid "failed login confirmation"
 msgstr "შეცდომა რეგისტრაციის დადასტურებისას"
 
-#: widgets/form.py:79 widgets/thumbgallery.py:292
+#: widgets/form.py:79
+#: widgets/thumbgallery.py:292
 msgid "No"
 msgstr "არა"
 
-#: widgets/form.py:80 widgets/thumbgallery.py:293
+#: widgets/form.py:80
+#: widgets/thumbgallery.py:293
 msgid "Yes"
 msgstr "დიახ"
 
-#: widgets/thumbgallery.py:233 attachments.py:348
+#: widgets/thumbgallery.py:233
+#: attachments.py:348
 msgid "remove"
 msgstr "ამოღება"
 
-#: widgets/thumbgallery.py:289 attachments.py:322
+#: widgets/thumbgallery.py:289
+#: attachments.py:322
 msgid "(no attachment)"
 msgstr "(დანართის გარეშე)"
 

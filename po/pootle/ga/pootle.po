@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-09-01 15:04+0000\n"
-"Last-Translator: Seanán Ó Coistín <seananoc@gmail.com>\n"
+"PO-Revision-Date: 2008-10-29 00:39+0000\n"
+"Last-Translator: Bo Peterburg <bopeterb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 1.2.0-rc1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -323,7 +323,7 @@ msgstr ""
 
 #: indexpage.py:65
 msgid "Versions"
-msgstr "Leagain"
+msgstr "Leaganacha"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -566,7 +566,7 @@ msgstr ""
 
 #: indexpage.py:848
 msgid "Show Goals"
-msgstr ""
+msgstr "Taispeáin Spriocanna"
 
 #: indexpage.py:848
 msgid "Hide Goals"
@@ -1304,7 +1304,7 @@ msgid ""
 "Your activation code is:\n"
 "%s\n"
 msgstr ""
-"Sé do thagairt ghníomhachtú ná:\n"
+"Do thagairt ghníomhachtú ná:\n"
 "%s\n"
 
 #: users.py:462
@@ -1323,7 +1323,7 @@ msgstr "Seoltar an teachtaireacht seo chun deimhniú go bhfuil an seoladh ríomh
 "teachtaireacht.\n"
 
 #: users.py:465
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."

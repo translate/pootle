@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-09-07 11:12+0000\n"
+"PO-Revision-Date: 2008-11-08 18:25+0000\n"
 "Last-Translator: haytham abulela hammam <haytham.hammam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 1.2.0-rc1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -168,7 +168,7 @@ msgstr "احذف مشروع"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "صفحة إدارة المستخدمين لبوتل"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -420,7 +420,7 @@ msgstr "ابحث"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "بحث متقدم"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
@@ -695,7 +695,7 @@ msgstr "وثائق ومساعدة"
 
 #: pagelayout.py:34
 msgid "Log out"
-msgstr "اخرج"
+msgstr "تسجيل الخروج"
 
 #: pagelayout.py:35
 msgid "Log in"
@@ -704,7 +704,7 @@ msgstr "ادخل"
 #. l10n: Verb, as in "to register"
 #: pagelayout.py:37
 msgid "Register"
-msgstr "لُج"
+msgstr "سجل"
 
 #: pagelayout.py:38
 msgid "Activate"
@@ -794,19 +794,19 @@ msgstr "رسم بياني"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "النص الأصلي"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "النص المترجم"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "تعليقات"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "أماكن"
 
 #: pootle.py:305
 msgid "Login failed"
@@ -915,13 +915,12 @@ msgstr "لا تملك صلاحية لمراجعة تغييرات هنا"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d مترجم\n"
-"(%d فارغ، %d مبهم)"
+"(%d غير مترجم، %d مبهم)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -944,11 +943,11 @@ msgstr "الترجمة"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "اقبل الاقتراح"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "ارفض الاقتراح"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -968,12 +967,12 @@ msgstr "ذو صلة"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "جارى..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "حدث خطأ ما"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -1172,7 +1171,7 @@ msgstr "أكّد كلمة السر"
 
 #: users.py:134
 msgid "Type your password again to ensure it is entered correctly"
-msgstr "اكتب كلمة سرك مرة أخرى لتتأكد أنها أُدخِلك بشكل صحيح"
+msgstr "اكتب كلمة سرك مرة أخرى لتتأكد أنها أُدخِلت بشكل صحيح"
 
 #: users.py:136
 msgid "Register Account"
@@ -1233,12 +1232,12 @@ msgstr "الصفحة الرئيسية"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "لغة المصدر البديلة"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "بدون"
 
 #: users.py:257
 msgid "Input Height (in lines)"
@@ -1311,7 +1310,7 @@ msgstr "لتنشيط حسابك، اتّبع هذا الرابط:\n"
 msgid ""
 "Your activation code is:\n"
 "%s\n"
-msgstr "رمز التنشيط"
+msgstr "رمز التنشيط الخاص بك هو:"
 
 #: users.py:462
 msgid ""
@@ -1324,7 +1323,7 @@ msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr "أرسلت هذه الرسالة للتأكد من أن هذا العنوان البريدي صحيح. إذا لم تكن ترغب في "
-"تسجيل حساب، فببساطة تجاهل هذه الرسالة.\n"
+"تسجيل حساب، بإمكانك تجاهل هذه الرسالة.\n"
 
 #: users.py:465
 #, python-format
@@ -1342,7 +1341,7 @@ msgstr "(أو ببساطة انقر على رابط التنشيط في البر
 #: users.py:469
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr "إسمك مستخدمك هو: %s\n"
+msgstr "اسم المستخدم الخاص بك هو: %s\n"
 
 #: users.py:471
 #, python-format

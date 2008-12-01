@@ -31,11 +31,11 @@ msgstr "Изход от приложението"
 
 #: web/server.py:98
 msgid "Exit this application and return to the parent application"
-msgstr ""
+msgstr "Изход от това приложение и връщане към предишното"
 
 #: web/server.py:105
 msgid ", please confirm login"
-msgstr ""
+msgstr "моля, потвърдете влизането"
 
 #: web/server.py:110
 msgid "Login"
@@ -76,7 +76,7 @@ msgstr "неможе да се добави нова сесия"
 
 #: web/session.py:214
 msgid "logged out"
-msgstr ""
+msgstr "успешно излизане"
 
 #: web/session.py:234
 msgid "connected"
@@ -84,11 +84,13 @@ msgstr "свързан"
 
 #: web/session.py:269
 msgid "exited parent session"
-msgstr ""
+msgstr "изход от предишна сесия"
 
 #: web/session.py:314
 msgid "need to define the users or userprefs entry on the server config"
 msgstr ""
+"трябва да се дефинират потребители или префикси при конфигурацията на "
+"сървъра"
 
 #: web/session.py:321 web/session.py:453
 #, python-format
@@ -101,7 +103,7 @@ msgstr "Невалиден потребител и/или парола"
 
 #: web/session.py:433 web/session.py:437
 msgid "failed login confirmation"
-msgstr ""
+msgstr "неуспешно потвърждаване на входа"
 
 #: widgets/form.py:79 widgets/thumbgallery.py:292
 msgid "No"

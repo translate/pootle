@@ -1,39 +1,62 @@
+# Something went wrong here - my translation (word by word) with very minor (and wrong) changes
+# was published by other translator, is it possible to avoid such things?
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-09-09 13:31+0000\n"
-"Last-Translator: Aiet Kolkhi <aietkolkhi@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-10-28 18:16+0300\n"
+"Last-Translator: Giasher <giasher@gmail.com>\n"
+"Language-Team: Georgian <www.gia.ge>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 1.2.0-beta2\n"
 
-#: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
-#: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
-#: indexpage.py:139 indexpage.py:201 indexpage.py:264 indexpage.py:352
-#: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
+#: adminpages.py:37
+#: adminpages.py:76
+#: adminpages.py:135
+#: adminpages.py:201
+#: adminpages.py:292
+#: adminpages.py:359
+#: indexpage.py:70
+#: indexpage.py:95
+#: indexpage.py:139
+#: indexpage.py:201
+#: indexpage.py:264
+#: indexpage.py:352
+#: pagelayout.py:74
+#: translatepage.py:108
+#: users.py:63
+#: users.py:118
+#: users.py:154
 #: users.py:177
 msgid "Pootle Demo"
 msgstr "Pootle დემო"
 
-#: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
+#: adminpages.py:45
+#: adminpages.py:85
+#: adminpages.py:144
+#: adminpages.py:210
 #: pagelayout.py:27
 msgid "Home"
 msgstr "თავფურცელი"
 
-#: adminpages.py:46 adminpages.py:212
+#: adminpages.py:46
+#: adminpages.py:212
 msgid "Users"
 msgstr "მონაწილეები"
 
-#: adminpages.py:47 adminpages.py:87 indexpage.py:93
+#: adminpages.py:47
+#: adminpages.py:87
+#: indexpage.py:93
 msgid "Languages"
 msgstr "ენები"
 
-#: adminpages.py:48 adminpages.py:146 indexpage.py:94
+#: adminpages.py:48
+#: adminpages.py:146
+#: indexpage.py:94
 msgid "Projects"
 msgstr "პროექტები"
 
@@ -41,15 +64,20 @@ msgstr "პროექტები"
 msgid "General options"
 msgstr "ძირითადი პარამეტრები"
 
-#: adminpages.py:50 users.py:182
+#: adminpages.py:50
+#: users.py:182
 msgid "Option"
 msgstr "პარამეტრები"
 
-#: adminpages.py:51 users.py:183
+#: adminpages.py:51
+#: users.py:183
 msgid "Current value"
 msgstr "მიმდინარე მნიშვნელობა"
 
-#: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
+#: adminpages.py:52
+#: adminpages.py:88
+#: adminpages.py:147
+#: adminpages.py:213
 #: users.py:197
 msgid "Save changes"
 msgstr "ცვლილებათა შენახვა"
@@ -74,15 +102,21 @@ msgstr "სათაო გვერდი"
 msgid "Pootle Languages Admin Page"
 msgstr "Pootle-ს ენათა მართვის გვერდი"
 
-#: adminpages.py:86 adminpages.py:145 adminpages.py:211
+#: adminpages.py:86
+#: adminpages.py:145
+#: adminpages.py:211
 msgid "Main admin page"
 msgstr "ადმინისტრატორის გვერდი"
 
-#: adminpages.py:92 adminpages.py:286
+#: adminpages.py:92
+#: adminpages.py:286
 msgid "ISO Code"
 msgstr "ISO კოდი"
 
-#: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
+#: adminpages.py:93
+#: adminpages.py:152
+#: adminpages.py:218
+#: adminpages.py:287
 #: users.py:127
 msgid "Full Name"
 msgstr "სრული სახელი"
@@ -99,7 +133,8 @@ msgstr "სპეცსიმბოლოები"
 msgid "(special characters)"
 msgstr "(სპეციალური სიმბოლოები)"
 
-#: adminpages.py:96 indexpage.py:224
+#: adminpages.py:96
+#: indexpage.py:224
 msgid "Number of Plurals"
 msgstr "მრავლობითები"
 
@@ -107,7 +142,8 @@ msgstr "მრავლობითები"
 msgid "(number of plurals)"
 msgstr "(მრავლობითების რაოდენობა)"
 
-#: adminpages.py:97 indexpage.py:225
+#: adminpages.py:97
+#: indexpage.py:225
 msgid "Plural Equation"
 msgstr "მრავლობითი განტოლება"
 
@@ -120,7 +156,10 @@ msgid "Remove Language"
 msgstr "ენის წაშლა"
 
 #. l10n: The parameter is a languagecode, projectcode or username
-#: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
+#: adminpages.py:113
+#: adminpages.py:181
+#: adminpages.py:245
+#: adminpages.py:425
 #, python-format
 msgid "Remove %s"
 msgstr "%s-ს წაშლა"
@@ -169,27 +208,36 @@ msgstr "პროექტის წაშლა"
 msgid "Pootle User Admin Page"
 msgstr "Pootle-ს მომხმარებელთა მართვის გვერდი"
 
-#: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
+#: adminpages.py:217
+#: adminpages.py:376
+#: users.py:121
+#: users.py:157
 msgid "Username"
 msgstr "მონაწილე"
 
-#: adminpages.py:219 users.py:403
+#: adminpages.py:219
+#: users.py:403
 msgid "(add full name here)"
 msgstr "( დაამატეთ აქ სრული სახელი )"
 
-#: adminpages.py:220 users.py:124
+#: adminpages.py:220
+#: users.py:124
 msgid "Email Address"
 msgstr "ელფოსტის მისამართი"
 
-#: adminpages.py:220 users.py:406
+#: adminpages.py:220
+#: users.py:406
 msgid "(add email here)"
 msgstr "( დაამატეთ აქ ელფოსტა )"
 
-#: adminpages.py:221 users.py:130 users.py:188
+#: adminpages.py:221
+#: users.py:130
+#: users.py:188
 msgid "Password"
 msgstr "პაროლი"
 
-#: adminpages.py:221 users.py:400
+#: adminpages.py:221
+#: users.py:400
 msgid "(add password here)"
 msgstr "(დაამატეთ აქ პაროლი)"
 
@@ -223,7 +271,8 @@ msgstr "ენების განახლება"
 msgid "Pootle Admin: %s"
 msgstr "Pootle-ს ადმინისტრირების გვერდი"
 
-#: adminpages.py:285 adminpages.py:356
+#: adminpages.py:285
+#: adminpages.py:356
 msgid "You do not have the rights to administer this project."
 msgstr "არ გაქვთ ამ პროექტის ადმინისტრირების უფლება."
 
@@ -271,7 +320,8 @@ msgstr "(აირჩიეთ მონაწილე დასამატე
 msgid "Rights"
 msgstr "უფლებები"
 
-#: adminpages.py:379 indexpage.py:1008
+#: adminpages.py:379
+#: indexpage.py:1008
 msgid "Remove"
 msgstr "ამოღება"
 
@@ -349,7 +399,8 @@ msgstr "პარამეტრების შეცვლა"
 msgid "Admin page"
 msgstr "ადმინის გვერდი"
 
-#: indexpage.py:137 projects.py:149
+#: indexpage.py:137
+#: projects.py:149
 msgid "Administrate"
 msgstr "ადმინისტრირება"
 
@@ -371,12 +422,16 @@ msgstr[0] "%d პროექტი, საშუალოდ თარგმნ
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
-#: indexpage.py:205 indexpage.py:268
+#: indexpage.py:205
+#: indexpage.py:268
 #, python-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
+#: indexpage.py:207
+#: indexpage.py:270
+#: pagelayout.py:31
+#: pagelayout.py:171
 msgid "Admin"
 msgstr "ადმინი"
 
@@ -405,11 +460,13 @@ msgid "%s: Project %s, Language %s"
 msgstr "%s: პროექტი - %s, ენა - %s"
 
 #. l10n: text next to search field
-#: indexpage.py:362 translatepage.py:145
+#: indexpage.py:362
+#: translatepage.py:145
 msgid "Search"
 msgstr "ძიება"
 
-#: indexpage.py:363 translatepage.py:146
+#: indexpage.py:363
+#: translatepage.py:146
 msgid "Advanced Search"
 msgstr "გაფართოებული ძიება"
 
@@ -421,15 +478,20 @@ msgstr "ფაილი ვერ აიტვირთება, ფაილ�
 msgid "Can only upload PO files and zips of PO files"
 msgstr "შესაძლოა მხოლოდ PO ფაილების ან მათი zip არქივის ატვირთვა"
 
-#: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
+#: indexpage.py:535
+#: indexpage.py:538
+#: translatepage.py:237
+#: translatepage.py:240
 msgid "Assign Strings"
 msgstr "სტრიქონების განპირობება"
 
-#: indexpage.py:536 translatepage.py:239
+#: indexpage.py:536
+#: translatepage.py:239
 msgid "Assign Action"
 msgstr "ქმედების განპირობება"
 
-#: indexpage.py:537 translatepage.py:238
+#: indexpage.py:537
+#: translatepage.py:238
 msgid "Assign to User"
 msgstr "მონაწილეზე განპირობება"
 
@@ -445,7 +507,8 @@ msgstr "მიზნის სახელის მითითება"
 msgid "Add Goal"
 msgstr "მიზნის დამატება"
 
-#: indexpage.py:550 indexpage.py:552
+#: indexpage.py:550
+#: indexpage.py:552
 msgid "Upload File"
 msgstr "ფაილის ატვირთვა"
 
@@ -454,7 +517,8 @@ msgid "Select file to upload"
 msgstr "ასატვირთი ფაილის არჩევა"
 
 #. l10n: radio button text
-#: indexpage.py:557 projects.py:141
+#: indexpage.py:557
+#: projects.py:141
 msgid "Overwrite"
 msgstr "თავზე გადაწერა"
 
@@ -473,6 +537,7 @@ msgstr "გაერთიანება"
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
+"ამ ფაილის მიმდინარე ფაილთან შერწყმა და კონფლიქტების შემოთავაზებად გარდაქმნა"
 
 #: indexpage.py:666
 msgid "Not in a goal"
@@ -508,7 +573,8 @@ msgid "Update"
 msgstr "განახლება"
 
 #. l10n: Commit to version control (like CVS or Subversion)
-#: indexpage.py:760 projects.py:150
+#: indexpage.py:760
+#: projects.py:150
 msgid "Commit"
 msgstr "გაგზავნა"
 
@@ -516,7 +582,8 @@ msgstr "გაგზავნა"
 msgid "All Strings"
 msgstr "ყველა სტრიქონი"
 
-#: indexpage.py:799 pagelayout.py:249
+#: indexpage.py:799
+#: pagelayout.py:249
 msgid "Untranslated"
 msgstr "სათარგმნი"
 
@@ -653,12 +720,14 @@ msgstr[0] "%d სტრიქონი, (%d%%) წარუმატებელ
 msgid "%d/%d words (%d%%) assigned"
 msgstr "%d/%d სიტყვა, (%d%%) განპირობებული"
 
-#: indexpage.py:1004 indexpage.py:1006
+#: indexpage.py:1004
+#: indexpage.py:1006
 #, python-format
 msgid "[%d/%d strings]"
 msgstr "[%d/%d სტრიქონი]"
 
-#: indexpage.py:1005 pagelayout.py:235
+#: indexpage.py:1005
+#: pagelayout.py:235
 #, python-format
 msgid "%d/%d words (%d%%) translated"
 msgstr "%d/%d სიტყვა, (%d%%) თარგმნილი"
@@ -724,7 +793,8 @@ msgstr[0] "%d ფაილი"
 msgid "%d/%d strings"
 msgstr "%d/%d სტრიქონი"
 
-#: pagelayout.py:242 users.py:184
+#: pagelayout.py:242
+#: users.py:184
 msgid "Name"
 msgstr "სახელი"
 
@@ -740,7 +810,8 @@ msgstr "თარგმნილია, პროცენტი"
 msgid "Translated words"
 msgstr "თარგმნილი სიტყვები"
 
-#: pagelayout.py:246 translatepage.py:135
+#: pagelayout.py:246
+#: translatepage.py:135
 msgid "Fuzzy"
 msgstr "საეჭვო"
 
@@ -775,7 +846,7 @@ msgstr "დიაგრამა"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "პირველწყარო ტექსტი"
 
 #: pagelayout.py:297
 msgid "Target Text"
@@ -793,7 +864,8 @@ msgstr "მდებარეობები"
 msgid "Login failed"
 msgstr "შესვლა არ შედგა"
 
-#: pootle.py:349 pootle.py:380
+#: pootle.py:349
+#: pootle.py:380
 msgid "Redirecting to login..."
 msgstr "გადამისამართება შესვლაზე..."
 
@@ -822,7 +894,8 @@ msgstr "თქვენ არ გაგაჩნიათ pootle-ს ადმ�
 msgid "View"
 msgstr "ჩვენება"
 
-#: projects.py:139 translatepage.py:678
+#: projects.py:139
+#: translatepage.py:678
 msgid "Suggest"
 msgstr "შემოთავაზება"
 
@@ -854,7 +927,8 @@ msgstr "მინიჭება"
 msgid "You cannot remove the \"nobody\" or \"default\" user"
 msgstr "თქვენ არა გაქვთ უფლება ამოიღოთ \"nobody\" ან \"default\" მომხმარებელი"
 
-#: projects.py:382 projects.py:444
+#: projects.py:382
+#: projects.py:444
 msgid "You do not have rights to alter goals here"
 msgstr "მიზნების შეცვლის უფლება აქ არ გაქვთ"
 
@@ -879,7 +953,8 @@ msgstr "ფაილების განახლების უფლებ�
 msgid "You do not have rights to commit files here"
 msgstr "ფაილების გაგზავნის უფლება აქ არ გაქვთ"
 
-#: projects.py:977 projects.py:1019
+#: projects.py:977
+#: projects.py:1019
 msgid "You do not have rights to alter assignments here"
 msgstr "მინიჭების შეცვლის უფლება აქ არ გაქვთ"
 
@@ -891,13 +966,13 @@ msgstr "თარგმანის შეცვლის უფლება ა
 msgid "You do not have rights to suggest changes here"
 msgstr "თარგმანის შემოთავაზების უფლება აქ არ გაქვთ"
 
-#: projects.py:1245 projects.py:1263
+#: projects.py:1245
+#: projects.py:1263
 msgid "You do not have rights to review suggestions here"
 msgstr "შემოთავაზებების გადახედვის უფლება აქ არ გაქვთ"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
@@ -926,11 +1001,11 @@ msgstr "თარგმანი"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "შემოთავაზების მიღება"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "შემოთავაზების უარყოფა"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
@@ -950,12 +1025,12 @@ msgstr "დაკავშირებული თარგმანი"
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "მუშავდება..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "შეცდომა: რაღაც არასწორია."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -967,12 +1042,14 @@ msgid "Click here to return to the index"
 msgstr "დააწკაპუნეთ ინდექსზე დასაბრუნებლად"
 
 #. l10n: noun (the start)
-#: translatepage.py:187 translatepage.py:190
+#: translatepage.py:187
+#: translatepage.py:190
 msgid "Start"
 msgstr "დაწყება"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:194 translatepage.py:197
+#: translatepage.py:194
+#: translatepage.py:197
 #, python-format
 msgid "Previous %d"
 msgstr "წინა %d"
@@ -984,13 +1061,15 @@ msgid "Items %d to %d of %d"
 msgstr "ელემენტები %d - %d, სულ %d"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:204 translatepage.py:207
+#: translatepage.py:204
+#: translatepage.py:207
 #, python-format
 msgid "Next %d"
 msgstr "შემდეგი %d"
 
 #. l10n: noun (the end)
-#: translatepage.py:210 translatepage.py:213
+#: translatepage.py:210
+#: translatepage.py:213
 msgid "End"
 msgstr "ბოლო"
 
@@ -1027,12 +1106,15 @@ msgstr "რედაქტირება"
 msgid "Copy"
 msgstr "ასლი"
 
-#: translatepage.py:675 translatepage.py:849
+#: translatepage.py:675
+#: translatepage.py:849
 msgid "Skip"
 msgstr "გამოტოვება"
 
 #. l10n: verb
-#: translatepage.py:677 translatepage.py:848 users.py:312
+#: translatepage.py:677
+#: translatepage.py:848
+#: users.py:312
 msgid "Back"
 msgstr "უკან"
 
@@ -1050,7 +1132,9 @@ msgstr "გაზრდა"
 msgid "Shrink"
 msgstr "შეკუმშვა"
 
-#: translatepage.py:706 translatepage.py:800 translatepage.py:837
+#: translatepage.py:706
+#: translatepage.py:800
+#: translatepage.py:837
 #: translatepage.py:870
 #, python-format
 msgid "Plural Form %d"
@@ -1128,15 +1212,18 @@ msgstr "ნაგულისხმები"
 msgid "Please enter your registration details"
 msgstr "გთხოვთ მიუთითოთ რეგისტრაციის მონაცემები"
 
-#: users.py:115 users.py:475
+#: users.py:115
+#: users.py:475
 msgid "Pootle Registration"
 msgstr "Pootle რეგისტრაცია"
 
-#: users.py:122 users.py:158
+#: users.py:122
+#: users.py:158
 msgid "Your requested username"
 msgstr "თქვენი მოთხოვნილი მონაწილის სახელი"
 
-#: users.py:125 users.py:429
+#: users.py:125
+#: users.py:429
 msgid "You must supply a valid email address"
 msgstr "უნდა მიუთითოთ მართებული ელფოსტა"
 
@@ -1148,7 +1235,8 @@ msgstr "თქვენი სრული სახელი"
 msgid "Your desired password"
 msgstr "თქვენი სასურველი პაროლი"
 
-#: users.py:133 users.py:189
+#: users.py:133
+#: users.py:189
 msgid "Confirm password"
 msgstr "პაროლის დასტური"
 
@@ -1215,12 +1303,12 @@ msgstr "საწყისი გვერდი"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "ალტერნატული პირველწყარო ენა"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "არა"
 
 #: users.py:257
 msgid "Input Height (in lines)"

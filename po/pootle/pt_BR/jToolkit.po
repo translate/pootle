@@ -6,15 +6,15 @@ msgstr ""
 "Project-Id-Version: jToolkit\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-13 14:54-0500\n"
-"PO-Revision-Date: 2006-08-30 14:50+0200\n"
-"Last-Translator: Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>\n"
+"PO-Revision-Date: 2008-11-22 13:08+0000\n"
+"Last-Translator: Leonardo Ferreira Fontenelle <leonardof@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 1.2.0-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Pootle 0.10rc4\n"
 
 #: web/server.py:57
 #, python-format
@@ -72,7 +72,7 @@ msgstr "Sair"
 #: web/session.py:191 web/session.py:344 web/session.py:350
 #, python-format
 msgid "logged in as <b>%s</b>"
-msgstr "logado como <b>%s</b>"
+msgstr "Sessão de <b>%s</b>"
 
 #: web/session.py:193
 msgid "couldn't add new session"
@@ -80,7 +80,7 @@ msgstr "não foi possível adicionar nova sessão"
 
 #: web/session.py:214
 msgid "logged out"
-msgstr "deslogado"
+msgstr "sessão encerrada"
 
 #: web/session.py:234
 msgid "connected"

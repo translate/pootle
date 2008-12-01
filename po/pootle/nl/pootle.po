@@ -1,16 +1,18 @@
+# Jan <dejong.jh@gmail.com>, 2007
+# Tom Verlinden<verlinden.tom@gmail.com>,2008-10-06 21:18+0800
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-10-02 13:27+0000\n"
-"Last-Translator: Tom Verlinden <nednilrev@mail.ru>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-10-17 23:39+0800\n"
+"Last-Translator: Tom Verlinden <verlinden.tom@gmail.com>\n"
+"Language-Team: TT(Tom's Team)<verlinden.tom@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.0-rc1\n"
+"X-Generator: Virtaal 0.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -73,11 +75,11 @@ msgstr "Startpagina"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Pootle beheerpagina: talen"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
-msgstr "Beheerderspagina"
+msgstr "Beheerpagina"
 
 #: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
@@ -132,7 +134,7 @@ msgstr "Standaard"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Pootle beheerpagina: projecten"
 
 #: adminpages.py:151
 msgid "Project Code"
@@ -150,9 +152,10 @@ msgstr "Projectbeschrijving"
 msgid "(project description)"
 msgstr "(projectbeschrijving)"
 
+# Not sure what the Checker Style is or does.
 #: adminpages.py:155
 msgid "Checker Style"
-msgstr "Controleerstijl"
+msgstr "Controlestijl"
 
 #: adminpages.py:156
 msgid "File Type"
@@ -168,7 +171,7 @@ msgstr "Project verwijderen"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Pootle beheerpagina: gebruikers"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -219,6 +222,7 @@ msgstr "Bestaande talen"
 msgid "Update Languages"
 msgstr "Talen bijwerken"
 
+# Does 'admin' stand for 'administrator' or 'administration' in this case? I translated it as 'aministrator'
 #: adminpages.py:284
 #, python-format
 msgid "Pootle Admin: %s"
@@ -226,7 +230,7 @@ msgstr "Pootle beheerder: %s"
 
 #: adminpages.py:285 adminpages.py:356
 msgid "You do not have the rights to administer this project."
-msgstr "U heeft niet de rechten om dit project te beheren."
+msgstr "U hebt niet de rechten om dit project te beheren."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:289
@@ -237,11 +241,12 @@ msgstr "Bijwerken m.b.v. sjablonen"
 msgid "Add Language"
 msgstr "Taal toevoegen"
 
+# Pretty sure it's 'administration' in this case, so 'beheer' and not 'beheerder'
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:336
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr "Pootle beheerder: %s %s"
+msgstr "Pootle beheer: %s %s"
 
 #: adminpages.py:337
 msgid "Project home page"
@@ -257,7 +262,8 @@ msgstr ""
 #: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
-"Dit is een project in de GNU-stijl (één map, bestanden genoemd per taal)."
+"Dit is een project in de GNU-stijl (één map, bestanden genoemd naar de "
+"taal)."
 
 #: adminpages.py:374
 msgid "This is a standard style project (one directory per language)."
@@ -296,11 +302,11 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
-"<strong>Pootle</strong> is een simpel webportaal dat u zou moeten toelaten "
-"om te <strong>vertalen</strong>! Aangezien Pootle <strong>Vrije "
-"Software</strong> is, kan u het downloaden en uw eigen kopie uitvoeren als u "
-"dat wilt. U kan ook op verschillende manieren bijdragen aan de ontwikkeling "
-"(hiervoor hoeft u niet te kunnen programmeren)."
+"<strong>Pootle</strong> is een simpel webportaal dat u in staat zou moeten "
+"stellen om te <strong>vertalen</strong>! Aangezien Pootle <strong>Vrije "
+"Software</strong> is, kunt u het downloaden en uw eigen kopie draaien als u "
+"dat wenst. U kunt ook op verschillende manieren bijdragen aan de "
+"ontwikkeling (hiervoor hoeft u niet te kunnen programmeren)."
 
 #: indexpage.py:61
 msgid ""
@@ -310,7 +316,7 @@ msgid ""
 msgstr ""
 "Het Pootle project zelf wordt gehost op <a "
 "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> waar "
-"u details kan vinden over de broncode, maillijsten, enzovoorts."
+"u details kunt vinden over de broncode, maillijsten, enzovoorts."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -321,8 +327,9 @@ msgid ""
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
 "De naam staat voor <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-"<b>L</b>ocalization <b>E</b>ngine, maar misschien kan u ook <a "
-"href=\"http://www.thechestnut.com/flumps.htm\">dit</a> lezen."
+"<b>L</b>ocalization <b>E</b>ngine (PO-gebaseerde Online Vertaal-/Lokaliseer-"
+"Machine), maar misschien kunt u ook <a "
+"href=\"http://www.thechestnut.com/flumps.htm\">dit</a> eens lezen."
 
 #: indexpage.py:65
 msgid "Versions"
@@ -350,7 +357,7 @@ msgstr "Opties veranderen"
 
 #: indexpage.py:136
 msgid "Admin page"
-msgstr "Beheerderspagina"
+msgstr "Beheerpagina"
 
 #: indexpage.py:137 projects.py:149
 msgid "Administrate"
@@ -358,13 +365,12 @@ msgstr "Beheren"
 
 #: indexpage.py:138
 msgid "Quick Links"
-msgstr "Quicklinks"
+msgstr "Snellinks"
 
 #: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
-"Klik a.u.b. op 'Opties veranderen' en selecteer een aantal talen en "
-"projecten"
+"Klik op 'Opties veranderen' en selecteer enkele talen en projecten, a.u.b."
 
 #: indexpage.py:199
 #, python-format
@@ -381,6 +387,7 @@ msgstr[1] "%d projecten, gemiddeld %d%% vertaald"
 msgid "%s: %s"
 msgstr "%s: %s"
 
+# again: person or action?
 #: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
 msgid "Admin"
 msgstr "Beheerder"
@@ -556,10 +563,12 @@ msgstr "Bewerkingsfuncties tonen"
 msgid "Show Statistics"
 msgstr "Statistieken tonen"
 
+# 'Tracks' not translated, because deemed unimportant by Friedel Wolff
 #: indexpage.py:845
 msgid "Show Tracks"
 msgstr "Tracks tonen"
 
+# 'Tracks' not translated, because deemed unimportant by Friedel Wolff
 #: indexpage.py:845
 msgid "Hide Tracks"
 msgstr "Tracks verbergen"
@@ -750,17 +759,20 @@ msgstr "Percentage vertaald"
 msgid "Translated words"
 msgstr "Vertaalde woorden"
 
+# I am aware that 'fuzzy' is usually translated to 'fuzzy', 'onzeker' or 'vaag'.
+# I opted for 'wazig', because I think it best expresses the word's true meaning and could also be used in the case of 'fuzzy match', for example.
+# I don't like 'onzeker', because 'fuzzy' does not always imply that the translator is uncertain of his translation. It might also mean that one of the strings has changed somehow.
 #: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
-msgstr "Fuzzy"
+msgstr "Wazig"
 
 #: pagelayout.py:247
 msgid "Fuzzy percentage"
-msgstr "Percentage fuzzy"
+msgstr "Percentage wazig"
 
 #: pagelayout.py:248
 msgid "Fuzzy words"
-msgstr "Fuzzy woorden"
+msgstr "Wazige woorden"
 
 #: pagelayout.py:250
 msgid "Untranslated percentage"
@@ -825,7 +837,7 @@ msgstr "U wordt doorverwezen naar de startpagina..."
 
 #: pootle.py:393
 msgid "You do not have the rights to administer pootle."
-msgstr "U heeft niet de rechten om Pootle te beheren."
+msgstr "U hebt niet de rechten om Pootle te beheren."
 
 #. l10n: Verb
 #: projects.py:138
@@ -862,57 +874,56 @@ msgstr "Toewijzen"
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:230
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr "U kan de \"nobody\" of \"default\" gebruiker niet verwijderen"
+msgstr "U kunt de \"nobody\" of \"default\" gebruiker niet verwijderen"
 
 #: projects.py:382 projects.py:444
 msgid "You do not have rights to alter goals here"
-msgstr "U heeft niet de rechten om hier doelen te wijzigen"
+msgstr "U hebt niet de rechten om hier doelen te wijzigen"
 
 #: projects.py:510
 msgid "You do not have rights to upload files here"
-msgstr "U heeft niet de rechten om hier bestanden te uploaden"
+msgstr "U hebt niet de rechten om hier bestanden te uploaden"
 
 #: projects.py:513
 msgid "You do not have rights to overwrite files here"
-msgstr "U heeft niet de rechten om hier bestanden te overschijven"
+msgstr "U hebt niet de rechten om hier bestanden te overschijven"
 
 #: projects.py:515
 msgid "You do not have rights to upload new files here"
-msgstr "U heeft niet de rechten om hier nieuwe bestanden te uploaden"
+msgstr "U hebt niet de rechten om hier nieuwe bestanden te uploaden"
 
 #: projects.py:524
 msgid "You do not have rights to update files here"
-msgstr "U heeft niet de rechten om hier bestanden bij te werken"
+msgstr "U hebt niet de rechten om hier bestanden bij te werken"
 
 #: projects.py:555
 msgid "You do not have rights to commit files here"
-msgstr "U heeft niet de rechten om hier bestanden in te leveren"
+msgstr "U hebt niet de rechten om hier bestanden in te leveren"
 
 #: projects.py:977 projects.py:1019
 msgid "You do not have rights to alter assignments here"
-msgstr "U heeft niet de rechten om hier toewijzingen te wijzigen"
+msgstr "U hebt niet de rechten om hier toewijzingen te wijzigen"
 
 #: projects.py:1219
 msgid "You do not have rights to change translations here"
-msgstr "U heeft niet de rechten om hier vertalingen te veranderen"
+msgstr "U hebt niet de rechten om hier vertalingen te veranderen"
 
 #: projects.py:1229
 msgid "You do not have rights to suggest changes here"
-msgstr "U heeft niet de rechten om hier veranderingen te suggereren"
+msgstr "U hebt niet de rechten om hier veranderingen te suggereren"
 
 #: projects.py:1245 projects.py:1263
 msgid "You do not have rights to review suggestions here"
-msgstr "U heeft niet de rechten om hier suggesties na te kijken"
+msgstr "U hebt niet de rechten om hier suggesties na te kijken"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d vertaald\n"
-"(%d blanco, %d fuzzy)"
+"(%d blanco, %d wazig)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -921,7 +932,7 @@ msgstr ""
 #: translatepage.py:113
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "%s: vertalen van %s naar %s: %s"
+msgstr "%s: %s vertalen naar %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:128
@@ -964,7 +975,7 @@ msgstr "Bezig..."
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr "Fout: Er is iets misgelopen"
+msgstr "Fout: Er is iets misgelopen."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -973,7 +984,7 @@ msgstr "Einde van de set"
 
 #: translatepage.py:173
 msgid "Click here to return to the index"
-msgstr "Klik hier om terug te gaan naar de index"
+msgstr "Klik hier om terug te keren naar de index"
 
 #. l10n: noun (the start)
 #: translatepage.py:187 translatepage.py:190
@@ -1072,7 +1083,7 @@ msgid ""
 "available. Please contact the site administrator."
 msgstr ""
 "Vertaling niet mogelijk omdat informatie over het meervoud voor uw taal "
-"ontbreekt. Neem a.u.b. contact op met de site-beheerder."
+"ontbreekt. Neem contact op met de site-beheerder, a.u.b."
 
 #: translatepage.py:804
 msgid "Current Translation:"
@@ -1135,7 +1146,7 @@ msgstr "Standaard"
 
 #: users.py:112
 msgid "Please enter your registration details"
-msgstr "Voer a.u.b. uw registratiegegevens in"
+msgstr "Voer uw registratiegegevens in, a.u.b."
 
 #: users.py:115 users.py:475
 msgid "Pootle Registration"
@@ -1155,7 +1166,7 @@ msgstr "Uw volledige naam"
 
 #: users.py:131
 msgid "Your desired password"
-msgstr "Uw gewenste wachtwoord"
+msgstr "Uw gewenst wachtwoord"
 
 #: users.py:133 users.py:189
 msgid "Confirm password"
@@ -1172,11 +1183,11 @@ msgstr "Account registreren"
 
 #: users.py:145
 msgid "Please enter your activation details"
-msgstr "Voer a.u.b. uw activeringsgegevens in"
+msgstr "Voer uw activeringsgegevens in, a.u.b."
 
 #: users.py:150
 msgid "Pootle Account Activation"
-msgstr "Pootle account activering"
+msgstr "Pootle account-activering"
 
 #: users.py:160
 msgid "Activation Code"
@@ -1184,7 +1195,7 @@ msgstr "Activeringscode"
 
 #: users.py:161
 msgid "The activation code you received"
-msgstr "De activeringscode die u ontvangen heeft"
+msgstr "De activeringscode die u ontvangen hebt"
 
 #: users.py:163
 msgid "Activate Account"
@@ -1205,11 +1216,11 @@ msgstr "E-mail"
 
 #: users.py:190
 msgid "Translation Interface Configuration"
-msgstr "Configuratie vertalingsomgeving"
+msgstr "Configuratie vertaalinterface"
 
 #: users.py:191
 msgid "User Interface language"
-msgstr "Gebruikersomgevingstaal"
+msgstr "Taal gebruikersinterface"
 
 #: users.py:192
 msgid "My Projects"
@@ -1250,7 +1261,7 @@ msgstr "Fout"
 
 #: users.py:359
 msgid "You need to be siteadmin to change users"
-msgstr "Je moet een site-beheerder zijn om gebruikers te veranderen"
+msgstr "Je moet site-beheerder zijn om gebruikers te veranderen"
 
 #: users.py:423
 msgid ""
@@ -1267,19 +1278,19 @@ msgstr "U (of iemand anders) heeft geprobeerd een account te registeren met uw "
 
 #: users.py:439
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr "We slaan uw werkelijke wachtwoord niet op, enkel een hash ervan.\n"
+msgstr "We slaan uw wachtwoord zelf niet op, enkel een hash ervan.\n"
 
 #: users.py:441
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr "Neem bij problemen met de registratie a.u.b. contact op met %s.\n"
+msgstr "Neem bij problemen met de registratie contact op met %s, a.u.b.\n"
 
 #: users.py:443
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr "Neem bij problemen met de registratie a.u.b. contact op met de site-"
-"beheerder.\n"
+msgstr "Neem bij problemen met de registratie contact op met de site-beheerder, "
+"a.u.b.\n"
 
 #: users.py:444
 msgid ""
@@ -1314,16 +1325,15 @@ msgstr ""
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr "Als u de link niet kan volgen, voer dan a.u.b. de bovenstaande code in op de "
-"activeringspagina.\n"
+msgstr "Als u de link niet kunt volgen, voer dan de bovenstaande code in op de "
+"activeringspagina, a.u.b.\n"
 
 #: users.py:463
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr "Dit bericht werd gestuurd om na te gaan of het e-mailadres wel degelijk "
-"klopt. Als u geen account wenst te registreren, kan u dit bericht gewoon "
-"negeren.\n"
+msgstr "Dit bericht werd gestuurd om na te gaan of het e-mailadres wel klopt. Als u "
+"geen account wenst te registreren, kunt u dit bericht gewoon negeren.\n"
 
 #: users.py:465
 #, python-format
@@ -1332,8 +1342,8 @@ msgid ""
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
 "Account aangemaakt. U ontvangt een e-mail met de aanmeldingsgegevens en een "
-"activeringscode. Voer uw activeringscode a.u.b. in op de <a "
-"href='%s'>activeringspagina</a>."
+"activeringscode. Voer uw activeringscode in op de <a "
+"href='%s'>activeringspagina</a>, a.u.b."
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"
@@ -1352,7 +1362,7 @@ msgstr "Uw wachtwoord is: %s\n"
 #: users.py:472
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr "Uw geregistreerde e-mailadres is: %s\n"
+msgstr "Uw geregistreerd e-mailadres is: %s\n"
 
 #: users.py:500
 msgid "Redirecting to Registration Page..."

@@ -72,7 +72,7 @@ msgstr "Kuitaat"
 #: web/session.py:191 web/session.py:344 web/session.py:350
 #, python-format
 msgid "logged in as <b>%s</b>"
-msgstr "lojet evel <b>%s<b>"
+msgstr "lojet evel <b>%s</b>"
 
 #: web/session.py:193
 msgid "couldn't add new session"
