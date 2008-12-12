@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
-from sqlalchemy import *
-from sqlalchemy.orm import *
-from sqlalchemy.ext.declarative import declarative_base
-from dbclasses import *
+from django.db import transaction
 import sys
 from jToolkit import prefs
 import md5
+
+from django.contrib.auth.models import User
+from Pootle.pootle_app.models import Project, Language, PootleProfile, make_pootle_user
 
 def main():
   if len(sys.argv) != 2:
@@ -15,8 +15,8 @@ def main():
 
   prefsfile = sys.argv[1]
   pref = prefs.PrefsParser(prefsfile)
-  session = configDB(pref.Pootle)
-  create_default_db(session)
+  configDB(pref.Pootle)
+  create_default_db()
 
 def configDB(instance):
   # Set up the connection options
@@ -24,55 +24,48 @@ def configDB(instance):
   for k,v in instance.stats.connect.iteritems():
     STATS_OPTIONS[k] = v
 
-  #metadata = Base.metadata
-  engine = create_engine('sqlite:///%s' % STATS_OPTIONS['database'])
-  conn = engine.connect()
-
-  Session = sessionmaker(bind=engine, autoflush=True)
-  alchemysession = Session()
-
-  metadata.create_all(engine)
-
-  return alchemysession
-
-def create_default_db(s):
-  create_default_projects(s)
-  create_default_languages(s)
-  create_default_users(s)
-
-def attempt(s,obj):
-  print "Adding %s... " % (str(obj)),
+def create_default_db():
   try:
-    s.add(obj)
-    s.commit()
-  except Exception, e:
-    s.rollback()
-    print "FAILED: %s" % e
-  else:
-    print "OK"
+    try:
+      transaction.enter_transaction_management()
+      transaction.managed(True)
 
-def create_default_projects(s):
-  pootle = Project(u"pootle")
+      create_default_projects()
+      create_default_languages()
+      create_default_users()
+    except:
+      if transaction.is_dirty():
+        transaction.rollback()
+      transaction.leave_transaction_management()
+      raise
+  finally:
+    if transaction.is_managed():
+      if transaction.is_dirty():
+        transaction.commit()
+      transaction.leave_transaction_management()
+
+def create_default_projects():
+  pootle = Project(code=u"pootle")
   pootle.fullname = u"Pootle"
   pootle.description = "<div dir='ltr' lang='en'>Interface translations for Pootle. <br /> See the <a href='http://pootle.locamotion.org'>official Pootle server</a> for the translations of Pootle.</div>"
   pootle.checkstyle = "standard"
   pootle.localfiletype = "po"
-  attempt(s,pootle)
+  pootle.save()
 
-  terminology = Project(u"terminology")
+  terminology = Project(code=u"terminology")
   terminology.fullname = u"Terminology"
   terminology.description = "<div dir='ltr' lang='en'>Terminology project that Pootle should use to suggest terms.<br />There might be useful terminology files on the <a href='http://pootle.locamotion.org/projects/terminology/'>official Pootle server</a>.</div>"
   terminology.checkstyle = "standard"
   terminology.localfiletype = "po"
-  attempt(s,terminology)
+  terminology.save()
 
-def create_default_languages(s):
-    af = Language("af")
+def create_default_languages():
+    af = Language(code="af")
     af.fullname = u"Afrikaans"
     af.specialchars = u"ëïêôûáéíóúý"
     af.nplurals = '2'
     af.pluralequation = "(n != 1)"
-    attempt(s,af)
+    af.save()
 
 # Akan
 #    ak.fullname = u'Akan'
@@ -82,11 +75,11 @@ def create_default_languages(s):
 
 # العربية
 # Arabic
-    ar = Language("ar")
+    ar = Language(code="ar")
     ar.fullname = u'Arabic'
     ar.nplurals = '6'
     ar.pluralequation ='n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5'
-    attempt(s,ar)
+    ar.save()
 
 # Azərbaycan
 # Azerbaijani
@@ -125,19 +118,19 @@ def create_default_languages(s):
 
 # Català
 # Catalan
-    ca = Language("ca")
+    ca = Language(code="ca")
     ca.fullname = u'Catalan; Valencian'
     ca.nplurals = '2'
     ca.pluralequation ='(n != 1)'
-    attempt(s,ca)
+    ca.save()
 
 # Česky
 # Czech
-    cs = Language("cs")
+    cs = Language(code="cs")
     cs.fullname = u'Czech'
     cs.nplurals = '3'
     cs.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
-    attempt(s,cs)
+    cs.save()
 
 # Cymraeg
 # Welsh
@@ -147,19 +140,19 @@ def create_default_languages(s):
 
 # Dansk
 # Danish
-    da = Language("da")
+    da = Language(code="da")
     da.fullname = u'Danish'
     da.nplurals = '2'
     da.pluralequation ='(n != 1)'
-    attempt(s,da)
+    da.save()
 
 # Deutsch
 # German
-    de = Language("de")
+    de = Language(code="de")
     de.fullname = u'German'
     de.nplurals = '2'
     de.pluralequation ='(n != 1)'
-    attempt(s,de)
+    de.save()
 
 # ང་ཁ
 # Dzongkha
@@ -169,39 +162,39 @@ def create_default_languages(s):
 
 # Ελληνικά
 # Greek
-    el = Language("el")
+    el = Language(code="el")
     el.fullname = u'Greek'
     el.nplurals = '2'
     el.pluralequation ='(n != 1)'
-    attempt(s,el)
+    el.save()
 
 # English
-    en = Language("en")
+    en = Language(code="en")
     en.fullname = u'English'
     en.nplurals = '2'
     en.pluralequation ='(n != 1)'
-    attempt(s,en)
+    en.save()
 
 # English (United Kingdom)
-    en_GB = Language("en_GB")
+    en_GB = Language(code="en_GB")
     en_GB.fullname = u'English (United Kingdom)'
     en_GB.nplurals = '2'
     en_GB.pluralequation ='(n != 1)'
-    attempt(s,en_GB)
+    en_GB.save()
 
 # English (US)
-    en_US = Language("en_US")
+    en_US = Language(code="en_US")
     en_US.fullname = u'English'
     en_US.nplurals = '2'
     en_US.pluralequation ='(n != 1)'
-    attempt(s,en_US)
+    en_US.save()
 
 # English (South Africa)
-    en_ZA = Language("en_ZA")
+    en_ZA = Language(code="en_ZA")
     en_ZA.fullname = u'English (South Africa)'
     en_ZA.nplurals = '2'
     en_ZA.pluralequation ='(n != 1)'
-    attempt(s,en_ZA)
+    en_ZA.save()
 
 # Esperanto
 #    eo.fullname = u'Esperanto'
@@ -210,27 +203,27 @@ def create_default_languages(s):
 
 # Español
 # Spanish
-    es = Language("es")
+    es = Language(code="es")
     es.fullname = u'Spanish; Castilian'
     es.nplurals = '2'
     es.pluralequation ='(n != 1)'
-    attempt(s,es)
+    es.save()
 
 # Español
 # Spanish (Argentina)
-    es_AR = Language("es_AR")
+    es_AR = Language(code="es_AR")
     es_AR.fullname = u'Spanish (Argentina)'
     es_AR.nplurals = '2'
     es_AR.pluralequation ='(n != 1)'
-    attempt(s,es_AR)
+    es_AR.save()
 
 # Español
 # Spanish (Spain)
-    es_ES = Language("es_ES")
+    es_ES = Language(code="es_ES")
     es_ES.fullname = u'Spanish (Spain)'
     es_ES.nplurals = '2'
     es_ES.pluralequation ='(n != 1)'
-    attempt(s,es_ES)
+    es_ES.save()
 
 # Eesti
 # Estonian
@@ -240,27 +233,27 @@ def create_default_languages(s):
 
 # Euskara
 # Basque
-    eu = Language("eu")
+    eu = Language(code="eu")
     eu.fullname = u'Basque'
     eu.nplurals = '2'
     eu.pluralequation ='(n != 1)'
-    attempt(s,eu)
+    eu.save()
 
 # فارسی
 # Persian
-    fa = Language("fa")
+    fa = Language(code="fa")
     fa.fullname = u'Persian'
     fa.nplurals = '1'
     fa.pluralequation ='0'
-    attempt(s,fa)
+    fa.save()
 
 # Suomi
 # Finnish
-    fi = Language("fi")
+    fi = Language(code="fi")
     fi.fullname = u'Finnish'
     fi.nplurals = '2'
     fi.pluralequation ='(n != 1)'
-    attempt(s,fi)
+    fi.save()
 
 # Føroyskt
 # Faroese
@@ -270,19 +263,19 @@ def create_default_languages(s):
 
 # Français
 # French
-    fr = Language("fr")
+    fr = Language(code="fr")
     fr.fullname = u'French'
     fr.nplurals = '2'
     fr.pluralequation ='(n > 1)'
-    attempt(s,fr)
+    fr.save()
 
 # Furlan
 # Friulian
-    fur = Language("fur")
+    fur = Language(code="fur")
     fur.fullname = u'Friulian'
     fur.nplurals = '2'
     fur.pluralequation ='(n != 1)'
-    attempt(s,fur)
+    fur.save()
 
 # Frysk
 # Frisian
@@ -292,11 +285,11 @@ def create_default_languages(s):
 
 # Frysk
 # Frisian
-    fy_NL = Language("fy_NL")
+    fy_NL = Language(code="fy_NL")
     fy_NL.fullname = u'Frisian'
     fy_NL.nplurals = '2'
     fy_NL.pluralequation ='(n != 1)'
-    attempt(s,fy_NL)
+    fy_NL.save()
 
 # Gaeilge
 # Irish
@@ -306,19 +299,19 @@ def create_default_languages(s):
 
 # Gaeilge
 # Irish
-    ga_IE = Language("ga_IE")
+    ga_IE = Language(code="ga_IE")
     ga_IE.fullname = u'Irish'
     ga_IE.nplurals = '3'
     ga_IE.pluralequation ='n==1 ? 0 : n==2 ? 1 : 2'
-    attempt(s,ga_IE)
+    ga_IE.save()
 
 # Galego
 # Galician
-    gl = Language("gl")
+    gl = Language(code="gl")
     gl.fullname = u'Galician'
     gl.nplurals = '2'
     gl.pluralequation ='(n != 1)'
-    attempt(s,gl)
+    gl.save()
 
 # ગુજરાતી
 # Gujarati
@@ -328,11 +321,11 @@ def create_default_languages(s):
 
 # עברית
 # Hebrew
-    he = Language("he")
+    he = Language(code="he")
     he.fullname = u'Hebrew'
     he.nplurals = '2'
     he.pluralequation ='(n != 1)'
-    attempt(s,he)
+    he.save()
 
 # हिन्दी
 # Hindi
@@ -348,50 +341,50 @@ def create_default_languages(s):
 
 # Magyar
 # Hungarian
-    hu = Language("hu")
+    hu = Language(code="hu")
     hu.fullname = u'Hungarian'
     hu.nplurals = '2'
     hu.pluralequation ='(n !=1)'
-    attempt(s,hu)
+    hu.save()
 
 # Bahasa Indonesia
 # Indonesian
-    id = Language("id")
+    id = Language(code="id")
     id.fullname = u'Indonesian'
     id.nplurals = '1'
     id.pluralequation ='0'
-    attempt(s,id)
+    id.save()
 
 # Icelandic
-    islang = Language("is")
+    islang = Language(code="is")
     islang.fullname = u'Icelandic'
     islang.nplurals = '2'
     islang.pluralequation = '(n != 1)'
-    attempt(s,islang)
+    islang.save()
 
 # Italiano
 # Italian
-    it = Language("it")
+    it = Language(code="it")
     it.fullname = u'Italian'
     it.nplurals = '2'
     it.pluralequation ='(n != 1)'
-    attempt(s,it)
+    it.save()
 
 # 日本語
 # Japanese
-    ja = Language("ja")
+    ja = Language(code="ja")
     ja.fullname = u'Japanese'
     ja.nplurals = '1'
     ja.pluralequation ='0'
-    attempt(s,ja)
+    ja.save()
 
 # ქართული
 # Georgian
-    ka = Language("ka")
+    ka = Language(code="ka")
     ka.fullname = u'Georgian'
     ka.nplurals = '1'
     ka.pluralequation ='0'
-    attempt(s,ka)
+    ka.save()
 
 # ភាសា
 # Khmer
@@ -401,11 +394,11 @@ def create_default_languages(s):
 
 # 한국어
 # Korean
-    ko = Language("ko")
+    ko = Language(code="ko")
     ko.fullname = u'Korean'
     ko.nplurals = '1'
     ko.pluralequation ='0'
-    attempt(s,ko)
+    ko.save()
 
 # Kurdî / كوردي
 # Kurdish
@@ -421,11 +414,11 @@ def create_default_languages(s):
 
 # Lietuvių
 # Lithuanian
-    lt = Language("lt")
+    lt = Language(code="lt")
     lt.fullname = u'Lithuanian'
     lt.nplurals = '3'
     lt.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)'
-    attempt(s,lt)
+    lt.save()
 
 # Latviešu
 # Latvian
@@ -434,11 +427,11 @@ def create_default_languages(s):
 #    lv.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2)'
 
 # Malayalam
-    ml = Language("ml")
+    ml = Language(code="ml")
     ml.fullname = u'Malayalam'
     ml.nplurals = '2'
     ml.pluralequation = '(n != 1)'
-    attempt(s,ml)
+    ml.save()
 
 # Malagasy
 #    mg.fullname = u'Malagasy'
@@ -447,11 +440,11 @@ def create_default_languages(s):
 
 # Монгол
 # Mongolian
-    mn = Language("mn")
+    mn = Language(code="mn")
     mn.fullname = u'Mongolian'
     mn.nplurals = '2'
     mn.pluralequation ='(n != 1)'
-    attempt(s,mn)
+    mn.save()
 
 # Marathi
 #    mr.fullname = u'Marathi'
@@ -465,11 +458,11 @@ def create_default_languages(s):
 
 # Malti
 # Maltese
-    mt = Language("mt")
+    mt = Language(code="mt")
     mt.fullname = u'Maltese'
     mt.nplurals = '4'
     mt.pluralequation ='(n==1 ? 0 : n==0 || ( n%100>1 && n%100<11) ? 1 : (n%100>10 && n%100<20 ) ? 2 : 3)'
-    attempt(s,mt)
+    mt.save()
 
 # Nahuatl
 #    nah.fullname = u'Nahuatl'
@@ -489,11 +482,11 @@ def create_default_languages(s):
 
 # Nederlands
 # Dutch
-    nl = Language("nl")
+    nl = Language(code="nl")
     nl.fullname = u'Dutch; Flemish'
     nl.nplurals = '2'
     nl.pluralequation ='(n != 1)'
-    attempt(s,nl)
+    nl.save()
 
 # Nynorsk
 # Norwegian Nynorsk
@@ -525,107 +518,107 @@ def create_default_languages(s):
 
 # Polski
 # Polish
-    pl = Language("pl")
+    pl = Language(code="pl")
     pl.fullname = u'Polish'
     pl.nplurals = '3'
     pl.pluralequation ='(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
-    attempt(s,pl)
+    pl.save()
 
 # Português
 # Portuguese
-    pt = Language("pt")
+    pt = Language(code="pt")
     pt.fullname = u'Portuguese'
     pt.nplurals = '2'
     pt.pluralequation ='(n != 1)'
-    attempt(s,pt)
+    pt.save()
 
 # Português
 # Portuguese from Portugal
-    pt_PT = Language("pt_PT")
+    pt_PT = Language(code="pt_PT")
     pt_PT.fullname = u'Portuguese (Portugal)'
     pt_PT.nplurals = '2'
     pt_PT.pluralequation ='(n != 1)'
-    attempt(s,pt_PT)
+    pt_PT.save()
 
 # Português do Brasil
 # Brazilian Portuguese
-    pt_BR = Language("pt_BR")
+    pt_BR = Language(code="pt_BR")
     pt_BR.fullname = u'Portuguese (Brazil)'
     pt_BR.nplurals = '2'
     pt_BR.pluralequation ='(n > 1)'
-    attempt(s,pt_BR)
+    pt_BR.save()
 
 # Română
 # Romanian
-    ro = Language("ro")
+    ro = Language(code="ro")
     ro.fullname = u'Romanian'
     ro.nplurals = '3'
     ro.pluralequation ='(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);'
-    attempt(s,ro)
+    ro.save()
 
 # Русский
 # Russian
-    ru = Language("ru")
+    ru = Language(code="ru")
     ru.fullname = u'Russian'
     ru.nplurals = '3'
     ru.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
-    attempt(s,ru)
+    ru.save()
 
 # Slovenčina
 # Slovak
-    sk = Language("sk")
+    sk = Language(code="sk")
     sk.fullname = u'Slovak'
     sk.nplurals = '3'
     sk.pluralequation ='(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2'
-    attempt(s,sk)
+    sk.save()
 
 # Slovenščina
 # Slovenian
-    sl = Language("sl")
+    sl = Language(code="sl")
     sl.fullname = u'Slovenian'
     sl.nplurals = '4'
     sl.pluralequation ='(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3)'
-    attempt(s,sl)
+    sl.save()
 
 # Shqip
 # Albanian
-    sq = Language("sq")
+    sq = Language(code="sq")
     sq.fullname = u'Albanian'
     sq.nplurals = '2'
     sq.pluralequation ='(n != 1)'
-    attempt(s,sq)
+    sq.save()
 
 # Српски / Srpski
 # Serbian
-    sr = Language("sr")
+    sr = Language(code="sr")
     sr.fullname = u'Serbian'
     sr.nplurals = '3'
     sr.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
-    attempt(s,sr)
+    sr.save()
 
 # Sesotho
 # Sotho
-    st = Language("st")
+    st = Language(code="st")
     st.fullname = u'Sotho, Southern'
     st.nplurals = '2'
     st.pluralequation ='(n != 1)'
-    attempt(s,st)
+    st.save()
 
 # Svenska
 # Swedish
-    sv = Language("sv")
+    sv = Language(code="sv")
     sv.fullname = u'Swedish'
     sv.nplurals = '2'
     sv.pluralequation ='(n != 1)'
-    attempt(s,sv)
+    sv.save()
 
 # Svenska
 # Swedish (Sweden)
-    sv_SE = Language("sv_SE")
+    sv_SE = Language(code="sv_SE")
     sv_SE.fullname = u'Swedish (Sweden)'
     sv_SE.nplurals = '2'
     sv_SE.pluralequation ='(n != 1)'
-    attempt(s,sv_SE)
+    sv_SE.save()
 
 # தமிழ்
 # Tamil
@@ -641,19 +634,19 @@ def create_default_languages(s):
 
 # Türkçe
 # Turkish
-    tr = Language("tr")
+    tr = Language(code="tr")
     tr.fullname = u'Turkish'
     tr.nplurals = '1'
     tr.pluralequation ='0'
-    attempt(s,tr)
+    tr.save()
 
 # Українська
 # Ukrainian
-    uk = Language("uk")
+    uk = Language(code="uk")
     uk.fullname = u'Ukrainian'
     uk.nplurals = '3'
     uk.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
-    attempt(s,uk)
+    uk.save()
 
 # Tshivenḓa
 # Venda
@@ -663,18 +656,18 @@ def create_default_languages(s):
 #    ve.specialchars = "ḓṋḽṱ ḒṊḼṰ ṅṄ"
 
 # Vietnamese
-    vi = Language("vi")
+    vi = Language(code="vi")
     vi.fullname = u'Vietnamese'
     vi.nplurals = '1'
     vi.pluralequation ='0'
-    attempt(s,vi)
+    vi.save()
 
 # Wolof
-    wo = Language("wo")
+    wo = Language(code="wo")
     wo.fullname = u'Wolof'
     wo.nplurals = '2'
     wo.pluralequation ='(n != 1)'
-    attempt(s,wo)
+    wo.save()
 
 # Walon
 # Walloon
@@ -684,44 +677,43 @@ def create_default_languages(s):
 
 # 简体中文
 # Simplified Chinese (China mainland used below, but also used in Singapore and Malaysia)
-    zh_CN = Language("zh_CN")
+    zh_CN = Language(code="zh_CN")
     zh_CN.fullname = u'Chinese (China)'
     zh_CN.nplurals = '1'
     zh_CN.pluralequation ='0'
     zh_CN.specialchars = u"←→↔×÷©…—‘’“”【】《》"
-    attempt(s,zh_CN)
+    zh_CN.save()
 
 # 繁體中文
 # Traditional Chinese (Hong Kong used below, but also used in Taiwan and Macau)
-    zh_HK = Language("zh_HK")
+    zh_HK = Language(code="zh_HK")
     zh_HK.fullname = u'Chinese (Hong Kong)'
     zh_HK.nplurals = '1'
     zh_HK.pluralequation ='0'
     zh_HK.specialchars = u"←→↔×÷©…—‘’“”「」『』【】《》"
-    attempt(s,zh_HK)
+    zh_HK.save()
 
 # 繁體中文
 # Traditional Chinese (Taiwan used below, but also used in Hong Kong and Macau)
-    zh_TW = Language("zh_TW")
+    zh_TW = Language(code="zh_TW")
     zh_TW.fullname = u'Chinese (Taiwan)'
     zh_TW.nplurals = '1'
     zh_TW.pluralequation ='0'
     zh_TW.specialchars = u"←→↔×÷©…—‘’“”「」『』【】《》"
-    attempt(s,zh_TW)
+    zh_TW.save()
 
 # This is a "language" that gives people access to the (untranslated) template files
-    templates = Language("templates")
+    templates = Language(code="templates")
     templates.fullname = u'Templates'
-    attempt(s,templates)
+    templates.save()
 
-def create_default_users(s):
-  admin = User(u"admin")
-  admin.name=u"Administrator"
-  admin.activated="True"
-  admin.passwdhash=md5.new("admin").hexdigest()
-  admin.logintype="hash"
-  admin.siteadmin=True
-  attempt(s,admin)
+def create_default_users():
+  admin = make_pootle_user(username=u"admin")
+  admin.firstname=u"Administrator"
+  admin.is_active=True
+  admin.is_superuser=True
+  admin.password = md5.new("admin").hexdigest()
+  admin.save()
 
 if __name__ == "__main__":
   main()
