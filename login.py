@@ -12,10 +12,8 @@ try:
 except ImportError:
   pass
 
-from sqlalchemy import *
-from sqlalchemy.orm import *
-
-from dbclasses import User
+from django.contrib.auth.models import User
+from Pootle.pootle_app.profile import get_profile
 
 class AlchemyLoginChecker:
   Session = None
@@ -23,9 +21,6 @@ class AlchemyLoginChecker:
   def __init__(self, session, instance):
     self.session = session
     self.instance = instance
-    self.engine = session.server.engine
-    self.metadata = session.server.metadata
-    self.alchemysession = session.server.alchemysession
 
   def getmd5password(self, username=None):
     """retrieves the md5 hash of the password for this user, or another if another is given..."""
@@ -33,13 +28,13 @@ class AlchemyLoginChecker:
       username = self.session.username
     if not self.userexists(username):
       raise IndexError, self.session.localize("user does not exist (%r)") % username
-    return self.alchemysession.query(User).filter_by(username=username).first().passwdhash
+    return User.objects.filter(username=username)[0].password
 
   def userexists(self, username=None):
     """checks whether user username exists"""
     if username is None:
       username = self.session.username
-    return self.alchemysession.query(User).filter_by(username=username).count() > 0
+    return User.objects.filter(username=username).count() > 0
  
 
 class LDAPLoginChecker(AlchemyLoginChecker):
@@ -119,15 +114,15 @@ class ProgressiveLoginChecker(AlchemyLoginChecker):
     self.logincheckers = logindict
 
   def getAcctNode(self, username):
-    acct = self.alchemysession.query(User).filter_by(username=username).first()
-    if acct == None:
+    accts = User.objects.filter(username=username)
+    if accts.count() == 0:
       raise self.NoSuchUser("Given username (%s) has no account" % username)
-    return acct
+    return accts[0]
 
   def getChecker(self, username):
     n = self.getAcctNode(username)
     try:
-      return self.logincheckers[n.logintype]
+      return self.logincheckers[get_profile(n).login_type]
     except AttributeError:
       raise AttributeError("Given username (%s) has no login type listed" % username)
     except KeyError:

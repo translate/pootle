@@ -28,23 +28,23 @@ from translate.misc import autoencode
 from translate.lang import data as langdata
 
 import os
-from dbclasses import Language, Project
+from Pootle.pootle_app.models import Language, Project
 
 class POTree:
   """Manages the tree of projects and languages"""
   def __init__(self, instance, server):
     self.server = server
 
-    langlist = self.server.alchemysession.query(Language).order_by(Language.code).all()
+    langlist = Language.objects.order_by('code')
     self.languages = dict( (l.code, l) for l in langlist)
 
     if not self.haslanguage("templates"):
-      newlang = Language("templates", u"Templates")
-      self.server.alchemysession.add(newlang)
+      newlang = Language(code="templates", fullname=u"Templates")
+      newlang.save()
       self.languages[newlang.code] = newlang 
       self.saveprefs()
 
-    projlist = self.server.alchemysession.query(Project).order_by(Project.code).all()
+    projlist = Project.objects.order_by('code')
     self.projects = dict( (p.code, p) for p in projlist) 
 
     self.podirectory = instance.podirectory
@@ -63,7 +63,7 @@ class POTree:
         languagecode = key.replace("languageremove-", "", 1)
         if self.haslanguage(languagecode):
           langobject = self.languages[languagecode] 
-          self.server.alchemysession.delete(langobject)
+          langobject.delete()
           del self.languages[languagecode]
       elif key.startswith("languagename-"):
         languagecode = key.replace("languagename-", "", 1)
@@ -121,9 +121,10 @@ class POTree:
         #   raise ValueError("Please set a value for the plural equation")
         if not languagenplurals == "" and languagepluralequation == "":
           raise ValueError("Please set both the number of plurals and the plural equation OR leave both blank")
-        newlang = Language(languagecode, languagename, languagenplurals, languagepluralequation, languagespecialchars)
+        newlang = Language(code=languagecode, fullname=languagename, nplurals=languagenplurals, 
+                           pluralequation=languagepluralequation, specialchars=languagespecialchars)
         self.languages[newlang.code] = newlang
-        self.server.alchemysession.add(newlang)
+        newlang.save()
     self.saveprefs()
 
   def changeprojects(self, argdict):
@@ -137,7 +138,7 @@ class POTree:
         projectcode = key.replace("projectremove-", "", 1)
         if self.hasprojectcode(projectcode):
           pobject = self.projects[projectcode] 
-          self.server.alchemysession.delete(pobject)
+          pobject.delete()
           del self.projects[projectcode]
       elif key.startswith("projectname-"):
         projectcode = key.replace("projectname-", "", 1)
@@ -186,9 +187,11 @@ class POTree:
         projectdescription = argdict.get("newprojectdescription", "")
         projectcheckerstyle = argdict.get("newprojectcheckerstyle", "")
         projectcreatemofiles = bool(argdict.get("newprojectcreatemofiles", "") or 0)
-        newproject = Project(projectcode, projectname, projectdescription, projectcheckerstyle, projecttype, projectcreatemofiles)
+        newproject = Project(code=projectcode, fullname=projectname, description=projectdescription, 
+                             checkstyle=projectcheckerstyle, localfiletype=projecttype, 
+                             createmofiles=projectcreatemofiles)
         self.projects[newproject.code] = newproject
-        self.server.alchemysession.add(newproject)
+        newproject.save()
         projectdir = os.path.join(self.podirectory, projectcode)
         if not os.path.isdir(projectdir):
           os.mkdir(projectdir)

@@ -22,7 +22,7 @@
 from Pootle import pagelayout
 from Pootle import projects
 from translate.filters import checks
-from dbclasses import User
+from django.contrib.auth.models import User
 
 import locale
 
@@ -194,9 +194,8 @@ class ProjectsAdminPage(pagelayout.PootlePage):
 
 class UsersAdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, server, alchemysession, session, instance):
+  def __init__(self, server, session, instance):
     self.server = server
-    self.alchemysession = alchemysession 
     self.session = session
     self.instance = instance
     self.localize = session.localize
@@ -237,13 +236,14 @@ class UsersAdminPage(pagelayout.PootlePage):
 
   def getusersoptions(self):
     users = []
-    q = self.alchemysession.query(User).order_by(User.username).all()
+    q = User.objects.order_by('username')
     for usernode in q: 
-      username = getattr(usernode, "username", "")
-      fullname = getattr(usernode, "name", "")
-      email = getattr(usernode, "email", "")
-      logintype = getattr(usernode, "logintype", "")
-      activated = getattr(usernode, "activated", 0) == 1
+      username = usernode.username
+      fullname = usernode.first_name
+      email    = usernode.email
+      # TODO: Decide what to write here
+      logintype = "XXX"
+      activated = usernode.is_active
       if activated:
         activatedattr = "checked"
       else:

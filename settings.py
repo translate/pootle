@@ -105,4 +105,4 @@ INSTALLED_APPS = (
     'Pootle.pootle_app'
 )
 
-#AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
+AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"

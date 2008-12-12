@@ -50,9 +50,8 @@ import zipfile
 
 from scripts import hooks
 
-from sqlalchemy import *
-from sqlalchemy.exc import *
-from dbclasses import * 
+from django.contrib.auth.models import User
+from Pootle.pootle_app.models import Suggestion, get_profile, Submission
 
 class RightsError(ValueError):
   pass
@@ -120,7 +119,6 @@ class TranslationProject(object):
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
     self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
     self.fileext = self.potree.getprojectlocalfiletype(self.projectcode)
-    self.asession = self.potree.server.alchemysession
     # terminology matcher
     self.termmatcher = None
     self.termmatchermtime = None
@@ -237,7 +235,7 @@ class TranslationProject(object):
       return self.languagecode in map(lambda l: l.code, getattr(user, "languages", []))
 
     users = {}
-    for user in session.server.alchemysession.query(User).all():
+    for user in User.objects.all():
       if usableuser(user):
         # Let's build a nice descriptive name for use in the interface. It will
         # contain both the username and the full name, if available.
@@ -1316,7 +1314,7 @@ class TranslationProject(object):
     source = pofile.getitem(item).getsource()
 
     s = Submission()
-    s.creationTime = datetime.datetime.utcnow()
+    s.creation_time = datetime.datetime.utcnow()
 
     s.language = self.language 
     s.project = self.project
@@ -1325,9 +1323,10 @@ class TranslationProject(object):
     s.trans = unicode(newvalues['target'])
 
     if session.user != None:
-      s.submitter = session.user
+      s.submitter = get_profile(session.user)
 
     s.fromsuggestion = suggObj
+    s.save()
 
     pofile.updateunit(item, newvalues, session.user, languageprefs)
     self.updateindex(self.indexer, pofilename, [item])
@@ -1340,7 +1339,7 @@ class TranslationProject(object):
     source = pofile.getitem(item).getsource()
 
     s = Suggestion()
-    s.creationTime = datetime.datetime.utcnow()
+    s.creation_time = datetime.datetime.utcnow()
 
     s.language = self.language 
     s.project = self.project
@@ -1348,7 +1347,7 @@ class TranslationProject(object):
     s.source = unicode(source)
     s.trans = unicode(trans)
 
-    s.reviewStatus = "pending"
+    s.review_status = "pending"
 
     # TODO This is a hack to get around the following issue: When one logs
     # out, the user is set to None (since the session is no longer open),
@@ -1357,10 +1356,11 @@ class TranslationProject(object):
     # that person's submissions, but into the database as anonymous.  This
     # fixes it by making it an anonymous suggestion in the file.
     if session.user != None:
-      s.suggester = session.user
+      s.suggester = get_profile(session.user)
       uname = session.user.username
     else:
       uname = None
+    s.save()
 
     pofile.track(item, "suggestion made by %s" % uname)
     pofile.addsuggestion(item, trans, uname)
@@ -1378,29 +1378,30 @@ class TranslationProject(object):
     and returns that suggestion object"""
     source = pofile.getitem(item).getsource()
     
-    query = self.asession.query(Suggestion)
-    query = query.filter_by(language=self.language)
-    query = query.filter_by(project=self.project)
-    query = query.filter_by(source=unicode(source))
-    query = query.filter_by(trans=unicode(newtrans))
-    query = query.filter_by(reviewStatus="pending")
+    query = Suggestion.objects\
+        .filter(language=self.language)\
+        .filter(project=self.project)\
+        .filter(source=unicode(source))\
+        .filter(trans=unicode(newtrans))\
+        .filter(review_status="pending")
 
     user = None
     if suggester != None:
-      user = self.asession.query(User).filter_by(username=suggester).first()
-    query = query.filter_by(suggester=user)
+      users = User.objects.filter(username=suggester)
+      if users.count() > 0:
+        query = query.filter(suggester=users[0])
 
-    sugg = query.first()
-    if sugg != None:
+    if query.count() > 0:
+      sugg = query[0]
       # If you want to save rejected suggestions in the database, uncomment the following lines and comment out the delete line
       #sugg.reviewer = session.user
       #sugg.reviewStatus = status
       #sugg.reviewTime = datetime.datetime.utcnow()
-      self.asession.delete(sugg)
+      sugg.delete()
+      return sugg
     else:
       print "No database entry for suggestion found; database integrity issue detected!"
-
-    return sugg
+      return None
 
   def acceptsuggestion(self, pofile, item, suggitem, newtrans, session):
     """accepts the suggestion into the main pofile"""

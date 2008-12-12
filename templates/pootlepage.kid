@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<?python
+    from Pootle.pootle_app.models import get_profile
+?>
 <include xmlns:py="http://purl.org/kid/ns#">
 
     <div py:def="header(links, session, baseurl, instancetitle)" py:strip="True">
@@ -86,19 +89,19 @@
       <table>
         <tr>
           <th scope="row" py:content="statstext['suggaccepted']">Suggestions Accepted</th>
-          <td>${user.suggestionsAcceptedCount()}</td>
+          <td>${get_profile(user).suggestions_accepted_count}</td>
         </tr>
         <tr>
           <th scope="row" py:content="statstext['suggpending']">Suggestions Pending</th>
-          <td>${user.suggestionsPendingCount()}</td>
+          <td>${get_profile(user).suggestions_pending_count}</td>
         </tr>
         <tr>
           <th scope="row" py:content="statstext['suggreviewed']">Suggestions Reviewed</th>
-          <td>${user.suggestionsReviewedCount()}</td>
+          <td>${get_profile(user).suggestions_reviewed_count}</td>
         </tr>
         <tr>
           <th scope="row" py:content="statstext['submade']">Submissions Made</th>
-          <td>${user.submissionsCount()}</td>
+          <td>${get_profile(user).submissions_count}</td>
         </tr>
       </table>
     </div>
@@ -109,14 +112,14 @@
           <div py:for="stats in topstats">
               <div class="statslist">
                   <h3 py:content="stats['headerlabel']">Top</h3>
-                  <ul py:for="(num, (name, val)) in enumerate(stats['data'])">
+                  <ul py:for="(num, (user, val)) in enumerate(stats['data'])">
                       <?python
                         if num % 2:
                             list_attributes = {'class': 'even'}
                         else:
                             list_attributes = {'class': 'odd'}
                       ?>
-                      <li py:attrs="list_attributes"><span class="name">${name}</span><span class="value">${val}</span></li>
+                      <li py:attrs="list_attributes"><span class="name">${user.username}</span><span class="value">${val}</span></li>
                   </ul>
               </div>
           </div>

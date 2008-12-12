@@ -98,3 +98,7 @@ def make_pootle_user(username):
     user.save()
     make_default_profile(user)
     return user
+
+def save_user(user):
+    user.save()
+    get_profile(user).save()

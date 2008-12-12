@@ -19,6 +19,9 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
+
 from jToolkit.web import server
 from jToolkit.web import templateserver
 from jToolkit.web import session
@@ -45,6 +48,7 @@ from translate import __version__ as toolkitversion
 from jToolkit import __version__ as jtoolkitversion
 from Pootle import statistics, pan_app
 from translate.storage import statsdb
+from Pootle.misc.transaction import django_transaction
 
 try:
   from xml.etree import ElementTree
@@ -58,10 +62,6 @@ import os
 import re
 import random
 import pprint
-
-import dbclasses
-from sqlalchemy import *
-from sqlalchemy.orm import *
 
 def use_request_cache(f):
     def decorated_f(*args, **kwargs):
@@ -78,30 +78,16 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
       sessioncache = users.PootleSessionCache(sessionclass=users.PootleSession)
 
     self.configDB(instance)
-    try:
-      self.potree = potree.POTree(instance, self)
-      super(PootleServer, self).__init__(instance, webserver, sessioncache, errorhandler, loginpageclass)
-      self.templatedir = filelocations.templatedir
-      self.setdefaultoptions()
-    except Exception, e:
-      self.alchemysession.rollback()
-      self.alchemysession.close()
-      raise e
+    self.potree = potree.POTree(instance, self)
+    super(PootleServer, self).__init__(instance, webserver, sessioncache, errorhandler, loginpageclass)
+    self.templatedir = filelocations.templatedir
+    self.setdefaultoptions()
 
   def configDB(self, instance):
     statistics.statsdb = statsdb
     # Set up the connection options
     for k,v in instance.stats.connect.iteritems():
       statistics.STATS_OPTIONS[k] = v
-
-    self.metadata = dbclasses.metadata
-    self.engine = create_engine('sqlite:///%s' % statistics.STATS_OPTIONS['database'])
-    self.conn = self.engine.connect()
-
-    Session = sessionmaker(bind=self.engine, autoflush=True, autocommit=True)
-    self.alchemysession = Session()
-
-    self.metadata.create_all(self.engine)
 
   def loadurl(self, filename, context):
     """loads a url internally for overlay code"""
@@ -260,6 +246,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     return session.language 
 
   @use_request_cache
+  #@django_transaction
   def getpage(self, pathwords, session, argdict):
     """return a page that will be sent to the user"""
 
@@ -450,7 +437,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
         elif top == "users.html":
           if "changeusers" in argdict:
             self.changeusers(session, argdict)
-          return adminpages.UsersAdminPage(self, session.server.alchemysession, session, self.instance)
+          return adminpages.UsersAdminPage(self, session, self.instance)
         elif top == "languages.html":
           if "changelanguages" in argdict:
             self.potree.changelanguages(argdict)
@@ -658,7 +645,7 @@ class PootleOptionParser(simplewebserver.WebOptionParser):
                     help="Pootle should not cache templates, but reload them with every request.")
     try:
       import psyco
-      self.add_option('', "--psyco", dest="psyco", default=None, choices=psycomodes, metavar="MODE",
+      self.add_option('', "--psyco", dest="psyco", default="none", choices=psycomodes, metavar="MODE",
                       help="use psyco to speed up the operation, modes: %s" % (", ".join(psycomodes)))
     except ImportError, e:
       return

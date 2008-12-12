@@ -39,7 +39,7 @@ import re
 import locale
 import util  
 
-from dbclasses import *
+from Pootle.pootle_app.models import Suggestion, Submission, Language, Project
 
 _undefined = lambda: None
 
@@ -124,10 +124,9 @@ class PootleIndex(pagelayout.PootlePage):
     # rewritten for compatibility with Python 2.3
     # languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     
-    asession = self.potree.server.alchemysession
-    topsugg = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsMade)).filter(Suggestion.reviewStatus == 'accepted').group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
-    topreview = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsReviewed)).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
-    topsub = asession.query(User.name, func.count(Submission.id)).join((Submission, User.submissions)).group_by(User.name).order_by(func.count(Submission.id).desc())[:5]
+    topsugg   = Suggestion.objects.get_top_suggesters()
+    topreview = Suggestion.objects.get_top_reviewers()
+    topsub    = Submission.objects.get_top_submitters()
    
     topstats = gentopstats(topsugg, topreview, topsub, self.localize) 
 
@@ -144,8 +143,7 @@ class PootleIndex(pagelayout.PootlePage):
 
   def getlanguages(self,session):
     languages = []
-    asession = self.potree.server.alchemysession
-    for (langcode, langname, recentsub) in asession.query(Language.code, Language.fullname, func.min(Submission.creationTime)).outerjoin((Submission, Language.submissions)).order_by(Language.fullname).group_by(Language.code).all(): 
+    for (langcode, langname, recentsub) in Language.objects.get_latest_changes():
       projectcodes = self.potree.getprojectcodes(langcode)
       trans = 0
       fuzzy = 0
@@ -181,8 +179,7 @@ class PootleIndex(pagelayout.PootlePage):
   def getprojects(self,session):
     """gets the options for the projects"""
     projects = []
-    asession = self.potree.server.alchemysession
-    for (projectcode, recentsub) in asession.query(Project.code, func.min(Submission.creationTime)).outerjoin((Submission, Project.submissions)).order_by(Project.fullname).group_by(Project.code).all(): 
+    for (projectcode, recentsub) in Project.objects.get_latest_changes():
       langcodes = self.potree.getlanguagecodes(projectcode)
       trans = 0
       fuzzy = 0
@@ -238,7 +235,7 @@ class UserIndex(pagelayout.PootlePage):
     quicklinks = self.getquicklinks()
     setoptionstext = self.localize("You need to <a href='options.html'>choose your languages and projects</a>.")
     # l10n: %s is the full name of the currently logged in user
-    statstitle = self.localize("%s's Statistics", session.user.name)
+    statstitle = self.localize("%s's Statistics", session.user.first_name)
     statstext = {
                   'suggmade': self.localize("Suggestions Made"),
                   'suggaccepted': self.localize("Suggestions Accepted"),
@@ -316,11 +313,11 @@ class LanguageIndex(pagelayout.PootleNavPage):
     templatename = "language"
     adminlink = self.localize("Admin")
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
-
-    asession = self.potree.server.alchemysession
-    topsugg = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsMade)).filter(Suggestion.language == self.potree.languages[self.languagecode]).filter(Suggestion.reviewStatus == 'accepted').group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
-    topreview = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsReviewed)).filter(Suggestion.language == self.potree.languages[self.languagecode]).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
-    topsub = asession.query(User.name, func.count(Submission.id)).join((Submission, User.submissions)).filter(Submission.language == self.potree.languages[self.languagecode]).group_by(User.name).order_by(func.count(Submission.id).desc())[:5]
+    
+    language_id = self.potree.languages[self.languagecode].id
+    topsugg     = Suggestion.objects.get_top_suggesters_by_language(language_id)
+    topreview   = Suggestion.objects.get_top_reviewers_by_language(language_id)
+    topsub      = Submission.objects.get_top_submitters_by_language(language_id)
    
     topstats = gentopstats(topsugg, topreview, topsub, self.localize) 
 
@@ -399,11 +396,11 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     statsheadings = self.getstatsheadings()
     statsheadings["name"] = self.localize("Language")
 
-    asession = self.potree.server.alchemysession
-    topsugg = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsMade)).filter(Suggestion.project == self.potree.projects[self.projectcode]).filter(Suggestion.reviewStatus == 'accepted').group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
-    topreview = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsReviewed)).filter(Suggestion.project == self.potree.projects[self.projectcode]).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
-    topsub = asession.query(User.name, func.count(Submission.id)).join((Submission, User.submissions)).filter(Submission.project == self.potree.projects[self.projectcode]).group_by(User.name).order_by(func.count(Submission.id).desc())[:5]
-   
+    project_id = self.potree.projects[self.projectcode].id
+    topsugg    = Suggestion.objects.get_top_suggesters_by_project(project_id)
+    topreview  = Suggestion.objects.get_top_reviewers_by_project(project_id)
+    topsub     = Submission.objects.get_top_submitters_by_project(project_id)
+
     topstats = gentopstats(topsugg, topreview, topsub, self.localize) 
 
     templatevars = {"pagetitle": pagetitle,
@@ -522,11 +519,12 @@ class ProjectIndex(pagelayout.PootleNavPage):
     if dirfilter:
       reqstart = unicode(dirfilter)
 
-    asession = self.project.potree.server.alchemysession
-    topsugg = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsMade)).filter(Suggestion.language == self.project.language).filter(Suggestion.project == self.project.project).filter(Suggestion.reviewStatus == 'accepted').filter(Suggestion.filename.like(reqstart+"%")).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
-    topreview = asession.query(User.name, func.count(Suggestion.id)).join((Suggestion, User.suggestionsReviewed)).filter(Suggestion.language == self.project.language).filter(Suggestion.project == self.project.project).filter(Suggestion.filename.like(reqstart+"%")).group_by(User.name).order_by(func.count(Suggestion.id).desc())[:5]
-    topsub = asession.query(User.name, func.count(Submission.id)).join((Submission, User.submissions)).filter(Submission.language == self.project.language).filter(Submission.project == self.project.project).filter(Submission.filename.like(reqstart+"%")).group_by(User.name).order_by(func.count(Submission.id).desc())[:5]
-   
+    language_id = self.project.language.id
+    project_id  = self.project.project.id
+    topsugg     = Suggestion.objects.get_top_suggesters_by_project_and_language(project_id, language_id)
+    topreview   = Suggestion.objects.get_top_reviewers_by_project_and_language(project_id, language_id)
+    topsub      = Submission.objects.get_top_submitters_by_project_and_language(project_id, language_id)
+
     topstats = gentopstats(topsugg, topreview, topsub, self.localize) 
 
     templatevars = {"pagetitle": pagetitle,
