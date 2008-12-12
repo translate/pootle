@@ -52,6 +52,7 @@ from scripts import hooks
 
 from django.contrib.auth.models import User
 from Pootle.pootle_app.models import Suggestion, get_profile, Submission
+from Pootle import pan_app
 
 class RightsError(ValueError):
   pass
@@ -124,7 +125,7 @@ class TranslationProject(object):
     self.termmatchermtime = None
     if create:
       self.converttemplates(InternalAdminSession())
-    self.podir = potree.getpodir(languagecode, projectcode)
+    self.podir = self.potree.getpodir(languagecode, projectcode)
     if self.potree.hasgnufiles(self.podir, self.languagecode) == "gnu":
       self.filestyle = "gnu"
     else:

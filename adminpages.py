@@ -29,8 +29,8 @@ import locale
 
 class AdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, potree, session):
-    self.potree = potree
+  def __init__(self, session):
+    self.potree = pan_app.get_po_tree()
     self.session = session
     self.localize = session.localize
     templatename = "adminindex"
@@ -67,8 +67,8 @@ class AdminPage(pagelayout.PootlePage):
 
 class LanguagesAdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, potree, session):
-    self.potree = potree
+  def __init__(self, session):
+    self.potree = pan_app.get_po_tree()
     self.session = session
     self.localize = session.localize
     templatename = "adminlanguages"
@@ -121,8 +121,8 @@ class LanguagesAdminPage(pagelayout.PootlePage):
 
 class ProjectsAdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, potree, session):
-    self.potree = potree
+  def __init__(self, session):
+    self.potree = pan_app.get_po_tree()
     self.session = session
     self.localize = session.localize
     templatename = "adminprojects"
@@ -259,8 +259,8 @@ class UsersAdminPage(pagelayout.PootlePage):
 
 class ProjectAdminPage(pagelayout.PootlePage):
   """list of languages belonging to a project"""
-  def __init__(self, potree, projectcode, session, argdict):
-    self.potree = potree
+  def __init__(self, projectcode, session, argdict):
+    self.potree = pan_app.get_po_tree()
     self.projectcode = projectcode
     self.session = session
     self.localize = session.localize
@@ -370,8 +370,8 @@ def updaterights(project, session, argdict):
  
 class TranslationProjectAdminPage(pagelayout.PootlePage):
   """admin page for a translation project (project+language)"""
-  def __init__(self, potree, project, session, argdict):
-    self.potree = potree
+  def __init__(self, project, session, argdict):
+    self.potree = pan_app.get_po_tree()
     self.project = project
     self.session = session
     self.localize = session.localize

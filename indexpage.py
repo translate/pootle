@@ -105,8 +105,8 @@ class AboutPage(pagelayout.PootlePage):
 class PootleIndex(pagelayout.PootlePage):
   """The main page listing projects and languages. It is also reused for
   LanguagesIndex and ProjectsIndex"""
-  def __init__(self, potree, session):
-    self.potree = potree
+  def __init__(self, session):
+    self.potree = pan_app.get_po_tree()
     self.localize = session.localize
     self.nlocalize = session.nlocalize
     self.tr_lang = session.tr_lang
@@ -219,8 +219,8 @@ class PootleIndex(pagelayout.PootlePage):
 
 class UserIndex(pagelayout.PootlePage):
   """home page for a given user"""
-  def __init__(self, potree, session):
-    self.potree = potree
+  def __init__(self, session):
+    self.potree = pan_app.get_po_tree()
     self.session = session
     self.tr_lang = session.tr_lang
     self.localize = session.localize
@@ -279,20 +279,20 @@ class UserIndex(pagelayout.PootlePage):
 
 class ProjectsIndex(PootleIndex):
   """the list of languages"""
-  def __init__(self, potree, session):
-    PootleIndex.__init__(self, potree, session)
+  def __init__(self, session):
+    PootleIndex.__init__(self, session)
     self.templatename = "projects"
 
 class LanguagesIndex(PootleIndex):
   """the list of languages"""
-  def __init__(self, potree, session):
-    PootleIndex.__init__(self, potree, session)
+  def __init__(self, session):
+    PootleIndex.__init__(self, session)
     self.templatename = "languages"
 
 class LanguageIndex(pagelayout.PootleNavPage):
   """The main page for a language, listing all the projects in it"""
-  def __init__(self, potree, languagecode, session):
-    self.potree = potree
+  def __init__(self, languagecode, session):
+    self.potree = pan_app.get_po_tree()
     self.languagecode = languagecode
     self.localize = session.localize
     self.nlocalize = session.nlocalize
@@ -371,8 +371,8 @@ class LanguageIndex(pagelayout.PootleNavPage):
 
 class ProjectLanguageIndex(pagelayout.PootleNavPage):
   """The main page for a project, listing all the languages belonging to it"""
-  def __init__(self, potree, projectcode, session):
-    self.potree = potree
+  def __init__(self, projectcode, session):
+    self.potree = pan_app.get_po_tree()
     self.projectcode = projectcode
     self.localize = session.localize
     self.nlocalize = session.nlocalize

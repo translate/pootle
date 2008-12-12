@@ -175,8 +175,8 @@ class ActivatePage(pagelayout.PootlePage):
 
 class UserOptions(pagelayout.PootlePage):
   """page for user to change their options"""
-  def __init__(self, potree, session, message=None):
-    self.potree = potree
+  def __init__(self, session, message=None):
+    self.potree = pan_app.get_po_tree()
     self.session = session
     self.localize = session.localize
     self.tr_lang = session.tr_lang
@@ -674,9 +674,9 @@ class PootleSession(web.session.LoginSession):
     """sets the user options"""
     profile = get_profile(self.user)
     userprojects = argdict.get("projects", []) # A list of the codes
-    profile.projects = map(lambda code: self.server.potree.projects[code], userprojects)
+    profile.projects = map(lambda code: pan_app.get_po_tree().projects[code], userprojects)
     userlanguages = argdict.get("languages", []) # A list of the codes
-    profile.languages = map(lambda code: self.server.potree.languages[code], userlanguages)
+    profile.languages = map(lambda code: pan_app.get_po_tree().languages[code], userlanguages)
     self.saveuser()
 
   def setpersonaloptions(self, argdict):

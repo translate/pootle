@@ -36,7 +36,6 @@ from Pootle import adminpages
 from Pootle import translatepage
 from Pootle import pagelayout
 from Pootle import projects
-from Pootle import potree
 from Pootle import pootlefile
 from Pootle import users
 from Pootle import filelocations
@@ -77,7 +76,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     if sessioncache is None:
       sessioncache = users.PootleSessionCache(sessionclass=users.PootleSession)
 
-    self.potree = potree.POTree(self)
+    self.potree = pan_app.get_po_tree()
     super(PootleServer, self).__init__(instance, webserver, sessioncache, errorhandler, loginpageclass)
     self.templatedir = filelocations.templatedir
 
@@ -292,7 +291,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
       elif top == "testtemplates.html":
         return templateserver.TemplateServer.getpage(self, pathwords, session, argdict)
       elif not top or top == "index.html":
-        return indexpage.PootleIndex(self.potree, session)
+        return indexpage.PootleIndex(session)
       elif top == 'about.html':
         return indexpage.AboutPage(session)
       elif top == "login.html":
@@ -325,7 +324,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
         else:
           top = ""
         if not top or top == "index.html":
-          return indexpage.ProjectsIndex(self.potree, session)
+          return indexpage.ProjectsIndex(session)
         else:
           projectcode = top
           if not self.potree.hasproject(None, projectcode):
@@ -336,9 +335,9 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
           else:
             top = ""
           if not top or top == "index.html":
-            return indexpage.ProjectLanguageIndex(self.potree, projectcode, session)
+            return indexpage.ProjectLanguageIndex(projectcode, session)
           elif top == "admin.html":
-            return adminpages.ProjectAdminPage(self.potree, projectcode, session, argdict)
+            return adminpages.ProjectAdminPage(projectcode, session, argdict)
       elif top == "home":
         pathwords = pathwords[1:]
         if pathwords:
@@ -356,7 +355,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
           pagelayout.completetemplatevars(templatevars, session)
           return server.Redirect("../login.html", withtemplate=(templatename, templatevars))
         if not top or top == "index.html":
-          return indexpage.UserIndex(self.potree, session)
+          return indexpage.UserIndex(session)
         elif top == "options.html":
           message = None
           try:
@@ -369,7 +368,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
               session.setinterfaceoptions(argdict)
           except users.RegistrationError, errormessage:
             message = errormessage
-          return users.UserOptions(self.potree, session, message)
+          return users.UserOptions(session, message)
       elif top == "admin":
         pathwords = pathwords[1:]
         if pathwords:
@@ -399,7 +398,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
         if not top or top == "index.html":
           if "changegeneral" in argdict:
             self.changeoptions(argdict)
-          return adminpages.AdminPage(self.potree, session)
+          return adminpages.AdminPage(session)
         elif top == "users.html":
           if "changeusers" in argdict:
             self.changeusers(session, argdict)
@@ -407,13 +406,13 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
         elif top == "languages.html":
           if "changelanguages" in argdict:
             self.potree.changelanguages(argdict)
-          return adminpages.LanguagesAdminPage(self.potree, session)
+          return adminpages.LanguagesAdminPage(session)
         elif top == "projects.html":
           if "changeprojects" in argdict:
             self.potree.changeprojects(argdict)
-          return adminpages.ProjectsAdminPage(self.potree, session)
+          return adminpages.ProjectsAdminPage(session)
       if not top or top == "index.html":
-        return indexpage.LanguagesIndex(self.potree, session)
+        return indexpage.LanguagesIndex(session)
       if top == "templates" or self.potree.haslanguage(top):
         languagecode = top
         pathwords = pathwords[1:]
@@ -424,7 +423,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
           top = ""
           bottom = ""
         if not top or top == "index.html":
-          return indexpage.LanguageIndex(self.potree, languagecode, session)
+          return indexpage.LanguageIndex(languagecode, session)
         if self.potree.hasproject(languagecode, top):
           projectcode = top
           project = self.potree.getproject(languagecode, projectcode)
@@ -438,9 +437,9 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
               return indexpage.ProjectIndex(project, session, argdict)
             except projects.RightsError, stoppedby:
               argdict["message"] = str(stoppedby)
-              return indexpage.PootleIndex(self.potree, session)
+              return indexpage.PootleIndex(session)
           elif top == "admin.html":
-            return adminpages.TranslationProjectAdminPage(self.potree, project, session, argdict)
+            return adminpages.TranslationProjectAdminPage(project, session, argdict)
           elif bottom == "translate.html":
             if len(pathwords) > 1:
               dirfilter = os.path.join(*pathwords[:-1])
