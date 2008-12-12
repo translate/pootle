@@ -47,8 +47,8 @@ from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
 from jToolkit import __version__ as jtoolkitversion
 from Pootle import statistics, pan_app
-from translate.storage import statsdb
 from Pootle.misc.transaction import django_transaction
+from Pootle.misc import prefs
 
 try:
   from xml.etree import ElementTree
@@ -77,17 +77,9 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     if sessioncache is None:
       sessioncache = users.PootleSessionCache(sessionclass=users.PootleSession)
 
-    self.configDB(instance)
-    self.potree = potree.POTree(instance, self)
+    self.potree = potree.POTree(self)
     super(PootleServer, self).__init__(instance, webserver, sessioncache, errorhandler, loginpageclass)
     self.templatedir = filelocations.templatedir
-    self.setdefaultoptions()
-
-  def configDB(self, instance):
-    statistics.statsdb = statsdb
-    # Set up the connection options
-    for k,v in instance.stats.connect.iteritems():
-      statistics.STATS_OPTIONS[k] = v
 
   def loadurl(self, filename, context):
     """loads a url internally for overlay code"""
@@ -99,37 +91,11 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
 
   def saveprefs(self):
     """saves any changes made to the preferences"""
-    # TODO: this is a hack, fix it up nicely :-)
-    prefsfile = self.instance.__root__.__dict__["_setvalue"].im_self
-    prefsfile.savefile()
-
-  def setdefaultoptions(self):
-    """sets the default options in the preferences"""
-    changed = False
-    if not hasattr(self.instance, "title"):
-      setattr(self.instance, "title", "Pootle Demo")
-      changed = True
-    if not hasattr(self.instance, "description"):
-      defaultdescription = "This is a demo installation of pootle. The administrator can customize the description in the preferences."
-      setattr(self.instance, "description", defaultdescription)
-      changed = True
-    if not hasattr(self.instance, "baseurl"):
-      setattr(self.instance, "baseurl", "/")
-      changed = True
-    if not hasattr(self.instance, "enablealtsrc"):
-      setattr(self.instance, "enablealtsrc", False)
-      changed = True
-    if changed:
-      self.saveprefs()
+    prefs.save_preferences(pan_app.prefs)
 
   def changeoptions(self, argdict):
     """changes options on the instance"""
-    for key, value in argdict.iteritems():
-      if not key.startswith("option-"):
-        continue
-      optionname = key.replace("option-", "", 1)
-      setattr(self.instance, optionname, value)
-    self.saveprefs()
+    prefs.change_preferences(pan_app.prefs, argdict)
 
   def initlanguage(self, req, session):
     """Initialises the session language from the request"""
@@ -165,7 +131,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     self.languagenames = self.potree.getlanguages()
     self.defaultlanguage = defaultlanguage
     if self.defaultlanguage is None:
-      self.defaultlanguage = getattr(self.instance, "defaultlanguage", "en")
+      self.defaultlanguage = getattr(pan_app.prefs, "defaultlanguage", "en")
     if self.potree.hasproject(self.defaultlanguage, 'pootle'):
       try:
         self.translation = self.potree.getproject(self.defaultlanguage, 'pootle')
@@ -262,7 +228,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
     argdict = newargdict
 
     # Strip of the base url
-    baseurl = re.sub('https?://[^/]*', '', self.instance.baseurl)
+    baseurl = re.sub('https?://[^/]*', '', pan_app.prefs.baseurl)
     # Split up and remove empty parts
     basepathwords = filter(None, baseurl.split('/'))
     while pathwords and basepathwords and basepathwords[0] == pathwords[0]:
@@ -341,7 +307,7 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
         if session.isopen:
           returnurl = argdict.get('returnurl', None) 
           if returnurl == None or re.search('[^A-Za-z0-9?./]+', returnurl):
-            returnurl = getattr(self.instance, 'homepage', '/index.html')
+            returnurl = getattr(pan_app.prefs, 'homepage', '/index.html')
           return server.Redirect(returnurl)
         message = None
         if 'username' in argdict:
@@ -433,19 +399,19 @@ class PootleServer(users.OptionalLoginAppServer, templateserver.TemplateServer):
         if not top or top == "index.html":
           if "changegeneral" in argdict:
             self.changeoptions(argdict)
-          return adminpages.AdminPage(self.potree, session, self.instance)
+          return adminpages.AdminPage(self.potree, session)
         elif top == "users.html":
           if "changeusers" in argdict:
             self.changeusers(session, argdict)
-          return adminpages.UsersAdminPage(self, session, self.instance)
+          return adminpages.UsersAdminPage(self, session)
         elif top == "languages.html":
           if "changelanguages" in argdict:
             self.potree.changelanguages(argdict)
-          return adminpages.LanguagesAdminPage(self.potree, session, self.instance)
+          return adminpages.LanguagesAdminPage(self.potree, session)
         elif top == "projects.html":
           if "changeprojects" in argdict:
             self.potree.changeprojects(argdict)
-          return adminpages.ProjectsAdminPage(self.potree, session, self.instance)
+          return adminpages.ProjectsAdminPage(self.potree, session)
       if not top or top == "index.html":
         return indexpage.LanguagesIndex(self.potree, session)
       if top == "templates" or self.potree.haslanguage(top):
@@ -704,21 +670,18 @@ def get_runner(options):
   else:
     return simplewebserver.run
 
-def set_stats_db(server, options):
-  def get_stats():
-    if options.statsdb_file != None:
-      return options.statsdb_file
-    else:
-      return getattr(server.instance, 'stats_db', None)
-
-  statistics.STATS_DB_FILE = get_stats()
+def set_stats_db(options):
+  prefs.config_db(pan_app.prefs)
+  if options.statsdb_file is not None:
+    statistics.STATS_OPTIONS['database'] = options.statsdb_file
 
 def set_template_caching(options):
   if options.cache_templates is not None:
     pan_app.cache_templates = options.cache_templates
 
-def set_options(server, options):
-  set_stats_db(server, options)
+def set_options(options):
+  pan_app.prefs = prefs.load_preferences(options.prefsfile)
+  set_stats_db(options)
   set_template_caching(options)                                        
   server.options = options
 
@@ -738,8 +701,8 @@ def main():
   usepsyco(options)
   if options.action != "runwebserver":
     options.servertype = "dummy"
+  set_options(options)
   server = parser.getserver(options)
-  set_options(server, options)
   run_pootle(server, options, args)                                        
 
 if __name__ == '__main__':

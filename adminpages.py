@@ -23,19 +23,19 @@ from Pootle import pagelayout
 from Pootle import projects
 from translate.filters import checks
 from django.contrib.auth.models import User
+from Pootle import pan_app
 
 import locale
 
 class AdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, potree, session, instance):
+  def __init__(self, potree, session):
     self.potree = potree
     self.session = session
-    self.instance = instance
     self.localize = session.localize
     templatename = "adminindex"
     sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
-    instancetitle = getattr(self.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     text = self.gettext(session)
     templatevars = {"options": self.getoptions(), "session": sessionvars, "instancetitle": instancetitle, "text": text}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
@@ -60,21 +60,20 @@ class AdminPage(pagelayout.PootlePage):
                     "homepage": self.localize("Home Page")}
     options = []
     for optionname, optiontitle in optiontitles.items():
-      optionvalue = getattr(self.instance, optionname, "")
+      optionvalue = getattr(pan_app.prefs, optionname, "")
       option = {"name": "option-%s" % optionname, "title": optiontitle, "value": optionvalue}
       options.append(option)
     return options
 
 class LanguagesAdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, potree, session, instance):
+  def __init__(self, potree, session):
     self.potree = potree
     self.session = session
-    self.instance = instance
     self.localize = session.localize
     templatename = "adminlanguages"
     sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
-    instancetitle = getattr(self.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     pagetitle = self.localize("Pootle Languages Admin Page")
     text = self.gettext(session)
     templatevars = {"pagetitle": pagetitle, "languages": self.getlanguagesoptions(), "options": self.getoptions(), "session": sessionvars, "instancetitle": instancetitle, "text": text}
@@ -122,10 +121,9 @@ class LanguagesAdminPage(pagelayout.PootlePage):
 
 class ProjectsAdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, potree, session, instance):
+  def __init__(self, potree, session):
     self.potree = potree
     self.session = session
-    self.instance = instance
     self.localize = session.localize
     templatename = "adminprojects"
     projectfiletypes = ["po","xlf"]
@@ -133,7 +131,7 @@ class ProjectsAdminPage(pagelayout.PootlePage):
     self.allchecks.insert(0, {"value": "", "description": self.localize("Standard")})
     self.alltypes = [{"value": check, "description": check} for check in projectfiletypes]
     sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
-    instancetitle = getattr(self.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     pagetitle = self.localize("Pootle Projects Admin Page")
     text = self.gettext(session)
     templatevars = {"pagetitle": pagetitle, "projects": self.getprojectsoptions(), "options": self.getoptions(), "session": sessionvars, "instancetitle": instancetitle, "text": text}
@@ -194,14 +192,13 @@ class ProjectsAdminPage(pagelayout.PootlePage):
 
 class UsersAdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, server, session, instance):
+  def __init__(self, server, session):
     self.server = server
     self.session = session
-    self.instance = instance
     self.localize = session.localize
     templatename = "adminusers"
     sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
-    instancetitle = getattr(self.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     pagetitle = self.localize("Pootle User Admin Page")
     text = self.gettext(session)
     templatevars = {"pagetitle": pagetitle, "users": self.getusersoptions(), "options": self.getoptions(), "session": sessionvars, "instancetitle": instancetitle, "text": text}
@@ -310,7 +307,7 @@ class ProjectAdminPage(pagelayout.PootlePage):
     initialize_link = self.localize("Initialize")
     templatename = "projectadmin"
     sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
-    instancetitle = getattr(self.session.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     templatevars = {"pagetitle": pagetitle, "norights_text": norights_text,
         "project": {"code": projectcode, "name": projectname},
         "iso_code": iso_code, "full_name": full_name,
@@ -397,7 +394,7 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     norights_text = self.localize("You do not have the rights to administer this project.")
     templatename = "projectlangadmin"
     sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
-    instancetitle = getattr(self.session.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     templatevars = {"pagetitle": pagetitle, "norights_text": norights_text,
         "project": {"code": self.project.projectcode, "name": self.project.projectname},
         "language": {"code": self.project.languagecode, "name": self.project.languagename},

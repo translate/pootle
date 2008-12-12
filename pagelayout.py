@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import os
+from Pootle import pan_app
 
 def localize_links(session):
   """Localize all the generic links"""
@@ -77,11 +78,11 @@ def localelanguage(language):
 def completetemplatevars(templatevars, session, bannerheight=135):
   """fill out default values for template variables"""
   if not "instancetitle" in templatevars:
-    templatevars["instancetitle"] = getattr(session.instance, "title", session.localize("Pootle Demo"))
+    templatevars["instancetitle"] = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
   if not "session" in templatevars:
     templatevars["session"] = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
   if not "unlocalizedurl" in templatevars:
-    templatevars["unlocalizedurl"] = getattr(session.instance, "baseurl", "/")
+    templatevars["unlocalizedurl"] = getattr(pan_app.prefs, "baseurl", "/")
     if not templatevars["unlocalizedurl"].endswith("/"):
     	templatevars["unlocalizedurl"] += "/"
   if not "baseurl" in templatevars:
@@ -89,7 +90,7 @@ def completetemplatevars(templatevars, session, bannerheight=135):
     if not templatevars["baseurl"].endswith("/"):
     	templatevars["baseurl"] += "/"
   if not "enablealtsrc" in templatevars:
-     templatevars["enablealtsrc"] = getattr(session.instance, "enablealtsrc", False)
+     templatevars["enablealtsrc"] = getattr(pan_app.prefs, "enablealtsrc", False)
   templatevars["aboutlink"] = session.localize("About this Pootle server")
   templatevars["uilanguage"] = weblanguage(session.language)
   templatevars["uidir"] = languagedir(session.language)
@@ -107,7 +108,7 @@ def completetemplatevars(templatevars, session, bannerheight=135):
   templatevars["login_text"] = session.localize('Log in')
   templatevars["logout_text"] = session.localize('Log out')
   templatevars["register_text"] = session.localize('Register')
-  templatevars["canregister"] = hasattr(session.instance, "hash")
+  templatevars["canregister"] = hasattr(pan_app.prefs, "hash")
   templatevars["links"] = localize_links(session)
   templatevars["current_url"] = session.currenturl
   if "?" in session.currenturl: 
@@ -131,10 +132,10 @@ def completetemplatevars(templatevars, session, bannerheight=135):
 class PootlePage:
   """the main page"""
   def __init__(self, templatename, templatevars, session, bannerheight=135):
-    if not hasattr(session.instance, "baseurl"):
-      session.instance.baseurl = "/"
-    if not hasattr(session.instance, "enablealtsrc"):
-      session.instance.enablealtsrc = False
+    if not hasattr(pan_app.prefs, "baseurl"):
+      pan_app.prefs.baseurl = "/"
+    if not hasattr(pan_app.prefs, "enablealtsrc"):
+      pan_app.prefs.enablealtsrc = False
     self.localize = session.localize
     self.session = session
     self.templatename = templatename

@@ -14,13 +14,13 @@ except ImportError:
 
 from django.contrib.auth.models import User
 from Pootle.pootle_app.profile import get_profile
+from Pootle.misc import prefs
 
 class AlchemyLoginChecker:
   Session = None
 
-  def __init__(self, session, instance):
+  def __init__(self, session):
     self.session = session
-    self.instance = instance
 
   def getmd5password(self, username=None):
     """retrieves the md5 hash of the password for this user, or another if another is given..."""
@@ -45,11 +45,11 @@ class LDAPLoginChecker(AlchemyLoginChecker):
 
   """
 
-  def __init__(self, session, instance):
-    AlchemyLoginChecker.__init__(self, session, instance)
-    self.cn = instance.ldap.cn
-    self.dn = instance.ldap.dn
-    self.pw = instance.ldap.pw
+  def __init__(self, session):
+    AlchemyLoginChecker.__init__(self, session)
+    self.cn = pan_app.prefs.ldap.cn
+    self.dn = pan_app.prefs.ldap.dn
+    self.pw = pan_app.prefs.ldap.pw
 
   def userexists(self, username=None):
     """Checks whether user username exists as a valid LDAP username; note
@@ -109,8 +109,8 @@ class ProgressiveLoginChecker(AlchemyLoginChecker):
 
   """
 
-  def __init__(self, session, instance, logindict):
-    AlchemyLoginChecker.__init__(self, session, instance)
+  def __init__(self, session, logindict):
+    AlchemyLoginChecker.__init__(self, session)
     self.logincheckers = logindict
 
   def getAcctNode(self, username):

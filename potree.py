@@ -29,10 +29,12 @@ from translate.lang import data as langdata
 
 import os
 from Pootle.pootle_app.models import Language, Project
+from Pootle.misc import prefs
+from Pootle import pan_app
 
 class POTree:
   """Manages the tree of projects and languages"""
-  def __init__(self, instance, server):
+  def __init__(self, server):
     self.server = server
 
     langlist = Language.objects.order_by('code')
@@ -47,8 +49,7 @@ class POTree:
     projlist = Project.objects.order_by('code')
     self.projects = dict( (p.code, p) for p in projlist) 
 
-    self.podirectory = instance.podirectory
-    self.instance = instance
+    self.podirectory = pan_app.prefs.podirectory
     self.projectcache = {}
 
   def saveprefs(self):
@@ -556,7 +557,7 @@ class POTree:
 
   def getdefaultrights(self):
     """Returns the default rights for a logged in user on this Pootle server."""
-    return getattr(self.instance, "defaultrights", "view, suggest, archive, pocompile")
+    return getattr(pan_app.prefs, "defaultrights", "view, suggest, archive, pocompile")
 
   def refreshstats(self):
     """manually refreshes (all or missing) the stats files"""

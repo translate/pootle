@@ -35,6 +35,7 @@ import time
 
 from django.contrib.auth.models import User
 from Pootle.pootle_app.profile import make_pootle_user, get_profile, save_user
+from Pootle import pan_app
 
 class RegistrationError(ValueError):
   def __init__(self, message):
@@ -67,7 +68,7 @@ class LoginPage(pagelayout.PootlePage):
     pagetitle = self.localize("Login to Pootle")
     templatename = "login"
     message = forcemessage(message)
-    instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle, "introtext": message,
         "username_title": self.localize("Username:"),
@@ -123,7 +124,7 @@ class RegisterPage(pagelayout.PootlePage):
     pagetitle = self.localize("Pootle Registration")
     self.argdict = argdict
     templatename = "register"
-    instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle, "introtext": introtext,
         "username_title": self.localize("Username"),
@@ -159,7 +160,7 @@ class ActivatePage(pagelayout.PootlePage):
     else:
       pagetitle = title
     templatename = "activate"
-    instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle, "introtext": introtext,
         "username_title": self.localize("Username"),
@@ -182,8 +183,8 @@ class UserOptions(pagelayout.PootlePage):
     message = forcemessage(message)
     pagetitle = self.localize("Options for: %s", session.username)
     templatename = "options"
-    instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
-    enablealtsrc = getattr(session.instance, "enablealtsrc", False)
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
+    enablealtsrc = getattr(pan_app.prefs, "enablealtsrc", False)
     sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle, "introtext": message,
         "detailstitle": self.localize("Personal Details"),
@@ -276,10 +277,10 @@ class OptionalLoginAppServer(server.LoginAppServer):
     try:
       argdict = self.processargs(argdict)
       session = self.getsession(req, argdict)
-      if self.instance.baseurl[-1] == '/':
-        session.currenturl = self.instance.baseurl[:-1]+req.path
+      if pan_app.prefs.baseurl[-1] == '/':
+        session.currenturl = pan_app.prefs.baseurl[:-1]+req.path
       else:
-        session.currenturl = self.instance.baseurl+req.path
+        session.currenturl = pan_app.prefs.baseurl+req.path
       session.reqpath = req.path
       if req.path.find("?") >= 0:
         session.getsuffix = req.path[req.path.find("?"):]
@@ -362,7 +363,7 @@ class OptionalLoginAppServer(server.LoginAppServer):
   def addldapuser(self, username):
     email = username
     import mozldap 
-    c = mozldap.MozillaLdap(self.instance.ldap.cn, self.instance.ldap.dn, self.instance.ldap.pw)
+    c = mozldap.MozillaLdap(pan_app.prefs.ldap.cn, pan_app.prefs.ldap.dn, pan_app.prefs.ldap.pw)
     fullname = c.getFullName(email)
     usernode = self.getusernode(username)
     usernode.first_name = fullname
@@ -452,10 +453,10 @@ class OptionalLoginAppServer(server.LoginAppServer):
   def handleregistration(self, session, argdict):
     """handles the actual registration"""
     #TODO: Fix layout, punctuation, spacing and correlation of messages
-    if not hasattr(self.instance, 'hash'):
+    if not hasattr(pan_app.prefs, 'hash'):
       raise RegistrationError(session.localize("Local registration is disable."))
 
-    supportaddress = getattr(self.instance.registration, 'supportaddress', "")
+    supportaddress = getattr(pan_app.prefs.registration, 'supportaddress', "")
     username = argdict.get("username", "")
     if not username or not username.isalnum() or not username[0].isalpha():
       raise RegistrationError(session.localize("Username must be alphanumeric, and must start with an alphabetic character."))
@@ -488,9 +489,9 @@ class OptionalLoginAppServer(server.LoginAppServer):
       get_profile(usernode).activation_code = activationcode
       activationlink = ""
       message = session.localize("A Pootle account has been created for you using this email address.\n")
-      if session.instance.baseurl.startswith("http://"):
+      if pan_app.prefs.baseurl.startswith("http://"):
         message += session.localize("To activate your account, follow this link:\n")
-        activationlink = session.instance.baseurl
+        activationlink = pan_app.prefs.baseurl
         if not activationlink.endswith("/"):
           activationlink += "/"
         activationlink += "activate.html?username=%s&activationcode=%s" % (username, activationcode)
@@ -508,8 +509,8 @@ class OptionalLoginAppServer(server.LoginAppServer):
 
     message += session.localize("Your user name is: %s\n", username)
     message += session.localize("Your registered email address is: %s\n", email)
-    smtpserver = self.instance.registration.smtpserver
-    fromaddress = self.instance.registration.fromaddress
+    smtpserver = pan_app.prefs.registration.smtpserver
+    fromaddress = pan_app.prefs.registration.fromaddress
     subject = Header(session.localize("Pootle Registration"), "utf-8").encode()
     messagedict = {"from": fromaddress, "to": [email], "subject": subject, "body": message}
     if supportaddress:
@@ -517,7 +518,7 @@ class OptionalLoginAppServer(server.LoginAppServer):
     fullmessage = mailer.makemessage(messagedict)
     if isinstance(fullmessage, unicode):
       fullmessage = fullmessage.encode("utf-8")
-    errmsg = mailer.dosendmessage(fromemail=self.instance.registration.fromaddress, recipientemails=[email], message=fullmessage, smtpserver=smtpserver)
+    errmsg = mailer.dosendmessage(fromemail=pan_app.prefs.registration.fromaddress, recipientemails=[email], message=fullmessage, smtpserver=smtpserver)
     if errmsg:
       raise RegistrationError("Error sending mail: %s" % errmsg)
     return displaymessage, redirecturl
@@ -583,11 +584,11 @@ class PootleSession(web.session.LoginSession):
     if loginchecker == None:
       import login
       logindict = {}
-      if hasattr(server.instance, 'hash'):
-        logindict['hash'] = login.HashLoginChecker(self, server.instance)
-      if hasattr(server.instance, 'ldap'):
-        logindict['ldap'] = login.LDAPLoginChecker(self, server.instance)
-      loginchecker = login.ProgressiveLoginChecker(self, server.instance, logindict)
+      if hasattr(pan_app.prefs, 'hash'):
+        logindict['hash'] = login.HashLoginChecker(self)
+      if hasattr(pan_app.prefs, 'ldap'):
+        logindict['ldap'] = login.LDAPLoginChecker(self)
+      loginchecker = login.ProgressiveLoginChecker(self, logindict)
     super(PootleSession, self).__init__(sessioncache, server, sessionstring, loginchecker)
     self.getuser()
 

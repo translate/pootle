@@ -21,3 +21,5 @@
 
 cache_templates = True
 
+prefs = None
+

@@ -641,7 +641,7 @@ class TranslationProject(object):
     statsstring = "%d of %d messages translated (%d fuzzy)." % \
         (stats["translated"], stats["total"], stats["fuzzy"])
 
-    message="Commit from %s by user %s, editing po file %s. %s" % (session.server.instance.title, session.username, pofilename, statsstring)
+    message="Commit from %s by user %s, editing po file %s. %s" % (pan_app.prefs.title, session.username, pofilename, statsstring)
     author=session.username
     fulldir = os.path.split(pathname)[0]
    

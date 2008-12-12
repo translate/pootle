@@ -32,6 +32,7 @@ import urllib
 import os
 
 from django.contrib.auth.models import User
+from Pootle import pan_app
 
 xml_re = re.compile("&lt;.*?&gt;")
 
@@ -49,7 +50,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     self.project = project
     self.altproject = None
     # do we have enabled alternative source language?
-    self.enablealtsrc = getattr(session.instance, "enablealtsrc", "False")
+    self.enablealtsrc = getattr(pan_app.prefs, "enablealtsrc", "False")
     if self.enablealtsrc == 'True':
       # try to get the project if the user has chosen an alternate source language
       altsrc = session.getaltsrclanguage()
@@ -71,7 +72,6 @@ class TranslatePage(pagelayout.PootleNavPage):
     self.rights = self.project.getrights(self.session)
     if "view" not in self.rights:
       raise projects.Rights404Error(None)
-    self.instance = session.instance
     self.lastitem = None
     self.pofilename = self.argdict.pop("pofilename", None)
     if self.pofilename == "":
@@ -111,7 +111,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     navbarpath_dict = self.makenavbarpath_dict(self.project, self.session, self.pofilename, dirfilter=self.dirfilter or "")
     # templatising
     templatename = "translatepage"
-    instancetitle = getattr(session.instance, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
     # l10n: first parameter: name of the installation (like "Pootle")
     # l10n: second parameter: project name
     # l10n: third parameter: target language
