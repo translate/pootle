@@ -68,6 +68,10 @@ class PootleProfile(models.Model):
 
     pootle_user = property(_get_pootle_user)
 
+    def get_messages(self):
+        # TODO: This should be a DB column
+        return []
+
 def make_default_profile(user_model):
     from Pootle.pootle_app.models import Language
     profile = PootleProfile()

@@ -426,7 +426,7 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
       if username in ("nobody", "default"): continue
       users_with_rights.append(username)
       rights[username] = self.project.getrights(username=username)
-    users = self.project.getuserswithinterest(self.session)
+    users = self.project.getuserswithinterest()
     user_details = {"nobody": nobody_dict, "default": default_dict}
     for username, usernode in users.iteritems():
       if not isinstance(username, unicode):

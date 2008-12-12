@@ -44,5 +44,5 @@ urlpatterns = patterns('',
     (r'^(?P<path>.*[.]css)$',  'django.views.static.serve', {'document_root': CSS_DIR}),
     (r'^images/(?P<path>.*)$', 'django.views.static.serve', {'document_root': IMAGES_DIR}),
     (r'^js/(?P<path>.*)$',     'django.views.static.serve', {'document_root': JS_DIR}),
-    #(r'(.*)', 'Pootle.views.pass_to_pootle'), To be added
+    (r'(.*)', 'Pootle.views.main.pass_to_pootle'),
 )

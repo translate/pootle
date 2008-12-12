@@ -269,7 +269,7 @@ class UserOptions(pagelayout.PootlePage):
       optionlist.append({"code": option, "description": description, "value": optionvalue})
     return {"uilanguage": uilanguage, "uilanguage_options": languageoptions, "other_options": optionlist}
 
-class OptionalLoginAppServer(server.LoginAppServer):
+class OptionalLoginAppServer(object):
   """a server that enables login but doesn't require it except for specified pages"""
   def handle(self, req, pathwords, argdict):
     """handles the request and returns a page object in response"""
@@ -571,15 +571,14 @@ class OptionalLoginAppServer(server.LoginAppServer):
     else:
       return ActivatePage(session, argdict)
 
-class PootleSession(web.session.LoginSession):
+class PootleSession(object):
   """a session object that knows about Pootle"""
-  def __init__(self, sessioncache, server, sessionstring = None, loginchecker = None):
+  def __init__(self, request, loginchecker = None):
     """sets up the session and remembers the users prefs"""
 
     # In LoginSession's __init__, it defaults loginchecker to LoginChecker;
     # hence, we default it to ProgressiveLoginChecker first, before we call
     # LoginSession's __init__.
-    self.server = server
     self.messages = []
     if loginchecker == None:
       import login
@@ -589,21 +588,7 @@ class PootleSession(web.session.LoginSession):
       if hasattr(pan_app.prefs, 'ldap'):
         logindict['ldap'] = login.LDAPLoginChecker(self)
       loginchecker = login.ProgressiveLoginChecker(self, logindict)
-    super(PootleSession, self).__init__(sessioncache, server, sessionstring, loginchecker)
-    self.getuser()
-
-  def getuser(self):
-    """gets the users prefs into self.prefs"""
-    if self.isopen:
-      self.user = User.objects.filter(username=self.username)[0]
-      if self.language_set:
-        self.setlanguage(self.language_set)
-        return
-      uilanguage = getattr(self.user, "uilanguage", None)
-      if uilanguage:
-        self.setlanguage(uilanguage)
-    else:
-      self.user = None
+    self.user = request.user
 
   def saveuser(self):
     """saves changed preferences back to disk"""
@@ -613,14 +598,15 @@ class PootleSession(web.session.LoginSession):
 
   def open(self):
     """opens the session, along with the users prefs"""
-    super(PootleSession, self).open()
-    self.getuser()
-    return self.isopen
+    raise NotImplementedError() # This should no longer be called
+    #self.getuser()
+    #return self.isopen
 
   def close(self, req):
     """closes the session, along with the users prefs"""
-    super(PootleSession, self).close(req)
-    self.getuser()
+    raise NotImplementedError() # This should not longer be called
+    #super(PootleSession, self).close(req)
+    #self.getuser()
 
   def addMessage(self, message):
     self.messages.append(message)
@@ -630,30 +616,6 @@ class PootleSession(web.session.LoginSession):
     if clear:
       self.messages = []
     return messages
-
-  def setlanguage(self, language):
-    """sets the language for the session"""
-    self.language_set = language or ""
-    if language:
-      self.language = language
-    elif not getattr(self, "language", None):
-      if self.isopen:
-        self.language = getattr(self.user, "uilanguage", "") or self.server.defaultlanguage
-      else:
-        self.language = self.server.defaultlanguage
-    if self.isopen:
-      if not getattr(self.user, "uilanguage", "") and self.language_set:
-        self.setinterfaceoptions({"option-uilanguage": self.language_set})
-    self.translation = self.server.gettranslation(self.language)
-    self.tr_lang = langdata.tr_lang(self.language)
-    try:
-        locale.setlocale(locale.LC_ALL, str(self.language))
-    except locale.Error:
-        # The system might not have the locale installed
-        pass
-    self.checkstatus(None, None)
-    if self.language:
-      self.lang = factory.getlanguage(self.language)
 
   def old_validate(self):
     """DEPRECATED: Checks if this session is valid (which means the user must be activated).
@@ -740,106 +702,4 @@ class PootleSession(web.session.LoginSession):
       return self.user.is_superuser
     else:
       return False
-
-  def validate(self, password=None):
-    """Checks if this session is valid.
-    
-    We are overriding this to accept a password and to make it possible to 
-    defer authentication to ldap, even if the user doesn't exist in our 
-    loginchecker.
-    """
-    # This is roughly based on jToolkit.web.session::LoginSession::validate()
-    self.isvalid = 0
-    if self.markedinvalid:
-      self.status = self.markedinvalid
-      return self.isvalid
-    if not self.isvalid:
-      self.status = self.localize("invalid username and/or password")
-    if self.loginchecker.userexists():
-      if password != None: #If there's a password, this is called from create
-        self.isvalid = self.loginchecker.iscorrectpass(password)
-      else:
-        # It seems the only time validate is called with no password
-        # is when it is called from setsessionstring(); the only
-        # time that seems to be called is in the contructor for a session,
-        # and a session seems to only be constructed if the session string
-        # was not in the cache.  This will happen if the server was restarted
-        # during a session, for example.
-        self.isvalid = self.checksessionid()
-        return self.isvalid
-    elif self.loginchecker.logincheckers.has_key("ldap") and self.loginchecker.logincheckers["ldap"].userexists():
-      if password != None:
-        passcorrect = self.loginchecker.logincheckers["ldap"].iscorrectpass(password)
-        if passcorrect:
-          self.server.addldapuser(self.username)
-          self.usercreated = True
-          self.saveuser()
-          self.isvalid = True
-    return self.isvalid
-
-  def create(self,username,password,timestamp,language):
-    """Initializes the session with the parameters.
-    
-    We are overriding to be able to pass the password to validate()."""
-    self.username, password, self.timestamp = username, password, timestamp
-    self.setlanguage(language)
-    self.sessionid = self.getsessionid(password)
-    self.validate(password) # Our overridden .validate() can accept a password
-    self.open()
-
-  def updatecookie(self, req, server):
-    """update session string in cookie in req to reflect whether session is open"""
-    if self.isopen:
-      self.sessioncache.setsessioncookie(req, server, self.getsessionstring(), {'path': '/'})
-    else:
-      self.sessioncache.setsessioncookie(req, server, '', {'path': '/', 'expires': int(-time.time()+1)})
-
-  def setsessionstring(self, sessionstring):
-    """sets the session string for this session"""
-    super(PootleSession, self).setsessionstring(sessionstring)
-
-    # If we failed at opening the session, clear out the information we set
-    if not self.isopen:
-      self.username,self.timestamp,self.sessionid,self.parentsessionname = None,None,None,""
-
-class PootleSessionCache(session.SessionCache):
-  def getsession(self, req, argdict, server):
-    """gets the current session"""
-    session = super(PootleSessionCache, self).getsession(req, argdict, server)
-
-    # If the session string is not - (so the cookie claims to have a login)
-    # but the session didn't open (so the login was bad), clear out the login
-    sessionstring = self.getsessioncookie(req, argdict, server)
-    if sessionstring != "-" and not session.isopen:
-      session.updatecookie(req, server)
-    
-    return session
-
-  def setcookie(self, req, cookiedict, attributes={}):
-    """Puts the bits from the cookiedict into Morsels, sets the req cookie
-    
-    All of the attributes that are valid will be added to each morsel
-    (see http://docs.python.org/lib/morsel-objects.html)
-    
-    """
-
-    # construct the cookie from the cookiedict
-    cookie = Cookie.SimpleCookie()
-    for key, value in cookiedict.iteritems():
-      if isinstance(value, unicode): value = value.encode('utf8')
-      if isinstance(key, unicode): key = key.encode('utf8')
-      cookie[key] = value
-    # add the cookie headers to req.headers_out
-    for key, morsel in cookie.iteritems():
-      for k,v in attributes.iteritems():
-        try:
-          morsel[k] = v 
-        except Cookie.CookieError:
-          pass
-      req.headers_out.add('Set-Cookie', morsel.OutputString())
-
-  def setsessioncookie(self, req, server, sessionstring, attributes = {}):
-    """sets the session cookie value"""
-    cookiedict = {self.getsessioncookiename(server): sessionstring}
-    self.setcookie(req, cookiedict, attributes)
 

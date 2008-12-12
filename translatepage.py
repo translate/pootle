@@ -33,6 +33,7 @@ import os
 
 from django.contrib.auth.models import User
 from Pootle import pan_app
+from Pootle.pootle_app.models import get_profile
 
 xml_re = re.compile("&lt;.*?&gt;")
 
@@ -44,7 +45,7 @@ def oddoreven(polarity):
 
 class TranslatePage(pagelayout.PootleNavPage):
   """the page which lets people edit translations"""
-  def __init__(self, project, session, argdict, dirfilter=None):
+  def __init__(self, project, request, argdict, dirfilter=None):
     self.argdict = argdict
     self.dirfilter = dirfilter
     self.project = project
@@ -53,7 +54,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     self.enablealtsrc = getattr(pan_app.prefs, "enablealtsrc", "False")
     if self.enablealtsrc == 'True':
       # try to get the project if the user has chosen an alternate source language
-      altsrc = session.getaltsrclanguage()
+      altsrc = request.getaltsrclanguage()
       if altsrc != '':
         try:
           self.altproject = self.project.potree.getproject(altsrc, self.project.projectcode)
@@ -67,9 +68,9 @@ class TranslatePage(pagelayout.PootleNavPage):
     self.showassigns = self.argdict.get("showassigns", 0)
     if isinstance(self.showassigns, (str, unicode)) and self.showassigns.isdigit():
       self.showassigns = int(self.showassigns)
-    self.session = session
-    self.localize = session.localize
-    self.rights = self.project.getrights(self.session)
+    self.request = request
+    self.localize = request.localize
+    self.rights = self.project.getrights(self.request)
     if "view" not in self.rights:
       raise projects.Rights404Error(None)
     self.lastitem = None
@@ -108,17 +109,17 @@ class TranslatePage(pagelayout.PootleNavPage):
       translated, total = postats["translated"], postats["total"]
       mainstats = self.localize("%d/%d translated\n(%d untranslated, %d fuzzy)", translated, total, untranslated, fuzzy)
       pagelinks = self.getpagelinks("?translate=1&view=1", rows)
-    navbarpath_dict = self.makenavbarpath_dict(self.project, self.session, self.pofilename, dirfilter=self.dirfilter or "")
+    navbarpath_dict = self.makenavbarpath_dict(self.project, self.request, self.pofilename, dirfilter=self.dirfilter or "")
     # templatising
     templatename = "translatepage"
-    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
     # l10n: first parameter: name of the installation (like "Pootle")
     # l10n: second parameter: project name
     # l10n: third parameter: target language
     # l10n: fourth parameter: file name
     pagetitle = self.localize("%s: translating %s into %s: %s", instancetitle, self.project.projectname, self.project.languagename, self.pofilename)
     language = {"code": pagelayout.weblanguage(self.project.languagecode), "name": self.project.languagename, "dir": pagelayout.languagedir(self.project.languagecode)}
-    sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
+    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     stats = {"summary": mainstats, "checks": [], "tracks": [], "assigns": []}
 
     templatevars = {"pagetitle": pagetitle,
@@ -176,7 +177,7 @@ class TranslatePage(pagelayout.PootleNavPage):
 
     if self.showassigns and "assign" in self.rights:
       templatevars["assign"] = self.getassignbox()
-    pagelayout.PootleNavPage.__init__(self, templatename, templatevars, session, bannerheight=81)
+    pagelayout.PootleNavPage.__init__(self, templatename, templatevars, request, bannerheight=81)
     self.addfilelinks()
 
   def getfinishedtext(self, stoppedby):
@@ -338,7 +339,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       if item in skips or item not in translations:
         continue
       value = translations[item]
-      self.project.suggesttranslation(self.pofilename, item, value, self.session)
+      self.project.suggesttranslation(self.pofilename, item, value, self.request)
       self.lastitem = item
 
     for item in submits:
@@ -358,7 +359,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       if translator_comments:
         newvalues["translator_comments"] = translator_comments
 
-      self.project.updatetranslation(self.pofilename, item, newvalues, self.session)
+      self.project.updatetranslation(self.pofilename, item, newvalues, self.request)
 
       self.lastitem = item
 
@@ -369,7 +370,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       value = suggestions[item, suggid]
       if isinstance(value, dict) and len(value) == 1 and 0 in value:
         value = value[0]
-      self.project.rejectsuggestion(self.pofilename, item, suggid, value, self.session)
+      self.project.rejectsuggestion(self.pofilename, item, suggid, value, self.request)
       self.lastitem = item
     for item, suggid in accepts:
       if (item, suggid) in rejects or (item, suggid) not in suggestions:
@@ -377,7 +378,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       value = suggestions[item, suggid]
       if isinstance(value, dict) and len(value) == 1 and 0 in value:
         value = value[0]
-      self.project.acceptsuggestion(self.pofilename, item, suggid, value, self.session)
+      self.project.acceptsuggestion(self.pofilename, item, suggid, value, self.request)
       self.lastitem = item
 
   def getmatchnames(self, checker):
@@ -393,8 +394,8 @@ class TranslatePage(pagelayout.PootleNavPage):
 
   def getusernode(self):
     """gets the user's prefs node"""
-    if self.session.isopen:
-      return User.objects.filter(username=self.session.username)[0]
+    if not self.request.user.is_anonymous:
+      return User.objects.filter(username=self.request.username)[0]
     else:
       return None
 
@@ -407,7 +408,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         fields = [f["name"] for f in self.getsearchfields() if f["value"] == "1"]
         search = pootlefile.Search(dirfilter=self.dirfilter, matchnames=self.matchnames, searchtext=self.searchtext, searchfields=fields)
         # TODO: find a nicer way to let people search stuff assigned to them (does it by default now)
-        # search.assignedto = self.argdict.get("assignedto", self.session.username)
+        # search.assignedto = self.argdict.get("assignedto", self.request.username)
         search.assignedto = self.argdict.get("assignedto", None)
         search.assignedaction = self.argdict.get("assignedaction", None)
         self.pofilename, self.item = self.project.searchpoitems(self.pofilename, self.lastitem, search).next()
@@ -422,7 +423,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       self.item = int(item)
       if self.pofilename is None:
         raise ValueError("Received item argument but no pofilename argument")
-    self.project.track(self.pofilename, self.item, "being edited by %s" % self.session.username)
+    self.project.track(self.pofilename, self.item, "being edited by %s" % self.request.user.username)
 
   def getdisplayrows(self, mode):
     """get the number of rows to display for the given mode"""
@@ -510,7 +511,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         if isinstance(unit, po.pounit):
           message_context = "".join(unit.getcontext())
         tmsuggestions = self.project.gettmsuggestions(self.pofilename, self.item)
-        tmsuggestions.extend(self.project.getterminology(self.session, self.pofilename, self.item))
+        tmsuggestions.extend(self.project.getterminology(self.request, self.pofilename, self.item))
 
         transmerge = self.gettransedit(item, trans)
       else:
@@ -924,7 +925,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       altsrcdict["languagecode"] = pagelayout.weblanguage(self.altproject.languagecode)
       altsrcdict["languagename"] = self.altproject.potree.getlanguagename(self.altproject.languagecode)
       altsrcdict["dir"] = pagelayout.languagedir(altsrcdict["languagecode"])
-      altsrcdict["title"] = self.session.tr_lang(altsrcdict["languagename"])
+      altsrcdict["title"] = self.request.tr_lang(altsrcdict["languagename"])
       if not origdict["isplural"]:
         orig = origdict["pure"][0]["value"]
         altsrctext = self.altproject.ugettext(orig)

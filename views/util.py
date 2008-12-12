@@ -32,10 +32,36 @@ def render(relative_template_path, **template_vars):
     # to HttpResponse
     return HttpResponse(template.serialize(output="xhtml"))
 
+class AttrDict(dict):
+    # THIS IS TAKEN FROM JTOOLKIT
+    """Dictionary that also allows access to keys using attributes"""
+    def __getattr__(self, attr, default=None):
+        if attr in self:
+            return self[attr]
+        else:
+            return default
+
+def attribify(context):
+    # THIS IS TAKEN FROM JTOOLKIT
+    """takes a set of nested dictionaries and converts them into AttrDict. Also searches through lists"""
+    if isinstance(context, dict) and not isinstance(context, AttrDict):
+        newcontext = AttrDict(context)
+        for key, value in newcontext.items():
+            if isinstance(value, (dict, list)):
+                newcontext[key] = attribify(value)
+        return newcontext
+    elif isinstance(context, list):
+        for n, item in enumerate(context):
+            if isinstance(item, (dict, list)):
+                context[n] = attribify(item)
+        return context
+    else:
+        return context
+
 def render_jtoolkit(obj):
     """Render old style Pootle display objects which are jToolkit objects
     containing all the necessary information to be rendered."""
     if hasattr(obj, "templatename") and hasattr(obj, "templatevars"):
-        return render("%s.html" % obj.templatename, **obj.templatevars)
+        return render("%s.html" % obj.templatename, **attribify(obj.templatevars))
     else:
         return HttpResponse(obj.getcontents(), obj.content_type)

@@ -21,27 +21,28 @@
 
 import os
 from Pootle import pan_app
+from Pootle.pootle_app.models import get_profile
 
-def localize_links(session):
+def localize_links(request):
   """Localize all the generic links"""
   links = {}
-  links["home"] = session.localize("Home")
-  links["projects"] = session.localize("All projects")
-  links["languages"] = session.localize("All languages")
-  links["account"] = session.localize("My account")
-  links["admin"] = session.localize("Admin")
-  links["doc"] = session.localize("Docs & help")
-  links["doclang"] = getdoclang(session.language)
-  #links["logout"] = session.localize("Log out")
-  #links["login"] = session.localize("Log in")
-  links["about"] = session.localize("About")
+  links["home"] = request.localize("Home")
+  links["projects"] = request.localize("All projects")
+  links["languages"] = request.localize("All languages")
+  links["account"] = request.localize("My account")
+  links["admin"] = request.localize("Admin")
+  links["doc"] = request.localize("Docs & help")
+  links["doclang"] = getdoclang(request.ui_lang_project.languagecode)
+  #links["logout"] = request.localize("Log out")
+  #links["login"] = request.localize("Log in")
+  links["about"] = request.localize("About")
   #l10n: Verb, as in "to register"
-  links["register"] = session.localize("Register")
-  links["activate"] = session.localize("Activate")
+  links["register"] = request.localize("Register")
+  links["activate"] = request.localize("Activate")
 
   # accessibility links
-  links["skip_nav"] = session.localize("skip to navigation")
-  links["switch_language"] = session.localize("switch language")
+  links["skip_nav"] = request.localize("skip to navigation")
+  links["switch_language"] = request.localize("switch language")
 
   return links
 
@@ -75,48 +76,48 @@ def localelanguage(language):
     language = language[:dashindex] + "_" + language[dashindex+1:].upper()
   return language
 
-def completetemplatevars(templatevars, session, bannerheight=135):
+def completetemplatevars(templatevars, request, bannerheight=135):
   """fill out default values for template variables"""
   if not "instancetitle" in templatevars:
-    templatevars["instancetitle"] = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
-  if not "session" in templatevars:
-    templatevars["session"] = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
+    templatevars["instancetitle"] = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
+  if not "request" in templatevars:
+    templatevars["request"] = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
   if not "unlocalizedurl" in templatevars:
     templatevars["unlocalizedurl"] = getattr(pan_app.prefs, "baseurl", "/")
     if not templatevars["unlocalizedurl"].endswith("/"):
     	templatevars["unlocalizedurl"] += "/"
   if not "baseurl" in templatevars:
-    templatevars["baseurl"] = getattr(session, "localizedurl", "/")
+    templatevars["baseurl"] = getattr(request, "localizedurl", "/")
     if not templatevars["baseurl"].endswith("/"):
     	templatevars["baseurl"] += "/"
   if not "enablealtsrc" in templatevars:
      templatevars["enablealtsrc"] = getattr(pan_app.prefs, "enablealtsrc", False)
-  templatevars["aboutlink"] = session.localize("About this Pootle server")
-  templatevars["uilanguage"] = weblanguage(session.language)
-  templatevars["uidir"] = languagedir(session.language)
+  templatevars["aboutlink"] = request.localize("About this Pootle server")
+  templatevars["uilanguage"] = weblanguage(request.ui_lang_project.languagecode)
+  templatevars["uidir"] = languagedir(request.ui_lang_project.languagecode)
   # TODO FIXME cssaligndir is deprecated?
   if templatevars["uidir"] == 'ltr':  
     templatevars["cssaligndir"] = "left"
   else:
     templatevars["cssaligndir"] = "right"
-  templatevars["username_title"] = session.localize("Username")
+  templatevars["username_title"] = request.localize("Username")
   try:
     templatevars["username"] = templatevars["username"]
   except:
     templatevars["username"] = "" 
-  templatevars["password_title"] = session.localize("Password")
-  templatevars["login_text"] = session.localize('Log in')
-  templatevars["logout_text"] = session.localize('Log out')
-  templatevars["register_text"] = session.localize('Register')
+  templatevars["password_title"] = request.localize("Password")
+  templatevars["login_text"] = request.localize('Log in')
+  templatevars["logout_text"] = request.localize('Log out')
+  templatevars["register_text"] = request.localize('Register')
   templatevars["canregister"] = hasattr(pan_app.prefs, "hash")
-  templatevars["links"] = localize_links(session)
-  templatevars["current_url"] = session.currenturl
-  if "?" in session.currenturl: 
-    templatevars["logout_link"] = session.currenturl+"&islogout=1"
+  templatevars["links"] = localize_links(request)
+  templatevars["current_url"] = request.path_info
+  if "?" in request.path_info: 
+    templatevars["logout_link"] = request.path_info+"&islogout=1"
   else:
-    templatevars["logout_link"] = session.currenturl+"?islogout=1"
+    templatevars["logout_link"] = request.path_info+"?islogout=1"
   if "user" not in templatevars:
-    templatevars["user"] = session.user
+    templatevars["user"] = request.user
   if "search" not in templatevars:
     templatevars["search"] = None
 
@@ -125,19 +126,19 @@ def completetemplatevars(templatevars, session, bannerheight=135):
     templatevars['message'] = ''
   else:
     templatevars['message'] = templatevars['message'] + '<br />'
-  for message in session.getMessages():
+  for message in get_profile(request.user).get_messages():
     templatevars['message'] = templatevars['message'] + message + '<br />'
 
 
 class PootlePage:
   """the main page"""
-  def __init__(self, templatename, templatevars, session, bannerheight=135):
+  def __init__(self, templatename, templatevars, request, bannerheight=135):
     if not hasattr(pan_app.prefs, "baseurl"):
       pan_app.prefs.baseurl = "/"
     if not hasattr(pan_app.prefs, "enablealtsrc"):
       pan_app.prefs.enablealtsrc = False
-    self.localize = session.localize
-    self.session = session
+    self.localize = request.localize
+    self.request = request
     self.templatename = templatename
     self.templatevars = templatevars
     self.completevars(bannerheight)
@@ -145,7 +146,7 @@ class PootlePage:
   def completevars(self, bannerheight=135):
     """fill out default values for template variables"""
     if hasattr(self, "templatevars"):
-      completetemplatevars(self.templatevars, self.session, bannerheight=bannerheight)
+      completetemplatevars(self.templatevars, self.request, bannerheight=bannerheight)
 
   def polarizeitems(self, itemlist):
     """take an item list and alternate the background colour"""
@@ -168,7 +169,7 @@ class PootlePage:
 
 
 class PootleNavPage(PootlePage):
-  def makenavbarpath_dict(self, project=None, session=None, currentfolder=None, language=None, argdict=None, dirfilter=None):
+  def makenavbarpath_dict(self, project=None, request=None, currentfolder=None, language=None, argdict=None, dirfilter=None):
     """create the navbar location line"""
     #FIXME: Still lots of PO specific references here!
     rootlink = ""
@@ -213,15 +214,15 @@ class PootleNavPage(PootlePage):
         projectcode, projectname = project
         links["project"] = {"href": "/projects/%s/%s" % (projectcode, paramstring), "text": projectname}
       else:
-        links["language"] = {"href": rootlink + "../index.html", "text": session.tr_lang(project.languagename)}
+        links["language"] = {"href": rootlink + "../index.html", "text": request.tr_lang(project.languagename)}
         # don't getbrowseurl on the project link, so sticky options won't apply here
         links["project"] = {"href": (rootlink or "index.html") + paramstring, "text": project.projectname}
-        if session:
-          if "admin" in project.getrights(session) or session.issiteadmin():
+        if request:
+          if "admin" in project.getrights(request) or request.user.is_superuser:
             links["admin"] = {"href": rootlink + "admin.html", "text": self.localize("Admin")}
     elif language:
       languagecode, languagename = language
-      links["language"] = {"href": "/%s/" % languagecode, "text": session.tr_lang(languagename)}
+      links["language"] = {"href": "/%s/" % languagecode, "text": request.tr_lang(languagename)}
     return links
 
   def getbrowseurl(self, basename, **newargs):
