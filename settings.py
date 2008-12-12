@@ -102,7 +102,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    # 'Pootle.pootle_app' To be added
+    'Pootle.pootle_app'
 )
 
-AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
+#AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
