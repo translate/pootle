@@ -121,3 +121,5 @@ AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 
 LANGUAGE_NAME_COOKIE = 'pootlelang'
 
+PODIRECTORY = pootle_home('po')
+

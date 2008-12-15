@@ -28,12 +28,11 @@ from django.conf import settings
 
 from translate.lang import data as langdata
 
-from Pootle import settings as pootle_settings
 from Pootle import pan_app
 from Pootle.pootle_app import models
 
 po_tree = pan_app.get_po_tree()
-pootle_project_path = os.path.join(os.path.dirname(pootle_settings.__file__), 'po', 'pootle')
+pootle_project_path = os.path.join(settings.PODIRECTORY, 'pootle')
 
 def get_lang(code):
     return po_tree.getproject(code, 'pootle')
@@ -42,10 +41,8 @@ def check_for_language(code):
     return 'pootle' in po_tree.projects and code in po_tree.languages
 
 def get_lang_from_cookie(request):
-    from django.conf import settings
-
-    lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
-    if lang_code and lang_code in supported and check_for_language(lang_code):
+    lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME, None)
+    if lang_code and check_for_language(lang_code): # FIXME: removed checking if language is supported
         return get_lang(lang_code)
     return None
 

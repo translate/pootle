@@ -29,7 +29,7 @@ def login(request):
 
                 language = request.POST.get('language') # FIXME: validation missing
                 response = HttpResponseRedirect(redirect_to)
-                response.set_cookie(settings.LANGUAGE_NAME_COOKIE, language)
+                response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
                 return response
         else:
             form = AuthenticationForm(request)
