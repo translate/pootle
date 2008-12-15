@@ -76,5 +76,14 @@ from Pootle.templates import pootlepage
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
 
+  <script>
+    $(document).ready(function () {
+      // Set focus to login form
+      if (document.loginform) {
+          document.loginform.username.focus();
+      }
+    });
+  </script>
+
 </body>
 </html>
