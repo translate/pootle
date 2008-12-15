@@ -65,3 +65,12 @@ def render_jtoolkit(obj):
         return render("%s.html" % obj.templatename, **attribify(obj.templatevars))
     else:
         return HttpResponse(obj.getcontents(), obj.content_type)
+
+def render_to_kid(template, context):
+    return render(template, **attribify(context))
+
+class KidRequestContext(dict):
+    def __init__(self, req, context):
+        self.update(context)
+        completetemplatevars(self, req)
+
