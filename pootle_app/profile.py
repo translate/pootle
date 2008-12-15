@@ -74,9 +74,6 @@ class PootleProfile(models.Model):
         # TODO: This should be a DB column
         return []
 
-class PootleProfileInline(admin.StackedInline):
-    model = PootleProfile
-
 
 def make_default_profile(user_model):
     from Pootle.pootle_app.models import Language

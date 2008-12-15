@@ -78,6 +78,9 @@ admin.site.register(Project, ProjectAdmin)
 
 admin.site.unregister(User)
 
+class PootleProfileInline(admin.StackedInline):
+    model = PootleProfile
+
 class MyUserAdmin(UserAdmin):
     inlines = [PootleProfileInline]
 
