@@ -345,18 +345,7 @@ class PootleServer(users.OptionalLoginAppServer):
         if not top or top == "index.html":
           return indexpage.UserIndex(request)
         elif top == "options.html":
-          message = None
-          try:
-            if "changeoptions" in arg_dict:
-              session.setoptions(arg_dict)
-            if "changepersonal" in arg_dict:
-              session.setpersonaloptions(arg_dict)
-              message = session.localize("Personal details updated")
-            if "changeinterface" in arg_dict:
-              session.setinterfaceoptions(arg_dict)
-          except users.RegistrationError, errormessage:
-            message = errormessage
-          return users.UserOptions(request, message)
+          raise NotImplementedError()
       elif top == "admin":
         pathwords = pathwords[1:]
         if pathwords:
