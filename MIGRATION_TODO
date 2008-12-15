@@ -1,4 +1,4 @@
 
- - Downloading .po files is broken
+ - Downloading .mo, .sgi, .sdf, .zip does not work because code looks for permissions.
  - Login from first page does not work because the cookie isn't set.
 
