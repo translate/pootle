@@ -72,3 +72,13 @@ class ProjectAdmin(admin.ModelAdmin):
     form = MyProjectAdminForm
 
 admin.site.register(Project, ProjectAdmin)
+
+
+### User / PootleProfile
+
+admin.site.unregister(User)
+
+class MyUserAdmin(UserAdmin):
+    inlines = [PootleProfileInline]
+
+admin.site.register(User, MyUserAdmin)

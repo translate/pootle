@@ -21,6 +21,8 @@
 
 from django.db import models
 from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth.admin import UserAdmin
+from django.contrib import admin
 
 class PootleProfile(models.Model):
     # This is the only required field
@@ -71,6 +73,10 @@ class PootleProfile(models.Model):
     def get_messages(self):
         # TODO: This should be a DB column
         return []
+
+class PootleProfileInline(admin.StackedInline):
+    model = PootleProfile
+
 
 def make_default_profile(user_model):
     from Pootle.pootle_app.models import Language
