@@ -19,7 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from Pootle.pootle_app.models import Language, Project
-from Pootle.pootle_app.profile import PootleProfile, PootleProfileInline
+from Pootle.pootle_app.profile import PootleProfile
 
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
