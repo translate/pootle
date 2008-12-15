@@ -45,7 +45,7 @@ class PootleProfile(models.Model):
 
     suggestions_accepted = property(lambda self: self._get_suggestions("accepted").all())
     suggestions_rejected = property(lambda self: self._get_suggestions("rejected").all())
-    suggestions_pending  = property(lambda self: self._get_suggestions("pending").all())    
+    suggestions_pending  = property(lambda self: self._get_suggestions("pending").all())
     suggestions_reviewed = property(lambda self: self._get_suggestions("reviewed").all())
 
     suggestions_accepted_count = property(lambda self: self._get_suggestions("accepted").count())
@@ -93,7 +93,7 @@ def get_profile(user_model):
     if not user_model.is_anonymous():
         try:
             return user_model.get_profile()
-        except user_model.DoesNotExist, _e:
+        except PootleProfile.DoesNotExist, _e:
             # A registered user which current has no profile info
             return make_default_profile(user_model)
     else:
