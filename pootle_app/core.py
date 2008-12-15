@@ -70,6 +70,9 @@ class Language(models.Model):
 
     objects = LanguageManager()
 
+    def __unicode__(self):
+        return self.fullname
+
 class ProjectManager(models.Manager):
     def get_latest_changes(self):
         fields = {'project_code':        field_name(Project, 'code'),
@@ -119,6 +122,9 @@ class Project(models.Model):
     ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="")
 
     objects = ProjectManager()
+
+    def __unicode__(self):
+        return self.fullname
 
 def _do_query(query, replacements, fields, params=()):
     all_fields = fields.copy()
