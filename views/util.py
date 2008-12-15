@@ -1,7 +1,8 @@
 import os
 from os import path
 import kid
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
+from jToolkit.web import server
 import mimetypes
 
 # settings.py is in the root of our Django application's
@@ -64,6 +65,10 @@ def render_jtoolkit(obj):
     if hasattr(obj, "templatename") and hasattr(obj, "templatevars"):
         return render("%s.html" % obj.templatename, **attribify(obj.templatevars))
     else:
+        if isinstance(obj, server.Redirect):
+            if obj.ispermanent:
+                return HttpResponsePermanentRedirect(obj.location)
+            return HttpResponseRedirect(obj.location)
         return HttpResponse(obj.getcontents(), obj.content_type)
 
 def render_to_kid(template, context):
