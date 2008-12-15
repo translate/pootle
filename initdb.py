@@ -2,27 +2,16 @@
 # coding: utf-8
 from django.db import transaction
 import sys
-from jToolkit import prefs
 import md5
 
 from django.contrib.auth.models import User
 from Pootle.pootle_app.models import Project, Language, PootleProfile, make_pootle_user
 
 def main():
-  if len(sys.argv) != 2:
-    print "Usage: %s pootle.prefs" % sys.argv[0]
+  if len(sys.argv) != 1:
+    print "Usage: %s" % sys.argv[0]
     return
-
-  prefsfile = sys.argv[1]
-  pref = prefs.PrefsParser(prefsfile)
-  configDB(pref.Pootle)
   create_default_db()
-
-def configDB(instance):
-  # Set up the connection options
-  STATS_OPTIONS = {}
-  for k,v in instance.stats.connect.iteritems():
-    STATS_OPTIONS[k] = v
 
 def create_default_db():
   try:
