@@ -363,23 +363,23 @@ class PootleServer(users.OptionalLoginAppServer):
           top = pathwords[0]
         else:
           top = ""
-        if request.user.is_anonymous:
+        if request.user.is_anonymous():
           templatename = "redirect"
           templatevars = {
-              "pagetitle": session.localize("Redirecting to login..."),
+              "pagetitle": request.localize("Redirecting to login..."),
               "refresh": 1,
               "refreshurl": "login.html",
-              "message": session.localize("You must log in to administer Pootle."),
+              "message": request.localize("You must log in to administer Pootle."),
               }
           pagelayout.completetemplatevars(templatevars, request)
           return server.Redirect("../login.html", withtemplate=(templatename, templatevars))
         if not request.user.is_superuser:
           templatename = "redirect"
           templatevars = {
-              "pagetitle": session.localize("Redirecting to home..."),
+              "pagetitle": request.localize("Redirecting to home..."),
               "refresh": 1,
               "refreshurl": "login.html",
-              "message": self.localize("You do not have the rights to administer pootle."),
+              "message": request.localize("You do not have the rights to administer pootle."),
               }
           pagelayout.completetemplatevars(templatevars, request)
           return server.Redirect("../index.html", withtemplate=(templatename, templatevars))
