@@ -30,6 +30,7 @@ admin.autodiscover()
 CSS_DIR    = settings.MEDIA_ROOT
 IMAGES_DIR = path.join(settings.MEDIA_ROOT, 'images')
 JS_DIR     = path.join(settings.MEDIA_ROOT, 'js')
+DJANGO_MEDIA = path.join(path.dirname(admin.__file__), 'media')
 
 urlpatterns = patterns('',
     # Example:
@@ -41,6 +42,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
+    (r'^media/(?P<path>.*)$',  'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
     (r'^(?P<path>.*[.]css)$',  'django.views.static.serve', {'document_root': CSS_DIR}),
     (r'^images/(?P<path>.*)$', 'django.views.static.serve', {'document_root': IMAGES_DIR}),
     (r'^js/(?P<path>.*)$',     'django.views.static.serve', {'document_root': JS_DIR}),
