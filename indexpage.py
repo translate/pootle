@@ -224,7 +224,7 @@ class UserIndex(pagelayout.PootlePage):
     self.tr_lang = request.tr_lang
     self.localize = request.localize
     self.nlocalize = request.nlocalize
-    pagetitle = self.localize("User Page for: %s", request.username)
+    pagetitle = self.localize("User Page for: %s", request.user.username)
     templatename = "home"
     optionslink = self.localize("Change options")
     adminlink = self.localize("Admin page")
@@ -256,21 +256,24 @@ class UserIndex(pagelayout.PootlePage):
   def getquicklinks(self):
     """gets a set of quick links to user's project-languages"""
     quicklinks = []
-    for languagecode in self.request.getlanguages():
-      if not self.potree.haslanguage(languagecode):
+    user_profile = self.request.user.get_profile()
+    for language in user_profile.languages.all():
+      if not self.potree.haslanguage(language.code):
         continue
-      languagename = self.potree.getlanguagename(languagecode)
       langlinks = []
-      for projectcode in self.request.getprojects():
-        if self.potree.hasproject(languagecode, projectcode):
-          projecttitle = self.potree.getprojectname(projectcode)
-          project = self.potree.getproject(languagecode, projectcode)
+      for project in user_profile.projects.all():
+        if self.potree.hasproject(language.code, project.code):
+          projecttitle = self.potree.getprojectname(project.code)
+          project = self.potree.getproject(language.code, project.code)
           isprojectadmin = "admin" in project.getrights(request=self.request)
-          langlinks.append({"code": projectcode, "name": projecttitle,
-                            "isprojectadmin": isprojectadmin, "sep": "<br />"})
+          langlinks.append({
+            "code": project.code,
+            "name": project.title,
+            "isprojectadmin": isprojectadmin,
+            "sep": "<br />"})
       if langlinks:
         langlinks[-1]["sep"] = ""
-      quicklinks.append({"code": languagecode, "name": self.tr_lang(languagename), "projects": langlinks})
+      quicklinks.append({"code": languagecode, "name": self.tr_lang(language.name), "projects": langlinks})
       # rewritten for compatibility with Python 2.3
       # quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
       quicklinks.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
