@@ -81,7 +81,10 @@ def completetemplatevars(templatevars, request, bannerheight=135):
   if not "instancetitle" in templatevars:
     templatevars["instancetitle"] = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
   if not "request" in templatevars:
-    templatevars["request"] = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
+    templatevars["request"] = {
+        "status": get_profile(request.user).status,
+        "isopen": request.user.is_authenticated(),
+        "issiteadmin": request.user.is_superuser}
   if not "unlocalizedurl" in templatevars:
     templatevars["unlocalizedurl"] = getattr(pan_app.prefs, "baseurl", "/")
     if not templatevars["unlocalizedurl"].endswith("/"):
