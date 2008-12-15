@@ -175,23 +175,22 @@ class ActivatePage(pagelayout.PootlePage):
 
 class UserOptions(pagelayout.PootlePage):
   """page for user to change their options"""
-  def __init__(self, session, message=None):
+  def __init__(self, request, message=None):
     self.potree = pan_app.get_po_tree()
-    self.session = session
-    self.localize = session.localize
-    self.tr_lang = session.tr_lang
+    self.request = request
+    self.localize = request.localize
+    self.tr_lang = request.tr_lang
     message = forcemessage(message)
-    pagetitle = self.localize("Options for: %s", session.username)
+    pagetitle = self.localize("Options for: %s", request.user.username)
     templatename = "options"
-    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
     enablealtsrc = getattr(pan_app.prefs, "enablealtsrc", False)
-    sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
     templatevars = {"pagetitle": pagetitle, "introtext": message,
         "detailstitle": self.localize("Personal Details"),
         "fullname_title": self.localize("Name"),
-        "fullname": self.session.user.first_name,
+        "fullname": self.request.user.first_name,
         "email_title": self.localize("Email"),
-        "email": self.session.user.email,
+        "email": self.request.user.email,
         "password_title": self.localize("Password"),
         "passwordconfirm_title": self.localize("Confirm password"),
         "interface_title": self.localize("Translation Interface Configuration"),
@@ -202,22 +201,21 @@ class UserOptions(pagelayout.PootlePage):
         "languages": self.getlanguageoptions(),
         "home_link": self.localize("Home page"),
         "submit_button": self.localize("Save changes"),
-        "session": sessionvars,
         "instancetitle": instancetitle,
         "enablealtsrc": enablealtsrc,
-        "logintype": get_profile(self.session.user).login_type
+        "logintype": get_profile(self.request.user).login_type
         }
     if enablealtsrc == 'True':
       templatevars["altsrclanguage_title"] = self.localize("Alternative Source Language")
       templatevars["altsrclanguages"] = self.getaltsrcoptions()
     otheroptions = self.getotheroptions()
     templatevars.update(otheroptions)
-    pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
+    pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
   def getprojectoptions(self):
     """gets the options box to change the user's projects"""
     projectoptions = []
-    userprojects = self.session.getprojects()
+    userprojects = get_profile(self.request.user).projects.all()
     for projectcode in self.potree.getprojectcodes():
       projectname = self.potree.getprojectname(projectcode)
       projectoptions.append({"code": projectcode, "name": projectname, "selected": projectcode in userprojects or None})
@@ -225,7 +223,7 @@ class UserOptions(pagelayout.PootlePage):
 
   def getlanguageoptions(self):
     """returns options for languages"""
-    userlanguages = self.session.getlanguages()
+    userlanguages = get_profile(self.request.user).languages.all()
     languageoptions = self.potree.getlanguages()
     languages = []
     for language, name in languageoptions:
@@ -237,7 +235,7 @@ class UserOptions(pagelayout.PootlePage):
 
   def getaltsrcoptions(self):
     """returns options for alternative source languages"""
-    useraltsrc = self.session.getaltsrclanguage()
+    useraltsrc = self.request.getaltsrclanguage()
     languageoptions = self.potree.getlanguages()
     altsrclanguages = []
     for language, name in languageoptions:
@@ -246,12 +244,16 @@ class UserOptions(pagelayout.PootlePage):
     # altsrclanguages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     altsrclanguages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     # l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
-    altsrclanguages.insert(0, {"code": '', "name": self.session.localize("None"), "selected": '' in useraltsrc and 'selected' or None})
+    altsrclanguages.insert(0, {"code": '', "name": self.localize("None"), "selected": '' in useraltsrc and 'selected' or None})
     return altsrclanguages
 
   def getotheroptions(self):
-    profile = get_profile(self.session.user)
-    uilanguage = profile.ui_lang.fullname
+    profile = get_profile(self.request.user)
+    if profile.ui_lang:
+        uilanguage = profile.ui_lang.fullname
+    else:
+        uilanguage = None
+
     languageoptions = [{"code": '', "name": ''}]
     for code, name in self.potree.getlanguages():
       if code == "templates":

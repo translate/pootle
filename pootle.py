@@ -356,7 +356,7 @@ class PootleServer(users.OptionalLoginAppServer):
               session.setinterfaceoptions(argdict)
           except users.RegistrationError, errormessage:
             message = errormessage
-          return users.UserOptions(session, message)
+          return users.UserOptions(request, message)
       elif top == "admin":
         pathwords = pathwords[1:]
         if pathwords:
