@@ -31,6 +31,7 @@ import os
 from Pootle.pootle_app.models import Language, Project
 from Pootle.misc import prefs
 from Pootle import pan_app
+from django.conf import settings
 
 class POTree:
   """Manages the tree of projects and languages"""
@@ -49,7 +50,7 @@ class POTree:
     projlist = Project.objects.order_by('code')
     self.projects = dict( (p.code, p) for p in projlist) 
 
-    self.podirectory = pan_app.prefs.podirectory
+    self.podirectory = settings.PODIRECTORY #pan_app.prefs.podirectory
     self.projectcache = {}
 
   def saveprefs(self):

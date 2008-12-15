@@ -24,9 +24,12 @@ from threading import Lock
 from translate.misc.context import with_
 from translate.misc.contextlib import contextmanager
 
+from django.conf import settings
+from Pootle.misc import prefs as prefsmodule
+
 cache_templates = True
 
-prefs = None
+prefs = prefsmodule.load_preferences(settings.PREFSFILE)
 
 def make_atomic_manager():
     lock = Lock()
@@ -50,6 +53,6 @@ def get_po_tree():
             from Pootle import potree
             _po_tree = potree.POTree(prefs)
         return _po_tree
-
+    
     return with_(_po_tree_manager(), with_block)
 

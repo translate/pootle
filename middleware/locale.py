@@ -69,10 +69,10 @@ def get_lang_from_prefs(request):
     return None
 
 def get_language_from_request(request):
-    for get_lang in (get_lang_from_cookie,
+    for lang_getter in (get_lang_from_cookie,
                      get_lang_from_prefs,
                      get_lang_from_http_header):
-        lang = get_lang(request)
+        lang = lang_getter(request)
         if lang is not None:
             return lang
     return get_lang('en')

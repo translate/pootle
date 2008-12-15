@@ -19,6 +19,11 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+import os
+
+def pootle_home(filename):
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), filename)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -28,12 +33,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'pootle.db'             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_ENGINE = 'sqlite3'                 # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME = pootle_home('../pootle.db') # Or path to database file if using sqlite3.
+DATABASE_USER = ''                          # Not used with sqlite3.
+DATABASE_PASSWORD = ''                      # Not used with sqlite3.
+DATABASE_HOST = ''                          # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = ''                          # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -54,7 +59,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = pootle_home('html')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -94,7 +99,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     
     # For now we'll cheat and use a relative path, in spite of the above comment.
-    'templates',
+    pootle_home('templates'),
 )
 
 INSTALLED_APPS = (
@@ -107,3 +112,8 @@ INSTALLED_APPS = (
 )
 
 AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
+
+PREFSFILE = pootle_home('pootle.prefs')
+
+PODIRECTORY = pootle_home('po')
+

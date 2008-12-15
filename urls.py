@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf.urls.defaults import *
-from Pootle import settings
+from django.conf import settings
 from os import path
 
 # Uncomment the next two lines to enable the admin:

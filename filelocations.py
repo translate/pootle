@@ -23,6 +23,7 @@
 import os.path
 import sys
 import imp
+from django.conf import settings
 
 def check_if_frozen():
     return (hasattr(sys, "frozen") or # new py2exe
@@ -40,7 +41,7 @@ else:
   jtoolkitdir = os.path.dirname(jtoolkitversion.__file__)
 
 # default prefs file is pootle.prefs in the pootledir
-prefsfile = os.path.join(pootledir, 'pootle.prefs')
+prefsfile = settings.PREFSFILE
 
 htmldir = os.path.join(pootledir, "html")
 templatedir = os.path.join(pootledir, "templates")

@@ -22,8 +22,6 @@
 # TODO: Make this less ugly
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
-from Pootle import settings
-settings.MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'html')
 
 import optparse
 from wsgiref.simple_server import make_server
