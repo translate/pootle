@@ -117,3 +117,7 @@ PREFSFILE = pootle_home('pootle.prefs')
 
 PODIRECTORY = pootle_home('po')
 
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+LANGUAGE_NAME_COOKIE = 'pootlelang'
+

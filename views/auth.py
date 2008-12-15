@@ -2,6 +2,7 @@
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
+from django.conf import settings
 
 from Pootle import pan_app
 
@@ -26,7 +27,11 @@ def login(request):
                 login(request, form.get_user())
                 if request.session.test_cookie_worked():
                     request.session.delete_test_cookie()
-                return HttpResponseRedirect(redirect_to)
+
+                language = request.POST.get('language') # FIXME: validation missing
+                response = HttpResponseRedirect(redirect_to)
+                response.set_cookie(settings.LANGUAGE_NAME_COOKIE, language)
+                return response
         else:
             form = AuthenticationForm(request)
         request.session.set_test_cookie()
