@@ -48,3 +48,8 @@ def login(request):
         return render_to_kid("login.html", KidRequestContext(request, context))
         #return render_to_response("login.html", RequestContext(request, context))
 
+def logout(request):
+    from django.contrib.auth import logout
+    logout(request)
+    return HttpResponseRedirect('/')
+

@@ -31,7 +31,7 @@
                         </span>
                         <span py:if="request.isopen" py:strip="True">
                             <li class="yuimenubaritem"><a href="${baseurl}home/">My account</a></li>
-                            <li class="yuimenubaritem"><a href="${baseurl}?islogout=1">Log out</a></li>
+                            <li class="yuimenubaritem"><a href="${baseurl}logout.html">Log out</a></li>
                         </span>
                         <span py:if="not request.isopen" py:strip="True">
                             <li id="menu-login" class="yuimenubaritem"><a href="${baseurl}login.html"><span>Log in</span></a></li>
