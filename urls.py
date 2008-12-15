@@ -42,10 +42,11 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^media/(?P<path>.*)$',  'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
-#    (r'^admin/(.*)', admin.site.root),
+    (r'^django_admin/(.*)', admin.site.root),
     (r'^(?P<path>.*[.]css)$',  'django.views.static.serve', {'document_root': CSS_DIR}),
     (r'^(?P<path>(:?images|js|doc)/.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^login.html$', 'Pootle.views.auth.login'),
     (r'^logout.html$', 'Pootle.views.auth.logout'),
     (r'(.*)', 'Pootle.views.main.pass_to_pootle'),
 )
+
