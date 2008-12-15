@@ -36,9 +36,10 @@ def login(request):
             'form': form,
             }
 
+        # kid template compatibility
         context.update({
             'pagetitle': request.localize("Login to Pootle"),
-            'session': pootlesession(request),
+            'session': pootlesession(request), #FIXME!
             'introtext': None,
             'language_title': request.localize('Language:'),
             'password_title': request.localize("Password:"),
