@@ -707,6 +707,7 @@ def create_default_users():
   admin.firstname=u"Administrator"
   admin.is_active=True
   admin.is_superuser=True
+  admin.is_staff=True
   admin.password = md5.new("admin").hexdigest()
   admin.save()
 
