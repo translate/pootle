@@ -94,9 +94,9 @@ class PootleServer(users.OptionalLoginAppServer):
     """saves any changes made to the preferences"""
     prefs.save_preferences(pan_app.prefs)
 
-  def changeoptions(self, argdict):
+  def changeoptions(self, arg_dict):
     """changes options on the instance"""
-    prefs.change_preferences(pan_app.prefs, argdict)
+    prefs.change_preferences(pan_app.prefs, arg_dict)
 
   def inittranslation(self, localedir=None, localedomains=None, defaultlanguage=None):
     """initializes live translations using the Pootle PO files"""
@@ -279,7 +279,7 @@ class PootleServer(users.OptionalLoginAppServer):
       elif top == 'about.html':
         return indexpage.AboutPage(request)
       elif top == "login.html":
-        if 'doregister' in argdict:
+        if 'doregister' in arg_dict:
           return self.registerpage(request, arg_dict)
 # TODO: Figure out what to do here
 #         try:
@@ -289,22 +289,22 @@ class PootleServer(users.OptionalLoginAppServer):
 #         except:
 #           pass
         if not request.user.is_anonymous(): # session.isopen:
-          returnurl = argdict.get('returnurl', None) 
+          returnurl = arg_dict.get('returnurl', None) 
           if returnurl == None or re.search('[^A-Za-z0-9?./]+', returnurl):
             returnurl = getattr(pan_app.prefs, 'homepage', '/index.html')
           # TODO: This won't work. Do it the Django way.
           return server.Redirect(returnurl)
         message = None
-        if 'username' in argdict:
-          # TODO: Find another place to store the argdict["username"], so that we
+        if 'username' in arg_dict:
+          # TODO: Find another place to store the arg_dict["username"], so that we
           #       can correctly complain to the user if the login fails.
-          #session.username = argdict["username"]
+          #session.username = arg_dict["username"]
           message = request.localize("Login failed")
         return users.LoginPage(request, languagenames=self.languagenames, message=message)
       elif top == "register.html":
-        return self.registerpage(request, argdict)
+        return self.registerpage(request, arg_dict)
       elif top == "activate.html":
-        return self.activatepage(request, argdict)
+        return self.activatepage(request, arg_dict)
       elif top == "projects":
         pathwords = pathwords[1:]
         if pathwords:
@@ -325,7 +325,7 @@ class PootleServer(users.OptionalLoginAppServer):
           if not top or top == "index.html":
             return indexpage.ProjectLanguageIndex(projectcode, request)
           elif top == "admin.html":
-            return adminpages.ProjectAdminPage(projectcode, request, argdict)
+            return adminpages.ProjectAdminPage(projectcode, request, arg_dict)
       elif top == "home":
         pathwords = pathwords[1:]
         if pathwords:
@@ -347,13 +347,13 @@ class PootleServer(users.OptionalLoginAppServer):
         elif top == "options.html":
           message = None
           try:
-            if "changeoptions" in argdict:
-              session.setoptions(argdict)
-            if "changepersonal" in argdict:
-              session.setpersonaloptions(argdict)
+            if "changeoptions" in arg_dict:
+              session.setoptions(arg_dict)
+            if "changepersonal" in arg_dict:
+              session.setpersonaloptions(arg_dict)
               message = session.localize("Personal details updated")
-            if "changeinterface" in argdict:
-              session.setinterfaceoptions(argdict)
+            if "changeinterface" in arg_dict:
+              session.setinterfaceoptions(arg_dict)
           except users.RegistrationError, errormessage:
             message = errormessage
           return users.UserOptions(request, message)
@@ -384,20 +384,20 @@ class PootleServer(users.OptionalLoginAppServer):
           pagelayout.completetemplatevars(templatevars, request)
           return server.Redirect("../index.html", withtemplate=(templatename, templatevars))
         if not top or top == "index.html":
-          if "changegeneral" in argdict:
-            self.changeoptions(argdict)
+          if "changegeneral" in arg_dict:
+            self.changeoptions(arg_dict)
           return adminpages.AdminPage(request)
         elif top == "users.html":
-          if "changeusers" in argdict:
-            self.changeusers(session, argdict)
+          if "changeusers" in arg_dict:
+            self.changeusers(session, arg_dict)
           return adminpages.UsersAdminPage(self, request)
         elif top == "languages.html":
-          if "changelanguages" in argdict:
-            self.potree.changelanguages(argdict)
+          if "changelanguages" in arg_dict:
+            self.potree.changelanguages(arg_dict)
           return adminpages.LanguagesAdminPage(request)
         elif top == "projects.html":
-          if "changeprojects" in argdict:
-            self.potree.changeprojects(argdict)
+          if "changeprojects" in arg_dict:
+            self.potree.changeprojects(arg_dict)
           return adminpages.ProjectsAdminPage(request)
       if not top or top == "index.html":
         return indexpage.LanguagesIndex(request)
@@ -424,7 +424,7 @@ class PootleServer(users.OptionalLoginAppServer):
             try:
               return indexpage.ProjectIndex(project, request, arg_dict)
             except projects.RightsError, stoppedby:
-              argdict["message"] = str(stoppedby)
+              arg_dict["message"] = str(stoppedby)
               return indexpage.PootleIndex(request)
           elif top == "admin.html":
             return adminpages.TranslationProjectAdminPage(project, request, arg_dict)
@@ -436,12 +436,12 @@ class PootleServer(users.OptionalLoginAppServer):
             try:
               return translatepage.TranslatePage(project, request, arg_dict, dirfilter)
             except projects.RightsError, stoppedby:
-              argdict["message"] = str(stoppedby)
+              arg_dict["message"] = str(stoppedby)
               return indexpage.ProjectIndex(project, request, arg_dict, dirfilter)
           elif bottom == "spellcheck.html":
             # the full review page
-            argdict["spellchecklang"] = languagecode
-            return spellui.SpellingReview(session, argdict, js_url="/js/spellui.js")
+            arg_dict["spellchecklang"] = languagecode
+            return spellui.SpellingReview(session, arg_dict, js_url="/js/spellui.js")
           elif bottom == "spellingstandby.html":
             # a simple 'loading' page
             return spellui.SpellingStandby()
@@ -458,7 +458,7 @@ class PootleServer(users.OptionalLoginAppServer):
                 arg_dict["message"] = str(stoppedby)
                 return indexpage.ProjectIndex(project, session, arg_dict, dirfilter=dirfilter)
             elif arg_dict.get("index", 0):
-              return indexpage.ProjectIndex(project, session, argdict, dirfilter=pofilename)
+              return indexpage.ProjectIndex(project, session, arg_dict, dirfilter=pofilename)
             else:
               pofile = project.getpofile(pofilename, freshen=False)
               page = widgets.SendFile(pofile.filename)
@@ -498,7 +498,7 @@ class PootleServer(users.OptionalLoginAppServer):
               dirfilter = os.path.join(*pathwords[:-1])
             else:
               dirfilter = None
-            goal = argdict.get("goal", None)
+            goal = arg_dict.get("goal", None)
             if goal:
               goalfiles = project.getgoalfiles(goal)
               pofilenames = []
@@ -522,9 +522,9 @@ class PootleServer(users.OptionalLoginAppServer):
               dirfilter = os.path.join(*pathwords[:-1])
             else:
               dirfilter = None
-            return indexpage.ProjectIndex(project, request, argdict, dirfilter)
+            return indexpage.ProjectIndex(project, request, arg_dict, dirfilter)
           else:
-            return indexpage.ProjectIndex(project, request, argdict, os.path.join(*pathwords))
+            return indexpage.ProjectIndex(project, request, arg_dict, os.path.join(*pathwords))
       return None
     except projects.Rights404Error:
       return None
