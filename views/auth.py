@@ -8,7 +8,6 @@ from Pootle import pan_app
 
 from Pootle.views.util import render_to_kid, KidRequestContext
 from Pootle.pagelayout import completetemplatevars
-from Pootle.views.compat import pootlesession
 
 def login(request):
     message = None
@@ -44,7 +43,6 @@ def login(request):
         # kid template compatibility
         context.update({
             'pagetitle': request.localize("Login to Pootle"),
-            'session': pootlesession(request), #FIXME!
             'introtext': None,
             'language_title': request.localize('Language:'),
             'password_title': request.localize("Password:"),
