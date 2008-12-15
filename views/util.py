@@ -3,6 +3,7 @@ from os import path
 import kid
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from jToolkit.web import server
+from jToolkit.widgets import widgets
 import mimetypes
 
 from Pootle.pagelayout import completetemplatevars
@@ -71,6 +72,9 @@ def render_jtoolkit(obj):
             if obj.ispermanent:
                 return HttpResponsePermanentRedirect(obj.location)
             return HttpResponseRedirect(obj.location)
+        if isinstance(obj, widgets.SendFile):
+            content_type = hasattr(obj, 'content_type') and obj.content_type or 'text/plain'
+            return HttpResponse(open(obj.sendfile_path).read(), content_type=content_type)
         return HttpResponse(obj.getcontents(), obj.content_type)
 
 def render_to_kid(template, context):
