@@ -522,9 +522,9 @@ class PootleServer(users.OptionalLoginAppServer):
               dirfilter = os.path.join(*pathwords[:-1])
             else:
               dirfilter = None
-            return indexpage.ProjectIndex(project, session, argdict, dirfilter)
+            return indexpage.ProjectIndex(project, request, argdict, dirfilter)
           else:
-            return indexpage.ProjectIndex(project, session, argdict, os.path.join(*pathwords))
+            return indexpage.ProjectIndex(project, request, argdict, os.path.join(*pathwords))
       return None
     except projects.Rights404Error:
       return None
