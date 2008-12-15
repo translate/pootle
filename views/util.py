@@ -5,6 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanen
 from jToolkit.web import server
 import mimetypes
 
+from Pootle.pagelayout import completetemplatevars
+
 # settings.py is in the root of our Django application's
 # directory structure, so we can use path.dirname to
 # find the root directory.
