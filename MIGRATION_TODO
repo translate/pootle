@@ -1,3 +1,4 @@
 
  - Downloading .po files is broken
+ - Login from first page does not work because the cookie isn't set.
 
