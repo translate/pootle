@@ -23,6 +23,7 @@ from django.db import models, connection, backend
 
 from django.contrib.auth.models import User
 from Pootle.pootle_app.profile import PootleProfile
+from translate.filters import checks
 
 def table_name(table):
     return table._meta.db_table
@@ -54,11 +55,18 @@ class LanguageManager(models.Manager):
         return cursor.fetchall()
 
 class Language(models.Model):
-    code           = models.CharField(max_length=50, null=False, unique=True)
+    code_help_text = u'ISO 639 language code for the language, possibly followed by an underscore (_) and an ISO 3166 country code. <a href="http://www.w3.org/International/articles/language-tags/">More information</a>'
+    nplurals_help_text = u'For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms'
+    pluralequation_help_text = u'For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms'
+    specialchars_help_text = u'Enter any special characters that users might find difficult to type'
+
+    nplural_choices = ((0, u'unknown'), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
+
+    code           = models.CharField(max_length=50, null=False, unique=True, help_text=code_help_text)
     fullname       = models.CharField(max_length=255, null=False)
-    nplurals       = models.SmallIntegerField(default=1)
-    pluralequation = models.CharField(max_length=255)
-    specialchars   = models.CharField(max_length=255)
+    nplurals       = models.SmallIntegerField(default=0, choices=nplural_choices, help_text=nplurals_help_text)
+    pluralequation = models.CharField(max_length=255, blank=True, help_text=pluralequation_help_text)
+    specialchars   = models.CharField(max_length=255, blank=True, help_text=specialchars_help_text)
 
     objects = LanguageManager()
 
@@ -83,14 +91,32 @@ class ProjectManager(models.Manager):
         return cursor.fetchall()
 
 class Project(models.Model):
-    code           = models.CharField(max_length=255, null=False, unique=True)
+    code_help_text = u'A short code for the project. This should only contain ASCII characters, numbers, and the underscore (_) character.'
+    description_help_text = u'A description of this project. This is useful to give more information or instructions. This field should be valid HTML.'
+
+    checker_choices = [('standard', 'standard')]
+    checkers = list(checks.projectcheckers.keys())
+    checkers.sort()
+    checker_choices.extend([(checker, checker) for checker in checkers])
+    local_choices = (
+            ('po', 'Gettext PO'),
+            ('xl', 'XLIFF')
+    )
+    treestyle_choices = (
+            # TODO: check that the None is stored and handled correctly
+            (None, u'Automatic detection (slower)'),
+            ('gnu', u'GNU style: all languages in one directory; files named by language code'),
+            ('nongnu', u'Non-GNU: Each language in its own directory'),
+    )
+
+    code           = models.CharField(max_length=255, null=False, unique=True, help_text=code_help_text)
     fullname       = models.CharField(max_length=255, null=False)
-    description    = models.TextField()
-    checkstyle     = models.CharField(max_length=50, null=False)
-    localfiletype  = models.CharField(max_length=50, default="")
+    description    = models.TextField(blank=True, help_text=description_help_text)
+    checkstyle     = models.CharField(max_length=50, default='standard', null=False, choices=checker_choices)
+    localfiletype  = models.CharField(max_length=50, default="po", choices=local_choices)
     createmofiles  = models.BooleanField(default=False)
-    treestyle      = models.CharField(max_length=20, default="")
-    ignoredfiles   = models.CharField(max_length=255, null=False, default="")
+    treestyle      = models.CharField(max_length=20, null=True, default=None, choices=treestyle_choices)
+    ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="")
 
     objects = ProjectManager()
 
