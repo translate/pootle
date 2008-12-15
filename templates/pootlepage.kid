@@ -4,16 +4,16 @@
 ?>
 <include xmlns:py="http://purl.org/kid/ns#">
 
-    <div py:def="header(links, session, baseurl, instancetitle)" py:strip="True">
+    <div py:def="header(links, request, baseurl, instancetitle)" py:strip="True">
         <!-- start header -->
         <div id="nav-access">
             <a href="#nav-main" py:content="links.skip_nav">skip to navigation</a>
         </div>
         <?python
             header_attributes = {};
-            if session.isopen:
+            if request.isopen:
                 header_attributes = {'class':'logged-in'}
-            if session.issiteadmin:
+            if request.issiteadmin:
                 header_attributes = {'class':'logged-in admin'}
         ?>
 
@@ -26,14 +26,14 @@
                     <ul class="first-of-type">
                         <li class="yuimenubaritem"><a href="${baseurl}" py:content="links.home">Home</a></li>
                         <li class="yuimenubaritem"><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
-                        <span py:if="session.issiteadmin" py:strip="True">
+                        <span py:if="request.issiteadmin" py:strip="True">
                             <li class="yuimenubaritem"><a href="${baseurl}admin/" py:content="links.admin">Admin</a></li>
                         </span>
-                        <span py:if="session.isopen" py:strip="True">
+                        <span py:if="request.isopen" py:strip="True">
                             <li class="yuimenubaritem"><a href="${baseurl}home/">My account</a></li>
                             <li class="yuimenubaritem"><a href="${baseurl}?islogout=1">Log out</a></li>
                         </span>
-                        <span py:if="not session.isopen" py:strip="True">
+                        <span py:if="not request.isopen" py:strip="True">
                             <li id="menu-login" class="yuimenubaritem"><a href="${baseurl}login.html"><span>Log in</span></a></li>
                         </span>
                     </ul>
@@ -63,9 +63,9 @@
         <!-- end footer -->
     </div>
 
-    <div py:def="login_form(username_title, password_title, login_text, register_text, canregister, session, uilanguage)" py:strip="True">
+    <div py:def="login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage)" py:strip="True">
         <!-- start login form -->
-        <div py:if="not session.isopen" py:strip="True">
+        <div py:if="not request.isopen" py:strip="True">
             <form action="/login.html" method="post" id="login-form">
                 <p><label for="username" py:content="username_title">Username</label> <input type="text" id="username" name="username" /></p>
                 <p><label for="password" py:content="password_title">Password</label> <input type="password" id="password" name="password" /></p>

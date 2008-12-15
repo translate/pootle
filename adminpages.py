@@ -29,16 +29,18 @@ import locale
 
 class AdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
-  def __init__(self, session):
+  def __init__(self, request):
     self.potree = pan_app.get_po_tree()
-    self.session = session
-    self.localize = session.localize
+    self.request = request
+    self.localize = request.localize
     templatename = "adminindex"
-    sessionvars = {"status": self.session.status, "isopen": self.session.isopen, "issiteadmin": self.session.issiteadmin()}
-    instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
-    text = self.gettext(session)
-    templatevars = {"options": self.getoptions(), "session": sessionvars, "instancetitle": instancetitle, "text": text}
-    pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
+    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
+    text = self.gettext(request)
+    templatevars = {
+        "options": self.getoptions(),
+        "instancetitle": instancetitle,
+        "text": text}
+    pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
   def gettext(self, session):
     """Localize the text"""
