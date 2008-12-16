@@ -263,26 +263,7 @@ class PootleServer(users.OptionalLoginAppServer):
       elif top == "activate.html":
         return self.activatepage(request, arg_dict)
       elif top == "projects":
-        pathwords = pathwords[1:]
-        if pathwords:
-          top = pathwords[0]
-        else:
-          top = ""
-        if not top or top == "index.html":
-          return indexpage.ProjectsIndex(request)
-        else:
-          projectcode = top
-          if not self.potree.hasproject(None, projectcode):
-            return None
-          pathwords = pathwords[1:]
-          if pathwords:
-            top = pathwords[0]
-          else:
-            top = ""
-          if not top or top == "index.html":
-            return indexpage.ProjectLanguageIndex(projectcode, request)
-          elif top == "admin.html":
-            return adminpages.ProjectAdminPage(projectcode, request, arg_dict)
+        raise NotImplementedError()
       elif top == "home":
         raise NotImplementedError()
       elif top == "admin":

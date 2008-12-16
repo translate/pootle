@@ -269,7 +269,7 @@ class ProjectAdminPage(pagelayout.PootlePage):
     self.localize = request.localize
     self.tr_lang = request.tr_lang
     projectname = self.potree.getprojectname(self.projectcode)
-    if request.issiteadmin():
+    if request.user.is_superuser:
       if "doaddlanguage" in argdict:
         newlanguage = argdict.get("newlanguage", None)
         if not newlanguage:

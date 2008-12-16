@@ -49,5 +49,6 @@ urlpatterns = patterns('',
     (r'^logout.html$', 'Pootle.views.auth.logout'),
     (r'^admin', include('Pootle.views.admin.urls')),
     (r'^home',  include('Pootle.views.home.urls')),
+    (r'^projects', include('Pootle.views.projects.urls')),
     (r'(.*)', 'Pootle.views.main.pass_to_pootle'),
 )
