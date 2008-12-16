@@ -20,11 +20,12 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf.urls.defaults import *
+import view
 
 urlpatterns = patterns('',
-    (r'users.html$',     'Pootle.views.admin.users'),
-    (r'languages.html$', 'Pootle.views.admin.languages'),
-    (r'projects.html$',  'Pootle.views.admin.projects'),
-    (r'(/|index.html)?$',  'Pootle.views.admin.index'),
+    (r'users.html$',     view.users),
+    (r'languages.html$', view.languages),
+    (r'projects.html$',  view.projects),
+    (r'(/|index.html)?$',  view.index),
 )
 
