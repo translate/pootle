@@ -304,47 +304,7 @@ class PootleServer(users.OptionalLoginAppServer):
         elif top == "options.html":
           raise NotImplementedError()
       elif top == "admin":
-        pathwords = pathwords[1:]
-        if pathwords:
-          top = pathwords[0]
-        else:
-          top = ""
-        if request.user.is_anonymous():
-          templatename = "redirect"
-          templatevars = {
-              "pagetitle": request.localize("Redirecting to login..."),
-              "refresh": 1,
-              "refreshurl": "login.html",
-              "message": request.localize("You must log in to administer Pootle."),
-              }
-          pagelayout.completetemplatevars(templatevars, request)
-          return server.Redirect("../login.html", withtemplate=(templatename, templatevars))
-        if not request.user.is_superuser:
-          templatename = "redirect"
-          templatevars = {
-              "pagetitle": request.localize("Redirecting to home..."),
-              "refresh": 1,
-              "refreshurl": "login.html",
-              "message": request.localize("You do not have the rights to administer pootle."),
-              }
-          pagelayout.completetemplatevars(templatevars, request)
-          return server.Redirect("../index.html", withtemplate=(templatename, templatevars))
-        if not top or top == "index.html":
-          if "changegeneral" in arg_dict:
-            self.changeoptions(arg_dict)
-          return adminpages.AdminPage(request)
-        elif top == "users.html":
-          if "changeusers" in arg_dict:
-            self.changeusers(session, arg_dict)
-          return adminpages.UsersAdminPage(self, request)
-        elif top == "languages.html":
-          if "changelanguages" in arg_dict:
-            self.potree.changelanguages(arg_dict)
-          return adminpages.LanguagesAdminPage(request)
-        elif top == "projects.html":
-          if "changeprojects" in arg_dict:
-            self.potree.changeprojects(arg_dict)
-          return adminpages.ProjectsAdminPage(request)
+        raise NotImplementedError()
       if not top or top == "index.html":
         return indexpage.LanguagesIndex(request)
       if top == "templates" or self.potree.haslanguage(top):

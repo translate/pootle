@@ -69,7 +69,7 @@ class LoginPage(pagelayout.PootlePage):
     templatename = "login"
     message = forcemessage(message)
     instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
-    sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
+    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     templatevars = {"pagetitle": pagetitle, "introtext": message,
         "username_title": self.localize("Username:"),
         "username": getattr(session, 'username', ''),
@@ -125,7 +125,7 @@ class RegisterPage(pagelayout.PootlePage):
     self.argdict = argdict
     templatename = "register"
     instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
-    sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
+    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     templatevars = {"pagetitle": pagetitle, "introtext": introtext,
         "username_title": self.localize("Username"),
         "username_tooltip": self.localize("Your requested username"),
@@ -161,7 +161,7 @@ class ActivatePage(pagelayout.PootlePage):
       pagetitle = title
     templatename = "activate"
     instancetitle = getattr(pan_app.prefs, "title", session.localize("Pootle Demo"))
-    sessionvars = {"status": session.status, "isopen": session.isopen, "issiteadmin": session.issiteadmin()}
+    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     templatevars = {"pagetitle": pagetitle, "introtext": introtext,
         "username_title": self.localize("Username"),
         "username_tooltip": self.localize("Your requested username"),

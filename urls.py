@@ -48,6 +48,7 @@ urlpatterns = patterns('',
     (r'^(?P<path>(:?images|js|doc)/.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^login.html$', 'Pootle.views.auth.login'),
     (r'^logout.html$', 'Pootle.views.auth.logout'),
+    (r'^admin/', include('Pootle.views.admin_urls')),
     (r'(.*)', 'Pootle.views.main.pass_to_pootle'),
 )
 
