@@ -224,50 +224,7 @@ class PootleServer(users.OptionalLoginAppServer):
       top = ""
 
     try:
-      if top == 'js':
-        pathwords = pathwords[1:]
-        jsfile = os.path.join(filelocations.htmldir, 'js', *pathwords)
-        if not os.path.exists(jsfile):
-          jsfile = os.path.join(filelocations.jtoolkitdir, 'js', *pathwords)
-          if not os.path.exists(jsfile):
-            return None
-        jspage = widgets.PlainContents(None)
-        jspage.content_type = "application/x-javascript"
-        jspage.sendfile_path = jsfile
-        jspage.allowcaching = True
-        return jspage
-      elif pathwords and pathwords[-1].endswith(".css"):
-        cssfile = os.path.join(filelocations.htmldir, *pathwords)
-        if not os.path.exists(cssfile):
-          return None
-        csspage = widgets.PlainContents(None)
-        csspage.content_type = "text/css"
-        csspage.sendfile_path = cssfile
-        csspage.allowcaching = True
-        return csspage
-      elif top in ['selenium', 'tests']:
-        picturefile = os.path.join(filelocations.htmldir, *pathwords)
-        picture = widgets.SendFile(picturefile)
-        if picturefile.endswith(".html"):
-          picture.content_type = 'text/html'
-        elif picturefile.endswith(".js"):
-          picture.content_type = 'text/javascript'
-        picture.allowcaching = True
-        return picture
-      elif top == 'images':
-        pathwords = pathwords[1:]
-        picturefile = os.path.join(filelocations.htmldir, 'images', *pathwords)
-        picture = widgets.SendFile(picturefile)
-        picture.content_type = thumbgallery.getcontenttype(pathwords[-1])
-        picture.allowcaching = True
-        return picture
-      elif pathwords and pathwords[-1].endswith(".ico"):
-        picturefile = os.path.join(filelocations.htmldir, *pathwords)
-        picture = widgets.SendFile(picturefile)
-        picture.content_type = 'image/ico'
-        picture.allowcaching = True
-        return picture
-      elif top == "robots.txt":
+      if top == "robots.txt":
         robotspage = widgets.PlainContents(self.generaterobotsfile())
         robotspage.content_type = 'text/plain'
         robotspage.allowcaching = True
