@@ -284,25 +284,7 @@ class PootleServer(users.OptionalLoginAppServer):
           elif top == "admin.html":
             return adminpages.ProjectAdminPage(projectcode, request, arg_dict)
       elif top == "home":
-        pathwords = pathwords[1:]
-        if pathwords:
-          top = pathwords[0]
-        else:
-          top = ""
-        if request.user.is_anonymous(): #not session.isopen:
-          templatename = "redirect"
-          templatevars = {
-              "pagetitle": request.localize("Redirecting to login..."),
-              "refresh": 1,
-              "refreshurl": "login.html",
-              "message": request.localize("You need to log in to access your home page"),
-              }
-          pagelayout.completetemplatevars(templatevars, request)
-          return server.Redirect("../login.html", withtemplate=(templatename, templatevars))
-        if not top or top == "index.html":
-          return indexpage.UserIndex(request)
-        elif top == "options.html":
-          raise NotImplementedError()
+        raise NotImplementedError()
       elif top == "admin":
         raise NotImplementedError()
       if not top or top == "index.html":

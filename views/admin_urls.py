@@ -25,6 +25,6 @@ urlpatterns = patterns('',
     (r'users.html$',     'Pootle.views.admin.users'),
     (r'languages.html$', 'Pootle.views.admin.languages'),
     (r'projects.html$',  'Pootle.views.admin.projects'),
-    (r'(index.html)?$',  'Pootle.views.admin.index'),
+    (r'(/|index.html)?$',  'Pootle.views.admin.index'),
 )
 
