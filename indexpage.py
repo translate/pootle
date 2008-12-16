@@ -261,19 +261,19 @@ class UserIndex(pagelayout.PootlePage):
       if not self.potree.haslanguage(language.code):
         continue
       langlinks = []
-      for project in user_profile.projects.all():
-        if self.potree.hasproject(language.code, project.code):
-          projecttitle = self.potree.getprojectname(project.code)
-          project = self.potree.getproject(language.code, project.code)
+      for project_model in user_profile.projects.all():
+        if self.potree.hasproject(language.code, project_model.code):
+          projecttitle = self.potree.getprojectname(project_model.code)
+          project = self.potree.getproject(language.code, project_model.code)
           isprojectadmin = "admin" in project.getrights(request=self.request)
           langlinks.append({
-            "code": project.code,
-            "name": project.title,
+            "code": project_model.code,
+            "name": projecttitle,
             "isprojectadmin": isprojectadmin,
             "sep": "<br />"})
       if langlinks:
         langlinks[-1]["sep"] = ""
-      quicklinks.append({"code": languagecode, "name": self.tr_lang(language.name), "projects": langlinks})
+      quicklinks.append({"code": language.code, "name": self.tr_lang(language.fullname), "projects": langlinks})
       # rewritten for compatibility with Python 2.3
       # quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
       quicklinks.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
