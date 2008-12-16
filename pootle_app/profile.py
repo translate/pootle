@@ -32,12 +32,12 @@ class PootleProfile(models.Model):
     view_rows       = models.SmallIntegerField(default=10)
     input_width     = models.SmallIntegerField(default=10)
     input_height    = models.SmallIntegerField(default=1)
-    languages       = models.ManyToManyField('Language', related_name="user_languages")
-    projects        = models.ManyToManyField('Project')
+    languages       = models.ManyToManyField('Language', blank=True, related_name="user_languages")
+    projects        = models.ManyToManyField('Project', blank=True)
     login_type      = models.CharField(max_length=50, default="hash")
     activation_code = models.CharField(max_length=255, default="")
-    ui_lang         = models.ForeignKey('Language', null=True)
-    alt_src_langs   = models.ManyToManyField('Language', related_name="user_alt_src_langs")
+    ui_lang         = models.ForeignKey('Language', blank=True)
+    alt_src_langs   = models.ManyToManyField('Language', blank=True, related_name="user_alt_src_langs")
 
     def _get_suggestions(self, status):
         from Pootle.pootle_app.models import Suggestion
@@ -90,7 +90,7 @@ def make_default_profile(user_model):
     return profile
 
 def get_profile(user_model):
-    if not user_model.is_anonymous():
+    if user_model.is_authenticated():
         try:
             return user_model.get_profile()
         except PootleProfile.DoesNotExist, _e:
