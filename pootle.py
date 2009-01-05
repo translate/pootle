@@ -307,13 +307,6 @@ class PootleServer(users.OptionalLoginAppServer):
             except projects.RightsError, stoppedby:
               arg_dict["message"] = str(stoppedby)
               return indexpage.ProjectIndex(project, request, arg_dict, dirfilter)
-          elif bottom == "spellcheck.html":
-            # the full review page
-            arg_dict["spellchecklang"] = languagecode
-            return spellui.SpellingReview(session, arg_dict, js_url="/js/spellui.js")
-          elif bottom == "spellingstandby.html":
-            # a simple 'loading' page
-            return spellui.SpellingStandby()
           elif bottom.endswith("." + project.fileext):
             pofilename = os.path.join(*pathwords)
             if arg_dict.get("translate", 0):
