@@ -171,17 +171,6 @@ class PootleServer(users.OptionalLoginAppServer):
     """generates a unique activation code"""
     return "".join(["%02x" % int(random.random()*0x100) for i in range(16)])
 
-  def generaterobotsfile(self):
-    """generates the robots.txt file"""
-    langcodes = self.potree.getlanguagecodes()
-    excludedfiles = ["login.html", "register.html", "activate.html"]
-    content = "User-agent: *\n"
-    for excludedfile in excludedfiles:
-      content += "Disallow: /%s\n" % excludedfile
-    for langcode in langcodes:
-      content += "Disallow: /%s/\n" % langcode
-    return content
-
   def getuserlanguage(self, request):
     """gets the language for a user who does not specify one in the URL"""
     raise NotImplementedError()
@@ -224,12 +213,7 @@ class PootleServer(users.OptionalLoginAppServer):
       top = ""
 
     try:
-      if top == "robots.txt":
-        robotspage = widgets.PlainContents(self.generaterobotsfile())
-        robotspage.content_type = 'text/plain'
-        robotspage.allowcaching = True
-        return robotspage
-      elif top == "testtemplates.html":
+      if top == "testtemplates.html":
         return templateserver.TemplateServer.getpage(self, pathwords, request, arg_dict)
       elif not top or top == "index.html":
         return indexpage.PootleIndex(request)
