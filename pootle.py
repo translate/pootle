@@ -223,8 +223,6 @@ class PootleServer(users.OptionalLoginAppServer):
         return self.registerpage(request, arg_dict)
       elif top == "activate.html":
         return self.activatepage(request, arg_dict)
-      if not top or top == "index.html":
-        return indexpage.LanguagesIndex(request)
       if top == "templates" or self.potree.haslanguage(top):
         languagecode = top
         pathwords = pathwords[1:]
