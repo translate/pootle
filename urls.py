@@ -51,6 +51,7 @@ urlpatterns = patterns('',
     (r'^home',  include('Pootle.views.home.urls')),
     (r'^projects', include('Pootle.views.projects.urls')),
     (r'^robots.txt$', 'Pootle.views.index.view.robots'),
+    (r'^about.html$', 'Pootle.views.index.view.about'),
     (r'^(/|/index.html)?$', 'Pootle.views.index.view.index'),
     (r'(.*)', 'Pootle.views.main.pass_to_pootle'),
 )

@@ -215,8 +215,6 @@ class PootleServer(users.OptionalLoginAppServer):
     try:
       if top == "testtemplates.html":
         return templateserver.TemplateServer.getpage(self, pathwords, request, arg_dict)
-      elif top == 'about.html':
-        return indexpage.AboutPage(request)
       elif top == "register.html":
         return self.registerpage(request, arg_dict)
       elif top == "activate.html":
