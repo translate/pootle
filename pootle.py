@@ -219,39 +219,10 @@ class PootleServer(users.OptionalLoginAppServer):
         return indexpage.PootleIndex(request)
       elif top == 'about.html':
         return indexpage.AboutPage(request)
-      elif top == "login.html":
-        if 'doregister' in arg_dict:
-          return self.registerpage(request, arg_dict)
-# TODO: Figure out what to do here
-#         try:
-#           if session.usercreated:
-#             session.usercreated = False
-#             return server.Redirect('home/')
-#         except:
-#           pass
-        if not request.user.is_anonymous(): # session.isopen:
-          returnurl = arg_dict.get('returnurl', None) 
-          if returnurl == None or re.search('[^A-Za-z0-9?./]+', returnurl):
-            returnurl = getattr(pan_app.prefs, 'homepage', '/index.html')
-          # TODO: This won't work. Do it the Django way.
-          return server.Redirect(returnurl)
-        message = None
-        if 'username' in arg_dict:
-          # TODO: Find another place to store the arg_dict["username"], so that we
-          #       can correctly complain to the user if the login fails.
-          #session.username = arg_dict["username"]
-          message = request.localize("Login failed")
-        return users.LoginPage(request, languagenames=self.languagenames, message=message)
       elif top == "register.html":
         return self.registerpage(request, arg_dict)
       elif top == "activate.html":
         return self.activatepage(request, arg_dict)
-      elif top == "projects":
-        raise NotImplementedError()
-      elif top == "home":
-        raise NotImplementedError()
-      elif top == "admin":
-        raise NotImplementedError()
       if not top or top == "index.html":
         return indexpage.LanguagesIndex(request)
       if top == "templates" or self.potree.haslanguage(top):
