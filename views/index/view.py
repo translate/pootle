@@ -23,6 +23,7 @@ from django.http import Http404
 from django.http import HttpResponse
 
 from Pootle import pan_app, indexpage
+from Pootle.misc import jtoolkit_django
 
 from Pootle.views.util import render_to_kid
 from Pootle.views.util import render_jtoolkit
@@ -44,3 +45,8 @@ def robots(request):
         content += "Disallow: /%s/\n" % langcode
     return HttpResponse(content, mimetype="text/plain")
 
+def register(request):
+    pan_app.pootle_server.registerpage(request, jtoolkit_django.process_django_request_args(request))
+
+def activate(request):
+    pan_app.pootle_server.activatepage(request, jtoolkit_django.process_django_request_args(request))
