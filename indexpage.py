@@ -139,6 +139,10 @@ class PootleIndex(pagelayout.PootlePage):
         "session": sessionvars, "instancetitle": instancetitle,
         "translationlegend": self.gettranslationsummarylegendl10n()
         }
+
+    if request.session['message'] != '':
+      templatevars['message'] = request.session['message']
+      request.session['message'] = ''
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
   def getlanguages(self, request):
