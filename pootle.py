@@ -52,7 +52,7 @@ from translate import __version__ as toolkitversion
 from jToolkit import __version__ as jtoolkitversion
 from Pootle import statistics, pan_app
 from Pootle.misc.transaction import django_transaction
-from Pootle.misc import prefs
+from Pootle.misc import prefs, jtoolkit_django
 
 try:
   from xml.etree import ElementTree
@@ -181,23 +181,7 @@ class PootleServer(users.OptionalLoginAppServer):
   def getpage(self, request, pathwords):
     """return a page that will be sent to the user"""
 
-    def remove_from_list(lst):
-      if len(lst) == 1:
-        return lst[0]
-      else:
-        return lst
-
-    def get_arg_dict(request):
-      if request.method == 'GET':
-        return request.GET
-      else:
-        return request.POST
-
-    def process_django_request_args(request):
-      return dict((key, remove_from_list(value)) for key, value in get_arg_dict(request).iteritems())
-
-    arg_dict = process_django_request_args(request)
-
+    arg_dict = jtoolkit_django.process_django_request_args(request)
     pathwords = pathwords.split('/')
     # Strip of the base url
     baseurl = re.sub('https?://[^/]*', '', pan_app.prefs.baseurl)
