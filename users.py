@@ -114,8 +114,7 @@ class LoginPage(pagelayout.PootlePage):
 
 class RegisterPage(pagelayout.PootlePage):
   """page for new registrations"""
-  def __init__(self, session, argdict, message=None):
-    localize = localize
+  def __init__(self, request, argdict, message=None):
     if not message:
       introtext = localize("Please enter your registration details")
     else:
@@ -143,12 +142,11 @@ class RegisterPage(pagelayout.PootlePage):
         "passwordconfirm": self.argdict.get("passwordconfirm", ""),
         "register_text": localize('Register Account'),
         "session": sessionvars, "instancetitle": instancetitle}
-    pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
+    pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
 class ActivatePage(pagelayout.PootlePage):
   """page for new registrations"""
-  def __init__(self, session, argdict, title=None, message=None):
-    localize = localize
+  def __init__(self, request, argdict, title=None, message=None):
     if not message:
       introtext = localize("Please enter your activation details")
     else:
@@ -170,7 +168,7 @@ class ActivatePage(pagelayout.PootlePage):
         "code": self.argdict.get("activationcode", ""),
         "activate_text": localize('Activate Account'),
         "session": sessionvars, "instancetitle": instancetitle}
-    pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
+    pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
 class OptionalLoginAppServer(object):
   """a server that enables login but doesn't require it except for specified pages"""
