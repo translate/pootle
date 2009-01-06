@@ -8,6 +8,7 @@ OLD_TEMPLATEDIR = settings.TEMPLATE_DIRS[0]
 
 # needed for 'buildpage'
 from Pootle.views.util import attribify
+from Pootle.i18n import gettext
 
 def loadurl(filename, context):
     "opens a template file and returns contents as string"
@@ -63,7 +64,7 @@ def pootlesession(req):
             object.__setattr__(self, 'map', {
                 'isopen': req.user.is_authenticated(),
                 'issiteadmin': is_admin(req),
-                'language':  req.ui_lang_project, #'en', # FIXME - currently static
+                'language':  gettext.get_active(), #'en', # FIXME - currently static
                 'server': foo(),
                 'status': status,
                 })

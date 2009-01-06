@@ -53,6 +53,7 @@ from scripts import hooks
 from django.contrib.auth.models import User
 from Pootle.pootle_app.models import Suggestion, get_profile, Submission
 from Pootle import pan_app
+from Pootle.i18n.jtoolkit_i18n import localize
 
 class RightsError(ValueError):
   pass
@@ -173,7 +174,6 @@ class TranslationProject(object):
 
   def getrightnames(self, request):
     """gets the available rights and their localized names"""
-    localize = request.localize
     # l10n: Verb
     return [("view", localize("View")),
             ("suggest", localize("Suggest")),
@@ -285,7 +285,7 @@ class TranslationProject(object):
     # l10n: Don't translate "nobody" or "default"
     if username == "nobody" or username == "default":
       # l10n: Don't translate "nobody" or "default"
-      raise RightsError(request.localize('You cannot remove the "nobody" or "default" user'))
+      raise RightsError(localize('You cannot remove the "nobody" or "default" user'))
     self.prefs.rights.__delattr__(username)
     self.saveprefs()
 
@@ -437,7 +437,7 @@ class TranslationProject(object):
   def setgoalfiles(self, request, goalname, goalfiles):
     """sets the goalfiles for the given goalname"""
     if "admin" not in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to alter goals here"))
+      raise RightsError(localize("You do not have rights to alter goals here"))
     if isinstance(goalfiles, list):
       goalfiles = [goalfile.strip() for goalfile in goalfiles if goalfile.strip()]
       goalfiles.sort()
@@ -499,7 +499,7 @@ class TranslationProject(object):
     if isinstance(goalname, unicode):
       goalname = goalname.encode('utf-8')
     if "admin" not in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to alter goals here"))
+      raise RightsError(localize("You do not have rights to alter goals here"))
     if isinstance(goalusers, list):
       goalusers = [goaluser.strip() for goaluser in goalusers if goaluser.strip()]
       goalusers = ", ".join(goalusers)
@@ -570,12 +570,12 @@ class TranslationProject(object):
       elif "suggest" in rights:
         origpofile.mergefile(newfile, request.user.username, suggestions=True)
       else:
-        raise RightsError(request.localize("You do not have rights to upload files here"))
+        raise RightsError(localize("You do not have rights to upload files here"))
     else:
       if overwrite and not ("admin" in rights or "overwrite" in rights):
-        raise RightsError(request.localize("You do not have rights to overwrite files here"))
+        raise RightsError(localize("You do not have rights to overwrite files here"))
       elif not os.path.exists(popathname) and not ("admin" in rights or "overwrite" in rights):
-        raise RightsError(request.localize("You do not have rights to upload new files here"))
+        raise RightsError(localize("You do not have rights to upload new files here"))
       outfile = open(popathname, "wb")
       outfile.write(contents)
       outfile.close()
@@ -583,7 +583,7 @@ class TranslationProject(object):
   def updatepofile(self, request, dirname, pofilename):
     """updates an individual PO file from version control"""
     if "admin" not in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to update files here"))
+      raise RightsError(localize("You do not have rights to update files here"))
     # read from version control
     pathname = self.getuploadpath(dirname, pofilename)
     try:
@@ -638,7 +638,7 @@ class TranslationProject(object):
   def commitpofile(self, request, dirname, pofilename):
     """commits an individual PO file to version control"""
     if "commit" not in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to commit files here"))
+      raise RightsError(localize("You do not have rights to commit files here"))
     pathname = self.getuploadpath(dirname, pofilename)
     stats = self.getquickstats([os.path.join(dirname, pofilename)])
     statsstring = "%d of %d messages translated (%d fuzzy)." % \
@@ -763,7 +763,7 @@ class TranslationProject(object):
 
         import subprocess
         if subprocess.call(["unzip", tempzipname, "-d", tempdir]):
-          raise zipfile.BadZipfile(request.localize("Error while extracting archive"))
+          raise zipfile.BadZipfile(localize("Error while extracting archive"))
 
         def upload(basedir, path, files):
           for fname in files:
@@ -1122,7 +1122,7 @@ class TranslationProject(object):
   def assignpoitems(self, request, search, assignto, action):
     """assign all the items matching the search to the assignto user(s) evenly, with the given action"""
     if not "assign" in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to alter assignments here"))
+      raise RightsError(localize("You do not have rights to alter assignments here"))
     if search.searchtext:
       grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
     if not isinstance(assignto, list):
@@ -1164,7 +1164,7 @@ class TranslationProject(object):
   def unassignpoitems(self, request, search, assignedto, action=None):
     """unassigns all the items matching the search to the assignedto user"""
     if not "assign" in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to alter assignments here"))
+      raise RightsError(localize("You do not have rights to alter assignments here"))
     if search.searchtext:
       grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
     assigncount = 0
@@ -1308,7 +1308,7 @@ class TranslationProject(object):
   def updatetranslation(self, pofilename, item, newvalues, request, suggObj=None):
     """updates a translation with a new value..."""
     if "translate" not in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to change translations here"))
+      raise RightsError(localize("You do not have rights to change translations here"))
     pofile = self.pofiles[pofilename]
     pofile.pofreshen()
     pofile.track(item, "edited by %s" % request.user.username)
@@ -1337,7 +1337,7 @@ class TranslationProject(object):
   def suggesttranslation(self, pofilename, item, trans, request):
     """stores a new suggestion for a translation..."""
     if "suggest" not in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to suggest changes here"))
+      raise RightsError(localize("You do not have rights to suggest changes here"))
     pofile = self.getpofile(pofilename)
     source = pofile.getitem(item).getsource()
 
@@ -1409,7 +1409,7 @@ class TranslationProject(object):
   def acceptsuggestion(self, pofile, item, suggitem, newtrans, request):
     """accepts the suggestion into the main pofile"""
     if not "review" in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to review suggestions here"))
+      raise RightsError(localize("You do not have rights to review suggestions here"))
     if isinstance(pofile, (str, unicode)):
       pofilename = pofile
       pofile = self.getpofile(pofilename)
@@ -1432,7 +1432,7 @@ class TranslationProject(object):
   def rejectsuggestion(self, pofile, item, suggitem, newtrans, request):
     """rejects the suggestion and removes it from the pending file"""
     if not "review" in self.getrights(request):
-      raise RightsError(request.localize("You do not have rights to review suggestions here"))
+      raise RightsError(localize("You do not have rights to review suggestions here"))
     if isinstance(pofile, (str, unicode)):
       pofilename = pofile
       pofile = self.getpofile(pofilename)

@@ -5,14 +5,15 @@ from jToolkit import prefs
 
 from Pootle import pan_app, adminpages
 from Pootle.views.util import render_jtoolkit
+from Pootle.i18n.jtoolkit_i18n import localize
 
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_authenticated:
-            request.message = request.localize("You must log in to administer Pootle.")
+            request.message = localize("You must log in to administer Pootle.")
             return HttpResponseRedirect('/login') # TODO: Hardcoding is awful. Fix this.
         elif not request.user.is_superuser:
-            request.message = request.localize("You do not have the rights to administer Pootle.")
+            request.message = localize("You do not have the rights to administer Pootle.")
             return HttpResponseRedirect('/home') # TODO: Hardcoding is awful. Fix this.
         else:
             return f(request, *args, **kwargs)

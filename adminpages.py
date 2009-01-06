@@ -25,6 +25,7 @@ from translate.filters import checks
 from django.contrib.auth.models import User
 from Pootle import pan_app
 from Pootle.pootle_app.models import get_profile
+from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 import locale
 
@@ -33,9 +34,8 @@ class AdminPage(pagelayout.PootlePage):
   def __init__(self, request):
     self.potree = pan_app.get_po_tree()
     self.request = request
-    self.localize = request.localize
     templatename = "adminindex"
-    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     text = self.gettext(request)
     templatevars = {
         "options": self.getoptions(),
@@ -46,21 +46,21 @@ class AdminPage(pagelayout.PootlePage):
   def gettext(self, request):
     """Localize the text"""
     text = {}
-    text["home"] = request.localize("Home")
-    text["users"] = request.localize("Users")
-    text["languages"] = request.localize("Languages")
-    text["projects"] = request.localize("Projects")
-    text["generaloptions"] = request.localize("General options")
-    text["option"] = request.localize("Option")
-    text["currentvalue"] = request.localize("Current value")
-    text["savechanges"] = request.localize("Save changes")
+    text["home"] = localize("Home")
+    text["users"] = localize("Users")
+    text["languages"] = localize("Languages")
+    text["projects"] = localize("Projects")
+    text["generaloptions"] = localize("General options")
+    text["option"] = localize("Option")
+    text["currentvalue"] = localize("Current value")
+    text["savechanges"] = localize("Save changes")
     return text
     
   def getoptions(self):
-    optiontitles = {"title": self.localize("Title"), 
-                    "description": self.localize("Description"),
-                    "baseurl": self.localize("Base URL"),
-                    "homepage": self.localize("Home Page")}
+    optiontitles = {"title": localize("Title"), 
+                    "description": localize("Description"),
+                    "baseurl": localize("Base URL"),
+                    "homepage": localize("Home Page")}
     options = []
     for optionname, optiontitle in optiontitles.items():
       optionvalue = getattr(pan_app.prefs, optionname, "")
@@ -73,11 +73,10 @@ class LanguagesAdminPage(pagelayout.PootlePage):
   def __init__(self, request):
     self.potree = pan_app.get_po_tree()
     self.request = request
-    self.localize = request.localize
     templatename = "adminlanguages"
     sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
-    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
-    pagetitle = self.localize("Pootle Languages Admin Page")
+    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    pagetitle = localize("Pootle Languages Admin Page")
     text = self.gettext(request)
     templatevars = {"pagetitle": pagetitle, "languages": self.getlanguagesoptions(), "options": self.getoptions(), "request": sessionvars, "instancetitle": instancetitle, "text": text}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
@@ -85,20 +84,20 @@ class LanguagesAdminPage(pagelayout.PootlePage):
   def gettext(self, request):
     """Localize the text"""
     text = {}
-    text["home"] = request.localize("Home")
-    text["admin"] = request.localize("Main admin page")
-    text["languages"] = request.localize("Languages")
-    text["savechanges"] = request.localize("Save changes")
+    text["home"] = localize("Home")
+    text["admin"] = localize("Main admin page")
+    text["languages"] = localize("Languages")
+    text["savechanges"] = localize("Save changes")
     return text
     
   def getoptions(self):
-    options = [{"name": "code", "title": self.localize("ISO Code"), "size": 6, "newvalue": ""},
-               {"name": "name", "title": self.localize("Full Name"), 
-                                "newvalue": self.localize("(add language here)")},
-               {"name": "specialchars", "title": self.localize("Special Chars"), "newvalue": self.localize("(special characters)")},
-               {"name": "nplurals", "title": self.localize("Number of Plurals"), "newvalue": self.localize("(number of plurals)")},
-               {"name": "pluralequation", "title": self.localize("Plural Equation"), "newvalue": self.localize("(plural equation)")},
-               {"name": "remove", "title": self.localize("Remove Language")}]
+    options = [{"name": "code", "title": localize("ISO Code"), "size": 6, "newvalue": ""},
+               {"name": "name", "title": localize("Full Name"), 
+                                "newvalue": localize("(add language here)")},
+               {"name": "specialchars", "title": localize("Special Chars"), "newvalue": localize("(special characters)")},
+               {"name": "nplurals", "title": localize("Number of Plurals"), "newvalue": localize("(number of plurals)")},
+               {"name": "pluralequation", "title": localize("Plural Equation"), "newvalue": localize("(plural equation)")},
+               {"name": "remove", "title": localize("Remove Language")}]
     for option in options:
       if "newvalue" in option:
         option["newname"] = "newlanguage" + option["name"]
@@ -113,7 +112,7 @@ class LanguagesAdminPage(pagelayout.PootlePage):
       languageremove = None
       # TODO: make label work like this
       # l10n: The parameter is a languagecode, projectcode or username
-      removelabel = self.localize("Remove %s", languagecode)
+      removelabel = localize("Remove %s", languagecode)
       languageoptions = [{"name": "languagename-%s" % languagecode, "value": languagename, "type": "text"},
                          {"name": "languagespecialchars-%s" % languagecode, "value": languagespecialchars, "type": "text"},
                          {"name": "languagenplurals-%s" % languagecode, "value": languagenplurals, "type": "text"},
@@ -127,15 +126,14 @@ class ProjectsAdminPage(pagelayout.PootlePage):
   def __init__(self, request):
     self.potree = pan_app.get_po_tree()
     self.request = request
-    self.localize = request.localize
     templatename = "adminprojects"
     projectfiletypes = ["po","xlf"]
     self.allchecks = [{"value": check, "description": check} for check in checks.projectcheckers.keys()]
-    self.allchecks.insert(0, {"value": "", "description": self.localize("Standard")})
+    self.allchecks.insert(0, {"value": "", "description": localize("Standard")})
     self.alltypes = [{"value": check, "description": check} for check in projectfiletypes]
     sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
-    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
-    pagetitle = self.localize("Pootle Projects Admin Page")
+    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    pagetitle = localize("Pootle Projects Admin Page")
     text = self.gettext(request)
     templatevars = {"pagetitle": pagetitle, "projects": self.getprojectsoptions(), "options": self.getoptions(), "request": sessionvars, "instancetitle": instancetitle, "text": text}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
@@ -143,22 +141,22 @@ class ProjectsAdminPage(pagelayout.PootlePage):
   def gettext(self, request):
     """Localize the text"""
     text = {}
-    text["home"] = request.localize("Home")
-    text["admin"] = request.localize("Main admin page")
-    text["projects"] = request.localize("Projects")
-    text["savechanges"] = request.localize("Save changes")
+    text["home"] = localize("Home")
+    text["admin"] = localize("Main admin page")
+    text["projects"] = localize("Projects")
+    text["savechanges"] = localize("Save changes")
     return text
 
   def getoptions(self):
-    options = [{"name": "code", "title": self.localize("Project Code"), "size": 6, "newvalue": ""},
-               {"name": "name", "title": self.localize("Full Name"), 
-                                "newvalue": self.localize("(add project here)")},
-               {"name": "description", "title": self.localize("Project Description"), "newvalue": self.localize("(project description)")},
-               {"name": "ignoredfiles", "title": self.localize("Ignored Files"), "newvalue": self.localize("(comma separated list)")},
-               {"name": "checkerstyle", "title": self.localize("Checker Style"), "selectoptions": self.allchecks, "newvalue": ""},
-               {"name": "filetype", "title": self.localize("File Type"), "selectoptions": self.alltypes, "newvalue": ""},
-               {"name": "createmofiles", "title": self.localize("Create MO Files"), "type": "checkbox", "newvalue": "True"},
-               {"name": "remove", "title": self.localize("Remove Project")}]
+    options = [{"name": "code", "title": localize("Project Code"), "size": 6, "newvalue": ""},
+               {"name": "name", "title": localize("Full Name"), 
+                                "newvalue": localize("(add project here)")},
+               {"name": "description", "title": localize("Project Description"), "newvalue": localize("(project description)")},
+               {"name": "ignoredfiles", "title": localize("Ignored Files"), "newvalue": localize("(comma separated list)")},
+               {"name": "checkerstyle", "title": localize("Checker Style"), "selectoptions": self.allchecks, "newvalue": ""},
+               {"name": "filetype", "title": localize("File Type"), "selectoptions": self.alltypes, "newvalue": ""},
+               {"name": "createmofiles", "title": localize("Create MO Files"), "type": "checkbox", "newvalue": "True"},
+               {"name": "remove", "title": localize("Remove Project")}]
     for option in options:
       if "newvalue" in option:
         option["newname"] = "newproject" + option["name"]
@@ -182,7 +180,7 @@ class ProjectsAdminPage(pagelayout.PootlePage):
         projectcreatemofiles = ""
       projectremove = None
       # l10n: The parameter is a languagecode, projectcode or username
-      removelabel = self.localize("Remove %s", projectcode)
+      removelabel = localize("Remove %s", projectcode)
       projectoptions = [{"name": "projectname-%s" % projectcode, "value": projectname, "type": "text"},
                         {"name": "projectdescription-%s" % projectcode, "value": projectdescription, "type": "text"},
                         {"name": "projectignoredfiles-%s" % projectcode, "value": projectignoredfiles, "type": "text"},
@@ -198,11 +196,10 @@ class UsersAdminPage(pagelayout.PootlePage):
   def __init__(self, server, request):
     self.server = server
     self.request = request
-    self.localize = request.localize
     templatename = "adminusers"
     sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
-    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
-    pagetitle = self.localize("Pootle User Admin Page")
+    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    pagetitle = localize("Pootle User Admin Page")
     text = self.gettext(request)
     templatevars = {"pagetitle": pagetitle, "users": self.getusersoptions(), "options": self.getoptions(), "request": sessionvars, "instancetitle": instancetitle, "text": text}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
@@ -210,21 +207,21 @@ class UsersAdminPage(pagelayout.PootlePage):
   def gettext(self, request):
     """Localize the text"""
     text = {}
-    text["home"] = request.localize("Home")
-    text["admin"] = request.localize("Main admin page")
-    text["users"] = request.localize("Users")
-    text["savechanges"] = request.localize("Save changes")
+    text["home"] = localize("Home")
+    text["admin"] = localize("Main admin page")
+    text["users"] = localize("Users")
+    text["savechanges"] = localize("Save changes")
     return text
     
   def getoptions(self):
-    options = [{"name": "name", "title": self.localize("Username"), "newvalue": "", "size": 6},
-               {"name": "fullname", "title": self.localize("Full Name"), 
-                                    "newvalue": self.localize("(add full name here)")},
-               {"name": "email", "title": self.localize("Email Address"), "newvalue": self.localize("(add email here)")},
-               {"name": "password", "title": self.localize("Password"), "newvalue": self.localize("(add password here)")},
-               {"name": "activated", "title": self.localize("Activated"), "type": "checkbox", "checked": "true", "newvalue": "", "label": self.localize("Activate New User")},
-               {"name": "logintype", "title": self.localize("Login Type"), "newvalue": "hash"},
-               {"name": "remove", "title": self.localize("Remove User"), "type": "checkbox"}]
+    options = [{"name": "name", "title": localize("Username"), "newvalue": "", "size": 6},
+               {"name": "fullname", "title": localize("Full Name"), 
+                                    "newvalue": localize("(add full name here)")},
+               {"name": "email", "title": localize("Email Address"), "newvalue": localize("(add email here)")},
+               {"name": "password", "title": localize("Password"), "newvalue": localize("(add password here)")},
+               {"name": "activated", "title": localize("Activated"), "type": "checkbox", "checked": "true", "newvalue": "", "label": localize("Activate New User")},
+               {"name": "logintype", "title": localize("Login Type"), "newvalue": "hash"},
+               {"name": "remove", "title": localize("Remove User"), "type": "checkbox"}]
     for option in options:
       if "newvalue" in option:
         # TODO: rationalize this in the form processing
@@ -250,7 +247,7 @@ class UsersAdminPage(pagelayout.PootlePage):
         activatedattr = ""
       userremove = None
       # l10n: The parameter is a languagecode, projectcode or username
-      removelabel = self.localize("Remove %s", username)
+      removelabel = localize("Remove %s", username)
       useroptions = [{"name": "username-%s" % username, "value": fullname, "type": "text"},
                      {"name": "useremail-%s" % username, "value": email, "type": "text"},
                      {"name": "userpassword-%s" % username, "value": None, "type": "text"},
@@ -266,8 +263,6 @@ class ProjectAdminPage(pagelayout.PootlePage):
     self.potree = pan_app.get_po_tree()
     self.projectcode = projectcode
     self.request = request
-    self.localize = request.localize
-    self.tr_lang = request.tr_lang
     projectname = self.potree.getprojectname(self.projectcode)
     if request.user.is_superuser:
       if "doaddlanguage" in argdict:
@@ -294,29 +289,29 @@ class ProjectAdminPage(pagelayout.PootlePage):
           translationproject = self.potree.getproject(languagecode, self.projectcode)
           translationproject.initialize(self.request, languagecode)
 
-    main_link = self.localize("Back to main page")
-    existing_title = self.localize("Existing languages")
+    main_link = localize("Back to main page")
+    existing_title = localize("Existing languages")
     existing_languages = self.getexistinglanguages()
     new_languages = self.getnewlanguages()
     # l10n: This refers to updating the translation files from the templates like with .pot files
-    update_button = self.localize("Update Languages")
-    pagetitle = self.localize("Pootle Admin: %s", projectname)
-    norights_text = self.localize("You do not have the rights to administer this project.")
-    iso_code = self.localize("ISO Code")
-    full_name = self.localize("Full Name")
+    update_button = localize("Update Languages")
+    pagetitle = localize("Pootle Admin: %s", projectname)
+    norights_text = localize("You do not have the rights to administer this project.")
+    iso_code = localize("ISO Code")
+    full_name = localize("Full Name")
     # l10n: This refers to updating the translation files from the templates like with .pot files
-    update_link = self.localize("Update from templates")
+    update_link = localize("Update from templates")
     # l10n: This refers to running an intialization script for the given project+locale
-    initialize_link = self.localize("Initialize")
+    initialize_link = localize("Initialize")
     templatename = "projectadmin"
     sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
-    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     templatevars = {"pagetitle": pagetitle, "norights_text": norights_text,
         "project": {"code": projectcode, "name": projectname},
         "iso_code": iso_code, "full_name": full_name,
         "existing_title": existing_title, "existing_languages": existing_languages,
         "new_languages": new_languages,
-        "update_button": update_button, "add_button": self.localize("Add Language"),
+        "update_button": update_button, "add_button": localize("Add Language"),
         "main_link": main_link, "update_link": update_link, 
         "initialize_link": initialize_link,
         "request": sessionvars, "instancetitle": instancetitle}
@@ -325,7 +320,7 @@ class ProjectAdminPage(pagelayout.PootlePage):
   def getexistinglanguages(self):
     """gets the info on existing languages"""
     languages = self.potree.getlanguages(self.projectcode)
-    languageitems = [{"code": languagecode, "name": self.tr_lang(languagename)} for languagecode, languagename in languages]
+    languageitems = [{"code": languagecode, "name": tr_lang(languagename)} for languagecode, languagename in languages]
     # rewritten for compatibility with Python 2.3
     # languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     languageitems.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
@@ -340,7 +335,7 @@ class ProjectAdminPage(pagelayout.PootlePage):
     newcodes = [code for code in allcodes if not (code in existingcodes or code == "templates")]
     newoptions = [(self.potree.getlanguagename(code), code) for code in newcodes]
     newoptions.sort()
-    newoptions = [{"code": code, "name": self.tr_lang(languagename)} for (languagename, code) in newoptions]
+    newoptions = [{"code": code, "name": tr_lang(languagename)} for (languagename, code) in newoptions]
     # rewritten for compatibility with Python 2.3
     # newoptions.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     newoptions.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
@@ -369,7 +364,7 @@ def updaterights(project, request, argdict):
         if request.loginchecker.userexists(username):
           project.setrights(username, argdict.get("rightsnew", ""))
         else:
-          raise IndexError(request.localize("Cannot set rights for username %s - user does not exist", username))
+          raise IndexError(localize("Cannot set rights for username %s - user does not exist", username))
  
 class TranslationProjectAdminPage(pagelayout.PootlePage):
   """admin page for a translation project (project+language)"""
@@ -377,7 +372,6 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     self.potree = pan_app.get_po_tree()
     self.project = project
     self.request = request
-    self.localize = request.localize
     self.rightnames = self.project.getrightnames(request)
 
     if "admin" not in project.getrights(request):
@@ -391,13 +385,13 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
 
     updaterights(project, request, argdict)
     # l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
-    pagetitle = self.localize("Pootle Admin: %s %s", self.project.languagename, self.project.projectname)
-    main_link = self.localize("Project home page")
-    rescan_files_link = self.localize("Rescan project files")
-    norights_text = self.localize("You do not have the rights to administer this project.")
+    pagetitle = localize("Pootle Admin: %s %s", self.project.languagename, self.project.projectname)
+    main_link = localize("Project home page")
+    rescan_files_link = localize("Rescan project files")
+    norights_text = localize("You do not have the rights to administer this project.")
     templatename = "projectlangadmin"
     sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
-    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     templatevars = {"pagetitle": pagetitle, "norights_text": norights_text,
         "project": {"code": self.project.projectcode, "name": self.project.projectname},
         "language": {"code": self.project.languagecode, "name": self.project.languagename},
@@ -411,14 +405,14 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     """returns a box that describes the options"""
     self.project.readprefs()
     if self.project.filestyle == "gnu":
-      filestyle_text = self.localize("This is a GNU-style project (one directory, files named per language).")
+      filestyle_text = localize("This is a GNU-style project (one directory, files named per language).")
     else:
-      filestyle_text = self.localize("This is a standard style project (one directory per language).")
-    permissions_title = self.localize("User Permissions")
-    username_title = self.localize("Username")
-    adduser_text = self.localize("(select to add user)")
-    rights_title = self.localize("Rights")
-    remove_title = self.localize("Remove")
+      filestyle_text = localize("This is a standard style project (one directory per language).")
+    permissions_title = localize("User Permissions")
+    username_title = localize("Username")
+    adduser_text = localize("(select to add user)")
+    rights_title = localize("Rights")
+    remove_title = localize("Remove")
     nobodyrights = self.project.getrights(username=None)
     nobody_dict = self.getuserdict("nobody", delete=False)
     defaultrights = self.project.getrights(username="default")
@@ -445,7 +439,7 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
       user_details[username] = user_dict
     users_without_rights = [username for username in user_details if username not in users_with_rights]
     newuser_dict = self.getuserdict(None, delete=False)
-    updaterights_text = self.localize("Update Rights")
+    updaterights_text = localize("Update Rights")
     return {"filestyle_text": filestyle_text,
             "permissions_title": permissions_title,
             "username_title": username_title,
@@ -464,7 +458,7 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
   def getuserdict(self, username, delete=True, usernode=None):
     """gets a dictionary for the given user given user's rights"""
     # l10n: The parameter is a languagecode, projectcode or username
-    remove_text = self.localize("Remove %s", username)
+    remove_text = localize("Remove %s", username)
     description = getattr(usernode, "description", None) or username
     userdict = {"username": username, "delete": delete or None, "remove_text": remove_text, "description": description}
     return userdict

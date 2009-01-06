@@ -34,6 +34,7 @@ import os
 from django.contrib.auth.models import User
 from Pootle import pan_app
 from Pootle.pootle_app.models import get_profile
+from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 xml_re = re.compile("&lt;.*?&gt;")
 
@@ -69,7 +70,6 @@ class TranslatePage(pagelayout.PootleNavPage):
     if isinstance(self.showassigns, (str, unicode)) and self.showassigns.isdigit():
       self.showassigns = int(self.showassigns)
     self.request = request
-    self.localize = request.localize
     self.rights = self.project.getrights(self.request)
     if "view" not in self.rights:
       raise projects.Rights404Error(None)
@@ -107,17 +107,17 @@ class TranslatePage(pagelayout.PootleNavPage):
       postats = self.project.getpototals(self.pofilename)
       untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
       translated, total = postats["translated"], postats["total"]
-      mainstats = self.localize("%d/%d translated\n(%d untranslated, %d fuzzy)", translated, total, untranslated, fuzzy)
+      mainstats = localize("%d/%d translated\n(%d untranslated, %d fuzzy)", translated, total, untranslated, fuzzy)
       pagelinks = self.getpagelinks("?translate=1&view=1", rows)
     navbarpath_dict = self.makenavbarpath_dict(self.project, self.request, self.pofilename, dirfilter=self.dirfilter or "")
     # templatising
     templatename = "translatepage"
-    instancetitle = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
+    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     # l10n: first parameter: name of the installation (like "Pootle")
     # l10n: second parameter: project name
     # l10n: third parameter: target language
     # l10n: fourth parameter: file name
-    pagetitle = self.localize("%s: translating %s into %s: %s", instancetitle, self.project.projectname, self.project.languagename, self.pofilename)
+    pagetitle = localize("%s: translating %s into %s: %s", instancetitle, self.project.projectname, self.project.languagename, self.pofilename)
     language = {"code": pagelayout.weblanguage(self.project.languagecode), "name": self.project.languagename, "dir": pagelayout.languagedir(self.project.languagecode)}
     sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     stats = {"summary": mainstats, "checks": [], "tracks": [], "assigns": []}
@@ -133,27 +133,27 @@ class TranslatePage(pagelayout.PootleNavPage):
         "actionurl": formaction,
         "notice": notice,
         # l10n: Heading above the table column with the source language
-        "original_title": self.localize("Original"),
+        "original_title": localize("Original"),
         # l10n: Heading above the table column with the target language
-        "translation_title": self.localize("Translation"),
+        "translation_title": localize("Translation"),
         "items": items,
         "reviewmode": self.reviewmode,
-        "accept_title": self.localize("Accept suggestion"),
-        "reject_title": self.localize("Reject suggestion"),
-        "fuzzytext": self.localize("Fuzzy"),
+        "accept_title": localize("Accept suggestion"),
+        "reject_title": localize("Reject suggestion"),
+        "fuzzytext": localize("Fuzzy"),
         # l10n: Ajax link for suggestions.  %s is the number of suggestions
-        "viewsuggtext": self.localize("View Suggestions (%s)"),
+        "viewsuggtext": localize("View Suggestions (%s)"),
         # l10n: Heading above the textarea for translator comments.
-        "translator_comments_title": self.localize("Translator comments"),
+        "translator_comments_title": localize("Translator comments"),
         # l10n: Heading above the comments extracted from the programing source code
-        "developer_comments_title": self.localize("Developer comments"),
+        "developer_comments_title": localize("Developer comments"),
         # l10n: This heading refers to related translations and terminology
-        "related_title": self.localize("Related"),
+        "related_title": localize("Related"),
         # optional sections, will appear if these values are replaced
         "assign": None,
         # l10n: text next to search field
-        "search": {"title": self.localize("Search"),
-                   "advanced_title": self.localize("Advanced Search"),
+        "search": {"title": localize("Search"),
+                   "advanced_title": localize("Advanced Search"),
                    "fields": self.getsearchfields()},
         # hidden widgets
         "searchtext": self.searchtext,
@@ -163,13 +163,13 @@ class TranslatePage(pagelayout.PootleNavPage):
         "instancetitle": instancetitle,
         "rights": self.rights,
         # l10n: Text displayed when an AJAX petition is being made
-        "ajax_status_text": self.localize("Working..."),
+        "ajax_status_text": localize("Working..."),
         # l10n: Text displayed in an alert box when an AJAX petition has failed
-        "ajax_error": self.localize("Error: Something went wrong."),
+        "ajax_error": localize("Error: Something went wrong."),
         # l10n: Button label
-        "accept_button": self.localize("Accept"),
+        "accept_button": localize("Accept"),
         # l10n: Button label
-        "reject_button": self.localize("Reject")
+        "reject_button": localize("Reject")
         }
 
     if self.extra_class:
@@ -183,9 +183,9 @@ class TranslatePage(pagelayout.PootleNavPage):
   def getfinishedtext(self, stoppedby):
     """gets notice to display when the translation is finished"""
     # l10n: "batch" refers to the set of translations that were reviewed
-    title = self.localize("End of batch")
+    title = localize("End of batch")
     finishedlink = "index.html?" + "&".join(["%s=%s" % (arg, value) for arg, value in self.argdict.iteritems() if arg.startswith("show") or arg == "editing"])
-    returnlink = self.localize("Click here to return to the index")
+    returnlink = localize("Click here to return to the index")
     stoppedbytext = stoppedby.args[0]
     return {"title": title, "stoppedby": stoppedbytext, "finishedlink": finishedlink, "returnlink": returnlink}
 
@@ -199,33 +199,33 @@ class TranslatePage(pagelayout.PootleNavPage):
     lastitem = min(pofilelen-1, self.firstitem + pagesize - 1)
     if pofilelen > pagesize and not self.firstitem == 0:
       # l10n: noun (the start)
-      pagelinks.append({"href": baselink + "&item=0", "text": self.localize("Start")})
+      pagelinks.append({"href": baselink + "&item=0", "text": localize("Start")})
     else:
       # l10n: noun (the start)
-      pagelinks.append({"text": self.localize("Start")})
+      pagelinks.append({"text": localize("Start")})
     if self.firstitem > 0:
       linkitem = max(self.firstitem - pagesize, 0)
       # l10n: the parameter refers to the number of messages
-      pagelinks.append({"href": baselink + "&item=%d" % linkitem, "text": self.localize("Previous %d", (self.firstitem - linkitem))})
+      pagelinks.append({"href": baselink + "&item=%d" % linkitem, "text": localize("Previous %d", (self.firstitem - linkitem))})
     else:
       # l10n: the parameter refers to the number of messages
-      pagelinks.append({"text": self.localize("Previous %d", pagesize)})
+      pagelinks.append({"text": localize("Previous %d", pagesize)})
       # l10n: the third parameter refers to the total number of messages in the file
-    pagelinks.append({"text": self.localize("Items %d to %d of %d", self.firstitem+1, lastitem+1, pofilelen)})
+    pagelinks.append({"text": localize("Items %d to %d of %d", self.firstitem+1, lastitem+1, pofilelen)})
     if self.firstitem + len(self.translations) < self.project.getpofilelen(self.pofilename):
       linkitem = self.firstitem + pagesize
       itemcount = min(pofilelen - linkitem, pagesize)
       # l10n: the parameter refers to the number of messages
-      pagelinks.append({"href": baselink + "&item=%d" % linkitem, "text": self.localize("Next %d", itemcount)})
+      pagelinks.append({"href": baselink + "&item=%d" % linkitem, "text": localize("Next %d", itemcount)})
     else:
       # l10n: the parameter refers to the number of messages
-      pagelinks.append({"text": self.localize("Next %d", pagesize)})
+      pagelinks.append({"text": localize("Next %d", pagesize)})
     if pofilelen > pagesize and (self.item + pagesize) < pofilelen:
       # l10n: noun (the end)
-      pagelinks.append({"href": baselink + "&item=%d" % max(pofilelen - pagesize, 0), "text": self.localize("End")})
+      pagelinks.append({"href": baselink + "&item=%d" % max(pofilelen - pagesize, 0), "text": localize("End")})
     else:
       # l10n: noun (the end)
-      pagelinks.append({"text": self.localize("End")})
+      pagelinks.append({"text": localize("End")})
     for n, pagelink in enumerate(pagelinks):
       if n < len(pagelinks)-1:
         pagelink["sep"] = " | "
@@ -245,16 +245,16 @@ class TranslatePage(pagelayout.PootleNavPage):
         {"checkname": matchname.replace("check-", "", 1)} for matchname in self.matchnames]
         # TODO: put the following parameter in quotes, since it will be foreign in all target languages
         # l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-        self.templatevars["checking_text"] = self.localize("checking %s", ", ".join(checknames))
+        self.templatevars["checking_text"] = localize("checking %s", ", ".join(checknames))
 
   def getassignbox(self):
     """gets strings if the user can assign strings"""
     users = User.objects.order_by('username')
     return {
-      "title": self.localize("Assign Strings"),
-      "user_title": self.localize("Assign to User"),
-      "action_title": self.localize("Assign Action"),
-      "submit_text": self.localize("Assign Strings"),
+      "title": localize("Assign Strings"),
+      "user_title": localize("Assign to User"),
+      "action_title": localize("Assign Action"),
+      "submit_text": localize("Assign Strings"),
       "users": users,
     }
 
@@ -414,9 +414,9 @@ class TranslatePage(pagelayout.PootleNavPage):
         self.pofilename, self.item = self.project.searchpoitems(self.pofilename, self.lastitem, search).next()
       except StopIteration:
         if self.lastitem is None:
-          raise StopIteration(self.localize("There are no items matching that search ('%s')", self.searchtext))
+          raise StopIteration(localize("There are no items matching that search ('%s')", self.searchtext))
         else:
-          raise StopIteration(self.localize("You have finished going through the items you selected"))
+          raise StopIteration(localize("You have finished going through the items you selected"))
     else:
       if not item.isdigit():
         raise ValueError("Invalid item given")
@@ -661,8 +661,8 @@ class TranslatePage(pagelayout.PootleNavPage):
            "itemid": "orig%d" % item,
            "pure": purefields,
            "isplural": len(orig) > 1 or None,
-           "singular_title": self.localize("Singular"),
-           "plural_title": self.localize("Plural"),
+           "singular_title": localize("Singular"),
+           "plural_title": localize("Plural"),
            }
     if len(orig) > 1:
       origdict["singular_text"] = self.escapetext(orig[0])
@@ -676,7 +676,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     if "translate" in self.rights or "suggest" in self.rights:
       translateurl = "?translate=1&item=%d&pofilename=%s" % (item, urllib.quote(self.pofilename, '/'))
       # l10n: verb
-      return {"href": translateurl, "text": self.localize("Edit"), "linkid": "editlink%d" % item}
+      return {"href": translateurl, "text": localize("Edit"), "linkid": "editlink%d" % item}
     else:
       return {}
 
@@ -692,17 +692,17 @@ class TranslatePage(pagelayout.PootleNavPage):
     return {"desired": desiredbuttons,
             "item": item,
             # l10n: verb
-            "copy_text": self.localize("Copy"),
-            "skip": self.localize("Skip"),
+            "copy_text": localize("Copy"),
+            "skip": localize("Skip"),
             # l10n: verb
-            "back": self.localize("Back"),
-            "suggest": self.localize("Suggest"),
-            "submit": self.localize("Submit"),
+            "back": localize("Back"),
+            "suggest": localize("Suggest"),
+            "submit": localize("Submit"),
             "specialchars": specialchars,
             # l10n: action that increases the height of the textarea
-            "grow": self.localize("Grow"),
+            "grow": localize("Grow"),
             # l10n: action that decreases the height of the textarea
-            "shrink": self.localize("Shrink"),
+            "shrink": localize("Shrink"),
             # l10n: action that increases the width of the textarea
            }
 
@@ -724,7 +724,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         buttons = self.gettransbuttons(item, ["back", "skip", "copy", "suggest", "translate"])
         forms = []
         for pluralitem, pluraltext in enumerate(trans):
-          pluralform = self.localize("Plural Form %d", pluralitem)
+          pluralform = localize("Plural Form %d", pluralitem)
           pluraltext = self.escapefortextarea(pluraltext)
           textid = "trans%d.%d" % (item, pluralitem)
           forms.append({"title": pluralform, "name": textid, "text": pluraltext, "n": pluralitem})
@@ -740,7 +740,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         # Perhaps there is no plural information available
         buttons = self.gettransbuttons(item, ["back", "skip"])
         # l10n: This is an error message that will display if the relevant problem occurs
-        transdict["text"] = self.escapefortextarea(self.localize("Translation not possible because plural information for your language is not available. Please contact the site administrator."))
+        transdict["text"] = self.escapefortextarea(localize("Translation not possible because plural information for your language is not available. Please contact the site administrator."))
         textid = "trans%d" % item
         focusbox = textid
 
@@ -818,11 +818,11 @@ class TranslatePage(pagelayout.PootleNavPage):
       transdiff = self.highlightdiffs(pluraltrans, combineddiffs, issrc=True)
       form = {"n": pluralitem, "diff": transdiff, "title": None}
       if hasplurals:
-        pluralform = self.localize("Plural Form %d", pluralitem)
+        pluralform = localize("Plural Form %d", pluralitem)
         form["title"] = pluralform
       forms.append(form)
     transdict = {
-                "current_title": self.localize("Current Translation:"),
+                "current_title": localize("Current Translation:"),
                 "editlink": self.geteditlink(item),
                 "forms": forms,
                 "isplural": hasplurals or None,
@@ -835,15 +835,15 @@ class TranslatePage(pagelayout.PootleNavPage):
         if suggestedby:
           # l10n: First parameter: number
           # l10n: Second parameter: name of translator
-          suggtitle = self.localize("Suggestion %d by %s:", suggid+1, suggestedby)
+          suggtitle = localize("Suggestion %d by %s:", suggid+1, suggestedby)
         else:
-          suggtitle = self.localize("Suggestion %d:", suggid+1)
+          suggtitle = localize("Suggestion %d:", suggid+1)
       else:
         if suggestedby:
           # l10n: parameter: name of translator
-          suggtitle = self.localize("Suggestion by %s:", suggestedby)
+          suggtitle = localize("Suggestion by %s:", suggestedby)
         else:
-          suggtitle = self.localize("Suggestion:")
+          suggtitle = localize("Suggestion:")
       forms = []
       for pluralitem, pluraltrans in enumerate(trans):
         pluralsuggestion = msgstr[pluralitem]
@@ -855,7 +855,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         form["suggid"] = "suggest%d.%d.%d" % (item, suggid, pluralitem)
         form["value"] = pluralsuggestion
         if hasplurals:
-          form["title"] = self.localize("Plural Form %d", pluralitem)
+          form["title"] = localize("Plural Form %d", pluralitem)
         forms.append(form)
       suggdict = {"title": suggtitle,
                   "author": suggestedby,
@@ -867,8 +867,8 @@ class TranslatePage(pagelayout.PootleNavPage):
                  }
       suggitems.append(suggdict)
     # l10n: verb
-    backbutton = {"item": item, "text": self.localize("Back")}
-    skipbutton = {"item": item, "text": self.localize("Skip")}
+    backbutton = {"item": item, "text": localize("Back")}
+    skipbutton = {"item": item, "text": localize("Skip")}
     if suggitems:
       suggitems[-1]["back"] = backbutton
       suggitems[-1]["skip"] = skipbutton
@@ -898,7 +898,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     if len(trans) > 1:
       forms = []
       for pluralitem, pluraltext in enumerate(trans):
-        form = {"title": self.localize("Plural Form %d", pluralitem), "n": pluralitem, "text": escapefunction(pluraltext)}
+        form = {"title": localize("Plural Form %d", pluralitem), "n": pluralitem, "text": escapefunction(pluraltext)}
         editclass = ""
         if cantrans or cansugg: 
           editclass = ables+"edittrans"+str(item)+"p"+str(pluralitem)
@@ -925,7 +925,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       altsrcdict["languagecode"] = pagelayout.weblanguage(self.altproject.languagecode)
       altsrcdict["languagename"] = self.altproject.potree.getlanguagename(self.altproject.languagecode)
       altsrcdict["dir"] = pagelayout.languagedir(altsrcdict["languagecode"])
-      altsrcdict["title"] = self.request.tr_lang(altsrcdict["languagename"])
+      altsrcdict["title"] = tr_lang(altsrcdict["languagename"])
       if not origdict["isplural"]:
         orig = origdict["pure"][0]["value"]
         altsrctext = self.altproject.ugettext(orig)

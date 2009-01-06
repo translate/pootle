@@ -22,27 +22,29 @@
 import os
 from Pootle import pan_app
 from Pootle.pootle_app.models import get_profile
+from Pootle.i18n.jtoolkit_i18n import localize, nlocalize, tr_lang
+from Pootle.i18n import gettext
 
 def localize_links(request):
   """Localize all the generic links"""
   links = {}
-  links["home"] = request.localize("Home")
-  links["projects"] = request.localize("All projects")
-  links["languages"] = request.localize("All languages")
-  links["account"] = request.localize("My account")
-  links["admin"] = request.localize("Admin")
-  links["doc"] = request.localize("Docs & help")
-  links["doclang"] = getdoclang(request.ui_lang_project.languagecode)
-  #links["logout"] = request.localize("Log out")
-  #links["login"] = request.localize("Log in")
-  links["about"] = request.localize("About")
+  links["home"] = localize("Home")
+  links["projects"] = localize("All projects")
+  links["languages"] = localize("All languages")
+  links["account"] = localize("My account")
+  links["admin"] = localize("Admin")
+  links["doc"] = localize("Docs & help")
+  links["doclang"] = getdoclang(gettext.get_active().languagecode)
+  #links["logout"] = localize("Log out")
+  #links["login"] = localize("Log in")
+  links["about"] = localize("About")
   #l10n: Verb, as in "to register"
-  links["register"] = request.localize("Register")
-  links["activate"] = request.localize("Activate")
+  links["register"] = localize("Register")
+  links["activate"] = localize("Activate")
 
   # accessibility links
-  links["skip_nav"] = request.localize("skip to navigation")
-  links["switch_language"] = request.localize("switch language")
+  links["skip_nav"] = localize("skip to navigation")
+  links["switch_language"] = localize("switch language")
 
   return links
 
@@ -79,7 +81,7 @@ def localelanguage(language):
 def completetemplatevars(templatevars, request, bannerheight=135):
   """fill out default values for template variables"""
   if not "instancetitle" in templatevars:
-    templatevars["instancetitle"] = getattr(pan_app.prefs, "title", request.localize("Pootle Demo"))
+    templatevars["instancetitle"] = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
   if not "request" in templatevars:
     templatevars["request"] = {
         "status": get_profile(request.user).status,
@@ -95,23 +97,23 @@ def completetemplatevars(templatevars, request, bannerheight=135):
     	templatevars["baseurl"] += "/"
   if not "enablealtsrc" in templatevars:
      templatevars["enablealtsrc"] = getattr(pan_app.prefs, "enablealtsrc", False)
-  templatevars["aboutlink"] = request.localize("About this Pootle server")
-  templatevars["uilanguage"] = weblanguage(request.ui_lang_project.languagecode)
-  templatevars["uidir"] = languagedir(request.ui_lang_project.languagecode)
+  templatevars["aboutlink"] = localize("About this Pootle server")
+  templatevars["uilanguage"] = weblanguage(gettext.get_active().languagecode)
+  templatevars["uidir"] = languagedir(gettext.get_active().languagecode)
   # TODO FIXME cssaligndir is deprecated?
   if templatevars["uidir"] == 'ltr':  
     templatevars["cssaligndir"] = "left"
   else:
     templatevars["cssaligndir"] = "right"
-  templatevars["username_title"] = request.localize("Username")
+  templatevars["username_title"] = localize("Username")
   try:
     templatevars["username"] = templatevars["username"]
   except:
     templatevars["username"] = "" 
-  templatevars["password_title"] = request.localize("Password")
-  templatevars["login_text"] = request.localize('Log in')
-  templatevars["logout_text"] = request.localize('Log out')
-  templatevars["register_text"] = request.localize('Register')
+  templatevars["password_title"] = localize("Password")
+  templatevars["login_text"] = localize('Log in')
+  templatevars["logout_text"] = localize('Log out')
+  templatevars["register_text"] = localize('Register')
   templatevars["canregister"] = hasattr(pan_app.prefs, "hash")
   templatevars["links"] = localize_links(request)
   templatevars["current_url"] = request.path_info
@@ -140,7 +142,6 @@ class PootlePage:
       pan_app.prefs.baseurl = "/"
     if not hasattr(pan_app.prefs, "enablealtsrc"):
       pan_app.prefs.enablealtsrc = False
-    self.localize = request.localize
     self.request = request
     self.templatename = templatename
     self.templatevars = templatevars
@@ -165,9 +166,9 @@ class PootlePage:
   def gettranslationsummarylegendl10n(self):
     """Returns a dictionary of localized headings.  This is only used because we
     can't do L10n directly in our templates. :("""
-    headings = {"translated":     self.localize("Translations are complete"),
-                "fuzzy":        self.localize("Translations need to be checked (they are marked fuzzy)"),
-                "untranslated": self.localize("Untranslated") }
+    headings = {"translated":     localize("Translations are complete"),
+                "fuzzy":        localize("Translations need to be checked (they are marked fuzzy)"),
+                "untranslated": localize("Untranslated") }
     return headings
 
 
@@ -211,21 +212,21 @@ class PootleNavPage(PootlePage):
       links["pathlinks"] = pathlinks
     if argdict and "goal" in argdict:
       # goallink = {"href": self.getbrowseurl("", goal=goal), "text": goal}
-      links["goal"] = {"href": self.getbrowseurl(""), "text": self.localize("All goals")}
+      links["goal"] = {"href": self.getbrowseurl(""), "text": localize("All goals")}
     if project:
       if isinstance(project, tuple):
         projectcode, projectname = project
         links["project"] = {"href": "/projects/%s/%s" % (projectcode, paramstring), "text": projectname}
       else:
-        links["language"] = {"href": rootlink + "../index.html", "text": request.tr_lang(project.languagename)}
+        links["language"] = {"href": rootlink + "../index.html", "text": tr_lang(project.languagename)}
         # don't getbrowseurl on the project link, so sticky options won't apply here
         links["project"] = {"href": (rootlink or "index.html") + paramstring, "text": project.projectname}
         if request:
           if "admin" in project.getrights(request) or request.user.is_superuser:
-            links["admin"] = {"href": rootlink + "admin.html", "text": self.localize("Admin")}
+            links["admin"] = {"href": rootlink + "admin.html", "text": localize("Admin")}
     elif language:
       languagecode, languagename = language
-      links["language"] = {"href": "/%s/" % languagecode, "text": request.tr_lang(languagename)}
+      links["language"] = {"href": "/%s/" % languagecode, "text": tr_lang(languagename)}
     return links
 
   def getbrowseurl(self, basename, **newargs):
@@ -279,32 +280,32 @@ class PootleNavPage(PootlePage):
     if numfiles is None:
       filestats = ""
     elif isinstance(numfiles, tuple):
-      filestats = self.localize("%d/%d files", numfiles) + ", "
+      filestats = localize("%d/%d files", numfiles) + ", "
     else:
       #TODO: Perhaps do better?
-      filestats = self.nlocalize("%d file", "%d files", numfiles, numfiles) + ", "
-    wordstats = self.localize("%d/%d words (%d%%) translated", translatedwords, totalwords, percentfinished)
-    stringstatstext = self.localize("%d/%d strings", translated, total)
+      filestats = nlocalize("%d file", "%d files", numfiles, numfiles) + ", "
+    wordstats = localize("%d/%d words (%d%%) translated", translatedwords, totalwords, percentfinished)
+    stringstatstext = localize("%d/%d strings", translated, total)
     stringstats = ' <span class="string-statistics">[%s]</span>' % stringstatstext
     return filestats + wordstats + stringstats
 
   def getstatsheadings(self):
     """returns a dictionary of localised headings"""
-    headings = {"name": self.localize("Name"),
-                "translated": self.localize("Translated"),
-                "translatedpercentage": self.localize("Translated percentage"),
-                "translatedwords": self.localize("Translated words"),
-                "fuzzy": self.localize("Fuzzy"),
-                "fuzzypercentage": self.localize("Fuzzy percentage"),
-                "fuzzywords": self.localize("Fuzzy words"),
-                "untranslated": self.localize("Untranslated"),
-                "untranslatedpercentage": self.localize("Untranslated percentage"),
-                "untranslatedwords": self.localize("Untranslated words"),
-                "total": self.localize("Total"),
-                "totalwords": self.localize("Total words"),
+    headings = {"name": localize("Name"),
+                "translated": localize("Translated"),
+                "translatedpercentage": localize("Translated percentage"),
+                "translatedwords": localize("Translated words"),
+                "fuzzy": localize("Fuzzy"),
+                "fuzzypercentage": localize("Fuzzy percentage"),
+                "fuzzywords": localize("Fuzzy words"),
+                "untranslated": localize("Untranslated"),
+                "untranslatedpercentage": localize("Untranslated percentage"),
+                "untranslatedwords": localize("Untranslated words"),
+                "total": localize("Total"),
+                "totalwords": localize("Total words"),
                 # l10n: noun. The graphical representation of translation status
-                "progress": self.localize("Progress"),
-                "summary": self.localize("Summary")}
+                "progress": localize("Progress"),
+                "summary": localize("Summary")}
     return headings
 
   def getstats(self, project, projectstats):
@@ -342,19 +343,19 @@ class PootleNavPage(PootlePage):
 
   def getsearchfields(self):
     tmpfields = [{"name": "source",
-                  "text": self.localize("Source Text"),
+                  "text": localize("Source Text"),
                   "value": self.argdict.get("source", 0),
                   "checked": self.argdict.get("source", 0) == "1" and "checked" or None},
                  {"name": "target",
-                  "text": self.localize("Target Text"),
+                  "text": localize("Target Text"),
                   "value": self.argdict.get("target", 0),
                   "checked": self.argdict.get("target", 0) == "1" and "checked" or None},
                  {"name": "notes",
-                  "text": self.localize("Comments"),
+                  "text": localize("Comments"),
                   "value": self.argdict.get("notes", 0),
                   "checked": self.argdict.get("notes", 0) == "1" and "checked" or None},
                  {"name": "locations",
-                  "text": self.localize("Locations"),
+                  "text": localize("Locations"),
                   "value": self.argdict.get("locations", 0),
                   "checked": self.argdict.get("locations", 0) == "1" and "checked" or None}]
 

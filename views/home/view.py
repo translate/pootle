@@ -9,11 +9,12 @@ from Pootle import pagelayout, pan_app, indexpage
 from Pootle.pootle_app.models import get_profile, PootleProfile
 from Pootle.views.util import render_to_kid, KidRequestContext
 from Pootle.views.util import render_jtoolkit
+from Pootle.i18n.jtoolkit_i18n import localize
 
 def user_is_authenticated(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_authenticated:
-            request.message = request.localize("You need to log in to access your home page")
+            request.message = localize("You need to log in to access your home page")
             return HttpResponseRedirect('/login') # TODO: Hardcoding is awful. Fix this.
         else:
             return f(request, *args, **kwargs)
@@ -49,10 +50,10 @@ def options(request):
         profile_form = PootleProfileForm(instance=get_profile(request.user))
       
 
-    template_vars = {"pagetitle":      request.localize("Options for: %s", request.user.username),
+    template_vars = {"pagetitle":      localize("Options for: %s", request.user.username),
                      "introtext":      "TODO: User message",
-                     "detailstitle":   request.localize("Personal Details"),
-                     "fullname_title": request.localize("Name"),
+                     "detailstitle":   localize("Personal Details"),
+                     "fullname_title": localize("Name"),
                      "user_form":      user_form,
                      "profile_form":   profile_form }
 
