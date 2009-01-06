@@ -19,7 +19,10 @@
 # along with Pootle; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+import os
+
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.contrib.auth.decorators import user_passes_test
 
 from Pootle import indexpage, pan_app, translatepage, projects
 from Pootle.misc.jtoolkit_django import process_django_request_args
@@ -101,13 +104,14 @@ def handle_translation_file(request, arg_dict, project, language_code, project_c
         content_type = "text/plain; charset=%s" % encoding
         return HttpResponse(open(pofile.filename).read(), content_type=content_type)
 
-def handle_alternative_format(request, language_code, project_code, file_path):
+def handle_alternative_format(request, project, language_code, project_code, file_path):
     basename, extension = os.path.splitext(file_path)
     pofilename = basename + os.extsep + project.fileext
     extension = extension[1:]
     if extension == "mo":
-        if not "pocompile" in project.getrights(session):
-            return None
+        if not "pocompile" in project.getrights(request):
+            request.session['message'] = 'You do not have the right to create MO files.'
+            return HttpResponseRedirect('/%s/%s' % (language_code, project_code))
     etag, filepath_or_contents = project.convert(pofilename, extension)
     if etag:
         contents = open(filepath_or_contents).read()
@@ -126,9 +130,11 @@ def handle_alternative_format(request, language_code, project_code, file_path):
         content_type = "application/x-gettext-translation"
     return HttpResponse(contents, content_type=content_type)
 
-def handle_zip(request, arg_dict, language_code, project_code, file_path):
+def handle_zip(request, arg_dict, project, language_code, project_code, file_path):
     if not "archive" in project.getrights(request):
-        return None
+        request.session['message'] = 'You do not have the right to create ZIP archives.'
+        return HttpResponseRedirect('/%s/%s' % (language_code, project_code))
+    pathwords = file_path.split(os.sep)
     if len(pathwords) > 1:
         pathwords = file_path.split(os.sep)
         dirfilter = os.path.join(*pathwords[:-1])
@@ -145,9 +151,10 @@ def handle_zip(request, arg_dict, language_code, project_code, file_path):
     archivecontents = project.getarchive(pofilenames)
     return HttpResponse(archivecontents, content_type="application/zip")
 
-def handle_sdf(request, language_code, project_code, file_path):
-    if not "pocompile" in project.getrights(session):
-        return None
+def handle_sdf(request, project, language_code, project_code, file_path):
+    if not "pocompile" in project.getrights(request):
+        request.session['message'] = 'You do not have the right to create SDF files.'
+        return HttpResponseRedirect('/%s/%s' % (language_code, project_code))
     return HttpResponse(project.getoo(), content_type="text/tab-seperated-values")
 
 @check_language_and_project
@@ -156,13 +163,13 @@ def handle_file(request, language_code, project_code, file_path):
     project = pan_app.get_po_tree().getproject(language_code, project_code)
     if file_path.endswith("." + project.fileext):
         return handle_translation_file(request, arg_dict, project, language_code, project_code, file_path)
-    elif bottom.endswith(".csv") or bottom.endswith(".xlf") or \
-         bottom.endswith(".ts") or bottom.endswith(".po") or \
-         bottom.endswith(".mo"):
-        return handle_alternative_format(request, language_code, project_code, file_path)
-    elif bottom.endswith(".zip"):
-        return handle_zip(request, arg_dict, language_code, project_code, file_path)
-    elif bottom.endswith(".sdf") or bottom.endswith(".sgi"):
-        return handle_sdf(request, language_code, project_code, file_path)
+    elif file_path.endswith(".csv") or file_path.endswith(".xlf") or \
+         file_path.endswith(".ts") or file_path.endswith(".po") or \
+         file_path.endswith(".mo"):
+        return handle_alternative_format(request, project, language_code, project_code, file_path)
+    elif file_path.endswith(".zip"):
+        return handle_zip(request, arg_dict, project, language_code, project_code, file_path)
+    elif file_path.endswith(".sdf") or file_path.endswith(".sgi"):
+        return handle_sdf(request, project, language_code, project_code, file_path)
     else:
         return indexpage.ProjectIndex(project, request, arg_dict, file_path)
