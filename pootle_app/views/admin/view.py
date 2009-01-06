@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from jToolkit import prefs
 
 from Pootle import pan_app, adminpages
-from Pootle.views.util import render_jtoolkit
+from pootle_app.views.util import render_jtoolkit
 from Pootle.i18n.jtoolkit_i18n import localize
 
 def user_is_admin(f):

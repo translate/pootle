@@ -7,7 +7,7 @@ from jToolkit.xml import DOMOverlay
 OLD_TEMPLATEDIR = settings.TEMPLATE_DIRS[0]
 
 # needed for 'buildpage'
-from Pootle.views.util import attribify
+from pootle_app.views.util import attribify
 from Pootle.i18n import gettext
 
 def loadurl(filename, context):

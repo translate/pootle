@@ -6,7 +6,7 @@ from django.conf import settings
 
 from Pootle import pan_app
 
-from Pootle.views.util import render_to_kid, KidRequestContext
+from pootle_app.views.util import render_to_kid, KidRequestContext
 from Pootle.pagelayout import completetemplatevars
 from Pootle.i18n.jtoolkit_i18n import localize
 

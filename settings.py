@@ -88,11 +88,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
-    'Pootle.middleware.LocaleMiddleware',
-    'Pootle.middleware.RequestCacheMiddleware',
+    'Pootle.pootle_app.middleware.LocaleMiddleware',
+    'Pootle.pootle_app.middleware.RequestCacheMiddleware',
 )
 
-ROOT_URLCONF = 'Pootle.urls'
+ROOT_URLCONF = 'Pootle.pootle_app.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

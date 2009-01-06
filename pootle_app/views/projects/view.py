@@ -2,8 +2,8 @@ from django.http import Http404
 
 from Pootle import pan_app, indexpage, adminpages
 
-from Pootle.views.util import render_to_kid
-from Pootle.views.util import render_jtoolkit
+from pootle_app.views.util import render_to_kid
+from pootle_app.views.util import render_jtoolkit
 
 def check_project_code(project_code):
     if not pan_app.get_po_tree().hasproject(None, project_code):

@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 
 from Pootle import pagelayout, pan_app, indexpage
 from Pootle.pootle_app.models import get_profile, PootleProfile
-from Pootle.views.util import render_to_kid, KidRequestContext
-from Pootle.views.util import render_jtoolkit
+from pootle_app.views.util import render_to_kid, KidRequestContext
+from pootle_app.views.util import render_jtoolkit
 from Pootle.i18n.jtoolkit_i18n import localize
 
 def user_is_authenticated(f):

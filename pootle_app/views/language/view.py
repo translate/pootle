@@ -27,8 +27,8 @@ from django.contrib.auth.decorators import user_passes_test
 from Pootle import indexpage, pan_app, translatepage, projects
 from Pootle.misc.jtoolkit_django import process_django_request_args
 
-from Pootle.views.util import render_to_kid
-from Pootle.views.util import render_jtoolkit
+from pootle_app.views.util import render_to_kid
+from pootle_app.views.util import render_jtoolkit
 
 def check_language(f):
     def decorated_f(request, language_code, *args, **kwargs):

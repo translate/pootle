@@ -25,8 +25,8 @@ from django.http import HttpResponse
 from Pootle import pan_app, indexpage
 from Pootle.misc import jtoolkit_django
 
-from Pootle.views.util import render_to_kid
-from Pootle.views.util import render_jtoolkit
+from pootle_app.views.util import render_to_kid
+from pootle_app.views.util import render_jtoolkit
 
 def index(request, *path_vars):
     return render_jtoolkit(indexpage.PootleIndex(request))
