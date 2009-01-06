@@ -36,7 +36,7 @@ class PootleProfile(models.Model):
     projects        = models.ManyToManyField('Project', blank=True)
     login_type      = models.CharField(max_length=50, default="hash")
     activation_code = models.CharField(max_length=255, default="")
-    ui_lang         = models.ForeignKey('Language', blank=True)
+    ui_lang         = models.ForeignKey('Language', blank=True, null=True)
     alt_src_langs   = models.ManyToManyField('Language', blank=True, related_name="user_alt_src_langs")
 
     def _get_suggestions(self, status):
