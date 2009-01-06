@@ -377,11 +377,12 @@ def set_options(options):
   server.options = options
 
 def run_pootle(options, args):
+  pan_app.pootle_server = PootleServer()
   if options.action == "runwebserver":
     httpd = make_server('', options.port, WSGIHandler())
     httpd.serve_forever()
   elif options.action == "refreshstats":
-    server.refreshstats(args)
+    pan_app.pootle_server.refreshstats(args)
 
 def main():
   # run the web server

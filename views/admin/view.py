@@ -5,7 +5,6 @@ from jToolkit import prefs
 
 from Pootle import pan_app, adminpages
 from Pootle.views.util import render_jtoolkit
-from Pootle.views.main import _pootle
 
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
@@ -28,8 +27,8 @@ def index(request, path):
 @user_is_admin
 def users(request):
     if request.method == 'POST':
-        _pootle.changeusers(request, request.POST.copy())
-    return render_jtoolkit(adminpages.UsersAdminPage(_pootle, request))
+        pan_app.pootle_server.changeusers(request, request.POST.copy())
+    return render_jtoolkit(adminpages.UsersAdminPage(pan_app.pootle_server, request))
 
 @user_is_admin
 def languages(request):

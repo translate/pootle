@@ -56,3 +56,8 @@ def get_po_tree():
     
     return with_(_po_tree_manager(), with_block)
 
+# Contains an instance of PootleServer. Eventually we'll
+# move all the code out of PootleServer and its superclasses
+# and then this object can be removed. It's safe to share this
+# object, since it contains no state.
+pootle_server = None
