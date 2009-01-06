@@ -54,14 +54,14 @@ def language_index(request, language_code):
 
 @check_language_and_project
 def translation_project_admin(request, language_code, project_code):
-    return render_jtoolkit(adminpages.TranslationProjectAdminPage(project_code, request, process_django_request_args(request)))
+    return render_jtoolkit(adminpages.TranslationProjectAdminPage(pan_app.get_po_tree().getproject(language_code, project_code), request, process_django_request_args(request)))
 
 @check_language_and_project
-def translate_page(request, language_code, project_code, dirfilter):
+def translate_page(request, language_code, project_code, dir_path):
     try:
-        if dirfilter is None:
-            dirfilter = ""
-        return render_jtoolkit(translatepage.TranslatePage(project_code, request, process_django_request_args(request), dirfilter))
+        if dir_path is None:
+            dir_path = ""
+        return render_jtoolkit(translatepage.TranslatePage(pan_app.get_po_tree().getproject(language_code, project_code), request, process_django_request_args(request), dir_path))
     except projects.RightsError, msg:
         request.session['message'] = msg
         return render_jtoolkit(indexpage.ProjectIndex(pan_app.get_po_tree().getproject(language_code, project_code), 
