@@ -19,9 +19,12 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-_data = {}
+from django.utils.thread_support import currentThread
+
+_active = {}
 
 def call(func, *args, **kwargs):
+    _data = _active[currentThread()]
     key = (func, tuple(args), tuple(kwargs.iterkeys()), tuple(kwargs.itervalues()))
     if key in _data:
         return _data[key]
@@ -31,4 +34,4 @@ def call(func, *args, **kwargs):
         return result
 
 def reset():
-    _data.clear()
+    _active[currentThread()] = {}

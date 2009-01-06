@@ -89,6 +89,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'Pootle.middleware.LocaleMiddleware',
+    'Pootle.middleware.RequestCacheMiddleware',
 )
 
 ROOT_URLCONF = 'Pootle.urls'
