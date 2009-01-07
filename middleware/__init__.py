@@ -21,4 +21,5 @@
 
 from locale import LocaleMiddleware
 from request_cache import RequestCacheMiddleware
+from profile import ProfilerMiddleware
 
