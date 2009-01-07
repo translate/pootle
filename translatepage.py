@@ -33,7 +33,7 @@ import os
 
 from django.contrib.auth.models import User
 from Pootle import pan_app
-from Pootle.pootle_app.models import get_profile
+from pootle_app.models import get_profile
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 xml_re = re.compile("&lt;.*?&gt;")

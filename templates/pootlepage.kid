@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?python
-    from Pootle.pootle_app.models import get_profile
+    from pootle_app.models import get_profile
 ?>
 <include xmlns:py="http://purl.org/kid/ns#">
 

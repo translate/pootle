@@ -9,7 +9,7 @@ import sys
 import md5
 
 from django.contrib.auth.models import User
-from Pootle.pootle_app.models import Project, Language, PootleProfile, make_pootle_user
+from pootle_app.models import Project, Language, PootleProfile, make_pootle_user
 
 def main():
   if len(sys.argv) != 1:

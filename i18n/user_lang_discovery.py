@@ -25,7 +25,7 @@ be used to display Pootle's UI to a user."""
 from django.utils.translation import trans_real
 from django.conf import settings
 
-from Pootle.pootle_app import models
+from pootle_app import models
 from Pootle.i18n import gettext
 
 def get_lang_from_cookie(request):

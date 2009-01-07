@@ -34,7 +34,7 @@ import re
 import time
 
 from django.contrib.auth.models import User
-from Pootle.pootle_app.profile import make_pootle_user, get_profile, save_user
+from pootle_app.models import make_pootle_user, get_profile, save_user
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 

@@ -51,7 +51,7 @@ import zipfile
 from scripts import hooks
 
 from django.contrib.auth.models import User
-from Pootle.pootle_app.models import Suggestion, get_profile, Submission
+from pootle_app.models import Suggestion, get_profile, Submission
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize
 

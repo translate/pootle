@@ -13,7 +13,7 @@ except ImportError:
   pass
 
 from django.contrib.auth.models import User
-from Pootle.pootle_app.profile import get_profile
+from pootle_app.models import get_profile
 from Pootle.misc import prefs
 
 class AlchemyLoginChecker:
