@@ -21,7 +21,6 @@
 
 from jToolkit import web
 from jToolkit.web import server
-from jToolkit.web import session
 from jToolkit import mailer
 from jToolkit import prefs
 from Pootle import pagelayout
@@ -34,6 +33,8 @@ import re
 import time
 
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+
 from pootle_app.models import make_pootle_user, get_profile, save_user
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
@@ -47,7 +48,7 @@ class RegistrationError(ValueError):
 # changing password
 minpasswordlen = 6
 
-def validatepassword(session, password, passwordconfirm):
+def validatepassword(request, password, passwordconfirm):
   if not password or len(password) < minpasswordlen:
     raise RegistrationError(localize("You must supply a valid password of at least %d characters.", minpasswordlen))
   if not password == passwordconfirm:
@@ -62,25 +63,25 @@ def forcemessage(message):
 
 class LoginPage(pagelayout.PootlePage):
   """wraps the normal login page in a PootlePage layout"""
-  def __init__(self, session, languagenames=None, message=None):
+  def __init__(self, request, languagenames=None, message=None):
     self.languagenames = languagenames
     pagetitle = localize("Login to Pootle")
     templatename = "login"
     message = forcemessage(message)
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
+    requestvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     templatevars = {"pagetitle": pagetitle, "introtext": message,
         "username_title": localize("Username:"),
-        "username": getattr(session, 'username', ''),
+        "username": getattr(request, 'username', ''),
         "password_title": localize("Password:"),
         "language_title": localize('Language:'),
-        "languages": self.getlanguageoptions(session),
+        "languages": self.getlanguageoptions(request),
         "login_text": localize('Login'),
         "register_text": localize('Register'),
-        "session": sessionvars, "instancetitle": instancetitle}
-    pagelayout.PootlePage.__init__(self, templatename, templatevars, session)
+        "request": requestvars, "instancetitle": instancetitle}
+    pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
-  def getlanguageoptions(self, session):
+  def getlanguageoptions(self, request):
     """returns the language selector..."""
     tr_default = localize("Default")
     if tr_default != "Default":
@@ -90,10 +91,10 @@ class LoginPage(pagelayout.PootlePage):
       languageoptions += self.languagenames.items()
     else:
       languageoptions += self.languagenames
-    if session.language in ["en", session.server.defaultlanguage]:
+    if request.language in ["en", request.server.defaultlanguage]:
         preferredlanguage = ""
     else:
-        preferredlanguage = session.language
+        preferredlanguage = request.language
     finallist = []
     for key, value in languageoptions:
         if key == 'templates':
@@ -114,90 +115,102 @@ class LoginPage(pagelayout.PootlePage):
 
 class RegisterPage(pagelayout.PootlePage):
   """page for new registrations"""
-  def __init__(self, request, argdict, message=None):
+  def __init__(self, request, message=None):
     if not message:
       introtext = localize("Please enter your registration details")
     else:
       introtext = forcemessage(message)
     pagetitle = localize("Pootle Registration")
-    self.argdict = argdict
     templatename = "register"
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
-    templatevars = {"pagetitle": pagetitle, "introtext": introtext,
-        "username_title": localize("Username"),
-        "username_tooltip": localize("Your requested username"),
-        "username": self.argdict.get("username", ""),
-        "email_title": localize("Email Address"),
-        "email_tooltip": localize("You must supply a valid email address"),
-        "email": self.argdict.get("email", ""),
-        "fullname_title": localize("Full Name"),
-        "fullname_tooltip": localize("Your full name"),
-        "fullname": self.argdict.get("name", ""),
-        "password_title": localize("Password"),
-        "password_tooltip": localize("Your desired password"),
-        "password": self.argdict.get("password", ""),
-        "passwordconfirm_title": localize("Confirm password"),
+    requestvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
+    templatevars = {
+        "pagetitle":               pagetitle,
+        "introtext":               introtext,
+        "username_title":          localize("Username"),
+        "username_tooltip":        localize("Your requested username"),
+        "username":                request.POST.get("username", ""),
+        "email_title":             localize("Email Address"),
+        "email_tooltip":           localize("You must supply a valid email address"),
+        "email":                   request.POST.get("email", ""),
+        "fullname_title":          localize("Full Name"),
+        "fullname_tooltip":        localize("Your full name"),
+        "fullname":                request.POST.get("name", ""),
+        "password_title":          localize("Password"),
+        "password_tooltip":        localize("Your desired password"),
+        "password":                request.POST.get("password", ""),
+        "passwordconfirm_title":   localize("Confirm password"),
         "passwordconfirm_tooltip": localize("Type your password again to ensure it is entered correctly"),
-        "passwordconfirm": self.argdict.get("passwordconfirm", ""),
-        "register_text": localize('Register Account'),
-        "session": sessionvars, "instancetitle": instancetitle}
+        "passwordconfirm":         request.POST.get("passwordconfirm", ""),
+        "register_text":           localize('Register Account'),
+        "request":                 requestvars,
+        "instancetitle":           instancetitle}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
 class ActivatePage(pagelayout.PootlePage):
   """page for new registrations"""
-  def __init__(self, request, argdict, title=None, message=None):
+  def __init__(self, request, title=None, message=None):
     if not message:
       introtext = localize("Please enter your activation details")
     else:
       introtext = forcemessage(message)
-    self.argdict = argdict
     if title is None:
       pagetitle = localize("Pootle Account Activation")
     else:
       pagetitle = title
     templatename = "activate"
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
-    templatevars = {"pagetitle": pagetitle, "introtext": introtext,
-        "username_title": localize("Username"),
+    requestvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
+    templatevars = {
+        "pagetitle":        pagetitle,
+        "introtext":        introtext,
+        "username_title":   localize("Username"),
         "username_tooltip": localize("Your requested username"),
-        "username": self.argdict.get("username", ""),
-        "code_title": localize("Activation Code"),
-        "code_tooltip": localize("The activation code you received"),
-        "code": self.argdict.get("activationcode", ""),
-        "activate_text": localize('Activate Account'),
-        "session": sessionvars, "instancetitle": instancetitle}
+        "username":         request.POST.get("username", ""),
+        "code_title":       localize("Activation Code"),
+        "code_tooltip":     localize("The activation code you received"),
+        "code":             request.POST.get("activationcode", ""),
+        "activate_text":    localize('Activate Account'),
+        "request":          requestvars,
+        "instancetitle":    instancetitle}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
+
+def with_user(username, f):
+  try:
+    user = User.objects.get(username=username)
+    f(user)
+    return user
+  except User.DoesNotExist:
+    return None
 
 class OptionalLoginAppServer(object):
   """a server that enables login but doesn't require it except for specified pages"""
   def handle(self, req, pathwords, argdict):
     """handles the request and returns a page object in response"""
-    session = None
+    request = None
     try:
       argdict = self.processargs(argdict)
-      session = self.getsession(req, argdict)
+      request = self.getrequest(req, argdict)
       if pan_app.prefs.baseurl[-1] == '/':
-        session.currenturl = pan_app.prefs.baseurl[:-1]+req.path
+        request.currenturl = pan_app.prefs.baseurl[:-1]+req.path
       else:
-        session.currenturl = pan_app.prefs.baseurl+req.path
-      session.reqpath = req.path
+        request.currenturl = pan_app.prefs.baseurl+req.path
+      request.reqpath = req.path
       if req.path.find("?") >= 0:
-        session.getsuffix = req.path[req.path.find("?"):]
+        request.getsuffix = req.path[req.path.find("?"):]
       else:
-        session.getsuffix = "" 
-      if session.isopen:
-        session.pagecount += 1
-        session.remote_ip = self.getremoteip(req)
-        session.localaddr = self.getlocaladdr(req)
+        request.getsuffix = "" 
+      if request.isopen:
+        request.pagecount += 1
+        request.remote_ip = self.getremoteip(req)
+        request.localaddr = self.getlocaladdr(req)
       else:
-        self.initlanguage(req, session)
-      page = self.getpage(pathwords, session, argdict)
+        self.initlanguage(req, request)
+      page = self.getpage(pathwords, request, argdict)
     except Exception, e:
-      # Because of the exception, 'session' might not be initialised. So let's
+      # Because of the exception, 'request' might not be initialised. So let's
       # play extra safe
-      if not session:
+      if not request:
           raise
 
       exceptionstr = self.errorhandler.exception_str()
@@ -228,102 +241,68 @@ class OptionalLoginAppServer(object):
           "traceback": browsertraceback,
           "back": localize("Back"),
           }
-      pagelayout.completetemplatevars(templatevars, session)
+      pagelayout.completetemplatevars(templatevars, request)
       page = server.Redirect(refreshurl, withtemplate=(templatename, templatevars))
     return page
 
-  def initlanguage(self, req, session):
-    """Initialises the session language from the request"""
+  def initlanguage(self, req, request):
+    """Initialises the request language from the request"""
     # This version doesn't know which languages we have, so we have to override
     # in PootleServer.
-    session.setlanguage("en")
+    request.setlanguage("en")
       
-  def hasuser(self, username):
-    """returns whether the user exists in users"""
-    return User.objects.filter(username=username).count() > 0
-
-  def getusernode(self, username):
-    """gets the node for the given user"""
-    if not self.hasuser(username):
-      usernode = make_pootle_user(username)
-    else:
-      usernode = User.objects.filter(username=username)[0]
-    return usernode
-
   def adduser(self, username, fullname, email, password, logintype="hash"):
     """adds the user with the given details"""
-    if logintype == "ldap":
-      return self.addldapuser(username)
-    usernode = self.getusernode(username)
-    usernode.first_name = fullname
-    usernode.email = email
-    get_profile(usernode).login_type = logintype
-    usernode.password = web.session.md5hexdigest(password)
-    return usernode
+    user = make_pootle_user(username)
+    user.first_name = fullname
+    user.email = email
+    user.set_password(password)
+    return user
 
-  def addldapuser(self, username):
-    email = username
-    import mozldap 
-    c = mozldap.MozillaLdap(pan_app.prefs.ldap.cn, pan_app.prefs.ldap.dn, pan_app.prefs.ldap.pw)
-    fullname = c.getFullName(email)
-    usernode = self.getusernode(username)
-    usernode.first_name = fullname
-    usernode.email = email
-    get_profile(usernode).login_type = "ldap" 
-    return usernode
-
-  def makeactivationcode(self, usernode):
+  def makeactivationcode(self, user):
     """makes a new activation code for the user and returns it"""
     activationcode = self.generateactivationcode()
-    usernode.is_active = False
-    get_profile(usernode).activation_code = activationcode
-    save_user(usernode)
+    user.is_active = False
+    get_profile(user).activation_code = activationcode
+    save_user(user)
     return activationcode
 
-  def activate(self, username):
-    """sets the user as activated"""
-    if self.hasuser(username):
-      usernode = self.getusernode(username)
-      usernode.is_active = True
-      save_user(usernode)
-
-  def changeusers(self, session, argdict):
+  def changeusers(self, request):
     """handles multiple changes from the site admin"""
-    if not session.issiteadmin():
-      raise ValueError(localize("You need to be siteadmin to change users"))
-    for key, value in argdict.iteritems():
-      usernode = None
+    # TODO: Move admin authentication to the view containing this
+    for key, value in request.POST.iteritems():
+      user = None
       if key.startswith("userremove-"):
         username = key.replace("userremove-", "", 1)
-        if self.hasuser(username):
-          User.objects.filter(username=username)[0].delete()
+        def delete_user(user):
+          user.delete()
+        user = with_user(username, lambda user: user.delete())
       elif key.startswith("username-"):
         username = key.replace("username-", "", 1)
-        if self.hasuser(username):
-          usernode = self.getusernode(username)
-          fullname = getattr(usernode, "name", None)
-          if fullname != value:
-            usernode.first_name = value
+        def set_user_name(user):
+          if user.first_name != value:
+            user.first_name = value
+        user = with_user(username, set_user_name)
       elif key.startswith("useremail-"):
         username = key.replace("useremail-", "", 1)
-        if self.hasuser(username):
-          usernode = self.getusernode(username)
-          useremail = getattr(usernode, "email", None)
-          if useremail != value:
-            usernode.email = value
+        def set_user_email(user):
+          if user.email != value:
+            user.email = value
+          user = with_user(username, set_user_email)
       elif key.startswith("userpassword-"):
         username = key.replace("userpassword-", "", 1)
-        if self.hasuser(username):
-          usernode = self.getusernode(username)
+        def set_user_password(user):
           if value and value.strip():
-            usernode.passwdhash = web.session.md5hexdigest(value.strip())
+            user.set_password(value.strip())
+        user = with_user(username, set_user_password)
       elif key.startswith("useractivated-"):
-        # FIXME This only activates users, cannot deactivate them
         username = key.replace("useractivated-", "", 1)
-        self.activate(username)
+        def set_user_active(user):
+          user.is_active = value == 'checked'
+        user = with_user(username, set_user_active)
       elif key == "newusername":
         username = value.lower()
-        logintype = argdict.get("newuserlogintype","")
+        logintype = request.POST.get("newuserlogintype","")
         if not username:
           continue
         if logintype == "hash" and not (username[:1].isalpha() and username.replace("_","").isalnum()):
@@ -332,47 +311,40 @@ class OptionalLoginAppServer(object):
           raise ValueError('"%s" is a reserved username.' % username)
         if self.hasuser(username):
           raise ValueError("Already have user with the login: %s" % username)
-        userpassword = argdict.get("newuserpassword", None)
+        userpassword = request.POST.get("newuserpassword", None)
         if logintype == "hash" and (userpassword is None or userpassword == localize("(add password here)")):
           raise ValueError("You must specify a password")
-        userfullname = argdict.get("newuserfullname", None)
+        userfullname = request.POST.get("newuserfullname", None)
         if userfullname == localize("(add full name here)"):
           raise ValueError("Please set the users full name or leave it blank")
-        useremail = argdict.get("newuseremail", None)
+        useremail = request.POST.get("newuseremail", None)
         if useremail == localize("(add email here)"):
           raise ValueError("Please set the users email address or leave it blank")
-        useractivate = "newuseractivate" in argdict
-        usernode = self.adduser(username, userfullname, useremail, userpassword, logintype)
+        useractivate = "newuseractivate" in request.POST
+        user = self.adduser(username, userfullname, useremail, userpassword, logintype)
         if useractivate:
-          usernode.activate = 1
+          user.is_active = True
         else:
-          get_profile(usernode).activation_code = self.makeactivationcode(usernode)
-      if usernode:
-        save_user(usernode)
-    session.saveuser()
+          get_profile(user).activation_code = self.makeactivationcode(user)
+      if user:
+        save_user(user)
 
-  def handleregistration(self, session, argdict):
+  def handleregistration(self, request):
     """handles the actual registration"""
-    #TODO: Fix layout, punctuation, spacing and correlation of messages
-    if not hasattr(pan_app.prefs, 'hash'):
-      raise RegistrationError(localize("Local registration is disable."))
-
     supportaddress = getattr(pan_app.prefs.registration, 'supportaddress', "")
-    username = argdict.get("username", "")
+    username = request.POST.get("username", "")
     if not username or not username.isalnum() or not username[0].isalpha():
       raise RegistrationError(localize("Username must be alphanumeric, and must start with an alphabetic character."))
-    fullname = argdict.get("name", "")
-    email = argdict.get("email", "")
-    password = argdict.get("password", "")
-    passwordconfirm = argdict.get("passwordconfirm", "")
+    fullname = request.POST.get("name", "")
+    email = request.POST.get("email", "")
+    password = request.POST.get("password", "")
+    passwordconfirm = request.POST.get("passwordconfirm", "")
     if " " in email or not (email and "@" in email and "." in email):
       raise RegistrationError(localize("You must supply a valid email address"))
 
-    if session.loginchecker.userexists(username):
-      usernode = self.getusernode(username)
+    try:
+      user = User.objects.get(username=username)
       # use the email address on file
-      email = getattr(usernode, "email", email)
-      password = ""
       # TODO: we can't figure out the password as we only store the md5sum. have a password reset mechanism
       message = localize("You (or someone else) attempted to register an account with your username.\n")
       message += localize("We don't store your actual password but only a hash of it.\n")
@@ -383,11 +355,10 @@ class OptionalLoginAppServer(object):
       displaymessage = localize("That username already exists. An email will be sent to the registered email address.\n")
       redirecturl = "login.html?username=%s" % username
       displaymessage += localize("Proceeding to <a href='%s'>login</a>\n", redirecturl)
-    else:
-      validatepassword(session, password, passwordconfirm)
-      usernode = self.adduser(username, fullname, email, password)
-      activationcode = self.makeactivationcode(usernode)
-      get_profile(usernode).activation_code = activationcode
+    except User.DoesNotExist:
+      validatepassword(request, password, passwordconfirm)
+      user = self.adduser(username, fullname, email, password)
+      get_profile(user).activation_code = self.makeactivationcode(user)
       activationlink = ""
       message = localize("A Pootle account has been created for you using this email address.\n")
       if pan_app.prefs.baseurl.startswith("http://"):
@@ -395,9 +366,9 @@ class OptionalLoginAppServer(object):
         activationlink = pan_app.prefs.baseurl
         if not activationlink.endswith("/"):
           activationlink += "/"
-        activationlink += "activate.html?username=%s&activationcode=%s" % (username, activationcode)
+        activationlink += "activate.html?username=%s&activationcode=%s" % (username, get_profile(user).activation_code)
         message += "  %s  \n" % activationlink
-      message += localize("Your activation code is:\n%s\n", activationcode)
+      message += localize("Your activation code is:\n%s\n", get_profile(user).activation_code)
       if activationlink:
         message += localize("If you are unable to follow the link, please enter the above code at the activation page.\n")
       message += localize("This message is sent to verify that the email address is in fact correct. If you did not want to register an account, you may simply ignore the message.\n")
@@ -405,8 +376,7 @@ class OptionalLoginAppServer(object):
       displaymessage = localize("Account created. You will be emailed login details and an activation code. Please enter your activation code on the <a href='%s'>activation page</a>.", redirecturl)
       if activationlink:
         displaymessage += " " + localize("(Or simply click on the activation link in the email)")
-
-      save_user(usernode)
+      save_user(user)
 
     message += localize("Your user name is: %s\n", username)
     message += localize("Your registered email address is: %s\n", email)
@@ -424,14 +394,14 @@ class OptionalLoginAppServer(object):
       raise RegistrationError("Error sending mail: %s" % errmsg)
     return displaymessage, redirecturl
 
-  def registerpage(self, session, argdict):
+  def registerpage(self, request):
     """handle registration or return the Register page"""
-    if "username" in argdict:
+    if request.method == 'POST':
       try:
-        displaymessage, redirecturl = self.handleregistration(session, argdict)
+        displaymessage, redirecturl = self.handleregistration(request)
       except RegistrationError, message:
-        return RegisterPage(session, argdict, message)
-      redirectpage = pagelayout.PootlePage("Redirecting...", {}, session)
+        return RegisterPage(request, message)
+      redirectpage = pagelayout.PootlePage("Redirecting...", {}, request)
       redirectpage.templatename = "redirect"
       redirectpage.templatevars = {
           # BUG: We won't redirect to registration page, we will go to 
@@ -444,31 +414,33 @@ class OptionalLoginAppServer(object):
       redirectpage.completevars()
       return redirectpage
     else:
-      return RegisterPage(session, argdict)
+      return RegisterPage(request)
 
-  def activatepage(self, session, argdict):
+  def activatepage(self, request):
     """handle activation or return the Register page"""
-    if "username" in argdict and "activationcode" in argdict:
-      username = argdict["username"]
-      activationcode = argdict["activationcode"]
-      if self.hasuser(username):
-        usernode = self.getusernode(username)
-        correctcode = getattr(usernode, "activationcode", "")
-        if correctcode and correctcode.strip().lower() == activationcode.strip().lower():
-          usernode.is_active = True
-          save_user(usernode)
-          redirectpage = pagelayout.PootlePage("Redirecting to login...", {}, session)
-          redirectpage.templatename = "redirect"
-          redirectpage.templatevars = {
-              "pagetitle": localize("Redirecting to login Page..."),
-              "refresh": 10,
-              "refreshurl": "login.html?username=%s" % username,
-              "message": localize("Your account has been activated! Redirecting to login..."),
-              }
-          redirectpage.completevars()
-          return redirectpage
-      failedmessage = localize("The activation information was not valid.")
-      return ActivatePage(session, argdict, title=localize("Activation Failed"), message=failedmessage)
+    if request.method == 'POST':
+      import pydb
+      pydb.set_trace()
+      username = request.POST["username"]
+      def activate_user(user):
+        if get_profile(user).activation_code == request.POST["activationcode"].strip().lower():
+          user.is_active = True
+          save_user(user)
+      user = with_user(username, activate_user)
+      if user.is_active:
+        redirectpage = pagelayout.PootlePage("Redirecting to login...", {}, request)
+        redirectpage.templatename = "redirect"
+        redirectpage.templatevars = {
+            "pagetitle": localize("Redirecting to login Page..."),
+            "refresh": 10,
+            "refreshurl": "login.html?username=%s" % username,
+            "message": localize("Your account has been activated! Redirecting to login..."),
+            }
+        redirectpage.completevars()
+        return redirectpage
+      else:
+        failedmessage = localize("The activation information was not valid.")
+        return ActivatePage(request, title=localize("Activation Failed"), message=failedmessage)
     else:
-      return ActivatePage(session, argdict)
+      return ActivatePage(request)
 

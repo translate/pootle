@@ -46,7 +46,7 @@ def robots(request):
     return HttpResponse(content, mimetype="text/plain")
 
 def register(request):
-    return render_jtoolkit(pan_app.pootle_server.registerpage(request, jtoolkit_django.process_django_request_args(request)))
+    return render_jtoolkit(pan_app.pootle_server.registerpage(request))
 
 def activate(request):
-    return render_jtoolkit(pan_app.pootle_server.activatepage(request, jtoolkit_django.process_django_request_args(request)))
+    return render_jtoolkit(pan_app.pootle_server.activatepage(request))
