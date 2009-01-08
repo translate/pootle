@@ -119,6 +119,9 @@ PREFSFILE = pootle_home('pootle.prefs')
 
 PODIRECTORY = pootle_home('po')
 
+# Use the commented definition to authenticate first with Mozilla's LDAP system and then to fall back
+# to Django's authentication system.
+# AUTHENTICATION_BACKENDS = ('Pootle.auth.MozillaLdapBackend', 'django.contrib.auth.backends.ModelBackend',)
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 
 LANGUAGE_NAME_COOKIE = 'pootlelang'
