@@ -49,7 +49,7 @@ def get_lang_from_http_header(request):
     accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
     for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
         if accept_lang == '*':
-            return gettext.get_lang('en')
+            return gettext.get_default_translation()
         # TODO: This will fail for language codes such as af-ZA.
         #       We should split such codes into two components
         #       ('af' and 'ZA') and also check whether we have
@@ -81,10 +81,10 @@ def get_language_from_request(request):
     model) and finally by checking the HTTP language headers.
 
     If all fails, try to fall back to English."""
-    for lang_getter in (get_lang_from_cookie,
-                        get_lang_from_prefs,
+    for lang_getter in (get_lang_from_prefs,
+                        get_lang_from_cookie,
                         get_lang_from_http_header):
         lang = lang_getter(request)
         if lang is not None:
             return lang
-    return gettext.get_lang('en')
+    return gettext.get_default_translation()
