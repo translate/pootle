@@ -25,12 +25,12 @@ class UserForm(ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
+        fields = ('first_name', 'last_name', 'email')
 
 class PootleProfileForm(ModelForm):
     class Meta:
         model = PootleProfile
-        exclude = ('user')
+        exclude = ('user', 'activation_code', 'login_type')
 
 @user_is_authenticated
 def options(request):
@@ -49,9 +49,10 @@ def options(request):
         user_form = UserForm(instance=request.user)
         profile_form = PootleProfileForm(instance=get_profile(request.user))
       
-
+    message = request.session.get('message', '')
+    request.session['message'] = ''
     template_vars = {"pagetitle":      localize("Options for: %s", request.user.username),
-                     "introtext":      "TODO: User message",
+                     "introtext":      message,
                      "detailstitle":   localize("Personal Details"),
                      "fullname_title": localize("Name"),
                      "user_form":      user_form,

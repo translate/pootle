@@ -23,6 +23,7 @@ from django.db import models
 from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.auth.admin import UserAdmin
 from django.contrib import admin
+from django.utils.translation import ugettext_lazy as _
 
 class PootleProfile(models.Model):
     # This is the only required field
@@ -36,8 +37,10 @@ class PootleProfile(models.Model):
     projects        = models.ManyToManyField('Project', blank=True)
     login_type      = models.CharField(max_length=50, default="hash")
     activation_code = models.CharField(max_length=255, default="")
-    ui_lang         = models.ForeignKey('Language', blank=True, null=True)
-    alt_src_langs   = models.ManyToManyField('Language', blank=True, related_name="user_alt_src_langs")
+    ui_lang         = models.ForeignKey('Language', blank=True, null=True,
+                                        verbose_name=_("Interface language"))
+    alt_src_langs   = models.ManyToManyField('Language', blank=True, related_name="user_alt_src_langs",
+                                             verbose_name=_("Alternative source languages"))
 
     def _get_suggestions(self, status):
         from Pootle.pootle_app.models import Suggestion
