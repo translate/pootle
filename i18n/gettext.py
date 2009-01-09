@@ -73,6 +73,9 @@ def check_for_language(code):
 _active_translations = {} # Contains a mapping of threads to Pootle translation projects
 _default_translation = DummyTranslation() # See get_default_translation
 
+def activate_for_profile(profile):
+    activate(get_lang(profile.ui_lang.code))
+
 def activate(ui_lang_project):
     """Associate the thread in which we are running with the Pootle project
     object ui_lang_project."""

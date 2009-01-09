@@ -10,6 +10,7 @@ from pootle_app.models import get_profile, PootleProfile
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.views.util import render_jtoolkit
 from Pootle.i18n.jtoolkit_i18n import localize
+from Pootle.i18n import gettext
 
 def user_is_authenticated(f):
     def decorated_f(request, *args, **kwargs):
@@ -45,6 +46,8 @@ def options(request):
 
         user_form.save()
         profile_form.save()
+        # Activate the newly selected interface language so that the user
+        gettext.activate_for_profile(get_profile(request.user))
     elif request.method == 'GET':
         user_form = UserForm(instance=request.user)
         profile_form = PootleProfileForm(instance=get_profile(request.user))
