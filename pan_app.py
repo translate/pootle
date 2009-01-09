@@ -31,30 +31,10 @@ cache_templates = True
 
 prefs = prefsmodule.load_preferences(settings.PREFSFILE)
 
-def make_atomic_manager():
-    lock = Lock()
-
-    @contextmanager
-    def atomic_manager():
-        lock.acquire()
-        yield lock
-        lock.release()
-
-    return atomic_manager
-
 _po_tree = None
-_po_tree_manager = make_atomic_manager()
 
 def get_po_tree():
-    def with_block(lock):
-        global _po_tree
-        
-        if _po_tree is None:
-            from Pootle import potree
-            _po_tree = potree.POTree(prefs)
-        return _po_tree
-    
-    return with_(_po_tree_manager(), with_block)
+    return _po_tree
 
 # Contains an instance of PootleServer. Eventually we'll
 # move all the code out of PootleServer and its superclasses

@@ -21,17 +21,57 @@
 
 from django.utils import translation
 from django.utils.thread_support import currentThread
+from django.utils.functional import lazy
 
-from Pootle import pan_app
+# START BOOTSTRAPPING TRANSLATION CODE
+
+# We need to hijack Django's translation machinery very early in
+# Pootle's initialization process. If we don't then some Django
+# modules will be initialized before we hijack then and they'll hold
+# references to the original Django translation functions.
+#
+# In Pootle, translations are done using Project instances. We
+# get these instances from the global POTree instance. 
+#
+# During Pootle's initialization we first hijack Django's translation
+# functions. But some modules will attempt to call our translation functions 
+# before the potree module is initialized (and this must happen for us to
+# get hold of the POTree class).
+#
+# Thus, we have to bootstrap the localization system and provide dummy
+# a dummy translation object which implements the Project interface that
+# our localization system relies on.
+#
+# It's the responsibility of Pootle's initialization code to initialize the
+# global POTree object and then to replace get_lang and check_for_language
+# with their real implementations.
+class DummyTranslation(object):
+    def gettext(self, message):
+        return message
+
+    def ugettext(self, message):
+        return message
+
+    def ngettext(self, singular, plural, number):
+        return plural
+
+    def ungettext(self, singular, plural, number):
+        return plural
+
+# Must be replaced after the bootstrapping phase by a function that returns
+# and actual pootle Project object for the language code.
+def get_lang(code):
+    return DummyTranslation()
+
+# Must be replaced after the bootstrapping phase by a function that returns
+# and actual pootle Project object for the language code.
+def check_for_language(code):
+    return False
+
+# END BOOTSTRAPPING TRANSLATION CODE
 
 _active_translations = {} # Contains a mapping of threads to Pootle translation projects
-_default_translation = None # See get_default_translation
-
-def get_lang(code):
-    return pan_app.get_po_tree().getproject(code, 'pootle')
-
-def check_for_language(code):
-    return 'pootle' in pan_app.get_po_tree().projects and code in  pan_app.get_po_tree().languages
+_default_translation = DummyTranslation() # See get_default_translation
 
 def activate(ui_lang_project):
     """Associate the thread in which we are running with the Pootle project
@@ -59,12 +99,10 @@ def get_default_translation():
     its project object. Otherwise, we just return an English project object.
     """
     global _default_translation
-    if _default_translation is None:
+    if isinstance(_default_translation, DummyTranslation):
         from django.conf import settings
         if check_for_language(settings.LANGUAGE_CODE):
             _default_translation = get_lang(settings.LANGUAGE_CODE)
-        else:
-            _default_translation = get_lang('en')
     return _default_translation
 
 def get_translation():
@@ -79,24 +117,42 @@ def get_translation():
     else:
         return get_default_translation()
 
+def as_unicode(val):
+    if isinstance(val, unicode):
+        return val
+    else:
+        return val.decode('utf-8')
+
+def as_str(val):
+    if isinstance(val, str):
+        return val
+    else:
+        return val.encode('utf-8')
+
 def gettext(message):
-    return ugettext(message)
+    return as_str(ugettext(message))
 
 def ugettext(message):
-    return get_translation().ugettext(message)
+    return as_unicode(get_translation().ugettext(message))
 
 def ngettext(singular, plural, number):
-    return ungettext(singular, plural, number)
+    return as_str(ungettext(singular, plural, number))
 
 def ungettext(singular, plural, number):
-    return get_translation().ungettext(singular, plural, number)
+    return as_unicode(get_translation().ungettext(singular, plural, number))
 
-# Here is where we monkey-patch the Django localization functions.
-# These lines are crucial, since they ensure that all translation
-# requests go via our translation functions.
-translation.gettext   = gettext
-translation.ugettext  = ugettext
-translation.ngettext  = ngettext
-translation.ungettext = ungettext
+def hijack_django_translation_functions():
+    # Here is where we hijack the Django localization functions.
+    # These lines are crucial, since they ensure that all translation
+    # requests go via our translation functions.
+    translation.gettext   = gettext
+    translation.ugettext  = ugettext
+    translation.ngettext  = ngettext
+    translation.ungettext = ungettext
 
+    translation.gettext_lazy   = lazy(gettext, str)
+    translation.ngettext_lazy  = lazy(ngettext, str)
+    translation.ugettext_lazy  = lazy(ugettext, unicode)
+    translation.ungettext_lazy = lazy(ungettext, unicode)
 
+hijack_django_translation_functions()

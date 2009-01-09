@@ -35,9 +35,7 @@ from django.conf import settings
 
 class POTree:
   """Manages the tree of projects and languages"""
-  def __init__(self, server):
-    self.server = server
-
+  def __init__(self):
     langlist = Language.objects.order_by('code')
     self.languages = dict( (l.code, l) for l in langlist)
 

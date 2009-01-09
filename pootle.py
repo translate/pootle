@@ -23,6 +23,11 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
 
+# Import this early to force module initialization so that
+# our hijacking of Django's translation machinery will work
+# from the start.
+from Pootle.i18n import gettext
+
 import optparse
 from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
@@ -220,8 +225,24 @@ def run_pootle(options, args):
   elif options.action == "refreshstats":
     pan_app.pootle_server.refreshstats(args)
 
+def init_globals():
+  import potree
+  pan_app._po_tree = potree.POTree()
+
+def get_lang(code):
+  return pan_app.get_po_tree().getproject(code, 'pootle')
+
+def check_for_language(code):
+  return 'pootle' in pan_app.get_po_tree().projects and code in pan_app.get_po_tree().languages
+
+def setup_localization_system():
+  gettext.get_lang = get_lang
+  gettext.check_for_language = check_for_language
+
 def main():
   # run the web server
+  init_globals()
+  setup_localization_system()
   checkversions()
   parser = PootleOptionParser()
   options, args = parser.parse_args()
