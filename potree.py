@@ -33,20 +33,23 @@ from Pootle.misc import prefs
 from Pootle import pan_app
 from django.conf import settings
 
+def update_language(language_code, f):
+  lang = Language.objects.get(code=language_code)
+  f(lang)
+  lang.save()
+
+def update_project(project_code, f):
+  proj = Project.objects.get(code=project_code)
+  f(proj)
+  proj.save()
+
 class POTree:
   """Manages the tree of projects and languages"""
   def __init__(self):
-    langlist = Language.objects.order_by('code')
-    self.languages = dict( (l.code, l) for l in langlist)
-
     if not self.haslanguage("templates"):
       newlang = Language(code="templates", fullname=u"Templates")
       newlang.save()
-      self.languages[newlang.code] = newlang 
       self.saveprefs()
-
-    projlist = Project.objects.order_by('code')
-    self.projects = dict( (p.code, p) for p in projlist) 
 
     self.podirectory = settings.PODIRECTORY #pan_app.prefs.podirectory
     self.projectcache = {}
@@ -199,51 +202,66 @@ class POTree:
 
   def haslanguage(self, languagecode):
     """checks if this language exists"""
-    return languagecode in self.languages.keys() 
+    return Language.objects.filter(code=languagecode).count() > 0
 
   def hasprojectcode(self, projectcode):
     """checks if this project exists"""
-    return projectcode in self.projects.keys()
+    return Project.objects.filter(code=projectcode).count() > 0
 
   def getlanguageprefs(self, languagecode):
     """returns the language object"""
-    return self.languages[languagecode]
+    return Language.objects.get(code=languagecode)
 
   def getlanguagename(self, languagecode):
     """returns the language's full name"""
-    return getattr(self.getlanguageprefs(languagecode), "fullname", languagecode)
+    return Language.objects.get(code=languagecode).fullname
 
   def setlanguagename(self, languagecode, languagename):
     """stes the language's full name"""
-    setattr(self.getlanguageprefs(languagecode), "fullname", languagename)
+    update_language(languagecode, lambda lang: setattr(lang, 'fullname', languagename))
 
   def getlanguagespecialchars(self, languagecode):
     """returns the language's special characters"""
-    return autoencode.autoencode(getattr(self.getlanguageprefs(languagecode), "specialchars", ""), "utf-8")
+    return autoencode.autoencode(Language.objects.get(code=languagecode).specialchars, "utf-8")
 
   def setlanguagespecialchars(self, languagecode, languagespecialchars):
     """sets the language's special characters"""
-    setattr(self.getlanguageprefs(languagecode), "specialchars", languagespecialchars)
+    update_language(languagecode, lambda lang: setattr(lang, 'specialchars', languagespecialchars))
 
   def getlanguagenplurals(self, languagecode):
     """returns the language's number of plural forms"""
-    return getattr(self.getlanguageprefs(languagecode), "nplurals", "")
+    return Language.objects.get(code=languagecode).nplurals
 
   def setlanguagenplurals(self, languagecode, languagenplurals):
     """sets the language's number of plural forms"""
-    setattr(self.getlanguageprefs(languagecode), "nplurals", languagenplurals)
+    update_language(languagecode, lambda lang: setattr(lang, 'nplurals', languagenplurals))
 
   def getlanguagepluralequation(self, languagecode):
     """returns the language's number of plural forms"""
-    return getattr(self.getlanguageprefs(languagecode), "pluralequation", "")
+    return Language.objects.get(code=languagecode).pluralequation
 
   def setlanguagepluralequation(self, languagecode, languagepluralequation):
     """sets the language's number of plural forms"""
-    setattr(self.getlanguageprefs(languagecode), "pluralequation", languagepluralequation)
+    update_language(languagecode, lambda lang: setattr(lang, 'pluralequation', languagepluralequation))
+
+  def get_valid_languages(self, projectcode=None):
+    if projectcode is None:
+      return Language.objects.order_by('code')
+    else:
+      projectdir = os.path.join(self.podirectory, projectcode)
+      if not os.path.exists(projectdir):
+        return []
+      elif self.isgnustyle(projectcode):
+        return [lang for lang in Language.objects.order_by('code') if self.hasproject(lang.code, projectcode)]
+      else:
+        subdirs = set(fn for fn in os.listdir(projectdir) if os.path.isdir(os.path.join(projectdir, fn)))
+        return [lang for lang in Language.objects.order_by('code') if lang.code in subdirs]
 
   def getlanguagecodes(self, projectcode=None):
     """returns a list of valid languagecodes for a given project or all projects"""
-    alllanguagecodes = self.languages.keys() 
+    # TODO: Add a method to LanguageManager which invokes custom SQL to
+    #       to get only the language code column.
+    alllanguagecodes = [lang.code for lang in Language.objects.all()]
     if projectcode is None:
       languagecodes = alllanguagecodes
     else:
@@ -272,18 +290,11 @@ class POTree:
 
   def getlanguages(self, projectcode=None, sortbyname=True):
     """gets a list of (languagecode, languagename) tuples"""
-    languagecodes = self.getlanguagecodes(projectcode)
-    if sortbyname:
-      languages = [(self.getlanguagename(languagecode), languagecode) for languagecode in languagecodes]
-      languages.sort()
-      return [(languagecode, languagename) for languagename, languagecode in languages]
-    else:
-      return [(languagecode, self.getlanguagename(languagecode)) for languagecode in languagecodes]
+    return [(lang.code, lang.fullname) for lang in self.get_valid_languages(projectcode)]
 
   def getprojectcodes(self, languagecode=None):
     """returns a list of project codes that are valid for the given languagecode or all projects"""
-    projectcodes = self.projects.keys() 
-    projectcodes.sort()
+    projectcodes = [proj.code for proj in Project.objects.all()]
     if languagecode is None:
       return projectcodes
     else:
@@ -344,75 +355,60 @@ class POTree:
 
   def getprojectprefs(self, projectcode):
     """returns the project object"""
-    return self.projects[projectcode] 
+    return Project.objects.get(code=projectcode)
 
   def getprojectname(self, projectcode):
     """returns the full name of the project"""
-    projectprefs = self.getprojectprefs(projectcode)
-    return getattr(projectprefs, "fullname", projectcode)
+    return Project.objects.get(code=projectcode).fullname
 
   def setprojectname(self, projectcode, projectname):
     """returns the full name of the project"""
-    projectprefs = self.getprojectprefs(projectcode)
-    setattr(projectprefs, "fullname", projectname)
+    update_project(projectcode, lambda proj: setattr(proj, "fullname", projectname))
 
   def getprojectdescription(self, projectcode):
     """returns the project description"""
-    projectprefs = self.getprojectprefs(projectcode)
-    return getattr(projectprefs, "description", projectcode)
+    return Project.objects.get(code=projectcode).description
 
   def setprojectdescription(self, projectcode, projectdescription):
     """returns the project description"""
-    projectprefs = self.getprojectprefs(projectcode)
-    setattr(projectprefs, "description", projectdescription)
+    update_project(projectcode, lambda proj: setattr(proj, "description", projectdescription))
 
   def getprojectlocalfiletype(self, projectcode):
     """returns the project allowed file type. We assume it is .po if nothing
     else is specified."""
-    projectprefs = self.getprojectprefs(projectcode)
-    type = getattr(projectprefs, "localfiletype", "po")
-    if not type:
-      type = "po"
-    return type
+    return Project.objects.get(code=projectcode).localfiletype
 
   def setprojectlocalfiletype(self, projectcode, projectfiletype):
     """sets the allowed file type for the project"""
-    projectprefs = self.getprojectprefs(projectcode)
-    setattr(projectprefs, "localfiletype", projectfiletype)
+    update_project(projectcode, lambda proj: setattr(proj, "localfiletype", projectfiletype))
 
   def getprojectcheckerstyle(self, projectcode):
     """returns the project checker style"""
-    projectprefs = self.getprojectprefs(projectcode)
-    return getattr(projectprefs, "checkerstyle", projectcode)
+    return Project.objects.get(code=projectcode).checkstyle
 
   def setprojectcheckerstyle(self, projectcode, projectcheckerstyle):
     """sets the project checker style"""
-    projectprefs = self.getprojectprefs(projectcode)
-    setattr(projectprefs, "checkerstyle", projectcheckerstyle)
+    update_project(projectcode, lambda proj: setattr(proj, "checkstyle", projectcheckerstyle))
 
   def getprojectignoredfiles(self, projectcode):
     """returns a set of the ignored files for the project.  This is temporary code
     until a real preferences system is in place."""
-    projectprefs = self.getprojectprefs(projectcode)
-    ignoredfiles = getattr(projectprefs, "ignoredfiles", projectcode)
+    ignoredfiles = Project.objects.get(code=projectcode).ignoredfiles
     if len(ignoredfiles) > 0:
       return set(ignoredfiles.split(','))
     return set([])
 
   def setprojectignoredfiles(self, projectcode, ignoredfiles):
     "sets the ignored files"
-    projectprefs = self.getprojectprefs(projectcode)
-    setattr(projectprefs, "ignoredfiles", ignoredfiles)
+    update_project(projectcode, lambda proj: setattr(proj, "ignoredfiles", ignoredfiles))
 
   def getprojectcreatemofiles(self, projectcode):
     """returns whether the project builds MO files"""
-    projectprefs = self.getprojectprefs(projectcode)
-    return getattr(projectprefs, "createmofiles", False)
+    return Project.objects.get(code=projectcode).createmofiles
 
   def setprojectcreatemofiles(self, projectcode, projectcreatemofiles):
     """sets whether the project builds MO files"""
-    projectprefs = self.getprojectprefs(projectcode)
-    setattr(projectprefs, "createmofiles", projectcreatemofiles)
+    update_project(projectcode, lambda proj: setattr(proj, "createmofiles", createmofiles))
 
   def hasgnufiles(self, podir, languagecode=None, depth=0, maxdepth=3, poext="po"):
     """returns whether this directory contains gnu-style PO filenames for the given language"""
@@ -426,8 +422,7 @@ class POTree:
           else:
             projectcode = dirs[1]
           return projectcode
-        projectprefs = self.getprojectprefs(projectcode)
-        style = getattr(projectprefs, "treestyle")
+        style = Project.objects.get(code=projectcode).treestyle
         if    style == "gnu"    \
            or style == "nongnu":
           return style
@@ -476,18 +471,18 @@ class POTree:
     podirectory = canonicalpath(self.podirectory)
     if dirname == podirectory:
       return "*", None
-    for projectcode, projectprefs in self.projects.iteritems():
-      projectdir = canonicalpath(os.path.join(self.podirectory, projectcode))
+    for project in Project.objects.all():
+      projectdir = canonicalpath(os.path.join(self.podirectory, project.code))
       if projectdir == dirname:
-        return projectcode, None
-      for languagecode, languageprefs in self.languages.iteritems():
-        languagedir = canonicalpath(os.path.join(projectdir, languagecode))
+        return project.code, None
+      for language in Language.objects.all():
+        languagedir = canonicalpath(os.path.join(projectdir, language.code))
         if not os.path.exists(languagedir):
-          languagedirs = [canonicalpath(languagedir) for languagedir in os.listdir(projectdir) if self.languagematch(languagecode, languagedir)]
+          languagedirs = [canonicalpath(languagedir) for languagedir in os.listdir(projectdir) if self.languagematch(language.code, languagedir)]
           if dirname in languagedirs:
-            return projectcode, languagecode
+            return project.code, language.code
         elif languagedir == dirname:
-          return projectcode, languagecode
+          return project.code, language.code
     return None, None
 
   def getpodir(self, languagecode, projectcode):
@@ -560,11 +555,11 @@ class POTree:
 
   def refreshstats(self):
     """manually refreshes (all or missing) the stats files"""
-    for projectcode in self.getprojectcodes():
-      print "Project %s:" % (projectcode)
-      for languagecode in self.getlanguagecodes(projectcode):
-        print "Project %s, Language %s:" % (projectcode, languagecode)
-        translationproject = self.getproject(languagecode, projectcode)
+    for project in Project.objects.all():
+      print "Project %s:" % (project.code)
+      for language in Language.objects.all():
+        print "Project %s, Language %s:" % (project.code, language.code)
+        translationproject = self.getproject(language.code, project.code)
         translationproject.stats = {}
         for pofilename in translationproject.pofilenames:
           translationproject.indexer # Force indexing to be initialized

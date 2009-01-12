@@ -55,6 +55,9 @@ class LanguageManager(models.Manager):
         return cursor.fetchall()
 
 class Language(models.Model):
+    class Meta:
+        ordering = ['code']
+
     code_help_text = u'ISO 639 language code for the language, possibly followed by an underscore (_) and an ISO 3166 country code. <a href="http://www.w3.org/International/articles/language-tags/">More information</a>'
     nplurals_help_text = u'For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms'
     pluralequation_help_text = u'For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms'
@@ -62,7 +65,7 @@ class Language(models.Model):
 
     nplural_choices = ((0, u'unknown'), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
 
-    code           = models.CharField(max_length=50, null=False, unique=True, help_text=code_help_text)
+    code           = models.CharField(max_length=50, null=False, unique=True, db_index=True, help_text=code_help_text)
     fullname       = models.CharField(max_length=255, null=False)
     nplurals       = models.SmallIntegerField(default=0, choices=nplural_choices, help_text=nplurals_help_text)
     pluralequation = models.CharField(max_length=255, blank=True, help_text=pluralequation_help_text)
@@ -94,6 +97,9 @@ class ProjectManager(models.Manager):
         return cursor.fetchall()
 
 class Project(models.Model):
+    class Meta:
+        ordering = ['code']
+
     code_help_text = u'A short code for the project. This should only contain ASCII characters, numbers, and the underscore (_) character.'
     description_help_text = u'A description of this project. This is useful to give more information or instructions. This field should be valid HTML.'
 
@@ -112,7 +118,7 @@ class Project(models.Model):
             ('nongnu', u'Non-GNU: Each language in its own directory'),
     )
 
-    code           = models.CharField(max_length=255, null=False, unique=True, help_text=code_help_text)
+    code           = models.CharField(max_length=255, null=False, unique=True, db_index=True, help_text=code_help_text)
     fullname       = models.CharField(max_length=255, null=False)
     description    = models.TextField(blank=True, help_text=description_help_text)
     checkstyle     = models.CharField(max_length=50, default='standard', null=False, choices=checker_choices)

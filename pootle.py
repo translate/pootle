@@ -58,6 +58,7 @@ from jToolkit import __version__ as jtoolkitversion
 from Pootle import statistics, pan_app
 from Pootle.misc.transaction import django_transaction
 from Pootle.misc import prefs, jtoolkit_django
+from Pootle.pootle_app.models import Language, Project
 
 try:
   from xml.etree import ElementTree
@@ -233,7 +234,7 @@ def get_lang(code):
   return pan_app.get_po_tree().getproject(code, 'pootle')
 
 def check_for_language(code):
-  return 'pootle' in pan_app.get_po_tree().projects and code in pan_app.get_po_tree().languages
+  return Project.objects.filter(code='pootle').count() > 0 and Language.objects.filter(code=code).count() > 0
 
 def setup_localization_system():
   gettext.get_lang = get_lang

@@ -51,7 +51,7 @@ import zipfile
 from scripts import hooks
 
 from django.contrib.auth.models import User
-from pootle_app.models import Suggestion, get_profile, Submission
+from pootle_app.models import Suggestion, get_profile, Submission, Project, Language
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize
 
@@ -107,17 +107,18 @@ class TranslationProject(object):
   fileext = "po"
   index_directory = ".translation_index"
 
+  projectname = property(lambda self: self.project.fullname)
+  projectdescription = property(lambda self: self.project.description)
+  projectcheckerstyle = property(lambda self: self.project.checkstyle)
+  languagename = property(lambda self: self.language.fullname)
+
   def __init__(self, languagecode, projectcode, potree, create=False):
     self.languagecode = languagecode
     self.projectcode = projectcode
     self.potree = potree
-    self.language = self.potree.languages[languagecode]
-    self.project = self.potree.projects[projectcode]
-    self.languagename = self.potree.getlanguagename(self.languagecode)
-    self.projectname = self.potree.getprojectname(self.projectcode)
-    self.projectdescription = self.potree.getprojectdescription(self.projectcode)
+    self.language = Language.objects.get(code=languagecode)
+    self.project = Project.objects.get(code=projectcode)
     self.pofiles = potimecache(15*60, self)
-    self.projectcheckerstyle = self.potree.getprojectcheckerstyle(self.projectcode)
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
     self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
     self.fileext = self.potree.getprojectlocalfiletype(self.projectcode)

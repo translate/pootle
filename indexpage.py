@@ -215,7 +215,7 @@ class PootleIndex(pagelayout.PootlePage):
     return projects
 
   def getprojectnames(self):
-    return [self.potree.getprojectname(projectcode) for projectcode in self.potree.getprojectcodes()]
+    return [proj.fullname for proj in Project.objects.all()]
 
 class UserIndex(pagelayout.PootlePage):
   """home page for a given user"""
@@ -312,7 +312,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
     adminlink = localize("Admin")
     sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     
-    language_id = self.potree.languages[self.languagecode].id
+    language_id = Language.objects.get(code=self.languagecode).id
     topsugg     = Suggestion.objects.get_top_suggesters_by_language(language_id)
     topreview   = Suggestion.objects.get_top_reviewers_by_language(language_id)
     topsub      = Submission.objects.get_top_submitters_by_language(language_id)
@@ -391,7 +391,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     statsheadings = self.getstatsheadings()
     statsheadings["name"] = localize("Language")
 
-    project_id = self.potree.projects[self.projectcode].id
+    project_id = Project.objects.get(code=self.projectcode).id
     topsugg    = Suggestion.objects.get_top_suggesters_by_project(project_id)
     topreview  = Suggestion.objects.get_top_reviewers_by_project(project_id)
     topsub     = Submission.objects.get_top_submitters_by_project(project_id)
