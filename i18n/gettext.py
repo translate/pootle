@@ -46,6 +46,8 @@ from django.utils.functional import lazy
 # global POTree object and then to replace get_lang and check_for_language
 # with their real implementations.
 class DummyTranslation(object):
+    languagecode = 'en'
+
     def gettext(self, message):
         return message
 
