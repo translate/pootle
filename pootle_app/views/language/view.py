@@ -172,4 +172,4 @@ def handle_file(request, language_code, project_code, file_path):
     elif file_path.endswith(".sdf") or file_path.endswith(".sgi"):
         return handle_sdf(request, project, language_code, project_code, file_path)
     else:
-        return indexpage.ProjectIndex(project, request, arg_dict, file_path)
+        return render_jtoolkit(indexpage.ProjectIndex(project, request, arg_dict, file_path))
