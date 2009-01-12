@@ -184,7 +184,7 @@ class PootleServer(users.OptionalLoginAppServer):
 
 class PootleOptionParser(optparse.OptionParser):
   def __init__(self):
-    versionstring = "%%prog %s\njToolkit %s\nTranslate Toolkit %s\nKid %s\nElementTree %s\nPython %s (on %s/%s)" % (pootleversion.ver, jtoolkitversion.ver, toolkitversion.ver, kid.__version__, ElementTree.VERSION, sys.version, sys.platform, os.name)
+    versionstring = "%%prog %s\njToolkit %s\nTranslate Toolkit %s\nKid %s\nElementTree %s\nPython %s (on %s/%s)" % (pootleversion.ver, jtoolkitversion.ver, toolkitversion.sver, kid.__version__, ElementTree.VERSION, sys.version, sys.platform, os.name)
     optparse.OptionParser.__init__(self)
     self.set_default('prefsfile', filelocations.prefsfile)
     self.set_default('instance', 'Pootle')
@@ -201,7 +201,7 @@ class PootleOptionParser(optparse.OptionParser):
 def checkversions():
   """Checks that version dependencies are met"""
   if not hasattr(toolkitversion, "build") or toolkitversion.build < 12000:
-    raise RuntimeError("requires Translate Toolkit version >= 1.1.  Current installed version is: %s" % toolkitversion.ver)
+    raise RuntimeError("requires Translate Toolkit version >= 1.1.  Current installed version is: %s" % toolkitversion.sver)
 
 def set_stats_db(options):
   prefs.config_db(pan_app.prefs)
