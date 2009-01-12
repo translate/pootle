@@ -104,31 +104,29 @@ class potimecache(timecache.timecache):
 
 class TranslationProject(object):
   """Manages iterating through the translations in a particular project"""
-  fileext = "po"
   index_directory = ".translation_index"
 
-  projectname = property(lambda self: self.project.fullname)
-  projectdescription = property(lambda self: self.project.description)
+  projectname         = property(lambda self: self.project.fullname)
+  projectcode         = property(lambda self: self.project.code)
+  projectdescription  = property(lambda self: self.project.description)
   projectcheckerstyle = property(lambda self: self.project.checkstyle)
-  languagename = property(lambda self: self.language.fullname)
+  languagename        = property(lambda self: self.language.fullname)
+  languagecode        = property(lambda self: self.language.code)
+  fileext             = property(lambda self: self.project.localfiletype)
 
   def __init__(self, languagecode, projectcode, potree, create=False):
-    self.languagecode = languagecode
-    self.projectcode = projectcode
-    self.potree = potree
     self.language = Language.objects.get(code=languagecode)
     self.project = Project.objects.get(code=projectcode)
     self.pofiles = potimecache(15*60, self)
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
     self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
-    self.fileext = self.potree.getprojectlocalfiletype(self.projectcode)
     # terminology matcher
     self.termmatcher = None
     self.termmatchermtime = None
     if create:
       self.converttemplates(InternalAdminSession())
-    self.podir = self.potree.getpodir(languagecode, projectcode)
-    if self.potree.hasgnufiles(self.podir, self.languagecode) == "gnu":
+    self.podir = pan_app.get_po_tree().getpodir(languagecode, projectcode)
+    if pan_app.get_po_tree().hasgnufiles(self.podir, self.languagecode) == "gnu":
       self.filestyle = "gnu"
     else:
       self.filestyle = "std"
@@ -219,7 +217,7 @@ class TranslationProject(object):
           if self.languagecode == "en":
             rights = "view, archive, pocompile"
           else:
-            rights = self.potree.getdefaultrights()
+            rights = pan_app.get_po_tree().getdefaultrights()
         else:
           rights = getattr(rightstree, "default", None)
       else:
@@ -514,7 +512,7 @@ class TranslationProject(object):
 
   def scanpofiles(self):
     """sets the list of pofilenames by scanning the project directory"""
-    self.pofilenames = self.potree.getpofiles(self.languagecode, self.projectcode, poext=self.fileext)
+    self.pofilenames = pan_app.get_po_tree().getpofiles(self.languagecode, self.projectcode, poext=self.fileext)
     filename_set = set(self.pofilenames)
     pootlefile_set = set(self.pofiles.keys())
     # add any files that we don't have yet
@@ -536,7 +534,7 @@ class TranslationProject(object):
     if os.path.basename(localfilename) != localfilename or localfilename.startswith("."):
       raise ValueError("invalid/insecure file name: %s" % localfilename)
     if self.filestyle == "gnu":
-      if not self.potree.languagematch(self.languagecode, localfilename[:-len("."+self.fileext)]):
+      if not pan_app.get_po_tree().languagematch(self.languagecode, localfilename[:-len("."+self.fileext)]):
         raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" % (localfilename, self.languagecode, self.fileext, self.languagecode, self.fileext))
     dircheck = self.podir
     for part in dirname.split(os.sep):
@@ -672,7 +670,7 @@ class TranslationProject(object):
 
   def initialize(self, request, languagecode):
     try:
-      projectdir = os.path.join(self.potree.podirectory, self.projectcode)
+      projectdir = os.path.join(pan_app.get_po_tree().podirectory, self.projectcode)
       hooks.hook(self.projectcode, "initialize", projectdir, languagecode)
       self.scanpofiles()
     except Exception, e:
@@ -680,7 +678,7 @@ class TranslationProject(object):
 
   def converttemplates(self, request):
     """creates PO files from the templates"""
-    projectdir = os.path.join(self.potree.podirectory, self.projectcode)
+    projectdir = os.path.join(pan_app.get_po_tree().podirectory, self.projectcode)
     if not os.path.exists(projectdir):
       os.mkdir(projectdir)
     templatesdir = os.path.join(projectdir, "templates")
@@ -688,11 +686,11 @@ class TranslationProject(object):
       templatesdir = os.path.join(projectdir, "pot")
       if not os.path.exists(templatesdir):
         templatesdir = projectdir
-    if self.potree.isgnustyle(self.projectcode):
+    if pan_app.get_po_tree().isgnustyle(self.projectcode):
       self.filestyle = "gnu"
     else:
       self.filestyle = "std"
-    templates = self.potree.gettemplates(self.projectcode)
+    templates = pan_app.get_po_tree().gettemplates(self.projectcode)
     if self.filestyle == "gnu":
       self.podir = projectdir
       if not templates:
@@ -810,7 +808,7 @@ class TranslationProject(object):
   def ootemplate(self):
     """Tests whether this project has an OpenOffice.org template SDF file in
     the templates directory."""
-    projectdir = os.path.join(self.potree.podirectory, self.projectcode)
+    projectdir = os.path.join(pan_app.get_po_tree().podirectory, self.projectcode)
     templatefilename = os.path.join(projectdir, "templates", "en-US.sdf")
     if os.path.exists(templatefilename):
       return templatefilename
@@ -824,7 +822,7 @@ class TranslationProject(object):
     if templateoo is None:
       return
     outputoo = os.path.join(self.podir, self.languagecode + ".sdf")
-    inputdir = os.path.join(self.potree.podirectory, self.projectcode, self.languagecode)
+    inputdir = os.path.join(pan_app.get_po_tree().podirectory, self.projectcode, self.languagecode)
     po2oo.main(["-i%s"%inputdir, "-t%s"%templateoo, "-o%s"%outputoo, "-l%s"%self.languagecode, "--progress=none"])
     return file(os.path.join(self.podir, self.languagecode + ".sdf"), "r").read()
 
@@ -1313,7 +1311,7 @@ class TranslationProject(object):
     pofile = self.pofiles[pofilename]
     pofile.pofreshen()
     pofile.track(item, "edited by %s" % request.user.username)
-    languageprefs = getattr(self.potree.languages, self.languagecode, None)
+    languageprefs = getattr(pan_app.get_po_tree().languages, self.languagecode, None)
     
     source = pofile.getitem(item).getsource()
 
@@ -1485,8 +1483,8 @@ class TranslationProject(object):
           self.termmatcher = match.terminologymatcher(self.pofiles.values())
         else:
           self.termmatcher = match.terminologymatcher(termbase)
-    elif not self.isterminologyproject() and self.potree.hasproject(self.languagecode, "terminology"):
-      termproject = self.potree.getproject(self.languagecode, "terminology")
+    elif not self.isterminologyproject() and pan_app.get_po_tree().hasproject(self.languagecode, "terminology"):
+      termproject = pan_app.get_po_tree().getproject(self.languagecode, "terminology")
       self.termmatcher = termproject.gettermmatcher()
       self.termmatchermtime = termproject.termmatchermtime
     else:
@@ -1614,7 +1612,7 @@ class TranslationProject(object):
 
   def hascreatemofiles(self, projectcode):
     """returns whether the project has createmofile set"""
-    return self.potree.getprojectcreatemofiles(projectcode) == 1
+    return pan_app.get_po_tree().getprojectcreatemofiles(projectcode) == 1
 
 class DummyProject(TranslationProject):
   """a project that is just being used for handling pootlefiles"""
