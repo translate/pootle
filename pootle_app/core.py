@@ -21,7 +21,7 @@
 
 from django.db import models, connection, backend
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 try:
     from pootle_app.profile import PootleProfile
 except ImportError:
@@ -134,6 +134,20 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.fullname
+
+class TranslationProject(models.Model):
+    class Meta:
+        unique_together = ('language', 'project')
+
+    language         = models.ForeignKey(Language, db_index=True)
+    project          = models.ForeignKey(Project, db_index=True)
+    project_dir      = models.FilePathField()
+    file_style       = models.CharField(max_length=255, blank=True, null=False, default="")
+
+class Right(models.Model):
+    user             = models.ForeignKey(PootleProfile, db_index=True)
+    project          = models.ForeignKey(TranslationProject, db_index=True)
+    permissions      = models.ManyToManyField(Permission)
 
 def _do_query(query, replacements, fields, params=()):
     all_fields = fields.copy()
