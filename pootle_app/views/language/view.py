@@ -30,6 +30,13 @@ from Pootle.misc.jtoolkit_django import process_django_request_args
 from pootle_app.views.util import render_to_kid
 from pootle_app.views.util import render_jtoolkit
 
+def strip_trailing_slash(path):
+    """If path ends with a /, strip it and return the stripped version."""
+    if path[-1] == '/':
+        return path[:-1]
+    else:
+        return path
+
 def check_language(f):
     def decorated_f(request, language_code, *args, **kwargs):
         if language_code == "templates" or pan_app.get_po_tree().haslanguage(language_code):
@@ -172,4 +179,5 @@ def handle_file(request, language_code, project_code, file_path):
     elif file_path.endswith(".sdf") or file_path.endswith(".sgi"):
         return handle_sdf(request, project, language_code, project_code, file_path)
     else:
-        return render_jtoolkit(indexpage.ProjectIndex(project, request, arg_dict, file_path))
+        # The Pootle code expects file_path to have its trailing slash stripped.
+        return render_jtoolkit(indexpage.ProjectIndex(project, request, arg_dict, strip_trailing_slash(file_path)))
