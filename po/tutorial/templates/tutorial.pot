@@ -29,7 +29,7 @@ msgstr ""
 msgid "Quality is important"
 msgstr ""
 
-#. Some of the advice will only be relevant for some languages. For example, f your language doesn't use the Latin alphabet, some of the advice might not be relevant to translation in your language. For many languages, there are established rules of how to translate.
+#. Some of the advice will only be relevant for some languages. For example, if your language doesn't use the Latin alphabet, some of the advice might not be relevant to translation in your language. For many languages, there are established rules of how to translate.
 msgid "Languages are different"
 msgstr ""
 
@@ -37,7 +37,7 @@ msgstr ""
 msgid "The product we use, is called Pootle"
 msgstr ""
 
-#. In this message the English uses a capital letter for almost every word. Almost no other language uses this style. Unless your language definitely needs to follow the English style, translate this by following the normal capitalisation rules for your language. If your language does not use capital letters, simply translate it normally.
+#. In this message the English uses a capital letter for almost every word. Almost no other language uses this style. Unless your language definitely needs to follow the English style (also called Title Case), translate this by following the normal capitalisation rules for your language. If your language does not use capital letters, simply translate it normally.
 msgid "Download the File Now"
 msgstr ""
 
@@ -73,7 +73,7 @@ msgstr ""
 msgid "Restart the program <b>now</b>"
 msgstr ""
 
-#. In this message, "%d" is a placeholder (variable) that represents a number. Make sure your translation contains %d somewhere. In this case it refers a number of files. When this message is used, the %d will be replaced with a number.
+#. In this message, "%d" is a placeholder (variable) that represents a number. Make sure your translation contains %d somewhere. In this case it refers a number of files. When this message is used, the %d will be replaced with a number e.g. 'Number of files copied: 5'.
 msgid "Number of files copied: %d"
 msgstr ""
 
@@ -87,7 +87,7 @@ msgid_plural "%d files will be downloaded"
 msgstr[0] ""
 msgstr[1] ""
 
-#. In this message, "%s" is a placeholder (variable) that represents a file name. Make sure your translation contains %s somewhere. When this message is used, the %s will be replaced with a file name.
+#. In this message, "%s" is a placeholder (variable) that represents a file name. Make sure your translation contains %s somewhere. When this message is used, the %s will be replaced with a file name e.g. 'The file will be saved as example.odt'.
 msgid "The file will be saved as %s"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "It will take 1,234.56 hours to do"
 msgstr ""
 
-#. This message refers to miles. If the programmers encourage it, you might want to change this to kilometres in your translation, if kilometres are more commonly used in your language. Note that 1 mile is about 1.6 kilometre. Note that automated tests for "numbers" will complain if the number is changed, but in this case it is safe to do.
+#. This message refers to miles. If the programmers encourage it, you might want to change this to kilometres in your translation, if kilometres are more commonly used in your language. Note that 1 mile is about 1.6 kilometres. Note that automated tests for "numbers" will complain if the number is changed, but in this case it is safe to do.
 msgid "The road is 10 miles long"
 msgstr ""
 
