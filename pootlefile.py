@@ -276,7 +276,7 @@ def intersect(set_a, set_b):
 def make_class(base_class):
   class pootlefile(base_class):
     """this represents a pootle-managed file and its associated files"""
-    x_generator = "Pootle %s" % __version__.ver
+    x_generator = "Pootle %s" % __version__.sver
     def __init__(self, project=None, pofilename=None):
       if pofilename:
         self.__class__.__bases__ = (factory.getclass(pofilename),)
