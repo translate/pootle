@@ -83,7 +83,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    # 'Pootle.middleware.LocaleMiddleware', To be added
+    #'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -92,6 +92,7 @@ MIDDLEWARE_CLASSES = (
     'Pootle.middleware.LocaleMiddleware',
     'Pootle.middleware.RequestCacheMiddleware',
     'Pootle.middleware.ProfilerMiddleware',
+    #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
 )
 
 ROOT_URLCONF = 'Pootle.pootle_app.urls'
@@ -127,3 +128,4 @@ AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 
 LANGUAGE_NAME_COOKIE = 'pootlelang'
 
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
