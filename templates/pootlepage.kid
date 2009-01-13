@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?python
-    from pootle_app.models import get_profile
+   from pootle_app.models import get_profile
+   from django.contrib.auth import REDIRECT_FIELD_NAME
+   from django.contrib.auth.forms import AuthenticationForm
 ?>
 <include xmlns:py="http://purl.org/kid/ns#">
 
-    <div py:def="header(links, request, baseurl, instancetitle)" py:strip="True">
+    <div py:def="header(links, sessionvars, baseurl, instancetitle)" py:strip="True">
         <!-- start header -->
         <div id="nav-access">
             <a href="#nav-main" py:content="links.skip_nav">skip to navigation</a>
         </div>
         <?python
             header_attributes = {};
-            if request.isopen:
+            if sessionvars.isopen:
                 header_attributes = {'class':'logged-in'}
-            if request.issiteadmin:
+            if sessionvars.issiteadmin:
                 header_attributes = {'class':'logged-in admin'}
         ?>
 
@@ -26,14 +28,14 @@
                     <ul class="first-of-type">
                         <li class="yuimenubaritem"><a href="${baseurl}" py:content="links.home">Home</a></li>
                         <li class="yuimenubaritem"><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
-                        <span py:if="request.issiteadmin" py:strip="True">
+                        <span py:if="sessionvars.issiteadmin" py:strip="True">
                             <li class="yuimenubaritem"><a href="${baseurl}admin/" py:content="links.admin">Admin</a></li>
                         </span>
-                        <span py:if="request.isopen" py:strip="True">
+                        <span py:if="sessionvars.isopen" py:strip="True">
                             <li class="yuimenubaritem"><a href="${baseurl}home/">My account</a></li>
                             <li class="yuimenubaritem"><a href="${baseurl}logout.html">Log out</a></li>
                         </span>
-                        <span py:if="not request.isopen" py:strip="True">
+                        <span py:if="not sessionvars.isopen" py:strip="True">
                             <li id="menu-login" class="yuimenubaritem"><a href="${baseurl}login.html"><span>Log in</span></a></li>
                         </span>
                     </ul>
@@ -63,15 +65,16 @@
         <!-- end footer -->
     </div>
 
-    <div py:def="login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage)" py:strip="True">
+    <div py:def="login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)" py:strip="True">
         <!-- start login form -->
-        <div py:if="not request.isopen" py:strip="True">
-            <form action="/login.html" method="post" id="login-form">
-                <p><label for="username" py:content="username_title">Username</label> <input type="text" id="username" name="username" /></p>
-                <p><label for="password" py:content="password_title">Password</label> <input type="password" id="password" name="password" /></p>
+        <div py:if="not sessionvars.isopen" py:strip="True">
+            <form action="/login.html?${REDIRECT_FIELD_NAME}=${request.path_info}" method="post" id="login-form">
+	        <table>
+		    <div py:content="XML(AuthenticationForm(None).as_table())" />
+		</table>
                 <p>
-                    <input type="submit" name="islogin" value="${login_text}" />
-                    <input type="submit" name="doregister" value="${register_text}" py:if="canregister" />
+                    <input type="submit" name="Login" value="${login_text}" />
+                    <!--<input type="submit" name="doregister" value="${register_text}" py:if="canregister" />-->
                 </p>
                 <input type="hidden" name="islogin" value="true" /> 
             </form>

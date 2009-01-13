@@ -94,12 +94,11 @@ class AboutPage(pagelayout.PootlePage):
     versiontext = localize("This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)", pootleversion.ver, toolkitversion.sver, jtoolkitversion.ver, kidversion, ElementTree.VERSION, sys.version, sys.platform, os.name)
     templatename = "about"
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     templatevars = {"pagetitle": pagetitle, "description": description,
         "meta_description": meta_description, "keywords": keywords,
         "abouttitle": abouttitle, "introtext": introtext,
         "hosttext": hosttext, "nametext": nametext, "versiontitle": versiontitle, "versiontext": versiontext,
-        "session": sessionvars, "instancetitle": instancetitle}
+        "instancetitle": instancetitle}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
 class PootleIndex(pagelayout.PootlePage):
@@ -116,7 +115,6 @@ class PootleIndex(pagelayout.PootlePage):
     projectlink = localize('Projects')
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     pagetitle = instancetitle
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
 #@todo - need localized dates
     # rewritten for compatibility with Python 2.3
     # languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
@@ -133,7 +131,7 @@ class PootleIndex(pagelayout.PootlePage):
         "projectlink": projectlink, "projects": self.getprojects(request),
         # top users
         "topstats": topstats, "topstatsheading": localize("Top Contributors"),
-        "session": sessionvars, "instancetitle": instancetitle,
+        "instancetitle": instancetitle,
         "translationlegend": self.gettranslationsummarylegendl10n()
         }
 
@@ -229,7 +227,6 @@ class UserIndex(pagelayout.PootlePage):
     admintext = localize("Administrate")
     quicklinkstitle = localize("Quick Links")
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     quicklinks = self.getquicklinks()
     setoptionstext = localize("You need to <a href='options.html'>choose your languages and projects</a>.")
     # l10n: %s is the full name of the currently logged in user
@@ -247,7 +244,7 @@ class UserIndex(pagelayout.PootlePage):
         "adminlink": adminlink, "admintext": admintext,
         "quicklinkstitle": quicklinkstitle,
         "quicklinks": quicklinks, "setoptionstext": setoptionstext,
-        "session": sessionvars, "instancetitle": instancetitle,
+        "instancetitle": instancetitle,
         "statstitle": statstitle, "statstext": statstext}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
@@ -310,7 +307,6 @@ class LanguageIndex(pagelayout.PootleNavPage):
     pagetitle =  localize("%s: %s", instancetitle, tr_lang(self.languagename))
     templatename = "language"
     adminlink = localize("Admin")
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     
     language_id = Language.objects.get(code=self.languagecode).id
     topsugg     = Suggestion.objects.get_top_suggesters_by_language(language_id)
@@ -328,7 +324,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
         "complete": localize("Complete"),
         # top users
         "topstats": topstats, "topstatsheading": localize("Top Contributors"),
-        "session": sessionvars, "instancetitle": instancetitle,
+        "instancetitle": instancetitle,
         "translationlegend": self.gettranslationsummarylegendl10n()
         }
     pagelayout.PootleNavPage.__init__(self, templatename, templatevars, request, bannerheight=80)
@@ -387,7 +383,6 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     pagetitle =  localize("%s: %s", instancetitle, projectname)
     templatename = "project"
     adminlink = localize("Admin")
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     statsheadings = self.getstatsheadings()
     statsheadings["name"] = localize("Language")
 
@@ -405,8 +400,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
         "untranslatedtext": localize("%s untranslated words"),
         "fuzzytext": localize("%s fuzzy words"),
         "complete": localize("Complete"),
-        "session": sessionvars, "instancetitle": instancetitle, 
-        "session": sessionvars, "instancetitle": instancetitle,
+        "instancetitle": instancetitle, 
         # top users
         "topstats": topstats, "topstatsheading": localize("Top Contributors"),
         "statsheadings": statsheadings,
@@ -505,7 +499,6 @@ class ProjectIndex(pagelayout.PootleNavPage):
     # l10n: The first parameter is the name of the installation (like "Pootle")
     pagetitle = localize("%s: Project %s, Language %s", instancetitle, self.project.projectname, tr_lang(self.project.languagename))
     templatename = "fileindex"
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
 
     reqstart = u""
     if dirfilter:
@@ -542,7 +535,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         "fuzzytext": localize("%s fuzzy words"),
         "complete": localize("Complete"),
         # general vars
-        "session": sessionvars, "instancetitle": instancetitle,
+        "instancetitle": instancetitle,
         "translationlegend": self.gettranslationsummarylegendl10n()
         }
     pagelayout.PootleNavPage.__init__(self, templatename, templatevars, request, bannerheight=80)

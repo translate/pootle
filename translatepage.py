@@ -119,7 +119,6 @@ class TranslatePage(pagelayout.PootleNavPage):
     # l10n: fourth parameter: file name
     pagetitle = localize("%s: translating %s into %s: %s", instancetitle, self.project.projectname, self.project.languagename, self.pofilename)
     language = {"code": pagelayout.weblanguage(self.project.languagecode), "name": self.project.languagename, "dir": pagelayout.languagedir(self.project.languagecode)}
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     stats = {"summary": mainstats, "checks": [], "tracks": [], "assigns": []}
 
     templatevars = {"pagetitle": pagetitle,
@@ -159,7 +158,6 @@ class TranslatePage(pagelayout.PootleNavPage):
         "searchtext": self.searchtext,
         "pofilename": givenpofilename,
         # general vars
-        "session": sessionvars,
         "instancetitle": instancetitle,
         "rights": self.rights,
         # l10n: Text displayed when an AJAX petition is being made

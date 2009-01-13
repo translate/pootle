@@ -74,11 +74,10 @@ class LanguagesAdminPage(pagelayout.PootlePage):
     self.potree = pan_app.get_po_tree()
     self.request = request
     templatename = "adminlanguages"
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     pagetitle = localize("Pootle Languages Admin Page")
     text = self.gettext(request)
-    templatevars = {"pagetitle": pagetitle, "languages": self.getlanguagesoptions(), "options": self.getoptions(), "request": sessionvars, "instancetitle": instancetitle, "text": text}
+    templatevars = {"pagetitle": pagetitle, "languages": self.getlanguagesoptions(), "options": self.getoptions(), "instancetitle": instancetitle, "text": text}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
   def gettext(self, request):
@@ -131,11 +130,10 @@ class ProjectsAdminPage(pagelayout.PootlePage):
     self.allchecks = [{"value": check, "description": check} for check in checks.projectcheckers.keys()]
     self.allchecks.insert(0, {"value": "", "description": localize("Standard")})
     self.alltypes = [{"value": check, "description": check} for check in projectfiletypes]
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     pagetitle = localize("Pootle Projects Admin Page")
     text = self.gettext(request)
-    templatevars = {"pagetitle": pagetitle, "projects": self.getprojectsoptions(), "options": self.getoptions(), "request": sessionvars, "instancetitle": instancetitle, "text": text}
+    templatevars = {"pagetitle": pagetitle, "projects": self.getprojectsoptions(), "options": self.getoptions(), "instancetitle": instancetitle, "text": text}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
   def gettext(self, request):
@@ -197,11 +195,10 @@ class UsersAdminPage(pagelayout.PootlePage):
     self.server = server
     self.request = request
     templatename = "adminusers"
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     pagetitle = localize("Pootle User Admin Page")
     text = self.gettext(request)
-    templatevars = {"pagetitle": pagetitle, "users": self.getusersoptions(), "options": self.getoptions(), "request": sessionvars, "instancetitle": instancetitle, "text": text}
+    templatevars = {"pagetitle": pagetitle, "users": self.getusersoptions(), "options": self.getoptions(), "instancetitle": instancetitle, "text": text}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
   def gettext(self, request):
@@ -304,7 +301,6 @@ class ProjectAdminPage(pagelayout.PootlePage):
     # l10n: This refers to running an intialization script for the given project+locale
     initialize_link = localize("Initialize")
     templatename = "projectadmin"
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     templatevars = {"pagetitle": pagetitle, "norights_text": norights_text,
         "project": {"code": projectcode, "name": projectname},
@@ -314,7 +310,7 @@ class ProjectAdminPage(pagelayout.PootlePage):
         "update_button": update_button, "add_button": localize("Add Language"),
         "main_link": main_link, "update_link": update_link, 
         "initialize_link": initialize_link,
-        "request": sessionvars, "instancetitle": instancetitle}
+        "instancetitle": instancetitle}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request, bannerheight=80)
 
   def getexistinglanguages(self):
@@ -390,14 +386,13 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     rescan_files_link = localize("Rescan project files")
     norights_text = localize("You do not have the rights to administer this project.")
     templatename = "projectlangadmin"
-    sessionvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     templatevars = {"pagetitle": pagetitle, "norights_text": norights_text,
         "project": {"code": self.project.projectcode, "name": self.project.projectname},
         "language": {"code": self.project.languagecode, "name": self.project.languagename},
         "main_link": main_link,
         "rescan_files_link": rescan_files_link,
-        "request": sessionvars, "instancetitle": instancetitle}
+        "instancetitle": instancetitle}
     templatevars.update(self.getoptions())
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request, bannerheight=80)
 

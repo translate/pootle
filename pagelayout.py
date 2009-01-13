@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import os
+
 from Pootle import pan_app
 from pootle_app.models import get_profile
 from Pootle.i18n.jtoolkit_i18n import localize, nlocalize, tr_lang
@@ -82,11 +83,11 @@ def completetemplatevars(templatevars, request, bannerheight=135):
   """fill out default values for template variables"""
   if not "instancetitle" in templatevars:
     templatevars["instancetitle"] = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
-  if not "request" in templatevars:
-    templatevars["request"] = {
-        "status": get_profile(request.user).status,
-        "isopen": request.user.is_authenticated(),
-        "issiteadmin": request.user.is_superuser}
+  templatevars["sessionvars"] = {
+      "status": get_profile(request.user).status,
+      "isopen": request.user.is_authenticated(),
+      "issiteadmin": request.user.is_superuser}
+  templatevars["request"] = request
   if not "unlocalizedurl" in templatevars:
     templatevars["unlocalizedurl"] = getattr(pan_app.prefs, "baseurl", "/")
     if not templatevars["unlocalizedurl"].endswith("/"):
@@ -133,7 +134,6 @@ def completetemplatevars(templatevars, request, bannerheight=135):
     templatevars['message'] = templatevars['message'] + '<br />'
   for message in get_profile(request.user).get_messages():
     templatevars['message'] = templatevars['message'] + message + '<br />'
-
 
 class PootlePage:
   """the main page"""

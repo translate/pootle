@@ -88,6 +88,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
+    'Pootle.middleware.CheckCookieMiddleware',
     'Pootle.middleware.LocaleMiddleware',
     'Pootle.middleware.RequestCacheMiddleware',
     'Pootle.middleware.ProfilerMiddleware',
