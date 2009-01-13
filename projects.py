@@ -113,8 +113,8 @@ def make_db_translation_project(language_id, project_id):
       else:
         return "std"
 
-    language  = Language.objects.get(id=self.language_id)
-    project   = Project.objects.get(id=self.project_id)
+    language  = Language.objects.get(id=language_id)
+    project   = Project.objects.get(id=project_id)
     db_object = DBTranslationProject(language=language, project=project)
     db_object.project_dir = pan_app.get_po_tree().getpodir(language.code, project.code)
     db_object.file_style  = get_file_style(db_object.project_dir, language.code)
