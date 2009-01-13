@@ -8,7 +8,8 @@ from django.db import transaction
 import sys
 import md5
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
+from django.contrib.contenttypes.models import ContentType
 from pootle_app.models import Project, Language, PootleProfile, make_pootle_user
 
 def main():
@@ -26,6 +27,7 @@ def create_default_db():
       create_default_projects()
       create_default_languages()
       create_default_users()
+      create_pootle_permissions()
     except:
       if transaction.is_dirty():
         transaction.rollback()
@@ -36,6 +38,30 @@ def create_default_db():
       if transaction.is_dirty():
         transaction.commit()
       transaction.leave_transaction_management()
+
+def create_pootle_permissions():
+  pootle_content_type = ContentType(name="pootle", app_label="pootle_app", model="")
+  pootle_content_type.save()
+  view = Permission(name="Can view a translation project", content_type=pootle_content_type, codename="view")
+  view.save()
+  suggest = Permission(name="Can make a suggestion for a translation", content_type=pootle_content_type, codename="suggest")
+  suggest.save()
+  translate = Permission(name="Can submit a translation", content_type=pootle_content_type, codename="translate")
+  translate.save()
+  overwrite = Permission(name="Can overwrite translation units when uploading files", content_type=pootle_content_type, codename="overwrite")
+  overwrite.save()
+  review = Permission(name="Can review translations", content_type=pootle_content_type, codename="review")
+  review.save()
+  archive = Permission(name="Can download archives of translation projects", content_type=pootle_content_type, codename="archive")
+  archive.save()
+  compile_po_files = Permission(name="Can compile MO files from files in a translation project", content_type=pootle_content_type, codename="compile_po_files")
+  compile_po_files.save()
+  assign = Permission(name="Can assign work to users", content_type=pootle_content_type, codename="assign")
+  assign.save()
+  administrate = Permission(name="Can administrate a translation project", content_type=pootle_content_type, codename="administrate")
+  administrate.save()
+  commit = Permission(name="Can commit to version control", content_type=pootle_content_type, codename="commit")
+  commit.save()
 
 def create_default_projects():
   pootle = Project(code=u"pootle")
