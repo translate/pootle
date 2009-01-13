@@ -24,7 +24,7 @@ import os
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.contrib.auth.decorators import user_passes_test
 
-from Pootle import indexpage, pan_app, translatepage, projects
+from Pootle import indexpage, pan_app, translatepage, projects, adminpages
 from Pootle.misc.jtoolkit_django import process_django_request_args
 
 from pootle_app.views.util import render_to_kid

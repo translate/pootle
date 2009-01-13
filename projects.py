@@ -217,9 +217,9 @@ class TranslationProject(object):
 #       use Django's permissions system.
 #    if isinstance(session, InternalAdminSession):
 #      return [right for right, localizedright in self.getrightnames(session)]
-    def get_username(user):
-      if user.is_authenticated():
-        return user.username
+    def get_username(request):
+      if request is not None and request.user.is_authenticated():
+        return request.user.username
       else:
         return "nobody"
 
@@ -227,7 +227,7 @@ class TranslationProject(object):
       right = Right.objects.get(user__username=username, project__id=self.project_id)
       return [perm.codename for perm in right.permissions_set]
 
-    username = get_username(request.user)
+    username = get_username(request)
     tp = self.db_translation_project
     if tp.right_set.count() > 0:
       rights = [perm.codename for perm in tp.right_set.all()]
@@ -248,7 +248,7 @@ class TranslationProject(object):
           #rights = getattr(rightstree, "default", None)
       else:
         return rights
-    if request.user.is_superuser:
+    if request is not None and request.user.is_superuser:
       if "admin" not in rights:
         rights.append("admin")
     return rights
