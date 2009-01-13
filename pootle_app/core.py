@@ -22,7 +22,7 @@
 from django.db import models, connection, backend
 
 from django.contrib.auth.models import User
-from pootle_app.profile import PootleProfile
+from profile import PootleProfile
 from translate.filters import checks
 
 def table_name(table):
