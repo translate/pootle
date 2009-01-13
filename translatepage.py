@@ -684,7 +684,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       desiredbuttons.remove("suggest")
     if "translate" in desiredbuttons and "translate" not in self.rights:
       desiredbuttons.remove("translate")
-    specialchars = getattr(getattr(self.project.potree.languages, self.project.languagecode, None), "specialchars", "")
+    specialchars = self.project.language.specialchars
     if isinstance(specialchars, str):
       specialchars = specialchars.decode("utf-8")
     return {"desired": desiredbuttons,

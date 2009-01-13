@@ -52,6 +52,7 @@ from scripts import hooks
 
 from django.contrib.auth.models import User
 from pootle_app.models import Suggestion, get_profile, Submission, Project, Language
+from pootle_app.models import TranslationProject as DBTranslationProject
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize
 
@@ -102,21 +103,45 @@ class potimecache(timecache.timecache):
       if time.time() - currentfile.pomtime > self.expiryperiod.seconds:
         self.__setitem__(pofilename, pootlefile.pootlefile(self.project, pofilename))
 
+def make_db_translation_project(language_id, project_id):
+  try:
+    return DBTranslationProject.objects.get(language__id=language_id, project__id=project_id)
+  except DBTranslationProject.DoesNotExist:
+    def get_file_style(project_dir, language_code):
+      if pan_app.get_po_tree().hasgnufiles(project_dir, language_code) == "gnu":
+        return "gnu"
+      else:
+        return "std"
+
+    language  = Language.objects.get(id=self.language_id)
+    project   = Project.objects.get(id=self.project_id)
+    db_object = DBTranslationProject(language=language, project=project)
+    db_object.project_dir = pan_app.get_po_tree().getpodir(language.code, project.code)
+    db_object.file_style  = get_file_style(db_object.project_dir, language.code)
+    db_object.save()
+    return db_object
+
 class TranslationProject(object):
   """Manages iterating through the translations in a particular project"""
   index_directory = ".translation_index"
 
-  projectname         = property(lambda self: self.project.fullname)
-  projectcode         = property(lambda self: self.project.code)
-  projectdescription  = property(lambda self: self.project.description)
-  projectcheckerstyle = property(lambda self: self.project.checkstyle)
-  languagename        = property(lambda self: self.language.fullname)
-  languagecode        = property(lambda self: self.language.code)
-  fileext             = property(lambda self: self.project.localfiletype)
+  project                = property(lambda self: Project.objects.get(id=self.project_id))
+  projectname            = property(lambda self: self.project.fullname)
+  projectcode            = property(lambda self: self.project.code)
+  projectdescription     = property(lambda self: self.project.description)
+  projectcheckerstyle    = property(lambda self: self.project.checkstyle)
+  language               = property(lambda self: Language.objects.get(id=self.language_id))
+  languagename           = property(lambda self: self.language.fullname)
+  languagecode           = property(lambda self: self.language.code)
+  fileext                = property(lambda self: self.project.localfiletype)
+  filestyle              = property(lambda self: self.db_translation_project.file_style)
+  podir                  = property(lambda self: self.db_translation_project.project_dir)
+  db_translation_project = property(lambda self: DBTranslationProject.objects.get(id=self.id))
 
   def __init__(self, languagecode, projectcode, potree, create=False):
-    self.language = Language.objects.get(code=languagecode)
-    self.project = Project.objects.get(code=projectcode)
+    self.language_id = Language.objects.get(code=languagecode).id
+    self.project_id  = Project.objects.get(code=projectcode).id
+    self.id          = make_db_translation_project(self.language_id, self.project_id).id
     self.pofiles = potimecache(15*60, self)
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
     self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
@@ -125,11 +150,6 @@ class TranslationProject(object):
     self.termmatchermtime = None
     if create:
       self.converttemplates(InternalAdminSession())
-    self.podir = pan_app.get_po_tree().getpodir(languagecode, projectcode)
-    if pan_app.get_po_tree().hasgnufiles(self.podir, self.languagecode) == "gnu":
-      self.filestyle = "gnu"
-    else:
-      self.filestyle = "std"
     self.readprefs()
     self.scanpofiles()
     self._indexing_enabled = True
@@ -197,33 +217,38 @@ class TranslationProject(object):
 #       use Django's permissions system.
 #    if isinstance(session, InternalAdminSession):
 #      return [right for right, localizedright in self.getrightnames(session)]
-    if request is not None and not request.user.is_anonymous and username is None:
-      username = request.user.username
-    if username is None:
-      username = "nobody"
-    #FIXME
-    rights = None
-    rightstree = getattr(self.prefs, "rights", None)
-    if rightstree is not None:
-      if rightstree.__hasattr__(username):
-        rights = rightstree.__getattr__(username)
+    def get_username(user):
+      if user.is_authenticated():
+        return user.username
       else:
-        rights = None
+        return "nobody"
+
+    def get_right(username, project_id):
+      right = Right.objects.get(user__username=username, project__id=self.project_id)
+      return [perm.codename for perm in right.permissions_set]
+
+    username = get_username(request.user)
+    tp = self.db_translation_project
+    if tp.right_set.count() > 0:
+      rights = [perm.codename for perm in tp.right_set.all()]
+    else:
+      rights = None
     if rights is None:
       if usedefaults:
         if username == "nobody":
-          rights = "view"
-        elif rightstree is None:
+          rights = ["view"]
+        elif tp.right_set.count() == 0:
           if self.languagecode == "en":
-            rights = "view, archive, pocompile"
+            rights = ["view", "archive", "pocompile"]
           else:
-            rights = pan_app.get_po_tree().getdefaultrights()
+            rights = [right.strip() for right in pan_app.get_po_tree().getdefaultrights().split(',')]
         else:
-          rights = getattr(rightstree, "default", None)
+          # TODO: This should come from the site-specific setup
+          return ["view", "archive", "pocompile"]
+          #rights = getattr(rightstree, "default", None)
       else:
         return rights
-    rights = [right.strip() for right in rights.split(",")]
-    if request is not None and request.user.is_superuser:
+    if request.user.is_superuser:
       if "admin" not in rights:
         rights.append("admin")
     return rights
