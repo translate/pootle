@@ -116,7 +116,7 @@ def handle_alternative_format(request, project, language_code, project_code, fil
     pofilename = basename + os.extsep + project.fileext
     extension = extension[1:]
     if extension == "mo":
-        if not "pocompile" in project.getrights(request):
+        if not "pocompile" in project.getrights(request.user):
             request.session['message'] = 'You do not have the right to create MO files.'
             return HttpResponseRedirect('/%s/%s' % (language_code, project_code))
     etag, filepath_or_contents = project.convert(pofilename, extension)
@@ -138,7 +138,7 @@ def handle_alternative_format(request, project, language_code, project_code, fil
     return HttpResponse(contents, content_type=content_type)
 
 def handle_zip(request, arg_dict, project, language_code, project_code, file_path):
-    if not "archive" in project.getrights(request):
+    if not "archive" in project.getrights(request.user):
         request.session['message'] = 'You do not have the right to create ZIP archives.'
         return HttpResponseRedirect('/%s/%s' % (language_code, project_code))
     pathwords = file_path.split(os.sep)
@@ -159,7 +159,7 @@ def handle_zip(request, arg_dict, project, language_code, project_code, file_pat
     return HttpResponse(archivecontents, content_type="application/zip")
 
 def handle_sdf(request, project, language_code, project_code, file_path):
-    if not "pocompile" in project.getrights(request):
+    if not "pocompile" in project.getrights(request.user):
         request.session['message'] = 'You do not have the right to create SDF files.'
         return HttpResponseRedirect('/%s/%s' % (language_code, project_code))
     return HttpResponse(project.getoo(), content_type="text/tab-seperated-values")

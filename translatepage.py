@@ -70,7 +70,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     if isinstance(self.showassigns, (str, unicode)) and self.showassigns.isdigit():
       self.showassigns = int(self.showassigns)
     self.request = request
-    self.rights = self.project.getrights(self.request)
+    self.rights = self.project.getrights(request.user)
     if "view" not in self.rights:
       raise projects.Rights404Error(None)
     self.lastitem = None

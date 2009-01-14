@@ -154,7 +154,7 @@ class PootleIndex(pagelayout.PootlePage):
         trans += stats['translatedsourcewords']
         fuzzy += stats['fuzzysourcewords']
         total += stats['totalsourcewords']
-        rights = project.getrights(request)
+        rights = project.getrights(request.user)
         viewable = viewable or ("view" in rights)
       untrans = total-trans-fuzzy
       try:
@@ -190,7 +190,7 @@ class PootleIndex(pagelayout.PootlePage):
         trans += stats['translatedsourcewords']
         fuzzy += stats['fuzzysourcewords']
         total += stats['totalsourcewords']
-        rights = project.getrights(request)
+        rights = project.getrights(request.user)
         viewable = viewable or ("view" in rights)
       untrans = total-trans-fuzzy
       try:
@@ -260,7 +260,7 @@ class UserIndex(pagelayout.PootlePage):
         if self.potree.hasproject(language.code, project_model.code):
           projecttitle = self.potree.getprojectname(project_model.code)
           project = self.potree.getproject(language.code, project_model.code)
-          isprojectadmin = "admin" in project.getrights(request=self.request)
+          isprojectadmin = "admin" in project.getrights(self.request.user)
           langlinks.append({
             "code": project_model.code,
             "name": projecttitle,
@@ -347,7 +347,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
     projectcodes = self.potree.getprojectcodes(self.languagecode)
     self.projectcount = len(projectcodes)
     projectitems = [self.getprojectitem(projectcode) for projectcode in projectcodes 
-          if "view" in (self.potree.getproject(self.languagecode, projectcode).getrights(request))]
+          if "view" in (self.potree.getproject(self.languagecode, projectcode).getrights(request.user))]
     for n, item in enumerate(projectitems):
       item["parity"] = ["even", "odd"][n % 2]
     return projectitems
@@ -413,7 +413,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     languages = self.potree.getlanguages(self.projectcode)
     self.languagecount = len(languages)
     languageitems = [self.getlanguageitem(languagecode, languagename) for languagecode, languagename in languages
-          if "view" in (self.potree.getproject(languagecode, self.projectcode).getrights(request))]
+          if "view" in (self.potree.getproject(languagecode, self.projectcode).getrights(request.user))]
     # rewritten for compatibility with Python 2.3
     # languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["title"])
     languageitems.sort(lambda x,y: locale.strcoll(x["title"], y["title"]))
@@ -457,7 +457,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
   def __init__(self, project, request, argdict, dirfilter=None):
     self.project = project
     self.request = request
-    self.rights = self.project.getrights(self.request)
+    self.rights = self.project.getrights(request.user)
     if "view" not in self.rights:
       raise projects.Rights404Error()
     message = argdict.get("message", "")

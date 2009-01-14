@@ -145,9 +145,12 @@ class TranslationProject(models.Model):
     file_style       = models.CharField(max_length=255, blank=True, null=False, default="")
 
 class Right(models.Model):
-    user             = models.ForeignKey(PootleProfile, db_index=True)
-    project          = models.ForeignKey(TranslationProject, db_index=True)
-    permissions      = models.ManyToManyField(Permission)
+    class Meta:
+        unique_together = ('profile', 'translation_project')
+
+    profile             = models.ForeignKey(PootleProfile, db_index=True)
+    translation_project = models.ForeignKey(TranslationProject, db_index=True)
+    permissions         = models.ManyToManyField(Permission)
 
 def _do_query(query, replacements, fields, params=()):
     all_fields = fields.copy()

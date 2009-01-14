@@ -737,5 +737,27 @@ def create_default_users():
   admin.password = md5.new("admin").hexdigest()
   admin.save()
 
+  # The nobody user is used to represent an anonymous user in cases where
+  # we need to associate model information with such a user. An example is
+  # in the permission system: we need a way to store rights for anonymous
+  # users; thus we use the nobody user.
+  nobody = make_pootle_user(username=u"nobody")
+  nobody.firstname=u"User object representing anonymous users."
+  nobody.is_active=True
+  nobody.set_unusable_password() # No user should be able to log in as "nobody"
+  nobody.save()
+
+  # The default user represents any valid, non-anonymous user and is used to associate
+  # information any such user. An example is in the permission system: we need a
+  # way to store default rights for users. We use the default user for this.
+  #
+  # In a future version of Pootle we should think about using Django's groups to do
+  # better permissions handling.
+  default = make_pootle_user(username=u"default")
+  default.firstname=u"User object representing any user."
+  default.is_active=True
+  default.set_unusable_password() # No user should be ablet to
+  default.save()
+
 if __name__ == "__main__":
   main()

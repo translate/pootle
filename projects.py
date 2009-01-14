@@ -50,8 +50,9 @@ import zipfile
 
 from scripts import hooks
 
-from django.contrib.auth.models import User
-from pootle_app.models import Suggestion, get_profile, Submission, Project, Language
+from django.contrib.auth.models import User, Permission
+from django.contrib.contenttypes.models import ContentType
+from pootle_app.models import Suggestion, get_profile, Submission, Project, Language, Right, PootleProfile
 from pootle_app.models import TranslationProject as DBTranslationProject
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize
@@ -104,22 +105,48 @@ class potimecache(timecache.timecache):
         self.__setitem__(pofilename, pootlefile.pootlefile(self.project, pofilename))
 
 def make_db_translation_project(language_id, project_id):
+    def make_translation_project():
+      def get_file_style(project_dir, language_code):
+        if pan_app.get_po_tree().hasgnufiles(project_dir, language_code) == "gnu":
+          return "gnu"
+        else:
+          return "std"
+
+      language    = Language.objects.get(id=language_id)
+      project     = Project.objects.get(id=project_id)
+      project_dir = pan_app.get_po_tree().getpodir(language.code, project.code)
+      db_object   = DBTranslationProject(language    = language,
+                                         project     = project,
+                                         project_dir = project_dir,
+                                         file_style  = get_file_style(project_dir, language.code))
+      db_object.save()
+      return db_object
+
+    def make_default_rights(db_object):
+      def make_right(username, permissions):
+        profile = get_profile(User.objects.get(username=username))
+        right = Right(profile=profile, translation_project=db_object)
+        right.save()
+        right.permissions = permissions
+        right.save()
+
+      # The content type of our permission
+      content_type = ContentType.objects.get(name='pootle', app_label='pootle_app')
+      # Get the pootle view permission
+      view_permission = Permission.objects.get(content_type=content_type, codename='view')
+      make_right('nobody', [view_permission])
+      make_right('default', [view_permission])
+
+    db_object = make_translation_project()
+    make_default_rights(db_object)
+    return db_object
+
+def get_or_make_db_translation_project(language_id, project_id):
+  """ """
   try:
     return DBTranslationProject.objects.get(language__id=language_id, project__id=project_id)
   except DBTranslationProject.DoesNotExist:
-    def get_file_style(project_dir, language_code):
-      if pan_app.get_po_tree().hasgnufiles(project_dir, language_code) == "gnu":
-        return "gnu"
-      else:
-        return "std"
-
-    language  = Language.objects.get(id=language_id)
-    project   = Project.objects.get(id=project_id)
-    db_object = DBTranslationProject(language=language, project=project)
-    db_object.project_dir = pan_app.get_po_tree().getpodir(language.code, project.code)
-    db_object.file_style  = get_file_style(db_object.project_dir, language.code)
-    db_object.save()
-    return db_object
+    return make_db_translation_project(language_id, project_id)
 
 class TranslationProject(object):
   """Manages iterating through the translations in a particular project"""
@@ -133,15 +160,23 @@ class TranslationProject(object):
   language               = property(lambda self: Language.objects.get(id=self.language_id))
   languagename           = property(lambda self: self.language.fullname)
   languagecode           = property(lambda self: self.language.code)
+  # PO or XLIFF
   fileext                = property(lambda self: self.project.localfiletype)
+  # GNU or standard
   filestyle              = property(lambda self: self.db_translation_project.file_style)
+  # The directory containing this translation project
   podir                  = property(lambda self: self.db_translation_project.project_dir)
+  # The database object backing this TranslationProject
   db_translation_project = property(lambda self: DBTranslationProject.objects.get(id=self.id))
 
   def __init__(self, languagecode, projectcode, potree, create=False):
+    # Store the database column ids for the language and project of this translation project
+    # as well as the id used for the database model which backs this translation project.
+    # We store ids instead of direct references to objects, since we want to work with fresh
+    # copies of the objects every time.
     self.language_id = Language.objects.get(code=languagecode).id
     self.project_id  = Project.objects.get(code=projectcode).id
-    self.id          = make_db_translation_project(self.language_id, self.project_id).id
+    self.id          = get_or_make_db_translation_project(self.language_id, self.project_id).id
     self.pofiles = potimecache(15*60, self)
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
     self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
@@ -194,64 +229,46 @@ class TranslationProject(object):
   def getrightnames(self, request):
     """gets the available rights and their localized names"""
     # l10n: Verb
-    return [("view", localize("View")),
-            ("suggest", localize("Suggest")),
-            ("translate", localize("Translate")),
-            ("overwrite", localize("Overwrite")),
-            # l10n: Verb
-            ("review", localize("Review")),
-            # l10n: Verb
-            ("archive", localize("Archive")),
-            # l10n: This refers to generating the binary .mo file
-            ("pocompile", localize("Compile PO files")),
-            ("assign", localize("Assign")),
-            ("admin", localize("Administrate")),
-            ("commit", localize("Commit")),
-           ]
+    pootle_content_type = ContentType.objects.get(name='pootle')
+    permissions = Permission.objects.filter(content_type=pootle_content_type)
+    return [(perm.codename, localize(perm.name)) for perm in permissions]
 
-  def getrights(self, request=None, username=None, usedefaults=True):
+  def getrights(self, user, usedefaults=True):
     """gets the rights for the given user (name or session, or not-logged-in if username is None)
     if usedefaults is False then None will be returned if no rights are defined (useful for editing rights)"""
     # internal admin sessions have all rights
-# TODO: Replace this functionality with Django functionality. The Django super user should
-#       use Django's permissions system.
-#    if isinstance(session, InternalAdminSession):
-#      return [right for right, localizedright in self.getrightnames(session)]
-    def get_username(request):
-      if request is not None and request.user.is_authenticated():
-        return request.user.username
+    def get_rights(user):
+      """If 'user' is logged in, then try to find and return the Right object associated with
+      this user in the current translation project.
+
+      An anonymous user gets the rights associated with the 'nobody' user."""
+      if user.is_authenticated:
+        # select_related('permissions') is an optimization to make sure that Django does an SQL join 
+        # on the Permission table when it selects Right objects. This makes access to the permissions
+        # (see the return statement below) very fast.
+        user_right = db_translation_project.right_set.select_related(depth=1).get(profile=get_profile(user))
       else:
-        return "nobody"
+        user_right = db_translation_project.right_set.select_related(depth=1).get(profile=get_profile(User.objects.get(username="nobody")))
+      return [perm.codename for perm in user_right.permissions.all()]
 
-    def get_right(username, project_id):
-      right = Right.objects.get(user__username=username, project__id=self.project_id)
-      return [perm.codename for perm in right.permissions_set]
+    def check_for_admin(rights):
+      """If the current user is an admin, then make sure that the 'admin' right
+      is in 'rights'"""
+      if user.is_superuser:
+        if "admin" not in rights:
+          rights.append("admin")
+      return rights
 
-    username = get_username(request)
-    tp = self.db_translation_project
-    if tp.right_set.count() > 0:
-      rights = [perm.codename for perm in tp.right_set.all()]
-    else:
-      rights = None
-    if rights is None:
+    db_translation_project = self.db_translation_project
+    # See if there is a rights object for the current user in the database
+    try:
+      return check_for_admin(get_rights(user))
+    except Right.DoesNotExist:
       if usedefaults:
-        if username == "nobody":
-          rights = ["view"]
-        elif tp.right_set.count() == 0:
-          if self.languagecode == "en":
-            rights = ["view", "archive", "pocompile"]
-          else:
-            rights = [right.strip() for right in pan_app.get_po_tree().getdefaultrights().split(',')]
-        else:
-          # TODO: This should come from the site-specific setup
-          return ["view", "archive", "pocompile"]
-          #rights = getattr(rightstree, "default", None)
+        # Return the default rights
+        return check_for_admin(get_rights(User.objects.select_related(depth=1).get(username="default")))
       else:
-        return rights
-    if request is not None and request.user.is_superuser:
-      if "admin" not in rights:
-        rights.append("admin")
-    return rights
+        return None
 
   def getuserswithinterest(self):
     """returns all the users who registered for this language and project"""
@@ -278,40 +295,42 @@ class TranslationProject(object):
 
   def getuserswithrights(self):
     """gets all users that have rights defined for this project"""
+    # Find all the Right objects which are associated with this translation project
+    # select_related('profile__user') is an optimization to tell Django to select
+    # the profile and their associated user objects along with our query (i.e. it
+    # does a SQL join behind the scenes).
+    rights_in_project = Right.objects.select_related('profile__user').filter(translation_project=self.db_translation_project)
+    # Get the usernames of the users associated with the profiles which are associated with the right
+    return [right.profile.user.username for right in rights_in_project]
 
-    # FIXME This is a bit of a hack to fix the .prefs tendency to split on
-    # periods in usernames; the original idea of just looking at all immediate
-    # children of prefs would return "user@domain" if "user@domain.com" were
-    # listed.  This follows the trail until it finds a string or a unicode,
-    # which should be the rights list
-
-    usernames = []
-    for username, node in getattr(self.prefs, "rights", {}).iteritems():
-      name = username
-      while type(node) != str and type(node) != unicode:
-        nextname, node = node.iteritems().next()
-        name = name + "." + nextname
-      usernames.append(name)
-    return usernames
-
-  def setrights(self, username, rights):
+  def setrights(self, user, rights=[]):
     """sets the rights for the given username... (or not-logged-in if username is None)"""
-    if username is None: username = "nobody"
-    if isinstance(rights, list):
-      rights = ", ".join(rights)
-    if not hasattr(self.prefs, "rights"):
-      self.prefs.rights = prefs.PrefNode(self.prefs, "rights")
-    self.prefs.rights.__setattr__(username, rights)
-    self.saveprefs()
+    def get_user_right(profile):
+      try:
+        return db_translation_project.right_set.get(profile=profile)
+      except Right.DoesNotExist:
+        return Right(profile=profile, translation_project=db_translation_project)
 
-  def delrights(self, request, username):
+    db_translation_project = self.db_translation_project
+    rights = set(rights)
+    pootle_content_type = ContentType.objects.get(name='pootle')
+    user_right = get_user_right(get_profile(user))
+    user_right.permissions = [perm for perm in Permission.objects.filter(content_type=pootle_content_type) if perm.codename in rights]
+    user_right.save()
+
+  def delrights(self, user):
     """deletes teh rights for the given username"""
     # l10n: Don't translate "nobody" or "default"
-    if username == "nobody" or username == "default":
+    if user.username == "nobody" or user.username == "default":
       # l10n: Don't translate "nobody" or "default"
       raise RightsError(localize('You cannot remove the "nobody" or "default" user'))
-    self.prefs.rights.__delattr__(username)
-    self.saveprefs()
+
+    db_translation_project = self.db_translation_project
+    try:
+      user_right = self.db_translation_project.right_set.get(user=user)
+      user_right.delete()
+    except db_translation_project.DoesNotExist:
+      pass
 
   def getgoalnames(self):
     """gets the goals and associated files for the project"""
@@ -460,7 +479,7 @@ class TranslationProject(object):
 
   def setgoalfiles(self, request, goalname, goalfiles):
     """sets the goalfiles for the given goalname"""
-    if "admin" not in self.getrights(request):
+    if "admin" not in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to alter goals here"))
     if isinstance(goalfiles, list):
       goalfiles = [goalfile.strip() for goalfile in goalfiles if goalfile.strip()]
@@ -522,7 +541,7 @@ class TranslationProject(object):
     """sets the goalusers for the given goalname"""
     if isinstance(goalname, unicode):
       goalname = goalname.encode('utf-8')
-    if "admin" not in self.getrights(request):
+    if "admin" not in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to alter goals here"))
     if isinstance(goalusers, list):
       goalusers = [goaluser.strip() for goaluser in goalusers if goaluser.strip()]
@@ -580,7 +599,7 @@ class TranslationProject(object):
       pofilename = filename
       popathname = pathname
 
-    rights = self.getrights(request)
+    rights = self.getrights(request.user)
 
     if os.path.exists(popathname) and not overwrite:
       origpofile = self.getpofile(os.path.join(dirname, pofilename))
@@ -606,7 +625,7 @@ class TranslationProject(object):
 
   def updatepofile(self, request, dirname, pofilename):
     """updates an individual PO file from version control"""
-    if "admin" not in self.getrights(request):
+    if "admin" not in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to update files here"))
     # read from version control
     pathname = self.getuploadpath(dirname, pofilename)
@@ -661,7 +680,7 @@ class TranslationProject(object):
 
   def commitpofile(self, request, dirname, pofilename):
     """commits an individual PO file to version control"""
-    if "commit" not in self.getrights(request):
+    if "commit" not in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to commit files here"))
     pathname = self.getuploadpath(dirname, pofilename)
     stats = self.getquickstats([os.path.join(dirname, pofilename)])
@@ -1145,7 +1164,7 @@ class TranslationProject(object):
 
   def assignpoitems(self, request, search, assignto, action):
     """assign all the items matching the search to the assignto user(s) evenly, with the given action"""
-    if not "assign" in self.getrights(request):
+    if not "assign" in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to alter assignments here"))
     if search.searchtext:
       grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
@@ -1187,7 +1206,7 @@ class TranslationProject(object):
 
   def unassignpoitems(self, request, search, assignedto, action=None):
     """unassigns all the items matching the search to the assignedto user"""
-    if not "assign" in self.getrights(request):
+    if not "assign" in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to alter assignments here"))
     if search.searchtext:
       grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
@@ -1331,7 +1350,7 @@ class TranslationProject(object):
 
   def updatetranslation(self, pofilename, item, newvalues, request, suggObj=None):
     """updates a translation with a new value..."""
-    if "translate" not in self.getrights(request):
+    if "translate" not in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to change translations here"))
     pofile = self.pofiles[pofilename]
     pofile.pofreshen()
@@ -1360,7 +1379,7 @@ class TranslationProject(object):
 
   def suggesttranslation(self, pofilename, item, trans, request):
     """stores a new suggestion for a translation..."""
-    if "suggest" not in self.getrights(request):
+    if "suggest" not in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to suggest changes here"))
     pofile = self.getpofile(pofilename)
     source = pofile.getitem(item).getsource()
@@ -1432,7 +1451,7 @@ class TranslationProject(object):
 
   def acceptsuggestion(self, pofile, item, suggitem, newtrans, request):
     """accepts the suggestion into the main pofile"""
-    if not "review" in self.getrights(request):
+    if not "review" in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to review suggestions here"))
     if isinstance(pofile, (str, unicode)):
       pofilename = pofile
@@ -1455,7 +1474,7 @@ class TranslationProject(object):
 
   def rejectsuggestion(self, pofile, item, suggitem, newtrans, request):
     """rejects the suggestion and removes it from the pending file"""
-    if not "review" in self.getrights(request):
+    if not "review" in self.getrights(request.user):
       raise RightsError(localize("You do not have rights to review suggestions here"))
     if isinstance(pofile, (str, unicode)):
       pofilename = pofile
@@ -1667,12 +1686,12 @@ class TemplatesProject(TranslationProject):
   def __init__(self, projectcode, potree):
     super(TemplatesProject, self).__init__("templates", projectcode, potree, create=False)
 
-  def getrights(self, request=None, username=None, usedefaults=True):
+  def getrights(self, user):
     """gets the rights for the given user (name or session, or not-logged-in if username is None)"""
     # internal admin sessions have all rights
     # We don't send the usedefaults parameter through, because we don't want users of this method to
     # change the default behaviour in a template project. Yes, I know: ignorance and deceit.
-    rights = super(TemplatesProject, self).getrights(request=request, username=username)
+    rights = super(TemplatesProject, self).getrights(user)
     if rights is not None:
       rights = [right for right in rights if right not in ["translate", "suggest", "pocompile"]]
     return rights

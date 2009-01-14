@@ -222,7 +222,7 @@ class PootleNavPage(PootlePage):
         # don't getbrowseurl on the project link, so sticky options won't apply here
         links["project"] = {"href": (rootlink or "index.html") + paramstring, "text": project.projectname}
         if request:
-          if "admin" in project.getrights(request) or request.user.is_superuser:
+          if "admin" in project.getrights(request.user) or request.user.is_superuser:
             links["admin"] = {"href": rootlink + "admin.html", "text": localize("Admin")}
     elif language:
       languagecode, languagename = language

@@ -338,28 +338,31 @@ class ProjectAdminPage(pagelayout.PootlePage):
     return newoptions
 
 def updaterights(project, request, argdict):
-  if "admin" in project.getrights(request):
-    if "doupdaterights" in argdict:
-      for key, value in argdict.iteritems():
+  if "admin" in project.getrights(request.user):
+    if "doupdaterights" in request.POST:
+      for key, value in request.POST.lists():
         if isinstance(key, str):
           key = key.decode("utf-8")
         if key.startswith("rights-"):
           username = key.replace("rights-", "", 1)
+          user = User.objects.get(username=username)
           if isinstance(value, list):
             try:
               value.remove("existence")
             except:
               pass
-          project.setrights(username, value)
+          project.setrights(user, value)
         if key.startswith("rightsremove-"):
           username = key.replace("rightsremove-", "", 1)
-          project.delrights(request, username)
-      username = argdict.get("rightsnew-username", None)
+          user = User.objects.get(username=username)
+          project.delrights(user)
+      username = request.POST.get("rightsnew-username", None)
       if username:
         username = username.strip()
-        if request.loginchecker.userexists(username):
-          project.setrights(username, argdict.get("rightsnew", ""))
-        else:
+        try:
+          user = User.objects.get(username=username)
+          project.setrights(user, request.POST.get("rightsnew", ""))
+        except User.DoesNotExist:
           raise IndexError(localize("Cannot set rights for username %s - user does not exist", username))
  
 class TranslationProjectAdminPage(pagelayout.PootlePage):
@@ -370,7 +373,7 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     self.request = request
     self.rightnames = self.project.getrightnames(request)
 
-    if "admin" not in project.getrights(request):
+    if "admin" not in project.getrights(request.user):
       raise projects.Rights404Error
 
     try:
@@ -408,16 +411,16 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     adduser_text = localize("(select to add user)")
     rights_title = localize("Rights")
     remove_title = localize("Remove")
-    nobodyrights = self.project.getrights(username=None)
+    nobodyrights = self.project.getrights(User.objects.get(username='nobody'))
     nobody_dict = self.getuserdict("nobody", delete=False)
-    defaultrights = self.project.getrights(username="default")
+    defaultrights = self.project.getrights(User.objects.get(username='default'))
     default_dict = self.getuserdict("default", delete=False)
     users_with_rights = ["nobody", "default"]
     rights = {"nobody": nobodyrights, "default": defaultrights}
     for username in self.project.getuserswithrights():
       if username in ("nobody", "default"): continue
       users_with_rights.append(username)
-      rights[username] = self.project.getrights(username=username)
+      rights[username] = self.project.getrights(User.objects.get(username=username))
     users = self.project.getuserswithinterest()
     user_details = {"nobody": nobody_dict, "default": default_dict}
     for username, usernode in users.iteritems():
