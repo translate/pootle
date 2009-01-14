@@ -1367,7 +1367,7 @@ class TranslationProject(object):
     s.source = unicode(source)
     s.trans = unicode(newvalues['target'])
 
-    if not request.user.is_anonymous:
+    if request.user.is_authenticated():
       s.submitter = get_profile(request.user)
 
     s.fromsuggestion = suggObj
