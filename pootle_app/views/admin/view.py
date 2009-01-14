@@ -40,5 +40,5 @@ def languages(request):
 @user_is_admin
 def projects(request):
     if request.method == 'POST':
-        pan_app.get_po_potree().changeprojects(request.POST.copy())
+        pan_app.get_po_tree().changeprojects(request)
     return render_jtoolkit(adminpages.ProjectsAdminPage(request))

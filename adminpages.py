@@ -24,7 +24,7 @@ from Pootle import projects
 from translate.filters import checks
 from django.contrib.auth.models import User
 from Pootle import pan_app
-from pootle_app.models import get_profile
+from pootle_app.models import get_profile, Project
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 import locale
@@ -164,29 +164,23 @@ class ProjectsAdminPage(pagelayout.PootlePage):
 
   def getprojectsoptions(self):
     projects = []
-    for projectcode in self.potree.getprojectcodes():
-      projectadminlink = "../projects/%s/admin.html" % projectcode
-      projectname = self.potree.getprojectname(projectcode)
-      projectdescription = self.potree.getprojectdescription(projectcode)
-      projectignoredfiles = ",".join(self.potree.getprojectignoredfiles(projectcode))
-      projectname = self.potree.getprojectname(projectcode)
-      projectcheckerstyle = self.potree.getprojectcheckerstyle(projectcode)
-      projectfiletype = self.potree.getprojectlocalfiletype(projectcode)
-      if self.potree.getprojectcreatemofiles(projectcode):
-        projectcreatemofiles = "checked"
+    for project in Project.objects.all():
+      projectadminlink = "../projects/%s/admin.html" % project.code
+      if project.createmofiles:
+        create_mo_files_checkbox = {"name": "projectcreatemofiles-%s" % project.code, "checked": "yes", "type": "checkbox"}
       else:
-        projectcreatemofiles = ""
+        create_mo_files_checkbox = {"name": "projectcreatemofiles-%s" % project.code, "type": "checkbox"}
       projectremove = None
       # l10n: The parameter is a languagecode, projectcode or username
-      removelabel = localize("Remove %s", projectcode)
-      projectoptions = [{"name": "projectname-%s" % projectcode, "value": projectname, "type": "text"},
-                        {"name": "projectdescription-%s" % projectcode, "value": projectdescription, "type": "text"},
-                        {"name": "projectignoredfiles-%s" % projectcode, "value": projectignoredfiles, "type": "text"},
-                        {"name": "projectcheckerstyle-%s" % projectcode, "value": projectcheckerstyle, "selectoptions": self.allchecks},
-                        {"name": "projectfiletype-%s" % projectcode, "value": projectfiletype, "selectoptions": self.alltypes},
-                        {"name": "projectcreatemofiles-%s" % projectcode, "value": projectcreatemofiles, "type": "checkbox", projectcreatemofiles: projectcreatemofiles},
-                        {"name": "projectremove-%s" % projectcode, "value": projectremove, "type": "checkbox", "label": removelabel}]
-      projects.append({"code": projectcode, "adminlink": projectadminlink, "options": projectoptions})
+      removelabel = localize("Remove %s", project.code)
+      projectoptions = [{"name": "projectname-%s" % project.code, "value": project.fullname, "type": "text"},
+                        {"name": "projectdescription-%s" % project.code, "value": project.description, "type": "text"},
+                        {"name": "projectignoredfiles-%s" % project.code, "value": project.ignoredfiles, "type": "text"},
+                        {"name": "projectcheckerstyle-%s" % project.code, "value": project.checkstyle, "selectoptions": self.allchecks},
+                        {"name": "projectfiletype-%s" % project.code, "value": project.localfiletype, "selectoptions": self.alltypes},
+                        create_mo_files_checkbox,
+                        {"name": "projectremove-%s" % project.code, "value": projectremove, "type": "checkbox", "label": removelabel}]
+      projects.append({"code": project.code, "adminlink": projectadminlink, "options": projectoptions})
     return projects
 
 class UsersAdminPage(pagelayout.PootlePage):

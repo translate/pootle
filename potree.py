@@ -34,14 +34,20 @@ from Pootle import pan_app
 from django.conf import settings
 
 def update_language(language_code, f):
-  lang = Language.objects.get(code=language_code)
-  f(lang)
-  lang.save()
+  try:
+    lang = Language.objects.get(code=language_code)
+    f(lang)
+    lang.save()
+  except Language.DoesNotExist:
+    pass
 
 def update_project(project_code, f):
-  proj = Project.objects.get(code=project_code)
-  f(proj)
-  proj.save()
+  try:
+    proj = Project.objects.get(code=project_code)
+    f(proj)
+    proj.save()
+  except Project.DoesNotExist:
+    pass
 
 class POTree:
   """Manages the tree of projects and languages"""
@@ -130,53 +136,35 @@ class POTree:
         newlang.save()
     self.saveprefs()
 
-  def changeprojects(self, argdict):
+  def changeprojects(self, request):
     """changes project entries"""
     #Let's reset all "createmofiles" to 0, otherwise we can't disable one
     #since the key will never arrive
-    for project in self.getprojectcodes():
-      self.setprojectcreatemofiles(project, 0)
-    for key, value in argdict.iteritems():
+    for project in Project.objects.all():
+      project.createmofiles = False
+      project.save()
+    for key, value in request.POST.iteritems():
       if key.startswith("projectremove-"):
         projectcode = key.replace("projectremove-", "", 1)
-        if self.hasprojectcode(projectcode):
-          pobject = self.projects[projectcode] 
-          pobject.delete()
-          del self.projects[projectcode]
+        Project.objects.get(code=projectcode).delete()
       elif key.startswith("projectname-"):
         projectcode = key.replace("projectname-", "", 1)
-        if self.hasprojectcode(projectcode):
-          projectname = self.getprojectname(projectcode)
-          if projectname != value:
-            self.setprojectname(projectcode, value)
+        update_project(projectcode, lambda proj: setattr(proj, 'fullname', value))
       elif key.startswith("projectdescription-"):
         projectcode = key.replace("projectdescription-", "", 1)
-        if self.hasprojectcode(projectcode):
-          projectdescription = self.getprojectdescription(projectcode)
-          if projectdescription != value:
-            self.setprojectdescription(projectcode, value)
+        update_project(projectcode, lambda proj: setattr(proj, 'description', value))
       elif key.startswith("projectignoredfiles-"):
         projectcode = key.replace("projectignoredfiles-", "", 1)
-        if self.hasprojectcode(projectcode):
-          projectignoredfiles = self.getprojectignoredfiles(projectcode)
-          if projectignoredfiles != value:
-            self.setprojectignoredfiles(projectcode, value)
+        update_project(projectcode, lambda proj: setattr(proj, 'ignoredfiles', value))
       elif key.startswith("projectcheckerstyle-"):
         projectcode = key.replace("projectcheckerstyle-", "", 1)
-        if self.hasprojectcode(projectcode):
-          projectcheckerstyle = self.getprojectcheckerstyle(projectcode)
-          if projectcheckerstyle != value:
-            self.setprojectcheckerstyle(projectcode, value)
+        update_project(projectcode, lambda proj: setattr(proj, 'checkstyle', value))
       elif key.startswith("projectfiletype-"):
         projectcode = key.replace("projectfiletype-", "", 1)
-        if self.hasprojectcode(projectcode):
-          projectlocalfiletype = self.getprojectlocalfiletype(projectcode)
-          if projectlocalfiletype != value:
-            self.setprojectlocalfiletype(projectcode, value)
+        update_project(projectcode, lambda proj: setattr(proj, 'localfiletype', value))
       elif key.startswith("projectcreatemofiles-"):
         projectcode = key.replace("projectcreatemofiles-", "", 1)
-        if self.hasprojectcode(projectcode):
-          self.setprojectcreatemofiles(projectcode, 1)
+        update_project(projectcode, lambda proj: setattr(proj, 'createmofiles', True))
       elif key == "newprojectcode":
         projectcode = value.lower()
         if not projectcode:
@@ -185,15 +173,14 @@ class POTree:
           raise ValueError("Project code must be alphanumeric and start with an alphabetic character (got %r)" % projectcode)
         if self.hasprojectcode(projectcode):
           raise ValueError("Already have project with the code %s" % projectcode)
-        projectname = argdict.get("newprojectname", projectcode)
-        projecttype = argdict.get("newprojectfiletype", "")
-        projectdescription = argdict.get("newprojectdescription", "")
-        projectcheckerstyle = argdict.get("newprojectcheckerstyle", "")
-        projectcreatemofiles = bool(argdict.get("newprojectcreatemofiles", "") or 0)
+        projectname = request.POST.get("newprojectname", projectcode)
+        projecttype = request.POST.get("newprojectfiletype", "")
+        projectdescription = request.POST.get("newprojectdescription", "")
+        projectcheckerstyle = request.POST.get("newprojectcheckerstyle", "")
+        projectcreatemofiles = bool(request.POST.get("newprojectcreatemofiles", "") or 0)
         newproject = Project(code=projectcode, fullname=projectname, description=projectdescription, 
                              checkstyle=projectcheckerstyle, localfiletype=projecttype, 
                              createmofiles=projectcreatemofiles)
-        self.projects[newproject.code] = newproject
         newproject.save()
         projectdir = os.path.join(self.podirectory, projectcode)
         if not os.path.isdir(projectdir):
