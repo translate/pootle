@@ -152,41 +152,86 @@ class Right(models.Model):
     translation_project = models.ForeignKey(TranslationProject, db_index=True)
     permissions         = models.ManyToManyField(Permission)
 
+def unzip(lst):
+    left_lst = []
+    right_lst = []
+    for left, right in lst:
+        left_lst.append(left)
+        right_lst.append(right)
+    return left_lst, right_lst
+
 def _do_query(query, replacements, fields, params=()):
     all_fields = fields.copy()
     all_fields.update((key, var % fields) for key, var in replacements.iteritems())
     final_query = query % all_fields
     # print "going to execute %s \n\nwith params = %s" % (final_query, params)
-
     cursor = connection.cursor()
     cursor.execute(final_query, params)
-    return [(User.objects.filter(id=user_id)[0], count) for user_id, count in cursor.fetchall()[:5]]
+    # cursor.fetchall() returns a list of (profile_id, count) 
+    # two tuples which we unzip into a list of profile_ids and
+    # a list of counts
+    profile_ids, counts = unzip(cursor.fetchall())
+    # Get a dictionary of profile_id -> PootleProfile models
+    profiles = PootleProfile.objects.select_related('user').in_bulk(profile_ids)
+    # profile_ids gives us the profile ids in the order we want (descending in
+    # the number of contributions), so we use these indices to pull the profile
+    # objects from the profiles dictionary.
+    return zip((profiles[id] for id in profile_ids), counts)
 
 class SubmissionManager(models.Manager):
+    # Select all PootleProfile ids, along with the count of the
+    # Submission objects which point to the respective PootleProfile
+    # objects. To do this, we join the PootleProfile table with the
+    # Submission on the ids of PootleProfile objects.
+    # 
+    # We choose the PootleProfile ids as our grouping.
+    #
+    # Since we're interested only in the top five contributions,
+    # we choose a descending order in terms of the submission count,
+    # and limit our results using the LIMIT directive.
+    #
+    # %(constraint)s allows the specification of arbitrary WHERE
+    # clauses.
     QUERY = """
-        SELECT   %(user_id)s, COUNT(%(submission_id)s)
+        SELECT   %(profile_id)s, COUNT(%(submission_id)s)
         FROM     %(profile_table)s INNER JOIN %(submission_table)s
-                 ON %(user_id)s = %(submitter)s
+                 ON %(profile_id)s = %(submitter)s
         %(constraint)s
-        GROUP BY %(user_id)s
-        ORDER BY COUNT(%(submission_id)s)"""
+        GROUP    BY %(profile_id)s
+        ORDER    BY COUNT(%(submission_id)s) DESC
+        LIMIT    5"""
 
     def get_top_submitters(self):
-        return _do_query(self.QUERY, {'constraint': ''}, self.get_fields())
+        # Note the %%s below. After string substitution, this will become %s,
+        # which cursor.execute will fill with the project code.
+        return _do_query(self.QUERY,
+                         {'constraint': ''},
+                         self.get_fields())
 
     def get_top_submitters_by_project(self, project):
-        return _do_query(self.QUERY, {'constraint': 'WHERE %(project)s = %%s'}, self.get_fields(), (project,))
+        # Note the %%s below. After string substitution, this will become %s,
+        # which cursor.execute will fill with the project code.
+        return _do_query(self.QUERY,
+                         {'constraint': 'WHERE %(project)s = %%s'},
+                         self.get_fields(), (project,))
 
     def get_top_submitters_by_language(self, language):
-        return _do_query(self.QUERY, {'constraint': 'WHERE %(language)s = %%s'}, self.get_fields(), (language,))
+        # Note the %%s below. After string substitution, this will become %s,
+        # which cursor.execute will fill with the project code.
+        return _do_query(self.QUERY,
+                         {'constraint': 'WHERE %(language)s = %%s'},
+                         self.get_fields(), (language,))
 
     def get_top_submitters_by_project_and_language(self, project, language):
-        return _do_query(self.QUERY, {'constraint': 'WHERE %(project)s = %%s AND %(language)s = %%s'}, self.get_fields(),
-                         (project, language))
+        # Note the %%s below. After string substitution, this will become %s,
+        # which cursor.execute will fill with the project code.
+        return _do_query(self.QUERY,
+                         {'constraint': 'WHERE %(project)s = %%s AND %(language)s = %%s'},
+                         self.get_fields(), (project, language))
 
     @classmethod
     def get_fields(cls):
-        return {'user_id':          field_name(PootleProfile, 'user'),
+        return {'profile_id':       primary_key_name(PootleProfile),
                 'submission_id':    primary_key_name(Submission),
                 'profile_table':    table_name(PootleProfile),
                 'submission_table': table_name(Submission),
@@ -206,13 +251,27 @@ class Submission(models.Model):
     objects = SubmissionManager()
 
 class SuggestionManager(models.Manager):
+    # Select all PootleProfile ids, along with the count of the
+    # Suggestion objects which point to the respective PootleProfile
+    # objects. To do this, we join the PootleProfile table with the
+    # Suggestion on the ids of PootleProfile objects.
+    # 
+    # We choose the PootleProfile ids as our grouping.
+    #
+    # Since we're interested only in the top five contributions,
+    # we choose a descending order in terms of the suggestion count,
+    # and limit our results using the LIMIT directive.
+    #
+    # %(constraint)s allows the specification of arbitrary WHERE
+    # clauses.
     QUERY = """
-        SELECT %(user_id)s, COUNT(%(suggestion_id)s)
+        SELECT %(profile_id)s, COUNT(%(suggestion_id)s)
         FROM   %(profile_table)s INNER JOIN %(suggestion_table)s
-               ON %(user_id)s = %(suggester)s
+               ON %(profile_id)s = %(suggester)s
         %(constraint)s
-        GROUP  BY %(user_id)s
-        ORDER  BY COUNT(%(suggestion_id)s)"""
+        GROUP  BY %(profile_id)s
+        ORDER  BY COUNT(%(suggestion_id)s) DESC
+        LIMIT  5"""
 
     def get_top_suggesters(self):
         return _do_query(self.QUERY,
@@ -270,7 +329,7 @@ class SuggestionManager(models.Manager):
     def get_fields(cls):
         return {
             'profile_table':    table_name(PootleProfile),
-            'user_id':          field_name(PootleProfile, 'user'),
+            'profile_id':       primary_key_name(PootleProfile),
 
             'suggestion_table': table_name(Suggestion),
             'suggestion_id':    primary_key_name(Suggestion),

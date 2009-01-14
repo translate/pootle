@@ -419,8 +419,6 @@ class OptionalLoginAppServer(object):
   def activatepage(self, request):
     """handle activation or return the Register page"""
     if request.method == 'POST':
-      import pydb
-      pydb.set_trace()
       username = request.POST["username"]
       def activate_user(user):
         if get_profile(user).activation_code == request.POST["activationcode"].strip().lower():

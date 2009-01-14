@@ -115,14 +115,14 @@
           <div py:for="stats in topstats">
               <div class="statslist">
                   <h3 py:content="stats['headerlabel']">Top</h3>
-                  <ul py:for="(num, (user, val)) in enumerate(stats['data'])">
+                  <ul py:for="(num, (profile, val)) in enumerate(stats['data'])">
                       <?python
                         if num % 2:
                             list_attributes = {'class': 'even'}
                         else:
                             list_attributes = {'class': 'odd'}
                       ?>
-                      <li py:attrs="list_attributes"><span class="name">${user.username}</span><span class="value">${val}</span></li>
+                      <li py:attrs="list_attributes"><span class="name">${profile.user.username}</span><span class="value">${val}</span></li>
                   </ul>
               </div>
           </div>
