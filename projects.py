@@ -1355,8 +1355,7 @@ class TranslationProject(object):
     pofile = self.pofiles[pofilename]
     pofile.pofreshen()
     pofile.track(item, "edited by %s" % request.user.username)
-    languageprefs = getattr(pan_app.get_po_tree().languages, self.languagecode, None)
-    
+        
     source = pofile.getitem(item).getsource()
 
     s = Submission()
@@ -1374,7 +1373,7 @@ class TranslationProject(object):
     s.fromsuggestion = suggObj
     s.save()
 
-    pofile.updateunit(item, newvalues, request.user, languageprefs)
+    pofile.updateunit(item, newvalues, request.user, self.language)
     self.updateindex(self.indexer, pofilename, [item])
 
   def suggesttranslation(self, pofilename, item, trans, request):
