@@ -140,9 +140,9 @@ class Project(models.Model):
     )
     treestyle_choices = (
             # TODO: check that the None is stored and handled correctly
-            (None, u'Automatic detection (slower)'),
-            ('gnu', u'GNU style: all languages in one directory; files named by language code'),
-            ('nongnu', u'Non-GNU: Each language in its own directory'),
+            ('auto', _(u'Automatic detection (slower)')),
+            ('gnu', _(u'GNU style: all languages in one directory; files named by language code')),
+            ('nongnu', _(u'Non-GNU: Each language in its own directory')),
     )
 
     code           = models.CharField(max_length=255, null=False, unique=True, db_index=True, help_text=code_help_text)
@@ -150,9 +150,9 @@ class Project(models.Model):
     description    = models.TextField(blank=True, help_text=description_help_text)
     checkstyle     = models.CharField(max_length=50, default='standard', null=False, choices=checker_choices)
     localfiletype  = models.CharField(max_length=50, default="po", choices=local_choices)
-    createmofiles  = models.BooleanField(default=False)
-    treestyle      = models.CharField(max_length=20, null=True, default=None, choices=treestyle_choices)
+    treestyle      = models.CharField(max_length=20, default='auto', choices=treestyle_choices)
     ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="")
+    createmofiles  = models.BooleanField(default=False)
 
     objects = ProjectManager()
 

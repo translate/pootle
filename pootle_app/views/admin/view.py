@@ -8,7 +8,7 @@ from jToolkit import prefs
 
 from Pootle import pan_app, adminpages
 from pootle_app.views.util import render_jtoolkit, render_to_kid, KidRequestContext
-from pootle_app.models import Language
+from pootle_app.models import Language, Project
 from pootle_app.views.auth import redirect
 
 def user_is_admin(f):
@@ -35,17 +35,16 @@ def users(request):
 
 LanguageFormSet = modelformset_factory(Language, can_delete=True)
 
-@user_is_admin
-def languages(request):
+def handle_operations(FormSetClass, request, ModelClass):
     if request.method == 'POST':
-        language_formset = LanguageFormSet(request.POST, queryset=Language.objects.all())
-        if language_formset.is_valid():
+        formset = FormSetClass(request.POST, queryset=ModelClass.objects.all())
+        if formset.is_valid():
             # Set of all the forms in the formset
-            all_forms = set(language_formset.forms)
+            all_forms = set(formset.forms)
             # Set of the forms which were deleted
-            deleted_forms = set(language_formset.deleted_forms)
+            deleted_forms = set(formset.deleted_forms)
             # Set of new entries
-            new_forms = set(language_formset.extra_forms)
+            new_forms = set(formset.extra_forms)
             # Remove the deleted forms and new entries from all_forms
             all_forms = all_forms - (deleted_forms | new_forms)
             # Delete the database models referenced by the deleted forms
@@ -60,9 +59,15 @@ def languages(request):
                 if form['code'].data != '':
                     form.save()
             # Reload the list of languages to show the user.
-            language_formset = LanguageFormSet(queryset=Language.objects.all())
+            return FormSetClass(queryset=ModelClass.objects.all())
+        else:
+            return formset
     else:
-        language_formset = LanguageFormSet(queryset=Language.objects.all())
+        return FormSetClass(queryset=ModelClass.objects.all())
+
+@user_is_admin
+def languages(request):
+    language_formset = handle_operations(LanguageFormSet, request, Language)
 
     template_vars = {"pagetitle":        _("Pootle Languages Admin Page"),
                      "language_formset": language_formset,
@@ -74,8 +79,19 @@ def languages(request):
 
     return render_to_kid("adminlanguages.html", KidRequestContext(request, template_vars))
 
+ProjectFormSet = modelformset_factory(Project, can_delete=True)
+
 @user_is_admin
 def projects(request):
-    if request.method == 'POST':
-        pan_app.get_po_tree().changeprojects(request)
-    return render_jtoolkit(adminpages.ProjectsAdminPage(request))
+    project_formset = handle_operations(ProjectFormSet, request, Project)
+
+    template_vars = {"pagetitle":        _("Pootle Languages Admin Page"),
+                     "project_formset": project_formset,
+                     "text":             {"home":        _("Home"),
+                                          "admin":       _("Main admin page"),
+                                          "projects":    _("Projects"), 
+                                          "savechanges": _("Save changes"),
+                                          "errors_msg":  _("There are errors in the form. Please review the problems below.")}}
+
+    return render_to_kid("adminprojects.html", KidRequestContext(request, template_vars))
+

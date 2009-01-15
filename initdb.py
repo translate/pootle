@@ -69,7 +69,7 @@ def create_default_projects():
   pootle.description = "<div dir='ltr' lang='en'>Interface translations for Pootle. <br /> See the <a href='http://pootle.locamotion.org'>official Pootle server</a> for the translations of Pootle.</div>"
   pootle.checkstyle = "standard"
   pootle.localfiletype = "po"
-  pootle.treestyle = ""
+  pootle.treestyle = "auto"
   pootle.save()
 
   terminology = Project(code=u"terminology")
@@ -77,7 +77,7 @@ def create_default_projects():
   terminology.description = "<div dir='ltr' lang='en'>Terminology project that Pootle should use to suggest terms.<br />There might be useful terminology files on the <a href='http://pootle.locamotion.org/projects/terminology/'>official Pootle server</a>.</div>"
   terminology.checkstyle = "standard"
   terminology.localfiletype = "po"
-  terminology.treestyle = ""
+  terminology.treestyle = "auto"
   terminology.save()
 
 def create_default_languages():

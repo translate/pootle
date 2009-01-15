@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
 from Pootle.templates import pootlepage
+from pootle_app.views.util import form_set_as_table
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
@@ -40,38 +41,11 @@ from Pootle.templates import pootlepage
               <h3 class="title" py:content="text.projects">Projects</h3>
 
               <form action="" method="post" name="projects" id="projects">
+		<div py:if="len(project_formset.errors) > 0" py:content="text.errors_msg">
+		</div>
+		<div py:replace="XML(project_formset.management_form.as_table())"/>
                 <table cellpadding="1" cellspacing="1">
-                  <tr>
-                    <td colspan="1" rowspan="1" py:for="option in options">
-                      <h3 class="title" py:content="option.title">Project Code</h3>
-                    </td>
-                  </tr>
-
-                  <tr py:for="project in projects">
-                    <td colspan="1" rowspan="1"><a href="${project.adminlink}" py:content="project.code">code</a></td>
-
-                    <td colspan="1" rowspan="1" py:for="option in project.options">
-                      <input type="${option.type}" name="${option.name}" value="${option.value}" checked="${option.checked}" py:if="not option.selectoptions"/>
-                       <select name="${option.name}" value="${option.value}" py:if="'selectoptions' in option">
-                          <span py:for="o in option.selectoptions" py:strip="True">
-                            <option py:if="o.value == option.value" selected="selected" value="${o.value}" py:content="o.description"/>
-                            <option py:if="o.value != option.value" value="${o.value}" py:content="o.description"/>
-                          </span>
-                       </select>
-                       <span py:if="'label' in option" py:content="option.label"/>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colspan="1" rowspan="1" style="min-width: 6em;" py:for="option in options">
-                      <span py:if="'newname' in option">
-                        <input type="${option.type}" py:if="not option.selectoptions" value="${option.newvalue}" name="${option.newname}" size="${option.size}"/>
-                        <select name="${option.newname}" value="${option.newvalue}" py:if="'selectoptions' in option">
-                          <option py:for="o in option.selectoptions" value="${o.value}" py:content="o.description"/>
-                        </select>
-                      </span>
-                    </td>
-                  </tr>
+		  <div py:replace="XML(form_set_as_table(project_formset, exclude=['description']))" />		  
                 </table><input type="submit" name="changeprojects" value="${text.savechanges}" />
               </form>
             </div>
