@@ -135,9 +135,6 @@ class PootleIndex(pagelayout.PootlePage):
         "translationlegend": self.gettranslationsummarylegendl10n()
         }
 
-    if request.session.get('message', '') != '':
-      templatevars['message'] = request.session['message']
-      request.session['message'] = ''
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
   def getlanguages(self, request):
@@ -460,7 +457,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     self.rights = self.project.getrights(request.user)
     if "view" not in self.rights:
       raise projects.Rights404Error()
-    message = argdict.get("message", "")
+    message = request.GET.get("message", "")
     if dirfilter == "":
       dirfilter = None
     self.dirfilter = dirfilter

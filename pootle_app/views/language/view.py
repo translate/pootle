@@ -23,12 +23,13 @@ import os
 
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.contrib.auth.decorators import user_passes_test
+from django.utils.translation import ugettext as _
 
 from Pootle import indexpage, pan_app, translatepage, projects, adminpages
 from Pootle.misc.jtoolkit_django import process_django_request_args
 
-from pootle_app.views.util import render_to_kid
-from pootle_app.views.util import render_jtoolkit
+from pootle_app.views.util import render_to_kid, render_jtoolkit
+from pootle_app.views.auth import redirect
 
 def strip_trailing_slash(path):
     """If path ends with a /, strip it and return the stripped version."""
@@ -42,8 +43,7 @@ def check_language(f):
         if language_code == "templates" or pan_app.get_po_tree().haslanguage(language_code):
             return f(request, language_code, *args, **kwargs)
         else:
-            request.session['message'] = "The language %s is not defined for this Pootle installation" % language_code
-            return HttpResponseRedirect('/')
+            return redirect('/', message=_("The language %s is not defined for this Pootle installation" % language_code))
     return decorated_f
 
 def check_project(f):
@@ -51,8 +51,7 @@ def check_project(f):
         if pan_app.get_po_tree().hasproject(language_code, project_code):
             return f(request, language_code, project_code, *args, **kwargs)
         else:
-            request.session['message'] = "The project %s does not exist for the language %s" % (project_code, language_code)
-            return HttpResponseRedirect('/%s' % language_code)
+            return redirect('/%s' % language_code, message=_("The project %s does not exist for the language %s" % (project_code, language_code)))
     return decorated_f
 
 def check_language_and_project(f):
@@ -73,9 +72,7 @@ def translate_page(request, language_code, project_code, dir_path):
             dir_path = ""
         return render_jtoolkit(translatepage.TranslatePage(pan_app.get_po_tree().getproject(language_code, project_code), request, process_django_request_args(request), dir_path))
     except projects.RightsError, msg:
-        request.session['message'] = msg
-        return render_jtoolkit(indexpage.ProjectIndex(pan_app.get_po_tree().getproject(language_code, project_code), 
-                                                      request, process_django_request_args(request)))
+        return redirect('/%s/%s/' % (language_code, project_code), message=msg)
 
 @check_language_and_project
 def project_index(request, language_code, project_code):
@@ -83,8 +80,7 @@ def project_index(request, language_code, project_code):
         return render_jtoolkit(indexpage.ProjectIndex(pan_app.get_po_tree().getproject(language_code, project_code),
                                                       request, process_django_request_args(request)))
     except projects.RightsError, msg:
-        request.session['message'] = msg
-        return render_jtoolkit(indexpage.PootleIndex(request))
+        return redirect('/%s/%s/' % (language_code, project_code), message=msg)
 
 def handle_translation_file(request, arg_dict, project, language_code, project_code, file_path):
     # Don't get confused here. request.GET contains HTTP
@@ -99,8 +95,7 @@ def handle_translation_file(request, arg_dict, project, language_code, project_c
                 dirfilter = os.path.join(*pathwords[:-1])
             else:
                 dirfilter = ""
-            request.session['message'] = stoppedby
-            return indexpage.ProjectIndex(project, request, process_django_request_args(request), dirfilter=dirfilter)
+            return redirect('/%s/%s/' % (language_code, project_code), message=stoppedby)
     # Don't get confused here. request.GET contains HTTP
     # GET vars while get is a dictionary method
     elif request.GET.get("index", 0):
@@ -117,8 +112,7 @@ def handle_alternative_format(request, project, language_code, project_code, fil
     extension = extension[1:]
     if extension == "mo":
         if not "pocompile" in project.getrights(request.user):
-            request.session['message'] = 'You do not have the right to create MO files.'
-            return HttpResponseRedirect('/%s/%s' % (language_code, project_code))
+            return redirect('/%s/%s' % (language_code, project_code), message=_('You do not have the right to create MO files.'))
     etag, filepath_or_contents = project.convert(pofilename, extension)
     if etag:
         contents = open(filepath_or_contents).read()
@@ -139,8 +133,7 @@ def handle_alternative_format(request, project, language_code, project_code, fil
 
 def handle_zip(request, arg_dict, project, language_code, project_code, file_path):
     if not "archive" in project.getrights(request.user):
-        request.session['message'] = 'You do not have the right to create ZIP archives.'
-        return HttpResponseRedirect('/%s/%s' % (language_code, project_code))
+        return redirect('/%s/%s' % (language_code, project_code), message=_('You do not have the right to create ZIP archives.'))
     pathwords = file_path.split(os.sep)
     if len(pathwords) > 1:
         pathwords = file_path.split(os.sep)
@@ -160,8 +153,7 @@ def handle_zip(request, arg_dict, project, language_code, project_code, file_pat
 
 def handle_sdf(request, project, language_code, project_code, file_path):
     if not "pocompile" in project.getrights(request.user):
-        request.session['message'] = 'You do not have the right to create SDF files.'
-        return HttpResponseRedirect('/%s/%s' % (language_code, project_code))
+        return redirect('/%s/%s' % (language_code, project_code), message=_('You do not have the right to create SDF files.'))
     return HttpResponse(project.getoo(), content_type="text/tab-seperated-values")
 
 @check_language_and_project

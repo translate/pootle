@@ -127,13 +127,7 @@ def completetemplatevars(templatevars, request, bannerheight=135):
   if "search" not in templatevars:
     templatevars["search"] = None
 
-  # Messaging system
-  if "message" not in templatevars or len(templatevars['message']) == 0:
-    templatevars['message'] = ''
-  else:
-    templatevars['message'] = templatevars['message'] + '<br />'
-  for message in get_profile(request.user).get_messages():
-    templatevars['message'] = templatevars['message'] + message + '<br />'
+  templatevars['message'] = request.GET.get('message', '')
 
 class PootlePage:
   """the main page"""

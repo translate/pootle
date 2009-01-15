@@ -53,12 +53,10 @@ def options(request):
         user_form = UserForm(instance=request.user)
         profile_form = PootleProfileForm(instance=get_profile(request.user))
       
-    message = request.session.get('message', '')
-    request.session['message'] = ''
-    template_vars = {"pagetitle":      localize("Options for: %s", request.user.username),
-                     "introtext":      message,
-                     "detailstitle":   localize("Personal Details"),
-                     "fullname_title": localize("Name"),
+    template_vars = {"pagetitle":      _("Options for: %s") % request.user.username,
+                     "introtext":      "TBD",
+                     "detailstitle":   _("Personal Details"),
+                     "fullname_title": _("Name"),
                      "user_form":      user_form,
                      "profile_form":   profile_form }
 
