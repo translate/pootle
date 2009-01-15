@@ -4,19 +4,20 @@ from django import forms
 from django.forms import ModelForm
 from django.forms.models import inlineformset_factory
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext as _
+from django.contrib.auth import decorators
 
 from Pootle import pagelayout, pan_app, indexpage
 from pootle_app.models import get_profile, PootleProfile
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.views.util import render_jtoolkit
-from Pootle.i18n.jtoolkit_i18n import localize
 from Pootle.i18n import gettext
+from pootle_app.views.auth import redirect
 
 def user_is_authenticated(f):
     def decorated_f(request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            request.message = localize("You need to log in to access your home page")
-            return HttpResponseRedirect('/login') # TODO: Hardcoding is awful. Fix this.
+        if not request.user.is_authenticated():
+            return redirect('/login.html', message=_("You need to log in to access your home page"))
         else:
             return f(request, *args, **kwargs)
     return decorated_f

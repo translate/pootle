@@ -1,8 +1,10 @@
+import urllib
 
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.conf import settings
+from django.http import HttpResponseRedirect
 
 from Pootle import pan_app
 
@@ -57,3 +59,8 @@ def logout(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+def redirect(url, **kwargs):
+    if len(kwargs) > 0:
+        return HttpResponseRedirect('%s?%s' % (url, urllib.urlencode(kwargs)))
+    else:
+        return HttpResponseRedirect(url)

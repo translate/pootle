@@ -2,23 +2,21 @@ from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
 from django import forms
 from django.forms.models import modelformset_factory, BaseModelFormSet
+from django.utils.translation import ugettext as _
 
 from jToolkit import prefs
 
 from Pootle import pan_app, adminpages
 from pootle_app.views.util import render_jtoolkit, render_to_kid, KidRequestContext
 from pootle_app.models import Language
-from Pootle.i18n.jtoolkit_i18n import localize
-from pootle_app.views.util import form_set_as_table
+from pootle_app.views.auth import redirect
 
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_authenticated:
-            request.message = localize("You must log in to administer Pootle.")
-            return HttpResponseRedirect('/login') # TODO: Hardcoding is awful. Fix this.
+            return redirect('/login', message=_("You must log in to administer Pootle."))
         elif not request.user.is_superuser:
-            request.message = localize("You do not have the rights to administer Pootle.")
-            return HttpResponseRedirect('/home') # TODO: Hardcoding is awful. Fix this.
+            return redirect('/home', message=_("You do not have the rights to administer Pootle.")) 
         else:
             return f(request, *args, **kwargs)
     return decorated_f
@@ -66,13 +64,13 @@ def languages(request):
     else:
         language_formset = LanguageFormSet(queryset=Language.objects.all())
 
-    template_vars = {"pagetitle":        localize("Pootle Languages Admin Page"),
+    template_vars = {"pagetitle":        _("Pootle Languages Admin Page"),
                      "language_formset": language_formset,
-                     "text":             {"home":        localize("Home"),
-                                          "admin":       localize("Main admin page"),
-                                          "projects":    localize("Projects"), 
-                                          "savechanges": localize("Save changes"),
-                                          "errors_msg":  localize("There are errors in the form. Please review the problems below.")}}
+                     "text":             {"home":        _("Home"),
+                                          "admin":       _("Main admin page"),
+                                          "projects":    _("Projects"), 
+                                          "savechanges": _("Save changes"),
+                                          "errors_msg":  _("There are errors in the form. Please review the problems below.")}}
 
     return render_to_kid("adminlanguages.html", KidRequestContext(request, template_vars))
 
