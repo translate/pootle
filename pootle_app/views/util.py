@@ -1,10 +1,13 @@
 import os
 from os import path
+import mimetypes
 import kid
+
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.forms.util import ErrorList
+
 from jToolkit.web import server
 from jToolkit.widgets import widgets
-import mimetypes
 
 from Pootle.pagelayout import completetemplatevars
 
@@ -85,3 +88,53 @@ class KidRequestContext(dict):
         self.update(context)
         completetemplatevars(self, req)
 
+def form_set_as_table(formset, exclude=()):
+    """Create an HTML table from the formset. The first form in the formset is
+    used to obtain a list of the fields that need to be displayed. All these
+    fields not appearing in 'exclude' will be placed into consecutive columns.
+
+    Errors, if there are any, appear in the row above the form which triggered
+    any errors.
+
+    If the forms are based on database models, the order of the columns is
+    determined by the order of the fields in the model specification."""
+    def get_fields(formset, exclude):
+        exclude = set(exclude)
+        exclude.add('id')
+        form = formset.forms[0]
+        return [field for field in form.fields.keys() if field not in exclude]
+
+    def add_header(result, fields, form):
+        result.append('<tr>\n')
+        for field in fields:
+            result.append('<th>')
+            result.append(unicode(form.fields[field].label))
+            result.append('</th>\n')
+        result.append('</tr>\n')
+
+    def add_errors(result, fields, form):
+        # If the form has errors, then we'll add a table row with the
+        # errors.
+        if len(form.errors) > 0:
+            result.append('<tr>\n')
+            for field in fields:
+                result.append('<td>')
+                result.append(form.errors.get(field, ErrorList()).as_ul())
+                result.append('</td>\n')
+            result.append('</tr>\n')
+
+    def add_widgets(result, fields, form):
+        result.append('<tr>\n')
+        for field in fields:
+            result.append('<td>')
+            result.append(unicode(form[field]))
+            result.append('</td>\n')
+        result.append('</tr>\n')
+
+    result = []
+    fields = get_fields(formset, exclude)
+    add_header(result, fields, formset.forms[0])
+    for form in formset.forms:
+        add_errors(result, fields, form)
+        add_widgets(result, fields, form)
+    return u''.join(result)

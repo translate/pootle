@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models, connection, backend
+from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User, Permission
 try:
@@ -69,10 +70,10 @@ class Language(models.Model):
     nplural_choices = ((0, u'unknown'), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
 
     code           = models.CharField(max_length=50, null=False, unique=True, db_index=True, help_text=code_help_text)
-    fullname       = models.CharField(max_length=255, null=False)
-    nplurals       = models.SmallIntegerField(default=0, choices=nplural_choices, help_text=nplurals_help_text)
-    pluralequation = models.CharField(max_length=255, blank=True, help_text=pluralequation_help_text)
-    specialchars   = models.CharField(max_length=255, blank=True, help_text=specialchars_help_text)
+    fullname       = models.CharField(max_length=255, null=False, verbose_name=_("Full Name"))
+    specialchars   = models.CharField(max_length=255, blank=True, verbose_name=_("Special Chars"), help_text=specialchars_help_text)
+    nplurals       = models.SmallIntegerField(default=0, choices=nplural_choices, verbose_name=_("Number of Plurals"), help_text=nplurals_help_text)
+    pluralequation = models.CharField(max_length=255, blank=True, verbose_name=_("Plural Equation"), help_text=pluralequation_help_text)
 
     objects = LanguageManager()
 
@@ -122,7 +123,7 @@ class Project(models.Model):
     )
 
     code           = models.CharField(max_length=255, null=False, unique=True, db_index=True, help_text=code_help_text)
-    fullname       = models.CharField(max_length=255, null=False)
+    fullname       = models.CharField(max_length=255, null=False, verbose_name=_("Full name"))
     description    = models.TextField(blank=True, help_text=description_help_text)
     checkstyle     = models.CharField(max_length=50, default='standard', null=False, choices=checker_choices)
     localfiletype  = models.CharField(max_length=50, default="po", choices=local_choices)

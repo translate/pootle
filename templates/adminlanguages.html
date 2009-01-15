@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
 from Pootle.templates import pootlepage
+from pootle_app.views.util import form_set_as_table
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
@@ -40,28 +41,13 @@ from Pootle.templates import pootlepage
               <h3 class="title" py:content="text.languages">Languages</h3>
 
               <form action="" method="post" name="languages" id="languages">
-                <table cellpadding="1" cellspacing="1">
-                  <tr>
-                    <td colspan="1" rowspan="1" py:for="option in options">
-                      <h3 class="title" py:content="option.title">ISO Code</h3>
-                    </td>
-                  </tr>
-
-                  <tr py:for="language in languages">
-                    <td colspan="1" rowspan="1" py:content="language.code">code</td>
-
-                    <td colspan="1" rowspan="1" py:for="option in language.options">
-                       <input name="${option.name}" type="${option.type}" value="${option.value}"/>
-                       <span py:if="option.label" py:content="option.label"/>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colspan="1" rowspan="1" style="min-width: 6em;" py:for="option in options">
-                      <input type="text" py:if="option.newname" name="${option.newname}" value="${option.newvalue}" size="${option.size}"/>
-                    </td>
-                  </tr>
-                </table><input type="submit" name="changelanguages" value="${text.savechanges}" />
+		<div py:if="len(language_formset.errors) > 0" py:content="text.errors_msg">
+		</div>
+		<div py:replace="XML(language_formset.management_form.as_table())"/>
+		<table cellpadding="1" cellspacing="1">
+		  <div py:replace="XML(form_set_as_table(language_formset))" />
+                </table>
+		<input type="submit" name="changelanguages" value="${text.savechanges}" />
               </form>
             </div>
           </div>
@@ -85,6 +71,5 @@ from Pootle.templates import pootlepage
   <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
   <![endif]-->
-
 </body>
 </html>
