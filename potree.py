@@ -52,7 +52,7 @@ def update_project(project_code, f):
 class POTree:
   """Manages the tree of projects and languages"""
   def __init__(self):
-    if not self.haslanguage("templates"):
+    if not Language.objects.has_templates_project():
       newlang = Language(code="templates", fullname=u"Templates")
       newlang.save()
       self.saveprefs()

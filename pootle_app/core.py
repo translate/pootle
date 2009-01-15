@@ -48,15 +48,38 @@ class LanguageManager(models.Manager):
                   'language_id':         primary_key_name(Language),
                   'submission_language': field_name(Submission, 'language')}
 
+        # Note that we specifically exclude the templates project
         query = """SELECT   %(language_code)s, %(language_name)s, MIN(%(creation_time)s)
                    FROM     %(language_table)s LEFT OUTER JOIN %(submission_table)s
                             ON %(language_id)s = %(submission_language)s
+                   WHERE    %(language_code)s <> 'templates'
                    GROUP BY %(language_name)s
                    ORDER BY %(language_code)s""" % fields
 
         cursor = connection.cursor()
         cursor.execute(query)
         return cursor.fetchall()
+
+    # The following methods prevent the templates project from being
+    # returned by normal queries on the Language table.
+    def all(self):
+        return super(LanguageManager, self).exclude(code='templates')
+
+    def filter(self, *args, **kwargs):
+        return self.all().filter(*args, **kwargs)
+
+    def order_by(self, *args, **kwargs):
+        return self.all().order_by(*args, **kwargs)
+
+    def exclude(self, *args, **kwargs):
+        return self.all().exclude(*args, **kwargs)
+
+    # Special method to get hold of the templates language object
+    def templates_project(self):
+        return super(LanguageManager, self).get(code='templates')
+
+    def has_templates_project(self):
+        return super(LanguageManager, self).filter(code='templates').count() > 0
 
 class Language(models.Model):
     class Meta:
