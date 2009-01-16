@@ -23,9 +23,12 @@ from django.conf.urls.defaults import *
 import view
 
 urlpatterns = patterns('',
-    (r'users.html$',     view.users),
-    (r'languages.html$', view.languages),
-    (r'projects.html$',  view.projects),
+    (r'users.html$',     view.edit, {'template': 'adminusers.html',     'model_class': view.User, 
+                                     'fields': ('username', 'first_name', 'last_name', 'email', 'is_active'),
+                                     'can_delete': True}),
+    (r'languages.html$', view.edit, {'template': 'adminlanguages.html', 'model_class': view.Language, 'can_delete': True }),
+    (r'projects.html$',  view.edit, {'template': 'adminprojects.html',  'model_class': view.Project,  
+                                     'exclude': ('description'),
+                                     'can_delete': True  }),
     (r'(/|index.html)?$',  view.index),
 )
-

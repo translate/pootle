@@ -41,11 +41,11 @@ from pootle_app.views.util import form_set_as_table
               <h3 class="title" py:content="text.projects">Projects</h3>
 
               <form action="" method="post" name="projects" id="projects">
-		<div py:if="len(project_formset.errors) > 0" py:content="text.errors_msg">
+		<div py:content="text.error_msg">
 		</div>
-		<div py:replace="XML(project_formset.management_form.as_table())"/>
+		<div py:replace="XML(formset.management_form.as_table())"/>
                 <table cellpadding="1" cellspacing="1">
-		  <div py:replace="XML(form_set_as_table(project_formset, exclude=['description']))" />		  
+		  <div py:replace="XML(form_set_as_table(formset))" />
                 </table><input type="submit" name="changeprojects" value="${text.savechanges}" />
               </form>
             </div>
