@@ -60,26 +60,17 @@ class LanguageManager(models.Manager):
         cursor.execute(query)
         return cursor.fetchall()
 
-    # The following methods prevent the templates project from being
+    # The following method prevents the templates project from being
     # returned by normal queries on the Language table.
-    def all(self):
-        return super(LanguageManager, self).exclude(code='templates')
-
-    def filter(self, *args, **kwargs):
-        return self.all().filter(*args, **kwargs)
-
-    def order_by(self, *args, **kwargs):
-        return self.all().order_by(*args, **kwargs)
-
-    def exclude(self, *args, **kwargs):
-        return self.all().exclude(*args, **kwargs)
+    def get_query_set(self):
+        return super(LanguageManager, self).get_query_set().exclude(code='templates')
 
     # Special method to get hold of the templates language object
     def templates_project(self):
-        return super(LanguageManager, self).get(code='templates')
+        return super(LanguageManager, self).get_query_set().get(code='templates')
 
     def has_templates_project(self):
-        return super(LanguageManager, self).filter(code='templates').count() > 0
+        return super(LanguageManager, self).get_query_set().filter(code='templates').count() > 0
 
 class Language(models.Model):
     class Meta:
