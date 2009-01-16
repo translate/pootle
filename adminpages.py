@@ -225,9 +225,9 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     adduser_text = localize("(select to add user)")
     rights_title = localize("Rights")
     remove_title = localize("Remove")
-    nobodyrights = self.project.getrights(User.objects.get(username='nobody'))
+    nobodyrights = self.project.getrights(User.objects.get_nobody_user())
     nobody_dict = self.getuserdict("nobody", delete=False)
-    defaultrights = self.project.getrights(User.objects.get(username='default'))
+    defaultrights = self.project.getrights(User.objects.get_default_user())
     default_dict = self.getuserdict("default", delete=False)
     users_with_rights = ["nobody", "default"]
     rights = {"nobody": nobodyrights, "default": defaultrights}

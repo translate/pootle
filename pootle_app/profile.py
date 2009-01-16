@@ -20,10 +20,27 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models
-from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.contrib.auth.admin import UserAdmin
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
+
+class PootleUserManager(UserManager):
+    """A manager class which is meant to replace the manager class for the User model. This manager
+    hides the 'nobody' and 'default' users for normal queries, since they are special users. Code
+    that needs access to these users should use the methods get_default_user and get_nobody_user."""
+    def get_query_set(self):
+        return super(PootleUserManager, self).get_query_set().exclude(username__in=('nobody', 'default'))
+
+    def get_default_user(self):
+        return super(PootleUserManager, self).get_query_set().select_related(depth=1).get(username='default')
+
+    def get_nobody_user(self):
+        return super(PootleUserManager, self).get_query_set().select_related(depth=1).get(username='nobody')
+
+# Since PootleUserManager has no state, we can just replace the User manager's class with PootleUserManager
+# to get the desired functionality.
+User.objects.__class__ = PootleUserManager
 
 class PootleProfile(models.Model):
     # This is the only required field

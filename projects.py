@@ -248,7 +248,7 @@ class TranslationProject(object):
         # (see the return statement below) very fast.
         user_right = db_translation_project.right_set.select_related(depth=1).get(profile=get_profile(user))
       else:
-        user_right = db_translation_project.right_set.select_related(depth=1).get(profile=get_profile(User.objects.get(username="nobody")))
+        user_right = db_translation_project.right_set.select_related(depth=1).get(profile=get_profile(User.objects.get_nobody_user()))
       return [perm.codename for perm in user_right.permissions.all()]
 
     def check_for_admin(rights):
@@ -266,7 +266,7 @@ class TranslationProject(object):
     except Right.DoesNotExist:
       if usedefaults:
         # Return the default rights
-        return check_for_admin(get_rights(User.objects.select_related(depth=1).get(username="default")))
+        return check_for_admin(get_rights(User.objects.get_default_user()))
       else:
         return None
 
