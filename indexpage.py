@@ -139,14 +139,14 @@ class PootleIndex(pagelayout.PootlePage):
 
   def getlanguages(self, request):
     languages = []
-    for (langcode, langname, recentsub) in Language.objects.get_latest_changes():
-      projectcodes = self.potree.getprojectcodes(langcode)
+    for language in Language.objects.get_latest_changes():
+      projectcodes = self.potree.getprojectcodes(language.code)
       trans = 0
       fuzzy = 0
       total = 0
       viewable = False
       for projectcode in projectcodes:
-        project = self.potree.getproject(langcode, projectcode)
+        project = self.potree.getproject(language.code, projectcode)
         stats = project.getquickstats()
         trans += stats['translatedsourcewords']
         fuzzy += stats['fuzzysourcewords']
@@ -164,30 +164,30 @@ class PootleIndex(pagelayout.PootlePage):
         untransper = 0 
 
       lastact = ""
-      if recentsub != None:
-        lastact = recentsub
+      if language.latest_change != None:
+        lastact = language.latest_change
 
       if viewable:
-        languages.append({"code": langcode, "name": tr_lang(langname), "lastactivity": lastact, "trans": trans, "fuzzy": fuzzy, "untrans": untrans, "total": total, "transper": transper, "fuzzyper": fuzzyper, "untransper": untransper}) 
+        languages.append({"code": language.code, "name": tr_lang(language.fullname), "lastactivity": lastact, "trans": trans, "fuzzy": fuzzy, "untrans": untrans, "total": total, "transper": transper, "fuzzyper": fuzzyper, "untransper": untransper}) 
     languages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
     return languages
 
   def getprojects(self, request):
     """gets the options for the projects"""
     projects = []
-    for (projectcode, recentsub) in Project.objects.get_latest_changes():
-      langcodes = self.potree.getlanguagecodes(projectcode)
+    for project in Project.objects.get_latest_changes():
+      langcodes = self.potree.getlanguagecodes(project.code, project=project)
       trans = 0
       fuzzy = 0
       total = 0
       viewable = False
       for langcode in langcodes:
-        project = self.potree.getproject(langcode, projectcode)
-        stats = project.getquickstats()
+        translation_project = self.potree.getproject(langcode, project.code)
+        stats = translation_project.getquickstats()
         trans += stats['translatedsourcewords']
         fuzzy += stats['fuzzysourcewords']
         total += stats['totalsourcewords']
-        rights = project.getrights(request.user)
+        rights = translation_project.getrights(request.user)
         viewable = viewable or ("view" in rights)
       untrans = total-trans-fuzzy
       try:
@@ -198,15 +198,13 @@ class PootleIndex(pagelayout.PootlePage):
         transper = 100
         fuzzyper = 0 
         untransper = 0 
-      projectname = self.potree.getprojectname(projectcode)
-      description = shortdescription(self.potree.getprojectdescription(projectcode))
       
       lastact = ""
-      if recentsub != None:
-        lastact = recentsub
+      if project.latest_change != None:
+        lastact = project.latest_change
       
       if viewable:
-        projects.append({"code": projectcode, "name": projectname, "description": description, "lastactivity": lastact, "trans": trans, "fuzzy": fuzzy, "untrans": untrans, "total": total, "transper": transper, "fuzzyper": fuzzyper, "untransper": untransper})
+        projects.append({"code": project.code, "name": project.fullname, "description": project.description, "lastactivity": lastact, "trans": trans, "fuzzy": fuzzy, "untrans": untrans, "total": total, "transper": transper, "fuzzyper": fuzzyper, "untransper": untransper})
     return projects
 
   def getprojectnames(self):

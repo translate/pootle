@@ -38,7 +38,51 @@ def field_name(table, field_name):
 def primary_key_name(table):
     return field_name(table, table._meta.pk.name)
 
+def unzip(lst):
+    left_lst = []
+    right_lst = []
+    for left, right in lst:
+        left_lst.append(left)
+        right_lst.append(right)
+    return left_lst, right_lst
+
+def get_latest_changes(manager, query):
+    """manager is a Django model manager and query is a raw SQL query
+    which returns a 2-tuple of object ids and modification times.
+
+    This function returns a list of the Django objects corresponding
+    to the ids and assings the modification times for each object to
+    the attribute 'latest_change'.
+    """
+    cursor = connection.cursor()
+    cursor.execute(query)
+    # cursor.fetchall() gives a (object id, creation time) 2-tuple
+    # which we unzip to two lists. 
+    ids, latest_changes = unzip(cursor.fetchall())
+    # Use the supplied manager's in_bulk operation to get an
+    # id->object map where the objects are the Django models
+    # corresponding the to the ids.
+    id_obj_map = manager.in_bulk(ids)
+    # Build a list of objects using by extracting values from
+    # from id_obj_map in the order of the ids in 'ids'
+    objs = [id_obj_map[id] for id in ids]
+    # For each object in 'objs', assign its creation time
+    # to the attribute 'latest_change'
+    for obj, latest_change in zip(objs, latest_changes):
+        obj.latest_change = latest_change
+    return objs
+
 class LanguageManager(models.Manager):
+    # Note that we specifically exclude the templates project
+    get_latest_changes_query = """
+        SELECT   %(language_id)s, MIN(%(creation_time)s)
+        FROM     %(language_table)s LEFT OUTER JOIN %(submission_table)s
+                 ON %(language_id)s = %(submission_language)s
+        WHERE    %(language_code)s <> 'templates'
+        GROUP BY %(language_name)s
+        ORDER BY %(language_code)s
+    """
+    
     def get_latest_changes(self):
         fields = {'language_code':       field_name(Language, 'code'),
                   'language_name':       field_name(Language, 'fullname'),
@@ -48,17 +92,7 @@ class LanguageManager(models.Manager):
                   'language_id':         primary_key_name(Language),
                   'submission_language': field_name(Submission, 'language')}
 
-        # Note that we specifically exclude the templates project
-        query = """SELECT   %(language_code)s, %(language_name)s, MIN(%(creation_time)s)
-                   FROM     %(language_table)s LEFT OUTER JOIN %(submission_table)s
-                            ON %(language_id)s = %(submission_language)s
-                   WHERE    %(language_code)s <> 'templates'
-                   GROUP BY %(language_name)s
-                   ORDER BY %(language_code)s""" % fields
-
-        cursor = connection.cursor()
-        cursor.execute(query)
-        return cursor.fetchall()
+        return get_latest_changes(self, self.get_latest_changes_query % fields)
 
     # The following method prevents the templates project from being
     # returned by normal queries on the Language table.
@@ -95,24 +129,24 @@ class Language(models.Model):
         return self.fullname
 
 class ProjectManager(models.Manager):
+    get_latest_changes_query = """
+        SELECT   %(project_id)s, MIN(%(creation_time)s)
+        FROM     %(project_table)s LEFT OUTER JOIN %(submission_table)s
+                 ON %(project_id)s = %(submission_project)s
+        GROUP BY %(project_name)s
+        ORDER BY %(project_code)s
+    """
+
     def get_latest_changes(self):
-        fields = {'project_code':        field_name(Project, 'code'),
-                  'creation_time':       field_name(Submission, 'creation_time'),
-                  'project_table':       table_name(Project),
-                  'submission_table':    table_name(Submission),
-                  'project_id':          primary_key_name(Project),
-                  'submission_project':  field_name(Submission, 'project'),
-                  'project_name':        field_name(Project, 'fullname')}
+        fields =  {'project_code':        field_name(Project, 'code'),
+                   'creation_time':       field_name(Submission, 'creation_time'),
+                   'project_table':       table_name(Project),
+                   'submission_table':    table_name(Submission),
+                    'project_id':          primary_key_name(Project),
+                   'submission_project':  field_name(Submission, 'project'),
+                   'project_name':        field_name(Project, 'fullname')}
 
-        query = """SELECT   %(project_code)s, MIN(%(creation_time)s)
-                   FROM     %(project_table)s LEFT OUTER JOIN %(submission_table)s
-                            ON %(project_id)s = %(submission_project)s
-                   GROUP BY %(project_name)s
-                   ORDER BY %(project_code)s""" % fields
-
-        cursor = connection.cursor()
-        cursor.execute(query)
-        return cursor.fetchall()
+        return get_latest_changes(self, self.get_latest_changes_query % fields)
 
 class Project(models.Model):
     class Meta:
@@ -166,14 +200,6 @@ class Right(models.Model):
     profile             = models.ForeignKey(PootleProfile, db_index=True)
     translation_project = models.ForeignKey(TranslationProject, db_index=True)
     permissions         = models.ManyToManyField(Permission)
-
-def unzip(lst):
-    left_lst = []
-    right_lst = []
-    for left, right in lst:
-        left_lst.append(left)
-        right_lst.append(right)
-    return left_lst, right_lst
 
 def _do_query(query, replacements, fields, params=()):
     all_fields = fields.copy()

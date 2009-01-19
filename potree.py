@@ -244,7 +244,7 @@ class POTree:
         subdirs = set(fn for fn in os.listdir(projectdir) if os.path.isdir(os.path.join(projectdir, fn)))
         return [lang for lang in Language.objects.order_by('code') if lang.code in subdirs]
 
-  def getlanguagecodes(self, projectcode=None):
+  def getlanguagecodes(self, projectcode=None, project=None):
     """returns a list of valid languagecodes for a given project or all projects"""
     # TODO: Add a method to LanguageManager which invokes custom SQL to
     #       to get only the language code column.
@@ -256,7 +256,7 @@ class POTree:
       if not os.path.exists(projectdir):
         return []
       if self.isgnustyle(projectcode):
-        languagecodes = [languagecode for languagecode in alllanguagecodes if self.hasproject(languagecode, projectcode)]
+        languagecodes = [languagecode for languagecode in alllanguagecodes if self.hasproject(languagecode, projectcode, project=project)]
       else:
         subdirs = [fn for fn in os.listdir(projectdir) if os.path.isdir(os.path.join(projectdir, fn))]
         languagecodes = []
@@ -293,16 +293,16 @@ class POTree:
           return False
       return [project.code for project in projects if has_project(languagecode, project)]
 
-  def hasproject(self, languagecode, projectcode):
+  def hasproject(self, languagecode, projectcode, project=None):
     """returns whether the project exists for the language"""
-    if not self.hasprojectcode(projectcode):
+    if project is None and not self.hasprojectcode(projectcode):
       return False
     if languagecode is None:
       return True
     if not self.haslanguage(languagecode):
       return False
     try:
-      self.getpodir(languagecode, projectcode)
+      self.getpodir(languagecode, projectcode, project=project)
       return True
     except IndexError:
       return False
