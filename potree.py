@@ -281,11 +281,17 @@ class POTree:
 
   def getprojectcodes(self, languagecode=None):
     """returns a list of project codes that are valid for the given languagecode or all projects"""
-    projectcodes = [proj.code for proj in Project.objects.all()]
+    projects = Project.objects.all()
     if languagecode is None:
-      return projectcodes
+      return [proj.code for proj in projectcodes]
     else:
-      return [projectcode for projectcode in projectcodes if self.hasproject(languagecode, projectcode)]
+      def has_project(languagecode, project):
+        try:
+          self.getpodir(languagecode, project.code, project=project)
+          return True
+        except IndexError:
+          return False
+      return [project.code for project in projects if has_project(languagecode, project)]
 
   def hasproject(self, languagecode, projectcode):
     """returns whether the project exists for the language"""
@@ -397,8 +403,23 @@ class POTree:
     """sets whether the project builds MO files"""
     update_project(projectcode, lambda proj: setattr(proj, "createmofiles", createmofiles))
 
-  def hasgnufiles(self, podir, languagecode=None, depth=0, maxdepth=3, poext="po"):
+  def hasgnufiles(self, podir, languagecode=None, depth=0, maxdepth=3, poext="po", project=None):
     """returns whether this directory contains gnu-style PO filenames for the given language"""
+    # TODO: Major ugliness to see in the 'project' parameter. This was
+    # also added as an optional parameter to some functions in the
+    # call chain leading to hasgnufiles. We do this, because often,
+    # somewhere further up in the stack, we've already obtained a list
+    # of our Project objects (using something like
+    # Project.objects.all()), and then we step all the way down into a
+    # function like hasgnufiles only to do a bunch of individual
+    # Project.objects.get queries. Doing O(n) individual queries to a
+    # database is sloooooooooooooooooow. So we give the calling code
+    # the opportunity to pass the project through the call stack so
+    # that we can use it directly, instead of having to do a DB query.
+    #
+    # So, what TODO? Well, eventually we should replace all
+    # languagecode and projectcode parameters with actual language and
+    # project objects.
     try:
       if (podir.startswith(self.podirectory)):
         def getprojectcode(podir=podir):
@@ -409,7 +430,18 @@ class POTree:
           else:
             projectcode = dirs[1]
           return projectcode
-        style = Project.objects.get(code=projectcode).treestyle
+
+        def get_project():
+          project_code = getprojectcode()
+          # If we've been passed a project and its code matches
+          # that computed by getprojectcode, then we don't have
+          # to query the database! Simply return project.
+          if project is not None and project.code == project_code:
+            return project
+          else:
+            return Project.objects.get(code=project_code)
+
+        style = get_project().treestyle
         if    style == "gnu"    \
            or style == "nongnu":
           return style
@@ -440,7 +472,7 @@ class POTree:
           return "nongnu"
     if depth < maxdepth:
       for subdir in subdirs:
-        style = self.hasgnufiles(subdir, languagecode, depth+1, maxdepth)
+        style = self.hasgnufiles(subdir, languagecode, depth+1, maxdepth, project=project)
         if style == "nongnu":
           return "nongnu"
         if style == "gnu":
@@ -472,7 +504,7 @@ class POTree:
           return project.code, language.code
     return None, None
 
-  def getpodir(self, languagecode, projectcode):
+  def getpodir(self, languagecode, projectcode, project=None):
     """returns the base directory containing po files for the project"""
     projectdir = os.path.join(self.podirectory, projectcode)
     if not os.path.exists(projectdir):
@@ -482,7 +514,7 @@ class POTree:
       languagedirs = [languagedir for languagedir in os.listdir(projectdir) if self.languagematch(languagecode, languagedir)]
       if not languagedirs:
         # if no matching directories can be found, check if it is a GNU-style project
-        if self.hasgnufiles(projectdir, languagecode) == "gnu":
+        if self.hasgnufiles(projectdir, languagecode, project=project) == "gnu":
           return projectdir
         raise IndexError("directory not found for language %s, project %s" % (languagecode, projectcode))
       # TODO: handle multiple regions
@@ -495,7 +527,7 @@ class POTree:
     """matches a languagecode to another, ignoring regions in the second"""
     return langdata.languagematch(languagecode, otherlanguagecode)
 
-  def getpofiles(self, languagecode, projectcode, poext="po"):
+  def getpofiles(self, languagecode, projectcode, poext="po", project=None):
     """returns a list of po files for the project and language"""
     pofilenames = []
     prefix = os.curdir + os.sep
@@ -527,7 +559,7 @@ class POTree:
       pofilenames.extend([os.path.join(basedirname, poname) for poname in ponames])
 
     podir = self.getpodir(languagecode, projectcode)
-    if self.hasgnufiles(podir, languagecode) == "gnu":
+    if self.hasgnufiles(podir, languagecode, project=project) == "gnu":
       os.path.walk(podir, addgnufiles, podir)
     else:
       pwd = os.path.abspath(os.curdir)
@@ -571,7 +603,7 @@ class DummyPoTree:
         return ""
     def getpodir(self, languagecode, projectcode):
         return self.podirectory
-    def hasgnufiles(self, podir, languagecode):
+    def hasgnufiles(self, podir, languagecode, project=None):
         return False
     def getprojectcreatemofiles(self, projectcode):
         return False

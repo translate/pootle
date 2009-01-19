@@ -556,7 +556,7 @@ class TranslationProject(object):
 
   def scanpofiles(self):
     """sets the list of pofilenames by scanning the project directory"""
-    self.pofilenames = pan_app.get_po_tree().getpofiles(self.languagecode, self.projectcode, poext=self.fileext)
+    self.pofilenames = pan_app.get_po_tree().getpofiles(self.languagecode, self.projectcode, poext=self.fileext, project=self.project)
     filename_set = set(self.pofilenames)
     pootlefile_set = set(self.pofiles.keys())
     # add any files that we don't have yet
