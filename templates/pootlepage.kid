@@ -73,8 +73,12 @@
 		    <div py:content="XML(AuthenticationForm(None).as_table())" />
 		</table>
                 <p>
-                    <input type="submit" name="Login" value="${login_text}" />
-                    <!--<input type="submit" name="doregister" value="${register_text}" py:if="canregister" />-->
+		  <table align="right">
+                    <tr>
+		      <td><a href="/register.html"><span py:replace="register_text" /></a>&nbsp;&nbsp;</td>
+		      <td><input type="submit" name="Login" value="${login_text}" /></td>
+		    </tr>
+		  </table>
                 </p>
                 <input type="hidden" name="islogin" value="true" /> 
             </form>
