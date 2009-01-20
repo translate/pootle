@@ -125,8 +125,27 @@ PODIRECTORY = pootle_home('po')
 
 # Use the commented definition to authenticate first with Mozilla's LDAP system and then to fall back
 # to Django's authentication system.
-# AUTHENTICATION_BACKENDS = ('Pootle.auth.MozillaLdapBackend', 'django.contrib.auth.backends.ModelBackend',)
+#AUTHENTICATION_BACKENDS = ('auth.ldap_backend.LdapBackend', 'django.contrib.auth.backends.ModelBackend',)
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+# LDAP Setup
+# The LDAP server.  Format:  protocol://hostname:port
+AUTH_LDAP_SERVER = ''
+# Anonymous Credentials
+AUTH_LDAP_ANON_DN = ''
+AUTH_LDAP_ANON_PASS = ''
+# Base DN to search
+AUTH_LDAP_BASE_DN = ''
+# What are we filtering on?  %s will be the username (must be in the string)
+AUTH_LDAP_FILTER = ''
+# This is a mapping of pootle field names to LDAP fields.  The key is pootle's name, the value should be your LDAP field name.  If you don't use the field
+# or don't want to automatically retrieve these fields from LDAP comment them out.  The only required field is 'dn'.
+AUTH_LDAP_FIELDS = {
+        'dn':'dn',
+        #'first_name':'',
+        #'last_name':'',
+        #'email':''
+        }
 
 LANGUAGE_NAME_COOKIE = 'pootlelang'
 
