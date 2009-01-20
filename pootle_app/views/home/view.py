@@ -47,8 +47,11 @@ def options(request):
 
         user_form.save()
         profile_form.save()
-        # Activate the newly selected interface language so that the user
-        gettext.activate_for_profile(get_profile(request.user))
+        # Activate the newly selected interface language so that the user will
+        # immediately see a translated interface. But only do this if the user
+        # selected an interface language.
+        if profile_form['ui_lang'].data != '':
+            gettext.activate_for_profile(get_profile(request.user))
     elif request.method == 'GET':
         user_form = UserForm(instance=request.user)
         profile_form = PootleProfileForm(instance=get_profile(request.user))
