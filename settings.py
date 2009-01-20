@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import os
+import logging
 
 def pootle_home(filename):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), filename)
@@ -151,3 +152,18 @@ LANGUAGE_NAME_COOKIE = 'pootlelang'
 
 # Uncomment to use memcached for caching
 # CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+
+if DEBUG:
+    logging.basicConfig(
+            level = logging.DEBUG,
+            format =  '%(asctime)s %(levelname)s %(message)s',
+            filename = pootle_home('pootle.log'),
+            filemode = 'a'
+            )
+    logging.debug('Starting logging...')
+else:
+    # Will log only CRITICAL errors to the console
+    logging.basicConfig(
+            level = logging.CRITICAL,
+            format =  '%(asctime)s %(levelname)s %(message)s',
+            )
