@@ -45,7 +45,32 @@ from pootle_app.views.util import form_set_as_table
 		</div>
 		<div py:replace="XML(formset.management_form.as_table())"/>
                 <table cellpadding="1" cellspacing="1">
-		  <div py:replace="XML(form_set_as_table(formset))" />
+		  <tr>
+		    <th py:for="field in [field for field in formset.forms[0].fields if field != 'id']">
+		      <span py:replace="formset.forms[0][field].label" />
+		    </th>
+		  </tr>
+
+		  <tr py:for="form in formset.forms">
+		    <td>
+		      <span py:replace="XML(form['id'].as_widget())" />
+		      <!-- !If 'code' in form.initial, then we're dealing with a form for an existing language.
+			   Thus, print a link to the admin page of that language. -->
+		      <div py:if="'code' in form.initial" py:strip="">
+			<a href="/projects/${form.initial['code']}/admin.html"><span py:replace="form.initial['code']" /></a>
+			<!-- !Remember a hidden field to pass the data through unchanged -->
+			<span py:replace="XML(form['code'].as_hidden())" />
+		      </div>
+		      <!-- !If 'code' not in form.initial, then we're dealing with the form used to insert a new langauge.
+			   Print the textbox widget so that we can insert the language code for the new language. -->
+		      <div py:if="'code' not in form.initial" py:strip="">
+			<span py:replace="XML(form['code'].as_widget())" />
+		      </div>
+		    </td>
+		    <td align="center" py:for="field in [field for field in formset.forms[0].fields if field not in ('id', 'code')]">
+		      <span py:replace="XML(form[field].as_widget())" />
+		    </td>
+		  </tr>
                 </table><input type="submit" name="changeprojects" value="${text.savechanges}" />
               </form>
             </div>
