@@ -121,13 +121,19 @@ def form_set_as_table(formset):
         result.append('<tr>\n')
         for i, field in enumerate(fields):
             result.append('<td>')
+            # Include a hidden element containing the form's id to the
+            # first column.
+            if i == 0:
+                result.append(form['id'].as_hidden())
             result.append(form[field].as_widget())
             result.append('</td>\n')
         result.append('</tr>\n')
 
     result = []
     first_form = formset.forms[0]
-    fields = first_form.fields
+    # Get the fields of the form, but filter our the 'id' field,
+    # since we don't want to print a table column for it.
+    fields = [field for field in first_form.fields if field != 'id']
     add_header(result, fields, first_form)
     for form in formset.forms:
         add_errors(result, fields, form)
