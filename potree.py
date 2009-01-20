@@ -504,7 +504,7 @@ class POTree:
           return project.code, language.code
     return None, None
 
-  def getpodir(self, languagecode, projectcode, make_dirs=False):
+  def getpodir(self, languagecode, projectcode, make_dirs=False, project=None):
     """returns the base directory containing po files for the project
     
     If make_dirs is True, then we will create project and language
