@@ -101,7 +101,7 @@ def handle_translation_file(request, arg_dict, project, language_code, project_c
     elif request.GET.get("index", 0):
         return indexpage.ProjectIndex(project, request, process_django_request_args(request), dirfilter=file_path)
     else:
-        pofile = project.getpofile(pofilename, freshen=False)
+        pofile = project.getpofile(file_path, freshen=False)
         encoding = getattr(pofile, "encoding", "UTF-8")
         content_type = "text/plain; charset=%s" % encoding
         return HttpResponse(open(pofile.filename).read(), content_type=content_type)
