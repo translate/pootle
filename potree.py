@@ -504,18 +504,28 @@ class POTree:
           return project.code, language.code
     return None, None
 
-  def getpodir(self, languagecode, projectcode, project=None):
-    """returns the base directory containing po files for the project"""
+  def getpodir(self, languagecode, projectcode, make_dirs=False):
+    """returns the base directory containing po files for the project
+    
+    If make_dirs is True, then we will create project and language
+    directories as necessary.
+    """
     projectdir = os.path.join(self.podirectory, projectcode)
     if not os.path.exists(projectdir):
-      raise IndexError("directory not found for project %s" % (projectcode))
+      if not make_dirs:
+        raise IndexError("directory not found for project %s" % (projectcode))
+      else:
+        os.mkdir(projectdir)
     languagedir = os.path.join(projectdir, languagecode)
     if not os.path.exists(languagedir):
-      languagedirs = [languagedir for languagedir in os.listdir(projectdir) if self.languagematch(languagecode, languagedir)]
+      languagedirs = [lang_dir for lang_dir in os.listdir(projectdir) if self.languagematch(languagecode, languagedir)]
       if not languagedirs:
         # if no matching directories can be found, check if it is a GNU-style project
         if self.hasgnufiles(projectdir, languagecode, project=project) == "gnu":
           return projectdir
+        if make_dirs:
+          os.mkdir(languagedir)
+          return languagedir
         raise IndexError("directory not found for language %s, project %s" % (languagecode, projectcode))
       # TODO: handle multiple regions
       if len(languagedirs) > 1:

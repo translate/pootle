@@ -43,23 +43,20 @@ from Pootle.templates import pootlepage
                           <th py:content="iso_code">ISO Code</th>
                           </tr>
                   </thead>
-                  <tr py:for="l in existing_languages" class="item item-${l.parity}">
+		  <div py:replace="XML(formset.management_form.as_table())"/>
+                  <tr py:for="i, l in enumerate(formset.forms)" class="item item-${i % 2}">
 
-                      <td><a href="../../${l.code}/${project.code}/admin.html" py:content="l.name">Language</a></td>
-                      <td><span py:content="l.code">code</span></td>
-                      <td><input type="checkbox" name="updatelanguage" value="${l.code}"/></td>
-                      <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.code}" py:content="update_link">Update from templates</a></td>
-                      <td><a href="?initialize=1&amp;updatelanguage=${l.code}" py:content="initialize_link">Initialize</a></td>
+                      <td><span py:replace="XML(l['id'].as_hidden())" /><a href="../../${l.instance.code}/${project.code}/admin.html" py:content="l.instance.fullname">Language</a></td>
+                      <td><span py:content="l.instance.code">code</span></td>
+                      <!--<td><input type="checkbox" name="updatelanguage" value="${l.instance.code}"/></td>-->
+                      <td><span py:replace="XML(l['update'].as_widget())" /></td>
+                      <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.instance.code}" py:content="update_link">Update from templates</a></td>
+                      <td><a href="?initialize=1&amp;updatelanguage=${l.instance.code}" py:content="initialize_link">Initialize</a></td>
                   </tr>
                 </table>
+
+	      <div py:replace="XML(new_language_form.as_p())"/>
               <input type="submit" name="doupdatelanguage" value="${update_button}"/>
-              <input type="hidden" name="allowmultikey" value="updatelanguage"/>
-            </form>
-            <form action="" method="post" name="newlangform">
-              <select name="newlanguage">
-                <option py:for="l in new_languages" value="${l.code}" py:content="l.name+ ': '+ l.code">Language</option>
-              </select>
-              <input type="submit" name="doaddlanguage" value="${add_button}"/>
             </form>
           </div>
           <div class="ft"></div>

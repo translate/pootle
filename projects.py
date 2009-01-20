@@ -104,7 +104,7 @@ class potimecache(timecache.timecache):
       if time.time() - currentfile.pomtime > self.expiryperiod.seconds:
         self.__setitem__(pofilename, pootlefile.pootlefile(self.project, pofilename))
 
-def make_db_translation_project(language_id, project_id):
+def make_db_translation_project(language_id, project_id, make_dirs):
     def make_translation_project():
       def get_file_style(project_dir, language_code):
         if pan_app.get_po_tree().hasgnufiles(project_dir, language_code) == "gnu":
@@ -114,7 +114,7 @@ def make_db_translation_project(language_id, project_id):
 
       language    = Language.objects.get(id=language_id)
       project     = Project.objects.get(id=project_id)
-      project_dir = pan_app.get_po_tree().getpodir(language.code, project.code)
+      project_dir = pan_app.get_po_tree().getpodir(language.code, project.code, make_dirs)
       db_object   = DBTranslationProject(language    = language,
                                          project     = project,
                                          project_dir = project_dir,
@@ -123,8 +123,8 @@ def make_db_translation_project(language_id, project_id):
       return db_object
 
     def make_default_rights(db_object):
-      def make_right(username, permissions):
-        profile = get_profile(User.objects.include_hidden().get(username=username))
+      def make_right(user, permissions):
+        profile = get_profile(user)
         right = Right(profile=profile, translation_project=db_object)
         right.save()
         right.permissions = permissions
@@ -134,19 +134,19 @@ def make_db_translation_project(language_id, project_id):
       content_type = ContentType.objects.get(name='pootle', app_label='pootle_app')
       # Get the pootle view permission
       view_permission = Permission.objects.get(content_type=content_type, codename='view')
-      make_right('nobody', [view_permission])
-      make_right('default', [view_permission])
+      make_right(User.objects.get_nobody_user(), [view_permission])
+      make_right(User.objects.get_default_user(), [view_permission])
 
     db_object = make_translation_project()
     make_default_rights(db_object)
     return db_object
 
-def get_or_make_db_translation_project(language_id, project_id):
+def get_or_make_db_translation_project(language_id, project_id, make_dirs=False):
   """ """
   try:
     return DBTranslationProject.objects.get(language__id=language_id, project__id=project_id)
   except DBTranslationProject.DoesNotExist:
-    return make_db_translation_project(language_id, project_id)
+    return make_db_translation_project(language_id, project_id, make_dirs)
 
 class TranslationProject(object):
   """Manages iterating through the translations in a particular project"""
@@ -163,9 +163,19 @@ class TranslationProject(object):
   # PO or XLIFF
   fileext                = property(lambda self: self.project.localfiletype)
   # GNU or standard
-  filestyle              = property(lambda self: self.db_translation_project.file_style)
+  def _set_filestyle(self, value):
+    db_translation_project = self.db_translation_project
+    db_translation_project.file_style = value
+    db_translation_project.save()
+  
+  filestyle              = property(lambda self: self.db_translation_project.file_style, _set_filestyle)
   # The directory containing this translation project
-  podir                  = property(lambda self: self.db_translation_project.project_dir)
+  def _set_podir(self, value):
+    db_translation_project = self.db_translation_project
+    db_translation_project.podir = value
+    db_translation_project.save()
+
+  podir                  = property(lambda self: self.db_translation_project.project_dir, _set_podir)
   # The database object backing this TranslationProject
   db_translation_project = property(lambda self: DBTranslationProject.objects.get(id=self.id))
 
@@ -176,7 +186,7 @@ class TranslationProject(object):
     # copies of the objects every time.
     self.language_id = Language.objects.get(code=languagecode).id
     self.project_id  = Project.objects.get(code=projectcode).id
-    self.id          = get_or_make_db_translation_project(self.language_id, self.project_id).id
+    self.id          = get_or_make_db_translation_project(self.language_id, self.project_id, make_dirs=create).id
     self.pofiles = potimecache(15*60, self)
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
     self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
