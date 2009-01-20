@@ -64,14 +64,43 @@ def shortdescription(descr):
     descr = descr[:stopsign]
   return re.sub("<[^>]*>", "", descr).strip()
 
+def map_num_contribs(sub, user):
+  user.num_contribs = sub.num_contribs
+  return user
+
+def users_form_suggestions(sugs):
+  """Get the Users associated with the Suggestions. Also assign
+  the num_contribs attribute from the Suggestion to the User"""
+  return [map_num_contribs(sug, sug.suggester.user) for sug in sugs]
+
+def users_form_submissions(subs):
+  """Get the Users associated with the Submissions. Also assign
+  the num_contribs attribute from the Submission to the User"""
+  return [map_num_contribs(sub, sub.submitter.user) for sub in subs]
+
 def gentopstats(topsugg, topreview, topsub, localize):
   ranklabel = localize("Rank")
   namelabel = localize("Name")
   topstats = []
-  topstats.append({'data':topsugg, 'headerlabel':localize('Suggestions'), 'ranklabel':ranklabel, 'namelabel':namelabel, 'vallabel':localize('Suggestions')})
-  topstats.append({'data':topreview, 'headerlabel':localize('Reviews'), 'ranklabel':ranklabel, 'namelabel':namelabel, 'vallabel':localize('Reviews')})
-  topstats.append({'data':topsub, 'headerlabel':localize('Submissions'), 'ranklabel':ranklabel, 'namelabel':namelabel, 'vallabel':localize('Submissions')})
+  topstats.append({'data':        users_form_suggestions(topsugg), 
+                   'headerlabel': localize('Suggestions'), 
+                   'ranklabel':   ranklabel,
+                   'namelabel':   namelabel, 
+                   'vallabel':    localize('Suggestions')})
+  topstats.append({'data':        users_form_suggestions(topreview),
+                   'headerlabel': localize('Reviews'),
+                   'ranklabel':   ranklabel,
+                   'namelabel':   namelabel,
+                   'vallabel':    localize('Reviews')})
+  topstats.append({'data':        users_form_submissions(topsub),
+                   'headerlabel': localize('Submissions'),
+                   'ranklabel':   ranklabel,
+                   'namelabel':   namelabel,
+                   'vallabel':    localize('Submissions')})
   return topstats
+
+def limit(query):
+  return query[:5]
 
 class AboutPage(pagelayout.PootlePage):
   """the bar at the side describing current login details etc"""
@@ -118,10 +147,10 @@ class PootleIndex(pagelayout.PootlePage):
 #@todo - need localized dates
     # rewritten for compatibility with Python 2.3
     # languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
-    
-    topsugg   = Suggestion.objects.get_top_suggesters()
-    topreview = Suggestion.objects.get_top_reviewers()
-    topsub    = Submission.objects.get_top_submitters()
+
+    topsugg   = limit(Suggestion.objects.get_top_suggesters())
+    topreview = limit(Suggestion.objects.get_top_reviewers())
+    topsub    = limit(Submission.objects.get_top_submitters())
    
     topstats = gentopstats(topsugg, topreview, topsub, localize) 
 
@@ -303,10 +332,12 @@ class LanguageIndex(pagelayout.PootleNavPage):
     templatename = "language"
     adminlink = localize("Admin")
     
-    language_id = Language.objects.get(code=self.languagecode).id
-    topsugg     = Suggestion.objects.get_top_suggesters_by_language(language_id)
-    topreview   = Suggestion.objects.get_top_reviewers_by_language(language_id)
-    topsub      = Submission.objects.get_top_submitters_by_language(language_id)
+    def narrow(query):
+      return limit(query.filter(language__code=self.languagecode))
+
+    topsugg     = narrow(Suggestion.objects.get_top_suggesters())
+    topreview   = narrow(Suggestion.objects.get_top_reviewers())
+    topsub      = narrow(Submission.objects.get_top_submitters())
    
     topstats = gentopstats(topsugg, topreview, topsub, localize) 
 
@@ -381,10 +412,12 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     statsheadings = self.getstatsheadings()
     statsheadings["name"] = localize("Language")
 
-    project_id = Project.objects.get(code=self.projectcode).id
-    topsugg    = Suggestion.objects.get_top_suggesters_by_project(project_id)
-    topreview  = Suggestion.objects.get_top_reviewers_by_project(project_id)
-    topsub     = Submission.objects.get_top_submitters_by_project(project_id)
+    def narrow(query):
+      return limit(query.filter(project__code=self.projectcode))
+
+    topsugg    = narrow(Suggestion.objects.get_top_suggesters())
+    topreview  = narrow(Suggestion.objects.get_top_reviewers())
+    topsub     = narrow(Submission.objects.get_top_submitters())
 
     topstats = gentopstats(topsugg, topreview, topsub, localize) 
 
@@ -499,11 +532,15 @@ class ProjectIndex(pagelayout.PootleNavPage):
     if dirfilter:
       reqstart = unicode(dirfilter)
 
-    language_id = self.project.language.id
-    project_id  = self.project.project.id
-    topsugg     = Suggestion.objects.get_top_suggesters_by_project_and_language(project_id, language_id)
-    topreview   = Suggestion.objects.get_top_reviewers_by_project_and_language(project_id, language_id)
-    topsub      = Submission.objects.get_top_submitters_by_project_and_language(project_id, language_id)
+    language = self.project.language
+    project  = self.project.project
+
+    def narrow(query):
+      return query.filter(project=project, language=language)[:5]
+
+    topsugg    = narrow(Suggestion.objects.get_top_suggesters())
+    topreview  = narrow(Suggestion.objects.get_top_reviewers())
+    topsub     = narrow(Submission.objects.get_top_submitters())
 
     topstats = gentopstats(topsugg, topreview, topsub, localize) 
 
