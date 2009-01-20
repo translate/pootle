@@ -729,11 +729,11 @@ def create_default_languages():
     templates.save()
 
 def create_default_users():
-  admin = make_pootle_user(username=u"admin")
-  admin.firstname=u"Administrator"
-  admin.is_active=True
-  admin.is_superuser=True
-  admin.is_staff=True
+  admin = User(username=u"admin",
+               first_name=u"Administrator",
+               is_active=True,
+               is_superuser=True,
+               is_staff=True)
   admin.password = md5.new("admin").hexdigest()
   admin.save()
 
@@ -741,9 +741,9 @@ def create_default_users():
   # we need to associate model information with such a user. An example is
   # in the permission system: we need a way to store rights for anonymous
   # users; thus we use the nobody user.
-  nobody = make_pootle_user(username=u"nobody")
-  nobody.firstname=u"User object representing anonymous users."
-  nobody.is_active=True
+  nobody = User(username=u"nobody",
+                first_name=u"User object representing anonymous users.",
+                is_active=True)
   nobody.set_unusable_password() # No user should be able to log in as "nobody"
   nobody.save()
 
@@ -753,9 +753,9 @@ def create_default_users():
   #
   # In a future version of Pootle we should think about using Django's groups to do
   # better permissions handling.
-  default = make_pootle_user(username=u"default")
-  default.firstname=u"User object representing any user."
-  default.is_active=True
+  default = User(username=u"default", 
+                 first_name=u"User object representing any user.",
+                 is_active=True)
   default.set_unusable_password() # No user should be ablet to
   default.save()
 

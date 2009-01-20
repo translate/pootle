@@ -177,7 +177,7 @@ class ActivatePage(pagelayout.PootlePage):
 
 def with_user(username, f):
   try:
-    user = User.objects.get(username=username)
+    user = User.objects.include_hidden().get(username=username)
     f(user)
     return user
   except User.DoesNotExist:

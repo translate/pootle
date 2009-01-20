@@ -124,7 +124,7 @@ def make_db_translation_project(language_id, project_id):
 
     def make_default_rights(db_object):
       def make_right(username, permissions):
-        profile = get_profile(User.objects.get(username=username))
+        profile = get_profile(User.objects.include_hidden().get(username=username))
         right = Right(profile=profile, translation_project=db_object)
         right.save()
         right.permissions = permissions
@@ -246,9 +246,10 @@ class TranslationProject(object):
         # select_related('permissions') is an optimization to make sure that Django does an SQL join 
         # on the Permission table when it selects Right objects. This makes access to the permissions
         # (see the return statement below) very fast.
-        user_right = db_translation_project.right_set.select_related(depth=1).get(profile=get_profile(user))
+        profile = get_profile(user)
       else:
-        user_right = db_translation_project.right_set.select_related(depth=1).get(profile=get_profile(User.objects.get_nobody_user()))
+        profile = get_profile(User.objects.include_hidden().get(username='nobody'))
+      user_right = db_translation_project.right_set.select_related(depth=1).get(profile=profile)
       return [perm.codename for perm in user_right.permissions.all()]
 
     def check_for_admin(rights):

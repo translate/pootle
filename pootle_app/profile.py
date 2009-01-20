@@ -38,6 +38,9 @@ class PootleUserManager(UserManager):
     def get_nobody_user(self):
         return super(PootleUserManager, self).get_query_set().select_related(depth=1).get(username='nobody')
 
+    def include_hidden(self):
+        return super(PootleUserManager, self).get_query_set()
+
 # Since PootleUserManager has no state, we can just replace the User manager's class with PootleUserManager
 # to get the desired functionality.
 User.objects.__class__ = PootleUserManager
@@ -120,8 +123,8 @@ def get_profile(user_model):
         # An anonymous user which has no profile
         return make_default_profile(user_model)
 
-def make_pootle_user(username):
-    user = User(username=username)
+def make_pootle_user(**kwargs):
+    user = User(**kwargs)
     user.save()
     make_default_profile(user)
     return user

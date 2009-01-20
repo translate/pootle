@@ -159,7 +159,7 @@ def updaterights(project, request, argdict):
           key = key.decode("utf-8")
         if key.startswith("rights-"):
           username = key.replace("rights-", "", 1)
-          user = User.objects.get(username=username)
+          user = User.objects.include_hidden().get(username=username)
           if isinstance(value, list):
             try:
               value.remove("existence")
@@ -168,13 +168,13 @@ def updaterights(project, request, argdict):
           project.setrights(user, value)
         if key.startswith("rightsremove-"):
           username = key.replace("rightsremove-", "", 1)
-          user = User.objects.get(username=username)
+          user = User.objects.include_hidden().get(username=username)
           project.delrights(user)
       username = request.POST.get("rightsnew-username", None)
       if username:
         username = username.strip()
         try:
-          user = User.objects.get(username=username)
+          user = User.objects.include_hidden().get(username=username)
           project.setrights(user, request.POST.get("rightsnew", ""))
         except User.DoesNotExist:
           raise IndexError(localize("Cannot set rights for username %s - user does not exist", username))
@@ -225,16 +225,16 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     adduser_text = localize("(select to add user)")
     rights_title = localize("Rights")
     remove_title = localize("Remove")
-    nobodyrights = self.project.getrights(User.objects.get_nobody_user())
+    nobodyrights = self.project.getrights(User.objects.include_hidden().get(username='nobody'))
     nobody_dict = self.getuserdict("nobody", delete=False)
-    defaultrights = self.project.getrights(User.objects.get_default_user())
+    defaultrights = self.project.getrights(User.objects.include_hidden().get(username='default'))
     default_dict = self.getuserdict("default", delete=False)
     users_with_rights = ["nobody", "default"]
     rights = {"nobody": nobodyrights, "default": defaultrights}
     for username in self.project.getuserswithrights():
       if username in ("nobody", "default"): continue
       users_with_rights.append(username)
-      rights[username] = self.project.getrights(User.objects.get(username=username))
+      rights[username] = self.project.getrights(User.objects.include_hidden().get(username=username))
     users = self.project.getuserswithinterest()
     user_details = {"nobody": nobody_dict, "default": default_dict}
     for username, usernode in users.iteritems():
