@@ -253,7 +253,7 @@ class OptionalLoginAppServer(object):
       
   def adduser(self, username, fullname, email, password, logintype="hash"):
     """adds the user with the given details"""
-    user = make_pootle_user(username)
+    user = make_pootle_user(username=username)
     user.first_name = fullname
     user.email = email
     user.set_password(password)
