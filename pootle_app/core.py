@@ -201,6 +201,24 @@ class Right(models.Model):
     translation_project = models.ForeignKey(TranslationProject, db_index=True)
     permissions         = models.ManyToManyField(Permission)
 
+class Goal(models.Model):
+    """A goal is a named collection of files. Goals partition the files of
+    translation project. In other words, every file is either in no
+    goals or exactly in one goal.
+    """
+    name                = models.CharField(max_length=255, null=False, verbose_name=_("Name"))
+    # A pointer to the TranslationProject of which this Goal is a part.
+    translation_project = models.ForeignKey(TranslationProject)
+    # Every goal can contain a number of users and every user can be
+    # involved with a number of goals.
+    profiles            = models.ManyToManyField(PootleProfile, related_name='goals')
+
+class Store(models.Model):
+    """A model representing a translation store (i.e. a PO or XLIFF file)."""
+    # The filesystem path of the store.
+    path = models.FilePathField(db_index=True)
+    # A Store has a pointer to a goal of which it is part.
+    goal = models.ForeignKey(Goal, related_name='stores')
 
 class SubmissionManager(models.Manager):
     def get_top_submitters(self):
