@@ -142,7 +142,7 @@ class ProjectManager(models.Manager):
                    'creation_time':       field_name(Submission, 'creation_time'),
                    'project_table':       table_name(Project),
                    'submission_table':    table_name(Submission),
-                    'project_id':          primary_key_name(Project),
+                   'project_id':          primary_key_name(Project),
                    'submission_project':  field_name(Submission, 'project'),
                    'project_name':        field_name(Project, 'fullname')}
 
@@ -201,23 +201,6 @@ class Right(models.Model):
     translation_project = models.ForeignKey(TranslationProject, db_index=True)
     permissions         = models.ManyToManyField(Permission)
 
-def _do_query(query, replacements, fields, params=()):
-    all_fields = fields.copy()
-    all_fields.update((key, var % fields) for key, var in replacements.iteritems())
-    final_query = query % all_fields
-    # print "going to execute %s \n\nwith params = %s" % (final_query, params)
-    cursor = connection.cursor()
-    cursor.execute(final_query, params)
-    # cursor.fetchall() returns a list of (profile_id, count) 
-    # two tuples which we unzip into a list of profile_ids and
-    # a list of counts
-    profile_ids, counts = unzip(cursor.fetchall())
-    # Get a dictionary of profile_id -> PootleProfile models
-    profiles = PootleProfile.objects.select_related('user').in_bulk(profile_ids)
-    # profile_ids gives us the profile ids in the order we want (descending in
-    # the number of contributions), so we use these indices to pull the profile
-    # objects from the profiles dictionary.
-    return zip((profiles[id] for id in profile_ids), counts)
 
 class SubmissionManager(models.Manager):
     def get_top_submitters(self):
@@ -235,7 +218,7 @@ class SubmissionManager(models.Manager):
 
         The number of contributions from a profile is stored in the
         attribute 'num_contribs' and the profile is stored in
-        'suggester'.
+        'submitter'.
 
         Please note that the Submission objects returned here are
         useless.  That is, they are valid Submission objects, but for
