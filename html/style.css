@@ -855,9 +855,19 @@ html[dir="rtl"] div.statslist ul li span.value {
     padding: 0 0 0 9px;
 }
 
+#footer[dir="rtl"] .nav li {
+    float: right;
+    padding: 0 9px 0 0;
+}
+
 #footer .nav li:after {
     content:  "|";
     margin: 0 0 0 10px;
+}
+
+#footer[dir="rtl"] .nav li:after {
+    content:  "|";
+    margin: 0 10px 0 0;
 }
 
 #footer .nav li:last-child:after {

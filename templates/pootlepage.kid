@@ -51,9 +51,9 @@
         <!-- end header -->
     </div>
 
-    <div py:def="footer(links, baseurl)" py:strip="True">
+    <div py:def="footer(links, baseurl, uidir)" py:strip="True">
         <!-- start footer -->
-        <div id="footer">
+        <div id="footer" dir="${uidir}">
             <div id="footer-contents">
                 <ul class="nav">
                     <li><a href="${baseurl}" py:content="links.home">Home</a></li>

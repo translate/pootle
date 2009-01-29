@@ -107,12 +107,12 @@ from Pootle.templates import pootlepage, navbar
             </div>
 
             <div py:if="'isdir' in item" class="item ${item.parity}">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl)"/>
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, uidir)"/>
               <div py:replace="navbar.itemstats(item)"/>
             </div>
 
             <div py:if="'isfile' in item" class="item ${item.parity}">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl)"/>
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, uidir)"/>
               <div py:replace="navbar.itemstats(item)"/>
             </div>
           </div>
@@ -163,7 +163,7 @@ from Pootle.templates import pootlepage, navbar
   </div><!-- end #doc -->
 </div><!-- end #wrapper -->
 
-<div py:replace="pootlepage.footer(links, baseurl)"/>
+<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
 
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/script.js"></script>
