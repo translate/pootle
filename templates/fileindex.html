@@ -15,13 +15,13 @@ from Pootle.templates import pootlepage, navbar
 <body>
 
 <div id="wrapper">
-<div id="doc">
+  <div id="doc">
     
-  <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
+    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
 
-  <div id="body">
+    <div id="body">
 
-    <div id="nav-secondary">
+      <div id="nav-secondary">
         <div class="navbar" py:for="item in navitems">
           <!--! search form -->
           <div py:if="search" class="searchform" dir="$uidir" lang="$uilanguage">
@@ -30,164 +30,150 @@ from Pootle.templates import pootlepage, navbar
               <input type="text" size="15" name="searchtext" id="searchtext" value="" />
               <a class="advancedlink"><img src="${baseurl}images/bullet_arrow_down.png" title="${search.advanced_title}" class="togglesearch" /></a>
               <div class="advancedsearch" dir="$uidir">
-              <span py:for="field in search.fields" py:strip="True">
-                <?python checkedflag = field.checked ?>
-                <input type="checkbox" name="${field.name}" id="${field.name}" value="1" py:attrs="checked=checkedflag" />
-                <label dir="$uidir" for="${field.name}" py:content="field.text"></label><br />
-              </span>
+		<div py:for="field in search.fields" py:strip="True">
+                  <?python checkedflag = field.checked ?>
+                  <input type="checkbox" name="${field.name}" id="${field.name}" value="1" py:attrs="checked=checkedflag" />
+                  <label dir="$uidir" for="${field.name}" py:content="field.text"></label><br />
+		</div>
               </div>
             </form>
           </div>
           <!--! Navigation bar -->
-          <h3 py:def="itemtitle(item)" id="itemtitle" class="title">
+          <div py:def="itemtitle(item)" id="itemtitle" class="title">
             <a href="${item.href}">${item.title}</a>
-            <span py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</span>
-            <span py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</span>
-            <span py:strip="True" py:for="pathlink in item.path.pathlinks">
+            <div py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</div>
+            <div py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</div>
+            <div py:strip="True" py:for="pathlink in item.path.pathlinks">
               <a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
-              <i py:if="item.path.goal"><a href="${item.path.goal.href}">${item.path.goal.text}</a></i>
-            </span>
-          </h3>
+              <em py:if="item.path.goal"><a href="${item.path.goal.href}">${item.path.goal.text}</a></em>
+            </div>
+          </div>
           <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, itemtitle(item))" class="contentsitem"/>
           <div py:replace="navbar.itemstats(item)"/>
         </div>
-    </div>
+      </div>
 
-    <div py:if="message" class="site-message">
+      <div py:if="message" class="site-message">
         <div class="info" py:if="message" py:content="XML(message)">Message</div>
-    </div>
+      </div>
 
-    <!--! The statistics view -->
-    <div py:if="not editing and children" py:strip="True">
-      <div class="module-primary">
-          <div class="hd">
-          </div>
+      <!--! The statistics view -->
+      <div py:if="not editing and children" py:strip="True">
+	<div class="module-primary">
           <div class="bd">
-              <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
-                <thead>
-                  <tr>
-                    <th class="stats">${statsheadings.name}</th>
-                    <th class="stats">${statsheadings.progress}</th>
-                    <th class="stats">${statsheadings.summary}</th>
-                    <th class="stats">${statsheadings.totalwords}</th>
+            <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th class="stats">${statsheadings.name}</th>
+                  <th class="stats">${statsheadings.progress}</th>
+                  <th class="stats">${statsheadings.summary}</th>
+                  <th class="stats">${statsheadings.totalwords}</th>
                 </tr>
-                </thead>
-                <tbody class="stats">
-                  <div py:for="item in children" py:strip="True">
-                    <tr class="item ${item.parity}" title="${item.description}">
-                      <div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
-                    </tr>
-                  </div>
-                </tbody>
-              </table>
+              </thead>
+              <tbody class="stats">
+                <div py:for="item in children" py:strip="True">
+                  <tr class="item ${item.parity}" title="${item.description}">
+                    <div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
+                  </tr>
+                </div>
+              </tbody>
+            </table>
           </div>
-          <div class="ft"></div>
+	</div>
       </div>
-    </div>
 
-    <!--! only called from item_block().  should be moved to navbar.kid or removed-->
-    <div py:def="show_goals(item)">
+      <!--! only called from item_block().  should be moved to navbar.kid or removed-->
+      <div py:def="show_goals(item)">
         <div py:if="item.goal.users or item.goal.show_adduser">
-            <img src="${baseurl}images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
-            <span py:for="user in item.goal.users" py:strip="True">${user.name}${user.sep}</span>
-            <form py:if="item.goal.show_adduser" action="" method="post" name="goaluserform">
-                <input type="hidden" name="editgoalname" value="${item.goal.name}"/>
-                <select name="newgoaluser">
-                    <option py:for="user in item.goal.otherusers" value="${user}" py:content="item.goal.otherusers[user].description">Username</option>
-                </select>
-                <input type="submit" name="doeditgoalusers" value="${item.goal.adduser_title}"/>
-            </form>
+          <img src="${baseurl}images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+          <div py:for="user in item.goal.users" py:strip="True">${user.name}${user.sep}</div>
+          <form py:if="item.goal.show_adduser" action="" method="post" name="goaluserform">
+            <input type="hidden" name="editgoalname" value="${item.goal.name}"/>
+            <select name="newgoaluser">
+              <option py:for="user in item.goal.otherusers" value="${user}" py:content="item.goal.otherusers[user].description">Username</option>
+            </select>
+            <input type="submit" name="doeditgoalusers" value="${item.goal.adduser_title}"/>
+          </form>
         </div>
-    </div>
-
-    <!--! The editing view -->
-    <div py:if="editing" py:for="item in children" py:strip="True">
-      <div class="module-primary">
-          <div class="hd">
-          </div>
-          <div class="bd">
-              <div py:if="'isgoal' in item" class="goalitem">
-                <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, show_goals(item))"/>
-                <div py:replace="navbar.itemstats(item)"/>
-              </div>
-
-              <div py:if="'isdir' in item" class="item ${item.parity}">
-                <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl)"/>
-                <div py:replace="navbar.itemstats(item)"/>
-              </div>
-
-              <div py:if="'isfile' in item" class="item ${item.parity}">
-                <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl)"/>
-                <div py:replace="navbar.itemstats(item)"/>
-              </div>
-          </div>
-          <div class="ft"></div>
       </div>
-    </div>
 
-    <!--! The goals view -->
-      <div py:if="assign or goals or upload" class="module first">
-          <div class="hd"> </div>
+      <!--! The editing view -->
+      <div py:if="editing" py:for="item in children" py:strip="True">
+	<div class="module-primary">
           <div class="bd">
-            <div class="sidetitle" py:if="assign" py:content="assign.title">
-              Assign Strings
+            <div py:if="'isgoal' in item" class="goalitem">
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, show_goals(item))"/>
+              <div py:replace="navbar.itemstats(item)"/>
             </div>
 
-            <form py:if="assign" action="" method="post" name="assignform">
-              <select name="assignto" title="${assign.users_text}">
-                <option py:for="user in assign.users" value="${user}" py:content="assign.users[user].description">Username</option>
-              </select>
-              <input type="text" name="action" value="translate" title="${assign.action_text}" />
-              <input type="submit" name="doassign" value="${assign.button}" />
-            </form>
-
-            <div class="sidetitle" py:if="goals" py:content="goals.title">
-              Goals
+            <div py:if="'isdir' in item" class="item ${item.parity}">
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl)"/>
+              <div py:replace="navbar.itemstats(item)"/>
             </div>
 
-            <form py:if="goals" action="" method="post" name="goalform">
-              <input type="text" name="newgoal" title="${goals.name_title}" />
-              <input type="submit" name="doaddgoal" value="${goals.button}" />
-            </form>
-
-            <div class="sidetitle" py:if="upload" py:content="upload.title">
-              Upload File
+            <div py:if="'isfile' in item" class="item ${item.parity}">
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl)"/>
+              <div py:replace="navbar.itemstats(item)"/>
             </div>
-
-            <form py:if="upload" action="" method="post" name="uploadform" enctype="multipart/form-data">
-              <div>
-                <input type="file" name="uploadfile" size="15" class="upload" title="${upload.file_title}" />
-              </div>
-              <div py:if="upload.overwrite">
-                <input type="radio" name="dooverwrite" value="Yes" title="${upload.overwrite_title}" py:content="upload.overwrite"/>
-                <input type="radio" name="dooverwrite" checked="checked" value="No" title="${upload.merge_title}" py:content="upload.merge"/>
-              </div>
-              <input type="submit" name="doupload" value="${upload.upload_button}" />
-            </form>
           </div>
-          <div class="ft"></div>
+	</div>
+      </div>
+
+      <!--! The goals view -->
+      <div py:if="assign or goals or upload" class="module first">
+        <div class="bd">
+          <div class="sidetitle" py:if="assign" py:content="assign.title">
+            Assign Strings
+          </div>
+
+          <form py:if="assign" action="" method="post" name="assignform">
+            <select name="assignto" title="${assign.users_text}">
+              <option py:for="user in assign.users" value="${user}" py:content="assign.users[user].description">Username</option>
+            </select>
+            <input type="text" name="action" value="translate" title="${assign.action_text}" />
+            <input type="submit" name="doassign" value="${assign.button}" />
+          </form>
+
+          <div class="sidetitle" py:if="goals" py:content="goals.title">Goals</div>
+          <form py:if="goals" action="" method="post" name="goalform">
+            <input type="text" name="newgoal" title="${goals.name_title}" />
+            <input type="submit" name="doaddgoal" value="${goals.button}" />
+          </form>
+
+          <div class="sidetitle" py:if="upload" py:content="upload.title">Upload File</div>
+          <form py:if="upload" action="" method="post" name="uploadform" enctype="multipart/form-data">
+            <div>
+              <input type="file" name="uploadfile" size="15" class="upload" title="${upload.file_title}" />
+            </div>
+            <div py:if="upload.overwrite">
+              <input type="radio" name="dooverwrite" value="Yes" title="${upload.overwrite_title}" py:content="upload.overwrite"/>
+              <input type="radio" name="dooverwrite" checked="checked" value="No" title="${upload.merge_title}" py:content="upload.merge"/>
+            </div>
+            <input type="submit" name="doupload" value="${upload.upload_button}" />
+          </form>
+        </div>
       </div>
 
       <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
 
-  </div><!-- end #body-->
+    </div><!-- end #body-->
 
-  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
+    <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
 	
-</div><!-- end #doc -->
+  </div><!-- end #doc -->
 </div><!-- end #wrapper -->
 
-  <div py:replace="pootlepage.footer(links, baseurl)"/>
+<div py:replace="pootlepage.footer(links, baseurl)"/>
 
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
 
-  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
-  <script type="text/javascript" src="${baseurl}js/search.js"></script>
+<script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
+<script type="text/javascript" src="${baseurl}js/search.js"></script>
 
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
+<!--[if lt IE 7.]>
+  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+<![endif]-->
 
 </body>
 </html>

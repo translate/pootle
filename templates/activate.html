@@ -15,56 +15,56 @@ from Pootle.templates import pootlepage
 <body>
 
 <div id="wrapper">
-<div id="doc">
+  <div id="doc">
     
-  <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
+    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
 
-  <div id="body">
+    <div id="body">
 
-    <div class="site-message" py:if="introtext or message">
+      <div class="site-message" py:if="introtext or message">
         <div class="info" py:if="introtext" py:content="introtext">Message</div>
         <div class="info" py:if="message" py:content="XML(message)">Message</div>
-    </div>
+      </div>
 
-    <form action="" method="post" name="activate" id="activate">
-      <table cellpadding="1" width="70%" border="0" cellspacing="1">
-        <tr>
-          <td colspan="1" style="width: 33%" rowspan="1" valign="top">
-            <span title="${username_tooltip}" py:content="username_title">Username</span>
-          </td>
+      <form action="" method="post" name="activate" id="activate">
+        <table cellpadding="1" width="70%" border="0" cellspacing="1">
+          <tr>
+            <td colspan="1" style="width: 33%" rowspan="1" valign="top">
+              <span title="${username_tooltip}" py:content="username_title">Username</span>
+            </td>
 
-          <td colspan="1" style="width: 66%" rowspan="1" valign="top">
-             <input style="width: 100%" type="text" name="username" value="${username}" />
-          </td>
-        </tr>
+            <td colspan="1" style="width: 66%" rowspan="1" valign="top">
+              <input style="width: 100%" type="text" name="username" value="${username}" />
+            </td>
+          </tr>
 
-        <tr>
-          <td colspan="1" style="width: 33%" rowspan="1" valign="top">
-            <span title="${code_tooltip}" py:content="code_title">Activation Code</span>
-          </td>
+          <tr>
+            <td colspan="1" style="width: 33%" rowspan="1" valign="top">
+              <span title="${code_tooltip}" py:content="code_title">Activation Code</span>
+            </td>
 
-          <td colspan="1" style="width: 66%" rowspan="1" valign="top">
-            <input style="width: 100%" type="text" name="activationcode" value="${code}" />
-          </td>
-        </tr>
-      </table><input type="submit" name="activate" value="${activate_text}" />
-    </form>
+            <td colspan="1" style="width: 66%" rowspan="1" valign="top">
+              <input style="width: 100%" type="text" name="activationcode" value="${code}" />
+            </td>
+          </tr>
+        </table><input type="submit" name="activate" value="${activate_text}" />
+      </form>
 
-  </div><!-- end #body-->
+    </div><!-- end #body-->
 
-  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
+    <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
 	
-</div><!-- end #doc -->
+  </div><!-- end #doc -->
 </div><!-- end #wrapper -->
 
-  <div py:replace="pootlepage.footer(links, baseurl)"/>
+<div py:replace="pootlepage.footer(links, baseurl)"/>
 
-  <script src="/js/jquery.min.js" type="text/javascript"></script>
-  <script src="/js/script.js"></script>
+<script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
+<!--[if lt IE 7.]>
+  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+<![endif]-->
 
 </body>
 </html>

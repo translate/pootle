@@ -15,69 +15,67 @@ from Pootle.templates import pootlepage
 <body>
 
 <div id="wrapper">
-<div id="doc">
+  <div id="doc">
     
-  <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
+    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
 
-  <div id="body">
-    <div class="site-message" py:if="message">
+    <div id="body">
+      <div class="site-message" py:if="message">
         <div class="info" py:if="message" py:content="XML(message)">Message</div>
-    </div>
+      </div>
 
       <div class="module first">
-          <div class="hd">
-              <h2 py:content="quicklinkstitle">Quick Links</h2>
+        <div class="hd">
+          <h2 py:content="quicklinkstitle">Quick Links</h2>
+        </div>
+        <div class="bd">
+          <div py:for="language in quicklinks" py:strip="True">
+            <dl>
+              <dt> <a href="../${language.code}/" py:content="language.name">Language</a> </dt>
+              <dd py:for="project in language.projects">
+                <a href="../${language.code}/${project.code}/" py:content="project.name">Language Project</a>
+                <div py:if="project.isprojectadmin" py:strip="True">
+                  (<a href="../${language.code}/${project.code}/admin.html" py:content="admintext">Admin</a>)
+                </div>
+              </dd>
+            </dl>
           </div>
-          <div class="bd">
-              <span py:for="language in quicklinks" py:strip="True">
-                  <dl>
-                      <dt> <a href="../${language.code}/" py:content="language.name">Language</a> </dt>
-                      <dd py:for="project in language.projects">
-                        <a href="../${language.code}/${project.code}/" py:content="project.name">Language Project</a>
-                        <span py:if="project.isprojectadmin" py:strip="True">
-                          (<a href="../${language.code}/${project.code}/admin.html" py:content="admintext">Admin</a>)
-                        </span>
-                      </dd>
-                  </dl>
-              </span>
 
-              <div py:if="not quicklinks" class="item-description" py:content="XML(setoptionstext)">
-                You need to <a href="options.html">choose your languages and projects</a>.
-              </div>
-
-              <ul>
-                <li><a href="options.html" py:content="optionslink">Change options</a></li>
-                <li py:if="sessionvars.issiteadmin"><a href="../admin/" py:content="adminlink">Admin page</a></li>
-              </ul>
+          <div py:if="not quicklinks" class="item-description" py:content="XML(setoptionstext)">
+            You need to <a href="options.html">choose your languages and projects</a>.
           </div>
-          <div class="ft"></div>
+
+          <ul>
+            <li><a href="options.html" py:content="optionslink">Change options</a></li>
+            <li py:if="sessionvars.issiteadmin"><a href="../admin/" py:content="adminlink">Admin page</a></li>
+          </ul>
+        </div>
       </div>
 
       <div class="module">
-          <div class="hd">
-              <h2 py:content="statstitle">User Statistics</h2>
-          </div>
-          <div class="bd">
-              <div py:replace="pootlepage.userstatistics(user, statstext, statstitle)"/>
-          </div>
-          <div class="ft"></div>
+        <div class="hd">
+          <h2 py:content="statstitle">User Statistics</h2>
+        </div>
+        <div class="bd">
+          <div py:replace="pootlepage.userstatistics(user, statstext, statstitle)"/>
+        </div>
       </div>
 
-  </div><!-- end #body-->
+    </div><!-- end #body-->
 
-  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
-	
-</div><!-- end #doc -->
+    <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
+    
+  </div><!-- end #doc -->
 </div><!-- end #wrapper -->
 
-  <div py:replace="pootlepage.footer(links, baseurl)"/>
+<div py:replace="pootlepage.footer(links, baseurl)"/>
 
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
 
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
+<!--[if lt IE 7.]>
+  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+<![endif]-->
 
 </body>
 </html>

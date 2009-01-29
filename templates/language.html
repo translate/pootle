@@ -15,75 +15,68 @@ from Pootle.templates import pootlepage, navbar
 <body>
 
 <div id="wrapper">
-<div id="doc">
+  <div id="doc">
     
-  <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
+    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
 
-  <div id="body">
+    <div id="body">
 
-    <div class="site-message" py:if="message">
+      <div class="site-message" py:if="message">
         <div class="info" py:if="message" py:content="XML(message)">Message</div>
-    </div>
-    <div id="nav-secondary">
-      <h3 class="title">[ <a href="${baseurl}${language.code}/" py:content="language.name">Language</a> (<py:content>$language.code</py:content>)]</h3>
-
-      <div class="item-statistics" py:content="language.stats">
-        0 projects, average 0% translated
       </div>
-    </div>
-
+      <div id="nav-secondary">
+	<h3 class="title">[ <a href="${baseurl}${language.code}/" py:content="language.name">Language</a> (<py:content>$language.code</py:content>)]</h3>
+	
+	<div class="item-statistics" py:content="language.stats">0 projects, average 0% translated</div>
+      </div>
+      
       <div class="module-primary">
-          <div class="hd">
-          </div>
-          <div class="bd">
-              <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
-                <thead>
-                  <tr>
-                    <th class="stats">${statsheadings.name}</th>
-                    <th class="stats">${statsheadings.progress}</th>
-                    <th class="stats">${statsheadings.summary}</th>
-                    <th class="stats">${statsheadings.totalwords}</th>
+        <div class="bd">
+          <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th class="stats">${statsheadings.name}</th>
+                <th class="stats">${statsheadings.progress}</th>
+                <th class="stats">${statsheadings.summary}</th>
+                <th class="stats">${statsheadings.totalwords}</th>
+              </tr>
+            </thead>
+            <tbody class="stats">
+              <div py:for="item in projects" py:strip="True">
+                <tr class="item ${item.parity}" title="${item.description}">
+                  <div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
                 </tr>
-                </thead>
-                <tbody class="stats">
-                  <div py:for="item in projects" py:strip="True">
-                    <tr class="item ${item.parity}" title="${item.description}">
-                      <div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
-                    </tr>
-                  </div>
-                </tbody>
-              </table>
-          </div>
-          <div class="ft"></div>
+              </div>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div class="module first clear">
-          <div class="hd"></div>
-          <div class="bd">
-              <div py:replace="pootlepage.translationsummarylegend(translationlegend)" />
-          </div>
-          <div class="ft"></div>
+        <div class="bd">
+          <div py:replace="pootlepage.translationsummarylegend(translationlegend)" />
+        </div>
       </div>
 
-    <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
+      <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
 
-  </div><!-- end #body-->
+    </div><!-- end #body-->
 
-  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
+    <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
 	
-</div><!-- end #doc -->
+  </div><!-- end #doc -->
 </div><!-- end #wrapper -->
 
-  <div py:replace="pootlepage.footer(links, baseurl)"/>
+<div py:replace="pootlepage.footer(links, baseurl)"/>
 
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
 
-  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
+<script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
 
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
+<!--[if lt IE 7.]>
+  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+<![endif]-->
 
 </body>
 </html>

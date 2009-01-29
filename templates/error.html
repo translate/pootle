@@ -15,35 +15,36 @@ from Pootle.templates import pootlepage
 <body>
 
 <div id="wrapper">
-<div id="doc">
+  <div id="doc">
     
-  <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
+    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
 
-  <div id="body">
+    <div id="body">
 
       <div id="content" dir="$uidir" lang="$uilanguage">
-        <div class="contents"><h3 class="title" py:content="pagetitle">Error</h3>
+        <div class="contents">
+	  <h3 class="title" py:content="pagetitle">Error</h3>
           <div class="item-description" py:if="message" py:content="XML(message)">An error occured</div>
           <div class="item-description" py:if="traceback"><pre py:content="traceback">Traceback (most recent call last):</pre></div>
           <a href="javascript:history.back();" py:content="back">Back</a>
         </div>
       </div>
 
-  </div><!-- end #body-->
+    </div><!-- end #body-->
 
-  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
+    <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
 	
-</div><!-- end #doc -->
+  </div><!-- end #doc -->
 </div><!-- end #wrapper -->
 
-  <div py:replace="pootlepage.footer(links, baseurl)"/>
+<div py:replace="pootlepage.footer(links, baseurl)"/>
 
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
 
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
+<!--[if lt IE 7.]>
+  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+<![endif]-->
 
 </body>
 </html>

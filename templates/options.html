@@ -15,46 +15,44 @@ from Pootle.templates import pootlepage
 <body>
 
 <div id="wrapper">
-<div id="doc">
+  <div id="doc">
     
-  <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-
-  <div id="body">
-
-    <div py:if="introtext or message" class="site-message">
+    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
+    
+    <div id="body">
+      
+      <div py:if="introtext or message" class="site-message">
         <div class="info" py:if="introtext" py:content="introtext">Message</div>
         <div class="info" py:if="message" py:content="XML(message)">Message</div>
-    </div>
-
-      <div class="module first clear">
-          <div class="hd"></div>
-          <div class="bd">
-	    <form action="" method="post">
-              <table>
-		<div py:content="XML(user_form.as_table())" />
-		<div py:content="XML(profile_form.as_table())" />
-	      </table>
-	      <input type="submit"/>
-	    </form>
-          </div>
-          <div class="ft"></div>
       </div>
 
-  </div><!-- end #body-->
-
-  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
-	
-</div><!-- end #doc -->
+      <div class="module first clear">
+        <div class="bd">
+	  <form action="" method="post">
+            <table>
+	      <div py:content="XML(user_form.as_table())" />
+	      <div py:content="XML(profile_form.as_table())" />
+	    </table>
+	    <input type="submit"/>
+	  </form>
+        </div>
+      </div>
+      
+    </div><!-- end #body-->
+    
+    <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
+    
+  </div><!-- end #doc -->
 </div><!-- end #wrapper -->
 
-  <div py:replace="pootlepage.footer(links, baseurl)"/>
+<div py:replace="pootlepage.footer(links, baseurl)"/>
 
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
 
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
+<!--[if lt IE 7.]>
+  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+<![endif]-->
 
 </body>
 </html>

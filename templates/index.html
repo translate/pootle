@@ -17,92 +17,88 @@ from Pootle.templates import pootlepage
 <body class="home">
 
 <div id="wrapper">
-<div id="doc">
+  <div id="doc">
     
-  <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
+    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
 
-  <div id="body">
+    <div id="body">
 
-    <h1 py:content="XML(description)">this is a demo installation of pootle</h1>
+      <div py:content="XML(description)">this is a demo installation of pootle</div>
 
-    <div py:if="message" class="site-message">
+      <div py:if="message" class="site-message">
         <div class="info" py:if="message" py:content="XML(message)">Message</div>
-    </div>
-
+      </div>
+      
       <div class="module first">
-          <div class="hd">
-              <h2 py:content="languagelink">Languages</h2>
-          </div>
-          <div class="bd">
-              <table class="sortable">
-                  <tr><th>Language</th><th>Overall Completion</th><th>Last Activity</th></tr>
-                  <tr py:for="zebra, l in enumerate(languages)" class="${zebra%2 and 'odd' or 'even'}">
-                    <td class="language"><a href="${l.code}/" py:content="l.name">Language</a></td>
-                    <td>
-                      <span class="graph" dir="$uidir">
-                        <span class="translated" style="width: ${l.transper}px" title="${l.trans}/${l.total} words translated" />
-                        <span class="fuzzy" style="${cssaligndir}: ${l.transper}px; width: ${l.fuzzyper}px" title="${l.fuzzy}/${l.total} words fuzzy" />
-                        <span class="untranslated" style="${cssaligndir}: ${l.transper+l.fuzzyper}px; width: ${l.untransper}px" title="${l.untrans}/${l.total} words untranslated" />
-                      </span>
-                      <span class="sortkey">${l.transper}%</span>
-                    </td> 
-                    <td>${l.lastactivity}</td>
-                  </tr>
-              </table>
-          </div>
-          <div class="ft"></div>
+        <div class="hd">
+          <h2 py:content="languagelink">Languages</h2>
+        </div>
+        <div class="bd">
+          <table class="sortable">
+            <tr><th>Language</th><th>Overall Completion</th><th>Last Activity</th></tr>
+            <tr py:for="zebra, l in enumerate(languages)" class="${zebra%2 and 'odd' or 'even'}">
+              <td class="language"><a href="${l.code}/" py:content="l.name">Language</a></td>
+              <td>
+                <span class="graph" dir="$uidir">
+                  <span class="translated" style="width: ${l.transper}px" title="${l.trans}/${l.total} words translated" />
+                  <span class="fuzzy" style="${cssaligndir}: ${l.transper}px; width: ${l.fuzzyper}px" title="${l.fuzzy}/${l.total} words fuzzy" />
+                  <span class="untranslated" style="${cssaligndir}: ${l.transper+l.fuzzyper}px; width: ${l.untransper}px" title="${l.untrans}/${l.total} words untranslated" />
+                </span>
+                <span class="sortkey">${l.transper}%</span>
+              </td> 
+              <td>${l.lastactivity}</td>
+            </tr>
+          </table>
+        </div>
       </div>
       <div class="module">
-          <div class="hd">
-              <h2 py:content="projectlink">Projects</h2>
-          </div>
-          <div class="bd">
-              <table class="sortable">
-                  <tr><th>Project</th><th>Overall Completion</th><th>Last Activity</th></tr>
-                  <tr py:for="zebra, p in enumerate(projects)" class="${zebra%2 and 'odd' or 'even'}">
-                    <td class="language"><a href="projects/${p.code}/" title="${p.description}"  py:content="p.name">Project</a></td>
-                    <td>
-                      <span class="graph" dir="$uidir">
-                        <span class="translated" style="width: ${p.transper}px" title="${p.trans}/${p.total} words translated" />
-                        <span class="fuzzy" style="${cssaligndir}: ${p.transper}px; width: ${p.fuzzyper}px" title="${p.fuzzy}/${p.total} words fuzzy" />
-                        <span class="untranslated" style="${cssaligndir}: ${p.transper+p.fuzzyper}px; width: ${p.untransper}px" title="${p.untrans}/${p.total} words untranslated" />
-                      </span>
-                      <span class="sortkey">${p.transper}%</span>
-                    </td> 
-                    <td>${p.lastactivity}</td>
-                  </tr>
-              </table>
-          </div>
-          <div class="ft"></div>
+        <div class="hd">
+          <h2 py:content="projectlink">Projects</h2>
+        </div>
+        <div class="bd">
+          <table class="sortable">
+            <tr><th>Project</th><th>Overall Completion</th><th>Last Activity</th></tr>
+            <tr py:for="zebra, p in enumerate(projects)" class="${zebra%2 and 'odd' or 'even'}">
+              <td class="language"><a href="projects/${p.code}/" title="${p.description}"  py:content="p.name">Project</a></td>
+              <td>
+                <span class="graph" dir="$uidir">
+                  <span class="translated" style="width: ${p.transper}px" title="${p.trans}/${p.total} words translated" />
+                  <span class="fuzzy" style="${cssaligndir}: ${p.transper}px; width: ${p.fuzzyper}px" title="${p.fuzzy}/${p.total} words fuzzy" />
+                  <span class="untranslated" style="${cssaligndir}: ${p.transper+p.fuzzyper}px; width: ${p.untransper}px" title="${p.untrans}/${p.total} words untranslated" />
+                </span>
+                <span class="sortkey">${p.transper}%</span>
+              </td> 
+              <td>${p.lastactivity}</td>
+            </tr>
+          </table>
+        </div>
       </div>
-
+      
       <div class="module first clear">
-          <div class="hd"></div>
-          <div class="bd">
-              <div py:replace="pootlepage.translationsummarylegend(translationlegend)" />
-          </div>
-          <div class="ft"></div>
+        <div class="bd">
+          <div py:replace="pootlepage.translationsummarylegend(translationlegend)" />
+        </div>
       </div>
-
+      
       <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
+      
+    </div><!-- end #body-->
 
-  </div><!-- end #body-->
-
-  <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
-	
-</div><!-- end #doc -->
+    <div py:replace="pootlepage.login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)"/>
+    
+  </div><!-- end #doc -->
 </div><!-- end #wrapper -->
 
-  <div py:replace="pootlepage.footer(links, baseurl)"/>
+<div py:replace="pootlepage.footer(links, baseurl)"/>
 
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
 
-  <script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
+<script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
 
-  <!--[if lt IE 7.]>
-    <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
-  <![endif]-->
+<!--[if lt IE 7.]>
+  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+<![endif]-->
 
 </body>
 </html>
