@@ -121,44 +121,7 @@ from Pootle.templates import pootlepage, navbar
 
 		    <!--! Cell with translation (view/suggest/review/edit) -->
 		    <td lang="$uilanguage" dir="$uidir" colspan="1" rowspan="1" class="translate-translation ${item.polarity} ${item.focus_class}">
-		      <div id="${item.trans.itemid}" class="translate-translation ${item.orig.focus_class}">
-
-			<!--! Review suggestions -->
-			<div py:if="item.editable and reviewmode" class="translation-text">
-			  <div class="translation-action">
-			    <a py:if="item.trans.editlink" href="${item.trans.editlink.href}" class="translation-action" py:content="item.trans.editlink.text" id="${item.trans.editlink.linkid}" dir="$uidir">Edit</a>
-			  </div>
-			  <strong class="${item.state_class}" py:content="item.trans.current_title">Current Translation:</strong><br />
-			  <div py:for="form in item.trans.forms" py:strip="True">
-			    <span class="translation-text-headers" py:if="form.title" py:content="form.title">Plural Form ${form.n}</span>
-			    <br py:if="form.title" />
-			    <span py:replace="XML(form.diff)">Text with diffs</span><br />
-			  </div>
-                  
-			  <div py:for="sugg in item.trans.suggestions" py:strip="True">
-			    <br />
-			    <strong py:content="sugg.title">Suggestion by testuser:</strong><br />
-			    <div class="translate-suggestion">
-			      <div py:for="form in sugg.forms" py:strip="True">
-				<span class="translation-text-headers" py:if="form.title" py:content="form.title">Plural Form ${form.n}</span>
-				<br py:if="form.title" />
-				<span py:replace="XML(form.diff)">Text with diffs</span><br />
-				<input type="hidden" name="${form.suggid}" value="${form.value}" />
-				<br />
-			      </div>
-			    </div>
-			    <div py:if="sugg.canreview" py:strip="True">
-			      <input type="submit" name="accept${sugg.suggid}" value="${accept_button}"/>
-			      <input type="submit" name="reject${sugg.suggid}" value="${reject_button}"/>
-			    </div>
-			    <input py:if="sugg.back" type="submit" name="back${sugg.back.item}" accesskey="b" value="${sugg.back.text}"/>
-			    <input py:if="sugg.skip" type="submit" name="skip${sugg.skip.item}" accesskey="k" value="${sugg.skip.text}"/>
-			    <br />
-			  </div>
-			  <input py:if="item.trans.back" type="submit" name="back${item.trans.back.item}" accesskey="b" value="${item.trans.back.text}"/>
-			  <input py:if="item.trans.skip" type="submit" name="skip${item.trans.skip.item}" accesskey="k" value="${item.trans.skip.text}"/>
-			</div>
-
+        <div id="${item.trans.itemid}" class="translate-translation ${item.orig.focus_class}">
 
 			<!--! Begin: Normal editing -->
 			<div py:if="item.editable" py:strip="True">
@@ -193,8 +156,8 @@ from Pootle.templates import pootlepage, navbar
 			    <strong class="${item.state_class}" py:content="item.trans.current_title">Current Translation:</strong>
 			    <div class="translate-original-block">
 			      <div py:for="form in item.trans.forms" py:strip="True">
-				<div class="translation-text-headers" lang="$uilanguage" py:if="form.title" py:content="form.title">Plural Form ${form.n}</div>
-				<div py:content="XML(form.diff)" lang="$language.code" dir="$language.dir">Text with diffs</div>
+              <div class="translation-text-headers" lang="$uilanguage" py:if="form.title" py:content="form.title">Plural Form ${form.n}</div>
+              <div py:content="XML(form.diff)" lang="$language.code" dir="$language.dir">Text with diffs</div>
 			      </div>
 			    </div>
 			  </div>
