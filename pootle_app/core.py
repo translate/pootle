@@ -217,8 +217,8 @@ class Store(models.Model):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
     # The filesystem path of the store.
     path = models.FilePathField(db_index=True)
-    # A Store has a pointer to a goal of which it is part.
-    goal = models.ForeignKey(Goal, related_name='stores')
+    # A store can be part of many goals and a goal can contain many files
+    goals = models.ManyToManyField(Goal, related_name='stores')
 
 class SubmissionManager(models.Manager):
     def get_top_submitters(self):
