@@ -35,7 +35,7 @@
                     <li class="yuimenubaritem"><a href="${baseurl}logout.html">Log out</a></li>
 		  </div>
                   <div py:if="not sessionvars.isopen" py:strip="True">
-                    <li id="menu-login" class="yuimenubaritem"><a href="${baseurl}login.html"><span>Log in</span></a></li>
+                    <li class="yuimenubaritem"><a href="${baseurl}login.html"><span>Log in</span></a></li>
                   </div>
                 </ul>
               </div>
