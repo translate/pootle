@@ -423,6 +423,22 @@ html[dir="rtl"] #nav-main ul li {
   margin-bottom: 3em;
   line-height: 1.3em;
 }
+
+.module table, 
+.module-primary table {
+  width: 100%;
+}
+td.language {
+  padding-left: 5px;
+}
+tr.even, 
+td.even, 
+li.even{
+  background: #f7f7f5;
+}
+.clear {
+  clear:both;
+}
 .module {
   width: 48%;
   float: right;
@@ -437,7 +453,6 @@ html[dir=rtl] .module {
 html[dir=rtl] .module.first {
   float: right;
 }
-
 .module .hd h2, 
 .module-primary .hd h2 {
   margin: 0;
@@ -465,30 +480,25 @@ html[dir=rtl] .module-primary .hd h2 {
   font-size: 120%;
 }
 
-.module .bd h3.comments {
-    border-top: 1px solid #ebeae7;
-    padding: 20px 0 0 0;
+/*
+** LOGIN PAGE
+*/
+#loginform {
+  width: 20em;
+  margin: 2em auto;
+  margin-bottom: 8em;
+  text-align: center;
+  border: 2px solid #ccc;
+  padding: 1em;
+  background-color: #e5edef;
 }
-
-.module table, 
-.module-primary table {
+#loginform table {
   width: 100%;
 }
 
-/*
-html[dir=rtl] 
-*/
-
-td.language {
-  padding-left: 5px;
-}
-tr.even, 
-td.even, 
-li.even{
-  background: #f7f7f5;
-}
-.clear {
-  clear:both;
+.module .bd h3.comments {
+    border-top: 1px solid #ebeae7;
+    padding: 20px 0 0 0;
 }
 
 
@@ -644,28 +654,6 @@ textarea.translation {
 td.translation {
     font-weight: bold;
     color: #000;
-}
-
-#login-form {
-    color: #000;
-    width: 350px;
-    display: none;
-}
-#login-form input[type=text], #login-form input[type=password] {
-    width: 160px;
-}
-#login-form label {
-    display: block;
-    float: left;
-    width: 10em;
-    text-align: right;
-    padding: 0 5px 0 0;
-}
-#login-form input[type=submit] {
-    float: right;
-}
-#login-form p {
-    margin: 0 0 0.5em 0;
 }
 
 div.statslist {
