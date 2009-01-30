@@ -23,7 +23,7 @@ from Pootle.templates import pootlepage
 
     <div id="body">
 
-      <div py:content="XML(description)">this is a demo installation of pootle</div>
+      <div class="intro" py:content="XML(description)">this is a demo installation of pootle</div>
 
       <div py:if="message" class="site-message">
         <div class="info" py:if="message" py:content="XML(message)">Message</div>
