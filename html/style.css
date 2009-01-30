@@ -7,6 +7,9 @@ version: 2.5.1
 html {
   color: #000;
   background: #FFF;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 body, div, 
 ul, ol, li, 
@@ -334,7 +337,6 @@ h1, h2, h3 {
   margin-left: 20px;
   font-family: Arial;
   font-size: 150%;
-  width: 100%;
   display: block;
 }
 html[dir="rtl"] #header h1 a {
