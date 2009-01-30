@@ -35,7 +35,7 @@ import time
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
-from pootle_app.models import make_pootle_user, get_profile, save_user
+from pootle_app.models import get_profile
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
@@ -253,19 +253,21 @@ class OptionalLoginAppServer(object):
       
   def adduser(self, username, fullname, email, password, logintype="hash"):
     """adds the user with the given details"""
-    user = make_pootle_user(username=username)
-    user.first_name = fullname
-    user.email = email
+    user = User(username=username,
+                first_name=fullname,
+                email=email)
     user.set_password(password)
+    user.save()
     return user
 
-  def makeactivationcode(self, user):
+  def set_activation_code(self, user):
     """makes a new activation code for the user and returns it"""
-    activationcode = self.generateactivationcode()
     user.is_active = False
-    get_profile(user).activation_code = activationcode
-    save_user(user)
-    return activationcode
+    user.save()
+    profile = user.get_profile()
+    profile.activation_code = self.generateactivationcode()
+    profile.save()
+    return profile.activation_code
 
   def changeusers(self, request):
     """handles multiple changes from the site admin"""
@@ -325,9 +327,9 @@ class OptionalLoginAppServer(object):
         if useractivate:
           user.is_active = True
         else:
-          get_profile(user).activation_code = self.makeactivationcode(user)
+          self.set_activation_code(user)
       if user:
-        save_user(user)
+        user.save()
 
   def handleregistration(self, request):
     """handles the actual registration"""
@@ -358,7 +360,7 @@ class OptionalLoginAppServer(object):
     except User.DoesNotExist:
       validatepassword(request, password, passwordconfirm)
       user = self.adduser(username, fullname, email, password)
-      get_profile(user).activation_code = self.makeactivationcode(user)
+      activation_code = self.set_activation_code(user)
       activationlink = ""
       message = localize("A Pootle account has been created for you using this email address.\n")
       if pan_app.prefs.baseurl.startswith("http://"):
@@ -366,9 +368,9 @@ class OptionalLoginAppServer(object):
         activationlink = pan_app.prefs.baseurl
         if not activationlink.endswith("/"):
           activationlink += "/"
-        activationlink += "activate.html?username=%s&activationcode=%s" % (username, get_profile(user).activation_code)
+        activationlink += "activate.html?username=%s&activationcode=%s" % (username, activation_code)
         message += "  %s  \n" % activationlink
-      message += localize("Your activation code is:\n%s\n", get_profile(user).activation_code)
+      message += localize("Your activation code is:\n%s\n", activation_code)
       if activationlink:
         message += localize("If you are unable to follow the link, please enter the above code at the activation page.\n")
       message += localize("This message is sent to verify that the email address is in fact correct. If you did not want to register an account, you may simply ignore the message.\n")
@@ -376,7 +378,6 @@ class OptionalLoginAppServer(object):
       displaymessage = localize("Account created. You will be emailed login details and an activation code. Please enter your activation code on the <a href='%s'>activation page</a>.", redirecturl)
       if activationlink:
         displaymessage += " " + localize("(Or simply click on the activation link in the email)")
-      save_user(user)
 
     message += localize("Your user name is: %s\n", username)
     message += localize("Your registered email address is: %s\n", email)
@@ -421,9 +422,9 @@ class OptionalLoginAppServer(object):
     if request.method == 'POST':
       username = request.POST["username"]
       def activate_user(user):
-        if get_profile(user).activation_code == request.POST["activationcode"].strip().lower():
+        if user.get_profile().activation_code == request.POST["activationcode"].strip().lower():
           user.is_active = True
-          save_user(user)
+          user.save()
       user = with_user(username, activate_user)
       if user.is_active:
         redirectpage = pagelayout.PootlePage("Redirecting to login...", {}, request)

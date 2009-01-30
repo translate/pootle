@@ -24,6 +24,7 @@ from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.contrib.auth.admin import UserAdmin
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
+from django.db.models.signals import post_save
 
 class PootleUserManager(UserManager):
     """A manager class which is meant to replace the manager class for the User model. This manager
@@ -97,38 +98,27 @@ class PootleProfile(models.Model):
         # TODO: This should be a DB column
         return []
 
-
-def make_default_profile(user_model):
-    from Pootle.pootle_app.models import Language
-    profile = PootleProfile()
-    if not user_model.is_anonymous():
-        profile.user_id = user_model.id
-        # We have to associate the newly created profile
-        # with the User model (if User is a logged in user
-        # and not an anonymous user). We must also save the 
-        # profile, since otherwise a future call to 'get_profile'
-        # below will return a new profile (and not the one
-        # we just created).
+def create_pootle_profile(sender, instance, **kwargs):
+    """A post-save hook for the User model which ensures that it gets an
+    associated PootleProfile."""
+    try:
+        profile = instance.get_profile()
+    except PootleProfile.DoesNotExist:
+        profile = PootleProfile(user=instance)
         profile.save()
-    return profile
 
-def get_profile(user_model):
-    if user_model.is_authenticated():
-        try:
-            return user_model.get_profile()
-        except PootleProfile.DoesNotExist, _e:
-            # A registered user which current has no profile info
-            return make_default_profile(user_model)
+post_save.connect(create_pootle_profile, sender=User)
+
+def get_profile(user):
+    """Return the PootleProfile associated with a user.
+
+    This function is only necessary if 'user' could be an anonymous
+    user.  If you know for certain that a user is logged in, then use
+    the .get_profile() method on a user instead."""
+    if user.is_authenticated():
+        # Return the PootleProfile associated with authenticated users
+        return user.get_profile()
     else:
-        # An anonymous user which has no profile
-        return make_default_profile(user_model)
+        # Anonymous users get the PootleProfile associated with the 'nobody' user
+        return User.objects.include_hidden().get(username='nobody').get_profile()
 
-def make_pootle_user(**kwargs):
-    user = User(**kwargs)
-    user.save()
-    make_default_profile(user)
-    return user
-
-def save_user(user):
-    user.save()
-    get_profile(user).save()

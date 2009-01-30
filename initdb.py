@@ -10,7 +10,7 @@ import md5
 
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
-from pootle_app.models import Project, Language, PootleProfile, make_pootle_user
+from pootle_app.models import Project, Language, PootleProfile
 
 def main():
   if len(sys.argv) != 1:
@@ -744,7 +744,7 @@ def create_default_users():
   nobody = User(username=u"nobody",
                 first_name=u"User object representing anonymous users.",
                 is_active=True)
-  nobody.set_unusable_password() # No user should be able to log in as "nobody"
+  nobody.set_unusable_password()
   nobody.save()
 
   # The default user represents any valid, non-anonymous user and is used to associate
@@ -756,7 +756,7 @@ def create_default_users():
   default = User(username=u"default", 
                  first_name=u"User object representing any user.",
                  is_active=True)
-  default.set_unusable_password() # No user should be ablet to
+  default.set_unusable_password()
   default.save()
 
 if __name__ == "__main__":

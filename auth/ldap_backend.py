@@ -26,8 +26,6 @@ import logging
 from django.conf import settings
 from django.contrib.auth.models import User
 
-from pootle_app.models import make_pootle_user
-
 class LdapBackend(object):
     """
     This is a Django authentication module which implements LDAP
@@ -68,8 +66,7 @@ class LdapBackend(object):
                 return user
             except User.DoesNotExist:
                 logger.info("First login for LDAP user (%s).  Creating new account." % username)
-                user = make_pootle_user(username=username)
-                user.is_active = True
+                user = User(username=username, is_active=True)
                 user.password = 'LDAP_%s' % (User.objects.make_random_password(32))
                 for i in settings.AUTH_LDAP_FIELDS:
                     if i != 'dn' and len(settings.AUTH_LDAP_FIELDS[i]) > 0:
