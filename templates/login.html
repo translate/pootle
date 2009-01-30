@@ -27,10 +27,10 @@ from Pootle.templates import pootlepage
       </div>
 
       <form action="" method="post" name="loginform" id="loginform">
-        <table cellpadding="1" width="70%" cellspacing="1">
+        <table cellpadding="1" cellspacing="1">
           <tr>
-            <td colspan="1" rowspan="1" style="width: 33%" py:content="username_title">Username:</td>
-            <td colspan="1" rowspan="1" style="width: 66%">
+            <td class="label" colspan="1" rowspan="1" py:content="username_title">Username:</td>
+            <td class="field" colspan="1" rowspan="1">
               <input style="width: 100%" type="text" name="username" value="${username}" />
             </td>
           </tr>
