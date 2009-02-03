@@ -19,7 +19,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from locale import LocaleMiddleware
-from request_cache import RequestCacheMiddleware
-from profile import ProfilerMiddleware
-from check_cookies import CheckCookieMiddleware
+from Pootle.middleware.locale import LocaleMiddleware
+from Pootle.middleware.request_cache import RequestCacheMiddleware
+from Pootle.middleware.profile import ProfilerMiddleware
+from Pootle.middleware.check_cookies import CheckCookieMiddleware
