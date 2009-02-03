@@ -12,7 +12,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
 from django.db import transaction
 
 from django.contrib.auth.models import User
-from Pootle.pootle_app.models import Project, Language, PootleProfile, make_pootle_user, get_profile
+from Pootle.pootle_app.models import Project, Language
 
 import sys
 from jToolkit import prefs
@@ -170,141 +170,136 @@ def _get_user_attribute(data, user_name, attribute, unicode_me = True,
     return _get_attribute(data, user_name, attribute, unicode_me, default,
                           prefix='')
 
+def create_database_user(data, user_name):
+    # Create basic user information
+    user = User(username       = user_name,
+                first_name     = _get_user_attribute(data, user_name, 'name'),
+                email          = _get_user_attribute(data, user_name, 'email'),
+                activated      = try_type(bool, _get_user_attribute(data, user_name, 'activated',
+                                                                    unicode_me=False, default=0)),
+                activationcode = _get_user_attribute(data, user_name, 'activationcode',
+                                                     unicode_me = False, default=0),
+                passwdhash     = _get_user_attribute(data, user_name, 'passwdhash',
+                                                     unicode_me = False),
+                # "hash" is the login type that indicates "hash" the user's
+                # submitted password into MD5 and check against a local file/DB.
+                logintype      = _get_user_attribute(data, user_name, 'logintype',
+                                                     unicode_me = False,
+                                                     default = 'hash'),
+                siteadmin      = try_type(bool, _get_user_attribute(data, user_name, 'siteadmin',
+                                                                    unicode_me=False, default=0)))
+    # We have to save the user to ensure that an associated PootleProfile is created...
+    user.save()
+    logging.log(logging.INFO, 'Created a user object for %s', user_name)
+
+    # Profile information
+    profile = user.get_profile()
+    profile.view_rows      = try_type(int, _get_user_attribute(data, user_name, 'viewrows',
+                                                               unicode_me=False, default=10)),
+    profile.translate_rows = try_type(int, _get_user_attribute(data, user_name,o 'translaterows',
+                                                               unicode_me=False, default=10))
+    # uilanguage
+    raw_uilanguage = _get_user_attribute(data, user_name, 'uilanguages')
+    assert ',' not in raw_uilanguage # just one value here
+    if raw_uilanguage:
+        try:
+            profile.ui_lang = Language.objects.get(code=raw_uilanguage)
+        except Language.DoesNotExist:
+            logging.log(logging.ERROR, "The user %(username)s has %(lang_code)s as his/her "\
+                            "UI language, but %(lang_code) is not available the new Pootle's "\
+                            "language database", dict(username=user.username, lang_code=raw_uilanguage))
+    else:
+        pass # leave it NULL
+
+    # altsrclanguage
+    raw_altsrclanguage = _get_user_attribute(data, user_name,
+                                             'altsrclanguage')
+    assert ',' not in raw_altsrclanguage # just one value here
+    if raw_altsrclanguage:
+        try:
+            profile.alt_src_lang = Language.objects.get(code=raw_altsrclanguage)
+        except Language.DoesNotExist:
+            logging.log(logging.ERROR, "The user %(username)s has %(lang_code)s as his/her "\
+                            "alternative source language, but %(lang_code) is not "\
+                            "available the new Pootle's language database", 
+                        dict(username=user.username, lang_code=raw_uilanguage))
+    else:
+        pass # leave it NULL
+    profile.save()
+    logging.log(logging.INFO, 'Created a profile object for %s', user_name)
+
+    return user, profile
+
+def augment_list(profile, data, model, user_property, property_name):
+    """Enumerate the list of codes (language or project codes, for
+    example) in property named 'user_property' in the jToolkit prefs
+    node 'data'. Filter the list removing all empty entries. Then, for
+    each code, check whether the property named 'user_property' in
+    'profile' (which is a PootleProfile instance) contains an element
+    with the code 'code'. If not, add it.
+    """
+    # Get the property named 'user_property' from the prefs node
+    # 'data' for the username given by profile.user.username
+    jtoolkit_property = _get_user_attribute(data, profile.user.username, user_property)
+    # Split jtoolkit_property by ',', filtering out all strings which
+    # contain only spaces and enumerate using the variable 'code'.
+    for code in (code for code in jtoolkit_property.split(',') if code.strip()):
+        # Arguments to be passed to logging.log calls below
+        log_args = dict(property_name=property_name,
+                        username=profile.user.username,
+                        code=code)
+        try:
+            # Get the Django object from 'model' which has the code 'code'
+            db_object = model.objects.get(code=code)
+            # See if 'db_object' is profile.user_property
+            if db_object not in getattr(profile, user_property):
+                # If not, then add it
+                getattr(profile, user_property).append(db_project)
+                logging.log(logging.INFO,
+                            "Adding %(property_name) %(code)s for user %(username)s",
+                            log_args)
+        except model.DoesNotExist:
+            # Oops. No Django object in 'model' has the code
+            # 'code'. Tell the user that the necessary object should
+            # be created.
+            logging.log(logging.ERROR, 
+                        "Failed to add %(username)s to %(property_name) ID "\
+                            "%(code)s; you probably need to create it", log_args)
+
+def as_unicode(string):
+    if isinstance(string, unicode):
+        return string
+    elif instance(string, str):
+        return str.decode('utf-8')
+    else:
+        raise Exception('You must pass a string type')
+
 def import_users(parsed_users):
     data = parsed_users.__root__._assignments # Is this really the
                                               # right way?
 
     # Groan - figure out the usernames
-    user_names = set([key.split('.')[0] for key in data])
-    
-    for user_name in user_names:
+    usernames = (key.split('.')[0] for key in data)
+    for username in (as_unicode(username) for username in usernames):
         must_add_user_object = True
 
-        if type(user_name) == unicode:
-            pass
-        else:
-            user_name = unicode(user_name, 'utf-8')
-        # id for free, obviously.
-
         # Check if we already exist:
-        possible_us = User.objects.filter(username=user_name).all()
-        if possible_us:
-            print >> sys.stderr, 'Already found a user for named', user_name
-            print >> sys.stderr, 'Going to skip importing his data, but will',
-            print >> sys.stderr, 'import his language and project preferences.'
-            assert len(possible_us) == 1
-            user = possible_us[0]
-            must_add_user_object = False
-        else:
-            # username
-            user = make_pootle_user(user_name)
-
-            # name
-            user.name = _get_user_attribute(data, user_name, 'name')
-
-            # email
-            user.email = _get_user_attribute(data, user_name, 'email')
-
-            # activated
-            user.activated = try_type(bool,
-                             _get_user_attribute(data, user_name, 'activated',
-                             unicode_me=False, default=0))
-
-            # activationcode
-            user.activationcode = _get_user_attribute(data, user_name,
-                                  'activationcode', unicode_me = False,
-                                  default=0)
-
-            # passwdhash
-            user.passwdhash = _get_user_attribute(data, user_name,
-                              'passwdhash', unicode_me = False)
-
-            # logintype
-            # "hash" is the login type that indicates "hash" the user's
-            # submitted password into MD5 and check against a local file/DB.
-            user.logintype = _get_user_attribute(data, user_name, 'logintype',
-                             unicode_me = False, default = 'hash')
-
-            # siteadmin
-            user.siteadmin = try_type(bool,
-                             _get_user_attribute(data, user_name, 'siteadmin',
-                             unicode_me=False, default=0))
-
-            # viewrows
-            user.viewrows = try_type(int,
-                            _get_user_attribute(data, user_name, 'viewrows',
-                            unicode_me=False, default=10))
-
-            # translaterows
-            user.translaterows = try_type(int,
-                                 _get_user_attribute(data, user_name,
-                                 'translaterows', unicode_me=False, default=10))
-
-            # uilanguage
-            raw_uilanguage = _get_user_attribute(data, user_name, 'uilanguages')
-            assert ',' not in raw_uilanguage # just one value here
-            if raw_uilanguage:
-                db_uilanguage = alchemysession.query(Language).filter_by(
-                                               code=raw_uilanguage).all()[0]
-                user.uilanguage = db_uilanguage
-            else:
-                pass # leave it NULL
-
-            # altsrclanguage
-            raw_altsrclanguage = _get_user_attribute(data, user_name,
-                                                     'altsrclanguage')
-            assert ',' not in raw_altsrclanguage # just one value here
-            if raw_altsrclanguage:
-                db_altsrclanguage = alchemysession.query(Language).filter_by(
-                                    code=raw_altsrclanguage).all()[0]
-                user.altsrclanguage = db_altsrclanguage
-            else:
-                pass # leave it NULL
-            user.save()
+        try:
+            user = User.objects.get(username=username)
+            profile = user.get_profile()
+            logging.log(logging.INFO, 'Already found a user for named %s '\
+                            'Going to skip importing his data, but will '\
+                            'import his language and project preferences.',
+                        user_name)
+        except User.DoesNotExist:
+            user, profile = create_database_user(data, username)
 
         # ASSUMPTION: Someone has already created all the necessary projects
         # and languages in the web UI or through the earlier importer
-    
-        # Fill in the user_projects table
-        # (projects in the users.prefs file)
-        raw_projects = _get_user_attribute(data, user_name, 'projects')
-        projects_list = raw_projects.split(',')
-        # remove the empty string from our list of "projects"
-        projects_list = filter(lambda thing: thing, projects_list)
-        for project_name in projects_list:
-            try:
-                db_project = Project.objects.filter(code=project_name).all()[0]
-            except NoResultFound: # wrong exception name
-                print >> sys.stderr, "Failed to add", user, "to project ID", 
-                print >> sys.stderr, project_name, 
-                print >> sys.stderr, "; you probably need to create it."
-            if db_project not in user.projects:
-                user.projects.append(db_project)
-
-        # Fill in the user_languages table
-        # (languages in users.prefs)
-        raw_languages = _get_user_attribute(data, user_name, 'languages')
-        languages_list = raw_languages.split(',')
-        # remove the empty string from our list of "languages"
-        languages_list = filter(lambda thing: thing, languages_list)
-        for language_name in languages_list:
-            try:
-                db_language = Language.objects.filter(code=language_name).all()[0]
-            except IndexError:
-                print >> sys.stderr, "Failed to add", user, "to language ID",
-                print >> sys.stderr, language_name,
-                print >> sys.stderr,  "; you probably need to create it."
-            profile = get_profile(user)
-            if db_language not in profile.languages:
-                profile.languages.append(db_language)
-                profile.save()
-
-        if must_add_user_object:
-            # Commit the user.
-            user.save()
-        else:
-            print 'YOW?' # should save() or something
-			
+        augment_list(profile, data, Project,  'projects',  'project')
+        augment_list(profile, data, Language, 'languages', 'language')
+        # We might have modified the profile, so save it in case.
+        profile.save()
 
 if __name__ == '__main__':
     main()
