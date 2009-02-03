@@ -8,6 +8,9 @@
 
     <div py:def="header(links, sessionvars, baseurl, instancetitle)" py:strip="True">
       <!-- start header -->
+      <div id="nav-access">
+        <a href="#nav-main" py:content="links.skip_nav">skip to navigation</a>
+      </div>
         <?python
             header_attributes = {};
             if sessionvars.isopen:

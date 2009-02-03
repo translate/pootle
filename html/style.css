@@ -311,6 +311,19 @@ h1, h2, h3 {
   visibility: hidden;
 }
 
+#nav-access {
+  position: absolute;
+  top: -1000px;
+}
+
+html[dir="ltr"] #nav-access {
+  right: -1000px;
+}
+
+html[dir="rtl"] #nav-access {
+  right: -1000px;
+}
+
 /*
 ** HEADER
 */
@@ -844,6 +857,7 @@ div.translation-action {
 div.translation-action[dir="rtl"] {
   padding-right: 10px;
 }
+
 
 /*
 ** FOOTER
