@@ -23,10 +23,7 @@ from django.db import models, connection, backend
 from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User, Permission
-try:
-    from pootle_app.profile import PootleProfile
-except ImportError:
-    from profile import PootleProfile
+from pootle_app.profile import PootleProfile
 from translate.filters import checks
 
 def table_name(table):
