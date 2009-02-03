@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf.urls.defaults import *
-import view
+from pootle_app.views.language import view
 
 urlpatterns = patterns('',
     (r'^(?P<language_code>[^/]*)([/](index.html)?)?$',  view.language_index),
