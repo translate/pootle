@@ -135,6 +135,9 @@ class TranslatePage(pagelayout.PootleNavPage):
         "original_title": localize("Original"),
         # l10n: Heading above the table column with the target language
         "translation_title": localize("Translation"),
+        # l10n: Heading above the table column with the action for the current
+        # translation unit
+        "action_title": localize("Action"),
         "items": items,
         "reviewmode": self.reviewmode,
         "accept_title": localize("Accept suggestion"),

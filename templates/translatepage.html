@@ -83,6 +83,7 @@ from Pootle.templates import pootlepage, navbar
 		<tr>
 		  <th colspan="1" rowspan="1" class="translate-table-title" py:content="original_title">original</th>
 		  <th colspan="1" rowspan="1" class="translate-table-title" py:content="translation_title">translation</th>
+		  <th colspan="1" rowspan="1" class="translate-table-title" py:content="action_title">action</th>
 		</tr>
 
 		<div  py:for="item in items" py:strip="True">
@@ -225,9 +226,6 @@ from Pootle.templates import pootlepage, navbar
 			   action = "document.location='%s';"
 			?>
 			<div dir="$uidir" py:if="not item.editable" class="${item.state_class}">
-			  <div dir="$uidir" lang="$language.code" class="translation-action">
-			    <a py:if="item.trans.editlink" lang="$uilanguage" dir="$uidir" href="${item.trans.editlink.href}" class="translation-action" py:content="item.trans.editlink.text" id="${item.trans.editlink.linkid}">Edit</a>
-			  </div>
 
 			  <?python
 			     suggestiontext = viewsuggtext % ("<span class='scount'>" + str(len(item.trans.suggestions)) + "</span>")
@@ -259,6 +257,11 @@ from Pootle.templates import pootlepage, navbar
 			</div>
 		      </div>
 		    </td>
+        <td>
+          <div dir="$uidir" lang="$language.code" class="translation-action">
+            <a py:if="item.trans.editlink" lang="$uilanguage" dir="$uidir" href="${item.trans.editlink.href}" class="translation-action" py:content="item.trans.editlink.text" id="${item.trans.editlink.linkid}">Edit</a>
+          </div>
+        </td>
 		  </tr>
 
 		  <tr py:if="item.editable">
