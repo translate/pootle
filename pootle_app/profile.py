@@ -64,7 +64,7 @@ class PootleProfile(models.Model):
                                              verbose_name=_("Alternative source languages"))
 
     def _get_suggestions(self, status):
-        from Pootle.pootle_app.models import Suggestion
+        from pootle_app.models import Suggestion
         return Suggestion.objects.filter(suggester=self).filter(review_status=status)
 
     suggestions_accepted = property(lambda self: self._get_suggestions("accepted").all())

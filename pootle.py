@@ -58,7 +58,7 @@ from jToolkit import __version__ as jtoolkitversion
 from Pootle import statistics, pan_app
 from Pootle.misc.transaction import django_transaction
 from Pootle.misc import prefs, jtoolkit_django
-from Pootle.pootle_app.models import Language, Project
+from pootle_app.models import Language, Project
 
 try:
   from xml.etree import ElementTree
