@@ -54,7 +54,7 @@ urlpatterns = patterns('',
     (r'^about.html$', 'pootle_app.views.index.view.about'),
     (r'^register.html$', 'pootle_app.views.index.view.register'),
     (r'^activate.html$', 'pootle_app.views.index.view.activate'),
-    (r'^(/|/index.html)?$', 'pootle_app.views.index.view.index'),
+    (r'^(/|index.html)?$', 'pootle_app.views.index.view.index'),
     (r'', include('pootle_app.views.language.urls')),
 )
 
