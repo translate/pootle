@@ -63,22 +63,6 @@ class PootleProfile(models.Model):
     alt_src_langs   = models.ManyToManyField('Language', blank=True, related_name="user_alt_src_langs",
                                              verbose_name=_("Alternative source languages"))
 
-    def _get_suggestions(self, status):
-        from pootle_app.models import Suggestion
-        return Suggestion.objects.filter(suggester=self).filter(review_status=status)
-
-    suggestions_accepted = property(lambda self: self._get_suggestions("accepted").all())
-    suggestions_rejected = property(lambda self: self._get_suggestions("rejected").all())
-    suggestions_pending  = property(lambda self: self._get_suggestions("pending").all())
-    suggestions_reviewed = property(lambda self: self._get_suggestions("reviewed").all())
-
-    suggestions_accepted_count = property(lambda self: self._get_suggestions("accepted").count())
-    suggestions_rejected_count = property(lambda self: self._get_suggestions("rejected").count())
-    suggestions_pending_count  = property(lambda self: self._get_suggestions("pending").count())
-    suggestions_reviewed_count = property(lambda self: self._get_suggestions("reviewed").count())
-
-    submissions_count = property(lambda self: self.submission_set.count())
-
     def _get_status(self):
         return "Foo"
 

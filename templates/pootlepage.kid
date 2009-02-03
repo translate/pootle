@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?python
-   from pootle_app.models import get_profile
+   from pootle_app.models import get_profile, suggestions_accepted_count, suggestions_pending_count, suggestions_reviewed_count, submissions_count
    from django.contrib.auth import REDIRECT_FIELD_NAME
    from django.contrib.auth.forms import AuthenticationForm
 ?>
@@ -95,19 +95,19 @@
       <table>
         <tr>
           <th scope="row" py:content="statstext['suggaccepted']">Suggestions Accepted</th>
-          <td>${get_profile(user).suggestions_accepted_count}</td>
+          <td>${suggestions_accepted_count(get_profile(user))}</td>
         </tr>
         <tr>
           <th scope="row" py:content="statstext['suggpending']">Suggestions Pending</th>
-          <td>${get_profile(user).suggestions_pending_count}</td>
+          <td>${suggestions_pending_count(get_profile(user))}</td>
         </tr>
         <tr>
           <th scope="row" py:content="statstext['suggreviewed']">Suggestions Reviewed</th>
-          <td>${get_profile(user).suggestions_reviewed_count}</td>
+          <td>${suggestions_reviewed_count(get_profile(user))}</td>
         </tr>
         <tr>
           <th scope="row" py:content="statstext['submade']">Submissions Made</th>
-          <td>${get_profile(user).submissions_count}</td>
+          <td>${submissions_count(get_profile(user))}</td>
         </tr>
       </table>
     </div>

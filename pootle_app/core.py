@@ -307,3 +307,32 @@ class Suggestion(models.Model):
 
     objects = SuggestionManager()
 
+def _get_suggestions(profile, status):
+    return Suggestion.objects.filter(suggester=profile).filter(review_status=status)
+
+def suggestions_accepted(profile):
+    return _get_suggestions(profile, "accepted").all()
+
+def suggestions_rejected(profile):
+    return _get_suggestions(profile, "rejected").all()
+
+def suggestions_pending(profile):
+    return _get_suggestions(profile, "pending").all()
+
+def suggestions_reviewed(profile):
+    return _get_suggestions(profile, "reviewed").all()
+
+def suggestions_accepted_count(profile):
+    return _get_suggestions(profile, "accepted").count()
+
+def suggestions_rejected_count(profile):
+    return _get_suggestions(profile, "rejected").count()
+
+def suggestions_pending_count(profile):
+    return _get_suggestions(profile, "pending").count()
+
+def suggestions_reviewed_count(profile):
+    return _get_suggestions(profile, "reviewed").count()
+
+def submissions_count(profile):
+    return profile.submission_set.count()
