@@ -14,8 +14,7 @@ from Pootle.pagelayout import completetemplatevars
 # settings.py is in the root of our Django application's
 # directory structure, so we can use path.dirname to
 # find the root directory.
-from Pootle import settings
-root_dir = path.dirname(settings.__file__)
+from django.conf import settings
 
 kid.enable_import()
 
@@ -24,7 +23,7 @@ def find_template(relative_template_path):
     'relative_template_path'."""
 
     for template_dir in settings.TEMPLATE_DIRS:
-        full_template_path = path.join(root_dir, template_dir, relative_template_path)
+        full_template_path = path.join(settings.ROOT_DIR, template_dir, relative_template_path)
         if path.exists(full_template_path):
             return full_template_path
     raise Exception('No template named %s found' % relative_template_path)

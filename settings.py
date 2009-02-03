@@ -22,8 +22,10 @@
 import os
 import logging
 
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+
 def pootle_home(filename):
-    return os.path.join(os.path.abspath(os.path.dirname(__file__)), filename)
+    return os.path.join(ROOT_DIR, filename)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
