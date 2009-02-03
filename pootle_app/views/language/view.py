@@ -30,6 +30,7 @@ from Pootle.misc.jtoolkit_django import process_django_request_args
 
 from pootle_app.views.util import render_to_kid, render_jtoolkit
 from pootle_app.views.auth import redirect
+from pootle_app.models import Language
 
 def strip_trailing_slash(path):
     """If path ends with a /, strip it and return the stripped version."""
@@ -40,7 +41,7 @@ def strip_trailing_slash(path):
 
 def check_language(f):
     def decorated_f(request, language_code, *args, **kwargs):
-        if language_code == "templates" or pan_app.get_po_tree().haslanguage(language_code):
+        if language_code == "templates" or Language.objects.filter(code=language_code).count() > 0:
             return f(request, language_code, *args, **kwargs)
         else:
             return redirect('/', message=_("The language %s is not defined for this Pootle installation" % language_code))

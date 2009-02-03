@@ -1664,10 +1664,6 @@ class TranslationProject(object):
     else:
       return unicode(plural)
 
-  def hascreatemofiles(self, projectcode):
-    """returns whether the project has createmofile set"""
-    return pan_app.get_po_tree().getprojectcreatemofiles(projectcode) == 1
-
 class DummyProject(TranslationProject):
   """a project that is just being used for handling pootlefiles"""
   def __init__(self, podir, checker=None, projectcode=None, languagecode=None):

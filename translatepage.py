@@ -33,7 +33,7 @@ import os
 
 from django.contrib.auth.models import User
 from Pootle import pan_app
-from pootle_app.models import get_profile
+from pootle_app.models import get_profile, Language
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 xml_re = re.compile("&lt;.*?&gt;")
@@ -921,7 +921,8 @@ class TranslatePage(pagelayout.PootleNavPage):
     altsrcdict = {"available": False}
     if self.altproject is not None:
       altsrcdict["languagecode"] = pagelayout.weblanguage(self.altproject.languagecode)
-      altsrcdict["languagename"] = self.altproject.potree.getlanguagename(self.altproject.languagecode)
+      language = Language.objects.get(code=self.altproject.languagecode)
+      altsrcdict["languagename"] = language.fullname
       altsrcdict["dir"] = pagelayout.languagedir(altsrcdict["languagecode"])
       altsrcdict["title"] = tr_lang(altsrcdict["languagename"])
       if not origdict["isplural"]:

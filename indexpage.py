@@ -277,12 +277,10 @@ class UserIndex(pagelayout.PootlePage):
     quicklinks = []
     user_profile = self.request.user.get_profile()
     for language in user_profile.languages.all():
-      if not self.potree.haslanguage(language.code):
-        continue
       langlinks = []
       for project_model in user_profile.projects.all():
         if self.potree.hasproject(language.code, project_model.code):
-          projecttitle = self.potree.getprojectname(project_model.code)
+          projecttitle = project_model.fullname
           project = self.potree.getproject(language.code, project_model.code)
           isprojectadmin = "admin" in project.getrights(self.request.user)
           langlinks.append({
@@ -314,8 +312,9 @@ class LanguageIndex(pagelayout.PootleNavPage):
   """The main page for a language, listing all the projects in it"""
   def __init__(self, languagecode, request):
     self.potree = pan_app.get_po_tree()
+    self.language = Language.objects.get(code=languagecode)
     self.languagecode = languagecode
-    self.languagename = self.potree.getlanguagename(self.languagecode)
+    self.languagename = self.language.fullname
     self.initpagestats()
     languageprojects = self.getprojects(request)
     if len(languageprojects) == 0:
@@ -358,8 +357,8 @@ class LanguageIndex(pagelayout.PootleNavPage):
   def getlanguageinfo(self):
     """returns information defined for the language"""
     # specialchars = self.potree.getlanguagespecialchars(self.languagecode)
-    nplurals = self.potree.getlanguagenplurals(self.languagecode)
-    pluralequation = self.potree.getlanguagepluralequation(self.languagecode)
+    nplurals = self.language.nplurals
+    pluralequation = self.language.pluralequation
     infoparts = [(localize("Language Code"), self.languagecode),
                  (localize("Language Name"), tr_lang(self.languagename)),
                  # (localize("Special Characters"), specialchars),
@@ -370,28 +369,29 @@ class LanguageIndex(pagelayout.PootleNavPage):
 
   def getprojects(self, request):
     """gets the info on the projects"""
-    projectcodes = self.potree.getprojectcodes(self.languagecode)
-    self.projectcount = len(projectcodes)
-    projectitems = [self.getprojectitem(projectcode) for projectcode in projectcodes 
-          if "view" in (self.potree.getproject(self.languagecode, projectcode).getrights(request.user))]
+    projects = self.potree.get_projects(self.language)
+    self.projectcount = len(projects)
+    projectitems = [self.getprojectitem(project) for project in projects 
+          if "view" in (self.potree.getproject(self.language.code, project.code).getrights(request.user))]
     for n, item in enumerate(projectitems):
       item["parity"] = ["even", "odd"][n % 2]
     return projectitems
 
-  def getprojectitem(self, projectcode):
-    href = '%s/' % projectcode
-    projectname = self.potree.getprojectname(projectcode)
-    projectdescription = shortdescription(self.potree.getprojectdescription(projectcode))
-    project = self.potree.getproject(self.languagecode, projectcode)
-    projectstats = project.getquickstats()
-    projectdata = self.getstats(project, projectstats)
+  def getprojectitem(self, project):
+    href = '%s/' % project.code
+    projectname = project.fullname
+    projectdescription = shortdescription(project.description)
+    translation_project = self.potree.getproject(self.languagecode, project.code)
+    projectstats = translation_project.getquickstats()
+    projectdata = self.getstats(translation_project, projectstats)
     self.updatepagestats(projectdata["translatedsourcewords"], projectdata["totalsourcewords"])
-    return {"code": projectcode, "href": href, "icon": "folder", "title": projectname, "description": projectdescription, "data": projectdata, "isproject": True}
+    return {"code": project.code, "href": href, "icon": "folder", "title": projectname, "description": projectdescription, "data": projectdata, "isproject": True}
 
 class ProjectLanguageIndex(pagelayout.PootleNavPage):
   """The main page for a project, listing all the languages belonging to it"""
   def __init__(self, projectcode, request):
     self.potree = pan_app.get_po_tree()
+    self.project = Project.objects.get(code=projectcode)
     self.projectcode = projectcode
     self.initpagestats()
     languages = self.getlanguages(request)
@@ -399,8 +399,8 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
       raise projects.Rights404Error
     average = self.getpagestats()
     projectstats = nlocalize("%d language, average %d%% translated", "%d languages, average %d%% translated", self.languagecount, self.languagecount, average)
-    projectname = self.potree.getprojectname(self.projectcode)
-    description = self.potree.getprojectdescription(projectcode)
+    projectname = self.project.fullname
+    description = self.project.description
     meta_description = shortdescription(description)
     instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
     # l10n: The first parameter is the name of the installation
@@ -937,7 +937,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       csvlink = {"href": csvname, "text": localize('CSV file')}
       actionlinks.append(csvlink)
     if "mo" in linksrequired:
-      if self.project.hascreatemofiles(self.project.projectcode) and "pocompile" in self.rights:
+      if self.project.db_translation_project.project.createmofiles and "pocompile" in self.rights:
         moname = basename.replace(".po", ".mo")
         molink = {"href": moname, "text": localize('MO file')}
         actionlinks.append(molink)
