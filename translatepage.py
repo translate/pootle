@@ -20,7 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import re
-from jToolkit import spellcheck
 from Pootle import pagelayout
 from Pootle import projects
 from Pootle import pootlefile

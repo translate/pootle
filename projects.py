@@ -37,8 +37,8 @@ from translate.storage import statsdb, base
 from Pootle import statistics
 from Pootle import pootlefile
 from translate.storage import versioncontrol
-from jToolkit import timecache
-from jToolkit import prefs
+from Pootle.legacy.jToolkit import timecache
+from Pootle.legacy.jToolkit import prefs
 import time
 import os
 import cStringIO

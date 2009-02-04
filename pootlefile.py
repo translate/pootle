@@ -30,8 +30,8 @@ from translate.filters import checks
 from translate.misc.multistring import multistring
 from Pootle import __version__, request_cache
 from Pootle import statistics
-from jToolkit import timecache
-from jToolkit import glock
+from Pootle.legacy.jToolkit import timecache
+from Pootle.legacy.jToolkit import glock
 import time
 import os
 import bisect

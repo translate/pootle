@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 from pootle_app.models import Project, Language
 
 import sys
-from jToolkit import prefs
+from Pootle.legacy.jToolkit import prefs
 import types
 
 def main():

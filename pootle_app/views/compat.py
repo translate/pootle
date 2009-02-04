@@ -3,7 +3,6 @@ from django.conf import settings
 ### backwards compatiblity 
 import kid
 import os
-from jToolkit.xml import DOMOverlay
 OLD_TEMPLATEDIR = settings.TEMPLATE_DIRS[0]
 
 # needed for 'buildpage'
@@ -19,12 +18,6 @@ def loadurl(filename, context):
     
 def buildpage(source, context, loadurl=loadurl, localize=None, innerid=None):
     #(self, source, context, loadurl=None, localize=None, innerid=None):
-    if DOMOverlay is not None:
-      innerid = context.pop("@innerid", None)
-      if loadurl is None:
-        loadurl = DOMOverlay.loadurl
-      domoverlay = DOMOverlay.DOMOverlay(source, loadurl, context)
-      source = domoverlay.serialise(innerid)
     context = attribify(context)
     t = kid.Template(source=source,**context)
     return t.serialize(output='xhtml')

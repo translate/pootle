@@ -26,7 +26,7 @@ from translate.storage import versioncontrol
 # Versioning information
 from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
-from jToolkit import __version__ as jtoolkitversion
+from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
 from kid import __version__ as kidversion
 try:
   # ElementTree is part of Python 2.5, so let's try that first

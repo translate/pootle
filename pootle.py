@@ -32,15 +32,7 @@ import optparse
 from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
 
-from jToolkit.web import server
-from jToolkit.web import templateserver
-from jToolkit.web import session
-from jToolkit import prefs
-from jToolkit import localize
-from jToolkit.widgets import widgets
-from jToolkit.widgets import spellui
-from jToolkit.widgets import thumbgallery
-from jToolkit.web import simplewebserver
+from Pootle.legacy.jToolkit import prefs
 from Pootle import indexpage
 from Pootle import adminpages
 from Pootle import translatepage
@@ -54,7 +46,7 @@ from translate.misc import optrecurse
 # Versioning information
 from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
-from jToolkit import __version__ as jtoolkitversion
+from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
 from Pootle import statistics, pan_app
 from Pootle.misc.transaction import django_transaction
 from Pootle.misc import prefs, jtoolkit_django
@@ -216,7 +208,6 @@ def set_options(options):
   pan_app.prefs = prefs.load_preferences(options.prefsfile)
   set_stats_db(options)
   set_template_caching(options)                                        
-  server.options = options
 
 def run_pootle(options, args):
   pan_app.pootle_server = PootleServer()

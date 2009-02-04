@@ -6,7 +6,7 @@ from django.forms.models import modelformset_factory, BaseModelFormSet
 
 from django.utils.translation import ugettext as _
 
-from jToolkit import prefs
+from Pootle.legacy.jToolkit import prefs
 
 from Pootle import pan_app, adminpages
 from pootle_app.views.auth import redirect
