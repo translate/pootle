@@ -8,15 +8,14 @@ from django.db import transaction
 import sys
 import md5
 
+from django.core.management.base import NoArgsCommand
+from django.core.management.color import no_style
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
-from pootle_app.models import Project, Language, PootleProfile
 
-def main():
-  if len(sys.argv) != 1:
-    print "Usage: %s" % sys.argv[0]
-    return
-  create_default_db()
+class Command(NoArgsCommand):
+  def handle_noargs(self, **options):
+    create_default_db()
 
 def create_default_db():
   try:
@@ -64,6 +63,8 @@ def create_pootle_permissions():
   commit.save()
 
 def create_default_projects():
+  from pootle_app.models import Project
+
   pootle = Project(code=u"pootle")
   pootle.fullname = u"Pootle"
   pootle.description = "<div dir='ltr' lang='en'>Interface translations for Pootle. <br /> See the <a href='http://pootle.locamotion.org'>official Pootle server</a> for the translations of Pootle.</div>"
@@ -81,6 +82,8 @@ def create_default_projects():
   terminology.save()
 
 def create_default_languages():
+    from pootle_app.models import Language
+
     af = Language(code="af")
     af.fullname = u"Afrikaans"
     af.specialchars = u"ëïêôûáéíóúý"
