@@ -36,6 +36,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+STATS_DB_PATH = None # None means the default path
+
 DATABASE_ENGINE = 'sqlite3'                 # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 DATABASE_NAME = pootle_home('../pootle.db') # Or path to database file if using sqlite3.
 DATABASE_USER = ''                          # Not used with sqlite3.

@@ -183,8 +183,6 @@ class PootleOptionParser(optparse.OptionParser):
     self.set_default('htmldir', filelocations.htmldir)
     self.add_option('', "--refreshstats", dest="action", action="store_const", const="refreshstats",
         default="runwebserver", help="refresh the stats files instead of running the webserver")
-    self.add_option('', "--statsdb_file", action="store", type="string", dest="statsdb_file",
-                    default=None, help="Specifies the location of the SQLite stats db file.")
     self.add_option('', "--no_cache_templates", action="store_false", dest="cache_templates", default=True,
                     help="Pootle should not cache templates, but reload them with every request.")
     self.add_option('', "--port", action="store", type="int", dest="port", default="8080",
@@ -195,18 +193,12 @@ def checkversions():
   if not hasattr(toolkitversion, "build") or toolkitversion.build < 12000:
     raise RuntimeError("requires Translate Toolkit version >= 1.1.  Current installed version is: %s" % toolkitversion.sver)
 
-def set_stats_db(options):
-  prefs.config_db(pan_app.prefs)
-  if options.statsdb_file is not None:
-    statistics.STATS_OPTIONS['database'] = options.statsdb_file
-
 def set_template_caching(options):
   if options.cache_templates is not None:
     pan_app.cache_templates = options.cache_templates
 
 def set_options(options):
   pan_app.prefs = prefs.load_preferences(options.prefsfile)
-  set_stats_db(options)
   set_template_caching(options)                                        
 
 def run_pootle(options, args):

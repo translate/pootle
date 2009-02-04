@@ -21,7 +21,6 @@
 
 from Pootle.legacy.jToolkit import prefs
 from Pootle import statistics
-from translate.storage import statsdb
 
 def set_default_preferences(prefs):
     changed = False
@@ -60,10 +59,3 @@ def change_preferences(prefs, argdict):
         optionname = key.replace("option-", "", 1)
         setattr(prefs, optionname, value)
     save_preferences(prefs)
-
-def config_db(prefs):
-    statistics.statsdb = statsdb
-    # Set up the connection options
-    for k,v in prefs.stats.connect.iteritems():
-        statistics.STATS_OPTIONS[k] = v
-
