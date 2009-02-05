@@ -363,6 +363,13 @@ def create_default_languages():
 #    hr.nplurals = '3'
 #    hr.pluralequation ='(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
 
+# Haitian Creole
+    ht = Language(code="ht")
+    ht.fullname = u'Haitian; Haitian Creole'
+    ht.nplurals = '2'
+    ht.pluralequation ='(n !=1)'
+    ht.save()
+
 # Magyar
 # Hungarian
     hu = Language(code="hu")
