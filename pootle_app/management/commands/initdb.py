@@ -555,6 +555,14 @@ def create_default_languages():
     pl.pluralequation ='(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'
     pl.save()
 
+# Pashto
+# FIXME the plurals don't seem right but that is what is out in the field
+#    ps = Language(code="ps")
+#    ps.fullname = u'Pushto; Pashto'
+#    ps.nplurals = '2'
+#    ps.pluralequation ='(n != 1)'
+#    ps.save()
+
 # Português
 # Portuguese
     pt = Language(code="pt")
