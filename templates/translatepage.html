@@ -9,10 +9,10 @@ from Pootle.templates import pootlepage, navbar
   <title py:content="pagetitle">Pootle: translating ${project.name} into ${language.name}: ${pofilename}</title>
 
   <!--! Only in <head> because $() is used through the page.  Once the page is rewritten this should move to the footer. --> 
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/script.js"></script>
+  <script type="text/javascript" src="${mediaurl}js/jquery.min.js"></script>
+  <script type="text/javascript" src="${mediaurl}js/script.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
+  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
 </head>
 
@@ -39,7 +39,7 @@ from Pootle.templates import pootlepage, navbar
               <label class="inputHint" for="searchtext">${search.title}</label>
               <input type="text" size="15" name="searchtext" id="searchtext" value="${searchtext}" />
               <input type="hidden" name="pofilename" value="${pofilename}" />
-              <a class="advancedlink"><img src="${baseurl}images/bullet_arrow_down.png" title="${search.advanced_title}" class="togglesearch" /></a>
+              <a class="advancedlink"><img src="${mediaurl}images/bullet_arrow_down.png" title="${search.advanced_title}" class="togglesearch" /></a>
               <div class="advancedsearch ${search.extra_class}" dir="$uidir">
 		<div py:for="field in search.fields" py:strip="True">
                   <?python checkedflag = field.checked ?>
@@ -174,8 +174,8 @@ from Pootle.templates import pootlepage, navbar
 				  <input type="hidden" name="${form.suggid}" value="${form.value}" />
 				</div>
 				<div py:if="sugg.canreview" py:strip="True">
-				  <a title="${accept_title}" accesskey="a" id="accept${sugg.suggid}" class="acceptsugg"><img src="${baseurl}images/gtk-apply.png" dir="$uidir" /></a>
-				  <a title="${reject_title}" accesskey="r" id="reject${sugg.suggid}" class="rejectsugg"><img src="${baseurl}images/gtk-cancel.png" dir="$uidir" /></a>
+				  <a title="${accept_title}" accesskey="a" id="accept${sugg.suggid}" class="acceptsugg"><img src="${mediaurl}images/gtk-apply.png" dir="$uidir" /></a>
+				  <a title="${reject_title}" accesskey="r" id="reject${sugg.suggid}" class="rejectsugg"><img src="${mediaurl}images/gtk-cancel.png" dir="$uidir" /></a>
 				</div>
 			      </div>
 			    </div>
@@ -307,7 +307,7 @@ from Pootle.templates import pootlepage, navbar
 	  <input name="doassign" type="submit" value="${assigns.submit_text}"/>
 	</form>
 	<div class="side" py:if="defined('checking_text')">
-	  <img src="${baseurl}images/information.png" class="checkinfo" alt="" />
+	  <img src="${mediaurl}images/information.png" class="checkinfo" alt="" />
 	  <span py:content="XML(checking_text)">checking has-suggestion, etc</span>
 	</div>
       </div>
@@ -323,11 +323,11 @@ from Pootle.templates import pootlepage, navbar
 
 
 <!--! TODO Fix JS includes, bug 442316 --> 
-<script src="${baseurl}js/autoexpand.js" type="text/javascript"></script>
-<script src="${baseurl}js/autogrow.js" type="text/javascript"></script>
-<script src="${baseurl}js/jeditable.js" type="text/javascript"></script>
-<script src="${baseurl}js/inlineedit.js" type="text/javascript"></script>
-<script src="${baseurl}js/unfuzzy.js" type="text/javascript"></script>
+<script src="${mediaurl}js/autoexpand.js" type="text/javascript"></script>
+<script src="${mediaurl}js/autogrow.js" type="text/javascript"></script>
+<script src="${mediaurl}js/jeditable.js" type="text/javascript"></script>
+<script src="${mediaurl}js/inlineedit.js" type="text/javascript"></script>
+<script src="${mediaurl}js/unfuzzy.js" type="text/javascript"></script>
 <script type="text/javascript">
   $(document).ready(function(){
     $(".sugglink").click(function(event){
@@ -351,14 +351,14 @@ from Pootle.templates import pootlepage, navbar
   });
 </script>
 <!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
 <![endif]-->
-<script src="${baseurl}js/search.js" type="text/javascript"></script>
+<script src="${mediaurl}js/search.js" type="text/javascript"></script>
 <!-- Needed for JavaScript l10n -->
 <script type="text/javascript">
   var AJAX_ERROR = "${ajax_error}";
 </script>
-<script src="${baseurl}js/suggestions.js" type="text/javascript"></script>
+<script src="${mediaurl}js/suggestions.js" type="text/javascript"></script>
 
 </body>
 </html>

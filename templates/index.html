@@ -10,7 +10,7 @@ from Pootle.templates import pootlepage
 
   <meta name="description" content="${meta_description}" />
   <meta name="keywords" content="${', '.join(keywords)}" />
-  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
+  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
 </head>
 
@@ -76,7 +76,7 @@ from Pootle.templates import pootlepage
       
       <div class="module first clear">
         <div class="bd">
-          <div py:replace="pootlepage.translationsummarylegend(translationlegend)" />
+          <div py:replace="pootlepage.translationsummarylegend(translationlegend, mediaurl)" />
         </div>
       </div>
       
@@ -91,13 +91,13 @@ from Pootle.templates import pootlepage
 
 <div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
 
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="${mediaurl}js/jquery.min.js"></script>
+<script type="text/javascript" src="${mediaurl}js/script.js"></script>
 
-<script type="text/javascript" src="${baseurl}js/sorttable.js"></script>
+<script type="text/javascript" src="${mediaurl}js/sorttable.js"></script>
 
 <!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
 <![endif]-->
 
 </body>

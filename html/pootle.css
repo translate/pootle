@@ -450,7 +450,7 @@ td.stats ul li.todo {
     font-weight:bold;
 }
 td.stats ul li.complete {
-    list-style-image: url('../images/complete.png');
+    list-style-image: url('/static/images/complete.png');
 }
 
 div.intro {

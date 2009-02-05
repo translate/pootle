@@ -8,7 +8,7 @@ from Pootle.templates import pootlepage
 
   <title py:content="pagetitle">Pootle Account Activation</title>
 
-  <link rel="stylesheet" type="text/css" href="${baseurl}style.css" />
+  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
   <link rel="shortcut icon" href="${baseurl}favicon.ico" />
 </head>
 
@@ -59,11 +59,11 @@ from Pootle.templates import pootlepage
 
 <div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
 
-<script src="/js/jquery.min.js" type="text/javascript"></script>
-<script src="/js/script.js"></script>
+<script src="${mediaurl}js/jquery.min.js" type="text/javascript"></script>
+<script src="${mediaurl}js/script.js"></script>
 
 <!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${baseurl}js/correctpng.js"></script>
+  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
 <![endif]-->
 
 </body>

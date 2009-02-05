@@ -85,10 +85,10 @@
       <!-- end login form -->
     </div>
 
-    <div py:def="translationsummarylegend(legend)" id="translationsummarylegend">
-      <div> <img src="/images/green-bar.png" alt="" />${legend.translated}</div>
-      <div> <img src="/images/purple-bar.png" alt="" />${legend.fuzzy}</div>
-      <div> <img src="/images/red-bar.png" alt="" />${legend.untranslated}</div>
+    <div py:def="translationsummarylegend(legend, mediaurl)" id="translationsummarylegend">
+      <div> <img src="${mediaurl}images/green-bar.png" alt="" />${legend.translated}</div>
+      <div> <img src="${mediaurl}images/purple-bar.png" alt="" />${legend.fuzzy}</div>
+      <div> <img src="${mediaurl}images/red-bar.png" alt="" />${legend.untranslated}</div>
     </div>
 
     <div py:def="userstatistics(user, statstext, statstitle)" id="userstatistics">

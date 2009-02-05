@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <include-this xmlns:py="http://purl.org/kid/ns#">
-  <div py:def="item_block(item, uidir, uilanguage, baseurl, block=None)" class="contentsitem">
-    <img src="${baseurl}images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+  <div py:def="item_block(item, uidir, uilanguage, mediaurl, block=None)" class="contentsitem">
+    <img src="${mediaurl}images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
     <h3 py:if="item.title" id="itemtitle" class="title"><a href="${item.href}">${item.title}</a></h3>
     <div py:if="block != None" py:replace="block"/>
     <div id="actionlinks" class="item-description" py:if="item.actions">
@@ -55,9 +55,9 @@
     </span>
   </div>
 
-  <div py:def="itemdata(item, uidir, uilanguage, baseurl)">
+  <div py:def="itemdata(item, uidir, uilanguage, mediaurl)">
     <td class="stats-name">
-      <img src="${baseurl}images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+      <img src="${mediaurl}images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
       <a href="${item.href}" lang="en" dir="ltr">${item.title}</a>
     </td>
     <span py:if="item.data" py:strip="True">

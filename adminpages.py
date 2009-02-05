@@ -60,6 +60,7 @@ class AdminPage(pagelayout.PootlePage):
     optiontitles = {"title": localize("Title"), 
                     "description": localize("Description"),
                     "baseurl": localize("Base URL"),
+		    "mediaurl": localize("Media URL"),
                     "homepage": localize("Home Page")}
     options = []
     for optionname, optiontitle in optiontitles.items():

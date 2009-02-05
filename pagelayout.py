@@ -21,6 +21,8 @@
 
 import os
 
+from django.conf import settings
+
 from Pootle import pan_app
 from pootle_app.models import get_profile
 from Pootle.i18n.jtoolkit_i18n import localize, nlocalize, tr_lang
@@ -96,6 +98,8 @@ def completetemplatevars(templatevars, request, bannerheight=135):
     templatevars["baseurl"] = getattr(request, "localizedurl", "/")
     if not templatevars["baseurl"].endswith("/"):
     	templatevars["baseurl"] += "/"
+  if not "mediaurl" in templatevars:
+    templatevars["mediaurl"] = settings.MEDIA_URL
   if not "enablealtsrc" in templatevars:
      templatevars["enablealtsrc"] = getattr(pan_app.prefs, "enablealtsrc", False)
   templatevars["aboutlink"] = localize("About this Pootle server")

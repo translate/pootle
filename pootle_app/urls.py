@@ -27,9 +27,9 @@ from os import path
 from django.contrib import admin
 admin.autodiscover()
 
-CSS_DIR    = settings.MEDIA_ROOT
-IMAGES_DIR = path.join(settings.MEDIA_ROOT, 'images')
-JS_DIR     = path.join(settings.MEDIA_ROOT, 'js')
+# CSS_DIR    = settings.MEDIA_ROOT
+# IMAGES_DIR = path.join(settings.MEDIA_ROOT, 'images')
+# JS_DIR     = path.join(settings.MEDIA_ROOT, 'js')
 DJANGO_MEDIA = path.join(path.dirname(admin.__file__), 'media')
 
 urlpatterns = patterns('',
@@ -41,10 +41,11 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+    (r'^static/(?P<path>.*)$',  'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^media/(?P<path>.*)$',  'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
-    (r'^django_admin/(.*)', admin.site.root),
-    (r'^(?P<path>.*[.]css)$',  'django.views.static.serve', {'document_root': CSS_DIR}),
-    (r'^(?P<path>(:?images|js|doc)/.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    #(r'^django_admin/(.*)', admin.site.root),
+    #(r'^(?P<path>.*[.]css)$',  'django.views.static.serve', {'document_root': CSS_DIR}),
+    #(r'^(?P<path>(:?images|js|doc)/.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^login.html$', 'pootle_app.views.auth.login'),
     (r'^logout.html$', 'pootle_app.views.auth.logout'),
     (r'^admin', include('pootle_app.views.admin.urls')),
