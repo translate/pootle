@@ -30,7 +30,7 @@ from Pootle.misc.jtoolkit_django import process_django_request_args
 
 from pootle_app.views.util import render_to_kid, render_jtoolkit
 from pootle_app.views.auth import redirect
-from pootle_app.models import Language
+from pootle_app.core import Language
 
 def strip_trailing_slash(path):
     """If path ends with a /, strip it and return the stripped version."""

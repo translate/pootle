@@ -9,7 +9,7 @@ from Pootle import pan_app, indexpage, adminpages
 from pootle_app.views.auth import redirect
 from pootle_app.views.util import render_to_kid, render_jtoolkit, KidRequestContext, \
     init_formset_from_data, choices_from_models, selected_model
-from pootle_app.models import TranslationProject, Language, Project
+from pootle_app.core import TranslationProject, Language, Project
 
 def user_can_admin_project(f):
     def decorated_f(request, project_code, *args, **kwargs):

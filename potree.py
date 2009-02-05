@@ -28,7 +28,7 @@ from translate.misc import autoencode
 from translate.lang import data as langdata
 
 import os
-from pootle_app.models import Language, Project
+from pootle_app.core import Language, Project
 from Pootle.misc import prefs
 from Pootle import pan_app
 from django.conf import settings

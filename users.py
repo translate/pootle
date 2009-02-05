@@ -31,7 +31,7 @@ import time
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
-from pootle_app.models import get_profile
+from pootle_app.profile import get_profile
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 

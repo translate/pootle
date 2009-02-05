@@ -8,7 +8,7 @@ from django.utils.translation import ugettext as _
 from django.contrib.auth import decorators
 
 from Pootle import pagelayout, pan_app, indexpage
-from pootle_app.models import get_profile, PootleProfile
+from pootle_app.profile import get_profile, PootleProfile
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.views.util import render_jtoolkit
 from Pootle.i18n import gettext

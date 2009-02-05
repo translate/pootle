@@ -39,7 +39,8 @@ import re
 import locale
 import util  
 
-from pootle_app.models import Suggestion, Submission, Language, Project, get_profile
+from pootle_app.core import Suggestion, Submission, Language, Project
+from pootle_app.profile import get_profile
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize, nlocalize, tr_lang
 

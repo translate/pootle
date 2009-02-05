@@ -24,7 +24,7 @@ import os
 from django.conf import settings
 
 from Pootle import pan_app
-from pootle_app.models import get_profile
+from pootle_app.profile import get_profile
 from Pootle.i18n.jtoolkit_i18n import localize, nlocalize, tr_lang
 from Pootle.i18n import gettext
 

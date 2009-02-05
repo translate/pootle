@@ -63,7 +63,7 @@ def create_pootle_permissions():
   commit.save()
 
 def create_default_projects():
-  from pootle_app.models import Project
+  from pootle_app.core import Project
 
   pootle = Project(code=u"pootle")
   pootle.fullname = u"Pootle"
@@ -82,7 +82,7 @@ def create_default_projects():
   terminology.save()
 
 def create_default_languages():
-    from pootle_app.models import Language
+    from pootle_app.core import Language
 
     af = Language(code="af")
     af.fullname = u"Afrikaans"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?python
-   from pootle_app.models import get_profile, suggestions_accepted_count, suggestions_pending_count, suggestions_reviewed_count, submissions_count
+   from pootle_app.core import suggestions_accepted_count, suggestions_pending_count, suggestions_reviewed_count, submissions_count
+   from pootle_app.profile import get_profile
    from django.contrib.auth import REDIRECT_FIELD_NAME
    from django.contrib.auth.forms import AuthenticationForm
 ?>
