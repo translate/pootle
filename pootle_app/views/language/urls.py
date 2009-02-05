@@ -20,12 +20,16 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf.urls.defaults import *
-from pootle_app.views.language import view
 
-urlpatterns = patterns('',
-    (r'^(?P<language_code>[^/]*)([/](index.html)?)?$',  view.language_index),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/admin.html$',  view.translation_project_admin),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>.*/)?translate.html$',  view.translate_page),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)([/](index.html)?)?$',  view.project_index),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.+)?$',  view.handle_file),
+urlpatterns = patterns('pootle_app.views.language.view',
+    (r'^(?P<language_code>[^/]*)([/](index.html)?)?$',
+     'language_index'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/admin.html$',
+     'translation_project_admin'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>.*/)?translate.html$',
+     'translate_page'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)([/](index.html)?)?$',
+     'project_index'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.+)?$',
+     'handle_file'),
 )

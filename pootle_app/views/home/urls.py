@@ -20,10 +20,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf.urls.defaults import *
-from pootle_app.views.home import view
 
-urlpatterns = patterns('',
-    (r'options.html$',     view.options),
-    (r'(/|index.html)?$',  view.index),
+urlpatterns = patterns('pootle_app.views.home.view',
+    (r'options.html$',     'options'),
+    (r'(/|index.html)?$',  'index'),
 )
 

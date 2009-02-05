@@ -27,35 +27,22 @@ from os import path
 from django.contrib import admin
 admin.autodiscover()
 
-# CSS_DIR    = settings.MEDIA_ROOT
-# IMAGES_DIR = path.join(settings.MEDIA_ROOT, 'images')
-# JS_DIR     = path.join(settings.MEDIA_ROOT, 'js')
 DJANGO_MEDIA = path.join(path.dirname(admin.__file__), 'media')
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^pootle_app/', include('pootle_app.foo.urls')),
-
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     (r'^static/(?P<path>.*)$',  'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    (r'^media/(?P<path>.*)$',  'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
-    #(r'^django_admin/(.*)', admin.site.root),
-    #(r'^(?P<path>.*[.]css)$',  'django.views.static.serve', {'document_root': CSS_DIR}),
-    #(r'^(?P<path>(:?images|js|doc)/.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    (r'^login.html$', 'pootle_app.views.auth.login'),
-    (r'^logout.html$', 'pootle_app.views.auth.logout'),
-    (r'^admin', include('pootle_app.views.admin.urls')),
-    (r'^home',  include('pootle_app.views.home.urls')),
-    (r'^projects', include('pootle_app.views.projects.urls')),
-    (r'^robots.txt$', 'pootle_app.views.index.view.robots'),
-    (r'^about.html$', 'pootle_app.views.index.view.about'),
-    (r'^register.html$', 'pootle_app.views.index.view.register'),
-    (r'^activate.html$', 'pootle_app.views.index.view.activate'),
-    (r'^(/|index.html)?$', 'pootle_app.views.index.view.index'),
-    (r'', include('pootle_app.views.language.urls')),
+    (r'^media/(?P<path>.*)$',   'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
+    (r'^django_admin/(.*)',      admin.site.root),
+    (r'^login.html$',           'pootle_app.views.auth.login'),
+    (r'^logout.html$',          'pootle_app.views.auth.logout'),
+    (r'^admin',                 include('pootle_app.views.admin.urls')),
+    (r'^home',                  include('pootle_app.views.home.urls')),
+    (r'^projects',              include('pootle_app.views.projects.urls')),
+    (r'',                       include('pootle_app.views.index.urls')),
+    (r'',                       include('pootle_app.views.language.urls')),
 )
-
