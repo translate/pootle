@@ -17,6 +17,7 @@ msgstr ""
 
 #: web/server.py:57
 #, python-format
+#, fuzzy
 msgid "Login for %s"
 msgstr "Louvri yon sesyon"
 
@@ -50,11 +51,11 @@ msgstr "Itilizatè:"
 
 #: web/server.py:125
 msgid "Password:"
-msgstr "Mo pas"
+msgstr "Mo pas:"
 
 #: web/server.py:130
 msgid "Language:"
-msgstr "Lang"
+msgstr "Lang:"
 
 #: web/server.py:551 web/server.py:642
 msgid "Select Application"
@@ -98,7 +99,7 @@ msgstr ""
 #: web/session.py:321 web/session.py:453
 #, python-format
 msgid "user does not exist (%r)"
-msgstr "Itilizatè pa egziste (%)"
+msgstr "Itilizatè pa egziste (%r)"
 
 #: web/session.py:362
 msgid "invalid username and/or password"

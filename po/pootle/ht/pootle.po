@@ -121,7 +121,7 @@ msgstr ""
 #: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
 #: indexpage.py:346
 msgid "Pootle Demo"
-msgstr "Demonstrasyon Pootle "
+msgstr "Demonstrasyon Pootle"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -129,6 +129,7 @@ msgstr "Demonstrasyon Pootle "
 #. l10n: fourth parameter: file name
 #: translatepage.py:99
 #, python-format
+#, fuzzy
 msgid "%s: translating %s into %s: %s"
 msgstr "%s: tradiksyon %nan %s: %s"
 
@@ -296,7 +297,7 @@ msgstr ""
 
 #: translatepage.py:739
 msgid "Current Translation:"
-msgstr "Tradiksyon kouran"
+msgstr "Tradiksyon kouran:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
@@ -331,7 +332,7 @@ msgstr "Itilizatè"
 
 #: adminpages.py:45 adminpages.py:84 indexpage.py:94
 msgid "Languages"
-msgstr "Lang "
+msgstr "Lang"
 
 #: adminpages.py:46 adminpages.py:142 indexpage.py:95
 msgid "Projects"
@@ -625,15 +626,17 @@ msgstr "Tout objèktif yo"
 
 #: pagelayout.py:228
 #, python-format
+#, fuzzy
 msgid "%d/%d files"
 msgstr "%d%d fichye"
 
 #: pagelayout.py:231
 #, python-format
+#, fuzzy
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] "sengilye %d fichyePliryèl %d fichye yo"
-msgstr[1] ""
+msgstr[0] "Sengilye %d fichye"
+msgstr[1] "Pliryèl %d fichye yo"
 
 #: pagelayout.py:232 indexpage.py:995
 #, python-format
@@ -912,7 +915,7 @@ msgid ""
 msgstr ""
 "Kont kreye. Ou va resevwa yon Imèl ki gen detay pou louvri kont kont lan ak "
 "kod aktivasyon an. Rantre kod aktivasyon an nan <a href='%s'>paj "
-"aktivasyon,/a.."
+"aktivasyon</a>."
 
 #: users.py:411
 msgid "(Or simply click on the activation link in the email)"
@@ -1003,6 +1006,7 @@ msgstr "Enfòmasyon sou poutòl"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:63
+#, fuzzy
 msgid ""
 "<strong>Pootle</strong> is a simple web portal that should allow you to "
 "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
@@ -1021,9 +1025,9 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
-"Pwojè poutòl la pou kont li, li nan "
-"<ahref=\"http://translate.sourceforge.net/\">translate.sourceforge.net kote ou "
-"kapab jwenn enfòmasyon sou kòd sous, lis mèl yo etc."
+"Pwojè poutòl la pou kont li, li nan <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> kote "
+"ou kapab jwenn enfòmasyon sou kòd sous, lis mèl yo etc."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -1034,8 +1038,8 @@ msgid ""
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
 "Non an vle di <b>PO</b>-baz <b>O</b>nliy<b>T</b>radiksyon / "
-"<b>L</b>okalizasyon <b>M</b>otè, men ou bezwen li "
-"<ahref=\"http://www.thechestnut.com/flumps.htm\">sa</a>."
+"<b>L</b>okalizasyon <b>M</b>otè, men ou bezwen li <a "
+"href=\"http://www.thechestnut.com/flumps.htm\">sa</a>."
 
 #: indexpage.py:68
 msgid "Versions"
@@ -1076,11 +1080,12 @@ msgstr ""
 
 #: indexpage.py:192
 #, python-format
+#, fuzzy
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
 msgstr[0] ""
-"Sengilye%pwojè, mwayèn %d%% tradwiPliriyèl%d pwojè yo, mwayèn %d%% tradwi"
-msgstr[1] ""
+"Sengilye%dwojè, mwayèn %d%% tradwi"
+msgstr[1] "Pliriyèl%d pwojè yo, mwayèn %d%% tradwi"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -1100,11 +1105,12 @@ msgstr "Non lang"
 
 #: indexpage.py:252
 #, python-format
+#, fuzzy
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
 msgstr[0] ""
-"Sengilye%d lang, mwayèn %d%% tradwiPliriyèl%d lang yo, mwayèn %d%% tradwi"
-msgstr[1] ""
+"Sengilye%d lang, mwayèn %d%% tradwi"
+msgstr[1] "Pliriyèl%d lang yo, mwayèn %d%% tradwi"
 
 #: indexpage.py:265
 msgid "Language"
@@ -1174,11 +1180,11 @@ msgstr "Fichye PO"
 
 #: indexpage.py:723
 msgid "XLIFF file"
-msgstr "Fichye ZLIFF"
+msgstr "Fichye XLIFF"
 
 #: indexpage.py:727
 msgid "Qt .ts file"
-msgstr "Fichye Qt.ts"
+msgstr "Fichye Qt .ts"
 
 #: indexpage.py:731
 msgid "CSV file"
@@ -1321,10 +1327,11 @@ msgstr "Jenere SDF"
 
 #: indexpage.py:963
 #, python-format
+#, fuzzy
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] "Sengilye%d kod (%d%%) ratePliryèl%d kod yo (%d%%) rate"
-msgstr[1] ""
+msgstr[0] "Sengilye%d kod (%d%%) rate"
+msgstr[1] "Pliryèl%d kod yo (%d%%) rate"
 
 #: indexpage.py:993
 #, python-format
