@@ -21,6 +21,7 @@
 
 import os
 import logging
+from ConfigParser import ConfigParser
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -171,3 +172,37 @@ else:
             level = logging.CRITICAL,
             format =  '%(asctime)s %(levelname)s %(message)s',
             )
+
+CONFIG_LOCATIONS = ['/etc/pootle/pootle.ini', pootle_home('pootle.ini')]
+
+def find_config():
+    # For each candidate location in CONFIG_LOCATIONS...
+    for config_path in CONFIG_LOCATIONS:
+        # If the location exists and is a file...
+        if os.path.exists(config_path) and os.path.isfile(config_path):
+            # Then we create a config parser
+            config = ConfigParser()
+            # Read the data at the location
+            config.read(config_path)
+            # And return the config
+            return config
+    # No valid config files were found. Bummer...
+    return None
+        
+config = find_config()
+if config is not None:
+    vars = globals()
+    """Walk through the sections in the config file and for each
+    section, find the options. For each option, add a similarly
+    named variable to the globals of this file.
+
+    In other words, we don't use the sections to distinguish
+    variables. But the sections in the Pootle .ini file help humans to
+    understand the intention of various options."""
+    for section in config.sections():
+        for option in config.options(section):
+            # Remember to uppercase the option name, since
+            # ConfigParser conveniently lowercases our option names.
+            vars[option.upper()] = config.get(section, option)
+
+
