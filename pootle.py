@@ -211,6 +211,20 @@ def run_pootle(options, args):
   elif options.action == "refreshstats":
     pan_app.pootle_server.refreshstats(args)
 
+def init_db():
+  from django.core.management import call_command
+  from pootle_app.profile import PootleProfile
+  try:
+    # If this raises an exception, it means that the database tables
+    # don't yet exist
+    PootleProfile.objects.count()
+  except:
+    call_command('syncdb')
+  # If there are no profiles, then we haven't populated
+  # our database yet. So do it!
+  if PootleProfile.objects.count() == 0:
+    call_command('initdb')
+
 def init_globals():
   import potree
   pan_app._po_tree = potree.POTree()
@@ -227,6 +241,7 @@ def setup_localization_system():
 
 def main():
   # run the web server
+  init_db()
   init_globals()
   setup_localization_system()
   checkversions()
