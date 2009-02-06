@@ -13,7 +13,7 @@ from Pootle.templates import pootlepage, navbar
   <script type="text/javascript" src="${mediaurl}js/script.js"></script>
 
   <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
+  <link rel="shortcut icon" href="${mediaurl}favicon.ico" />
 </head>
 
 <body class="home">
@@ -57,7 +57,7 @@ from Pootle.templates import pootlepage, navbar
               <a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
             </div>
           </div>
-          <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, itemtitle(item))" class="contentsitem"/>
+          <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, itemtitle(item))" class="contentsitem"/>
           <div py:replace="navbar.itemstats(item)"/>
         </div>
       </div>

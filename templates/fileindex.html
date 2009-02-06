@@ -48,7 +48,7 @@ from Pootle.templates import pootlepage, navbar
               <em py:if="item.path.goal"><a href="${item.path.goal.href}">${item.path.goal.text}</a></em>
             </div>
           </div>
-          <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, itemtitle(item))" class="contentsitem"/>
+          <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, itemtitle(item))" class="contentsitem"/>
           <div py:replace="navbar.itemstats(item)"/>
         </div>
       </div>
@@ -102,17 +102,17 @@ from Pootle.templates import pootlepage, navbar
 	<div class="module-primary">
           <div class="bd">
             <div py:if="'isgoal' in item" class="goalitem">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, show_goals(item))"/>
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, show_goals(item))"/>
               <div py:replace="navbar.itemstats(item)"/>
             </div>
 
             <div py:if="'isdir' in item" class="item ${item.parity}">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, uidir)"/>
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, uidir)"/>
               <div py:replace="navbar.itemstats(item)"/>
             </div>
 
             <div py:if="'isfile' in item" class="item ${item.parity}">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, baseurl, uidir)"/>
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, uidir)"/>
               <div py:replace="navbar.itemstats(item)"/>
             </div>
           </div>
