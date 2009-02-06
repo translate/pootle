@@ -3,6 +3,7 @@ from django.forms.models import modelformset_factory, BaseModelFormSet
 from django import forms
 from django.forms.formsets import ManagementForm
 from django.utils.translation import ugettext as _
+from django.conf import settings
 
 from Pootle import pan_app, indexpage, adminpages
 
@@ -104,7 +105,8 @@ def project_admin(request, project_code):
         "main_link":          _("Back to main page"),
         "update_link":        _("Update from templates"), 
         "initialize_link":    _("Initialize"),
-        "instancetitle":      getattr(pan_app.prefs, "title", _("Pootle Demo"))}
+        "instancetitle":      pan_app.get_title() 
+        }
 
     return render_to_kid("projectadmin.html", KidRequestContext(request, template_vars))
 

@@ -30,6 +30,9 @@ import time
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from django.conf import settings
+from django.utils.translation import ugettext as _
+N_ = _
 
 from pootle_app.profile import get_profile
 from Pootle import pan_app
@@ -64,7 +67,7 @@ class LoginPage(pagelayout.PootlePage):
     pagetitle = localize("Login to Pootle")
     templatename = "login"
     message = forcemessage(message)
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     requestvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     templatevars = {"pagetitle": pagetitle, "introtext": message,
         "username_title": localize("Username:"),
@@ -118,7 +121,7 @@ class RegisterPage(pagelayout.PootlePage):
       introtext = forcemessage(message)
     pagetitle = localize("Pootle Registration")
     templatename = "register"
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     requestvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     templatevars = {
         "pagetitle":               pagetitle,
@@ -155,7 +158,7 @@ class ActivatePage(pagelayout.PootlePage):
     else:
       pagetitle = title
     templatename = "activate"
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     requestvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
     templatevars = {
         "pagetitle":        pagetitle,
@@ -187,10 +190,10 @@ class OptionalLoginAppServer(object):
     try:
       argdict = self.processargs(argdict)
       request = self.getrequest(req, argdict)
-      if pan_app.prefs.baseurl[-1] == '/':
-        request.currenturl = pan_app.prefs.baseurl[:-1]+req.path
+      if settings.BASE_URL[-1] == '/':
+        request.currenturl = settings.BASE_URL[:-1] + req.path
       else:
-        request.currenturl = pan_app.prefs.baseurl+req.path
+        request.currenturl = settings.BASE_URL + req.path
       request.reqpath = req.path
       if req.path.find("?") >= 0:
         request.getsuffix = req.path[req.path.find("?"):]
@@ -329,7 +332,7 @@ class OptionalLoginAppServer(object):
 
   def handleregistration(self, request):
     """handles the actual registration"""
-    supportaddress = getattr(pan_app.prefs.registration, 'supportaddress', "")
+    supportaddress = settings.SUPPORT_ADDRESS
     username = request.POST.get("username", "")
     if not username or not username.isalnum() or not username[0].isalpha():
       raise RegistrationError(localize("Username must be alphanumeric, and must start with an alphabetic character."))
@@ -359,9 +362,9 @@ class OptionalLoginAppServer(object):
       activation_code = self.set_activation_code(user)
       activationlink = ""
       message = localize("A Pootle account has been created for you using this email address.\n")
-      if pan_app.prefs.baseurl.startswith("http://"):
+      if settings.BASE_URL.startswith("http://"):
         message += localize("To activate your account, follow this link:\n")
-        activationlink = pan_app.prefs.baseurl
+        activationlink = settings.BASE_URL
         if not activationlink.endswith("/"):
           activationlink += "/"
         activationlink += "activate.html?username=%s&activationcode=%s" % (username, activation_code)
@@ -377,8 +380,8 @@ class OptionalLoginAppServer(object):
 
     message += localize("Your user name is: %s\n", username)
     message += localize("Your registered email address is: %s\n", email)
-    smtpserver = pan_app.prefs.registration.smtpserver
-    fromaddress = pan_app.prefs.registration.fromaddress
+    smtpserver = settings.REGISTRATION_SMTP_SERVER
+    fromaddress = settings.REGISTRATION_FROM_ADDRESS
     subject = Header(localize("Pootle Registration"), "utf-8").encode()
     messagedict = {"from": fromaddress, "to": [email], "subject": subject, "body": message}
     if supportaddress:
@@ -386,7 +389,7 @@ class OptionalLoginAppServer(object):
     fullmessage = mailer.makemessage(messagedict)
     if isinstance(fullmessage, unicode):
       fullmessage = fullmessage.encode("utf-8")
-    errmsg = mailer.dosendmessage(fromemail=pan_app.prefs.registration.fromaddress, recipientemails=[email], message=fullmessage, smtpserver=smtpserver)
+    errmsg = mailer.dosendmessage(fromemail=settings.REGISTRATION_FROM_ADDRESS, recipientemails=[email], message=fullmessage, smtpserver=smtpserver)
     if errmsg:
       raise RegistrationError("Error sending mail: %s" % errmsg)
     return displaymessage, redirecturl

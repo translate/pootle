@@ -19,6 +19,10 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.conf import settings
+from django.utils.translation import ugettext as _
+N_ = _
+
 from Pootle import pagelayout
 from Pootle import projects
 from Pootle import pootlefile
@@ -106,8 +110,8 @@ def limit(query):
 class AboutPage(pagelayout.PootlePage):
   """the bar at the side describing current login details etc"""
   def __init__(self, request):
-    pagetitle = getattr(pan_app.prefs, "title")
-    description = getattr(pan_app.prefs, "description")
+    pagetitle = pan_app.get_title()
+    description = pan_app.get_description()
     meta_description = shortdescription(description)
     keywords = ["Pootle", "locamotion", "translate", "translation", "localisation",
                 "localization", "l10n", "traduction", "traduire"]
@@ -123,7 +127,7 @@ class AboutPage(pagelayout.PootlePage):
     # l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
     versiontext = localize("This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)", pootleversion.ver, toolkitversion.sver, jtoolkitversion.ver, kidversion, ElementTree.VERSION, sys.version, sys.platform, os.name)
     templatename = "about"
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     templatevars = {"pagetitle": pagetitle, "description": description,
         "meta_description": meta_description, "keywords": keywords,
         "abouttitle": abouttitle, "introtext": introtext,
@@ -137,13 +141,13 @@ class PootleIndex(pagelayout.PootlePage):
   def __init__(self, request):
     self.potree = pan_app.get_po_tree()
     templatename = "index"
-    description = getattr(pan_app.prefs, "description")
+    description = pan_app.get_description()
     meta_description = shortdescription(description)
     keywords = ["Pootle", "WordForge", "translate", "translation", "localisation", "localization",
                 "l10n", "traduction", "traduire"] + self.getprojectnames()
     languagelink = localize('Languages')
     projectlink = localize('Projects')
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     pagetitle = instancetitle
 #@todo - need localized dates
     # rewritten for compatibility with Python 2.3
@@ -251,7 +255,7 @@ class UserIndex(pagelayout.PootlePage):
     adminlink = localize("Admin page")
     admintext = localize("Administrate")
     quicklinkstitle = localize("Quick Links")
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     quicklinks = self.getquicklinks()
     setoptionstext = localize("You need to <a href='options.html'>choose your languages and projects</a>.")
     # l10n: %s is the full name of the currently logged in user
@@ -324,7 +328,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
     average = self.getpagestats()
     languagestats = nlocalize("%d project, average %d%% translated", "%d projects, average %d%% translated", self.projectcount, self.projectcount, average)
     languageinfo = self.getlanguageinfo()
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     # l10n: The first parameter is the name of the installation
     # l10n: The second parameter is the name of the project/language
     # l10n: This is used as a page title. Most languages won't need to change this
@@ -403,7 +407,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     projectname = self.project.fullname
     description = self.project.description
     meta_description = shortdescription(description)
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     # l10n: The first parameter is the name of the installation
     # l10n: The second parameter is the name of the project/language
     # l10n: This is used as a page title. Most languages won't need to change this
@@ -524,7 +528,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       childitems = self.getgoalitems(dirfilter)
     else:
       childitems = self.getchilditems(dirfilter)
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     # l10n: The first parameter is the name of the installation (like "Pootle")
     pagetitle = localize("%s: Project %s, Language %s", instancetitle, self.project.projectname, tr_lang(self.project.languagename))
     templatename = "fileindex"

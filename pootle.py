@@ -30,7 +30,9 @@ from Pootle.i18n import gettext
 
 import optparse
 from wsgiref.simple_server import make_server
+
 from django.core.handlers.wsgi import WSGIHandler
+from django.conf import settings
 
 from Pootle.legacy.jToolkit import prefs
 from Pootle import indexpage
@@ -104,7 +106,7 @@ class PootleServer(users.OptionalLoginAppServer):
     self.languagenames = self.potree.getlanguages()
     self.defaultlanguage = defaultlanguage
     if self.defaultlanguage is None:
-      self.defaultlanguage = getattr(pan_app.prefs, "defaultlanguage", "en")
+      self.defaultlanguage = settings.DEFAULT_LANGUAGE
     if self.potree.hasproject(self.defaultlanguage, 'pootle'):
       try:
         self.translation = self.potree.getproject(self.defaultlanguage, 'pootle')

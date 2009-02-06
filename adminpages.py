@@ -19,12 +19,17 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.contrib.auth.models import User
+from django.conf import settings
+from django.utils.translation import ugettext as _
+N_ = _
+
+from translate.filters import checks
+
+from pootle_app.models import get_profile, Project
 from Pootle import pagelayout
 from Pootle import projects
-from translate.filters import checks
-from django.contrib.auth.models import User
 from Pootle import pan_app
-from pootle_app.models import get_profile, Project
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 import locale
@@ -35,7 +40,7 @@ class AdminPage(pagelayout.PootlePage):
     self.potree = pan_app.get_po_tree()
     self.request = request
     templatename = "adminindex"
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     text = self.gettext(request)
     templatevars = {
         "options": self.getoptions(),
@@ -57,14 +62,16 @@ class AdminPage(pagelayout.PootlePage):
     return text
     
   def getoptions(self):
-    optiontitles = {"title": localize("Title"), 
-                    "description": localize("Description"),
-                    "baseurl": localize("Base URL"),
-		    "mediaurl": localize("Media URL"),
-                    "homepage": localize("Home Page")}
+    optiontitles = {"TITLE":       _("Title"), 
+                    "DESCRIPTION": _("Description"),
+                    "BASE_URL":    _("Base URL"),
+		    "MEDIA_URL":   _("Media URL"),
+                    "HOMEPAGE":    _("Home Page")}
+    option_values = {"TITLE":       pan_app.get_title(),
+                     "DESCRIPTION": pan_app.get_description()}
     options = []
     for optionname, optiontitle in optiontitles.items():
-      optionvalue = getattr(pan_app.prefs, optionname, "")
+      optionvalue = getattr(settings, optionname, option_values.get(optionname, ""))
       option = {"name": "option-%s" % optionname, "title": optiontitle, "value": optionvalue}
       options.append(option)
     return options
@@ -121,7 +128,7 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     rescan_files_link = localize("Rescan project files")
     norights_text = localize("You do not have the rights to administer this project.")
     templatename = "projectlangadmin"
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = pan_app.get_title()
     templatevars = {"pagetitle": pagetitle, "norights_text": norights_text,
         "project": {"code": self.project.projectcode, "name": self.project.projectname},
         "language": {"code": self.project.languagecode, "name": self.project.languagename},

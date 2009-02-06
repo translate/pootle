@@ -84,14 +84,14 @@ def localelanguage(language):
 def completetemplatevars(templatevars, request, bannerheight=135):
   """fill out default values for template variables"""
   if not "instancetitle" in templatevars:
-    templatevars["instancetitle"] = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    templatevars["instancetitle"] = settings.TITLE
   templatevars["sessionvars"] = {
       "status": get_profile(request.user).status,
       "isopen": request.user.is_authenticated(),
       "issiteadmin": request.user.is_superuser}
   templatevars["request"] = request
   if not "unlocalizedurl" in templatevars:
-    templatevars["unlocalizedurl"] = getattr(pan_app.prefs, "baseurl", "/")
+    templatevars["unlocalizedurl"] = settings.BASE_URL
     if not templatevars["unlocalizedurl"].endswith("/"):
     	templatevars["unlocalizedurl"] += "/"
   if not "baseurl" in templatevars:
@@ -101,7 +101,7 @@ def completetemplatevars(templatevars, request, bannerheight=135):
   if not "mediaurl" in templatevars:
     templatevars["mediaurl"] = settings.MEDIA_URL
   if not "enablealtsrc" in templatevars:
-     templatevars["enablealtsrc"] = getattr(pan_app.prefs, "enablealtsrc", False)
+     templatevars["enablealtsrc"] = settings.ENABLE_ALT_SRC
   templatevars["aboutlink"] = localize("About this Pootle server")
   templatevars["uilanguage"] = weblanguage(gettext.get_active().languagecode)
   templatevars["uidir"] = languagedir(gettext.get_active().languagecode)
@@ -119,7 +119,7 @@ def completetemplatevars(templatevars, request, bannerheight=135):
   templatevars["login_text"] = localize('Log in')
   templatevars["logout_text"] = localize('Log out')
   templatevars["register_text"] = localize('Register')
-  templatevars["canregister"] = hasattr(pan_app.prefs, "hash")
+  templatevars["canregister"] = settings.CAN_REGISTER
   templatevars["links"] = localize_links(request)
   templatevars["current_url"] = request.path_info
   if "?" in request.path_info: 
@@ -136,10 +136,6 @@ def completetemplatevars(templatevars, request, bannerheight=135):
 class PootlePage:
   """the main page"""
   def __init__(self, templatename, templatevars, request, bannerheight=135):
-    if not hasattr(pan_app.prefs, "baseurl"):
-      pan_app.prefs.baseurl = "/"
-    if not hasattr(pan_app.prefs, "enablealtsrc"):
-      pan_app.prefs.enablealtsrc = False
     self.request = request
     self.templatename = templatename
     self.templatevars = templatevars

@@ -21,10 +21,12 @@
 
 from threading import Lock
 
+from django.conf import settings
+from django.utils.translation import ugettext
+
 from translate.misc.context import with_
 from translate.misc.contextlib import contextmanager
 
-from django.conf import settings
 from Pootle.misc import prefs as prefsmodule
 
 cache_templates = True
@@ -41,3 +43,9 @@ def get_po_tree():
 # and then this object can be removed. It's safe to share this
 # object, since it contains no state.
 pootle_server = None
+
+def get_title():
+    return ugettext(settings.TITLE)
+
+def get_description():
+    return ugettext(settings.DESCRIPTION)

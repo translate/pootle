@@ -20,20 +20,26 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import re
-from Pootle import pagelayout
-from Pootle import projects
-from Pootle import pootlefile
-from translate.storage import po
-from translate.misc.multistring import multistring
 import difflib
 import operator
 import urllib
 import os
 
 from django.contrib.auth.models import User
-from Pootle import pan_app
+from django.utils.translation import ugettext as _
+from django.conf import settings
+N_ = _
+
+from translate.storage import po
+from translate.misc.multistring import multistring
+
 from pootle_app.core import Language
 from pootle_app.profile import get_profile
+
+from Pootle import pagelayout
+from Pootle import projects
+from Pootle import pootlefile
+from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 xml_re = re.compile("&lt;.*?&gt;")
@@ -52,7 +58,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     self.project = project
     self.altproject = None
     # do we have enabled alternative source language?
-    self.enablealtsrc = getattr(pan_app.prefs, "enablealtsrc", "False")
+    self.enablealtsrc = settings.ENABLE_ALT_SRC
     if self.enablealtsrc == 'True':
       # try to get the project if the user has chosen an alternate source language
       altsrc = request.getaltsrclanguage()
@@ -112,7 +118,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     navbarpath_dict = self.makenavbarpath_dict(self.project, self.request, self.pofilename, dirfilter=self.dirfilter or "")
     # templatising
     templatename = "translatepage"
-    instancetitle = getattr(pan_app.prefs, "title", localize("Pootle Demo"))
+    instancetitle = N_(settings.TITLE)
     # l10n: first parameter: name of the installation (like "Pootle")
     # l10n: second parameter: project name
     # l10n: third parameter: target language

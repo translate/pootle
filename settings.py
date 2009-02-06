@@ -155,6 +155,10 @@ AUTH_LDAP_FIELDS = {
 
 LANGUAGE_NAME_COOKIE = 'pootlelang'
 
+ENABLE_ALT_SRC = True
+
+CAN_REGISTER = True
+
 # Uncomment to use memcached for caching
 # CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 

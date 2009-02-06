@@ -52,6 +52,8 @@ from scripts import hooks
 
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
+from django.conf import settings
+
 from pootle_app.core import Suggestion, get_profile, Submission, Project, Language, Right
 from pootle_app.profile import PootleProfile
 from pootle_app.core import TranslationProject as DBTranslationProject
@@ -699,7 +701,7 @@ class TranslationProject(object):
     statsstring = "%d of %d messages translated (%d fuzzy)." % \
         (stats["translated"], stats["total"], stats["fuzzy"])
 
-    message="Commit from %s by user %s, editing po file %s. %s" % (pan_app.prefs.title, request.user.username, pofilename, statsstring)
+    message="Commit from %s by user %s, editing po file %s. %s" % (settings.TITLE, request.user.username, pofilename, statsstring)
     author=request.user.username
     fulldir = os.path.split(pathname)[0]
    
