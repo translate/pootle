@@ -107,6 +107,15 @@ class potimecache(timecache.timecache):
       if time.time() - currentfile.pomtime > self.expiryperiod.seconds:
         self.__setitem__(pofilename, pootlefile.pootlefile(self.project, pofilename))
 
+def add_trailing_slash(dirname):
+  if dirname[-1] == os.sep:
+    return dirname
+  else:
+    return dirname + os.sep
+
+def get_relative_project_dir(project_dir):
+  return project_dir[len(add_trailing_slash(settings.PODIRECTORY)):]
+
 def make_db_translation_project(language_id, project_id, make_dirs):
     def make_translation_project():
       def get_file_style(project_dir, language_code):
@@ -117,7 +126,7 @@ def make_db_translation_project(language_id, project_id, make_dirs):
 
       language    = Language.objects.get(id=language_id)
       project     = Project.objects.get(id=project_id)
-      project_dir = pan_app.get_po_tree().getpodir(language.code, project.code, make_dirs)
+      project_dir = get_relative_project_dir(pan_app.get_po_tree().getpodir(language.code, project.code, make_dirs))
       db_object   = DBTranslationProject(language    = language,
                                          project     = project,
                                          project_dir = project_dir,
@@ -175,10 +184,11 @@ class TranslationProject(object):
   # The directory containing this translation project
   def _set_podir(self, value):
     db_translation_project = self.db_translation_project
-    db_translation_project.podir = value
+    db_translation_project.podir = get_relative_project_dir(value)
     db_translation_project.save()
 
-  podir                  = property(lambda self: self.db_translation_project.project_dir, _set_podir)
+  podir                  = property(lambda self: os.path.join(settings.PODIRECTORY, self.db_translation_project.project_dir), 
+                                    _set_podir)
   # The database object backing this TranslationProject
   db_translation_project = property(lambda self: DBTranslationProject.objects.get(id=self.id))
 
