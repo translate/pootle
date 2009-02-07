@@ -24,7 +24,7 @@ import time
 import datetime
 import calendar
 from Pootle.legacy.jToolkit import cidict
-import sre
+import re
 
 # pywintypes has an error in time formatting, so we need to be able to detect this type on windows
 try:
