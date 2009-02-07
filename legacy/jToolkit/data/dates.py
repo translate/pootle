@@ -62,7 +62,7 @@ class dateparser:
     """a simulated type which can parse strings into dates given a format"""
     def __init__(self, format):
         """constructs a dateparser object with the given regular expression as a format"""
-        self.r = sre.compile(format)
+        self.r = re.compile(format)
         # remember format for error messages...
         self.format = format
 
@@ -452,7 +452,7 @@ def getgranularity(formattype):
   year, month, day, hour, minute, second = range(6)
   finestgranularity = year
   widestgranularity = second
-  for formatstr in sre.findall("%[a-zA-Z]", formattype):
+  for formatstr in re.findall("%[a-zA-Z]", formattype):
     formatcode = formatstr[1]
     if formatcode in "jyY":
       codegranularity = year
