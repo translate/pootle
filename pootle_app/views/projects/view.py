@@ -5,12 +5,13 @@ from django.forms.formsets import ManagementForm
 from django.utils.translation import ugettext as _
 from django.conf import settings
 
-from Pootle import pan_app, indexpage, adminpages
+from Pootle import pan_app, indexpage, adminpages, projects
 
 from pootle_app.views.auth import redirect
 from pootle_app.views.util import render_to_kid, render_jtoolkit, KidRequestContext, \
     init_formset_from_data, choices_from_models, selected_model
 from pootle_app.core import TranslationProject, Language, Project
+from pootle_app import project_tree
 
 def user_can_admin_project(f):
     def decorated_f(request, project_code, *args, **kwargs):
@@ -20,14 +21,18 @@ def user_can_admin_project(f):
             return f(request, project_code, *args, **kwargs)
     return decorated_f
 
-def check_project_code(project_code):
-    if not pan_app.get_po_tree().hasproject(None, project_code):
-        raise Http404
-    else:
-        return project_code
+def get_project(f):
+    def decorated_f(request, project_code, *args, **kwargs):
+        try:
+            project = Project.objects.get(code=project_code)
+            return f(request, project, *args, **kwargs)
+        except Project.DoesNotExist:
+            return redirect('/', message=_("The project %s is not defined for this Pootle installation" % project_code))
+    return decorated_f
 
-def project_language_index(request, project_code, _path_var):
-    return render_jtoolkit(indexpage.ProjectLanguageIndex(check_project_code(project_code), request))
+@get_project
+def project_language_index(request, project, _path_var):
+    return render_jtoolkit(indexpage.ProjectLanguageIndex(project, request))
 
 class LanguageForm(forms.ModelForm):
     update = forms.BooleanField(required=False)
@@ -52,7 +57,7 @@ def process_post(request, project):
             for form in formset.forms:
                 if form['update'].data:
                     language = form.instance
-                    translation_project = pan_app.get_po_tree().getproject(language.code, project.code)
+                    translation_project = project_tree.get_translation_project(language, project)
                     translation_project.converttemplates(request)
         return formset
 
@@ -62,7 +67,7 @@ def process_post(request, project):
         if new_language_form.is_valid():
             new_language = selected_model(Language, new_language_form['add_language'])
             if new_language is not None:
-                pan_app.get_po_tree().addtranslationproject(new_language.code, project.code)
+                projects.add_translation_project(new_language, project)
 
     if request.method == 'POST':
         formset = process_existing_languages(request, project)
@@ -72,7 +77,7 @@ def process_get(request, project):
     if request.method == 'GET':
         try:
             language_code = request.GET['updatelanguage']
-            translation_project = pan_app.get_po_tree().getproject(language_code, project.code)
+            translation_project = project_tree.get_translation_project(Language.objects.get(code=language_code), project)
             if 'initialize' in request.GET:
                 translation_project.initialize(request, language_code)
             elif 'doupdatelanguage' in request.GET:
@@ -87,7 +92,7 @@ def project_admin(request, project_code):
     process_get(request, project)
     process_post(request, project)
 
-    existing_languages = pan_app.get_po_tree().get_valid_languages(project.code)
+    existing_languages = project_tree.get_languages(project)
     formset = LanguageFormset(queryset=existing_languages)
     new_language_form = make_new_language_form(existing_languages)
 

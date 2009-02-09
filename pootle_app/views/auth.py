@@ -6,11 +6,12 @@ from django.http import HttpResponseRedirect
 from django.conf import settings
 from django.http import HttpResponseRedirect
 
-from Pootle import pan_app
-
 from pootle_app.views.util import render_to_kid, KidRequestContext
+from pootle_app import project_tree
+
+from Pootle import pan_app
 from Pootle.pagelayout import completetemplatevars
-from Pootle.i18n.jtoolkit_i18n import localize
+from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 def login(request):
     message = None
@@ -37,9 +38,9 @@ def login(request):
         else:
             form = AuthenticationForm(request)
         request.session.set_test_cookie()
-        languages = pan_app.get_po_tree().getlanguages()
+        languages = project_tree.get_languages()
         context = {
-            'languages': [{'name': i[1], 'code':i[0]} for i in languages],
+            'languages': [{'name': tr_lang(language.fullname), 'code': language.code} for language in languages],
             'form': form,
             }
 

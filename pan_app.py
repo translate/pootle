@@ -33,11 +33,6 @@ cache_templates = True
 
 prefs = prefsmodule.load_preferences(settings.PREFSFILE)
 
-_po_tree = None
-
-def get_po_tree():
-    return _po_tree
-
 # Contains an instance of PootleServer. Eventually we'll
 # move all the code out of PootleServer and its superclasses
 # and then this object can be removed. It's safe to share this

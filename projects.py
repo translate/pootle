@@ -59,6 +59,7 @@ from pootle_app.profile import PootleProfile
 from pootle_app.core import TranslationProject as DBTranslationProject
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize
+from pootle_app import project_tree
 
 class RightsError(ValueError):
   pass
@@ -116,17 +117,15 @@ def add_trailing_slash(dirname):
 def get_relative_project_dir(project_dir):
   return project_dir[len(add_trailing_slash(settings.PODIRECTORY)):]
 
-def make_db_translation_project(language_id, project_id, make_dirs):
+def make_db_translation_project(language, project, make_dirs):
     def make_translation_project():
-      def get_file_style(project_dir, language_code):
-        if pan_app.get_po_tree().hasgnufiles(project_dir, language_code) == "gnu":
+      def get_file_style(project_dir, language):
+        if project_tree.get_file_style(project_dir, language) == "gnu":
           return "gnu"
         else:
           return "std"
 
-      language    = Language.objects.get(id=language_id)
-      project     = Project.objects.get(id=project_id)
-      project_dir = get_relative_project_dir(pan_app.get_po_tree().getpodir(language.code, project.code, make_dirs))
+      project_dir = get_relative_project_dir(project_tree.get_project_dir(language, project, make_dirs))
       db_object   = DBTranslationProject(language    = language,
                                          project     = project,
                                          project_dir = project_dir,
@@ -153,12 +152,12 @@ def make_db_translation_project(language_id, project_id, make_dirs):
     make_default_rights(db_object)
     return db_object
 
-def get_or_make_db_translation_project(language_id, project_id, make_dirs=False):
+def get_or_make_db_translation_project(language, project, make_dirs=False):
   """ """
   try:
-    return DBTranslationProject.objects.get(language__id=language_id, project__id=project_id)
+    return DBTranslationProject.objects.get(language=language, project=project)
   except DBTranslationProject.DoesNotExist:
-    return make_db_translation_project(language_id, project_id, make_dirs)
+    return make_db_translation_project(language, project, make_dirs)
 
 class TranslationProject(object):
   """Manages iterating through the translations in a particular project"""
@@ -192,17 +191,17 @@ class TranslationProject(object):
   # The database object backing this TranslationProject
   db_translation_project = property(lambda self: DBTranslationProject.objects.get(id=self.id))
 
-  def __init__(self, languagecode, projectcode, potree, create=False):
+  def __init__(self, language, project, create=False):
     # Store the database column ids for the language and project of this translation project
     # as well as the id used for the database model which backs this translation project.
     # We store ids instead of direct references to objects, since we want to work with fresh
     # copies of the objects every time.
-    self.language_id = Language.objects.get(code=languagecode).id
-    self.project_id  = Project.objects.get(code=projectcode).id
-    self.id          = get_or_make_db_translation_project(self.language_id, self.project_id, make_dirs=create).id
+    self.language_id = language.id
+    self.project_id  = project.id
+    self.id          = get_or_make_db_translation_project(language, project, make_dirs=create).id
     self.pofiles = potimecache(15*60, self)
     checkerclasses = [checks.projectcheckers.get(self.projectcheckerstyle, checks.StandardChecker), checks.StandardUnitChecker]
-    self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=languagecode)
+    self.checker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=self.filtererrorhandler, languagecode=language.code)
     # terminology matcher
     self.termmatcher = None
     self.termmatchermtime = None
@@ -580,7 +579,7 @@ class TranslationProject(object):
 
   def scanpofiles(self):
     """sets the list of pofilenames by scanning the project directory"""
-    self.pofilenames = pan_app.get_po_tree().getpofiles(self.languagecode, self.projectcode, poext=self.fileext, project=self.project)
+    self.pofilenames = project_tree.get_project_files(self.language, self.project, ext=self.fileext)
     filename_set = set(self.pofilenames)
     pootlefile_set = set(self.pofiles.keys())
     # add any files that we don't have yet
@@ -754,7 +753,7 @@ class TranslationProject(object):
       templatesdir = os.path.join(projectdir, "pot")
       if not os.path.exists(templatesdir):
         templatesdir = projectdir
-    if pan_app.get_po_tree().isgnustyle(self.projectcode):
+    if project_tree.get_file_style(os.path.join(settings.PODIRECTORY, self.projectcode)) == 'gnu':
       self.filestyle = "gnu"
     else:
       self.filestyle = "std"
@@ -1715,3 +1714,16 @@ class TemplatesProject(TranslationProject):
       rights = [right for right in rights if right not in ["translate", "suggest", "pocompile"]]
     return rights
 
+project_cache = {}
+
+def get_translation_project(language, project):
+    """returns the project object for the languagecode and projectcode"""
+    if (language.code, project.code) not in project_cache:
+        project_cache[language.code, project.code] = TranslationProject(language, project)
+    return project_cache[language.code, project.code]
+
+def add_translation_project(language, project):
+    """creates a new TranslationProject"""
+    if has_translation_project(language, project):
+        raise ValueError("projects.TranslationProject for project %s, language %s already exists" % (project.code, language.code))
+    project_cache[language.code, project.code] = TranslationProject(language, project, create=True)

@@ -25,7 +25,8 @@ be used to display Pootle's UI to a user."""
 from django.utils.translation import trans_real
 from django.conf import settings
 
-from pootle_app import models
+from pootle_app import core
+from pootle_app.profile import get_profile
 from Pootle.i18n import gettext
 
 def get_lang_from_cookie(request):
@@ -36,7 +37,7 @@ def get_lang_from_cookie(request):
     Otherwise, return None."""
     lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME, None)
     if lang_code and gettext.check_for_language(lang_code): # FIXME: removed checking if language is supported
-        return gettext.get_lang(lang_code)
+        return gettext.get_lang(core.Language.objects.get(code=lang_code))
     return None
 
 def get_lang_from_http_header(request):
@@ -54,8 +55,12 @@ def get_lang_from_http_header(request):
         #       We should split such codes into two components
         #       ('af' and 'ZA') and also check whether we have
         #       a project matching the first component ('af').
-        if gettext.check_for_language(accept_lang):
-            return gettext.get_lang(accept_lang)
+        try:
+            return gettext.get_lang(core.Language.objects.get(code=accept_lang))
+        except core.Language.DoesNotExist:
+            pass
+        except core.Project.DoesNotExist:
+            pass
     return None
 
 def get_lang_from_prefs(request):
@@ -68,11 +73,11 @@ def get_lang_from_prefs(request):
     Otherwise, return None."""
     # If the user is logged in
     if request.user.is_authenticated():
-        profile = models.get_profile(request.user)
+        profile = get_profile(request.user)
         # and if the user's ui lang is set, and the ui lang exists
         if profile.ui_lang is not None and gettext.check_for_language(profile.ui_lang.code):
             # return that
-            return gettext.get_lang(profile.ui_lang.code)
+            return gettext.get_lang(profile.ui_lang)
     return None
 
 def get_language_from_request(request):

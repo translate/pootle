@@ -53,6 +53,7 @@ from Pootle import statistics, pan_app
 from Pootle.misc.transaction import django_transaction
 from Pootle.misc import prefs, jtoolkit_django
 from pootle_app.core import Language, Project
+from pootle_app import project_tree
 
 try:
   from xml.etree import ElementTree
@@ -78,7 +79,6 @@ def use_request_cache(f):
 class PootleServer(users.OptionalLoginAppServer):
   """the Server that serves the Pootle Pages"""
   def __init__(self):
-    self.potree = pan_app.get_po_tree()
     super(PootleServer, self).__init__()
     self.templatedir = filelocations.templatedir
 
@@ -102,17 +102,15 @@ class PootleServer(users.OptionalLoginAppServer):
     """initializes live translations using the Pootle PO files"""
     self.localedomains = ['jToolkit', 'pootle']
     self.localedir = None
-    self.languagelist = self.potree.getlanguagecodes('pootle')
-    self.languagenames = self.potree.getlanguages()
+    self.languagenames = projects.get_languages()
     self.defaultlanguage = defaultlanguage
     if self.defaultlanguage is None:
       self.defaultlanguage = settings.DEFAULT_LANGUAGE
-    if self.potree.hasproject(self.defaultlanguage, 'pootle'):
-      try:
-        self.translation = self.potree.getproject(self.defaultlanguage, 'pootle')
-        return
-      except Exception, e:
-        self.errorhandler.logerror("Could not initialize translation:\n%s" % str(e))
+    try:
+      self.translation = projects.get_translation_project(self.defaultlanguage, 'pootle')
+      return
+    except Exception, e:
+      self.errorhandler.logerror("Could not initialize translation:\n%s" % str(e))
     # if no translation available, set up a blank translation
     super(PootleServer, self).inittranslation()
     # the inherited method overwrites self.languagenames, so we have to redo it
@@ -225,12 +223,8 @@ def init_db():
   if PootleProfile.objects.count() == 0:
     call_command('initdb')
 
-def init_globals():
-  import potree
-  pan_app._po_tree = potree.POTree()
-
-def get_lang(code):
-  return pan_app.get_po_tree().getproject(code, 'pootle')
+def get_lang(language):
+  return projects.get_translation_project(language, Project.objects.get(code='pootle'))
 
 def check_for_language(code):
   return Project.objects.filter(code='pootle').count() > 0 and Language.objects.filter(code=code).count() > 0
@@ -242,7 +236,6 @@ def setup_localization_system():
 def main():
   # run the web server
   init_db()
-  init_globals()
   setup_localization_system()
   checkversions()
   parser = PootleOptionParser()

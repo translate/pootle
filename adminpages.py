@@ -37,7 +37,6 @@ import locale
 class AdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
   def __init__(self, request):
-    self.potree = pan_app.get_po_tree()
     self.request = request
     templatename = "adminindex"
     instancetitle = pan_app.get_title()
@@ -107,7 +106,6 @@ def updaterights(project, request, argdict):
 class TranslationProjectAdminPage(pagelayout.PootlePage):
   """admin page for a translation project (project+language)"""
   def __init__(self, project, request, argdict):
-    self.potree = pan_app.get_po_tree()
     self.project = project
     self.request = request
     self.rightnames = self.project.getrightnames(request)

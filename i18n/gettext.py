@@ -62,7 +62,7 @@ class DummyTranslation(object):
 
 # Must be replaced after the bootstrapping phase by a function that returns
 # and actual pootle Project object for the language code.
-def get_lang(code):
+def get_lang(language):
     return DummyTranslation()
 
 # Must be replaced after the bootstrapping phase by a function that returns
@@ -76,7 +76,7 @@ _active_translations = {} # Contains a mapping of threads to Pootle translation 
 _default_translation = DummyTranslation() # See get_default_translation
 
 def activate_for_profile(profile):
-    activate(get_lang(profile.ui_lang.code))
+    activate(get_lang(profile.ui_lang))
 
 def activate(ui_lang_project):
     """Associate the thread in which we are running with the Pootle project
