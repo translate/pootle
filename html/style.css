@@ -317,7 +317,7 @@ h1, h2, h3 {
 }
 
 html[dir="ltr"] #nav-access {
-  right: -1000px;
+  left: -1000px;
 }
 
 html[dir="rtl"] #nav-access {
