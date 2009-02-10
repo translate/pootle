@@ -54,8 +54,8 @@ from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 
-from pootle_app.core import Suggestion, get_profile, Submission, Project, Language, Right
-from pootle_app.profile import PootleProfile
+from pootle_app.core import Suggestion, Submission, Project, Language, Right
+from pootle_app.profile import PootleProfile, get_profile
 from pootle_app.core import TranslationProject as DBTranslationProject
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize
