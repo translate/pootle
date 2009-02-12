@@ -65,7 +65,7 @@ class MozillaLdap:
 
   def __hasRights(self, acctDict, acctType):
     """Tests to see if the user with LDAP returned dictionary acctDict has
-    the rights specified by acctType; this is a seperate method because it
+    the rights specified by acctType; this is a separate method because it
     is LDAP implementation specific.
   
     """

@@ -164,7 +164,7 @@ def handle_sdf(request, translation_project, file_path):
     if not "pocompile" in translation_project.getrights(request.user):
         return redirect('/%s/%s' % (translation_project.language.code, translation_project.project.code),
                         message=_('You do not have the right to create SDF files.'))
-    return HttpResponse(translation_project.getoo(), content_type="text/tab-seperated-values")
+    return HttpResponse(translation_project.getoo(), content_type="text/tab-separated-values")
 
 @get_translation_project
 def handle_file(request, translation_project, file_path):
