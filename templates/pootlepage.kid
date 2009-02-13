@@ -65,27 +65,6 @@
       <!-- end footer -->
     </div>
 
-    <div py:def="login_form(username_title, password_title, login_text, register_text, canregister, request, uilanguage, sessionvars)" py:strip="True">
-      <!-- start login form -->
-      <div py:if="not sessionvars.isopen" py:strip="True">
-        <form action="/login.html?${REDIRECT_FIELD_NAME}=${request.path_info}" method="post" id="login-form">
-	  <table>
-	    <div py:content="XML(AuthenticationForm(None).as_table())" />
-	  </table>
-          <div>
-	    <table align="right">
-              <tr>
-		<td><a href="/register.html"><span py:replace="register_text" /></a>&nbsp;&nbsp;</td>
-		<td><input type="submit" name="Login" value="${login_text}" /></td>
-	      </tr>
-	    </table>
-	  </div>
-          <input type="hidden" name="islogin" value="true" /> 
-	</form>
-      </div>
-      <!-- end login form -->
-    </div>
-
     <div py:def="translationsummarylegend(legend, mediaurl)" id="translationsummarylegend">
       <div> <img src="${mediaurl}images/green-bar.png" alt="" />${legend.translated}</div>
       <div> <img src="${mediaurl}images/purple-bar.png" alt="" />${legend.fuzzy}</div>
