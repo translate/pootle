@@ -30,6 +30,7 @@ from pootle_app.models import get_profile, Project
 from Pootle import pagelayout
 from Pootle import projects
 from Pootle import pan_app
+from pootle_app.profile import PootleProfile
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 import locale
@@ -76,6 +77,8 @@ class AdminPage(pagelayout.PootlePage):
     return options
 
 def updaterights(project, request, argdict):
+  print "project", project
+  print "request", request
   if "admin" in project.getrights(request.user):
     if "doupdaterights" in request.POST:
       for key, value in request.POST.lists():
@@ -88,18 +91,18 @@ def updaterights(project, request, argdict):
             try:
               value.remove("existence")
             except:
-              pass
+              pass  
           project.setrights(user, value)
         if key.startswith("rightsremove-"):
           username = key.replace("rightsremove-", "", 1)
           user = User.objects.include_hidden().get(username=username)
           project.delrights(user)
-      username = request.POST.get("rightsnew-username", None)
-      if username:
-        username = username.strip()
+      profile_id = request.POST.get("rightsnew-username", None)
+      if profile_id:
+        profile_id = profile_id.strip()
         try:
-          user = User.objects.include_hidden().get(username=username)
-          project.setrights(user, request.POST.get("rightsnew", ""))
+          profile = PootleProfile.objects.get(pk=profile_id)
+          project.setrights(profile.user, [request.POST.get("rightsnew", "")])
         except User.DoesNotExist:
           raise IndexError(localize("Cannot set rights for username %s - user does not exist", username))
  
@@ -158,13 +161,11 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
       if username in ("nobody", "default"): continue
       users_with_rights.append(username)
       rights[username] = self.project.getrights(User.objects.include_hidden().get(username=username))
-    users = self.project.getuserswithinterest()
-    user_details = {"nobody": nobody_dict, "default": default_dict}
-    for username, usernode in users.iteritems():
-      if not isinstance(username, unicode):
-        username = username.decode("utf-8")
-      user_dict = self.getuserdict(username, usernode=usernode)
-      user_details[username] = user_dict
+    user_details = {2: nobody_dict, 3: default_dict}
+    
+    profiles = self.project.getuserswithinterest()
+    for profile in profiles:
+      user_details[profile.id] = self.getprofiledict(profile)
     # We need to make sure that users_with_rights are also in user_details,
     # since they might not be there yet or anymore
     for username in users_with_rights:
@@ -198,3 +199,12 @@ class TranslationProjectAdminPage(pagelayout.PootlePage):
     userdict = {"username": username, "delete": delete or None, "remove_text": remove_text, "description": description}
     return userdict
 
+  def getprofiledict(self, profile, delete=True):
+    """gets a dictionary for the given user given user's rights"""
+    # l10n: The parameter is a languagecode, projectcode or username
+    username = profile.user.username
+    remove_text = localize("Remove %s", username)
+    description =  username
+    userdict = {"username": username, "delete": delete or None, "remove_text": remove_text, "description": description}
+    return userdict
+    

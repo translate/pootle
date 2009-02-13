@@ -295,26 +295,7 @@ class TranslationProject(object):
 
   def getuserswithinterest(self):
     """returns all the users who registered for this language and project"""
-
-    def usableuser(user):
-      if user.username in ["__dummy__", "default", "nobody"]:
-        return False
-      return self.languagecode in map(lambda l: l.code, getattr(user, "languages", []))
-
-    users = {}
-    for user in User.objects.all():
-      if usableuser(user):
-        # Let's build a nice descriptive name for use in the interface. It will
-        # contain both the username and the full name, if available.
-        username = getattr(user, "username", None)
-        name = getattr(user, "name", None)
-        if name:
-          description = "%s (%s)" % (name, username)
-        else:
-          description = username
-        setattr(user, "description", description)
-        users[username] = user
-    return users
+    return PootleProfile.objects.filter(languages=self.language,projects=self.project)
 
   def getuserswithrights(self):
     """gets all users that have rights defined for this project"""
@@ -333,11 +314,12 @@ class TranslationProject(object):
         return db_translation_project.right_set.get(profile=profile)
       except Right.DoesNotExist:
         return Right(profile=profile, translation_project=db_translation_project)
-
+      
     db_translation_project = self.db_translation_project
     rights = set(rights)
     pootle_content_type = ContentType.objects.get(name='pootle')
     user_right = get_user_right(get_profile(user))
+    user_right.save()
     user_right.permissions = [perm for perm in Permission.objects.filter(content_type=pootle_content_type) if perm.codename in rights]
     user_right.save()
 
