@@ -231,7 +231,6 @@ a:hover {
 }
 a:active {
   text-decoration: underline;
-  font-weight: bold;
 }
 p,
 dd {
@@ -341,23 +340,25 @@ html[dir="rtl"] #nav-access {
   background: url(/static/images/logo.png) left 50% no-repeat;
   padding: 0;
   padding-left: 60px;
-  margin: 0;
-  margin-left: 20px;
+  margin: 0 20px;
   font-family: Arial;
   font-size: 150%;
-  display: block;
+  display: normal;
 }
 html[dir="rtl"] #header h1 a {
   padding-left: 0;
   padding-right: 60px;
-  margin-left: 0;
-  margin-right: 20px;
   background: url(/static/images/logo.png) right 50% no-repeat;
 }
 #header h1 a:link,
 #header h1 a:visited { 
   color: #fff; 
 }
+
+#header h1 a:active {
+  text-decoration: none;
+}
+
 #header h1 a:hover {
   text-decoration: none;
 }
@@ -369,9 +370,11 @@ html[dir="rtl"] #header h1 a {
 }
 #nav-main ul {
   float: right;
+  margin-right: 5px;
 }
 html[dir="rtl"] #nav-main ul {
   float: left;
+  margin-left: 5px;
 }
 #nav-main ul li {
   float: left;
