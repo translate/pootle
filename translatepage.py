@@ -751,7 +751,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         textid = "trans%d" % item
         focusbox = textid
 
-      transdict["can_spell"] = spellcheck.can_check_lang(self.project.languagecode)
+      transdict["can_spell"] = False
       transdict["spell_args"] = spellargs
       transdict["buttons"] = buttons
       transdict["focusbox"] = focusbox
