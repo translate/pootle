@@ -83,7 +83,7 @@ from Pootle.templates import pootlepage, navbar
 		<tr>
 		  <th colspan="1" rowspan="1" class="translate-table-title" py:content="original_title">original</th>
 		  <th colspan="1" rowspan="1" class="translate-table-title" py:content="translation_title">translation</th>
-		  <th colspan="1" rowspan="1" class="translate-table-title" py:content="action_title">action</th>
+		  <th colspan="1" rowspan="1" class="translate-table-title" py:if="canedit" py:content="action_title">action</th>
 		</tr>
 
 		<div  py:for="item in items" py:strip="True">

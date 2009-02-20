@@ -169,6 +169,7 @@ class TranslatePage(pagelayout.PootleNavPage):
         # general vars
         "instancetitle": instancetitle,
         "rights": self.rights,
+        "canedit": "suggest" in self.rights or "translate" in self.rights,
         # l10n: Text displayed when an AJAX petition is being made
         "ajax_status_text": localize("Working..."),
         # l10n: Text displayed in an alert box when an AJAX petition has failed
