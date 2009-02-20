@@ -468,7 +468,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     else:
       self.editable = [self.item]
       rows = self.getdisplayrows("translate")
-      before = 0; 
+      before = rows / 2
       fromitem = self.item - before
       self.firstitem = max(self.item - before, 0)
       toitem = self.firstitem + rows
