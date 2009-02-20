@@ -12,6 +12,7 @@ from pootle_app import project_tree
 from Pootle import pan_app
 from Pootle.pagelayout import completetemplatevars
 from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
+from Pootle.i18n.user_lang_discovery import get_language_from_request
 
 def login(request):
     message = None
@@ -40,7 +41,10 @@ def login(request):
         request.session.set_test_cookie()
         languages = project_tree.get_languages()
         context = {
-            'languages': [{'name': tr_lang(language.fullname), 'code': language.code} for language in languages],
+            'languages': [{'name': tr_lang(language.fullname),
+                           'code': language.code,
+                           'selected': is_selected(request, language.code)}
+                          for language in languages],
             'form': form,
             }
 
@@ -65,3 +69,10 @@ def redirect(url, **kwargs):
         return HttpResponseRedirect('%s?%s' % (url, urllib.urlencode(kwargs)))
     else:
         return HttpResponseRedirect(url)
+
+def is_selected(request, new_code):
+    code = get_language_from_request(request).language.code
+    if code == new_code:
+        return "selected"
+    return None
+
