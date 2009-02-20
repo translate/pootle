@@ -726,7 +726,6 @@ class TranslatePage(pagelayout.PootleNavPage):
                   "cols": getattr(usernode, "inputwidth", 40),
                   }
       focusbox = ""
-      spellargs = {"standby_url": "spellingstandby.html", "js_url": "/js/spellui.js", "target_url": "spellcheck.html"}
       if len(trans) > 1:
         buttons = self.gettransbuttons(item, ["back", "skip", "copy", "suggest", "translate"])
         forms = []
@@ -751,8 +750,6 @@ class TranslatePage(pagelayout.PootleNavPage):
         textid = "trans%d" % item
         focusbox = textid
 
-      transdict["can_spell"] = False
-      transdict["spell_args"] = spellargs
       transdict["buttons"] = buttons
       transdict["focusbox"] = focusbox
     else:

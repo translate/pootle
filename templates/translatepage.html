@@ -136,7 +136,6 @@ from Pootle.templates import pootlepage, navbar
 			  </div>
 			  <!--! No plurals -->
 			  <div py:if="not item.trans.isplural" py:strip="True">
-			    <!--! TODO: spell checking -->
 			    <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(item.trans.text)">
 			      translatable text
 			    </textarea>
@@ -145,7 +144,6 @@ from Pootle.templates import pootlepage, navbar
 			  <div py:if="item.trans.isplural" py:strip="True">
 			    <div py:for="form in item.trans.forms" py:strip="True">
 			      <div class="translation-text-headers" py:content="form.title">Plural Form ${form.n}</div>
-			      <!--! TODO: spell checking -->
                               <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation ${item.state_class}" name="${form.name}" id="area${form.name}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(form.text)">
 				translatable text for plural form
                               </textarea>
