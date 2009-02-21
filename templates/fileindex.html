@@ -112,7 +112,7 @@ from Pootle.templates import pootlepage, navbar
             </div>
 
             <div py:if="'isfile' in item" class="item ${item.parity}">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, uidir)"/>
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, None)"/>
               <div py:replace="navbar.itemstats(item)"/>
             </div>
           </div>
