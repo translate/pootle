@@ -656,20 +656,62 @@ html[dir=rtl] .module-primary .hd h2
  * LOGIN PAGE
  */
 
-#loginform
+#login
 {
     width: 20em;
     margin: 2em auto;
-    margin-bottom: 8em;
-    text-align: center;
     border: 2px solid #ccc;
     padding: 1em;
     background-color: #e5edef;
+    text-align: left;
 }
 
-#loginform table
+#login[dir=rtl]
 {
-    width: 100%;
+    text-align: right;
+}
+
+#login h1
+{
+    margin-bottom: 0.7em;
+}
+
+#loginform
+{
+    font-size: 85%;
+}
+
+#loginform p
+{
+    margin-bottom: 1em;
+}
+
+#username,
+#password,
+#language
+{
+    width: 97%;
+}
+
+#login .submit
+{
+    margin-bottom: 0;
+    text-align: right;
+}
+
+#login[dir=rtl] .submit
+{
+    text-align: left;
+}
+
+#register
+{
+    width: 20em;
+    margin: 0 auto;
+    margin-bottom: 8em;
+    padding: 0 1em;
+    font-size: 137%;
+    text-align: center;
 }
 
 

@@ -38,8 +38,8 @@ def localize_links(request):
   links["admin"] = localize("Admin")
   links["doc"] = localize("Docs & help")
   links["doclang"] = getdoclang(gettext.get_active().languagecode)
-  #links["logout"] = localize("Log out")
-  #links["login"] = localize("Log in")
+  links["logout"] = localize("Log out")
+  links["login"] = localize("Log in")
   links["about"] = localize("About")
   #l10n: Verb, as in "to register"
   links["register"] = localize("Register")

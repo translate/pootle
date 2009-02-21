@@ -52,8 +52,10 @@ def login(request):
         context.update({
             'pagetitle': localize("Login to Pootle"),
             'introtext': None,
-            'language_title': localize('Language:'),
-            'password_title': localize("Password:"),
+            'login_title': localize("Pootle Login"),
+            'language_title': localize('Language'),
+            'password_title': localize("Password"),
+            'register_long_text': localize("Don't have an account yet? <a href='register.html' title='Register'>Register</a>.")
             })
 
         return render_to_kid("login.html", KidRequestContext(request, context))

@@ -12,43 +12,33 @@
       <div id="nav-access">
         <a href="#nav-main" py:content="links.skip_nav">skip to navigation</a>
       </div>
-        <?python
-            header_attributes = {};
-            if sessionvars.isopen:
-                header_attributes = {'class':'logged-in'}
-            if sessionvars.issiteadmin:
-                header_attributes = {'class':'logged-in admin'}
-        ?>
 
-        <div id="header" py:attrs="header_attributes">
-          <div>
-            <h1><a href="/" title="${links.home}" py:content="instancetitle">Verbatim</a></h1>
-            <div id="nav-main" class="menubar">
-              <div class="bd">
-                <ul class="first-of-type">
-                  <li class="menubaritem"><a href="${baseurl}" py:content="links.home">Home</a></li>
-                  <li class="menubaritem"><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
-                  <div py:if="sessionvars.issiteadmin" py:strip="True">
-                    <li class="menubaritem"><a href="${baseurl}admin/" py:content="links.admin">Admin</a></li>
-                  </div>
-                  <div py:if="sessionvars.isopen" py:strip="True">
-                    <li class="menubaritem"><a href="${baseurl}home/">My account</a></li>
-                    <li class="menubaritem"><a href="${baseurl}logout.html">Log out</a></li>
-		  </div>
-                  <div py:if="not sessionvars.isopen" py:strip="True">
-                    <li class="menubaritem"><a href="${baseurl}login.html"><span>Log in</span></a></li>
-                  </div>
-                </ul>
-              </div>
-            </div>	
+      <div id="header">
+        <div>
+          <h1><a href="/" title="${links.home}" py:content="instancetitle">Sitename</a></h1>
+          <div id="nav-main" class="menubar">
+            <div class="bd">
+              <ul class="first-of-type">
+                <li class="menubaritem"><a href="${baseurl}" py:content="links.home">Home</a></li>
+                <li class="menubaritem"><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
+                <div py:if="sessionvars.issiteadmin" py:strip="True">
+                  <li class="menubaritem"><a href="${baseurl}admin/" py:content="links.admin">Admin</a></li>
+                </div>
+                <div py:if="sessionvars.isopen" py:strip="True">
+                  <li class="menubaritem"><a href="${baseurl}home/" py:content="links.account">My account</a></li>
+                  <li class="menubaritem"><a href="${baseurl}logout.html" py:content="links.logout">Log out</a></li>
+        </div>
+                <div py:if="not sessionvars.isopen" py:strip="True">
+                  <li class="menubaritem"><a href="${baseurl}register.html" py:content="links.register">Register</a></li>
+                  <li class="menubaritem"><a href="${baseurl}login.html" py:content="links.login">Log in</a></li>
+                </div>
+              </ul>
+            </div>
           </div>
-	</div>
-        <!--TODO
-        <h1 py:content="instancetitle">
-            Distribution se Pootle
-        </h1>
-        -->
-        <!-- end header -->
+
+        </div>
+      </div>
+      <!-- end header -->
     </div>
 
     <div py:def="footer(links, baseurl, uidir)" py:strip="True">

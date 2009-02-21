@@ -26,36 +26,30 @@ from Pootle.templates import pootlepage
         <div class="info" py:if="message" py:content="XML(message)">Message</div>
       </div>
 
-      <form action="" method="post" name="loginform" id="loginform">
-        <table cellpadding="1" cellspacing="1">
-          <tr>
-            <td class="label" colspan="1" rowspan="1" py:content="username_title">Username:</td>
-            <td class="field" colspan="1" rowspan="1">
-              <input style="width: 100%" type="text" name="username" value="${username}" />
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="1" rowspan="1" py:content="password_title">Password:</td>
-            <td colspan="1" rowspan="1">
-              <input style="width: 100%" type="password" name="password" value="" />
-            </td>
-          </tr>
-	  
-          <tr>
-            <td colspan="1" rowspan="1" py:content="language_title">Language:</td>
-            <td colspan="1" rowspan="1">
-              <select style="width: 100%" name="language">
-                <option py:for="l in languages" py:attrs="selected=l.selected" value="${l.code}" py:content="l.name">
-                  Language Name
-                </option>
-              </select>
-            </td>
-          </tr>
-        </table>
-        <input type="submit" name="Login" value="${login_text}" />
-        <input type="hidden" name="islogin" value="true" />
-      </form>
+      <div id="login" dir="$uidir">
+        <h1 py:content="login_title">Pootle login</h1>
+        <form action="" method="post" name="loginform" id="loginform">
+        <p>
+          <label for="username" py:content="username_title">Username</label><br />
+          <input type="text" name="username" id="username" value="${username}" />
+        </p>
+        <p>
+          <label for="password" py:content="password_title">Username</label><br />
+          <input type="password" name="password" id="password" value="" />
+        </p>
+        <p>
+          <label for="language" py:content="language_title">Username</label><br />
+          <select name="language" id="language">
+            <option py:for="l in languages" py:attrs="selected=l.selected" value="${l.code}" py:content="l.name">Language Name</option>
+          </select>
+        </p>
+        <p class="submit">
+          <input type="submit" name="login" value="${login_text}" />
+          <input type="hidden" name="islogin" value="true" />
+        </p>
+        </form>
+      </div>
+      <h1 id="register" py:content="XML(register_long_text)">Don't have an account yet? <a href="register.html" title="Register">Register</a>.</h1>
 
     </div><!-- end #body-->
     	
