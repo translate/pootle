@@ -446,6 +446,57 @@ html[dir="rtl"] #nav-main ul li
 
 
 /*
+ * FOOTER
+ */
+
+#footer
+{
+    background: #fff url(/static/images/footer-border.png) top center repeat-x;
+    text-align: center;
+    color: #898378;
+    clear: both;
+    font-size: 90%;
+    height: 40px;
+    padding: 35px 0 0 0;
+}
+
+#footer-contents
+{
+    margin: 0 auto;
+    width: 90%;
+}
+
+#footer .nav li
+{
+    display: inline;
+}
+
+#footer .nav li:after
+{
+    content:  "|";
+    margin: 0 10px;
+}
+
+#footer .nav li:last-child:after
+{
+    content: '';
+    margin: 0;
+}
+
+#footer a:link,
+#footer a:visited
+{
+    color: #898378;
+}
+
+#footer a:hover,
+#footer a:active
+{
+    color: #69645c;
+}
+
+
+/*
  * MESSAGES
  */
 
@@ -465,6 +516,28 @@ html[dir="rtl"] #nav-main ul li
 .site-message .error
 {
   color: #f33;
+}
+
+#ajaxresponse
+{
+    position: absolute;
+    left: 50%;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+    background-color: #cc0000;
+    color: #eeeeec;
+    padding: 3px;
+}
+
+.placeholder
+{
+    color: gray;
+}
+
+.hide
+{
+    display: none;
 }
 
 
@@ -599,104 +672,10 @@ html[dir=rtl] .module-primary .hd h2
     width: 100%;
 }
 
-.module .bd h3.comments
-{
-    border-top: 1px solid #ebeae7;
-    padding: 20px 0 0 0;
-}
 
-.original,
-.file
-{
-    font-weight: bold;
-    border-top: 1px solid #ebeae7;
-    font-size: 85%;
-    padding: 10px 0 0 0;
-    min-height: 120px;
-}
-
-.file
-{
-    min-height: 100px;
-}
-
-div.translation textarea
-{
-    width: 100%;
-    border: 1px solid #ebeae7;
-}
-
-textarea.translation
-{
-    margin: 0 0 10px 0;
-    height: 75px;
-}
-
-#language-info
-{
-    background: #f7f7f7 url(/static/images/translate-notepad.png) 15px 50% no-repeat;
-    padding: 15px 25px 10px 45px;
-    font-size: 91%;
-}
-
-#language-info:after
-{
-    content: ".";
-    display: block;
-    height: 0;
-    width: 0;
-    clear: both;
-    visibility: hidden;
-}
-
-#language-info ul
-{
-    margin: 0;
-    left: 0;
-    width: 40%;
-}
-
-#language-info ul:after
-{
-    content: ".";
-    display: block;
-    height: 0;
-    width: 0;
-    clear: both;
-    visibility: hidden;
-}
-
-#language-info ul li
-{
-    list-style-position: inside;
-    float: left;
-}
-
-#language-info ul li:after
-{
-    content:  "|";
-    margin: 0 0 0 8px;
-    color: #0489B7;
-}
-
-#language-info ul li:last-child:after
-{
-    content: '';
-    margin: 0;
-}
-
-#language-info .language a
-{
-    font-weight: bold;
-}
-
-#language-info .stats
-{
-    float: left;
-    clear: left;
-    width: 40%;
-    font-size: 91%;
-}
+/*
+ * SUMMARIES
+ */
 
 #translationsummarylegend div img
 {
@@ -706,42 +685,169 @@ textarea.translation
     padding: 0px 5px;
 }
 
-#fuzzy
+div.statslist
 {
-    margin: 0 4px 0 0;
+    float: left;
+    width: 30%;
+    margin: 0;
+    margin-left: 10px;
 }
 
-#search
+html[dir="rtl"] div.statslist
 {
     float: right;
-    margin: -8px 0 0 0;
+    margin-left: 0;
+    margin-right: 10px;
 }
 
-#search label
+div.statslist ul li span.name
 {
-    font-size: 130%;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+div.statslist ul li span.value
+{
+    margin-left: 50px;
+}
+
+html[dir="rtl"] div.statslist ul li span.value
+{
+    float: left;
+}
+
+/* 
+ * Pretty Graphs, mostly from http://l10n.gnome.org/
+ */
+
+span.graph
+{
+    height: 14px;
+    width: 100px;
+    border: 0px solid black;
     position: relative;
-    top: 3px;
+    padding: 2px;
 }
 
-#search input[type=text]
+span.translated
 {
-    border: 1px solid #76b0bf;
-    height: 18px;
-    width: 142px;
+    position: absolute;
+    top: 5px;
+    height: 100%;
+    background: #448844;
+    background: url('images/green-bar.png');
+    background-repeat: repeat-x;
+    color: black;
 }
 
-#search button
+span.goodchange
 {
-    background: url(/static/images/search-arrow.png) top left no-repeat;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    border: 0;
-    margin: 0 0 0 -5px;
-    top: -2px;
+    position: absolute;
+    top: 5px;
+    height: 100%;
+    background: #55DD55;
+    background: url('images/cyan-bar.png');
+    background-repeat: repeat-x;
+    color: black;
+}
+
+span.fuzzy
+{
+    position: absolute;
+    top: 5px;
+    height: 100%;
+    background: #4444AA;
+    background: url('images/purple-bar.png');
+    background-repeat: repeat-x;
+    color: black;
+}
+
+span.untranslated
+{
+    position: absolute;
+    height: 100%;
+    top: 5px;
+    background: #FF4444;
+    background: url('images/red-bar.png');
+    background-repeat: repeat-x;
+    color: black;
+}
+
+span.graph[dir="ltr"] span.translated
+{
+    left: 0%;
+}
+
+span.graph[dir="rtl"] span.translated
+{
+    right: 0%;
+}
+
+.sortkey
+{
+    display: none;
+}
+
+
+/*
+ * NAVIGATION BAR
+ */
+
+/* SEARCH */
+
+div.searchform
+{
+    float: right;
+    max-width: 30%;
+    max-height: 1.8em;
+    background-color:#E4E6E8;
+    padding: 3px;
+    border: 1px solid gray;
+}
+
+div.searchform[dir="rtl"]
+{
+    float: left;
+}
+
+div.advancedsearch
+{
+    background-color: #E4E6E8;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    overflow: auto;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 8px;
     position: relative;
+    z-index: 2;
+    display: none;
+}
+
+div.advancedsearch[dir="rtl"]
+{
+    position: relative;
+    padding-left: 8px;
+    padding-right: 3px;
+}
+
+div.nodefaultsearch
+{
+    background-color: #f1f3f5 !important;
+}
+
+label.inputHint
+{
+    display: none;
+}
+
+/* FILENAMES, STATS */
+
+.togglesearch
+{
     cursor: pointer;
+    vertical-align: middle;
 }
 
 .translations-nav
@@ -806,6 +912,40 @@ html[dir="rtl"] .translations-nav li:last-child:after
     font-weight: bold;
 }
 
+
+/*
+ * TRANSLATE PAGE
+ */
+
+table.translate-table
+{
+    margin-top: 1em;
+}
+
+div.translation-action
+{
+    min-height: 1.5em;
+    height: 0px;
+    padding-left: 10px;
+}
+
+div.translation-action[dir="rtl"]
+{
+    padding-right: 10px;
+}
+
+div.translation textarea
+{
+    width: 100%;
+    border: 1px solid #ebeae7;
+}
+
+textarea.translation
+{
+    margin: 0 0 10px 0;
+    height: 75px;
+}
+
 #translations
 {
     clear: both;
@@ -826,36 +966,35 @@ td.translation
     color: #000;
 }
 
-div.statslist
-{
-    float: left;
-    width: 30%;
-    margin: 0;
-    margin-left: 10px;
+
+/* TM */
+
+.sidebar
+{ 
+	float: right;
 }
 
-html[dir="rtl"] div.statslist
+.sidebar .sidetitle
 {
-    float: right;
-    margin-left: 0;
-    margin-right: 10px;
+	font-weight: bold;
 }
 
-div.statslist ul li span.name
+.sidebar .sidetitle .tm-unit
 {
-    font-weight: bold;
-    overflow: hidden;
+	cursor: pointer;
 }
 
-div.statslist ul li span.value
+.sidebar .sidetitle .tm-unit .tm-translation
 {
-    margin-left: 50px;
+	font-style: italic;
 }
 
-html[dir="rtl"] div.statslist ul li span.value
+.icon
 {
-    float: left;
+	float: left;
+	margin-right: 8px;
 }
+
 
 /* Merged from pootle.css for translatepage.html.  Needs to be reviewed */
         .translate-context
@@ -986,255 +1125,6 @@ html[dir="rtl"] div.statslist ul li span.value
             padding-left: 30px;
         }
 
-/*
-** TRANSLATE PAGE
-*/
-
-table.translate-table
-{
-    margin-top: 1em;
-}
-
-div.translation-action
-{
-    min-height: 1.5em;
-    height: 0px;
-    padding-left: 10px;
-}
-
-div.translation-action[dir="rtl"]
-{
-    padding-right: 10px;
-}
-
-
-/*
- * FOOTER
- */
-
-#footer
-{
-    background: #fff url(/static/images/footer-border.png) top center repeat-x;
-    text-align: center;
-    color: #898378;
-    clear: both;
-    font-size: 90%;
-    height: 40px;
-    padding: 35px 0 0 0;
-}
-
-#footer-contents
-{
-    margin: 0 auto;
-    width: 90%;
-}
-
-#footer .nav li
-{
-    display: inline;
-}
-
-#footer .nav li:after
-{
-    content:  "|";
-    margin: 0 10px;
-}
-
-#footer .nav li:last-child:after
-{
-    content: '';
-    margin: 0;
-}
-
-#footer a:link,
-#footer a:visited
-{
-    color: #898378;
-}
-
-#footer a:hover,
-#footer a:active
-{
-    color: #69645c;
-}
-
-#ajaxresponse
-{
-    position: absolute;
-    left: 50%;
-    margin: 0 auto;
-    text-align: center;
-    font-weight: bold;
-    background-color: #cc0000;
-    color: #eeeeec;
-    padding: 3px;
-}
-
-.placeholder
-{
-    color: gray;
-}
-
-.hide
-{
-    display: none;
-}
-
-/* 
- * Pretty Graphs, mostly from http://l10n.gnome.org/
- */
-
-span.graph
-{
-    height: 14px;
-    width: 100px;
-    border: 0px solid black;
-    position: relative;
-    padding: 2px;
-}
-
-span.translated
-{
-    position: absolute;
-    top: 5px;
-    height: 100%;
-    background: #448844;
-    background: url('images/green-bar.png');
-    background-repeat: repeat-x;
-    color: black;
-}
-
-span.goodchange
-{
-    position: absolute;
-    top: 5px;
-    height: 100%;
-    background: #55DD55;
-    background: url('images/cyan-bar.png');
-    background-repeat: repeat-x;
-    color: black;
-}
-
-span.fuzzy
-{
-    position: absolute;
-    top: 5px;
-    height: 100%;
-    background: #4444AA;
-    background: url('images/purple-bar.png');
-    background-repeat: repeat-x;
-    color: black;
-}
-
-span.untranslated
-{
-    position: absolute;
-    height: 100%;
-    top: 5px;
-    background: #FF4444;
-    background: url('images/red-bar.png');
-    background-repeat: repeat-x;
-    color: black;
-}
-
-span.graph[dir="ltr"] span.translated
-{
-    left: 0%;
-}
-
-span.graph[dir="rtl"] span.translated
-{
-    right: 0%;
-}
-
-.sortkey
-{
-    display: none;
-}
-
-/* For the search box on e.g. fileindex.html */
-div.searchform
-{
-    float: right;
-    max-width: 30%;
-    /* sets max-height for IE */
-    /* TODO: heh, we can't have expression()s in our css */
-    /* height: expression( this.scrollHeight > (500/12) * parseInt(document.body.currentStyle.fontSize) ? "1.8em" : "auto" );*/
-    max-height: 1.8em;
-    background-color:#E4E6E8;
-    padding: 3px;
-    border: 1px solid gray;
-}
-
-div.searchform[dir="rtl"]
-{
-    float: left;
-}
-
-div.advancedsearch
-{
-    background-color: #E4E6E8;
-    border-bottom: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
-    overflow: auto;
-    padding-bottom: 3px;
-    padding-left: 3px;
-    padding-right: 8px;
-    position: relative;
-    z-index: 2;
-    display: none;
-}
-
-div.advancedsearch[dir="rtl"]
-{
-    position: relative;
-    padding-left: 8px;
-    padding-right: 3px;
-}
-
-div.nodefaultsearch
-{
-    background-color: #f1f3f5 !important;
-}
-
-label.inputHint
-{
-    display: none;
-}
-
-.togglesearch
-{
-    cursor: pointer;
-    vertical-align: middle;
-}
-
-.sidebar
-{ 
-	float: right;
-}
-
-.sidebar .sidetitle
-{
-	font-weight: bold;
-}
-
-.sidebar .sidetitle .tm-unit
-{
-	cursor: pointer;
-}
-
-.sidebar .sidetitle .tm-unit .tm-translation
-{
-	font-style: italic;
-}
-
-.icon
-{
-	float: left;
-	margin-right: 8px;
-}
-
 
 /*
  * LANGUAGE SPECIFIC SETTINGS
@@ -1325,4 +1215,139 @@ label.inputHint
     text-decoration: none;
     color: #606047;
 }
+
+
+/*
+ * UNUSED?
+ */
+
+/*
+
+.module .bd h3.comments
+{
+    border-top: 1px solid #ebeae7;
+    padding: 20px 0 0 0;
+}
+
+.original,
+.file
+{
+    font-weight: bold;
+    border-top: 1px solid #ebeae7;
+    font-size: 85%;
+    padding: 10px 0 0 0;
+    min-height: 120px;
+}
+
+.file
+{
+    min-height: 100px;
+}
+
+
+#language-info
+{
+    background: #f7f7f7 url(/static/images/translate-notepad.png) 15px 50% no-repeat;
+    padding: 15px 25px 10px 45px;
+    font-size: 91%;
+}
+
+#language-info:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#language-info ul
+{
+    margin: 0;
+    left: 0;
+    width: 40%;
+}
+
+#language-info ul:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#language-info ul li
+{
+    list-style-position: inside;
+    float: left;
+}
+
+#language-info ul li:after
+{
+    content:  "|";
+    margin: 0 0 0 8px;
+    color: #0489B7;
+}
+
+#language-info ul li:last-child:after
+{
+    content: '';
+    margin: 0;
+}
+
+#language-info .language a
+{
+    font-weight: bold;
+}
+
+#language-info .stats
+{
+    float: left;
+    clear: left;
+    width: 40%;
+    font-size: 91%;
+}
+
+#fuzzy
+{
+    margin: 0 4px 0 0;
+}
+
+#search
+{
+    float: right;
+    margin: -8px 0 0 0;
+}
+
+#search label
+{
+    font-size: 130%;
+    position: relative;
+    top: 3px;
+}
+
+#search input[type=text]
+{
+    border: 1px solid #76b0bf;
+    height: 18px;
+    width: 142px;
+}
+
+#search button
+{
+    background: url(/static/images/search-arrow.png) top left no-repeat;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    margin: 0 0 0 -5px;
+    top: -2px;
+    position: relative;
+    cursor: pointer;
+}
+
+*/
 
