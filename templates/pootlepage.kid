@@ -23,20 +23,20 @@
         <div id="header" py:attrs="header_attributes">
           <div>
             <h1><a href="/" title="${links.home}" py:content="instancetitle">Verbatim</a></h1>
-            <div id="nav-main" class="yuimenubar">
+            <div id="nav-main" class="menubar">
               <div class="bd">
                 <ul class="first-of-type">
-                  <li class="yuimenubaritem"><a href="${baseurl}" py:content="links.home">Home</a></li>
-                  <li class="yuimenubaritem"><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
+                  <li class="menubaritem"><a href="${baseurl}" py:content="links.home">Home</a></li>
+                  <li class="menubaritem"><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
                   <div py:if="sessionvars.issiteadmin" py:strip="True">
-                    <li class="yuimenubaritem"><a href="${baseurl}admin/" py:content="links.admin">Admin</a></li>
+                    <li class="menubaritem"><a href="${baseurl}admin/" py:content="links.admin">Admin</a></li>
                   </div>
                   <div py:if="sessionvars.isopen" py:strip="True">
-                    <li class="yuimenubaritem"><a href="${baseurl}home/">My account</a></li>
-                    <li class="yuimenubaritem"><a href="${baseurl}logout.html">Log out</a></li>
+                    <li class="menubaritem"><a href="${baseurl}home/">My account</a></li>
+                    <li class="menubaritem"><a href="${baseurl}logout.html">Log out</a></li>
 		  </div>
                   <div py:if="not sessionvars.isopen" py:strip="True">
-                    <li class="yuimenubaritem"><a href="${baseurl}login.html"><span>Log in</span></a></li>
+                    <li class="menubaritem"><a href="${baseurl}login.html"><span>Log in</span></a></li>
                   </div>
                 </ul>
               </div>

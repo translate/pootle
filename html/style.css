@@ -410,31 +410,31 @@ html[dir="rtl"] #nav-main ul li
  * MENUBAR
  */
 
-.yuimenubar
+.menubar
 {
   visibility: visible;
   position: static;
 }
 
-.yuimenubar ul,
-.yuimenubar li,
-.yuimenubar h6
+.menubar ul,
+.menubar li,
+.menubar h6
 {
   margin: 0;
   padding: 0;
 }
 
-.yuimenubar ul
+.menubar ul
 {
   *zoom: 1;
 }
 
-.yuimenubar .yuimenu ul
+.menubar .menu ul
 {
   *zoom: normal;
 }
 
-.yuimenubar>.bd>ul:after
+.menubar>.bd>ul:after
 {
   content: ".";
   display: block;
