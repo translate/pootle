@@ -257,7 +257,7 @@ from Pootle.templates import pootlepage, navbar
 		    </td>
         <td>
           <div dir="$uidir" lang="$language.code" class="translation-action">
-            <a py:if="item.trans.editlink" lang="$uilanguage" dir="$uidir" href="${item.trans.editlink.href}" class="translation-action" py:content="item.trans.editlink.text" id="${item.trans.editlink.linkid}">Edit</a>
+            <a py:if="item.trans.editlink and not item.editable" lang="$uilanguage" dir="$uidir" href="${item.trans.editlink.href}" class="translation-action" py:content="item.trans.editlink.text" id="${item.trans.editlink.linkid}">Edit</a>
           </div>
         </td>
 		  </tr>
