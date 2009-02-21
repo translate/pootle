@@ -181,7 +181,7 @@ from Pootle.templates import pootlepage, navbar
 
 			  <!--! Buttons, resize links, special characters -->
 			  <div py:strip="True" py:for="buttons in [item.trans.buttons]">
-			    <div>
+			    <div class="translate-buttons-block">
 			      <input py:if="'back' in buttons.desired" type="submit" name="back${buttons.item}" accesskey="b" value="${buttons.back}"/>
 			      <input py:if="'skip' in buttons.desired" type="submit" name="skip${buttons.item}" accesskey="k" value="${buttons.skip}"/>
 			      <input type="button" py:if="'copy' in buttons.desired" accesskey="c"
@@ -190,18 +190,18 @@ from Pootle.templates import pootlepage, navbar
 			      <input py:if="'suggest' in buttons.desired" type="submit" name="submitsuggest${buttons.item}" accesskey="e" value="${buttons.suggest}"/>
 			      <input py:if="'translate' in buttons.desired" type="submit" name="submit${buttons.item}" accesskey="s" value="${buttons.submit}"/>
 			    </div>
-			    <div py:if="'translate' in buttons.desired">
+			    <div py:if="'translate' in buttons.desired" class="translate-fuzzy-block">
 			      <input type="checkbox" checked="${item.fuzzy}" name="fuzzy${buttons.item}" accesskey="f" id="fuzzy${buttons.item}" class="fuzzycheck" />
 			      <label for="fuzzy${buttons.item}">${fuzzytext}</label>
 			    </div>
-			    <div py:if="not 'translate' in buttons.desired">
+			    <div py:if="not 'translate' in buttons.desired" class="translate-fuzzy-block">
 			      <input type="checkbox" disabled="disabled" checked="${item.fuzzy}" name="fuzzy${buttons.item}" id="fuzzy${buttons.item}" class="fuzzycheck" />
 			      <label for="fuzzy${buttons.item}">${fuzzytext}</label>
 			    </div>
-			    <div py:if="'specialchars' in buttons and ('translate' in buttons.desired or 'suggest' in buttons.desired)" class="specialchars" lang="$language.code">
+			    <div py:if="'specialchars' in buttons and ('translate' in buttons.desired or 'suggest' in buttons.desired)" class="translate-specialchars-block" lang="$language.code">
 			      <div py:for="specialchar in buttons.specialchars" py:strip="True">
-				<a py:if="not specialchar.isspace()" py:content="specialchar" onclick="writespecial('${specialchar}', '${item.trans.itemid}'); return false;" href="#">spc</a>
-				<span py:if="specialchar.isspace()" class="extraspace"> </span>
+                    <a py:if="not specialchar.isspace()" py:content="specialchar" onclick="writespecial('${specialchar}', '${item.trans.itemid}'); return false;" href="#">spc</a>
+                    <span py:if="specialchar.isspace()" class="extraspace"> </span>
 			      </div>
 			    </div>
 			    <div py:if="'resize' in buttons.desired" py:strip="True">

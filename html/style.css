@@ -1038,6 +1038,23 @@ td.translation
     right: auto;
 }
 
+/* CONTROLS */
+
+.translate-buttons-block
+{
+    margin-bottom: 10px;
+}
+
+.translate-fuzzy-block
+{
+    margin-bottom: 10px;
+}
+
+.translate-specialchars-block
+{
+    line-height: 150%;
+    margin-bottom: 10px;
+}
 
 /* Merged from pootle.css for translatepage.html.  Needs to be reviewed */
         .translate-context
@@ -1100,11 +1117,6 @@ td.translation
         .translation-highlight-html
         {
             color: #A00000;
-        }
-        .specialchars
-        {
-            line-height: 150%;
-            margin-top: 5px;
         }
         ul.sugglist {
           clear: both;
