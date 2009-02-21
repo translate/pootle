@@ -265,10 +265,9 @@ from Pootle.templates import pootlepage, navbar
 		  <tr py:if="item.editable">
 		    <td  class="translate-original ${item.polarity} comments">
 		      <div py:if="item.developer_comments" py:strip="True">
-			<div py:content="developer_comments_title">Developer comments:</div>
-			<div py:if="item.editable and item.developer_comments" class="developer-comments" lang="en" dir="ltr" py:content="XML(item.developer_comments)">Developer comments.</div>
+                <div py:if="item.editable and item.developer_comments" title="${developer_comments_title}" class="developer-comments" lang="en" dir="ltr" py:content="XML(item.developer_comments)">Developer comments.</div>
 		      </div>
-                      <div py:if="item.editable and item.locations" class="translate-locations" lang="en" dir="ltr" py:content="item.locations">Locations</div>
+              <div py:if="item.editable and item.locations" class="translate-locations" lang="en" dir="ltr" py:content="item.locations">Locations</div>
 		    </td>
 		    <td class="translate-translation ${item.polarity} comments">
 		      <div py:content="translator_comments_title">Translator comments:</div>
@@ -305,7 +304,7 @@ from Pootle.templates import pootlepage, navbar
 	  <input name="doassign" type="submit" value="${assigns.submit_text}"/>
 	</form>
 	<div class="side" py:if="defined('checking_text')">
-	  <img src="${mediaurl}images/information.png" class="checkinfo" alt="" />
+	  <img src="${mediaurl}images/help.png" class="checkinfo" alt="" />
 	  <span py:content="XML(checking_text)">checking has-suggestion, etc</span>
 	</div>
       </div>

@@ -972,6 +972,46 @@ td.translation
     color: #000;
 }
 
+td.translate-original,
+td.translate-translation
+{
+    width: 50%;
+}
+
+/* ORIGINAL */
+
+td.translate-original
+{
+    padding-right: 5px;
+}
+
+div.translate-original
+{
+    min-height: 1.5em;
+}
+
+.translate-locations
+{
+    font-family: monospace;
+    background: #ddd url('/static/images/script_code.png') no-repeat;
+    background-position: 5px center;
+    border: 1px solid #000;
+    overflow: auto;
+    padding: 5px 25px;
+}
+
+.developer-comments
+{
+    background: #ffe url('/static/images/information.png') no-repeat;
+    background-position: 5px center;
+    border: 1px solid #fc9;
+    overflow: auto;
+    margin-bottom: 10px;
+    padding: 5px 25px;
+}
+
+/* TRANSLATION */
+
 
 /* TM */
 
@@ -1060,12 +1100,6 @@ td.translation
         .translate-context
         {
             background-color: #EEE;
-            font-family: monospace;
-            margin-top: 10px;
-            overflow: auto;
-        }
-        .translate-locations
-        {
             font-family: monospace;
             margin-top: 10px;
             overflow: auto;
@@ -1161,14 +1195,6 @@ td.translation
 
         .translate-suggestion {
             background-color: #DDD;
-        }
-
-        td.translate-original,
-        td.translate-translation {
-          width: 50%;
-        }
-        div.translate-original {
-          min-height: 1.5em;
         }
 
         div.suggestions{
