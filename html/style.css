@@ -91,8 +91,8 @@ th
     color: #4b4742;
 }
 
-html[dir=rtl] caption,
-html[dir=rtl] th
+html[dir="rtl"] caption,
+html[dir="rtl"] th
 {
     text-align: right;
 }
@@ -601,7 +601,7 @@ li.even
     margin: 0;
 }
 
-html[dir=rtl] .module
+html[dir="rtl"] .module
 {
     float: left;
 }
@@ -611,7 +611,7 @@ html[dir=rtl] .module
     float: left;
 }
 
-html[dir=rtl] .module.first
+html[dir="rtl"] .module.first
 {
     float: right;
 }
@@ -625,8 +625,8 @@ html[dir=rtl] .module.first
     border-bottom: 2px solid #afaba3;
 }
 
-html[dir=rtl] .module .hd h2, 
-html[dir=rtl] .module-primary .hd h2
+html[dir="rtl"] .module .hd h2,
+html[dir="rtl"] .module-primary .hd h2
 {
     margin-left: 0;
     margin-right: 0.5em;
@@ -666,7 +666,7 @@ html[dir=rtl] .module-primary .hd h2
     text-align: left;
 }
 
-#login[dir=rtl]
+#login[dir="rtl"]
 {
     text-align: right;
 }
@@ -699,7 +699,7 @@ html[dir=rtl] .module-primary .hd h2
     text-align: right;
 }
 
-#login[dir=rtl] .submit
+#login[dir="rtl"] .submit
 {
     text-align: left;
 }
