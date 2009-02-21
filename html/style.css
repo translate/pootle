@@ -844,6 +844,12 @@ label.inputHint
 
 /* FILENAMES, STATS */
 
+.icon
+{
+	float: left;
+	margin-right: 8px;
+}
+
 .togglesearch
 {
     cursor: pointer;
@@ -989,10 +995,47 @@ td.translation
 	font-style: italic;
 }
 
-.icon
+/* SUGGESTIONS */
+
+#translate-original-container,
+#translate-suggestion-container
 {
-	float: left;
-	margin-right: 8px;
+    margin-bottom: 10px;
+}
+
+.translate-suggestion-block
+{
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.translate-suggestion-block .rejectsugg img
+{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.translate-suggestion-block .rejectsugg img[dir="rtl"]
+{
+    left: 0px;
+    right: auto;
+}
+
+.translate-suggestion-block .acceptsugg img
+{
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.translate-suggestion-block .acceptsugg img[dir="rtl"]
+{
+    left: 20px;
+    right: auto;
 }
 
 
