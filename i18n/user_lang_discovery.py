@@ -24,10 +24,13 @@ be used to display Pootle's UI to a user."""
 
 from django.utils.translation import trans_real
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 
 from pootle_app import core
 from pootle_app.profile import get_profile
 from Pootle.i18n import gettext
+
+from string import upper
 
 def get_lang_from_cookie(request):
     """See if the user's browser sent a cookie with her preferred language. Return
@@ -36,9 +39,32 @@ def get_lang_from_cookie(request):
 
     Otherwise, return None."""
     lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME, None)
-    if lang_code and gettext.check_for_language(lang_code): # FIXME: removed checking if language is supported
+    # FIXME: removed checking if language is supported
+    if lang_code and gettext.check_for_language(lang_code):
         return gettext.get_lang(core.Language.objects.get(code=lang_code))
     return None
+
+def get_lang_obj(code):
+    """Tries to get a Language object based on a language code from an HTTP header.
+
+       Since the header can be in the form 'af-za' or 'af', we first try with
+       the 'lang_COUNTRY' form and otherwise fallback to 'lang'. Also,
+       language codes are normalized to the form 'af_ZA', because this is how
+       Pootle stores language codes."""
+    code_parts = code.split('-')
+    if len(code_parts) > 1:
+        code2 = "%(lang)s_%(country)s" % {'lang': code_parts[0],
+                                          'country': upper(code_parts[1])}
+        # First try with the lang_COUNTRY code, and if it fails
+        # then try with the language code only
+        try:
+            return core.Language.objects.get(code=code2)
+        except ObjectDoesNotExist:
+            pass
+    try:
+        return core.Language.objects.get(code=code_parts[0])
+    except ObjectDoesNotExist:
+        return Null
 
 def get_lang_from_http_header(request):
     """If the user's browser sends a list of preferred languages in the
@@ -51,12 +77,9 @@ def get_lang_from_http_header(request):
     for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
         if accept_lang == '*':
             return gettext.get_default_translation()
-        # TODO: This will fail for language codes such as af-ZA.
-        #       We should split such codes into two components
-        #       ('af' and 'ZA') and also check whether we have
-        #       a project matching the first component ('af').
         try:
-            return gettext.get_lang(core.Language.objects.get(code=accept_lang))
+            lang_obj = get_lang_obj(accept_lang)
+            return gettext.get_lang(lang_obj)
         except core.Language.DoesNotExist:
             pass
         except core.Project.DoesNotExist:
@@ -93,3 +116,4 @@ def get_language_from_request(request):
         if lang is not None:
             return lang
     return gettext.get_default_translation()
+
