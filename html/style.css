@@ -1,136 +1,441 @@
+
 /*
-Copyright (c) 2008, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http://developer.yahoo.net/yui/license.txt
-version: 2.5.1
-*/
-html {
-  color: #000;
-  background: #FFF;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+ * BASIC ELEMENT STYLING
+ */
+
+html
+{
+    color: #000;
+    background: #FFF;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
-body, div, 
-ul, ol, li, 
+
+body
+{
+    background: #FFF;
+    color: #000;
+    width: 100%;
+
+    font-family: sans-serif;
+    font-size: 13px;
+    font-size-adjust: none;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1.231;
+
+    *font-size: small;
+    *font: x-small;
+}
+
+a:link
+{
+    text-decoration: none;
+    background-color: inherit;
+    color: #0489b7;
+}
+
+a:visited
+{
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+a:active
+{
+    text-decoration: underline;
+}
+
+p,
+dd
+{
+    line-height: 1.5;
+}
+
+strong
+{
+    font-weight: bold;
+}
+
+em
+{
+    font-style: italic;
+}
+
+abbr,
+acronym
+{
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+
+p,
+fieldset,
+pre
+{
+    margin-bottom: 1em;
+}
+
+th
+{
+    font-family: Georgia, serif;
+    font-size: 110%;
+    padding: 0 0 7px 0;
+    background-color: inherit;
+    color: #4b4742;
+}
+
+html[dir=rtl] caption,
+html[dir=rtl] th
+{
+    text-align: right;
+}
+
+td
+{
+    padding: 5px 0;
+    font-size: 85%;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: Georgia, serif;
+    font-weight: normal;
+    background-color: inherit;
+    color: #4b4740;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 100%;
+    font-weight: normal;
+}
+
+h1
+{
+    font-size: 185%;
+}
+
+h2
+{
+    font-size: 170%;
+}
+
+h3
+{
+    font-size: 165%;
+}
+
+h4
+{
+    font-size: 137%;
+}
+
+h5
+{
+    font-size: 110%;
+}
+
+h6
+{
+    font-size: 100%;
+}
+
+h1, h2, h3
+{
+    margin: 1em 0;
+}
+
+body, div,
+ul, ol, li,
 h1, h2, h3, h4, h5, h6,
 pre, code,
 form, fieldset, legend, input, textarea,
-p, blockquote,
-th, td {
-  margin: 0;
-  padding: 0;
+p, blockquote
+{
+    margin: 0;
+    padding: 0;
 }
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: inherit;
 }
+
 fieldset,
-img {
-  border: 0;
+img
+{
+    border: 0;
 }
+
 address, caption, cite, code, dfn,
 em, strong,
-th, var {
-  font-style: normal;
-  font-weight: normal;
-}
-li {
-  list-style: none;
-}
-caption, 
-th {
-  text-align: left;
-}
-h1, h2, h3, h4, h5, h6{ 
-  font-size: 100%;
-  font-weight: normal;
-}
-q:before,
-q:after {
-  content: '';
-}
-abbr,
-acronym {
-  border: 0;
-  font-variant: normal;
-}
-sup {
-  vertical-align: text-top;
-}
-sub {
-  vertical-align: text-bottom;
-}
-input,
-textarea,
-select {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-}
-input,
-textarea,
-select {
-  *font-size: 100%;
-}
-legend {
-  color: #000;
-}
-body {
-  font: 13px/1.231 arial,helvetica,clean,sans-serif;
-  *font-size: small;
-  *font: x-small;
-}
-table {
-  font-size: inherit;
-  font: 100%;
-}
-pre, code, kbd, samp, tt {
-  font-family: monospace;
-  *font-size: 108%;
-  line-height: 100%;
-}
-#ft{
-  clear: both;
+th, var
+{
+    font-style: normal;
+    font-weight: normal;
 }
 
-#bd:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
+li
+{
+    list-style: none;
 }
-#bd {
-  zoom: 1;
+
+caption,
+th
+{
+    text-align: left;
 }
+
+q:before,
+q:after
+{
+    content: '';
+}
+
+abbr,
+acronym
+{
+    border: 0;
+    font-variant: normal;
+}
+
+sup
+{
+    vertical-align: text-top;
+}
+
+sub
+{
+    vertical-align: text-bottom;
+}
+
+input,
+textarea,
+select
+{
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+input,
+textarea,
+select
+{
+    *font-size: 100%;
+}
+
+legend
+{ 
+    background-color: inherit;
+    color: #000;
+}
+
+pre, code, kbd, samp, tt
+{
+    font-family: monospace;
+    line-height: 100%;
+    *font-size: 108%;
+}
+
+#ft
+{
+    clear: both;
+}
+
+#bd:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#bd
+{
+    zoom: 1;
+}
+
 
 /*
-Copyright (c) 2008, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http://developer.yahoo.net/yui/license.txt
-version: 2.5.1
-*/
-.yuimenubar {
+ * MAIN DIVs
+ */
+
+#wrapper,
+#doc
+{
+    width: 100%;
+}
+
+#doc:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#nav-access
+{
+    position: absolute;
+    top: -1000px;
+}
+
+html[dir="ltr"] #nav-access
+{
+    left: -1000px;
+}
+
+html[dir="rtl"] #nav-access
+{
+    right: -1000px;
+}
+
+
+/*
+ * HEADER
+ */
+
+#header
+{
+    background: #1e4262 url(/static/images/header-background.png) top left repeat;
+    color: #000;
+}
+
+#header h1
+{
+    width: 100%;
+    margin: 0;
+    padding: 5px 0 0 0;
+    height: 48px;
+    line-height: 48px;
+}
+
+#header h1 a
+{
+    background: url(/static/images/logo.png) left 50% no-repeat;
+    padding: 0;
+    padding-left: 60px;
+    margin: 0 20px;
+    font-family: Arial, sans-serif;
+    font-size: 150%;
+}
+
+html[dir="rtl"] #header h1 a
+{
+    padding-left: 0;
+    padding-right: 60px;
+    background: url(/static/images/logo.png) right 50% no-repeat;
+}
+
+#header h1 a:link,
+#header h1 a:visited
+{ 
+    color: #fff; 
+}
+
+#header h1 a:active
+{
+    text-decoration: none;
+}
+
+#header h1 a:hover
+{
+    text-decoration: none;
+}
+
+#nav-main
+{
+    width: 100%;
+    background: transparent url(/static/images/header-background-bottom.png) bottom left repeat-x;
+    height: 1.6em;
+}
+
+#nav-main ul
+{
+    float: right;
+    margin-right: 5px;
+}
+
+html[dir="rtl"] #nav-main ul
+{
+    float: left;
+    margin-left: 5px;
+}
+
+#nav-main ul li
+{
+    float: left;
+}
+
+html[dir="rtl"] #nav-main ul li
+{
+    float: right;
+}
+
+#nav-main ul li a
+{
+    padding: 0 15px 0.5em 15px;
+    display: block;
+    font-weight: bold;
+    font-size: 95%;
+}
+
+#nav-main ul li a:link,
+#nav-main ul li a:visited
+{
+    text-decoration: none;
+    color: #fff;
+}
+
+#nav-main ul li a:hover
+{
+    color: #86d0e8;
+}
+
+
+/*
+ * MENUBAR
+ */
+
+.yuimenubar
+{
   visibility: visible;
   position: static;
 }
-.yuimenubar li {
-  list-style-type: none;
-}
+
 .yuimenubar ul,
 .yuimenubar li,
-.yuimenubar h6 {
+.yuimenubar h6
+{
   margin: 0;
   padding: 0;
 }
-.yuimenubar ul {
+
+.yuimenubar ul
+{
   *zoom: 1;
 }
-.yuimenubar .yuimenu ul {
+
+.yuimenubar .yuimenu ul
+{
   *zoom: normal;
 }
-.yuimenubar>.bd>ul:after {
+
+.yuimenubar>.bd>ul:after
+{
   content: ".";
   display: block;
   clear: both;
@@ -139,407 +444,203 @@ version: 2.5.1
   line-height: 0;
 }
 
-/* Language codes that are styled with right-to-left (rtl) layout:
-   ar (Arabic)
-   arc (Aramaic)
-   dv (Dhivehi)
-   fa (Persian)
-   he (Hebrew)
-   ks (Kashmir)
-   ps (Pashto)
-   ur (Urdu)
-   yi (Yiddish)
-   also see pagelayout.py::languagedir()
-*/
-/* Doesn't work: [dir="rtl"]*/
-*:lang(ar), *:lang(arc), *:lang(dv), *:lang(fa), *:lang(he), *:lang(ks), *:lang(ps), *:lang(ur), *:lang(yi)
-{
-	/* If any styling is necessary for the rtl languages, add it here */
-  direction: rtl;
-}
-/* Language specific settings (see http://translate.sourceforge.net/wiki/l10n/displaysettings) */
-:lang(ak)
-{
-	font-family: Lucida, "DejaVu Sans", inherit;
-}
-:lang(ar)
-{
-	font-family: Tahoma 12, Nazli, KacstOne, "DejaVu Sans", inherit;
-}
-:lang(bn)
-{
-	font-family: FreeSans, MuktiNarrow, Vrinda, inherit;
-	font-size: medium;
-	line-height: 110%;
-}
-:lang(el)
-{
-	font-family: "DejaVu Sans", inherit;
-}
-:lang(fa)
-{
-	font-family: Terafik, Traffic, Roya, Nazli, Nazanin, sans;
-	font-size: large;
-}
-:lang(ja), :lang(ko)
-{
-	font-size: medium;
-}
-:lang(zh)
-{
-	font-size: large;
-}
-:lang(km)
-{
-	font-family: "Khmer OS System", "Khmer OS", "Khmer Kampongtrach", "CDT Khmer", inherit;
-	line-height: 170%;
-}
-:lang(vi)
-{
-	font-family: "Lucida Grande", "Vu Phu Tho", "DejaVu Sans", inherit;
-}
-:lang(vi) a:hover[href]
-{
-	text-decoration: none;
-	color: #606047;
-}
-:lang(vi) a:active[href]
-{
-	text-decoration: none;
-	color: #606047;
-}
-
-/* 
-** BASIC ELEMENT STYLING
-*/
-body {
-  color: #000000;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  width: 100%;
-}
-a:link {
-  text-decoration: none;
-  color: #0489b7;
-}
-a:visited {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-a:active {
-  text-decoration: underline;
-}
-p,
-dd {
-  line-height: 1.5;
-}
-strong { 
-  font-weight: bold; 
-}
-em { 
-  font-style: italic; 
-}
-abbr,
-acronym {
-  border-bottom: 1px dotted #000;
-  cursor: help;
-}
-p,
-fieldset,
-pre {
-  margin-bottom: 1em;
-}
-th {
-  font-family: Georgia, serif;
-  font-size: 110%;
-  color: #4b4742;
-  padding: 0 0 7px 0;
-}
-html[dir=rtl] caption, 
-html[dir=rtl] th {
-  text-align: right;
-}
-td {
-  padding: 5px 0;
-  font-size: 85%;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family: Georgia, serif;
-  font-weight: normal;
-  color: #4b4740;
-}
-h1 { 
-  font-size: 185%; 
-}
-h2 { 
-  font-size: 170%; 
-}
-h3 { 
-  font-size: 165%; 
-}
-h4 { 
-  font-size: 137%; 
-}
-h5 { 
-  font-size: 110%; 
-}
-h6 { 
-  font-size: 100%; 
-}
-h1, h2, h3 {
-  margin: 1em 0;
-}
 
 /*
-** MAIN DIVs
-*/
-#wrapper,
-#doc {
-  width: 100%;
+ * MESSAGES
+ */
+
+.site-message
+{
+    background-color: #ffe;
+    border: 1px solid #fc9;
+    margin-bottom: 2em;
+    padding: 10px 25px;
 }
 
-#doc:after {
-  content: ".";
-  display: block;
-  height: 0;
-  width: 0;
-  clear: both;
-  visibility: hidden;
-}
-
-#nav-access {
-  position: absolute;
-  top: -1000px;
-}
-
-html[dir="ltr"] #nav-access {
-  left: -1000px;
-}
-
-html[dir="rtl"] #nav-access {
-  right: -1000px;
-}
-
-/*
-** HEADER
-*/
-#header {
-  background: #1e4262 url(/static/images/header-background.png) top left repeat;
-}
-#header h1 {
-  width: 100%;
-  margin: 0;
-  padding: 5px 0 0 0;
-  height: 48px;
-  line-height: 48px;
-}
-#header h1 a {
-  background: url(/static/images/logo.png) left 50% no-repeat;
-  padding: 0;
-  padding-left: 60px;
-  margin: 0 20px;
-  font-family: Arial;
-  font-size: 150%;
-  display: normal;
-}
-html[dir="rtl"] #header h1 a {
-  padding-left: 0;
-  padding-right: 60px;
-  background: url(/static/images/logo.png) right 50% no-repeat;
-}
-#header h1 a:link,
-#header h1 a:visited { 
-  color: #fff; 
-}
-
-#header h1 a:active {
-  text-decoration: none;
-}
-
-#header h1 a:hover {
-  text-decoration: none;
-}
-
-#nav-main {
-  width: 100%;
-  background: transparent url(/static/images/header-background-bottom.png) bottom left repeat-x;
-  height: 1.6em;
-}
-#nav-main ul {
-  float: right;
-  margin-right: 5px;
-}
-html[dir="rtl"] #nav-main ul {
-  float: left;
-  margin-left: 5px;
-}
-#nav-main ul li {
-  float: left;
-}
-html[dir="rtl"] #nav-main ul li {
-  float: right;
-}
-#nav-main ul li a {
-  padding: 0 15px 0.5em 15px;
-  display: block;
-  font-weight: bold;
-  font-size: 95%;
-}
-#nav-main ul li a:link,
-#nav-main ul li a:visited {
-  text-decoration: none;
-  color: #fff;
-}
-#nav-main ul li a:hover {
-  color: #86d0e8;
-}
-
-/*
-** MESSAGES
-*/
-.site-message {
-  background-color: #ffe;
-  border: 1px solid #fc9;
-  margin-bottom: 2em;
-  padding: 10px 25px;
-}
-.site-message .success {
+.site-message .success
+{
   color: #3f3;
 }
-.site-message .error {
+
+.site-message .error
+{
   color: #f33;
 }
 
+
 /*
-** PAGE BODY
-*/
-#body {
-  margin: 0;
-  padding: 10px;
-  background: #fff url(/static/images/page-bg.jpg) top left repeat-x;
-  clear: both;
+ * PAGE BODY
+ */
+
+#body
+{
+    margin: 0;
+    padding: 10px;
+    background: #fff url(/static/images/page-bg.jpg) top left repeat-x;
+    clear: both;
 }
-#body:after {
-  content: ".";
-  display: block;
-  height: 0;
-  width: 0;
-  clear: both;
-  visibility: hidden;
+
+#body:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    clear: both;
+    visibility: hidden;
 }
-.intro {
-  margin: 0.5em 1em;
-  margin-right: 25%;
-  margin-bottom: 3em;
-  line-height: 1.3em;
+
+.intro
+{
+    margin: 0.5em 1em;
+    margin-right: 25%;
+    margin-bottom: 3em;
+    line-height: 1.3em;
 }
 
 .module table, 
-.module-primary table {
-  width: 100%;
+.module-primary table
+{
+    width: 100%;
 }
-td.language {
-  padding-left: 5px;
+
+td.language
+{
+    padding-left: 5px;
 }
+
 tr.even, 
 td.even, 
-li.even{
-  background: #f7f7f5;
+li.even
+{
+    background: #f7f7f5;
 }
-.clear {
-  clear:both;
+
+.clear
+{
+    clear: both;
 }
-.module {
-  width: 48%;
-  float: right;
-  margin: 0;
+
+.module
+{
+    width: 48%;
+    float: right;
+    margin: 0;
 }
-html[dir=rtl] .module {
-  float: left;
+
+html[dir=rtl] .module
+{
+    float: left;
 }
-.module.first {
-  float: left;
+
+.module.first
+{
+    float: left;
 }
-html[dir=rtl] .module.first {
-  float: right;
+
+html[dir=rtl] .module.first
+{
+    float: right;
 }
+
 .module .hd h2, 
-.module-primary .hd h2 {
-  margin: 0;
-  margin-left: 0.5em;
-  color: #afaba3;
-  border-bottom: 2px solid #afaba3;
+.module-primary .hd h2
+{
+    margin: 0;
+    margin-left: 0.5em;
+    color: #afaba3;
+    border-bottom: 2px solid #afaba3;
 }
+
 html[dir=rtl] .module .hd h2, 
-html[dir=rtl] .module-primary .hd h2 {
-  margin-left: 0;
-  margin-right: 0.5em;
+html[dir=rtl] .module-primary .hd h2
+{
+    margin-left: 0;
+    margin-right: 0.5em;
 }
-.module .bd {
-  padding: 1em;
+
+.module .bd
+{
+    padding: 1em;
 }
 
 .module .bd h2, 
-.module-primary .bd h2 {
-  font-size: 165%;
-  color: #4b4742;
-  margin-bottom: 10px;
+.module-primary .bd h2
+{
+    font-size: 165%;
+    color: #4b4742;
+    margin-bottom: 10px;
 }
+
 .module .bd h3, 
-.module-primary .bd h3 {
-  font-size: 120%;
+.module-primary .bd h3
+{
+    font-size: 120%;
 }
+
 
 /*
-** LOGIN PAGE
-*/
-#loginform {
-  width: 20em;
-  margin: 2em auto;
-  margin-bottom: 8em;
-  text-align: center;
-  border: 2px solid #ccc;
-  padding: 1em;
-  background-color: #e5edef;
-}
-#loginform table {
-  width: 100%;
+ * LOGIN PAGE
+ */
+
+#loginform
+{
+    width: 20em;
+    margin: 2em auto;
+    margin-bottom: 8em;
+    text-align: center;
+    border: 2px solid #ccc;
+    padding: 1em;
+    background-color: #e5edef;
 }
 
-.module .bd h3.comments {
+#loginform table
+{
+    width: 100%;
+}
+
+.module .bd h3.comments
+{
     border-top: 1px solid #ebeae7;
     padding: 20px 0 0 0;
 }
 
-
-.original, .file {
+.original,
+.file
+{
     font-weight: bold;
     border-top: 1px solid #ebeae7;
     font-size: 85%;
     padding: 10px 0 0 0;
     min-height: 120px;
 }
-.file {
+
+.file
+{
     min-height: 100px;
 }
 
-div.translation textarea {
+div.translation textarea
+{
     width: 100%;
     border: 1px solid #ebeae7;
 }
-textarea.translation {
+
+textarea.translation
+{
     margin: 0 0 10px 0;
     height: 75px;
 }
-#language-info {
+
+#language-info
+{
     background: #f7f7f7 url(/static/images/translate-notepad.png) 15px 50% no-repeat;
     padding: 15px 25px 10px 45px;
     font-size: 91%;
 }
-#language-info:after {
+
+#language-info:after
+{
     content: ".";
     display: block;
     height: 0;
@@ -547,12 +648,16 @@ textarea.translation {
     clear: both;
     visibility: hidden;
 }
-#language-info ul {
+
+#language-info ul
+{
     margin: 0;
     left: 0;
     width: 40%;
 }
-#language-info ul:after {
+
+#language-info ul:after
+{
     content: ".";
     display: block;
     height: 0;
@@ -560,57 +665,74 @@ textarea.translation {
     clear: both;
     visibility: hidden;
 }
-#language-info ul li {
+
+#language-info ul li
+{
     list-style-position: inside;
     float: left;
 }
-#language-info ul li:after {
+
+#language-info ul li:after
+{
     content:  "|";
     margin: 0 0 0 8px;
     color: #0489B7;
 }
-#language-info ul li:last-child:after {
+
+#language-info ul li:last-child:after
+{
     content: '';
     margin: 0;
 }
-#language-info .language a {
+
+#language-info .language a
+{
     font-weight: bold;
 }
-#language-info .stats {
+
+#language-info .stats
+{
     float: left;
     clear: left;
     width: 40%;
     font-size: 91%;
 }
 
-
-
-#translationsummarylegend div img {
-  vertical-align:middle;
-  width: 25px;
-  height: 15px;
-  padding: 0px 5px;
+#translationsummarylegend div img
+{
+    vertical-align:middle;
+    width: 25px;
+    height: 15px;
+    padding: 0px 5px;
 }
 
-#fuzzy {
+#fuzzy
+{
     margin: 0 4px 0 0;
 }
-#search {
+
+#search
+{
     float: right;
     margin: -8px 0 0 0;
 }
-#search label {
+
+#search label
+{
     font-size: 130%;
     position: relative;
     top: 3px;
 }
-#search input[type=text] {
+
+#search input[type=text]
+{
     border: 1px solid #76b0bf;
     height: 18px;
     width: 142px;
 }
 
-#search button {
+#search button
+{
     background: url(/static/images/search-arrow.png) top left no-repeat;
     width: 20px;
     height: 20px;
@@ -622,12 +744,14 @@ textarea.translation {
     cursor: pointer;
 }
 
-.translations-nav {
+.translations-nav
+{
     margin: 20px 0 0 0;
     clear: both;
 }
 
-.translations-nav:after {
+.translations-nav:after
+{
     content: ".";
     display: block;
     height: 0;
@@ -636,81 +760,100 @@ textarea.translation {
     visibility: hidden;
 }
 
-.translations-nav li {
+.translations-nav li
+{
     float: left;
     padding: 0 0 0 9px;
 }
 
-html[dir="rtl"] .translations-nav li {
-  float: right;
-  padding: 0 9px 0 0;
+html[dir="rtl"] .translations-nav li
+{
+    float: right;
+    padding: 0 9px 0 0;
 }
 
-.translations-nav li:after {
+.translations-nav li:after
+{
     content:  "|";
     margin: 0 0 0 10px;
 }
 
-html[dir="rtl"] .translations-nav li:after {
+html[dir="rtl"] .translations-nav li:after
+{
     content:  "|";
     margin: 0 10px 0 0;
 }
 
 .translations-nav li:last-child:after,
-html[dir="rtl"] .translations-nav li:last-child:after {
+html[dir="rtl"] .translations-nav li:last-child:after
+{
     content: '';
     margin: 0;
 }
 
-.translations-nav a:link {
+.translations-nav a:link
+{
     color: #807970;
 }
 
-.translations-nav a:visited {
+.translations-nav a:visited
+{
     color: #807970;
 }
 
-.translations-nav .important {
+.translations-nav .important
+{
     font-weight: bold;
 }
 
-#translations {
+#translations
+{
     clear: both;
     font-size: 131%;
     width: 100%;
     margin: 10px 0 0 0;
 }
 
-#translations td {
+#translations td
+{
     width: 50%;
     padding: 10px 0;
 }
 
-td.translation {
+td.translation
+{
     font-weight: bold;
     color: #000;
 }
 
-div.statslist {
-  float: left;
-  width: 30%;
-  margin: 0;
-  margin-left: 10px;
-}
-html[dir="rtl"] div.statslist {
-  float: right;
-  margin-left: 0;
-  margin-right: 10px;
+div.statslist
+{
+    float: left;
+    width: 30%;
+    margin: 0;
+    margin-left: 10px;
 }
 
-div.statslist ul li span.name {
-    font-weight:bold;
+html[dir="rtl"] div.statslist
+{
+    float: right;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+div.statslist ul li span.name
+{
+    font-weight: bold;
     overflow: hidden;
 }
-div.statslist ul li span.value {
-    margin-left:50px;
+
+div.statslist ul li span.value
+{
+    margin-left: 50px;
 }
-html[dir="rtl"] div.statslist ul li span.value {
+
+html[dir="rtl"] div.statslist ul li span.value
+{
     float: left;
 }
 
@@ -835,9 +978,9 @@ html[dir="rtl"] div.statslist ul li span.value {
         }
 
         div.suggestions{
-          font-style:italic;
-          margin-bottom:6px;
-          margin-top:6px;
+          font-style: italic;
+          margin-bottom: 6px;
+          margin-top: 6px;
         }
         div.suggestions ul li{
             padding-left: 30px;
@@ -847,199 +990,339 @@ html[dir="rtl"] div.statslist ul li span.value {
 ** TRANSLATE PAGE
 */
 
-table.translate-table {
-  margin-top: 1em;
+table.translate-table
+{
+    margin-top: 1em;
 }
 
-div.translation-action {
-  min-height: 1.5em;
-  height: 0px;
-  padding-left: 10px;
+div.translation-action
+{
+    min-height: 1.5em;
+    height: 0px;
+    padding-left: 10px;
 }
 
-div.translation-action[dir="rtl"] {
-  padding-right: 10px;
+div.translation-action[dir="rtl"]
+{
+    padding-right: 10px;
 }
 
 
 /*
-** FOOTER
-*/
-#footer {
-  background: #fff url(/static/images/footer-border.png) top center repeat-x;
-  text-align: center;
-  color: #898378;
-  clear: both;
-  font-size: 90%;
-  height: 40px;
-  padding: 35px 0 0 0;
+ * FOOTER
+ */
+
+#footer
+{
+    background: #fff url(/static/images/footer-border.png) top center repeat-x;
+    text-align: center;
+    color: #898378;
+    clear: both;
+    font-size: 90%;
+    height: 40px;
+    padding: 35px 0 0 0;
 }
-#footer-contents {
-  margin: 0 auto;
-  width: 90%;
+
+#footer-contents
+{
+    margin: 0 auto;
+    width: 90%;
 }
-#footer .nav li {
-  display: inline;
+
+#footer .nav li
+{
+    display: inline;
 }
-#footer .nav li:after {
-  content:  "|";
-  margin: 0 10px;
+
+#footer .nav li:after
+{
+    content:  "|";
+    margin: 0 10px;
 }
-#footer .nav li:last-child:after {
-  content: '';
-  margin: 0;
+
+#footer .nav li:last-child:after
+{
+    content: '';
+    margin: 0;
 }
+
 #footer a:link,
-#footer a:visited {
-  color: #898378;
+#footer a:visited
+{
+    color: #898378;
 }
+
 #footer a:hover,
-#footer a:active {
-  color: #69645c;
+#footer a:active
+{
+    color: #69645c;
 }
 
-#ajaxresponse {
-  position: absolute;
-  left: 50%;
-  margin: 0 auto;
-  text-align: center;
-  font-weight: bold;
-  background-color: #cc0000;
-  color: #eeeeec;
-  padding: 3px;
+#ajaxresponse
+{
+    position: absolute;
+    left: 50%;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+    background-color: #cc0000;
+    color: #eeeeec;
+    padding: 3px;
 }
 
-.placeholder {
-  color: gray;
+.placeholder
+{
+    color: gray;
 }
 
-.hide {
+.hide
+{
     display: none;
 }
 
 /* 
-** Pretty Graphs, mostly from http://l10n.gnome.org/ 
-*/
-span.graph {
-  height: 14px;
-  width: 100px;
-  border: 0px solid black; 
-  position: relative;
-  padding: 2px;   
+ * Pretty Graphs, mostly from http://l10n.gnome.org/
+ */
+
+span.graph
+{
+    height: 14px;
+    width: 100px;
+    border: 0px solid black;
+    position: relative;
+    padding: 2px;
 }
-span.translated {
-  position: absolute; 
-  top: 5px;
-  height:100%; 
-  background: #448844;
-  background: url('images/green-bar.png');
-  background-repeat: repeat-x;
-  color: black;
+
+span.translated
+{
+    position: absolute;
+    top: 5px;
+    height: 100%;
+    background: #448844;
+    background: url('images/green-bar.png');
+    background-repeat: repeat-x;
+    color: black;
 }
-span.goodchange {
-  position: absolute; 
-  top: 5px;
-  height:100%; 
-  background: #55DD55;
-  background: url('images/cyan-bar.png');
-  background-repeat: repeat-x;
-  color: black;
+
+span.goodchange
+{
+    position: absolute;
+    top: 5px;
+    height: 100%;
+    background: #55DD55;
+    background: url('images/cyan-bar.png');
+    background-repeat: repeat-x;
+    color: black;
 }
-span.fuzzy {
-  position: absolute; 
-  top: 5px;
-  height:100%; 
-  background: #4444AA;
-  background: url('images/purple-bar.png');
-  background-repeat: repeat-x;
-  color: black;
+
+span.fuzzy
+{
+    position: absolute;
+    top: 5px;
+    height: 100%;
+    background: #4444AA;
+    background: url('images/purple-bar.png');
+    background-repeat: repeat-x;
+    color: black;
 }
-span.untranslated {
-  position: absolute; 
-  height:100%; 
-  top: 5px; 
-  background: #FF4444;
-  background: url('images/red-bar.png');
-  background-repeat: repeat-x;
-  color: black;
+
+span.untranslated
+{
+    position: absolute;
+    height: 100%;
+    top: 5px;
+    background: #FF4444;
+    background: url('images/red-bar.png');
+    background-repeat: repeat-x;
+    color: black;
 }
-span.graph[dir="ltr"] span.translated {
-  left: 0%;
+
+span.graph[dir="ltr"] span.translated
+{
+    left: 0%;
 }
-span.graph[dir="rtl"] span.translated {
-  right: 0%;
+
+span.graph[dir="rtl"] span.translated
+{
+    right: 0%;
 }
-.sortkey {
-  display: none;
+
+.sortkey
+{
+    display: none;
 }
 
 /* For the search box on e.g. fileindex.html */
-div.searchform {
-  float: right;
-  max-width: 30%;
-  /* sets max-height for IE */
-  /* TODO: heh, we can't have expression()s in our css */
-  /* height: expression( this.scrollHeight > (500/12) * parseInt(document.body.currentStyle.fontSize) ? "1.8em" : "auto" );*/
-  max-height: 1.8em;
-  background-color:#E4E6E8;
-  padding: 3px;
-  border: 1px solid gray;
+div.searchform
+{
+    float: right;
+    max-width: 30%;
+    /* sets max-height for IE */
+    /* TODO: heh, we can't have expression()s in our css */
+    /* height: expression( this.scrollHeight > (500/12) * parseInt(document.body.currentStyle.fontSize) ? "1.8em" : "auto" );*/
+    max-height: 1.8em;
+    background-color:#E4E6E8;
+    padding: 3px;
+    border: 1px solid gray;
 }
 
-div.searchform[dir="rtl"] {
-  float: left;
+div.searchform[dir="rtl"]
+{
+    float: left;
 }
 
-div.advancedsearch {
-  background-color: #E4E6E8;
-  border-bottom: 1px solid gray;
-  border-left: 1px solid gray;
-  border-right: 1px solid gray;
-  overflow: auto;
-  padding-bottom:3px;
-  padding-left: 3px;
-  padding-right: 8px;
-  position: relative;
-  z-index: 2;
-  display: none;
+div.advancedsearch
+{
+    background-color: #E4E6E8;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    overflow: auto;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 8px;
+    position: relative;
+    z-index: 2;
+    display: none;
 }
 
-div.advancedsearch[dir="rtl"] {
-  position: relative;
-  padding-left: 8px;
-  padding-right: 3px;
+div.advancedsearch[dir="rtl"]
+{
+    position: relative;
+    padding-left: 8px;
+    padding-right: 3px;
 }
 
-div.nodefaultsearch {
-  background-color: #f1f3f5 !important;
+div.nodefaultsearch
+{
+    background-color: #f1f3f5 !important;
 }
 
-label.inputHint {
-  display: none;
+label.inputHint
+{
+    display: none;
 }
 
-.togglesearch {
-  cursor: pointer;
-  vertical-align: middle;
-
+.togglesearch
+{
+    cursor: pointer;
+    vertical-align: middle;
 }
-.sidebar {
+
+.sidebar
+{ 
 	float: right;
 }
 
-.sidebar .sidetitle {
+.sidebar .sidetitle
+{
 	font-weight: bold;
 }
 
-.sidebar .sidetitle .tm-unit {
+.sidebar .sidetitle .tm-unit
+{
 	cursor: pointer;
 }
 
-.sidebar .sidetitle .tm-unit .tm-translation{
-	font-style:italic;
+.sidebar .sidetitle .tm-unit .tm-translation
+{
+	font-style: italic;
 }
-.icon {
-	float:left;
-	margin-right:8px;
+
+.icon
+{
+	float: left;
+	margin-right: 8px;
+}
+
+
+/*
+ * LANGUAGE SPECIFIC SETTINGS
+ */
+
+/*
+ * Language codes that are styled with right-to-left (rtl) layout:
+ *
+ * ar (Arabic)
+ * arc (Aramaic)
+ * dv (Dhivehi)
+ * fa (Persian)
+ * he (Hebrew)
+ * ks (Kashmir)
+ * ps (Pashto)
+ * ur (Urdu)
+ * yi (Yiddish)
+ *
+ * See: http://translate.sourceforge.net/wiki/l10n/displaysettings
+ * Also see: pagelayout.py::languagedir()
+ *
+ */
+
+/* Doesn't work: [dir="rtl"] */
+*:lang(ar), *:lang(arc), *:lang(dv), *:lang(fa), *:lang(he), *:lang(ks), *:lang(ps), *:lang(ur), *:lang(yi)
+{
+    /* If any styling is necessary for the rtl languages, add it here */
+    direction: rtl;
+}
+
+:lang(ak)
+{
+    font-family: Lucida, "DejaVu Sans", inherit;
+}
+
+:lang(ar)
+{
+    font-family: Tahoma 12, Nazli, KacstOne, "DejaVu Sans", inherit;
+}
+
+:lang(bn)
+{
+    font-family: FreeSans, MuktiNarrow, Vrinda, inherit;
+    font-size: medium;
+    line-height: 110%;
+}
+
+:lang(el)
+{
+    font-family: "DejaVu Sans", inherit;
+}
+
+:lang(fa)
+{
+    font-family: Terafik, Traffic, Roya, Nazli, Nazanin, sans;
+    font-size: large;
+}
+
+:lang(ja), :lang(ko)
+{
+    font-size: medium;
+}
+
+:lang(zh)
+{
+    font-size: large;
+}
+
+:lang(km)
+{
+    font-family: "Khmer OS System", "Khmer OS", "Khmer Kampongtrach", "CDT Khmer", inherit;
+    line-height: 170%;
+}
+
+:lang(vi)
+{
+    font-family: "Lucida Grande", "Vu Phu Tho", "DejaVu Sans", inherit;
+}
+
+:lang(vi) a:hover[href]
+{
+    text-decoration: none;
+    color: #606047;
+}
+
+:lang(vi) a:active[href]
+{
+    text-decoration: none;
+    color: #606047;
 }
 
