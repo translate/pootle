@@ -892,6 +892,12 @@ label.inputHint
 	margin-right: 8px;
 }
 
+.icon[dir="rtl"]
+{
+	float: right;
+	margin-left: 8px;
+}
+
 .togglesearch
 {
     cursor: pointer;
