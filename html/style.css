@@ -1023,15 +1023,11 @@ td.translation
 td.translate-original,
 td.translate-translation
 {
+    padding: 5px;
     width: 50%;
 }
 
 /* ORIGINAL */
-
-td.translate-original
-{
-    padding-right: 5px;
-}
 
 div.translate-original
 {
