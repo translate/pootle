@@ -57,14 +57,15 @@ class TranslatePage(pagelayout.PootleNavPage):
     self.dirfilter = dirfilter
     self.project = project
     self.altproject = None
-    # do we have enabled alternative source language?
-    self.enablealtsrc = settings.ENABLE_ALT_SRC
-    if self.enablealtsrc == 'True':
-      # try to get the project if the user has chosen an alternate source language
-      altsrc = request.getaltsrclanguage()
-      if altsrc != '':
+    # If enabled, get alternative source language projects
+    if settings.ENABLE_ALT_SRC:
+      altsrcs = [lang for lang in get_profile(request.user).alt_src_langs.all()]
+      if altsrcs:
         try:
-          self.altproject = self.project.potree.getproject(altsrc, self.project.projectcode)
+          # TODO: convert altproject in a list that stores project objects
+          # for each alternative source language
+          self.altproject = projects.get_translation_project(altsrcs[0],
+                                                             self.project.project)
         except IndexError:
           pass
     self.matchnames = self.getmatchnames(self.project.checker)
@@ -581,7 +582,7 @@ class TranslatePage(pagelayout.PootleNavPage):
 
       altsrcdict = {"available": False}
       # do we have enabled alternative source language?
-      if self.enablealtsrc == 'True':
+      if settings.ENABLE_ALT_SRC:
         # get alternate source project information in a dictionary
         if item in self.editable:
           altsrcdict = self.getaltsrcdict(origdict)
@@ -924,12 +925,12 @@ class TranslatePage(pagelayout.PootleNavPage):
     return transdict
 
   def getaltsrcdict(self, origdict):
-    # TODO: handle plurals !!
+    # TODO: support plural forms and multiple alternative source languages
     altsrcdict = {"available": False}
-    if self.altproject is not None:
-      altsrcdict["languagecode"] = pagelayout.weblanguage(self.altproject.languagecode)
+    if self.altproject:
       language = Language.objects.get(code=self.altproject.languagecode)
       altsrcdict["languagename"] = language.fullname
+      altsrcdict["languagecode"] = self.altproject.languagecode
       altsrcdict["dir"] = pagelayout.languagedir(altsrcdict["languagecode"])
       altsrcdict["title"] = tr_lang(altsrcdict["languagename"])
       if not origdict["isplural"]:

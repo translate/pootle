@@ -1027,6 +1027,20 @@ td.translate-translation
     width: 50%;
 }
 
+.translation-text
+{
+    display: inline;
+    max-width: 100%;
+    overflow: auto;
+    padding: 10px;
+}
+
+.translation-text-headers
+{
+    font-weight: bolder;
+    color: #006699;
+}
+
 /* ORIGINAL */
 
 div.translate-original
@@ -1162,18 +1176,6 @@ div.translate-original
         {
             background-color: #80ff00;
             border: 1px solid #70f000;
-        }
-        .translation-text
-        {
-            display: inline;
-            max-width: 100%;
-            overflow: auto;
-            padding: 10px;
-        }
-        .translation-text-headers
-        {
-            font-weight: bolder;
-            color: #006699;
         }
         .translation-highlight-space
         {
