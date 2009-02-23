@@ -103,16 +103,18 @@ from Pootle.templates import pootlepage, navbar
 			  <span class="translation-text" py:content="XML(item.orig.plural_text)">plural text</span><br />
 			</div>
 		      </div>
-		      <!--! Alternative source language translation (if enabled and available) -->
-		      <div py:if="item.altsrc.available" class="translation-text-headers" lang="$uilanguage" dir="$uidir" py:content="item.altsrc.title">Alternative Source Language Name</div>
-		      <div py:if="item.altsrc.available" class="translate-original ${item.orig.focus_class}">
-			<div id="${item.orig.itemid}" class="translation-text" lang="${item.altsrc.languagecode}" dir="${item.altsrc.dir}" py:content="XML(item.altsrc.text)"></div>
+              <!--! Alternative source language translation (if enabled and available) -->
+              <div py:for="altsrc in item.altsrcs" py:strip="True">
+                <div py:if="altsrc.available" class="translation-text-headers" lang="$uilanguage" dir="$uidir" py:content="altsrc.title">Alternative Source Language Name</div>
+                <div py:if="altsrc.available" class="translate-original ${item.orig.focus_class}">
+                  <div id="${item.orig.itemid}" class="translation-text" lang="${altsrc.languagecode}" dir="${altsrc.dir}" py:content="XML(altsrc.text)"></div>
 			<!--!
 			    <div py:for="form in item.altsrc.forms" py:strip="True">
 			      <span class="translation-text-headers" py:if="form.title" py:content="form.title">Plural Form ${form.n}</span>
 			      <br py:if="form.title" />
 			    </div> -->
-		      </div>
+                </div>
+              </div>
 
 		      <div py:if="item.editable and item.message_context" class="translate-context" py:content="item.message_context">
 			Message Context

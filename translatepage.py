@@ -62,10 +62,9 @@ class TranslatePage(pagelayout.PootleNavPage):
       altsrcs = [lang for lang in get_profile(request.user).alt_src_langs.all()]
       if altsrcs:
         try:
-          # TODO: convert altproject in a list that stores project objects
-          # for each alternative source language
-          self.altproject = projects.get_translation_project(altsrcs[0],
-                                                             self.project.project)
+          self.altprojects = [projects.get_translation_project(altsrcs[i],
+                                                               self.project.project) \
+                              for i, lang in enumerate(altsrcs)]
         except IndexError:
           pass
     self.matchnames = self.getmatchnames(self.project.checker)
@@ -580,13 +579,13 @@ class TranslatePage(pagelayout.PootleNavPage):
                  "hassuggestion": hassuggestion
                  }
 
-      altsrcdict = {"available": False}
+      altsrcslist = []
       # do we have enabled alternative source language?
       if settings.ENABLE_ALT_SRC:
         # get alternate source project information in a dictionary
         if item in self.editable:
-          altsrcdict = self.getaltsrcdict(origdict)
-      itemdict["altsrc"] = altsrcdict
+          altsrcslist = self.getaltsrcslist(origdict)
+      itemdict["altsrcs"] = altsrcslist
 
       items.append(itemdict)
     return items
@@ -924,20 +923,23 @@ class TranslatePage(pagelayout.PootleNavPage):
       transdict["text"] = ""
     return transdict
 
-  def getaltsrcdict(self, origdict):
-    # TODO: support plural forms and multiple alternative source languages
-    altsrcdict = {"available": False}
-    if self.altproject:
-      language = Language.objects.get(code=self.altproject.languagecode)
-      altsrcdict["languagename"] = language.fullname
-      altsrcdict["languagecode"] = self.altproject.languagecode
-      altsrcdict["dir"] = pagelayout.languagedir(altsrcdict["languagecode"])
-      altsrcdict["title"] = tr_lang(altsrcdict["languagename"])
-      if not origdict["isplural"]:
-        orig = origdict["pure"][0]["value"]
-        altsrctext = self.altproject.ugettext(orig)
-        if altsrctext != orig and not self.reviewmode:
-          altsrcdict["text"] = self.escapetext(altsrctext)
-          altsrcdict["available"] = True
-    return altsrcdict
+  def getaltsrcslist(self, origdict):
+    # TODO: support plural forms
+    altsrcslist = []
+    if self.altprojects:
+      for i, altproj in enumerate(self.altprojects):
+        altsrcdict = {"available": False}
+        language = Language.objects.get(code=altproj.languagecode)
+        altsrcdict["languagename"] = language.fullname
+        altsrcdict["languagecode"] = altproj.languagecode
+        altsrcdict["dir"] = pagelayout.languagedir(altsrcdict["languagecode"])
+        altsrcdict["title"] = tr_lang(altsrcdict["languagename"])
+        if not origdict["isplural"]:
+          orig = origdict["pure"][0]["value"]
+          altsrctext = altproj.ugettext(orig)
+          if altsrctext != orig and not self.reviewmode:
+            altsrcdict["text"] = self.escapetext(altsrctext)
+            altsrcdict["available"] = True
+        altsrcslist.append(altsrcdict)
+    return altsrcslist
 
