@@ -336,14 +336,6 @@ from Pootle.templates import pootlepage, navbar
 
   });
 </script>
-<script type="text/javascript" py:if="items">
-  $(document).ready(function(){
-    first = ${items[0].itemid};
-    last = ${items[-1].itemid};
-    currurl = "${current_url}";
-    tpagestart(first, last, currurl);
-  });
-</script>
 <!--[if lt IE 7.]>
   <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
 <![endif]-->
