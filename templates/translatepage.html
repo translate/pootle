@@ -105,14 +105,18 @@ from Pootle.templates import pootlepage, navbar
 		      </div>
               <!--! Alternative source language translation (if enabled and available) -->
               <div py:for="altsrc in item.altsrcs" py:strip="True">
-                <div py:if="altsrc.available" class="translation-text-headers" lang="$uilanguage" dir="$uidir" py:content="altsrc.title">Alternative Source Language Name</div>
+                <div py:if="altsrc.available" class="translation-text-headers altsrclangname" lang="$uilanguage" dir="$uidir" py:content="altsrc.title">Alternative Source Language Name</div>
                 <div py:if="altsrc.available" class="translate-original ${item.orig.focus_class}">
-                  <div id="${item.orig.itemid}" class="translation-text" lang="${altsrc.languagecode}" dir="${altsrc.dir}" py:content="XML(altsrc.text)"></div>
-			<!--!
-			    <div py:for="form in item.altsrc.forms" py:strip="True">
-			      <span class="translation-text-headers" py:if="form.title" py:content="form.title">Plural Form ${form.n}</span>
-			      <br py:if="form.title" />
-			    </div> -->
+                  <div py:if="not altsrc.isplural" py:strip="True">
+                    <div id="${item.orig.itemid}" class="translation-text" lang="${altsrc.languagecode}" dir="${altsrc.dir}" py:content="XML(altsrc.text)"></div>
+                  </div>
+                  <div py:if="altsrc.isplural" py:strip="True">
+                    <div py:for="form in altsrc.forms" py:strip="True">
+                      <span class="translation-text-headers" py:if="form.title" py:content="form.title">Plural Form ${form.n}</span><br />
+                      <span class="${form.editclass} translation-text" py:content="XML(form.text)">Text</span>
+                      <br py:if="form.title" />
+                    </div>
+                  </div>
                 </div>
               </div>
 

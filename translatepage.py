@@ -584,10 +584,11 @@ class TranslatePage(pagelayout.PootleNavPage):
       if settings.ENABLE_ALT_SRC:
         # get alternate source project information in a dictionary
         if item in self.editable:
-          altsrcslist = self.getaltsrcslist(origdict)
+          altsrcslist = self.getaltsrcslist(unit)
       itemdict["altsrcs"] = altsrcslist
 
       items.append(itemdict)
+
     return items
 
   def fancyspaces(self, string):
@@ -923,8 +924,12 @@ class TranslatePage(pagelayout.PootleNavPage):
       transdict["text"] = ""
     return transdict
 
-  def getaltsrcslist(self, origdict):
-    # TODO: support plural forms
+  def getaltsrcslist(self, orig_unit):
+    # TODO: this implementation makes a *linear search*, which could be improved
+    # by using and index as in translate::storage::base:makeindex()
+    # Please consider improving this aspect.
+    gnu_style = self.project.project.treestyle == 'gnu'
+    pofilename = self.pofilename
     altsrcslist = []
     if self.altprojects:
       for i, altproj in enumerate(self.altprojects):
@@ -934,12 +939,29 @@ class TranslatePage(pagelayout.PootleNavPage):
         altsrcdict["languagecode"] = altproj.languagecode
         altsrcdict["dir"] = pagelayout.languagedir(altsrcdict["languagecode"])
         altsrcdict["title"] = tr_lang(altsrcdict["languagename"])
-        if not origdict["isplural"]:
-          orig = origdict["pure"][0]["value"]
-          altsrctext = altproj.ugettext(orig)
-          if altsrctext != orig and not self.reviewmode:
-            altsrcdict["text"] = self.escapetext(altsrctext)
-            altsrcdict["available"] = True
+        if gnu_style:
+          pofilename = altproj.languagecode + os.extsep + altproj.project.localfiletype
+        pofile = altproj.getpofile(pofilename)
+        orig_uid = orig_unit.getid()
+        if orig_unit.hasplural():
+          altsrcdict["forms"] = []
+          for unit in pofile.units:
+            if unit.getid() == orig_uid:
+              for pluralitem, pluraltext in enumerate(unit.target.strings):
+                form = {"title": localize("Plural Form %d", pluralitem),
+                        "n": pluralitem,
+                        "text": self.escapetext(pluraltext)}
+                altsrcdict["forms"].append(form)
+              altsrcdict["isplural"] = True
+              altsrcdict["available"] = True
+              break
+        else:
+          for unit in pofile.units:
+            if unit.getid() == orig_uid:
+              altsrcdict["text"] = self.escapetext(unit.target)
+              altsrcdict["isplural"] = False
+              altsrcdict["available"] = True
+              break
         altsrcslist.append(altsrcdict)
     return altsrcslist
 
