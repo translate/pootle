@@ -91,12 +91,6 @@ th
     color: #4b4742;
 }
 
-html[dir="rtl"] caption,
-html[dir="rtl"] th
-{
-    text-align: right;
-}
-
 td
 {
     padding: 5px 0;
@@ -193,6 +187,12 @@ caption,
 th
 {
     text-align: left;
+}
+
+html[dir="rtl"] caption,
+html[dir="rtl"] th
+{
+    text-align: right;
 }
 
 q:before,
@@ -1023,8 +1023,17 @@ td.translation
 td.translate-original,
 td.translate-translation
 {
-    padding: 5px;
     width: 50%;
+}
+
+table td.translate-original
+{
+    padding-right: 5px;
+}
+
+table[dir="rtl"] td.translate-original
+{
+    padding-left: 5px;
 }
 
 .translation-text
