@@ -56,7 +56,7 @@ class TranslatePage(pagelayout.PootleNavPage):
     self.argdict = argdict
     self.dirfilter = dirfilter
     self.project = project
-    self.altproject = None
+    self.altprojects = None
     # If enabled, get alternative source language projects
     if settings.ENABLE_ALT_SRC:
       altsrcs = [lang for lang in get_profile(request.user).alt_src_langs.all()]
