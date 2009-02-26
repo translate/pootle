@@ -26,6 +26,7 @@ import urllib
 import os
 
 from django.contrib.auth.models import User
+from django.utils.html import urlize
 from django.utils.translation import ugettext as _
 from django.conf import settings
 N_ = _
@@ -514,7 +515,7 @@ class TranslatePage(pagelayout.PootleNavPage):
       message_context = ""
       if item in self.editable:
         translator_comments = unit.getnotes(origin="translator")
-        developer_comments = self.escapetext(unit.getnotes(origin="developer"), stripescapes=True)
+        developer_comments = urlize(self.escapetext(unit.getnotes(origin="developer"), stripescapes=True))
         locations = " ".join(unit.getlocations())
         if isinstance(unit, po.pounit):
           message_context = "".join(unit.getcontext())
