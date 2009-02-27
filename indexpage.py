@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf import settings
+from django.utils.html import escape
 from django.utils.translation import ugettext as _
 N_ = _
 
@@ -506,7 +507,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     self.rights = translation_project.getrights(request.user)
     if "view" not in self.rights:
       raise projects.Rights404Error()
-    message = request.GET.get("message", "")
+    message = escape(request.GET.get("message", ""))
     if dirfilter == "":
       dirfilter = None
     self.dirfilter = dirfilter

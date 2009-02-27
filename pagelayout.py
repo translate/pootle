@@ -22,6 +22,7 @@
 import os
 
 from django.conf import settings
+from django.utils.html import escape
 
 from Pootle import pan_app
 from pootle_app.profile import get_profile
@@ -131,7 +132,7 @@ def completetemplatevars(templatevars, request, bannerheight=135):
   if "search" not in templatevars:
     templatevars["search"] = None
 
-  templatevars['message'] = request.GET.get('message', '')
+  templatevars['message'] = escape(request.GET.get('message', ''))
 
 class PootlePage:
   """the main page"""
