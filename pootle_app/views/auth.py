@@ -1,3 +1,4 @@
+import locale
 import urllib
 
 from django.contrib.auth import REDIRECT_FIELD_NAME
@@ -47,6 +48,7 @@ def login(request):
                           for language in languages],
             'form': form,
             }
+        context["languages"].sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
 
         # kid template compatibility
         context.update({

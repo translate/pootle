@@ -107,9 +107,7 @@ class LoginPage(pagelayout.PootlePage):
             value = u"%s | \u202d%s" % (tr_name, value)
         selected = key==preferredlanguage or None
         finallist.append({"code": key, "name": value, "selected": selected})
-    # rewritten for compatibility with Python 2.3
-    # finallist.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
-    finallist.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
+    finallist.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     return finallist
 
 class RegisterPage(pagelayout.PootlePage):

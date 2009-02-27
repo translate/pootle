@@ -150,8 +150,6 @@ class PootleIndex(pagelayout.PootlePage):
     instancetitle = pan_app.get_title()
     pagetitle = instancetitle
 #@todo - need localized dates
-    # rewritten for compatibility with Python 2.3
-    # languages.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
 
     topsugg   = limit(Suggestion.objects.get_top_suggesters())
     topreview = limit(Suggestion.objects.get_top_reviewers())
@@ -305,9 +303,7 @@ class UserIndex(pagelayout.PootlePage):
       if langlinks:
         langlinks[-1]["sep"] = ""
       quicklinks.append({"code": language.code, "name": tr_lang(language.fullname), "projects": langlinks})
-      # rewritten for compatibility with Python 2.3
-      # quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
-      quicklinks.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
+      quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     return quicklinks
 
 class ProjectsIndex(PootleIndex):
@@ -464,9 +460,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     translation_projects = [projects.get_translation_project(language, self.project) for language in languages]
     languageitems = [self.getlanguageitem(translation_project) for translation_project in translation_projects
                      if "view" in translation_project.getrights(request.user)]
-    # rewritten for compatibility with Python 2.3
-    # languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["title"])
-    languageitems.sort(lambda x,y: locale.strcoll(x["title"], y["title"]))
+    languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["title"])
     for n, item in enumerate(languageitems):
       item["parity"] = ["even", "odd"][n % 2]
     return languageitems
