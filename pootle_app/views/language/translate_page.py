@@ -38,7 +38,7 @@ from translate.misc.multistring import multistring
 from pootle_app.views.util import render_to_kid, render_jtoolkit, KidRequestContext
 from pootle_app.core import Language
 from pootle_app.translation_project import TranslationProject
-from pootle_app.fs_models import Directory
+from pootle_app.fs_models import Directory, Store
 from pootle_app.profile import get_profile
 from pootle_app.store import Unit
 from pootle_app.views.common import navbar_dict, search_forms
@@ -602,10 +602,16 @@ def get_translated_directory(target_language_code, root_directory, directory):
         return root_directory.child_dirs.get(name=target_language_code)
 
 def get_translated_store(target_language, pootle_file):
-    translation_directory = get_translated_directory(target_language.code,
+    try:
+        translation_directory = get_translated_directory(target_language.code,
                                                      Directory.objects.root,
                                                      pootle_file.store.parent)
-    return translation_directory.child_stores.get(name=pootle_file.store.name)
+        try:
+            return translation_directory.child_stores.get(name=pootle_file.store.name)
+        except Store.DoesNotExist:
+            return None
+    except Directory.DoesNotExist:
+        return None
 
 def get_alt_src_dict(request, pootle_file, unit, url_state, alt_project):
     def translate_unit(translated_pootle_file):
@@ -633,10 +639,13 @@ def get_alt_src_dict(request, pootle_file, unit, url_state, alt_project):
                 "title":        tr_lang(language.fullname),
                 "available":    True })
         translated_store = get_translated_store(language, pootle_file)
-        alt_src_dict.update(
-            pootlefile.with_store(request.translation_project,
-                                  translated_store,
-                                  translate_unit))
+        if translated_store is not None:
+            alt_src_dict.update(
+                pootlefile.with_store(request.translation_project,
+                                      translated_store,
+                                      translate_unit))
+        else:
+            alt_src_dict["available"] = False
     return alt_src_dict
 
 def get_alt_src_list(request, pootle_file, unit, url_state):
