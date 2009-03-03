@@ -221,7 +221,7 @@ def setup_localization_system():
 def main():
   # run the web server
   init_db()
-  #setup_localization_system()
+  setup_localization_system()
   checkversions()
   parser = PootleOptionParser()
   options, args = parser.parse_args()
