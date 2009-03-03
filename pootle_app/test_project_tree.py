@@ -19,9 +19,14 @@
 # along with Pootle; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-def strip_trailing_slash(path):
-    """If path ends with a /, strip it and return the stripped version."""
-    if path[-1] == '/':
-        return path[:-1]
-    else:
-        return path
+from pootle_app import project_tree
+from pootle_app.core import Project
+
+def test_get_project_code():
+    assert project_tree.get_project_code('/a/b/c/', '/a/b/c/proj/lang') == 'proj'
+
+def test_get_project():
+    pootle = Project.objects.get(code='pootle')
+    assert project_tree.get_project('/a/b/c', '/a/b/c/pootle/en', None) == pootle
+    assert project_tree.get_project('/a/b/c', '/a/b/c/pootle/en', pootle) == pootle
+

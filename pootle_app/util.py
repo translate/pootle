@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
-# Copyright 2004-2006 Zuza Software Foundation
-#
+# 
+# Copyright 2009 Zuza Software Foundation
+# 
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-#
+# 
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -19,16 +19,19 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-"""manages projects and files and translations"""
+def table_name(table):
+    return table._meta.db_table
 
-class RightsError(ValueError):
-  pass
+def field_name(table, field_name):
+    return '%s.%s' % (table_name(table), table._meta.get_field(field_name).column)
 
-class Rights404Error(ValueError):
-  """Throwing this indicates that the user should not know that
-  this page even exists, and hence a 404 should be returned.  This
-  is *not* a subclass of RightsError, as a RightsError implies that
-  the user should be informed an error has occured, and thus is handled
-  completely differently"""
-  pass
+def primary_key_name(table):
+    return field_name(table, table._meta.pk.name)
 
+def unzip(lst):
+    left_lst = []
+    right_lst = []
+    for left, right in lst:
+        left_lst.append(left)
+        right_lst.append(right)
+    return left_lst, right_lst

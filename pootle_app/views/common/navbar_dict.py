@@ -1,0 +1,74 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# 
+# Copyright 2009 Zuza Software Foundation
+# 
+# This file is part of Pootle.
+#
+# Pootle is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# Pootle is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Pootle; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+import copy
+
+from django.utils.translation import ugettext as _
+
+from pootle_app.url_manip import URL
+from pootle_app.views.common import item_dict
+
+from Pootle.i18n.jtoolkit_i18n import tr_lang
+
+def make_admin(request, project_url):
+    if 'admin' in request.permissions:
+        return {'href': project_url.child('admin.html').as_relative(request.current_path),
+                'text': _('Admin')}
+    else:
+        return None
+
+def make_pathlinks(request, project_url, url, links):
+    if url.path != project_url.path:
+        links.append({'href': url.child('index.html').as_relative(request.current_path),
+                      'text': url.basename})
+        return make_pathlinks(request, project_url, url.parent, links)
+    else:
+        return list(reversed(links))
+
+def make_navbar_actions(request, url):
+    return {
+        'basic':    [item_dict.make_toggle_link(request, url, 'editing',
+                                                _("Show Editing Functions"),
+                                                _("Show Statistics"))],
+        'extended': [],
+        'goalform': []
+        }
+
+def make_navbar_path_dict(request, url):
+    root = request.translation_project.directory
+    plain_url   = URL(root.pootle_path, {})
+    project_url = URL(root.pootle_path, url.state)
+    return {
+        'admin':     make_admin(request, project_url),
+        'language':  {'href': plain_url.parent.child('index.html').as_relative(request.current_path), 
+                      'text': tr_lang(request.translation_project.language.fullname)},
+        'project':   {'href': plain_url.child('index.html').as_relative(request.current_path),
+                      'text': request.translation_project.project.fullname},
+        'pathlinks': make_pathlinks(request, project_url, url, []) }
+
+def make_navbar_dict(request, directory, url_state):
+    result = item_dict.make_directory_item(request, directory, url_state)
+    url = URL(directory.pootle_path, url_state)
+    result.update({            
+            'path':    make_navbar_path_dict(request, url),
+            'actions': make_navbar_actions(request, url) })
+    del result['title']
+    return result

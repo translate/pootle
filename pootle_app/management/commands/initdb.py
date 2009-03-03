@@ -23,10 +23,12 @@ def create_default_db():
       transaction.enter_transaction_management()
       transaction.managed(True)
 
+      create_misc()
       create_default_projects()
       create_default_languages()
       create_default_users()
       create_pootle_permissions()
+      create_pootle_permission_sets()
     except:
       if transaction.is_dirty():
         transaction.rollback()
@@ -37,6 +39,11 @@ def create_default_db():
       if transaction.is_dirty():
         transaction.commit()
       transaction.leave_transaction_management()
+
+def create_misc():
+  from pootle_app.fs_models import Directory
+  directory = Directory(name='')
+  directory.save()
 
 def create_pootle_permissions():
   pootle_content_type = ContentType(name="pootle", app_label="pootle_app", model="")
@@ -61,6 +68,19 @@ def create_pootle_permissions():
   administrate.save()
   commit = Permission(name="Can commit to version control", content_type=pootle_content_type, codename="commit")
   commit.save()
+
+def create_pootle_permission_sets():
+  from pootle_app.permissions import PermissionSet, get_pootle_permission
+  from pootle_app.fs_models import Directory
+  from pootle_app.profile import PootleProfile
+  
+  root = Directory.objects.root
+  for username in ('default', 'nobody'):
+    profile = PootleProfile.objects.select_related(depth=1).get(user__username=username)
+    permission_set = PermissionSet(profile=profile, directory=root)
+    permission_set.save()
+    permission_set.positive_permissions = [get_pootle_permission('view')]
+    permission_set.save()
 
 def create_default_projects():
   from pootle_app.core import Project

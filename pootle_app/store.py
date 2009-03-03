@@ -19,10 +19,25 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from pootle_app.profile             import *
-from pootle_app.core                import *
-from pootle_app.fs_models           import *
-from pootle_app.permissions         import *
-from pootle_app.store               import *
-from pootle_app.goals               import *
-from pootle_app.translation_project import *
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
+
+from pootle_app.fs_models import Store
+
+class UnitManager(models.Manager):
+    def get_or_make(self, store, index, source, target):
+        try:
+            return self.get(store=store, index=index, source=source, target=target)
+        except self.model.DoesNotExist:
+            unit = Unit(store=store, index=index, source=source, target=target)
+            unit.save()
+            return unit
+
+class Unit(models.Model):
+    objects = UnitManager()
+
+    store   = models.ForeignKey(Store, related_name='units', db_index=True)
+    index   = models.IntegerField(db_index=True)
+    source  = models.TextField(db_index=True)
+    target  = models.TextField(db_index=True)
+    state   = models.CharField(max_length=255, db_index=True)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-from Pootle.templates import pootlepage, navbar
+from Pootle.templates import pootlepage, navbar, util
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
@@ -26,15 +26,10 @@ from Pootle.templates import pootlepage, navbar
           <!--! search form -->
           <div py:if="search" class="searchform" dir="$uidir" lang="$uilanguage">
             <form action="translate.html" method="post" name="searchform" id="searchform">
-              <label class="inputHint" for="searchtext">${search.title}</label>
-              <input type="text" size="15" name="searchtext" id="searchtext" value="" />
-              <a class="advancedlink"><img src="${mediaurl}images/bullet_arrow_down.png" title="${search.advanced_title}" class="togglesearch" /></a>
-              <div class="advancedsearch" dir="$uidir">
-		<div py:for="field in search.fields" py:strip="True">
-                  <?python checkedflag = field.checked ?>
-                  <input type="checkbox" name="${field.name}" id="${field.name}" value="1" py:attrs="checked=checkedflag" />
-                  <label dir="$uidir" for="${field.name}" py:content="field.text"></label><br />
-		</div>
+              <div py:replace="XML(search.search_form.as_p())"/>
+              <a class="advancedlink"><img src="${mediaurl}images/bullet_arrow_down.png" title="${search.advanced_search_title}" class="togglesearch" /></a>
+              <div class="advancedsearch" dir="$uidir" >
+                <table py:content="XML(search.advanced_search_form.as_table())" />
               </div>
             </form>
           </div>
@@ -64,16 +59,16 @@ from Pootle.templates import pootlepage, navbar
             <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th class="stats">${statsheadings.name}</th>
-                  <th class="stats">${statsheadings.progress}</th>
-                  <th class="stats">${statsheadings.summary}</th>
-                  <th class="stats">${statsheadings.totalwords}</th>
+                  <th class="stats">${stats_headings.name}</th>
+                  <th class="stats">${stats_headings.progress}</th>
+                  <th class="stats">${stats_headings.summary}</th>
+                  <th class="stats">${stats_headings.totalwords}</th>
                 </tr>
               </thead>
               <tbody class="stats">
-                <div py:for="item in children" py:strip="True">
-                  <tr class="item ${item.parity}" title="${item.description}">
-                    <div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
+                <div py:for="p, item in util.parity(children)" py:strip="True">
+                  <tr class="item ${p}" title="${item.description}">
+                    <div py:replace="navbar.itemsummary(item, uidir, untranslated_text, fuzzy_text, complete)"/>
                   </tr>
                 </div>
               </tbody>
@@ -98,7 +93,7 @@ from Pootle.templates import pootlepage, navbar
       </div>
 
       <!--! The editing view -->
-      <div py:if="editing" py:for="item in children" py:strip="True">
+      <div py:if="editing" py:for="p, item in util.parity(children)" py:strip="True">
 	<div class="module-primary">
           <div class="bd">
             <div py:if="'isgoal' in item" class="goalitem">
@@ -106,13 +101,13 @@ from Pootle.templates import pootlepage, navbar
               <div py:replace="navbar.itemstats(item)"/>
             </div>
 
-            <div py:if="'isdir' in item" class="item ${item.parity}">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, uidir)"/>
+            <div py:if="'isdir' in item" class="item ${p}">
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
               <div py:replace="navbar.itemstats(item)"/>
             </div>
 
-            <div py:if="'isfile' in item" class="item ${item.parity}">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, None)"/>
+            <div py:if="'isfile' in item" class="item ${p}">
+              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
               <div py:replace="navbar.itemstats(item)"/>
             </div>
           </div>
@@ -120,7 +115,7 @@ from Pootle.templates import pootlepage, navbar
       </div>
 
       <!--! The goals view -->
-      <div py:if="assign or goals or upload" class="module first">
+      <!--! <div py:if="assign or goals or upload" class="module first">
         <div class="bd">
           <div class="sidetitle" py:if="assign" py:content="assign.title">
             Assign Strings
@@ -152,7 +147,7 @@ from Pootle.templates import pootlepage, navbar
             <input type="submit" name="doupload" value="${upload.upload_button}" />
           </form>
         </div>
-      </div>
+      </div> -->
 
       <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
 

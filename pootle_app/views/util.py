@@ -2,6 +2,7 @@ import os
 from os import path
 import mimetypes
 import kid
+from UserDict import UserDict
 
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.forms.util import ErrorList
@@ -49,15 +50,15 @@ class AttrDict(dict):
 def attribify(context):
     # THIS IS TAKEN FROM JTOOLKIT
     """takes a set of nested dictionaries and converts them into AttrDict. Also searches through lists"""
-    if isinstance(context, dict) and not isinstance(context, AttrDict):
+    if isinstance(context, (dict, UserDict)) and not isinstance(context, AttrDict):
         newcontext = AttrDict(context)
         for key, value in newcontext.items():
-            if isinstance(value, (dict, list)):
+            if isinstance(value, (dict, UserDict, list)):
                 newcontext[key] = attribify(value)
         return newcontext
     elif isinstance(context, list):
         for n, item in enumerate(context):
-            if isinstance(item, (dict, list)):
+            if isinstance(item, (dict, UserDict, list)):
                 context[n] = attribify(item)
         return context
     else:
@@ -79,9 +80,9 @@ def render_to_kid(template, context):
     return render(template, **attribify(context))
 
 class KidRequestContext(dict):
-    def __init__(self, req, context):
+    def __init__(self, req, context, **kwargs):
         self.update(context)
-        completetemplatevars(self, req)
+        completetemplatevars(self, req, **kwargs)
 
 def form_set_as_table(formset):
     """Create an HTML table from the formset. The first form in the

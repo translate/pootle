@@ -35,16 +35,11 @@ from Pootle.templates import pootlepage, navbar
           <!--! Search form -->
           <div py:if="search" class="searchform ${search.extra_class}" dir="$uidir" lang="$uilanguage">
             <form action="translate.html" method="post" name="searchform" id="searchform">
-              <label class="inputHint" for="searchtext">${search.title}</label>
-              <input type="text" size="15" name="searchtext" id="searchtext" value="${searchtext}" />
+              <div py:replace="XML(search.search_form.as_p())"/>
               <input type="hidden" name="pofilename" value="${pofilename}" />
-              <a class="advancedlink"><img src="${mediaurl}images/bullet_arrow_down.png" title="${search.advanced_title}" class="togglesearch" /></a>
-              <div class="advancedsearch ${search.extra_class}" dir="$uidir">
-		<div py:for="field in search.fields" py:strip="True">
-                  <?python checkedflag = field.checked ?>
-                  <input type="checkbox" name="${field.name}" id="${field.name}" value="1" py:attrs="checked=checkedflag" />
-                  <label dir="$uidir" for="${field.name}" py:content="field.text"></label><br />
-		</div>
+              <a class="advancedlink"><img src="${mediaurl}images/bullet_arrow_down.png" title="${search.advanced_search_title}" class="togglesearch" /></a>
+              <div class="advancedsearch" dir="$uidir" >
+                <table py:content="XML(search.advanced_search_form.as_table())" />
               </div>
             </form>
           </div>
@@ -77,7 +72,7 @@ from Pootle.templates import pootlepage, navbar
               <a href="${notice.finishedlink}">${notice.returnlink}</a>
 	    </div>
 	    <form py:if="not notice" action="${actionurl}" method="post" name="translate" id="translate">
-	      
+              <div py:replace="XML(search.advanced_search_form.as_hidden())" />
               <table cellpadding="0" cellspacing="0" class="translate-table" dir="$uidir">
 		<tr>
 		  <th colspan="1" rowspan="1" class="translate-table-title" py:content="original_title">original</th>
@@ -285,8 +280,8 @@ from Pootle.templates import pootlepage, navbar
 		</div>
 		
               </table>
-              <input type="hidden" name="searchtext" value="${searchtext}" />
-              <input type="hidden" name="pofilename" value="${pofilename}" />
+              <!--! <input type="hidden" name="searchtext" value="${searchtext}" />
+              <input type="hidden" name="pofilename" value="${pofilename}" /> -->
 	    </form>
 
 	    <!--! start/next/previous/end links -->

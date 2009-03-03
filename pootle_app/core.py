@@ -19,75 +19,53 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.db import models, connection, backend
+from django.db import models, connection
 from django.utils.translation import ugettext_lazy as _
-
 from django.contrib.auth.models import User, Permission
-from pootle_app.profile import PootleProfile
+from django.conf import settings
+
 from translate.filters import checks
+from translate.storage import statsdb
 
-def table_name(table):
-    return table._meta.db_table
+from pootle_app.profile import PootleProfile
+from pootle_app.util import table_name, field_name, primary_key_name, unzip
 
-def field_name(table, field_name):
-    return '%s.%s' % (table_name(table), table._meta.get_field(field_name).column)
-
-def primary_key_name(table):
-    return field_name(table, table._meta.pk.name)
-
-def unzip(lst):
-    left_lst = []
-    right_lst = []
-    for left, right in lst:
-        left_lst.append(left)
-        right_lst.append(right)
-    return left_lst, right_lst
+stats_cache = statsdb.StatsCache(settings.STATS_DB_PATH)
 
 def get_latest_changes(manager, query):
-    """manager is a Django model manager and query is a raw SQL query
-    which returns a 2-tuple of object ids and modification times.
-
-    This function returns a list of the Django objects corresponding
-    to the ids and assings the modification times for each object to
-    the attribute 'latest_change'.
-    """
     cursor = connection.cursor()
     cursor.execute(query)
-    # cursor.fetchall() gives a (object id, creation time) 2-tuple
-    # which we unzip to two lists. 
-    ids, latest_changes = unzip(cursor.fetchall())
-    # Use the supplied manager's in_bulk operation to get an
-    # id->object map where the objects are the Django models
-    # corresponding the to the ids.
-    id_obj_map = manager.in_bulk(ids)
-    # Build a list of objects using by extracting values from
-    # from id_obj_map in the order of the ids in 'ids'
-    objs = [id_obj_map[id] for id in ids]
-    # For each object in 'objs', assign its creation time
-    # to the attribute 'latest_change'
-    for obj, latest_change in zip(objs, latest_changes):
-        obj.latest_change = latest_change
-    return objs
+    return dict(cursor.fetchall())
 
 class LanguageManager(models.Manager):
     # Note that we specifically exclude the templates project
     get_latest_changes_query = """
         SELECT   %(language_id)s, MIN(%(creation_time)s)
-        FROM     %(language_table)s LEFT OUTER JOIN %(submission_table)s
-                 ON %(language_id)s = %(submission_language)s
+        FROM     %(language_table)s
+                 LEFT OUTER JOIN %(translation_project_table)s
+                     ON %(language_id)s = %(translation_project_language)s
+                 LEFT OUTER JOIN %(submission_table)s
+                     ON %(translation_project_id)s = %(submission_translation_project)s
         WHERE    %(language_code)s <> 'templates'
         GROUP BY %(language_name)s
         ORDER BY %(language_code)s
     """
     
     def get_latest_changes(self):
-        fields = {'language_code':       field_name(Language, 'code'),
-                  'language_name':       field_name(Language, 'fullname'),
-                  'creation_time':       field_name(Submission, 'creation_time'),
-                  'language_table':      table_name(Language), 
-                  'submission_table':    table_name(Submission),
-                  'language_id':         primary_key_name(Language),
-                  'submission_language': field_name(Submission, 'language')}
+        from pootle_app.translation_project import TranslationProject
+
+        fields = {
+            'language_code':                   field_name(Language, 'code'),
+            'language_name':                   field_name(Language, 'fullname'),
+            'creation_time':                   field_name(Submission, 'creation_time'),
+            'language_table':                  table_name(Language), 
+            'submission_table':                table_name(Submission),
+            'language_id':                     primary_key_name(Language),
+            'submission_translation_project':  field_name(Submission, 'translation_project'),
+            'translation_project_table':       table_name(TranslationProject),
+            'translation_project_id':          primary_key_name(TranslationProject),
+            'translation_project_language':    field_name(TranslationProject, 'language'),
+            }
 
         return get_latest_changes(self, self.get_latest_changes_query % fields)
 
@@ -131,20 +109,30 @@ class Language(models.Model):
 class ProjectManager(models.Manager):
     get_latest_changes_query = """
         SELECT   %(project_id)s, MIN(%(creation_time)s)
-        FROM     %(project_table)s LEFT OUTER JOIN %(submission_table)s
-                 ON %(project_id)s = %(submission_project)s
+        FROM     %(project_table)s
+                 LEFT OUTER JOIN %(translation_project_table)s
+                      ON %(project_id)s = %(translation_project_project)s
+                 LEFT OUTER JOIN %(submission_table)s
+                      ON %(translation_project_id)s = %(submission_translation_project)s
         GROUP BY %(project_name)s
         ORDER BY %(project_code)s
     """
 
     def get_latest_changes(self):
-        fields =  {'project_code':        field_name(Project, 'code'),
-                   'creation_time':       field_name(Submission, 'creation_time'),
-                   'project_table':       table_name(Project),
-                   'submission_table':    table_name(Submission),
-                   'project_id':          primary_key_name(Project),
-                   'submission_project':  field_name(Submission, 'project'),
-                   'project_name':        field_name(Project, 'fullname')}
+        from pootle_app.translation_project import TranslationProject
+
+        fields =  {
+            'project_code':                   field_name(Project, 'code'),
+            'creation_time':                  field_name(Submission, 'creation_time'),
+            'project_table':                  table_name(Project),
+            'submission_table':               table_name(Submission),
+            'project_id':                     primary_key_name(Project),
+            'submission_translation_project': field_name(Submission, 'translation_project'),
+            'project_name':                   field_name(Project, 'fullname'),
+            'translation_project_table':      table_name(TranslationProject),
+            'translation_project_id':         primary_key_name(TranslationProject),
+            'translation_project_project':    field_name(TranslationProject, 'project'),
+            }
 
         return get_latest_changes(self, self.get_latest_changes_query % fields)
 
@@ -183,42 +171,6 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.fullname
-
-class TranslationProject(models.Model):
-    class Meta:
-        unique_together = ('language', 'project')
-
-    language         = models.ForeignKey(Language, db_index=True)
-    project          = models.ForeignKey(Project, db_index=True)
-    project_dir      = models.FilePathField()
-    file_style       = models.CharField(max_length=255, blank=True, null=False, default="")
-
-class Right(models.Model):
-    class Meta:
-        unique_together = ('profile', 'translation_project')
-
-    profile             = models.ForeignKey(PootleProfile, db_index=True)
-    translation_project = models.ForeignKey(TranslationProject, db_index=True)
-    permissions         = models.ManyToManyField(Permission)
-
-class Goal(models.Model):
-    """A goal is a named collection of files. Goals partition the files of
-    translation project. In other words, every file is either in no
-    goals or exactly in one goal.
-    """
-    name                = models.CharField(max_length=255, null=False, verbose_name=_("Name"))
-    # A pointer to the TranslationProject of which this Goal is a part.
-    translation_project = models.ForeignKey(TranslationProject)
-    # Every goal can contain a number of users and every user can be
-    # involved with a number of goals.
-    profiles            = models.ManyToManyField(PootleProfile, related_name='goals')
-
-class Store(models.Model):
-    """A model representing a translation store (i.e. a PO or XLIFF file)."""
-    # The filesystem path of the store.
-    path = models.FilePathField(db_index=True)
-    # A store can be part of many goals and a goal can contain many files
-    goals = models.ManyToManyField(Goal, related_name='stores')
 
 class SubmissionManager(models.Manager):
     def get_top_submitters(self):
@@ -260,24 +212,19 @@ class SubmissionManager(models.Manager):
                           ).order_by('-num_contribs').select_related('submitter__user')
 
 class Submission(models.Model):
-    creation_time  = models.DateTimeField()
-    language       = models.ForeignKey('Language')
-    project        = models.ForeignKey('Project')
-    filename       = models.FilePathField()
-    source         = models.CharField(max_length=255)
-    trans          = models.CharField(max_length=255)
-    submitter      = models.ForeignKey(PootleProfile, null=True)
+    creation_time       = models.DateTimeField()
+    translation_project = models.ForeignKey('TranslationProject')
+    submitter           = models.ForeignKey(PootleProfile, null=True)
+    unit                = models.OneToOneField('Unit')
+    from_suggestion     = models.OneToOneField('Suggestion', null=True)
 
     objects = SubmissionManager()
 
 class SuggestionManager(models.Manager):
-    def get_top_suggesters(self):
-        """See the comment for SubmissionManager.get_top_submitters."""
-
+    def _get_top_results(self, profile_field):
         fields = {
             'profile_id':    primary_key_name(PootleProfile),
-            'suggester':     field_name(Suggestion, 'suggester'),
-            'review_status': field_name(Suggestion, 'review_status')
+            'profile_field': field_name(Suggestion, profile_field)
         }
         # select_related('suggester__user') will let Django also
         # select the PootleProfile and its related User along with the
@@ -286,29 +233,27 @@ class SuggestionManager(models.Manager):
         # get_top_suggesters.
         return self.extra(select = {'num_contribs': 'COUNT(%(profile_id)s)' % fields},
                           tables = [table_name(PootleProfile)],
-                          where  = ["%(profile_id)s = %(suggester)s GROUP BY %(profile_id)s" % fields]
-                          ).order_by('-num_contribs').select_related('suggester__user')
+                          where  = ["%(profile_id)s = %(profile_field)s GROUP BY %(profile_id)s" % fields]
+                          ).order_by('-num_contribs')
+
+    def get_top_suggesters(self):
+        return self._get_top_results('suggester').select_related('suggester__user')
 
     def get_top_reviewers(self):
-        return self.get_top_suggesters().filter(review_status='review')
+        return self._get_top_results('reviewer').select_related('reviewer__user')
 
 class Suggestion(models.Model):
-    creation_time  = models.DateTimeField()
-    language       = models.ForeignKey('Language')
-    project        = models.ForeignKey('Project')
-    filename       = models.FilePathField()
-    source         = models.CharField(max_length=255)
-    trans          = models.CharField(max_length=255)
-    suggester      = models.ForeignKey(PootleProfile, related_name='suggestions_suggester_set')
-    reviewer       = models.ForeignKey(PootleProfile, related_name='suggestions_reviewer_set', null=True)
-    review_status  = models.CharField(max_length=255)
-    review_time    = models.DateTimeField(null=True)
-    review_submission = models.OneToOneField('Submission', null=True)
+    creation_time       = models.DateTimeField()
+    translation_project = models.ForeignKey('TranslationProject')
+    suggester           = models.ForeignKey(PootleProfile, related_name='suggestions_suggester_set')
+    reviewer            = models.ForeignKey(PootleProfile, related_name='suggestions_reviewer_set', null=True)
+    review_time         = models.DateTimeField(null=True)
+    unit                = models.OneToOneField('Unit')
 
     objects = SuggestionManager()
 
 def _get_suggestions(profile, status):
-    return Suggestion.objects.filter(suggester=profile).filter(review_status=status)
+    return Suggestion.objects.filter(suggester=profile).filter(unit__state=status)
 
 def suggestions_accepted(profile):
     return _get_suggestions(profile, "accepted").all()

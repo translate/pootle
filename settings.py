@@ -159,6 +159,8 @@ ENABLE_ALT_SRC = True
 
 CAN_REGISTER = True
 
+STORE_LRU_CACHE_SIZE = 10
+
 # Uncomment to use memcached for caching
 # CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 

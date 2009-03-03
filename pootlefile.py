@@ -21,6 +21,14 @@
 
 """manages a translation file and its associated files"""
 
+import time
+import os
+import bisect
+import weakref
+import util
+
+from django.conf import settings
+
 from translate.storage import base
 from translate.storage import po
 from translate.storage.poheader import tzstring
@@ -28,15 +36,13 @@ from translate.storage import xliff
 from translate.storage import factory
 from translate.filters import checks
 from translate.misc.multistring import multistring
+
+from pootle_app.lru_cache    import LRUCache
+
 from Pootle import __version__, request_cache
 from Pootle import statistics
 from Pootle.legacy.jToolkit import timecache
 from Pootle.legacy.jToolkit import glock
-import time
-import os
-import bisect
-import weakref
-import util
 
 _UNIT_CHECKER = checks.UnitChecker()
 
@@ -252,45 +258,24 @@ class pootleassigns:
             assignitems.extend(actionitems)
     return assignitems
 
-def member(sorted_set, element):
-  """Check whether element appears in sorted_set."""
-  pos = bisect.bisect_left(sorted_set, element)
-  if pos < len(sorted_set):
-    return sorted_set[pos] == element
-  else:
-    return False
-
-def intersect(set_a, set_b):
-  """Find the intersection of the sorted sets set_a and set_b."""
-  # If both set_a and set_b have elements
-  if len(set_b) != 0 and len(set_a) != 0:
-    # Find the position of the element in set_a that is at least
-    # as large as the minimum element in set_b.
-    start_a = bisect.bisect_left(set_a, set_b[0])
-    # For each element in set_a...
-    for element in set_a[start_a:]:
-      # ...which is also in set_b...
-      if member(set_b, element):
-        yield element
-
 def make_class(base_class):
   class pootlefile(base_class):
     """this represents a pootle-managed file and its associated files"""
     x_generator = "Pootle %s" % __version__.sver
-    def __init__(self, project=None, pofilename=None):
+    def __init__(self, translation_project=None, pofilename=None):
       if pofilename:
         self.__class__.__bases__ = (factory.getclass(pofilename),)
       super(pootlefile, self).__init__()
       self.pofilename = pofilename
-      if project is None:
-        from Pootle import projects
-        self.project = projects.DummyProject(None)
-        self.checker = None
-        self.filename = self.pofilename
+      self.filename = self.pofilename
+      if translation_project is None:
+        self.checker                = None
+        self.languagecode           = 'en'
+        self.translation_project_id = -1
       else:
-        self.project = project
-        self.checker = self.project.checker
-        self.filename = os.path.join(self.project.podir, self.pofilename)
+        self.checker                = translation_project.checker
+        self.languagecode           = translation_project.language.code
+        self.translation_project_id = translation_project.id
 
       self.lockedfile = LockedFile(self.filename)
       # we delay parsing until it is required
@@ -306,6 +291,13 @@ def make_class(base_class):
       self.pomtime = None
       self.tracker = timecache.timecache(20*60)
       self._total = util.undefined # self.statistics.getstats()["total"]
+      self._id_index = util.undefined # self.statistics.getstats()["total"]
+
+    @util.lazy('_id_index')
+    def _get_id_index(self):
+      return dict((unit.getid(), unit) for unit in self.units)
+
+    id_index = property(_get_id_index)
 
     @util.lazy('_total')
     def _get_total(self):
@@ -485,10 +477,12 @@ def make_class(base_class):
           # If this exception is not triggered by a bad
           # symlink, then we have a missing file on our hands...
           if not os.path.islink(self.filename):
-              # ...and thus we rescan our files to get rid of the missing filename
-              self.project.scanpofiles()
+            # ...and thus we rescan our files to get rid of the missing filename
+            from pootle_app.project_tree import scan_translation_project_files
+            from pootle_app.translation_project import TranslationProject
+            scan_translation_project_files(TranslationProject.objects.get(id=self.translation_project_id))
           else:
-              print "%s is a broken symlink" % (self.filename,)
+            print "%s is a broken symlink" % (self.filename,)
       return False
 
     def getoutput(self):
@@ -514,7 +508,7 @@ def make_class(base_class):
         po_revision_date = time.strftime("%Y-%m-%d %H:%M") + tzstring()
         headerupdates = {
                 "PO_Revision_Date": po_revision_date,
-                "Language": self.project.languagecode,
+                "Language": self.languagecode,
                 "X_Generator": self.x_generator,
         }
         if userprefs:
@@ -541,51 +535,6 @@ def make_class(base_class):
     def getitem(self, item):
       """Returns a single unit based on the item number."""
       return self.units[self.total[item]]
-
-    def iteritems(self, search, lastitem=None):
-      """iterates through the items in this pofile starting after the given lastitem, using the given search"""
-      def get_min(lastitem):
-        if lastitem is None:
-          return 0
-        else:
-          return lastitem + 1
-
-      def narrow_to_last_item_range(translatables, lastitem):
-        return translatables[get_min(lastitem):]
-
-      def narrow_to_assigns(translatables, search):
-        if search.assignedto or search.assignedaction:
-          assignitems = self.getassigns().finditems(search)
-          return list(intersect(assignitems, translatables))
-        else:
-          return translatables
-
-      def narrow_to_matches(translatables, search):
-        if search.matchnames:
-          stats = self.statistics.getstats()
-          matches = reduce(set.__or__, (set(stats[matchname]) for matchname in search.matchnames if matchname in stats))
-          return intersect(sorted(matches), translatables)
-        else:
-          return translatables
-
-      translatables = self.total
-
-      # To get the items to iterate, we
-      # 1. filter translatables to the range of elements after lastitem,
-      # 2. filter translatables according to assignments,
-      # 3. filter translatables according to the quality checks (which
-      #    are contained in search.matches)
-      new_translatables = narrow_to_matches(
-        narrow_to_assigns(
-            narrow_to_last_item_range(translatables, lastitem),
-            search),
-        search)
-
-      # translatables contains the indices into the store of the units. We need to
-      # know what indices of these indices are in translatables itself. Since
-      # translatables is sorted, we simply need to perform binary searches to
-      # get the answer.
-      return (bisect.bisect_left(translatables, item) for item in new_translatables)
 
     def matchitems(self, newfile, uselocations=False):
       """matches up corresponding items in this pofile with the given newfile, and returns tuples of matching poitems (None if no match found)"""
@@ -742,4 +691,95 @@ class Search:
   def copy(self):
     """returns a copy of this search"""
     return Search(self.dirfilter, self.matchnames, self.assignedto, self.assignedaction, self.searchtext, self.searchfields)
+
+################################################################################
+
+def add_trailing_slash(path):
+    """If path does not end with /, add it and return."""
+    if path[-1] == os.sep:
+        return path
+    else:
+        return path + os.sep
+
+def relative_real_path(p):
+    if p.startswith(settings.PODIRECTORY):
+        return p[len(add_trailing_slash(settings.PODIRECTORY)):]
+    else:
+        return p
+
+def absolute_real_path(p):
+    if not p.startswith(settings.PODIRECTORY):
+        return os.path.join(settings.PODIRECTORY, p)
+    else:
+        return p
+
+################################################################################
+
+pootle_files = LRUCache(settings.STORE_LRU_CACHE_SIZE,
+                        lambda project_filename: pootlefile(project_filename[0], project_filename[1]))
+
+def with_pootle_files(f):
+  # TBD: Do locking here
+  return f(pootle_files)
+
+# Yes, I know this is ugly. I'll revamp this when I implement better
+# context manager support for Python 2.4 and lower, since this belongs
+# in a context manager.
+def set_pootle_file_vars(translation_project):
+  def decorator(f):
+    def decorated_f(pootle_file):
+      pootle_file._with_pootle_file_ref_count = getattr(pootle_file, '_with_pootle_file_ref_count', 0) + 1
+      pootle_file.translation_project = translation_project
+      try:
+        return f(pootle_file)
+      finally:
+        if pootle_file._with_pootle_file_ref_count == 0:
+          del pootle_file._with_pootle_file_ref_count
+          del pootle_file.translation_project
+    return decorated_f
+  return decorator
+
+def with_pootle_file(translation_project, filename, f):
+  # TBD: Add individual file locking
+  def do(pootle_files):
+    pootle_file = pootle_files[translation_project, filename]
+    pootle_file.pofreshen()
+    return set_pootle_file_vars(translation_project)(f)(pootle_file)
+  return with_pootle_files(do)
+
+# Yes, I know this is ugly. I'll revamp this when I implement better
+# context manager support for Python 2.4 and lower, since this belongs
+# in a context manager.
+def set_store_vars(store):
+  def decorator(f):
+    def decorated_f(pootle_file):
+      # To allow us to use a pootle_file recursively (for example if
+      # we're busy working on a pootlefile and we call something like
+      # store_iteration.iter_stores), we keep track of how many
+      # references we have to the file; this is so that we won't
+      # delete these variables when we're done calling f.
+      pootle_file._with_store_ref_count = getattr(pootle_file, '_with_store_ref_count', 0) + 1
+      pootle_file.store = store
+      pootle_file.pootle_path = store.pootle_path
+      try:
+        return f(pootle_file)
+      finally:
+        pootle_file._with_store_ref_count -= 1
+        if pootle_file._with_store_ref_count == 0:
+          del pootle_file._with_store_ref_count
+          del pootle_file.store
+          del pootle_file.pootle_path
+    return decorated_f
+  return decorator
+
+def with_store(translation_project, store, f):
+  @set_store_vars(store)
+  def do(pootle_file):
+    return f(pootle_file)
+  return with_pootle_file(translation_project, store.abs_real_path, do)
+
+def set_pootle_file(translation_project, filename, pootle_file):
+  def do_set(pootle_files):
+    pootle_files[filename] = pootle_files
+  return with_pootle_files(do_set)
 

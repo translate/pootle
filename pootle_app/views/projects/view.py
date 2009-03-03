@@ -7,11 +7,12 @@ from django.conf import settings
 
 from Pootle import pan_app, indexpage, adminpages, projects
 
-from pootle_app.views.auth import redirect
-from pootle_app.views.util import render_to_kid, render_jtoolkit, KidRequestContext, \
-    init_formset_from_data, choices_from_models, selected_model
-from pootle_app.core import TranslationProject, Language, Project
-from pootle_app import project_tree
+from pootle_app.views.auth          import redirect
+from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
+    KidRequestContext, init_formset_from_data, choices_from_models, selected_model
+from pootle_app.core                import Language, Project
+from pootle_app.translation_project import TranslationProject
+from pootle_app                     import project_tree
 
 def user_can_admin_project(f):
     def decorated_f(request, project_code, *args, **kwargs):
@@ -57,7 +58,7 @@ def process_post(request, project):
             for form in formset.forms:
                 if form['update'].data:
                     language = form.instance
-                    translation_project = project_tree.get_translation_project(language, project)
+                    translation_project = TranslationProject.objects.get(language=language, project=project)
                     translation_project.converttemplates(request)
         return formset
 
@@ -77,7 +78,7 @@ def process_get(request, project):
     if request.method == 'GET':
         try:
             language_code = request.GET['updatelanguage']
-            translation_project = project_tree.get_translation_project(Language.objects.get(code=language_code), project)
+            translation_project = Translation.objects.get(language__code=language_code, project=project)
             if 'initialize' in request.GET:
                 translation_project.initialize(request, language_code)
             elif 'doupdatelanguage' in request.GET:

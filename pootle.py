@@ -23,58 +23,43 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
 
-# Import this early to force module initialization so that
-# our hijacking of Django's translation machinery will work
-# from the start.
+# Import this early to force module initialization so that our
+# hijacking of Django's translation machinery will work from the
+# start.
 from Pootle.i18n import gettext
 
+try:
+  from xml.etree import ElementTree
+except ImportError:
+  from elementtree import ElementTree
+# We don't need kid in this file, but this will show quickly if it is
+# not installed.
+import kid
+import sys
+import re
+import random
+import pprint
 import optparse
 from wsgiref.simple_server import make_server
 
 from django.core.handlers.wsgi import WSGIHandler
 from django.conf import settings
 
-from Pootle.legacy.jToolkit import prefs
-from Pootle import indexpage
-from Pootle import adminpages
-from Pootle import translatepage
-from Pootle import pagelayout
-from Pootle import projects
-from Pootle import pootlefile
-from Pootle import users
-from Pootle import filelocations
-from Pootle import request_cache
 from translate.misc import optrecurse
-# Versioning information
-from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
-from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
-from Pootle import statistics, pan_app
-from Pootle.misc.transaction import django_transaction
-from Pootle.misc import prefs, jtoolkit_django
+
 from pootle_app.core import Language, Project
+from pootle_app.translation_project import TranslationProject, scan_translation_projects
 from pootle_app import project_tree
 
-try:
-  from xml.etree import ElementTree
-except ImportError:
-  from elementtree import ElementTree
-# We don't need kid in this file, but this will show quickly if it is not
-# installed. jToolkit won't complain, so we have to stop here if we don't have kid
-import kid
-import sys
-import os
-import re
-import random
-import pprint
-
-def use_request_cache(f):
-    def decorated_f(*args, **kwargs):
-        try:
-            return f(*args, **kwargs)
-        finally:
-            request_cache.reset()
-    return decorated_f
+from Pootle import pootlefile, users, filelocations
+# Versioning information
+from Pootle import __version__ as pootleversion
+from Pootle import statistics, pan_app
+from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
+from Pootle.legacy.jToolkit import prefs
+from Pootle.misc.transaction import django_transaction
+from Pootle.misc import prefs, jtoolkit_django
 
 class PootleServer(users.OptionalLoginAppServer):
   """the Server that serves the Pootle Pages"""
@@ -182,7 +167,7 @@ class PootleOptionParser(optparse.OptionParser):
     self.set_default('instance', 'Pootle')
     self.set_default('htmldir', filelocations.htmldir)
     self.add_option('', "--refreshstats", dest="action", action="store_const", const="refreshstats",
-        default="runwebserver", help="refresh the stats files instead of running the webserver")
+                    default="runwebserver", help="refresh the stats files instead of running the webserver")
     self.add_option('', "--no_cache_templates", action="store_false", dest="cache_templates", default=True,
                     help="Pootle should not cache templates, but reload them with every request.")
     self.add_option('', "--port", action="store", type="int", dest="port", default="8080",
@@ -224,7 +209,7 @@ def init_db():
     call_command('initdb')
 
 def get_lang(language):
-  return projects.get_translation_project(language, Project.objects.get(code='pootle'))
+  return TranslationProject.objects.get(language=language, project__code='pootle')
 
 def check_for_language(code):
   return Project.objects.filter(code='pootle').count() > 0 and Language.objects.filter(code=code).count() > 0
@@ -236,13 +221,14 @@ def setup_localization_system():
 def main():
   # run the web server
   init_db()
-  setup_localization_system()
+  #setup_localization_system()
   checkversions()
   parser = PootleOptionParser()
   options, args = parser.parse_args()
   if options.action != "runwebserver":
     options.servertype = "dummy"
   set_options(options)
+  scan_translation_projects()
   run_pootle(options, args)                                        
 
 if __name__ == '__main__':

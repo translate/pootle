@@ -25,13 +25,22 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanen
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.translation import ugettext as _
 
-from Pootle import indexpage, pan_app, translatepage, projects, adminpages
+from Pootle import indexpage, pan_app, projects, adminpages
 from Pootle.misc.jtoolkit_django import process_django_request_args
 
-from pootle_app.views.util import render_to_kid, render_jtoolkit
-from pootle_app.views.auth import redirect
-from pootle_app.core import Language, Project
-from pootle_app.misc import strip_trailing_slash
+from pootle_app.views.util  import render_to_kid, render_jtoolkit
+from pootle_app.views.auth  import redirect
+from pootle_app.core        import Language, Project
+from pootle_app.fs_models   import Store, Directory, Search, search_from_state
+from pootle_app.url_manip   import strip_trailing_slash
+from pootle_app             import store_iteration
+from pootle_app.translation_project import TranslationProject
+from pootle_app.url_manip   import read_all_state
+from pootle_app.permissions import get_matching_permissions, PermissionError
+from pootle_app.profile     import get_profile
+
+from project_index import view as project_index_view
+from translate_page import find_and_display
 
 def get_language(f):
     def decorated_f(request, language_code, *args, **kwargs):
@@ -56,8 +65,8 @@ def get_translation_project(f):
     @get_project
     def decorated_f(request, language, project, *args, **kwargs):
         try:
-            return f(request, projects.get_translation_project(language, project), *args, **kwargs)
-        except IndexError:
+            return f(request, TranslationProject.objects.get(language=language, project=project), *args, **kwargs)
+        except TranslationProject.DoesNotExist:
             return redirect('/%s' % language.code, message=_("The project %s does not exist for the language %s" % (project.code, language.code)))
     return decorated_f
 
@@ -69,44 +78,74 @@ def language_index(request, language):
 def translation_project_admin(request, translation_project):
     return render_jtoolkit(adminpages.TranslationProjectAdminPage(translation_project, request, process_django_request_args(request)))
 
+def set_request_context(f):
+    def decorated_f(request, translation_project, *args, **kwargs):
+        # For now, all permissions in a translation project are
+        # relative to the root of that translation project.
+        request.permissions = get_matching_permissions(
+            get_profile(request.user), translation_project.directory)
+        request.translation_project = translation_project
+        return f(request, translation_project, *args, **kwargs)
+    return decorated_f
+
 @get_translation_project
+@set_request_context
 def translate_page(request, translation_project, dir_path):
+    url_state = read_all_state(request.GET)
+    search = search_from_state(translation_project, url_state['search'])
     try:
-        if dir_path is None:
-            dir_path = ""
-        return render_jtoolkit(translatepage.TranslatePage(translation_project, request, process_django_request_args(request), dir_path))
+        def next_store_item(store_name, item):
+            return store_iteration.iter_next_matches(directory,
+                                                     store_name,
+                                                     item,
+                                                     search).next()
+
+        def prev_store_item(store_name, item):
+            return store_iteration.iter_prev_matches(directory,
+                                                     store_name,
+                                                     item,
+                                                     search).next()
+
+        directory = translation_project.directory.get_relative_object(strip_trailing_slash(dir_path or ''))
+        return find_and_display(request, directory, next_store_item, prev_store_item)
+
     except projects.RightsError, msg:
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
 
 @get_translation_project
+@set_request_context
 def project_index(request, translation_project):
     try:
-        return render_jtoolkit(indexpage.ProjectIndex(translation_project, request, process_django_request_args(request)))
+        return project_index_view(request, translation_project, translation_project.directory)
     except projects.RightsError, msg:
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
 
-def handle_translation_file(request, arg_dict, translation_project, file_path):
+def handle_translation_file(request, translation_project, file_path):
     # Don't get confused here. request.GET contains HTTP
     # GET vars while get is a dictionary method
-    if request.GET.get("translate", 0):
+    url_state = read_all_state(request.GET)
+    if url_state['translate_display'].view_mode != 'raw':
+        # TBD: Ensure that store is a Store object
+        store = translation_project.directory.get_relative_object(file_path)
+        search = search_from_state(translation_project, url_state['search'])
+
         try:
-            return render_jtoolkit(translatepage.TranslatePage(translation_project, request, 
-                                                               process_django_request_args(request),
-                                                               dirfilter=file_path))
-        except projects.RightsError, stoppedby:
-            pathwords = file_path.split(os.sep)
-            if len(pathwords) > 1:
-                dirfilter = os.path.join(*pathwords[:-1])
-            else:
-                dirfilter = ""
+            def get_item(itr, item):
+                try:
+                    return itr.next()
+                except StopIteration:
+                    return item
+
+            def next_store_item(store_name, item):
+                return store, get_item(search.next_matches(store, item), item - 1)
+
+            def prev_store_item(store_name, item):
+                return store, get_item(search.prev_matches(store, item), item + 1)
+
+            return find_and_display(request, store.parent, next_store_item, prev_store_item)
+        except PermissionError, e:
             return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), 
-                            message=stoppedby)
-    # Don't get confused here. request.GET contains HTTP
-    # GET vars while get is a dictionary method
-    elif request.GET.get("index", 0):
-        return indexpage.ProjectIndex(translation_project, request,
-                                      process_django_request_args(request), 
-                                      dirfilter=file_path)
+                            message=e.args[0])
     else:
         pofile = translation_project.getpofile(file_path, freshen=False)
         encoding = getattr(pofile, "encoding", "UTF-8")
@@ -167,10 +206,11 @@ def handle_sdf(request, translation_project, file_path):
     return HttpResponse(translation_project.getoo(), content_type="text/tab-separated-values")
 
 @get_translation_project
+@set_request_context
 def handle_file(request, translation_project, file_path):
     arg_dict = process_django_request_args(request)
-    if file_path.endswith("." + translation_project.fileext):
-        return handle_translation_file(request, arg_dict, translation_project, file_path)
+    if file_path.endswith("." + translation_project.project.localfiletype):
+        return handle_translation_file(request, translation_project, file_path)
     elif file_path.endswith(".csv") or file_path.endswith(".xlf") or \
          file_path.endswith(".ts") or file_path.endswith(".po") or \
          file_path.endswith(".mo"):
@@ -180,5 +220,9 @@ def handle_file(request, translation_project, file_path):
     elif file_path.endswith(".sdf") or file_path.endswith(".sgi"):
         return handle_sdf(request, translation_project, file_path)
     else:
+        if file_path.endswith("index.html"):
+            file_path = file_path[:-len("index.html")]
+
         # The Pootle code expects file_path to have its trailing slash stripped.
-        return render_jtoolkit(indexpage.ProjectIndex(translation_project, request, arg_dict, strip_trailing_slash(file_path)))
+        directory = translation_project.directory.get_relative_object(strip_trailing_slash(file_path) or '')
+        return project_index_view(request, translation_project, directory)

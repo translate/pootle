@@ -46,7 +46,6 @@
       <a href="${check.href}" py:content="check.text">checkname</a>
       <span py:content="check.stats" py:strip="True">3 strings (20%) failed</span>
     </span>
-    <span py:for="track in item.stats.tracks" py:strip="True"><br />${track}</span>
     <span py:for="astats in item.stats.assigns" py:strip="True">
     <br /><a href="${astats.assign.href}">${astats.assign.text}</a>: ${astats.stats}
       <span class='string-statistics'>${astats.stringstats}</span> -
@@ -102,8 +101,8 @@
 
             # TODO: Need to verify these work for multiple files in the same directory.  It
             # might be showing all fuzzy files for the whole dir instead of per file
-            untranslatedhref = "translate.html?untranslated=1&editing=1"
-            fuzzyhref = "translate.html?fuzzy=1&editing=1"
+            untranslatedhref = "translate.html?match_names=untranslated&editing=1&view_mode=review"
+            fuzzyhref = "translate.html?match_names=check-isfuzzy&editing=1&view_mode=review"
 
             # sigh; here is a cheesy hack.  If item.code exists we're at the root
             # level of browsing the doc tree (i.e. not looking at a specific locale)

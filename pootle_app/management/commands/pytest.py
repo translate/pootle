@@ -26,6 +26,6 @@ class Command(BaseCommand):
         #verbosity = int(options.get('verbosity', 1))
         #interactive = options.get('interactive', True)
         if 'keyword' in options:
-            args.extend(['-k', options['keyword']])
+            args.extend(['-k', options['keyword'], '--nomagic'])
 
         return py.test.cmdline.main(args)

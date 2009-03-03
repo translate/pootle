@@ -24,8 +24,10 @@ import os
 from django.conf import settings
 from django.utils.html import escape
 
-from Pootle import pan_app
+from pootle_app.fs_models import FakeSearch
 from pootle_app.profile import get_profile
+
+from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import localize, nlocalize, tr_lang
 from Pootle.i18n import gettext
 
@@ -38,7 +40,7 @@ def localize_links(request):
   links["account"] = localize("My account")
   links["admin"] = localize("Admin")
   links["doc"] = localize("Docs & help")
-  links["doclang"] = getdoclang(gettext.get_active().languagecode)
+  links["doclang"] = getdoclang(gettext.get_active().language.code)
   links["logout"] = localize("Log out")
   links["login"] = localize("Log in")
   links["about"] = localize("About")
@@ -104,8 +106,8 @@ def completetemplatevars(templatevars, request, bannerheight=135):
   if not "enablealtsrc" in templatevars:
      templatevars["enablealtsrc"] = settings.ENABLE_ALT_SRC
   templatevars["aboutlink"] = localize("About this Pootle server")
-  templatevars["uilanguage"] = weblanguage(gettext.get_active().languagecode)
-  templatevars["uidir"] = languagedir(gettext.get_active().languagecode)
+  templatevars["uilanguage"] = weblanguage(gettext.get_active().language.code)
+  templatevars["uidir"] = languagedir(gettext.get_active().language.code)
   # TODO FIXME cssaligndir is deprecated?
   if templatevars["uidir"] == 'ltr':  
     templatevars["cssaligndir"] = "left"
@@ -166,46 +168,39 @@ class PootlePage:
                 "untranslated": localize("Untranslated") }
     return headings
 
+def get_relative(ref_path, abs_path):
+  ref_chain = ref_path.split('/')
+  abs_chain = abs_path.split('/')
+  abs_set = dict((component, i) for i, component in enumerate(abs_path.split('/')))
+  for i, component in enumerate(reversed(ref_chain)):
+    if component in abs_set:
+      new_components = i * ['..']
+      new_components.extend(abs_chain[abs_set[component]+1:])
+      return '/'.join(new_components)
 
 class PootleNavPage(PootlePage):
-  def makenavbarpath_dict(self, project=None, request=None, currentfolder=None, language=None, argdict=None, dirfilter=None):
+  def makenavbarpath_dict(self, project=None, request=None, directory=None, language=None, store=None):
     """create the navbar location line"""
     #FIXME: Still lots of PO specific references here!
+    current_path = directory.pootle_path
+    project_path = get_relative(current_path, project.directory_root.pootle_path)
     rootlink = ""
     paramstring = ""
-    if argdict:
-      paramstring = "?" + "&".join(["%s=%s" % (arg, value) for arg, value in argdict.iteritems() if arg.startswith("show") or arg == "editing"])
+    if request:
+      paramstring = "?" + "&".join(["%s=%s" % (arg, value) for arg, value in request.GET.iteritems() 
+                                    if arg.startswith("show") or arg == "editing"])
 
     links = {"admin": None, "project": [], "language": [], "goal": [], "pathlinks": []}
-    if currentfolder:
-      pathlinks = []
-      dirs = currentfolder.split(os.path.sep)
-      if dirfilter is None:
-        dirfilter = currentfolder
-      
-      depth = dirfilter.count(os.path.sep) + 1
-      if dirfilter == "":
-        depth -= 1
-      elif dirfilter.endswith(".po") or dirfilter.endswith(".xlf"):
-        depth = depth - 1
 
-      rootlink = "/".join([".."] * depth)
-      if rootlink:
-        rootlink += "/"
-      backlinks = ""
-      for backlinkdir in dirs:
-        if depth >= 0:
-          backlinks = "../" * depth + backlinkdir
-          depth -= 1
-        else:
-          backlinks += backlinkdir
-        if not (backlinkdir.endswith(".po") or backlinkdir.endswith(".xlf")) and not backlinks.endswith("/"):
-          backlinks = backlinks + "/"
-        pathlinks.append({"href": self.getbrowseurl(backlinks), "text": backlinkdir, "sep": " / "})
-      if pathlinks:
-        pathlinks[-1]["sep"] = ""
-      links["pathlinks"] = pathlinks
-    if argdict and "goal" in argdict:
+    pathlinks = []
+    for ancestor_directory in directory.parent_chain():
+      pathlinks.append({"href": self.getbrowseurl(get_relative(current_path, ancestor_directory.pootle_path)), 
+                        "text": ancestor_directory.name, "sep": " / "})
+    if pathlinks:
+      pathlinks[-1]["sep"] = ""
+    links["pathlinks"] = pathlinks
+
+    if request and "goal" in request.GET:
       # goallink = {"href": self.getbrowseurl("", goal=goal), "text": goal}
       links["goal"] = {"href": self.getbrowseurl(""), "text": localize("All goals")}
     if project:
@@ -213,12 +208,12 @@ class PootleNavPage(PootlePage):
         projectcode, projectname = project
         links["project"] = {"href": "/projects/%s/%s" % (projectcode, paramstring), "text": projectname}
       else:
-        links["language"] = {"href": rootlink + "../index.html", "text": tr_lang(project.languagename)}
+        links["language"] = {"href": project_path + "../index.html", "text": tr_lang(project.languagename)}
         # don't getbrowseurl on the project link, so sticky options won't apply here
-        links["project"] = {"href": (rootlink or "index.html") + paramstring, "text": project.projectname}
+        links["project"] = {"href": project_path + paramstring, "text": project.projectname}
         if request:
           if "admin" in project.getrights(request.user) or request.user.is_superuser:
-            links["admin"] = {"href": rootlink + "admin.html", "text": localize("Admin")}
+            links["admin"] = {"href": project_path + "admin.html", "text": localize("Admin")}
     elif language:
       languagecode, languagename = language
       links["language"] = {"href": "/%s/" % languagecode, "text": tr_lang(languagename)}
@@ -233,7 +228,7 @@ class PootleNavPage(PootlePage):
 
   def makelink(self, link, **newargs):
     """constructs a link that keeps sticky arguments e.g. showchecks"""
-    combinedargs = self.argdict.copy()
+    combinedargs = self.request.GET.copy()
     combinedargs.update(newargs)
     if '?' in link:
       if not (link.endswith("&") or link.endswith("?")):
@@ -258,29 +253,19 @@ class PootleNavPage(PootlePage):
     self.alltranslated += translated
     self.grandtotal += total
 
-  def describestats(self, project, projectstats, numfiles):
+  def describestats(self, translation_project, directory, goal, numfiles):
     """returns a sentence summarizing item statistics"""
-    translated = projectstats.get("translated", [])
-    total = projectstats.get("total", 0)
-    if "translatedsourcewords" in projectstats:
-      translatedwords = projectstats["translatedsourcewords"]
+    quick_stats = directory.get_quick_stats(translation_project.checker, goal)
+    percentfinished = (quick_stats['translatedsourcewords']*100/max(quick_stats['totalsourcewords'], 1))
+    if isinstance(numfiles, tuple):
+      filestats = localize("%d/%d file", numfiles) + ", "
     else:
-      translatedwords = project.countwords(translated)
-    totalwords = projectstats["totalsourcewords"]
-    if isinstance(translated, list):
-      translated = len(translated)
-    if isinstance(total, list):
-      total = len(total)
-    percentfinished = (translatedwords*100/max(totalwords, 1))
-    if numfiles is None:
-      filestats = ""
-    elif isinstance(numfiles, tuple):
-      filestats = localize("%d/%d files", numfiles) + ", "
-    else:
-      #TODO: Perhaps do better?
       filestats = nlocalize("%d file", "%d files", numfiles, numfiles) + ", "
-    wordstats = localize("%d/%d words (%d%%) translated", translatedwords, totalwords, percentfinished)
-    stringstatstext = localize("%d/%d strings", translated, total)
+    wordstats = localize("%d/%d words (%d%%) translated",
+                         quick_stats['translatedsourcewords'],
+                         quick_stats['totalsourcewords'],
+                         percentfinished)
+    stringstatstext = localize("%d/%d strings", quick_stats['translated'], quick_stats['total'])
     stringstats = ' <span class="string-statistics">[%s]</span>' % stringstatstext
     return filestats + wordstats + stringstats
 
@@ -303,22 +288,16 @@ class PootleNavPage(PootlePage):
                 "summary": localize("Summary")}
     return headings
 
-  def getstats(self, project, projectstats):
+  def getstats(self, project, directory, goal):
     """returns a list with the data items to fill a statistics table
     Remember to update getstatsheadings() above as needed"""
     wanted = ["translated", "fuzzy", "total"]
     gotten = {}
+    stats_totals = directory.get_stats_totals(project.checker, FakeSearch(goal))
     for key in wanted:
-      gotten[key] = projectstats.get(key, [])
+      gotten[key] = stats_totals.get(key, 0)
       wordkey = key + "sourcewords"
-      if wordkey in projectstats:
-        gotten[wordkey] = projectstats[wordkey]
-      else:
-        count = projectstats.get(key, [])
-        gotten[wordkey] = project.countwords(count)
-      if isinstance(gotten[key], list):
-        #TODO: consider carefully:
-        gotten[key] = len(gotten[key])
+      gotten[wordkey] = stats_totals[wordkey]
 
     gotten["untranslated"] = gotten["total"] - gotten["translated"] - gotten["fuzzy"]
     gotten["untranslatedsourcewords"] = gotten["totalsourcewords"] - gotten["translatedsourcewords"] - gotten["fuzzysourcewords"]
@@ -337,22 +316,26 @@ class PootleNavPage(PootlePage):
     return gotten
 
   def getsearchfields(self):
-    tmpfields = [{"name": "source",
-                  "text": localize("Source Text"),
-                  "value": self.argdict.get("source", 0),
-                  "checked": self.argdict.get("source", 0) == "1" and "checked" or None},
-                 {"name": "target",
-                  "text": localize("Target Text"),
-                  "value": self.argdict.get("target", 0),
-                  "checked": self.argdict.get("target", 0) == "1" and "checked" or None},
-                 {"name": "notes",
-                  "text": localize("Comments"),
-                  "value": self.argdict.get("notes", 0),
-                  "checked": self.argdict.get("notes", 0) == "1" and "checked" or None},
-                 {"name": "locations",
-                  "text": localize("Locations"),
-                  "value": self.argdict.get("locations", 0),
-                  "checked": self.argdict.get("locations", 0) == "1" and "checked" or None}]
+    source    = self.request.GET.get('source', '0')
+    target    = self.request.GET.get('target', '0')
+    notes     = self.request.GET.get('notes', '0')
+    locations = self.request.GET.get('locations', '0')
+    tmpfields = [{"name":    "source",
+                  "text":    localize("Source Text"),
+                  "value":   source,
+                  "checked": source == "1" and "checked" or None},
+                 {"name":    "target",
+                  "text":    localize("Target Text"),
+                  "value":   target,
+                  "checked": target == "1" and "checked" or None},
+                 {"name":    "notes",
+                  "text":    localize("Comments"),
+                  "value":   notes,
+                  "checked": notes == "1" and "checked" or None},
+                 {"name":    "locations",
+                  "text":    localize("Locations"),
+                  "value":   locations,
+                  "checked": locations == "1" and "checked" or None}]
 
     selection = [bool(field["checked"]) for field in tmpfields]
     if selection == [True, True, False, False]:

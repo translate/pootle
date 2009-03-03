@@ -19,19 +19,6 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.conf import settings
-from django.utils.html import escape
-from django.utils.translation import ugettext as _
-N_ = _
-
-from Pootle import pagelayout
-from Pootle import projects
-from Pootle import pootlefile
-from translate.storage import versioncontrol
-# Versioning information
-from Pootle import __version__ as pootleversion
-from translate import __version__ as toolkitversion
-from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
 from kid import __version__ as kidversion
 try:
   # ElementTree is part of Python 2.5, so let's try that first
@@ -44,11 +31,27 @@ import re
 import locale
 import util  
 
-from pootle_app.core import Suggestion, Submission, Language, Project
-from pootle_app.profile import get_profile
-from Pootle import pan_app
+from django.utils.html import escape
+from django.conf import settings
+from django.utils.translation import ugettext as _
+N_ = _
+
+from translate.storage import versioncontrol
+from translate import __version__ as toolkitversion
+
+from pootle_app.core                import Suggestion, Submission, Language, Project
+from pootle_app.fs_models           import Directory
+from pootle_app.goals               import Goal
+from pootle_app.profile             import get_profile
+from pootle_app.translation_project import TranslationProject
+from pootle_app.permissions         import get_matching_permissions
+from pootle_app.language            import try_language_code
+from pootle_app                     import project_tree
+
 from Pootle.i18n.jtoolkit_i18n import localize, nlocalize, tr_lang
-from pootle_app import project_tree
+from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
+from Pootle import pan_app, pagelayout, pootlefile
+from Pootle import __version__ as pootleversion
 
 _undefined = lambda: None
 
@@ -157,88 +160,78 @@ class PootleIndex(pagelayout.PootlePage):
     topsub    = limit(Submission.objects.get_top_submitters())
    
     topstats = gentopstats(topsugg, topreview, topsub, localize) 
-
-    templatevars = {"pagetitle": pagetitle, "description": description,
-        "meta_description": meta_description, "keywords": keywords,
-        "languagelink": languagelink, "languages": self.getlanguages(request),
-        "projectlink": projectlink, "projects": self.getprojects(request),
-        # top users
-        "topstats": topstats, "topstatsheading": localize("Top Contributors"),
-        "instancetitle": instancetitle,
-        "translationlegend": self.gettranslationsummarylegendl10n()
-        }
+    language_index, project_index = TranslationProject.get_language_and_project_indices()
+    permission_set = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    templatevars = {
+      "pagetitle":         pagetitle,
+      "description":       description,
+      "meta_description":  meta_description,
+      "keywords":          keywords,
+      "languagelink":      languagelink, 
+      "languages":         self.getlanguages(request, language_index, permission_set),
+      "projectlink":       projectlink,
+      "projects":          self.getprojects(request, project_index, permission_set),
+      # top users
+      "topstats":          topstats,
+      "topstatsheading":   localize("Top Contributors"),
+      "instancetitle":     instancetitle,
+      "translationlegend": self.gettranslationsummarylegendl10n()
+      }
 
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
 
-  def getlanguages(self, request):
-    languages = []
-    for language in Language.objects.get_latest_changes():
-      projects_ = project_tree.get_projects(language)
-      trans = 0
-      fuzzy = 0
-      total = 0
-      viewable = False
-      for project in projects_:
-        translation_project = projects.get_translation_project(language, project)
-        stats = translation_project.getquickstats()
-        trans += stats['translatedsourcewords']
-        fuzzy += stats['fuzzysourcewords']
-        total += stats['totalsourcewords']
-        rights = translation_project.getrights(request.user)
-        viewable = viewable or ("view" in rights)
-      untrans = total-trans-fuzzy
+  def get_items(self, request, model, item_index, name_func, permission_set):
+    def get_percentages(trans, fuzzy):
       try:
-        transper = int(100*trans/total)
-        fuzzyper = int(100*fuzzy/total)
-        untransper = 100-transper-fuzzyper
+        transper = int(100.0 * trans / total)
+        fuzzyper = int(100.0 * fuzzy / total)
+        untransper = 100 - transper - fuzzyper
       except ZeroDivisionError:
         transper = 100
         fuzzyper = 0 
         untransper = 0 
+      return transper, fuzzyper, untransper
 
-      lastact = ""
-      if language.latest_change != None:
-        lastact = language.latest_change
+    def get_last_action(item, latest_changes):
+      if item.code in latest_changes and latest_changes[item.code] is not None:
+        return latest_changes[item.code]
+      else:
+        return ""
 
-      if viewable:
-        languages.append({"code": language.code, "name": tr_lang(language.fullname), "lastactivity": lastact, "trans": trans, "fuzzy": fuzzy, "untrans": untrans, "total": total, "transper": transper, "fuzzyper": fuzzyper, "untransper": untransper}) 
-    languages.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
-    return languages
-
-  def getprojects(self, request):
-    """gets the options for the projects"""
-    projects_ = []
-    for project in Project.objects.get_latest_changes():
-      languages = project_tree.get_languages(project)
+    items = []
+    if 'view' not in permission_set:
+      return items
+    latest_changes = model.objects.get_latest_changes()
+    for item in [item for item in model.objects.all() if item.code in item_index]:
       trans = 0
       fuzzy = 0
       total = 0
-      viewable = False
-      for language in languages:
-        translation_project = projects.get_translation_project(language, project)
-        stats = translation_project.getquickstats()
+      for translation_project in item_index[item.code]:
+        stats = translation_project.directory.get_quick_stats(translation_project.checker)
         trans += stats['translatedsourcewords']
         fuzzy += stats['fuzzysourcewords']
         total += stats['totalsourcewords']
-        rights = translation_project.getrights(request.user)
-        viewable = viewable or ("view" in rights)
-      untrans = total-trans-fuzzy
-      try:
-        transper = int(100*trans/total)
-        fuzzyper = int(100*fuzzy/total)
-        untransper = 100-transper-fuzzyper
-      except ZeroDivisionError:
-        transper = 100
-        fuzzyper = 0 
-        untransper = 0 
-      
-      lastact = ""
-      if project.latest_change != None:
-        lastact = project.latest_change
-      
-      if viewable:
-        projects_.append({"code": project.code, "name": project.fullname, "description": project.description, "lastactivity": lastact, "trans": trans, "fuzzy": fuzzy, "untrans": untrans, "total": total, "transper": transper, "fuzzyper": fuzzyper, "untransper": untransper})
-    return projects_
+      untrans = total - trans - fuzzy
+      transper, fuzzyper, untransper = get_percentages(trans, fuzzy)
+      lastact = get_last_action(item, latest_changes)
+      items.append({"code":         item.code,
+                    "name":         name_func(item.fullname),
+                    "lastactivity": lastact,
+                    "trans":        trans,
+                    "fuzzy":        fuzzy,
+                    "untrans":      untrans,
+                    "total":        total,
+                    "transper":     transper,
+                    "fuzzyper":     fuzzyper,
+                    "untransper":   untransper}) 
+    items.sort(lambda x,y: locale.strcoll(x["name"], y["name"]))
+    return items
+
+  def getlanguages(self, request, language_index, permission_set):
+    return self.get_items(request, Language, language_index, tr_lang, permission_set)
+
+  def getprojects(self, request, project_index, permission_set):
+    return self.get_items(request, Project, project_index, lambda x: x, permission_set)
 
   def getprojectnames(self):
     return [proj.fullname for proj in Project.objects.all()]
@@ -292,14 +285,14 @@ class UserIndex(pagelayout.PootlePage):
       for project in user_profile.projects.all():
         try:
           projecttitle = project.fullname
-          translation_project = projects.get_translation_project(language, project)
-          isprojectadmin = "admin" in translation_project.getrights(self.request.user)
+          translation_project = TranslationProject.objects.get(language=language, project=project)
+          isprojectadmin = "admin" in get_matching_permissions(user_profile, translation_project.directory)
           langlinks.append({
             "code": project.code,
             "name": projecttitle,
             "isprojectadmin": isprojectadmin,
             "sep": "<br />"})
-        except IndexError:
+        except TranslationProject.DoesNotExist:
           pass
       if langlinks:
         langlinks[-1]["sep"] = ""
@@ -342,7 +335,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
     adminlink = localize("Admin")
     
     def narrow(query):
-      return limit(query.filter(language__code=self.languagecode))
+      return limit(query.filter(translation_project__language__code=self.languagecode))
 
     topsugg     = narrow(Suggestion.objects.get_top_suggesters())
     topreview   = narrow(Suggestion.objects.get_top_reviewers())
@@ -382,11 +375,13 @@ class LanguageIndex(pagelayout.PootleNavPage):
 
   def getprojects(self, request):
     """gets the info on the projects"""
-    projects_ = project_tree.get_projects(self.language)
-    self.projectcount = len(projects_)
-    translation_projects = [projects.get_translation_project(self.language, project) for project in projects_]
-    projectitems = [self.getprojectitem(translation_project) for translation_project in translation_projects
-                    if "view" in translation_project.getrights(request.user)]
+    language_index, project_index = TranslationProject.get_language_and_project_indices()
+    #self.projectcount = len(project_index)
+    #translation_projects = [projects.get_translation_project(self.language, project) for project in projects_]
+    #projectitems = [self.getprojectitem(translation_project) for translation_project in translation_projects
+    #                if "view" in translation_project.getrights(request.user)]
+    projectitems = [self.getprojectitem(translation_project)
+                    for translation_project in language_index[self.language.code]]
     for n, item in enumerate(projectitems):
       item["parity"] = ["even", "odd"][n % 2]
     return projectitems
@@ -395,8 +390,8 @@ class LanguageIndex(pagelayout.PootleNavPage):
     project = translation_project.project
     href = '%s/' % project.code
     projectdescription = shortdescription(project.description)
-    projectstats = translation_project.getquickstats()
-    projectdata = self.getstats(translation_project, projectstats)
+    projectstats = translation_project.get_quick_stats()
+    projectdata = self.getstats(translation_project, translation_project.directory, None)
     self.updatepagestats(projectdata["translatedsourcewords"], projectdata["totalsourcewords"])
     return {"code": project.code,
             "href": href,
@@ -416,7 +411,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     if len(languages) == 0:
       raise projects.Rights404Error
     average = self.getpagestats()
-    projectstats = nlocalize("%d language, average %d%% translated", "%d languages, average %d%% translated", self.languagecount, self.languagecount, average)
+    projectstats = nlocalize("%d language, average %d%% translated", "%d languages, average %d%% translated", len(languages), len(languages), average)
     projectname = self.project.fullname
     description = self.project.description
     meta_description = shortdescription(description)
@@ -431,7 +426,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     statsheadings["name"] = localize("Language")
 
     def narrow(query):
-      return limit(query.filter(project=self.project))
+      return limit(query.filter(translation_project__project=self.project))
 
     topsugg    = narrow(Suggestion.objects.get_top_suggesters())
     topreview  = narrow(Suggestion.objects.get_top_reviewers())
@@ -456,12 +451,9 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
 
   def getlanguages(self, request):
     """gets the stats etc of the languages"""
-    languages = project_tree.get_languages(self.project)
-    self.languagecount = len(languages)
-    translation_projects = [projects.get_translation_project(language, self.project) for language in languages]
-    languageitems = [self.getlanguageitem(translation_project) for translation_project in translation_projects
-                     if "view" in translation_project.getrights(request.user)]
-    languageitems.sort(cmp=locale.strcoll, key=lambda dict: dict["title"])
+    _language_index, project_index = TranslationProject.get_language_and_project_indices()
+    languageitems = [self.getlanguageitem(translation_project)
+                     for translation_project in project_index[self.project.code]]
     for n, item in enumerate(languageitems):
       item["parity"] = ["even", "odd"][n % 2]
     return languageitems
@@ -469,87 +461,60 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
   def getlanguageitem(self, translation_project):
     language = translation_project.language
     href = "../../%s/%s/" % (language.code, self.projectcode)
-    quickstats = translation_project.getquickstats()
-    data = self.getstats(translation_project, quickstats)
+    quickstats = translation_project.get_quick_stats()
+    data = self.getstats(translation_project, translation_project.directory, None)
     self.updatepagestats(data["translatedsourcewords"], data["totalsourcewords"])
     return {"code": language.code, "icon": "language", "href": href, "title": tr_lang(language.fullname), "data": data}
 
-class LazyStats(object):
-  def __init__(self, project, pofilenames):
-    self._project = project
-    self._pofilenames = pofilenames
-    self._basic = util.undefined
-    self._assign = util.undefined
-    self._units = util.undefined
-  
-  @util.lazy('_basic')
-  def _get_basic(self):
-    return self._project.getquickstats(self._pofilenames)
-  basic = property(_get_basic)
+def get_bool(dict_obj, name):
+  if name in dict_obj:
+    try:
+      result = dict_obj[name]
+      if result == '1':
+        return True
+      else:
+        return False
+    except KeyError:
+      return False
 
-  @util.lazy('_assign')
-  def _get_assign(self):
-    return self._project.combineassignstats(self._pofilenames)
-  assign = property(_get_assign)
-
-  @util.lazy('_units')
-  def _get_units(self):
-    return self._project.combine_unit_stats(self._pofilenames)
-  units = property(_get_units)
+def get_goal(args):
+  try:
+    return Goal.objects.get(name=args.pop('goal'))
+  except:
+    return None
 
 class ProjectIndex(pagelayout.PootleNavPage):
   """The main page of a project in a specific language"""
-  def __init__(self, translation_project, request, argdict, dirfilter=None):
+  def __init__(self, translation_project, request, directory):
     self.translation_project = translation_project
     language = translation_project.language
     project  = translation_project.project
     self.request = request
     self.rights = translation_project.getrights(request.user)
-    if "view" not in self.rights:
-      raise projects.Rights404Error()
     message = escape(request.GET.get("message", ""))
-    if dirfilter == "":
-      dirfilter = None
-    self.dirfilter = dirfilter
-    if dirfilter and dirfilter.endswith(".po"):
-      self.dirname = os.path.dirname(dirfilter)
-    else:
-      self.dirname = dirfilter or ""
-    self.argdict = argdict
     # handle actions before generating URLs, so we strip unneccessary parameters out of argdict
-    self.handleactions()
+    self.handleactions(request)
     # generate the navigation bar maintaining state
-    navbarpath_dict = self.makenavbarpath_dict(project=translation_project, request=self.request, currentfolder=dirfilter, argdict=self.argdict)
-    self.showtracks = self.getboolarg("showtracks")
-    self.showchecks = self.getboolarg("showchecks")
-    self.showassigns = self.getboolarg("showassigns")
-    self.showgoals = self.getboolarg("showgoals")
-    self.editing = self.getboolarg("editing")
-    self.currentgoal = self.argdict.pop("goal", None)
-    if dirfilter and dirfilter.endswith(".po"):
-      actionlinks = []
-      mainstats = ""
-      mainicon = "file"
+    directory = translation_project.directory_root
+    navbarpath_dict = self.makenavbarpath_dict(project=translation_project, request=self.request,
+                                               directory=directory)
+    self.showchecks  = get_bool(request.GET, 'showchecks')
+    self.showassigns = get_bool(request.GET, 'showassigns')
+    self.showgoals   = get_bool(request.GET, 'showgoals')
+    self.currentgoal = get_goal(request.GET)
+    if get_bool(request.GET, 'editing'):
+      actionlinks = self.getactionlinks(directory, ["editing", "mine", "review", "check", "assign", "goal", "quick", "all", "zip", "sdf"], dirfilter)
     else:
-      pofilenames = translation_project.browsefiles(dirfilter)
-      projectstats = LazyStats(translation_project, pofilenames)
-      if self.editing:
-        actionlinks = self.getactionlinks("", projectstats, ["editing", "mine", "review", "check", "assign", "goal", "quick", "all", "zip", "sdf"], dirfilter)
-      else:
-        actionlinks = self.getactionlinks("", projectstats, ["editing", "goal", "zip", "sdf"])
-      mainstats = self.getitemstats("", pofilenames, len(pofilenames))
+      actionlinks = self.getactionlinks(directory, ["editing", "goal", "zip", "sdf"])
+    mainstats = self.getitemstats(directory, None, directory.num_stores())
     if self.showgoals:
-      childitems = self.getgoalitems(dirfilter)
+      childitems = self.getgoalitems(directory, self.currentgoal)
     else:
-      childitems = self.getchilditems(dirfilter)
+      childitems = self.getchilditems(directory, self.currentgoal)
     instancetitle = pan_app.get_title()
     # l10n: The first parameter is the name of the installation (like "Pootle")
     pagetitle = localize("%s: Project %s, Language %s", instancetitle, project.fullname, tr_lang(language.fullname))
     templatename = "fileindex"
-
-    reqstart = u""
-    if dirfilter:
-      reqstart = unicode(dirfilter)
 
     def narrow(query):
       return query.filter(project=project, language=language)[:5]
@@ -574,7 +539,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         # children
         "children": childitems,
         # are we in editing mode (otherwise stats)
-        "editing": self.editing,
+        "editing": get_bool(self.GET, 'editing'),
         # stats table headings
         "statsheadings": self.getstatsheadings(),
         # top users
@@ -595,8 +560,11 @@ class ProjectIndex(pagelayout.PootleNavPage):
     if "admin" in self.rights or "translate" in self.rights or "suggest" in self.rights:
       self.templatevars["upload"] = self.getuploadbox()
 
-  def handleactions(self):
+  def handleactions(self, request):
     """handles the given actions that must be taken (changing operations)"""
+    if request.method != 'POST':
+      return
+
     if "doassign" in self.argdict:
       assignto = self.argdict.pop("assignto", None)
       action = self.argdict.pop("action", None)
@@ -780,24 +748,14 @@ class ProjectIndex(pagelayout.PootleNavPage):
             })
     return uploadbox
 
-  def getchilditems(self, dirfilter):
+  def getchilditems(self, directory, goal):
     """get all the items for directories and files viewable at this level"""
-    if dirfilter is None:
-      depth = 0
-    else:
-      depth = dirfilter.count(os.path.sep)
-      if not dirfilter.endswith(os.path.extsep + self.translation_project.fileext):
-        depth += 1
-    diritems = []
-    for childdir in self.translation_project.browsefiles(dirfilter=dirfilter, depth=depth, includedirs=True, includefiles=False):
-      diritem = self.getdiritem(childdir)
-      diritems.append((childdir, diritem))
-    diritems.sort()
-    fileitems = []
-    for childfile in self.translation_project.browsefiles(dirfilter=dirfilter, depth=depth, includefiles=True, includedirs=False):
-      fileitem = self.getfileitem(childfile)
-      fileitems.append((childfile, fileitem))
-    fileitems.sort()
+    dir_items = []
+    for child_dir in directory.child_dirs.all():
+      dir_items.append((child_dir.name, self.getdiritem(child_dir, goal)))
+    file_items = []
+    for child_store in directory.child_stores.all():
+      file_items.append((child_store.name, self.getfileitem(child_store)))
     childitems = [diritem for childdir, diritem in diritems] + [fileitem for childfile, fileitem in fileitems]
     self.polarizeitems(childitems)
     return childitems
@@ -820,41 +778,30 @@ class ProjectIndex(pagelayout.PootleNavPage):
     self.polarizeitems(childitems)
     return childitems
 
-  def getgoalitems(self, dirfilter):
+  def getgoalitems(self, directory):
     """get all the items for directories and files viewable at this level"""
-    if dirfilter is None:
-      depth = 0
-    else:
-      depth = dirfilter.count(os.path.sep)
-      if not dirfilter.endswith(os.path.extsep + self.translation_project.fileext):
-        depth += 1
+    def get_all_goals(directory):
+      if directory is not None:
+        return list(directory.goal_set.all()) + get_all_goals(directory.parent)
+      else:
+        return []
+
     allitems = []
-    goalchildren = {}
     allchildren = []
-    for childname in self.translation_project.browsefiles(dirfilter=dirfilter, depth=depth, includedirs=True, includefiles=False):
-      allchildren.append(childname + os.path.sep)
-    for childname in self.translation_project.browsefiles(dirfilter=dirfilter, depth=depth, includedirs=False, includefiles=True):
-      allchildren.append(childname)
-    initial = dirfilter
-    if initial and not initial.endswith(os.path.extsep + self.translation_project.fileext):
-      initial += os.path.sep
-    if initial:
-      maxdepth = initial.count(os.path.sep)
-    else:
-      maxdepth = 0
+    for child_dir in directory.child_dirs:
+      allchildren.append(child_dir.name + os.path.sep)
+    for child_store in directory.child_stores:
+      allchildren.append(child_dir.name)
+
     # using a goal of "" means that the file has no goal
     nogoal = ""
     if self.currentgoal is None:
-      goalnames = self.translation_project.getgoalnames() + [nogoal]
+      goals = get_all_goals(self.translation_project.directory_root)
     else:
-      goalnames = [self.currentgoal]
+      goals = [self.currentgoal]
     goalfiledict = {}
-    for goalname in goalnames:
-      goalfiles = self.translation_project.getgoalfiles(goalname, dirfilter, maxdepth=maxdepth, expanddirs=True, includepartial=True)
-      goalfiles = [goalfile for goalfile in goalfiles if goalfile != initial]
-      goalfiledict[goalname] = goalfiles
-      for goalfile in goalfiles:
-        goalchildren[goalfile] = True
+    for goal in goals:
+      goalfiledict[goal.name] = list(list_stores(directory, None, goal))
     goalless = []
     for item in allchildren:
       itemgoals = self.translation_project.getfilegoals(item)
@@ -871,9 +818,8 @@ class ProjectIndex(pagelayout.PootleNavPage):
         allitems.extend(goalchilditems)
     return allitems
 
-  def getgoalitem(self, goalname, dirfilter, goalusers):
+  def getgoalitem(self, goal_obj, dirfilter, goalusers):
     """returns an item showing a goal entry"""
-    pofilenames = self.translation_project.getgoalfiles(goalname, dirfilter, expanddirs=True, includedirs=False)
     goal = {"actions": None, "icon": "goal", "isgoal": True, "goal": {"name": goalname}}
     if goalname:
       goal["title"] = goalname
@@ -881,7 +827,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       goal["title"] = localize("Not in a goal")
     goal["href"] = self.makelink("index.html", goal=goalname)
     if pofilenames:
-      actionlinks = self.getactionlinks("", LazyStats(self.translation_project, pofilenames), linksrequired=["mine", "review", "translate", "zip"], goal=goalname)
+      actionlinks = self.getactionlinks("", linksrequired=["mine", "review", "translate", "zip"], goal=goalname)
       goal["actions"] = actionlinks
     goaluserslist = []
     if goalusers:
@@ -900,74 +846,68 @@ class ProjectIndex(pagelayout.PootleNavPage):
         goal["goal"]["otherusers"] = unassignedusers
         goal["goal"]["adduser_title"] = localize("Add User")
     goal["stats"] = self.getitemstats("", pofilenames, len(pofilenames), {'goal': goalname})
-    projectstats = self.translation_project.getquickstats(pofilenames)
+    projectstats = self.translation_project.getquickstats(goal_obj)
     goal["data"] = self.getstats(self.translation_project, projectstats)
     return goal
 
-  def getdiritem(self, direntry, linksrequired=None, **newargs):
+  def getdiritem(self, directory, goal, linksrequired=None, **newargs):
     """returns an item showing a directory entry"""
-    pofilenames = self.translation_project.browsefiles(direntry)
-    basename = os.path.basename(direntry)
-    browseurl = self.getbrowseurl("%s/" % basename, **newargs)
-    diritem = {"href": browseurl, "title": basename, "icon": "folder", "isdir": True}
-    basename += "/"
-    actionlinks = self.getactionlinks(basename, LazyStats(self.translation_project, pofilenames), linksrequired=linksrequired)
+    browseurl = self.getbrowseurl("%s" % directory.pootle_path, **newargs)
+    diritem = {"href": browseurl, "title": directory.pootle_path, "icon": "folder", "isdir": True}
+    actionlinks = self.getactionlinks(directory, linksrequired=linksrequired)
     diritem["actions"] = actionlinks
-    if self.showgoals and "goal" in self.argdict:
-      goalfilenames = self.translation_project.getgoalfiles(self.currentgoal, dirfilter=direntry, includedirs=False, expanddirs=True)
-      diritem["stats"] = self.getitemstats(basename, goalfilenames, (len(goalfilenames), len(pofilenames)))
-      projectstats = self.translation_project.getquickstats(goalfilenames)
-      diritem["data"] = self.getstats(self.translation_project, projectstats)
+    
+    if self.showgoals and "goal" in self.request.GET:
+      diritem["stats"] = self.getitemstats(directory, self.currentgoal, (directory.num_stores(self.currentgoal), directory.num_stores()))
     else:
-      diritem["stats"] = self.getitemstats(basename, pofilenames, len(pofilenames))
-      projectstats = self.translation_project.getquickstats(pofilenames)
-      diritem["data"] = self.getstats(self.translation_project, projectstats)
+      diritem["stats"] = self.getitemstats(directory, self.currentgoal, directory.num_stores())
+
+    diritem["data"] = self.getstats(self.translation_project, directory, goal)
     return diritem
 
-  def getfileitem(self, fileentry, linksrequired=None, **newargs):
+  def getfileitem(self, store, linksrequired=None, **newargs):
     """returns an item showing a file entry"""
     if linksrequired is None:
-      if fileentry.endswith('.po'):
+      if store.name.endswith('.po'):
         linksrequired = ["mine", "review", "quick", "all", "po", "xliff", "ts", "csv", "mo", "update", "commit"]
       else:
         linksrequired = ["mine", "review", "quick", "all", "po", "xliff", "update", "commit"]
-    basename = os.path.basename(fileentry)
-    browseurl = self.getbrowseurl(basename, **newargs)
-    fileitem = {"href": browseurl, "title": basename, "icon": "file", "isfile": True}
-    actions = self.getactionlinks(basename, LazyStats(self.translation_project, [fileentry]), linksrequired=linksrequired)
+    browseurl = self.getbrowseurl(store.name, **newargs)
+    fileitem = {"href": browseurl, "title": store.name, "icon": "file", "isfile": True}
+    actions = self.getactionlinks(store, linksrequired=linksrequired)
     actionlinks = actions["extended"]
     if "po" in linksrequired:
-      poname = basename.replace(".xlf", ".po")
+      poname = store.name.replace(".xlf", ".po")
       polink = {"href": poname, "text": localize('PO file')}
       actionlinks.append(polink)
     if "xliff" in linksrequired and "translate" in self.rights:
-      xliffname = basename.replace(".po", ".xlf")
+      xliffname = store.name.replace(".po", ".xlf")
       xlifflink = {"href": xliffname, "text": localize('XLIFF file')}
       actionlinks.append(xlifflink)
     if "ts" in linksrequired and "translate" in self.rights:
-      tsname = basename.replace(".po", ".ts")
+      tsname = store.name.replace(".po", ".ts")
       tslink = {"href": tsname, "text": localize('Qt .ts file')}
       actionlinks.append(tslink)
     if "csv" in linksrequired and "translate" in self.rights:
-      csvname = basename.replace(".po", ".csv")
+      csvname = store.name.replace(".po", ".csv")
       csvlink = {"href": csvname, "text": localize('CSV file')}
       actionlinks.append(csvlink)
     if "mo" in linksrequired:
       if self.translation_project.db_translation_project.project.createmofiles and "pocompile" in self.rights:
-        moname = basename.replace(".po", ".mo")
+        moname = store.name.replace(".po", ".mo")
         molink = {"href": moname, "text": localize('MO file')}
         actionlinks.append(molink)
     if "update" in linksrequired and "admin" in self.rights:
       if versioncontrol.hasversioning(os.path.join(self.translation_project.podir,
-              self.dirname, basename)):
+              self.dirname, store.name)):
         # l10n: Update from version control (like CVS or Subversion)
-        updatelink = {"href": "index.html?editing=1&doupdate=1&updatefile=%s" % (basename), "text": localize('Update')}
+        updatelink = {"href": "index.html?editing=1&doupdate=1&updatefile=%s" % (store.name), "text": localize('Update')}
         actionlinks.append(updatelink)
     if "commit" in linksrequired and "commit" in self.rights:
       if versioncontrol.hasversioning(os.path.join(self.translation_project.podir,
-              self.dirname, basename)):
+              self.dirname, store.name)):
         # l10n: Commit to version control (like CVS or Subversion)
-        commitlink = {"href": "index.html?editing=1&docommit=1&commitfile=%s" % (basename), "text": localize('Commit')}
+        commitlink = {"href": "index.html?editing=1&docommit=1&commitfile=%s" % (store.name), "text": localize('Commit')}
         actionlinks.append(commitlink)
     # update the separators
     for n, actionlink in enumerate(actionlinks):
@@ -976,7 +916,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       else:
         actionlink["sep"] = ""
     fileitem["actions"] = actions
-    fileitem["stats"] = self.getitemstats(basename, [fileentry], None)
+    fileitem["stats"] = self.getitemstats(store, None, 1)
     fileitem["data"] = self.getstats(self.translation_project, self.translation_project.getquickstats([fileentry]))
     return fileitem
 
@@ -1023,19 +963,20 @@ class ProjectIndex(pagelayout.PootleNavPage):
      "assignto_text": localize("Assign To"),
      }
 
-  def getactionlinks(self, basename, projectstats, linksrequired=None, filepath=None, goal=None):
+  def getactionlinks(self, path_obj, linksrequired=None, filepath=None, goal=None):
     """get links to the actions that can be taken on an item (directory / file)"""
     if linksrequired is None:
       linksrequired = ["mine", "review", "quick", "all"]
     actionlinks = []
     actions = {}
     actions["goalform"] = None
-    if not basename or basename.endswith("/"):
-      baseactionlink = basename + "translate.html?"
-      baseindexlink = basename + "index.html?"
+    stats_totals   = path_obj.get_stats_totals(self.translation_project.checker)
+    if isinstance(path_obj, Directory):
+      baseactionlink = path_obj.pootle_path + "translate.html?"
+      baseindexlink = path_obj.pootle_path + "index.html?"
     else:
-      baseactionlink = "%s?translate=1" % basename
-      baseindexlink = "%s?index=1" % basename
+      baseactionlink = "%s?translate=1" % path_obj.pootle_path
+      baseindexlink = "%s?index=1" % path_obj.pootle_path
     if goal:
       baseactionlink += "&goal=%s" % goal
       baseindexlink += "&goal=%s" % goal
@@ -1051,7 +992,6 @@ class ProjectIndex(pagelayout.PootleNavPage):
         actionlinks.append(link)
     addoptionlink("editing", None, "editing", localize("Show Editing Functions"),
                                               localize("Show Statistics"))
-    addoptionlink("track", None, "showtracks", localize("Show Tracks"), localize("Hide Tracks"))
     # l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
     addoptionlink("check", "translate", "showchecks", localize("Show Checks"), localize("Hide Checks"))
     addoptionlink("goal", None, "showgoals", localize("Show Goals"), localize("Hide Goals"))
@@ -1059,8 +999,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     actions["basic"] = actionlinks
     actionlinks = []
     if not goal:
-      goalfile = os.path.join(self.dirname, basename)
-      filegoals = self.translation_project.getfilegoals(goalfile)
+      filegoals = self.translation_project.getfilegoals(path_obj.pootle_path)
       if self.showgoals:
         if len(filegoals) > 1:
           #TODO: This is not making sense. For now make it an unclickable link
@@ -1073,7 +1012,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         minelink = localize("Translate My Strings")
       else:
         minelink = localize("View My Strings")
-      mystats = projectstats.assign.get(self.request.user.username, [])
+      mystats = stats.assign.get(self.request.user.username, [])
       if len(mystats):
         minelink = {"href": self.makelink(baseactionlink, assignedto=self.request.user.username), "text": minelink}
       else:
@@ -1081,7 +1020,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       actionlinks.append(minelink)
       if "quick" in linksrequired and "translate" in self.rights:
         if len(mystats) > 0: # A little shortcut to avoid the call to projectstats.units if we don't have anything assigned
-          mytranslatedstats = [statsitem for statsitem in mystats if statsitem in projectstats.units.get("translated", [])]
+          mytranslatedstats = [statsitem for statsitem in mystats if statsitem in stats.units.get("translated", [])]
         else:
           mytranslatedstats = []
         quickminelink = localize("Quick Translate My Strings")
@@ -1090,7 +1029,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         else:
           quickminelink = {"title": localize("No untranslated strings assigned to you"), "text": quickminelink}
         actionlinks.append(quickminelink)
-    if "review" in linksrequired and projectstats.units.get("check-hassuggestion", []):
+    if "review" in linksrequired and stats_totals.get("check-hassuggestion", 0):
       if "review" in self.rights:
         reviewlink = localize("Review Suggestions")
       else:
@@ -1102,7 +1041,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         quicklink = localize("Quick Translate")
       else:
         quicklink = localize("View Untranslated")
-      if projectstats.basic.get("translated", 0) < projectstats.basic.get("total", 0):
+      if stats_totals['translated'] < stats_totals['total']:
         quicklink = {"href": self.makelink(baseactionlink, fuzzy=1, untranslated=1), "text": quicklink}
       else:
         quicklink = {"title": localize("No untranslated items"), "text": quicklink}
@@ -1145,44 +1084,41 @@ class ProjectIndex(pagelayout.PootleNavPage):
       actions["basic"][-1]["sep"] = ""
     return actions
 
-  def getitemstats(self, basename, pofilenames, numfiles, url_opts={}):
+  def getitemstats(self, path_obj, goal, numfiles, url_opts={}):
     """returns a widget summarizing item statistics"""
-    stats = {"summary": self.describestats(self.translation_project, self.translation_project.getquickstats(pofilenames), numfiles), "checks": [], "tracks": [], "assigns": []}
-    if not basename or basename.endswith("/"):
-      linkbase = basename + "translate.html?"
+    stats = {"summary": self.describestats(self.translation_project,
+                                           path_obj,
+                                           goal,
+                                           numfiles), "checks": [], "tracks": [], "assigns": []}
+    if isinstance(path_obj, Directory):
+      linkbase = path_obj.pootle_path + "translate.html?"
     else:
-      linkbase = basename + "?translate=1"
-    if pofilenames:
-      if self.showchecks:
-        stats["checks"] = self.getcheckdetails(pofilenames, linkbase, url_opts)
-      if self.showtracks:
-        trackfilter = (self.dirfilter or "") + basename
-        trackpofilenames = self.translation_project.browsefiles(trackfilter)
-        projecttracks = self.translation_project.gettracks(trackpofilenames)
-        stats["tracks"] = self.gettrackdetails(projecttracks, linkbase)
-      if self.showassigns:
-        if not basename or basename.endswith("/"):
-          removelinkbase = "?showassigns=1&removeassigns=1"
-        else:
-          removelinkbase = "?showassigns=1&removeassigns=1&removefilter=%s" % basename
-        stats["assigns"] = self.getassigndetails(pofilenames, linkbase, removelinkbase)
+      linkbase = path_obj.pootle_path + "?translate=1"
+    if self.showchecks:
+      stats["checks"] = self.getcheckdetails(path_obj, goal, linkbase, url_opts)
+    if self.showassigns:
+      if not basename or basename.endswith("/"):
+        removelinkbase = "?showassigns=1&removeassigns=1"
+      else:
+        removelinkbase = "?showassigns=1&removeassigns=1&removefilter=%s" % basename
+      stats["assigns"] = self.getassigndetails(path_obj, linkbase, removelinkbase)
     return stats
 
   def gettrackdetails(self, projecttracks, linkbase):
     """return a list of strings describing the results of tracks"""
     return [trackmessage for trackmessage in projecttracks]
 
-  def getcheckdetails(self, pofilenames, linkbase, url_opts={}):
+  def getcheckdetails(self, path_obj, goal, linkbase, url_opts={}):
     """return a list of strings describing the results of checks"""
-    projectstats = self.translation_project.combine_unit_stats(pofilenames)
-    total = max(len(projectstats.get("total", [])), 1)
+    property_stats = path_obj.get_property_stats(self.translation_project.checker, goal)
+    total = len(property_stats['total'])
     checklinks = []
-    keys = projectstats.keys()
+    keys = stats.keys()
     keys.sort()
     for checkname in keys:
       if not checkname.startswith("check-"):
         continue
-      checkcount = len(projectstats[checkname])
+      checkcount = len(property_stats[checkname])
       checkname = checkname.replace("check-", "", 1)
       if total and checkcount:
         stats = nlocalize("%d string (%d%%) failed", "%d strings (%d%%) failed", checkcount, checkcount, (checkcount * 100 / total))

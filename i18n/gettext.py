@@ -45,8 +45,12 @@ from django.utils.functional import lazy
 # It's the responsibility of Pootle's initialization code to initialize the
 # global POTree object and then to replace get_lang and check_for_language
 # with their real implementations.
+
+class DummyLanguage(object):
+    code = 'en'
+
 class DummyTranslation(object):
-    languagecode = 'en'
+    language = DummyLanguage()
 
     def gettext(self, message):
         return message
@@ -55,10 +59,16 @@ class DummyTranslation(object):
         return message
 
     def ngettext(self, singular, plural, number):
-        return plural
+        if number == 1:
+            return singular
+        else:
+            return plural
 
     def ungettext(self, singular, plural, number):
-        return plural
+        if number == 1:
+            return singular
+        else:
+            return plural
 
 # Must be replaced after the bootstrapping phase by a function that returns
 # and actual pootle Project object for the language code.
@@ -106,8 +116,10 @@ def get_default_translation():
     global _default_translation
     if isinstance(_default_translation, DummyTranslation):
         from django.conf import settings
-        if check_for_language(settings.LANGUAGE_CODE):
+        try:
             _default_translation = get_lang(settings.LANGUAGE_CODE)
+        except:
+            pass
     return _default_translation
 
 def get_translation():
