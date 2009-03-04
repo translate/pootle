@@ -259,6 +259,15 @@ def get_projects(language=None):
 
 ################################################################################
 
+def get_extension(language, project):
+    ext = project.localfiletype
+    if language.code == 'templates' and ext == 'po':
+        return 'pot'
+    else:
+        return ext
+
+################################################################################
+
 def translate_gnu_template(translation_project, template_path):
     template_path_parts = template_path.split(os.sep)
     template_path_parts[-1] = "%s.%s" % (translation_project.language.code,

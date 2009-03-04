@@ -61,7 +61,8 @@ translation_project_non_db_state = {}
 
 def make_translation_project(language, project):
     project_dir = project_tree.get_project_dir(project)
-    file_style  = project_tree.get_file_style(project_dir, language, project)
+    ext         = project_tree.get_extension(language, project)
+    file_style  = project_tree.get_file_style(project_dir, language, project, ext=ext)
     real_path   = project_tree.get_translation_project_dir(language, project_dir, file_style)
     directory   = Directory.objects.root\
         .get_or_make_subdir(language.code)\
