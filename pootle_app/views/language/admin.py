@@ -25,7 +25,7 @@ from django.forms.formsets import formset_factory, BaseFormSet
 from pootle_app.views.util  import render_to_kid, KidRequestContext
 from pootle_app.profile import PootleProfile
 from pootle_app.permissions import get_pootle_permissions, PermissionSet, \
-    get_matching_permissions, get_codename_permission_map
+    get_matching_permissions
 
 from Pootle import pan_app
 
