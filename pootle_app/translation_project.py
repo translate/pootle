@@ -32,6 +32,7 @@ from django.contrib.auth.models         import User, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.conf                        import settings
 from django.db                          import models
+from django.db.models.signals           import pre_delete
 
 from translate.filters import checks
 from translate.convert import po2csv, po2xliff, xliff2po, po2ts, po2oo
@@ -86,7 +87,7 @@ def scan_translation_projects():
                 return None
             except IndexError:
                 return None
-            
+
     for language in Language.objects.include_hidden().all():
         for project in Project.objects.all():
             translation_project = get_or_make(language, project)
@@ -348,51 +349,6 @@ class TranslationProject(models.Model):
             self.non_db_state.scanpofiles()
         except Exception, e:
             print "Failed to initialize (%s): %s" % (languagecode, e)
-
-    def converttemplates(self, request):
-        """creates PO files from the templates"""
-
-
-        projectdir = os.path.join(pan_app.get_po_tree().podirectory, self.project.code)
-        if not os.path.exists(projectdir):
-            os.mkdir(projectdir)
-        templatesdir = os.path.join(projectdir, "templates")
-        if not os.path.exists(templatesdir):
-            templatesdir = os.path.join(projectdir, "pot")
-            if not os.path.exists(templatesdir):
-                templatesdir = projectdir
-        if pan_app.get_po_tree().isgnustyle(self.project.code):
-            self.filestyle = "gnu"
-        else:
-            self.filestyle = "std"
-        templates = pan_app.get_po_tree().gettemplates(self.project.code)
-        if self.filestyle == "gnu":
-            self.abs_real_path = projectdir
-            if not templates:
-                raise NotImplementedError("Cannot create GNU-style translation project without templates")
-        else:
-            self.abs_real_path = os.path.join(projectdir, self.languagecode)
-            if not os.path.exists(self.abs_real_path):
-                os.mkdir(self.abs_real_path)
-        for potfilename in templates:
-            inputfile = open(os.path.join(templatesdir, potfilename), "rb")
-            outputfile = cStringIO.StringIO()
-            if self.filestyle == "gnu":
-                pofilename = self.languagecode + os.extsep + "po"
-            else:
-                pofilename = potfilename[:-len(os.extsep+"pot")] + os.extsep + "po"
-            origpofilename = os.path.join(self.abs_real_path, pofilename)
-            if os.path.exists(origpofilename):
-                origpofile = open(origpofilename)
-            else:
-                origpofile = None
-                if not os.path.exists(os.path.dirname(origpofilename)):
-                    os.makedirs(os.path.dirname(origpofilename))
-            pot2po.convertpot(inputfile, outputfile, origpofile)
-            outfile = open(origpofilename, "wb")
-            outfile.write(outputfile.getvalue())
-            outfile.close()
-            self.scanpofiles()
 
     def filtererrorhandler(self, functionname, str1, str2, e):
         print "error in filter %s: %r, %r, %s" % (functionname, str1, str2, e)
@@ -1177,3 +1133,8 @@ class TranslationProject(models.Model):
 #     if Goal.objects.filter(translation_project=instance).count() == 0:
 #         goal = Goal(name='', translation_project=instance)
 #         goal.save()
+
+def delete_directory(sender, instance, **kwargs):
+    instance.directory.delete()
+
+#pre_delete.connect(delete_directory, sender=TranslationProject)

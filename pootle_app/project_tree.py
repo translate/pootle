@@ -34,21 +34,27 @@ from pootle_app.store_iteration import iter_stores
 
 from Pootle.pootlefile import absolute_real_path, relative_real_path
 
-def get_project_code(base_dir, project_dir):
-    return project_dir[len(base_dir):].split(os.sep)[1]
+def get_project_code(project_dir):
+    return project_dir.split(os.sep)[0]
 
-def get_project(base_dir, project_dir, project):
-    project_code = get_project_code(strip_trailing_slash(base_dir), project_dir)
+def get_project(project_dir, project):
+    project_code = get_project_code(relative_real_path(project_dir))
     if project is not None and project.code == project_code:
         return project
     else:
         return Project.objects.get(code=project_code)
 
+def language_match_filename(language_code, path_name):
+    name, ext = os.path.splitext(os.path.basename(path_name))
+    return langdata.languagematch(language_code, name)
+ 
+def direct_language_match_filename(language_code, path_name):
+    name, ext = os.path.splitext(os.path.basename(path_name))
+    return language_code == name
+
 def _search_file_style(project_dir, language_code, depth=0, max_depth=3, ext="po"):
     #Let's check to see if we specifically find the correct gnu file
     found_gnu_file = False
-    if not os.path.isdir(project_dir):
-        return None
     full_ext = os.extsep + ext
     dirs_to_inspect = []
     for path_name in os.listdir(project_dir):
@@ -62,10 +68,8 @@ def _search_file_style(project_dir, language_code, depth=0, max_depth=3, ext="po
                 continue
             dirs_to_inspect.append(full_path_name)
         elif path_name.endswith(full_ext):
-            if langdata.languagematch(language_code, path_name[:-len(full_ext)]):
+            if direct_language_match_filename(language_code, path_name):
                 found_gnu_file = True
-            elif not langdata.languagematch(None, path_name[:-len(full_ext)]):
-                return "nongnu"
     if depth < max_depth:
         for dir in dirs_to_inspect:
             style = _search_file_style(full_path_name, language_code, depth+1, max_depth, ext)
@@ -79,20 +83,25 @@ def _search_file_style(project_dir, language_code, depth=0, max_depth=3, ext="po
         return "nongnu"
 
 def get_file_style(project_dir, language=None, project=None, depth=0, max_depth=3, ext="po"):
-    def get_language_code(language):
+    def get_language_code(language, project):
         if language is not None:
-            return language.code
+            if language.code != 'templates':
+                return language.code
+            else:
+                return project.code
         else:
             return None
 
     try:
-        project = get_project(settings.PODIRECTORY, project_dir, project)
+        if not os.path.isdir(project_dir):
+            return None
+        project = get_project(project_dir, project)
         style = project.treestyle
         if style in ("gnu", "nongnu"):
             return style
     except Project.DoesNotExist:
         pass
-    return _search_file_style(project_dir, get_language_code(language), depth, max_depth, ext)
+    return _search_file_style(project_dir, get_language_code(language, project), depth, max_depth, ext)
 
 def get_project_dir(project, make_dirs=False):
     project_dir = absolute_real_path(project.code)
@@ -105,7 +114,7 @@ def get_project_dir(project, make_dirs=False):
 
 def get_matching_language_dirs(project_dir, language_dir, language):
     return [lang_dir for lang_dir in os.listdir(project_dir)
-            if langdata.languagematch(language.code, language_dir)]
+            if language.code == lang_dir]
 
 def get_non_existant_language_dir(project_dir, language, file_style, make_dirs):
     if file_style == "gnu":
@@ -122,11 +131,8 @@ def get_or_make_language_dir(project_dir, language_dir, language, file_style, ma
     if len(matching_language_dirs) == 0:
         # if no matching directories can be found, check if it is a GNU-style project
         return get_non_existant_language_dir(project_dir, language, file_style, make_dirs)
-    elif len(matching_language_dirs) == 1:
-        return os.path.join(project_dir, matching_language_dirs[0])
     else:
-        # TODO: handle multiple regions
-        raise IndexError("multiple regions defined for language %s, project %s" % (language.code, project.code))
+        return os.path.join(project_dir, matching_language_dirs[0])
 
 def get_language_dir(project_dir, language, file_style, make_dirs):
     language_dir = os.path.join(project_dir, language.code)
@@ -141,7 +147,10 @@ def get_translation_project_dir(language, project_dir, file_style, make_dirs=Fal
     If make_dirs is True, then we will create project and language
     directories as necessary.
     """
-    return get_language_dir(project_dir, language, file_style, make_dirs)
+    if file_style == 'gnu':
+        return project_dir
+    else:
+        return get_language_dir(project_dir, language, file_style, make_dirs)
 
 def has_project(language, project):
     try:
@@ -153,13 +162,13 @@ def has_project(language, project):
 def is_hidden_file(path):
     return path[0] == '.'
 
-def split_files_and_dirs(ignored_files, ext, real_dir):
+def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
     files = []
     dirs = []
     for child_path in [child_path for child_path in os.listdir(real_dir)
                        if child_path not in ignored_files and not is_hidden_file(child_path)]:
         full_child_path = os.path.join(real_dir, child_path)
-        if os.path.isfile(full_child_path) and full_child_path.endswith(ext):
+        if os.path.isfile(full_child_path) and full_child_path.endswith(ext) and file_filter(full_child_path):
             files.append(child_path)
         elif os.path.isdir(full_child_path):
             dirs.append(child_path)
@@ -186,8 +195,8 @@ def add_items(fs_items, db_items, create_db_item):
 
     return items
 
-def add_files(ignored_files, ext, real_dir, db_dir):
-    files, dirs = split_files_and_dirs(ignored_files, ext, real_dir)
+def add_files(ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True):
+    files, dirs = split_files_and_dirs(ignored_files, ext, real_dir, file_filter)
     existing_stores = dict((store.name, store) for store in db_dir.child_stores.all())
     existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.all())
 
@@ -201,40 +210,7 @@ def add_files(ignored_files, ext, real_dir, db_dir):
 
     for db_subdir in db_subdirs:
         fs_subdir = os.path.join(real_dir, db_subdir.name)
-        add_files(ignored_files, ext, fs_subdir, db_subdir)
-
-def add_gnu_items(ext, fs_dirs, db_dirs, real_dir, db_dir):
-    fs_dirs_set = set(fs_dirs)
-    db_dirs_set = set(db_dirs)
-
-    dirs_to_delete = db_dirs_set - fs_dirs_set
-    dirs_to_create = fs_dirs_set - db_dirs_set
-
-    for name in dirs_to_delete:
-        directory = db_dirs[name]
-        for store in directory.child_stores.all():
-            store.delete()
-        directory.delete()
-
-    for name in dirs_to_create:
-        directory = Directory(name=name, parent=db_dir)
-        directory.save()
-        store_name = name + ext
-        store = Store(real_path = relative_real_path(os.path.join(real_dir, store_name)),
-                      parent    = directory,
-                      name      = store_name)
-        store.save()
-
-def add_gnu_files(ignored_files, ext, real_dir, db_dir):
-    """adds the files to the set of files for this project"""
-    files, dirs = split_files_and_dirs(ignored_files, ext, real_dir)
-    fake_language_dirs = [filename[:-len(ext)] for filename in files]
-    db_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.all())
-    add_gnu_items(ext, fake_language_dirs, db_dirs, real_dir, db_dir)
-    for dirname in dirs:
-        fs_subdir = os.path.join(real_dir, dirname)
-        db_subdir = db_dir.get_or_make_subdir(dirname)
-        add_gnu_files(ignored_files, ext, fs_subdir, db_subdir)
+        add_files(ignored_files, ext, fs_subdir, db_subdir, file_filter)
 
 def get_translation_project_root(translation_project):
     return Directory.objects.root.get_or_make_subdir(translation_project.project.code).get_subdir(translation_project.language.code)
@@ -247,7 +223,8 @@ def scan_translation_project_files(translation_project):
     ignored_files = set(p.strip() for p in project.ignoredfiles.split(','))
     ext           = os.extsep + translation_project.project.localfiletype
     if translation_project.file_style == 'gnu':
-        add_gnu_files(ignored_files, ext, real_path, directory)
+        add_files(ignored_files, ext, real_path, directory,
+                  lambda filename: direct_language_match_filename(translation_project.language.code, filename))
     else:
         add_files(ignored_files, ext, real_path, directory)
 
@@ -297,61 +274,52 @@ def convert_template(template_path, target_path):
     finally:
         output_file.close()
 
-def get_template_ext(translation_project):
-    ext = translation_project.project.localfiletype
-    if ext == 'po':
-        return 'pot'
-    else:
-        return ext
+def get_translated_name_gnu(translation_project, template_path):
+    path_parts = template_path.split(os.sep)
+    path_parts[-1] =  "%s.%s" % (translation_project.language.code,
+                                 translation_project.project.localfiletype)
+    return os.sep.join(path_parts)
 
-def get_gnu_template_name(translation_project):
-    return "%s.%s" % (translation_project.project.code,
-                      get_template_ext(translation_project))
+def is_valid_template_file_gnu(template_translation_project, translation_project, filename):
+    def get_gnu_template_name():
+        return "%s.%s" % (translation_project.project.code,
+                          get_extension(template_translation_project.language, template_translation_project.project))
 
-def get_gnu_translated_name(translation_project):
-    return "%s.%s" % (translation_project.language.code,
-                      translation_project.project.localfiletype)
+    return get_gnu_template_name() == filename
 
-def convert_gnu_templates(template_translation_project, translation_project):
-    template_name = get_gnu_template_name(translation_project)
-    translated_name = get_gnu_translated_name(translated_project)
-    for dirpath, dirnames, filenames in os.walk(template_translation_project.abs_real_path):
-        for filename in filenames:
-            if filename == template_name:
-                convert_template(os.path.join(dirpath, template_name),
-                                 os.path.join(dirpath, translated_name))
+def get_translated_name(translation_project, template_path):
+    def to_non_template_name(translation_project, filename):
+        name, ext = os.path.splitext(filename)
+        return name + '.' + translation_project.project.localfiletype
 
-def is_valid_template_file(translation_project, filename):
-    name, ext = os.path.splitext(filename)
-    if ext == '.' + get_template_ext(translation_project):
-        return True
-    else:
-        return False
-
-def to_non_template_name(translation_project, filename):
-    name, ext = os.path.splitext(filename)
-    return name + '.' + translation_project.project.localfiletype
-
-def get_non_gnu_translated_name(translation_project, template_path):
     relative_template_path = relative_real_path(template_path)
     path_parts = relative_template_path.split(os.sep)
     path_parts[1] = translation_project.language.code
     path_parts[-1] = to_non_template_name(translation_project, path_parts[-1])
     return absolute_real_path(os.sep.join(path_parts))
 
-def convert_non_gnu_templates(template_translation_project, translation_project):
+def is_valid_template_file(template_translation_project, translation_project, filename):
+    name, ext = os.path.splitext(filename)
+    if ext == '.' + get_extension(translation_project.language, translation_project.project):
+        return True
+    else:
+        return False
+
+def convert_templates_real(template_translation_project, translation_project, is_valid_template_file, get_translated_name):
     for dirpath, dirnames, filenames in os.walk(template_translation_project.abs_real_path):
         for filename in filenames:
-            if is_valid_template_file(translation_project, filename):
-                full_template_path = os.path.join(dirpath, filename)
-                full_translated_path = get_non_gnu_translated_name(translation_project, full_template_path)
+            if is_valid_template_file(template_translation_project, translation_project, filename):
+                full_template_path   = os.path.join(dirpath, filename)
+                full_translated_path = get_translated_name(translation_project, full_template_path)
                 convert_template(full_template_path, full_translated_path)
         
 def convert_templates(template_translation_project, translation_project):
-    scan_translation_project_files(template_translation_project)
     if translation_project.file_style == 'gnu':
-        convert_gnu_templates(template_translation_project, translation_project)
+        convert_templates_real(template_translation_project, translation_project,
+                               is_valid_template_file_gnu, get_translated_name_gnu)
     else:
-        convert_non_gnu_templates(template_translation_project, translation_project)
+        convert_templates_real(template_translation_project, translation_project,
+                               is_valid_template_file_gnu, get_translated_name_gnu)
+    scan_translation_project_files(template_translation_project)
     scan_translation_project_files(translation_project)
     
