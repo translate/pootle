@@ -23,6 +23,7 @@ import bisect
 
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import pre_delete
 
 from translate.storage import statsdb
 
@@ -328,6 +329,16 @@ class Directory(models.Model):
 
     def __str__(self):
         return self.name
+
+def delete_children(sender, instance, **kwargs):
+    """Before deleting a directory, delete all its children."""
+    for child_store in instance.child_stores.all():
+        child_store.delete()
+
+    for child_dir in instance.child_dirs.all():
+        child_dir.delete()
+
+pre_delete.connect(delete_children, sender=Directory)
 
 ################################################################################
 
