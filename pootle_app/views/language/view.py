@@ -25,7 +25,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanen
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.translation import ugettext as _
 
-from Pootle import indexpage, pan_app, projects, adminpages
+from Pootle import indexpage, pan_app, projects
 from Pootle.misc.jtoolkit_django import process_django_request_args
 
 from pootle_app.views.util  import render_to_kid, render_jtoolkit
@@ -41,6 +41,9 @@ from pootle_app.profile     import get_profile
 
 from project_index import view as project_index_view
 from translate_page import find_and_display
+from admin import view as translation_project_admin_view
+
+################################################################################
 
 def get_language(f):
     def decorated_f(request, language_code, *args, **kwargs):
@@ -70,14 +73,6 @@ def get_translation_project(f):
             return redirect('/%s' % language.code, message=_("The project %s does not exist for the language %s" % (project.code, language.code)))
     return decorated_f
 
-@get_language
-def language_index(request, language):
-    return render_jtoolkit(indexpage.LanguageIndex(language, request))
-
-@get_translation_project
-def translation_project_admin(request, translation_project):
-    return render_jtoolkit(adminpages.TranslationProjectAdminPage(translation_project, request, process_django_request_args(request)))
-
 def set_request_context(f):
     def decorated_f(request, translation_project, *args, **kwargs):
         # For now, all permissions in a translation project are
@@ -87,6 +82,17 @@ def set_request_context(f):
         request.translation_project = translation_project
         return f(request, translation_project, *args, **kwargs)
     return decorated_f
+
+################################################################################
+
+@get_language
+def language_index(request, language):
+    return render_jtoolkit(indexpage.LanguageIndex(language, request))
+
+@get_translation_project
+@set_request_context
+def translation_project_admin(request, translation_project):
+    return translation_project_admin_view(request, translation_project)
 
 @get_translation_project
 @set_request_context

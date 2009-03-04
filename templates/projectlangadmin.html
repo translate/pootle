@@ -38,65 +38,10 @@ from Pootle.templates import pootlepage
             This is a standard style project (one directory per language).
           </div>
 
-          <form action="" method="post" name="rightsform" id="rightsform">
-            <h3 class="title" py:content="permissions_title">User Permissions</h3>
-	    
+          <form action="" method="post" name="permissionsform" id="permissionsform">
             <table cellpadding="1" cellspacing="1">
-              <tr>
-                <td colspan="1" rowspan="1">
-                  <h3 class="title" py:content="username_title">Username</h3>
-                </td>
-
-                <td colspan="1" rowspan="1">
-                  <h3 class="title" py:content="rights_title">Rights</h3>
-                </td>
-
-                <td colspan="1" rowspan="1">
-                  <h3 class="title" py:content="remove_title">Remove</h3>
-                </td>
-              </tr>
-	      
-              <tr py:for="username in users_with_rights">
-                <td colspan="1" rowspan="1" py:content="username">username</td>
-		
-                <td colspan="1" rowspan="1">
-                  <select multiple="multiple" name="rights-${username}">
-                    <option py:for="rightcode, rightname in rightnames" py:attrs="value=rightcode, selected=rightcode in rights[username] or None" py:content="rightname">
-                      Right
-                    </option>
-                  </select>
-                  <input type="hidden" name="rights-${username}" value="existence"/>
-                  <input type="hidden" name="allowmultikey" value="rights-${username}"/>
-                </td>
-		  
-                <td colspan="1" rowspan="1">
-                  <div py:if="user_details[username].delete" py:strip="True">
-                    <input type="checkbox" name="rightsremove-${username}"/>
-                    <span py:content="user_details[username].remove_text">Remove username</span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td colspan="1" rowspan="1">
-                  <select name="rightsnew-username">
-                    <option value="" selected="selected" py:content="adduser_text">(select to add user)</option>
-                    <option py:for="username in users_without_rights" py:attrs="value=username" py:content="user_details[username].description"/>
-                  </select>
-                </td>
-
-                <td colspan="1" rowspan="1">
-                  <select multiple="multiple" name="rightsnew">
-                    <option py:for="rightcode, rightname in rightnames" py:attrs="value=rightcode, selected=rightcode in rights.default or None" py:content="rightname">
-                      Right
-                    </option>
-                  </select>
-                  <input type="hidden" name="allowmultikey" value="rightsnew"/>
-                </td>
-		
-                <td colspan="1" rowspan="1" />
-              </tr>
-            </table>
+	      <tr py:replace="XML(permission_set_formset.as_table())"><td>Username</td>Options</tr>
+	    </table>
             <input type="submit" name="doupdaterights" value="${updaterights_text}" />
           </form>
         </div>
