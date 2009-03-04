@@ -78,11 +78,13 @@ def process_get(request, project):
     if request.method == 'GET':
         try:
             language_code = request.GET['updatelanguage']
-            translation_project = Translation.objects.get(language__code=language_code, project=project)
+            translation_project = TranslationProject.objects.get(language__code=language_code, project=project)
+            template_translation_project = TranslationProject.objects.get(language__code='templates',
+                                                                          project=translation_project.project)
             if 'initialize' in request.GET:
                 translation_project.initialize(request, language_code)
             elif 'doupdatelanguage' in request.GET:
-                translation_project.converttemplates(request)
+                project_tree.convert_templates(template_translation_project, translation_project)
         except KeyError:
             pass
 
@@ -93,7 +95,8 @@ def project_admin(request, project_code):
     process_get(request, project)
     process_post(request, project)
 
-    existing_languages = project_tree.get_languages(project)
+    existing_languages = [translation_project.language for translation_project
+                          in TranslationProject.objects.filter(project=project)]
     formset = LanguageFormset(queryset=existing_languages)
     new_language_form = make_new_language_form(existing_languages)
 

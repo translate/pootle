@@ -28,6 +28,7 @@ from Pootle.misc import jtoolkit_django
 from pootle_app.views.util import render_to_kid
 from pootle_app.views.util import render_jtoolkit
 from pootle_app import project_tree
+from pootle_app.core import Language
 
 def index(request, *path_vars):
     return render_jtoolkit(indexpage.PootleIndex(request))
@@ -37,7 +38,7 @@ def about(request):
 
 def robots(request):
     """generates the robots.txt file"""
-    langcodes = [language.code for language in project_tree.get_languages()]
+    langcodes = [language.code for language in Language.objects.include_hidden().all()]
     excludedfiles = ["login.html", "register.html", "activate.html"]
     content = "User-agent: *\n"
     for excludedfile in excludedfiles:

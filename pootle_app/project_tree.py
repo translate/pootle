@@ -19,15 +19,18 @@
 # along with Pootle; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-import os.path
+import os
+import cStringIO
 from django.conf import settings
 
 from translate.lang import data as langdata
+from translate.convert import pot2po
 
-from pootle_app.core      import Project, Language
-from pootle_app.fs_models import Directory, Store
-from pootle_app.url_manip import strip_trailing_slash
-from pootle_app.language  import try_language_code
+from pootle_app.core            import Project, Language
+from pootle_app.fs_models       import Directory, Store
+from pootle_app.url_manip       import strip_trailing_slash
+from pootle_app.language        import try_language_code
+from pootle_app.store_iteration import iter_stores
 
 from Pootle.pootlefile import absolute_real_path, relative_real_path
 
@@ -254,44 +257,92 @@ def get_projects(language=None):
     else:
         return [project for project in Project.objects.all() if has_project(language, project)]
 
-def get_languages(project=None):
-    """returns a list of valid languagecodes for a given project or
-    all projects"""
-    if project is None:
-        return Language.objects.all()
+################################################################################
+
+def translate_gnu_template(translation_project, template_path):
+    template_path_parts = template_path.split(os.sep)
+    template_path_parts[-1] = "%s.%s" % (translation_project.language.code,
+                                         translation_project.project.localfiletype)
+    return os.sep.join(template_path_parts)
+
+def ensure_target_dir_exists(target_path):
+    target_dir = os.path.dirname(target_path)
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+
+def read_original_target(target_path):
+    try:
+        return open(target_path, "rb")
+    except:
+        return None
+
+def convert_template(template_path, target_path):
+    ensure_target_dir_exists(target_path)
+    template_file = open(template_path, "rb")
+    target_file   = cStringIO.StringIO()
+    original_file = read_original_target(target_path)
+    pot2po.convertpot(template_file, target_file, original_file)
+    try:
+        output_file = open(target_path, "wb")
+        output_file.write(target_file.getvalue())
+    finally:
+        output_file.close()
+
+def get_template_ext(translation_project):
+    ext = translation_project.project.localfiletype
+    if ext == 'po':
+        return 'pot'
     else:
-        project_dir = os.path.join(settings.PODIRECTORY, project.code)
-        if not os.path.exists(project_dir):
-            return []
-        if project.treestyle == "gnu":
-            return [language for language in Language.objects.all()
-                    if has_project(language, project)]
-        else:
-            def get_matching_code(code, code_language_map):
-                if langdata.languagematch(None, code):
-                    return try_language_code(code,
-                                             lambda code: code in code_language_map,
-                                             lambda code: code)
-                else:
-                    return None
+        return ext
 
-            # Build a (language_code -> language) map
-            code_language_map = dict((language.code, language) for language in Language.objects.all())
-            # Build a list of subdirectories
-            subdirs = [path_entry for path_entry in os.listdir(project_dir)
-                       if os.path.isdir(os.path.join(project_dir, path_entry))]
-            # For each subdirectory in subdirs, convert the potential
-            # language code that it represents to an existing language
-            # code. This will for example convert pt_BR to pt, if
-            # there is a directory called 'pt_BR', but only a language
-            # defined as 'pt'.
-            matching_codes = set(get_matching_code(code, code_language_map) for code in subdirs)
-            # get_matching_code returns None if there is no matching
-            # language defined for a subdirectory. This means that
-            # None might appear in our set. Remove it, if it's in
-            # there.
-            matching_codes.remove(None)
-            # Return a list of languages sorted in order of their
-            # language codes.
-            return [code_language_map[code] for code in sorted(matching_codes)]
+def get_gnu_template_name(translation_project):
+    return "%s.%s" % (translation_project.project.code,
+                      get_template_ext(translation_project))
 
+def get_gnu_translated_name(translation_project):
+    return "%s.%s" % (translation_project.language.code,
+                      translation_project.project.localfiletype)
+
+def convert_gnu_templates(template_translation_project, translation_project):
+    template_name = get_gnu_template_name(translation_project)
+    translated_name = get_gnu_translated_name(translated_project)
+    for dirpath, dirnames, filenames in os.walk(template_translation_project.abs_real_path):
+        for filename in filenames:
+            if filename == template_name:
+                convert_template(os.path.join(dirpath, template_name),
+                                 os.path.join(dirpath, translated_name))
+
+def is_valid_template_file(translation_project, filename):
+    name, ext = os.path.splitext(filename)
+    if ext == '.' + get_template_ext(translation_project):
+        return True
+    else:
+        return False
+
+def to_non_template_name(translation_project, filename):
+    name, ext = os.path.splitext(filename)
+    return name + '.' + translation_project.project.localfiletype
+
+def get_non_gnu_translated_name(translation_project, template_path):
+    relative_template_path = relative_real_path(template_path)
+    path_parts = relative_template_path.split(os.sep)
+    path_parts[1] = translation_project.language.code
+    path_parts[-1] = to_non_template_name(translation_project, path_parts[-1])
+    return absolute_real_path(os.sep.join(path_parts))
+
+def convert_non_gnu_templates(template_translation_project, translation_project):
+    for dirpath, dirnames, filenames in os.walk(template_translation_project.abs_real_path):
+        for filename in filenames:
+            if is_valid_template_file(translation_project, filename):
+                full_template_path = os.path.join(dirpath, filename)
+                full_translated_path = get_non_gnu_translated_name(translation_project, full_template_path)
+                convert_template(full_template_path, full_translated_path)
+        
+def convert_templates(template_translation_project, translation_project):
+    scan_translation_project_files(template_translation_project)
+    if translation_project.file_style == 'gnu':
+        convert_gnu_templates(template_translation_project, translation_project)
+    else:
+        convert_non_gnu_templates(template_translation_project, translation_project)
+    scan_translation_project_files(translation_project)
+    

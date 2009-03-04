@@ -34,7 +34,7 @@ from django.conf                        import settings
 from django.db                          import models
 
 from translate.filters import checks
-from translate.convert import po2csv, po2xliff, xliff2po, po2ts, pot2po, po2oo
+from translate.convert import po2csv, po2xliff, xliff2po, po2ts, po2oo
 from translate.tools   import pocompile, pogrep
 from translate.search  import match, indexing
 from translate.storage import factory, statsdb, base, versioncontrol
@@ -86,7 +86,7 @@ def scan_translation_projects():
             except IndexError:
                 return None
             
-    for language in Language.objects.all():
+    for language in Language.objects.include_hidden().all():
         for project in Project.objects.all():
             translation_project = get_or_make(language, project)
             if translation_project is not None:
@@ -350,6 +350,8 @@ class TranslationProject(models.Model):
 
     def converttemplates(self, request):
         """creates PO files from the templates"""
+
+
         projectdir = os.path.join(pan_app.get_po_tree().podirectory, self.project.code)
         if not os.path.exists(projectdir):
             os.mkdir(projectdir)
