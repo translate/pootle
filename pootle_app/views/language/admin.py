@@ -26,6 +26,7 @@ from pootle_app.views.util  import render_to_kid, KidRequestContext
 from pootle_app.profile import PootleProfile
 from pootle_app.permissions import get_pootle_permissions, PermissionSet, \
     get_matching_permissions
+from pootle_app import project_tree
 
 from Pootle import pan_app
 
@@ -224,9 +225,14 @@ def process_update(request, directory):
     else:
         return PermissionSetFormSet(initial=get_permission_data(directory))
 
+def process_translation_project_update(request, translation_project):
+    if 'scan_files' in request.GET:
+        project_tree.scan_translation_project_files(translation_project)
+
 def view(request, translation_project):
     language               = translation_project.language
     project                = translation_project.project
+    process_translation_project_update(request, translation_project)
     permission_set_formset = process_update(request, translation_project.directory)
     if translation_project.file_style == "gnu":
         filestyle_text = _("This is a GNU-style project (one directory, files named per language).")
