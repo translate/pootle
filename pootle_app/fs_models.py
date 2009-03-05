@@ -185,9 +185,6 @@ class DirectoryManager(models.Manager):
 
     root = property(_get_root)
 
-    def get_from_path(self, path):
-        return self.root.get_relative_object(path)
-
 def filter_goals(query, goal):
     if goal is None:
         return query
@@ -340,12 +337,6 @@ def collect_goals(directory):
 
 ################################################################################
 
-class StoreManager(models.Manager):
-    def get_from_path(self, path):
-        tail, head = split_url(path)
-        directory = Directory.objects.get_from_path(tail)
-        return directory.child_stores.get(name=head)
-
 def get_stats_cache():
     return statsdb.StatsCache(settings.STATS_DB_PATH)
 
@@ -357,8 +348,6 @@ class Store(models.Model):
     class Meta:
         ordering = ['name']
         unique_together = ('parent', 'name')
-
-    objects = StoreManager()
 
     real_path   = models.FilePathField()
     # Uncomment the line below when the Directory model comes into use
