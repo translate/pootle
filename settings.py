@@ -212,3 +212,4 @@ if config is not None:
             vars[option.upper()] = config.get(section, option)
 
 
+TEST_RUNNER='Pootle.pytest.run_tests'
