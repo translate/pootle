@@ -208,15 +208,8 @@ def init_db():
   if PootleProfile.objects.count() == 0:
     call_command('initdb')
 
-def get_lang(language):
-  return TranslationProject.objects.get(language=language, project__code='pootle')
-
-def check_for_language(code):
-  return Project.objects.filter(code='pootle').count() > 0 and Language.objects.filter(code=code).count() > 0
-
 def setup_localization_system():
-  gettext.get_lang = get_lang
-  gettext.check_for_language = check_for_language
+  gettext.get_lang = gettext.get_lang_real
 
 def main():
   # run the web server

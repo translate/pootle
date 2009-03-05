@@ -72,6 +72,10 @@ class DummyTranslation(object):
 
 # Must be replaced after the bootstrapping phase by a function that returns
 # and actual pootle Project object for the language code.
+def get_lang_real(language):
+    from pootle_app.translation_project import TranslationProject
+    return TranslationProject.objects.get(language=language, project__code='pootle')
+
 def get_lang(language):
     return DummyTranslation()
 
