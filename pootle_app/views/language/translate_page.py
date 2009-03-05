@@ -894,7 +894,7 @@ def process_post(request, pootle_file):
     return prev_last_item, last_item
 
 def process_post_main(store_name, item, request, next_store_item, prev_store_item):
-    store = Directory.objects.root.get_relative_object(store_name)
+    store = Store.objects.get(pootle_path=store_name)
     request.translation_project.indexer # Force initialization of the indexer
     prev_item, next_item = pootlefile.with_store(request.translation_project, store,
                                                  lambda pootle_file: process_post(request, pootle_file))
