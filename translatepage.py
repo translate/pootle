@@ -44,7 +44,6 @@ from Pootle import pagelayout
 from Pootle import projects
 from Pootle import pootlefile
 from Pootle import pan_app
-from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
 
 xml_re = re.compile("&lt;.*?&gt;")
 

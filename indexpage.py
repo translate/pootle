@@ -48,7 +48,7 @@ from pootle_app.permissions         import get_matching_permissions
 from pootle_app.language            import try_language_code
 from pootle_app                     import project_tree
 
-from Pootle.i18n.jtoolkit_i18n import localize, nlocalize, tr_lang
+from Pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang
 from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
 from Pootle import pan_app, pagelayout, pootlefile
 from Pootle import __version__ as pootleversion
@@ -88,25 +88,25 @@ def users_form_submissions(subs):
   the num_contribs attribute from the Submission to the User"""
   return [map_num_contribs(sub, sub.submitter.user) for sub in subs]
 
-def gentopstats(topsugg, topreview, topsub, localize):
-  ranklabel = localize("Rank")
-  namelabel = localize("Name")
+def gentopstats(topsugg, topreview, topsub):
+  ranklabel = _("Rank")
+  namelabel = _("Name")
   topstats = []
   topstats.append({'data':        users_form_suggestions(topsugg), 
-                   'headerlabel': localize('Suggestions'), 
+                   'headerlabel': _('Suggestions'),
                    'ranklabel':   ranklabel,
                    'namelabel':   namelabel, 
-                   'vallabel':    localize('Suggestions')})
+                   'vallabel':    _('Suggestions')})
   topstats.append({'data':        users_form_suggestions(topreview),
-                   'headerlabel': localize('Reviews'),
+                   'headerlabel': _('Reviews'),
                    'ranklabel':   ranklabel,
                    'namelabel':   namelabel,
-                   'vallabel':    localize('Reviews')})
+                   'vallabel':    _('Reviews')})
   topstats.append({'data':        users_form_submissions(topsub),
-                   'headerlabel': localize('Submissions'),
+                   'headerlabel': _('Submissions'),
                    'ranklabel':   ranklabel,
                    'namelabel':   namelabel,
-                   'vallabel':    localize('Submissions')})
+                   'vallabel':    _('Submissions')})
   return topstats
 
 def limit(query):
@@ -120,17 +120,17 @@ class AboutPage(pagelayout.PootlePage):
     meta_description = shortdescription(description)
     keywords = ["Pootle", "locamotion", "translate", "translation", "localisation",
                 "localization", "l10n", "traduction", "traduire"]
-    abouttitle = localize("About Pootle")
+    abouttitle = _("About Pootle")
     # l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-    introtext = localize("<strong>Pootle</strong> is a simple web portal that should allow you to <strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, you can download it and run your own copy if you like. You can also help participate in the development in many ways (you don't have to be able to program).")
-    hosttext = localize('The Pootle project itself is hosted at <a href="http://translate.sourceforge.net/">translate.sourceforge.net</a> where you can find the details about source code, mailing lists etc.')
+    introtext = _("<strong>Pootle</strong> is a simple web portal that should allow you to <strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, you can download it and run your own copy if you like. You can also help participate in the development in many ways (you don't have to be able to program).")
+    hosttext = _('The Pootle project itself is hosted at <a href="http://translate.sourceforge.net/">translate.sourceforge.net</a> where you can find the details about source code, mailing lists etc.')
     # l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
     # l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-    nametext = localize('The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="http://www.thechestnut.com/flumps.htm">this</a>.')
-    versiontitle = localize("Versions")
+    nametext = _('The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="http://www.thechestnut.com/flumps.htm">this</a>.')
+    versiontitle = _("Versions")
     # l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
     # l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-    versiontext = localize("This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)", pootleversion.ver, toolkitversion.sver, jtoolkitversion.ver, kidversion, ElementTree.VERSION, sys.version, sys.platform, os.name)
+    versiontext = _("This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)" % (pootleversion.ver, toolkitversion.sver, jtoolkitversion.ver, kidversion, ElementTree.VERSION, sys.version, sys.platform, os.name))
     templatename = "about"
     instancetitle = pan_app.get_title()
     templatevars = {"pagetitle": pagetitle, "description": description,
@@ -149,17 +149,16 @@ class PootleIndex(pagelayout.PootlePage):
     meta_description = shortdescription(description)
     keywords = ["Pootle", "WordForge", "translate", "translation", "localisation", "localization",
                 "l10n", "traduction", "traduire"] + self.getprojectnames()
-    languagelink = localize('Languages')
-    projectlink = localize('Projects')
+    languagelink = _('Languages')
+    projectlink = _('Projects')
     instancetitle = pan_app.get_title()
     pagetitle = instancetitle
-#@todo - need localized dates
 
     topsugg   = limit(Suggestion.objects.get_top_suggesters())
     topreview = limit(Suggestion.objects.get_top_reviewers())
     topsub    = limit(Submission.objects.get_top_submitters())
    
-    topstats = gentopstats(topsugg, topreview, topsub, localize) 
+    topstats = gentopstats(topsugg, topreview, topsub)
     language_index, project_index = TranslationProject.get_language_and_project_indices()
     permission_set = get_matching_permissions(get_profile(request.user), Directory.objects.root)
     templatevars = {
@@ -173,7 +172,7 @@ class PootleIndex(pagelayout.PootlePage):
       "projects":          self.getprojects(request, project_index, permission_set),
       # top users
       "topstats":          topstats,
-      "topstatsheading":   localize("Top Contributors"),
+      "topstatsheading":   _("Top Contributors"),
       "instancetitle":     instancetitle,
       "translationlegend": self.gettranslationsummarylegendl10n()
       }
@@ -240,25 +239,25 @@ class UserIndex(pagelayout.PootlePage):
   """home page for a given user"""
   def __init__(self, request):
     self.request = request
-    pagetitle = localize("User Page for: %s", request.user.username)
+    pagetitle = _("User Page for: %s" % request.user.username)
     templatename = "home"
-    optionslink = localize("Change options")
-    adminlink = localize("Admin page")
-    admintext = localize("Administrate")
-    quicklinkstitle = localize("Quick Links")
+    optionslink = _("Change options")
+    adminlink = _("Admin page")
+    admintext = _("Administrate")
+    quicklinkstitle = _("Quick Links")
     instancetitle = pan_app.get_title()
     quicklinks = self.getquicklinks()
-    setoptionstext = localize("You need to <a href='options.html'>choose your languages and projects</a>.")
+    setoptionstext = _("You need to <a href='options.html'>choose your languages and projects</a>.")
     # l10n: %s is the full name of the currently logged in user
-    statstitle = localize("%s's Statistics", request.user.first_name)
+    statstitle = _("%s's Statistics" % request.user.first_name)
     statstext = {
-                  'suggmade': localize("Suggestions Made"),
-                  'suggaccepted': localize("Suggestions Accepted"),
-                  'suggpending': localize("Suggestions Pending"),
-                  'suggrejected': localize("Suggestions Rejected"),
-                  'suggreviewed': localize("Suggestions Reviewed"),
-                  'suggper': localize("Suggestion Use Percentage"),
-                  'submade': localize("Submissions Made"),
+                  'suggmade': _("Suggestions Made"),
+                  'suggaccepted': _("Suggestions Accepted"),
+                  'suggpending': _("Suggestions Pending"),
+                  'suggrejected': _("Suggestions Rejected"),
+                  'suggreviewed': _("Suggestions Reviewed"),
+                  'suggper': _("Suggestion Use Percentage"),
+                  'submade': _("Submissions Made"),
                 }
     templatevars = {"pagetitle": pagetitle, "optionslink": optionslink,
         "adminlink": adminlink, "admintext": admintext,
@@ -330,9 +329,9 @@ class LanguageIndex(pagelayout.PootleNavPage):
     # l10n: The first parameter is the name of the installation
     # l10n: The second parameter is the name of the project/language
     # l10n: This is used as a page title. Most languages won't need to change this
-    pagetitle =  localize("%s: %s", instancetitle, tr_lang(self.languagename))
+    pagetitle =  _("%s: %s" % (instancetitle, tr_lang(self.languagename)))
     templatename = "language"
-    adminlink = localize("Admin")
+    adminlink = _("Admin")
     
     def narrow(query):
       return limit(query.filter(translation_project__language__code=self.languagecode))
@@ -341,7 +340,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
     topreview   = narrow(Suggestion.objects.get_top_reviewers())
     topsub      = narrow(Submission.objects.get_top_submitters())
    
-    topstats = gentopstats(topsugg, topreview, topsub, localize) 
+    topstats = gentopstats(topsugg, topreview, topsub)
 
     templatevars = {"pagetitle": pagetitle,
         "language": {"code":  language.code, 
@@ -350,11 +349,11 @@ class LanguageIndex(pagelayout.PootleNavPage):
                      "info":  languageinfo},
         "projects": languageprojects,
         "statsheadings": self.getstatsheadings(),
-        "untranslatedtext": localize("%s untranslated words"),
-        "fuzzytext": localize("%s fuzzy words"),
-        "complete": localize("Complete"),
+        "untranslatedtext": _("%s untranslated words"),
+        "fuzzytext": _("%s fuzzy words"),
+        "complete": _("Complete"),
         # top users
-        "topstats": topstats, "topstatsheading": localize("Top Contributors"),
+        "topstats": topstats, "topstatsheading": _("Top Contributors"),
         "instancetitle": instancetitle,
         "translationlegend": self.gettranslationsummarylegendl10n()
         }
@@ -365,11 +364,11 @@ class LanguageIndex(pagelayout.PootleNavPage):
     # specialchars = self.potree.getlanguagespecialchars(self.languagecode)
     nplurals = self.language.nplurals
     pluralequation = self.language.pluralequation
-    infoparts = [(localize("Language Code"), self.languagecode),
-                 (localize("Language Name"), tr_lang(self.languagename)),
-                 # (localize("Special Characters"), specialchars),
-                 (localize("Number of Plurals"), str(nplurals)),
-                 (localize("Plural Equation"), pluralequation),
+    infoparts = [(_("Language Code"), self.languagecode),
+                 (_("Language Name"), tr_lang(self.languagename)),
+                 # (_("Special Characters"), specialchars),
+                 (_("Number of Plurals"), str(nplurals)),
+                 (_("Plural Equation"), pluralequation),
                 ]
     return [{"title": title, "value": value} for title, value in infoparts]
 
@@ -419,11 +418,11 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     # l10n: The first parameter is the name of the installation
     # l10n: The second parameter is the name of the project/language
     # l10n: This is used as a page title. Most languages won't need to change this
-    pagetitle =  localize("%s: %s", instancetitle, projectname)
+    pagetitle =  _("%s: %s" % (instancetitle, projectname))
     templatename = "project"
-    adminlink = localize("Admin")
+    adminlink = _("Admin")
     statsheadings = self.getstatsheadings()
-    statsheadings["name"] = localize("Language")
+    statsheadings["name"] = _("Language")
 
     def narrow(query):
       return limit(query.filter(translation_project__project=self.project))
@@ -432,18 +431,18 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
     topreview  = narrow(Suggestion.objects.get_top_reviewers())
     topsub     = narrow(Submission.objects.get_top_submitters())
 
-    topstats = gentopstats(topsugg, topreview, topsub, localize) 
+    topstats = gentopstats(topsugg, topreview, topsub)
 
     templatevars = {"pagetitle": pagetitle,
         "project": {"code": project.code, "name": project.fullname, "stats": projectstats},
         "description": description, "meta_description": meta_description,
         "adminlink": adminlink, "languages": languages,
-        "untranslatedtext": localize("%s untranslated words"),
-        "fuzzytext": localize("%s fuzzy words"),
-        "complete": localize("Complete"),
+        "untranslatedtext": _("%s untranslated words"),
+        "fuzzytext": _("%s fuzzy words"),
+        "complete": _("Complete"),
         "instancetitle": instancetitle, 
         # top users
-        "topstats": topstats, "topstatsheading": localize("Top Contributors"),
+        "topstats": topstats, "topstatsheading": _("Top Contributors"),
         "statsheadings": statsheadings,
         "translationlegend": self.gettranslationsummarylegendl10n()
         }
@@ -513,7 +512,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       childitems = self.getchilditems(directory, self.currentgoal)
     instancetitle = pan_app.get_title()
     # l10n: The first parameter is the name of the installation (like "Pootle")
-    pagetitle = localize("%s: Project %s, Language %s", instancetitle, project.fullname, tr_lang(language.fullname))
+    pagetitle = _("%s: Project %s, Language %s" % (instancetitle, project.fullname, tr_lang(language.fullname)))
     templatename = "fileindex"
 
     def narrow(query):
@@ -523,15 +522,15 @@ class ProjectIndex(pagelayout.PootleNavPage):
     topreview  = narrow(Suggestion.objects.get_top_reviewers())
     topsub     = narrow(Submission.objects.get_top_submitters())
 
-    topstats = gentopstats(topsugg, topreview, topsub, localize) 
+    topstats = gentopstats(topsugg, topreview, topsub)
 
     templatevars = {"pagetitle": pagetitle,
         "project": {"code": project.code, "name": project.fullname},
         "language": {"code": language.code, "name": tr_lang(language.fullname)},
         # optional sections, will appear if these values are replaced
         "assign": None, "goals": None, "upload": None,
-        "search": {"title": localize("Search"),
-                   "advanced_title": localize("Advanced Search"),
+        "search": {"title": _("Search"),
+                   "advanced_title": _("Advanced Search"),
                    "fields": self.getsearchfields() },
         "message": message,
         # navigation bar
@@ -543,10 +542,11 @@ class ProjectIndex(pagelayout.PootleNavPage):
         # stats table headings
         "statsheadings": self.getstatsheadings(),
         # top users
-        "topstats": topstats, "topstatsheading": localize("Top Contributors"),
-        "untranslatedtext": localize("%s untranslated words"),
-        "fuzzytext": localize("%s fuzzy words"),
-        "complete": localize("Complete"),
+        "topstats": topstats,
+        "topstatsheading": _("Top Contributors"),
+        "untranslatedtext": _("%s untranslated words"),
+        "fuzzytext": _("%s fuzzy words"),
+        "complete": _("Complete"),
         # general vars
         "instancetitle": instancetitle,
         "translationlegend": self.gettranslationsummarylegendl10n()
@@ -600,7 +600,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
       else:
         transfiles = False
       if not uploadfile.filename:
-        raise ValueError(localize("Cannot upload file, no file attached"))
+        raise ValueError(_("Cannot upload file, no file attached"))
       if transfiles:
         self.translation_project.uploadfile(self.request, self.dirname, uploadfile.filename, uploadfile.contents, overwrite)
         self.translation_project.scanpofiles()
@@ -608,7 +608,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         self.translation_project.uploadarchive(self.request, self.dirname, uploadfile.contents)
         self.translation_project.scanpofiles()
       else:
-        raise ValueError(localize("Can only upload PO files and zips of PO files"))
+        raise ValueError(_("Can only upload PO files and zips of PO files"))
       del self.argdict["doupload"]
     if "doupdate" in self.argdict:
       updatefile = self.argdict.pop("updatefile", None)
@@ -716,35 +716,35 @@ class ProjectIndex(pagelayout.PootleNavPage):
     users = self.translation_project.getuserswithinterest()
     return {
       "users": users,
-      "title": localize("Assign Strings"),
-      "action_text": localize("Assign Action"),
-      "users_text": localize("Assign to User"),
-      "button": localize("Assign Strings")
+      "title": _("Assign Strings"),
+      "action_text": _("Assign Action"),
+      "users_text": _("Assign to User"),
+      "button": _("Assign Strings")
     }
 
   def getgoalbox(self):
     """adds a box that lets the user add a new goal"""
-    return {"title": localize('goals'),
-            "name-title": localize("Enter goal name"),
-            "button": localize("Add Goal")}
+    return {"title": _('goals'),
+            "name-title": _("Enter goal name"),
+            "button": _("Add Goal")}
 
   def getuploadbox(self):
     """adds a box that lets the user assign strings"""
     uploadbox = {
-            "title": localize("Upload File"),
-            "file_title": localize("Select file to upload"),
-            "upload_button": localize("Upload File")
+            "title": _("Upload File"),
+            "file_title": _("Select file to upload"),
+            "upload_button": _("Upload File")
             }
     if "admin" in self.rights or "overwrite" in self.rights:
       uploadbox.update({
             #l10n: radio button text
-            "overwrite": localize("Overwrite"),
+            "overwrite": _("Overwrite"),
             #l10n: tooltip
-            "overwrite_title": localize("Overwrite the current file if it exists"),
+            "overwrite_title": _("Overwrite the current file if it exists"),
             #l10n: radio button text
-            "merge": localize("Merge"),
+            "merge": _("Merge"),
             #l10n: tooltip
-            "merge_title": localize("Merge the file with the current file and turn conflicts into suggestions"),
+            "merge_title": _("Merge the file with the current file and turn conflicts into suggestions"),
             })
     return uploadbox
 
@@ -824,7 +824,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
     if goalname:
       goal["title"] = goalname
     else:
-      goal["title"] = localize("Not in a goal")
+      goal["title"] = _("Not in a goal")
     goal["href"] = self.makelink("index.html", goal=goalname)
     if pofilenames:
       actionlinks = self.getactionlinks("", linksrequired=["mine", "review", "translate", "zip"], goal=goalname)
@@ -844,7 +844,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
             unassignedusers.pop(user)
         goal["goal"]["show_adduser"] = True
         goal["goal"]["otherusers"] = unassignedusers
-        goal["goal"]["adduser_title"] = localize("Add User")
+        goal["goal"]["adduser_title"] = _("Add User")
     goal["stats"] = self.getitemstats("", pofilenames, len(pofilenames), {'goal': goalname})
     projectstats = self.translation_project.getquickstats(goal_obj)
     goal["data"] = self.getstats(self.translation_project, projectstats)
@@ -878,36 +878,36 @@ class ProjectIndex(pagelayout.PootleNavPage):
     actionlinks = actions["extended"]
     if "po" in linksrequired:
       poname = store.name.replace(".xlf", ".po")
-      polink = {"href": poname, "text": localize('PO file')}
+      polink = {"href": poname, "text": _('PO file')}
       actionlinks.append(polink)
     if "xliff" in linksrequired and "translate" in self.rights:
       xliffname = store.name.replace(".po", ".xlf")
-      xlifflink = {"href": xliffname, "text": localize('XLIFF file')}
+      xlifflink = {"href": xliffname, "text": _('XLIFF file')}
       actionlinks.append(xlifflink)
     if "ts" in linksrequired and "translate" in self.rights:
       tsname = store.name.replace(".po", ".ts")
-      tslink = {"href": tsname, "text": localize('Qt .ts file')}
+      tslink = {"href": tsname, "text": _('Qt .ts file')}
       actionlinks.append(tslink)
     if "csv" in linksrequired and "translate" in self.rights:
       csvname = store.name.replace(".po", ".csv")
-      csvlink = {"href": csvname, "text": localize('CSV file')}
+      csvlink = {"href": csvname, "text": _('CSV file')}
       actionlinks.append(csvlink)
     if "mo" in linksrequired:
       if self.translation_project.db_translation_project.project.createmofiles and "pocompile" in self.rights:
         moname = store.name.replace(".po", ".mo")
-        molink = {"href": moname, "text": localize('MO file')}
+        molink = {"href": moname, "text": _('MO file')}
         actionlinks.append(molink)
     if "update" in linksrequired and "admin" in self.rights:
       if versioncontrol.hasversioning(os.path.join(self.translation_project.podir,
               self.dirname, store.name)):
         # l10n: Update from version control (like CVS or Subversion)
-        updatelink = {"href": "index.html?editing=1&doupdate=1&updatefile=%s" % (store.name), "text": localize('Update')}
+        updatelink = {"href": "index.html?editing=1&doupdate=1&updatefile=%s" % (store.name), "text": _('Update')}
         actionlinks.append(updatelink)
     if "commit" in linksrequired and "commit" in self.rights:
       if versioncontrol.hasversioning(os.path.join(self.translation_project.podir,
               self.dirname, store.name)):
         # l10n: Commit to version control (like CVS or Subversion)
-        commitlink = {"href": "index.html?editing=1&docommit=1&commitfile=%s" % (store.name), "text": localize('Commit')}
+        commitlink = {"href": "index.html?editing=1&docommit=1&commitfile=%s" % (store.name), "text": _('Commit')}
         actionlinks.append(commitlink)
     # update the separators
     for n, actionlink in enumerate(actionlinks):
@@ -944,23 +944,23 @@ class ProjectIndex(pagelayout.PootleNavPage):
       useroptions += [username for username in assignusers if username not in useroptions]
       if len(assignusers) > 1:
         multiusers = "multiple"
-      assignwhich = [('all', localize("All Strings")),
-                     ('untranslated', localize("Untranslated")),
-                     ('unassigned', localize('Unassigned')),
-                     ('unassigneduntranslated', localize("Unassigned and Untranslated"))]
+      assignwhich = [('all', _("All Strings")),
+                     ('untranslated', _("Untranslated")),
+                     ('unassigned', _('Unassigned')),
+                     ('unassigneduntranslated', _("Unassigned and Untranslated"))]
     return {
      "name": goalformname,
      "filename": basename,
      "goalnames": goalnames,
      "filegoals": dict([(goalname, goalname in filegoals or None) for goalname in goalnames]),
      "multifiles": multifiles,
-     "setgoal_text": localize("Set Goal"),
+     "setgoal_text": _("Set Goal"),
      "users": useroptions,
      "assignusers": dict([(username, username in assignusers or None) for username in useroptions]),
      "multiusers": multiusers,
-     "selectmultiple_text": localize("Select Multiple"),
+     "selectmultiple_text": _("Select Multiple"),
      "assignwhich": [{"value": value, "text": text} for value, text in assignwhich],
-     "assignto_text": localize("Assign To"),
+     "assignto_text": _("Assign To"),
      }
 
   def getactionlinks(self, path_obj, linksrequired=None, filepath=None, goal=None):
@@ -990,12 +990,12 @@ class ProjectIndex(pagelayout.PootleNavPage):
           link = {"href": self.makelink(baseindexlink, **{attrname:1}), "text": showtext}
         link["sep"] = " | "
         actionlinks.append(link)
-    addoptionlink("editing", None, "editing", localize("Show Editing Functions"),
-                                              localize("Show Statistics"))
+    addoptionlink("editing", None, "editing", _("Show Editing Functions"),
+                                              _("Show Statistics"))
     # l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
-    addoptionlink("check", "translate", "showchecks", localize("Show Checks"), localize("Hide Checks"))
-    addoptionlink("goal", None, "showgoals", localize("Show Goals"), localize("Hide Goals"))
-    addoptionlink("assign", "translate", "showassigns", localize("Show Assigns"), localize("Hide Assigns"))
+    addoptionlink("check", "translate", "showchecks", _("Show Checks"), _("Hide Checks"))
+    addoptionlink("goal", None, "showgoals", _("Show Goals"), _("Hide Goals"))
+    addoptionlink("assign", "translate", "showassigns", _("Show Assigns"), _("Hide Assigns"))
     actions["basic"] = actionlinks
     actionlinks = []
     if not goal:
@@ -1003,51 +1003,51 @@ class ProjectIndex(pagelayout.PootleNavPage):
       if self.showgoals:
         if len(filegoals) > 1:
           #TODO: This is not making sense. For now make it an unclickable link
-          allgoalslink = {"href": "", "text": localize("All Goals: %s", (", ".join(filegoals)))}
+          allgoalslink = {"href": "", "text": _("All Goals: %s" % ", ".join(filegoals))}
           actionlinks.append(allgoalslink)
       if "editgoal" in linksrequired and "admin" in self.rights:
         actions["goalform"] = self.getgoalform(basename, goalfile, filegoals)
     if "mine" in linksrequired and not self.request.user.is_anonymous:
       if "translate" in self.rights:
-        minelink = localize("Translate My Strings")
+        minelink = _("Translate My Strings")
       else:
-        minelink = localize("View My Strings")
+        minelink = _("View My Strings")
       mystats = stats.assign.get(self.request.user.username, [])
       if len(mystats):
         minelink = {"href": self.makelink(baseactionlink, assignedto=self.request.user.username), "text": minelink}
       else:
-        minelink = {"title": localize("No strings assigned to you"), "text": minelink}
+        minelink = {"title": _("No strings assigned to you"), "text": minelink}
       actionlinks.append(minelink)
       if "quick" in linksrequired and "translate" in self.rights:
         if len(mystats) > 0: # A little shortcut to avoid the call to projectstats.units if we don't have anything assigned
           mytranslatedstats = [statsitem for statsitem in mystats if statsitem in stats.units.get("translated", [])]
         else:
           mytranslatedstats = []
-        quickminelink = localize("Quick Translate My Strings")
+        quickminelink = _("Quick Translate My Strings")
         if len(mytranslatedstats) < len(mystats):
           quickminelink = {"href": self.makelink(baseactionlink, assignedto=self.request.user.username, fuzzy=1, untranslated=1), "text": quickminelink}
         else:
-          quickminelink = {"title": localize("No untranslated strings assigned to you"), "text": quickminelink}
+          quickminelink = {"title": _("No untranslated strings assigned to you"), "text": quickminelink}
         actionlinks.append(quickminelink)
     if "review" in linksrequired and stats_totals.get("check-hassuggestion", 0):
       if "review" in self.rights:
-        reviewlink = localize("Review Suggestions")
+        reviewlink = _("Review Suggestions")
       else:
-        reviewlink = localize("View Suggestions")
+        reviewlink = _("View Suggestions")
       reviewlink = {"href": self.makelink(baseactionlink, review=1, **{"hassuggestion": 1}), "text": reviewlink}
       actionlinks.append(reviewlink)
     if "quick" in linksrequired:
       if "translate" in self.rights:
-        quicklink = localize("Quick Translate")
+        quicklink = _("Quick Translate")
       else:
-        quicklink = localize("View Untranslated")
+        quicklink = _("View Untranslated")
       if stats_totals['translated'] < stats_totals['total']:
         quicklink = {"href": self.makelink(baseactionlink, fuzzy=1, untranslated=1), "text": quicklink}
       else:
-        quicklink = {"title": localize("No untranslated items"), "text": quicklink}
+        quicklink = {"title": _("No untranslated items"), "text": quicklink}
       actionlinks.append(quicklink)
     if "all" in linksrequired and "translate" in self.rights:
-      translatelink = {"href": self.makelink(baseactionlink), "text": localize('Translate All')}
+      translatelink = {"href": self.makelink(baseactionlink), "text": _('Translate All')}
       actionlinks.append(translatelink)
     if "zip" in linksrequired and "archive" in self.rights:
       if filepath and filepath.endswith(".po"):
@@ -1062,16 +1062,16 @@ class ProjectIndex(pagelayout.PootleNavPage):
       archivename += ".zip"
       if goal:
         archivename += "?goal=%s" % goal
-        linktext = localize('ZIP of goal')
+        linktext = _('ZIP of goal')
       else:
-        linktext = localize('ZIP of folder')
+        linktext = _('ZIP of folder')
       ziplink = {"href": archivename, "text": linktext, "title": archivename}
       actionlinks.append(ziplink)
 
     if "sdf" in linksrequired and "pocompile" in self.rights and \
         self.translation_project.ootemplate() and not (basename or filepath):
       archivename = self.translation_project.languagecode + ".sdf"
-      linktext = localize('Generate SDF')
+      linktext = _('Generate SDF')
       oolink = {"href": archivename, "text": linktext, "title": archivename}
       actionlinks.append(oolink)
     for n, actionlink in enumerate(actionlinks):
@@ -1149,12 +1149,12 @@ class ProjectIndex(pagelayout.PootleNavPage):
         assignlink = {"href": self.makelink(linkbase, assignedto=assignname), "text": assignname}
         percentassigned = assignwords * 100 / max(totalwords, 1)
         percentcomplete = completewords * 100 / max(assignwords, 1)
-        stats = localize("%d/%d words (%d%%) assigned", assignwords, totalwords, percentassigned)
-        stringstats = localize("[%d/%d strings]", assigncount, totalcount)
-        completestats = localize("%d/%d words (%d%%) translated", completewords, assignwords, percentcomplete)
-        completestringstats = localize("[%d/%d strings]", completecount, assigncount)
+        stats = _("%d/%d words (%d%%) assigned" % (assignwords, totalwords, percentassigned))
+        stringstats = _("[%d/%d strings]" % (assigncount, totalcount))
+        completestats = _("%d/%d words (%d%%) translated" % (completewords, assignwords, percentcomplete))
+        completestringstats = _("[%d/%d strings]" % (completecount, assigncount))
         if "assign" in self.rights:
-          removetext = localize("Remove")
+          removetext = _("Remove")
           removelink = {"href": self.makelink(removelinkbase, assignedto=assignname), "text": removetext}
         else:
           removelink = None

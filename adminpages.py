@@ -30,7 +30,7 @@ from pootle_app.models import get_profile, Project
 from pootle_app.profile import PootleProfile
 from pootle_app import project_tree
 
-from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
+from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle import pagelayout
 from Pootle import projects
 from Pootle import pan_app
@@ -53,21 +53,21 @@ class AdminPage(pagelayout.PootlePage):
   def gettext(self, request):
     """Localize the text"""
     text = {}
-    text["home"] = localize("Home")
-    text["users"] = localize("Users")
-    text["languages"] = localize("Languages")
-    text["projects"] = localize("Projects")
-    text["generaloptions"] = localize("General options")
-    text["option"] = localize("Option")
-    text["currentvalue"] = localize("Current value")
-    text["savechanges"] = localize("Save changes")
+    text["home"] = _("Home")
+    text["users"] = _("Users")
+    text["languages"] = _("Languages")
+    text["projects"] = _("Projects")
+    text["generaloptions"] = _("General options")
+    text["option"] = _("Option")
+    text["currentvalue"] = _("Current value")
+    text["savechanges"] = _("Save changes")
     return text
     
   def getoptions(self):
     optiontitles = {"TITLE":       _("Title"), 
                     "DESCRIPTION": _("Description"),
                     "BASE_URL":    _("Base URL"),
-		    "MEDIA_URL":   _("Media URL"),
+                    "MEDIA_URL":   _("Media URL"),
                     "HOMEPAGE":    _("Home Page")}
     option_values = {"TITLE":       pan_app.get_title(),
                      "DESCRIPTION": pan_app.get_description()}
