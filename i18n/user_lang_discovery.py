@@ -28,6 +28,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from pootle_app import core
 from pootle_app.profile import get_profile
+from pootle_app.translation_project import TranslationProject
 from Pootle.i18n import gettext
 
 from string import upper
@@ -80,9 +81,7 @@ def get_lang_from_http_header(request):
         try:
             lang_obj = get_lang_obj(accept_lang)
             return gettext.get_lang(lang_obj)
-        except core.Language.DoesNotExist:
-            pass
-        except core.Project.DoesNotExist:
+        except TranslationProject.DoesNotExist:
             pass
     return None
 
