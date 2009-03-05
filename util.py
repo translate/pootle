@@ -1,23 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2007 Zuza Software Foundation
+# Copyright 2008 Zuza Software Foundation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# translate is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
+
+"""Some code helpers."""
 
 undefined = lambda: None
 
@@ -26,20 +27,20 @@ def lazy(result_name):
     lazily computed. The parameter names an object variable that
     will be used to hold the lazily computed value. At the start,
     this variable should hold the value undefined.
-    
+
     TODO: Replace this with a nice Python descriptor.
-    
+
     class Person(object):
         def __init__(self):
             self.name = 'John'
             self.surname = 'Doe'
             self._fullname = undefined
-        
+
         @lazy('_fullname')
         def _get_fullname(self):
             return self.name + ' ' + self.surname
     """
-    
+
     def lazify(f):
         def evaluator(self):
           result = getattr(self, result_name)
@@ -50,13 +51,3 @@ def lazy(result_name):
             return getattr(self, result_name)
         return evaluator
     return lazify
-
-class Cache(object):
-    def __init__(self, getter):
-        self.data = {}
-        self._getter = getter
-  
-    def __getitem__(self, key):
-        if key not in self.data:
-            self.data[key] = self._getter(key)
-        return self.data[key]
