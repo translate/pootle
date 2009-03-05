@@ -46,17 +46,35 @@ def url_split(path):
     except ValueError:
         return '', path
 
+def split_trailing_slash(p):
+    if p[-1] == u'/':
+        return p[:-1], p[-1]
+    else:
+        return p, u''
+
 def get_relative(ref_path, abs_path):
-    ref_chain = strip_trailing_slash(ref_path).split('/')
-    if ref_chain == ['']:
-        return abs_path
+    def get_last_agreement(ref_chain, abs_chain):
+        max_pos = min(len(ref_chain), len(abs_chain))
+        for i in xrange(max_pos):
+            if ref_chain[i] != abs_chain[i]:
+                return i
+        return max_pos
+
+    abs_path, abs_slash = split_trailing_slash(abs_path)
+
+    ref_chain = ref_path.split('/')
+    ref_chain.pop()
+
     abs_chain = abs_path.split('/')
-    abs_set = dict((component, i) for i, component in enumerate(abs_path.split('/')))
-    for i, component in enumerate(reversed(ref_chain)):
-        if component in abs_set:
-            new_components = i * ['..']
-            new_components.extend(abs_chain[abs_set[component]+1:])
-            return '/'.join(new_components)
+
+    cut_pos = get_last_agreement(ref_chain, abs_chain)
+    go_up = (len(ref_chain) - cut_pos) * ['..']
+    go_down = abs_chain[cut_pos:]
+    result = u'/'.join(go_up + go_down)
+    if result == '' and abs_slash != '':
+        return './'
+    else:
+        return result + abs_slash
 
 class URL(object):
     def __init__(self, path, state=None):
@@ -102,7 +120,7 @@ class URL(object):
             return path
 
     def as_relative_to_path_info(self, request):
-        return self.as_relative(request.path_info[1:])
+        return self.as_relative(request.path_info)
 
     def copy_and_set(self, state_name, **kwargs):
         new_url = copy.deepcopy(self)
