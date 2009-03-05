@@ -224,51 +224,24 @@ class Directory(models.Model):
 
     objects = DirectoryManager()
 
-    def get_relative_object(self, path):
+    def get_relative(self, path):
         """Given a path of the for a/b/c, where the path is relative
         to this directory, recurse the path and return the object
         (either a Directory or a Store) named 'c'.
 
         This does not currently deal with .. path components."""
 
-        def find_directory(directory, component_itr):
+        if path not in (None, ''):
+            pootle_path = '%s%s' % (self.pootle_path, path)
             try:
-                next_component = component_itr.next()
+                return Directory.objects.get(pootle_path=pootle_path)
+            except Directory.DoesNotExist, e:
                 try:
-                    child_directory = directory.child_dirs.get(name=next_component)
-                    return find_directory(child_directory, component_itr)
-                # If a directory with the name 'next_component' does
-                # not exist, we might be at the last component, which
-                # might be a store...
-                except Directory.DoesNotExist, e:
-                    try:
-                        # If 'next_component' is going to be a store
-                        # name, it MUST be the last path
-                        # component. Thus, component_itr.next() should
-                        # raise a StopIteration exception.
-                        component_itr.next()
-                    except StopIteration:
-                        # Aha, so 'next_component' is the last path
-                        # component. Let's see if we have a Store
-                        # corresponding to the name 'next_component'
-                        try:
-                            return directory.child_stores.get(name=next_component)
-                        except Store.DoesNotExist:
-                            # Oops. There is no store with the name
-                            # 'next_component'. Just re-raise the
-                            # Directory.DoesNotExist exception.
-                            raise e
-                    # Nope; we found no store, so we just complain
-                    # that no suitable directory could be found.
+                    return Store.objects.get(pootle_path=pootle_path)
+                except Store.DoesNotExist:
                     raise e
-            except StopIteration:
-                return directory
-
-        components = path.split('/')
-        if components == ['']:
-            return self
         else:
-            return find_directory(self, iter(components))
+            return self
 
     def filter_stores(self, search=FakeSearch(None), starting_store=None):
         if search.contains_only_file_specific_criteria():

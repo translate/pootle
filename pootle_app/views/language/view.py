@@ -115,7 +115,7 @@ def translate_page(request, translation_project, dir_path):
                                                      item,
                                                      search).next()
 
-        directory = translation_project.directory.get_relative_object(strip_trailing_slash(dir_path or ''))
+        directory = translation_project.directory.get_relative(dir_path)
         return find_and_display(request, directory, next_store_item, prev_store_item)
 
     except projects.RightsError, msg:
@@ -135,7 +135,8 @@ def handle_translation_file(request, translation_project, file_path):
     url_state = read_all_state(request.GET)
     if url_state['translate_display'].view_mode != 'raw':
         # TBD: Ensure that store is a Store object
-        store = translation_project.directory.get_relative_object(file_path)
+        pootle_path = translation_project.directory.pootle_path + (file_path or '')
+        store = Store.objects.get(pootle_path=pootle_path)
         search = search_from_state(translation_project, url_state['search'])
 
         try:
@@ -233,5 +234,5 @@ def handle_file(request, translation_project, file_path):
             file_path = file_path[:-len("index.html")]
 
         # The Pootle code expects file_path to have its trailing slash stripped.
-        directory = translation_project.directory.get_relative_object(strip_trailing_slash(file_path) or '')
+        directory = translation_project.directory.get_relative(file_path)
         return project_index_view(request, translation_project, directory)
