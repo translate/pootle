@@ -61,8 +61,7 @@ def get_stats_headings():
 
 def get_children(request, translation_project, directory, url_state):
     store_url_state = copy.deepcopy(url_state)
-    store_url_state['translate_display'] = TranslateDisplayState(initial={'view_mode': 'translate',
-                                                                          'editing':   True})
+    store_url_state['translate_display'] = TranslateDisplayState(initial={'view_mode': 'translate' })
     return [item_dict.make_directory_item(request, child_dir, url_state)
             for child_dir in directory.child_dirs.all()] + \
            [item_dict.make_store_item(request, child_store, store_url_state)
