@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2006 Zuza Software Foundation
+# Copyright 2004-2009 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -28,90 +28,35 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
 # start.
 from Pootle.i18n import gettext
 
-try:
-  from xml.etree import ElementTree
-except ImportError:
-  from elementtree import ElementTree
 # We don't need kid in this file, but this will show quickly if it is
 # not installed.
 import kid
 import sys
-import re
 import random
-import pprint
 import optparse
 from wsgiref.simple_server import make_server
 
 from django.core.handlers.wsgi import WSGIHandler
-from django.conf import settings
 
 from translate.misc import optrecurse
-from translate import __version__ as toolkitversion
 
 from pootle_app.core import Language, Project
 from pootle_app.translation_project import TranslationProject, scan_translation_projects
 from pootle_app import project_tree
 
 from Pootle import pootlefile, users, filelocations
-# Versioning information
-from Pootle import __version__ as pootleversion
-from Pootle import statistics, pan_app
-from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
-from Pootle.legacy.jToolkit import prefs
+from Pootle import pan_app
 from Pootle.misc.transaction import django_transaction
-from Pootle.misc import prefs, jtoolkit_django
+from Pootle.misc import prefs
+
+from Pootle import __version__ as pootleversion
+from translate import __version__ as toolkitversion
 
 class PootleServer(users.OptionalLoginAppServer):
   """the Server that serves the Pootle Pages"""
   def __init__(self):
     super(PootleServer, self).__init__()
     self.templatedir = filelocations.templatedir
-
-  def loadurl(self, filename, context):
-    """loads a url internally for overlay code"""
-    # print "call to load %s with context:\n%s" % (filename, pprint.pformat(context))
-    filename = os.path.join(self.templatedir, filename+os.extsep+"html")
-    if os.path.exists(filename):
-      return open(filename, "r").read()
-    return None
-
-  def saveprefs(self):
-    """saves any changes made to the preferences"""
-    prefs.save_preferences(pan_app.prefs)
-
-  def changeoptions(self, arg_dict):
-    """changes options on the instance"""
-    prefs.change_preferences(pan_app.prefs, arg_dict)
-
-  def inittranslation(self, localedir=None, localedomains=None, defaultlanguage=None):
-    """initializes live translations using the Pootle PO files"""
-    self.localedomains = ['jToolkit', 'pootle']
-    self.localedir = None
-    self.languagenames = projects.get_languages()
-    self.defaultlanguage = defaultlanguage
-    if self.defaultlanguage is None:
-      self.defaultlanguage = settings.DEFAULT_LANGUAGE
-    try:
-      self.translation = projects.get_translation_project(self.defaultlanguage, 'pootle')
-      return
-    except Exception, e:
-      self.errorhandler.logerror("Could not initialize translation:\n%s" % str(e))
-    # if no translation available, set up a blank translation
-    super(PootleServer, self).inittranslation()
-    # the inherited method overwrites self.languagenames, so we have to redo it
-    self.languagenames = self.potree.getlanguages()
-
-  def gettranslation(self, language):
-    """returns a translation object for the given language (or default if language is None)"""
-    if language is None:
-      return self.translation
-    else:
-      try:
-        return self.potree.getproject(language, 'pootle')
-      except Exception, e:
-        if not language.startswith('en'):
-          self.errorhandler.logerror("Could not get translation for language %r:\n%s" % (language,str(e)))
-        return self.translation
 
   def refreshstats(self, args):
     """refreshes all the available statistics..."""
@@ -154,14 +99,11 @@ class PootleServer(users.OptionalLoginAppServer):
     """generates a unique activation code"""
     return "".join(["%02x" % int(random.random()*0x100) for i in range(16)])
 
-  def getuserlanguage(self, request):
-    """gets the language for a user who does not specify one in the URL"""
-    raise NotImplementedError()
-    #return session.language 
 
 class PootleOptionParser(optparse.OptionParser):
   def __init__(self):
-    versionstring = "%%prog %s\njToolkit %s\nTranslate Toolkit %s\nKid %s\nElementTree %s\nPython %s (on %s/%s)" % (pootleversion.ver, jtoolkitversion.ver, toolkitversion.sver, kid.__version__, ElementTree.VERSION, sys.version, sys.platform, os.name)
+    versionstring = "%%prog %s\nTranslate Toolkit %s\nKid %s\nPython %s (on %s/%s)" % \
+            (pootleversion.ver, toolkitversion.sver, kid.__version__, sys.version, sys.platform, os.name)
     optparse.OptionParser.__init__(self)
     self.set_default('prefsfile', filelocations.prefsfile)
     self.set_default('instance', 'Pootle')
@@ -176,7 +118,7 @@ class PootleOptionParser(optparse.OptionParser):
 def checkversions():
   """Checks that version dependencies are met"""
   if not hasattr(toolkitversion, "build") or toolkitversion.build < 12000:
-    raise RuntimeError("requires Translate Toolkit version >= 1.1.  Current installed version is: %s" % toolkitversion.sver)
+    raise RuntimeError("requires Translate Toolkit version >= 1.2.  Current installed version is: %s" % toolkitversion.sver)
 
 def set_template_caching(options):
   if options.cache_templates is not None:
@@ -184,7 +126,7 @@ def set_template_caching(options):
 
 def set_options(options):
   pan_app.prefs = prefs.load_preferences(options.prefsfile)
-  set_template_caching(options)                                        
+  set_template_caching(options)
 
 def run_pootle(options, args):
   pan_app.pootle_server = PootleServer()
@@ -222,7 +164,7 @@ def main():
     options.servertype = "dummy"
   set_options(options)
   scan_translation_projects()
-  run_pootle(options, args)                                        
+  run_pootle(options, args)
 
 if __name__ == '__main__':
   main()
