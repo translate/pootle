@@ -51,26 +51,29 @@ def get_language(f):
             language = Language.objects.include_hidden().get(code=language_code)
             return f(request, language, *args, **kwargs)
         except Language.DoesNotExist:
-            return redirect('/', message=_("The language %s is not defined for this Pootle installation" % language_code))
-    return decorated_f
-
-def get_project(f):
-    def decorated_f(request, language, project_code, *args, **kwargs):
-        try:
-            project = Project.objects.get(code=project_code)
-            return f(request, language, project, *args, **kwargs)
-        except Project.DoesNotExist:
-            return redirect('/', message=_("The project %s is not defined for this Pootle installation" % project_code))
+            return redirect('/', message=_("The language %s is not defined for this Pootle installation" % language_code))                    
     return decorated_f
 
 def get_translation_project(f):
-    @get_language
-    @get_project
-    def decorated_f(request, language, project, *args, **kwargs):
+    def decorated_f(request, language_code, project_code, *args, **kwargs):
         try:
-            return f(request, TranslationProject.objects.get(language=language, project=project), *args, **kwargs)
+            translation_project = TranslationProject.objects.select_related(depth=1).get(language__code=language_code,
+                                                                                         project__code=project_code)
+            return f(request, translation_project, *args, **kwargs)
         except TranslationProject.DoesNotExist:
-            return redirect('/%s' % language.code, message=_("The project %s does not exist for the language %s" % (project.code, language.code)))
+            # No such TranslationProject.  It might be because the
+            # language code doesn't exist...
+            if Language.objects.include_hidden().filter(code=language_code).count() == 0:
+                return redirect('/', message=_("The language %s is not defined for this Pootle installation" % language_code))
+            # ...or if the language exists, maybe the project code is
+            # invalid...
+            elif Project.objects.filter(code=project_code).count() == 0:
+                return redirect('/', message=_("The project %s is not defined for this Pootle installation" % project_code))
+            # ...but if both the language and project codes are valid,
+            # then we simply don't have a corresponding
+            # TranslationProject
+            else:
+                return redirect('/%s' % language_code, message=_("The project %s does not exist for the language %s" % (project_code, language_code)))
     return decorated_f
 
 def set_request_context(f):
