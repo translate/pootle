@@ -312,17 +312,13 @@ def delete_children(sender, instance, **kwargs):
 
 pre_delete.connect(delete_children, sender=Directory)
 
-def set_pootle_path(sender, instance, **kwargs):
+def set_directory_pootle_path(sender, instance, **kwargs):
     if instance.parent is not None:
-        parent_pootle_path = instance.parent.pootle_path
-        if parent_pootle_path != '':
-            instance.pootle_path = '%s/%s' % (instance.parent.pootle_path, instance.name)
-        else:
-            instance.pootle_path = instance.name
+        instance.pootle_path = '%s%s/' % (instance.parent.pootle_path, instance.name)
     else:
-        instance.pootle_path = ''
+        instance.pootle_path = '/'
 
-pre_save.connect(set_pootle_path, sender=Directory)
+pre_save.connect(set_directory_pootle_path, sender=Directory)
 
 ################################################################################
 
@@ -412,9 +408,9 @@ class Store(models.Model):
         return self.name
 
 def set_store_pootle_path(sender, instance, **kwargs):
-    instance.pootle_path = '%s/%s' % (instance.parent.pootle_path, instance.name)
+    instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
 
-pre_save.connect(set_pootle_path, sender=Store)
+pre_save.connect(set_store_pootle_path, sender=Store)
 
 ################################################################################
 
