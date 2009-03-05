@@ -760,7 +760,6 @@ def set_store_vars(store):
       # delete these variables when we're done calling f.
       pootle_file._with_store_ref_count = getattr(pootle_file, '_with_store_ref_count', 0) + 1
       pootle_file.store = store
-      pootle_file.pootle_path = store.pootle_path
       try:
         return f(pootle_file)
       finally:
@@ -768,7 +767,6 @@ def set_store_vars(store):
         if pootle_file._with_store_ref_count == 0:
           del pootle_file._with_store_ref_count
           del pootle_file.store
-          del pootle_file.pootle_path
     return decorated_f
   return decorator
 

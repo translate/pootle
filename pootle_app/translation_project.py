@@ -563,7 +563,7 @@ class TranslationProject(models.Model):
         # check if the pomtime in the index == the latest pomtime
         try:
             pomtime = statistics.getmodtime(pofile.filename)
-            pofilenamequery = indexer.make_query([("pofilename", pofile.pootle_path)], True)
+            pofilenamequery = indexer.make_query([("pofilename", pofile.store.pootle_path)], True)
             pomtimequery = indexer.make_query([("pomtime", str(pomtime))], True)
             gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
             gooditemsnum = indexer.get_query_result(gooditemsquery).get_matches_count()
@@ -576,7 +576,7 @@ class TranslationProject(models.Model):
                 # Update only specific items - usually single translation via the web
                 # interface. All other items should still be up-to-date (even with an
                 # older pomtime).
-                print "updating", self.language.code, "index for", pofile.pootle_path, "items", items
+                print "updating", self.language.code, "index for", pofile.store.pootle_path, "items", items
                 # delete the relevant items from the database
                 itemsquery = indexer.make_query([("itemno", str(itemno)) for itemno in items], False)
                 indexer.delete_doc([pofilenamequery, itemsquery])
@@ -584,9 +584,9 @@ class TranslationProject(models.Model):
                 # (items is None)
                 # The po file is not indexed - or it was changed externally (see
                 # "pofreshen" in pootlefile.py).
-                print "updating", self.project.code, self.language.code, "index for", pofile.pootle_path
+                print "updating", self.project.code, self.language.code, "index for", pofile.store.pootle_path
                 # delete all items of this file
-                indexer.delete_doc({"pofilename": pofile.pootle_path})
+                indexer.delete_doc({"pofilename": pofile.store.pootle_path})
             pofile.pofreshen()
             if items is None:
                 # rebuild the whole index
@@ -594,7 +594,7 @@ class TranslationProject(models.Model):
             addlist = []
             for itemno in items:
                 unit = pofile.getitem(itemno)
-                doc = {"pofilename": pofile.pootle_path, "pomtime": str(pomtime), "itemno": str(itemno)}
+                doc = {"pofilename": pofile.store.pootle_path, "pomtime": str(pomtime), "itemno": str(itemno)}
                 if unit.hasplural():
                     orig = "\n".join(unit.source.strings)
                     trans = "\n".join(unit.target.strings)
@@ -615,8 +615,8 @@ class TranslationProject(models.Model):
                     indexer.commit_transaction()
                     indexer.flush(optimize=optimize)
         except (base.ParseError, IOError, OSError):
-            indexer.delete_doc({"pofilename": pofile.pootle_path})
-            print "Not indexing %s, since it is corrupt" % (pofile.pootle_path,)
+            indexer.delete_doc({"pofilename": pofile.store.pootle_path})
+            print "Not indexing %s, since it is corrupt" % (pofile.store.pootle_path,)
 
     def matchessearch(self, pofilename, search):
         """returns whether any items in the pofilename match the search (based on collected stats etc)"""
