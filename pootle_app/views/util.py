@@ -1,6 +1,24 @@
-import os
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Copyright 2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
+
 from os import path
-import mimetypes
 import kid
 from UserDict import UserDict
 
@@ -8,7 +26,6 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanen
 from django.forms.util import ErrorList
 
 from Pootle.legacy.jToolkit.web import server
-
 from Pootle.pagelayout import completetemplatevars
 
 # settings.py is in the root of our Django application's
@@ -33,7 +50,7 @@ def render(relative_template_path, **template_vars):
     # constructed kid template and pass template_vars
     # through...
     template = kid.Template(file = find_template(relative_template_path), **template_vars)
-    
+
     # Render the template to a string and send the string
     # to HttpResponse
     return HttpResponse(template.serialize(output="xhtml"))
@@ -212,4 +229,3 @@ def selected_model(model_class, field):
         return model_class.objects.get(pk=field.data)
     except model_class.DoesNotExist:
         return None
-
