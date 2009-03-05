@@ -244,14 +244,14 @@ class TranslationProject(models.Model):
             elif "suggest" in user_permissions.name_map:
                 origpofile.mergefile(newfile, request.user.username, suggestions=True)
             else:
-                raise RightsError(localize("You do not have rights to upload files here"))
+                raise RightsError(_("You do not have rights to upload files here"))
         else:
             if overwrite and not ("administrate" in user_permissions.name_map or \
                                       "overwrite" in user_permissions.name_map):
-                raise RightsError(localize("You do not have rights to overwrite files here"))
+                raise RightsError(_("You do not have rights to overwrite files here"))
             elif not os.path.exists(popathname) and not ("administrate" in user_permissions.name_map or \
                                                              "overwrite" in user_permissions.name_map):
-                raise RightsError(localize("You do not have rights to upload new files here"))
+                raise RightsError(_("You do not have rights to upload new files here"))
             outfile = open(popathname, "wb")
             outfile.write(contents)
             outfile.close()
@@ -312,7 +312,7 @@ class TranslationProject(models.Model):
     def commitpofile(self, request, dirname, pofilename):
         """commits an individual PO file to version control"""
         if "commit" not in self.getrights(request.user):
-            raise RightsError(localize("You do not have rights to commit files here"))
+            raise RightsError(_("You do not have rights to commit files here"))
         pathname = self.getuploadpath(dirname, pofilename)
         stats = self.getquickstats([os.path.join(dirname, pofilename)])
         statsstring = "%d of %d messages translated (%d fuzzy)." % \
@@ -395,7 +395,7 @@ class TranslationProject(models.Model):
 
                 import subprocess
                 if subprocess.call(["unzip", tempzipname, "-d", tempdir]):
-                    raise zipfile.BadZipfile(localize("Error while extracting archive"))
+                    raise zipfile.BadZipfile(_("Error while extracting archive"))
 
                 def upload(basedir, path, files):
                     for fname in files:
@@ -760,7 +760,7 @@ class TranslationProject(models.Model):
     def assignpoitems(self, request, search, assignto, action):
         """assign all the items matching the search to the assignto user(s) evenly, with the given action"""
         if not "assign" in self.getrights(request.user):
-            raise RightsError(localize("You do not have rights to alter assignments here"))
+            raise RightsError(_("You do not have rights to alter assignments here"))
         if search.searchtext:
             grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
         if not isinstance(assignto, list):
@@ -802,7 +802,7 @@ class TranslationProject(models.Model):
     def unassignpoitems(self, request, search, assignedto, action=None):
         """unassigns all the items matching the search to the assignedto user"""
         if not "assign" in self.getrights(request.user):
-            raise RightsError(localize("You do not have rights to alter assignments here"))
+            raise RightsError(_("You do not have rights to alter assignments here"))
         if search.searchtext:
             grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
         assigncount = 0

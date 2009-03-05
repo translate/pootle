@@ -26,7 +26,6 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.conf import settings
-from django.http import HttpResponseRedirect
 
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app import project_tree
@@ -34,7 +33,7 @@ from pootle_app.core import Language
 
 from Pootle import pan_app
 from Pootle.pagelayout import completetemplatevars
-from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
+from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle.i18n.user_lang_discovery import get_language_from_request
 
 def login(request):
@@ -73,12 +72,12 @@ def login(request):
 
         # kid template compatibility
         context.update({
-            'pagetitle': localize("Login to Pootle"),
+            'pagetitle': _("Login to Pootle"),
             'introtext': None,
-            'login_title': localize("Pootle Login"),
-            'language_title': localize('Language'),
-            'password_title': localize("Password"),
-            'register_long_text': localize("Don't have an account yet? <a href='register.html' title='Register'>Register</a>.")
+            'login_title': _("Pootle Login"),
+            'language_title': _('Language'),
+            'password_title': _("Password"),
+            'register_long_text': _("Don't have an account yet? <a href='register.html' title='Register'>Register</a>.")
             })
 
         return render_to_kid("login.html", KidRequestContext(request, context))

@@ -49,7 +49,7 @@ from Pootle import pagelayout
 from Pootle import projects
 from Pootle import pootlefile
 from Pootle import pan_app
-from Pootle.i18n.jtoolkit_i18n import localize, tr_lang
+from Pootle.i18n.jtoolkit_i18n import tr_lang
 
 xml_re = re.compile("&lt;.*?&gt;")
 
@@ -140,7 +140,7 @@ def get_page_links(request, pootle_file, pagesize, translations, first_item):
                           "text": _("Previous %d") % (first_item - linkitem)})
     else:
         # l10n: the parameter refers to the number of messages
-        pagelinks.append({"text": localize("Previous %d", pagesize)})
+        pagelinks.append({"text": _("Previous %d" % pagesize)})
         # l10n: the third parameter refers to the total number of messages in the file
     pagelinks.append({"text": _("Items %d to %d of %d") % (first_item + 1, lastitem + 1, pofilelen)})
     if first_item + len(translations) < len(pootle_file.total):
@@ -162,7 +162,7 @@ def get_page_links(request, pootle_file, pagesize, translations, first_item):
                           "text": _("End")})
     else:
         # l10n: noun (the end)
-        pagelinks.append({"text": localize("End")})
+        pagelinks.append({"text": _("End")})
     for n, pagelink in enumerate(pagelinks):
         if n < len(pagelinks)-1:
             pagelink["sep"] = " | "
@@ -300,8 +300,8 @@ def getorigdict(item, orig, editable):
         "itemid":         "orig%d" % item,
         "pure":           purefields,
         "isplural":       len(orig) > 1 or None,
-        "singular_title": localize("Singular"),
-        "plural_title":   localize("Plural"),
+        "singular_title": _("Singular"),
+        "plural_title":   _("Plural"),
         }
     if len(orig) > 1:
         origdict["singular_text"] = escape_text(orig[0])
@@ -374,7 +374,7 @@ def get_edit_link(request, pootle_file, item):
         url.state['position'].item  = item
         # l10n: verb
         return {"href": url.as_relative_to_path_info(request),
-                "text": localize("Edit"), "linkid": "editlink%d" % item}
+                "text": _("Edit"), "linkid": "editlink%d" % item}
     else:
         return {}
 
@@ -398,7 +398,7 @@ def get_trans_view(request, pootle_file, item, trans, textarea=False):
     if len(trans) > 1:
         forms = []
         for pluralitem, pluraltext in enumerate(trans):
-            form = {"title": localize("Plural Form %d", pluralitem), "n": pluralitem, "text": escapefunction(pluraltext)}
+            form = {"title": _("Plural Form %d" % pluralitem), "n": pluralitem, "text": escapefunction(pluraltext)}
             editclass = ""
             if cantrans or cansugg: 
                 editclass = ables+"edittrans"+str(item)+"p"+str(pluralitem)
@@ -436,7 +436,7 @@ def get_trans_edit(request, pootle_file, item, trans):
             buttons = get_trans_buttons(request, pootle_file.translation_project, item, ["back", "skip", "copy", "suggest", "translate"])
             forms = []
             for pluralitem, pluraltext in enumerate(trans):
-                pluralform = localize("Plural Form %d", pluralitem)
+                pluralform = _("Plural Form %d" % pluralitem)
                 pluraltext = escape_for_textarea(pluraltext)
                 textid = "trans%d.%d" % (item, pluralitem)
                 forms.append({"title": pluralform, "name": textid, "text": pluraltext, "n": pluralitem})
@@ -530,11 +530,11 @@ def get_trans_review(request, pootle_file, item, trans, suggestions):
         transdiff = highlight_diffs(pluraltrans, combineddiffs, issrc=True)
         form = {"n": pluralitem, "diff": transdiff, "title": None}
         if hasplurals:
-            pluralform = localize("Plural Form %d", pluralitem)
+            pluralform = _("Plural Form %d" % pluralitem)
             form["title"] = pluralform
         forms.append(form)
     transdict = {
-        "current_title": localize("Current Translation:"),
+        "current_title": _("Current Translation:"),
         "editlink":      get_edit_link(request, pootle_file, item),
         "forms":         forms,
         "isplural":      hasplurals or None,
@@ -547,15 +547,15 @@ def get_trans_review(request, pootle_file, item, trans, suggestions):
             if suggestedby:
                 # l10n: First parameter: number
                 # l10n: Second parameter: name of translator
-                suggtitle = localize("Suggestion %d by %s:", suggid+1, suggestedby)
+                suggtitle = _("Suggestion %d by %s:" % (suggid+1, suggestedby))
             else:
-                suggtitle = localize("Suggestion %d:", suggid+1)
+                suggtitle = _("Suggestion %d:" % suggid+1)
         else:
             if suggestedby:
                 # l10n: parameter: name of translator
-                suggtitle = localize("Suggestion by %s:", suggestedby)
+                suggtitle = _("Suggestion by %s:" % suggestedby)
             else:
-                suggtitle = localize("Suggestion:")
+                suggtitle = _("Suggestion:")
         forms = []
         for pluralitem, pluraltrans in enumerate(trans):
             pluralsuggestion = msgstr[pluralitem]
@@ -567,7 +567,7 @@ def get_trans_review(request, pootle_file, item, trans, suggestions):
             form["suggid"] = "suggest%d.%d.%d" % (item, suggid, pluralitem)
             form["value"] = pluralsuggestion
             if hasplurals:
-                form["title"] = localize("Plural Form %d", pluralitem)
+                form["title"] = _("Plural Form %d" % pluralitem)
             forms.append(form)
         suggdict = {
             "title":     suggtitle,
@@ -580,8 +580,8 @@ def get_trans_review(request, pootle_file, item, trans, suggestions):
             }
         suggitems.append(suggdict)
     # l10n: verb
-    backbutton = {"item": item, "text": localize("Back")}
-    skipbutton = {"item": item, "text": localize("Skip")}
+    backbutton = {"item": item, "text": _("Back")}
+    skipbutton = {"item": item, "text": _("Skip")}
     if suggitems:
         suggitems[-1]["back"] = backbutton
         suggitems[-1]["skip"] = skipbutton
@@ -965,7 +965,7 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
         postats = pootle_file.store.get_quick_stats(translation_project.checker)
         untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
         translated, total = postats["translated"], postats["total"]
-        mainstats = localize("%d/%d translated\n(%d untranslated, %d fuzzy)", translated, total, untranslated, fuzzy)
+        mainstats = _("%d/%d translated\n(%d untranslated, %d fuzzy)" % (translated, total, untranslated, fuzzy))
         pagelinks = get_page_links(request, pootle_file, rows, translations, first_item)
 
     # templatising

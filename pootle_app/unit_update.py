@@ -57,7 +57,7 @@ def suggest_translation(pootle_file, item, trans, request):
 def update_translation(pootle_file, item, newvalues, request, suggestion=None):
     """updates a translation with a new value..."""
     if "translate" not in request.permissions:
-        raise RightsError(localize("You do not have rights to change translations here"))
+        raise RightsError(_("You do not have rights to change translations here"))
     pootle_file.pofreshen()
     translation_project = request.translation_project
     if suggestion is None:
