@@ -107,8 +107,8 @@ def get_finished_text(request, stoppedby, url_state):
     link_state = read_all_state({})
     for attr in ('show_assigns', 'show_checks', 'editing'):
         setattr(link_state['translate_display'], attr, getattr(url_state['translate_display'], attr, False))
-    link = URL(request.current_path + "index.html", link_state)
-    finishedlink = link.as_relative(request.current_path)
+    link = URL(request.path_info, link_state).parent
+    finishedlink = link.as_relative_to_path_info(request)
     returnlink = _("Click here to return to the index")
     stoppedbytext = stoppedby
     return {"title":        title,
@@ -127,7 +127,7 @@ def get_page_links(request, pootle_file, pagesize, translations, first_item):
     lastitem = min(pofilelen-1, first_item + pagesize - 1)
     if pofilelen > pagesize and not first_item == 0:
         # l10n: noun (the start)
-        pagelinks.append({"href": url.as_relative(request.current_path), "text": _("Start")})
+        pagelinks.append({"href": url.as_relative_to_path_info(request), "text": _("Start")})
     else:
         # l10n: noun (the start)
         pagelinks.append({"text": _("Start")})
@@ -136,7 +136,7 @@ def get_page_links(request, pootle_file, pagesize, translations, first_item):
         # l10n: the parameter refers to the number of messages
         new_url = copy.deepcopy(url)
         new_url.state['position'].item = linkitem
-        pagelinks.append({"href": new_url.as_relative(request.current_path),
+        pagelinks.append({"href": new_url.as_relative_to_path_info(request),
                           "text": _("Previous %d") % (first_item - linkitem)})
     else:
         # l10n: the parameter refers to the number of messages
@@ -149,7 +149,7 @@ def get_page_links(request, pootle_file, pagesize, translations, first_item):
         # l10n: the parameter refers to the number of messages
         new_url = copy.deepcopy(url)
         new_url.state['position'].item = linkitem
-        pagelinks.append({"href": new_url.as_relative(request.current_path),
+        pagelinks.append({"href": new_url.as_relative_to_path_info(request),
                           "text": _("Next %d") % itemcount})
     else:
         # l10n: the parameter refers to the number of messages
@@ -158,7 +158,7 @@ def get_page_links(request, pootle_file, pagesize, translations, first_item):
         # l10n: noun (the end)
         new_url = copy.deepcopy(url)
         new_url.state['position'].item = max(pofilelen - pagesize, 0)
-        pagelinks.append({"href": new_url.as_relative(request.current_path),
+        pagelinks.append({"href": new_url.as_relative_to_path_info(request),
                           "text": _("End")})
     else:
         # l10n: noun (the end)
@@ -369,12 +369,11 @@ def unescape_submition(text):
 def get_edit_link(request, pootle_file, item):
     """gets a link to edit the given item, if the user has permission"""
     if "translate" in request.permissions or "suggest" in request.permissions:
-        #url = URL(request.current_path, read_all_state({}))
         url = URL(request.path_info[1:], read_all_state({}))
         url.state['translate_display'].view_mode = 'translate'
         url.state['position'].item  = item
         # l10n: verb
-        return {"href": url.as_relative(request.current_path),
+        return {"href": url.as_relative_to_path_info(request),
                 "text": localize("Edit"), "linkid": "editlink%d" % item}
     else:
         return {}
@@ -937,13 +936,11 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
         raise permissions.PermissionError('No view rights')
 
     if pootle_file is not None:
-        request.current_path = pootle_file.store.parent.pootle_path
         form_url_state = copy.deepcopy(url_state)
         del form_url_state['position'].item
-        formaction = URL(pootle_file.pootle_path, form_url_state).as_relative(pootle_file.pootle_path)
-        store_path = pootle_file.pootle_path
+        formaction = URL(request.path_info, form_url_state).as_relative(request.path_info)
+        store_path = pootle_file.store.pootle_path
     else:
-        request.current_path = directory.pootle_path
         formaction = ''
         store_path = ''
     if stopped_by is not None:
@@ -956,8 +953,10 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
     project  = translation_project.project
     if pootle_file is not None:
         items, translations, first_item = make_table(request, profile, pootle_file, url_state)
+        navbar = navbar_dict.make_store_navbar_dict(request, pootle_file.store, url_state)
     else:
         items, translations, first_item = [], [], -1
+        navbar = navbar_dict.make_store_navbar_dict(request, directory, url_state)
     # self.pofilename can change in search...
     mainstats = ""
     pagelinks = None
@@ -968,6 +967,7 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
         translated, total = postats["translated"], postats["total"]
         mainstats = localize("%d/%d translated\n(%d untranslated, %d fuzzy)", translated, total, untranslated, fuzzy)
         pagelinks = get_page_links(request, pootle_file, rows, translations, first_item)
+
     # templatising
     templatename = "translatepage"
     instancetitle = N_(settings.TITLE)
@@ -982,7 +982,6 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
              "checks":  [],
              "tracks":  [],
              "assigns": []}
-    navbar = navbar_dict.make_navbar_dict(request, directory, url_state)
     templatevars = {
         "pagetitle":                 _("%s: translating %s into %s: %s") % \
             (instancetitle, project.fullname, language.fullname, store_path),

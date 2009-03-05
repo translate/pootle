@@ -39,12 +39,12 @@ def make_toggle_link(request, url, property, first_option, second_option):
         setattr(state, property, True)
         return {'text': first_option,
                 'sep':  ' | ',
-                'href': new_url.as_relative(request.current_path) }
+                'href': new_url.as_relative_to_path_info(request) }
     else:
         setattr(state, property, False)
         return {'text': second_option,
                 'sep':  ' | ',
-                'href': new_url.as_relative(request.current_path) }
+                'href': new_url.as_relative_to_path_info(request) }
 
 ################################################################################
 

@@ -28,7 +28,7 @@ from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
 from pootle_app.views.common import navbar_dict, item_dict, search_forms
 from pootle_app.goals import Goal
 from pootle_app.fs_models import Directory, Search
-from pootle_app.url_manip import URL, TranslateDisplayState, read_all_state
+from pootle_app.url_manip import URL, TranslateDisplayState, PositionState, read_all_state
 from pootle_app.permissions import get_matching_permissions
 from pootle_app.profile import get_profile
 
@@ -80,10 +80,9 @@ def view(request, translation_project, directory):
     if request.method == 'POST':
         pass
 
-    request.current_path = directory.pootle_path
     request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
     url_state = read_all_state(request.GET)
-    del url_state['position']
+    url_state['position'] = PositionState()
     template_vars = {
         'pagetitle':             _('%s: Project %s, Language %s') % \
             (pan_app.get_title(), project.fullname, tr_lang(language.fullname)),
@@ -91,7 +90,7 @@ def view(request, translation_project, directory):
         'language':              {"code": language.code, "name": tr_lang(language.fullname)},
         'search':                search_forms.get_search_form(request),
         'children':              get_children(request, translation_project, directory, url_state),
-        'navitems':              [navbar_dict.make_navbar_dict(request, directory, url_state)],
+        'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, url_state)],
         'stats_headings':        get_stats_headings(),
         'editing':               url_state['translate_display'].editing,
         'untranslated_text':     _("%s untranslated words"),

@@ -182,8 +182,7 @@ class PootleNavPage(PootlePage):
   def makenavbarpath_dict(self, project=None, request=None, directory=None, language=None, store=None):
     """create the navbar location line"""
     #FIXME: Still lots of PO specific references here!
-    current_path = directory.pootle_path
-    project_path = get_relative(current_path, project.directory_root.pootle_path)
+    project_path = get_relative(request.path_info, project.directory_root.pootle_path)
     rootlink = ""
     paramstring = ""
     if request:
@@ -194,7 +193,7 @@ class PootleNavPage(PootlePage):
 
     pathlinks = []
     for ancestor_directory in directory.parent_chain():
-      pathlinks.append({"href": self.getbrowseurl(get_relative(current_path, ancestor_directory.pootle_path)), 
+      pathlinks.append({"href": self.getbrowseurl(get_relative(request.path_info, ancestor_directory.pootle_path)), 
                         "text": ancestor_directory.name, "sep": " / "})
     if pathlinks:
       pathlinks[-1]["sep"] = ""
