@@ -23,7 +23,7 @@ import bisect
 
 from django.db import models
 from django.conf import settings
-from django.db.models.signals import pre_delete
+from django.db.models.signals import pre_delete, pre_save
 
 from translate.storage import statsdb
 
@@ -218,8 +218,9 @@ class Directory(models.Model):
 
     is_dir = True
 
-    name   = models.CharField(max_length=255, null=False, db_index=True)
-    parent = models.ForeignKey('Directory', related_name='child_dirs', null=True)
+    name        = models.CharField(max_length=255, null=False, db_index=True)
+    parent      = models.ForeignKey('Directory', related_name='child_dirs', null=True)
+    pootle_path = models.CharField(max_length=1024, null=False, db_index=True)
 
     objects = DirectoryManager()
 
@@ -325,8 +326,6 @@ class Directory(models.Model):
                 directory = directory.parent
         return reversed(list(enum_chain(self)))
 
-    pootle_path = property(lambda self: '/'.join(d.name for d in self.parent_chain()) + '/')
-
     def __str__(self):
         return self.name
 
@@ -339,6 +338,18 @@ def delete_children(sender, instance, **kwargs):
         child_dir.delete()
 
 pre_delete.connect(delete_children, sender=Directory)
+
+def set_pootle_path(sender, instance, **kwargs):
+    if instance.parent is not None:
+        parent_pootle_path = instance.parent.pootle_path
+        if parent_pootle_path != '':
+            instance.pootle_path = '%s/%s' % (instance.parent.pootle_path, instance.name)
+        else:
+            instance.pootle_path = instance.name
+    else:
+        instance.pootle_path = ''
+
+pre_save.connect(set_pootle_path, sender=Directory)
 
 ################################################################################
 
@@ -380,11 +391,12 @@ class Store(models.Model):
 
     objects = StoreManager()
 
-    real_path = models.FilePathField()
+    real_path   = models.FilePathField()
     # Uncomment the line below when the Directory model comes into use
-    parent    = models.ForeignKey('Directory', related_name='child_stores')
+    parent      = models.ForeignKey('Directory', related_name='child_stores')
     # The filesystem path of the store.
-    name      = models.CharField(max_length=255, null=False)
+    name        = models.CharField(max_length=255, null=False)
+    pootle_path = models.CharField(max_length=1024, null=False, db_index=True)
 
     def _get_abs_real_path(self):
         return absolute_real_path(self.real_path)
@@ -420,13 +432,16 @@ class Store(models.Model):
         chain.append(self.name)
         return chain
 
-    pootle_path = property(lambda self: self.parent.pootle_path + self.name)
-
     def num_stores(self, search=None):
         return 1
 
     def __str__(self):
         return self.name
+
+def set_store_pootle_path(sender, instance, **kwargs):
+    instance.pootle_path = '%s/%s' % (instance.parent.pootle_path, instance.name)
+
+pre_save.connect(set_pootle_path, sender=Store)
 
 ################################################################################
 
