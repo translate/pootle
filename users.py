@@ -1,42 +1,33 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
-# Copyright 2004-2006 Zuza Software Foundation
-# 
-# This file is part of translate.
 #
-# translate is free software; you can redistribute it and/or modify
+# Copyright 2004-2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# translate is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from Pootle import pagelayout
-from translate.lang import data as langdata
-from translate.lang import factory
 from email.Header import Header
-import locale
-import Cookie
-import re
-import time
 
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
 from django.conf import settings
 from django.utils.translation import ugettext as _
 N_ = _
 
 from pootle_app.profile import get_profile
 from Pootle import pan_app
-from Pootle.i18n.jtoolkit_i18n import tr_lang
 
 class RegistrationError(ValueError):
   def __init__(self, message):
@@ -132,80 +123,6 @@ def with_user(username, f):
 
 class OptionalLoginAppServer(object):
   """a server that enables login but doesn't require it except for specified pages"""
-  def handle(self, req, pathwords, argdict):
-    """handles the request and returns a page object in response"""
-    request = None
-    try:
-      argdict = self.processargs(argdict)
-      request = self.getrequest(req, argdict)
-      if settings.BASE_URL[-1] == '/':
-        request.currenturl = settings.BASE_URL[:-1] + req.path
-      else:
-        request.currenturl = settings.BASE_URL + req.path
-      request.reqpath = req.path
-      if req.path.find("?") >= 0:
-        request.getsuffix = req.path[req.path.find("?"):]
-      else:
-        request.getsuffix = ""
-      if request.isopen:
-        request.pagecount += 1
-        request.remote_ip = self.getremoteip(req)
-        request.localaddr = self.getlocaladdr(req)
-      else:
-        self.initlanguage(req, request)
-      page = self.getpage(pathwords, request, argdict)
-    except Exception, e:
-      # Because of the exception, 'request' might not be initialised. So let's
-      # play extra safe
-      if not request:
-          raise
-
-      exceptionstr = self.errorhandler.exception_str()
-      errormessage = str(e).decode("utf-8")
-      traceback = self.errorhandler.traceback_str().decode('utf-8')
-      browsertraceback = ""
-      options = getattr(self, "options", None)
-      # with unit tests we might not have self.options, therefore this test
-      if options:
-        if options.browsererrors == 'traceback':
-          browsertraceback = traceback
-        if options.logerrors == 'traceback':
-          self.errorhandler.logerror(traceback)
-        elif options.logerrors == 'exception':
-          self.errorhandler.logerror(exceptionstr)
-        elif options.logerrors == 'message':
-          self.errorhandler.logerror(errormessage)
-      else:
-        self.errorhandler.logerror(traceback)
-
-      refreshurl = req.headers_in.getheader('Referer') or "/"
-      templatename = "error"
-      templatevars = {
-          "pagetitle": _("Error"),
-          "refresh": 30,
-          "refreshurl": refreshurl,
-          "message": errormessage,
-          "traceback": browsertraceback,
-          "back": _("Back"),
-          }
-      pagelayout.completetemplatevars(templatevars, request)
-      page = server.Redirect(refreshurl, withtemplate=(templatename, templatevars))
-    return page
-
-  def initlanguage(self, req, request):
-    """Initialises the request language from the request"""
-    # This version doesn't know which languages we have, so we have to override
-    # in PootleServer.
-    request.setlanguage("en")
-
-  def adduser(self, username, fullname, email, password, logintype="hash"):
-    """adds the user with the given details"""
-    user = User(username=username,
-                first_name=fullname,
-                email=email)
-    user.set_password(password)
-    user.save()
-    return user
 
   def set_activation_code(self, user):
     """makes a new activation code for the user and returns it"""
@@ -215,68 +132,6 @@ class OptionalLoginAppServer(object):
     profile.activation_code = self.generateactivationcode()
     profile.save()
     return profile.activation_code
-
-  def changeusers(self, request):
-    """handles multiple changes from the site admin"""
-    # TODO: Move admin authentication to the view containing this
-    for key, value in request.POST.iteritems():
-      user = None
-      if key.startswith("userremove-"):
-        username = key.replace("userremove-", "", 1)
-        def delete_user(user):
-          user.delete()
-        user = with_user(username, lambda user: user.delete())
-      elif key.startswith("username-"):
-        username = key.replace("username-", "", 1)
-        def set_user_name(user):
-          if user.first_name != value:
-            user.first_name = value
-        user = with_user(username, set_user_name)
-      elif key.startswith("useremail-"):
-        username = key.replace("useremail-", "", 1)
-        def set_user_email(user):
-          if user.email != value:
-            user.email = value
-          user = with_user(username, set_user_email)
-      elif key.startswith("userpassword-"):
-        username = key.replace("userpassword-", "", 1)
-        def set_user_password(user):
-          if value and value.strip():
-            user.set_password(value.strip())
-        user = with_user(username, set_user_password)
-      elif key.startswith("useractivated-"):
-        username = key.replace("useractivated-", "", 1)
-        def set_user_active(user):
-          user.is_active = value == 'checked'
-        user = with_user(username, set_user_active)
-      elif key == "newusername":
-        username = value.lower()
-        logintype = request.POST.get("newuserlogintype","")
-        if not username:
-          continue
-        if logintype == "hash" and not (username[:1].isalpha() and username.replace("_","").isalnum()):
-          raise ValueError("Login must be alphanumeric and start with an alphabetic character (got %r)" % username)
-        if username in ["nobody", "default"]:
-          raise ValueError('"%s" is a reserved username.' % username)
-        if self.hasuser(username):
-          raise ValueError("Already have user with the login: %s" % username)
-        userpassword = request.POST.get("newuserpassword", None)
-        if logintype == "hash" and (userpassword is None or userpassword == _("(add password here)")):
-          raise ValueError("You must specify a password")
-        userfullname = request.POST.get("newuserfullname", None)
-        if userfullname == _("(add full name here)"):
-          raise ValueError("Please set the users full name or leave it blank")
-        useremail = request.POST.get("newuseremail", None)
-        if useremail == _("(add email here)"):
-          raise ValueError("Please set the users email address or leave it blank")
-        useractivate = "newuseractivate" in request.POST
-        user = self.adduser(username, userfullname, useremail, userpassword, logintype)
-        if useractivate:
-          user.is_active = True
-        else:
-          self.set_activation_code(user)
-      if user:
-        user.save()
 
   def handleregistration(self, request):
     """handles the actual registration"""
