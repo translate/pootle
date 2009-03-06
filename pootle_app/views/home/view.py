@@ -1,13 +1,31 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Copyright 2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
+
 import locale
 
 from django import forms
 from django.forms import ModelForm
-from django.forms.models import inlineformset_factory
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
-from django.contrib.auth import decorators
 
-from Pootle import pagelayout, pan_app, indexpage
+from Pootle import indexpage
 from pootle_app.profile import get_profile, PootleProfile
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.views.util import render_jtoolkit
@@ -41,7 +59,7 @@ def options(request):
         if 'password' in post and post['password'].strip() != u'':
             request.user.set_password('password')
         del post['password']
-        
+
         user_form = UserForm(post, instance=request.user)
         profile_form = PootleProfileForm(post, instance=get_profile(request.user))
 
@@ -55,7 +73,7 @@ def options(request):
     elif request.method == 'GET':
         user_form = UserForm(instance=request.user)
         profile_form = PootleProfileForm(instance=get_profile(request.user))
-      
+
     template_vars = {"pagetitle":      _("Options for: %s") % request.user.username,
                      "introtext":      _("Configure your settings here"),
                      "detailstitle":   _("Personal Details"),
