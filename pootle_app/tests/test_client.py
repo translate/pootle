@@ -1,207 +1,42 @@
-#!/usr/bin/env python
-
-"""Top-level tests using urllib2 to check interaction with servers
-This uses test_cmdlineserver / test_service / test_apache (which are for different webservers)
-ServerTester is mixed in with the different server tests below to generate the required tests"""
-
-from Pootle import test_create
-from Pootle import test_cmdlineserver
-from Pootle import potree
-from Pootle import projects
-import zipfile
-from translate.misc import wStringIO
-import urllib
-import urllib2
-import os
-import re
-
-try:
-    import cookielib
-except ImportError:
-    # fallback for python before 2.4
-    cookielib = None
-    import ClientCookie
-
-def encode_multipart_formdata(fields, files):
-    """
-    fields is a sequence of (name, value) elements for regular form fields.
-    files is a sequence of (name, filename, value) elements for data to be uploaded as files
-    Return (content_type, body) ready for httplib.HTTP instance
-    """
-    # Written by Wade Leftwich
-    # Submitted to ASPN Cookbook
-    # Available at the following URL: http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/146306
-    # As far as I can tell, this code is public domain
-    # Copied my Walter Leibbrandt from jToolkit's web/postMultipart.py
-    import mimetypes
-
-    BOUNDARY = '----------ThIs_Is_tHe_bouNdaRY_$'
-    CRLF = '\r\n'
-    L = []
-    for (key, value) in fields:
-        L.append('--' + BOUNDARY)
-        L.append('Content-Disposition: form-data; name="%s"' % key)
-        L.append('')
-        L.append(value)
-    for (key, filename, value) in files:
-        L.append('--' + BOUNDARY)
-        L.append('Content-Disposition: form-data; name="%s"; filename="%s"' % (key, filename))
-        L.append('Content-Type: %s' % (mimetypes.guess_type(filename)[0] or 'application/octet-stream'))
-        L.append('')
-        L.append(value)
-    L.append('--' + BOUNDARY + '--')
-    L.append('')
-    body = CRLF.join(L)
-    content_type = 'multipart/form-data; boundary=%s' % BOUNDARY
-    return content_type, body
-
-class ServerTester:
-    """Tests things directly against the socket of the server. Requires self.baseaddress."""
-
-    setup_class = test_create.TestCreate.setup_class
-
-    # Utility Methods
-    ##################
-
-    def fetch_page(self, relative_url):
-        """Utility method that fetches a page from the webserver installed in the service."""
-        url = "%s%s" % (self.baseaddress, relative_url)
-        print "Fetching: ", url
-        stream = self.urlopen(url)
-        contents = stream.read()
-        return contents
+from django.test.client import Client
+class Tester:
+    def __init__(self):
+        self.client = Client()
 
     def login(self):
-        """Utility method that calls the login method with username and password."""
-        return self.fetch_page("?islogin=1&username=%s&password=" % (self.testuser.username))
-
+        return self.client.post('/login.html', {'username': 'admin', 'password': 'admin'})
+        
     def logout(self):
-        """Utility method that calls the logout method."""
-        return self.fetch_page("?islogout=1")
-
-    def post_request(self, relative_url, contents, headers):
-        """Utility method that posts a request to the webserver installed in the service."""
-        url = "%s/%s" % (self.baseaddress, relative_url)
-        print "posting to", url
-        post_request = urllib2.Request(url, contents, headers)
-        stream = self.urlopen(post_request)
-        response = stream.read()
-        return response
-
-    # Setup and teardown methods
-    #############################
-    def setup_cookies(self):
-        """Setup cookie-handler."""
-        if cookielib:
-            self.cookiejar = cookielib.CookieJar()
-            self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookiejar))
-            self.urlopen = self.opener.open
-        else:
-            self.urlopen = ClientCookie.urlopen
-
-    def setup_database(self, method):
-        """Create a new database to test with."""
-        import os, md5
-        from dbclasses import Language, Project, User
-        from initdb import attempt, configDB
-
-        self.alchemysess = configDB(self.prefs.Pootle)
-
-        # Populate database with test data
-        testproject = Project(u"testproject")
-        testproject.fullname = u"Pootle Unit Tests"
-        testproject.description = "Test Project for verifying functionality"
-        testproject.checkstyle = "standard"
-        testproject.localfiletype = "po"
-        attempt(self.alchemysess, testproject)
-
-        zxx = Language("zxx")
-        zxx.fullname = u'Test Language'
-        zxx.nplurals = '1'
-        zxx.pluralequation ='0'
-        attempt(self.alchemysess, zxx)
-
-        adminuser = User(u"adminuser")
-        adminuser.name=u"Administrator"
-        adminuser.activated="True"
-        adminuser.passwdhash=md5.new("").hexdigest()
-        adminuser.logintype="hash"
-        adminuser.siteadmin=True
-        attempt(self.alchemysess, adminuser)
-
-        normaluser = User(u"normaluser")
-        normaluser.name=u"Norman the Normal User"
-        normaluser.activated="True"
-        normaluser.passwdhash=md5.new("").hexdigest()
-        normaluser.logintype="hash"
-        normaluser.siteadmin=False
-        attempt(self.alchemysess, normaluser)
-
-        self.alchemysess.flush()
-
-    def setup_prefs(self, method):
-        """Sets up any extra preferences required."""
-        from dbclasses import User
-        if hasattr(method, "userprefs"):
-            if method.userprefs['rights.siteadmin']:
-                self.testuser = self.alchemysess.query(User).filter(User.username == u'adminuser').first()
-            else:
-                self.testuser = self.alchemysess.query(User).filter(User.username == u'normaluser').first()
-
-            for key, value in method.userprefs.iteritems():
-                self.prefs.setvalue("Pootle.users.%s.%s" % (self.testuser.username, key), value)
-        else:
-            self.testuser = self.alchemysess.query(User).filter(User.username == u'normaluser').first()
-        self.alchemysess.close()
-
-    def setup_testproject_dir(self, perms=None):
-        """Sets up a blank test project directory."""
-        projectname = "testproject"
-        lang = "zxx"
-        projectdir = os.path.join(self.podir, projectname)
-
-        os.mkdir(projectdir)
-        podir = os.path.join(projectdir, lang)
-        os.mkdir(podir)
-        if perms:
-            prefsfile = file(os.path.join(projectdir, lang, "pootle-%s-%s.prefs" % (projectname, lang)), 'w')
-            prefsfile.write("# Prefs file for Pootle unit tests\nrights:\n  %s = '%s'\n" % (self.testuser.username, perms))
-            prefsfile.close()
-        language_page = self.fetch_page("%s/%s/" % (lang, projectname))
-
-        assert "Test Language" in language_page
-        assert "0 files, 0/0 words (0%) translated" in language_page
-        return podir
-
-    def teardown_method(self, method):
-      self.cookiejar.clear()
-      pass
-
+        return self.client.get('/logout.html')
+    
     # Test methods
     ###############
     def test_login(self):
         """Checks that login works and sets cookies."""
         # make sure we start logged out
-        contents = self.fetch_page("")
-        assert "Log in" in contents
+        response = self.client.get('/')
+        assert "Log in" in response.content
 
         # check login leads us to a normal page
-        contents = self.login()
-        assert "Log in" not in contents
+        response = self.login()
+        assert 'sessionid' in response.cookies.keys()
 
         # check login is retained on next fetch
-        contents = self.fetch_page("")
-        assert "Log in" not in contents
+        response = self.client.get('/')
+        assert "Log in" not in response.content
 
     def test_logout(self):
         """Checks that logout works after logging in."""
         # make sure we start logged in
-        contents = self.login()
-        assert "Log out" in contents
+        self.login()
+        response = self.client.get('/')
+        assert "Log out" in response.content
 
         # check login leads us to a normal page
-        contents = self.logout()
-        assert "Log in" in contents
+        self.logout()
+        response = self.client.get('/')
+        assert "Log in" in response.content
+        
 
     def test_non_admin_rights(self):
         """Checks that, without admin rights, we can't access the admin screen."""
@@ -696,17 +531,5 @@ class ServerTester:
         translatepage = self.post_request('zxx/testproject/translate.html', post_contents, headers)
         assert test_translation_string not in translatepage
 
-def MakeServerTester(baseclass):
-    """Makes a new Server Tester class using the base class to setup webserver etc."""
-    class TestServer(baseclass, ServerTester):
-        def setup_method(self, method):
-            ServerTester.setup_database(self, method)
-            ServerTester.setup_prefs(self, method)
-            baseclass.setup_method(self, method)
-            ServerTester.setup_cookies(self)
-    return TestServer
 
-TestServerCmdLine = MakeServerTester(test_cmdlineserver.TestCmdlineServer)
-# TestServerService = MakeServerTester(test_service.TestjLogbookService)
-# TestServerApache = MakeServerTester(test_apache.TestApachejLogbook)
-
+        
