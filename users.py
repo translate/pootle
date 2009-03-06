@@ -60,56 +60,6 @@ def forcemessage(message):
   else:
     return message
 
-class LoginPage(pagelayout.PootlePage):
-  """wraps the normal login page in a PootlePage layout"""
-  def __init__(self, request, languagenames=None, message=None):
-    self.languagenames = languagenames
-    pagetitle = _("Login to Pootle")
-    templatename = "login"
-    message = forcemessage(message)
-    instancetitle = pan_app.get_title()
-    requestvars = {"status": get_profile(request.user).status, "isopen": not request.user.is_anonymous, "issiteadmin": request.user.is_superuser}
-    templatevars = {"pagetitle": pagetitle, "introtext": message,
-        "username_title": _("Username:"),
-        "username": getattr(request, 'username', ''),
-        "password_title": _("Password:"),
-        "language_title": _('Language:'),
-        "languages": self.getlanguageoptions(request),
-        "login_text": _('Login'),
-        "register_text": _('Register'),
-        "request": requestvars, "instancetitle": instancetitle}
-    pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
-
-  def getlanguageoptions(self, request):
-    """returns the language selector..."""
-    tr_default = _("Default")
-    if tr_default != "Default":
-        tr_default = u"%s | \u202dDefault" % tr_default
-    languageoptions = [('', tr_default)]
-    if isinstance(self.languagenames, dict):
-      languageoptions += self.languagenames.items()
-    else:
-      languageoptions += self.languagenames
-    if request.language in ["en", request.server.defaultlanguage]:
-        preferredlanguage = ""
-    else:
-        preferredlanguage = request.language
-    finallist = []
-    for key, value in languageoptions:
-        if key == 'templates':
-            continue
-        tr_name = tr_lang(value)
-        if tr_name != value:
-            # We have to use the LRO (left-to-right override) to ensure that 
-            # brackets in the English part of the name is rendered correctly
-            # in an RTL layout like Arabic. We can't use markup because this 
-            # is used inside an option tag.
-            value = u"%s | \u202d%s" % (tr_name, value)
-        selected = key==preferredlanguage or None
-        finallist.append({"code": key, "name": value, "selected": selected})
-    finallist.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
-    return finallist
-
 class RegisterPage(pagelayout.PootlePage):
   """page for new registrations"""
   def __init__(self, request, message=None):
@@ -196,7 +146,7 @@ class OptionalLoginAppServer(object):
       if req.path.find("?") >= 0:
         request.getsuffix = req.path[req.path.find("?"):]
       else:
-        request.getsuffix = "" 
+        request.getsuffix = ""
       if request.isopen:
         request.pagecount += 1
         request.remote_ip = self.getremoteip(req)
@@ -227,7 +177,7 @@ class OptionalLoginAppServer(object):
           self.errorhandler.logerror(errormessage)
       else:
         self.errorhandler.logerror(traceback)
-      
+
       refreshurl = req.headers_in.getheader('Referer') or "/"
       templatename = "error"
       templatevars = {
@@ -247,7 +197,7 @@ class OptionalLoginAppServer(object):
     # This version doesn't know which languages we have, so we have to override
     # in PootleServer.
     request.setlanguage("en")
-      
+
   def adduser(self, username, fullname, email, password, logintype="hash"):
     """adds the user with the given details"""
     user = User(username=username,

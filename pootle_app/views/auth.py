@@ -62,26 +62,47 @@ def login(request):
             form = AuthenticationForm(request)
         request.session.set_test_cookie()
         context = {
-            'languages': [{'name': tr_lang(language.fullname),
-                           'code': language.code,
-                           'selected': is_selected(request, language.code)}
-                          for language in Language.objects.all()],
+            'languages': language_list(request),
             'form': form,
-            }
-        context["languages"].sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
-
-        # kid template compatibility
-        context.update({
+            # kid template compatibility
             'pagetitle': _("Login to Pootle"),
             'introtext': None,
             'login_title': _("Pootle Login"),
             'language_title': _('Language'),
             'password_title': _("Password"),
             'register_long_text': _("Don't have an account yet? <a href='register.html' title='Register'>Register</a>.")
-            })
+            }
 
         return render_to_kid("login.html", KidRequestContext(request, context))
         #return render_to_response("login.html", RequestContext(request, context))
+
+def language_list(request):
+    """returns the list of localised language names, with 'default'"""
+    tr_default = _("Default")
+    if tr_default != "Default":
+        tr_default = u"%s | \u202dDefault" % tr_default
+    finallist = [{"code": '', "name": tr_default}]
+    request_code = get_language_from_request(request).language.code
+    #TODO: restore this as soon as we have a defaultlanguage for the server
+    # See bug 887
+#    if request_code in ["en", request.server.defaultlanguage]:
+#        preferredlanguage = ""
+#    else:
+#        preferredlanguage = request_code
+    for language in Language.objects.all():
+        code = language.code
+        name = language.fullname
+        tr_name = tr_lang(name)
+        if tr_name != name:
+            # We have to use the LRO (left-to-right override) to ensure that 
+            # brackets in the English part of the name is rendered correctly
+            # in an RTL layout like Arabic. We can't use markup because this 
+            # is used inside an option tag.
+            name = u"%s | \u202d%s" % (tr_name, name)
+#        selected = key==preferredlanguage or None
+        finallist.append({"code": code, "name": name, "selected": is_selected(request, language.code)})
+    finallist.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    return finallist
 
 def logout(request):
     from django.contrib.auth import logout
