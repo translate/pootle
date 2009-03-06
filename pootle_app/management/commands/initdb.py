@@ -73,7 +73,7 @@ def create_pootle_permission_sets():
   from pootle_app.permissions import PermissionSet, get_pootle_permission
   from pootle_app.fs_models import Directory
   from pootle_app.profile import PootleProfile
-  
+
   root = Directory.objects.root
   for username in ('default', 'nobody'):
     profile = PootleProfile.objects.select_related(depth=1).get(user__username=username)
@@ -146,6 +146,11 @@ def create_default_languages():
 # বাংলা
 # Bengali
 #    bn.fullname = u'Bengali'
+#    bn.nplurals = '2'
+#    bn.pluralequation ='(n != 1)'
+
+# Bengali (India)
+#    bn.fullname = u'Bengali (India)'
 #    bn.nplurals = '2'
 #    bn.pluralequation ='(n != 1)'
 
@@ -226,13 +231,6 @@ def create_default_languages():
     en_GB.pluralequation ='(n != 1)'
     en_GB.save()
 
-# English (US)
-    en_US = Language(code="en_US")
-    en_US.fullname = u'English'
-    en_US.nplurals = '2'
-    en_US.pluralequation ='(n != 1)'
-    en_US.save()
-
 # English (South Africa)
     en_ZA = Language(code="en_ZA")
     en_ZA.fullname = u'English (South Africa)'
@@ -255,19 +253,11 @@ def create_default_languages():
 
 # Español
 # Spanish (Argentina)
-    es_AR = Language(code="es_AR")
-    es_AR.fullname = u'Spanish (Argentina)'
-    es_AR.nplurals = '2'
-    es_AR.pluralequation ='(n != 1)'
-    es_AR.save()
-
-# Español
-# Spanish (Spain)
-    es_ES = Language(code="es_ES")
-    es_ES.fullname = u'Spanish (Spain)'
-    es_ES.nplurals = '2'
-    es_ES.pluralequation ='(n != 1)'
-    es_ES.save()
+#    es_AR = Language(code="es_AR")
+#    es_AR.fullname = u'Spanish; Castilian (Argentina)'
+#    es_AR.nplurals = '2'
+#    es_AR.pluralequation ='(n != 1)'
+#    es_AR.save()
 
 # Eesti
 # Estonian
@@ -323,31 +313,19 @@ def create_default_languages():
 
 # Frysk
 # Frisian
-#    fy.fullname = u'Western Frisian'
-#    fy.nplurals = '2'
-#    fy.pluralequation ='(n != 1)'
-
-# Frysk
-# Frisian
-    fy_NL = Language(code="fy_NL")
-    fy_NL.fullname = u'Frisian'
-    fy_NL.nplurals = '2'
-    fy_NL.pluralequation ='(n != 1)'
-    fy_NL.save()
+    fy = Language(code="fy")
+    fy.fullname = u'Western Frisian'
+    fy.nplurals = '2'
+    fy.pluralequation ='(n != 1)'
+    fy.save()
 
 # Gaeilge
 # Irish
-#    ga.fullname = u'Irish'
-#    ga.nplurals = '3'
-#    ga.pluralequation ='n==1 ? 0 : n==2 ? 1 : 2'
-
-# Gaeilge
-# Irish
-    ga_IE = Language(code="ga_IE")
-    ga_IE.fullname = u'Irish'
-    ga_IE.nplurals = '3'
-    ga_IE.pluralequation ='n==1 ? 0 : n==2 ? 1 : 2'
-    ga_IE.save()
+    ga = Language(code="ga")
+    ga.fullname = u'Irish'
+    ga.nplurals = '3'
+    ga.pluralequation ='n==1 ? 0 : n==2 ? 1 : 2'
+    ga.save()
 
 # Galego
 # Galician
@@ -453,9 +431,11 @@ def create_default_languages():
 
 # Kurdî / كوردي
 # Kurdish
-#    ku.fullname = u'Kurdish'
-#    ku.nplurals = '2'
-#    ku.pluralequation ='(n!= 1)'
+    ku = Language(code="ku")
+    ku.fullname = u'Kurdish'
+    ku.nplurals = '2'
+    ku.pluralequation ='(n != 1)'
+    ku.save()
 
 # Lëtzebuergesch
 # Letzeburgesch
@@ -591,14 +571,6 @@ def create_default_languages():
     pt.pluralequation ='(n != 1)'
     pt.save()
 
-# Português
-# Portuguese from Portugal
-    pt_PT = Language(code="pt_PT")
-    pt_PT.fullname = u'Portuguese (Portugal)'
-    pt_PT.nplurals = '2'
-    pt_PT.pluralequation ='(n != 1)'
-    pt_PT.save()
-
 # Português do Brasil
 # Brazilian Portuguese
     pt_BR = Language(code="pt_BR")
@@ -670,14 +642,6 @@ def create_default_languages():
     sv.nplurals = '2'
     sv.pluralequation ='(n != 1)'
     sv.save()
-
-# Svenska
-# Swedish (Sweden)
-    sv_SE = Language(code="sv_SE")
-    sv_SE.fullname = u'Swedish (Sweden)'
-    sv_SE.nplurals = '2'
-    sv_SE.pluralequation ='(n != 1)'
-    sv_SE.save()
 
 # தமிழ்
 # Tamil
