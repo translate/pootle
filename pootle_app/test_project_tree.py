@@ -21,12 +21,11 @@
 
 from pootle_app import project_tree
 from pootle_app.core import Project
+from django.conf import settings
 
-def test_get_project_code():
-    assert project_tree.get_project_code('/a/b/c/', '/a/b/c/proj/lang') == 'proj'
 
 def test_get_project():
     pootle = Project.objects.get(code='pootle')
-    assert project_tree.get_project('/a/b/c', '/a/b/c/pootle/en', None) == pootle
-    assert project_tree.get_project('/a/b/c', '/a/b/c/pootle/en', pootle) == pootle
+    assert project_tree.get_project(settings.PODIRECTORY + '/pootle/en', None) == pootle
+    assert project_tree.get_project(settings.PODIRECTORY + '/pootle/en', pootle) == pootle
 
