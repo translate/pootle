@@ -205,35 +205,11 @@ def iter_prev_matches(directory, starting_store=None, last_index=-1, search=Fake
 
 ################################################################################
 
-def get_filtered_stores(directory, starting_store, search, depth):
-    if starting_store is not None:
-        if depth < len(starting_store) - 1:
-            return Directory.objects.none()
-        else:
-            return directory.filter_stores(search, starting_store[-1]).all()
+def iter_stores(directory, search=FakeSearch(None)):
+    if search.goal is None:
+        return Store.objects.filter(pootle_path__startswith=directory.pootle_path).order_by('pootle_path')
     else:
-        return directory.filter_stores(search).all()
-
-def iter_stores_recur(directory, starting_store, search, depth=0):
-    for store in get_filtered_stores(directory, starting_store, search, depth):
-        yield store
-        # If there are any files at all the enumerate, then we've
-        # found what we were looking for with starting_store. Therefore,
-        # nuke its value now, so that we will enumerate full
-        # subdirectories from now on.
-        starting_store = None
-
-    for subdirectory in get_next_subdirs(directory, starting_store, depth):
-        for store in iter_stores_recur(subdirectory, starting_store, search, depth + 1):
-            yield store
-        # After considering our first subdirectory, we should have
-        # found what we were looking for with starting_store. Therefore,
-        # nuke its value now, so that we will enumerate full
-        # subdirectories from now on.
-        starting_store = None
-
-def iter_stores(directory, starting_store=None, search=FakeSearch(None)):
-    return iter_stores_recur(directory, get_relative_components(directory, starting_store), search)
+        return Store.objects.filter(pootle_path__startswith=directory.pootle_path, goals=search.goal)
 
 ################################################################################
 
@@ -266,13 +242,5 @@ def compute_index_result(search, stores):
     limitedquery = search.indexer.make_query(searchparts, True)
     return hits_to_dict(search.indexer.search(limitedquery, ['pofilename', 'itemno']))
 
-def iter_indexed_stores(directory, starting_store, last_index, search):
-    stores = dict((store.pootle_path, store) for store, index in iter_stores(directory, starting_store, -1, FakeSearch(search.goal)))
-    result_dict = compute_index_result(search, stores)
-    for store_path in sorted(stores):
-        match_index = search.matches(stores[store_path], last_index, result_dict[store_path])
-        if match_index > -1:
-            yield store_path, match_index
-        last_index = -1
 
 ################################################################################

@@ -191,7 +191,7 @@ def filter_goals(query, goal):
     else:
         return query.filter(goals=goal)
 
-def filter_next_store(query, search, store_name):
+def filter_next_store(query, store_name):
     if store_name is None:
         return query
     else:
@@ -242,16 +242,15 @@ class Directory(models.Model):
 
     def filter_stores(self, search=FakeSearch(None), starting_store=None):
         if search.contains_only_file_specific_criteria():
-            return filter_next_store(filter_goals(self.child_stores, search.goal), search, starting_store)
+            return filter_next_store(filter_goals(self.child_stores, search.goal), starting_store)
+            #return filter_next_store(self.child_stores.filter(goals=search.goal), starting_store)
         else:
             raise Exception("Can't filter on unit-specific information")
 
     def _matches(self, search, starting_store, last_index, get_matches):
         return filter_matches(
-            filter_next_store(
-                filter_goals(self.child_stores, search.goal), search, starting_store),
-            last_index,
-            get_matches)
+            filter_next_store(filter_goals(self.child_stores, search.goal), starting_store),
+            last_index, get_matches)
 
     def next_matches(self, search=FakeSearch(None), starting_store=None, last_index=0):
         return self._matches(search, starting_store, last_index, search.next_matches)

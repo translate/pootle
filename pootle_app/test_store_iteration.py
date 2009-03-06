@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from pootle_app.fs_models import Directory, Store, FakeSearch
-from pootle_app.store_iteration import iter_stores, iter_stores_recur
+from pootle_app.store_iteration import iter_stores
 
 def make_model(model, *args, **kwargs):
     instance = model(*args, **kwargs)
@@ -59,53 +59,21 @@ def test_iter_stores():
     def to_unicode(lst):
         return [unicode(item) for item in lst]
 
-    search = FakeSearch(None)
     foo = setup_directory_tree()
     
-    assert to_unicode(iter_stores_recur(foo, None, search)) == \
-           ['store_a', 'store_b', 'store_c', 
-            'store_0', 'store_1', 'store_2',
-            'store_s', 'store_t', 'store_u',
-            'store_x', 'store_y', 'store_z']
-    assert to_unicode(iter_stores_recur(foo, ['store_b'], search)) == \
-           ['store_b', 'store_c', 
-            'store_0', 'store_1', 'store_2',
-            'store_s', 'store_t', 'store_u',
-            'store_x', 'store_y', 'store_z']
-    assert to_unicode(iter_stores_recur(foo, ['bar', 'store_1'], search)) == \
-           ['store_1', 'store_2',
-            'store_s', 'store_t', 'store_u',
-            'store_x', 'store_y', 'store_z']
-    assert to_unicode(iter_stores_recur(foo, ['bar', 'quux', 'store_s'], search)) == \
+    assert to_unicode(iter_stores(foo)) == \
            ['store_s', 'store_t', 'store_u',
-            'store_x', 'store_y', 'store_z']
-    assert to_unicode(iter_stores_recur(foo, ['bar', 'quux', 'store_u'], search)) == \
-           ['store_u',
-            'store_x', 'store_y', 'store_z']
+            'store_0', 'store_1', 'store_2',
+            'store_x', 'store_y', 'store_z',
+            'store_a', 'store_b', 'store_c']
     
     bar = foo.child_dirs.get(name='bar')
-    assert to_unicode(iter_stores_recur(bar, None, search)) == \
-           ['store_0', 'store_1', 'store_2',
-            'store_s', 'store_t', 'store_u']
-    assert to_unicode(iter_stores_recur(bar, ['store_0'], search)) == \
-           ['store_0', 'store_1', 'store_2',
-            'store_s', 'store_t', 'store_u']
-    assert to_unicode(iter_stores_recur(bar, ['store_1'], search)) == \
-           ['store_1', 'store_2',
-            'store_s', 'store_t', 'store_u']
-    assert to_unicode(iter_stores_recur(bar, ['quux', 'store_s'], search)) == \
-           ['store_s', 'store_t', 'store_u']
-    assert to_unicode(iter_stores_recur(bar, ['quux', 'store_t'], search)) == \
-           ['store_t', 'store_u']
-    assert to_unicode(iter_stores_recur(bar, ['quux', 'store_u'], search)) == \
-           ['store_u']
+    assert to_unicode(iter_stores(bar)) == \
+           ['store_s', 'store_t', 'store_u',
+           'store_0', 'store_1', 'store_2']
+          
 
     quux = bar.child_dirs.get(name='quux')
-    assert to_unicode(iter_stores_recur(quux, None, search)) == \
+    assert to_unicode(iter_stores(quux)) == \
            ['store_s', 'store_t', 'store_u']
-    assert to_unicode(iter_stores_recur(quux, ['store_s'], search)) == \
-           ['store_s', 'store_t', 'store_u']
-    assert to_unicode(iter_stores_recur(quux, ['store_t'], search)) == \
-           ['store_t', 'store_u']
-    assert to_unicode(iter_stores_recur(quux, ['store_u'], search)) == \
-           ['store_u']
+

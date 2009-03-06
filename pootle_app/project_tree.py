@@ -30,7 +30,6 @@ from pootle_app.core            import Project, Language
 from pootle_app.fs_models       import Directory, Store
 from pootle_app.url_manip       import strip_trailing_slash
 from pootle_app.language        import try_language_code
-from pootle_app.store_iteration import iter_stores
 
 from Pootle.pootlefile import absolute_real_path, relative_real_path
 

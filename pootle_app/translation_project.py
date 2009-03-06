@@ -42,7 +42,7 @@ from translate.storage import factory, statsdb, base, versioncontrol
 
 from pootle_app.profile   import *
 from pootle_app.core      import Project, Language
-from pootle_app.fs_models import Directory
+from pootle_app.fs_models import Directory, Store
 from pootle_app           import project_tree, store_iteration
 
 from Pootle            import pan_app, pootlefile, statistics
@@ -527,7 +527,7 @@ class TranslationProject(models.Model):
         def do_update(pootle_file):
             self.update_index(indexer, pootle_file, optimize=False)
 
-        for store in store_iteration.iter_stores(self.directory):
+        for store in Store.objects.filter(pootle_path__startswith=self.directory.pootle_path):
             pootlefile.with_store(self, store, do_update)
 
     def update_index(self, indexer, pofile, items=None, optimize=True):
@@ -1041,7 +1041,7 @@ class TranslationProject(models.Model):
     ##############################################################################################
 
     def _find_message(self, singular, plural, n, get_translation):
-        for store in store_iteration.iter_stores(self.directory):
+        for store in Store.objects.filter(pootle_path__startswith=self.directory.pootle_path):
             translation = pootlefile.with_pootle_file(self, store.abs_real_path, get_translation)
             if translation is not None:
                 return translation
