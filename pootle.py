@@ -38,15 +38,10 @@ from wsgiref.simple_server import make_server
 
 from django.core.handlers.wsgi import WSGIHandler
 
-from translate.misc import optrecurse
-
-from pootle_app.core import Language, Project
-from pootle_app.translation_project import TranslationProject, scan_translation_projects
-from pootle_app import project_tree
+from pootle_app.translation_project import scan_translation_projects
 
 from Pootle import pootlefile, users, filelocations
 from Pootle import pan_app
-from Pootle.misc.transaction import django_transaction
 from Pootle.misc import prefs
 
 from Pootle import __version__ as pootleversion
