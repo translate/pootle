@@ -1,29 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2006 Zuza Software Foundation
+# Copyright 2004-2009 Zuza Software Foundation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
+# This file is somewhat based on the older Pootle/translatepage.py
+#
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# translate is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import re
 import difflib
 import operator
-import urllib
-import os
 import copy
 
 from django.contrib.auth.models import User
@@ -35,12 +34,10 @@ N_ = _
 from translate.storage import po
 from translate.misc.multistring import multistring
 
-from pootle_app.views.util import render_to_kid, render_jtoolkit, KidRequestContext
-from pootle_app.core import Language
+from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.translation_project import TranslationProject
 from pootle_app.fs_models import Directory, Store
 from pootle_app.profile import get_profile
-from pootle_app.store import Unit
 from pootle_app.views.common import navbar_dict, search_forms
 from pootle_app.url_manip import URL, read_all_state
 from pootle_app import unit_update
@@ -48,7 +45,6 @@ from pootle_app import unit_update
 from Pootle import pagelayout
 from Pootle import projects
 from Pootle import pootlefile
-from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 
 xml_re = re.compile("&lt;.*?&gt;")
@@ -198,7 +194,7 @@ def get_translations(profile, pootle_file, url_state):
         return -1, item, get_units(pootle_file, item, item + rows)
     else:
         rows = get_display_rows(profile, "translate")
-        before = rows / 2 
+        before = rows / 2
         fromitem = item - before
         first_item = max(item - before, 0)
         toitem = first_item + rows
@@ -776,7 +772,7 @@ def handle_backs(last_item, backs):
     for item in backs:
         last_item = item
     return last_item
-  
+
 def handle_suggestions(last_item, request, pootle_file, submitsuggests, skips, translations):
     for item in submitsuggests:
         if item in skips or item not in translations:
