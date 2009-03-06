@@ -35,6 +35,6 @@ def run_tests(test_labels, verbosity=1, interactive=True, extra_tests=[]):
     pytest_session = test.config.initsession()
     failures = pytest_session.main()
     # Clean up django.
-    #connection.creation.destroy_test_db(old_db_name, verbosity)
-    #utils.teardown_test_environment()
+    connection.creation.destroy_test_db(old_db_name, verbosity)
+    utils.teardown_test_environment()
     return len(failures)
