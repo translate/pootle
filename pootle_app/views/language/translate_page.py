@@ -318,6 +318,8 @@ def get_terminology(pootle_file, item):
         else:
             return []
     except Exception, e:
+        import logging
+        logging.log(logging.ERROR, "Exception while obtaining terminology", str(e))
         return []
 
 def remove_button_if_no_permission(label, buttons, permissions):
