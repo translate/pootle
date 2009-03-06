@@ -94,7 +94,7 @@ def import_languages(parsed_data):
     keys = [key for key in data if key.startswith(prefix)]
 
     # Clean up 'sv_SE.pluralequation' into 'sv_SE'
-    langs = set([key[len(prefix):].split('.')[0] for key in keys]) 
+    langs = set([key[len(prefix):].split('.')[0] for key in keys])
 
     for lang in map(lambda s: unicode(s, 'utf-8'), langs):
         # id, for free
@@ -122,7 +122,7 @@ def import_projects(parsed_data):
     # This could prompt the user, asking:
     # "Want us to import projects? Say no if you have already 
     # added the projects to the new Pootle DB in the web UI."
-        
+
     data = parsed_data.__root__._assignments # Is this really the right way?
     prefix = 'Pootle.projects.'
 
@@ -206,7 +206,7 @@ def create_database_user(data, user_name):
             profile.ui_lang = Language.objects.get(code=raw_uilanguage)
         except Language.DoesNotExist:
             logging.log(logging.ERROR, "The user %(username)s has %(lang_code)s as his/her "\
-                            "UI language, but %(lang_code) is not available the new Pootle's "\
+                            "UI language, but %(lang_code) is not available in Pootle's "\
                             "language database", dict(username=user.username, lang_code=raw_uilanguage))
     else:
         pass # leave it NULL
@@ -221,7 +221,7 @@ def create_database_user(data, user_name):
         except Language.DoesNotExist:
             logging.log(logging.ERROR, "The user %(username)s has %(lang_code)s as his/her "\
                             "alternative source language, but %(lang_code) is not "\
-                            "available the new Pootle's language database", 
+                            "available in Pootle's language database", 
                         dict(username=user.username, lang_code=raw_uilanguage))
     else:
         pass # leave it NULL
