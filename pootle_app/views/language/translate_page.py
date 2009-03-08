@@ -289,7 +289,7 @@ def getorigdict(item, orig, editable):
         focus_class = ""
     purefields = []
     for pluralid, pluraltext in enumerate(orig):
-        pureid = "orig-pure%d.%d" % (item, pluralid)
+        pureid = "orig-pure%d-%d" % (item, pluralid)
         purefields.append({"pureid": pureid, "name": pureid, "value": pluraltext})
     origdict = {
         "focus_class":    focus_class,
@@ -436,7 +436,7 @@ def get_trans_edit(request, pootle_file, item, trans):
             for pluralitem, pluraltext in enumerate(trans):
                 pluralform = _("Plural Form %d" % pluralitem)
                 pluraltext = escape_for_textarea(pluraltext)
-                textid = "trans%d.%d" % (item, pluralitem)
+                textid = "trans%d-%d" % (item, pluralitem)
                 forms.append({"title": pluralform, "name": textid, "text": pluraltext, "n": pluralitem})
                 if not focusbox:
                     focusbox = textid
@@ -562,7 +562,7 @@ def get_trans_review(request, pootle_file, item, trans, suggestions):
             if isinstance(pluralsuggestion, str):
                 pluralsuggestion = pluralsuggestion.decode("utf8")
             form = {"diff": suggdiff}
-            form["suggid"] = "suggest%d.%d.%d" % (item, suggid, pluralitem)
+            form["suggid"] = "suggest%d-%d-%d" % (item, suggid, pluralitem)
             form["value"] = pluralsuggestion
             if hasplurals:
                 form["title"] = _("Plural Form %d" % pluralitem)
@@ -571,7 +571,7 @@ def get_trans_review(request, pootle_file, item, trans, suggestions):
             "title":     suggtitle,
             "author":    suggestedby,
             "forms":     forms,
-            "suggid":    "%d.%d" % (item, suggid),
+            "suggid":    "%d-%d" % (item, suggid),
             "canreview": "review" in request.permissions,
             "back":      None,
             "skip":      None,
@@ -752,14 +752,14 @@ def parsekey(key):
         return keytype, itemcode
     return None, None
 
-def pointsplit(item):
-    dotcount = item.count(".")
-    if dotcount == 2:
-        item, pointitem, subpointitem = item.split(".", 2)
-        return int(item), int(pointitem), int(subpointitem)
-    elif dotcount == 1:
-        item, pointitem = item.split(".", 1)
-        return int(item), int(pointitem), None
+def dashsplit(item):
+    dashcount = item.count("-")
+    if dashcount == 2:
+        item, dashitem, subdashitem = item.split("-", 2)
+        return int(item), int(dashitem), int(subdashitem)
+    elif dashcount == 1:
+        item, dashitem = item.split("-", 1)
+        return int(item), int(dashitem), None
     else:
         return int(item), None, None
 
@@ -845,7 +845,7 @@ def process_post(request, pootle_file):
         keytype, item = parsekey(key)
         if keytype is None:
             continue
-        item, pointitem, subpointitem = pointsplit(item)
+        item, dashitem, subdashitem = dashsplit(item)
         if keytype == "skip":
             skips.append(item)
         elif keytype == "back":
@@ -855,9 +855,9 @@ def process_post(request, pootle_file):
         elif keytype == "submit":
             submits.append(item)
         elif keytype == "accept":
-            accepts.append((item, pointitem))
+            accepts.append((item, dashitem))
         elif keytype == "reject":
-            rejects.append((item, pointitem))
+            rejects.append((item, dashitem))
         elif keytype == "translator_comments":
             # We need to remove carriage returns from the input.
             value = value.replace("\r", "")
@@ -866,12 +866,12 @@ def process_post(request, pootle_file):
             fuzzies[item] = value
         elif keytype == "trans":
             value = unescape_submition(value)
-            if pointitem is not None:
-                translations.setdefault(item, {})[pointitem] = value
+            if dashitem is not None:
+                translations.setdefault(item, {})[] = value
             else:
                 translations[item] = value
         elif keytype == "suggest":
-            suggestions.setdefault((item, pointitem), {})[subpointitem] = value
+            suggestions.setdefault((item, dashitem), {})[subdashitem] = value
         elif keytype == "orig-pure":
             # this is just to remove the hidden fields from the argdict
             pass
