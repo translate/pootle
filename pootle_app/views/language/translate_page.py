@@ -867,7 +867,7 @@ def process_post(request, pootle_file):
         elif keytype == "trans":
             value = unescape_submition(value)
             if dashitem is not None:
-                translations.setdefault(item, {})[] = value
+                translations.setdefault(item, {})[dashitem] = value
             else:
                 translations[item] = value
         elif keytype == "suggest":
