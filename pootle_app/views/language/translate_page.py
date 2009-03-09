@@ -313,9 +313,10 @@ def get_terminology(pootle_file, item):
             return term_matcher.matches(pootle_file.getitem(item).source)
         else:
             return []
-    except Exception, e:
+    except:
         import logging
-        logging.log(logging.ERROR, "Exception while obtaining terminology", str(e))
+        import traceback
+        logging.log(logging.ERROR, traceback.format_exc())
         return []
 
 def remove_button_if_no_permission(label, buttons, permissions):
