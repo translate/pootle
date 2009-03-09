@@ -32,7 +32,7 @@ from django.contrib.auth.models         import User, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.conf                        import settings
 from django.db                          import models
-from django.db.models.signals           import pre_delete
+from django.db.models.signals           import pre_delete, post_init
 
 from translate.filters import checks
 from translate.convert import po2csv, po2xliff, xliff2po, po2ts, po2oo
@@ -879,11 +879,6 @@ class TranslationProject(models.Model):
                 wordcount += pofile.statistics.getunitstats()['sourcewordcount'][item]
         return wordcount
 
-    def getpomtime(self):
-        """returns the modification time of the last modified file in the project"""
-        return max([pofile.pomtime for pofile in self.non_db_state.pofiles.values()])
-    pomtime = property(getpomtime)
-
     def track(self, pofilename, item, message):
         """sends a track message to the pofile"""
         self.non_db_state.pofiles[pofilename].track(item, message)
@@ -957,7 +952,9 @@ class TranslationProject(models.Model):
 
     ##############################################################################################
 
-    is_terminilogy_project = property(lambda self: self.project.code == "terminology")
+    is_terminology_project = property(lambda self: self.project.code == "terminology")
+
+    stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.directory.pootle_path))
 
     def gettmsuggestions(self, pofile, item):
         """find all the TM suggestions for the given (pofile or pofilename) and item"""
@@ -967,39 +964,52 @@ class TranslationProject(models.Model):
         tmsuggestpos = pofile.gettmsuggestions(item)
         return tmsuggestpos
 
-    def gettermbase(self):
+    def gettermbase(self, make_matcher):
         """returns this project's terminology store"""
-        if self.isterminologyproject():
-            if len(self.non_db_state.pofiles) > 0:
-                for termfile in self.non_db_state.pofiles.values():
-                    termfile.pofreshen()
-                return self
+        if self.is_terminology_project:
+            query = self.stores
+            if query.count() > 0:
+                for store in query.all():
+                    # We just want to touch the stores, since this
+                    # will automatically pull them into the cache and
+                    # freshen them.
+                    pootlefile.with_store(self, store, lambda _x: None)
+                return make_matcher(self)
         else:
-            termfilename = "pootle-terminology."+self.fileext
-            if termfilename in self.non_db_state.pofiles:
-                termfile = self.getpofile(termfilename, freshen=True)
-                return termfile
-        return None
+            termfilename = "pootle-terminology." + self.project.localfiletype
+            try:
+                store = Store.objects.get(pootle_path=termfilename)
+                return pootlefile.with_store(pootle_file.translation_project, store, make_matcher)
+            except Store.DoesNotExist:
+                pass
+        raise StopIteration()
 
     def gettermmatcher(self):
         """returns the terminology matcher"""
-        termbase = self.gettermbase()
-        if termbase:
+        def make_matcher(termbase):
             newmtime = termbase.pomtime
-            if newmtime != self.termmatchermtime:
-                self.termmatchermtime = newmtime
-                if self.isterminologyproject():
-                    self.termmatcher = match.terminologymatcher(self.non_db_state.pofiles.values())
+            if newmtime != self.non_db_state.termmatchermtime:
+                if self.is_terminology_project:
+                    def init(pootle_files):
+                        return match.terminologymatcher(pootle_files), newmtime
+                    return pootlefile.with_stores(self, self.stores.all(), init)
                 else:
-                    self.termmatcher = match.terminologymatcher(termbase)
-        elif not self.isterminologyproject() and pan_app.get_po_tree().hasproject(self.languagecode, "terminology"):
-            termproject = pan_app.get_po_tree().getproject(self.languagecode, "terminology")
-            self.termmatcher = termproject.gettermmatcher()
-            self.termmatchermtime = termproject.termmatchermtime
-        else:
-            self.termmatcher = None
-            self.termmatchermtime = None
-        return self.termmatcher
+                    def init(pootle_file):
+                        return match.terminologymatcher(termbase), newmtime
+                    return pootlefile.with_store(self, termbase, init)
+
+        if self.non_db_state.termmatcher is None:
+            try:
+                self.non_db_state.termmatcher, self.non_db_state.termmatchermtime = self.gettermbase(make_matcher)
+            except StopIteration:
+                if not self.is_terminology_project:
+                    try:
+                        termproject = TranslationProject.objects.get(language=self.language_id, project__code='terminology')
+                        self.non_db_state.termmatcher = termproject.gettermmatcher()
+                        self.non_db_state.termmatchermtime = termproject.non_db_state.termmatchermtime
+                    except TranslationProject.DoesNotExist:
+                        pass
+        return self.non_db_state.termmatcher
 
     ##############################################################################################
 
@@ -1138,3 +1148,8 @@ def delete_directory(sender, instance, **kwargs):
     instance.directory.delete()
 
 #pre_delete.connect(delete_directory, sender=TranslationProject)
+
+def add_pomtime(sender, instance, **kwargs):
+    instance.pomtime = 0
+
+post_init.connect(add_pomtime, sender=TranslationProject)
