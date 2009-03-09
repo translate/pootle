@@ -60,7 +60,7 @@ def get_alt_projects(request, pootle_file):
     if settings.ENABLE_ALT_SRC:
         # try to get the project if the user has chosen an alternate source language
         return TranslationProject.objects.filter(language__in=get_profile(request.user).alt_src_langs.all(),
-                                                 project=request.translation_project.project)
+                                                 project=request.translation_project.project_id)
     else:
         return TranslationProject.objects.none()
 

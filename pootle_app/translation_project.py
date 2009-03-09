@@ -180,7 +180,7 @@ class TranslationProject(models.Model):
     def _get_profiles_with_interest(self):
         """returns all the users who registered for this language and
         project"""
-        return PootleProfile.objects.filter(languages=self.language)
+        return PootleProfile.objects.filter(languages=self.language_id)
 
     profiles_with_interest = property(_get_profiles_with_interest)
 
