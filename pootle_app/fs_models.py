@@ -199,18 +199,6 @@ def filter_next_store(query, store_name):
     else:
         return query.filter(name__gte=store_name)
 
-def filter_prev_store(query, search, store_name):
-    if store_name is None:
-        return query
-    else:
-        return query.filter(name__lte=store_name)
-
-def filter_matches(query, last_index, get_matches):
-    for store in query.all():
-        for match_index in get_matches(store, last_index):
-            yield store, match_index
-        last_index = 0
-
 class Directory(models.Model):
     class Meta:
         ordering = ['name']
@@ -245,20 +233,8 @@ class Directory(models.Model):
     def filter_stores(self, search=FakeSearch(None), starting_store=None):
         if search.contains_only_file_specific_criteria():
             return filter_next_store(filter_goals(self.child_stores, search.goal), starting_store)
-            #return filter_next_store(self.child_stores.filter(goals=search.goal), starting_store)
         else:
             raise Exception("Can't filter on unit-specific information")
-
-    def _matches(self, search, starting_store, last_index, get_matches):
-        return filter_matches(
-            filter_next_store(filter_goals(self.child_stores, search.goal), starting_store),
-            last_index, get_matches)
-
-    def next_matches(self, search=FakeSearch(None), starting_store=None, last_index=0):
-        return self._matches(search, starting_store, last_index, search.next_matches)
-
-    def prev_matches(self, search=FakeSearch(None), starting_store=None, last_index=0):
-        return self._matches(search, starting_store, last_index, search.prev_matches)
 
     def get_or_make_subdir(self, child_name):
         try:

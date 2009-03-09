@@ -22,6 +22,7 @@
 import bisect
 
 from translate.tools import pogrep
+from translate.filters import checks
 
 from pootle_app.goals import StoreAssignment
 from pootle_app.fs_models import Store, Directory, FakeSearch
@@ -58,150 +59,54 @@ def get_relative_components(directory, starting_store):
 
 ################################################################################
 
-def get_filtered_matches(get_matches, starting_store, search, last_index, depth):
-    """If starting_store is not None, then we want to start iteration
-    at some store in a subdirectory.
+BLOCK_SIZE = 10
 
-    The number of directories we have to descend before reaching the
-    directory containing the store we want is len(starting_store) - 1
-    (this is because the last element in starting_store is the name of
-    the store that we're looking for).
+def do_query(query, next_matches, last_index):
+    i = 0
+    # Read BLOCK_SIZE Stores from the database (query[x:y] creates a
+    # ranged database query)...
+    result = query[i:i+BLOCK_SIZE]
+    while len(result) > 0:
+        # For each of the just-read BLOCK_SIZE Stores...
+        for store in result:
+            try:
+                # See whether we have a match
+                return store, next_matches(store, last_index).next()
+            except StopIteration:
+                pass
+            # If we get here, then there were no more matches in the
+            # previous store. Thus, for the next store we need to
+            # start at the first index.
+            last_index = -1
 
-    Thus, if depth < len(starting_store) - 1, we're still descending
-    directories looking for the starting store. This also means that
-    we want to skip past all the stores in the directories that we are
-    descending (remember that our algorithm first enumerates stores
-    and then directories; therefore, if we are descending directories
-    we should be past stores in those directories.
+        # Now we want to move on by BLOCK_SIZE Stores to the next
+        # Stores.
+        i += BLOCK_SIZE
+        # Build a range query to get our next set of Stores
+        result = query[i:i+BLOCK_SIZE]
+    raise StopIteration()
 
-    When depth == len(starting_store) - 1, we've reached the directory
-    containing the store that we want. Now, we want to skip past all
-    the stores which are lexicographically smaller than the store we
-    want, so we issue the query
-    directory.filter_child_stores(search.goal).filter(name__gte=starting_store[-1]).
-
-    If starting_store is None, we just enumerate all the stores in the
-    current directory.
-    """
-    if starting_store is not None:
-        if depth < len(starting_store) - 1:
-            return []
-        else:
-            return get_matches(search, starting_store[-1], last_index)
-    else:
-        return get_matches(search)
-
-def get_next_subdirs(directory, starting_store, depth):
-    """If starting_store is not None, then we want to start iteration
-    at some store in a subdirectory.
-
-    To see how this works, suppose we want to start iteration at a
-    store at the path ['foo', 'bar', 'baz', 'quux.po']. If depth == 2,
-    then we have already descended to the directory 'foo/bar' (foo is
-    at depth 0 and bar is at depth 1). Thus, starting_store[depth] ==
-    'baz' where depth == 2.  We definitely want to skip everything
-    before 'baz' in the directory 'foo/bar', so that's why we issue
-    the query
-    directory.child_dirs.filter(name__gte=starting_store[depth]). This
-    works, because subdirectories are ordered lexicographically (see
-    the model definition of Directory).
-
-    On the other hand, if starting_store is None, then we just want to
-    enumerate all subdirectories.
-    """
-    if starting_store is not None:
-        return directory.child_dirs.filter(name__gte=starting_store[depth])
-    else:
-        return directory.child_dirs.all()
-
-def iter_next_matches_recur(directory, starting_store, last_index, search, depth=0):
-    """Iterate over all the stores contained in the directory
-    'directory'. For each directory, all the stores are first iterated
-    in lexicographical ordering, and then the subdirectories are
-    iterated in lexicographical ordering.
-
-    @param directory: A Directory object giving the root relative to
-                      which we want to iterate
-
-    @param starting_store: None or a string containing a list of path
-                           components which are relative to the
-                           directory specified by 'directory' (for
-                           example ['a', 'b', 'c.po'])
-
-    @param search: A search object which is used to filter out stores
-                   based on the user's search criteria. This object
-                   should contain a 'goal' member (to allow filtering
-                   based on goals) and a method called 'matches' which
-                   takes a store and returns a boolean value
-                   specifying whether it should be included in the
-                   iteration or not.
-
-    @param depth: Keeps track of the recursion depth. This is used to
-                  find the component in 'starting_store' (if
-                  'starting_store' is not None) which corresponds to the
-                  current directory being considered.
-    """
-    for store, match_index in get_filtered_matches(directory.next_matches, starting_store, search, last_index, depth):
-        yield store, match_index
-        # If there are any files at all the enumerate, then we've
-        # found what we were looking for with starting_store. Therefore,
-        # nuke its value now, so that we will enumerate full
-        # subdirectories from now on.
-        starting_store = None
-        last_index = 0
-
-    for subdirectory in get_next_subdirs(directory, starting_store, depth):
-        for store, match_index in iter_next_matches_recur(subdirectory, starting_store, last_index, search, depth + 1):
-            yield store, match_index
-        # After considering our first subdirectory, we should have
-        # found what we were looking for with starting_store. Therefore,
-        # nuke its value now, so that we will enumerate full
-        # subdirectories from now on.
-        starting_store = None
-        last_index = 0
-
-def iter_next_matches_store(path_obj, last_index=0, search=FakeSearch(None)):
-    for match in search.next_matches(path_obj, last_index):
-        yield path_obj, match
-
-def iter_next_matches(path_obj, starting_store=None, last_index=0, search=FakeSearch(None)):
+def get_next_match(path_obj, starting_store=None, last_index=-1, search=FakeSearch(None)):
     if path_obj.is_dir:
-        return iter_next_matches_recur(path_obj, get_relative_components(path_obj, starting_store), last_index, search)
+        query = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).order_by('pootle_path')
+        if starting_store is not None:
+            query = query.filter(pootle_path__gte=starting_store)
+        if search.goal is not None:
+            query = query.filter(goals=search.goal)
+        return do_query(query, search.next_matches, last_index)
     else:
-        return iter_next_matches_store(path_obj, last_index, search)
+        return path_obj, search.next_matches(path_obj, last_index).next()
 
-################################################################################
-
-def get_prev_subdirs(directory, starting_store, depth):
-    "See get_next_subdirs"
-    if starting_store is not None:
-        return directory.child_dirs.filter(name__lte=starting_store[depth]).order_by('-name')
-    else:
-        return directory.child_dirs.all().order_by('-name')
-
-def iter_prev_matches_recur(directory, starting_store, last_index, search, depth=0):
-    "See iter_next_matches_recur"
-    for subdirectory in get_prev_subdirs(directory, starting_store, depth):
-        for store, match_index in iter_prev_matches_recur(subdirectory, starting_store, last_index, search, depth + 1):
-            yield store, match_index
-        starting_store = None
-        last_index = 0
-
-    for store, match_index in get_filtered_matches(directory.prev_matches, starting_store, search, last_index, depth):
-        yield store, match_index
-        starting_store = None
-        last_index = 0
-
-def iter_prev_matches_store(path_obj, last_index=0, search=FakeSearch(None)):
-    for match in search.prev_matches(path_obj, last_index):
-        yield path_obj, match
-
-def iter_prev_matches(directory, starting_store=None, last_index=-1, search=FakeSearch(None)):
-    "See iter_next_matches"
+def get_prev_match(path_obj, starting_store=None, last_index=-1, search=FakeSearch(None)):
     if path_obj.is_dir:
-        return iter_prev_matches_recur(path_obj, get_relative_components(path_obj, starting_store), last_index, search)
+        query = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).order_by('-pootle_path')
+        if starting_store is not None:
+            query = query.filter(pootle_path__lte=starting_store)
+        if search.goal is not None:
+            query = query.filter(goals=search.goal)
+        return do_query(query, search.prev_matches, last_index)
     else:
-        return iter_prev_matches_store(path_obj, last_index, search)
+        return path_obj, search.next_matches(path_obj, last_index).next()
 
 ################################################################################
 

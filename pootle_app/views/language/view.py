@@ -104,16 +104,16 @@ def translate_page(request, translation_project, dir_path):
     search = search_from_state(translation_project, url_state['search'])
     try:
         def next_store_item(store_name, item):
-            return store_iteration.iter_next_matches(directory,
-                                                     store_name,
-                                                     item,
-                                                     search).next()
+            return store_iteration.get_next_match(directory,
+                                                  store_name,
+                                                  item,
+                                                  search)
 
         def prev_store_item(store_name, item):
-            return store_iteration.iter_prev_matches(directory,
-                                                     store_name,
-                                                     item,
-                                                     search).next()
+            return store_iteration.get_prev_match(directory,
+                                                  store_name,
+                                                  item,
+                                                  search)
 
         directory = translation_project.directory.get_relative(dir_path)
         return find_and_display(request, directory, next_store_item, prev_store_item)

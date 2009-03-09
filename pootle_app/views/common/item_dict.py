@@ -30,7 +30,7 @@ from django.utils.translation import ungettext
 from pootle_app.profile import get_profile
 from pootle_app.fs_models import Search, search_from_state
 from pootle_app.url_manip import URL
-from pootle_app.store_iteration import iter_next_matches
+from pootle_app.store_iteration import get_next_match
 
 ################################################################################
 
@@ -85,7 +85,7 @@ def get_item_stats(request, quick_stats, path_obj, url_state):
 
 def has_assigned_strings(path_obj, search):
     try:
-        iter_next_matches(path_obj, search=search).next()
+        get_next_match(path_obj, search=search)
         return True
     except StopIteration:
         return False
