@@ -23,6 +23,7 @@ import os
 
 from django.conf import settings
 from django.utils.html import escape
+from django.utils.translation import ugettext as _
 
 from pootle_app.fs_models import FakeSearch
 from pootle_app.profile import get_profile
