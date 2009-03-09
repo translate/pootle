@@ -1,29 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# Pootle is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Pootle; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import copy
+"""Helper methods for the navigation bar."""
 
 from django.utils.translation import ugettext as _
 
-from pootle_app.url_manip import URL, read_all_state, PositionState, TranslateDisplayState
+from pootle_app.url_manip import URL, read_all_state
 from pootle_app.views.common import item_dict
 
 from Pootle.i18n.jtoolkit_i18n import tr_lang
@@ -69,7 +68,7 @@ def make_navbar_path_dict(request, url):
 def make_directory_navbar_dict(request, directory, url_state):
     result = item_dict.make_directory_item(request, directory, url_state)
     url = URL(directory.pootle_path, url_state)
-    result.update({            
+    result.update({
             'path':    make_navbar_path_dict(request, url),
             'actions': make_navbar_actions(request, url) })
     del result['title']
@@ -78,7 +77,7 @@ def make_directory_navbar_dict(request, directory, url_state):
 def make_store_navbar_dict(request, store, url_state):
     result = item_dict.make_store_item(request, store, url_state)
     url = URL(store.pootle_path, url_state)
-    result.update({            
+    result.update({
             'path':    make_navbar_path_dict(request, url),
             'actions': {'basic': [], 'extended': [], 'goalform': []} })
     del result['title']
