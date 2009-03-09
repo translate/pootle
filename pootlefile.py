@@ -718,66 +718,81 @@ def absolute_real_path(p):
 pootle_files = LRUCache(settings.STORE_LRU_CACHE_SIZE,
                         lambda project_filename: pootlefile(project_filename[0], project_filename[1]))
 
-def with_pootle_files(f):
+def with_pootle_file_cache(f):
   # TBD: Do locking here
   return f(pootle_files)
 
-# Yes, I know this is ugly. I'll revamp this when I implement better
-# context manager support for Python 2.4 and lower, since this belongs
-# in a context manager.
-def set_pootle_file_vars(translation_project):
-  def decorator(f):
-    def decorated_f(pootle_file):
-      pootle_file._with_pootle_file_ref_count = getattr(pootle_file, '_with_pootle_file_ref_count', 0) + 1
-      pootle_file.translation_project = translation_project
-      try:
-        return f(pootle_file)
-      finally:
-        if pootle_file._with_pootle_file_ref_count == 0:
-          del pootle_file._with_pootle_file_ref_count
-          del pootle_file.translation_project
-    return decorated_f
-  return decorator
+################################################################################
 
-def with_pootle_file(translation_project, filename, f):
-  # TBD: Add individual file locking
-  def do(pootle_files):
-    pootle_file = pootle_files[translation_project, filename]
+def set_translation_project(pootle_files, translation_project):
+  for pootle_file in pootle_files:
+    pootle_file._with_pootle_file_ref_count = getattr(pootle_file, '_with_pootle_file_ref_count', 0) + 1
+    pootle_file.translation_project = translation_project
+
+def freshen_files(pootle_files, translation_project):
+  for pootle_file in pootle_files:
     pootle_file.pofreshen()
-    return set_pootle_file_vars(translation_project)(f)(pootle_file)
-  return with_pootle_files(do)
+    # Set the mtime of the TranslationProject to the most recent mtime
+    # of a store loaded for this TranslationProject.
+    translation_project.pomtime = max(translation_project.pomtime, pootle_file.pomtime)
 
-# Yes, I know this is ugly. I'll revamp this when I implement better
-# context manager support for Python 2.4 and lower, since this belongs
-# in a context manager.
-def set_store_vars(store):
-  def decorator(f):
-    def decorated_f(pootle_file):
-      # To allow us to use a pootle_file recursively (for example if
-      # we're busy working on a pootlefile and we call something like
-      # store_iteration.iter_stores), we keep track of how many
-      # references we have to the file; this is so that we won't
-      # delete these variables when we're done calling f.
-      pootle_file._with_store_ref_count = getattr(pootle_file, '_with_store_ref_count', 0) + 1
-      pootle_file.store = store
-      try:
-        return f(pootle_file)
-      finally:
-        pootle_file._with_store_ref_count -= 1
-        if pootle_file._with_store_ref_count == 0:
-          del pootle_file._with_store_ref_count
-          del pootle_file.store
-    return decorated_f
-  return decorator
+def unset_translation_project(pootle_files):
+  for pootle_file in pootle_files:
+    pootle_file._with_pootle_file_ref_count -= 1
+    if pootle_file._with_pootle_file_ref_count == 0:
+      del pootle_file._with_pootle_file_ref_count
+      del pootle_file.translation_project
+
+def with_pootle_files(translation_project, filenames, f):
+  def do(cache):
+    pootle_files = [cache[translation_project, filename] for filename in filenames]
+    set_translation_project(pootle_files, translation_project)
+    freshen_files(pootle_files, translation_project)
+    try:
+      return f(pootle_files)
+    finally:
+      unset_translation_project(pootle_files)
+  return with_pootle_file_cache(do)
+  
+def with_pootle_file(translation_project, filename, f):
+  def do(pootle_files):
+    return f(pootle_files[0])
+  return with_pootle_files(translation_project, [filename], do)
+
+################################################################################
+
+def set_stores(pootle_files, stores):
+  for pootle_file, store in zip(pootle_files, stores):
+    pootle_file._with_store_ref_count = getattr(pootle_file, '_with_store_ref_count', 0) + 1
+    pootle_file.store = store
+
+def unset_stores(pootle_files):
+  for pootle_file in pootle_files:
+    pootle_file._with_store_ref_count -= 1
+    if pootle_file._with_store_ref_count == 0:
+      del pootle_file._with_store_ref_count
+      del pootle_file.store
+
+def with_stores(translation_project, stores, f):
+  def do(pootle_files):
+    set_stores(pootle_files, stores)
+    try:
+      return f(pootle_files)
+    finally:
+      unset_stores(pootle_files)
+
+  filenames = [store.abs_real_path for store in stores]
+  return with_pootle_files(translation_project, filenames, do)
 
 def with_store(translation_project, store, f):
-  @set_store_vars(store)
-  def do(pootle_file):
-    return f(pootle_file)
-  return with_pootle_file(translation_project, store.abs_real_path, do)
+  def do(pootle_files):
+    return f(pootle_files[0])
+  return with_stores(translation_project, [store], do)
+
+################################################################################
 
 def set_pootle_file(translation_project, filename, pootle_file):
   def do_set(pootle_files):
     pootle_files[filename] = pootle_files
-  return with_pootle_files(do_set)
+  return with_pootle_file_cache(do_set)
 
