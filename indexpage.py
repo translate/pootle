@@ -605,7 +605,7 @@ class ProjectIndex(pagelayout.PootleNavPage):
         self.translation_project.uploadfile(self.request, self.dirname, uploadfile.filename, uploadfile.contents, overwrite)
         self.translation_project.scanpofiles()
       elif uploadfile.filename.endswith(".zip"):
-        self.translation_project.uploadarchive(self.request, self.dirname, uploadfile.contents)
+        self.translation_project.uploadarchive(self.request, self.dirname, uploadfile.contents, overwrite)
         self.translation_project.scanpofiles()
       else:
         raise ValueError(_("Can only upload PO files and zips of PO files"))

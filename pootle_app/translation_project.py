@@ -381,7 +381,7 @@ class TranslationProject(models.Model):
         archive.close()
         return archivecontents.getvalue()
 
-    def uploadarchive(self, request, dirname, archivecontents):
+    def uploadarchive(self, request, dirname, archivecontents, overwrite=False):
         """uploads the files inside the archive"""
 
         def unzip_external(archivecontents):
@@ -405,7 +405,7 @@ class TranslationProject(models.Model):
                             print "error adding %s: not a %s file" % (fname, os.extsep + self.fileext)
                             continue
                         fcontents = open(os.path.join(path, fname), 'rb').read()
-                        self.uploadfile(request, path[len(basedir)+1:], fname, fcontents)
+                        self.uploadfile(request, path[len(basedir)+1:], fname, fcontents, overwrite)
                 os.path.walk(tempdir, upload, tempdir)
                 return
             finally:
@@ -425,7 +425,7 @@ class TranslationProject(models.Model):
                 subdirname, pofilename = os.path.dirname(filename), os.path.basename(filename)
                 try:
                     # TODO: use zipfile info to set the time and date of the file
-                    self.uploadfile(request, os.path.join(dirname, subdirname), pofilename, contents)
+                    self.uploadfile(request, os.path.join(dirname, subdirname), pofilename, contents, overwrite)
                 except ValueError, e:
                     print "error adding %s" % filename, e
                     continue
