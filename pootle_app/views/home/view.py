@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import locale
+"""This view defines the home / account pages for a user."""
 
 from django import forms
 from django.forms import ModelForm
