@@ -136,12 +136,14 @@ class Search(object):
                 self)
 
     def next_matches(self, store, last_index, index_subset=None):
-        stats = store.get_property_stats(self.translation_project.checker)
-        matches = self._all_matches(store, stats, (last_index, None), index_subset)
         # stats['total'] is an array of indices into the units array
         # of a store. But we want indices of the units that we see in
         # Pootle. bisect.bisect_left of a member in stats['total']
         # gives us the index of the unit as we see it in Pootle.
+        stats = store.get_property_stats(self.translation_project.checker)
+        if last_index < 0:
+            last_index = 0
+        matches = list(self._all_matches(store, stats, (last_index, None), index_subset))
         return (bisect.bisect_left(stats['total'], item) for item in matches)
 
     def prev_matches(self, store, last_index, index_subset=None):
@@ -157,9 +159,9 @@ class Search(object):
             # into the file, we want to include the very last element
             # of stats['total'] as well when searching. Thus
             # [0:len(stats['total'])] gives us what we need.
-            last_index = 0# len(stats['total'])
-        matches = self._all_matches(store, stats, (0, last_index + 1), index_subset)
-        return (bisect.bisect_right(stats['total'], item) for item in reversed(matches))
+            last_index = len(stats['total']) - 1
+        matches = list(self._all_matches(store, stats, (0, last_index + 1), index_subset))
+        return (bisect.bisect_left(stats['total'], item) for item in reversed(matches))
 
 def search_from_state(translation_project, search_state):
     return Search(translation_project=translation_project, **search_state.as_dict())

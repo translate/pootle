@@ -150,7 +150,10 @@ def handle_translation_file(request, translation_project, file_path):
                 return store, get_item(search.next_matches(store, item), item - 1)
 
             def prev_store_item(store_name, item):
-                return store, get_item(search.prev_matches(store, item), item + 1)
+                if item > 0:
+                    return store, get_item(search.prev_matches(store, item), item + 1)
+                else:
+                    return store, 0
 
             return find_and_display(request, store.parent, next_store_item, prev_store_item)
         except PermissionError, e:
