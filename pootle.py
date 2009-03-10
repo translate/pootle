@@ -145,13 +145,10 @@ def init_db():
   if PootleProfile.objects.count() == 0:
     call_command('initdb')
 
-def setup_localization_system():
-  gettext.get_lang = gettext.get_lang_real
-
 def main():
   # run the web server
   init_db()
-  setup_localization_system()
+  gettext.unbootstrap()
   checkversions()
   parser = PootleOptionParser()
   options, args = parser.parse_args()

@@ -183,3 +183,10 @@ def hijack_django_translation_functions():
     translation.ungettext_lazy = lazy(ungettext, unicode)
 
 hijack_django_translation_functions()
+
+def unbootstrap():
+    """Replace the function get_lang with get_real_lang. get_lang_real
+    is the actual implementation and the original get_lang is just a
+    bootstrapping function."""
+    global get_lang
+    get_lang = get_lang_real
