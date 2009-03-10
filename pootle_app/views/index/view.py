@@ -1,33 +1,30 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2006 Zuza Software Foundation
+# Copyright 2009 Zuza Software Foundation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# translate is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.http import Http404
+"""This implements some top-level pages (robots.txt, about, etc.)."""
+
 from django.http import HttpResponse
 
 from Pootle import pan_app, indexpage
-from Pootle.misc import jtoolkit_django
 
-from pootle_app.views.util import render_to_kid
 from pootle_app.views.util import render_jtoolkit
-from pootle_app import project_tree
 from pootle_app.core import Language
 
 def index(request, *path_vars):
