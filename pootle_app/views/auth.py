@@ -29,8 +29,10 @@ from django.conf import settings
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.core import Language
 
+from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle.i18n.user_lang_discovery import get_language_from_request
+from translate.lang import data
 
 def login(request):
     message = None
@@ -77,14 +79,12 @@ def language_list(request):
     tr_default = _("Default")
     if tr_default != "Default":
         tr_default = u"%s | \u202dDefault" % tr_default
-    finallist = [{"code": '', "name": tr_default}]
-    request_code = get_language_from_request(request).language.code
-    #TODO: restore this as soon as we have a defaultlanguage for the server
-    # See bug 887
-#    if request_code in ["en", request.server.defaultlanguage]:
-#        preferredlanguage = ""
-#    else:
-#        preferredlanguage = request_code
+    request_code = data.normalize_code(get_language_from_request(request).language.code)
+    if request_code in ["en", "en-us", pan_app.get_default_language()]:
+        preferred_language = ""
+    else:
+        preferred_language = request_code
+    finallist = [{"code": '', "name": tr_default, "selected": is_selected("", preferred_language)}]
     for language in Language.objects.all():
         code = language.code
         name = language.fullname
@@ -95,8 +95,7 @@ def language_list(request):
             # in an RTL layout like Arabic. We can't use markup because this 
             # is used inside an option tag.
             name = u"%s | \u202d%s" % (tr_name, name)
-#        selected = key==preferredlanguage or None
-        finallist.append({"code": code, "name": name, "selected": is_selected(request, language.code)})
+        finallist.append({"code": code, "name": name, "selected": is_selected(language.code, preferred_language)})
     finallist.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     return finallist
 
@@ -111,9 +110,8 @@ def redirect(url, **kwargs):
     else:
         return HttpResponseRedirect(url)
 
-def is_selected(request, new_code):
-    code = get_language_from_request(request).language.code
-    if code == new_code:
+def is_selected(new_code, preferred_language):
+    if data.normalize_code(new_code) == preferred_language:
         return "selected"
     return None
 
