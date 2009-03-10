@@ -46,4 +46,4 @@ def get_description():
     return ugettext(settings.DESCRIPTION)
 
 def get_default_language():
-    return ugettext(settings.DEFAULT_LANGUAGE)
+    return settings.DEFAULT_LANGUAGE
