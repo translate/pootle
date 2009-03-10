@@ -31,6 +31,8 @@ from pootle_app.profile import get_profile
 from pootle_app.translation_project import TranslationProject
 from Pootle.i18n import gettext
 
+from translate.lang import data
+
 from string import upper
 
 def get_lang_from_cookie(request):
@@ -65,7 +67,7 @@ def get_lang_obj(code):
     try:
         return core.Language.objects.get(code=code_parts[0])
     except ObjectDoesNotExist:
-        return Null
+        return None
 
 def get_lang_from_http_header(request):
     """If the user's browser sends a list of preferred languages in the
@@ -76,7 +78,7 @@ def get_lang_from_http_header(request):
     If nothing is found, return None."""
     accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
     for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
-        if accept_lang == '*':
+        if accept_lang == '*' or data.normalize_code(accept_lang) in ['en-us', 'en']:
             return gettext.get_default_translation()
         try:
             lang_obj = get_lang_obj(accept_lang)
