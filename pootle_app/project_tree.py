@@ -120,6 +120,7 @@ def get_non_existant_language_dir(project_dir, language, file_style, make_dirs):
         return project_dir
     else:
         if make_dirs:
+            language_dir = os.path.join(project_dir, language.code)
             os.mkdir(language_dir)
             return language_dir
         else:
@@ -140,7 +141,7 @@ def get_language_dir(project_dir, language, file_style, make_dirs):
     else:
         return language_dir
 
-def get_translation_project_dir(language, project_dir, file_style, make_dirs=False):
+def get_translation_project_dir(language, project_dir, file_style, make_dirs=True):
     """returns the base directory containing po files for the project
 
     If make_dirs is True, then we will create project and language
