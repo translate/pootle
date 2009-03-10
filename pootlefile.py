@@ -39,7 +39,7 @@ from translate.misc.multistring import multistring
 
 from pootle_app.lru_cache    import LRUCache
 
-from Pootle import __version__, request_cache
+from Pootle import __version__
 from Pootle import statistics
 from Pootle.legacy.jToolkit import timecache
 from Pootle.legacy.jToolkit import glock

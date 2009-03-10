@@ -23,7 +23,6 @@ from django.conf import settings
 
 from translate.storage import statsdb
 
-import request_cache
 import traceback
 
 def getmodtime(filename):
@@ -52,7 +51,7 @@ class pootlestatistics:
   def getquickstats(self):
     """returns the quick statistics (totals only)"""
     try:
-      return request_cache.call(self.statscache.filetotals, self.basefile.filename) or statsdb.emptyfiletotals()
+      return self.statscache.filetotals(self.basefile.filename) or statsdb.emptyfiletotals()
     except:
       _complain(u'Could not compute file totals for %s', self.basefile.filename)
       return statsdb.emptyfiletotals()
@@ -62,14 +61,14 @@ class pootlestatistics:
     if checker == None:
       checker = self.basefile.checker
     try:
-      return request_cache.call(self.statscache.filestats, self.basefile.filename, checker)
+      return self.statscache.filestats(self.basefile.filename, checker)
     except:
       _complain(u'Could not compute statistics for %s', self.basefile.filename)
       return statsdb.emptyfilestats()
 
   def getunitstats(self):
     try:
-      return request_cache.call(self.statscache.unitstats, self.basefile.filename)
+      return self.statscache.unitstats(self.basefile.filename)
     except:
       _complain(u'Could not compute word counts for %s', self.basefile.filename)
       return statsdb.emptyunitstats()

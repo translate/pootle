@@ -97,7 +97,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.transaction.TransactionMiddleware',
     'Pootle.middleware.CheckCookieMiddleware',
     'Pootle.middleware.LocaleMiddleware',
-    'Pootle.middleware.RequestCacheMiddleware',
     'Pootle.middleware.ProfilerMiddleware',
     # Uncomment to use memcached for caching
     #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
