@@ -33,13 +33,7 @@ from Pootle.pagelayout import completetemplatevars
 # find the root directory.
 from django.conf import settings
 
-try:
-    # Tell kid to look in the first directory in
-    # settings.TEMPLATE_DIRS for modules with the extension '.kid'
-    kid.enable_import(path=settings.TEMPLATE_DIRS[0], ext='.kid')
-except TypeError:
-    # Old kid versions don't recognize the 'path' and 'ext' parameters.
-    kid.enable_import()
+kid.enable_import()
 
 def find_template(relative_template_path):
     """Find the full path of the template whose relative path is
