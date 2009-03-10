@@ -348,7 +348,7 @@ class TranslationProject(models.Model):
             hooks.hook(self.project.code, "initialize", self.projectdir, self.language.code)
             self.non_db_state.scanpofiles()
         except Exception, e:
-            print "Failed to initialize (%s): %s" % (languagecode, e)
+            print "Failed to initialize (%s): %s" % (self.language.code, e)
 
     def filtererrorhandler(self, functionname, str1, str2, e):
         print "error in filter %s: %r, %r, %s" % (functionname, str1, str2, e)
