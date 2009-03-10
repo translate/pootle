@@ -44,3 +44,6 @@ def get_title():
 
 def get_description():
     return ugettext(settings.DESCRIPTION)
+
+def get_default_language():
+    return ugettext(settings.DEFAULT_LANGUAGE)
