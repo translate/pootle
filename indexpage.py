@@ -55,17 +55,6 @@ from Pootle import __version__ as pootleversion
 
 _undefined = lambda: None
 
-def lazy(f):
-  result = [_undefined]
-
-  def evaluator():
-    if result[0] != _undefined:
-      return result[0]
-    else:
-      result[0] = f()
-      return result[0]
-  return evaluator
-
 def shortdescription(descr):
   """Returns a short description by removing markup and only including up
   to the first br-tag"""
