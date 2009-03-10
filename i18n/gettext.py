@@ -100,12 +100,18 @@ def activate(ui_lang_project):
 def get_active():
     """Return the Pootle project object associated with the thread in which we
     are running."""
-    return _active_translations[currentThread()]
+    try:
+        return _active_translations[currentThread()]
+    except KeyError:
+        return DummyTranslation()
 
 def deactivate():
     """Remove the associate between the thread in which are running
     and its associated Pootle translation project."""
-    del _active_translations[currentThread()]
+    try:
+        del _active_translations[currentThread()]
+    except KeyError:
+        pass
 
 def get_default_translation():
     """If Django needs to translate anything, but it's not busy serving
