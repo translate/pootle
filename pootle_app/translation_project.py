@@ -88,7 +88,7 @@ def scan_translation_projects():
             except IndexError:
                 return None
 
-    for language in Language.objects.include_hidden().all():
+    for language in Language.objects.all():
         for project in Project.objects.all():
             translation_project = get_or_make(language, project)
             if translation_project is not None:

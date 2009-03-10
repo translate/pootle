@@ -38,7 +38,7 @@ def about(request):
 
 def robots(request):
     """generates the robots.txt file"""
-    langcodes = [language.code for language in Language.objects.include_hidden().all()]
+    langcodes = [language.code for language in Language.objects.all()]
     excludedfiles = ["login.html", "register.html", "activate.html"]
     content = "User-agent: *\n"
     for excludedfile in excludedfiles:

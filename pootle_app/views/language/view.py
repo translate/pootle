@@ -48,7 +48,7 @@ from admin import view as translation_project_admin_view
 def get_language(f):
     def decorated_f(request, language_code, *args, **kwargs):
         try:
-            language = Language.objects.include_hidden().get(code=language_code)
+            language = Language.objects.get(code=language_code)
             return f(request, language, *args, **kwargs)
         except Language.DoesNotExist:
             return redirect('/', message=_("The language %s is not defined for this Pootle installation" % language_code))                    
@@ -63,7 +63,7 @@ def get_translation_project(f):
         except TranslationProject.DoesNotExist:
             # No such TranslationProject.  It might be because the
             # language code doesn't exist...
-            if Language.objects.include_hidden().filter(code=language_code).count() == 0:
+            if Language.objects.filter(code=language_code).count() == 0:
                 return redirect('/', message=_("The language %s is not defined for this Pootle installation" % language_code))
             # ...or if the language exists, maybe the project code is
             # invalid...

@@ -71,18 +71,11 @@ class LanguageManager(models.Manager):
 
     # The following method prevents the templates project from being
     # returned by normal queries on the Language table.
-    def get_query_set(self):
+    def hide_special(self):
         return super(LanguageManager, self).get_query_set().exclude(code='templates')
 
     def include_hidden(self):
         return super(LanguageManager, self).get_query_set()
-
-    # Special method to get hold of the templates language object
-    def templates_project(self):
-        return super(LanguageManager, self).get_query_set().get(code='templates')
-
-    def has_templates_project(self):
-        return super(LanguageManager, self).get_query_set().filter(code='templates').count() > 0
 
 class Language(models.Model):
     class Meta:
