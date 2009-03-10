@@ -11,7 +11,7 @@ from pootle_app.views.auth          import redirect
 from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
     KidRequestContext, init_formset_from_data, choices_from_models, selected_model
 from pootle_app.core                import Language, Project
-from pootle_app.translation_project import TranslationProject
+from pootle_app.translation_project import TranslationProject, make_translation_project
 from pootle_app                     import project_tree
 
 def user_can_admin_project(f):
@@ -70,7 +70,8 @@ def process_post(request, project):
         if new_language_form.is_valid():
             new_language = selected_model(Language, new_language_form['add_language'])
             if new_language is not None:
-                projects.add_translation_project(new_language, project)
+                new_project = make_translation_project(new_language, project)
+                #projects.add_translation_project(new_language, project)
 
     if request.method == 'POST':
         formset = process_existing_languages(request, project)
@@ -84,7 +85,7 @@ def process_get(request, project):
             template_translation_project = TranslationProject.objects.get(language__code='templates',
                                                                           project=translation_project.project_id)
             if 'initialize' in request.GET:
-                translation_project.initialize(request, language_code)
+                translation_project.initialize()
             elif 'doupdatelanguage' in request.GET:
                 project_tree.convert_templates(template_translation_project, translation_project)
         except KeyError:
