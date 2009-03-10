@@ -290,8 +290,6 @@ def make_class(base_class):
       # we delay parsing until it is required
       self.pomtime = None
       self.tracker = timecache.timecache(20*60)
-      self._total = util.undefined # self.statistics.getstats()["total"]
-      self._id_index = util.undefined # self.statistics.getstats()["total"]
 
     @util.lazy('_id_index')
     def _get_id_index(self):
@@ -454,7 +452,8 @@ def make_class(base_class):
       # make sure encoding is reset so it is read from the file
       self.encoding = None
       self.units = []
-      self._total = util.undefined
+      if hasattr(self, '_total'):
+        del self._total
       pomtime, filecontents = self.lockedfile.getcontents()
       # note: we rely on this not resetting the filename, which we set earlier, when given a string
       self.parse(filecontents)
@@ -516,10 +515,10 @@ def make_class(base_class):
             headerupdates["Last_Translator"] = "%s <%s>" % (userprefs.name, userprefs.email)
         # We are about to insert a header. This changes the structure of the PO file and thus
         # the total array which lists the editable units. We want to force this array to be
-        # reloaded, so we simply set it to undefined.
+        # reloaded, so we simply delete its computed value
         if self.header() is None:
-            self._total = util.undefined
-            request_cache.reset()
+          if hasattr(self, '_total'):
+            del self._total
         self.updateheader(add=True, **headerupdates)
         if languageprefs:
           nplurals = getattr(languageprefs, "nplurals", None)

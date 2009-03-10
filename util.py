@@ -20,8 +20,6 @@
 
 """Some code helpers."""
 
-undefined = lambda: None
-
 def lazy(result_name):
     """This is used to create an attribute whose value is
     lazily computed. The parameter names an object variable that
@@ -34,7 +32,6 @@ def lazy(result_name):
         def __init__(self):
             self.name = 'John'
             self.surname = 'Doe'
-            self._fullname = undefined
 
         @lazy('_fullname')
         def _get_fullname(self):
@@ -43,11 +40,11 @@ def lazy(result_name):
 
     def lazify(f):
         def evaluator(self):
-          result = getattr(self, result_name)
-          if result is not undefined:
-            return result
-          else:
-            setattr(self, result_name, f(self))
-            return getattr(self, result_name)
+            try:
+                return getattr(self, result_name)
+            except AttributeError:
+                result = f(self)
+                setattr(self, result_name, result)
+                return result
         return evaluator
     return lazify
