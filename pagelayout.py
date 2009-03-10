@@ -40,7 +40,7 @@ def localize_links(request):
   links["languages"] = _("All languages")
   links["account"] = _("My account")
   links["admin"] = _("Admin")
-  links["doc"] = _("Docs & help")
+  links["doc"] = _("Help")
   links["doclang"] = getdoclang(gettext.get_active().language.code)
   links["logout"] = _("Log out")
   links["login"] = _("Log in")
