@@ -35,7 +35,7 @@ from pootle_app.views.auth import redirect
 def user_is_authenticated(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_authenticated():
-            return redirect('/login.html', message=_("You need to log in to access your home page"))
+            return redirect('/login.html', message=_("You must log in to administer Pootle"))
         else:
             return f(request, *args, **kwargs)
     return decorated_f
