@@ -23,6 +23,10 @@ from django.utils import translation
 from django.utils.thread_support import currentThread
 from django.utils.functional import lazy
 
+from pootle_app.core import Language
+
+from Pootle import pan_app
+
 # START BOOTSTRAPPING TRANSLATION CODE
 
 # We need to hijack Django's translation machinery very early in
@@ -74,7 +78,13 @@ class DummyTranslation(object):
 # and actual pootle Project object for the language code.
 def get_lang_real(language):
     from pootle_app.translation_project import TranslationProject
-    return TranslationProject.objects.get(language=language, project__code='pootle')
+    if not language:
+        return get_default_translation()
+    else:
+        try:
+            return TranslationProject.objects.get(language=language, project__code='pootle')
+        except TranslationProject.DoesNotExist:
+            return get_default_translation()
 
 def get_lang(language):
     return DummyTranslation()
@@ -90,7 +100,7 @@ _active_translations = {} # Contains a mapping of threads to Pootle translation 
 _default_translation = DummyTranslation() # See get_default_translation
 
 def activate_for_profile(profile):
-    activate(get_lang(profile.ui_lang))
+    activate(get_lang(profile.ui_lang_id))
 
 def activate(ui_lang_project):
     """Associate the thread in which we are running with the Pootle project
@@ -127,8 +137,8 @@ def get_default_translation():
     if isinstance(_default_translation, DummyTranslation):
         from django.conf import settings
         try:
-            _default_translation = get_lang(settings.LANGUAGE_CODE)
-        except:
+            _default_translation = get_lang(Language.objects.get(code=pan_app.get_default_language()))
+        except Language.DoesNotExist, e:
             pass
     return _default_translation
 
