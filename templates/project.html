@@ -36,7 +36,7 @@ from Pootle.templates import navbar, pootlepage
 	<div class="item-statistics" py:content="project.stats">0 languages, average 0% translated</div>
       </div>
 
-      <div class="site-message">
+      <div py:if="description" class="site-message">
         <div class="info" py:content="XML(description)">
           This is the project description
         </div>
