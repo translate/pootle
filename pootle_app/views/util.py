@@ -33,7 +33,7 @@ from Pootle.pagelayout import completetemplatevars
 # find the root directory.
 from django.conf import settings
 
-kid.enable_import()
+kid.enable_import(path=settings.TEMPLATE_DIRS[0], ext='.kid')
 
 def find_template(relative_template_path):
     """Find the full path of the template whose relative path is
