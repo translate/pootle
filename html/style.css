@@ -1055,6 +1055,10 @@ table[dir="rtl"] td.translate-original
 }
 
 /* ORIGINAL */
+.translate-focus div.translate-original
+{
+    border:3px solid black;
+}
 
 div.translate-original
 {
@@ -1095,6 +1099,7 @@ textarea.translation
 {
 	max-width: 100%;
 	width: 100%;
+        padding: 5px;
 }
 td.comments
 {
