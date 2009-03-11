@@ -1038,10 +1038,9 @@ table[dir="rtl"] td.translate-original
 
 .translation-text
 {
-    display: inline;
     max-width: 100%;
     overflow: auto;
-    padding: 10px;
+    padding: 0 10px 0 10px;
 }
 
 .translation-text-headers
