@@ -1083,6 +1083,24 @@ div.translate-original
 
 /* TRANSLATION */
 
+td.translate-focus
+{
+	border-top:2px solid #000000;
+	padding-top:.5em;
+	padding-bottom:.5em;
+	padding-left:.5em;
+	vertical-align: top;
+}
+td.comments
+{
+	padding:.5em;
+        border-bottom:2px solid #000000;
+}
+textarea.comments
+{
+	max-width: 100%;
+	width: 100%;
+}
 .altsrclangname
 {
     padding-top: 10px;
