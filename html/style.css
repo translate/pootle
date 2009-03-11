@@ -1091,6 +1091,11 @@ td.translate-focus
 	padding-left:.5em;
 	vertical-align: top;
 }
+textarea.translation
+{
+	max-width: 100%;
+	width: 100%;
+}
 td.comments
 {
 	padding:.5em;
