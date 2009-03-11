@@ -835,6 +835,11 @@ span.graph[dir="rtl"] span.translated
  * NAVIGATION BAR
  */
 
+.title a
+{
+    unicode-bidi: embed;
+}
+
 /* SEARCH */
 
 div.searchform
