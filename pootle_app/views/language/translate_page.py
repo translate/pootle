@@ -322,7 +322,7 @@ def get_terminology(pootle_file, item):
         return []
 
 def remove_button_if_no_permission(label, buttons, request):
-    if label in buttons and check_permission(label, request):
+    if label in buttons and not check_permission(label, request):
         buttons.remove(label)
 
 def get_trans_buttons(request, translation_project, item, desiredbuttons):
