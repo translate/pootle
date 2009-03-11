@@ -31,6 +31,7 @@ from pootle_app.profile import get_profile
 from pootle_app.fs_models import Search, search_from_state
 from pootle_app.url_manip import URL
 from pootle_app.store_iteration import get_next_match
+from pootle_app.permissions import check_permission
 
 ################################################################################
 
@@ -91,7 +92,7 @@ def has_assigned_strings(path_obj, search):
         return False
 
 def get_assigned_strings(request, assigned_url, path_obj, has_strings):
-    if 'translate' in request.permissions:
+    if check_permission('translate', request):
         result = { 'text': _('Translate My Strings') }
         assigned_url = assigned_url.copy_and_set('translate_display', view_mode='translate')
     else:
@@ -125,12 +126,12 @@ def yield_assigned_links(request, url, path_obj, links_required):
         search = search_from_state(request.translation_project, assigned_url.state['search'])
         has_strings = has_assigned_strings(path_obj, search)
         yield get_assigned_strings(request, url, path_obj, has_strings)
-        if 'quick' in links_required and 'translate' in request.permissions:
+        if 'quick' in links_required and check_permission('translate', request):
             yield get_quick_assigned_strings(request, url, path_obj, has_strings)
 
 def yield_review_link(request, url, links_required, stats_totals):
     if 'review' in links_required and stats_totals.get('check-hassuggestion', 0):
-        if 'review' in request.permissions:
+        if check_permission('review', request):
             text = _('Review Suggestions')
             url = url.copy_and_set('translate_display', view_mode='review')
         else:
@@ -140,7 +141,7 @@ def yield_review_link(request, url, links_required, stats_totals):
             'text': text }
 
 def yield_quick_link(request, url, links_required, stats_totals):
-    if 'translate' in request.permissions:
+    if check_permission('translate', request):
         text = _('Quick Translate')
         url = url.copy_and_set('translate_display', view_mode='translate')
     else:
@@ -153,14 +154,14 @@ def yield_quick_link(request, url, links_required, stats_totals):
             'text': text }
 
 def yield_translate_all_link(request, url, links_required):
-    if 'translate' in request.permissions:
+    if check_permission('translate', request):
         url = url.copy_and_set('translate_display', view_mode='translate')
     yield {
         'href': url.as_relative_to_path_info(request),
         'text': _('Translate All') }
 
 def yield_zip_link(request, url, path_obj, links_required):
-    if 'zip' in links_required and 'archive' in request.permissions:
+    if 'zip' in links_required and check_permission('archive', request):
         archive_name = "%s-%s" % (request.translation_project.project.code, 
                                  request.translation_project.language.code)
         if url.state['search'].goal is None:
@@ -181,7 +182,7 @@ def yield_zip_link(request, url, path_obj, links_required):
 
 def yield_sdf_link(request, url, path_obj, links_required):
     if 'sdf' in links_required and \
-            'pocompile' in request.permissions and \
+            check_permission('pocompile', request) and \
             request.translation_project.ootemplate() and \
             path_obj == translation_project.directory:
         archive_name = request.translation_project.language.coed

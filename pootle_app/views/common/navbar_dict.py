@@ -24,11 +24,12 @@ from django.utils.translation import ugettext as _
 
 from pootle_app.url_manip import URL, read_all_state
 from pootle_app.views.common import item_dict
+from pootle_app.permissions import check_permission
 
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 
 def make_admin(request, project_url):
-    if 'admin' in request.permissions:
+    if check_permission('admin', request):
         return {'href': project_url.child('admin.html').as_relative_to_path_info(request),
                 'text': _('Admin')}
     else:

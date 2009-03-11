@@ -41,6 +41,8 @@ from pootle_app.profile import get_profile
 from pootle_app.views.common import navbar_dict, search_forms
 from pootle_app.url_manip import URL, read_all_state
 from pootle_app import unit_update
+from pootle_app import permissions
+from pootle_app.permissions import check_permission
 
 from Pootle import pagelayout
 from Pootle import projects
@@ -77,7 +79,7 @@ def get_assign_box():
 def add_file_links(request, url_state, pootle_file):
     """adds a section on the current file, including any checks happening"""
     template_vars = {}
-    if url_state['translate_display'].show_assigns and "assign" in request.permissions:
+    if url_state['translate_display'].show_assigns and check_permission("assign", request):
         template_vars["assigns"] = get_assign_box()
     if pootle_file is not None:
         if len(url_state['search'].match_names) > 0:
@@ -319,14 +321,14 @@ def get_terminology(pootle_file, item):
         logging.log(logging.ERROR, traceback.format_exc())
         return []
 
-def remove_button_if_no_permission(label, buttons, permissions):
-    if label in buttons and label not in permissions:
+def remove_button_if_no_permission(label, buttons, request):
+    if label in buttons and check_permission(label, request):
         buttons.remove(label)
 
 def get_trans_buttons(request, translation_project, item, desiredbuttons):
     """gets buttons for actions on translation"""
-    remove_button_if_no_permission("suggest",   desiredbuttons, request.permissions)
-    remove_button_if_no_permission("translate", desiredbuttons, request.permissions)
+    remove_button_if_no_permission("suggest",   desiredbuttons, request)
+    remove_button_if_no_permission("translate", desiredbuttons, request)
     specialchars = translation_project.language.specialchars
     return {
         "desired":      desiredbuttons,
@@ -367,7 +369,7 @@ def unescape_submition(text):
 
 def get_edit_link(request, pootle_file, item):
     """gets a link to edit the given item, if the user has permission"""
-    if "translate" in request.permissions or "suggest" in request.permissions:
+    if check_permission("translate", request) or check_permission("suggest", request):
         url = URL(request.path_info[1:], read_all_state({}))
         url.state['translate_display'].view_mode = 'translate'
         url.state['position'].item  = item
@@ -386,8 +388,8 @@ def get_trans_view(request, pootle_file, item, trans, textarea=False):
     editlink = get_edit_link(request, pootle_file, item)
     transdict = {"editlink": editlink}
 
-    cansugg  = "suggest"     in request.permissions
-    cantrans = "translate" in request.permissions
+    cansugg  = check_permission("suggest",  request)
+    cantrans = check_permission("translate", request)
     ables = ""
     if cansugg: 
         ables = "suggestable " + ables
@@ -423,7 +425,7 @@ def get_trans_edit(request, pootle_file, item, trans):
         "rows": 5,
         "cols": 40,
         }
-    if "translate" in request.permissions or "suggest" in request.permissions:
+    if check_permission("translate", request) or check_permission("suggest", request):
         profile = get_profile(request.user)
         transdict = {
             "rows": profile.input_height,
@@ -573,7 +575,7 @@ def get_trans_review(request, pootle_file, item, trans, suggestions):
             "author":    suggestedby,
             "forms":     forms,
             "suggid":    "%d-%d" % (item, suggid),
-            "canreview": "review" in request.permissions,
+            "canreview": check_permission("review", request),
             "back":      None,
             "skip":      None,
             }
@@ -929,7 +931,7 @@ def find_and_display(request, directory, next_store_item, prev_store_item):
 
 def view(request, directory, pootle_file, url_state, stopped_by=None):
     """the page which lets people edit translations"""
-    if "view" not in request.permissions:
+    if not check_permission("view", request):
         # raise projects.Rights404Error(None)
         # TBD: Raise an exception similar to Rights404Error
         raise permissions.PermissionError('No view rights')
@@ -1022,7 +1024,7 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
         "instancetitle":             instancetitle,
         "permissions":               request.permissions,
         # l10n: Text displayed when an AJAX petition is being made
-        "canedit":                   "suggest" in request.permissions or "translate" in request.permissions,
+        "canedit":                   check_permission("suggest", request) or check_permission("translate", request),
         "ajax_status_text":          _("Working..."),
         # l10n: Text displayed in an alert box when an AJAX petition has failed
         "ajax_error":                _("Error: Something went wrong."),
@@ -1032,7 +1034,7 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
         "reject_button":             _("Reject")
         }
 
-    if url_state['translate_display'].show_assigns and "assign" in request.permissions:
+    if url_state['translate_display'].show_assigns and check_permission("assign", request):
         templatevars["assign"] = get_assign_box()
     templatevars.update(add_file_links(request, url_state, pootle_file))
     return render_to_kid("translatepage.html", KidRequestContext(request, templatevars, bannerheight=81))

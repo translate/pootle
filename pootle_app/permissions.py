@@ -97,6 +97,12 @@ def get_matching_permissions(profile, directory):
         permissions['administrate'] = get_pootle_permission('administrate')
     return permissions
 
+def check_permission(permission_codename, request):
+    """it checks if current user has the permission the perform C{permission_codename}"""
+    if request.user.is_superuser:
+        return True
+    return permission_codename in request.permissions
+
 class PermissionSet(models.Model):
     class Meta:
         unique_together = ('profile', 'directory')
