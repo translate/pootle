@@ -1157,18 +1157,15 @@ div.translate-original
 
 .translate-buttons-block
 {
-    margin-bottom: 10px;
 }
 
 .translate-fuzzy-block
 {
-    margin-bottom: 10px;
 }
 
 .translate-specialchars-block
 {
     line-height: 150%;
-    margin-bottom: 10px;
 }
 
 /* Merged from pootle.css for translatepage.html.  Needs to be reviewed */
