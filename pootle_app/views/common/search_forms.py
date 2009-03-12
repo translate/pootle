@@ -49,16 +49,7 @@ class AdvancedSearchForm(forms.Form):
             'text':      self.initial['text'],
             }
 
-    def as_hidden(self):
-        return ''.join(field.as_hidden() for field in self)
-
-class BaseAdvancedSearchFormSet(BaseFormSet):
-    def as_hidden(self):
-        "Returns this formset rendered as a hidden set of HTML widgets"
-        forms = u' '.join([form.as_hidden() for form in self.forms])
-        return mark_safe(u'\n'.join([unicode(self.management_form), forms]))
-
-AdvancedSearchFormSet = formset_factory(AdvancedSearchForm, BaseAdvancedSearchFormSet, extra=0)
+AdvancedSearchFormSet = formset_factory(AdvancedSearchForm, extra=0)
 
 def get_advanced_search_field_data():
     return [
