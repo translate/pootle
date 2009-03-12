@@ -115,7 +115,7 @@ from Pootle.templates import pootlepage, navbar, util
       </div>
 
       <!--! The goals view -->
-      <!--! <div py:if="assign or goals or upload" class="module first">
+      <div py:if="assign or goals or upload" class="module first">
         <div class="bd">
           <div class="sidetitle" py:if="assign" py:content="assign.title">
             Assign Strings
@@ -137,17 +137,10 @@ from Pootle.templates import pootlepage, navbar, util
 
           <div class="sidetitle" py:if="upload" py:content="upload.title">Upload File</div>
           <form py:if="upload" action="" method="post" name="uploadform" enctype="multipart/form-data">
-            <div>
-              <input type="file" name="uploadfile" size="15" class="upload" title="${upload.file_title}" />
-            </div>
-            <div py:if="upload.overwrite">
-              <input type="radio" name="dooverwrite" value="Yes" title="${upload.overwrite_title}" py:content="upload.overwrite"/>
-              <input type="radio" name="dooverwrite" checked="checked" value="No" title="${upload.merge_title}" py:content="upload.merge"/>
-            </div>
-            <input type="submit" name="doupload" value="${upload.upload_button}" />
+            <div py:replace="XML(upload.as_p())" />
           </form>
         </div>
-      </div> -->
+      </div>
 
       <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
 

@@ -202,60 +202,6 @@ class TranslationProject(models.Model):
     def get_profile_goals(self, profile):
         return Goal.objects.filter(profiles=profile, translation_project=self)
 
-    def getuploadpath(self, dirname, localfilename):
-        """gets the path of a translation file being uploaded securely, creating directories as neccessary"""
-        if os.path.isabs(dirname) or dirname.startswith("."):
-            raise ValueError("invalid/insecure file path: %s" % dirname)
-        if os.path.basename(localfilename) != localfilename or localfilename.startswith("."):
-            raise ValueError("invalid/insecure file name: %s" % localfilename)
-        if self.filestyle == "gnu":
-            if not pan_app.get_po_tree().languagematch(self.languagecode, localfilename[:-len("."+self.fileext)]):
-                raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" % (localfilename, self.languagecode, self.fileext, self.languagecode, self.fileext))
-        dircheck = self.abs_real_path
-        for part in dirname.split(os.sep):
-            dircheck = os.path.join(dircheck, part)
-            if dircheck and not os.path.isdir(dircheck):
-                os.mkdir(dircheck)
-        return os.path.join(self.abs_real_path, dirname, localfilename)
-
-    def uploadfile(self, request, dirname, filename, contents, overwrite=False):
-        """uploads an individual file"""
-        pathname = self.getuploadpath(dirname, filename)
-        for extention in ["xliff", "xlf", "xlff"]:
-            if filename.endswith(extention):
-                pofilename = filename[:-len(os.extsep+extention)] + os.extsep + self.fileext
-                popathname = self.getuploadpath(dirname, pofilename)
-                break
-        else:
-            pofilename = filename
-            popathname = pathname
-
-        user_permissions = self.get_permissions(request.user)
-
-        if os.path.exists(popathname) and not overwrite:
-            origpofile = self.getpofile(os.path.join(dirname, pofilename))
-            newfileclass = factory.getclass(pathname)
-            infile = cStringIO.StringIO(contents)
-            newfile = newfileclass.parsefile(infile)
-            if "administrate" in user_permissions.name_map:
-                origpofile.mergefile(newfile, request.user.username)
-            elif "translate" in user_permissions.name_map:
-                origpofile.mergefile(newfile, request.user.username, allownewstrings=False)
-            elif "suggest" in user_permissions.name_map:
-                origpofile.mergefile(newfile, request.user.username, suggestions=True)
-            else:
-                raise RightsError(_("You do not have rights to upload files here"))
-        else:
-            if overwrite and not ("administrate" in user_permissions.name_map or \
-                                      "overwrite" in user_permissions.name_map):
-                raise RightsError(_("You do not have rights to overwrite files here"))
-            elif not os.path.exists(popathname) and not ("administrate" in user_permissions.name_map or \
-                                                             "overwrite" in user_permissions.name_map):
-                raise RightsError(_("You do not have rights to upload new files here"))
-            outfile = open(popathname, "wb")
-            outfile.write(contents)
-            outfile.close()
-
     def updatepofile(self, request, dirname, pofilename):
         """updates an individual PO file from version control"""
         # read from version control
