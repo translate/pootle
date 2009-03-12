@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?python
-from Pootle.util import l
+from Pootle.util import l, m
 ?>
 <include-this xmlns:py="http://purl.org/kid/ns#">
   <div py:def="item_block(item, uidir, uilanguage, mediaurl, block=None)" class="contentsitem">
