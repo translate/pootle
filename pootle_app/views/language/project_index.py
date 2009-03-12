@@ -104,23 +104,15 @@ def get_children(request, translation_project, directory, url_state):
 def top_stats(translation_project):
     return gen_top_stats(lambda query: query.filter(translation_project=translation_project))
 
-def get_real_path(translation_project, url):
-    """Gets an absolute path on the filesystem that corresponds to the
-    @c{url} relative to @c{translation_project}.
+################################################################################
 
-    For example, if @c{url} is /af/pootle/foo/bar, then the path
-    relative to the translation project directory is foo/bar. Thus, we
-    take foo/bar and convert split it into a list ['foo', 'bar']. Then
-    we take the filesystem path of the translation project and join
-    these components to it. This gives us a filesystem path relative
-    to the Pootle project root. Now we simply absolutify this path to
-    get a real path on the filesystem."""
-    relative_pootle_path = url[len(translation_project.directory.pootle_path):]
-    components = relative_pootle_path.split('/')
-    real_path = os.path.join(translation_project.real_path, *components)
-    return pootlefile.absolute_real_path(real_path)
+def unix_to_host_path(p):
+    return os.sep.join(p.split('/'))
 
-def get_upload_path(translation_project, directory, local_filename):
+def host_to_unix_path(p):
+    return '/'.join(p.split(os.sep))
+
+def get_upload_path(translation_project, relative_root_dir, local_filename):
     """gets the path of a translation file being uploaded securely,
     creating directories as neccessary"""
     if os.path.basename(local_filename) != local_filename or local_filename.startswith("."):
@@ -131,29 +123,43 @@ def get_upload_path(translation_project, directory, local_filename):
     if translation_project.file_style == "gnu":
         if local_filename != translation_project.language.code:
             raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" % (localfilename, self.languagecode, self.fileext, self.languagecode, self.fileext))
-    dir_path = get_real_path(translation_project, directory.pootle_path)
-    return os.path.join(dir_path, local_filename)
+    dir_path = os.path.join(translation_project.real_path, unix_to_host_path(relative_root_dir))
+    return pootlefile.absolute_real_path(os.path.join(dir_path, local_filename))
 
 def get_local_filename(translation_project, upload_filename):
     base, ext = os.path.splitext(upload_filename)
     return '%s.%s' % (base, translation_project.project.localfiletype)
 
-def unzip_external(request, directory, django_file, overwrite, **kwargs):
+def unzip_external(request, relative_root_dir, django_file, overwrite, **kwargs):
     from tempfile import mkdtemp, mkstemp
+    # Make a temporary directory to hold a zip file and its unzipped contents
     tempdir = mkdtemp(prefix='pootle')
+    # Make a temporary file to hold the zip file
     tempzipfd, tempzipname = mkstemp(prefix='pootle', suffix='.zip')
-
     try:
-        os.write(tempzipfd, django_file.read())
-        os.close(tempzipfd)
+        # Dump the uploaded file to the temporary file
+        try:
+            os.write(tempzipfd, django_file.read())
+        finally:
+            os.close(tempzipfd)
+        # Unzip the temporary zip file
         if subprocess.call(["unzip", tempzipname, "-d", tempdir]):
             raise zipfile.BadZipfile(_("Error while extracting archive"))
+        # Enumerate the temporary directory...
         for basedir, dirs, files in os.walk(tempdir):
             for fname in files:
-                full_fname = os.path.join(basedir, fname)
-                fcontents = open(full_fname, 'rb').read()
+                # Read the contents of a file...
+                fcontents = open(os.path.join(basedir, fname), 'rb').read()
+                # Get the filesystem path relative to the temporary directory
+                relative_host_dir = basedir[len(tempdir)+len(os.sep):]
+                # Construct a full UNIX path relative to the current
+                # translation project URL by attaching a UNIXified
+                # 'relative_host_dir' to the root relative path
+                # (i.e. the path from which the user is uploading the
+                # ZIP file.
+                sub_relative_root_dir = os.path.join(relative_root_dir, host_to_unix_path(relative_host_dir))
                 try:
-                    upload_file(request, directory, full_fname[len(tempdir)+1:], fcontents, overwrite)
+                    upload_file(request, sub_relative_root_dir, fname, fcontents, overwrite)
                 except ValueError, e:
                     print "error adding %s" % filename, e
     finally:
@@ -162,13 +168,16 @@ def unzip_external(request, directory, django_file, overwrite, **kwargs):
         os.unlink(tempzipname)
         shutil.rmtree(tempdir)
 
-def unzip_python(request, directory, django_file, overwrite, **kwargs):
+def unzip_python(request, relative_root_dir, django_file, overwrite, **kwargs):
     archive = zipfile.ZipFile(cStringIO.StringIO(django_file.read()), 'r')
     # TODO: find a better way to return errors...
     try:
         for filename in archive.namelist():
             try:
-                upload_file(request, directory, filename, archive.read(filename), overwrite)
+                if filename[-1] != '/':
+                    sub_relative_root_dir = os.path.join(relative_root_dir, os.path.dirname(filename))
+                    basename = os.path.basename(filename)
+                    upload_file(request, sub_relative_root_dir, basename, archive.read(filename), overwrite)
             except ValueError, e:
                 print "error adding %s" % filename, e
     finally:
@@ -176,19 +185,20 @@ def unzip_python(request, directory, django_file, overwrite, **kwargs):
 
 def upload_archive(request, directory, django_file, overwrite, **kwargs):
     # First we try to use "unzip" from the system, otherwise fall back to using
-    # the slower zipfile module (below)...
+    # the slower zipfile module
     try:
         unzip_external(request, directory, django_file, overwrite, **kwargs)
-    except Exception:
+    except:
         unzip_python(request, directory, django_file, overwrite, **kwargs)
 
-def upload_file(request, directory, filename, file_contents, overwrite, **kwargs):
+def upload_file(request, relative_root_dir, filename, file_contents, overwrite, **kwargs):
+    # Strip the extension off filename and add the extension used in
+    # the current translation project to filename to get
+    # local_filename. Thus, if filename == 'foo.xlf' and we're in a PO
+    # project, then local_filename == 'foo.po'.
     local_filename = get_local_filename(request.translation_project, filename)
-    upload_path    = get_upload_path(request.translation_project, directory, local_filename)
-    upload_base, upload_ext = os.path.splitext(filename)
-    local_base,  local_ext  = os.path.splitext(filename)
-    if overwrite and upload_ext != local_ext:
-        raise ValueError(_("When uploading a file whose file extension differs from the translation project extension, you can only merge, and not overwrite. %s cannot be uploaded.") % filename)
+    # The full filesystem path to 'local_filename'
+    upload_path    = get_upload_path(request.translation_project, relative_root_dir, local_filename)
     if os.path.exists(upload_path) and not overwrite:
         def do_merge(origpofile):
             newfileclass = factory.getclass(filename)
@@ -202,7 +212,7 @@ def upload_file(request, directory, filename, file_contents, overwrite, **kwargs
             else:
                 raise PermissionError(_("You do not have rights to upload files here"))
 
-        store = Store.objects.get(pootle_path=directory.pootle_path + local_filename)
+        store = Store.objects.get(real_path=upload_path)
         pootlefile.with_store(request.translation_project, store, do_merge)
     else:
         if not (check_permission("administrate", request) or check_permission("overwrite", request)):
@@ -210,21 +220,45 @@ def upload_file(request, directory, filename, file_contents, overwrite, **kwargs
                 raise PermissionError(_("You do not have rights to overwrite files here"))
             elif not os.path.exists(upload_path):
                 raise PermissionError(_("You do not have rights to upload new files here"))
-        if not os.path.exists(upload_path):
-            os.makedirs(upload_path)
-        outfile = open(upload_path, "wb")
-        try:
-            outfile.write(file_contents)
-        finally:
-            outfile.close()
+        # Get the file extensions of the uploaded filename and the
+        # current translation project
+        upload_dir = os.path.dirname(upload_path)
+        # Ensure that there is a directory into which we can dump the
+        # uploaded file.
+        if not os.path.exists(upload_dir):
+            os.makedirs(upload_dir)
+        _upload_base, upload_ext = os.path.splitext(filename)
+        _local_base,  local_ext  = os.path.splitext(upload_path)
+        if upload_ext == local_ext:
+            outfile = open(upload_path, "wb")
+            try:
+                outfile.write(file_contents)
+            finally:
+                outfile.close()
+        else:
+            def do_merge(new_file):
+                uploaded_file_class = factory.getclass(filename)
+                uploaded_file = uploaded_file_class.parsestring(file_contents)
+                new_file.mergefile(uploaded_file, request.user.username)
+                new_file.savepofile()
+                new_file.readpofile()
+
+            empty_store = factory.getobject(upload_path)
+            empty_store.save()
+            pootlefile.with_pootle_file(request.translation_project, upload_path, do_merge)
 
 def process_upload(request, directory, upload_form, **kwargs):
     django_file = request.FILES['file']
-    overwrite   = upload_form['overwrite'].data == 'checked'
+    overwrite = upload_form['overwrite'].data == 'checked'
+    scan_translation_project_files(request.translation_project)
+    # The URL relative to the URL of the translation project. Thus, if
+    # directory.pootle_path == /af/pootle/foo/bar, then
+    # relative_root_dir == foo/bar.
+    relative_root_dir = directory.pootle_path[len(request.translation_project.directory.pootle_path):]
     if django_file.name.endswith('.zip'):
-        upload_archive(request, directory, django_file, overwrite, **kwargs)
+        upload_archive(request, relative_root_dir, django_file, overwrite, **kwargs)
     else:
-        upload_file(request, directory, django_file.name, django_file.read(), overwrite, **kwargs)
+        upload_file(request, relative_root_dir, django_file.name, django_file.read(), overwrite, **kwargs)
     scan_translation_project_files(request.translation_project)
 
 post_table = {
