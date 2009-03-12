@@ -22,6 +22,7 @@
 
 from django import forms
 from django.forms.formsets import formset_factory, BaseFormSet
+from django.forms.util import ValidationError
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -86,11 +87,16 @@ def mark_nodefault(request, result):
 
 # TBD: Init the search forms from a SearchState object?
 def get_search_form(request, search_text=None):
+    try:
+        advanced_search_form = AdvancedSearchFormSet(data=request.POST,
+                                                     initial=get_advanced_search_field_data())
+    except ValidationError:
+        advanced_search_form = AdvancedSearchFormSet(initial=get_advanced_search_field_data())
+
     return mark_nodefault(request, {
         'search_form':           SearchForm(data=request.POST,
                                             initial={'title': _('Search'), 'text': search_text or ''}),
-        'advanced_search_form':  AdvancedSearchFormSet(data=request.POST,
-                                                       initial=get_advanced_search_field_data()),
+        'advanced_search_form':  advanced_search_form,
         'advanced_search_title': _('Advanced Search'),
         'extra_class':           ''
         })
