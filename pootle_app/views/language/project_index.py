@@ -21,6 +21,8 @@
 
 import copy
 import os
+import zipfile
+import subprocess
 
 from django.utils.translation import ugettext as _
 from django import forms
@@ -129,25 +131,67 @@ def get_upload_path(translation_project, directory, local_filename):
         if local_filename != translation_project.language.code:
             raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" % (localfilename, self.languagecode, self.fileext, self.languagecode, self.fileext))
     dir_path = get_real_path(translation_project, directory.pootle_path)
-    if not os.path.exists(dir_path):
-        os.makedirs(dir_path)
     return os.path.join(dir_path, local_filename)
 
 def get_local_filename(translation_project, upload_filename):
     base, ext = os.path.splitext(upload_filename)
     return '%s.%s' % (base, translation_project.project.localfiletype)
 
-def process_upload(request, directory, upload_form, **kwargs):
-    """uploads an individual file"""
+def unzip_external(request, directory, django_file, overwrite, **kwargs):
+    from tempfile import mkdtemp, mkstemp
+    tempdir = mkdtemp(prefix='pootle')
+    tempzipfd, tempzipname = mkstemp(prefix='pootle', suffix='.zip')
 
-    overwrite      = upload_form['overwrite'].data == 'checked'
-    django_file    = request.FILES['file']
-    local_filename = get_local_filename(request.translation_project, django_file.name)
+    try:
+        os.write(tempzipfd, django_file.read())
+        os.close(tempzipfd)
+        if subprocess.call(["unzip", tempzipname, "-d", tempdir]):
+            raise zipfile.BadZipfile(_("Error while extracting archive"))
+        for basedir, dirs, files in os.walk(tempdir):
+            for fname in files:
+                full_fname = os.path.join(basedir, fname)
+                fcontents = open(full_fname, 'rb').read()
+                try:
+                    upload_file(request, directory, full_fname[len(tempdir)+1:], fcontents, overwrite)
+                except ValueError, e:
+                    print "error adding %s" % filename, e
+    finally:
+        # Clean up temporary file and directory used in try-block
+        import shutil
+        os.unlink(tempzipname)
+        shutil.rmtree(tempdir)
+
+def unzip_python(request, directory, django_file, overwrite, **kwargs):
+    archive = zipfile.ZipFile(cStringIO.StringIO(django_file.read()), 'r')
+    # TODO: find a better way to return errors...
+    try:
+        for filename in archive.namelist():
+            try:
+                upload_file(request, directory, filename, archive.read(filename), overwrite)
+            except ValueError, e:
+                print "error adding %s" % filename, e
+    finally:
+        archive.close()
+
+def upload_archive(request, directory, django_file, overwrite, **kwargs):
+    # First we try to use "unzip" from the system, otherwise fall back to using
+    # the slower zipfile module (below)...
+    try:
+        unzip_external(request, directory, django_file, overwrite, **kwargs)
+    except Exception:
+        unzip_python(request, directory, django_file, overwrite, **kwargs)
+
+def upload_file(request, directory, filename, file_contents, overwrite, **kwargs):
+    local_filename = get_local_filename(request.translation_project, filename)
     upload_path    = get_upload_path(request.translation_project, directory, local_filename)
+    upload_base, upload_ext = os.path.splitext(filename)
+    local_base,  local_ext  = os.path.splitext(filename)
+    if overwrite and upload_ext != local_ext:
+        raise ValueError(_("When uploading a file whose file extension differs from the translation project extension, you can only merge, and not overwrite. %s cannot be uploaded.") % filename)
     if os.path.exists(upload_path) and not overwrite:
         def do_merge(origpofile):
-            newfileclass = factory.getclass(django_file.name)
-            newfile = newfileclass.parsefile(django_file)
+            newfileclass = factory.getclass(filename)
+            newfile = newfileclass.parsestring(file_contents)
             if check_permission("administrate", request):
                 origpofile.mergefile(newfile, request.user.username)
             elif check_permission("translate", request):
@@ -165,12 +209,22 @@ def process_upload(request, directory, upload_form, **kwargs):
                 raise PermissionError(_("You do not have rights to overwrite files here"))
             elif not os.path.exists(upload_path):
                 raise PermissionError(_("You do not have rights to upload new files here"))
+        if not os.path.exists(upload_path):
+            os.makedirs(upload_path)
         outfile = open(upload_path, "wb")
         try:
-            outfile.write(django_file.read())
+            outfile.write(file_contents)
         finally:
             outfile.close()
-            scan_translation_project_files(request.translation_project)
+
+def process_upload(request, directory, upload_form, **kwargs):
+    django_file = request.FILES['file']
+    overwrite   = upload_form['overwrite'].data == 'checked'
+    if django_file.name.endswith('.zip'):
+        upload_archive(request, directory, django_file, overwrite, **kwargs)
+    else:
+        upload_file(request, directory, django_file.name, django_file.read(), overwrite, **kwargs)
+    scan_translation_project_files(request.translation_project)
 
 post_table = {
     'upload': process_upload
