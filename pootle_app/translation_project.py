@@ -327,63 +327,6 @@ class TranslationProject(models.Model):
         archive.close()
         return archivecontents.getvalue()
 
-    def uploadarchive(self, request, dirname, archivecontents, overwrite=False):
-        """uploads the files inside the archive"""
-
-        def unzip_external(archivecontents):
-            from tempfile import mkdtemp, mkstemp
-            tempdir = mkdtemp(prefix='pootle')
-            tempzipfd, tempzipname = mkstemp(prefix='pootle', suffix='.zip')
-
-            try:
-                os.write(tempzipfd, archivecontents)
-                os.close(tempzipfd)
-
-                import subprocess
-                if subprocess.call(["unzip", tempzipname, "-d", tempdir]):
-                    raise zipfile.BadZipfile(_("Error while extracting archive"))
-
-                def upload(basedir, path, files):
-                    for fname in files:
-                        if not os.path.isfile(os.path.join(path, fname)):
-                            continue
-                        if not fname.endswith(os.extsep + self.fileext):
-                            print "error adding %s: not a %s file" % (fname, os.extsep + self.fileext)
-                            continue
-                        fcontents = open(os.path.join(path, fname), 'rb').read()
-                        self.uploadfile(request, path[len(basedir)+1:], fname, fcontents, overwrite)
-                os.path.walk(tempdir, upload, tempdir)
-                return
-            finally:
-                # Clean up temporary file and directory used in try-block
-                import shutil
-                os.unlink(tempzipname)
-                shutil.rmtree(tempdir)
-
-        def unzip_python(archivecontents):
-            archive = zipfile.ZipFile(cStringIO.StringIO(archivecontents), 'r')
-            # TODO: find a better way to return errors...
-            for filename in archive.namelist():
-                if not filename.endswith(os.extsep + self.fileext):
-                    print "error adding %s: not a %s file" % (filename, os.extsep + self.fileext)
-                    continue
-                contents = archive.read(filename)
-                subdirname, pofilename = os.path.dirname(filename), os.path.basename(filename)
-                try:
-                    # TODO: use zipfile info to set the time and date of the file
-                    self.uploadfile(request, os.path.join(dirname, subdirname), pofilename, contents, overwrite)
-                except ValueError, e:
-                    print "error adding %s" % filename, e
-                    continue
-            archive.close()
-
-        # First we try to use "unzip" from the system, otherwise fall back to using
-        # the slower zipfile module (below)...
-        try:
-            unzip_external(archivecontents)
-        except Exception:
-            unzip_python(archivecontents)
-
     def ootemplate(self):
         """Tests whether this project has an OpenOffice.org template SDF file in
         the templates directory."""
