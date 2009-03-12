@@ -6,13 +6,13 @@ from Pootle.util import m, l
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns:py="http://purl.org/kid/ns#" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
   <head>
-    <title py:content="pagetitle">TITLE HERE</title>
+    <title py:content="pagetitle">Pootle</title>
     <meta name="description" content="${meta_description}" />
     <meta name="keywords" content="${', '.join(keywords)}" />
     <link rel="stylesheet" type="text/css" href="${m('style.css')}" />
     <link rel="shortcut icon" href="${l('/favicon.ico')}" />
   </head>
-  <body class="BODYCLASS HERE">
+  <body class="home">
     <div id="wrapper">
       <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
       
