@@ -11,6 +11,17 @@ from Pootle.templates import pootlepage, navbar
   <!--! Only in <head> because $() is used through the page.  Once the page is rewritten this should move to the footer. --> 
   <script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
 
+  <!--! Enable the jquery autogrowing textareas. Putting it at the end causes problems. -->
+  <script src="${mediaurl}js/jquery/jquery.autogrow.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  $(document).ready (function() {
+  	$('textarea.expanding').autogrow({
+  		maxHeight: 300,
+  		minHeight: '2em',
+  	});
+  });
+  </script>
+
   <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
   <link rel="shortcut icon" href="${mediaurl}favicon.ico" />
 </head>
@@ -136,7 +147,7 @@ from Pootle.templates import pootlepage, navbar
 			  </div>
 			  <!--! No plurals -->
 			  <div py:if="not item.trans.isplural" py:strip="True">
-			    <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(item.trans.text)">
+			    <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation expanding ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}" py:content="XML(item.trans.text)">
 			      translatable text
 			    </textarea>
 			  </div>
@@ -144,7 +155,7 @@ from Pootle.templates import pootlepage, navbar
 			  <div py:if="item.trans.isplural" py:strip="True">
 			    <div py:for="form in item.trans.forms" py:strip="True">
 			      <div class="translation-text-headers" py:content="form.title">Plural Form ${form.n}</div>
-                              <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation ${item.state_class}" name="${form.name}" id="area${form.name}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(form.text)">
+                              <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation expanding ${item.state_class}" name="${form.name}" id="area${form.name}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(form.text)">
 				translatable text for plural form
                               </textarea>
 			    </div>
@@ -203,10 +214,6 @@ from Pootle.templates import pootlepage, navbar
                     <a py:if="not specialchar.isspace()" py:content="specialchar" onclick="writespecial('${specialchar}', '${item.trans.itemid}'); return false;" href="#">spc</a>
                     <span py:if="specialchar.isspace()" class="extraspace"> </span>
 			      </div>
-			    </div>
-			    <div py:if="'resize' in buttons.desired" py:strip="True">
-			      <a href='#' onclick="return expandtextarea(this)" accesskey="=" py:content="buttons.grow">Grow</a>
-			      <a href='#' onclick="return contracttextarea(this)" accesskey="-" py:content="buttons.shrink">Shrink</a>
 			    </div>
 			  </div>
 			  <script py:if="'translate' in buttons.desired or 'suggest' in buttons.desired" type="text/javascript">
@@ -271,7 +278,7 @@ from Pootle.templates import pootlepage, navbar
 		    </td>
 		    <td class="translate-translation ${item.polarity} comments">
 		      <div py:content="translator_comments_title">Translator comments:</div>
-                      <textarea py:if="not reviewmode" dir="$language.dir" lang="$language.code" name="translator_comments${item.itemid}" id="translator_comments${item.itemid}" rows="2" cols="${item.trans.cols}" class="comments" py:content="item.translator_comments">
+                      <textarea py:if="not reviewmode" dir="$language.dir" lang="$language.code" name="translator_comments${item.itemid}" id="translator_comments${item.itemid}" rows="2" cols="${item.trans.cols}" class="comments expanding" py:content="item.translator_comments">
 			Translator comments.
                       </textarea>
                       <div py:if="reviewmode" py:content="XML(item.translator_comments)"  class="translator-comments">Translator comments</div>
