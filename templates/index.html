@@ -40,7 +40,7 @@ from Pootle.templates import pootlepage
               <td class="language"><a href="${l.code}/" py:content="l.name">Language</a></td>
               <td>
                 <span class="graph" dir="$uidir">
-                  <span class="translated" style="width: ${l.transper}px" title="${l.trans}/${l.total} words translated" />
+                  <span class="translated" style="width: ${l.transper}px;" title="${l.trans}/${l.total} words translated" />
                   <span class="fuzzy" style="${cssaligndir}: ${l.transper}px; width: ${l.fuzzyper}px" title="${l.fuzzy}/${l.total} words fuzzy" />
                   <span class="untranslated" style="${cssaligndir}: ${l.transper+l.fuzzyper}px; width: ${l.untransper}px" title="${l.untrans}/${l.total} words untranslated" />
                 </span>
