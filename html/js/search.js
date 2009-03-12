@@ -33,10 +33,10 @@ $(document).ready(function($) {
     $("div.advancedsearch").slideToggle();
    }).toggle(
      function() {
-       $("img.togglesearch").attr("src", "/static/images/bullet_arrow_up.png");
+       $("img.togglesearch").attr("src", "/html/images/bullet_arrow_up.png");
      },
      function() {
-       $("img.togglesearch").attr("src", "/static/images/bullet_arrow_down.png");
+       $("img.togglesearch").attr("src", "/html/images/bullet_arrow_down.png");
      }
    );
 
