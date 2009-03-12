@@ -140,43 +140,6 @@ function mouseClick()
 	}	
 }
 
-function findsiblingtextarea(link)
-{
-	var parentdiv = link.parentNode;
-	if (parentdiv.nodeName != 'DIV') return null;
-	var childnodes = parentdiv.childNodes;
-	for (var i=0; i < childnodes.length; i++)
-	{
-		if (childnodes[i].nodeName == 'TEXTAREA')
-			return childnodes[i];	
-	}
-	return null;
-}
-
-function expandtextarea(link)
-{
-	if (link == null) alert("link is null");
-	var textarea = findsiblingtextarea(link);
-	if (textarea == null) return true;
-	if (textarea.rows >= 3)
-		textarea.rows += 3;
-	else
-		textarea.rows += 1;
-	return false;
-}
-
-function contracttextarea(link)
-{
-	if (link == null) alert("link is null");
-	var textarea = findsiblingtextarea(link);
-	if (textarea == null) return true;
-	if (textarea.rows > 3)
-		textarea.rows -= 3;
-	else if (textarea.rows > 1)
-		textarea.rows -= 1;
-	return false;
-}
-
 function copyorigtranslation(elementNumber)
 {
 	var i = 0;

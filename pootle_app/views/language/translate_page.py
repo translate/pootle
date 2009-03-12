@@ -341,11 +341,6 @@ def get_trans_buttons(request, translation_project, item, desiredbuttons):
         "suggest":      _("Suggest"),
         "submit":       _("Submit"),
         "specialchars": specialchars,
-        # l10n: action that increases the height of the textarea
-        "grow":         _("Grow"),
-        # l10n: action that decreases the height of the textarea
-        "shrink":       _("Shrink"),
-        # l10n: action that increases the width of the textarea
         }
 
 def escape_for_textarea(text):
