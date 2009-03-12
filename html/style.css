@@ -992,47 +992,10 @@ div.translation-action[dir="rtl"]
     padding-right: 10px;
 }
 
-div.translation textarea
-{
-    width: 100%;
-    border: 1px solid #ebeae7;
-}
-
-textarea.translation
-{
-    margin: 0 0 10px 0;
-    height: 75px;
-}
-
-#translations
-{
-    clear: both;
-    font-size: 131%;
-    width: 100%;
-    margin: 10px 0 0 0;
-}
-
-#translations td
-{
-    width: 50%;
-    padding: 10px 0;
-}
-
-td.translation
-{
-    font-weight: bold;
-    color: #000;
-}
-
 td.translate-original,
 td.translate-translation
 {
     width: 50%;
-}
-
-table td.translate-original
-{
-    padding-right: 5px;
 }
 
 table[dir="rtl"] td.translate-original
@@ -1063,6 +1026,11 @@ table[dir="rtl"] td.translate-original
 div.translate-original
 {
     min-height: 1.5em;
+}
+
+table td.translate-original
+{
+    padding-right: 5px;
 }
 
 .translate-locations
@@ -1097,10 +1065,12 @@ td.translate-focus
 }
 textarea.translation
 {
-	max-width: 100%;
-	width: 100%;
-	padding: 5px;
-	border: 3px solid black;
+    height: 75px;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 5px;
+    border: 3px solid black;
 }
 td.comments
 {
