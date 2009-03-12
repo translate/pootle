@@ -23,6 +23,7 @@ import copy
 import os
 import zipfile
 import subprocess
+import cStringIO
 
 from django.utils.translation import ugettext as _
 from django import forms
