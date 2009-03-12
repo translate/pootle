@@ -4,6 +4,7 @@
    from pootle_app.profile import get_profile
    from django.contrib.auth import REDIRECT_FIELD_NAME
    from django.contrib.auth.forms import AuthenticationForm
+   from Pootle.util import l, m
 ?>
 <include xmlns:py="http://purl.org/kid/ns#">
 
@@ -15,22 +16,22 @@
 
       <div id="header">
         <div>
-          <h1><a href="/" title="${links.home}" py:content="instancetitle">Sitename</a></h1>
+          <h1><a href="${l('/')}" title="${links.home}" py:content="instancetitle">Sitename</a></h1>
           <div id="nav-main" class="menubar">
             <div class="bd">
               <ul class="first-of-type">
-                <li class="menubaritem"><a href="${baseurl}" py:content="links.home">Home</a></li>
-                <li class="menubaritem"><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
+                <li class="menubaritem"><a href="${l('/')}" py:content="links.home">Home</a></li>
+                <li class="menubaritem"><a href="${l('/doc/'+links.doclang+'/index.html')} " py:content="links.doc">Docs &amp; Help</a></li>
                 <div py:if="sessionvars.issiteadmin" py:strip="True">
-                  <li class="menubaritem"><a href="${baseurl}admin/" py:content="links.admin">Admin</a></li>
+                  <li class="menubaritem"><a href="${l('/admin/')}" py:content="links.admin">Admin</a></li>
                 </div>
                 <div py:if="sessionvars.isopen" py:strip="True">
-                  <li class="menubaritem"><a href="${baseurl}home/" py:content="links.account">My account</a></li>
-                  <li class="menubaritem"><a href="${baseurl}logout.html" py:content="links.logout">Log out</a></li>
+                  <li class="menubaritem"><a href="${l('/home/')}" py:content="links.account">My account</a></li>
+                  <li class="menubaritem"><a href="${l('/logout.html')}" py:content="links.logout">Log out</a></li>
         </div>
                 <div py:if="not sessionvars.isopen" py:strip="True">
-                  <li class="menubaritem"><a href="${baseurl}register.html" py:content="links.register">Register</a></li>
-                  <li class="menubaritem"><a href="${baseurl}login.html" py:content="links.login">Log in</a></li>
+                  <li class="menubaritem"><a href="${l('/register.html')}" py:content="links.register">Register</a></li>
+                  <li class="menubaritem"><a href="${l('/login.html')}" py:content="links.login">Log in</a></li>
                 </div>
               </ul>
             </div>
@@ -46,9 +47,9 @@
       <div id="footer" dir="${uidir}">
         <div id="footer-contents">
           <ul class="nav">
-            <li><a href="${baseurl}" py:content="links.home">Home</a></li>
-            <li><a href="${baseurl}doc/${links.doclang}/index.html" py:content="links.doc">Docs &amp; Help</a></li>
-            <li><a href="${baseurl}about.html" py:content="links.about">About this Pootle Server</a></li>
+            <li><a href="${l('/')}" py:content="links.home">Home</a></li>
+            <li><a href="${l('/doc/'+links.doclang+'/index.html')}" py:content="links.doc">Docs &amp; Help</a></li>
+            <li><a href="${l('/about.html')}" py:content="links.about">About this Pootle Server</a></li>
           </ul>
         </div>
       </div>
@@ -56,9 +57,9 @@
     </div>
 
     <div py:def="translationsummarylegend(legend, mediaurl)" id="translationsummarylegend">
-      <div> <img src="${mediaurl}images/green-bar.png" alt="" />${legend.translated}</div>
-      <div> <img src="${mediaurl}images/purple-bar.png" alt="" />${legend.fuzzy}</div>
-      <div> <img src="${mediaurl}images/red-bar.png" alt="" />${legend.untranslated}</div>
+      <div> <img src="${m('/images/green-bar.png')}" alt="" />${legend.translated}</div>
+      <div> <img src="${m('/images/purple-bar.png')}" alt="" />${legend.fuzzy}</div>
+      <div> <img src="${m('/images/red-bar.png')}" alt="" />${legend.untranslated}</div>
     </div>
 
     <div py:def="userstatistics(user, statstext, statstitle)" id="userstatistics">
