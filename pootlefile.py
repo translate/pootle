@@ -462,6 +462,9 @@ def make_class(base_class):
     def savepofile(self):
       """saves changes to the main file to disk..."""
       output = str(self)
+      # We have probably invalidated the totals array, so delete it.
+      if hasattr(self, '_total'):
+        del self._total
       self.pomtime = self.lockedfile.writecontents(output)
 
     def pofreshen(self):

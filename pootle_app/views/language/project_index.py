@@ -229,6 +229,9 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite, 
             os.makedirs(upload_dir)
         _upload_base, upload_ext = os.path.splitext(filename)
         _local_base,  local_ext  = os.path.splitext(upload_path)
+        # If the extension of the uploaded file matches the extension
+        # used in this translation project, then we simply write the
+        # file to the disc.
         if upload_ext == local_ext:
             outfile = open(upload_path, "wb")
             try:
@@ -240,11 +243,15 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite, 
                 uploaded_file_class = factory.getclass(filename)
                 uploaded_file = uploaded_file_class.parsestring(file_contents)
                 new_file.mergefile(uploaded_file, request.user.username)
-                new_file.savepofile()
-                new_file.readpofile()
 
+            # If the extension of the uploaded file does not match the
+            # extension of the current translation project, we create
+            # an empty file (with the right extension)...
             empty_store = factory.getobject(upload_path)
+            # And save it...
             empty_store.save()
+            # Then we open this newly created file and merge the
+            # uploaded file into it.
             pootlefile.with_pootle_file(request.translation_project, upload_path, do_merge)
 
 def process_upload(request, directory, upload_form, **kwargs):
