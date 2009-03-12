@@ -44,6 +44,7 @@ from pootle_app.profile   import *
 from pootle_app.core      import Project, Language
 from pootle_app.fs_models import Directory, Store
 from pootle_app           import project_tree, store_iteration
+from pootle_app.permissions import PermissionError, check_permission
 
 from Pootle            import pan_app, pootlefile, statistics
 from Pootle.scripts    import hooks
@@ -257,8 +258,8 @@ class TranslationProject(models.Model):
 
     def commitpofile(self, request, dirname, pofilename):
         """commits an individual PO file to version control"""
-        if "commit" not in self.getrights(request.user):
-            raise RightsError(_("You do not have rights to commit files here"))
+        if not check_permission("commit", request):
+            raise PermissionError(_("You do not have rights to commit files here"))
         pathname = self.getuploadpath(dirname, pofilename)
         stats = self.getquickstats([os.path.join(dirname, pofilename)])
         statsstring = "%d of %d messages translated (%d fuzzy)." % \
@@ -648,8 +649,8 @@ class TranslationProject(models.Model):
 
     def assignpoitems(self, request, search, assignto, action):
         """assign all the items matching the search to the assignto user(s) evenly, with the given action"""
-        if not "assign" in self.getrights(request.user):
-            raise RightsError(_("You do not have rights to alter assignments here"))
+        if not check_permission("assign", request):
+            raise PermissionError(_("You do not have rights to alter assignments here"))
         if search.searchtext:
             grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
         if not isinstance(assignto, list):
@@ -690,8 +691,8 @@ class TranslationProject(models.Model):
 
     def unassignpoitems(self, request, search, assignedto, action=None):
         """unassigns all the items matching the search to the assignedto user"""
-        if not "assign" in self.getrights(request.user):
-            raise RightsError(_("You do not have rights to alter assignments here"))
+        if not check_permission("assign", request):
+            raise PermissionError(_("You do not have rights to alter assignments here"))
         if search.searchtext:
             grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
         assigncount = 0

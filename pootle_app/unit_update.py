@@ -24,10 +24,10 @@ import datetime
 from pootle_app.core import Suggestion, Submission
 from pootle_app.store import Unit
 from pootle_app.profile import get_profile
-from pootle_app.permissions import check_permission
+from pootle_app.permissions import check_permission, PermissionError
 
 def suggest_translation(pootle_file, item, trans, request):
-    if check_permission("suggest", request):
+    if not check_permission("suggest", request):
         raise PermissionError(_("You do not have rights to suggest changes here"))
     translation_project = request.translation_project
     unit_query = Unit.objects.filter(store  = pootle_file.store,
@@ -57,8 +57,8 @@ def suggest_translation(pootle_file, item, trans, request):
 
 def update_translation(pootle_file, item, newvalues, request, suggestion=None):
     """updates a translation with a new value..."""
-    if check_permission("translate", request):
-        raise RightsError(_("You do not have rights to change translations here"))
+    if not check_permission("translate", request):
+        raise PermissionError(_("You do not have rights to change translations here"))
     pootle_file.pofreshen()
     translation_project = request.translation_project
     if suggestion is None:
@@ -102,7 +102,7 @@ def get_suggestion(pootle_file, item, newtrans, request):
 
 def reject_suggestion(pootle_file, item, suggitem, newtrans, request):
     """rejects the suggestion and removes it from the pending file"""
-    if check_permission("review", request):
+    if not check_permission("review", request):
         raise PermissionError(_("You do not have rights to review suggestions here"))
 
     # Deletes the suggestion from the database
@@ -113,7 +113,7 @@ def reject_suggestion(pootle_file, item, suggitem, newtrans, request):
 
 def accept_suggestion(pootle_file, item, suggitem, newtrans, request):
     """accepts the suggestion into the main pofile"""
-    if check_permission("review", request):
+    if not check_permission("review", request):
         raise PermissionError(_("You do not have rights to review suggestions here"))
 
     suggestion = get_suggestion(pofile, item, newtrans, request)

@@ -118,7 +118,7 @@ def translate_page(request, translation_project, dir_path):
         directory = translation_project.directory.get_relative(dir_path)
         return find_and_display(request, directory, next_store_item, prev_store_item)
 
-    except projects.RightsError, msg:
+    except PermissionError, msg:
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
 
 @get_translation_project
@@ -126,7 +126,7 @@ def translate_page(request, translation_project, dir_path):
 def project_index(request, translation_project):
     try:
         return project_index_view(request, translation_project, translation_project.directory)
-    except projects.RightsError, msg:
+    except PermissionError, msg:
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
 
 def handle_translation_file(request, translation_project, file_path):
