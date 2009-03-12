@@ -94,7 +94,6 @@ th
 td
 {
     padding: 5px 0;
-    font-size: 85%;
 }
 
 h1, h2, h3, h4, h5, h6
@@ -1057,7 +1056,8 @@ table[dir="rtl"] td.translate-original
 /* ORIGINAL */
 .translate-focus div.translate-original
 {
-    border:3px solid black;
+    border: 3px solid black;
+    padding: 5px 0;
 }
 
 div.translate-original
