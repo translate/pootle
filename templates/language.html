@@ -1,77 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
 from Pootle.templates import pootlepage, navbar
+from Pootle.util import l
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <title py:content="pagetitle">Pootle: ${language.name}</title>
 
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
-
-<body>
-
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-
-    <div id="body">
-
-      <div class="site-message" py:if="message">
-        <div class="info" py:if="message" py:content="XML(message)">Message</div>
-      </div>
+  <div id="breadcrumbs" py:def="breadcrumbs_block()">
       <div id="nav-secondary">
-	<h3 class="title">[ <a href="${baseurl}${language.code}/" py:content="language.name">Language</a> (<py:content>$language.code</py:content>)]</h3>
+	<h3 class="title">[ <a href="${l('/'+language.code+'/')}" py:content="language.name">Language</a> (<py:content>$language.code</py:content>)]</h3>
 	
 	<div class="item-statistics" py:content="language.stats">0 projects, average 0% translated</div>
       </div>
-      
-      <div class="module-primary">
-        <div class="bd">
-          <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                <th class="stats">${statsheadings.name}</th>
-                <th class="stats">${statsheadings.progress}</th>
-                <th class="stats">${statsheadings.summary}</th>
-                <th class="stats">${statsheadings.totalwords}</th>
-              </tr>
-            </thead>
-            <tbody class="stats">
-              <div py:for="item in projects" py:strip="True">
-                <tr class="item ${item.parity}" title="${item.description}">
-                  <div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
-                </tr>
-              </div>
-            </tbody>
-          </table>
-        </div>
+  </div><!--breadcrumbs-->
+
+
+  <div id="content" py:def="content_block()">
+    <div class="module-primary">
+      <div class="bd">
+	<table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+	  <thead>
+	    <tr>
+	      <th class="stats">${statsheadings.name}</th>
+	      <th class="stats">${statsheadings.progress}</th>
+	      <th class="stats">${statsheadings.summary}</th>
+	      <th class="stats">${statsheadings.totalwords}</th>
+	    </tr>
+	  </thead>
+	  <tbody class="stats">
+	    <div py:for="item in projects" py:strip="True">
+	      <tr class="item ${item.parity}" title="${item.description}">
+		<div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
+	      </tr>
+	    </div>
+	  </tbody>
+	</table>
       </div>
+    </div>
+  </div><!--content-->
 
-      <div class="module first clear">
-        <div class="bd">
-          <div py:replace="pootlepage.translationsummarylegend(translationlegend, mediaurl)" />
-        </div>
+  <div id="postcontent" py:def="postcontent_block()">
+    <div class="module first clear">
+      <div class="bd">
+	<div py:replace="pootlepage.translationsummarylegend(translationlegend, mediaurl)" />
       </div>
+    </div>
 
-      <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
-
-    </div><!-- end #body-->
-
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
-
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="${mediaurl}js/sorttable.js"></script>
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-
-</body>
-</html>
+    <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
+  </div><!--postcontent-->
+</include>

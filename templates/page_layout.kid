@@ -7,8 +7,8 @@ from Pootle.util import m, l
 <html xmlns:py="http://purl.org/kid/ns#" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
   <head>
     <title py:content="pagetitle">Pootle</title>
-    <meta name="description" content="${meta_description}" />
-    <meta name="keywords" content="${', '.join(keywords)}" />
+    <meta py:if="defined('meta_description')" name="description" content="${meta_description}" />
+    <meta py:if="defined('keywords')" name="keywords" content="${', '.join(keywords)}" />
     <link rel="stylesheet" type="text/css" href="${m('style.css')}" />
     <link rel="shortcut icon" href="${l('/favicon.ico')}" />
   </head>

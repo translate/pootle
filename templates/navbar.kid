@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<?python
+from Pootle.util import l
+?>
 <include-this xmlns:py="http://purl.org/kid/ns#">
   <div py:def="item_block(item, uidir, uilanguage, mediaurl, block=None)" class="contentsitem">
-    <img src="${mediaurl}images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
-    <h3 py:if="item.title" id="itemtitle" class="title"><a href="${item.href}">${item.title}</a></h3>
+    <img src="${m('/images/'+item.icon+'.png')}" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+    <h3 py:if="item.title" id="itemtitle" class="title"><a href="${l(item.href)}">${item.title}</a></h3>
     <div py:if="block != None" py:replace="block"/>
     <div id="actionlinks" class="item-description" py:if="item.actions">
       <span py:for="link in item.actions.basic" py:strip="True">
-        <a href="${link.href}" title="${link.title}">${link.text}</a>
+        <a href="${l(link.href)}" title="${link.title}">${link.text}</a>
         ${link.sep}
       </span>
       <form py:if="item.actions.goalform" action="" name="${item.actions.goalform.name}" method="post">
@@ -31,7 +34,7 @@
         </span>
       </form>
       <span py:for="link in item.actions.extended" py:strip="True">
-        <a href="${link.href}" title="${link.title}">${link.text}</a>
+        <a href="${l(link.href)}" title="${link.title}">${link.text}</a>
         ${link.sep}
       </span>
     </div>
@@ -43,21 +46,21 @@
     </span>
     <span py:for="check in item.stats.checks" py:strip="True">
       <br />
-      <a href="${check.href}" py:content="check.text">checkname</a>
+      <a href="${l(check.href)}" py:content="check.text">checkname</a>
       <span py:content="check.stats" py:strip="True">3 strings (20%) failed</span>
     </span>
     <span py:for="astats in item.stats.assigns" py:strip="True">
-    <br /><a href="${astats.assign.href}">${astats.assign.text}</a>: ${astats.stats}
+    <br /><a href="${l(astats.assign.href)}">${astats.assign.text}</a>: ${astats.stats}
       <span class='string-statistics'>${astats.stringstats}</span> -
       ${astats.completestats} <span class='string-statistics'>${astats.completestringstats}</span>
-      <a py:if="astats.remove" href="${astats.remove.href}">${astats.remove.text}</a>
+      <a py:if="astats.remove" href="${l(astats.remove.href)}">${astats.remove.text}</a>
     </span>
   </div>
 
   <div py:def="itemdata(item, uidir, uilanguage, mediaurl)">
     <td class="stats-name">
-      <img src="${mediaurl}images/${item.icon}.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
-      <a href="${item.href}" lang="en" dir="ltr">${item.title}</a>
+      <img src="${m('/images/'+item.icon+'.png')}" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+      <a href="${l(item.href)}" lang="en" dir="ltr">${item.title}</a>
     </td>
     <span py:if="item.data" py:strip="True">
       <td class="stats">${item.data.translatedsourcewords}</td><td class="stats">${item.data.translatedpercentage}%</td>
@@ -83,7 +86,7 @@
         cssaligndir = 'right'
     ?>
     <td class="stats-name">
-      <a href="${item.href}">${item.title}</a>
+      <a href="${l(item.href)}">${item.title}</a>
     </td>
     <span py:if="item.data" py:strip="True">
       <td class="stats-graph">
@@ -112,10 +115,10 @@
         ?>
         <ul>
         <span py:if="item.data.untranslatedsourcewords" py:strip="True">
-            <li class="todo"><a href="${untranslatedhref}" py:content="untranslatedwordstext">untranslated words</a></li>
+            <li class="todo"><a href="${l(untranslatedhref)}" py:content="untranslatedwordstext">untranslated words</a></li>
         </span>
         <span py:if="item.data.fuzzysourcewords" py:strip="True">
-            <li class="todo"><a href="${fuzzyhref}" py:content="fuzzywordstext">fuzzy words</a></li>
+            <li class="todo"><a href="${l(fuzzyhref)}" py:content="fuzzywordstext">fuzzy words</a></li>
         </span>
         <span py:if="item.data.translatedsourcewords == item.data.totalsourcewords" py:strip="True">
             <li class="complete" py:content="complete">Complete</li>
