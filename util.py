@@ -20,6 +20,8 @@
 
 """Some code helpers."""
 
+from django.conf import settings
+
 def lazy(result_name):
     """This is used to create an attribute whose value is
     lazily computed. The parameter names an object variable that
@@ -48,3 +50,14 @@ def lazy(result_name):
                 return result
         return evaluator
     return lazify
+
+def l(path):
+    """ filter urls adding base_path prefix if required """
+    if path.startswith('/'):
+        base_url = getattr(settings, "SCRIPT_NAME", "")
+        return base_url + path
+    return path
+
+def m(path):
+    """ filter urls adding media url prefix if required """
+    return l(settings.MEDIA_URL + path)
