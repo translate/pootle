@@ -33,6 +33,7 @@ from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle.i18n.user_lang_discovery import get_language_from_request
 from translate.lang import data
+from Pootle.util import l
 
 def login(request):
     message = None
@@ -106,9 +107,9 @@ def logout(request):
 
 def redirect(url, **kwargs):
     if len(kwargs) > 0:
-        return HttpResponseRedirect('%s?%s' % (url, urllib.urlencode(kwargs)))
+        return HttpResponseRedirect(l('%s?%s' % (url, urllib.urlencode(kwargs))))
     else:
-        return HttpResponseRedirect(url)
+        return HttpResponseRedirect(l(url))
 
 def is_selected(new_code, preferred_language):
     if data.normalize_code(new_code) == preferred_language:
