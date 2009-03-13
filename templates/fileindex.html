@@ -1,162 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
 from Pootle.templates import pootlepage, navbar, util
+from Pootle.util import l
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
 
-  <title py:content="pagetitle">Pootle: Project ${project.name}, Language ${language.name}</title>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
 
-<body>
+  <!--! search form -->
+  <div py:if="search" py:def="search_block()" class="searchform" dir="$uidir" lang="$uilanguage">
+    <form action="translate.html" method="post" name="searchform" id="searchform">
+      <div py:replace="XML(search.search_form.as_p())"/>
+      <a class="advancedlink"><img src="${mediaurl}images/bullet_arrow_down.png" title="${search.advanced_search_title}" class="togglesearch" /></a>
+      <div class="advancedsearch" dir="$uidir" >
+	<table py:content="XML(search.advanced_search_form.as_table())" />
+      </div>
+    </form>
+  </div><!--search-->
 
-<div id="wrapper">
-  <div id="doc">
+  <!--! Navigation bar -->
+  <div id="innernav" py:def="innernav_block()" class="navbar" py:for="item in navitems">
+    <div py:def="itemtitle(item)" id="itemtitle" class="title">
+      <a href="${item.href}">${item.title}</a>
+      <div py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</div>
+      <div py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</div>
+      <div py:strip="True" py:for="pathlink in item.path.pathlinks">
+	<a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
+	<em py:if="item.path.goal"><a href="${item.path.goal.href}">${item.path.goal.text}</a></em>
+      </div>
+    </div>
+    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, itemtitle(item))" class="contentsitem"/>
+    <div py:replace="navbar.itemstats(item)"/>
+  </div><!--innernav-->
+
+  <div id="content" py:def="content_block()">
+    <!--! The statistics view -->
+    <div py:if="not editing and children" py:strip="True">
+      <div class="module-primary">
+	<div class="bd">
+	  <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+	    <thead>
+	      <tr>
+		<th class="stats">${stats_headings.name}</th>
+		<th class="stats">${stats_headings.progress}</th>
+		<th class="stats">${stats_headings.summary}</th>
+		<th class="stats">${stats_headings.totalwords}</th>
+	      </tr>
+	    </thead>
+	    <tbody class="stats">
+	      <div py:for="p, item in util.parity(children)" py:strip="True">
+		<tr class="item ${p}" title="${item.description}">
+		  <div py:replace="navbar.itemsummary(item, uidir, untranslated_text, fuzzy_text, complete)"/>
+		</tr>
+	      </div>
+	    </tbody>
+	  </table>
+	</div>
+      </div>
+    </div>
+
+    <!--! The editing view -->
+    <div py:if="editing" py:for="p, item in util.parity(children)" py:strip="True">
+      <div class="module-primary">
+	<div class="bd">
+	  <div py:if="'isgoal' in item" class="goalitem">
+	    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, show_goals(item))"/>
+	    <div py:replace="navbar.itemstats(item)"/>
+	  </div>
+	  
+	  <div py:if="'isdir' in item" class="item ${p}">
+	    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
+	    <div py:replace="navbar.itemstats(item)"/>
+	  </div>
+	  
+	  <div py:if="'isfile' in item" class="item ${p}">
+	    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
+	    <div py:replace="navbar.itemstats(item)"/>
+	  </div>
+	</div>
+      </div>
+    </div>
     
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-
-    <div id="body">
-
-      <div id="nav-secondary">
-        <div class="navbar" py:for="item in navitems">
-          <!--! search form -->
-          <div py:if="search" class="searchform" dir="$uidir" lang="$uilanguage">
-            <form action="translate.html" method="post" name="searchform" id="searchform">
-              <div py:replace="XML(search.search_form.as_p())"/>
-              <a class="advancedlink"><img src="${mediaurl}images/bullet_arrow_down.png" title="${search.advanced_search_title}" class="togglesearch" /></a>
-              <div class="advancedsearch" dir="$uidir" >
-                <table py:content="XML(search.advanced_search_form.as_table())" />
-              </div>
-            </form>
-          </div>
-          <!--! Navigation bar -->
-          <div py:def="itemtitle(item)" id="itemtitle" class="title">
-            <a href="${item.href}">${item.title}</a>
-            <div py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</div>
-            <div py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</div>
-            <div py:strip="True" py:for="pathlink in item.path.pathlinks">
-              <a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
-              <em py:if="item.path.goal"><a href="${item.path.goal.href}">${item.path.goal.text}</a></em>
-            </div>
-          </div>
-          <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, itemtitle(item))" class="contentsitem"/>
-          <div py:replace="navbar.itemstats(item)"/>
-        </div>
-      </div>
-
-      <div py:if="message" class="site-message">
-        <div class="info" py:if="message" py:content="XML(message)">Message</div>
-      </div>
-
-      <!--! The statistics view -->
-      <div py:if="not editing and children" py:strip="True">
-	<div class="module-primary">
-          <div class="bd">
-            <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
-              <thead>
-                <tr>
-                  <th class="stats">${stats_headings.name}</th>
-                  <th class="stats">${stats_headings.progress}</th>
-                  <th class="stats">${stats_headings.summary}</th>
-                  <th class="stats">${stats_headings.totalwords}</th>
-                </tr>
-              </thead>
-              <tbody class="stats">
-                <div py:for="p, item in util.parity(children)" py:strip="True">
-                  <tr class="item ${p}" title="${item.description}">
-                    <div py:replace="navbar.itemsummary(item, uidir, untranslated_text, fuzzy_text, complete)"/>
-                  </tr>
-                </div>
-              </tbody>
-            </table>
-          </div>
+    <!--! The goals view -->
+    <div py:if="assign or goals" class="module first">
+      <div class="bd">
+	<div class="sidetitle" py:if="assign" py:content="assign.title">
+	  Assign Strings
 	</div>
+
+	<form py:if="assign" action="" method="post" name="assignform">
+	  <select name="assignto" title="${assign.users_text}">
+	    <option py:for="user in assign.users" value="${user}" py:content="assign.users[user].description">Username</option>
+	  </select>
+	  <input type="text" name="action" value="translate" title="${assign.action_text}" />
+	  <input type="submit" name="doassign" value="${assign.button}" />
+	</form>
+	
+	<div class="sidetitle" py:if="goals" py:content="goals.title">Goals</div>
+	<form py:if="goals" action="" method="post" name="goalform">
+	  <input type="text" name="newgoal" title="${goals.name_title}" />
+	  <input type="submit" name="doaddgoal" value="${goals.button}" />
+	</form>
       </div>
+    </div>
+  </div><!--content-->
+  
+  <div id="postcontent" py:def="postcontent_block()">
+    <div py:if="upload" id="upload" class="module first clear">
+      <div class="sidetitle" py:if="upload" py:content="upload.title">Upload File</div>
+      <form py:if="upload" action="" method="post" name="uploadform" enctype="multipart/form-data">
+	<div py:replace="XML(upload.as_p())" />
+      </form>
+    </div>
+    
+    <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
+  </div><!--postcontent-->
+  
+  <!--! only called from item_block().  should be moved to navbar.kid or removed-->
+  <div py:def="show_goals(item)">
+    <div py:if="item.goal.users or item.goal.show_adduser">
+      <img src="${mediaurl}images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
+      <div py:for="user in item.goal.users" py:strip="True">${user.name}${user.sep}</div>
+      <form py:if="item.goal.show_adduser" action="" method="post" name="goaluserform">
+	<input type="hidden" name="editgoalname" value="${item.goal.name}"/>
+	<select name="newgoaluser">
+	  <option py:for="user in item.goal.otherusers" value="${user}" py:content="item.goal.otherusers[user].description">Username</option>
+	</select>
+	<input type="submit" name="doeditgoalusers" value="${item.goal.adduser_title}"/>
+      </form>
+    </div>
+  </div>
 
-      <!--! only called from item_block().  should be moved to navbar.kid or removed-->
-      <div py:def="show_goals(item)">
-        <div py:if="item.goal.users or item.goal.show_adduser">
-          <img src="${mediaurl}images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
-          <div py:for="user in item.goal.users" py:strip="True">${user.name}${user.sep}</div>
-          <form py:if="item.goal.show_adduser" action="" method="post" name="goaluserform">
-            <input type="hidden" name="editgoalname" value="${item.goal.name}"/>
-            <select name="newgoaluser">
-              <option py:for="user in item.goal.otherusers" value="${user}" py:content="item.goal.otherusers[user].description">Username</option>
-            </select>
-            <input type="submit" name="doeditgoalusers" value="${item.goal.adduser_title}"/>
-          </form>
-        </div>
-      </div>
-
-      <!--! The editing view -->
-      <div py:if="editing" py:for="p, item in util.parity(children)" py:strip="True">
-	<div class="module-primary">
-          <div class="bd">
-            <div py:if="'isgoal' in item" class="goalitem">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, show_goals(item))"/>
-              <div py:replace="navbar.itemstats(item)"/>
-            </div>
-
-            <div py:if="'isdir' in item" class="item ${p}">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
-              <div py:replace="navbar.itemstats(item)"/>
-            </div>
-
-            <div py:if="'isfile' in item" class="item ${p}">
-              <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
-              <div py:replace="navbar.itemstats(item)"/>
-            </div>
-          </div>
-	</div>
-      </div>
-
-      <!--! The goals view -->
-      <div py:if="assign or goals or upload" class="module first">
-        <div class="bd">
-          <div class="sidetitle" py:if="assign" py:content="assign.title">
-            Assign Strings
-          </div>
-
-          <form py:if="assign" action="" method="post" name="assignform">
-            <select name="assignto" title="${assign.users_text}">
-              <option py:for="user in assign.users" value="${user}" py:content="assign.users[user].description">Username</option>
-            </select>
-            <input type="text" name="action" value="translate" title="${assign.action_text}" />
-            <input type="submit" name="doassign" value="${assign.button}" />
-          </form>
-
-          <div class="sidetitle" py:if="goals" py:content="goals.title">Goals</div>
-          <form py:if="goals" action="" method="post" name="goalform">
-            <input type="text" name="newgoal" title="${goals.name_title}" />
-            <input type="submit" name="doaddgoal" value="${goals.button}" />
-          </form>
-
-          <div class="sidetitle" py:if="upload" py:content="upload.title">Upload File</div>
-          <form py:if="upload" action="" method="post" name="uploadform" enctype="multipart/form-data">
-            <div py:replace="XML(upload.as_p())" />
-          </form>
-        </div>
-      </div>
-
-      <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
-
-    </div><!-- end #body-->
-
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
-
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="${mediaurl}js/sorttable.js"></script>
-<script type="text/javascript" src="${mediaurl}js/search.js"></script>
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-
-</body>
-</html>
+</include>

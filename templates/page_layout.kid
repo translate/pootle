@@ -17,13 +17,17 @@ from Pootle.util import m, l
       <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
       
       <div id="body">
+
 	<div class="site-message" py:if="message">
 	  <div class="info" py:if="message" py:content="XML(message)">Message</div>
 	</div>
-	
-	<div py:if="defined('breadcrumbs_block')">${breadcrumbs_block()}</div>
-	<div py:if="defined('nav_secondary_block')">${nav_secondary_block()}</div>
-	<div py:if="defined('search_block')">${search_block()}</div>
+
+	<div id="nav-secondary">
+	  <div py:if="defined('search_block')">${search_block()}</div>
+	  <div py:if="defined('breadcrumbs_block')">${breadcrumbs_block()}</div>
+	  <div py:if="defined('innernav_block')">${innernav_block()}</div>
+	</div>
+
 	<div py:if="defined('precontent_block')">${precontent_block()}</div>
 	<div py:if="defined('content_block')">${content_block()}</div>
 	<div py:if="defined('postcontent_block')">${postcontent_block()}</div>
@@ -35,6 +39,7 @@ from Pootle.util import m, l
     
     <script type="text/javascript" src="${m('js/jquery/jquery.min.js')}"></script>
     <script type="text/javascript" src="${m('js/sorttable.js')}"></script>
+    <script type="text/javascript" src="${mediaurl}js/search.js"></script>
     <!--[if lt IE 7.]>
 	<script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
 	<![endif]-->

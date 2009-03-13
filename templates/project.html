@@ -9,12 +9,12 @@ from Pootle.util import l
     <h3 class="title">[ <a href="${l('/projects/'+project.code+'/')}" py:content="project.name">Project</a> ]</h3>
   </div><!--breadcrumbs-->
   
-  <div id="nav-secondary" py:def="nav_secondary_block()">
+  <div id="innernav" py:def="innernav_block()">
     <div class="item-description" py:if="sessionvars.issiteadmin">
       <a href="${l('admin.html')}" py:content="adminlink">Admin</a>
     </div>
     <div class="item-statistics" py:content="project.stats">0 languages, average 0% translated</div>
-  </div><!--nav-secondary-->
+  </div><!--innernav-->
 
   <div id="precontent" py:if="description" py:def="precontent_block()">
     <div class="intro" py:content="XML(description)">
