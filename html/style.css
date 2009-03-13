@@ -309,7 +309,7 @@ html[dir="rtl"] #nav-access
 
 #header
 {
-    background: #1e4262 url(/html/images/header-background.png) top left repeat;
+    background: #1e4262 url(images/header-background.png) top left repeat;
     color: #000;
 }
 
@@ -324,7 +324,7 @@ html[dir="rtl"] #nav-access
 
 #header h1 a
 {
-    background: url(/html/images/logo.png) left 50% no-repeat;
+    background: url(images/logo.png) left 50% no-repeat;
     padding: 0;
     padding-left: 60px;
     margin: 0 20px;
@@ -336,7 +336,7 @@ html[dir="rtl"] #header h1 a
 {
     padding-left: 0;
     padding-right: 60px;
-    background: url(/html/images/logo.png) right 50% no-repeat;
+    background: url(images/logo.png) right 50% no-repeat;
 }
 
 #header h1 a:link,
@@ -358,7 +358,7 @@ html[dir="rtl"] #header h1 a
 #nav-main
 {
     width: 100%;
-    background: transparent url(/html/images/header-background-bottom.png) bottom left repeat-x;
+    background: transparent url(images/header-background-bottom.png) bottom left repeat-x;
     height: 1.6em;
 }
 
@@ -450,7 +450,7 @@ html[dir="rtl"] #nav-main ul li
 
 #footer
 {
-    background: #fff url(/html/images/footer-border.png) top center repeat-x;
+    background: #fff url(images/footer-border.png) top center repeat-x;
     text-align: center;
     color: #898378;
     clear: both;
@@ -548,7 +548,7 @@ html[dir="rtl"] #nav-main ul li
 {
     margin: 0;
     padding: 10px;
-    background: #fff url(/html/images/page-bg.jpg) top left repeat-x;
+    background: #fff url(images/page-bg.jpg) top left repeat-x;
     clear: both;
 }
 
@@ -1037,7 +1037,7 @@ table td.translate-original
 .translate-locations
 {
     font-family: monospace;
-    background: #ddd url('/html/images/script_code.png') no-repeat;
+    background: #ddd url('images/script_code.png') no-repeat;
     background-position: 5px center;
     border: 1px solid #000;
     overflow: auto;
@@ -1046,7 +1046,7 @@ table td.translate-original
 
 .developer-comments
 {
-    background: #ffe url('/html/images/information.png') no-repeat;
+    background: #ffe url('images/information.png') no-repeat;
     background-position: 5px center;
     border: 1px solid #fc9;
     overflow: auto;
@@ -1389,7 +1389,7 @@ textarea.comments
 
 #language-info
 {
-    background: #f7f7f7 url(/html/images/translate-notepad.png) 15px 50% no-repeat;
+    background: #f7f7f7 url(images/translate-notepad.png) 15px 50% no-repeat;
     padding: 15px 25px 10px 45px;
     font-size: 91%;
 }
@@ -1480,7 +1480,7 @@ textarea.comments
 
 #search button
 {
-    background: url(/html/images/search-arrow.png) top left no-repeat;
+    background: url(images/search-arrow.png) top left no-repeat;
     width: 20px;
     height: 20px;
     padding: 0;
