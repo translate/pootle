@@ -46,6 +46,7 @@ class AdminPage(pagelayout.PootlePage):
     text = self.gettext(request)
     templatevars = {
         "options": self.getoptions(),
+        "pagetitle": _("Pootle Admin Page"),
         "instancetitle": instancetitle,
         "text": text}
     pagelayout.PootlePage.__init__(self, templatename, templatevars, request)
