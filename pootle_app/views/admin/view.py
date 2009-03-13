@@ -14,12 +14,13 @@ from pootle_app.views.util import render_jtoolkit, render_to_kid, KidRequestCont
 from pootle_app.core import Language, Project
 from django.contrib.auth.models import User
 
+
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return redirect('/login', message=_("You must log in to administer Pootle."))
+        if not request.user.is_authenticated():
+            return redirect('/login.html', message=_("You must log in to administer Pootle."))
         elif not request.user.is_superuser:
-            return redirect('/home', message=_("You do not have the rights to administer Pootle.")) 
+            return redirect('/home/', message=_("You do not have the rights to administer Pootle.")) 
         else:
             return f(request, *args, **kwargs)
     return decorated_f
