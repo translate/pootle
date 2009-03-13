@@ -365,7 +365,7 @@ def unescape_submition(text):
 def get_edit_link(request, pootle_file, item):
     """gets a link to edit the given item, if the user has permission"""
     if check_permission("translate", request) or check_permission("suggest", request):
-        url = URL(request.path_info[1:], read_all_state({}))
+        url = URL('/'+request.path_info[1:], read_all_state({}))
         url.state['translate_display'].view_mode = 'translate'
         url.state['position'].item  = item
         # l10n: verb

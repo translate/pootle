@@ -99,7 +99,7 @@ def get_assigned_strings(request, assigned_url, path_obj, has_strings):
         result = { 'text':  _('View My Strings') }
     if has_strings:
         result.update({
-                'href':  assigned_url.as_relative(request.path_info[1:]) })
+                'href':  assigned_url.as_relative('/'+request.path_info[1:]) })
     else:
         result.update({
                 'title': _('No strings assigned to you') })
