@@ -2,75 +2,48 @@
 <?python
 from Pootle.templates import pootlepage
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <title py:content="pagetitle">Login to Pootle</title>
+  <div id="precontent" py:def="precontent_block()">
+    <div class="error" py:if="introtext" py:content="introtext">Message</div>
+  </div><!--precontent-->
 
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
+  <div id="content" py:def="content_block()">
+    <div id="login" dir="$uidir">
+      <h1 py:content="login_title">Pootle login</h1>
+      <form action="" method="post" name="loginform" id="loginform">
+	<p>
+	  <label for="username" py:content="username_title">Username</label><br />
+	  <input type="text" name="username" id="username" value="${username}" />
+	</p>
+	<p>
+	  <label for="password" py:content="password_title">Username</label><br />
+	  <input type="password" name="password" id="password" value="" />
+	</p>
+	<p>
+	  <label for="language" py:content="language_title">Username</label><br />
+	  <select name="language" id="language">
+	    <option py:for="l in languages" py:attrs="selected=l.selected" value="${l.code}" py:content="l.name">Language Name</option>
+	  </select>
+	</p>
+	<p class="submit">
+	  <input type="submit" name="login" value="${login_text}" />
+	  <input type="hidden" name="islogin" value="true" />
+	</p>
+      </form>
+    </div>
+    <h1 id="register" py:content="XML(register_long_text)">Don't have an account yet? <a href="register.html" title="Register">Register</a>.</h1>
+  </div><!--content-->
 
-<body>
 
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-    
-    <div id="body">
-      
-      <div class="site-message" py:if="introtext or message">
-        <div class="error" py:if="introtext" py:content="introtext">Message</div>
-        <div class="info" py:if="message" py:content="XML(message)">Message</div>
-      </div>
-
-      <div id="login" dir="$uidir">
-        <h1 py:content="login_title">Pootle login</h1>
-        <form action="" method="post" name="loginform" id="loginform">
-        <p>
-          <label for="username" py:content="username_title">Username</label><br />
-          <input type="text" name="username" id="username" value="${username}" />
-        </p>
-        <p>
-          <label for="password" py:content="password_title">Username</label><br />
-          <input type="password" name="password" id="password" value="" />
-        </p>
-        <p>
-          <label for="language" py:content="language_title">Username</label><br />
-          <select name="language" id="language">
-            <option py:for="l in languages" py:attrs="selected=l.selected" value="${l.code}" py:content="l.name">Language Name</option>
-          </select>
-        </p>
-        <p class="submit">
-          <input type="submit" name="login" value="${login_text}" />
-          <input type="hidden" name="islogin" value="true" />
-        </p>
-        </form>
-      </div>
-      <h1 id="register" py:content="XML(register_long_text)">Don't have an account yet? <a href="register.html" title="Register">Register</a>.</h1>
-
-    </div><!-- end #body-->
-    	
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
-
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-
-<script>
-  $(document).ready(function () {
+  <script py:def="page_script()">
+    $(document).ready(function () {
     // Set focus to login form
     if (document.loginform) {
-      document.loginform.username.focus();
+        document.loginform.username.focus();
     }
-  });
-</script>
+    });
+  </script>
 
-</body>
-</html>
+</include>
+

@@ -2,82 +2,49 @@
 <?python
 from Pootle.templates import pootlepage
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
 
-  <title>Pootle Admin Page</title>
-
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
-
-<body>
-
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-
-    <div id="body">
-
-      <div py:if="not sessionvars.issiteadmin" class="site-message" lang="en" dir="ltr">
-        <div class="info"> You do not have the rights to administer Pootle </div>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
+  <div id="content" py:def="content_block()">
+    <div py:if="sessionvars.issiteadmin" class="module first">
+      <div class="site-message" py:if="message">
+	<div class="info" py:if="message" py:content="XML(message)">Message</div>
       </div>
-
-      <div py:if="sessionvars.issiteadmin" class="module first">
-        <div class="site-message" py:if="message">
-          <div class="info" py:if="message" py:content="XML(message)">Message</div>
-        </div>
-         <div class="bd">
-          <ul class="linklist">
-            <li><a href="../home/" py:content="text.home">Home</a></li>
-            <li><a href="users.html" py:content="text.users">Users</a></li>
-            <li><a href="languages.html" py:content="text.languages">Languages</a></li>
-            <li><a href="projects.html" py:content="text.projects">Projects</a></li>
-          </ul>
-
-          <div class="contents">
-            <h3 class="title" py:content="text.generaloptions">General Options</h3>
-
-            <form action="" method="post" name="general" id="general">
-              <table cellpadding="1" cellspacing="1">
-                <tr>
-                  <td colspan="1" rowspan="1">
-                    <h3 class="title" py:content="text.option">Option</h3>
-                  </td>
-
-                  <td colspan="1" rowspan="1">
-                    <h3 class="title" py:content="text.currentvalue">Current value</h3>
-                  </td>
-                </tr>
-
-                <tr py:for="option in options">
-                  <td colspan="1" rowspan="1" py:content="option.title">Description</td>
-
-                  <td colspan="1" rowspan="1"><input type="text" name="${option.name}" value="${option.value}"/></td>
-                </tr>
-
-              </table>
-	      <input type="submit" name="changegeneral" value="${text.savechanges}" />
-            </form>
-          </div>
-        </div>
+      <div class="bd">
+	<ul class="linklist">
+	  <li><a href="../home/" py:content="text.home">Home</a></li>
+	  <li><a href="users.html" py:content="text.users">Users</a></li>
+	  <li><a href="languages.html" py:content="text.languages">Languages</a></li>
+	  <li><a href="projects.html" py:content="text.projects">Projects</a></li>
+	</ul>
+	
+	<div class="contents">
+	  <h3 class="title" py:content="text.generaloptions">General Options</h3>
+	  
+	  <form action="" method="post" name="general" id="general">
+	    <table cellpadding="1" cellspacing="1">
+	      <tr>
+		<td colspan="1" rowspan="1">
+		  <h3 class="title" py:content="text.option">Option</h3>
+		</td>
+		
+		<td colspan="1" rowspan="1">
+		  <h3 class="title" py:content="text.currentvalue">Current value</h3>
+		</td>
+	      </tr>
+	      
+	      <tr py:for="option in options">
+		<td colspan="1" rowspan="1" py:content="option.title">Description</td>
+		
+		<td colspan="1" rowspan="1"><input type="text" name="${option.name}" value="${option.value}"/></td>
+	      </tr>
+	      
+	    </table>
+	    <input type="submit" name="changegeneral" value="${text.savechanges}" />
+	  </form>
+	</div>
       </div>
+    </div>
+  </div><!--content-->
 
-    </div><!-- end #body-->
+</include>
 
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
-
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="${mediaurl}js/sorttable.js"></script>
-
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-
-</body>
-</html>
