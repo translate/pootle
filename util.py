@@ -53,7 +53,7 @@ def lazy(result_name):
 
 def l(path):
     """ filter urls adding base_path prefix if required """
-    if path.startswith('/'):
+    if path and path.startswith('/'):
         base_url = getattr(settings, "SCRIPT_NAME", "")
         return base_url + path
     return path
