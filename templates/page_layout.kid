@@ -39,7 +39,7 @@ from Pootle.util import m, l
     
     <script type="text/javascript" src="${m('js/jquery/jquery.min.js')}"></script>
     <script type="text/javascript" src="${m('js/sorttable.js')}"></script>
-    <script type="text/javascript" src="${mediaurl}js/search.js"></script>
+    <script type="text/javascript" src="${m('js/search.js')}"></script>
     <!--[if lt IE 7.]>
 	<script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
 	<![endif]-->
