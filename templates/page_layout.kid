@@ -11,6 +11,7 @@ from Pootle.util import m, l
     <meta py:if="defined('keywords')" name="keywords" content="${', '.join(keywords)}" />
     <link rel="stylesheet" type="text/css" href="${m('style.css')}" />
     <link rel="shortcut icon" href="${l('/favicon.ico')}" />
+    <script py:if="defined('header_script')" py:replace="header_script()"></script>
   </head>
   <body class="home">
     <div id="wrapper">
@@ -43,5 +44,6 @@ from Pootle.util import m, l
     <!--[if lt IE 7.]>
 	<script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
 	<![endif]-->
+    <script py:if="defined('page_script')" py:replace="page_script()"></script>
   </body>
 </html>
