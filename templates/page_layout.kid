@@ -10,7 +10,7 @@ from Pootle.util import m, l
     <meta py:if="defined('meta_description')" name="description" content="${meta_description}" />
     <meta py:if="defined('keywords')" name="keywords" content="${', '.join(keywords)}" />
     <link rel="stylesheet" type="text/css" href="${m('style.css')}" />
-    <link rel="shortcut icon" href="${l('/favicon.ico')}" />
+    <link rel="shortcut icon" href="${m('favicon.ico')}" />
     <script py:if="defined('header_script')" py:replace="header_script()"></script>
   </head>
   <body class="home">
