@@ -7,12 +7,13 @@ from Pootle.util import l
 
 
   <div id="breadcrumbs" py:def="breadcrumbs_block()">
-      <div id="nav-secondary">
-	<h3 class="title">[ <a href="${l('/'+language.code+'/')}" py:content="language.name">Language</a> (<py:content>$language.code</py:content>)]</h3>
-	
-	<div class="item-statistics" py:content="language.stats">0 projects, average 0% translated</div>
-      </div>
+    <h3 class="title">[ <a href="${l('/'+language.code+'/')}" py:content="language.name">Language</a> (<py:content>$language.code</py:content>)]</h3>
   </div><!--breadcrumbs-->
+
+  <div id="nav-secondary" py:def="nav_secondary_block()">	
+    <div class="item-statistics" py:content="language.stats">0 projects, average 0% translated</div>
+  </div><!--nav-secondary-->
+
 
 
   <div id="content" py:def="content_block()">

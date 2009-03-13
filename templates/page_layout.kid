@@ -22,7 +22,7 @@ from Pootle.util import m, l
 	</div>
 	
 	<div py:if="defined('breadcrumbs_block')">${breadcrumbs_block()}</div>
-	<div py:if="defined('innernav_block')">${innernav_block()}</div>
+	<div py:if="defined('nav_secondary_block')">${nav_secondary_block()}</div>
 	<div py:if="defined('search_block')">${search_block()}</div>
 	<div py:if="defined('precontent_block')">${precontent_block()}</div>
 	<div py:if="defined('content_block')">${content_block()}</div>
@@ -33,7 +33,8 @@ from Pootle.util import m, l
     
     <div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
     
-    <script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="${m('js/jquery/jquery.min.js')}"></script>
+    <script type="text/javascript" src="${m('js/sorttable.js')}"></script>
     <!--[if lt IE 7.]>
 	<script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
 	<![endif]-->
