@@ -29,16 +29,16 @@ $(document).ready(function($) {
 
   /* Dropdown toggling */
   $("a.advancedlink").click(function(event) {
-    event.preventDefault();
-    $("div.advancedsearch").slideToggle();
-   }).toggle(
-     function() {
-       $("img.togglesearch").attr("src", "/html/images/bullet_arrow_up.png");
-     },
-     function() {
-       $("img.togglesearch").attr("src", "/html/images/bullet_arrow_down.png");
-     }
-   );
+	  event.preventDefault();
+	  $("div.advancedsearch").slideToggle();
+      }).toggle(
+		function() {
+		    $("img.togglesearch").toggle();
+		},
+		function() {
+		    $("img.togglesearch").toggle();
+		}
+       );
 
 });
 

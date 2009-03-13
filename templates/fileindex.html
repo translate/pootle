@@ -11,7 +11,10 @@ from Pootle.util import l, m
   <div py:if="search" py:def="search_block()" class="searchform" dir="$uidir" lang="$uilanguage">
     <form action="translate.html" method="post" name="searchform" id="searchform">
       <div py:replace="XML(search.search_form.as_p())"/>
-      <a class="advancedlink"><img src="${m('images/bullet_arrow_down.png')}" title="${search.advanced_search_title}" class="togglesearch" /></a>
+      <a class="advancedlink">
+	<img src="${m('images/bullet_arrow_down.png')}" title="${search.advanced_search_title}" class="togglesearch" />
+	<img src="${m('images/bullet_arrow_up.png')}" title="${search.advanced_search_title}" class="togglesearch" style="display: none;"/>
+      </a>
       <div class="advancedsearch" dir="$uidir" >
 	<table py:content="XML(search.advanced_search_form.as_table())" />
       </div>
