@@ -11,6 +11,7 @@ from Pootle.util import m, l
     <meta py:if="defined('keywords')" name="keywords" content="${', '.join(keywords)}" />
     <link rel="stylesheet" type="text/css" href="${m('style.css')}" />
     <link rel="shortcut icon" href="${m('favicon.ico')}" />
+    <script type="text/javascript" src="${m('js/jquery/jquery.min.js')}"></script>
     <script py:if="defined('header_script')" py:replace="header_script()"></script>
   </head>
   <body class="home">
@@ -38,7 +39,6 @@ from Pootle.util import m, l
     
     <div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
     
-    <script type="text/javascript" src="${m('js/jquery/jquery.min.js')}"></script>
     <script type="text/javascript" src="${m('js/sorttable.js')}"></script>
     <script type="text/javascript" src="${m('js/search.js')}"></script>
     <!--[if lt IE 7.]>
