@@ -42,7 +42,7 @@ def login(request):
         redirect_to = '/home/'
 
     if request.user.is_authenticated():
-        return HttpResponseRedirect(redirect_to)
+        return redirect(redirect_to)
     else:
         if request.POST:
             form = AuthenticationForm(request, data=request.POST)
@@ -54,7 +54,7 @@ def login(request):
                     request.session.delete_test_cookie()
 
                 language = request.POST.get('language') # FIXME: validation missing
-                response = HttpResponseRedirect(redirect_to)
+                response = redirect(redirect_to)
                 response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
                 return response
         else:
@@ -103,7 +103,7 @@ def language_list(request):
 def logout(request):
     from django.contrib.auth import logout
     logout(request)
-    return HttpResponseRedirect('/')
+    return redirect('/')
 
 def redirect(url, **kwargs):
     if len(kwargs) > 0:
