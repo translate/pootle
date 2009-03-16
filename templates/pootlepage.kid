@@ -21,7 +21,7 @@
             <div class="bd">
               <ul class="first-of-type">
                 <li class="menubaritem"><a href="${l('/')}" py:content="links.home">Home</a></li>
-                <li class="menubaritem"><a href="${l('/doc/'+links.doclang+'/index.html')} " py:content="links.doc">Docs &amp; Help</a></li>
+                <li class="menubaritem"><a href="${m('doc/'+links.doclang+'/index.html')} " py:content="links.doc">Docs &amp; Help</a></li>
                 <div py:if="sessionvars.issiteadmin" py:strip="True">
                   <li class="menubaritem"><a href="${l('/admin/')}" py:content="links.admin">Admin</a></li>
                 </div>
@@ -48,7 +48,7 @@
         <div id="footer-contents">
           <ul class="nav">
             <li><a href="${l('/')}" py:content="links.home">Home</a></li>
-            <li><a href="${l('/doc/'+links.doclang+'/index.html')}" py:content="links.doc">Docs &amp; Help</a></li>
+            <li><a href="${m('doc/'+links.doclang+'/index.html')}" py:content="links.doc">Docs &amp; Help</a></li>
             <li><a href="${l('/about.html')}" py:content="links.about">About this Pootle Server</a></li>
           </ul>
         </div>
