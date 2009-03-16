@@ -38,6 +38,6 @@ class Unit(models.Model):
 
     store   = models.ForeignKey(Store, related_name='units', db_index=True)
     index   = models.IntegerField(db_index=True)
-    source  = models.TextField(db_index=True)
-    target  = models.TextField(db_index=True)
+    source  = models.TextField()
+    target  = models.TextField()
     state   = models.CharField(max_length=255, db_index=True)

@@ -75,13 +75,13 @@ def create_pootle_permissions():
     suggest.save()
     translate = Permission(name="Can submit a translation", content_type=pootle_content_type, codename="translate")
     translate.save()
-    overwrite = Permission(name="Can overwrite translation units when uploading files", content_type=pootle_content_type, codename="overwrite")
+    overwrite = Permission(name="Can overwrite translations on uploading files", content_type=pootle_content_type, codename="overwrite")
     overwrite.save()
     review = Permission(name="Can review translations", content_type=pootle_content_type, codename="review")
     review.save()
     archive = Permission(name="Can download archives of translation projects", content_type=pootle_content_type, codename="archive")
     archive.save()
-    compile_po_files = Permission(name="Can compile MO files from files in a translation project", content_type=pootle_content_type, codename="compile_po_files")
+    compile_po_files = Permission(name="Can compile translation files to MO files", content_type=pootle_content_type, codename="compile_po_files")
     compile_po_files.save()
     assign = Permission(name="Can assign work to users", content_type=pootle_content_type, codename="assign")
     assign.save()
@@ -775,7 +775,7 @@ def create_default_users():
     # in the permission system: we need a way to store rights for anonymous
     # users; thus we use the nobody user.
     nobody = User(username=u"nobody",
-                first_name=u"User object representing anonymous users.",
+                first_name=u"any anonymous user",
                 is_active=True)
     nobody.set_unusable_password()
     nobody.save()
@@ -788,7 +788,7 @@ def create_default_users():
     # In a future version of Pootle we should think about using Django's 
     # groups to do better permissions handling.
     default = User(username=u"default",
-                 first_name=u"User object representing any user.",
+                 first_name=u"any authenticated user",
                  is_active=True)
     default.set_unusable_password()
     default.save()

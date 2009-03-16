@@ -207,7 +207,7 @@ class Directory(models.Model):
 
     name        = models.CharField(max_length=255, null=False, db_index=True)
     parent      = models.ForeignKey('Directory', related_name='child_dirs', null=True)
-    pootle_path = models.CharField(max_length=1024, null=False, db_index=True)
+    pootle_path = models.CharField(max_length=1024, null=False)
 
     objects = DirectoryManager()
 
@@ -331,7 +331,7 @@ class Store(models.Model):
     parent      = models.ForeignKey('Directory', related_name='child_stores')
     # The filesystem path of the store.
     name        = models.CharField(max_length=255, null=False)
-    pootle_path = models.CharField(max_length=1024, null=False, db_index=True)
+    pootle_path = models.CharField(max_length=1024, null=False)
 
     def _get_abs_real_path(self):
         return absolute_real_path(self.real_path)
