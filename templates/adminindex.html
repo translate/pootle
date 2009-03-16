@@ -4,11 +4,9 @@ from Pootle.templates import pootlepage
 ?>
 
 <include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
+
   <div id="content" py:def="content_block()">
     <div py:if="sessionvars.issiteadmin" class="module first">
-      <div class="site-message" py:if="message">
-	<div class="info" py:if="message" py:content="XML(message)">Message</div>
-      </div>
       <div class="bd">
 	<ul class="linklist">
 	  <li><a href="../home/" py:content="text.home">Home</a></li>

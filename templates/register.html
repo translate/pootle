@@ -2,96 +2,67 @@
 <?python
 from Pootle.templates import pootlepage
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <title py:content="pagetitle">Pootle Registration</title>
+  <div id="precontent" py:def="precontent_block()">
+    <div class="info" py:if="introtext" py:content="introtext">Message</div>
+  </div><!--precontent-->
 
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
-
-<body>
-
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-    
-    <div id="body">
-      
-      <div py:if="introtext or message" class="site-message">
-        <div class="info" py:if="introtext" py:content="introtext">Message</div>
-        <div class="info" py:if="message" py:content="XML(message)">Message</div>
-      </div>
-
-      <form action="register.html" enctype="multipart/form-data" method="post" name="register" id="register">
-	<table cellpadding="1" width="70%" border="0" cellspacing="1">
-          <tr>
-            <td colspan="1" style="width: 33%" rowspan="1" valign="top">
-              <span title="${username_tooltip}" py:content="username_title">Username</span>
-            </td>
-
-            <td colspan="1" style="width: 66%" rowspan="1" valign="top">
-              <input style="width: 100%" type="text" name="username" value="${username}" />
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="1" style="width: 33%" rowspan="1" valign="top">
-              <span title="${password_tooltip}" py:content="password_title">Password</span>
-            </td>
-
-            <td colspan="1" style="width: 66%" rowspan="1" valign="top">
-              <input style="width: 100%" type="password" name="password" value="${password}" />
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="1" style="width: 33%" rowspan="1" valign="top">
-              <span title="${passwordconfirm_tooltip}" py:content="passwordconfirm_title">Password (Confirm)</span>
-            </td>
-
-            <td colspan="1" style="width: 66%" rowspan="1" valign="top">
-              <input style="width: 100%" type="password" name="passwordconfirm" value="${passwordconfirm}" />
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="1" style="width: 33%" rowspan="1" valign="top">
-              <span title="${fullname_tooltip}" py:content="fullname_title">Full Name</span>
-            </td>
-
-            <td colspan="1" style="width: 66%" rowspan="1" valign="top">
-              <input style="width: 100%" type="text" name="name" value="${fullname}" />
-            </td>
-          </tr>
+  <div id="content" py:def="content_block()">
+    <form action="register.html" enctype="multipart/form-data" method="post" name="register" id="register">
+      <table cellpadding="1" width="70%" border="0" cellspacing="1">
+	<tr>
+	  <td colspan="1" style="width: 33%" rowspan="1" valign="top">
+	    <span title="${username_tooltip}" py:content="username_title">Username</span>
+	  </td>
 	  
-          <tr>
-            <td colspan="1" style="width: 33%" rowspan="1" valign="top">
-              <span title="${email_tooltip}" py:content="email_title">Email Address</span>
-            </td>
+	  <td colspan="1" style="width: 66%" rowspan="1" valign="top">
+	    <input style="width: 100%" type="text" name="username" value="${username}" />
+	  </td>
+	</tr>
+	
+	<tr>
+	  <td colspan="1" style="width: 33%" rowspan="1" valign="top">
+	    <span title="${password_tooltip}" py:content="password_title">Password</span>
+	  </td>
 
-            <td colspan="1" style="width: 66%" rowspan="1" valign="top">
-              <input style="width: 100%" type="text" name="email" value="${email}" />
-            </td>
-          </tr>
-	</table>
-	<input type="submit" name="register" value="${register_text}" />
-      </form>
+	  <td colspan="1" style="width: 66%" rowspan="1" valign="top">
+	    <input style="width: 100%" type="password" name="password" value="${password}" />
+	  </td>
+	</tr>
+	
+	<tr>
+	  <td colspan="1" style="width: 33%" rowspan="1" valign="top">
+	    <span title="${passwordconfirm_tooltip}" py:content="passwordconfirm_title">Password (Confirm)</span>
+	  </td>
+	  
+	  <td colspan="1" style="width: 66%" rowspan="1" valign="top">
+	    <input style="width: 100%" type="password" name="passwordconfirm" value="${passwordconfirm}" />
+	  </td>
+	</tr>
 
-    </div><!-- end #body-->
+	<tr>
+	  <td colspan="1" style="width: 33%" rowspan="1" valign="top">
+	    <span title="${fullname_tooltip}" py:content="fullname_title">Full Name</span>
+	  </td>
 
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
+	  <td colspan="1" style="width: 66%" rowspan="1" valign="top">
+	    <input style="width: 100%" type="text" name="name" value="${fullname}" />
+	  </td>
+	</tr>
+	  
+	<tr>
+	  <td colspan="1" style="width: 33%" rowspan="1" valign="top">
+	    <span title="${email_tooltip}" py:content="email_title">Email Address</span>
+	  </td>
+	  
+	  <td colspan="1" style="width: 66%" rowspan="1" valign="top">
+	    <input style="width: 100%" type="text" name="email" value="${email}" />
+	  </td>
+	</tr>
+      </table>
+      <input type="submit" name="register" value="${register_text}" />
+    </form>
+  </div><!--content-->
 
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-
-</body>
-</html>
+</include>

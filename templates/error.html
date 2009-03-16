@@ -2,45 +2,19 @@
 <?python
 from Pootle.templates import pootlepage
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
 
-  <title py:content="pagetitle">Error</title>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
-
-<body>
-
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-
-    <div id="body">
-
-      <div id="content" dir="$uidir" lang="$uilanguage">
-        <div class="contents">
-	  <h3 class="title" py:content="pagetitle">Error</h3>
-          <div class="item-description" py:if="message" py:content="XML(message)">An error occured</div>
-          <div class="item-description" py:if="traceback"><pre py:content="traceback">Traceback (most recent call last):</pre></div>
-          <a href="javascript:history.back();" py:content="back">Back</a>
-        </div>
+  <div id="content" py:def="content_block()">
+    <div id="content" dir="$uidir" lang="$uilanguage">
+      <div class="contents">
+	<h3 class="title" py:content="pagetitle">Error</h3>
+        <div class="item-description" py:if="message" py:content="XML(message)">An error occured</div>
+        <div class="item-description" py:if="traceback"><pre py:content="traceback">Traceback (most recent call last):</pre></div>
+        <a href="javascript:history.back();" py:content="back">Back</a>
       </div>
+    </div>
+  </div><!--content-->
 
-    </div><!-- end #body-->
+</include>
 
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
-
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-
-</body>
-</html>

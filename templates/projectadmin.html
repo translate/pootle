@@ -2,75 +2,40 @@
 <?python
 from Pootle.templates import pootlepage
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <title py:content="pagetitle">Pootle Admin: ${project.name}</title>
-
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
-
-<body>
-
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-    
-    <div id="body">
-      
-      <div py:if="not sessionvars.issiteadmin" class="site-message" lang="en" dir="ltr">
-	<div class="info"> You do not have the rights to administer Pootle </div>
-      </div>
-      <div py:if="message" class="site-message">
-        <div class="info" py:if="message" py:content="XML(message)">Message</div>
-      </div>
-
-      <div py:if="sessionvars.issiteadmin" class="module first">
-        <div class="bd">
-          <h3 class="title"><a href="index.html" py:content="main_link">Back to main page</a></h3>
-	  
-          <br clear="all" />
-          <form action="" method="post" name="updatelangform">
-            <h3 class="title" py:content="existing_title">Existing languages</h3>
-            <table class="sortable" id="existing_languages">
-              <thead>
-                <tr>
-                  <th py:content="full_name">Complete name</th>
-                  <th py:content="iso_code">ISO Code</th>
-                </tr>
-              </thead>
-	      <div py:replace="XML(formset.management_form.as_table())"/>
-              <tr py:for="i, l in enumerate(formset.forms)" class="item item-${i % 2}">
-                <td><span py:replace="XML(l['id'].as_hidden())" /><a href="../../${l.instance.code}/${project.code}/admin.html" py:content="l.instance.fullname">Language</a></td>
-                <td><span py:content="l.instance.code">code</span></td>
-                <!--<td><input type="checkbox" name="updatelanguage" value="${l.instance.code}"/></td>-->
-                <td><span py:replace="XML(l['update'].as_widget())" /></td>
-                <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.instance.code}" py:content="update_link">Update from templates</a></td>
-                <td><a href="?initialize=1&amp;updatelanguage=${l.instance.code}" py:content="initialize_link">Initialize</a></td>
+  <div id="content" py:def="content_block()">
+    <div py:if="sessionvars.issiteadmin" class="module first">
+      <div class="bd">
+        <h3 class="title"><a href="index.html" py:content="main_link">Back to main page</a></h3>
+	
+        <br clear="all" />
+        <form action="" method="post" name="updatelangform">
+          <h3 class="title" py:content="existing_title">Existing languages</h3>
+          <table class="sortable" id="existing_languages">
+            <thead>
+              <tr>
+                <th py:content="full_name">Complete name</th>
+                <th py:content="iso_code">ISO Code</th>
               </tr>
-            </table>
-
-	    <div py:replace="XML(new_language_form.as_p())"/>
-            <input type="submit" name="doupdatelanguage" value="${update_button}"/>
-          </form>
-        </div>
+            </thead>
+	    <div py:replace="XML(formset.management_form.as_table())"/>
+            <tr py:for="i, l in enumerate(formset.forms)" class="item item-${i % 2}">
+              <td><span py:replace="XML(l['id'].as_hidden())" /><a href="../../${l.instance.code}/${project.code}/admin.html" py:content="l.instance.fullname">Language</a></td>
+              <td><span py:content="l.instance.code">code</span></td>
+              <!--<td><input type="checkbox" name="updatelanguage" value="${l.instance.code}"/></td>-->
+              <td><span py:replace="XML(l['update'].as_widget())" /></td>
+              <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.instance.code}" py:content="update_link">Update from templates</a></td>
+              <td><a href="?initialize=1&amp;updatelanguage=${l.instance.code}" py:content="initialize_link">Initialize</a></td>
+            </tr>
+          </table>
+	  
+	  <div py:replace="XML(new_language_form.as_p())"/>
+          <input type="submit" name="doupdatelanguage" value="${update_button}"/>
+        </form>
       </div>
+    </div>
 
-    </div><!-- end #body-->
-    
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
+  </div><!--content-->
 
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="${mediaurl}js/sorttable.js"></script>
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-  
-</body>
-</html>
+</include>

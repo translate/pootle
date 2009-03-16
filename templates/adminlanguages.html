@@ -3,66 +3,30 @@
 from Pootle.templates import pootlepage
 from pootle_app.views.util import form_set_as_table
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <title py:content="pagetitle">Pootle Languages Admin Page</title>
-
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
-
-<body>
-
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-
-    <div id="body">
-
-      <div py:if="not sessionvars.issiteadmin" class="site-message" lang="en" dir="ltr">
-        <div class="info"> You do not have the rights to administer Pootle </div>
+  <div id="content" py:def="content_block()">
+    <div py:if="sessionvars.issiteadmin" class="module-primary first">
+      <div class="bd">
+	<ul class="linklist">
+          <li><a href="../home/" py:content="text.home">Home page</a></li>
+          <li><a href="index.html" py:content="text.admin">Main Admin page</a></li>
+	</ul>
+	
+	<div class="fullwidthcontents">
+          <h3 class="title" py:content="text.languages">Languages</h3>
+	  
+          <form action="" method="post" name="languages" id="languages">
+	    <div py:content="text.error_msg"></div>
+	    <div py:replace="XML(formset.management_form.as_table())"/>
+	    <table cellpadding="1" cellspacing="1">
+	      <div py:replace="XML(form_set_as_table(formset))" />
+            </table>
+	    <input type="submit" name="changelanguages" value="${text.savechanges}" />
+          </form>
+	</div>
       </div>
+    </div>
+  </div><!--content-->
 
-      <div py:if="sessionvars.issiteadmin" class="module-primary first">
-        <div class="site-message" py:if="message">
-          <div class="info" py:if="message" py:content="XML(message)">Message</div>
-        </div>
-        <div class="bd">
-          <ul class="linklist">
-            <li><a href="../home/" py:content="text.home">Home page</a></li>
-            <li><a href="index.html" py:content="text.admin">Main Admin page</a></li>
-          </ul>
-
-          <div class="fullwidthcontents">
-            <h3 class="title" py:content="text.languages">Languages</h3>
-
-            <form action="" method="post" name="languages" id="languages">
-	      <div py:content="text.error_msg"></div>
-	      <div py:replace="XML(formset.management_form.as_table())"/>
-	      <table cellpadding="1" cellspacing="1">
-		<div py:replace="XML(form_set_as_table(formset))" />
-              </table>
-	      <input type="submit" name="changelanguages" value="${text.savechanges}" />
-            </form>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end #body-->
-
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
-
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="${mediaurl}js/sorttable.js"></script>
-
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-</body>
-</html>
+</include>

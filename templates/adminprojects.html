@@ -2,93 +2,57 @@
 <?python
 from Pootle.templates import pootlepage
 from pootle_app.views.util import form_set_as_table
+from Pootle.util import l
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <title py:content="pagetitle">Pootle Projects Admin Page</title>
-
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
-
-<body>
-
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-
-    <div id="body">
-
-      <div py:if="not sessionvars.issiteadmin" class="site-message" lang="en" dir="ltr">
-	<div class="info"> You do not have the rights to administer Pootle </div>
-      </div>
-
-      <div py:if="sessionvars.issiteadmin" class="module-primary first">
-        <div class="site-message" py:if="message">
-          <div class="info" py:if="message" py:content="XML(message)">Message</div>
-        </div>
-
-        <div class="bd">
-          <ul class="linklist">
-            <li><a href="../home/" py:content="text.home">Home page</a></li>
-            <li><a href="index.html" py:content="text.admin">Main Admin page</a></li>
-          </ul>
+  <div id="content" py:def="content_block()">
+    <div py:if="sessionvars.issiteadmin" class="module-primary first">
+      <div class="bd">
+	<ul class="linklist">
+	  <li><a href="../home/" py:content="text.home">Home page</a></li>
+	  <li><a href="index.html" py:content="text.admin">Main Admin page</a></li>
+	</ul>
+	
+	<div class="fullwidthcontents">
+	  <h3 class="title" py:content="text.projects">Projects</h3>
 	  
-          <div class="fullwidthcontents">
-            <h3 class="title" py:content="text.projects">Projects</h3>
+	  <form action="" method="post" name="projects" id="projects">
+	    <div py:content="text.error_msg"></div>
+	    <div py:replace="XML(formset.management_form.as_table())"/>
+	    <table cellpadding="1" cellspacing="1">
+	      <tr>
+		<th py:for="field in [field for field in formset.forms[0].fields if field != 'id']">
+		  <span py:replace="formset.forms[0][field].label" />
+		</th>
+	      </tr>
 
-            <form action="" method="post" name="projects" id="projects">
-	      <div py:content="text.error_msg"></div>
-	      <div py:replace="XML(formset.management_form.as_table())"/>
-              <table cellpadding="1" cellspacing="1">
-		<tr>
-		  <th py:for="field in [field for field in formset.forms[0].fields if field != 'id']">
-		    <span py:replace="formset.forms[0][field].label" />
-		  </th>
-		</tr>
-
-		<tr py:for="form in formset.forms">
-		  <td>
-		    <div py:replace="XML(form['id'].as_widget())" />
-		    <!-- !If 'code' in form.initial, then we're dealing with a form for an existing language.
-			   Thus, print a link to the admin page of that language. -->
-		    <div py:if="'code' in form.initial" py:strip="">
-		      <a href="/projects/${form.initial['code']}/admin.html"><span py:replace="form.initial['code']" /></a>
-		      <!-- !Remember a hidden field to pass the data through unchanged -->
-		      <div py:replace="XML(form['code'].as_hidden())" />
-		    </div>
-		    <!-- !If 'code' not in form.initial, then we're dealing with the form used to insert a new langauge.
-			 Print the textbox widget so that we can insert the language code for the new language. -->
-		    <div py:if="'code' not in form.initial" py:strip="">
-		      <div py:replace="XML(form['code'].as_widget())" />
-		    </div>
-		  </td>
-		  <td align="center" py:for="field in [field for field in formset.forms[0].fields if field not in ('id', 'code')]">
-		    <div py:replace="XML(form[field].as_widget())" />
-		  </td>
-		</tr>
-              </table>
-	      <input type="submit" name="changeprojects" value="${text.savechanges}" />
-            </form>
-          </div>
-        </div>
+	      <tr py:for="form in formset.forms">
+		<td>
+		  <div py:replace="XML(form['id'].as_widget())" />
+		  <!-- !If 'code' in form.initial, then we're dealing with a form for an existing language.
+		       Thus, print a link to the admin page of that language. -->
+		  <div py:if="'code' in form.initial" py:strip="">
+		    <a href="${l('/projects/'+form.initial['code']+'/admin.html')}"><span py:replace="form.initial['code']" /></a>
+		    <!-- !Remember a hidden field to pass the data through unchanged -->
+		    <div py:replace="XML(form['code'].as_hidden())" />
+		  </div>
+		  <!-- !If 'code' not in form.initial, then we're dealing with the form used to insert a new langauge.
+		       Print the textbox widget so that we can insert the language code for the new language. -->
+		  <div py:if="'code' not in form.initial" py:strip="">
+		    <div py:replace="XML(form['code'].as_widget())" />
+		  </div>
+		</td>
+		<td align="center" py:for="field in [field for field in formset.forms[0].fields if field not in ('id', 'code')]">
+		  <div py:replace="XML(form[field].as_widget())" />
+		</td>
+	      </tr>
+	    </table>
+	    <input type="submit" name="changeprojects" value="${text.savechanges}" />
+	  </form>
+	</div>
       </div>
+    </div>
+  </div><!--content-->
 
-    </div><!-- end #body-->
-
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
-
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="${mediaurl}js/sorttable.js"></script>
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-
-</body>
-</html>
+</include>

@@ -2,37 +2,8 @@
 <?python
 from Pootle.templates import pootlepage, navbar
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <title py:content="pagetitle">Redirecting...</title>
+  <meta py:def="header_script()" http-equiv="Refresh" content="${refresh}; URL=${refreshurl}" />
 
-  <meta http-equiv="Refresh" content="${refresh}; URL=${refreshurl}" />
-
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
-
-<body>
-
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-
-    <div id="body">
-
-      <div py:if="message" class="site-message">
-        <div class="info" py:if="message" py:content="XML(message)">Message</div>
-      </div>
-
-    </div><!-- end #body-->
-    
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
-
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-</body>
-</html>
+</include>

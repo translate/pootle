@@ -1,72 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
 from Pootle.templates import pootlepage
+from Pootle.util import l
 ?>
-<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:py="http://purl.org/kid/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">
-<head>
+<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
-  <title py:content="pagetitle">Pootle</title>
-
-  <meta name="description" content="${meta_description}" />
-  <meta name="keywords" content="${', '.join(keywords)}" />
-  <link rel="stylesheet" type="text/css" href="${mediaurl}style.css" />
-  <link rel="shortcut icon" href="${baseurl}favicon.ico" />
-</head>
-
-<body>
-
-<div id="wrapper">
-  <div id="doc">
-    
-    <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
-
-    <div id="body">
-
-      <div class="site-message" py:if="message">
-        <div class="info" py:if="message" py:content="XML(message)">Message</div>
+  <div id="content" py:def="content_block()">
+    <div class="module first">
+      <div class="hd">
+        <h2 py:content="languagelink">Languages</h2>
       </div>
-      <div class="module first">
-        <div class="hd">
-          <h2 py:content="languagelink">Languages</h2>
-        </div>
-        <div class="bd">
-          <table class="sortable">
-            <tr><th>Language</th><th>Overall Completion</th><th>Last Activity</th></tr>
-            <tr py:for="zebra, l in enumerate(languages)" class="${zebra%2 and 'odd' or 'even'}">
-              <td class="language"><a href="${baseurl}${l.code}/" py:content="l.name">Language</a></td>
-              <td>
-                <span class="graph" dir="$uidir">
-                  <span class="translated" style="width: ${l.transper}px" title="${l.trans}/${l.total} words translated" />
-                  <span class="fuzzy" style="${cssaligndir}: ${l.transper}px; width: ${l.fuzzyper}px" title="${l.fuzzy}/${l.total} words fuzzy" />
-                  <span class="untranslated" style="${cssaligndir}: ${l.transper+l.fuzzyper}px; width: ${l.untransper}px" title="${l.untrans}/${l.total} words untranslated" />
-                </span>
-                <span class="sortkey">${l.transper}%</span>
-              </td> 
-              <td>${l.lastactivity}</td>
-            </tr>
-          </table>
-        </div>
+      <div class="bd">
+        <table class="sortable">
+          <tr><th>Language</th><th>Overall Completion</th><th>Last Activity</th></tr>
+          <tr py:for="zebra, lang in enumerate(languages)" class="${zebra%2 and 'odd' or 'even'}">
+            <td class="language"><a href="${l('/'+lang.code+'/')}" py:content="lang.name">Language</a></td>
+            <td>
+              <span class="graph" dir="$uidir">
+                <span class="translated" style="width: ${l.transper}px" title="${l.trans}/${l.total} words translated" />
+                <span class="fuzzy" style="${cssaligndir}: ${l.transper}px; width: ${l.fuzzyper}px" title="${l.fuzzy}/${l.total} words fuzzy" />
+                <span class="untranslated" style="${cssaligndir}: ${l.transper+l.fuzzyper}px; width: ${l.untransper}px" title="${l.untrans}/${l.total} words untranslated" />
+              </span>
+              <span class="sortkey">${l.transper}%</span>
+            </td> 
+            <td>${l.lastactivity}</td>
+          </tr>
+        </table>
       </div>
+    </div>
+  </div><!--content-->
 
-      <div class="module first clear">
-        <div class="bd">
-          <div py:replace="pootlepage.translationsummarylegend(translationlegend, mediaurl)" />
-        </div>
+  <div id="postcontent" py:def="postcontent_block()">
+    <div class="module first clear">
+      <div class="bd">
+        <div py:replace="pootlepage.translationsummarylegend(translationlegend, mediaurl)" />
       </div>
+    </div>
+  </div><!--postcontent-->
 
-    </div><!-- end #body-->
+</include>
 
-  </div><!-- end #doc -->
-</div><!-- end #wrapper -->
-
-<div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
-
-<script type="text/javascript" src="${mediaurl}js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="${mediaurl}js/sorttable.js"></script>
-<!--[if lt IE 7.]>
-  <script defer type="text/javascript" src="${mediaurl}js/correctpng.js"></script>
-<![endif]-->
-
-</body>
-</html>
