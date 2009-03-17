@@ -44,6 +44,14 @@ MANAGERS = ADMINS
 
 STATS_DB_PATH = None # None means the default path
 
+TITLE = "Pootle Demo"
+DESCRIPTION = """<div dir="ltr" lang="en">This is a demo installation of Pootle.<br /> You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</div>"""
+
+REGISTRATION_FROM_ADDRESS = 'pootle-registration@localhost'
+REGISTRATION_SMTP_SERVER = 'localhost'
+SUPPORT_ADDRESS = 'pootle-admin@yourdomain.org'
+HOMEPAGE = 'home/'
+
 DATABASE_ENGINE = 'sqlite3'                 # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 DATABASE_NAME = pootle_home('../pootle.db') # Or path to database file if using sqlite3.
 DATABASE_USER = ''                          # Not used with sqlite3.
