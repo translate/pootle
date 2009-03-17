@@ -996,11 +996,11 @@ class TranslationProject(models.Model):
 def set_data(sender, instance, **kwargs):
     project_dir = project_tree.get_project_dir(instance.project)
     ext         = project_tree.get_extension(instance.language, instance.project)
+    instance.file_style = project_tree.get_file_style(project_dir, instance.language, instance.project, ext=ext)
+    instance.abs_real_path = project_tree.get_translation_project_dir(instance.language, project_dir, instance.file_style)
     instance.directory = Directory.objects.root\
         .get_or_make_subdir(instance.language.code)\
         .get_or_make_subdir(instance.project.code)
-    instance.file_style = project_tree.get_file_style(project_dir, instance.language, instance.project, ext=ext)
-    instance.abs_real_path = project_tree.get_translation_project_dir(instance.language, project_dir, instance.file_style)
 
 pre_save.connect(set_data, sender=TranslationProject)
 
