@@ -24,8 +24,10 @@ from Pootle.templates import pootlepage
               <td><span py:replace="XML(l['id'].as_hidden())" /><a href="../../${l.instance.code}/${project.code}/admin.html" py:content="l.instance.fullname">Language</a></td>
               <td><span py:content="l.instance.code">code</span></td>
               <!--<td><input type="checkbox" name="updatelanguage" value="${l.instance.code}"/></td>-->
-              <td><span py:replace="XML(l['update'].as_widget())" /></td>
-              <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.instance.code}" py:content="update_link">Update from templates</a></td>
+              <div py:if="has_template" py:strip="">
+                <td><span py:replace="XML(l['update'].as_widget())" /></td>
+                <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.instance.code}" py:content="update_link">Update from templates</a></td>
+              </div>
               <td><a href="?initialize=1&amp;updatelanguage=${l.instance.code}" py:content="initialize_link">Initialize</a></td>
             </tr>
           </table>

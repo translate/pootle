@@ -95,14 +95,14 @@ def process_get(request, project):
 @user_can_admin_project
 def project_admin(request, project_code):
     project = Project.objects.get(code=project_code)
-
     process_get(request, project)
     process_post(request, project)
 
     existing_languages = [translation_project.language for translation_project
-                          in TranslationProject.objects.filter(project=project)]
+                          in TranslationProject.objects.filter(project=project).exclude(language__code='templates')]
     formset = LanguageFormset(queryset=existing_languages)
     new_language_form = make_new_language_form(existing_languages)
+    has_template = TranslationProject.objects.filter(project=project, language__code='templates').count() > 0
 
     template_vars = {
         "pagetitle":          _("Pootle Admin: %s") % project.fullname,
@@ -118,7 +118,8 @@ def project_admin(request, project_code):
         "main_link":          _("Back to main page"),
         "update_link":        _("Update from templates"), 
         "initialize_link":    _("Initialize"),
-        "instancetitle":      pan_app.get_title() 
+        "instancetitle":      pan_app.get_title(),
+        "has_template":       has_template
         }
 
     return render_to_kid("projectadmin.html", KidRequestContext(request, template_vars))
