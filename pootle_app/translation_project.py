@@ -32,7 +32,7 @@ from django.contrib.auth.models         import User, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.conf                        import settings
 from django.db                          import models
-from django.db.models.signals           import pre_delete, post_init
+from django.db.models.signals           import pre_delete, post_init, pre_save
 
 from translate.filters import checks
 from translate.convert import po2csv, po2xliff, xliff2po, po2ts, po2oo
@@ -60,22 +60,6 @@ class TranslationProjectNonDBState(object):
         self._index_initialized = False
 
 translation_project_non_db_state = {}
-
-def make_translation_project(language, project):
-    project_dir = project_tree.get_project_dir(project)
-    ext         = project_tree.get_extension(language, project)
-    file_style  = project_tree.get_file_style(project_dir, language, project, ext=ext)
-    real_path   = project_tree.get_translation_project_dir(language, project_dir, file_style)
-    directory   = Directory.objects.root\
-        .get_or_make_subdir(language.code)\
-        .get_or_make_subdir(project.code)
-    translation_project = TranslationProject(project       = project,
-                                             language      = language,
-                                             directory     = directory,
-                                             abs_real_path = real_path,
-                                             file_style    = file_style)
-    translation_project.save()
-    return translation_project
     
 def scan_translation_projects():
     def get_or_make(language, project):
@@ -83,7 +67,9 @@ def scan_translation_projects():
             return TranslationProject.objects.get(language=language, project=project)
         except TranslationProject.DoesNotExist:
             try:
-                return make_translation_project(language, project)
+                translation_project = TranslationProject(language=language, project=project)
+                translation_project.save()
+                return translation_project
             except OSError:
                 return None
             except IndexError:
@@ -1007,32 +993,16 @@ class TranslationProject(models.Model):
                 raise
         return unicode(self._find_message(singular, plural, n, get_translation))
 
-# def create_default_rights(sender, instance, **kwargs):
-#     def make_right(user, permissions):
-#         profile = get_profile(user)
-#         permission_set = PermissionSet(profile=profile, translation_project=instance)
-#         permission_set.save()
-#         permission_set.permissions = permissions
-#         permission_set.save()
+def set_data(sender, instance, **kwargs):
+    project_dir = project_tree.get_project_dir(instance.project)
+    ext         = project_tree.get_extension(instance.language, instance.project)
+    instance.directory = Directory.objects.root\
+        .get_or_make_subdir(instance.language.code)\
+        .get_or_make_subdir(instance.project.code)
+    instance.file_style = project_tree.get_file_style(project_dir, instance.language, instance.project, ext=ext)
+    instance.abs_real_path = project_tree.get_translation_project_dir(instance.language, project_dir, instance.file_style)
 
-#     # Get right objects corresponding to each of the 'special' users -
-#     # i.e. users such as 'nobody' and 'default'
-#     special_rights = PermissionSet.objects.select_related('profile__user__username')\
-#         .filter(profile__user__username__in=User.objects.special_usernames, translation_project=instance)
-
-#     # Get the usernames associated with these rights
-#     special_rights_usernames = [right.profile.user.username for right in special_rights]
-#     view_permission = get_pootle_permission('view')
-#     # Get the special users which don't have rights objects
-#     missing_permission_users = [user for user in User.objects.get_special_users() if not user.username in special_rights_usernames]
-#     # For each of these users, create a Right object
-#     for user in missing_permission_users:
-#         make_right(user, [view_permission])
-
-# def create_null_goal(sender, instance, **kwargs):
-#     if Goal.objects.filter(translation_project=instance).count() == 0:
-#         goal = Goal(name='', translation_project=instance)
-#         goal.save()
+pre_save.connect(set_data, sender=TranslationProject)
 
 def delete_directory(sender, instance, **kwargs):
     instance.directory.delete()
