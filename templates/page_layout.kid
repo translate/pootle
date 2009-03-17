@@ -16,7 +16,7 @@ from Pootle.util import m, l
   </head>
   <body class="home">
     <div id="wrapper">
-      <div py:replace="pootlepage.header(links, sessionvars, baseurl, instancetitle)"/>
+      <div py:replace="pootlepage.header(links, sessionvars, instancetitle)"/>
       
       <div id="body">
 
@@ -37,7 +37,7 @@ from Pootle.util import m, l
       </div> <!--body-->
     </div> <!--wrapper-->
     
-    <div py:replace="pootlepage.footer(links, baseurl, uidir)"/>
+    <div py:replace="pootlepage.footer(links, uidir)"/>
     
     <script type="text/javascript" src="${m('js/sorttable.js')}"></script>
     <script type="text/javascript" src="${m('js/search.js')}"></script>

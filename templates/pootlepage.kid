@@ -8,7 +8,7 @@
 ?>
 <include xmlns:py="http://purl.org/kid/ns#">
 
-    <div py:def="header(links, sessionvars, baseurl, instancetitle)" py:strip="True">
+    <div py:def="header(links, sessionvars, instancetitle)" py:strip="True">
       <!-- start header -->
       <div id="nav-access">
         <a href="#nav-main" py:content="links.skip_nav">skip to navigation</a>
@@ -42,7 +42,7 @@
       <!-- end header -->
     </div>
 
-    <div py:def="footer(links, baseurl, uidir)" py:strip="True">
+    <div py:def="footer(links, uidir)" py:strip="True">
       <!-- start footer -->
       <div id="footer" dir="${uidir}">
         <div id="footer-contents">

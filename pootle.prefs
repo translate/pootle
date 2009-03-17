@@ -35,13 +35,6 @@ Pootle:
   # Set this to the location of the statistics database used by Pootle. 
   # stats_db = "/var/cache/pootle/stats.db"
 
-  # Pootle.baseurl
-  # 
-  # Set to the URL from which people will access Pootle. Ensure that it starts
-  # with "http://". If there is no clickable link in registration e-mails, this
-  # setting could be wrong.
-  baseurl = "/"
-
   # Pootle.title
   # 
   # The name of this instance of Pootle. This will appear on the title bar of

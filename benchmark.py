@@ -60,7 +60,6 @@ importmodules.pootleserver = 'Pootle.pootle'
 Pootle:
   serverclass = pootleserver.PootleServer
   sessionkey = 'dummy'
-  baseurl = "/"
   userprefs = "users.prefs"
   podirectory = "%s"
   projects.benchmark:

@@ -94,14 +94,6 @@ def completetemplatevars(templatevars, request, bannerheight=135):
       "isopen": request.user.is_authenticated(),
       "issiteadmin": request.user.is_superuser}
   templatevars["request"] = request
-  if not "unlocalizedurl" in templatevars:
-    templatevars["unlocalizedurl"] = settings.BASE_URL
-    if not templatevars["unlocalizedurl"].endswith("/"):
-    	templatevars["unlocalizedurl"] += "/"
-  if not "baseurl" in templatevars:
-    templatevars["baseurl"] = getattr(request, "localizedurl", "/")
-    if not templatevars["baseurl"].endswith("/"):
-    	templatevars["baseurl"] += "/"
   if not "mediaurl" in templatevars:
     templatevars["mediaurl"] = settings.MEDIA_URL
   if not "enablealtsrc" in templatevars:

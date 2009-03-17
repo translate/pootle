@@ -29,9 +29,6 @@ def set_default_preferences(prefs):
         defaultdescription = "This is a demo installation of pootle. The administrator can customize the description in the preferences."
         setattr(prefs, "description", defaultdescription)
         changed = True
-    if not hasattr(prefs, "baseurl"):
-        setattr(prefs, "baseurl", "/")
-        changed = True
     if not hasattr(prefs, "enablealtsrc"):
         setattr(prefs, "enablealtsrc", False)
         changed = True

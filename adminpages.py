@@ -67,7 +67,6 @@ class AdminPage(pagelayout.PootlePage):
   def getoptions(self):
     optiontitles = {"TITLE":       _("Title"), 
                     "DESCRIPTION": _("Description"),
-                    "BASE_URL":    _("Base URL"),
                     "MEDIA_URL":   _("Media URL"),
                     "HOMEPAGE":    _("Home Page")}
     option_values = {"TITLE":       pan_app.get_title(),
