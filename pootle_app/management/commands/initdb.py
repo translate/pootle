@@ -98,12 +98,18 @@ def create_pootle_permission_sets():
     from pootle_app.profile import PootleProfile
 
     root = Directory.objects.root
-    for username in ('default', 'nobody'):
-        profile = PootleProfile.objects.select_related(depth=1).get(user__username=username)
-        permission_set = PermissionSet(profile=profile, directory=root)
-        permission_set.save()
-        permission_set.positive_permissions = [get_pootle_permission('view')]
-        permission_set.save()
+    #permissions for the 'nobody' user: view only
+    profile = PootleProfile.objects.select_related(depth=1).get(user__username='nobody')
+    permission_set = PermissionSet(profile=profile, directory=root)
+    permission_set.save()
+    permission_set.positive_permissions = [get_pootle_permission('view')]
+    permission_set.save()
+    #permissions for the 'default' user: view, suggest
+    profile = PootleProfile.objects.select_related(depth=1).get(user__username='default')
+    permission_set = PermissionSet(profile=profile, directory=root)
+    permission_set.save()
+    permission_set.positive_permissions = [get_pootle_permission('view'), get_pootle_permission('suggest')]
+    permission_set.save()
 
 def create_default_projects():
     """Create the default projects that we host. You might want to add your
