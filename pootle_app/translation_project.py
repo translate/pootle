@@ -90,7 +90,6 @@ class TranslationProject(models.Model):
     project    = models.ForeignKey(Project,  db_index=True)
     real_path  = models.FilePathField()
     directory  = models.ForeignKey('Directory')
-    file_style = models.CharField(max_length=255, blank=True, null=False, default="")
 
     @classmethod
     def get_language_and_project_indices(cls):
@@ -113,6 +112,13 @@ class TranslationProject(models.Model):
         self.real_path = relative_real_path(value)
 
     abs_real_path = property(_get_abs_real_path, _set_abs_real_path)
+
+    def _get_file_style(self):
+        project_dir = project_tree.get_project_dir(self.project)
+        ext         = project_tree.get_extension(self.language, self.project)
+        return project_tree.get_file_style(project_dir, self.language, self.project, ext=ext)
+
+    file_style = property(_get_file_style)
 
     def _get_checker(self):
         checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
@@ -995,7 +1001,6 @@ class TranslationProject(models.Model):
 def set_data(sender, instance, **kwargs):
     project_dir = project_tree.get_project_dir(instance.project)
     ext         = project_tree.get_extension(instance.language, instance.project)
-    instance.file_style = project_tree.get_file_style(project_dir, instance.language, instance.project, ext=ext)
     instance.abs_real_path = project_tree.get_translation_project_dir(instance.language, project_dir, instance.file_style)
     instance.directory = Directory.objects.root\
         .get_or_make_subdir(instance.language.code)\
