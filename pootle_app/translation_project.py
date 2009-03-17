@@ -60,8 +60,8 @@ class TranslationProjectNonDBState(object):
         self._index_initialized = False
 
 translation_project_non_db_state = {}
-    
-def scan_translation_projects():
+
+def create_translation_project(language, project):
     def get_or_make(language, project):
         try:
             return TranslationProject.objects.get(language=language, project=project)
@@ -70,15 +70,19 @@ def scan_translation_projects():
             translation_project.save()
             return translation_project
 
+    try:
+        translation_project = get_or_make(language, project)
+        project_tree.scan_translation_project_files(translation_project)
+        return translation_project
+    except OSError:
+        return None
+    except IndexError:
+        return None
+
+def scan_translation_projects():
     for language in Language.objects.all():
         for project in Project.objects.all():
-            try:
-                translation_project = get_or_make(language, project)
-                project_tree.scan_translation_project_files(translation_project)
-            except OSError:
-                pass
-            except IndexError:
-                pass
+            create_translation_project(language, project)
 
 class TranslationProject(models.Model):
     index_directory  = ".translation_index"
@@ -1017,3 +1021,15 @@ def add_pomtime(sender, instance, **kwargs):
     instance.pomtime = 0
 
 post_init.connect(add_pomtime, sender=TranslationProject)
+
+def scan_languages(sender, instance, **kwargs):
+    for language in Language.objects.all():
+        create_translation_project(language, instance)
+
+post_save.connect(scan_languages, sender=Project)
+
+def scan_projects(sender, instance, **kwargs):
+    for project in Project.objects.all():
+        create_translation_project(instance, project)
+
+post_save.connect(scan_projects, sender=Language)
