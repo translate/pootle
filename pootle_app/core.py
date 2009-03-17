@@ -19,16 +19,21 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+import os
+
 from django.db import models, connection
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Permission
 from django.conf import settings
+from django.db.models.signals import pre_save
 
 from translate.filters import checks
 from translate.storage import statsdb
 
 from pootle_app.profile import PootleProfile
 from pootle_app.util import table_name, field_name, primary_key_name, unzip
+
+from Pootle.pootlefile import absolute_real_path
 
 stats_cache = statsdb.StatsCache(settings.STATS_DB_PATH)
 
@@ -164,6 +169,13 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.fullname
+
+def create_project_directory(sender, instance, **kwargs):
+    project_path = absolute_real_path(instance.code)
+    if not os.path.exists(project_path):
+        os.mkdir(project_path)
+
+pre_save.connect(create_project_directory, sender=Project)
 
 class SubmissionManager(models.Manager):
     def get_top_submitters(self):
