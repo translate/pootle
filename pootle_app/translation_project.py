@@ -66,20 +66,19 @@ def scan_translation_projects():
         try:
             return TranslationProject.objects.get(language=language, project=project)
         except TranslationProject.DoesNotExist:
-            try:
-                translation_project = TranslationProject(language=language, project=project)
-                translation_project.save()
-                return translation_project
-            except OSError:
-                return None
-            except IndexError:
-                return None
+            translation_project = TranslationProject(language=language, project=project)
+            translation_project.save()
+            return translation_project
 
     for language in Language.objects.all():
         for project in Project.objects.all():
-            translation_project = get_or_make(language, project)
-            if translation_project is not None:
+            try:
+                translation_project = get_or_make(language, project)
                 project_tree.scan_translation_project_files(translation_project)
+            except OSError:
+                pass
+            except IndexError:
+                pass
 
 class TranslationProject(models.Model):
     index_directory  = ".translation_index"
