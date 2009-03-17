@@ -70,9 +70,10 @@ def process_post(request, project):
         if new_language_form.is_valid():
             new_language = selected_model(Language, new_language_form['add_language'])
             if new_language is not None:
-                new_project = TranslationProject(language=new_language, project=project)
-                new_project.save()
-                #projects.add_translation_project(new_language, project)
+                # This will create the necessary directory for our TranslationProject
+                project_tree.ensure_translation_project_dir(new_language, project)
+                translation_project = TranslationProject(language=new_language, project=project)
+                translation_project.save()
 
     if request.method == 'POST':
         formset = process_existing_languages(request, project)

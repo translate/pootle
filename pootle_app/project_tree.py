@@ -141,6 +141,9 @@ def get_language_dir(project_dir, language, file_style, make_dirs):
     else:
         return language_dir
 
+def ensure_translation_project_dir(language, project):
+    get_translation_project_dir(language, get_project_dir(project), project.treestyle, make_dirs=True)
+
 def get_translation_project_dir(language, project_dir, file_style, make_dirs=False):
     """returns the base directory containing po files for the project
 
