@@ -55,10 +55,10 @@ def process_post(request, project):
     def process_existing_languages(request, project):
         formset = init_formset_from_data(LanguageFormset, request.POST)
         if formset.is_valid():
-            template_translation_project = TranslationProject.objects.get(language__code='templates',
-                                                                          project=project)
             for form in formset.forms:
                 if form['update'].data:
+                    template_translation_project = TranslationProject.objects.get(language__code='templates',
+                                                                                  project=project)
                     language = form.instance
                     translation_project = TranslationProject.objects.get(language=language, project=project)
                     project_tree.convert_templates(template_translation_project, translation_project)
