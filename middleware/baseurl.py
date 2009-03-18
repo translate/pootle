@@ -25,3 +25,8 @@ class BaseUrlMiddleware(object):
         """calculate settings.BASEURL based on HTTP headers"""
         if 'SCRIPT_NAME' in request.META: 
             settings.SCRIPT_NAME = request.META['SCRIPT_NAME']
+        if 'HTTP_HOST' in request.META:
+            settings.BASE_URL = 'http://' + request.META['HTTP_HOST']
+        else:
+            settings.BASE_URL = ''
+            
