@@ -182,6 +182,9 @@ class FakeSearch(object):
 ################################################################################
 
 class DirectoryManager(models.Manager):
+    def get_query_set(self, *args, **kwargs):
+        return super(DirectoryManager, self).get_query_set(*args, **kwargs).select_related(depth=1)
+
     def _get_root(self):
         return self.get(parent=None)
 
@@ -317,8 +320,14 @@ def collect_goals(directory):
 def get_stats_cache():
     return statsdb.StatsCache(settings.STATS_DB_PATH)
 
+class StoreManager(models.Manager):
+    def get_query_set(self, *args, **kwargs):
+        return super(StoreManager, self).get_query_set(*args, **kwargs).select_related(depth=1)
+
 class Store(models.Model):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
+
+    objects = StoreManager()
     
     is_dir = False
 
