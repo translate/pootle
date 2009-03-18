@@ -90,10 +90,6 @@ class PootleServer(users.OptionalLoginAppServer):
       print "refreshing stats for all files in all projects"
       self.potree.refreshstats()
 
-  def generateactivationcode(self):
-    """generates a unique activation code"""
-    return "".join(["%02x" % int(random.random()*0x100) for i in range(16)])
-
 
 class PootleOptionParser(optparse.OptionParser):
   def __init__(self):
