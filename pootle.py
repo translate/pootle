@@ -47,10 +47,9 @@ from Pootle.misc import prefs
 from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
 
-class PootleServer(users.OptionalLoginAppServer):
+class PootleServer(object):
   """the Server that serves the Pootle Pages"""
   def __init__(self):
-    super(PootleServer, self).__init__()
     self.templatedir = filelocations.templatedir
 
   def refreshstats(self, args):
