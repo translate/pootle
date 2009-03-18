@@ -84,7 +84,13 @@ def scan_translation_projects():
         for project in Project.objects.all():
             create_translation_project(language, project)
 
+class TranslationProjectManager(models.Manager):
+    def get_query_set(self, *args, **kwargs):
+        return super(TranslationProjectManager, self).get_query_set(*args, **kwargs).select_related(depth=1)
+
 class TranslationProject(models.Model):
+    objects = TranslationProjectManager()
+
     index_directory  = ".translation_index"
 
     class Meta:
