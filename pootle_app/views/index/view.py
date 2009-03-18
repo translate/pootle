@@ -22,7 +22,7 @@
 
 from django.http import HttpResponse
 
-from Pootle import pan_app, indexpage
+from Pootle import pan_app, indexpage,  users
 
 from pootle_app.views.util import render_jtoolkit
 from pootle_app.core import Language
@@ -45,7 +45,7 @@ def robots(request):
     return HttpResponse(content, mimetype="text/plain")
 
 def register(request):
-    return render_jtoolkit(pan_app.pootle_server.registerpage(request))
+    return render_jtoolkit(users.registerpage(request))
 
 def activate(request):
-    return render_jtoolkit(pan_app.pootle_server.activatepage(request))
+    return render_jtoolkit(users.activatepage(request))
