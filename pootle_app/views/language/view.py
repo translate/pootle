@@ -1,23 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
-# Copyright 2008 Zuza Software Foundation
-# 
+#
+# Copyright 2008-2009 Zuza Software Foundation
+#
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# Pootle is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Pootle; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
 
@@ -64,16 +63,16 @@ def get_translation_project(f):
             # No such TranslationProject.  It might be because the
             # language code doesn't exist...
             if Language.objects.filter(code=language_code).count() == 0:
-                return redirect('/', message=_("The language %s is not defined for this Pootle installation" % language_code))
+                return redirect('/', message=_('The language "%s" is not defined for this Pootle installation' % language_code))
             # ...or if the language exists, maybe the project code is
             # invalid...
             elif Project.objects.filter(code=project_code).count() == 0:
-                return redirect('/', message=_("The project %s is not defined for this Pootle installation" % project_code))
+                return redirect('/', message=_('The project "%s" is not defined for this Pootle installation' % project_code))
             # ...but if both the language and project codes are valid,
             # then we simply don't have a corresponding
             # TranslationProject
             else:
-                return redirect('/%s' % language_code, message=_("The project %s does not exist for the language %s" % (project_code, language_code)))
+                return redirect('/%s' % language_code, message=_('The project "%s" does not exist for the language %s' % (project_code, language_code)))
     return decorated_f
 
 def set_request_context(f):

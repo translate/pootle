@@ -45,7 +45,7 @@ def get_project(f):
             project = Project.objects.get(code=project_code)
             return f(request, project, *args, **kwargs)
         except Project.DoesNotExist:
-            return redirect('/', message=_("The project %s is not defined for this Pootle installation" % project_code))
+            return redirect('/', message=_('The project "%s" is not defined for this Pootle installation' % project_code))
     return decorated_f
 
 @get_project
