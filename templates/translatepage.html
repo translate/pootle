@@ -6,14 +6,12 @@ from Pootle.util import l, m
 
 <include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
   <div py:strip="" py:def="header_script()">
-    <!--! Enable the jquery autogrowing textareas. Putting it at the end causes problems. -->
-    <script src="${m('js/jquery/jquery.autogrow.js')}" type="text/javascript"></script>
+    <script src="${m('js/jquery/jquery.growfield2.ycomp.js')}" type="text/javascript"></script>
     <script type="text/javascript">
       $(document).ready (function() {
-         $('textarea.expanding').autogrow({
-             maxHeight: 300,
-             minHeight: '2em',
-         });
+         $('textarea.expanding').growfield({
+             max: 300,
+             });
       });
     </script>
   </div><!--page_script-->
