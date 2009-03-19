@@ -322,7 +322,7 @@ def convert_templates(template_translation_project, translation_project):
                                is_valid_template_file_gnu, get_translated_name_gnu)
     else:
         convert_templates_real(template_translation_project, translation_project,
-                               is_valid_template_file_gnu, get_translated_name_gnu)
+                               is_valid_template_file, get_translated_name)
     scan_translation_project_files(template_translation_project)
     scan_translation_project_files(translation_project)
     
