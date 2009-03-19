@@ -159,8 +159,12 @@ def export_zip(request, translation_project, file_path):
     if not check_permission("archive", request):
         return redirect('/%s/%s' % (translation_project.language.code, translation_project.project.code),
                         message=_('You do not have the right to create ZIP archives.'))
-    directory = Directory.objects.get(pootle_path=translation_project.directory.pootle_path + (file_path or ''))
-    stores = store_iteration.iter_stores(directory, Search.from_request(request))
+    pootle_path = translation_project.directory.pootle_path + (file_path or '')
+    try:
+        path_obj = Directory.objects.get(pootle_path=pootle_path)
+    except Directory.DoesNotExist:
+        path_obj = Store.objects.get(pootle_path=pootle_path[:-1])
+    stores = store_iteration.iter_stores(path_obj, Search.from_request(request))
     archivecontents = translation_project.get_archive(stores)
     return HttpResponse(archivecontents, content_type="application/zip")
 
