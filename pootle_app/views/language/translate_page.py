@@ -543,9 +543,9 @@ def get_trans_review(request, pootle_file, item, trans, suggestions):
             if suggestedby:
                 # l10n: First parameter: number
                 # l10n: Second parameter: name of translator
-                suggtitle = _("Suggestion %d by %s:" % (suggid+1, suggestedby))
+                suggtitle = _("Suggestion %d by %s:" % ((suggid+1), suggestedby))
             else:
-                suggtitle = _("Suggestion %d:" % suggid+1)
+                suggtitle = _("Suggestion %d:" % (suggid+1))
         else:
             if suggestedby:
                 # l10n: parameter: name of translator
