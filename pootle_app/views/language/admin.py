@@ -21,6 +21,7 @@
 
 from django import forms
 from django.forms.formsets import formset_factory, BaseFormSet
+from django.utils.translation import ugettext as _
 
 from pootle_app.views.util  import render_to_kid, KidRequestContext
 from pootle_app.profile import PootleProfile
