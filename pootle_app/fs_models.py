@@ -45,9 +45,17 @@ def member(sorted_set, element):
     else:
         return False
 
+def as_seq_with_len(seq):
+    if not hasattr(seq.__class__, '__len__'):
+        return list(seq)
+    else:
+        return seq
+
 def intersect(set_a, set_b):
     """Find the intersection of the sorted sets set_a and set_b."""
     # If both set_a and set_b have elements
+    set_a = as_seq_with_len(set_a)
+    set_b = as_seq_with_len(set_b)
     if len(set_b) != 0 and len(set_a) != 0:
         # Find the position of the element in set_a that is at least
         # as large as the minimum element in set_b.
