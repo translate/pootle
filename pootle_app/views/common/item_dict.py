@@ -82,15 +82,14 @@ def get_assigned_strings(request, path_obj, has_strings):
         result = { 'text': _('View My Strings') }
     if has_strings:
         result.update({
-                'href':  dispatch.translate(request, request.path_info, assigned_to=[get_profile(request.user)]) })
+                'href':  dispatch.translate(request, request.path_info, assigned_to=[request.user.username]) })
     else:
         result.update({
                 'title': _('No strings assigned to you') })
     return result
 
-def get_quick_assigned_strings(request, path_obj, has_strings):
+def get_quick_assigned_strings(request, path_obj, has_strings, search):
     text = _('Quick Translate My Strings')
-    search = Search.from_request(request)
     search.match_names = match_names=['fuzzy', 'untranslated']
     if has_strings and has_assigned_strings(path_obj, search):
         return {
@@ -103,10 +102,12 @@ def get_quick_assigned_strings(request, path_obj, has_strings):
 
 def yield_assigned_links(request, path_obj, links_required):
     if 'mine' in links_required and request.user.is_authenticated():
-        has_strings = has_assigned_strings(path_obj, Search.from_request(request))
+        search = Search.from_request(request)
+        search.assigned_to = [request.user.username]
+        has_strings = has_assigned_strings(path_obj, search)
         yield get_assigned_strings(request, path_obj, has_strings)
         if 'quick' in links_required and check_permission('translate', request):
-            yield get_quick_assigned_strings(request, path_obj, has_strings)
+            yield get_quick_assigned_strings(request, path_obj, has_strings, search)
 
 def yield_review_link(request, path_obj, links_required, stats_totals):
     if 'review' in links_required and stats_totals.get('check-hassuggestion', 0):
@@ -130,7 +131,7 @@ def yield_quick_link(request, path_obj, links_required, stats_totals):
 
 def yield_translate_all_link(request, path_obj, links_required):
     yield {
-        'href': dispatch.translate(request, request.path_info),
+        'href': dispatch.translate(request, path_obj.pootle_path),
         'text': _('Translate All') }
 
 def yield_zip_link(request, path_obj, links_required):
