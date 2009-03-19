@@ -1007,7 +1007,7 @@ table[dir="rtl"] td.translate-original
 .translation-text
 {
     max-width: 100%;
-    min-height: 1.4em;
+    min-height: 1.5em;
     overflow: auto;
     padding: 0 10px 0 10px;
 }
