@@ -45,8 +45,6 @@ class TranslatePageState(CommonState):
     # Search state
     match_names   = url_state.ListValue('match_names')
     assigned_to   = url_state.ListValue('assigned_to')
-    search_text   = url_state.Value('search_text')
-    search_fields = url_state.ListValue('search_fields')
 
 def get_store(request):
     basename = url_manip.basename(request.path_info)
