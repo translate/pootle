@@ -45,6 +45,9 @@ class Value(object):
         self.var_name = var_name
 
     def _member_name(self):
+        """Return the name that we'll use to store this descriptor's
+        data under in its host object. A decriptor foo will have its
+        data stored under _foo."""
         return '_' + self.var_name
 
     def __get__(self, obj, type=None):
@@ -57,11 +60,17 @@ class Value(object):
         delattr(obj, self._member_name())
 
     def add_to_dict(self, obj, dct):
+        """If the descriptor's value is not equal to its default
+        value, then encode it to a string and store it in the GET/POST
+        dictionary C{dct}."""
         value = self.__get__(obj)
         if value != self.default_value:
             dct[self.var_name] = self._encode(value)
 
     def read_from_params(self, obj, params):
+        """Read the value of this descriptor from the GET/POST
+        dictionary C{params}, decode it and use it to set the
+        descriptor value."""
         try:
             self.__set__(obj, self._decode(params[self.var_name]))
         except KeyError:
