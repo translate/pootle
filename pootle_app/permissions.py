@@ -23,6 +23,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
+from django.db.models.signals           import pre_delete, post_save
 
 from pootle_app.profile import PootleProfile
 
@@ -91,11 +92,19 @@ def get_matching_permissions_recurse(profile, directory):
     return permissions
 
 def get_matching_permissions(profile, directory):
-    permissions = get_matching_permissions_recurse(profile, directory)
-    # Ensure that administrative superusers always get admin rights
-    if profile.user.is_superuser and 'administrate' not in permissions:
-        permissions['administrate'] = get_pootle_permission('administrate')
-    return permissions
+    try:
+        cached_permission_set = PermissionSetCache.objects.get(profile=profile, directory=directory)
+        return dict((permission.codename, permission) for permission in cached_permission_set.permissions.all())
+    except PermissionSetCache.DoesNotExist:
+        permissions = get_matching_permissions_recurse(profile, directory)
+        # Ensure that administrative superusers always get admin rights
+        if profile.user.is_superuser and 'administrate' not in permissions:
+            permissions['administrate'] = get_pootle_permission('administrate')
+        cached_permission_set = PermissionSetCache(profile=profile, directory=directory)
+        cached_permission_set.save()
+        cached_permission_set.permissions = permissions.values()
+        cached_permission_set.save()
+        return permissions
 
 def check_permission(permission_codename, request):
     """it checks if current user has the permission the perform C{permission_codename}"""
@@ -107,11 +116,34 @@ class PermissionSet(models.Model):
     class Meta:
         unique_together = ('profile', 'directory')
 
-    profile              = models.ForeignKey('PootleProfile', db_index=True)
-    directory            = models.ForeignKey('Directory', db_index=True, related_name='permission_sets')
-    positive_permissions = models.ManyToManyField(Permission, related_name='permission_sets_positive')
-    negative_permissions = models.ManyToManyField(Permission, related_name='permission_sets_negative')
+    profile                = models.ForeignKey('PootleProfile', db_index=True)
+    directory              = models.ForeignKey('Directory', db_index=True, related_name='permission_sets')
+    positive_permissions   = models.ManyToManyField(Permission, related_name='permission_sets_positive')
+    negative_permissions   = models.ManyToManyField(Permission, related_name='permission_sets_negative')
+
+class PermissionSetCache(models.Model):
+    profile                = models.ForeignKey('PootleProfile', db_index=True)
+    directory              = models.ForeignKey('Directory', db_index=True, related_name='permission_set_caches')
+    permissions            = models.ManyToManyField(Permission, related_name='cached_permissions')
 
 class PermissionError(Exception):
     pass
 
+def nuke_permission_set_caches(profile, directory):
+    """Delete all PermissionSetCache objects matching the current
+    profile and whose directories are subdirectories of directory."""
+    for permission_set_cache in PermissionSetCache.objects.filter(profile=profile, directory__pootle_path__startswith=directory.pootle_path):
+        permission_set_cache.delete()
+
+def void_cached_permissions(sender, instance, **kwargs):
+    if instance.profile.user.username == 'default':
+        profile_to_permission_set = dict((permission_set.profile, permission_set) for permission_set
+                                            in PermissionSet.objects.filter(directory=instance.directory))
+        for permission_set_cache in PermissionSetCache.objects.filter(directory=instance.directory):
+            if permission_set_cache.profile not in profile_to_permission_set:
+                nuke_permission_set_caches(permission_set_cache.profile, instance.directory)
+    else:
+        nuke_permission_set_caches(instance.profile, instance.directory)
+
+post_save.connect(void_cached_permissions, sender=PermissionSet)
+pre_delete.connect(void_cached_permissions, sender=PermissionSet)
