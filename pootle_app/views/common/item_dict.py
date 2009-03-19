@@ -27,11 +27,11 @@ import itertools
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 
-from pootle_app.profile import get_profile
-from pootle_app.fs_models import Search
+from pootle_app.profile         import get_profile
+from pootle_app.fs_models       import Search
 from pootle_app.store_iteration import get_next_match
-from pootle_app.permissions import check_permission
-from pootle_app.views.language import dispatch
+from pootle_app.permissions     import check_permission
+from pootle_app.views.language  import dispatch
 
 ################################################################################
 
@@ -146,6 +146,17 @@ def yield_zip_link(request, path_obj, links_required):
             'title': link
             }
 
+def yield_export_links(request, path_obj, links_required):
+    for type, format, text in [('po',    'po',  _('Download PO')),
+                               ('xliff', 'xlf', _('Download XLIFF'))]:
+        if type in links_required:
+            href = dispatch.export(request, path_obj.pootle_path, format)
+            yield {
+                'href':  href,
+                'text':  text,
+                'title': href
+                }
+
 def yield_sdf_link(request, path_obj, links_required):
     if 'sdf' in links_required and \
             check_permission('pocompile', request) and \
@@ -165,6 +176,7 @@ def get_store_extended_links(request, path_obj, links_required):
             yield_review_link(       request, path_obj, links_required, stats_totals),
             yield_quick_link(        request, path_obj, links_required, stats_totals),
             yield_translate_all_link(request, path_obj, links_required),
+            yield_export_links(      request, path_obj, links_required),
             yield_zip_link(          request, path_obj, links_required),
             yield_sdf_link(          request, path_obj, links_required)))
 

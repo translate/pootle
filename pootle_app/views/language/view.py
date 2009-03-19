@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import cStringIO
 import os
 
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
@@ -37,10 +38,13 @@ from pootle_app.translation_project import TranslationProject
 from pootle_app.permissions import get_matching_permissions, PermissionError
 from pootle_app.profile     import get_profile
 from pootle_app.views.language import dispatch
+from pootle_app.convert     import convert_table
 
 from project_index import view as project_index_view
 from translate_page import find_and_display
 from admin import view as translation_project_admin_view
+
+from Pootle import pootlefile
 
 ################################################################################
 
@@ -126,36 +130,28 @@ def project_index(request, translation_project):
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
 
 def handle_translation_file(request, translation_project, file_path):
-    state = dispatch.TranslatePageState(request.GET)
-    if state.view_mode != 'raw':
-        pootle_path = translation_project.directory.pootle_path + (file_path or '')
-        store = Store.objects.get(pootle_path=pootle_path)
+    pootle_path = translation_project.directory.pootle_path + (file_path or '')
+    store = Store.objects.get(pootle_path=pootle_path)
+    try:
+        def get_item(itr, item):
+            try:
+                return itr.next()
+            except StopIteration:
+                return item
 
-        try:
-            def get_item(itr, item):
-                try:
-                    return itr.next()
-                except StopIteration:
-                    return item
+        def next_store_item(search, store_name, item):
+            return store, get_item(search.next_matches(store, item), item - 1)
 
-            def next_store_item(search, store_name, item):
-                return store, get_item(search.next_matches(store, item), item - 1)
+        def prev_store_item(search, store_name, item):
+            if item > 0:
+                return store, get_item(search.prev_matches(store, item), item + 1)
+            else:
+                return store, 0
 
-            def prev_store_item(search, store_name, item):
-                if item > 0:
-                    return store, get_item(search.prev_matches(store, item), item + 1)
-                else:
-                    return store, 0
-
-            return find_and_display(request, store.parent, next_store_item, prev_store_item)
-        except PermissionError, e:
-            return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), 
-                            message=e.args[0])
-    else:
-        pofile = translation_project.getpofile(file_path, freshen=False)
-        encoding = getattr(pofile, "encoding", "UTF-8")
-        content_type = "text/plain; charset=%s" % encoding
-        return HttpResponse(open(pofile.filename).read(), content_type=content_type)
+        return find_and_display(request, store.parent, next_store_item, prev_store_item)
+    except PermissionError, e:
+        return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), 
+                        message=e.args[0])
 
 def handle_alternative_format(request, translation_project, file_path):
     basename, extension = os.path.splitext(file_path)
@@ -209,6 +205,23 @@ def handle_sdf(request, translation_project, file_path):
         return redirect('/%s/%s' % (translation_project.language.code, translation_project.project.code),
                         message=_('You do not have the right to create SDF files.'))
     return HttpResponse(translation_project.getoo(), content_type="text/tab-separated-values")
+
+@get_translation_project
+@set_request_context
+def export(request, translation_project, file_path, format):
+    def send(pootle_file):
+        encoding = getattr(pootle_file, "encoding", "UTF-8")
+        content_type = "text/plain; charset=%s" % encoding
+        if format == translation_project.project.localfiletype:
+            return HttpResponse(str(pootle_file), content_type=content_type)
+        else:
+            convert_func = convert_table[translation_project.project.localfiletype, format]
+            output_file = cStringIO.StringIO()
+            input_file  = cStringIO.StringIO(str(pootle_file))
+            convert_func(input_file, output_file, None)
+            return HttpResponse(output_file.getvalue(), content_type=content_type)
+    store = Store.objects.get(pootle_path=translation_project.directory.pootle_path + file_path)
+    return pootlefile.with_store(translation_project, store, send)
 
 @get_translation_project
 @set_request_context

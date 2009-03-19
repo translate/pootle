@@ -101,5 +101,10 @@ def download_zip(request, path_obj):
 def download_sdf(request, path_obj):
     return request.translation_project.language.code + '.sdf'
 
+def export(request, pootle_path, format):
+    return '%s/export/%s' % (pootle_path, format)
+
 def reload(request, vars):
     return url_manip.make_url(request.path_info, vars)
+
+
