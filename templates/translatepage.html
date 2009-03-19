@@ -78,7 +78,12 @@ from Pootle.util import l, m
 	      <div  py:for="item in items" py:strip="True">
 		<?python
 		  comments = filter(None, [item.translator_comments, item.developer_comments])
-		  comment = '\n'.join(comments) or None
+          comment = '\n'.join(comments) or None
+        
+          buttons = item.trans.buttons
+          can_edit = None
+          if buttons:
+              can_edit = 'translate' in buttons.desired or 'suggest' in buttons.desired
 		?>
 		<tr title="${comment}">
 		  <!--! Cell with original -->
@@ -131,7 +136,7 @@ from Pootle.util import l, m
 			</div>
 			<!--! No plurals -->
 			<div py:if="not item.trans.isplural" py:strip="True">
-			  <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation expanding ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}" py:content="XML(item.trans.text)">
+                <textarea readonly="${not can_edit and 'readonly' or None}" dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation expanding ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}" py:content="XML(item.trans.text)">
 			    translatable text
 			  </textarea>
 			</div>
@@ -139,7 +144,7 @@ from Pootle.util import l, m
 			<div py:if="item.trans.isplural" py:strip="True">
 			  <div py:for="form in item.trans.forms" py:strip="True">
 			    <div class="translation-text-headers" py:content="form.title">Plural Form ${form.n}</div>
-			    <textarea dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation expanding ${item.state_class}" name="${form.name}" id="area${form.name}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(form.text)">
+			    <textarea readonly="${not can_edit and 'readonly' or None}" dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation expanding ${item.state_class}" name="${form.name}" id="area${form.name}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(form.text)">
 			      translatable text for plural form
 			    </textarea>
 			  </div>
