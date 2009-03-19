@@ -123,9 +123,10 @@ def translate_page(request, translation_project, dir_path):
 
 @get_translation_project
 @set_request_context
-def project_index(request, translation_project):
+def project_index(request, translation_project, dir_path):
+    directory = Directory.objects.get(pootle_path=translation_project.directory.pootle_path + dir_path)
     try:
-        return project_index_view(request, translation_project, translation_project.directory)
+        return project_index_view(request, translation_project, directory)
     except PermissionError, msg:
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
 
@@ -203,13 +204,4 @@ def export(request, translation_project, file_path, format):
 @get_translation_project
 @set_request_context
 def handle_file(request, translation_project, file_path):
-    arg_dict = process_django_request_args(request)
-    if file_path.endswith("." + translation_project.project.localfiletype):
-        return handle_translation_file(request, translation_project, file_path)
-    else:
-        if file_path.endswith("index.html"):
-            file_path = file_path[:-len("index.html")]
-
-        # The Pootle code expects file_path to have its trailing slash stripped.
-        directory = translation_project.directory.get_relative(file_path)
-        return project_index_view(request, translation_project, directory)
+    return handle_translation_file(request, translation_project, file_path)
