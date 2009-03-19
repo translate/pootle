@@ -37,10 +37,10 @@ from Pootle.util import l, m
   <!--! Navigation bar -->
   <div id="innernav" py:def="innernav_block()" class="navbar" py:for="item in navitems">
     <div py:def="itemtitle(item)" id="itemtitle" class="title">
-      <div py:strip="True" py:if="item.path.language">[ <a href="${item.path.language.href}">${item.path.language.text}</a> ]</div>
-      <div py:strip="True" py:if="item.path.project">[ <a href="${item.path.project.href}">${item.path.project.text}</a> ]</div>
+      <div py:strip="True" py:if="item.path.language">[ <a href="${l(item.path.language.href)}">${item.path.language.text}</a> ]</div>
+      <div py:strip="True" py:if="item.path.project">[ <a href="${l(item.path.project.href)}">${item.path.project.text}</a> ]</div>
       <div py:strip="True" py:for="pathlink in item.path.pathlinks">
-	<a href="${pathlink.href}">${pathlink.text}</a>${pathlink.sep}
+	<a href="${l(pathlink.href)}">${pathlink.text}</a>${pathlink.sep}
       </div>
     </div>
     <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, itemtitle(item))" class="contentsitem"/>
@@ -58,14 +58,14 @@ from Pootle.util import l, m
 	<!--! start/next/previous/end links -->
 	<ul class="translations-nav" py:if="pagelinks">
 	  <div py:strip="True" py:for="pagelink in pagelinks">
-	    <li><a href="${pagelink.href}">${pagelink.text}</a></li>
+	    <li><a href="${l(pagelink.href)}">${pagelink.text}</a></li>
 	  </div>
 	</ul>
 	<div class="translate-form">
 	  <div py:if="notice" dir="$uidir">
 	    <h3 class="title">${notice.title}</h3>
 	    <div class="intro">${notice.stoppedby}</div>
-	    <a href="${notice.finishedlink}">${notice.returnlink}</a>
+	    <a href="${l(notice.finishedlink)}">${notice.returnlink}</a>
 	  </div>
 	  <form py:if="not notice" action="${actionurl}" method="post" name="translate" id="translate">
 	    <table cellpadding="0" cellspacing="0" class="translate-table" dir="$uidir">
@@ -248,7 +248,7 @@ from Pootle.util import l, m
 		  </td>
 		  <td>
 		    <div dir="$uidir" lang="$uilanguage" class="translation-action">
-		      <a py:if="item.trans.editlink and not item.editable" lang="$uilanguage" dir="$uidir" href="${item.trans.editlink.href}" class="translation-action" py:content="item.trans.editlink.text" id="${item.trans.editlink.linkid}">Edit</a>
+		      <a py:if="item.trans.editlink and not item.editable" lang="$uilanguage" dir="$uidir" href="${l(item.trans.editlink.href)}" class="translation-action" py:content="item.trans.editlink.text" id="${item.trans.editlink.linkid}">Edit</a>
 		    </div>
 		  </td>
 		</tr>
@@ -278,7 +278,7 @@ from Pootle.util import l, m
 	  <!--! start/next/previous/end links -->
 	  <ul class="translations-nav" py:if="pagelinks">
 	    <div py:strip="True" py:for="pagelink in pagelinks">
-	      <li><a href="${pagelink.href}">${pagelink.text}</a></li>
+	      <li><a href="${l(pagelink.href)}">${pagelink.text}</a></li>
 	    </div>
 	  </ul>
 	</div>
