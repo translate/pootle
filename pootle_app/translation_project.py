@@ -293,7 +293,7 @@ class TranslationProject(models.Model):
 
     def initialize(self):
         try:
-            hooks.hook(self.project.code, "initialize", self.projectdir, self.language.code)
+            hooks.hook(self.project.code, "initialize", self.real_path, self.language.code)
             self.non_db_state.scanpofiles()
         except Exception, e:
             print "Failed to initialize (%s): %s" % (self.language.code, e)
