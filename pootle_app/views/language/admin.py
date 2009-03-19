@@ -213,7 +213,8 @@ def process_update(request, directory):
                 # pootle_permissions is a (permission codename ->
                 # PermissionSet) dict. We get the permission codenames
                 # from form['permissions'].data.
-                permission_set.permissions = [pootle_permissions[codename] for codename in form['permissions'].data]
+                
+                permission_set.positive_permissions = [pootle_permissions[codename] for codename in form['permissions'].data]
                 permission_set.save()
 
             return PermissionSetFormSet(initial=get_permission_data(directory))
