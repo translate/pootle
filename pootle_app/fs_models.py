@@ -131,7 +131,8 @@ class Search(object):
 
     def contains_only_file_specific_criteria(self):
         return self.search_text is None  and \
-            self.match_names == []
+            self.match_names == [] and \
+            self.assigned_to == []
 
     def _get_index_results():
         if self._index_results is None:
