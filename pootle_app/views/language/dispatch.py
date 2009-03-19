@@ -25,6 +25,7 @@ from pootle_app import url_state, url_manip
 ################################################################################
 
 class CommonState(url_state.State):
+    """Stores state common to project index pages and translation pages."""
     goal          = url_state.Value('goal')
     editing       = url_state.BooleanValue('editing')
 
