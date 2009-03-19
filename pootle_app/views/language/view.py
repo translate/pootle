@@ -34,9 +34,9 @@ from pootle_app.fs_models   import Store, Directory, Search, search_from_state
 from pootle_app.url_manip   import strip_trailing_slash
 from pootle_app             import store_iteration
 from pootle_app.translation_project import TranslationProject
-from pootle_app.url_manip   import read_all_state
 from pootle_app.permissions import get_matching_permissions, PermissionError
 from pootle_app.profile     import get_profile
+from pootle_app.views.language import dispatch
 
 from project_index import view as project_index_view
 from translate_page import find_and_display
@@ -99,16 +99,14 @@ def translation_project_admin(request, translation_project):
 @get_translation_project
 @set_request_context
 def translate_page(request, translation_project, dir_path):
-    url_state = read_all_state(request.GET)
-    search = search_from_state(translation_project, url_state['search'])
     try:
-        def next_store_item(store_name, item):
+        def next_store_item(search, store_name, item):
             return store_iteration.get_next_match(directory,
                                                   store_name,
                                                   item,
                                                   search)
 
-        def prev_store_item(store_name, item):
+        def prev_store_item(search, store_name, item):
             return store_iteration.get_prev_match(directory,
                                                   store_name,
                                                   item,
@@ -116,7 +114,6 @@ def translate_page(request, translation_project, dir_path):
 
         directory = translation_project.directory.get_relative(dir_path)
         return find_and_display(request, directory, next_store_item, prev_store_item)
-
     except PermissionError, msg:
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
 
@@ -129,14 +126,10 @@ def project_index(request, translation_project):
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
 
 def handle_translation_file(request, translation_project, file_path):
-    # Don't get confused here. request.GET contains HTTP
-    # GET vars while get is a dictionary method
-    url_state = read_all_state(request.GET)
-    if url_state['translate_display'].view_mode != 'raw':
-        # TBD: Ensure that store is a Store object
+    state = dispatch.TranslatePageState(request.GET)
+    if state.view_mode != 'raw':
         pootle_path = translation_project.directory.pootle_path + (file_path or '')
         store = Store.objects.get(pootle_path=pootle_path)
-        search = search_from_state(translation_project, url_state['search'])
 
         try:
             def get_item(itr, item):
@@ -145,10 +138,10 @@ def handle_translation_file(request, translation_project, file_path):
                 except StopIteration:
                     return item
 
-            def next_store_item(store_name, item):
+            def next_store_item(search, store_name, item):
                 return store, get_item(search.next_matches(store, item), item - 1)
 
-            def prev_store_item(store_name, item):
+            def prev_store_item(search, store_name, item):
                 if item > 0:
                     return store, get_item(search.prev_matches(store, item), item + 1)
                 else:

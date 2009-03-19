@@ -82,7 +82,7 @@ def narrow_to_search_text(store, translatables, search):
         return translatables
 
 def narrow_to_assigns(store, translatables, search):
-    if search.assigned_to:
+    if len(search.assigned_to) > 0:
         assignments = StoreAssignment.objects.filter(assignment__in=search.assigned_to, store=store)
         assigned_indices = reduce(set.__or__, [assignment.unit_assignments for assignment in assignments], set())
         return intersect(sorted(assigned_indices), translatables)    
@@ -99,6 +99,24 @@ def narrow_to_matches(stats, translatables, search):
         return translatables
 
 class Search(object):
+    @classmethod
+    def from_request(cls, request):
+        def get_list(request, name):
+            try:
+                return request.GET[name].split(',')
+            except KeyError:
+                return []
+
+        kwargs = {}
+        if 'goal' in request.GET:
+            kwargs['goal'] = Goal.objects.get(name=request.GET['goal'])
+        kwargs['match_names']         = get_list(request, 'match_names')
+        kwargs['assigned_to']         = get_list(request, 'assigned_to')
+        kwargs['search_text']         = request.GET.get('search_text', None)
+        kwargs['search_fields']       = get_list(request, 'search_fields')
+        kwargs['translation_project'] = request.translation_project
+        return cls(**kwargs)
+
     def __init__(self, goal=None, match_names=[],
                  assigned_to=[], search_text=None, search_fields=None,
                  translation_project=None):
@@ -140,14 +158,25 @@ class Search(object):
         # of a store. But we want indices of the units that we see in
         # Pootle. bisect.bisect_left of a member in stats['total']
         # gives us the index of the unit as we see it in Pootle.
-        stats = store.get_property_stats(self.translation_project.checker)
         if last_index < 0:
             last_index = 0
-        matches = list(self._all_matches(store, stats, (last_index, None), index_subset))
-        return (bisect.bisect_left(stats['total'], item) for item in matches)
+        if self.contains_only_file_specific_criteria():
+            # This is a special shortcut that we use when we don't
+            # need to narrow our search based on unit-specific
+            # properties. In this case, we know that last_item is the
+            # sought after item, unless of course item >= number of
+            # units
+            stats = store.get_stats_totals(self.translation_project.checker)
+            if last_index < stats['total']:
+                return iter([last_index])
+            else:
+                return iter([])
+        else:
+            stats = store.get_property_stats(self.translation_project.checker)
+            matches = list(self._all_matches(store, stats, (last_index, None), index_subset))
+            return (bisect.bisect_left(stats['total'], item) for item in matches)
 
     def prev_matches(self, store, last_index, index_subset=None):
-        stats = store.get_property_stats(self.translation_project.checker)
         if last_index < 0:
             # last_index = -1 means that last_index is
             # unspecified. Normally this means that we want to start
@@ -160,24 +189,20 @@ class Search(object):
             # of stats['total'] as well when searching. Thus
             # [0:len(stats['total'])] gives us what we need.
             last_index = len(stats['total']) - 1
-        matches = list(self._all_matches(store, stats, (0, last_index + 1), index_subset))
-        return (bisect.bisect_left(stats['total'], item) for item in reversed(matches))
+        if self.contains_only_file_specific_criteria():
+            # This is a special shortcut that we use when we don't
+            # need to narrow our search based on unit-specific
+            # properties. In this case, we know that last_item is the
+            # sought after item.
+            # units
+            return iter([last_index])
+        else:
+            stats = store.get_property_stats(self.translation_project.checker)
+            matches = list(self._all_matches(store, stats, (0, last_index + 1), index_subset))
+            return (bisect.bisect_left(stats['total'], item) for item in reversed(matches))
 
 def search_from_state(translation_project, search_state):
     return Search(translation_project=translation_project, **search_state.as_dict())
-
-class FakeSearch(object):
-    """This object looks like Search, but always finds a match in a
-    file."""
-
-    def __init__(self, goal):
-        self.goal = goal
-
-    def contains_only_file_specific_criteria(self):
-        return True
-
-    def next_match(self, store, last_index, index_subset=None):
-        return 0
 
 ################################################################################
 
@@ -233,7 +258,7 @@ class Directory(models.Model):
         else:
             return self
 
-    def filter_stores(self, search=FakeSearch(None), starting_store=None):
+    def filter_stores(self, search=Search(), starting_store=None):
         if search.contains_only_file_specific_criteria():
             return filter_next_store(filter_goals(self.child_stores, search.goal), starting_store)
         else:
@@ -247,12 +272,12 @@ class Directory(models.Model):
             child_dir.save()
             return child_dir
 
-    def num_stores(self, search=FakeSearch(None)):
+    def num_stores(self, search=Search()):
         import store_iteration
 
         return sum(1 for x in store_iteration.iter_stores(self, search=search))
 
-    def get_stats_totals(self, checker, search=FakeSearch(None)):
+    def get_stats_totals(self, checker, search=Search()):
         import store_iteration
 
         result = statsdb.emptyfiletotals()
@@ -260,7 +285,7 @@ class Directory(models.Model):
             add_to_stats(result, store.get_stats_totals(checker, search))
         return result
 
-    def get_quick_stats(self, checker, search=FakeSearch(None)):
+    def get_quick_stats(self, checker, search=Search()):
         import store_iteration
 
         result = statsdb.emptyfiletotals()

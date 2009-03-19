@@ -22,64 +22,87 @@
 
 from django.utils.translation import ugettext as _
 
-from pootle_app.url_manip import URL, read_all_state
+from pootle_app import url_manip
 from pootle_app.views.common import item_dict
 from pootle_app.permissions import check_permission
+from pootle_app.views.language import dispatch
 
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 
-def make_admin(request, project_url):
-    if check_permission('admin', request):
-        return {'href': project_url.child('admin.html').as_relative_to_path_info(request),
-                'text': _('Admin')}
-    else:
-        return None
-
-def make_pathlinks(request, project_url, url, links):
-    if url.path != project_url.path:
-        links.append({'href': url.as_relative_to_path_info(request),
-                      'text': url.basename})
-        return make_pathlinks(request, project_url, url.parent, links)
+def make_directory_pathlinks(request, project_url, url, links):
+    if url != project_url:
+        links.append({'href': dispatch.show_directory(request, url),
+                      'text': url_manip.basename(url)})
+        return make_directory_pathlinks(request, project_url, url_manip.parent(url), links)
     else:
         return list(reversed(links))
 
-def make_navbar_actions(request, url):
+def make_store_pathlinks(request, project_url, store, links):
+    links = make_directory_pathlinks(request, project_url, url_manip.parent(store.pootle_path), [])
+    links.append({'href': dispatch.translate(request, store.pootle_path),
+                  'text': store.name})
+    return links
+
+def make_toggle_link(request, state, property, first_option, second_option):
+    if not getattr(state, property):
+        setattr(state, property, True)
+        return {'text': first_option,
+                'sep':  ' | ',
+                'href': dispatch.reload(request, state.encode())}
+    else:
+        setattr(state, property, False)
+        return {'text': second_option,
+                'sep':  ' | ',
+                'href': dispatch.reload(request, state.encode())}
+
+def make_directory_actions(request):
+    state = dispatch.ProjectIndexState(request.GET)
     return {
-        'basic':    [item_dict.make_toggle_link(request, url, 'editing',
-                                                _("Show Editing Functions"),
-                                                _("Show Statistics"))],
+        'basic':    [make_toggle_link(request, state, 'editing',
+                                      _("Show Editing Functions"),
+                                      _("Show Statistics"))],
         'extended': [],
         'goalform': []
         }
 
-def make_navbar_path_dict(request, url):
-    root = request.translation_project.directory
-    plain_url   = URL(root.pootle_path, read_all_state({}))
-    project_url = URL(root.pootle_path, url.state)
-    new_url     = URL(url.path, read_all_state({}))
-    new_url.state['search'] = url.state['search']
-    return {
-        'admin':     make_admin(request, project_url),
-        'language':  {'href': plain_url.parent.as_relative_to_path_info(request), 
-                      'text': tr_lang(request.translation_project.language.fullname)},
-        'project':   {'href': plain_url.as_relative_to_path_info(request),
-                      'text': request.translation_project.project.fullname},
-        'pathlinks': make_pathlinks(request, project_url, new_url, []) }
+def make_navbar_path_dict(request, path_links=None):
+    def make_admin(request):
+        if check_permission('admin', request):
+            return {'href': dispatch.translation_project_admin(request.translation_project),
+                    'text': _('Admin')}
+        else:
+            return None
 
-def make_directory_navbar_dict(request, directory, url_state):
-    result = item_dict.make_directory_item(request, directory, url_state)
-    url = URL(directory.pootle_path, url_state)
+    language     = request.translation_project.language
+    project      = request.translation_project.project
+    return {
+        'admin':     make_admin(request),
+        'language':  {'href': dispatch.open_language(request, language.code),
+                      'text': tr_lang(language.fullname)},
+        'project':   {'href': dispatch.open_translation_project(request, language.code, project.code),
+                      'text': project.fullname},
+        'pathlinks': path_links }
+
+def make_directory_navbar_dict(request, directory, show_actions=True):
+    result = item_dict.make_directory_item(request, directory)
+    project_url = request.translation_project.directory.pootle_path
+    path_links = make_directory_pathlinks(request, project_url, directory.pootle_path, [])
+    if show_actions:
+        actions = make_directory_actions(request)
+    else:
+        actions = {'basic': [], 'extended': [], 'goalform': []}
     result.update({
-            'path':    make_navbar_path_dict(request, url),
-            'actions': make_navbar_actions(request, url) })
+            'path':    make_navbar_path_dict(request, path_links),
+            'actions': actions })
     del result['title']
     return result
 
-def make_store_navbar_dict(request, store, url_state):
-    result = item_dict.make_store_item(request, store, url_state)
-    url = URL(store.pootle_path, url_state)
+def make_store_navbar_dict(request, store):
+    result = item_dict.make_store_item(request, store)
+    project_url = request.translation_project.directory.pootle_path
+    path_links = make_store_pathlinks(request, project_url, store, [])
     result.update({
-            'path':    make_navbar_path_dict(request, url),
+            'path':    make_navbar_path_dict(request, path_links),
             'actions': {'basic': [], 'extended': [], 'goalform': []} })
     del result['title']
     return result

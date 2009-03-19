@@ -25,7 +25,7 @@ from django.conf import settings
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
 
-from pootle_app.fs_models import FakeSearch
+from pootle_app.fs_models import Search
 from pootle_app.profile import get_profile
 
 from Pootle import pan_app
@@ -285,7 +285,7 @@ class PootleNavPage(PootlePage):
     Remember to update getstatsheadings() above as needed"""
     wanted = ["translated", "fuzzy", "total"]
     gotten = {}
-    stats_totals = directory.get_stats_totals(project.checker, FakeSearch(goal))
+    stats_totals = directory.get_stats_totals(project.checker, Search(goal=goal))
     for key in wanted:
       gotten[key] = stats_totals.get(key, 0)
       wordkey = key + "sourcewords"

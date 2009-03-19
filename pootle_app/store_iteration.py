@@ -25,7 +25,7 @@ from translate.tools import pogrep
 from translate.filters import checks
 
 from pootle_app.goals import StoreAssignment
-from pootle_app.fs_models import Store, Directory, FakeSearch
+from pootle_app.fs_models import Store, Directory, Search
 from pootle_app import url_manip
 
 def member(sorted_set, element):
@@ -86,7 +86,7 @@ def do_query(query, next_matches, last_index):
         result = query[i:i+BLOCK_SIZE]
     raise StopIteration()
 
-def get_next_match(path_obj, starting_store=None, last_index=-1, search=FakeSearch(None)):
+def get_next_match(path_obj, starting_store=None, last_index=-1, search=Search()):
     if path_obj.is_dir:
         query = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).order_by('pootle_path')
         if starting_store is not None:
@@ -97,7 +97,7 @@ def get_next_match(path_obj, starting_store=None, last_index=-1, search=FakeSear
     else:
         return path_obj, search.next_matches(path_obj, last_index).next()
 
-def get_prev_match(path_obj, starting_store=None, last_index=-1, search=FakeSearch(None)):
+def get_prev_match(path_obj, starting_store=None, last_index=-1, search=Search()):
     if path_obj.is_dir:
         query = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).order_by('-pootle_path')
         if starting_store is not None:
@@ -110,7 +110,7 @@ def get_prev_match(path_obj, starting_store=None, last_index=-1, search=FakeSear
 
 ################################################################################
 
-def iter_stores(directory, search=FakeSearch(None)):
+def iter_stores(directory, search=Search()):
     if search.goal is None:
         return Store.objects.filter(pootle_path__startswith=directory.pootle_path).order_by('pootle_path')
     else:

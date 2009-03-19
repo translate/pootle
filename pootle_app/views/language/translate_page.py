@@ -36,13 +36,12 @@ from translate.misc.multistring import multistring
 
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.translation_project import TranslationProject
-from pootle_app.fs_models import Directory, Store
+from pootle_app.fs_models import Directory, Store, Search
 from pootle_app.profile import get_profile
 from pootle_app.views.common import navbar_dict, search_forms
-from pootle_app.url_manip import URL, read_all_state
-from pootle_app import unit_update
-from pootle_app import permissions
+from pootle_app import unit_update, permissions, url_manip
 from pootle_app.permissions import check_permission
+import dispatch
 
 from Pootle import pagelayout
 from Pootle import projects
@@ -76,65 +75,57 @@ def get_assign_box():
         "users":        User.objects.order_by('username')
     }
 
-def add_file_links(request, url_state, pootle_file):
+def add_file_links(request, pootle_file):
     """adds a section on the current file, including any checks happening"""
+    state = dispatch.TranslatePageState(request.GET)
     template_vars = {}
-    if url_state['translate_display'].show_assigns and check_permission("assign", request):
-        template_vars["assigns"] = get_assign_box()
+    #if state.show_assigns and check_permission("assign", request):
+    #    template_vars["assigns"] = get_assign_box()
     if pootle_file is not None:
-        if len(url_state['search'].match_names) > 0:
+        if len(state.match_names) > 0:
             checknames = \
             ["<a href='http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%(checkname)s' \
             title='%(checkname)s' target='_blank'>%(checkname)s</a>" % \
-            {"checkname": matchname.replace("check-", "", 1)} for matchname in url_state['search'].match_names]
+            {"checkname": matchname.replace("check-", "", 1)} for matchname in state.match_names]
             # TODO: put the following parameter in quotes, since it will be foreign in all target languages
             # l10n: the parameter is the name of one of the quality checks, like "fuzzy"
             template_vars["checking_text"] = _("checking %s") % ", ".join(checknames)
     return template_vars
 
-def get_rows_and_icon(profile, url_state):
-    if url_state['translate_display'].view_mode == 'view':
+def get_rows_and_icon(request, profile):
+    state = dispatch.TranslatePageState(request.GET)
+    if state.view_mode == 'view':
         return get_display_rows(profile, "view"), "file"
     else:
         return get_display_rows(profile, "translate"), "edit"
 
-def get_finished_text(request, stoppedby, url_state):
+def get_finished_text(request, stoppedby):
     """gets notice to display when the translation is finished"""
     # l10n: "batch" refers to the set of translations that were reviewed
-    title = _("End of batch")
-    link_state = read_all_state({})
-    for attr in ('show_assigns', 'show_checks', 'editing'):
-        setattr(link_state['translate_display'], attr, getattr(url_state['translate_display'], attr, False))
-    link = URL(request.path_info, link_state).parent
-    finishedlink = link.as_relative_to_path_info(request)
-    returnlink = _("Click here to return to the index")
-    stoppedbytext = stoppedby
-    return {"title":        title,
-            "stoppedby":    stoppedbytext,
-            "finishedlink": finishedlink,
-            "returnlink":   returnlink}
+    return {"title":        _("End of batch"),
+            "stoppedby":    stoppedby,
+            "finishedlink": dispatch.show_directory(request, url_manip.parent(request.path_info)),
+            "returnlink":   _("Click here to return to the index")}
 
 def get_page_links(request, pootle_file, pagesize, translations, first_item):
     """gets links to other pages of items, based on the given baselink"""
-    url = URL(pootle_file.store.pootle_path, read_all_state({}))
-    url.state['translate_display'].view_mode = 'translate'
     pagelinks = []
     pofilelen = len(pootle_file.total)
+    state = dispatch.TranslatePageState(request.GET)
     if pofilelen <= pagesize or first_item is None:
         return pagelinks
     lastitem = min(pofilelen-1, first_item + pagesize - 1)
     if pofilelen > pagesize and not first_item == 0:
         # l10n: noun (the start)
-        pagelinks.append({"href": url.as_relative_to_path_info(request), "text": _("Start")})
+        pagelinks.append({"href": dispatch.translate(request, request.path_info),
+                          "text": _("Start")})
     else:
         # l10n: noun (the start)
         pagelinks.append({"text": _("Start")})
     if first_item > 0:
         linkitem = max(first_item - pagesize, 0)
         # l10n: the parameter refers to the number of messages
-        new_url = copy.deepcopy(url)
-        new_url.state['position'].item = linkitem
-        pagelinks.append({"href": new_url.as_relative_to_path_info(request),
+        pagelinks.append({"href": dispatch.translate(request, request.path_info, item=linkitem),
                           "text": _("Previous %d") % (first_item - linkitem)})
     else:
         # l10n: the parameter refers to the number of messages
@@ -145,18 +136,15 @@ def get_page_links(request, pootle_file, pagesize, translations, first_item):
         linkitem = first_item + pagesize
         itemcount = min(pofilelen - linkitem, pagesize)
         # l10n: the parameter refers to the number of messages
-        new_url = copy.deepcopy(url)
-        new_url.state['position'].item = linkitem
-        pagelinks.append({"href": new_url.as_relative_to_path_info(request),
+        pagelinks.append({"href": dispatch.translate(request, request.path_info, item=linkitem),
                           "text": _("Next %d") % itemcount})
     else:
         # l10n: the parameter refers to the number of messages
         pagelinks.append({"text": _("Next %d") %  pagesize})
-    if pofilelen > pagesize and (url.state['position'].item + pagesize) < pofilelen:
+    if pofilelen > pagesize and (state.item + pagesize) < pofilelen:
         # l10n: noun (the end)
-        new_url = copy.deepcopy(url)
-        new_url.state['position'].item = max(pofilelen - pagesize, 0)
-        pagelinks.append({"href": new_url.as_relative_to_path_info(request),
+        pagelinks.append({"href": dispatch.translate(request, request.path_info,
+                                                     item=max(pofilelen - pagesize, 0)),
                           "text": _("End")})
     else:
         # l10n: noun (the end)
@@ -185,13 +173,13 @@ def get_display_rows(profile, mode):
 def get_units(pootle_file, item_start, item_stop):
     return [pootle_file.units[index] for index in pootle_file.total[max(item_start,0):item_stop]]
 
-def get_translations(profile, pootle_file, url_state):
+def get_translations(request, profile, pootle_file, item):
     """gets the list of translations desired for the view, and sets editable and firstitem parameters"""
-    item = url_state['position'].item
+    state = dispatch.TranslatePageState(request.GET)
     if pootle_file is None:
         # editable, first item, items
         return -1, item, []
-    elif url_state['translate_display'].view_mode == 'view':
+    elif state.view_mode == 'view':
         rows = get_display_rows(profile, "view")
         return -1, item, get_units(pootle_file, item, item + rows)
     else:
@@ -365,11 +353,9 @@ def unescape_submition(text):
 def get_edit_link(request, pootle_file, item):
     """gets a link to edit the given item, if the user has permission"""
     if check_permission("translate", request) or check_permission("suggest", request):
-        url = URL('/'+request.path_info[1:], read_all_state({}))
-        url.state['translate_display'].view_mode = 'translate'
-        url.state['position'].item  = item
         # l10n: verb
-        return {"href": url.as_relative_to_path_info(request),
+        return {"href": dispatch.translate(request, request.path_info,
+                                           view_mode='translate', item=item),
                 "text": _("Edit"), "linkid": "editlink%d" % item}
     else:
         return {}
@@ -608,7 +594,7 @@ def get_translated_store(target_language, pootle_file):
     except Directory.DoesNotExist:
         return None
 
-def get_alt_src_dict(request, pootle_file, unit, url_state, alt_project):
+def get_alt_src_dict(request, pootle_file, unit, alt_project):
     def translate_unit(translated_pootle_file):
         translated_unit = translated_pootle_file.id_index[unit.getid()]
         if unit.hasplural():
@@ -643,17 +629,17 @@ def get_alt_src_dict(request, pootle_file, unit, url_state, alt_project):
             alt_src_dict["available"] = False
     return alt_src_dict
 
-def get_alt_src_list(request, pootle_file, unit, url_state):
-    return [get_alt_src_dict(request, pootle_file, unit, url_state, alt_project)
+def get_alt_src_list(request, pootle_file, unit):
+    return [get_alt_src_dict(request, pootle_file, unit, alt_project)
             for alt_project in get_alt_projects(request, pootle_file)]
 
-def make_table(request, profile, pootle_file, url_state):
-    editable, first_item, translations = get_translations(profile, pootle_file, url_state)
-    item = url_state['position'].item
+def make_table(request, profile, pootle_file, item):
+    editable, first_item, translations = get_translations(request, profile, pootle_file, item)
+    state = dispatch.TranslatePageState(request.GET)
     items = []
     suggestions = {}
-    if (url_state['translate_display'].view_mode in ('review', 'translate')):
-        suggestions = {item: pootle_file.getsuggestions(item)}
+    if (state.view_mode in ('review', 'translate')):
+        suggestions = {state.item: pootle_file.getsuggestions(state.item)}
     for row, unit in enumerate(translations):
         tmsuggestions = []
         orig = get_string_array(unit.source)
@@ -736,7 +722,7 @@ def make_table(request, profile, pootle_file, url_state):
         if settings.ENABLE_ALT_SRC:
             # get alternate source project information in a dictionary
             if item == editable:
-                itemdict["altsrcs"] = get_alt_src_list(request, pootle_file, unit, url_state)
+                itemdict["altsrcs"] = get_alt_src_list(request, pootle_file, unit)
 
         items.append(itemdict)
     return items, translations, first_item
@@ -893,10 +879,11 @@ def process_post_main(store_name, item, request, next_store_item, prev_store_ite
     request.translation_project.indexer # Force initialization of the indexer
     prev_item, next_item = pootlefile.with_store(request.translation_project, store,
                                                  lambda pootle_file: process_post(request, pootle_file))
+    search = Search.from_request(request)
     if next_item > -1:
-        return next_store_item(store_name, next_item + 1)
+        return next_store_item(search, store_name, next_item + 1)
     elif prev_item > -1:
-        return prev_store_item(store_name, prev_item - 1)
+        return prev_store_item(search, store_name, prev_item - 1)
     else:
         return store, item
 
@@ -904,43 +891,40 @@ def get_position(store_name, item, request, next_store_item, prev_store_item):
     if request.method == 'POST':
         return process_post_main(store_name, item, request, next_store_item, prev_store_item)
     else:
-        return next_store_item(store_name, item)
+        return next_store_item(Search.from_request(request), store_name, item)
 
-def get_failure_message(url_state):
-    if url_state['position'].store is None:
+def get_failure_message(request):
+    if 'store' not in request.GET:
         return _("No file matched your query")
     else:
         return _("End of results")
 
 def find_and_display(request, directory, next_store_item, prev_store_item):
-    url_state = read_all_state(request.GET)
     try:
-        store, item = get_position(url_state['position'].store, url_state['position'].item,
+        state = dispatch.TranslatePageState(request.GET)
+        store, item = get_position(dispatch.get_store(request), state.item,
                                    request, next_store_item, prev_store_item)
-        url_state['position'].store = store.pootle_path
-        url_state['position'].item  = item
         return pootlefile.with_store(request.translation_project, store,
-                                     lambda pootle_file: view(request, directory, pootle_file, url_state))
+                                     lambda pootle_file: view(request, directory, pootle_file, item))
     except StopIteration:
-        return view(request, directory, None, url_state, get_failure_message(url_state))
+        return view(request, directory, None, 0, get_failure_message(request))
 
-def view(request, directory, pootle_file, url_state, stopped_by=None):
+def view(request, directory, pootle_file, item, stopped_by=None):
     """the page which lets people edit translations"""
+    state = dispatch.TranslatePageState(request.GET)
     if not check_permission("view", request):
         # raise projects.Rights404Error(None)
         # TBD: Raise an exception similar to Rights404Error
         raise permissions.PermissionError('No view rights')
 
     if pootle_file is not None:
-        form_url_state = copy.deepcopy(url_state)
-        del form_url_state['position'].item
-        formaction = URL(request.path_info, form_url_state).as_relative(request.path_info)
+        formaction = dispatch.translate(request, request.path_info, store=pootle_file.store.pootle_path ,item=0)
         store_path = pootle_file.store.pootle_path
     else:
         formaction = ''
         store_path = ''
     if stopped_by is not None:
-        notice = get_finished_text(request, stopped_by, url_state)
+        notice = get_finished_text(request, stopped_by)
     else:
         notice = {}
     profile  = get_profile(request.user)
@@ -948,15 +932,15 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
     language = translation_project.language
     project  = translation_project.project
     if pootle_file is not None:
-        items, translations, first_item = make_table(request, profile, pootle_file, url_state)
-        navbar = navbar_dict.make_store_navbar_dict(request, pootle_file.store, url_state)
+        items, translations, first_item = make_table(request, profile, pootle_file, item)
+        navbar = navbar_dict.make_store_navbar_dict(request, pootle_file.store)
     else:
         items, translations, first_item = [], [], -1
-        navbar = navbar_dict.make_store_navbar_dict(request, directory, url_state)
+        navbar = navbar_dict.make_directory_navbar_dict(request, directory, show_actions=False)
     # self.pofilename can change in search...
     mainstats = ""
     pagelinks = None
-    rows, icon = get_rows_and_icon(profile, url_state)
+    rows, icon = get_rows_and_icon(request, profile)
     if pootle_file is not None:
         postats = pootle_file.store.get_quick_stats(translation_project.checker)
         untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
@@ -999,7 +983,7 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
         # translation unit
         "action_title":              _("Action"),
         "items":                     items,
-        "reviewmode":                url_state['translate_display'].view_mode == 'review',
+        "reviewmode":                state.view_mode == 'review',
         "accept_title":              _("Accept suggestion"),
         "reject_title":              _("Reject suggestion"),
         "fuzzytext":                 _("Fuzzy"),
@@ -1014,7 +998,7 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
         # optional sections, will appear if these values are replaced
         "assign":                    None,
         # l10n: text next to search field
-        'search':                    search_forms.get_search_form(request, url_state['search'].search_text),
+        'search':                    search_forms.get_search_form(request),
         # general vars
         "instancetitle":             instancetitle,
         "permissions":               request.permissions,
@@ -1029,7 +1013,7 @@ def view(request, directory, pootle_file, url_state, stopped_by=None):
         "reject_button":             _("Reject")
         }
 
-    if url_state['translate_display'].show_assigns and check_permission("assign", request):
-        templatevars["assign"] = get_assign_box()
-    templatevars.update(add_file_links(request, url_state, pootle_file))
+    #if state.show_assigns and check_permission("assign", request):
+    #    templatevars["assign"] = get_assign_box()
+    templatevars.update(add_file_links(request, pootle_file))
     return render_to_kid("translatepage.html", KidRequestContext(request, templatevars, bannerheight=81))

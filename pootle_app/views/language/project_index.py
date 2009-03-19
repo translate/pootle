@@ -35,10 +35,11 @@ from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
 from pootle_app.views.common import navbar_dict, item_dict, search_forms
 from pootle_app.goals import Goal
 from pootle_app.fs_models import Directory, Search, Store
-from pootle_app.url_manip import URL, TranslateDisplayState, PositionState, read_all_state
 from pootle_app.permissions import get_matching_permissions, check_permission, PermissionError
 from pootle_app.profile import get_profile
 from pootle_app.project_tree import scan_translation_project_files
+from pootle_app import url_manip
+import dispatch
 
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle import pan_app
@@ -91,13 +92,12 @@ def get_stats_headings():
 
 ################################################################################
 
-def get_children(request, translation_project, directory, url_state):
-    store_url_state = copy.deepcopy(url_state)
-    store_url_state['translate_display'] = TranslateDisplayState(initial={'view_mode': 'translate' })
-    return [item_dict.make_directory_item(request, child_dir, url_state)
+def get_children(request, translation_project, directory):
+    search = Search.from_request(request)
+    return [item_dict.make_directory_item(request, child_dir)
             for child_dir in directory.child_dirs.all()] + \
-           [item_dict.make_store_item(request, child_store, store_url_state)
-            for child_store in directory.filter_stores(Search(**url_state['search'].as_dict())).all()]
+           [item_dict.make_store_item(request, child_store)
+            for child_store in directory.filter_stores(search).all()]
 
 ################################################################################
 
@@ -278,6 +278,7 @@ def process_post(request, directory, **kwargs):
             post_table[key](request, directory, **kwargs)
 
 def view(request, translation_project, directory):
+    state    = dispatch.ProjectIndexState(request.GET)
     project  = translation_project.project
     language = translation_project.language
 
@@ -293,18 +294,16 @@ def view(request, translation_project, directory):
     process_post(request, directory, upload_form=upload_form)
 
     request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
-    url_state = read_all_state(request.GET)
-    url_state['position'] = PositionState()
     template_vars = {
         'pagetitle':             _('%s: Project %s, Language %s') % \
             (pan_app.get_title(), project.fullname, tr_lang(language.fullname)),
         'project':               {"code": project.code,  "name": project.fullname},
         'language':              {"code": language.code, "name": tr_lang(language.fullname)},
         'search':                search_forms.get_search_form(request),
-        'children':              get_children(request, translation_project, directory, url_state),
-        'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, url_state)],
+        'children':              get_children(request, translation_project, directory),
+        'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
         'stats_headings':        get_stats_headings(),
-        'editing':               url_state['translate_display'].editing,
+        'editing':               state.editing,
         'untranslated_text':     _("%s untranslated words"),
         'fuzzy_text':            _("%s fuzzy words"),
         'complete':              _("Complete"),
