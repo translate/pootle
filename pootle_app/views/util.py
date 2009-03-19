@@ -53,7 +53,7 @@ def render(relative_template_path, **template_vars):
 
     # Render the template to a string and send the string
     # to HttpResponse
-    return HttpResponse(template.serialize(output="xhtml"))
+    return HttpResponse(template.generate(output="xhtml"))
 
 class AttrDict(dict):
     # THIS IS TAKEN FROM JTOOLKIT
