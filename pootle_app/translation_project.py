@@ -304,7 +304,7 @@ class TranslationProject(models.Model):
 
     ##############################################################################################
 
-    def getarchive(self, pofilenames):
+    def get_archive(self, stores):
         """returns an archive of the given filenames"""
         try:
             # using zip command line is fast
@@ -312,7 +312,7 @@ class TranslationProject(models.Model):
             # The temporary file below is opened and immediately closed for security reasons
             fd, tempzipfile = mkstemp(prefix='pootle', suffix='.zip')
             os.close(fd)
-            os.system("cd %s ; zip -r - %s > %s" % (self.abs_real_path, " ".join(pofilenames), tempzipfile))
+            os.system("cd %s ; zip -r - %s > %s" % (self.abs_real_path, " ".join(store.abs_real_path[len(self.abs_real_path)+1:] for store in stores), tempzipfile))
             filedata = open(tempzipfile, "r").read()
             if filedata:
                 return filedata
@@ -323,16 +323,15 @@ class TranslationProject(models.Model):
         # but if it doesn't work, we can do it from python
         archivecontents = cStringIO.StringIO()
         archive = zipfile.ZipFile(archivecontents, 'w', zipfile.ZIP_DEFLATED)
-        for pofilename in pofilenames:
-            pofile = self.getpofile(pofilename)
-            archive.write(pofile.filename, pofilename)
+        for store in stores:
+            archive.write(store.abs_real_path.encode('utf-8'), store.abs_real_path[len(self.abs_real_path)+1:].encode('utf-8'))
         archive.close()
         return archivecontents.getvalue()
 
     def ootemplate(self):
         """Tests whether this project has an OpenOffice.org template SDF file in
         the templates directory."""
-        projectdir = os.path.join(pan_app.get_po_tree().podirectory, self.project.code)
+        projectdir = absolute_real_path(self.project.code)
         templatefilename = os.path.join(projectdir, "templates", "en-US.sdf")
         if os.path.exists(templatefilename):
             return templatefilename
@@ -346,7 +345,7 @@ class TranslationProject(models.Model):
         if templateoo is None:
             return
         outputoo = os.path.join(self.abs_real_path, self.languagecode + ".sdf")
-        inputdir = os.path.join(pan_app.get_po_tree().podirectory, self.project.code, self.languagecode)
+        inputdir = self.abs_real_path
         po2oo.main(["-i%s"%inputdir, "-t%s"%templateoo, "-o%s"%outputoo, "-l%s"%self.languagecode, "--progress=none"])
         return file(os.path.join(self.abs_real_path, self.languagecode + ".sdf"), "r").read()
 

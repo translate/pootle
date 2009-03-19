@@ -35,7 +35,7 @@ from pootle_app.fs_models   import Store, Directory, Search, search_from_state
 from pootle_app.url_manip   import strip_trailing_slash
 from pootle_app             import store_iteration
 from pootle_app.translation_project import TranslationProject
-from pootle_app.permissions import get_matching_permissions, PermissionError
+from pootle_app.permissions import get_matching_permissions, PermissionError, check_permission
 from pootle_app.profile     import get_profile
 from pootle_app.views.language import dispatch
 from pootle_app.convert     import convert_table
@@ -153,65 +153,38 @@ def handle_translation_file(request, translation_project, file_path):
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), 
                         message=e.args[0])
 
-def handle_alternative_format(request, translation_project, file_path):
-    basename, extension = os.path.splitext(file_path)
-    pofilename = basename + os.extsep + translation_project.fileext
-    extension = extension[1:]
-    if extension == "mo":
-        if not "pocompile" in translation_project.getrights(request.user):
-            return redirect('/%s/%s' % (translation_project.language.code, translation_project.project.code), 
-                            message=_('You do not have the right to create MO files.'))
-    etag, filepath_or_contents = translation_project.convert(pofilename, extension)
-    if etag:
-        contents = open(filepath_or_contents).read()
-    else:
-        contents = filepath_or_contents
-    content_type = ""
-    if extension == "po":
-        content_type = "text/x-gettext-translation; charset=UTF-8"
-    elif extension == "csv":
-        content_type = "text/csv; charset=UTF-8"
-    elif extension == "xlf":
-        content_type = "application/x-xliff; charset=UTF-8"
-    elif extension == "ts":
-        content_type = "application/x-linguist; charset=UTF-8"
-    elif extension == "mo":
-        content_type = "application/x-gettext-translation"
-    return HttpResponse(contents, content_type=content_type)
-
-def handle_zip(request, arg_dict, translation_project, file_path):
-    if not "archive" in translation_project.getrights(request.user):
+@get_translation_project
+@set_request_context
+def export_zip(request, translation_project, file_path):
+    if not check_permission("archive", request):
         return redirect('/%s/%s' % (translation_project.language.code, translation_project.project.code),
                         message=_('You do not have the right to create ZIP archives.'))
-    pathwords = file_path.split(os.sep)
-    if len(pathwords) > 1:
-        pathwords = file_path.split(os.sep)
-        dirfilter = os.path.join(*pathwords[:-1])
-    else:
-        dirfilter = None
-    goal = arg_dict.get("goal", None)
-    if goal:
-        goalfiles = translation_project.getgoalfiles(goal)
-        pofilenames = []
-        for goalfile in goalfiles:
-            pofilenames.extend(translation_project.browsefiles(goalfile))
-    else:
-        pofilenames = translation_project.browsefiles(dirfilter)
-    archivecontents = translation_project.getarchive(pofilenames)
+    directory = Directory.objects.get(pootle_path=translation_project.directory.pootle_path + (file_path or ''))
+    stores = store_iteration.iter_stores(directory, Search.from_request(request))
+    archivecontents = translation_project.get_archive(stores)
     return HttpResponse(archivecontents, content_type="application/zip")
 
-def handle_sdf(request, translation_project, file_path):
-    if not "pocompile" in translation_project.getrights(request.user):
+@get_translation_project
+@set_request_context
+def export_sdf(request, translation_project, file_path):
+    if not check_permission("pocompile", request):
         return redirect('/%s/%s' % (translation_project.language.code, translation_project.project.code),
                         message=_('You do not have the right to create SDF files.'))
     return HttpResponse(translation_project.getoo(), content_type="text/tab-separated-values")
+
+MIME_TYPES = {
+    "po":  "text/x-gettext-translation; charset=%(encoding)s",
+    "csv": "text/csv; charset=%(encoding)s",
+    "xlf": "application/x-xliff; charset=%(encoding)s",
+    "ts":  "application/x-linguist; charset=%(encoding)s",
+    "mo":  "application/x-gettext-translation" }
 
 @get_translation_project
 @set_request_context
 def export(request, translation_project, file_path, format):
     def send(pootle_file):
         encoding = getattr(pootle_file, "encoding", "UTF-8")
-        content_type = "text/plain; charset=%s" % encoding
+        content_type = MIME_TYPES[format] % dict(encoding=encoding)
         if format == translation_project.project.localfiletype:
             return HttpResponse(str(pootle_file), content_type=content_type)
         else:
@@ -229,14 +202,6 @@ def handle_file(request, translation_project, file_path):
     arg_dict = process_django_request_args(request)
     if file_path.endswith("." + translation_project.project.localfiletype):
         return handle_translation_file(request, translation_project, file_path)
-    elif file_path.endswith(".csv") or file_path.endswith(".xlf") or \
-         file_path.endswith(".ts") or file_path.endswith(".po") or \
-         file_path.endswith(".mo"):
-        return handle_alternative_format(request, translation_project, file_path)
-    elif file_path.endswith(".zip"):
-        return handle_zip(request, arg_dict, translation_project, file_path)
-    elif file_path.endswith(".sdf") or file_path.endswith(".sgi"):
-        return handle_sdf(request, translation_project, file_path)
     else:
         if file_path.endswith("index.html"):
             file_path = file_path[:-len("index.html")]
