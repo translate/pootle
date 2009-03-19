@@ -1007,6 +1007,7 @@ table[dir="rtl"] td.translate-original
 .translation-text
 {
     max-width: 100%;
+    min-height: 1.4em;
     overflow: auto;
     padding: 0 10px 0 10px;
 }
@@ -1015,6 +1016,15 @@ table[dir="rtl"] td.translate-original
 {
     font-weight: bolder;
     color: #006699;
+}
+
+.translation-space
+{
+    border-bottom: 1px solid #BBB;
+    margin: 0em 0.2em 0em 0.2em;
+    padding: 0em 0.2em 0em 0.2em;
+    width: 0px;
+    letter-spacing: -0.5em;
 }
 
 /* ORIGINAL */
