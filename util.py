@@ -55,7 +55,8 @@ def l(path):
     """ filter urls adding base_path prefix if required """
     if path and path.startswith('/'):
         base_url = getattr(settings, "SCRIPT_NAME", "")
-        return base_url + path
+        if not path.startswith(base_url):
+            return base_url + path
     return path
 
 def m(path):
