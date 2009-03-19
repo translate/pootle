@@ -1,41 +1,31 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
-# Copyright 2006 Zuza Software Foundation
-# 
-# This file is part of translate.
 #
-# translate is free software; you can redistribute it and/or modify
+# Copyright 2006-2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This file is somewhat based on the older Pootle/translatepage.py
+#
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# translate is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils.translation import ugettext as _
 N_ = _
 
-from translate.filters import checks
-
-from pootle_app.models import get_profile, Project
-from pootle_app.profile import PootleProfile
-from pootle_app import project_tree
-
-from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle import pagelayout
-from Pootle import projects
 from Pootle import pan_app
-
-import locale
 
 class AdminPage(pagelayout.PootlePage):
   """page for administering pootle..."""
@@ -63,7 +53,7 @@ class AdminPage(pagelayout.PootlePage):
     text["currentvalue"] = _("Current value")
     text["savechanges"] = _("Save changes")
     return text
-    
+
   def getoptions(self):
     optiontitles = {"TITLE":       _("Title"), 
                     "DESCRIPTION": _("Description"),
