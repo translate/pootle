@@ -8,9 +8,9 @@ from Pootle.util import l, m
     <h3 py:if="item.title" id="itemtitle" class="title"><a href="${l(item.href)}">${item.title}</a></h3>
     <div py:if="block != None" py:replace="block"/>
     <div id="actionlinks" class="item-description" py:if="item.actions">
-      <span py:for="link in item.actions.basic" py:strip="True">
+      <span py:for="i, link in enumerate(item.actions.basic)" py:strip="True">
         <a href="${l(link.href)}" title="${link.title}">${link.text}</a>
-        ${link.sep}
+        <span py:if="i &lt; len(item.actions.basic) - 1" py:strip=""> | </span>
       </span>
       <form py:if="item.actions.goalform" action="" name="${item.actions.goalform.name}" method="post">
         <input type="hidden" name="editgoalfile" value="${item.actions.goalform.filename}"/>
@@ -33,9 +33,9 @@ from Pootle.util import l, m
           <input type="submit" name="doedituser" value="${item.actions.goalform.assignto_text}"/>
         </span>
       </form>
-      <span py:for="link in item.actions.extended" py:strip="True">
+      <span py:for="i, link in enumerate(item.actions.extended)" py:strip="True">
         <a href="${l(link.href)}" title="${link.title}">${link.text}</a>
-        ${link.sep}
+        <span py:if="i &lt; len(item.actions.extended) - 1" py:strip=""> | </span>
       </span>
     </div>
   </div>
