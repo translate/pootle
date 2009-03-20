@@ -19,8 +19,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls.defaults import *
+import view
 
-urlpatterns = patterns('pootle_app.views.home.view',
-    (r'options.html$',     'options'),
-    (r'(/|index.html)?$',  'index'),
+urlpatterns = patterns('',
+    (r'options.html$',     view.options),
+    (r'(/|index.html)?$',  view.index),
 )
