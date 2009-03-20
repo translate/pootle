@@ -26,7 +26,7 @@ from django.utils.translation import ugettext as _
 N_ = _
 from pootle_app.models.profile import get_profile
 from Pootle import pan_app
-from Pootle.util import l
+from pootle_app.lib.util import l
 import md5
 import random
 

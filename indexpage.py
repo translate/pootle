@@ -27,7 +27,7 @@ import os
 import sys
 import re
 import locale
-import util
+from pootle_app.lib import util
 from django.utils.html import escape
 from django.conf import settings
 from django.utils.translation import ugettext as _

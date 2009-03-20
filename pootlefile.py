@@ -25,7 +25,6 @@ import time
 import os
 import bisect
 import weakref
-import util
 
 from django.conf import settings
 
@@ -38,6 +37,7 @@ from translate.filters import checks
 from translate.misc.multistring import multistring
 
 from pootle_app.lru_cache import LRUCache
+from pootle_app.lib import util
 
 from Pootle import __version__
 from Pootle import statistics
