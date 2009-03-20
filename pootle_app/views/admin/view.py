@@ -8,7 +8,8 @@ from django.utils.translation import ugettext as _
 
 from Pootle.legacy.jToolkit import prefs
 
-from Pootle import pan_app, adminpages
+from Pootle import pan_app
+import adminpages
 from pootle_app.views.auth import redirect
 from pootle_app.views.util import render_jtoolkit, render_to_kid, KidRequestContext
 from pootle_app.models.core import Language, Project
