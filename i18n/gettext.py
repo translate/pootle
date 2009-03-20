@@ -23,7 +23,7 @@ from django.utils import translation
 from django.utils.thread_support import currentThread
 from django.utils.functional import lazy
 
-from pootle_app.core import Language
+from pootle_app.models.core import Language
 
 from Pootle import pan_app
 
@@ -77,7 +77,7 @@ class DummyTranslation(object):
 # Must be replaced after the bootstrapping phase by a function that returns
 # and actual pootle Project object for the language code.
 def get_lang_real(language):
-    from pootle_app.translation_project import TranslationProject
+    from pootle_app.models.translation_project import TranslationProject
     if not language:
         return get_default_translation()
     else:

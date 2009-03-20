@@ -19,8 +19,8 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from pootle_app.fs_models import Directory, Store
-from pootle_app.store_iteration import iter_stores
+from pootle_app.models.fs_models import Directory, Store
+from pootle_app.models.store_iteration import iter_stores
 
 def make_model(model, *args, **kwargs):
     instance = model(*args, **kwargs)

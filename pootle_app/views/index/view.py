@@ -25,7 +25,7 @@ from django.http import HttpResponse
 from Pootle import pan_app, indexpage,  users
 
 from pootle_app.views.util import render_jtoolkit
-from pootle_app.core import Language
+from pootle_app.models.core import Language
 
 def index(request, *path_vars):
     return render_jtoolkit(indexpage.PootleIndex(request))

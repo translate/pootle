@@ -21,10 +21,10 @@
 
 import datetime
 
-from pootle_app.core import Suggestion, Submission
-from pootle_app.store import Unit
-from pootle_app.profile import get_profile
-from pootle_app.permissions import check_permission, PermissionError
+from pootle_app.models.core import Suggestion, Submission
+from pootle_app.models.store import Unit
+from pootle_app.models.profile import get_profile
+from pootle_app.models.permissions import check_permission, PermissionError
 
 def suggest_translation(pootle_file, item, trans, request):
     if not check_permission("suggest", request):

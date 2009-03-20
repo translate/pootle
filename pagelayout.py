@@ -21,8 +21,8 @@ import os
 from django.conf import settings
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
-from pootle_app.fs_models import Search
-from pootle_app.profile import get_profile
+from pootle_app.models.fs_models import Search
+from pootle_app.models.profile import get_profile
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang
 from Pootle.i18n import gettext

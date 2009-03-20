@@ -26,8 +26,8 @@ from django.conf import settings
 from translate.lang import data as langdata
 from translate.convert import pot2po
 
-from pootle_app.core            import Project, Language
-from pootle_app.fs_models       import Directory, Store
+from pootle_app.models.core            import Project, Language
+from pootle_app.models.fs_models       import Directory, Store
 from pootle_app.url_manip       import strip_trailing_slash
 from pootle_app.language        import try_language_code
 

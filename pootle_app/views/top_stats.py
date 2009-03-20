@@ -21,7 +21,7 @@
 
 from django.utils.translation import ugettext as _
 
-from pootle_app.core import Suggestion, Submission
+from pootle_app.models.core import Suggestion, Submission
 
 def map_num_contribs(sub, user):
     user.num_contribs = sub.num_contribs

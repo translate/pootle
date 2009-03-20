@@ -557,7 +557,7 @@ def make_class(base_class):
                     # ...and thus we rescan our files to get rid of
                     # the missing filename
                     from pootle_app.project_tree import scan_translation_project_files
-                    from pootle_app.translation_project import TranslationProject
+                    from pootle_app.models.translation_project import TranslationProject
                     scan_translation_project_files(TranslationProject.objects.get(id=self.translation_project_id))
                 else:
                     print '%s is a broken symlink' % (self.filename, )

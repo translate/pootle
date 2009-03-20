@@ -9,7 +9,7 @@ from django.db import connection
 from django.test import utils
 from django.core.management import call_command
 from django.contrib.auth.models import User
-from pootle_app.translation_project import scan_translation_projects
+from pootle_app.models.translation_project import scan_translation_projects
 from py import test
 
 

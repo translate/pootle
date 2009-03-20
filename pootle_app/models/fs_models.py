@@ -27,7 +27,7 @@ from django.db.models.signals import pre_delete, pre_save
 
 from translate.storage import statsdb
 
-from pootle_app.goals import StoreAssignment
+from pootle_app.models.goals import StoreAssignment
 
 from Pootle.pootlefile import relative_real_path, absolute_real_path, with_pootle_file
 
@@ -239,6 +239,8 @@ def filter_next_store(query, store_name):
 class Directory(models.Model):
     class Meta:
         ordering = ['name']
+        app_label = "pootle_app"
+
 
     is_dir = True
 
@@ -366,6 +368,7 @@ class Store(models.Model):
     is_dir = False
 
     class Meta:
+        app_label = "pootle_app"
         ordering = ['name']
         unique_together = ('parent', 'name')
 

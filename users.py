@@ -24,7 +24,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils.translation import ugettext as _
 N_ = _
-from pootle_app.profile import get_profile
+from pootle_app.models.profile import get_profile
 from Pootle import pan_app
 from Pootle.util import l
 import md5

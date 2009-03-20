@@ -26,9 +26,9 @@ from django.utils.translation import trans_real
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
-from pootle_app import core
-from pootle_app.profile import get_profile
-from pootle_app.translation_project import TranslationProject
+from pootle_app.models import core
+from pootle_app.models.profile import get_profile
+from pootle_app.models.translation_project import TranslationProject
 from Pootle.i18n import gettext
 
 from translate.lang import data

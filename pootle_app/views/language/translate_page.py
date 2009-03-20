@@ -35,12 +35,13 @@ from translate.storage import po
 from translate.misc.multistring import multistring
 
 from pootle_app.views.util import render_to_kid, KidRequestContext
-from pootle_app.translation_project import TranslationProject
-from pootle_app.fs_models import Directory, Store, Search
-from pootle_app.profile import get_profile
+from pootle_app.models.translation_project import TranslationProject
+from pootle_app.models.fs_models import Directory, Store, Search
+from pootle_app.models.profile import get_profile
 from pootle_app.views.common import navbar_dict, search_forms
-from pootle_app import unit_update, permissions, url_manip
-from pootle_app.permissions import check_permission
+from pootle_app import unit_update, url_manip
+from pootle_app.models import permissions
+from pootle_app.models.permissions import check_permission
 import dispatch
 
 from Pootle import pagelayout

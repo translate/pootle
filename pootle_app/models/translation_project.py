@@ -40,11 +40,12 @@ from translate.tools   import pocompile, pogrep
 from translate.search  import match, indexing
 from translate.storage import factory, statsdb, base, versioncontrol
 
-from pootle_app.profile   import *
-from pootle_app.core      import Project, Language
-from pootle_app.fs_models import Directory, Store
-from pootle_app           import project_tree, store_iteration
-from pootle_app.permissions import PermissionError, check_permission
+from pootle_app.models.profile   import *
+from pootle_app.models.core      import Project, Language
+from pootle_app.models.fs_models import Directory, Store
+from pootle_app           import project_tree
+from pootle_app.models import store_iteration
+from pootle_app.models.permissions import PermissionError, check_permission
 
 from Pootle            import pan_app, pootlefile, statistics
 from Pootle.scripts    import hooks
@@ -95,6 +96,7 @@ class TranslationProject(models.Model):
 
     class Meta:
         unique_together = ('language', 'project')
+        app_label = "pootle_app"
 
     language   = models.ForeignKey(Language, db_index=True)
     project    = models.ForeignKey(Project,  db_index=True)

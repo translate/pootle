@@ -1,7 +1,7 @@
 from django.test.client import Client
 
 from django.contrib.auth.models import User
-from pootle_app.translation_project import TranslationProject
+from pootle_app.models.translation_project import TranslationProject
 
 import re
 

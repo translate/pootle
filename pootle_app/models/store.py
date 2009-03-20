@@ -22,7 +22,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_app.fs_models import Store
+from pootle_app.models.fs_models import Store
 
 class UnitManager(models.Manager):
     def get_or_make(self, store, index, source, target):
@@ -34,6 +34,9 @@ class UnitManager(models.Manager):
             return unit
 
 class Unit(models.Model):
+    class Meta:
+        app_label = "pootle_app"
+
     objects = UnitManager()
 
     store   = models.ForeignKey(Store, related_name='units', db_index=True)

@@ -25,7 +25,7 @@ from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals           import pre_delete, post_save
 
-from pootle_app.profile import PootleProfile
+from pootle_app.models.profile import PootleProfile
 
 def get_pootle_permission(codename):
     # The content type of our permission
@@ -115,6 +115,7 @@ def check_permission(permission_codename, request):
 class PermissionSet(models.Model):
     class Meta:
         unique_together = ('profile', 'directory')
+        app_label = "pootle_app"
 
     profile                = models.ForeignKey('PootleProfile', db_index=True)
     directory              = models.ForeignKey('Directory', db_index=True, related_name='permission_sets')
@@ -122,6 +123,9 @@ class PermissionSet(models.Model):
     negative_permissions   = models.ManyToManyField(Permission, related_name='permission_sets_negative')
 
 class PermissionSetCache(models.Model):
+    class Meta:
+        app_label = "pootle_app"
+
     profile                = models.ForeignKey('PootleProfile', db_index=True)
     directory              = models.ForeignKey('Directory', db_index=True, related_name='permission_set_caches')
     permissions            = models.ManyToManyField(Permission, related_name='cached_permissions')

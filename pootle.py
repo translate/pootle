@@ -34,7 +34,7 @@ import random
 import optparse
 from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
-from pootle_app.translation_project import scan_translation_projects
+from pootle_app.models.translation_project import scan_translation_projects
 from Pootle import pootlefile, users, filelocations
 from Pootle import pan_app
 from Pootle.misc import prefs
@@ -179,7 +179,7 @@ def run_pootle(options, args):
 
 def init_db():
     from django.core.management import call_command
-    from pootle_app.profile import PootleProfile
+    from pootle_app.models.profile import PootleProfile
     try:
         # If this raises an exception, it means that the database
         # tables don't yet exist

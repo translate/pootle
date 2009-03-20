@@ -24,7 +24,7 @@ from django.utils.translation import ugettext as _
 
 from pootle_app import url_manip
 from pootle_app.views.common import item_dict
-from pootle_app.permissions import check_permission
+from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch
 
 from Pootle.i18n.jtoolkit_i18n import tr_lang

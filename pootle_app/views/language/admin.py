@@ -24,8 +24,8 @@ from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.translation import ugettext as _
 
 from pootle_app.views.util  import render_to_kid, KidRequestContext
-from pootle_app.profile import PootleProfile
-from pootle_app.permissions import get_pootle_permissions, PermissionSet, \
+from pootle_app.models.profile import PootleProfile
+from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, \
     get_matching_permissions
 from pootle_app import project_tree
 

@@ -27,7 +27,7 @@ from django.http import HttpResponseRedirect
 from django.conf import settings
 
 from pootle_app.views.util import render_to_kid, KidRequestContext
-from pootle_app.core import Language
+from pootle_app.models.core import Language
 
 from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import tr_lang

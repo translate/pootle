@@ -30,7 +30,7 @@ from django.db.models.signals import pre_save
 from translate.filters import checks
 from translate.storage import statsdb
 
-from pootle_app.profile import PootleProfile
+from pootle_app.models.profile import PootleProfile
 from pootle_app.util import table_name, field_name, primary_key_name, unzip
 
 from Pootle.pootlefile import absolute_real_path
@@ -57,7 +57,7 @@ class LanguageManager(models.Manager):
     """
     
     def get_latest_changes(self):
-        from pootle_app.translation_project import TranslationProject
+        from pootle_app.models.translation_project import TranslationProject
 
         fields = {
             'language_code':                   field_name(Language, 'code'),
@@ -84,6 +84,7 @@ class LanguageManager(models.Manager):
 
 class Language(models.Model):
     class Meta:
+        app_label = "pootle_app"
         ordering = ['code']
 
     code_help_text = u'ISO 639 language code for the language, possibly followed by an underscore (_) and an ISO 3166 country code. <a href="http://www.w3.org/International/articles/language-tags/">More information</a>'
@@ -117,7 +118,7 @@ class ProjectManager(models.Manager):
     """
 
     def get_latest_changes(self):
-        from pootle_app.translation_project import TranslationProject
+        from pootle_app.models.translation_project import TranslationProject
 
         fields =  {
             'project_code':                   field_name(Project, 'code'),
@@ -136,6 +137,7 @@ class ProjectManager(models.Manager):
 
 class Project(models.Model):
     class Meta:
+        app_label = "pootle_app"
         ordering = ['code']
 
     code_help_text = u'A short code for the project. This should only contain ASCII characters, numbers, and the underscore (_) character.'
@@ -217,6 +219,9 @@ class SubmissionManager(models.Manager):
                           ).order_by('-num_contribs').select_related('submitter__user')
 
 class Submission(models.Model):
+    class Meta:
+        app_label = "pootle_app"
+
     creation_time       = models.DateTimeField()
     translation_project = models.ForeignKey('TranslationProject')
     submitter           = models.ForeignKey(PootleProfile, null=True)
@@ -248,6 +253,9 @@ class SuggestionManager(models.Manager):
         return self._get_top_results('reviewer').select_related('reviewer__user')
 
 class Suggestion(models.Model):
+    class Meta:
+        app_label = "pootle_app"
+        
     creation_time       = models.DateTimeField()
     translation_project = models.ForeignKey('TranslationProject')
     suggester           = models.ForeignKey(PootleProfile, related_name='suggestions_suggester_set')

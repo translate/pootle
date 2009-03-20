@@ -19,10 +19,20 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from pootle_app.profile             import *
-from pootle_app.core                import *
-from pootle_app.fs_models           import *
-from pootle_app.permissions         import *
-from pootle_app.store               import *
-from pootle_app.goals               import *
-from pootle_app.translation_project import *
+from pootle_app.models.profile             import PootleProfile
+from pootle_app.models.core                import Language, Project, Submission, Suggestion
+from pootle_app.models.fs_models           import Directory, Store
+from pootle_app.models.permissions         import PermissionSet, PermissionSetCache
+from pootle_app.models.store               import Unit
+from pootle_app.models.goals               import Goal, Assignment, StoreAssignment
+from pootle_app.models.translation_project import TranslationProject
+
+__all__ = ["PootleProfile",
+           "Language", "Project", "Submission", "Suggestion",
+           "Directory", "Store",
+           "PermissionSet", "PermissionSetCache",
+           "Unit",
+           "Goal", "Assignment", "StoreAssignment",
+           "TranslationProject"]
+
+

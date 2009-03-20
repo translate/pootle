@@ -45,6 +45,8 @@ class PootleUserManager(UserManager):
 User.objects.__class__ = PootleUserManager
 
 class PootleProfile(models.Model):
+    class Meta:
+        app_label = "pootle_app"
     # This is the only required field
     user = models.ForeignKey(User, unique=True)
 

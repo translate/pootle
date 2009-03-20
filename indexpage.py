@@ -34,12 +34,12 @@ from django.utils.translation import ugettext as _
 N_ = _
 from translate.storage import versioncontrol
 from translate import __version__ as toolkitversion
-from pootle_app.core import Suggestion, Submission, Language, Project
-from pootle_app.fs_models import Directory
-from pootle_app.goals import Goal
-from pootle_app.profile import get_profile
-from pootle_app.translation_project import TranslationProject
-from pootle_app.permissions import get_matching_permissions
+from pootle_app.models.core import Suggestion, Submission, Language, Project
+from pootle_app.models.fs_models import Directory
+from pootle_app.models.goals import Goal
+from pootle_app.models.profile import get_profile
+from pootle_app.models.translation_project import TranslationProject
+from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.language import try_language_code
 from pootle_app import project_tree
 from Pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang

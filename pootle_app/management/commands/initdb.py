@@ -61,7 +61,7 @@ def create_default_db():
 
 def create_misc():
     """Create miscellaneous database items."""
-    from pootle_app.fs_models import Directory
+    from pootle_app.models.fs_models import Directory
     directory = Directory(name='')
     directory.save()
 
@@ -93,9 +93,9 @@ def create_pootle_permissions():
 def create_pootle_permission_sets():
     """Create the default permission set for the anonymous (non-logged in) user
     ('nobody') and for the logged in user ('default')."""
-    from pootle_app.permissions import PermissionSet, get_pootle_permission
-    from pootle_app.fs_models import Directory
-    from pootle_app.profile import PootleProfile
+    from pootle_app.models.permissions import PermissionSet, get_pootle_permission
+    from pootle_app.models.fs_models import Directory
+    from pootle_app.models.profile import PootleProfile
 
     root = Directory.objects.root
     #permissions for the 'nobody' user: view only
@@ -115,7 +115,7 @@ def create_default_projects():
     """Create the default projects that we host. You might want to add your
     projects here, although you can also add things through the web interface
     later."""
-    from pootle_app.core import Project
+    from pootle_app.models.core import Project
 
     pootle = Project(code=u"pootle")
     pootle.fullname = u"Pootle"
@@ -136,7 +136,7 @@ def create_default_projects():
 def create_default_languages():
     """Create the default languages. We afford this priviledge to languages
     with reasonably complete interface translations for Pootle."""
-    from pootle_app.core import Language
+    from pootle_app.models.core import Language
 
     af = Language(code="af")
     af.fullname = u"Afrikaans"
