@@ -22,13 +22,13 @@
 """manages projects and files and translations"""
 
 class RightsError(ValueError):
-  pass
+    pass
 
 class Rights404Error(ValueError):
-  """Throwing this indicates that the user should not know that
-  this page even exists, and hence a 404 should be returned.  This
-  is *not* a subclass of RightsError, as a RightsError implies that
-  the user should be informed an error has occured, and thus is handled
-  completely differently"""
-  pass
+    """Throwing this indicates that the user should not know that
+    this page even exists, and hence a 404 should be returned.  This
+    is *not* a subclass of RightsError, as a RightsError implies that
+    the user should be informed an error has occured, and thus is handled
+    completely differently"""
+    pass
 
