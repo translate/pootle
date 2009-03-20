@@ -38,9 +38,9 @@ kid.enable_import()
 def find_template(relative_template_path):
     """Find the full path of the template whose relative path is
     'relative_template_path'."""
-
+    
     for template_dir in settings.TEMPLATE_DIRS:
-        full_template_path = path.join(settings.ROOT_DIR, template_dir, relative_template_path)
+        full_template_path = path.join(template_dir, relative_template_path)
         if path.exists(full_template_path):
             return full_template_path
     raise Exception('No template named %s found' % relative_template_path)

@@ -123,7 +123,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 
     # For now we'll cheat and use a relative path, in spite of the above comment.
-    pootle_home('templates'),
+    pootle_home(os.path.join('pootle_app', 'templates'))
 )
 
 INSTALLED_APPS = (

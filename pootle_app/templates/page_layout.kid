@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-from Pootle.templates import pootlepage
+from pootle_app.templates import pootlepage
 from Pootle.util import m, l
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
