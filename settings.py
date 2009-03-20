@@ -115,7 +115,7 @@ MIDDLEWARE_CLASSES = (
     #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
 )
 
-ROOT_URLCONF = 'Pootle.pootle_app.urls'
+ROOT_URLCONF = 'Pootle.pootle_app.views.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

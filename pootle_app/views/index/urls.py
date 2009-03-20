@@ -20,10 +20,12 @@
 
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('pootle_app.views.index.view',
-    (r'^robots.txt$',      'robots'),
-    (r'^about.html$',      'about'),
-    (r'^register.html$',   'register'),
-    (r'^activate.html$',   'activate'),
-    (r'^(/|index.html)?$', 'index'),
+urlpatterns = patterns('pootle_app.views.index',
+    (r'^login.html$',      'auth.login'),
+    (r'^logout.html$',     'auth.logout'),
+    (r'^robots.txt$',      'view.robots'),
+    (r'^about.html$',      'view.about'),
+    (r'^register.html$',   'view.register'),
+    (r'^activate.html$',   'view.activate'),
+    (r'^(/|index.html)?$', 'view.index'),
 )
