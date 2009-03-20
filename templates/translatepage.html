@@ -237,7 +237,7 @@ from Pootle.util import l, m
 			    <span class="${form.editclass} translation-text" py:content="XML(form.text)">Text</span><br />
 			  </div>
 			</div>
-			<div class="suggestions">
+			<div py:if="item.trans.suggestions" class="suggestions">
 			  <ul class="sugglist">
 			    <li py:for="sugg in item.trans.suggestions">
 			      <span class="suggauthor" dir="$uidir">(${sugg.author})</span>
