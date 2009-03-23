@@ -191,7 +191,6 @@ def init_db():
     if PootleProfile.objects.count() == 0:
         call_command('initdb')
 
-
 def main():
     # run the web server
     init_db()

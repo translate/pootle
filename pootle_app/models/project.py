@@ -27,37 +27,7 @@ from django.db                import models
 
 from translate.filters import checks
 
-import submission, suggestion, custom_sql_util
-
-class ProjectManager(models.Manager):
-    get_latest_changes_query = """
-        SELECT   %(project_id)s, MIN(%(creation_time)s)
-        FROM     %(project_table)s
-                 LEFT OUTER JOIN %(translation_project_table)s
-                      ON %(project_id)s = %(translation_project_project)s
-                 LEFT OUTER JOIN %(submission_table)s
-                      ON %(translation_project_id)s = %(submission_translation_project)s
-        GROUP BY %(project_name)s
-        ORDER BY %(project_code)s
-    """
-
-    def get_latest_changes(self):
-        from pootle_app.models.translation_project import TranslationProject
-
-        fields =  {
-            'project_code':                   custom_sql_util.field_name(Project, 'code'),
-            'creation_time':                  custom_sql_util.field_name(submission.Submission, 'creation_time'),
-            'project_table':                  custom_sql_util.table_name(Project),
-            'submission_table':               custom_sql_util.table_name(submission.Submission),
-            'project_id':                     custom_sql_util.primary_key_name(Project),
-            'submission_translation_project': custom_sql_util.field_name(submission.Submission, 'translation_project'),
-            'project_name':                   custom_sql_util.field_name(Project, 'fullname'),
-            'translation_project_table':      custom_sql_util.table_name(TranslationProject),
-            'translation_project_id':         custom_sql_util.primary_key_name(TranslationProject),
-            'translation_project_project':    custom_sql_util.field_name(TranslationProject, 'project'),
-            }
-
-        return custom_sql_util.get_latest_changes(self, self.get_latest_changes_query % fields)
+from Pootle.pootlefile import relative_real_path, absolute_real_path
 
 class Project(models.Model):
     class Meta:
@@ -90,8 +60,6 @@ class Project(models.Model):
     treestyle      = models.CharField(max_length=20, default='auto', choices=treestyle_choices)
     ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="")
     createmofiles  = models.BooleanField(default=False)
-
-    objects = ProjectManager()
 
     def __unicode__(self):
         return self.fullname

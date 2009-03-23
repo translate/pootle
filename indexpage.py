@@ -34,11 +34,9 @@ from django.utils.translation import ugettext as _
 N_ = _
 from translate.storage import versioncontrol
 from translate import __version__ as toolkitversion
-from pootle_app.models import Suggestion, Submission, Language, Project
-from pootle_app.models.fs_models import Directory
-from pootle_app.models.goals import Goal
+from pootle_app.models import Suggestion, Submission, Language, Project, \
+    Directory, Goal, TranslationProject
 from pootle_app.models.profile import get_profile
-from pootle_app.models.translation_project import TranslationProject
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.language import try_language_code
 from pootle_app import project_tree
@@ -235,7 +233,7 @@ class PootleIndex(pagelayout.PootlePage):
         pagelayout.PootlePage.__init__(self, templatename, templatevars,
                                        request)
 
-    def get_items(self, request, model, item_index, name_func, permission_set):
+    def get_items(self, request, model, latest_changes, item_index, name_func, permission_set):
 
         def get_percentages(trans, fuzzy):
             try:
@@ -258,9 +256,9 @@ class PootleIndex(pagelayout.PootlePage):
         items = []
         if 'view' not in permission_set:
             return items
-        latest_changes = model.objects.get_latest_changes()
-        for item in [item for item in model.objects.all() if item.code
-                      in item_index]:
+        latest_changes = latest_changes()
+        for item in [item for item in model.objects.all()
+                     if item.code in item_index]:
             trans = 0
             fuzzy = 0
             total = 0
@@ -289,12 +287,12 @@ class PootleIndex(pagelayout.PootlePage):
         return items
 
     def getlanguages(self, request, language_index, permission_set):
-        return self.get_items(request, Language, language_index, tr_lang,
-                              permission_set)
+        return self.get_items(request, Language, Submission.objects.get_latest_language_changes,
+                              language_index, tr_lang, permission_set)
 
     def getprojects(self, request, project_index, permission_set):
-        return self.get_items(request, Project, project_index, lambda x: x,
-                              permission_set)
+        return self.get_items(request, Project, Submission.objects.get_latest_project_changes,
+                              project_index, lambda x: x, permission_set)
 
     def getprojectnames(self):
         return [proj.fullname for proj in Project.objects.all()]

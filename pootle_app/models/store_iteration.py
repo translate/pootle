@@ -24,8 +24,9 @@ import bisect
 from translate.tools import pogrep
 from translate.filters import checks
 
-from pootle_app.models.goals import StoreAssignment
-from pootle_app.models.fs_models import Store, Directory, Search
+from pootle_app.models.goals  import StoreAssignment
+from pootle_app.models.store  import Store
+from pootle_app.models.search import Search
 from pootle_app import url_manip
 
 def member(sorted_set, element):
@@ -111,7 +112,7 @@ def get_prev_match(path_obj, starting_store=None, last_index=-1, search=Search()
 ################################################################################
 
 def iter_stores(directory, search=Search()):
-    if search.goal is None:
+    if search is None or search.goal is None:
         return Store.objects.filter(pootle_path__startswith=directory.pootle_path).order_by('pootle_path')
     else:
         return Store.objects.filter(pootle_path__startswith=directory.pootle_path, goals=search.goal)

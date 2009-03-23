@@ -32,7 +32,7 @@ from django.contrib.auth.models         import User, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.conf                        import settings
 from django.db                          import models
-from django.db.models.signals           import pre_delete, post_init, pre_save
+from django.db.models.signals           import pre_delete, post_init, pre_save, post_save
 
 from translate.filters import checks
 from translate.convert import po2csv, po2xliff, xliff2po, po2ts, po2oo
@@ -40,11 +40,13 @@ from translate.tools   import pocompile, pogrep
 from translate.search  import match, indexing
 from translate.storage import factory, statsdb, base, versioncontrol
 
-from pootle_app.models.profile   import *
-from pootle_app.models      import Project, Language
-from pootle_app.models.fs_models import Directory, Store
-from pootle_app           import project_tree
-from pootle_app.models import store_iteration
+from pootle_app.models.profile     import PootleProfile, get_profile
+from pootle_app.models.project     import Project
+from pootle_app.models.language    import Language
+from pootle_app.models.directory   import Directory
+from pootle_app.models.store       import Store
+from pootle_app                    import project_tree
+from pootle_app.models             import store_iteration
 from pootle_app.models.permissions import PermissionError, check_permission
 
 from Pootle            import pan_app, pootlefile, statistics
@@ -101,7 +103,7 @@ class TranslationProject(models.Model):
     language   = models.ForeignKey(Language, db_index=True)
     project    = models.ForeignKey(Project,  db_index=True)
     real_path  = models.FilePathField()
-    directory  = models.ForeignKey('Directory')
+    directory  = models.ForeignKey(Directory)
 
     @classmethod
     def get_language_and_project_indices(cls):

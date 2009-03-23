@@ -22,7 +22,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_app.models.profile import PootleProfile
+from profile import PootleProfile
+from store import Store, Unit
+from directory import Directory
 
 class Goal(models.Model):
     """A goal is a named collection of files. Goals partition the files of
@@ -35,12 +37,12 @@ class Goal(models.Model):
         app_label = "pootle_app"
 
     name                = models.CharField(max_length=255, null=False, verbose_name=_("Name"))
-    directory           = models.ForeignKey('Directory')
+    directory           = models.ForeignKey(Directory)
     # A pointer to the TranslationProject of which this Goal is a part.
     # involved with a number of goals.
     profiles            = models.ManyToManyField(PootleProfile, related_name='goals')
     # A store can be part of many goals and a goal can contain many files
-    stores              = models.ManyToManyField('Store', related_name='goals')
+    stores              = models.ManyToManyField(Store, related_name='goals')
 
 class Assignment(models.Model):
     class Meta:
@@ -55,6 +57,6 @@ class StoreAssignment(models.Model):
         app_label = "pootle_app"
 
     assignment = models.ForeignKey(Assignment)
-    store      = models.OneToOneField('Store', db_index=True)
-    units      = models.ManyToManyField('Unit', related_name='stores')
+    store      = models.OneToOneField(Store, db_index=True)
+    units      = models.ManyToManyField(Unit, related_name='stores')
 

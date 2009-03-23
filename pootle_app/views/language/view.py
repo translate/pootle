@@ -30,14 +30,13 @@ from Pootle.misc.jtoolkit_django import process_django_request_args
 
 from pootle_app.views.util         import render_to_kid, render_jtoolkit
 from pootle_app.views.index.auth   import redirect
-from pootle_app.models             import Language, Project, TranslationProject
-from pootle_app.models.fs_models   import Store, Directory, Search, search_from_state
+from pootle_app.models             import Language, Project, TranslationProject, Store, Directory, store_iteration
+from pootle_app.models.search      import Search, search_from_state
 from pootle_app.url_manip          import strip_trailing_slash
-from pootle_app.models             import store_iteration
 from pootle_app.models.permissions import get_matching_permissions, PermissionError, check_permission
 from pootle_app.models.profile     import get_profile
-from pootle_app.views.language import dispatch
-from pootle_app.convert     import convert_table
+from pootle_app.views.language     import dispatch
+from pootle_app.convert            import convert_table
 
 from project_index import view as project_index_view
 from translate_page import find_and_display

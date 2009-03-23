@@ -61,7 +61,7 @@ def create_default_db():
 
 def create_misc():
     """Create miscellaneous database items."""
-    from pootle_app.models.fs_models import Directory
+    from pootle_app.models import Directory
     directory = Directory(name='')
     directory.save()
 
@@ -94,7 +94,7 @@ def create_pootle_permission_sets():
     """Create the default permission set for the anonymous (non-logged in) user
     ('nobody') and for the logged in user ('default')."""
     from pootle_app.models.permissions import PermissionSet, get_pootle_permission
-    from pootle_app.models.fs_models import Directory
+    from pootle_app.models import Directory
     from pootle_app.models.profile import PootleProfile
 
     root = Directory.objects.root

@@ -24,6 +24,9 @@ from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 
+from language import Language
+from project import Project
+
 class PootleUserManager(UserManager):
     """A manager class which is meant to replace the manager class for the User model. This manager
     hides the 'nobody' and 'default' users for normal queries, since they are special users. Code
@@ -54,13 +57,13 @@ class PootleProfile(models.Model):
     view_rows       = models.SmallIntegerField(default=10)
     input_width     = models.SmallIntegerField(default=40)
     input_height    = models.SmallIntegerField(default=5)
-    languages       = models.ManyToManyField('Language', blank=True, related_name="user_languages")
-    projects        = models.ManyToManyField('Project', blank=True)
+    languages       = models.ManyToManyField(Language, blank=True, related_name="user_languages")
+    projects        = models.ManyToManyField(Project, blank=True)
     login_type      = models.CharField(max_length=50, default="hash")
     activation_code = models.CharField(max_length=255, default="")
-    ui_lang         = models.ForeignKey('Language', blank=True, null=True,
+    ui_lang         = models.ForeignKey(Language, blank=True, null=True,
                                         verbose_name=_("Interface language"))
-    alt_src_langs   = models.ManyToManyField('Language', blank=True, related_name="user_alt_src_langs",
+    alt_src_langs   = models.ManyToManyField(Language, blank=True, related_name="user_alt_src_langs",
                                              verbose_name=_("Alternative source languages"))
 
     def _get_status(self):

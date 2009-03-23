@@ -22,12 +22,17 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db                import models
 
-import profile, custom_sql_util
+import custom_sql_util
+from profile import PootleProfile
+from translation_project import TranslationProject
+from store import Unit
 
 class SuggestionManager(models.Manager):
     def _get_top_results(self, profile_field):
+        from profile import PootleProfile
+
         fields = {
-            'profile_id':    custom_sql_util.primary_key_name(profile.PootleProfile),
+            'profile_id':    custom_sql_util.primary_key_name(PootleProfile),
             'profile_field': custom_sql_util.field_name(Suggestion, profile_field)
         }
         # select_related('suggester__user') will let Django also
@@ -36,7 +41,7 @@ class SuggestionManager(models.Manager):
         # certainly want to get this information after calling
         # get_top_suggesters.
         return self.extra(select = {'num_contribs': 'COUNT(%(profile_id)s)' % fields},
-                          tables = [custom_sql_util.table_name(profile.PootleProfile)],
+                          tables = [custom_sql_util.table_name(PootleProfile)],
                           where  = ["%(profile_id)s = %(profile_field)s GROUP BY %(profile_id)s" % fields]
                           ).order_by('-num_contribs')
 
@@ -51,11 +56,11 @@ class Suggestion(models.Model):
         app_label = "pootle_app"
         
     creation_time       = models.DateTimeField()
-    translation_project = models.ForeignKey('TranslationProject')
-    suggester           = models.ForeignKey(profile.PootleProfile, related_name='suggestions_suggester_set')
-    reviewer            = models.ForeignKey(profile.PootleProfile, related_name='suggestions_reviewer_set', null=True)
+    translation_project = models.ForeignKey(TranslationProject)
+    suggester           = models.ForeignKey(PootleProfile, related_name='suggestions_suggester_set')
+    reviewer            = models.ForeignKey(PootleProfile, related_name='suggestions_reviewer_set', null=True)
     review_time         = models.DateTimeField(null=True)
-    unit                = models.OneToOneField('Unit')
+    unit                = models.OneToOneField(Unit)
 
     objects = SuggestionManager()
 

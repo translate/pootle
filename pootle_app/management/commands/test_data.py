@@ -14,8 +14,7 @@ from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 
 from pootle_app.models.permissions import PermissionSet, get_pootle_permissions
-from pootle_app.models.fs_models import Directory
-from pootle_app.models.profile import PootleProfile
+from pootle_app.models import Directory, PootleProfile
 
 class Command(NoArgsCommand):
     def handle_noargs(self, **options):

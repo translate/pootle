@@ -12,7 +12,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
 from django.db import transaction
 
 from django.contrib.auth.models import User
-from pootle_app.models import Project, Language
+from pootle_app.models.project import Project
+from pootle_app.models.language import Language
 
 import sys
 from Pootle.legacy.jToolkit import prefs

@@ -35,8 +35,8 @@ from translate.storage import po
 from translate.misc.multistring import multistring
 
 from pootle_app.views.util import render_to_kid, KidRequestContext
-from pootle_app.models.translation_project import TranslationProject
-from pootle_app.models.fs_models import Directory, Store, Search
+from pootle_app.models import TranslationProject, Directory, Store
+from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
 from pootle_app.views.common import navbar_dict, search_forms
 from pootle_app import unit_update, url_manip
