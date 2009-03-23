@@ -26,12 +26,6 @@ def user_is_admin(f):
             return f(request, *args, **kwargs)
     return decorated_f
 
-@user_is_admin
-def index(request, path):
-    if request.method == 'POST':
-        prefs.change_preferences(pan_app.prefs, arg_dict)
-    return render_jtoolkit(adminpages.AdminPage(request))
-
 def process_modelformset(request, model_class, **kwargs):
     """With the Django model class 'model_class' and the Django form class 'form_class',
     construct a Django formset which can manipulate """
@@ -59,40 +53,6 @@ def process_modelformset(request, model_class, **kwargs):
             return formset, _("There are errors in the form. Please review the problems below.")
     return formset_class(queryset=model_class.objects.all()), None
 
-class BaseUserFormSet(BaseModelFormSet):
-    """This formset deals with user admininistration. We have to add a
-    password field so that the passwords of users can be set.
-
-    We override the save_existing and save_new formset methods so that
-    we can 1) yank out the password field before the formset attempts
-    to save the field 'set_password' (which would fail anyway, since
-    the User model has no such field) and 2) set the password for an
-    object once it has been saved.
-    """
-
-    def add_fields(self, form, index):
-        super(BaseUserFormSet, self).add_fields(form, index)
-        form.fields["set_password"] = forms.CharField(required=False, label=_("Password"), widget=forms.PasswordInput())
-
-    def del_field(self, form):
-        password = form['set_password'].data
-        del form.fields['set_password']
-        return password
-
-    def save_password(self, instance, password, commit=True):
-        if password != '':
-            instance.set_password(password)
-            if commit:
-                instance.save()
-        return instance
-
-    def save_existing(self, form, instance, commit=True):
-        password = self.del_field(form)
-        return self.save_password(super(BaseUserFormSet, self).save_existing(form, instance, commit), password, commit)
-
-    def save_new(self, form, commit=True):
-        password = self.del_field(form)
-        return self.save_password(super(BaseUserFormSet, self).save_new(form, commit), password, commit)
 
 @user_is_admin
 def edit(request, template, model_class, **kwargs):

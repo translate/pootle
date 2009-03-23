@@ -19,12 +19,11 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.conf.urls.defaults import *
-from pootle_app.views.admin import adminusers, adminlanguages, adminprojects, index
+from pootle_app.views.admin import util
+from pootle_app.models import Project
 
-urlpatterns = patterns('pootle_app.views.admin',
-    (r'users.html$',      'adminusers.view'),
-    (r'languages.html$',  'adminlanguages.view'),
-    (r'projects.html$',   'adminprojects.view'),
-    (r'(/|index.html)?$', 'index.view'),
-)
+def view(request):
+    return util.edit(request, 'admin/adminprojects.html', Project,
+              exclude='description', can_delete=True)
+    
+              
