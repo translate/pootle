@@ -181,100 +181,7 @@ class PootlePage:
                     ), 'untranslated': _('Untranslated')}
         return headings
 
-
-def get_relative(ref_path, abs_path):
-    ref_chain = ref_path.split('/')
-    abs_chain = abs_path.split('/')
-    abs_set = dict((component, i) for (i, component) in
-                   enumerate(abs_path.split('/')))
-    for (i, component) in enumerate(reversed(ref_chain)):
-        if component in abs_set:
-            new_components = i * ['..']
-            new_components.extend(abs_chain[abs_set[component] + 1:])
-            return '/'.join(new_components)
-
-
 class PootleNavPage(PootlePage):
-
-    def makenavbarpath_dict(self, project=None, request=None, directory=None,
-                            language=None, store=None):
-        """create the navbar location line"""
-
-        # FIXME: Still lots of PO specific references here!
-        project_path = get_relative(request.path_info,
-                                    project.directory_root.pootle_path)
-        rootlink = ''
-        paramstring = ''
-        if request:
-            paramstring = '?' + '&'.join(['%s=%s' % (arg, value) for (arg,
-                    value) in request.GET.iteritems() if arg.startswith('show')
-                     or arg == 'editing'])
-        links = {
-            'admin': None,
-            'project': [],
-            'language': [],
-            'goal': [],
-            'pathlinks': [],
-            }
-        pathlinks = []
-        for ancestor_directory in directory.parent_chain():
-            pathlinks.append({'href'
-                             : self.getbrowseurl(get_relative(request.path_info,
-                             ancestor_directory.pootle_path)), 'text'
-                             : ancestor_directory.name, 'sep': ' / '})
-        if pathlinks:
-            pathlinks[-1]['sep'] = ''
-        links['pathlinks'] = pathlinks
-        if request and 'goal' in request.GET:
-            # goallink = {"href": self.getbrowseurl("", goal=goal), "text": goal}
-            links['goal'] = {'href': self.getbrowseurl(''),
-                             'text': _('All goals')}
-        if project:
-            if isinstance(project, tuple):
-                (projectcode, projectname) = project
-                links['project'] = {'href': '/projects/%s/%s' % (projectcode,
-                                    paramstring), 'text': projectname}
-            else:
-                links['language'] = {'href': project_path + '../index.html',
-                                     'text': tr_lang(project.languagename)}
-                # don't getbrowseurl on the project link, so sticky
-                # options won't apply here
-                links['project'] = {'href': project_path + paramstring,
-                                    'text': project.projectname}
-                if request:
-                    if 'admin' in project.getrights(request.user)\
-                         or request.user.is_superuser:
-                        links['admin'] = {'href': project_path + 'admin.html',
-                                'text': _('Admin')}
-        elif language:
-            (languagecode, languagename) = language
-            links['language'] = {'href': '/%s/' % languagecode,
-                                 'text': tr_lang(languagename)}
-        return links
-
-    def getbrowseurl(self, basename, **newargs):
-        """gets the link to browse the item"""
-
-        if not basename or basename.endswith('/'):
-            return self.makelink(basename or 'index.html', **newargs)
-        else:
-            return self.makelink(basename, translate=1, view=1, **newargs)
-
-    def makelink(self, link, **newargs):
-        """constructs a link that keeps sticky arguments e.g. showchecks"""
-
-        combinedargs = self.request.GET.copy()
-        combinedargs.update(newargs)
-        if '?' in link:
-            if not (link.endswith('&') or link.endswith('?')):
-                link += '&'
-        else:
-            link += '?'
-        # TODO: check escaping
-        link += '&'.join(['%s=%s' % (arg, value) for (arg, value) in
-                         combinedargs.iteritems() if arg != 'allowmultikey'])
-        return link
-
     def initpagestats(self):
         """initialise the top level (language/project) stats"""
 
@@ -291,27 +198,6 @@ class PootleNavPage(PootlePage):
 
         self.alltranslated += translated
         self.grandtotal += total
-
-    def describestats(self, translation_project, directory, goal, numfiles):
-        """returns a sentence summarizing item statistics"""
-
-        quick_stats = directory.get_quick_stats(translation_project.checker,
-                goal)
-        percentfinished = (quick_stats['translatedsourcewords'] * 100)\
-             / max(quick_stats['totalsourcewords'], 1)
-        if isinstance(numfiles, tuple):
-            filestats = _('%d/%d file' % numfiles) + ', '
-        else:
-            filestats = nlocalize('%d file', '%d files', numfiles, numfiles)\
-                 + ', '
-        wordstats = _('%d/%d words (%d%%) translated'
-                       % (quick_stats['translatedsourcewords'],
-                      quick_stats['totalsourcewords'], percentfinished))
-        stringstatstext = _('%d/%d strings' % (quick_stats['translated'],
-                            quick_stats['total']))
-        stringstats = ' <span class="string-statistics">[%s]</span>'\
-             % stringstatstext
-        return filestats + wordstats + stringstats
 
     def getstatsheadings(self):
         """returns a dictionary of localised headings"""

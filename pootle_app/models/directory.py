@@ -122,14 +122,6 @@ class Directory(models.Model):
             add_to_stats(result, store.get_quick_stats(checker))
         return result
 
-    def parent_chain(self):
-        def enum_chain(start_dir):
-            directory = start_dir
-            while directory.parent is not None:
-                yield directory
-                directory = directory.parent
-        return reversed(list(enum_chain(self)))
-
     def __str__(self):
         return self.name
 

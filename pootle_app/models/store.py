@@ -90,11 +90,6 @@ class Store(models.Model):
             logging.log(logging.ERROR, traceback.format_exc())
             return statsdb.emptyfiletotals()
 
-    def parent_chain(self):
-        chain = self.parent.parent_chain()
-        chain.append(self.name)
-        return chain
-
     def num_stores(self, search=None):
         return 1
 
