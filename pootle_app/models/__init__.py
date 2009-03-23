@@ -20,7 +20,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from pootle_app.models.profile             import PootleProfile
-from pootle_app.models.core                import Language, Project, Submission, Suggestion
+from pootle_app.models.language            import Language
+from pootle_app.models.project             import Project
+from pootle_app.models.submission          import Submission
+from pootle_app.models.suggestion          import Suggestion
 from pootle_app.models.fs_models           import Directory, Store
 from pootle_app.models.permissions         import PermissionSet, PermissionSetCache
 from pootle_app.models.store               import Unit

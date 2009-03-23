@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from pootle_app import project_tree
-from pootle_app.models.core import Project
+from pootle_app.models import Project
 from django.conf import settings
 
 

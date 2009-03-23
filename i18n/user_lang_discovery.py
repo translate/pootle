@@ -26,7 +26,7 @@ from django.utils.translation import trans_real
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
-from pootle_app.models import core
+from pootle_app.models import Language
 from pootle_app.models.profile import get_profile
 from pootle_app.models.translation_project import TranslationProject
 from Pootle.i18n import gettext
@@ -44,7 +44,7 @@ def get_lang_from_cookie(request):
     lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME, None)
     # FIXME: removed checking if language is supported
     if lang_code and gettext.check_for_language(lang_code):
-        return gettext.get_lang(core.Language.objects.get(code=lang_code))
+        return gettext.get_lang(Language.objects.get(code=lang_code))
     return None
 
 def get_lang_obj(code):
@@ -61,11 +61,11 @@ def get_lang_obj(code):
         # First try with the lang_COUNTRY code, and if it fails
         # then try with the language code only
         try:
-            return core.Language.objects.get(code=code2)
+            return Language.objects.get(code=code2)
         except ObjectDoesNotExist:
             pass
     try:
-        return core.Language.objects.get(code=code_parts[0])
+        return Language.objects.get(code=code_parts[0])
     except ObjectDoesNotExist:
         return None
 

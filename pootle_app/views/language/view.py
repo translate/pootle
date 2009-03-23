@@ -28,13 +28,12 @@ from django.utils.translation import ugettext as _
 from Pootle import indexpage, pan_app, projects
 from Pootle.misc.jtoolkit_django import process_django_request_args
 
-from pootle_app.views.util  import render_to_kid, render_jtoolkit
-from pootle_app.views.index.auth  import redirect
-from pootle_app.models.core        import Language, Project
+from pootle_app.views.util         import render_to_kid, render_jtoolkit
+from pootle_app.views.index.auth   import redirect
+from pootle_app.models             import Language, Project, TranslationProject
 from pootle_app.models.fs_models   import Store, Directory, Search, search_from_state
-from pootle_app.url_manip   import strip_trailing_slash
+from pootle_app.url_manip          import strip_trailing_slash
 from pootle_app.models             import store_iteration
-from pootle_app.models.translation_project import TranslationProject
 from pootle_app.models.permissions import get_matching_permissions, PermissionError, check_permission
 from pootle_app.models.profile     import get_profile
 from pootle_app.views.language import dispatch

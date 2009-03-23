@@ -41,7 +41,7 @@ from translate.search  import match, indexing
 from translate.storage import factory, statsdb, base, versioncontrol
 
 from pootle_app.models.profile   import *
-from pootle_app.models.core      import Project, Language
+from pootle_app.models      import Project, Language
 from pootle_app.models.fs_models import Directory, Store
 from pootle_app           import project_tree
 from pootle_app.models import store_iteration

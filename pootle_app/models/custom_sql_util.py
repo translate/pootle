@@ -19,6 +19,13 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.db import models, connection
+
+def get_latest_changes(manager, query):
+    cursor = connection.cursor()
+    cursor.execute(query)
+    return dict(cursor.fetchall())
+
 def table_name(table):
     return table._meta.db_table
 
@@ -27,11 +34,3 @@ def field_name(table, field_name):
 
 def primary_key_name(table):
     return field_name(table, table._meta.pk.name)
-
-def unzip(lst):
-    left_lst = []
-    right_lst = []
-    for left, right in lst:
-        left_lst.append(left)
-        right_lst.append(right)
-    return left_lst, right_lst

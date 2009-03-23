@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle_app.models.core import Language, Project
+from pootle_app.models import Language, Project
 from pootle_app.models.profile import PootleProfile
 
 from django.contrib.auth.admin import UserAdmin

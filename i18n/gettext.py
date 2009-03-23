@@ -23,7 +23,7 @@ from django.utils import translation
 from django.utils.thread_support import currentThread
 from django.utils.functional import lazy
 
-from pootle_app.models.core import Language
+from pootle_app.models import Language
 
 from Pootle import pan_app
 

@@ -95,7 +95,7 @@ def test_add_project():
     assert '<a href="/projects/testproject/admin.html">testproject</a>' in response.content
     
     # check for the actual model
-    from pootle_app.models.core import Project
+    from pootle_app.models import Project
     testproject = Project.objects.get(code="testproject")
     assert testproject
     assert testproject.fullname == add_dict['fullname']
@@ -109,7 +109,7 @@ def test_add_project_language():
     client = Client()
     client.login(**ADMIN_USER)
 
-    from pootle_app.models.core import Language
+    from pootle_app.models import Language
     fish = Language(code="fish", fullname="fish")
     fish.save()
     

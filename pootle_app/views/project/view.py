@@ -27,8 +27,7 @@ from Pootle import pan_app, indexpage
 from pootle_app.views.index.auth    import redirect
 from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
     KidRequestContext, init_formset_from_data, choices_from_models, selected_model
-from pootle_app.models.core                import Language, Project
-from pootle_app.models.translation_project import TranslationProject
+from pootle_app.models              import Language, Project, TranslationProject
 from pootle_app                     import project_tree
 
 def user_can_admin_project(f):

@@ -34,7 +34,7 @@ from django.utils.translation import ugettext as _
 N_ = _
 from translate.storage import versioncontrol
 from translate import __version__ as toolkitversion
-from pootle_app.models.core import Suggestion, Submission, Language, Project
+from pootle_app.models import Suggestion, Submission, Language, Project
 from pootle_app.models.fs_models import Directory
 from pootle_app.models.goals import Goal
 from pootle_app.models.profile import get_profile
