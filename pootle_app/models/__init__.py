@@ -27,7 +27,8 @@ from pootle_app.models.suggestion          import Suggestion
 from pootle_app.models.directory           import Directory
 from pootle_app.models.store               import Store, Unit
 from pootle_app.models.permissions         import PermissionSet, PermissionSetCache
-from pootle_app.models.goals               import Goal, Assignment, StoreAssignment
+from pootle_app.models.goal                import Goal
+from pootle_app.models.assignment          import Assignment, StoreAssignment
 from pootle_app.models.translation_project import TranslationProject
 
 __all__ = ["PootleProfile",

@@ -24,9 +24,9 @@ import bisect
 from translate.tools import pogrep
 from translate.filters import checks
 
-from pootle_app.models.goals  import StoreAssignment
-from pootle_app.models.store  import Store
-from pootle_app.models.search import Search
+from pootle_app.models.assignment import StoreAssignment
+from pootle_app.models.store      import Store
+from pootle_app.models.search     import Search
 from pootle_app import url_manip
 
 def member(sorted_set, element):

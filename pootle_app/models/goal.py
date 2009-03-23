@@ -44,19 +44,3 @@ class Goal(models.Model):
     # A store can be part of many goals and a goal can contain many files
     stores              = models.ManyToManyField(Store, related_name='goals')
 
-class Assignment(models.Model):
-    class Meta:
-        unique_together = ('goal', 'profile')
-        app_label = "pootle_app"
-
-    goal    = models.ForeignKey(Goal, db_index=True)
-    profile = models.ForeignKey(PootleProfile, db_index=True)
-
-class StoreAssignment(models.Model):
-    class Meta:
-        app_label = "pootle_app"
-
-    assignment = models.ForeignKey(Assignment)
-    store      = models.OneToOneField(Store, db_index=True)
-    units      = models.ManyToManyField(Unit, related_name='stores')
-

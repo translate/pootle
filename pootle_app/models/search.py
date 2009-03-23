@@ -24,7 +24,7 @@ import bisect
 from django.db                import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_app.models.goals import StoreAssignment
+from pootle_app.models.assignment import StoreAssignment
 
 from Pootle.pootlefile import with_pootle_file
 
