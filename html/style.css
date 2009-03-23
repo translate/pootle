@@ -1169,10 +1169,16 @@ textarea.comments
 
 .translate-buttons-block
 {
+    margin-bottom: 5px;
 }
 
 .translate-fuzzy-block
 {
+}
+
+input.fuzzycheck
+{
+    vertical-align: text-top;
 }
 
 .translate-specialchars-block
