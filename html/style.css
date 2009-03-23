@@ -412,36 +412,36 @@ html[dir="rtl"] #nav-main ul li
 
 .menubar
 {
-  visibility: visible;
-  position: static;
+    visibility: visible;
+    position: static;
 }
 
 .menubar ul,
 .menubar li,
 .menubar h6
 {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .menubar ul
 {
-  *zoom: 1;
+    *zoom: 1;
 }
 
 .menubar .menu ul
 {
-  *zoom: normal;
+    *zoom: normal;
 }
 
 .menubar>.bd>ul:after
 {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  height: 0;
-  line-height: 0;
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    line-height: 0;
 }
 
 
@@ -510,12 +510,12 @@ html[dir="rtl"] #nav-main ul li
 
 .site-message .success
 {
-  color: #3f3;
+    color: #3f3;
 }
 
 .site-message .error
 {
-  color: #f33;
+    color: #f33;
 }
 
 #ajaxresponse
