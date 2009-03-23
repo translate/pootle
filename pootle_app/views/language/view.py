@@ -29,7 +29,7 @@ from Pootle import indexpage, pan_app, projects
 from Pootle.misc.jtoolkit_django import process_django_request_args
 
 from pootle_app.views.util  import render_to_kid, render_jtoolkit
-from pootle_app.views.auth  import redirect
+from pootle_app.views.index.auth  import redirect
 from pootle_app.models.core        import Language, Project
 from pootle_app.models.fs_models   import Store, Directory, Search, search_from_state
 from pootle_app.url_manip   import strip_trailing_slash
