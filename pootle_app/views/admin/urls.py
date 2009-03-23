@@ -23,15 +23,15 @@ from django.conf.urls.defaults import *
 from pootle_app.views.admin import view
 
 urlpatterns = patterns('',
-    (r'users.html$',      view.edit, {'template':    'adminusers.html',
+    (r'users.html$',      view.edit, {'template':    'admin/adminusers.html',
                                       'model_class': view.User, 
                                       'fields':      ('username', 'first_name', 'last_name', 'email', 'is_active'),
                                       'formset':     view.BaseUserFormSet,
                                       'can_delete':  True}),
-    (r'languages.html$',  view.edit, {'template':    'adminlanguages.html', 
+    (r'languages.html$',  view.edit, {'template':    'admin/adminlanguages.html', 
                                       'model_class': view.Language, 
                                       'can_delete':  True }),
-    (r'projects.html$',   view.edit, {'template':    'adminprojects.html',
+    (r'projects.html$',   view.edit, {'template':    'admin/adminprojects.html',
                                       'model_class': view.Project,  
                                       'exclude':     ('description'),
                                       'can_delete':  True  }),

@@ -81,7 +81,7 @@ def options(request):
                      "user_form":      user_form,
                      "profile_form":   profile_form }
 
-    return render_to_kid("options.html", KidRequestContext(request, template_vars))
+    return render_to_kid("profile/options.html", KidRequestContext(request, template_vars))
 
 @user_is_authenticated
 def index(request, path):

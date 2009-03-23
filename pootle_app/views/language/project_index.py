@@ -314,4 +314,4 @@ def view(request, translation_project, directory):
         'goals':                 goal_form,
         }
 
-    return render_to_kid("fileindex.html", KidRequestContext(request, template_vars))
+    return render_to_kid("language/fileindex.html", KidRequestContext(request, template_vars))

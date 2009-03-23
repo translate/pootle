@@ -3,7 +3,7 @@
 from pootle_app.templates import navbar, pootlepage
 from pootle_app.lib.util import l
 ?>
-<include py:layout="'page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
+<include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
 
   <div id="breadcrumbs" py:def="breadcrumbs_block()">
     <h3 class="title">[ <a href="${l('/projects/'+project.code+'/')}" py:content="project.name">Project</a> ]</h3>

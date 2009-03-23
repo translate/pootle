@@ -72,8 +72,7 @@ def login(request):
             'register_long_text': _("Don't have an account yet? <a href='register.html' title='Register'>Register</a>.")
             }
 
-        return render_to_kid("login.html", KidRequestContext(request, context))
-        #return render_to_response("login.html", RequestContext(request, context))
+        return render_to_kid("index/login.html", KidRequestContext(request, context))
 
 def language_list(request):
     """returns the list of localised language names, with 'default'"""

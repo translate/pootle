@@ -139,7 +139,7 @@ def project_admin(request, project_code):
         "has_template":       has_template
         }
 
-    return render_to_kid("projectadmin.html", KidRequestContext(request, template_vars))
+    return render_to_kid("project/projectadmin.html", KidRequestContext(request, template_vars))
 
 def projects_index(request, path):
     return render_jtoolkit(indexpage.ProjectsIndex(request))

@@ -256,4 +256,4 @@ def view(request, translation_project):
         "updaterights_text":      _("Update Rights"),
         "adduser_text":           _("(select to add user)")
     }
-    return render_to_kid("projectlangadmin.html", KidRequestContext(request, template_vars))
+    return render_to_kid("language/projectlangadmin.html", KidRequestContext(request, template_vars))

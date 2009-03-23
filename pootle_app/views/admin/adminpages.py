@@ -31,7 +31,7 @@ class AdminPage(pagelayout.PootlePage):
 
     def __init__(self, request):
         self.request = request
-        templatename = 'adminindex'
+        templatename = 'admin/adminindex.html'
         instancetitle = pan_app.get_title()
         text = self.gettext(request)
         templatevars = {

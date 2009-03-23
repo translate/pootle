@@ -70,7 +70,7 @@ class RegisterPage(pagelayout.PootlePage):
         else:
             introtext = forcemessage(message)
         pagetitle = _('Pootle Registration')
-        templatename = 'register'
+        templatename = 'index/register.html'
         instancetitle = pan_app.get_title()
         requestvars = {'status': get_profile(request.user).status,
                        'isopen': not request.user.is_anonymous,
@@ -115,7 +115,7 @@ class ActivatePage(pagelayout.PootlePage):
             pagetitle = _('Pootle Account Activation')
         else:
             pagetitle = title
-        templatename = 'activate'
+        templatename = 'index/activate.html'
         instancetitle = pan_app.get_title()
         requestvars = {'status': get_profile(request.user).status,
                        'isopen': not request.user.is_anonymous,
@@ -261,7 +261,7 @@ def registerpage(request):
         except RegistrationError, message:
             return RegisterPage(request, message)
         redirectpage = pagelayout.PootlePage('Redirecting...', {}, request)
-        redirectpage.templatename = 'redirect'
+        redirectpage.templatename = 'index/redirect.html'
         redirectpage.templatevars = {
             'pagetitle': _('Redirecting to Registration Page...'),
             'refresh': 10,
@@ -289,7 +289,7 @@ def activatepage(request):
         user.is_active = True
         user.save()
         redirectpage = pagelayout.PootlePage('Redirecting to login...', {}, request)
-        redirectpage.templatename = 'redirect'
+        redirectpage.templatename = 'index/redirect.html'
         redirectpage.templatevars = {
             'pagetitle': _('Redirecting to login page...'),
             'refresh': 10,

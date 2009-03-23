@@ -950,7 +950,7 @@ def view(request, directory, pootle_file, item, stopped_by=None):
         pagelinks = get_page_links(request, pootle_file, rows, translations, first_item)
 
     # templatising
-    templatename = "translatepage"
+    templatename = "language/translatepage.html"
     instancetitle = N_(settings.TITLE)
     # l10n: first parameter: name of the installation (like "Pootle")
     # l10n: second parameter: project name
@@ -1017,4 +1017,4 @@ def view(request, directory, pootle_file, item, stopped_by=None):
     #if state.show_assigns and check_permission("assign", request):
     #    templatevars["assign"] = get_assign_box()
     templatevars.update(add_file_links(request, pootle_file))
-    return render_to_kid("translatepage.html", KidRequestContext(request, templatevars, bannerheight=81))
+    return render_to_kid("language/translatepage.html", KidRequestContext(request, templatevars, bannerheight=81))

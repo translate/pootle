@@ -85,7 +85,7 @@ def render_jtoolkit(obj):
     """Render old style Pootle display objects which are jToolkit objects
     containing all the necessary information to be rendered."""
     if hasattr(obj, "templatename") and hasattr(obj, "templatevars"):
-        return render("%s.html" % obj.templatename, **attribify(obj.templatevars))
+        return render(obj.templatename, **attribify(obj.templatevars))
     else:
         if isinstance(obj, server.Redirect):
             if obj.ispermanent:
