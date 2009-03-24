@@ -26,8 +26,6 @@ from django.forms.util import ValidationError
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
-from Pootle.i18n import gettext, util
-
 class SearchForm(forms.Form):
     text = forms.CharField(widget=forms.TextInput(attrs={'size':'15'}))
 
@@ -45,6 +43,8 @@ class AdvancedSearchForm(forms.Form):
     selected    = forms.BooleanField(required=False)
 
     def as_table(self):
+        from Pootle.i18n import gettext, util
+
         return '<tr><td>%(selected)s<label dir="%(uidir)s" for="%(for_label)s">%(text)s</label></td></tr>' % {
             'selected':  self['selected'].as_widget(),
             'uidir':     util.language_dir(gettext.get_active().language.code),
