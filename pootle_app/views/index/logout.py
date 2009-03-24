@@ -18,14 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls.defaults import *
+from pootle_app.lib.util import redirect
 
-urlpatterns = patterns('pootle_app.views.index',
-    (r'^login.html$',      'login.view'),
-    (r'^logout.html$',     'logout.view'),
-    (r'^robots.txt$',      'view.robots'),
-    (r'^about.html$',      'view.about'),
-    (r'^register.html$',   'view.register'),
-    (r'^activate.html$',   'view.activate'),
-    (r'^(/|index.html)?$', 'view.index'),
-)
+def view(request):
+    from django.contrib.auth import logout
+    logout(request)
+    return redirect('/')

@@ -19,23 +19,23 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import locale
-import urllib
 
+from translate.lang import data
+
+from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponseRedirect
-from django.conf import settings
+
+from Pootle import pan_app
+from Pootle.i18n.user_lang_discovery import get_language_from_request
+from Pootle.i18n.jtoolkit_i18n import tr_lang
 
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.models import Language
+from pootle_app.lib.util import redirect
 
-from Pootle import pan_app
-from Pootle.i18n.jtoolkit_i18n import tr_lang
-from Pootle.i18n.user_lang_discovery import get_language_from_request
-from translate.lang import data
-from pootle_app.lib.util import l
 
-def login(request):
+def view(request):
     message = None
     redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
     if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
@@ -99,19 +99,7 @@ def language_list(request):
     finallist.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
     return finallist
 
-def logout(request):
-    from django.contrib.auth import logout
-    logout(request)
-    return redirect('/')
-
-def redirect(url, **kwargs):
-    if len(kwargs) > 0:
-        return HttpResponseRedirect(l('%s?%s' % (url, urllib.urlencode(kwargs))))
-    else:
-        return HttpResponseRedirect(l(url))
-
 def is_selected(new_code, preferred_language):
     if data.normalize_code(new_code) == preferred_language:
         return "selected"
     return None
-
