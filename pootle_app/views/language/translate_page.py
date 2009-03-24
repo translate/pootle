@@ -728,7 +728,7 @@ def make_table(request, profile, pootle_file, item):
         items.append(itemdict)
     return items, translations, first_item
 
-keymatcher = re.compile("(\D+)([0-9.]+)")
+keymatcher = re.compile("(\D+)([0-9\-]+)")
 
 def parsekey(key):
     match = keymatcher.match(key)
@@ -789,7 +789,7 @@ def handle_submits(last_item, request, pootle_file, submits, skips, translations
         last_item = item
     return last_item
 
-def handle_rejects(last_item, pootle_file, rejects, skips, translations, suggestions):
+def handle_rejects(last_item, pootle_file, rejects, skips, translations, suggestions, request):
     # Make sure we have rejects list properly sorted
     rejects.sort(key=operator.itemgetter(1))
     # It's necessary to loop the list reversed in order to selectively remove items
@@ -797,18 +797,17 @@ def handle_rejects(last_item, pootle_file, rejects, skips, translations, suggest
         value = suggestions[item, suggid]
         if isinstance(value, dict) and len(value) == 1 and 0 in value:
             value = value[0]
-        unit_update.reject_suggestion(pootle_file, item, suggitem, newtrans, request)
+        unit_update.reject_suggestion(pootle_file, item, suggid, value, request)
         last_item = item
     return last_item
 
-def handle_accepts(last_item, pootle_file, accepts, skips, translations, suggestions):
-    for item, suggid in accepts:
-        if (item, suggid) in rejects or (item, suggid) not in suggestions:
-            continue
+def handle_accepts(last_item, pootle_file, accepts, skips, translations, suggestions, request):
+    accepts.sort(key=operator.itemgetter(1))
+    for item, suggid in reversed(accepts):
         value = suggestions[item, suggid]
         if isinstance(value, dict) and len(value) == 1 and 0 in value:
             value = value[0]
-        unit_update.acceptsuggestion(pootle_file, item, suggitem, newtrans, request)
+        unit_update.accept_suggestion(pootle_file, item, suggid, value, request)
         last_item = item
     return last_item
 
@@ -871,8 +870,8 @@ def process_post(request, pootle_file):
     last_item = handle_skips(-1, skips)
     last_item = handle_suggestions(last_item, request, pootle_file, submitsuggests, skips, translations)
     last_item = handle_submits(last_item, request, pootle_file, submits, skips, translations, comments, fuzzies)
-    last_item = handle_rejects(last_item, pootle_file, rejects, skips, translations, suggestions)
-    last_item = handle_accepts(last_item, pootle_file, accepts, skips, translations, suggestions)
+    last_item = handle_accepts(last_item, pootle_file, accepts, skips, translations, suggestions, request)
+    last_item = handle_rejects(last_item, pootle_file, rejects, skips, translations, suggestions, request)
     return prev_last_item, last_item
 
 def process_post_main(store_name, item, request, next_store_item, prev_store_item):

@@ -39,7 +39,9 @@ def suggest_translation(pootle_file, item, trans, request):
         unit = Unit(store  = pootle_file.store,
                     index  = item,
                     source = pootle_file.getitem(item).getsource(),
-                    target = trans)
+                    target = trans,
+                    state  = 'pending', 
+                    )
         unit.save()
         s = Suggestion(
             creation_time       = datetime.datetime.utcnow(),
@@ -94,9 +96,10 @@ def get_suggestion(pootle_file, item, newtrans, request):
     translation_project = request.translation_project
     unit  = Unit.objects.get(store  = pootle_file.store,
                              index  = item,
-                             source = pofile.getitem(item).getsource(),
+                             source = pootle_file.getitem(item).getsource(),
                              target = newtrans,
-                             state  = 'pending')
+                             state  = 'pending'
+                             )
     return Suggestion.objects.get(translation_project = translation_project,
                                   unit                = unit)
 
@@ -116,7 +119,7 @@ def accept_suggestion(pootle_file, item, suggitem, newtrans, request):
     if not check_permission("review", request):
         raise PermissionError(_("You do not have rights to review suggestions here"))
 
-    suggestion = get_suggestion(pofile, item, newtrans, request)
+    suggestion = get_suggestion(pootle_file, item, newtrans, request)
     pootle_file.deletesuggestion(item, suggitem, newtrans)
     new_values = {"target": newtrans, "fuzzy": False}
     update_translation(pootle_file, item, new_values, request, suggestion)
