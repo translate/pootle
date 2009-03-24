@@ -180,7 +180,7 @@ class Search(object):
             self.match_names == [] and \
             self.assigned_to == []
 
-    def _all_matches(self, store, range, transform):
+    def _all_matches(self, store, last_index, range, transform):
         if self.contains_only_file_specific_criteria():
             # This is a special shortcut that we use when we don't
             # need to narrow our search based on unit-specific
@@ -212,7 +212,7 @@ class Search(object):
         # gives us the index of the unit as we see it in Pootle.
         if last_index < 0:
             last_index = 0
-        return self._all_matches(store, (last_index, None), lambda x: x)
+        return self._all_matches(store, last_index, (last_index, None), lambda x: x)
 
     def prev_matches(self, store, last_index):
         if last_index < 0:
@@ -227,7 +227,7 @@ class Search(object):
             # of stats['total'] as well when searching. Thus
             # [0:len(stats['total'])] gives us what we need.
             last_index = len(stats['total']) - 1
-        return self._all_matches(store, (0, last_index + 1), reversed)
+        return self._all_matches(store, last_index, (0, last_index + 1), reversed)
 
 def search_from_state(translation_project, search_state):
     return Search(translation_project=translation_project, **search_state.as_dict())
