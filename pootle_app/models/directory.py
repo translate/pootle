@@ -46,10 +46,6 @@ def filter_next_store(query, store_name):
     else:
         return query.filter(name__gte=store_name)
 
-def add_to_stats(stats, other_stats):
-    for key, value in other_stats.iteritems():
-        stats[key] = stats.get(key, 0) + value
-
 class Directory(models.Model):
     class Meta:
         ordering = ['name']
@@ -100,27 +96,6 @@ class Directory(models.Model):
             child_dir = Directory(name=child_name, parent=self)
             child_dir.save()
             return child_dir
-
-    def num_stores(self, search=None):
-        import store_iteration
-
-        return sum(1 for x in store_iteration.iter_stores(self, search=search))
-
-    def get_stats_totals(self, checker, search=None):
-        import store_iteration
-
-        result = statsdb.emptyfiletotals()
-        for store in store_iteration.iter_stores(self, search=search):
-            add_to_stats(result, store.get_stats_totals(checker, search))
-        return result
-
-    def get_quick_stats(self, checker, search=None):
-        import store_iteration
-
-        result = statsdb.emptyfiletotals()
-        for store in store_iteration.iter_stores(self, search=search):
-            add_to_stats(result, store.get_quick_stats(checker))
-        return result
 
     def __str__(self):
         return self.name

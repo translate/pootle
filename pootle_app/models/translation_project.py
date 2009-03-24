@@ -46,7 +46,7 @@ from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory
 from pootle_app.models.store       import Store
 from pootle_app                    import project_tree
-from pootle_app.models             import store_iteration
+from pootle_app.models             import store_iteration, metadata
 from pootle_app.models.permissions import PermissionError, check_permission
 
 from Pootle            import pan_app, pootlefile, statistics
@@ -156,7 +156,7 @@ class TranslationProject(models.Model):
     non_db_state = property(_get_non_db_state)
 
     def get_quick_stats(self):
-        return self.directory.get_quick_stats(self.checker)
+        return metadata.quick_stats(self.directory, self.checker)
 
     def _get_indexer(self):
         if self.non_db_state._indexing_enabled:

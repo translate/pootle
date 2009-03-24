@@ -40,7 +40,7 @@ from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
 from pootle_app.views.common import navbar_dict, search_forms
 from pootle_app import unit_update, url_manip
-from pootle_app.models import permissions
+from pootle_app.models import permissions, metadata
 from pootle_app.models.permissions import check_permission
 import dispatch
 
@@ -942,7 +942,7 @@ def view(request, directory, pootle_file, item, stopped_by=None):
     pagelinks = None
     rows, icon = get_rows_and_icon(request, profile)
     if pootle_file is not None:
-        postats = pootle_file.store.get_quick_stats(translation_project.checker)
+        postats = metadata.quick_stats(pootle_file.store, translation_project.checker)
         untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
         translated, total = postats["translated"], postats["total"]
         mainstats = _("%d/%d translated\n(%d untranslated, %d fuzzy)" % (translated, total, untranslated, fuzzy))

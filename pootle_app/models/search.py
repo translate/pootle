@@ -28,6 +28,8 @@ from pootle_app.models.assignment import StoreAssignment
 
 from Pootle.pootlefile import with_pootle_file
 
+import metadata
+
 def member(sorted_set, element):
     """Check whether element appears in sorted_set."""
     pos = bisect.bisect_left(sorted_set, element)
@@ -166,13 +168,13 @@ class Search(object):
             # properties. In this case, we know that last_item is the
             # sought after item, unless of course item >= number of
             # units
-            stats = store.get_stats_totals(self.translation_project.checker)
+            stats = metadata.stats_totals(store, self.translation_project.checker)
             if last_index < stats['total']:
                 return iter([last_index])
             else:
                 return iter([])
         else:
-            stats = store.get_property_stats(self.translation_project.checker)
+            stats = metadata.property_stats(store, self.translation_project.checker)
             matches = list(self._all_matches(store, stats, (last_index, None), index_subset))
             return (bisect.bisect_left(stats['total'], item) for item in matches)
 
@@ -197,7 +199,7 @@ class Search(object):
             # units
             return iter([last_index])
         else:
-            stats = store.get_property_stats(self.translation_project.checker)
+            stats = metadata.property_stats(store, self.translation_project.checker)
             matches = list(self._all_matches(store, stats, (0, last_index + 1), index_subset))
             return (bisect.bisect_left(stats['total'], item) for item in reversed(matches))
 
