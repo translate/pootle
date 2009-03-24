@@ -68,6 +68,8 @@ from pootle_app.lib.util import l, m
 	    <a href="${l(notice.finishedlink)}">${notice.returnlink}</a>
 	  </div>
 	  <form py:if="not notice" action="${actionurl}" method="post" name="translate" id="translate">
+            <div py:replace="XML(search.search_form.as_hidden())"/>
+            <div py:replace="XML(search.advanced_search_form.as_hidden())" />
 	    <table cellpadding="0" cellspacing="0" class="translate-table" dir="$uidir">
 	      <tr>
 		<th colspan="1" rowspan="1" class="translate-table-title" py:content="original_title">original</th>
