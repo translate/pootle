@@ -60,7 +60,7 @@ def get_relative_components(directory, starting_store):
 
 ################################################################################
 
-BLOCK_SIZE = 10
+BLOCK_SIZE = 100
 
 def do_query(query, next_matches, last_index):
     i = 0

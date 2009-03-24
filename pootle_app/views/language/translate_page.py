@@ -887,9 +887,18 @@ def process_post_main(store_name, item, request, next_store_item, prev_store_ite
     else:
         return store, item
 
-def get_position(store_name, item, request, next_store_item, prev_store_item):
+def process_new_search(store_name, item, request, next_store_item, prev_store_item):
+    pass
+
+def get_position(request, next_store_item, prev_store_item):
+    state      = dispatch.TranslatePageState(request.GET)
+    store_name = dispatch.get_store(request)
+    item       = state.item
     if request.method == 'POST':
-        return process_post_main(store_name, item, request, next_store_item, prev_store_item)
+        if 'new_search' in request.POST:
+            return next_store_item(Search.from_request(request), store_name, item)
+        else:
+            return process_post_main(store_name, item, request, next_store_item, prev_store_item)
     else:
         return next_store_item(Search.from_request(request), store_name, item)
 
@@ -901,9 +910,7 @@ def get_failure_message(request):
 
 def find_and_display(request, directory, next_store_item, prev_store_item):
     try:
-        state = dispatch.TranslatePageState(request.GET)
-        store, item = get_position(dispatch.get_store(request), state.item,
-                                   request, next_store_item, prev_store_item)
+        store, item = get_position(request, next_store_item, prev_store_item)
         return pootlefile.with_store(request.translation_project, store,
                                      lambda pootle_file: view(request, directory, pootle_file, item))
     except StopIteration:

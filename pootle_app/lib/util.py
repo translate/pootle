@@ -53,6 +53,12 @@ def lazy(result_name):
         return evaluator
     return lazify
 
+def lazy_property(name, getter):
+    def deleter(self):
+        delattr(self, name)
+
+    return property(lazy(name)(getter), None, deleter)
+
 def l(path):
     """ filter urls adding base_path prefix if required """
     if path and path.startswith('/'):

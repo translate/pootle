@@ -24,7 +24,11 @@ import bisect
 from django.db                import models
 from django.utils.translation import ugettext_lazy as _
 
+from translate.tools import pogrep
+
 from pootle_app.models.assignment import StoreAssignment
+from pootle_app.views.common      import search_forms
+from pootle_app.lib.util          import lazy_property
 
 from Pootle.pootlefile import with_pootle_file
 
@@ -62,23 +66,20 @@ def intersect(set_a, set_b):
 def narrow_to_last_item_range(translatables, last_index):
     return translatables[last_index + 1:]
 
-def narrow_to_index_subset(translatables, index_subset):
-    if index_subset is not None:
-        return intersect(index_subset, translatables)
-    else:
-        return translatables
-
-def narrow_to_search_text(store, translatables, search):
+def narrow_to_search_text(total, store, translatables, search):
     def do_slow_search(pootle_file):
         # We'll get here if the user is searching for a piece of text and if no indexer
         # (such as Xapian or Lucene) is usable. First build a grepper...
-        grepfilter = pogrep.GrepFilter(search.searchtext, search.searchfields, ignorecase=True)
+        grepfilter = pogrep.GrepFilter(search.search_text, search.search_fields, ignorecase=True)
         # ...then filter the items using the grepper.
-        return (index for index in translatables 
-                        if grepfilter.filterunit(pootle_file.items[item]))
+        return (item for item in translatables 
+                if grepfilter.filterunit(pootle_file.units[item]))
 
-    if search.search_text is not None:
+    if search.search_text is not None and search.search_results is None:
         return with_pootle_file(search.translation_project, store.abs_real_path, do_slow_search)
+    elif search.search_results is not None:
+        mapped_indices = [total[item] for item in search.search_results[store.pootle_path]]
+        return intersect(mapped_indices, translatables)
     else:
         return translatables
 
@@ -93,11 +94,38 @@ def narrow_to_assigns(store, translatables, search):
 def narrow_to_matches(stats, translatables, search):
     if len(search.match_names) > 0:
         matches = reduce(set.__or__,
-                         (set(stats[match_name]) for match_name in search.match_names if match_name in stats),
+                         (set(stats[match_name])
+                          for match_name in search.match_names
+                          if match_name in stats),
                          set())
         return intersect(sorted(matches), translatables)
     else:
         return translatables
+
+def search_results_to_dict(hits):
+    result_dict = {}
+    for doc in hits:
+        filename, item = doc["pofilename"][0], int(doc["itemno"][0])
+        if filename not in result_dict:
+            result_dict[filename] = []
+        result_dict[filename].append(item)
+    for lst in result_dict.itervalues():
+        lst.sort()
+    return result_dict
+
+def do_search_query(indexer, search):
+    searchparts = []
+    # Split the search expression into single words. Otherwise xapian and
+    # lucene would interprete the whole string as an "OR" combination of
+    # words instead of the desired "AND".
+    for word in search.search_text.split():
+        # Generate a list for the query based on the selected fields
+        querylist = [(f, word) for f in search.search_fields]
+        textquery = indexer.make_query(querylist, False)
+        searchparts.append(textquery)
+    # TODO: add other search items
+    limitedquery = indexer.make_query(searchparts, True)
+    return indexer.search(limitedquery, ['pofilename', 'itemno'])
 
 class Search(object):
     @classmethod
@@ -108,60 +136,51 @@ class Search(object):
             except KeyError:
                 return []
 
+        def as_search_field_list(formset):
+            return [form.initial['name']
+                    for form in formset.forms
+                    if form['selected'].data]
+
+        search = search_forms.get_search_form(request)
+
         kwargs = {}
         if 'goal' in request.GET:
             kwargs['goal'] = Goal.objects.get(name=request.GET['goal'])
         kwargs['match_names']         = get_list(request, 'match_names')
         kwargs['assigned_to']         = get_list(request, 'assigned_to')
-        kwargs['search_text']         = request.GET.get('search_text', None)
-        kwargs['search_fields']       = get_list(request, 'search_fields')
+        kwargs['search_text']         = search['search_form']['text'].data
+        kwargs['search_fields']       = as_search_field_list(search['advanced_search_form'])
         kwargs['translation_project'] = request.translation_project
         return cls(**kwargs)
 
-    def __init__(self, goal=None, match_names=[],
-                 assigned_to=[], search_text=None, search_fields=None,
+    def __init__(self, goal=None, match_names=[], assigned_to=[],
+                 search_text=None, search_fields=None,
                  translation_project=None):
         self.goal            = goal
         self.match_names     = match_names
         self.assigned_to     = assigned_to
         self.search_text     = search_text
         self.search_fields   = search_fields
-        if search_fields is None: # TDB: This is wrong
+        if search_fields is None:
             search_fiels = ['source', 'target']
         self.translation_project = translation_project
+
+    def _get_search_results(self):
+        if self.search_text is not None and \
+                self.translation_project is not None and \
+                self.translation_project.has_index:
+            return search_results_to_dict(do_search_query(self.translation_project.indexer, self))
+        else:
+            return None
+
+    search_results = lazy_property('_search_results', _get_search_results)
 
     def contains_only_file_specific_criteria(self):
         return self.search_text is None  and \
             self.match_names == [] and \
             self.assigned_to == []
 
-    def _get_index_results():
-        if self._index_results is None:
-            self._index_results = compute_index_result(self)
-        return self._index_results
-
-    def _all_matches(self, store, stats, range, index_subset):
-        return \
-            narrow_to_search_text( # Reduce to the search results. This is called when 
-                store,             # we don't use a search indexer
-                narrow_to_assigns( # Reduce to everything matching the current assingment
-                    store,
-                    narrow_to_matches( # Reduce to everything matching names like xmltags
-                        stats,
-                        narrow_to_index_subset( 
-                            stats['total'][range[0]:range[1]],
-                            index_subset),
-                        self),
-                    self),
-                self)
-
-    def next_matches(self, store, last_index, index_subset=None):
-        # stats['total'] is an array of indices into the units array
-        # of a store. But we want indices of the units that we see in
-        # Pootle. bisect.bisect_left of a member in stats['total']
-        # gives us the index of the unit as we see it in Pootle.
-        if last_index < 0:
-            last_index = 0
+    def _all_matches(self, store, range, transform):
         if self.contains_only_file_specific_criteria():
             # This is a special shortcut that we use when we don't
             # need to narrow our search based on unit-specific
@@ -174,11 +193,28 @@ class Search(object):
             else:
                 return iter([])
         else:
-            stats = metadata.property_stats(store, self.translation_project.checker)
-            matches = list(self._all_matches(store, stats, (last_index, None), index_subset))
-            return (bisect.bisect_left(stats['total'], item) for item in matches)
+            if self.search_results is not None and \
+                    store.pootle_path not in self.search_results:
+                return iter([])
 
-    def prev_matches(self, store, last_index, index_subset=None):
+            stats = metadata.property_stats(store, self.translation_project.checker)
+            total = stats['total']
+            result = total[range[0]:range[1]]
+            result = narrow_to_matches(stats, result, self)
+            result = narrow_to_assigns(store, result, self)
+            result = narrow_to_search_text(total, store, result, self)
+            return (bisect.bisect_left(total, item) for item in transform(result))
+
+    def next_matches(self, store, last_index):
+        # stats['total'] is an array of indices into the units array
+        # of a store. But we want indices of the units that we see in
+        # Pootle. bisect.bisect_left of a member in stats['total']
+        # gives us the index of the unit as we see it in Pootle.
+        if last_index < 0:
+            last_index = 0
+        return self._all_matches(store, (last_index, None), lambda x: x)
+
+    def prev_matches(self, store, last_index):
         if last_index < 0:
             # last_index = -1 means that last_index is
             # unspecified. Normally this means that we want to start
@@ -191,17 +227,7 @@ class Search(object):
             # of stats['total'] as well when searching. Thus
             # [0:len(stats['total'])] gives us what we need.
             last_index = len(stats['total']) - 1
-        if self.contains_only_file_specific_criteria():
-            # This is a special shortcut that we use when we don't
-            # need to narrow our search based on unit-specific
-            # properties. In this case, we know that last_item is the
-            # sought after item.
-            # units
-            return iter([last_index])
-        else:
-            stats = metadata.property_stats(store, self.translation_project.checker)
-            matches = list(self._all_matches(store, stats, (0, last_index + 1), index_subset))
-            return (bisect.bisect_left(stats['total'], item) for item in reversed(matches))
+        return self._all_matches(store, (0, last_index + 1), reversed)
 
 def search_from_state(translation_project, search_state):
     return Search(translation_project=translation_project, **search_state.as_dict())

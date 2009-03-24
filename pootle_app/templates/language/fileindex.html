@@ -9,8 +9,9 @@ from pootle_app.lib.util import l, m
 
   <!--! search form -->
   <div py:if="search" py:def="search_block()" class="searchform" dir="$uidir" lang="$uilanguage">
-    <form action="translate.html" method="post" name="searchform" id="searchform">
+    <form action="translate.html?view_mode=translate" method="post" name="searchform" id="searchform">
       <div py:replace="XML(search.search_form.as_p())"/>
+      <input type="hidden" name="new_search" value="new_search" />
       <a class="advancedlink">
 	<img src="${m('images/bullet_arrow_down.png')}" title="${search.advanced_search_title}" class="togglesearch" />
 	<img src="${m('images/bullet_arrow_up.png')}" title="${search.advanced_search_title}" class="togglesearch" style="display: none;"/>
