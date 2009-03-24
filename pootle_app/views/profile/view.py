@@ -30,7 +30,7 @@ from pootle_app.models.profile import get_profile, PootleProfile
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.views.util import render_jtoolkit
 from Pootle.i18n import gettext
-from pootle_app.views.index.auth import redirect
+from pootle_app.lib.util import redirect
 
 def user_is_authenticated(f):
     def decorated_f(request, *args, **kwargs):

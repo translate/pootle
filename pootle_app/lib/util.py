@@ -21,6 +21,8 @@
 """Some code helpers."""
 
 from django.conf import settings
+from django.http import HttpResponseRedirect
+import urllib
 
 def lazy(result_name):
     """This is used to create an attribute whose value is
@@ -62,3 +64,9 @@ def l(path):
 def m(path):
     """ filter urls adding media url prefix if required """
     return l(settings.MEDIA_URL + path)
+
+def redirect(url, **kwargs):
+    if len(kwargs) > 0:
+        return HttpResponseRedirect(l('%s?%s' % (url, urllib.urlencode(kwargs))))
+    else:
+        return HttpResponseRedirect(l(url))
