@@ -166,7 +166,7 @@ class Search(object):
         self.translation_project = translation_project
 
     def _get_search_results(self):
-        if self.search_text is not None and \
+        if self.search_text not in (None, '') and \
                 self.translation_project is not None and \
                 self.translation_project.has_index:
             return search_results_to_dict(do_search_query(self.translation_project.indexer, self))
