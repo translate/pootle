@@ -75,7 +75,7 @@ def narrow_to_search_text(total, store, translatables, search):
         return (item for item in translatables 
                 if grepfilter.filterunit(pootle_file.units[item]))
 
-    if search.search_text is not None and search.search_results is None:
+    if search.search_text not in (None, '') and search.search_results is None:
         return with_pootle_file(search.translation_project, store.abs_real_path, do_slow_search)
     elif search.search_results is not None:
         mapped_indices = [total[item] for item in search.search_results[store.pootle_path]]
@@ -176,7 +176,7 @@ class Search(object):
     search_results = lazy_property('_search_results', _get_search_results)
 
     def contains_only_file_specific_criteria(self):
-        return self.search_text is None  and \
+        return self.search_text in (None, '')  and \
             self.match_names == [] and \
             self.assigned_to == []
 
@@ -226,8 +226,9 @@ class Search(object):
             # into the file, we want to include the very last element
             # of stats['total'] as well when searching. Thus
             # [0:len(stats['total'])] gives us what we need.
-            last_index = len(stats['total']) - 1
-        return self._all_matches(store, last_index, (0, last_index + 1), reversed)
+            stats = metadata.stats_totals(store, self.translation_project.checker)
+            last_index = stats['total'] - 1
+        return self._all_matches(store, last_index, (0, last_index + 1), lambda x: reversed(list(x)))
 
 def search_from_state(translation_project, search_state):
     return Search(translation_project=translation_project, **search_state.as_dict())

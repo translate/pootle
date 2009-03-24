@@ -829,7 +829,10 @@ def process_post(request, pootle_file):
         keytype, item = parsekey(key)
         if keytype is None:
             continue
-        item, dashitem, subdashitem = dashsplit(item)
+        try:
+            item, dashitem, subdashitem = dashsplit(item)
+        except:
+            continue
         if keytype == "skip":
             skips.append(item)
         elif keytype == "back":
