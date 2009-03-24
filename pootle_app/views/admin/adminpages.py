@@ -22,9 +22,13 @@
 from django.conf import settings
 from django.utils.translation import ugettext as _
 N_ = _
+
+from pootle_app.views.util import render_jtoolkit
+
 from Pootle import pagelayout
 from Pootle import pan_app
 
+from util import user_is_admin
 
 class AdminPage(pagelayout.PootlePage):
     """page for administering pootle..."""
@@ -75,4 +79,8 @@ class AdminPage(pagelayout.PootlePage):
             options.append(option)
         return options
 
-
+@user_is_admin
+def view(request, path):
+    #if request.method == 'POST':
+    #    prefs.change_preferences(pan_app.prefs, arg_dict)
+    return render_jtoolkit(AdminPage(request))
