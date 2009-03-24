@@ -197,7 +197,7 @@ def create_database_user(data, user_name):
     profile = user.get_profile()
     profile.view_rows      = try_type(int, _get_user_attribute(data, user_name, 'viewrows',
                                                                unicode_me=False, default=10)),
-    profile.translate_rows = try_type(int, _get_user_attribute(data, user_name,o 'translaterows',
+    profile.translate_rows = try_type(int, _get_user_attribute(data, user_name, 'translaterows',
                                                                unicode_me=False, default=10))
     # uilanguage
     raw_uilanguage = _get_user_attribute(data, user_name, 'uilanguages')
