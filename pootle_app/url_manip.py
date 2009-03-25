@@ -39,6 +39,12 @@ def add_trailing_slash(path):
 
 ################################################################################
 
+def clear_path(path):
+    """Returns the last item in a URL pattern, clearing the path. For example,
+    'chrome/browser/browser.dtd.po' would return 'browser.dtd.po'"""
+    path_parts = path.split("/")
+    return path_parts[len(path_parts) - 1]
+
 def url_split(path):
     try:
         slash_pos = strip_trailing_slash(path).rindex('/')

@@ -166,13 +166,13 @@ from pootle_app.lib.util import l, m
 			
 			<!--! (Re)view suggestions while editing -->
 			<div id="translate-suggestion-container" py:if="item.hassuggestion">
-			  <div class="translate-suggestion-block" py:for="sugg in item.trans.suggestions">
+              <div id="suggestion${sugg.suggid}" class="translate-suggestion-block" py:for="sugg in item.trans.suggestions">
 			    <strong py:content="sugg.title">Suggestion by testuser:</strong>
 			    <div class="translate-suggestion">
 			      <div py:for="form in sugg.forms" py:strip="True">
 				<div class="translation-text-headers" lang="$uilanguage" py:if="form.title" py:content="form.title">Plural Form ${form.n}</div>
 				<div py:content="XML(form.diff)" lang="$language.code" dir="$language.dir">Text with diffs</div>
-				<input type="hidden" name="${form.suggid}" value="${form.value}" />
+				<input type="hidden" id="${form.suggid}" name="${form.suggid}" value="${form.value}" />
 			      </div>
 			      <div py:if="sugg.canreview" py:strip="True">
 				<a title="${accept_title}" accesskey="a" id="accept${sugg.suggid}" class="acceptsugg"><img src="${m('images/gtk-apply.png')}" dir="$uidir" /></a>
@@ -315,6 +315,7 @@ from pootle_app.lib.util import l, m
 
   <div py:strip="" py:def="page_script()">
     <!--! TODO Fix JS includes, bug 442316 --> 
+    <script src="${m('js/json2.min.js')}" type="text/javascript"></script>
     <script src="${m('js/autoexpand.js')}" type="text/javascript"></script>
     <script src="${m('js/unfuzzy.js')}" type="text/javascript"></script>
     <script type="text/javascript">
@@ -335,7 +336,7 @@ from pootle_app.lib.util import l, m
     <script type="text/javascript">
       var AJAX_ERROR = "${ajax_error}";
     </script>
-    <script src="${m('js/suggestions.js')}" type="text/javascript"></script>
+    <script src="${m('js/sugg.js')}" type="text/javascript"></script>
     <script src="${m('js/jquery/jquery.color.js')}" type="text/javascript"></script>
   </div><!--page_script-->
 

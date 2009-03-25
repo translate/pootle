@@ -23,7 +23,9 @@ import os
 
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.contrib.auth.decorators import user_passes_test
+from django.utils import simplejson
 from django.utils.translation import ugettext as _
+from django.utils.translation import ungettext as _N
 
 from Pootle import indexpage, pan_app, projects
 from Pootle.misc.jtoolkit_django import process_django_request_args
@@ -32,7 +34,7 @@ from pootle_app.views.util         import render_to_kid, render_jtoolkit
 from pootle_app.lib.util           import redirect
 from pootle_app.models             import Language, Project, TranslationProject, Store, Directory, store_iteration
 from pootle_app.models.search      import Search, search_from_state
-from pootle_app.url_manip          import strip_trailing_slash
+from pootle_app.url_manip          import strip_trailing_slash, clear_path
 from pootle_app.models.permissions import get_matching_permissions, PermissionError, check_permission
 from pootle_app.models.profile     import get_profile
 from pootle_app.views.language     import dispatch
@@ -43,6 +45,7 @@ from translate_page import find_and_display
 from admin import view as translation_project_admin_view
 
 from Pootle import pootlefile
+from pootle_app import unit_update
 
 ################################################################################
 
@@ -203,3 +206,101 @@ def export(request, translation_project, file_path, format):
 @set_request_context
 def handle_file(request, translation_project, file_path):
     return handle_translation_file(request, translation_project, file_path)
+
+@get_translation_project
+@set_request_context
+def handle_suggestions(request, translation_project, file_path, item):
+    """Handles accepts/rejects of suggestions selectively via AJAX, receiving
+       and sending data in JSON format.
+
+       Response attributes are described below:
+        * "status": Indicates the status after trying the action.
+                    Possible values: "error", "success".
+        * "message": Message status of the transaction. Depending on the status
+                    it will display an error message, or the number of
+                    suggestions rejected/accepted."""
+    # TODO: finish this function and return nice diffs
+    pootle_path = translation_project.directory.pootle_path + file_path
+    store = Store.objects.get(pootle_path=pootle_path)
+    file_path = pootlefile.absolute_real_path(store.real_path)
+    
+    def getpendingsuggestions(item):
+        """Gets pending suggestions for item in pofilename."""
+        itemsuggestions = []
+        suggestions = translation_project.getsuggestions(file_path, item)
+        for suggestion in suggestions:
+            if suggestion.hasplural():
+                itemsuggestions.append(suggestion.target.strings)
+            else:
+                itemsuggestions.append([suggestion.target])
+        return itemsuggestions
+
+    response = {}
+    # Decode JSON data sent via POST
+    data = simplejson.loads(request.POST.get("data", "{}"))
+    if not data:
+        response["status"] = "error"
+        response["message"] = _("No suggestion data given.")
+    else:
+        # TODO: handle plurals
+        pofilename = clear_path(file_path)
+
+        rejects = data.get("rejects", [])
+        reject_candidates = len(rejects)
+        reject_count = 0
+        accepts = data.get("accepts", [])
+        accept_candidates = len(accepts)
+        accept_count = 0
+
+        for sugg in reversed(rejects):
+            try:
+                # XXX: disabled for testing
+                pootlefile.with_store(translation_project, store,
+                                      lambda pootle_file:
+                                      unit_update.reject_suggestion(pootle_file,
+                                                                    int(item), int(sugg["id"]),
+                                                                    sugg["newtrans"], request
+                                                                    )
+                                      )
+                
+                reject_count += 1
+                # TODO: convert this a list
+                response["deleted"] = item + "-" + sugg["id"]
+                pending = getpendingsuggestions(int(item))
+            except ValueError:
+                # TODO: provide fine-grained error message from the exception
+                response["message"] = _("This is an error message.")
+
+        for sugg in accepts:
+            try:
+                # XXX: disabled for testing
+                pootlefile.with_store(translation_project, store,
+                                      lambda pootle_file:
+                                      unit_update.accept_suggestion(pootle_file,
+                                                                    int(item), int(sugg["id"]),
+                                                                    sugg["newtrans"], request
+                                                                    )
+                                      )
+                accept_count += 1
+            except ValueError:
+                # TODO: provide fine-grained error message from the exception
+                response["message"] = _("This is an error message.")
+
+        response["status"] = (reject_candidates == reject_count and
+                              accept_candidates == accept_count) and \
+                              "success" or "error"
+
+        if response["status"] == "success":
+            amsg = ""
+            rmsg = ""
+            if accept_candidates != 0:
+                amsg = _("Suggestion accepted. ")
+            if reject_candidates != 0:
+                rmsg = _N("%d suggestion rejected.",
+                          "%d suggestions rejected.", reject_count)
+            response["message"] = amsg + rmsg
+
+    response = simplejson.dumps(response, indent=4)
+    # TODO: change mimetype to something more appropriate once all works fine
+    return HttpResponse(response, mimetype="text/plain")
+

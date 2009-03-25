@@ -838,11 +838,11 @@ class TranslationProject(models.Model):
 
     def getsuggestions(self, pofile, item):
         """find all the suggestions submitted for the given (pofile or pofilename) and item"""
-        if isinstance(pofile, (str, unicode)):
-            pofilename = pofile
-            pofile = self.getpofile(pofilename)
-        suggestpos = pofile.getsuggestions(item)
-        return suggestpos
+        suggestions = pootlefile.with_pootle_file(self, pofile,
+                                                  lambda pootle_file:
+                                                  pootle_file.getsuggestions(item)
+                                                  )
+        return suggestions
 
     ##############################################################################################
 
