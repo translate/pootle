@@ -362,7 +362,7 @@ class UserIndex(pagelayout.PootlePage):
                     translation_project = \
                         TranslationProject.objects.get(language=language,
                             project=project)
-                    isprojectadmin = 'admin'\
+                    isprojectadmin = 'administrate'\
                          in get_matching_permissions(user_profile,
                             translation_project.directory)
                     langlinks.append({
@@ -387,7 +387,7 @@ class ProjectsIndex(PootleIndex):
 
     def __init__(self, request):
         PootleIndex.__init__(self, request)
-        self.templatename = 'project/projects.html'
+        self.templatneame = 'project/projects.html'
 
 
 class LanguagesIndex(PootleIndex):
