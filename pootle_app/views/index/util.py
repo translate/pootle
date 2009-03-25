@@ -18,14 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls.defaults import *
 
-urlpatterns = patterns('pootle_app.views.index',
-    (r'^login.html$',      'login.view'),
-    (r'^logout.html$',     'logout.view'),
-    (r'^robots.txt$',      'robots.view'),
-    (r'^about.html$',      'about.view'),
-    (r'^register.html$',   'register.view'),
-    (r'^activate.html$',   'activate.view'),
-    (r'^(/|index.html)?$', 'index.view'),
-)
+def forcemessage(message):
+    """Tries to extract some kind of message and converts to unicode
+    """
+
+    if message and not isinstance(message, unicode):
+        return str(message).decode('utf-8')
+    else:
+        return message

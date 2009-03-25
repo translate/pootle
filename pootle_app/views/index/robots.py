@@ -18,22 +18,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-"""This implements some top-level pages (robots.txt, about, etc.)."""
-
 from django.http import HttpResponse
-
-from Pootle import pan_app, indexpage,  users
-
-from pootle_app.views.util import render_jtoolkit
 from pootle_app.models import Language
 
-def index(request, *path_vars):
-    return render_jtoolkit(indexpage.PootleIndex(request))
-
-def about(request):
-    return render_jtoolkit(indexpage.AboutPage(request))
-
-def robots(request):
+def view(request):
     """generates the robots.txt file"""
     langcodes = [language.code for language in Language.objects.all()]
     excludedfiles = ["login.html", "register.html", "activate.html"]
@@ -43,9 +31,3 @@ def robots(request):
     for langcode in langcodes:
         content += "Disallow: /%s/\n" % langcode
     return HttpResponse(content, mimetype="text/plain")
-
-def register(request):
-    return render_jtoolkit(users.registerpage(request))
-
-def activate(request):
-    return render_jtoolkit(users.activatepage(request))

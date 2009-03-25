@@ -18,14 +18,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls.defaults import *
+from pootle_app.views.util import render_jtoolkit
+from Pootle import indexpage
 
-urlpatterns = patterns('pootle_app.views.index',
-    (r'^login.html$',      'login.view'),
-    (r'^logout.html$',     'logout.view'),
-    (r'^robots.txt$',      'robots.view'),
-    (r'^about.html$',      'about.view'),
-    (r'^register.html$',   'register.view'),
-    (r'^activate.html$',   'activate.view'),
-    (r'^(/|index.html)?$', 'index.view'),
-)
+def view(request, *path_vars):
+    return render_jtoolkit(indexpage.PootleIndex(request))
+
+

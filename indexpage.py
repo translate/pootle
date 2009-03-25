@@ -17,7 +17,6 @@
 # translate; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 
-from kid import __version__ as kidversion
 try:
 # ElementTree is part of Python 2.5, so let's try that first
     from xml.etree import ElementTree
@@ -33,7 +32,6 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 N_ = _
 from translate.storage import versioncontrol
-from translate import __version__ as toolkitversion
 from pootle_app.models import Suggestion, Submission, Language, Project, \
     Directory, Goal, TranslationProject
 from pootle_app.models.profile import get_profile
@@ -42,10 +40,9 @@ from pootle_app.models import metadata
 from pootle_app.language import try_language_code
 from pootle_app import project_tree
 from Pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang
-from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
 from Pootle import pan_app, pagelayout, pootlefile
-from Pootle import __version__ as pootleversion
 
+import re
 
 def shortdescription(descr):
     """Returns a short description by removing markup and only
@@ -108,79 +105,6 @@ def limit(query):
     return query[:5]
 
 
-class AboutPage(pagelayout.PootlePage):
-
-    """the bar at the side describing current login details etc"""
-
-    def __init__(self, request):
-        pagetitle = pan_app.get_title()
-        description = pan_app.get_description()
-        meta_description = shortdescription(description)
-        keywords = [
-            'Pootle',
-            'locamotion',
-            'translate',
-            'translation',
-            'localisation',
-            'localization',
-            'l10n',
-            'traduction',
-            'traduire',
-            ]
-        abouttitle = _('About Pootle')
-        # l10n: Take care to use HTML tags correctly. A markup error
-        # could cause a display error.
-        introtext = \
-            _("<strong>Pootle</strong> is a simple web portal that should allow you to <strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, you can download it and run your own copy if you like. You can also help participate in the development in many ways (you don't have to be able to program)."
-              )
-        hosttext = \
-            _('The Pootle project itself is hosted at <a href="http://translate.sourceforge.net/">translate.sourceforge.net</a> where you can find the details about source code, mailing lists etc.'
-              )
-        # l10n: If your language uses right-to-left layout and you
-        # leave the English untranslated, consider enclosing the
-        # necessary text with <span dir="ltr">.......</span> to help
-        # browsers to display it correctly. l10n: Take care to use
-        # HTML tags correctly. A markup error could cause a display
-        # error.
-        nametext = \
-            _('The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="http://www.thechestnut.com/flumps.htm">this</a>.'
-              )
-        versiontitle = _('Versions')
-        # l10n: If your language uses right-to-left layout and you
-        # leave the English untranslated, consider enclosing the
-        # necessary text with <span dir="ltr">.......</span> to help
-        # browsers to display it correctly. l10n: Take care to use
-        # HTML tags correctly. A markup error could cause a display
-        # error.
-        versiontext = \
-            _('This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)'
-               % (
-            pootleversion.ver,
-            toolkitversion.sver,
-            jtoolkitversion.ver,
-            kidversion,
-            ElementTree.VERSION,
-            sys.version,
-            sys.platform,
-            os.name,
-            ))
-        templatename = 'index/about.html'
-        instancetitle = pan_app.get_title()
-        templatevars = {
-            'pagetitle': pagetitle,
-            'description': description,
-            'meta_description': meta_description,
-            'keywords': keywords,
-            'abouttitle': abouttitle,
-            'introtext': introtext,
-            'hosttext': hosttext,
-            'nametext': nametext,
-            'versiontitle': versiontitle,
-            'versiontext': versiontext,
-            'instancetitle': instancetitle,
-            }
-        pagelayout.PootlePage.__init__(self, templatename, templatevars,
-                                       request)
 
 
 class PootleIndex(pagelayout.PootlePage):
