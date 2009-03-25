@@ -311,7 +311,7 @@ class ProjectsIndex(PootleIndex):
 
     def __init__(self, request):
         PootleIndex.__init__(self, request)
-        self.templatneame = 'project/projects.html'
+        self.templatename = 'project/projects.html'
 
 
 class LanguagesIndex(PootleIndex):
