@@ -111,7 +111,7 @@ from pootle_app.lib.util import l, m
   
   <div id="postcontent" py:def="postcontent_block()">
     <div py:if="upload" id="upload" class="module first clear">
-      <div class="sidetitle" py:if="upload" py:content="upload.title">Upload File</div>
+      <!-- <div class="sidetitle" py:if="upload" py:content="upload.title">Upload File</div> -->
       <form py:if="upload" action="" method="post" name="uploadform" enctype="multipart/form-data">
 	<div py:replace="XML(upload.as_p())" />
       </form>

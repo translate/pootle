@@ -30,7 +30,7 @@ from django import forms
 
 from translate.storage import factory
 
-from pootle_app.views.util import render_to_kid, render_jtoolkit, KidRequestContext
+from pootle_app.views.util import render_to_kid, render_jtoolkit
 from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
 from pootle_app.views.common import navbar_dict, item_dict, search_forms
 from pootle_app.models import Goal, Directory, Store
@@ -39,34 +39,15 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_app.models.profile import get_profile
 from pootle_app.project_tree import scan_translation_project_files
 from pootle_app import url_manip
+from pootle_app.lib import view_handler
+from pootle_app.views.base import BaseView
 import dispatch
 
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle import pan_app
 from Pootle import pootlefile
 
-class UploadForm(forms.Form):
-    file = forms.FileField()
-    overwrite = forms.ChoiceField(widget=forms.RadioSelect,
-                                  choices=[('checked',  _("Overwrite the current file if it exists")),
-                                           ('', _("Merge the file with the current file and turn conflicts into suggestions"))])
 
-    def __init__(self, allow_overwrite, *args, **kwargs):
-        super(UploadForm, self).__init__(*args, **kwargs)
-        self.allow_overwrite = allow_overwrite
-        self.title = _("Upload File")
-    
-    def as_p(self):
-        vars = {'file':    self['file'].as_widget(),
-                'upload':  _('Upload')}
-        layout = '<div>%(file)s</div><div>%(overwrite)s</div><input type="submit" name="upload" value="%(upload)s" />'
-        if self.allow_overwrite:
-            vars['overwrite'] = self['overwrite'].as_widget()
-            return layout % vars
-        else:
-            self.initial['overwrite'] = ''
-            vars['overwrite'] = self['overwrite'].as_hidden()
-            return layout % vars
 
 ################################################################################
 
@@ -130,7 +111,7 @@ def get_local_filename(translation_project, upload_filename):
     base, ext = os.path.splitext(upload_filename)
     return '%s.%s' % (base, translation_project.project.localfiletype)
 
-def unzip_external(request, relative_root_dir, django_file, overwrite, **kwargs):
+def unzip_external(request, relative_root_dir, django_file, overwrite):
     from tempfile import mkdtemp, mkstemp
     # Make a temporary directory to hold a zip file and its unzipped contents
     tempdir = mkdtemp(prefix='pootle')
@@ -168,7 +149,7 @@ def unzip_external(request, relative_root_dir, django_file, overwrite, **kwargs)
         os.unlink(tempzipname)
         shutil.rmtree(tempdir)
 
-def unzip_python(request, relative_root_dir, django_file, overwrite, **kwargs):
+def unzip_python(request, relative_root_dir, django_file, overwrite):
     archive = zipfile.ZipFile(cStringIO.StringIO(django_file.read()), 'r')
     # TODO: find a better way to return errors...
     try:
@@ -183,15 +164,15 @@ def unzip_python(request, relative_root_dir, django_file, overwrite, **kwargs):
     finally:
         archive.close()
 
-def upload_archive(request, directory, django_file, overwrite, **kwargs):
+def upload_archive(request, directory, django_file, overwrite):
     # First we try to use "unzip" from the system, otherwise fall back to using
     # the slower zipfile module
     try:
-        unzip_external(request, directory, django_file, overwrite, **kwargs)
+        unzip_external(request, directory, django_file, overwrite)
     except:
-        unzip_python(request, directory, django_file, overwrite, **kwargs)
+        unzip_python(request, directory, django_file, overwrite)
 
-def upload_file(request, relative_root_dir, filename, file_contents, overwrite, **kwargs):
+def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
     # Strip the extension off filename and add the extension used in
     # the current translation project to filename to get
     # local_filename. Thus, if filename == 'foo.xlf' and we're in a PO
@@ -254,64 +235,84 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite, 
             # uploaded file into it.
             pootlefile.with_pootle_file(request.translation_project, upload_path, do_merge)
 
-def process_upload(request, directory, upload_form, **kwargs):
-    django_file = request.FILES['file']
-    overwrite = upload_form['overwrite'].data == 'checked'
-    scan_translation_project_files(request.translation_project)
-    # The URL relative to the URL of the translation project. Thus, if
-    # directory.pootle_path == /af/pootle/foo/bar, then
-    # relative_root_dir == foo/bar.
-    relative_root_dir = directory.pootle_path[len(request.translation_project.directory.pootle_path):]
-    if django_file.name.endswith('.zip'):
-        upload_archive(request, relative_root_dir, django_file, overwrite, **kwargs)
-    else:
-        upload_file(request, relative_root_dir, django_file.name, django_file.read(), overwrite, **kwargs)
-    scan_translation_project_files(request.translation_project)
 
-post_table = {
-    'upload': process_upload
-}
+class UploadHandler(view_handler.Handler):
+    actions = [('do_upload', _('Upload'))]
 
-def process_post(request, directory, **kwargs):
-    for key in request.POST:
-        if key in post_table:
-            post_table[key](request, directory, **kwargs)
+    class Form(forms.Form):
+        file = forms.FileField()
+        overwrite = forms.ChoiceField(widget=forms.RadioSelect,
+                                      choices=[('checked',  _("Overwrite the current file if it exists")),
+                                               ('', _("Merge the file with the current file and turn conflicts into suggestions"))])
+
+        def as_p(self):
+            vars = {'file':    self['file'].as_widget(),
+                    'upload':  _('Upload')}
+            layout = '<div>%(file)s</div><div>%(overwrite)s</div>'
+            if self.allow_overwrite:
+                vars['overwrite'] = self['overwrite'].as_widget()
+                return layout % vars
+            else:
+                self.initial['overwrite'] = ''
+                vars['overwrite'] = self['overwrite'].as_hidden()
+                return layout % vars        
+
+    @classmethod
+    def must_display(self, request, *args, **kwargs):
+        return check_permission('administrate', request)
+
+    def __init__(self, data, request, *args, **kwargs):
+        super(UploadHandler, self).__init__(data, request, *args, **kwargs)
+        self.form.allow_overwrite = check_permission('overwrite', request)
+        self.form.title = _("Upload File")
+
+    def do_upload(self, request, translation_project, directory):
+        django_file = request.FILES['file']
+        overwrite = self.form['overwrite'].data == 'checked'
+        scan_translation_project_files(request.translation_project)
+        # The URL relative to the URL of the translation project. Thus, if
+        # directory.pootle_path == /af/pootle/foo/bar, then
+        # relative_root_dir == foo/bar.
+        relative_root_dir = directory.pootle_path[len(request.translation_project.directory.pootle_path):]
+        if django_file.name.endswith('.zip'):
+            upload_archive(request, relative_root_dir, django_file, overwrite)
+        else:
+            upload_file(request, relative_root_dir, django_file.name, django_file.read(), overwrite)
+        scan_translation_project_files(request.translation_project)
+        return {}
+
+class ProjectIndexView(BaseView):
+    def GET(self, template_vars, request, translation_project, directory):
+        template_vars = super(ProjectIndexView, self).GET(template_vars, request)
+        request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
+        state    = dispatch.ProjectIndexState(request.GET)
+        project  = translation_project.project
+        language = translation_project.language
+
+        assign_form = None
+        goal_form = None
+
+        template_vars.update({
+            'pagetitle':             _('%s: Project %s, Language %s') % \
+                (pan_app.get_title(), project.fullname, tr_lang(language.fullname)),
+            'project':               {"code": project.code,  "name": project.fullname},
+            'language':              {"code": language.code, "name": tr_lang(language.fullname)},
+            'search':                search_forms.get_search_form(request),
+            'children':              get_children(request, translation_project, directory),
+            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
+            'stats_headings':        get_stats_headings(),
+            'editing':               state.editing,
+            'untranslated_text':     _("%s untranslated words"),
+            'fuzzy_text':            _("%s fuzzy words"),
+            'complete':              _("Complete"),
+            'topstats':              top_stats(translation_project),
+            'topstatsheading':       top_stats_heading(),
+            'assign':                assign_form,
+            'goals':                 goal_form,
+            })
+        return template_vars
 
 def view(request, translation_project, directory):
-    state    = dispatch.ProjectIndexState(request.GET)
-    project  = translation_project.project
-    language = translation_project.language
-
-    if check_permission('administrate', request):
-        upload_form = UploadForm(check_permission('overwrite', request),
-                                 data=request.POST,
-                                 initial={'file': '', 'overwrite': ''})
-    else:
-        upload_form = None
-    assign_form = None
-    goal_form = None
-
-    process_post(request, directory, upload_form=upload_form)
-
-    request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
-    template_vars = {
-        'pagetitle':             _('%s: Project %s, Language %s') % \
-            (pan_app.get_title(), project.fullname, tr_lang(language.fullname)),
-        'project':               {"code": project.code,  "name": project.fullname},
-        'language':              {"code": language.code, "name": tr_lang(language.fullname)},
-        'search':                search_forms.get_search_form(request),
-        'children':              get_children(request, translation_project, directory),
-        'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
-        'stats_headings':        get_stats_headings(),
-        'editing':               state.editing,
-        'untranslated_text':     _("%s untranslated words"),
-        'fuzzy_text':            _("%s fuzzy words"),
-        'complete':              _("Complete"),
-        'topstats':              top_stats(translation_project),
-        'topstatsheading':       top_stats_heading(),
-        'upload':                upload_form,
-        'assign':                assign_form,
-        'goals':                 goal_form,
-        }
-
-    return render_to_kid("language/fileindex.html", KidRequestContext(request, template_vars))
+    view_obj = ProjectIndexView(forms=dict(upload=UploadHandler))
+    return render_to_kid("language/fileindex.html",
+                         view_obj(request, translation_project, directory))
