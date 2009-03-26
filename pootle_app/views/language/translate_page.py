@@ -356,7 +356,7 @@ def get_edit_link(request, pootle_file, item):
     if check_permission("translate", request) or check_permission("suggest", request):
         # l10n: verb
         return {"href": dispatch.translate(request, request.path_info,
-                                           view_mode='translate', item=item),
+                                           view_mode='translate', item=item, match_names=[]),
                 "text": _("Edit"), "linkid": "editlink%d" % item}
     else:
         return {}
@@ -978,7 +978,7 @@ def view(request, directory, pootle_file, item, stopped_by=None):
         "project":                   {"code": project.code,
                                       "name": project.fullname},
         "language":                  language_data,
-        "pofilename":                store_path,
+        "store":                store_path,
         # navigation bar
         "navitems":                  [navbar],
         "pagelinks":                 pagelinks,

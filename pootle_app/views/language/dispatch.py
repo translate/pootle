@@ -50,7 +50,11 @@ class TranslatePageState(CommonState):
 def get_store(request):
     basename = url_manip.basename(request.path_info)
     if basename == 'translate.html':
-        return request.GET.get('store', '')
+        if 'store' in request.POST:
+            return request.POST['store']
+        else:
+            return request.GET.get('store', '')
+    
     else:
         return request.path_info
 
@@ -66,8 +70,11 @@ def translate(request, path, **kwargs):
     # when the user clicks submit/skip/suggest on a translation
     # unit. But otherwise the store name is the last component of the
     # path name and we don't need to pass the 'store' GET variable.
-    if url_manip.basename(path) != 'translate.html':
+    if path[-1] == '/':
+        path = path + 'translate.html'
+    else:
         params.store = None
+        
     if check_permission('translate', request) and 'view_mode' not in kwargs:
         params.view_mode = 'translate'
     return url_manip.make_url(path, params.encode())

@@ -23,7 +23,7 @@ from pootle_app.lib.util import l, m
     <form action="translate.html?view_mode=translate" method="post" name="searchform" id="searchform">
       <div py:replace="XML(search.search_form.as_p())"/>
       <input type="hidden" name="new_search" value="new_search" />
-      <input type="hidden" name="pofilename" value="${pofilename}" />
+      <input type="hidden" name="store" value="${store}" />
       <a class="advancedlink">
 	<img src="${m('images/bullet_arrow_down.png')}" title="${search.advanced_search_title}" class="togglesearch" />
 	<img src="${m('images/bullet_arrow_up.png')}" title="${search.advanced_search_title}" class="togglesearch" style="display: none;"/>
@@ -192,6 +192,8 @@ from pootle_app.lib.util import l, m
 				   value="${buttons.copy_text}" />
 			    <input py:if="'suggest' in buttons.desired" type="submit" name="submitsuggest${buttons.item}" accesskey="e" value="${buttons.suggest}"/>
 			    <input py:if="'translate' in buttons.desired" type="submit" name="submit${buttons.item}" accesskey="s" value="${buttons.submit}"/>
+			    <input type="hidden" name="store" value="${store}" />
+
 			  </div>
 			  <div py:if="'translate' in buttons.desired" class="translate-fuzzy-block">
 			    <input type="checkbox" checked="${item.fuzzy}" name="fuzzy${buttons.item}" accesskey="f" id="fuzzy${buttons.item}" class="fuzzycheck" />
@@ -279,8 +281,6 @@ from pootle_app.lib.util import l, m
 	      </div>
 	      
 	    </table>
-	    <!--! <input type="hidden" name="searchtext" value="${searchtext}" />
-		<input type="hidden" name="pofilename" value="${pofilename}" /> -->
 	  </form>
 	  
 	  <!--! start/next/previous/end links -->
