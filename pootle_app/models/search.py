@@ -196,7 +196,7 @@ class Search(object):
             if self.search_results is not None and \
                     store.pootle_path not in self.search_results:
                 return iter([])
-
+            
             stats = metadata.property_stats(store, self.translation_project.checker)
             total = stats['total']
             result = total[range[0]:range[1]]

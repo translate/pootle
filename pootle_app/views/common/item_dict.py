@@ -117,7 +117,7 @@ def yield_review_link(request, path_obj, links_required, stats_totals):
         else:
             text = _('View Suggestions')
         yield { 
-            'href': dispatch.translate(request, request.path_info, match_names=['review']),
+            'href': dispatch.translate(request, path_obj.pootle_path, match_names=['check-hassuggestion']),
             'text': text }
 
 def yield_quick_link(request, path_obj, links_required, stats_totals):
@@ -127,7 +127,7 @@ def yield_quick_link(request, path_obj, links_required, stats_totals):
         text = _('View Untraslated')
     if stats_totals['translated'] < stats_totals['total']:
         yield {
-            'href': dispatch.translate(request, request.path_info, match_names=['fuzzy', 'untranslated']),
+            'href': dispatch.translate(request, path_obj.pootle_path, match_names=['fuzzy', 'untranslated']),
             'text': text }
 
 def yield_translate_all_link(request, path_obj, links_required):
@@ -174,7 +174,7 @@ def yield_sdf_link(request, path_obj, links_required):
 def get_store_extended_links(request, path_obj, links_required):
     stats_totals = metadata.stats_totals(path_obj, request.translation_project.checker)
     return list(itertools.chain(
-            yield_assigned_links(    request, path_obj, links_required),
+            #yield_assigned_links(    request, path_obj, links_required),
             yield_review_link(       request, path_obj, links_required, stats_totals),
             yield_quick_link(        request, path_obj, links_required, stats_totals),
             yield_translate_all_link(request, path_obj, links_required),
