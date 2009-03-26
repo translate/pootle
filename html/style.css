@@ -1030,9 +1030,11 @@ table[dir="rtl"] td.translate-original
 /* ORIGINAL */
 .translate-focus div.translate-original
 {
-    border: 3px solid black;
+    border: 1px solid black;
     padding: 5px 0;
     min-height: 3em;
+    background-color: #ebebeb;
+    color: #000;
 }
 
 div.translate-original
@@ -1048,9 +1050,10 @@ table td.translate-original
 .translate-locations
 {
     font-family: monospace;
-    background: #ddd url('images/script_code.png') no-repeat;
+    font-size: 90%;
+    background: transparent url('images/script_code.png') no-repeat;
     background-position: 5px center;
-    border: 1px solid #000;
+    border: 1px solid #ddd;
     overflow: auto;
     padding: 5px 25px;
 }
@@ -1075,6 +1078,7 @@ td.translate-focus
 	padding-left:.5em;
 	vertical-align: top;
 }
+
 textarea.translation
 {
     height: 3em;
@@ -1083,18 +1087,21 @@ textarea.translation
     min-height: 3em;
     margin: 0 0 10px 0;
     padding: 5px;
-    border: 3px solid black;
+    border: 2px solid black;
 }
+
 td.comments
 {
-	padding:.5em;
-        border-bottom:2px solid #000000;
+    padding: .5em;
+    border-bottom: 2px solid #000000;
 }
+
 textarea.comments
 {
 	max-width: 100%;
 	width: 100%;
 }
+
 .altsrclangname
 {
     padding-top: 10px;
