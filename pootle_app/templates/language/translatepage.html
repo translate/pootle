@@ -154,7 +154,7 @@ from pootle_app.lib.util import l, m
 			</div>
 		      
 			<!--! Reviewing mode: display original strings for diffing -->
-			<div id="translate-original-container" py:if="reviewmode">
+			<div id="translate-original-container" py:if="item.hassuggestion">
 			  <strong class="${item.state_class}" py:content="item.trans.current_title">Current Translation:</strong>
 			  <div class="translate-original-block">
 			    <div py:for="form in item.trans.forms" py:strip="True">

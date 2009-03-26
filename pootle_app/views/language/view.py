@@ -294,9 +294,9 @@ def handle_suggestions(request, translation_project, file_path, item):
             amsg = ""
             rmsg = ""
             if accept_candidates != 0:
-                amsg = _("Suggestion accepted. ")
+                amsg = _("Suggestion accepted")
             if reject_candidates != 0:
-                rmsg = _N("%d suggestion rejected.",
+                rmsg = _N("Suggestion rejected",
                           "%d suggestions rejected.", reject_count)
             response["message"] = amsg + rmsg
 
