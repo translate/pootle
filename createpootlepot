@@ -2,7 +2,7 @@
 xgettext \
 --add-comments=l10n \
 --package-name=Pootle \
---package-version=`egrep "^ver" __version__.py | sed "s/.*\"\(.*\)\"/\1/"` \
+--package-version=`egrep "^ver" pootle_app/__version__.py | sed "s/.*\"\(.*\)\"/\1/"` \
 --language=Python \
 --keyword=localize \
 --keyword=nlocalize:1,2 \

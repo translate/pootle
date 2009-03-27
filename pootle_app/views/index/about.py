@@ -33,9 +33,9 @@ from translate import __version__ as toolkitversion
 from pootle_app.views.util import render_jtoolkit
 from pootle_app.views.indexpage import shortdescription
 from pootle_app.views import pagelayout
+from pootle_app import __version__ as pootleversion
 
 from Pootle import pan_app
-from Pootle import __version__ as pootleversion
 from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
 
 def view(request):
