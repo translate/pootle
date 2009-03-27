@@ -28,7 +28,6 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext as _N
 
 from Pootle import indexpage, pan_app, projects
-from Pootle.misc.jtoolkit_django import process_django_request_args
 
 from pootle_app.views.util         import render_to_kid, render_jtoolkit
 from pootle_app.lib.util           import redirect
