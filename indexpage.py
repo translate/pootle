@@ -37,7 +37,6 @@ from pootle_app.models import Suggestion, Submission, Language, Project, \
 from pootle_app.models.profile import get_profile
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.models import metadata
-from pootle_app.language import try_language_code
 from pootle_app import project_tree
 from Pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang
 from Pootle import pan_app, pagelayout, pootlefile
