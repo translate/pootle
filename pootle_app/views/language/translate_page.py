@@ -38,11 +38,10 @@ from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.models import TranslationProject, Directory, Store
 from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
-from pootle_app.views.common import navbar_dict, search_forms
 from pootle_app import unit_update, url_manip
 from pootle_app.models import permissions, metadata
 from pootle_app.models.permissions import check_permission
-import dispatch
+import dispatch, navbar_dict, search_forms
 
 from Pootle import pagelayout
 from Pootle import projects

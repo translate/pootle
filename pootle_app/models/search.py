@@ -27,7 +27,7 @@ from django.utils.translation import ugettext_lazy as _
 from translate.tools import pogrep
 
 from pootle_app.models.assignment import StoreAssignment
-from pootle_app.views.common      import search_forms
+from pootle_app.views.language    import search_forms
 from pootle_app.lib.util          import lazy_property
 
 from Pootle.pootlefile import with_pootle_file

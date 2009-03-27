@@ -32,7 +32,6 @@ from translate.storage import factory
 
 from pootle_app.views.util import render_to_kid, render_jtoolkit
 from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
-from pootle_app.views.common import navbar_dict, item_dict, search_forms
 from pootle_app.models import Goal, Directory, Store
 from pootle_app.models.search import Search
 from pootle_app.models.permissions import get_matching_permissions, check_permission, PermissionError
@@ -41,7 +40,7 @@ from pootle_app.project_tree import scan_translation_project_files
 from pootle_app import url_manip
 from pootle_app.lib import view_handler
 from pootle_app.views.base import BaseView
-import dispatch
+import dispatch, navbar_dict, item_dict, search_forms
 
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle import pan_app
