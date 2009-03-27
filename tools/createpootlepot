@@ -2,12 +2,12 @@
 xgettext \
 --add-comments=l10n \
 --package-name=Pootle \
---package-version=`egrep "^ver" pootle_app/__version__.py | sed "s/.*\"\(.*\)\"/\1/"` \
+--package-version=`egrep "^ver" ../pootle_app/__version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g"` \
 --language=Python \
 --keyword=localize \
 --keyword=nlocalize:1,2 \
 --default-domain=pootle \
 --msgid-bugs-address=translate-pootle@lists.sourceforge.net \
 --copyright-holder="Zuza Software Foundation (Translate.org.za)" \
--o po/pootle/templates/pootle.pot \
-`find .  -name "*.py" | sort`
+-o ../po/pootle/templates/pootle.pot \
+`find ../  -name "*.py" | sort`
