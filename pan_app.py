@@ -27,7 +27,7 @@ from django.utils.translation import ugettext
 from translate.misc.context import with_
 from translate.misc.contextlib import contextmanager
 
-from Pootle.misc import prefs as prefsmodule
+from pootle_app.lib import prefs as prefsmodule
 
 cache_templates = True
 

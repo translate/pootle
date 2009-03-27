@@ -35,9 +35,9 @@ import optparse
 from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
 from pootle_app.models.translation_project import scan_translation_projects
+from pootle_app.lib import prefs
 from Pootle import pootlefile, filelocations
 from Pootle import pan_app
-from Pootle.misc import prefs
 from Pootle import __version__ as pootleversion
 from translate import __version__ as toolkitversion
 
