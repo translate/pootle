@@ -39,8 +39,6 @@ from pootle_app.views.language     import dispatch
 from pootle_app.convert            import convert_table
 from pootle_app                    import unit_update
 
-from Pootle import pan_app
-
 from project_index import view as project_index_view
 from translate_page import find_and_display
 from admin import view as translation_project_admin_view

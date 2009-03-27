@@ -26,8 +26,6 @@ N_ = _
 from pootle_app.views import pagelayout
 from pootle_app.views.util import render_jtoolkit
 
-from Pootle import pan_app
-
 from util import user_is_admin
 
 class AdminPage(pagelayout.PootlePage):

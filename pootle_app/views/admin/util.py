@@ -10,8 +10,6 @@ from pootle_app.lib.util import redirect
 from pootle_app.views.util import render_jtoolkit, render_to_kid, KidRequestContext
 from pootle_app.models import Language, Project
 
-from Pootle import pan_app
-
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_authenticated():

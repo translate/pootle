@@ -49,9 +49,9 @@ from pootle_app                    import project_tree
 from pootle_app.models             import store_iteration, metadata, store_file
 from pootle_app.models.store_file  import relative_real_path, absolute_real_path
 from pootle_app.models.permissions import PermissionError, check_permission
-from pootle_app.lib import statistics
+from pootle_app.lib                import statistics
+from pootle_app.views              import pagelayout
 
-from Pootle            import pan_app
 from Pootle.scripts    import hooks
 from Pootle.i18n       import gettext as pootle_gettext
 
@@ -272,7 +272,7 @@ class TranslationProject(models.Model):
         statsstring = "%d of %d messages translated (%d fuzzy)." % \
                 (stats["translated"], stats["total"], stats["fuzzy"])
 
-        message="Commit from %s by user %s, editing po file %s. %s" % (pan_app.prefs.title, request.user.username, pofilename, statsstring)
+        message="Commit from %s by user %s, editing po file %s. %s" % (pagelayout.get_title(), request.user.username, pofilename, statsstring)
         author=request.user.username
         fulldir = os.path.split(pathname)[0]
      

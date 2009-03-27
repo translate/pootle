@@ -36,8 +36,6 @@ from pootle_app.views import pagelayout
 from pootle_app import __version__ as pootleversion
 from pootle_app.lib.legacy.jToolkit import __version__ as jtoolkitversion
 
-from Pootle import pan_app
-
 def view(request):
     return render_jtoolkit(AboutPage(request))
 

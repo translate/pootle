@@ -24,7 +24,6 @@ from django.utils.translation import ugettext as _
 from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
 from pootle_app.models import metadata
-from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang
 from Pootle.i18n import gettext
 

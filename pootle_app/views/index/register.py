@@ -34,8 +34,6 @@ from pootle_app.views.index.util import forcemessage
 from pootle_app.models.profile import get_profile
 from pootle_app.lib.util import l
 
-from Pootle import pan_app
-
 
 def view(request):
     return render_jtoolkit(registerpage(request))

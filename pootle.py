@@ -30,7 +30,6 @@ import optparse
 from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
 from pootle_app.models.translation_project import scan_translation_projects
-from pootle_app.lib import prefs
 from pootle_app import __version__ as pootleversion
 from Pootle import filelocations
 from Pootle import pan_app
@@ -144,17 +143,13 @@ def checkversions():
                             % toolkitversion.sver)
 
 
-def set_options(options):
-    pan_app.prefs = prefs.load_preferences(options.prefsfile)
-
-
 def run_pootle(options, args):
-    pan_app.pootle_server = PootleServer()
     if options.action == 'runwebserver':
         httpd = make_server('', options.port, WSGIHandler())
         httpd.serve_forever()
     elif options.action == 'refreshstats':
-        pan_app.pootle_server.refreshstats(args)
+        pass
+        #pan_app.pootle_server.refreshstats(args)
 
 
 def init_db():
@@ -179,7 +174,6 @@ def main():
     (options, args) = parser.parse_args()
     if options.action != 'runwebserver':
         options.servertype = 'dummy'
-    set_options(options)
     scan_translation_projects()
     run_pootle(options, args)
 

@@ -29,8 +29,6 @@ from pootle_app.models.permissions import get_pootle_permissions, PermissionSet,
     get_matching_permissions
 from pootle_app import project_tree
 
-from Pootle import pan_app
-
 class PermissionSetForm(forms.Form):
     """A PermissionSetForm represents a PermissionSet to the user.
 
@@ -247,7 +245,6 @@ def view(request, translation_project):
         "language":               language,
         "main_link":              _("Project home page"),
         "rescan_files_link":      _("Rescan project files"),
-        "instancetitle":          getattr(pan_app.prefs, "title", _("Pootle Demo")),
         "filestyle_text":         filestyle_text,
         "permissions_title":      _("User Permissions"),
         "username_title":         _("Username"),

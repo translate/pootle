@@ -22,8 +22,6 @@ from django.forms.models import modelformset_factory
 from django import forms
 from django.utils.translation import ugettext as _
 
-from Pootle import pan_app
-
 from pootle_app.lib.util            import redirect
 from pootle_app.views               import indexpage, pagelayout
 from pootle_app.views.util          import render_to_kid, render_jtoolkit, \

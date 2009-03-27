@@ -26,8 +26,6 @@ from django.utils.functional import lazy
 
 from pootle_app.models.language import Language
 
-from Pootle import pan_app
-
 # START BOOTSTRAPPING TRANSLATION CODE
 
 # We need to hijack Django's translation machinery very early in
