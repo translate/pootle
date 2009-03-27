@@ -36,8 +36,7 @@ from translate.storage import factory
 from translate.filters import checks
 from translate.misc.multistring import multistring
 
-from pootle_app.lru_cache import LRUCache
-from pootle_app.lib import util, statistics
+from pootle_app.lib import util, statistics, lru_cache
 
 from Pootle import __version__
 from Pootle.legacy.jToolkit import timecache
@@ -838,8 +837,8 @@ def absolute_real_path(p):
 
 # ###############################################################################
 
-pootle_files = LRUCache(settings.STORE_LRU_CACHE_SIZE, lambda project_filename: \
-                        pootlefile(project_filename[0], project_filename[1]))
+pootle_files = lru_cache.LRUCache(settings.STORE_LRU_CACHE_SIZE, lambda project_filename: \
+                                      pootlefile(project_filename[0], project_filename[1]))
 
 
 def with_pootle_file_cache(f):
