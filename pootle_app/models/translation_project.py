@@ -48,8 +48,9 @@ from pootle_app.models.store       import Store
 from pootle_app                    import project_tree
 from pootle_app.models             import store_iteration, metadata
 from pootle_app.models.permissions import PermissionError, check_permission
+from pootle_app.lib import statistics
 
-from Pootle            import pan_app, pootlefile, statistics
+from Pootle            import pan_app, pootlefile
 from Pootle.scripts    import hooks
 from Pootle.pootlefile import relative_real_path, absolute_real_path
 
