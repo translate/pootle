@@ -6,7 +6,6 @@ The top-level tests are then in test_client / test_ie / test_mozilla etc
 These can then be layered on top of different test servers"""
 
 from Pootle import pootle
-from Pootle import users
 from jToolkit.web import simplewebserver
 from jToolkit.web import session
 from jToolkit.data import dates

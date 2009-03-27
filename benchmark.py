@@ -22,7 +22,6 @@ from Pootle import pootlefile
 from Pootle import projects
 from Pootle import potree
 from Pootle import pootle
-from Pootle import users
 from translate.storage import po
 from translate.search import indexing
 import os
