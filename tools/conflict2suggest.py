@@ -21,14 +21,14 @@
 """processes conflicts from msgmerge and turns them into Pootle
 suggestions"""
 
-from Pootle import pootlefile
+from pootle_app.models import store_file
 import os
 conflictmarker = '#-#-#-#-#'
 
 
 def processfile(filename):
     dummyproject = projects.DummyProject(os.path.dirname(filename), None)
-    pofile = pootlefile.pootlefile(dummyproject, os.path.basename(filename))
+    pofile = store_file.store_file(dummyproject, os.path.basename(filename))
     pofile.readpofile()
     conflictitems = []
     for item in pofile.statistics.getstats()['total']:

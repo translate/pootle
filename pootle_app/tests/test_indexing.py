@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Pootle import pootle
-from Pootle import pootlefile
+from pootle_app.models import store_filen
 
 def setup_module(module):
     """initialize global variables in the module"""
@@ -18,8 +18,8 @@ def test_init():
 
 def test_search():
     """tests that the index can be initialized"""
-    pass_search = pootlefile.Search(searchtext="login")
-    fail_search = pootlefile.Search(searchtext="Zrogny")
+    pass_search = store_file.Search(searchtext="login")
+    fail_search = store_file.Search(searchtext="Zrogny")
     for languagecode, languagename in potree.getlanguages("pootle"):
         translationproject = potree.getproject(languagecode, "pootle")
         print translationproject.make_indexer().location

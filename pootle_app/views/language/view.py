@@ -30,7 +30,7 @@ from django.utils.translation import ungettext as _N
 from pootle_app.views.util         import render_to_kid, render_jtoolkit
 from pootle_app.views              import indexpage
 from pootle_app.lib.util           import redirect
-from pootle_app.models             import Language, Project, TranslationProject, Store, Directory, store_iteration
+from pootle_app.models             import Language, Project, TranslationProject, Store, Directory, store_iteration, store_file
 from pootle_app.models.search      import Search, search_from_state
 from pootle_app.url_manip          import strip_trailing_slash, clear_path
 from pootle_app.models.permissions import get_matching_permissions, PermissionError, check_permission
@@ -40,7 +40,6 @@ from pootle_app.convert            import convert_table
 from pootle_app                    import unit_update
 
 from Pootle import pan_app
-from Pootle import pootlefile
 
 from project_index import view as project_index_view
 from translate_page import find_and_display
@@ -199,7 +198,7 @@ def export(request, translation_project, file_path, format):
             convert_func(input_file, output_file, None)
             return HttpResponse(output_file.getvalue(), content_type=content_type)
     store = Store.objects.get(pootle_path=translation_project.directory.pootle_path + file_path)
-    return pootlefile.with_store(translation_project, store, send)
+    return store_file.with_store(translation_project, store, send)
 
 @get_translation_project
 @set_request_context
@@ -221,7 +220,7 @@ def handle_suggestions(request, translation_project, file_path, item):
     # TODO: finish this function and return nice diffs
     pootle_path = translation_project.directory.pootle_path + file_path
     store = Store.objects.get(pootle_path=pootle_path)
-    file_path = pootlefile.absolute_real_path(store.real_path)
+    file_path = store_file.absolute_real_path(store.real_path)
     
     def getpendingsuggestions(item):
         """Gets pending suggestions for item in pofilename."""
@@ -254,7 +253,7 @@ def handle_suggestions(request, translation_project, file_path, item):
         for sugg in reversed(rejects):
             try:
                 # XXX: disabled for testing
-                pootlefile.with_store(translation_project, store,
+                store_file.with_store(translation_project, store,
                                       lambda pootle_file:
                                       unit_update.reject_suggestion(pootle_file,
                                                                     int(item), int(sugg["id"]),
@@ -273,7 +272,7 @@ def handle_suggestions(request, translation_project, file_path, item):
         for sugg in accepts:
             try:
                 # XXX: disabled for testing
-                pootlefile.with_store(translation_project, store,
+                store_file.with_store(translation_project, store,
                                       lambda pootle_file:
                                       unit_update.accept_suggestion(pootle_file,
                                                                     int(item), int(sugg["id"]),

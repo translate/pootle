@@ -43,7 +43,7 @@ from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.models import metadata
 from pootle_app import project_tree
 from Pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang
-from Pootle import pan_app, pootlefile
+from Pootle import pan_app
 
 def shortdescription(descr):
     """Returns a short description by removing markup and only

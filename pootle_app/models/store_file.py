@@ -290,7 +290,7 @@ class pootleassigns:
 
 
 def make_class(base_class):
-    class pootlefile(base_class):
+    class store_file(base_class):
         """this represents a pootle-managed file and its associated
         files"""
 
@@ -299,7 +299,7 @@ def make_class(base_class):
         def __init__(self, translation_project=None, pofilename=None):
             if pofilename:
                 self.__class__.__bases__ = (factory.getclass(pofilename), )
-            super(pootlefile, self).__init__()
+            super(store_file, self).__init__()
             self.pofilename = pofilename
             self.filename = self.pofilename
             if translation_project is None:
@@ -364,7 +364,7 @@ def make_class(base_class):
             similar)."""
 
             try:
-                return super(pootlefile, self).getheaderplural()
+                return super(store_file, self).getheaderplural()
             except AttributeError:
                 return (None, None)
 
@@ -374,7 +374,7 @@ def make_class(base_class):
             there."""
 
             try:
-                super(pootlefile, self).updateheaderplural(*args, **kwargs)
+                super(store_file, self).updateheaderplural(*args, **kwargs)
             except AttributeError:
                 pass
 
@@ -384,7 +384,7 @@ def make_class(base_class):
             there."""
 
             try:
-                super(pootlefile, self).updateheader(**kwargs)
+                super(store_file, self).updateheader(**kwargs)
             except AttributeError:
                 pass
 
@@ -563,7 +563,7 @@ def make_class(base_class):
             """returns pofile output"""
 
             self.pofreshen()
-            return super(pootlefile, self).getoutput()
+            return super(store_file, self).getoutput()
 
         def updateunit(self, item, newvalues, userprefs, languageprefs):
             """updates a translation with a new target value"""
@@ -751,33 +751,33 @@ def make_class(base_class):
             self.savepofile()
 
 
-    return pootlefile
+    return store_file
 
 
-_pootlefile_classes = {}
+_store_file_classes = {}
 
 # We want to extend the functionality of translation stores with some
 # Pootle-specific functionality, but we still want them to act like
 # translation stores. The clean way to do this, is to store a
-# reference to a translation store inside a "pootlefile" class and to
+# reference to a translation store inside a "store_file" class and to
 # delegate if needed to the store. This was done initially through
 # __getattr__ and __setattr__, although it proved to be rather slow
 # (which made a difference for large sets of translation files). This
 # is now achieved through inheritance. When we have to load a
 # translation file, we get hold of its corresponding translation store
 # class. Then we see whether there is a class which contains
-# pootlefile functionality and which derives from the translation
+# store_file functionality and which derives from the translation
 # store class. If there isn't we invoke make_class to create such a
 # class. Then we return an instance of this class to the user.
 
 
-def pootlefile(project=None, pofilename=None):
-    po_class = po.pofile
-    if pofilename != None:
-        po_class = factory.getclass(pofilename)
-    if po_class not in _pootlefile_classes:
-        _pootlefile_classes[po_class] = make_class(po_class)
-    return _pootlefile_classes[po_class](project, pofilename)
+def store_file(project=None, store_filename=None):
+    klass = po.pofile
+    if store_filename != None:
+        klass = factory.getclass(store_filename)
+    if klass not in _store_file_classes:
+        _store_file_classes[klass] = make_class(klass)
+    return _store_file_classes[klass](project, store_filename)
 
 
 class Search:
@@ -835,100 +835,100 @@ def absolute_real_path(p):
 
 # ###############################################################################
 
-pootle_files = lru_cache.LRUCache(settings.STORE_LRU_CACHE_SIZE, lambda project_filename: \
-                                      pootlefile(project_filename[0], project_filename[1]))
+store_files = lru_cache.LRUCache(settings.STORE_LRU_CACHE_SIZE, lambda project_filename: \
+                                      store_file(project_filename[0], project_filename[1]))
 
 
-def with_pootle_file_cache(f):
+def with_store_file_cache(f):
     # TBD: Do locking here
-    return f(pootle_files)
+    return f(store_files)
 
 
 # ###############################################################################
 
 
-def set_translation_project(pootle_files, translation_project):
-    for pootle_file in pootle_files:
-        pootle_file._with_pootle_file_ref_count = getattr(pootle_file,
-                '_with_pootle_file_ref_count', 0) + 1
-        pootle_file.translation_project = translation_project
+def set_translation_project(store_files, translation_project):
+    for store_file in store_files:
+        store_file._with_store_file_ref_count = getattr(store_file,
+                '_with_store_file_ref_count', 0) + 1
+        store_file.translation_project = translation_project
 
 
-def freshen_files(pootle_files, translation_project):
-    for pootle_file in pootle_files:
-        pootle_file.pofreshen()
+def freshen_files(store_files, translation_project):
+    for store_file in store_files:
+        store_file.pofreshen()
         # Set the mtime of the TranslationProject to the most recent
         # mtime of a store loaded for this TranslationProject.
         translation_project.pomtime = max(translation_project.pomtime,
-                pootle_file.pomtime)
+                store_file.pomtime)
 
 
-def unset_translation_project(pootle_files):
-    for pootle_file in pootle_files:
-        pootle_file._with_pootle_file_ref_count -= 1
-        if pootle_file._with_pootle_file_ref_count == 0:
-            del pootle_file._with_pootle_file_ref_count
-            del pootle_file.translation_project
+def unset_translation_project(store_files):
+    for store_file in store_files:
+        store_file._with_store_file_ref_count -= 1
+        if store_file._with_store_file_ref_count == 0:
+            del store_file._with_store_file_ref_count
+            del store_file.translation_project
 
 
-def with_pootle_files(translation_project, filenames, f):
+def with_store_files(translation_project, filenames, f):
 
     def do(cache):
-        pootle_files = [cache[translation_project, filename] for filename in
+        store_files = [cache[translation_project, filename] for filename in
                         filenames]
-        set_translation_project(pootle_files, translation_project)
-        freshen_files(pootle_files, translation_project)
+        set_translation_project(store_files, translation_project)
+        freshen_files(store_files, translation_project)
         try:
-            return f(pootle_files)
+            return f(store_files)
         finally:
-            unset_translation_project(pootle_files)
+            unset_translation_project(store_files)
 
-    return with_pootle_file_cache(do)
+    return with_store_file_cache(do)
 
 
-def with_pootle_file(translation_project, filename, f):
+def with_store_file(translation_project, filename, f):
 
-    def do(pootle_files):
-        return f(pootle_files[0])
+    def do(store_files):
+        return f(store_files[0])
 
-    return with_pootle_files(translation_project, [filename], do)
+    return with_store_files(translation_project, [filename], do)
 
 
 # ###############################################################################
 
 
-def set_stores(pootle_files, stores):
-    for (pootle_file, store) in zip(pootle_files, stores):
-        pootle_file._with_store_ref_count = getattr(pootle_file,
+def set_stores(store_files, stores):
+    for (store_file, store) in zip(store_files, stores):
+        store_file._with_store_ref_count = getattr(store_file,
                 '_with_store_ref_count', 0) + 1
-        pootle_file.store = store
+        store_file.store = store
 
 
-def unset_stores(pootle_files):
-    for pootle_file in pootle_files:
-        pootle_file._with_store_ref_count -= 1
-        if pootle_file._with_store_ref_count == 0:
-            del pootle_file._with_store_ref_count
-            del pootle_file.store
+def unset_stores(store_files):
+    for store_file in store_files:
+        store_file._with_store_ref_count -= 1
+        if store_file._with_store_ref_count == 0:
+            del store_file._with_store_ref_count
+            del store_file.store
 
 
 def with_stores(translation_project, stores, f):
 
-    def do(pootle_files):
-        set_stores(pootle_files, stores)
+    def do(store_files):
+        set_stores(store_files, stores)
         try:
-            return f(pootle_files)
+            return f(store_files)
         finally:
-            unset_stores(pootle_files)
+            unset_stores(store_files)
 
     filenames = [store.abs_real_path for store in stores]
-    return with_pootle_files(translation_project, filenames, do)
+    return with_store_files(translation_project, filenames, do)
 
 
 def with_store(translation_project, store, f):
 
-    def do(pootle_files):
-        return f(pootle_files[0])
+    def do(store_files):
+        return f(store_files[0])
 
     return with_stores(translation_project, [store], do)
 
@@ -936,11 +936,10 @@ def with_store(translation_project, store, f):
 # ###############################################################################
 
 
-def set_pootle_file(translation_project, filename, pootle_file):
+def set_store_file(translation_project, filename, store_file):
 
-    def do_set(pootle_files):
-        pootle_files[filename] = pootle_files
+    def do_set(store_files):
+        store_files[filename] = store_files
 
-    return with_pootle_file_cache(do_set)
-
+    return with_store_file_cache(do_set)
 

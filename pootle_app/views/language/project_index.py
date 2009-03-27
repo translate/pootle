@@ -32,7 +32,7 @@ from translate.storage import factory
 
 from pootle_app.views.util import render_to_kid, render_jtoolkit
 from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
-from pootle_app.models import Goal, Directory, Store
+from pootle_app.models import Goal, Directory, Store, store_file
 from pootle_app.models.search import Search
 from pootle_app.models.permissions import get_matching_permissions, check_permission, PermissionError
 from pootle_app.models.profile import get_profile
@@ -44,7 +44,6 @@ import dispatch, navbar_dict, item_dict, search_forms
 
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle import pan_app
-from Pootle import pootlefile
 
 
 
@@ -104,7 +103,7 @@ def get_upload_path(translation_project, relative_root_dir, local_filename):
         if local_filename != translation_project.language.code:
             raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" % (localfilename, self.languagecode, self.fileext, self.languagecode, self.fileext))
     dir_path = os.path.join(translation_project.real_path, unix_to_host_path(relative_root_dir))
-    return pootlefile.relative_real_path(os.path.join(dir_path, local_filename))
+    return store_file.relative_real_path(os.path.join(dir_path, local_filename))
 
 def get_local_filename(translation_project, upload_filename):
     base, ext = os.path.splitext(upload_filename)
@@ -179,7 +178,7 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
     local_filename = get_local_filename(request.translation_project, filename)
     # The full filesystem path to 'local_filename'
     upload_path    = get_upload_path(request.translation_project, relative_root_dir, local_filename)
-    if os.path.exists(pootlefile.absolute_real_path(upload_path)) and not overwrite:
+    if os.path.exists(store_file.absolute_real_path(upload_path)) and not overwrite:
         def do_merge(origpofile):
             newfileclass = factory.getclass(filename)
             newfile = newfileclass.parsestring(file_contents)
@@ -193,16 +192,16 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
                 raise PermissionError(_("You do not have rights to upload files here"))
 
         store = Store.objects.get(real_path=upload_path)
-        pootlefile.with_store(request.translation_project, store, do_merge)
+        store_file.with_store(request.translation_project, store, do_merge)
     else:
         if not (check_permission("administrate", request) or check_permission("overwrite", request)):
             if overwrite:
                 raise PermissionError(_("You do not have rights to overwrite files here"))
-            elif not os.path.exists(pootlefile.absolute_real_path(upload_path)):
+            elif not os.path.exists(store_file.absolute_real_path(upload_path)):
                 raise PermissionError(_("You do not have rights to upload new files here"))
         # Get the file extensions of the uploaded filename and the
         # current translation project
-        upload_dir = os.path.dirname(pootlefile.absolute_real_path(upload_path))
+        upload_dir = os.path.dirname(store_file.absolute_real_path(upload_path))
         # Ensure that there is a directory into which we can dump the
         # uploaded file.
         if not os.path.exists(upload_dir):
@@ -213,7 +212,7 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
         # used in this translation project, then we simply write the
         # file to the disc.
         if upload_ext == local_ext:
-            outfile = open(pootlefile.absolute_real_path(upload_path), "wb")
+            outfile = open(store_file.absolute_real_path(upload_path), "wb")
             try:
                 outfile.write(file_contents)
             finally:
@@ -227,12 +226,12 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
             # If the extension of the uploaded file does not match the
             # extension of the current translation project, we create
             # an empty file (with the right extension)...
-            empty_store = factory.getobject(pootlefile.absolute_real_path(upload_path))
+            empty_store = factory.getobject(store_file.absolute_real_path(upload_path))
             # And save it...
             empty_store.save()
             # Then we open this newly created file and merge the
             # uploaded file into it.
-            pootlefile.with_pootle_file(request.translation_project, upload_path, do_merge)
+            store_file.with_store_file(request.translation_project, upload_path, do_merge)
 
 
 class UploadHandler(view_handler.Handler):

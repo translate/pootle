@@ -18,7 +18,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from Pootle import pootlefile
+from pootle_app.models import store_file
 from Pootle import potree
 from Pootle import pootle
 from translate.storage import po
@@ -29,8 +29,8 @@ import pstats
 
 class PootleBenchmarker:
     """class to aid in benchmarking pootle"""
-    StoreClass = pootlefile.pootlefile
-    UnitClass = pootlefile.pootleunit
+    StoreClass = store_file.store_file
+    UnitClass = store_file.pootleunit
     def __init__(self, test_dir):
         """sets up benchmarking on the test directory"""
         self.test_dir = os.path.abspath(test_dir)
@@ -114,18 +114,18 @@ Pootle:
         print "counted %d units" % count
 
     def parse_and_create_stats(self):
-        """parses all the po files in the test directory into memory, using pootlefile, which creates Stats"""
+        """parses all the po files in the test directory into memory, using store_file, which creates Stats"""
         count = 0
         indexing.HAVE_INDEXER = False
         for dirpath, subdirs, filenames in os.walk(self.po_dir, topdown=False):
             for name in filenames:
                 pofilename = os.path.join(dirpath, name)
-                parsedfile = pootlefile.pootlefile(pofilename=pofilename)
+                parsedfile = store_file.store_file(pofilename=pofilename)
                 count += len(parsedfile.units)
         print "stats on %d units" % count
 
     def parse_and_create_index(self):
-        """parses all the po files in the test directory into memory, using pootlefile, and allow index creation"""
+        """parses all the po files in the test directory into memory, using store_file, and allow index creation"""
         count = 0
         indexing.HAVE_INDEXER = True
         self.server.potree.projectcache.clear()

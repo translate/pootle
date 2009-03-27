@@ -30,8 +30,7 @@ from pootle_app.models.project    import Project
 from pootle_app.models.directory  import Directory
 from pootle_app.models.store      import Store
 from pootle_app.url_manip import strip_trailing_slash
-
-from Pootle.pootlefile import absolute_real_path, relative_real_path
+from pootle_app.models.store_file import absolute_real_path, relative_real_path
 
 def get_project_code(project_dir):
     return project_dir.split(os.sep)[0]

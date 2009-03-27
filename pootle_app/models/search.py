@@ -29,8 +29,7 @@ from translate.tools import pogrep
 from pootle_app.models.assignment import StoreAssignment
 from pootle_app.views.language    import search_forms
 from pootle_app.lib.util          import lazy_property
-
-from Pootle.pootlefile import with_pootle_file
+from pootle_app.models.store_file import with_store_file
 
 import metadata
 
@@ -76,7 +75,7 @@ def narrow_to_search_text(total, store, translatables, search):
                 if grepfilter.filterunit(pootle_file.units[item]))
 
     if search.search_text not in (None, '') and search.search_results is None:
-        return with_pootle_file(search.translation_project, store.abs_real_path, do_slow_search)
+        return with_store_file(search.translation_project, store.abs_real_path, do_slow_search)
     elif search.search_results is not None:
         mapped_indices = [total[item] for item in search.search_results[store.pootle_path]]
         return intersect(mapped_indices, translatables)

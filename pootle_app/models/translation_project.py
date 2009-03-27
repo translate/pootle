@@ -46,13 +46,13 @@ from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory
 from pootle_app.models.store       import Store
 from pootle_app                    import project_tree
-from pootle_app.models             import store_iteration, metadata
+from pootle_app.models             import store_iteration, metadata, store_file
+from pootle_app.models.store_file  import relative_real_path, absolute_real_path
 from pootle_app.models.permissions import PermissionError, check_permission
 from pootle_app.lib import statistics
 
-from Pootle            import pan_app, pootlefile
+from Pootle            import pan_app
 from Pootle.scripts    import hooks
-from Pootle.pootlefile import relative_real_path, absolute_real_path
 from Pootle.i18n       import gettext as pootle_gettext
 
 class TranslationProjectNonDBState(object):
@@ -227,7 +227,7 @@ class TranslationProject(models.Model):
             # TODO: add some locking here...
             # reading new version of file
             versioncontrol.updatefile(pathname)
-            newpofile = pootlefile.pootlefile(self, popath)
+            newpofile = store_file.store_file(self, popath)
             newpofile.pofreshen()
             newpofile.mergefile(currentpofile, "versionmerge")
             self.non_db_state.pofiles[pofilename] = newpofile
@@ -246,7 +246,7 @@ class TranslationProject(models.Model):
             self.stats = {}
             for xpofilename in self.non_db_state.pofilenames:
                 self.getpostats(xpofilename)
-                self.non_db_state.pofiles[xpofilename] = pootlefile.pootlefile(self, xpofilename)
+                self.non_db_state.pofiles[xpofilename] = store_file.store_file(self, xpofilename)
                 self.non_db_state.pofiles[xpofilename].statistics.getstats()
                 self.updateindex(self.indexer, xpofilename)
             self.projectcache = {}
@@ -424,7 +424,7 @@ class TranslationProject(models.Model):
             self.update_index(indexer, pootle_file, optimize=False)
 
         for store in Store.objects.filter(pootle_path__startswith=self.directory.pootle_path):
-            pootlefile.with_store(self, store, do_update)
+            store_file.with_store(self, store, do_update)
 
     def update_index(self, indexer, pofile, items=None, optimize=True):
         """updates the index with the contents of pofilename (limit to items if given)
@@ -439,7 +439,7 @@ class TranslationProject(models.Model):
 
         known problems:
             1. This function should get called, when the po file changes externally.
-                 The function "pofreshen" in pootlefile.py would be the natural place
+                 The function "pofreshen" in store_file.py would be the natural place
                  for this. But this causes circular calls between the current (r7514)
                  statistics code and "updateindex" leading to indexing database lock
                  issues.
@@ -479,7 +479,7 @@ class TranslationProject(models.Model):
             else:
                 # (items is None)
                 # The po file is not indexed - or it was changed externally (see
-                # "pofreshen" in pootlefile.py).
+                # "pofreshen" in store_file.py).
                 print "updating", self.project.code, self.language.code, "index for", pofile.store.pootle_path
                 # delete all items of this file
                 indexer.delete_doc({"pofilename": pofile.store.pootle_path})
@@ -840,10 +840,10 @@ class TranslationProject(models.Model):
 
     def getsuggestions(self, pofile, item):
         """find all the suggestions submitted for the given (pofile or pofilename) and item"""
-        suggestions = pootlefile.with_pootle_file(self, pofile,
-                                                  lambda pootle_file:
-                                                  pootle_file.getsuggestions(item)
-                                                  )
+        suggestions = store_file.with_store_file(self, pofile,
+                                                 lambda pootle_file:
+                                                     pootle_file.getsuggestions(item)
+                                                 )
         return suggestions
 
     ##############################################################################################
@@ -869,13 +869,13 @@ class TranslationProject(models.Model):
                     # We just want to touch the stores, since this
                     # will automatically pull them into the cache and
                     # freshen them.
-                    pootlefile.with_store(self, store, lambda _x: None)
+                    store_file.with_store(self, store, lambda _x: None)
                 return make_matcher(self)
         else:
             termfilename = "pootle-terminology." + self.project.localfiletype
             try:
                 store = Store.objects.get(pootle_path=termfilename)
-                return pootlefile.with_store(pootle_file.translation_project, store, make_matcher)
+                return store_file.with_store(pootle_file.translation_project, store, make_matcher)
             except Store.DoesNotExist:
                 pass
         raise StopIteration()
@@ -888,11 +888,11 @@ class TranslationProject(models.Model):
                 if self.is_terminology_project:
                     def init(pootle_files):
                         return match.terminologymatcher(pootle_files), newmtime
-                    return pootlefile.with_stores(self, self.stores.all(), init)
+                    return store_file.with_stores(self, self.stores.all(), init)
                 else:
                     def init(pootle_file):
                         return match.terminologymatcher(termbase), newmtime
-                    return pootlefile.with_store(self, termbase, init)
+                    return store_file.with_store(self, termbase, init)
 
         if self.non_db_state.termmatcher is None:
             try:
@@ -948,7 +948,7 @@ class TranslationProject(models.Model):
 
     def _find_message(self, singular, plural, n, get_translation):
         for store in Store.objects.filter(pootle_path__startswith=self.directory.pootle_path):
-            translation = pootlefile.with_pootle_file(self, store.abs_real_path, get_translation)
+            translation = store_file.with_store_file(self, store.abs_real_path, get_translation)
             if translation is not None:
                 return translation
         if n == 1:

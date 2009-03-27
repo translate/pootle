@@ -36,14 +36,13 @@ from translate.misc.multistring import multistring
 
 from pootle_app.views import pagelayout
 from pootle_app.views.util import render_to_kid, KidRequestContext
-from pootle_app.models import TranslationProject, Directory, Store
+from pootle_app.models import TranslationProject, Directory, Store, store_file
 from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
 from pootle_app import unit_update, url_manip
 from pootle_app.models import permissions, metadata
 from pootle_app.models.permissions import check_permission
 
-from Pootle import pootlefile
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 
 import dispatch, navbar_dict, search_forms
@@ -622,7 +621,7 @@ def get_alt_src_dict(request, pootle_file, unit, alt_project):
         translated_store = get_translated_store(language, pootle_file)
         if translated_store is not None:
             alt_src_dict.update(
-                pootlefile.with_store(request.translation_project,
+                store_file.with_store(request.translation_project,
                                       translated_store,
                                       translate_unit))
         else:
@@ -879,7 +878,7 @@ def process_post(request, pootle_file):
 def process_post_main(store_name, item, request, next_store_item, prev_store_item):
     store = Store.objects.get(pootle_path=store_name)
     request.translation_project.indexer # Force initialization of the indexer
-    prev_item, next_item = pootlefile.with_store(request.translation_project, store,
+    prev_item, next_item = store_file.with_store(request.translation_project, store,
                                                  lambda pootle_file: process_post(request, pootle_file))
     search = Search.from_request(request)
     if next_item > -1:
@@ -913,7 +912,7 @@ def get_failure_message(request):
 def find_and_display(request, directory, next_store_item, prev_store_item):
     try:
         store, item = get_position(request, next_store_item, prev_store_item)
-        return pootlefile.with_store(request.translation_project, store,
+        return store_file.with_store(request.translation_project, store,
                                      lambda pootle_file: view(request, directory, pootle_file, item))
     except StopIteration:
         return view(request, directory, None, 0, get_failure_message(request))

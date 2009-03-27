@@ -23,7 +23,7 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.utils.translation import ugettext_lazy as _
 
-from Pootle.pootlefile import relative_real_path, absolute_real_path
+from pootle_app.models.store_file import relative_real_path, absolute_real_path
 
 from directory import Directory
 

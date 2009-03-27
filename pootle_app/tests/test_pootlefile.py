@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-from Pootle import pootlefile
+from pootle_app.models import store_file
+
 from Pootle import pootle
 from translate.storage import po
 from translate.storage import test_po
@@ -9,11 +10,11 @@ from translate.misc import wStringIO
 
 import os
 
-class TestPootleFile(test_po.TestPOFile):
+class TestStore_File(test_po.TestPOFile):
     class pootletestfile(po.pofile):
         def __new__(cls):
             project = projects.DummyProject(cls.testdir)
-            return pootlefile.pootlefile(project=project, pofilename=cls.pofilename)
+            return store_file.store_file(project=project, pofilename=cls.pofilename)
 
     StoreClass = pootletestfile
 
@@ -67,7 +68,7 @@ msgstr ""'''
         stdchecker = checks.TeeChecker(checkerclasses=checkerclasses, errorhandler=filtererrorhandler)
         dummyproject = projects.DummyStatsProject(self.rundir, stdchecker, "unittest_project", "xx")
 
-        pofile = pootlefile.pootlefile(dummyproject, "test.po")
+        pofile = store_file.store_file(dummyproject, "test.po")
         pofile.parse(posource)
         return pofile
 
@@ -112,7 +113,7 @@ msgstr ""'''
         filepath = os.path.join(testdir, filename)
         file(filepath, 'w').write(posource)
         dummy_project = projects.DummyProject(podir=testdir)
-        pofile = pootlefile.pootlefile(project=dummy_project, pofilename=filename)
+        pofile = store_file.store_file(project=dummy_project, pofilename=filename)
 
         newvalues = {}
         pofile.updateunit(0, newvalues, None, None)
