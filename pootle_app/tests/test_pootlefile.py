@@ -2,7 +2,6 @@
 
 from Pootle import pootlefile
 from Pootle import pootle
-from Pootle import projects
 from translate.storage import po
 from translate.storage import test_po
 from translate.filters import checks

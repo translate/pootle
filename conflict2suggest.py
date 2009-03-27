@@ -22,7 +22,6 @@
 suggestions"""
 
 from Pootle import pootlefile
-from Pootle import projects
 import os
 conflictmarker = '#-#-#-#-#'
 
