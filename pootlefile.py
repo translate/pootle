@@ -37,10 +37,8 @@ from translate.filters import checks
 from translate.misc.multistring import multistring
 
 from pootle_app.lib import util, statistics, lru_cache
+from pootle_app.lib.legacy.jToolkit import timecache, glock
 from pootle_app import __version__
-
-from Pootle.legacy.jToolkit import timecache
-from Pootle.legacy.jToolkit import glock
 
 _UNIT_CHECKER = checks.UnitChecker()
 

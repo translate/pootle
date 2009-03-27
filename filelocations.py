@@ -38,7 +38,7 @@ if is_frozen:
     pootledir = os.path.abspath(os.path.dirname(sys.executable))
     jtoolkitdir = os.path.abspath(os.path.dirname(sys.executable))
 else:
-    from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
+    from pootle_app.lib.legacy.jToolkit import __version__ as jtoolkitversion
     pootledir = os.path.abspath(os.path.dirname(__file__))
     jtoolkitdir = os.path.dirname(jtoolkitversion.__file__)
 

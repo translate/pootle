@@ -21,7 +21,7 @@
 # along with jToolkit; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from Pootle.legacy.jToolkit.data import dates
+from pootle_app.lib.legacy.jToolkit.data import dates
 
 class timecache(dict):
   """caches objects, remembers time, and dumps when neccessary..."""

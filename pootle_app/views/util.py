@@ -27,8 +27,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanen
 from django.forms.util import ErrorList
 
 from pootle_app.views.pagelayout import completetemplatevars
-
-from Pootle.legacy.jToolkit.web import server
+from pootle_app.lib.legacy.jToolkit.web import server
 
 # settings.py is in the root of our Django application's
 # directory structure, so we can use path.dirname to
