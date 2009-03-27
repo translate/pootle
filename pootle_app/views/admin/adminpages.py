@@ -23,9 +23,9 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 N_ = _
 
+from pootle_app.views import pagelayout
 from pootle_app.views.util import render_jtoolkit
 
-from Pootle import pagelayout
 from Pootle import pan_app
 
 from util import user_is_admin

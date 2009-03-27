@@ -18,8 +18,7 @@
 # Place, Suite 330, Boston, MA  02111-1307  USA
 
 from pootle_app.lib import view_handler
-
-from Pootle import pagelayout
+from pootle_app.views import pagelayout
 
 class BaseView(view_handler.View):
     def GET(self, template_vars, request):

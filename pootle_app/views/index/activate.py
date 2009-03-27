@@ -20,12 +20,12 @@
 
 from django.contrib.auth.models import User
 
-from Pootle import pagelayout
-from Pootle import pan_app
-
+from pootle_app.views import pagelayout
 from pootle_app.views.util import render_jtoolkit
 from pootle_app.views.index.util import forcemessage
 from pootle_app.models.profile import get_profile
+
+from Pootle import pan_app
 
 def view(request):
     return render_jtoolkit(activatepage(request))

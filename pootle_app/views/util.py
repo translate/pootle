@@ -26,8 +26,9 @@ from UserDict import UserDict
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.forms.util import ErrorList
 
+from pootle_app.views.pagelayout import completetemplatevars
+
 from Pootle.legacy.jToolkit.web import server
-from Pootle.pagelayout import completetemplatevars
 
 # settings.py is in the root of our Django application's
 # directory structure, so we can use path.dirname to
