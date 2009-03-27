@@ -22,9 +22,10 @@ from django.forms.models import modelformset_factory
 from django import forms
 from django.utils.translation import ugettext as _
 
-from Pootle import pan_app, indexpage
+from Pootle import pan_app
 
 from pootle_app.lib.util            import redirect
+from pootle_app.views               import indexpage
 from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
     KidRequestContext, init_formset_from_data, choices_from_models, selected_model
 from pootle_app.models              import Language, Project, TranslationProject

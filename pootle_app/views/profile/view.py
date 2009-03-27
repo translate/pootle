@@ -25,12 +25,13 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
-from Pootle import indexpage
 from pootle_app.models.profile import get_profile, PootleProfile
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.views.util import render_jtoolkit
-from Pootle.i18n import gettext
+from pootle_app.views import indexpage
 from pootle_app.lib.util import redirect
+
+from Pootle.i18n import gettext
 
 def user_is_authenticated(f):
     def decorated_f(request, *args, **kwargs):

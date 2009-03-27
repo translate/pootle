@@ -19,7 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from pootle_app.views.util import render_jtoolkit
-from Pootle import indexpage
+from pootle_app.views      import indexpage
 
 def view(request, *path_vars):
     return render_jtoolkit(indexpage.PootleIndex(request))

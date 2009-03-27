@@ -26,15 +26,17 @@ try:
 except ImportError:
     from elementtree import ElementTree
 
+from kid import __version__ as kidversion
+
+from translate import __version__ as toolkitversion
+
 from pootle_app.views.util import render_jtoolkit
-from Pootle.indexpage import shortdescription
+from pootle_app.views.indexpage import shortdescription
+
 from Pootle import pagelayout
 from Pootle import pan_app
-
 from Pootle import __version__ as pootleversion
-from translate import __version__ as toolkitversion
 from Pootle.legacy.jToolkit import __version__ as jtoolkitversion
-from kid import __version__ as kidversion
 
 def view(request):
     return render_jtoolkit(AboutPage(request))
