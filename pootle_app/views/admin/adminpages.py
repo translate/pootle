@@ -36,7 +36,7 @@ class AdminPage(pagelayout.PootlePage):
     def __init__(self, request):
         self.request = request
         templatename = 'admin/adminindex.html'
-        instancetitle = pan_app.get_title()
+        instancetitle = pagelayout.get_title()
         text = self.gettext(request)
         templatevars = {
             'options': self.getoptions(),
@@ -68,8 +68,8 @@ class AdminPage(pagelayout.PootlePage):
             'MEDIA_URL': _('Media URL'),
             'HOMEPAGE': _('Home Page'),
             }
-        option_values = {'TITLE': pan_app.get_title(),
-                         'DESCRIPTION': pan_app.get_description()}
+        option_values = {'TITLE': pagelayout.get_title(),
+                         'DESCRIPTION': pagelayout.get_description()}
         options = []
         for (optionname, optiontitle) in optiontitles.items():
             optionvalue = getattr(settings, optionname,

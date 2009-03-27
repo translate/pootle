@@ -39,11 +39,5 @@ prefs = prefsmodule.load_preferences(settings.PREFSFILE)
 # object, since it contains no state.
 pootle_server = None
 
-def get_title():
-    return ugettext(settings.TITLE)
-
-def get_description():
-    return ugettext(settings.DESCRIPTION)
-
 def get_default_language():
     return settings.LANGUAGE_CODE

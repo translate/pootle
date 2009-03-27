@@ -86,7 +86,7 @@ class ActivatePage(pagelayout.PootlePage):
         else:
             pagetitle = title
         templatename = 'index/activate.html'
-        instancetitle = pan_app.get_title()
+        instancetitle = pagelayout.get_title()
         requestvars = {'status': get_profile(request.user).status,
                        'isopen': not request.user.is_anonymous,
                        'issiteadmin': request.user.is_superuser}

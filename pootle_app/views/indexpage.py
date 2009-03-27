@@ -115,7 +115,7 @@ class PootleIndex(pagelayout.PootlePage):
 
     def __init__(self, request):
         templatename = 'index/index.html'
-        description = pan_app.get_description()
+        description = pagelayout.get_description()
         meta_description = shortdescription(description)
         keywords = [
             'Pootle',
@@ -130,7 +130,7 @@ class PootleIndex(pagelayout.PootlePage):
             ] + self.getprojectnames()
         languagelink = _('Languages')
         projectlink = _('Projects')
-        instancetitle = pan_app.get_title()
+        instancetitle = pagelayout.get_title()
         pagetitle = instancetitle
         topsugg = limit(Suggestion.objects.get_top_suggesters())
         topreview = limit(Suggestion.objects.get_top_reviewers())
@@ -235,7 +235,7 @@ class UserIndex(pagelayout.PootlePage):
         adminlink = _('Admin page')
         admintext = _('Administrate')
         quicklinkstitle = _('Quick Links')
-        instancetitle = pan_app.get_title()
+        instancetitle = pagelayout.get_title()
         quicklinks = self.getquicklinks()
         setoptionstext = \
             _("You need to <a href='options.html'>choose your languages and projects</a>."
@@ -340,7 +340,7 @@ class LanguageIndex(pagelayout.PootleNavPage):
                                   '%d projects, average %d%% translated',
                                   self.projectcount, self.projectcount, average)
         languageinfo = self.getlanguageinfo()
-        instancetitle = pan_app.get_title()
+        instancetitle = pagelayout.get_title()
         # l10n: The first parameter is the name of the installation
         # l10n: The second parameter is the name of the
         # project/language l10n: This is used as a page title. Most
@@ -446,7 +446,7 @@ class ProjectLanguageIndex(pagelayout.PootleNavPage):
         projectname = self.project.fullname
         description = self.project.description
         meta_description = shortdescription(description)
-        instancetitle = pan_app.get_title()
+        instancetitle = pagelayout.get_title()
         # l10n: The first parameter is the name of the installation
         # l10n: The second parameter is the name of the
         # project/language l10n: This is used as a page title. Most

@@ -46,8 +46,8 @@ class AboutPage(pagelayout.PootlePage):
     """the bar at the side describing current login details etc"""
 
     def __init__(self, request):
-        pagetitle = pan_app.get_title()
-        description = pan_app.get_description()
+        pagetitle = pagelayout.get_title()
+        description = pagelayout.get_description()
         meta_description = shortdescription(description)
         keywords = [
             'Pootle',
@@ -98,7 +98,7 @@ class AboutPage(pagelayout.PootlePage):
             os.name,
             ))
         templatename = 'index/about.html'
-        instancetitle = pan_app.get_title()
+        instancetitle = pagelayout.get_title()
         templatevars = {
             'pagetitle': pagetitle,
             'description': description,

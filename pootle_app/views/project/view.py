@@ -25,7 +25,7 @@ from django.utils.translation import ugettext as _
 from Pootle import pan_app
 
 from pootle_app.lib.util            import redirect
-from pootle_app.views               import indexpage
+from pootle_app.views               import indexpage, pagelayout
 from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
     KidRequestContext, init_formset_from_data, choices_from_models, selected_model
 from pootle_app.models              import Language, Project, TranslationProject
@@ -136,7 +136,7 @@ def project_admin(request, project_code):
         "main_link":          _("Back to main page"),
         "update_link":        _("Update from templates"), 
         "initialize_link":    _("Initialize"),
-        "instancetitle":      pan_app.get_title(),
+        "instancetitle":      pagelayout.get_title(),
         "has_template":       has_template
         }
 

@@ -40,12 +40,12 @@ from pootle_app.project_tree import scan_translation_project_files
 from pootle_app import url_manip
 from pootle_app.lib import view_handler
 from pootle_app.views.base import BaseView
-import dispatch, navbar_dict, item_dict, search_forms
+from pootle_app.views import pagelayout
 
 from Pootle.i18n.jtoolkit_i18n import tr_lang
 from Pootle import pan_app
 
-
+import dispatch, navbar_dict, item_dict, search_forms
 
 ################################################################################
 
@@ -292,7 +292,7 @@ class ProjectIndexView(BaseView):
 
         template_vars.update({
             'pagetitle':             _('%s: Project %s, Language %s') % \
-                (pan_app.get_title(), project.fullname, tr_lang(language.fullname)),
+                (pagelayout.get_title(), project.fullname, tr_lang(language.fullname)),
             'project':               {"code": project.code,  "name": project.fullname},
             'language':              {"code": language.code, "name": tr_lang(language.fullname)},
             'search':                search_forms.get_search_form(request),

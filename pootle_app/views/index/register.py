@@ -183,7 +183,7 @@ class RegisterPage(pagelayout.PootlePage):
             introtext = forcemessage(message)
         pagetitle = _('Pootle Registration')
         templatename = 'index/register.html'
-        instancetitle = pan_app.get_title()
+        instancetitle = pagelayout.get_title()
         requestvars = {'status': get_profile(request.user).status,
                        'isopen': not request.user.is_anonymous,
                        'issiteadmin': request.user.is_superuser}

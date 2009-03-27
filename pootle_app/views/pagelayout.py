@@ -28,6 +28,11 @@ from Pootle import pan_app
 from Pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang
 from Pootle.i18n import gettext
 
+def get_title():
+    return _(settings.TITLE)
+
+def get_description():
+    return _(settings.DESCRIPTION)
 
 def localize_links(request):
     """Localize all the generic links"""
@@ -105,7 +110,7 @@ def completetemplatevars(templatevars, request, bannerheight=135):
     """fill out default values for template variables"""
 
     if not 'instancetitle' in templatevars:
-        templatevars['instancetitle'] = settings.TITLE
+        templatevars['instancetitle'] = get_title()
     templatevars['sessionvars'] = {'status': get_profile(request.user).status,
                                    'isopen': request.user.is_authenticated(),
                                    'issiteadmin': request.user.is_superuser}
