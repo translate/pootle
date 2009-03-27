@@ -25,7 +25,7 @@ import sys
 from django.conf import settings
 try:
     import cProfile
-    from Pootle.profiling import lsprofcalltree
+    from profiling import lsprofcalltree
 except ImportError:
     pass
 
