@@ -74,18 +74,6 @@ class DummyTranslation(object):
         else:
             return plural
 
-# Must be replaced after the bootstrapping phase by a function that returns
-# and actual pootle Project object for the language code.
-def get_lang_real(language):
-    from pootle_app.models.translation_project import TranslationProject
-    if not language:
-        return get_default_translation()
-    else:
-        try:
-            return TranslationProject.objects.get(language=language, project__code='pootle')
-        except TranslationProject.DoesNotExist:
-            return get_default_translation()
-
 def get_lang(language):
     return DummyTranslation()
 
@@ -193,10 +181,3 @@ def hijack_django_translation_functions():
     translation.ungettext_lazy = lazy(ungettext, unicode)
 
 hijack_django_translation_functions()
-
-def unbootstrap():
-    """Replace the function get_lang with get_real_lang. get_lang_real
-    is the actual implementation and the original get_lang is just a
-    bootstrapping function."""
-    global get_lang
-    get_lang = get_lang_real

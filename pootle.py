@@ -21,11 +21,6 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
 
-# Import this early to force module initialization so that our
-# hijacking of Django's translation machinery will work from the
-# start.
-from Pootle.i18n import gettext
-
 # We don't need kid in this file, but this will show quickly if it is
 # not installed.
 import kid
@@ -194,7 +189,6 @@ def init_db():
 def main():
     # run the web server
     init_db()
-    gettext.unbootstrap()
     checkversions()
     parser = PootleOptionParser()
     (options, args) = parser.parse_args()

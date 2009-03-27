@@ -53,6 +53,7 @@ from pootle_app.lib import statistics
 from Pootle            import pan_app, pootlefile
 from Pootle.scripts    import hooks
 from Pootle.pootlefile import relative_real_path, absolute_real_path
+from Pootle.i18n       import gettext as pootle_gettext
 
 class TranslationProjectNonDBState(object):
     def __init__(self, parent):
@@ -1008,7 +1009,7 @@ class TranslationProject(models.Model):
                             else:
                                 return unicode(tmsg, pofile.encoding)
             except Exception, e:
-                print "error reading translation from pofile %s: %s" % (pofilename, e)
+                print "error reading translation from pofile %s: %s" % (pofile.filename, e)
                 raise
         return unicode(self._find_message(singular, plural, n, get_translation))
 
@@ -1043,3 +1044,19 @@ def scan_projects(sender, instance, **kwargs):
         create_translation_project(instance, project)
 
 post_save.connect(scan_projects, sender=Language)
+
+def get_lang(language):
+    """Used by the localization system to get hold of a
+    TranslationProject which can used to do UI translations"""
+    if not language:
+        return pootle_gettext.get_default_translation()
+    else:
+        try:
+            return TranslationProject.objects.get(language=language, project__code='pootle')
+        except TranslationProject.DoesNotExist:
+            return pootle_gettext.get_default_translation()
+
+# Replace the dummy get_lang function in the localization system with
+# one that will return a TranslationProject for the pootle project and
+# the user's current language, so that UI translations will work.
+pootle_gettext.get_lang = get_lang
