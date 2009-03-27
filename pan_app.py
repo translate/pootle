@@ -19,25 +19,8 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from threading import Lock
-
 from django.conf import settings
-from django.utils.translation import ugettext
-
-from translate.misc.context import with_
-from translate.misc.contextlib import contextmanager
-
 from pootle_app.lib import prefs as prefsmodule
-
-cache_templates = True
 
 prefs = prefsmodule.load_preferences(settings.PREFSFILE)
 
-# Contains an instance of PootleServer. Eventually we'll
-# move all the code out of PootleServer and its superclasses
-# and then this object can be removed. It's safe to share this
-# object, since it contains no state.
-pootle_server = None
-
-def get_default_language():
-    return settings.LANGUAGE_CODE

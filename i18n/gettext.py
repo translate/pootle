@@ -19,6 +19,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.conf import settings
 from django.utils import translation
 from django.utils.thread_support import currentThread
 from django.utils.functional import lazy
@@ -123,9 +124,8 @@ def get_default_translation():
     """
     global _default_translation
     if isinstance(_default_translation, DummyTranslation):
-        from django.conf import settings
         try:
-            _default_translation = get_lang(Language.objects.get(code=pan_app.get_default_language()))
+            _default_translation = get_lang(Language.objects.get(code=settings.LANGUAGE_CODE))
         except Language.DoesNotExist, e:
             pass
     return _default_translation

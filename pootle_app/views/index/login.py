@@ -80,7 +80,7 @@ def language_list(request):
     if tr_default != "Default":
         tr_default = u"%s | \u202dDefault" % tr_default
     request_code = data.normalize_code(get_language_from_request(request).language.code)
-    if request_code in ["en", "en-us", pan_app.get_default_language()]:
+    if request_code in ["en", "en-us", settings.LANGUAGE_CODE]:
         preferred_language = ""
     else:
         preferred_language = request_code

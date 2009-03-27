@@ -125,15 +125,6 @@ Python %s (on %s/%s)''' % (
             )
         self.add_option(
             '',
-            '--no_cache_templates',
-            action='store_false',
-            dest='cache_templates',
-            default=True,
-            help='Pootle should not cache templates, but reload them with every request.'
-                ,
-            )
-        self.add_option(
-            '',
             '--port',
             action='store',
             type='int',
@@ -153,14 +144,8 @@ def checkversions():
                             % toolkitversion.sver)
 
 
-def set_template_caching(options):
-    if options.cache_templates is not None:
-        pan_app.cache_templates = options.cache_templates
-
-
 def set_options(options):
     pan_app.prefs = prefs.load_preferences(options.prefsfile)
-    set_template_caching(options)
 
 
 def run_pootle(options, args):
