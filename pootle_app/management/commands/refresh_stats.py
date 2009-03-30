@@ -28,6 +28,8 @@ from pootle_app.models import TranslationProject, Store, store_file
 
 _translation_project_cache = {}
 
+# A simply function to keep a cache of TranslationProjects that have
+# already been opened. This is just to speed things up a bit.
 def get_translation_project(language_code, project_code):
     try:
         return _translation_project_cache[language_code, project_code]
@@ -56,16 +58,24 @@ class Command(NoArgsCommand):
         refresh_path = options.get('directory', '')
         recompute = options.get('recompute', False)
 
+        # We force stats and indexing information to be recomputed by
+        # updating the mtimes of the files whose information we want
+        # to update.
         if recompute:
             for store in Store.objects.filter(pootle_path__startswith=refresh_path):
                 print "Resetting mtime for %s to now" % store.real_path
                 os.utime(store.abs_real_path, None)
 
         for store in Store.objects.filter(pootle_path__startswith=refresh_path):
+            # Get a path such as /<language>/<project>/...
             components = store.pootle_path.split('/')
+            # Split the path into ['', <language>, <project>, ...]
             language_code, project_code = components[1:3]
             try:
                 translation_project = get_translation_project(language_code, project_code)
+                # Simply by opening a file, we'll trigger the
+                # machinery that looks at its mtime and decides
+                # whether its stats should be updated
                 store_file.with_store(translation_project, store, print_message)
             except TranslationProject.DoesNotExist:
                 pass
