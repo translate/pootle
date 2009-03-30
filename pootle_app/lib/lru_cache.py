@@ -61,7 +61,6 @@ class LRUCache(object):
         try:
             result = self.cache[key]
         except KeyError:
-            print "missed %s" % (key, )
             result = self.cache[key] = self.maker(key)
 
         # record that this key was recently accessed
