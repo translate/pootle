@@ -28,7 +28,7 @@ import cStringIO
 from django.utils.translation import ugettext as _
 from django import forms
 
-from translate.storage import factory
+from translate.storage import factory, versioncontrol
 
 from pootle_app.views.util import render_to_kid, render_jtoolkit
 from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
@@ -236,15 +236,17 @@ class UpdateHandler(view_handler.Handler):
     actions = [('do_update', _('Update all from version control'))]
 
     class Form(forms.Form):
-        store = forms.CharField(widget=forms.HiddenInput)
-
-    def initial(self, request, store, *args, **kwargs):
-        return {'store': store}
+        pass
 
     def do_update(self, request, translation_project, directory):
         import pdb; pdb.set_trace()
         translation_project.update_from_version_control()
         return {}
+
+    @classmethod
+    def must_display(self, request, *args, **kwargs):
+        return check_permission('commit', request) and \
+            versioncontrol.hasversioning(request.translation_project.abs_real_path)
 
 class UploadHandler(view_handler.Handler):
     actions = [('do_upload', _('Upload'))]
