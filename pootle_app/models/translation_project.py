@@ -210,46 +210,32 @@ class TranslationProject(models.Model):
     def get_profile_goals(self, profile):
         return Goal.objects.filter(profiles=profile, translation_project=self)
 
-    def updatepofile(self, request, dirname, pofilename):
+    def update_from_version_control(self):
         """updates an individual PO file from version control"""
         # read from version control
-        pathname = self.getuploadpath(dirname, pofilename)
-        try:
-            pathname = hooks.hook(self.project.code, "preupdate", pathname)
-        except:
-            pass
 
-        if os.path.exists(pathname):
-            popath = os.path.join(dirname, pofilename)
+        def update_stores(pootle_files):
+            for current_pootle_file in pootle_files:
+                try:
+                    hooks.hook(self.project.code, "preupdate", current_pootle_file.store.abs_real_path)
+                except:
+                    pass
 
-            currentpofile = self.getpofile(popath)
-            # matching current file with BASE version
-            # TODO: add some locking here...
-            # reading new version of file
-            versioncontrol.updatefile(pathname)
-            newpofile = store_file.store_file(self, popath)
-            newpofile.pofreshen()
-            newpofile.mergefile(currentpofile, "versionmerge")
-            self.non_db_state.pofiles[pofilename] = newpofile
-        else:
-            versioncontrol.updatefile(pathname)
+            versioncontrol.updatedirectory(self.abs_real_path)
+            for current_pootle_file in pootle_files:
+                new_pootle_file = store_file.store_file(self, pootle_file.store.abs_real_path)
+                new_pootle_file.mergefile(current_pootle_file, "versionmerge")
+                new_pootle_file.save()
 
-        get_profile(request.user).add_message("Updated file: <em>%s</em>" % pofilename)
+            for current_pootle_file in pootle_files:
+                try:
+                    hooks.hook(self.project.code, "postupdate", current_pootle_file.store.abs_real_path)
+                except:
+                    pass
 
-        try:
-            hooks.hook(self.project.code, "postupdate", pathname)
-        except:
-            pass
-
-        if newpofile:
-            # Update po index for new file
-            self.stats = {}
-            for xpofilename in self.non_db_state.pofilenames:
-                self.getpostats(xpofilename)
-                self.non_db_state.pofiles[xpofilename] = store_file.store_file(self, xpofilename)
-                self.non_db_state.pofiles[xpofilename].statistics.getstats()
-                self.updateindex(self.indexer, xpofilename)
-            self.projectcache = {}
+        stores = Store.objects.filter(pootle_path__startswith=self.directory.pootle_path)
+        store_file.with_stores(self, stores, update_stores)
+        project_tree.scan_translation_project_files(translation_project)
 
     def runprojectscript(self, scriptdir, target, extraargs = []):
         currdir = os.getcwd()

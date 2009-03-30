@@ -116,6 +116,13 @@ from pootle_app.lib.util import l, m
 	<div py:replace="XML(upload.as_p())" />
       </form>
     </div>
+
+    <div py:if="update" id="update">
+      <!-- <div class="sidetitle" py:if="upload" py:content="upload.title">Upload File</div> -->
+      <form py:if="update" action="" method="post" name="updateform" enctype="multipart/form-data">
+	<div py:replace="XML(update.as_p())" />
+      </form>
+    </div>
     
     <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
   </div><!--postcontent-->

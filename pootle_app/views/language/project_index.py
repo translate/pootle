@@ -232,6 +232,19 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
             # uploaded file into it.
             store_file.with_store_file(request.translation_project, upload_path, do_merge)
 
+class UpdateHandler(view_handler.Handler):
+    actions = [('do_update', _('Update all from version control'))]
+
+    class Form(forms.Form):
+        store = forms.CharField(widget=forms.HiddenInput)
+
+    def initial(self, request, store, *args, **kwargs):
+        return {'store': store}
+
+    def do_update(self, request, translation_project, directory):
+        import pdb; pdb.set_trace()
+        translation_project.update_from_version_control()
+        return {}
 
 class UploadHandler(view_handler.Handler):
     actions = [('do_upload', _('Upload'))]
@@ -310,6 +323,6 @@ class ProjectIndexView(BaseView):
         return template_vars
 
 def view(request, translation_project, directory):
-    view_obj = ProjectIndexView(forms=dict(upload=UploadHandler))
+    view_obj = ProjectIndexView(forms=dict(upload=UploadHandler, update=UpdateHandler))
     return render_to_kid("language/fileindex.html",
                          view_obj(request, translation_project, directory))
