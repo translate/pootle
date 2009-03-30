@@ -44,6 +44,8 @@ class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
         make_option('--directory', action='store', dest='directory', default='',
                     help='Pootle directory to refresh'),
+        make_option('--recompute', action='store_true', dest='recompute', default=False,
+                    help='Update the mtime of file, thereby forcing stats and index recomputation.'),
         )
     help = "Allow stats and text indices to be refreshed manually."
 
@@ -52,11 +54,17 @@ class Command(NoArgsCommand):
             print "Updating stats for %s" % pootle_file.store.real_path
 
         refresh_path = options.get('directory', '')
+        recompute = options.get('recompute', False)
+
+        if recompute:
+            for store in Store.objects.filter(pootle_path__startswith=refresh_path):
+                print "Resetting mtime for %s to now" % store.real_path
+                os.utime(store.abs_real_path, None)
+
         for store in Store.objects.filter(pootle_path__startswith=refresh_path):
             components = store.pootle_path.split('/')
             language_code, project_code = components[1:3]
             try:
-                print language_code, project_code
                 translation_project = get_translation_project(language_code, project_code)
                 store_file.with_store(translation_project, store, print_message)
             except TranslationProject.DoesNotExist:
