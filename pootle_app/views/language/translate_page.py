@@ -949,6 +949,7 @@ def view(request, directory, pootle_file, item, stopped_by=None):
     mainstats = ""
     pagelinks = None
     rows, icon = get_rows_and_icon(request, profile)
+    navbar["icon"] = icon
     if pootle_file is not None:
         postats = metadata.quick_stats(pootle_file.store, translation_project.checker)
         untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
