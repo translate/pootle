@@ -177,8 +177,8 @@ from pootle_app.lib.util import l, m
 				<input type="hidden" id="${form.suggid}" name="${form.suggid}" value="${form.value}" />
 			      </div>
 			      <div py:if="sugg.canreview" py:strip="True">
-				<a title="${accept_title}" accesskey="a" id="accept${sugg.suggid}" class="acceptsugg"><img src="${m('images/gtk-apply.png')}" dir="$uidir" /></a>
-				<a title="${reject_title}" accesskey="r" id="reject${sugg.suggid}" class="rejectsugg"><img src="${m('images/gtk-cancel.png')}" dir="$uidir" /></a>
+				<a title="${accept_title}" accesskey="a" id="accept${sugg.suggid}" class="acceptsugg"><img src="${m('images/tick.png')}" dir="$uidir" /></a>
+				<a title="${reject_title}" accesskey="r" id="reject${sugg.suggid}" class="rejectsugg"><img src="${m('images/cross.png')}" dir="$uidir" /></a>
 			      </div>
 			    </div>
 			  </div>
