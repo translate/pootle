@@ -840,6 +840,11 @@ span.graph[dir="rtl"] span.translated
     unicode-bidi: embed;
 }
 
+div#nav-secondary
+{
+    padding: 2em 0;
+}
+
 /* SEARCH */
 
 div.searchform

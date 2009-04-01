@@ -24,14 +24,16 @@ from pootle_app.lib.util import l, m
 
   <!--! Navigation bar -->
   <div id="innernav" py:def="innernav_block()" class="navbar" py:for="item in navitems">
-    <div py:def="itemtitle(item)" id="itemtitle" class="title">
+    <div py:def="itemtitle(item)" id="breadcrumbs" class="title">
       <a href="${l(item.href)}">${item.title}</a>
-      <div py:strip="True" py:if="item.path.language">[ <a href="${l(item.path.language.href)}">${item.path.language.text}</a> ]</div>
-      <div py:strip="True" py:if="item.path.project">[ <a href="${l(item.path.project.href)}">${item.path.project.text}</a> ]</div>
+      <h3 class="title">
+      <div py:strip="True" py:if="item.path.language">[<a href="${l(item.path.language.href)}">${item.path.language.text}</a>]</div>
+      <div py:strip="True" py:if="item.path.project">[<a href="${l(item.path.project.href)}">${item.path.project.text}</a>]</div>
       <div py:strip="True" py:for="pathlink in item.path.pathlinks">
-	<a href="${l(pathlink.href)}">${pathlink.text}</a>${pathlink.sep}
-	<em py:if="item.path.goal"><a href="${l(item.path.goal.href)}">${item.path.goal.text}</a></em>
+        <a href="${l(pathlink.href)}">${pathlink.text}</a>${pathlink.sep}
+        <em py:if="item.path.goal"><a href="${l(item.path.goal.href)}">${item.path.goal.text}</a></em>
       </div>
+      </h3>
     </div>
     <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, itemtitle(item))" class="contentsitem"/>
     <div py:replace="navbar.itemstats(item)"/>
