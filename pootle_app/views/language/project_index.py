@@ -230,7 +230,7 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
             empty_store.save()
             # Then we open this newly created file and merge the
             # uploaded file into it.
-            store_file.with_store_file(request.translation_project, upload_path, do_merge)
+            store_file.with_store_file(request.translation_project, store_file.absolute_real_path(upload_path), do_merge)
 
 class UpdateHandler(view_handler.Handler):
     actions = [('do_update', _('Update all from version control'))]
@@ -239,7 +239,6 @@ class UpdateHandler(view_handler.Handler):
         pass
 
     def do_update(self, request, translation_project, directory):
-        import pdb; pdb.set_trace()
         translation_project.update_from_version_control()
         return {}
 
