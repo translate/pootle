@@ -24,6 +24,7 @@ from django.utils import translation
 from django.utils.thread_support import currentThread
 from django.utils.functional import lazy
 
+from pootle_app.models.translation_project import TranslationProject
 from pootle_app.models.language import Language
 
 # START BOOTSTRAPPING TRANSLATION CODE
@@ -73,8 +74,8 @@ class DummyTranslation(object):
         else:
             return plural
 
-def get_lang(language):
-    return DummyTranslation()
+#def get_lang(language):
+#    return DummyTranslation()
 
 # Must be replaced after the bootstrapping phase by a function that returns
 # and actual pootle Project object for the language code.
@@ -179,3 +180,18 @@ def hijack_django_translation_functions():
     translation.ungettext_lazy = lazy(ungettext, unicode)
 
 hijack_django_translation_functions()
+
+
+def get_lang(language):
+    """Used by the localization system to get hold of a
+    TranslationProject which can used to do UI translations"""
+    if not language:
+        return get_default_translation()
+    else:
+        try:
+            return TranslationProject.objects.get(language=language, project__code='pootle')
+        except TranslationProject.DoesNotExist:
+            return get_default_translation()
+
+
+

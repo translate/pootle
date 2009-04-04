@@ -50,10 +50,10 @@ from pootle_app.models             import store_iteration, metadata, store_file
 from pootle_app.models.store_file  import relative_real_path, absolute_real_path
 from pootle_app.models.permissions import PermissionError, check_permission
 from pootle_app.lib                import statistics
-from pootle_app.views              import pagelayout
+#from pootle_app.views              import pagelayout
 
 from Pootle.scripts    import hooks
-from Pootle.i18n       import gettext as pootle_gettext
+#from Pootle.i18n       import gettext as pootle_gettext
 
 class TranslationProjectNonDBState(object):
     def __init__(self, parent):
@@ -258,7 +258,7 @@ class TranslationProject(models.Model):
         statsstring = "%d of %d messages translated (%d fuzzy)." % \
                 (stats["translated"], stats["total"], stats["fuzzy"])
 
-        message="Commit from %s by user %s, editing po file %s. %s" % (pagelayout.get_title(), request.user.username, pofilename, statsstring)
+        message="Commit from %s by user %s, editing po file %s. %s" % (settings.TITLE, request.user.username, pofilename, statsstring)
         author=request.user.username
         fulldir = os.path.split(pathname)[0]
      
@@ -1031,18 +1031,3 @@ def scan_projects(sender, instance, **kwargs):
 
 post_save.connect(scan_projects, sender=Language)
 
-def get_lang(language):
-    """Used by the localization system to get hold of a
-    TranslationProject which can used to do UI translations"""
-    if not language:
-        return pootle_gettext.get_default_translation()
-    else:
-        try:
-            return TranslationProject.objects.get(language=language, project__code='pootle')
-        except TranslationProject.DoesNotExist:
-            return pootle_gettext.get_default_translation()
-
-# Replace the dummy get_lang function in the localization system with
-# one that will return a TranslationProject for the pootle project and
-# the user's current language, so that UI translations will work.
-pootle_gettext.get_lang = get_lang
