@@ -684,7 +684,8 @@ def make_class(base_class):
                       suggestions=False):
             """make sure each msgid is unique ; merge comments etc
             from duplicates into original"""
-
+            #FIXME: explicit cache invalidation would be much better
+            self.pofreshen()
             self.makeindex()
             translatables = (self.units[index] for index in self.total)
             po_position = dict((unit, position) for (position, unit) in
