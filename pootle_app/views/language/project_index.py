@@ -147,7 +147,8 @@ def unzip_external(request, relative_root_dir, django_file, overwrite):
         shutil.rmtree(tempdir)
 
 def unzip_python(request, relative_root_dir, django_file, overwrite):
-    archive = zipfile.ZipFile(cStringIO.StringIO(django_file.read()), 'r')
+    django_file.seek(0)
+    archive = zipfile.ZipFile(django_file, 'r')
     # TODO: find a better way to return errors...
     try:
         for filename in archive.namelist():
