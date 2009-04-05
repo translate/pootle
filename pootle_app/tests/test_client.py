@@ -1,7 +1,15 @@
 import urlparse
-from lxml import etree
+import StringIO
+import os
+
+import zipfile
+from translate.misc import wStringIO
+
 from django.test.client import Client
 from django.http import QueryDict
+from django.conf import settings
+
+from pootle_app.models import Store
 
 ADMIN_USER = {'username': 'admin', 'password': 'admin'}
 NONPRIV_USER = {'username': 'nonpriv', 'password': 'nonpriv'}
@@ -127,200 +135,200 @@ def test_add_project_language():
     response = client.get("/fish/")
     assert "fish" in response.content
     assert '<a href="pootle/">Pootle</a>' in response.content
-    assert "1 project, average 0% translated" in response.content
+    assert "2 projects, average 0% translated" in response.content
 
-    def test_upload_new_file():
-        """Tests that we can upload a new file into a project."""
-        client = Client()
-        client.login(**ADMIN_USER)
+def test_upload_new_file():
+    """Tests that we can upload a new file into a project."""
+    client = Client()
+    client.login(**ADMIN_USER)
 
-        # XXX: Don't move the following line below the call to post_request(), because it is dependant on this call.
-        podir = setup_testproject_dir(perms="view, translate, admin")
-        fields = [("doupload", "Upload File")]
-        poresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
-        files = [("uploadfile", "test_upload.po", pocontents)]
-        content_type, upload_response = encode_multipart_formdata(fields, files)
-        headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
-        response = post_request("zxx/testproject/", upload_contents, headers)
-        assert ' href="test_upload.po?' in response
+    pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rest"\n')
+    pocontent.name = "test_new_upload.po"
+    
+    post_dict = {
+        'file': pocontent,
+        'overwrite': '',
+        'do_upload': 'upload',
+    }
+    
+    response = client.post("/ar/pootle/", post_dict)
+    assert ' href="/ar/pootle/test_new_upload.po?' in response.content
 
-        pofile_storename = os.path.join(podir, "test_upload.po")
-        assert os.path.isfile(pofile_storename)
-        assert open(pofile_storename).read() == pocontents
+    store = Store.objects.get(pootle_path="/ar/pootle/test_new_upload.po")
+    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    assert os.path.isfile(pofile_storename)
+    assert open(pofile_storename).read() == pocontent.getvalue()
+    
+    download = client.get("/ar/pootle/test_new_upload.po/export/po")
+    assert download.content == pocontent.getvalue()
 
-        pocontents_download = client.get("zxx/testproject/test_upload.po")
-        assert pocontents_download == pocontents
+def test_upload_new_xliff_file():
+    """Tests that we can upload a new XLIFF file into a project."""
+    client = Client()
+    client.login(**ADMIN_USER)
+    
+    xliffcontent = StringIO.StringIO('''<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.1" version="1.1">
+  <file original="" source-language="en-US" datatype="po">
+    <body>
+      <trans-unit id="1" xml:space="preserve">
+        <source>test</source>
+        <target state="needs-review-translation">rest</target>
+        <context-group name="po-reference" purpose="location">
+          <context context-type="sourcefile">test.c</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+''')
+    xliffcontent.name = 'test_new_xliff_upload.xlf'
 
-    def test_upload_new_xliff_file():
-        """Tests that we can upload a new XLIFF file into a project."""
-        client = Client()
-        client.login(**ADMIN_USER)
+    post_dict = {
+        'file': xliffcontent,
+        'overwrite': '',
+        'do_upload': 'upload',
+    }
+        
+    response = client.post("/ar/pootle/", post_dict)
+    assert ' href="/ar/pootle/test_new_xliff_upload.po?' in response.content
 
-        # XXX: Don't move the following line below the call to post_request(), because it is dependant on this call.
-        podir = setup_testproject_dir(perms="view, translate, admin")
-        xliffresponse = '''<?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
-    <file datatype="po" original="test_upload.po" source-language="en-US">
-        <body>
-            <trans-unit id="1" xml:space="preserve">
-                <source>test</source>
-                <target state="translated">rest</target>
-                <context-group name="po-reference" purpose="location">
-                    <context context-type="sourcefile">test.c</context>
-                </context-group>
-            </trans-unit>
-        </body>
-    </file>
-</xliff>'''
-        fields = [("doupload", "Upload File")]
-        files = [("uploadfile", "test_upload.xlf", xliffcontents)]
-        content_type, upload_response = encode_multipart_formdata(fields, files)
-        headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
-        response = post_request("zxx/testproject/", upload_contents, headers)
-        assert ' href="test_upload.po?' in response
+    #FIXME: test conversion?
+    #store = Store.objects.get(pootle_path="/ar/pootle/test_new_xliff_upload.po")
+    #xliff_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    #assert os.path.isfile(pofile_storename)
+    #assert open(pofile_storename).read() == xliffcontent.getvalue()
+    #download = client.get("/ar/pootle/test_new_xliff_upload.po/export/xlf")
+    #assert download.content == xliffcontent.getvalue()
+    
 
-        pofile_storename = os.path.join(podir, "test_upload.po")
-        assert os.path.isfile(pofile_storename)
-        assert open(pofile_storename).read() == xliffcontents
-        # Well, since it is a new file, it actually now is an xliff file...
-        #pocontents_download = client.get("zxx/testproject/test_upload.po")
-        #pocontents_expected = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
-        #assert pocontents_download == pocontents_expected
+def test_upload_suggestions():
+    """Tests that we can upload when we only have suggest rights."""
+    client = Client()
+    client.login(**NONPRIV_USER)
 
-    def test_upload_suggestions():
-        """Tests that we can upload when we only have suggest rights."""
-        client = Client()
-        client.login(**ADMIN_USER)
+    pocontent = StringIO.StringIO('#: test.c\nmsgid "fish"\nmsgstr "samaka"\n')
+    pocontent.name = "pootle.po"
+    
+    post_dict = {
+        'file': pocontent,
+        'overwrite': '',
+        'do_upload': 'upload',
+    }
+    
+    response = client.post("/af/pootle/", post_dict)
 
-        podir = setup_testproject_dir(perms="view, suggest")
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        po1response = '#: test.c\nmsgid "test"\nmsgstr ""\n'
-        open(os.path.join(podir, "test_upload.po"), "w").write(po1contents)
+    # Check that the orignal file didn't take the new suggestion.
+    # We test with 'in' since the header is added
+    download = client.get("/af/pootle/pootle.po/export/po")
+    assert 'msgstr "samaka"' not in download.content
+    store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    pending_filename = pofile_storename + ".pending"
+    suggestions_content = open(pending_filename, 'r').read()
+    assert 'msgstr "samaka"' in suggestions_content
 
-        fields = [("doupload", "Upload File")]
-        poresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
-        files = [("uploadfile", "test_upload.po", pocontents)]
-        content_type, upload_response = encode_multipart_formdata(fields, files)
-        headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
-        response = post_request("zxx/testproject/", upload_contents, headers)
-        assert ' href="test_upload.po?' in response
-        # Check that the orignal file didn't take the new suggestion.
-        # We test with 'in' since the header is added
-        assert po1response.content in client.get("zxx/testproject/test_upload.po")
 
-        suggestions_content = open(os.path.join(podir, "test_upload.po.pending"), 'r').read()
-        assert 'msgstr "rest"' in suggestions_content
-    test_upload_suggestions.userprefs = {"rights.siteadmin": False}
+def test_upload_overwrite():
+    """Tests that we can overwrite a file in a project."""
+    client = Client()
+    client.login(**ADMIN_USER)
+    
+    pocontent = StringIO.StringIO('#: test.c\nmsgid "fish"\nmsgstr ""\n#: test.c\nmsgid "test"\nmsgstr "barf"\n\n')
+    pocontent.name = "pootle.po"
+    
+    post_dict = {
+        'file': pocontent,
+        'overwrite': 'checked',
+        'do_upload': 'upload',
+    }
+    
+    response = client.post("/af/pootle/", post_dict)
 
-    def test_upload_overwrite():
-        """Tests that we can overwrite a file in a project."""
-        client = Client()
-        client.login(**ADMIN_USER)
+    # Now we only test with 'in' since the header is added
+    store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    assert open(pofile_storename).read() == pocontent.getvalue()
+    
 
-        podir = setup_testproject_dir(perms="view, translate, overwrite")
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        po1response = '#: test.c\nmsgid "test"\nmsgstr ""\n'
-        open(os.path.join(podir, "test_upload.po"), "w").write(po1contents)
+def test_upload_new_archive():
+    """Tests that we can upload a new archive of files into a project."""
+    client = Client()
+    client.login(**ADMIN_USER)
 
-        fields = [("doupload", "Upload File"),("dooverwrite", "No")]
-        poresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
-        files = [("uploadfile", "test_upload.po", pocontents)]
-        content_type, upload_response = encode_multipart_formdata(fields, files)
-        headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
-        response = post_request("zxx/testproject/", upload_contents, headers)
-        assert ' href="test_upload.po?' in response
-        # Now we only test with 'in' since the header is added
-        assert poresponse.content in client.get("zxx/testproject/test_upload.po")
-        firstpofile = client.get("zxx/testproject/test_upload.po")
+    po_content_1 = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
+    po_content_2 = '#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
 
-        fields = [("doupload", "Upload File"),("dooverwrite", "Yes")]
-        poresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n#: test.c\nmsgid "azoozoo"\nmsgstr ""'
-        files = [("uploadfile", "test_upload.po", pocontents)]
-        content_type, upload_response = encode_multipart_formdata(fields, files)
-        headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
-        response = post_request("zxx/testproject/", upload_contents, headers)
-        assert poresponse == client.get("zxx/testproject/test_upload.po")
+    archivefile = wStringIO.StringIO()
+    archivefile.name = "fish.zip"
+    archive = zipfile.ZipFile(archivefile, "w", zipfile.ZIP_DEFLATED)
+    archive.writestr("test_archive_1.po", po_content_1)
+    archive.writestr("test_archive_2.po", po_content_2)
+    archive.close()
 
-    def test_upload_new_archive():
-        """Tests that we can upload a new archive of files into a project."""
-        client = Client()
-        client.login(**ADMIN_USER)
+    archivefile.seek(0)
+    post_dict = {
+        'file': archivefile,
+        'overwrite': '',
+        'do_upload': 'upload',
+    }
+    
+    response = client.post("/ar/pootle/", post_dict)
 
-        podir = setup_testproject_dir(perms="view, translate, admin")
-        po1response = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
-        po2response = '#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
+    assert ' href="/ar/pootle/test_archive_1.po?' in response.content
+    assert ' href="/ar/pootle/test_archive_2.po?' in response.content
 
-        archivefile = wStringIO.StringIO()
-        archive = zipfile.ZipFile(archivefile, "w", zipfile.ZIP_DEFLATED)
-        archive.writestr("test.po", po1contents)
-        archive.writestr("frog.po", po2contents)
-        archive.close()
+    store = Store.objects.get(pootle_path="/ar/pootle/test_archive_1.po")
+    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    assert os.path.isfile(pofile_storename)
+    assert open(pofile_storename).read() == po_content_1
 
-        fields = [("doupload", "Upload File")]
-        files = [("uploadfile", "upload.zip", archivefile.getvalue())]
-        content_type, upload_response = encode_multipart_formdata(fields, files)
-        headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
-        response = post_request("zxx/testproject/", upload_contents, headers)
+    download = client.get("/ar/pootle/test_archive_2.po/export/po")
+    assert po_content_2 == download.content
+    
+def test_upload_over_file():
+    """Tests that we can upload a new version of a file into a project."""
+    client = Client()
+    client.login(**ADMIN_USER)
 
-        for filename, response.content in [("test.po", po1contents), ("frog.po", po2contents)]:
-            assert (' href="%s?' % filename) in response
+    pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rested"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
+    pocontent.name = "pootle.po"
 
-            pofile_storename = os.path.join(podir, filename)
-            assert os.path.isfile(pofile_storename)
-            assert open(pofile_storename).read() == response.content
+    post_dict = {
+        'file': pocontent,
+        'overwrite': '',
+        'do_upload': 'upload',
+    }
+    response = client.post("/af/pootle/", post_dict)
 
-            pocontents_download = client.get("zxx/testproject/%s" % filename)
-            assert pocontents_download == response.content
+    # NOTE: this is what we do currently: any altered strings become suggestions.
+    # It may be a good idea to change this
+    mergedcontent = '#: fish.c\nmsgid "fish"\nmsgstr "stink"\n\n#: test.c\nmsgid "test"\nmsgstr "rest"\n'
+    suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin\\n"\n"test"\nmsgstr "rested"\n'
+    store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    assert open(pofile_storename).read().find(mergedcontent) >= 0
+    
+    pendingfile_storename = pofile_storename + '.pending'
+    assert os.path.isfile(pendingfile_storename)
+    assert open(pendingfile_storename).read().find(suggestedcontent) >= 0
 
-    def test_upload_over_file():
-        """Tests that we can upload a new version of a file into a project."""
-        client = Client()
-        client.login(**ADMIN_USER)
 
-        podir = setup_testproject_dir(perms="view, translate")
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        po1response = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
-        open(os.path.join(podir, "test_existing.po"), "w").write(po1contents)
-        po2response = '#: test.c\nmsgid "test"\nmsgstr "rested"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
+def test_upload_xliff_over_file():
+    """Tests that we can upload a new version of a XLIFF file into a project."""
+    client = Client()
+    client.login(**ADMIN_USER)
+    
+    pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n')
+    pocontent.name = "test_upload_xliff.po"
+    post_dict = {
+        'file': pocontent,
+        'overwrite': 'checked',
+        'do_upload': 'upload',
+    }
+    response = client.post("/ar/pootle/", post_dict)
 
-        fields = [("doupload", "Upload File")]
-        files = [("uploadfile", "test_existing.po", po2contents)]
-        content_type, upload_response = encode_multipart_formdata(fields, files)
-        headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
-        response = post_request("zxx/testproject/?editing=1", upload_contents, headers)
-        assert ' href="test_existing.po?' in response
-
-        # NOTE: this is what we do currently: any altered strings become suggestions.
-        # It may be a good idea to change this
-        mergedresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
-        suggestedresponse = '#: test.c\nmsgid ""\n"_: suggested by adminuser\\n"\n"test"\nmsgstr "rested"\n'
-        pofile_storename = os.path.join(podir, "test_existing.po")
-        assert os.path.isfile(pofile_storename)
-        assert open(pofile_storename).read().find(mergedcontents) >= 0
-
-        pendingfile_storename = os.path.join(podir, "test_existing.po.pending")
-        assert os.path.isfile(pendingfile_storename)
-        assert open(pendingfile_storename).read().find(suggestedcontents) >= 0
-
-        pocontents_download = client.get("zxx/testproject/test_existing.po")
-        assert pocontents_download.find(mergedcontents) >= 0
-    test_upload_over_file.userprefs = {"rights.siteadmin": True}
-
-    def test_upload_xliff_over_file():
-        """Tests that we can upload a new version of a XLIFF file into a project."""
-        client = Client()
-        client.login(**ADMIN_USER)
-
-        podir = setup_testproject_dir(perms="view, translate")
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        poresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
-        open(os.path.join(podir, "test_existing.po"), "w").write(pocontents)
-
-        xlfresponse = '''<?xml version="1.0" encoding="utf-8"?>
+    xlfcontent = StringIO.StringIO('''<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
     <file datatype="po" original="test_existing.po" source-language="en-US">
         <body>
@@ -340,50 +348,50 @@ def test_add_project_language():
             </trans-unit>
         </body>
     </file>
-</xliff>'''
-        fields = [("doupload", "Upload File")]
-        files = [("uploadfile", "test_existing.xlf", xlfcontents)]
-        content_type, upload_response = encode_multipart_formdata(fields, files)
-        headers = {"Content-Type": content_type, "Content-Length": len(upload_contents)}
-        response = post_request("zxx/testproject/?editing=1", upload_contents, headers)
-        assert ' href="test_existing.po?' in response
+</xliff>''')
+    xlfcontent.name = "test_upload_xliff.xlf"
+    
+    post_dict = {
+        'file': xlfcontent,
+        'overwrite': '',
+        'do_upload': 'upload',
+    }
+    response = client.post("/ar/pootle/", post_dict)
 
-        # NOTE: this is what we do currently: any altered strings become suggestions.
-        # It may be a good idea to change this
-        mergedresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
-        suggestedresponse = '#: test.c\nmsgid ""\n"_: suggested by adminuser\\n"\n"test"\nmsgstr "rested"\n'
-        pofile_storename = os.path.join(podir, "test_existing.po")
-        assert os.path.isfile(pofile_storename)
-        assert open(pofile_storename).read().find(mergedcontents) >= 0
+    # NOTE: this is what we do currently: any altered strings become suggestions.
+    # It may be a good idea to change this
+    mergedcontent = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
+    suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin\\n"\n"test"\nmsgstr "rested"\n'
+    store = Store.objects.get(pootle_path="/ar/pootle/test_upload_xliff.po")
+    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    assert os.path.isfile(pofile_storename)
+    assert open(pofile_storename).read().find(mergedcontent) >= 0
 
-        pendingfile_storename = os.path.join(podir, "test_existing.po.pending")
-        assert os.path.isfile(pendingfile_storename)
-        assert open(pendingfile_storename).read().find(suggestedcontents) >= 0
+    pendingfile_storename = pofile_storename + ".pending"
+    assert os.path.isfile(pendingfile_storename)
+    assert open(pendingfile_storename).read().find(suggestedcontent) >= 0
 
-        pocontents_download = client.get("zxx/testproject/test_existing.po")
-        assert pocontents_download.find(mergedcontents) >= 0
-    test_upload_xliff_over_file.userprefs = {"rights.siteadmin": True}
 
-    def test_submit_translation():
-        """Tests that we can upload a new file into a project."""
-        client = Client()
-        client.login(**ADMIN_USER)
+def test_submit_translation():
+    """Tests that we can upload a new file into a project."""
+    client = Client()
+    client.login(**ADMIN_USER)
 
-        podir = setup_testproject_dir(perms="view, translate")
-        pofile_storename = os.path.join(podir, "test_upload.po")
-        poresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
-        open(pofile_storename, "w").write(pocontents)
+    submit_dict = {
+        'trans0': 'submitted translation',
+        'submit0': 'Submit',
+        'store': '/af/pootle/pootle.po',
+    }
+    submit_dict.update(formset_dict([]))
+    response = client.post("/af/pootle/pootle.po",
+                           submit_dict,
+                           QUERY_STRING='view_mode=translate')
+    
+    assert 'submitted translation' in response.content
 
-        expected_poresponse = '#: test.c\nmsgid "test"\nmsgstr "restrain"\n'
-        fields = {"orig-pure0.0": "test", "trans0": "restrain", "submit0": "submit", "pofilename": "test_upload.po"}
-        content_type, post_response = encode_multipart_formdata(fields.items(), [])
-        headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
-        translatepage = post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
-
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        pofile = project.getpofile("test_upload.po")
-        assert str(pofile.units[1]) == expected_pocontents
+    store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)    
+    assert open(pofile_storename).read().find('submitted translation') >= 0
 
     def test_submit_plural_translation():
         """Tests that we can submit a translation with plurals."""
