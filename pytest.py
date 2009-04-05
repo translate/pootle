@@ -60,23 +60,18 @@ class TestEnv(object):
         os.mkdir(nongnu_ar)
         nongnu_af = os.path.join(nongnu, "af")
         os.mkdir(nongnu_af)
-        xliffcontents = '''<?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
-<file datatype="po" original="test_upload.po" source-language="en-US">
-        <body>
-            <trans-unit id="1" xml:space="preserve">
-                <source>test</source>
-                <target state="translated">rest</target>
-                <context-group name="po-reference" purpose="location">
-                    <context context-type="sourcefile">test.c</context>
-                </context-group>
-            </trans-unit>
-        </body>
-    </file>
-</xliff>'''
-        xliffile = file(os.path.join(nongnu_af, "pootle.xlf"), 'w')
-        xliffile.write(xliffcontents)
-        xliffile.close()
+        pofile = file(os.path.join(nongnu_af, "pootle.po"), 'w')
+        pofile.write('''#: fish.c
+msgid "fish"
+msgstr ""
+
+#: test.c
+msgid "test"
+msgstr "rest"
+
+''')
+        pofile.close()
+        
 
 
     def create_test_users(self):
