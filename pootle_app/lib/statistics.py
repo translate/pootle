@@ -24,8 +24,8 @@ import traceback
 
 def getmodtime(filename):
     try:
-        (mtime, _size) = statsdb.get_mod_info(filename)
-        return mtime
+        (mtime, size) = statsdb.get_mod_info(filename)
+        return (mtime, size)
     except:
         return None
 

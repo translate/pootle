@@ -92,7 +92,7 @@ class LockedFile:
     def getcontents(self):
         """returns modtime, contents tuple (locked operation)"""
 
-        pomtime = statistics.getmodtime(self.filename)
+        pomtime = self.readmodtime()
         fp = open(self.filename, 'r')
         filecontents = fp.read()
         fp.close()
@@ -105,7 +105,7 @@ class LockedFile:
         f = open(self.filename, 'w')
         f.write(contents)
         f.close()
-        pomtime = statistics.getmodtime(self.filename)
+        pomtime = self.readmodtime()
         return pomtime
 
 
