@@ -22,7 +22,6 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
 
 from django.db import transaction
-import md5
 
 from django.core.management.base import NoArgsCommand
 from django.contrib.auth.models import User, Permission
@@ -773,7 +772,7 @@ def create_default_users():
                 is_active=True,
                 is_superuser=True,
                 is_staff=True)
-    admin.password = md5.new("admin").hexdigest()
+    admin.set_password("admin")
     admin.save()
 
     # The nobody user is used to represent an anonymous user in cases where
