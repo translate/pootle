@@ -58,6 +58,8 @@ class TestEnv(object):
         os.mkdir(nongnu)
         nongnu_ar = os.path.join(nongnu, "ar")
         os.mkdir(nongnu_ar)
+        nongnu_ja = os.path.join(nongnu, "ja")
+        os.mkdir(nongnu_ja)
         nongnu_af = os.path.join(nongnu, "af")
         os.mkdir(nongnu_af)
         pofile = file(os.path.join(nongnu_af, "pootle.po"), 'w')

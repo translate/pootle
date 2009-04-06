@@ -290,7 +290,7 @@ def test_upload_over_file():
     """Tests that we can upload a new version of a file into a project."""
     client = Client()
     client.login(**ADMIN_USER)
-
+    
     pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rested"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
     pocontent.name = "pootle.po"
 
@@ -303,7 +303,7 @@ def test_upload_over_file():
 
     # NOTE: this is what we do currently: any altered strings become suggestions.
     # It may be a good idea to change this
-    mergedcontent = '#: fish.c\nmsgid "fish"\nmsgstr "stink"\n\n#: test.c\nmsgid "test"\nmsgstr "rest"\n'
+    mergedcontent = '#: fish.c\nmsgid "fish"\nmsgstr "stink"\n'
     suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin\\n"\n"test"\nmsgstr "rested"\n'
     store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
     pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
@@ -393,47 +393,68 @@ def test_submit_translation():
     pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)    
     assert open(pofile_storename).read().find('submitted translation') >= 0
 
-    def test_submit_plural_translation():
-        """Tests that we can submit a translation with plurals."""
-        client = Client()
-        client.login(**ADMIN_USER)
+def test_submit_plural_translation():
+    """Tests that we can submit a translation with plurals."""
+    client = Client()
+    client.login(**ADMIN_USER)
 
-        podir = setup_testproject_dir(perms="view, translate")
-        pofile_storename = os.path.join(podir, "test_upload.po")
-        poresponse = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud string"\nmsgstr[1] "meervoud boodskap"\n'
-        open(pofile_storename, "w").write(pocontents)
+    pocontent = StringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n')
+    pocontent.name = 'test_plural_submit.po'
 
-        expected_poresponse = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud"\nmsgstr[1] "meervoud"\n'
-        fields = {"orig-pure0.0": "singular", "trans0.0": "enkelvoud", "trans0.1": "meervoud", "submit0": "submit", "pofilename": "test_upload.po"}
-        content_type, post_response = encode_multipart_formdata(fields.items(), [])
-        headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
-        translatepage = post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
+    post_dict = {
+        'file': pocontent,
+        'overwrite': 'checked',
+        'do_upload': 'upload',
+    }
+    response = client.post("/ar/pootle/", post_dict)
 
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        pofile = project.getpofile("test_upload.po")
-        assert str(pofile.units[1]) == expected_pocontents
+    submit_dict = {
+        'trans0-0': 'a fish',
+        'trans0-1': 'some fish',
+        'trans0-2': 'lots of fish',
+        'submit0': 'Submit',
+        'store': '/ar/pootle/test_plural_submit.po',
+    }
+    submit_dict.update(formset_dict([]))
+    response = client.post("/ar/pootle/test_plural_submit.po",
+                          submit_dict, QUERY_STRING='view_mode=translate')
 
-    def test_submit_plural_to_singular_lang():
-        """Tests that we can submit a translation with plurals to a language without plurals."""
-        client = Client()
-        client.login(**ADMIN_USER)
+    assert 'a fish' in response.content
+    assert 'some fish' in response.content
+    assert 'lots of fish' in response.content
+        
+def test_submit_plural_to_singular_lang():
+    """Tests that we can submit a translation with plurals to a language without plurals."""
+    client = Client()
+    client.login(**ADMIN_USER)
+        
+    pocontent = StringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n')
+    pocontent.name = 'test_plural_submit.po'
 
-        podir = setup_testproject_dir(perms="view, translate")
-        pofile_storename = os.path.join(podir, "test_upload.po")
-        poresponse = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud string"\n'
-        open(pofile_storename, "w").write(pocontents)
+    post_dict = {
+        'file': pocontent,
+        'overwrite': 'checked',
+        'do_upload': 'upload',
+    }
+    response = client.post("/ja/pootle/", post_dict)
 
-        expected_poresponse = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "enkelvoud"\n'
-        fields = {"orig-pure0.0": "singular", "trans0.0": "enkelvoud", "submit0": "submit", "pofilename": "test_upload.po"}
-        content_type, post_response = encode_multipart_formdata(fields.items(), [])
-        headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
-        translatepage = post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
+    submit_dict = {
+        'trans0': 'just fish',
+        'submit0': 'Submit',
+        'store': '/ja/pootle/test_plural_submit.po',
+    }
+    submit_dict.update(formset_dict([]))
+    response = client.post("/ja/pootle/test_plural_submit.po",
+                          submit_dict, QUERY_STRING='view_mode=translate')
 
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        pofile = project.getpofile("test_upload.po")
-        assert str(pofile.units[1]) == expected_pocontents
+    assert 'just fish' in response.content
+
+    expectedcontent = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "just fish"\n'
+
+    store = Store.objects.get(pootle_path="/ja/pootle/test_plural_submit.po")
+    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    assert open(pofile_storename).read().find(expectedcontent) >= 0
+
 
     def test_submit_fuzzy():
         """Tests that we can mark a unit as fuzzy."""
