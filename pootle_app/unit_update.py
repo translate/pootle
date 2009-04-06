@@ -64,11 +64,17 @@ def update_translation(pootle_file, item, newvalues, request, suggestion=None):
     pootle_file.pofreshen()
     translation_project = request.translation_project
     if suggestion is None:
+        if (type(newvalues['target']) == dict):
+            target = newvalues['target'][0]
+        else:
+            target = newvalues['target']
         unit = Unit(store  = pootle_file.store,
                     index  = item,
-                    source = pootle_file.getitem(item).getsource(),
-                    target = newvalues['target'])
+                    source = unicode(pootle_file.getitem(item).getsource()),
+                    target = target)
         unit.save()
+        
+            
     else:
         unit       = suggestion.unit
         unit.state = 'accepted'
