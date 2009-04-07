@@ -31,8 +31,7 @@ from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
 from pootle_app.models.translation_project import scan_translation_projects
 from pootle_app import __version__ as pootleversion
-from Pootle import filelocations
-from Pootle import pan_app
+#from Pootle import filelocations
 from translate import __version__ as toolkitversion
 
 
@@ -40,7 +39,8 @@ class PootleServer(object):
     """the Server that serves the Pootle Pages"""
 
     def __init__(self):
-        self.templatedir = filelocations.templatedir
+        pass
+        #self.templatedir = filelocations.templatedir
 
     def refreshstats(self, args):
         """refreshes all the available statistics...
@@ -110,9 +110,9 @@ Python %s (on %s/%s)''' % (
             os.name,
             )
         optparse.OptionParser.__init__(self)
-        self.set_default('prefsfile', filelocations.prefsfile)
+        #self.set_default('prefsfile', filelocations.prefsfile)
         self.set_default('instance', 'Pootle')
-        self.set_default('htmldir', filelocations.htmldir)
+        #self.set_default('htmldir', filelocations.htmldir)
         self.add_option(
             '',
             '--refreshstats',
