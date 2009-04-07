@@ -4,6 +4,7 @@ import os
 
 import zipfile
 from translate.misc import wStringIO
+from translate.storage import factory
 
 from django.test.client import Client
 from django.http import QueryDict
@@ -29,6 +30,10 @@ def formset_dict(data):
             new_data["form-%d-%s" % (i,key)] = value
     return new_data
         
+def get_store(pootle_path):
+    store = Store.objects.get(pootle_path=pootle_path)
+    store_path = os.path.join(settings.PODIRECTORY, store.real_path)
+    return factory.getobject(store_path)
 
 def test_login():
     """Checks that login works and sets cookies."""
@@ -456,133 +461,68 @@ def test_submit_plural_to_singular_lang():
     assert open(pofile_storename).read().find(expectedcontent) >= 0
 
 
-    def test_submit_fuzzy():
-        """Tests that we can mark a unit as fuzzy."""
-        client = Client()
-        client.login(**ADMIN_USER)
+def test_submit_fuzzy():
+    """Tests that we can mark a unit as fuzzy."""
+    client = Client()
+    client.login(**ADMIN_USER)
 
-        podir = setup_testproject_dir(perms="view, translate")
-        pofile_storename = os.path.join(podir, "test_fuzzy.po")
-        poresponse = '#: test.c\nmsgid "fuzzy"\nmsgstr "wuzzy"\n'
-        open(pofile_storename, "w").write(pocontents)
+    # Fetch the page and check that the fuzzy checkbox is NOT checked.
+    
+    response = client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
+    assert '<input class="fuzzycheck" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in response.content
+    
+    submit_dict = {
+        'trans0': 'fuzzy translation',
+        'fuzzy0': 'on',
+        'submit0': 'Submit',
+        'store': '/af/pootle/pootle.po',
+    }
+    submit_dict.update(formset_dict([]))
+    response = client.post("/af/pootle/pootle.po",
+                           submit_dict, QUERY_STRING='view_mode=translate')
+    # Fetch the page again and check that the fuzzy checkbox IS checked.
+    response = client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
+    assert '<input checked="checked" name="fuzzy0" accesskey="f" type="checkbox" id="fuzzy0" class="fuzzycheck" />' in response.content
 
-        # Fetch the page and check that the fuzzy checkbox is NOT checked.
-        translatepage = client.get("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
-        assert '<input class="fuzzycheck" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in translatepage
+    pofile = get_store("/af/pootle/pootle.po")
+    assert pofile.units[1].isfuzzy()
 
-        fields = {"orig-pure0.0": "fuzzy", "trans0": "wuzzy", "submit0": "submit", "fuzzy0": "on", "pofilename": "test_fuzzy.po"}
-        content_type, post_response = encode_multipart_formdata(fields.items(), [])
-        headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
-        translatepage = post_request("zxx/testproject/test_fuzzy.po?translate=1&editing=1", post_contents, headers)
+    # Submit the translation again, without the fuzzy checkbox checked
+    submit_dict = {
+        'trans0': 'fuzzy translation',
+        'fuzzy0': '',
+        'submit0': 'Submit',
+        'store': '/af/pootle/pootle.po',
+    }
+    submit_dict.update(formset_dict([]))
+    response = client.post("/af/pootle/pootle.po",
+                           submit_dict, QUERY_STRING='view_mode=translate')
+    # Fetch the page once more and check that the fuzzy checkbox is NOT checked.
+    response = client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
+    assert '<input class="fuzzycheck" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in response.content
+    pofile = get_store("/af/pootle/pootle.po")
+    assert not pofile.units[1].isfuzzy()
+        
+def test_submit_translator_comments():
+    """Tests that we can edit translator comments."""
+    client = Client()
+    client.login(**ADMIN_USER)
 
-        # Fetch the page again and check that the fuzzy checkbox IS checked.
-        translatepage = client.get("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
-        assert '<input checked="checked" name="fuzzy0" accesskey="f" type="checkbox" id="fuzzy0" class="fuzzycheck" />' in translatepage
+    submit_dict = {
+        'trans0': 'fish',
+        'translator_comments0': 'goodbye\nand thanks for all the fish',
+        'submit0': 'Submit',
+        'store': '/af/pootle/pootle.po',
+    }
+    submit_dict.update(formset_dict([]))
+    response = client.post("/af/pootle/pootle.po",
+                           submit_dict,
+                           QUERY_STRING='view_mode=translate')
 
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        pofile = project.getpofile("test_fuzzy.po")
-        expected_poresponse = '#: test.c\n#, fuzzy\nmsgid "fuzzy"\nmsgstr "wuzzy"\n'
-        assert str(pofile.units[1]) == expected_pocontents
-        assert pofile.units[1].isfuzzy()
+    pofile = get_store("/af/pootle/pootle.po")
+    
+    assert pofile.units[1].getnotes() == 'goodbye\nand thanks for all the fish'
 
-        # Submit the translation again, without the fuzzy checkbox checked
-        fields = {"orig-pure0.0": "fuzzy", "trans0": "wuzzy", "submit0": "submit", "pofilename": "test_fuzzy.po"}
-        content_type, post_response = encode_multipart_formdata(fields.items(), [])
-        headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
-        translatepage = post_request("zxx/testproject/test_fuzzy.po?translate=1&editing=1", post_contents, headers)
-
-        # Fetch the page once more and check that the fuzzy checkbox is NOT checked.
-        translatepage = client.get("zxx/testproject/test_fuzzy.po?translate=1&editing=1")
-        assert '<input class="fuzzycheck" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in translatepage
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        pofile = project.getpofile("test_fuzzy.po")
-        assert not pofile.units[1].isfuzzy()
-
-    def test_submit_translator_comments():
-        """Tests that we can edit translator comments."""
-        client = Client()
-        client.login(**ADMIN_USER)
-
-        podir = setup_testproject_dir(perms="view, translate")
-        pofile_storename = os.path.join(podir, "test_upload.po")
-        poresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
-        open(pofile_storename, "w").write(pocontents)
-
-        expected_poresponse = '# Some test comment\n# test comment line 2\n#: test.c\nmsgid "test"\nmsgstr "rest"\n'
-        fields = {"orig-pure0.0": "test", "trans0": "rest", "translator_comments0": "Some test comment\ntest comment line 2", "submit0": "submit", "pofilename": "test_upload.po"}
-        content_type, post_response = encode_multipart_formdata(fields.items(), [])
-        headers = {"Content-Type": content_type, "Content-Length": len(post_contents)}
-        translatepage = post_request("zxx/testproject/test_upload.po?translate=1&editing=1", post_contents, headers)
-
-        tree = potree.POTree(prefs.Pootle, server)
-        project = projects.TranslationProject("zxx", "testproject", tree)
-        pofile = project.getpofile("test_upload.po")
-        assert str(pofile.units[1]) == expected_pocontents
-
-    def test_navigation_url_parameters():
-        """Tests that the navigation urls (next/end etc) has the necessary parameters."""
-        client = Client()
-        client.login(**ADMIN_USER)
-
-        podir = setup_testproject_dir(perms="view, translate")
-        pofile_storename = os.path.join(podir, "test_nav_url.po")
-        poresponse = '#: test.c\nmsgid "test1"\nmsgstr "rest"\n'
-        poresponse.content += '\nmsgid "test2"\nmsgstr "rest2"\n'
-        poresponse.content += '\nmsgid "test3"\nmsgstr "rest2"\n'
-        poresponse.content += '\nmsgid "test4"\nmsgstr "rest2"\n'
-        poresponse.content += '\nmsgid "test5"\nmsgstr "rest2"\n'
-        poresponse.content += '\nmsgid "test6"\nmsgstr "rest2"\n'
-        poresponse.content += '\nmsgid "test7"\nmsgstr "rest2"\n'
-        poresponse.content += '\nmsgid "test8"\nmsgstr "rest2"\n'
-        poresponse.content += '\nmsgid "test9"\nmsgstr "rest2"\n'
-        poresponse.content += '\nmsgid "test10"\nmsgstr "rest2"\n'
-        poresponse.content += '\nmsgid "test11"\nmsgstr "rest2"\n'
-        open(pofile_storename, "w").write(pocontents)
-
-        # Mozootle can't currently use preferences set like this, so commented
-        # out for now:
-        #prefs.setvalue("Pootle.users.testuser.viewrows", 1)
-        translatepage = client.get("zxx/testproject/test_nav_url.po?translate=1&view=1")
-        patterns = re.findall('<a href=".(.*)".*Next 1.*</a>', translatepage)
-        parameters = patterns[0].split('&amp;')
-        assert 'pofilename=test_nav_url.po' in parameters
-        assert 'item=10' in parameters
-
-    def test_search():
-        """Test the searching functionality when results are and are not expected."""
-        client = Client()
-        client.login(**ADMIN_USER)
-
-        # Create initial .po file
-        podir = setup_testproject_dir(perms='view')
-        pofile_storename = os.path.join(podir, "test_upload.po")
-        poresponse = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
-        open(pofile_storename, "w").write(pocontents)
-
-        test_translation_string = '<div class="translation-text">test</div>'
-        # Test for existing results
-        fields = {
-            'searchtext': 'test',
-            'pofilename': 'test_upload.po',
-            'source': '1'
-        }
-        content_type, post_response = encode_multipart_formdata(fields.items(), [])
-        headers = { 'Content-Type': content_type, 'Content-Length': len(post_contents) }
-        translatepage = post_request('zxx/testproject/translate.html', post_contents, headers)
-        assert test_translation_string in translatepage
-
-        # Test for empty result
-        fields = {
-            'searchtext': 'test',
-            'pofilename': 'test_upload.po',
-            'target': '1'
-        }
-        content_type, post_response = encode_multipart_formdata(fields.items(), [])
-        headers = { 'Content-Type': content_type, 'Content-Length': len(post_contents) }
-        translatepage = post_request('zxx/testproject/translate.html', post_contents, headers)
-        assert test_translation_string not in translatepage
 
 
         
