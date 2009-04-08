@@ -79,8 +79,11 @@ class DummyTranslation(object):
 
 # Must be replaced after the bootstrapping phase by a function that returns
 # and actual pootle Project object for the language code.
-def check_for_language(code):
-    return False
+def check_for_language(language):
+    try:
+        return TranslationProject.objects.get(language=language, project__code='pootle')
+    except TranslationProject.DoesNotExist:
+        return False
 
 # END BOOTSTRAPPING TRANSLATION CODE
 
@@ -185,13 +188,12 @@ hijack_django_translation_functions()
 def get_lang(language):
     """Used by the localization system to get hold of a
     TranslationProject which can used to do UI translations"""
-    if not language:
-        return get_default_translation()
-    else:
-        try:
-            return TranslationProject.objects.get(language=language, project__code='pootle')
-        except TranslationProject.DoesNotExist:
-            return get_default_translation()
+    try:
+        return TranslationProject.objects.get(language=language, project__code='pootle')
+    except TranslationProject.DoesNotExist:
+        return None
+    
+        
 
 
 

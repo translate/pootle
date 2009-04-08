@@ -35,18 +35,6 @@ from translate.lang import data
 
 from string import upper
 
-def get_lang_from_cookie(request):
-    """See if the user's browser sent a cookie with her preferred language. Return
-    a Pootle project object if so and if the we have a pootle translation project
-    for the language.
-
-    Otherwise, return None."""
-    lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME, None)
-    # FIXME: removed checking if language is supported
-    if lang_code and gettext.check_for_language(lang_code):
-        return gettext.get_lang(Language.objects.get(code=lang_code))
-    return None
-
 def get_lang_obj(code):
     """Tries to get a Language object based on a language code from an HTTP header.
 
@@ -54,6 +42,9 @@ def get_lang_obj(code):
        the 'lang_COUNTRY' form and otherwise fallback to 'lang'. Also,
        language codes are normalized to the form 'af_ZA', because this is how
        Pootle stores language codes."""
+    if not code:
+        return None
+    
     code_parts = code.split('-')
     if len(code_parts) > 1:
         code2 = "%(lang)s_%(country)s" % {'lang': code_parts[0],
@@ -69,6 +60,18 @@ def get_lang_obj(code):
     except ObjectDoesNotExist:
         return None
 
+
+def get_lang_from_cookie(request):
+    """See if the user's browser sent a cookie with her preferred language. Return
+    a Pootle project object if so and if the we have a pootle translation project
+    for the language.
+
+    Otherwise, return None."""
+    lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME, None)
+    lang_obj = get_lang_obj(lang_code)
+    return gettext.get_lang(lang_obj)
+
+
 def get_lang_from_http_header(request):
     """If the user's browser sends a list of preferred languages in the
     HTTP_ACCEPT_LANGUAGE header, parse it into a list. Then walk through
@@ -80,11 +83,8 @@ def get_lang_from_http_header(request):
     for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
         if accept_lang == '*' or data.normalize_code(accept_lang) in ['en-us', 'en']:
             return gettext.get_default_translation()
-        try:
-            lang_obj = get_lang_obj(accept_lang)
-            return gettext.get_lang(lang_obj)
-        except TranslationProject.DoesNotExist:
-            pass
+        lang_obj = get_lang_obj(accept_lang)
+        return gettext.get_lang(lang_obj)
     return None
 
 def get_lang_from_prefs(request):
@@ -99,9 +99,7 @@ def get_lang_from_prefs(request):
     if request.user.is_authenticated():
         profile = get_profile(request.user)
         # and if the user's ui lang is set, and the ui lang exists
-        if profile.ui_lang is not None and gettext.check_for_language(profile.ui_lang.code):
-            # return that
-            return gettext.get_lang(profile.ui_lang)
+        return gettext.get_lang(profile.ui_lang)
     return None
 
 def get_language_from_request(request):
@@ -110,8 +108,8 @@ def get_language_from_request(request):
     model) and finally by checking the HTTP language headers.
 
     If all fails, try to fall back to English."""
-    for lang_getter in (get_lang_from_prefs,
-                        get_lang_from_cookie,
+    for lang_getter in (get_lang_from_cookie,
+                        get_lang_from_prefs,
                         get_lang_from_http_header):
         lang = lang_getter(request)
         if lang is not None:
