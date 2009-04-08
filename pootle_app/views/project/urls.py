@@ -22,8 +22,8 @@
 from django.conf.urls.defaults import *
 import view
 
-urlpatterns = patterns('',
-    (r'^(/|/index.html)?$',         view.projects_index),
-    (r'^/([^/]*)/admin.html$',      view.project_admin),
-    (r'^/([^/]*)(/|/index.html)?$', view.project_language_index),
+urlpatterns = patterns('pootle_app.views.project',
+    (r'^(/|/index.html)?$',         'projects_index.view'),
+    (r'^/([^/]*)/admin.html$',      'project_admin.view'),
+    (r'^/([^/]*)(/|/index.html)?$', 'project_language_index.view'),
 )
