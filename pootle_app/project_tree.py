@@ -302,7 +302,7 @@ def get_translated_name(translation_project, template_path):
 
 def is_valid_template_file(template_translation_project, translation_project, filename):
     name, ext = os.path.splitext(filename)
-    if ext == '.' + get_extension(translation_project.language, translation_project.project):
+    if ext == '.' + get_extension(template_translation_project.language, template_translation_project.project):
         return True
     else:
         return False
