@@ -18,6 +18,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from Pootle.middleware.locale import LocaleMiddleware
-from Pootle.middleware.profile import ProfilerMiddleware
-from Pootle.middleware.check_cookies import CheckCookieMiddleware
+

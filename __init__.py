@@ -21,5 +21,3 @@
 
 """Pootle is a web portal for localization"""
 
-__all__ = ["pootle"]
-
