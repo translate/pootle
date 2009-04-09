@@ -26,8 +26,8 @@ from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm
 
-from Pootle.i18n.user_lang_discovery import get_language_from_request
-from Pootle.i18n.jtoolkit_i18n import tr_lang
+from pootle.i18n.user_lang_discovery import get_language_from_request
+from pootle.i18n.jtoolkit_i18n import tr_lang
 
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.models import Language

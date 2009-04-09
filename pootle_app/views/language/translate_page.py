@@ -43,7 +43,7 @@ from pootle_app import unit_update, url_manip
 from pootle_app.models import permissions, metadata
 from pootle_app.models.permissions import check_permission
 
-from Pootle.i18n.jtoolkit_i18n import tr_lang
+from pootle.i18n.jtoolkit_i18n import tr_lang
 
 import dispatch, navbar_dict, search_forms
 

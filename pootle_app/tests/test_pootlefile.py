@@ -2,7 +2,7 @@
 
 from pootle_app.models import store_file
 
-from Pootle import pootle
+from pootle import pootle
 from translate.storage import po
 from translate.storage import test_po
 from translate.filters import checks

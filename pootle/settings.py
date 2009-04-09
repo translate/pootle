@@ -56,14 +56,14 @@ SUPPORT_ADDRESS = 'pootle-admin@yourdomain.org'
 HOMEPAGE = 'home/'
 
 DATABASE_ENGINE = 'sqlite3'                 # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = pootle_home('dbs/pootle.db') # Or path to database file if using sqlite3.
+DATABASE_NAME = pootle_home(os.path.join('dbs', 'pootle.db')) # Or path to database file if using sqlite3.
 DATABASE_USER = ''                          # Not used with sqlite3.
 DATABASE_PASSWORD = ''                      # Not used with sqlite3.
 DATABASE_HOST = ''                          # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''                          # Set to empty string for default. Not used with sqlite3.
 
 
-STATS_DB_PATH = pootle_home('dbs/stats.db') # None means the default path
+STATS_DB_PATH = pootle_home(os.path.join('dbs', 'stats.db')) # None means the default path
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -109,14 +109,14 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     # Uncomment to use memcached for caching
     #'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
-    'Pootle.middleware.baseurl.BaseUrlMiddleware',
+    'pootle.middleware.baseurl.BaseUrlMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
-    'Pootle.middleware.CheckCookieMiddleware',
-    'Pootle.middleware.LocaleMiddleware',
-    'Pootle.middleware.ProfilerMiddleware',
+    'pootle.middleware.check_cookies.CheckCookieMiddleware',
+    'pootle.middleware.locale.LocaleMiddleware',
+    'pootle.middleware.profile.ProfilerMiddleware',
     # Uncomment to use memcached for caching
     #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
 )
@@ -227,4 +227,4 @@ if config is not None:
             vars[option.upper()] = config.get(section, option)
 
 
-TEST_RUNNER='Pootle.pytest.run_tests'
+TEST_RUNNER='pootle.pytest.run_tests'

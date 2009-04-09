@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from Pootle import pootle
+from pootle import pootle
 from pootle_app.models import store_filen
 
 def setup_module(module):

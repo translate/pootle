@@ -29,7 +29,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from pootle_app.models.language import Language
 from pootle_app.models.profile  import get_profile
 from pootle_app.models.translation_project import TranslationProject
-from Pootle.i18n import gettext
+from pootle.i18n import gettext
 
 from translate.lang import data
 

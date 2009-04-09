@@ -19,8 +19,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from pootle_app.models import store_file
-from Pootle import potree
-from Pootle import pootle
+from pootle import potree
+from pootle import pootle
 from translate.storage import po
 from translate.search import indexing
 import os

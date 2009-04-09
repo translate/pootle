@@ -43,7 +43,7 @@ from pootle_app.lib import view_handler
 from pootle_app.views.base import BaseView
 from pootle_app.views import pagelayout
 
-from Pootle.i18n.jtoolkit_i18n import tr_lang
+from pootle.i18n.jtoolkit_i18n import tr_lang
 
 import dispatch, navbar_dict, item_dict, search_forms
 

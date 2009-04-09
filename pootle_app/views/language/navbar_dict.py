@@ -26,7 +26,7 @@ from pootle_app import url_manip
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch
 
-from Pootle.i18n.jtoolkit_i18n import tr_lang
+from pootle.i18n.jtoolkit_i18n import tr_lang
 
 import item_dict
 

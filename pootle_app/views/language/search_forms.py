@@ -43,7 +43,7 @@ class AdvancedSearchForm(forms.Form):
     selected    = forms.BooleanField(required=False)
 
     def as_table(self):
-        from Pootle.i18n import gettext, util
+        from pootle.i18n import gettext, util
 
         return '<tr><td>%(selected)s<label dir="%(uidir)s" for="%(for_label)s">%(text)s</label></td></tr>' % {
             'selected':  self['selected'].as_widget(),

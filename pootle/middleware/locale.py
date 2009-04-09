@@ -20,7 +20,7 @@
 
 
 from django.utils.cache import patch_vary_headers
-from Pootle.i18n import gettext, user_lang_discovery
+from pootle.i18n import gettext, user_lang_discovery
 
 class LocaleMiddleware(object):
     """

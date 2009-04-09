@@ -27,7 +27,7 @@ which is associated with the thread in which we are running. The Pootle
 project is then used to perform the translations."""
 
 from translate.lang import data as langdata
-from Pootle.i18n import gettext
+from pootle.i18n import gettext
 
 # Taken from jToolkit
 def localize(message, *variables):

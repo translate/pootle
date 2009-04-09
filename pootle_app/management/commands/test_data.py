@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.db import transaction
 import sys

@@ -19,7 +19,7 @@
 #
 # TODO: Make this less ugly
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 # We don't need kid in this file, but this will show quickly if it is
 # not installed.
@@ -31,7 +31,7 @@ from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
 from pootle_app.models.translation_project import scan_translation_projects
 from pootle_app import __version__ as pootleversion
-#from Pootle import filelocations
+#from pootle import filelocations
 from translate import __version__ as toolkitversion
 
 

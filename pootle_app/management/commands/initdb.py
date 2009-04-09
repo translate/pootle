@@ -19,7 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.db import transaction
 

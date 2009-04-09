@@ -53,8 +53,8 @@ from pootle_app.models.permissions import PermissionError, check_permission
 from pootle_app.lib                import statistics
 #from pootle_app.views              import pagelayout
 
-from Pootle.scripts    import hooks
-#from Pootle.i18n       import gettext as pootle_gettext
+from pootle.scripts    import hooks
+#from pootle.i18n       import gettext as pootle_gettext
 
 class TranslationProjectNonDBState(object):
     def __init__(self, parent):

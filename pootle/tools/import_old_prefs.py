@@ -7,7 +7,7 @@ Permission is granted to redistribute this file under the GPLv2 or later,
  at your option.   See COPYING for details.'''
 
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.db import transaction
 
