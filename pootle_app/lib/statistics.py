@@ -36,7 +36,7 @@ _complaint_status = set()
 
 def _complain(message, filename):
     if filename not in _complaint_status:
-        logging.error(message % filename)
+        logging.error(message, filename)
         _complaint_status.add(filename)
         traceback.print_exc()
 

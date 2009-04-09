@@ -166,8 +166,8 @@ class pootleassigns:
             for itemrange in itemranges.split(','):
                 if '-' in itemrange:
                     if not itemrange.count('-') == 1:
-                        logging.error('invalid assigns range in %s: %r (from line %r)'\
-                                      % (self.assignsfilename, itemrange, line))
+                        logging.error('invalid assigns range in %s: %r (from line %r)',
+                                      self.assignsfilename, itemrange, line)
                         continue
                     (itemstart, itemstop) = [int(item.strip()) for item in
                             itemrange.split('-', 1)]
@@ -557,7 +557,7 @@ def make_class(base_class):
                     from pootle_app.models.translation_project import TranslationProject
                     scan_translation_project_files(TranslationProject.objects.get(id=self.translation_project_id))
                 else:
-                    logging.error('%s is a broken symlink' % (self.filename, ))
+                    logging.error('%s is a broken symlink', self.filename)
             return False
 
         def getoutput(self):
