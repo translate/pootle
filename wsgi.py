@@ -26,13 +26,12 @@ ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 import sys
 sys.path.append(ROOT_DIR)
 
-from django.core.management import execute_manager
-try:
-    from Pootle import settings 
-except ImportError:
-    import sys
-    sys.stderr.write("Error: Can't find the file 'settings.py' in the directory containing %r. It appears you've customized things.\nYou'll have to run django-admin.py, passing it your settings module.\n(If the file settings.py does indeed exist, it's causing an ImportError somehow.)\n" % __file__)
-    sys.exit(1)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'Pootle.settings'
 
-if __name__ == "__main__":
-    execute_manager(settings)
+import django.core.handlers.wsgi
+
+_application = django.core.handlers.wsgi.WSGIHandler()
+
+def application(environ, start_response):
+    environ['PATH_INFO'] = environ['SCRIPT_NAME'] + environ['PATH_INFO']
+    return _application(environ, start_response)
