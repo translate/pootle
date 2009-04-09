@@ -42,7 +42,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-STATS_DB_PATH = None # None means the default path
 
 TITLE = "Pootle Demo"
 DESCRIPTION = """<div dir="ltr" lang="en">This is a demo installation of Pootle.<br /> You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</div>"""
@@ -53,18 +52,21 @@ SUPPORT_ADDRESS = 'pootle-admin@yourdomain.org'
 HOMEPAGE = 'home/'
 
 DATABASE_ENGINE = 'sqlite3'                 # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = pootle_home('../pootle.db') # Or path to database file if using sqlite3.
+DATABASE_NAME = pootle_home('dbs/pootle.db') # Or path to database file if using sqlite3.
 DATABASE_USER = ''                          # Not used with sqlite3.
 DATABASE_PASSWORD = ''                      # Not used with sqlite3.
 DATABASE_HOST = ''                          # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''                          # Set to empty string for default. Not used with sqlite3.
+
+
+STATS_DB_PATH = pootle_home('dbs/stats.db') # None means the default path
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Africa/Pretoria'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
