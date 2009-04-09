@@ -180,10 +180,7 @@ if DEBUG:
     logging.basicConfig(
             level = logging.DEBUG,
             format =  '%(asctime)s %(levelname)s %(message)s',
-            filename = pootle_home('pootle.log'),
-            filemode = 'a'
             )
-    logging.debug('Starting logging...')
 else:
     # Will log only CRITICAL errors to the console
     logging.basicConfig(
