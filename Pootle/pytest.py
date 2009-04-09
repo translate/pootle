@@ -4,6 +4,12 @@ import tempfile
 import shutil
 import os
 
+import os
+ROOT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+import sys
+sys.path.append(ROOT_DIR)
+print sys.path
+
 from django.conf import settings
 from django.db import connection
 from django.test import utils
