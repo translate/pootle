@@ -27,6 +27,7 @@ import gettext
 import subprocess
 import datetime
 import zipfile
+import logging
 
 from django.contrib.auth.models         import User, Permission
 from django.contrib.contenttypes.models import ContentType
@@ -147,7 +148,7 @@ class TranslationProject(models.Model):
     checker = property(_get_checker)
 
     def filtererrorhandler(self, functionname, str1, str2, e):
-        print "error in filter %s: %r, %r, %s" % (functionname, str1, str2, e)
+        logging.error("error in filter %s: %r, %r, %s" % (functionname, str1, str2, e))
         return False
 
     def _get_non_db_state(self):
@@ -171,7 +172,7 @@ class TranslationProject(models.Model):
             except Exception, e:
                 import traceback
                 traceback.print_exc()
-                print "Could not intialize indexer for %s in %s: %s" % (self.project.code, self.language.code, str(e))
+                logging.error("Could not intialize indexer for %s in %s: %s" % (self.project.code, self.language.code, str(e)))
                 self.non_db_state._indexing_enabled = False
                 return None
         else:
@@ -275,7 +276,7 @@ class TranslationProject(models.Model):
                 versioncontrol.commitfile(file, message=message, author=author)
                 get_profile(request.user).add_message("Committed file: <em>%s</em>" % file)
         except Exception, e:
-            print "Failed to commit files: %s" % e
+            logging.error("Failed to commit files: %s" % e)
             get_profile(request.user).add_message("Failed to commit file: %s" % e)
             success = False 
         try:
@@ -288,10 +289,10 @@ class TranslationProject(models.Model):
             hooks.hook(self.project.code, "initialize", self.real_path, self.language.code)
             self.non_db_state.scanpofiles()
         except Exception, e:
-            print "Failed to initialize (%s): %s" % (self.language.code, e)
+            logging.error("Failed to initialize (%s): %s" % (self.language.code, e))
 
     def filtererrorhandler(self, functionname, str1, str2, e):
-        print "error in filter %s: %r, %r, %s" % (functionname, str1, str2, e)
+        logging.error("error in filter %s: %r, %r, %s" % (functionname, str1, str2, e))
         return False
 
     ##############################################################################################
@@ -458,7 +459,7 @@ class TranslationProject(models.Model):
                 # Update only specific items - usually single translation via the web
                 # interface. All other items should still be up-to-date (even with an
                 # older pomtime).
-                print "updating", self.language.code, "index for", pofile.store.pootle_path, "items", items
+                logging.debug("updating", self.language.code, "index for", pofile.store.pootle_path, "items", items)
                 # delete the relevant items from the database
                 itemsquery = indexer.make_query([("itemno", str(itemno)) for itemno in items], False)
                 indexer.delete_doc([pofilenamequery, itemsquery])
@@ -466,7 +467,7 @@ class TranslationProject(models.Model):
                 # (items is None)
                 # The po file is not indexed - or it was changed externally (see
                 # "pofreshen" in store_file.py).
-                print "updating", self.project.code, self.language.code, "index for", pofile.store.pootle_path
+                logging.debug("updating", self.project.code, self.language.code, "index for", pofile.store.pootle_path)
                 # delete all items of this file
                 indexer.delete_doc({"pofilename": pofile.store.pootle_path})
             pofile.pofreshen()
@@ -498,7 +499,7 @@ class TranslationProject(models.Model):
                     indexer.flush(optimize=optimize)
         except (base.ParseError, IOError, OSError):
             indexer.delete_doc({"pofilename": pofile.store.pootle_path})
-            print "Not indexing %s, since it is corrupt" % (pofile.store.pootle_path,)
+            logging.error("Not indexing %s, since it is corrupt" % (pofile.store.pootle_path,))
 
     def matchessearch(self, pofilename, search):
         """returns whether any items in the pofilename match the search (based on collected stats etc)"""
@@ -569,7 +570,7 @@ class TranslationProject(models.Model):
                 # pick the first
                 searchpofilenames = dict.fromkeys([hit["pofilename"][0] for hit in hits])
             except:
-                print "Could not perform indexed search on %s. Index is corrupt." % lastpofilename
+                logging.error("Could not perform indexed search on %s. Index is corrupt." % lastpofilename)
                 self._indexing_enabled = False
         for pofilename in self.iterpofilenames(lastpofilename, includelast):
             if searchpofilenames is not None:
@@ -618,7 +619,7 @@ class TranslationProject(models.Model):
                     # Return an iterator using the indexer if indexing is available and if there is searchtext.
                     return indexed(pofilename, search, lastitem)
                 except:
-                    print "Could not perform indexed search on %s. Index is corrupt." % pofilename
+                    logging.error("Could not perform indexed search on %s. Index is corrupt." % pofilename)
                     self._indexing_enabled = False
             return non_indexed(pofilename, search, lastitem)
 
@@ -656,7 +657,7 @@ class TranslationProject(models.Model):
         totalwordcount = sum([wordcount for pofilename, wordcount in wordcounts])
 
         wordsperuser = totalwordcount / usercount
-        print "assigning", totalwordcount, "words to", usercount, "user(s)", wordsperuser, "words per user"
+        logging.debug("assigning", totalwordcount, "words to", usercount, "user(s)", wordsperuser, "words per user")
         usernum = 0
         userwords = 0
         for pofilename, wordcount in wordcounts:
@@ -906,7 +907,7 @@ class TranslationProject(models.Model):
             try:
                 return pomtime, destfilename
             except Exception, e:
-                print "error reading cached converted file %s: %s" % (destfilename, e)
+                logging.error("error reading cached converted file %s: %s" % (destfilename, e))
         pofile.pofreshen()
         converters = {"csv": po2csv.po2csv, 
                       "xlf": po2xliff.po2xliff, 
@@ -927,7 +928,7 @@ class TranslationProject(models.Model):
             os.utime(destfilename, (currenttime, modtime))
             return modtime, destfilename
         except Exception, e:
-            print "error caching converted file %s: %s" % (destfilename, e)
+            logging.error("error caching converted file %s: %s" % (destfilename, e))
         return False, contents
 
     ##############################################################################################
@@ -954,7 +955,7 @@ class TranslationProject(models.Model):
                     if tmsg is not None:
                         return tmsg
             except Exception, e:
-                print "error reading translation from pofile %s: %s" % (pofilename, e)
+                logging.error("error reading translation from pofile %s: %s" % (pofilename, e))
                 raise
         return self._find_message(message, None, 1, get_translation)
 
@@ -973,7 +974,7 @@ class TranslationProject(models.Model):
                         else:
                             return unicode(tmsg, pofile.encoding)
             except Exception, e:
-                print "error reading translation from pofile %s: %s" % (pofilename, e)
+                logging.error("error reading translation from pofile %s: %s" % (pofilename, e))
                 raise
         return unicode(self._find_message(message, None, 1, get_translation))
 
@@ -995,7 +996,7 @@ class TranslationProject(models.Model):
                             else:
                                 return unicode(tmsg, pofile.encoding)
             except Exception, e:
-                print "error reading translation from pofile %s: %s" % (pofile.filename, e)
+                logging.error("error reading translation from pofile %s: %s" % (pofile.filename, e))
                 raise
         return unicode(self._find_message(singular, plural, n, get_translation))
 

@@ -25,6 +25,7 @@ import time
 import os
 import bisect
 import weakref
+import logging
 
 from django.conf import settings
 
@@ -150,8 +151,8 @@ class pootleassigns:
             if not line.strip():
                 continue
             if not line.count(':') == 2:
-                print 'invalid assigns line in %s: %r' % (self.assignsfilename,
-                        line)
+                loggin.error('invalid assigns line in %s: %r' \
+                             % (self.assignsfilename, line))
                 continue
             (username, action, itemranges) = line.split(':', 2)
             (username, action) = (username.strip().decode('utf-8'),
@@ -165,8 +166,8 @@ class pootleassigns:
             for itemrange in itemranges.split(','):
                 if '-' in itemrange:
                     if not itemrange.count('-') == 1:
-                        print 'invalid assigns range in %s: %r (from line %r)'\
-                             % (self.assignsfilename, itemrange, line)
+                        logging.error('invalid assigns range in %s: %r (from line %r)'\
+                                      % (self.assignsfilename, itemrange, line))
                         continue
                     (itemstart, itemstop) = [int(item.strip()) for item in
                             itemrange.split('-', 1)]
@@ -477,7 +478,7 @@ def make_class(base_class):
                     del self.pendingfile.units[pendingitem]
                     self.savependingfile()
                 except IndexError:
-                    print 'Found an index error attempting to delete a suggestion'
+                    logging.error('Found an index error attempting to delete a suggestion')
                     pass  # TODO: Print a warning for the user.
             self.statistics.reclassifyunit(item)
 
@@ -556,7 +557,7 @@ def make_class(base_class):
                     from pootle_app.models.translation_project import TranslationProject
                     scan_translation_project_files(TranslationProject.objects.get(id=self.translation_project_id))
                 else:
-                    print '%s is a broken symlink' % (self.filename, )
+                    logging.error('%s is a broken symlink' % (self.filename, ))
             return False
 
         def getoutput(self):
