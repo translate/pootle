@@ -156,17 +156,28 @@ def as_str(val):
     else:
         return val.encode('utf-8')
 
-def gettext(message):
-    return as_str(ugettext(message))
+def _format_gettext(message, vars):
+    """since python and gettext stupidly have no way of expanding
+    format variables without throwing exceptions, try formatting here
+    and return format string if expansion fails."""
+    if vars is not None:
+        try:
+            return message % vars
+        except:
+            pass
+    return message
 
-def ugettext(message):
-    return as_unicode(get_translation().ugettext(message))
+def gettext(message, vars=None):
+    return _format_gettext(as_str(ugettext(message)), vars)
 
-def ngettext(singular, plural, number):
-    return as_str(ungettext(singular, plural, number))
+def ugettext(message, vars=None):
+    return _format_gettext(as_unicode(get_translation().ugettext(message)), vars)
 
-def ungettext(singular, plural, number):
-    return as_unicode(get_translation().ungettext(singular, plural, number))
+def ngettext(singular, plural, number, vars=None):
+    return _format_gettext(as_str(ungettext(singular, plural, number)), vars)
+
+def ungettext(singular, plural, number, vars=None):
+    return _format_gettext(as_unicode(get_translation().ungettext(singular, plural, number)), vars)
 
 def hijack_django_translation_functions():
     # Here is where we hijack the Django localization functions.

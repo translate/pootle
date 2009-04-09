@@ -58,7 +58,7 @@ def view(request, project_code):
     has_template = TranslationProject.objects.filter(project=project, language__code='templates').count() > 0
 
     template_vars = {
-        "pagetitle":          _("Pootle Admin: %s") % project.fullname,
+        "pagetitle":          _("Pootle Admin: %s", project.fullname),
         "norights_text":      _("You do not have the rights to administer this project."),
         "project":            project,
         "iso_code":           _("ISO Code"),
@@ -88,8 +88,7 @@ def make_new_language_form(existing_languages, post_vars=None):
 
 
 def process_get(request, project):
-    if request.method == 'GET':
-        #try:
+    if request.method == 'GET' and 'updatelanguage' in request.GET:
         language_code = request.GET['updatelanguage']
         translation_project = TranslationProject.objects.get(language__code=language_code, project=project)
         template_translation_project = TranslationProject.objects.get(language__code='templates',
@@ -98,8 +97,6 @@ def process_get(request, project):
             translation_project.initialize()
         elif 'doupdatelanguage' in request.GET:
             project_tree.convert_templates(template_translation_project, translation_project)
-        #except KeyError:
-        #    pass
 
 
 def process_post(request, project):

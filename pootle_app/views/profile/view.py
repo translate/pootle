@@ -75,7 +75,7 @@ def options(request):
         user_form = UserForm(instance=request.user)
         profile_form = PootleProfileForm(instance=get_profile(request.user))
 
-    template_vars = {"pagetitle":      _("Options for: %s") % request.user.username,
+    template_vars = {"pagetitle":      _("Options for: %s", request.user.username),
                      "introtext":      _("Configure your settings here"),
                      "detailstitle":   _("Personal Details"),
                      "fullname_title": _("Name"),

@@ -43,14 +43,14 @@ def get_item_summary(request, quick_stats, path_obj):
     state            = dispatch.CommonState(request.GET)
     # Stats showing the number of files
     if state.goal is not None:
-        file_stats = _("%d/%d files") % (metadata.num_stores(path_obj, state.goal), num_stores)
+        file_stats = _("%d/%d files", (metadata.num_stores(path_obj, state.goal), num_stores))
     else:
         file_stats = ungettext("%d file", "%d files", num_stores) % num_stores
     # The translated word counts
-    word_stats = _("%d/%d words (%d%%) translated") % (translated_words, total_words, quick_stats['translatedpercentage'])
+    word_stats = _("%d/%d words (%d%%) translated", (translated_words, total_words, quick_stats['translatedpercentage']))
     # The translated unit counts
-    string_stats_text = _("%d/%d strings") % (quick_stats['translated'],
-                                              quick_stats['total'])
+    string_stats_text = _("%d/%d strings", (quick_stats['translated'],
+                                              quick_stats['total']))
     string_stats = '<span class="string-statistics">[%s]</span>' % string_stats_text
     # The whole string of stats
     return '%s %s %s' % (file_stats, word_stats, string_stats)

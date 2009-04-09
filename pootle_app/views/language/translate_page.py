@@ -88,7 +88,7 @@ def add_file_links(request, pootle_file):
             {"checkname": matchname.replace("check-", "", 1)} for matchname in state.match_names]
             # TODO: put the following parameter in quotes, since it will be foreign in all target languages
             # l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-            template_vars["checking_text"] = _("checking %s") % ", ".join(checknames)
+            template_vars["checking_text"] = _("checking %s", ", ".join(checknames))
     return template_vars
 
 def get_rows_and_icon(request, profile):
@@ -125,21 +125,21 @@ def get_page_links(request, pootle_file, pagesize, translations, first_item):
         linkitem = max(first_item - pagesize, 0)
         # l10n: the parameter refers to the number of messages
         pagelinks.append({"href": dispatch.translate(request, request.path_info, item=linkitem),
-                          "text": _("Previous %d") % (first_item - linkitem)})
+                          "text": _("Previous %d", (first_item - linkitem))})
     else:
         # l10n: the parameter refers to the number of messages
         pagelinks.append({"text": _("Previous %d" % pagesize)})
         # l10n: the third parameter refers to the total number of messages in the file
-    pagelinks.append({"text": _("Items %d to %d of %d") % (first_item + 1, lastitem + 1, pofilelen)})
+    pagelinks.append({"text": _("Items %d to %d of %d", (first_item + 1, lastitem + 1, pofilelen))})
     if first_item + len(translations) < len(pootle_file.total):
         linkitem = first_item + pagesize
         itemcount = min(pofilelen - linkitem, pagesize)
         # l10n: the parameter refers to the number of messages
         pagelinks.append({"href": dispatch.translate(request, request.path_info, item=linkitem),
-                          "text": _("Next %d") % itemcount})
+                          "text": _("Next %d", itemcount)})
     else:
         # l10n: the parameter refers to the number of messages
-        pagelinks.append({"text": _("Next %d") %  pagesize})
+        pagelinks.append({"text": _("Next %d", pagesize)})
     if pofilelen > pagesize and (state.item + pagesize) < pofilelen:
         # l10n: noun (the end)
         pagelinks.append({"href": dispatch.translate(request, request.path_info,
@@ -598,7 +598,7 @@ def get_alt_src_dict(request, pootle_file, unit, alt_project):
         translated_unit = translated_pootle_file.id_index[unit.getid()]
         if unit.hasplural():
             return {
-                "forms":     [{"title": _("Plural Form %d") % i,
+                "forms":     [{"title": _("Plural Form %d", i),
                                "n":     i,
                                "text":  escape_text(text)}
                               for i, text in enumerate(translated_unit.target.strings)],
@@ -972,8 +972,8 @@ def view(request, directory, pootle_file, item, stopped_by=None):
              "tracks":  [],
              "assigns": []}
     templatevars = {
-        "pagetitle":                 _("%s: translating %s into %s: %s") % \
-            (instancetitle, project.fullname, language.fullname, store_path),
+        "pagetitle":                 _("%s: translating %s into %s: %s",
+                                       (instancetitle, project.fullname, language.fullname, store_path)),
         "project":                   {"code": project.code,
                                       "name": project.fullname},
         "language":                  language_data,
