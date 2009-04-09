@@ -25,10 +25,14 @@ Note that some of this can also be specified in pootle.ini in order to have a
 configuration override outside of the code."""
 
 import os
+
+ROOT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+import sys
+sys.path.append(ROOT_DIR)
+
 import logging
 from ConfigParser import ConfigParser
-
-ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 def pootle_home(filename):
     return os.path.join(ROOT_DIR, filename)
@@ -117,7 +121,7 @@ MIDDLEWARE_CLASSES = (
     #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
 )
 
-ROOT_URLCONF = 'Pootle.pootle_app.views.urls'
+ROOT_URLCONF = 'pootle_app.views.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -134,7 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'Pootle.pootle_app'
+    'pootle_app'
 )
 
 AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"

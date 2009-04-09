@@ -459,7 +459,6 @@ class TranslationProject(models.Model):
                 # Update only specific items - usually single translation via the web
                 # interface. All other items should still be up-to-date (even with an
                 # older pomtime).
-                logging.debug("updating", self.language.code, "index for", pofile.store.pootle_path, "items", items)
                 # delete the relevant items from the database
                 itemsquery = indexer.make_query([("itemno", str(itemno)) for itemno in items], False)
                 indexer.delete_doc([pofilenamequery, itemsquery])
@@ -467,7 +466,6 @@ class TranslationProject(models.Model):
                 # (items is None)
                 # The po file is not indexed - or it was changed externally (see
                 # "pofreshen" in store_file.py).
-                logging.debug("updating", self.project.code, self.language.code, "index for", pofile.store.pootle_path)
                 # delete all items of this file
                 indexer.delete_doc({"pofilename": pofile.store.pootle_path})
             pofile.pofreshen()
