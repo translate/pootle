@@ -24,8 +24,8 @@ Mailing List: https://lists.sourceforge.net/lists/listinfo/translate-pootle
 	translate-pootle@lists.sourceforge.net
 Mail Archives: http://sourceforge.net/mailarchive/forum.php?forum=translate-pootle
 
-Requirements/Installation
--------------------------
+Requirements
+------------
 Please read http://translate.sourceforge.net/wiki/pootle/installation for the 
 lastest instructions.
 
@@ -47,16 +47,24 @@ while running setup.py, you need to install python-dev or libpython2.N-devel
 package. Try to install python2.N-dev or libpython2.N-devel or something 
 similar with your distribution's package manager.
 
-For the web interface, Pootle requires jToolkit 
-(http://jtoolkit.sourceforge.net/)
-jToolkit can run applications either via Apache using mod_python, or standalone
-from the command line.  Pootle works best at the moment being run from the 
-command line since we don't handle inter-process locking etc.  It's also 
-much easier! To install jToolkit run:
+For the web interface, Pootle requires Django 
+(http://www.djangoproject.com/)
+Django applications can run under Apache using mod_python or mod_wsgi,
+but they're also bundled with a standalone webserver that can be run
+from the command line.  Pootle works equally well on all Django
+deployment scenarios, standalone server is the easiest to set up and
+get running.
 
-	tar xvzf jToolkit-N.N.N.tar.gz
-	cd jToolkit-N.N.N
-	python jToolkitSetup.py install
+To run Pootle you need to have Django 1.0 installed properly
+
+       tar xzvf Django-1.0.2-final.tar.gz
+       cd Django-1.0.2-final
+       sudo python setup.py install
+
+you can also install Django using easy_install
+    	
+	easy_install django
+
 
 ZIP is needed to enable users to download ZIP files of directories. For 
 integration with CVS and/or Subversion, the relevant version control client 
@@ -72,7 +80,7 @@ To install "elementtree", run
 	python setup.py install
 	
 To install kid, run
-	tar xvfz kid-N.N.N.tar.gz
+	tar xvf kid-N.N.N.tar.gz
 	cd kid-N.N.N
 	python setup.py install
   
@@ -82,35 +90,56 @@ or
 	wget http://files.turbogears.org/eggs/setuptools-0.6a11-py2.4.egg
 
 Installation of an indexing engine (PyLucene or Xapian) is optional, but helps
-to speed up searching.
+to speed up searching. Note that Xapian is incompatible with Apache,
+Pootle will not enable Xapian indexing if running under mod_python or mod_wsgi
 
-To install Pootle itself, run
 
-	tar xzf Pootle-N.N.N.tar.gz
-	cd Pootle-N.N.N
-	python pootlesetup.py install
+Installation
+------------
+This is a Beta release of Pootle, and it is still far from ready, so
+for the moment we do not recommend installing Pootle, but rather
+running it directly from the source code directory. 
+
+However you still need to prepare the pootle database.
+
+Extract Pootle's source code, then change directory to inside the
+Pootle dir
+
+   	   tar xvf Pootle-1.3.0-beta2.tar.gz
+           cd Pootle-1.3.0-beta2
+
+Run the following commands to create and initialze the Pootle
+database, and prepare stats and search index for initial translation projects
+
+           ./manage.py syncdb
+	   ./manage.py initdb
+	   ./manage.py refresh_stats
+
 
 Running
 -------
-To run, edit pootle.prefs and specify your languages and projects. The key
-detail here is the podir for each project.  Then run:
+To run Pootle just change directory to inside the pootle directory
+(that is, cd /my/installation/path/Pootle), then simply execute
 
-	PootleServer
+      ./manage.py runserver
 
-You can also copy pootle.prefs to another directory, allowing you to run Pootle
-outside of the installation directory.  Edit this copy of pootle.prefs as
-needed. Then run:
+You can specify which port to run under (by default it's 8000)
 
-	PootleServer --prefsfile=your.prefs
+      ./manage.py runserver PORTNUMBER
 
-Use --help to see the other options.  You can tell it which prefs file to use, 
-what HTML file and what port to run on (the default is 8080). The defaults will 
+Use --help to see the other options. The defaults will 
 generally work.
 
-Now visit http://localhost:8080/ and begin translating.
+Now visit http://localhost:8000/ and begin translating.
 
-To stop, press Ctrl-C. On Windows, it will only react to the Ctrl-C after a
-webpage is requested.
+To stop, press Ctrl-C. 
+
+
+Pootle can run under Apache using mod_python or mod_wsgi, but this
+requires modifications to Apache's config files, check
+http://translate.sourceforge.net/wiki/pootle/running_under_apache for
+detailed instructions
+
 
 Bug Reporting/Feature requests
 ------------------------------
@@ -128,7 +157,7 @@ Notes
 -----
 Files should be reindexed automatically.
 To reindex manually, simply remove any stats files you want reindexed, or run 
-	python pootle.py --refreshstats
+	./manage.py refresh_stats
 
 Assignments
 -----------
