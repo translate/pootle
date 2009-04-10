@@ -125,7 +125,9 @@ class PermissionSet(models.Model):
 
 class PermissionSetCache(models.Model):
     class Meta:
+        unique_together = ('profile', 'directory')
         app_label = "pootle_app"
+        
 
     profile                = models.ForeignKey(PootleProfile, db_index=True)
     directory              = models.ForeignKey(Directory, db_index=True, related_name='permission_set_caches')
