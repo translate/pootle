@@ -28,9 +28,6 @@ import os
 
 ROOT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-import sys
-sys.path.append(ROOT_DIR)
-
 import logging
 from ConfigParser import ConfigParser
 

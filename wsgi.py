@@ -20,11 +20,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import os
-
-ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
-
 import sys
-sys.path.append(ROOT_DIR)
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(0,ROOT_DIR)
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 

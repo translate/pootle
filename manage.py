@@ -20,11 +20,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import os
+import sys
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
-
-import sys
-sys.path.append(ROOT_DIR)
+sys.path.insert(0, ROOT_DIR)
 
 from django.core.management import execute_manager
 try:
