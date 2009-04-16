@@ -143,7 +143,7 @@ function mouseClick()
 function copyorigtranslation(elementNumber)
 {
 	var i = 0;
-	var enelement = document.getElementById("orig-pure" + elementNumber + "." + 0);
+	var enelement = document.getElementById("orig-pure" + elementNumber + "-" + 0);
 	//no plurals
 	var trelement = document.getElementById("areatrans" + elementNumber );
 	if (trelement){
