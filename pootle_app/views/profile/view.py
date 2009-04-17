@@ -42,7 +42,7 @@ def user_is_authenticated(f):
     return decorated_f
 
 class UserForm(ModelForm):
-    password = forms.CharField(max_length=100, required=False)
+    password = forms.CharField(max_length=100, required=False, widget=forms.PasswordInput())
 
     class Meta:
         model = User
@@ -58,7 +58,7 @@ def options(request):
     if request.method == 'POST':
         post = request.POST.copy()
         if 'password' in post and post['password'].strip() != u'':
-            request.user.set_password('password')
+            request.user.set_password(post['password'])
         del post['password']
 
         user_form = UserForm(post, instance=request.user)
