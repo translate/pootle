@@ -209,16 +209,23 @@ growfield.prototype = {
         // (there are some tricks that can't be applied to the textarea itself, otherwise user will see it)
         // Also, dummy must be a textarea too, and must be placed at the same position in DOM
         // in order to keep all the inherited styles
+        //
+        // Pootle customisation: we use .insertAfter instead of .insertBefore
+        // because the clone has the same id as the original which breaks at
+        // least the copy feature. For more information, see
+        // http://code.google.com/p/jquery-growfield/issues/detail?id=14
         var dummy = o.clone().addClass('growfieldDummy').attr('name', '').attr('tabindex', -9999)
                                .css({position: 'absolute', left: -9999, top: 0, height: '20px', resize: 'none'})
-                               .insertBefore(o).show();
+                               .insertAfter(o).show();
 
         // if there is no initial value, we have to add some text, otherwise textarea will jitter
         // at the first keydown
         if (!val) dummy.val('dummy text');
         this.dummy = dummy;
         // lets set the initial height
-        this.update(!jQuery.trim(val) ? 0 : this.getDummyHeight(), false);
+        // Pootle customisation: we disable this so that the initial height 
+        // will be what we asked for.
+//        this.update(!jQuery.trim(val) ? 0 : this.getDummyHeight(), false);
     },
 
     convertHeight: function(h, to) {
