@@ -224,7 +224,7 @@ class TranslationProject(models.Model):
 
             versioncontrol.updatedirectory(self.abs_real_path)
             for current_pootle_file in pootle_files:
-                new_pootle_file = store_file.store_file(self, pootle_file.store.abs_real_path)
+                new_pootle_file = store_file.store_file(self, current_pootle_file.store.abs_real_path)
                 new_pootle_file.mergefile(current_pootle_file, "versionmerge")
                 new_pootle_file.save()
 
