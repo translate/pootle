@@ -19,15 +19,16 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-import syspath_override
+""" Adds pootle directories to the python import path """
 
-from django.core.management import execute_manager
-try:
-    from pootle import settings 
-except ImportError:
-    import sys
-    sys.stderr.write("Error: Can't find the file 'settings.py' in the directory containing %r. It appears you've customized things.\nYou'll have to run django-admin.py, passing it your settings module.\n(If the file settings.py does indeed exist, it's causing an ImportError somehow.)\n" % __file__)
-    sys.exit(1)
+#FIXME: is this useful on an installed codebase or only when running
+# from source?
 
-if __name__ == "__main__":
-    execute_manager(settings)
+import os
+import sys
+
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(0, ROOT_DIR) # Top level directory
+
+sys.path.append(os.path.join(ROOT_DIR, 'external_apps')) # external reusable apps
+sys.path.append(os.path.join(ROOT_DIR, 'local_apps')) # apps developed specifically for Pootle

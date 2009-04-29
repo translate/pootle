@@ -19,11 +19,9 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-import os
-import sys
-ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0,ROOT_DIR)
+import syspath_override
 
+import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 import django.core.handlers.wsgi
