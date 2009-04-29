@@ -36,7 +36,7 @@ def pootle_home(filename):
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
+INTERNAL_IPS = ('127.0.0.1',)
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
@@ -118,7 +118,7 @@ MIDDLEWARE_CLASSES = (
     #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
 )
 
-ROOT_URLCONF = 'pootle_app.views.urls'
+ROOT_URLCONF = 'pootle.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -126,7 +126,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 
     # For now we'll cheat and use a relative path, in spite of the above comment.
-    pootle_home(os.path.join('pootle_app', 'templates'))
+    pootle_home('templates')
 )
 
 INSTALLED_APPS = (
@@ -135,7 +135,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'pootle_app'
+    'registration',
+    'pootle_app',
 )
 
 AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
