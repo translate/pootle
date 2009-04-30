@@ -30,6 +30,8 @@ from django.core.files import File
 from django.db.models.fields.files import FieldFile, FileField
 
 from translate.storage import factory, statsdb
+from translate.filters import checks
+
 
 class TranslationStoreFile(File):
     """
@@ -85,7 +87,7 @@ class TranslationStoreFile(File):
     def getunitstats(self):
         return self._statscache.unitstats(self.path, store=self.store)
 
-    def reclassifyunit(self, item, checker):
+    def reclassifyunit(self, item, checker=checks.StandardUnitChecker()):
         """Reclassifies all the information in the database and
         self._stats about the given unit
         """
