@@ -41,6 +41,30 @@ class TranslationStoreFile(File):
     #FIXME: figure out what this checker thing is
     checker = None
 
+    def _get_store(self):
+        """parse file and return TranslationStore object"""
+        if not hasattr(self, "_store"):
+            #FIXME: translate.storage.base.parsefile closes file for
+            #some weird reason, so we sprinkle with opens to make sure
+            #things workout
+            self.open()
+            self._store = factory.getobject(self)
+            self.open()
+        return self._store
+    store = property(_get_store)
+
+    def _guess_path(self):
+        """
+        most TranslationStoreFile objects will deal with will
+        correspond to TranslationStoreField instances and have a known
+        path, however standalone instances of TranslationStoreFile can
+        come from in memory files or already open file descriptors
+        with no sure way of obtaining a path
+        """
+        #FIXME: is name the best substitute for path?
+        return self.name
+    path = property(_guess_path)
+
     def getquickstats(self):
         """returns the quick statistics (totals only)
         """
@@ -83,6 +107,11 @@ class TranslationStoreFile(File):
 class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     _store_cache = {}
 
+    # redundant redefinition of path to be the same as defined in
+    # FieldFile, added here for clarity since TranslationStoreFile
+    # uses a different method
+    path = property(FieldFile._get_path)
+    
     def _get_store(self):
         """ get translation store from dictionary cache, populate if
         store not already cached. """
