@@ -1,42 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?python
-from pootle_app.templates import pootlepage
-?>
-<include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
+{% extends "base.html" %}
+{% load i18n baseurl %}
 
-  <div id="precontent" py:def="precontent_block()">
-    <div class="error" py:if="introtext" py:content="introtext">Message</div>
-  </div><!--precontent-->
-
-  <div id="content" py:def="content_block()">
-    <div id="login" dir="$uidir">
-      <h1 py:content="login_title">Pootle login</h1>
-      <form action="" method="post" name="loginform" id="loginform">
-	<p>
-	  <label for="username" py:content="username_title">Username</label><br />
-	  <input type="text" name="username" id="username" value="${username}" />
-	</p>
-	<p>
-	  <label for="password" py:content="password_title">Username</label><br />
-	  <input type="password" name="password" id="password" value="" />
-	</p>
-	<p>
-	  <label for="language" py:content="language_title">Username</label><br />
-	  <select name="language" id="language">
-	    <option py:for="l in languages" py:attrs="selected=l.selected" value="${l.code}" py:content="l.name">Language Name</option>
-	  </select>
-	</p>
+{% block content %}
+<div id="login">
+<form method="post" action="{% url pootle_app.views.index.login.view %}" 
+      name="loginform" id="loginform">
+    {% if form.errors %}
+    <p>{% trans "Your username and password didn't match. Please try again." %}</p>
+    {% endif %}  
+    <p>{{ form.username.label_tag }} {{ form.username }}</p>
+    <p>{{ form.password.label_tag }} {{ form.password }}</p>
+    <select name="language" id="language">
+    {% for lang in languages %}
+        <option {% if lang.selected %}selected="selected"{% endif %}
+                value="{{ lang.code}}" id="{{ lang.code}}">{{ lang.name}}</option>
+    {% endfor %} 
+    </select>
 	<p class="submit">
-	  <input type="submit" name="login" value="${login_text}" />
-	  <input type="hidden" name="islogin" value="true" />
-	</p>
-      </form>
-    </div>
-    <h1 id="register" py:content="XML(register_long_text)">Don't have an account yet? <a href="register.html" title="Register">Register</a>.</h1>
-  </div><!--content-->
+        <input type="submit" name="login" value="{% trans 'Login' %}" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </p>
+</form>
+</div>
+{% endblock content %}
 
-
-  <script py:def="page_script()">
+{% block scripts_extra %}
+  <script>
     $(document).ready(function () {
     // Set focus to login form
     if (document.loginform) {
@@ -44,6 +33,4 @@ from pootle_app.templates import pootlepage
     }
     });
   </script>
-
-</include>
-
+{% endblock scripts_extra %}
