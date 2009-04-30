@@ -921,72 +921,46 @@ class TranslationProject(models.Model):
 
     ##############################################################################################
 
-    def _find_message(self, singular, plural, n, get_translation):
+
+    def _find_matching_unit(self, singular, plural=None, n=1):
         for store in Store.objects.filter(pootle_path__startswith=self.directory.pootle_path):
-            translation = store_file.with_store_file(self, store.abs_real_path, get_translation)
-            if translation is not None:
-                return translation
-        if n == 1:
-            return singular
-        else:
-            return plural
+            if not hasattr(store.file.store, "sourceindex"):
+                store.file.store.makeindex()
+            unit = store.file.store.findunit(singular)
+            if unit is not None and unit.istranslated():
+                if unit.hasplural() and n != 1:
+                    nplural, pluralequation = pofile.getheaderplural()
+                    if pluralequation:
+                        pluralfn = gettext.c2py(pluralequation)
+                        target =  unit.target.strings[pluralfn(n)]
+                        if target is not None:
+                            return target
+                else:
+                    return unit.target
+            elif n != 1 and plural is not None:
+                return plural
+            else:
+                return singular
+
 
     def gettext(self, message):
         """uses the project as a live translator for the given message"""
-        def get_translation(pofile):
-            try:
-                if pofile.pofreshen() or not hasattr(pofile, "sourceindex"):
-                    pofile.makeindex()
-                unit = pofile.sourceindex.get(message, None)
-                if unit is not None and unit.istranslated():
-                    tmsg = unit.target
-                    if tmsg is not None:
-                        return tmsg
-            except Exception, e:
-                logging.error("error reading translation from pofile %s: %s", pofilename, e)
-                raise
-        return self._find_message(message, None, 1, get_translation)
-
+        return str(self._find_matching_unit(message))
+        
     def ugettext(self, message):
-        """gets the translation of the message by searching through all the pofiles (unicode version)"""
-        def get_translation(pofile):
-            try:
-                if pofile.pofreshen() or not hasattr(pofile, "sourceindex"):
-                    pofile.makeindex()
-                unit = pofile.sourceindex.get(message, None)
-                if unit is not None and unit.istranslated():
-                    tmsg = unit.target
-                    if tmsg is not None:
-                        if isinstance(tmsg, unicode):
-                            return tmsg
-                        else:
-                            return unicode(tmsg, pofile.encoding)
-            except Exception, e:
-                logging.error("error reading translation from pofile %s: %s", pofilename, e)
-                raise
-        return unicode(self._find_message(message, None, 1, get_translation))
+        """gets the translation of the message by searching through
+        all the pofiles (unicode version)"""
+        return unicode(self._find_matching_unit(message))
 
+    def ngettext(self, singular, plural, n):
+        """gets the plural translation of the message by searching
+        through all the pofiles"""
+        return str(self._find_matching_unit(singular, plural, n))
+    
     def ungettext(self, singular, plural, n):
-        """gets the plural translation of the message by searching through all the pofiles (unicode version)"""
-        def get_translation(pofile):
-            try:
-                if pofile.pofreshen() or not hasattr(pofile, "sourceindex"):
-                    pofile.makeindex()
-                nplural, pluralequation = pofile.getheaderplural()
-                if pluralequation:
-                    pluralfn = gettext.c2py(pluralequation)
-                    unit = pofile.sourceindex.get(singular, None)
-                    if unit is not None and unit.istranslated():
-                        tmsg = unit.target.strings[pluralfn(n)]
-                        if tmsg is not None:
-                            if isinstance(tmsg, unicode):
-                                return tmsg
-                            else:
-                                return unicode(tmsg, pofile.encoding)
-            except Exception, e:
-                logging.error("error reading translation from pofile %s: %s", pofile.filename, e)
-                raise
-        return unicode(self._find_message(singular, plural, n, get_translation))
+        """gets the plural translation of the message by searching
+        through all the pofiles (unicode version)"""
+        return unicode(self._find_matching_unit(singular, plural, n))
 
 def set_data(sender, instance, **kwargs):
     project_dir = project_tree.get_project_dir(instance.project)
