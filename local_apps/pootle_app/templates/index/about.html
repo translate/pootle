@@ -1,44 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?python
-from pootle_app.templates import pootlepage
-?>
-<include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
+{% extends "base.html" %}
+{% load i18n %}
 
-  <div id="precontent" py:def="precontent_block()">
-    <div class="intro" py:content="XML(description)">this is a demo installation of pootle</div>
-  </div><!--precontent-->
+{% block body.id %}about{% endblock body.id %}
 
-  <div id="content" py:def="content_block()">
-    <h2 class="title" py:content="abouttitle">About Pootle</h2>
-    
-    <div class="info" py:content="XML(introtext)">
-      <strong>Pootle</strong> is a simple web portal that should allow you to <strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, you
-      can download it and run your own copy if you like. You can also help participate in the development in many ways (you don't have to be able to
-      program).
+{% block precontent %}
+    {{ description|safe}}
+{% endblock precontent %}
+
+{% block content %}
+    <h2 class="title">{% trans "About Pootle" %}</h2>
+    <div class="info">
+        {% blocktrans %}<strong>Pootle</strong> is a simple web portal that should allow you to <strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, you can download it and run your own copy if you like. You can also help participate in the development in many ways (you don't have to be able to program).
+    {% endblocktrans %}
     </div>
-
-    <div class="info" py:content="XML(hosttext)">
-      The Pootle project itself is hosted at <a href="http://translate.sourceforge.net/">translate.sourceforge.net</a> where you can find the details about
-      source code, mailing lists etc.
+    <div class="info">
+        {% blocktrans %}The Pootle project itself is hosted at <a href="http://translate.sourceforge.net/">translate.sourceforge.net</a> where you can find the details about source code, mailing lists etc.{% endblocktrans %}   
     </div>
-
-    <div class="info" py:content="XML(nametext)">
-      The name stands for <strong>PO</strong>-based <strong>O</strong>nline <strong>T</strong>ranslation / <strong>L</strong>ocalization <strong>E</strong>ngine, but you may need to read <a href=
-      "http://www.thechestnut.com/flumps.htm">this</a>.
+    <div class="info">
+        {% blocktrans %}The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="http://www.thechestnut.com/flumps.htm">this</a>.{% endblocktrans %}
     </div>
+    <h2 class="title">{% trans "Versions" %}</h2>
+{% endblock content%}
 
-    <h2 class="title" py:content="versiontitle">Versions</h2>
-  </div><!--content-->
+{% block postcontent%}
+    <div class="info">{{ versiontext|safe }}</div>
+{% endblock postcontent%}
 
-  <div id="postcontent" py:def="postcontent_block()">
-    <div class="info" py:content="XML(versiontext)">
-      This site is running:<br />
-      Pootle<br />
-      Translate Toolkit<br />
-      jToolkit<br />
-      Python
-    </div>
-  </div><!--postcontent-->
-
-</include>
 
