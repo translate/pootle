@@ -108,6 +108,9 @@ class TranslationProject(models.Model):
     real_path  = models.FilePathField()
     directory  = models.ForeignKey(Directory)
 
+    def __unicode__(self):
+        return self.directory.pootle_path
+    
     @classmethod
     def get_language_and_project_indices(cls):
       def add_to_list(dct, key, value):
