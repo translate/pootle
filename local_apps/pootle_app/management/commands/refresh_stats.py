@@ -52,9 +52,6 @@ class Command(NoArgsCommand):
     help = "Allow stats and text indices to be refreshed manually."
 
     def handle_noargs(self, **options):
-        def print_message(pootle_file):
-            print "Updating stats for %s" % pootle_file.store.real_path
-
         refresh_path = options.get('directory', '')
         recompute = options.get('recompute', False)
 
@@ -76,7 +73,8 @@ class Command(NoArgsCommand):
                 # Simply by opening a file, we'll trigger the
                 # machinery that looks at its mtime and decides
                 # whether its stats should be updated
-                store_file.with_store(translation_project, store, print_message)
+                print "Updating stats for %s" % store.file.name
+                store.file.getcompletestats(translation_project.checker)
             except TranslationProject.DoesNotExist:
                 pass
 
