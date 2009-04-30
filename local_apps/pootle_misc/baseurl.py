@@ -20,6 +20,8 @@
 
 """ utility functions to help deploy Pootle under different url prefixes """
 
+import urllib
+
 from django.conf import settings
 from django.http import HttpResponseRedirect
 
