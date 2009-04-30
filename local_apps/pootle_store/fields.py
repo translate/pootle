@@ -23,6 +23,7 @@
 """
 Utility functions for handling translation files.
 """
+import logging
 
 from django.core.files import File
 from django.db.models.fields.files import FieldFile, FileField
@@ -46,33 +47,33 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         """ get translation store from dictionary cache, populate if
         store not already cached. """
         if self.path not in self._store_cache:
-            return self._update_store_cache()
-        return self._store_cache[self.path]
+            self._update_store_cache()
+        return self._store_cache[self.path][0]
 
     def _update_store_cache(self):
         """ add translation store to dictionary cache, replace old
         cached version if needed."""
-        self._store_cache[self.path] = factory.getobject(self.path)
-        return self._store_cache[self.path]
+        mod_info = statsdb.get_mod_info(self.path)
+
+        if self.path not in self._store_cache or self._store_cache[self.path][1] != mod_info:
+            logging.debug("cache miss for %s", self.path)
+            self._store_cache[self.path] = (factory.getobject(self.path), mod_info)
 
     def _delete_store_cache(self):
         """ remove traslation store from dictionary cache."""
         if self.path in self._store_cache:
             del(self._store_cache[self.path])
-        
-    def open(self, mode='rb'):
-        file = super(TranslationStoreFieldFile, self).open(mode)
-        self.store = self._get_store()
-        return file
-        
+
+    store = property(_get_store)
+    
     def save(self, name, content, save=True):
+        #FIXME: implement save to tmp file then move instead of directly saving
         super(TranslationStoreFieldFile, self).save(name, content, save)
-        self.store = self._update_store_cache()
+        self._update_store_cache()
         
     def delete(self, save=True):
         self._delete_store_cache()
         super(TranslationStoreFieldFile, self).delete(save)
-        self.store = None
 
 class TranslationStoreField(FileField):
     attr_class = TranslationStoreFieldFile
