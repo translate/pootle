@@ -53,6 +53,9 @@ class TranslationStoreFile(File):
         return self._store
     store = property(_get_store)
 
+    def savestore(self):
+        self.store.save()
+
     def _guess_path(self):
         """
         most TranslationStoreFile objects will deal with will
@@ -134,7 +137,11 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
             del(self._store_cache[self.path])
 
     store = property(_get_store)
-    
+
+    def savestore(self):
+        self.store.save()
+        self._update_store_cache()
+        
     def save(self, name, content, save=True):
         #FIXME: implement save to tmp file then move instead of directly saving
         super(TranslationStoreFieldFile, self).save(name, content, save)
