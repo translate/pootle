@@ -25,18 +25,58 @@ Utility functions for handling translation files.
 """
 import logging
 
+from django.conf import settings
 from django.core.files import File
 from django.db.models.fields.files import FieldFile, FileField
 
-from translate.storage import factory
+from translate.storage import factory, statsdb
 
 class TranslationStoreFile(File):
     """
     A mixin for use alongside django.core.files.base.File, which provides
     additional features for dealing with translation files.
     """
-    def _test(self):
-        print self.store
+    _statscache = statsdb.StatsCache(settings.STATS_DB_PATH)
+
+    #FIXME: figure out what this checker thing is
+    checker = None
+
+    def getquickstats(self):
+        """returns the quick statistics (totals only)
+        """
+        return self._statscache.filetotals(self.path, store=self.store) #or statsdb.emptyfiletotals()
+
+    def getstats(self):
+        """returns the unit states statistics only"""
+        return self._statscache.filestatestats(self.path, store=self.store)
+    
+    def getcompletestats(self, checker):
+        """return complete stats including quality checks
+        """
+        return self._statscache.filestats(self.path, checker, store=self.store)
+
+    def getunitstats(self):
+        return self._statscache.unitstats(self.path, store=self.store)
+
+    def reclassifyunit(self, item, checker):
+        """Reclassifies all the information in the database and
+        self._stats about the given unit
+        """
+        unit = self.getitem(item)
+        self._statscache.recacheunit(self.path, checker, unit)
+
+    def _get_total(self):
+        """returns list of translatable unit indeces, useful for
+        identifying translatable units by their place in translation
+        file (item number)
+        """
+        return self.getstats()['total']
+    total = property(_get_total)
+    
+    def getitemslen(self):
+        """gets the number of items in the file
+        """
+        return self.getquickstats()['total']
         
 
 

@@ -332,12 +332,6 @@ def make_class(base_class):
 
         id_index = property(_get_id_index)
 
-        @util.lazy('_total')
-        def _get_total(self):
-            return self.statistics.getstats()['total']
-
-        total = property(_get_total)
-
         def parsestring(cls, storestring):
             newstore = cls()
             newstore.parse(storestring)
