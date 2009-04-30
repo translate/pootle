@@ -24,7 +24,6 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
 #FIXME: move this stuff to pootle_store
-from pootle_app.models.store_file import relative_real_path, absolute_real_path
 from pootle_app.models.directory import Directory
 
 from pootle_store.fields import TranslationStoreField
@@ -37,7 +36,7 @@ class Store(models.Model):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
     is_dir = False
     
-    file        = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True)
+    file        = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False)
     parent      = models.ForeignKey(Directory, related_name='child_stores', db_index=True)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True)
     name        = models.CharField(max_length=128, null=False)
@@ -49,18 +48,12 @@ class Store(models.Model):
     def _get_abs_real_path(self):
         return self.file.path
 
-    def _set_abs_real_path(self, value):
-        self.file.path = absolute_real_path(value)
-
-    abs_real_path = property(_get_abs_real_path, _set_abs_real_path)
+    abs_real_path = property(_get_abs_real_path)
 
     def _get_real_path(self):
         return self.file.name
 
-    def _set_real_path(self, value):
-        self.file.name = relative_real_path(value)
-
-    real_path = property(_get_real_path, _set_real_path)
+    real_path = property(_get_real_path)
 
     def __unicode__(self):
         return self.name
