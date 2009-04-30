@@ -158,8 +158,9 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     def _get_store(self):
         """ get translation store from dictionary cache, populate if
         store not already cached. """
-        if self.path not in self._store_cache:
-            self._update_store_cache()
+        #if self.path not in self._store_cache:
+        #FIXME: is it possible to not test mod_info on every access?
+        self._update_store_cache()
         return self._store_cache[self.path][0]
 
     def _update_store_cache(self):
