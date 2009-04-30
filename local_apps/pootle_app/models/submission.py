@@ -27,7 +27,7 @@ from language import Language
 from project import Project
 from translation_project import TranslationProject
 from suggestion import Suggestion
-from store import Unit
+from pootle_store.models import Unit
 from profile import PootleProfile
 
 class SubmissionManager(models.Manager):

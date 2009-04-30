@@ -67,7 +67,7 @@ class Directory(models.Model):
 
         This does not currently deal with .. path components."""
 
-        from store import Store
+        from pootle_store.models import Store
 
         if path not in (None, ''):
             pootle_path = '%s%s' % (self.pootle_path, path)

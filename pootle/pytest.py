@@ -15,6 +15,8 @@ from django.test import utils
 from django.core.management import call_command
 from django.contrib.auth.models import User
 from pootle_app.models.translation_project import scan_translation_projects
+from pootle_store.models import fs
+
 from py import test
 
 
@@ -49,6 +51,7 @@ class TestEnv(object):
         self.oldpodir = settings.PODIRECTORY
         self.testpodir = tempfile.mkdtemp()
         settings.PODIRECTORY = self.testpodir
+        fs.location = self.testpodir
         
         gnu = os.path.join(self.testpodir, "terminology")
         os.mkdir(gnu)
@@ -91,6 +94,7 @@ msgstr "rest"
 
     def teardown_test_podir(self):
         settings.PODIRECTORY = self.oldpodir
+        fs.location = self.oldpodir
         shutil.rmtree(self.testpodir)
     
     def teardown_test_db(self):

@@ -25,7 +25,7 @@ from django.db                import models
 import custom_sql_util
 from profile import PootleProfile
 from translation_project import TranslationProject
-from store import Unit
+from pootle_store.models import Unit
 
 class SuggestionManager(models.Manager):
     def _get_top_results(self, profile_field):

@@ -10,7 +10,7 @@ from django.test.client import Client
 from django.http import QueryDict
 from django.conf import settings
 
-from pootle_app.models import Store
+from pootle_store.models import Store
 
 ADMIN_USER = {'username': 'admin', 'password': 'admin'}
 NONPRIV_USER = {'username': 'nonpriv', 'password': 'nonpriv'}

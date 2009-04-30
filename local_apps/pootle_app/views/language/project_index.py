@@ -33,7 +33,8 @@ from translate.storage import factory, versioncontrol
 
 from pootle_app.views.util import render_to_kid, render_jtoolkit
 from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
-from pootle_app.models import Goal, Directory, Store, store_file
+from pootle_app.models import Goal, Directory, store_file
+from pootle_store.models import Store
 from pootle_app.models.search import Search
 from pootle_app.models.permissions import get_matching_permissions, check_permission, PermissionError
 from pootle_app.models.profile import get_profile
@@ -192,7 +193,7 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
             else:
                 raise PermissionError(_("You do not have rights to upload files here"))
 
-        store = Store.objects.get(real_path=upload_path)
+        store = Store.objects.get(file=upload_path)
         store_file.with_store(request.translation_project, store, do_merge)
     else:
         if not (check_permission("administrate", request) or check_permission("overwrite", request)):

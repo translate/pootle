@@ -22,7 +22,7 @@
 import datetime
 
 from pootle_app.models             import Suggestion, Submission
-from pootle_app.models.store       import Unit
+from pootle_store.models       import Unit
 from pootle_app.models.profile     import get_profile
 from pootle_app.models.permissions import check_permission, PermissionError
 

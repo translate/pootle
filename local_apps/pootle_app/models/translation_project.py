@@ -45,7 +45,7 @@ from pootle_app.models.profile     import PootleProfile, get_profile
 from pootle_app.models.project     import Project
 from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory
-from pootle_app.models.store       import Store
+from pootle_store.models       import Store
 from pootle_app                    import project_tree
 from pootle_app.models             import store_iteration, metadata, store_file
 from pootle_app.models.store_file  import relative_real_path, absolute_real_path

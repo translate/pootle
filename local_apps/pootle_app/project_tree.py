@@ -28,7 +28,7 @@ from translate.convert import pot2po
 
 from pootle_app.models.project    import Project
 from pootle_app.models.directory  import Directory
-from pootle_app.models.store      import Store
+from pootle_store.models      import Store
 from pootle_app.url_manip import strip_trailing_slash
 from pootle_app.models.store_file import absolute_real_path, relative_real_path
 
@@ -201,9 +201,8 @@ def add_files(ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True)
     files, dirs = split_files_and_dirs(ignored_files, ext, real_dir, file_filter)
     existing_stores = dict((store.name, store) for store in db_dir.child_stores.all())
     existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.all())
-
     add_items(files, existing_stores,
-              lambda name: Store(real_path = relative_real_path(os.path.join(real_dir, name)),
+              lambda name: Store(file = relative_real_path(os.path.join(real_dir, name)),
                                  parent    = db_dir,
                                  name      = name))
 

@@ -23,8 +23,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from profile import PootleProfile
-from store import Store, Unit
 from directory import Directory
+from pootle_store.models import Store, Unit
 
 class Goal(models.Model):
     """A goal is a named collection of files. Goals partition the files of
