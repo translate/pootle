@@ -24,12 +24,13 @@
 Utility functions for handling translation files.
 """
 import logging
+import os
 
 from django.conf import settings
 from django.core.files import File
 from django.db.models.fields.files import FieldFile, FileField
 
-from translate.storage import factory, statsdb
+from translate.storage import factory, statsdb, po
 from translate.filters import checks
 
 
@@ -102,11 +103,48 @@ class TranslationStoreFile(File):
         return self.getstats()['total']
     total = property(_get_total)
     
+    def getitem(self, item):
+        """Returns a single unit based on the item number."""
+        return self.store.units[self.total[item]]
+
     def getitemslen(self):
         """gets the number of items in the file
         """
         return self.getquickstats()['total']
+
+    def updateunit(self, item, newvalues, userprefs, languageprefs):
+        """updates a translation with a new target value"""
+
+        unit = self.getitem(item)
         
+        if newvalues.has_key('target'):
+            unit.target = newvalues['target']
+        if newvalues.has_key('fuzzy'):
+            unit.markfuzzy(newvalues['fuzzy'])
+        if newvalues.has_key('translator_comments'):
+            unit.removenotes()
+            if newvalues['translator_comments']:
+                unit.addnote(newvalues['translator_comments'])
+
+        if isinstance(self, po.pofile):
+            po_revision_date = time.strftime('%Y-%m-%d %H:%M') + tzstring()
+            headerupdates = {'PO_Revision_Date': po_revision_date,
+                             'Language': self.languagecode,
+                             'X_Generator': self.x_generator}
+            if userprefs:
+                if getattr(userprefs, 'name', None) and getattr(userprefs, 'email', None):
+                    headerupdates['Last_Translator'] = '%s <%s>' % (userprefs.name, userprefs.email)
+            self.store.updateheader(add=True, **headerupdates)
+            if languageprefs:
+                nplurals = getattr(languageprefs, 'nplurals', None)
+                pluralequation = getattr(languageprefs, 'pluralequation', None)
+                if nplurals and pluralequation:
+                    self.store.updateheaderplural(nplurals, pluralequation)
+        # If we didn't add a header, savepofile doesn't have to
+        # reset the stats, since reclassifyunit will do. This
+        # gives us a little speed boost for the common case.
+        self.savestore()
+        self.reclassifyunit(item)
 
 
 class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
