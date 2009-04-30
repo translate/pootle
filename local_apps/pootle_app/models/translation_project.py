@@ -410,13 +410,11 @@ class TranslationProject(models.Model):
 
     def init_index(self, indexer):
         """initializes the search index"""
-        def do_update(pootle_file):
-            self.update_index(indexer, pootle_file, optimize=False)
-
         for store in Store.objects.filter(pootle_path__startswith=self.directory.pootle_path):
-            store_file.with_store(self, store, do_update)
+            self.update_index(indexer, store, optimize=False)
 
-    def update_index(self, indexer, pofile, items=None, optimize=True):
+
+    def update_index(self, indexer, store, items=None, optimize=True):
         """updates the index with the contents of pofilename (limit to items if given)
 
         There are three reasons for calling this function:
@@ -448,8 +446,8 @@ class TranslationProject(models.Model):
             return False
         # check if the pomtime in the index == the latest pomtime
         try:
-            pomtime = statistics.getmodtime(pofile.filename)
-            pofilenamequery = indexer.make_query([("pofilename", pofile.store.pootle_path)], True)
+            pomtime = statistics.getmodtime(store.file.path)
+            pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)], True)
             pomtimequery = indexer.make_query([("pomtime", str(pomtime))], True)
             gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
             gooditemsnum = indexer.get_query_result(gooditemsquery).get_matches_count()
@@ -470,15 +468,14 @@ class TranslationProject(models.Model):
                 # The po file is not indexed - or it was changed externally (see
                 # "pofreshen" in store_file.py).
                 # delete all items of this file
-                indexer.delete_doc({"pofilename": pofile.store.pootle_path})
-            pofile.pofreshen()
+                indexer.delete_doc({"pofilename": store.pootle_path})
             if items is None:
                 # rebuild the whole index
-                items = range(pofile.statistics.getitemslen())
+                items = range(store.file.getitemslen())
             addlist = []
             for itemno in items:
-                unit = pofile.getitem(itemno)
-                doc = {"pofilename": pofile.store.pootle_path, "pomtime": str(pomtime), "itemno": str(itemno)}
+                unit = store.file.getitem(itemno)
+                doc = {"pofilename": store.pootle_path, "pomtime": str(pomtime), "itemno": str(itemno)}
                 if unit.hasplural():
                     orig = "\n".join(unit.source.strings)
                     trans = "\n".join(unit.target.strings)
@@ -499,8 +496,8 @@ class TranslationProject(models.Model):
                     indexer.commit_transaction()
                     indexer.flush(optimize=optimize)
         except (base.ParseError, IOError, OSError):
-            indexer.delete_doc({"pofilename": pofile.store.pootle_path})
-            logging.error("Not indexing %s, since it is corrupt", pofile.store.pootle_path)
+            indexer.delete_doc({"pofilename": store.pootle_path})
+            logging.error("Not indexing %s, since it is corrupt", store.pootle_path)
 
     def matchessearch(self, pofilename, search):
         """returns whether any items in the pofilename match the search (based on collected stats etc)"""
@@ -826,16 +823,6 @@ class TranslationProject(models.Model):
 
     ##############################################################################################
 
-    def getsuggestions(self, pofile, item):
-        """find all the suggestions submitted for the given (pofile or pofilename) and item"""
-        suggestions = store_file.with_store_file(self, pofile,
-                                                 lambda pootle_file:
-                                                     pootle_file.getsuggestions(item)
-                                                 )
-        return suggestions
-
-    ##############################################################################################
-
     is_terminology_project = property(lambda self: self.project.code == "terminology")
 
     stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.directory.pootle_path))
@@ -853,17 +840,17 @@ class TranslationProject(models.Model):
         if self.is_terminology_project:
             query = self.stores
             if query.count() > 0:
-                for store in query.all():
+                #for store in query.all():
                     # We just want to touch the stores, since this
                     # will automatically pull them into the cache and
                     # freshen them.
-                    store_file.with_store(self, store, lambda _x: None)
+                    #store_file.with_store(self, store, lambda _x: None)
                 return make_matcher(self)
         else:
             termfilename = "pootle-terminology." + self.project.localfiletype
             try:
                 store = Store.objects.get(pootle_path=termfilename)
-                return store_file.with_store(pootle_file.translation_project, store, make_matcher)
+                return make_matcher(store)
             except Store.DoesNotExist:
                 pass
         raise StopIteration()

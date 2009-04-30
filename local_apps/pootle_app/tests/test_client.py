@@ -228,8 +228,8 @@ def test_upload_suggestions():
     download = client.get("/af/pootle/pootle.po/export/po")
     assert 'msgstr "samaka"' not in download.content
     store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
-    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
-    pending_filename = pofile_storename + ".pending"
+    pofile_storename = store.file.path
+    pending_filename = store.pending.path
     suggestions_content = open(pending_filename, 'r').read()
     assert 'msgstr "samaka"' in suggestions_content
 
@@ -295,8 +295,24 @@ def test_upload_over_file():
     """Tests that we can upload a new version of a file into a project."""
     client = Client()
     client.login(**ADMIN_USER)
+    pocontent = StringIO.StringIO('''#: fish.c
+msgid "fish"
+msgstr ""
+
+#: test.c
+msgid "test"
+msgstr "resto"
+
+''')
+    pocontent.name = "pootle.po"
+    post_dict = {
+        'file': pocontent,
+        'overwrite': 'checked',
+        'do_upload': 'upload',
+    }
+    response = client.post("/af/pootle/", post_dict)
     
-    pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rested"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
+    pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "blo3"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
     pocontent.name = "pootle.po"
 
     post_dict = {
@@ -309,12 +325,12 @@ def test_upload_over_file():
     # NOTE: this is what we do currently: any altered strings become suggestions.
     # It may be a good idea to change this
     mergedcontent = '#: fish.c\nmsgid "fish"\nmsgstr "stink"\n'
-    suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin\\n"\n"test"\nmsgstr "rested"\n'
+    suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin\\n"\n"test"\nmsgstr "blo3"\n'
     store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
-    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    pofile_storename = store.file.path
     assert open(pofile_storename).read().find(mergedcontent) >= 0
     
-    pendingfile_storename = pofile_storename + '.pending'
+    pendingfile_storename = store.pending.path
     assert os.path.isfile(pendingfile_storename)
     assert open(pendingfile_storename).read().find(suggestedcontent) >= 0
 
@@ -365,14 +381,14 @@ def test_upload_xliff_over_file():
 
     # NOTE: this is what we do currently: any altered strings become suggestions.
     # It may be a good idea to change this
-    mergedcontent = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
+    mergedcontent = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#~ msgid "tadpole"\n#~ msgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
     suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin\\n"\n"test"\nmsgstr "rested"\n'
     store = Store.objects.get(pootle_path="/ar/pootle/test_upload_xliff.po")
-    pofile_storename = os.path.join(settings.PODIRECTORY, store.real_path)
+    pofile_storename = store.file.path
     assert os.path.isfile(pofile_storename)
     assert open(pofile_storename).read().find(mergedcontent) >= 0
 
-    pendingfile_storename = pofile_storename + ".pending"
+    pendingfile_storename = store.pending.path
     assert os.path.isfile(pendingfile_storename)
     assert open(pendingfile_storename).read().find(suggestedcontent) >= 0
 
@@ -485,7 +501,7 @@ def test_submit_fuzzy():
     assert '<input checked="checked" name="fuzzy0" accesskey="f" type="checkbox" id="fuzzy0" class="fuzzycheck" />' in response.content
 
     pofile = get_store("/af/pootle/pootle.po")
-    assert pofile.units[1].isfuzzy()
+    assert pofile.units[0].isfuzzy()
 
     # Submit the translation again, without the fuzzy checkbox checked
     submit_dict = {
@@ -501,7 +517,7 @@ def test_submit_fuzzy():
     response = client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
     assert '<input class="fuzzycheck" accesskey="f" type="checkbox" name="fuzzy0" id="fuzzy0" />' in response.content
     pofile = get_store("/af/pootle/pootle.po")
-    assert not pofile.units[1].isfuzzy()
+    assert not pofile.units[0].isfuzzy()
         
 def test_submit_translator_comments():
     """Tests that we can edit translator comments."""
@@ -521,7 +537,7 @@ def test_submit_translator_comments():
 
     pofile = get_store("/af/pootle/pootle.po")
     
-    assert pofile.units[1].getnotes() == 'goodbye\nand thanks for all the fish'
+    assert pofile.units[0].getnotes() == 'goodbye\nand thanks for all the fish'
 
 
 

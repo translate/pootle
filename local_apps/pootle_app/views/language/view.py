@@ -219,12 +219,11 @@ def handle_suggestions(request, translation_project, file_path, item):
     # TODO: finish this function and return nice diffs
     pootle_path = translation_project.directory.pootle_path + file_path
     store = Store.objects.get(pootle_path=pootle_path)
-    file_path = store_file.absolute_real_path(store.real_path)
     
     def getpendingsuggestions(item):
         """Gets pending suggestions for item in pofilename."""
         itemsuggestions = []
-        suggestions = translation_project.getsuggestions(file_path, item)
+        suggestions = store.getsuggestions(item)
         for suggestion in suggestions:
             if suggestion.hasplural():
                 itemsuggestions.append(suggestion.target.strings)
@@ -239,7 +238,7 @@ def handle_suggestions(request, translation_project, file_path, item):
         response["status"] = "error"
         response["message"] = _("No suggestion data given.")
     else:
-        # TODO: handle plurals
+        #FIXME: handle plurals
         pofilename = clear_path(file_path)
 
         rejects = data.get("rejects", [])

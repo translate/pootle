@@ -56,7 +56,7 @@ def oddoreven(polarity):
     elif polarity % 2 == 1:
         return "odd"
 
-def get_alt_projects(request, pootle_file):
+def get_alt_projects(request, store):
     # do we have enabled alternative source language?
     if settings.ENABLE_ALT_SRC:
         # try to get the project if the user has chosen an alternate source language
@@ -75,13 +75,13 @@ def get_assign_box():
         "users":        User.objects.order_by('username')
     }
 
-def add_file_links(request, pootle_file):
+def add_file_links(request, store):
     """adds a section on the current file, including any checks happening"""
     state = dispatch.TranslatePageState(request.GET)
     template_vars = {}
     #if state.show_assigns and check_permission("assign", request):
     #    template_vars["assigns"] = get_assign_box()
-    if pootle_file is not None:
+    if store is not None:
         if len(state.match_names) > 0:
             checknames = \
             ["<a href='http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%(checkname)s' \
@@ -107,10 +107,10 @@ def get_finished_text(request, stoppedby):
             "finishedlink": dispatch.show_directory(request, url_manip.parent(request.path_info)),
             "returnlink":   _("Click here to return to the index")}
 
-def get_page_links(request, pootle_file, pagesize, translations, first_item):
+def get_page_links(request, store, pagesize, translations, first_item):
     """gets links to other pages of items, based on the given baselink"""
     pagelinks = []
-    pofilelen = len(pootle_file.total)
+    pofilelen = store.file.getitemslen()
     state = dispatch.TranslatePageState(request.GET)
     if pofilelen <= pagesize or first_item is None:
         return pagelinks
@@ -132,7 +132,7 @@ def get_page_links(request, pootle_file, pagesize, translations, first_item):
         pagelinks.append({"text": _("Previous %d" % pagesize)})
         # l10n: the third parameter refers to the total number of messages in the file
     pagelinks.append({"text": _("Items %d to %d of %d", (first_item + 1, lastitem + 1, pofilelen))})
-    if first_item + len(translations) < len(pootle_file.total):
+    if first_item + len(translations) < pofilelen:
         linkitem = first_item + pagesize
         itemcount = min(pofilelen - linkitem, pagesize)
         # l10n: the parameter refers to the number of messages
@@ -170,39 +170,39 @@ def get_display_rows(profile, mode):
         raise ValueError("getdisplayrows has no mode '%s'" % mode)
     return min(rowsdesired, maximum)
 
-def get_units(pootle_file, item_start, item_stop):
-    return [pootle_file.units[index] for index in pootle_file.total[max(item_start,0):item_stop]]
+def get_units(store, item_start, item_stop):
+    return [store.file.store.units[index] for index in store.file.total[max(item_start,0):item_stop]]
 
-def get_translations(request, profile, pootle_file, item):
+def get_translations(request, profile, store, item):
     """gets the list of translations desired for the view, and sets editable and firstitem parameters"""
     state = dispatch.TranslatePageState(request.GET)
-    if pootle_file is None:
+    if store is None:
         # editable, first item, items
         return -1, item, []
     elif state.view_mode == 'view':
         rows = get_display_rows(profile, "view")
-        return -1, item, get_units(pootle_file, item, item + rows)
+        return -1, item, get_units(store, item, item + rows)
     else:
         rows = get_display_rows(profile, "translate")
         before = rows / 2
         fromitem = item - before
         first_item = max(item - before, 0)
         toitem = first_item + rows
-        items = get_units(pootle_file, fromitem, toitem)
+        items = get_units(store, fromitem, toitem)
         return item, first_item, items
 
-def get_header_plural(pootle_file):
-    nplurals, plurals = pootle_file.getheaderplural()
+def get_header_plural(request, store):
+    nplurals, plurals = store.file.store.getheaderplural()
     if not (nplurals and nplurals.isdigit()):
         # The file doesn't have plural information declared. Let's get it from
         # the language
-        nplurals = pootle_file.translation_project.language.nplurals
+        nplurals = request.translation_project.language.nplurals
     else:
         nplurals = int(nplurals)
     return nplurals, plurals
 
-def ensure_trans_plurals(pootle_file, orig, trans):
-    nplurals, plurals = get_header_plural(pootle_file)
+def ensure_trans_plurals(request, store, orig, trans):
+    nplurals, plurals = get_header_plural(request, store)
     if len(orig) > 1:
         if len(trans) != nplurals:
             # Chop if in case it is too long
@@ -296,11 +296,11 @@ def getorigdict(item, orig, editable):
         origdict["text"] = escape_text(orig[0])
     return origdict
 
-def get_terminology(pootle_file, item):
+def get_terminology(request, store, item):
     try:
-        term_matcher = pootle_file.translation_project.gettermmatcher()
+        term_matcher = request.translation_project.gettermmatcher()
         if term_matcher is not None:
-            return term_matcher.matches(pootle_file.getitem(item).source)
+            return term_matcher.matches(store.file.getitem(item).source)
         else:
             return []
     except:
@@ -350,7 +350,7 @@ def unescape_submition(text):
                           ("\\n", "\n"),
                           ("\\r", "\r"))
 
-def get_edit_link(request, pootle_file, item):
+def get_edit_link(request, store, item):
     """gets a link to edit the given item, if the user has permission"""
     if check_permission("translate", request) or check_permission("suggest", request):
         # l10n: verb
@@ -360,13 +360,13 @@ def get_edit_link(request, pootle_file, item):
     else:
         return {}
 
-def get_trans_view(request, pootle_file, item, trans, textarea=False):
+def get_trans_view(request, store, item, trans, textarea=False):
     """returns a widget for viewing the given item's translation"""
     if textarea:
         escapefunction = escape_for_textarea
     else:
         escapefunction = escape_text
-    editlink = get_edit_link(request, pootle_file, item)
+    editlink = get_edit_link(request, store, item)
     transdict = {"editlink": editlink}
 
     cansugg  = check_permission("suggest",  request)
@@ -400,7 +400,7 @@ def get_trans_view(request, pootle_file, item, trans, textarea=False):
         transdict["text"] = ""
     return transdict
 
-def get_trans_edit(request, pootle_file, item, trans):
+def get_trans_edit(request, store, item, trans):
     """returns a widget for editing the given item and translation"""
     transdict = {
         "rows": 5,
@@ -415,7 +415,7 @@ def get_trans_edit(request, pootle_file, item, trans):
         focusbox = ""
         spellargs = {"standby_url": "spellingstandby.html", "js_url": "/js/spellui.js", "target_url": "spellcheck.html"}
         if len(trans) > 1:
-            buttons = get_trans_buttons(request, pootle_file.translation_project, item, ["back", "skip", "copy", "suggest", "translate"])
+            buttons = get_trans_buttons(request, request.translation_project, item, ["back", "skip", "copy", "suggest", "translate"])
             forms = []
             for pluralitem, pluraltext in enumerate(trans):
                 pluralform = _("Plural Form %d" % pluralitem)
@@ -426,13 +426,13 @@ def get_trans_edit(request, pootle_file, item, trans):
                     focusbox = textid
             transdict["forms"] = forms
         elif trans:
-            buttons = get_trans_buttons(request, pootle_file.translation_project, item, ["back", "skip", "copy", "suggest", "translate"])
+            buttons = get_trans_buttons(request, request.translation_project, item, ["back", "skip", "copy", "suggest", "translate"])
             transdict["text"] = escape_for_textarea(trans[0])
             textid = "trans%d" % item
             focusbox = textid
         else:
             # Perhaps there is no plural information available
-            buttons = get_trans_buttons(request, pootle_file.translation_project, item, ["back", "skip"])
+            buttons = get_trans_buttons(request, request.translation_project, item, ["back", "skip"])
             # l10n: This is an error message that will display if the relevant problem occurs
             transdict["text"] = escape_for_textarea(_("Translation not possible because plural information for your language is not available. Please contact the site administrator."))
             textid = "trans%d" % item
@@ -444,8 +444,8 @@ def get_trans_edit(request, pootle_file, item, trans):
         transdict["focusbox"] = focusbox
     else:
         # TODO: work out how to handle this (move it up?)
-        transdict.update(get_trans_view(request, pootle_file, item, trans, textarea=True))
-        buttons = get_trans_buttons(request, pootle_file.translation_project, item, ["back", "skip"])
+        transdict.update(get_trans_view(request, store, item, trans, textarea=True))
+        buttons = get_trans_buttons(request, request.translation_project, item, ["back", "skip"])
     transdict["buttons"] = buttons
     return transdict
 
@@ -493,7 +493,7 @@ def get_diff_codes(cmp1, cmp2):
     """compares the two strings and returns opcodes"""
     return difflib.SequenceMatcher(None, cmp1, cmp2).get_opcodes()
 
-def get_trans_review(request, pootle_file, item, trans, suggestions):
+def get_trans_review(request, store, item, trans, suggestions):
     """returns a widget for reviewing the given item's suggestions"""
     hasplurals = len(trans) > 1
     diffcodes = {}
@@ -517,14 +517,14 @@ def get_trans_review(request, pootle_file, item, trans, suggestions):
         forms.append(form)
     transdict = {
         "current_title": _("Current Translation:"),
-        "editlink":      get_edit_link(request, pootle_file, item),
+        "editlink":      get_edit_link(request, store, item),
         "forms":         forms,
         "isplural":      hasplurals or None,
         "itemid":        "trans%d" % item,
         }
     suggitems = []
     for suggid, msgstr in enumerate(suggestions):
-        suggestedby = pootle_file.getsuggester(item, suggid)
+        suggestedby = store.getsuggester(item, suggid)
         if len(suggestions) > 1:
             if suggestedby:
                 # l10n: First parameter: number
@@ -582,21 +582,21 @@ def get_translated_directory(target_language_code, root_directory, directory):
     else:
         return root_directory.child_dirs.get(name=target_language_code)
 
-def get_translated_store(target_language, pootle_file):
+def get_translated_store(target_language, store):
     try:
         translation_directory = get_translated_directory(target_language.code,
                                                      Directory.objects.root,
-                                                     pootle_file.store.parent)
+                                                     store.parent)
         try:
-            return translation_directory.child_stores.get(name=pootle_file.store.name)
+            return translation_directory.child_stores.get(name=store.name)
         except Store.DoesNotExist:
             return None
     except Directory.DoesNotExist:
         return None
 
-def get_alt_src_dict(request, pootle_file, unit, alt_project):
-    def translate_unit(translated_pootle_file):
-        translated_unit = translated_pootle_file.id_index[unit.getid()]
+def get_alt_src_dict(request, store, unit, alt_project):
+    def translate_unit(translated_store):
+        translated_unit = translated_store.id_index[unit.getid()]
         if unit.hasplural():
             return {
                 "forms":     [{"title": _("Plural Form %d", i),
@@ -619,7 +619,7 @@ def get_alt_src_dict(request, pootle_file, unit, alt_project):
                 "dir":          pagelayout.languagedir(language.code),
                 "title":        tr_lang(language.fullname),
                 "available":    True })
-        translated_store = get_translated_store(language, pootle_file)
+        translated_store = get_translated_store(language, store)
         if translated_store is not None:
             alt_src_dict.update(
                 store_file.with_store(request.translation_project,
@@ -629,25 +629,25 @@ def get_alt_src_dict(request, pootle_file, unit, alt_project):
             alt_src_dict["available"] = False
     return alt_src_dict
 
-def get_alt_src_list(request, pootle_file, unit):
-    return [get_alt_src_dict(request, pootle_file, unit, alt_project)
-            for alt_project in get_alt_projects(request, pootle_file)]
+def get_alt_src_list(request, store, unit):
+    return [get_alt_src_dict(request, store, unit, alt_project)
+            for alt_project in get_alt_projects(request, store)]
 
-def make_table(request, profile, pootle_file, item):
-    editable, first_item, translations = get_translations(request, profile, pootle_file, item)
+def make_table(request, profile, store, item):
+    editable, first_item, translations = get_translations(request, profile, store, item)
     state = dispatch.TranslatePageState(request.GET)
     items = []
     suggestions = {}
     if (state.view_mode in ('review', 'translate')):
-        suggestions = {state.item: pootle_file.getsuggestions(state.item)}
+        suggestions = {state.item: store.getsuggestions(state.item)}
     for row, unit in enumerate(translations):
         tmsuggestions = []
         orig = get_string_array(unit.source)
-        trans = ensure_trans_plurals(pootle_file, orig, get_string_array(unit.target))
+        trans = ensure_trans_plurals(request, store, orig, get_string_array(unit.target))
         item = first_item + row
         origdict = getorigdict(item, orig, item == editable)
         transmerge = {}
-        suggestions[item] = pootle_file.getsuggestions(item)
+        suggestions[item] = store.getsuggestions(item)
 
         message_context = ""
         if item == editable:
@@ -656,14 +656,14 @@ def make_table(request, profile, pootle_file, item):
             locations = " ".join(unit.getlocations())
             if isinstance(unit, po.pounit):
                 message_context = "".join(unit.getcontext())
-            tmsuggestions = pootle_file.gettmsuggestions(item)
-            tmsuggestions.extend(get_terminology(pootle_file, item))
-            transmerge = get_trans_edit(request, pootle_file, item, trans)
+            tmsuggestions = store.gettmsuggestions(item)
+            tmsuggestions.extend(get_terminology(request, store, item))
+            transmerge = get_trans_edit(request, store, item, trans)
         else:
             translator_comments = unit.getnotes(origin="translator")
             developer_comments = unit.getnotes(origin="developer")
             locations = ""
-            transmerge = get_trans_view(request, pootle_file, item, trans)
+            transmerge = get_trans_view(request, store, item, trans)
 
         itemsuggestions = []
         for suggestion in suggestions[item]:
@@ -671,7 +671,7 @@ def make_table(request, profile, pootle_file, item):
                 itemsuggestions.append(suggestion.target.strings)
             else:
                 itemsuggestions.append([suggestion.target])
-        transreview = get_trans_review(request, pootle_file, item, trans, itemsuggestions)
+        transreview = get_trans_review(request, store, item, trans, itemsuggestions)
         if 'forms' in transmerge.keys():
             for fnum in range(len(transmerge['forms'])):
                 transreview['forms'][fnum].update(transmerge['forms'][fnum])
@@ -722,7 +722,7 @@ def make_table(request, profile, pootle_file, item):
         if settings.ENABLE_ALT_SRC:
             # get alternate source project information in a dictionary
             if item == editable:
-                itemdict["altsrcs"] = get_alt_src_list(request, pootle_file, unit)
+                itemdict["altsrcs"] = get_alt_src_list(request, store, unit)
 
         items.append(itemdict)
     return items, translations, first_item
@@ -757,16 +757,16 @@ def handle_backs(last_item, backs):
         last_item = item
     return last_item
 
-def handle_suggestions(last_item, request, pootle_file, submitsuggests, skips, translations):
+def handle_suggestions(last_item, request, store, submitsuggests, skips, translations):
     for item in submitsuggests:
         if item in skips or item not in translations:
             continue
         value = translations[item]
-        unit_update.suggest_translation(pootle_file, item, value, request)
+        unit_update.suggest_translation(store, item, value, request)
         last_item = item
     return last_item
 
-def handle_submits(last_item, request, pootle_file, submits, skips, translations, comments, fuzzies):
+def handle_submits(last_item, request, store, submits, skips, translations, comments, fuzzies):
     for item in submits:
         if item in skips or item not in translations:
             continue
@@ -784,11 +784,11 @@ def handle_submits(last_item, request, pootle_file, submits, skips, translations
         if translator_comments:
             newvalues["translator_comments"] = translator_comments
 
-        unit_update.update_translation(pootle_file, item, newvalues, request)
+        unit_update.update_translation(store, item, newvalues, request)
         last_item = item
     return last_item
 
-def handle_rejects(last_item, pootle_file, rejects, skips, translations, suggestions, request):
+def handle_rejects(last_item, store, rejects, skips, translations, suggestions, request):
     # Make sure we have rejects list properly sorted
     rejects.sort(key=operator.itemgetter(1))
     # It's necessary to loop the list reversed in order to selectively remove items
@@ -796,21 +796,21 @@ def handle_rejects(last_item, pootle_file, rejects, skips, translations, suggest
         value = suggestions[item, suggid]
         if isinstance(value, dict) and len(value) == 1 and 0 in value:
             value = value[0]
-        unit_update.reject_suggestion(pootle_file, item, suggid, value, request)
+        unit_update.reject_suggestion(store, item, suggid, value, request)
         last_item = item
     return last_item
 
-def handle_accepts(last_item, pootle_file, accepts, skips, translations, suggestions, request):
+def handle_accepts(last_item, store, accepts, skips, translations, suggestions, request):
     accepts.sort(key=operator.itemgetter(1))
     for item, suggid in reversed(accepts):
         value = suggestions[item, suggid]
         if isinstance(value, dict) and len(value) == 1 and 0 in value:
             value = value[0]
-        unit_update.accept_suggestion(pootle_file, item, suggid, value, request)
+        unit_update.accept_suggestion(store, item, suggid, value, request)
         last_item = item
     return last_item
 
-def process_post(request, pootle_file):
+def process_post(request, store):
     """receive any translations submitted by the user"""
     post_dict = request.POST.copy()
     backs = []
@@ -870,17 +870,20 @@ def process_post(request, pootle_file):
 
     prev_last_item = handle_backs(-1, backs)
     last_item = handle_skips(-1, skips)
-    last_item = handle_suggestions(last_item, request, pootle_file, submitsuggests, skips, translations)
-    last_item = handle_submits(last_item, request, pootle_file, submits, skips, translations, comments, fuzzies)
-    last_item = handle_accepts(last_item, pootle_file, accepts, skips, translations, suggestions, request)
-    last_item = handle_rejects(last_item, pootle_file, rejects, skips, translations, suggestions, request)
+    last_item = handle_suggestions(last_item, request, store, submitsuggests, skips, translations)
+    last_item = handle_submits(last_item, request, store, submits, skips, translations, comments, fuzzies)
+    last_item = handle_accepts(last_item, store, accepts, skips, translations, suggestions, request)
+    last_item = handle_rejects(last_item, store, rejects, skips, translations, suggestions, request)
     return prev_last_item, last_item
 
 def process_post_main(store_name, item, request, next_store_item, prev_store_item):
     store = Store.objects.get(pootle_path=store_name)
     request.translation_project.indexer # Force initialization of the indexer
-    prev_item, next_item = store_file.with_store(request.translation_project, store,
-                                                 lambda pootle_file: process_post(request, pootle_file))
+    prev_item, next_item = process_post(request, store)
+    
+    #prev_item, next_item = store_file.with_store(request.translation_project, store,
+    #                                             lambda pootle_file: process_post(request, pootle_file))
+    
     search = Search.from_request(request)
     if next_item > -1:
         return next_store_item(search, store_name, next_item + 1)
@@ -913,12 +916,11 @@ def get_failure_message(request):
 def find_and_display(request, directory, next_store_item, prev_store_item):
     try:
         store, item = get_position(request, next_store_item, prev_store_item)
-        return store_file.with_store(request.translation_project, store,
-                                     lambda pootle_file: view(request, directory, pootle_file, item))
+        return view(request, directory, store, item)
     except StopIteration:
         return view(request, directory, None, 0, get_failure_message(request))
 
-def view(request, directory, pootle_file, item, stopped_by=None):
+def view(request, directory, store, item, stopped_by=None):
     """the page which lets people edit translations"""
     state = dispatch.TranslatePageState(request.GET)
     if not check_permission("view", request):
@@ -926,9 +928,9 @@ def view(request, directory, pootle_file, item, stopped_by=None):
         # TBD: Raise an exception similar to Rights404Error
         raise permissions.PermissionError('No view rights')
 
-    if pootle_file is not None:
-        formaction = dispatch.translate(request, request.path_info, store=pootle_file.store.pootle_path ,item=0)
-        store_path = pootle_file.store.pootle_path
+    if store is not None:
+        formaction = dispatch.translate(request, request.path_info, store=store.pootle_path ,item=0)
+        store_path = store.pootle_path
     else:
         formaction = ''
         store_path = ''
@@ -940,9 +942,9 @@ def view(request, directory, pootle_file, item, stopped_by=None):
     translation_project = request.translation_project
     language = translation_project.language
     project  = translation_project.project
-    if pootle_file is not None:
-        items, translations, first_item = make_table(request, profile, pootle_file, item)
-        navbar = navbar_dict.make_store_navbar_dict(request, pootle_file.store)
+    if store is not None:
+        items, translations, first_item = make_table(request, profile, store, item)
+        navbar = navbar_dict.make_store_navbar_dict(request, store)
     else:
         items, translations, first_item = [], [], -1
         navbar = navbar_dict.make_directory_navbar_dict(request, directory, show_actions=False)
@@ -951,12 +953,12 @@ def view(request, directory, pootle_file, item, stopped_by=None):
     pagelinks = None
     rows, icon = get_rows_and_icon(request, profile)
     navbar["icon"] = icon
-    if pootle_file is not None:
-        postats = metadata.quick_stats(pootle_file.store, translation_project.checker)
+    if store is not None:
+        postats = metadata.quick_stats(store, translation_project.checker)
         untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
         translated, total = postats["translated"], postats["total"]
         mainstats = _("%d/%d translated\n(%d untranslated, %d fuzzy)" % (translated, total, untranslated, fuzzy))
-        pagelinks = get_page_links(request, pootle_file, rows, translations, first_item)
+        pagelinks = get_page_links(request, store, rows, translations, first_item)
 
     # templatising
     templatename = "language/translatepage.html"
@@ -1025,5 +1027,5 @@ def view(request, directory, pootle_file, item, stopped_by=None):
 
     #if state.show_assigns and check_permission("assign", request):
     #    templatevars["assign"] = get_assign_box()
-    templatevars.update(add_file_links(request, pootle_file))
+    templatevars.update(add_file_links(request, store))
     return render_to_kid("language/translatepage.html", KidRequestContext(request, templatevars, bannerheight=81))

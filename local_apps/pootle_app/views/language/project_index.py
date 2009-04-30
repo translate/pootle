@@ -23,7 +23,7 @@ import copy
 import os
 import zipfile
 import subprocess
-import cStringIO
+import StringIO
 import logging
 
 from django.utils.translation import ugettext as _
@@ -157,8 +157,9 @@ def unzip_python(request, relative_root_dir, django_file, overwrite):
             try:
                 if filename[-1] != '/':
                     sub_relative_root_dir = os.path.join(relative_root_dir, os.path.dirname(filename))
-                    basename = os.path.basename(filename)
-                    upload_file(request, sub_relative_root_dir, basename, archive.read(filename), overwrite)
+                    newfile = StringIO.StringIO(archive.read(filename))
+                    newfile.name = os.path.basename(filename)
+                    upload_file(request, sub_relative_root_dir, newfile, overwrite)
             except ValueError, e:
                 logging.error("error adding %s\t%s", filename, e)
     finally:
@@ -172,29 +173,25 @@ def upload_archive(request, directory, django_file, overwrite):
     except:
         unzip_python(request, directory, django_file, overwrite)
 
-def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
+def upload_file(request, relative_root_dir, django_file, overwrite):
     # Strip the extension off filename and add the extension used in
     # the current translation project to filename to get
     # local_filename. Thus, if filename == 'foo.xlf' and we're in a PO
-    # project, then local_filename == 'foo.po'.
-    local_filename = get_local_filename(request.translation_project, filename)
+    # project, then local_filenamersy == 'foo.po'.
+    local_filename = get_local_filename(request.translation_project, django_file.name)
     # The full filesystem path to 'local_filename'
     upload_path    = get_upload_path(request.translation_project, relative_root_dir, local_filename)
     if os.path.exists(store_file.absolute_real_path(upload_path)) and not overwrite:
-        def do_merge(origpofile):
-            newfileclass = factory.getclass(filename)
-            newfile = newfileclass.parsestring(file_contents)
-            if check_permission("administrate", request):
-                origpofile.mergefile(newfile, request.user.username)
-            elif check_permission("translate", request):
-                origpofile.mergefile(newfile, request.user.username, allownewstrings=False)
-            elif check_permission("suggest", request):
-                origpofile.mergefile(newfile, request.user.username, suggestions=True)
-            else:
-                raise PermissionError(_("You do not have rights to upload files here"))
-
         store = Store.objects.get(file=upload_path)
-        store_file.with_store(request.translation_project, store, do_merge)
+        newstore = factory.getobject(django_file._file)
+        if check_permission("administrate", request):
+            store.mergefile(newstore, request.user.username)
+        elif check_permission("translate", request):
+            store.mergefile(newstore, request.user.username, allownewstrings=False)
+        elif check_permission("suggest", request):
+            store.mergefile(newstore, request.user.username, suggestions=True)
+        else:
+            raise PermissionError(_("You do not have rights to upload files here"))
     else:
         if not (check_permission("administrate", request) or check_permission("overwrite", request)):
             if overwrite:
@@ -208,7 +205,7 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
         # uploaded file.
         if not os.path.exists(upload_dir):
             os.makedirs(upload_dir)
-        _upload_base, upload_ext = os.path.splitext(filename)
+        _upload_base, upload_ext = os.path.splitext(django_file.name)
         _local_base,  local_ext  = os.path.splitext(upload_path)
         # If the extension of the uploaded file matches the extension
         # used in this translation project, then we simply write the
@@ -216,24 +213,23 @@ def upload_file(request, relative_root_dir, filename, file_contents, overwrite):
         if upload_ext == local_ext:
             outfile = open(store_file.absolute_real_path(upload_path), "wb")
             try:
-                outfile.write(file_contents)
+                outfile.write(django_file.read())
             finally:
                 outfile.close()
         else:
-            def do_merge(new_file):
-                uploaded_file_class = factory.getclass(filename)
-                uploaded_file = uploaded_file_class.parsestring(file_contents)
-                new_file.mergefile(uploaded_file, request.user.username)
-
             # If the extension of the uploaded file does not match the
             # extension of the current translation project, we create
             # an empty file (with the right extension)...
             empty_store = factory.getobject(store_file.absolute_real_path(upload_path))
             # And save it...
             empty_store.save()
+            scan_translation_project_files(request.translation_project)
             # Then we open this newly created file and merge the
             # uploaded file into it.
-            store_file.with_store_file(request.translation_project, store_file.absolute_real_path(upload_path), do_merge)
+            store = Store.objects.get(file=upload_path)
+            newstore = factory.getobject(django_file)
+            store.mergefile(newstore, request.user.username)
+
 
 class UpdateHandler(view_handler.Handler):
     actions = [('do_update', _('Update all from version control'))]
@@ -291,7 +287,7 @@ class UploadHandler(view_handler.Handler):
         if django_file.name.endswith('.zip'):
             upload_archive(request, relative_root_dir, django_file, overwrite)
         else:
-            upload_file(request, relative_root_dir, django_file.name, django_file.read(), overwrite)
+            upload_file(request, relative_root_dir, django_file, overwrite)
         scan_translation_project_files(request.translation_project)
         return {}
 
