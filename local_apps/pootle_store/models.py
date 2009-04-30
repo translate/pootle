@@ -94,7 +94,9 @@ class Store(models.Model):
         elif self.pending:
             if not hasattr(self.pending.store, "sourceindex"):
                 self.pending.store.makeindex()
-            return self.pending.store.findunits(unit.source)
+            suggestions = self.pending.store.findunits(unit.source)
+            if suggestions is not None:
+                return suggestions
         return []
 
     def addsuggestion(self, item, suggtarget, username):
