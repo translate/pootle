@@ -154,6 +154,123 @@ class Store(models.Model):
         return None
 
 
+    def matchitems(self, newfile, uselocations=False):
+        """matches up corresponding items in this pofile with the
+        given newfile, and returns tuples of matching poitems
+        (None if no match found)"""
+
+        if not hasattr(self.file.store, 'sourceindex'):
+            self.file.store.makeindex()
+        if not hasattr(newfile, 'sourceindex'):
+            newfile.makeindex()
+        matches = []
+        for newpo in newfile.units:
+            if newpo.isheader():
+                continue
+            foundid = False
+            if uselocations:
+                newlocations = newpo.getlocations()
+                mergedlocations = set()
+                for location in newlocations:
+                    if location in mergedlocations:
+                        continue
+                    if location in self.file.store.locationindex:
+                        oldpo = self.file.store.locationindex[location]
+                        if oldpo is not None:
+                            foundid = True
+                            matches.append((oldpo, newpo))
+                            mergedlocations.add(location)
+                            continue
+            if not foundid:
+                # We can't use the multistring, because it might
+                # contain more than two entries in a PO xliff
+                # file. Rather use the singular.
+                source = unicode(newpo.source)
+                oldpo = self.file.store.findunit(source)
+                matches.append((oldpo, newpo))
+
+        # find items that have been removed
+        matcheditems = set(oldpo for (oldpo, newpo) in matches if oldpo)
+        for oldpo in self.file.store.units:
+            if not oldpo in matcheditems:
+                matches.append((oldpo, None))
+        return matches
+
+    def mergeitem(self, po_position, oldpo, newpo, username, suggest=False):
+        """merges any changes from newpo into oldpo"""
+
+        unchanged = oldpo.target == newpo.target
+        if not suggest and (not oldpo.target or not newpo.target
+                            or oldpo.isheader() or newpo.isheader() or unchanged):
+            oldpo.merge(newpo)
+        else:
+            if oldpo in po_position:
+                strings = newpo.target #.strings
+                self.addsuggestion(po_position[oldpo], strings, username)
+            else:
+                raise KeyError('Could not find item for merge')
+
+    def mergefile(self, newfile, username, allownewstrings=True, suggestions=False):
+        """make sure each msgid is unique ; merge comments etc
+        from duplicates into original"""
+        if not hasattr(self.file.store, 'sourceindex'):
+            self.file.store.makeindex()
+        translatables = (self.file.store.units[index] for index in self.file.total)
+        po_position = dict((unit, position) for (position, unit) in enumerate(translatables))
+        matches = self.matchitems(newfile)
+        for (oldpo, newpo) in matches:
+            if suggestions and oldpo and newpo:
+                self.mergeitem(po_position, oldpo, newpo, username, suggest=True)
+            elif allownewstrings and oldpo is None:
+                self.file.store.addunit(self.file.store.UnitClass.buildfromunit(newpo))
+            elif newpo is None:
+                oldpo.makeobsolete()
+            else:
+                self.mergeitem(po_position, oldpo, newpo, username)
+                # we invariably want to get the ids (source
+                # locations) from the newpo
+                if hasattr(newpo, 'sourcecomments'):
+                    oldpo.sourcecomments = newpo.sourcecomments
+
+        if not isinstance(newfile, po.pofile) or suggestions:
+            # TODO: We don't support updating the header yet.
+            self.file.savestore()
+            return
+
+        # Let's update selected header entries. Only the ones
+        # listed below, and ones that are empty in self can be
+        # updated. The check in header_order is just a basic
+        # sanity check so that people don't insert garbage.
+        updatekeys = [
+            'Content-Type',
+            'POT-Creation-Date',
+            'Last-Translator',
+            'Project-Id-Version',
+            'PO-Revision-Date',
+            'Language-Team',
+            ]
+        headerstoaccept = {}
+        ownheader = self.file.store.parseheader()
+        for (key, value) in newfile.parseheader().items():
+            if key in updatekeys or (not key in ownheader
+                                     or not ownheader[key]) and key in po.pofile.header_order:
+                headerstoaccept[key] = value
+            self.file.store.updateheader(add=True, **headerstoaccept)
+
+        # Now update the comments above the header:
+        header = self.file.store.header()
+        newheader = newfile.header()
+        if header is None and not newheader is None:
+            header = self.file.store.UnitClass('', encoding=self.encoding)
+            header.target = ''
+        if header:
+            header._initallcomments(blankall=True)
+            if newheader:
+                for i in range(len(header.allcomments)):
+                    header.allcomments[i].extend(newheader.allcomments[i])
+
+        self.file.savestore()
+        
 def set_store_pootle_path(sender, instance, **kwargs):
     instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
 
