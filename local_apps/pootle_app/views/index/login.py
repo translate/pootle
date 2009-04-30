@@ -31,7 +31,7 @@ from pootle.i18n.jtoolkit_i18n import tr_lang
 
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.models import Language
-from pootle_app.lib.util import redirect
+from pootle_misc.baseurl import redirect
 
 
 def view(request):

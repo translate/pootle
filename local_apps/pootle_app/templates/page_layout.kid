@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
 from pootle_app.templates import pootlepage
-from pootle_app.lib.util import m, l
+from pootle_misc.baseurl import m, l
 ?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns:py="http://purl.org/kid/ns#" xml:lang="$uilanguage" lang="$uilanguage" dir="$uidir">

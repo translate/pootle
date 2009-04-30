@@ -21,7 +21,7 @@
 from django.utils.translation import ugettext as _
 
 from pootle_app.models              import Language, Project, TranslationProject
-from pootle_app.lib.util            import redirect
+from pootle_misc.baseurl            import redirect
 from pootle_app.views               import indexpage, pagelayout
 from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
     KidRequestContext, init_formset_from_data, choices_from_models, selected_model

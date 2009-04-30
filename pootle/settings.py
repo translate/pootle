@@ -106,7 +106,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     # Uncomment to use memcached for caching
     #'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
-    'pootle.middleware.baseurl.BaseUrlMiddleware',
+    'pootle_misc.middleware.baseurl.BaseUrlMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -126,7 +126,8 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 
     # For now we'll cheat and use a relative path, in spite of the above comment.
-    pootle_home('templates')
+    pootle_home('templates'),
+    pootle_home('local_apps/pootle_app/templates')
 )
 
 INSTALLED_APPS = (
@@ -137,6 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'registration',
     'pootle_app',
+    'pootle_misc',
 )
 
 AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"

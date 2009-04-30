@@ -59,20 +59,3 @@ def lazy_property(name, getter):
 
     return property(lazy(name)(getter), None, deleter)
 
-def l(path):
-    """ filter urls adding base_path prefix if required """
-    if path and path.startswith('/'):
-        base_url = getattr(settings, "SCRIPT_NAME", "")
-        if not path.startswith(base_url):
-            return base_url + path
-    return path
-
-def m(path):
-    """ filter urls adding media url prefix if required """
-    return l(settings.MEDIA_URL + path)
-
-def redirect(url, **kwargs):
-    if len(kwargs) > 0:
-        return HttpResponseRedirect(l('%s?%s' % (url, urllib.urlencode(kwargs))))
-    else:
-        return HttpResponseRedirect(l(url))

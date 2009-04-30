@@ -29,7 +29,7 @@ from django.utils.translation import ungettext as _N
 
 from pootle_app.views.util         import render_to_kid, render_jtoolkit
 from pootle_app.views              import indexpage
-from pootle_app.lib.util           import redirect
+from pootle_misc.baseurl           import redirect
 from pootle_app.models             import Language, Project, TranslationProject, Store, Directory, store_iteration, store_file
 from pootle_app.models.search      import Search, search_from_state
 from pootle_app.url_manip          import strip_trailing_slash, clear_path

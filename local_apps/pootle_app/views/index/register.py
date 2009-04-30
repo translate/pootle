@@ -32,7 +32,7 @@ from pootle_app.views import pagelayout
 from pootle_app.views.util import render_jtoolkit
 from pootle_app.views.index.util import forcemessage
 from pootle_app.models.profile import get_profile
-from pootle_app.lib.util import l
+from pootle_misc.baseurl import l
 
 
 def view(request):

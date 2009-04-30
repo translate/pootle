@@ -5,7 +5,7 @@
    from pootle_app.models.profile import get_profile
    from django.contrib.auth import REDIRECT_FIELD_NAME
    from django.contrib.auth.forms import AuthenticationForm
-   from pootle_app.lib.util import l, m
+   from pootle_misc.baseurl import l, m
 ?>
 <include xmlns:py="http://purl.org/kid/ns#">
 

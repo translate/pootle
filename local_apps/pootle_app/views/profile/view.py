@@ -29,7 +29,7 @@ from pootle_app.models.profile import get_profile, PootleProfile
 from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.views.util import render_jtoolkit
 from pootle_app.views import indexpage
-from pootle_app.lib.util import redirect
+from pootle_misc.baseurl import redirect
 
 from pootle.i18n import gettext
 

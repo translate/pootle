@@ -23,7 +23,7 @@ from django import forms
 from django.forms.models import modelformset_factory
 
 from pootle_app.views               import indexpage, pagelayout
-from pootle_app.lib.util            import redirect
+from pootle_misc.baseurl            import redirect
 from pootle_app.models              import Language, Project, TranslationProject
 from pootle_app                     import project_tree
 from pootle_app.views.util          import render_to_kid, render_jtoolkit, \

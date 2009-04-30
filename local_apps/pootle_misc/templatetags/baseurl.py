@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2008-2009 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,9 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle_misc.baseurl import redirect
+from django import template
+from django.template.defaultfilters import stringfilter
 
-def view(request):
-    from django.contrib.auth import logout
-    logout(request)
-    return redirect('/')
+from pootle_misc.baseurl import l, m
+
+register = template.Library()
+register.filter('l', stringfilter(l))
+register.filter('m', stringfilter(m))
