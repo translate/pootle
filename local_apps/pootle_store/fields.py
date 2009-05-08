@@ -25,6 +25,8 @@ Utility functions for handling translation files.
 """
 import logging
 import os
+import shutil
+import tempfile
 
 from django.conf import settings
 from django.core.files import File
@@ -195,8 +197,13 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     store = property(_get_store)
 
     def savestore(self):
+        """saves to temporary file then moves over original file, this
+        way we avoid the need for locking"""
+        
+        tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
+        self.store.savefile(tmpfilename)
+        shutil.move(tmpfilename, self.path)
         self._touch_store_cache()
-        self.store.save()
         
     def save(self, name, content, save=True):
         #FIXME: implement save to tmp file then move instead of directly saving
