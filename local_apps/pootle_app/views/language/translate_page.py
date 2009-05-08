@@ -881,9 +881,6 @@ def process_post_main(store_name, item, request, next_store_item, prev_store_ite
     request.translation_project.indexer # Force initialization of the indexer
     prev_item, next_item = process_post(request, store)
     
-    #prev_item, next_item = store_file.with_store(request.translation_project, store,
-    #                                             lambda pootle_file: process_post(request, pootle_file))
-    
     search = Search.from_request(request)
     if next_item > -1:
         return next_store_item(search, store_name, next_item + 1)

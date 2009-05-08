@@ -29,7 +29,6 @@ from translate.tools import pogrep
 from pootle_app.models.assignment import StoreAssignment
 from pootle_app.views.language    import search_forms
 from pootle_app.lib.util          import lazy_property
-from pootle_app.models.store_file import with_store_file
 
 import metadata
 
@@ -66,16 +65,14 @@ def narrow_to_last_item_range(translatables, last_index):
     return translatables[last_index + 1:]
 
 def narrow_to_search_text(total, store, translatables, search):
-    def do_slow_search(pootle_file):
+    if search.search_text not in (None, '') and search.search_results is None:
         # We'll get here if the user is searching for a piece of text and if no indexer
         # (such as Xapian or Lucene) is usable. First build a grepper...
         grepfilter = pogrep.GrepFilter(search.search_text, search.search_fields, ignorecase=True)
         # ...then filter the items using the grepper.
         return (item for item in translatables 
-                if grepfilter.filterunit(pootle_file.units[item]))
+                if grepfilter.filterunit(store.file.store.units[item]))
 
-    if search.search_text not in (None, '') and search.search_results is None:
-        return with_store_file(search.translation_project, store.abs_real_path, do_slow_search)
     elif search.search_results is not None:
         mapped_indices = [total[item] for item in search.search_results[store.pootle_path]]
         return intersect(mapped_indices, translatables)

@@ -185,19 +185,18 @@ MIME_TYPES = {
 @get_translation_project
 @set_request_context
 def export(request, translation_project, file_path, format):
-    def send(pootle_file):
-        encoding = getattr(pootle_file, "encoding", "UTF-8")
-        content_type = MIME_TYPES[format] % dict(encoding=encoding)
-        if format == translation_project.project.localfiletype:
-            return HttpResponse(str(pootle_file), content_type=content_type)
-        else:
-            convert_func = convert_table[translation_project.project.localfiletype, format]
-            output_file = cStringIO.StringIO()
-            input_file  = cStringIO.StringIO(str(pootle_file))
-            convert_func(input_file, output_file, None)
-            return HttpResponse(output_file.getvalue(), content_type=content_type)
     store = Store.objects.get(pootle_path=translation_project.directory.pootle_path + file_path)
-    return store_file.with_store(translation_project, store, send)
+    encoding = getattr(store.file.store, "encoding", "UTF-8")
+    content_type = MIME_TYPES[format] % dict(encoding=encoding)
+    if format == translation_project.project.localfiletype:
+        return HttpResponse(str(store.file.store), content_type=content_type)
+    else:
+        convert_func = convert_table[translation_project.project.localfiletype, format]
+        output_file = cStringIO.StringIO()
+        input_file  = cStringIO.StringIO(str(store.file.store))
+        convert_func(input_file, output_file, None)
+        return HttpResponse(output_file.getvalue(), content_type=content_type)
+
 
 @get_translation_project
 @set_request_context

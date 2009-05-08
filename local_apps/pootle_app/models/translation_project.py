@@ -861,14 +861,10 @@ class TranslationProject(models.Model):
             newmtime = termbase.pomtime
             if newmtime != self.non_db_state.termmatchermtime:
                 if self.is_terminology_project:
-                    def init(pootle_files):
-                        return match.terminologymatcher(pootle_files), newmtime
-                    return store_file.with_stores(self, self.stores.all(), init)
+                    return match.terminologymatcher([store.file.store for store in self.stores.all()]), newmtime
                 else:
-                    def init(pootle_file):
-                        return match.terminologymatcher(termbase), newmtime
-                    return store_file.with_store(self, termbase, init)
-
+                    return match.terminologymatcher(termbase), newmtime
+                
         if self.non_db_state.termmatcher is None:
             try:
                 self.non_db_state.termmatcher, self.non_db_state.termmatchermtime = self.gettermbase(make_matcher)
