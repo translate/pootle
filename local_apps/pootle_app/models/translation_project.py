@@ -47,7 +47,7 @@ from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory
 from pootle_store.models       import Store
 from pootle_app                    import project_tree
-from pootle_app.models             import store_iteration, metadata, store_file
+from pootle_app.models             import store_iteration, metadata
 from pootle_app.models.store_file  import relative_real_path, absolute_real_path
 from pootle_app.models.permissions import PermissionError, check_permission
 from pootle_app.lib                import statistics
@@ -215,31 +215,36 @@ class TranslationProject(models.Model):
         return Goal.objects.filter(profiles=profile, translation_project=self)
 
     def update_from_version_control(self):
-        """updates an individual PO file from version control"""
-        # read from version control
-
-        def update_stores(pootle_files):
-            for current_pootle_file in pootle_files:
-                try:
-                    hooks.hook(self.project.code, "preupdate", current_pootle_file.store.abs_real_path)
-                except:
-                    pass
-
-            versioncontrol.updatedirectory(self.abs_real_path)
-            for current_pootle_file in pootle_files:
-                new_pootle_file = store_file.store_file(self, current_pootle_file.store.abs_real_path)
-                new_pootle_file.mergefile(current_pootle_file, "versionmerge")
-                new_pootle_file.save()
-
-            for current_pootle_file in pootle_files:
-                try:
-                    hooks.hook(self.project.code, "postupdate", current_pootle_file.store.abs_real_path)
-                except:
-                    pass
-
+        """updates project translation files from version control,
+        retaining uncommitted translations"""
+    
         stores = Store.objects.filter(pootle_path__startswith=self.directory.pootle_path)
-        store_file.with_stores(self, stores, update_stores)
-        project_tree.scan_translation_project_files(translation_project)
+
+        for store in stores:
+            try:
+                hooks.hook(self.project.code, "preupdate", store.file.path)
+            except:
+                pass
+            # keep a copy of working files in memory before updating
+            working_copy = store.file.store
+
+            
+            try:
+                logging.debug("updating %s from version control", store.file.path)
+                versioncontrol.updatefile(store.file.path)
+                store.mergefile(working_copy, "versionmerge", allownewstrings=False, obseletemissing=False)
+            except Exception, e:
+                #something wrong, file potentially modified, bail out
+                #and replace with working copy
+                logging.error("near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
+                working_copy.save()
+                
+            try:
+                hooks.hook(self.project.code, "postupdate", store.file.path)
+            except:
+                pass
+
+        project_tree.scan_translation_project_files(self)
 
     def runprojectscript(self, scriptdir, target, extraargs = []):
         currdir = os.getcwd()
@@ -861,14 +866,10 @@ class TranslationProject(models.Model):
             newmtime = termbase.pomtime
             if newmtime != self.non_db_state.termmatchermtime:
                 if self.is_terminology_project:
-                    def init(pootle_files):
-                        return match.terminologymatcher(pootle_files), newmtime
-                    return store_file.with_stores(self, self.stores.all(), init)
+                    return match.terminologymatcher([store.file.store for store in self.stores.all()]), newmtime
                 else:
-                    def init(pootle_file):
-                        return match.terminologymatcher(termbase), newmtime
-                    return store_file.with_store(self, termbase, init)
-
+                    return match.terminologymatcher(termbase), newmtime
+                
         if self.non_db_state.termmatcher is None:
             try:
                 self.non_db_state.termmatcher, self.non_db_state.termmatchermtime = self.gettermbase(make_matcher)
