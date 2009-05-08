@@ -69,7 +69,7 @@ class Store(models.Model):
     def __unicode__(self):
         return self.name
 
-    def initpending(self):
+    def initpending(self, create=False):
         """initialize pending translations file if needed"""
         if self.file.store.suggestions_in_format or self.pending:
             # suggestions can be stored in the translation file itself
@@ -79,24 +79,27 @@ class Store(models.Model):
         pending_filename = self.file.path + os.extsep + 'pending' + os.extsep + 'po'
         # check if pending file already exists, just in case it was
         # added outside of pootle
-        if not os.path.exists(pending_filename):
-            # we'll use tmx because it supports multiple units with
-            # the same source text
+        if not os.path.exists(pending_filename) and create:
+            # we only create the file if asked, typically before adding a suggestion
             store = po.pofile()
             store.savefile(pending_filename)
-        self.pending = pending_filename
-        self.save()
+
+        if os.path.exists(pending_filename):
+            self.pending = pending_filename
+            self.save()
 
     def getsuggestions(self, item):
         unit = self.file.getitem(item)
         if self.file.store.suggestions_in_format:
             return unit.getalttrans()
-        elif self.pending:
-            if not hasattr(self.pending.store, "sourceindex"):
-                self.pending.store.makeindex()
-            suggestions = self.pending.store.findunits(unit.source)
-            if suggestions is not None:
-                return suggestions
+        else:
+            self.initpending()
+            if self.pending:
+                if not hasattr(self.pending.store, "sourceindex"):
+                    self.pending.store.makeindex()
+                suggestions = self.pending.store.findunits(unit.source)
+                if suggestions is not None:
+                    return suggestions
         return []
 
     def addsuggestion(self, item, suggtarget, username):
@@ -109,7 +112,7 @@ class Store(models.Model):
             unit.addalttrans(suggtarget, origin=username)
             self.file.savestore()
         else:
-            self.initpending()
+            self.initpending(create=True)
             newpo = unit.copy()
             if username is not None:
                 newpo.msgidcomments.append('"_: suggested by %s\\n"' % username)
