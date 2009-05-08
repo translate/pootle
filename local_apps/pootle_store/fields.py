@@ -177,6 +177,16 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
             logging.debug("cache miss for %s", self.path)
             self._store_cache[self.path] = (factory.getobject(self.path), mod_info)
 
+    def _touch_store_cache(self):
+        """update stored mod_info without reparsing file"""
+        
+        if self.path not in self._store_cache:
+            return self._update_store_cache()
+
+        mod_info = statsdb.get_mod_info(self.path)
+        self._store_cache[self.path] = (self._store_cache[self.path][0], mod_info)
+
+        
     def _delete_store_cache(self):
         """ remove traslation store from dictionary cache."""
         if self.path in self._store_cache:
@@ -185,8 +195,8 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     store = property(_get_store)
 
     def savestore(self):
+        self._touch_store_cache()
         self.store.save()
-        self._update_store_cache()
         
     def save(self, name, content, save=True):
         #FIXME: implement save to tmp file then move instead of directly saving
