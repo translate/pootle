@@ -201,11 +201,11 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     def save(self, name, content, save=True):
         #FIXME: implement save to tmp file then move instead of directly saving
         super(TranslationStoreFieldFile, self).save(name, content, save)
-        self._update_store_cache()
+        self._delete_store_cache()
         
     def delete(self, save=True):
-        self._delete_store_cache()
         super(TranslationStoreFieldFile, self).delete(save)
+        self._delete_store_cache()
 
 class TranslationStoreField(FileField):
     attr_class = TranslationStoreFieldFile
