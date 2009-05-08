@@ -216,9 +216,15 @@ class Store(models.Model):
             else:
                 raise KeyError('Could not find item for merge')
 
-    def mergefile(self, newfile, username, allownewstrings=True, suggestions=False):
+    def mergefile(self, newfile, username, allownewstrings=True, suggestions=False, obseletemissing=True):
         """make sure each msgid is unique ; merge comments etc
         from duplicates into original"""
+
+        
+        if self.file.store == newfile:
+            logging.debug("identical merge: %s", self.file.name)
+            return
+        
         if not hasattr(self.file.store, 'sourceindex'):
             self.file.store.makeindex()
         translatables = (self.file.store.units[index] for index in self.file.total)
@@ -229,9 +235,9 @@ class Store(models.Model):
                 self.mergeitem(po_position, oldpo, newpo, username, suggest=True)
             elif allownewstrings and oldpo is None:
                 self.file.store.addunit(self.file.store.UnitClass.buildfromunit(newpo))
-            elif newpo is None:
+            elif obseletemissing and newpo is None:
                 oldpo.makeobsolete()
-            else:
+            elif oldpo and newpo:
                 self.mergeitem(po_position, oldpo, newpo, username)
                 # we invariably want to get the ids (source
                 # locations) from the newpo
