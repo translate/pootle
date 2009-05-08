@@ -56,9 +56,14 @@ class TranslationStoreFile(File):
         return self._store
     store = property(_get_store)
 
+    def _get_filename(self):
+        return os.path.basename(self.name)
+    filename = property(_get_filename)
+    
     def savestore(self):
         self.store.save()
 
+        
     def _guess_path(self):
         """
         most TranslationStoreFile objects will deal with will
