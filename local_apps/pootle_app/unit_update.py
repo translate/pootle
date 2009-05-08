@@ -25,6 +25,7 @@ from pootle_app.models             import Suggestion, Submission
 from pootle_store.models       import Unit
 from pootle_app.models.profile     import get_profile
 from pootle_app.models.permissions import check_permission, PermissionError
+from django.db.models import ObjectDoesNotExist
 
 def suggest_translation(store, item, trans, request):
     if not check_permission("suggest", request):
@@ -113,9 +114,14 @@ def reject_suggestion(store, item, suggitem, newtrans, request):
     if not check_permission("review", request):
         raise PermissionError(_("You do not have rights to review suggestions here"))
 
-    # Deletes the suggestion from the database
-    suggestion = get_suggestion(store, item, newtrans, request)
-    suggestion.delete()
+    #FIXME: why do we have Unit and Suggestion in DB, can't we get rid
+    #of them?
+    try:
+        # Deletes the suggestion from the database
+        suggestion = get_suggestion(store, item, newtrans, request)
+        suggestion.delete()
+    except ObjectDoesNotExist:
+        pass
     # Deletes the suggestion from the .pending file
     store.deletesuggestion(item, suggitem, newtrans)
 
@@ -124,8 +130,14 @@ def accept_suggestion(store, item, suggitem, newtrans, request):
     if not check_permission("review", request):
         raise PermissionError(_("You do not have rights to review suggestions here"))
 
-    suggestion = get_suggestion(store, item, newtrans, request)
     store.deletesuggestion(item, suggitem, newtrans)
     new_values = {"target": newtrans, "fuzzy": False}
+
+    suggestion = None
+    try:
+        suggestion = get_suggestion(store, item, newtrans, request)
+    except ObjectDoesNotExist:
+        pass
+    
     update_translation(store, item, new_values, request, suggestion)
 
