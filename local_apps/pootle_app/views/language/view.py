@@ -239,8 +239,6 @@ def handle_suggestions(request, translation_project, file_path, item):
         response["message"] = _("No suggestion data given.")
     else:
         #FIXME: handle plurals
-        pofilename = clear_path(file_path)
-
         rejects = data.get("rejects", [])
         reject_candidates = len(rejects)
         reject_count = 0
@@ -250,15 +248,8 @@ def handle_suggestions(request, translation_project, file_path, item):
 
         for sugg in reversed(rejects):
             try:
-                # XXX: disabled for testing
-                store_file.with_store(translation_project, store,
-                                      lambda pootle_file:
-                                      unit_update.reject_suggestion(pootle_file,
-                                                                    int(item), int(sugg["id"]),
-                                                                    sugg["newtrans"], request
-                                                                    )
-                                      )
-                
+                unit_update.reject_suggestion(store,int(item), int(sugg["id"]),
+                                              sugg["newtrans"], request)                
                 reject_count += 1
                 # TODO: convert this a list
                 response["deleted"] = item + "-" + sugg["id"]
@@ -269,14 +260,8 @@ def handle_suggestions(request, translation_project, file_path, item):
 
         for sugg in accepts:
             try:
-                # XXX: disabled for testing
-                store_file.with_store(translation_project, store,
-                                      lambda pootle_file:
-                                      unit_update.accept_suggestion(pootle_file,
-                                                                    int(item), int(sugg["id"]),
-                                                                    sugg["newtrans"], request
-                                                                    )
-                                      )
+                unit_update.accept_suggestion(store, int(item), int(sugg["id"]),
+                                              sugg["newtrans"], request)
                 accept_count += 1
             except ValueError:
                 # TODO: provide fine-grained error message from the exception
