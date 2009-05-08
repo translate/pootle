@@ -24,6 +24,7 @@ import re
 import difflib
 import operator
 import copy
+import os
 
 from django.contrib.auth.models import User
 from django.utils.html import urlize
@@ -582,36 +583,31 @@ def get_translated_directory(target_language_code, root_directory, directory):
     else:
         return root_directory.child_dirs.get(name=target_language_code)
 
-def get_translated_store(target_language, store):
+def get_translated_store(alt_project, store):
+    """returns the file corresponding to store in the alternative TranslationProject"""
+    
     try:
-        translation_directory = get_translated_directory(target_language.code,
+        translation_directory = get_translated_directory(alt_project.language.code,
                                                      Directory.objects.root,
                                                      store.parent)
+        if alt_project.project.treestyle == 'gnu':
+            name = alt_project.language.code + os.extsep + alt_project.project.localfiletype
+        else:
+            name = store.name
+            
         try:
-            return translation_directory.child_stores.get(name=store.name)
+            return translation_directory.child_stores.get(name=name)
         except Store.DoesNotExist:
             return None
+        
     except Directory.DoesNotExist:
         return None
 
 def get_alt_src_dict(request, store, unit, alt_project):
-    def translate_unit(translated_store):
-        translated_unit = translated_store.id_index[unit.getid()]
-        if unit.hasplural():
-            return {
-                "forms":     [{"title": _("Plural Form %d", i),
-                               "n":     i,
-                               "text":  escape_text(text)}
-                              for i, text in enumerate(translated_unit.target.strings)],
-                "isplural":  True }
-        else:
-            return {
-                "text":      escape_text(translated_unit.target),
-                "isplural":  False }
-
     alt_src_dict = {"available": False}
     # TODO: handle plurals !!
     if alt_project is not None:
+        #FIXME: we should bail out if alternative language == target language
         language = alt_project.language
         alt_src_dict.update({
                 "languagename": language.fullname,
@@ -619,12 +615,29 @@ def get_alt_src_dict(request, store, unit, alt_project):
                 "dir":          pagelayout.languagedir(language.code),
                 "title":        tr_lang(language.fullname),
                 "available":    True })
-        translated_store = get_translated_store(language, store)
+        translated_store = get_translated_store(alt_project, store)
         if translated_store is not None:
-            alt_src_dict.update(
-                store_file.with_store(request.translation_project,
-                                      translated_store,
-                                      translate_unit))
+            #FIXME: we should bundle the makeindex thing into a property
+            if not hasattr(translated_store.file.store, "sourceindex"):
+                translated_store.file.store.makeindex()
+            
+            translated_unit = translated_store.file.store.findunit(unit.source)
+            if translated_unit is not None and translated_unit.istranslated():
+                if unit.hasplural():
+                    unit_dict = {
+                        "forms":     [{"title": _("Plural Form %d", i),
+                                       "n":     i,
+                                       "text":  escape_text(text)}
+                                      for i, text in enumerate(translated_unit.target.strings)],
+                        "isplural":  True }
+                else:
+                    unit_dict = {
+                        "text":      escape_text(translated_unit.target),
+                        "isplural":  False }
+        
+                alt_src_dict.update(unit_dict)
+            else:
+                alt_src_dict["available"] = False
         else:
             alt_src_dict["available"] = False
     return alt_src_dict
