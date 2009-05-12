@@ -186,7 +186,7 @@ $.growfield.ptt = (function(){
             // lets set the initial height
             // Pootle customisation: we disable this so that the initial height
             // will be what we asked for.
-            obj.update((!$.trim(val) || obj.opt.restore) ? 0 : obj.getDummyHeight(), false);
+            // obj.update((!$.trim(val) || obj.opt.restore) ? 0 : obj.getDummyHeight(), false);
         }
     };
 
