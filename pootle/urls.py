@@ -43,8 +43,8 @@ urlpatterns = patterns('',
     (r'^(favicon.ico)$',      'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
 
-    # Django Registration urls
-    (r'^accounts/', include('registration.urls')),
+    ## Django Registration urls
+    #(r'^accounts/', include('registration.urls')),
 
     # Pootle urls
     (r'',                     include('pootle_app.urls')),
