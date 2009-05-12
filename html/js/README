@@ -64,8 +64,11 @@ Directory contents
 
     - jquery.growfield2.ycomp.js :
       jQuery Growfield2 plugin, used in the translate page textareas.
+      Using a copy from version control due to
+      http://code.google.com/p/jquery-growfield/issues/detail?id=14
 
-      http://code.google.com/p/jquery-dynamic/
+      http://code.google.com/p/jquery-growfield/
+      We also have some custom changes.
 
     - jquery.min.js :
       The jQuery library, version 1.2.6, minified. Bumping to 1.3.1 should be a
