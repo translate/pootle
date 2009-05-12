@@ -20,12 +20,7 @@
 
 """This is just a simple script that runs the pootle main program"""
 
-import os
-import sys
-
-ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0, ROOT_DIR)
-
+import syspath_override
 from pootle import pootle
 
 pootle.main()
