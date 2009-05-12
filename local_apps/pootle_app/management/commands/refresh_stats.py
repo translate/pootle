@@ -17,6 +17,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
+
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
@@ -28,9 +29,9 @@ from pootle_store.models import Store
 
 _translation_project_cache = {}
 
-# A simply function to keep a cache of TranslationProjects that have
-# already been opened. This is just to speed things up a bit.
 def get_translation_project(language_code, project_code):
+    """A simply function to keep a cache of TranslationProjects that have
+    already been opened. This is just to speed things up a bit."""
     try:
         return _translation_project_cache[language_code, project_code]
     except KeyError:
@@ -77,5 +78,3 @@ class Command(NoArgsCommand):
                 store.file.getcompletestats(translation_project.checker)
             except TranslationProject.DoesNotExist:
                 pass
-
-            
