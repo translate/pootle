@@ -35,65 +35,6 @@ from pootle_app import __version__ as pootleversion
 from translate import __version__ as toolkitversion
 
 
-class PootleServer(object):
-    """the Server that serves the Pootle Pages"""
-
-    def __init__(self):
-        pass
-        #self.templatedir = filelocations.templatedir
-
-    def refreshstats(self, args):
-        """refreshes all the available statistics...
-        """
-
-        if args:
-
-            def filtererrorhandler(functionname, str1, str2, e):
-                print 'error in filter %s: %r, %r, %s' % (functionname, str1,
-                        str2, e)
-                return False
-
-            checkerclasses = [projects.checks.StandardChecker,
-                              projects.checks.StandardUnitChecker]
-            stdchecker = \
-                projects.checks.TeeChecker(checkerclasses=checkerclasses,
-                    errorhandler=filtererrorhandler)
-            for arg in args:
-                if not os.path.exists(arg):
-                    print 'file not found:', arg
-                if os.path.isdir(arg):
-                    if not arg.endswith(os.sep):
-                        arg += os.sep
-                    (projectcode, languagecode) = \
-                        self.potree.getcodesfordir(arg)
-                    dummyproject = projects.DummyStatsProject(arg, stdchecker,
-                            projectcode, languagecode)
-
-                    def refreshdir(dummy, dirname, fnames):
-                        reldirname = dirname.replace(dummyproject.podir, '')
-                        for fname in fnames:
-                            fpath = os.path.join(reldirname, fname)
-                            fullpath = os.path.join(dummyproject.podir, fpath)
-                            # TODO: PO specific
-                            if fname.endswith('.po')\
-                                 and not os.path.isdir(fullpath):
-                                if not os.path.exists(fullpath):
-                                    print 'file does not exist:', fullpath
-                                    return
-                                print 'refreshing stats for', fpath
-                                pootlefile.pootlefile(dummyproject,
-                                        fpath).statistics.updatequickstats()
-
-                    os.path.walk(arg, refreshdir, None)
-                elif os.path.isfile(arg):
-                    dummyproject = projects.DummyStatsProject('.', stdchecker)
-                    print 'refreshing stats for', arg
-                    projects.pootlefile.pootlefile(dummyproject, arg)
-        else:
-            print 'refreshing stats for all files in all projects'
-            self.potree.refreshstats()
-
-
 class PootleOptionParser(optparse.OptionParser):
 
     def __init__(self):
