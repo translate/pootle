@@ -106,6 +106,11 @@ def init_db():
         # database yet. So do it!
     if PootleProfile.objects.count() == 0:
         call_command('initdb')
+        # Let's give some screen output, since this can take really long in the
+        # default install
+        print "Now going to update statistics. This could take while..."
+        call_command('refresh_stats')
+        print "Finished updating statistics."
 
 def main():
     # run the web server
