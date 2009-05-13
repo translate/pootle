@@ -29,6 +29,7 @@ import sys
 import optparse
 from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
+from django.core.management import call_command
 from pootle_app.models.translation_project import scan_translation_projects
 from pootle_app import __version__ as pootleversion
 #from pootle import filelocations
@@ -78,20 +79,16 @@ def checkversions():
         raise RuntimeError('requires Translate Toolkit version >= 1.2.  Current installed version is: %s'
                             % toolkitversion.sver)
 
-
 def run_pootle(options, args):
     """Run the requested action."""
     if options.action == 'runwebserver':
         httpd = make_server('', options.port, WSGIHandler())
         httpd.serve_forever()
     elif options.action == 'refreshstats':
-        pass
-        #pan_app.pootle_server.refreshstats(args)
-
+        call_command('refresh_stats')
 
 def init_db():
     """Check if it is necessary to create or populate the database(s)."""
-    from django.core.management import call_command
     from pootle_app.models.profile import PootleProfile
     try:
         # If this raises an exception, it means that the database
