@@ -1,22 +1,23 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#  Copyright 2004-2009 Zuza Software Foundation
 #
-# This file is part of translate.
+# Copyright 2004-2009 Zuza Software Foundation
 #
-# translate is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# This file is part of Pootle.
 #
-# translate is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# You should have received a copy of the GNU General Public License along with
-# translate; if not, write to the Free Software Foundation, Inc., 59 Temple
-# Place, Suite 330, Boston, MA  02111-1307  USA
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
+
 # TODO: Make this less ugly
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -25,7 +26,6 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 # not installed.
 import kid
 import sys
-import random
 import optparse
 from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
@@ -33,7 +33,6 @@ from pootle_app.models.translation_project import scan_translation_projects
 from pootle_app import __version__ as pootleversion
 #from pootle import filelocations
 from translate import __version__ as toolkitversion
-
 
 class PootleOptionParser(optparse.OptionParser):
 
@@ -70,21 +69,18 @@ Python %s (on %s/%s)''' % (
             type='int',
             dest='port',
             default='8080',
-            help='The TCP port on which the server should listen for new connections.'
-                ,
+            help='The TCP port on which the server should listen for new connections.',
             )
 
-
 def checkversions():
-    """Checks that version dependencies are met
-    """
-
+    """Checks that version dependencies are met."""
     if not hasattr(toolkitversion, 'build') or toolkitversion.build < 12000:
         raise RuntimeError('requires Translate Toolkit version >= 1.2.  Current installed version is: %s'
                             % toolkitversion.sver)
 
 
 def run_pootle(options, args):
+    """Run the requested action."""
     if options.action == 'runwebserver':
         httpd = make_server('', options.port, WSGIHandler())
         httpd.serve_forever()
@@ -94,6 +90,7 @@ def run_pootle(options, args):
 
 
 def init_db():
+    """Check if it is necessary to create or populate the database(s)."""
     from django.core.management import call_command
     from pootle_app.models.profile import PootleProfile
     try:
@@ -122,7 +119,6 @@ def main():
         options.servertype = 'dummy'
     scan_translation_projects()
     run_pootle(options, args)
-
 
 if __name__ == '__main__':
     main()
