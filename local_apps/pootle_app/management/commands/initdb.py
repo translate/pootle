@@ -132,6 +132,14 @@ def create_default_projects():
     terminology.treestyle = "auto"
     terminology.save()
 
+    tutorial = Project(code=u"tutorial")
+    tutorial.fullname = u"Tutorial"
+    tutorial.description = "<div dir='ltr' lang='en'>Tutorial project where users can play with Pootle and learn more about translation and localisation.<br />For more help on localisation, visit the <a href='http://translate.sourceforge.net/wiki/guide/start'>localisation guide</a>.</div>"
+    tutorial.checkstyle = "standard"
+    tutorial.localfiletype = "po"
+    tutorial.treestyle = "auto"
+    tutorial.save()
+
 def create_default_languages():
     """Create the default languages. We afford this priviledge to languages
     with reasonably complete interface translations for Pootle."""
