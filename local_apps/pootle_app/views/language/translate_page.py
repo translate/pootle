@@ -37,7 +37,7 @@ from translate.misc.multistring import multistring
 
 from pootle_app.views import pagelayout
 from pootle_app.views.util import render_to_kid, KidRequestContext
-from pootle_app.models import TranslationProject, Directory, store_file
+from pootle_app.models import TranslationProject, Directory
 from pootle_store.models import Store
 from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile

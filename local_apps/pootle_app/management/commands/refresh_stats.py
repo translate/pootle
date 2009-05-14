@@ -24,7 +24,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from optparse import make_option
 
 from django.core.management.base import NoArgsCommand
-from pootle_app.models import TranslationProject, store_file
+from pootle_app.models import TranslationProject
 from pootle_store.models import Store
 
 _translation_project_cache = {}

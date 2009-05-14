@@ -27,7 +27,7 @@ from django.db                import models
 
 from translate.filters import checks
 
-from pootle_app.models.store_file import relative_real_path, absolute_real_path
+from pootle_store.util import relative_real_path, absolute_real_path
 
 class Project(models.Model):
     class Meta:

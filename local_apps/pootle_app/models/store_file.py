@@ -46,70 +46,6 @@ _UNIT_CHECKER = checks.UnitChecker()
 suggestion_source_index = weakref.WeakKeyDictionary()
 
 
-def build_map(store, property):
-    unit_map = {}
-    for unit in store.units:
-        key = property(unit)
-        if key not in unit_map:
-            unit_map[key] = []
-        unit_map[key].append(unit)
-    return unit_map
-
-
-def build_index(store, index, property):
-    if store not in index:
-        index[store] = build_map(store, property)
-    return index[store]
-
-
-def get_source_index(store):
-    return build_index(store, suggestion_source_index, lambda unit: unit.source)
-
-
-class LockedFile:
-    """locked interaction with a filesystem file"""
-
-    # Locking is disabled for now since it impacts performance
-    # negatively and was not complete yet anyway. Reverse svn revision
-    # 5271 to regain the locking code here.
-
-    def __init__(self, filename):
-        self.filename = filename
-        self.lock = None
-
-    def initlock(self):
-        self.lock = glock.GlobalLock(self.filename + os.extsep + 'lock')
-
-    def dellock(self):
-        del self.lock
-        self.lock = None
-
-    def readmodtime(self):
-        """returns the modification time of the file (locked
-        operation)"""
-
-        return statistics.getmodtime(self.filename)
-
-    def getcontents(self):
-        """returns modtime, contents tuple (locked operation)"""
-
-        pomtime = self.readmodtime()
-        fp = open(self.filename, 'r')
-        filecontents = fp.read()
-        fp.close()
-        return (pomtime, filecontents)
-
-    def writecontents(self, contents):
-        """writes contents to file, returning modification time
-        (locked operation)"""
-
-        f = open(self.filename, 'w')
-        f.write(contents)
-        f.close()
-        pomtime = self.readmodtime()
-        return pomtime
-
-
 class pootleassigns:
     """this represents the assignments for a file"""
 
@@ -474,39 +410,9 @@ class Search:
 
 # ###############################################################################
 
-
-def add_trailing_slash(path):
-    """If path does not end with /, add it and return."""
-
-    if path[-1] == os.sep:
-        return path
-    else:
-        return path + os.sep
-
-
-def relative_real_path(p):
-    if p.startswith(settings.PODIRECTORY):
-        return p[len(add_trailing_slash(settings.PODIRECTORY)):]
-    else:
-        return p
-
-
-def absolute_real_path(p):
-    if not p.startswith(settings.PODIRECTORY):
-        return os.path.join(settings.PODIRECTORY, p)
-    else:
-        return p
-
-
-# ###############################################################################
-
 store_files = lru_cache.LRUCache(settings.STORE_LRU_CACHE_SIZE, lambda project_filename: \
                                       store_file(project_filename[0], project_filename[1]))
 
-
-def with_store_file_cache(f):
-    # TBD: Do locking here
-    return f(store_files)
 
 
 # ###############################################################################
@@ -536,31 +442,6 @@ def unset_translation_project(store_files):
             del store_file.translation_project
 
 
-def with_store_files(translation_project, filenames, f):
-
-    def do(cache):
-        store_files = [cache[translation_project, filename] for filename in
-                        filenames]
-        set_translation_project(store_files, translation_project)
-        freshen_files(store_files, translation_project)
-        try:
-            return f(store_files)
-        finally:
-            unset_translation_project(store_files)
-
-    return with_store_file_cache(do)
-
-
-def with_store_file(translation_project, filename, f):
-
-    def do(store_files):
-        return f(store_files[0])
-
-    return with_store_files(translation_project, [filename], do)
-
-
-# ###############################################################################
-
 
 def set_stores(store_files, stores):
     for (store_file, store) in zip(store_files, stores):
@@ -576,26 +457,6 @@ def unset_stores(store_files):
             del store_file._with_store_ref_count
             del store_file.store
 
-
-def with_stores(translation_project, stores, f):
-
-    def do(store_files):
-        set_stores(store_files, stores)
-        try:
-            return f(store_files)
-        finally:
-            unset_stores(store_files)
-
-    filenames = [store.abs_real_path for store in stores]
-    return with_store_files(translation_project, filenames, do)
-
-
-def with_store(translation_project, store, f):
-
-    def do(store_files):
-        return f(store_files[0])
-
-    return with_stores(translation_project, [store], do)
 
 
 # ###############################################################################

@@ -48,7 +48,7 @@ from pootle_app.models.directory   import Directory
 from pootle_store.models       import Store
 from pootle_app                    import project_tree
 from pootle_app.models             import store_iteration, metadata
-from pootle_app.models.store_file  import relative_real_path, absolute_real_path
+from pootle_store.util  import relative_real_path, absolute_real_path
 from pootle_app.models.permissions import PermissionError, check_permission
 from pootle_app.lib                import statistics
 #from pootle_app.views              import pagelayout
@@ -432,11 +432,6 @@ class TranslationProject(models.Model):
 
         known problems:
             1. This function should get called, when the po file changes externally.
-                 The function "pofreshen" in store_file.py would be the natural place
-                 for this. But this causes circular calls between the current (r7514)
-                 statistics code and "updateindex" leading to indexing database lock
-                 issues.
-
                  WARNING: You have to stop the pootle server before manually changing
                  po files, if you want to keep the index database in sync.
 
@@ -470,8 +465,7 @@ class TranslationProject(models.Model):
                 indexer.delete_doc([pofilenamequery, itemsquery])
             else:
                 # (items is None)
-                # The po file is not indexed - or it was changed externally (see
-                # "pofreshen" in store_file.py).
+                # The po file is not indexed - or it was changed externally 
                 # delete all items of this file
                 indexer.delete_doc({"pofilename": store.pootle_path})
             if items is None:
@@ -845,11 +839,6 @@ class TranslationProject(models.Model):
         if self.is_terminology_project:
             query = self.stores
             if query.count() > 0:
-                #for store in query.all():
-                    # We just want to touch the stores, since this
-                    # will automatically pull them into the cache and
-                    # freshen them.
-                    #store_file.with_store(self, store, lambda _x: None)
                 return make_matcher(self)
         else:
             termfilename = "pootle-terminology." + self.project.localfiletype
