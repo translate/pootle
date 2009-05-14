@@ -62,15 +62,12 @@ def quick_stats(path_obj, checker, search=None):
             add_to_stats(result, quick_stats(store, checker))
         return result
     else:
-        try:
-            return get_stats_cache().filetotals(path_obj.abs_real_path) or statsdb.emptyfiletotals()
-        except:
-            logging.log(logging.ERROR, traceback.format_exc())
-            return statsdb.emptyfiletotals()
+        return path_obj.file.getquickstats() #or statsdb.emptyfiletotals()
+
 
 def property_stats(path_obj, checker, *args):
     try:
-        return get_stats_cache().filestats(path_obj.abs_real_path, checker) or \
+        return path_obj.file.getcompletestats(checker) or \
             statsdb.emptyfilestats()
     except:
         logging.log(logging.ERROR, traceback.format_exc())
