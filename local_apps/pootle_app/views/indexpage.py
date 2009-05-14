@@ -1,47 +1,34 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#  Copyright 2004-2007 Zuza Software Foundation
+#
+# Copyright 2004-2009 Zuza Software Foundation
 #
 # This file is part of translate.
 #
-# translate is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# translate is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# translate; if not, write to the Free Software Foundation, Inc., 59 Temple
-# Place, Suite 330, Boston, MA  02111-1307  USA
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-try:
-# ElementTree is part of Python 2.5, so let's try that first
-    from xml.etree import ElementTree
-except ImportError:
-    from elementtree import ElementTree
-import os
-import sys
 import re
 import locale
 
-from django.utils.html import escape
-from django.conf import settings
 from django.utils.translation import ugettext as _
-N_ = _
 
-from translate.storage import versioncontrol
-
-from pootle_app.lib import util
 from pootle_app.views import pagelayout
 from pootle_app.models import Suggestion, Submission, Language, Project, \
     Directory, Goal, TranslationProject
 from pootle_app.models.profile import get_profile
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.models import metadata
-from pootle_app import project_tree
 from pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang
 
 def shortdescription(descr):
@@ -53,11 +40,9 @@ def shortdescription(descr):
         descr = descr[:stopsign]
     return re.sub('<[^>]*>', '', descr).strip()
 
-
 def map_num_contribs(sub, user):
     user.num_contribs = sub.num_contribs
     return user
-
 
 def users_form_suggestions(sugs):
     """Get the Users associated with the Suggestions. Also assign the
@@ -65,13 +50,11 @@ def users_form_suggestions(sugs):
 
     return [map_num_contribs(sug, sug.suggester.user) for sug in sugs]
 
-
 def users_form_submissions(subs):
     """Get the Users associated with the Submissions. Also assign the
     num_contribs attribute from the Submission to the User"""
 
     return [map_num_contribs(sub, sub.submitter.user) for sub in subs]
-
 
 def gentopstats(topsugg, topreview, topsub):
     ranklabel = _('Rank')
@@ -100,11 +83,8 @@ def gentopstats(topsugg, topreview, topsub):
         })
     return topstats
 
-
 def limit(query):
     return query[:5]
-
-
 
 
 class PootleIndex(pagelayout.PootlePage):
@@ -118,7 +98,6 @@ class PootleIndex(pagelayout.PootlePage):
         meta_description = shortdescription(description)
         keywords = [
             'Pootle',
-            'WordForge',
             'translate',
             'translation',
             'localisation',
