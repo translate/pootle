@@ -60,12 +60,36 @@ def get_item_stats(request, quick_stats, path_obj):
         'summary': get_item_summary(request, quick_stats, path_obj),
         'checks':  [],
         'assigns': [] }
-
     if request.GET.get('show_checks', None):
-        result['checks'] = None  # TBD
+        result['checks'] = getcheckdetails(request, path_obj)       #None  # TBD
     if request.GET.get('show_assigns', None):
         result['assings'] = None # TBD
     return result
+
+def getcheckdetails(request, path_obj, url_opts={}):
+    """return a list of strings describing the results of
+    checks"""
+
+    property_stats = metadata.stats_totals(path_obj, request.translation_project.checker)
+    total = property_stats['total']
+    checklinks = []
+    keys = property_stats.keys()
+    keys.sort()
+    for checkname in keys:
+        if not checkname.startswith('check-'):
+            continue
+        checkcount = property_stats[checkname]
+        if total and checkcount:
+            stats = ungettext('%d string (%d%%) failed', '%d strings (%d%%) failed', checkcount,
+                              (checkcount, (checkcount * 100) / total)
+                      )
+            #url_opts[str(checkname)] = 1
+            checklink = {'href': dispatch.translate(request, path_obj.pootle_path, match_names=[checkname]),
+                         'text': checkname.replace('check-', '', 1),
+                         'stats': stats}
+            #del url_opts[str(checkname)]
+            checklinks += [checklink]
+    return checklinks
 
 ################################################################################
 

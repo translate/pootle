@@ -57,11 +57,15 @@ def make_toggle_link(request, state, property, first_option, second_option):
                 'href': dispatch.reload(request, state.encode())}
 
 def make_directory_actions(request):
-    state = dispatch.ProjectIndexState(request.GET)
+    edit_state = dispatch.ProjectIndexState(request.GET)
+    checks_state = dispatch.ProjectIndexState(request.GET)
     return {
-        'basic':    [make_toggle_link(request, state, 'editing',
+        'basic':    [make_toggle_link(request, edit_state, 'editing',
                                       _("Show Editing Functions"),
-                                      _("Show Statistics"))],
+                                      _("Show Statistics")),
+                     make_toggle_link(request, checks_state, 'show_checks',
+                                      _("Show Checks"), _("Hide Checks")),
+                     ],
         'extended': [],
         'goalform': []
         }
