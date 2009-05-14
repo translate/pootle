@@ -81,19 +81,19 @@ class TranslationStoreFile(File):
     def getquickstats(self):
         """returns the quick statistics (totals only)
         """
-        return self._statscache.filetotals(self.path, store=self.store) #or statsdb.emptyfiletotals()
+        return self._statscache.filetotals(self.path, store=self._get_store) #or statsdb.emptyfiletotals()
 
     def getstats(self):
         """returns the unit states statistics only"""
-        return self._statscache.filestatestats(self.path, store=self.store)
+        return self._statscache.filestatestats(self.path, store=self._get_store)
     
     def getcompletestats(self, checker):
         """return complete stats including quality checks
         """
-        return self._statscache.filestats(self.path, checker, store=self.store)
+        return self._statscache.filestats(self.path, checker, store=self._get_store)
 
     def getunitstats(self):
-        return self._statscache.unitstats(self.path, store=self.store)
+        return self._statscache.unitstats(self.path, store=self._get_store)
 
     def reclassifyunit(self, item, checker=checks.StandardUnitChecker()):
         """Reclassifies all the information in the database and
