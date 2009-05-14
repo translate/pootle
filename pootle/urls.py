@@ -1,23 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
-# Copyright 2008 Zuza Software Foundation
-# 
-# This file is part of translate.
 #
-# translate is free software; you can redistribute it and/or modify
+# Copyright 2008-2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# translate is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls.defaults import *
 from django.conf import settings
@@ -30,10 +29,10 @@ admin.autodiscover()
 DJANGO_MEDIA = path.join(path.dirname(admin.__file__), 'media')
 
 urlpatterns = patterns('',
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
+    # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
     (r'^django_admin/doc/', include('django.contrib.admindocs.urls')),
-                       
+
     # Uncomment the next line to enable the admin:
     (r'^django_admin/(.*)',   admin.site.root),
 
