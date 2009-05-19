@@ -35,32 +35,6 @@ def get_store(pootle_path):
     store_path = os.path.join(settings.PODIRECTORY, store.real_path)
     return factory.getobject(store_path)
 
-def test_login():
-    """Checks that login works and sets cookies."""
-    client = Client()
-    response = client.get('/')
-    assert "Log in" in response.content
-    
-    # check login leads us to a normal page
-    response = follow_redirect(client, client.post('/login.html', ADMIN_USER))
-    assert client.cookies.has_key('sessionid')
-    
-    # check login is retained on next fetch
-    response = client.get('/')
-    assert "Log in" not in response.content
-    
-def test_logout():
-    """Checks that logout works after logging in."""
-    client = Client()
-    # make sure we start logged in
-    client.login(**ADMIN_USER)
-    response = client.get('/')
-    assert "Log out" in response.content
-    
-    # check login leads us to a normal page
-    response = follow_redirect(client, client.get("/logout.html"))
-    assert "Log in" in response.content
-        
 
 def test_non_admin_rights():
     """Checks that, without admin rights, we can't access the admin screen."""

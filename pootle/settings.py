@@ -232,4 +232,4 @@ if config is not None:
             vars[option.upper()] = config.get(section, option)
 
 
-TEST_RUNNER='pootle.pytest.run_tests'
+#TEST_RUNNER='pootle.pytest.run_tests'

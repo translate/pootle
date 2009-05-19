@@ -124,4 +124,4 @@ def run_tests(test_labels, verbosity=1, interactive=True, extra_tests=[]):
     # Clean up django.
     #del(testenv)
     
-    return len(failures)
+    return failures
