@@ -71,7 +71,10 @@ class Store(models.Model):
 
     def initpending(self, create=False):
         """initialize pending translations file if needed"""
-        if self.file.store.suggestions_in_format or self.pending:
+        #FIXME: we parse file just to find if suggestions can be
+        #stored in format, maybe we should store TranslationStore
+        #class and query it for such info
+        if self.pending or self.file.store.suggestions_in_format:
             # suggestions can be stored in the translation file itself
             # or a pending suggestions file already exists
             return
