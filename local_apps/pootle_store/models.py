@@ -46,8 +46,8 @@ class Store(models.Model):
     is_dir = False
     
     file        = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False)
-    pending     = TranslationStoreField(upload_to="fish", max_length=255, storage=fs)
-    tm          = TranslationStoreField(upload_to="fish", max_length=255, storage=fs)
+    pending     = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs)
+    tm          = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs)
     parent      = models.ForeignKey(Directory, related_name='child_stores', db_index=True)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True)
     name        = models.CharField(max_length=128, null=False)
@@ -76,7 +76,7 @@ class Store(models.Model):
             # or a pending suggestions file already exists
             return
         
-        pending_filename = self.file.path + os.extsep + 'pending' + os.extsep + 'po'
+        pending_filename = self.file.path + os.extsep + 'pending'
         # check if pending file already exists, just in case it was
         # added outside of pootle
         if not os.path.exists(pending_filename) and create:
@@ -288,7 +288,7 @@ class Store(models.Model):
         if self.tm and os.path.exists(self.tm):
             return
         
-        tm_filename = self.file.path + os.extsep + 'tm' + os.extsep + 'po'
+        tm_filename = self.file.path + os.extsep + 'tm'
         if os.path.exists(tm_filename):
             self.tm = tm_filename
             self.save()

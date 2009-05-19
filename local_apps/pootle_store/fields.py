@@ -177,7 +177,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
 
         if self.path not in self._store_cache or self._store_cache[self.path][1] != mod_info:
             logging.debug("cache miss for %s", self.path)
-            self._store_cache[self.path] = (factory.getobject(self.path), mod_info)
+            self._store_cache[self.path] = (factory.getobject(self.path, ignore=self.field.ignore), mod_info)
 
     def _touch_store_cache(self):
         """update stored mod_info without reparsing file"""
@@ -222,3 +222,9 @@ class TranslationStoreField(FileField):
         defaults.update(kwargs)
         return super(TranslationStoreField, self).formfield(**defaults)
 
+    def __init__(self, ignore=None, **kwargs):
+        """ignore: postfix to be stripped from filename when trying to
+        determine file format for parsing, useful for .pending files"""
+        self.ignore = ignore
+        super(TranslationStoreField, self).__init__(**kwargs)
+        
