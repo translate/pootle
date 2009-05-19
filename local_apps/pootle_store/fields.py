@@ -154,6 +154,31 @@ class TranslationStoreFile(File):
         self.reclassifyunit(item)
 
 
+                
+    def addunit(self, unit):
+        """
+        wrapper around TranslationStore.addunit that updates
+        sourceindex on the fly.
+        
+        useful for avoiding rebuilding index of pending files when
+        new suggestions are added
+        """
+        self.store.addunit(unit)
+        if hasattr(self.store, "sourceindex"):
+            self.store.add_unit_to_index(unit)
+
+    def removeunit(self, unit):
+        """
+        removes a unit from store, updates sourceindex on the fly.
+        
+        useful for avoiding rebuilding index of pending files when
+        suggestions are removed.
+        """
+        self.store.units.remove(unit)
+        if hasattr(self.store, "sourceindex"):
+            self.store.remove_unit_from_index(unit)
+            
+            
 class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     _store_cache = {}
 
@@ -190,7 +215,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
 
         
     def _delete_store_cache(self):
-        """ remove traslation store from dictionary cache."""
+        """remove traslation store from dictionary cache."""
         if self.path in self._store_cache:
             del(self._store_cache[self.path])
 

@@ -121,32 +121,40 @@ class Store(models.Model):
                 newpo.msgidcomments.append('"_: suggested by %s\\n"' % username)
             newpo.target = suggtarget
             newpo.markfuzzy(False)
-            self.pending.store.addunit(newpo)
+            self.pending.addunit(newpo)
             self.pending.savestore()
         self.file.reclassifyunit(item)
 
-    def deletesuggestion(self, item, suggitem, newtrans=None):
-        """removes the suggestion from the pending file"""
-        
-        try:
-            suggestion = self.getsuggestions(item)[suggitem]
-        except IndexError:
-            logging.error('Found an index error attemptine to delete suggestion %d', suggitem)
-            return
-        
+
+    def _deletesuggestion(self, item, suggestion):
         if self.file.store.suggestions_in_format:
             unit = self.file.getitem(item)
             unit.delalttrans(suggestion)
-            self.file.savestore()
-            
         else:
             try:
-                self.pending.store.units.remove(suggestion)
-                self.pending.savestore()
+                self.pending.removeunit(suggestion)
             except ValueError:
                 logging.error('Found an index error attempting to delete a suggestion: %s', suggestion)
                 return  # TODO: Print a warning for the user.
+
+    def deletesuggestion(self, item, suggitem=None, newtrans=None):
+        """removes the suggestion from the pending file"""
+        if suggitem is not None:
+            try:
+                suggestions = [self.getsuggestions(item)[suggitem]]
+            except IndexError:
+                logging.error('Found an index error attemptine to delete suggestion %d', suggitem)
+                return
+        else:
+            suggestions = self.getsuggestions(item)
+
+        for suggestion in suggestions:
+            self._deletesuggestion(item, suggestion)
             
+        if self.file.store.suggestions_in_format:
+            self.file.savestore()
+        else:
+            self.pending.savestore()
         self.file.reclassifyunit(item)
     
     def getsuggester(self, item, suggitem):
