@@ -20,7 +20,7 @@ import sys
 import types
 
 def main():
-    '''Read sys.argv for cofiguration, and perform the imports.'''
+    '''Read sys.argv for configuration, and perform the imports.'''
     if len(sys.argv) != 3:
         print "Usage: %s old_pootle.prefs users.prefs" % (
                 sys.argv[0])
@@ -196,7 +196,7 @@ def create_database_user(data, user_name):
     # Profile information
     profile = user.get_profile()
     profile.view_rows      = try_type(int, _get_user_attribute(data, user_name, 'viewrows',
-                                                               unicode_me=False, default=10)),
+                                                               unicode_me=False, default=10))
     profile.translate_rows = try_type(int, _get_user_attribute(data, user_name, 'translaterows',
                                                                unicode_me=False, default=10))
     # uilanguage
@@ -270,7 +270,7 @@ def augment_list(profile, data, model, user_property, property_name):
 def as_unicode(string):
     if isinstance(string, unicode):
         return string
-    elif instance(string, str):
+    elif isinstance(string, str):
         return str.decode('utf-8')
     else:
         raise Exception('You must pass a string type')
