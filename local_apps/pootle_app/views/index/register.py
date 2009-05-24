@@ -93,7 +93,7 @@ def handleregistration(request):
             activationlink += l('/activate.html?username=%s&activationcode=%s'
                                  % (username, activation_code))
             message += '  %s  \n' % activationlink
-        message += _("Your activation code is:\n %s" % activation_code)
+        message += _("Your activation code is:\n %s\n" % activation_code)
         if activationlink:
             message += \
                 _('If you are unable to follow the link, please enter the above code at the activation page.\n')
