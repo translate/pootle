@@ -118,7 +118,7 @@ def get_page_links(request, store, pagesize, translations, first_item):
     lastitem = min(pofilelen-1, first_item + pagesize - 1)
     if pofilelen > pagesize and not first_item == 0:
         # l10n: noun (the start)
-        pagelinks.append({"href": dispatch.translate(request, request.path_info),
+        pagelinks.append({"href": dispatch.translate(request, request.path_info, item=0),
                           "text": _("Start")})
     else:
         # l10n: noun (the start)
