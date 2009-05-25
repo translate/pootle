@@ -185,18 +185,18 @@ def create_database_user(data, user_name):
     user = User(username       = user_name,
                 first_name     = _get_user_attribute(data, user_name, 'name'),
                 email          = _get_user_attribute(data, user_name, 'email'),
-                activated      = try_type(bool, _get_user_attribute(data, user_name, 'activated',
+                is_active      = try_type(bool, _get_user_attribute(data, user_name, 'activated',
                                                                     unicode_me=False, default=0)),
                 activationcode = _get_user_attribute(data, user_name, 'activationcode',
                                                      unicode_me = False, default=0),
-                passwdhash     = _get_user_attribute(data, user_name, 'passwdhash',
+                password       = _get_user_attribute(data, user_name, 'passwdhash',
                                                      unicode_me = False),
                 # "hash" is the login type that indicates "hash" the user's
                 # submitted password into MD5 and check against a local file/DB.
-                logintype      = _get_user_attribute(data, user_name, 'logintype',
-                                                     unicode_me = False,
-                                                     default = 'hash'),
-                siteadmin      = try_type(bool, _get_user_attribute(data, user_name, 'siteadmin',
+#                logintype      = _get_user_attribute(data, user_name, 'logintype',
+#                                                     unicode_me = False,
+#                                                     default = 'hash'),
+                is_superuser   = try_type(bool, _get_user_attribute(data, user_name, 'siteadmin',
                                                                     unicode_me=False, default=0)))
     # We have to save the user to ensure that an associated PootleProfile is created...
     user.save()
