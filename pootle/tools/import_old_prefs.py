@@ -101,7 +101,15 @@ def import_languages(parsed_data):
     for lang in map(lambda s: unicode(s, 'utf-8'), langs):
         # id, for free
         # code:
-        db_lang = Language(code=lang)
+        try:
+            db_lang = Language.objects.get(code=lang)
+            logging.log(logging.INFO,
+                        'Already found a language named %s. '\
+                        'Data for this language are not imported.'
+                        lang)
+            continue
+        except Language.DoesNotExist:
+            db_lang = Language(code=lang)
 
         # fullname
         db_lang.fullname = _get_attribute(data, lang, 'fullname')
