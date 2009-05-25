@@ -272,7 +272,7 @@ def as_unicode(string):
     if isinstance(string, unicode):
         return string
     elif isinstance(string, str):
-        return str.decode('utf-8')
+        return string.decode('utf-8')
     else:
         raise Exception('You must pass a string type')
 
@@ -292,7 +292,7 @@ def import_users(parsed_users):
             logging.log(logging.INFO, 'Already found a user for named %s '\
                             'Going to skip importing his data, but will '\
                             'import his language and project preferences.',
-                        user_name)
+                        username)
         except User.DoesNotExist:
             user, profile = create_database_user(data, username)
 
