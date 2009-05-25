@@ -18,6 +18,7 @@ from pootle_app.lib.legacy.jToolkit import prefs
 
 import sys
 import types
+import logging
 
 def main():
     '''Read sys.argv for configuration, and perform the imports.'''
