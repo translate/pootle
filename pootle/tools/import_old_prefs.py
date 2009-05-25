@@ -208,7 +208,7 @@ def create_database_user(data, user_name):
             profile.ui_lang = Language.objects.get(code=raw_uilanguage)
         except Language.DoesNotExist:
             logging.log(logging.ERROR, "The user %(username)s has %(lang_code)s as his/her "\
-                            "UI language, but %(lang_code) is not available in Pootle's "\
+                            "UI language, but %(lang_code)s is not available in Pootle's "\
                             "language database", dict(username=user.username, lang_code=raw_uilanguage))
     else:
         pass # leave it NULL
@@ -222,7 +222,7 @@ def create_database_user(data, user_name):
             profile.alt_src_lang = Language.objects.get(code=raw_altsrclanguage)
         except Language.DoesNotExist:
             logging.log(logging.ERROR, "The user %(username)s has %(lang_code)s as his/her "\
-                            "alternative source language, but %(lang_code) is not "\
+                            "alternative source language, but %(lang_code)s is not "\
                             "available in Pootle's language database", 
                         dict(username=user.username, lang_code=raw_uilanguage))
     else:
@@ -258,14 +258,14 @@ def augment_list(profile, data, model, user_property, property_name):
                 # If not, then add it
                 getattr(profile, user_property).append(db_project)
                 logging.log(logging.INFO,
-                            "Adding %(property_name) %(code)s for user %(username)s",
+                            "Adding %(property_name)s %(code)s for user %(username)s",
                             log_args)
         except model.DoesNotExist:
             # Oops. No Django object in 'model' has the code
             # 'code'. Tell the user that the necessary object should
             # be created.
             logging.log(logging.ERROR, 
-                        "Failed to add %(username)s to %(property_name) ID "\
+                        "Failed to add %(username)s to %(property_name)s ID "\
                             "%(code)s; you probably need to create it", log_args)
 
 def as_unicode(string):
