@@ -21,7 +21,7 @@ import types
 import logging
 
 def main():
-    '''Read sys.argv for cofiguration, and perform the imports.'''
+    '''Read sys.argv for configuration, and perform the imports.'''
     if len(sys.argv) != 3:
         print "Usage: %s old_pootle.prefs users.prefs" % (
                 sys.argv[0])
