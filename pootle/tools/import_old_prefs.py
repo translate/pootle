@@ -145,7 +145,15 @@ def import_projects(parsed_data):
     for proj in map(lambda s: unicode(s, 'utf-8'), projs):
         # id, for free
         # code:
-        db_proj = Project(code=proj)
+        try:
+            db_proj = Project.objects.get(code=proj)
+            logging.log(logging.INFO,
+                        'Already found a project named %s. '\
+                        'Data for this project are not imported.'
+                        proj)
+            continue
+        except Project.DoesNotExist:
+            db_proj = Project(code=proj)
 
         # fullname
         db_proj.fullname = _get_attribute(data, proj, 'fullname')
