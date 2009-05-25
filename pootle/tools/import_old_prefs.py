@@ -158,7 +158,7 @@ def import_projects(parsed_data):
                              unicode_me = False)
 
         # localfiletype
-        db_proj.localfiletype = _get_attribute(data, proj, 'localfiletype')
+        db_proj.localfiletype = _get_attribute(data, proj, 'localfiletype', default='po')
 
         # createmofiles?
         db_proj.createmofiles = try_type(bool,
@@ -167,7 +167,7 @@ def import_projects(parsed_data):
 
         # treestyle
         db_proj.treestyle = _get_attribute(data, proj, 'treestyle',
-                            unicode_me = False)
+                            unicode_me = False, default='auto')
 
         # ignoredfiles
         db_proj.ignoredfiles = _get_attribute(data, proj, 'ignoredfiles',
