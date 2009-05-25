@@ -262,9 +262,9 @@ def augment_list(profile, data, model, user_property, property_name):
             # Get the Django object from 'model' which has the code 'code'
             db_object = model.objects.get(code=code)
             # See if 'db_object' is profile.user_property
-            if db_object not in getattr(profile, user_property):
+            if db_object not in getattr(profile, user_property).all():
                 # If not, then add it
-                getattr(profile, user_property).append(db_project)
+                getattr(profile, user_property).add(db_object)
                 logging.log(logging.INFO,
                             "Adding %(property_name)s %(code)s for user %(username)s",
                             log_args)
