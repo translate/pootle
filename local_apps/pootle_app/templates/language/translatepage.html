@@ -141,7 +141,7 @@ from pootle_misc.baseurl import l, m
 			</div>
 			<!--! No plurals -->
 			<div py:if="not item.trans.isplural" py:strip="True">
-                <textarea readonly="${not can_edit and 'readonly' or None}" dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation expanding ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}" py:content="XML(item.trans.text)">
+                <textarea readonly="${not can_edit and 'readonly' or None}" dir="$language.dir" lang="$language.code" onfocus="setfocusedelement(this);" class="translation expanding ${item.state_class}" name="${item.trans.itemid}" id="area${item.trans.itemid}" rows="${item.trans.rows}" cols="${item.trans.cols}" py:content="XML(item.trans.text)">
 			    translatable text
 			  </textarea>
 			</div>
