@@ -913,9 +913,8 @@ class TranslationProject(models.Model):
 
 
     def _find_matching_unit(self, singular, plural=None, n=1):
-        for store in Store.objects.filter(pootle_path__startswith=self.directory.pootle_path):
-            if not hasattr(store.file.store, "sourceindex"):
-                store.file.store.makeindex()
+        for store in self.stores:
+            store.file.store.require_index()
             unit = store.file.store.findunit(singular)
             if unit is not None and unit.istranslated():
                 if unit.hasplural() and n != 1:
@@ -927,10 +926,12 @@ class TranslationProject(models.Model):
                             return target
                 else:
                     return unit.target
-            elif n != 1 and plural is not None:
-                return plural
-            else:
-                return singular
+                
+        # no translation found
+        if n != 1 and plural is not None:
+            return plural
+        else:
+            return singular
 
 
     def gettext(self, message):
