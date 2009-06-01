@@ -31,6 +31,7 @@ import tempfile
 from django.conf import settings
 from django.core.files import File
 from django.db.models.fields.files import FieldFile, FileField
+from django.utils.thread_support import currentThread
 
 from translate.storage import factory, statsdb, po
 from translate.filters import checks
@@ -41,7 +42,15 @@ class TranslationStoreFile(File):
     A mixin for use alongside django.core.files.base.File, which provides
     additional features for dealing with translation files.
     """
-    _statscache = statsdb.StatsCache(settings.STATS_DB_PATH)
+    __statscache = {}
+
+    def _get_statscache(self):
+        current_thread = currentThread()
+        if current_thread not in self.__statscache:
+            self.__statscache[current_thread] = statsdb.StatsCache(settings.STATS_DB_PATH)
+        return self.__statscache[current_thread]
+            
+    _statscache = property(_get_statscache)
 
     #FIXME: figure out what this checker thing is
     checker = None
