@@ -1,13 +1,23 @@
 import tempfile
 import shutil
+import urlparse
 import os
 
 from django.conf import settings
 from django.test import TestCase
+from django.http import QueryDict
 from django.core.management import call_command
 from django.contrib.auth.models import User
 from pootle_app.models.translation_project import scan_translation_projects
 from pootle_store.models import fs
+
+def formset_dict(data):
+    """convert human readable POST dictionary into brain dead django formset dictionary"""
+    new_data = {'form-TOTAL_FORMS': len(data), 'form-INITIAL_FORMS': 0}
+    for i in range(len(data)):
+        for key, value in data[i].iteritems():
+            new_data["form-%d-%s" % (i,key)] = value
+    return new_data
 
 class PootleTestCase(TestCase):
     """Base TestCase class, set's up a pootle environment with a
@@ -90,13 +100,19 @@ class AnonTests(PootleTestCase):
         response = self.client.post('/login.html', {'username':'admin', 'password':'admin'})
         self.assertRedirects(response, '/home/')
 
+    def test_admin_not_logged(self):
+        """checks that admin pages are not accessible without login"""
+        response = self.client.get("/admin/")
+        self.assertRedirects(response, 'http://testserver/login.html?message=You+must+log+in+to+administer+Pootle.')
+
         
 class AdminTests(PootleTestCase):
     def setUp(self):
-        super(AdminTest, self).setUp()
+        super(AdminTests, self).setUp()
         self.client.login(username='admin', password='admin')
 
     def test_logout(self):
+        """tests login and logout links"""
         response = self.client.get('/')
         self.assertContains(response, "Log out")
 
@@ -105,13 +121,74 @@ class AdminTests(PootleTestCase):
 
         response = self.client.get('/')
         self.assertContains(response, "Log in")
+
+    def test_admin_rights(self):
+        """checks that admin user can access admin pages"""
+        response = self.client.get('/')
+        self.assertContains(response, '<a href="/admin/">Admin</a>')
+        response = self.client.get('/admin/')
+        self.assertContains(response, '<title>Pootle Admin Page</title>')        
+
+    def test_add_project(self):
+        """Checks that we can add a project successfully."""
     
+        response = self.client.get("/admin/projects.html")
+        self.assertContains(response, '<a href="/projects/pootle/admin.html">pootle</a>')
+        self.assertContains(response, '<a href="/projects/terminology/admin.html">terminology</a>')
+
+        add_dict = {
+            "code": "testproject",                                       
+            "localfiletype": "xlf",                                     
+            "fullname": "Test Project",                                
+            "checkstyle": "standard",
+            "treestyle": "gnu",
+            }
+    
+        response = self.client.post("/admin/projects.html", formset_dict([add_dict]))
+        self.assertContains(response, '<a href="/projects/testproject/admin.html">testproject</a>')
+    
+        # check for the actual model
+        from pootle_app.models import Project
+        testproject = Project.objects.get(code="testproject")
+        
+        self.assertTrue(testproject)
+        self.assertEqual(testproject.fullname,add_dict['fullname'])
+        self.assertEqual(testproject.checkstyle, add_dict['checkstyle'])
+        self.assertEqual(testproject.localfiletype, add_dict['localfiletype'])
+        self.assertEqual(testproject.treestyle, add_dict['treestyle'])
+
+    def test_add_project_language(self):
+        """Tests that we can add a language to a project, then access
+        its page when there are no files."""
+        from pootle_app.models import Language
+        fish = Language(code="fish", fullname="fish")
+        fish.save()
+    
+        response = self.client.get("/projects/pootle/admin.html")
+        self.assertContains(response, "fish")
+        
+        add_dict = {
+            "add_language": fish.id,
+            }
+        add_dict.update(formset_dict([]))
+        response = self.client.post("/projects/pootle/admin.html", add_dict)
+        self.assertContains(response, '/fish/pootle/')
+        
+        response = self.client.get("/fish/")
+        self.assertContains(response, 'fish</title>')
+        self.assertContains(response, '<a href="pootle/">Pootle</a>')
+        self.assertContains(response, "1 project, average 0% translated")
+
 
 class NonprivTests(PootleTestCase):
     def setUp(self):
-        super(AdminTest, self).setUp()
+        super(NonprivTests, self).setUp()
         self.client.login(username='nonpriv', password='nonpriv')
         
-
+    def test_non_admin_rights(self):
+        """checks that non privileged users cannot access admin pages"""
+        response = self.client.get('/admin/')
+        self.assertRedirects(response, 'http://testserver/home/?message=You+do+not+have+the+rights+to+administer+Pootle.')
+        
         
 
