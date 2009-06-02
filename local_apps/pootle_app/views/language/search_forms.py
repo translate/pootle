@@ -25,16 +25,17 @@ from django.forms.formsets import formset_factory, BaseFormSet
 from django.forms.util import ValidationError
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
+from django.utils.safestring import mark_safe
 
 class SearchForm(forms.Form):
     text = forms.CharField(widget=forms.TextInput(attrs={'size':'15'}))
 
     def as_p(self):
-        return '<label class="inputHint" for="%(for_label)s">%(title)s</label>%(text)s' % {
+        return mark_safe('<label class="inputHint" for="%(for_label)s">%(title)s</label>%(text)s' % {
             'title':     self.initial['title'],
             'for_label': self['text'].auto_id,
             'text':      self['text'].as_widget()
-            }
+            })
 
     def as_hidden(self):
         return ''.join(field.as_hidden() for field in self)
@@ -45,12 +46,12 @@ class AdvancedSearchForm(forms.Form):
     def as_table(self):
         from pootle.i18n import gettext, util
 
-        return '<tr><td>%(selected)s<label dir="%(uidir)s" for="%(for_label)s">%(text)s</label></td></tr>' % {
+        return mark_safe('<tr><td>%(selected)s<label dir="%(uidir)s" for="%(for_label)s">%(text)s</label></td></tr>' % {
             'selected':  self['selected'].as_widget(),
             'uidir':     util.language_dir(gettext.get_active().language.code),
             'for_label': self['selected'].auto_id,
             'text':      self.initial['text'],
-            }
+            })
 
     def as_hidden(self):
         return ''.join(field.as_hidden() for field in self)
