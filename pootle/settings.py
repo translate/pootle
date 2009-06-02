@@ -24,6 +24,7 @@ settings specific to Pootle.
 Note that some of this can also be specified in pootle.ini in order to have a
 configuration override outside of the code."""
 
+import syspath_override
 import os
 
 ROOT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
