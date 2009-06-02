@@ -918,7 +918,7 @@ class TranslationProject(models.Model):
             unit = store.file.store.findunit(singular)
             if unit is not None and unit.istranslated():
                 if unit.hasplural() and n != 1:
-                    nplural, pluralequation = pofile.getheaderplural()
+                    nplural, pluralequation = store.file.store.getheaderplural()
                     if pluralequation:
                         pluralfn = gettext.c2py(pluralequation)
                         target =  unit.target.strings[pluralfn(n)]
