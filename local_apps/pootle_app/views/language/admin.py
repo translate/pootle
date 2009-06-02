@@ -22,6 +22,7 @@
 from django import forms
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.translation import ugettext as _
+from django.utils.safestring import mark_safe
 
 from pootle_app.views.util  import render_to_kid, KidRequestContext
 from pootle_app.models.profile import PootleProfile
@@ -80,7 +81,7 @@ class PermissionSetForm(forms.Form):
                 params.update({ 'username': self.initial['username'],
                                 'profiles': self['profiles'].as_hidden() })
 
-        return '<tr><td>%(id)s%(username)s%(profiles)s</td><td>%(permissions)s</td><td>%(delete)s</td></tr>' % params
+        return mark_safe('<tr><td>%(id)s%(username)s%(profiles)s</td><td>%(permissions)s</td><td>%(delete)s</td></tr>' % params)
 
     def is_new_user(self):
         return self.initial['id'] is None

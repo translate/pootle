@@ -1,5 +1,7 @@
 
 from django.forms.util import ValidationError
+from django.utils.safestring import mark_safe
+
 
 class FormError(ValidationError): pass
 class SubmitError(FormError): pass
@@ -71,9 +73,10 @@ class Handler(object):
             'action_value': action[1] }
 
     def as_p(self):
-        return """
+        return mark_safe("""
         %(inner_form)s
         <p>%(submits)s</p>""" % {
             'inner_form': self.form.as_p(),
             'submits':    ''.join(self.render_submit(action) for action in self.actions) }
+                         )
 

@@ -28,6 +28,7 @@ import logging
 
 from django.utils.translation import ugettext as _
 from django import forms
+from django.utils.safestring import mark_safe
 
 from translate.storage import factory, versioncontrol
 
@@ -266,7 +267,7 @@ class UploadHandler(view_handler.Handler):
             else:
                 self.initial['overwrite'] = ''
                 vars['overwrite'] = self['overwrite'].as_hidden()
-                return layout % vars        
+                return mark_safe(layout % vars)
 
     @classmethod
     def must_display(self, request, *args, **kwargs):

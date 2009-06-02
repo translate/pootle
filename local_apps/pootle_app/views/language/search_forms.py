@@ -23,7 +23,6 @@
 from django import forms
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.forms.util import ValidationError
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 
