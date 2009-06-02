@@ -983,6 +983,7 @@ html[dir="rtl"] .translations-nav li:last-child:after
 
 table.translate-table
 {
+    width: 80%;
     margin-top: 1em;
 }
 
@@ -1112,25 +1113,66 @@ textarea.comments
 }
 
 /* TM */
-
 .sidebar
-{ 
-	float: right;
+{
+	padding-right:10px;
+	padding-left:10px;
+	margin-left:0px;
+	margin-right:0px;
+	padding-bottom:10px;
+	border-bottom:1px dotted #999;
+	width:22%;
+	/* ltr: */
+	right: 0px;
+	border-left: 1px dotted #999;
+}
+.sidebar[dir="rtl"]
+{
+	/* undo ltr: */
+	right: auto;
+	border-left: none;
+	/* rtl: */
+	left: 0px;
+	border-right: 1px dotted #999;
 }
 
-.sidebar .sidetitle
+.sidetitle
 {
-	font-weight: bold;
+	color:#004077;
+	font-size: small;
+	font-weight:bolder;
+	padding:2px;
+	margin-top:10px;
+	letter-spacing: .1em;
+	border-bottom:1px dotted #999;
+	text-align:center;
+	text-transform:lowercase;
 }
 
-.sidebar .sidetitle .tm-unit
+#tm
 {
+	position: absolute;
+	border-top: 1px dotted #999;
+}
+.tm-unit
+{
+	margin: 5px 0px 5px 0px;
+	padding: 0px 2px 0px 0px;
+	background-color: #F7F7F7;
+	position: relative;
 	cursor: pointer;
 }
-
-.sidebar .sidetitle .tm-unit .tm-translation
+.tm-original
 {
-	font-style: italic;
+	font-weight: bolder;
+}
+.tm-translation
+{
+	font-style: oblique;
+}
+.tm-translation[dir="rtl"]
+{
+	text-align: right;
 }
 
 /* SUGGESTIONS */
