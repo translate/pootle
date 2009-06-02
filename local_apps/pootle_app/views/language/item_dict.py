@@ -148,7 +148,7 @@ def yield_quick_link(request, path_obj, links_required, stats_totals):
     if check_permission('translate', request):
         text = _('Quick Translate')
     else:
-        text = _('View Untraslated')
+        text = _('View Untranslated')
     if stats_totals['translated'] < stats_totals['total']:
         yield {
             'href': dispatch.translate(request, path_obj.pootle_path, match_names=['fuzzy', 'untranslated']),
