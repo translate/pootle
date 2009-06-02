@@ -25,6 +25,7 @@ from django.utils.functional import lazy
 
 from pootle_app.models.translation_project import TranslationProject
 from pootle_app.models.language import Language
+from pootle.i18n.util import language_dir
 
 # START BOOTSTRAPPING TRANSLATION CODE
 
@@ -77,7 +78,7 @@ class DummyTranslation(object):
 #    return DummyTranslation()
 
 # Must be replaced after the bootstrapping phase by a function that returns
-# and actual pootle Project object for the language code.
+# an actual pootle Project object for the language code.
 def check_for_language(language):
     try:
         return TranslationProject.objects.get(language=language, project__code='pootle')
@@ -178,6 +179,19 @@ def ngettext(singular, plural, number, vars=None):
 def ungettext(singular, plural, number, vars=None):
     return _format_gettext(as_unicode(get_translation().ungettext(singular, plural, number)), vars)
 
+def get_language():
+    """A function in the translation module to be used in the templates with
+        get_current_language as LANGUAGE_CODE
+    Since we hijack everything else, we have to hijack this as well."""
+    return _active_translations[currentThread()].language.code
+
+def get_language_bidi():
+    """A stupidly named Django function to indicate if the current language is
+    RTL. We have to hijack it, but just as well, since their implimentation
+    covers far less languages than we do."""
+    base_lang = get_language().split('-')[0]
+    return language_dir(base_lang) == "rtl"
+
 def hijack_django_translation_functions():
     # Here is where we hijack the Django localization functions.
     # These lines are crucial, since they ensure that all translation
@@ -191,6 +205,9 @@ def hijack_django_translation_functions():
     translation.ngettext_lazy  = lazy(ngettext, str)
     translation.ugettext_lazy  = lazy(ugettext, unicode)
     translation.ungettext_lazy = lazy(ungettext, unicode)
+
+    translation.get_language = get_language
+    translation.get_language_bidi = get_language_bidi
 
 hijack_django_translation_functions()
 
