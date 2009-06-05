@@ -226,6 +226,8 @@ def fancy_spaces(string):
 
 def add_fancy_spaces(text):
     """Insert fancy spaces"""
+    if not text:
+        return u""
     #More than two consecutive:
     text = re.sub("[ ]{2,}", fancy_spaces, text)
     #At start of string
@@ -237,6 +239,8 @@ def add_fancy_spaces(text):
     return text
 
 def replace_in_seq(text, *replacements):
+    if not text:
+        return u""
     for original, replacement in replacements:
         text = text.replace(original, replacement)
     return text
