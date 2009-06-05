@@ -223,6 +223,7 @@ def get_action_links(request, path_obj, links_required):
 
 def add_percentages(quick_stats):
     quick_stats['translatedpercentage']   = int(100.0 * quick_stats['translatedsourcewords']   / max(quick_stats['totalsourcewords'], 1))
+    quick_stats['fuzzypercentage'] = int(100.0 * quick_stats['fuzzysourcewords'] / max(quick_stats['totalsourcewords'], 1))
     quick_stats['untranslatedpercentage'] = int(100.0 * quick_stats['untranslatedsourcewords'] / max(quick_stats['totalsourcewords'], 1))
     return quick_stats
 
