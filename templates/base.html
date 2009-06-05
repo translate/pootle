@@ -91,7 +91,7 @@
 	{% block footer %}
 	<ul class="nav">
           <li><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
-          <li><a href='{% filter m %}doc/{{ LANGUAGE_CODE }}/index.html {% endfilter %}'>{% trans "Docs &amp; Help" %}</a></li>
+          <li><a href='{% filter m %}doc/{{ LANGUAGE_CODE }}/index.html{% endfilter %}'>{% trans "Docs &amp; Help" %}</a></li>
           <li><a href='{{ "/about.html"|l }}'>{% trans "About this Pootle Server" %}</a></li>
 	</ul>
 	{% endblock footer %}
