@@ -1,138 +1,148 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?python
-from pootle_app.templates import pootlepage, navbar, util
-from pootle_misc.baseurl import l, m
-?>
-
-<include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
-
-
+{% extends "base.html" %}
+{% load i18n baseurl %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% block body.id %}fileindex{% endblock body.id %}
+{% block search %}
   <!--! search form -->
-  <div py:if="search" py:def="search_block()" class="searchform" dir="$uidir" lang="$uilanguage">
+  <div class="searchform" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <form action="translate.html?view_mode=translate" method="post" name="searchform" id="searchform">
-      <div py:replace="XML(search.search_form.as_p())"/>
+      {{ search.search_form.as_p }}
       <input type="hidden" name="new_search" value="new_search" />
       <a class="advancedlink">
-	<img src="${m('images/bullet_arrow_down.png')}" title="${search.advanced_search_title}" class="togglesearch" />
-	<img src="${m('images/bullet_arrow_up.png')}" title="${search.advanced_search_title}" class="togglesearch" style="display: none;"/>
+	<img src='{{"images/bullet_arrow_down.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" />
+	<img src='{{"images/bullet_arrow_up.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" style="display: none;"/>
       </a>
-      <div class="advancedsearch" dir="$uidir" >
-	<table py:content="XML(search.advanced_search_form.as_table())" />
+      <div class="advancedsearch">
+	<table>{{search.advanced_search_form.as_table}}</table>
       </div>
     </form>
   </div><!--search-->
+{% endblock search %}
 
+
+{% block innernav %}
   <!--! Navigation bar -->
-  <div id="innernav" py:def="innernav_block()" class="navbar" py:for="item in navitems">
-    <div py:def="itemtitle(item)" id="breadcrumbs" class="title">
-      <a href="${l(item.href)}">${item.title}</a>
-      <h3 class="title">
-      <div py:strip="True" py:if="item.path.language">[<a href="${l(item.path.language.href)}">${item.path.language.text}</a>]</div>
-      <div py:strip="True" py:if="item.path.project">[<a href="${l(item.path.project.href)}">${item.path.project.text}</a>]</div>
-      <div py:strip="True" py:for="pathlink in item.path.pathlinks">
-        <a href="${l(pathlink.href)}">${pathlink.text}</a>${pathlink.sep}
-        <em py:if="item.path.goal"><a href="${l(item.path.goal.href)}">${item.path.goal.text}</a></em>
-      </div>
-      </h3>
-    </div>
-    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, itemtitle(item))" class="contentsitem"/>
-    <div py:replace="navbar.itemstats(item)"/>
+  <div id="innernav" class="navbar">
+    {% for item in navitems %}
+    {% include "language/item_block.html" %}
+    {% include "language/item_stats.html" %}
+    {% endfor %}
   </div><!--innernav-->
+{% endblock innernav %}
 
-  <div id="content" py:def="content_block()">
+{% block content %}
+  <div id="content">
+    {% if not editing and children %}
     <!--! The statistics view -->
-    <div py:if="not editing and children" py:strip="True">
       <div class="module-primary">
 	<div class="bd">
-	  <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+	  <table class="sortable stats" id="stats" cellpadding="5"
+    cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 	    <thead>
 	      <tr>
-		<th class="stats">${stats_headings.name}</th>
-		<th class="stats">${stats_headings.progress}</th>
-		<th class="stats">${stats_headings.summary}</th>
-		<th class="stats">${stats_headings.totalwords}</th>
+		<th class="stats">{{stats_headings.name}}</th>
+		<th class="stats">{{stats_headings.progress}}</th>
+		<th class="stats">{{stats_headings.summary}}</th>
+		<th class="stats">{{stats_headings.totalwords}}</th>
 	      </tr>
 	    </thead>
 	    <tbody class="stats">
-	      <div py:for="p, item in util.parity(children)" py:strip="True">
-		<tr class="item ${p}" title="${item.description}">
+	      {% for item in children %}
+		<tr class="item {% cycle 'even' 'odd' %}" title="{{item.description}}">
+		  {% include "language/item_summary.html" %}
 		  <div py:replace="navbar.itemsummary(item, uidir, untranslated_text, fuzzy_text, complete)"/>
 		</tr>
-	      </div>
+	      {% endfor %}
 	    </tbody>
 	  </table>
 	</div>
       </div>
-    </div>
+    {% endif %}
 
+    {% if editing %}
     <!--! The editing view -->
-    <div py:if="editing" py:for="p, item in util.parity(children)" py:strip="True">
+      {% for item in children %}
       <div class="module-primary">
 	<div class="bd">
-	  <div py:if="'isgoal' in item" class="goalitem">
+	  {% if item.isgoal %}
+	  <div class="goalitem">
+	    {% include "language/item_block.html" %}
 	    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, show_goals(item))"/>
-	    <div py:replace="navbar.itemstats(item)"/>
+	    {% include "language/item_stats.html" %}
 	  </div>
-	  
-	  <div py:if="'isdir' in item" class="item ${p}">
+	  {% endif %}
+	  {% if item.isdir or item.isfile %}
+	  <div class="item {% cycle 'even' 'odd' %}">
+	    {% include "language/item_block.html" %}
 	    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
-	    <div py:replace="navbar.itemstats(item)"/>
+	    {% include "language/item_stats.html" %}
 	  </div>
-	  
-	  <div py:if="'isfile' in item" class="item ${p}">
-	    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
-	    <div py:replace="navbar.itemstats(item)"/>
-	  </div>
+	  {% endif %}
 	</div>
       </div>
-    </div>
+      {% endfor %}
+    {% endif %}
     
+    {% if assign or goals %}
     <!--! The goals view -->
-    <div py:if="assign or goals" class="module first">
+    <div class="module first">
       <div class="bd">
-	<div class="sidetitle" py:if="assign" py:content="assign.title">
-	  Assign Strings
+	{% if assign %}
+	<div class="sidetitle">
+	  {{ assign.title }}
 	</div>
-
-	<form py:if="assign" action="" method="post" name="assignform">
-	  <select name="assignto" title="${assign.users_text}">
-	    <option py:for="user in assign.users" value="${user}" py:content="assign.users[user].description">Username</option>
+	<form action="" method="post" name="assignform">
+	  <select name="assignto" title="{{assign.users_text}}">
+	    {% for user in assign.users %}
+	    <option value="{{user}}">assign.users[user].description</option>
+	    {% endfor %}
 	  </select>
-	  <input type="text" name="action" value="translate" title="${assign.action_text}" />
-	  <input type="submit" name="doassign" value="${assign.button}" />
+	  <input type="text" name="action" value="translate" title="{{assign.action_text}}" />
+	  <input type="submit" name="doassign" value="{{assign.button}}" />
 	</form>
-	
-	<div class="sidetitle" py:if="goals" py:content="goals.title">Goals</div>
-	<form py:if="goals" action="" method="post" name="goalform">
-	  <input type="text" name="newgoal" title="${goals.name_title}" />
-	  <input type="submit" name="doaddgoal" value="${goals.button}" />
+	{% endif %}
+	{% if goals %}
+	<div class="sidetitle">{{goals.title}}</div>
+	<form action="" method="post" name="goalform">
+	  <input type="text" name="newgoal" title="{{goals.name_title}}" />
+	  <input type="submit" name="doaddgoal" value="{{goals.button}}" />
 	</form>
+	{% endif %}
       </div>
     </div>
+    {% endif %}
   </div><!--content-->
-  
-  <div id="postcontent" py:def="postcontent_block()">
-    <div py:if="upload" id="upload" class="module first clear">
-      <div class="bd">
-        <h2 py:if="upload" py:content="upload.form.title">Upload File</h2>
-        <form py:if="upload" action="" method="post" id="uploadform" name="uploadform" enctype="multipart/form-data">
-          <div py:replace="XML(upload.as_p())" />
-        </form>
-      </div>
-    </div>
+{% endblock content %}
 
-    <div py:if="update" id="update" class="module first clear">
+{% block postcontent %}
+  {% if upload %}
+    <div id="upload" class="module first clear">
       <div class="bd">
-        <form py:if="update" action="" method="post" name="updateform" enctype="multipart/form-data">
-          <div py:replace="XML(update.as_p())" />
+        <h2>{{upload.form.title}}</h2>
+        <form action="" method="post" id="uploadform" name="uploadform" enctype="multipart/form-data">
+          {{upload.as_p}}
         </form>
       </div>
     </div>
-    
+  {% endif %}
+  {% if update %}
+    <div id="update" class="module first clear">
+      <div class="bd">
+        <form action="" method="post" name="updateform" enctype="multipart/form-data">
+          {{update.as_p}}
+        </form>
+      </div>
+    </div>
+  {% endif %}
     <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
-  </div><!--postcontent-->
-  
-  <!--! only called from item_block().  should be moved to navbar.kid or removed-->
+{% endblock postcontent %}
+
+
+
+{% block fish %}
+  <!--! only called from item_block().  should be moved to navbar.kid
+  or removed-->
   <div py:def="show_goals(item)">
     <div py:if="item.goal.users or item.goal.show_adduser">
       <img src="${mediaurl}images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
@@ -146,5 +156,4 @@ from pootle_misc.baseurl import l, m
       </form>
     </div>
   </div>
-
-</include>
+{% endblock fish %}

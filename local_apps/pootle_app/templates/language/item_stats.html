@@ -1,0 +1,17 @@
+{% load i18n baseurl %}
+{% block itemstats %}
+<!-- itemstats -->
+<div class="item-statistics">
+  {{ item.stats.summary|safe }}
+  {% for check in item.stats.checks %}
+    <br /><a href="{{check.href|l}}">{{check.text}}</a> {{check.stats}}
+  {% endfor %}
+  {% for astats in item.stats.assigns %}
+    <br /><a href="{{astats.assign.href|l}}">{{astats.assign.text}}</a>: {{astats.stats}}
+    <span class='string-statistics'>{{astats.stringstats}}</span> -
+    {{astats.completestats}} <span class='string-statistics'>{{astats.completestringstats}}</span>
+    {% if astats.remove %}<a  href="{{astats.remove.href|l}}">{{astats.remove.text}}</a>{% endif %}
+  {% endfor %}
+</div>
+<!-- /itemstats -->
+{% endblock itemstats %}

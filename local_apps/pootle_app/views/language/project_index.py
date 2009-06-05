@@ -28,6 +28,8 @@ import logging
 
 from django.utils.translation import ugettext as _
 from django import forms
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.utils.safestring import mark_safe
 
 from translate.storage import factory, versioncontrol
@@ -314,8 +316,8 @@ class ProjectIndexView(BaseView):
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
             'stats_headings':        get_stats_headings(),
             'editing':               state.editing,
-            'untranslated_text':     _("%s untranslated words"),
-            'fuzzy_text':            _("%s fuzzy words"),
+            'untranslated_text':     _("untranslated words"),
+            'fuzzy_text':            _("fuzzy words"),
             'complete':              _("Complete"),
             'topstats':              top_stats(translation_project),
             'topstatsheading':       top_stats_heading(),
@@ -326,5 +328,6 @@ class ProjectIndexView(BaseView):
 
 def view(request, translation_project, directory):
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler, update=UpdateHandler))
-    return render_to_kid("language/fileindex.html",
-                         view_obj(request, translation_project, directory))
+    return render_to_response("language/fileindex.html",
+                         view_obj(request, translation_project, directory),
+                              context_instance=RequestContext(request))

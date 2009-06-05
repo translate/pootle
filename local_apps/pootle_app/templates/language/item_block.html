@@ -1,0 +1,56 @@
+{% load i18n baseurl %}
+{% block itemblock %}
+<!-- itemblock -->
+<div class="contentsitem" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <img src="{% filter m %}/images/{{item.icon}}.png{% endfilter %}"
+  class="icon" alt="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
+{% if item.title %}
+  <h3  id="itemtitle" class="title"><a href="{{item.href|l}}">{{item.title}}</a></h3>
+{% endif %}
+  {% include "language/item_title.html" %}
+  {% if item.actions %}
+  <div id="actionlinks" class="item-description">
+    {% for link in item.actions.basic %}
+      <a href="{{link.href|l}}" title="{{link.title}}">{{link.text}}</a> | 
+    {% endfor %}
+    {% if item.actions.goalform %}
+    <form action="" name="{{item.actions.goalform.name}}" method="post">
+      <input type="hidden" name="editgoalfile" value="{{item.actions.goalform.filename}}"/>
+      <select name="editgoal" multiple="{{item.actions.goalform.multifiles}}">
+        <option value=""/>
+	{% for goalname in item.actions.goalform.goalnames %}
+        <option value="{{goalname}}" selected="${item.actions.goalform.filegoals[goalname]}">{{goalname}}</option>
+	{% endfor %}
+      </select>
+      {% if item.actions.goalform.multifiles %}
+      <input type="hidden" name="allowmultikey" value="editgoal"/>
+      {% endif %}
+      <input type="submit" name="doeditgoal" value="{{item.actions.goalform.setgoal_text}}"/>
+      {% if item.actions.goalform.users %}
+        <select name="editfileuser" multiple="{{item.actions.goalform.multiusers}}">
+          <option value=""/>
+	  {% for user in item.actions.goalform.users %}
+          <option value="{{user}}"  selected="${item.actions.goalform.assignusers[user]}">{{user}}</option>
+	  {% endfor %}
+        </select>
+	{% if not item.actions.goalform.multiusers %}
+        <a href="#" onclick="var userselect = document.forms.{{item.actions.goalform.name}}.editfileuser; userselect.multiple = true; return false">{{item.actions.goalform.selectmultiple_text}}</a>
+	{% endif %}
+        <input type="hidden" name="allowmultikey" value="editfileuser"/>
+        <select name="edituserwhich">
+	  {% for a in item.actions.goalform.assignwhich %}
+          <option value="{{a.value}}">{{a.text}}</option>
+	  {% endfor %}
+        </select>
+        <input type="submit" name="doedituser" value="{{item.actions.goalform.assignto_text}}"/>
+      {% endif %}
+    </form>
+    {% endif %}
+    {% for link in item.actions.extended %}
+      <a href="{{link.href|l}}" title="{{link.title}}">{{link.text}}</a> | 
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+<!-- /itemblock -->
+{% endblock %}
