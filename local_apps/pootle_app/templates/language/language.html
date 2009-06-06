@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?python
-from pootle_app.templates import pootlepage, navbar
+from pootle_app.templates import pootlepage, navbar, util
 from pootle_misc.baseurl import l
 ?>
 <include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
@@ -29,8 +29,8 @@ from pootle_misc.baseurl import l
 	    </tr>
 	  </thead>
 	  <tbody class="stats">
-	    <div py:for="item in projects" py:strip="True">
-	      <tr class="item ${item.parity}" title="${item.description}">
+	    <div py:for="p, item in util.parity(projects)" py:strip="True">
+	      <tr class="item ${p}" title="${item.description}">
 		<div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
 	      </tr>
 	    </div>
