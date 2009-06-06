@@ -46,14 +46,6 @@ from admin import view as translation_project_admin_view
 
 ################################################################################
 
-def get_language(f):
-    def decorated_f(request, language_code, *args, **kwargs):
-        try:
-            language = Language.objects.get(code=language_code)
-            return f(request, language, *args, **kwargs)
-        except Language.DoesNotExist:
-            return redirect('/', message=_("The language %s is not defined for this Pootle installation" % language_code))                    
-    return decorated_f
 
 def get_translation_project(f):
     def decorated_f(request, language_code, project_code, *args, **kwargs):
@@ -89,9 +81,7 @@ def set_request_context(f):
 
 ################################################################################
 
-@get_language
-def language_index(request, language):
-    return render_jtoolkit(indexpage.LanguageIndex(language, request))
+
 
 @get_translation_project
 @set_request_context
