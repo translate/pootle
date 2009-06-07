@@ -1,0 +1,21 @@
+{% load i18n baseurl %}
+{% block top_contributers_table %}
+    <div class="module-primary clear topcontributers">
+      <div class="hd"><h2>{% trans 'Top Contributors' %}</h2></div>
+      <div class="bd">
+	{% for stats in topstats %}
+          <div class="statslist">
+            <h3>{{stats.headerlabel}}</h3>
+            <ul>
+	    {% for user in stats.data %}
+              <li class="{% cycle 'even' 'odd' %}">
+		<span class="name">{{user.username}}</span>
+		<span class="value">{{user.num_contribs}}</span></li>
+	    {% endfor %}
+	    </ul>
+	  </div>
+	{% endfor %}
+      </div>
+      <div class="ft clear"></div>
+    </div>
+{% endblock top_contributers_table %}

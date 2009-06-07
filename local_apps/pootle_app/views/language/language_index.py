@@ -21,6 +21,8 @@
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, make_directory_item
@@ -93,15 +95,11 @@ def language_index(request, language_code):
         },
         'projects': items,
         'statsheadings': get_stats_headings(),
-        'untranslatedtext': _('%s untranslated words'),
-        'fuzzytext': _('%s fuzzy words'),
+        'untranslated_text': _('untranslated words'),
+        'fuzzy_text': _('fuzzy words'),
         'complete': _('Complete'),
         'topstats': topstats,
-        'topstatsheading': _('Top Contributors'),
         'instancetitle': pagelayout.get_title(),
-        'translationlegend': {'translated': _('Translations are complete'),
-                    'fuzzy': _('Translations need to be checked (they are marked fuzzy)'
-                    ), 'untranslated': _('Untranslated')},
         }
-    return render_to_kid("language/language.html", KidRequestContext(request, templatevars))
+    return render_to_response("language/language.html", templatevars, context_instance=RequestContext(request))
     
