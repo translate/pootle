@@ -39,8 +39,6 @@ from pootle_misc.baseurl import redirect
 def view(request):
     message = None
     redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
-    if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
-        redirect_to = '/home/'
 
     if request.user.is_authenticated():
         return redirect(redirect_to)
@@ -51,6 +49,10 @@ def view(request):
             if form.is_valid():
                 from django.contrib.auth import login
                 login(request, form.get_user())
+
+                if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
+                    redirect_to = '/accounts/'+form.get_user().username
+
                 if request.session.test_cookie_worked():
                     request.session.delete_test_cookie()
 
