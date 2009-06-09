@@ -30,7 +30,6 @@ from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle_app.models import Suggestion, Submission, Language
 from pootle.i18n.jtoolkit_i18n import tr_lang
-from pootle_app.views.util  import render_to_kid, KidRequestContext
 
 
 def limit(query):
