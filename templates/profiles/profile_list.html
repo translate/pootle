@@ -11,17 +11,15 @@
             <th>{% trans "User name" %}</th>
             <th>{% trans "First name" %}</th>
             <th>{% trans "Last name" %}</th>
-            <th>{% trans "E-mail address" %}</th>
         </tr>
         <tr><td colspan="4"><hr width="75%" align="left"></td></tr>
         {% for profile in object_list %}  
         <tr>
-            <td><a href="/accounts/{{ profile.user.username }}/">
-                    {% blocktrans with profile.user.username as username %} {{ username }} {% endblocktrans %} 
+            <td><a href="{% filter l %}/accounts/{{ profile.user.username }}/{% endfilter %}">
+                    {{ profile.user.username }}
             </a></td>
-            <td>{% blocktrans with profile.user.first_name as first_name %} {{ first_name }} {% endblocktrans %} </td>
-            <td>{% blocktrans with profile.user.last_name as last_name %} {{ last_name }} {% endblocktrans %} </td>
-            <td>{% blocktrans with profile.user.email as email %} {{ email }} {% endblocktrans %} </td>
+            <td>{{ profile.user.first_name }}</td>
+            <td>{{ profile.user.last_name }} </td>
         </tr>
         {% endfor %}
 

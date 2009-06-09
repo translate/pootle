@@ -12,16 +12,12 @@
         <div>
             <dl>
                 <dt> <a href= "{% filter l %}/{{ language.code }}/{% endfilter %}" >
-                    {% blocktrans with language.name as lan_name %}
-                    {{ lan_name }}
-                    {% endblocktrans %}
+                    {% trans language.name %}
                 </a> </dt>
                 {% for project in language.projects %}
                 <dd >
                 <a href= "{% filter l %}/{{language.code}}/{{project.code}}/{% endfilter %}" >
-                    {% blocktrans with project.code as pro_code %}
-                    {{ pro_code }}
-                    {% endblocktrans %}
+                    {{project.name}}
                 </a>
                 {% if project.isprojectadmin %}
                 <div >
@@ -35,15 +31,15 @@
         {% endfor %}
         {% else %}
         <div class="item-description">
-            {% trans "You need to" %} <a href="{% filter l %}/accounts/edit/{% endfilter %}"> {% trans "choose your languages and projects." %} </a>
+            {% trans "You need to" %} <a href='{{"/accounts/edit/"|l}}'> {% trans "choose your languages and projects." %} </a>
         </div>
         {% endif %}
         <ul>
-            <li><a href="{% filter l %}/accounts/edit/{% endfilter %}" >{% trans "Change options" %} </a></li>
-            <li><a href="{% filter l %}/accounts/password/change/{% endfilter %}" >{% trans "Change password" %} </a></li>
-            <li><a href="{% filter l %}/accounts/personal/edit/{% endfilter %}" >{% trans "Change personal information" %} </a></li>
+            <li><a href='{{"/accounts/edit/"|l}}' >{% trans "Change options" %} </a></li>
+            <li><a href='{{"/accounts/password/change/"|l}}' >{% trans "Change password" %} </a></li>
+            <li><a href='{{"/accounts/personal/edit/"|l}}' >{% trans "Change personal information" %} </a></li>
             {% if profile.user.is_superuser %}
-            <li ><a href="{% filter l %}/admin/{% endfilter %}" >{% trans "Admin page" %} </a></li>
+            <li ><a href='{{"/admin/"|l}}' >{% trans "Admin page" %} </a></li>
             {% endif %}
         </ul>
     </div>

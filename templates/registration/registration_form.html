@@ -6,13 +6,8 @@
 {% trans "Please enter your registration details" %}</br>
 <form method="post" action="">
     <dl>
-{% for field in form %}
-    <dt>{{ field.label_tag }}</dt>
-    <dd>{{ field }}</dd>
-    {% if field.help_text %}<dd>{{ field.help_text }}</dd>{% endif %}
-    {% if field.errors %}<dd class="myerrors">{{ field.errors }}</dd>{% endif %}
-    {% endfor %}
-</dl>
+        {{ form.as_p }}
+    </dl>
 <input type="submit" value="Register"/>
 </form>
  
