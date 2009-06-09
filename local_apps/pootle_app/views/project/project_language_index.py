@@ -21,17 +21,16 @@
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
-from pootle_app.models              import Language, Project, TranslationProject
-from pootle_app.models import Suggestion, Submission
+from pootle_app.models              import Project, Suggestion, Submission
 from pootle_app.views.language.project_index import get_stats_headings
-from pootle_app.views.language.item_dict import add_percentages, make_directory_item
-from pootle_misc.baseurl            import redirect
+from pootle_app.views.language.item_dict import add_percentages
 from pootle.i18n.jtoolkit_i18n import tr_lang
 from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle_app.views               import pagelayout
-from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
-    KidRequestContext, init_formset_from_data, choices_from_models, selected_model
+
 
 def limit(query):
     return query[:5]
@@ -86,11 +85,10 @@ def view(request, project_code, _path_var):
                              languagecount, (languagecount, average))
         },
         'description': project.description,
-        'meta_description': shortdescription(project.description),
         'adminlink': _('Admin'),
         'languages': items,
-        'untranslatedtext': _('%s untranslated words'),
-        'fuzzytext': _('%s fuzzy words'),
+        'untranslated_text': _('untranslated words'),
+        'fuzzy_text': _('fuzzy words'),
         'complete': _('Complete'),
         'instancetitle': pagelayout.get_title(),
         'topstats': topstats,
@@ -101,4 +99,4 @@ def view(request, project_code, _path_var):
                     ), 'untranslated': _('Untranslated')},
     }
     
-    return render_to_kid('project/project.html', KidRequestContext(request, templatevars))
+    return render_to_response('project/project.html', templatevars, context_instance=RequestContext(request))

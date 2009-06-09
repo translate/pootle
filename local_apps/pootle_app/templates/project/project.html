@@ -1,59 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?python
-from pootle_app.templates import navbar, pootlepage
-from pootle_misc.baseurl import l
-?>
-<include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
+{% extends "base.html" %}
+{% load i18n baseurl %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% block body.id %}projectindex{% endblock body.id %}
 
-  <div id="breadcrumbs" py:def="breadcrumbs_block()">
-    <h3 class="title">[ <a href="${l('/projects/'+project.code+'/')}" py:content="project.name">Project</a> ]</h3>
+{% block breadcrumbs %}
+  <div id="breadcrumbs">
+    <h3 class="title">[ <a href="{%filter l%}/projects/{{project.code}}/{%endfilter%}">{{project.name}}</a> ]</h3>
   </div><!--breadcrumbs-->
-  
-  <div id="innernav" py:def="innernav_block()">
-    <div class="item-description" py:if="sessionvars.issiteadmin">
-      <a href="${l('admin.html')}" py:content="adminlink">Admin</a>
-    </div>
-    <div class="item-statistics" py:content="project.stats">0 languages, average 0% translated</div>
-  </div><!--innernav-->
+{% endblock breadcrumbs %}
 
-  <div id="precontent" py:if="description" py:def="precontent_block()">
-    <div class="intro" py:content="XML(description)">
-      This is the project description
+{% block innernav %}
+  <div id="innernav">
+    {% if user.is_superuser %}
+    <div class="item-description">
+      <a href="admin.html">{{adminlink}}</a>
+    </div>
+    {% endif %}
+    <div class="item-statistics">{{project.stats}}</div>
+  </div><!--innernav-->
+{% endblock innernav %}
+
+
+{% block precontent %}
+  <div id="precontent">
+    <div class="intro">
+      {{description|safe}}
     </div>
   </div><!--precontent-->
+{% endblock precontent %}
 
-  <div id="content" py:def="content_block()">
+{% block content %}
+  <div id="content">
     <div class="module-primary">
       <div class="bd">
 	<table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
 	  <thead>
 	    <tr>
-	      <th class="stats">${statsheadings.name}</th>
-	      <th class="stats">${statsheadings.progress}</th>
-	      <th class="stats">${statsheadings.summary}</th>
-	      <th class="stats">${statsheadings.totalwords}</th>
+	      <th class="stats">{{statsheadings.name}}</th>
+	      <th class="stats">{{statsheadings.progress}}</th>
+	      <th class="stats">{{statsheadings.summary}}</th>
+	      <th class="stats">{{statsheadings.totalwords}}</th>
 	    </tr>
 	  </thead>
 	  <tbody class="stats">
-	    <div py:for="item in languages" py:strip="True">
-	      <tr  class="item ${item.parity}">
-		<div py:replace="navbar.itemsummary(item, uidir, untranslatedtext, fuzzytext, complete)"/>
+	    {% for item in languages %}
+	      <tr  class="item {% cycle 'even' 'odd' %}">
+		{% include "language/item_summary.html" %}
 	      </tr>
-	    </div>
+	    {% endfor %}
 	  </tbody>
 	</table>
       </div>
     </div>
   </div><!--content-->
+{% endblock content %}
 
-  <div id="postcontent" py:def="postcontent_block()">
+{% block postcontent %}
+  <div id="postcontent">
     <div class="module first clear">
       <div class="bd">
-	<div py:replace="pootlepage.translationsummarylegend(translationlegend, mediaurl)" />
+	{% include "translation_summary_legend.html" %}
       </div>
     </div>
-
-    <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
+    {% include "top_contributers_table.html" %}
   </div><!--postcontent-->
-</include>
+{% endblock postcontent %}
+
 
