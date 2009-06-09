@@ -48,42 +48,6 @@ class UserForm(ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'email')
 
-class PootleProfileForm(ModelForm):
-    class Meta:
-        model = PootleProfile
-        exclude = ('user', 'activation_code', 'login_type')
-
-@user_is_authenticated
-def options(request):
-    if request.method == 'POST':
-        post = request.POST.copy()
-        if 'password' in post and post['password'].strip() != u'':
-            request.user.set_password(post['password'])
-        del post['password']
-
-        user_form = UserForm(post, instance=request.user)
-        profile_form = PootleProfileForm(post, instance=get_profile(request.user))
-
-        user_form.save()
-        profile_form.save()
-        # Activate the newly selected interface language so that the user will
-        # immediately see a translated interface. But only do this if the user
-        # selected an interface language.
-        if profile_form['ui_lang'].data != '':
-            gettext.activate_for_profile(get_profile(request.user))
-    elif request.method == 'GET':
-        user_form = UserForm(instance=request.user)
-        profile_form = PootleProfileForm(instance=get_profile(request.user))
-
-    template_vars = {"pagetitle":      _("Options for: %s", request.user.username),
-                     "introtext":      _("Configure your settings here"),
-                     "detailstitle":   _("Personal Details"),
-                     "fullname_title": _("Name"),
-                     "user_form":      user_form,
-                     "profile_form":   profile_form }
-
-    return render_to_kid("profile/options.html", KidRequestContext(request, template_vars))
-
 @user_is_authenticated
 def index(request, path):
     return render_jtoolkit(indexpage.UserIndex(request))
