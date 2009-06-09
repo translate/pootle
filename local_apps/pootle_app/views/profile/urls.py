@@ -22,6 +22,6 @@ from django.conf.urls.defaults import *
 import view
 
 urlpatterns = patterns('',
-    (r'options.html$',     view.options),
+#    (r'options.html$',     view.options),
     (r'(/|index.html)?$',  view.index),
 )
