@@ -19,8 +19,6 @@
                 {% for project in language.projects %}
                 <dd >
                 <a href= "{% filter l %}/{{language.code}}/{{project.code}}/{% endfilter %}" >
-                <dt> <a href= "/{{ language.code }}/" >
-                <a href= "/{{language.code}}/{{project.code}}/" >
                     {% blocktrans with project.code as pro_code %}
                     {{ pro_code }}
                     {% endblocktrans %}
