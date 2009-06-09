@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% load i18n baseurl %}
+{% block content %}
+{% blocktrans %}Hello {{ account }} {% endblocktrans %}<br/>
+{% trans "Account activated. You are logged in." %}
+{% endblock %}

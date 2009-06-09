@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n baseurl %}
+ 
+{% block content %}
+
+{% trans "Please enter your registration details" %}</br>
+<form method="post" action="">
+    <dl>
+{% for field in form %}
+    <dt>{{ field.label_tag }}</dt>
+    <dd>{{ field }}</dd>
+    {% if field.help_text %}<dd>{{ field.help_text }}</dd>{% endif %}
+    {% if field.errors %}<dd class="myerrors">{{ field.errors }}</dd>{% endif %}
+    {% endfor %}
+</dl>
+<input type="submit" />
+</form>
+ 
+{% endblock %}
