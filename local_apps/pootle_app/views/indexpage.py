@@ -87,121 +87,6 @@ def limit(query):
     return query[:5]
 
 
-class PootleIndex(pagelayout.PootlePage):
-
-    """The main page listing projects and languages. It is also reused
-    for LanguagesIndex and ProjectsIndex"""
-
-    def __init__(self, request):
-        templatename = 'index/index.html'
-        description = pagelayout.get_description()
-        meta_description = shortdescription(description)
-        keywords = [
-            'Pootle',
-            'translate',
-            'translation',
-            'localisation',
-            'localization',
-            'l10n',
-            'traduction',
-            'traduire',
-            ] + self.getprojectnames()
-        languagelink = _('Languages')
-        projectlink = _('Projects')
-        instancetitle = pagelayout.get_title()
-        pagetitle = instancetitle
-        topsugg = limit(Suggestion.objects.get_top_suggesters())
-        topreview = limit(Suggestion.objects.get_top_reviewers())
-        topsub = limit(Submission.objects.get_top_submitters())
-        topstats = gentopstats(topsugg, topreview, topsub)
-        (language_index, project_index) = \
-            TranslationProject.get_language_and_project_indices()
-        permission_set = get_matching_permissions(get_profile(request.user),
-                Directory.objects.root)
-        templatevars = {
-            'pagetitle': pagetitle,
-            'description': description,
-            'meta_description': meta_description,
-            'keywords': keywords,
-            'languagelink': languagelink,
-            'languages': self.getlanguages(request, language_index,
-                    permission_set),
-            'projectlink': projectlink,
-            'projects': self.getprojects(request, project_index,
-                    permission_set),
-            'topstats': topstats,
-            'topstatsheading': _('Top Contributors'),
-            'instancetitle': instancetitle,
-            'translationlegend': self.gettranslationsummarylegendl10n(),
-            }
-        pagelayout.PootlePage.__init__(self, templatename, templatevars,
-                                       request)
-
-    def get_items(self, request, model, latest_changes, item_index, name_func, permission_set):
-
-        def get_percentages(trans, fuzzy):
-            try:
-                transper = int((100.0 * trans) / total)
-                fuzzyper = int((100.0 * fuzzy) / total)
-                untransper = (100 - transper) - fuzzyper
-            except ZeroDivisionError:
-                transper = 100
-                fuzzyper = 0
-                untransper = 0
-            return (transper, fuzzyper, untransper)
-
-        def get_last_action(item, latest_changes):
-            if item.code in latest_changes and latest_changes[item.code]\
-                 is not None:
-                return latest_changes[item.code]
-            else:
-                return ''
-
-        items = []
-        if 'view' not in permission_set:
-            return items
-        latest_changes = latest_changes()
-        for item in [item for item in model.objects.all()
-                     if item.code in item_index]:
-            trans = 0
-            fuzzy = 0
-            total = 0
-            for translation_project in item_index[item.code]:
-                stats = \
-                    metadata.quick_stats(translation_project.directory, translation_project.checker)
-                trans += stats['translatedsourcewords']
-                fuzzy += stats['fuzzysourcewords']
-                total += stats['totalsourcewords']
-            untrans = (total - trans) - fuzzy
-            (transper, fuzzyper, untransper) = get_percentages(trans, fuzzy)
-            lastact = get_last_action(item, latest_changes)
-            items.append({
-                'code': item.code,
-                'name': name_func(item.fullname),
-                'lastactivity': lastact,
-                'trans': trans,
-                'fuzzy': fuzzy,
-                'untrans': untrans,
-                'total': total,
-                'transper': transper,
-                'fuzzyper': fuzzyper,
-                'untransper': untransper,
-                })
-        items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))
-        return items
-
-    def getlanguages(self, request, language_index, permission_set):
-        return self.get_items(request, Language, Submission.objects.get_latest_language_changes,
-                              language_index, tr_lang, permission_set)
-
-    def getprojects(self, request, project_index, permission_set):
-        return self.get_items(request, Project, Submission.objects.get_latest_project_changes,
-                              project_index, lambda x: x, permission_set)
-
-    def getprojectnames(self):
-        return [proj.fullname for proj in Project.objects.all()]
-
-
 class UserIndex(pagelayout.PootlePage):
     """home page for a given user"""
 
@@ -285,20 +170,20 @@ class UserIndex(pagelayout.PootlePage):
         return quicklinks
 
 
-class ProjectsIndex(PootleIndex):
-    """the list of languages"""
-
-    def __init__(self, request):
-        PootleIndex.__init__(self, request)
-        self.templatename = 'project/projects.html'
-
-
-class LanguagesIndex(PootleIndex):
-    """the list of languages"""
-
-    def __init__(self, request):
-        PootleIndex.__init__(self, request)
-        self.templatename = 'language/languages.html'
+#class ProjectsIndex(PootleIndex):
+#    """the list of languages"""
+#
+#    def __init__(self, request):
+#        PootleIndex.__init__(self, request)
+#        self.templatename = 'project/projects.html'
+#
+#
+#class LanguagesIndex(PootleIndex):
+#    """the list of languages"""
+#
+#    def __init__(self, request):
+#        PootleIndex.__init__(self, request)
+#        self.templatename = 'language/languages.html'
 
 
 def get_bool(dict_obj, name):
