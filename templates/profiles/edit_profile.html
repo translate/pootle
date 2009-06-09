@@ -8,15 +8,13 @@ Configure your settings here
 <form method="post" action="">
 <dl>
     {% for field in form %}
-    {% ifnotequal field.name 'activation_code' %}
     {% ifnotequal field.name 'login_type' %}
     <dt>{{ field.label_tag }}</dt>
     <dd>{{ field }}</dd>
     {% if field.help_text %}<dd>{{ field.help_text }}</dd>{% endif %}
     {% if field.errors %}<dd class="myerrors">{{ field.errors }}</dd>{% endif %}
     {% endifnotequal %}
-    {% endifnotequal %}
-{% endfor %}
+    {% endfor %}
 </dl>
 <input type="submit" value="Save"/>
 </form>

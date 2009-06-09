@@ -1,6 +1,69 @@
 {% extends "base.html"  %}
 {% load i18n baseurl %}
- 
+
 {% block content %}
-{{ profile_list }}
+<div id="content" >
+    <div class="module first">
+        <div class="hd">
+            <h2 >{% trans "Quick Links" %}</h2>
+        </div>
+        {% if profile.getquicklinks %}
+        {% for language in profile.getquicklinks %}
+        <div>
+            <dl>
+                <dt> <a href= "/{{ language.code }}/" >
+                    {% blocktrans with language.name as lan_name %}
+                    {{ lan_name }}
+                    {% endblocktrans %}
+                </a> </dt>
+                {% for project in language.projects %}
+                <dd >
+                <a href= "/{{language.code}}/{{project.code}}/" >
+                    {% blocktrans with project.code as pro_code %}
+                    {{ pro_code }}
+                    {% endblocktrans %}
+                </a>
+                {% if project.isprojectadmin %}
+                <div >
+                    <a href="/{{language.code}}/{{ project.code}}/admin.html">{% trans "Admin" %}</a>
+                </div>
+                {% endif %}
+                </dd>
+                {% endfor %}
+            </dl>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="item-description">
+            {% trans "You need to" %} <a href="/accounts/edit/"> {% trans "choose your languages and projects." %} </a>
+        </div>
+        {% endif %}
+        <ul>
+            <li><a href="/accounts/edit/" >{% trans "Change options" %} </a></li>
+            <li><a href="/accounts/password/change/" >{% trans "Change password" %} </a></li>
+            {% if profile.user.is_superuser %}
+            <li ><a href="/admin/" >{% trans "Admin page" %} </a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<div id="postcontent" >
+    <div class="module">
+        <div class="hd">
+            <h2 > {% trans "User Statistics" %} </h2>
+        </div>
+        <div class="bd">
+            <table>
+                {% for key, value in profile.getuserstatistics.items %}
+                <tr>
+                    {% blocktrans %}
+                    <th scope="row">
+                        {{ key }}</th><td> {{ value }}</td>
+                    {% endblocktrans %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
