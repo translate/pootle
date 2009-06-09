@@ -28,11 +28,11 @@
                 </div>
                 <div py:if="sessionvars.isopen" py:strip="True">
                   <li class="menubaritem"><a href="${l('/home/')}" py:content="links.account">My account</a></li>
-                  <li class="menubaritem"><a href="${l('/logout.html')}" py:content="links.logout">Log out</a></li>
+                  <li class="menubaritem"><a href="${l('/accounts/logout')}" py:content="links.logout">Log out</a></li>
         </div>
                 <div py:if="not sessionvars.isopen" py:strip="True">
-                  <li class="menubaritem"><a href="${l('/register.html')}" py:content="links.register">Register</a></li>
-                  <li class="menubaritem"><a href="${l('/login.html')}" py:content="links.login">Log in</a></li>
+                    <li class="menubaritem"><a href="${l('/accounts/register')}" py:content="links.register">Register</a></li>
+                    <li class="menubaritem"><a href="${l('/accounts/login')}" py:content="links.login">Log in</a></li>
                 </div>
               </ul>
             </div>

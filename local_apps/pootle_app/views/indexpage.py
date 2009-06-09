@@ -101,7 +101,7 @@ class UserIndex(pagelayout.PootlePage):
         instancetitle = pagelayout.get_title()
         quicklinks = self.getquicklinks()
         setoptionstext = \
-            _("You need to <a href='options.html'>choose your languages and projects</a>."
+            _("You need to <a href='/accounts/edit/'>choose your languages and projects</a>."
               )
         # l10n: %s is the full name of the currently logged in user
         statstitle = _("%s's Statistics" % request.user.first_name)

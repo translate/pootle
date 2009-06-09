@@ -22,6 +22,10 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
+    (r'^accounts/login/$',    'pootle_app.views.index.login.view'),
+    (r'^accounts/logout/$',   'pootle_app.views.index.logout.view'),
+    (r'^accounts/',           include('registration.urls')),
+    (r'^accounts/',           include('profiles.urls')),
     (r'^admin',               include('pootle_app.views.admin.urls')),
     (r'^home',                include('pootle_app.views.profile.urls')),
     (r'^projects',            include('pootle_app.views.project.urls')),

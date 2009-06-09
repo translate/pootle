@@ -24,11 +24,11 @@ from pootle_misc.baseurl import l
 	</div>
 
 	<div py:if="not quicklinks" class="item-description" py:content="XML(setoptionstext)">
-	  You need to <a href="options.html">choose your languages and projects</a>.
+	  You need to <a href="/accounts/edit/">choose your languages and projects</a>.
 	</div>
 
 	<ul>
-	  <li><a href="options.html" py:content="optionslink">Change options</a></li>
+	  <li><a href="/accounts/edit/" py:content="optionslink">Change options</a></li>
 	  <li py:if="sessionvars.issiteadmin"><a href="${l('/admin/')}" py:content="adminlink">Admin page</a></li>
 	</ul>
       </div>

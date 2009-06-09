@@ -3,7 +3,7 @@
 
 {% block content %}
 <div id="login">
-<form method="post" action="{% url pootle_app.views.index.login.view %}" 
+    <form method="post" action='{{ "/accounts/login/"|l }}' 
       name="loginform" id="loginform">
     {% if form.errors %}
     <p>{% trans "Your username and password didn't match. Please try again." %}</p>

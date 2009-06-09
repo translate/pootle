@@ -48,6 +48,13 @@ MANAGERS = ADMINS
 TITLE = "Pootle Demo"
 DESCRIPTION = """<div dir="ltr" lang="en">This is a demo installation of Pootle.<br /> You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</div>"""
 
+DEFAULT_FROM_EMAIL = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = ''
+EMAIL_PORT = 0
+EMAIL_USE_TLS = False 
+
 REGISTRATION_FROM_ADDRESS = 'pootle-registration@localhost'
 REGISTRATION_SMTP_SERVER = 'localhost'
 SUPPORT_ADDRESS = 'pootle-admin@yourdomain.org'
@@ -145,6 +152,7 @@ INSTALLED_APPS = (
     'pootle_app',
     'pootle_misc',
     'pootle_store',
+    'registration',
 )
 
 AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
@@ -184,6 +192,8 @@ ENABLE_ALT_SRC = True
 CAN_REGISTER = True
 
 STORE_LRU_CACHE_SIZE = 10
+
+ACCOUNT_ACTIVATION_DAYS = 10
 
 # Uncomment to use memcached for caching
 # CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
