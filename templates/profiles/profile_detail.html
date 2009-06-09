@@ -39,10 +39,11 @@
         </div>
         {% endif %}
         <ul>
-            <li><a href="/accounts/edit/" >{% trans "Change options" %} </a></li>
-            <li><a href="/accounts/password/change/" >{% trans "Change password" %} </a></li>
+            <li><a href="{% filter l %}/accounts/edit/{% endfilter %}" >{% trans "Change options" %} </a></li>
+            <li><a href="{% filter l %}/accounts/password/change/{% endfilter %}" >{% trans "Change password" %} </a></li>
+            <li><a href="{% filter l %}/accounts/personal/edit/{% endfilter %}" >{% trans "Change personal information" %} </a></li>
             {% if profile.user.is_superuser %}
-            <li ><a href="/admin/" >{% trans "Admin page" %} </a></li>
+            <li ><a href="{% filter l %}/admin/{% endfilter %}" >{% trans "Admin page" %} </a></li>
             {% endif %}
         </ul>
     </div>

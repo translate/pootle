@@ -33,6 +33,9 @@ from pootle_misc.baseurl import redirect
 
 from pootle.i18n import gettext
 
+from django.shortcuts import render_to_response
+from django.template import RequestContext 
+
 def user_is_authenticated(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_authenticated():
@@ -42,7 +45,6 @@ def user_is_authenticated(f):
     return decorated_f
 
 class UserForm(ModelForm):
-    password = forms.CharField(max_length=100, required=False, widget=forms.PasswordInput())
 
     class Meta:
         model = User
@@ -51,3 +53,16 @@ class UserForm(ModelForm):
 @user_is_authenticated
 def index(request, path):
     return render_jtoolkit(indexpage.UserIndex(request))
+
+def edit_personal_info(request):
+    if request.POST:
+        post = request.POST.copy()
+        user_form = UserForm(post, instance=request.user)
+        user_form.save()
+        response = redirect('/accounts/'+request.user.username)
+    else:
+        user_form = UserForm(instance=request.user)
+        template_vars = { "form": user_form,}
+        response = render_to_response('profiles/edit_personal.html', template_vars , context_instance=RequestContext(request))
+    return response
+
