@@ -48,12 +48,13 @@ MANAGERS = ADMINS
 TITLE = "Pootle Demo"
 DESCRIPTION = """<div dir="ltr" lang="en">This is a demo installation of Pootle.<br /> You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</div>"""
 
-#DEFAULT_FROM_EMAIL = ''
-#EMAIL_HOST_USER = ''
-#EMAIL_HOST_PASSWORD = ''
-#EMAIL_HOST = ''
-#EMAIL_PORT = 0
-#EMAIL_USE_TLS = False 
+#Example for google as an external smtp server
+#DEFAULT_FROM_EMAIL = 'DEFAULT_USER@YOUR_DOMAIN.com'
+#EMAIL_HOST_USER = 'USER@YOUR_DOMAIN.com'
+#EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD'
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
 
 REGISTRATION_FROM_ADDRESS = 'pootle-registration@localhost'
 REGISTRATION_SMTP_SERVER = 'localhost'
