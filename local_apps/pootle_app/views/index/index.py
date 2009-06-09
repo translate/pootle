@@ -22,15 +22,16 @@ import locale
 
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from pootle_app.models.profile import get_profile
 from pootle_app.models import Project, Directory, Suggestion, Submission, TranslationProject, Language
 from pootle_app.models.permissions import get_matching_permissions
-from pootle_app.views.util import render_jtoolkit, render_to_kid, KidRequestContext
 from pootle_app.views import indexpage
 from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
-from pootle.i18n.jtoolkit_i18n import nlocalize, tr_lang
+from pootle.i18n.jtoolkit_i18n import tr_lang
 from pootle_app.models import metadata
 
 
@@ -137,6 +138,6 @@ def view(request, *path_vars):
                     ), 'untranslated': _('Untranslated')},
         }
 
-    return render_to_kid('index/index.html', KidRequestContext(request, templatevars))
+    return render_to_response('index/index.html', templatevars, RequestContext(request))
 
 

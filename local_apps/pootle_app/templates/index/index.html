@@ -1,74 +1,81 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?python
-from pootle_app.templates import pootlepage
-from pootle_misc.baseurl import l
-?>
-<include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
+{% extends "base.html" %}
+{% load i18n baseurl %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% block body.id %}frontpage{% endblock body.id %}
 
 
-  <div id="precontent" py:def="precontent_block()">
-      <div class="intro" py:content="XML(description)">this is a demo installation of pootle</div>
+{% block precontent %}
+  <div id="precontent">
+      <div class="intro">{{ description|safe }}</div>
   </div><!--precontent-->
+{% endblock precontent %}
 
-
-  <div id="content" py:def="content_block()">
+{% block content %}
+  <div id="content">
     <div class="module first">
       <div class="hd">
-	<h2 py:content="languagelink">Languages</h2>
+	<h2>{{languagelink}}</h2>
       </div>
       <div class="bd">
 	<table class="sortable">
-	  <tr><th>Language</th><th>Overall Completion</th><th>Last Activity</th></tr>
-	  <tr py:for="zebra, lang in enumerate(languages)" class="${zebra%2 and 'odd' or 'even'}">
-	    <td class="language"><a href="${l('/'+lang.code+'/')}" py:content="lang.name">Language</a></td>
+	  <tr><th>{% trans 'Language' %}</th>
+	    <th>{% trans 'Overall Completion' %}</th>
+	    <th>{% trans 'Last Activity' %}</th></tr>
+	  {% for item in languages %}
+	  <tr class="{% cycle 'even' 'odd' %}">
+	    <td class="language"><a href="{%filter l%}/{{item.code}}/{%endfilter%}">{{item.name}}</a></td>
 	    <td>
-	      <span class="graph" dir="$uidir">
-		<span class="translated" style="width: ${lang.transper}px;" title="${lang.trans}/${lang.total} words translated" />
-		<span class="fuzzy" style="${cssaligndir}: ${lang.transper}px; width: ${lang.fuzzyper}px" title="${lang.fuzzy}/${lang.total} words fuzzy" />
-		<span class="untranslated" style="${cssaligndir}: ${lang.transper+lang.fuzzyper}px; width: ${lang.untransper}px" title="${lang.untrans}/${lang.total} words untranslated" />
+	      <span class="graph" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+		<span class="translated" style="width: {{item.transper}}px" title="{{item.trans}}/{{item.total}} words translated"> </span>
+		{% if item.fuzzy %}<span class="fuzzy" style="{%if LANGUAGE_BIDI%}right{%else%}left{%endif%}: {{item.transper}}px; width: {{item.fuzzyper}}px" title="{{item.fuzzy}}/{{item.total}} words fuzzy"> </span>{% endif %}
+		{% if item.untrans %}<span class="untranslated" style="{%if LANGUAGE_BIDI%}right{%else%}left{%endif%}: {{item.transper|add:item.fuzzyper}}px; width: {{item.untransper}}px" title="{{item.untrans}}/{{item.total}} words untranslated"> </span>{% endif %}
 	      </span>
-	      <span class="sortkey">${lang.transper}%</span>
+	      <span class="sortkey">{{item.transper}}</span>
 	    </td> 
-	    <td>${lang.lastactivity}</td>
+	    <td>{{item.lastactivity}}</td>
 	  </tr>
+	  {% endfor %}
 	</table>
       </div>
     </div>
 
     <div class="module">
       <div class="hd">
-	<h2 py:content="projectlink">Projects</h2>
+	<h2>{{projectlink}}</h2>
       </div>
       <div class="bd">
 	<table class="sortable">
-	  <tr><th>Project</th><th>Overall Completion</th><th>Last Activity</th></tr>
-	  <tr py:for="zebra, p in enumerate(projects)" class="${zebra%2 and 'odd' or 'even'}">
-	    <td class="language"><a href="${l('/projects/'+p.code+'/')}" title="${p.description}"  py:content="p.name">Project</a></td>
+	  <tr><th>{% trans 'Project' %}</th>
+	    <th>{% trans 'Overall Completion' %}</th>
+	    <th>{% trans 'Last Activity' %}</th></tr>
+	  {% for item in projects %}
+	  <tr class="{% cycle 'even' 'odd' %}">
+	    <td class="project"><a href="{%filter l%}/projects/{{item.code}}/{%endfilter%}" title="{{item.description}}">{{item.name}}</a></td>
 	    <td>
-	      <span class="graph" dir="$uidir">
-		<span class="translated" style="width: ${p.transper}px" title="${p.trans}/${p.total} words translated" />
-		<span class="fuzzy" style="${cssaligndir}: ${p.transper}px; width: ${p.fuzzyper}px" title="${p.fuzzy}/${p.total} words fuzzy" />
-		<span class="untranslated" style="${cssaligndir}: ${p.transper+p.fuzzyper}px; width: ${p.untransper}px" title="${p.untrans}/${p.total} words untranslated" />
+	      <span class="graph" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+		<span class="translated" style="width: {{item.transper}}px" title="{{item.trans}}/{{item.total}} words translated"> </span>
+		{% if item.fuzzy %}<span class="fuzzy" style="{%if LANGUAGE_BIDI%}right{%else%}left{%endif%}: {{item.transper}}px; width: {{item.fuzzyper}}px" title="{{item.fuzzy}}/{{item.total}} words fuzzy"> </span>{% endif %}
+		{% if item.untrans %}<span class="untranslated" style="{%if LANGUAGE_BIDI%}right{%else%}left{%endif%}: {{item.transper|add:item.fuzzyper}}px; width: {{item.untransper}}px" title="{{item.untrans}}/{{item.total}} words untranslated"> </span>{% endif %}
 	      </span>
-	      <span class="sortkey">${p.transper}%</span>
+	      <span class="sortkey">{{item.transper}}</span>
 	    </td> 
-	    <td>${p.lastactivity}</td>
+	    <td>{{item.lastactivity}}</td>
 	  </tr>
+	  {% endfor %}
 	</table>
       </div>
     </div>
   </div><!--content-->
+{% endblock content %}
 
-
-  <div id="postcontent" py:def="postcontent_block()">
+{% block postcontent %}
+  <div id="postcontent">
     <div class="module first clear">
       <div class="bd">
-	<div py:replace="pootlepage.translationsummarylegend(translationlegend, mediaurl)" />
+	{% include "translation_summary_legend.html" %}
       </div>
     </div>
-      
-    <div py:replace="pootlepage.topcontributerstable(topstats, topstatsheading)" />
+    {% include "top_contributers_table.html" %}
   </div><!--postcontent-->
-
-
-</include>
+{% endblock postcontent %}
