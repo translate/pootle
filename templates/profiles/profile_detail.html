@@ -11,21 +11,19 @@
         {% for language in profile.getquicklinks %}
         <div>
             <dl>
-                <dt> <a href= "/{{ language.code }}/" >
-                    {% blocktrans with language.name as lan_name %}
-                    {{ lan_name }}
-                    {% endblocktrans %}
+                <dt> <a href= "{% filter l %}/{{ language.code }}/{% endfilter %}" >
+                    {% trans language.name  %}
                 </a> </dt>
                 {% for project in language.projects %}
                 <dd >
-                <a href= "/{{language.code}}/{{project.code}}/" >
+                <a href= "{% filter l %}/{{language.code}}/{{project.code}}/{% endfilter %}" >
                     {% blocktrans with project.code as pro_code %}
                     {{ pro_code }}
                     {% endblocktrans %}
                 </a>
                 {% if project.isprojectadmin %}
                 <div >
-                    <a href="/{{language.code}}/{{ project.code}}/admin.html">{% trans "Admin" %}</a>
+                    <a href="{% filter l %}/{{language.code}}/{{ project.code}}/admin.html {% endfilter %}">{% trans "Admin" %}</a>
                 </div>
                 {% endif %}
                 </dd>
@@ -35,7 +33,7 @@
         {% endfor %}
         {% else %}
         <div class="item-description">
-            {% trans "You need to" %} <a href="/accounts/edit/"> {% trans "choose your languages and projects." %} </a>
+            {% trans "You need to" %} <a href="{% filter l %}/accounts/edit/{% endfilter %}"> {% trans "choose your languages and projects." %} </a>
         </div>
         {% endif %}
         <ul>
