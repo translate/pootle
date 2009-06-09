@@ -25,7 +25,7 @@ urlpatterns = patterns('pootle_app.views.index',
     (r'^logout.html$',     'logout.view'),
     (r'^robots.txt$',      'robots.view'),
     (r'^about.html$',      'about.view'),
-    (r'^register.html$',   'register.view'),
+#    (r'^register.html$',   'register.view'),
     (r'^activate.html$',   'activate.view'),
     (r'^(/|index.html)?$', 'index.view'),
 )
