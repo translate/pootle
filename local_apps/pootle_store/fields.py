@@ -188,8 +188,9 @@ class TranslationStoreFile(File):
         self.store.units.remove(unit)
         if hasattr(self.store, "sourceindex"):
             self.store.remove_unit_from_index(unit)
-            
-            
+
+    def getpomtime(self):
+        return statsdb.get_mod_info(self.path)
 class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     _store_cache = {}
 
@@ -209,7 +210,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     def _update_store_cache(self):
         """ add translation store to dictionary cache, replace old
         cached version if needed."""
-        mod_info = statsdb.get_mod_info(self.path)
+        mod_info = self.getpomtime()
 
         if self.path not in self._store_cache or self._store_cache[self.path][1] != mod_info:
             logging.debug("cache miss for %s", self.path)
@@ -221,7 +222,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         if self.path not in self._store_cache:
             return self._update_store_cache()
 
-        mod_info = statsdb.get_mod_info(self.path)
+        mod_info = self.getpomtime()
         self._store_cache[self.path] = (self._store_cache[self.path][0], mod_info)
 
         
