@@ -64,7 +64,11 @@ def view(request, project_code, _path_var):
         result['totalsourcewords'] = xstats['totalsourcewords'] + ystats['totalsourcewords']
         return result
 
-    totals = reduce(addstats, translation_projects)
+    if languagecount > 1:
+        totals = reduce(addstats, translation_projects)
+    else:
+        totals = translation_projects[0].get_quick_stats()
+        
     average = totals['translatedsourcewords'] * 100 / max(totals['totalsourcewords'], 1)
 
     def narrow(query):

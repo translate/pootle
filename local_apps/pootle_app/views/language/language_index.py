@@ -71,7 +71,11 @@ def language_index(request, language_code):
         result['totalsourcewords'] = xstats['totalsourcewords'] + ystats['totalsourcewords']
         return result
 
-    totals = reduce(addstats, projects)
+    if projectcount > 1:
+        totals = reduce(addstats, projects)
+    else:
+        totals = projects[0].get_quick_stats()
+        
     average = totals['translatedsourcewords'] * 100 / max(totals['totalsourcewords'], 1)
 
     def narrow(query):
