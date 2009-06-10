@@ -49,13 +49,13 @@ def view(request):
                        'traduction',
                        'traduire',
                        ],
-        'versiontext': _("""
-        This site is running:<br />
+        'versiontext': ("""
         Pootle %s<br />
         Translate Toolkit %s<br />
         Django %s<br />
-        Python %s (on %s/%s)
-        """, (pootleversion.sver,
+        Python %s<br />
+        Running on %s/%s
+        """ % (pootleversion.sver,
               toolkitversion.sver,
               django.get_version(),
               sys.version,
