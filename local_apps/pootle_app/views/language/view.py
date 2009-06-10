@@ -21,6 +21,7 @@
 import cStringIO
 import os
 
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import simplejson
@@ -49,24 +50,8 @@ from admin import view as translation_project_admin_view
 
 def get_translation_project(f):
     def decorated_f(request, language_code, project_code, *args, **kwargs):
-        try:
-            translation_project = TranslationProject.objects.select_related(depth=1).get(language__code=language_code,
-                                                                                         project__code=project_code)
-            return f(request, translation_project, *args, **kwargs)
-        except TranslationProject.DoesNotExist:
-            # No such TranslationProject.  It might be because the
-            # language code doesn't exist...
-            if Language.objects.filter(code=language_code).count() == 0:
-                return redirect('/', message=_('The language "%s" is not defined for this Pootle installation' % language_code))
-            # ...or if the language exists, maybe the project code is
-            # invalid...
-            elif Project.objects.filter(code=project_code).count() == 0:
-                return redirect('/', message=_('The project "%s" is not defined for this Pootle installation' % project_code))
-            # ...but if both the language and project codes are valid,
-            # then we simply don't have a corresponding
-            # TranslationProject
-            else:
-                return redirect('/%s' % language_code, message=_('The project "%s" does not exist for the language %s' % (project_code, language_code)))
+        translation_project = get_object_or_404(TranslationProject, language__code=language_code, project__code=project_code)
+        return f(request, translation_project, *args, **kwargs)
     return decorated_f
 
 def set_request_context(f):
@@ -112,7 +97,7 @@ def translate_page(request, translation_project, dir_path):
 @get_translation_project
 @set_request_context
 def project_index(request, translation_project, dir_path):
-    directory = Directory.objects.get(pootle_path=translation_project.directory.pootle_path + dir_path)
+    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
     try:
         return project_index_view(request, translation_project, directory)
     except PermissionError, msg:
@@ -120,7 +105,7 @@ def project_index(request, translation_project, dir_path):
 
 def handle_translation_file(request, translation_project, file_path):
     pootle_path = translation_project.directory.pootle_path + (file_path or '')
-    store = Store.objects.get(pootle_path=pootle_path)
+    store = get_object_or_404(Store, pootle_path=pootle_path)
     try:
         def get_item(itr, item):
             try:
@@ -152,7 +137,7 @@ def export_zip(request, translation_project, file_path):
     try:
         path_obj = Directory.objects.get(pootle_path=pootle_path)
     except Directory.DoesNotExist:
-        path_obj = Store.objects.get(pootle_path=pootle_path[:-1])
+        path_obj = get_object_or_404(Store, pootle_path=pootle_path[:-1])
     stores = store_iteration.iter_stores(path_obj, Search.from_request(request))
     archivecontents = translation_project.get_archive(stores)
     return HttpResponse(archivecontents, content_type="application/zip")
@@ -175,7 +160,7 @@ MIME_TYPES = {
 @get_translation_project
 @set_request_context
 def export(request, translation_project, file_path, format):
-    store = Store.objects.get(pootle_path=translation_project.directory.pootle_path + file_path)
+    store = get_object_or_404(Store, pootle_path=translation_project.directory.pootle_path + file_path)
     encoding = getattr(store.file.store, "encoding", "UTF-8")
     content_type = MIME_TYPES[format] % dict(encoding=encoding)
     if format == translation_project.project.localfiletype:
