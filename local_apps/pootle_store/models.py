@@ -231,7 +231,7 @@ class Store(models.Model):
         """make sure each msgid is unique ; merge comments etc
         from duplicates into original"""
 
-        
+        self.file._update_store_cache()
         if self.file.store == newfile:
             logging.debug("identical merge: %s", self.file.name)
             return
