@@ -197,7 +197,7 @@ def yield_sdf_link(request, path_obj, links_required):
 
 def yield_commit_link(request, path_obj, links_required):
     if 'commit' in links_required and check_permission('commit', request):
-        link = dispatch.commit(path_obj)
+        link = dispatch.commit(request, path_obj)
         text = _('Commit to VCS')
         yield {
             'href': link,
@@ -207,7 +207,7 @@ def yield_commit_link(request, path_obj, links_required):
 
 def yield_update_link(request, path_obj, links_required):
     if 'commit' in links_required and check_permission('commit', request):
-        link = dispatch.update(path_obj)
+        link = dispatch.update(request, path_obj)
         text = _('Update from VCS')
         yield {
             'href': link,
