@@ -54,7 +54,7 @@ class TranslationStoreFile(File):
         return self.__statscache[current_thread]
             
     _statscache = property(_get_statscache)
-
+    
     #FIXME: figure out what this checker thing is
     checker = None
 
@@ -207,7 +207,7 @@ translation_file_updated = Signal(providing_args=["path"])
 
 class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     _store_cache = {}
-
+    
     # redundant redefinition of path to be the same as defined in
     # FieldFile, added here for clarity since TranslationStoreFile
     # uses a different method
@@ -216,9 +216,9 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     def _get_store(self):
         """ get translation store from dictionary cache, populate if
         store not already cached. """
-        #if self.path not in self._store_cache:
-        #FIXME: is it possible to not test mod_info on every access?
-        self._update_store_cache()
+        #FIXME: when do we detect that file changed?
+        if self.path not in self._store_cache:
+            self._update_store_cache()
         return self._store_cache[self.path][0]
 
     def _update_store_cache(self):
