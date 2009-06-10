@@ -232,6 +232,7 @@ class TranslationProject(models.Model):
             try:
                 logging.debug("updating %s from version control", store.file.path)
                 versioncontrol.updatefile(store.file.path)
+                store.file._delete_store_cache()
                 store.mergefile(working_copy, "versionmerge", allownewstrings=False, obseletemissing=False)
             except Exception, e:
                 #something wrong, file potentially modified, bail out
@@ -258,39 +259,88 @@ class TranslationProject(models.Model):
             pass # If something goes wrong, we just continue without worrying
         os.chdir(currdir)
 
-    def commitpofile(self, request, dirname, pofilename):
+    def updatepofile(self, request, store):
+        """updates file from version control,
+        retaining uncommitted translations"""
+        if not check_permission("commit", request):
+            raise PermissionError(_("You do not have rights to update from version control here"))
+    
+        try:
+            hooks.hook(self.project.code, "preupdate", store.file.path)
+        except:
+            pass
+        # keep a copy of working files in memory before updating
+        working_stats = store.file.getquickstats()
+        working_copy = store.file.store
+
+        success = True
+        try:
+            logging.debug("updating %s from version control", store.file.path)
+            versioncontrol.updatefile(store.file.path)
+            store.file._delete_store_cache()
+            remote_stats = store.file.getquickstats()
+            store.mergefile(working_copy, "versionmerge", allownewstrings=False, obseletemissing=False)
+            new_stats = store.file.getquickstats()
+            request.user.message_set.create(message="Updated file: <em>%s</em>" % store.file.name)
+
+            def stats_message(version, stats):
+                return "%s: %d of %d messages translated (%d fuzzy)." % \
+                              (version, stats["translated"], stats["total"], stats["fuzzy"])
+
+            request.user.message_set.create(message=stats_message("working copy", working_stats))
+            request.user.message_set.create(message=stats_message("remote copy", remote_stats))
+            request.user.message_set.create(message=stats_message("merged copy", new_stats))                                            
+        except Exception, e:
+            #something wrong, file potentially modified, bail out
+            #and replace with working copy
+            logging.error("near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
+            working_copy.save()
+            success = False
+            
+        try:
+            hooks.hook(self.project.code, "postupdate", store.file.path)
+        except:
+            pass
+
+        
+        project_tree.scan_translation_project_files(self)
+        return success
+
+    def commitpofile(self, request, store):
         """commits an individual PO file to version control"""
         if not check_permission("commit", request):
             raise PermissionError(_("You do not have rights to commit files here"))
-        pathname = self.getuploadpath(dirname, pofilename)
-        stats = self.getquickstats([os.path.join(dirname, pofilename)])
+
+        stats = store.file.getquickstats()
         statsstring = "%d of %d messages translated (%d fuzzy)." % \
                 (stats["translated"], stats["total"], stats["fuzzy"])
 
-        message="Commit from %s by user %s, editing po file %s. %s" % (settings.TITLE, request.user.username, pofilename, statsstring)
-        author=request.user.username
-        fulldir = os.path.split(pathname)[0]
-     
+        author = request.user.username
+        message = "Commit from %s by user %s, editing po file %s. %s" % \
+                  (settings.TITLE, author, store.file.filename, statsstring)
+
         try:
-            filestocommit = hooks.hook(self.project.code, "precommit", pathname, author=author, message=message)
+            filestocommit = hooks.hook(self.project.code, "precommit", store.file.path, author=author, message=message)
         except ImportError:
             # Failed to import the hook - we're going to assume there just isn't a hook to
             # import.    That means we'll commit the original file.
-            filestocommit = [pathname]
+            filestocommit = [store.file.path]
 
         success = True
         try:
             for file in filestocommit:
                 versioncontrol.commitfile(file, message=message, author=author)
-                get_profile(request.user).add_message("Committed file: <em>%s</em>" % file)
+                request.user.message_set.create(message="Committed file: <em>%s</em>" % file)
         except Exception, e:
             logging.error("Failed to commit files: %s", e)
-            get_profile(request.user).add_message("Failed to commit file: %s" % e)
+            request.user.message_set.create(message="Failed to commit file: %s" % e)
             success = False 
         try:
-            hooks.hook(self.project.code, "postcommit", pathname, success=success)
+            hooks.hook(self.project.code, "postcommit", store.file.path, success=success)
         except:
             pass
+        return success
+
 
     def initialize(self):
         try:

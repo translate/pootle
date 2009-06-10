@@ -129,6 +129,26 @@ def handle_translation_file(request, translation_project, file_path):
 
 @get_translation_project
 @set_request_context
+def commit_file(request, translation_project, file_path):
+    if not check_permission("commit", request):
+        raise PermissionError(_("You do not have rights to comit files here"))
+    pootle_path = translation_project.directory.pootle_path + file_path
+    store = get_object_or_404(Store, pootle_path=pootle_path)
+    result = translation_project.commitpofile(request, store)
+    return redirect(dispatch.show_directory(request, translation_project.directory.pootle_path))
+
+@get_translation_project
+@set_request_context
+def update_file(request, translation_project, file_path):
+    if not check_permission("commit", request):
+        raise PermissionError(_("You do not have rights to update files here"))
+    pootle_path = translation_project.directory.pootle_path + file_path
+    store = get_object_or_404(Store, pootle_path=pootle_path)
+    result = translation_project.updatepofile(request, store)
+    return redirect(dispatch.show_directory(request, translation_project.directory.pootle_path))
+
+@get_translation_project
+@set_request_context
 def export_zip(request, translation_project, file_path):
     if not check_permission("archive", request):
         return redirect('/%s/%s' % (translation_project.language.code, translation_project.project.code),

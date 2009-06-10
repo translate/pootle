@@ -190,10 +190,30 @@ def yield_sdf_link(request, path_obj, links_required):
             path_obj == translation_project.directory:
         link = dispatch.download_sdf(request, path_obj)
         yield {
-            'href':  archive_name,
+            'href':  link,
             'text':  _('Generate SDF'),
-            'title': archive_name
+            'title': link
             }
+
+def yield_commit_link(request, path_obj, links_required):
+    if 'commit' in links_required and check_permission('commit', request):
+        link = dispatch.commit(path_obj)
+        text = _('Commit to VCS')
+        yield {
+            'href': link,
+            'text': text,
+            'link': link,
+        }
+
+def yield_update_link(request, path_obj, links_required):
+    if 'commit' in links_required and check_permission('commit', request):
+        link = dispatch.update(path_obj)
+        text = _('Update from VCS')
+        yield {
+            'href': link,
+            'text': text,
+            'link': link,
+        }
 
 def get_store_extended_links(request, path_obj, links_required):
     stats_totals = metadata.stats_totals(path_obj, request.translation_project.checker)
@@ -204,7 +224,11 @@ def get_store_extended_links(request, path_obj, links_required):
             yield_translate_all_link(request, path_obj, links_required),
             yield_export_links(      request, path_obj, links_required),
             yield_zip_link(          request, path_obj, links_required),
-            yield_sdf_link(          request, path_obj, links_required)))
+            yield_sdf_link(          request, path_obj, links_required),
+            yield_commit_link(request, path_obj, links_required),
+            yield_update_link(request, path_obj, links_required),
+            ))
+
 
 def get_default_links_required(links_required):
     if links_required is None:

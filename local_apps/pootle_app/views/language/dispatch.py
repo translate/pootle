@@ -114,4 +114,8 @@ def export(request, pootle_path, format):
 def reload(request, vars):
     return url_manip.make_url(request.path_info, vars)
 
+def commit(path_obj):
+    return  path_obj.pootle_path + '/commit'
 
+def update(path_obj):
+    return  path_obj.pootle_path + '/update'
