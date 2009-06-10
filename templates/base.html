@@ -69,6 +69,11 @@
 	  {% block message %}
 	  <div class="info">{{ message }}</div>
 	  <div class="error">{{ error_message }}</div>
+	  {% for msg in messages %}
+	  <p class="info">
+	    {{ msg }}
+	  </p>
+	  {% endfor %}
 	  {% endblock message %}
 	</div><!--site-message-->
 
