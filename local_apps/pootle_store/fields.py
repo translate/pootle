@@ -42,6 +42,7 @@ class TranslationStoreFile(File):
     A mixin for use alongside django.core.files.base.File, which provides
     additional features for dealing with translation files.
     """
+    _stats = {}
     __statscache = {}
 
     def _get_statscache(self):
@@ -91,19 +92,27 @@ class TranslationStoreFile(File):
     def getquickstats(self):
         """returns the quick statistics (totals only)
         """
-        return self._statscache.filetotals(self.path, store=self._get_store) #or statsdb.emptyfiletotals()
+        if 'quickstats' not in self._stats.setdefault(self.path, {}):
+            self._stats[self.path]['quickstats'] = self._statscache.filetotals(self.path, store=self._get_store) # or statsdb.emptyfiletotals()
+        return self._stats[self.path]['quickstats']
 
     def getstats(self):
         """returns the unit states statistics only"""
-        return self._statscache.filestatestats(self.path, store=self._get_store)
+        if 'stats' not in self._stats.setdefault(self.path, {}):
+            self._stats[self.path]['stats'] = self._statscache.filestatestats(self.path, store=self._get_store)
+        return self._stats[self.path]['stats']
     
     def getcompletestats(self, checker):
         """return complete stats including quality checks
         """
-        return self._statscache.filestats(self.path, checker, store=self._get_store)
+        if 'completestats' not in self._stats.setdefault(self.path, {}):
+            self._stats[self.path]['completestats'] =  self._statscache.filestats(self.path, checker, store=self._get_store)
+        return self._stats[self.path]['completestats']
 
     def getunitstats(self):
-        return self._statscache.unitstats(self.path, store=self._get_store)
+        if 'unitstats' not in self._stats.setdefault(self.path, {}):
+            self._stats[self.path]['unitstats'] = self._statscache.unitstats(self.path, store=self._get_store)
+        return self._stats[self.path]['unitstats']
 
     def reclassifyunit(self, item, checker=checks.StandardUnitChecker()):
         """Reclassifies all the information in the database and
@@ -112,6 +121,7 @@ class TranslationStoreFile(File):
         #FIXME: how do we reflect the recached unit in our in memory cache of stats
         unit = self.getitem(item)
         state = self._statscache.recacheunit(self.path, checker, unit)
+        
 
     def _get_total(self):
         """returns list of translatable unit indeces, useful for
@@ -215,6 +225,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         if self.path not in self._store_cache or self._store_cache[self.path][1] != mod_info:
             logging.debug("cache miss for %s", self.path)
             self._store_cache[self.path] = (factory.getobject(self.path, ignore=self.field.ignore), mod_info)
+            self._stats[self.path] = {}
 
     def _touch_store_cache(self):
         """update stored mod_info without reparsing file"""
