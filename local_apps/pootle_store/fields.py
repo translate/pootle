@@ -45,6 +45,7 @@ class TranslationStoreFile(File):
     __statscache = {}
 
     def _get_statscache(self):
+        """reuse statsdb database connection, keep a pool of one connection per thread"""
         current_thread = currentThread()
         if current_thread not in self.__statscache:
             self.__statscache[current_thread] = statsdb.StatsCache(settings.STATS_DB_PATH)
@@ -108,8 +109,9 @@ class TranslationStoreFile(File):
         """Reclassifies all the information in the database and
         self._stats about the given unit
         """
+        #FIXME: how do we reflect the recached unit in our in memory cache of stats
         unit = self.getitem(item)
-        self._statscache.recacheunit(self.path, checker, unit)
+        state = self._statscache.recacheunit(self.path, checker, unit)
 
     def _get_total(self):
         """returns list of translatable unit indeces, useful for
