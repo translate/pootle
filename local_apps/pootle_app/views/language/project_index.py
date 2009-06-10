@@ -273,7 +273,7 @@ class UploadHandler(view_handler.Handler):
 
     @classmethod
     def must_display(self, request, *args, **kwargs):
-        return check_permission('administrate', request)
+        return check_permission('translate', request)
 
     def __init__(self, data, request, *args, **kwargs):
         super(UploadHandler, self).__init__(data, request, *args, **kwargs)
