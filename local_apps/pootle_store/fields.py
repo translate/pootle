@@ -119,10 +119,11 @@ class TranslationStoreFile(File):
         """Reclassifies all the information in the database and
         self._stats about the given unit
         """
-        #FIXME: how do we reflect the recached unit in our in memory cache of stats
         unit = self.getitem(item)
         state = self._statscache.recacheunit(self.path, checker, unit)
-        
+        #FIXME: can't we use state to update stats cache instead of invalidating it?
+        self._stats[self.path] = {}
+        return state
 
     def _get_total(self):
         """returns list of translatable unit indeces, useful for
