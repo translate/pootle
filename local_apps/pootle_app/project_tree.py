@@ -48,7 +48,7 @@ def language_match_filename(language_code, path_name):
  
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
-    return language_code == name
+    return language_code == name or language_code == 'templates'
 
 def _search_file_style(project_dir, language_code, depth=0, max_depth=3, ext="po"):
     #Let's check to see if we specifically find the correct gnu file
@@ -223,6 +223,11 @@ def scan_translation_project_files(translation_project):
     directory     = translation_project.directory
     ignored_files = set(p.strip() for p in project.ignoredfiles.split(','))
     ext           = os.extsep + translation_project.project.localfiletype
+
+    # scan for pots if template project
+    if translation_project.language.code == 'templates' and translation_project.project.localfiletype == 'po':
+        ext = os.extsep + 'pot'
+        
     if translation_project.file_style == 'gnu':
         add_files(ignored_files, ext, real_path, directory,
                   lambda filename: direct_language_match_filename(translation_project.language.code, filename))
