@@ -353,6 +353,7 @@ class TranslationProject(models.Model):
         logging.error("error in filter %s: %r, %r, %s", functionname, str1, str2, e)
         return False
 
+
     ##############################################################################################
 
     def get_archive(self, stores):
@@ -751,18 +752,6 @@ class TranslationProject(models.Model):
         return assigncount
 
     ##############################################################################################
-
-    def getquickstats(self, pofilenames=None):
-        """Gets translated and total stats and wordcounts without doing calculations returning dictionary."""
-        if pofilenames is None:
-            pofilenames = self.non_db_state.pofilenames
-        result =    {"translatedsourcewords": 0, "translated": 0,
-                             "fuzzysourcewords": 0, "fuzzy": 0,
-                             "totalsourcewords": 0, "total": 0}
-        for stats in (self.non_db_state.pofiles[key].statistics.getquickstats() for key in pofilenames):
-            for key in result:
-                result[key] += stats[key]
-        return result
 
     def combinestats(self, pofilenames=None):
         """combines translation statistics for the given po files (or all if None given)"""
