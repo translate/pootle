@@ -84,7 +84,7 @@ def mark_nodefault(request, result):
     navigate searches using form submissions."""
     if request.method == 'POST':
         for form in result['advanced_search_form'].forms:
-            if form.initial['selected'] != form['selected'].data:
+            if form.is_valid() and form.initial['selected'] != form.cleaned_data['selected']:
                 result['extra_class'] = 'nodefaultsearch'
                 return result
     return result
@@ -117,7 +117,7 @@ def search_from_request(request):
     def as_search_field_list(formset):
         return [form.initial['name']
                 for form in formset.forms
-                if form['selected'].data]
+                if form.is_valid() and form.cleaned_data['selected']]
 
     search = get_search_form(request)
 
