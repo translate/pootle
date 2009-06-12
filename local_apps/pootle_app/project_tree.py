@@ -280,52 +280,33 @@ def convert_template(template_path, target_path):
     finally:
         output_file.close()
 
-def get_translated_name_gnu(translation_project, template_path):
-    path_parts = template_path.split(os.sep)
+def get_translated_name_gnu(translation_project, store):
+    path_parts = store.file.path.split(os.sep)
     path_parts[-1] =  "%s.%s" % (translation_project.language.code,
                                  translation_project.project.localfiletype)
     return os.sep.join(path_parts)
 
-def is_valid_template_file_gnu(template_translation_project, translation_project, filename):
-    def get_gnu_template_name():
-        return "%s.%s" % (translation_project.project.code,
-                          get_extension(template_translation_project.language, template_translation_project.project))
+def get_translated_name(translation_project, store):
+    name, ext = os.path.splitext(store.name)
+    path_parts = store.file.name.split(os.sep)
 
-    return get_gnu_template_name() == filename
-
-def get_translated_name(translation_project, template_path):
-    def to_non_template_name(translation_project, filename):
-        name, ext = os.path.splitext(filename)
-        return name + '.' + translation_project.project.localfiletype
-
-    relative_template_path = relative_real_path(template_path)
-    path_parts = relative_template_path.split(os.sep)
+    # replace language code
     path_parts[1] = translation_project.language.code
-    path_parts[-1] = to_non_template_name(translation_project, path_parts[-1])
+    # replace extension
+    path_parts[-1] = name + '.' + translation_project.project.localfiletype
+    
     return absolute_real_path(os.sep.join(path_parts))
 
-def is_valid_template_file(template_translation_project, translation_project, filename):
-    name, ext = os.path.splitext(filename)
-    if ext == '.' + get_extension(template_translation_project.language, template_translation_project.project):
-        return True
-    else:
-        return False
 
-def convert_templates_real(template_translation_project, translation_project, is_valid_template_file, get_translated_name):
-    for dirpath, dirnames, filenames in os.walk(template_translation_project.abs_real_path):
-        for filename in filenames:
-            if is_valid_template_file(template_translation_project, translation_project, filename):
-                full_template_path   = os.path.join(dirpath, filename)
-                full_translated_path = get_translated_name(translation_project, full_template_path)
-                convert_template(full_template_path, full_translated_path)
-        
 def convert_templates(template_translation_project, translation_project):
-    if translation_project.file_style == 'gnu':
-        convert_templates_real(template_translation_project, translation_project,
-                               is_valid_template_file_gnu, get_translated_name_gnu)
-    else:
-        convert_templates_real(template_translation_project, translation_project,
-                               is_valid_template_file, get_translated_name)
-    scan_translation_project_files(template_translation_project)
+    for store in template_translation_project.stores.all():
+        if translation_project.file_style == 'gnu':
+            new_store_path = get_translated_name_gnu(translation_project, store)
+        else:
+            new_store_path = get_translated_name(translation_project, store)
+        convert_template(store.file.path, new_store_path)
     scan_translation_project_files(translation_project)
+            
+
+
     
