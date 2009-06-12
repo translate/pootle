@@ -28,7 +28,7 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 
 from pootle_app.models.profile         import get_profile
-from pootle_app.models.search          import Search
+from pootle_app.views.language          import search_forms
 from pootle_app.models.store_iteration import get_next_match
 from pootle_app.models.permissions     import check_permission
 from pootle_app.models                 import metadata
@@ -127,7 +127,7 @@ def get_quick_assigned_strings(request, path_obj, has_strings, search):
 
 def yield_assigned_links(request, path_obj, links_required):
     if 'mine' in links_required and request.user.is_authenticated():
-        search = Search.from_request(request)
+        search = search_forms.search_from_request(request)
         search.assigned_to = [request.user.username]
         has_strings = has_assigned_strings(path_obj, search)
         yield get_assigned_strings(request, path_obj, has_strings)
@@ -252,7 +252,7 @@ def add_percentages(quick_stats):
     return quick_stats
 
 def make_generic_item(request, path_obj, action, links_required):
-    search = Search.from_request(request)
+    search = search_forms.search_from_request(request)
     quick_stats = add_percentages(metadata.quick_stats(path_obj, request.translation_project.checker, search))
     return {
         'href':    action,

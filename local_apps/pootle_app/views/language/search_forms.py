@@ -20,11 +20,12 @@
 
 """Helper methods for search functionality."""
 
+from django.utils.translation import ugettext as _
 from django import forms
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.forms.util import ValidationError
-from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
+from pootle_app.models.search import Search
 
 class SearchForm(forms.Form):
     text = forms.CharField(widget=forms.TextInput(attrs={'size':'15'}))
@@ -105,3 +106,27 @@ def get_search_form(request, search_text=None):
         })
 
 
+
+def search_from_request(request):
+    def get_list(request, name):
+        try:
+            return request.GET[name].split(',')
+        except KeyError:
+            return []
+
+    def as_search_field_list(formset):
+        return [form.initial['name']
+                for form in formset.forms
+                if form['selected'].data]
+
+    search = get_search_form(request)
+
+    kwargs = {}
+    if 'goal' in request.GET:
+        kwargs['goal'] = Goal.objects.get(name=request.GET['goal'])
+    kwargs['match_names']         = get_list(request, 'match_names')
+    kwargs['assigned_to']         = get_list(request, 'assigned_to')
+    kwargs['search_text']         = search['search_form']['text'].data
+    kwargs['search_fields']       = as_search_field_list(search['advanced_search_form'])
+    kwargs['translation_project'] = request.translation_project
+    return Search(**kwargs)

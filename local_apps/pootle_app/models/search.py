@@ -20,12 +20,11 @@
 
 import bisect
 
-from django.db                import models
 
 from translate.tools import pogrep
 
 from pootle_app.models.assignment import StoreAssignment
-from pootle_app.views.language    import search_forms
+#from pootle_app.views.language    import search_forms
 from pootle_app.lib.util          import lazy_property
 
 import metadata
@@ -122,31 +121,6 @@ def do_search_query(indexer, search):
     return indexer.search(limitedquery, ['pofilename', 'itemno'])
 
 class Search(object):
-    @classmethod
-    def from_request(cls, request):
-        def get_list(request, name):
-            try:
-                return request.GET[name].split(',')
-            except KeyError:
-                return []
-
-        def as_search_field_list(formset):
-            return [form.initial['name']
-                    for form in formset.forms
-                    if form['selected'].data]
-
-        search = search_forms.get_search_form(request)
-
-        kwargs = {}
-        if 'goal' in request.GET:
-            kwargs['goal'] = Goal.objects.get(name=request.GET['goal'])
-        kwargs['match_names']         = get_list(request, 'match_names')
-        kwargs['assigned_to']         = get_list(request, 'assigned_to')
-        kwargs['search_text']         = search['search_form']['text'].data
-        kwargs['search_fields']       = as_search_field_list(search['advanced_search_form'])
-        kwargs['translation_project'] = request.translation_project
-        return cls(**kwargs)
-
     def __init__(self, goal=None, match_names=[], assigned_to=[],
                  search_text=None, search_fields=None,
                  translation_project=None):

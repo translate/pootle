@@ -898,7 +898,7 @@ def process_post_main(store_name, item, request, next_store_item, prev_store_ite
     request.translation_project.indexer # Force initialization of the indexer
     prev_item, next_item = process_post(request, store)
     
-    search = Search.from_request(request)
+    search = search_forms.search_from_request(request)
     if next_item > -1:
         return next_store_item(search, store_name, next_item + 1)
     elif prev_item > -1:
@@ -915,11 +915,11 @@ def get_position(request, next_store_item, prev_store_item):
     item       = state.item
     if request.method == 'POST':
         if 'new_search' in request.POST:
-            return next_store_item(Search.from_request(request), store_name, item)
+            return next_store_item(search_forms.search_from_request(request), store_name, item)
         else:
             return process_post_main(store_name, item, request, next_store_item, prev_store_item)
     else:
-        return next_store_item(Search.from_request(request), store_name, item)
+        return next_store_item(search_forms.search_from_request(request), store_name, item)
 
 def get_failure_message(request):
     if 'store' not in request.GET:

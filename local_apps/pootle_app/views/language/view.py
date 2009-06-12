@@ -44,7 +44,7 @@ from pootle_app                    import unit_update
 from project_index import view as project_index_view
 from translate_page import find_and_display
 from admin import view as translation_project_admin_view
-
+from pootle_app.views.language import search_forms
 ################################################################################
 
 
@@ -158,7 +158,7 @@ def export_zip(request, translation_project, file_path):
         path_obj = Directory.objects.get(pootle_path=pootle_path)
     except Directory.DoesNotExist:
         path_obj = get_object_or_404(Store, pootle_path=pootle_path[:-1])
-    stores = store_iteration.iter_stores(path_obj, Search.from_request(request))
+    stores = store_iteration.iter_stores(path_obj, search_forms.search_from_request(request))
     archivecontents = translation_project.get_archive(stores)
     return HttpResponse(archivecontents, content_type="application/zip")
 

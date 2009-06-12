@@ -77,7 +77,7 @@ def get_stats_headings():
 ################################################################################
 
 def get_children(request, translation_project, directory):
-    search = Search.from_request(request)
+    search = search_forms.search_from_request(request)
     return [item_dict.make_directory_item(request, child_dir)
             for child_dir in directory.child_dirs.all()] + \
            [item_dict.make_store_item(request, child_store)
