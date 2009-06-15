@@ -8,9 +8,9 @@
     <div class="bd">
         <ul class="linklist">
             <li><a href="{% filter l %}/accounts/{{user.username}}{% endfilter %}" > {% trans text.home %}</a></li>
-            <li><a href="{% filter l %}users.html{% endfilter %}">{% trans "Users" %}</a></li>
-            <li><a href="{% filter l %}languages.html{% endfilter %}">{% trans "Languages" %}</a></li>
-            <li><a href="{% filter l %}projects.html{% endfilter %}">{% trans "Projects" %}</a></li>
+            <li><a href='{{ "users.html"|l }}'>{% trans "Users" %}</a></li>
+            <li><a href='{{ "languages.html"|l }}'>{% trans "Languages" %}</a></li>
+            <li><a href='{{ "projects.html"|l }}'>{% trans "Projects" %}</a></li>
         </ul>
         <div class="fullwidthcontents">
             <h3 class="title"> {% trans "General options" %} </h3>
