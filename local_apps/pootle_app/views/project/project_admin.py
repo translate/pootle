@@ -29,6 +29,9 @@ from pootle_app                     import project_tree
 from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
     KidRequestContext, init_formset_from_data, choices_from_models, selected_model
 
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
 class LanguageForm(forms.ModelForm):
     update = forms.BooleanField(required=False)
 
@@ -75,7 +78,7 @@ def view(request, project_code):
         "has_template":       has_template
         }
 
-    return render_to_kid("project/projectadmin.html", KidRequestContext(request, template_vars))
+    return render_to_response("project/projectadmin.html", template_vars, context_instance=RequestContext(request))
 
 
 def make_new_language_form(existing_languages, post_vars=None):

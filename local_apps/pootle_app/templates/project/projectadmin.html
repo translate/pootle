@@ -1,43 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?python
-from pootle_app.templates import pootlepage
-?>
-<include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
+{% extends "base.html" %}
+{% load i18n baseurl %}
 
-  <div id="content" py:def="content_block()">
-    <div py:if="sessionvars.issiteadmin" class="module first">
-      <div class="bd">
-        <h3 class="title"><a href="index.html" py:content="main_link">Back to main page</a></h3>
-	
+{% block content %}
+
+{% if user.is_superuser %}
+<div class="module first">
+    {% endif %}
+    <div class="bd">
+        <h3 class="title"><a href="{%filter l %}index.html{% endfilter %}"> {% trans main_link %}</a></h3>
         <br clear="all" />
         <form action="" method="post" name="updatelangform">
-          <h3 class="title" py:content="existing_title">Existing languages</h3>
-          <table class="sortable" id="existing_languages">
-            <thead>
-              <tr>
-                <th py:content="full_name">Complete name</th>
-                <th py:content="iso_code">ISO Code</th>
-              </tr>
-            </thead>
-	    <div py:replace="XML(formset.management_form.as_table())"/>
-            <tr py:for="i, l in enumerate(formset.forms)" class="item item-${i % 2}">
-              <td><span py:replace="XML(l['id'].as_hidden())" /><a href="../../${l.instance.code}/${project.code}/admin.html" py:content="l.instance.fullname">Language</a></td>
-              <td><span py:content="l.instance.code">code</span></td>
-              <!--<td><input type="checkbox" name="updatelanguage" value="${l.instance.code}"/></td>-->
-              <div py:if="has_template" py:strip="">
-                <td><span py:replace="XML(l['update'].as_widget())" /></td>
-                <td><a href="?doupdatelanguage=1&amp;updatelanguage=${l.instance.code}" py:content="update_link">Update from templates</a></td>
-              </div>
-              <td><a href="?initialize=1&amp;updatelanguage=${l.instance.code}" py:content="initialize_link">Initialize</a></td>
-            </tr>
-          </table>
-	  
-	  <div py:replace="XML(new_language_form.as_p())"/>
-          <input type="submit" name="doupdatelanguage" value="${update_button}"/>
+            <h3 class="title" >{% trans existing_title %}</h3>
+            <hr />
+            <table class="sortable" id="existing_languages">
+                <thead>
+                    <tr>
+                        <th >{% trans full_name %}</th>
+                        <th >{% trans iso_code %}</th>
+                    </tr>
+                </thead>
+                <div >
+                    {{ formset.management_form.as_table }}
+                </div>
+
+                {% for form in formset.forms %}
+                <tr class="item item-{{ forloop.counter0 }}">
+                    <td><span > {{ form.id.as_hidden }}</span><a href="{% filter l %}../../{{ form.instance.code }}/{{ project.code }}/admin.html{% endfilter %}"> {{ form.instance.fullname }} 
+                    </a></td>
+                    <td><span >{{ form.instance.code }}</span></td>
+                    {% if has_template %}
+                    <div>
+                        <td><span > {{ form.update.as_widget}} </span></td>
+                        <td><a href="{% filter l %}?doupdatelanguage=1&amp;updatelanguage={{ form.instance.code }} {% endfilter %}">
+                                {{ update_link }}
+                        </a></td>
+                    </div>
+                    {% endif %}
+                    <td><a href="{% filter l %}?initialize=1&amp;updatelanguage={{form.instance.code}}{% endfilter %}">
+                            {{ initialize_link }} </a></td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+            <div >
+                {{ new_language_form.as_p }}
+            </div>
+
+            <input type="submit" name="doupdatelanguage" value="{% trans update_button %}"/>
         </form>
-      </div>
     </div>
+</div>
 
-  </div><!--content-->
+</div>
 
-</include>
+{% if user.is_superuser %}
+</div>
+{% endif %}
+
+{% endblock %}
+
