@@ -26,8 +26,7 @@ from pootle_app.views               import indexpage, pagelayout
 from pootle_misc.baseurl            import redirect
 from pootle_app.models              import Language, Project, TranslationProject
 from pootle_app                     import project_tree
-from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
-    KidRequestContext, init_formset_from_data, choices_from_models, selected_model
+from pootle_app.views.util          import init_formset_from_data, choices_from_models, selected_model
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
