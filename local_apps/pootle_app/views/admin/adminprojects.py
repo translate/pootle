@@ -23,7 +23,11 @@ from pootle_app.views.admin import util
 from pootle_app.models import Project
 
 def view(request):
-    return util.edit(request, 'admin/adminpage.html', Project,
+    model_args = {}
+    model_args['title'] = _("Projects")
+    model_args['formid'] = "projects"
+    model_args['submitname'] = "changeprojects"
+    return util.edit(request, 'admin/adminpage.html', Project, model_args,
               exclude='description', can_delete=True)
     
               

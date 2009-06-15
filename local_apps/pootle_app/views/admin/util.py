@@ -51,24 +51,9 @@ def process_modelformset(request, model_class, **kwargs):
 
 
 @user_is_admin
-def edit(request, template, model_class, **kwargs):
+def edit(request, template, model_class, model_args={'title':'','formid':'','submitname':''}, **kwargs):
     from pootle_app.views.util import form_set_as_table
     from django.utils.safestring import mark_safe
-
-    if model_class == Project:        
-        title = _("Projects")
-        formid = "projects"
-        submitname = "changeprojects"
-
-    elif model_class == Language:
-        title = _("Languages")
-        submitname = "changelanguages"
-        formid = "languages"
-
-    elif model_class == User:
-        title = _("Users")
-        submitname = "changeusers"
-        formid = "users"
 
     formset, msg = process_modelformset(request, model_class, **kwargs)
     template_vars = {"pagetitle": _("Pootle Languages Admin Page"),
@@ -76,9 +61,9 @@ def edit(request, template, model_class, **kwargs):
             "formset":  formset,
             "text":      {"home":        _("Home"),
                 "admin":       _("Main admin page"),
-                "title":    title, 
+                "title":    model_args['title'], 
                 "savechanges": _("Save changes"),
-                "submitname": submitname,
-                "formid": formid,
+                "submitname": model_args['submitname'],
+                "formid": model_args['formid'],
                 "error_msg":  msg}}
     return render_to_response(template, template_vars, context_instance=RequestContext(request))
