@@ -23,8 +23,8 @@ from django.conf.urls.defaults import *
 from pootle_app.views.admin import adminusers, adminlanguages, adminprojects, adminpages
 
 urlpatterns = patterns('',
-    (r'users$',      adminusers.view),
-    (r'languages$',  adminlanguages.view),
-    (r'projects$',   adminprojects.view),
+    (r'users.html$',      adminusers.view),
+    (r'languages.html$',  adminlanguages.view),
+    (r'projects.html$',   adminprojects.view),
     (r'(/|index.html)?$', adminpages.view),
 )
