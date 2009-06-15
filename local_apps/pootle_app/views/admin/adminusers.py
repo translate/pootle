@@ -27,7 +27,7 @@ from django.forms.models import BaseModelFormSet
 
 
 def view(request):
-    return util.edit(request, 'admin/adminusers.html', User,
+    return util.edit(request, 'admin/adminpage.html', User,
                fields=('username', 'first_name', 'last_name', 'email', 'is_active'),
                formset=BaseUserFormSet, can_delete=True)
 

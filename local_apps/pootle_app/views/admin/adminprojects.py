@@ -23,7 +23,7 @@ from pootle_app.views.admin import util
 from pootle_app.models import Project
 
 def view(request):
-    return util.edit(request, 'admin/adminprojects.html', Project,
+    return util.edit(request, 'admin/adminpage.html', Project,
               exclude='description', can_delete=True)
     
               

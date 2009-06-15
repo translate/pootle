@@ -23,7 +23,7 @@ from pootle_app.views.admin import util
 from pootle_app.models import Language
 
 def view(request):
-    return util.edit(request, 'admin/adminlanguages.html', Language,
+    return util.edit(request, 'admin/adminpage.html', Language,
               can_delete=True)
     
               

@@ -55,13 +55,33 @@ def edit(request, template, model_class, **kwargs):
     from pootle_app.views.util import form_set_as_table
     from django.utils.safestring import mark_safe
 
+    #import pdb
+    #pdb.set_trace()
+    if str(model_class) == "<class 'pootle_app.models.project.Project'>":        
+        title = _("Projects")
+        formid = "projects"
+        submitname = "changeprojects"
+
+    if str(model_class) == "<class 'pootle_app.models.language.Language'>":
+        title = _("Languages")
+        submitname = "changelanguages"
+        formid = "languages"
+
+    if str(model_class) == "<class 'django.contrib.auth.models.User'>":
+        title = _("Users")
+        submitname = "changeusers"
+        formid = "users"
+
     formset, msg = process_modelformset(request, model_class, **kwargs)
     template_vars = {"pagetitle": _("Pootle Languages Admin Page"),
             "formset_text":  mark_safe(form_set_as_table(formset)),
             "formset":  formset,
             "text":      {"home":        _("Home"),
                 "admin":       _("Main admin page"),
-                "projects":    _("Projects"), 
+                "title":    title, 
                 "savechanges": _("Save changes"),
+                "submitname": submitname,
+                "formid": formid,
                 "error_msg":  msg}}
+    #return render_to_kid(template, KidRequestContext(request, template_vars))
     return render_to_response(template, template_vars, context_instance=RequestContext(request))
