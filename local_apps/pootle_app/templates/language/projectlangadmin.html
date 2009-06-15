@@ -3,13 +3,13 @@
 
 {% block precontent %}
 
-<h3 class="title">{% trans pagetitle %}</h3>
+<h3 class="title">{{ pagetitle }}</h3>
 <div class="info">
-    <a href="{% filter l %}index.html{% endfilter %}"> {% trans main_link %} </a><br />
-    <a href="{% filter l %}?scan_files=1{% endfilter %}"> {% trans rescan_files_link %} </a><br />
+    <a href="{% filter l %}index.html{% endfilter %}"> {{ main_link }} </a><br />
+    <a href="{% filter l %}?scan_files=1{% endfilter %}"> {{ rescan_files_link }} </a><br />
 </div>
 <div class="intro">
-    {% trans filestyle_text %}
+    {{  filestyle_text }}
 </div>
 
 {% endblock %}
@@ -28,7 +28,7 @@
                 {{ form.as_table }}
                 {% endfor %}
             </table>
-            <input type="submit" name="doupdaterights" value="{% trans updaterights_text %}" />
+            <input type="submit" name="doupdaterights" value="{{ updaterights_text }}" />
         </form>
     </div>
 </div>

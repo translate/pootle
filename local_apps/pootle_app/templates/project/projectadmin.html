@@ -7,16 +7,16 @@
 <div class="module first">
     {% endif %}
     <div class="bd">
-        <h3 class="title"><a href="{%filter l %}index.html{% endfilter %}"> {% trans main_link %}</a></h3>
+        <h3 class="title"><a href="{%filter l %}index.html{% endfilter %}"> {{ main_link }}</a></h3>
         <br clear="all" />
         <form action="" method="post" name="updatelangform">
-            <h3 class="title" >{% trans existing_title %}</h3>
+            <h3 class="title" >{{ existing_title }}</h3>
             <hr />
             <table class="sortable" id="existing_languages">
                 <thead>
                     <tr>
-                        <th >{% trans full_name %}</th>
-                        <th >{% trans iso_code %}</th>
+                        <th >{{ full_name }}</th>
+                        <th >{{ iso_code }}</th>
                     </tr>
                 </thead>
                 <div >
@@ -32,12 +32,12 @@
                     <div>
                         <td><span > {{ form.update.as_widget}} </span></td>
                         <td><a href="{% filter l %}?doupdatelanguage=1&amp;updatelanguage={{ form.instance.code }} {% endfilter %}">
-                                {% trans update_link %}
+                                {{ update_link }}
                         </a></td>
                     </div>
                     {% endif %}
                     <td><a href="{% filter l %}?initialize=1&amp;updatelanguage={{form.instance.code}}{% endfilter %}">
-                            {% trans initialize_link %} </a></td>
+                            {{ initialize_link }} </a></td>
                 </tr>
 
                 {% endfor %}
@@ -47,7 +47,7 @@
                 {{ new_language_form.as_p }}
             </div>
 
-            <input type="submit" name="doupdatelanguage" value="{% trans update_button %}"/>
+            <input type="submit" name="doupdatelanguage" value="{{ update_button }}"/>
         </form>
     </div>
 </div>
