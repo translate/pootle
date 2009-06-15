@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n baseurl %}
+
+{% block content %}
+{% if user.is_superuser %}
+<div class="module-primary first">
+    {% endif %}
+    <div class="bd">
+        <ul class="linklist">
+            <li><a href="{% filter l %}/accounts/{{user.username}}{% endfilter %}" > {% trans text.home %}</a></li>
+            <li><a href="{% filter l %}index.html{% endfilter %}">{% trans text.admin %}</a></li>
+        </ul>
+        <div class="fullwidthcontents">
+            <h3 class="title"> {%trans text.title %} </h3>
+            <hr>
+            <form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
+                {% if text.error_msg %}
+                <div > {% trans text.error_msg %}</div>
+                {% endif %}
+                {{ formset.management_form }}
+                <table cellpadding="1" cellspacing="1">
+                    <div >
+                        {{ formset_text }}
+                    </div>
+                </table>
+                <input type="submit" name={{ text.submitname}} value="{% trans text.savechanges %}" />
+            </form>
+        </div>
+    </div>
+</div>
+    {% if user.is_superuser %}
+</div>
+{% endif %}
+
+{% endblock %}
+
