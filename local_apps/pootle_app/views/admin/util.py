@@ -51,13 +51,13 @@ def process_modelformset(request, model_class, **kwargs):
 
 
 @user_is_admin
-def edit(request, template, model_class, model_args={'title':'','formid':'','submitname':''}, **kwargs):
+def edit(request, template, model_class, model_args={'title':'','formid':'','submitname':''}, link=None, **kwargs):
     from pootle_app.views.util import form_set_as_table
     from django.utils.safestring import mark_safe
 
     formset, msg = process_modelformset(request, model_class, **kwargs)
     template_vars = {"pagetitle": _("Pootle Languages Admin Page"),
-            "formset_text":  mark_safe(form_set_as_table(formset)),
+            "formset_text":  mark_safe(form_set_as_table(formset, link)),
             "formset":  formset,
             "text":      {"home":        _("Home"),
                 "admin":       _("Main admin page"),

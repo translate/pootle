@@ -27,7 +27,8 @@ def view(request):
     model_args['title'] = _("Projects")
     model_args['formid'] = "projects"
     model_args['submitname'] = "changeprojects"
-    return util.edit(request, 'admin/adminpage.html', Project, model_args,
+    link = '/projects/%s/admin.html'
+    return util.edit(request, 'admin/adminpage.html', Project, model_args, link,
               exclude='description', can_delete=True)
     
               

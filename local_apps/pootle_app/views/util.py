@@ -102,7 +102,7 @@ class KidRequestContext(dict):
         self.update(context)
         completetemplatevars(self, req, **kwargs)
 
-def form_set_as_table(formset):
+def form_set_as_table(formset, link=None):
     """Create an HTML table from the formset. The first form in the
     formset is used to obtain a list of the fields that need to be
     displayed. All these fields not appearing in 'exclude' will be
@@ -133,7 +133,7 @@ def form_set_as_table(formset):
                 result.append('</td>\n')
             result.append('</tr>\n')
 
-    def add_widgets(result, fields, form):
+    def add_widgets(result, fields, form, link):
         result.append('<tr>\n')
         for i, field in enumerate(fields):
             result.append('<td>')
@@ -141,7 +141,17 @@ def form_set_as_table(formset):
             # first column.
             if i == 0:
                 result.append(form['id'].as_hidden())
-            result.append(form[field].as_widget())
+
+            """
+            'link' indicates whether we put the first field as a link or as widget
+            """
+            if field == 'code' and 'code' in form.initial and link :
+                from pootle_misc.baseurl import l
+                link = l(link % form.initial['code'])
+                result.append("<a href='"+link+"'><span >"+form.initial['code']+" </span></a>")
+                result.append(form[field].as_hidden())
+            else:
+                result.append(form[field].as_widget())
             result.append('</td>\n')
         result.append('</tr>\n')
 
@@ -153,7 +163,7 @@ def form_set_as_table(formset):
     add_header(result, fields, first_form)
     for form in formset.forms:
         add_errors(result, fields, form)
-        add_widgets(result, fields, form)
+        add_widgets(result, fields, form, link)
     return u''.join(result)
 
 ################################################################################
