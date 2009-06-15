@@ -25,19 +25,19 @@
 
                 {% for form in formset.forms %}
                 <tr class="item item-{{ forloop.counter0 }}">
-                    <td><span > {{ form.id.as_hidden }}</span><a href="{% filter l %}../../{{ form.instance.code }}/{{ project.code }}/admin.html{% endfilter %}"> {{ form.instance.fullname }} 
+                    <td><span > {{ form.id.as_hidden }}</span><a href="{% filter l %}../../{{ form.instance.code }}/{{ project.code }}/admin.html{% endfilter %}"> {% trans form.instance.fullname %} 
                     </a></td>
                     <td><span >{{ form.instance.code }}</span></td>
                     {% if has_template %}
                     <div>
                         <td><span > {{ form.update.as_widget}} </span></td>
                         <td><a href="{% filter l %}?doupdatelanguage=1&amp;updatelanguage={{ form.instance.code }} {% endfilter %}">
-                                {{ update_link }}
+                                {% trans update_link %}
                         </a></td>
                     </div>
                     {% endif %}
                     <td><a href="{% filter l %}?initialize=1&amp;updatelanguage={{form.instance.code}}{% endfilter %}">
-                            {{ initialize_link }} </a></td>
+                            {% trans initialize_link %} </a></td>
                 </tr>
 
                 {% endfor %}
