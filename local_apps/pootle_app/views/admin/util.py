@@ -9,6 +9,9 @@ from pootle_misc.baseurl import redirect
 from pootle_app.views.util import render_jtoolkit, render_to_kid, KidRequestContext
 from pootle_app.models import Language, Project
 
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_authenticated():
@@ -49,14 +52,16 @@ def process_modelformset(request, model_class, **kwargs):
 
 @user_is_admin
 def edit(request, template, model_class, **kwargs):
+    from pootle_app.views.util import form_set_as_table
+    from django.utils.safestring import mark_safe
+
     formset, msg = process_modelformset(request, model_class, **kwargs)
-
     template_vars = {"pagetitle": _("Pootle Languages Admin Page"),
-                     "formset":   formset,
-                     "text":      {"home":        _("Home"),
-                                   "admin":       _("Main admin page"),
-                                   "projects":    _("Projects"), 
-                                   "savechanges": _("Save changes"),
-                                   "error_msg":  msg}}
-
-    return render_to_kid(template, KidRequestContext(request, template_vars))
+            "formset_text":  mark_safe(form_set_as_table(formset)),
+            "formset":  formset,
+            "text":      {"home":        _("Home"),
+                "admin":       _("Main admin page"),
+                "projects":    _("Projects"), 
+                "savechanges": _("Save changes"),
+                "error_msg":  msg}}
+    return render_to_response(template, template_vars, context_instance=RequestContext(request))

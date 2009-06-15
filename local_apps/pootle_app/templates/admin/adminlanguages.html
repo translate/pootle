@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?python
-from pootle_app.templates import pootlepage
-from pootle_app.views.util import form_set_as_table
-?>
-<include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
+{% extends "base.html" %}
+{% load i18n baseurl %}
 
-  <div id="content" py:def="content_block()">
-    <div py:if="sessionvars.issiteadmin" class="module-primary first">
-      <div class="bd">
-	<ul class="linklist">
-          <li><a href="../home/" py:content="text.home">Home page</a></li>
-          <li><a href="index.html" py:content="text.admin">Main Admin page</a></li>
-	</ul>
-	
-	<div class="fullwidthcontents">
-          <h3 class="title" py:content="text.languages">Languages</h3>
-	  
-          <form action="" method="post" name="languages" id="languages">
-	    <div py:content="text.error_msg"></div>
-	    <div py:replace="XML(formset.management_form.as_table())"/>
-	    <table cellpadding="1" cellspacing="1">
-	      <div py:replace="XML(form_set_as_table(formset))" />
-            </table>
-	    <input type="submit" name="changelanguages" value="${text.savechanges}" />
-          </form>
-	</div>
-      </div>
+{% block content %}
+{% if user.is_superuser %}
+<div class="module-primary first">
+    {% endif %}
+    <div class="bd">
+        <ul class="linklist">
+            <li><a href="{% filter l %}/accounts/{{user.username}}{% endfilter %}" > {% trans text.home %}</a></li>
+            <li><a href="{% filter l %}index.html{% endfilter %}">{% trans text.admin %}</a></li>
+        </ul>
+        <div class="fullwidthcontents">
+            <hr>
+            <form action="" method="post" name="languages" id="languages">
+                {% if text.error_msg %}
+                <div > {{ text.error_msg }}</div>
+                {% endif %}
+                {{ formset.management_form }}
+                <table cellpadding="1" cellspacing="1">
+                    <div >
+                        {{ formset_text }}
+                    </div>
+                </table>
+                <input type="submit" name="changelanguages" value="{{ text.savechanges }}" />
+            </form>
+        </div>
     </div>
-  </div><!--content-->
+</div>
 
-</include>
+{% endblock %}
+
