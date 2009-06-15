@@ -36,6 +36,8 @@ from pootle.i18n import gettext
 from django.shortcuts import render_to_response
 from django.template import RequestContext 
 from django.contrib.auth.decorators import login_required
+from django.forms.fields import email_re
+from django.forms.util import ErrorList
 
 def user_is_authenticated(f):
     def decorated_f(request, *args, **kwargs):
@@ -45,7 +47,21 @@ def user_is_authenticated(f):
             return f(request, *args, **kwargs)
     return decorated_f
 
+def is_valid_email(email):
+    return True if email_re.match(email) else False
+
 class UserForm(ModelForm):
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        email = cleaned_data.get("email")
+
+        if not email or not is_valid_email(email):
+            msg = '* Not a valid e-mail address.' 
+            self._errors["email"] = ErrorList([msg])
+
+        # Always return the full collection of cleaned data.
+        return cleaned_data
 
     class Meta:
         model = User
@@ -60,11 +76,12 @@ def edit_personal_info(request):
     if request.POST:
         post = request.POST.copy()
         user_form = UserForm(post, instance=request.user)
-        user_form.save()
-        response = redirect('/accounts/'+request.user.username)
+        if user_form.is_valid():
+            user_form.save()
+            response = redirect('/accounts/'+request.user.username)
     else:
         user_form = UserForm(instance=request.user)
-        template_vars = { "form": user_form,}
-        response = render_to_response('profiles/edit_personal.html', template_vars , context_instance=RequestContext(request))
+    template_vars = { "form": user_form,}
+    response = render_to_response('profiles/edit_personal.html', template_vars , context_instance=RequestContext(request))
     return response
 
