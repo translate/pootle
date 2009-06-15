@@ -154,6 +154,7 @@ INSTALLED_APPS = (
     'pootle_misc',
     'pootle_store',
     'registration',
+    'profiles',
 )
 
 AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
