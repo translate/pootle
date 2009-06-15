@@ -24,11 +24,13 @@ from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 
-from pootle_app.views.util  import render_to_kid, KidRequestContext
 from pootle_app.models.profile import PootleProfile
 from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, \
     get_matching_permissions
 from pootle_app import project_tree
+
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 class PermissionSetForm(forms.Form):
     """A PermissionSetForm represents a PermissionSet to the user.
@@ -254,4 +256,4 @@ def view(request, translation_project):
         "updaterights_text":      _("Update Rights"),
         "adduser_text":           _("(select to add user)")
     }
-    return render_to_kid("language/projectlangadmin.html", KidRequestContext(request, template_vars))
+    return render_to_response("language/projectlangadmin.html", template_vars, context_instance=RequestContext(request))
