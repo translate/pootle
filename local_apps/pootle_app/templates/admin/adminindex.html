@@ -1,48 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?python
-from pootle_app.templates import pootlepage
-?>
+{% extends "base.html" %}
+{% load i18n baseurl %}
 
-<include py:layout="'../page_layout.kid'" xmlns:py="http://purl.org/kid/ns#">
-
-  <div id="content" py:def="content_block()">
-    <div py:if="sessionvars.issiteadmin" class="module first">
-      <div class="bd">
-	<ul class="linklist">
-	  <li><a href="../home/" py:content="text.home">Home</a></li>
-	  <li><a href="users.html" py:content="text.users">Users</a></li>
-	  <li><a href="languages.html" py:content="text.languages">Languages</a></li>
-	  <li><a href="projects.html" py:content="text.projects">Projects</a></li>
-	</ul>
-	
-	<div class="contents">
-	  <h3 class="title" py:content="text.generaloptions">General Options</h3>
-	  
-	  <form action="" method="post" name="general" id="general">
-	    <table cellpadding="1" cellspacing="1">
-	      <tr>
-		<td colspan="1" rowspan="1">
-		  <h3 class="title" py:content="text.option">Option</h3>
-		</td>
-		
-		<td colspan="1" rowspan="1">
-		  <h3 class="title" py:content="text.currentvalue">Current value</h3>
-		</td>
-	      </tr>
-	      
-	      <tr py:for="option in options">
-		<td colspan="1" rowspan="1" py:content="option.title">Description</td>
-		
-		<td colspan="1" rowspan="1"><input type="text" name="${option.name}" value="${option.value}"/></td>
-	      </tr>
-	      
-	    </table>
-	    <input type="submit" name="changegeneral" value="${text.savechanges}" />
-	  </form>
-	</div>
-      </div>
+{% block content %}
+{% if user.is_superuser %}
+<div class="module-primary first">
+    {% endif %}
+    <div class="bd">
+        <ul class="linklist">
+            <li><a href="{% filter l %}/accounts/{{user.username}}{% endfilter %}" > {% trans text.home %}</a></li>
+            <li><a href="{% filter l %}users.html{% endfilter %}">{% trans "Users" %}</a></li>
+            <li><a href="{% filter l %}languages.html{% endfilter %}">{% trans "Languages" %}</a></li>
+            <li><a href="{% filter l %}projects.html{% endfilter %}">{% trans "Projects" %}</a></li>
+        </ul>
+        <div class="fullwidthcontents">
+            <h3 class="title"> {% trans "General options" %} </h3>
+            <hr>
+            <form action="" method="post" >
+                        {{ form.as_p }}
+                </table>
+                <input type="submit" value='{% trans "Save" %}'/>
+            </form>
+        </div>
     </div>
-  </div><!--content-->
+</div>
+    {% if user.is_superuser %}
+</div>
+{% endif %}
 
-</include>
+{% endblock %}
 
