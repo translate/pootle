@@ -7,13 +7,13 @@
     {% endif %}
     <div class="bd">
         <ul class="linklist">
-            <li><a href="{% filter l %}/accounts/{{user.username}}{% endfilter %}" > {% trans text.home %}</a></li>
+            <li><a href="{% filter l %}/accounts/{{user.username}}{% endfilter %}" > {% trans "Home" %}</a></li>
             <li><a href='{{ "users.html"|l }}'>{% trans "Users" %}</a></li>
             <li><a href='{{ "languages.html"|l }}'>{% trans "Languages" %}</a></li>
             <li><a href='{{ "projects.html"|l }}'>{% trans "Projects" %}</a></li>
         </ul>
         <div class="fullwidthcontents">
-            <h3 class="title"> {% trans "General options" %} </h3>
+            <h3 class="title"> {% trans "Pootle Admin Page" %} </h3>
             <hr>
             <form action="" method="post" >
                         {{ form.as_p }}
