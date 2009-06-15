@@ -35,6 +35,7 @@ from pootle.i18n import gettext
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext 
+from django.contrib.auth.decorators import login_required
 
 def user_is_authenticated(f):
     def decorated_f(request, *args, **kwargs):
@@ -54,6 +55,7 @@ class UserForm(ModelForm):
 def index(request, path):
     return render_jtoolkit(indexpage.UserIndex(request))
 
+@login_required
 def edit_personal_info(request):
     if request.POST:
         post = request.POST.copy()
