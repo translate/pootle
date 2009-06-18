@@ -38,7 +38,7 @@ class SearchForm(forms.Form):
             })
 
     def as_hidden(self):
-        return ''.join(field.as_hidden() for field in self)
+        return mark_safe(''.join(field.as_hidden() for field in self))
 
 class AdvancedSearchForm(forms.Form):
     selected    = forms.BooleanField(required=False)
@@ -54,7 +54,7 @@ class AdvancedSearchForm(forms.Form):
             })
 
     def as_hidden(self):
-        return ''.join(field.as_hidden() for field in self)
+        return mark_safe(''.join(field.as_hidden() for field in self))
 
 class BaseAdvancedSearchFormSet(BaseFormSet):
     def as_hidden(self):
