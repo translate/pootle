@@ -92,17 +92,17 @@
 			   {{item.developer_comments}}">
 		  <!--! Cell with original -->
 		  <td colspan="1" rowspan="1" class="translate-original {{item.polarity}} {{item.focus_class}}" dir="ltr">
-		    <div id="{{item.orig.itemid}}" class="translate-original {{item.orig.focus_class}}" lang="en">
+		    <div id="{{item.orig.itemid}}" class="translate-original {{item.orig.focus_class}}">
 		      {% for field in item.orig.pure %}
 		      <input type="hidden" name="{{field.pureid}}" value="{{field.value}}" id="{{field.pureid}}"/>
 		      {% endfor %}
 		      {% if not item.orig.isplural %}
-		      <div class="translation-text">{{item.orig.text|safe}}</div>
+		      <div class="translation-text" lang="en">{{item.orig.text|safe}}</div>
 		      {% else %}
 			<span class="translation-text-headers" lang="{{LANGUAGE_CODE}}">{{item.orig.singular_title}}</span><br />
-			<span class="translation-text">{{item.orig.singular_text|safe}}</span><br />
+			<span class="translation-text" lang="en">{{item.orig.singular_text|safe}}</span><br />
 			<span class="translation-text-headers" lang="{{LANGUAGE_CODE}}">{{item.orig.plural_title}}</span><br />
-			<span class="translation-text">{{item.orig.plural_text|safe}}</span><br />
+			<span class="translation-text" lang="en">{{item.orig.plural_text|safe}}</span><br />
 		      {% endif %}
 		    </div>
 		    <!--! Alternative source language translation (if enabled and available) -->
@@ -117,7 +117,7 @@
 			  {% if form.title %}
 			    <span class="translation-text-headers" lang="{{LANGUAGE_CODE}}">{{form.title}}</span><br />
 			  {% endif %}
-			    <span class="{{form.editclass}} translation-text">{{form.text|safe}}</span>
+			    <span class="{{form.editclass}} translation-text" lang="{{altsrc.languagecode}}" dir="{{altsrc.dir}}">{{form.text|safe}}</span>
 			    {% if form.title %}
 			    <br/>
 			    {% endif %}
