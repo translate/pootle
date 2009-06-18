@@ -151,24 +151,34 @@ def update_file(request, translation_project, file_path):
 @set_request_context
 def export_zip(request, translation_project, file_path):
     if not check_permission("archive", request):
-        return redirect('/%s/%s' % (translation_project.language.code, translation_project.project.code),
+        return redirect(translation_project.pootle_path,
                         message=_('You do not have the right to create ZIP archives.'))
-    pootle_path = translation_project.directory.pootle_path + (file_path or '')
+    pootle_path = translation_project.pootle_path + (file_path or '')
     try:
         path_obj = Directory.objects.get(pootle_path=pootle_path)
     except Directory.DoesNotExist:
         path_obj = get_object_or_404(Store, pootle_path=pootle_path[:-1])
     stores = store_iteration.iter_stores(path_obj, search_forms.search_from_request(request))
     archivecontents = translation_project.get_archive(stores)
-    return HttpResponse(archivecontents, content_type="application/zip")
+    response = HttpResponse(archivecontents, content_type="application/zip")
+    if file_path.endswith("/"):
+        file_path = file_path[:-1]
+    fish, file_path = os.path.split(file_path)
+    archivename = '%s-%s' % (translation_project.project.code, translation_project.language.code)
+    archivename += file_path + '.zip'
+    response['Content-Disposition'] = 'attachment; filename=%s' % archivename
+    return response
 
 @get_translation_project
 @set_request_context
 def export_sdf(request, translation_project, file_path):
     if not check_permission("pocompile", request):
-        return redirect('/%s/%s' % (translation_project.language.code, translation_project.project.code),
-                        message=_('You do not have the right to create SDF files.'))
-    return HttpResponse(translation_project.getoo(), content_type="text/tab-separated-values")
+        return redirect(translation_project.pootle_path, message=_('You do not have the right to create SDF files.'))
+    response =  HttpResponse(translation_project.getoo(), content_type="text/tab-separated-values")
+    filename = "%s-%s.sdf" % (translation_project.language.code, translation_project.project.code)
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
+    return response
+
 
 MIME_TYPES = {
     "po":  "text/x-gettext-translation; charset=%(encoding)s",
@@ -184,13 +194,18 @@ def export(request, translation_project, file_path, format):
     encoding = getattr(store.file.store, "encoding", "UTF-8")
     content_type = MIME_TYPES[format] % dict(encoding=encoding)
     if format == translation_project.project.localfiletype:
-        return HttpResponse(str(store.file.store), content_type=content_type)
+        response = HttpResponse(str(store.file.store), content_type=content_type)
+        response['Content-Disposition'] = 'attachment; filename=%s' % store.name
     else:
         convert_func = convert_table[translation_project.project.localfiletype, format]
         output_file = cStringIO.StringIO()
         input_file  = cStringIO.StringIO(str(store.file.store))
         convert_func(input_file, output_file, None)
-        return HttpResponse(output_file.getvalue(), content_type=content_type)
+        response = HttpResponse(output_file.getvalue(), content_type=content_type)
+        filename, ext = os.path.splitext(store.name)
+        filename += os.path.extsep + format
+        response['Content-Disposition'] = 'attachment; filename=%s' % filename
+    return response
 
 
 @get_translation_project
