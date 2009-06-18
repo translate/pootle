@@ -500,7 +500,7 @@ html[dir="rtl"] #nav-main ul li
  * MESSAGES
  */
 
-.site-message
+#site-message
 {
     background-color: #ffe;
     border: 1px solid #fc9;
@@ -508,12 +508,12 @@ html[dir="rtl"] #nav-main ul li
     padding: 10px 25px;
 }
 
-.site-message .success
+#site-message .success
 {
     color: #3f3;
 }
 
-.site-message .error
+#site-message .error
 {
     color: #f33;
 }
