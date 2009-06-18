@@ -6,7 +6,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" 
-      lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
   <head>
     <title>{% block title %}{{ pagetitle }}{% endblock title %}</title>
 
@@ -37,7 +37,7 @@
 	  <a href="#nav-main">{% trans 'skip to navigation'%}</a>
 	</div>
 	<h1><a href='{{"/"|l}}' title='{% trans "Home" %}'>{{settings.TITLE}}</a></h1>
-	<div id="nav-main" class="menubar">
+	<div id="nav-main" class="menubar" lang="{{LANGUAGE_CODE}}">
 	  <div class="bd">
 	    {% block menu %}
             <ul class="first-of-type">
@@ -65,7 +65,7 @@
 
       <div id="body">
 
-	<div id="site-message">
+	<div id="site-message" lang="{{LANGUAGE_CODE}}">
 	  {% block message %}
 	  <div class="info">{{ message }}</div>
 	  <div class="error">{{ error_message }}</div>
@@ -77,7 +77,7 @@
 	  {% endblock message %}
 	</div><!--site-message-->
 
-	<div id="nav-secondary">
+	<div id="nav-secondary" lang="{{LANGUAGE_CODE}}">
 	  {% block nav-secondary %}
 	  {% block search %}{% endblock %}
 	  {% block breadcrumbs %}{% endblock %}
@@ -92,7 +92,7 @@
 	
       </div> <!--body-->
     
-      <div id="footer">
+      <div id="footer" lang="{{LANGUAGE_CODE}}">
 	{% block footer %}
 	<ul class="nav">
           <li><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
