@@ -102,7 +102,7 @@ def getprojectnames():
     return [proj.fullname for proj in Project.objects.all()]
 
 
-def view(request, *path_vars):
+def view(request):
     permission_set = get_matching_permissions(get_profile(request.user), Directory.objects.root)
     (language_index, project_index) =  TranslationProject.get_language_and_project_indices()
     topsugg = limit(Suggestion.objects.get_top_suggesters())

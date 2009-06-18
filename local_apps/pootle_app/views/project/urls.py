@@ -22,7 +22,7 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('pootle_app.views.project',
-    (r'^(/|/index.html)?$',         'projects_index.view'),
+    (r'^/?$|^/index.html$',         'projects_index.view'),
     (r'^/([^/]*)/admin.html$',      'project_admin.view'),
     (r'^/([^/]*)(/|/index.html)?$', 'project_language_index.view'),
 )
