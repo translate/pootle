@@ -238,7 +238,7 @@
 			  <div class="translate-specialchars-block" lang="{{language.code}}">
 			    {% for specialchar in item.trans.buttons.specialchars %}
 			    {% if not specialchar.isspace %}
-			      <a onclick="writespecial('{{specialchar}}', '{{item.trans.itemid}}'); return false;" href="#">specialchar</a>
+			      <a onclick="writespecial('{{specialchar}}', '{{item.trans.itemid}}'); return false;" href="#">{{specialchar}}</a>
 			    {% else %}
 			      <span class="extraspace"> </span>
 			    {% endif %}
