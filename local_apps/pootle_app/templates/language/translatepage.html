@@ -234,6 +234,7 @@
 			    <label for="fuzzy{{item.trans.buttons.item}}">{{fuzzytext}}</label>
 			  </div>
 			  {% endif %}
+            </div>
 			  {% if item.trans.buttons.specialchars and canedit %}
 			  <div class="translate-specialchars-block" lang="{{language.code}}">
 			    {% for specialchar in item.trans.buttons.specialchars %}
@@ -245,7 +246,6 @@
 			    {% endfor %}
 			  </div>
               {% endif %}
-            </div>
 			{% if canedit %}
 			<script type="text/javascript">
 			  <!--! //We should comment this for old browsers, but then kid doesn't evaluate the expression -->
