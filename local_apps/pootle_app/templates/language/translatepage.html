@@ -45,6 +45,12 @@
 {% endblock innernav %}
 
 {% block precontent %}
+      {% if checking_text %}
+      <div class="checkname">
+	<img src='{{"images/help.png"|m}}' class="checkinfo" alt="" />
+	<span>{{checking_text|safe}}</span>
+      </div>
+      {% endif %}
   <div id="precontent">
     <div id="ajaxresponse" style="display: none;">{{ajax_status_text}}</div>
   </div><!--precontent-->
@@ -348,12 +354,6 @@
 	<input name="action" value="translate" title="{{assigns.action_title}}"/>
 	<input name="doassign" type="submit" value="{{assigns.submit_text}}"/>
       </form>
-      {% endif %}
-      {% if checking_text %}
-      <div class="side">
-	<img src='{{"images/help.png"|m}}' class="checkinfo" alt="" />
-	<span>{{checking_text}}</span>
-      </div>
       {% endif %}
     </div>
   </div><!--postcontent-->
