@@ -18,9 +18,39 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle_app.views               import indexpage, pagelayout
-from pootle_app.views.util          import render_to_kid, render_jtoolkit, \
-    KidRequestContext, init_formset_from_data, choices_from_models, selected_model
+from django.utils.translation import ugettext as _
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
-def view(request, path):
-    return render_jtoolkit(indexpage.ProjectsIndex(request))
+from pootle_app.views import pagelayout
+from pootle_app.models.profile import get_profile
+from pootle_app.views.index.index import getprojects
+from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.views.indexpage import gentopstats
+from pootle_app.models import TranslationProject, Directory, Suggestion, Submission
+
+def limit(query):
+    return query[:5]
+
+def view(request):
+    permission_set = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    (language_index, project_index) =  TranslationProject.get_language_and_project_indices()
+    topsugg = limit(Suggestion.objects.get_top_suggesters())
+    topreview = limit(Suggestion.objects.get_top_reviewers())
+    topsub = limit(Submission.objects.get_top_submitters())
+    topstats = gentopstats(topsugg, topreview, topsub)
+
+    templatevars = {
+        'pagetitle': pagelayout.get_title(),
+        'projectlink': _('Projects'),
+        'projects': getprojects(request, project_index,
+                                     permission_set),
+        'topstats': topstats,
+        'topstatsheading': _('Top Contributors'),
+        'instancetitle': pagelayout.get_title(),
+        'translationlegend': {'translated': _('Translations are complete'),
+                    'fuzzy': _('Translations need to be checked (they are marked fuzzy)'
+                    ), 'untranslated': _('Untranslated')},
+        }
+    return render_to_response('project/projects.html', templatevars, RequestContext(request))
+
