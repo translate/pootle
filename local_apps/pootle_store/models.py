@@ -296,7 +296,7 @@ class Store(models.Model):
 
     def inittm(self):
         """initialize translation memory file if needed"""
-        if self.tm and os.path.exists(self.tm):
+        if self.tm and os.path.exists(self.tm.path):
             return
         
         tm_filename = self.file.path + os.extsep + 'tm'
@@ -310,7 +310,7 @@ class Store(models.Model):
 
         self.inittm()
         if self.tm:
-            unit = self.getitem(item)
+            unit = self.file.getitem(item)
             locations = unit.getlocations()
             # TODO: review the matching method Can't simply use the
             # location index, because we want multiple matches
