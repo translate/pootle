@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from translate.lang import data as langdata
+
 from django.conf import settings
 from django.utils import translation
 from django.utils.thread_support import currentThread
@@ -219,3 +221,7 @@ def get_lang(language):
         return TranslationProject.objects.get(language=language, project__code='pootle')
     except TranslationProject.DoesNotExist:
         return None
+
+def tr_lang(language_name):
+    """translate language name"""
+    return langdata.tr_lang(get_language())(language_name)

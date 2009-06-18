@@ -31,7 +31,7 @@ from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.views import indexpage
 from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
-from pootle.i18n.jtoolkit_i18n import tr_lang
+from pootle.i18n.gettext import tr_lang
 from pootle_app.models import metadata
 
 

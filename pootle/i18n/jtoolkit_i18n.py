@@ -54,6 +54,3 @@ def nlocalize(singular, plural, n, *variables):
     else:
         return gettext.get_active().ungettext(singular, plural, n)
 
-# Taken from jToolkit
-def tr_lang(language_name):
-    return langdata.tr_lang(gettext.get_active().language.code)(language_name)

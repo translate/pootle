@@ -29,7 +29,7 @@ from pootle_app.views.language.item_dict import add_percentages, make_directory_
 from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle_app.models import Suggestion, Submission, Language
-from pootle.i18n.jtoolkit_i18n import tr_lang
+from pootle.i18n.gettext import tr_lang
 
 
 def limit(query):
