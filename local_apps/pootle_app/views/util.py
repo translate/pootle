@@ -33,45 +33,6 @@ from pootle_app.lib.legacy.jToolkit.web import server
 # find the root directory.
 from django.conf import settings
 
-
-def find_template(relative_template_path):
-    """Find the full path of the template whose relative path is
-    'relative_template_path'."""
-    
-    for template_dir in settings.TEMPLATE_DIRS:
-        full_template_path = path.join(template_dir, relative_template_path)
-        if path.exists(full_template_path):
-            return full_template_path
-    raise Exception('No template named %s found' % relative_template_path)
-
-
-
-class AttrDict(dict):
-    # THIS IS TAKEN FROM JTOOLKIT
-    """Dictionary that also allows access to keys using attributes"""
-    def __getattr__(self, attr, default=None):
-        if attr in self:
-            return self[attr]
-        else:
-            return default
-
-def attribify(context):
-    # THIS IS TAKEN FROM JTOOLKIT
-    """takes a set of nested dictionaries and converts them into AttrDict. Also searches through lists"""
-    if isinstance(context, (dict, UserDict)) and not isinstance(context, AttrDict):
-        newcontext = AttrDict(context)
-        for key, value in newcontext.items():
-            if isinstance(value, (dict, UserDict, list)):
-                newcontext[key] = attribify(value)
-        return newcontext
-    elif isinstance(context, list):
-        for n, item in enumerate(context):
-            if isinstance(item, (dict, UserDict, list)):
-                context[n] = attribify(item)
-        return context
-    else:
-        return context
-
 def form_set_as_table(formset, link=None):
     """Create an HTML table from the formset. The first form in the
     formset is used to obtain a list of the fields that need to be
