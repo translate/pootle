@@ -30,6 +30,8 @@ from django.contrib.auth.models import User
 from django.utils.html import urlize
 from django.utils.translation import ugettext as _
 from django.conf import settings
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 N_ = _
 
 from translate.storage import po
@@ -1014,7 +1016,7 @@ def view(request, directory, store, item, stopped_by=None):
         "reject_title":              _("Reject suggestion"),
         "fuzzytext":                 _("Fuzzy"),
         # l10n: Ajax link for suggestions.    %s is the number of suggestions
-        "viewsuggtext":              _("View Suggestions (%s)"),
+        "viewsuggtext":              _("View Suggestions"),
         # l10n: Heading above the textarea for translator comments.
         "translator_comments_title": _("Translator comments"),
         # l10n: Heading above the comments extracted from the programing source code
@@ -1029,7 +1031,9 @@ def view(request, directory, store, item, stopped_by=None):
         "instancetitle":             instancetitle,
         "permissions":               request.permissions,
         # l10n: Text displayed when an AJAX petition is being made
-        "canedit":                   check_permission("suggest", request) or check_permission("translate", request),
+        "canedit":                   check_permission("translate", request) or check_permission("suggest", request),
+        "cantranslate":              check_permission("translate", request),
+        "cansuggest":                check_permission("suggest", request),
         "ajax_status_text":          _("Working..."),
         # l10n: Text displayed in an alert box when an AJAX petition has failed
         "ajax_error":                _("Error: Something went wrong."),
@@ -1042,4 +1046,4 @@ def view(request, directory, store, item, stopped_by=None):
     #if state.show_assigns and check_permission("assign", request):
     #    templatevars["assign"] = get_assign_box()
     templatevars.update(add_file_links(request, store))
-    return render_to_kid("language/translatepage.html", KidRequestContext(request, templatevars, bannerheight=81))
+    return render_to_response("language/translatepage.html", templatevars, RequestContext(request))
