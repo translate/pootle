@@ -65,17 +65,19 @@
 
       <div id="body">
 
-	<div id="site-message" lang="{{LANGUAGE_CODE}}">
+    {% if message or error_message or messages %}
+    <div id="site-message" lang="{{LANGUAGE_CODE}}">
 	  {% block message %}
-	  <div class="info">{{ message }}</div>
-	  <div class="error">{{ error_message }}</div>
-	  {% for msg in messages %}
-	  <p class="info">
-	    {{ msg }}
-	  </p>
-	  {% endfor %}
-	  {% endblock message %}
-	</div><!--site-message-->
+      <div class="info">{{ message }}</div>
+      <div class="error">{{ error_message }}</div>
+      {% for msg in messages %}
+      <p class="info">
+        {{ msg }}
+      </p>
+      {% endfor %}
+      {% endblock message %}
+    </div> <!--site-message-->
+    {% endif %}
 
 	<div id="nav-secondary" lang="{{LANGUAGE_CODE}}">
 	  {% block nav-secondary %}
