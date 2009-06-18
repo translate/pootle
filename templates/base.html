@@ -6,7 +6,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" 
-      dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      lang="und" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
   <head>
     <title>{% block title %}{{ pagetitle }}{% endblock title %}</title>
 
