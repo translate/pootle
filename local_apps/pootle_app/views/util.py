@@ -18,20 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import re
-from os import path
-from UserDict import UserDict
-
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.forms.util import ErrorList
 
-from pootle_app.views.pagelayout import completetemplatevars
-from pootle_app.lib.legacy.jToolkit.web import server
-
-# settings.py is in the root of our Django application's
-# directory structure, so we can use path.dirname to
-# find the root directory.
-from django.conf import settings
 
 def form_set_as_table(formset, link=None):
     """Create an HTML table from the formset. The first form in the
