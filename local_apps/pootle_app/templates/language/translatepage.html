@@ -62,7 +62,7 @@
       <div class="bd">
 	<!--! start/next/previous/end links -->
 	{% if pagelinks %}
-	<ul class="translations-nav">
+	<ul class="translations-nav" lang="{{LANGUAGE_CODE}}">
 	  {% for pagelink in pagelinks %}
 	    <li><a href="{{pagelink.href|l}}">{{pagelink.text}}</a></li>
 	    {% endfor %}
@@ -80,7 +80,7 @@
             {{search.search_form.as_hidden}}
             {{search.advanced_search_form.as_hidden}}
 	    <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-	      <tr>
+	      <tr lang="{{LANGUAGE_CODE}}">
 		<th colspan="1" rowspan="1" class="translate-table-title">{{original_title}}</th>
 		<th colspan="1" rowspan="1" class="translate-table-title">{{translation_title}}</th>
 		{% if canedit %}
@@ -99,9 +99,9 @@
 		      {% if not item.orig.isplural %}
 		      <div class="translation-text">{{item.orig.text|safe}}</div>
 		      {% else %}
-			<span class="translation-text-headers">{{item.orig.singular_title}}</span><br />
+			<span class="translation-text-headers" lang="{{LANGUAGE_CODE}}">{{item.orig.singular_title}}</span><br />
 			<span class="translation-text">{{item.orig.singular_text|safe}}</span><br />
-			<span class="translation-text-headers">{{item.orig.plural_title}}</span><br />
+			<span class="translation-text-headers" lang="{{LANGUAGE_CODE}}">{{item.orig.plural_title}}</span><br />
 			<span class="translation-text">{{item.orig.plural_text|safe}}</span><br />
 		      {% endif %}
 		    </div>
@@ -115,7 +115,7 @@
 			{% else %}
 			  {% for form in altsrc.forms %}
 			  {% if form.title %}
-			    <span class="translation-text-headers">{{form.title}}</span><br />
+			    <span class="translation-text-headers" lang="{{LANGUAGE_CODE}}">{{form.title}}</span><br />
 			  {% endif %}
 			    <span class="{{form.editclass}} translation-text">{{form.text|safe}}</span>
 			    {% if form.title %}
@@ -134,7 +134,7 @@
 		  </td>
 		  
 		  <!--! Cell with translation (view/suggest/review/edit) -->
-		  <td lang="{{LANGUAGE_CODE}}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" colspan="1" rowspan="1" class="translate-translation {{item.polarity}} {{item.focus_class}}">
+		  <td lang="{{language.code}}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" colspan="1" rowspan="1" class="translate-translation {{item.polarity}} {{item.focus_class}}">
 		    <div id="{{item.trans.itemid}}" class="translate-translation {{item.orig.focus_class}}">
 		    
 		      <!--! Begin: Normal editing -->
@@ -142,7 +142,7 @@
 			<!--! Translation memory -->
 			{% if item.tm %}
 			<div id="tm" class="sidebar" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-			  <div class="sidetitle">{{related_title}}</div>
+			  <div class="sidetitle" lang="{{LANGUAGE_CODE}}">{{related_title}}</div>
 			  {% for unit in item.tm %}
 			  <div class="tm-unit" title="{{unit.getnotes}}" onclick="writespecial('{{unit.target}}', '{{item.trans.itemid}}');">
 			    <span class="tm-original" dir="ltr" lang="en">{{unit.source}}</span>
@@ -160,7 +160,7 @@
 			{% else %}
 			<!--! with plurals -->
 			  {% for form in item.trans.forms %}
-			    <div class="translation-text-headers">{{form.title}}</div>
+			    <div class="translation-text-headers" lang="{{LANGUAGE_CODE}}">{{form.title}}</div>
 			    <textarea {%if not canedit  %}readonly="readonly"{%endif%} dir="{{language.dir}}" lang="{{language.code}}" 
 				      onfocus="setfocusedelement(this);" class="translation expanding {{item.state_class}}" 
 				      name="{{form.name}}" id="area{{form.name}}" rows="{{item.trans.rows}}" 
@@ -199,7 +199,8 @@
 			</div>
 			{% endif %}
 		      
-			<!--! Buttons, resize links, special characters -->
+            <!--! Buttons, resize links, special characters -->
+            <div lang="{{LANGUAGE_CODE}}">
 			  <div class="translate-buttons-block">
 			    {% for button in item.trans.buttons.desired %}
 			    {% ifequal button 'back' %}
@@ -243,7 +244,8 @@
 			    {% endif %}
 			    {% endfor %}
 			  </div>
-			  {% endif %}
+              {% endif %}
+            </div>
 			{% if canedit %}
 			<script type="text/javascript">
 			  <!--! //We should comment this for old browsers, but then kid doesn't evaluate the expression -->
@@ -266,7 +268,7 @@
 			{% else %}
 			<div>
 			  {% for form in item.trans.forms %}
-			    <span class="translation-text-headers">{{form.title}}</span><br />
+			    <span class="translation-text-headers" lang="{{LANGUAGE_CODE}}">{{form.title}}</span><br />
 			    <span class="{{form.editclass}} translation-text">{{form.text|safe}}</span><br />
 			  {% endfor %}
 			</div>
@@ -309,7 +311,7 @@
 		    <div class="translate-locations" lang="en" dir="ltr">{{item.locations}}</div>
 		    {% endif %}
 		  </td>
-		  <td class="translate-translation {{item.polarity}} comments">
+		  <td class="translate-translation {{item.polarity}} comments" lang="{{LANGUAGE_CODE}}">
 		    <div>{{translator_comments_title}}</div>
 		    {% if not reviewmode %}
 		    <textarea dir="{{language.dir}}" lang="{{language.code}}" name="translator_comments{{item.itemid}}" 
@@ -328,7 +330,7 @@
 	  
 	  <!--! start/next/previous/end links -->
 	  {% if pagelinks %}
-	  <ul class="translations-nav">
+	  <ul class="translations-nav" lang="{{LANGUAGE_CODE}}">
 	    {% for pagelink in pagelinks %}
 	      <li><a href="{{pagelink.href|l}}">{{pagelink.text}}</a></li>
 	    {% endfor %}
