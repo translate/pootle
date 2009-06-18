@@ -24,7 +24,6 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 # We don't need kid in this file, but this will show quickly if it is
 # not installed.
-import kid
 import sys
 import optparse
 from wsgiref.simple_server import make_server
@@ -38,18 +37,6 @@ from translate import __version__ as toolkitversion
 class PootleOptionParser(optparse.OptionParser):
 
     def __init__(self):
-        versionstring = \
-            '''%%prog %s
-Translate Toolkit %s
-Kid %s
-Python %s (on %s/%s)''' % (
-            pootleversion.ver,
-            toolkitversion.sver,
-            kid.__version__,
-            sys.version,
-            sys.platform,
-            os.name,
-            )
         optparse.OptionParser.__init__(self)
         #self.set_default('prefsfile', filelocations.prefsfile)
         self.set_default('instance', 'Pootle')
