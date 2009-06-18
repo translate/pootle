@@ -6,7 +6,6 @@ from django.utils.translation import ugettext as _
 
 from pootle_app.lib.legacy.jToolkit import prefs
 from pootle_misc.baseurl import redirect
-from pootle_app.views.util import render_jtoolkit, render_to_kid, KidRequestContext
 from pootle_app.models import Language, Project
 
 from django.shortcuts import render_to_response

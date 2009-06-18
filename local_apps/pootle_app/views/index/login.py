@@ -30,10 +30,8 @@ from django.template import RequestContext
 
 from pootle.i18n.user_lang_discovery import get_language_from_request
 from pootle.i18n.jtoolkit_i18n import tr_lang
-from pootle_app.views.util import render_to_kid, KidRequestContext
 from pootle_app.models import Language
 from pootle_misc.baseurl import redirect
-
 
 
 def view(request):

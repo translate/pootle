@@ -34,7 +34,6 @@ from django.utils.safestring import mark_safe
 
 from translate.storage import factory, versioncontrol
 
-from pootle_app.views.util import render_to_kid, render_jtoolkit
 from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
 from pootle_app.models import Goal, Directory
 from pootle_store.models import Store

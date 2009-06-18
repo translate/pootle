@@ -20,7 +20,6 @@
 
 import re
 from os import path
-import kid
 from UserDict import UserDict
 
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
@@ -34,7 +33,6 @@ from pootle_app.lib.legacy.jToolkit.web import server
 # find the root directory.
 from django.conf import settings
 
-kid.enable_import()
 
 def find_template(relative_template_path):
     """Find the full path of the template whose relative path is
@@ -46,15 +44,7 @@ def find_template(relative_template_path):
             return full_template_path
     raise Exception('No template named %s found' % relative_template_path)
 
-def render(relative_template_path, **template_vars):
-    # Find the template at relative_template_path, get the
-    # constructed kid template and pass template_vars
-    # through...
-    template = kid.Template(file = find_template(relative_template_path), **template_vars)
 
-    # Render the template to a string and send the string
-    # to HttpResponse
-    return HttpResponse(template.serialize(output="xhtml"))
 
 class AttrDict(dict):
     # THIS IS TAKEN FROM JTOOLKIT
@@ -81,26 +71,6 @@ def attribify(context):
         return context
     else:
         return context
-
-def render_jtoolkit(obj):
-    """Render old style Pootle display objects which are jToolkit objects
-    containing all the necessary information to be rendered."""
-    if hasattr(obj, "templatename") and hasattr(obj, "templatevars"):
-        return render(obj.templatename, **attribify(obj.templatevars))
-    else:
-        if isinstance(obj, server.Redirect):
-            if obj.ispermanent:
-                return HttpResponsePermanentRedirect(obj.location)
-            return HttpResponseRedirect(obj.location)
-        return HttpResponse(obj.getcontents(), obj.content_type)
-
-def render_to_kid(template, context):
-    return render(template, **attribify(context))
-
-class KidRequestContext(dict):
-    def __init__(self, req, context, **kwargs):
-        self.update(context)
-        completetemplatevars(self, req, **kwargs)
 
 def form_set_as_table(formset, link=None):
     """Create an HTML table from the formset. The first form in the

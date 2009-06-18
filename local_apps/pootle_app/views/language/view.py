@@ -28,7 +28,6 @@ from django.utils import simplejson
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext as _N
 
-from pootle_app.views.util         import render_to_kid, render_jtoolkit
 from pootle_app.views              import indexpage
 from pootle_misc.baseurl           import redirect
 from pootle_app.models             import Language, Project, TranslationProject, Directory, store_iteration

@@ -26,8 +26,6 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.profile import get_profile, PootleProfile
-from pootle_app.views.util import render_to_kid, KidRequestContext
-from pootle_app.views.util import render_jtoolkit
 from pootle_app.views import indexpage
 from pootle_misc.baseurl import redirect
 
@@ -38,14 +36,6 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.forms.fields import email_re
 from django.forms.util import ErrorList
-
-def user_is_authenticated(f):
-    def decorated_f(request, *args, **kwargs):
-        if not request.user.is_authenticated():
-            return redirect('/login.html', message=_("You must log in to administer Pootle"))
-        else:
-            return f(request, *args, **kwargs)
-    return decorated_f
 
 def is_valid_email(email):
     return True if email_re.match(email) else False
@@ -66,10 +56,6 @@ class UserForm(ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
-
-@user_is_authenticated
-def index(request, path):
-    return render_jtoolkit(indexpage.UserIndex(request))
 
 @login_required
 def edit_personal_info(request):
