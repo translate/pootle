@@ -21,7 +21,7 @@
 from django.forms.util import ErrorList
 
 
-def form_set_as_table(formset, link=None):
+def form_set_as_table(formset, link=None, linkfield='code'):
     """Create an HTML table from the formset. The first form in the
     formset is used to obtain a list of the fields that need to be
     displayed. All these fields not appearing in 'exclude' will be
@@ -64,10 +64,10 @@ def form_set_as_table(formset, link=None):
             """
             'link' indicates whether we put the first field as a link or as widget
             """
-            if field == 'code' and 'code' in form.initial and link :
+            if field == linkfield and linkfield in form.initial and link :
                 from pootle_misc.baseurl import l
-                link = l(link % form.initial['code'])
-                result.append("<a href='"+link+"'><span >"+form.initial['code']+" </span></a>")
+                link = l(link % form.initial[linkfield])
+                result.append("<a href='"+link+"'><span >"+form.initial[linkfield]+" </span></a>")
                 result.append(form[field].as_hidden())
             else:
                 result.append(form[field].as_widget())
