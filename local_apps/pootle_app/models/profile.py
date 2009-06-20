@@ -63,7 +63,9 @@ class PootleProfile(models.Model):
                                         verbose_name=_("Interface language"))
     alt_src_langs   = models.ManyToManyField(Language, blank=True, related_name="user_alt_src_langs",
                                              verbose_name=_("Alternative source languages"))
-
+    def __unicode__(self):
+        return self.user.username
+    
     def _get_status(self):
         return "Foo"
 
