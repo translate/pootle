@@ -25,5 +25,6 @@ urlpatterns = patterns('pootle_app.views.admin',
     (r'^/users.html$',       'adminusers.view'),
     (r'^/languages.html$',   'adminlanguages.view'),
     (r'^/projects.html$',    'adminprojects.view'),
+    (r'^/permissions.html$', 'adminroot.view'),
     (r'^(/|index.html)?$', 'adminpages.view'),
 )
