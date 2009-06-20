@@ -97,8 +97,8 @@ class Directory(models.Model):
             child_dir.save()
             return child_dir
 
-    def __str__(self):
-        return self.name
+    def __unicode__(self):
+        return self.pootle_path
 
 def delete_children(sender, instance, **kwargs):
     """Before deleting a directory, delete all its children."""
