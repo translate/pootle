@@ -27,7 +27,8 @@ def view(request):
     model_args['title'] = _("Languages")
     model_args['submitname'] = "changelanguages"
     model_args['formid'] = "languages"
-    return util.edit(request, 'admin/adminpage.html', Language, model_args,
+    link = '/%s/admin.html'
+    return util.edit(request, 'admin/adminpage.html', Language, model_args, link,
               can_delete=True)
     
               
