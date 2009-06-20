@@ -23,14 +23,15 @@ from django import forms
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
-
-from pootle_app.models.profile import PootleProfile
-from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, \
-    get_matching_permissions
-from pootle_app import project_tree
-
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+
+from pootle_app.models.profile import PootleProfile, get_profile
+from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, \
+    get_matching_permissions, check_permission
+from pootle_app import project_tree
+
 
 class PermissionSetForm(forms.Form):
     """A PermissionSetForm represents a PermissionSet to the user.
@@ -233,6 +234,10 @@ def process_translation_project_update(request, translation_project):
         project_tree.scan_translation_project_files(translation_project)
 
 def view(request, translation_project):
+    request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
+    if not check_permission('administrate', request):
+        raise PermissionDenied
+
     language               = translation_project.language
     project                = translation_project.project
     process_translation_project_update(request, translation_project)
