@@ -9,9 +9,9 @@ from django.template import RequestContext
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_authenticated():
-            return redirect('/login.html', message=_("You must log in to administer Pootle."))
+            return redirect('/accounts/login/', message=_("You must log in to administer Pootle."))
         elif not request.user.is_superuser:
-            return redirect('/home/', message=_("You do not have the rights to administer Pootle.")) 
+            return redirect('/accounts/'+request.user.username +'/', message=_("You do not have the rights to administer Pootle.")) 
         else:
             return f(request, *args, **kwargs)
     return decorated_f
