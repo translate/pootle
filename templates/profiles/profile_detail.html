@@ -9,10 +9,15 @@
         </div>
         {% if profile.getquicklinks %}
         {% for language in profile.getquicklinks %}
-        <div>
-            <dl>
-                <dt> <a href= "{% filter l %}/{{ language.code }}/{% endfilter %}" >
-                    {% trans language.name %}
+            <dl class="languagelist">
+                <dt class="language"> <a href= "{% filter l %}/{{ language.code }}/{% endfilter %}" >
+                    {% trans language.name %} 
+                    {% if language.islangadmin %}
+		    <span class="adminlink">
+		      (<a href="{% filter l %}/{{language.code}}/admin.html{% endfilter %}">{% trans "Admin" %}</a>)
+                    </span>
+		    {% endif %}
+
                 </a> </dt>
                 {% for project in language.projects %}
                 <dd >
@@ -20,14 +25,13 @@
                     {{project.name}}
                 </a>
                 {% if project.isprojectadmin %}
-                <div >
-                    <a href="{% filter l %}/{{language.code}}/{{ project.code}}/admin.html {% endfilter %}">{% trans "Admin" %}</a>
-                </div>
+                <span class="adminlink">
+		  (<a href="{% filter l %}/{{language.code}}/{{ project.code}}/admin.html{% endfilter %}">{% trans "Admin" %}</a>)
+                </span>
                 {% endif %}
                 </dd>
                 {% endfor %}
             </dl>
-        </div>
         {% endfor %}
         {% else %}
         <div class="item-description">

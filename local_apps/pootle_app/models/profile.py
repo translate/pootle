@@ -124,9 +124,12 @@ class PootleProfile(models.Model):
                     pass
             if langlinks:
                 langlinks[-1]['sep'] = ''
-            quicklinks.append({'code': language.code, 'name'
-                              : tr_lang(language.fullname), 'projects'
-                              : langlinks})
+            islangadmin = 'administrate' in get_matching_permissions(self, language.directory)
+
+            quicklinks.append({'code': language.code,
+                               'name': tr_lang(language.fullname),
+                               'islangadmin': islangadmin,
+                               'projects': langlinks})
             quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict['name'])
         return quicklinks
 
