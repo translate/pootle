@@ -21,6 +21,8 @@
 
 from django.utils.translation import ugettext_lazy as _
 from django.db                import models
+from pootle_app.models.directory        import Directory
+from django.db.models.signals           import pre_save
 
 class Language(models.Model):
     class Meta:
@@ -39,6 +41,14 @@ class Language(models.Model):
     specialchars   = models.CharField(max_length=255, blank=True, verbose_name=_("Special Chars"), help_text=specialchars_help_text)
     nplurals       = models.SmallIntegerField(default=0, choices=nplural_choices, verbose_name=_("Number of Plurals"), help_text=nplurals_help_text)
     pluralequation = models.CharField(max_length=255, blank=True, verbose_name=_("Plural Equation"), help_text=pluralequation_help_text)
+    directory = models.ForeignKey(Directory)
 
     def __unicode__(self):
         return self.fullname
+
+
+def set_data(sender, instance, **kwargs):
+    # create corresponding directory object
+    instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
+
+pre_save.connect(set_data, sender=Language)
