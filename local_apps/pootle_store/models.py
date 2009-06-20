@@ -45,12 +45,12 @@ class Store(models.Model):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
     is_dir = False
     
-    file        = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False)
-    pending     = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs)
-    tm          = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs)
-    parent      = models.ForeignKey(Directory, related_name='child_stores', db_index=True)
+    file        = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False, editable=False)
+    pending     = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False)
+    tm          = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs, editable=False)
+    parent      = models.ForeignKey(Directory, related_name='child_stores', db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True)
-    name        = models.CharField(max_length=128, null=False)
+    name        = models.CharField(max_length=128, null=False, editable=False)
 
     class Meta:
         ordering = ['pootle_path']
