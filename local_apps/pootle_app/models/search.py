@@ -128,9 +128,9 @@ class Search(object):
         self.match_names     = match_names
         self.assigned_to     = assigned_to
         self.search_text     = search_text
-        self.search_fields   = search_fields
         if search_fields is None:
             search_fiels = ['source', 'target']
+        self.search_fields   = search_fields
         self.translation_project = translation_project
 
     def _get_search_results(self):
