@@ -54,7 +54,16 @@ class AdvancedSearchForm(forms.Form):
             })
 
     def as_hidden(self):
-        return mark_safe(''.join(field.as_hidden() for field in self))
+        """Brain dead Django mungles rendering of checkboxes if initial values are routed via as_hidden
+        check http://code.djangoproject.com/ticket/9336 for more info"""
+        
+        def field_hidden(field):
+            if field.data:
+                return '<input type="hidden" name="%s" value="True" id="id_comments" />' % field.name
+            else:
+                return ''
+
+        return mark_safe(''.join(field_hidden(field) for field in self))
 
 class BaseAdvancedSearchFormSet(BaseFormSet):
     def as_hidden(self):
