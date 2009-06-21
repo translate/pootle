@@ -52,7 +52,7 @@ class AdvancedSearchForm(forms.Form):
         
         def field_hidden(field):
             if field.data:
-                return '<input type="hidden" name="%s" value="True" id="id_comments" />' % field.name
+                return '<input type="hidden" name="%s" value="True" id="id_%s" />' % (field.name, field.name)
             else:
                 return ''
 
@@ -94,8 +94,7 @@ def search_from_request(request):
     kwargs['match_names']         = get_list(request, 'match_names')
     kwargs['assigned_to']         = get_list(request, 'assigned_to')
     #FIXME: use cleaned_data
-    kwargs['search_text']         = search['search_form']['text'].data
-    
+    kwargs['search_text']         = search['search_form']['text'].data    
     kwargs['search_fields']       = as_search_field_list(search['advanced_search_form'])
     kwargs['translation_project'] = request.translation_project
     return Search(**kwargs)
