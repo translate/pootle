@@ -23,10 +23,23 @@ import logging
 class BaseUrlMiddleware(object):
     def process_request(self, request):
         """calculate settings.BASEURL based on HTTP headers"""
+        domain = None
+        
+        if 'HTTP_HOST' in request.META:
+            domain = request.META['HTTP_HOST']
+            settings.BASE_URL = 'http://' + request.META['HTTP_HOST']
+            
         if 'SCRIPT_NAME' in request.META: 
             settings.SCRIPT_NAME = request.META['SCRIPT_NAME']
-        if 'HTTP_HOST' in request.META:
-            settings.BASE_URL = 'http://' + request.META['HTTP_HOST']
-        else:
-            settings.BASE_URL = ''
+            settings.BASE_URL += request.META['SCRIPT_NAME']
+            domain += request.META['SCRIPT_NAME']
+
+        if domain is not None:            
+            #FIXME: DIRTY HACK ALERT if this works then something is
+            #wrong with the universe
+            # poison sites cache using detected domain
+            from django.contrib.sites import models as sites_models
+            sites_models.SITE_CACHE[settings.SITE_ID] = sites_models.Site(settings.SITE_ID,
+                                                                          request.META['HTTP_HOST'],
+                                                                          settings.TITLE)
             
