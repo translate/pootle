@@ -43,7 +43,7 @@ class SearchForm(forms.Form):
 class AdvancedSearchForm(forms.Form):
     source = forms.BooleanField(label=_('Source Text'), required=False, initial=True)
     target = forms.BooleanField(label=_('Target Text'), required=False, initial=True)
-    comments = forms.BooleanField(label=('Comments'), required=False, initial= False)
+    notes = forms.BooleanField(label=('Comments'), required=False, initial= False)
     locations = forms.BooleanField(label=('Locations'), required=False, initial=False)
     
     def as_hidden(self):
