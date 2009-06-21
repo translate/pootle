@@ -41,18 +41,11 @@ class SearchForm(forms.Form):
         return mark_safe(''.join(field.as_hidden() for field in self))
 
 class AdvancedSearchForm(forms.Form):
-    selected    = forms.BooleanField(required=False)
-
-    def as_table(self):
-        from pootle.i18n import gettext, util
-
-        return mark_safe('<tr><td>%(selected)s<label dir="%(uidir)s" for="%(for_label)s">%(text)s</label></td></tr>' % {
-            'selected':  self['selected'].as_widget(),
-            'uidir':     util.language_dir(gettext.get_active().language.code),
-            'for_label': self['selected'].auto_id,
-            'text':      self.initial['text'],
-            })
-
+    source = forms.BooleanField(label=_('Source Text'), required=False, initial=True)
+    target = forms.BooleanField(label=_('Target Text'), required=False, initial=True)
+    comments = forms.BooleanField(label=('Comments'), required=False, initial= False)
+    locations = forms.BooleanField(label=('Locations'), required=False, initial=False)
+    
     def as_hidden(self):
         """Brain dead Django mungles rendering of checkboxes if initial values are routed via as_hidden
         check http://code.djangoproject.com/ticket/9336 for more info"""
@@ -65,56 +58,21 @@ class AdvancedSearchForm(forms.Form):
 
         return mark_safe(''.join(field_hidden(field) for field in self))
 
-class BaseAdvancedSearchFormSet(BaseFormSet):
-    def as_hidden(self):
-        "Returns this formset rendered as a hidden set of HTML widgets"
-        forms = u' '.join([form.as_hidden() for form in self.forms])
-        return mark_safe(u'\n'.join([unicode(self.management_form), forms]))
-
-AdvancedSearchFormSet = formset_factory(AdvancedSearchForm, BaseAdvancedSearchFormSet, extra=0)
-
-def get_advanced_search_field_data():
-    return [
-        {'selected': True,  'text': _('Source Text'), 'name': 'source'   },
-        {'selected': True,  'text': _('Target Text'), 'name': 'target'   },
-        {'selected': False, 'text': _('Comments'),    'name': 'comments' },
-        {'selected': False, 'text': _('Locations'),   'name': 'locations'},
-        ]
-
-#def are_advanced_options_default(advanced_form):
-#    return advanced_form.forms[0]['']
-
-def mark_nodefault(request, result):
-    """Set 'extra_class' to the CSS class 'nodefaultsearch' if we
-    detect that a field in our advanced search form differs from
-    its default value.
-
-    We only do this for POSTs, since the user will only ever
-    navigate searches using form submissions."""
-    if request.method == 'POST':
-        for form in result['advanced_search_form'].forms:
-            if form.is_valid() and form.initial['selected'] != form.cleaned_data['selected']:
-                result['extra_class'] = 'nodefaultsearch'
-                return result
-    return result
 
 # TBD: Init the search forms from a SearchState object?
 def get_search_form(request, search_text=None):
-    try:
-        advanced_search_form = AdvancedSearchFormSet(data=request.POST,
-                                                     initial=get_advanced_search_field_data())
-    except ValidationError:
-        advanced_search_form = AdvancedSearchFormSet(initial=get_advanced_search_field_data())
+    if request.method == 'POST':
+        advanced_search_form = AdvancedSearchForm(data=request.POST)
+    else:
+        advanced_search_form = AdvancedSearchForm()
 
-    return mark_nodefault(request, {
+    return  {
         'search_form':           SearchForm(data=request.POST,
                                             initial={'title': _('Search'), 'text': search_text or ''}),
         'advanced_search_form':  advanced_search_form,
         'advanced_search_title': _('Advanced Search'),
         'extra_class':           ''
-        })
-
-
+        }
 
 def search_from_request(request):
     def get_list(request, name):
@@ -123,10 +81,10 @@ def search_from_request(request):
         except KeyError:
             return []
 
-    def as_search_field_list(formset):
-        return [form.initial['name']
-                for form in formset.forms
-                if form.is_valid() and form.cleaned_data['selected']]
+    def as_search_field_list(form):
+        if form.is_bound and form.is_valid():
+            return [key for key in form.cleaned_data if form.cleaned_data[key]]
+
 
     search = get_search_form(request)
 
@@ -135,7 +93,9 @@ def search_from_request(request):
         kwargs['goal'] = Goal.objects.get(name=request.GET['goal'])
     kwargs['match_names']         = get_list(request, 'match_names')
     kwargs['assigned_to']         = get_list(request, 'assigned_to')
+    #FIXME: use cleaned_data
     kwargs['search_text']         = search['search_form']['text'].data
+    
     kwargs['search_fields']       = as_search_field_list(search['advanced_search_form'])
     kwargs['translation_project'] = request.translation_project
     return Search(**kwargs)
