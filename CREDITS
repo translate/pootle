@@ -11,26 +11,31 @@ Pootle interface.  If you've been left out, let us know!
 Alphabetical Order of Contributors
 ----------------------------------
 
+Ahmed Toulan (أحمد طولون) (OpenCraft): development
+Alaa Abd El Fataah (علاء عبد الفتاح): development
 Abel Cheung (張國冠): feedback and patches for Chinese and CJK locales
 Andreas Pauley: development
-Behnam Esfahbod (بهنام اسفهبد): RTL testing and feedback
+Behnam Esfahbod (بهنام اسفهبد): initial RTL testing and feedback
 Capel Brunker: development
 Charl van Niekerk: user interface improvements and testing
 Clytie Siddall: testing and feedback
-David Fraser: main development
+David Fraser: main initial development
 Daniel Schafer (Mozilla): development (Mozootle)
 Djihed Afifi (عفيفي جهاد): user interface improvements
 Dwayne Bailey: lots of different areas
 Friedel Wolff: development
 Gasper Zejn: user interface improvements
+Julen Ruiz Aizpuru: GSoC 2008, development
 Lars Kruse: improvements in several areas, testing, bug reports, patches
 Lucas Vieites: original Pootle SVG logo
 Matt Chisholm: bug fixes
 Miklos Vajna: patches and testing of version control
-Munzir Taha (منذر طه): RTL testing and feedback
+Mohamed El-Sawy (محمد الصاوي) (OpenCraft): development
+Munzir Taha (منذر طه): initial RTL testing and feedback
 Nicolas François: Performance and customisability
+Sayamindu Dasgupta (সায়মিন্দু দাশগুপ্ত): Alternative source language
 Simos Xenitellis (Σίμος Ξενιτέλλης): user interface improvements
 Walter Leibbrandt: development
 Wil Clouser (Mozilla): debugging, testing, development (Mozootle)
 Wynand Winterbach: development
-Youssef Chahibi (يوسف الشهيبي): RTL testing and feedback
+Youssef Chahibi (يوسف الشهيبي): initial RTL testing and feedback
