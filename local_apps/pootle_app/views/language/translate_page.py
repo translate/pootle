@@ -194,18 +194,22 @@ def get_translations(request, profile, store, item):
         return item, first_item, items
 
 def get_header_plural(request, store):
-    nplurals = None
+    # get plural information from Language model
+    nplurals = request.translation_project.language.nplurals
+    plurals = request.translation_project.language.pluralequation
+    
     try:
-        nplurals, plurals = store.file.store.getheaderplural()
+        # get plural information from Store
+        snplurals, splurals = store.file.store.getheaderplural()
+        if snplurals and snplurals.isdigit():
+            # file has plural information
+            #FIXME: should we check if file has correct language headers
+            nplurals = int(snplurals)
+            plurals = splurals
     except:
+        # not a POHeader store
         pass
     
-    if not (nplurals and nplurals.isdigit()):
-        # The file doesn't have plural information declared. Let's get it from
-        # the language
-        nplurals = request.translation_project.language.nplurals
-    else:
-        nplurals = int(nplurals)
     return nplurals, plurals
 
 def ensure_trans_plurals(request, store, orig, trans):
