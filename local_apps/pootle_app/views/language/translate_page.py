@@ -194,7 +194,12 @@ def get_translations(request, profile, store, item):
         return item, first_item, items
 
 def get_header_plural(request, store):
-    nplurals, plurals = store.file.store.getheaderplural()
+    nplurals = None
+    try:
+        nplurals, plurals = store.file.store.getheaderplural()
+    except:
+        pass
+    
     if not (nplurals and nplurals.isdigit()):
         # The file doesn't have plural information declared. Let's get it from
         # the language
