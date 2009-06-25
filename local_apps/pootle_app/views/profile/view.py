@@ -38,7 +38,7 @@ from django.forms.fields import email_re
 from django.forms.util import ErrorList
 
 def is_valid_email(email):
-    return True if email_re.match(email) else False
+    return (email_re.match(email) is not None)
 
 class UserForm(ModelForm):
 
