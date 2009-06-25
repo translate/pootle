@@ -100,6 +100,32 @@ class Directory(models.Model):
     def __unicode__(self):
         return self.pootle_path
 
+    def getquickstats(self):
+        """calculate aggregate stats for all directory based on stats
+        of all descenging stores and dirs"""
+
+        #FIXME: cache this somewhere
+        empty_stats = {"translated": 0, "translatedsourcewords": 0,
+                       "fuzzy": 0, "fuzzysourcewords": 0,
+                       "untranslated": 0, "untranslatedsourcewords": 0,
+                       "total": 0, "totalsourcewords": 0}
+
+        file_result = reduce(dictsum, (store.getquickstats() for store in self.child_stores.all()), empty_stats)
+        dir_result = reduce(dictsum, (directory.getquickstats() for directory in self.child_dirs.all()), empty_stats)
+        result = dictsum(file_result, dir_result)
+        
+        return result
+                            
+    def getcompletestats(self, checker):
+        empty_stats = {}
+        file_result = reduce(dictsum, (store.getcompletestats(checker) for store in self.child_stores.all()), empty_stats)
+        dir_result = reduce(dictsum, (directory.getcompletestats(checker) for directory in self.child_dirs.all()), empty_stats)
+        result = dictsum(file_result, dir_result)
+        return result
+    
+def dictsum(x, y):
+    return dict( (n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y) )
+
 def delete_children(sender, instance, **kwargs):
     """Before deleting a directory, delete all its children."""
     for child_store in instance.child_stores.all():

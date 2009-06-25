@@ -65,10 +65,25 @@ class Store(models.Model):
         return self.file.name
 
     real_path = property(_get_real_path)
-
+    
     def __unicode__(self):
         return self.name
+    
+    def getquickstats(self):
+        # implement as model function so we can cache in model or
+        # using django's cache later
 
+        # convert result to normal dicts for later operations
+        return dict(self.file.getquickstats())
+
+    def getcompletestats(self, checker):
+        #FIXME: figure out our own checker?
+        result = {}
+        for key, value in self.file.getcompletestats(checker).iteritems():
+            result[key] = len(value)
+            
+        return result
+    
     def initpending(self, create=False):
         """initialize pending translations file if needed"""
         #FIXME: we parse file just to find if suggestions can be
