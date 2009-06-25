@@ -31,7 +31,7 @@ from pootle_app.models.profile         import get_profile
 from pootle_app.views.language          import search_forms
 from pootle_app.models.store_iteration import get_next_match
 from pootle_app.models.permissions     import check_permission
-from pootle_app.models                 import metadata
+from pootle_store.models               import Store
 from pootle_app.views.language         import dispatch
 
 ################################################################################
@@ -39,11 +39,11 @@ from pootle_app.views.language         import dispatch
 def get_item_summary(request, quick_stats, path_obj):
     translated_words = quick_stats['translatedsourcewords']
     total_words      = quick_stats['totalsourcewords']
-    num_stores       = metadata.num_stores(path_obj)
+    num_stores       = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
     state            = dispatch.CommonState(request.GET)
     # Stats showing the number of files
     if state.goal is not None:
-        file_stats = _("%d/%d files", (metadata.num_stores(path_obj, state.goal), num_stores))
+        file_stats = _("%d/%d files", (num_stores(path_obj, state.goal), num_stores))
     else:
         file_stats = ungettext("%d file", "%d files", num_stores) % num_stores
     # The translated word counts
@@ -70,7 +70,7 @@ def getcheckdetails(request, path_obj, url_opts={}):
     """return a list of strings describing the results of
     checks"""
 
-    property_stats = metadata.stats_totals(path_obj, request.translation_project.checker)
+    property_stats = path_obj.getcompletestats(request.translation_project.checker)
     total = property_stats['total']
     checklinks = []
     keys = property_stats.keys()
@@ -216,7 +216,7 @@ def yield_update_link(request, path_obj, links_required):
         }
 
 def get_store_extended_links(request, path_obj, links_required):
-    stats_totals = metadata.stats_totals(path_obj, request.translation_project.checker)
+    stats_totals = path_obj.getcompletestats(request.translation_project.checker)
     return list(itertools.chain(
             #yield_assigned_links(    request, path_obj, links_required),
             yield_review_link(       request, path_obj, links_required, stats_totals),
@@ -252,8 +252,7 @@ def add_percentages(quick_stats):
     return quick_stats
 
 def make_generic_item(request, path_obj, action, links_required):
-    search = search_forms.search_from_request(request)
-    quick_stats = add_percentages(metadata.quick_stats(path_obj, request.translation_project.checker, search))
+    quick_stats = add_percentages(path_obj.getquickstats())
     return {
         'href':    action,
         'data':    quick_stats,

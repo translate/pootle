@@ -43,7 +43,7 @@ from pootle_store.models import Store
 from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
 from pootle_app import unit_update, url_manip
-from pootle_app.models import permissions, metadata
+from pootle_app.models import permissions
 from pootle_app.models.permissions import check_permission
 
 from pootle.i18n.gettext import tr_lang
@@ -978,7 +978,7 @@ def view(request, directory, store, item, stopped_by=None):
     rows, icon = get_rows_and_icon(request, profile)
     navbar["icon"] = icon
     if store is not None:
-        postats = metadata.quick_stats(store, translation_project.checker)
+        postats = store.getquickstats()
         untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
         translated, total = postats["translated"], postats["total"]
         mainstats = _("%d/%d translated\n(%d untranslated, %d fuzzy)" % (translated, total, untranslated, fuzzy))

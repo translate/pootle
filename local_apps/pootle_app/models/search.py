@@ -27,8 +27,6 @@ from pootle_app.models.assignment import StoreAssignment
 #from pootle_app.views.language    import search_forms
 from pootle_app.lib.util          import lazy_property
 
-import metadata
-
 def member(sorted_set, element):
     """Check whether element appears in sorted_set."""
     pos = bisect.bisect_left(sorted_set, element)
@@ -155,7 +153,7 @@ class Search(object):
             # properties. In this case, we know that last_item is the
             # sought after item, unless of course item >= number of
             # units
-            stats = metadata.stats_totals(store, self.translation_project.checker)
+            stats = store.getcompletestats(self.translation_project.checker)
             if last_index < stats['total']:
                 return iter([last_index])
             else:
@@ -165,7 +163,7 @@ class Search(object):
                     store.pootle_path not in self.search_results:
                 return iter([])
 
-            stats = metadata.property_stats(store, self.translation_project.checker)
+            stats = store.file.getcompletestats(self.translation_project.checker)
             total = stats['total']
             result = total[range[0]:range[1]]
             result = narrow_to_matches(stats, result, self)
@@ -194,7 +192,7 @@ class Search(object):
             # into the file, we want to include the very last element
             # of stats['total'] as well when searching. Thus
             # [0:len(stats['total'])] gives us what we need.
-            stats = metadata.stats_totals(store, self.translation_project.checker)
+            stats = store.getcompletestats(self.translation_project.checker)
             last_index = stats['total'] - 1
         return self._all_matches(store, last_index, (0, last_index + 1), lambda x: reversed(list(x)))
 

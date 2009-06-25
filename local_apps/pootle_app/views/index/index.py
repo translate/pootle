@@ -32,8 +32,6 @@ from pootle_app.views import indexpage
 from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle.i18n.gettext import tr_lang
-from pootle_app.models import metadata
-
 
 
 def limit(query):
@@ -68,7 +66,7 @@ def get_items(request, model, latest_changes, item_index, name_func, permission_
         fuzzy = 0
         total = 0
         for translation_project in item_index[item.code]:
-            stats = metadata.quick_stats(translation_project.directory, translation_project.checker)
+            stats = translation_project.directory.getquickstats()
             trans += stats['translatedsourcewords']
             fuzzy += stats['fuzzysourcewords']
             total += stats['totalsourcewords']
