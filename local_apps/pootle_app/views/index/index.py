@@ -33,12 +33,11 @@ from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.language.item_dict import add_percentages, make_directory_item
-from pootle_app.models.directory import dictsum
 
 def limit(query):
     return query[:5]
 
-def get_items(request, model, latest_changes, item_index, name_func, permission_set):
+def get_items(request, model, latest_changes, name_func, permission_set):
 
     def get_last_action(item, latest_changes):
         if item.code in latest_changes and latest_changes[item.code]\
@@ -52,8 +51,8 @@ def get_items(request, model, latest_changes, item_index, name_func, permission_
         return items
     latest_changes = latest_changes()
     
-    for item in [item for item in model.objects.all() if item.code in item_index]:
-        stats = reduce(dictsum, (translation_project.directory.getquickstats() for translation_project in item_index[item.code]), {})
+    for item in model.objects.all():
+        stats = item.getquickstats()
         stats = add_percentages(stats)
 
         lastact = get_last_action(item, latest_changes)
@@ -72,21 +71,17 @@ def get_items(request, model, latest_changes, item_index, name_func, permission_
     items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))
     return items
 
-def getlanguages(request, language_index, permission_set):
+def getlanguages(request, permission_set):
     return get_items(request, Language, Submission.objects.get_latest_language_changes,
-                          language_index, tr_lang, permission_set)
+                     tr_lang, permission_set)
 
-def getprojects(request, project_index, permission_set):
+def getprojects(request, permission_set):
     return get_items(request, Project, Submission.objects.get_latest_project_changes,
-                          project_index, lambda x: x, permission_set)
-
-def getprojectnames():
-    return [proj.fullname for proj in Project.objects.all()]
+                     lambda x: x, permission_set)
 
 
 def view(request):
     permission_set = get_matching_permissions(get_profile(request.user), Directory.objects.root)
-    (language_index, project_index) =  TranslationProject.get_language_and_project_indices()
     topsugg = limit(Suggestion.objects.get_top_suggesters())
     topreview = limit(Suggestion.objects.get_top_reviewers())
     topsub = limit(Submission.objects.get_top_submitters())
@@ -105,13 +100,11 @@ def view(request):
             'l10n',
             'traduction',
             'traduire',
-            ] + getprojectnames(),
+            ],
         'languagelink': _('Languages'),
-        'languages': getlanguages(request, language_index,
-                                       permission_set),
+        'languages': getlanguages(request, permission_set),
         'projectlink': _('Projects'),
-        'projects': getprojects(request, project_index,
-                                     permission_set),
+        'projects': getprojects(request, permission_set),
         'topstats': topstats,
         'topstatsheading': _('Top Contributors'),
         'instancetitle': pagelayout.get_title(),

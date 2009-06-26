@@ -37,7 +37,7 @@ def limit(query):
 
 def make_language_item(translation_project):
     href = '/%s/%s/' % (translation_project.language.code, translation_project.project.code)
-    projectstats = add_percentages(translation_project.get_quick_stats())
+    projectstats = add_percentages(translation_project.getquickstats())
     return {
         'code': translation_project.language.code,
         'icon': 'language',
@@ -50,26 +50,10 @@ def make_language_item(translation_project):
 def view(request, project_code, _path_var):
     project = get_object_or_404(Project, code=project_code)
     translation_projects = project.translationproject_set.all()
-    items = [make_language_item(translation_project) for translation_project in translation_projects]
+    items = (make_language_item(translation_project) for translation_project in translation_projects)
     languagecount = len(translation_projects)
-    #FIXME: split duplicate stats sum function somewhere shared
-    def addstats(x,y):
-        try:
-            xstats = x.get_quick_stats()
-        except:
-            xstats = x
-        ystats = y.get_quick_stats()
-        result = {}
-        result['translatedsourcewords'] = xstats['translatedsourcewords'] + ystats['translatedsourcewords']
-        result['totalsourcewords'] = xstats['totalsourcewords'] + ystats['totalsourcewords']
-        return result
-
-    if languagecount > 1:
-        totals = reduce(addstats, translation_projects)
-    else:
-        totals = translation_projects[0].get_quick_stats()
-        
-    average = totals['translatedsourcewords'] * 100 / max(totals['totalsourcewords'], 1)
+    totals = add_percentages(project.getquickstats())
+    average = totals['translatedpercentage'] 
 
     def narrow(query):
         return limit(query.filter(translation_project__project__code=project_code))

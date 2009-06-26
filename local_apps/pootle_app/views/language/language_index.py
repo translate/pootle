@@ -39,11 +39,7 @@ def make_project_item(translation_project):
     project = translation_project.project
     href = '%s/' % project.code
     projectdescription = shortdescription(project.description)
-    projectstats = add_percentages(translation_project.get_quick_stats())
-    #projectdata = self.getstats(translation_project,
-    #                            translation_project.directory, None)
-    #self.updatepagestats(projectdata['translatedsourcewords'],
-    #                     projectdata['totalsourcewords'])
+    projectstats = add_percentages(translation_project.getquickstats())
     return {
         'code': project.code,
         'href': href,
@@ -58,9 +54,9 @@ def language_index(request, language_code):
     language = get_object_or_404(Language, code=language_code)
     projects = language.translationproject_set.all()
     projectcount = len(projects)
-    items = [make_project_item(translate_project) for translate_project in projects]
+    items = (make_project_item(translate_project) for translate_project in projects)
 
-    totals = language.directory.getquickstats()        
+    totals = language.getquickstats()        
     average = totals['translatedsourcewords'] * 100 / max(totals['totalsourcewords'], 1)
 
     def narrow(query):
