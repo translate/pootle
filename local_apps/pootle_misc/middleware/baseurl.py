@@ -27,14 +27,18 @@ class BaseUrlMiddleware(object):
         
         if 'HTTP_HOST' in request.META:
             domain = request.META['HTTP_HOST']
-            settings.BASE_URL = 'http://' + request.META['HTTP_HOST']
             
         if 'SCRIPT_NAME' in request.META: 
             settings.SCRIPT_NAME = request.META['SCRIPT_NAME']
-            settings.BASE_URL += request.META['SCRIPT_NAME']
-            domain += request.META['SCRIPT_NAME']
+            if domain is not None:
+                domain += request.META['SCRIPT_NAME']
 
-        if domain is not None:            
+        if domain is not None:
+            if request.is_secure():
+                settings.BASE_URL = 'https://' + domain
+            else:
+                settings.BASE_URL = 'http://'  + domain
+            
             #FIXME: DIRTY HACK ALERT if this works then something is
             #wrong with the universe
             # poison sites cache using detected domain
