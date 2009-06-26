@@ -46,7 +46,9 @@ class Language(models.Model):
     def __unicode__(self):
         return self.fullname
 
-
+    def getquickstats(self):
+        return self.directory.getquickstats()
+    
 def set_data(sender, instance, **kwargs):
     # create corresponding directory object
     instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)

@@ -164,7 +164,7 @@ class TranslationProject(models.Model):
 
     non_db_state = property(_get_non_db_state)
 
-    def get_quick_stats(self):
+    def getquickstats(self):
         return self.directory.getquickstats()
 
     def _get_indexer(self):

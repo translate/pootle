@@ -23,7 +23,7 @@ from django.db                import models
 from django.db.models.signals import pre_delete, pre_save
 from django.utils.translation import ugettext_lazy as _
 
-from translate.storage import statsdb
+from pootle_store.util import dictsum, statssum
 
 class DirectoryManager(models.Manager):
     def get_query_set(self, *args, **kwargs):
@@ -110,8 +110,9 @@ class Directory(models.Model):
                        "untranslated": 0, "untranslatedsourcewords": 0,
                        "total": 0, "totalsourcewords": 0}
 
-        file_result = reduce(dictsum, (store.getquickstats() for store in self.child_stores.all()), empty_stats)
-        dir_result = reduce(dictsum, (directory.getquickstats() for directory in self.child_dirs.all()), empty_stats)
+        #FIXME: can we replace this with a quicker path query? 
+        file_result = statssum(self.child_stores.all(), empty_stats)
+        dir_result  = statssum(self.child_dirs.all(), empty_stats)
         result = dictsum(file_result, dir_result)
         
         return result
@@ -123,9 +124,6 @@ class Directory(models.Model):
         result = dictsum(file_result, dir_result)
         return result
     
-def dictsum(x, y):
-    return dict( (n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y) )
-
 def delete_children(sender, instance, **kwargs):
     """Before deleting a directory, delete all its children."""
     for child_store in instance.child_stores.all():

@@ -44,3 +44,10 @@ def absolute_real_path(p):
         return os.path.join(settings.PODIRECTORY, p)
     else:
         return p
+
+def dictsum(x, y):
+    return dict( (n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y) )
+
+def statssum(queryset, empty_stats={}):
+    return reduce(dictsum, (item.getquickstats() for item in queryset), empty_stats)
+
