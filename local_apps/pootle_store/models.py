@@ -26,13 +26,14 @@ import re
 from django.db import models
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from django.core.cache import cache
 
 from translate.storage import po
 
 from pootle_misc.util import getfromcache
 from pootle_app.models.directory import Directory
-
-from pootle_store.fields import TranslationStoreField
+from pootle_store.fields  import TranslationStoreField
+from pootle_store.signals import translation_file_updated
 
 # custom storage otherwise djago assumes all files are uploads headed to
 # media dir
@@ -56,6 +57,25 @@ class Store(models.Model):
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
 
+
+    def handle_file_update(self, sender, **kwargs):
+        path = self.pootle_path
+        path_parts = path.split("/")
+
+        # clean project stat cache
+        key = "/projects/%s/:getquickstats" % path_parts[2]
+        cache.delete(key)
+        
+        # clean store and directory stat cache
+        while path_parts:
+            key = path + ":getquickstats"
+            cache.delete(key)
+            key = path + ":getcompletestats"
+            cache.delete(key)
+            path_parts = path_parts[:-1]
+            path = "/".join(path_parts) + "/"
+        
+            
     def _get_abs_real_path(self):
         return self.file.path
 
@@ -334,8 +354,12 @@ class Store(models.Model):
         
 def set_store_pootle_path(sender, instance, **kwargs):
     instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
+models.signals.pre_save.connect(set_store_pootle_path, sender=Store)    
 
-models.signals.pre_save.connect(set_store_pootle_path, sender=Store)
+def store_post_init(sender, instance, **kwargs):
+    translation_file_updated.connect(instance.handle_file_update, sender=instance.file)
+models.signals.post_init.connect(store_post_init, sender=Store)
+
 
 class Unit(models.Model):
     #FIXME: why do we have this model, what is it used for

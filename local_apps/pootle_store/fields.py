@@ -32,10 +32,11 @@ from django.conf import settings
 from django.core.files import File
 from django.db.models.fields.files import FieldFile, FileField
 from django.utils.thread_support import currentThread
-from django.dispatch import Signal
 
 from translate.storage import factory, statsdb, po
 from translate.filters import checks
+
+from pootle_store.signals import translation_file_updated
 
 
 class TranslationStoreFile(File):
@@ -204,7 +205,7 @@ class TranslationStoreFile(File):
     def getpomtime(self):
         return statsdb.get_mod_info(self.path)
     
-translation_file_updated = Signal(providing_args=["path"])
+
 
 class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     _store_cache = {}
@@ -243,6 +244,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         self._store_cache[self.path] = (self._store_cache[self.path][0], mod_info)
         #FIXME: should we track pomtime for stats cache as well
         self._stats[self.path] = {}
+        translation_file_updated.send(sender=self, path=self.path)
 
         
     def _delete_store_cache(self):
