@@ -68,7 +68,12 @@ class Project(models.Model):
     @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.all())
-        
+
+    def _get_pootle_path(self):
+        return "/projects/" + self.code + "/"
+    pootle_path = property(_get_pootle_path)
+
+    
 def create_project_directory(sender, instance, **kwargs):
     project_path = absolute_real_path(instance.code)
     if not os.path.exists(project_path):
