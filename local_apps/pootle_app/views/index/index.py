@@ -32,23 +32,13 @@ from pootle_app.views import indexpage
 from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle.i18n.gettext import tr_lang
-
+from pootle_app.views.language.item_dict import add_percentages, make_directory_item
+from pootle_app.models.directory import dictsum
 
 def limit(query):
     return query[:5]
 
 def get_items(request, model, latest_changes, item_index, name_func, permission_set):
-
-    def get_percentages(trans, fuzzy):
-        try:
-            transper = int((100.0 * trans) / total)
-            fuzzyper = int((100.0 * fuzzy) / total)
-            untransper = (100 - transper) - fuzzyper
-        except ZeroDivisionError:
-            transper = 100
-            fuzzyper = 0
-            untransper = 0
-        return (transper, fuzzyper, untransper)
 
     def get_last_action(item, latest_changes):
         if item.code in latest_changes and latest_changes[item.code]\
@@ -61,29 +51,23 @@ def get_items(request, model, latest_changes, item_index, name_func, permission_
     if 'view' not in permission_set:
         return items
     latest_changes = latest_changes()
+    
     for item in [item for item in model.objects.all() if item.code in item_index]:
-        trans = 0
-        fuzzy = 0
-        total = 0
-        for translation_project in item_index[item.code]:
-            stats = translation_project.directory.getquickstats()
-            trans += stats['translatedsourcewords']
-            fuzzy += stats['fuzzysourcewords']
-            total += stats['totalsourcewords']
-        untrans = (total - trans) - fuzzy
-        (transper, fuzzyper, untransper) = get_percentages(trans, fuzzy)
+        stats = reduce(dictsum, (translation_project.directory.getquickstats() for translation_project in item_index[item.code]), {})
+        stats = add_percentages(stats)
+
         lastact = get_last_action(item, latest_changes)
         items.append({
             'code': item.code,
             'name': name_func(item.fullname),
             'lastactivity': lastact,
-            'trans': trans,
-            'fuzzy': fuzzy,
-            'untrans': untrans,
-            'total': total,
-            'transper': transper,
-            'fuzzyper': fuzzyper,
-            'untransper': untransper,
+            'trans': stats["translatedsourcewords"],
+            'fuzzy': stats["fuzzysourcewords"],
+            'untrans': stats["untranslatedsourcewords"],
+            'total': stats["totalsourcewords"],
+            'transper': stats["translatedpercentage"],
+            'fuzzyper': stats["fuzzypercentage"],
+            'untransper': stats["untranslatedpercentage"],
             })
     items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))
     return items

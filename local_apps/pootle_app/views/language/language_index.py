@@ -59,23 +59,8 @@ def language_index(request, language_code):
     projects = language.translationproject_set.all()
     projectcount = len(projects)
     items = [make_project_item(translate_project) for translate_project in projects]
-    # calculating average translation
-    def addstats(x,y):
-        try:
-            xstats = x.get_quick_stats()
-        except:
-            xstats = x
-        ystats = y.get_quick_stats()
-        result = {}
-        result['translatedsourcewords'] = xstats['translatedsourcewords'] + ystats['translatedsourcewords']
-        result['totalsourcewords'] = xstats['totalsourcewords'] + ystats['totalsourcewords']
-        return result
 
-    if projectcount > 1:
-        totals = reduce(addstats, projects)
-    else:
-        totals = projects[0].get_quick_stats()
-        
+    totals = language.directory.getquickstats()        
     average = totals['translatedsourcewords'] * 100 / max(totals['totalsourcewords'], 1)
 
     def narrow(query):
