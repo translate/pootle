@@ -29,7 +29,7 @@ from django.core.files.storage import FileSystemStorage
 
 from translate.storage import po
 
-#FIXME: move this stuff to pootle_store
+from pootle_misc.util import getfromcache
 from pootle_app.models.directory import Directory
 
 from pootle_store.fields import TranslationStoreField
@@ -68,21 +68,19 @@ class Store(models.Model):
     
     def __unicode__(self):
         return self.name
-    
-    def getquickstats(self):
-        # implement as model function so we can cache in model or
-        # using django's cache later
 
+    @getfromcache
+    def getquickstats(self):
         # convert result to normal dicts for later operations
         return dict(self.file.getquickstats())
 
+    @getfromcache
     def getcompletestats(self, checker):
         #FIXME: figure out our own checker?
-        result = {}
+        stats = {}
         for key, value in self.file.getcompletestats(checker).iteritems():
-            result[key] = len(value)
-            
-        return result
+            stats[key] = len(value)
+        return stats
     
     def initpending(self, create=False):
         """initialize pending translations file if needed"""

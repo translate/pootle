@@ -22,8 +22,8 @@
 from django.db                import models
 from django.db.models.signals import pre_delete, pre_save
 from django.utils.translation import ugettext_lazy as _
-
-from pootle_store.util import dictsum, statssum
+from pootle_store.util import dictsum, statssum, completestatssum
+from pootle_misc.util import getfromcache
 
 class DirectoryManager(models.Manager):
     def get_query_set(self, *args, **kwargs):
@@ -59,7 +59,7 @@ class Directory(models.Model):
     pootle_path = models.CharField(max_length=1024, null=False)
 
     objects = DirectoryManager()
-
+        
     def get_relative(self, path):
         """Given a path of the for a/b/c, where the path is relative
         to this directory, recurse the path and return the object
@@ -100,23 +100,21 @@ class Directory(models.Model):
     def __unicode__(self):
         return self.pootle_path
 
+    @getfromcache
     def getquickstats(self):
         """calculate aggregate stats for all directory based on stats
         of all descenging stores and dirs"""
 
-        #FIXME: cache this somewhere
         empty_stats = {"translated": 0, "translatedsourcewords": 0,
                        "fuzzy": 0, "fuzzysourcewords": 0,
                        "untranslated": 0, "untranslatedsourcewords": 0,
                        "total": 0, "totalsourcewords": 0}
-
         #FIXME: can we replace this with a quicker path query? 
         file_result = statssum(self.child_stores.all(), empty_stats)
         dir_result  = statssum(self.child_dirs.all(), empty_stats)
-        result = dictsum(file_result, dir_result)
-        
-        return result
-                            
+        stats = dictsum(file_result, dir_result)
+        return stats
+
     def getcompletestats(self, checker):
         empty_stats = {}
         file_result = reduce(dictsum, (store.getcompletestats(checker) for store in self.child_stores.all()), empty_stats)
@@ -141,3 +139,5 @@ def set_directory_pootle_path(sender, instance, **kwargs):
         instance.pootle_path = '/'
 
 pre_save.connect(set_directory_pootle_path, sender=Directory)
+
+

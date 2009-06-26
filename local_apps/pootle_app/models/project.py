@@ -28,6 +28,7 @@ from django.db                import models
 from translate.filters import checks
 
 from pootle_store.util import relative_real_path, absolute_real_path, statssum
+from pootle_misc.util import getfromcache
 
 class Project(models.Model):
     class Meta:
@@ -64,6 +65,7 @@ class Project(models.Model):
     def __unicode__(self):
         return self.fullname
 
+    @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.all())
         
