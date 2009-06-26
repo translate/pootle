@@ -51,3 +51,6 @@ def dictsum(x, y):
 def statssum(queryset, empty_stats={}):
     return reduce(dictsum, (item.getquickstats() for item in queryset), empty_stats)
 
+def completestatssum(queryset, checker, empty_stats={}):
+    return reduce(dictsum, (item.getcompletestats(checker) for item in queryset), empty_stats)
+

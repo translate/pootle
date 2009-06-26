@@ -115,12 +115,12 @@ class Directory(models.Model):
         stats = dictsum(file_result, dir_result)
         return stats
 
+    @getfromcache
     def getcompletestats(self, checker):
-        empty_stats = {}
-        file_result = reduce(dictsum, (store.getcompletestats(checker) for store in self.child_stores.all()), empty_stats)
-        dir_result = reduce(dictsum, (directory.getcompletestats(checker) for directory in self.child_dirs.all()), empty_stats)
-        result = dictsum(file_result, dir_result)
-        return result
+        file_result = completestatssum(self.child_stores.all(), checker)
+        dir_result  = completestatssum(self.child_dirs.all(), checker)
+        stats = dictsum(file_result, dir_result)
+        return stats
     
 def delete_children(sender, instance, **kwargs):
     """Before deleting a directory, delete all its children."""
