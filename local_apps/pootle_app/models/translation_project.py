@@ -865,7 +865,8 @@ class TranslationProject(models.Model):
     ##############################################################################################
 
     is_terminology_project = property(lambda self: self.project.code == "terminology")
-
+    is_template_project = property(lambda self: self.language.code == 'templates')
+    
     stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.directory.pootle_path))
 
     def gettmsuggestions(self, pofile, item):

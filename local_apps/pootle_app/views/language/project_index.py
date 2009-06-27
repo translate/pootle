@@ -103,7 +103,7 @@ def get_upload_path(translation_project, relative_root_dir, local_filename):
     # XXX: Leakage of the project layout information outside of
     # project_tree.py! The rest of Pootle shouldn't have to care
     # whether something is GNU-style or not.
-    if translation_project.file_style == "gnu" and translation_project.language.code != 'templates':
+    if translation_project.file_style == "gnu" and not translation_project.is_template_project:
         if local_filename != translation_project.language.code:
             raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" % (local_filename, self.languagecode, self.fileext, self.languagecode, self.fileext))
     dir_path = os.path.join(translation_project.real_path, unix_to_host_path(relative_root_dir))
@@ -112,7 +112,7 @@ def get_upload_path(translation_project, relative_root_dir, local_filename):
 def get_local_filename(translation_project, upload_filename):
     base, ext = os.path.splitext(upload_filename)
     new_ext = translation_project.project.localfiletype
-    if new_ext == 'po' and translation_project.language.code == 'templates':
+    if new_ext == 'po' and translation_project.is_template_project:
         new_ext = 'pot'
     return '%s.%s' % (base, new_ext)
 

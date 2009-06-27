@@ -225,7 +225,7 @@ def scan_translation_project_files(translation_project):
     ext           = os.extsep + translation_project.project.localfiletype
 
     # scan for pots if template project
-    if translation_project.language.code == 'templates' and translation_project.project.localfiletype == 'po':
+    if translation_project.is_template_project and translation_project.project.localfiletype == 'po':
         ext = os.extsep + 'pot'
         
     if translation_project.file_style == 'gnu':
