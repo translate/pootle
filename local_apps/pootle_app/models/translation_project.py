@@ -165,7 +165,22 @@ class TranslationProject(models.Model):
     non_db_state = property(_get_non_db_state)
 
     def getquickstats(self):
-        return self.directory.getquickstats()
+        if not self.is_template_project:
+            return self.directory.getquickstats()
+        else:
+            #FIXME: Hackish return empty_stats to avoid messing up
+            # with project and language stats
+            empty_stats = {'fuzzy': 0,
+                           'fuzzysourcewords': 0,
+                           'review': 0,
+                           'total': 0,
+                           'totalsourcewords': 0,
+                           'translated': 0,
+                           'translatedsourcewords': 0,
+                           'translatedtargetwords': 0,
+                           'untranslated': 0,
+                           'untranslatedsourcewords': 0}
+            return empty_stats
 
     def _get_indexer(self):
         if self.non_db_state._indexing_enabled:
