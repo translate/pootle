@@ -309,8 +309,11 @@ class ProjectIndexView(BaseView):
         goal_form = None
 
         template_vars.update({
-            'pagetitle':             _('%s: Project %s, Language %s', 
-                                       (pagelayout.get_title(), project.fullname, tr_lang(language.fullname))),
+            'pagetitle':             _('%(title)s: Project %(project)s, Language %(language)s', 
+                                       {"title": pagelayout.get_title(),
+                                        "project": project.fullname,
+                                        "language": tr_lang(language.fullname)}
+                                       ),
             'project':               {"code": project.code,  "name": project.fullname},
             'language':              {"code": language.code, "name": tr_lang(language.fullname)},
             'search':                search_forms.get_search_form(request),

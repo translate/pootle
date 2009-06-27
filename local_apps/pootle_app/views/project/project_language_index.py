@@ -64,13 +64,15 @@ def view(request, project_code, _path_var):
     topstats = gentopstats(topsugg, topreview, topsub)
 
     templatevars = {
-        'pagetitle': _('%s: %s' % (pagelayout.get_title(), project.fullname)),
+        'pagetitle': _('%(title)s: %(project)s',
+                       {"title": pagelayout.get_title(), "project": project.fullname}
+                       ),
         'project': {
           'code': project.code,
           'name': project.fullname,
-          'stats': ungettext('%d language, average %d%% translated',
-                             '%d languages, average %d%% translated',
-                             languagecount, (languagecount, average))
+          'stats': ungettext('%(languages)d language, average %(average)d%% translated',
+                             '%(languages)d languages, average %(average)d%% translated',
+                             languagecount, {"languages": languagecount, "average": average})
         },
         'description': project.description,
         'adminlink': _('Admin'),

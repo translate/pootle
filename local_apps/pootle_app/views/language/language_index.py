@@ -68,14 +68,14 @@ def language_index(request, language_code):
     topstats = gentopstats(topsugg, topreview, topsub)
 
     templatevars = {
-        'pagetitle': _('%s: Language %s', 
-                       (pagelayout.get_title(), tr_lang(language.fullname))),
+        'pagetitle': _('%(title)s: Language %(language)s', 
+                       {"title": pagelayout.get_title(), "language": tr_lang(language.fullname)}),
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
-          'stats': ungettext('%d project,  %d%% translated',
-                              '%d projects, average %d%% translated',
-                              projectcount, (projectcount, average)),
+          'stats': ungettext('%(projects)d project,  %(average)d%% translated',
+                             '%(projects)d projects, average %(average)d%% translated',
+                             projectcount, {"projects": projectcount, "average": average}),
         },
         'projects': items,
         'statsheadings': get_stats_headings(),

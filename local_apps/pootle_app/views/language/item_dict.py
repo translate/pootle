@@ -42,15 +42,21 @@ def get_item_summary(request, quick_stats, path_obj):
     num_stores       = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
     state            = dispatch.CommonState(request.GET)
     # Stats showing the number of files
-    if state.goal is not None:
-        file_stats = _("%d/%d files", (num_stores(path_obj, state.goal), num_stores))
-    else:
-        file_stats = ungettext("%d file", "%d files", num_stores) % num_stores
+    #if state.goal is not None:
+    #    file_stats = _("%d/%d files", (num_stores(path_obj, state.goal), num_stores))
+    #else:
+    file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
     # The translated word counts
-    word_stats = _("%d/%d words (%d%%) translated", (translated_words, total_words, quick_stats['translatedpercentage']))
+    word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
+                   {"translated": translated_words,
+                    "total": total_words,
+                    "translatedpercent": quick_stats['translatedpercentage']}
+                   )
     # The translated unit counts
-    string_stats_text = _("%d/%d strings", (quick_stats['translated'],
-                                              quick_stats['total']))
+    string_stats_text = _("%(translated)d/%(total)d strings",
+                          {"translated": quick_stats['translated'],
+                           "total": quick_stats['total']}
+                          )
     string_stats = '<span class="string-statistics">[%s]</span>' % string_stats_text
     # The whole string of stats
     return '%s %s %s' % (file_stats, word_stats, string_stats)
@@ -80,8 +86,9 @@ def getcheckdetails(request, path_obj, url_opts={}):
             continue
         checkcount = property_stats[checkname]
         if total and checkcount:
-            stats = ungettext('%d string (%d%%) failed', '%d strings (%d%%) failed', checkcount,
-                              (checkcount, (checkcount * 100) / total)
+            stats = ungettext('%(checks)d string (%(checkspercent)d%%) failed',
+                              '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
+                              {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
                       )
             #url_opts[str(checkname)] = 1
             checklink = {'href': dispatch.translate(request, path_obj.pootle_path, match_names=[checkname]),

@@ -133,7 +133,9 @@ def get_page_links(request, store, pagesize, translations, first_item):
         # l10n: the parameter refers to the number of messages
         pagelinks.append({"text": _("Previous %d" % pagesize)})
         # l10n: the third parameter refers to the total number of messages in the file
-    pagelinks.append({"text": _("Items %d to %d of %d", (first_item + 1, lastitem + 1, pofilelen))})
+    pagelinks.append({"text": _("Items %(first)d to %(last)d of %(total)d",
+                                {"first": first_item + 1, "last": lastitem + 1, "total": pofilelen})
+                      })
     if first_item + len(translations) < pofilelen:
         linkitem = first_item + pagesize
         itemcount = min(pofilelen - linkitem, pagesize)
@@ -544,7 +546,7 @@ def get_trans_review(request, store, item, trans, suggestions):
             if suggestedby:
                 # l10n: First parameter: number
                 # l10n: Second parameter: name of translator
-                suggtitle = _("Suggestion %d by %s:" % ((suggid+1), suggestedby))
+                suggtitle = _("Suggestion %(suggid)d by %(user)s:" % {"suggid": (suggid+1), "user": suggestedby})
             else:
                 suggtitle = _("Suggestion %d:" % (suggid+1))
         else:
@@ -981,7 +983,10 @@ def view(request, directory, store, item, stopped_by=None):
         postats = store.getquickstats()
         untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
         translated, total = postats["translated"], postats["total"]
-        mainstats = _("%d/%d translated\n(%d untranslated, %d fuzzy)" % (translated, total, untranslated, fuzzy))
+        mainstats = _("%(translated)d/%(total)d translated\n(%(untranslated)d untranslated, %(fuzzy)d fuzzy)",
+                      {"translated": translated, "total": total,
+                       "untranslated": untranslated, "fuzzy": fuzzy}
+                      )
         pagelinks = get_page_links(request, store, rows, translations, first_item)
 
     # templatising
@@ -999,8 +1004,10 @@ def view(request, directory, store, item, stopped_by=None):
              "tracks":  [],
              "assigns": []}
     templatevars = {
-        "pagetitle":                 _("%s: translating %s into %s: %s",
-                                       (instancetitle, project.fullname, language.fullname, store_path)),
+        "pagetitle":                 _("%(title)s: translating %(project)s into %(language)s: %(file)s",
+                                       {"title": instancetitle, "project": project.fullname,
+                                        "language": language.fullname, "file": store_path}
+                                       ),
         "project":                   {"code": project.code,
                                       "name": project.fullname},
         "language":                  language_data,
