@@ -97,18 +97,32 @@ def create_pootle_permission_sets():
     from pootle_app.models.profile import PootleProfile
 
     root = Directory.objects.root
+    templates = Directory.objects.get(pootle_path="/templates/")
     #permissions for the 'nobody' user: view only
     profile = PootleProfile.objects.select_related(depth=1).get(user__username='nobody')
     permission_set = PermissionSet(profile=profile, directory=root)
     permission_set.save()
     permission_set.positive_permissions = [get_pootle_permission('view')]
     permission_set.save()
+
+    #override with no permissions for templates language
+    permission_set = PermissionSet(profile=profile, directory=templates)
+    permission_set.save()
+    #FIXME should we set everything as negative?
+    permission_set.negative_permissions = [get_pootle_permission('view')]
+    
     #permissions for the 'default' user: view, suggest
     profile = PootleProfile.objects.select_related(depth=1).get(user__username='default')
     permission_set = PermissionSet(profile=profile, directory=root)
     permission_set.save()
     permission_set.positive_permissions = [get_pootle_permission('view'), get_pootle_permission('suggest')]
     permission_set.save()
+
+    #override with no permissions for templates language
+    permission_set = PermissionSet(profile=profile, directory=templates)
+    permission_set.save()
+    #FIXME should we set everything as negative?
+    permission_set.negative_permissions = [get_pootle_permission('view'), get_pootle_permission('suggest')]
 
 def create_default_projects():
     """Create the default projects that we host. You might want to add your
