@@ -48,9 +48,28 @@ def absolute_real_path(p):
 def dictsum(x, y):
     return dict( (n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y) )
 
-def statssum(queryset, empty_stats={}):
+def statssum(queryset, empty_stats=None):
+    if empty_stats is None:
+        empty_stats = {'fuzzy': 0,
+                       'fuzzysourcewords': 0,
+                       'review': 0,
+                       'total': 0,
+                       'totalsourcewords': 0,
+                       'translated': 0,
+                       'translatedsourcewords': 0,
+                       'translatedtargetwords': 0,
+                       'untranslated': 0,
+                       'untranslatedsourcewords': 0}
+
     return reduce(dictsum, (item.getquickstats() for item in queryset), empty_stats)
 
-def completestatssum(queryset, checker, empty_stats={}):
+def completestatssum(queryset, checker, empty_stats=None):
+    if empty_stats is None:
+        empty_stats = {u'check-hassuggestion': 0,
+                       u'check-isfuzzy': 0,
+                       'fuzzy': 0,
+                       'total': 0,
+                       'translated': 0,
+                       'untranslated': 0}
     return reduce(dictsum, (item.getcompletestats(checker) for item in queryset), empty_stats)
 

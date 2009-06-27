@@ -105,13 +105,9 @@ class Directory(models.Model):
         """calculate aggregate stats for all directory based on stats
         of all descenging stores and dirs"""
 
-        empty_stats = {"translated": 0, "translatedsourcewords": 0,
-                       "fuzzy": 0, "fuzzysourcewords": 0,
-                       "untranslated": 0, "untranslatedsourcewords": 0,
-                       "total": 0, "totalsourcewords": 0}
         #FIXME: can we replace this with a quicker path query? 
-        file_result = statssum(self.child_stores.all(), empty_stats)
-        dir_result  = statssum(self.child_dirs.all(), empty_stats)
+        file_result = statssum(self.child_stores.all())
+        dir_result  = statssum(self.child_dirs.all())
         stats = dictsum(file_result, dir_result)
         return stats
 
