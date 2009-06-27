@@ -1,10 +1,10 @@
 {% extends "base.html"  %}
 {% load i18n baseurl %}
  
+{% block precontent %}
+<p>{% trans "Change your personal details here." %}</p>
+{% endblock %}
 {% block content %}
-
-Configure your settings here
-
 <form method="post" action="">
         {{ form.as_p }}
 <input type="submit" value="Save"/>

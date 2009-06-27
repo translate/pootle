@@ -19,7 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.forms.util import ErrorList
-
+from django.utils.translation import ugettext as _
 
 def form_set_as_table(formset, link=None, linkfield='code'):
     """Create an HTML table from the formset. The first form in the
@@ -37,7 +37,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         result.append('<tr>\n')
         for field in fields:
             result.append('<th>')
-            result.append(unicode(form.fields[field].label))
+            result.append(_(form.fields[field].label))
             result.append('</th>\n')
         result.append('</tr>\n')
 

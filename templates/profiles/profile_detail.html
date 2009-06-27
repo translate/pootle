@@ -57,10 +57,7 @@
             <table>
                 {% for key, value in profile.getuserstatistics.items %}
                 <tr>
-                    {% blocktrans %}
-                    <th scope="row">
-                        {{ key }}</th><td> {{ value }}</td>
-                    {% endblocktrans %}
+                    <th scope="row">{% trans key %}</th><td> {{ value }}</td>
                 </tr>
                 {% endfor %}
             </table>
