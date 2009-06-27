@@ -21,8 +21,11 @@
 
 from django.utils.translation import ugettext_lazy as _
 from django.db                import models
-from pootle_app.models.directory        import Directory
 from django.db.models.signals           import pre_save
+
+from pootle_app.models.directory        import Directory
+from pootle_store.util import statssum
+from pootle_misc.util import getfromcache
 
 class Language(models.Model):
     class Meta:
@@ -46,8 +49,11 @@ class Language(models.Model):
     def __unicode__(self):
         return self.fullname
 
+    pootle_path = property(lambda self: self.directory.pootle_path)
+    
+    @getfromcache
     def getquickstats(self):
-        return self.directory.getquickstats()
+        return statssum(self.translationproject_set.all())
     
 def set_data(sender, instance, **kwargs):
     # create corresponding directory object
