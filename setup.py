@@ -1,159 +1,286 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Copyright 2008 Zuza Software Foundation
+#
+# This file is part of Virtaal.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from distutils.core import setup, Extension, Distribution, Command
-import distutils.sysconfig
+from distutils.core import setup, Distribution, Command
+
+
+import glob
+import os
+import os.path as path
 import sys
-import os.path
-from Pootle.pootle_app import __version__
-from Pootle import __doc__
+#import syspath_override
+from pootle.__version__ import sver as pootle_version
 try:
-  import py2exe
-  build_exe = py2exe.build_exe.py2exe
-  Distribution = py2exe.Distribution
+    import py2exe
+    build_exe = py2exe.build_exe.py2exe
+    Distribution = py2exe.Distribution
 except ImportError:
-  py2exe = None
-  build_exe = Command
+    py2exe = None
+    build_exe = Command
 
-# TODO: check out installing into a different path with --prefix/--home
+try:
+    import py2app
+except ImportError:
+    py2app = None
 
-join = os.path.join
+PRETTY_NAME = "Pootle"
+SOURCE_DATA_DIRS = ['html', 'templates']
+SOURCE_DATA_DIR = "share"
+SOURCE_WORKING_DIRS = ['po', 'dbs']
+TARGET_WORKING_DIR = path.join("var", "lib", "Pootle")
+TARGET_DATA_DIR = path.join("share", "Pootle")
 
-pootleversion = __version__.sver
+pootle_description="An online collaborative localization tool."
 
-packagesdir = distutils.sysconfig.get_python_lib()
-sitepackages = packagesdir.replace(sys.prefix + os.sep, '')
-
-infofiles = [(join(sitepackages,'Pootle'),
-             [join('Pootle',filename) for filename in 'ChangeLog', 'COPYING', 'LICENSE', 'README'])]
-initfiles = [(join(sitepackages,'Pootle'),[join('Pootle','__init__.py')])]
-
-packages = [
-  "Pootle.tools", 
-  "Pootle.auth", 
-  "Pootle.i18n", 
-  "Pootle.scripts", 
-  "Pootle.middleware", 
-  "Pootle.pootle_app",
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: GNU General Public License (GPL)",
+    "Programming Language :: Python",
+    "Topic :: Software Development :: Localization",
+    "Topic :: Text Processing :: Linguistic"
+    "Operating System :: OS Independent",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: Unix"
 ]
-pootlescripts = [join('Pootle', 'PootleServer'), join('Pootle', 'tools', 'updatetm')]
+#TODO: add Natural Language classifiers
 
-def addsubpackages(subpackages):
-  for subpackage in subpackages:
-    initfiles.append((join(sitepackages, 'Pootle', subpackage),
-                      [join('Pootle', subpackage, '__init__.py')]))
-    for infofile in ('README', 'TODO'):
-      infopath = join('translate', subpackage, infofile)
-      if os.path.exists(infopath):
-        infofiles.append((join(sitepackages, 'Pootle', subpackage), [infopath]))
-    packages.append("Pootle.%s" % subpackage)
 
-#Enter the codes for all languages that must be packaged here
-#approvedlanguages = ['af', 'ar', 'eu', 'ca', 'zh_CN', 'zh_HK', 'da', 'nl', 'fi', 'fr', 'gl', 'de', 'hu', 'it', 'ja', 'mt',  'pt', 'sl', 'es', 'sv', 'vi', 'templates']
+def generate_data_files(roots, target_dir):
+    result = []
+    for root in roots:
+        for path, dirs, files in os.walk(root):
+            datafiles = []
+            for file in files:
+                datafiles.append(os.path.join(path, file))
+            result.append((os.path.join(target_dir, path),  datafiles))
+        
+    return result
 
-class build_exe_map(build_exe):
-    """distutils py2exe-based class that builds the exe file(s) but allows mapping data files"""
-    def reinitialize_command(self, command, reinit_subcommands=0):
-        if command == "install_data":
-            install_data = build_exe.reinitialize_command(self, command, reinit_subcommands)
-            install_data.data_files = self.remap_data_files(install_data.data_files)
-            return install_data
-        return build_exe.reinitialize_command(self, command, reinit_subcommands)
 
-    def remap_data_files(self, data_files):
-        """maps the given data files to different locations using external map_data_file function"""
-        new_data_files = []
-        for f in data_files:
-            if type(f) in (str, unicode):
-                f = map_data_file(f)
-            else:
-                datadir, files = f
-                datadir = map_data_file(datadir)
-                if datadir is None:
-                  f = None
-                else:
-                  f = datadir, files
-            if f is not None:
-              new_data_files.append(f)
-        return new_data_files
+# Some of these depend on some files to be built externally before running
+# setup.py, like the .xml and .desktop files
+options = {
+    'data_files': generate_data_files(SOURCE_DATA_DIRS, TARGET_DATA_DIR) +\
+                  generate_data_files(SOURCE_WORKING_DIRS, TARGET_WORKING_DIR),
+    'scripts': [
+        "pootle/tools/updatetm",
+        "PootleServer",
+    ],
+    'packages': [
+        "pootle",
+        "local_apps/pootle_app",
+        "local_apps/pootle_store",
+        "local_apps/pootle_misc",
+        "external_apps/registration",
+        "external_apps/profiles",
+        "external_apps/djblets",
+    ],
+    'package_diro': {'pootle_app': os.path.join('local_apps', 'pootle_app'),
+                    'pootle_store': os.path.join('local_apps', 'pootle_store'),
+                    'pootle_misc': os.path.join('local_apps', 'pootle_misc'),
+                    'registration': os.path.join('external_apps', 'registration'),
+                    'profiles': os.path.join('external_apps', 'profiles'),
+                    'djblets': os.path.join('external_apps', 'djblets'),
+                    },
+}
 
-class InnoScript:
-    """class that builds an InnoSetup script"""
-    def __init__(self, name, lib_dir, dist_dir, exe_files = [], other_files = [], install_scripts = [], version = "1.0"):
-        self.lib_dir = lib_dir
-        self.dist_dir = dist_dir
-        if not self.dist_dir.endswith(os.sep):
-            self.dist_dir += os.sep
-        self.name = name
-        self.version = version
-        self.exe_files = [self.chop(p) for p in exe_files]
-        self.other_files = [self.chop(p) for p in other_files]
-        self.install_scripts = install_scripts
+# # For innosetup and py2app, we need to treat the plug-ins as data files.
+# if os.name == 'nt' or sys.platform == 'darwin':
+#     noplugins = []
+#     for pkg in options['packages']:
+#         if 'plugins' not in pkg:
+#             noplugins.append(pkg)
+#     options['packages'] = noplugins
 
-    def getcompilecommand(self):
-        try:
-            import _winreg
-            compile_key = _winreg.OpenKey(_winreg.HKEY_CLASSES_ROOT, "innosetupscriptfile\\shell\\compile\\command")
-            compilecommand = _winreg.QueryValue(compile_key, "")
-            compile_key.Close()
-        except:
-            compilecommand = "compil32.exe"
-        return compilecommand
+#     plugin_src = path.join('pootle', 'plugins')
+#     plugin_dest = 'pootle_plugins'
+#     options['data_files'] += [
+#         (plugin_dest, glob.glob(path.join(plugin_src, '*.py'))),
+#         (path.join(plugin_dest, 'terminology'), glob.glob(path.join(plugin_src, 'terminology', '*.py'))),
+#         (path.join(plugin_dest, 'terminology', 'models'), glob.glob(path.join(plugin_src, 'terminology', 'models', '*.py'))),
+#         (path.join(plugin_dest, 'terminology', 'models', 'localfile'), glob.glob(path.join(plugin_src, 'terminology', 'models', 'localfile', '*.py'))),
+#         (path.join(plugin_dest, 'tm'), glob.glob(path.join(plugin_src, 'tm', '*.py'))),
+#         (path.join(plugin_dest, 'tm', 'models'), glob.glob(path.join(plugin_src, 'tm', 'models', '*.py'))),
+#     ]
 
-    def chop(self, pathname):
-        """returns the path relative to self.dist_dir"""
-        assert pathname.startswith(self.dist_dir)
-        return pathname[len(self.dist_dir):]
+no_install_files = [
+#    ['LICENSE', 'maketranslations', path.join('devsupport', 'pootle_innosetup.bmp')]
+]
 
-    def create(self, pathname=None):
-        """creates the InnoSetup script"""
-        if pathname is None:
-          self.pathname = os.path.join(self.dist_dir, self.name + os.extsep + "iss")
-        else:
-          self.pathname = pathname
-        ofi = self.file = open(self.pathname, "w")
-        print >> ofi, "; WARNING: This script has been created by py2exe. Changes to this script"
-        print >> ofi, "; will be overwritten the next time py2exe is run!"
-        print >> ofi, r"[Setup]"
-        print >> ofi, r"AppName=%s" % self.name
-        print >> ofi, r"AppVerName=%s %s" % (self.name, self.version)
-        print >> ofi, r"DefaultDirName={pf}\%s" % self.name
-        print >> ofi, r"DefaultGroupName=%s" % self.name
-        print >> ofi, r"OutputBaseFilename=%s-%s-setup" % (self.name, self.version)
-        print >> ofi
-        print >> ofi, r"[Files]"
-        for path in self.exe_files + self.other_files:
-            print >> ofi, r'Source: "%s"; DestDir: "{app}\%s"; Flags: ignoreversion' % (path, os.path.dirname(path))
-        print >> ofi
-        print >> ofi, r"[Icons]"
-        for path in self.exe_files:
-            if path in self.install_scripts:
+no_install_dirs = []
+
+#############################
+# WIN 32 specifics
+
+def get_compile_command():
+    try:
+        import _winreg
+        compile_key = _winreg.OpenKey(_winreg.HKEY_CLASSES_ROOT, "innosetupscriptfile\\shell\\compile\\command")
+        compilecommand = _winreg.QueryValue(compile_key, "")
+        compile_key.Close()
+
+    except:
+        compilecommand = "compil32.exe"
+    return compilecommand
+
+def chop(dist_dir, pathname):
+    """returns the path relative to dist_dir"""
+    assert pathname.startswith(dist_dir)
+    return pathname[len(dist_dir):]
+
+def create_inno_script(name, _lib_dir, dist_dir, exe_files, other_files, version = "1.0"):
+    if not dist_dir.endswith(os.sep):
+        dist_dir += os.sep
+    exe_files = [chop(dist_dir, p) for p in exe_files]
+    other_files = [chop(dist_dir, p) for p in other_files]
+    pathname = path.join(dist_dir, name + os.extsep + "iss")
+
+# See http://www.jrsoftware.org/isfaq.php for more InnoSetup config options.
+    ofi = open(pathname, "w")
+    print >> ofi, r'''; WARNING: This script has been created by py2exe. Changes to this script
+; will be overwritten the next time py2exe is run!
+
+[Languages]
+Name: "en"; MessagesFile: "compiler:Default.isl"
+Name: "eu"; MessagesFile: "compiler:Languages\Basque.isl"
+Name: "ca"; MessagesFile: "compiler:Languages\Catalan.isl"
+Name: "cz"; MessagesFile: "compiler:Languages\Czech.isl"
+Name: "da"; MessagesFile: "compiler:Languages\Danish.isl"
+Name: "nl"; MessagesFile: "compiler:Languages\Dutch.isl"
+Name: "fi"; MessagesFile: "compiler:Languages\Finnish.isl"
+Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
+Name: "de"; MessagesFile: "compiler:Languages\German.isl"
+Name: "he"; MessagesFile: "compiler:Languages\Hebrew.isl"
+Name: "hu"; MessagesFile: "compiler:Languages\Hungarian.isl"
+Name: "it"; MessagesFile: "compiler:Languages\Italian.isl"
+Name: "nb"; MessagesFile: "compiler:Languages\Norwegian.isl"
+Name: "pl"; MessagesFile: "compiler:Languages\Polish.isl"
+Name: "pt_BR"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
+Name: "pt"; MessagesFile: "compiler:Languages\Portuguese.isl"
+Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
+Name: "sk"; MessagesFile: "compiler:Languages\Slovak.isl"
+Name: "sl"; MessagesFile: "compiler:Languages\Slovenian.isl"
+Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"
+
+[Setup]
+AppName=%(name)s
+AppVerName=%(name)s %(version)s
+AppPublisher=Zuza Software Foundation
+AppPublisherURL=http://www.translate.org.za/
+AppVersion=%(version)s
+AppSupportURL=http://translate.sourceforge.net/
+;AppComments=
+;AppCopyright=Copyright (C) 2007-2008 Zuza Software Foundation
+DefaultDirName={pf}\%(name)s
+DefaultGroupName=%(name)s
+OutputBaseFilename=%(name)s-%(version)s-setup
+ChangesAssociations=yes
+SetupIconFile=%(icon_path)s
+;WizardSmallImageFile=compiler:images\WizModernSmallImage13.bmp
+WizardImageFile=%(wizard_image)s
+
+[Files]''' % {
+    'name': name,
+    'version': version,
+    'icon_path': path.join(TARGET_DATA_DIR, "icons", "pootle.ico"),
+    'wizard_image': path.join(os.pardir, "devsupport", "pootle_innosetup.bmp")
+}
+    for fpath in exe_files + other_files:
+        print >> ofi, r'Source: "%s"; DestDir: "{app}\%s"; Flags: ignoreversion' % (fpath, os.path.dirname(fpath))
+    print >> ofi, r'''
+[Icons]
+Name: "{group}\%(name)s Translation Editor"; Filename: "{app}\pootle.exe";
+Name: "{group}\%(name)s (uninstall)"; Filename: "{uninstallexe}"''' % {'name': name}
+
+#    For now we don't worry about install scripts
+#    if install_scripts:
+#        print >> ofi, r"[Run]"
+#
+#        for fpath in install_scripts:
+#            print >> ofi, r'Filename: "{app}\%s"; WorkingDir: "{app}"; Parameters: "-install"' % fpath
+#
+#        print >> ofi
+#        print >> ofi, r"[UninstallRun]"
+#
+#        for fpath in install_scripts:
+#            print >> ofi, r'Filename: "{app}\%s"; WorkingDir: "{app}"; Parameters: "-remove"' % fpath
+
+    # File associations. Note the directive "ChangesAssociations=yes" above
+    # that causes the installer to tell Explorer to refresh associations.
+    # This part might cause the created installer to need administrative
+    # privileges. An alternative might be to rather write to
+    # HKCU\Software\Classes, but this won't be system usable then. Didn't
+    # see a way to test and alter the behaviour.
+
+    # For each file type we should have something like this:
+    #
+    #;File extension:
+    #Root: HKCR; Subkey: ".po"; ValueType: string; ValueName: ""; ValueData: "pootle_po"; Flags: uninsdeletevalue
+    #;Description of the file type
+    #Root: HKCR; Subkey: "pootle_po"; ValueType: string; ValueName: ""; ValueData: "Gettext PO"; Flags: uninsdeletekey
+    #;Icon to use in Explorer
+    #Root: HKCR; Subkey: "pootle_po\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\share\icons\pootle.ico"
+    #;The command to open the file
+    #Root: HKCR; Subkey: "pootle_po\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\pootle.exe"" ""%1"""
+
+    print >> ofi, "[Registry]"
+    from translate.storage import factory
+    for description, extentions, _mimetypes in factory.supported_files():
+        # We skip those types where we depend on mime types, not extentions
+        if not extentions:
+            continue
+        # Form a key from the first extention for internal only
+        key = extentions[0]
+        # Associate each extention with the file type
+        for extention in extentions:
+            # We don't want to associate with all .txt or .pot (PowerPoint template) files, so let's skip it
+            if extention in ["txt", "pot", "csv"]:
                 continue
-            linkname = os.path.splitext(os.path.basename(path))[0]
-            print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"; WorkingDir: "{app}"; Flags: dontcloseonexit' % \
-                  (linkname, path)
-        print >> ofi, 'Name: "{group}\Uninstall %s"; Filename: "{uninstallexe}"' % self.name
-        if self.install_scripts:
-            print >> ofi, r"[Run]"
-            for path in self.install_scripts:
-                print >> ofi, r'Filename: "{app}\%s"; WorkingDir: "{app}"; Parameters: "-install"' % path
-            print >> ofi
-            print >> ofi, r"[UninstallRun]"
-            for path in self.install_scripts:
-                print >> ofi, r'Filename: "{app}\%s"; WorkingDir: "{app}"; Parameters: "-remove"' % path
-        print >> ofi
-        ofi.close()
+            print >> ofi, r'Root: HKCR; Subkey: ".%(extention)s"; ValueType: string; ValueName: ""; ValueData: "pootle_%(key)s"; Flags: uninsdeletevalue' % {'extention': extention, 'key': key}
+        print >> ofi, r'''Root: HKCR; Subkey: "pootle_%(key)s"; ValueType: string; ValueName: ""; ValueData: "%(description)s"; Flags: uninsdeletekey
+Root: HKCR; Subkey: "pootle_%(key)s\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\share\icons\x-translation.ico"
+Root: HKCR; Subkey: "pootle_%(key)s\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\pootle.exe"" ""%%1"""''' % {'key': key, 'description': description}
 
-    def compile(self):
-        """compiles the script using InnoSetup"""
-        shellcompilecommand = self.getcompilecommand()
-        compilecommand = shellcompilecommand.replace('"%1"', self.pathname)
-        result = os.system(compilecommand)
-        if result:
-            print "Error compiling iss file"
-            print "Opening iss file, use InnoSetup GUI to compile manually"
-            os.startfile(self.pathname)
+    # Show a "Launch Virtaal" checkbox on the last installer screen
+    print >> ofi, r'''
+[Run]
+Filename: "{app}\pootle.exe"; Description: "{cm:LaunchProgram,%(name)s}"; Flags: nowait postinstall skipifsilent''' % {'name': name}
+    print >> ofi
+    ofi.close()
+    return pathname
 
-class build_installer(build_exe_map):
+def compile_inno_script(script_path):
+    """compiles the script using InnoSetup"""
+    shell_compile_command = get_compile_command()
+    compile_command = shell_compile_command.replace('"%1"', script_path)
+    result = os.system(compile_command)
+    if result:
+        print "Error compiling iss file"
+        print "Opening iss file, use InnoSetup GUI to compile manually"
+        os.startfile(script_path)
+
+class BuildWin32Installer(build_exe):
     """distutils class that first builds the exe file(s), then creates a Windows installer using InnoSetup"""
     description = "create an executable installer for MS Windows using InnoSetup and py2exe"
     user_options = getattr(build_exe, 'user_options', []) + \
@@ -162,191 +289,217 @@ class build_installer(build_exe_map):
 
     def initialize_options(self):
         build_exe.initialize_options(self)
-        self.install_script = None
 
     def run(self):
         # First, let py2exe do it's work.
         build_exe.run(self)
-        lib_dir = self.lib_dir
-        dist_dir = self.dist_dir
         # create the Installer, using the files py2exe has created.
         exe_files = self.windows_exe_files + self.console_exe_files
-        install_scripts = self.install_script
-        if isinstance(install_scripts, (str, unicode)):
-            install_scripts = [install_scripts]
-        script = InnoScript(self.distribution.metadata.name, lib_dir, dist_dir, exe_files, self.lib_files, version=self.distribution.metadata.version, install_scripts=install_scripts)
         print "*** creating the inno setup script***"
-        script.create()
+        script_path = create_inno_script(PRETTY_NAME, self.lib_dir, self.dist_dir, exe_files, self.lib_files,
+                                         version=self.distribution.metadata.version)
         print "*** compiling the inno setup script***"
-        script.compile()
+        compile_inno_script(script_path)
         # Note: By default the final setup.exe will be in an Output subdirectory.
 
-def map_data_file (data_file):
-  """remaps a data_file (could be a directory) to a different location
-  This version gets rid of Lib\\site-packages, etc"""
-  data_parts = data_file.split(os.sep)
-  if data_parts[:2] == ["Lib", "site-packages"]:
-    data_parts = data_parts[2:]
-    if data_parts:
-      data_file = os.path.join(*data_parts)
+def find_gtk_bin_directory():
+    GTK_NAME = "libgtk"
+    # Look for GTK in the user's Path as well as in some familiar locations
+    paths = os.environ['Path'].split(';') + [r'C:\GTK\bin', r'C:\Program Files\GTK\bin' r'C:\Program Files\GTK2-Runtime']
+    for p in paths:
+        if not os.path.exists(p):
+            continue
+        files = [path.join(p, f) for f in os.listdir(p) if path.isfile(path.join(p, f)) and f.startswith(GTK_NAME)]
+        if len(files) > 0:
+            return p
+    raise Exception("""Could not find the GTK runtime.
+Please place bin directory of your GTK installation in the program path.""")
+
+def find_gtk_files():
+    def parent(dir_path):
+        return path.abspath(path.join(path.abspath(dir_path), '..'))
+
+    def strip_leading_path(leadingPath, p):
+        return p[len(leadingPath) + 1:]
+
+    data_files = []
+    gtk_path = parent(find_gtk_bin_directory())
+    for dir_path in [path.join(gtk_path, p) for p in ('etc', 'share', 'lib')]:
+        for dir_name, _, files in os.walk(dir_path):
+            files = [path.abspath(path.join(dir_name, f)) for f in files]
+            if len(files) > 0:
+                data_files.append((strip_leading_path(gtk_path, dir_name), files))
+    return data_files
+
+def add_win32_options(options):
+    """This function is responsible for finding data files and setting options necessary
+    to build executables and installers under Windows.
+
+    @return: A 2-tuple (data_files, options), where data_files is a list of Windows
+             specific data files (this would include the GTK binaries) and where
+             options are the options required by py2exe."""
+    if py2exe != None and ('py2exe' in sys.argv or 'innosetup' in sys.argv):
+        options['data_files'].extend(find_gtk_files())
+        #This depends on setup.py being run from a checkout with the translate
+        #toolkit in place.
+        options['scripts'].append("../translate/services/tmserver")
+
+        py2exe_options = {
+            "packages":   ["encodings", "translate.lang", "pootle"],
+            "compressed": True,
+            "excludes":   ["PyLucene", "Tkconstants", "Tkinter", "tcl", "translate.misc._csv"],
+            "dist_dir":   "pootle-win32",
+            "includes":   [
+                    "lxml", "lxml._elementpath", "psyco", "cairo", "pango",
+                    "pangocairo", "atk", "gobject", "gtk.keysyms",
+                    "translate.services", "translate.storage.placeables.terminology"
+                ],
+            "optimize":   2,
+        }
+        py2exe_options['includes'] += ["bsddb", "zipfile"] # Dependencies for the migration and auto-correction plug-ins, respectively.
+        innosetup_options = py2exe_options.copy()
+        options.update({
+            "windows": [
+                {
+                    'script': 'bin/pootle',
+                    'icon_resources': [(1, path.join(SOURCE_DATA_DIR, "icons", "pootle.ico"))],
+                },
+                { 'script': "../translate/services/tmserver"}
+            ],
+            'zipfile':  "pootle.zip",
+            "options": {
+                "py2exe":    py2exe_options,
+                "innosetup": innosetup_options
+            },
+            'cmdclass':  {
+                "py2exe":    build_exe,
+                "innosetup": BuildWin32Installer
+            }
+        })
+    return options
+
+def add_mac_options(options):
+    # http://svn.pythonmac.org/py2app/py2app/trunk/doc/index.html#tweaking-your-info-plist
+    # http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/PListKeys.html
+    if py2app is None:
+        return options
+    options['data_files'].extend([('share/OSX_Leopard_theme', glob.glob(path.join('devsupport', 'OSX_Leopard_theme', '*')))])
+    options['data_files'].extend([('', ['devsupport/pootle.icns'])])
+
+    # For some reason py2app can't handle bin/pootle since it doesn't end in .py
+    import shutil
+    shutil.copy2('bin/pootle', 'bin/run_pootle.py')
+
+    from translate.storage import factory
+    options.update({
+        "app": ["bin/run_pootle.py"],
+        "options": {
+            "py2app": {
+            "packages": ["CoreFoundation", "objc"],
+            "includes":   ["lxml", "lxml._elementpath", "lxml.etree", "glib", "gio", "psyco", "cairo", "pango", "pangocairo", "atk", "gobject", "gtk.keysyms", "pycurl", "translate.services", "translate.services.tmclient", "translate.services.opentranclient", "CoreFoundation"],
+                #"semi_standalone": True,
+                "compressed": True,
+                "argv_emulation": True,
+                "plist":  {
+                    "CFBundleGetInfoString": pootle_description,
+                    "CFBundleName": PRETTY_NAME,
+                    "CFBundleIconFile": "pootle.icns",
+                    "CFBundleShortVersionString": pootle_version,
+                    #"LSHasLocalizedDisplayName": "1",
+                    #"LSMinimumSystemVersion": ???,
+                    "NSHumanReadableCopyright": "Copyright (C) 2007-2009 Zuza Software Foundation",
+                    "CFBundleDocumentTypes": [{
+                        "CFBundleTypeExtensions": [extention.lstrip("*.") for extention in extentions],
+                        "CFBundleTypeIconFile": "pootle.icns",
+                        "CFBundleTypeMIMETypes": mimetypes,
+                        "CFBundleTypeName": description, #????
+                        } for description, extentions, mimetypes in factory.supported_files()]
+                    }
+                }
+            }})
+    return options
+
+def add_freedesktop_options(options):
+    options['data_files'].extend([
+        (path.join(TARGET_DATA_DIR, "mime", "packages"), glob.glob(path.join(SOURCE_DATA_DIR, "mime", "packages", "*.xml"))),
+        (path.join(TARGET_DATA_DIR, "applications"), glob.glob(path.join(SOURCE_DATA_DIR, "applications", "*.desktop"))),
+    ])
+    for dir in ("16x16", "32x32", "48x48", "64x64", "128x128", "scalable"):
+        options['data_files'].extend([
+            (path.join(TARGET_DATA_DIR, "icons", "hicolor", dir, "mimetypes"),
+            glob.glob(path.join(SOURCE_DATA_DIR, "icons", "hicolor", dir, "mimetypes", "*.*"))),
+        ])
+    return options
+
+#############################
+# General functions
+
+def add_platform_specific_options(options):
+    if sys.platform == 'win32':
+        return add_win32_options(options)
+    if sys.platform == 'darwin':
+        return add_mac_options(options)
     else:
-      data_file = ""
-  if data_parts[:1] == ["Pootle"]:
-    data_parts = data_parts[1:]
-    if data_parts:
-      data_file = os.path.join(*data_parts)
-    else:
-      data_file = ""
-  return data_file
+        return add_freedesktop_options(options)
 
-def getdatafiles():
-  datafiles = initfiles + infofiles
-  def listfiles(srcdir):
-    return join(sitepackages, srcdir), [join(srcdir, f) for f in os.listdir(srcdir) if os.path.isfile(join(srcdir, f))]
-  pootlefiles = [(join(sitepackages, 'Pootle'), [join('Pootle', 'pootle.prefs'), join('Pootle', 'users.prefs'), join('Pootle', 'pootle.ini')])]
-  pootlefiles.append(listfiles(join('Pootle', 'html')))
-  pootlefiles.append(listfiles(join('Pootle', 'html', 'images')))
-  pootlefiles.append(listfiles(join('Pootle', 'html', 'js')))
-  pootlefiles.append(listfiles(join('Pootle', 'html', 'js', 'jquery')))
-  pootlefiles.append(listfiles(join('Pootle', 'html', 'doc')))
-  pootlefiles.append(listfiles(join('Pootle', 'html', 'doc', 'en')))
-  basedir, pootlelangs, files = os.walk(join('Pootle', 'po', 'pootle')).next()
-  for dir in pootlelangs:
-    pootlefiles.append(listfiles(join('Pootle', 'po', 'pootle', dir)))
-  datafiles += pootlefiles
-  return datafiles
+def create_manifest(data_files, extra_files, extra_dirs):
+    f = open('MANIFEST.in', 'w+')
+    f.write("# informational files")
+    for infofile in ("README", "TODO", "ChangeLog", "COPYING", "LICENSE", "*.txt"):
+        f.write("global-include %s\n" % infofile)
+    for data_file_list in [d[1] for d in data_files] + extra_files:
+        f.write("include %s\n" % (" ".join( data_file_list )))
+    for dir in extra_dirs:
+        f.write("graft %s\n" % (dir))
+    f.close()
 
-def buildinfolinks():
-  linkfile = getattr(os, 'symlink', None)
-  import shutil
-  if linkfile is None:
-    linkfile = shutil.copy2
-  basedir = os.path.abspath(os.curdir)
-  os.chdir("Pootle")
-  if os.path.exists("LICENSE") or os.path.islink("LICENSE"):
-    os.remove("LICENSE")
-  linkfile("COPYING", "LICENSE")
-  os.chdir(basedir)
-  for infofile in ["COPYING", "README", "LICENSE"]:
-    if os.path.exists(infofile) or os.path.islink(infofile):
-      os.remove(infofile)
-    linkfile(os.path.join("Pootle", infofile), infofile)
+import distutils.command.install
+class DepCheckInstall(distutils.command.install.install):
+    def __init__(self, *args, **kwargs):
+        from pootle.support import depcheck
+        failed = depcheck.check_dependencies()
+        if failed:
+            print 'Failed dependencies: %s' % (', '.join(failed))
+            exit(0)
+        distutils.command.install.install.__init__(self, *args, **kwargs)
 
-def buildmanifest_in(file, scripts):
-  """This writes the required files to a MANIFEST.in file"""
-  print >>file, "# MANIFEST.in: the below autogenerated by pootlesetup.py from Pootle %s" % pootleversion
-  print >>file, "# things needed by translate setup.py to rebuild"
-  print >>file, "# informational files"
-  for infofile in ("README", "TODO", "ChangeLog", "COPYING", "LICENSE", "*.txt"):
-    print >>file, "global-include %s" % infofile
-  print >> file, "# scripts which don't get included by default in sdist"
-  for scriptname in scripts:
-    print >>file, "include %s" % scriptname
-  # wordlist, portal are in the source tree but unconnected to the python code
-  print >>file, "prune wordlist"
-  print >>file, "prune pootling"
-  print >>file, "prune spelling"
-  print >>file, "prune .svn"
-  # translate toolkit is in the same source tree but distributed separately
-  print >>file, "prune translate"
-  print >>file, "prune virtaal"
-  print >>file, "prune spelt"
-  print >>file, "prune corpuscatcher"
-  print >>file, "include Pootle/*.prefs"
-  print >>file, "graft Pootle/html"
-  print >>file, "graft Pootle/templates"
-  print >>file, "graft Pootle/po/pootle"
-  print >>file, "# MANIFEST.in: the above autogenerated by pootlesetup.py from Pootle %s" % pootleversion
+def main(options):
+    #options = add_platform_specific_options(options)
+    #if not 'cmdclass' in options:
+    #    options['cmdclass'] = {}
+    #options['cmdclass']['install'] = DepCheckInstall
+    create_manifest(options['data_files'], no_install_files, no_install_dirs)
+    setup(name="Pootle",
+          version=pootle_version,
+          license="GNU General Public License (GPL)",
+          description=pootle_description,
+          long_description="""Pootle is used to create program translations.
 
-def fix_bdist_rpm(setupfile):
-    """Fixes bdist_rpm to use the given setup filename instead of setup.py"""
-    try:
-        from distutils.command import bdist_rpm
-        build_rpm = bdist_rpm.bdist_rpm
-    except ImportError:
-        return
-    if not hasattr(build_rpm, "_make_spec_file"):
-        return
-    orig_make_spec_file = build_rpm._make_spec_file
-    def fixed_make_spec_file(self):
-        """Generate the text of an RPM spec file and return it as a
-        list of strings (one per line).
-        """
-        orig_spec_file = orig_make_spec_file(self)
-        return [line.replace("setup.py", setupfile) for line in orig_spec_file]
-    build_rpm._make_spec_file = fixed_make_spec_file
+It uses the Translate Toolkit to get access to translation files and therefore
+can edit a variety of files (including PO and XLIFF files).""",
+          author="Translate.org.za",
+          author_email="translate-devel@lists.sourceforge.net",
+          url="http://translate.sourceforge.net/wiki/pootle/index",
+          download_url="http://sourceforge.net/project/showfiles.php?group_id=91920&package_id=270877",
+          platforms=["any"],
+          classifiers=classifiers,
+          **options)
 
-class PootleDistribution(Distribution):
-  """a modified distribution class for translate"""
-  def __init__(self, attrs):
-    baseattrs = {}
-    py2exeoptions = {}
-    py2exeoptions["packages"] = ["Pootle", "encodings"]
-    py2exeoptions["compressed"] = True
-    jToolkitExcludes = ["PyLucene", "Image", "jToolkit.data.ADODB", "pgdb", "MySQLdb", "cx_Oracle", "pysqlite2"]
-    py2exeoptions["excludes"] = ["Tkconstants", "Tkinter", "tcl", "translate.misc._csv"] + jToolkitExcludes
-    version = attrs.get("version", pootleversion)
-    py2exeoptions["dist_dir"] = "Pootle-%s" % version
-    options = {"py2exe": py2exeoptions}
-    baseattrs['options'] = options
-    if py2exe:
-      baseattrs['zipfile'] = "Pootle.zip"
-      baseattrs['console'] = pootlescripts
-      baseattrs['cmdclass'] = {"py2exe": build_exe_map, "innosetup": build_installer}
-      options["innosetup"] = py2exeoptions.copy()
-      options["innosetup"]["install_script"] = []
-    baseattrs.update(attrs)
-    fix_bdist_rpm(os.path.basename(__file__))
-    Distribution.__init__(self, baseattrs)
-
-def standardsetup(name, version, custompackages=[], customdatafiles=[]):
-  buildinfolinks()
-  # TODO: make these end with .py ending on Windows...
-  try:
-    manifest_in = open("MANIFEST.in", "w")
-    buildmanifest_in(manifest_in, pootlescripts)
-    manifest_in.close()
-  except IOError, e:
-    print >> sys.stderr, "warning: could not recreate MANIFEST.in, continuing anyway. Error was %s" % e
-  #addsubpackages(subpackages)
-  datafiles = getdatafiles()
-  ext_modules = []
-  dosetup(name, version, packages + custompackages, datafiles + customdatafiles, pootlescripts, ext_modules)
-
-#http://cheeseshop.python.org/pypi?:action=list_classifiers
-classifiers = [
-  "Development Status :: 5 - Production/Stable",
-  "Environment :: Web Environment",
-  "Intended Audience :: End Users/Desktop",
-  "License :: OSI Approved :: GNU General Public License (GPL)",
-  "Programming Language :: Python",
-  "Topic :: Software Development :: Localization",
-  "Operating System :: OS Independent",
-  "Operating System :: Microsoft :: Windows",
-  "Operating System :: Unix"
-  ]
-
-def dosetup(name, version, packages, datafiles, scripts, ext_modules=[]):
-  long_description = __doc__
-  description = __doc__.split("\n", 1)[0]
-  setup(name=name,
-        version=version,
-        license="GNU General Public License (GPL)",
-        description=description,
-        long_description=long_description,
-        author="Translate.org.za",
-        author_email="translate-devel@lists.sourceforge.net",
-        url="http://translate.sourceforge.net/wiki/pootle/index",
-        download_url="http://sourceforge.net/project/showfiles.php?group_id=91920&package_id=144807",
-        platforms=["any"],
-        classifiers=classifiers,
-        packages=packages,
-        data_files=datafiles,
-        scripts=scripts,
-        ext_modules=ext_modules,
-        distclass=PootleDistribution
-        )
-
-if __name__ == "__main__":
-  standardsetup("Pootle", pootleversion)
-
+if __name__ == '__main__':
+    main(options)
+    # For some reason, Resources/lib/python2.5/lib-dynload is not in the Python
+    # path. We need to get it in, therefore this hack.
+    if sys.platform == 'darwin':
+        f = open('dist/pootle.app/Contents/Resources/__boot__.py', "r+")
+        s = f.read()
+        f.truncate(0)
+        s = s.replace("base = os.environ['RESOURCEPATH']", r"""
+    base = os.environ['RESOURCEPATH']
+    sys.path = [os.path.join(base, "lib", "python2.5", "lib-dynload")] + sys.path
+    sys.path = [os.path.join(base, "lib", "python2.5")] + sys.path
+""")
+        f.seek(0)
+        f.write(s)
+        f.close()
+        # hdiutil create -imagekey zlib-level=9 -srcfolder dist/pootle.app dist/pootle.dmg
+        # hdiutil create -fs HFS+ -volname "RUR-PLE" -srcfolder dist dist_mac/RUR-PLE.dmg
