@@ -31,7 +31,7 @@ from django.conf import settings
 # get versions
 import django
 from translate import __version__ as toolkitversion
-from pootle_app import __version__ as pootleversion
+from pootle import __version__ as pootleversion
 
 
 

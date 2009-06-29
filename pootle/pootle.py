@@ -30,7 +30,7 @@ from wsgiref.simple_server import make_server
 from django.core.handlers.wsgi import WSGIHandler
 from django.core.management import call_command
 from pootle_app.models.translation_project import scan_translation_projects
-from pootle_app import __version__ as pootleversion
+import __version__ as pootleversion
 #from pootle import filelocations
 from translate import __version__ as toolkitversion
 
