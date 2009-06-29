@@ -45,7 +45,7 @@ PRETTY_NAME = "Pootle"
 SOURCE_DATA_DIRS = ['html', 'templates']
 SOURCE_DATA_DIR = "share"
 SOURCE_WORKING_DIRS = ['po', 'dbs']
-TARGET_WORKING_DIR = path.join("var", "lib", "Pootle")
+TARGET_WORKING_DIR = path.join("..", "var", "lib", "Pootle")
 TARGET_DATA_DIR = path.join("share", "Pootle")
 
 pootle_description="An online collaborative localization tool."
@@ -67,7 +67,7 @@ classifiers = [
 #TODO: add Natural Language classifiers
 
 
-def generate_data_files(roots, target_dir):
+def generate_data_files(roots, target_dir, extra_files=[]):
     result = []
     for root in roots:
         for path, dirs, files in os.walk(root):
@@ -82,7 +82,8 @@ def generate_data_files(roots, target_dir):
 # Some of these depend on some files to be built externally before running
 # setup.py, like the .xml and .desktop files
 options = {
-    'data_files': generate_data_files(SOURCE_DATA_DIRS, TARGET_DATA_DIR) +\
+    'data_files': [(path.join("..", "etc"), ["pootle.ini"]), (TARGET_DATA_DIR, ["wsgi.py"])] + \
+                  generate_data_files(SOURCE_DATA_DIRS, TARGET_DATA_DIR) +\
                   generate_data_files(SOURCE_WORKING_DIRS, TARGET_WORKING_DIR),
     'scripts': [
         "pootle/tools/updatetm",
@@ -98,6 +99,7 @@ options = {
                     'profiles': path.join('external_apps', 'profiles'),
                     'djblets': path.join('external_apps', 'djblets'),
                     },
+    
 }
 
 # # For innosetup and py2app, we need to treat the plug-ins as data files.
