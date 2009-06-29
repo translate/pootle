@@ -18,14 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from distutils.core import setup, Distribution, Command
 
 
+from distutils.core import Distribution, Command, setup
 import glob
 import os
 import os.path as path
 import sys
-#import syspath_override
+
+import syspath_override
 from pootle.__version__ import sver as pootle_version
 try:
     import py2exe
@@ -89,19 +90,19 @@ options = {
     ],
     'packages': [
         "pootle",
-        "local_apps/pootle_app",
-        "local_apps/pootle_store",
-        "local_apps/pootle_misc",
-        "external_apps/registration",
-        "external_apps/profiles",
-        "external_apps/djblets",
+        "pootle_app",
+        "pootle_store",
+        "pootle_misc",
+        "registration",
+        "profiles",
+        "djblets",
     ],
-    'package_diro': {'pootle_app': os.path.join('local_apps', 'pootle_app'),
-                    'pootle_store': os.path.join('local_apps', 'pootle_store'),
-                    'pootle_misc': os.path.join('local_apps', 'pootle_misc'),
-                    'registration': os.path.join('external_apps', 'registration'),
-                    'profiles': os.path.join('external_apps', 'profiles'),
-                    'djblets': os.path.join('external_apps', 'djblets'),
+    'package_dir': {'pootle_app': 'local_apps',
+                    'pootle_store': 'local_apps',
+                    'pootle_misc': 'local_apps',
+                    'registration': 'external_apps',
+                    'profiles': 'external_apps',
+                    'djblets': 'external_apps',
                     },
 }
 
