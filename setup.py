@@ -99,7 +99,7 @@ options = {
                     'profiles': path.join('external_apps', 'profiles'),
                     'djblets': path.join('external_apps', 'djblets'),
                     },
-    
+    'package_data': {'': ['*.html', '*.txt', '*.xml', '*.css', '*.js']},
 }
 
 # # For innosetup and py2app, we need to treat the plug-ins as data files.
@@ -480,6 +480,7 @@ can edit a variety of files (including PO and XLIFF files).""",
           download_url="http://sourceforge.net/project/showfiles.php?group_id=91920&package_id=270877",
           platforms=["any"],
           classifiers=classifiers,
+          include_package_data = True,
           **options)
 
 if __name__ == '__main__':
