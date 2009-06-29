@@ -19,8 +19,8 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
-
-from distutils.core import Distribution, Command, setup
+from setuptools import setup, find_packages
+from distutils.core import Distribution, Command
 import glob
 import os
 import os.path as path
@@ -88,21 +88,15 @@ options = {
         "pootle/tools/updatetm",
         "PootleServer",
     ],
-    'packages': [
-        "pootle",
-        "pootle_app",
-        "pootle_store",
-        "pootle_misc",
-        "registration",
-        "profiles",
-        "djblets",
-    ],
-    'package_dir': {'pootle_app': 'local_apps',
-                    'pootle_store': 'local_apps',
-                    'pootle_misc': 'local_apps',
-                    'registration': 'external_apps',
-                    'profiles': 'external_apps',
-                    'djblets': 'external_apps',
+    'packages': ["pootle"] + \
+                        find_packages("local_apps") + find_packages("external_apps") + \
+                        ["pootle." + package for package in find_packages("pootle")],
+    'package_dir': {'pootle_app': path.join('local_apps', 'pootle_app'),
+                    'pootle_store': path.join('local_apps', 'pootle_store'),
+                    'pootle_misc': path.join('local_apps', 'pootle_misc'),
+                    'registration': path.join('external_apps', 'registration'),
+                    'profiles': path.join('external_apps', 'profiles'),
+                    'djblets': path.join('external_apps', 'djblets'),
                     },
 }
 
