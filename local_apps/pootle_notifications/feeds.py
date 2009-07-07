@@ -63,7 +63,7 @@ class TransProjectFeeds(Feed):
         """
         Get object_id and content_type_id based on bits
         """
-        real_path = bits[0] + "/" + bits[1]
+        real_path = bits[1] + "/" + bits[0]
         trans_proj = TranslationProject.objects.get(real_path=real_path)
         content = Notice(content_object = trans_proj)
         return content
