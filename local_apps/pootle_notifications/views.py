@@ -88,7 +88,7 @@ def transproj_notices(request, language_code, project_code):
                 # Process the data in form.cleaned_data
                 # ...
                 form.save()
-                success = "Notification sent."
+                success = _("Notification sent.")
                 valid_form = True
         if request.method == 'GET' or valid_form:
             form = TransProjectNoticeForm() # An unbound form
