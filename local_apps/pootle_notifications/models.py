@@ -6,8 +6,8 @@ from django.contrib.contenttypes import generic
 from pootle_app.models import TranslationProject, Language
 
 class NoticeManager(models.Manager):
-    def get_notices(self, object_id, content_id):
-        notices = self.extra(where=['object_id = %s AND content_type_id = %s'], params=[object_id, content_id])
+    def get_notices(self, obj):
+        notices = self.extra(where=['object_id = %s AND content_type_id = %s'], params=[obj.object_id, obj.content_type_id])
         return notices
 
 

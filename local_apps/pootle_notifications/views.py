@@ -12,6 +12,15 @@ from django.template import RequestContext
 from django import forms
 from pootle_app.models import Language, Project, TranslationProject
 
+def index(request):
+    links = {}
+    link = {'add language notice':'notice/lang/'}
+    links.add(link)
+    link = {'add project notice':'notice/proj/'}
+    links.append(link)
+    return render_to_response('pootle_notifications/index.html', {'links': links,},
+            context_instance=RequestContext(request)  )
+
 class NoticeForm(ModelForm):
     LANG_CHOICES = Language.objects.values_list('id', 'fullname')
     content = ContentType.objects.get(model='language')

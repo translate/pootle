@@ -22,7 +22,7 @@ class LanguageFeeds(Feed):
         return content
 
     def items(self, obj):
-        return Notice.objects.get_notices(obj.object_id, obj.content_type_id)
+        return Notice.objects.get_notices(obj)
 
     def item_link(self, obj):
         return "/noticelink/"
