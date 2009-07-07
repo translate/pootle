@@ -69,7 +69,7 @@ def language_index(request, language_code):
     topstats = gentopstats(topsugg, topreview, topsub)
 
     notice_link = False
-    if 'administrate' in get_matching_permissions(request.user.get_profile(), language.directory):
+    if request.user.is_authenticated() and 'administrate' in get_matching_permissions(request.user.get_profile(), language.directory):
         notice_link = True
  
 
