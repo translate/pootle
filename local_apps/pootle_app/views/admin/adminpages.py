@@ -42,8 +42,16 @@ def view(request, path):
             setting_form.save()
     else:
         setting_form = GeneralSettingsForm(siteconfig)
+
+    notice_links = {}
+    if request.user.is_superuser:
+        notice_links['/notice/lang/'] = _("Add language notice")
+        notice_links['/notice/proj/'] = _("Add project notice")
+        notice_links['/notice/transproj/'] = _("Add translation project notice")  
+        
     template = 'admin/adminindex.html'
     template_vars = {
         'form': setting_form,
+        'links': notice_links,
         }
     return render_to_response(template, template_vars, context_instance=RequestContext(request))

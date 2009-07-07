@@ -3,11 +3,12 @@
  
 {% block content %}
 
-{% trans "Add notice" %}
+<h3 class "title"> {{ title }} </h3>
 
 <form method="post" action="">
         {{ form.as_p }}
 <input type="submit" value="Save"/>
 </form>
+
 {% endblock %}
 

@@ -2,6 +2,7 @@
 {% load i18n baseurl %}
 
 {% block content %}
+
 {% if user.is_superuser %}
 <div class="module-primary first">
     {% endif %}
@@ -12,6 +13,9 @@
             <li><a href='{{ "languages.html"|l }}'>{% trans "Languages" %}</a></li>
             <li><a href='{{ "projects.html"|l }}'>{% trans "Projects" %}</a></li>
             <li><a href='{{ "permissions.html"|l }}'>{% trans "Default Permissions" %}</a></li>
+            {% for key, value in links.items %}
+            <li><a href="{% filter l %}{{ key }}{% endfilter %}" > {{ value }}</a></li>
+            {% endfor %}
         </ul>
         <div class="fullwidthcontents">
             <h3 class="title"> {% trans "Pootle Admin Page" %} </h3>
