@@ -3,28 +3,28 @@ import datetime
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+from pootle_app.models import TranslationProject, Language
 
-class LanguageNoticeManager(models.Manager):
+class NoticeManager(models.Manager):
     def get_notices(self, object_id, content_id):
         notices = self.extra(where=['object_id = %s AND content_type_id = %s'], params=[object_id, content_id])
         return notices
 
 
-class LanguageNotice(models.Model):
+class Notice(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
     message = models.TextField(_('message'))
     added = models.DateTimeField(_('added'), default=datetime.datetime.now)
     
-    objects = LanguageNoticeManager()
+    objects = NoticeManager()
 
     def __unicode__(self):
         return self.message
 
     class Meta:
         ordering = ["-added"]
-        verbose_name = _("language notice")
-        verbose_name_plural = _("language notices")
-
+        verbose_name = _("notice")
+        verbose_name_plural = _("notices")
 

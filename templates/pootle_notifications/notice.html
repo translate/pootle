@@ -1,0 +1,13 @@
+{% extends "base.html"  %}
+{% load i18n baseurl %}
+ 
+{% block content %}
+
+{% trans "Add notice" %}
+
+<form method="post" action="">
+        {{ form.as_p }}
+<input type="submit" value="Save"/>
+</form>
+{% endblock %}
+

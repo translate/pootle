@@ -2,32 +2,82 @@
 
 from django.db import models
 from django.forms import ModelForm
-from pootle_notifications.models import LanguageNotice
+from django import forms
+from pootle_notifications.models import Notice
+from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
-from pootle_notifications.models import LanguageNotice
 
 from django import forms
-from pootle_app.models import Language
+from pootle_app.models import Language, Project, TranslationProject
 
-class LanguageNoticeForm(ModelForm):
-   #object_id = forms.ForeignKey(Language, verbose_name=_('language'))
-   class Meta:
-       model = LanguageNotice
+class NoticeForm(ModelForm):
+    LANG_CHOICES = Language.objects.values_list('id', 'fullname')
+    content = ContentType.objects.get(model='language')
+    content_type = forms.ModelChoiceField(initial=content.id, queryset=ContentType.objects.all(),
+                         widget=forms.HiddenInput())
+    object_id = forms.CharField(label=_("Language"), widget=forms.Select(choices=LANG_CHOICES))
+    class Meta:
+        model = Notice
 
-def language_notice(request):
+class ProjectNoticeForm(ModelForm):
+    PROJ_CHOICES = Project.objects.values_list('id', 'fullname')
+    content = ContentType.objects.get(model='project')
+    content_type = forms.ModelChoiceField(initial=content.id, queryset=ContentType.objects.all(),
+                         widget=forms.HiddenInput())
+    object_id = forms.CharField(label=_("Project"), widget=forms.Select(choices=PROJ_CHOICES))
+    class Meta:
+        model = Notice
+
+class TransProjectNoticeForm(ModelForm):
+    TRANSPROJ_CHOICES = TranslationProject.objects.values_list('id', 'real_path')
+    content = ContentType.objects.get(model='translationproject')
+    content_type = forms.ModelChoiceField(initial=content.id, queryset=ContentType.objects.all(),
+                         widget=forms.HiddenInput())
+    object_id = forms.CharField(label=_("Translation Project"), widget=forms.Select(choices=TRANSPROJ_CHOICES))
+    class Meta:
+        model = Notice
+
+def lang_notice(request):
     if request.method == 'POST': # If the form has been submitted...
-        form = LanguageNoticeForm(request.POST) # A form bound to the POST data
+        form = NoticeForm(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             # ...
             form.save()
             return HttpResponseRedirect('') # Redirect after POST
     else:
-        form = LanguageNoticeForm() # An unbound form
+        form = NoticeForm() # An unbound form
 
-    return render_to_response('pootle_notifications/custom.html', {'form': form,},
+    return render_to_response('pootle_notifications/notice.html', {'form': form,},
             context_instance=RequestContext(request)  )
 
+def proj_notice(request):
+    if request.method == 'POST': # If the form has been submitted...
+        form = ProjectNoticeForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data in form.cleaned_data
+            # ...
+            form.save()
+            return HttpResponseRedirect('') # Redirect after POST
+    else:
+        form = ProjectNoticeForm() # An unbound form
+
+    return render_to_response('pootle_notifications/notice.html', {'form': form,},
+            context_instance=RequestContext(request)  )
+
+def transproj_notices(request):
+    if request.method == 'POST': # If the form has been submitted...
+        form = TransProjectNoticeForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data in form.cleaned_data
+            # ...
+            form.save()
+            return HttpResponseRedirect('') # Redirect after POST
+    else:
+        form = TransProjectNoticeForm() # An unbound form
+
+    return render_to_response('pootle_notifications/notice.html', {'form': form,},
+            context_instance=RequestContext(request)  )
 
