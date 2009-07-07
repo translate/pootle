@@ -76,6 +76,12 @@ class TransProjectFeeds(Feed):
         content = Notice(content_object = trans_proj)
         return content
 
+    def title(self, obj):
+        trans_proj = TranslationProject.objects.get(id = obj.object_id)
+        return _('Feeds for  %(language)s/%(project)s',
+                {"language": tr_lang(trans_proj.language.fullname), "project": tr_lang(trans_proj.project.fullname)})
+
+
     def items(self, obj):
         return Notice.objects.get_notices(obj)
    

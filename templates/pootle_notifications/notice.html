@@ -3,8 +3,9 @@
  
 {% block content %}
 
+<div><a href="{% filter l %}/{{back_link}}/{% endfilter %}"> {% trans "Back" %}</a></div>
 <h3 class "title"> {{ title }} </h3>
-
+<div> {{ success }} </div>
 <form method="post" action="">
         {{ form.as_p }}
 <input type="submit" value="Save"/>
