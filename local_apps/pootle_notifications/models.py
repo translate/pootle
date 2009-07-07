@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from pootle_app.models import TranslationProject, Language
+from pootle_misc.baseurl import l
 
 class NoticeManager(models.Manager):
     def get_notices(self, obj):
@@ -29,6 +30,6 @@ class Notice(models.Model):
         verbose_name_plural = _("notices")
 
     def get_absolute_url(self):
-            return "/notice/viewitem/%i/" % self.id
+            return l("/notice/viewitem/%i/" % self.id)
 
 
