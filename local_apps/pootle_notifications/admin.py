@@ -1,4 +1,4 @@
 from django.contrib import admin
-from pootle_notifications.models import Notice
+from pootle_notifications.models import Notices
 
-admin.site.register(Notice)
+admin.site.register(Notices)

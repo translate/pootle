@@ -5,6 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from pootle_app.models import TranslationProject, Language
 from pootle_misc.baseurl import l
+from django import forms
 
 class NoticeManager(models.Manager):
     def get_notices(self, obj):
@@ -12,12 +13,12 @@ class NoticeManager(models.Manager):
         return notices
 
 
-class Notice(models.Model):
+class Notices(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
     message = models.TextField(_('message'))
-    added = models.DateTimeField(_('added'), default=datetime.datetime.now)
+    added = models.DateTimeField(_('added'), auto_now_add=True, null=True)
     
     objects = NoticeManager()
 

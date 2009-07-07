@@ -1,0 +1,29 @@
+{% extends "base.html"  %}
+{% load i18n baseurl %}
+
+{% block content %}
+<div><a href="{% filter l %}/{{back_link}}/{% endfilter %}"> {% trans "Back" %}</a></div>
+{% if form %}
+<h3 class "title"> {{ title }} </h3>
+<hr width="50%" align="left">
+<div> {{ success }} </div>
+<form method="post" action="">
+    {{ form.as_p }}
+    <input type="submit" value="Save"/>
+</form>
+{% endif %}
+{% if notices %}
+<div>
+    <h3 class="title">{% trans "Latest notices:" %}</h3>
+    <hr width="50%" align="left">
+    <ul>
+        {% for notice in notices %}
+        <li>
+        {{ notice.message }}
+        </li>
+        {% endfor %}
+     <ul>
+</div>
+{% endif %}
+{% endblock %}
+
