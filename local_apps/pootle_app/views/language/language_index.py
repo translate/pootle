@@ -32,6 +32,7 @@ from pootle_app.models import Suggestion, Submission, Language
 from pootle.i18n.gettext import tr_lang
 
 from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models.profile import get_profile
 
 def limit(query):
     return query[:5]
@@ -68,8 +69,9 @@ def language_index(request, language_code):
     topsub = narrow(Submission.objects.get_top_submitters())
     topstats = gentopstats(topsugg, topreview, topsub)
 
-    notice_link = False
-    if request.user.is_authenticated() and 'administrate' in get_matching_permissions(request.user.get_profile(), language.directory):
+    notice_link = False 
+    user_permissions = get_matching_permissions(get_profile(request.user), language.directory)
+    if 'administrate' in user_permissions or 'view' in user_permissions:
         notice_link = True
  
 

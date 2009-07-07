@@ -9,6 +9,7 @@ from django.http import HttpResponse, Http404,  HttpResponseForbidden
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models.profile import get_profile
 
 def NoticeFeeds(request, url):
     param = ''
@@ -19,14 +20,14 @@ def NoticeFeeds(request, url):
             f = LanguageFeeds
             param = default_param[0]
             lang = Language.objects.get(code=param)
-            if 'view' not in get_matching_permissions(request.user.get_profile(), lang.directory):
+            if 'view' not in get_matching_permissions(get_profile(request.user), lang.directory):
                 denied = True
 
         elif len(default_param) == 2 :
             f = TransProjectFeeds
             param = default_param[1] + "/" + default_param[0]
             transproj = TranslationProject.objects.get(real_path = param)
-            if 'view' not in get_matching_permissions(request.user.get_profile(), transproj.directory):
+            if 'view' not in get_matching_permissions(get_profile(request.user), transproj.directory):
                 denied = True
 
         else:

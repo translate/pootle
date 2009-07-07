@@ -309,7 +309,7 @@ class ProjectIndexView(BaseView):
         goal_form = None
         
         notice_link = False
-        if 'administrate' in request.permissions:
+        if 'administrate' in request.permissions or 'view' in request.permissions:
             notice_link = True
 
         template_vars.update({

@@ -12,16 +12,16 @@ from pootle_notifications.forms import LanguageNoticeForm, TransProjectNoticeFor
 from pootle_notifications.models import Notices
 from pootle_app.models import Language, TranslationProject
 from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models.profile import get_profile
 
-@login_required
 def lang_notices(request, language_code):
     can_add = False
     can_view = False
 
     lang = Language.objects.get(code=language_code)
-    if request.user.is_authenticated() and 'view' in get_matching_permissions(request.user.get_profile(), lang.directory):
+    if 'view' in get_matching_permissions(get_profile(request.user), lang.directory):
         can_view = True
-    if request.user.is_authenticated() and 'administrate' in get_matching_permissions(request.user.get_profile(), lang.directory):
+    if request.user.is_authenticated() and 'administrate' in get_matching_permissions(get_profile(request.user), lang.directory):
         can_add = True
 
     if not can_add and not can_view:
@@ -49,6 +49,7 @@ def lang_notices(request, language_code):
     template_vars = {
             "title"       :_('Add notice for %(language)s',{"language": tr_lang(lang.fullname)}),
             "back_link"   :language_code,
+            "name"        :tr_lang(lang.fullname),
             }
 
     if can_add:
@@ -61,15 +62,14 @@ def lang_notices(request, language_code):
     return render_to_response('pootle_notifications/notices.html', template_vars,
             context_instance=RequestContext(request)  )
     
-@login_required
 def transproj_notices(request, language_code, project_code):
     
     can_add = False
     can_view = False
     transproj = TranslationProject.objects.get(real_path = project_code + "/" + language_code)
-    if request.user.is_authenticated() and 'view' in get_matching_permissions(request.user.get_profile(), transproj.directory):
+    if 'view' in get_matching_permissions(get_profile(request.user), transproj.directory):
         can_view = True
-    if request.user.is_authenticated() and 'administrate' in get_matching_permissions(request.user.get_profile(), transproj.directory):
+    if request.user.is_authenticated() and 'administrate' in get_matching_permissions(get_profile(request.user), transproj.directory):
         can_add = True
 
     if not can_add and not can_view:
@@ -98,6 +98,7 @@ def transproj_notices(request, language_code, project_code):
             "title" : _('Add notice for %(language)s/%(project)s',
                 {"language": tr_lang(transproj.language.fullname), "project": tr_lang(transproj.project.fullname)}),
             "back_link" : language_code+"/"+project_code,
+            "name"      : tr_lang(transproj.language.fullname) +" "+tr_lang(transproj.project.fullname),
             }
 
     if can_add:

@@ -12,9 +12,10 @@
     <input type="submit" value="Save"/>
 </form>
 {% endif %}
+
 {% if notices %}
 <div>
-    <h3 class="title">{% trans "Latest notices:" %}</h3>
+    <h3 class="title">{% trans "Latest" %} {{name}} {% trans "notices:" %}</h3>
     <hr width="50%" align="left">
     <ul>
         {% for notice in notices %}
@@ -24,6 +25,9 @@
         {% endfor %}
      <ul>
 </div>
+{% else %}
+<div> {% trans "There is no"%} {{name}} {% trans "notices" %}</div>
 {% endif %}
+
 {% endblock %}
 
