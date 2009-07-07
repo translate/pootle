@@ -10,23 +10,17 @@ from pootle_app.models.permissions import get_matching_permissions
 
 
 class LanguageNoticeForm(ModelForm):
-    LANG_CHOICES = Language.objects.all()
     content = ContentType.objects.get(model='language')
     content_type = forms.ModelChoiceField(initial=content.id, queryset=ContentType.objects.all(),
                          widget=forms.HiddenInput())
-    object_id = forms.CharField(label=_("Language"), widget=forms.Select(choices=LANG_CHOICES))
+    object_id = forms.IntegerField(widget=forms.HiddenInput())
+
     class Meta:
         model = Notice
 
-    def filter_by_permission(self, user):
-        result = []
-        profile = user.get_profile()
-        for choice in self.fields['object_id'].widget.choices:
-            if 'administrate' in get_matching_permissions(profile, choice.directory):
-                value = (choice.id, choice.fullname)
-                result.append(value)
-        
-        self.fields['object_id'].widget.choices = result
+    def set_initial_value(self, code):
+        language = Language.objects.get(code = code);
+        self.fields['object_id'].initial = language.id
 
 class ProjectNoticeForm(ModelForm):
     PROJ_CHOICES = Project.objects.values_list('id', 'fullname')
@@ -38,20 +32,15 @@ class ProjectNoticeForm(ModelForm):
         model = Notice
 
 class TransProjectNoticeForm(ModelForm):
-    TRANSPROJ_CHOICES = TranslationProject.objects.all()
     content = ContentType.objects.get(model='translationproject')
     content_type = forms.ModelChoiceField(initial=content.id, queryset=ContentType.objects.all(),
                          widget=forms.HiddenInput())
-    object_id = forms.CharField(label=_("Translation Project"), widget=forms.Select(choices=TRANSPROJ_CHOICES))
+
+    object_id = forms.IntegerField(widget=forms.HiddenInput())
     class Meta:
         model = Notice
-    def filter_by_permission(self, user):
-        result = []
-        profile = user.get_profile()
-        for choice in self.fields['object_id'].widget.choices:
-            if 'administrate' in get_matching_permissions(profile, choice.directory):
-                value = (choice.id, choice.real_path)
-                result.append(value)
+    def set_initial_value(self, language_code, project_code):
+        real_path = project_code + "/" + language_code;
+        transproj = TranslationProject.objects.get(real_path = real_path)
+        self.fields['object_id'].initial = transproj.id
         
-        self.fields['object_id'].widget.choices = result
-

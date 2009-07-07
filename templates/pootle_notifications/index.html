@@ -1,0 +1,15 @@
+{% extends "base.html"  %}
+{% load i18n baseurl %}
+ 
+{% block content %}
+
+<h3 class="title">{{ title }}</h3>
+
+{% for notice in notices %}
+<div>
+{{ notice.message }}
+</div>
+{% endfor %}
+
+{% endblock %}
+

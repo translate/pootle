@@ -32,7 +32,12 @@
 {% endblock innernav %}
 
 {% block content %}
-  <div id="content">
+<div id="content">
+
+    {% if notice_link %}
+    <div ><a href={% filter l %}"/notice/{{language.code}}/{{project.code}}/{% endfilter %}">{% trans "Add notice for"%} {{language.name}} {{project.name}}</a></div>
+    {% endif %}
+
     {% if not editing and children %}
     <!--! The statistics view -->
       <div class="module-primary">

@@ -28,3 +28,7 @@ class Notice(models.Model):
         verbose_name = _("notice")
         verbose_name_plural = _("notices")
 
+    def get_absolute_url(self):
+            return "/notice/viewitem/%i/" % self.id
+
+

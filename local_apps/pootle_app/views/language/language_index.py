@@ -31,6 +31,7 @@ from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle_app.models import Suggestion, Submission, Language
 from pootle.i18n.gettext import tr_lang
 
+from pootle_app.models.permissions import get_matching_permissions
 
 def limit(query):
     return query[:5]
@@ -67,6 +68,11 @@ def language_index(request, language_code):
     topsub = narrow(Submission.objects.get_top_submitters())
     topstats = gentopstats(topsugg, topreview, topsub)
 
+    notice_link = False
+    if 'administrate' in get_matching_permissions(request.user.get_profile(), language.directory):
+        notice_link = True
+ 
+
     templatevars = {
         'pagetitle': _('%(title)s: Language %(language)s', 
                        {"title": pagelayout.get_title(), "language": tr_lang(language.fullname)}),
@@ -84,6 +90,7 @@ def language_index(request, language_code):
         'complete': _('Complete'),
         'topstats': topstats,
         'instancetitle': pagelayout.get_title(),
+        'notice_link' : notice_link,
         }
     return render_to_response("language/language.html", templatevars, context_instance=RequestContext(request))
     
