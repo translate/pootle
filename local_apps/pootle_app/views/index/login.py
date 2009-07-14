@@ -63,14 +63,7 @@ def view(request):
         request.session.set_test_cookie()
         context = {
             'languages': language_list(request),
-            'form': form,
-            # kid template compatibility
-            'pagetitle': _("Login to Pootle"),
-            'introtext': None,
-            'login_title': _("Pootle Login"),
-            'language_title': _('Language'),
-            'password_title': _("Password"),
-            'register_long_text': _("Don't have an account yet? <a href='register.html' title='Register'>Register</a>.")
+            'form': form
             }
         return render_to_response("index/login.html", context, context_instance=RequestContext(request))
     

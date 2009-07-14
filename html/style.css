@@ -686,8 +686,8 @@ html[dir="rtl"] .module-primary .hd h2
     margin-bottom: 1em;
 }
 
-#username,
-#password,
+#id_username,
+#id_password,
 #language
 {
     width: 97%;

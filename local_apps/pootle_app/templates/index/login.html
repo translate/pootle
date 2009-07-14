@@ -3,35 +3,43 @@
 
 {% block content %}
 <div id="login">
+    <h1>{% trans 'Login to Pootle' %}</h1>
     <form method="post" action='{{ "/accounts/login/"|l }}' 
       name="loginform" id="loginform">
     {% if form.errors %}
-    <p>{% trans "Your username and password didn't match. Please try again." %}</p>
+    <div id="site-message">
+        <div class="error">
+        {% trans "Your username and password didn't match. Please try again." %}
+        </div>
+    </div>
     {% endif %}  
-    <p>{{ form.username.label_tag }} {{ form.username }}</p>
-    <p>{{ form.password.label_tag }} {{ form.password }}</p>
-    <select name="language" id="language">
-    {% for lang in languages %}
-        <option {% if lang.selected %}selected="selected"{% endif %}
-                value="{{ lang.code}}" id="{{ lang.code}}">{{ lang.name}}</option>
-    {% endfor %} 
-    </select>
+    <p>{{ form.username.label_tag }}<br />{{ form.username }}</p>
+    <p>{{ form.password.label_tag }}<br />{{ form.password }}</p>
+    <p>
+        <label for="language">{% trans 'Interface Language' %}</label><br />
+        <select name="language" id="language">
+        {% for lang in languages %}
+            <option {% if lang.selected %}selected="selected"{% endif %}
+                    value="{{ lang.code}}" id="{{ lang.code}}">{{ lang.name}}</option>
+        {% endfor %} 
+        </select>
+    </p>
 	<p class="submit">
         <input type="submit" name="login" value="{% trans 'Login' %}" />
         <input type="hidden" name="next" value="{{ next }}" />
     </p>
 </form>
-<a href='{{ "/accounts/password/reset/"|l }}'>Lost your Password?</a>
+<p><a href='{{ "/accounts/password/reset/"|l }}'>Lost your Password?</a></p>
 </div>
+<h1 id="register">{% trans "Don't have an account yet?" %}
+  <a href='{{ "/accounts/register"|l }}' title="{% trans 'Register' %}">{% trans 'Register' %}</a>.
+</h1>
 {% endblock content %}
 
 {% block scripts_extra %}
   <script>
     $(document).ready(function () {
-    // Set focus to login form
-    if (document.loginform) {
-        document.loginform.username.focus();
-    }
+        $("#id_username").focus();
     });
   </script>
 {% endblock scripts_extra %}
