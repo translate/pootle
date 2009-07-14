@@ -46,9 +46,9 @@
 
 {% block precontent %}
       {% if checking_text %}
-      <div class="checkname">
-	<img src='{{"images/help.png"|m}}' class="checkinfo" alt="" />
-	<span>{{checking_text|safe}}</span>
+      <div>
+          <img src='{{"images/help.png"|m}}' class="checkinfo" />
+          <span>{{checking_text|safe}}</span>
       </div>
       {% endif %}
   <div id="precontent">

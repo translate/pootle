@@ -976,6 +976,13 @@ html[dir="rtl"] .translations-nav li:last-child:after
     font-weight: bold;
 }
 
+/* CHECKS */
+
+.checkinfo
+{
+    vertical-align: top;
+}
+
 
 /*
  * TRANSLATE PAGE
