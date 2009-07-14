@@ -18,42 +18,38 @@
 {% endblock innernav %}
 
 {% block content %}
-<div id="content">
-    {% if notice_link %}
-    <div ><a href="{% filter l %}/{{language.code}}/notices/{% endfilter %}">{{language.name}} {% trans "notices"%} </a></div>
-    {% endif %}
-    <div class="module-primary">
-      <div class="bd">
-	<table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
-	  <thead>
-	    <tr>
-	      <th class="stats">{{statsheadings.name}}</th>
-	      <th class="stats">{{statsheadings.progress}}</th>
-	      <th class="stats">{{statsheadings.summary}}</th>
-	      <th class="stats">{{statsheadings.totalwords}}</th>
-	    </tr>
-	  </thead>
-	  <tbody class="stats">
-	    {% for item in projects %}
-	      <tr class="item {% cycle 'even' 'odd' %}" title="{{item.description}}">
-		{% include "language/item_summary.html" %}
-	      </tr>
-	    {% endfor %}
-	  </tbody>
-	</table>
-      </div>
-    </div>
-  </div><!--content-->
+{% if notice_link %}
+    <div><a href="{% filter l %}/{{language.code}}/notices/{% endfilter %}">{{language.name}} {% trans "notices"%} </a></div>
+{% endif %}
+<div class="module-primary">
+  <div class="bd">
+<table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="stats">{{statsheadings.name}}</th>
+      <th class="stats">{{statsheadings.progress}}</th>
+      <th class="stats">{{statsheadings.summary}}</th>
+      <th class="stats">{{statsheadings.totalwords}}</th>
+    </tr>
+  </thead>
+  <tbody class="stats">
+    {% for item in projects %}
+      <tr class="item {% cycle 'even' 'odd' %}" title="{{item.description}}">
+    {% include "language/item_summary.html" %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  </div>
+</div>
 {% endblock content %}
 
 {% block postcontent %}
-  <div id="postcontent">
-    <div class="module first clear">
-      <div class="bd">
-	{% include "translation_summary_legend.html" %}
-      </div>
+<div class="module first clear">
+    <div class="bd">
+    {% include "translation_summary_legend.html" %}
     </div>
-    {% include "top_contributers_table.html" %}
-  </div><!--postcontent-->
+</div>
+{% include "top_contributers_table.html" %}
 {% endblock postcontent %}
 

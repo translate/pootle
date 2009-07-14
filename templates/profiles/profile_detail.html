@@ -2,66 +2,64 @@
 {% load i18n baseurl %}
 
 {% block content %}
-<div id="content" >
-    <div class="module first">
-        <div class="hd">
-            <h2 >{% trans "Quick Links" %}</h2>
-        </div>
-        {% if profile.getquicklinks %}
-        {% for language in profile.getquicklinks %}
-            <dl class="languagelist">
-                <dt class="language"> <a href= "{% filter l %}/{{ language.code }}/{% endfilter %}" >
-                    {% trans language.name %} 
-                    {% if language.islangadmin %}
-		    <span class="adminlink">
-		      (<a href="{% filter l %}/{{language.code}}/admin.html{% endfilter %}">{% trans "Admin" %}</a>)
-                    </span>
-		    {% endif %}
-
-                </a> </dt>
-                {% for project in language.projects %}
-                <dd >
-                <a href= "{% filter l %}/{{language.code}}/{{project.code}}/{% endfilter %}" >
-                    {{project.name}}
-                </a>
-                {% if project.isprojectadmin %}
-                <span class="adminlink">
-		  (<a href="{% filter l %}/{{language.code}}/{{ project.code}}/admin.html{% endfilter %}">{% trans "Admin" %}</a>)
-                </span>
-                {% endif %}
-                </dd>
-                {% endfor %}
-            </dl>
-        {% endfor %}
-        {% else %}
-        <div class="item-description">
-            {% trans "You need to" %} <a href='{{"/accounts/edit/"|l}}'> {% trans "choose your languages and projects." %} </a>
-        </div>
-        {% endif %}
-        <ul>
-            <li><a href='{{"/accounts/edit/"|l}}' >{% trans "Change options" %} </a></li>
-            <li><a href='{{"/accounts/password/change/"|l}}' >{% trans "Change password" %} </a></li>
-            <li><a href='{{"/accounts/personal/edit/"|l}}' >{% trans "Change personal information" %} </a></li>
-            {% if profile.user.is_superuser %}
-            <li ><a href='{{"/admin/"|l}}' >{% trans "Admin page" %} </a></li>
-            {% endif %}
-        </ul>
+<div class="module first">
+    <div class="hd">
+        <h2 >{% trans "Quick Links" %}</h2>
     </div>
+    {% if profile.getquicklinks %}
+    {% for language in profile.getquicklinks %}
+        <dl class="languagelist">
+            <dt class="language"> <a href= "{% filter l %}/{{ language.code }}/{% endfilter %}" >
+                {% trans language.name %}
+                {% if language.islangadmin %}
+        <span class="adminlink">
+          (<a href="{% filter l %}/{{language.code}}/admin.html{% endfilter %}">{% trans "Admin" %}</a>)
+                </span>
+        {% endif %}
+
+            </a> </dt>
+            {% for project in language.projects %}
+            <dd >
+            <a href= "{% filter l %}/{{language.code}}/{{project.code}}/{% endfilter %}" >
+                {{project.name}}
+            </a>
+            {% if project.isprojectadmin %}
+            <span class="adminlink">
+      (<a href="{% filter l %}/{{language.code}}/{{ project.code}}/admin.html{% endfilter %}">{% trans "Admin" %}</a>)
+            </span>
+            {% endif %}
+            </dd>
+            {% endfor %}
+        </dl>
+    {% endfor %}
+    {% else %}
+    <div class="item-description">
+        {% trans "You need to" %} <a href='{{"/accounts/edit/"|l}}'> {% trans "choose your languages and projects." %} </a>
+    </div>
+    {% endif %}
+    <ul>
+        <li><a href='{{"/accounts/edit/"|l}}' >{% trans "Change options" %} </a></li>
+        <li><a href='{{"/accounts/password/change/"|l}}' >{% trans "Change password" %} </a></li>
+        <li><a href='{{"/accounts/personal/edit/"|l}}' >{% trans "Change personal information" %} </a></li>
+        {% if profile.user.is_superuser %}
+        <li ><a href='{{"/admin/"|l}}' >{% trans "Admin page" %} </a></li>
+        {% endif %}
+    </ul>
 </div>
-<div id="postcontent" >
-    <div class="module">
-        <div class="hd">
-            <h2 > {% trans "User Statistics" %} </h2>
-        </div>
-        <div class="bd">
-            <table>
-                {% for key, value in profile.getuserstatistics.items %}
-                <tr>
-                    <th scope="row">{% trans key %}</th><td> {{ value }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
+{% endblock %}
+{% block postcontent %}
+<div class="module">
+    <div class="hd">
+        <h2 > {% trans "User Statistics" %} </h2>
+    </div>
+    <div class="bd">
+        <table>
+            {% for key, value in profile.getuserstatistics.items %}
+            <tr>
+                <th scope="row">{% trans key %}</th><td> {{ value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
 {% endblock %}

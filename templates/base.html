@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-{% load i18n baseurl %}
+{% load i18n baseurl captureas %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
@@ -88,10 +88,16 @@
 	</div><!--nav-secondary-->
 
 
-	<div id="precontent" class="intro">{% block precontent %}{% endblock %}</div>
-	<div id="content">{% block content %}{% endblock %}</div>
-	<div id="postcontent">{% block postcontent %}{% endblock %}</div>
-	
+    <div id="precontent">
+        {% block precontent %}{% endblock %}
+    </div><!-- precontent -->
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div><!-- content -->
+    <div id="postcontent">
+        {% block postcontent %}{% endblock %}
+    </div><!-- postcontent -->
+
       </div> <!--body-->
     
       <div id="footer" lang="{{LANGUAGE_CODE}}">

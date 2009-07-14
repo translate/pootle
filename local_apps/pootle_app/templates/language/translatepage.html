@@ -51,13 +51,9 @@
           <span>{{checking_text|safe}}</span>
       </div>
       {% endif %}
-  <div id="precontent">
-    <div id="ajaxresponse" style="display: none;">{{ajax_status_text}}</div>
-  </div><!--precontent-->
 {% endblock precontent %}
 
 {% block content %}
-  <div id="content">
     <div class="module-primary">
       <div class="bd">
 	<!--! start/next/previous/end links -->
@@ -339,11 +335,9 @@
 	</div>
       </div>
     </div>
-  </div><!--content-->
 {% endblock content %}
 
 {% block postcontent %}
-  <div id="postcontent">
     <div py:def="show_assigns()">
       {% if assign %}
       <div class="sidetitle">{{assigns.title}}</div>
@@ -358,7 +352,6 @@
       </form>
       {% endif %}
     </div>
-  </div><!--postcontent-->
 {% endblock postcontent %}
 
 

@@ -32,92 +32,89 @@
 {% endblock innernav %}
 
 {% block content %}
-<div id="content">
+{% if notice_link %}
+    <div><a href="{% filter l %}/{{language.code}}/{{project.code}}/notices/{% endfilter %}"> {{language.name}} {{project.name}} {% trans "notices"%} </a></div>
+{% endif %}
 
-    {% if notice_link %}
-    <div ><a href="{% filter l %}/{{language.code}}/{{project.code}}/notices/{% endfilter %}"> {{language.name}} {{project.name}} {% trans "notices"%} </a></div>
-    {% endif %}
-
-    {% if not editing and children %}
-    <!--! The statistics view -->
-      <div class="module-primary">
-	<div class="bd">
-	  <table class="sortable stats" id="stats" cellpadding="5"
-    cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-	    <thead>
-	      <tr>
-		<th class="stats">{{stats_headings.name}}</th>
-		<th class="stats">{{stats_headings.progress}}</th>
-		<th class="stats">{{stats_headings.summary}}</th>
-		<th class="stats">{{stats_headings.totalwords}}</th>
-	      </tr>
-	    </thead>
-	    <tbody class="stats">
-	      {% for item in children %}
-		<tr class="item {% cycle 'even' 'odd' %}" title="{{item.description}}">
-		  {% include "language/item_summary.html" %}
-		  <div py:replace="navbar.itemsummary(item, uidir, untranslated_text, fuzzy_text, complete)"/>
-		</tr>
-	      {% endfor %}
-	    </tbody>
-	  </table>
-	</div>
-      </div>
-    {% endif %}
-
-    {% if editing %}
-    <!--! The editing view -->
+{% if not editing and children %}
+<!--! The statistics view -->
+  <div class="module-primary">
+<div class="bd">
+  <table class="sortable stats" id="stats" cellpadding="5"
+cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <thead>
+      <tr>
+    <th class="stats">{{stats_headings.name}}</th>
+    <th class="stats">{{stats_headings.progress}}</th>
+    <th class="stats">{{stats_headings.summary}}</th>
+    <th class="stats">{{stats_headings.totalwords}}</th>
+      </tr>
+    </thead>
+    <tbody class="stats">
       {% for item in children %}
-      <div class="module-primary">
-	<div class="bd">
-	  {% if item.isgoal %}
-	  <div class="goalitem">
-	    {% include "language/item_block.html" %}
-	    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, show_goals(item))"/>
-	    {% include "language/item_stats.html" %}
-	  </div>
-	  {% endif %}
-	  {% if item.isdir or item.isfile %}
-	  <div class="item {% cycle 'even' 'odd' %}">
-	    {% include "language/item_block.html" %}
-	    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
-	    {% include "language/item_stats.html" %}
-	  </div>
-	  {% endif %}
-	</div>
-      </div>
+    <tr class="item {% cycle 'even' 'odd' %}" title="{{item.description}}">
+      {% include "language/item_summary.html" %}
+      <div py:replace="navbar.itemsummary(item, uidir, untranslated_text, fuzzy_text, complete)"/>
+    </tr>
       {% endfor %}
-    {% endif %}
-    
-    {% if assign or goals %}
-    <!--! The goals view -->
-    <div class="module first">
-      <div class="bd">
-	{% if assign %}
-	<div class="sidetitle">
-	  {{ assign.title }}
-	</div>
-	<form action="" method="post" name="assignform">
-	  <select name="assignto" title="{{assign.users_text}}">
-	    {% for user in assign.users %}
-	    <option value="{{user}}">assign.users[user].description</option>
-	    {% endfor %}
-	  </select>
-	  <input type="text" name="action" value="translate" title="{{assign.action_text}}" />
-	  <input type="submit" name="doassign" value="{{assign.button}}" />
-	</form>
-	{% endif %}
-	{% if goals %}
-	<div class="sidetitle">{{goals.title}}</div>
-	<form action="" method="post" name="goalform">
-	  <input type="text" name="newgoal" title="{{goals.name_title}}" />
-	  <input type="submit" name="doaddgoal" value="{{goals.button}}" />
-	</form>
-	{% endif %}
-      </div>
-    </div>
-    {% endif %}
-  </div><!--content-->
+    </tbody>
+  </table>
+</div>
+  </div>
+{% endif %}
+
+{% if editing %}
+<!--! The editing view -->
+  {% for item in children %}
+  <div class="module-primary">
+<div class="bd">
+  {% if item.isgoal %}
+  <div class="goalitem">
+    {% include "language/item_block.html" %}
+    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, show_goals(item))"/>
+    {% include "language/item_stats.html" %}
+  </div>
+  {% endif %}
+  {% if item.isdir or item.isfile %}
+  <div class="item {% cycle 'even' 'odd' %}">
+    {% include "language/item_block.html" %}
+    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
+    {% include "language/item_stats.html" %}
+  </div>
+  {% endif %}
+</div>
+  </div>
+  {% endfor %}
+{% endif %}
+
+{% if assign or goals %}
+<!--! The goals view -->
+<div class="module first">
+  <div class="bd">
+{% if assign %}
+<div class="sidetitle">
+  {{ assign.title }}
+</div>
+<form action="" method="post" name="assignform">
+  <select name="assignto" title="{{assign.users_text}}">
+    {% for user in assign.users %}
+    <option value="{{user}}">assign.users[user].description</option>
+    {% endfor %}
+  </select>
+  <input type="text" name="action" value="translate" title="{{assign.action_text}}" />
+  <input type="submit" name="doassign" value="{{assign.button}}" />
+</form>
+{% endif %}
+{% if goals %}
+<div class="sidetitle">{{goals.title}}</div>
+<form action="" method="post" name="goalform">
+  <input type="text" name="newgoal" title="{{goals.name_title}}" />
+  <input type="submit" name="doaddgoal" value="{{goals.button}}" />
+</form>
+{% endif %}
+  </div>
+</div>
+{% endif %}
 {% endblock content %}
 
 {% block postcontent %}

@@ -23,15 +23,12 @@
 
 
 {% block precontent %}
-  <div id="precontent">
     <div class="intro">
       {{description|safe}}
     </div>
-  </div><!--precontent-->
 {% endblock precontent %}
 
 {% block content %}
-  <div id="content">
     <div class="module-primary">
       <div class="bd">
 	<table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
@@ -53,18 +50,15 @@
 	</table>
       </div>
     </div>
-  </div><!--content-->
 {% endblock content %}
 
 {% block postcontent %}
-  <div id="postcontent">
     <div class="module first clear">
       <div class="bd">
 	{% include "translation_summary_legend.html" %}
       </div>
     </div>
     {% include "top_contributers_table.html" %}
-  </div><!--postcontent-->
 {% endblock postcontent %}
 
 
