@@ -2,7 +2,7 @@
 {% load i18n baseurl %}
 
 {% block content %}
-<div id="login">
+<div id="login" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <h1>{% trans 'Login to Pootle' %}</h1>
     <form method="post" action='{{ "/accounts/login/"|l }}' 
       name="loginform" id="loginform">
