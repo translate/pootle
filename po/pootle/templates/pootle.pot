@@ -1223,5 +1223,5 @@ msgid "Initialize"
 msgstr ""
 
 #: ../pootle_app/views/top_stats.py:86
-msgid "Submisions"
+msgid "Submissions"
 msgstr ""

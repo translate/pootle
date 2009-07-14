@@ -71,10 +71,10 @@ def gen_top_stats(narrow_search_results):
        'ranklabel':   u'Rank',
        'vallabel':    u'Reviews'},
       {'data':        [],
-       'headerlabel': u'Submisions',
+       'headerlabel': u'Submissions',
        'namelabel':   u'Name',
        'ranklabel':   u'Rank',
-       'vallabel':    u'Submisions'}]
+       'vallabel':    u'Submissions'}]
     """
     top_sugg   = limit(narrow_search_results(Suggestion.objects.get_top_suggesters()))
     top_review = limit(narrow_search_results(Suggestion.objects.get_top_reviewers()))
@@ -83,7 +83,7 @@ def gen_top_stats(narrow_search_results):
     return [
         gen_top_stat(users_from_suggestions(top_sugg),   _('Suggestions')),
         gen_top_stat(users_from_suggestions(top_review), _('Reviews')),
-        gen_top_stat(users_from_submissions(top_sub),    _('Submisions')) ]
+        gen_top_stat(users_from_submissions(top_sub),    _('Submissions')) ]
 
 def top_stats_heading():
     return _("Top Contributors")
