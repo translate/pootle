@@ -248,7 +248,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
 
         
     def _delete_store_cache(self):
-        """remove traslation store from dictionary cache."""
+        """remove translation store from dictionary cache."""
         if self.path in self._store_cache:
             del(self._store_cache[self.path])
         self._stats[self.path] = {}
