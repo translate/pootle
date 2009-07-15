@@ -101,14 +101,9 @@ h1, h2, h3, h4, h5, h6
 {
     font-family: Georgia, serif;
     font-weight: normal;
+    font-size: 100%;
     background-color: inherit;
     color: #4b4740;
-}
-
-h1, h2, h3, h4, h5, h6
-{
-    font-size: 100%;
-    font-weight: normal;
 }
 
 h1
@@ -139,11 +134,6 @@ h5
 h6
 {
     font-size: 100%;
-}
-
-h1, h2, h3
-{
-    margin: 1em 0;
 }
 
 body, div,
@@ -538,6 +528,15 @@ html[dir="rtl"] #nav-main ul li
 .hide
 {
     display: none;
+}
+
+/* TITLES */
+
+h1.title,
+h2.title,
+h3.title
+{
+    padding: 0.2em 0 !important;
 }
 
 
