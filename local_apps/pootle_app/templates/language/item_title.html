@@ -1,7 +1,6 @@
 {% load i18n baseurl %}
 {% block itemtitle %}
 <div id="breadcrumbs" class="title">
-  <a href="{{item.href|l}}">{{item.title}}</a>
   <h3 class="title">
     {% if item.path.language %}[<a href="{{item.path.language.href|l}}">{{item.path.language.text}}</a>]{% endif %}
     {% if item.path.project %}[<a href="{{item.path.project.href|l}}">{{item.path.project.text}}</a>]{% endif %}
