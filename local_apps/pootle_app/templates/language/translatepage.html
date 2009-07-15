@@ -28,7 +28,9 @@
 	<img src='{{"images/bullet_arrow_up.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" style="display: none;"/>
       </a>
       <div class="advancedsearch" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-	<table>{{search.advanced_search_form.as_table}}</table>
+      {% for field in search.advanced_search_form %}
+          {{field}} {{field.label_tag}}<br />
+      {% endfor %}
       </div>
     </form>
   </div><!--search-->
