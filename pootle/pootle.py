@@ -22,8 +22,6 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-# We don't need kid in this file, but this will show quickly if it is
-# not installed.
 import sys
 import optparse
 from wsgiref.simple_server import make_server
