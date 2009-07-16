@@ -3,14 +3,17 @@
 # Verbatim script for managing the addons.mozilla.org project.  More information at
 # https://wiki.mozilla.org/Verbatim
 #
-# Author: Wil Clouser <clouserw@mozilla.com>
-# Author: Dan Schafer <dschafer@andrew.cmu.edu>
+# Authors:
+# Wil Clouser <clouserw@mozilla.com>
+# Dan Schafer <dschafer@andrew.cmu.edu>
+# Frederic Wenzel <fwenzel@mozilla.com>
 
 import sys
 import os
 import os.path
 import subprocess
-from pootle.scripts.convert import monopo2po, po2monopo
+import logging
+from Pootle.scripts.convert import monopo2po, po2monopo
 
 def _getfiles(file):
   mainfile = os.path.join(os.path.split(file)[0], "messages.po")
@@ -21,6 +24,9 @@ def _getfiles(file):
 def initialize(projectdir, languagecode):
   """The first paramater is the path to the project directory.  It's up to this
   script to know any internal structure of the directory"""
+
+  logger = logging.getLogger('scripts.amo')
+  logger.info("Initializing language %s of project %s" % (languagecode, os.path.basename(projectdir)))
 
   # Find the files we're working with
   mainfile     = os.path.join(projectdir, languagecode, 'LC_MESSAGES', 'messages.po')
@@ -37,12 +43,13 @@ def initialize(projectdir, languagecode):
 
 def precommit(committedfile, author, message):
   if os.path.basename(committedfile) == "messages-combined.po":
+    logger = logging.getLogger('scripts.amo')
 
     # Get the files we'll be using
     (combinedfile, mainfile, sourcefile) = _getfiles(committedfile)
     
     # Update messages.po 
-    # print "Converting po %s to %s" % (combinedfile, mainfile)
+    logger.debug("Converting po %s to %s" % (combinedfile, mainfile))
     po2monopo.convertpo(open(combinedfile,"r"), open(mainfile,"w"))
 
     # We want to commit messages.po
@@ -51,29 +58,33 @@ def precommit(committedfile, author, message):
 
 def postcommit(committedfile, success):
   if os.path.basename(committedfile) == "messages.po":
+    logger = logging.getLogger('scripts.amo')
     
     # Get the files we'll be using
     (combinedfile, mainfile, sourcefile) = _getfiles(committedfile)
 
     # Recreate messages-combined.po 
-    # print "Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile)
+    logger.debug("Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile))
     monopo2po.convertpo(open(sourcefile,"r"), open(combinedfile,"w"), open(mainfile,"r"))
 
 def preupdate(updatedfile):
   if os.path.basename(updatedfile) == "messages-combined.po":
+    logger = logging.getLogger('scripts.amo')
 
     # Get the files we'll be using
     (combinedfile, mainfile, sourcefile) = _getfiles(updatedfile)
     
     # We want to update messages.po
-    #print "Updating %s" % mainfile
+    logger.debug("Updating %s" % mainfile)
     return mainfile
   return ""
 
 def postupdate(updatedfile):
+  logger = logging.getLogger('scripts.amo')
+
   # Get the files we'll be using
   (combinedfile, mainfile, sourcefile) = _getfiles(updatedfile)
 
   # Create the new messages-combined.po file
-  #print "Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile)
+  logger.debug("Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile))
   monopo2po.convertpo(open(sourcefile,"r"), open(combinedfile,"w"), open(mainfile,"r"))
