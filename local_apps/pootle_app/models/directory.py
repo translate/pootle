@@ -61,7 +61,7 @@ class Directory(models.Model):
     objects = DirectoryManager()
         
     def get_relative(self, path):
-        """Given a path of the for a/b/c, where the path is relative
+        """Given a path of the form a/b/c, where the path is relative
         to this directory, recurse the path and return the object
         (either a Directory or a Store) named 'c'.
 
