@@ -13,7 +13,7 @@ import os
 import os.path
 import subprocess
 import logging
-from Pootle.scripts.convert import monopo2po, po2monopo
+from pootle.scripts.convert import monopo2po, po2monopo
 
 def _getfiles(file):
   mainfile = os.path.join(os.path.split(file)[0], "messages.po")
