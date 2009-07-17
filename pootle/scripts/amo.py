@@ -13,6 +13,7 @@ import os
 import os.path
 import subprocess
 import logging
+from django.conf import settings
 from pootle.scripts.convert import monopo2po, po2monopo
 
 def _getfiles(file):
@@ -22,16 +23,20 @@ def _getfiles(file):
     return (combinedfile, mainfile, sourcefile)
 
 def initialize(projectdir, languagecode):
-    """The first paramater is the path to the project directory.  It's up to this
-    script to know any internal structure of the directory"""
+    """The first paramater is the path to the project directory, including
+    locale.  It's up to this script to know any internal structure of the
+    directory"""
 
     logger = logging.getLogger('scripts.amo')
     logger.info("Initializing language %s of project %s" % (languagecode, os.path.basename(projectdir)))
 
+    # extract project root from projectdir
+    projectroot = os.path.join(settings.PODIRECTORY, os.path.split(projectdir)[0])
+
     # Find the files we're working with
-    mainfile     = os.path.join(projectdir, languagecode, 'LC_MESSAGES', 'messages.po')
-    combinedfile = os.path.join(projectdir, languagecode, 'LC_MESSAGES', 'messages-combined.po')
-    sourcefile   = os.path.join(projectdir, 'en_US', 'LC_MESSAGES', 'messages.po')
+    mainfile     = os.path.join(projectroot, languagecode, 'LC_MESSAGES', 'messages.po')
+    combinedfile = os.path.join(projectroot, languagecode, 'LC_MESSAGES', 'messages-combined.po')
+    sourcefile   = os.path.join(projectroot, 'en_US', 'LC_MESSAGES', 'messages.po')
 
     # Build our combined file
     monopo2po.convertpo(open(sourcefile,"r"), open(combinedfile,"w"), open(mainfile,"r"))
