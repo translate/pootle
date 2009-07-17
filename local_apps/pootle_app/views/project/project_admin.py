@@ -93,11 +93,11 @@ def process_get(request, project):
     if request.method == 'GET' and 'updatelanguage' in request.GET:
         language_code = request.GET['updatelanguage']
         translation_project = TranslationProject.objects.get(language__code=language_code, project=project)
-        template_translation_project = TranslationProject.objects.get(language__code='templates',
-                                                                      project=translation_project.project_id)
         if 'initialize' in request.GET:
             translation_project.initialize()
         elif 'doupdatelanguage' in request.GET:
+            template_translation_project = TranslationProject.objects.get(language__code='templates',
+                                                                          project=translation_project.project_id)
             project_tree.convert_templates(template_translation_project, translation_project)
 
 
