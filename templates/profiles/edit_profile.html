@@ -7,7 +7,17 @@
 
 {% block content %}
 <form method="post" action="">
-        {{ form.as_p }}
+{% for field in form %}
+
+<dt>{% trans field.label_tag %}</dt>
+
+<dd>{{ field }}</dd>
+
+{% if field.help_text %}<dd>{% trans field.help_text %}</dd>{% endif %}
+
+{% if field.errors %}<dd class="myerrors">{% trans field.errors %}</dd>{% endif %}
+
+{% endfor %}
 <input type="submit" value="Save"/>
 </form>
 {% endblock %}
