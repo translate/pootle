@@ -846,27 +846,48 @@ div#nav-secondary
 
 /* SEARCH */
 
-div.searchform
+div#search
 {
     float: right;
-    max-width: 30%;
-    max-height: 1.8em;
-    background-color:#E4E6E8;
     padding: 3px;
-    border: 1px solid gray;
 }
 
-div.searchform[dir="rtl"]
+div#search[dir="rtl"]
 {
     float: left;
 }
 
+div#search input[type=text]
+{
+    border: 1px solid #76b0bf;
+    height: 16px;
+    width: 145px;
+    padding: 1px;
+}
+
+div#search .advancedlink
+{
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    margin: 0 0 0 -5px;
+    top: -2px;
+    position: relative;
+    cursor: pointer;
+}
+
+div#search[dir="rtl"] .advancedlink
+{
+    margin: 0 -5px 0 0;
+}
+
 div.advancedsearch
 {
-    background-color: #E4E6E8;
-    border-bottom: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    background-color: #ffffff;
+    border-bottom: 1px solid #76b0bf;
+    border-left: 1px solid #76b0bf;
+    border-right: 1px solid #76b0bf;
     overflow: auto;
     padding-bottom: 3px;
     padding-left: 3px;
@@ -874,6 +895,7 @@ div.advancedsearch
     position: relative;
     z-index: 2;
     display: none;
+    margin-top: 0;
 }
 
 div.advancedsearch[dir="rtl"]
@@ -910,7 +932,7 @@ label.inputHint
 .togglesearch
 {
     cursor: pointer;
-    vertical-align: middle;
+    vertical-align: text-top;
 }
 
 .translations-nav
@@ -1532,39 +1554,6 @@ input.fuzzycheck
 #fuzzy
 {
     margin: 0 4px 0 0;
-}
-
-#search
-{
-    float: right;
-    margin: -8px 0 0 0;
-}
-
-#search label
-{
-    font-size: 130%;
-    position: relative;
-    top: 3px;
-}
-
-#search input[type=text]
-{
-    border: 1px solid #76b0bf;
-    height: 18px;
-    width: 142px;
-}
-
-#search button
-{
-    background: url(images/search-arrow.png) top left no-repeat;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    border: 0;
-    margin: 0 0 0 -5px;
-    top: -2px;
-    position: relative;
-    cursor: pointer;
 }
 
 */

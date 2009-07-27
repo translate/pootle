@@ -4,14 +4,23 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% block body.id %}fileindex{% endblock body.id %}
 {% block search %}
+  {% comment %}
+  TODO: find a nicer way to manage the search form --
+        we don't want to repeat information!
+  {% endcomment %}
   <!--! search form -->
-  <div class="searchform" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <form action="translate.html?view_mode=translate" method="post" name="searchform" id="searchform">
       {{ search.search_form.as_p }}
       <input type="hidden" name="new_search" value="new_search" />
       <a class="advancedlink">
-	<img src='{{"images/bullet_arrow_down.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" />
-	<img src='{{"images/bullet_arrow_up.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" style="display: none;"/>
+      {% if LANGUAGE_BIDI %}
+          <img src='{{"images/sarrow_down_rtl.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" />
+          <img src='{{"images/sarrow_up_rtl.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" style="display: none;"/>
+      {% else %}
+          <img src='{{"images/sarrow_down.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" />
+          <img src='{{"images/sarrow_up.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" style="display: none;"/>
+      {% endif %}
       </a>
       <div class="advancedsearch">
       {% for field in search.advanced_search_form %}
