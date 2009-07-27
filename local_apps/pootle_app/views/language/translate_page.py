@@ -109,56 +109,51 @@ def get_finished_text(request, stoppedby):
             "finishedlink": dispatch.show_directory(request, url_manip.parent(request.path_info)),
             "returnlink":   _("Click here to return to the index")}
 
-def get_page_links(request, store, pagesize, translations, first_item):
+def get_page_links(request, store, pagesize, translations, item, first_item):
     """gets links to other pages of items, based on the given baselink"""
+
     pagelinks = []
     pofilelen = store.file.getitemslen()
-    state = dispatch.TranslatePageState(request.GET)
-    if pofilelen <= pagesize or first_item is None:
+
+    if pofilelen <= pagesize or item is None:
         return pagelinks
-    lastitem = min(pofilelen-1, first_item + pagesize - 1)
-    if pofilelen > pagesize and not first_item == 0:
+
+    lastitem = min(pofilelen - 1, first_item + pagesize - 1)
+    if pofilelen > pagesize and not item == 0:
         # l10n: noun (the start)
         pagelinks.append({"href": dispatch.translate(request, request.path_info, item=0),
                           "text": _("Start")})
-    else:
-        # l10n: noun (the start)
-        pagelinks.append({"text": _("Start")})
-    if first_item > 0:
-        linkitem = max(first_item - pagesize, 0)
+    if item > 0:
+        linkitem = max(item - pagesize, 0)
         # l10n: the parameter refers to the number of messages
         pagelinks.append({"href": dispatch.translate(request, request.path_info, item=linkitem),
-                          "text": _("Previous %d", (first_item - linkitem))})
-    else:
-        # l10n: the parameter refers to the number of messages
-        pagelinks.append({"text": _("Previous %d" % pagesize)})
-        # l10n: the third parameter refers to the total number of messages in the file
+                          "text": _("Previous %d", (item - linkitem))})
+
+    # l10n: the third parameter refers to the total number of messages in the file    
     pagelinks.append({"text": _("Items %(first)d to %(last)d of %(total)d",
                                 {"first": first_item + 1, "last": lastitem + 1, "total": pofilelen})
                       })
-    if first_item + len(translations) < pofilelen:
-        linkitem = first_item + pagesize
+    
+    if item + len(translations) < pofilelen:
+        linkitem = item + pagesize
         itemcount = min(pofilelen - linkitem, pagesize)
         # l10n: the parameter refers to the number of messages
         pagelinks.append({"href": dispatch.translate(request, request.path_info, item=linkitem),
                           "text": _("Next %d", itemcount)})
-    else:
-        # l10n: the parameter refers to the number of messages
-        pagelinks.append({"text": _("Next %d", pagesize)})
-    if pofilelen > pagesize and (state.item + pagesize) < pofilelen:
+
+    if pofilelen > pagesize and (item + pagesize) < pofilelen:
         # l10n: noun (the end)
         pagelinks.append({"href": dispatch.translate(request, request.path_info,
-                                                     item=max(pofilelen - pagesize, 0)),
+                                                     item=max(pofilelen - 1, 0)),
                           "text": _("End")})
-    else:
-        # l10n: noun (the end)
-        pagelinks.append({"text": _("End")})
+
     for n, pagelink in enumerate(pagelinks):
         if n < len(pagelinks)-1:
             pagelink["sep"] = " | "
         else:
             pagelink["sep"] = ""
     return pagelinks
+
 
 def get_display_rows(profile, mode):
     """get the number of rows to display for the given mode"""
@@ -189,10 +184,13 @@ def get_translations(request, profile, store, item):
     else:
         rows = get_display_rows(profile, "translate")
         before = rows / 2
-        fromitem = item - before
         first_item = max(item - before, 0)
-        toitem = first_item + rows
-        items = get_units(store, fromitem, toitem)
+        last_item = first_item + rows
+        pofilelen = store.file.getitemslen()
+        if last_item > pofilelen:
+            last_item = pofilelen
+            first_item = last_item - rows
+        items = get_units(store, first_item, last_item)
         return item, first_item, items
 
 def get_header_plural(request, store):
@@ -987,7 +985,7 @@ def view(request, directory, store, item, stopped_by=None):
                       {"translated": translated, "total": total,
                        "untranslated": untranslated, "fuzzy": fuzzy}
                       )
-        pagelinks = get_page_links(request, store, rows, translations, first_item)
+        pagelinks = get_page_links(request, store, rows, translations, item, first_item)
 
     # templatising
     templatename = "language/translatepage.html"
