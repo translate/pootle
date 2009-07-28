@@ -27,6 +27,7 @@ import itertools
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 
+from translate.storage import versioncontrol
 from pootle_app.models.profile         import get_profile
 from pootle_app.views.language          import search_forms
 from pootle_app.models.store_iteration import get_next_match
@@ -203,7 +204,8 @@ def yield_sdf_link(request, path_obj, links_required):
             }
 
 def yield_commit_link(request, path_obj, links_required):
-    if 'commit' in links_required and check_permission('commit', request):
+    if 'commit' in links_required and check_permission('commit', request) and \
+           versioncontrol.hasversioning(path_obj.abs_real_path):
         link = dispatch.commit(request, path_obj)
         text = _('Commit to VCS')
         yield {
