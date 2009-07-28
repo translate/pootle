@@ -37,25 +37,17 @@ from pootle_app.views.language.item_dict import add_percentages, make_directory_
 def limit(query):
     return query[:5]
 
-def get_items(request, model, latest_changes, name_func, permission_set):
-
-    def get_last_action(item, latest_changes):
-        if item.code in latest_changes and latest_changes[item.code]\
-               is not None:
-            return latest_changes[item.code]
-        else:
-            return ''
+def get_items(request, model, get_last_action, name_func, permission_set):
 
     items = []
     if 'view' not in permission_set:
         return items
-    latest_changes = latest_changes()
     
     for item in model.objects.all():
         stats = item.getquickstats()
         stats = add_percentages(stats)
 
-        lastact = get_last_action(item, latest_changes)
+        lastact = get_last_action(item)
         items.append({
             'code': item.code,
             'name': name_func(item.fullname),
@@ -72,12 +64,22 @@ def get_items(request, model, latest_changes, name_func, permission_set):
     return items
 
 def getlanguages(request, permission_set):
-    return get_items(request, Language, Submission.objects.get_latest_language_changes,
-                     tr_lang, permission_set)
+    def get_last_action(item):
+        try:
+            return Submission.objects.filter(translation_project__language=item).latest()
+        except:
+            return ''
+        
+    return get_items(request, Language, get_last_action, tr_lang, permission_set)
 
 def getprojects(request, permission_set):
-    return get_items(request, Project, Submission.objects.get_latest_project_changes,
-                     lambda x: x, permission_set)
+    def get_last_action(item):
+        try:
+            return Submission.objects.filter(translation_project__project=item).latest()
+        except:
+            return ''
+
+    return get_items(request, Project, get_last_action, lambda x: x, permission_set)
 
 
 def view(request):

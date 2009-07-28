@@ -19,11 +19,10 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.db                import models
 
 import custom_sql_util
-from language import Language
 from project import Project
 from translation_project import TranslationProject
 from suggestion import Suggestion
@@ -31,53 +30,6 @@ from pootle_store.models import Unit
 from profile import PootleProfile
 
 class SubmissionManager(models.Manager):
-    get_latest_changes_query = """
-        SELECT   %(object_id)s, MIN(%(creation_time)s)
-        FROM     %(object_table)s
-                 LEFT OUTER JOIN %(translation_project_table)s
-                      ON %(object_id)s = %(translation_project_object)s
-                 LEFT OUTER JOIN %(submission_table)s
-                      ON %(translation_project_id)s = %(submission_translation_project)s
-        %(constraint)s
-        GROUP BY %(object_name)s
-        ORDER BY %(object_code)s
-    """
-
-    def get_common_fields(self):
-        return {
-            'creation_time':                   custom_sql_util.field_name(Submission, 'creation_time'),
-            'submission_table':                custom_sql_util.table_name(Submission),
-            'submission_translation_project':  custom_sql_util.field_name(Submission, 'translation_project'),
-            'translation_project_table':       custom_sql_util.table_name(TranslationProject),
-            'translation_project_id':          custom_sql_util.primary_key_name(TranslationProject),
-            }
-    
-    def get_latest_language_changes(self):
-        fields = self.get_common_fields()
-        fields.update({
-            'object_code':                     custom_sql_util.field_name(Language, 'code'),
-            'object_name':                     custom_sql_util.field_name(Language, 'fullname'),
-            'object_table':                    custom_sql_util.table_name(Language), 
-            'object_id':                       custom_sql_util.primary_key_name(Language),
-            'translation_project_object':      custom_sql_util.field_name(TranslationProject, 'language'),
-            'constraint':                      "WHERE %s <> 'templates'" % custom_sql_util.field_name(Language, 'code')
-            })
-
-        return custom_sql_util.get_latest_changes(self, self.get_latest_changes_query % fields)
-
-    def get_latest_project_changes(self):
-        fields = self.get_common_fields()
-        fields.update({
-            'object_code':                    custom_sql_util.field_name(Project, 'code'),
-            'object_name':                    custom_sql_util.field_name(Project, 'fullname'),
-            'object_table':                   custom_sql_util.table_name(Project),
-            'object_id':                      custom_sql_util.primary_key_name(Project),
-            'translation_project_object':     custom_sql_util.field_name(TranslationProject, 'project'),
-            'constraint':                     ''
-            })
-
-        return custom_sql_util.get_latest_changes(self, self.get_latest_changes_query % fields)
-
     def get_top_submitters(self):
         """Return a list of Submissions, where each Submission represents a
         user profile (note that if a user has never made suggestions,
@@ -120,6 +72,7 @@ class SubmissionManager(models.Manager):
 class Submission(models.Model):
     class Meta:
         app_label = "pootle_app"
+        get_latest_by = "creation_time"
 
     creation_time       = models.DateTimeField()
     translation_project = models.ForeignKey(TranslationProject)
@@ -128,6 +81,9 @@ class Submission(models.Model):
     from_suggestion     = models.OneToOneField(Suggestion, null=True)
 
     objects = SubmissionManager()
+
+    def __unicode__(self):
+        return u"%s (%s)" % (self.creation_time.strftime("%c"), unicode(self.submitter))
 
 def submissions_count(profile):
     return profile.submission_set.count()
