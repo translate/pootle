@@ -23,15 +23,17 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.exceptions import PermissionDenied
 
 from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, make_directory_item
 from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle_app.models import Suggestion, Submission, Language
+
 from pootle.i18n.gettext import tr_lang
 
-from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
 
 def limit(query):
@@ -54,10 +56,15 @@ def make_project_item(translation_project):
 
 def language_index(request, language_code):
     language = get_object_or_404(Language, code=language_code)
+    request.permissions = get_matching_permissions(get_profile(request.user), language.directory)
+
+    if not check_permission("view", request):
+        raise PermissionDenied
+    
     projects = language.translationproject_set.all()
     projectcount = len(projects)
     items = (make_project_item(translate_project) for translate_project in projects)
-
+        
     totals = language.getquickstats()        
     average = totals['translatedsourcewords'] * 100 / max(totals['totalsourcewords'], 1)
 
@@ -70,7 +77,6 @@ def language_index(request, language_code):
     topstats = gentopstats(topsugg, topreview, topsub)
 
     notice_link = False 
-    user_permissions = get_matching_permissions(get_profile(request.user), language.directory)
     if 'administrate' in user_permissions or 'view' in user_permissions:
         notice_link = True
  

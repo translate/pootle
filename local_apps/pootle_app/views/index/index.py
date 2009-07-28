@@ -27,7 +27,7 @@ from django.template import RequestContext
 
 from pootle_app.models.profile import get_profile
 from pootle_app.models import Project, Directory, Suggestion, Submission, TranslationProject, Language
-from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.views import indexpage
 from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
@@ -37,10 +37,10 @@ from pootle_app.views.language.item_dict import add_percentages, make_directory_
 def limit(query):
     return query[:5]
 
-def get_items(request, model, get_last_action, name_func, permission_set):
+def get_items(request, model, get_last_action, name_func):
 
     items = []
-    if 'view' not in permission_set:
+    if not check_permission('view', request):
         return items
     
     for item in model.objects.all():
@@ -63,27 +63,27 @@ def get_items(request, model, get_last_action, name_func, permission_set):
     items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))
     return items
 
-def getlanguages(request, permission_set):
+def getlanguages(request):
     def get_last_action(item):
         try:
             return Submission.objects.filter(translation_project__language=item).latest()
         except:
             return ''
         
-    return get_items(request, Language, get_last_action, tr_lang, permission_set)
+    return get_items(request, Language, get_last_action, tr_lang)
 
-def getprojects(request, permission_set):
+def getprojects(request):
     def get_last_action(item):
         try:
             return Submission.objects.filter(translation_project__project=item).latest()
         except:
             return ''
 
-    return get_items(request, Project, get_last_action, lambda x: x, permission_set)
+    return get_items(request, Project, get_last_action, lambda x: x)
 
 
 def view(request):
-    permission_set = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
     topsugg = limit(Suggestion.objects.get_top_suggesters())
     topreview = limit(Suggestion.objects.get_top_reviewers())
     topsub = limit(Submission.objects.get_top_submitters())
@@ -104,9 +104,9 @@ def view(request):
             'traduire',
             ],
         'languagelink': _('Languages'),
-        'languages': getlanguages(request, permission_set),
+        'languages': getlanguages(request),
         'projectlink': _('Projects'),
-        'projects': getprojects(request, permission_set),
+        'projects': getprojects(request),
         'topstats': topstats,
         'topstatsheading': _('Top Contributors'),
         'instancetitle': pagelayout.get_title(),

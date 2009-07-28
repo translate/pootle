@@ -31,6 +31,7 @@ from django import forms
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.safestring import mark_safe
+from django.core.exceptions import PermissionDenied
 
 from translate.storage import factory, versioncontrol
 
@@ -337,9 +338,13 @@ class ProjectIndexView(BaseView):
         return template_vars
 
 def view(request, translation_project, directory):
+    request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
+    if not check_permission("view", request):
+        raise PermissionDenied
+    
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler, update=UpdateHandler))
     notice_link = False
-    if 'administrate' in request.permissions:
+    if check_permission("administrate", request):
         notice_link = True
     notice_links = {'notice_links' : notice_link}
     return render_to_response("language/fileindex.html",

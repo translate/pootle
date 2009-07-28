@@ -33,7 +33,7 @@ def limit(query):
     return query[:5]
 
 def view(request):
-    permission_set = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
     topsugg = limit(Suggestion.objects.get_top_suggesters())
     topreview = limit(Suggestion.objects.get_top_reviewers())
     topsub = limit(Submission.objects.get_top_submitters())
@@ -42,7 +42,7 @@ def view(request):
     templatevars = {
         'pagetitle': pagelayout.get_title(),
         'projectlink': _('Projects'),
-        'projects': getprojects(request, permission_set),
+        'projects': getprojects(request),
         'topstats': topstats,
         'topstatsheading': _('Top Contributors'),
         'instancetitle': pagelayout.get_title(),
