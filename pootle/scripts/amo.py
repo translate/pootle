@@ -12,9 +12,19 @@ import sys
 import os
 import os.path
 import subprocess
+import StringIO
+
 import logging
 from django.conf import settings
+
 from pootle.scripts.convert import monopo2po, po2monopo
+from translate.convert import html2po, po2html
+
+import re
+try:
+    import tidy
+except:
+    pass
 
 def _getfiles(file):
     mainfile = os.path.join(os.path.split(file)[0], "messages.po")
@@ -23,7 +33,7 @@ def _getfiles(file):
     return (combinedfile, mainfile, sourcefile)
 
 def initialize(projectdir, languagecode):
-    """The first paramater is the path to the project directory, including
+    """The first parameter is the path to the project directory, including
     locale.  It's up to this script to know any internal structure of the
     directory"""
 
@@ -41,9 +51,80 @@ def initialize(projectdir, languagecode):
     # Build our combined file
     monopo2po.convertpo(open(sourcefile,"r"), open(combinedfile,"w"), open(mainfile,"r"))
 
-    # TODO
-    # Eventually we'll need to build .po files from the .thtml files in /pages/ but
-    # running html2po on localized files doesn't make sense
+    # build .po files from the .thtml files in /pages/
+    _init_pages(projectroot, languagecode)
+
+def _init_pages(projectroot, languagecode):
+    """Initialize localizable pages
+    Does not do any merging. Reads in the en-US templates and makes .po files from it."""
+    logger = logging.getLogger('scripts.amo')
+
+    # we need TidyLib to import pages
+    if not tidy:
+        logger.debug("Cannot import pages without utidylib (http://utidylib.berlios.de/).")
+        return
+
+    enus_dir = os.path.join(projectroot, 'en_US', 'pages')
+    this_dir = os.path.join(projectroot, languagecode, 'pages')
+
+    # find all pages
+    pages = os.listdir(enus_dir)
+    thtml = re.compile("\.thtml$", re.IGNORECASE)
+    pages = [ f for f in pages if thtml.search(f) ]
+
+    for page in pages:
+        # grab English template
+        logger.debug('importing page %s', page)
+        template = _tidy_page(os.path.join(enus_dir, page))
+
+        converter = html2po.html2po()
+        output = open(os.path.join(this_dir, page[:-6])+'.po', 'w')
+        print >>output, converter.convertfile(template, page, False)
+
+        template.close()
+        output.close()
+
+def _tidy_page(path):
+    """Read a page, run it through tidy, and create a temporary output file.
+    returns a temporary file object containing the results"""
+
+    if not os.path.exists(path):
+        raise IOError('file %s not found!' % path)
+
+    # set up some tidy options
+    tidy_options = {
+        'char-encoding':  'utf8',
+        'enclose-text':   'yes',    # wrap loose text nodes in <p>
+        'show-body-only': 'auto',   # do not add <html> and <body> unless present in input
+        'indent':         'no',     # don't prettily indent output to make parsing easier
+        'tidy-mark':      'no',     # no creator meta-tag
+        'force-output':   'yes',    # some output is better than none, I hope
+        }
+
+    # unicode files make utidylib cry :( so we need to be creative
+    # http://developer.berlios.de/bugs/?func=detailbug&bug_id=14186&group_id=1810
+    # http://muffinresearch.co.uk/archives/2008/07/29/working-around-utidylibs-unicode-handling/
+    f = open(path, 'r')
+    content = unicode(f.read(), 'utf-8').encode('utf8')
+    f.close()
+    try:
+        parsed = tidy.parseString(content, **tidy_options)
+    except tidy.error.OptionArgError:
+        # show-body-only is new-ish, so emulate it
+        del tidy_options['show-body-only']
+        try:
+            parsed = tidy.parseString(content, **tidy_options)
+        except Exception, e:
+            print e
+        bodytag = re.compile("<body>(.*)</body>", re.IGNORECASE | re.DOTALL)
+        if not bodytag.search(content):
+            if path.find('validation') != -1:
+                print parsed
+            parsed = bodytag.search(str(parsed)).group(1)
+
+    result = StringIO.StringIO(parsed)
+    result.name = os.path.basename(path)
+    return result
 
 
 def precommit(committedfile, author, message):
@@ -80,7 +161,7 @@ def preupdate(updatedfile):
         (combinedfile, mainfile, sourcefile) = _getfiles(updatedfile)
         
         # We want to update messages.po
-        logger.debug("Updating %s" % mainfile)
+        logger.debug("Updating %s", mainfile)
         return mainfile
     return ""
 
