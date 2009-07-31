@@ -26,7 +26,7 @@ from django.template import RequestContext
 from django.core.exceptions import PermissionDenied
 
 from pootle_app.views.language.project_index import get_stats_headings
-from pootle_app.views.language.item_dict import add_percentages, make_directory_item
+from pootle_app.views.language.item_dict import add_percentages
 from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle_app.models import Suggestion, Submission, Language
@@ -60,12 +60,12 @@ def language_index(request, language_code):
 
     if not check_permission("view", request):
         raise PermissionDenied
-    
+
     projects = language.translationproject_set.all()
     projectcount = len(projects)
     items = (make_project_item(translate_project) for translate_project in projects)
-        
-    totals = language.getquickstats()        
+
+    totals = language.getquickstats()
     average = totals['translatedsourcewords'] * 100 / max(totals['totalsourcewords'], 1)
 
     def narrow(query):
@@ -76,13 +76,13 @@ def language_index(request, language_code):
     topsub = narrow(Submission.objects.get_top_submitters())
     topstats = gentopstats(topsugg, topreview, topsub)
 
-    notice_link = False 
+    notice_link = False
     if check_permission('administrate', request) or check_permission('view', request):
         notice_link = True
- 
+
 
     templatevars = {
-        'pagetitle': _('%(title)s: Language %(language)s', 
+        'pagetitle': _('%(title)s: Language %(language)s',
                        {"title": pagelayout.get_title(), "language": tr_lang(language.fullname)}),
         'language': {
           'code': language.code,
@@ -101,4 +101,3 @@ def language_index(request, language_code):
         'notice_link' : notice_link,
         }
     return render_to_response("language/language.html", templatevars, context_instance=RequestContext(request))
-    
