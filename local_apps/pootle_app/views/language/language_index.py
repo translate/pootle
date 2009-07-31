@@ -77,7 +77,7 @@ def language_index(request, language_code):
     topstats = gentopstats(topsugg, topreview, topsub)
 
     notice_link = False 
-    if 'administrate' in user_permissions or 'view' in user_permissions:
+    if check_permission('administrate', request) or check_permission('view', request):
         notice_link = True
  
 
