@@ -53,11 +53,11 @@ def view(request, project_code):
     process_get(request, project)
     process_post(request, project)
 
-    existing_languages = [translation_project.language for translation_project
-                          in TranslationProject.objects.filter(project=project).exclude(language__code='templates')]
+    existing_languages = [translation_project.language for translation_project 
+                          in project.translationproject_set.all()]
     formset = LanguageFormset(queryset=existing_languages)
     new_language_form = make_new_language_form(existing_languages)
-    has_template = TranslationProject.objects.filter(project=project, language__code='templates').count() > 0
+    has_template = project.translationproject_set.filter(language__code="templates").count() > 0
 
     template_vars = {
         "pagetitle":          _("Pootle Admin: %s", project.fullname),
