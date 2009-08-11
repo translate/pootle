@@ -65,13 +65,6 @@ $(document).ready(function() {
       var url = geturl(ref, "accept");
       data.accepts = getsuggs(ref, "accept");
 
-      var reject_others = $(ref).parents(".translate-suggestion-block")
-                                .siblings(".translate-suggestion-block");
-      if (reject_others.length > 0) {
-        var refs = $(".rejectsugg", reject_others);
-        data.rejects = getsuggs(refs, "reject");
-      }
-
       handlesuggestions(url, data);
 
       return false;
