@@ -131,8 +131,7 @@ class Store(models.Model):
         else:
             self.initpending()
             if self.pending:
-                if not hasattr(self.pending.store, "sourceindex"):
-                    self.pending.store.makeindex()
+                self.pending.store.require_index()
                 suggestions = self.pending.store.findunits(unit.source)
                 if suggestions is not None:
                     return suggestions
