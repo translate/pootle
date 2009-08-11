@@ -36,10 +36,7 @@ $(document).ready(function() {
            function(rdata) {
              $("#response").remove();
              if (rdata.status == "success") {
-               //$("#suggestion" + rdata.deleted).remove();
                $("#suggestion" + rdata.deleted).fadeOut(1000);
-               /*$(rdata.deleted).animate({ backgroundColor: "#fbc7c7" }, "fast").animate({opacity: "hide"}, "slow");
-               $(rdata.deleted).animate({ backgroundColor: "#fbc7c7" }, "fast").animate({opacity: "hide"}, "slow");*/
              }
              $("div#translate-suggestion-container:first").prepend(
               '<h1 id="response">' + rdata.message + '</h1>'

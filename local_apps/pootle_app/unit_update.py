@@ -60,9 +60,12 @@ def suggest_translation(store, item, trans, request):
 
 def update_translation(store, item, newvalues, request, suggestion=None):
     """updates a translation with a new value..."""
+
     if not check_permission("translate", request):
         raise PermissionError(_("You do not have rights to change translations here"))
+
     translation_project = request.translation_project
+
     if suggestion is None:
         if (type(newvalues['target']) == dict):
             target = newvalues['target'][0]
@@ -72,12 +75,11 @@ def update_translation(store, item, newvalues, request, suggestion=None):
                     index  = item,
                     source = unicode(store.file.getitem(item).getsource()),
                     target = target)
-        unit.save()
-        
-            
+        unit.save()        
     else:
         unit       = suggestion.unit
         unit.state = 'accepted'
+
     s = Submission(
         creation_time       = datetime.datetime.utcnow(),
         translation_project = translation_project,
