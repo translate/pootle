@@ -254,6 +254,16 @@ def handle_suggestions(request, translation_project, file_path, item):
         accept_candidates = len(accepts)
         accept_count = 0
 
+        for sugg in accepts:
+            try:
+                unit_update.accept_suggestion(store, int(item), int(sugg["id"]),
+                                              sugg["newtrans"], request)
+                accept_count += 1
+            except ValueError:
+                # TODO: provide fine-grained error message from the exception
+                response["message"] = _("This is an error message.")
+
+
         for sugg in reversed(rejects):
             try:
                 unit_update.reject_suggestion(store,int(item), int(sugg["id"]),
@@ -262,15 +272,6 @@ def handle_suggestions(request, translation_project, file_path, item):
                 # TODO: convert this a list
                 response["deleted"] = item + "-" + sugg["id"]
                 pending = getpendingsuggestions(int(item))
-            except ValueError:
-                # TODO: provide fine-grained error message from the exception
-                response["message"] = _("This is an error message.")
-
-        for sugg in accepts:
-            try:
-                unit_update.accept_suggestion(store, int(item), int(sugg["id"]),
-                                              sugg["newtrans"], request)
-                accept_count += 1
             except ValueError:
                 # TODO: provide fine-grained error message from the exception
                 response["message"] = _("This is an error message.")

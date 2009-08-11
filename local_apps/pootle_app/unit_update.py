@@ -132,7 +132,6 @@ def accept_suggestion(store, item, suggitem, newtrans, request):
     if not check_permission("review", request):
         raise PermissionError(_("You do not have rights to review suggestions here"))
 
-    store.deletesuggestion(item, suggitem, newtrans)
     new_values = {"target": newtrans, "fuzzy": False}
 
     suggestion = None
@@ -142,4 +141,6 @@ def accept_suggestion(store, item, suggitem, newtrans, request):
         pass
     
     update_translation(store, item, new_values, request, suggestion)
-
+    
+    store.deletesuggestion(item, suggitem, newtrans)
+    
