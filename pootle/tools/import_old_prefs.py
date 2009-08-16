@@ -46,7 +46,7 @@ def main():
     finally:
         if transaction.is_managed():
             if transaction.is_dirty():
-              transaction.commit()
+                transaction.commit()
         if transaction.is_managed():
             transaction.leave_transaction_management()
 
