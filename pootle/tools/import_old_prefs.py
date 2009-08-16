@@ -105,7 +105,7 @@ def import_languages(parsed_data):
             db_lang = Language.objects.get(code=lang)
             logging.log(logging.INFO,
                         'Already found a language named %s. '\
-                        'Data for this language are not imported.'
+                        'Data for this language are not imported.',
                         lang)
             continue
         except Language.DoesNotExist:
@@ -149,7 +149,7 @@ def import_projects(parsed_data):
             db_proj = Project.objects.get(code=proj)
             logging.log(logging.INFO,
                         'Already found a project named %s. '\
-                        'Data for this project are not imported.'
+                        'Data for this project are not imported.',
                         proj)
             continue
         except Project.DoesNotExist:
