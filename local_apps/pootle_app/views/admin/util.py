@@ -38,7 +38,7 @@ def user_is_admin(f):
             return f(request, *args, **kwargs)
     return decorated_f
 
-def process_modelformset(request, model_class, queryset=None, **kwargs):
+def process_modelformset(request, model_class, **kwargs):
     """With the Django model class 'model_class' and the Django form class 'form_class',
     construct a Django formset which can manipulate """
 
@@ -52,14 +52,11 @@ def process_modelformset(request, model_class, queryset=None, **kwargs):
     #                          max_num=0, fields=None, exclude=None)
     formset_class = modelformset_factory(model_class, **kwargs)
 
-    if queryset is None:
-        queryset = model_class.objects.all()
-        
     # If the request is a POST, we want to possibly update our data
     if request.method == 'POST':
         # Create a formset from all the 'model_class' instances whose values will
         # be updated using the contents of request.POST
-        formset = formset_class(request.POST, queryset=queryset)
+        formset = formset_class(request.POST)
         # Validate all the forms in the formset
         if formset.is_valid():
             # If all is well, Django can save all our data for us
@@ -67,14 +64,16 @@ def process_modelformset(request, model_class, queryset=None, **kwargs):
         else:
             # Otherwise, complain to the user that something went wrong
             return formset, _("There are errors in the form. Please review the problems below.")
+        
+    queryset = model_class.objects.all()
     return formset_class(queryset=queryset), None
 
 
 @user_is_admin
 def edit(request, template, model_class,
          model_args={'title':'','formid':'','submitname':''},
-         link=None, linkfield='code', queryset=None, **kwargs):
-    formset, msg = process_modelformset(request, model_class, queryset, **kwargs)
+         link=None, linkfield='code', **kwargs):
+    formset, msg = process_modelformset(request, model_class, **kwargs)
     #FIXME: title should differ depending on model_class
     template_vars = {"pagetitle": _("Pootle Languages Admin Page"),
             "formset_text":  mark_safe(form_set_as_table(formset, link, linkfield)),
