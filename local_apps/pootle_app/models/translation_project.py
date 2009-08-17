@@ -184,8 +184,6 @@ class TranslationProject(models.Model):
                     self.non_db_state._index_initialized = True
                 return indexer
             except Exception, e:
-                import traceback
-                traceback.print_exc()
                 logging.error("Could not intialize indexer for %s in %s: %s", self.project.code, self.language.code, str(e))
                 self.non_db_state._indexing_enabled = False
                 return None
