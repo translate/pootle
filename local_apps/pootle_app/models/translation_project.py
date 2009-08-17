@@ -1,66 +1,59 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
-# Copyright 2009 Zuza Software Foundation
-# 
-# This file is part of translate.
 #
-# translate is free software; you can redistribute it and/or modify
+# Copyright 2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# translate is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import time
 import os
 import cStringIO
-import traceback
 import gettext
 import subprocess
-import datetime
 import zipfile
 import logging
 
-from django.contrib.auth.models         import User, Permission
-from django.contrib.contenttypes.models import ContentType
-from django.conf                        import settings
-from django.db                          import models
-from django.db.models.signals           import pre_delete, post_init, pre_save, post_save
+from django.conf                   import settings
+from django.db                     import models
+from django.db.models.signals      import pre_delete, post_init, pre_save, post_save
 
 from translate.filters import checks
 from translate.convert import po2csv, po2xliff, xliff2po, po2ts, po2oo
 from translate.tools   import pocompile, pogrep
 from translate.search  import match, indexing
-from translate.storage import factory, statsdb, base, versioncontrol
+from translate.storage import statsdb, base, versioncontrol
 
-from pootle_app.models.profile     import PootleProfile, get_profile
+from pootle_app.models.profile     import PootleProfile
 from pootle_app.models.project     import Project
 from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory
-from pootle_store.models       import Store
+from pootle_store.models           import Store
 from pootle_app                    import project_tree
-from pootle_store.util  import relative_real_path, absolute_real_path
+from pootle_store.util             import relative_real_path, absolute_real_path
 from pootle_app.models.permissions import PermissionError, check_permission
 from pootle_app.lib                import statistics
-#from pootle_app.views              import pagelayout
 
-from pootle.scripts    import hooks
-#from pootle.i18n       import gettext as pootle_gettext
+from pootle.scripts                import hooks
 
 class TranslationProjectNonDBState(object):
     def __init__(self, parent):
         self.parent = parent
         # terminology matcher
         self.termmatcher = None
-        self.termmatchermtime = None        
+        self.termmatchermtime = None
         self._indexing_enabled = True
         self._index_initialized = False
 
@@ -127,7 +120,7 @@ class TranslationProject(models.Model):
     def _get_pootle_path(self):
         return self.directory.pootle_path
     pootle_path = property(_get_pootle_path)
-    
+
     def _get_abs_real_path(self):
         return absolute_real_path(self.real_path)
 
@@ -145,9 +138,9 @@ class TranslationProject(models.Model):
 
     def _get_checker(self):
         checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
-                                                     checks.StandardChecker), 
+                                                     checks.StandardChecker),
                           checks.StandardUnitChecker]
-        return checks.TeeChecker(checkerclasses=checkerclasses, 
+        return checks.TeeChecker(checkerclasses=checkerclasses,
                                  errorhandler=self.filtererrorhandler,
                                  languagecode=self.language.code)
 
@@ -199,7 +192,7 @@ class TranslationProject(models.Model):
         else:
             return None
 
-    indexer = property(_get_indexer)        
+    indexer = property(_get_indexer)
 
     def _has_index(self):
         return self.non_db_state._indexing_enabled and \
@@ -235,18 +228,18 @@ class TranslationProject(models.Model):
     def update_from_version_control(self):
         """updates project translation files from version control,
         retaining uncommitted translations"""
-    
+
         stores = Store.objects.filter(pootle_path__startswith=self.directory.pootle_path)
 
         for store in stores:
             try:
                 hooks.hook(self.project.code, "preupdate", store.file.path)
             except:
+                # We should not hide the exception. At least log it.
                 pass
             # keep a copy of working files in memory before updating
             working_copy = store.file.store
 
-            
             try:
                 logging.debug("updating %s from version control", store.file.path)
                 versioncontrol.updatefile(store.file.path)
@@ -257,7 +250,7 @@ class TranslationProject(models.Model):
                 #and replace with working copy
                 logging.error("near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
                 working_copy.save()
-                
+
             try:
                 hooks.hook(self.project.code, "postupdate", store.file.path)
             except:
@@ -274,6 +267,7 @@ class TranslationProject(models.Model):
             cmd.extend(extraargs)
             subprocess.call(cmd)
         except:
+            # We should not hide the exception, at least log it.
             pass # If something goes wrong, we just continue without worrying
         os.chdir(currdir)
 
@@ -282,7 +276,7 @@ class TranslationProject(models.Model):
         retaining uncommitted translations"""
         if not check_permission("commit", request):
             raise PermissionError(_("You do not have rights to update from version control here"))
-    
+
         try:
             hooks.hook(self.project.code, "preupdate", store.file.path)
         except:
@@ -307,20 +301,19 @@ class TranslationProject(models.Model):
 
             request.user.message_set.create(message=stats_message("working copy", working_stats))
             request.user.message_set.create(message=stats_message("remote copy", remote_stats))
-            request.user.message_set.create(message=stats_message("merged copy", new_stats))                                            
+            request.user.message_set.create(message=stats_message("merged copy", new_stats))
         except Exception, e:
             #something wrong, file potentially modified, bail out
             #and replace with working copy
             logging.error("near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
             working_copy.save()
             success = False
-            
+
         try:
             hooks.hook(self.project.code, "postupdate", store.file.path)
         except:
             pass
 
-        
         project_tree.scan_translation_project_files(self)
         return success
 
@@ -334,8 +327,8 @@ class TranslationProject(models.Model):
                 (stats["translated"], stats["total"], stats["fuzzy"])
 
         author = request.user.username
-        message = "Commit from %s by user %s, editing po file %s. %s" % \
-                  (settings.TITLE, author, store.file.filename, statsstring)
+        message="Commit from %s by user %s. %s" % \
+                  (settings.TITLE, author, statsstring)
 
         try:
             filestocommit = hooks.hook(self.project.code, "precommit", store.file.path, author=author, message=message)
@@ -352,10 +345,11 @@ class TranslationProject(models.Model):
         except Exception, e:
             logging.error("Failed to commit files: %s", e)
             request.user.message_set.create(message="Failed to commit file: %s" % e)
-            success = False 
+            success = False
         try:
             hooks.hook(self.project.code, "postcommit", store.file.path, success=success)
         except:
+            # We should not hide the exception - makes development impossible
             pass
         return success
 
@@ -591,7 +585,7 @@ class TranslationProject(models.Model):
             postats = self.getpostats(pofilename)
             for name in search.matchnames:
                 if postats.get(name):
-                    return True                
+                    return True
             return False
         return True
 
@@ -881,7 +875,7 @@ class TranslationProject(models.Model):
 
     is_terminology_project = property(lambda self: self.project.code == "terminology")
     is_template_project = property(lambda self: self.language.code == 'templates')
-    
+
     stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.directory.pootle_path))
 
     def gettmsuggestions(self, pofile, item):
@@ -916,7 +910,7 @@ class TranslationProject(models.Model):
                     return match.terminologymatcher([store.file.store for store in self.stores.all()]), newmtime
                 else:
                     return match.terminologymatcher(termbase), newmtime
-                
+
         if self.non_db_state.termmatcher is None:
             try:
                 self.non_db_state.termmatcher, self.non_db_state.termmatchermtime = self.gettermbase(make_matcher)
@@ -945,10 +939,10 @@ class TranslationProject(models.Model):
             except Exception, e:
                 logging.error("error reading cached converted file %s: %s", destfilename, e)
         pofile.pofreshen()
-        converters = {"csv": po2csv.po2csv, 
-                      "xlf": po2xliff.po2xliff, 
-                      "po": xliff2po.xliff2po, 
-                      "ts": po2ts.po2ts, 
+        converters = {"csv": po2csv.po2csv,
+                      "xlf": po2xliff.po2xliff,
+                      "po": xliff2po.xliff2po,
+                      "ts": po2ts.po2ts,
                       "mo": pocompile.POCompile}
         converterclass = converters.get(destformat, None)
         if converterclass is None:
@@ -984,7 +978,7 @@ class TranslationProject(models.Model):
                             return target
                 else:
                     return unit.target
-                
+
         # no translation found
         if n != 1 and plural is not None:
             return plural
@@ -995,7 +989,7 @@ class TranslationProject(models.Model):
     def gettext(self, message):
         """uses the project as a live translator for the given message"""
         return str(self._find_matching_unit(message))
-        
+
     def ugettext(self, message):
         """gets the translation of the message by searching through
         all the pofiles (unicode version)"""
@@ -1005,7 +999,7 @@ class TranslationProject(models.Model):
         """gets the plural translation of the message by searching
         through all the pofiles"""
         return str(self._find_matching_unit(singular, plural, n))
-    
+
     def ungettext(self, singular, plural, n):
         """gets the plural translation of the message by searching
         through all the pofiles (unicode version)"""
@@ -1042,4 +1036,3 @@ def scan_projects(sender, instance, **kwargs):
         create_translation_project(instance, project)
 
 post_save.connect(scan_projects, sender=Language)
-
