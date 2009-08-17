@@ -20,15 +20,18 @@
 
 from django import forms
 from djblets.siteconfig.forms import SiteSettingsForm
+from django.utils.translation import ugettext_lazy as _
 
 
 class GeneralSettingsForm(SiteSettingsForm):
     DESCRIPTION = forms.CharField(
-        label="Description",
-        required=True)
+        label=_("Description"),
+        required=True,
+    )
     TITLE = forms.CharField(
-        label="Title",
-        required=True)
+        label=_("Title"),
+        required=True,
+    )
 
     class Meta:
         title = "General Settings"
