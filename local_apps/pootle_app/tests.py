@@ -97,13 +97,13 @@ class AnonTests(PootleTestCase):
         response = self.client.get('/')
         self.assertContains(response, "Log in")
 
-        response = self.client.post('/login.html', {'username':'admin', 'password':'admin'})
-        self.assertRedirects(response, '/home/')
+        response = self.client.post('/accounts/login/', {'username':'admin', 'password':'admin'})
+        self.assertRedirects(response, '/accounts/admin/')
 
     def test_admin_not_logged(self):
         """checks that admin pages are not accessible without login"""
         response = self.client.get("/admin/")
-        self.assertRedirects(response, 'http://testserver/login.html?message=You+must+log+in+to+administer+Pootle.')
+        self.assertRedirects(response, 'http://testserver/accounts/login/?message=You+must+log+in+to+administer+Pootle.')
 
         
 class AdminTests(PootleTestCase):
@@ -116,7 +116,7 @@ class AdminTests(PootleTestCase):
         response = self.client.get('/')
         self.assertContains(response, "Log out")
 
-        response = self.client.get("/logout.html")
+        response = self.client.get("/accounts/logout/")
         self.assertRedirects(response, '/')
 
         response = self.client.get('/')
@@ -125,7 +125,7 @@ class AdminTests(PootleTestCase):
     def test_admin_rights(self):
         """checks that admin user can access admin pages"""
         response = self.client.get('/')
-        self.assertContains(response, '<a href="/admin/">Admin</a>')
+        self.assertContains(response, "<a href='/admin/'>Admin</a>")
         response = self.client.get('/admin/')
         self.assertContains(response, '<title>Pootle Admin Page</title>')        
 
@@ -133,8 +133,8 @@ class AdminTests(PootleTestCase):
         """Checks that we can add a project successfully."""
     
         response = self.client.get("/admin/projects.html")
-        self.assertContains(response, '<a href="/projects/pootle/admin.html">pootle</a>')
-        self.assertContains(response, '<a href="/projects/terminology/admin.html">terminology</a>')
+        self.assertContains(response, "<a href='/projects/pootle/admin.html'>pootle</a>")
+        self.assertContains(response, "<a href='/projects/terminology/admin.html'>terminology</a>")
 
         add_dict = {
             "code": "testproject",                                       
@@ -145,7 +145,7 @@ class AdminTests(PootleTestCase):
             }
     
         response = self.client.post("/admin/projects.html", formset_dict([add_dict]))
-        self.assertContains(response, '<a href="/projects/testproject/admin.html">testproject</a>')
+        self.assertContains(response, "<a href='/projects/testproject/admin.html'>testproject</a>")
     
         # check for the actual model
         from pootle_app.models import Project
@@ -177,7 +177,7 @@ class AdminTests(PootleTestCase):
         response = self.client.get("/fish/")
         self.assertContains(response, 'fish</title>')
         self.assertContains(response, '<a href="pootle/">Pootle</a>')
-        self.assertContains(response, "1 project, average 0% translated")
+        self.assertContains(response, "1 project,  0% translated")
 
 
 class NonprivTests(PootleTestCase):
@@ -188,7 +188,7 @@ class NonprivTests(PootleTestCase):
     def test_non_admin_rights(self):
         """checks that non privileged users cannot access admin pages"""
         response = self.client.get('/admin/')
-        self.assertRedirects(response, 'http://testserver/home/?message=You+do+not+have+the+rights+to+administer+Pootle.')
+        self.assertRedirects(response, 'http://testserver/accounts/nonpriv/?message=You+do+not+have+the+rights+to+administer+Pootle.')
         
         
 
