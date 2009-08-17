@@ -259,6 +259,6 @@ def view(request, translation_project):
         "rights_title":           _("Rights"),
         "permission_set_formset": permission_set_formset,
         "updaterights_text":      _("Update Rights"),
-        "adduser_text":           _("(select to add user)")
+        "adduser_text":           _("(select to add user)"),
     }
     return render_to_response("language/projectlangadmin.html", template_vars, context_instance=RequestContext(request))
