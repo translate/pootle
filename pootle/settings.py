@@ -247,5 +247,12 @@ if config is not None:
             # ConfigParser conveniently lowercases our option names.
             vars[option.upper()] = config.get(section, option)
 
+# setup a tempdir inside the PODIRECTORY heirarchy, this way we have
+# reasonable guarantee that temp files will be created on the same
+# filesystem as translation files (required for save operations).
 
-#TEST_RUNNER='pootle.pytest.run_tests'
+import tempfile
+tempfile.tempdir = os.path.join(PODIRECTORY, ".tmp")
+# ensure that temp dir exists
+if not os.path.exists(tempfile.tempdir):
+    os.mkdir(tempfile.tempdir)
