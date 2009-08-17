@@ -22,6 +22,7 @@ import locale
 
 from translate.lang import data
 
+from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm
