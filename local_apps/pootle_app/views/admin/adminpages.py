@@ -31,7 +31,11 @@ from django.template import RequestContext
 from pootle_app.forms import GeneralSettingsForm
 
 from djblets.siteconfig.models import SiteConfiguration
-siteconfig = SiteConfiguration.objects.get_current()
+
+from pootle_app.siteconfig import load_site_config
+
+siteconfig = load_site_config()
+#siteconfig = SiteConfiguration.objects.get_current()
 
 @user_is_admin
 def view(request, path):
