@@ -91,7 +91,7 @@ def language_list(request):
             # is used inside an option tag.
             name = u"%s | \u202d%s" % (tr_name, name)
         finallist.append({"code": code, "name": name, "selected": is_selected(language.code, preferred_language)})
-    finallist.sort(cmp=locale.strcoll, key=lambda dict: dict["name"])
+    finallist.sort(cmp=locale.strcoll, key=lambda dict: unicode(dict["name"]))
     return finallist
 
 def is_selected(new_code, preferred_language):
