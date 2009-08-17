@@ -35,6 +35,7 @@ def load_site_config():
     if not siteconfig.get_defaults():
         siteconfig.add_defaults(defaults)
     apply_django_settings(siteconfig, settings_map)
+    return siteconfig
  
  
 load_site_config()
