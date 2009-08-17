@@ -50,5 +50,6 @@ def view(request, path):
     template = 'admin/adminindex.html'
     template_vars = {
         'form': setting_form,
+        'pagetitle': _("Pootle Admin Page"),
         }
     return render_to_response(template, template_vars, context_instance=RequestContext(request))
