@@ -50,7 +50,7 @@ def view(request):
                 login(request, form.get_user())
 
                 if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
-                    redirect_to = '/accounts/'+form.get_user().username
+                    redirect_to = '/accounts/'+form.get_user().username + '/'
 
                 if request.session.test_cookie_worked():
                     request.session.delete_test_cookie()
