@@ -17,9 +17,9 @@ from pootle_misc.baseurl import l
             <td class="language"><a href="${l('/'+lang.code+'/')}" py:content="lang.name">Language</a></td>
             <td>
               <span class="graph" dir="$uidir">
-                <span class="translated" style="width: ${l.transper}px" title="${l.trans}/${l.total} words translated" />
-                <span class="fuzzy" style="${cssaligndir}: ${l.transper}px; width: ${l.fuzzyper}px" title="${l.fuzzy}/${l.total} words fuzzy" />
-                <span class="untranslated" style="${cssaligndir}: ${l.transper+l.fuzzyper}px; width: ${l.untransper}px" title="${l.untrans}/${l.total} words untranslated" />
+                <span class="translated" style="width: ${l.transper}px;" title="${l.trans}/${l.total} words translated" />
+                <span class="fuzzy" style="${cssaligndir}: ${l.transper}px; width: ${l.fuzzyper}px;" title="${l.fuzzy}/${l.total} words fuzzy" />
+                <span class="untranslated" style="${cssaligndir}: ${l.transper+l.fuzzyper}px; width: ${l.untransper}px;" title="${l.untrans}/${l.total} words untranslated" />
               </span>
               <span class="sortkey">${l.transper}%</span>
             </td> 

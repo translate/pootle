@@ -8,9 +8,9 @@
   <td class="stats-graph">
     <span class="sortkey">{{item.data.translatedpercentage}}</span>
     <span class="graph" title="{{item.data.translatedpercentage}}% complete">
-      <span class="translated" style="width: {{item.data.translatedpercentage}}px"> </span>
-      {% if item.data.fuzzysourcewords %}<span class="fuzzy" style="{%if rtl%}right{%else%}left{%endif%}: {{item.data.translatedpercentage}}px; width: {{item.data.fuzzypercentage}}px"> </span>{% endif %}
-      {% if item.data.untranslatedsourcewords %}<span class="untranslated" style="{%if rtl%}right{%else%}left{%endif%}: {{item.data.translatedpercentage|add:item.data.fuzzypercentage}}px; width: {{item.data.untranslatedpercentage}}px"> </span>{% endif %}
+      <span class="translated" style="width: {{item.data.translatedpercentage}}px;"> </span>
+      {% if item.data.fuzzysourcewords %}<span class="fuzzy" style="{%if rtl%}right{%else%}left{%endif%}: {{item.data.translatedpercentage}}px; width: {{item.data.fuzzypercentage}}px;"> </span>{% endif %}
+      {% if item.data.untranslatedsourcewords %}<span class="untranslated" style="{%if rtl%}right{%else%}left{%endif%}: {{item.data.translatedpercentage|add:item.data.fuzzypercentage}}px; width: {{item.data.untranslatedpercentage}}px;"> </span>{% endif %}
     </span>
   </td>
   <td class="stats"><ul>
