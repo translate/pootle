@@ -1,28 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
-# Copyright 2009 Zuza Software Foundation
-# 
-# This file is part of translate.
 #
-# translate is free software; you can redistribute it and/or modify
+# Copyright 2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# translate is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+"""Utility classes for handling translation files."""
 
-"""
-Utility functions for handling translation files.
-"""
 import logging
 import os
 import shutil
@@ -40,10 +37,9 @@ from pootle_store.signals import translation_file_updated
 
 
 class TranslationStoreFile(File):
-    """
-    A mixin for use alongside django.core.files.base.File, which provides
-    additional features for dealing with translation files.
-    """
+    """A mixin for use alongside django.core.files.base.File, which provides
+    additional features for dealing with translation files."""
+
     _stats = {}
     __statscache = {}
 
@@ -53,9 +49,9 @@ class TranslationStoreFile(File):
         if current_thread not in self.__statscache:
             self.__statscache[current_thread] = statsdb.StatsCache(settings.STATS_DB_PATH)
         return self.__statscache[current_thread]
-            
+
     _statscache = property(_get_statscache)
-    
+
     #FIXME: figure out what this checker thing is
     checker = None
 
@@ -74,39 +70,34 @@ class TranslationStoreFile(File):
     def _get_filename(self):
         return os.path.basename(self.name)
     filename = property(_get_filename)
-    
+
     def savestore(self):
         self.store.save()
 
-        
     def _guess_path(self):
-        """
-        most TranslationStoreFile objects will deal with will
-        correspond to TranslationStoreField instances and have a known
-        path, however standalone instances of TranslationStoreFile can
-        come from in memory files or already open file descriptors
-        with no sure way of obtaining a path
-        """
+        """Most TranslationStoreFile objects will correspond to
+        TranslationStoreField instances and have a known path, however
+        standalone instances of TranslationStoreFile can come from in-memory
+        files or already open file descriptors with no sure way of obtaining a
+        path."""
         #FIXME: is name the best substitute for path?
         return self.name
     path = property(_guess_path)
 
     def getquickstats(self):
-        """returns the quick statistics (totals only)
-        """
+        """Returns the quick statistics (totals only)."""
         if 'quickstats' not in self._stats.setdefault(self.path, {}):
             self._stats[self.path]['quickstats'] = self._statscache.filetotals(self.path, store=self._get_store) # or statsdb.emptyfiletotals()
         return self._stats[self.path]['quickstats']
 
     def getstats(self):
-        """returns the unit states statistics only"""
+        """Returns the unit states statistics only."""
         if 'stats' not in self._stats.setdefault(self.path, {}):
             self._stats[self.path]['stats'] = self._statscache.filestatestats(self.path, store=self._get_store)
         return self._stats[self.path]['stats']
-    
+
     def getcompletestats(self, checker):
-        """return complete stats including quality checks
-        """
+        """Return complete stats including quality checks."""
         if 'completestats' not in self._stats.setdefault(self.path, {}):
             self._stats[self.path]['completestats'] =  self._statscache.filestats(self.path, checker, store=self._get_store)
         return self._stats[self.path]['completestats']
@@ -117,9 +108,8 @@ class TranslationStoreFile(File):
         return self._stats[self.path]['unitstats']
 
     def reclassifyunit(self, item, checker=checks.StandardUnitChecker()):
-        """Reclassifies all the information in the database and
-        self._stats about the given unit
-        """
+        """Reclassifies all the information in the database and self._stats
+        about the given unit."""
         unit = self.getitem(item)
         state = self._statscache.recacheunit(self.path, checker, unit)
         #FIXME: can't we use state to update stats cache instead of invalidating it?
@@ -127,27 +117,25 @@ class TranslationStoreFile(File):
         return state
 
     def _get_total(self):
-        """returns list of translatable unit indeces, useful for
-        identifying translatable units by their place in translation
-        file (item number)
-        """
+        """Returns a list of translatable unit indices, useful for identifying
+        translatable units by their place in translation file (item number)."""
         return self.getstats()['total']
     total = property(_get_total)
-    
+
     def getitem(self, item):
         """Returns a single unit based on the item number."""
         return self.store.units[self.total[item]]
 
     def getitemslen(self):
-        """gets the number of items in the file
-        """
+        """The number of items in the file."""
         return self.getquickstats()['total']
 
     def updateunit(self, item, newvalues, userprefs, languageprefs):
-        """updates a translation with a new target value"""
+        """Updates a translation with a new target value, comments, or fuzzy
+        state."""
 
         unit = self.getitem(item)
-        
+
         if newvalues.has_key('target'):
             unit.target = newvalues['target']
         if newvalues.has_key('fuzzy'):
@@ -177,55 +165,51 @@ class TranslationStoreFile(File):
         self.savestore()
         self.reclassifyunit(item)
 
-
-                
     def addunit(self, unit):
-        """
-        wrapper around TranslationStore.addunit that updates
-        sourceindex on the fly.
-        
-        useful for avoiding rebuilding index of pending files when
-        new suggestions are added
-        """
+        """Wrapper around TranslationStore.addunit that updates sourceindex on
+        the fly.
+
+        Useful for avoiding rebuilding the index of pending files when new
+        suggestions are added."""
         self.store.addunit(unit)
         if hasattr(self.store, "sourceindex"):
             self.store.add_unit_to_index(unit)
 
     def removeunit(self, unit):
-        """
-        removes a unit from store, updates sourceindex on the fly.
-        
-        useful for avoiding rebuilding index of pending files when
-        suggestions are removed.
-        """
+        """Removes a unit from store, updates sourceindex on the fly.
+
+        Useful for avoiding rebuilding index of pending files when suggestions
+        are removed."""
         self.store.units.remove(unit)
         if hasattr(self.store, "sourceindex"):
             self.store.remove_unit_from_index(unit)
 
     def getpomtime(self):
         return statsdb.get_mod_info(self.path)
-    
 
 
 class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
+    """FieldFile is the File-like object of a FileField, that is found in a
+    TranslationStoreField."""
+
     _store_cache = {}
-    
+
     # redundant redefinition of path to be the same as defined in
     # FieldFile, added here for clarity since TranslationStoreFile
     # uses a different method
     path = property(FieldFile._get_path)
-    
+
     def _get_store(self):
-        """ get translation store from dictionary cache, populate if
-        store not already cached. """
+        """Get translation store from dictionary cache, populate if store not
+        already cached."""
         #FIXME: when do we detect that file changed?
         if self.path not in self._store_cache:
             self._update_store_cache()
         return self._store_cache[self.path][0]
 
     def _update_store_cache(self):
-        """ add translation store to dictionary cache, replace old
-        cached version if needed."""
+        """Add translation store to dictionary cache, replace old cached
+        version if needed."""
         mod_info = self.getpomtime()
 
         if self.path not in self._store_cache or self._store_cache[self.path][1] != mod_info:
@@ -233,10 +217,9 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
             self._store_cache[self.path] = (factory.getobject(self.path, ignore=self.field.ignore), mod_info)
             self._stats[self.path] = {}
             translation_file_updated.send(sender=self, path=self.path)
-            
+
     def _touch_store_cache(self):
-        """update stored mod_info without reparsing file"""
-        
+        """Update stored mod_info without reparsing file."""
         if self.path not in self._store_cache:
             return self._update_store_cache()
 
@@ -246,9 +229,8 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         self._stats[self.path] = {}
         translation_file_updated.send(sender=self, path=self.path)
 
-        
     def _delete_store_cache(self):
-        """remove translation store from dictionary cache."""
+        """Remove translation store from dictionary cache."""
         if self.path in self._store_cache:
             del(self._store_cache[self.path])
         self._stats[self.path] = {}
@@ -256,25 +238,27 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     store = property(_get_store)
 
     def savestore(self):
-        """saves to temporary file then moves over original file, this
-        way we avoid the need for locking"""
-        
+        """Saves to temporary file then moves over original file. This
+        way we avoid the need for locking."""
         tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
         self.store.savefile(tmpfilename)
         shutil.move(tmpfilename, self.path)
         self._touch_store_cache()
-        
+
     def save(self, name, content, save=True):
         #FIXME: implement save to tmp file then move instead of directly saving
         super(TranslationStoreFieldFile, self).save(name, content, save)
         self._delete_store_cache()
-        
+
     def delete(self, save=True):
         self._delete_store_cache()
         super(TranslationStoreFieldFile, self).delete(save)
 
 
 class TranslationStoreField(FileField):
+    """This is the field class to represent a FileField in a model that
+    represents a translation store."""
+
     attr_class = TranslationStoreFieldFile
 
     #def formfield(self, **kwargs):
@@ -287,4 +271,3 @@ class TranslationStoreField(FileField):
         determine file format for parsing, useful for .pending files"""
         self.ignore = ignore
         super(TranslationStoreField, self).__init__(**kwargs)
-        
