@@ -11,43 +11,31 @@ Pootle: a web translation and translation management engine
 
 How it works
 ------------
-The concept is: a PO file is a document, so lets use PO files directly, 
-rather than storing it in a database.  But we need quick access to statistics 
-so we cache them in .stats files. This lets us do most checks etc. in advance 
-and then iterate quickly.
+Pootle can host a number of translation projects for a number of languages.  It
+allows a team to manage their files, permissions, projects, and also allows for
+translation on-line.  Files can be downloaded for offline translation and later
+uploaded again.
+
+Pootle tries to lower the barrier of entry,  but also provides tools  to enable
+teams to work towards higher quality while welcoming newcomers.
 
 References
 ----------
+Web: http://translate.sourceforge.net/wiki/pootle/index
 Bugzilla: http://bugs.locamotion.org/
-Wiki: http://translate.sourceforge.net/wiki/pootle/index
 Mailing List: https://lists.sourceforge.net/lists/listinfo/translate-pootle
-	translate-pootle@lists.sourceforge.net
-Mail Archives: http://sourceforge.net/mailarchive/forum.php?forum=translate-pootle
+IRC: #pootle on irc.freenode.org
 
 Requirements
 ------------
-Please read http://translate.sourceforge.net/wiki/pootle/installation for the 
-lastest instructions.
-
-Pootle requires the Translate Toolkit package from 
+Pootle usually requires the latest Translate Toolkit package:
 http://translate.sourceforge.net/
-Note all the optional dependencies of the Translate Toolkit for optimal 
+Note all the optional dependencies of the Translate Toolkit for optimal
 performance and functionality in Pootle.
 
-The Translate Toolkit requires Python 2.3 or higher, but Pootle itself only
-works with Python 2.4 or higher.  The Translate Toolkit must be installed 
-properly i.e. it needs to be accessible in your Python Path. This will normally
-be accomplished by installing from source:
+Python version 2.4 or later is required.
 
-	python setup.py install
-	
-If you get this error along the lines of
-Unable to open /usr/lib/python2.N/config/Makefile (no such file or directory)
-while running setup.py, you need to install python-dev or libpython2.N-devel
-package. Try to install python2.N-dev or libpython2.N-devel or something 
-similar with your distribution's package manager.
-
-For the web interface, Pootle requires Django 
+Pootle requires Django (at least version 1.0)
 (http://www.djangoproject.com/)
 Django applications can run under Apache using mod_python or mod_wsgi,
 but they're also bundled with a standalone webserver that can be run
@@ -62,83 +50,62 @@ To run Pootle you need to have Django 1.0 installed properly
        sudo python setup.py install
 
 you can also install Django using easy_install
-    	
-	easy_install django
 
+       easy_install django
 
-ZIP is needed to enable users to download ZIP files of directories. For 
-integration with CVS and/or Subversion, the relevant version control client 
-must be installed and accessible from the PATH.
-
-From version 0.9 of Pootle, kid (http://kid.lesscode.org/), and elementtree
-(http://effbot.org/downloads/#elementtree) are also needed.  Elementtree is
-not needed anymore with Python 2.5.
-
-To install "elementtree", run
-	tar xvfz elementtree-N.N.N.tar.gz
-	cd elementtree-N.N.N
-	python setup.py install
-	
-To install kid, run
-	tar xvf kid-N.N.N.tar.gz
-	cd kid-N.N.N
-	python setup.py install
-  
-For Debian users: if you do not have setuptools installed, try:
-	apt-get install python2.N-setuptools
-or
-	wget http://files.turbogears.org/eggs/setuptools-0.6a11-py2.4.egg
+The commandline utilities "zip" and "unzip" can speed up handling of ZIP files.
+For integration with a version control system, the relevant version control
+command line client must be installed and accessible from the PATH.
 
 Installation of an indexing engine (PyLucene or Xapian) is optional, but helps
-to speed up searching. Note that Xapian is incompatible with Apache,
-Pootle will not enable Xapian indexing if running under mod_python or mod_wsgi
+to speed up searching. Note that Xapian is incompatible with Apache, and
+Pootle will not enable Xapian indexing if running under mod_python or mod_wsgi.
 
 
 Installation
 ------------
-This is a Beta release of Pootle, and it is still far from ready, so
-for the moment we do not recommend installing Pootle, but rather
-running it directly from the source code directory. 
-
-However you still need to prepare the pootle database.
+Pootle works perfectly directly from the source files without installation.
 
 Extract Pootle's source code, then change directory to inside the
 Pootle dir
 
-   	   tar xvf Pootle-1.3.0-beta2.tar.gz
-           cd Pootle-1.3.0-beta2
+        tar xvf Pootle-......tar.gz
+        cd Pootle-.......
 
-Run the following commands to create and initialze the Pootle
-database, and prepare stats and search index for initial translation projects
+If you want to install Pootle into your system, run
 
-           ./manage.py syncdb
-	   ./manage.py initdb
-	   ./manage.py refresh_stats
+        python setup.py install
+
+If you want to run Pootle under apache or want to initialise the database without running the server, run
+
+        ./manage.py syncdb
+        ./manage.py initdb
 
 
 Running
 -------
-To run Pootle just change directory to inside the pootle directory
-(that is, cd /my/installation/path/Pootle), then simply execute
+To run Pootle from sources, just run
 
-      ./manage.py runserver
+        ./PootleServer
 
-You can specify which port to run under (by default it's 8000)
+After installation, PootleServer should also be accessible from the
+installation.
 
-      ./manage.py runserver PORTNUMBER
+If you are more familiar with Django projects, you can look into the manage.py
+commands as well.
 
-Use --help to see the other options. The defaults will 
-generally work.
+Use --help to see the other options. The defaults will generally work.
 
 Now visit http://localhost:8000/ and begin translating.
 
-To stop, press Ctrl-C. 
+To stop the server, press Ctrl-C.
 
+It is not recommended to run Pootle as the root user.
 
-Pootle can run under Apache using mod_python or mod_wsgi, but this
-requires modifications to Apache's config files, check
-http://translate.sourceforge.net/wiki/pootle/running_under_apache for
-detailed instructions
+Pootle can run under Apache using mod_python or mod_wsgi, but this requires
+modifications to Apache's config files. Check
+        http://translate.sourceforge.net/wiki/pootle/apache
+for detailed instructions
 
 
 Bug Reporting/Feature requests
@@ -155,17 +122,10 @@ feature should work.
 
 Notes
 -----
-Files should be reindexed automatically.
-To reindex manually, simply remove any stats files you want reindexed, or run 
-	./manage.py refresh_stats
+Files should be reindexed automatically. To ensure that all statistics and
+indices are up to date for the current projects and languages, run
+        PootleServer --refreshstats
 
 Assignments
 -----------
-To assign sstrings to users, you need to create a xxx.po.assigns file in the same 
-directory as xxx.po This should contain lines in the following format:
-
-username: action: 0,2-34,36,99
-
-where action can be 'suggest' or 'review', and the numbers refer to 0-based item 
-numbers in the file.
-
+Goals and assignments don't work at the moment, but should be re-instated soon.
