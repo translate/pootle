@@ -33,9 +33,11 @@ from pootle_app.url_manip import strip_trailing_slash
 from pootle_store.util import absolute_real_path, relative_real_path
 
 def get_project_code(project_dir):
+    """guess project code from path"""
     return project_dir.split(os.sep)[0]
 
 def get_project(project_dir, project):
+    """returns project object based on path"""
     project_code = get_project_code(relative_real_path(project_dir))
     if project is not None and project.code == project_code:
         return project
