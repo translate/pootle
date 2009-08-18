@@ -26,6 +26,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db                import models
 
 from translate.filters import checks
+from translate.lang.data import langcode_re
 
 from pootle_store.util import relative_real_path, absolute_real_path, statssum
 from pootle_misc.util import getfromcache
@@ -73,10 +74,50 @@ class Project(models.Model):
         return "/projects/" + self.code + "/"
     pootle_path = property(_get_pootle_path)
 
+    def get_real_path(self):
+        return absolute_real_path(self.code)
+
+    def get_template_filtetype(self):
+        if self.localfiletype == 'po':
+            return 'pot'
+        else:
+            return self.localfiletype
+        
+    def _file_belongs_to_project(self, filename):
+        return filename.endswith(self.localfiletype) or filename.endswith(self.get_template_filtetype())
+    
+    def get_tree_style(self):
+        if self.treestyle != "auto":
+            return self.treestyle
+        else:
+            dirlisting = os.walk(self.get_real_path())
+            dirpath, dirnames, filenames = dirlisting.next()
+            
+            if not dirnames:
+                # no subdirectories                        
+                if filter(self._file_belongs_to_project, filenames):
+                    # translation files found, assume gnu
+                    return "gnu"
+                else:
+                    # no subdirs and no translation files, assume nongnu
+                    return "nongnu"
+            else:
+                # there are subdirectories
+                if filter(lambda dirname: dirname == 'templates' or langcode_re.match(dirname), dirnames):
+                    # found language dirs assume nongnu
+                    return "nongnu"
+                else:
+                    # no language subdirs found, look for any translation file
+                    for dirpath, dirnames, filenames in os.walk(self.get_real_path()):
+                        if filter(self._file_belongs_to_project, filenames):
+                            return "gnu"
+            # when unsure assume nongnu
+            return "nongnu"
+
     
 def create_project_directory(sender, instance, **kwargs):
     project_path = absolute_real_path(instance.code)
     if not os.path.exists(project_path):
         os.mkdir(project_path)
-
+    
 pre_save.connect(create_project_directory, sender=Project)
