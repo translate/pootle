@@ -65,7 +65,7 @@ def lang_notices(request, language_code):
             form.set_initial_value(language_code)
 
     template_vars = {
-            "title"       :_('Add notice for %(language)s',{"language": tr_lang(lang.fullname)}),
+            "title"       :_('Add notice for %(language)s', {"language": tr_lang(lang.fullname)}),
             "back_link"   :language_code,
             "name"        :tr_lang(lang.fullname),
             }
@@ -112,11 +112,11 @@ def transproj_notices(request, language_code, project_code):
             form = TransProjectNoticeForm() # An unbound form
             form.set_initial_value(language_code, project_code)
 
+    details = {"language": tr_lang(transproj.language.fullname), "project": transproj.project.fullname}
     template_vars = {
-            "title" : _('Add notice for %(language)s/%(project)s',
-                {"language": tr_lang(transproj.language.fullname), "project": tr_lang(transproj.project.fullname)}),
+            "title" : _('Add notice for the project "%(project)s" in %(language)s', details),
             "back_link" : language_code+"/"+project_code,
-            "name"      : tr_lang(transproj.language.fullname) +" "+tr_lang(transproj.project.fullname),
+            "name"      : _('"%(project)s" in %(language)s', details),
             }
 
     if can_add:

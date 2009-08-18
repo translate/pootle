@@ -9,13 +9,13 @@
 <div> {{ success }} </div>
 <form method="post" action="">
     {{ form.as_p }}
-    <input type="submit" value="Save"/>
+    <input type="submit" value="{% trans "Save" %}"/>
 </form>
 {% endif %}
 
 {% if notices %}
 <div>
-    <h3 class="title">{% trans "Latest" %} {{name}} {% trans "notices:" %}</h3>
+    <h3 class="title">{% trans "Latest notices:" %} {{name}}</h3>
     <hr width="50%" align="left">
     <ul>
         {% for notice in notices %}
@@ -26,8 +26,8 @@
      <ul>
 </div>
 {% else %}
-<div> {% trans "There is no"%} {{name}} {% trans "notices" %}</div>
+<div> {% trans "There is no news in for this project in this language" %}</div>
+
 {% endif %}
 
 {% endblock %}
-
