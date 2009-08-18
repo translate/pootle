@@ -604,7 +604,7 @@ def get_translated_store(alt_project, store):
         translation_directory = get_translated_directory(alt_project.language.code,
                                                      Directory.objects.root,
                                                      store.parent)
-        if alt_project.project.treestyle == 'gnu':
+        if alt_project.project.get_treestyle() == 'gnu':
             name = alt_project.language.code + os.extsep + alt_project.project.localfiletype
         else:
             name = store.name
