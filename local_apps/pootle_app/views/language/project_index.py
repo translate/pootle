@@ -1,25 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# Pootle is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Pootle; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import copy
 import os
 import zipfile
 import subprocess
@@ -36,14 +34,11 @@ from django.core.exceptions import PermissionDenied
 from translate.storage import factory, versioncontrol
 
 from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
-from pootle_app.models import Goal, Directory
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
-from pootle_app.models.search import Search
 from pootle_app.models.permissions import get_matching_permissions, check_permission, PermissionError
 from pootle_app.models.profile import get_profile
 from pootle_app.project_tree import scan_translation_project_files
-from pootle_app import url_manip
 from pootle_app.lib import view_handler
 from pootle_app.views.base import BaseView
 from pootle_app.views import pagelayout
@@ -308,7 +303,7 @@ class ProjectIndexView(BaseView):
 
         assign_form = None
         goal_form = None
-        
+
         notice_link = False
         if 'administrate' in request.permissions or 'view' in request.permissions:
             notice_link = True
@@ -341,7 +336,7 @@ def view(request, translation_project, directory):
     request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
     if not check_permission("view", request):
         raise PermissionDenied
-    
+
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler, update=UpdateHandler))
     notice_link = False
     if check_permission("administrate", request):

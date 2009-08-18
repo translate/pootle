@@ -23,7 +23,6 @@
 import re
 import difflib
 import operator
-import copy
 import os
 
 from django.contrib.auth.models import User

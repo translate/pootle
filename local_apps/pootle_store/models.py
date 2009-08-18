@@ -1,23 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
-# Copyright 2008 Zuza Software Foundation
-# 
-# This file is part of translate.
 #
-# translate is free software; you can redistribute it and/or modify
+# Copyright 2008-2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# translate is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
 import logging
@@ -45,7 +44,7 @@ suggester_regexp = re.compile(r'suggested by (.*)\n')
 class Store(models.Model):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
     is_dir = False
-    
+
     file        = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False, editable=False)
     pending     = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False)
     tm          = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs, editable=False)
@@ -65,7 +64,7 @@ class Store(models.Model):
         # clean project stat cache
         key = "/projects/%s/:getquickstats" % path_parts[2]
         cache.delete(key)
-        
+
         # clean store and directory stat cache
         while path_parts:
             key = path + ":getquickstats"
@@ -74,8 +73,7 @@ class Store(models.Model):
             cache.delete(key)
             path_parts = path_parts[:-1]
             path = "/".join(path_parts) + "/"
-        
-            
+
     def _get_abs_real_path(self):
         return self.file.path
 
@@ -85,7 +83,7 @@ class Store(models.Model):
         return self.file.name
 
     real_path = property(_get_real_path)
-    
+
     def __unicode__(self):
         return self.name
 
@@ -101,7 +99,7 @@ class Store(models.Model):
         for key, value in self.file.getcompletestats(checker).iteritems():
             stats[key] = len(value)
         return stats
-    
+
     def initpending(self, create=False):
         """initialize pending translations file if needed"""
         #FIXME: we parse file just to find if suggestions can be
@@ -111,7 +109,7 @@ class Store(models.Model):
             # suggestions can be stored in the translation file itself
             # or a pending suggestions file already exists
             return
-        
+
         pending_filename = self.file.path + os.extsep + 'pending'
         # check if pending file already exists, just in case it was
         # added outside of pootle
@@ -182,13 +180,13 @@ class Store(models.Model):
 
         for suggestion in suggestions:
             self._deletesuggestion(item, suggestion)
-            
+
         if self.file.store.suggestions_in_format:
             self.file.savestore()
         else:
             self.pending.savestore()
         self.file.reclassifyunit(item)
-    
+
     def getsuggester(self, item, suggitem):
         """returns who suggested the given item's suggitem if
         recorded, else None"""
@@ -196,12 +194,11 @@ class Store(models.Model):
         unit = self.getsuggestions(item)[suggitem]
         if self.file.store.suggestions_in_format:
             return unit.xmlelement.get('origin')
-        
+
         else:
             suggestedby = suggester_regexp.search(po.unquotefrompo(unit.msgidcomments)).group(1)
             return suggestedby
         return None
-
 
     def matchitems(self, newfile, uselocations=False):
         """matches up corresponding items in this pofile with the
@@ -267,7 +264,7 @@ class Store(models.Model):
         if self.file.store == newfile:
             logging.debug("identical merge: %s", self.file.name)
             return
-        
+
         if not hasattr(self.file.store, 'sourceindex'):
             self.file.store.makeindex()
         translatables = (self.file.store.units[index] for index in self.file.total)
@@ -330,7 +327,7 @@ class Store(models.Model):
         """initialize translation memory file if needed"""
         if self.tm and os.path.exists(self.tm.path):
             return
-        
+
         tm_filename = self.file.path + os.extsep + 'tm'
         if os.path.exists(tm_filename):
             self.tm = tm_filename
@@ -350,10 +347,10 @@ class Store(models.Model):
                           if suggestpo.getlocations() == locations]
             return suggestpos
         return []
-        
+
 def set_store_pootle_path(sender, instance, **kwargs):
     instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
-models.signals.pre_save.connect(set_store_pootle_path, sender=Store)    
+models.signals.pre_save.connect(set_store_pootle_path, sender=Store)
 
 def store_post_init(sender, instance, **kwargs):
     translation_file_updated.connect(instance.handle_file_update, sender=instance.file)
@@ -362,7 +359,7 @@ models.signals.post_init.connect(store_post_init, sender=Store)
 
 class Unit(models.Model):
     #FIXME: why do we have this model, what is it used for
-    
+
     store = models.ForeignKey(Store, related_name='units', db_index=True)
     index = models.IntegerField(db_index=True)
     source = models.TextField()
