@@ -86,7 +86,7 @@ class Project(models.Model):
     def _file_belongs_to_project(self, filename):
         return filename.endswith(self.localfiletype) or filename.endswith(self.get_template_filtetype())
     
-    def get_tree_style(self):
+    def get_treestyle(self):
         if self.treestyle != "auto":
             return self.treestyle
         else:
