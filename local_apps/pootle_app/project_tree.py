@@ -52,66 +52,6 @@ def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
     return language_code == name or language_code == 'templates'
 
-def _search_file_style(project_dir, language_code, depth=0, max_depth=3, ext="po"):
-    #Let's check to see if we specifically find the correct gnu file
-    found_gnu_file = False
-    full_ext = os.extsep + ext
-    dirs_to_inspect = []
-    for path_name in os.listdir(project_dir):
-        full_path_name = os.path.join(project_dir, path_name)
-        if os.path.isdir(full_path_name):
-            # if we have a language subdirectory, we're probably not GNU-style
-            if langdata.languagematch(language_code, path_name):
-                return "nongnu"
-            #ignore hidden directories (like index directories)
-            if path_name[0] == '.':
-                continue
-            dirs_to_inspect.append(full_path_name)
-        elif path_name.endswith(full_ext):
-            if direct_language_match_filename(language_code, path_name):
-                found_gnu_file = True
-    if depth < max_depth:
-        for dir in dirs_to_inspect:
-            style = _search_file_style(full_path_name, language_code, depth+1, max_depth, ext)
-            if style == "nongnu":
-                return style
-            elif style == "gnu":
-                found_gnu_file = True
-    if found_gnu_file:
-        return "gnu"
-    else:
-        return "nongnu"
-
-def get_file_style(project_dir, language=None, project=None, depth=0, max_depth=3, ext="po"):
-    def get_language_code(language, project):
-        if language is not None:
-            if language.code != 'templates':
-                return language.code
-            else:
-                return project.code
-        else:
-            return None
-
-    try:
-        if not os.path.isdir(project_dir):
-            return None
-        project = get_project(project_dir, project)
-        style = project.treestyle
-        if style in ("gnu", "nongnu"):
-            return style
-    except Project.DoesNotExist:
-        pass
-    return _search_file_style(project_dir, get_language_code(language, project), depth, max_depth, ext)
-
-def get_project_dir(project, make_dirs=False):
-    project_dir = absolute_real_path(project.code)
-    if not os.path.exists(project_dir):
-        if not make_dirs:
-            raise IndexError("directory not found for project %s" % (project.code))
-        else:
-            os.mkdir(project_dir)
-    return project_dir
-
 def get_matching_language_dirs(project_dir, language_dir, language):
     return [lang_dir for lang_dir in os.listdir(project_dir)
             if language.code == lang_dir]
@@ -143,7 +83,7 @@ def get_language_dir(project_dir, language, file_style, make_dirs):
         return language_dir
 
 def ensure_translation_project_dir(language, project):
-    get_translation_project_dir(language, get_project_dir(project), project.treestyle, make_dirs=True)
+    get_translation_project_dir(language, project.get_real_path(), project.get_treestyle(), make_dirs=True)
 
 def get_translation_project_dir(language, project_dir, file_style, make_dirs=False):
     """returns the base directory containing po files for the project
@@ -224,11 +164,11 @@ def scan_translation_project_files(translation_project):
     real_path     = translation_project.abs_real_path
     directory     = translation_project.directory
     ignored_files = set(p.strip() for p in project.ignoredfiles.split(','))
-    ext           = os.extsep + translation_project.project.localfiletype
+    ext           = os.extsep + project.localfiletype
 
     # scan for pots if template project
-    if translation_project.is_template_project and translation_project.project.localfiletype == 'po':
-        ext = os.extsep + 'pot'
+    if translation_project.is_template_project:
+        ext = os.extsep + project.get_template_filtetype()
         
     if translation_project.file_style == 'gnu':
         add_files(ignored_files, ext, real_path, directory,
@@ -245,6 +185,8 @@ def get_projects(language=None):
 ################################################################################
 
 def get_extension(language, project):
+    """file extension used for this project, returns pot if it's a po
+    project and language is templates"""
     ext = project.localfiletype
     if language.code == 'templates' and ext == 'po':
         return 'pot'

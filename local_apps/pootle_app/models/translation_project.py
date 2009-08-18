@@ -129,12 +129,10 @@ class TranslationProject(models.Model):
 
     abs_real_path = property(_get_abs_real_path, _set_abs_real_path)
 
-    def _get_file_style(self):
-        project_dir = project_tree.get_project_dir(self.project)
-        ext         = project_tree.get_extension(self.language, self.project)
-        return project_tree.get_file_style(project_dir, self.language, self.project, ext=ext)
+    def _get_treestyle(self):
+        return self.project.get_treestyle()
 
-    file_style = property(_get_file_style)
+    file_style = property(_get_treestyle)
 
     def _get_checker(self):
         checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
@@ -1004,7 +1002,7 @@ class TranslationProject(models.Model):
         return unicode(self._find_matching_unit(singular, plural, n))
 
 def set_data(sender, instance, **kwargs):
-    project_dir = project_tree.get_project_dir(instance.project)
+    project_dir = instance.project.get_real_path()
     ext         = project_tree.get_extension(instance.language, instance.project)
     instance.abs_real_path = project_tree.get_translation_project_dir(instance.language, project_dir, instance.file_style)
     instance.directory = Directory.objects.root\
