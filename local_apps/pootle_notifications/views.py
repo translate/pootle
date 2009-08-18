@@ -1,7 +1,25 @@
-# Create your views here.
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Copyright 2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseForbidden
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from pootle.i18n.gettext import tr_lang
@@ -58,12 +76,12 @@ def lang_notices(request, language_code):
 
     if can_view:
         template_vars["notices"] = lang_notices
-    
+
     return render_to_response('pootle_notifications/notices.html', template_vars,
             context_instance=RequestContext(request)  )
-    
+
 def transproj_notices(request, language_code, project_code):
-    
+
     can_add = False
     can_view = False
     transproj = TranslationProject.objects.get(real_path = project_code + "/" + language_code)
@@ -119,7 +137,6 @@ def view_notice_item(request, notice_id):
             "title" : _("View Notice"),
             "notice_message"  : notice.message,
             }
-    
+
     return render_to_response('pootle_notifications/viewnotice.html', template_vars,
             context_instance=RequestContext(request)  )
-
