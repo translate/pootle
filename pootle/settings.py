@@ -24,16 +24,25 @@ settings specific to Pootle.
 Note that some of this can also be specified in pootle.ini in order to have a
 configuration override outside of the code."""
 
-import syspath_override
-import os
-
-ROOT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-
 import logging
+import os
 from ConfigParser import ConfigParser
 
-def pootle_home(filename):
-    return os.path.join(ROOT_DIR, filename)
+import syspath_override
+
+CONFIG_DIR  = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+DATA_DIR    = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+SOURCE_DIR  = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+WORKING_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+def config_path(filename):
+    return os.path.join(CONFIG_DIR, filename)
+def data_path(filename):
+    return os.path.join(DATA_DIR, filename)
+def source_path(filename):
+    return os.path.join(SOURCE_DIR, filename)
+def working_path(filename):
+    return os.path.join(WORKING_DIR, filename)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -62,14 +71,14 @@ SUPPORT_ADDRESS = 'pootle-admin@yourdomain.org'
 HOMEPAGE = 'home/'
 
 DATABASE_ENGINE = 'sqlite3'                 # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = pootle_home(os.path.join('dbs', 'pootle.db')) # Or path to database file if using sqlite3.
+DATABASE_NAME = working_path(os.path.join('dbs', 'pootle.db')) # Or path to database file if using sqlite3.
 DATABASE_USER = ''                          # Not used with sqlite3.
 DATABASE_PASSWORD = ''                      # Not used with sqlite3.
 DATABASE_HOST = ''                          # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''                          # Set to empty string for default. Not used with sqlite3.
 
 
-STATS_DB_PATH = pootle_home(os.path.join('dbs', 'stats.db')) # None means the default path
+STATS_DB_PATH = working_path(os.path.join('dbs', 'stats.db')) # None means the default path
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -90,7 +99,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = pootle_home('html')+'/'
+MEDIA_ROOT = data_path('html')+'/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
@@ -138,10 +147,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-
-    # For now we'll cheat and use a relative path, in spite of the above comment.
-    pootle_home('templates'),
-    pootle_home('local_apps/pootle_app/templates')
+    data_path('templates'),
+    source_path('local_apps/pootle_app/templates')
 )
 
 INSTALLED_APPS = (
@@ -162,9 +169,7 @@ INSTALLED_APPS = (
 
 AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
 
-PREFSFILE = pootle_home('pootle.prefs')
-
-PODIRECTORY = pootle_home('po')
+PODIRECTORY = working_path('po')
 
 # Use the commented definition to authenticate first with Mozilla's LDAP system and then to fall back
 # to Django's authentication system.
@@ -215,7 +220,7 @@ else:
             format =  '%(asctime)s %(levelname)s %(message)s',
             )
 
-CONFIG_LOCATIONS = ['/etc/pootle/pootle.ini', pootle_home('pootle.ini')]
+CONFIG_LOCATIONS = ['/etc/pootle/pootle.ini', config_path('pootle.ini')]
 
 def find_config():
     # For each candidate location in CONFIG_LOCATIONS...
