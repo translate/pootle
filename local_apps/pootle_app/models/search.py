@@ -18,13 +18,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import bisect
+"""An object to represent a "search" or "navigation" over a search query, the
+results of a quality check, or similar.
 
+This is not a Django model.
+"""
+
+import bisect
 
 from translate.tools import pogrep
 
 from pootle_app.models.assignment import StoreAssignment
-#from pootle_app.views.language    import search_forms
 from pootle_app.lib.util          import lazy_property
 
 def member(sorted_set, element):
@@ -78,7 +82,7 @@ def narrow_to_assigns(store, translatables, search):
     if len(search.assigned_to) > 0:
         assignments = StoreAssignment.objects.filter(assignment__in=search.assigned_to, store=store)
         assigned_indices = reduce(set.__or__, [assignment.unit_assignments for assignment in assignments], set())
-        return intersect(sorted(assigned_indices), translatables)    
+        return intersect(sorted(assigned_indices), translatables)
     else:
         return translatables
 
