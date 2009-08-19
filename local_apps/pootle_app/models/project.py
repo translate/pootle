@@ -87,6 +87,12 @@ class Project(models.Model):
         return filename.endswith(self.localfiletype) or filename.endswith(self.get_template_filtetype())
     
     def get_treestyle(self):
+        """returns the real treestyle, if treestyle is set to auto it
+        checks the project directory and tries to guess if it is gnu
+        style or nongnu style.
+
+        we are biased towards nongnu because it makes managing project
+        from the web easier"""
         if self.treestyle != "auto":
             return self.treestyle
         else:
