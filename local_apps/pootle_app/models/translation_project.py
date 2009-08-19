@@ -60,22 +60,15 @@ class TranslationProjectNonDBState(object):
 translation_project_non_db_state = {}
 
 def create_translation_project(language, project):
-    def get_or_make(language, project):
+    if project_tree.translation_project_should_exist(language, project):
         try:
-            return TranslationProject.objects.get(language=language, project=project)
-        except TranslationProject.DoesNotExist:
-            translation_project = TranslationProject(language=language, project=project)
-            translation_project.save()
+            translation_project, created = TranslationProject.objects.get_or_create(language=language, project=project)
+            project_tree.scan_translation_project_files(translation_project)
             return translation_project
-
-    try:
-        translation_project = get_or_make(language, project)
-        project_tree.scan_translation_project_files(translation_project)
-        return translation_project
-    except OSError:
-        return None
-    except IndexError:
-        return None
+        except OSError:
+            return None
+        except IndexError:
+            return None
 
 def scan_translation_projects():
     for language in Language.objects.all():

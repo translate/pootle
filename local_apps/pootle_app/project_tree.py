@@ -146,6 +146,24 @@ def add_files(ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True)
 def get_translation_project_root(translation_project):
     return Directory.objects.root.get_or_make_subdir(translation_project.project.code).get_subdir(translation_project.language.code)
 
+def translation_project_should_exist(language, project):
+    """tests if there are translation files corresponding to given
+    language and project"""
+    if project.get_treestyle() == "gnu":
+        # find files with the language name in the project dir
+        for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
+            for filename in filenames:
+                if project.file_belongs_to_project(filename, match_templates=False) and \
+                       os.path.os.path.splitext(filename)[0] == language.code:
+                    return True
+    else:
+        # find directory with the language name in the project dir
+        dirpath, dirnames, filename = os.walk(project.get_real_path()).next()
+        if language.code in dirnames:
+            return True
+
+    return False
+
 def scan_translation_project_files(translation_project):
     """returns a list of po files for the project and language"""
     project       = translation_project.project
