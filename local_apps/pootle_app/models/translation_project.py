@@ -96,24 +96,10 @@ class TranslationProject(models.Model):
     def __unicode__(self):
         return self.directory.pootle_path
 
-    @classmethod
-    def get_language_and_project_indices(cls):
-      def add_to_list(dct, key, value):
-        if key not in dct:
-          dct[key] = []
-        dct[key].append(value)
-
-      language_index = {}
-      project_index = {}
-      for translation_project in TranslationProject.objects.select_related(depth=1).all():
-        add_to_list(language_index, translation_project.language.code, translation_project)
-        add_to_list(project_index,  translation_project.project.code,  translation_project)
-      return language_index, project_index
-
     def _get_pootle_path(self):
         return self.directory.pootle_path
     pootle_path = property(_get_pootle_path)
-
+    
     def _get_abs_real_path(self):
         return absolute_real_path(self.real_path)
 
