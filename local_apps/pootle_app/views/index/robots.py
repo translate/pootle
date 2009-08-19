@@ -24,10 +24,7 @@ from pootle_app.models import Language
 def view(request):
     """generates the robots.txt file"""
     langcodes = [language.code for language in Language.objects.all()]
-    excludedfiles = ["login.html", "register.html", "activate.html"]
     content = "User-agent: *\n"
-    for excludedfile in excludedfiles:
-        content += "Disallow: /%s\n" % excludedfile
-    for langcode in langcodes:
+    for langcode in langcodes + ["accounts"]:
         content += "Disallow: /%s/\n" % langcode
     return HttpResponse(content, mimetype="text/plain")
