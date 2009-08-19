@@ -1,1 +1,25 @@
-TODO: Add installation instructions and details.
+INSTALLATION
+
+1. ./manage.py syncdb
+
+   At this step, you will be asked to create a superuser.
+   This user will be the administrator for your Pootle
+   installation.
+
+2. ./manage.py initdb
+
+   This step fills the database with initial data needed
+   to run Pootle.
+
+3. ./manage.py runserver
+
+   You can now visit your Pootle installation at 
+   http://localhost:8000. Note that the first time will
+   take a few moments to load, since Pootle needs to pre-compute
+   stats data for the translation files.
+
+COMMON PROBLEMS
+
+If you get an error such as sqlite3.OperationalError: unable to open database file, then DATABASE_NAME in pootle/settings.py is pointing at an invalid directory. The default directory name is 'dbs' - ensure that this exists.
+
+
