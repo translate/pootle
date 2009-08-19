@@ -892,10 +892,11 @@ div.advancedsearch
     padding-bottom: 3px;
     padding-left: 3px;
     padding-right: 8px;
-    position: relative;
+    position: absolute;
     z-index: 2;
     display: none;
     margin-top: 0;
+    width: 155px;
 }
 
 div.advancedsearch[dir="rtl"]
