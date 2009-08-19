@@ -84,7 +84,7 @@ def transproj_notices(request, language_code, project_code):
 
     can_add = False
     can_view = False
-    transproj = TranslationProject.objects.get(real_path = project_code + "/" + language_code)
+    transproj = TranslationProject.objects.get(language__code=language_code, project__code=project_code)
     if 'view' in get_matching_permissions(get_profile(request.user), transproj.directory):
         can_view = True
     if request.user.is_authenticated() and 'administrate' in get_matching_permissions(get_profile(request.user), transproj.directory):

@@ -50,6 +50,5 @@ class TransProjectNoticeForm(ModelForm):
         model = Notices
 
     def set_initial_value(self, language_code, project_code):
-        real_path = project_code + "/" + language_code;
-        transproj = TranslationProject.objects.get(real_path = real_path)
+        transproj = TranslationProject.objects.get(language__code=language_code, project__code=project_code)
         self.fields['object_id'].initial = transproj.id
