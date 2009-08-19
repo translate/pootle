@@ -1,13 +1,29 @@
 #!/bin/sh
-xgettext \
---add-comments=l10n \
---package-name=Pootle \
---package-version=`egrep "^ver" ../pootle_app/__version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g"` \
---language=Python \
---keyword=localize \
---keyword=nlocalize:1,2 \
---default-domain=pootle \
---msgid-bugs-address=translate-pootle@lists.sourceforge.net \
---copyright-holder="Zuza Software Foundation (Translate.org.za)" \
--o ../po/pootle/templates/pootle.pot \
-`find ../  -name "*.py" | sort`
+
+# FIXME keeping the old xgettext instance as it contains some useful setting/config info
+# that isn't in the new Djangofied POT builder
+#
+#basedir=..
+#
+#xgettext \
+#--add-comments=l10n \
+#--package-name=Pootle \
+#--package-version=`egrep "^ver" ../pootle_app/__version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g"` \
+#--language=Python \
+#--keyword=localize \
+#--keyword=nlocalize:1,2 \
+#--default-domain=pootle \
+#--msgid-bugs-address=translate-pootle@lists.sourceforge.net \
+#--copyright-holder="Zuza Software Foundation (Translate.org.za)" \
+#-o $basedir/po/pootle/templates/pootle.pot \
+#`find ../  -name "*.py" | sort`
+
+basedir=../..
+verbosity=0
+
+cd $basedir
+verbosity="-v $verbosity"
+mkdir locale
+./manage.py makemessages --settings=pootle/settings.py $verbosity -e ".html" -e ".py" -l pot
+mv locale/pot/LC_MESSAGES/django.po po/pootle/templates/pootle.pot
+rm -rf locale
