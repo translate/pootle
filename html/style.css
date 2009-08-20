@@ -850,6 +850,7 @@ div#search
 {
     float: right;
     padding: 3px;
+    position: relative;
 }
 
 div#search[dir="rtl"]
@@ -899,9 +900,8 @@ div.advancedsearch
     width: 155px;
 }
 
-div.advancedsearch[dir="rtl"]
+#search[dir="rtl"] div.advancedsearch
 {
-    position: relative;
     padding-left: 8px;
     padding-right: 3px;
 }
@@ -916,6 +916,18 @@ label.inputHint
     display: none;
 }
 
+.togglesearch
+{
+    cursor: pointer;
+    vertical-align: text-top;
+}
+
+/* Fix for Opera + RTL */
+div#search[dir="rtl"] .togglesearch
+{
+    margin-left: -5px;
+}
+
 /* FILENAMES, STATS */
 
 .icon
@@ -928,12 +940,6 @@ label.inputHint
 {
 	float: right;
 	margin-left: 8px;
-}
-
-.togglesearch
-{
-    cursor: pointer;
-    vertical-align: text-top;
 }
 
 .translations-nav
