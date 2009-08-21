@@ -38,7 +38,22 @@ def language_match_filename(language_code, path_name):
  
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
-    return language_code == name or language_code == 'templates'
+    return language_code == name
+
+def match_template_filename(project, path_name):
+    """test if path_name might point at a template file for given
+    project"""
+    name, ext = os.path.splitext(os.path.basename(path_name))
+    #FIXME: is the test for matching extension redundant?
+    if ext == os.path.extsep + project.get_template_filtetype():
+        if ext != os.path.extsep + project.localfiletype:
+            # template extension is distinct, surely file is a template
+            return True
+        elif not langdata.langcode_re.match(name):
+            # file name can't possibly match any language, assume it is a template
+            return True
+    return False
+    
 
 def get_matching_language_dirs(project_dir, language_dir, language):
     return [lang_dir for lang_dir in os.listdir(project_dir)
@@ -195,8 +210,12 @@ def scan_translation_project_files(translation_project):
         ext = os.extsep + project.get_template_filtetype()
         
     if translation_project.file_style == 'gnu':
-        add_files(ignored_files, ext, real_path, directory,
-                  lambda filename: direct_language_match_filename(translation_project.language.code, filename))
+        if translation_project.is_template_project:
+            add_files(ignored_files, ext, real_path, directory,
+                      lambda filename: match_template_filename(project, filename))
+        else:
+            add_files(ignored_files, ext, real_path, directory,
+                      lambda filename: direct_language_match_filename(translation_project.language.code, filename))
     else:
         add_files(ignored_files, ext, real_path, directory)
 
