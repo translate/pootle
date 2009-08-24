@@ -56,6 +56,7 @@ can edit a variety of files (including PO and XLIFF files)."""
 
 INSTALL_CONFIG_DIR = '../etc/pootle'
 INSTALL_DATA_DIR = 'share/pootle'
+INSTALL_DOC_DIR = 'share/doc/pootle'
 INSTALL_WORKING_DIR = '../var/lib/pootle'
 
 ###############################################################################
@@ -65,7 +66,7 @@ INSTALL_WORKING_DIR = '../var/lib/pootle'
 def collect_options():
     data_files = [
         (INSTALL_CONFIG_DIR, ['pootle/localsettings.py']),
-        (INSTALL_DATA_DIR, ['wsgi.py', 'ChangeLog', 'COPYING', 'README', 'INSTALL'])
+        (INSTALL_DOC_DIR, ['wsgi.py', 'ChangeLog', 'COPYING', 'README', 'INSTALL'])
     ] + list_tree(INSTALL_DATA_DIR, 'templates') + list_tree(INSTALL_DATA_DIR, 'html') + \
         list_tree(INSTALL_WORKING_DIR, 'po') + list_tree(INSTALL_WORKING_DIR, 'dbs')
 
