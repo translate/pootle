@@ -54,7 +54,7 @@ pootle_description_long="""Pootle is used to create program translations.
 It uses the Translate Toolkit to get access to translation files and therefore
 can edit a variety of files (including PO and XLIFF files)."""
 
-INSTALL_CONFIG_DIR = '../etc'
+INSTALL_CONFIG_DIR = '../etc/pootle'
 INSTALL_DATA_DIR = 'share/pootle'
 INSTALL_WORKING_DIR = '../var/lib/pootle'
 
