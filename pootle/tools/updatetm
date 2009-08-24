@@ -20,7 +20,7 @@
 
 """Script to create the tm files for use in Pootle"""
 
-from Pootle.pootle.tools import updatetm
+from pootle.tools import updatetm
 
 if __name__ == '__main__':
   updatetm.main()
