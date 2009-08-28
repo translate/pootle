@@ -28,7 +28,12 @@ import logging
 import os
 from ConfigParser import ConfigParser
 
-import syspath_override
+# syspath_override is not needed and does not exist when Pootle is installed
+# from a distribution package or via "setup.py install"
+try:
+    import syspath_override
+except ImportError:
+    pass
 
 CONFIG_DIR  = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 DATA_DIR    = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))

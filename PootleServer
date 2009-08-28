@@ -20,7 +20,13 @@
 
 """This is just a simple script that runs the pootle main program"""
 
-import syspath_override
+# syspath_override is not needed and does not exist when Pootle is installed
+# from a distribution package or via "setup.py install"
+try:
+    import syspath_override
+except ImportError:
+    pass
+
 from pootle import pootle
 
 pootle.main()
