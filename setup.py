@@ -23,6 +23,7 @@ import os
 import os.path as path
 import sys
 import re
+from distutils import util
 from distutils.command.install import install as DistutilsInstall
 from distutils.dist import Distribution as DistutilsDistribution
 from distutils.core import setup
@@ -150,6 +151,19 @@ class PootleInstall(DistutilsInstall):
         if not path.isfile(settingspy_path):
             raise Exception('settings.py file should exist, but does not. o_O (%s)' % (settingspy_path))
 
+        conf_dir = path.abspath(path.join(self.install_data, INSTALL_CONFIG_DIR))
+        data_dir = path.abspath(path.join(self.install_data, INSTALL_DATA_DIR))
+        work_dir = path.abspath(path.join(self.install_data, INSTALL_WORKING_DIR))
+
+        if self.root:
+            # We use distutils.util.change_root, because INSTALL_CONFIG_DIR
+            # and INSTALL_WORKING_DIR are absolute paths and stays that way when
+            # used with os.path.join() as above. This also means that data_dir
+            # should be changed here if the value # of INSTALL_DATA_DIR becomes
+            # an absolute path.
+            conf_dir = util.change_root(self.root, INSTALL_CONFIG_DIR)
+            work_dir = util.change_root(self.root, INSTALL_WORKING_DIR)
+
         # Replace directory variables in settings.py to reflect the current installation
         lines = open(settingspy_path).readlines()
         config_re = re.compile(r'^CONFIG_DIR\s*=')
@@ -158,11 +172,11 @@ class PootleInstall(DistutilsInstall):
 
         for i in range(len(lines)):
             if config_re.match(lines[i]):
-                lines[i] = "CONFIG_DIR = '%s'\n" % (path.abspath(path.join(self.install_data, INSTALL_CONFIG_DIR)))
+                lines[i] = "CONFIG_DIR = '%s'\n" % (conf_dir)
             elif datadir_re.match(lines[i]):
-                lines[i] = "DATA_DIR = '%s'\n" % (path.abspath(path.join(self.install_data, INSTALL_DATA_DIR)))
+                lines[i] = "DATA_DIR = '%s'\n" % (data_dir)
             elif workdir_re.match(lines[i]):
-                lines[i] = "WORKING_DIR = '%s'\n" % (path.abspath(path.join(self.install_data, INSTALL_WORKING_DIR)))
+                lines[i] = "WORKING_DIR = '%s'\n" % (work_dir)
         open(settingspy_path, 'w').write(''.join(lines))
 
 
