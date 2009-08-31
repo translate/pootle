@@ -74,7 +74,11 @@ def collect_options():
 
     packages = ['pootle'] + ['pootle.' + pkg for pkg in find_packages('pootle')] + \
             find_packages('local_apps') + find_packages('external_apps')
-    package_data = {'': ['*.html', '*.txt', '*.xml', '*.css', '*.js']}
+    package_data = {
+        '':           ['*.html', '*.txt', '*.xml', '*.css', '*.js'],
+        'pootle_app': expand_tree_globs('local_apps/pootle_app', ['templates'], ['*.html']),
+        'djblets':    expand_tree_globs('external_apps/djblets', ['siteconfig', 'util'], ['*.html']),
+    }
     package_dir = {
         'pootle_app':   'local_apps/pootle_app',
         'pootle_store': 'local_apps/pootle_store',
@@ -93,6 +97,24 @@ def collect_options():
         'scripts':      scripts,
     }
     return options
+
+def expand_tree_globs(root, subdirs, globs):
+    if root.endswith('/'):
+        root = root[:-1]
+
+    dirglobs = []
+    for subdir in subdirs:
+        for g in globs:
+            if glob.glob(path.join(root, subdir, g)):
+                dirglobs.append(path.join(subdir, g))
+
+        for dirpath, dirs, files in os.walk(path.join(root, subdir)):
+            curdir = dirpath[len(root)+1:]
+            for d in dirs:
+                for g in globs:
+                    if glob.glob(path.join(root, curdir, d, g)):
+                        dirglobs.append(path.join(curdir, d, g))
+    return dirglobs
 
 # The function below was shamelessly copied from setuptools
 def find_packages(where='.', exclude=()):
