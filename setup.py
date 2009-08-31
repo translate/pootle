@@ -67,9 +67,10 @@ INSTALL_WORKING_DIR = '/var/lib/pootle'
 def collect_options():
     data_files = [
         (INSTALL_CONFIG_DIR, ['pootle/localsettings.py']),
-        (INSTALL_DOC_DIR, ['wsgi.py', 'ChangeLog', 'COPYING', 'README', 'INSTALL'])
+        (INSTALL_DOC_DIR, ['wsgi.py', 'ChangeLog', 'COPYING', 'README', 'INSTALL']),
+        (INSTALL_WORKING_DIR + '/dbs', []) # Create the empty "dbs" dir
     ] + list_tree(INSTALL_DATA_DIR, 'templates') + list_tree(INSTALL_DATA_DIR, 'html') + \
-        list_tree(INSTALL_WORKING_DIR, 'po') + list_tree(INSTALL_WORKING_DIR, 'dbs')
+        list_tree(INSTALL_WORKING_DIR, 'po')
 
     packages = ['pootle'] + ['pootle.' + pkg for pkg in find_packages('pootle')] + \
             find_packages('local_apps') + find_packages('external_apps')
