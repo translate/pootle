@@ -21,9 +21,18 @@ STATS_DB_PATH = working_path(os.path.join('dbs', 'stats.db')) # None means the d
 
 PODIRECTORY = working_path('po')
 
+# Cache Backend settings
+#
+# By default we use django's in memory cache which is only suitable
+# for small deployments. memcached is prefered. for more info check
+# http://docs.djangoproject.com/en/1.0/topics/cache/
+CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
+
 # Uncomment to use memcached for caching
 # CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 
+# set this to False, DEBUG mode is only needed when testing beta's or
+# hacking pootle
 DEBUG = True
 
 

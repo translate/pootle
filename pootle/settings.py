@@ -162,5 +162,3 @@ else:
             format =  '%(asctime)s %(levelname)s %(message)s',
             )
 
-CONFIG_LOCATIONS = ['/etc/pootle/pootle.ini', config_path('pootle.ini')]
-
