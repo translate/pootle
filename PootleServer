@@ -27,7 +27,7 @@ try:
 except ImportError:
     pass
 
-from pootle import pootle
+from pootle import PootleServer
 
-pootle.main()
+PootleServer.main()
 
