@@ -19,9 +19,16 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-import syspath_override
 
 import os
+
+# this part is only required when running from checkout instead of an install
+import sys
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(0, ROOT_DIR) # Top level directory
+import syspath_override
+# comment the above lines if running from install
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 import django.core.handlers.wsgi
