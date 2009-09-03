@@ -30,6 +30,7 @@ from ConfigParser import ConfigParser
 
 # syspath_override is not needed and does not exist when Pootle is installed
 # from a distribution package or via "setup.py install"
+from pootle.install_dirs import *
 try:
     import syspath_override
 except ImportError:

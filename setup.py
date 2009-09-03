@@ -164,15 +164,15 @@ def list_tree(target_base, root):
 class PootleInstall(DistutilsInstall):
     def run(self):
         DistutilsInstall.run(self)
-        self.update_settingspy()
+        self.update_install_dirs_py()
 
-    def update_settingspy(self):
-        # Get the right target location of localsettings.py, depending on
+    def update_install_dirs_py(self):
+        # Get the right target location of install_dirs.py, depending on
         # whether --root or --prefix was specified
-        settingspy_path = path.abspath(path.join(self.install_lib, 'pootle', 'settings.py'))
+        install_dirs_py_path = path.abspath(path.join(self.install_lib, 'pootle', 'install_dirs.py'))
 
-        if not path.isfile(settingspy_path):
-            raise Exception('settings.py file should exist, but does not. o_O (%s)' % (settingspy_path))
+        if not path.isfile(install_dirs_py_path):
+            raise Exception('install_dirs.py file should exist, but does not. o_O (%s)' % (install_dirs_py_path))
 
         conf_dir = path.abspath(path.join(self.install_data, INSTALL_CONFIG_DIR))
         data_dir = path.abspath(path.join(self.install_data, INSTALL_DATA_DIR))
@@ -188,7 +188,7 @@ class PootleInstall(DistutilsInstall):
             work_dir = util.change_root(self.root, INSTALL_WORKING_DIR)
 
         # Replace directory variables in settings.py to reflect the current installation
-        lines = open(settingspy_path).readlines()
+        lines = open(install_dirs_py_path).readlines()
         config_re = re.compile(r'^CONFIG_DIR\s*=')
         datadir_re = re.compile(r'^DATA_DIR\s*=')
         workdir_re = re.compile(r'^WORKING_DIR\s*=')
@@ -200,7 +200,7 @@ class PootleInstall(DistutilsInstall):
                 lines[i] = "DATA_DIR = '%s'\n" % (data_dir)
             elif workdir_re.match(lines[i]):
                 lines[i] = "WORKING_DIR = '%s'\n" % (work_dir)
-        open(settingspy_path, 'w').write(''.join(lines))
+        open(install_dirs_py_path, 'w').write(''.join(lines))
 
 
 ###############################################################################
