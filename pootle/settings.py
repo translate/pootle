@@ -26,32 +26,9 @@ configuration override outside of the code."""
 
 import logging
 import os
-from ConfigParser import ConfigParser
 
-# syspath_override is not needed and does not exist when Pootle is installed
-# from a distribution package or via "setup.py install"
 from pootle.install_dirs import *
-try:
-    import syspath_override
-except ImportError:
-    pass
 
-CONFIG_DIR  = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-DATA_DIR    = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-SOURCE_DIR  = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-WORKING_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-
-def config_path(filename):
-    return os.path.join(CONFIG_DIR, filename)
-def data_path(filename):
-    return os.path.join(DATA_DIR, filename)
-def source_path(filename):
-    return os.path.join(SOURCE_DIR, filename)
-def working_path(filename):
-    return os.path.join(WORKING_DIR, filename)
-
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 INTERNAL_IPS = ('127.0.0.1',)
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -59,32 +36,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-
 TITLE = "Pootle Demo"
 DESCRIPTION = """<div dir="ltr" lang="en">This is a demo installation of Pootle.<br /> You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</div>"""
-
-#Example for google as an external smtp server
-#DEFAULT_FROM_EMAIL = 'DEFAULT_USER@YOUR_DOMAIN.com'
-#EMAIL_HOST_USER = 'USER@YOUR_DOMAIN.com'
-#EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD'
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
-
-REGISTRATION_FROM_ADDRESS = 'pootle-registration@localhost'
-REGISTRATION_SMTP_SERVER = 'localhost'
-SUPPORT_ADDRESS = 'pootle-admin@yourdomain.org'
-HOMEPAGE = 'home/'
-
-DATABASE_ENGINE = 'sqlite3'                 # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = working_path(os.path.join('dbs', 'pootle.db')) # Or path to database file if using sqlite3.
-DATABASE_USER = ''                          # Not used with sqlite3.
-DATABASE_PASSWORD = ''                      # Not used with sqlite3.
-DATABASE_HOST = ''                          # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''                          # Set to empty string for default. Not used with sqlite3.
-
-
-STATS_DB_PATH = working_path(os.path.join('dbs', 'stats.db')) # None means the default path
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -128,7 +81,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    # Uncomment to use memcached for caching
+    # Uncomment to use pagecahing
     #'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
     'pootle_misc.middleware.baseurl.BaseUrlMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,23 +91,22 @@ MIDDLEWARE_CLASSES = (
     'pootle.middleware.check_cookies.CheckCookieMiddleware',
     'pootle.middleware.locale.LocaleMiddleware',
     'pootle.middleware.profile.ProfilerMiddleware',
-    # Uncomment to use memcached for caching
+    # Uncomment to use pagecaching
     #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
 )
 
 ROOT_URLCONF = 'pootle.urls'
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.auth",
-                               "django.core.context_processors.debug",
                                "django.core.context_processors.i18n",
                                "django.core.context_processors.media",
                                "pootle_misc.context_processors.sitesettings")
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     data_path('templates'),
-    source_path('local_apps/pootle_app/templates')
 )
 
 INSTALLED_APPS = (
@@ -175,44 +127,28 @@ INSTALLED_APPS = (
 
 AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
 
-PODIRECTORY = working_path('po')
-
-# Use the commented definition to authenticate first with Mozilla's LDAP system and then to fall back
-# to Django's authentication system.
-#AUTHENTICATION_BACKENDS = ('pootle.auth.ldap_backend.LdapBackend', 'django.contrib.auth.backends.ModelBackend',)
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
-
-# LDAP Setup
-# The LDAP server.  Format:  protocol://hostname:port
-AUTH_LDAP_SERVER = ''
-# Anonymous Credentials
-AUTH_LDAP_ANON_DN = ''
-AUTH_LDAP_ANON_PASS = ''
-# Base DN to search
-AUTH_LDAP_BASE_DN = ''
-# What are we filtering on?  %s will be the username (must be in the string)
-AUTH_LDAP_FILTER = ''
-# This is a mapping of pootle field names to LDAP fields.  The key is pootle's name, the value should be your LDAP field name.  If you don't use the field
-# or don't want to automatically retrieve these fields from LDAP comment them out.  The only required field is 'dn'.
-AUTH_LDAP_FIELDS = {
-        'dn':'dn',
-        #'first_name':'',
-        #'last_name':'',
-        #'email':''
-        }
-
-LANGUAGE_NAME_COOKIE = 'pootlelang'
-
 ENABLE_ALT_SRC = True
 
 CAN_REGISTER = True
 
-STORE_LRU_CACHE_SIZE = 10
-
+# django-registration configs
 ACCOUNT_ACTIVATION_DAYS = 10
 
-# Uncomment to use memcached for caching
-# CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+execfile(config_path("localsettings.py"))
+
+# setup a tempdir inside the PODIRECTORY heirarchy, this way we have
+# reasonable guarantee that temp files will be created on the same
+# filesystem as translation files (required for save operations).
+
+import tempfile
+tempfile.tempdir = os.path.join(PODIRECTORY, ".tmp")
+# ensure that temp dir exists
+if not os.path.exists(tempfile.tempdir):
+    os.mkdir(tempfile.tempdir)
+
+TEMPLATE_DEBUG = DEBUG
+if TEMPLATE_DEBUG:
+    TEMPLATE_CONTEXT_PROCESSORS += ("django.core.context_processors.debug",)
 
 if DEBUG:
     logging.basicConfig(
@@ -228,42 +164,3 @@ else:
 
 CONFIG_LOCATIONS = ['/etc/pootle/pootle.ini', config_path('pootle.ini')]
 
-def find_config():
-    # For each candidate location in CONFIG_LOCATIONS...
-    for config_path in CONFIG_LOCATIONS:
-        # If the location exists and is a file...
-        if os.path.exists(config_path) and os.path.isfile(config_path):
-            # Then we create a config parser
-            config = ConfigParser()
-            # Read the data at the location
-            config.read(config_path)
-            # And return the config
-            return config
-    # No valid config files were found. Bummer...
-    return None
-
-config = find_config()
-if config is not None:
-    vars = globals()
-    """Walk through the sections in the config file and for each
-    section, find the options. For each option, add a similarly
-    named variable to the globals of this file.
-
-    In other words, we don't use the sections to distinguish
-    variables. But the sections in the Pootle .ini file help humans to
-    understand the intention of various options."""
-    for section in config.sections():
-        for option in config.options(section):
-            # Remember to uppercase the option name, since
-            # ConfigParser conveniently lowercases our option names.
-            vars[option.upper()] = config.get(section, option)
-
-# setup a tempdir inside the PODIRECTORY heirarchy, this way we have
-# reasonable guarantee that temp files will be created on the same
-# filesystem as translation files (required for save operations).
-
-import tempfile
-tempfile.tempdir = os.path.join(PODIRECTORY, ".tmp")
-# ensure that temp dir exists
-if not os.path.exists(tempfile.tempdir):
-    os.mkdir(tempfile.tempdir)
