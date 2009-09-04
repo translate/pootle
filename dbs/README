@@ -1,0 +1,4 @@
+This directory (dbs) contains two files:
+* pootle.db - The default SQLite database containing information about users,
+              languages, projects, etc. used by the Pootle server.
+* stats.db  - Contains statistics about the PO files used by Pootle.
