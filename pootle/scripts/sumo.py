@@ -9,24 +9,23 @@ import sys
 import os
 import os.path
 import subprocess
+from django.conf import settings
 from translate.convert import tiki2po, po2tiki
-
-def _getfiles(file):
-  mainfile = os.path.join(os.path.split(file)[0], "messages.po")
-  combinedfile = os.path.join(os.path.split(file)[0], "messages-combined.po")
-  sourcefile = os.path.join(os.path.split(os.path.split(os.path.split(file)[0])[0])[0], "en_US", "LC_MESSAGES", "messages.po")
-  return (combinedfile, mainfile, sourcefile)
 
 def initialize(projectdir, languagecode):
   """The first paramater is the path to the project directory.  It's up to this
   script to know any internal structure of the directory"""
 
+  # Temporary code - projectdirs come from pootle with sumo/ab_CD form; we need just the former part
+  # extract project root from projectdir
+  projectroot = os.path.join(settings.PODIRECTORY, os.path.split(projectdir)[0])
+
   # Temporary code.  Language codes come from pootle with underscores right now; they need to be dashes.
   languagecode = languagecode.replace("_","-")
 
   # Find the files we're working with
-  tikifile = os.path.join(projectdir, languagecode, 'language.php')
-  pofile   = os.path.join(projectdir, languagecode, 'language.po')
+  tikifile = os.path.join(projectroot, languagecode, 'language.php')
+  pofile   = os.path.join(projectroot, languagecode, 'language.po')
 
   # Build our combined file
   print "Initializing %s to %s" % (tikifile, pofile)
