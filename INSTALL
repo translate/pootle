@@ -1,4 +1,50 @@
-INSTALLATION
+Installation
+------------
+Pootle works perfectly directly from the source files without installation.
+
+Extract Pootle's source code, then change directory to inside the
+Pootle dir
+
+        tar xvf Pootle-......tar.gz
+        cd Pootle-.......
+
+If you want to install Pootle into your system, run
+
+        python setup.py install
+
+For installation under apache, see this page:
+        http://translate.sourceforge.net/wiki/pootle/apache
+and check the notes below about manually preparing your database.
+
+
+Running
+-------
+To run Pootle from sources, just run
+
+        ./PootleServer
+
+After installation with setup.py, PootleServer should also be accessible from
+the installation.
+
+If you are more familiar with Django projects, you can look into the manage.py
+commands as well.
+
+Use --help to see the other options. The defaults will generally work.
+
+Now visit http://localhost:8000/ and begin translating.
+
+To stop the server, press Ctrl-C.
+
+It is not recommended to run Pootle as the root user.
+
+Pootle can run under Apache using mod_python or mod_wsgi, but this requires
+modifications to Apache's config files. Check
+        http://translate.sourceforge.net/wiki/pootle/apache
+for detailed instructions
+
+
+Manual preparation
+------------------
 
 1. ./manage.py syncdb
 
@@ -11,14 +57,21 @@ INSTALLATION
    This step fills the database with initial data needed
    to run Pootle.
 
-3. ./manage.py runserver
+3. ./manage.py refresh_stats
+   Precalculate statisstics and indexes for existing translation projects.
+   This step is not strictly required, but without it Pootle will feel a bit
+   sluggish and slow when visiting accessing a page for the first time.
+
+4. ./manage.py runserver
 
    You can now visit your Pootle installation at 
    http://localhost:8000. Note that the first time will
    take a few moments to load, since Pootle needs to pre-compute
    stats data for the translation files.
 
-COMMON PROBLEMS
+
+Common problems
+---------------
 
 If you get an error such as sqlite3.OperationalError: unable to open database file, then DATABASE_NAME in pootle/settings.py is pointing at an invalid directory. The default directory name is 'dbs' - ensure that this exists.
 

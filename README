@@ -3,9 +3,9 @@ Pootle: a web translation and translation management engine
 
 * How it works
 * References
-* Requirement/Installation
-* Running
-* Bug reporting
+* Requirement
+* Installing and running
+* Bug reporting/Feature requests
 * Notes
 * Assignments
 
@@ -62,50 +62,9 @@ to speed up searching. Note that Xapian is incompatible with Apache, and
 Pootle will not enable Xapian indexing if running under mod_python or mod_wsgi.
 
 
-Installation
-------------
-Pootle works perfectly directly from the source files without installation.
-
-Extract Pootle's source code, then change directory to inside the
-Pootle dir
-
-        tar xvf Pootle-......tar.gz
-        cd Pootle-.......
-
-If you want to install Pootle into your system, run
-
-        python setup.py install
-
-If you want to run Pootle under apache or want to initialise the database without running the server, run
-
-        ./manage.py syncdb
-        ./manage.py initdb
-
-
-Running
--------
-To run Pootle from sources, just run
-
-        ./PootleServer
-
-After installation, PootleServer should also be accessible from the
-installation.
-
-If you are more familiar with Django projects, you can look into the manage.py
-commands as well.
-
-Use --help to see the other options. The defaults will generally work.
-
-Now visit http://localhost:8000/ and begin translating.
-
-To stop the server, press Ctrl-C.
-
-It is not recommended to run Pootle as the root user.
-
-Pootle can run under Apache using mod_python or mod_wsgi, but this requires
-modifications to Apache's config files. Check
-        http://translate.sourceforge.net/wiki/pootle/apache
-for detailed instructions
+Installing and running
+----------------------
+Check the INSTALL file.
 
 
 Bug Reporting/Feature requests
