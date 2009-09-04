@@ -17,7 +17,7 @@ DATABASE_PASSWORD = ''                      # Not used with sqlite3.
 DATABASE_HOST = ''                          # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''                          # Set to empty string for default. Not used with sqlite3.
 
-STATS_DB_PATH = working_path(os.path.join('dbs', 'stats.db')) # None means the default path
+STATS_DB_PATH = working_path('dbs/stats.db') # None means the default path
 
 PODIRECTORY = working_path('po')
 
