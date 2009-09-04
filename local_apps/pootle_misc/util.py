@@ -19,15 +19,16 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.cache import cache
+from django.conf import settings
 import logging
 
-def getfromcache(function):
+def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(self, *args, **kwargs):
         key = self.pootle_path + ":" + function.__name__
         result = cache.get(key)
         if result is None:
             logging.debug("cache miss for %s", key)
             result = function(self, *args, **kwargs)
-            cache.set(key, result)
+            cache.set(key, result, timeout)
         return result
     return _getfromcache

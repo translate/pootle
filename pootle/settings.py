@@ -134,6 +134,9 @@ CAN_REGISTER = True
 # django-registration configs
 ACCOUNT_ACTIVATION_DAYS = 10
 
+# keep stats cache for roughly a month
+OBJECT_CACHE_TIMEOUT = 2500000
+
 execfile(config_path("localsettings.py"))
 
 # setup a tempdir inside the PODIRECTORY heirarchy, this way we have
