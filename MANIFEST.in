@@ -1,3 +1,7 @@
 graft dbs/*
+graft html/*
+graft local_apps/pootle_app/templates/*
 graft po/*
-include syspath_override.py
+graft templates/*
+include COPYING CREDITS ChangeLog INSTALL
+include *.py
