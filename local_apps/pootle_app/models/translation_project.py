@@ -93,14 +93,11 @@ class TranslationProject(models.Model):
     project    = models.ForeignKey(Project,  db_index=True)
     real_path  = models.FilePathField()
     directory  = models.ForeignKey(Directory)
+    pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True)
 
     def __unicode__(self):
-        return self.directory.pootle_path
+        return self.pootle_path
 
-    def _get_pootle_path(self):
-        return self.directory.pootle_path
-    pootle_path = property(_get_pootle_path)
-    
     def _get_abs_real_path(self):
         return absolute_real_path(self.real_path)
 
@@ -206,7 +203,7 @@ class TranslationProject(models.Model):
         """updates project translation files from version control,
         retaining uncommitted translations"""
 
-        stores = Store.objects.filter(pootle_path__startswith=self.directory.pootle_path)
+        stores = Store.objects.filter(pootle_path__startswith=self.pootle_path)
 
         for store in stores:
             try:
@@ -455,7 +452,7 @@ class TranslationProject(models.Model):
 
     def init_index(self, indexer):
         """initializes the search index"""
-        for store in Store.objects.filter(pootle_path__startswith=self.directory.pootle_path):
+        for store in Store.objects.filter(pootle_path__startswith=self.pootle_path):
             self.update_index(indexer, store, optimize=False)
 
 
@@ -853,7 +850,7 @@ class TranslationProject(models.Model):
     is_terminology_project = property(lambda self: self.project.code == "terminology")
     is_template_project = property(lambda self: self.language.code == 'templates')
 
-    stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.directory.pootle_path))
+    stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.pootle_path))
 
     def gettmsuggestions(self, pofile, item):
         """find all the TM suggestions for the given (pofile or pofilename) and item"""
@@ -989,6 +986,7 @@ def set_data(sender, instance, **kwargs):
     instance.directory = Directory.objects.root\
         .get_or_make_subdir(instance.language.code)\
         .get_or_make_subdir(instance.project.code)
+    instance.pootle_path = instance.directory.pootle_path
 
 pre_save.connect(set_data, sender=TranslationProject)
 
