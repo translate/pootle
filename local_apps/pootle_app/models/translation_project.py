@@ -76,13 +76,7 @@ def scan_translation_projects():
         for project in Project.objects.all():
             create_translation_project(language, project)
 
-class TranslationProjectManager(models.Manager):
-    def get_query_set(self, *args, **kwargs):
-        return super(TranslationProjectManager, self).get_query_set(*args, **kwargs).select_related(depth=1)
-
 class TranslationProject(models.Model):
-    objects = TranslationProjectManager()
-
     index_directory  = ".translation_index"
 
     class Meta:
@@ -174,22 +168,6 @@ class TranslationProject(models.Model):
 
     has_index = property(_has_index)
 
-    def _get_profiles_with_interest(self):
-        """returns all the users who registered for this language and
-        project"""
-        return PootleProfile.objects.filter(languages=self.language_id)
-
-    profiles_with_interest = property(_get_profiles_with_interest)
-
-    def _get_all_permission_sets(self):
-        """gets all users that have rights defined for this project"""
-        # Find all the Right objects which are associated with this translation project
-        # select_related('profile__user') is an optimization to tell Django to select
-        # the profile and their associated user objects along with our query (i.e. it
-        # does a SQL join behind the scenes).
-        return PermissionSet.objects.select_related('profile__user').filter(translation_project=self)
-
-    all_permission_sets = property(_get_all_permission_sets)
 
     def _get_goals(self):
         return Goal.objects.filter(translation_project=self)
@@ -232,22 +210,9 @@ class TranslationProject(models.Model):
 
         project_tree.scan_translation_project_files(self)
 
-    def runprojectscript(self, scriptdir, target, extraargs = []):
-        currdir = os.getcwd()
-        script = os.path.join(scriptdir, self.project.code)
-        try:
-            os.chdir(scriptdir)
-            cmd = [script, target]
-            cmd.extend(extraargs)
-            subprocess.call(cmd)
-        except:
-            # We should not hide the exception, at least log it.
-            pass # If something goes wrong, we just continue without worrying
-        os.chdir(currdir)
-
     def updatepofile(self, request, store):
-        """updates file from version control,
-        retaining uncommitted translations"""
+        """updates file from version control, retaining uncommitted
+        translations"""
         if not check_permission("commit", request):
             raise PermissionError(_("You do not have rights to update from version control here"))
 
@@ -331,14 +296,8 @@ class TranslationProject(models.Model):
     def initialize(self):
         try:
             hooks.hook(self.project.code, "initialize", self.real_path, self.language.code)
-            self.non_db_state.scanpofiles()
         except Exception, e:
             logging.error("Failed to initialize (%s): %s", self.language.code, e)
-
-    def filtererrorhandler(self, functionname, str1, str2, e):
-        logging.error("error in filter %s: %r, %r, %s", functionname, str1, str2, e)
-        return False
-
 
     ##############################################################################################
 
@@ -388,52 +347,6 @@ class TranslationProject(models.Model):
         return file(os.path.join(self.abs_real_path, self.languagecode + ".sdf"), "r").read()
 
     ##############################################################################################
-
-    def browsefiles(self, dirfilter=None, depth=None, maxdepth=None, includedirs=False, includefiles=True):
-        """gets a list of pofilenames, optionally filtering with the parent directory"""
-        if dirfilter is None:
-            pofilenames = self.non_db_state.pofilenames
-        else:
-            if not dirfilter.endswith(os.path.sep) and not dirfilter.endswith(os.extsep + self.project.localfiletype):
-                dirfilter += os.path.sep
-            pofilenames = [pofilename for pofilename in self.non_db_state.pofilenames if pofilename.startswith(dirfilter)]
-        if includedirs:
-            podirs = {}
-            for pofilename in pofilenames:
-                dirname = os.path.dirname(pofilename)
-                if not dirname:
-                    continue
-                podirs[dirname] = True
-                while dirname:
-                    dirname = os.path.dirname(dirname)
-                    if dirname:
-                        podirs[dirname] = True
-            podirs = podirs.keys()
-        else:
-            podirs = []
-        if not includefiles:
-            pofilenames = []
-        if maxdepth is not None:
-            pofilenames = [pofilename for pofilename in pofilenames if pofilename.count(os.path.sep) <= maxdepth]
-            podirs = [podir for podir in podirs if podir.count(os.path.sep) <= maxdepth]
-        if depth is not None:
-            pofilenames = [pofilename for pofilename in pofilenames if pofilename.count(os.path.sep) == depth]
-            podirs = [podir for podir in podirs if podir.count(os.path.sep) == depth]
-        return pofilenames + podirs
-
-    ##############################################################################################
-
-    def iterpofilenames(self, lastpofilename=None, includelast=False):
-        """iterates through the pofilenames starting after the given pofilename"""
-        if not lastpofilename:
-            index = 0
-        else:
-            index = self.non_db_state.pofilenames.index(lastpofilename)
-            if not includelast:
-                index += 1
-        while index < len(self.non_db_state.pofilenames):
-            yield self.non_db_state.pofilenames[index]
-            index += 1
 
     def make_indexer(self):
         """get an indexing object for this project
@@ -535,330 +448,12 @@ class TranslationProject(models.Model):
             indexer.delete_doc({"pofilename": store.pootle_path})
             logging.error("Not indexing %s, since it is corrupt", store.pootle_path)
 
-    def matchessearch(self, pofilename, search):
-        """returns whether any items in the pofilename match the search (based on collected stats etc)"""
-        # wrong file location in a "dirfilter" search?
-        if search.dirfilter is not None and not pofilename.startswith(search.dirfilter):
-            return False
-        # search.assignedto == [None] means assigned to nobody
-        if search.assignedto or search.assignedaction:
-            if search.assignedto == [None]:
-                assigns = self.non_db_state.pofiles[pofilename].getassigns().getunassigned(search.assignedaction)
-            else:
-                assigns = self.non_db_state.pofiles[pofilename].getassigns().getassigns()
-                if search.assignedto is not None:
-                    if search.assignedto not in assigns:
-                        return False
-                    assigns = assigns[search.assignedto]
-                else:
-                    assigns = reduce(lambda x, y: x+y, [userassigns.keys() for userassigns in assigns.values()], [])
-                if search.assignedaction is not None:
-                    if search.assignedaction not in assigns:
-                        return False
-        if search.matchnames:
-            postats = self.getpostats(pofilename)
-            for name in search.matchnames:
-                if postats.get(name):
-                    return True
-            return False
-        return True
-
-    def indexsearch(self, search, returnfields):
-        """returns the results from searching the index with the given search"""
-        def do_search(indexer):
-            searchparts = []
-            if search.searchtext:
-                # Split the search expression into single words. Otherwise xapian and
-                # lucene would interprete the whole string as an "OR" combination of
-                # words instead of the desired "AND".
-                for word in search.searchtext.split():
-                    # Generate a list for the query based on the selected fields
-                    querylist = [(f, word) for f in search.searchfields]
-                    textquery = indexer.make_query(querylist, False)
-                    searchparts.append(textquery)
-            if search.dirfilter:
-                pofilenames = self.browsefiles(dirfilter=search.dirfilter)
-                filequery = indexer.make_query([("pofilename", pofilename) for pofilename in pofilenames], False)
-                searchparts.append(filequery)
-            # TODO: add other search items
-            limitedquery = indexer.make_query(searchparts, True)
-            return indexer.search(limitedquery, returnfields)
-
-        indexer = self.indexer
-        if indexer != None:
-            return do_search(indexer)
-        else:
-            return False
-
-    def searchpofilenames(self, lastpofilename, search, includelast=False):
-        """find the next pofilename that has items matching the given search"""
-        if lastpofilename and not lastpofilename in self.non_db_state.pofiles:
-            # accessing will autoload this file...
-            self.non_db_state.pofiles[lastpofilename]
-        searchpofilenames = None
-        if self.has_index and search.searchtext:
-            try:
-                # TODO: move this up a level, use index to manage whole search, so we don't do this twice
-                hits = self.indexsearch(search, "pofilename")
-                # there will be only result for the field "pofilename" - so we just
-                # pick the first
-                searchpofilenames = dict.fromkeys([hit["pofilename"][0] for hit in hits])
-            except:
-                logging.error("Could not perform indexed search on %s. Index is corrupt.", lastpofilename)
-                self._indexing_enabled = False
-        for pofilename in self.iterpofilenames(lastpofilename, includelast):
-            if searchpofilenames is not None:
-                if pofilename not in searchpofilenames:
-                    continue
-            if self.matchessearch(pofilename, search):
-                yield pofilename
-
-    def searchpoitems(self, pofilename, lastitem, search):
-        """finds the next item matching the given search"""
-
-        def indexed(pofilename, search, lastitem):
-            filesearch = search.copy()
-            filesearch.dirfilter = pofilename
-            hits = self.indexsearch(filesearch, "itemno")
-            # there will be only result for the field "itemno" - so we just
-            # pick the first
-            all_items = (int(doc["itemno"][0]) for doc in hits)
-            next_items = (search_item for search_item in all_items if search_item > lastitem)
-            try:
-                # Since we will call self.searchpoitems (the method in which we are)
-                # every time a user clicks the next button, the loop which calls yield
-                # on indexed will only need a single value from this generator. So we
-                # only return a list with a single item.
-                return [min(next_items)]
-            except ValueError:
-                return []
-
-        def non_indexed(pofilename, search, lastitem):
-            # Ask pofile for all the possible items which follow lastitem, based on
-            # the criteria in search.
-            pofile = self.getpofile(pofilename)
-            items = pofile.iteritems(search, lastitem)
-            if search.searchtext:
-                # We'll get here if the user is searching for a piece of text and if no indexer
-                # (such as Xapian or Lucene) is usable. First build a grepper...
-                grepfilter = pogrep.GrepFilter(search.searchtext, search.searchfields, ignorecase=True)
-                # ...then filter the items using the grepper.
-                return (item for item in items if grepfilter.filterunit(pofile.getitem(item)))
-            else:
-                return items
-
-        def get_items(pofilename, search, lastitem):
-            if self.has_index and search.searchtext:
-                try:
-                    # Return an iterator using the indexer if indexing is available and if there is searchtext.
-                    return indexed(pofilename, search, lastitem)
-                except:
-                    logging.error("Could not perform indexed search on %s. Index is corrupt.", pofilename)
-                    self._indexing_enabled = False
-            return non_indexed(pofilename, search, lastitem)
-
-        for pofilename in self.searchpofilenames(pofilename, search, includelast=True):
-            for item in get_items(pofilename, search, lastitem):
-                yield pofilename, item
-            # this must be set to None so that the next call to
-            # get_items(self.getpofile(pofilename), search, lastitem) [see just above]
-            # will start afresh with the first item in the next pofilename.
-            lastitem = None
-
-    ##############################################################################################
-
-    def reassignpoitems(self, request, search, assignto, action):
-        """reassign all the items matching the search to the assignto user(s) evenly, with the given action"""
-        # remove all assignments for the given action
-        self.unassignpoitems(request, search, None, action)
-        assigncount = self.assignpoitems(request, search, assignto, action)
-        return assigncount
-
-    def assignpoitems(self, request, search, assignto, action):
-        """assign all the items matching the search to the assignto user(s) evenly, with the given action"""
-        if not check_permission("assign", request):
-            raise PermissionError(_("You do not have rights to alter assignments here"))
-        if search.searchtext:
-            grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
-        if not isinstance(assignto, list):
-            assignto = [assignto]
-        usercount = len(assignto)
-        assigncount = 0
-        if not usercount:
-            return assigncount
-        pofilenames = [pofilename for pofilename in self.searchpofilenames(None, search, includelast=True)]
-        wordcounts = [(pofilename, self.getpofile(pofilename).statistics.getquickstats()['totalsourcewords']) for pofilename in pofilenames]
-        totalwordcount = sum([wordcount for pofilename, wordcount in wordcounts])
-
-        wordsperuser = totalwordcount / usercount
-        logging.debug("assigning %d words to %d user(s) %d words per user", totalwordcount, usercount, wordsperuser)
-        usernum = 0
-        userwords = 0
-        for pofilename, wordcount in wordcounts:
-            pofile = self.getpofile(pofilename)
-            sourcewordcount = pofile.statistics.getunitstats()['sourcewordcount']
-            for item in pofile.iteritems(search, None):
-                # TODO: move this to iteritems
-                if search.searchtext:
-                    validitem = False
-                    unit = pofile.getitem(item)
-                    if grepfilter.filterunit(unit):
-                        validitem = True
-                    if not validitem:
-                        continue
-                itemwordcount = sourcewordcount[item]
-                #itemwordcount = statsdb.wordcount(str(pofile.getitem(item).source))
-                if userwords + itemwordcount > wordsperuser:
-                    usernum = min(usernum+1, len(assignto)-1)
-                    userwords = 0
-                userwords += itemwordcount
-                pofile.getassigns().assignto(item, assignto[usernum], action)
-                assigncount += 1
-        return assigncount
-
-    def unassignpoitems(self, request, search, assignedto, action=None):
-        """unassigns all the items matching the search to the assignedto user"""
-        if not check_permission("assign", request):
-            raise PermissionError(_("You do not have rights to alter assignments here"))
-        if search.searchtext:
-            grepfilter = pogrep.GrepFilter(search.searchtext, None, ignorecase=True)
-        assigncount = 0
-        for pofilename in self.searchpofilenames(None, search, includelast=True):
-            pofile = self.getpofile(pofilename)
-            for item in pofile.iteritems(search, None):
-                # TODO: move this to iteritems
-                if search.searchtext:
-                    unit = pofile.getitem(item)
-                    if grepfilter.filterunit(unit):
-                        pofile.getassigns().unassign(item, assignedto, action)
-                        assigncount += 1
-                else:
-                    pofile.getassigns().unassign(item, assignedto, action)
-                    assigncount += 1
-        return assigncount
-
-    ##############################################################################################
-
-    def combinestats(self, pofilenames=None):
-        """combines translation statistics for the given po files (or all if None given)"""
-        if pofilenames is None:
-            pofilenames = self.non_db_state.pofilenames
-        pofilenames = [pofilename for pofilename in pofilenames
-                                     if pofilename != None and not os.path.isdir(pofilename)]
-        total_stats = self.combine_totals(pofilenames)
-        total_stats['units'] = self.combine_unit_stats(pofilenames)
-        total_stats['assign'] = self.combineassignstats(pofilenames)
-        return total_stats
-
-    def combine_totals(self, pofilenames):
-        totalstats = {}
-        for pofilename in pofilenames:
-            pototals = self.getpototals(pofilename)
-            for name, items in pototals.iteritems():
-                totalstats[name] = totalstats.get(name, 0) + pototals[name]
-        return totalstats
-
-    def combine_unit_stats(self, pofilenames):
-        unit_stats = {}
-        for pofilename in pofilenames:
-            postats = self.getpostats(pofilename)
-            for name, items in postats.iteritems():
-                unit_stats.setdefault(name, []).extend([(pofilename, item) for item in items])
-        return unit_stats
-
-    def combineassignstats(self, pofilenames=None, action=None):
-        """combines assign statistics for the given po files (or all if None given)"""
-        assign_stats = {}
-        for pofilename in pofilenames:
-            assignstats = self.getassignstats(pofilename, action)
-            for name, items in assignstats.iteritems():
-                assign_stats.setdefault(name, []).extend([(pofilename, item) for item in items])
-        return assign_stats
-
-    def countwords(self, stats):
-        """counts the number of words in the items represented by the stats list"""
-        wordcount = 0
-        for pofilename, item in stats:
-            pofile = self.non_db_state.pofiles[pofilename]
-            if 0 <= item < len(pofile.statistics.getunitstats()['sourcewordcount']):
-                wordcount += pofile.statistics.getunitstats()['sourcewordcount'][item]
-        return wordcount
-
-    def track(self, pofilename, item, message):
-        """sends a track message to the pofile"""
-        self.non_db_state.pofiles[pofilename].track(item, message)
-
-    def gettracks(self, pofilenames=None):
-        """calculates translation statistics for the given po files (or all if None given)"""
-        alltracks = []
-        if pofilenames is None:
-            pofilenames = self.non_db_state.pofilenames
-        for pofilename in pofilenames:
-            if not pofilename or os.path.isdir(pofilename):
-                continue
-            tracker = self.non_db_state.pofiles[pofilename].tracker
-            items = tracker.keys()
-            items.sort()
-            for item in items:
-                alltracks.append("%s item %d: %s" % (pofilename, item, tracker[item]))
-        return alltracks
-
-    def getpostats(self, pofilename):
-        """calculates translation statistics for the given po file"""
-        return self.non_db_state.pofiles[pofilename].statistics.getstats()
-
-    def getpototals(self, pofilename):
-        """calculates translation statistics for the given po file"""
-        return self.non_db_state.pofiles[pofilename].statistics.getquickstats()
-
-    def getassignstats(self, pofilename, action=None):
-        """calculates translation statistics for the given po file (can filter by action if given)"""
-        polen = self.getpototals(pofilename).get("total", 0)
-        # Temporary code to avoid traceback. Was:
-#        polen = len(self.getpostats(pofilename)["total"])
-        assigns = self.non_db_state.pofiles[pofilename].getassigns().getassigns()
-        assignstats = {}
-        for username, userassigns in assigns.iteritems():
-            allitems = []
-            for assignaction, items in userassigns.iteritems():
-                if action is None or assignaction == action:
-                    allitems += [item for item in items if 0 <= item < polen and item not in allitems]
-            if allitems:
-                assignstats[username] = allitems
-        return assignstats
-
-    def getpofile(self, pofilename, freshen=True):
-        """parses the file into a pofile object and stores in self.pofiles"""
-        pofile = self.non_db_state.pofiles[pofilename]
-        if freshen:
-            pofile.pofreshen()
-        return pofile
-
-    def getpofilelen(self, pofilename):
-        """returns number of items in the given pofilename"""
-        pofile = self.getpofile(pofilename)
-        return len(pofile.total)
-
-    def getitems(self, pofilename, itemstart, itemstop):
-        """returns a set of items from the pofile, converted to original and translation strings"""
-        pofile = self.getpofile(pofilename)
-        units = [pofile.units[index] for index in pofile.total[max(itemstart,0):itemstop]]
-        return units
-
     ##############################################################################################
 
     is_terminology_project = property(lambda self: self.project.code == "terminology")
     is_template_project = property(lambda self: self.language.code == 'templates')
 
     stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.pootle_path))
-
-    def gettmsuggestions(self, pofile, item):
-        """find all the TM suggestions for the given (pofile or pofilename) and item"""
-        if isinstance(pofile, (str, unicode)):
-            pofilename = pofile
-            pofile = self.getpofile(pofilename)
-        tmsuggestpos = pofile.gettmsuggestions(item)
-        return tmsuggestpos
 
     def gettermbase(self, make_matcher):
         """returns this project's terminology store"""
@@ -897,43 +492,6 @@ class TranslationProject(models.Model):
                     except TranslationProject.DoesNotExist:
                         pass
         return self.non_db_state.termmatcher
-
-    ##############################################################################################
-
-    def convert(self, pofilename, destformat):
-        """converts the pofile to the given format, returning
-        (etag_if_filepath, filepath_or_contents)"""
-        pofile = self.getpofile(pofilename, freshen=False)
-        destfilename = pofile.filename[:-len(self.fileext)] + destformat
-        destmtime = statistics.getmodtime(destfilename)
-        pomtime = statistics.getmodtime(pofile.filename)
-        if pomtime and destmtime == pomtime:
-            try:
-                return pomtime, destfilename
-            except Exception, e:
-                logging.error("error reading cached converted file %s: %s", destfilename, e)
-        pofile.pofreshen()
-        converters = {"csv": po2csv.po2csv,
-                      "xlf": po2xliff.po2xliff,
-                      "po": xliff2po.xliff2po,
-                      "ts": po2ts.po2ts,
-                      "mo": pocompile.POCompile}
-        converterclass = converters.get(destformat, None)
-        if converterclass is None:
-            raise ValueError("No converter available for %s" % destfilename)
-        contents = converterclass().convertstore(pofile)
-        if not isinstance(contents, basestring):
-            contents = str(contents)
-        try:
-            destfile = open(destfilename, "w")
-            destfile.write(contents)
-            destfile.close()
-            currenttime, modtime = time.time(), pofile.pomtime
-            os.utime(destfilename, (currenttime, modtime))
-            return modtime, destfilename
-        except Exception, e:
-            logging.error("error caching converted file %s: %s", destfilename, e)
-        return False, contents
 
     ##############################################################################################
 
