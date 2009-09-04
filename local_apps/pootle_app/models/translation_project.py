@@ -47,6 +47,7 @@ from pootle_app.models.permissions import PermissionError, check_permission
 from pootle_app.lib                import statistics
 
 from pootle.scripts                import hooks
+from pootle_misc.util import getfromcache
 
 class TranslationProjectNonDBState(object):
     def __init__(self, parent):
@@ -134,6 +135,7 @@ class TranslationProject(models.Model):
 
     non_db_state = property(_get_non_db_state)
 
+    @getfromcache
     def getquickstats(self):
         if not self.is_template_project:
             return self.directory.getquickstats()
