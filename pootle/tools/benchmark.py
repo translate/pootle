@@ -45,7 +45,8 @@ class PootleBenchmarker:
                     os.remove(os.path.join(dirpath, name))
                 for name in subdirs:
                     os.rmdir(os.path.join(dirpath, name))
-        if os.path.exists(self.test_dir): os.rmdir(self.test_dir)
+        if os.path.exists(self.test_dir):
+            os.rmdir(self.test_dir)
         assert not os.path.exists(self.test_dir)
 
     def setup_server(self):
