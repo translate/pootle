@@ -16,7 +16,7 @@ def formset_dict(data):
     new_data = {'form-TOTAL_FORMS': len(data), 'form-INITIAL_FORMS': 0}
     for i in range(len(data)):
         for key, value in data[i].iteritems():
-            new_data["form-%d-%s" % (i,key)] = value
+            new_data["form-%d-%s" % (i, key)] = value
     return new_data
 
 class PootleTestCase(TestCase):
@@ -152,7 +152,7 @@ class AdminTests(PootleTestCase):
         testproject = Project.objects.get(code="testproject")
         
         self.assertTrue(testproject)
-        self.assertEqual(testproject.fullname,add_dict['fullname'])
+        self.assertEqual(testproject.fullname, add_dict['fullname'])
         self.assertEqual(testproject.checkstyle, add_dict['checkstyle'])
         self.assertEqual(testproject.localfiletype, add_dict['localfiletype'])
         self.assertEqual(testproject.treestyle, add_dict['treestyle'])
