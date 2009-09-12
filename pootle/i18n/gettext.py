@@ -90,7 +90,7 @@ def check_for_language(language):
 # END BOOTSTRAPPING TRANSLATION CODE
 
 _active_translations = {} # Contains a mapping of threads to Pootle translation projects
-_default_translation = DummyTranslation() # See get_default_translation
+_default_translation = None # See get_default_translation
 
 def activate_for_profile(profile):
     activate(get_lang(profile.ui_lang_id))
@@ -129,11 +129,11 @@ def get_default_translation():
     its project object. Otherwise, we just return an English project object.
     """
     global _default_translation
-    if isinstance(_default_translation, DummyTranslation):
+    if _default_translation is None:
         try:
             _default_translation = get_lang(Language.objects.get(code=settings.LANGUAGE_CODE))
         except Language.DoesNotExist, e:
-            pass
+            _default_translation = DummyTranslation()
     return _default_translation
 
 def get_translation():
