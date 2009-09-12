@@ -98,8 +98,9 @@ def activate_for_profile(profile):
 def activate(ui_lang_project):
     """Associate the thread in which we are running with the Pootle project
     object ui_lang_project."""
-    _active_translations[currentThread()] = ui_lang_project
-    settings.LANGUAGE_CODE = ui_lang_project.language.code
+    if ui_lang_project is not None:
+        _active_translations[currentThread()] = ui_lang_project
+        settings.LANGUAGE_CODE = ui_lang_project.language.code
 
 def get_active():
     """Return the Pootle project object associated with the thread in which we
