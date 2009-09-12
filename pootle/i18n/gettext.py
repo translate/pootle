@@ -99,6 +99,7 @@ def activate(ui_lang_project):
     """Associate the thread in which we are running with the Pootle project
     object ui_lang_project."""
     _active_translations[currentThread()] = ui_lang_project
+    settings.LANGUAGE_CODE = ui_lang_project.language.code
 
 def get_active():
     """Return the Pootle project object associated with the thread in which we
@@ -222,4 +223,4 @@ def get_lang(language):
 
 def tr_lang(language_name):
     """translate language name"""
-    return langdata.tr_lang(get_language())(language_name)
+    return langdata.tr_lang(settings.LANGUAGE_CODE)(language_name)
