@@ -58,23 +58,23 @@ class DummyLanguage(object):
 class DummyTranslation(object):
     language = DummyLanguage()
 
-    def gettext(self, message):
-        return message
+    def gettext(self, message, vars=None):
+        return _format_gettext(message, vars)
 
-    def ugettext(self, message):
-        return message
+    def ugettext(self, message, vars=None):
+        return _format_gettext(message, vars)
 
-    def ngettext(self, singular, plural, number):
+    def ngettext(self, singular, plural, number, vars=None):
         if number == 1:
-            return singular
+            return _format_gettext(singular, vars)
         else:
-            return plural
+            return _format_gettext(plural, vars)
 
-    def ungettext(self, singular, plural, number):
+    def ungettext(self, singular, plural, number, vars=None):
         if number == 1:
-            return singular
+            return _format_gettext(singular, vars)
         else:
-            return plural
+            return _format_gettext(plural, vars)
 
 #def get_lang(language):
 #    return DummyTranslation()
