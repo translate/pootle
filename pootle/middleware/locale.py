@@ -40,6 +40,7 @@ class LocaleMiddleware(object):
 
     def process_request(self, request):
         gettext.activate(user_lang_discovery.get_language_from_request(request))
+        gettext.hijack_django_translation_functions()
 
     def process_response(self, request, response):
         patch_vary_headers(response, ('Accept-Language',))

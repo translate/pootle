@@ -211,8 +211,6 @@ def hijack_django_translation_functions():
     translation.get_language = get_language
     translation.get_language_bidi = get_language_bidi
 
-hijack_django_translation_functions()
-
 
 def get_lang(language):
     """Used by the localization system to get hold of a
