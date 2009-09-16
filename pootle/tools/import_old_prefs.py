@@ -32,17 +32,18 @@ def main():
     usersfile = sys.argv[2]
     parsed_users = prefs.PrefsParser(usersfile)
     try:
-        transaction.enter_transaction_management()
-        transaction.managed(True)
+        try:
+            transaction.enter_transaction_management()
+            transaction.managed(True)
 
-        set_up_db_then_import_languages_then_users(parsed_oldprefs,
-                                                   parsed_users)
-    except:
-        if transaction.is_dirty():
-            transaction.rollback()
-        if transaction.is_managed():
-            transaction.leave_transaction_management()
-        raise
+            set_up_db_then_import_languages_then_users(parsed_oldprefs,
+                                                       parsed_users)
+        except:
+            if transaction.is_dirty():
+                transaction.rollback()
+            if transaction.is_managed():
+                transaction.leave_transaction_management()
+            raise
     finally:
         if transaction.is_managed():
             if transaction.is_dirty():
