@@ -195,8 +195,6 @@ def create_database_user(data, user_name):
                 email          = _get_user_attribute(data, user_name, 'email'),
                 is_active      = try_type(bool, _get_user_attribute(data, user_name, 'activated',
                                                                     unicode_me=False, default=0)),
-                activationcode = _get_user_attribute(data, user_name, 'activationcode',
-                                                     unicode_me = False, default=0),
                 password       = _get_user_attribute(data, user_name, 'passwdhash',
                                                      unicode_me = False),
                 # "hash" is the login type that indicates "hash" the user's
