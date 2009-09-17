@@ -36,7 +36,10 @@ $(document).ready(function() {
            function(rdata) {
              $("#response").remove();
              if (rdata.status == "success") {
-               $("#suggestion" + rdata.deleted).fadeOut(1000);
+               $.each(rdata.del_ids, function() {
+                 var deleted = this[0] + "-" + this[1];
+                 $("#suggestion" + deleted).fadeOut(1000);
+               });
              }
              $("div#translate-suggestion-container:first").prepend(
               '<h1 id="response">' + rdata.message + '</h1>'

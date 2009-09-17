@@ -246,6 +246,7 @@ def handle_suggestions(request, translation_project, file_path, item):
         response["status"] = "error"
         response["message"] = _("No suggestion data given.")
     else:
+        response["del_ids"] = []
         #FIXME: handle plurals
         rejects = data.get("rejects", [])
         reject_candidates = len(rejects)
@@ -258,6 +259,7 @@ def handle_suggestions(request, translation_project, file_path, item):
             try:
                 unit_update.accept_suggestion(store, int(item), int(sugg["id"]),
                                               sugg["newtrans"], request)
+                response["del_ids"].append((int(item), sugg["id"]))
                 accept_count += 1
             except ValueError:
                 # TODO: provide fine-grained error message from the exception
@@ -270,7 +272,7 @@ def handle_suggestions(request, translation_project, file_path, item):
                                               sugg["newtrans"], request)                
                 reject_count += 1
                 # TODO: convert this a list
-                response["deleted"] = item + "-" + sugg["id"]
+                response["del_ids"].append((int(item), sugg["id"]))
                 pending = getpendingsuggestions(int(item))
             except ValueError:
                 # TODO: provide fine-grained error message from the exception
