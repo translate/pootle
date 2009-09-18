@@ -78,7 +78,7 @@ class LanguageFeeds(Feed):
 
     def title(self, obj):
         lang = Language.objects.get(id = obj.object_id)
-        return _('News for %(language)s', {"language": tr_lang(lang.fullname)})
+        return _('News for %(language)s', {"language": tr_lang(self.request, lang.fullname)})
 
     def items(self, obj):
         return Notices.objects.get_notices(obj)
@@ -99,7 +99,7 @@ class TransProjectFeeds(Feed):
     def title(self, obj):
         trans_proj = TranslationProject.objects.get(id = obj.object_id)
         return _('News about the translation of %(project)s into %(language)s',
-                {"language": tr_lang(trans_proj.language.fullname), "project": tr_lang(trans_proj.project.fullname)})
+                {"language": tr_lang(self.request, trans_proj.language.fullname), "project": tr_lang(self.request, trans_proj.project.fullname)})
 
     def items(self, obj):
         return Notices.objects.get_notices(obj)

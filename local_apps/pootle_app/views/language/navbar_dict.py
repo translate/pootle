@@ -83,7 +83,7 @@ def make_navbar_path_dict(request, path_links=None):
     return {
         'admin':     make_admin(request),
         'language':  {'href': dispatch.open_language(request, language.code),
-                      'text': tr_lang(language.fullname)},
+                      'text': tr_lang(request, language.fullname)},
         'project':   {'href': dispatch.open_translation_project(request, language.code, project.code),
                       'text': project.fullname},
         'pathlinks': path_links }

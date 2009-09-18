@@ -222,6 +222,6 @@ def get_lang(language):
     except TranslationProject.DoesNotExist:
         return None
 
-def tr_lang(language_name):
+def tr_lang(request, language_name):
     """translate language name"""
-    return langdata.tr_lang(settings.LANGUAGE_CODE)(language_name)
+    return langdata.tr_lang(request.LANGUAGE_CODE)(language_name)

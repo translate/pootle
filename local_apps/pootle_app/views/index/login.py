@@ -83,7 +83,7 @@ def language_list(request):
     for language in Language.objects.all():
         code = language.code
         name = language.fullname
-        tr_name = tr_lang(name)
+        tr_name = tr_lang(request, name)
         if tr_name != name:
             # We have to use the LRO (left-to-right override) to ensure that 
             # brackets in the English part of the name is rendered correctly

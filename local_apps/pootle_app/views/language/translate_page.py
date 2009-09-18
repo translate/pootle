@@ -626,7 +626,7 @@ def get_alt_src_dict(request, store, unit, alt_project):
                 "languagename": language.fullname,
                 "languagecode": language.code,
                 "dir":          pagelayout.languagedir(language.code),
-                "title":        tr_lang(language.fullname),
+                "title":        tr_lang(request, language.fullname),
                 "available":    True })
         translated_store = get_translated_store(alt_project, store)
         if translated_store is not None:

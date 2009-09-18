@@ -35,14 +35,14 @@ from pootle_app.views               import pagelayout
 def limit(query):
     return query[:5]
 
-def make_language_item(translation_project):
+def make_language_item(request, translation_project):
     href = '/%s/%s/' % (translation_project.language.code, translation_project.project.code)
     projectstats = add_percentages(translation_project.getquickstats())
     return {
         'code': translation_project.language.code,
         'icon': 'language',
         'href': href,
-        'title': tr_lang(translation_project.language.fullname),
+        'title': tr_lang(request, translation_project.language.fullname),
         'data': projectstats,
         }
 
@@ -50,7 +50,7 @@ def make_language_item(translation_project):
 def view(request, project_code, _path_var):
     project = get_object_or_404(Project, code=project_code)
     translation_projects = project.translationproject_set.all()
-    items = (make_language_item(translation_project) for translation_project in translation_projects)
+    items = (make_language_item(request, translation_project) for translation_project in translation_projects)
     languagecount = len(translation_projects)
     totals = add_percentages(project.getquickstats())
     average = totals['translatedpercentage'] 

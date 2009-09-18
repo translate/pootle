@@ -312,10 +312,10 @@ class ProjectIndexView(BaseView):
             'pagetitle':             _('%(title)s: Project %(project)s, Language %(language)s', 
                                        {"title": pagelayout.get_title(),
                                         "project": project.fullname,
-                                        "language": tr_lang(language.fullname)}
+                                        "language": tr_lang(request, language.fullname)}
                                        ),
             'project':               {"code": project.code,  "name": project.fullname},
-            'language':              {"code": language.code, "name": tr_lang(language.fullname)},
+            'language':              {"code": language.code, "name": tr_lang(request, language.fullname)},
             'search':                search_forms.get_search_form(request),
             'children':              get_children(request, translation_project, directory),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],

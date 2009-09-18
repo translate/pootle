@@ -83,10 +83,10 @@ def language_index(request, language_code):
 
     templatevars = {
         'pagetitle': _('%(title)s: Language %(language)s',
-                       {"title": pagelayout.get_title(), "language": tr_lang(language.fullname)}),
+                       {"title": pagelayout.get_title(), "language": tr_lang(request, language.fullname)}),
         'language': {
           'code': language.code,
-          'name': tr_lang(language.fullname),
+          'name': tr_lang(request, language.fullname),
           'stats': ungettext('%(projects)d project,  %(average)d%% translated',
                              '%(projects)d projects, average %(average)d%% translated',
                              projectcount, {"projects": projectcount, "average": average}),
