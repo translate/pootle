@@ -23,7 +23,6 @@ from django.utils.html import escape
 from django.utils.translation import ugettext as _
 from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
-from pootle.i18n.gettext import tr_lang
 from pootle.i18n import gettext
 
 def get_title():
