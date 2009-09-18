@@ -33,6 +33,7 @@ from pootle.i18n.user_lang_discovery import get_language_from_request
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Language
 from pootle_misc.baseurl import redirect
+from pootle_app.views               import pagelayout
 
 
 def view(request):
@@ -63,6 +64,8 @@ def view(request):
             form = AuthenticationForm(request)
         request.session.set_test_cookie()
         context = {
+            'pagetitle': _('%(title)s: Login',
+                           {"title": pagelayout.get_title()}),
             'languages': language_list(request),
             'form': form
             }
