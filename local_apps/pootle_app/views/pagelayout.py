@@ -21,9 +21,9 @@ import os
 from django.conf import settings
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
+from django.utils.translation import get_language_bidi
 from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
-from pootle.i18n import gettext
 
 def get_title():
     return _(settings.TITLE)
@@ -65,25 +65,12 @@ def getdoclang(language):
         return 'en'
 
 
-def languagedir(language):
+def languagedir():
     """Returns whether the language is right to left"""
-
-    shortcode = language[:3]
-    if not shortcode.isalpha():
-        shortcode = language[:2]
-    if shortcode in [
-        'ar',
-        'arc',
-        'dv',
-        'fa',
-        'he',
-        'ks',
-        'ps',
-        'ur',
-        'yi',
-        ]:
-        return 'rtl'
-    return 'ltr'
+    if get_language_bidi():
+        return "rtl"
+    else:
+        return "ltr"
 
 
 def weblanguage(language):
@@ -118,7 +105,7 @@ def completetemplatevars(templatevars, request, bannerheight=135):
         templatevars['enablealtsrc'] = settings.ENABLE_ALT_SRC
     templatevars['aboutlink'] = _('About this Pootle server')
     templatevars['uilanguage'] = weblanguage(request.LANGUAGE_CODE)
-    templatevars['uidir'] = languagedir(gettext.get_active().language.code)
+    templatevars['uidir'] = languagedir()
     # TODO FIXME cssaligndir is deprecated?
     if templatevars['uidir'] == 'ltr':
         templatevars['cssaligndir'] = 'left'
