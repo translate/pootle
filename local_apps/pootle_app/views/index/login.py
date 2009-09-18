@@ -29,7 +29,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from pootle.i18n.user_lang_discovery import get_language_from_request
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Language
 from pootle_misc.baseurl import redirect
@@ -77,7 +76,7 @@ def language_list(request):
     tr_default = _("Default")
     if tr_default != "Default":
         tr_default = u"%s | \u202dDefault" % tr_default
-    request_code = data.normalize_code(get_language_from_request(request).language.code)
+    request_code = data.normalize_code(request.LANGUAGE_CODE)
     if request_code in ["en", "en-us", settings.LANGUAGE_CODE]:
         preferred_language = ""
     else:

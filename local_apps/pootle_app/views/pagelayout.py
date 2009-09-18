@@ -41,7 +41,7 @@ def localize_links(request):
     links['account'] = _('My account')
     links['admin'] = _('Admin')
     links['doc'] = _('Help')
-    links['doclang'] = getdoclang(gettext.get_active().language.code)
+    links['doclang'] = getdoclang(request.LANGUAGE_CODE)
     links['logout'] = _('Log out')
     links['login'] = _('Log in')
     links['about'] = _('About')
@@ -117,7 +117,7 @@ def completetemplatevars(templatevars, request, bannerheight=135):
     if not 'enablealtsrc' in templatevars:
         templatevars['enablealtsrc'] = settings.ENABLE_ALT_SRC
     templatevars['aboutlink'] = _('About this Pootle server')
-    templatevars['uilanguage'] = weblanguage(gettext.get_active().language.code)
+    templatevars['uilanguage'] = weblanguage(request.LANGUAGE_CODE)
     templatevars['uidir'] = languagedir(gettext.get_active().language.code)
     # TODO FIXME cssaligndir is deprecated?
     if templatevars['uidir'] == 'ltr':
