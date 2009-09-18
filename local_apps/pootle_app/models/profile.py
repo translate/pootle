@@ -88,51 +88,6 @@ class PootleProfile(models.Model):
         userstatistics[_('Submissions Made')] = self.submission_set.count()
         return userstatistics
 
-    def getquicklinks(self):
-        """gets a set of quick links to user's project-languages"""
-        from translation_project import TranslationProject
-        from pootle.i18n.gettext import tr_lang
-        from pootle_app.models.permissions import get_matching_permissions
-        import locale
-        quicklinks = []
-        # TODO: This can be done MUCH more efficiently with a bit of
-        # query forethought.  Why don't we just select all the
-        # TranslationProject objects from the database which match the
-        # user's Languages and Projects? This should be efficient.
-        #
-        # But this will only work once we move TranslationProject
-        # wholly to the DB (and away from its current brain damaged
-        # half-non-db/half-db implementation).
-        for language in self.languages.all():
-            langlinks = []
-            for project in self.projects.all():
-                try:
-                    projecttitle = project.fullname
-                    translation_project = \
-                        TranslationProject.objects.get(language=language,
-                            project=project)
-                    isprojectadmin = 'administrate'\
-                         in get_matching_permissions(self,
-                            translation_project.directory)
-                    langlinks.append({
-                        'code': project.code,
-                        'name': projecttitle,
-                        'isprojectadmin': isprojectadmin,
-                        'sep': '<br />',
-                        })
-                except TranslationProject.DoesNotExist:
-                    pass
-            if langlinks:
-                langlinks[-1]['sep'] = ''
-            islangadmin = 'administrate' in get_matching_permissions(self, language.directory)
-
-            quicklinks.append({'code': language.code,
-                               'name': tr_lang(language.fullname),
-                               'islangadmin': islangadmin,
-                               'projects': langlinks})
-            quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict['name'])
-        return quicklinks
-
     pootle_user = property(_get_pootle_user)
 
     def get_messages(self):
