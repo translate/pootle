@@ -21,6 +21,9 @@ STATS_DB_PATH = working_path('dbs/stats.db') # None means the default path
 
 PODIRECTORY = working_path('po')
 
+# set this to true to enable live translation of pootle UI, a good way to learn how to use pootle. but has high impact on performance.
+LIVE_TRANSLATION = True
+
 # Cache Backend settings
 #
 # By default we use django's in memory cache which is only suitable

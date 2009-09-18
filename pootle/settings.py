@@ -27,6 +27,7 @@ configuration override outside of the code."""
 import logging
 import os
 
+from translate.lang import data
 from pootle.install_dirs import *
 
 INTERNAL_IPS = ('127.0.0.1',)
@@ -84,12 +85,13 @@ MIDDLEWARE_CLASSES = (
     # Uncomment to use pagecahing
     #'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
     'pootle_misc.middleware.baseurl.BaseUrlMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.transaction.TransactionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'pootle.middleware.check_cookies.CheckCookieMiddleware',
     'pootle.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
     'pootle.middleware.profile.ProfilerMiddleware',
     # Uncomment to use pagecaching
     #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
@@ -139,10 +141,22 @@ OBJECT_CACHE_TIMEOUT = 2500000
 
 execfile(config_path("localsettings.py"))
 
+# look for loclization files under PODIRECTORY/pootle
+LOCALE_PATHS = (os.path.join(PODIRECTORY, "pootle"), )
+
+def find_languages(locale_path):
+    dirs = os.listdir(locale_path)
+    langs = []
+    for lang in dirs:
+        if data.langcode_re.match(lang) and os.path.isdir(os.path.join(locale_path, lang)):
+            langs.append((lang, data.languages.get(lang, (lang,))[0]))
+    return langs
+
+LANGUAGES = find_languages(LOCALE_PATHS[0])
+
 # setup a tempdir inside the PODIRECTORY heirarchy, this way we have
 # reasonable guarantee that temp files will be created on the same
 # filesystem as translation files (required for save operations).
-
 import tempfile
 tempfile.tempdir = os.path.join(PODIRECTORY, ".tmp")
 # ensure that temp dir exists

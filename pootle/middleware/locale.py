@@ -18,33 +18,51 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.utils import translation
+from django.conf import settings
 
-from django.utils.cache import patch_vary_headers
-from pootle.i18n import gettext, user_lang_discovery
+from pootle.i18n import gettext
 
+def translation_dummy(language):
+    """return dumy translation object to please django's l10n while
+    Live Translation is enabled"""
+    t = translation.trans_real._translations.get(language, None)
+    if t is not None:
+        return t
+
+    dummytrans = translation.trans_real.DjangoTranslation()
+    dummytrans.set_language(language)
+    #FIXME: the need for the _catalog attribute means we
+    # are not hijacking gettext early enough
+    dummytrans._catalog = {}
+    translation.trans_real._translations[language] = dummytrans
+    return dummytrans
+            
 class LocaleMiddleware(object):
     """
-    When a request comes in, discover the language to use for the
-    UI. This request returns a Pootle project object (which contains
-    methods for doing the UI translations). The active method in the
-    gettext module associates the project object with the thread in
-    which we are running.
-
-    When the request is done, make sure that the Content-Language HTTP
-    header matches the language in the project object. After that,
-    break the association between the thread in which we are running
-    and the project object (so that the same thread can serve another
-    HTTP request which will cause it to be associated with a possibly
-    different project object).
+    Hijack Django's localization functions to support arbitrary user
+    defined languages and live translation.
     """
 
-    def process_request(self, request):
-        gettext.activate(user_lang_discovery.get_language_from_request(request))
-        gettext.hijack_django_translation_functions()
+    def __init__(self):
+        """sabotage django's fascist linguistical regime"""
+        # override functions that check if language if language is
+        # known to Django
+        translation.check_for_language = lambda lang_code: True
+        translation.trans_real.check_for_language = lambda lang_code: True
+        # if live translation is enabled, hijack language activation
+        # code to avoid unnessecary loading of mo files
+        if settings.LIVE_TRANSLATION:
+            translation.trans_real.translation = translation_dummy
 
-    def process_response(self, request, response):
-        patch_vary_headers(response, ('Accept-Language',))
-        if 'Content-Language' not in response:
-            response['Content-Language'] = gettext.get_active().language.code
-        gettext.deactivate()
-        return response
+        # install the safe variable formatting override
+        gettext.override_gettext(translation)
+
+    def process_request(self, request):
+        """override django's gettext functions to support live
+        translation"""
+        #FIXME: figure out how to load locale choice from user profile
+        if settings.LIVE_TRANSLATION:
+            from pootle.i18n import gettext_live
+            gettext_live.hijack_translation()
+            
