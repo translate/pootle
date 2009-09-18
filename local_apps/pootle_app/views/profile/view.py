@@ -29,8 +29,6 @@ from pootle_app.models.profile import get_profile, PootleProfile
 from pootle_app.views import indexpage
 from pootle_misc.baseurl import redirect
 
-from pootle.i18n import gettext
-
 from django.shortcuts import render_to_response
 from django.template import RequestContext 
 from django.contrib.auth.decorators import login_required
