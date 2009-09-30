@@ -69,3 +69,10 @@ class LocaleMiddleware(object):
             from pootle.i18n import gettext_live
             gettext_live.hijack_translation()
             
+
+    def process_response(self, request, response):
+        """undo gettext overrides at end of request"""
+        if settings.LIVE_TRANSLATION:
+            gettext.override_gettext(trans_real)
+        return response
+            
