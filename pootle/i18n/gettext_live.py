@@ -33,20 +33,20 @@ def hijack_translation():
     Pootle's UI from in memory stores"""
 
     language = translation.get_language()
-
-    if language in ('en', 'en-us'):
+    locale = translation.to_locale(language)
+    if locale in ('en', 'en_US'):
         return None
     
     global _translation_project_cache
-    if not language in _translation_project_cache:
+    if not locale in _translation_project_cache:
         try:
-            _translation_project_cache[language] = TranslationProject.objects.get(language__code=language, project__code="pootle")
+            _translation_project_cache[locale] = TranslationProject.objects.get(language__code=locale, project__code="pootle")
         except:
             try:
-                _translation_project_cache[language] = TranslationProject.objects.get(language_code=settings.LANGUAGE_CODE, project__code="pootle")
+                _translation_project_cache[locale] = TranslationProject.objects.get(language_code=translation.to_locale(settings.LANGUAGE_CODE), project__code="pootle")
             except:
-                _translation_project_cache[language] = None
+                _translation_project_cache[locale] = None
                 
-    if _translation_project_cache[language] is not None:
-        override_gettext(_translation_project_cache[language])
+    if _translation_project_cache[locale] is not None:
+        override_gettext(_translation_project_cache[locale])
             
