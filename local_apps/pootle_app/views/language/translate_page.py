@@ -625,7 +625,7 @@ def get_alt_src_dict(request, store, unit, alt_project):
         alt_src_dict.update({
                 "languagename": language.fullname,
                 "languagecode": language.code,
-                "dir":          pagelayout.languagedir(language.code),
+                "dir":          pagelayout.languagedir(),
                 "title":        tr_lang(request, language.fullname),
                 "available":    True })
         translated_store = get_translated_store(alt_project, store)
@@ -995,7 +995,7 @@ def view(request, directory, store, item, stopped_by=None):
     # l10n: fourth parameter: file name
     language_data = {"code": pagelayout.weblanguage(language.code),
                      "name": language.fullname,
-                     "dir":  pagelayout.languagedir(language.code)}
+                     "dir":  pagelayout.languagedir()}
     stats = {"summary": mainstats,
              "checks":  [],
              "tracks":  [],
