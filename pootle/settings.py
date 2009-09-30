@@ -149,7 +149,7 @@ def find_languages(locale_path):
     langs = []
     for lang in dirs:
         if data.langcode_re.match(lang) and os.path.isdir(os.path.join(locale_path, lang)):
-            langs.append((lang, data.languages.get(lang, (lang,))[0]))
+            langs.append((data.normalize_code(lang), data.languages.get(lang, (lang,))[0]))
     return langs
 
 LANGUAGES = find_languages(LOCALE_PATHS[0])
