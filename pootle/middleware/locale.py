@@ -37,6 +37,7 @@ def translation_dummy(language):
     #FIXME: the need for the _catalog attribute means we
     # are not hijacking gettext early enough
     dummytrans._catalog = {}
+    dummytrans.plural = lambda x: x
     trans_real._translations[language] = dummytrans
     return dummytrans
             
