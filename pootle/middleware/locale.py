@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.utils import translation
+from django.utils.translation import trans_real
 from django.conf import settings
 
 from pootle.i18n import gettext
@@ -26,16 +27,17 @@ from pootle.i18n import gettext
 def translation_dummy(language):
     """return dumy translation object to please django's l10n while
     Live Translation is enabled"""
-    t = translation.trans_real._translations.get(language, None)
+    
+    t = trans_real._translations.get(language, None)
     if t is not None:
         return t
 
-    dummytrans = translation.trans_real.DjangoTranslation()
+    dummytrans = trans_real.DjangoTranslation()
     dummytrans.set_language(language)
     #FIXME: the need for the _catalog attribute means we
     # are not hijacking gettext early enough
     dummytrans._catalog = {}
-    translation.trans_real._translations[language] = dummytrans
+    trans_real._translations[language] = dummytrans
     return dummytrans
             
 class LocaleMiddleware(object):
@@ -49,11 +51,11 @@ class LocaleMiddleware(object):
         # override functions that check if language if language is
         # known to Django
         translation.check_for_language = lambda lang_code: True
-        translation.trans_real.check_for_language = lambda lang_code: True
+        trans_real.check_for_language = lambda lang_code: True
         # if live translation is enabled, hijack language activation
         # code to avoid unnessecary loading of mo files
         if settings.LIVE_TRANSLATION:
-            translation.trans_real.translation = translation_dummy
+            trans_real.translation = translation_dummy
 
         # install the safe variable formatting override
         gettext.override_gettext(translation)
