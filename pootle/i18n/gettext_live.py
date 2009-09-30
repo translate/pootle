@@ -31,9 +31,13 @@ def hijack_translation():
     """Replace django's gettext functions with functions from the
     appropriate TranslationProject, allowing live translation of
     Pootle's UI from in memory stores"""
+
+    language = translation.get_language()
+
+    if language in ('en', 'en-us'):
+        return None
     
     global _translation_project_cache
-    language = translation.get_language()
     if not language in _translation_project_cache:
         try:
             _translation_project_cache[language] = TranslationProject.objects.get(language__code=language, project__code="pootle")
