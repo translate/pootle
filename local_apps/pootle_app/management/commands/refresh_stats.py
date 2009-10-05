@@ -46,6 +46,11 @@ class Command(NoArgsCommand):
         # rescan translation_projects
         #FIXME: limit translation_project scanning to refresh_path, not just stores.
         for translation_project in TranslationProject.objects.all():
+            if not os.path.isdir(translation_project.abs_real_path):
+                # translation project no longer exists
+                translation_project.delete()
+                continue
+            
             project_tree.scan_translation_project_files(translation_project)
             # This will force the indexer of a TranslationProject to be
             # initialized. The indexer will update the text index of the
