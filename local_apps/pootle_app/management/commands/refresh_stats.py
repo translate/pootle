@@ -29,12 +29,6 @@ from pootle_app.models import TranslationProject
 from pootle_store.models import Store
 from pootle_app import project_tree
 
-_translation_project_cache = {}
-
-
-        _translation_project_cache[language_code, project_code] = translation_project
-
-        return translation_project
 
 class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
