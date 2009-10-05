@@ -24,6 +24,19 @@ PODIRECTORY = working_path('po')
 # set this to true to enable live translation of pootle UI, a good way to learn how to use pootle. but has high impact on performance.
 LIVE_TRANSLATION = True
 
+
+# File parse pool settings
+#
+# To avoid rereading and reparsing translation files from disk on
+# every request Pootle keeps a pool or already parsed files in memory.
+#
+# larger pools will offer better performance but higher memory usage
+# (per server process).
+
+PARSE_POOL_SIZE = 1000
+PARSE_POOL_CULL_FREQUENCY = 5
+
+
 # Cache Backend settings
 #
 # By default we use django's in memory cache which is only suitable

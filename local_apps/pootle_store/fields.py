@@ -32,15 +32,35 @@ from django.utils.thread_support import currentThread
 
 from translate.storage import factory, statsdb, po
 from translate.filters import checks
+from translate.misc.lru import LRUCachingDict
 
 from pootle_store.signals import translation_file_updated
 
+
+class StatsTuple(object):
+    """Encapsulates stats in the in memory cache, needed
+    since LRUCachingDict is based on a weakref.WeakValueDictionary
+    which cannot reference normal tuples"""
+    def __init__(self):
+        self.quickstats = None
+        self.stats = None
+        self.completestats = None
+        self.unitstats = None
+
+class StoreTuple(object):
+    """Encapsulates toolkit stores in the in memory cache, needed
+    since LRUCachingDict is based on a weakref.WeakValueDictionary
+    which cannot reference normal tuples"""
+    def __init__(self, store, mod_info):
+        self.store = store
+        self.mod_info = mod_info
+            
 
 class TranslationStoreFile(File):
     """A mixin for use alongside django.core.files.base.File, which provides
     additional features for dealing with translation files."""
 
-    _stats = {}
+    _stats = LRUCachingDict(settings.PARSE_POOL_SIZE, settings.PARSE_POOL_CULL_FREQUENCY)
     __statscache = {}
 
     def _get_statscache(self):
@@ -83,29 +103,30 @@ class TranslationStoreFile(File):
         #FIXME: is name the best substitute for path?
         return self.name
     path = property(_guess_path)
-
+    
+        
     def getquickstats(self):
         """Returns the quick statistics (totals only)."""
-        if 'quickstats' not in self._stats.setdefault(self.path, {}):
-            self._stats[self.path]['quickstats'] = self._statscache.filetotals(self.path, store=self._get_store) # or statsdb.emptyfiletotals()
-        return self._stats[self.path]['quickstats']
+        if self._stats.setdefault(self.path, StatsTuple()).quickstats is None:
+            self._stats[self.path].quickstats = self._statscache.filetotals(self.path, store=self._get_store) # or statsdb.emptyfiletotals()
+        return self._stats[self.path].quickstats
 
     def getstats(self):
         """Returns the unit states statistics only."""
-        if 'stats' not in self._stats.setdefault(self.path, {}):
-            self._stats[self.path]['stats'] = self._statscache.filestatestats(self.path, store=self._get_store)
-        return self._stats[self.path]['stats']
+        if self._stats.setdefault(self.path, StatsTuple()).stats is None:
+            self._stats[self.path].stats = self._statscache.filestatestats(self.path, store=self._get_store)
+        return self._stats[self.path].stats
 
     def getcompletestats(self, checker):
         """Return complete stats including quality checks."""
-        if 'completestats' not in self._stats.setdefault(self.path, {}):
-            self._stats[self.path]['completestats'] =  self._statscache.filestats(self.path, checker, store=self._get_store)
-        return self._stats[self.path]['completestats']
+        if self._stats.setdefault(self.path, StatsTuple()).completestats is None:
+            self._stats[self.path].completestats =  self._statscache.filestats(self.path, checker, store=self._get_store)
+        return self._stats[self.path].completestats
 
     def getunitstats(self):
-        if 'unitstats' not in self._stats.setdefault(self.path, {}):
-            self._stats[self.path]['unitstats'] = self._statscache.unitstats(self.path, store=self._get_store)
-        return self._stats[self.path]['unitstats']
+        if self._stats.setdefault(self.path, StatsTuple()).unitstats is None:
+            self._stats[self.path].unitstats = self._statscache.unitstats(self.path, store=self._get_store)
+        return self._stats[self.path].unitstats
 
     def reclassifyunit(self, item, checker=checks.StandardUnitChecker()):
         """Reclassifies all the information in the database and self._stats
@@ -113,7 +134,7 @@ class TranslationStoreFile(File):
         unit = self.getitem(item)
         state = self._statscache.recacheunit(self.path, checker, unit)
         #FIXME: can't we use state to update stats cache instead of invalidating it?
-        self._stats[self.path] = {}
+        self._stats[self.path] = StatsTuple()
         return state
 
     def _get_total(self):
@@ -192,7 +213,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     """FieldFile is the File-like object of a FileField, that is found in a
     TranslationStoreField."""
 
-    _store_cache = {}
+    _store_cache = LRUCachingDict(settings.PARSE_POOL_SIZE, settings.PARSE_POOL_CULL_FREQUENCY)
 
     # redundant redefinition of path to be the same as defined in
     # FieldFile, added here for clarity since TranslationStoreFile
@@ -205,17 +226,17 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         #FIXME: when do we detect that file changed?
         if self.path not in self._store_cache:
             self._update_store_cache()
-        return self._store_cache[self.path][0]
+        return self._store_cache[self.path].store
 
     def _update_store_cache(self):
         """Add translation store to dictionary cache, replace old cached
         version if needed."""
         mod_info = self.getpomtime()
 
-        if self.path not in self._store_cache or self._store_cache[self.path][1] != mod_info:
+        if self.path not in self._store_cache or self._store_cache[self.path].mod_info != mod_info:
             logging.debug("cache miss for %s", self.path)
-            self._store_cache[self.path] = (factory.getobject(self.path, ignore=self.field.ignore), mod_info)
-            self._stats[self.path] = {}
+            self._store_cache[self.path] = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore), mod_info)
+            self._stats[self.path] = StatsTuple()
             translation_file_updated.send(sender=self, path=self.path)
 
     def _touch_store_cache(self):
@@ -224,16 +245,16 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
             return self._update_store_cache()
 
         mod_info = self.getpomtime()
-        self._store_cache[self.path] = (self._store_cache[self.path][0], mod_info)
+        self._store_cache[self.path].mod_info = mod_info
         #FIXME: should we track pomtime for stats cache as well
-        self._stats[self.path] = {}
+        self._stats[self.path] = StatsTuple()
         translation_file_updated.send(sender=self, path=self.path)
 
     def _delete_store_cache(self):
         """Remove translation store from dictionary cache."""
         if self.path in self._store_cache:
             del(self._store_cache[self.path])
-        self._stats[self.path] = {}
+        self._stats[self.path] = StatsTuple()
 
     store = property(_get_store)
 
