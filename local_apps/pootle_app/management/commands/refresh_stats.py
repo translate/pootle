@@ -21,26 +21,19 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+import logging
 from optparse import make_option
 
 from django.core.management.base import NoArgsCommand
 from pootle_app.models import TranslationProject
 from pootle_store.models import Store
+from pootle_app import project_tree
 
 _translation_project_cache = {}
 
-def get_translation_project(language_code, project_code):
-    """A simply function to keep a cache of TranslationProjects that have
-    already been opened. This is just to speed things up a bit."""
-    try:
-        return _translation_project_cache[language_code, project_code]
-    except KeyError:
-        translation_project = TranslationProject.objects.get(language__code=language_code, project__code=project_code)
+
         _translation_project_cache[language_code, project_code] = translation_project
-        # This will force the indexer of a TranslationProject to be
-        # initialized. The indexer will update the text index of the
-        # TranslationProject if it is out of date.
-        translation_project.indexer
+
         return translation_project
 
 class Command(NoArgsCommand):
@@ -56,25 +49,25 @@ class Command(NoArgsCommand):
         refresh_path = options.get('directory', '')
         recompute = options.get('recompute', False)
 
-        # We force stats and indexing information to be recomputed by
-        # updating the mtimes of the files whose information we want
-        # to update.
-        if recompute:
-            for store in Store.objects.filter(pootle_path__startswith=refresh_path):
-                print "Resetting mtime for %s to now" % store.real_path
-                os.utime(store.abs_real_path, None)
-
-        for store in Store.objects.filter(pootle_path__startswith=refresh_path):
-            # Get a path such as /<language>/<project>/...
-            components = store.pootle_path.split('/')
-            # Split the path into ['', <language>, <project>, ...]
-            language_code, project_code = components[1:3]
-            try:
-                translation_project = get_translation_project(language_code, project_code)
+        # rescan translation_projects
+        #FIXME: limit translation_project scanning to refresh_path, not just stores.
+        for translation_project in TranslationProject.objects.all():
+            project_tree.scan_translation_project_files(translation_project)
+            # This will force the indexer of a TranslationProject to be
+            # initialized. The indexer will update the text index of the
+            # TranslationProject if it is out of date.
+            translation_project.indexer
+            
+            for store in translation_project.stores.filter(pootle_path__startswith=refresh_path):
+                # We force stats and indexing information to be recomputed by
+                # updating the mtimes of the files whose information we want
+                # to update.
+                if recompute:
+                    logging.info("Resetting mtime for %s to now", store.real_path)
+                    os.utime(store.abs_real_path, None)
+                    
                 # Simply by opening a file, we'll trigger the
                 # machinery that looks at its mtime and decides
                 # whether its stats should be updated
-                print "Updating stats for %s" % store.file.name
+                logging.info("Updating stats for %s", store.file.name)
                 store.file.getcompletestats(translation_project.checker)
-            except TranslationProject.DoesNotExist:
-                pass
