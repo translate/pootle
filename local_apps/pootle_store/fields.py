@@ -128,7 +128,7 @@ class TranslationStoreFile(File):
 
     def getunitstats(self):
         stats_tuple = self._stats.setdefault(self.path, StatsTuple())
-        if statstuple.unitstats is None:
+        if stats_tuple.unitstats is None:
             stats_tuple.unitstats = self._statscache.unitstats(self.path, store=self._get_store)
         return stats_tuple.unitstats
 
@@ -277,8 +277,8 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         except KeyError:
             pass
 
-            
     store = property(_get_store)
+
 
     def savestore(self):
         """Saves to temporary file then moves over original file. This
