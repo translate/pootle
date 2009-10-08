@@ -228,52 +228,56 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         """Get translation store from dictionary cache, populate if store not
         already cached."""
         #FIXME: when do we detect that file changed?
-        try:
-            store_tuple = self._store_cache[self.path]
-        except KeyError:
-            store_tuple = self._update_store_cache()
-        return store_tuple.store
+        if not hasattr(self, "_store_tuple"):
+            self._update_store_cache()
+        return self._store_tuple.store
+
 
     def _update_store_cache(self):
         """Add translation store to dictionary cache, replace old cached
         version if needed."""
         mod_info = self.getpomtime()
+        if not hasattr(self, "_store_typle") or self._store_tuple.mod_info != mod_info:
+            try:
+                self._store_tuple = self._store_cache[self.path]
+                if self._store_tuple.mod_info != mod_info:
+                    # if file is modified act as if it doesn't exist in cache
+                    raise KeyError
+            except KeyError:
+                logging.debug("cache miss for %s", self.path)
+                self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore), mod_info)
+                self._store_cache[self.path] = self._store_tuple
+                self._stats[self.path] = StatsTuple()
+                translation_file_updated.send(sender=self, path=self.path)
 
-        try:
-            store_tuple = self._store_cache[self.path]
-            if store_tuple.mod_info != mod_info:
-                # if file is modified act as if it doesn't exist in cache
-                raise KeyError
-        except KeyError:
-            logging.debug("cache miss for %s", self.path)
-            store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore), mod_info)
-            self._store_cache[self.path] = store_tuple
-            self._stats[self.path] = StatsTuple()
-            translation_file_updated.send(sender=self, path=self.path)
-        return store_tuple
 
     def _touch_store_cache(self):
         """Update stored mod_info without reparsing file."""
-        try:
-            store_tuple = self._store_cache[self.path]
+        if hasattr(self, "_store_tuple"):
             mod_info = self.getpomtime()
-            self._store_cache[self.path].mod_info = mod_info
-            #FIXME: should we track pomtime for stats cache as well
-            self._stats[self.path] = StatsTuple()
-            translation_file_updated.send(sender=self, path=self.path)
-        except KeyError:
+            if self._store_tuple.mod_info != self.getpomtime():
+                self._store_tuple.mod_info = mod_info
+                self._stats[self.path] = StatsTuple()
+                translation_file_updated.send(sender=self, path=self.path)
+        else:
+            #FIXME: do we really need that?
             self._update_store_cache()
 
 
     def _delete_store_cache(self):
-        """Remove translation store from dictionary cache."""
+        """Remove translation store from cache."""
         try:
-            del(self._store_cache[self.path])
+            del self._store_cache[self.path]
         except KeyError:
             pass
 
         try:
-            del(self._stats[self.path])
+            del self._store_tuple
+        except AttributeError:
+            pass
+
+        try:
+            del self._stats[self.path]
         except KeyError:
             pass
 
@@ -284,6 +288,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         """Saves to temporary file then moves over original file. This
         way we avoid the need for locking."""
         tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
+        #FIXME: what if the file was modified before we save
         self.store.savefile(tmpfilename)
         shutil.move(tmpfilename, self.path)
         self._touch_store_cache()
