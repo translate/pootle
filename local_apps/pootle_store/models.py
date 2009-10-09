@@ -183,25 +183,34 @@ class Store(models.Model):
                 logging.error('Found an index error attempting to delete a suggestion: %s', suggestion)
                 return  # TODO: Print a warning for the user.
 
-    def deletesuggestion(self, item, suggitem=None, newtrans=None):
+    def deletesuggestion(self, item, suggitem, newtrans):
         """removes the suggestion from the pending file"""
-        if suggitem is not None:
-            try:
-                suggestions = [self.getsuggestions(item)[suggitem]]
-            except IndexError:
-                logging.error('Found an index error attemptine to delete suggestion %d', suggitem)
-                return
-        else:
-            suggestions = self.getsuggestions(item)
-
-        for suggestion in suggestions:
-            self._deletesuggestion(item, suggestion)
+        suggestions = self.getsuggestions(item)
+        
+        try:
+            # first try to use index
+            suggestion = self.getsuggestions(item)[suggitem]
+            if suggestion.target == newtrans:
+                self._deletesuggestion(item, suggestion)
+            else:
+                # target doesn't match suggested translation, index is
+                # incorrect
+                raise IndexError
+        except IndexError:
+            logging.debug('Found an index error attempting to delete suggestion %d\n looking for item by target', suggitem)
+            # see if we can find the correct suggestion by searching
+            # for target text
+            for suggestion in suggestions:
+                if suggestion.target == newtrans:
+                    self._deletesuggestion(item, suggestion)
+                    break
 
         if self.file.store.suggestions_in_format:
             self.file.savestore()
         else:
             self.pending.savestore()
         self.file.reclassifyunit(item)
+
 
     def getsuggester(self, item, suggitem):
         """returns who suggested the given item's suggitem if
