@@ -1,10 +1,5 @@
 $(document).ready(function() {
 
-  function clearpath(path) {
-    parts = path.split("/");
-    return parts[parts.length - 1];
-  }
-
   function geturl(node, action) {
     pofilename = escape($("input[name='store']").val())
     item_sugg_chain = $(node).attr("id").replace(action, "");
