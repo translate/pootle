@@ -5,7 +5,7 @@ $(document).ready(function() {
     item_sugg_chain = $(node).attr("id").replace(action, "");
     item_sugg = item_sugg_chain.split("-", 1);
     itemid = item_sugg[0];
-    url = pofilename + "/" + itemid + "/handlesuggestions/";
+    url = pofilename + "/review/" + itemid + "/";
     return url;
   }
 
