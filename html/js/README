@@ -56,12 +56,6 @@ Directory contents
 
   + jquery/
 
-    - jquery.color.js :
-      jQuery Color Animations plugin, used in the translate page when accepting
-      and rejecting suggestions. Not really needed, but eye-candy.
-
-      http://plugins.jquery.com/project/color
-
     - jquery.growfield2.ycomp.js :
       jQuery Growfield2 plugin, used in the translate page textareas.
       Using a copy from version control due to
