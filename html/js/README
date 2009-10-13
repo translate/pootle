@@ -36,11 +36,6 @@ Directory contents
     Sorts tables according to its values. Used in the homepage as well as on the
     languages and projects listings.
 
-  - suggestions.js :
-    Handles suggestions doing XMLHttpRequest calls using jQuery. Used in the
-    translate page and must be nuked by a new implementation. May be merged with
-    other code in the translate page.
-
   - sugg.js :
     Handles suggestions doing XMLHttpRequest calls using jQuery and
     sending/receiving data in JSON format. May be merged with other code in the

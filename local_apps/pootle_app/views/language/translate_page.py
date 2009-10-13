@@ -1046,9 +1046,6 @@ def view(request, directory, store, item, stopped_by=None):
         "canedit":                   check_permission("translate", request) or check_permission("suggest", request),
         "cantranslate":              check_permission("translate", request),
         "cansuggest":                check_permission("suggest", request),
-        "ajax_status_text":          _("Working..."),
-        # l10n: Text displayed in an alert box when an AJAX petition has failed
-        "ajax_error":                _("Error: Something went wrong."),
         # l10n: Button label
         "accept_button":             _("Accept"),
         # l10n: Button label
