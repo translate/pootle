@@ -264,6 +264,8 @@ def handle_suggestions(request, translation_project, file_path, item):
             except ValueError:
                 # l10n: ValueError refers to the Python exception name
                 response["message"] = _("Error: ValueError exception raised.")
+            except PermissionError, e:
+                response["message"] = e
 
 
         for sugg in reversed(rejects):
@@ -276,6 +278,8 @@ def handle_suggestions(request, translation_project, file_path, item):
             except ValueError:
                 # l10n: ValueError refers to the Python exception name
                 response["message"] = _("Error: ValueError exception raised.")
+            except PermissionError, e:
+                response["message"] = e
 
         response["status"] = (reject_candidates == reject_count and
                               accept_candidates == accept_count) and \
