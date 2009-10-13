@@ -262,8 +262,8 @@ def handle_suggestions(request, translation_project, file_path, item):
                 response["del_ids"].append((int(item), sugg["id"]))
                 accept_count += 1
             except ValueError:
-                # TODO: provide fine-grained error message from the exception
-                response["message"] = _("This is an error message.")
+                # l10n: ValueError refers to the Python exception name
+                response["message"] = _("Error: ValueError exception raised.")
 
 
         for sugg in reversed(rejects):
@@ -275,8 +275,8 @@ def handle_suggestions(request, translation_project, file_path, item):
                 response["del_ids"].append((int(item), sugg["id"]))
                 pending = getpendingsuggestions(int(item))
             except ValueError:
-                # TODO: provide fine-grained error message from the exception
-                response["message"] = _("This is an error message.")
+                # l10n: ValueError refers to the Python exception name
+                response["message"] = _("Error: ValueError exception raised.")
 
         response["status"] = (reject_candidates == reject_count and
                               accept_candidates == accept_count) and \
@@ -286,9 +286,9 @@ def handle_suggestions(request, translation_project, file_path, item):
             amsg = ""
             rmsg = ""
             if accept_candidates != 0:
-                amsg = _("Suggestion accepted")
+                amsg = _("Suggestion accepted.")
             if reject_candidates != 0:
-                rmsg = _N("Suggestion rejected",
+                rmsg = _N("Suggestion rejected.",
                           "%d suggestions rejected.", reject_count)
             response["message"] = amsg + rmsg
 
