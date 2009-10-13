@@ -271,7 +271,6 @@ def handle_suggestions(request, translation_project, file_path, item):
                 unit_update.reject_suggestion(store,int(item), int(sugg["id"]),
                                               sugg["newtrans"], request)                
                 reject_count += 1
-                # TODO: convert this a list
                 response["del_ids"].append((int(item), sugg["id"]))
                 pending = getpendingsuggestions(int(item))
             except ValueError:
