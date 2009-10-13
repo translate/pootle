@@ -98,16 +98,18 @@ def filter_by_suggester(query, store, item, suggitem):
     except PootleProfile.DoesNotExist:
         return query
 
+def get_pending_unit(store, item, newtrans):
+    return Unit.objects.get(store  = store,
+                            index  = item,
+                            source = store.file.getitem(item).getsource(),
+                            target = newtrans,
+                            state  = 'pending')
+
 def get_suggestion(store, item, newtrans, request):
     """Marks the suggestion specified by the parameters with the given status,
     and returns that suggestion object"""
     translation_project = request.translation_project
-    unit  = Unit.objects.get(store  = store,
-                             index  = item,
-                             source = store.file.getitem(item).getsource(),
-                             target = newtrans,
-                             state  = 'pending'
-                             )
+    unit = get_pending_unit(store, item, newtrans)
     return Suggestion.objects.get(translation_project = translation_project,
                                   unit                = unit)
 
@@ -122,6 +124,11 @@ def reject_suggestion(store, item, suggitem, newtrans, request):
         # Deletes the suggestion from the database
         suggestion = get_suggestion(store, item, newtrans, request)
         suggestion.delete()
+        # We also need to delete the Unit object.
+        # Yes, this is a little bit confusing, as noted above, maybe
+        # we should get rid of the Unit model.
+        unit = get_pending_unit(store, item, newtrans)
+        unit.delete()
     except ObjectDoesNotExist:
         pass
     # Deletes the suggestion from the .pending file
