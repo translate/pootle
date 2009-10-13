@@ -221,7 +221,7 @@ def handle_suggestions(request, translation_project, file_path, item):
        Response attributes are described below:
         * "status": Indicates the status after trying the action.
                     Possible values: "error", "success".
-        * "message": Message status of the transaction. Depending on the status
+        * "message": Status message of the transaction. Depending on the status
                     it will display an error message, or the number of
                     suggestions rejected/accepted."""
     # TODO: finish this function and return nice diffs
