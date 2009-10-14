@@ -109,6 +109,7 @@ class Store(models.Model):
             # suggestions can be stored in the translation file itself
             return
 
+        pending_filename = self.file.path + os.extsep + 'pending'
         if self.pending:
             # pending file already referencing in db, but does it
             # really exist
@@ -125,7 +126,6 @@ class Store(models.Model):
                 self.pending = None
                 self.save()
                 
-        pending_filename = self.file.path + os.extsep + 'pending'
         # check if pending file already exists, just in case it was
         # added outside of pootle
         if not os.path.exists(pending_filename) and create:
