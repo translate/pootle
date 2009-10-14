@@ -37,6 +37,9 @@ from translate.misc.lru import LRUCachingDict
 
 from pootle_store.signals import translation_file_updated
 
+from pootle.__version__ import sver as pootle_version
+
+x_generator = "Pootle %s" % pootle_version
 
 class StatsTuple(object):
     """Encapsulates stats in the in memory cache, needed
@@ -156,7 +159,7 @@ class TranslationStoreFile(File):
         """The number of items in the file."""
         return self.getquickstats()['total']
 
-    def updateunit(self, item, newvalues, userprefs, languageprefs):
+    def updateunit(self, item, newvalues, user=None, language=None):
         """Updates a translation with a new target value, comments, or fuzzy
         state."""
 
@@ -171,20 +174,21 @@ class TranslationStoreFile(File):
             if newvalues['translator_comments']:
                 unit.addnote(newvalues['translator_comments'])
 
-        if isinstance(self, po.pofile):
-            po_revision_date = time.strftime('%Y-%m-%d %H:%M') + tzstring()
+        if isinstance(self.store, po.pofile):
+            po_revision_date = time.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
             headerupdates = {'PO_Revision_Date': po_revision_date,
-                             'Language': self.languagecode,
-                             'X_Generator': self.x_generator}
-            if userprefs:
-                if getattr(userprefs, 'name', None) and getattr(userprefs, 'email', None):
-                    headerupdates['Last_Translator'] = '%s <%s>' % (userprefs.name, userprefs.email)
+                             'X_Generator': x_generator}
+
+            if language is not None:
+                headerupdates['Language'] = language.code
+                if language.nplurals and language.pluralequation:
+                    self.store.updateheaderplural(language.nplurals, language.pluralequation)
+
+            if user is not None:
+                headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
+                
             self.store.updateheader(add=True, **headerupdates)
-            if languageprefs:
-                nplurals = getattr(languageprefs, 'nplurals', None)
-                pluralequation = getattr(languageprefs, 'pluralequation', None)
-                if nplurals and pluralequation:
-                    self.store.updateheaderplural(nplurals, pluralequation)
+            
         # If we didn't add a header, savepofile doesn't have to
         # reset the stats, since reclassifyunit will do. This
         # gives us a little speed boost for the common case.
