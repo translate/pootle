@@ -194,7 +194,7 @@ def yield_sdf_link(request, path_obj, links_required):
     if 'sdf' in links_required and \
             check_permission('pocompile', request) and \
             request.translation_project.ootemplate() and \
-            path_obj == translation_project.directory:
+            path_obj == request.translation_project.directory:
         link = dispatch.download_sdf(request, path_obj)
         yield {
             'href':  link,
