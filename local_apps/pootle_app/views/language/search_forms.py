@@ -24,6 +24,7 @@ from django.utils.translation import ugettext as _
 from django import forms
 from django.utils.safestring import mark_safe
 from pootle_app.models.search import Search
+from pootle_app.models.goal import Goal
 
 class SearchForm(forms.Form):
     text = forms.CharField(widget=forms.TextInput(attrs={'size':'15'}))
