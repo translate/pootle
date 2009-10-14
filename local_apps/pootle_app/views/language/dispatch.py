@@ -101,7 +101,7 @@ def download_zip(request, path_obj):
             current_folder = path_obj.pootle_path
         else:
             current_folder = path_obj.parent.pootle_path
-        archive_name += "-%s.zip" % currentfolder.replace(os.path.sep, "-")
+            archive_name += "-%s.zip" % currentfolder.replace(os.path.sep, "-")
     else:
         archive_name += "-%(goal)s.zip?goal=%(goal)s" % request.goal.name
     return archive_name
