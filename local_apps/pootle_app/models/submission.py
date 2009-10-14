@@ -83,5 +83,4 @@ class Submission(models.Model):
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%c"), unicode(self.submitter))
 
-def submissions_count(profile):
-    return profile.submission_set.count()
+

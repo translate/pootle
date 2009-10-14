@@ -914,8 +914,6 @@ def process_post_main(store_name, item, request, next_store_item, prev_store_ite
     else:
         return store, item
 
-def process_new_search(store_name, item, request, next_store_item, prev_store_item):
-    pass
 
 def get_position(request, next_store_item, prev_store_item):
     state      = dispatch.TranslatePageState(request.GET)

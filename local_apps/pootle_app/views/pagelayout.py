@@ -78,16 +78,6 @@ def weblanguage(language):
     return language.replace('_', '-')
 
 
-def localelanguage(language):
-    """Reformats the language code from web style (pt-br) to locale
-    style (pt_BR)"""
-
-    dashindex = language.find('-')
-    if dashindex >= 0:
-        language = language[:dashindex] + '_' + language[dashindex + 1:].upper()
-    return language
-
-
 def completetemplatevars(templatevars, request, bannerheight=135):
     """fill out default values for template variables"""
 

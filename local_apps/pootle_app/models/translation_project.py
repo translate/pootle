@@ -172,9 +172,6 @@ class TranslationProject(models.Model):
 
     goals = property(_get_goals)
 
-    def get_profile_goals(self, profile):
-        return Goal.objects.filter(profiles=profile, translation_project=self)
-
     def update_from_version_control(self):
         """updates project translation files from version control,
         retaining uncommitted translations"""

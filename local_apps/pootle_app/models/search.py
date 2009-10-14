@@ -60,8 +60,6 @@ def intersect(set_a, set_b):
             if member(set_b, element):
                 yield element
 
-def narrow_to_last_item_range(translatables, last_index):
-    return translatables[last_index + 1:]
 
 def narrow_to_search_text(total, store, translatables, search):
     if search.search_text not in (None, '') and search.search_results is None:
@@ -200,5 +198,3 @@ class Search(object):
             last_index = stats['total'] - 1
         return self._all_matches(store, last_index, (0, last_index + 1), lambda x: reversed(list(x)))
 
-def search_from_state(translation_project, search_state):
-    return Search(translation_project=translation_project, **search_state.as_dict())

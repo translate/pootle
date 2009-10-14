@@ -21,11 +21,6 @@
 
 from django.db import connection
 
-def get_latest_changes(manager, query):
-    cursor = connection.cursor()
-    cursor.execute(query)
-    return dict(cursor.fetchall())
-
 def table_name(table):
     return table._meta.db_table
 

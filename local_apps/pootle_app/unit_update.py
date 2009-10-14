@@ -93,14 +93,6 @@ def update_translation(store, item, newvalues, request, suggestion=None):
     store.file.updateunit(item, newvalues, request.user, translation_project.language)
     translation_project.update_index(translation_project.indexer, store, [item])
 
-def filter_by_suggester(query, store, item, suggitem):
-    """returns who suggested the given item's suggitem if recorded, else None"""
-    username = store.getsuggester(item, suggitem)
-    try:
-        query.filter(PootleProfile.objects.get(user__username=username))
-    except PootleProfile.DoesNotExist:
-        return query
-
 def get_pending_unit(store, item, newtrans):
     return Unit.objects.get(store  = store,
                             index  = item,

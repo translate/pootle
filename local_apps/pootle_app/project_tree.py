@@ -97,12 +97,6 @@ def get_translation_project_dir(language, project_dir, file_style, make_dirs=Fal
     else:
         return get_language_dir(project_dir, language, file_style, make_dirs)
 
-def has_project(language, project):
-    try:
-        get_translation_project_dir(language, project)
-        return True
-    except IndexError:
-        return False
 
 def is_hidden_file(path):
     return path[0] == '.'
@@ -156,8 +150,6 @@ def add_files(ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True)
         fs_subdir = os.path.join(real_dir, db_subdir.name)
         add_files(ignored_files, ext, fs_subdir, db_subdir, file_filter)
 
-def get_translation_project_root(translation_project):
-    return Directory.objects.root.get_or_make_subdir(translation_project.project.code).get_subdir(translation_project.language.code)
 
 def translation_project_should_exist(language, project):
     """tests if there are translation files corresponding to given
@@ -217,13 +209,6 @@ def scan_translation_project_files(translation_project):
     else:
         add_files(ignored_files, ext, real_path, directory)
 
-def get_projects(language=None):
-    if language is None:
-        return Project.objects.all()
-    else:
-        return [project for project in Project.objects.all() if has_project(language, project)]
-
-################################################################################
 
 def get_extension(language, project):
     """file extension used for this project, returns pot if it's a po
@@ -234,24 +219,19 @@ def get_extension(language, project):
     else:
         return ext
 
-################################################################################
-
-def translate_gnu_template(translation_project, template_path):
-    template_path_parts = template_path.split(os.sep)
-    template_path_parts[-1] = "%s.%s" % (translation_project.language.code,
-                                         translation_project.project.localfiletype)
-    return os.sep.join(template_path_parts)
 
 def ensure_target_dir_exists(target_path):
     target_dir = os.path.dirname(target_path)
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
 
+
 def read_original_target(target_path):
     try:
         return open(target_path, "rb")
     except:
         return None
+
 
 def convert_template(template_path, target_path):
     ensure_target_dir_exists(target_path)

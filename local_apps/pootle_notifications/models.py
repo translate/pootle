@@ -45,6 +45,3 @@ class Notices(models.Model):
         ordering = ["-added"]
         verbose_name = _("notice")
         verbose_name_plural = _("notices")
-
-    def get_absolute_url(self):
-            return l("/notice/viewitem/%i/" % self.id)

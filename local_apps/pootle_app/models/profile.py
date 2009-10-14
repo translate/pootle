@@ -135,9 +135,6 @@ class PootleProfile(models.Model):
 
     pootle_user = property(_get_pootle_user)
 
-    def get_messages(self):
-        # TODO: This should be a DB column
-        return []
 
 def create_pootle_profile(sender, instance, **kwargs):
     """A post-save hook for the User model which ensures that it gets an

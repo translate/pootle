@@ -248,8 +248,6 @@ class State(object):
         for member in self.get_descriptors():
             yield member.var_name, getattr(self, member.var_name)
 
-    def as_dict(self):
-        return dict(self.iter_items())
 
     def __init__(self, data={}, **initial):
         """Initialize a state object possibly reading initial state

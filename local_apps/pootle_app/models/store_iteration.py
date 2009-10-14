@@ -46,17 +46,9 @@ def intersect(set_a, set_b):
             if member(set_b, element):
                 yield element
 
-################################################################################
-
-def get_relative_components(directory, starting_store):
-    if starting_store is not None:
-        return url_manip.get_relative(directory.pootle_path, starting_store).split('/')
-    else:
-        return None
-
-################################################################################
 
 BLOCK_SIZE = 100
+
 
 def do_query(query, next_matches, last_index):
     i = 0
@@ -105,44 +97,9 @@ def get_prev_match(path_obj, starting_store=None, last_index=-1, search=Search()
     else:
         return path_obj, search.next_matches(path_obj, last_index).next()
 
-################################################################################
 
 def iter_stores(directory, search=Search()):
     if search is None or search.goal is None:
         return Store.objects.filter(pootle_path__startswith=directory.pootle_path).order_by('pootle_path')
     else:
         return Store.objects.filter(pootle_path__startswith=directory.pootle_path, goals=search.goal)
-
-################################################################################
-
-def hits_to_dict(hits):
-    result_dict = {}
-    for hit in hits:
-        key = hit['pofilename'][0]
-        if key not in result_dict:
-            result_dict[key] = []
-        result_dict[key].append(int(hit['itemno'][0]))
-    for key, items in result_dict.iteritems():
-        result_dict[key] = sorted(items)
-    return result_dict
-
-def compute_index_result(search, stores):
-    searchparts = []
-    # Split the search expression into single words. Otherwise xapian and
-    # lucene would interprete the whole string as an "OR" combination of
-    # words instead of the desired "AND".
-    for word in search.search_text.split():
-        # Generate a list for the query based on the selected fields
-        querylist = [(f, word) for f in search.search_fields]
-        textquery = search.indexer.make_query(querylist, False)
-        searchparts.append(textquery)
-    if stores:
-        #for store in iter_stores(directory, starting_store, 
-        filequery = indexer.make_query([("pofilename", store) for store in stores], False)
-        searchparts.append(filequery)
-    # TODO: add other search items
-    limitedquery = search.indexer.make_query(searchparts, True)
-    return hits_to_dict(search.indexer.search(limitedquery, ['pofilename', 'itemno']))
-
-
-################################################################################
