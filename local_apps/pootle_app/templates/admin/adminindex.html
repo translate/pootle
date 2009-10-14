@@ -15,11 +15,19 @@
             <li><a href='{{ "permissions.html"|l }}'>{% trans "Default Permissions" %}</a></li>
         </ul>
         <div class="fullwidthcontents">
-            <h3 class="title"> {% trans "Pootle Admin Page" %} </h3>
-            <hr>
+            <div class="hd">
+                    <h2>{%trans "Pootle Admin Page" %}</h2>
+            </div>
             <form action="" method="post" >
-                        {{ form.as_p }}
-                </table>
+                {% for field in form %}
+                <p>
+                    {{ field.label_tag }}<br />
+                    {{ field }}
+                    {% if field.help_text %}
+                    <br />{{ field.help_text }}
+                    {% endif %}
+                </p>
+                {% endfor %}
                 <input type="submit" value='{% trans "Save" %}'/>
             </form>
         </div>
