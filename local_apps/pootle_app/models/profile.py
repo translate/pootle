@@ -127,7 +127,7 @@ class PootleProfile(models.Model):
             islangadmin = 'administrate' in get_matching_permissions(self, language.directory)
 
             quicklinks.append({'code': language.code,
-                               'name': tr_lang(language.fullname),
+                               'name': language.fullname, #FIXME: without request context we can't translate language names
                                'islangadmin': islangadmin,
                                'projects': langlinks})
             quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict['name'])
