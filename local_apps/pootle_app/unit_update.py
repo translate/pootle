@@ -21,11 +21,14 @@
 
 import datetime
 
+from django.db.models import ObjectDoesNotExist
+from django.utils.translation import ugettext as _
+
 from pootle_app.models             import Suggestion, Submission
 from pootle_store.models       import Unit
-from pootle_app.models.profile     import get_profile
+from pootle_app.models.profile     import get_profile, PootleProfile
 from pootle_app.models.permissions import check_permission, PermissionError
-from django.db.models import ObjectDoesNotExist
+
 
 def suggest_translation(store, item, trans, request):
     if not check_permission("suggest", request):

@@ -18,25 +18,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import time
 import os
 import cStringIO
 import gettext
-import subprocess
 import zipfile
 import logging
 
 from django.conf                   import settings
 from django.db                     import models
 from django.db.models.signals      import pre_delete, post_init, pre_save, post_save
+from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
 from translate.convert import po2csv, po2xliff, xliff2po, po2ts, po2oo
-from translate.tools   import pocompile, pogrep
+from translate.tools   import pogrep
 from translate.search  import match, indexing
-from translate.storage import statsdb, base, versioncontrol
+from translate.storage import base, versioncontrol
 
-from pootle_app.models.profile     import PootleProfile
 from pootle_app.models.project     import Project
 from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory

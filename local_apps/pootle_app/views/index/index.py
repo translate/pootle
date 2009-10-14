@@ -21,18 +21,16 @@
 import locale
 
 from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from pootle_app.models.profile import get_profile
-from pootle_app.models import Project, Directory, Suggestion, Submission, TranslationProject, Language
+from pootle_app.models import Project, Directory, Suggestion, Submission, Language
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.views import indexpage
 from pootle_app.views import pagelayout
 from pootle_app.views.indexpage import shortdescription, gentopstats
 from pootle.i18n.gettext import tr_lang
-from pootle_app.views.language.item_dict import add_percentages, make_directory_item
+from pootle_app.views.language.item_dict import add_percentages
 
 def limit(query):
     return query[:5]

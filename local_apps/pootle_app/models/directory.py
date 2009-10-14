@@ -21,7 +21,6 @@
 
 from django.db                import models
 from django.db.models.signals import pre_delete, pre_save
-from django.utils.translation import ugettext_lazy as _
 from pootle_store.util import dictsum, statssum, completestatssum
 from pootle_misc.util import getfromcache
 

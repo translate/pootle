@@ -28,7 +28,7 @@ from django.db                import models
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
-from pootle_store.util import relative_real_path, absolute_real_path, statssum
+from pootle_store.util import absolute_real_path, statssum
 from pootle_misc.util import getfromcache
 
 class Project(models.Model):

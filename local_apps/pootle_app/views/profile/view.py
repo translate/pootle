@@ -20,20 +20,17 @@
 
 """This view defines the home / account pages for a user."""
 
-from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
-
-from pootle_app.models.profile import get_profile, PootleProfile
-from pootle_app.views import indexpage
-from pootle_misc.baseurl import redirect
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext 
 from django.contrib.auth.decorators import login_required
 from django.forms.fields import email_re
 from django.forms.util import ErrorList
+
+from pootle_misc.baseurl import redirect
 
 def is_valid_email(email):
     return (email_re.match(email) is not None)
@@ -45,7 +42,7 @@ class UserForm(ModelForm):
         email = cleaned_data.get("email")
 
         if not email or not is_valid_email(email):
-            msg = '* Not a valid e-mail address.' 
+            msg = _('* Not a valid e-mail address.')
             self._errors["email"] = ErrorList([msg])
 
         # Always return the full collection of cleaned data.

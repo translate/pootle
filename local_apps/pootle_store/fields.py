@@ -30,7 +30,7 @@ from django.core.files import File
 from django.db.models.fields.files import FieldFile, FileField
 from django.utils.thread_support import currentThread
 
-from translate.storage import factory, statsdb, po
+from translate.storage import factory, statsdb, po, poheader
 from translate.filters import checks
 from translate.misc.lru import LRUCachingDict
 

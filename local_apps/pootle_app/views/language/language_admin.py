@@ -22,7 +22,6 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext as _N
 from django.core.exceptions import PermissionDenied
 
 from pootle_app.models.language import Language

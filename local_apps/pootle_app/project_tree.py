@@ -21,7 +21,6 @@
 
 import os
 import cStringIO
-from django.conf import settings
 
 from translate.lang    import data as langdata
 from translate.convert import pot2po
@@ -29,7 +28,6 @@ from translate.convert import pot2po
 from pootle_app.models.project    import Project
 from pootle_app.models.directory  import Directory
 from pootle_store.models      import Store
-from pootle_app.url_manip import strip_trailing_slash
 from pootle_store.util import absolute_real_path, relative_real_path
 
 def language_match_filename(language_code, path_name):

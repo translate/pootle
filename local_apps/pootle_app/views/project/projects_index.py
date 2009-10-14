@@ -27,7 +27,7 @@ from pootle_app.models.profile import get_profile
 from pootle_app.views.index.index import getprojects
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.views.indexpage import gentopstats
-from pootle_app.models import TranslationProject, Directory, Suggestion, Submission
+from pootle_app.models import Directory, Suggestion, Submission
 
 def limit(query):
     return query[:5]

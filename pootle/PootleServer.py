@@ -22,15 +22,16 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-import sys
 import optparse
 from wsgiref.simple_server import make_server
+
+from translate import __version__ as toolkitversion
+
 from django.core.handlers.wsgi import WSGIHandler
 from django.core.management import call_command
+
 from pootle_app.models.translation_project import scan_translation_projects
-import __version__ as pootleversion
-#from pootle import filelocations
-from translate import __version__ as toolkitversion
+
 
 class PootleOptionParser(optparse.OptionParser):
 

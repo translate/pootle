@@ -39,7 +39,6 @@ from translate.misc.multistring import multistring
 from pootle_app.views import pagelayout
 from pootle_app.models import TranslationProject, Directory
 from pootle_store.models import Store
-from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
 from pootle_app import unit_update, url_manip
 from pootle_app.models import permissions

@@ -22,7 +22,6 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext as _N
 
 from pootle_app.models.directory import Directory
 from pootle_app.views.language.admin import process_update as process_permission_update

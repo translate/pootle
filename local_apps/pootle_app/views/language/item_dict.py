@@ -21,7 +21,6 @@
 """Helper functions for the rendering of several items on the index views and
 similar pages."""
 
-import copy
 import itertools
 
 from django.utils.translation import ugettext as _

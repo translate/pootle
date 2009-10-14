@@ -17,12 +17,10 @@
 # translate; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 
-import os
 from django.conf import settings
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
 from django.utils.translation import get_language_bidi
-from pootle_app.models.search import Search
 from pootle_app.models.profile import get_profile
 
 def get_title():

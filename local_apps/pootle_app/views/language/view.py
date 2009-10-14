@@ -22,18 +22,14 @@ import cStringIO
 import os
 
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
-from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
 from django.utils import simplejson
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext as _N
 
-from pootle_app.views              import indexpage
 from pootle_misc.baseurl           import redirect
-from pootle_app.models             import Language, Project, TranslationProject, Directory, store_iteration
+from pootle_app.models             import TranslationProject, Directory, store_iteration
 from pootle_store.models import Store
-from pootle_app.models.search      import Search, search_from_state
-from pootle_app.url_manip          import strip_trailing_slash, clear_path
 from pootle_app.models.permissions import get_matching_permissions, PermissionError, check_permission
 from pootle_app.models.profile     import get_profile
 from pootle_app.views.language     import dispatch

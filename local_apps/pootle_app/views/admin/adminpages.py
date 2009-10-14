@@ -19,23 +19,16 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf import settings
 from django.utils.translation import ugettext as _
 N_ = _
-
-from pootle_app.views import pagelayout
 
 from util import user_is_admin
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from pootle_app.forms import GeneralSettingsForm
 
-from djblets.siteconfig.models import SiteConfiguration
-
 from pootle_app.siteconfig import load_site_config
-
 siteconfig = load_site_config()
-#siteconfig = SiteConfiguration.objects.get_current()
 
 @user_is_admin
 def view(request, path):

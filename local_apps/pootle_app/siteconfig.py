@@ -4,8 +4,6 @@
 from django.contrib.sites.models import Site
  
 from djblets.siteconfig.models import SiteConfiguration
-from django.conf import settings
- 
 from djblets.siteconfig.django_settings import apply_django_settings, generate_defaults
  
 defaults = {
