@@ -21,6 +21,7 @@
 """Utility classes for handling translation files."""
 
 import logging
+import time
 import os
 import shutil
 import tempfile
