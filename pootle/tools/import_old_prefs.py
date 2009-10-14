@@ -14,7 +14,7 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from pootle_app.models.project import Project
 from pootle_app.models.language import Language
-from pootle_app.lib.legacy.jToolkit import prefs
+from pootle.legacy.jToolkit import prefs
 
 import sys
 import types

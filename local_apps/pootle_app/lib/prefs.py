@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle_app.lib.legacy.jToolkit import prefs
+from pootle.legacy.jToolkit import prefs
 
 def set_default_preferences(prefs):
     changed = False
