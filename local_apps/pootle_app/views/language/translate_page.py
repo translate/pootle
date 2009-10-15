@@ -813,27 +813,6 @@ def handle_submits(last_item, request, store, submits, skips, translations, comm
         last_item = item
     return last_item
 
-def handle_rejects(last_item, store, rejects, skips, translations, suggestions, request):
-    # Make sure we have rejects list properly sorted
-    rejects.sort(key=operator.itemgetter(1))
-    # It's necessary to loop the list reversed in order to selectively remove items
-    for item, suggid in reversed(rejects):
-        value = suggestions[item, suggid]
-        if isinstance(value, dict) and len(value) == 1 and 0 in value:
-            value = value[0]
-        unit_update.reject_suggestion(store, item, suggid, value, request)
-        last_item = item
-    return last_item
-
-def handle_accepts(last_item, store, accepts, skips, translations, suggestions, request):
-    accepts.sort(key=operator.itemgetter(1))
-    for item, suggid in reversed(accepts):
-        value = suggestions[item, suggid]
-        if isinstance(value, dict) and len(value) == 1 and 0 in value:
-            value = value[0]
-        unit_update.accept_suggestion(store, item, suggid, value, request)
-        last_item = item
-    return last_item
 
 def process_post(request, store):
     """receive any translations submitted by the user"""
@@ -842,8 +821,6 @@ def process_post(request, store):
     skips = []
     submitsuggests = []
     submits = []
-    accepts = []
-    rejects = []
     translations = {}
     suggestions = {}
     comments = {}
@@ -865,10 +842,6 @@ def process_post(request, store):
             submitsuggests.append(item)
         elif keytype == "submit":
             submits.append(item)
-        elif keytype == "accept":
-            accepts.append((item, dashitem))
-        elif keytype == "reject":
-            rejects.append((item, dashitem))
         elif keytype == "translator_comments":
             # We need to remove carriage returns from the input.
             value = value.replace("\r", "")
@@ -897,8 +870,6 @@ def process_post(request, store):
     last_item = handle_skips(-1, skips)
     last_item = handle_suggestions(last_item, request, store, submitsuggests, skips, translations)
     last_item = handle_submits(last_item, request, store, submits, skips, translations, comments, fuzzies)
-    last_item = handle_accepts(last_item, store, accepts, skips, translations, suggestions, request)
-    last_item = handle_rejects(last_item, store, rejects, skips, translations, suggestions, request)
     return prev_last_item, last_item
 
 def process_post_main(store_name, item, request, next_store_item, prev_store_item):
