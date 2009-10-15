@@ -82,9 +82,6 @@ def reject_suggestion(store, item, suggitem, newtrans, request):
         # Deletes the suggestion from the database
         suggestion = get_suggestion(store, item, newtrans, request)
         suggestion.delete()
-        # We also need to delete the Unit object.
-        # Yes, this is a little bit confusing, as noted above, maybe
-        # we should get rid of the Unit model.
     except ObjectDoesNotExist:
         pass
     # Deletes the suggestion from the .pending file
