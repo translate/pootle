@@ -19,7 +19,8 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.db                import models
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 import custom_sql_util
 from profile import PootleProfile
@@ -52,17 +53,21 @@ class SuggestionManager(models.Manager):
 class Suggestion(models.Model):
     class Meta:
         app_label = "pootle_app"
+
+    state_choices = [('pending', _('Pending')),
+                     ('accepted', _('accepted')),
+                     ]
         
     creation_time       = models.DateTimeField()
     translation_project = models.ForeignKey(TranslationProject)
     suggester           = models.ForeignKey(PootleProfile, related_name='suggestions_suggester_set')
     reviewer            = models.ForeignKey(PootleProfile, related_name='suggestions_reviewer_set', null=True)
     review_time         = models.DateTimeField(null=True)
+    unit                = models.IntegerField(null=False, db_index=True)
+    state               = models.CharField(max_length=16, default='pending', null=False, choices=state_choices, db_index=True)
 
     objects = SuggestionManager()
 
 def _get_suggestions(profile, status):
-    return Suggestion.objects.filter(suggester=profile).filter(unit__state=status)
-
-
+    return Suggestion.objects.filter(suggester=profile, state=status)
 

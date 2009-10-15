@@ -29,6 +29,9 @@ from pootle_app.models.profile     import get_profile, PootleProfile
 from pootle_app.models.permissions import check_permission, PermissionError
 
 
+def _suggestion_hash(store, item, trans):
+    return hash((store.pootle_path, item, trans))
+
 def suggest_translation(store, item, trans, request):
     if not check_permission("suggest", request):
         raise PermissionError(_("You do not have rights to suggest changes here"))
@@ -37,6 +40,8 @@ def suggest_translation(store, item, trans, request):
         creation_time       = datetime.datetime.utcnow(),
         translation_project = translation_project,
         suggester           = get_profile(request.user),
+        unit                = _suggestion_hash(store, item, trans),
+        state               = 'pending',
         )
     s.save()
     store.addsuggestion(item, trans, s.suggester.user.username)
@@ -61,18 +66,12 @@ def update_translation(store, item, newvalues, request, suggestion=None):
     store.file.updateunit(item, newvalues, request.user, translation_project.language)
     translation_project.update_index(translation_project.indexer, store, [item])
 
-def get_pending_unit(store, item, newtrans):
-    return Unit.objects.get(store  = store,
-                            index  = item,
-                            source = store.file.getitem(item).getsource(),
-                            target = newtrans,
-                            state  = 'pending')
 
 def get_suggestion(store, item, newtrans, request):
     """Marks the suggestion specified by the parameters with the given status,
     and returns that suggestion object"""
     translation_project = request.translation_project
-    return Suggestion.objects.get(translation_project = translation_project)
+    return Suggestion.objects.get(translation_project = translation_project, unit=_suggestion_hash(store, item, newtrans))
 
 def reject_suggestion(store, item, suggitem, newtrans, request):
     """rejects the suggestion and removes it from the pending file"""
@@ -86,8 +85,6 @@ def reject_suggestion(store, item, suggitem, newtrans, request):
         # We also need to delete the Unit object.
         # Yes, this is a little bit confusing, as noted above, maybe
         # we should get rid of the Unit model.
-        unit = get_pending_unit(store, item, newtrans)
-        unit.delete()
     except ObjectDoesNotExist:
         pass
     # Deletes the suggestion from the .pending file
@@ -103,6 +100,8 @@ def accept_suggestion(store, item, suggitem, newtrans, request):
     suggestion = None
     try:
         suggestion = get_suggestion(store, item, newtrans, request)
+        suggestion.state = 'accepted'
+        suggestion.save()
     except ObjectDoesNotExist:
         pass
     
