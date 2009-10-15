@@ -23,7 +23,7 @@ from django.db import models
 
 from profile import PootleProfile
 from goal import Goal
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store
 
 class Assignment(models.Model):
     class Meta:
@@ -39,5 +39,5 @@ class StoreAssignment(models.Model):
 
     assignment = models.ForeignKey(Assignment)
     store      = models.OneToOneField(Store, db_index=True)
-    units      = models.ManyToManyField(Unit, related_name='stores')
+
 

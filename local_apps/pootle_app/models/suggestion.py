@@ -24,7 +24,6 @@ from django.db                import models
 import custom_sql_util
 from profile import PootleProfile
 from translation_project import TranslationProject
-from pootle_store.models import Unit
 
 class SuggestionManager(models.Manager):
     def _get_top_results(self, profile_field):
@@ -59,7 +58,6 @@ class Suggestion(models.Model):
     suggester           = models.ForeignKey(PootleProfile, related_name='suggestions_suggester_set')
     reviewer            = models.ForeignKey(PootleProfile, related_name='suggestions_reviewer_set', null=True)
     review_time         = models.DateTimeField(null=True)
-    unit                = models.OneToOneField(Unit)
 
     objects = SuggestionManager()
 

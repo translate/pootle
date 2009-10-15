@@ -381,13 +381,3 @@ def store_post_init(sender, instance, **kwargs):
     translation_file_updated.connect(instance.handle_file_update, sender=instance.file)
 models.signals.post_init.connect(store_post_init, sender=Store)
 
-
-class Unit(models.Model):
-    #FIXME: why do we have this model, what is it used for
-
-    store = models.ForeignKey(Store, related_name='units', db_index=True)
-    index = models.IntegerField(db_index=True)
-    source = models.TextField()
-    #FIXME: what about plurals
-    target = models.TextField()
-    state = models.CharField(max_length=255, db_index=True)

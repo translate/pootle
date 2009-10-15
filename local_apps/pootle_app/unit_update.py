@@ -25,7 +25,6 @@ from django.db.models import ObjectDoesNotExist
 from django.utils.translation import ugettext as _
 
 from pootle_app.models             import Suggestion, Submission
-from pootle_store.models       import Unit
 from pootle_app.models.profile     import get_profile, PootleProfile
 from pootle_app.models.permissions import check_permission, PermissionError
 
@@ -34,32 +33,15 @@ def suggest_translation(store, item, trans, request):
     if not check_permission("suggest", request):
         raise PermissionError(_("You do not have rights to suggest changes here"))
     translation_project = request.translation_project
-    unit_query = Unit.objects.filter(store  = store,
-                                     index  = item,
-                                     source = store.file.getitem(item).getsource(),
-                                     target = trans,
-                                     state  = 'pending')
-    if unit_query.count() == 0:
-        unit = Unit(store  = store,
-                    index  = item,
-                    source = store.file.getitem(item).getsource(),
-                    target = trans,
-                    state  = 'pending', 
-                    )
-        unit.save()
-        s = Suggestion(
-            creation_time       = datetime.datetime.utcnow(),
-            translation_project = translation_project,
-            suggester           = get_profile(request.user),
-            unit                = unit)
-        s.save()
-        store.addsuggestion(item, trans, s.suggester.user.username)
-    else:
-        # TBD: If a Unit with the specified data already exists, an
-        # exception will be thrown (this happens if the user makes a
-        # suggestion that is identical to a previous
-        # suggestion). Notify the user of this error somehow
-        pass
+    s = Suggestion(
+        creation_time       = datetime.datetime.utcnow(),
+        translation_project = translation_project,
+        suggester           = get_profile(request.user),
+        )
+    s.save()
+    store.addsuggestion(item, trans, s.suggester.user.username)
+    #FIXME: we don't handle identical suggestions
+
 
 def update_translation(store, item, newvalues, request, suggestion=None):
     """updates a translation with a new value..."""
@@ -69,26 +51,12 @@ def update_translation(store, item, newvalues, request, suggestion=None):
 
     translation_project = request.translation_project
 
-    if suggestion is None:
-        if (type(newvalues['target']) == dict):
-            target = newvalues['target'][0]
-        else:
-            target = newvalues['target']
-        unit = Unit(store  = store,
-                    index  = item,
-                    source = unicode(store.file.getitem(item).getsource()),
-                    target = target)
-        unit.save()        
-    else:
-        unit       = suggestion.unit
-        unit.state = 'accepted'
-
     s = Submission(
         creation_time       = datetime.datetime.utcnow(),
         translation_project = translation_project,
         submitter           = get_profile(request.user),
         from_suggestion     = suggestion,
-        unit                = unit)
+        )
     s.save()
     store.file.updateunit(item, newvalues, request.user, translation_project.language)
     translation_project.update_index(translation_project.indexer, store, [item])
@@ -104,17 +72,13 @@ def get_suggestion(store, item, newtrans, request):
     """Marks the suggestion specified by the parameters with the given status,
     and returns that suggestion object"""
     translation_project = request.translation_project
-    unit = get_pending_unit(store, item, newtrans)
-    return Suggestion.objects.get(translation_project = translation_project,
-                                  unit                = unit)
+    return Suggestion.objects.get(translation_project = translation_project)
 
 def reject_suggestion(store, item, suggitem, newtrans, request):
     """rejects the suggestion and removes it from the pending file"""
     if not check_permission("review", request):
         raise PermissionError(_("You do not have rights to review suggestions here"))
 
-    #FIXME: why do we have Unit and Suggestion in DB, can't we get rid
-    #of them?
     try:
         # Deletes the suggestion from the database
         suggestion = get_suggestion(store, item, newtrans, request)

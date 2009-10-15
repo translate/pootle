@@ -24,7 +24,6 @@ from django.db                import models
 import custom_sql_util
 from translation_project import TranslationProject
 from suggestion import Suggestion
-from pootle_store.models import Unit
 from profile import PootleProfile
 
 class SubmissionManager(models.Manager):
@@ -75,7 +74,6 @@ class Submission(models.Model):
     creation_time       = models.DateTimeField()
     translation_project = models.ForeignKey(TranslationProject)
     submitter           = models.ForeignKey(PootleProfile, null=True)
-    unit                = models.OneToOneField(Unit)
     from_suggestion     = models.OneToOneField(Suggestion, null=True)
 
     objects = SubmissionManager()
