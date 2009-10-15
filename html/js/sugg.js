@@ -18,7 +18,9 @@ $(document).ready(function() {
         item_sugg_chain = $(this).attr("id").replace(action, "");
         item_sugg = item_sugg_chain.split("-", 2);
         suggid = item_sugg[1];
-        newtrans = $(this).siblings("input").attr("value");
+	newtrans = $(this).siblings("input").map(function() {
+		return $(this).attr("value");
+	    }).get();
         sugg = {id: suggid, newtrans: newtrans};
         suggs.push(sugg);
         });
