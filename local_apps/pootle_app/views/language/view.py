@@ -221,7 +221,7 @@ def handle_suggestions(request, translation_project, file_path, item):
                     it will display an error message, or the number of
                     suggestions rejected/accepted."""
     # TODO: finish this function and return nice diffs
-    pootle_path = translation_project.directory.pootle_path + file_path
+    pootle_path = translation_project.pootle_path + file_path
     store = Store.objects.get(pootle_path=pootle_path)
     
     def getpendingsuggestions(item):
