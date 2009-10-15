@@ -30,7 +30,7 @@ from pootle_app.models.permissions import check_permission, PermissionError
 
 
 def _suggestion_hash(store, item, trans):
-    return hash((store.pootle_path, item, trans))
+    return hash((store.pootle_path, item, unicode(trans)))
 
 def suggest_translation(store, item, trans, request):
     if not check_permission("suggest", request):
