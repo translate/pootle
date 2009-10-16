@@ -6,18 +6,10 @@
 {% endblock %}
 
 {% block content %}
+<div id="profile-form">
 <form method="post" action="">
-{% for field in form %}
-
-<dt>{% trans field.label_tag %}</dt>
-
-<dd>{{ field }}</dd>
-
-{% if field.help_text %}<dd>{% trans field.help_text %}</dd>{% endif %}
-
-{% if field.errors %}<dd class="myerrors">{% trans field.errors %}</dd>{% endif %}
-
-{% endfor %}
+{{ form.as_p }}
 <input type="submit" value="Save"/>
 </form>
+</div>
 {% endblock %}
