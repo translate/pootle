@@ -508,23 +508,6 @@ html[dir="rtl"] #nav-main ul li
     color: #f33;
 }
 
-#ajaxresponse
-{
-    position: absolute;
-    left: 50%;
-    margin: 0 auto;
-    text-align: center;
-    font-weight: bold;
-    background-color: #cc0000;
-    color: #eeeeec;
-    padding: 3px;
-}
-
-.placeholder
-{
-    color: gray;
-}
-
 .hide
 {
     display: none;
@@ -1109,6 +1092,14 @@ table td.translate-original
     padding: 5px 25px;
 }
 
+.translate-context
+{
+    background-color: #EEE;
+    font-family: monospace;
+    margin-top: 10px;
+    overflow: auto;
+}
+
 /* TRANSLATION */
 
 td.translate-focus
@@ -1259,6 +1250,12 @@ textarea.comments
     right: auto;
 }
 
+.translate-suggestion
+{
+    background-color: #DDD;
+}
+
+
 /* CONTROLS */
 
 .translate-buttons-block
@@ -1280,103 +1277,105 @@ input.fuzzycheck
     line-height: 150%;
 }
 
-/* Merged from pootle.css for translatepage.html.  Needs to be reviewed */
-        .translate-context
-        {
-            background-color: #EEE;
-            font-family: monospace;
-            margin-top: 10px;
-            overflow: auto;
-        }
-        .translate-diff-replace
-        {
-            background-color: #ffff00;
-            border: 1px solid #f0f000;
-        }
-        .translate-diff-delete
-        {
-            background-color: #ff8000;
-            border: 1px solid #f07000;
-        }
-        .translate-diff-insert
-        {
-            background-color: #80ff00;
-            border: 1px solid #70f000;
-        }
-        .translation-highlight-space
-        {
-            background-color: #d3d3d3;
-        }
-        .translation-highlight-accelerator
-        {
-            color: #8b8b00;
-            background-color: #add8e6;
-        }
-        .translation-highlight-variable
-        {
-            color: #8b0000;
-        }
-        .translation-highlight-escape
-        {
-            color: purple;
-        }
-        .translation-highlight-html
-        {
-            color: #A00000;
-        }
-        ul.sugglist {
-          clear: both;
-        }
-        a.sugglink[dir="ltr"] {
-          float: right;
-          padding-right: 1em;
-        }
+/* DIFF */
 
-        a.sugglink[dir="rtl"] {
-          float: left;
-          padding-left: 1em;
-        }
-        span.suggauthor[dir="ltr"] {
-          float: right;
-        }
+.translate-diff-replace
+{
+    background-color: #ffff00;
+    border: 1px solid #f0f000;
+}
 
-        span.suggauthor[dir="rtl"] {
-          float: left;
-        }
-        div.translate-translation {
-          min-height: 1.5em;
-        }
-        .translate-translation-fuzzy[dir="ltr"]
-        {
-            color: #666;
-            border-left: 4px solid #AAA;
-            padding-left: 3px;
-        }
-        .translate-translation-fuzzy[dir="rtl"]
-        {
-            color: #666;
-            border-right: 4px solid #AAA;
-            padding-right: 3px;
-        }
-        textarea.translate-translation-fuzzy
-        {
-            color: black;
-            border-left: 6px groove gray;
-            padding-left: 3px;
-        }
+.translate-diff-delete
+{
+    background-color: #ff8000;
+    border: 1px solid #f07000;
+}
 
-        .translate-suggestion {
-            background-color: #DDD;
-        }
+.translate-diff-insert
+{
+    background-color: #80ff00;
+    border: 1px solid #70f000;
+}
 
-        div.suggestions{
-          font-style: italic;
-          margin-bottom: 6px;
-          margin-top: 6px;
-        }
-        div.suggestions ul li{
-            padding-left: 30px;
-        }
+/* HIGHLIGHT */
+
+.translation-highlight-escape
+{
+    color: purple;
+}
+
+.translation-highlight-html
+{
+    color: #A00000;
+}
+
+/* FUZZY TRANSLATION */
+
+div.translate-translation {
+    min-height: 1.5em;
+}
+
+.translate-translation-fuzzy[dir="ltr"]
+{
+    color: #666;
+    border-left: 4px solid #AAA;
+    padding-left: 3px;
+}
+
+.translate-translation-fuzzy[dir="rtl"]
+{
+    color: #666;
+    border-right: 4px solid #AAA;
+    padding-right: 3px;
+}
+
+textarea.translate-translation-fuzzy
+{
+    color: black;
+    border-left: 6px groove gray;
+    padding-left: 3px;
+}
+
+/* INLINE SUGGESTIONS */
+
+ul.sugglist
+{
+    clear: both;
+}
+
+a.sugglink[dir="ltr"]
+{
+    float: right;
+    padding-right: 1em;
+}
+
+a.sugglink[dir="rtl"]
+{
+    float: left;
+    padding-left: 1em;
+}
+
+span.suggauthor[dir="ltr"]
+{
+    float: right;
+}
+
+span.suggauthor[dir="rtl"]
+{
+    float: left;
+}
+
+div.suggestions
+{
+    font-style: italic;
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+
+div.suggestions ul li
+{
+    padding-left: 30px;
+}
 
 
 /*
