@@ -137,6 +137,7 @@ class Store(models.Model):
         if os.path.exists(pending_filename):
             self.pending = pending_filename
             self.save()
+            translation_file_updated.connect(self.handle_file_update, sender=self.pending)
 
     def getsuggestions(self, item):
         unit = self.file.getitem(item)
@@ -381,5 +382,10 @@ models.signals.pre_save.connect(set_store_pootle_path, sender=Store)
 
 def store_post_init(sender, instance, **kwargs):
     translation_file_updated.connect(instance.handle_file_update, sender=instance.file)
+    if instance.pending is not None:
+        #FIXME: we probably want another method for pending, to avoid
+        # invalidating stats that are not affected by suggestions
+        translation_file_updated.connect(instance.handle_file_update, sender=instance.pending)
+    
 models.signals.post_init.connect(store_post_init, sender=Store)
 
