@@ -20,7 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 
 from profile import PootleProfile
 from directory import Directory
@@ -36,7 +35,7 @@ class Goal(models.Model):
         unique_together = ('name', 'directory')
         app_label = "pootle_app"
 
-    name                = models.CharField(max_length=255, null=False, verbose_name=_("Name"))
+    name                = models.CharField(max_length=255, null=False)
     directory           = models.ForeignKey(Directory)
     # A pointer to the TranslationProject of which this Goal is a part.
     # involved with a number of goals.

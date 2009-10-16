@@ -22,7 +22,7 @@
 import os
 
 from django.db.models.signals import pre_save
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.db                import models
 
 from translate.filters import checks
@@ -36,32 +36,32 @@ class Project(models.Model):
         app_label = "pootle_app"
         ordering = ['code']
 
-    code_help_text = u'A short code for the project. This should only contain ASCII characters, numbers, and the underscore (_) character.'
-    description_help_text = u'A description of this project. This is useful to give more information or instructions. This field should be valid HTML.'
+    code_help_text = _('A short code for the project. This should only contain ASCII characters, numbers, and the underscore (_) character.')
+    description_help_text = _('A description of this project. This is useful to give more information or instructions. This field should be valid HTML.')
 
     checker_choices = [('standard', 'standard')]
     checkers = list(checks.projectcheckers.keys())
     checkers.sort()
     checker_choices.extend([(checker, checker) for checker in checkers])
     local_choices = (
-            ('po', 'Gettext PO'),
-            ('xlf', 'XLIFF')
+            ('po', _('Gettext PO')),
+            ('xlf', _('XLIFF'))
     )
     treestyle_choices = (
             # TODO: check that the None is stored and handled correctly
-            ('auto', _(u'Automatic detection (slower)')),
-            ('gnu', _(u'GNU style: all languages in one directory; files named by language code')),
-            ('nongnu', _(u'Non-GNU: Each language in its own directory')),
+            ('auto', _('Automatic detection (slower)')),
+            ('gnu', _('GNU style: all languages in one directory; files named by language code')),
+            ('nongnu', _('Non-GNU: Each language in its own directory')),
     )
 
     code           = models.CharField(max_length=255, null=False, unique=True, db_index=True, help_text=code_help_text)
     fullname       = models.CharField(max_length=255, null=False, verbose_name=_("Full name"))
     description    = models.TextField(blank=True, help_text=description_help_text)
-    checkstyle     = models.CharField(max_length=50, default='standard', null=False, choices=checker_choices)
-    localfiletype  = models.CharField(max_length=50, default="po", choices=local_choices)
-    treestyle      = models.CharField(max_length=20, default='auto', choices=treestyle_choices)
-    ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="")
-    createmofiles  = models.BooleanField(default=False)
+    checkstyle     = models.CharField(max_length=50, default='standard', null=False, choices=checker_choices, verbose_name=_('Quality Checks'))
+    localfiletype  = models.CharField(max_length=50, default="po", choices=local_choices, verbose_name=_('File Type'))
+    treestyle      = models.CharField(max_length=20, default='auto', choices=treestyle_choices, verbose_name=_('Project Tree Style'))
+    ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="", verbose_name=_('Ignore files'))
+    createmofiles  = models.BooleanField(default=False, verbose_name=_('Compile MO files'))
 
     def __unicode__(self):
         return self.fullname
