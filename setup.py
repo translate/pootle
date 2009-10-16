@@ -24,6 +24,7 @@ import os.path as path
 import sys
 import re
 from distutils import util
+from distutils.command.build import build as DistutilsBuild
 from distutils.command.install import install as DistutilsInstall
 from distutils.dist import Distribution as DistutilsDistribution
 from distutils.core import setup
@@ -161,6 +162,35 @@ def list_tree(target_base, root):
 # CLASSES
 ###############################################################################
 
+class PootleBuildMo(DistutilsBuild):
+    def build_mo(self):
+        """Compile .mo files from available .po files"""
+        import glob
+        from translate.tools.pocompile import convertmo
+
+        print "Preparing localization files"
+        for po_filename in glob.glob(path.join('po', 'pootle', '*', 'pootle.po')):
+            lang = path.split(path.split(po_filename)[0])[1]
+            lang_dir = path.join('mo', lang, 'LC_MESSAGES')
+
+            if not path.exists(lang_dir):
+                os.makedirs(lang_dir)
+            
+            mo_filename = path.join(lang_dir, 'django.mo')
+            print "compiling %s language" % lang
+            convertmo(open(po_filename), open(mo_filename, 'w'), None)
+
+    def run(self):
+        self.build_mo()
+
+
+class PootleBuild(DistutilsBuild):
+    """make sure build_mo is run when build is run"""
+    def run(self):
+        self.run_command('build_mo')
+        DistutilsBuild.run(self)
+
+
 class PootleInstall(DistutilsInstall):
     def run(self):
         DistutilsInstall.run(self)
@@ -219,6 +249,6 @@ if __name__ == '__main__':
         download_url="http://sourceforge.net/project/showfiles.php?group_id=91920&package_id=270877",
         platforms=["any"],
         classifiers=classifiers,
-        cmdclass={'install': PootleInstall},
+        cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo},
         **collect_options()
     )
