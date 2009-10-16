@@ -1094,10 +1094,13 @@ table td.translate-original
 
 .translate-context
 {
-    background-color: #EEE;
+    background: #eee url('images/context.png') no-repeat;
+    background-position: 5px center;
     font-family: monospace;
     margin-top: 10px;
     overflow: auto;
+    border: 1px solid #fff;
+    padding: 5px 25px;
 }
 
 /* TRANSLATION */
