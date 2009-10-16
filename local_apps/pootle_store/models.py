@@ -28,6 +28,7 @@ from django.core.files.storage import FileSystemStorage
 from django.core.cache import cache
 
 from translate.storage import po
+from translate.misc.multistring import multistring
 
 from pootle_misc.util import getfromcache
 from pootle_app.models.directory import Directory
@@ -190,7 +191,8 @@ class Store(models.Model):
         try:
             # first try to use index
             suggestion = self.getsuggestions(item)[suggitem]
-            if suggestion.target == newtrans:
+            if suggestion.hasplural() and suggestion.target.strings == newtrans or \
+                   not suggestion.hasplural() and suggestion.target == newtrans[0]:                
                 self._deletesuggestion(item, suggestion)
             else:
                 # target doesn't match suggested translation, index is
@@ -201,7 +203,8 @@ class Store(models.Model):
             # see if we can find the correct suggestion by searching
             # for target text
             for suggestion in suggestions:
-                if suggestion.target == newtrans:
+                if suggestion.hasplural() and suggestion.target.strings == newtrans or \
+                       not suggestion.hasplural() and suggestion.target == newtrans[0]:
                     self._deletesuggestion(item, suggestion)
                     break
 
