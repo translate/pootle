@@ -1123,11 +1123,12 @@ td.translate-focus
 textarea.translation
 {
     max-width: 100%;
-    width: 100%;
+    width: 95%;
     min-height: 3em;
-    margin: 0 0 10px 0;
     padding: 5px;
     border: 2px solid black;
+    display: block;
+    margin: 0.5em auto;
 }
 
 td.comments
@@ -1150,38 +1151,39 @@ textarea.comments
 /* TM */
 .sidebar
 {
-	padding-right:10px;
-	padding-left:10px;
-	margin-left:0px;
-	margin-right:0px;
-	padding-bottom:10px;
-	border-bottom:1px dotted #999;
-	width:22%;
-	/* ltr: */
-	right: 0px;
-	border-left: 1px dotted #999;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #999;
+    width: 21.5%;
+    /* ltr: */
+    right: 0px;
+    border-left: 1px dotted #999;
 }
+
 .sidebar[dir="rtl"]
 {
-	/* undo ltr: */
-	right: auto;
-	border-left: none;
-	/* rtl: */
-	left: 0px;
-	border-right: 1px dotted #999;
+    /* undo ltr: */
+    right: auto;
+    border-left: none;
+    /* rtl: */
+    left: 0px;
+    border-right: 1px dotted #999;
 }
 
 .sidetitle
 {
-	color:#004077;
-	font-size: small;
-	font-weight:bolder;
-	padding:2px;
-	margin-top:10px;
-	letter-spacing: .1em;
-	border-bottom:1px dotted #999;
-	text-align:center;
-	text-transform:lowercase;
+    color: #004077;
+    font-size: small;
+    font-weight: bolder;
+    padding: 2px;
+    margin-top: 10px;
+    letter-spacing: .1em;
+    border-bottom: 1px dotted #999;
+    text-align: center;
+    text-transform: lowercase;
 }
 
 #tm
@@ -1189,6 +1191,7 @@ textarea.comments
 	position: absolute;
 	border-top: 1px dotted #999;
 }
+
 .tm-unit
 {
 	margin: 5px 0px 5px 0px;
@@ -1197,17 +1200,20 @@ textarea.comments
 	position: relative;
 	cursor: pointer;
 }
+
 .tm-original
 {
-	font-weight: bolder;
+    font-weight: bolder;
 }
+
 .tm-translation
 {
-	font-style: oblique;
+    font-style: oblique;
 }
+
 .tm-translation[dir="rtl"]
 {
-	text-align: right;
+    text-align: right;
 }
 
 /* SUGGESTIONS */
