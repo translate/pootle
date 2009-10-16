@@ -44,7 +44,8 @@ def suggest_translation(store, item, trans, request):
         state               = 'pending',
         )
     s.save()
-    store.addsuggestion(item, trans, s.suggester.user.username)
+    store.addsuggestion(item, trans, s.suggester.user.username,
+                        translation_project.checker)
     #FIXME: we don't handle identical suggestions
 
 
@@ -63,7 +64,8 @@ def update_translation(store, item, newvalues, request, suggestion=None):
         from_suggestion     = suggestion,
         )
     s.save()
-    store.file.updateunit(item, newvalues, request.user, translation_project.language)
+    store.file.updateunit(item, newvalues, translation_project.checker,
+                          user=request.user, language=translation_project.language)
     translation_project.update_index(translation_project.indexer, store, [item])
 
 
@@ -85,7 +87,8 @@ def reject_suggestion(store, item, suggitem, newtrans, request):
     except ObjectDoesNotExist:
         pass
     # Deletes the suggestion from the .pending file
-    store.deletesuggestion(item, suggitem, newtrans)
+    store.deletesuggestion(item, suggitem, newtrans,
+                           request.translation_project.checker)
 
 def accept_suggestion(store, item, suggitem, newtrans, request):
     """accepts the suggestion into the main pofile"""

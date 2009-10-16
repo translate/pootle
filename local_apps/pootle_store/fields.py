@@ -32,7 +32,6 @@ from django.db.models.fields.files import FieldFile, FileField
 from django.utils.thread_support import currentThread
 
 from translate.storage import factory, statsdb, po, poheader
-from translate.filters import checks
 from translate.misc.lru import LRUCachingDict
 
 from pootle_store.signals import translation_file_updated
@@ -136,7 +135,7 @@ class TranslationStoreFile(File):
             stats_tuple.unitstats = self._statscache.unitstats(self.path, store=self._get_store)
         return stats_tuple.unitstats
 
-    def reclassifyunit(self, item, checker=checks.StandardUnitChecker()):
+    def reclassifyunit(self, item, checker):
         """Reclassifies all the information in the database and self._stats
         about the given unit."""
         unit = self.getitem(item)
@@ -159,7 +158,7 @@ class TranslationStoreFile(File):
         """The number of items in the file."""
         return self.getquickstats()['total']
 
-    def updateunit(self, item, newvalues, user=None, language=None):
+    def updateunit(self, item, newvalues, checker, user=None, language=None):
         """Updates a translation with a new target value, comments, or fuzzy
         state."""
 
@@ -193,7 +192,7 @@ class TranslationStoreFile(File):
         # reset the stats, since reclassifyunit will do. This
         # gives us a little speed boost for the common case.
         self.savestore()
-        self.reclassifyunit(item)
+        self.reclassifyunit(item, checker)
 
     def addunit(self, unit):
         """Wrapper around TranslationStore.addunit that updates sourceindex on

@@ -57,7 +57,6 @@ class Store(models.Model):
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
 
-
     def handle_file_update(self, sender, **kwargs):
         path = self.pootle_path
         path_parts = path.split("/")
@@ -152,7 +151,7 @@ class Store(models.Model):
                     return suggestions
         return []
 
-    def addsuggestion(self, item, suggtarget, username):
+    def addsuggestion(self, item, suggtarget, username, checker):
         """adds a new suggestion for the given item"""
 
         unit = self.file.getitem(item)
@@ -170,7 +169,7 @@ class Store(models.Model):
             newpo.markfuzzy(False)
             self.pending.addunit(newpo)
             self.pending.savestore()
-        self.file.reclassifyunit(item)
+        self.file.reclassifyunit(item, checker)
 
 
     def _deletesuggestion(self, item, suggestion):
@@ -184,7 +183,7 @@ class Store(models.Model):
                 logging.error('Found an index error attempting to delete a suggestion: %s', suggestion)
                 return  # TODO: Print a warning for the user.
 
-    def deletesuggestion(self, item, suggitem, newtrans):
+    def deletesuggestion(self, item, suggitem, newtrans, checker):
         """removes the suggestion from the pending file"""
         suggestions = self.getsuggestions(item)
         
@@ -212,7 +211,7 @@ class Store(models.Model):
             self.file.savestore()
         else:
             self.pending.savestore()
-        self.file.reclassifyunit(item)
+        self.file.reclassifyunit(item, checker)
 
 
     def getsuggester(self, item, suggitem):
