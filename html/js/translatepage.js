@@ -1,5 +1,48 @@
 $(document).ready(function() {
 
+/*
+ * UNFUZZY
+ */
+
+/*
+ *  For future enhancements like multiple edit boxes, please note
+ *  that the selector is based on a class, so it must be modified
+ *  to get the textarea's element ID and select the checkbox to
+ *  remove the "checked" attribute according to that value.
+ */
+  var keepstate = false;
+  $("textarea.translation").bind("keyup blur", function() {
+    if (!keepstate && $(this).attr("defaultValue") != $(this).val()) {
+      var checkbox = $("input.fuzzycheck[checked]");
+      checkbox.removeAttr("checked");
+      checkbox.parent().animate({ backgroundColor: "#dafda5 !important" }, "slow")
+                       .animate({ backgroundColor: "#ffffff !important" }, "slow");
+      $("textarea.translate-translation-fuzzy").each(function () {
+        $(this).removeClass("translate-translation-fuzzy");
+      });
+      keepstate = true;
+    }
+  });
+  $("input.fuzzycheck").click(function() {
+    keepstate = true;
+    $(this).parent().parent().parent().find("textarea").toggleClass("translate-translation-fuzzy");
+  });
+
+
+/*
+ * SUGGESTIONS
+ */
+
+/* INLINE SUGGESTIONS */
+
+  $(".sugglink").click(function(event){
+      event.preventDefault();
+      $(this).siblings(".suggestions").children(".sugglist").toggle();
+  });
+  $(".sugglist").hide();
+
+/* REVIEWING SUGGESTIONS */
+
   function geturl(node, action) {
     pofilename = escape($("input[name='store']").val())
     item_sugg_chain = $(node).attr("id").replace(action, "");

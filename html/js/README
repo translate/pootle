@@ -3,7 +3,7 @@
 
   This README is an attempt to keep the house clean under the 'js' directory.
 
-  Last update: 2009/03/25
+  Last update: 2009/10/16
 
 /*****************************************************************************/
 
@@ -36,18 +36,16 @@ Directory contents
     Sorts tables according to its values. Used in the homepage as well as on the
     languages and projects listings.
 
-  - sugg.js :
-    Handles suggestions doing XMLHttpRequest calls using jQuery and
-    sending/receiving data in JSON format. May be merged with other code in the
-    translate page.
+  - translatepage.js :
+    This handles several actions performed in the translate page. Including:
 
-  - unfuzzy.js :
-    Automatically unchecks the fuzzy mark when an edit is detected in a fuzzy
-    entry. Used in the translate page. May be merged with other code in the
-    translate page.
-
+    1. Automatically unchecks the fuzzy mark when an edit is detected in a fuzzy
+    entry. Used in the translate page.
     A new implementation would be better:
     http://bugs.locamotion.org/show_bug.cgi?id=473
+
+    2. Handles suggestions doing XMLHttpRequest calls using jQuery and
+    sending/receiving data in JSON format.
 
   + jquery/
 

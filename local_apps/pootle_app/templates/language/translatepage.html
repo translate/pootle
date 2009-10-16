@@ -371,20 +371,5 @@
     <!--! TODO Fix JS includes, bug 442316 --> 
     <script src='{{"js/json2.min.js"|m}}' type="text/javascript"></script>
     <script src='{{"js/autoexpand.js"|m}}' type="text/javascript"></script>
-    <script src='{{"js/unfuzzy.js"|m}}' type="text/javascript"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-          $(".sugglink").click(function(event){
-              event.preventDefault();
-              $(this).siblings(".suggestions").children(".sugglist").toggle();
-          });
-          $(".sugglist").hide();
-
-          $(".fuzzycheck").click(function(event){
-              $(this).parent().parent().find("textarea").toggleClass("translate-translation-fuzzy");
-          });
-
-      });
-    </script>
-    <script src='{{"js/sugg.js"|m}}' type="text/javascript"></script>
+    <script src='{{"js/translatepage.js"|m}}' type="text/javascript"></script>
 {% endblock scripts_extra %}
