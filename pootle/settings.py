@@ -141,8 +141,12 @@ OBJECT_CACHE_TIMEOUT = 2500000
 
 execfile(config_path("localsettings.py"))
 
-# look for loclization files under mo directory
-LOCALE_PATHS = (data_path("mo"), )
+if LIVE_TRANSLATION:
+    # Look for localization files under PODIRECTORY/pootle
+    LOCALE_PATHS = (os.path.join(PODIRECTORY, "pootle"), )
+else:
+    # look for localization files under mo directory
+    LOCALE_PATHS = (data_path("mo"), )
 
 def find_languages(locale_path):
     dirs = os.listdir(locale_path)
