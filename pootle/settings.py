@@ -88,10 +88,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'pootle.middleware.check_cookies.CheckCookieMiddleware',
     'pootle.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
+    'pootle.middleware.check_cookies.CheckCookieMiddleware',
     'pootle.middleware.profile.ProfilerMiddleware',
     # Uncomment to use pagecaching
     #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
