@@ -76,10 +76,20 @@ $(document).ready(function() {
            function(rdata) {
              $("#response").remove();
              if (rdata.status == "success") {
+               // Remove processed suggestion
                $.each(rdata.del_ids, function() {
                  var deleted = this[0] + "-" + this[1];
                  $("#suggestion" + deleted).fadeOut(1000);
                });
+               // If it's an accept, then update the textareas
+               if (rdata.accepted_id) {
+                 var textareas = $("#translate-suggestion-container").siblings("textarea");
+                 var accepted= rdata.accepted_id[0] + "-" + rdata.accepted_id[1];
+                 var inputs = $("#suggestion" + accepted + " .translate-suggestion").children().siblings("input");
+                 $.each(textareas, function(i) {
+                   $(this).val(inputs.eq(i).val());
+                 });
+               }
              }
              $("div#translate-suggestion-container:first").prepend(
               '<h1 id="response">' + rdata.message + '</h1>'

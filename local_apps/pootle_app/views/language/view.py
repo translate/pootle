@@ -256,6 +256,7 @@ def handle_suggestions(request, translation_project, file_path, item):
                 unit_update.accept_suggestion(store, int(item), int(sugg["id"]),
                                               sugg["newtrans"], request)
                 response["del_ids"].append((int(item), sugg["id"]))
+                response["accepted_id"] = (int(item), sugg["id"])
                 accept_count += 1
             except ValueError:
                 # l10n: ValueError refers to the Python exception name
