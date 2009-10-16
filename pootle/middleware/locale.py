@@ -41,6 +41,20 @@ def translation_dummy(language):
     trans_real._translations[language] = dummytrans
     return dummytrans
             
+class LocaleFromProfileMiddleware(object):
+    """
+    Load user specified locale from profile and inject it in session
+    for django's locale middle ware to find.
+    """
+    def process_request(self, request):
+        if request.user.is_authenticated() and 'django_language' not in request.session:
+            language = request.user.get_profile().ui_lang
+            if language is not None:
+                request.session['django_language'] = language.code
+            else:
+                request.session['django_language'] = None
+                
+            
 class LocaleMiddleware(object):
     """
     Hijack Django's localization functions to support arbitrary user

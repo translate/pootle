@@ -87,6 +87,7 @@ MIDDLEWARE_CLASSES = (
     'pootle_misc.middleware.baseurl.BaseUrlMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'pootle.middleware.locale.LocaleFromProfileMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'pootle.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
