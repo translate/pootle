@@ -33,7 +33,8 @@ from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Language
 from pootle_misc.baseurl import redirect
 from pootle_app.views               import pagelayout
-
+from django.utils.encoding import iri_to_uri
+from django.utils.http import urlquote
 
 def view(request):
     message = None
@@ -50,7 +51,7 @@ def view(request):
                 login(request, form.get_user())
 
                 if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
-                    redirect_to = '/accounts/'+form.get_user().username + '/'
+                    redirect_to = iri_to_uri('/accounts/%s/' % urlquote(form.get_user().username))
 
                 if request.session.test_cookie_worked():
                     request.session.delete_test_cookie()
