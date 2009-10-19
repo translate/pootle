@@ -1122,7 +1122,7 @@ textarea.translation
     padding: 5px;
     border: 2px solid black;
     display: block;
-    margin: 0.5em auto;
+    margin: 0 auto 0.5em;
 }
 
 td.comments
