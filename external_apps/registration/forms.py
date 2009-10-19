@@ -30,7 +30,7 @@ class RegistrationForm(forms.Form):
     a ``save()`` method which returns a ``User``.
     
     """
-    username = forms.RegexField(regex=r'^\w+$',
+    username = forms.RegexField(regex=r'^\S+$',
                                 max_length=30,
                                 widget=forms.TextInput(attrs=attrs_dict),
                                 label=_(u'username'))
