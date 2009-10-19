@@ -77,7 +77,7 @@ def lang_notices(request, language_code):
     if can_view:
         template_vars["notices"] = lang_notices
 
-    return render_to_response('pootle_notifications/notices.html', template_vars,
+    return render_to_response('notices.html', template_vars,
             context_instance=RequestContext(request)  )
 
 def transproj_notices(request, language_code, project_code):
@@ -126,7 +126,7 @@ def transproj_notices(request, language_code, project_code):
     if can_view:
         template_vars["notices"] = transproj_notices
 
-    return render_to_response('pootle_notifications/notices.html', template_vars,
+    return render_to_response('notices.html', template_vars,
             context_instance=RequestContext(request)  )
 
 @login_required
@@ -138,5 +138,5 @@ def view_notice_item(request, notice_id):
             "notice_message"  : notice.message,
             }
 
-    return render_to_response('pootle_notifications/viewnotice.html', template_vars,
+    return render_to_response('viewnotice.html', template_vars,
             context_instance=RequestContext(request)  )
