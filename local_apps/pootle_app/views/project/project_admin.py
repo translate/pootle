@@ -53,8 +53,7 @@ def view(request, project_code):
     process_get(request, project)
     process_post(request, project)
 
-    existing_languages = [translation_project.language for translation_project 
-                          in project.translationproject_set.all()]
+    existing_languages = Language.objects.all().filter(translationproject__project=project)
     formset = LanguageFormset(queryset=existing_languages)
     new_language_form = make_new_language_form(existing_languages)
     has_template = project.translationproject_set.filter(language__code="templates").count() > 0
