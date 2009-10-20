@@ -702,12 +702,11 @@ html[dir="rtl"] .module-primary .hd h2
     font-size: 85%;
 }
 
-#id_username,
-#id_email,
-#id_password,
-#id_password1,
-#id_password2,
-#language
+#login input[type="text"],
+#login input[type="password"],
+#login select,
+#register input[type="text"],
+#register input[type="password"]
 {
     width: 97%;
 }
