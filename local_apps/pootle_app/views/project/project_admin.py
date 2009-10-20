@@ -20,111 +20,52 @@
 
 from django.utils.translation import ugettext as _
 from django import forms
-from django.forms.models import modelformset_factory
 
-from pootle_app.views               import pagelayout
-from pootle_misc.baseurl            import redirect
-from pootle_app.models              import Language, Project, TranslationProject
-from pootle_app                     import project_tree
-from pootle_app.views.util          import init_formset_from_data, choices_from_models, selected_model
+from pootle_misc.baseurl import l
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from pootle_app.models import Project, TranslationProject
+from pootle_app import project_tree
+from pootle_app.views.admin import util
 
-class LanguageForm(forms.ModelForm):
-    update = forms.BooleanField(required=False)
-
-    class Meta:
-        prefix="existing_language"        
-
-LanguageFormset = modelformset_factory(Language, LanguageForm, fields=['update'], extra=0)
-
-def user_can_admin_project(f):
-    def decorated_f(request, project_code, *args, **kwargs):
-        if not request.user.is_superuser:
-            return redirect('/projects/%s' % project_code, message=_("Only administrators may modify the project options."))
-        else:
-            return f(request, project_code, *args, **kwargs)
-    return decorated_f
-
-@user_can_admin_project
 def view(request, project_code):
-    project = Project.objects.get(code=project_code)
-    process_get(request, project)
-    process_post(request, project)
+    current_project = Project.objects.get(code=project_code)
+    try:
+        template_translation_project = TranslationProject.objects.get(project=current_project, language__code='templates')
+    except TranslationProject.DoesNotExist:
+        template_translation_project = None
 
-    existing_languages = Language.objects.all().filter(translationproject__project=project)
-    formset = LanguageFormset(queryset=existing_languages)
-    new_language_form = make_new_language_form(existing_languages)
-    has_template = project.translationproject_set.filter(language__code="templates").count() > 0
+    class TranslationProjectForm(forms.ModelForm):
+        if template_translation_project is not None:
+            update = forms.BooleanField(required=False, label=_("Update from templates"))
+        #FIXME: maybe we can detect if initialize is needed to avoid
+        # displaying it when not relevant
+        initialize = forms.BooleanField(required=False, label=_("Initialize"))
+        project = forms.ModelChoiceField(queryset=Project.objects.filter(pk=current_project.pk),
+                                         initial=current_project.pk, widget=forms.HiddenInput)
+        class Meta:
+            prefix="existing_language"        
 
-    template_vars = {
-        "pagetitle":          _("Pootle Admin: %s", project.fullname),
-        "norights_text":      _("You do not have the rights to administer this project."),
-        "project":            project,
-        "iso_code":           _("ISO Code"),
-        "full_name":          _("Full Name"),
-        "existing_title":     _("Existing languages"),
-        "formset":            formset,
-        "new_language_form":  new_language_form,
-        "update_button":      _("Update Languages"),
-        "add_button":         _("Add Language"),
-        "main_link":          _("Back to main page"),
-        "update_link":        _("Update from templates"), 
-        "initialize_link":    _("Initialize"),
-        "instancetitle":      pagelayout.get_title(),
-        "has_template":       has_template
-        }
-
-    return render_to_response("project/projectadmin.html", template_vars, context_instance=RequestContext(request))
-
-
-def make_new_language_form(existing_languages, post_vars=None):
-    new_languages = [language for language in Language.objects.all() if not language in set(existing_languages)]
-
-    class NewLanguageForm(forms.Form):
-        add_language = forms.ChoiceField(choices=choices_from_models(new_languages), label=_("Add language"))
-
-    return NewLanguageForm(post_vars)
-
-
-def process_get(request, project):
-    if request.method == 'GET' and 'updatelanguage' in request.GET:
-        language_code = request.GET['updatelanguage']
-        translation_project = TranslationProject.objects.get(language__code=language_code, project=project)
-        if 'initialize' in request.GET:
-            translation_project.initialize()
-        elif 'doupdatelanguage' in request.GET:
-            template_translation_project = TranslationProject.objects.get(language__code='templates',
-                                                                          project=translation_project.project_id)
-            project_tree.convert_templates(template_translation_project, translation_project)
-
-
-def process_post(request, project):
-    def process_existing_languages(request, project):
-        formset = init_formset_from_data(LanguageFormset, request.POST)
-        if formset.is_valid():
-            for form in formset.forms:
-                if form['update'].data:
-                    template_translation_project = TranslationProject.objects.get(language__code='templates',
-                                                                                  project=project)
-                    language = form.instance
-                    translation_project = TranslationProject.objects.get(language=language, project=project)
-                    project_tree.convert_templates(template_translation_project, translation_project)
-        return formset
-
-    def process_new_language(request, project, languages):
-        new_language_form = make_new_language_form(languages, request.POST)
-
-        if new_language_form.is_valid():
-            new_language = selected_model(Language, new_language_form['add_language'])
-            if new_language is not None:
-                # This will create the necessary directory for our TranslationProject
-                project_tree.ensure_translation_project_dir(new_language, project)
-                translation_project = TranslationProject(language=new_language, project=project)
-                translation_project.save()
-
-    if request.method == 'POST':
-        formset = process_existing_languages(request, project)
-        process_new_language(request, project, [form.instance for form in formset.forms])
+        #hackish: we use the validate functions to respond to update
+        # and initialize requests
+        def clean_update(self):
+            update = self.cleaned_data['update']
+            if update and self.instance.pk is not None:
+                project_tree.convert_templates(template_translation_project, self.instance)
+            return update
+        
+        def clean_initialize(self):
+            initialize = self.cleaned_data['initialize']
+            if initialize and self.instance.pk is not None:
+                self.instance.initialize()
+            return initialize
+            
+    queryset = TranslationProject.objects.filter(project=current_project)
+    
+    model_args = {}
+    model_args['title'] = _("Project Admin: %s", current_project.fullname)
+    model_args['formid'] = "translation-projects"
+    model_args['submitname'] = "changetransprojects"
+    link = lambda instance: '<a href="%s">%s</a>' % (l(instance.pootle_path + 'admin.html'), instance.language.fullname)
+    return util.edit(request, 'admin/adminpage.html', TranslationProject, model_args, link, linkfield="language",
+                     queryset=queryset, can_delete=True, form=TranslationProjectForm)
 
