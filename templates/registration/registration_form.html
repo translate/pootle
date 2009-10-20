@@ -7,9 +7,8 @@
     <p>{% trans "Fill in the following form to get started translating." %}</p>
     <form method="post" action="" name="registerform" id="registerform">
     {% if form.errors %}
-        {% if form.username.errors %}
+        {% if form.username.errors or form.non_field_errors %}
             {{ form.username.errors }}
-        {% else if form.non_field_errors %}
             {{ form.non_field_errors }}
         {% else %}
         <ul class="errorlist">
