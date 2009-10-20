@@ -24,9 +24,11 @@ from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.forms.util import ErrorList
 
-from pootle_misc.baseurl import redirect
-from pootle_app.views.util import form_set_as_table
+from pootle_misc.baseurl import redirect, l
+
+
 
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
@@ -37,6 +39,76 @@ def user_is_admin(f):
         else:
             return f(request, *args, **kwargs)
     return decorated_f
+
+
+def form_set_as_table(formset, link=None, linkfield='code'):
+    """Create an HTML table from the formset. The first form in the
+    formset is used to obtain a list of the fields that need to be
+    displayed. All these fields not appearing in 'exclude' will be
+    placed into consecutive columns.
+
+    Errors, if there are any, appear in the row above the form which
+    triggered any errors.
+
+    If the forms are based on database models, the order of the
+    columns is determined by the order of the fields in the model
+    specification."""
+    def add_header(result, fields, form):
+        result.append('<tr>\n')
+        for field in fields:
+            result.append('<th>')
+            if form.fields[field].label is not None:
+                result.append(_(form.fields[field].label))
+            result.append('</th>\n')
+        result.append('</tr>\n')
+
+    def add_errors(result, fields, form):
+        # If the form has errors, then we'll add a table row with the
+        # errors.
+        if len(form.errors) > 0:
+            result.append('<tr>\n')
+            for field in fields:
+                result.append('<td>')
+                result.append(form.errors.get(field, ErrorList()).as_ul())
+                result.append('</td>\n')
+            result.append('</tr>\n')
+
+    def add_widgets(result, fields, form, link):
+        result.append('<tr>\n')
+        for i, field in enumerate(fields):
+            result.append('<td>')
+            # Include a hidden element containing the form's id to the
+            # first column.
+            if i == 0:
+                result.append(form['id'].as_hidden())
+
+            """
+            'link' indicates whether we put the first field as a link or as widget
+            """
+            if field == linkfield and linkfield in form.initial and link :
+                if callable(link):
+                    result.append(link(form.instance))
+                    result.append(form[field].as_hidden())
+                else:     
+                    link = l(link % form.initial[linkfield])
+                    result.append("<a href='"+link+"'>"+form.initial[linkfield]+"</a>")
+                    result.append(form[field].as_hidden())
+            else:
+                result.append(form[field].as_widget())
+            result.append('</td>\n')
+        result.append('</tr>\n')
+
+    result = []
+    first_form = formset.forms[0]
+    # Get the fields of the form, but filter our the 'id' field,
+    # since we don't want to print a table column for it.
+    fields = [field for field in first_form.fields if field != 'id']
+    add_header(result, fields, first_form)
+    for form in formset.forms:
+        add_errors(result, fields, form)
+        add_widgets(result, fields, form, link)
+    return u''.join(result)
+
 
 def process_modelformset(request, model_class, queryset, **kwargs):
     """With the Django model class 'model_class' and the Django form class 'form_class',
