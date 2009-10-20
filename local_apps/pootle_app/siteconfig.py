@@ -7,9 +7,12 @@ from djblets.siteconfig.models import SiteConfiguration
 from djblets.siteconfig.django_settings import apply_django_settings, generate_defaults
  
 defaults = {
-    'DESCRIPTION' : """<div dir="ltr" lang="en">This is a demo installation of Pootle.<br /> You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</div>""",
+    'DESCRIPTION' : """<div dir="ltr" lang="en">This is a demo installation of Pootle.<br />
+You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>.
+The server administrator has not provided contact information or a description of this server.
+If you are the administrator for this server, edit this description in your preference file or in the administration interface.</div>""",
     'TITLE' : "Pootle Demo",
-}
+    }
 
 settings_map = {
     # siteconfig key    settings.py key
