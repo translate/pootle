@@ -12,7 +12,7 @@
         {% trans "Your username and password didn't match. Please try again." %}
         </div>
     </div>
-    {% endif %}  
+    {% endif %}
     <p>{{ form.username.label_tag }}<br />{{ form.username }}</p>
     <p>{{ form.password.label_tag }}<br />{{ form.password }}</p>
     <p>
@@ -31,8 +31,9 @@
 </form>
 <p><a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a></p>
 </div>
-<h1 id="register">{% trans "Don't have an account yet?" %}
-  <a href='{{ "/accounts/register"|l }}' title="{% trans 'Register' %}">{% trans 'Register' %}</a>.
+
+<h1 class="registerlink">{% trans "Don't have an account yet?" %}
+    <a href='{{ "/accounts/register"|l }}' title="{% trans 'Register.' %}">{% trans 'Register.' %}</a>
 </h1>
 {% endblock content %}
 

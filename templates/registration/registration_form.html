@@ -2,11 +2,52 @@
 {% load i18n baseurl %}
  
 {% block content %}
-
-{% trans "Please enter your registration details" %}</br>
-<form method="post" action="">
-        {{ form.as_p }}
-<input type="submit" value="{%trans "Register" %}"/>
+<div id="register" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <h1>{% trans "Register a New Pootle Account" %}</h1>
+    <p>{% trans "Fill in the following form to get started translating." %}</p>
+    <form method="post" action="" name="registerform" id="registerform">
+    {% if form.errors %}
+        {% if form.username.errors %}
+            {{ form.username.errors }}
+        {% else if form.non_field_errors %}
+            {{ form.non_field_errors }}
+        {% else %}
+        <ul class="errorlist">
+            <li>{% trans "You must fill in all the fields." %}</li>
+        </ul>
+        {% endif %}
+    {% endif %}
+    <p>
+        <label for="username">{% trans "Username" %}</label><br />
+        {{ form.username }}
+    </p>
+    <p>
+        <label for="email">{% trans "Email address" %}</label><br />
+        {{ form.email }}
+    </p>
+    <p>
+        <label for="password1">{% trans "Password" %}</label><br />
+        {{ form.password1 }}
+    </p>
+    <p>
+        <label for="password2">{% trans "Password (again)" %}</label><br />
+        {{ form.password2 }}
+    </p>
+	<p class="submit">
+        <input type="submit" name="register" value="{% trans 'Register' %}" />
+    </p>
 </form>
- 
+</div>
+
+<h1 class="loginlink">{% trans "Already have an account?" %}
+    <a href='{{ "/accounts/login/"|l }}' title="{% trans "Log in." %}">{% trans "Log in." %}</a>
+</h1>
 {% endblock %}
+
+{% block scripts_extra %}
+  <script>
+    $(document).ready(function () {
+        $("#id_username").focus();
+    });
+  </script>
+{% endblock scripts_extra %}

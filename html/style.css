@@ -217,13 +217,6 @@ select
     font-weight: inherit;
 }
 
-input,
-textarea,
-select
-{
-    *font-size: 100%;
-}
-
 legend
 { 
     background-color: inherit;
@@ -513,6 +506,23 @@ html[dir="rtl"] #nav-main ul li
     display: none;
 }
 
+/* FORM ERRORS */
+
+ul.errorlist
+{
+    margin: 0;
+    padding: 0;
+}
+
+.errorlist li
+{
+    color: #f33;
+    background-color: #ffe;
+    border: 1px solid #fc9;
+    margin-bottom: 2em;
+    padding: 10px 25px;
+}
+
 /* TITLES */
 
 h1.title,
@@ -635,12 +645,13 @@ html[dir="rtl"] .module-primary .hd h2
 
 
 /*
- * LOGIN PAGE
+ * LOGIN/REGISTER PAGE
  */
 
-#login
+#login,
+#register
 {
-    width: 20em;
+    width: 30em;
     margin: 2em auto;
     border: 2px solid #ccc;
     padding: 1em;
@@ -648,49 +659,59 @@ html[dir="rtl"] .module-primary .hd h2
     text-align: left;
 }
 
-#login[dir="rtl"]
+#login[dir="rtl"],
+#register[dir="rtl"]
 {
     text-align: right;
 }
 
-#login h1
+#login h1,
+#register h1
 {
     margin-bottom: 0.7em;
 }
 
-#loginform
-{
-    font-size: 85%;
-}
-
-#loginform p
+#login p,
+#register p
 {
     margin-bottom: 1em;
 }
 
+
+#loginform,
+#registerform
+{
+    font-size: 85%;
+}
+
 #id_username,
+#id_email,
 #id_password,
+#id_password1,
+#id_password2,
 #language
 {
     width: 97%;
 }
 
-#login .submit
+#login .submit,
+#register .submit
 {
     margin-bottom: 0;
     text-align: right;
 }
 
-#login[dir="rtl"] .submit
+#login[dir="rtl"] .submit,
+#register[dir="rtl"] .submit
 {
     text-align: left;
 }
 
-#register
+.loginlink,
+.registerlink
 {
     width: 20em;
-    margin: 0 auto;
-    margin-bottom: 8em;
+    margin: 0 auto 8em;
     padding: 0 1em;
     font-size: 137%;
     text-align: center;
