@@ -6,31 +6,28 @@
     <h1>{% trans "Register a New Pootle Account" %}</h1>
     <p>{% trans "Fill in the following form to get started translating." %}</p>
     <form method="post" action="" name="registerform" id="registerform">
-    {% if form.errors %}
-        {% if form.username.errors or form.non_field_errors %}
-            {{ form.username.errors }}
-            {{ form.non_field_errors }}
-        {% else %}
-        <ul class="errorlist">
-            <li>{% trans "You must fill in all the fields." %}</li>
-        </ul>
-        {% endif %}
+    {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
     {% endif %}
     <p>
         <label for="username">{% trans "Username" %}</label><br />
         {{ form.username }}
+        {{ form.username.errors }}
     </p>
     <p>
         <label for="email">{% trans "Email address" %}</label><br />
         {{ form.email }}
+        {{ form.email.errors }}
     </p>
     <p>
         <label for="password1">{% trans "Password" %}</label><br />
         {{ form.password1 }}
+        {{ form.password1.errors }}
     </p>
     <p>
         <label for="password2">{% trans "Password (again)" %}</label><br />
         {{ form.password2 }}
+        {{ form.password2.errors }}
     </p>
 	<p class="submit">
         <input type="submit" name="register" value="{% trans 'Register' %}" />
