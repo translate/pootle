@@ -53,7 +53,7 @@ def match_template_filename(project, path_name):
     return False
     
 
-def get_matching_language_dirs(project_dir, language_dir, language):
+def get_matching_language_dirs(project_dir, language):
     return [lang_dir for lang_dir in os.listdir(project_dir)
             if language.code == lang_dir]
 
@@ -68,8 +68,8 @@ def get_non_existant_language_dir(project_dir, language, file_style, make_dirs):
         else:
             raise IndexError("directory not found for language %s, project %s" % (language.code, project_dir))
 
-def get_or_make_language_dir(project_dir, language_dir, language, file_style, make_dirs):
-    matching_language_dirs = get_matching_language_dirs(project_dir, language_dir, language)
+def get_or_make_language_dir(project_dir, language, file_style, make_dirs):
+    matching_language_dirs = get_matching_language_dirs(project_dir, language)
     if len(matching_language_dirs) == 0:
         # if no matching directories can be found, check if it is a GNU-style project
         return get_non_existant_language_dir(project_dir, language, file_style, make_dirs)
@@ -79,7 +79,7 @@ def get_or_make_language_dir(project_dir, language_dir, language, file_style, ma
 def get_language_dir(project_dir, language, file_style, make_dirs):
     language_dir = os.path.join(project_dir, language.code)
     if not os.path.exists(language_dir):
-        return get_or_make_language_dir(project_dir, language_dir, language, file_style, make_dirs)
+        return get_or_make_language_dir(project_dir, language, file_style, make_dirs)
     else:
         return language_dir
 
