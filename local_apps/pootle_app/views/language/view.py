@@ -126,7 +126,7 @@ def handle_translation_file(request, translation_project, file_path):
 @set_request_context
 def commit_file(request, translation_project, file_path):
     if not check_permission("commit", request):
-        raise PermissionError(_("You do not have rights to comit files here"))
+        raise PermissionError(_("You do not have rights to commit files here"))
     pootle_path = translation_project.directory.pootle_path + file_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.commitpofile(request, store)
