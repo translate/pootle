@@ -519,6 +519,11 @@ html[dir="rtl"] #nav-main ul li
     margin-bottom: 2em;
 }
 
+.general-message h2
+{
+    margin-bottom: 0.7em;
+}
+
 /* FORM ERRORS */
 
 ul.errorlist
@@ -730,6 +735,36 @@ html[dir="rtl"] .module-primary .hd h2
     text-align: center;
 }
 
+
+/*
+ * SETTINGS PAGE
+ */
+
+div.settings-container
+{
+    display: block;
+    margin: 0 auto;
+}
+
+div.centered
+{
+    width: 40%;
+}
+
+.settings-container p
+{
+    margin-bottom: 1em;
+}
+
+.settings-container form
+{
+    font-size: 85%;
+}
+
+.settings-container h2
+{
+    margin-bottom: 0.7em;
+}
 
 /*
  * SUMMARIES
