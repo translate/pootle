@@ -68,9 +68,13 @@ def form_set_as_table(formset, link=None, linkfield='code'):
             'link' indicates whether we put the first field as a link or as widget
             """
             if field == linkfield and linkfield in form.initial and link :
-                link = l(link % form.initial[linkfield])
-                result.append("<a href='"+link+"'>"+form.initial[linkfield]+"</a>")
-                result.append(form[field].as_hidden())
+                if callable(link):
+                    result.append(link(form.instance))
+                    result.append(form[field].as_hidden())
+                else:     
+                    link = l(link % form.initial[linkfield])
+                    result.append("<a href='"+link+"'>"+form.initial[linkfield]+"</a>")
+                    result.append(form[field].as_hidden())
             else:
                 result.append(form[field].as_widget())
             result.append('</td>\n')
