@@ -160,18 +160,19 @@ class AdminTests(PootleTestCase):
     def test_add_project_language(self):
         """Tests that we can add a language to a project, then access
         its page when there are no files."""
-        from pootle_app.models import Language
+        from pootle_app.models import Language, Project
         fish = Language(code="fish", fullname="fish")
         fish.save()
-    
+            
         response = self.client.get("/projects/pootle/admin.html")
         self.assertContains(response, "fish")
-        
+
+        project = Project.objects.get(code='pootle')
         add_dict = {
-            "add_language": fish.id,
+            "language": fish.id,
+            "project": project.id,
             }
-        add_dict.update(formset_dict([]))
-        response = self.client.post("/projects/pootle/admin.html", add_dict)
+        response = self.client.post("/projects/pootle/admin.html", formset_dict([add_dict]))
         self.assertContains(response, '/fish/pootle/')
         
         response = self.client.get("/fish/")
