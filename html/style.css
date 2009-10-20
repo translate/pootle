@@ -286,6 +286,13 @@ html[dir="rtl"] #nav-access
     right: -1000px;
 }
 
+#precontent,
+#content,
+#postcontent
+{
+    margin: 0 1em;
+}
+
 
 /*
  * HEADER
@@ -851,7 +858,7 @@ span.graph[dir="rtl"] span.translated
 
 div#nav-secondary
 {
-    padding: 2em 0;
+    padding: 2em 1em;
 }
 
 /* SEARCH */
