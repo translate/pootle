@@ -506,6 +506,12 @@ html[dir="rtl"] #nav-main ul li
     display: none;
 }
 
+.general-message
+{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
 /* FORM ERRORS */
 
 ul.errorlist

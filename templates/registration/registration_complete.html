@@ -2,5 +2,8 @@
 {% load i18n baseurl %}
  
 {% block content %}
-{% trans "Registration Complete. Please check your email to activate your account." %}
+<div class="general-message">
+    <h2>{% trans "Registration Complete." %}</h2>
+    <p>{% trans "Please check your email to activate your account." %}
+</div>
 {% endblock %}
