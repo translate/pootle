@@ -21,6 +21,8 @@
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _
 
+from pootle_misc.baseurl import l
+
 def form_set_as_table(formset, link=None, linkfield='code'):
     """Create an HTML table from the formset. The first form in the
     formset is used to obtain a list of the fields that need to be
@@ -65,7 +67,6 @@ def form_set_as_table(formset, link=None, linkfield='code'):
             'link' indicates whether we put the first field as a link or as widget
             """
             if field == linkfield and linkfield in form.initial and link :
-                from pootle_misc.baseurl import l
                 link = l(link % form.initial[linkfield])
                 result.append("<a href='"+link+"'>"+form.initial[linkfield]+"</a>")
                 result.append(form[field].as_hidden())
