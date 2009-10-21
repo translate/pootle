@@ -25,7 +25,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
 from django.shortcuts import render_to_response
-from django.template import RequestContext 
+from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.forms.fields import email_re
 from django.forms.util import ErrorList
@@ -65,4 +65,3 @@ def edit_personal_info(request):
     template_vars = { "form": user_form,}
     response = render_to_response('profiles/edit_personal.html', template_vars , context_instance=RequestContext(request))
     return response
-
