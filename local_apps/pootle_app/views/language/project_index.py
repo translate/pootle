@@ -63,7 +63,7 @@ def get_stats_headings():
         "untranslatedpercentage": _("Untranslated percentage"),
         "untranslatedwords":      _("Untranslated words"),
         "total":                  _("Total"),
-        "totalwords":             _("Total words"),
+        "totalwords":             _("Total Words"),
         # l10n: noun. The graphical representation of translation status
         "progress":               _("Progress"),
         "summary":                _("Summary")
