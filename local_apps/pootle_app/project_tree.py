@@ -1,23 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# Pootle is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Pootle; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
 import cStringIO
@@ -25,7 +24,6 @@ import cStringIO
 from translate.lang    import data as langdata
 from translate.convert import pot2po
 
-from pootle_app.models.project    import Project
 from pootle_app.models.directory  import Directory
 from pootle_store.models      import Store
 from pootle_store.util import absolute_real_path, relative_real_path
@@ -33,7 +31,7 @@ from pootle_store.util import absolute_real_path, relative_real_path
 def language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
     return langdata.languagematch(language_code, name)
- 
+
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
     return language_code == name
@@ -51,7 +49,6 @@ def match_template_filename(project, path_name):
             # file name can't possibly match any language, assume it is a template
             return True
     return False
-    
 
 def get_matching_language_dirs(project_dir, language):
     return [lang_dir for lang_dir in os.listdir(project_dir)
@@ -96,7 +93,6 @@ def get_translation_project_dir(language, project_dir, file_style, make_dirs=Fal
         return project_dir
     else:
         return get_language_dir(project_dir, language, file_style, make_dirs)
-
 
 def is_hidden_file(path):
     return path[0] == '.'
@@ -156,9 +152,9 @@ def translation_project_should_exist(language, project):
     language and project"""
     if project.get_treestyle() == "gnu":
         # GNU style projects are tricky
-        
+
         if language.code == 'templates':
-            # language is template look for template files            
+            # language is template look for template files
             for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
                 for filename in filenames:
                     if filename.endswith(os.path.extsep + project.get_template_filtetype()):
@@ -198,7 +194,7 @@ def scan_translation_project_files(translation_project):
     # scan for pots if template project
     if translation_project.is_template_project:
         ext = os.extsep + project.get_template_filtetype()
-        
+
     if translation_project.file_style == 'gnu':
         if translation_project.is_template_project:
             add_files(ignored_files, ext, real_path, directory,
@@ -209,7 +205,6 @@ def scan_translation_project_files(translation_project):
     else:
         add_files(ignored_files, ext, real_path, directory)
 
-
 def get_extension(language, project):
     """file extension used for this project, returns pot if it's a po
     project and language is templates"""
@@ -219,19 +214,16 @@ def get_extension(language, project):
     else:
         return ext
 
-
 def ensure_target_dir_exists(target_path):
     target_dir = os.path.dirname(target_path)
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
-
 
 def read_original_target(target_path):
     try:
         return open(target_path, "rb")
     except:
         return None
-
 
 def convert_template(template_path, target_path):
     ensure_target_dir_exists(target_path)
@@ -259,9 +251,8 @@ def get_translated_name(translation_project, store):
     path_parts[1] = translation_project.language.code
     # replace extension
     path_parts[-1] = name + '.' + translation_project.project.localfiletype
-    
-    return absolute_real_path(os.sep.join(path_parts))
 
+    return absolute_real_path(os.sep.join(path_parts))
 
 def convert_templates(template_translation_project, translation_project):
     for store in template_translation_project.stores.all():
@@ -271,7 +262,3 @@ def convert_templates(template_translation_project, translation_project):
             new_store_path = get_translated_name(translation_project, store)
         convert_template(store.file.path, new_store_path)
     scan_translation_project_files(translation_project)
-            
-
-
-    
