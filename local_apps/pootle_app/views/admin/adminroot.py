@@ -35,13 +35,7 @@ def view(request):
     template_vars = {
         "pagetitle":              _("Pootle Admin: Default Permissions"),
         "norights_text":          _("You do not have the rights to administer site permissions."),
-        "main_link":              _("Project home page"),
-        "permissions_title":      _("User Permissions"),
-        "username_title":         _("Username"),
-        "rights_title":           _("Rights"),
         "permission_set_formset": permission_set_formset,
-        "updaterights_text":      _("Update Rights"),
-        "adduser_text":           _("(select to add user)"),
         "hide_fileadmin_links":   True,
     }
     return render_to_response("language/projectlangadmin.html", template_vars, context_instance=RequestContext(request))

@@ -8,7 +8,7 @@
 <div class="info">
 {% if not hide_fileadmin_links %}
 <ul class="menu">
-    <li class="menuitem"><a href="{% filter l %}index.html{% endfilter %}"> {{ main_link }} </a></li>
+    <li class="menuitem"><a href="{% filter l %}index.html{% endfilter %}">{% trans 'Project Home Page' %}</a></li>
     <li class="menuitem"><a href="{% filter l %}?scan_files=1{% endfilter %}"> {{ rescan_files_link }} </a></li>
     <li class="menuitem"><a href="{% filter l %}files.html{% endfilter %}">{% trans 'Manage project files' %}</a></li>
 </ul>
@@ -32,7 +32,7 @@
                 {{ form.as_table }}
                 {% endfor %}
             </table>
-            <input type="submit" name="doupdaterights" value="{{ updaterights_text }}" />
+            <input type="submit" name="doupdaterights" value="{% trans 'Update Rights' %}" />
         </form>
     </div>
 </div>
