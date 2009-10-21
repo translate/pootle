@@ -18,125 +18,97 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.shortcuts import render_to_response
-from django.http import HttpResponseForbidden
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from pootle.i18n.gettext import tr_lang
-from django.contrib.auth.decorators import login_required
-from django.contrib.contenttypes.models import ContentType
+from django.shortcuts import get_object_or_404
+from django import forms
+from django.forms import ModelForm
 
-from pootle_notifications.forms import LanguageNoticeForm, TransProjectNoticeForm
-from pootle_notifications.models import Notices
-from pootle_app.models import Language, TranslationProject
-from pootle_app.models.permissions import get_matching_permissions
+from pootle.i18n.gettext import tr_lang
+
+from pootle_app.models import Directory
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
 
-def lang_notices(request, language_code):
-    can_add = False
-    can_view = False
+from pootle_notifications.models import Notice
 
-    lang = Language.objects.get(code=language_code)
-    if 'view' in get_matching_permissions(get_profile(request.user), lang.directory):
-        can_view = True
-    if request.user.is_authenticated() and 'administrate' in get_matching_permissions(get_profile(request.user), lang.directory):
-        can_add = True
+def view(request, path):
+    #FIXME: why do we have leading and trailing slashes in pootle_path?
+    pootle_path = '/%s/' % path
+    print pootle_path
+    directory = get_object_or_404(Directory, pootle_path=pootle_path)
 
-    if not can_add and not can_view:
-        return HttpResponseForbidden()
+    request.permissions = get_matching_permissions(get_profile(request.user), directory)
 
-    if can_view:
-        content = Notices(content_object = lang)
-        lang_notices =  Notices.objects.get_notices(content)[:5]
+    if not check_permission('view', request):
+        raise PermissionDenied
 
-    if can_add:
-        success = ""
-        valid_form = False
-        if request.method == 'POST': # If the form has been submitted...
-            form = LanguageNoticeForm(request.POST) # A form bound to the POST data
-            if form.is_valid(): # All validation rules pass
-                # Process the data in form.cleaned_data
-                # ...
-                form.save()
-                success = _("Notification sent.")
-                valid_form = True
-        if request.method == 'GET' or valid_form:
-            form = LanguageNoticeForm() # An unbound form
-            form.set_initial_value(language_code)
+    template_vars = {'back_link': path}
+    
+    if check_permission('administrate', request):
+        template_vars['form'] = handle_form(request, directory)
+        template_vars['title'] = directory_to_title(request, directory)
+        
+    template_vars['notices'] = Notice.objects.filter(directory=directory)
+    
+    return render_to_response('notices.html', template_vars, context_instance=RequestContext(request))
 
-    template_vars = {
-            "title"       :_('Add notice for %(language)s', {"language": tr_lang(request, lang.fullname)}),
-            "back_link"   :language_code,
-            "name"        :tr_lang(request, lang.fullname),
+def directory_to_title(request, directory):
+    """figures out if directory refers to a Language or
+    TranslationProject and returns appropriate string for use in
+    titles"""
+
+    try:
+        trans_vars = {
+            'language': tr_lang(request,
+                                directory.language.fullname),
             }
-
-    if can_add:
-        template_vars["form"] = form
-        template_vars["success"] = success
-
-    if can_view:
-        template_vars["notices"] = lang_notices
-
-    return render_to_response('notices.html', template_vars,
-            context_instance=RequestContext(request)  )
-
-def transproj_notices(request, language_code, project_code):
-
-    can_add = False
-    can_view = False
-    transproj = TranslationProject.objects.get(language__code=language_code, project__code=project_code)
-    if 'view' in get_matching_permissions(get_profile(request.user), transproj.directory):
-        can_view = True
-    if request.user.is_authenticated() and 'administrate' in get_matching_permissions(get_profile(request.user), transproj.directory):
-        can_add = True
-
-    if not can_add and not can_view:
-        return HttpResponseForbidden()
-
-    if can_view:
-        content = Notices(content_object = transproj)
-        transproj_notices =  Notices.objects.get_notices(content)[:5]
-
-    if can_add:
-        success = ""
-        valid_form = False
-        if request.method == 'POST': # If the form has been submitted...
-            form = TransProjectNoticeForm(request.POST) # A form bound to the POST data
-            if form.is_valid(): # All validation rules pass
-                # Process the data in form.cleaned_data
-                # ...
-                form.save()
-                success = _("Notification sent.")
-                valid_form = True
-        if request.method == 'GET' or valid_form:
-            form = TransProjectNoticeForm() # An unbound form
-            form.set_initial_value(language_code, project_code)
-
-    details = {"language": tr_lang(request, transproj.language.fullname), "project": transproj.project.fullname}
-    template_vars = {
-            "title" : _('Add notice for the project "%(project)s" in %(language)s', details),
-            "back_link" : language_code+"/"+project_code,
-            "name"      : _('"%(project)s" in %(language)s', details),
+        return _('Notices for %(language)s', trans_vars)
+    except ObjectDoesNotExist:
+        pass
+    
+    try:
+        trans_vars = {
+            'language': tr_lang(request,
+                                directory.translationproject.language.fullname),
+            'project': directory.translationproject.project.fullname,
             }
+        return _('Notices for the project %(project)s in %(language)s', trans_vars)
+    except ObjectDoesNotExist:
+        pass
 
-    if can_add:
-        template_vars["form"] = form
-        template_vars["success"] = success
+    return _('Notices for %(path)s',
+             {'path': directory.pootle_path})
+    
 
-    if can_view:
-        template_vars["notices"] = transproj_notices
+def handle_form(request, current_directory):
+    class NoticeForm(ModelForm):
+        directory = forms.ModelChoiceField(
+            queryset=Directory.objects.filter(pk=current_directory.pk),
+            initial=current_directory.pk, widget=forms.HiddenInput)
 
-    return render_to_response('notices.html', template_vars,
-            context_instance=RequestContext(request)  )
+        class Meta:
+            model = Notice
+            
+    if request.method == 'POST':
+        form = NoticeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form = NoticeForm()
+    else:
+        form = NoticeForm()
 
-@login_required
-def view_notice_item(request, notice_id):
-    notice_type = ContentType.objects.get_for_model(Notices)
-    notice = notice_type.get_object_for_this_type(id=notice_id)
+    return form
+
+
+def view_notice_item(request, path, notice_id):
+    notice = get_object_or_404(Notice, id=notice_id)
     template_vars = {
             "title" : _("View Notice"),
             "notice_message"  : notice.message,
             }
 
     return render_to_response('viewnotice.html', template_vars,
-            context_instance=RequestContext(request)  )
+                              context_instance=RequestContext(request))

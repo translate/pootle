@@ -18,88 +18,50 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.exceptions import PermissionDenied
 from django.contrib.syndication.feeds import Feed, FeedDoesNotExist
-from pootle_notifications.models import Notices
-from pootle_app.models import Language, TranslationProject
-from pootle.i18n.gettext import tr_lang
-from django.contrib.syndication import feeds
 from django.http import HttpResponse, Http404,  HttpResponseForbidden
 from django.utils.translation import ugettext as _
+from django.shortcuts import get_object_or_404
 
-from pootle_app.models.permissions import get_matching_permissions
+from pootle.i18n.gettext import tr_lang
+
+from pootle_misc.baseurl import l
+from pootle_app.models import Directory
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
 
-def NoticeFeeds(request, url):
-    param = ''
-    denied = False
-    try:
-        default_param = url.split('/')
-        if len(default_param) == 1 :
-            f = LanguageFeeds
-            param = default_param[0]
-            lang = Language.objects.get(code=param)
-            if 'view' not in get_matching_permissions(get_profile(request.user), lang.directory):
-                denied = True
+from pootle_notifications.models import Notice
+from pootle_notifications.views import directory_to_title
 
-        elif len(default_param) == 2 :
-            f = TransProjectFeeds
-            param = default_param[1] + "/" + default_param[0]
-            transproj = TranslationProject.objects.get(real_path = param)
-            if 'view' not in get_matching_permissions(get_profile(request.user), transproj.directory):
-                denied = True
+def view(request, path):
+    pootle_path = '/%s/' % path
+    directory = get_object_or_404(Directory, pootle_path=pootle_path)
 
-        else:
-            f = ''
-            denied = True
-    except ValueError:
-        slug, param = url, ''
+    request.permissions = get_matching_permissions(get_profile(request.user), directory)
+    if not check_permission('view', request):
+        raise PermissionDenied
 
-    if denied:
-        return HttpResponseForbidden()
-    try:
-        feedgen = f(None, request).get_feed(param)
-    except feeds.FeedDoesNotExist:
-        raise Http404, "Invalid feed parameters."
-
+    feedgen = NoticeFeed(pootle_path, request, directory).get_feed(path)
     response = HttpResponse(mimetype=feedgen.mime_type)
     feedgen.write(response, 'utf-8')
     return response
 
-class LanguageFeeds(Feed):
-    link = "/feeds/"
-    description = _("Feeds for language notices")
-    #title = "Language Feeds"
-
+class NoticeFeed(Feed):
+    def __init__(self, slug, request, directory):
+        self.link = l(directory.pootle_path)
+        self.directory = directory
+        super(NoticeFeed, self).__init__(slug, request)
+        
     def get_object(self, bits):
-        """Get object_id and content_type_id based on bits."""
-        lang = Language.objects.get(code=bits[0])
-        content = Notices(content_object = lang)
-        return content
+        return self.directory
 
-    def title(self, obj):
-        lang = Language.objects.get(id = obj.object_id)
-        return _('News for %(language)s', {"language": tr_lang(self.request, lang.fullname)})
+    def title(self, directory):
+        return directory_to_title(self.request, directory)
 
-    def items(self, obj):
-        return Notices.objects.get_notices(obj)
+    def items(self, directory):
+        return Notice.objects.filter(directory=directory)
 
-
-class TransProjectFeeds(Feed):
-    link = "/feeds/"
-    description = _("Feeds for translation project notices")
-    title = _("Translation project Feeds")
-
-    def get_object(self, bits):
-        """Get object_id and content_type_id based on bits."""
-        real_path = bits[0] + "/" + bits[1]
-        trans_proj = TranslationProject.objects.get(real_path=real_path)
-        content = Notices(content_object = trans_proj)
-        return content
-
-    def title(self, obj):
-        trans_proj = TranslationProject.objects.get(id = obj.object_id)
-        return _('News about the translation of %(project)s into %(language)s',
-                {"language": tr_lang(self.request, trans_proj.language.fullname), "project": tr_lang(self.request, trans_proj.project.fullname)})
-
-    def items(self, obj):
-        return Notices.objects.get_notices(obj)
+    def item_link(self, item):
+        return l(item.directory.pootle_path + 'notices/%d/' % item.id)
+    
