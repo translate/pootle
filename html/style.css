@@ -797,7 +797,12 @@ div#profile-menu-tabs a:visited
 body.dashboard div#profile-menu-tabs a.dashboard,
 body.settings div#profile-menu-tabs a.settings,
 body.profile div#profile-menu-tabs a.profile,
-body.password div#profile-menu-tabs a.password
+body.password div#profile-menu-tabs a.password,
+body.admingeneral div#profile-menu-tabs a.admingeneral,
+body.adminusers div#profile-menu-tabs a.adminusers,
+body.adminlanguages div#profile-menu-tabs a.adminlanguages,
+body.adminprojects div#profile-menu-tabs a.adminprojects,
+body.adminpermissions div#profile-menu-tabs a.adminpermissions
 {
     background-color: #ffffff;
     border-color: #777777 #777777 #fff;

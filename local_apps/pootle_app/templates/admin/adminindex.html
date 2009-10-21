@@ -1,23 +1,18 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
 
-{% block content %}
+{% block bodyclass %}admingeneral{% endblock %}
 
+{% block precontent %}
+{% include "admin_profile_menu.html" %}
+{% endblock %}
+
+{% block content %}
 {% if user.is_superuser %}
 <div class="module-primary first">
-    {% endif %}
+{% endif %}
     <div class="bd">
-        <ul class="linklist">
-            <li><a href="{% filter l %}/accounts/{{user.username}}{% endfilter %}" > {% trans "Home" %}</a></li>
-            <li><a href='{{ "users.html"|l }}'>{% trans "Users" %}</a></li>
-            <li><a href='{{ "languages.html"|l }}'>{% trans "Languages" %}</a></li>
-            <li><a href='{{ "projects.html"|l }}'>{% trans "Projects" %}</a></li>
-            <li><a href='{{ "permissions.html"|l }}'>{% trans "Default Permissions" %}</a></li>
-        </ul>
-        <div class="fullwidthcontents">
-            <div class="hd">
-                    <h2>{%trans "Pootle Admin Page" %}</h2>
-            </div>
+        <div>
             <form action="" method="post" >
                 {% for field in form %}
                 <p>
@@ -33,9 +28,8 @@
         </div>
     </div>
 </div>
-    {% if user.is_superuser %}
+{% if user.is_superuser %}
 </div>
 {% endif %}
-
 {% endblock %}
 
