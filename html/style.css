@@ -753,6 +753,11 @@ div#profile-menu-tabs
     font-weight: bold;
 }
 
+html[dir="rtl"] div#profile-menu-tabs
+{
+    float: right;
+}
+
 div#profile-menu-tabs a
 {
     background-color: inherit;
@@ -766,6 +771,11 @@ div#profile-menu-tabs a
     margin: 8px 4px 0;
     padding: 0 11px;
     text-decoration: none;
+}
+
+html[dir="rtl"] div#profile-menu-tabs a
+{
+    float: right;
 }
 
 div#profile-menu-tabs a:hover
