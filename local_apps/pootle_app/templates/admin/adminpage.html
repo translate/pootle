@@ -1,19 +1,18 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
 
+{% block bodyclass %}adminusers{% endblock %}
+
+{% block precontent %}
+{% include "admin_profile_menu.html" %}
+{% endblock %}
+
 {% block content %}
 {% if user.is_superuser %}
 <div class="module-primary first">
-    {% endif %}
+{% endif %}
     <div class="bd">
-        <ul class="linklist">
-            <li><a href="{% filter l %}/accounts/{{user.username}}{% endfilter %}" > {% trans text.home %}</a></li>
-            <li><a href="{% filter l %}/admin/{% endfilter %}">{% trans text.admin %}</a></li>
-        </ul>
-        <div class="fullwidthcontents">
-            <div class="hd">
-                    <h2>{%trans text.title %}</h2>
-            </div>
+        <div>
             <form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
                 {% if text.error_msg %}
                 <div > {% trans text.error_msg %}</div>
@@ -27,7 +26,7 @@
         </div>
     </div>
 </div>
-    {% if user.is_superuser %}
+{% if user.is_superuser %}
 </div>
 {% endif %}
 
