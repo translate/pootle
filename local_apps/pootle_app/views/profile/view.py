@@ -42,7 +42,7 @@ class UserForm(ModelForm):
         email = cleaned_data.get("email")
 
         if not email or not is_valid_email(email):
-            msg = _('* Not a valid e-mail address.')
+            msg = _('Enter a valid e-mail address.')
             self._errors["email"] = ErrorList([msg])
 
         # Always return the full collection of cleaned data.
