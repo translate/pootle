@@ -54,21 +54,21 @@ class PootleProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
 
     translate_rows  = models.SmallIntegerField(default=7,
-                                               verbose_name=_("Number of rows in translate mode"))
+                                               verbose_name=_("Number of Rows in Translate Mode"))
     view_rows       = models.SmallIntegerField(default=10,
-                                               verbose_name=_("Number of rows in view mode"))
+                                               verbose_name=_("Number of Rows in View Mode"))
     input_width     = models.SmallIntegerField(default=40,
                                                verbose_name=_("Input Width"))
     input_height    = models.SmallIntegerField(default=5,
-                                               verbose_name=_("Input Height (in lines)"))
+                                               verbose_name=_("Input Height (in Lines)"))
     languages       = models.ManyToManyField(Language, blank=True, related_name="user_languages",
                                              verbose_name=_("My Languages"))
     projects        = models.ManyToManyField(Project, blank=True,
                                              verbose_name=_("My Projects"))
     ui_lang         = models.ForeignKey(Language, blank=True, null=True,
-                                        verbose_name=_("Interface language"))
+                                        verbose_name=_("Interface Language"))
     alt_src_langs   = models.ManyToManyField(Language, blank=True, related_name="user_alt_src_langs",
-                                             verbose_name=_("Alternative source languages"))
+                                             verbose_name=_("Alternative Source Languages"))
     def __unicode__(self):
         return self.user.username
     
