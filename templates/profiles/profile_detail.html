@@ -1,11 +1,9 @@
-{% extends "base.html"  %}
+{% extends "user_profile_base.html"  %}
 {% load i18n baseurl %}
 
-{% block bodyclass %}dashboard{% endblock %}
+{% block title %}{{ block.super }}{% trans ' » Dashboard' %}{% endblock %}
 
-{% block precontent %}
-{% include "user_profile_menu.html" %}
-{% endblock %}
+{% block bodyclass %}dashboard{% endblock %}
 
 {% block content %}
 <div class="module first">

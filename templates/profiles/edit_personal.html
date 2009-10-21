@@ -1,23 +1,19 @@
-{% extends "base.html"  %}
-{% load i18n baseurl %}
+{% extends "user_profile_base_extended.html"  %}
+{% load i18n %}
  
-{% block title %}{% trans 'Profile' %}{% endblock %}
+{% block title %}{{ block.super }}{% trans ' » Profile' %}{% endblock %}
 
 {% block bodyclass %}profile{% endblock %}
 
-{% block precontent %}
-{% include "user_profile_menu.html" %}
-{% endblock %}
+{% block section_subtitle %}{% trans 'Personal Profile.' %}{% endblock %}
 
-{% block content %}
-<div class="settings-container centered">
-    <h2>{% trans 'Personal Profile.' %}</h2>
+{% block section_description %}{% trans "Here you can change your personal details. This information will be used in the header of the translation files." %}{% endblock %}
 
-    <p>{% trans "Here you can change your personal details. This information will be used in the header of the translation files." %}</p>
-
-    <form method="post" action="">
-        {{ form.as_p }}
-    <input type="submit" value="{% trans 'Save' %}"/>
-    </form>
-</div>
+{% block section_body %}
+<form method="post" action="">
+    {{ form.as_p }}
+    <p>
+        <input type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
 {% endblock %}

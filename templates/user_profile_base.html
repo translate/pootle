@@ -1,0 +1,9 @@
+{% extends "base.html"  %}
+{% load i18n %}
+
+{% block title %}{{ block.super }}{% trans ' » My Account' %}{% endblock %}
+
+{% block precontent %}
+{% include "user_profile_menu.html" %}
+{% endblock %}
+
