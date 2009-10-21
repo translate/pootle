@@ -393,7 +393,7 @@ def get_trans_view(request, store, item, trans, textarea=False):
     if len(trans) > 1:
         forms = []
         for pluralitem, pluraltext in enumerate(trans):
-            form = {"title": _("Plural Form %d" % pluralitem), "n": pluralitem, "text": escapefunction(pluraltext)}
+            form = {"title": _("Plural Form %d") % pluralitem, "n": pluralitem, "text": escapefunction(pluraltext)}
             editclass = ""
             if cantrans or cansugg: 
                 editclass = ables+"edittrans"+str(item)+"p"+str(pluralitem)
@@ -431,7 +431,7 @@ def get_trans_edit(request, store, item, trans):
             buttons = get_trans_buttons(request, request.translation_project, item, ["back", "skip", "copy", "suggest", "translate"])
             forms = []
             for pluralitem, pluraltext in enumerate(trans):
-                pluralform = _("Plural Form %d" % pluralitem)
+                pluralform = _("Plural Form %d") % pluralitem
                 pluraltext = escape_for_textarea(pluraltext)
                 textid = "trans%d-%d" % (item, pluralitem)
                 forms.append({"title": pluralform, "name": textid, "text": pluraltext, "n": pluralitem})
@@ -525,7 +525,7 @@ def get_trans_review(request, store, item, trans, suggestions):
         transdiff = highlight_diffs(pluraltrans, combineddiffs, issrc=True)
         form = {"n": pluralitem, "diff": transdiff, "title": None}
         if hasplurals:
-            pluralform = _("Plural Form %d" % pluralitem)
+            pluralform = _("Plural Form %d") % pluralitem
             form["title"] = pluralform
         forms.append(form)
     transdict = {
@@ -562,7 +562,7 @@ def get_trans_review(request, store, item, trans, suggestions):
             form["suggid"] = "suggest%d-%d-%d" % (item, suggid, pluralitem)
             form["value"] = pluralsuggestion
             if hasplurals:
-                form["title"] = _("Plural Form %d" % pluralitem)
+                form["title"] = _("Plural Form %d") % pluralitem
             forms.append(form)
         suggdict = {
             "title":     suggtitle,
@@ -637,7 +637,7 @@ def get_alt_src_dict(request, store, unit, alt_project):
             if translated_unit is not None and translated_unit.istranslated():
                 if unit.hasplural():
                     unit_dict = {
-                        "forms":     [{"title": _("Plural Form %d", i),
+                        "forms":     [{"title": _("Plural Form %d") % i,
                                        "n":     i,
                                        "text":  escape_text(text)}
                                       for i, text in enumerate(translated_unit.target.strings)],
