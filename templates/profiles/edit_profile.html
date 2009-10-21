@@ -1,6 +1,8 @@
 {% extends "base.html"  %}
 {% load i18n baseurl %}
  
+{% block title %}{% trans 'Translation Settings' %}{% endblock %}
+
 {% block bodyclass %}settings{% endblock %}
 
 {% block precontent %}
@@ -8,11 +10,14 @@
 {% endblock %}
 
 {% block content %}
-<p>{% trans "Configure your settings here." %}</p>
-<div id="profile-form">
-<form method="post" action="">
-{{ form.as_p }}
-<input type="submit" value="Save"/>
-</form>
+<div class="settings-container centered">
+    <h2>{% trans 'Translation Settings.' %}</h2>
+
+    <p>{% trans "Here you can configure the settings related to the translation interface as well as your language preferences." %}</p>
+
+    <form method="post" action="">
+        {{ form.as_p }}
+        <input type="submit" value="Save"/>
+    </form>
 </div>
 {% endblock %}
