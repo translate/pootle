@@ -48,7 +48,7 @@
               <li class="menubaritem"><a href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
               {% endif %}
               {% if user.is_authenticated %}
-              <li class="menubaritem"><a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %} '>{% trans "My account" %}</a></li>
+              <li class="menubaritem"><a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %} '>{% trans "My Account" %}</a></li>
               <li class="menubaritem"><a href='{{ "/accounts/logout/"|l }}'>{% trans "Log out" %}</a></li>
               {% else %}
               {% if settings.CAN_REGISTER %}
