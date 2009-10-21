@@ -306,11 +306,6 @@ class ProjectIndexView(BaseView):
 
         assign_form = None
         goal_form = None
-
-        notice_link = False
-        if 'administrate' in request.permissions or 'view' in request.permissions:
-            notice_link = True
-
         template_vars.update({
             'pagetitle':             _('%(title)s: Project %(project)s, Language %(language)s', 
                                        {"title": pagelayout.get_title(),
@@ -331,7 +326,6 @@ class ProjectIndexView(BaseView):
             'topstatsheading':       top_stats_heading(),
             'assign':                assign_form,
             'goals':                 goal_form,
-            'notice_link' :          notice_link,
             })
         return template_vars
 
@@ -341,10 +335,6 @@ def view(request, translation_project, directory):
         raise PermissionDenied
 
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler, update=UpdateHandler))
-    notice_link = False
-    if check_permission("administrate", request):
-        notice_link = True
-    notice_links = {'notice_links' : notice_link}
     return render_to_response("language/fileindex.html",
                          view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))

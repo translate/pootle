@@ -42,11 +42,11 @@
   </div><!--innernav-->
 {% endblock innernav %}
 
-{% block content %}
-{% if notice_link %}
+{% block precontent %}
     <div><a href="{% filter l %}/{{language.code}}/{{project.code}}/notices/{% endfilter %}">{% trans "News"%}</a></div>
-{% endif %}
+{% endblock precontent %}
 
+{% block content %}
 {% if not editing and children %}
 <!--! The statistics view -->
   <div class="module-primary">
