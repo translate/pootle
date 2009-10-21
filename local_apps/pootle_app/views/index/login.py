@@ -24,7 +24,7 @@ from translate.lang import data
 
 from django.utils.translation import ugettext as _
 from django.conf import settings
-from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth import REDIRECT_FIELD_NAME, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -36,28 +36,28 @@ from pootle_app.views               import pagelayout
 from django.utils.encoding import iri_to_uri
 from django.utils.http import urlquote
 
-def view(request):
-    message = None
-    redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
+def redirect_after_login(request):
+    redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, None)
+    if redirect_to is None or '://' in redirect_to or ' ' in redirect_to:
+        redirect_to = iri_to_uri('/accounts/%s/' % urlquote(request.user.username))
+    return redirect(redirect_to)
+        
 
+def view(request):
     if request.user.is_authenticated():
-        return redirect(redirect_to)
+        return redirect_after_login(request)
     else:
         if request.POST:
             form = AuthenticationForm(request, data=request.POST)
             # do login here
             if form.is_valid():
-                from django.contrib.auth import login
                 login(request, form.get_user())
-
-                if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
-                    redirect_to = iri_to_uri('/accounts/%s/' % urlquote(form.get_user().username))
 
                 if request.session.test_cookie_worked():
                     request.session.delete_test_cookie()
 
                 language = request.POST.get('language') # FIXME: validation missing
-                response = redirect(redirect_to)
+                response = redirect_after_login(request)
                 response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
                 return response
         else:
