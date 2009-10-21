@@ -76,7 +76,8 @@ def translate(request, path, **kwargs):
     else:
         params.store = None
         
-    if check_permission('translate', request) and 'view_mode' not in kwargs:
+    if (check_permission('translate', request) or check_permission('suggest', request)) and \
+           'view_mode' not in kwargs:
         params.view_mode = 'translate'
     return url_manip.make_url(path, params.encode())
 
