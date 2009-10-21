@@ -84,7 +84,7 @@ class TranslationProject(models.Model):
     language   = models.ForeignKey(Language, db_index=True)
     project    = models.ForeignKey(Project,  db_index=True)
     real_path  = models.FilePathField(editable=False)
-    directory  = models.ForeignKey(Directory, editable=False)
+    directory  = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, editable=False)
 
     def __unicode__(self):
