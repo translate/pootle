@@ -542,13 +542,13 @@ def get_trans_review(request, store, item, trans, suggestions):
             if suggestedby:
                 # l10n: First parameter: number
                 # l10n: Second parameter: name of translator
-                suggtitle = _("Suggestion %(suggid)d by %(user)s:" % {"suggid": (suggid+1), "user": suggestedby})
+                suggtitle = _("Suggestion %(suggid)d by %(user)s:") % {"suggid": (suggid+1), "user": suggestedby}
             else:
-                suggtitle = _("Suggestion %d:" % (suggid+1))
+                suggtitle = _("Suggestion %d:") % (suggid+1)
         else:
             if suggestedby:
                 # l10n: parameter: name of translator
-                suggtitle = _("Suggestion by %s:" % suggestedby)
+                suggtitle = _("Suggestion by %s:") % suggestedby
             else:
                 suggtitle = _("Suggestion:")
         forms = []
@@ -998,9 +998,9 @@ def view(request, directory, store, item, stopped_by=None):
         # l10n: Ajax link for suggestions.    %s is the number of suggestions
         "viewsuggtext":              _("View Suggestions"),
         # l10n: Heading above the textarea for translator comments.
-        "translator_comments_title": _("Translator comments"),
+        "translator_comments_title": _("Translator Comments"),
         # l10n: Heading above the comments extracted from the programing source code
-        "developer_comments_title":  _("Developer comments"),
+        "developer_comments_title":  _("Developer Comments"),
         # l10n: This heading refers to related translations and terminology
         "related_title":             _("Related"),
         # optional sections, will appear if these values are replaced
