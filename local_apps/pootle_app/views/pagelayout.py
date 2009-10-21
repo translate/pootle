@@ -36,7 +36,7 @@ def localize_links(request):
     links['home'] = _('Home')
     links['projects'] = _('All projects')
     links['languages'] = _('All languages')
-    links['account'] = _('My account')
+    links['account'] = _('My Account')
     links['admin'] = _('Admin')
     links['doc'] = _('Help')
     links['doclang'] = getdoclang(request.LANGUAGE_CODE)
