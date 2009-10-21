@@ -1,11 +1,14 @@
 {% extends "base.html"  %}
 {% load i18n baseurl %}
  
+{% block bodyclass %}settings{% endblock %}
+
 {% block precontent %}
-<p>{% trans "Configure your settings here." %}</p>
+{% include "user_profile_menu.html" %}
 {% endblock %}
 
 {% block content %}
+<p>{% trans "Configure your settings here." %}</p>
 <div id="profile-form">
 <form method="post" action="">
 {{ form.as_p }}

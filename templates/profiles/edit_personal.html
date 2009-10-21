@@ -1,10 +1,14 @@
 {% extends "base.html"  %}
 {% load i18n baseurl %}
  
+{% block bodyclass %}profile{% endblock %}
+
 {% block precontent %}
-<p>{% trans "Change your personal details here." %}</p>
+{% include "user_profile_menu.html" %}
 {% endblock %}
+
 {% block content %}
+<p>{% trans "Change your personal details here." %}</p>
 <form method="post" action="">
         {{ form.as_p }}
 <input type="submit" value="Save"/>

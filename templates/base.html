@@ -29,7 +29,8 @@
     {% block extra_head %}<!-- extra scripts and links -->{% endblock %}
   </head>
 
-  <body id="{% if body.id %}{{ body.id }}{% else %}home{% endif %}">
+  <body id="{% if body.id %}{{ body.id }}{% else %}home{% endif %}"
+        class="{% block bodyclass %}{% endblock %}">
     {% block body %}<div id="wrapper">
       <div id="header">
 	{% block header %}

@@ -739,6 +739,68 @@ html[dir="rtl"] .module-primary .hd h2
  * SETTINGS PAGE
  */
 
+div#profile-menu
+{
+    border-bottom: 1px solid #afaba3;
+    clear: both;
+    height: 34px;
+    margin-bottom: 2em;
+}
+
+div#profile-menu-tabs
+{
+    float: left;
+    font-weight: bold;
+}
+
+div#profile-menu-tabs a
+{
+    background-color: inherit;
+    border: 1px solid transparent;
+    color: #4B4740;
+    display: block;
+    float: left;
+    font-size: 90%;
+    height: 24px;
+    line-height: 22px;
+    margin: 8px 4px 0;
+    padding: 0 11px;
+    text-decoration: none;
+}
+
+div#profile-menu-tabs a:hover
+{
+    background-color: #ffffff !important;
+    border-color: #777777 #777777 #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    line-height: 20px;
+    margin-top: 9px;
+}
+
+div#profile-menu-tabs a:visited
+{
+    background-color: inherit;
+    color: #4B4740;
+}
+
+body.dashboard div#profile-menu-tabs a.dashboard,
+body.settings div#profile-menu-tabs a.settings,
+body.profile div#profile-menu-tabs a.profile,
+body.password div#profile-menu-tabs a.password
+{
+    background-color: #ffffff;
+    border-color: #777777 #777777 #fff;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    font-size: 120%;
+    height: 30px;
+    line-height: 28px;
+    margin-top: 3px;
+    padding: 0 11px;
+}
+
 div.settings-container
 {
     display: block;
