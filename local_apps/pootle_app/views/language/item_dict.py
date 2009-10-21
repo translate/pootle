@@ -28,7 +28,7 @@ from django.utils.translation import ungettext
 
 from translate.storage import versioncontrol
 from pootle_app.models.profile         import get_profile
-from pootle_app.views.language          import search_forms
+from pootle_app.views.language         import search_forms
 from pootle_app.models.store_iteration import get_next_match
 from pootle_app.models.permissions     import check_permission
 from pootle_store.models               import Store

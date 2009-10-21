@@ -44,7 +44,7 @@
 
 {% block content %}
 {% if notice_link %}
-    <div><a href="{% filter l %}/{{language.code}}/{{project.code}}/notices/{% endfilter %}">{% trans "News"%} </a></div>
+    <div><a href="{% filter l %}/{{language.code}}/{{project.code}}/notices/{% endfilter %}">{% trans "News"%}</a></div>
 {% endif %}
 
 {% if not editing and children %}
