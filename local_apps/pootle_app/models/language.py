@@ -31,12 +31,12 @@ class Language(models.Model):
         app_label = "pootle_app"
         ordering = ['code']
 
-    code_help_text = u'ISO 639 language code for the language, possibly followed by an underscore (_) and an ISO 3166 country code. <a href="http://www.w3.org/International/articles/language-tags/">More information</a>'
-    nplurals_help_text = u'For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms'
-    pluralequation_help_text = u'For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms'
-    specialchars_help_text = u'Enter any special characters that users might find difficult to type'
+    code_help_text = _('ISO 639 language code for the language, possibly followed by an underscore (_) and an ISO 3166 country code. <a href="http://www.w3.org/International/articles/language-tags/">More information</a>')
+    nplurals_help_text = _('For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms')
+    pluralequation_help_text = _('For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms')
+    specialchars_help_text = _('Enter any special characters that users might find difficult to type')
 
-    nplural_choices = ((0, u'unknown'), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
+    nplural_choices = ((0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
 
     code           = models.CharField(max_length=50, null=False, unique=True, db_index=True, help_text=code_help_text)
     fullname       = models.CharField(max_length=255, null=False, verbose_name=_("Full Name"))
