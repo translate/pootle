@@ -54,14 +54,14 @@ class Project(models.Model):
             ('nongnu', _('Non-GNU: Each language in its own directory')),
     )
 
-    code           = models.CharField(max_length=255, null=False, unique=True, db_index=True, help_text=code_help_text)
-    fullname       = models.CharField(max_length=255, null=False, verbose_name=_("Full name"))
+    code           = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_('Code'), help_text=code_help_text)
+    fullname       = models.CharField(max_length=255, null=False, verbose_name=_("Full Name"))
     description    = models.TextField(blank=True, help_text=description_help_text)
     checkstyle     = models.CharField(max_length=50, default='standard', null=False, choices=checker_choices, verbose_name=_('Quality Checks'))
     localfiletype  = models.CharField(max_length=50, default="po", choices=local_choices, verbose_name=_('File Type'))
     treestyle      = models.CharField(max_length=20, default='auto', choices=treestyle_choices, verbose_name=_('Project Tree Style'))
-    ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="", verbose_name=_('Ignore files'))
-    createmofiles  = models.BooleanField(default=False, verbose_name=_('Compile MO files'))
+    ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="", verbose_name=_('Ignore Files'))
+    createmofiles  = models.BooleanField(default=False, verbose_name=_('Compile MO Files'))
 
     def __unicode__(self):
         return self.fullname
