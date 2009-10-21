@@ -223,7 +223,7 @@ def handle_suggestions(request, translation_project, file_path, item):
     # TODO: finish this function and return nice diffs
     pootle_path = translation_project.pootle_path + file_path
     store = Store.objects.get(pootle_path=pootle_path)
-    
+
     def getpendingsuggestions(item):
         """Gets pending suggestions for item in pofilename."""
         itemsuggestions = []
@@ -258,9 +258,10 @@ def handle_suggestions(request, translation_project, file_path, item):
                 response["del_ids"].append((int(item), sugg["id"]))
                 response["accepted_id"] = (int(item), sugg["id"])
                 accept_count += 1
-            except ValueError:
-                # l10n: ValueError refers to the Python exception name
-                response["message"] = _("Error: ValueError exception raised.")
+            except ValueError, e:
+                # Probably an issue with "item". The exception might tell us
+                # everything we need, while no error will probably help the user
+                response["message"] = e
             except PermissionError, e:
                 response["message"] = e
 
@@ -268,13 +269,14 @@ def handle_suggestions(request, translation_project, file_path, item):
         for sugg in reversed(rejects):
             try:
                 unit_update.reject_suggestion(store,int(item), int(sugg["id"]),
-                                              sugg["newtrans"], request)                
+                                              sugg["newtrans"], request)
                 reject_count += 1
                 response["del_ids"].append((int(item), sugg["id"]))
                 pending = getpendingsuggestions(int(item))
-            except ValueError:
-                # l10n: ValueError refers to the Python exception name
-                response["message"] = _("Error: ValueError exception raised.")
+            except ValueError, e:
+                # Probably an issue with "item". The exception might tell us
+                # everything we need, while no error will probably help the user
+                response["message"] = e
             except PermissionError, e:
                 response["message"] = e
 
