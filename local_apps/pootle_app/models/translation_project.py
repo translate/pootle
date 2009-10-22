@@ -491,7 +491,7 @@ class TranslationProject(models.Model):
     ##############################################################################################
 
 
-    def _find_matching_unit(self, singular, plural=None, n=1):
+    def translate_message(self, singular, plural=None, n=1):
         for store in self.stores:
             store.file.store.require_index()
             unit = store.file.store.findunit(singular)

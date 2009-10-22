@@ -18,35 +18,62 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf import settings
 from django.utils import translation
-
-from pootle.i18n.gettext import override_gettext
-from pootle_app.models.translation_project import TranslationProject
-
+from django.db import models
+from django.conf import settings
 
 _translation_project_cache = {}
 
-def hijack_translation():
-    """Replace django's gettext functions with functions from the
-    appropriate TranslationProject, allowing live translation of
-    Pootle's UI from in memory stores"""
 
-    language = translation.get_language()
-    locale = translation.to_locale(language)
-    if locale in ('en', 'en_US'):
-        return None
-    
+def get_live_translation(language_code):
+    TranslationProject = models.get_model('pootle_app', 'TranslationProject')
     global _translation_project_cache
-    if not locale in _translation_project_cache:
+
+    if not language_code in _translation_project_cache:
         try:
-            _translation_project_cache[locale] = TranslationProject.objects.get(language__code=locale, project__code="pootle")
-        except:
-            try:
-                _translation_project_cache[locale] = TranslationProject.objects.get(language_code=translation.to_locale(settings.LANGUAGE_CODE), project__code="pootle")
-            except:
-                _translation_project_cache[locale] = None
-                
-    if _translation_project_cache[locale] is not None:
-        override_gettext(_translation_project_cache[locale])
-            
+            _translation_project_cache[language_code] = TranslationProject.objects.get(language__code=language_code, project__code="pootle")
+        except TranslationProject.DoesNotExist:
+            _translation_project_cache[language_code] = None
+
+    return _translation_project_cache[language_code]
+
+def _dummy_translate(singular, plural, n):
+    if plural is not None and n > 1:
+        return plural
+    else:
+        return singular
+    
+def translate_message(singular, plural=None, n=1):
+    
+    locale = translation.to_locale(translation.get_language())
+    if locale in ('en', 'en_US'):
+        return _dummy_translate(singular, plural, n)
+
+    live_translation = get_live_translation(locale)
+    
+    if live_translation is None:
+        default_locale = translation.to_locale(settings.LANGUAGE_CODE)
+        if default_locale in ('en', 'en_US'):
+            return _dummy_translate(singular, plural, n)
+        
+        live_translation = get_live_translation(default_locale)
+
+    if live_translation is None:
+        _dummy_translate(singular, plural, n)
+    
+    return live_translation.translate_message(singular, plural, n)
+
+
+def ugettext(message):
+    return unicode(translate_message(message))
+
+def ungettext(singular, plural, n):
+    return unicode(translate_message(singular, plural, n))
+
+def gettext(message):
+    return str(translate_message(message))
+
+def ngettext(singular, plural, n):
+    return str(translate_message(singular, plural, n))
+
+               

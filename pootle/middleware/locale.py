@@ -23,6 +23,7 @@ from django.utils.translation import trans_real
 from django.conf import settings
 
 from pootle.i18n import gettext
+from pootle.i18n import gettext_live
 
 def translation_dummy(language):
     """return dumy translation object to please django's l10n while
@@ -41,19 +42,6 @@ def translation_dummy(language):
     trans_real._translations[language] = dummytrans
     return dummytrans
             
-class LocaleFromProfileMiddleware(object):
-    """
-    Load user specified locale from profile and inject it in session
-    for django's locale middle ware to find.
-    """
-    def process_request(self, request):
-        if request.user.is_authenticated() and 'django_language' not in request.session:
-            language = request.user.get_profile().ui_lang
-            if language is not None:
-                request.session['django_language'] = language.code
-            else:
-                request.session['django_language'] = None
-                
             
 class LocaleMiddleware(object):
     """
@@ -67,28 +55,30 @@ class LocaleMiddleware(object):
         # known to Django
         translation.check_for_language = lambda lang_code: True
         trans_real.check_for_language = lambda lang_code: True
-        # if live translation is enabled, hijack language activation
-        # code to avoid unnessecary loading of mo files
-        if settings.LIVE_TRANSLATION:
-            trans_real.translation = translation_dummy
 
-        # install the safe variable formatting override
-        gettext.override_gettext(translation)
         # override django's inadequate bidi detection
         translation.get_language_bidi = gettext.get_language_bidi
-        
-    def process_request(self, request):
-        """override django's gettext functions to support live
-        translation"""
-        #FIXME: figure out how to load locale choice from user profile
+
         if settings.LIVE_TRANSLATION:
-            from pootle.i18n import gettext_live
-            gettext_live.hijack_translation()
+            # hijack language activation code to avoid unnessecary
+            # loading of mo files
+            trans_real.translation = translation_dummy
+            gettext.override_gettext(gettext_live)
+        else:
+            # even when live translation is not enabled we hijack
+            # gettext functions to install the safe variable
+            # formatting override
+            gettext.override_gettext(translation)
             
 
-    def process_response(self, request, response):
-        """undo gettext overrides at end of request"""
-        if settings.LIVE_TRANSLATION:
-            gettext.override_gettext(trans_real)
-        return response
-            
+    def process_request(self, request):
+        """
+        Load user specified locale from profile and inject it in
+        session for django's locale middle ware to find.
+        """
+        if request.user.is_authenticated() and 'django_language' not in request.session:
+            language = request.user.get_profile().ui_lang
+            if language is not None:
+                request.session['django_language'] = language.code
+            else:
+                request.session['django_language'] = None
