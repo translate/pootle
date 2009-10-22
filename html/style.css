@@ -802,7 +802,9 @@ body.admingeneral div#profile-menu-tabs a.admingeneral,
 body.adminusers div#profile-menu-tabs a.adminusers,
 body.adminlanguages div#profile-menu-tabs a.adminlanguages,
 body.adminprojects div#profile-menu-tabs a.adminprojects,
-body.adminpermissions div#profile-menu-tabs a.adminpermissions
+body.adminpermissions div#profile-menu-tabs a.adminpermissions,
+body.projectoverview div#profile-menu-tabs a.projectoverview,
+body.projectadmin div#profile-menu-tabs a.projectadmin
 {
     background-color: #ffffff;
     border-color: #777777 #777777 #fff;
@@ -982,6 +984,19 @@ span.graph[dir="rtl"] span.translated
 div#nav-secondary
 {
     padding: 2em 1em;
+}
+
+div#breadcrumbs
+{
+    float: right;
+    margin-right: 5em;
+}
+
+html[dir="rtl"] div#breadcrumbs
+{
+    float: left;
+    margin-right: 0;
+    margin-left: 5em;
 }
 
 /* SEARCH */

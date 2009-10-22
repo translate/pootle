@@ -62,10 +62,12 @@ def view(request, project_code):
     queryset = TranslationProject.objects.filter(project=current_project)
     
     model_args = {}
+    model_args['project'] = { 'code': current_project.code,
+                              'name': current_project.fullname }
     model_args['title'] = _("Project Admin: %s", current_project.fullname)
     model_args['formid'] = "translation-projects"
     model_args['submitname'] = "changetransprojects"
     link = lambda instance: '<a href="%s">%s</a>' % (l(instance.pootle_path + 'admin.html'), instance.language.fullname)
-    return util.edit(request, 'admin/admin_users.html', TranslationProject, model_args, link, linkfield="language",
+    return util.edit(request, 'project/project_admin.html', TranslationProject, model_args, link, linkfield="language",
                      queryset=queryset, can_delete=True, form=TranslationProjectForm)
 

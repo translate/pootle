@@ -1,0 +1,11 @@
+{% extends "base.html"  %}
+
+{% block breadcrumbs %}
+<div id="breadcrumbs">
+    <h2 class="title">{% block breadcrumbs_content %}{% endblock %}</h2>
+</div>
+{% endblock %}
+
+{% block precontent %}
+{% include "project_menu.html" %}
+{% endblock %}

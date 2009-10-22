@@ -1,0 +1,30 @@
+{% extends "project_base.html" %}
+{% load i18n baseurl %}
+
+{% block bodyclass %}projectadmin{% endblock %}
+
+{% block breadcrumbs_content %}
+<a href="{%filter l%}/projects/{{ project.code }}/{%endfilter%}">{{ project.name }}</a>
+{% endblock breadcrumbs_content %}
+
+{% block content %}
+<div class="settings-container centered">
+    <h2>{% trans "Administrate Project." %}</h2>
+
+    <p>{% trans "Here you can add, edit, or delete the language for this project." %}</p>
+
+    <form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
+        {% if text.error_msg %}
+        <div id="site-message">
+            <div class="error">{% trans text.error_msg %}</div>
+        </div>
+        {% endif %}
+        {{ formset.management_form }}
+        <table cellpadding="1" cellspacing="1">
+                {{ formset_text }}
+        </table>
+        <p>
+            <input type="submit" name={{ text.submitname }} value="{% trans text.savechanges %}" />
+        </p>
+</form>
+{% endblock %}

@@ -1,64 +1,52 @@
-{% extends "base.html" %}
+{% extends "project_base.html" %}
 {% load i18n baseurl %}
+
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
+
 {% block body.id %}projectindex{% endblock body.id %}
 
-{% block breadcrumbs %}
-  <div id="breadcrumbs">
-    <h3 class="title">[ <a href="{%filter l%}/projects/{{project.code}}/{%endfilter%}">{{project.name}}</a> ]</h3>
-  </div><!--breadcrumbs-->
-{% endblock breadcrumbs %}
+{% block bodyclass %}projectoverview{% endblock %}
 
-{% block innernav %}
-  <div id="innernav">
-    {% if user.is_superuser %}
-    <div class="item-description">
-      <a href="admin.html">{{adminlink}}</a>
-    </div>
-    {% endif %}
-    <div class="item-statistics">{{project.stats}}</div>
-  </div><!--innernav-->
-{% endblock innernav %}
-
-
-{% block precontent %}
-    <div class="intro">
-      {{description|safe}}
-    </div>
-{% endblock precontent %}
+{% block breadcrumbs_content %}
+<a href="{%filter l%}/projects/{{ project.code }}/{%endfilter%}">{{ project.name }}</a>
+{% endblock breadcrumbs_content %}
 
 {% block content %}
-    <div class="module-primary">
-      <div class="bd">
-	<table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
-	  <thead>
-	    <tr>
-	      <th class="stats">{{statsheadings.name}}</th>
-	      <th class="stats">{{statsheadings.progress}}</th>
-	      <th class="stats">{{statsheadings.summary}}</th>
-	      <th class="stats">{{statsheadings.totalwords}}</th>
-	    </tr>
-	  </thead>
-	  <tbody class="stats">
-	    {% for item in languages %}
-	      <tr  class="item {% cycle 'even' 'odd' %}">
-		{% include "language/item_summary.html" %}
-	      </tr>
-	    {% endfor %}
-	  </tbody>
-	</table>
-      </div>
+<div class="intro">
+    {{ description|safe }}
+</div>
+
+<div class="item-statistics">{{ project.stats }}</div>
+
+<div class="module-primary">
+    <div class="bd">
+        <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="stats">{{ statsheadings.name }}</th>
+                <th class="stats">{{ statsheadings.progress }}</th>
+                <th class="stats">{{ statsheadings.summary }}</th>
+                <th class="stats">{{ statsheadings.totalwords }}</th>
+            </tr>
+        </thead>
+        <tbody class="stats">
+        {% for item in languages %}
+            <tr class="item {% cycle 'even' 'odd' %}">
+        {% include "language/item_summary.html" %}
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
     </div>
+</div>
 {% endblock content %}
 
 {% block postcontent %}
-    <div class="module first clear">
-      <div class="bd">
-	{% include "translation_summary_legend.html" %}
-      </div>
+<div class="module first clear">
+    <div class="bd">
+    {% include "translation_summary_legend.html" %}
     </div>
-    {% include "top_contributers_table.html" %}
+</div>
+{% include "top_contributers_table.html" %}
 {% endblock postcontent %}
-
-

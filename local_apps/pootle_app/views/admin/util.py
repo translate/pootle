@@ -163,4 +163,6 @@ def edit(request, template, model_class,
                 "submitname": model_args['submitname'],
                 "formid": model_args['formid'],
                 "error_msg":  msg}}
+    if model_args.get("project", None):
+        template_vars["project"] = model_args['project']
     return render_to_response(template, template_vars, context_instance=RequestContext(request))
