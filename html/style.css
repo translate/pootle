@@ -844,6 +844,7 @@ div.centered
 
 .settings-container input,
 .settings-container select,
+.settings-container textarea,
 #login input[type="text"],
 #login input[type="password"],
 #login select,

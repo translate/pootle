@@ -1,35 +1,24 @@
-{% extends "base.html" %}
+{% extends "admin_profile_base.html" %}
 {% load i18n baseurl %}
 
 {% block bodyclass %}admingeneral{% endblock %}
 
-{% block precontent %}
-{% include "admin_profile_menu.html" %}
-{% endblock %}
+{% block section_subtitle %}{% trans "General Settings." %}{% endblock %}
 
-{% block content %}
-{% if user.is_superuser %}
-<div class="module-primary first">
-{% endif %}
-    <div class="bd">
-        <div>
-            <form action="" method="post" >
-                {% for field in form %}
-                <p>
-                    {{ field.label_tag }}
-                    {{ field }}
-                    {% if field.help_text %}
-                        {{ field.help_text }}
-                    {% endif %}
-                </p>
-                {% endfor %}
-                <input type="submit" value='{% trans "Save" %}'/>
-            </form>
-        </div>
-    </div>
-</div>
-{% if user.is_superuser %}
-</div>
-{% endif %}
+{% block section_description %}{% trans "Configure here the general settings for your site." %}{% endblock %}
+
+{% block section_body %}
+<form action="" method="post" >
+    {% for field in form %}
+    <p>
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}
+            {{ field.help_text }}
+        {% endif %}
+    </p>
+    {% endfor %}
+    <input type="submit" value='{% trans "Save" %}'/>
+</form>
 {% endblock %}
 
