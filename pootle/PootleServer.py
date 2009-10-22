@@ -22,6 +22,7 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+import logging
 import optparse
 from wsgiref.simple_server import make_server
 
@@ -88,9 +89,9 @@ def init_db():
         call_command('initdb')
         # Let's give some screen output, since this can take really long in the
         # default install
-        print "Now going to update statistics. This could take while..."
+        logging.info("Now going to update statistics. This could take while...")
         call_command('refresh_stats')
-        print "Finished updating statistics."
+        logging.info("Finished updating statistics.")
 
 def main():
     # run the web server
@@ -100,7 +101,9 @@ def main():
     (options, args) = parser.parse_args()
     if options.action != 'runwebserver':
         options.servertype = 'dummy'
+    logging.info("Scanning for new languages.")
     scan_translation_projects()
+    logging.info("Starting server, listening on port %d.", options.port)
     run_pootle(options, args)
 
 if __name__ == '__main__':
