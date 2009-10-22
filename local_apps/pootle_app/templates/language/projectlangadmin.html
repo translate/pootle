@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "admin_profile_base.html" %}
 {% load i18n baseurl %}
 
 {% block bodyclass %}adminpermissions{% endblock %}
 
 {% block precontent %}
-{% include "admin_profile_menu.html" %}
+{{ block.super }}
 <div class="info">
 {% if not hide_fileadmin_links %}
 <ul class="menu">
@@ -15,27 +15,24 @@
 {% endif %}
 </div>
 <div class="intro">
-    {{  filestyle_text }}
+    {{ filestyle_text }}
 </div>
 {% endblock %}
 
-{% block content %}
-<div class="module first">
-    <div class="bd">
-        <form action="" method="post" name="permissionsform" id="permissionsform">
-            {{ permission_set_formset.management_form }}
-            <table cellpadding="1" cellspacing="1">
-                <tr>
-                    <th>{% trans "Username" %}</th><th>{% trans "Permissions" %}</th><th>{% trans "Delete" %}</th>
-                </tr>
-                {% for form in permission_set_formset.forms %}
-                {{ form.as_table }}
-                {% endfor %}
-            </table>
-            <input type="submit" name="doupdaterights" value="{% trans 'Update Rights' %}" />
-        </form>
-    </div>
-</div>
-
+{% block section_body %}
+<form action="" method="post" name="permissionsform" id="permissionsform">
+    {{ permission_set_formset.management_form }}
+    <table cellpadding="1" cellspacing="1">
+        <tr>
+            <th>{% trans "Username" %}</th><th>{% trans "Permissions" %}</th><th>{% trans "Delete" %}</th>
+        </tr>
+        {% for form in permission_set_formset.forms %}
+        {{ form.as_table }}
+        {% endfor %}
+    </table>
+    <p>
+        <input type="submit" name="doupdaterights" value="{% trans 'Update Rights' %}" />
+    </p>
+</form>
 {% endblock %}
 
