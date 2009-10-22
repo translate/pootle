@@ -11,7 +11,38 @@
 
 {% block section_body %}
 <form method="post" action="">
-    {{ form.as_p }}
+    <p>
+        <label for="id_translate_rows">{% trans 'Number of Rows in Translate Mode' %}</label>
+        {{ form.translate_rows }}
+    </p>
+    <p>
+        <label for="id_view_rows">{% trans 'Number of Rows in View Mode' %}</label>
+        {{ form.view_rows }}
+    </p>
+    <p>
+        <label for="id_input_width">{% trans 'Input Width' %}</label>
+        {{ form.input_width }}
+    </p>
+    <p>
+        <label for="id_input_height">{% trans 'Input Height' %}</label>
+        {{ form.input_height }}
+    </p>
+    <p>
+        <label for="id_ui_lang">{% trans 'Interface Language' %}</label>
+        {{ form.ui_lang }}
+    </p>
+    <p>
+        <label for="id_languages">{% trans 'My Languages' %}</label>
+        {{ form.languages}}
+    </p>
+    <p>
+        <label for="id_projects">{% trans 'My Projects' %}</label>
+        {{ form.projects }}
+    </p>
+    <p>
+        <label for="id_alt_src_langs">{% trans 'Alternative Source Languages' %}</label>
+        {{ form.alt_src_langs }}
+    </p>
     <p>
         <input type="submit" value="{% trans 'Save' %} "/>
     </p>
