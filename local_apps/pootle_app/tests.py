@@ -127,7 +127,7 @@ class AdminTests(PootleTestCase):
         response = self.client.get('/')
         self.assertContains(response, "<a href='/admin/'>Admin</a>")
         response = self.client.get('/admin/')
-        self.assertContains(response, '<title>Pootle Admin Page</title>')        
+        self.assertContains(response, 'Pootle Admin Page')        
 
     def test_add_project(self):
         """Checks that we can add a project successfully."""
@@ -178,7 +178,7 @@ class AdminTests(PootleTestCase):
         response = self.client.get("/fish/")
         self.assertContains(response, 'fish</title>')
         self.assertContains(response, '<a href="pootle/">Pootle</a>')
-        self.assertContains(response, "1 project,  0% translated")
+        self.assertContains(response, "1 project, average 0% translated")
 
 
 class NonprivTests(PootleTestCase):
