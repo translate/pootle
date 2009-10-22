@@ -31,7 +31,6 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-N_ = _
 
 from translate.storage import po
 from translate.misc.multistring import multistring
@@ -956,7 +955,7 @@ def view(request, directory, store, item, stopped_by=None):
 
     # templatising
     templatename = "language/translatepage.html"
-    instancetitle = N_(settings.TITLE)
+    instancetitle = _(settings.TITLE)
     # l10n: first parameter: name of the installation (like "Pootle")
     # l10n: second parameter: project name
     # l10n: third parameter: target language
