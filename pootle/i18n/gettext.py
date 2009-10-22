@@ -74,3 +74,16 @@ def override_gettext(real_translation):
 def tr_lang(request, language_name):
     """translate language name"""
     return langdata.tr_lang(request.LANGUAGE_CODE)(language_name)
+
+def get_language_bidi():
+    return language_dir(translation.get_language()) == 'rtl'
+
+def language_dir(language_code):
+    """Returns whether the language is right to left"""
+    shortcode = language_code[:3]
+    if not shortcode.isalpha():
+        shortcode = language_code[:2]
+    if shortcode in ["ar", "arc", "dv", "fa", "he", "ks", "ps", "ur", "yi", "nqo"]:
+        return "rtl"
+    return "ltr"
+

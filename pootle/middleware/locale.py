@@ -74,7 +74,9 @@ class LocaleMiddleware(object):
 
         # install the safe variable formatting override
         gettext.override_gettext(translation)
-
+        # override django's inadequate bidi detection
+        translation.get_language_bidi = gettext.get_language_bidi
+        
     def process_request(self, request):
         """override django's gettext functions to support live
         translation"""
