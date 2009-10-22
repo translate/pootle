@@ -48,7 +48,7 @@ def get_items(request, model, get_last_action, name_func):
         lastact = get_last_action(item)
         items.append({
             'code': item.code,
-            'name': name_func(request, item.fullname),
+            'name': name_func(item.fullname),
             'lastactivity': lastact,
             'trans': stats["translatedsourcewords"],
             'fuzzy': stats["fuzzysourcewords"],
@@ -77,7 +77,7 @@ def getprojects(request):
         except:
             return ''
 
-    return get_items(request, Project, get_last_action, lambda request, name: name)
+    return get_items(request, Project, get_last_action, lambda name: name)
 
 
 def view(request):
