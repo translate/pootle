@@ -842,6 +842,12 @@ div.centered
     margin-bottom: 0.7em;
 }
 
+.settings-container input,
+.settings-container select
+{
+    display: block;
+}
+
 /*
  * SUMMARIES
  */
