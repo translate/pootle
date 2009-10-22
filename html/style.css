@@ -843,7 +843,12 @@ div.centered
 }
 
 .settings-container input,
-.settings-container select
+.settings-container select,
+#login input[type="text"],
+#login input[type="password"],
+#login select,
+#register input[type="text"],
+#register input[type="password"]
 {
     display: block;
 }

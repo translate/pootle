@@ -13,10 +13,16 @@
         </div>
     </div>
     {% endif %}
-    <p>{{ form.username.label_tag }}<br />{{ form.username }}</p>
-    <p>{{ form.password.label_tag }}<br />{{ form.password }}</p>
     <p>
-        <label for="language">{% trans 'Interface Language' %}</label><br />
+        {{ form.username.label_tag }}
+        {{ form.username }}
+    </p>
+    <p>
+        {{ form.password.label_tag }}
+        {{ form.password }}
+    </p>
+    <p>
+        <label for="language">{% trans 'Interface Language' %}</label>
         <select name="language" id="language">
         {% for lang in languages %}
             <option {% if lang.selected %}selected="selected"{% endif %}
