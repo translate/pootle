@@ -24,9 +24,12 @@ from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 
-from language import Language
-from project import Project
 from pootle.i18n.gettext import tr_lang
+
+from pootle_app.models.language import Language
+from pootle_app.models.project import Project
+
+
 
 class PootleUserManager(UserManager):
     """A manager class which is meant to replace the manager class for the User model. This manager
