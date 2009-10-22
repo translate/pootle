@@ -22,6 +22,8 @@
 # http://www.djangosnippets.org/snippets/727/
 
 import sys
+import logging
+
 from django.conf import settings
 try:
     import cProfile
@@ -38,7 +40,7 @@ class ProfilerMiddleware(object):
 
     def process_response(self, request, response):
         if not sys.version_info < (2,5) and settings.DEBUG and 'prof' in request.GET:
-            print "Profiling to the file %s" % request.GET['prof']
+            logging.info("Profiling to the file %s", request.GET['prof'])
             cache_grind_data = lsprofcalltree.KCacheGrind(self.profiler)
             f = None
             try:
