@@ -739,7 +739,7 @@ html[dir="rtl"] .module-primary .hd h2
  * SETTINGS PAGE
  */
 
-div#profile-menu
+div#submenu
 {
     border-bottom: 1px solid #afaba3;
     clear: both;
@@ -747,18 +747,18 @@ div#profile-menu
     margin-bottom: 2em;
 }
 
-div#profile-menu-tabs
+div#submenu-tabs
 {
     float: left;
     font-weight: bold;
 }
 
-html[dir="rtl"] div#profile-menu-tabs
+html[dir="rtl"] div#submenu-tabs
 {
     float: right;
 }
 
-div#profile-menu-tabs a
+div#submenu-tabs a
 {
     background-color: inherit;
     border: 1px solid transparent;
@@ -773,12 +773,12 @@ div#profile-menu-tabs a
     text-decoration: none;
 }
 
-html[dir="rtl"] div#profile-menu-tabs a
+html[dir="rtl"] div#submenu-tabs a
 {
     float: right;
 }
 
-div#profile-menu-tabs a:hover
+div#submenu-tabs a:hover
 {
     background-color: #ffffff !important;
     border-color: #777777 #777777 #ffffff;
@@ -788,23 +788,23 @@ div#profile-menu-tabs a:hover
     margin-top: 9px;
 }
 
-div#profile-menu-tabs a:visited
+div#submenu-tabs a:visited
 {
     background-color: inherit;
     color: #4B4740;
 }
 
-body.dashboard div#profile-menu-tabs a.dashboard,
-body.settings div#profile-menu-tabs a.settings,
-body.profile div#profile-menu-tabs a.profile,
-body.password div#profile-menu-tabs a.password,
-body.admingeneral div#profile-menu-tabs a.admingeneral,
-body.adminusers div#profile-menu-tabs a.adminusers,
-body.adminlanguages div#profile-menu-tabs a.adminlanguages,
-body.adminprojects div#profile-menu-tabs a.adminprojects,
-body.adminpermissions div#profile-menu-tabs a.adminpermissions,
-body.projectoverview div#profile-menu-tabs a.projectoverview,
-body.projectadmin div#profile-menu-tabs a.projectadmin
+body.dashboard div#submenu-tabs a.dashboard,
+body.settings div#submenu-tabs a.settings,
+body.profile div#submenu-tabs a.profile,
+body.password div#submenu-tabs a.password,
+body.admingeneral div#submenu-tabs a.admingeneral,
+body.adminusers div#submenu-tabs a.adminusers,
+body.adminlanguages div#submenu-tabs a.adminlanguages,
+body.adminprojects div#submenu-tabs a.adminprojects,
+body.adminpermissions div#submenu-tabs a.adminpermissions,
+body.projectoverview div#submenu-tabs a.projectoverview,
+body.projectadmin div#submenu-tabs a.projectadmin
 {
     background-color: #ffffff;
     border-color: #777777 #777777 #fff;
