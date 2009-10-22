@@ -62,8 +62,7 @@ def directory_to_title(request, directory):
 
     try:
         trans_vars = {
-            'language': tr_lang(request,
-                                directory.language.fullname),
+            'language': tr_lang(directory.language.fullname),
             }
         return _('Notices for %(language)s', trans_vars)
     except ObjectDoesNotExist:
@@ -71,8 +70,7 @@ def directory_to_title(request, directory):
     
     try:
         trans_vars = {
-            'language': tr_lang(request,
-                                directory.translationproject.language.fullname),
+            'language': tr_lang(directory.translationproject.language.fullname),
             'project': directory.translationproject.project.fullname,
             }
         return _('Notices for the project %(project)s in %(language)s', trans_vars)

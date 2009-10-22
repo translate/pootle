@@ -26,6 +26,7 @@ from django.db.models.signals import post_save
 
 from language import Language
 from project import Project
+from pootle.i18n.gettext import tr_lang
 
 class PootleUserManager(UserManager):
     """A manager class which is meant to replace the manager class for the User model. This manager
@@ -127,7 +128,7 @@ class PootleProfile(models.Model):
             islangadmin = 'administrate' in get_matching_permissions(self, language.directory)
 
             quicklinks.append({'code': language.code,
-                               'name': language.fullname, #FIXME: without request context we can't translate language names
+                               'name': tr_lang(language.fullname),
                                'islangadmin': islangadmin,
                                'projects': langlinks})
             quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict['name'])

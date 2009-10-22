@@ -42,7 +42,7 @@ def make_language_item(request, translation_project):
         'code': translation_project.language.code,
         'icon': 'language',
         'href': href,
-        'title': tr_lang(request, translation_project.language.fullname),
+        'title': tr_lang(translation_project.language.fullname),
         'data': projectstats,
         }
 

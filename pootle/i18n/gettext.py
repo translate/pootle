@@ -71,9 +71,11 @@ def override_gettext(real_translation):
     
 
 
-def tr_lang(request, language_name):
+def tr_lang(language_name):
     """translate language name"""
-    return langdata.tr_lang(request.LANGUAGE_CODE)(language_name)
+    language_code = translation.get_language()
+    return langdata.tr_lang(language_code)(language_name)
+
 
 def get_language_bidi():
     return language_dir(translation.get_language()) == 'rtl'
