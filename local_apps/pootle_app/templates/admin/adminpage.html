@@ -1,34 +1,26 @@
-{% extends "base.html" %}
+{% extends "admin_profile_base.html" %}
 {% load i18n baseurl %}
 
 {% block bodyclass %}adminusers{% endblock %}
 
-{% block precontent %}
-{% include "admin_profile_menu.html" %}
-{% endblock %}
+{% comment %}
+TODO: split this template into three, in order to use section_title and
+section_subtitle blocks properly.
+{% endcomment %}
 
 {% block content %}
-{% if user.is_superuser %}
-<div class="module-primary first">
-{% endif %}
-    <div class="bd">
-        <div>
-            <form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
-                {% if text.error_msg %}
-                <div > {% trans text.error_msg %}</div>
-                {% endif %}
-                {{ formset.management_form }}
-                <table cellpadding="1" cellspacing="1">
-                        {{ formset_text }}
-                </table>
-                <input type="submit" name={{ text.submitname}} value="{% trans text.savechanges %}" />
-            </form>
-        </div>
+<form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
+    {% if text.error_msg %}
+    <div id="site-message">
+        <div class="error">{% trans text.error_msg %}</div>
     </div>
-</div>
-{% if user.is_superuser %}
-</div>
-{% endif %}
-
+    {% endif %}
+    {{ formset.management_form }}
+    <table cellpadding="1" cellspacing="1">
+            {{ formset_text }}
+    </table>
+    <p>
+        <input type="submit" name={{ text.submitname }} value="{% trans text.savechanges %}" />
+    </p>
+</form>
 {% endblock %}
-
