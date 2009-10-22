@@ -11,7 +11,21 @@
 
 {% block section_body %}
 <form method="post" action="">
-    {{ form.as_p }}
+    <p>
+        <label for="id_first_name">{% trans 'First Name' %}</label>
+        {{ form.first_name }}
+        {{ form.first_name.errors }}
+    </p>
+    <p>
+        <label for="id_last_name">{% trans 'Last Name' %}</label>
+        {{ form.last_name }}
+        {{ form.last_name.errors }}
+    </p>
+    <p>
+        <label for="id_email">{% trans 'Email address' %}</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+    </p>
     <p>
         <input type="submit" value="{% trans 'Save' %}" />
     </p>
