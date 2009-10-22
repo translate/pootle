@@ -44,7 +44,7 @@ from pootle_app import unit_update, url_manip
 from pootle_app.models import permissions
 from pootle_app.models.permissions import check_permission
 
-from pootle.i18n.gettext import tr_lang
+from pootle.i18n.gettext import tr_lang, language_dir
 
 import dispatch, navbar_dict, search_forms
 
@@ -624,8 +624,8 @@ def get_alt_src_dict(request, store, unit, alt_project):
         alt_src_dict.update({
                 "languagename": language.fullname,
                 "languagecode": language.code,
+                "dir":          language_dir(language.code),
                 "title":        tr_lang(language.fullname),
-                "dir":          pagelayout.languagedir(),
                 "available":    True })
         translated_store = get_translated_store(alt_project, store)
         if translated_store is not None:
@@ -963,7 +963,7 @@ def view(request, directory, store, item, stopped_by=None):
     # l10n: fourth parameter: file name
     language_data = {"code": pagelayout.weblanguage(language.code),
                      "name": language.fullname,
-                     "dir":  pagelayout.languagedir()}
+                     "dir":  language_dir(language.code)}
     stats = {"summary": mainstats,
              "checks":  [],
              "tracks":  [],
