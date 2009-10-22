@@ -38,4 +38,4 @@ def view(request):
         "permission_set_formset": permission_set_formset,
         "hide_fileadmin_links":   True,
     }
-    return render_to_response("language/projectlangadmin.html", template_vars, context_instance=RequestContext(request))
+    return render_to_response("admin/admin_permissions.html", template_vars, context_instance=RequestContext(request))

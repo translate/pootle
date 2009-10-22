@@ -1,12 +1,11 @@
 {% extends "admin_profile_base.html" %}
 {% load i18n baseurl %}
 
-{% block bodyclass %}adminusers{% endblock %}
+{% block bodyclass %}adminlanguages{% endblock %}
 
-{% comment %}
-TODO: split this template into three, in order to use section_title and
-section_subtitle blocks properly.
-{% endcomment %}
+{% block section_subtitle %}{% trans "Manage Languages." %}{% endblock %}
+
+{% block section_description %}{% trans "Here you can add, edit, and delete all the available languages in this Pootle server." %}{% endblock %}
 
 {% block section_body %}
 <form action="" method="post" name={{ text.formid }} id={{ text.formid }}>

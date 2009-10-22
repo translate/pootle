@@ -1,0 +1,25 @@
+{% extends "admin_profile_base.html" %}
+{% load i18n baseurl %}
+
+{% block bodyclass %}adminprojects{% endblock %}
+
+{% block section_subtitle %}{% trans "Manage Projects." %}{% endblock %}
+
+{% block section_description %}{% trans "Here you can add, edit, and delete all the available projects in this Pootle server." %}{% endblock %}
+
+{% block section_body %}
+<form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
+    {% if text.error_msg %}
+    <div id="site-message">
+        <div class="error">{% trans text.error_msg %}</div>
+    </div>
+    {% endif %}
+    {{ formset.management_form }}
+    <table cellpadding="1" cellspacing="1">
+            {{ formset_text }}
+    </table>
+    <p>
+        <input type="submit" name={{ text.submitname }} value="{% trans text.savechanges %}" />
+    </p>
+</form>
+{% endblock %}
