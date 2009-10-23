@@ -23,6 +23,7 @@ from django.db                import models
 from django.db.models.signals import pre_delete, pre_save
 from pootle_store.util import dictsum, statssum, completestatssum
 from pootle_misc.util import getfromcache
+from pootle_misc.baseurl import l
 
 class DirectoryManager(models.Manager):
     def get_query_set(self, *args, **kwargs):
@@ -98,6 +99,9 @@ class Directory(models.Model):
 
     def __unicode__(self):
         return self.pootle_path
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
 
     @getfromcache
     def getquickstats(self):

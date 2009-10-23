@@ -23,6 +23,7 @@ from django.db                import models
 from django.db.models.signals import pre_save
 
 from pootle_misc.util import getfromcache
+from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
 
 class Language(models.Model):
@@ -52,6 +53,9 @@ class Language(models.Model):
     @getfromcache
     def getquickstats(self):
         return self.directory.getquickstats()
+        
+    def get_absolute_url(self):
+        return l(self.pootle_path)
     
 def set_data(sender, instance, **kwargs):
     # create corresponding directory object

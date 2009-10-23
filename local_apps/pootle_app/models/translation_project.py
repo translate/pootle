@@ -46,6 +46,7 @@ from pootle_app.lib                import statistics
 
 from pootle.scripts                import hooks
 from pootle_misc.util import getfromcache
+from pootle_misc.baseurl import l
 
 class TranslationProjectNonDBState(object):
     def __init__(self, parent):
@@ -90,6 +91,9 @@ class TranslationProject(models.Model):
     def __unicode__(self):
         return self.pootle_path
 
+    def get_absolute_url(self):
+        return l(self.pootle_path)
+    
     def _get_abs_real_path(self):
         return absolute_real_path(self.real_path)
 

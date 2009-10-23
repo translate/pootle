@@ -30,6 +30,7 @@ from translate.lang.data import langcode_re
 
 from pootle_store.util import absolute_real_path, statssum
 from pootle_misc.util import getfromcache
+from pootle_misc.baseurl import l
 
 class Project(models.Model):
     class Meta:
@@ -76,6 +77,9 @@ class Project(models.Model):
 
     def get_real_path(self):
         return absolute_real_path(self.code)
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
 
     def get_template_filtetype(self):
         if self.localfiletype == 'po':

@@ -31,6 +31,7 @@ from translate.storage import po
 from translate.misc.multistring import multistring
 
 from pootle_misc.util import getfromcache
+from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
 from pootle_store.fields  import TranslationStoreField
 from pootle_store.signals import translation_file_updated
@@ -87,6 +88,9 @@ class Store(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return l(self.pootle_path)
+    
     @getfromcache
     def getquickstats(self):
         # convert result to normal dicts for later operations
