@@ -22,9 +22,8 @@ from django.utils.translation import ugettext as _
 from django.db                import models
 from django.db.models.signals import pre_save
 
-from pootle_app.models.directory import Directory
-from pootle_store.util import statssum
 from pootle_misc.util import getfromcache
+from pootle_app.models.directory import Directory
 
 class Language(models.Model):
     class Meta:
@@ -45,15 +44,15 @@ class Language(models.Model):
     pluralequation = models.CharField(max_length=255, blank=True, verbose_name=_("Plural Equation"), help_text=pluralequation_help_text)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
 
+    pootle_path = property(lambda self: '/%s/' % self.code)
+
     def __unicode__(self):
         return self.fullname
 
-    pootle_path = property(lambda self: self.directory.pootle_path)
-
     @getfromcache
     def getquickstats(self):
-        return statssum(self.translationproject_set.all())
-
+        return self.directory.getquickstats()
+    
 def set_data(sender, instance, **kwargs):
     # create corresponding directory object
     instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
