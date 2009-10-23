@@ -116,6 +116,14 @@ class Directory(models.Model):
         dir_result  = completestatssum(self.child_dirs.all(), checker)
         stats = dictsum(file_result, dir_result)
         return stats
+
+    def is_language(self):
+        """does this directory point at a language"""
+        return len(self.pootle_path[1:-1].split('/')) == 1
+
+    def is_translationproject(self):
+        """does this directory point at a translation project"""
+        return len(self.pootle_path[1:-1].split('/')) == 2
     
 def delete_children(sender, instance, **kwargs):
     """Before deleting a directory, delete all its children."""
