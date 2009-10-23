@@ -298,6 +298,7 @@ class TranslationProject(models.Model):
 
     def get_archive(self, stores):
         """returns an archive of the given filenames"""
+        tempzipfile = None
         try:
             # using zip command line is fast
             from tempfile import mkstemp
@@ -309,7 +310,7 @@ class TranslationProject(models.Model):
             if filedata:
                 return filedata
         finally:
-            if os.path.exists(tempzipfile):
+            if tempzipfile is not None and os.path.exists(tempzipfile):
                 os.remove(tempzipfile)
 
         # but if it doesn't work, we can do it from python
