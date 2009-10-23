@@ -1,8 +1,19 @@
 {% extends "base.html"  %}
+
 {% load i18n baseurl %}
 
 {% block extra_head %}
 <link rel="alternate" type="application/rss+xml" title="{{ title }}" href="rss.xml" />
+{% endblock %}
+
+{% if is_language %}
+    {% block bodyclass %}languagenews{% endblock %}
+{% endif %}
+
+{% block precontent %}
+{% if is_language %}
+    {% include "language_menu.html" %}
+{% endif %}
 {% endblock %}
 
 {% block content %}

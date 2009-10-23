@@ -51,6 +51,11 @@ def view(request, path):
         template_vars['title'] = directory_to_title(request, directory)
         
     template_vars['notices'] = Notice.objects.filter(directory=directory)
+
+    if directory.is_language():
+        template_vars['is_language'] = True
+    else:
+        template_vars['is_language'] = False
     
     return render_to_response('notices.html', template_vars, context_instance=RequestContext(request))
 

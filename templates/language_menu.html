@@ -3,7 +3,7 @@
 <div id="submenu">
     <div id="submenu-tabs">
         <a href='{{ "."|l }}' class="languageoverview" title="{% trans 'Language main page' %}">{% trans "Overview" %}</a>
-        <a href='{{ "notices/"|l }}' class="languagenews" title="{% trans 'Language news' %}">{% trans "News" %}</a>
+        <a href='{{ "notices"|l }}' class="languagenews" title="{% trans 'Language news' %}">{% trans "News" %}</a>
         {% if user.is_superuser %}
         <a href='{{ "admin.html"|l }}' class="languageadmin" title="{% trans 'Administrate your project' %}">{% trans "Administrate" %}</a>
         {% endif %}
