@@ -89,10 +89,10 @@
             {{search.advanced_search_form.as_hidden}}
 	    <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 	      <tr lang="{{LANGUAGE_CODE}}">
-		<th colspan="1" rowspan="1" class="translate-table-title">{{original_title}}</th>
-		<th colspan="1" rowspan="1" class="translate-table-title">{{translation_title}}</th>
+		<th colspan="1" rowspan="1" class="translate-table-title translate-original">{{original_title}}</th>
+		<th colspan="1" rowspan="1" class="translate-table-title translate-translation">{{translation_title}}</th>
 		{% if canedit %}
-		<th colspan="1" rowspan="1" class="translate-table-title">{{action_title}}</th>
+		<th colspan="1" rowspan="1" class="translate-table-title translate-edit">{{action_title}}</th>
 		{% endif %}
 	      </tr>
 	      {% for item in items %}
@@ -301,6 +301,7 @@
 		      {% endif %}
 		    </div>
 		  </td>
+          {% if canedit %}
 		  <td>
 		    <div lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" class="translation-action">
 		      {% if item.trans.editlink and not item.editable %}
@@ -308,6 +309,7 @@
 		      {% endif %}
 		    </div>
 		  </td>
+          {% endif %}
 		</tr>
 		{% if item.editable %}
 		<tr>

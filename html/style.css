@@ -1178,6 +1178,7 @@ table.translate-table
 {
     width: 80%;
     margin-top: 1em;
+    table-layout: fixed;
 }
 
 div.translation-action
@@ -1192,10 +1193,15 @@ div.translation-action[dir="rtl"]
     padding-right: 10px;
 }
 
-td.translate-original,
-td.translate-translation
+th.translate-original,
+th.translate-translation
 {
-    width: 50%;
+    width: 48%;
+}
+
+th.translate-edit
+{
+    width: 4%;
 }
 
 table[dir="rtl"] td.translate-original
