@@ -120,11 +120,12 @@ INSTALLED_APPS = (
     'pootle_app',
     'pootle_misc',
     'pootle_store',
+    'pootle_notifications',
+    'pootle_autonotices',
     'registration',
     'profiles',
     'djblets.siteconfig',
     'djblets.util',
-    'pootle_notifications',
 )
 
 AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
