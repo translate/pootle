@@ -94,4 +94,4 @@ def language_index(request, language_code):
         'topstats': topstats,
         'instancetitle': pagelayout.get_title(),
         }
-    return render_to_response("language/language.html", templatevars, context_instance=RequestContext(request))
+    return render_to_response("language/language_index.html", templatevars, context_instance=RequestContext(request))

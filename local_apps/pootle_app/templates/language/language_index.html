@@ -1,0 +1,50 @@
+{% extends "language_base.html" %}
+{% load i18n baseurl %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block body.id %}languageindex{% endblock body.id %}
+
+{% block bodyclass %}languageoverview{% endblock bodyclass %}
+
+{% block breadcrumbs_content %}
+<a href="{%filter l%}/{{language.code}}/{%endfilter%}">{{language.name}}</a> ({{language.code}})
+{% endblock breadcrumbs_content %}
+
+{% block content %}
+<div class="item-statistics">{{language.stats}}</div>
+
+<div class="module-primary">
+    <div class="bd">
+    <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="stats">{{statsheadings.name}}</th>
+                <th class="stats">{{statsheadings.progress}}</th>
+                <th class="stats">{{statsheadings.summary}}</th>
+                <th class="stats">{{statsheadings.totalwords}}</th>
+            </tr>
+        </thead>
+        <tbody class="stats">
+        {% for item in projects %}
+            <tr class="item {% cycle 'even' 'odd' %}" title="{{item.description}}">
+            {% include "language/item_summary.html" %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock content %}
+
+{% block postcontent %}
+<div class="module first clear">
+    <div class="bd">
+    {% include "translation_summary_legend.html" %}
+    </div>
+</div>
+
+{% include "top_contributers_table.html" %}
+{% endblock postcontent %}
+
