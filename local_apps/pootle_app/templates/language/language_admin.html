@@ -1,0 +1,29 @@
+{% extends "language_base.html" %}
+{% load i18n baseurl %}
+
+{% block bodyclass %}languageadmin{% endblock %}
+
+{% block precontent %}
+{{ block.super }}
+<div class="intro">
+    {{ filestyle_text }}
+</div>
+{% endblock %}
+
+{% block content %}
+<form action="" method="post" name="permissionsform" id="permissionsform">
+    {{ permission_set_formset.management_form }}
+    <table cellpadding="1" cellspacing="1">
+        <tr>
+            <th>{% trans "Username" %}</th><th>{% trans "Permissions" %}</th><th>{% trans "Delete" %}</th>
+        </tr>
+        {% for form in permission_set_formset.forms %}
+        {{ form.as_table }}
+        {% endfor %}
+    </table>
+    <p>
+        <input type="submit" name="doupdaterights" value="{% trans 'Update Rights' %}" />
+    </p>
+</form>
+{% endblock %}
+
