@@ -62,7 +62,7 @@ XXX: is extra_class really used/needed?
 {% if checking_text %}
 <div>
     <img src='{{ "images/help.png"|m }}' class="checkinfo" />
-    <span>{{checking_text|safe}}</span>
+    <span>{{ checking_text|safe }}</span>
 </div>
 {% endif %}
 {% endblock precontent %}
@@ -240,12 +240,12 @@ XXX: is extra_class really used/needed?
                                   </div>
                                   {% if cantranslate %}
                                   <div class="translate-fuzzy-block">
-                                      <input type="checkbox" {% if item.fuzzy %}checked="{{ item.fuzzy }}"{% endif %} name="fuzzy{{ item.trans.buttons.item }}" accesskey="f" id="fuzzy{{ item.trans.buttons.item }}" class="fuzzycheck" />
+                                      <input type="checkbox" {% if item.fuzzy %}checked="checked"{% endif %} name="fuzzy{{ item.trans.buttons.item }}" accesskey="f" id="fuzzy{{ item.trans.buttons.item }}" class="fuzzycheck" />
                                       <label for="fuzzy{{ item.trans.buttons.item }}">{{ fuzzytext }}</label>
                                   </div>
                                   {% else %}
                                   <div class="translate-fuzzy-block">
-                                      <input type="checkbox" disabled="disabled" checked="{{ item.fuzzy }}" name="fuzzy{{ item.trans.buttons.item }}" id="fuzzy{{ item.trans.buttons.item }}" class="fuzzycheck" />
+                                      <input type="checkbox" disabled="disabled" {% if item.fuzzy %}checked="checked"{% endif %} name="fuzzy{{ item.trans.buttons.item }}" id="fuzzy{{ item.trans.buttons.item }}" class="fuzzycheck" />
                                       <label for="fuzzy{{ item.trans.buttons.item }}">{{ fuzzytext }}</label>
                                   </div>
                                   {% endif %}
