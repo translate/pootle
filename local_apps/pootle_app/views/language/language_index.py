@@ -88,9 +88,6 @@ def language_index(request, language_code):
         },
         'projects': items,
         'statsheadings': get_stats_headings(),
-        'untranslated_text': _('untranslated words'),
-        'fuzzy_text': _('fuzzy words'),
-        'complete': _('Complete'),
         'topstats': topstats,
         'instancetitle': pagelayout.get_title(),
         }

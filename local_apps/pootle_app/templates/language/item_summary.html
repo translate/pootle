@@ -1,29 +1,33 @@
 {% load i18n baseurl %}
-{% get_current_language_bidi as rtl %}
+
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
 {% block itemstats %}
 <td class="stats-name">
-  <a href="{{item.href|l}}">{{item.title}}</a>
+    <a href="{{ item.href|l }}">{{ item.title }}</a>
 </td>
-  {% if item.data %}
-  <td class="stats-graph">
-    <span class="sortkey">{{item.data.translatedpercentage}}</span>
-    <span class="graph" title="{{item.data.translatedpercentage}}% complete">
-      <span class="translated" style="width: {{item.data.translatedpercentage}}px;"> </span>
-      {% if item.data.fuzzysourcewords %}<span class="fuzzy" style="{%if rtl%}right{%else%}left{%endif%}: {{item.data.translatedpercentage}}px; width: {{item.data.fuzzypercentage}}px;"> </span>{% endif %}
-      {% if item.data.untranslatedsourcewords %}<span class="untranslated" style="{%if rtl%}right{%else%}left{%endif%}: {{item.data.translatedpercentage|add:item.data.fuzzypercentage}}px; width: {{item.data.untranslatedpercentage}}px;"> </span>{% endif %}
+{% if item.data %}
+<td class="stats-graph">
+    <span class="sortkey">{{ item.data.translatedpercentage }}</span>
+    <span class="graph" title="{{ item.data.translatedpercentage }}% complete">
+    <span class="translated" style="width: {{ item.data.translatedpercentage }}px;"> </span>
+    {% if item.data.fuzzysourcewords %}<span class="fuzzy" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage }}px; width: {{ item.data.fuzzypercentage }}px;"> </span>{% endif %}
+    {% if item.data.untranslatedsourcewords %}<span class="untranslated" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage|add:item.data.fuzzypercentage }}px; width: {{ item.data.untranslatedpercentage }}px;"> </span>{% endif %}
     </span>
-  </td>
-  <td class="stats"><ul>
-    {% if item.data.untranslatedsourcewords %}
-    <li class="todo"><a href="{% filter l %}{%if item.code%}{{item.href}}{%endif%}translate.html?match_names=untranslated&editing=1&view_mode=review{% endfilter %}">{{item.data.untranslatedsourcewords}} {% trans untranslated_text %}</a></li>
-    {% endif %}
-    {% if item.data.fuzzysourcewords %}
-    <li class="todo"><a href="{% filter l %}{%if item.code%}{{item.href}}{%endif%}translate.html?match_names=check-isfuzzy&editing=1&view_mode=review{% endfilter %}">{{item.data.fuzzysourcewords}} {% trans fuzzy_text %}</a></li>
-    {% endif %}
-    {% ifequal item.data.translatedsourcewords item.data.totalsourcewords %}
-    <li class="complete">{{complete}}</li>
-    {% endifequal %}
-  </ul></td>
-  <td class="stats">{{item.data.totalsourcewords}}</td>
-  {% endif %}
+</td>
+<td class="stats">
+    <ul>
+        {% if item.data.untranslatedsourcewords %}
+        <li class="todo"><a href="{% filter l %}{% if item.code %}{{ item.href }}{% endif %}translate.html?match_names=untranslated&editing=1&view_mode=review{% endfilter %}">{{ item.data.untranslatedsourcewords }} {% trans "untranslated words" %}</a></li>
+        {% endif %}
+        {% if item.data.fuzzysourcewords %}
+        <li class="todo"><a href="{% filter l %}{% if item.code %}{{ item.href }}{% endif %}translate.html?match_names=check-isfuzzy&editing=1&view_mode=review{% endfilter %}">{{ item.data.fuzzysourcewords }} {% trans "fuzzy words" %}</a></li>
+        {% endif %}
+        {% ifequal item.data.translatedsourcewords item.data.totalsourcewords %}
+        <li class="complete">{% trans "Complete" %}</li>
+        {% endifequal %}
+    </ul>
+</td>
+<td class="stats">{{item.data.totalsourcewords}}</td>
+{% endif %}
 {% endblock itemstats %}
