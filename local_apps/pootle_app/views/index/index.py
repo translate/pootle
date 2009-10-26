@@ -90,7 +90,6 @@ def view(request):
     templatevars = {
         'pagetitle': pagelayout.get_title(),
         'description': pagelayout.get_description(),
-        'meta_description': shortdescription(pagelayout.get_description()),
         'keywords': [
             'Pootle',
             'translate',

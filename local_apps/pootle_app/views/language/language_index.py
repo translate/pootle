@@ -42,14 +42,13 @@ def limit(query):
 def make_project_item(translation_project):
     project = translation_project.project
     href = '%s/' % project.code
-    projectdescription = shortdescription(project.description)
     projectstats = add_percentages(translation_project.getquickstats())
     return {
         'code': project.code,
         'href': href,
         'icon': 'folder',
         'title': project.fullname,
-        'description': projectdescription,
+        'description': project.description,
         'data': projectstats,
         'isproject': True,
         }
