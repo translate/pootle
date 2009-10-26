@@ -23,7 +23,9 @@
     <p>{{ success }}</p>
     <form method="post" action="">
         {{ form.as_p }}
-        <input type="submit" value="{% trans "Save" %}"/>
+        <p>
+            <input type="submit" value="{% trans "Save" %}" />
+        </p>
     </form>
 {% endif %}
 
