@@ -23,12 +23,30 @@ from django.conf import settings
 import logging
 
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
-    def _getfromcache(self, *args, **kwargs):
-        key = self.pootle_path + ":" + function.__name__
+    def _getfromcache(instance, *args, **kwargs):
+        key = instance.pootle_path + ":" + function.__name__
         result = cache.get(key)
         if result is None:
             logging.debug("cache miss for %s", key)
-            result = function(self, *args, **kwargs)
+            result = function(instance, *args, **kwargs)
             cache.set(key, result, timeout)
         return result
     return _getfromcache
+
+def deletefromcache(sender, functions, **kwargs):
+    path = sender.pootle_path
+    path_parts = path.split("/")
+
+    # clean project cache
+    if len(path_parts):
+        key = "/projects/%s/" % path_parts[2]
+        for func in functions:
+            cache.delete(key + ":"+func)
+
+    # clean store and directory cache
+    while path_parts:
+        for func in functions:
+            cache.delete(path + ":"+func)
+        path_parts = path_parts[:-1]
+        path = "/".join(path_parts) + "/"
+        

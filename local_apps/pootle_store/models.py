@@ -30,7 +30,7 @@ from django.core.cache import cache
 from translate.storage import po
 from translate.misc.multistring import multistring
 
-from pootle_misc.util import getfromcache
+from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
 from pootle_store.fields  import TranslationStoreField
@@ -59,21 +59,7 @@ class Store(models.Model):
         unique_together = ('parent', 'name')
 
     def handle_file_update(self, sender, **kwargs):
-        path = self.pootle_path
-        path_parts = path.split("/")
-
-        # clean project stat cache
-        key = "/projects/%s/:getquickstats" % path_parts[2]
-        cache.delete(key)
-
-        # clean store and directory stat cache
-        while path_parts:
-            key = path + ":getquickstats"
-            cache.delete(key)
-            key = path + ":getcompletestats"
-            cache.delete(key)
-            path_parts = path_parts[:-1]
-            path = "/".join(path_parts) + "/"
+        deletefromcache(self, ["getquickstats", "getcompletestats"])
 
     def _get_abs_real_path(self):
         return self.file.path
