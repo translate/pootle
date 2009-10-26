@@ -192,22 +192,22 @@
                               <div lang="{{ LANGUAGE_CODE }}">
                                   <div class="translate-buttons-block">
                                   {% for button in item.trans.buttons.desired %}
-                                      {% ifequal button 'back' %}
-                                      <input type="submit" name="back{{ item.trans.buttons.item }}" accesskey="b" value="{{ item.trans.buttons.back }}"/>
+                                      {% ifequal button 'translate' %}
+                                      <input type="submit" name="submit{{ item.trans.buttons.item }}" accesskey="s" value="{% trans 'Submit' %}" />
                                       {% endifequal %}
-                                      {% ifequal button 'skip' %}
-                                      <input type="submit" name="skip{{ item.trans.buttons.item }}" accesskey="k" value="{{ item.trans.buttons.skip }}"/>
+                                      {% ifequal button 'suggest' %}
+                                      <input type="submit" name="submitsuggest{{ item.trans.buttons.item }}" accesskey="e" value="{% trans 'Suggest' %}" />
                                       {% endifequal %}
                                       {% ifequal button 'copy' %}
                                       <input type="button" accesskey="c"
                                          onclick="copyorigtranslation('{{ item.trans.buttons.item }}'); return false"
-                                         value="{{ item.trans.buttons.copy_text }}" />
+                                         value="{% trans 'Copy' %}" />
                                       {% endifequal %}
-                                      {% ifequal button 'suggest' %}
-                                      <input type="submit" name="submitsuggest{{ item.trans.buttons.item }}" accesskey="e" value="{{ item.trans.buttons.suggest }}"/>
+                                      {% ifequal button 'skip' %}
+                                      <input type="submit" name="skip{{ item.trans.buttons.item }}" accesskey="k" value="{% trans 'Skip' %}" />
                                       {% endifequal %}
-                                      {% ifequal button 'translate' %}
-                                      <input type="submit" name="submit{{ item.trans.buttons.item }}" accesskey="s" value="{{ item.trans.buttons.submit }}"/>
+                                      {% ifequal button 'back' %}
+                                      <input type="submit" name="back{{ item.trans.buttons.item }}" accesskey="b" value="{% trans 'Back' %}" />
                                       {% endifequal %}
                                   {% endfor %}
                                       <input type="hidden" name="store" value="{{ store }}" />

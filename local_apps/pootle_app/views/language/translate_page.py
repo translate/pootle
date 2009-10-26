@@ -333,13 +333,6 @@ def get_trans_buttons(request, translation_project, item, desiredbuttons):
     return {
         "desired":      desiredbuttons,
         "item":         item,
-        # l10n: verb
-        "copy_text":    _("Copy"),
-        "skip":         _("Skip"),
-        # l10n: verb
-        "back":         _("Back"),
-        "suggest":      _("Suggest"),
-        "submit":       _("Submit"),
         "specialchars": specialchars,
         }
 
@@ -427,7 +420,7 @@ def get_trans_edit(request, store, item, trans):
         focusbox = ""
         spellargs = {"standby_url": "spellingstandby.html", "js_url": "/js/spellui.js", "target_url": "spellcheck.html"}
         if len(trans) > 1:
-            buttons = get_trans_buttons(request, request.translation_project, item, ["back", "skip", "copy", "suggest", "translate"])
+            buttons = get_trans_buttons(request, request.translation_project, item, ["translate", "suggest", "copy", "skip", "back"])
             forms = []
             for pluralitem, pluraltext in enumerate(trans):
                 pluralform = _("Plural Form %d", pluralitem)
@@ -438,13 +431,13 @@ def get_trans_edit(request, store, item, trans):
                     focusbox = textid
             transdict["forms"] = forms
         elif trans:
-            buttons = get_trans_buttons(request, request.translation_project, item, ["back", "skip", "copy", "suggest", "translate"])
+            buttons = get_trans_buttons(request, request.translation_project, item, ["translate", "suggest", "copy", "skip", "back"])
             transdict["text"] = escape_for_textarea(trans[0])
             textid = "trans%d" % item
             focusbox = textid
         else:
             # Perhaps there is no plural information available
-            buttons = get_trans_buttons(request, request.translation_project, item, ["back", "skip"])
+            buttons = get_trans_buttons(request, request.translation_project, item, ["skip", "back"])
             # l10n: This is an error message that will display if the relevant problem occurs
             transdict["text"] = escape_for_textarea(_("Translation not possible because plural information for your language is not available. Please contact the site administrator."))
             textid = "trans%d" % item
@@ -457,7 +450,7 @@ def get_trans_edit(request, store, item, trans):
     else:
         # TODO: work out how to handle this (move it up?)
         transdict.update(get_trans_view(request, store, item, trans, textarea=True))
-        buttons = get_trans_buttons(request, request.translation_project, item, ["back", "skip"])
+        buttons = get_trans_buttons(request, request.translation_project, item, ["skip", "back"])
     transdict["buttons"] = buttons
     return transdict
 
