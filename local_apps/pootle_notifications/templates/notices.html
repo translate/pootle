@@ -1,6 +1,6 @@
 {% extends "base.html"  %}
 
-{% load i18n baseurl %}
+{% load i18n baseurl cleanhtml %}
 
 {% block extra_head %}
 <link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications.feeds.view path %}" />
@@ -33,7 +33,7 @@
 {% if notices %}
     <ul>
         {% for notice in notices %}
-        <li>{{ notice.message }}</li>
+        <li>{{ notice.message|clean }}</li>
         {% endfor %}
      </ul>
 {% else %}

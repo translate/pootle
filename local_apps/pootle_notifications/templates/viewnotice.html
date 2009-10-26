@@ -1,12 +1,11 @@
 {% extends "base.html"  %}
-{% load i18n baseurl %}
- 
+{% load i18n baseurl cleanhtml %}
 {% block content %}
 
 <h3 class="title">{{ title }}</h3>
 
 <div>
-{{ notice_message }}
+{{ notice_message|clean }}
 </div>
 
 {% endblock %}
