@@ -12,8 +12,8 @@
 
 {% block content %}
 <div class="settings-container centered">
-    <h2>{% trans "Manage Language Permissions." %}</h2>
-    <p>{% trans "Below you can add, edit, and delete the rights for this language." %}</p>
+    <h2>{% trans "Manage User Permissions" %}</h2>
+    <p>{% trans "Below you can add, edit, and delete the permissions for this language." %}</p>
     <form action="" method="post" name="permissionsform" id="permissionsform">
         {{ permission_set_formset.management_form }}
         <table cellpadding="1" cellspacing="1">
@@ -25,7 +25,7 @@
             {% endfor %}
         </table>
         <p>
-            <input type="submit" name="doupdaterights" value="{% trans 'Update Rights' %}" />
+            <input type="submit" name="doupdaterights" value="{% trans 'Update Permissions' %}" />
         </p>
     </form>
 </div>
