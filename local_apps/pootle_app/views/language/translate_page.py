@@ -432,8 +432,6 @@ def get_trans_edit(request, store, item, trans):
             textid = "trans%d" % item
             focusbox = textid
 
-        transdict["can_spell"] = False
-        transdict["spell_args"] = spellargs
         transdict["buttons"] = buttons
         transdict["focusbox"] = focusbox
     else:
