@@ -28,7 +28,7 @@ from pootle_app.models.profile import get_profile
 from pootle_app.models import Project, Directory, Suggestion, Submission, Language
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.views import pagelayout
-from pootle_app.views.indexpage import shortdescription, gentopstats
+from pootle_app.views.top_stats import gentopstats
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.language.item_dict import add_percentages
 
@@ -82,10 +82,7 @@ def getprojects(request):
 
 def view(request):
     request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
-    topsugg = limit(Suggestion.objects.get_top_suggesters())
-    topreview = limit(Suggestion.objects.get_top_reviewers())
-    topsub = limit(Submission.objects.get_top_submitters())
-    topstats = gentopstats(topsugg, topreview, topsub)
+    topstats = gentopstats(lambda query: query)
 
     templatevars = {
         'pagetitle': pagelayout.get_title(),

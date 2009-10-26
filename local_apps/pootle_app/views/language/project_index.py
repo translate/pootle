@@ -33,7 +33,7 @@ from django.core.exceptions import PermissionDenied
 
 from translate.storage import factory, versioncontrol
 
-from pootle_app.views.top_stats import gen_top_stats, top_stats_heading
+from pootle_app.views.top_stats import gentopstats, top_stats_heading
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_app.models.permissions import get_matching_permissions, check_permission, PermissionError
@@ -81,7 +81,7 @@ def get_children(request, translation_project, directory):
 ################################################################################
 
 def top_stats(translation_project):
-    return gen_top_stats(lambda query: query.filter(translation_project=translation_project))
+    return gentopstats(lambda query: query.filter(translation_project=translation_project))
 
 ################################################################################
 

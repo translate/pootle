@@ -28,7 +28,7 @@ from django.core.exceptions import PermissionDenied
 from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages
 from pootle_app.views import pagelayout
-from pootle_app.views.indexpage import shortdescription, gentopstats
+from pootle_app.views.top_stats import gentopstats
 from pootle_app.models import Suggestion, Submission, Language
 
 from pootle.i18n.gettext import tr_lang
@@ -66,14 +66,7 @@ def language_index(request, language_code):
 
     totals = language.getquickstats()
     average = totals['translatedsourcewords'] * 100 / max(totals['totalsourcewords'], 1)
-
-    def narrow(query):
-        return limit(query.filter(translation_project__language__code=language_code))
-
-    topsugg = narrow(Suggestion.objects.get_top_suggesters())
-    topreview = narrow(Suggestion.objects.get_top_reviewers())
-    topsub = narrow(Submission.objects.get_top_submitters())
-    topstats = gentopstats(topsugg, topreview, topsub)
+    topstats = gentopstats(lambda query: query.filter(translation_project__language__code=language_code))
 
     templatevars = {
         'pagetitle': _('%(title)s: Language %(language)s',

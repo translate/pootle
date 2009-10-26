@@ -48,7 +48,7 @@ def gen_top_stat(data, header_label):
 def limit(query):
     return query[:5]
 
-def gen_top_stats(narrow_search_results):
+def gentopstats(narrow_search_results):
     """Generate the top contributor stats to be displayed
     for an entire Pootle installation, a language or a project.
     'narrow_search_results' is a function taking a Django

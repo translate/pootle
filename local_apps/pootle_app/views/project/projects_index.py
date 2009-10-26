@@ -26,18 +26,12 @@ from pootle_app.views import pagelayout
 from pootle_app.models.profile import get_profile
 from pootle_app.views.index.index import getprojects
 from pootle_app.models.permissions import get_matching_permissions
-from pootle_app.views.indexpage import gentopstats
+from pootle_app.views.top_stats import gentopstats
 from pootle_app.models import Directory, Suggestion, Submission
-
-def limit(query):
-    return query[:5]
 
 def view(request):
     request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
-    topsugg = limit(Suggestion.objects.get_top_suggesters())
-    topreview = limit(Suggestion.objects.get_top_reviewers())
-    topsub = limit(Submission.objects.get_top_submitters())
-    topstats = gentopstats(topsugg, topreview, topsub)
+    topstats = gentopstats(lambda query: query)
 
     templatevars = {
         'pagetitle': pagelayout.get_title(),
