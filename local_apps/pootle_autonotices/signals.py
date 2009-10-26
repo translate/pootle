@@ -52,3 +52,20 @@ def new_translationproject(sender, instance, created=False, **kwargs):
         instance.language.get_absolute_url(), instance.language.fullname)
     new_object(created, message, instance.directory.parent)
 
+
+
+##### TranslationProject Events #####
+from pootle_app.models.translation_project import stats_message
+
+def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwargs):
+    if oldstats == newstats:
+        # nothing changed, no need to report
+        return
+    
+    message = "Updated files from version control<br/>\n"
+    message += stats_message("Before update", oldstats) + "<br/>\n"
+    if not remotestats == newstats:
+        message +=stats_message("Remote copy", remotestats) + "<br/>\n"
+    message += stats_message("After update", newstats)
+    new_object(True, message, sender.directory)
+
