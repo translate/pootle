@@ -35,7 +35,7 @@ from pootle_notifications.models import Notice
 from pootle_notifications.views import directory_to_title
 
 def view(request, path):
-    pootle_path = '/%s/' % path
+    pootle_path = '/%s' % path
     directory = get_object_or_404(Directory, pootle_path=pootle_path)
 
     request.permissions = get_matching_permissions(get_profile(request.user), directory)

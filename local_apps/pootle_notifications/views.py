@@ -36,7 +36,8 @@ from pootle_notifications.models import Notice
 
 def view(request, path):
     #FIXME: why do we have leading and trailing slashes in pootle_path?
-    pootle_path = '/%s/' % path
+    pootle_path = '/%s' % path
+
     directory = get_object_or_404(Directory, pootle_path=pootle_path)
 
     request.permissions = get_matching_permissions(get_profile(request.user), directory)

@@ -22,7 +22,7 @@ from django.conf.urls.defaults import *
 
 
 urlpatterns = patterns('pootle_notifications',
-    (r'^(?P<path>.*)/notices/rss.xml$', 'feeds.view'),
-    (r'^(?P<path>.*)/notices/?$', 'views.view'),
-    (r'^(?P<path>.*)/notices/(?P<notice_id>[0-9]+)/?$', 'views.view_notice_item'),
+    (r'^(?P<path>.*)notices/rss.xml$', 'feeds.view'),
+    (r'^(?P<path>.*)notices/?$', 'views.view'),
+    (r'^(?P<path>.*)notices/(?P<notice_id>[0-9]+)/?$', 'views.view_notice_item'),
 )
