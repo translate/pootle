@@ -22,10 +22,9 @@
 {% comment %}
 TODO: find a nicer way to manage the search form --
     we don't want to repeat information!
-XXX: is extra_class really used/needed?
 {% endcomment %}
 <!--! Search form -->
-<div id="search" class="{{ search.extra_class }}" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <form action="translate.html?view_mode=translate" method="post" name="searchform" id="searchform">
         {{ search.search_form.as_p }}
         <input type="hidden" name="new_search" value="new_search" />

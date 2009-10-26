@@ -70,7 +70,6 @@ def get_search_form(request, search_text=None):
                                             initial={'title': _('Search'), 'text': search_text or ''}),
         'advanced_search_form':  advanced_search_form,
         'advanced_search_title': _('Advanced Search'),
-        'extra_class':           ''
         }
 
 def search_from_request(request):
