@@ -43,7 +43,7 @@
 	    {% block menu %}
             <ul class="first-of-type">
               <li class="menubaritem"><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
-              <li class="menubaritem"><a href='{% filter m %}doc/{{ LANGUAGE_CODE }}/index.html {% endfilter %}'>{% trans "Help" %}</a></li>
+              <li class="menubaritem"><a href='{% filter m %}doc/en/index.html {% endfilter %}'>{% trans "Help" %}</a></li>
               {% if user.is_superuser %}
               <li class="menubaritem"><a href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
               {% endif %}
@@ -105,7 +105,7 @@
 	{% block footer %}
 	<ul class="nav">
           <li><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
-          <li><a href='{% filter m %}doc/{{ LANGUAGE_CODE }}/index.html{% endfilter %}'>{% trans "Help" %}</a></li>
+          <li><a href='{% filter m %}doc/en/index.html{% endfilter %}'>{% trans "Help" %}</a></li>
           <li><a href='{{ "/about.html"|l }}'>{% trans "About this Pootle Server" %}</a></li>
 	</ul>
 	{% endblock footer %}
