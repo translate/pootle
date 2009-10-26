@@ -361,24 +361,6 @@ XXX: is extra_class really used/needed?
 </div>
 {% endblock content %}
 
-{% block postcontent %}
-<div>
-    {% if assign %}
-    <div class="sidetitle">{{ assigns.title }}</div>
-    <form action="?index=1" name="assignform">
-        <select name="assignto" title="{{ assigns.user_title }}">
-        {% for user in assigns.users %}
-          <option value="{{ user }}">{{ user }}</option>
-        {% endfor %}
-        </select>
-        <input name="action" value="translate" title="{{ assigns.action_title }}"/>
-        <input name="doassign" type="submit" value="{{ assigns.submit_text }}"/>
-    </form>
-    {% endif %}
-</div>
-{% endblock postcontent %}
-
-
 {% block scripts_extra %}
 <script src='{{ "js/json2.min.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/autoexpand.js"|m }}' type="text/javascript"></script>
