@@ -11,19 +11,22 @@
 {% endblock %}
 
 {% block content %}
-<form action="" method="post" name="permissionsform" id="permissionsform">
-    {{ permission_set_formset.management_form }}
-    <table cellpadding="1" cellspacing="1">
-        <tr>
-            <th>{% trans "Username" %}</th><th>{% trans "Permissions" %}</th><th>{% trans "Delete" %}</th>
-        </tr>
-        {% for form in permission_set_formset.forms %}
-        {{ form.as_table }}
-        {% endfor %}
-    </table>
-    <p>
-        <input type="submit" name="doupdaterights" value="{% trans 'Update Rights' %}" />
-    </p>
-</form>
+<div class="settings-container centered">
+    <h2>{% trans "Manage Language Permissions." %}</h2>
+    <p>{% trans "Below you can add, edit, and delete the rights for this language." %}</p>
+    <form action="" method="post" name="permissionsform" id="permissionsform">
+        {{ permission_set_formset.management_form }}
+        <table cellpadding="1" cellspacing="1">
+            <tr>
+                <th>{% trans "Username" %}</th><th>{% trans "Permissions" %}</th><th>{% trans "Delete" %}</th>
+            </tr>
+            {% for form in permission_set_formset.forms %}
+            {{ form.as_table }}
+            {% endfor %}
+        </table>
+        <p>
+            <input type="submit" name="doupdaterights" value="{% trans 'Update Rights' %}" />
+        </p>
+    </form>
+</div>
 {% endblock %}
-
