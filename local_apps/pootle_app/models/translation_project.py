@@ -42,7 +42,7 @@ from pootle_store.models           import Store
 from pootle_app                    import project_tree
 from pootle_store.util             import relative_real_path, absolute_real_path
 from pootle_app.models.permissions import PermissionError, check_permission
-from pootle_app.lib                import statistics
+from translate.storage import statsdb
 
 from pootle.scripts                import hooks
 from pootle_misc.util import getfromcache
@@ -396,7 +396,7 @@ class TranslationProject(models.Model):
             return False
         # check if the pomtime in the index == the latest pomtime
         try:
-            pomtime = statistics.getmodtime(store.file.path)
+            pomtime = statsdb.get_mod_info(store.file.path)
             pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)], True)
             pomtimequery = indexer.make_query([("pomtime", str(pomtime))], True)
             gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
