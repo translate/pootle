@@ -840,6 +840,7 @@ div.centered
 .settings-container form
 {
     font-size: 85%;
+    margin-bottom: 2em;
 }
 
 .settings-container h2

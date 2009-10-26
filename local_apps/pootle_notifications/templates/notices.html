@@ -17,32 +17,26 @@
 {% endblock %}
 
 {% block content %}
-<div><a href="{% filter l %}/{{back_link}}/{% endfilter %}"> {% trans "Back" %}</a></div>
+<div class="settings-container centered">
 {% if form %}
-<h3 class="title"> {{ title }} </h3>
-<hr width="50%" align="left">
-<div> {{ success }} </div>
-<form method="post" action="">
-    {{ form.as_p }}
-    <input type="submit" value="{% trans "Save" %}"/>
-</form>
+    <h2>{{ title }}</h2>
+    <p>{{ success }}</p>
+    <form method="post" action="">
+        {{ form.as_p }}
+        <input type="submit" value="{% trans "Save" %}"/>
+    </form>
 {% endif %}
 
+    <h2>{% trans "Latest Notices." %} {{ name }}</h2>
 {% if notices %}
-<div>
-    <h3 class="title">{% trans "Latest notices:" %} {{name}}</h3>
-    <hr width="50%" align="left">
     <ul>
         {% for notice in notices %}
-        <li>
-        {{ notice.message }}
-        </li>
+        <li>{{ notice.message }}</li>
         {% endfor %}
-     <ul>
-</div>
+     </ul>
 {% else %}
-<div> {% trans "There is no news in for this project in this language" %}</div>
-
+    <p>{% trans "There is no news in for this project in this language." %}</p>
 {% endif %}
+</div>
 
 {% endblock %}
