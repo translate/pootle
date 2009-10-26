@@ -40,8 +40,8 @@ def localize_links(request):
     links['admin'] = _('Admin')
     links['doc'] = _('Help')
     links['doclang'] = getdoclang(request.LANGUAGE_CODE)
-    links['logout'] = _('Log out')
-    links['login'] = _('Log in')
+    links['logout'] = _('Log Out')
+    links['login'] = _('Log In')
     links['about'] = _('About')
     # l10n: Verb, as in "to register"
     links['register'] = _('Register')
@@ -105,8 +105,8 @@ def completetemplatevars(templatevars, request, bannerheight=135):
     except:
         templatevars['username'] = ''
     templatevars['password_title'] = _('Password')
-    templatevars['login_text'] = _('Log in')
-    templatevars['logout_text'] = _('Log out')
+    templatevars['login_text'] = _('Log In')
+    templatevars['logout_text'] = _('Log Out')
     templatevars['register_text'] = _('Register')
     templatevars['canregister'] = settings.CAN_REGISTER
     templatevars['links'] = localize_links(request)

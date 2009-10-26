@@ -95,7 +95,7 @@ class AnonTests(PootleTestCase):
     def test_login(self):
         """Checks that login works and sets cookies"""
         response = self.client.get('/')
-        self.assertContains(response, "Log in")
+        self.assertContains(response, "Log In")
 
         response = self.client.post('/accounts/login/', {'username':'admin', 'password':'admin'})
         self.assertRedirects(response, '/accounts/admin/')
@@ -114,13 +114,13 @@ class AdminTests(PootleTestCase):
     def test_logout(self):
         """tests login and logout links"""
         response = self.client.get('/')
-        self.assertContains(response, "Log out")
+        self.assertContains(response, "Log Out")
 
         response = self.client.get("/accounts/logout/")
         self.assertRedirects(response, '/')
 
         response = self.client.get('/')
-        self.assertContains(response, "Log in")
+        self.assertContains(response, "Log In")
 
     def test_admin_rights(self):
         """checks that admin user can access admin pages"""

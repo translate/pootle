@@ -49,12 +49,12 @@
               {% endif %}
               {% if user.is_authenticated %}
               <li class="menubaritem"><a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %} '>{% trans "My Account" %}</a></li>
-              <li class="menubaritem"><a href='{{ "/accounts/logout/"|l }}'>{% trans "Log out" %}</a></li>
+              <li class="menubaritem"><a href='{{ "/accounts/logout/"|l }}'>{% trans "Log Out" %}</a></li>
               {% else %}
               {% if settings.CAN_REGISTER %}
               <li class="menubaritem"><a href='{{ "/accounts/register/"|l }}'>{% trans "Register" %}</a></li>
               {% endif %}
-              <li class="menubaritem"><a href='{{ "/accounts/login/"|l }}'>{% trans "Log in" %}</a></li>
+              <li class="menubaritem"><a href='{{ "/accounts/login/"|l }}'>{% trans "Log In" %}</a></li>
               {% endif %}
             </ul>
 	    {% endblock menu %}
