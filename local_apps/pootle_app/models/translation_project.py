@@ -180,13 +180,13 @@ class TranslationProject(models.Model):
         """updates project translation files from version control,
         retaining uncommitted translations"""
 
-        stores = Store.objects.filter(pootle_path__startswith=self.pootle_path)
+        stores = self.stores.all()
 
         for store in stores:
             try:
                 hooks.hook(self.project.code, "preupdate", store.file.path)
             except:
-                # We should not hide the exception. At least log it.
+                #FIXME: We should not hide the exception. At least log it.
                 pass
             # keep a copy of working files in memory before updating
             working_copy = store.file.store
