@@ -24,9 +24,11 @@ import cStringIO
 from translate.lang    import data as langdata
 from translate.convert import pot2po
 
-from pootle_app.models.directory  import Directory
+from pootle_misc.util import deletefromcache
 from pootle_store.models      import Store
 from pootle_store.util import absolute_real_path, relative_real_path
+from pootle_app.models.directory  import Directory
+from pootle_app.models.signals import post_template_update
 
 def language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
@@ -202,6 +204,8 @@ def scan_translation_project_files(translation_project):
                       lambda filename: direct_language_match_filename(translation_project.language.code, filename))
     else:
         add_files(ignored_files, ext, real_path, directory)
+    deletefromcache(translation_project, ["getquickstats", "getcompletestats"])
+
 
 def get_extension(language, project):
     """file extension used for this project, returns pot if it's a po
@@ -253,6 +257,7 @@ def get_translated_name(translation_project, store):
     return absolute_real_path(os.sep.join(path_parts))
 
 def convert_templates(template_translation_project, translation_project):
+    oldstats = translation_project.getquickstats()
     for store in template_translation_project.stores.all():
         if translation_project.file_style == 'gnu':
             new_store_path = get_translated_name_gnu(translation_project, store)
@@ -260,3 +265,6 @@ def convert_templates(template_translation_project, translation_project):
             new_store_path = get_translated_name(translation_project, store)
         convert_template(store.file.path, new_store_path)
     scan_translation_project_files(translation_project)
+    newstats = translation_project.getquickstats()
+    post_template_update.send(sender=translation_project, oldstats=oldstats, newstats=newstats)
+
