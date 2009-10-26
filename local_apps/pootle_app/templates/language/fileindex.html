@@ -1,172 +1,120 @@
 {% extends "base.html" %}
+
 {% load i18n baseurl %}
+
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
+
 {% block body.id %}fileindex{% endblock body.id %}
+
 {% block search %}
-  {% comment %}
-  TODO: find a nicer way to manage the search form --
-        we don't want to repeat information!
-  {% endcomment %}
-  <!--! search form -->
-  <div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+{% comment %}
+TODO: find a nicer way to manage the search form --
+    we don't want to repeat information!
+{% endcomment %}
+<!--! search form -->
+<div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <form action="translate.html?view_mode=translate" method="post" name="searchform" id="searchform">
-      {{ search.search_form.as_p }}
-      <input type="hidden" name="new_search" value="new_search" />
-      <a class="advancedlink">
-      {% if LANGUAGE_BIDI %}
-          <img src='{{"images/sarrow_down_rtl.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" />
-          <img src='{{"images/sarrow_up_rtl.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" style="display: none;"/>
-      {% else %}
-          <img src='{{"images/sarrow_down.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" />
-          <img src='{{"images/sarrow_up.png"|m}}' title="{{search.advanced_search_title}}" class="togglesearch" style="display: none;"/>
-      {% endif %}
-      </a>
-      <div class="advancedsearch">
-      {% for field in search.advanced_search_form %}
-          {{field}} {{field.label_tag}}<br />
-      {% endfor %}
-      </div>
+        <input type="hidden" name="new_search" value="new_search" />
+        {{ search.search_form.as_p }}
+        <a class="advancedlink">
+        {% if LANGUAGE_BIDI %}
+            <img src='{{ "images/sarrow_down_rtl.png"|m }}' title="{{ search.advanced_search_title }}" class="togglesearch" />
+            <img src='{{ "images/sarrow_up_rtl.png"|m }}' title="{{ search.advanced_search_title }}" class="togglesearch" style="display: none;"/>
+        {% else %}
+            <img src='{{ "images/sarrow_down.png"|m }}' title="{{ search.advanced_search_title }}" class="togglesearch" />
+            <img src='{{ "images/sarrow_up.png"|m }}' title="{{ search.advanced_search_title }}" class="togglesearch" style="display: none;"/>
+        {% endif %}
+        </a>
+        <div class="advancedsearch">
+        {% for field in search.advanced_search_form %}
+            {{ field }} {{ field.label_tag }}<br />
+        {% endfor %}
+        </div>
     </form>
-  </div><!--search-->
+</div>
+<!-- search -->
 {% endblock search %}
 
-
 {% block innernav %}
-  <!--! Navigation bar -->
-  <div id="innernav" class="navbar">
+<!--! Navigation bar -->
+<div id="innernav" class="navbar">
     {% for item in navitems %}
     {% include "language/item_block.html" %}
     {% include "language/item_stats.html" %}
     {% endfor %}
-  </div><!--innernav-->
+</div><!--innernav-->
 {% endblock innernav %}
 
 {% block precontent %}
-    <div><a href="{% filter l %}/{{language.code}}/{{project.code}}/notices/{% endfilter %}">{% trans "News"%}</a></div>
+<div><a href="{% filter l %}/{{language.code}}/{{project.code}}/notices/{% endfilter %}">{% trans "News"%}</a></div>
 {% endblock precontent %}
 
 {% block content %}
 {% if not editing and children %}
 <!--! The statistics view -->
-  <div class="module-primary">
-<div class="bd">
-  <table class="sortable stats" id="stats" cellpadding="5"
-cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <thead>
-      <tr>
-    <th class="stats">{{stats_headings.name}}</th>
-    <th class="stats">{{stats_headings.progress}}</th>
-    <th class="stats">{{stats_headings.summary}}</th>
-    <th class="stats">{{stats_headings.totalwords}}</th>
-      </tr>
-    </thead>
-    <tbody class="stats">
-      {% for item in children %}
-    <tr class="item {% cycle 'even' 'odd' %}" title="{{item.description}}">
-      {% include "language/item_summary.html" %}
-      <div py:replace="navbar.itemsummary(item, uidir, untranslated_text, fuzzy_text, complete)"/>
-    </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="module-primary">
+    <div class="bd">
+        <table class="sortable stats" id="stats" cellpadding="5"
+        cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+            <thead>
+                <tr>
+                    <th class="stats">{{ stats_headings.name }}</th>
+                    <th class="stats">{{ stats_headings.progress }}</th>
+                    <th class="stats">{{ stats_headings.summary }}</th>
+                    <th class="stats">{{ stats_headings.totalwords }}</th>
+                </tr>
+            </thead>
+            <tbody class="stats">
+                {% for item in children %}
+                <tr class="item {% cycle 'even' 'odd' %}" title="{{ item.description }}">
+                {% include "language/item_summary.html" %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-  </div>
 {% endif %}
 
 {% if editing %}
 <!--! The editing view -->
-  {% for item in children %}
-  <div class="module-primary">
-<div class="bd">
-  {% if item.isgoal %}
-  <div class="goalitem">
-    {% include "language/item_block.html" %}
-    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl, show_goals(item))"/>
-    {% include "language/item_stats.html" %}
-  </div>
-  {% endif %}
-  {% if item.isdir or item.isfile %}
-  <div class="item {% cycle 'even' 'odd' %}">
-    {% include "language/item_block.html" %}
-    <div py:replace="navbar.item_block(item, uidir, uilanguage, mediaurl)"/>
-    {% include "language/item_stats.html" %}
-  </div>
-  {% endif %}
+{% for item in children %}
+<div class="module-primary">
+    <div class="bd">
+        {% if item.isdir or item.isfile %}
+        <div class="item {% cycle 'even' 'odd' %}">
+        {% include "language/item_block.html" %}
+        {% include "language/item_stats.html" %}
+        </div>
+        {% endif %}
+    </div>
 </div>
-  </div>
-  {% endfor %}
-{% endif %}
-
-{% if assign or goals %}
-<!--! The goals view -->
-<div class="module first">
-  <div class="bd">
-{% if assign %}
-<div class="sidetitle">
-  {{ assign.title }}
-</div>
-<form action="" method="post" name="assignform">
-  <select name="assignto" title="{{assign.users_text}}">
-    {% for user in assign.users %}
-    <option value="{{user}}">assign.users[user].description</option>
-    {% endfor %}
-  </select>
-  <input type="text" name="action" value="translate" title="{{assign.action_text}}" />
-  <input type="submit" name="doassign" value="{{assign.button}}" />
-</form>
-{% endif %}
-{% if goals %}
-<div class="sidetitle">{{goals.title}}</div>
-<form action="" method="post" name="goalform">
-  <input type="text" name="newgoal" title="{{goals.name_title}}" />
-  <input type="submit" name="doaddgoal" value="{{goals.button}}" />
-</form>
-{% endif %}
-  </div>
-</div>
+{% endfor %}
 {% endif %}
 {% endblock content %}
 
 {% block postcontent %}
-  {% if upload %}
-    <div id="upload" class="module first clear">
-      <div class="bd">
-        <h2>{{upload.form.title}}</h2>
+{% if upload %}
+<div id="upload" class="module first clear">
+    <div class="bd">
+        <h2>{{ upload.form.title }}</h2>
         <form action="" method="post" id="uploadform" name="uploadform" enctype="multipart/form-data">
-          {{upload.as_p}}
+          {{ upload.as_p }}
         </form>
-      </div>
     </div>
-  {% endif %}
-  {% if update %}
-    <div id="update" class="module first clear">
-      <div class="bd">
+</div>
+{% endif %}
+
+{% if update %}
+<div id="update" class="module first clear">
+    <div class="bd">
         <form action="" method="post" name="updateform" enctype="multipart/form-data">
-          {{update.as_p}}
+          {{ update.as_p }}
         </form>
-      </div>
     </div>
-  {% endif %}
-    {% include "top_contributers_table.html" %}
+</div>
+{% endif %}
+
+{% include "top_contributers_table.html" %}
 {% endblock postcontent %}
-
-
-
-{% block fish %}
-  <!--! only called from item_block().  should be moved to navbar.kid
-  or removed-->
-  <div py:def="show_goals(item)">
-    <div py:if="item.goal.users or item.goal.show_adduser">
-      <img src="${mediaurl}images/person.png" class="icon" alt="" dir="$uidir" lang="$uilanguage" />
-      <div py:for="user in item.goal.users" py:strip="True">${user.name}${user.sep}</div>
-      <form py:if="item.goal.show_adduser" action="" method="post" name="goaluserform">
-	<input type="hidden" name="editgoalname" value="${item.goal.name}"/>
-	<select name="newgoaluser">
-	  <option py:for="user in item.goal.otherusers" value="${user}" py:content="item.goal.otherusers[user].description">Username</option>
-	</select>
-	<input type="submit" name="doeditgoalusers" value="${item.goal.adduser_title}"/>
-      </form>
-    </div>
-  </div>
-{% endblock fish %}
