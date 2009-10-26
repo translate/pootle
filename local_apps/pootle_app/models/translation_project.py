@@ -43,6 +43,7 @@ from pootle_app                    import project_tree
 from pootle_store.util             import relative_real_path, absolute_real_path
 from pootle_app.models.permissions import PermissionError, check_permission
 from translate.storage import statsdb
+from pootle_app.models.signals import post_vc_update
 
 from pootle.scripts                import hooks
 from pootle_misc.util import getfromcache
@@ -182,6 +183,8 @@ class TranslationProject(models.Model):
 
         stores = self.stores.all()
 
+        working_stats = self.getquickstats()
+        remote_stats = {}
         for store in stores:
             try:
                 hooks.hook(self.project.code, "preupdate", store.file.path)
@@ -195,6 +198,7 @@ class TranslationProject(models.Model):
                 logging.debug("updating %s from version control", store.file.path)
                 versioncontrol.updatefile(store.file.path)
                 store.file._delete_store_cache()
+                remote_stats = dictsum(remote_stats, store.file.getquickstats())
                 store.mergefile(working_copy, "versionmerge", allownewstrings=False, obseletemissing=False)
             except Exception, e:
                 #something wrong, file potentially modified, bail out
@@ -208,6 +212,8 @@ class TranslationProject(models.Model):
                 pass
 
         project_tree.scan_translation_project_files(self)
+        new_stats = self.getquickstats()
+        post_vc_update.send(sender=self, oldstats=working_stats, remotestats=remote_stats, newstats=new_stats)
 
     def updatepofile(self, request, store):
         """updates file from version control, retaining uncommitted
