@@ -237,12 +237,8 @@ class TranslationProject(models.Model):
             remote_stats = store.file.getquickstats()
             store.mergefile(working_copy, "versionmerge", allownewstrings=False, obseletemissing=False)
             new_stats = store.file.getquickstats()
+            
             request.user.message_set.create(message="Updated file: <em>%s</em>" % store.file.name)
-
-            def stats_message(version, stats):
-                return "%s: %d of %d messages translated (%d fuzzy)." % \
-                              (version, stats["translated"], stats["total"], stats["fuzzy"])
-
             request.user.message_set.create(message=stats_message("working copy", working_stats))
             request.user.message_set.create(message=stats_message("remote copy", remote_stats))
             request.user.message_set.create(message=stats_message("merged copy", new_stats))
@@ -542,6 +538,11 @@ class TranslationProject(models.Model):
         """gets the plural translation of the message by searching
         through all the pofiles (unicode version)"""
         return unicode(self._find_matching_unit(singular, plural, n))
+
+
+def stats_message(version, stats):
+    return "%s: %d of %d messages translated (%d fuzzy)." % \
+           (version, stats["translated"], stats["total"], stats["fuzzy"])
 
 def set_data(sender, instance, **kwargs):
     project_dir = instance.project.get_real_path()
