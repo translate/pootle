@@ -35,19 +35,20 @@ from translate.tools   import pogrep
 from translate.search  import match, indexing
 from translate.storage import base, versioncontrol
 
+from pootle.scripts                import hooks
+from pootle_misc.util import getfromcache
+from pootle_misc.baseurl import l
+from pootle_store.models           import Store
+from pootle_store.util             import relative_real_path, absolute_real_path, dictsum
+
 from pootle_app.models.project     import Project
 from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory
-from pootle_store.models           import Store
 from pootle_app                    import project_tree
-from pootle_store.util             import relative_real_path, absolute_real_path
 from pootle_app.models.permissions import PermissionError, check_permission
 from translate.storage import statsdb
 from pootle_app.models.signals import post_vc_update
 
-from pootle.scripts                import hooks
-from pootle_misc.util import getfromcache
-from pootle_misc.baseurl import l
 
 class TranslationProjectNonDBState(object):
     def __init__(self, parent):
