@@ -34,12 +34,6 @@ class DirectoryManager(models.Manager):
 
     root = property(_get_root)
 
-def filter_goals(query, goal):
-    if goal is None:
-        return query
-    else:
-        return query.filter(goals=goal)
-
 def filter_next_store(query, store_name):
     if store_name is None:
         return query
@@ -83,9 +77,9 @@ class Directory(models.Model):
 
     def filter_stores(self, search=None, starting_store=None):
         if search is None:
-            return filter_next_store(filter_goals(self.child_stores, None), starting_store)
+            return filter_next_store(self.child_stores, starting_store)
         elif search.contains_only_file_specific_criteria():
-            return filter_next_store(filter_goals(self.child_stores, search.goal), starting_store)
+            return filter_next_store(self.child_stores, starting_store)
         else:
             raise Exception("Can't filter on unit-specific information")
 

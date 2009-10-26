@@ -67,7 +67,6 @@ def make_directory_actions(request):
                                       _("Show Checks"), _("Hide Checks")),
                      ],
         'extended': [],
-        'goalform': []
         }
 
 def make_navbar_path_dict(request, path_links=None):
@@ -95,7 +94,7 @@ def make_directory_navbar_dict(request, directory, show_actions=True):
     if show_actions:
         actions = make_directory_actions(request)
     else:
-        actions = {'basic': [], 'extended': [], 'goalform': []}
+        actions = {'basic': [], 'extended': [],}
     result.update({
             'path':    make_navbar_path_dict(request, path_links),
             'actions': actions })
@@ -108,6 +107,6 @@ def make_store_navbar_dict(request, store):
     path_links = make_store_pathlinks(request, project_url, store, [])
     result.update({
             'path':    make_navbar_path_dict(request, path_links),
-            'actions': {'basic': [], 'extended': [], 'goalform': []} })
+            'actions': {'basic': [], 'extended': [],} })
     del result['title']
     return result

@@ -24,7 +24,6 @@ from django.utils.translation import ugettext as _
 from django import forms
 from django.utils.safestring import mark_safe
 from pootle_app.models.search import Search
-from pootle_app.models.goal import Goal
 
 class SearchForm(forms.Form):
     text = forms.CharField(widget=forms.TextInput(attrs={'size':'15'}))
@@ -87,10 +86,7 @@ def search_from_request(request):
     search = get_search_form(request)
 
     kwargs = {}
-    if 'goal' in request.GET:
-        kwargs['goal'] = Goal.objects.get(name=request.GET['goal'])
     kwargs['match_names']         = get_list(request, 'match_names')
-    kwargs['assigned_to']         = get_list(request, 'assigned_to')
     #FIXME: use cleaned_data
     kwargs['search_text']         = search['search_form']['text'].data    
     kwargs['search_fields']       = as_search_field_list(search['advanced_search_form'])

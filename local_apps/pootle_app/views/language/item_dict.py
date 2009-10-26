@@ -41,10 +41,6 @@ def get_item_summary(request, quick_stats, path_obj):
     total_words      = quick_stats['totalsourcewords']
     num_stores       = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
     state            = dispatch.CommonState(request.GET)
-    # Stats showing the number of files
-    #if state.goal is not None:
-    #    file_stats = _("%d/%d files", (num_stores(path_obj, state.goal), num_stores))
-    #else:
     file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
     # The translated word counts
     word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
@@ -65,11 +61,9 @@ def get_item_stats(request, quick_stats, path_obj):
     result = {
         'summary': get_item_summary(request, quick_stats, path_obj),
         'checks':  [],
-        'assigns': [] }
+        }
     if request.GET.get('show_checks', None):
         result['checks'] = getcheckdetails(request, path_obj)       #None  # TBD
-    if request.GET.get('show_assigns', None):
-        result['assings'] = None # TBD
     return result
 
 def getcheckdetails(request, path_obj, url_opts={}):
@@ -100,47 +94,6 @@ def getcheckdetails(request, path_obj, url_opts={}):
 
 ################################################################################
 
-def has_assigned_strings(path_obj, search):
-    try:
-        get_next_match(path_obj, search=search)
-        return True
-    except StopIteration:
-        return False
-
-def get_assigned_strings(request, path_obj, has_strings):
-    if check_permission('translate', request):
-        result = { 'text': _('Translate My Strings') }
-    else:
-        result = { 'text': _('View My Strings') }
-    if has_strings:
-        result.update({
-                'href':  dispatch.translate(request, request.path_info, assigned_to=[request.user.username]) })
-    else:
-        result.update({
-                'title': _('No strings assigned to you') })
-    return result
-
-def get_quick_assigned_strings(request, path_obj, has_strings, search):
-    text = _('Quick Translate My Strings')
-    search.match_names = match_names=['fuzzy', 'untranslated']
-    if has_strings and has_assigned_strings(path_obj, search):
-        return {
-            'href':  dispatch.translate(request, request.path_info, assigned_to=[get_profile(request.user)], match_names=search.match_names),
-            'text':  text }
-    else:
-        return {
-            'title': _('No untranslated strings assigned to you'),
-            'text':  text }
-
-def yield_assigned_links(request, path_obj, links_required):
-    if 'mine' in links_required and request.user.is_authenticated():
-        search = search_forms.search_from_request(request)
-        search.assigned_to = [request.user.username]
-        has_strings = has_assigned_strings(path_obj, search)
-        yield get_assigned_strings(request, path_obj, has_strings)
-        if 'quick' in links_required and check_permission('translate', request):
-            yield get_quick_assigned_strings(request, path_obj, has_strings, search)
-
 def yield_review_link(request, path_obj, links_required, stats_totals):
     if 'review' in links_required and stats_totals.get('check-hassuggestion', 0):
         if check_permission('translate', request):
@@ -168,10 +121,7 @@ def yield_translate_all_link(request, path_obj, links_required):
 
 def yield_zip_link(request, path_obj, links_required):
     if 'zip' in links_required and check_permission('archive', request):
-        if request.goal is None:
-            text = _('ZIP of directory')
-        else:
-            text = _('ZIP of goal')
+        text = _('ZIP of directory')
         link = dispatch.download_zip(request, path_obj)
         yield {
             'href':  link,
@@ -226,7 +176,6 @@ def yield_update_link(request, path_obj, links_required):
 def get_store_extended_links(request, path_obj, links_required):
     stats_totals = path_obj.getcompletestats(request.translation_project.checker)
     return list(itertools.chain(
-            #yield_assigned_links(    request, path_obj, links_required),
             yield_review_link(       request, path_obj, links_required, stats_totals),
             yield_quick_link(        request, path_obj, links_required, stats_totals),
             yield_translate_all_link(request, path_obj, links_required),
@@ -248,7 +197,6 @@ def get_action_links(request, path_obj, links_required):
     return {
         'basic': [],
         'extended': get_store_extended_links(request, path_obj, get_default_links_required(links_required)),
-        'goalform': None,
         }
 
 ################################################################################

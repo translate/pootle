@@ -304,8 +304,6 @@ class ProjectIndexView(BaseView):
         project  = translation_project.project
         language = translation_project.language
 
-        assign_form = None
-        goal_form = None
         template_vars.update({
             'pagetitle':             _('%(title)s: Project %(project)s, Language %(language)s', 
                                        {"title": pagelayout.get_title(),
@@ -321,8 +319,6 @@ class ProjectIndexView(BaseView):
             'editing':               state.editing,
             'topstats':              top_stats(translation_project),
             'topstatsheading':       top_stats_heading(),
-            'assign':                assign_form,
-            'goals':                 goal_form,
             })
         return template_vars
 

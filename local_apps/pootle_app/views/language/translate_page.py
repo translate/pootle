@@ -64,22 +64,11 @@ def get_alt_projects(request, store):
     else:
         return TranslationProject.objects.none()
 
-def get_assign_box():
-    """gets strings if the user can assign strings"""
-    return {
-        "title":        _("Assign Strings"),
-        "user_title":   _("Assign to User"),
-        "action_title": _("Assign Action"),
-        "submit_text":  _("Assign Strings"),
-        "users":        User.objects.order_by('username')
-    }
 
 def add_file_links(request, store):
     """adds a section on the current file, including any checks happening"""
     state = dispatch.TranslatePageState(request.GET)
     template_vars = {}
-    #if state.show_assigns and check_permission("assign", request):
-    #    template_vars["assigns"] = get_assign_box()
     if store is not None:
         if len(state.match_names) > 0:
             checknames = \
@@ -959,7 +948,7 @@ def view(request, directory, store, item, stopped_by=None):
     stats = {"summary": mainstats,
              "checks":  [],
              "tracks":  [],
-             "assigns": []}
+             }
     templatevars = {
         "pagetitle":                 _("%(title)s: translating %(project)s into %(language)s: %(file)s",
                                        {"title": instancetitle, "project": project.fullname,
@@ -995,8 +984,6 @@ def view(request, directory, store, item, stopped_by=None):
         "developer_comments_title":  _("Developer Comments"),
         # l10n: This heading refers to related translations and terminology
         "related_title":             _("Related"),
-        # optional sections, will appear if these values are replaced
-        "assign":                    None,
         # l10n: text next to search field
         'search':                    search_forms.get_search_form(request),
         # general vars
@@ -1012,7 +999,5 @@ def view(request, directory, store, item, stopped_by=None):
         "reject_button":             _("Reject")
         }
 
-    #if state.show_assigns and check_permission("assign", request):
-    #    templatevars["assign"] = get_assign_box()
     templatevars.update(add_file_links(request, store))
     return render_to_response("language/translatepage.html", templatevars, RequestContext(request))

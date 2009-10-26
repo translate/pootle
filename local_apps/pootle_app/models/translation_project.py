@@ -173,11 +173,6 @@ class TranslationProject(models.Model):
     has_index = property(_has_index)
 
 
-    def _get_goals(self):
-        return Goal.objects.filter(translation_project=self)
-
-    goals = property(_get_goals)
-
     def update_from_version_control(self):
         """updates project translation files from version control,
         retaining uncommitted translations"""

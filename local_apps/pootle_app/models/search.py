@@ -28,7 +28,6 @@ import bisect
 
 from translate.tools import pogrep
 
-from pootle_app.models.assignment import StoreAssignment
 from pootle_app.lib.util          import lazy_property
 
 def member(sorted_set, element):
@@ -76,13 +75,6 @@ def narrow_to_search_text(total, store, translatables, search):
     else:
         return translatables
 
-def narrow_to_assigns(store, translatables, search):
-    if len(search.assigned_to) > 0:
-        assignments = StoreAssignment.objects.filter(assignment__in=search.assigned_to, store=store)
-        assigned_indices = reduce(set.__or__, [assignment.unit_assignments for assignment in assignments], set())
-        return intersect(sorted(assigned_indices), translatables)
-    else:
-        return translatables
 
 def narrow_to_matches(stats, translatables, search):
     if len(search.match_names) > 0:
@@ -95,6 +87,7 @@ def narrow_to_matches(stats, translatables, search):
     else:
         return translatables
 
+
 def search_results_to_dict(hits):
     result_dict = {}
     for doc in hits:
@@ -105,6 +98,7 @@ def search_results_to_dict(hits):
     for lst in result_dict.itervalues():
         lst.sort()
     return result_dict
+
 
 def do_search_query(indexer, search):
     searchparts = []
@@ -120,13 +114,10 @@ def do_search_query(indexer, search):
     limitedquery = indexer.make_query(searchparts, True)
     return indexer.search(limitedquery, ['pofilename', 'itemno'])
 
+
 class Search(object):
-    def __init__(self, goal=None, match_names=[], assigned_to=[],
-                 search_text=None, search_fields=None,
-                 translation_project=None):
-        self.goal            = goal
+    def __init__(self, match_names=[], search_text=None, search_fields=None, translation_project=None):
         self.match_names     = match_names
-        self.assigned_to     = assigned_to
         self.search_text     = search_text
         if search_fields is None:
             search_fiels = ['source', 'target']
@@ -144,9 +135,7 @@ class Search(object):
     search_results = lazy_property('_search_results', _get_search_results)
 
     def contains_only_file_specific_criteria(self):
-        return self.search_text in (None, '')  and \
-            self.match_names == [] and \
-            self.assigned_to == []
+        return self.search_text in (None, '') and self.match_names == []
 
     def _all_matches(self, store, last_index, range, transform):
         if self.contains_only_file_specific_criteria():
@@ -169,7 +158,6 @@ class Search(object):
             total = stats['total']
             result = total[range[0]:range[1]]
             result = narrow_to_matches(stats, result, self)
-            result = narrow_to_assigns(store, result, self)
             result = narrow_to_search_text(total, store, result, self)
             return (bisect.bisect_left(total, item) for item in transform(result))
 

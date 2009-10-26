@@ -27,14 +27,12 @@ from pootle_app import url_state, url_manip
 
 class CommonState(url_state.State):
     """Stores state common to project index pages and translation pages."""
-    goal          = url_state.Value('goal')
     editing       = url_state.BooleanValue('editing')
 
 ################################################################################
 
 class ProjectIndexState(CommonState):
     show_checks   = url_state.BooleanValue('show_checks')
-    show_assigns  = url_state.BooleanValue('show_assings')
 
 ################################################################################
 
@@ -46,7 +44,6 @@ class TranslatePageState(CommonState):
     item          = url_state.IntValue('item', 0)
     # Search state
     match_names   = url_state.ListValue('match_names')
-    assigned_to   = url_state.ListValue('assigned_to')
 
 def get_store(request):
     basename = url_manip.basename(request.path_info)
@@ -97,14 +94,11 @@ def open_translation_project(request, language_code, project_code):
 def download_zip(request, path_obj):
     archive_name = "%s-%s" % (request.translation_project.project.code, 
                               request.translation_project.language.code)
-    if request.goal is None:
-        if path_obj.is_dir:
-            current_folder = path_obj.pootle_path
-        else:
-            current_folder = path_obj.parent.pootle_path
-            archive_name += "-%s.zip" % currentfolder.replace(os.path.sep, "-")
+    if path_obj.is_dir:
+        current_folder = path_obj.pootle_path
     else:
-        archive_name += "-%(goal)s.zip?goal=%(goal)s" % request.goal.name
+        current_folder = path_obj.parent.pootle_path
+        archive_name += "-%s.zip" % currentfolder.replace(os.path.sep, "-")
     return archive_name
 
 def download_sdf(request, path_obj):

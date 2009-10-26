@@ -80,8 +80,6 @@ def get_next_match(path_obj, starting_store=None, last_index=-1, search=Search()
         query = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).order_by('pootle_path')
         if starting_store is not None:
             query = query.filter(pootle_path__gte=starting_store)
-        if search.goal is not None:
-            query = query.filter(goals=search.goal)
         return do_query(query, search.next_matches, last_index)
     else:
         return path_obj, search.next_matches(path_obj, last_index).next()
@@ -91,15 +89,11 @@ def get_prev_match(path_obj, starting_store=None, last_index=-1, search=Search()
         query = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).order_by('-pootle_path')
         if starting_store is not None:
             query = query.filter(pootle_path__lte=starting_store)
-        if search.goal is not None:
-            query = query.filter(goals=search.goal)
         return do_query(query, search.prev_matches, last_index)
     else:
         return path_obj, search.next_matches(path_obj, last_index).next()
 
 
 def iter_stores(directory, search=Search()):
-    if search is None or search.goal is None:
-        return Store.objects.filter(pootle_path__startswith=directory.pootle_path).order_by('pootle_path')
-    else:
-        return Store.objects.filter(pootle_path__startswith=directory.pootle_path, goals=search.goal)
+    return Store.objects.filter(pootle_path__startswith=directory.pootle_path).order_by('pootle_path')
+
