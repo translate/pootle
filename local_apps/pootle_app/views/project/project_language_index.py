@@ -70,8 +70,8 @@ def view(request, project_code, _path_var):
         'project': {
           'code': project.code,
           'name': project.fullname,
-          'stats': ungettext('%(languages)d language, average %(average)d%% translated',
-                             '%(languages)d languages, average %(average)d%% translated',
+          'stats': ungettext('%(languages)d language, %(average)d%% translated',
+                             '%(languages)d languages, %(average)d%% translated',
                              languagecount, {"languages": languagecount, "average": average})
         },
         'description': project.description,

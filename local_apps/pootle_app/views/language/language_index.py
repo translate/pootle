@@ -82,8 +82,8 @@ def language_index(request, language_code):
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
-          'stats': ungettext('%(projects)d project, average %(average)d%% translated',
-                             '%(projects)d projects, average %(average)d%% translated',
+          'stats': ungettext('%(projects)d project, %(average)d%% translated',
+                             '%(projects)d projects, %(average)d%% translated',
                              projectcount, {"projects": projectcount, "average": average}),
         },
         'projects': items,
