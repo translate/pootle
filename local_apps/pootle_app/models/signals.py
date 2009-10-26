@@ -22,3 +22,4 @@
 from django.dispatch import Signal
 
 post_vc_update = Signal(providing_args=["oldstats", "remotestats", "newstats"])
+post_template_update = Signal(providing_args=["oldstats", "newstats"])

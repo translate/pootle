@@ -30,5 +30,7 @@ post_save.connect(signals.new_project, sender=Project)
 post_save.connect(signals.new_user, sender=User)
 post_save.connect(signals.new_translationproject, sender=TranslationProject)
 
-from pootle_app.models.signals import post_vc_update
+from pootle_app.models.signals import post_vc_update, post_template_update
 post_vc_update.connect(signals.updated_from_version_control)
+post_template_update.connect(signals.updated_from_template)
+

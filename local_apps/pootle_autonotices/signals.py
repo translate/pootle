@@ -55,8 +55,19 @@ def new_translationproject(sender, instance, created=False, **kwargs):
 
 
 ##### TranslationProject Events #####
+
 from pootle_app.models.translation_project import stats_message
 
+def updated_from_template(sender, oldstats, newstats, **kwargs):
+    if oldstats == newstats:
+        # nothing changed, no need to report
+        return
+    message = "Updated files to latest template<br/>\n"
+    message += stats_message("Before update", oldstats) + "<br/>\n"
+    message += stats_message("After update", newstats) + "<br/>\n"
+    new_object(True, message, sender.directory)
+
+    
 def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwargs):
     if oldstats == newstats:
         # nothing changed, no need to report
