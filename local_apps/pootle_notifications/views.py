@@ -46,18 +46,18 @@ def view(request, path):
         raise PermissionDenied
 
     template_vars = {'path': path}
-    
+
     if check_permission('administrate', request):
         template_vars['form'] = handle_form(request, directory)
         template_vars['title'] = directory_to_title(request, directory)
-        
+
     template_vars['notices'] = Notice.objects.filter(directory=directory)
 
     if directory.is_language():
         template_vars['is_language'] = True
     else:
         template_vars['is_language'] = False
-    
+
     return render_to_response('notices.html', template_vars, context_instance=RequestContext(request))
 
 def directory_to_title(request, directory):
@@ -69,22 +69,21 @@ def directory_to_title(request, directory):
         trans_vars = {
             'language': tr_lang(directory.language.fullname),
             }
-        return _('Notices for %(language)s', trans_vars)
+        return _('News for %(language)s', trans_vars)
     except ObjectDoesNotExist:
         pass
-    
+
     try:
         trans_vars = {
             'language': tr_lang(directory.translationproject.language.fullname),
             'project': directory.translationproject.project.fullname,
             }
-        return _('Notices for the project %(project)s in %(language)s', trans_vars)
+        return _('News for the %(project)s project in %(language)s', trans_vars)
     except ObjectDoesNotExist:
         pass
 
-    return _('Notices for %(path)s',
+    return _('News for %(path)s',
              {'path': directory.pootle_path})
-    
 
 def handle_form(request, current_directory):
     class NoticeForm(ModelForm):
@@ -94,7 +93,7 @@ def handle_form(request, current_directory):
 
         class Meta:
             model = Notice
-            
+
     if request.method == 'POST':
         form = NoticeForm(request.POST)
         if form.is_valid():
@@ -109,7 +108,7 @@ def handle_form(request, current_directory):
 def view_notice_item(request, path, notice_id):
     notice = get_object_or_404(Notice, id=notice_id)
     template_vars = {
-            "title" : _("View Notice"),
+            "title" : _("View News Item"),
             "notice_message"  : notice.message,
             }
 
