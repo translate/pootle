@@ -44,7 +44,7 @@ def view(request, path):
     if not check_permission('view', request):
         raise PermissionDenied
 
-    template_vars = {'back_link': path}
+    template_vars = {'path': path}
     
     if check_permission('administrate', request):
         template_vars['form'] = handle_form(request, directory)

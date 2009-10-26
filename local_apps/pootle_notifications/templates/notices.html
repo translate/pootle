@@ -3,7 +3,7 @@
 {% load i18n baseurl %}
 
 {% block extra_head %}
-<link rel="alternate" type="application/rss+xml" title="{{ title }}" href="rss.xml" />
+<link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications.feeds.view path %}" />
 {% endblock %}
 
 {% if is_language %}
