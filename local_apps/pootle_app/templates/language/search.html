@@ -1,0 +1,29 @@
+{% load i18n baseurl %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+<!--! Search form -->
+<div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <form action="translate.html?view_mode=translate" method="post" name="searchform" id="searchform">
+        {{ search.search_form.as_p }}
+        <input type="hidden" name="new_search" value="new_search" />
+        {% if store %}
+        <input type="hidden" name="store" value="{{ store }}" />
+        {% endif %}
+        <a class="advancedlink">
+        {% if LANGUAGE_BIDI %}
+        <img src='{{ "images/sarrow_down_rtl.png"|m }}' title="{{ search.advanced_search_title }}" class="togglesearch" />
+        <img src='{{ "images/sarrow_up_rtl.png"|m }}' title="{{ search.advanced_search_title }}" class="togglesearch" style="display: none;"/>
+        {% else %}
+        <img src='{{ "images/sarrow_down.png"|m }}' title="{{ search.advanced_search_title }}" class="togglesearch" />
+        <img src='{{ "images/sarrow_up.png"|m }}' title="{{ search.advanced_search_title }}" class="togglesearch" style="display: none;"/>
+        {% endif %}
+        </a>
+        <div class="advancedsearch">
+        {% for field in search.advanced_search_form %}
+          {{ field }} {{ field.label_tag }}<br />
+        {% endfor %}
+        </div>
+    </form>
+</div>
