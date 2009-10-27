@@ -524,6 +524,12 @@ html[dir="rtl"] #nav-main ul li
     margin-bottom: 0.7em;
 }
 
+span.help_text
+{
+    font-size: 85%;
+    font-style: italic;
+}
+
 /* FORM ERRORS */
 
 ul.errorlist
