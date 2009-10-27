@@ -109,7 +109,8 @@ def yield_quick_link(request, path_obj, links_required, stats_totals):
         text = _('Quick Translate')
     else:
         text = _('View Untranslated')
-    if stats_totals['translated'] < stats_totals['total']:
+    if stats_totals['translated'] < stats_totals['total']\
+       and 'quick' in links_required:
         yield {
             'href': dispatch.translate(request, path_obj.pootle_path, match_names=['fuzzy', 'untranslated']),
             'text': text }
@@ -154,7 +155,7 @@ def yield_sdf_link(request, path_obj, links_required):
 
 def yield_commit_link(request, path_obj, links_required):
     if 'commit' in links_required and check_permission('commit', request) and \
-           versioncontrol.hasversioning(path_obj.abs_real_path):
+           versioncontrol.hasversioning(request.translation_project.real_path):
         link = dispatch.commit(request, path_obj)
         text = _('Commit to VCS')
         yield {
@@ -189,7 +190,7 @@ def get_store_extended_links(request, path_obj, links_required):
 
 def get_default_links_required(links_required):
     if links_required is None:
-        return ["mine", "review", "quick", "all"]
+        return ["review", "quick", "all", "zip"]
     else:
         return links_required
 

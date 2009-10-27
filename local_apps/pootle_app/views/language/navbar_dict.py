@@ -25,6 +25,7 @@ from django.utils.translation import ugettext as _
 from pootle_app import url_manip
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch
+from pootle_app.views.language.item_dict import get_store_extended_links
 
 from pootle.i18n.gettext import tr_lang
 
@@ -59,6 +60,7 @@ def make_toggle_link(request, state, property, first_option, second_option):
 def make_directory_actions(request):
     edit_state = dispatch.ProjectIndexState(request.GET)
     checks_state = dispatch.ProjectIndexState(request.GET)
+    directory = request.translation_project.directory
     return {
         'basic':    [make_toggle_link(request, edit_state, 'editing',
                                       _("Show Editing Functions"),
@@ -66,7 +68,8 @@ def make_directory_actions(request):
                      make_toggle_link(request, checks_state, 'show_checks',
                                       _("Show Checks"), _("Hide Checks")),
                      ],
-        'extended': [],
+
+        'extended': get_store_extended_links(request, directory, ["zip"]),
         }
 
 def make_navbar_path_dict(request, path_links=None):

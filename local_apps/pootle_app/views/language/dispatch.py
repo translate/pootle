@@ -92,13 +92,12 @@ def open_translation_project(request, language_code, project_code):
     return '/%s/%s/' % (language_code, project_code)
 
 def download_zip(request, path_obj):
-    archive_name = "%s-%s" % (request.translation_project.project.code, 
-                              request.translation_project.language.code)
     if path_obj.is_dir:
         current_folder = path_obj.pootle_path
     else:
         current_folder = path_obj.parent.pootle_path
-        archive_name += "-%s.zip" % currentfolder.replace(os.path.sep, "-")
+    # FIXME: ugly URL, django.core.urlresolvers.reverse() should work
+    archive_name = "%sexport/zip" % current_folder
     return archive_name
 
 def download_sdf(request, path_obj):
