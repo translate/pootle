@@ -11,7 +11,11 @@
 
 {% block search %}
 {% include "language/search.html" %}
-{% endblock search %}
+{% endblock %}
+
+{% block breadcrumbs_content %}
+{% include "language/item_title.html" %}
+{% endblock %}
 
 {% block innernav %}
 <!--! Navigation bar -->
@@ -21,7 +25,7 @@
     {% include "language/item_stats.html" %}
     {% endfor %}
 </div><!--innernav-->
-{% endblock innernav %}
+{% endblock %}
 
 {% block content %}
 {% if not editing and children %}

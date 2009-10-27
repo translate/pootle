@@ -82,15 +82,15 @@
 
 	<div id="nav-secondary" lang="{{LANGUAGE_CODE}}">
 	  {% block nav-secondary %}
-	  {% block search %}{% endblock %}
-	  {% block breadcrumbs %}{% endblock %}
-	  {% block innernav %}{% endblock %}
+          {% block search %}{% endblock %}
+          {% block breadcrumbs %}{% endblock %}
 	  {% endblock nav-secondary %}
 	</div><!--nav-secondary-->
 
 
     <div id="precontent">
         {% block precontent %}{% endblock %}
+	    {% block innernav %}{% endblock %}
     </div><!-- precontent -->
     <div id="content">
         {% block content %}{% endblock %}
