@@ -736,7 +736,7 @@ html[dir="rtl"] .module-primary .hd h2
 
 
 /*
- * SETTINGS PAGE
+ * TABBED MENU
  */
 
 div#submenu
@@ -825,6 +825,11 @@ body.tpadmin div#submenu-tabs a.tpadmin
     margin-top: 3px;
     padding: 0 11px;
 }
+
+
+/*
+ * SETTINGS PAGE
+ */
 
 div.settings-container
 {
