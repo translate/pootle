@@ -1,5 +1,9 @@
 {% extends "base.html"  %}
 
+{% block search %}
+{% include "language/search.html" %}
+{% endblock %}
+
 {% block breadcrumbs %}
 <div id="breadcrumbs">
     <h2 class="title">{% block breadcrumbs_content %}{% endblock %}</h2>
