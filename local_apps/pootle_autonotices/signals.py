@@ -53,7 +53,6 @@ def new_translationproject(sender, instance, created=False, **kwargs):
     new_object(created, message, instance.directory.parent)
 
 
-
 ##### TranslationProject Events #####
 
 from pootle_app.models.translation_project import stats_message
@@ -66,7 +65,6 @@ def updated_from_template(sender, oldstats, newstats, **kwargs):
     message += stats_message("Before update", oldstats) + "<br/>\n"
     message += stats_message("After update", newstats) + "<br/>\n"
     new_object(True, message, sender.directory)
-
     
 def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwargs):
     if oldstats == newstats:
@@ -86,4 +84,20 @@ def committed_to_version_control(sender, store, stats, user, success, **kwargs):
         store.get_absolute_url(), store.name)
     message = stats_message(message, stats)
     new_object(success, message, sender.directory)
+
+##### Store events #####
+
+def unit_updated(sender, oldstats, newstats, **kwargs):
+    if oldstats == newstats:
+        return
+    
+    if newstats['translatedsourcewords'] == newstats['totalsourcewords']:
+        # find parent translation project
+        directory = sender.parent
+        while not directory.is_translationproject() and not directory == Directory.objects.root:
+            directory = directory.parent
+        
+        message = '<a href="%s">%s</a> fully translated</a><br/>' % (sender.get_absolute_url(), sender.name)
+        message += stats_message("Project now at", directory.getquickstats())
+        new_object(True, message, directory)
 

@@ -22,7 +22,6 @@ from django.db.models.signals      import pre_delete, post_init, pre_save, post_
 from django.contrib.auth.models import User
 
 from pootle_app.models import Language, Project, TranslationProject
-
 import signals
 
 post_save.connect(signals.new_language, sender=Language)
@@ -35,3 +34,5 @@ post_vc_update.connect(signals.updated_from_version_control)
 post_vc_commit.connect(signals.committed_to_version_control)
 post_template_update.connect(signals.updated_from_template)
 
+from pootle_store.signals import post_unit_update
+post_unit_update.connect(signals.unit_updated)

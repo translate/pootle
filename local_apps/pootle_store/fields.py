@@ -34,7 +34,7 @@ from django.utils.thread_support import currentThread
 from translate.storage import factory, statsdb, po, poheader
 from translate.misc.lru import LRUCachingDict
 
-from pootle_store.signals import translation_file_updated
+from pootle_store.signals import translation_file_updated, post_unit_update
 
 from pootle.__version__ import sver as pootle_version
 
@@ -187,12 +187,13 @@ class TranslationStoreFile(File):
                 headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
                 
             self.store.updateheader(add=True, **headerupdates)
-            
-        # If we didn't add a header, savepofile doesn't have to
-        # reset the stats, since reclassifyunit will do. This
-        # gives us a little speed boost for the common case.
+
+        oldstats = self.getquickstats()
         self.savestore()
         self.reclassifyunit(item, checker)
+        newstats = self.getquickstats()
+        post_unit_update.send(sender=self.instance, oldstats=oldstats, newstats=newstats)
+
 
     def addunit(self, unit):
         """Wrapper around TranslationStore.addunit that updates sourceindex on
