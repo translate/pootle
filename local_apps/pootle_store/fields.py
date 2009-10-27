@@ -259,9 +259,8 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         """Update stored mod_info without reparsing file."""
         if hasattr(self, "_store_tuple"):
             mod_info = self.getpomtime()
-            if self._store_tuple.mod_info != self.getpomtime():
+            if self._store_tuple.mod_info != mod_info:
                 self._store_tuple.mod_info = mod_info
-                self._stats[self.path] = StatsTuple()
                 translation_file_updated.send(sender=self, path=self.path)
         else:
             #FIXME: do we really need that?
