@@ -102,7 +102,6 @@ def view(request):
         'projectlink': _('Projects'),
         'projects': getprojects(request),
         'topstats': topstats,
-        'topstatsheading': _('Top Contributors'),
         'instancetitle': pagelayout.get_title(),
         'translationlegend': {'translated': _('Translations are complete'),
                     'fuzzy': _('Translations need to be checked (they are marked fuzzy)'

@@ -73,7 +73,6 @@ def view(request, project_code, _path_var):
         'languages': items,
         'instancetitle': pagelayout.get_title(),
         'topstats': topstats,
-        'topstatsheading': _('Top Contributors'),
         'statsheadings': get_stats_headings(),
         'translationlegend': {'translated': _('Translations are complete'),
                     'fuzzy': _('Translations need to be checked (they are marked fuzzy)'

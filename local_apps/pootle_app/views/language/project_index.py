@@ -33,7 +33,7 @@ from django.core.exceptions import PermissionDenied
 
 from translate.storage import factory, versioncontrol
 
-from pootle_app.views.top_stats import gentopstats, top_stats_heading
+from pootle_app.views.top_stats import gentopstats
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_app.models.permissions import get_matching_permissions, check_permission, PermissionError
@@ -318,7 +318,6 @@ class ProjectIndexView(BaseView):
             'stats_headings':        get_stats_headings(),
             'editing':               state.editing,
             'topstats':              top_stats(translation_project),
-            'topstatsheading':       top_stats_heading(),
             })
         return template_vars
 

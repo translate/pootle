@@ -84,6 +84,3 @@ def gentopstats(narrow_search_results):
         gen_top_stat(users_from_suggestions(top_sugg),   _('Suggestions')),
         gen_top_stat(users_from_suggestions(top_review), _('Reviews')),
         gen_top_stat(users_from_submissions(top_sub),    _('Submissions')) ]
-
-def top_stats_heading():
-    return _("Top Contributors")
