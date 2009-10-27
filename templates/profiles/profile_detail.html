@@ -33,7 +33,9 @@
         </dl>
         {% endfor %}
     {% else %}
-            <p>{% trans "You need to " %} <a href='{{ "/accounts/edit/"|l }}'>{% trans "choose your languages and projects." %}</a></p>
+        {% with "/accounts/edit"|l  as URL %}
+            <p>{% blocktrans %}No languages or projects selected. <a href='{{ URL }}'>Choose yours now.</a>{% endblocktrans %}</p>
+        {% endwith %}
     {% endif %}
     </div>
 </div>
