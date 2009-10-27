@@ -925,6 +925,11 @@ html[dir="rtl"] div.statslist ul li span.value
     float: left;
 }
 
+div.topcontributors
+{
+    margin-bottom: 2em;
+}
+
 /* 
  * Pretty Graphs, mostly from http://l10n.gnome.org/
  */
@@ -1256,6 +1261,7 @@ table[dir="rtl"] td.translate-original
 }
 
 /* ORIGINAL */
+
 .translate-focus div.translate-original
 {
     border: 1px solid black;
@@ -1347,6 +1353,7 @@ textarea.comments
 }
 
 /* TM */
+
 .sidebar
 {
     padding-right: 10px;
