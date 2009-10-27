@@ -20,7 +20,6 @@
 from django.conf import settings
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
-from django.utils.translation import get_language_bidi
 from pootle_app.models.profile import get_profile
 
 def get_title():
@@ -28,29 +27,6 @@ def get_title():
 
 def get_description():
     return _(settings.DESCRIPTION)
-
-def localize_links(request):
-    """Localize all the generic links"""
-
-    links = {}
-    links['home'] = _('Home')
-    links['projects'] = _('All projects')
-    links['languages'] = _('All languages')
-    links['account'] = _('My Account')
-    links['admin'] = _('Admin')
-    links['doc'] = _('Help')
-    links['doclang'] = getdoclang(request.LANGUAGE_CODE)
-    links['logout'] = _('Log Out')
-    links['login'] = _('Log In')
-    links['about'] = _('About')
-    # l10n: Verb, as in "to register"
-    links['register'] = _('Register')
-    links['activate'] = _('Activate')
-    # accessibility links
-    links['skip_nav'] = _('skip to navigation')
-    links['switch_language'] = _('switch language')
-    return links
-
 
 def getdoclang(language):
     """Get the language code that the docs should be displayed in."""
@@ -61,15 +37,6 @@ def getdoclang(language):
         return language
     else:
         return 'en'
-
-
-def languagedir():
-    """Returns whether the language is right to left"""
-    if get_language_bidi():
-        return "rtl"
-    else:
-        return "ltr"
-
 
 def weblanguage(language):
     """Reformats the language code from locale style (pt_BR) to web
@@ -83,43 +50,21 @@ def completetemplatevars(templatevars, request, bannerheight=135):
 
     if not 'instancetitle' in templatevars:
         templatevars['instancetitle'] = get_title()
-    templatevars['sessionvars'] = {'status': get_profile(request.user).status,
-                                   'isopen': request.user.is_authenticated(),
-                                   'issiteadmin': request.user.is_superuser}
     templatevars['request'] = request
     if not 'mediaurl' in templatevars:
         templatevars['mediaurl'] = settings.MEDIA_URL
     if not 'enablealtsrc' in templatevars:
         templatevars['enablealtsrc'] = settings.ENABLE_ALT_SRC
-    templatevars['aboutlink'] = _('About this Pootle server')
     templatevars['uilanguage'] = weblanguage(request.LANGUAGE_CODE)
-    templatevars['uidir'] = languagedir()
-    # TODO FIXME cssaligndir is deprecated?
-    if templatevars['uidir'] == 'ltr':
-        templatevars['cssaligndir'] = 'left'
-    else:
-        templatevars['cssaligndir'] = 'right'
-    templatevars['username_title'] = _('Username')
     try:
         templatevars['username'] = templatevars['username']
     except:
         templatevars['username'] = ''
-    templatevars['password_title'] = _('Password')
-    templatevars['login_text'] = _('Log In')
-    templatevars['logout_text'] = _('Log Out')
-    templatevars['register_text'] = _('Register')
     templatevars['canregister'] = settings.CAN_REGISTER
-    templatevars['links'] = localize_links(request)
     templatevars['current_url'] = request.path_info
-    if '?' in request.path_info:
-        templatevars['logout_link'] = request.path_info + '&islogout=1'
-    else:
-        templatevars['logout_link'] = request.path_info + '?islogout=1'
     if 'user' not in templatevars:
         templatevars['user'] = request.user
     if 'search' not in templatevars:
         templatevars['search'] = None
     templatevars['message'] = escape(request.GET.get('message', ''))
-
-
 
