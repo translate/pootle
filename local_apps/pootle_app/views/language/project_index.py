@@ -328,6 +328,6 @@ def view(request, translation_project, directory):
         raise PermissionDenied
 
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler, update=UpdateHandler))
-    return render_to_response("language/fileindex.html",
+    return render_to_response("language/tp_overview.html",
                          view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))

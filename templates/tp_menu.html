@@ -1,0 +1,13 @@
+{% load i18n baseurl %}
+
+<div id="submenu">
+    <div id="submenu-tabs">
+        <a href='{{ "."|l }}' class="tpoverview" title="{% trans 'Language main page' %}">{% trans "Overview" %}</a>
+        <a href='{{ "notices"|l }}' class="tpnews" title="{% trans 'Language news' %}">{% trans "News" %}</a>
+        <a href='{{ "translate"|l }}' class="tptranslate" title="{% trans 'Translate this project' %}">{% trans "Translate" %}</a>
+        <a href='{{ "review"|l }}' class="tpreview" title="{% trans 'Quality checks and review suggestions' %}">{% trans "Review" %}</a>
+        {% if user.is_superuser %}
+        <a href='{{ "admin.html"|l }}' class="tpadmin" title="{% trans 'Administrate your project files and permissions' %}">{% trans "Administrate" %}</a>
+        {% endif %}
+    </div>
+</div>

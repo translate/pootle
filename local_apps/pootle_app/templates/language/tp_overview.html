@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "tp_base.html" %}
 
 {% load i18n baseurl %}
 
@@ -6,6 +6,8 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block body.id %}fileindex{% endblock body.id %}
+
+{% block bodyclass %}tpoverview{% endblock bodyclass %}
 
 {% block search %}
 {% include "language/search.html" %}
@@ -20,10 +22,6 @@
     {% endfor %}
 </div><!--innernav-->
 {% endblock innernav %}
-
-{% block precontent %}
-<div><a href="{% filter l %}/{{language.code}}/{{project.code}}/notices/{% endfilter %}">{% trans "News"%}</a></div>
-{% endblock precontent %}
 
 {% block content %}
 {% if not editing and children %}

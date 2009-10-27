@@ -807,7 +807,12 @@ body.projectoverview div#submenu-tabs a.projectoverview,
 body.projectadmin div#submenu-tabs a.projectadmin,
 body.languageoverview div#submenu-tabs a.languageoverview,
 body.languagenews div#submenu-tabs a.languagenews,
-body.languageadmin div#submenu-tabs a.languageadmin
+body.languageadmin div#submenu-tabs a.languageadmin,
+body.tpoverview div#submenu-tabs a.tpoverview,
+body.tpnews div#submenu-tabs a.tpnews,
+body.tptranslate div#submenu-tabs a.tptranslate,
+body.tpreview div#submenu-tabs a.tpreview,
+body.tpadmin div#submenu-tabs a.tpadmin
 {
     background-color: #ffffff;
     border-color: #777777 #777777 #fff;

@@ -6,13 +6,15 @@
 <link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications.feeds.view path %}" />
 {% endblock %}
 
-{% if is_language %}
-    {% block bodyclass %}languagenews{% endblock %}
-{% endif %}
+{% block bodyclass %}
+{% if is_language %}languagenews{% else %}tpnews{% endif %}
+{% endblock %}
 
 {% block precontent %}
 {% if is_language %}
     {% include "language_menu.html" %}
+{% else %}
+    {% include "tp_menu.html" %}
 {% endif %}
 {% endblock %}
 
