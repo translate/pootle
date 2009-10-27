@@ -40,7 +40,7 @@ def view(request, path):
     else:
         setting_form = GeneralSettingsForm(siteconfig)
 
-    template = 'admin/adminindex.html'
+    template = 'admin/admin_general_settings.html'
     template_vars = {
         'form': setting_form,
         'pagetitle': _("Pootle Admin Page"),

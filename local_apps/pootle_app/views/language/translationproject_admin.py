@@ -35,7 +35,7 @@ def view(request, language_code, project_code):
     model_args['submitname'] = "changestores"
     model_args['formid'] = "stores"
     link = "%s"
-    return util.edit(request, 'admin/admin_tp_files.html', Store, model_args,
+    return util.edit(request, 'language/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,
                      can_delete=True)
     
