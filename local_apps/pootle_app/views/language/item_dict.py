@@ -27,9 +27,6 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 
 from translate.storage import versioncontrol
-from pootle_app.models.profile         import get_profile
-from pootle_app.views.language         import search_forms
-from pootle_app.models.store_iteration import get_next_match
 from pootle_app.models.permissions     import check_permission
 from pootle_store.models               import Store
 from pootle_app.views.language         import dispatch
@@ -203,12 +200,16 @@ def get_action_links(request, path_obj, links_required):
 ################################################################################
 
 def add_percentages(quick_stats):
+    """Add percentages onto the raw stats dictionary."""
     quick_stats['translatedpercentage']   = int(100.0 * quick_stats['translatedsourcewords']   / max(quick_stats['totalsourcewords'], 1))
     quick_stats['fuzzypercentage'] = int(100.0 * quick_stats['fuzzysourcewords'] / max(quick_stats['totalsourcewords'], 1))
     quick_stats['untranslatedpercentage'] = 100 - quick_stats['translatedpercentage'] - quick_stats['fuzzypercentage']
     return quick_stats
 
 def make_generic_item(request, path_obj, action, links_required):
+    """Template variables for each row in the table.
+
+    make_directory_item() and make_store_item() will add onto these variables."""
     quick_stats = add_percentages(path_obj.getquickstats())
     return {
         'href':    action,
