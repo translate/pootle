@@ -47,7 +47,7 @@ from pootle_app.models.directory   import Directory
 from pootle_app                    import project_tree
 from pootle_app.models.permissions import PermissionError, check_permission
 from translate.storage import statsdb
-from pootle_app.models.signals import post_vc_update
+from pootle_app.models.signals import post_vc_update, post_vc_commit
 
 
 class TranslationProjectNonDBState(object):
@@ -281,8 +281,9 @@ class TranslationProject(models.Model):
         try:
             hooks.hook(self.project.code, "postcommit", store.file.path, success=success)
         except:
-            # We should not hide the exception - makes development impossible
+            #FIXME: We should not hide the exception - makes development impossible
             pass
+        post_vc_commit.send(sender=self, store=store, stats=stats, user=request.user, success=success)
         return success
 
 

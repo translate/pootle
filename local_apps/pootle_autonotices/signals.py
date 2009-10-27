@@ -80,3 +80,10 @@ def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwar
     message += stats_message("After update", newstats)
     new_object(True, message, sender.directory)
 
+def committed_to_version_control(sender, store, stats, user, success, **kwargs):
+    message = '<a href="%s">%s</a> committed <a href="%s">%s</a> to version control' % (
+        l('/accounts/%s/' % user.username), user.username,
+        store.get_absolute_url(), store.name)
+    message = stats_message(message, stats)
+    new_object(success, message, sender.directory)
+
