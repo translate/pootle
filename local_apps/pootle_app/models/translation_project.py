@@ -259,12 +259,8 @@ class TranslationProject(models.Model):
             raise PermissionError(_("You do not have rights to commit files here"))
 
         stats = store.file.getquickstats()
-        statsstring = "%d of %d messages translated (%d fuzzy)." % \
-                (stats["translated"], stats["total"], stats["fuzzy"])
-
         author = request.user.username
-        message="Commit from %s by user %s. %s" % \
-                  (settings.TITLE, author, statsstring)
+        message = stats_message("Commit from %s by user %s." % (settings.TITLE, author), stats)
 
         try:
             filestocommit = hooks.hook(self.project.code, "precommit", store.file.path, author=author, message=message)
