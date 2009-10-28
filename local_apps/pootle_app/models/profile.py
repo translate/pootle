@@ -26,11 +26,12 @@ from django.db.models.signals import post_save
 
 from pootle.i18n.gettext import tr_lang
 
+from pootle_misc.baseurl import l
+
 from pootle_app.models.language import Language
 from pootle_app.models.project import Project
 
-
-
+        
 class PootleUserManager(UserManager):
     """A manager class which is meant to replace the manager class for the User model. This manager
     hides the 'nobody' and 'default' users for normal queries, since they are special users. Code
@@ -56,7 +57,7 @@ class PootleProfile(models.Model):
         app_label = "pootle_app"
 
     # This is the only required field
-    user = models.ForeignKey(User, unique=True)
+    user = models.OneToOneField(User, unique=True)
 
     translate_rows  = models.SmallIntegerField(default=7)
     view_rows       = models.SmallIntegerField(default=10)
@@ -69,8 +70,11 @@ class PootleProfile(models.Model):
 
     def __unicode__(self):
         return self.user.username
+    def get_absolute_url(self):
+        return l('/accounts/%s/' % self.user.username)
     
     def _get_status(self):
+        #FIXME: what's this for?
         return "Foo"
 
     status = property(_get_status)

@@ -24,7 +24,6 @@
 
 from pootle_notifications.models import Notice
 from pootle_app.models import Directory
-from pootle_misc.baseurl import l
 
 ##### Model Events #####
 
@@ -43,7 +42,7 @@ def new_project(sender, instance, created=False, **kwargs):
     new_object(created, message, parent=Directory.objects.root)
 
 def new_user(sender, instance, created=False, **kwargs):
-    message = 'New user <a href="%s">%s</a> registered.' % (l('/accounts/%s/' % instance.username), instance.username)
+    message = 'New user <a href="%s">%s</a> registered.' % (instance.get_profile().get_absolute_url(), instance.username)
     new_object(created, message, parent=Directory.objects.root)
 
 def new_translationproject(sender, instance, created=False, **kwargs):
@@ -61,7 +60,7 @@ def updated_from_template(sender, oldstats, newstats, **kwargs):
     if oldstats == newstats:
         # nothing changed, no need to report
         return
-    message = "Updated files to latest template<br/>\n"
+    message = 'Updated <a href="%s">%s</a> to latest template<br/>\n' % (sender.get_absolute_url(), sender.fullname)
     message += stats_message("Before update", oldstats) + "<br/>\n"
     message += stats_message("After update", newstats) + "<br/>\n"
     new_object(True, message, sender.directory)
@@ -71,7 +70,7 @@ def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwar
         # nothing changed, no need to report
         return
     
-    message = "Updated files from version control<br/>\n"
+    message = 'Updated <a href="%s">%s</a> from version control<br/>\n' % (sender.get_absolute_url(), sender.fullname)
     message += stats_message("Before update", oldstats) + "<br/>\n"
     if not remotestats == newstats:
         message +=stats_message("Remote copy", remotestats) + "<br/>\n"
@@ -80,8 +79,8 @@ def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwar
 
 def committed_to_version_control(sender, store, stats, user, success, **kwargs):
     message = '<a href="%s">%s</a> committed <a href="%s">%s</a> to version control' % (
-        l('/accounts/%s/' % user.username), user.username,
-        store.get_absolute_url(), store.name)
+        user.get_absolute_url(), user.username,
+        store.get_absolute_url(), store.pootle_path)
     message = stats_message(message, stats)
     new_object(success, message, sender.directory)
 

@@ -95,7 +95,8 @@ class TranslationProject(models.Model):
 
     def get_absolute_url(self):
         return l(self.pootle_path)
-    
+
+    fullname = property(lambda self: "%s [%s]" % (self.project.fullname, self.language.fullname))
     def _get_abs_real_path(self):
         return absolute_real_path(self.real_path)
 
