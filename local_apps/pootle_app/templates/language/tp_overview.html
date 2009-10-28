@@ -1,6 +1,6 @@
 {% extends "tp_base_extended.html" %}
 
-{% load i18n baseurl %}
+{% load i18n %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -41,28 +41,6 @@ SHOW CHECKS
         </table>
     </div>
 </div>
-{% endif %}
-
-{% comment %}
-EDITING
-{% endcomment %}
-{% if editing %}
-<!--! The editing view -->
-{% for item in children %}
-<div class="module-primary">
-    <div class="bd">
-        {% if item.isdir or item.isfile %}
-        <div class="item {% cycle 'even' 'odd' %}">
-        {% include "language/item_block.html" %}
-        {% comment %}
-        SHOW CHECKS
-        {% endcomment %}
-        {% include "language/item_stats.html" %}
-        </div>
-        {% endif %}
-    </div>
-</div>
-{% endfor %}
 {% endif %}
 {% endblock content %}
 

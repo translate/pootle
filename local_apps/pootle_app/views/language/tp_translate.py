@@ -18,60 +18,30 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.translation import ugettext as _
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.core.exceptions import PermissionDenied
+from django.utils.translation import ugettext as _
 
-from pootle_app.views.top_stats import gentopstats
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
-from pootle_app.project_tree import scan_translation_project_files
 from pootle_app.views.base import BaseView
+from pootle_app.views.language import navbar_dict
+from pootle_app.views.language import search_forms
 from pootle_app.views.language import tp_common
 from pootle_app.views import pagelayout
 
 from pootle.i18n.gettext import tr_lang
 
-import dispatch, navbar_dict, item_dict, search_forms
-
-################################################################################
-
-def get_stats_headings():
-    """returns a dictionary of localised headings"""
-    return {
-        "name":                   _("Name"),
-        "translated":             _("Translated"),
-        "translatedpercentage":   _("Translated percentage"),
-        "translatedwords":        _("Translated words"),
-        "fuzzy":                  _("Fuzzy"),
-        "fuzzypercentage":        _("Fuzzy percentage"),
-        "fuzzywords":             _("Fuzzy words"),
-        "untranslated":           _("Untranslated"),
-        "untranslatedpercentage": _("Untranslated percentage"),
-        "untranslatedwords":      _("Untranslated words"),
-        "total":                  _("Total"),
-        "totalwords":             _("Total Words"),
-        # l10n: noun. The graphical representation of translation status
-        "progress":               _("Progress"),
-        "summary":                _("Summary")
-        }
-
-def top_stats(translation_project):
-    return gentopstats(lambda query: query.filter(translation_project=translation_project))
-
-################################################################################
-
-class ProjectIndexView(BaseView):
+class TPTranslateView(BaseView):
     def GET(self, template_vars, request, translation_project, directory):
-        template_vars = super(ProjectIndexView, self).GET(template_vars, request)
+        template_vars = super(TPTranslateView, self).GET(template_vars, request)
         request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
-        state    = dispatch.ProjectIndexState(request.GET)
         project  = translation_project.project
         language = translation_project.language
 
         template_vars.update({
-            'pagetitle':             _('%(title)s: Project %(project)s, Language %(language)s', 
+            'pagetitle':             _('%(title)s: Project %(project)s, Language %(language)s',
                                        {"title": pagelayout.get_title(),
                                         "project": project.fullname,
                                         "language": tr_lang(language.fullname)}
@@ -81,9 +51,8 @@ class ProjectIndexView(BaseView):
             'search':                search_forms.get_search_form(request),
             'children':              tp_common.get_children(request, translation_project, directory),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
-            'stats_headings':        get_stats_headings(),
-            'editing':               state.editing,
-            'topstats':              top_stats(translation_project),
+            #'stats_headings':        get_stats_headings(),
+            #'topstats':              top_stats(translation_project),
             })
         return template_vars
 
@@ -93,8 +62,8 @@ def view(request, translation_project, directory):
     if not check_permission("view", request):
         raise PermissionDenied
 
-    view_obj = ProjectIndexView(forms=dict(upload=tp_common.UploadHandler,
-                                           update=tp_common.UpdateHandler))
-    return render_to_response("language/tp_overview.html",
+    view_obj = TPTranslateView(forms=dict(upload=tp_common.UploadHandler,
+                                          update=tp_common.UpdateHandler))
+    return render_to_response("language/tp_translate.html",
                          view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))

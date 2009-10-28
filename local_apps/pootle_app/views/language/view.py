@@ -36,12 +36,12 @@ from pootle_app.views.language     import dispatch
 from pootle_app.convert            import convert_table
 from pootle_app                    import unit_update
 
+from pootle_app.views.language.tp_translate import view as tp_translate_view
+
 from project_index import view as project_index_view
 from translate_page import find_and_display
 from admin import view as translation_project_admin_view
 from pootle_app.views.language import search_forms
-################################################################################
-
 
 def get_translation_project(f):
     def decorated_f(request, language_code, project_code, *args, **kwargs):
@@ -60,8 +60,6 @@ def set_request_context(f):
     return decorated_f
 
 ################################################################################
-
-
 
 @get_translation_project
 @set_request_context
@@ -298,3 +296,11 @@ def handle_suggestions(request, translation_project, file_path, item):
     # TODO: change mimetype to something more appropriate once all works fine
     return HttpResponse(response, mimetype="text/plain")
 
+@get_translation_project
+@set_request_context
+def tp_translate(request, translation_project, dir_path):
+    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
+    try:
+        return tp_translate_view(request, translation_project, directory)
+    except PermissionError, msg:
+        return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
