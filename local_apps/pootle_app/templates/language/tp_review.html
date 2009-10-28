@@ -5,9 +5,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
-{% block body.id %}fileindex{% endblock body.id %}
-
-{% block bodyclass %}tpoverview{% endblock bodyclass %}
+{% block bodyclass %}tpreview{% endblock bodyclass %}
 
 {% block breadcrumbs_content %}
 {% include "language/item_title.html" %}
@@ -15,29 +13,22 @@
 
 {% block content %}
 {% if children %}
-<!--! The statistics view -->
+<!-- The review view -->
+{% for item in children %}
 <div class="module-primary">
     <div class="bd">
-        <table class="sortable stats" id="stats" cellpadding="5"
-        cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-            <thead>
-                <tr>
-                    <th class="stats">{{ stats_headings.name }}</th>
-                    <th class="stats">{{ stats_headings.progress }}</th>
-                    <th class="stats">{{ stats_headings.summary }}</th>
-                    <th class="stats">{{ stats_headings.totalwords }}</th>
-                </tr>
-            </thead>
-            <tbody class="stats">
-                {% for item in children %}
-                <tr class="item {% cycle 'even' 'odd' %}" title="{{ item.description }}">
-                {% include "language/item_summary.html" %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        {% if item.isdir or item.isfile %}
+        <div class="item {% cycle 'even' 'odd' %}">
+        {% include "language/item_block.html" %}
+        {% comment %}
+        SHOW CHECKS
+        {% endcomment %}
+        {% include "language/item_stats.html" %}
+        </div>
+        {% endif %}
     </div>
 </div>
+{% endfor %}
 {% endif %}
 {% endblock content %}
 

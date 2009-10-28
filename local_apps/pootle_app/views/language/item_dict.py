@@ -54,13 +54,13 @@ def get_item_summary(request, quick_stats, path_obj):
     # The whole string of stats
     return '%s %s %s' % (file_stats, word_stats, string_stats)
 
-def get_item_stats(request, quick_stats, path_obj):
+def get_item_stats(request, quick_stats, path_obj, show_checks=False):
     result = {
         'summary': get_item_summary(request, quick_stats, path_obj),
         'checks':  [],
         }
-    if request.GET.get('show_checks', None):
-        result['checks'] = getcheckdetails(request, path_obj)       #None  # TBD
+    if show_checks:
+        result['checks'] = getcheckdetails(request, path_obj)
     return result
 
 def getcheckdetails(request, path_obj, url_opts={}):
@@ -206,7 +206,7 @@ def add_percentages(quick_stats):
     quick_stats['untranslatedpercentage'] = 100 - quick_stats['translatedpercentage'] - quick_stats['fuzzypercentage']
     return quick_stats
 
-def make_generic_item(request, path_obj, action, links_required):
+def make_generic_item(request, path_obj, action, links_required, show_checks=False):
     """Template variables for each row in the table.
 
     make_directory_item() and make_store_item() will add onto these variables."""
@@ -215,12 +215,12 @@ def make_generic_item(request, path_obj, action, links_required):
         'href':    action,
         'data':    quick_stats,
         'title':   path_obj.name,
-        'stats':   get_item_stats(request, quick_stats, path_obj),
+        'stats':   get_item_stats(request, quick_stats, path_obj, show_checks),
         'actions': get_action_links(request, path_obj, links_required) }
 
-def make_directory_item(request, directory, links_required=None):
+def make_directory_item(request, directory, links_required=None, show_checks=False):
     action = dispatch.show_directory(request, directory.pootle_path)
-    item = make_generic_item(request, directory, action, links_required)
+    item = make_generic_item(request, directory, action, links_required, show_checks)
     item.update({
             'icon':   'folder',
             'isdir':  True })
@@ -237,10 +237,11 @@ def default_store_links_required(store, links_required):
     else:
         return links_required
 
-def make_store_item(request, store, links_required=None):
+def make_store_item(request, store, links_required=None, show_checks=False):
     action = dispatch.translate(request, store.pootle_path)
     item = make_generic_item(request, store, action,
-                             default_store_links_required(store, links_required))
+                             default_store_links_required(store, links_required),
+                             show_checks)
     item.update({
             'icon':   'file',
             'isfile': True })

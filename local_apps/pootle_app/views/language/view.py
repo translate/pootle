@@ -37,6 +37,7 @@ from pootle_app.convert            import convert_table
 from pootle_app                    import unit_update
 
 from pootle_app.views.language.tp_translate import view as tp_translate_view
+from pootle_app.views.language.tp_review import view as tp_review_view
 
 from project_index import view as project_index_view
 from translate_page import find_and_display
@@ -302,5 +303,14 @@ def tp_translate(request, translation_project, dir_path):
     directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
     try:
         return tp_translate_view(request, translation_project, directory)
+    except PermissionError, msg:
+        return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
+
+@get_translation_project
+@set_request_context
+def tp_review(request, translation_project, dir_path):
+    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
+    try:
+        return tp_review_view(request, translation_project, directory)
     except PermissionError, msg:
         return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)

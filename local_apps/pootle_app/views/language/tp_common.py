@@ -38,11 +38,11 @@ from pootle_app.views.language import search_forms
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 
-def get_children(request, translation_project, directory):
+def get_children(request, translation_project, directory, show_checks=False):
     search = search_forms.search_from_request(request)
-    return [item_dict.make_directory_item(request, child_dir)
+    return [item_dict.make_directory_item(request, child_dir, show_checks=show_checks)
             for child_dir in directory.child_dirs.all()] + \
-           [item_dict.make_store_item(request, child_store)
+           [item_dict.make_store_item(request, child_store, show_checks=show_checks)
             for child_store in directory.filter_stores(search).all()]
 
 def unix_to_host_path(p):
