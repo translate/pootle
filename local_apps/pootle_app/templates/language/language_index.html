@@ -9,21 +9,21 @@
 {% block bodyclass %}languageoverview{% endblock bodyclass %}
 
 {% block breadcrumbs_content %}
-<a href="{%filter l%}/{{language.code}}/{%endfilter%}">{{language.name}}</a>
+<a href="{%filter l%}/{{ language.code }}/{%endfilter%}">{{ language.name }}</a>
 {% endblock breadcrumbs_content %}
 
 {% block content %}
-<div class="item-statistics">{{language.stats}}</div>
+<div class="item-statistics">{{ language.stats }}</div>
 
 <div class="module-primary">
     <div class="bd">
     <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th class="stats">{{statsheadings.name}}</th>
-                <th class="stats">{{statsheadings.progress}}</th>
-                <th class="stats">{{statsheadings.summary}}</th>
-                <th class="stats">{{statsheadings.totalwords}}</th>
+                <th class="stats">{{ statsheadings.name }}</th>
+                <th class="stats">{{ statsheadings.progress }}</th>
+                <th class="stats">{{ statsheadings.summary }}</th>
+                <th class="stats">{{ statsheadings.totalwords }}</th>
             </tr>
         </thead>
         <tbody class="stats">
