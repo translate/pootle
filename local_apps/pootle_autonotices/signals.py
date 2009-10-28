@@ -20,6 +20,7 @@
 
 """Set of singal handlers for generating automatic notifications on system events"""
 
+import logging
 
 
 from pootle_notifications.models import Notice
@@ -83,6 +84,25 @@ def committed_to_version_control(sender, store, stats, user, success, **kwargs):
         store.get_absolute_url(), store.pootle_path)
     message = stats_message(message, stats)
     new_object(success, message, sender.directory)
+
+def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
+    if oldstats == newstats:
+        logging.debug("file uploaded but stats didn't change")
+        return
+    
+    if archive:
+        message = '<a href="%s">%s</a> uploaded an archive to <a href="%s">%s</a><br/>\n' % (
+            user.get_profile().get_absolute_url(), user.username,
+            sender.get_absolute_url(), sender.fullname)
+    else:
+        message = '<a href="%s">%s</a> uploaded a file to <a href="%s">%s</a><br/>\n' % (
+            user.get_profile().get_absolute_url(), user.username,
+            sender.get_absolute_url(), sender.fullname)
+    
+    message += stats_message('Before upload', oldstats) + '<br/>\n'
+    message += stats_message('After upload', newstats) + '<br/>\n'
+    new_object(True, message, sender.directory)
+
 
 ##### Store events #####
 

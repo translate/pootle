@@ -33,11 +33,13 @@ from django.core.exceptions import PermissionDenied
 
 from translate.storage import factory, versioncontrol
 
-from pootle_app.views.top_stats import gentopstats
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
+
+from pootle_app.views.top_stats import gentopstats
 from pootle_app.models.permissions import get_matching_permissions, check_permission, PermissionError
 from pootle_app.models.profile import get_profile
+from pootle_app.models.signals import post_file_upload
 from pootle_app.project_tree import scan_translation_project_files
 from pootle_app.lib import view_handler
 from pootle_app.views.base import BaseView
@@ -284,16 +286,22 @@ class UploadHandler(view_handler.Handler):
     def do_upload(self, request, translation_project, directory):
         django_file = request.FILES['file']
         overwrite = self.form['overwrite'].data == 'checked'
-        scan_translation_project_files(request.translation_project)
+        scan_translation_project_files(translation_project)
+        oldstats = translation_project.getquickstats()
         # The URL relative to the URL of the translation project. Thus, if
         # directory.pootle_path == /af/pootle/foo/bar, then
         # relative_root_dir == foo/bar.
-        relative_root_dir = directory.pootle_path[len(request.translation_project.directory.pootle_path):]
+        relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
         if django_file.name.endswith('.zip'):
+            archive = True
             upload_archive(request, relative_root_dir, django_file, overwrite)
         else:
+            archive = False
             upload_file(request, relative_root_dir, django_file, overwrite)
-        scan_translation_project_files(request.translation_project)
+        scan_translation_project_files(translation_project)
+        newstats = translation_project.getquickstats()
+        post_file_upload.send(sender=translation_project, user=request.user, oldstats=oldstats,
+                              newstats=newstats, archive=archive)
         return {}
 
 class ProjectIndexView(BaseView):
