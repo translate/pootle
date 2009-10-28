@@ -150,12 +150,7 @@
                               <!--! with plurals -->
                               {% for form in item.trans.forms %}
                               <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ form.title }}</div>
-                                  <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}"
-                                        onfocus="setfocusedelement(this);" class="translation expanding {{ item.state_class }}"
-                                        name="{{ form.name }}" id="area{{ form.name }}" rows="{{ item.trans.rows }}"
-                                        cols="{{ item.trans.cols }}">
-                                      {{ form.text|safe }}
-                                  </textarea>
+                                  <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}" onfocus="setfocusedelement(this);" class="translation expanding {{ item.state_class }}" name="{{ form.name }}" id="area{{ form.name }}" rows="{{ item.trans.rows }}" cols="{{ item.trans.cols }}">{{ form.text|safe }}</textarea>
                               {% endfor %}
                               {% endif %}
 
