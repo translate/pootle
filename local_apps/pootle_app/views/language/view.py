@@ -38,10 +38,10 @@ from pootle_app                    import unit_update
 
 from pootle_app.views.language.tp_translate import view as tp_translate_view
 from pootle_app.views.language.tp_review import view as tp_review_view
+from pootle_app.views.language.admin import view as translation_project_admin_view
 
 from project_index import view as project_index_view
 from translate_page import find_and_display
-from admin import view as translation_project_admin_view
 from pootle_app.views.language import search_forms
 
 def get_translation_project(f):

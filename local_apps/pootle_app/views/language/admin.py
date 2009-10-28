@@ -30,6 +30,8 @@ from django.template import RequestContext
 from pootle_app.models.profile import PootleProfile, get_profile
 from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, \
     get_matching_permissions, check_permission
+from pootle_app.views.language import navbar_dict
+from pootle_app.views.language import search_forms
 from pootle_app import project_tree
 
 
@@ -260,5 +262,7 @@ def view(request, translation_project):
         "permission_set_formset": permission_set_formset,
         "updaterights_text":      _("Update Rights"),
         "adduser_text":           _("(select to add user)"),
+        "search":                 search_forms.get_search_form(request),
+        "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
     }
-    return render_to_response("language/projectlangadmin.html", template_vars, context_instance=RequestContext(request))
+    return render_to_response("language/tp_admin.html", template_vars, context_instance=RequestContext(request))
