@@ -106,9 +106,6 @@ def download_sdf(request, path_obj):
 def export(request, pootle_path, format):
     return '%s/export/%s' % (pootle_path, format)
 
-def reload(request, vars):
-    return url_manip.make_url(request.path_info, vars)
-
 def commit(request, path_obj):
     params = ProjectIndexState(request.GET).encode()
     return  url_manip.make_url(path_obj.pootle_path + '/commit', params)

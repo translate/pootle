@@ -45,30 +45,12 @@ def make_store_pathlinks(request, project_url, store, links):
                   'text': store.name})
     return links
 
-def make_toggle_link(request, state, property, first_option, second_option):
-    if not getattr(state, property):
-        setattr(state, property, True)
-        return {'text': first_option,
-                'sep':  ' | ',
-                'href': dispatch.reload(request, state.encode())}
-    else:
-        setattr(state, property, False)
-        return {'text': second_option,
-                'sep':  ' | ',
-                'href': dispatch.reload(request, state.encode())}
-
 def make_directory_actions(request):
     edit_state = dispatch.ProjectIndexState(request.GET)
     checks_state = dispatch.ProjectIndexState(request.GET)
     directory = request.translation_project.directory
     return {
-        'basic':    [make_toggle_link(request, edit_state, 'editing',
-                                      _("Show Editing Functions"),
-                                      _("Show Statistics")),
-                     make_toggle_link(request, checks_state, 'show_checks',
-                                      _("Show Checks"), _("Hide Checks")),
-                     ],
-
+        'basic': [],
         'extended': get_store_extended_links(request, directory, ["zip"]),
         }
 
