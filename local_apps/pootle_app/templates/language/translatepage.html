@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "tp_base_extended.html" %}
 
 {% load i18n baseurl %}
 
@@ -6,6 +6,8 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block body.id %}translatepage{% endblock body.id %}
+
+{% block bodyclass %}{% if checking_text %}tpreview{% else %}tptranslate{% endif %}{% endblock %}
 
 {% block extra_head %}
 <script src='{{ "js/jquery/jquery.growfield2.ycomp.js"|m }}' type="text/javascript"></script>
@@ -18,9 +20,9 @@
 </script>
 {% endblock extra_head %}
 
-{% block search %}
-{% include "language/search.html" %}
-{% endblock search %}
+{% block breadcrumbs_content %}
+{% include "language/item_title.html" %}
+{% endblock %}
 
 {% block innernav %}
 <!--! Navigation bar -->
@@ -33,8 +35,9 @@
 {% endblock innernav %}
 
 {% block precontent %}
+{{ block.super }}
 {% if checking_text %}
-<div>
+<div class="check">
     <img src='{{ "images/help.png"|m }}' class="checkinfo" />
     <span>{{ checking_text|safe }}</span>
 </div>

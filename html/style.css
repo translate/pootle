@@ -1213,6 +1213,11 @@ html[dir="rtl"] .translations-nav li:last-child:after
 
 /* CHECKS */
 
+div.check
+{
+    margin: 1em;
+}
+
 .checkinfo
 {
     vertical-align: top;
