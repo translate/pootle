@@ -951,6 +951,11 @@ div.small
     line-height: 1.2;
 }
 
+td.stats-words
+{
+    text-align: right;
+}
+
 /* 
  * Pretty Graphs, mostly from http://l10n.gnome.org/
  */
