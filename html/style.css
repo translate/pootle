@@ -945,6 +945,12 @@ div.item-statistics
     line-height: 2;
 }
 
+div.small
+{
+    font-size: 1em;
+    line-height: 1.2;
+}
+
 /* 
  * Pretty Graphs, mostly from http://l10n.gnome.org/
  */

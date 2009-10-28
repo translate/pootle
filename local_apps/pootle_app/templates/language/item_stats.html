@@ -2,7 +2,7 @@
 
 {% block itemstats %}
 <!-- itemstats -->
-<div class="item-statistics">
+<div class="item-statistics small">
     {{ item.stats.summary|safe }}
     {% for check in item.stats.checks %}
     <br /><a href="{{ check.href|l }}">{{ check.text }}</a> {{ check.stats }}
