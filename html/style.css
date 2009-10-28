@@ -768,7 +768,7 @@ div#submenu-tabs a
 {
     background-color: inherit;
     border: 1px solid transparent;
-    color: #4B4740;
+    color: #4b4740;
     display: block;
     float: left;
     font-size: 90%;
@@ -797,7 +797,7 @@ div#submenu-tabs a:hover
 div#submenu-tabs a:visited
 {
     background-color: inherit;
-    color: #4B4740;
+    color: #4b4740;
 }
 
 body.dashboard div#submenu-tabs a.dashboard,
@@ -932,7 +932,17 @@ html[dir="rtl"] div.statslist ul li span.value
 
 div.topcontributors
 {
+    margin-top: 1em;
     margin-bottom: 2em;
+}
+
+div.item-statistics
+{
+    background-color: inherit;
+    color: #4B4740;
+    font-family: Georgia, serif;
+    font-size: 1.5em;
+    line-height: 2;
 }
 
 /* 
