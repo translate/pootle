@@ -142,7 +142,7 @@ class Store(models.Model):
                     return suggestions
         return []
 
-    def addsuggestion(self, item, suggtarget, username, checker):
+    def addsuggestion(self, item, suggtarget, username, checker=None):
         """adds a new suggestion for the given item"""
 
         unit = self.file.getitem(item)
@@ -160,7 +160,8 @@ class Store(models.Model):
             newpo.markfuzzy(False)
             self.pending.addunit(newpo)
             self.pending.savestore()
-        self.file.reclassifyunit(item, checker)
+        if checker is not None:
+            self.file.reclassifyunit(item, checker)
 
 
     def _deletesuggestion(self, item, suggestion):
