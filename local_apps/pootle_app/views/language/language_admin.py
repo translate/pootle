@@ -42,7 +42,6 @@ def view(request, language_code):
         "pagetitle":              _("Pootle Admin: %s", language.fullname),
         "norights_text":          _("You do not have the rights to administer this Language."),
         "language":               language,
-        "main_link":              _("Project home page"),
         "permissions_title":      _("User Permissions"),
         "username_title":         _("Username"),
         "rights_title":           _("Rights"),

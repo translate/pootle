@@ -253,8 +253,6 @@ def view(request, translation_project):
         "norights_text":          _("You do not have the rights to administer this project."),
         "project":                project,
         "language":               language,
-        "main_link":              _("Project home page"),
-        "rescan_files_link":      _("Rescan project files"),
         "filestyle_text":         filestyle_text,
         "permissions_title":      _("User Permissions"),
         "username_title":         _("Username"),
