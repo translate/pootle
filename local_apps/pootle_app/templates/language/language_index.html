@@ -8,10 +8,6 @@
 
 {% block bodyclass %}languageoverview{% endblock bodyclass %}
 
-{% block breadcrumbs_content %}
-<a href="{%filter l%}/{{ language.code }}/{%endfilter%}">{{ language.name }}</a>
-{% endblock breadcrumbs_content %}
-
 {% block content %}
 <div class="item-statistics">{{ language.stats }}</div>
 

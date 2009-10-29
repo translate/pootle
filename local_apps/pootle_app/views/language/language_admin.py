@@ -29,6 +29,8 @@ from pootle_app.views.language.admin_permissions import process_update as proces
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
 
+from pootle.i18n.gettext import tr_lang
+
 def view(request, language_code):
     language = get_object_or_404(Language, code=language_code)
     
@@ -41,7 +43,8 @@ def view(request, language_code):
     template_vars = {
         "pagetitle":              _("Pootle Admin: %s", language.fullname),
         "norights_text":          _("You do not have the rights to administer this Language."),
-        "language":               language,
+        "language":               { 'code': language_code,
+                                    'name': tr_lang(language.fullname) },
         "permissions_title":      _("User Permissions"),
         "username_title":         _("Username"),
         "rights_title":           _("Rights"),
@@ -50,4 +53,6 @@ def view(request, language_code):
         "adduser_text":           _("(select to add user)"),
         "hide_fileadmin_links":   True,
     }
-    return render_to_response("language/language_admin.html", template_vars, context_instance=RequestContext(request))
+    print language
+    return render_to_response("language/language_admin.html", template_vars,
+                              context_instance=RequestContext(request))

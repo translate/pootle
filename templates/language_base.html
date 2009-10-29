@@ -1,8 +1,10 @@
 {% extends "base.html"  %}
 
+{% load baseurl %}
+
 {% block breadcrumbs %}
 <div id="breadcrumbs">
-    <h2 class="title">{% block breadcrumbs_content %}{% endblock %}</h2>
+    <h2 class="title"><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></h2>
 </div>
 {% endblock %}
 
