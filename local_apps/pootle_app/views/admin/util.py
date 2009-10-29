@@ -155,11 +155,10 @@ def edit(request, template, model_class,
             "pagetitle": _("Pootle Languages Admin Page"),
             "formset_text": mark_safe(form_set_as_table(formset, link, linkfield)),
             "formset": formset,
-            "text":      {
+            "text": {
                 "home": _("Home"),
-                "admin": _("Main admin page"),
                 "title": model_args['title'],
-                "savechanges": _("Save changes"),
+                "savechanges": _("Save Changes"),
                 "submitname": model_args['submitname'],
                 "formid": model_args['formid'],
                 "error_msg":  msg,
