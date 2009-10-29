@@ -23,6 +23,8 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
 
 from pootle_app.views.admin import util
+from pootle_app.views.language import search_forms
+from pootle_app.views.language import navbar_dict
 from pootle_store.models import Store
 from pootle_app.models.translation_project import TranslationProject
 
@@ -34,9 +36,10 @@ def view(request, language_code, project_code):
     model_args['title'] = _("Files")
     model_args['submitname'] = "changestores"
     model_args['formid'] = "stores"
+    # Commented for now
+    #model_args['search'] = search_forms.get_search_form(request)
+    #model_args['navitems'] = [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)]
     link = "%s"
     return util.edit(request, 'language/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,
                      can_delete=True)
-    
-              

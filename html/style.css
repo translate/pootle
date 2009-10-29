@@ -818,7 +818,8 @@ body.tpoverview div#submenu-tabs a.tpoverview,
 body.tpnews div#submenu-tabs a.tpnews,
 body.tptranslate div#submenu-tabs a.tptranslate,
 body.tpreview div#submenu-tabs a.tpreview,
-body.tpadmin div#submenu-tabs a.tpadmin
+body.tpadminpermissions div#submenu-tabs a.tpadminpermissions,
+body.tpadminfiles div#submenu-tabs a.tpadminfiles
 {
     background-color: #ffffff;
     border-color: #777777 #777777 #fff;

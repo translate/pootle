@@ -1,16 +1,20 @@
-{% extends "admin_profile_base.html" %}
+{% extends "tp_base_admin.html" %}
 
 {% load i18n baseurl %}
 
-{% comment %}
-TODO: adapt this template to translation project tabs.
-{% endcomment %}
-
-{% block bodyclass %}admintpfiles{% endblock %}
-
-{% block section_subtitle %}{% trans "Manage Translation Project Files." %}{% endblock %}
+{% block bodyclass %}tpadminfiles{% endblock %}
 
 {% block section_description %}{% trans "Here you delete the available files in this translation project." %}{% endblock %}
+
+{% comment %}
+Add link to 'rescan files' somewhere.
+<div class="info">
+<ul class="menu">
+    <li class="menuitem"><a href="{% filter l %}?scan_files=1{% endfilter %}"> {{ rescan_files_link }} </a></li>
+    <li class="menuitem"><a href="{% filter l %}files.html{% endfilter %}">{% trans 'Manage project files' %}</a></li>
+</ul>
+</div>
+{% endcomment %}
 
 {% block section_body %}
 <form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
