@@ -22,10 +22,8 @@
 
 import re
 import difflib
-import operator
 import os
 
-from django.contrib.auth.models import User
 from django.utils.html import urlize
 from django.utils.translation import ugettext as _
 from django.conf import settings
@@ -63,7 +61,6 @@ def get_alt_projects(request, store):
                                                  project=request.translation_project.project_id)
     else:
         return TranslationProject.objects.none()
-
 
 def add_file_links(request, store):
     """adds a section on the current file, including any checks happening"""
@@ -115,11 +112,11 @@ def get_page_links(request, store, pagesize, translations, item, first_item):
         pagelinks.append({"href": dispatch.translate(request, request.path_info, item=linkitem),
                           "text": _("Previous %d", (item - linkitem))})
 
-    # l10n: the third parameter refers to the total number of messages in the file    
+    # l10n: the third parameter refers to the total number of messages in the file
     pagelinks.append({"text": _("Items %(first)d to %(last)d of %(total)d",
                                 {"first": first_item + 1, "last": lastitem + 1, "total": pofilelen})
                       })
-    
+
     if item + len(translations) < pofilelen:
         linkitem = item + pagesize
         itemcount = min(pofilelen - linkitem, pagesize)
@@ -183,7 +180,7 @@ def get_header_plural(request, store):
     # get plural information from Language model
     nplurals = request.translation_project.language.nplurals
     plurals = request.translation_project.language.pluralequation
-    
+
     try:
         # get plural information from Store
         snplurals, splurals = store.file.store.getheaderplural()
@@ -195,7 +192,7 @@ def get_header_plural(request, store):
     except:
         # not a POHeader store
         pass
-    
+
     return nplurals, plurals
 
 def ensure_trans_plurals(request, store, orig, trans):
@@ -326,7 +323,7 @@ def get_trans_buttons(request, translation_project, item, desiredbuttons):
         }
 
 def escape_for_textarea(text):
-    return replace_in_seq(text, 
+    return replace_in_seq(text,
                           ("&", "&amp;"), # Must be done first!
                           ("<", "&lt;"),
                           (">", "&gt;"),
@@ -336,7 +333,7 @@ def escape_for_textarea(text):
                           ("\t", '\\t'))
 
 def unescape_submition(text):
-    return replace_in_seq(text, 
+    return replace_in_seq(text,
                           ("\t", ""),
                           ("\n", ""),
                           ("\r", ""),
@@ -366,9 +363,9 @@ def get_trans_view(request, store, item, trans, textarea=False):
     cansugg  = check_permission("suggest",  request)
     cantrans = check_permission("translate", request)
     ables = ""
-    if cansugg: 
+    if cansugg:
         ables = "suggestable " + ables
-    if cantrans: 
+    if cantrans:
         ables = "submitable "  + ables
 
     if len(trans) > 1:
@@ -376,7 +373,7 @@ def get_trans_view(request, store, item, trans, textarea=False):
         for pluralitem, pluraltext in enumerate(trans):
             form = {"title": _("Plural Form %d", pluralitem), "n": pluralitem, "text": escapefunction(pluraltext)}
             editclass = ""
-            if cantrans or cansugg: 
+            if cantrans or cansugg:
                 editclass = ables+"edittrans"+str(item)+"p"+str(pluralitem)
             form["editclass"] = editclass
 
@@ -385,7 +382,7 @@ def get_trans_view(request, store, item, trans, textarea=False):
     elif trans:
         transdict["text"] = escapefunction(trans[0])
         editclass = ""
-        if cantrans or cansugg: 
+        if cantrans or cansugg:
             editclass = ables+"edittrans"+str(item)
         transdict["editclass"] = editclass
 
@@ -407,7 +404,6 @@ def get_trans_edit(request, store, item, trans):
             "cols": profile.input_width
             }
         focusbox = ""
-        spellargs = {"standby_url": "spellingstandby.html", "js_url": "/js/spellui.js", "target_url": "spellcheck.html"}
         if len(trans) > 1:
             buttons = get_trans_buttons(request, request.translation_project, item, ["translate", "suggest", "copy", "skip", "back"])
             forms = []
@@ -576,7 +572,6 @@ def get_translated_directory(target_language_code, root_directory, directory):
 
 def get_translated_store(alt_project, store):
     """returns the file corresponding to store in the alternative TranslationProject"""
-    
     try:
         translation_directory = get_translated_directory(alt_project.language.code,
                                                      Directory.objects.root,
@@ -585,12 +580,10 @@ def get_translated_store(alt_project, store):
             name = alt_project.language.code + os.extsep + alt_project.project.localfiletype
         else:
             name = store.name
-            
         try:
             return translation_directory.child_stores.get(name=name)
         except Store.DoesNotExist:
             return None
-        
     except Directory.DoesNotExist:
         return None
 
@@ -611,7 +604,7 @@ def get_alt_src_dict(request, store, unit, alt_project):
             #FIXME: we should bundle the makeindex thing into a property
             if not hasattr(translated_store.file.store, "sourceindex"):
                 translated_store.file.store.makeindex()
-            
+
             translated_unit = translated_store.file.store.findunit(unit.source)
             if translated_unit is not None and translated_unit.istranslated():
                 if unit.hasplural():
@@ -625,7 +618,7 @@ def get_alt_src_dict(request, store, unit, alt_project):
                     unit_dict = {
                         "text":      escape_text(translated_unit.target),
                         "isplural":  False }
-        
+
                 alt_src_dict.update(unit_dict)
             else:
                 alt_src_dict["available"] = False
@@ -855,7 +848,7 @@ def process_post_main(store_name, item, request, next_store_item, prev_store_ite
     store = Store.objects.get(pootle_path=store_name)
     request.translation_project.indexer # Force initialization of the indexer
     prev_item, next_item = process_post(request, store)
-    
+
     search = search_forms.search_from_request(request)
     if next_item > -1:
         return next_store_item(search, store_name, next_item + 1)
@@ -863,7 +856,6 @@ def process_post_main(store_name, item, request, next_store_item, prev_store_ite
         return prev_store_item(search, store_name, prev_item - 1)
     else:
         return store, item
-
 
 def get_position(request, next_store_item, prev_store_item):
     state      = dispatch.TranslatePageState(request.GET)
@@ -928,9 +920,13 @@ def view(request, directory, store, item, stopped_by=None):
         untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
         translated, total = postats["translated"], postats["total"]
         mainstats = _("%(translated)d/%(total)d translated\n(%(untranslated)d untranslated, %(fuzzy)d fuzzy)",
-                      {"translated": translated, "total": total,
-                       "untranslated": untranslated, "fuzzy": fuzzy}
-                      )
+                      {
+                          "translated": translated,
+                          "total": total,
+                          "untranslated": untranslated,
+                          "fuzzy": fuzzy,
+                       }
+        )
         pagelinks = get_page_links(request, store, rows, translations, item, first_item)
 
     # templatising
