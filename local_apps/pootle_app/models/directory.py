@@ -26,8 +26,10 @@ from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 
 class DirectoryManager(models.Manager):
-    def get_query_set(self, *args, **kwargs):
-        return super(DirectoryManager, self).get_query_set(*args, **kwargs).select_related(depth=1)
+    def get_query_set(self):
+        # ForeignKey fields with null=True are not selected by
+        # select_related unless explicitly specified
+        return super(DirectoryManager, self).get_query_set().select_related('parent')
 
     def _get_root(self):
         return self.get(parent=None)
