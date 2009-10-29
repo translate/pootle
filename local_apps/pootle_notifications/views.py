@@ -55,6 +55,8 @@ def view(request, path):
 
     if directory.is_language():
         template_vars['is_language'] = True
+        template_vars['language'] = {'code': directory.language.code,
+                                     'name': tr_lang(directory.language.fullname)}
     else:
         template_vars['is_language'] = False
 

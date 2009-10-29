@@ -1,4 +1,4 @@
-{% extends "base.html"  %}
+{% extends "base.html" %}
 
 {% load i18n baseurl cleanhtml %}
 
@@ -8,6 +8,14 @@
 
 {% block bodyclass %}
 {% if is_language %}languagenews{% else %}tpnews{% endif %}
+{% endblock %}
+
+{% block nav-secondary %}
+{% if is_language %}
+<div id="breadcrumbs">
+    <h2 class="title"><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></h2>
+</div>
+{% endif %}
 {% endblock %}
 
 {% block precontent %}
