@@ -377,7 +377,7 @@ def get_trans_view(request, store, item, trans, textarea=False):
                 # Some claim string concatenation is slow, so we rewrite the
                 # commented line as a single string with formatting:
                 #editclass = ables + "edittrans" + str(item) + "p" + str(pluralitem)
-                editclass = "%sedittrans%sp%s" % (ables, str(item), str(pluralitem)
+                editclass = "%sedittrans%sp%s" % (ables, str(item), str(pluralitem))
             form["editclass"] = editclass
 
             forms.append(form)

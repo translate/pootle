@@ -53,6 +53,5 @@ def view(request, language_code):
         "adduser_text":           _("(select to add user)"),
         "hide_fileadmin_links":   True,
     }
-    print language
     return render_to_response("language/language_admin.html", template_vars,
                               context_instance=RequestContext(request))

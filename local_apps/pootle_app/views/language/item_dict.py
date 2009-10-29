@@ -263,5 +263,4 @@ def make_store_item(request, store, links_required=None):
     item.update({
             'icon':   'file',
             'isfile': True })
-    print store_translate_links(request, store)
     return item
