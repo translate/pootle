@@ -2,6 +2,10 @@ import tempfile
 import shutil
 import urlparse
 import os
+import StringIO
+import zipfile
+
+from translate.misc import wStringIO
 
 from django.conf import settings
 from django.test import TestCase
@@ -179,6 +183,129 @@ class AdminTests(PootleTestCase):
         self.assertContains(response, 'fish</title>')
         self.assertContains(response, '<a href="pootle/">Pootle</a>')
         self.assertContains(response, "1 project, 0% translated")
+
+    def test_upload_new_file(self):
+        """Tests that we can upload a new file into a project."""
+        pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rest"\n')
+        pocontent.name = "test_new_upload.po"
+    
+        post_dict = {
+            'file': pocontent,
+            'overwrite': 'merge',
+            'do_upload': 'upload',
+            }
+        response = self.client.post("/ar/pootle/", post_dict)
+        
+        self.assertContains(response, 'href="/ar/pootle/test_new_upload.po')
+        store = Store.objects.get(pootle_path="/ar/pootle/test_new_upload.po")
+        self.assertTrue(os.path.isfile(store.file.path))
+        self.assertEqual(store.file.read(), pocontent.getvalue())
+    
+        download = self.client.get("/ar/pootle/test_new_upload.po/export/po")
+        self.assertEqual(download.content, pocontent.getvalue())
+
+    def test_upload_suggestions(self):
+        """Tests that we can upload when we only have suggest rights."""
+        pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "samaka"\n')
+        pocontent.name = "pootle.po"
+    
+        post_dict = {
+            'file': pocontent,
+            'overwrite': 'merge',
+            'do_upload': 'upload',
+            }
+        response = self.client.post("/af/pootle/", post_dict)
+
+        # Check that the orignal file didn't take the new suggestion.
+        # We test with 'in' since the header is added
+        store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+        self.assertFalse('msgstr "samaka"' in store.file.read())
+        self.assertTrue('msgstr "samaka"' in store.pending.read())
+
+    def test_upload_overwrite(self):
+        """Tests that we can overwrite a file in a project."""    
+        pocontent = StringIO.StringIO('#: test.c\nmsgid "fish"\nmsgstr ""\n#: test.c\nmsgid "test"\nmsgstr "barf"\n\n')
+        pocontent.name = "pootle.po"
+    
+        post_dict = {
+            'file': pocontent,
+            'overwrite': 'overwrite',
+            'do_upload': 'upload',
+            }
+        response = self.client.post("/af/pootle/", post_dict)
+
+        # Now we only test with 'in' since the header is added
+        store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+        self.assertEqual(store.file.read(), pocontent.getvalue())
+
+    def test_upload_new_archive(self):
+        """Tests that we can upload a new archive of files into a project."""
+        po_content_1 = '#: test.c\nmsgid "test"\nmsgstr "rest"\n'
+        po_content_2 = '#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
+
+        archivefile = wStringIO.StringIO()
+        archivefile.name = "fish.zip"
+        archive = zipfile.ZipFile(archivefile, "w", zipfile.ZIP_DEFLATED)
+        archive.writestr("test_archive_1.po", po_content_1)
+        archive.writestr("test_archive_2.po", po_content_2)
+        archive.close()
+
+        archivefile.seek(0)
+        post_dict = {
+            'file': archivefile,
+            'overwrite': 'merge',
+            'do_upload': 'upload',
+            }
+        response = self.client.post("/ar/pootle/", post_dict)
+
+        self.assertContains(response, 'href="/ar/pootle/test_archive_1.po')
+        self.assertContains(response, 'href="/ar/pootle/test_archive_2.po')
+
+        store = Store.objects.get(pootle_path="/ar/pootle/test_archive_1.po")
+        self.assertTrue(os.path.isfile(store.file.path))
+        self.assertEqual(store.file.read(), po_content_1)
+
+        download = self.client.get("/ar/pootle/test_archive_2.po/export/po")
+        self.assertEqual(po_content_2, download.content)
+
+
+    def test_upload_over_file(self):
+        """Tests that we can upload a new version of a file into a project."""
+        pocontent = StringIO.StringIO('''#: fish.c
+msgid "fish"
+msgstr ""
+        
+#: test.c
+msgid "test"
+msgstr "resto"
+
+''')
+        pocontent.name = "pootle.po"
+        post_dict = {
+            'file': pocontent,
+            'overwrite': 'overwrite',
+            'do_upload': 'upload',
+            }
+        response = self.client.post("/af/pootle/", post_dict)
+    
+        pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "blo3"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
+        pocontent.name = "pootle.po"
+
+        post_dict = {
+            'file': pocontent,
+            'overwrite': 'merge',
+            'do_upload': 'upload',
+            }
+        response = self.client.post("/af/pootle/", post_dict)
+
+        # NOTE: this is what we do currently: any altered strings become suggestions.
+        # It may be a good idea to change this
+        mergedcontent = '#: fish.c\nmsgid "fish"\nmsgstr "stink"\n'
+        suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin\\n"\n"test"\nmsgstr "blo3"\n'
+        store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+        self.assertTrue(store.file.read().find(mergedcontent) >= 0)
+        self.assertTrue(os.path.isfile(store.pending.path))
+        self.assertTrue(store.pending.read().find(suggestedcontent) >= 0)
 
 
 class NonprivTests(PootleTestCase):
