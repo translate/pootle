@@ -231,91 +231,42 @@ class Store(models.Model):
             return suggestedby
         return None
 
-    def matchitems(self, newfile, uselocations=False):
-        """matches up corresponding items in this pofile with the
-        given newfile, and returns tuples of matching poitems
-        (None if no match found)"""
 
-        if not hasattr(self.file.store, 'sourceindex'):
-            self.file.store.makeindex()
-        if not hasattr(newfile, 'sourceindex'):
-            newfile.makeindex()
-        matches = []
-        for newpo in newfile.units:
-            if newpo.isheader():
-                continue
-            foundid = False
-            if uselocations:
-                newlocations = newpo.getlocations()
-                mergedlocations = set()
-                for location in newlocations:
-                    if location in mergedlocations:
-                        continue
-                    if location in self.file.store.locationindex:
-                        oldpo = self.file.store.locationindex[location]
-                        if oldpo is not None:
-                            foundid = True
-                            matches.append((oldpo, newpo))
-                            mergedlocations.add(location)
-                            continue
-            if not foundid:
-                # We can't use the multistring, because it might
-                # contain more than two entries in a PO xliff
-                # file. Rather use the singular.
-                source = unicode(newpo.source)
-                oldpo = self.file.store.findunit(source)
-                matches.append((oldpo, newpo))
-
-        # find items that have been removed
-        matcheditems = set(oldpo for (oldpo, newpo) in matches if oldpo)
-        for oldpo in self.file.store.units:
-            if not oldpo in matcheditems:
-                matches.append((oldpo, None))
-        return matches
-
-    def mergeitem(self, po_position, oldpo, newpo, username, suggest=False):
-        """merges any changes from newpo into oldpo"""
-
-        unchanged = oldpo.target == newpo.target
-        if not suggest and (not oldpo.target or not newpo.target
-                            or oldpo.isheader() or newpo.isheader() or unchanged):
-            oldpo.merge(newpo)
-        else:
-            if oldpo in po_position:
-                strings = newpo.target #.strings
-                self.addsuggestion(po_position[oldpo], strings, username)
-            else:
-                raise KeyError('Could not find item for merge')
-
-    def mergefile(self, newfile, username, allownewstrings=True, suggestions=False, obseletemissing=True):
-        """make sure each msgid is unique ; merge comments etc
-        from duplicates into original"""
-
+    def mergefile(self, newfile, username, allownewstrings=True, suggestions=False, notranslate=False, obseletemissing=True):
+        """make sure each msgid is unique ; merge comments etc from
+        duplicates into original"""
         self.file._update_store_cache()
-        if self.file.store == newfile:
-            logging.debug("identical merge: %s", self.file.name)
-            return
+        self.file.store.require_index()
+        newfile.require_index()
 
-        if not hasattr(self.file.store, 'sourceindex'):
-            self.file.store.makeindex()
-        translatables = (self.file.store.units[index] for index in self.file.total)
-        po_position = dict((unit, position) for (position, unit) in enumerate(translatables))
-        matches = self.matchitems(newfile)
-        for (oldpo, newpo) in matches:
-            if suggestions and oldpo and newpo:
-                self.mergeitem(po_position, oldpo, newpo, username, suggest=True)
-            elif allownewstrings and oldpo is None:
-                self.file.store.addunit(self.file.store.UnitClass.buildfromunit(newpo))
-            elif obseletemissing and newpo is None:
-                oldpo.makeobsolete()
-            elif oldpo and newpo:
-                self.mergeitem(po_position, oldpo, newpo, username)
-                # we invariably want to get the ids (source
-                # locations) from the newpo
-                if hasattr(newpo, 'sourcecomments'):
-                    oldpo.sourcecomments = newpo.sourcecomments
+        old_ids = set(self.file.store.id_index.keys())
+        new_ids = set(newfile.id_index.keys())
 
-        if not isinstance(newfile, po.pofile) or suggestions:
+        if allownewstrings:
+            new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
+            for unit in new_units:
+                self.file.store.addunit(self.file.store.UnitClass.buildfromunit(unit))
+
+        if obseletemissing:
+            old_units = (self.file.store.findid(uid) for uid in old_ids - new_ids)
+            for unit in old_units:
+                unit.makeobsolete()
+
+        self.initpending(create=True)
+        shared_units = ((self.file.store.findid(uid), newfile.findid(uid)) for uid in old_ids & new_ids)        
+        for oldunit, newunit in shared_units:
+            if not newunit.istranslated():
+                continue
+
+            if notranslate or oldunit.istranslated() and suggestions:
+                self.addunitsuggestion(oldunit, newunit, username)
+            else:
+                oldunit.merge(newunit)
+
+        if (suggestions or notranslate) and not self.file.store.suggestions_in_format:
+            self.pending.savestore()
+
+        if not isinstance(newfile, po.pofile) or notranslate or suggestions:
             # TODO: We don't support updating the header yet.
             self.file.savestore()
             return
@@ -353,6 +304,7 @@ class Store(models.Model):
                     header.allcomments[i].extend(newheader.allcomments[i])
 
         self.file.savestore()
+
 
     def inittm(self):
         """initialize translation memory file if needed"""
