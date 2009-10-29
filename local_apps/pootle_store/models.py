@@ -142,23 +142,35 @@ class Store(models.Model):
                     return suggestions
         return []
 
+
+    def addunitsuggestion(self, unit, newunit, username):
+        """adds suggestion for the given unit"""
+        if unit.target == newunit.target:
+            # duplicate don't add
+            # FIXME: should we look up if suggestion already exists in pending file?
+            return
+            
+        if self.file.store.suggestions_in_format:
+            unit.addalttrans(newunit.target, origin=username)
+        else:
+            if username is not None:
+                newunit.msgidcomments.append('"_: suggested by %s\\n"' % username)
+            self.pending.addunit(self.file.store.UnitClass.buildfromunit(newunit))
+                        
+            
     def addsuggestion(self, item, suggtarget, username, checker=None):
         """adds a new suggestion for the given item"""
-
         unit = self.file.getitem(item)
+        newpo = unit.copy()
+        newpo.target = suggtarget
+        newpo.markfuzzy(False)
+        
+        self.initpending(create=True)
+        self.addunitsuggestion(unit, newpo, username)
+        
         if self.file.store.suggestions_in_format:
-            if isinstance(suggtarget, list) and len(suggtarget) > 0:
-                suggtarget = suggtarget[0]
-            unit.addalttrans(suggtarget, origin=username)
             self.file.savestore()
         else:
-            self.initpending(create=True)
-            newpo = unit.copy()
-            if username is not None:
-                newpo.msgidcomments.append('"_: suggested by %s\\n"' % username)
-            newpo.target = suggtarget
-            newpo.markfuzzy(False)
-            self.pending.addunit(newpo)
             self.pending.savestore()
         if checker is not None:
             self.file.reclassifyunit(item, checker)
