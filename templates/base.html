@@ -1,124 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 {% load i18n baseurl %}
+
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" 
       lang="und" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-  <head>
-    <title>{% block title %}{{ pagetitle }}{% endblock title %}</title>
+    <head>
+        <title>{% block title %}{{ pagetitle }}{% endblock title %}</title>
+        {% block meta %}
+        <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+        <meta name="description" content="{{ settings.DESCRIPTION|striptags }}" />
+        <meta name="keywords" content="{{ keywords|join:", " }}" />
+        {% endblock meta %}
+        {% block css %}
+        <link rel="stylesheet" type="text/css" href='{{ "style.css"|m }}' />
+        {% endblock css %}
+        {% block favicon %}
+        <link rel="shortcut icon" href="{{ "favicon.ico"|m }}" />
+        {% endblock favicon %}
+        {% block js %}
+        <script type="text/javascript" src="{{ "js/jquery/jquery.min.js"|m }}"></script>
+        {% endblock js %}
+        {% block extra_head %}<!-- extra scripts and links -->{% endblock %}
+    </head>
 
-    {% block meta %}
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <meta name="description" content="{{settings.DESCRIPTION|striptags}}" />
-    <meta name="keywords" content="{{keywords|join:", "}}" />
-    {% endblock meta %}
+    <body id="{% if body.id %}{{ body.id }}{% else %}home{% endif %}"
+          class="{% block bodyclass %}{% endblock %}">
+        {% block body %}
+        <div id="wrapper">
+            <div id="header">
+                {% block header %}
+                <div id="nav-access">
+                    <a href="#nav-main">{% trans 'skip to navigation' %}</a>
+                </div>
+                <h1><a href='{{"/"|l}}' title='{% trans "Home" %}'>{{ settings.TITLE }}</a></h1>
+                <div id="nav-main" class="menubar" lang="{{ LANGUAGE_CODE }}">
+                    <div class="bd">
+                        {% block menu %}
+                        <ul class="first-of-type">
+                            <li class="menubaritem"><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
+                            <li class="menubaritem"><a href='{% filter m %}doc/en/index.html {% endfilter %}'>{% trans "Help" %}</a></li>
+                            {% if user.is_superuser %}
+                            <li class="menubaritem"><a href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                            <li class="menubaritem"><a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %} '>{% trans "My Account" %}</a></li>
+                            <li class="menubaritem"><a href='{{ "/accounts/logout/"|l }}'>{% trans "Log Out" %}</a></li>
+                            {% else %}
+                            {% if settings.CAN_REGISTER %}
+                            <li class="menubaritem"><a href='{{ "/accounts/register/"|l }}'>{% trans "Register" %}</a></li>
+                            {% endif %}
+                            <li class="menubaritem"><a href='{{ "/accounts/login/"|l }}'>{% trans "Log In" %}</a></li>
+                            {% endif %}
+                        </ul>
+                        {% endblock menu %}
+                    </div>
+                </div>
+                {% block header_extra %}{% endblock %}
+                {% endblock header %}
+            </div><!-- header -->
 
-    {% block css %}
-    <link rel="stylesheet" type="text/css" href='{{"style.css"|m}}' />
-    {% endblock css %}
-    {% block favicon %}
-    <link rel="shortcut icon" href="{{"favicon.ico"|m}}" />
-    {% endblock favicon %}   
-    {% block js %}
+            <div id="body">
+                {% if message or error_message or messages %}
+                <div id="site-message" lang="{{ LANGUAGE_CODE }}">
+                    {% block message %}
+                    <div class="info">{{ message }}</div>
+                    <div class="error">{{ error_message }}</div>
+                        {% for msg in messages %}
+                        <p class="info">
+                        {{ msg }}
+                        </p>
+                        {% endfor %}
+                    {% endblock message %}
+                </div><!--site-message-->
+                {% endif %}
 
-    <script type="text/javascript" src="{{"js/jquery/jquery.min.js"|m}}"></script>
-    {% endblock js %}
-    {% block extra_head %}<!-- extra scripts and links -->{% endblock %}
-  </head>
+                <div id="nav-secondary" lang="{{ LANGUAGE_CODE }}">
+                  {% block nav-secondary %}
+                      {% block search %}{% endblock %}
+                      {% block breadcrumbs %}{% endblock %}
+                  {% endblock nav-secondary %}
+                </div><!--nav-secondary-->
 
-  <body id="{% if body.id %}{{ body.id }}{% else %}home{% endif %}"
-        class="{% block bodyclass %}{% endblock %}">
-    {% block body %}<div id="wrapper">
-      <div id="header">
-	{% block header %}
-	<div id="nav-access">
-	  <a href="#nav-main">{% trans 'skip to navigation'%}</a>
-	</div>
-	<h1><a href='{{"/"|l}}' title='{% trans "Home" %}'>{{settings.TITLE}}</a></h1>
-	<div id="nav-main" class="menubar" lang="{{LANGUAGE_CODE}}">
-	  <div class="bd">
-	    {% block menu %}
-            <ul class="first-of-type">
-              <li class="menubaritem"><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
-              <li class="menubaritem"><a href='{% filter m %}doc/en/index.html {% endfilter %}'>{% trans "Help" %}</a></li>
-              {% if user.is_superuser %}
-              <li class="menubaritem"><a href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
-              {% endif %}
-              {% if user.is_authenticated %}
-              <li class="menubaritem"><a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %} '>{% trans "My Account" %}</a></li>
-              <li class="menubaritem"><a href='{{ "/accounts/logout/"|l }}'>{% trans "Log Out" %}</a></li>
-              {% else %}
-              {% if settings.CAN_REGISTER %}
-              <li class="menubaritem"><a href='{{ "/accounts/register/"|l }}'>{% trans "Register" %}</a></li>
-              {% endif %}
-              <li class="menubaritem"><a href='{{ "/accounts/login/"|l }}'>{% trans "Log In" %}</a></li>
-              {% endif %}
-            </ul>
-	    {% endblock menu %}
-	  </div>
-	</div>
-	{% block header_extra %}{% endblock %}
-      {% endblock header %}
-      </div><!-- header -->
+                <div id="precontent">
+                    {% block precontent %}{% endblock %}
+                    {% block innernav %}{% endblock %}
+                </div><!-- precontent -->
 
-      <div id="body">
+                <div id="content">
+                    {% block content %}{% endblock %}
+                </div><!-- content -->
 
-    {% if message or error_message or messages %}
-    <div id="site-message" lang="{{LANGUAGE_CODE}}">
-	  {% block message %}
-      <div class="info">{{ message }}</div>
-      <div class="error">{{ error_message }}</div>
-      {% for msg in messages %}
-      <p class="info">
-        {{ msg }}
-      </p>
-      {% endfor %}
-      {% endblock message %}
-    </div> <!--site-message-->
-    {% endif %}
+                <div id="postcontent">
+                    {% block postcontent %}{% endblock %}
+                </div><!-- postcontent -->
+            </div> <!--body-->
 
-	<div id="nav-secondary" lang="{{LANGUAGE_CODE}}">
-	  {% block nav-secondary %}
-          {% block search %}{% endblock %}
-          {% block breadcrumbs %}{% endblock %}
-	  {% endblock nav-secondary %}
-	</div><!--nav-secondary-->
-
-
-    <div id="precontent">
-        {% block precontent %}{% endblock %}
-	    {% block innernav %}{% endblock %}
-    </div><!-- precontent -->
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div><!-- content -->
-    <div id="postcontent">
-        {% block postcontent %}{% endblock %}
-    </div><!-- postcontent -->
-
-      </div> <!--body-->
-    
-      <div id="footer" lang="{{LANGUAGE_CODE}}">
-	{% block footer %}
-	<ul class="nav">
-          <li><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
-          <li><a href='{% filter m %}doc/en/index.html{% endfilter %}'>{% trans "Help" %}</a></li>
-          <li><a href='{{ "/about.html"|l }}'>{% trans "About this Pootle Server" %}</a></li>
-	</ul>
-	{% endblock footer %}
-      </div><!--footer-->
-    </div> <!--wrapper-->
-    {% block scripts %}
-    <script type="text/javascript" src='{{"js/sorttable.js"|m}}'></script>
-    <script type="text/javascript" src='{{"js/search.js"|m}}'></script>
-    <!--[if lt IE 7.]>
-	<script defer type="text/javascript" src="{{"js/correctpng.js"|m}}"></script>
-    <![endif]-->
-    {% block scripts_extra %}<!-- extra scripts -->{% endblock %}
-    {% endblock scripts %}
-    {% endblock body %}
-  </body>
+            <div id="footer" lang="{{ LANGUAGE_CODE }}">
+                {% block footer %}
+                <ul class="nav">
+                    <li><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
+                    <li><a href='{% filter m %}doc/en/index.html{% endfilter %}'>{% trans "Help" %}</a></li>
+                    <li><a href='{{ "/about.html"|l }}'>{% trans "About this Pootle Server" %}</a></li>
+                </ul>
+                {% endblock footer %}
+            </div><!--footer-->
+        </div> <!--wrapper-->
+        {% block scripts %}
+        <script type="text/javascript" src='{{"js/sorttable.js"|m}}'></script>
+        <script type="text/javascript" src='{{"js/search.js"|m}}'></script>
+        <!--[if lt IE 7.]>
+        <script defer type="text/javascript" src="{{"js/correctpng.js"|m}}"></script>
+        <![endif]-->
+        {% block scripts_extra %}<!-- extra scripts -->{% endblock %}
+        {% endblock scripts %}
+        {% endblock body %}
+    </body>
 </html>
