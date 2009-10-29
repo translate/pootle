@@ -31,6 +31,7 @@ from django.utils.translation import ugettext as _
 from translate.storage import factory, versioncontrol
 
 from pootle_app.lib import view_handler
+from pootle_app.project_tree import scan_translation_project_files
 from pootle_app.models.permissions import check_permission, PermissionError
 from pootle_app.models.signals import post_file_upload
 from pootle_app.views.language import item_dict
