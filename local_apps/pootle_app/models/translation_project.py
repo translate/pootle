@@ -41,6 +41,7 @@ from pootle_misc.baseurl import l
 from pootle_store.models           import Store
 from pootle_store.util             import relative_real_path, absolute_real_path, dictsum
 
+from pootle_app.lib.util           import RelatedManager
 from pootle_app.models.project     import Project
 from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory
@@ -78,8 +79,8 @@ def scan_translation_projects():
             create_translation_project(language, project)
 
 class TranslationProject(models.Model):
+    objects = RelatedManager()
     index_directory  = ".translation_index"
-
     class Meta:
         unique_together = ('language', 'project')
         app_label = "pootle_app"

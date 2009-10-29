@@ -24,9 +24,12 @@ from django.db.models.signals import pre_save
 
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
+
 from pootle_app.models.directory import Directory
+from pootle_app.lib.util import RelatedManager
 
 class Language(models.Model):
+    objects = RelatedManager()
     class Meta:
         app_label = "pootle_app"
         ordering = ['code']
