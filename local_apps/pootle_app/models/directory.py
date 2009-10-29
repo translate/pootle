@@ -48,9 +48,9 @@ class Directory(models.Model):
 
     is_dir = True
 
-    name        = models.CharField(max_length=255, null=False, db_index=True)
-    parent      = models.ForeignKey('Directory', related_name='child_dirs', null=True)
-    pootle_path = models.CharField(max_length=1024, null=False)
+    name        = models.CharField(max_length=255, null=False)
+    parent      = models.ForeignKey('Directory', related_name='child_dirs', null=True, db_index=True)
+    pootle_path = models.CharField(max_length=255, null=False, db_index=True)
 
     objects = DirectoryManager()
         

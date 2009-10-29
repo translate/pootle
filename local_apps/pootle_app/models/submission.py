@@ -71,10 +71,10 @@ class Submission(models.Model):
         app_label = "pootle_app"
         get_latest_by = "creation_time"
 
-    creation_time       = models.DateTimeField()
-    translation_project = models.ForeignKey(TranslationProject)
-    submitter           = models.ForeignKey(PootleProfile, null=True)
-    from_suggestion     = models.OneToOneField(Suggestion, null=True)
+    creation_time       = models.DateTimeField(db_index=True)
+    translation_project = models.ForeignKey(TranslationProject, db_index=True)
+    submitter           = models.ForeignKey(PootleProfile, null=True, db_index=True)
+    from_suggestion     = models.OneToOneField(Suggestion, null=True, db_index=True)
 
     objects = SubmissionManager()
 

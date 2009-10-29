@@ -57,16 +57,16 @@ class PootleProfile(models.Model):
         app_label = "pootle_app"
 
     # This is the only required field
-    user = models.OneToOneField(User, unique=True)
+    user = models.OneToOneField(User, unique=True, db_index=True)
 
     translate_rows  = models.SmallIntegerField(default=7)
     view_rows       = models.SmallIntegerField(default=10)
     input_width     = models.SmallIntegerField(default=40)
     input_height    = models.SmallIntegerField(default=5)
-    languages       = models.ManyToManyField(Language, blank=True, related_name="user_languages")
-    projects        = models.ManyToManyField(Project, blank=True)
-    ui_lang         = models.ForeignKey(Language, blank=True, null=True)
-    alt_src_langs   = models.ManyToManyField(Language, blank=True, related_name="user_alt_src_langs")
+    languages       = models.ManyToManyField(Language, blank=True, related_name="user_languages", db_index=True)
+    projects        = models.ManyToManyField(Project, blank=True, db_index=True)
+    ui_lang         = models.ForeignKey(Language, blank=True, null=True, db_index=True)
+    alt_src_langs   = models.ManyToManyField(Language, blank=True, db_index=True, related_name="user_alt_src_langs")
 
     def __unicode__(self):
         return self.user.username

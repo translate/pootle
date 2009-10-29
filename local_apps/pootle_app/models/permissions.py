@@ -119,8 +119,8 @@ class PermissionSet(models.Model):
 
     profile                = models.ForeignKey(PootleProfile, db_index=True)
     directory              = models.ForeignKey(Directory, db_index=True, related_name='permission_sets')
-    positive_permissions   = models.ManyToManyField(Permission, related_name='permission_sets_positive')
-    negative_permissions   = models.ManyToManyField(Permission, related_name='permission_sets_negative')
+    positive_permissions   = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_positive')
+    negative_permissions   = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_negative')
 
 class PermissionSetCache(models.Model):
     class Meta:
@@ -130,7 +130,7 @@ class PermissionSetCache(models.Model):
 
     profile                = models.ForeignKey(PootleProfile, db_index=True)
     directory              = models.ForeignKey(Directory, db_index=True, related_name='permission_set_caches')
-    permissions            = models.ManyToManyField(Permission, related_name='cached_permissions')
+    permissions            = models.ManyToManyField(Permission, related_name='cached_permissions', db_index=True)
 
 class PermissionError(Exception):
     pass
