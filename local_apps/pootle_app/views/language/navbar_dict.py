@@ -46,8 +46,6 @@ def make_store_pathlinks(request, project_url, store, links):
     return links
 
 def make_directory_actions(request):
-    edit_state = dispatch.ProjectIndexState(request.GET)
-    checks_state = dispatch.ProjectIndexState(request.GET)
     directory = request.translation_project.directory
     return {
         'basic': [],
