@@ -52,7 +52,13 @@ class PootleUserManager(UserManager):
 # to get the desired functionality.
 User.objects.__class__ = PootleUserManager
 
+class PootleProfileManager(models.Manager):
+    def get_query_set(self):
+        return super(PootleProfileManager, self).get_query_set().select_related(
+            'languages', 'projects', 'ui_lang', 'alt_src_langs')
+    
 class PootleProfile(models.Model):
+    objects = PootleProfileManager()
     class Meta:
         app_label = "pootle_app"
 
