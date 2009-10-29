@@ -12,7 +12,6 @@
 
 {% block content %}
 <div class="settings-container centered">
-    <h2>{% trans "Manage User Permissions" %}</h2>
     <p>{% trans "Below you can add, edit, and delete the permissions for this language." %}</p>
     <form action="" method="post" name="permissionsform" id="permissionsform">
         {{ permission_set_formset.management_form }}
