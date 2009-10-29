@@ -25,7 +25,7 @@ from django.utils.translation import ugettext as _
 from django.core.exceptions import PermissionDenied
 
 from pootle_app.models.language import Language
-from pootle_app.views.language.admin import process_update as process_permission_update
+from pootle_app.views.language.admin_permissions import process_update as process_permission_update
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
 

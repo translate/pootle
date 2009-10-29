@@ -24,7 +24,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.directory import Directory
-from pootle_app.views.language.admin import process_update as process_permission_update
+from pootle_app.views.language.admin_permissions import process_update as process_permission_update
 
 from util import user_is_admin
 
