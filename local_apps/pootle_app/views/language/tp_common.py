@@ -195,7 +195,15 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
         return
     
     store = Store.objects.get(file=upload_path)
-    newstore = factory.getobject(django_file._file)
+    # for some reason factory checks explicitly for file existance and
+    # if file is open, which makes it impossible to work with Django's
+    # in memory uploads.
+    #
+    # settings _closed to False should work around this
+    #FIXME: hackish, does this have any undesirable side effect?
+    django_file._closed = False
+    newstore = factory.getobject(django_file)
+    
 
     suggestions = overwrite == 'merge'
     notranslate = overwrite == 'suggest'
