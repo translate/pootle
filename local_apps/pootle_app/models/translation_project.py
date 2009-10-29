@@ -321,26 +321,6 @@ class TranslationProject(models.Model):
         archive.close()
         return archivecontents.getvalue()
 
-    def ootemplate(self):
-        """Tests whether this project has an OpenOffice.org template SDF file in
-        the templates directory."""
-        projectdir = absolute_real_path(self.project.code)
-        templatefilename = os.path.join(projectdir, "templates", "en-US.sdf")
-        if os.path.exists(templatefilename):
-            return templatefilename
-        else:
-            return None
-
-    def getoo(self):
-        """Returns an OpenOffice.org gsi file"""
-        #TODO: implement caching
-        templateoo = self.ootemplate()
-        if templateoo is None:
-            return
-        outputoo = os.path.join(self.abs_real_path, self.languagecode + ".sdf")
-        inputdir = self.abs_real_path
-        po2oo.main(["-i%s"%inputdir, "-t%s"%templateoo, "-o%s"%outputoo, "-l%s"%self.languagecode, "--progress=none"])
-        return file(os.path.join(self.abs_real_path, self.languagecode + ".sdf"), "r").read()
 
     ##############################################################################################
 

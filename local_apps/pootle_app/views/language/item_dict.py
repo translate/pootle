@@ -138,18 +138,6 @@ def yield_export_links(request, path_obj, links_required):
                 'title': href
                 }
 
-def yield_sdf_link(request, path_obj, links_required):
-    if 'sdf' in links_required and \
-            check_permission('pocompile', request) and \
-            request.translation_project.ootemplate() and \
-            path_obj == request.translation_project.directory:
-        link = dispatch.download_sdf(request, path_obj)
-        yield {
-            'href':  link,
-            'text':  _('Generate SDF'),
-            'title': link
-            }
-
 def yield_commit_link(request, path_obj, links_required):
     if 'commit' in links_required and check_permission('commit', request) and \
            versioncontrol.hasversioning(request.translation_project.real_path):
@@ -179,7 +167,6 @@ def get_store_extended_links(request, path_obj, links_required):
             yield_translate_all_link(request, path_obj, links_required),
             yield_export_links(      request, path_obj, links_required),
             yield_zip_link(          request, path_obj, links_required),
-            yield_sdf_link(          request, path_obj, links_required),
             yield_commit_link(request, path_obj, links_required),
             yield_update_link(request, path_obj, links_required),
             ))

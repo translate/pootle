@@ -100,9 +100,6 @@ def download_zip(request, path_obj):
     archive_name = "%sexport/zip" % current_folder
     return archive_name
 
-def download_sdf(request, path_obj):
-    return request.translation_project.language.code + '.sdf'
-
 def export(request, pootle_path, format):
     return '%s/export/%s' % (pootle_path, format)
 

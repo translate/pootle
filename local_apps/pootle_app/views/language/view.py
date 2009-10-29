@@ -169,17 +169,6 @@ def export_zip(request, translation_project, file_path):
     response['Content-Disposition'] = 'attachment; filename=%s' % archivename
     return response
 
-@get_translation_project
-@set_request_context
-def export_sdf(request, translation_project, file_path):
-    if not check_permission("pocompile", request):
-        return redirect(translation_project.pootle_path, message=_('You do not have the right to create SDF files.'))
-    response =  HttpResponse(translation_project.getoo(), content_type="text/tab-separated-values")
-    filename = "%s-%s.sdf" % (translation_project.language.code, translation_project.project.code)
-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
-    return response
-
-
 MIME_TYPES = {
     "po":  "text/x-gettext-translation; charset=%(encoding)s",
     "csv": "text/csv; charset=%(encoding)s",
