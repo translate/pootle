@@ -221,8 +221,6 @@ class UploadHandler(view_handler.Handler):
                                       choices=[('merge', _("Merge the file with the current file and turn conflicts into suggestions")),
                                                ('overwrite',  _("Overwrite the current file if it exists")),
                                                ('suggest', _("Add all new translations as suggestions"))])
-
-
     @classmethod
     def must_display(self, request, *args, **kwargs):
         return check_permission('translate', request)
@@ -233,22 +231,23 @@ class UploadHandler(view_handler.Handler):
         self.form.title = _("Upload File")
 
     def do_upload(self, request, translation_project, directory):
-        django_file = request.FILES['file']
-        overwrite = self.form['overwrite'].data == 'checked'
-        scan_translation_project_files(translation_project)
-        oldstats = translation_project.getquickstats()
-        # The URL relative to the URL of the translation project. Thus, if
-        # directory.pootle_path == /af/pootle/foo/bar, then
-        # relative_root_dir == foo/bar.
-        relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
-        if django_file.name.endswith('.zip'):
-            archive = True
-            upload_archive(request, relative_root_dir, django_file, overwrite)
-        else:
-            archive = False
-            upload_file(request, relative_root_dir, django_file, overwrite)
-        scan_translation_project_files(translation_project)
-        newstats = translation_project.getquickstats()
-        post_file_upload.send(sender=translation_project, user=request.user, oldstats=oldstats,
-                              newstats=newstats, archive=archive)
+        if self.form.is_valid():
+            django_file = request.FILES['file']
+            overwrite = self.form.cleaned_data['overwrite']
+            scan_translation_project_files(translation_project)
+            oldstats = translation_project.getquickstats()
+            # The URL relative to the URL of the translation project. Thus, if
+            # directory.pootle_path == /af/pootle/foo/bar, then
+            # relative_root_dir == foo/bar.
+            relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
+            if django_file.name.endswith('.zip'):
+                archive = True
+                upload_archive(request, relative_root_dir, django_file, overwrite)
+            else:
+                archive = False
+                upload_file(request, relative_root_dir, django_file, overwrite)
+            scan_translation_project_files(translation_project)
+            newstats = translation_project.getquickstats()
+            post_file_upload.send(sender=translation_project, user=request.user, oldstats=oldstats,
+                                  newstats=newstats, archive=archive)
         return {}
