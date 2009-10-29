@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% comment %}
+Oh yeah, I know, this template code is horrible, and actually there are
+two templates into one. For the future we have to take a different
+approach for this.
+{% endcomment %}
+
 {% load i18n baseurl cleanhtml %}
 
 {% block extra_head %}
@@ -15,6 +21,17 @@
 <div id="breadcrumbs">
     <h2 class="title"><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></h2>
 </div>
+{% else %}
+
+{% block search %}
+{% include "language/search.html" %}
+{% endblock %}
+
+{% block breadcrumbs %}
+<div id="breadcrumbs">
+    <h2 class="title">{% include "language/item_title.html" %}</h2>
+</div>
+{% endblock %}
 {% endif %}
 {% endblock %}
 

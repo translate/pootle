@@ -32,6 +32,9 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
 
+from pootle_app.views.language import search_forms
+from pootle_app.views.language import navbar_dict
+
 from pootle_notifications.models import Notice
 
 def view(request, path):
@@ -59,6 +62,11 @@ def view(request, path):
                                      'name': tr_lang(directory.language.fullname)}
     else:
         template_vars['is_language'] = False
+
+    if directory.is_translationproject():
+        template_vars['search'] = search_forms.get_search_form(request)
+        request.translation_project = directory.translationproject
+        template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
 
     return render_to_response('notices.html', template_vars, context_instance=RequestContext(request))
 
