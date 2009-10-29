@@ -1,23 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
-# Copyright 2008 Zuza Software Foundation
-# 
+#
+# Copyright 2008-2009 Zuza Software Foundation
+#
 # This file is part of translate.
 #
-# translate is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
-# translate is distributed in the hope that it will be useful,
+#
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.forms.models import modelformset_factory
 from django.utils.translation import ugettext as _
@@ -29,13 +28,12 @@ from django.forms.util import ErrorList
 from pootle_misc.baseurl import redirect, l
 
 
-
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_authenticated():
             return redirect('/accounts/login/', message=_("You must log in to administer Pootle."))
         elif not request.user.is_superuser:
-            return redirect('/accounts/'+request.user.username +'/', message=_("You do not have the rights to administer Pootle.")) 
+            return redirect('/accounts/'+request.user.username +'/', message=_("You do not have the rights to administer Pootle."))
         else:
             return f(request, *args, **kwargs)
     return decorated_f
@@ -89,7 +87,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
                 if callable(link):
                     result.append(link(form.instance))
                     result.append(form[field].as_hidden())
-                else:     
+                else:
                     link = l(link % form.initial[linkfield])
                     result.append("<a href='"+link+"'>"+form.initial[linkfield]+"</a>")
                     result.append(form[field].as_hidden())
@@ -142,7 +140,7 @@ def process_modelformset(request, model_class, queryset, **kwargs):
 
         # hack to force reevaluation of same query
         queryset = queryset.filter()
-    
+
     return formset_class(queryset=queryset), None
 
 
@@ -153,16 +151,20 @@ def edit(request, template, model_class,
 
     formset, msg = process_modelformset(request, model_class, queryset=queryset, **kwargs)
     #FIXME: title should differ depending on model_class
-    template_vars = {"pagetitle": _("Pootle Languages Admin Page"),
-            "formset_text":  mark_safe(form_set_as_table(formset, link, linkfield)),
-            "formset":  formset,
-            "text":      {"home":        _("Home"),
-                "admin":       _("Main admin page"),
-                "title":    model_args['title'], 
+    template_vars = {
+            "pagetitle": _("Pootle Languages Admin Page"),
+            "formset_text": mark_safe(form_set_as_table(formset, link, linkfield)),
+            "formset": formset,
+            "text":      {
+                "home": _("Home"),
+                "admin": _("Main admin page"),
+                "title": model_args['title'],
                 "savechanges": _("Save changes"),
                 "submitname": model_args['submitname'],
                 "formid": model_args['formid'],
-                "error_msg":  msg}}
+                "error_msg":  msg,
+            }
+    }
     if model_args.get("project", None):
         template_vars["project"] = model_args['project']
     if model_args.get("search", None):
