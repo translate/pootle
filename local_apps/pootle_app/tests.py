@@ -178,7 +178,7 @@ class AdminTests(PootleTestCase):
         response = self.client.get("/fish/")
         self.assertContains(response, 'fish</title>')
         self.assertContains(response, '<a href="pootle/">Pootle</a>')
-        self.assertContains(response, "1 project, average 0% translated")
+        self.assertContains(response, "1 project, 0% translated")
 
 
 class NonprivTests(PootleTestCase):
