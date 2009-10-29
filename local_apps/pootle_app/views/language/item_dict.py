@@ -24,7 +24,7 @@ similar pages."""
 import itertools
 
 from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext
+from django.utils.translation import ungettext as _N
 
 from translate.storage import versioncontrol
 from pootle_app.models.permissions     import check_permission
@@ -38,7 +38,7 @@ def get_item_summary(request, quick_stats, path_obj):
     total_words      = quick_stats['totalsourcewords']
     num_stores       = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
     state            = dispatch.CommonState(request.GET)
-    file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
+    file_stats = _N("%d file", "%d files", num_stores, num_stores)
     # The translated word counts
     word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
                    {"translated": translated_words,
@@ -77,7 +77,7 @@ def getcheckdetails(request, path_obj, url_opts={}):
             continue
         checkcount = property_stats[checkname]
         if total and checkcount:
-            stats = ungettext('%(checks)d string (%(checkspercent)d%%) failed',
+            stats = _N('%(checks)d string (%(checkspercent)d%%) failed',
                               '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
                               {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
                       )
@@ -206,17 +206,42 @@ def add_percentages(quick_stats):
     quick_stats['untranslatedpercentage'] = 100 - quick_stats['translatedpercentage'] - quick_stats['fuzzypercentage']
     return quick_stats
 
+def stats_descriptions(quick_stats):
+    """Provides a dictionary with two textual descriptions of the work
+    outstanding."""
+
+    untranslated = quick_stats["untranslatedsourcewords"]
+    fuzzy = quick_stats["fuzzysourcewords"]
+    todo_words = untranslated + fuzzy
+    todo_text = _N("%d word need attention",
+            "%d words need attention", todo_words, todo_words)
+
+    todo_tooltip = u""
+    untranslated_tooltip = _N("%d word untranslated", "%d words untranslated", untranslated, untranslated)
+    fuzzy_tooltip = _N("%d word need review", "%d words need review", fuzzy, fuzzy)
+    # Firefox and Opera doesn't actually support newlines in tooltips, so we
+    # add some extra space to keep things readable
+    todo_tooltip = u"\n  ".join([untranslated_tooltip, fuzzy_tooltip])
+
+    return {
+        'todo_text': todo_text,
+        'todo_tooltip': todo_tooltip,
+    }
+
 def make_generic_item(request, path_obj, action, links_required, show_checks=False):
     """Template variables for each row in the table.
 
     make_directory_item() and make_store_item() will add onto these variables."""
     quick_stats = add_percentages(path_obj.getquickstats())
-    return {
+
+    info = {
         'href':    action,
         'data':    quick_stats,
         'title':   path_obj.name,
         'stats':   get_item_stats(request, quick_stats, path_obj, show_checks),
         'actions': get_action_links(request, path_obj, links_required) }
+    info.update(stats_descriptions(quick_stats))
+    return info
 
 def make_directory_item(request, directory, links_required=None, show_checks=False):
     action = dispatch.show_directory(request, directory.pootle_path)

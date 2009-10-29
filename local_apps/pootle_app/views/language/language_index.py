@@ -26,7 +26,7 @@ from django.template import RequestContext
 from django.core.exceptions import PermissionDenied
 
 from pootle_app.views.language.project_index import get_stats_headings
-from pootle_app.views.language.item_dict import add_percentages
+from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle_app.views import pagelayout
 from pootle_app.views.top_stats import gentopstats
 from pootle_app.models import Suggestion, Submission, Language
@@ -43,7 +43,7 @@ def make_project_item(translation_project):
     project = translation_project.project
     href = '%s/' % project.code
     projectstats = add_percentages(translation_project.getquickstats())
-    return {
+    info = {
         'code': project.code,
         'href': href,
         'icon': 'folder',
@@ -51,7 +51,9 @@ def make_project_item(translation_project):
         'description': project.description,
         'data': projectstats,
         'isproject': True,
-        }
+    }
+    info.update(stats_descriptions(projectstats))
+    return info
 
 def language_index(request, language_code):
     language = get_object_or_404(Language, code=language_code)

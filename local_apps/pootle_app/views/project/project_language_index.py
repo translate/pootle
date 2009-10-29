@@ -26,7 +26,7 @@ from django.template import RequestContext
 
 from pootle_app.models              import Project, Suggestion, Submission
 from pootle_app.views.language.project_index import get_stats_headings
-from pootle_app.views.language.item_dict import add_percentages
+from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.top_stats import gentopstats
 from pootle_app.views import pagelayout
@@ -38,13 +38,15 @@ def limit(query):
 def make_language_item(request, translation_project):
     href = '/%s/%s/' % (translation_project.language.code, translation_project.project.code)
     projectstats = add_percentages(translation_project.getquickstats())
-    return {
+    info = {
         'code': translation_project.language.code,
         'icon': 'language',
         'href': href,
         'title': tr_lang(translation_project.language.fullname),
         'data': projectstats,
-        }
+    }
+    info.update(stats_descriptions(projectstats))
+    return info
 
 
 def view(request, project_code, _path_var):

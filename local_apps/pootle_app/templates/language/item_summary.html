@@ -17,11 +17,8 @@
 </td>
 <td class="stats">
     <ul>
-        {% if item.data.untranslatedsourcewords %}
-        <li class="todo"><a href="{% filter l %}{% if item.code %}{{ item.href }}{% endif %}translate.html?match_names=untranslated&editing=1&view_mode=review{% endfilter %}">{{ item.data.untranslatedsourcewords }} {% trans "untranslated words" %}</a></li>
-        {% endif %}
-        {% if item.data.fuzzysourcewords %}
-        <li class="todo"><a href="{% filter l %}{% if item.code %}{{ item.href }}{% endif %}translate.html?match_names=check-isfuzzy&editing=1&view_mode=review{% endfilter %}">{{ item.data.fuzzysourcewords }} {% trans "fuzzy words" %}</a></li>
+        {% if item.data.untranslatedsourcewords or item.data.fuzzysourcewords %}
+        <li class="todo"><a href="{% filter l %}{% if item.code %}{{ item.href }}{% endif %}translate.html?match_names=fuzzy,untranslated&editing=1&view_mode=review{% endfilter %}" title="{{ item.todo_tooltip }}">{{ item.todo_text }}</a></li>
         {% endif %}
         {% ifequal item.data.translatedsourcewords item.data.totalsourcewords %}
         <li class="complete">{% trans "Complete" %}</li>
