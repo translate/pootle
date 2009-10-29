@@ -221,17 +221,6 @@ class UploadHandler(view_handler.Handler):
                                       choices=[('checked',  _("Overwrite the current file if it exists")),
                                                ('', _("Merge the file with the current file and turn conflicts into suggestions"))])
 
-        def as_p(self):
-            vars = {'file':    self['file'].as_widget(),
-                    'upload':  _('Upload')}
-            layout = '<div>%(file)s</div><div>%(overwrite)s</div>'
-            if self.allow_overwrite:
-                vars['overwrite'] = self['overwrite'].as_widget()
-                return layout % vars
-            else:
-                self.initial['overwrite'] = ''
-                vars['overwrite'] = self['overwrite'].as_hidden()
-                return mark_safe(layout % vars)
 
     @classmethod
     def must_display(self, request, *args, **kwargs):
