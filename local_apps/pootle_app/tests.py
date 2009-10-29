@@ -10,6 +10,8 @@ from django.core.management import call_command
 from django.contrib.auth.models import User
 from pootle_app.models.translation_project import scan_translation_projects
 from pootle_store.models import fs
+from pootle_app.models import Project, Language
+from pootle_store.models import Store
 
 def formset_dict(data):
     """convert human readable POST dictionary into brain dead django formset dictionary"""
@@ -148,7 +150,6 @@ class AdminTests(PootleTestCase):
         self.assertContains(response, "<a href='/projects/testproject/admin.html'>testproject</a>")
     
         # check for the actual model
-        from pootle_app.models import Project
         testproject = Project.objects.get(code="testproject")
         
         self.assertTrue(testproject)
@@ -160,7 +161,6 @@ class AdminTests(PootleTestCase):
     def test_add_project_language(self):
         """Tests that we can add a language to a project, then access
         its page when there are no files."""
-        from pootle_app.models import Language, Project
         fish = Language(code="fish", fullname="fish")
         fish.save()
             
