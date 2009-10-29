@@ -49,8 +49,8 @@ class TPTranslateView(BaseView):
             'project':               {"code": project.code,  "name": project.fullname},
             'language':              {"code": language.code, "name": tr_lang(language.fullname)},
             'search':                search_forms.get_search_form(request),
-            'children':              tp_common.get_children(request, translation_project, directory),
-            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
+            'children':              tp_common.get_children(request, translation_project, directory, links_required='translate'),
+            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')],
             #'stats_headings':        get_stats_headings(),
             #'topstats':              top_stats(translation_project),
             })

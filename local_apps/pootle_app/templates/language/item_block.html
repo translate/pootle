@@ -11,10 +11,7 @@
 
     {% if item.actions %}
     <div id="actionlinks" class="item-description">
-        {% for link in item.actions.basic %}
-        <a href="{{ link.href|l }}" title="{{ link.title }}">{{ link.text }}</a> | 
-        {% endfor %}
-        {% for link in item.actions.extended %}
+        {% for link in item.actions %}
         <a href="{{ link.href|l }}" title="{{ link.title }}">{{ link.text }}</a>{% if not forloop.last %} | {% endif %}
         {% endfor %}
     </div>

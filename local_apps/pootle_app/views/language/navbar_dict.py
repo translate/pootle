@@ -25,7 +25,7 @@ from django.utils.translation import ugettext as _
 from pootle_app import url_manip
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch
-from pootle_app.views.language.item_dict import get_store_extended_links
+from pootle_app.views.language.item_dict import directory_translate_links
 
 from pootle.i18n.gettext import tr_lang
 
@@ -47,10 +47,8 @@ def make_store_pathlinks(request, project_url, store, links):
 
 def make_directory_actions(request):
     directory = request.translation_project.directory
-    return {
-        'basic': [],
-        'extended': get_store_extended_links(request, directory, ["zip"]),
-        }
+    return directory_translate_links(request, directory)
+        
 
 def make_navbar_path_dict(request, path_links=None):
     def make_admin(request):
@@ -70,14 +68,14 @@ def make_navbar_path_dict(request, path_links=None):
                       'text': project.fullname},
         'pathlinks': path_links }
 
-def make_directory_navbar_dict(request, directory, show_actions=True, show_checks=False):
-    result = item_dict.make_directory_item(request, directory, [], show_checks)
+def make_directory_navbar_dict(request, directory, links_required=None):
+    result = item_dict.make_directory_item(request, directory, links_required)
     project_url = request.translation_project.directory.pootle_path
     path_links = make_directory_pathlinks(request, project_url, directory.pootle_path, [])
-    if show_actions:
+    if links_required:
         actions = make_directory_actions(request)
     else:
-        actions = {'basic': [], 'extended': [],}
+        actions = []
     result.update({
             'path':    make_navbar_path_dict(request, path_links),
             'actions': actions })

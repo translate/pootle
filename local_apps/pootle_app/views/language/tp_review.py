@@ -49,8 +49,8 @@ class TPReviewView(BaseView):
             'project':               {"code": project.code,  "name": project.fullname},
             'language':              {"code": language.code, "name": tr_lang(language.fullname)},
             'search':                search_forms.get_search_form(request),
-            'children':              tp_common.get_children(request, translation_project, directory, show_checks=True),
-            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, show_checks=True)],
+            'children':              tp_common.get_children(request, translation_project, directory, links_required='review'),
+            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review')],
             })
         return template_vars
 

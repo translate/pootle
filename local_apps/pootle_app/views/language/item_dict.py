@@ -91,98 +91,103 @@ def getcheckdetails(request, path_obj, url_opts={}):
 
 ################################################################################
 
-def yield_review_link(request, path_obj, links_required, stats_totals):
-    if 'review' in links_required and stats_totals.get('check-hassuggestion', 0):
+def review_link(request, path_obj):
+    if path_obj.getcompletestats().get('check-hassuggestion', 0):
         if check_permission('translate', request):
             text = _('Review Suggestions')
         else:
             text = _('View Suggestions')
-        yield { 
+        return { 
             'href': dispatch.translate(request, path_obj.pootle_path, match_names=['check-hassuggestion']),
             'text': text }
 
-def yield_quick_link(request, path_obj, links_required, stats_totals):
-    if check_permission('translate', request):
-        text = _('Quick Translate')
-    else:
-        text = _('View Untranslated')
-    if stats_totals['translated'] < stats_totals['total']\
-       and 'quick' in links_required:
-        yield {
+def quick_link(request, path_obj):
+    if path_obj.getquickstats()['translated'] < path_obj.getquickstats()['total']:
+        if check_permission('translate', request):
+            text = _('Quick Translate')
+        else:
+            text = _('View Untranslated')
+        return {
             'href': dispatch.translate(request, path_obj.pootle_path, match_names=['fuzzy', 'untranslated']),
             'text': text }
 
-def yield_translate_all_link(request, path_obj, links_required):
-    yield {
+def translate_all_link(request, path_obj):
+    #FIXME: what permissions to check for here?
+    return {
         'href': dispatch.translate(request, path_obj.pootle_path),
         'text': _('Translate All') }
 
-def yield_zip_link(request, path_obj, links_required):
-    if 'zip' in links_required and check_permission('archive', request):
+def zip_link(request, path_obj):
+    if check_permission('archive', request):
         text = _('ZIP of directory')
         link = dispatch.download_zip(request, path_obj)
-        yield {
+        return {
             'href':  link,
             'text':  text,
-            'title': link
             }
 
-def yield_export_links(request, path_obj, links_required):
-    for type, format, text in [('po',    'po',  _('Download PO')),
-                               ('xliff', 'xlf', _('Download XLIFF'))]:
-        if type in links_required:
-            href = dispatch.export(request, path_obj.pootle_path, format)
-            yield {
-                'href':  href,
-                'text':  text,
-                'title': href
-                }
+def po_link(request, path_obj):
+    href = dispatch.export(request, path_obj.pootle_path, 'po')
+    return {
+        'href':  href,
+        'text':  _('Download PO'),
+        }
+    
+def xliff_link(request, path_obj):
+    text = _('Download XLIFF')
+    href = dispatch.export(request, path_obj.pootle_path, 'xlf')
+    return {
+        'href':  href,
+        'text':  text,
 
-def yield_commit_link(request, path_obj, links_required):
-    if 'commit' in links_required and check_permission('commit', request) and \
-           versioncontrol.hasversioning(request.translation_project.real_path):
+        }
+
+def commit_link(request, path_obj):
+    if check_permission('commit', request) and versioncontrol.hasversioning(request.translation_project.real_path):
         link = dispatch.commit(request, path_obj)
         text = _('Commit to VCS')
-        yield {
+        return {
             'href': link,
             'text': text,
             'link': link,
         }
 
-def yield_update_link(request, path_obj, links_required):
-    if 'commit' in links_required and check_permission('commit', request):
+def update_link(request, path_obj):
+    if check_permission('commit', request) and versioncontrol.hasversioning(request.translation_project.real_path):
         link = dispatch.update(request, path_obj)
         text = _('Update from VCS')
-        yield {
+        return {
             'href': link,
             'text': text,
             'link': link,
         }
 
-def get_store_extended_links(request, path_obj, links_required):
-    stats_totals = path_obj.getcompletestats(request.translation_project.checker)
-    return list(itertools.chain(
-            yield_review_link(       request, path_obj, links_required, stats_totals),
-            yield_quick_link(        request, path_obj, links_required, stats_totals),
-            yield_translate_all_link(request, path_obj, links_required),
-            yield_export_links(      request, path_obj, links_required),
-            yield_zip_link(          request, path_obj, links_required),
-            yield_commit_link(request, path_obj, links_required),
-            yield_update_link(request, path_obj, links_required),
-            ))
+def _gen_link_list(request, path_obj, linkfuncs):
+    links = []
+    for linkfunc in linkfuncs:
+        link = linkfunc(request, path_obj)
+        if link is not None:
+            links.append(link)
+    return links
 
+def store_translate_links(request, path_obj):
+    """returns a list of links for store items in translate tab"""
+    return _gen_link_list(request, path_obj, [quick_link, translate_all_link,
+                                              po_link, xliff_link, 
+                                              update_link, commit_link])
+def store_review_links(request, path_obj):
+    """returns a list of links for store items in review tab"""
+    return _gen_link_list(request, path_obj, [review_link, po_link, xliff_link,
+                                              commit_link, update_link])
 
-def get_default_links_required(links_required):
-    if links_required is None:
-        return ["review", "quick", "all", "zip"]
-    else:
-        return links_required
+def directory_translate_links(request, path_obj):
+    """returns a list of links for directory items in translate tab"""
+    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, zip_link])
 
-def get_action_links(request, path_obj, links_required):
-    return {
-        'basic': [],
-        'extended': get_store_extended_links(request, path_obj, get_default_links_required(links_required)),
-        }
+def directory_review_links(request, path_obj):
+    """returns a list of links for directory items in review tab"""
+    return _gen_link_list(request, path_obj, [review_link, zip_link])
+
 
 ################################################################################
 
@@ -215,7 +220,7 @@ def stats_descriptions(quick_stats):
         'todo_tooltip': todo_tooltip,
     }
 
-def make_generic_item(request, path_obj, action, links_required, show_checks=False):
+def make_generic_item(request, path_obj, action, show_checks=False):
     """Template variables for each row in the table.
 
     make_directory_item() and make_store_item() will add onto these variables."""
@@ -226,35 +231,37 @@ def make_generic_item(request, path_obj, action, links_required, show_checks=Fal
         'data':    quick_stats,
         'title':   path_obj.name,
         'stats':   get_item_stats(request, quick_stats, path_obj, show_checks),
-        'actions': get_action_links(request, path_obj, links_required) }
+        }
     info.update(stats_descriptions(quick_stats))
     return info
 
-def make_directory_item(request, directory, links_required=None, show_checks=False):
+def make_directory_item(request, directory, links_required=None):
     action = dispatch.show_directory(request, directory.pootle_path)
-    item = make_generic_item(request, directory, action, links_required, show_checks)
+    show_checks = links_required == 'review'
+    item = make_generic_item(request, directory, action, show_checks)
+    if links_required == 'translate':
+        item['actions'] = directory_translate_links(request, directory)
+    elif links_required == 'review':
+        item['actions'] = directory_review_links(request, directory)
+    else:
+        item['actions'] = []
     item.update({
             'icon':   'folder',
             'isdir':  True })
     return item
 
-def default_store_links_required(store, links_required):
-    if links_required is None:
-        if store.name.endswith('.po'):
-            return ["mine", "review", "quick", "all", "po", "xliff",
-                    "ts", "csv", "mo", "update", "commit"]
-        else:
-            return ["mine", "review", "quick", "all", "po", "xliff",
-                    "update", "commit"]
-    else:
-        return links_required
-
-def make_store_item(request, store, links_required=None, show_checks=False):
+def make_store_item(request, store, links_required=None):
     action = dispatch.translate(request, store.pootle_path)
-    item = make_generic_item(request, store, action,
-                             default_store_links_required(store, links_required),
-                             show_checks)
+    show_checks = links_required == 'review'
+    item = make_generic_item(request, store, action, show_checks)
+    if links_required == 'translate':
+        item['actions'] = store_translate_links(request, store)
+    elif links_required == 'review':
+        item['actions'] = store_review_links(request, store)
+    else:
+        item['actions'] = []
     item.update({
             'icon':   'file',
             'isfile': True })
+    print store_translate_links(request, store)
     return item
