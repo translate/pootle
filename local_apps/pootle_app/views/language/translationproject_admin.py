@@ -29,16 +29,14 @@ from pootle_store.models import Store
 from pootle_app.models.translation_project import TranslationProject
 
 
-def view(request, language_code, project_code):
-    translation_project = get_object_or_404(TranslationProject, language__code=language_code, project__code=project_code)
+def view(request, translation_project):
     queryset = translation_project.stores
     model_args = {}
     model_args['title'] = _("Files")
     model_args['submitname'] = "changestores"
     model_args['formid'] = "stores"
-    # Commented for now
-    #model_args['search'] = search_forms.get_search_form(request)
-    #model_args['navitems'] = [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)]
+    model_args['search'] = search_forms.get_search_form(request)
+    model_args['navitems'] = [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)]
     link = "%s"
     return util.edit(request, 'language/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,

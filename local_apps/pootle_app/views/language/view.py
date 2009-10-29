@@ -38,7 +38,9 @@ from pootle_app                    import unit_update
 
 from pootle_app.views.language.tp_translate import view as tp_translate_view
 from pootle_app.views.language.tp_review import view as tp_review_view
-from pootle_app.views.language.admin import view as translation_project_admin_view
+# FIXME: rename the modules below to more sensitive names
+from pootle_app.views.language.admin import view as tp_admin_permissions_view
+from pootle_app.views.language.translationproject_admin import view as tp_admin_files_view
 
 from project_index import view as project_index_view
 from translate_page import find_and_display
@@ -64,8 +66,13 @@ def set_request_context(f):
 
 @get_translation_project
 @set_request_context
-def translation_project_admin(request, translation_project):
-    return translation_project_admin_view(request, translation_project)
+def translation_project_admin_permissions(request, translation_project):
+    return tp_admin_permissions_view(request, translation_project)
+
+@get_translation_project
+@set_request_context
+def translation_project_admin_files(request, translation_project):
+    return tp_admin_files_view(request, translation_project)
 
 @get_translation_project
 @set_request_context

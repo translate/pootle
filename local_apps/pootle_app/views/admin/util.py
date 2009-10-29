@@ -165,4 +165,8 @@ def edit(request, template, model_class,
                 "error_msg":  msg}}
     if model_args.get("project", None):
         template_vars["project"] = model_args['project']
+    if model_args.get("search", None):
+        template_vars["search"] = model_args['search']
+    if model_args.get("navitems", None):
+        template_vars["navitems"] = model_args['navitems']
     return render_to_response(template, template_vars, context_instance=RequestContext(request))
