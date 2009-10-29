@@ -38,9 +38,8 @@ from pootle_app                    import unit_update
 
 from pootle_app.views.language.tp_translate import view as tp_translate_view
 from pootle_app.views.language.tp_review import view as tp_review_view
-# FIXME: rename the modules below to more sensitive names
-from pootle_app.views.language.admin import view as tp_admin_permissions_view
-from pootle_app.views.language.translationproject_admin import view as tp_admin_files_view
+from pootle_app.views.language.admin_permissions import view as tp_admin_permissions_view
+from pootle_app.views.language.admin_files import view as tp_admin_files_view
 
 from project_index import view as project_index_view
 from translate_page import find_and_display
