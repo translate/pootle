@@ -24,8 +24,8 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals           import pre_delete, post_save
 
-from profile import PootleProfile
-from directory import Directory
+from pootle_app.models.profile import PootleProfile
+from pootle_app.models.directory import Directory
 
 def get_pootle_permission(codename):
     # The content type of our permission
