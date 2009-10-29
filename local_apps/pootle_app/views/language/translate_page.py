@@ -374,7 +374,10 @@ def get_trans_view(request, store, item, trans, textarea=False):
             form = {"title": _("Plural Form %d", pluralitem), "n": pluralitem, "text": escapefunction(pluraltext)}
             editclass = ""
             if cantrans or cansugg:
-                editclass = ables+"edittrans"+str(item)+"p"+str(pluralitem)
+                # Some claim string concatenation is slow, so we rewrite the
+                # commented line as a single string with formatting:
+                #editclass = ables + "edittrans" + str(item) + "p" + str(pluralitem)
+                editclass = "%sedittrans%sp%s" % (ables, str(item), str(pluralitem)
             form["editclass"] = editclass
 
             forms.append(form)
