@@ -18,8 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-"""This file contains the version of the Translate Toolkit."""
+"""This file contains the version of Pootle."""
 
 build = 13000
-sver = "1.3.0-beta3"
+sver = "1.3.0-beta4"
 ver = (1, 3, 0)
