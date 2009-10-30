@@ -54,8 +54,7 @@ def view(request, translation_project, directory):
     if not check_permission("view", request):
         raise PermissionDenied
 
-    view_obj = TPReviewView(forms=dict(upload=tp_common.UploadHandler,
-                                       update=tp_common.UpdateHandler))
+    view_obj = TPReviewView({})
     return render_to_response("language/tp_review.html",
                          view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))
