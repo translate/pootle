@@ -25,7 +25,7 @@ from django.utils.translation import ugettext as _
 from pootle_app import url_manip
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch
-from pootle_app.views.language.item_dict import directory_translate_links
+from pootle_app.views.language.item_dict import directory_translate_links, directory_review_links
 
 from pootle.i18n.gettext import tr_lang
 
@@ -45,9 +45,12 @@ def make_store_pathlinks(request, project_url, store, links):
                   'text': store.name})
     return links
 
-def make_directory_actions(request):
+def make_directory_actions(request, links_required=None):
     directory = request.translation_project.directory
-    return directory_translate_links(request, directory)
+    if links_required == 'translate':
+        return directory_translate_links(request, directory)
+    elif links_required == 'review':
+        return directory_review_links(request, directory)
         
 
 def make_navbar_path_dict(request, path_links=None):
@@ -73,7 +76,7 @@ def make_directory_navbar_dict(request, directory, links_required=None):
     project_url = request.translation_project.directory.pootle_path
     path_links = make_directory_pathlinks(request, project_url, directory.pootle_path, [])
     if links_required:
-        actions = make_directory_actions(request)
+        actions = make_directory_actions(request, links_required)
     else:
         actions = []
     result.update({
