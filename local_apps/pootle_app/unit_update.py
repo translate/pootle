@@ -69,23 +69,24 @@ def update_translation(store, item, newvalues, request, suggestion=None):
     translation_project.update_index(translation_project.indexer, store, [item])
 
 
-def get_suggestion(store, item, newtrans, request):
+def update_suggestion(state, store, item, newtrans, request):
     """Marks the suggestion specified by the parameters with the given status,
     and returns that suggestion object"""
     translation_project = request.translation_project
-    return Suggestion.objects.get(translation_project = translation_project, unit=_suggestion_hash(store, item, newtrans))
+    suggestion, created  = Suggestion.objects.get_or_create(translation_project = translation_project, unit=_suggestion_hash(store, item, newtrans))
+    suggestion.state = state
+    suggestion.reviewer = get_profile(request.user)
+    suggestion.review_time = datetime.datetime.utcnow()
+    suggestion.save()
+    return suggestion
+
 
 def reject_suggestion(store, item, suggitem, newtrans, request):
     """rejects the suggestion and removes it from the pending file"""
     if not check_permission("review", request):
         raise PermissionError(_("You do not have rights to review suggestions here"))
 
-    try:
-        # Deletes the suggestion from the database
-        suggestion = get_suggestion(store, item, newtrans, request)
-        suggestion.delete()
-    except ObjectDoesNotExist:
-        pass
+    update_suggestion('rejected', store, item, newtrans, request)
     # Deletes the suggestion from the .pending file
     store.deletesuggestion(item, suggitem, newtrans,
                            request.translation_project.checker)
@@ -95,18 +96,10 @@ def accept_suggestion(store, item, suggitem, newtrans, request):
     if not check_permission("review", request):
         raise PermissionError(_("You do not have rights to review suggestions here"))
 
-    new_values = {"target": newtrans, "fuzzy": False}
+    suggestion = update_suggestion('accepted', store, item, newtrans, request)
 
-    suggestion = None
-    try:
-        suggestion = get_suggestion(store, item, newtrans, request)
-        suggestion.state = 'accepted'
-        suggestion.save()
-    except ObjectDoesNotExist:
-        pass
-    
+    new_values = {"target": newtrans, "fuzzy": False}
     update_translation(store, item, new_values, request, suggestion)
-    
     store.deletesuggestion(item, suggitem, newtrans,
                            request.translation_project.checker)
     
