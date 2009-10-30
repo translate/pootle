@@ -30,7 +30,7 @@ def map_num_contribs(sub, user):
 def users_from_suggestions(sugs):
     """Get the Users associated with the Suggestions. Also assign
     the num_contribs attribute from the Suggestion to the User"""
-    return [map_num_contribs(sug, sug.suggester.user) for sug in sugs]
+    return [map_num_contribs(sug, sug.suggester.user) for sug in sugs if sug.suggester]
 
 def users_from_submissions(subs):
     """Get the Users associated with the Submissions. Also assign
