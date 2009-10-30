@@ -173,7 +173,9 @@ class TranslationStoreFile(File):
             if newvalues['translator_comments']:
                 unit.addnote(newvalues['translator_comments'])
 
+        had_header = True
         if isinstance(self.store, po.pofile):
+            had_header = self.store.header()
             po_revision_date = time.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
             headerupdates = {'PO_Revision_Date': po_revision_date,
                              'X_Generator': x_generator}
@@ -190,7 +192,11 @@ class TranslationStoreFile(File):
 
         oldstats = self.getquickstats()
         self.savestore()
-        self.reclassifyunit(item, checker)
+        if not had_header:
+            # if new header was added item indeces will be incorrect, flush stats caches
+            self._stats[self.path] = StatsTuple()            
+        else:
+            self.reclassifyunit(item, checker)
         newstats = self.getquickstats()
         post_unit_update.send(sender=self.instance, oldstats=oldstats, newstats=newstats)
 
