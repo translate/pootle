@@ -142,11 +142,9 @@ def get_display_rows(profile, mode):
     """get the number of rows to display for the given mode"""
     if mode == "view":
         rowsdesired = profile.view_rows
-        default = 10
         maximum = 100
     elif mode == "translate":
         rowsdesired = profile.translate_rows
-        default = 7
         maximum = 20
     else:
         raise ValueError("getdisplayrows has no mode '%s'" % mode)
