@@ -27,7 +27,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from pootle_app.forms import GeneralSettingsForm
 
-from pootle_app.siteconfig import load_site_config
+from pootle_misc.siteconfig import load_site_config
 siteconfig = load_site_config()
 
 @user_is_admin

@@ -28,7 +28,7 @@ admin.autodiscover()
 
 DJANGO_MEDIA = path.join(path.dirname(admin.__file__), 'media')
 
-import pootle_app.siteconfig
+import pootle_misc.siteconfig
 
 urlpatterns = patterns('',
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
