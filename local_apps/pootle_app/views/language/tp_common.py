@@ -204,13 +204,15 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
     django_file._closed = False
     newstore = factory.getobject(django_file)
     
-
+    #FIXME: are we sure this is what we want to do? shouldn't we
+    # diffrentiate between structure changing uploads and mere
+    # pretranslate uploads?
     suggestions = overwrite == 'merge'
     notranslate = overwrite == 'suggest'
     allownewstrings = check_permission('overwrite', request) or check_permission('administrate', request) or check_permission('commit', request)
-    #FIXME: how to determine obsoletemissing based on permissions and value of override?
-    
-    store.mergefile(newstore, request.user.username, suggestions=suggestions, notranslate=notranslate, allownewstrings=allownewstrings)
+    obsoletemissing = allownewstrings and overwrite == 'merge'
+    store.mergefile(newstore, request.user.username, suggestions=suggestions, notranslate=notranslate,
+                    allownewstrings=allownewstrings, obsoletemissing=obsoletemissing)
 
 class UpdateHandler(view_handler.Handler):
     actions = [('do_update', _('Update all from version control'))]
