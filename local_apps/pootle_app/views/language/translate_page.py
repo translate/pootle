@@ -164,7 +164,7 @@ def get_translations(request, profile, store, item):
         pofilelen = store.file.getitemslen()
         if last_item > pofilelen:
             last_item = pofilelen
-            first_item = last_item - rows
+            first_item = max(last_item - rows, 0)
         items = get_units(store, first_item, last_item)
         return item, first_item, items
 
