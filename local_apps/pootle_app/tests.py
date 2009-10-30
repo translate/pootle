@@ -133,7 +133,7 @@ class AdminTests(PootleTestCase):
         response = self.client.get('/')
         self.assertContains(response, "<a href='/admin/'>Admin</a>")
         response = self.client.get('/admin/')
-        self.assertContains(response, 'Pootle Admin Page')        
+        self.assertContains(response, 'General Settings</title>')        
 
     def test_add_project(self):
         """Checks that we can add a project successfully."""
