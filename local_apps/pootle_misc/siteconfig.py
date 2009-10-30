@@ -38,6 +38,3 @@ def load_site_config():
         siteconfig.add_defaults(defaults)
     apply_django_settings(siteconfig, settings_map)
     return siteconfig
- 
- 
-load_site_config()
