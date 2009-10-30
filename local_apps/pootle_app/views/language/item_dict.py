@@ -143,7 +143,7 @@ def xliff_link(request, path_obj):
         }
 
 def commit_link(request, path_obj):
-    if check_permission('commit', request) and versioncontrol.hasversioning(request.translation_project.real_path):
+    if check_permission('commit', request) and versioncontrol.hasversioning(request.translation_project.abs_real_path):
         link = dispatch.commit(request, path_obj)
         text = _('Commit to VCS')
         return {
@@ -153,7 +153,7 @@ def commit_link(request, path_obj):
         }
 
 def update_link(request, path_obj):
-    if check_permission('commit', request) and versioncontrol.hasversioning(request.translation_project.real_path):
+    if check_permission('commit', request) and versioncontrol.hasversioning(request.translation_project.abs_real_path):
         link = dispatch.update(request, path_obj)
         text = _('Update from VCS')
         return {
