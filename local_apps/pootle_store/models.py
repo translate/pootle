@@ -109,6 +109,9 @@ class Store(models.Model):
             elif create:
                 # pending file got deleted recreate
                 store = po.pofile()
+                #FIXME: we should add more details to headers, maybe
+                # copy them from file?
+                po.makeheader(charset='UTF-8', encoding='8bit')
                 store.savefile(pending_filename)
                 return
             else:
