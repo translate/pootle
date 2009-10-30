@@ -252,7 +252,9 @@ class Store(models.Model):
             for unit in old_units:
                 unit.makeobsolete()
 
-        self.initpending(create=True)
+        if notranslate or suggestions:
+            self.initpending(create=True)
+            
         shared_units = ((self.file.store.findid(uid), newfile.findid(uid)) for uid in old_ids & new_ids)        
         for oldunit, newunit in shared_units:
             if not newunit.istranslated():
