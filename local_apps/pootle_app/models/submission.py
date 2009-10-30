@@ -79,6 +79,6 @@ class Submission(models.Model):
     objects = SubmissionManager()
 
     def __unicode__(self):
-        return u"%s (%s)" % (self.creation_time.strftime("%c"), unicode(self.submitter))
+        return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"), unicode(self.submitter))
 
 
