@@ -85,6 +85,7 @@ def collect_options():
         'pootle_store': 'local_apps/pootle_store',
         'pootle_misc':  'local_apps/pootle_misc',
         'pootle_notifications': 'local_apps/pootle_notifications',
+        'pootle_autonotices': 'local_apps/pootle_autonotices',
         'registration': 'external_apps/registration',
         'profiles':     'external_apps/profiles',
         'djblets':      'external_apps/djblets',
