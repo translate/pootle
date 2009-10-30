@@ -107,5 +107,6 @@ def accept_suggestion(store, item, suggitem, newtrans, request):
     
     update_translation(store, item, new_values, request, suggestion)
     
-    store.deletesuggestion(item, suggitem, newtrans)
+    store.deletesuggestion(item, suggitem, newtrans,
+                           request.translation_project.checker)
     
