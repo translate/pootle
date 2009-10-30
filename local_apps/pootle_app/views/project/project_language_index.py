@@ -60,9 +60,6 @@ def view(request, project_code, _path_var):
     topstats = gentopstats(lambda query: query.filter(translation_project__project__code=project_code))
 
     templatevars = {
-        'pagetitle': _('%(title)s: %(project)s',
-                       {"title": pagelayout.get_title(), "project": project.fullname}
-                       ),
         'project': {
           'code': project.code,
           'name': project.fullname,

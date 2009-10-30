@@ -1,8 +1,11 @@
 {% extends "project_base.html" %}
+
 {% load i18n baseurl %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block title %}{{ block.super }}{% trans " » " %}{{ project.name }}{% endblock %}
 
 {% block body.id %}projectindex{% endblock body.id %}
 

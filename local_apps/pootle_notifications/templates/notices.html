@@ -8,6 +8,16 @@ approach for this.
 
 {% load i18n baseurl cleanhtml %}
 
+{% block title %}
+{{ block.super }}{% trans ": " %}
+{% if is_language %}
+{{ language.name }}
+{% else %}
+{{ navitems.0.path.language.text }}{% trans " » " %}{{ navitems.0.path.project.text }}
+{% endif %}
+{% trans " » " %}{% trans "News" %}
+{% endblock %}
+
 {% block extra_head %}
 <link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications.feeds.view path %}" />
 {% endblock %}

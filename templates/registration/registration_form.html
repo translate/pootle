@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
+
+{% block title %}{{ block.super }}{% trans ": " %}{% trans "Register" %}{% endblock %}
  
 {% block content %}
 <div id="register" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">

@@ -34,7 +34,6 @@ def view(request):
     topstats = gentopstats(lambda query: query)
 
     templatevars = {
-        'pagetitle': pagelayout.get_title(),
         'projectlink': _('Projects'),
         'projects': getprojects(request),
         'topstats': topstats,

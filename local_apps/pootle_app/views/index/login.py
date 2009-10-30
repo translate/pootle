@@ -64,8 +64,6 @@ def view(request):
             form = AuthenticationForm(request)
         request.session.set_test_cookie()
         context = {
-            'pagetitle': _('%(title)s: Login',
-                           {"title": pagelayout.get_title()}),
             'languages': language_list(request),
             'form': form
             }

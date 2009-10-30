@@ -2,6 +2,8 @@
 
 {% load i18n baseurl %}
 
+{% block title %}{{ block.super }}{% trans " » " %}{% trans "Files" %}{% endblock %}
+
 {% block bodyclass %}tpadminfiles{% endblock %}
 
 {% block section_description %}{% blocktrans %}Here you can delete the available files in this translation project. You may also want to <a href="?scan_files=1">rescan the project files</a>.{% endblocktrans %}{% endblock %}

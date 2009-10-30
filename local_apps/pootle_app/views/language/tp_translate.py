@@ -29,7 +29,6 @@ from pootle_app.views.base import BaseView
 from pootle_app.views.language import navbar_dict
 from pootle_app.views.language import search_forms
 from pootle_app.views.language import tp_common
-from pootle_app.views import pagelayout
 
 from pootle.i18n.gettext import tr_lang
 
@@ -41,11 +40,6 @@ class TPTranslateView(BaseView):
         language = translation_project.language
 
         template_vars.update({
-            'pagetitle':             _('%(title)s: Project %(project)s, Language %(language)s',
-                                       {"title": pagelayout.get_title(),
-                                        "project": project.fullname,
-                                        "language": tr_lang(language.fullname)}
-                                       ),
             'project':               {"code": project.code,  "name": project.fullname},
             'language':              {"code": language.code, "name": tr_lang(language.fullname)},
             'search':                search_forms.get_search_form(request),

@@ -1,6 +1,8 @@
 {% extends "admin_profile_base.html" %}
 {% load i18n baseurl %}
 
+{% block title %}{{ block.super }}{% trans " » " %}{% trans "Users" %}{% endblock %}
+
 {% block bodyclass %}adminusers{% endblock %}
 
 {% block section_description %}{% trans "Here you can add, edit, and delete all the available users in this Pootle server." %}{% endblock %}

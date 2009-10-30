@@ -1,5 +1,9 @@
 {% extends "base.html"  %}
 
+{% load i18n %}
+
+{% block title %}{{ block.super }}{% trans ": " %}{{ navitems.0.path.language.text }}{% trans " » " %}{{ navitems.0.path.project.text }}{% endblock %}
+
 {% block search %}
 {% include "language/search.html" %}
 {% endblock %}

@@ -2,6 +2,8 @@
 
 {% load i18n baseurl %}
 
+{% block title %}{{ block.super }}{% trans ": " %}{% trans "Account Activated" %}{% endblock %}
+
 {% block content %}
 <div class="general-message">
     <h2>{% trans "Account Activated." %}</h2>

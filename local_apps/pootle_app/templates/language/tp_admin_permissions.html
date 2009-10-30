@@ -2,6 +2,8 @@
 
 {% load i18n %}
 
+{% block title %}{{ block.super }}{% trans " » " %}{% trans "Permissions" %}{% endblock %}
+
 {% block bodyclass %}tpadminpermissions{% endblock %}
 
 {% block section_description %}{{ filestyle_text }}{% endblock %}

@@ -1,5 +1,9 @@
 {% extends "tp_base.html" %}
 
+{% load i18n %}
+
+{% block title %}{{ block.super }}{% trans " » " %}{% trans "Administrate" %}{% endblock %}
+
 {% block content %}
 <div class="settings-container centered">
     <p>{% block section_description %}{% endblock %}</p>

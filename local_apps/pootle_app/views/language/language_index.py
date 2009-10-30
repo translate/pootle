@@ -71,8 +71,6 @@ def language_index(request, language_code):
     topstats = gentopstats(lambda query: query.filter(translation_project__language__code=language_code))
 
     templatevars = {
-        'pagetitle': _('%(title)s: Language %(language)s',
-                       {"title": pagelayout.get_title(), "language": tr_lang(language.fullname)}),
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),

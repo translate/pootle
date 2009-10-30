@@ -37,7 +37,6 @@ from pootle import __version__ as pootleversion
 
 def view(request):
     data = {
-        'pagetitle': _(settings.TITLE),
         'description': _(settings.DESCRIPTION),
         'keywords' : [ 'Pootle',
                        'locamotion',

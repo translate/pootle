@@ -249,7 +249,6 @@ def view(request, translation_project):
     else:
         filestyle_text = _("This is a standard style project (one directory per language).")
     template_vars = {
-        "pagetitle":              _("Pootle Admin: %(language)s %(project)s", {'language': language.fullname, 'project': project.fullname}),
         "norights_text":          _("You do not have the rights to administer this project."),
         "project":                project,
         "language":               language,

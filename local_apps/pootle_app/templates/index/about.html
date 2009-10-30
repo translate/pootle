@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}{{ block.super }}{% trans ": About" %}{% endblock %}
+
 {% block body.id %}about{% endblock body.id %}
 
 {% block precontent %}

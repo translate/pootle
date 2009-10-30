@@ -85,7 +85,6 @@ def view(request):
     topstats = gentopstats(lambda query: query)
 
     templatevars = {
-        'pagetitle': pagelayout.get_title(),
         'description': pagelayout.get_description(),
         'keywords': [
             'Pootle',

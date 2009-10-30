@@ -5,6 +5,8 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
+{% block title %}{{ block.super }}{% trans " » " %}{% trans "Translate" %}{% trans " » " %}{{ title_path }}{% endblock %}
+
 {% block body.id %}translatepage{% endblock body.id %}
 
 {% block bodyclass %}{% if checking_text %}tpreview{% else %}tptranslate{% endif %}{% endblock %}

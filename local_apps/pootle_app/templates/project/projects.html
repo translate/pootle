@@ -1,7 +1,12 @@
 {% extends "base.html" %}
+
 {% load i18n baseurl %}
+
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block title %}{{ block.super }}{% trans ": " %}{% trans "Projects" %}{% endblock %}
+
 {% block body.id %}projectsindex{% endblock body.id %}
 
 {% block content %}

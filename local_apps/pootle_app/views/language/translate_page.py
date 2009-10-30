@@ -947,10 +947,7 @@ def view(request, directory, store, item, stopped_by=None):
              "tracks":  [],
              }
     templatevars = {
-        "pagetitle":                 _("%(title)s: translating %(project)s into %(language)s: %(file)s",
-                                       {"title": instancetitle, "project": project.fullname,
-                                        "language": language.fullname, "file": store_path}
-                                       ),
+        "title_path":                store_path,
         "project":                   {"code": project.code,
                                       "name": project.fullname},
         "language":                  language_data,

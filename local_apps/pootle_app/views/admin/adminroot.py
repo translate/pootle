@@ -33,7 +33,6 @@ def view(request):
     permission_set_formset = process_permission_update(request, Directory.objects.root)
 
     template_vars = {
-        "pagetitle":              _("Pootle Admin: Default Permissions"),
         "norights_text":          _("You do not have the rights to administer site permissions."),
         "permission_set_formset": permission_set_formset,
         "hide_fileadmin_links":   True,

@@ -71,11 +71,6 @@ class ProjectIndexView(BaseView):
         language = translation_project.language
 
         template_vars.update({
-            'pagetitle':             _('%(title)s: Project %(project)s, Language %(language)s', 
-                                       {"title": pagelayout.get_title(),
-                                        "project": project.fullname,
-                                        "language": tr_lang(language.fullname)}
-                                       ),
             'project':               {"code": project.code,  "name": project.fullname},
             'language':              {"code": language.code, "name": tr_lang(language.fullname)},
             'search':                search_forms.get_search_form(request),

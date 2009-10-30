@@ -152,7 +152,6 @@ def edit(request, template, model_class,
     formset, msg = process_modelformset(request, model_class, queryset=queryset, **kwargs)
     #FIXME: title should differ depending on model_class
     template_vars = {
-            "pagetitle": _("Pootle Languages Admin Page"),
             "formset_text": mark_safe(form_set_as_table(formset, link, linkfield)),
             "formset": formset,
             "text": {

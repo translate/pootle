@@ -41,7 +41,6 @@ def view(request, language_code):
     permission_set_formset = process_permission_update(request, language.directory)
 
     template_vars = {
-        "pagetitle":              _("Pootle Admin: %s", language.fullname),
         "norights_text":          _("You do not have the rights to administer this Language."),
         "language":               { 'code': language_code,
                                     'name': tr_lang(language.fullname) },
