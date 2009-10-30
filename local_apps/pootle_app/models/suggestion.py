@@ -55,7 +55,8 @@ class Suggestion(models.Model):
         app_label = "pootle_app"
 
     state_choices = [('pending', _('Pending')),
-                     ('accepted', _('accepted')),
+                     ('accepted', _('Accepted')),
+                     ('rejected', _('Rejected')),
                      ]
         
     creation_time       = models.DateTimeField(auto_now_add=True, db_index=True)
