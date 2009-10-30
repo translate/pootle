@@ -388,16 +388,10 @@ def get_trans_view(request, store, item, trans, textarea=False):
 
 def get_trans_edit(request, store, item, trans):
     """returns a widget for editing the given item and translation"""
-    transdict = {
-        "rows": 5,
-        "cols": 40,
-        }
+    transdict = { "rows": 5 }
     if check_permission("translate", request) or check_permission("suggest", request):
         profile = get_profile(request.user)
-        transdict = {
-            "rows": profile.input_height,
-            "cols": profile.input_width
-            }
+        transdict = { "rows": profile.input_height }
         focusbox = ""
         if len(trans) > 1:
             buttons = get_trans_buttons(request, request.translation_project, item, ["translate", "suggest", "copy", "skip", "back"])

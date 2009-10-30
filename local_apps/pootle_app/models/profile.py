@@ -66,7 +66,6 @@ class PootleProfile(models.Model):
     user = models.OneToOneField(User, unique=True, db_index=True)
 
     unit_rows       = models.SmallIntegerField(default=10)
-    input_width     = models.SmallIntegerField(default=40)
     input_height    = models.SmallIntegerField(default=5)
     languages       = models.ManyToManyField(Language, blank=True, related_name="user_languages", db_index=True)
     projects        = models.ManyToManyField(Project, blank=True, db_index=True)

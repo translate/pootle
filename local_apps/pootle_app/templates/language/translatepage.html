@@ -146,13 +146,12 @@
                               <!--! No plurals -->
                               <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}"
                                     onfocus="setfocusedelement(this);" class="translation expanding {{ item.state_class }}"
-                                    name="{{ item.trans.itemid }}" id="area{{ item.trans.itemid }}" rows="{{ item.trans.rows }}"
-                                    cols="{{ item.trans.cols }}">{{ item.trans.text|safe }}</textarea>
+                                    name="{{ item.trans.itemid }}" id="area{{ item.trans.itemid }}" rows="{{ item.trans.rows }}">{{ item.trans.text|safe }}</textarea>
                               {% else %}
                               <!--! with plurals -->
                               {% for form in item.trans.forms %}
                               <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ form.title }}</div>
-                                  <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}" onfocus="setfocusedelement(this);" class="translation expanding {{ item.state_class }}" name="{{ form.name }}" id="area{{ form.name }}" rows="{{ item.trans.rows }}" cols="{{ item.trans.cols }}">{{ form.text|safe }}</textarea>
+                                  <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}" onfocus="setfocusedelement(this);" class="translation expanding {{ item.state_class }}" name="{{ form.name }}" id="area{{ form.name }}" rows="{{ item.trans.rows }}">{{ form.text|safe }}</textarea>
                               {% endfor %}
                               {% endif %}
 
@@ -309,7 +308,7 @@
                         <div>{{ translator_comments_title }}</div>
                         {% if not reviewmode %}
                         <textarea dir="{{ language.dir }}" lang="{{ language.code }}" name="translator_comments{{ item.itemid }}"
-                              id="translator_comments{{ item.itemid }}" rows="2" cols="{{ item.trans.cols }}"
+                              id="translator_comments{{ item.itemid }}" rows="2"
                               class="comments expanding">{{ item.translator_comments|safe }}</textarea>
                         {% else %}
                         <div class="translator-comments">{{ item.translator_comments|safe }}</div>
