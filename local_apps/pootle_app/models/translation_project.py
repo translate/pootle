@@ -197,7 +197,7 @@ class TranslationProject(models.Model):
                 versioncontrol.updatefile(store.file.path)
                 store.file._delete_store_cache()
                 remote_stats = dictsum(remote_stats, store.file.getquickstats())
-                store.mergefile(working_copy, "versionmerge", allownewstrings=False, obsoletemissing=False)
+                store.mergefile(working_copy, "versionmerge", allownewstrings=False, suggestions=False, notransalte=False, obsoletemissing=False)
             except Exception, e:
                 #something wrong, file potentially modified, bail out
                 #and replace with working copy
@@ -233,7 +233,7 @@ class TranslationProject(models.Model):
             versioncontrol.updatefile(store.file.path)
             store.file._delete_store_cache()
             remote_stats = store.file.getquickstats()
-            store.mergefile(working_copy, "versionmerge", allownewstrings=False, obsoletemissing=False)
+            store.mergefile(working_copy, "versionmerge", allownewstrings=False, suggestions=False, notranslate=False, obsoletemissing=False)
             new_stats = store.file.getquickstats()
             
             request.user.message_set.create(message="Updated file: <em>%s</em>" % store.file.name)

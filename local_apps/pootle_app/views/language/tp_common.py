@@ -173,7 +173,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         store = Store.objects.get(file=upload_path)
         newstore = factory.getobject(django_file)
         #FIXME: maybe there is a faster way to do this?
-        store.mergefile(newstore, request.user.username)
+        store.mergefile(newstore, request.user.username, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
     
 def upload_file(request, relative_root_dir, django_file, overwrite):
     local_filename = get_local_filename(request.translation_project, django_file.name)
