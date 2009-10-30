@@ -28,15 +28,16 @@ from django.template import RequestContext
 from pootle_app.forms import GeneralSettingsForm
 
 from pootle_misc.siteconfig import load_site_config
-siteconfig = load_site_config()
 
 @user_is_admin
 def view(request, path):
+    siteconfig = load_site_config()
     if request.POST:
         post = request.POST.copy()
         setting_form = GeneralSettingsForm(siteconfig, data=post)
         if setting_form.is_valid():
             setting_form.save()
+            load_site_config()
     else:
         setting_form = GeneralSettingsForm(siteconfig)
 
