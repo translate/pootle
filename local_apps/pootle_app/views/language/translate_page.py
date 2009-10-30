@@ -80,9 +80,9 @@ def add_file_links(request, store):
 def get_rows_and_icon(request, profile):
     state = dispatch.TranslatePageState(request.GET)
     if state.view_mode == 'view':
-        return get_display_rows(profile, "view"), "file"
+        return get_display_rows(profile), "file"
     else:
-        return get_display_rows(profile, "translate"), "edit"
+        return get_display_rows(profile), "edit"
 
 def get_finished_text(request, stoppedby):
     """gets notice to display when the translation is finished"""
@@ -138,16 +138,10 @@ def get_page_links(request, store, pagesize, translations, item, first_item):
     return pagelinks
 
 
-def get_display_rows(profile, mode):
-    """get the number of rows to display for the given mode"""
-    if mode == "view":
-        rowsdesired = profile.view_rows
-        maximum = 100
-    elif mode == "translate":
-        rowsdesired = profile.translate_rows
-        maximum = 20
-    else:
-        raise ValueError("getdisplayrows has no mode '%s'" % mode)
+def get_display_rows(profile):
+    """get the number of rows to display"""
+    rowsdesired = profile.unit_rows
+    maximum = 30
     return min(rowsdesired, maximum)
 
 def get_units(store, item_start, item_stop):
@@ -160,10 +154,10 @@ def get_translations(request, profile, store, item):
         # editable, first item, items
         return -1, item, []
     elif state.view_mode == 'view':
-        rows = get_display_rows(profile, "view")
+        rows = get_display_rows(profile)
         return -1, item, get_units(store, item, item + rows)
     else:
-        rows = get_display_rows(profile, "translate")
+        rows = get_display_rows(profile)
         before = rows / 2
         first_item = max(item - before, 0)
         last_item = first_item + rows

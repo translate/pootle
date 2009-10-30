@@ -10,12 +10,8 @@
 {% block section_body %}
 <form method="post" action="">
     <p>
-        <label for="id_translate_rows">{% trans 'Number of Rows in Translate Mode' %}</label>
-        {{ form.translate_rows }}
-    </p>
-    <p>
-        <label for="id_view_rows">{% trans 'Number of Rows in View Mode' %}</label>
-        {{ form.view_rows }}
+        <label for="id_unit_rows">{% trans 'Number of Rows' %}</label>
+        {{ form.unit_rows }}
     </p>
     <p>
         <label for="id_input_width">{% trans 'Input Width' %}</label>

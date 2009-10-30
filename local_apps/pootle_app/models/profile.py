@@ -65,8 +65,7 @@ class PootleProfile(models.Model):
     # This is the only required field
     user = models.OneToOneField(User, unique=True, db_index=True)
 
-    translate_rows  = models.SmallIntegerField(default=7)
-    view_rows       = models.SmallIntegerField(default=10)
+    unit_rows       = models.SmallIntegerField(default=10)
     input_width     = models.SmallIntegerField(default=40)
     input_height    = models.SmallIntegerField(default=5)
     languages       = models.ManyToManyField(Language, blank=True, related_name="user_languages", db_index=True)
