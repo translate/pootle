@@ -27,10 +27,15 @@ def map_num_contribs(sub, user):
     user.num_contribs = sub.num_contribs
     return user
 
-def users_from_suggestions(sugs):
+def suggesters_from_suggestions(sugs):
     """Get the Users associated with the Suggestions. Also assign
     the num_contribs attribute from the Suggestion to the User"""
     return [map_num_contribs(sug, sug.suggester.user) for sug in sugs if sug.suggester]
+
+def reviewers_from_suggestions(sugs):
+    """Get the Users associated with the Suggestions. Also assign
+    the num_contribs attribute from the Suggestion to the User"""
+    return [map_num_contribs(sug, sug.reviewer.user) for sug in sugs if sug.reviewer]
 
 def users_from_submissions(subs):
     """Get the Users associated with the Submissions. Also assign
@@ -81,6 +86,6 @@ def gentopstats(narrow_search_results):
     top_sub    = limit(narrow_search_results(Submission.objects.get_top_submitters()))
 
     return [
-        gen_top_stat(users_from_suggestions(top_sugg),   _('Suggestions')),
-        gen_top_stat(users_from_suggestions(top_review), _('Reviews')),
+        gen_top_stat(suggesters_from_suggestions(top_sugg),   _('Suggestions')),
+        gen_top_stat(reviewers_from_suggestions(top_review), _('Reviews')),
         gen_top_stat(users_from_submissions(top_sub),    _('Submissions')) ]
