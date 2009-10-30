@@ -156,9 +156,10 @@ class Store(models.Model):
         if self.file.store.suggestions_in_format:
             unit.addalttrans(newunit.target, origin=username)
         else:
+            newunit = self.pending.store.UnitClass.buildfromunit(newunit)
             if username is not None:
                 newunit.msgidcomment = 'suggested by %s' % username
-            self.pending.addunit(self.file.store.UnitClass.buildfromunit(newunit))
+            self.pending.addunit(newunit)
                         
             
     def addsuggestion(self, item, suggtarget, username, checker=None):
