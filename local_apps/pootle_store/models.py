@@ -232,7 +232,7 @@ class Store(models.Model):
         return None
 
 
-    def mergefile(self, newfile, username, allownewstrings=True, suggestions=False, notranslate=False, obseletemissing=True):
+    def mergefile(self, newfile, username, allownewstrings, suggestions, notranslate, obsoletemissing):
         """make sure each msgid is unique ; merge comments etc from
         duplicates into original"""
         self.file._update_store_cache()
@@ -247,7 +247,7 @@ class Store(models.Model):
             for unit in new_units:
                 self.file.store.addunit(self.file.store.UnitClass.buildfromunit(unit))
 
-        if obseletemissing:
+        if obsoletemissing:
             old_units = (self.file.store.findid(uid) for uid in old_ids - new_ids)
             for unit in old_units:
                 unit.makeobsolete()
