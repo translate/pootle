@@ -124,6 +124,20 @@ class Directory(models.Model):
     def is_translationproject(self):
         """does this directory point at a translation project"""
         return len(self.pootle_path[1:-1].split('/')) == 2
+
+    def get_translationproject(self):
+        """returns the translation project belonging to this directory."""
+        if self.is_language():
+            return None
+        else:
+            if self.is_translationproject():
+                return self.translationproject
+            else:
+                aux_dir = self
+                while not aux_dir.is_translationproject() and\
+                    aux_dir.parent is not None:
+                    aux_dir = aux_dir.parent
+                return aux_dir.translationproject
     
 def delete_children(sender, instance, **kwargs):
     """Before deleting a directory, delete all its children."""
