@@ -43,8 +43,15 @@ def new_project(sender, instance, created=False, **kwargs):
     new_object(created, message, parent=Directory.objects.root)
 
 def new_user(sender, instance, created=False, **kwargs):
-    message = 'New user <a href="%s">%s</a> registered.' % (instance.get_profile().get_absolute_url(), instance.username)
-    new_object(created, message, parent=Directory.objects.root)
+    # new user needs to be wrapped in a try block because it might be
+    # called before the rest of the models are loaded when first
+    # installing Pootle
+    
+    try:
+        message = 'New user <a href="%s">%s</a> registered.' % (instance.get_profile().get_absolute_url(), instance.username)
+        new_object(created, message, parent=Directory.objects.root)
+    except:
+        pass
 
 def new_translationproject(sender, instance, created=False, **kwargs):
     message = 'New project <a href="%s">%s</a> added to language <a href="%s">%s</a>.' % (
