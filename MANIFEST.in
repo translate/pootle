@@ -1,5 +1,6 @@
 graft html
 graft local_apps/pootle_app/templates
+graft local_apps/pootle_notifications/templates
 graft po
 graft mo
 graft templates
