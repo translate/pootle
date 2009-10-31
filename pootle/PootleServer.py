@@ -83,9 +83,10 @@ def init_db():
         PootleProfile.objects.count()
     except:
         call_command('syncdb')
-        # If there are no profiles, then we haven't populated our
-        # database yet. So do it!
-    if PootleProfile.objects.count() == 0:
+    
+    # If there is no profile for nobody user, then we haven't
+    # populated our database yet. So do it!
+    if PootleProfile.objects.filter(user__username='nobody').count() == 0:
         call_command('initdb')
         # Let's give some screen output, since this can take really long in the
         # default install
