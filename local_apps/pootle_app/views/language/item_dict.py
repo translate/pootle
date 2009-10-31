@@ -82,7 +82,7 @@ def getcheckdetails(request, path_obj, url_opts={}):
                               {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
                       )
             #url_opts[str(checkname)] = 1
-            checklink = {'href': dispatch.translate(request, path_obj.pootle_path, match_names=[checkname]),
+            checklink = {'href': dispatch.review(request, path_obj.pootle_path, match_names=[checkname]),
                          'text': checkname.replace('check-', '', 1),
                          'stats': stats}
             #del url_opts[str(checkname)]
