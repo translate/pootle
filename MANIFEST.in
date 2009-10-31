@@ -1,6 +1,7 @@
 graft html
 graft local_apps/pootle_app/templates
 graft po
+graft mo
 graft templates
 include dbs/README
 include COPYING CREDITS ChangeLog INSTALL
