@@ -205,6 +205,10 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
         django_file._closed = False
     if getattr(django_file, '_mode', None) is None:
         django_file._mode = 1
+    # mode is an attribute not a property in Django 1.1
+    if getattr(django_file, 'mode', None) is None:
+        django_file.mode = 1
+    
     newstore = factory.getobject(django_file)
     
     #FIXME: are we sure this is what we want to do? shouldn't we
