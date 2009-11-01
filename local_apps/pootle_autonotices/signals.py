@@ -25,6 +25,7 @@ import logging
 
 from pootle_notifications.models import Notice
 from pootle_app.models import Directory
+from pootle_app.models.profile import get_profile
 
 ##### Model Events #####
 
@@ -99,11 +100,11 @@ def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
     
     if archive:
         message = '<a href="%s">%s</a> uploaded an archive to <a href="%s">%s</a><br/>\n' % (
-            user.get_profile().get_absolute_url(), user.username,
+            get_profile(user).get_absolute_url(), user.username,
             sender.get_absolute_url(), sender.fullname)
     else:
         message = '<a href="%s">%s</a> uploaded a file to <a href="%s">%s</a><br/>\n' % (
-            user.get_profile().get_absolute_url(), user.username,
+            get_profile(user).get_absolute_url(), user.username,
             sender.get_absolute_url(), sender.fullname)
     
     message += stats_message('Before upload', oldstats) + '<br/>\n'
