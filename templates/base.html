@@ -42,12 +42,12 @@
                         {% block menu %}
                         <ul class="first-of-type">
                             <li class="menubaritem"><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
-                            <li class="menubaritem"><a href='{% filter m %}doc/en/index.html {% endfilter %}'>{% trans "Help" %}</a></li>
+                            <li class="menubaritem"><a href='{{ "doc/en/index.html"|m }}'>{% trans "Help" %}</a></li>
                             {% if user.is_superuser %}
                             <li class="menubaritem"><a href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
                             {% endif %}
                             {% if user.is_authenticated %}
-                            <li class="menubaritem"><a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %} '>{% trans "My Account" %}</a></li>
+                            <li class="menubaritem"><a href='{% filter l %}/accounts/{{ user.username }}{% endfilter %} '>{% trans "My Account" %}</a></li>
                             <li class="menubaritem"><a href='{{ "/accounts/logout/"|l }}'>{% trans "Log Out" %}</a></li>
                             {% else %}
                             {% if settings.CAN_REGISTER %}
@@ -103,7 +103,7 @@
                 {% block footer %}
                 <ul class="nav">
                     <li><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
-                    <li><a href='{% filter m %}doc/en/index.html{% endfilter %}'>{% trans "Help" %}</a></li>
+                    <li><a href='{{ "doc/en/index.html"|m }}'>{% trans "Help" %}</a></li>
                     <li><a href='{{ "/about.html"|l }}'>{% trans "About this Pootle Server" %}</a></li>
                 </ul>
                 {% endblock footer %}
