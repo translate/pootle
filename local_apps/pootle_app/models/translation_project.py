@@ -27,6 +27,7 @@ import logging
 from django.conf                   import settings
 from django.db                     import models
 from django.db.models.signals      import pre_delete, post_init, pre_save, post_save
+from django.core.exceptions import PermissionDenied
 
 # experiment, what happens if we import our overrides directly
 from pootle.i18n.gettext import ugettext_lazy as _
@@ -48,7 +49,7 @@ from pootle_app.models.project     import Project
 from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory
 from pootle_app                    import project_tree
-from pootle_app.models.permissions import PermissionError, check_permission
+from pootle_app.models.permissions import check_permission
 from translate.storage import statsdb
 from pootle_app.models.signals import post_vc_update, post_vc_commit
 
@@ -260,7 +261,7 @@ class TranslationProject(models.Model):
     def commitpofile(self, request, store):
         """commits an individual PO file to version control"""
         if not check_permission("commit", request):
-            raise PermissionError(_("You do not have rights to commit files here"))
+            raise PermissionDenied(_("You do not have rights to commit files here"))
 
         stats = store.file.getquickstats()
         author = request.user.username
