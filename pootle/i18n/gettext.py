@@ -56,6 +56,17 @@ def _format_ngettext(f):
     return format_ngettext
 
 
+gettext = _format_gettext(translation.gettext)
+ngettext = _format_ngettext(translation.ngettext)
+ugettext = _format_gettext(translation.ugettext)
+ungettext = _format_ngettext(translation.ungettext)
+
+gettext_lazy = lazy(gettext, str)
+ngettext_lazy = lazy(ngettext, str)
+ugettext_lazy = lazy(ugettext, unicode)
+ungettext_lazy = lazy(ungettext, unicode)
+
+
 def override_gettext(real_translation):
     """replace django's translation functions with decorated versions
     of translation functions"""
