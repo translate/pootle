@@ -201,7 +201,10 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
     #
     # settings _closed to False should work around this
     #FIXME: hackish, does this have any undesirable side effect?
-    django_file._closed = False
+    if not hasattr(django_file, '_closed'):
+        django_file._closed = False
+    if not hasattr(django_file, '_mode'):
+        django_file._mode = 1
     newstore = factory.getobject(django_file)
     
     #FIXME: are we sure this is what we want to do? shouldn't we
