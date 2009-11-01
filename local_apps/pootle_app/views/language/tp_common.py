@@ -221,7 +221,7 @@ class UpdateHandler(view_handler.Handler):
         pass
 
     def do_update(self, request, translation_project, directory):
-        translation_project.update_from_version_control()
+        translation_project.update_project(request)
         return {}
 
     @classmethod

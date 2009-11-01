@@ -81,6 +81,9 @@ def scan_translation_projects():
         for project in Project.objects.all():
             create_translation_project(language, project)
 
+class VersionControlError(Exception):
+    pass
+
 class TranslationProject(models.Model):
     objects = RelatedManager()
     index_directory  = ".translation_index"
@@ -177,86 +180,86 @@ class TranslationProject(models.Model):
 
     has_index = property(_has_index)
 
-
-    def update_from_version_control(self):
-        """updates project translation files from version control,
-        retaining uncommitted translations"""
-
-        stores = self.stores.all()
-
-        working_stats = self.getquickstats()
-        remote_stats = {}
-        for store in stores:
-            try:
-                hooks.hook(self.project.code, "preupdate", store.file.path)
-            except:
-                #FIXME: We should not hide the exception. At least log it.
-                pass
-            # keep a copy of working files in memory before updating
-            working_copy = store.file.store
-
-            try:
-                logging.debug("updating %s from version control", store.file.path)
-                versioncontrol.updatefile(store.file.path)
-                store.file._delete_store_cache()
-                remote_stats = dictsum(remote_stats, store.file.getquickstats())
-                store.mergefile(working_copy, "versionmerge", allownewstrings=False, suggestions=False, notransalte=False, obsoletemissing=False)
-            except Exception, e:
-                #something wrong, file potentially modified, bail out
-                #and replace with working copy
-                logging.error("near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
-                working_copy.save()
-
-            try:
-                hooks.hook(self.project.code, "postupdate", store.file.path)
-            except:
-                pass
-
-        project_tree.scan_translation_project_files(self)
-        new_stats = self.getquickstats()
-        post_vc_update.send(sender=self, oldstats=working_stats, remotestats=remote_stats, newstats=new_stats)
-
-    def updatepofile(self, request, store):
-        """updates file from version control, retaining uncommitted
-        translations"""
-        if not check_permission("commit", request):
-            raise PermissionError(_("You do not have rights to update from version control here"))
-
+    def update_file_from_version_control(self, store):
         try:
             hooks.hook(self.project.code, "preupdate", store.file.path)
         except:
             pass
+
         # keep a copy of working files in memory before updating
-        working_stats = store.file.getquickstats()
+        oldstats = store.getquickstats()
         working_copy = store.file.store
 
-        success = True
         try:
             logging.debug("updating %s from version control", store.file.path)
             versioncontrol.updatefile(store.file.path)
             store.file._delete_store_cache()
-            remote_stats = store.file.getquickstats()
-            store.mergefile(working_copy, "versionmerge", allownewstrings=False, suggestions=False, notranslate=False, obsoletemissing=False)
-            new_stats = store.file.getquickstats()
-            
-            request.user.message_set.create(message="Updated file: <em>%s</em>" % store.file.name)
-            request.user.message_set.create(message=stats_message("working copy", working_stats))
-            request.user.message_set.create(message=stats_message("remote copy", remote_stats))
-            request.user.message_set.create(message=stats_message("merged copy", new_stats))
+            remotestats = store.getquickstats()
         except Exception, e:
             #something wrong, file potentially modified, bail out
             #and replace with working copy
             logging.error("near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
             working_copy.save()
-            success = False
+            raise VersionControlError
+        
+        #FIXME: try to avoid merging if file was not updated
+        logging.debug("merging %s with version control update", store.file.path)
+        store.mergefile(working_copy, "versionmerge", allownewstrings=False, suggestions=False, notranslate=False, obsoletemissing=False)
 
         try:
             hooks.hook(self.project.code, "postupdate", store.file.path)
         except:
             pass
 
+        newstats = store.getquickstats()
+        return oldstats, remotestats, newstats
+    
+    def update_project(self, request):
+        """updates project translation files from version control,
+        retaining uncommitted translations"""
+
+        if not check_permission("commit", request):
+            raise PermissionDenied(_("You do not have rights to update from version control here"))
+
+        old_stats = self.getquickstats()
+        remote_stats = {}
+        
+        stores = self.stores.all()
+        for store in stores:
+            try:
+                oldstats, remotestats, newstats = self.update_file_from_version_control(store)
+                remote_stats = dictsum(remote_stats, remotestats)
+            except VersionControlError:
+                pass
+
         project_tree.scan_translation_project_files(self)
-        return success
+        new_stats = self.getquickstats()
+
+        request.user.message_set.create(message=unicode(_("Updated %s files from version control", self.fullname)))
+        request.user.message_set.create(message=stats_message("working copy", old_stats))
+        request.user.message_set.create(message=stats_message("remote copy", remote_stats))
+        request.user.message_set.create(message=stats_message("merged copy", new_stats))
+
+        post_vc_update.send(sender=self, oldstats=old_stats, remotestats=remote_stats, newstats=new_stats)
+
+    def update_file(self, request, store):
+        """updates file from version control, retaining uncommitted
+        translations"""
+        if not check_permission("commit", request):
+            raise PermissionDenied(_("You do not have rights to update from version control here"))
+
+        try:
+            oldstats, remotestats, newstats = self.update_file_from_version_control(store)
+        except VersionControlError:
+            request.user.message_set.create(message=unicode(_("Failed to update %s from version control", store.file.name)))
+        
+        request.user.message_set.create(message=unicode(_("Updated file %s from version control", store.file.name)))
+        request.user.message_set.create(message=stats_message("working copy", oldstats))
+        request.user.message_set.create(message=stats_message("remote copy", remotestats))
+        request.user.message_set.create(message=stats_message("merged copy", newstats))
+        
+        project_tree.scan_translation_project_files(self)
+        post_vc_update.send(sender=self, oldstats=oldstats, remotestats=remotestats, newstats=newstats)
 
     def commitpofile(self, request, store):
         """commits an individual PO file to version control"""
