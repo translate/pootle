@@ -4,6 +4,10 @@
 
 {% block title %}{{ block.super }}{% trans ": " %}{{ navitems.0.path.language.text }}{% trans " » " %}{{ navitems.0.path.project.text }}{% endblock %}
 
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications.feeds.view feed_path %}" />
+{% endblock %}
+
 {% block search %}
 {% include "language/search.html" %}
 {% endblock %}

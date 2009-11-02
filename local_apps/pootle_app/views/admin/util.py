@@ -169,4 +169,6 @@ def edit(request, template, model_class,
         template_vars["search"] = model_args['search']
     if model_args.get("navitems", None):
         template_vars["navitems"] = model_args['navitems']
+    if model_args.get("feed_path", None):
+        template_vars["feed_path"] = model_args['feed_path']
     return render_to_response(template, template_vars, context_instance=RequestContext(request))

@@ -4,6 +4,10 @@
 
 {% block title %}{{ block.super }}{% trans ": " %}{{ language.name }}{% endblock %}
 
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications.feeds.view feed_path %}" />
+{% endblock %}
+
 {% block breadcrumbs %}
 <div id="breadcrumbs">
     <h2 class="title"><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></h2>

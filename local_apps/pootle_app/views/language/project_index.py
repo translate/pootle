@@ -79,6 +79,7 @@ class ProjectIndexView(BaseView):
             'stats_headings':        get_stats_headings(),
             'editing':               state.editing,
             'topstats':              top_stats(translation_project),
+            'feed_path':             directory.pootle_path[1:],
             })
         return template_vars
 

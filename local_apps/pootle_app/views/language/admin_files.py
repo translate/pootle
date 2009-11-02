@@ -37,6 +37,7 @@ def view(request, translation_project):
     model_args['formid'] = "stores"
     model_args['search'] = search_forms.get_search_form(request)
     model_args['navitems'] = [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)]
+    model_args['feed_path'] = translation_project.directory.pootle_path[1:]
     link = "%s"
     return util.edit(request, 'language/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,

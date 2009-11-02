@@ -261,5 +261,6 @@ def view(request, translation_project):
         "adduser_text":           _("(select to add user)"),
         "search":                 search_forms.get_search_form(request),
         "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
+        "feed_path":              translation_project.directory.pootle_path[1:],
     }
     return render_to_response("language/tp_admin_permissions.html", template_vars, context_instance=RequestContext(request))

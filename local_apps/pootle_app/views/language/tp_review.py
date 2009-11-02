@@ -45,6 +45,7 @@ class TPReviewView(BaseView):
             'search':                search_forms.get_search_form(request),
             'children':              tp_common.get_children(request, translation_project, directory, links_required='review'),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review')],
+            'feed_path':             directory.pootle_path[1:],
             })
         return template_vars
 
