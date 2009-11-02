@@ -1,6 +1,8 @@
 {% load i18n baseurl %}
 
-<div id="submenu">
+{% get_current_language as LANGUAGE_CODE %}
+
+<div id="submenu" lang="{{ LANGUAGE_CODE }}">
     <div id="submenu-tabs">
         <a href='{{ "."|l }}' class="tpoverview" title="{% trans 'Translation project main page' %}">{% trans "Overview" %}</a>
         <a href='{{ "notices"|l }}' class="tpnews" title="{% trans 'Translation project news' %}">{% trans "News" %}</a>

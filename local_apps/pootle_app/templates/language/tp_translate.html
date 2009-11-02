@@ -13,7 +13,7 @@
 {% block content %}
 <!-- The editing view -->
 {% for item in children %}
-<div class="module-primary">
+<div class="module-primary" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">
         {% if item.isdir or item.isfile %}
         <div class="item {% cycle 'even' 'odd' %}">
@@ -28,7 +28,7 @@
 
 {% block postcontent %}
 {% if upload %}
-<div id="upload" class="module first clear">
+<div id="upload" class="module first clear" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">
         <h2>{{ upload.form.title }}</h2>
         <form action="" method="post" id="uploadform" name="uploadform" enctype="multipart/form-data">
@@ -39,7 +39,7 @@
 {% endif %}
 
 {% if update %}
-<div id="update" class="module first clear">
+<div id="update" class="module first clear" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">
         <form action="" method="post" name="updateform" enctype="multipart/form-data">
           {{ update.as_p }}

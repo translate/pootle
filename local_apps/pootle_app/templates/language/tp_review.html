@@ -17,14 +17,11 @@
 {% if children %}
 <!-- The review view -->
 {% for item in children %}
-<div class="module-primary">
+<div class="module-primary" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">
         {% if item.isdir or item.isfile %}
         <div class="item {% cycle 'even' 'odd' %}">
         {% include "language/item_block.html" %}
-        {% comment %}
-        SHOW CHECKS
-        {% endcomment %}
         {% include "language/item_stats.html" %}
         </div>
         {% endif %}
@@ -35,26 +32,5 @@
 {% endblock content %}
 
 {% block postcontent %}
-{% if upload %}
-<div id="upload" class="module first clear">
-    <div class="bd">
-        <h2>{{ upload.form.title }}</h2>
-        <form action="" method="post" id="uploadform" name="uploadform" enctype="multipart/form-data">
-          {{ upload.as_p }}
-        </form>
-    </div>
-</div>
-{% endif %}
-
-{% if update %}
-<div id="update" class="module first clear">
-    <div class="bd">
-        <form action="" method="post" name="updateform" enctype="multipart/form-data">
-          {{ update.as_p }}
-        </form>
-    </div>
-</div>
-{% endif %}
-
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
