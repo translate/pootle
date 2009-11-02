@@ -1,6 +1,8 @@
 {% load i18n baseurl %}
 
-<div id="submenu">
+{% get_current_language as LANGUAGE_CODE %}
+
+<div id="submenu" lang="{{ LANGUAGE_CODE }}">
     <div id="submenu-tabs">
         <a href='{{ "."|l }}' class="projectoverview" title="{% trans 'Project main page' %}">{% trans "Overview" %}</a>
         {% if user.is_superuser %}

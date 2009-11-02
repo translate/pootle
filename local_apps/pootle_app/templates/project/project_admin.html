@@ -2,16 +2,18 @@
 
 {% load i18n baseurl %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
 {% block title %}{{ block.super }}{% trans " » " %}{{ project.name }}{% trans " » " %}{% trans "Administrate" %}{% endblock %}
 
 {% block bodyclass %}projectadmin{% endblock %}
 
 {% block breadcrumbs_content %}
-<a href="{%filter l%}/projects/{{ project.code }}/{%endfilter%}">{{ project.name }}</a>
+<a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.name }}</a>
 {% endblock breadcrumbs_content %}
 
 {% block content %}
-<div class="settings-container centered">
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
     <p>{% trans "Here you can add, edit, or delete the language for this project." %}</p>
 
     <form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
