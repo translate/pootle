@@ -368,18 +368,17 @@ class TranslationProject(models.Model):
                  WARNING: You have to stop the pootle server before manually changing
                  po files, if you want to keep the index database in sync.
 
-        @param pofilename: absolute filename of the po file
-        @type pofilename: str
         @param items: list of unit numbers within the po file OR None (=rebuild all)
         @type items: [int]
         @param optimize: should the indexing database be optimized afterwards
         @type optimize: bool
         """
+        #FIXME: leverage file updated signal to check if index needs updating
         if indexer == None:
             return False
         # check if the pomtime in the index == the latest pomtime
         try:
-            pomtime = statsdb.get_mod_info(store.file.path)
+            pomtime = hash(statsdb.get_mod_info(store.file.path))
             pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)], True)
             pomtimequery = indexer.make_query([("pomtime", str(pomtime))], True)
             gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
