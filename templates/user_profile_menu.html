@@ -1,6 +1,6 @@
 {% load i18n baseurl %}
 
-<div id="submenu">
+<div id="submenu" lang="{{ LANGUAGE_CODE }}">
     <div id="submenu-tabs">
         <a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard" title="{% trans 'General Stats and Quick Links' %}">{% trans "Dashboard" %}</a>
         <a href='{{"/accounts/edit/"|l}}' class="settings" title="{% trans 'Configure Your Translation Preferences' %}">{% trans "Settings" %}</a>

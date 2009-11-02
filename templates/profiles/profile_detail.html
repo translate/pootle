@@ -6,7 +6,7 @@
 {% block bodyclass %}dashboard{% endblock %}
 
 {% block content %}
-<div class="module first">
+<div class="module first" lang="{{ LANGUAGE_CODE }}">
     <div class="hd">
         <h2>{% trans "Quick Links" %}</h2>
     </div>
@@ -40,7 +40,7 @@
 {% endblock %}
 
 {% block postcontent %}
-<div class="module">
+<div class="module" lang="{{ LANGUAGE_CODE }}">
     <div class="hd">
         <h2>{% trans "User Statistics" %}</h2>
     </div>
