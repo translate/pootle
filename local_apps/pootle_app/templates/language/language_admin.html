@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="settings-container centered">
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
     <p>{% trans "Below you can add, edit, and delete the permissions for this language." %}</p>
     <form action="" method="post" name="permissionsform" id="permissionsform">
         {{ permission_set_formset.management_form }}

@@ -9,9 +9,9 @@
 {% block bodyclass %}languageoverview{% endblock bodyclass %}
 
 {% block content %}
-<div class="item-statistics">{{ language.stats }}</div>
+<div class="item-statistics" lang="{{ LANGUAGE_CODE }}">{{ language.stats }}</div>
 
-<div class="module-primary">
+<div class="module-primary" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">
     <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
         <thead>
@@ -35,7 +35,7 @@
 {% endblock content %}
 
 {% block postcontent %}
-<div class="module first clear">
+<div class="module first clear" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">
     {% include "translation_summary_legend.html" %}
     </div>

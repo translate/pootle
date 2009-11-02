@@ -8,6 +8,8 @@ approach for this.
 
 {% load i18n baseurl cleanhtml %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
 {% block title %}
 {{ block.super }}{% trans ": " %}
 {% if is_language %}
@@ -54,7 +56,7 @@ approach for this.
 {% endblock %}
 
 {% block content %}
-<div class="settings-container centered">
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
 {% if form %}
     <h2>{{ title }}</h2>
     <p>{{ success }}</p>
