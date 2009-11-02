@@ -20,14 +20,10 @@ body
 
     font-family: sans-serif;
     font-size: 13px;
-    font-size-adjust: none;
     font-style: normal;
     font-variant: normal;
     font-weight: normal;
     line-height: 1.231;
-
-    *font-size: small;
-    *font: x-small;
 }
 
 a:link
@@ -227,7 +223,6 @@ pre, code, kbd, samp, tt
 {
     font-family: monospace;
     line-height: 100%;
-    *font-size: 108%;
 }
 
 #ft
@@ -242,11 +237,6 @@ pre, code, kbd, samp, tt
     height: 0;
     clear: both;
     visibility: hidden;
-}
-
-#bd
-{
-    zoom: 1;
 }
 
 
@@ -412,16 +402,6 @@ html[dir="rtl"] #nav-main ul li
 {
     margin: 0;
     padding: 0;
-}
-
-.menubar ul
-{
-    *zoom: 1;
-}
-
-.menubar .menu ul
-{
-    *zoom: normal;
 }
 
 .menubar>.bd>ul:after
