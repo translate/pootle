@@ -1,6 +1,9 @@
 {% load i18n baseurl %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
 {% block top_contributers_table %}
-<div class="module-primary clear topcontributors">
+<div class="module-primary clear topcontributors" lang="{{ LANGUAGE_CODE }}">
     <div class="hd"><h2>{% trans 'Top Contributors' %}</h2></div>
     <div class="bd">
     {% for stats in topstats %}
