@@ -774,6 +774,13 @@ div#submenu-tabs a:hover
     margin-top: 9px;
 }
 
+div#submenu-tabs a.admintab:hover
+{
+    background-color: #d54e21 !important;
+    border-bottom-color: #d54e21 !important;
+    color: #ffffff;
+}
+
 div#submenu-tabs a:visited
 {
     background-color: inherit;
