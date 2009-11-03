@@ -47,6 +47,9 @@ class SiteConfigMiddleware(object):
             # poking-the-duck-until-it-quacks-like-a-duck-test
             
             if e.__class__.__name__ == 'OperationalError':
+                import sys
+                stdout = sys.stdout
+                sys.stdout = sys.stderr
                 # try to build the database tables
                 call_command('syncdb', interactive=False)
                 
@@ -60,3 +63,4 @@ class SiteConfigMiddleware(object):
                     PootleProfile.objects.get(user__username='nobody')
                 except ObjectDoesNotExist:
                     call_command('initdb')
+                sys.stdout = stdout
