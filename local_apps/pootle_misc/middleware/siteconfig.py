@@ -18,13 +18,45 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.management import call_command
+from django.core.exceptions import ObjectDoesNotExist
+
 from pootle_misc import siteconfig
 
 class SiteConfigMiddleware(object):
     """
-    reload djblet siteconfigs on every request to ensure they're
-    uptodate.
+    This middleware does two things, it reload djblet siteconfigs on
+    every request to ensure they're uptodate. but also works as an
+    early detection system for database errors.
+
+    It might seem strange that the middleware does these two unrelated
+    tasks, but since the only way to test the database is to run a
+    query, it would be too wasteful to add another query per request
+    when siteconfig already requires one.
+
     """
     def process_request(self, request):
         #FIXME: can't we find a more efficient method?
-        siteconfig.load_site_config()
+        try:
+            siteconfig.load_site_config()
+        except Exception, e:
+            #HACKISH: since exceptions thrown by different databases
+            # do not share the same class heirarchy (DBAPI2 sucks) we
+            # have to check the class name instead (since python uses
+            # duck typing I will call this
+            # poking-the-duck-until-it-quacks-like-a-duck-test
+            
+            if e.__class__.__name__ == 'OperationalError':
+                # try to build the database tables
+                call_command('syncdb', interactive=False)
+                
+                # having the correct database tables isn't enough for
+                # pootle, it depends on the nobody (ie anonymous) user
+                # having a profile.
+                #
+                # if the profile doesn't exist populate database with initial data
+                from pootle_app.models.profile import PootleProfile
+                try:
+                    PootleProfile.objects.get(user__username='nobody')
+                except ObjectDoesNotExist:
+                    call_command('initdb')
