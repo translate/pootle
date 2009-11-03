@@ -628,7 +628,8 @@ html[dir="rtl"] .module-primary .hd h2
     margin-right: 0.5em;
 }
 
-.module .bd
+.module .bd,
+.module-primary .bd
 {
     padding: 1em;
 }
