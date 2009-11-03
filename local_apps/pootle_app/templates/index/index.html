@@ -76,17 +76,17 @@
 {% endblock content %}
 
 {% block postcontent %}
-<div class="module first clear" lang="{{ LANGUAGE_CODE }}">
-    <div class="bd">
-    {% include "translation_summary_legend.html" %}
-    </div>
-</div>
-
-<div class="module first clear latestnews" lang="{{ LANGUAGE_CODE }}">
+<div class="module latestnews" lang="{{ LANGUAGE_CODE }}">
     <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
     <div class="bd">
         {% render_latest_news "" 5 %}
         <p class="subscribe"><a href="{% url pootle_notifications.feeds.view "" %}">{% trans "Subscribe to the RSS feed." %}</a></p>
+    </div>
+</div>
+
+<div class="module first clear" lang="{{ LANGUAGE_CODE }}">
+    <div class="bd">
+    {% include "translation_summary_legend.html" %}
     </div>
 </div>
 
