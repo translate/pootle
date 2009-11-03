@@ -41,4 +41,4 @@ def view(request, translation_project):
     link = "%s"
     return util.edit(request, 'language/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,
-                     can_delete=True)
+                     can_delete=True, extra=0)
