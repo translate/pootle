@@ -36,8 +36,12 @@ from pootle_app.models.permissions import check_permission, PermissionError
 from pootle_app.models.signals import post_file_upload
 from pootle_app.views.language import item_dict
 from pootle_app.views.language import search_forms
+from pootle_app.views.top_stats import gentopstats
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
+
+def top_stats(translation_project):
+    return gentopstats(lambda query: query.filter(translation_project=translation_project))
 
 def get_children(request, translation_project, directory, links_required=None):
     search = search_forms.search_from_request(request)

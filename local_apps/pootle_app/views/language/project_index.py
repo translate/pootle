@@ -23,7 +23,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.exceptions import PermissionDenied
 
-from pootle_app.views.top_stats import gentopstats
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
 from pootle_app.project_tree import scan_translation_project_files
@@ -57,9 +56,6 @@ def get_stats_headings():
         "summary":                _("Summary")
         }
 
-def top_stats(translation_project):
-    return gentopstats(lambda query: query.filter(translation_project=translation_project))
-
 ################################################################################
 
 class ProjectIndexView(BaseView):
@@ -78,7 +74,7 @@ class ProjectIndexView(BaseView):
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
             'stats_headings':        get_stats_headings(),
             'editing':               state.editing,
-            'topstats':              top_stats(translation_project),
+            'topstats':              tp_common.top_stats(translation_project),
             'feed_path':             directory.pootle_path[1:],
             })
         return template_vars
