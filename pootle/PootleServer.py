@@ -74,29 +74,8 @@ def run_pootle(options, args):
     elif options.action == 'refreshstats':
         call_command('refresh_stats')
 
-def init_db():
-    """Check if it is necessary to create or populate the database(s)."""
-    from pootle_app.models.profile import PootleProfile
-    try:
-        # If this raises an exception, it means that the database
-        # tables don't yet exist
-        PootleProfile.objects.count()
-    except:
-        call_command('syncdb')
-    
-    # If there is no profile for nobody user, then we haven't
-    # populated our database yet. So do it!
-    if PootleProfile.objects.filter(user__username='nobody').count() == 0:
-        call_command('initdb')
-        # Let's give some screen output, since this can take really long in the
-        # default install
-        logging.info("Now going to update statistics. This could take while...")
-        call_command('refresh_stats')
-        logging.info("Finished updating statistics.")
-
 def main():
     # run the web server
-    init_db()
     checkversions()
     parser = PootleOptionParser()
     (options, args) = parser.parse_args()
