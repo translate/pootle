@@ -911,6 +911,37 @@ html[dir="rtl"] div.statslist ul li span.value
     float: left;
 }
 
+div.latestnews ul
+{
+    margin: 0 1em;
+}
+
+div.latestnews li
+{
+    list-style-type: square;
+}
+
+div.latestnews p.subscribe
+{
+    background-image: url('images/feed.png');
+    background-repeat: no-repeat;
+    line-height: 3;
+    /* ltr */
+    background-position: right center;
+    text-align: right;
+    padding-right: 2em;
+}
+
+html[dir="rtl"] div.latestnews p.subscribe
+{
+    /* undo ltr */
+    padding-right: 0;
+    /* rtl */
+    background-position: left center;
+    text-align: left;
+    padding-left: 2em;
+}
+
 div.topcontributors
 {
     margin-top: 1em;
