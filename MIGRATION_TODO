@@ -1,4 +1,0 @@
-
- - Downloading .mo, .gsi, .sdf, .zip does not work because code looks for permissions.
- - Login from first page does not work because the cookie isn't set.
-
