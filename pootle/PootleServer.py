@@ -81,9 +81,6 @@ def main():
     (options, args) = parser.parse_args()
     if options.action != 'runwebserver':
         options.servertype = 'dummy'
-    logging.info("Scanning for new languages.")
-    scan_translation_projects()
-    logging.info("Starting server, listening on port %d.", options.port)
     run_pootle(options, args)
 
 if __name__ == '__main__':
