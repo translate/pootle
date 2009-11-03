@@ -24,15 +24,16 @@ import sys
 
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
+from django.db import DatabaseError
 
 class ErrorPagesMiddleware(object):
     """
     Friendlier Error Pages
     """
     def process_exception(self, request, exception):
-        if False and isinstance(exception, Http404):
+        if isinstance(exception, Http404):
             pass
-        elif False and isinstance(exception, PermissionDenied):
+        elif isinstance(exception, PermissionDenied):
             #FIXME: implement better 403
             pass
         else:
