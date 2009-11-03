@@ -31,16 +31,11 @@ from translate import __version__ as toolkitversion
 from django.core.handlers.wsgi import WSGIHandler
 from django.core.management import call_command
 
-from pootle_app.models.translation_project import scan_translation_projects
-
-
 class PootleOptionParser(optparse.OptionParser):
 
     def __init__(self):
         optparse.OptionParser.__init__(self)
-        #self.set_default('prefsfile', filelocations.prefsfile)
         self.set_default('instance', 'Pootle')
-        #self.set_default('htmldir', filelocations.htmldir)
         self.add_option(
             '',
             '--refreshstats',
@@ -81,6 +76,8 @@ def main():
     (options, args) = parser.parse_args()
     if options.action != 'runwebserver':
         options.servertype = 'dummy'
+
+    print "Starting server, listening on port %d." % options.port
     run_pootle(options, args)
 
 if __name__ == '__main__':
