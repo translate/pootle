@@ -62,8 +62,8 @@ class PootleOptionParser(optparse.OptionParser):
 
 def checkversions():
     """Checks that version dependencies are met."""
-    if not hasattr(toolkitversion, 'build') or toolkitversion.build < 12000:
-        raise RuntimeError('requires Translate Toolkit version >= 1.2.  Current installed version is: %s'
+    if not hasattr(toolkitversion, 'build') or toolkitversion.ver < (1,4,1):
+        raise RuntimeError('requires Translate Toolkit version >= 1.4.1.  Current installed version is: %s'
                             % toolkitversion.sver)
 
 def run_pootle(options, args):
