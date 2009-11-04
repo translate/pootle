@@ -79,8 +79,9 @@ def try_type(try_me, value):
     It would not work for unicode, though.'''
     assert try_me is not unicode
     if try_me == bool:
-        assert type(value) == int
-        return bool(value)
+        if isinstance(value, int):
+            return bool(value)
+        return value
     if try_me == int:
         if type(value) == int:
             return value
@@ -105,7 +106,7 @@ def import_languages(parsed_data):
         try:
             db_lang = Language.objects.get(code=lang)
             logging.log(logging.INFO,
-                        'Already found a language named %s. '\
+                        'Already found a language named %s.\n'\
                         'Data for this language are not imported.',
                         lang)
             continue
@@ -149,7 +150,7 @@ def import_projects(parsed_data):
         try:
             db_proj = Project.objects.get(code=proj)
             logging.log(logging.INFO,
-                        'Already found a project named %s. '\
+                        'Already found a project named %s.\n'\
                         'Data for this project are not imported.',
                         proj)
             continue
@@ -157,30 +158,31 @@ def import_projects(parsed_data):
             db_proj = Project(code=proj)
 
         # fullname
-        db_proj.fullname = _get_attribute(data, proj, 'fullname')
+        db_proj.fullname = _get_attribute(data, proj, 'fullname', prefix=prefix)
 
         # description
-        db_proj.description = _get_attribute(data, proj, 'description')
+        db_proj.description = _get_attribute(data, proj, 'description',
+                                             prefix=prefix)
 
         # checkstyle
         db_proj.checkstyle = _get_attribute(data, proj, 'checkstyle',
-                             unicode_me = False)
+                                            unicode_me = False, prefix=prefix)
 
         # localfiletype
-        db_proj.localfiletype = _get_attribute(data, proj, 'localfiletype', default='po')
+        db_proj.localfiletype = _get_attribute(data, proj, 'localfiletype',
+                                               default='po', prefix=prefix)
 
         # createmofiles?
-        db_proj.createmofiles = try_type(bool,
-                                 _get_attribute(data, proj, 'createmofiles',
-                                 unicode_me=False, default=0))
+        db_proj.createmofiles = try_type(bool, _get_attribute(data, proj, 'createmofiles',
+                                               unicode_me=False, default=0, prefix=prefix))
 
         # treestyle
         db_proj.treestyle = _get_attribute(data, proj, 'treestyle',
-                            unicode_me = False, default='auto')
+                            unicode_me = False, default='auto', prefix=prefix)
 
         # ignoredfiles
         db_proj.ignoredfiles = _get_attribute(data, proj, 'ignoredfiles',
-                               default=u'')
+                               default=u'', prefix=prefix)
 
         db_proj.save()
 
@@ -203,7 +205,7 @@ def create_database_user(data, user_name):
 #                logintype      = _get_user_attribute(data, user_name, 'logintype',
 #                                                     unicode_me = False,
 #                                                     default = 'hash'),
-                is_superuser   = try_type(bool, _get_user_attribute(data, user_name, 'siteadmin',
+                is_superuser   = try_type(bool, _get_user_attribute(data, user_name, 'rights.siteadmin',
                                                                     unicode_me=False, default=0)))
     # We have to save the user to ensure that an associated PootleProfile is created...
     user.save()
@@ -302,7 +304,7 @@ def import_users(parsed_users):
         try:
             user = User.objects.get(username=username)
             profile = user.get_profile()
-            logging.log(logging.INFO, 'Already found a user for named %s '\
+            logging.log(logging.INFO, 'Already found a user named %s\n'\
                             'Going to skip importing his data, but will '\
                             'import his language and project preferences.',
                         username)
