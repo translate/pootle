@@ -71,6 +71,9 @@ class Project(models.Model):
     def getquickstats(self):
         return statssum(self.translationproject_set.all())
 
+    def translated_percentage(self):
+        return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
+
     def _get_pootle_path(self):
         return "/projects/" + self.code + "/"
     pootle_path = property(_get_pootle_path)

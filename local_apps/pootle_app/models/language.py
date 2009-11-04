@@ -65,6 +65,10 @@ class Language(models.Model):
     def localname(self):
         """localized fullname"""
         return tr_lang(self.fullname)
+
+    def translated_percentage(self):
+        return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
+        
 def set_data(sender, instance, **kwargs):
     # create corresponding directory object
     instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
