@@ -85,8 +85,8 @@ MIDDLEWARE_CLASSES = (
     # Uncomment to use pagecahing
     #'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
     'pootle_misc.middleware.errorpages.ErrorPagesMiddleware',
-    'pootle_misc.middleware.siteconfig.SiteConfigMiddleware',
     'pootle_misc.middleware.baseurl.BaseUrlMiddleware',
+    'pootle_misc.middleware.siteconfig.SiteConfigMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'pootle.middleware.locale.LocaleMiddleware',
