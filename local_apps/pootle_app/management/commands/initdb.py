@@ -41,12 +41,9 @@ def create_default_db():
             transaction.enter_transaction_management()
             transaction.managed(True)
 
-            create_misc()
             create_default_projects()
             create_default_languages()
-            create_default_users()
-            create_pootle_permissions()
-            create_pootle_permission_sets()
+            create_default_admin()
         except:
             if transaction.is_dirty():
                 transaction.rollback()
@@ -57,72 +54,6 @@ def create_default_db():
             if transaction.is_dirty():
                 transaction.commit()
             transaction.leave_transaction_management()
-
-def create_misc():
-    """Create miscellaneous database items."""
-    from pootle_app.models import Directory
-    directory = Directory(name='')
-    directory.save()
-
-def create_pootle_permissions():
-    """Create default permissions for Pootle."""
-    pootle_content_type = ContentType(name="pootle", app_label="pootle_app", model="")
-    pootle_content_type.save()
-    view = Permission(name="Can view a translation project", content_type=pootle_content_type, codename="view")
-    view.save()
-    suggest = Permission(name="Can make a suggestion for a translation", content_type=pootle_content_type, codename="suggest")
-    suggest.save()
-    translate = Permission(name="Can submit a translation", content_type=pootle_content_type, codename="translate")
-    translate.save()
-    overwrite = Permission(name="Can overwrite translations on uploading files", content_type=pootle_content_type, codename="overwrite")
-    overwrite.save()
-    review = Permission(name="Can review translations", content_type=pootle_content_type, codename="review")
-    review.save()
-    archive = Permission(name="Can download archives of translation projects", content_type=pootle_content_type, codename="archive")
-    archive.save()
-    compile_po_files = Permission(name="Can compile translation files to MO files", content_type=pootle_content_type, codename="compile_po_files")
-    compile_po_files.save()
-    assign = Permission(name="Can assign work to users", content_type=pootle_content_type, codename="assign")
-    assign.save()
-    administrate = Permission(name="Can administrate a translation project", content_type=pootle_content_type, codename="administrate")
-    administrate.save()
-    commit = Permission(name="Can commit to version control", content_type=pootle_content_type, codename="commit")
-    commit.save()
-
-def create_pootle_permission_sets():
-    """Create the default permission set for the anonymous (non-logged in) user
-    ('nobody') and for the logged in user ('default')."""
-    from pootle_app.models.permissions import PermissionSet, get_pootle_permission
-    from pootle_app.models import Directory
-    from pootle_app.models.profile import PootleProfile
-
-    root = Directory.objects.root
-    templates = Directory.objects.get(pootle_path="/templates/")
-    #permissions for the 'nobody' user: view only
-    profile = PootleProfile.objects.select_related(depth=1).get(user__username='nobody')
-    permission_set = PermissionSet(profile=profile, directory=root)
-    permission_set.save()
-    permission_set.positive_permissions = [get_pootle_permission('view')]
-    permission_set.save()
-
-    #override with no permissions for templates language
-    permission_set = PermissionSet(profile=profile, directory=templates)
-    permission_set.save()
-    #FIXME should we set everything as negative?
-    permission_set.negative_permissions = [get_pootle_permission('view')]
-    
-    #permissions for the 'default' user: view, suggest
-    profile = PootleProfile.objects.select_related(depth=1).get(user__username='default')
-    permission_set = PermissionSet(profile=profile, directory=root)
-    permission_set.save()
-    permission_set.positive_permissions = [get_pootle_permission('view'), get_pootle_permission('suggest')]
-    permission_set.save()
-
-    #override with no permissions for templates language
-    permission_set = PermissionSet(profile=profile, directory=templates)
-    permission_set.save()
-    #FIXME should we set everything as negative?
-    permission_set.negative_permissions = [get_pootle_permission('view'), get_pootle_permission('suggest')]
 
 def create_default_projects():
     """Create the default projects that we host. You might want to add your
@@ -137,14 +68,6 @@ def create_default_projects():
     pootle.localfiletype = "po"
     pootle.treestyle = "auto"
     pootle.save()
-
-    terminology = Project(code=u"terminology")
-    terminology.fullname = u"Terminology"
-    terminology.description = "<div dir='ltr' lang='en'>Terminology project that Pootle should use to suggest terms.<br />There might be useful terminology files on the <a href='http://pootle.locamotion.org/projects/terminology/'>official Pootle server</a>.</div>"
-    terminology.checkstyle = "standard"
-    terminology.localfiletype = "po"
-    terminology.treestyle = "auto"
-    terminology.save()
 
     tutorial = Project(code=u"tutorial")
     tutorial.fullname = u"Tutorial"
@@ -780,12 +703,7 @@ def create_default_languages():
     zh_TW.specialchars = u"←→↔×÷©…—‘’“”「」『』【】《》"
     zh_TW.save()
 
-# This is a "language" that gives people access to the (untranslated) template files
-    templates = Language(code="templates")
-    templates.fullname = u'Templates'
-    templates.save()
-
-def create_default_users():
+def create_default_admin():
     """Create the default user(s) for Pootle. You definitely want to change
     the admin account so that your default install is not accessible with the
     default credentials. The users 'noboby' and 'default' should be left as is."""
@@ -796,26 +714,3 @@ def create_default_users():
                 is_staff=True)
     admin.set_password("admin")
     admin.save()
-
-    # The nobody user is used to represent an anonymous user in cases where
-    # we need to associate model information with such a user. An example is
-    # in the permission system: we need a way to store rights for anonymous
-    # users; thus we use the nobody user.
-    nobody = User(username=u"nobody",
-                first_name=u"any anonymous user",
-                is_active=True)
-    nobody.set_unusable_password()
-    nobody.save()
-
-    # The default user represents any valid, non-anonymous user and is used to
-    # associate information any such user. An example is in the permission
-    # system: we need a way to store default rights for users. We use the
-    # default user for this.
-    #
-    # In a future version of Pootle we should think about using Django's 
-    # groups to do better permissions handling.
-    default = User(username=u"default",
-                 first_name=u"any authenticated user",
-                 is_active=True)
-    default.set_unusable_password()
-    default.save()
