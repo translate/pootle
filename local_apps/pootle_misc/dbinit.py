@@ -22,10 +22,12 @@ import sys
 
 from django.core.management import call_command
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.models import User
 
 from pootle.i18n.gettext import ugettext as _
 
-from pootle_app.models import PootleProfile, Language, Project
+from pootle_app.models import Language, Project
+
 
 def header(exception):
     text = """
@@ -107,14 +109,13 @@ def staggered_install(exception):
     # try to build the database tables
     yield syncdb()
 
-    # having the correct database tables isn't enough for
-    # pootle, it depends on the nobody (ie anonymous) user
-    # having a profile.
+    # if this is a fresh install we should add some default languages
+    # and projects and a default admin account to make pootle more
+    # usable out of the box
     #
-    # if the profile doesn't exist populate database with initial data
-    try:
-        PootleProfile.objects.get(user__username='nobody')
-    except ObjectDoesNotExist:
+    # if there are no user accounts apart from defaults then assume
+    # it's fresh install
+    if User.objects.hide_defaults().count() == 0:
         yield initdb()
 
     # first time to visit the front page all stats for projects and
