@@ -670,8 +670,8 @@ html[dir="rtl"] .module-primary .hd h2
     text-align: right;
 }
 
-#login h1,
-#register h1
+#login h2,
+#register h2
 {
     margin-bottom: 0.7em;
 }

@@ -5,7 +5,7 @@
 
 {% block content %}
 <div id="login" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <h1>{% trans 'Login to Pootle' %}</h1>
+    <h2>{% trans 'Login to Pootle' %}</h2>
     <form method="post" action='{{ "/accounts/login/"|l }}' 
       name="loginform" id="loginform">
     {% if form.errors %}
@@ -40,9 +40,9 @@
 <p><a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a></p>
 </div>
 
-<h1 class="registerlink">{% trans "Don't have an account yet?" %}
+<h2 class="registerlink">{% trans "Don't have an account yet?" %}
     <a href='{{ "/accounts/register"|l }}' title="{% trans 'Register.' %}">{% trans 'Register.' %}</a>
-</h1>
+</h2>
 {% endblock content %}
 
 {% block scripts_extra %}
