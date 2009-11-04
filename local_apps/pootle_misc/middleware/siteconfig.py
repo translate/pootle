@@ -18,10 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.core.management import call_command
-from django.core.exceptions import ObjectDoesNotExist
-
+from django.http import HttpResponse
 from pootle_misc import siteconfig
+from pootle_misc import dbinit
 
 class SiteConfigMiddleware(object):
     """
@@ -47,20 +46,4 @@ class SiteConfigMiddleware(object):
             # poking-the-duck-until-it-quacks-like-a-duck-test
             
             if e.__class__.__name__ == 'OperationalError':
-                import sys
-                stdout = sys.stdout
-                sys.stdout = sys.stderr
-                # try to build the database tables
-                call_command('syncdb', interactive=False)
-                
-                # having the correct database tables isn't enough for
-                # pootle, it depends on the nobody (ie anonymous) user
-                # having a profile.
-                #
-                # if the profile doesn't exist populate database with initial data
-                from pootle_app.models.profile import PootleProfile
-                try:
-                    PootleProfile.objects.get(user__username='nobody')
-                except ObjectDoesNotExist:
-                    call_command('initdb')
-                sys.stdout = stdout
+                return HttpResponse(dbinit.staggered_install(e))
