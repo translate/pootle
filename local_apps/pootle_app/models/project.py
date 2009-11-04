@@ -137,6 +137,6 @@ class Project(models.Model):
 def create_project_directory(sender, instance, **kwargs):
     project_path = absolute_real_path(instance.code)
     if not os.path.exists(project_path):
-        os.mkdir(project_path)
+        os.makedirs(project_path)
     
 pre_save.connect(create_project_directory, sender=Project)
