@@ -22,6 +22,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.db                import models
 from django.db.models.signals import pre_save
 
+from pootle.i18n.gettext import tr_lang
+
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 
@@ -60,6 +62,9 @@ class Language(models.Model):
     def get_absolute_url(self):
         return l(self.pootle_path)
     
+    def localname(self):
+        """localized fullname"""
+        return tr_lang(self.fullname)
 def set_data(sender, instance, **kwargs):
     # create corresponding directory object
     instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
