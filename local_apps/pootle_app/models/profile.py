@@ -167,5 +167,5 @@ def get_profile(user):
         return user.get_profile()
     else:
         # Anonymous users get the PootleProfile associated with the 'nobody' user
-        return User.objects.include_hidden().get(username='nobody').get_profile()
+        return User.objects.get(username='nobody').get_profile()
 
