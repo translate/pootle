@@ -63,4 +63,7 @@ class NoticeFeed(Feed):
 
     def items(self, directory):
         return Notice.objects.filter(directory=directory).select_related('directory')[:30]
+
+    def item_pubdate(self, item):
+        return item.added
     
