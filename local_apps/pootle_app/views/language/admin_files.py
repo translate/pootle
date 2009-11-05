@@ -27,10 +27,15 @@ from pootle_app.views.language import search_forms
 from pootle_app.views.language import navbar_dict
 from pootle_store.models import Store
 from pootle_app.models.translation_project import TranslationProject
+from pootle_app import project_tree
 
 
 def view(request, translation_project):
     queryset = translation_project.stores
+
+    if 'scan_files' in request.GET:
+        project_tree.scan_translation_project_files(translation_project)
+
     model_args = {}
     model_args['title'] = _("Files")
     model_args['submitname'] = "changestores"

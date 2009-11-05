@@ -32,7 +32,6 @@ from pootle_app.models.permissions import get_pootle_permissions, PermissionSet,
     get_matching_permissions, check_permission
 from pootle_app.views.language import navbar_dict
 from pootle_app.views.language import search_forms
-from pootle_app import project_tree
 
 
 class PermissionSetForm(forms.Form):
@@ -231,10 +230,6 @@ def process_update(request, directory):
     else:
         return PermissionSetFormSet(initial=get_permission_data(directory))
 
-def process_translation_project_update(request, translation_project):
-    if 'scan_files' in request.GET:
-        project_tree.scan_translation_project_files(translation_project)
-
 def view(request, translation_project):
     request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
     if not check_permission('administrate', request):
@@ -242,7 +237,6 @@ def view(request, translation_project):
 
     language               = translation_project.language
     project                = translation_project.project
-    process_translation_project_update(request, translation_project)
     permission_set_formset = process_update(request, translation_project.directory)
     if translation_project.file_style == "gnu":
         filestyle_text = _("This is a GNU-style project (one directory, files named per language).")
