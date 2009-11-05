@@ -97,14 +97,21 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         result.append('</tr>\n')
 
     result = []
-    first_form = formset.forms[0]
-    # Get the fields of the form, but filter our the 'id' field,
-    # since we don't want to print a table column for it.
-    fields = [field for field in first_form.fields if field != 'id']
-    add_header(result, fields, first_form)
-    for form in formset.forms:
-        add_errors(result, fields, form)
-        add_widgets(result, fields, form, link)
+    try:
+        first_form = formset.forms[0]
+        # Get the fields of the form, but filter our the 'id' field,
+        # since we don't want to print a table column for it.
+        fields = [field for field in first_form.fields if field != 'id']
+        add_header(result, fields, first_form)
+        for form in formset.forms:
+            add_errors(result, fields, form)
+            add_widgets(result, fields, form, link)
+    except IndexError:
+        result.append('<tr>\n')
+        result.append('<td>\n')
+        result.append(_('No files in this project.'))
+        result.append('</td>\n')
+        result.append('</tr>\n')
     return u''.join(result)
 
 
