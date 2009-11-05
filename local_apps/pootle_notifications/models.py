@@ -20,6 +20,8 @@
 
 from django.db import models
 
+from pootle_misc.baseurl import l
+
 class Notice(models.Model):
     directory = models.ForeignKey('pootle_app.Directory', db_index=True)
     message = models.TextField(_('message'))
@@ -28,6 +30,9 @@ class Notice(models.Model):
     def __unicode__(self):
         return self.message
 
+    def get_absolute_url(self):
+        return l(self.directory.pootle_path + 'notices/%d' % self.id)
+        
     class Meta:
         ordering = ["-added"]
 
