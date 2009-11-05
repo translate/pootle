@@ -52,8 +52,11 @@ class Language(models.Model):
 
     pootle_path = property(lambda self: '/%s/' % self.code)
 
-    def __unicode__(self):
+    def __repr__(self):
         return self.fullname
+    
+    def __unicode__(self):
+        return self.localname()
 
     @getfromcache
     def getquickstats(self):
