@@ -72,7 +72,7 @@ approach for this.
 {% if notices %}
     <ul>
         {% for notice in notices %}
-        <li>{{ notice.message|clean }}</li>
+        <li>{{ notice.message|safe|linebreaks|clean }}</li>
         {% endfor %}
      </ul>
 {% else %}

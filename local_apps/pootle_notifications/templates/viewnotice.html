@@ -5,7 +5,7 @@
 <h3 class="title">{{ title }}</h3>
 
 <div>
-{{ notice_message|clean }}
+{{ notice_message|safe|linebreaks|clean }}
 </div>
 
 {% endblock %}
