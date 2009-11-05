@@ -33,7 +33,7 @@ def view(request):
     model_args['submitname'] = "changeusers"
     model_args['formid'] = "users"
     return util.edit(request, 'admin/admin_general_users.html', User, model_args,
-               fields=('username', 'first_name', 'last_name', 'email', 'is_active'),
+               fields=('username', 'first_name', 'last_name', 'email', 'is_active', 'is_superuser'),
                formset=BaseUserFormSet, queryset=User.objects.hide_defaults(), can_delete=True)
 
 class BaseUserFormSet(BaseModelFormSet):
