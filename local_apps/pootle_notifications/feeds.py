@@ -48,6 +48,8 @@ def view(request, path):
     return response
 
 class NoticeFeed(Feed):
+    title_template = "notice_title.html"
+    description_template = "notice_body.html"
     def __init__(self, slug, request, directory):
         self.link = l(directory.pootle_path)
         self.directory = directory
