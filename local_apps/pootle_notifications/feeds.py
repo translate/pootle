@@ -60,7 +60,7 @@ class NoticeFeed(Feed):
         return directory_to_title(self.request, directory)
 
     def items(self, directory):
-        return Notice.objects.filter(directory=directory)
+        return Notice.objects.filter(directory=directory).select_related('directory')[:30]
 
     def item_link(self, item):
         return l(item.directory.pootle_path + 'notices/%d/' % item.id)
