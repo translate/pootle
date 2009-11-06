@@ -73,7 +73,8 @@ def update_suggestion(state, store, item, newtrans, request):
     """Marks the suggestion specified by the parameters with the given status,
     and returns that suggestion object"""
     translation_project = request.translation_project
-    suggestion, created  = Suggestion.objects.get_or_create(translation_project = translation_project, unit=_suggestion_hash(store, item, newtrans))
+    suggestion, created  = Suggestion.objects.get_or_create(translation_project=translation_project,
+                                                            unit=_suggestion_hash(store, item, newtrans))
     suggestion.state = state
     suggestion.reviewer = get_profile(request.user)
     suggestion.review_time = datetime.datetime.utcnow()
