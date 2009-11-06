@@ -2,9 +2,7 @@
 {% load i18n %}
  
 {% block title %}
-{% blocktrans with block.super as prevtitle %}
-{{ prevtitle }} » Profile
-{% endblocktrans %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Profile{% endblocktrans %}
 {% endblock %}
 
 {% block bodyclass %}profile{% endblock %}

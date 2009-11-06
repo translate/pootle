@@ -2,9 +2,7 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}
-{{ prevtitle }} » Projects
-{% endblocktrans %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Projects{% endblocktrans %}
 {% endblock %}
 
 {% block bodyclass %}adminprojects{% endblock %}

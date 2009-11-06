@@ -3,9 +3,7 @@
 {% load i18n %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}
-{{ prevtitle }} » Translate
-{% endblocktrans %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Translate{% endblocktrans %}
 {% endblock %}
 
 {% block bodyclass %}tptranslate{% endblock bodyclass %}

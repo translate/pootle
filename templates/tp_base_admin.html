@@ -5,9 +5,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}
-{{ prevtitle }} » Administrate
-{% endblocktrans %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Administrate{% endblocktrans %}
 {% endblock %}
 
 {% block content %}

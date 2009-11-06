@@ -3,9 +3,7 @@
 {% load i18n %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}
-{{ prevtitle }} » Review
-{% endblocktrans %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Review{% endblocktrans %}
 {% endblock %}
 
 {% get_current_language as LANGUAGE_CODE %}

@@ -2,9 +2,7 @@
 {% load i18n %}
  
 {% block title %}
-{% blocktrans with block.super as prevtitle %}
-{{ prevtitle }} » Translation Settings
-{% endblocktrans %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Translation Settings{% endblocktrans %}
 {% endblock %}
 
 {% block bodyclass %}settings{% endblock %}

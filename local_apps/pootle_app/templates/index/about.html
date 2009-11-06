@@ -2,9 +2,7 @@
 {% load i18n %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}
-{{ prevtitle }}: About
-{% endblocktrans %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }}: About{% endblocktrans %}
 {% endblock %}
 
 {% block body.id %}about{% endblock body.id %}
