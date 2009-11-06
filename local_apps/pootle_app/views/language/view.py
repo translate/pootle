@@ -92,16 +92,13 @@ def translate_page(request, translation_project, dir_path):
         directory = translation_project.directory.get_relative(dir_path)
         return find_and_display(request, directory, next_store_item, prev_store_item)
     except PermissionError, msg:
-        return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
+        raise PermissionDenied(msg)
 
 @get_translation_project
 @set_request_context
 def project_index(request, translation_project, dir_path):
     directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
-    try:
-        return project_index_view(request, translation_project, directory)
-    except PermissionError, msg:
-        return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
+    return project_index_view(request, translation_project, directory)
 
 def handle_translation_file(request, translation_project, file_path):
     pootle_path = translation_project.directory.pootle_path + (file_path or '')
@@ -124,8 +121,7 @@ def handle_translation_file(request, translation_project, file_path):
 
         return find_and_display(request, store.parent, next_store_item, prev_store_item)
     except PermissionError, e:
-        return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), 
-                        message=e.args[0])
+        raise PermissionDenied(e.args[0])
 
 @get_translation_project
 @set_request_context
@@ -296,16 +292,10 @@ def handle_suggestions(request, translation_project, file_path, item):
 @set_request_context
 def tp_translate(request, translation_project, dir_path):
     directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
-    try:
-        return tp_translate_view(request, translation_project, directory)
-    except PermissionError, msg:
-        return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
+    return tp_translate_view(request, translation_project, directory)
 
 @get_translation_project
 @set_request_context
 def tp_review(request, translation_project, dir_path):
     directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
-    try:
-        return tp_review_view(request, translation_project, directory)
-    except PermissionError, msg:
-        return redirect('/%s/%s/' % (translation_project.language.code, translation_project.project.code), message=msg)
+    return tp_review_view(request, translation_project, directory)

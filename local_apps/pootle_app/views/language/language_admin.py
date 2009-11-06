@@ -31,20 +31,14 @@ from pootle_app.views.language.admin_permissions import process_update as proces
 
 from pootle.i18n.gettext import tr_lang
 
-from pootle_misc.baseurl import redirect
-
 
 def view(request, language_code):
     # Check if the user can access this view
     language = get_object_or_404(Language, code=language_code)
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    language.directory)
-    if not request.user.is_authenticated():
-        return redirect('/accounts/login/',
-                        message=_("You must log in to access administration functions."))
-    elif not check_permission('administrate', request):
-        return redirect('/accounts/' + request.user.username + '/',
-                        message=_("You do not have administration rights."))
+    if not check_permission('administrate', request):
+        raise PermissionDenied(_("You do not have administration rights for this language."))
 
     permission_set_formset = process_permission_update(request, language.directory)
 

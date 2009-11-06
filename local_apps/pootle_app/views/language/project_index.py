@@ -83,7 +83,7 @@ def view(request, translation_project, directory):
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    translation_project.directory)
     if not check_permission("view", request):
-        raise PermissionDenied
+        raise PermissionDenied(_("You do not have rights to access this translation project."))
 
     view_obj = ProjectIndexView(forms=dict(upload=tp_common.UploadHandler,
                                            update=tp_common.UpdateHandler))

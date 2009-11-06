@@ -33,8 +33,6 @@ from pootle_app.models.permissions import get_pootle_permissions, PermissionSet,
 from pootle_app.views.language import navbar_dict
 from pootle_app.views.language import search_forms
 
-from pootle_misc.baseurl import redirect
-
 
 class PermissionSetForm(forms.Form):
     """A PermissionSetForm represents a PermissionSet to the user.
@@ -236,12 +234,8 @@ def view(request, translation_project):
     # Check if the user can access this view
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    translation_project.directory)
-    if not request.user.is_authenticated():
-        return redirect('/accounts/login/',
-                        message=_("You must log in to access administration functions."))
-    elif not check_permission('administrate', request):
-        return redirect('/accounts/' + request.user.username + '/',
-                        message=_("You do not have administration rights."))
+    if not check_permission('administrate', request):
+        raise PermissionDenied(_("You do not have administration rights for this translation project."))
 
     language               = translation_project.language
     project                = translation_project.project

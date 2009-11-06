@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.exceptions import PermissionDenied
 from django.forms.models import modelformset_factory
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
@@ -25,15 +26,13 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.forms.util import ErrorList
 
-from pootle_misc.baseurl import redirect, l
+from pootle_misc.baseurl import l
 
 
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
-        if not request.user.is_authenticated():
-            return redirect('/accounts/login/', message=_("You must log in to administer Pootle."))
-        elif not request.user.is_superuser:
-            return redirect('/accounts/'+request.user.username +'/', message=_("You do not have the rights to administer Pootle."))
+        if not request.user.is_superuser:
+            raise PermissionDenied(_("You do not have rights to administer Pootle."))
         else:
             return f(request, *args, **kwargs)
     return decorated_f

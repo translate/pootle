@@ -54,7 +54,7 @@ def view(request, translation_project, directory):
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    translation_project.directory)
     if not check_permission("view", request):
-        raise PermissionDenied
+        raise PermissionDenied(_("You do not have rights to access review mode."))
 
     view_obj = TPReviewView({})
     return render_to_response("language/tp_review.html",
