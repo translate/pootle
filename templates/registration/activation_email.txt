@@ -7,6 +7,3 @@
      {{ activation_key }}
 
 {% filter wordwrap:70 %}{% trans "This message is sent to verify that the email address is in fact correct. If you did not want to register an account, you may simply ignore the message." %}{% endfilter %}
-{% blocktrans%}
-This account will expire in {{ expiration_days }} days. 
-{% endblocktrans %}
