@@ -28,7 +28,7 @@ from pootle.i18n import gettext_live
 def translation_dummy(language):
     """return dumy translation object to please django's l10n while
     Live Translation is enabled"""
-    
+
     t = trans_real._translations.get(language, None)
     if t is not None:
         return t
@@ -41,8 +41,8 @@ def translation_dummy(language):
     dummytrans.plural = lambda x: x
     trans_real._translations[language] = dummytrans
     return dummytrans
-            
-            
+
+
 class LocaleMiddleware(object):
     """
     Hijack Django's localization functions to support arbitrary user
@@ -69,7 +69,6 @@ class LocaleMiddleware(object):
             # gettext functions to install the safe variable
             # formatting override
             gettext.override_gettext(translation)
-            
 
     def process_request(self, request):
         """

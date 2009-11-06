@@ -42,25 +42,24 @@ def _dummy_translate(singular, plural, n):
         return plural
     else:
         return singular
-    
+
 def translate_message(singular, plural=None, n=1):
-    
     locale = translation.to_locale(translation.get_language())
     if locale in ('en', 'en_US'):
         return _dummy_translate(singular, plural, n)
 
     live_translation = get_live_translation(locale)
-    
+
     if live_translation is None:
         default_locale = translation.to_locale(settings.LANGUAGE_CODE)
         if default_locale in ('en', 'en_US'):
             return _dummy_translate(singular, plural, n)
-        
+
         live_translation = get_live_translation(default_locale)
 
     if live_translation is None:
         _dummy_translate(singular, plural, n)
-    
+
     return live_translation.translate_message(singular, plural, n)
 
 
@@ -75,5 +74,3 @@ def gettext(message):
 
 def ngettext(singular, plural, n):
     return str(translate_message(singular, plural, n))
-
-               

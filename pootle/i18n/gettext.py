@@ -79,7 +79,6 @@ def override_gettext(real_translation):
     translation.ngettext_lazy = lazy(translation.ngettext, str)
     translation.ugettext_lazy = lazy(translation.ugettext, unicode)
     translation.ungettext_lazy = lazy(translation.ungettext, unicode)
-    
 
 
 def tr_lang(language_name):
@@ -99,4 +98,3 @@ def language_dir(language_code):
     if shortcode in ["ar", "arc", "dv", "fa", "he", "ks", "ps", "ur", "yi", "nqo"]:
         return "rtl"
     return "ltr"
-
