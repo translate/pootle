@@ -45,5 +45,5 @@ class SiteConfigMiddleware(object):
             # duck typing I will call this
             # poking-the-duck-until-it-quacks-like-a-duck-test
             
-            if e.__class__.__name__ == 'OperationalError':
+            if e.__class__.__name__ in ['OperationalError', 'ProgrammingError']:
                 return HttpResponse(dbinit.staggered_install(e))
