@@ -40,7 +40,7 @@ def get_item_summary(request, quick_stats, path_obj):
     state            = dispatch.CommonState(request.GET)
     file_stats = _N("%d file", "%d files", num_stores, num_stores)
     # The translated word counts
-    word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
+    word_stats = _("%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated",
                    {"translated": translated_words,
                     "total": total_words,
                     "translatedpercent": quick_stats['translatedpercentage']}
