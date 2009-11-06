@@ -4,7 +4,11 @@
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{{ block.super }}{% trans " » " %}{% trans "Administrate" %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }} » Administrate
+{% endblocktrans %}
+{% endblock %}
 
 {% block content %}
 <div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">

@@ -2,7 +2,11 @@
 
 {% load i18n %}
 
-{% block title %}{{ block.super }}{% trans " » " %}{% trans "Review" %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }} » Review
+{% endblocktrans %}
+{% endblock %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}

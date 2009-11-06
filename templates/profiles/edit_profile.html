@@ -1,7 +1,11 @@
 {% extends "user_profile_base_extended.html"  %}
 {% load i18n %}
  
-{% block title %}{{ block.super }}{% trans ' » Translation Settings' %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }} » Translation Settings
+{% endblocktrans %}
+{% endblock %}
 
 {% block bodyclass %}settings{% endblock %}
 

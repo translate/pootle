@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
 
-{% block title %}{{ block.super }}{% trans ": Login" %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }}: Login
+{% endblocktrans %}
+{% endblock %}
 
 {% block content %}
 <div id="login" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">

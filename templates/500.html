@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
+
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }}: Server Error
+{% endblocktrans %}
+{% endblock %}
+
 {% block content %}
-{% block breadcrumbs %}<div class="breadcrumbs"><a href="/">{% trans "Home" %}</a> &rsaquo; {% trans "Server error" %}</div>{% endblock %}
-
-<h1>{% trans 'Server Error <em>(500)</em>' %}</h1>
+<h2>{% trans 'Server Error <em>(500)</em>' %}</h2>
 <p>{% trans "An error has occurred. Thank you for your patience." %}</p>
-
 {% endblock %}

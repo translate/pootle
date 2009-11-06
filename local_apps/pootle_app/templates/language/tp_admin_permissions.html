@@ -2,7 +2,11 @@
 
 {% load i18n %}
 
-{% block title %}{{ block.super }}{% trans " » " %}{% trans "Permissions" %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }} » Permissions
+{% endblocktrans %}
+{% endblock %}
 
 {% block bodyclass %}tpadminpermissions{% endblock %}
 

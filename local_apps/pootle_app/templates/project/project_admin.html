@@ -4,7 +4,11 @@
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{{ block.super }}{% trans " » " %}{{ project.name }}{% trans " » " %}{% trans "Administrate" %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle and project.name as projectname %}
+{{ prevtitle }} » {{ projectname }} » Administrate
+{% endblocktrans %}
+{% endblock %}
 
 {% block bodyclass %}projectadmin{% endblock %}
 

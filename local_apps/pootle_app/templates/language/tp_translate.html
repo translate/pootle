@@ -2,7 +2,11 @@
 
 {% load i18n %}
 
-{% block title %}{{ block.super }}{% trans " » " %}{% trans "Translate" %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }} » Translate
+{% endblocktrans %}
+{% endblock %}
 
 {% block bodyclass %}tptranslate{% endblock bodyclass %}
 

@@ -1,7 +1,11 @@
 {% extends "user_profile_base_extended.html"  %}
 {% load i18n %}
  
-{% block title %}{{ block.super }}{% trans ' » Profile' %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }} » Profile
+{% endblocktrans %}
+{% endblock %}
 
 {% block bodyclass %}profile{% endblock %}
 

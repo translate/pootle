@@ -1,7 +1,11 @@
 {% extends "admin_profile_base.html" %}
 {% load i18n baseurl %}
 
-{% block title %}{{ block.super }}{% trans " » " %}{% trans "General Settings" %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }} » General Settings
+{% endblocktrans %}
+{% endblock %}
 
 {% block bodyclass %}admingeneral{% endblock %}
 

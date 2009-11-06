@@ -1,7 +1,11 @@
 {% extends "base.html"  %}
 {% load i18n %}
 
-{% block title %}{{ block.super }}{% trans ": " %}{% trans "Administration" %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }}: Administration
+{% endblocktrans %}
+{% endblock %}
 
 {% block precontent %}
 {% include "admin_profile_menu.html" %}

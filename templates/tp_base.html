@@ -2,7 +2,11 @@
 
 {% load i18n %}
 
-{% block title %}{{ block.super }}{% trans ": " %}{{ navitems.0.path.language.text }}{% trans " » " %}{{ navitems.0.path.project.text }}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle and navitems.0.path.language.text as langname and navitems.0.path.project.text as projectname %}
+{{ prevtitle }}: {{ langname }} » {{ projectname }}
+{% endblocktrans %}
+{% endblock %}
 
 {% block extra_head %}
 <link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications.feeds.view feed_path %}" />

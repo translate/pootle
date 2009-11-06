@@ -1,7 +1,11 @@
 {% extends "admin_profile_base.html" %}
 {% load i18n baseurl %}
 
-{% block title %}{{ block.super }}{% trans " » " %}{% trans "Projects" %}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle %}
+{{ prevtitle }} » Projects
+{% endblocktrans %}
+{% endblock %}
 
 {% block bodyclass %}adminprojects{% endblock %}
 

@@ -11,13 +11,15 @@ approach for this.
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-{{ block.super }}{% trans ": " %}
 {% if is_language %}
-{{ language.name }}
+{% blocktrans with block.super as prevtitle and language.name as langname %}
+{{ prevtitle }}: {{ langname }} » News
+{% endblocktrans %}
 {% else %}
-{{ navitems.0.path.language.text }}{% trans " » " %}{{ navitems.0.path.project.text }}
+{% blocktrans with block.super as prevtitle and navitems.0.path.language.text as langname and navitems.0.path.project.text as projectname %}
+{{ prevtitle }}: {{ langname }} » {{ projectname }} » News
+{% endblocktrans %}
 {% endif %}
-{% trans " » " %}{% trans "News" %}
 {% endblock %}
 
 {% block extra_head %}

@@ -2,7 +2,11 @@
 
 {% load baseurl i18n %}
 
-{% block title %}{{ block.super }}{% trans ": " %}{{ language.name }}{% endblock %}
+{% block title %}
+{% blocktrans with block.super as prevtitle and language.name as langname %}
+{{ prevtitle }}: {{ langname }}
+{% endblocktrans %}
+{% endblock %}
 
 {% block extra_head %}
 <link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications.feeds.view feed_path %}" />
