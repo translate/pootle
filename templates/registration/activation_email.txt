@@ -1,5 +1,5 @@
 {% load i18n baseurl %}
-{% trans "A Pootle account has been created for you using this email address." %}
+{% filter wordwrap:70 %}{% trans "A Pootle account has been created for you using this email address." %}{% endfilter %}
 {% trans "To activate your account, follow this link:" %}
      {% filter abs_l %}/accounts/activate/{{ activation_key }}/{% endfilter %}
 
