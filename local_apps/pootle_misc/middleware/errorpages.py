@@ -22,9 +22,9 @@ import traceback
 import sys
 
 from django.core.exceptions import PermissionDenied
+from django.http import  HttpResponseForbidden
 from django.http import Http404
-from django.db import DatabaseError
-from django.shortcuts import render_to_response
+from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
@@ -40,10 +40,11 @@ class ErrorPagesMiddleware(object):
         elif isinstance(exception, PermissionDenied):
             templatevars = { 'permission_error': exception }
             if not request.user.is_authenticated():
-                login_msg = _('You need to <a href="%(login_link)s">login</a> to access this page.' % {'login_link': l("/accounts/login/") })
+                login_msg = _('You need to <a href="%(login_link)s">login</a> to access this page.' % {
+                    'login_link': l("/accounts/login/") })
                 templatevars["login_message"] = login_msg
-            return render_to_response('403.html', templatevars,
-                                      RequestContext(request))
+            return HttpResponseForbidden(render_to_string('403.html', templatevars,
+                                      RequestContext(request)))
         else:
             #FIXME: implement better 500
             traceback.print_exc(file=sys.stderr)
