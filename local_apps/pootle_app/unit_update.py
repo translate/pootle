@@ -30,7 +30,9 @@ from pootle_app.models.permissions import check_permission, PermissionError
 
 
 def _suggestion_hash(store, item, trans):
-    return hash((store.pootle_path, item, unicode(trans)))
+    # since django's IntegerField is always 32 bit on mysql we cast to
+    # make sure we don't pass larger hashes
+    return int(hash((store.pootle_path, item, unicode(trans))) & 0xfffffff)
 
 def suggest_translation(store, item, trans, request):
     if not check_permission("suggest", request):
