@@ -504,6 +504,7 @@ html[dir="rtl"] #nav-main ul li
     margin-bottom: 0.7em;
 }
 
+p.help,
 span.help_text
 {
     font-size: 85%;
