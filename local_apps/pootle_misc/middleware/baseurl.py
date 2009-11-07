@@ -43,4 +43,6 @@ class BaseUrlMiddleware(object):
             #wrong with the universe
             # poison sites cache using detected domain
             from django.contrib.sites import models as sites_models
-            sites_models.SITE_CACHE[settings.SITE_ID] = sites_models.RequestSite(request)
+            sites_models.SITE_CACHE[settings.SITE_ID] = sites_models.Site(settings.SITE_ID,
+                                                                          request.META['HTTP_HOST'],
+                                                                          settings.TITLE)
