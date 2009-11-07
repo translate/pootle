@@ -19,15 +19,15 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-import logging
+
 class BaseUrlMiddleware(object):
     def process_request(self, request):
         """calculate settings.BASEURL based on HTTP headers"""
         domain = None
-        
+
         if 'HTTP_HOST' in request.META:
             domain = request.META['HTTP_HOST']
-            
+
         if 'SCRIPT_NAME' in request.META: 
             settings.SCRIPT_NAME = request.META['SCRIPT_NAME']
             if domain is not None:
@@ -38,7 +38,7 @@ class BaseUrlMiddleware(object):
                 settings.BASE_URL = 'https://' + domain
             else:
                 settings.BASE_URL = 'http://'  + domain
-            
+
             #FIXME: DIRTY HACK ALERT if this works then something is
             #wrong with the universe
             # poison sites cache using detected domain
