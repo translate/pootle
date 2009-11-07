@@ -52,7 +52,7 @@ class MyProjectAdminForm(forms.ModelForm):
 
     def clean_code(self):
         if re.search("[^a-zA-Z0-9_]", self.cleaned_data['code']):
-            raise forms.ValidationError('Project code may only contain letters, numbers and _')
+            raise forms.ValidationError(_('Project code may only contain letters, numbers and _'))
         return self.cleaned_data["code"]
 
 class ProjectAdmin(admin.ModelAdmin):
