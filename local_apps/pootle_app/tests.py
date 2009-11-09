@@ -63,7 +63,6 @@ msgstr "rest"
 
 ''')
         pofile.close()
-        
 
 
     def _setup_test_users(self):
@@ -109,7 +108,7 @@ class AnonTests(PootleTestCase):
     def test_admin_not_logged(self):
         """checks that admin pages are not accessible without login"""
         response = self.client.get("/admin/")
-        self.assertRedirects(response, 'http://testserver/accounts/login/?message=You+must+log+in+to+administer+Pootle.')
+        self.assertContains(response, '', status_code=403)
 
         
 class AdminTests(PootleTestCase):
@@ -133,7 +132,7 @@ class AdminTests(PootleTestCase):
         response = self.client.get('/')
         self.assertContains(response, "<a href='/admin/'>Admin</a>")
         response = self.client.get('/admin/')
-        self.assertContains(response, 'General Settings</title>')        
+        self.assertContains(response, 'General Settings')        
 
     def test_add_project(self):
         """Checks that we can add a project successfully."""
@@ -180,7 +179,7 @@ class AdminTests(PootleTestCase):
         self.assertContains(response, '/fish/pootle/')
         
         response = self.client.get("/fish/")
-        self.assertContains(response, 'fish</title>')
+        self.assertContains(response, '<a href="/fish/">fish</a>')
         self.assertContains(response, '<a href="pootle/">Pootle</a>')
         self.assertContains(response, "1 project, 0% translated")
 
@@ -529,7 +528,7 @@ class NonprivTests(PootleTestCase):
     def test_non_admin_rights(self):
         """checks that non privileged users cannot access admin pages"""
         response = self.client.get('/admin/')
-        self.assertRedirects(response, 'http://testserver/accounts/nonpriv/?message=You+do+not+have+the+rights+to+administer+Pootle.')
+        self.assertContains(response, '', status_code=403)
         
         
 
