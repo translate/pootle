@@ -57,6 +57,8 @@ def get_items(request, model, get_last_action, name_func):
             'transper': stats["translatedpercentage"],
             'fuzzyper': stats["fuzzypercentage"],
             'untransper': stats["untranslatedpercentage"],
+            'completed_title': _("%(percentage)d%% complete" %
+                                 {'percentage': stats['translatedpercentage']}),
             })
     items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))
     return items
