@@ -61,11 +61,7 @@
         {% endif %}
         <div class="translate-form">
             {% if notice %}
-            <div dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-                <h3 class="title">{{ notice.title }}</h3>
-                <div class="intro">{{ notice.stoppedby }}</div>
-                <a href="{{ notice.finishedlink|l }}">{{ notice.returnlink }}</a>
-            </div>
+            <div id="site-message" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">{{ notice }}</div>
             {% else %}
             <form action="{{actionurl|l}}" method="post" name="translate" id="translate">
                 {{ search.search_form.as_hidden }}

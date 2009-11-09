@@ -84,14 +84,6 @@ def get_rows_and_icon(request, profile):
     else:
         return get_display_rows(profile), "edit"
 
-def get_finished_text(request, stoppedby):
-    """gets notice to display when the translation is finished"""
-    # l10n: "batch" refers to the set of translations that were reviewed
-    return {"title":        _("End of batch"),
-            "stoppedby":    stoppedby,
-            "finishedlink": dispatch.show_directory(request, url_manip.parent(request.path_info)),
-            "returnlink":   _("Click here to return to the index")}
-
 def get_page_links(request, store, pagesize, translations, item, first_item):
     """gets links to other pages of items, based on the given baselink"""
 
@@ -859,10 +851,16 @@ def get_position(request, next_store_item, prev_store_item):
         return next_store_item(search_forms.search_from_request(request), store_name, item)
 
 def get_failure_message(request):
-    if 'store' not in request.GET:
-        return _("No file matched your query")
-    else:
-        return _("End of results")
+    # We are reviewing a check
+    if 'match_names' in request.GET:
+        if request.GET['match_names'] == u'fuzzy,untranslated':
+            return _("End of Quick Translate.")
+        else:
+            return _("End of Quality Check Review.")
+    # This is a search
+    if 'new_search' in request.POST and 'store' not in request.POST:
+        return _("No file matched your query.")
+    return _("End of results.")
 
 def find_and_display(request, directory, next_store_item, prev_store_item):
     try:
@@ -886,7 +884,7 @@ def view(request, directory, store, item, stopped_by=None):
         formaction = ''
         store_path = ''
     if stopped_by is not None:
-        notice = get_finished_text(request, stopped_by)
+        notice = stopped_by
     else:
         notice = {}
     profile  = get_profile(request.user)
