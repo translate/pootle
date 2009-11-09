@@ -889,37 +889,6 @@ div.centered
     padding: 0px 5px;
 }
 
-div.statslist
-{
-    float: left;
-    width: 30%;
-    margin: 0;
-    margin-left: 10px;
-}
-
-html[dir="rtl"] div.statslist
-{
-    float: right;
-    margin-left: 0;
-    margin-right: 10px;
-}
-
-div.statslist ul li span.name
-{
-    font-weight: bold;
-    overflow: hidden;
-}
-
-div.statslist ul li span.value
-{
-    margin-left: 50px;
-}
-
-html[dir="rtl"] div.statslist ul li span.value
-{
-    float: left;
-}
-
 div.latestnews ul
 {
     margin: 0 1em;
@@ -955,6 +924,29 @@ div.topcontributors
 {
     margin-top: 1em;
     margin-bottom: 2em;
+}
+
+table.topcontributors
+{
+    margin: 0 0.5em;
+    width: 30%;
+    display: inline-table;
+}
+
+table.topcontributors th
+{
+    font-size: 120%;
+}
+
+table.topcontributors td
+{
+    font-size: inherit;
+    padding: 0 0.5em;
+}
+
+td.stats-name
+{
+    font-weight: bold;
 }
 
 div.item-statistics
