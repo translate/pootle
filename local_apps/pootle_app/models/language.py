@@ -67,7 +67,7 @@ class Language(models.Model):
     
     def localname(self):
         """localized fullname"""
-        return tr_lang(self.fullname) + '\t%s' % self.code
+        return u"%s - %s" % (tr_lang(self.fullname), self.code)
 
     def translated_percentage(self):
         return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
