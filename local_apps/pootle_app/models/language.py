@@ -37,16 +37,17 @@ class Language(models.Model):
         ordering = ['code']
 
     code_help_text = _('ISO 639 language code for the language, possibly followed by an underscore (_) and an ISO 3166 country code. <a href="http://www.w3.org/International/articles/language-tags/">More information</a>')
-    nplurals_help_text = _('For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms')
-    pluralequation_help_text = _('For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms')
-    specialchars_help_text = _('Enter any special characters that users might find difficult to type')
-
-    nplural_choices = ((0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
-
     code           = models.CharField(max_length=50, null=False, unique=True, db_index=True, help_text=code_help_text)
     fullname       = models.CharField(max_length=255, null=False, verbose_name=_("Full Name"))
-    specialchars   = models.CharField(max_length=255, blank=True, verbose_name=_("Special Chars"), help_text=specialchars_help_text)
+
+    specialchars_help_text = _('Enter any special characters that users might find difficult to type')
+    specialchars   = models.CharField(max_length=255, blank=True, verbose_name=_("Special Characters"), help_text=specialchars_help_text)
+
+    nplurals_help_text = _('For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms')
+    nplural_choices = ((0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
     nplurals       = models.SmallIntegerField(default=0, choices=nplural_choices, verbose_name=_("Number of Plurals"), help_text=nplurals_help_text)
+
+    pluralequation_help_text = _('For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms')
     pluralequation = models.CharField(max_length=255, blank=True, verbose_name=_("Plural Equation"), help_text=pluralequation_help_text)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
 
