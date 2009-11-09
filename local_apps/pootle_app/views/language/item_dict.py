@@ -229,7 +229,8 @@ def make_generic_item(request, path_obj, action, show_checks=False):
     info = {
         'href':    action,
         'data':    quick_stats,
-        'tooltip': _('%s%% complete', quick_stats['translatedpercentage']),
+        'tooltip': _('%(percentage)d%% complete' %
+                     {'percentage': quick_stats['translatedpercentage']}),
         'title':   path_obj.name,
         'stats':   get_item_stats(request, quick_stats, path_obj, show_checks),
         }
