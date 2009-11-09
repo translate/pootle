@@ -54,24 +54,24 @@ class Language(models.Model):
 
     def __repr__(self):
         return self.fullname
-    
+
     def __unicode__(self):
         return self.localname()
 
     @getfromcache
     def getquickstats(self):
         return self.directory.getquickstats()
-        
+
     def get_absolute_url(self):
         return l(self.pootle_path)
-    
+
     def localname(self):
         """localized fullname"""
         return u"%s - %s" % (tr_lang(self.fullname), self.code)
 
     def translated_percentage(self):
         return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
-        
+
 def set_data(sender, instance, **kwargs):
     # create corresponding directory object
     instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
