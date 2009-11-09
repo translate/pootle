@@ -3,8 +3,10 @@
 <div id="submenu" lang="{{ LANGUAGE_CODE }}">
     <div id="submenu-tabs">
         <a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard" title="{% trans 'General Stats and Quick Links' %}">{% trans "Dashboard" %}</a>
+        {% ifequal user profile.user %}
         <a href='{{"/accounts/edit/"|l}}' class="settings" title="{% trans 'Configure Your Translation Preferences' %}">{% trans "Settings" %}</a>
         <a href='{{"/accounts/personal/edit/"|l}}' class="profile" title="{% trans 'Change Your Personal Information' %}">{% trans "Profile" %}</a>
         <a href='{{"/accounts/password/change/"|l}}' class="password" title="{% trans 'Change Your Password' %}">{% trans "Password" %}</a>
+        {% endifequal %}
     </div>
 </div>
