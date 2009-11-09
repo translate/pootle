@@ -19,17 +19,21 @@
             <dt class="language">
                 <a href="{% filter l %}/{{ language.code }}/{% endfilter %}">
                 {% trans language.name %}
+                {% ifequal user profile.user %}
                 {% if language.islangadmin %}
                     <span class="adminlink">(<a href="{% filter l %}/{{ language.code }}/admin.html{% endfilter %}">{% trans "Admin" %}</a>)</span>
                 {% endif %}
+                {% endifequal %}
                 </a>
             </dt>
             {% for project in language.projects %}
             <dd>
             <a href="{% filter l %}/{{ language.code }}/{{ project.code }}/{% endfilter %}">{{ project.name }}</a>
+            {% ifequal user profile.user %}
             {% if project.isprojectadmin %}
                 <span class="adminlink">(<a href="{% filter l %}/{{ language.code }}/{{ project.code }}/admin_permissions.html{% endfilter %}">{% trans "Permissions" %}</a> | <a href="{% filter l %}/{{ language.code }}/{{ project.code }}/admin_files.html{% endfilter %}">{% trans "Files" %}</a>)</span>
             {% endif %}
+            {% endifequal %}
             </dd>
             {% endfor %}
         </dl>
