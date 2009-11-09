@@ -25,10 +25,8 @@ import re
 from django.db import models
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from django.core.cache import cache
 
 from translate.storage import po
-from translate.misc.multistring import multistring
 
 from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.baseurl import l
@@ -76,7 +74,7 @@ class Store(models.Model):
 
     def get_absolute_url(self):
         return l(self.pootle_path)
-    
+
     @getfromcache
     def getquickstats(self):
         # convert result to normal dicts for later operations
@@ -118,7 +116,7 @@ class Store(models.Model):
                 # pending file doesn't exist anymore
                 self.pending = None
                 self.save()
-                
+
         # check if pending file already exists, just in case it was
         # added outside of pootle
         if not os.path.exists(pending_filename) and create:
@@ -152,7 +150,7 @@ class Store(models.Model):
             # duplicate don't add
             # FIXME: should we look up if suggestion already exists in pending file?
             return
-            
+
         if self.file.store.suggestions_in_format:
             unit.addalttrans(newunit.target, origin=username)
         else:
@@ -160,18 +158,18 @@ class Store(models.Model):
             if username is not None:
                 newunit.msgidcomment = 'suggested by %s' % username
             self.pending.addunit(newunit)
-                        
-            
+
+
     def addsuggestion(self, item, suggtarget, username, checker=None):
         """adds a new suggestion for the given item"""
         unit = self.file.getitem(item)
         newpo = unit.copy()
         newpo.target = suggtarget
         newpo.markfuzzy(False)
-        
+
         self.initpending(create=True)
         self.addunitsuggestion(unit, newpo, username)
-        
+
         if self.file.store.suggestions_in_format:
             self.file.savestore()
         else:
@@ -194,12 +192,12 @@ class Store(models.Model):
     def deletesuggestion(self, item, suggitem, newtrans, checker):
         """removes the suggestion from the pending file"""
         suggestions = self.getsuggestions(item)
-        
+
         try:
             # first try to use index
             suggestion = self.getsuggestions(item)[suggitem]
             if suggestion.hasplural() and suggestion.target.strings == newtrans or \
-                   not suggestion.hasplural() and suggestion.target == newtrans[0]:                
+                   not suggestion.hasplural() and suggestion.target == newtrans[0]:
                 self._deletesuggestion(item, suggestion)
             else:
                 # target doesn't match suggested translation, index is
@@ -259,8 +257,8 @@ class Store(models.Model):
 
         if notranslate or suggestions:
             self.initpending(create=True)
-            
-        shared_units = ((self.file.store.findid(uid), newfile.findid(uid)) for uid in old_ids & new_ids)        
+
+        shared_units = ((self.file.store.findid(uid), newfile.findid(uid)) for uid in old_ids & new_ids)
         for oldunit, newunit in shared_units:
             if not newunit.istranslated():
                 continue
@@ -331,8 +329,8 @@ class Store(models.Model):
         if self.tm:
             unit = self.file.getitem(item)
             locations = unit.getlocations()
-            # TODO: review the matching method Can't simply use the
-            # location index, because we want multiple matches
+            # TODO: review the matching method. We can't simply use the
+            # location index, because we want multiple matches.
             suggestpos = [suggestpo for suggestpo in self.tm.store.units
                           if suggestpo.getlocations() == locations]
             return suggestpos
@@ -348,7 +346,7 @@ def store_post_init(sender, instance, **kwargs):
         #FIXME: we probably want another method for pending, to avoid
         # invalidating stats that are not affected by suggestions
         translation_file_updated.connect(instance.handle_file_update, sender=instance.pending)
-    
+
 models.signals.post_init.connect(store_post_init, sender=Store)
 
 def store_post_delete(sender, instance, **kwargs):
