@@ -97,36 +97,30 @@ class Store(models.Model):
             # suggestions can be stored in the translation file itself
             return
 
-        pending_filename = self.file.path + os.extsep + 'pending'
+        pending_name = self.file.name + os.extsep + 'pending'
+        pending_path = os.path.join(settings.PODIRECTORY, pending_name)
         if self.pending:
             # pending file already referencing in db, but does it
             # really exist
             if os.path.exists(self.pending.path):
                 # pending file exists
                 return
-            elif create:
-                # pending file got deleted recreate
-                store = po.pofile()
-                #FIXME: we should add more details to headers, maybe
-                # copy them from file?
-                po.makeheader(charset='UTF-8', encoding='8bit')
-                store.savefile(pending_filename)
-                return
-            else:
+            elif not create:
                 # pending file doesn't exist anymore
                 self.pending = None
                 self.save()
 
         # check if pending file already exists, just in case it was
         # added outside of pootle
-        if not os.path.exists(pending_filename) and create:
+        if not os.path.exists(pending_path) and create:
             # we only create the file if asked, typically before
             # adding a suggestion
             store = po.pofile()
-            store.savefile(pending_filename)
+            store.makeheader(charset='UTF-8', encoding='8bit')
+            store.savefile(pending_path)
 
-        if os.path.exists(pending_filename):
-            self.pending = pending_filename
+        if os.path.exists(pending_path):
+            self.pending = pending_name
             self.save()
             translation_file_updated.connect(self.handle_file_update, sender=self.pending)
 
