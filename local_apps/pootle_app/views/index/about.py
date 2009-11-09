@@ -22,7 +22,6 @@ import sys
 import os
 
 from django.utils.translation import ugettext as _
-N_ = _
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -32,7 +31,6 @@ from django.conf import settings
 import django
 from translate import __version__ as toolkitversion
 from pootle import __version__ as pootleversion
-
 
 
 def view(request):
@@ -62,6 +60,5 @@ def view(request):
               os.name,
               )),
         }
-                         
-    return render_to_response('index/about.html', data, context_instance=RequestContext(request))
 
+    return render_to_response('index/about.html', data, context_instance=RequestContext(request))
