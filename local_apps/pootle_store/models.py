@@ -51,7 +51,7 @@ class Store(models.Model):
     pending     = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False)
     tm          = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs, editable=False)
     parent      = models.ForeignKey(Directory, related_name='child_stores', db_index=True, editable=False)
-    pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True)
+    pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_("Path"))
     name        = models.CharField(max_length=128, null=False, editable=False)
 
     class Meta:
