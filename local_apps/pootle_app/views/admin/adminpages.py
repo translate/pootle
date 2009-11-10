@@ -20,14 +20,13 @@
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.utils.translation import ugettext as _
-N_ = _
 
 from util import user_is_admin
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from pootle_app.forms import GeneralSettingsForm
 
 from pootle_misc.siteconfig import load_site_config
+from pootle_app.forms import GeneralSettingsForm
 
 @user_is_admin
 def view(request, path):
