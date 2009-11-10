@@ -46,19 +46,12 @@ def view(request):
                        'traduction',
                        'traduire',
                        ],
-        'versiontext': ("""
-        Pootle %s<br />
-        Translate Toolkit %s<br />
-        Django %s<br />
-        Python %s<br />
-        Running on %s/%s
-        """ % (pootleversion.sver,
-              toolkitversion.sver,
-              django.get_version(),
-              sys.version,
-              sys.platform,
-              os.name,
-              )),
-        }
+        'pootle_version': _("Pootle %s is powered by Translate Toolkit %s", (pootleversion.sver, toolkitversion.sver)),
+        'version_details': "\n".join([
+            "Django %s" % django.get_version(),
+            "Python %s" % sys.version,
+            "Running on %s" % sys.platform,
+        ])
+    }
 
     return render_to_response('index/about.html', data, context_instance=RequestContext(request))
