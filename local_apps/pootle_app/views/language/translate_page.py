@@ -897,7 +897,6 @@ def view(request, directory, store, item, stopped_by=None):
     else:
         items, translations, first_item = [], [], -1
         navbar = navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')
-    # self.pofilename can change in search...
     mainstats = ""
     pagelinks = None
     rows, icon = get_rows_and_icon(request, profile)
