@@ -38,7 +38,10 @@ ADMINS = (
 MANAGERS = ADMINS
 
 TITLE = "Pootle Demo"
-DESCRIPTION = """<div dir="ltr" lang="en">This is a demo installation of Pootle.<br /> You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</div>"""
+DESCRIPTION = """<div dir="ltr" lang="en">
+<h2 class="title">This is a demo installation of Pootle.</h2>
+<p class="about">You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</p>
+</div>"""
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

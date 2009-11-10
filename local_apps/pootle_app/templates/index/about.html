@@ -8,17 +8,16 @@
 {% block body.id %}about{% endblock body.id %}
 
 {% block precontent %}
-    {{ description|safe}}
+    {{ description|safe }}
 {% endblock precontent %}
 
 {% block content %}
+<div>
     <h2 class="title">{% trans "About Pootle" %}</h2>
-    <div class="info">
-        {% blocktrans %}This site is running Pootle &mdash; powerful web software to empower teams to do translation and translation management. This community tool is Free Software, and any team can use it and contribute to the Pootle community. Read more on the <a href="http://translate.sourceforge.net/">project website</a>.{% endblocktrans %}
-    </div>
-    <br />
-    <div class="info">{{ pootle_version }}</div>
-        <!--
-{{ version_details }}
-        -->
+    <p class="about">{% blocktrans %}This site is running Pootle &mdash; powerful web software to empower teams to do translation and translation management. This community tool is Free Software, and any team can use it and contribute to the Pootle community. Read more on the <a href="http://translate.sourceforge.net/">project website</a>.{% endblocktrans %}</p>
+    <p class="about">{{ pootle_version }}</p>
+    <!--
+    {{ version_details }}
+    -->
+</div>
 {% endblock content%}

@@ -724,6 +724,15 @@ html[dir="rtl"] .module-primary .hd h2
 
 
 /*
+ * ABOUT PAGE
+ */
+p.about
+{
+    margin-bottom: 1em;
+}
+
+
+/*
  * TABBED MENU
  */
 
