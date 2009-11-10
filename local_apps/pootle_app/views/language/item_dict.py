@@ -170,15 +170,16 @@ def _gen_link_list(request, path_obj, linkfuncs):
             links.append(link)
     return links
 
-def store_translate_links(request, path_obj):
+def store_translate_links(request, path_obj, filetype):
     """returns a list of links for store items in translate tab"""
-    return _gen_link_list(request, path_obj, [quick_link, translate_all_link,
-                                              po_link, xliff_link, 
-                                              update_link, commit_link])
-def store_review_links(request, path_obj):
+    linkfuncs = [quick_link, translate_all_link, update_link, commit_link]
+    linkfuncs.append(filetype == "po" and po_link or xliff_link)
+    return _gen_link_list(request, path_obj, linkfuncs)
+def store_review_links(request, path_obj, filetype):
     """returns a list of links for store items in review tab"""
-    return _gen_link_list(request, path_obj, [review_link, po_link, xliff_link,
-                                              commit_link, update_link])
+    linkfuncs = [review_link, update_link, commit_link]
+    linkfuncs.append(filetype == "po" and po_link or xliff_link)
+    return _gen_link_list(request, path_obj, linkfuncs)
 
 def directory_translate_links(request, path_obj):
     """returns a list of links for directory items in translate tab"""
@@ -252,14 +253,14 @@ def make_directory_item(request, directory, links_required=None):
             'isdir':  True })
     return item
 
-def make_store_item(request, store, links_required=None):
+def make_store_item(request, store, filetype, links_required=None):
     action = dispatch.translate(request, store.pootle_path)
     show_checks = links_required == 'review'
     item = make_generic_item(request, store, action, show_checks)
     if links_required == 'translate':
-        item['actions'] = store_translate_links(request, store)
+        item['actions'] = store_translate_links(request, store, filetype)
     elif links_required == 'review':
-        item['actions'] = store_review_links(request, store)
+        item['actions'] = store_review_links(request, store, filetype)
     else:
         item['actions'] = []
     item.update({

@@ -45,9 +45,10 @@ def top_stats(translation_project):
 
 def get_children(request, translation_project, directory, links_required=None):
     search = search_forms.search_from_request(request)
+    filetype = translation_project.project.localfiletype
     return [item_dict.make_directory_item(request, child_dir, links_required=links_required)
             for child_dir in directory.child_dirs.all()] + \
-           [item_dict.make_store_item(request, child_store, links_required=links_required)
+           [item_dict.make_store_item(request, child_store, filetype, links_required=links_required)
             for child_store in directory.filter_stores(search).all()]
 
 def unix_to_host_path(p):
