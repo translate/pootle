@@ -114,7 +114,7 @@ h2
 
 h3
 {
-    font-size: 165%;
+    font-size: 150%;
 }
 
 h4
@@ -885,6 +885,50 @@ div.centered
 {
     font-size: inherit;
 }
+
+div#settings
+{
+    margin-bottom: 2em;
+}
+
+/* ADMIN DEPENDENCY CHECKS */
+
+div#depchecks ul
+{
+    margin-bottom: 1em;
+}
+
+div#depchecks ul#optional,
+div#depchecks ul#optimal
+{
+    font-style: italic;
+    background-color: inherit;
+    color: #4B4740;
+}
+
+div#depchecks ul li
+{
+    background-repeat: no-repeat;
+    padding: 0 2em;
+}
+
+div#depchecks ul li.good
+{
+    background-image: url('images/good.png');
+}
+
+div#depchecks ul li.warning
+{
+    background-image: url('images/warning.png');
+}
+
+div#depchecks ul li.error
+{
+    background-image: url('images/error.png');
+    font-weight: bold;
+    color: #d54e21;
+}
+
 
 /*
  * SUMMARIES
