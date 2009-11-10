@@ -20,6 +20,7 @@
 
 import subprocess
 import sys
+import os
 
 from django.conf import settings
 
@@ -60,8 +61,9 @@ def test_django():
 ##############################
 
 def test_unzip():
+    """test for unzip command"""
     try:
-        subprocess.call('unzip')
+        subprocess.call('unzip', stdout=file(os.devnull), stderr=file(os.devnull))
         return True
     except:
         return False
