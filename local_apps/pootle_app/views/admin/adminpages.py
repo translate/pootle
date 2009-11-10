@@ -31,7 +31,7 @@ from pootle_misc.siteconfig import load_site_config
 from pootle_app.forms import GeneralSettingsForm
 
 
-def requiered_depcheck():
+def required_depcheck():
     required = []
     
     status, version = depcheck.test_translate()
@@ -150,7 +150,7 @@ def view(request, path):
     template = 'admin/admin_general_settings.html'
     template_vars = {
         'form': setting_form,
-        'required': requiered_depcheck(),
+        'required': required_depcheck(),
         'optional': optional_depcheck(),
         'optimal': optimal_depcheck(),
         }
