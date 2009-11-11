@@ -21,6 +21,7 @@
 from translate.lang import data as langdata
 
 from django.utils import translation
+from django.utils.translation import trans_real
 from django.utils.functional import lazy
 
 # override gettext function that handle variable errors more
@@ -28,58 +29,36 @@ from django.utils.functional import lazy
 #
 # needed to avoid tracebacks on translation errors with live
 # translation
+def _format_translation(message, vars=None):
+    if vars is not None:
+        try:
+            return message % vars
+        except:
+            pass
+    return message
 
-def _format_gettext(f):
-    """decorator for failsafe variable formatting in gettext functions"""
-    def format_gettext(message, vars=None):
-        translated = f(message)
-        if vars is not None:
-            try:
-                return translated % vars
-            except:
-                pass
-        return translated
-    return format_gettext
+def ugettext(message, vars=None):
+    return _format_translation(translation.real_ugettext(message), vars)
 
+def gettext(message, vars=None):
+    return _format_translation(translation.real_gettext(message), vars)
 
-def _format_ngettext(f):
-    """decorator for failsafe variable formatting in ngettext
-    functions"""
-    def format_ngettext(singular, plural, number, vars=None):
-        translated = f(singular, plural, number)
-        if vars is not None:
-            try:
-                return translated % vars
-            except:
-                pass
-        return translated
-    return format_ngettext
+def ungettext(singular, plural, number, vars=None):
+    return _format_translation(translation.real_ungettext(singular, plural, number), vars)
 
-
-gettext = _format_gettext(translation.gettext)
-ngettext = _format_ngettext(translation.ngettext)
-ugettext = _format_gettext(translation.ugettext)
-ungettext = _format_ngettext(translation.ungettext)
-
-gettext_lazy = lazy(gettext, str)
-ngettext_lazy = lazy(ngettext, str)
-ugettext_lazy = lazy(ugettext, unicode)
-ungettext_lazy = lazy(ungettext, unicode)
-
+def ngettext(singular, plural, number, vars=None):
+    return _format_translation(translation.real_ngettext(singular, plural, number), vars)
 
 def override_gettext(real_translation):
-    """replace django's translation functions with decorated versions
-    of translation functions"""
-    translation.gettext = _format_gettext(real_translation.gettext)
-    translation.ngettext = _format_ngettext(real_translation.ngettext)
-    translation.ugettext = _format_gettext(real_translation.ugettext)
-    translation.ungettext = _format_ngettext(real_translation.ungettext)
-
-    translation.gettext_lazy = lazy(translation.gettext, str)
-    translation.ngettext_lazy = lazy(translation.ngettext, str)
-    translation.ugettext_lazy = lazy(translation.ugettext, unicode)
-    translation.ungettext_lazy = lazy(translation.ungettext, unicode)
-
+    """replace django's translation functions with safe versions"""
+    translation.gettext = real_translation.gettext
+    translation.ugettext = real_translation.ugettext
+    translation.ngettext = real_translation.ngettext
+    translation.ungettext = real_translation.ungettext
+    translation.gettext_lazy = lazy(real_translation.gettext, str)
+    translation.ugettext_lazy = lazy(real_translation.ugettext, unicode)
+    translation.ngettext_lazy = lazy(real_translation.ngettext, str)
+    translation.ungettext_lazy = lazy(real_translation.ungettext, unicode)    
 
 def tr_lang(language_name):
     """translate language name"""

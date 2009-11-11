@@ -19,13 +19,12 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.utils import translation
-from django.db import models
-from django.conf import settings
 
 _translation_project_cache = {}
 
 
 def get_live_translation(language_code):
+    from django.db import models
     TranslationProject = models.get_model('pootle_app', 'TranslationProject')
     global _translation_project_cache
 
@@ -43,7 +42,7 @@ def _dummy_translate(singular, plural, n):
     else:
         return singular
 
-def translate_message(singular, plural=None, n=1):
+def _translate_message(singular, plural, n):
     locale = translation.to_locale(translation.get_language())
     if locale in ('en', 'en_US'):
         return _dummy_translate(singular, plural, n)
@@ -51,7 +50,9 @@ def translate_message(singular, plural=None, n=1):
     live_translation = get_live_translation(locale)
 
     if live_translation is None:
+        from django.conf import settings
         default_locale = translation.to_locale(settings.LANGUAGE_CODE)
+            
         if default_locale in ('en', 'en_US'):
             return _dummy_translate(singular, plural, n)
 
@@ -62,15 +63,23 @@ def translate_message(singular, plural=None, n=1):
 
     return live_translation.translate_message(singular, plural, n)
 
+def translate_message(singular, plural=None, n=1, vars=None):
+    translated = _translate_message(singular, plural, n)
+    if vars is not None:
+        try:
+            return translated % vars
+        except:
+            pass
+    return translated
 
-def ugettext(message):
-    return unicode(translate_message(message))
+def ugettext(message, vars=None):
+    return unicode(translate_message(message, vars))
 
-def ungettext(singular, plural, n):
-    return unicode(translate_message(singular, plural, n))
+def ungettext(singular, plural, n, vars=None):
+    return unicode(translate_message(singular, plural, n, vars))
 
-def gettext(message):
-    return str(translate_message(message))
+def gettext(message, vars=None):
+    return str(translate_message(message, vars))
 
-def ngettext(singular, plural, n):
-    return str(translate_message(singular, plural, n))
+def ngettext(singular, plural, n, vars=None):
+    return str(translate_message(singular, plural, n, vars))

@@ -164,6 +164,50 @@ def find_languages(locale_path):
 
 LANGUAGES = find_languages(LOCALE_PATHS[0])
 
+from django.utils import translation
+from django.utils.translation import trans_real
+from pootle.i18n import gettext
+from pootle.i18n import  gettext_live
+
+def translation_dummy(language):
+    """return dumy translation object to please django's l10n while
+    Live Translation is enabled"""
+
+    t = trans_real._translations.get(language, None)
+    if t is not None:
+        return t
+
+    dummytrans = trans_real.DjangoTranslation()
+    dummytrans.set_language(language)
+    #FIXME: the need for the _catalog attribute means we
+    # are not hijacking gettext early enough
+    dummytrans._catalog = {}
+    dummytrans.plural = lambda x: x
+    trans_real._translations[language] = dummytrans
+    return dummytrans
+
+def hijack_translation():
+    """sabotage django's fascist linguistical regime"""
+    # override functions that check if language if language is
+    # known to Django
+    translation.check_for_language = lambda lang_code: True
+    trans_real.check_for_language = lambda lang_code: True
+
+    # override django's inadequate bidi detection
+    translation.get_language_bidi = gettext.get_language_bidi
+
+    if LIVE_TRANSLATION:
+        trans_real.translation = translation_dummy
+        gettext.override_gettext(gettext_live)
+    else:
+        # even when live translation is not enabled we hijack
+        # gettext functions to install the safe variable
+        # formatting override
+        gettext.override_gettext(gettext)
+    
+hijack_translation()
+
+
 # setup a tempdir inside the PODIRECTORY heirarchy, this way we have
 # reasonable guarantee that temp files will be created on the same
 # filesystem as translation files (required for save operations).
