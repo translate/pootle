@@ -55,7 +55,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         for field in fields:
             result.append('<th>')
             if form.fields[field].label is not None:
-                result.append(_(form.fields[field].label))
+                result.append(unicode(form.fields[field].label))
             result.append('</th>\n')
         result.append('</tr>\n')
 
