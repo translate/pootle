@@ -34,7 +34,12 @@ Directory contents
 
   - sorttable.js :
     Sorts tables according to its values. Used in the homepage as well as on the
-    languages and projects listings.
+    languages and projects listings. It has some customisations to support
+    zebra stripes once the sort is done (using jQuery).
+    We may want to use a table sorter purely written in jQuery, such as
+    tablesorter (http://tablesorter.com/docs/).
+
+    http://www.kryogenix.org/code/browser/sorttable/
 
   - translatepage.js :
     This handles several actions performed in the translate page. Including:

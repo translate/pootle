@@ -157,10 +157,13 @@ sorttable = {
 	          tb.appendChild(row_array[j][1]);
 	        }
 	        
+            sorttable.make_zebra();
+
 	        delete row_array;
 	      });
 	    }
     }
+
   },
   
   guessType: function(table, column) {
@@ -328,7 +331,19 @@ sorttable = {
         b++;
 
     } // while(swap)
-  }  
+  },
+
+  make_zebra: function() {
+      /* Customisation for zebra tags */
+      var cls = "even";
+      var even = true;
+      $("table.sortable tbody tr").each(function() {
+          $(this).addClass(cls)
+          cls = even ? "odd" : "even";
+          $(this).removeClass(cls)
+          even = !even;
+      });
+  }
 }
 
 /* ******************************************************************

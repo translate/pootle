@@ -62,7 +62,7 @@ def language_index(request, language_code):
     if not check_permission("view", request):
         raise PermissionDenied
 
-    projects = language.translationproject_set.all()
+    projects = language.translationproject_set.all().order_by('project')
     projectcount = len(projects)
     items = (make_project_item(translate_project) for translate_project in projects)
 

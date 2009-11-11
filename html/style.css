@@ -1088,6 +1088,13 @@ span.graph[dir="rtl"] span.translated
     right: 0%;
 }
 
+/* SORTABLE */
+
+table.sortable th
+{
+    cursor: pointer;
+}
+
 .sortkey
 {
     display: none;
