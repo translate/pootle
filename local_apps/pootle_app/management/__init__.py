@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db.models.signals import post_syncdb
+from django.utils.translation import ugettext_noop as _
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 
@@ -58,21 +59,21 @@ def create_essential_users():
 def create_pootle_permissions():
     """define Pootle's directory level permissions"""
     pootle_content_type, created = ContentType.objects.get_or_create(name="pootle", app_label="pootle_app", model="")
-    view, created = Permission.objects.get_or_create(name="Can view a translation project",
+    view, created = Permission.objects.get_or_create(name=_("Can view a translation project"),
                                                      content_type=pootle_content_type, codename="view")
-    suggest, created = Permission.objects.get_or_create(name="Can make a suggestion for a translation",
+    suggest, created = Permission.objects.get_or_create(name=_("Can make a suggestion for a translation"),
                                                content_type=pootle_content_type, codename="suggest")
-    translate, created = Permission.objects.get_or_create(name="Can submit a translation",
+    translate, created = Permission.objects.get_or_create(name=_("Can submit a translation"),
                                                  content_type=pootle_content_type, codename="translate")
-    overwrite, created = Permission.objects.get_or_create(name="Can overwrite translations on uploading files",
+    overwrite, created = Permission.objects.get_or_create(name=_("Can overwrite translations on uploading files"),
                                                  content_type=pootle_content_type, codename="overwrite")
-    review, created = Permission.objects.get_or_create(name="Can review translations",
+    review, created = Permission.objects.get_or_create(name=_("Can review translations"),
                                                        content_type=pootle_content_type, codename="review")
-    archive, created = Permission.objects.get_or_create(name="Can download archives of translation projects",
+    archive, created = Permission.objects.get_or_create(name=_("Can download archives of translation projects"),
                                                         content_type=pootle_content_type, codename="archive")
-    administrate, created = Permission.objects.get_or_create(name="Can administrate a translation project",
+    administrate, created = Permission.objects.get_or_create(name=_("Can administrate a translation project"),
                                                     content_type=pootle_content_type, codename="administrate")
-    commit, created = Permission.objects.get_or_create(name="Can commit to version control",
+    commit, created = Permission.objects.get_or_create(name=_("Can commit to version control"),
                                                        content_type=pootle_content_type, codename="commit")
 
 def create_pootle_permission_sets():
