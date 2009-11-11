@@ -8,5 +8,14 @@
         <a href='{{"/accounts/personal/edit/"|l}}' class="profile" title="{% trans 'Change Your Personal Information' %}">{% trans "Profile" %}</a>
         <a href='{{"/accounts/password/change/"|l}}' class="password" title="{% trans 'Change Your Password' %}">{% trans "Password" %}</a>
         {% endifequal %}
+        {% comment %}
+        Oh yeah, Django doesn't allow if a == b or not c expressions,
+        so we are forced to do this stupid things.
+        {% endcomment %}
+        {% if not profile.user %}
+        <a href='{{"/accounts/edit/"|l}}' class="settings" title="{% trans 'Configure Your Translation Preferences' %}">{% trans "Settings" %}</a>
+        <a href='{{"/accounts/personal/edit/"|l}}' class="profile" title="{% trans 'Change Your Personal Information' %}">{% trans "Profile" %}</a>
+        <a href='{{"/accounts/password/change/"|l}}' class="password" title="{% trans 'Change Your Password' %}">{% trans "Password" %}</a>
+        {% endif %}
     </div>
 </div>
