@@ -50,7 +50,7 @@ class PermissionSetForm(forms.Form):
         super(PermissionSetForm, self).__init__(*args, **kwargs)
 
         # 
-        permission_choices = [(codename, permission.name) for codename, permission in get_pootle_permissions().iteritems()]
+        permission_choices = [(codename, _(permission.name)) for codename, permission in get_pootle_permissions().iteritems()]
         # Used to render the correct choices
         self['permissions'].field.widget.choices = permission_choices
         # Used during validation to ensure that valid choices were selected
