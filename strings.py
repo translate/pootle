@@ -20,3 +20,11 @@ _("Add %(name)s")
 
 # l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 _("View on site")
+
+_("first name")
+_("last name")
+_("e-mail address")
+_("active")
+
+# l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
+_("superuser status")
