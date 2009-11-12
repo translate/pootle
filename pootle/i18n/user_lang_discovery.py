@@ -24,55 +24,32 @@ be used to display Pootle's UI to a user."""
 
 from django.utils.translation import trans_real
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
-
-from pootle_app.models.language import Language
-from pootle_app.models.profile  import get_profile
-from pootle_app.models.translation_project import TranslationProject
-from pootle.i18n import gettext
 
 from translate.lang import data
 
-from string import upper
 
-def get_lang_obj(code):
-    """Tries to get a Language object based on a language code from an HTTP header.
-
-       Since the header can be in the form 'af-za' or 'af', we first try with
-       the 'lang_COUNTRY' form and otherwise fallback to 'lang'. Also,
-       language codes are normalized to the form 'af_ZA', because this is how
-       Pootle stores language codes."""
-    if not code:
-        return None
-    
-    code_parts = code.split('-')
-    if len(code_parts) > 1:
-        code2 = "%(lang)s_%(country)s" % {'lang': code_parts[0],
-                                          'country': upper(code_parts[1])}
-        # First try with the lang_COUNTRY code, and if it fails
-        # then try with the language code only
-        try:
-            return Language.objects.get(code=code2)
-        except ObjectDoesNotExist:
-            pass
-    try:
-        return Language.objects.get(code=code_parts[0])
-    except ObjectDoesNotExist:
+def get_lang_from_cookie(request, supported):
+    """See if the user's browser sent a cookie with a her preferred
+    language."""
+    lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
+    if lang_code and lang_code in supported:
+        return lang_code
+    else:
         return None
 
+def get_lang_from_prefs(request, supported):
+    """If the current user is logged in, get her profile model object
+    and check whether she has set her preferred interface language."""
+    # If the user is logged in
+    if request.user.is_authenticated():
+        profile = request.user.get_profile()
+        # and if the user's ui lang is set, and the ui lang exists
+        if profile.ui_lang and profile.ui_lang in supported:
+            return profile.ui_lang
+    return None
 
-def get_lang_from_cookie(request):
-    """See if the user's browser sent a cookie with her preferred language. Return
-    a Pootle project object if so and if the we have a pootle translation project
-    for the language.
 
-    Otherwise, return None."""
-    lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME, None)
-    lang_obj = get_lang_obj(lang_code)
-    return gettext.get_lang(lang_obj)
-
-
-def get_lang_from_http_header(request):
+def get_lang_from_http_header(request, supported):
     """If the user's browser sends a list of preferred languages in the
     HTTP_ACCEPT_LANGUAGE header, parse it into a list. Then walk through
     the list, and for each entry, we check whether we have a matching
@@ -81,38 +58,29 @@ def get_lang_from_http_header(request):
     If nothing is found, return None."""
     accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
     for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
-        if accept_lang == '*' or data.normalize_code(accept_lang) in ['en-us', 'en']:
-            return gettext.get_default_translation()
-        lang_obj = get_lang_obj(accept_lang)
-        return gettext.get_lang(lang_obj)
+        if accept_lang == '*':
+            return None
+        #normalized = data.normalize_code(accept_lang)
+        normalized = data.simplify_to_common(accept_lang)
+        if normalized in ['en-us', 'en']:
+            return None
+        if normalized in supported:
+            return normalized
     return None
 
-def get_lang_from_prefs(request):
-    """If the current user is logged in, get her profile model object and check
-    whether she has set her preferred interface language.
-
-    If she has, and we have a Pootle translation project, return the associate
-    Pootle translation object.
-
-    Otherwise, return None."""
-    # If the user is logged in
-    if request.user.is_authenticated():
-        profile = get_profile(request.user)
-        # and if the user's ui lang is set, and the ui lang exists
-        return gettext.get_lang(profile.ui_lang)
-    return None
 
 def get_language_from_request(request):
-    """Try to get the Pootle project object for the user's preferred language
-    by first checking the cookie, then the user's preferences (stored in the PootleProfile
+    """Try to get the user's preferred language by first checking the
+    cookie, then the user's preferences (stored in the PootleProfile
     model) and finally by checking the HTTP language headers.
 
-    If all fails, try to fall back to English."""
+    If all fails, try fall back to default language."""
+    supported = dict(settings.LANGUAGES)
     for lang_getter in (get_lang_from_cookie,
                         get_lang_from_prefs,
                         get_lang_from_http_header):
-        lang = lang_getter(request)
+        lang = lang_getter(request, supported)
         if lang is not None:
             return lang
-    return gettext.get_default_translation()
 
+    return settings.LANGUAGE_CODE
