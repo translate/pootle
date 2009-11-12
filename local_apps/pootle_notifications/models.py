@@ -19,12 +19,13 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 from pootle_misc.baseurl import l
 
 class Notice(models.Model):
     directory = models.ForeignKey('pootle_app.Directory', db_index=True)
-    message = models.TextField(_('message'))
+    message = models.TextField(_('Message'))
     added = models.DateTimeField(_('added'), auto_now_add=True, null=True, db_index=True)
 
     def __unicode__(self):
