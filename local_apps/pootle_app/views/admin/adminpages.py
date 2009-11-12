@@ -33,7 +33,7 @@ from pootle_app.forms import GeneralSettingsForm
 
 def required_depcheck():
     required = []
-    
+
     status, version = depcheck.test_translate()
     if status:
         text = _('Translate Toolkit version %s installed.', version)
@@ -65,7 +65,7 @@ def required_depcheck():
 
 def optional_depcheck():
     optional = []
-    
+
     if not depcheck.test_unzip():
         optional.append({'dependency': 'unzip',
                          'text': _("Can't find the unzip command. Uploading archives is much quicker if unzip is available.")})
@@ -123,7 +123,7 @@ def optimal_depcheck():
     if not depcheck.test_webserver():
         optimal.append({'dependency': 'webserver',
                         'text': _("For optimal performance use Apache as your webserver.")})
-        
+
     if not depcheck.test_debug():
         optimal.append({'dependency': 'debug',
                         'text': _('Running in debug mode, debug mode is only needed when developing Pootle. For optimal performance disable debugging mode.')})
