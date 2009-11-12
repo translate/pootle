@@ -245,7 +245,7 @@ class UploadHandler(view_handler.Handler):
     actions = [('do_upload', _('Upload'))]
 
     class Form(forms.Form):
-        file = forms.FileField(required=False)
+        file = forms.FileField(required=False, label=_('File'))
         overwrite = forms.ChoiceField(widget=forms.RadioSelect, label='', 
                                       choices=[('merge', _("Merge the file with the current file and turn conflicts into suggestions")),
                                                ('overwrite',  _("Overwrite the current file if it exists")),
