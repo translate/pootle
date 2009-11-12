@@ -32,7 +32,7 @@ from pootle_app import project_tree
 class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
         make_option('--directory', action='store', dest='directory', default='',
-                    help='Pootle directory to refresh'),
+                    help='directory to refresh relative to po directory'),
         make_option('--recompute', action='store_true', dest='recompute', default=False,
                     help='Update the mtime of file, thereby forcing stats and index recomputation.'),
         )
@@ -44,28 +44,26 @@ class Command(NoArgsCommand):
 
         # rescan translation_projects
         #FIXME: limit translation_project scanning to refresh_path, not just stores.
-        for translation_project in TranslationProject.objects.all():
+        for translation_project in TranslationProject.objects.filter(real_path__startswith=refresh_path):
             if not os.path.isdir(translation_project.abs_real_path):
                 # translation project no longer exists
                 translation_project.delete()
                 continue
             
             project_tree.scan_translation_project_files(translation_project)
+            if recompute:
+                for store in translation_project.stores.all():
+                    # We force stats and indexing information to be recomputed by
+                    # updating the mtimes of the files whose information we want
+                    # to update.
+                    logging.info("Resetting mtime for %s to now", store.real_path)
+                    os.utime(store.abs_real_path, None)
+
             # This will force the indexer of a TranslationProject to be
             # initialized. The indexer will update the text index of the
             # TranslationProject if it is out of date.
             translation_project.indexer
             
-            for store in translation_project.stores.filter(pootle_path__startswith=refresh_path):
-                # We force stats and indexing information to be recomputed by
-                # updating the mtimes of the files whose information we want
-                # to update.
-                if recompute:
-                    logging.info("Resetting mtime for %s to now", store.real_path)
-                    os.utime(store.abs_real_path, None)
-                    
-                # Simply by opening a file, we'll trigger the
-                # machinery that looks at its mtime and decides
-                # whether its stats should be updated
-                logging.info("Updating stats for %s", store.file.name)
-                store.file.getcompletestats(translation_project.checker)
+            logging.info("Updating stats for %s", translation_project.fullname)
+            translation_project.getcompletestats()
+
