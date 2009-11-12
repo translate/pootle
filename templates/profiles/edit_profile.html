@@ -7,6 +7,10 @@
 
 {% block bodyclass %}settings{% endblock %}
 
+{% block breadcrumb_content %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Translation Settings{% endblocktrans %}
+{% endblock %}
+
 {% block section_description %}{% trans "Here you can configure the settings related to the translation interface as well as your language preferences." %}{% endblock %}
 
 {% block section_body %}

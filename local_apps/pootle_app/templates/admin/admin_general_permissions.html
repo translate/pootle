@@ -7,6 +7,10 @@
 
 {% block bodyclass %}adminpermissions{% endblock %}
 
+{% block breadcrumb_content %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Permissions{% endblocktrans %}
+{% endblock %}
+
 {% block section_description %}{% trans "Here you can add, edit, and delete the default permissions in this Pootle server." %}{% endblock %}
 
 {% block section_body %}

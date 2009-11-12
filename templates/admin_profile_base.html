@@ -5,6 +5,12 @@
 {% blocktrans with block.super as prevtitle %}{{ prevtitle }}: Administration{% endblocktrans %}
 {% endblock %}
 
+{% block breadcrumbs %}
+<div id="breadcrumbs">
+    <h2 class="title">{% block breadcrumb_content %}{% trans "Administration" %}{% endblock %}</h2>
+</div>
+{% endblock %}
+
 {% block precontent %}
 {% include "admin_profile_menu.html" %}
 {% endblock %}

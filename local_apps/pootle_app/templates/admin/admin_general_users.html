@@ -7,6 +7,10 @@
 
 {% block bodyclass %}adminusers{% endblock %}
 
+{% block breadcrumb_content %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Users{% endblocktrans %}
+{% endblock %}
+
 {% block section_description %}{% trans "Here you can add, edit, and delete all the available users in this Pootle server." %}{% endblock %}
 
 {% block section_body %}

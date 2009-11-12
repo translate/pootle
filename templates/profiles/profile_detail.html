@@ -7,6 +7,10 @@
 
 {% block bodyclass %}dashboard{% endblock %}
 
+{% block breadcrumb_content %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Dashboard{% endblocktrans %}
+{% endblock %}
+
 {% block content %}
 <div class="module first" lang="{{ LANGUAGE_CODE }}">
     <div class="hd">

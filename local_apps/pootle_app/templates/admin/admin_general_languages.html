@@ -7,6 +7,10 @@
 
 {% block bodyclass %}adminlanguages{% endblock %}
 
+{% block breadcrumb_content %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Languages{% endblocktrans %}
+{% endblock %}
+
 {% block section_description %}{% trans "Here you can add, edit, and delete all the available languages in this Pootle server." %}{% endblock %}
 
 {% block section_body %}
