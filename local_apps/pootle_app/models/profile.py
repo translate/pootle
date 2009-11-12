@@ -25,6 +25,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 
 from pootle.i18n.gettext import tr_lang
+from pootle.i18n.override import lang_choices
 
 from pootle_misc.baseurl import l
 
@@ -66,7 +67,7 @@ class PootleProfile(models.Model):
     input_height    = models.SmallIntegerField(default=5)
     languages       = models.ManyToManyField(Language, blank=True, related_name="user_languages", db_index=True)
     projects        = models.ManyToManyField(Project, blank=True, db_index=True)
-    ui_lang         = models.ForeignKey(Language, blank=True, null=True, db_index=True)
+    ui_lang         = models.CharField(max_length=50, blank=True, null=True, choices=(choice for choice in lang_choices()), verbose_name=_('Interface Language'))
     alt_src_langs   = models.ManyToManyField(Language, blank=True, db_index=True, related_name="user_alt_src_langs")
 
     def __unicode__(self):

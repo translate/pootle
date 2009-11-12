@@ -37,6 +37,22 @@ def supported_langs():
     else:
         return settings.LANGUAGES
 
+
+def lang_choices():
+    choices = []
+    for code, name in supported_langs():
+        tr_name = data.tr_lang(code)(name)
+        if tr_name != name:
+            # We have to use the LRO (left-to-right override) to ensure that 
+            # brackets in the English part of the name is rendered correctly
+            # in an RTL layout like Arabic. We can't use markup because this 
+            # is used inside an option tag.
+            name = u"%s | \u202d%s" % (tr_name, name)
+        choices.append((code, name))
+    choices.sort(cmp=locale.strcoll, key=lambda choice: unicode(choice[1]))
+    return choices
+
+
 def get_lang_from_cookie(request, supported):
     """See if the user's browser sent a cookie with a her preferred
     language."""

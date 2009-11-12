@@ -17,23 +17,7 @@
         </div>
     </div>
     {% endif %}
-    <p>
-        {{ form.username.label_tag }}
-        {{ form.username }}
-    </p>
-    <p>
-        {{ form.password.label_tag }}
-        {{ form.password }}
-    </p>
-    <p>
-        <label for="language">{% trans 'Interface Language' %}</label>
-        <select name="language" id="language">
-        {% for lang in languages %}
-            <option {% if lang.selected %}selected="selected"{% endif %}
-                    value="{{ lang.code}}" id="{{ lang.code}}">{{ lang.name}}</option>
-        {% endfor %} 
-        </select>
-    </p>
+    {{ form.as_p }}
 	<p class="submit">
         <input type="submit" name="login" value="{% trans 'Login' %}" />
         <input type="hidden" name="next" value="{{ next }}" />
