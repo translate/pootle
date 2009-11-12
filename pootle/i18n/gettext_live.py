@@ -73,13 +73,13 @@ def translate_message(singular, plural=None, n=1, vars=None):
     return translated
 
 def ugettext(message, vars=None):
-    return unicode(translate_message(message, vars))
+    return unicode(translate_message(message, vars=vars))
 
 def ungettext(singular, plural, n, vars=None):
-    return unicode(translate_message(singular, plural, n, vars))
+    return unicode(translate_message(singular, plural, n, vars=vars))
 
 def gettext(message, vars=None):
-    return str(translate_message(message, vars))
+    return str(translate_message(message, vars=vars))
 
 def ngettext(singular, plural, n, vars=None):
-    return str(translate_message(singular, plural, n, vars))
+    return str(translate_message(singular, plural, n, vars=vars))
