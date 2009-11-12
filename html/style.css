@@ -546,7 +546,7 @@ h3.title
 {
     margin: 0;
     padding: 10px;
-    background: #fff url(images/page-bg.jpg) top left repeat-x;
+    background: #fff url(images/page-bg2.jpg) top left repeat-x;
     clear: both;
 }
 
@@ -632,7 +632,7 @@ html[dir="rtl"] .module-primary .hd h2
 .module .bd,
 .module-primary .bd
 {
-    padding: 1em;
+    margin: 1em;
 }
 
 .module .bd h2, 
@@ -844,7 +844,7 @@ div.settings-container
 
 div.centered
 {
-    width: 80%;
+    width: 95%;
 }
 
 .settings-container h2
@@ -1112,7 +1112,7 @@ table.sortable th
 
 div#nav-secondary
 {
-    padding: 2em 1em;
+    padding: 0.6em 1em;
 }
 
 div#breadcrumbs
@@ -1228,8 +1228,8 @@ div#search[dir="rtl"] .togglesearch
 
 .translations-nav
 {
-    margin: 20px 0 0 0;
     clear: both;
+    margin-top: 1em;
 }
 
 .translations-nav:after
@@ -1442,12 +1442,14 @@ td.comments
 {
     padding: .5em;
     border-bottom: 2px solid #000000;
+    vertical-align: top;
 }
 
 textarea.comments
 {
 	max-width: 100%;
 	width: 100%;
+    min-height: 3em;
 }
 
 .altsrclangname
