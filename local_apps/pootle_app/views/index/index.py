@@ -25,7 +25,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from pootle_app.models.profile import get_profile
-from pootle_app.models import Project, Directory, Suggestion, Submission, Language
+from pootle_app.models import Project, Directory, Submission, Language
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.views import pagelayout
 from pootle_app.views.top_stats import gentopstats
@@ -40,7 +40,7 @@ def get_items(request, model, get_last_action, name_func):
     items = []
     if not check_permission('view', request):
         return items
-    
+
     for item in model.objects.all():
         stats = item.getquickstats()
         stats = add_percentages(stats)
@@ -69,7 +69,7 @@ def getlanguages(request):
             return Submission.objects.filter(translation_project__language=item).latest()
         except:
             return ''
-        
+
     return get_items(request, Language, get_last_action, tr_lang)
 
 def getprojects(request):
@@ -110,5 +110,3 @@ def view(request):
         }
 
     return render_to_response('index/index.html', templatevars, RequestContext(request))
-
-
