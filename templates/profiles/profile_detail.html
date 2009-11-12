@@ -50,9 +50,9 @@
     </div>
     <div class="bd">
         <table>
-            {% for key, value in profile.getuserstatistics.items %}
+            {% for stat in profile.getuserstatistics %}
             <tr>
-                <th scope="row">{% trans key %}</th><td>{{ value }}</td>
+                <th scope="row">{{ stat.text }}</th><td>{{ stat.count }}</td>
             </tr>
             {% endfor %}
         </table>
