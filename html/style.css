@@ -1432,7 +1432,7 @@ textarea.translation
     max-width: 100%;
     width: 95%;
     min-height: 3em;
-    padding: 5px;
+    padding: 5px !important;
     border: 2px solid black;
     display: block;
     margin: 0 auto 0.5em;
