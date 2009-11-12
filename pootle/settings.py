@@ -168,6 +168,7 @@ from django.utils import translation
 from django.utils.translation import trans_real
 from pootle.i18n import gettext
 from pootle.i18n import  gettext_live
+from pootle.i18n.override import get_language_from_request
 
 def translation_dummy(language):
     """return dumy translation object to please django's l10n while
@@ -192,6 +193,7 @@ def hijack_translation():
     # known to Django
     translation.check_for_language = lambda lang_code: True
     trans_real.check_for_language = lambda lang_code: True
+    translation.get_language_from_request = get_language_from_request
 
     # override django's inadequate bidi detection
     translation.get_language_bidi = gettext.get_language_bidi

@@ -19,14 +19,23 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-"""These functions are concerned with discovering the language which should
-be used to display Pootle's UI to a user."""
+"""overrides and support functions for enabling Live Translation and
+arbitrary locale support"""
 
-from django.utils.translation import trans_real
+import locale
+
 from django.conf import settings
+from django.utils.translation import trans_real
 
 from translate.lang import data
 
+def supported_langs():
+    if settings.LIVE_TRANSLATION:
+        from django.db import models
+        Language = models.get_model('pootle_app', 'Language')
+        return ((language.code, language.fullname) for language in Language.objects.all())
+    else:
+        return settings.LANGUAGES
 
 def get_lang_from_cookie(request, supported):
     """See if the user's browser sent a cookie with a her preferred
@@ -75,7 +84,7 @@ def get_language_from_request(request):
     model) and finally by checking the HTTP language headers.
 
     If all fails, try fall back to default language."""
-    supported = dict(settings.LANGUAGES)
+    supported = dict(supported_langs())
     for lang_getter in (get_lang_from_cookie,
                         get_lang_from_prefs,
                         get_lang_from_http_header):
