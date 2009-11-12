@@ -617,7 +617,7 @@ def make_table(request, profile, store, item):
     items = []
     suggestions = {}
     if (state.view_mode in ('review', 'translate')):
-        suggestions = {state.item: store.getsuggestions(state.item)}
+        suggestions = {item: store.getsuggestions(item)}
     for row, unit in enumerate(translations):
         tmsuggestions = []
         orig = get_string_array(unit.source)
