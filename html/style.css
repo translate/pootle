@@ -1216,14 +1216,14 @@ div#search[dir="rtl"] .togglesearch
 
 .icon
 {
-	float: left;
-	margin-right: 8px;
+    float: left;
+    margin-right: 8px;
 }
 
 .icon[dir="rtl"]
 {
-	float: right;
-	margin-left: 8px;
+    float: right;
+    margin-left: 8px;
 }
 
 .translations-nav
@@ -1420,11 +1420,11 @@ table td.translate-original
 
 td.translate-focus
 {
-	border-top:2px solid #000000;
-	padding-top:.5em;
-	padding-bottom:.5em;
-	padding-left:.5em;
-	vertical-align: top;
+    border-top:2px solid #000000;
+    padding-top:.5em;
+    padding-bottom:.5em;
+    padding-left:.5em;
+    vertical-align: top;
 }
 
 textarea.translation
@@ -1447,8 +1447,8 @@ td.comments
 
 textarea.comments
 {
-	max-width: 100%;
-	width: 100%;
+    max-width: 100%;
+    width: 100%;
     min-height: 3em;
 }
 
@@ -1498,17 +1498,17 @@ textarea.comments
 
 #tm
 {
-	position: absolute;
-	border-top: 1px dotted #999;
+    position: absolute;
+    border-top: 1px dotted #999;
 }
 
 .tm-unit
 {
-	margin: 5px 0px 5px 0px;
-	padding: 0px 2px 0px 0px;
-	background-color: #F7F7F7;
-	position: relative;
-	cursor: pointer;
+    margin: 5px 0px 5px 0px;
+    padding: 0px 2px 0px 0px;
+    background-color: #F7F7F7;
+    position: relative;
+    cursor: pointer;
 }
 
 .tm-original
