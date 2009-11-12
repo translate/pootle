@@ -49,25 +49,10 @@ def ungettext(singular, plural, number, vars=None):
 def ngettext(singular, plural, number, vars=None):
     return _format_translation(translation.real_ngettext(singular, plural, number), vars)
 
-def override_gettext(real_translation):
-    """replace django's translation functions with safe versions"""
-    translation.gettext = real_translation.gettext
-    translation.ugettext = real_translation.ugettext
-    translation.ngettext = real_translation.ngettext
-    translation.ungettext = real_translation.ungettext
-    translation.gettext_lazy = lazy(real_translation.gettext, str)
-    translation.ugettext_lazy = lazy(real_translation.ugettext, unicode)
-    translation.ngettext_lazy = lazy(real_translation.ngettext, str)
-    translation.ungettext_lazy = lazy(real_translation.ungettext, unicode)    
-
 def tr_lang(language_name):
     """translate language name"""
     language_code = translation.get_language()
     return langdata.tr_lang(language_code)(language_name)
-
-
-def get_language_bidi():
-    return language_dir(translation.get_language()) == 'rtl'
 
 def language_dir(language_code):
     """Returns whether the language is right to left"""

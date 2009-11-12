@@ -154,38 +154,11 @@ else:
     # look for localization files under mo directory
     LOCALE_PATHS = (data_path("mo"), )
 
-def find_languages(locale_path):
-    dirs = os.listdir(locale_path)
-    langs = []
-    for lang in dirs:
-        if data.langcode_re.match(lang) and os.path.isdir(os.path.join(locale_path, lang)):
-            langs.append((data.normalize_code(lang), data.languages.get(lang, (lang,))[0]))
-    return langs
-
-LANGUAGES = find_languages(LOCALE_PATHS[0])
-
+from pootle.i18n import override, gettext_live, gettext
 from django.utils import translation
 from django.utils.translation import trans_real
-from pootle.i18n import gettext
-from pootle.i18n import  gettext_live
-from pootle.i18n.override import get_language_from_request
 
-def translation_dummy(language):
-    """return dumy translation object to please django's l10n while
-    Live Translation is enabled"""
-
-    t = trans_real._translations.get(language, None)
-    if t is not None:
-        return t
-
-    dummytrans = trans_real.DjangoTranslation()
-    dummytrans.set_language(language)
-    #FIXME: the need for the _catalog attribute means we
-    # are not hijacking gettext early enough
-    dummytrans._catalog = {}
-    dummytrans.plural = lambda x: x
-    trans_real._translations[language] = dummytrans
-    return dummytrans
+LANGUAGES = override.find_languages(LOCALE_PATHS[0])
 
 def hijack_translation():
     """sabotage django's fascist linguistical regime"""
@@ -193,20 +166,20 @@ def hijack_translation():
     # known to Django
     translation.check_for_language = lambda lang_code: True
     trans_real.check_for_language = lambda lang_code: True
-    translation.get_language_from_request = get_language_from_request
+    translation.get_language_from_request = override.get_language_from_request
 
     # override django's inadequate bidi detection
-    translation.get_language_bidi = gettext.get_language_bidi
+    translation.get_language_bidi = override.get_language_bidi
 
     if LIVE_TRANSLATION:
-        trans_real.translation = translation_dummy
-        gettext.override_gettext(gettext_live)
+        trans_real.translation = override.translation_dummy
+        override.override_gettext(gettext_live)
     else:
         # even when live translation is not enabled we hijack
         # gettext functions to install the safe variable
         # formatting override
-        gettext.override_gettext(gettext)
-    
+        override.override_gettext(gettext)
+
 hijack_translation()
 
 

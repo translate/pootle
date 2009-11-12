@@ -23,13 +23,31 @@
 arbitrary locale support"""
 
 import locale
+import os
 
-from django.conf import settings
+from django.utils import translation
 from django.utils.translation import trans_real
+from django.utils.functional import lazy
+
+from pootle.i18n import gettext
+from pootle.i18n import  gettext_live
 
 from translate.lang import data
 
+def find_languages(locale_path):
+    """generates supported languages list from mo directory"""
+    dirs = os.listdir(locale_path)
+    langs = []
+    for lang in dirs:
+        if data.langcode_re.match(lang) and os.path.isdir(os.path.join(locale_path, lang)):
+            langs.append((data.normalize_code(lang), data.languages.get(lang, (lang,))[0]))
+    return langs
+
+
 def supported_langs():
+    """returns list of locales supported adapting to live translation
+    state"""
+    from django.conf import settings
     if settings.LIVE_TRANSLATION:
         from django.db import models
         Language = models.get_model('pootle_app', 'Language')
@@ -39,6 +57,7 @@ def supported_langs():
 
 
 def lang_choices():
+    """generated locale choices for drop down lists in forms"""
     choices = []
     for code, name in supported_langs():
         tr_name = data.tr_lang(code)(name)
@@ -56,6 +75,7 @@ def lang_choices():
 def get_lang_from_cookie(request, supported):
     """See if the user's browser sent a cookie with a her preferred
     language."""
+    from django.conf import settings
     lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
     if lang_code and lang_code in supported:
         return lang_code
@@ -107,5 +127,39 @@ def get_language_from_request(request):
         lang = lang_getter(request, supported)
         if lang is not None:
             return lang
-
+    from django.conf import settings
     return settings.LANGUAGE_CODE
+
+
+def translation_dummy(language):
+    """return dumy translation object to please django's l10n while
+    Live Translation is enabled"""
+
+    t = trans_real._translations.get(language, None)
+    if t is not None:
+        return t
+
+    dummytrans = trans_real.DjangoTranslation()
+    dummytrans.set_language(language)
+    #FIXME: the need for the _catalog attribute means we
+    # are not hijacking gettext early enough
+    dummytrans._catalog = {}
+    dummytrans.plural = lambda x: x
+    trans_real._translations[language] = dummytrans
+    return dummytrans
+
+def override_gettext(real_translation):
+    """replace django's translation functions with safe versions"""
+    translation.gettext = real_translation.gettext
+    translation.ugettext = real_translation.ugettext
+    translation.ngettext = real_translation.ngettext
+    translation.ungettext = real_translation.ungettext
+    translation.gettext_lazy = lazy(real_translation.gettext, str)
+    translation.ugettext_lazy = lazy(real_translation.ugettext, unicode)
+    translation.ngettext_lazy = lazy(real_translation.ngettext, str)
+    translation.ungettext_lazy = lazy(real_translation.ungettext, unicode)    
+
+def get_language_bidi():
+    """override for django's get_language_bidi that's aware of more
+    RTL languages"""
+    return gettext.language_dir(translation.get_language()) == 'rtl'
