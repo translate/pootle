@@ -150,7 +150,7 @@ def get_translations(request, profile, store, item):
         return -1, item, get_units(store, item, item + rows)
     else:
         rows = get_display_rows(profile)
-        before = rows / 2
+        before = (rows / 2) - 1
         first_item = max(item - before, 0)
         last_item = first_item + rows
         pofilelen = store.file.getitemslen()
