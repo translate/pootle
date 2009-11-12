@@ -181,6 +181,21 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         store.mergefile(newstore, request.user.username, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
     
 def upload_file(request, relative_root_dir, django_file, overwrite):
+    # for some reason factory checks explicitly for file existance and
+    # if file is open, which makes it impossible to work with Django's
+    # in memory uploads.
+    #
+    # setting _closed to False should work around this
+    #FIXME: hackish, does this have any undesirable side effect?
+    if getattr(django_file, '_closed', None) is None:
+        django_file._closed = False
+    # factory also checks for _mode
+    if getattr(django_file, '_mode', None) is None:
+        django_file._mode = 1
+    # mode is an attribute not a property in Django 1.1
+    if getattr(django_file, 'mode', None) is None:
+        django_file.mode = 1
+
     local_filename = get_local_filename(request.translation_project, django_file.name)
     # The full filesystem path to 'local_filename'
     upload_path    = get_upload_path(request.translation_project, relative_root_dir, local_filename)
@@ -200,20 +215,6 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
         return
     
     store = Store.objects.get(file=upload_path)
-    # for some reason factory checks explicitly for file existance and
-    # if file is open, which makes it impossible to work with Django's
-    # in memory uploads.
-    #
-    # settings _closed to False should work around this
-    #FIXME: hackish, does this have any undesirable side effect?
-    if getattr(django_file, '_closed', None) is None:
-        django_file._closed = False
-    if getattr(django_file, '_mode', None) is None:
-        django_file._mode = 1
-    # mode is an attribute not a property in Django 1.1
-    if getattr(django_file, 'mode', None) is None:
-        django_file.mode = 1
-    
     newstore = factory.getobject(django_file)
     
     #FIXME: are we sure this is what we want to do? shouldn't we
