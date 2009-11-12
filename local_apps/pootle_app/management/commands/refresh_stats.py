@@ -25,9 +25,9 @@ import logging
 from optparse import make_option
 
 from django.core.management.base import NoArgsCommand
+
 from pootle_app.models import TranslationProject
 from pootle_app import project_tree
-
 
 class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
@@ -42,14 +42,19 @@ class Command(NoArgsCommand):
         refresh_path = options.get('directory', '')
         recompute = options.get('recompute', False)
 
-        # rescan translation_projects
-        #FIXME: limit translation_project scanning to refresh_path, not just stores.
+        # reduce size of parse pool early on
+        from pootle_store.fields import  TranslationStoreFieldFile
+        TranslationStoreFieldFile._store_cache.maxsize = 2
+        TranslationStoreFieldFile._store_cache.cullsize = 2
+
+
         for translation_project in TranslationProject.objects.filter(real_path__startswith=refresh_path):
             if not os.path.isdir(translation_project.abs_real_path):
                 # translation project no longer exists
                 translation_project.delete()
                 continue
             
+            # rescan translation_projects
             project_tree.scan_translation_project_files(translation_project)
             if recompute:
                 for store in translation_project.stores.all():
