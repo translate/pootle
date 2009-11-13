@@ -50,8 +50,11 @@ def supported_langs():
     from django.conf import settings
     if settings.LIVE_TRANSLATION:
         try:
-            from django.db import models
-            Language = models.get_model('pootle_app', 'Language')
+            # hackish: we import PootleProfile to force a failure when
+            # first initializing the PootleProfile model, this way
+            # Language is never created before PootleProfile and all
+            # ManyToMany relations work fine
+            from pootle_app.models import PootleProfile, Language
             return [(language.code, language.fullname) for language in Language.objects.all()]
         except Exception:
             pass
