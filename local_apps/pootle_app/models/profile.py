@@ -19,12 +19,13 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+import locale
+
 from django.db import models
 from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 
-from pootle.i18n.gettext import tr_lang
 from pootle.i18n.override import lang_choices
 
 from pootle_misc.baseurl import l
@@ -53,7 +54,7 @@ User.objects.__class__ = PootleUserManager
 class PootleProfileManager(models.Manager):
     def get_query_set(self):
         return super(PootleProfileManager, self).get_query_set().select_related(
-            'languages', 'projects', 'ui_lang', 'alt_src_langs')
+            'languages', 'projects', 'alt_src_langs')
     
 class PootleProfile(models.Model):
     objects = PootleProfileManager()
@@ -100,10 +101,9 @@ class PootleProfile(models.Model):
 
     def getquicklinks(self):
         """gets a set of quick links to user's project-languages"""
-        from translation_project import TranslationProject
-        from pootle.i18n.gettext import tr_lang
-        from pootle_app.models.permissions import get_matching_permissions
-        import locale
+        from pootle_app.models.translation_project import TranslationProject
+        from pootle_app.models.language import Language
+        from pootle_app.models.permissions import check_profile_permission
         quicklinks = []
         # TODO: This can be done MUCH more efficiently with a bit of
         # query forethought.  Why don't we just select all the
@@ -113,31 +113,26 @@ class PootleProfile(models.Model):
         # But this will only work once we move TranslationProject
         # wholly to the DB (and away from its current brain damaged
         # half-non-db/half-db implementation).
-        for language in self.languages.all():
+        
+        for language in Language.objects.filter(user_languages=self):
             langlinks = []
-            for project in self.projects.all():
-                try:
-                    projecttitle = project.fullname
-                    translation_project = \
-                        TranslationProject.objects.get(language=language,
-                            project=project)
-                    isprojectadmin = 'administrate'\
-                         in get_matching_permissions(self,
-                            translation_project.directory)
-                    langlinks.append({
-                        'code': project.code,
-                        'name': projecttitle,
-                        'isprojectadmin': isprojectadmin,
-                        'sep': '<br />',
-                        })
-                except TranslationProject.DoesNotExist:
-                    pass
+            for translation_project in TranslationProject.objects.filter(
+                language=language, project__pootleprofile=self):
+                isprojectadmin = check_profile_permission(self, 'administrate',
+                                                          translation_project.directory)
+
+                langlinks.append({
+                    'code': translation_project.project.code,
+                    'name': translation_project.project.fullname,
+                    'isprojectadmin': isprojectadmin,
+                    'sep': '<br />',
+                    })
+
             if langlinks:
                 langlinks[-1]['sep'] = ''
-            islangadmin = 'administrate' in get_matching_permissions(self, language.directory)
-
+            islangadmin = check_profile_permission(self, 'administrate', language.directory)
             quicklinks.append({'code': language.code,
-                               'name': tr_lang(language.fullname),
+                               'name': language.localname(),
                                'islangadmin': islangadmin,
                                'projects': langlinks})
             quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict['name'])
