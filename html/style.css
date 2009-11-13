@@ -1474,11 +1474,9 @@ textarea.comments
     margin-left: 0px;
     margin-right: 0px;
     padding-bottom: 10px;
-    border-bottom: 1px dotted #999;
     width: 20%;
     /* ltr: */
     right: 0px;
-    border-left: 1px dotted #999;
 }
 
 .sidebar[dir="rtl"]
@@ -1497,9 +1495,8 @@ textarea.comments
     font-size: small;
     font-weight: bolder;
     padding: 2px;
-    margin-top: 10px;
     letter-spacing: .1em;
-    border-bottom: 1px dotted #999;
+    border-bottom: 1px solid #999;
     text-align: center;
     text-transform: lowercase;
 }
@@ -1507,7 +1504,6 @@ textarea.comments
 #tm
 {
     position: absolute;
-    border-top: 1px dotted #999;
 }
 
 .tm-unit
