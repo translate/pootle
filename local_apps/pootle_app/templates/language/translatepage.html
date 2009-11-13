@@ -245,10 +245,6 @@
                           {% else %}
                           <!--! Normal view mode -->
                               <div dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" class="{{ item.state_class }}">
-                                  <a href="#" class="{% if item.hassuggestion %}sugglink{% else %}sugglink hide{% endif %}">
-                                    {{ viewsuggtext }} <span class='scount'>({{ item.trans.suggestions|length }})</span>
-                                  </a>
-
                                   {% if not item.trans.isplural %}
                                   <div dir="{{ language.dir }}" lang="{{ language.code }}" class="{{ item.trans.editclass }} translation-text" id="{{ item.trans.itemid }}">{{ item.trans.text|safe }}</div>
                                   {% else %}
@@ -260,6 +256,9 @@
                                   </div>
                                   {% endif %}
 
+                                  <a href="#" class="{% if item.hassuggestion %}sugglink{% else %}sugglink hide{% endif %}">
+                                    {{ viewsuggtext }} <span class='scount'>({{ item.trans.suggestions|length }})</span>
+                                  </a>
                                   {% if item.trans.suggestions %}
                                   <div class="suggestions">
                                       <ul class="sugglist">
