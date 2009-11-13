@@ -395,9 +395,9 @@ class TranslationProject(models.Model):
             return False
         # check if the pomtime in the index == the latest pomtime
         try:
-            pomtime = hash(statsdb.get_mod_info(store.file.path))
+            pomtime = str(hash(statsdb.get_mod_info(store.file.path))**2)
             pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)], True)
-            pomtimequery = indexer.make_query([("pomtime", str(pomtime))], True)
+            pomtimequery = indexer.make_query([("pomtime", pomtime)], True)
             gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
             gooditemsnum = indexer.get_query_result(gooditemsquery).get_matches_count()
             # if there is at least one up-to-date indexing item, then the po file
