@@ -1699,7 +1699,13 @@ div.suggestions
 
 div.suggestions ul li
 {
-    padding-left: 30px;
+    padding-left: 0.5em;
+}
+
+html[dir="rtl"] div.suggestions ul li
+{
+    padding-left: 0;
+    padding-right: 0.5em;
 }
 
 
