@@ -30,6 +30,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.html import urlize
 from django.utils.translation import ugettext as _
+from django.utils.translation import ungettext
 
 from translate.storage import po
 from translate.misc.multistring import multistring
@@ -537,6 +538,9 @@ def get_trans_review(request, store, item, trans, suggestions):
     if suggitems:
         suggitems[-1]["back"] = backbutton
         suggitems[-1]["skip"] = skipbutton
+        transdict["suggtext"] = ungettext("%d suggestion",
+                                          "%d suggestions",
+                                          len(suggitems), len(suggitems))
     else:
         transdict["back"] = backbutton
         transdict["skip"] = skipbutton

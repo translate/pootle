@@ -257,7 +257,7 @@
                                   {% endif %}
 
                                   <a href="#" class="{% if item.hassuggestion %}sugglink{% else %}sugglink hide{% endif %}">
-                                    {{ viewsuggtext }} <span class='scount'>({{ item.trans.suggestions|length }})</span>
+                                    <span class='scount'>{{ item.trans.suggtext }}</span>
                                   </a>
                                   {% if item.trans.suggestions %}
                                   <div class="suggestions">
