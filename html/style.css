@@ -1293,6 +1293,12 @@ html[dir="rtl"] .translations-nav li:last-child:after
 div.check
 {
     margin: 1em;
+    float: right
+}
+
+html[dir="rtl"] div.check
+{
+    float: left;
 }
 
 .checkinfo
