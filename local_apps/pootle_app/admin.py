@@ -18,18 +18,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle_app.models import Language, Project
-from pootle_app.models.profile import PootleProfile
+import re
+
+from translate.lang.data import langcode_re
 
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib import admin
 
-import re
+from pootle_app.models import Language, Project
+from pootle_app.models.profile import PootleProfile
 
 
 ### Language
+
+class MyLanguageAdminForm(forms.ModelForm):
+    def clean_code(self):
+        if not langcode_re.match(self.cleaned_data['code']):
+            raise forms.ValidationError(_('Language code does not follow ISO convention'))
+        return self.cleaned_data["code"]
+
 
 class LanguageAdmin(admin.ModelAdmin):
     list_display = ('code', 'fullname')
@@ -42,6 +51,7 @@ class LanguageAdmin(admin.ModelAdmin):
             'fields': ('nplurals', 'pluralequation')
         }),
     )
+    form = MyLanguageAdminForm
 
 admin.site.register(Language, LanguageAdmin)
 
