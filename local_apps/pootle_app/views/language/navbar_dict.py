@@ -93,6 +93,7 @@ def make_store_navbar_dict(request, store):
     path_links = make_store_pathlinks(request, project_url, store, [])
     result.update({
             'path':    make_navbar_path_dict(request, path_links),
-            'actions': {'basic': [], 'extended': [],} })
+            'actions': {},
+    })
     del result['title']
     return result
