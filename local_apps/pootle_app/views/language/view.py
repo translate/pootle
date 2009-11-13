@@ -284,7 +284,8 @@ def handle_suggestions(request, translation_project, file_path, item):
                 amsg = _("Suggestion accepted.")
             if reject_candidates != 0:
                 rmsg = _N("Suggestion rejected.",
-                          "%d suggestions rejected.", reject_count)
+                          "%d suggestions rejected.",
+                          reject_count, reject_count)
             response["message"] = amsg + rmsg
 
     response = simplejson.dumps(response, indent=4)
