@@ -24,11 +24,12 @@ import re
 import difflib
 import os
 
-from django.utils.html import urlize
-from django.utils.translation import ugettext as _
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.html import urlize
+from django.utils.translation import ugettext as _
 
 from translate.storage import po
 from translate.misc.multistring import multistring
@@ -873,9 +874,7 @@ def view(request, directory, store, item, stopped_by=None):
     """the page which lets people edit translations"""
     state = dispatch.TranslatePageState(request.GET)
     if not check_permission("view", request):
-        # raise projects.Rights404Error(None)
-        # TBD: Raise an exception similar to Rights404Error
-        raise permissions.PermissionError('No view rights')
+        raise PermissionDenied(_('You do not have rights to access view mode.'))
 
     if store is not None:
         formaction = dispatch.translate(request, request.path_info, store=store.pootle_path ,item=0)
