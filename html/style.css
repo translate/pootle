@@ -1395,7 +1395,7 @@ table td.translate-original
 .translate-locations
 {
     font-family: monospace;
-    font-size: 90%;
+    font-size: 75%;
     background: transparent url('images/script_code.png') no-repeat;
     background-position: 5px center;
     border: 1px solid #ddd;
