@@ -22,6 +22,7 @@
 from django.utils.translation import ugettext as _
 from pootle_app.views.admin import util
 from pootle_app.models import Project
+from pootle_app.admin import MyProjectAdminForm
 
 def view(request):
     model_args = {}
@@ -30,6 +31,6 @@ def view(request):
     model_args['submitname'] = "changeprojects"
     link = '/projects/%s/admin.html'
     return util.edit(request, 'admin/admin_general_projects.html', Project, model_args, link,
-              exclude='description', can_delete=True)
+              form=MyProjectAdminForm, exclude='description', can_delete=True)
     
               
