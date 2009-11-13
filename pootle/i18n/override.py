@@ -49,11 +49,13 @@ def supported_langs():
     state"""
     from django.conf import settings
     if settings.LIVE_TRANSLATION:
-        from django.db import models
-        Language = models.get_model('pootle_app', 'Language')
-        return ((language.code, language.fullname) for language in Language.objects.all())
-    else:
-        return settings.LANGUAGES
+        try:
+            from django.db import models
+            Language = models.get_model('pootle_app', 'Language')
+            return [(language.code, language.fullname) for language in Language.objects.all()]
+        except Exception:
+            pass
+    return settings.LANGUAGES
 
 
 def lang_choices():
