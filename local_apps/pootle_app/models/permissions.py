@@ -107,6 +107,14 @@ def get_matching_permissions(profile, directory):
         cached_permission_set.save()
         return permissions
 
+
+def check_profile_permission(profile, permission_codename, directory):
+    """it checks if current user has the permission the perform C{permission_codename}"""
+    if profile.user.is_superuser:
+        return True
+    permissions = get_matching_permissions(profile, directory)
+    return permission_codename in permissions
+
 def check_permission(permission_codename, request):
     """it checks if current user has the permission the perform C{permission_codename}"""
     if request.user.is_superuser:
