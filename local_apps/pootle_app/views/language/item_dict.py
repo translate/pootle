@@ -175,6 +175,7 @@ def store_translate_links(request, path_obj, filetype):
     linkfuncs = [quick_link, translate_all_link, update_link, commit_link]
     linkfuncs.append(filetype == "po" and po_link or xliff_link)
     return _gen_link_list(request, path_obj, linkfuncs)
+
 def store_review_links(request, path_obj, filetype):
     """returns a list of links for store items in review tab"""
     linkfuncs = [review_link, update_link, commit_link]
@@ -194,7 +195,7 @@ def directory_review_links(request, path_obj):
 
 def add_percentages(quick_stats):
     """Add percentages onto the raw stats dictionary."""
-    quick_stats['translatedpercentage']   = int(100.0 * quick_stats['translatedsourcewords']   / max(quick_stats['totalsourcewords'], 1))
+    quick_stats['translatedpercentage'] = int(100.0 * quick_stats['translatedsourcewords'] / max(quick_stats['totalsourcewords'], 1))
     quick_stats['fuzzypercentage'] = int(100.0 * quick_stats['fuzzysourcewords'] / max(quick_stats['totalsourcewords'], 1))
     quick_stats['untranslatedpercentage'] = 100 - quick_stats['translatedpercentage'] - quick_stats['fuzzypercentage']
     return quick_stats
