@@ -635,6 +635,12 @@ html[dir="rtl"] .module-primary .hd h2
     margin: 1em;
 }
 
+.module .nomargin,
+.module-primary .nomargin
+{
+    margin: 0;
+}
+
 .module .bd h2, 
 .module-primary .bd h2
 {
@@ -1322,23 +1328,19 @@ div.translation-action
 {
     min-height: 1.5em;
     height: 0px;
-    padding-left: 10px;
-}
-
-div.translation-action[dir="rtl"]
-{
-    padding-right: 10px;
+    text-align: center;
+    width: 100%
 }
 
 th.translate-original,
 th.translate-translation
 {
-    width: 48%;
+    width: 49%;
 }
 
 th.translate-edit
 {
-    width: 4%;
+    width: 2%;
 }
 
 table[dir="rtl"] td.translate-original

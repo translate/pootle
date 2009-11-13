@@ -333,7 +333,7 @@ def get_edit_link(request, store, item):
         # l10n: verb
         return {"href": dispatch.translate(request, request.path_info,
                                            view_mode='translate', item=item, match_names=[]),
-                "text": _("Edit"), "linkid": "editlink%d" % item}
+                "linkid": "editlink%d" % item }
     else:
         return {}
 
@@ -948,9 +948,6 @@ def view(request, directory, store, item, stopped_by=None):
         "original_title":            _("Original"),
         # l10n: Heading above the table column with the target language
         "translation_title":         _("Translation"),
-        # l10n: Heading above the table column with the action for the current
-        # translation unit
-        "action_title":              _("Action"),
         "items":                     items,
         "reviewmode":                state.view_mode == 'review',
         "accept_title":              _("Accept suggestion"),

@@ -48,7 +48,7 @@
 
 {% block content %}
 <div class="module-primary">
-    <div class="bd">
+    <div class="nomargin">
         <!--! start/next/previous/end links -->
         {% if pagelinks %}
         <ul class="translations-nav" lang="{{ LANGUAGE_CODE }}">
@@ -66,14 +66,24 @@
                 {{ search.advanced_search_form.as_hidden }}
                 <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
                     <tr lang="{{ LANGUAGE_CODE }}">
+                        {% if canedit %}
+                        <th colspan="1" rowspan="1" class="translate-table-title translate-edit"></th>
+                        {% endif %}
                         <th colspan="1" rowspan="1" class="translate-table-title translate-original">{{ original_title }}</th>
                         <th colspan="1" rowspan="1" class="translate-table-title translate-translation">{{ translation_title }}</th>
-                        {% if canedit %}
-                        <th colspan="1" rowspan="1" class="translate-table-title translate-edit">{{ action_title }}</th>
-                        {% endif %}
                     </tr>
                   {% for item in items %}
                   <tr title="{{ item.translator_comments }} {{ item.developer_comments }}">
+                      {% if canedit %}
+                      <td>
+                          {% if item.trans.editlink %}
+                          <a href="{{ item.trans.editlink.href|l }}" id="{{ item.trans.editlink.linkid }}" title="{% trans 'Edit translation' %}">
+                              <div class="translation-action">{{ item.itemid }}</div>
+                          </a>
+                          {% endif %}
+                      </td>
+                      {% endif %}
+
                       <!--! Cell with original -->
                       <td colspan="1" rowspan="1" class="translate-original {{ item.polarity }} {{ item.focus_class }}" dir="ltr">
                           <div id="{{ item.orig.itemid }}" class="translate-original {{ item.orig.focus_class }}">
@@ -279,19 +289,11 @@
                           {% endif %}
                           </div>
                       </td>
-                      {% if canedit %}
-                      <td>
-                          <div lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" class="translation-action">
-                          {% if item.trans.editlink and not item.editable %}
-                              <a href="{{ item.trans.editlink.href|l }}" class="translation-action" id="{{ item.trans.editlink.linkid }}">{{ item.trans.editlink.text }}</a>
-                          {% endif %}
-                          </div>
-                      </td>
-                      {% endif %}
                   </tr>
                   {% if item.editable %}
                   <tr>
-                      <td  class="translate-original {{ item.polarity }} comments">
+                      <td></td>
+                      <td class="translate-original {{ item.polarity }} comments">
                           {% if item.developer_comments %}
                           <div title="{{ developer_comments_title }}" class="developer-comments" lang="en" dir="ltr">{{ item.developer_comments|safe }}</div>
                           {% endif %}
