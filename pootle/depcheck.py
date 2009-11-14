@@ -123,7 +123,15 @@ def test_memcached():
     """test if we can connect to memcache server"""
     from django.core.cache import cache
     return cache._cache.servers[0].connect()
-    
+
+def test_cached_db_session():
+    """test that cached_db session is available"""
+    try:
+        import django.contrib.sessions.backends.cached_db
+        return True
+    except ImportError:
+        return False
+
 def test_session():
     """test that session backend is set to memcahce"""
     return settings.SESSION_ENGINE.split('.')[-1] in ('cache', 'cached_db')
