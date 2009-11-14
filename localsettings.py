@@ -45,7 +45,7 @@ PARSE_POOL_CULL_FREQUENCY = 5
 CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
 
 # Uncomment to use memcached for caching
-# CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+#CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 
 # set this to False, DEBUG mode is only needed when testing beta's or
 # hacking pootle
