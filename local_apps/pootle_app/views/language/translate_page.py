@@ -183,6 +183,7 @@ def get_header_plural(request, store):
 
 def ensure_trans_plurals(request, store, orig, trans):
     nplurals, plurals = get_header_plural(request, store)
+    nplurals = max(nplurals, 1)
     if len(orig) > 1:
         if len(trans) != nplurals:
             # Chop if in case it is too long
