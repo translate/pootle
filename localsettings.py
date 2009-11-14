@@ -47,6 +47,17 @@ CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
 # Uncomment to use memcached for caching
 #CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 
+# Using memcached to store sessions improves performance for anonymous
+# users. for more info check
+# http://docs.djangoproject.com/en/dev/topics/http/sessions/#configuring-the-session-engine
+
+# Uncomment this if you're using memcached as CACHE_BACKEND and running under Django 1.0
+#SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+# Uncomment this if you're using memcached as CACHE_BACKEND and running under Django 1.1
+#SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
+
 # set this to False, DEBUG mode is only needed when testing beta's or
 # hacking pootle
 DEBUG = True
