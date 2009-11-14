@@ -203,7 +203,7 @@ if DEBUG:
 else:
     # Will log only CRITICAL errors to the console
     logging.basicConfig(
-            level = logging.CRITICAL,
+            level = logging.INFO,
             format =  '%(asctime)s %(levelname)s %(message)s',
             )
 
