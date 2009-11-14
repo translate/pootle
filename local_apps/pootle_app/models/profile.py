@@ -22,6 +22,7 @@
 import locale
 
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
@@ -66,10 +67,10 @@ class PootleProfile(models.Model):
 
     unit_rows       = models.SmallIntegerField(default=10)
     input_height    = models.SmallIntegerField(default=5)
-    languages       = models.ManyToManyField(Language, blank=True, related_name="user_languages", db_index=True)
+    languages       = models.ManyToManyField(Language, blank=True, limit_choices_to=~Q(code='templates'), related_name="user_languages", db_index=True)
     projects        = models.ManyToManyField(Project, blank=True, db_index=True)
     ui_lang         = models.CharField(max_length=50, blank=True, null=True, choices=(choice for choice in lang_choices()), verbose_name=_('Interface Language'))
-    alt_src_langs   = models.ManyToManyField(Language, blank=True, db_index=True, related_name="user_alt_src_langs")
+    alt_src_langs   = models.ManyToManyField(Language, blank=True, db_index=True, limit_choices_to=~Q(code='templates'), related_name="user_alt_src_langs")
 
     def __unicode__(self):
         return self.user.username
