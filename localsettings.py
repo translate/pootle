@@ -41,7 +41,7 @@ PARSE_POOL_CULL_FREQUENCY = 5
 #
 # By default we use django's in memory cache which is only suitable
 # for small deployments. memcached is prefered. for more info check
-# http://docs.djangoproject.com/en/1.0/topics/cache/
+# http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
 CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
 
 # Uncomment to use memcached for caching
