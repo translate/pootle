@@ -554,8 +554,7 @@ pre_save.connect(set_data, sender=TranslationProject)
 
 def delete_directory(sender, instance, **kwargs):
     instance.directory.delete()
-
-#pre_delete.connect(delete_directory, sender=TranslationProject)
+pre_delete.connect(delete_directory, sender=TranslationProject)
 
 def add_pomtime(sender, instance, **kwargs):
     instance.pomtime = 0
