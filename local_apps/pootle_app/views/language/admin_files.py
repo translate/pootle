@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.utils.translation import ugettext as _
-from django.shortcuts import get_object_or_404
+from django.forms.models import BaseModelFormSet
 
 from pootle_app.views.admin import util
 from pootle_app.views.language import search_forms
@@ -28,6 +28,19 @@ from pootle_app.views.language import navbar_dict
 from pootle_store.models import Store
 from pootle_app.models.translation_project import TranslationProject
 from pootle_app import project_tree
+
+
+class StoreFormset(BaseModelFormSet):
+    def save_existing_objects(self, commit=True):
+        result = super(StoreFormset, self).save_existing_objects(commit)
+        for store in self.deleted_objects:
+            print store
+            #hackish: we disabled deleting files when field is
+            # deleted except for when value is being overwritten, but
+            # this form is the only place in pootle where actual file
+            # system files should be deleted
+            store.file.storage.delete(store.file.name)        
+        return result
 
 
 @util.has_permission('administrate')
@@ -56,4 +69,4 @@ def view(request, translation_project):
     link = "%s"
     return util.edit(request, 'language/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,
-                     can_delete=True, extra=0)
+                     formset=StoreFormset, can_delete=True, extra=0)
