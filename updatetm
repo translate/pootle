@@ -20,6 +20,11 @@
 
 """Script to create the tm files for use in Pootle"""
 
+try:
+    import syspath_override
+except ImportError:
+    pass
+
 from pootle.tools import updatetm
 
 if __name__ == '__main__':
