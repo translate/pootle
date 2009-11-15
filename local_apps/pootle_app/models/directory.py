@@ -147,7 +147,7 @@ def delete_children(sender, instance, **kwargs):
     for child_dir in instance.child_dirs.all():
         child_dir.delete()
 
-pre_delete.connect(delete_children, sender=Directory)
+#pre_delete.connect(delete_children, sender=Directory)
 
 def set_directory_pootle_path(sender, instance, **kwargs):
     if instance.parent is not None:

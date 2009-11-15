@@ -26,7 +26,7 @@ import logging
 
 from django.conf                   import settings
 from django.db                     import models
-from django.db.models.signals      import pre_delete, post_init, pre_save, post_save
+from django.db.models.signals      import pre_delete, post_init, pre_save, post_save, post_delete
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 
@@ -554,7 +554,7 @@ pre_save.connect(set_data, sender=TranslationProject)
 
 def delete_directory(sender, instance, **kwargs):
     instance.directory.delete()
-pre_delete.connect(delete_directory, sender=TranslationProject)
+post_delete.connect(delete_directory, sender=TranslationProject)
 
 def add_pomtime(sender, instance, **kwargs):
     instance.pomtime = 0
