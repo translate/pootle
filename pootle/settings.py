@@ -106,6 +106,7 @@ ROOT_URLCONF = 'pootle.urls'
 TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.auth",
                                "django.core.context_processors.i18n",
                                "django.core.context_processors.media",
+                               "django.core.context_processors.request",
                                "pootle_misc.context_processors.sitesettings")
 
 TEMPLATE_DIRS = (
