@@ -35,7 +35,7 @@ from pootle_app.models.profile import PootleProfile
 
 class MyLanguageAdminForm(forms.ModelForm):
     def clean_code(self):
-        if not langcode_re.match(self.cleaned_data['code']):
+        if not self.cleaned_data['code'] == 'templates' and not langcode_re.match(self.cleaned_data['code']):
             raise forms.ValidationError(_('Language code does not follow ISO convention'))
         return self.cleaned_data["code"]
 
