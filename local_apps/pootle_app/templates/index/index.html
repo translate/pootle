@@ -28,6 +28,7 @@
                 <th>{% trans 'Last Activity' %}</th>
             </tr>
             {% for item in languages %}
+	    {% ifnotequal item.total 0 %}
             <tr class="{% cycle 'even' 'odd' %}">
                 <td class="language"><a href="{% filter l %}/{{ item.code }}/{% endfilter %}">{{ item.name }}</a></td>
                 <td>
@@ -40,6 +41,7 @@
                 </td> 
                 <td>{{ item.lastactivity }}</td>
             </tr>
+	    {% endifnotequal %}
             {% endfor %}
         </table>
     </div>
