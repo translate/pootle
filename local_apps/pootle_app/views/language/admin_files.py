@@ -34,8 +34,17 @@ from pootle_app import project_tree
 def view(request, translation_project):
     queryset = translation_project.stores
 
+    try:
+        template_translation_project = TranslationProject.objects.get(project=translation_project.project,
+                                                                      language__code='templates')
+        if 'template_update' in request.GET:
+            project_tree.convert_templates(template_translation_project, translation_project)
+    except TranslationProject.DoesNotExist:
+        pass
+    
     if 'scan_files' in request.GET:
         project_tree.scan_translation_project_files(translation_project)
+
 
     model_args = {}
     model_args['title'] = _("Files")
