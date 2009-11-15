@@ -46,19 +46,15 @@ def view(request, project_code):
         class Meta:
             prefix="existing_language"        
 
-        #hackish: we use the validate functions to respond to update
-        # and initialize requests
-        def clean_update(self):
-            update = self.cleaned_data['update']
-            if update and self.instance.pk is not None:
-                project_tree.convert_templates(template_translation_project, self.instance)
-            return update
-        
-        def clean_initialize(self):
-            initialize = self.cleaned_data['initialize']
-            if initialize and self.instance.pk is not None:
-                self.instance.initialize()
-            return initialize
+        def save(self, commit=True):
+            if self.instance.pk is not None:
+                if self.cleaned_data['initialize']:
+                    self.instance.initialize()
+
+                if self.cleaned_data['update']:
+                    project_tree.convert_templates(template_translation_project, self.instance)
+            super(TranslationProjectForm, self).save(commit)
+            
             
     queryset = TranslationProject.objects.filter(project=current_project)
     
