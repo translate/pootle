@@ -20,7 +20,7 @@
 
 from django.utils.translation import ugettext_lazy as _
 from django.db                import models
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_delete
 
 from pootle.i18n.gettext import tr_lang
 
@@ -78,3 +78,7 @@ def set_data(sender, instance, **kwargs):
     instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
 
 pre_save.connect(set_data, sender=Language)
+
+def delete_directory(sender, instance, **kwargs):
+    instance.directory.delete()
+post_delete.connect(delete_directory, sender=Language)
