@@ -310,7 +310,8 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
 
     def delete(self, save=True):
         self._delete_store_cache()
-        super(TranslationStoreFieldFile, self).delete(save)
+        if save:
+            super(TranslationStoreFieldFile, self).delete(save)
 
 
 class TranslationStoreField(FileField):
