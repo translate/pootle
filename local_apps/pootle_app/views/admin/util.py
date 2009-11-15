@@ -27,7 +27,7 @@ from django.template import RequestContext
 from django.forms.util import ErrorList
 
 from pootle_misc.baseurl import l
-from pootle_app.models.permissions import check_profile_permission
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
 
 
@@ -42,8 +42,8 @@ def user_is_admin(f):
 def has_permission(permission_code):
     def wrap_f(f):
         def decorated_f(request, path_obj, *args, **kwargs):
-            if check_profile_permission(get_profile(request.user),
-                                        permission_code, path_obj.directory):
+            request.permissions = get_matching_permissions(get_profile(request.user), path_obj.directory)
+            if check_permission(permission_code, request):
                 return f(request, path_obj, *args, **kwargs)
             else:
                 raise PermissionDenied(_("You do not have rights to administer %s.", path_obj.fullname))
