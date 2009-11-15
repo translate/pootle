@@ -18,11 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from lxml.html.clean import clean_html
 
 from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
+
+try:
+    from lxml.html.clean import clean_html
+except ImportError:
+    clean_html = lambda text: text
 
 def clean_wrapper(text):
     """wrapper around lxml's html cleaner that returns SafeStrings for
