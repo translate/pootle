@@ -30,6 +30,7 @@ from pootle_app.models.translation_project import TranslationProject
 from pootle_app import project_tree
 
 
+@util.has_permission('administrate')
 def view(request, translation_project):
     queryset = translation_project.stores
 

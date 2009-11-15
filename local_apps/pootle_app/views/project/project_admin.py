@@ -27,6 +27,7 @@ from pootle_app.models import Project, TranslationProject
 from pootle_app import project_tree
 from pootle_app.views.admin import util
 
+@util.user_is_admin
 def view(request, project_code):
     current_project = Project.objects.get(code=project_code)
     try:

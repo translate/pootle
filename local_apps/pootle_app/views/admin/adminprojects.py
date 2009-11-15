@@ -24,6 +24,7 @@ from pootle_app.views.admin import util
 from pootle_app.models import Project
 from pootle_app.admin import MyProjectAdminForm
 
+@util.user_is_admin
 def view(request):
     model_args = {}
     model_args['title'] = _("Projects")

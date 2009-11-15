@@ -28,11 +28,10 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from pootle_app.models.profile import PootleProfile, get_profile
-from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, \
-    get_matching_permissions, check_permission
+from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, get_matching_permissions
 from pootle_app.views.language import navbar_dict
 from pootle_app.views.language import search_forms
-
+from pootle_app.views.admin import util
 
 class PermissionSetForm(forms.Form):
     """A PermissionSetForm represents a PermissionSet to the user.
@@ -230,13 +229,9 @@ def process_update(request, directory):
     else:
         return PermissionSetFormSet(initial=get_permission_data(directory))
 
-def view(request, translation_project):
-    # Check if the user can access this view
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   translation_project.directory)
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have administration rights for this translation project."))
 
+@util.has_permission('administrate')
+def view(request, translation_project):
     language               = translation_project.language
     project                = translation_project.project
     permission_set_formset = process_update(request, translation_project.directory)

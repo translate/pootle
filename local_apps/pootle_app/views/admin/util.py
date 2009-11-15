@@ -163,7 +163,6 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     return formset_class(queryset=queryset), None
 
 
-@user_is_admin
 def edit(request, template, model_class,
          model_args={'title':'','formid':'','submitname':''},
          link=None, linkfield='code', queryset=None, **kwargs):

@@ -26,7 +26,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms.models import BaseModelFormSet
 
-
+@util.user_is_admin
 def view(request):
     model_args = {}
     model_args['title'] = _("Users")
