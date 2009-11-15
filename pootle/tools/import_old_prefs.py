@@ -172,10 +172,6 @@ def import_projects(parsed_data):
         db_proj.localfiletype = _get_attribute(data, proj, 'localfiletype',
                                                default='po', prefix=prefix)
 
-        # createmofiles?
-        db_proj.createmofiles = try_type(bool, _get_attribute(data, proj, 'createmofiles',
-                                               unicode_me=False, default=0, prefix=prefix))
-
         # treestyle
         db_proj.treestyle = _get_attribute(data, proj, 'treestyle',
                             unicode_me = False, default='auto', prefix=prefix)
