@@ -345,5 +345,6 @@ def store_post_init(sender, instance, **kwargs):
 models.signals.post_init.connect(store_post_init, sender=Store)
 
 def store_post_delete(sender, instance, **kwargs):
-    deletefromcache(instance, ["getquickstats", "getcompletestats"])
-models.signals.post_delete.connect(store_post_delete, sender=Store)
+    if hasattr(instance, "pootle_path"):
+        deletefromcache(instance, ["getquickstats", "getcompletestats"])
+models.signals.post_delete.connect(store_post_delete)
