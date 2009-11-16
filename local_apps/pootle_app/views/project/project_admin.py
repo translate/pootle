@@ -56,7 +56,7 @@ def view(request, project_code):
             super(TranslationProjectForm, self).save(commit)
             
             
-    queryset = TranslationProject.objects.filter(project=current_project)
+    queryset = TranslationProject.objects.filter(project=current_project).order_by('pootle_path')
     
     model_args = {}
     model_args['project'] = { 'code': current_project.code,
