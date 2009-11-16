@@ -1480,9 +1480,9 @@ td.translate-focus
 
 textarea.translation
 {
-    width: 98%;
+    width: 99%;
     min-height: 3em;
-    padding: 5px !important;
+    padding: 5px 0 !important;
     margin: 0 auto 0.5em;
 }
 
