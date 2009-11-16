@@ -168,7 +168,7 @@ class PootleBuildMo(DistutilsBuild):
     def build_mo(self):
         """Compile .mo files from available .po files"""
         import glob
-        from translate.tools.pocompile import convertmo
+        import subprocess
 
         print "Preparing localization files"
         for po_filename in glob.glob(path.join('po', 'pootle', '*', 'pootle.po')):
@@ -180,7 +180,7 @@ class PootleBuildMo(DistutilsBuild):
             
             mo_filename = path.join(lang_dir, 'django.mo')
             print "compiling %s language" % lang
-            convertmo(open(po_filename), open(mo_filename, 'w'), None)
+            subprocess.Popen(['msgfmt', '-c', '--strict', '-o', mo_filename, po_filename])
 
     def run(self):
         self.build_mo()
