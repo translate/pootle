@@ -52,6 +52,10 @@ class ErrorPagesMiddleware(object):
             if not settings.DEBUG:
                 try:
                     templatevars = {'exception': exception}
+                    if hasattr(exception, 'filename'):
+                        templatevars['fserror'] = _('Error accessing %(filename)s, Filesystem sent error: %(errormsg)s',
+                                                    {'filename': exception.filename, 'errormsg': exception.strerror})
+                        
                     return HttpResponseServerError(render_to_string('500.html', templatevars,
                                                                     RequestContext(request)))
                 except:
