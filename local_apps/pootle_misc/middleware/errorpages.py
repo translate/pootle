@@ -22,11 +22,12 @@ import traceback
 import sys
 
 from django.core.exceptions import PermissionDenied
-from django.http import  HttpResponseForbidden
+from django.http import  HttpResponseForbidden, HttpResponseServerError
 from django.http import Http404
 from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from django.conf import settings
 
 from pootle_misc.baseurl import l
 
@@ -48,4 +49,11 @@ class ErrorPagesMiddleware(object):
         else:
             #FIXME: implement better 500
             traceback.print_exc(file=sys.stderr)
-            
+            if not settings.DEBUG:
+                try:
+                    templatevars = {'exception': exception}
+                    return HttpResponseServerError(render_to_string('500.html', templatevars,
+                                                                    RequestContext(request)))
+                except:
+                    # let's not confuse things by throwing an exception here
+                    pass 

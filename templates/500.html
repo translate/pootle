@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block content %}
-<h2>{% trans 'Server Error <em>(500)</em>' %}</h2>
-<p>{% trans "An error has occurred. Thank you for your patience." %}</p>
+<div class="general-message" lang="{{ LANGUAGE_CODE }}">
+  <h2>{% trans 'Server Error' %}</h2>
+  <p>{% trans "An error has occurred. Thank you for your patience." %}</p>
+  <p class="exception">{{ exception }}</p>
+</div>
 {% endblock %}
