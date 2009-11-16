@@ -125,8 +125,7 @@ class Store(models.Model):
             self.save()
             translation_file_updated.connect(self.handle_file_update, sender=self.pending)
 
-    def getsuggestions(self, item):
-        unit = self.file.getitem(item)
+    def getsuggestions_unit(self, unit):
         if self.file.store.suggestions_in_format:
             return unit.getalttrans()
         else:
@@ -137,14 +136,22 @@ class Store(models.Model):
                 if suggestions is not None:
                     return suggestions
         return []
+    
+    def getsuggestions(self, item):
+        unit = self.file.getitem(item)
+        return self.getsuggestions_unit(unit)
 
 
     def addunitsuggestion(self, unit, newunit, username):
         """adds suggestion for the given unit"""
         if unit.target == newunit.target:
-            # duplicate don't add
-            # FIXME: should we look up if suggestion already exists in pending file?
+            # matches translation don't add
             return
+
+        for suggestion in self.getsuggestions_unit(unit):
+            if suggestion.target == newunit.target:
+                # duplicate suggestion don't add
+                return
 
         if self.file.store.suggestions_in_format:
             unit.addalttrans(newunit.target, origin=username)
