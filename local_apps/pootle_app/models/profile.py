@@ -126,11 +126,8 @@ class PootleProfile(models.Model):
                     'code': translation_project.project.code,
                     'name': translation_project.project.fullname,
                     'isprojectadmin': isprojectadmin,
-                    'sep': '<br />',
                     })
 
-            if langlinks:
-                langlinks[-1]['sep'] = ''
             islangadmin = check_profile_permission(self, 'administrate', language.directory)
             quicklinks.append({'code': language.code,
                                'name': language.localname(),
