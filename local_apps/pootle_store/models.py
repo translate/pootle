@@ -40,7 +40,7 @@ from pootle_store.signals import translation_file_updated
 fs = FileSystemStorage(location=settings.PODIRECTORY)
 
 # regexp to parse suggester name from msgidcomment
-suggester_regexp = re.compile(r'suggested by (.*)')
+suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 
 class Store(models.Model):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
@@ -158,7 +158,7 @@ class Store(models.Model):
         else:
             newunit = self.pending.store.UnitClass.buildfromunit(newunit)
             if username is not None:
-                newunit.msgidcomment = 'suggested by %s' % username
+                newunit.msgidcomment = 'suggested by %s [%d]' % (username, hash(newunit.target))
             self.pending.addunit(newunit)
 
 
