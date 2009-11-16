@@ -25,6 +25,7 @@ from django.utils.safestring import mark_safe
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.forms.util import ErrorList
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 from pootle_misc.baseurl import l
 from pootle_app.models.permissions import get_matching_permissions, check_permission
@@ -127,6 +128,20 @@ def form_set_as_table(formset, link=None, linkfield='code'):
     return u''.join(result)
 
 
+def paginate(request, queryset):
+    paginator = Paginator(queryset, 30)
+
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        # wasn't an int use 1
+        page = 1
+    # page value too large
+    page = min(page, paginator.num_pages)
+    
+    return paginator.page(page)
+
+    
 def process_modelformset(request, model_class, queryset, **kwargs):
     """With the Django model class 'model_class' and the Django form class 'form_class',
     construct a Django formset which can manipulate """
@@ -144,34 +159,38 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     if queryset is None:
         queryset = model_class.objects.all()
 
+    
     # If the request is a POST, we want to possibly update our data
     if request.method == 'POST':
         # Create a formset from all the 'model_class' instances whose values will
         # be updated using the contents of request.POST
-        formset = formset_class(request.POST, queryset=queryset)
+        objects = paginate(request, queryset)
+        formset = formset_class(request.POST, queryset=objects.object_list)
         # Validate all the forms in the formset
         if formset.is_valid():
             # If all is well, Django can save all our data for us
             formset.save()
         else:
             # Otherwise, complain to the user that something went wrong
-            return formset, _("There are errors in the form. Please review the problems below.")
+            return formset, _("There are errors in the form. Please review the problems below."), objects
 
         # hack to force reevaluation of same query
         queryset = queryset.filter()
 
-    return formset_class(queryset=queryset), None
+    objects = paginate(request, queryset)
+    return formset_class(queryset=objects.object_list), None, objects
 
 
 def edit(request, template, model_class,
          model_args={'title':'','formid':'','submitname':''},
          link=None, linkfield='code', queryset=None, **kwargs):
 
-    formset, msg = process_modelformset(request, model_class, queryset=queryset, **kwargs)
+    formset, msg, objects = process_modelformset(request, model_class, queryset=queryset, **kwargs)
     #FIXME: title should differ depending on model_class
     template_vars = {
             "formset_text": mark_safe(form_set_as_table(formset, link, linkfield)),
             "formset": formset,
+            "objects": objects,
             "text": {
                 "home": _("Home"),
                 "title": model_args['title'],
