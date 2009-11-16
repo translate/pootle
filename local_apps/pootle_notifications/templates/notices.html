@@ -79,5 +79,10 @@ approach for this.
     <p>{% trans "No news yet." %}</p>
 {% endif %}
 </div>
-
 {% endblock %}
+
+{% if not is_language %}
+{% block scripts_extra %}
+<script type="text/javascript" src='{{ "js/search.js"|m }}'></script>
+{% endblock %}
+{% endif %}

@@ -1,6 +1,6 @@
 {% extends "base.html"  %}
 
-{% load i18n %}
+{% load i18n baseurl %}
 
 {% block title %}
 {% blocktrans with block.super as prevtitle and navitems.0.path.language.text as langname and navitems.0.path.project.text as projectname %}{{ prevtitle }}: {{ langname }} » {{ projectname }}{% endblocktrans %}
@@ -22,4 +22,8 @@
 
 {% block precontent %}
 {% include "tp_menu.html" %}
+{% endblock %}
+
+{% block scripts_extra %}
+<script type="text/javascript" src='{{ "js/search.js"|m }}'></script>
 {% endblock %}
