@@ -1111,6 +1111,7 @@ table.sortable th
 div.pager
 {
     font-size: 85%;
+    text-align: center;
 }
 
 div.pager a,
