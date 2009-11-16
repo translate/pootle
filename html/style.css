@@ -885,6 +885,7 @@ div.centered
 .settings-container table
 {
     width: 100%;
+    margin-bottom: 1em;
 }
 
 .settings-container td
