@@ -35,11 +35,11 @@ def required_depcheck():
     required = []
 
     status, version = depcheck.test_translate()
-    if status:
+    if status and False:
         text = _('Translate Toolkit version %s installed.', version)
         state = 'good'
     else:
-        text = _('Translate Toolkit version %s installed, Pootle version 1.4.1 required.', version)
+        text = _('Translate Toolkit version %s installed. Pootle requires version %s.', (version, "1.5.0"))
         state = 'error'
     required.append({'dependency': 'translate', 'state': state, 'text': text })
 
