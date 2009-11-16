@@ -84,8 +84,8 @@ def form_set_as_table(formset, link=None, linkfield='code'):
                 result.append('</td>\n')
             result.append('</tr>\n')
 
-    def add_widgets(result, fields, form, link):
-        result.append('<tr>\n')
+    def add_widgets(result, fields, form, link, zebra):
+        result.append('<tr class="%s">\n' % zebra)
         for i, field in enumerate(fields):
             result.append('<td>')
             # Include a hidden element containing the form's id to the
@@ -116,9 +116,13 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         # since we don't want to print a table column for it.
         fields = [field for field in first_form.fields if field != 'id']
         add_header(result, fields, first_form)
-        for form in formset.forms:
+        for i, form in enumerate(formset.forms):
+            if i % 2:
+                zebra = "odd"
+            else:
+                zebra = "even"
             add_errors(result, fields, form)
-            add_widgets(result, fields, form, link)
+            add_widgets(result, fields, form, link, zebra)
     except IndexError:
         result.append('<tr>\n')
         result.append('<td>\n')
