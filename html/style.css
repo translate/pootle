@@ -1106,6 +1106,47 @@ table.sortable th
     display: none;
 }
 
+/* PAGER */
+
+div.pager
+{
+    font-size: 85%;
+}
+
+div.pager a,
+div.pager a:visited
+{
+    border: 1px solid #76b0bf;
+    text-decoration: none;
+}
+
+div.pager a:hover
+{
+    background-color: #76b0bf;
+    color: #ffffff;
+}
+
+div.pager a,
+div.pager span
+{
+    margin: 0.1em;
+    padding: 0.2em 0.5em;
+}
+
+div.pager a.nth-link,
+div.pager a.prevnext-link
+{
+    font-weight: bold;
+}
+
+div.pager span.current-link
+{
+    background-color: #76b0bf;
+    color: #ffffff;
+    border: 1px solid #76b0bf;
+    font-weight: bold;
+}
+
 
 /*
  * NAVIGATION BAR

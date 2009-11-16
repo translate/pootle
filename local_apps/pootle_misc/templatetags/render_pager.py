@@ -29,8 +29,8 @@ def render_pager(pager):
     
     result = '<div class="pager">'
     if pager.has_previous():
-        result += '<a href="?page=1" class="first-link">%s</a> | ' % _('First')
-        result += '<a href="?page=%d" class="previous-link">%s</a> | ' % (pager.previous_page_number(), _('Previous'))
+        result += '<a href="?page=1" class="nth-link">%s</a>' % _('First')
+        result += '<a href="?page=%d" class="prevnext-link">%s</a>' % (pager.previous_page_number(), _('Previous'))
 
     start = max(1, pager.number - 4)
     end = min(pager.paginator.num_pages, pager.number + 4)
@@ -38,15 +38,15 @@ def render_pager(pager):
         result += '...'
     for i in range(start, end+1):
         if i == pager.number:
-            result += '<span class="current-link">%s</span> | ' % i
+            result += '<span class="current-link">%s</span>' % i
         else:
-            result += '<a href="?page=%d" class="number-link">%d</a> | ' % (i, i)
+            result += '<a href="?page=%d" class="number-link">%d</a>' % (i, i)
     if end < pager.paginator.num_pages:
         result += '...'
 
     if pager.has_next():
-        result += '<a href="?page=%d" class="next-link">%s</a> | ' % (pager.next_page_number(),  _('Next'))
-        result += '<a href="?page=%d" class="previous-link">%s</a>' % (pager.paginator.num_pages, _('Last'))
+        result += '<a href="?page=%d" class="prevnext-link">%s</a>' % (pager.next_page_number(),  _('Next'))
+        result += '<a href="?page=%d" class="nth-link">%s</a>' % (pager.paginator.num_pages, _('Last'))
 
     result +='</div>'
     return mark_safe(result)
