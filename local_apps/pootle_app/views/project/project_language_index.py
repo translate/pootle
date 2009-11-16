@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import locale
+
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.shortcuts import get_object_or_404
@@ -40,7 +42,6 @@ def make_language_item(request, translation_project):
     projectstats = add_percentages(translation_project.getquickstats())
     info = {
         'code': translation_project.language.code,
-        'icon': 'language',
         'href': href,
         'title': tr_lang(translation_project.language.fullname),
         'data': projectstats,
@@ -52,7 +53,8 @@ def make_language_item(request, translation_project):
 def view(request, project_code, _path_var):
     project = get_object_or_404(Project, code=project_code)
     translation_projects = project.translationproject_set.all()
-    items = (make_language_item(request, translation_project) for translation_project in translation_projects)
+    items = [make_language_item(request, translation_project) for translation_project in translation_projects]
+    items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
     languagecount = len(translation_projects)
     totals = add_percentages(project.getquickstats())
     average = totals['translatedpercentage'] 
