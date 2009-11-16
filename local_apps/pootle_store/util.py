@@ -59,9 +59,15 @@ def statssum(queryset, empty_stats=None):
                        'translatedsourcewords': 0,
                        'translatedtargetwords': 0,
                        'untranslated': 0,
-                       'untranslatedsourcewords': 0}
-
-    return reduce(dictsum, (item.getquickstats() for item in queryset), empty_stats)
+                       'untranslatedsourcewords': 0,
+                       'errors': 0}
+    totals = empty_stats
+    for item in queryset:
+        try:
+            totals = dictsum(totals, item.getquickstats())
+        except:
+            totals['errors'] += 1
+    return totals
 
 def completestatssum(queryset, checker, empty_stats=None):
     if empty_stats is None:
@@ -70,6 +76,11 @@ def completestatssum(queryset, checker, empty_stats=None):
                        'fuzzy': 0,
                        'total': 0,
                        'translated': 0,
-                       'untranslated': 0}
-    return reduce(dictsum, (item.getcompletestats(checker) for item in queryset), empty_stats)
-
+                       'untranslated': 0,
+                       'errors': 0}
+    for item in queryset:
+        try:
+            totals = dictsum(totals, item.getcompletestats(checker))
+        except:
+            totals['errors'] += 1
+    return totals
