@@ -1,0 +1,16 @@
+{% load i18n render_pager %}
+<form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
+    {% if text.error_msg %}
+    <div id="site-message">
+        <div class="error">{% trans text.error_msg %}</div>
+    </div>
+    {% endif %}
+    {{ formset.management_form }}
+    <table cellpadding="1" cellspacing="1">
+            {{ formset_text }}
+    </table>
+    <p>
+        <input type="submit" name={{ text.submitname }} value="{{ text.savechanges }}" />
+    </p>
+</form>
+
