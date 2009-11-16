@@ -12,18 +12,5 @@
 You may also want to <a href="?scan_files=1">rescan the project files</a> or <a href="?template_update=1">update files from template</a>.{% endblocktrans %}{% endblock %}
 
 {% block section_body %}
-<form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
-    {% if text.error_msg %}
-    <div id="site-message">
-        <div class="error">{% trans text.error_msg %}</div>
-    </div>
-    {% endif %}
-    {{ formset.management_form }}
-    <table cellpadding="1" cellspacing="1">
-            {{ formset_text }}
-    </table>
-    <p>
-        <input type="submit" name={{ text.submitname }} value="{{text.savechanges }}" />
-    </p>
-</form>
+{% include "admin/admin_general.html" %}
 {% endblock %}
