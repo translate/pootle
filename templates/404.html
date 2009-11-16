@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
-<h2>{% trans 'Page Not Found' %}</h2>
-<p>{% trans "We're sorry, but the requested page could not be found." %}</p>
+<div class="general-message" lang="{{ LANGUAGE_CODE }}">
+  <h2>{% trans 'Page Not Found' %}</h2>
+  <p>{% trans "We're sorry, but the requested page could not be found." %}</p>
+</div>
 {% endblock %}
