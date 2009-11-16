@@ -226,17 +226,24 @@ def make_generic_item(request, path_obj, action, show_checks=False):
     """Template variables for each row in the table.
 
     make_directory_item() and make_store_item() will add onto these variables."""
-    quick_stats = add_percentages(path_obj.getquickstats())
-
-    info = {
-        'href':    action,
-        'data':    quick_stats,
-        'tooltip': _('%(percentage)d%% complete' %
-                     {'percentage': quick_stats['translatedpercentage']}),
-        'title':   path_obj.name,
-        'stats':   get_item_stats(request, quick_stats, path_obj, show_checks),
-        }
-    info.update(stats_descriptions(quick_stats))
+    try:
+        quick_stats = add_percentages(path_obj.getquickstats())
+        info = {
+            'href':    action,
+            'data':    quick_stats,
+            'tooltip': _('%(percentage)d%% complete' %
+                         {'percentage': quick_stats['translatedpercentage']}),
+            'title':   path_obj.name,
+            'stats':   get_item_stats(request, quick_stats, path_obj, show_checks),
+            }
+        info.update(stats_descriptions(quick_stats))
+    except IOError, e:
+        info = {
+            'href': action,
+            'title': path_obj.name,
+            'tooltip': e.strerror,
+            'data': {'errors': 1},
+            }
     return info
 
 def make_directory_item(request, directory, links_required=None):
