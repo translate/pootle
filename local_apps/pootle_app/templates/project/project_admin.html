@@ -17,19 +17,5 @@
 {% block content %}
 <div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
     <p>{% trans "Here you can add, edit, or delete the language for this project." %}</p>
-
-    <form action="" method="post" name={{ text.formid }} id={{ text.formid }}>
-        {% if text.error_msg %}
-        <div id="site-message">
-            <div class="error">{% trans text.error_msg %}</div>
-        </div>
-        {% endif %}
-        {{ formset.management_form }}
-        <table cellpadding="1" cellspacing="1">
-                {{ formset_text }}
-        </table>
-        <p>
-            <input type="submit" name={{ text.submitname }} value="{% trans text.savechanges %}" />
-        </p>
-</form>
+    {% include "admin/admin_general.html" %}
 {% endblock %}
