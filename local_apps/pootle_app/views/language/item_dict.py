@@ -114,7 +114,7 @@ def quick_link(request, path_obj):
 def translate_all_link(request, path_obj):
     #FIXME: what permissions to check for here?
     return {
-        'href': dispatch.translate(request, path_obj.pootle_path),
+        'href': dispatch.translate(request, path_obj.pootle_path, match_names=[]),
         'text': _('Translate All') }
 
 def zip_link(request, path_obj):
