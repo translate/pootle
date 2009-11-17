@@ -24,8 +24,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.db import transaction
 
 from django.core.management.base import NoArgsCommand
-from django.contrib.auth.models import User, Permission
-from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User
 
 class Command(NoArgsCommand):
     def handle_noargs(self, **options):
