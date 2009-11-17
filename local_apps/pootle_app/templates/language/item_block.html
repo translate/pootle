@@ -9,7 +9,7 @@
     <h3 class="title">
     <a href="{{ item.href|l }}">{{ item.title }}</a>
     {% if item.data.errors %}
-    <img src="{{ 'images/error.png'|m }}" alt="{% trans 'Error' %}"
+    <img src="{{ "images/error.png"|m }}" alt="{% trans 'Error' %}"
          title="{{ item.errortooltip }}" class="error" />
     {% endif %}
     </h3>
