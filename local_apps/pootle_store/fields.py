@@ -62,8 +62,8 @@ class StoreTuple(object):
 class TranslationStoreFile(File):
     """A mixin for use alongside django.core.files.base.File, which provides
     additional features for dealing with translation files."""
-
-    _stats = LRUCachingDict(settings.PARSE_POOL_SIZE, settings.PARSE_POOL_CULL_FREQUENCY)
+    
+    _stats = LRUCachingDict(settings.PARSE_POOL_SIZE * 5, settings.PARSE_POOL_CULL_FREQUENCY)
     __statscache = {}
 
     def _get_statscache(self):
