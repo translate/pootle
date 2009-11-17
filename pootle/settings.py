@@ -37,11 +37,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-TITLE = "Pootle Demo"
-DESCRIPTION = """<div dir="ltr" lang="en">
+# dummy translate function so we can extract text
+_ = lambda x : x
+TITLE = _("Pootle Demo")
+DESCRIPTION = _("""<div dir="ltr" lang="en">
 <h2 class="title">This is a demo installation of Pootle.</h2>
 <p class="about">You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</p>
-</div>"""
+</div>""")
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
