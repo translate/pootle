@@ -1,6 +1,7 @@
+# This file contains the configuration settings for the Pootle server.
+
 from pootle.install_dirs import *
 
-# This file contains the configuration settings for the Pootle server.
 
 #Example for google as an external smtp server
 #DEFAULT_FROM_EMAIL = 'DEFAULT_USER@YOUR_DOMAIN.com'
@@ -21,16 +22,17 @@ STATS_DB_PATH = working_path('dbs/stats.db') # None means the default path
 
 PODIRECTORY = working_path('po')
 
-# set this to true to enable live translation of pootle UI, a good way to learn how to use pootle. but has high impact on performance.
+# Set this to true to enable live translation of pootle UI. This is a good way
+# to learn how to use Pootle, but it has high impact on performance.
 LIVE_TRANSLATION = True
 
 
 # File parse pool settings
 #
 # To avoid rereading and reparsing translation files from disk on
-# every request Pootle keeps a pool or already parsed files in memory.
+# every request, Pootle keeps a pool or already parsed files in memory.
 #
-# larger pools will offer better performance but higher memory usage
+# Larger pools will offer better performance, but higher memory usage
 # (per server process).
 
 PARSE_POOL_SIZE = 40
@@ -39,8 +41,8 @@ PARSE_POOL_CULL_FREQUENCY = 4
 
 # Cache Backend settings
 #
-# By default we use django's in memory cache which is only suitable
-# for small deployments. memcached is prefered. for more info check
+# By default we use Django's in memory cache which is only suitable
+# for small deployments. memcached is prefered. For more info, check
 # http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
 CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
 
@@ -48,7 +50,7 @@ CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
 #CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 
 # Using memcached to store sessions improves performance for anonymous
-# users. for more info check
+# users. For more info, check
 # http://docs.djangoproject.com/en/dev/topics/http/sessions/#configuring-the-session-engine
 
 # Uncomment this if you're using memcached as CACHE_BACKEND and running under Django 1.0
@@ -58,7 +60,7 @@ CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 
-# set this to False, DEBUG mode is only needed when testing beta's or
+# Set this to False. DEBUG mode is only needed when testing beta's or
 # hacking pootle
 DEBUG = True
 
