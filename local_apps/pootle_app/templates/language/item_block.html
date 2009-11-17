@@ -7,6 +7,9 @@
   
     {% if item.title %}
     <h3 class="title"><a href="{{ item.href|l }}">{{ item.title }}</a></h3>
+    {% if item.data.errors %}
+       <span class="error" title="{{ item.errortooltip }}">{% trans "Error" %}</span>
+    {% endif %}
     {% endif %}
 
     {% if item.actions %}

@@ -66,50 +66,56 @@ def get_item_stats(request, quick_stats, path_obj, show_checks=False):
 def getcheckdetails(request, path_obj, url_opts={}):
     """return a list of strings describing the results of
     checks"""
-
-    property_stats = path_obj.getcompletestats(request.translation_project.checker)
-    total = property_stats['total']
     checklinks = []
-    keys = property_stats.keys()
-    keys.sort()
-    for checkname in keys:
-        if not checkname.startswith('check-'):
-            continue
-        checkcount = property_stats[checkname]
-        if total and checkcount:
-            stats = ungettext('%(checks)d string (%(checkspercent)d%%) failed',
-                              '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
-                              {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
-                      )
-            #url_opts[str(checkname)] = 1
-            checklink = {'href': dispatch.review(request, path_obj.pootle_path, match_names=[checkname]),
-                         'text': checkname.replace('check-', '', 1),
-                         'stats': stats}
-            #del url_opts[str(checkname)]
-            checklinks += [checklink]
+    try:
+        property_stats = path_obj.getcompletestats(request.translation_project.checker)
+        total = property_stats['total']
+        keys = property_stats.keys()
+        keys.sort()
+        for checkname in keys:
+            if not checkname.startswith('check-'):
+                continue
+            checkcount = property_stats[checkname]
+            if total and checkcount:
+                stats = ungettext('%(checks)d string (%(checkspercent)d%%) failed',
+                                  '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
+                                  {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
+                                  )
+                checklink = {'href': dispatch.review(request, path_obj.pootle_path, match_names=[checkname]),
+                             'text': checkname.replace('check-', '', 1),
+                             'stats': stats}
+                checklinks += [checklink]
+    except IOError:
+        pass
     return checklinks
 
 ################################################################################
 
 def review_link(request, path_obj):
-    if path_obj.getcompletestats(request.translation_project.checker).get('check-hassuggestion', 0):
-        if check_permission('translate', request):
-            text = _('Review Suggestions')
-        else:
-            text = _('View Suggestions')
-        return { 
-            'href': dispatch.translate(request, path_obj.pootle_path, match_names=['check-hassuggestion']),
-            'text': text }
+    try:
+        if path_obj.getcompletestats(request.translation_project.checker).get('check-hassuggestion', 0):
+            if check_permission('translate', request):
+                text = _('Review Suggestions')
+            else:
+                text = _('View Suggestions')
+                return { 
+                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['check-hassuggestion']),
+                    'text': text }
+    except IOError:
+        pass
 
 def quick_link(request, path_obj):
-    if path_obj.getquickstats()['translated'] < path_obj.getquickstats()['total']:
-        if check_permission('translate', request):
-            text = _('Quick Translate')
-        else:
-            text = _('View Untranslated')
-        return {
-            'href': dispatch.translate(request, path_obj.pootle_path, match_names=['fuzzy', 'untranslated']),
-            'text': text }
+    try:
+        if path_obj.getquickstats()['translated'] < path_obj.getquickstats()['total']:
+            if check_permission('translate', request):
+                text = _('Quick Translate')
+            else:
+                text = _('View Untranslated')
+                return {
+                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['fuzzy', 'untranslated']),
+                    'text': text }
+    except:
+        pass
 
 def translate_all_link(request, path_obj):
     #FIXME: what permissions to check for here?
