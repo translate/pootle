@@ -236,12 +236,15 @@ def make_generic_item(request, path_obj, action, show_checks=False):
             'title':   path_obj.name,
             'stats':   get_item_stats(request, quick_stats, path_obj, show_checks),
             }
+        errors = quick_stats.get('errors', 0)
+        if errors:
+            info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
         info.update(stats_descriptions(quick_stats))
     except IOError, e:
         info = {
             'href': action,
             'title': path_obj.name,
-            'tooltip': e.strerror,
+            'errortooltip': e.strerror,
             'data': {'errors': 1},
             }
     return info

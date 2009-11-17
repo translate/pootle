@@ -46,6 +46,9 @@ def make_language_item(request, translation_project):
         'title': tr_lang(translation_project.language.fullname),
         'data': projectstats,
     }
+    errors = projectstats.get('errors', 0)
+    if errors:
+        info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
     info.update(stats_descriptions(projectstats))
     return info
 
