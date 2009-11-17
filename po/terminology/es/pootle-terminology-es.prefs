@@ -1,5 +1,0 @@
-# Pootle preferences for project terminology
-
-rights:
-  default = u'view'
-  nobody = u'view'
