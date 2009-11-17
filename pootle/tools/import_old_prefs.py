@@ -188,9 +188,23 @@ def _get_user_attribute(data, user_name, attribute, unicode_me = True,
                           prefix='')
 
 def create_database_user(data, user_name):
+    # django stupidly forces first name, last name model on us.  even
+    # more annoying it limits first name to 30 chars, so let's try to
+    # break up names between the two fields, result is guaranteed to
+    # suck and make no sense for majority of humanity
+    name = _get_user_attribute(data, user_name, 'name')
+    if len(name) <= 30:
+        first_name = name
+        last_name = ''
+    else:
+        parts = name.split(' ')
+        first_name = parts[0][:30]
+        last_name = ' '.join(parts[1:])[:30]
+        
     # Create basic user information
     user = User(username       = user_name,
-                first_name     = _get_user_attribute(data, user_name, 'name'),
+                first_name     = first_name,
+                last_name      = last_name,
                 email          = _get_user_attribute(data, user_name, 'email'),
                 is_active      = try_type(bool, _get_user_attribute(data, user_name, 'activated',
                                                                     unicode_me=False, default=0)),
@@ -198,9 +212,9 @@ def create_database_user(data, user_name):
                                                      unicode_me = False),
                 # "hash" is the login type that indicates "hash" the user's
                 # submitted password into MD5 and check against a local file/DB.
-#                logintype      = _get_user_attribute(data, user_name, 'logintype',
-#                                                     unicode_me = False,
-#                                                     default = 'hash'),
+                #                logintype      = _get_user_attribute(data, user_name, 'logintype',
+                #                                                     unicode_me = False,
+                #                                                     default = 'hash'),
                 is_superuser   = try_type(bool, _get_user_attribute(data, user_name, 'rights.siteadmin',
                                                                     unicode_me=False, default=0)))
     # We have to save the user to ensure that an associated PootleProfile is created...
