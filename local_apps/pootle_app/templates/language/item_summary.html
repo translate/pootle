@@ -5,9 +5,9 @@
 {% block itemstats %}
 <td class="stats-name">
     <a href="{{ item.href|l }}">{{ item.title }}</a>
-    {% ifnotequal item.data.errors 0 %}
-       <span class="error" title="{{ item.tooltip }}">{% trans "Error" %}</span>
-    {% endifnotequal %}
+    {% if item.data.errors %}
+       <span class="error" title="{{ item.errortooltip }}">{% trans "Error" %}</span>
+    {% endif %}
 </td>
 {% if item.data %}
 <td class="stats-graph">
