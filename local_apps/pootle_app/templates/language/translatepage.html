@@ -292,7 +292,9 @@
                   </tr>
                   {% if item.editable %}
                   <tr>
+                      {% if canedit %}
                       <td></td>
+                      {% endif %}
                       <td class="translate-original {{ item.polarity }} comments">
                           {% if item.developer_comments %}
                           <div title="{{ developer_comments_title }}" class="developer-comments" lang="en" dir="ltr">{{ item.developer_comments|safe }}</div>
