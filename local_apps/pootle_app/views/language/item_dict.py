@@ -93,7 +93,7 @@ def getcheckdetails(request, path_obj, url_opts={}):
 
 def review_link(request, path_obj):
     if path_obj.getcompletestats(request.translation_project.checker).get('check-hassuggestion', 0):
-        if check_permission('review', request):
+        if check_permission('translate', request):
             text = _('Review Suggestions')
         else:
             text = _('View Suggestions')
