@@ -35,7 +35,7 @@ def required_depcheck():
     required = []
 
     status, version = depcheck.test_translate()
-    if status and False:
+    if status:
         text = _('Translate Toolkit version %s installed.', version)
         state = 'good'
     else:
