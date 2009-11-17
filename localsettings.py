@@ -33,8 +33,8 @@ LIVE_TRANSLATION = True
 # larger pools will offer better performance but higher memory usage
 # (per server process).
 
-PARSE_POOL_SIZE = 1000
-PARSE_POOL_CULL_FREQUENCY = 5
+PARSE_POOL_SIZE = 40
+PARSE_POOL_CULL_FREQUENCY = 4
 
 
 # Cache Backend settings
