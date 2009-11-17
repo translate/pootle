@@ -237,7 +237,7 @@ def view(request, translation_project):
     permission_set_formset = process_update(request, translation_project.directory)
 
     if translation_project.file_style == "gnu":
-        filestyle_text = _("This is a GNU-style project (one directory, files named per language).")
+        filestyle_text = _("This is a GNU-style project (files named per language code).")
     else:
         filestyle_text = _("This is a standard style project (one directory per language).")
 

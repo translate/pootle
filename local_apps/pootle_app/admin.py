@@ -36,7 +36,7 @@ from pootle_app.models.profile import PootleProfile
 class MyLanguageAdminForm(forms.ModelForm):
     def clean_code(self):
         if not self.cleaned_data['code'] == 'templates' and not langcode_re.match(self.cleaned_data['code']):
-            raise forms.ValidationError(_('Language code does not follow ISO convention'))
+            raise forms.ValidationError(_('Language code does not follow the ISO convention'))
         return self.cleaned_data["code"]
 
 
@@ -74,7 +74,7 @@ class ProjectAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('code', 'fullname', 'description', 'localfiletype')
         }),
-        ('Advanced options', {
+        (_('Advanced Options'), {
             'classes': ('collapse',),
             'fields': ('treestyle', 'ignoredfiles')
         }),

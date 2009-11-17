@@ -51,7 +51,7 @@ class Project(models.Model):
     treestyle_choices = (
             # TODO: check that the None is stored and handled correctly
             ('auto', _('Automatic detection (slower)')),
-            ('gnu', _('GNU style: all languages in one directory; files named by language code')),
+            ('gnu', _('GNU style: files named by language code')),
             ('nongnu', _('Non-GNU: Each language in its own directory')),
     )
 
