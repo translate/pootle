@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
 {% block title %}
 {% blocktrans with block.super as prevtitle %}{{ prevtitle }}: About{% endblocktrans %}
 {% endblock %}
@@ -12,7 +14,7 @@
 {% endblock precontent %}
 
 {% block content %}
-<div>
+<div lang="{{ LANGUAGE_CODE }}">
     <h2 class="title">{% trans "About Pootle" %}</h2>
     <p class="about">{% blocktrans %}This site is running Pootle &mdash; powerful web software to empower teams to do translation and translation management. This community tool is Free Software, and any team can use it and contribute to the Pootle community. Read more on the <a href="http://translate.sourceforge.net/">project website</a>.{% endblocktrans %}</p>
     <p class="about">{{ pootle_version }}</p>
