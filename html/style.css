@@ -1028,6 +1028,11 @@ td.stats-words
     text-align: right;
 }
 
+img.error
+{
+    vertical-align: middle;
+}
+
 /* 
  * Pretty Graphs, mostly from http://l10n.gnome.org/
  */

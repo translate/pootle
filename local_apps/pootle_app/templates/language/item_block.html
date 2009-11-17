@@ -6,10 +6,13 @@
     class="icon" alt="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
   
     {% if item.title %}
-    <h3 class="title"><a href="{{ item.href|l }}">{{ item.title }}</a></h3>
+    <h3 class="title">
+    <a href="{{ item.href|l }}">{{ item.title }}</a>
     {% if item.data.errors %}
-       <span class="error" title="{{ item.errortooltip }}">{% trans "Error" %}</span>
+    <img src="{{ 'images/error.png'|m }}" alt="{% trans 'Error' %}"
+         title="{{ item.errortooltip }}" class="error" />
     {% endif %}
+    </h3>
     {% endif %}
 
     {% if item.actions %}

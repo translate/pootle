@@ -6,7 +6,8 @@
 <td class="stats-name">
     <a href="{{ item.href|l }}">{{ item.title }}</a>
     {% if item.data.errors %}
-       <span class="error" title="{{ item.errortooltip }}">{% trans "Error" %}</span>
+    <img src="{{ 'images/error.png'|m }}" alt="{% trans 'Error' %}"
+         title="{{ item.errortooltip }}" class="error" />
     {% endif %}
 </td>
 {% if item.data %}
