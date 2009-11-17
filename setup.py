@@ -169,19 +169,25 @@ class PootleBuildMo(DistutilsBuild):
         """Compile .mo files from available .po files"""
         import glob
         import subprocess
+        import gettext
+        from translate.storage import factory
 
         print "Preparing localization files"
         for po_filename in glob.glob(path.join('po', 'pootle', '*', 'pootle.po')):
             lang = path.split(path.split(po_filename)[0])[1]
             lang_dir = path.join('mo', lang, 'LC_MESSAGES')
-
-            if not path.exists(lang_dir):
-                os.makedirs(lang_dir)
-            
             mo_filename = path.join(lang_dir, 'django.mo')
-            print "compiling %s language" % lang
-            subprocess.Popen(['msgfmt', '-c', '--strict', '-o', mo_filename, po_filename])
-
+            
+            try:
+                store = factory.getobject(po_filename)            
+                gettext.c2py(store.getheaderplural()[1])
+                if not path.exists(lang_dir):
+                    os.makedirs(lang_dir)
+                print "compiling %s language" % lang
+                subprocess.Popen(['msgfmt', '-c', '--strict', '-o', mo_filename, po_filename])
+            except Exception, e:
+                print "skipping %s, probably invalid header: %s" % (lang, e)
+                
     def run(self):
         self.build_mo()
 
