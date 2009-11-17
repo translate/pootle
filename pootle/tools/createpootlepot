@@ -25,7 +25,7 @@ pushd . 2>&1 > /dev/null
 cd $basedir
 verbosity="-v $verbosity"
 mkdir locale
-./manage.py makemessages --settings=pootle/settings.py $verbosity -e ".py" -e ".txt" -e ".html" -l pot
+./manage.py makepropermessages $verbosity -e ".py" -e ".txt" -e ".html" -l pot
 mv locale/pot/LC_MESSAGES/django.po po/pootle/templates/pootle.pot
 rm -rf locale
 popd  2>&1  >  /dev/null
