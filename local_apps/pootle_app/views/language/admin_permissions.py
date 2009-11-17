@@ -242,7 +242,6 @@ def view(request, translation_project):
         filestyle_text = _("This is a standard style project (one directory per language).")
 
     template_vars = {
-        "norights_text":          _("You do not have the rights to administer this project."),
         "project":                project,
         "language":               language,
         "filestyle_text":         filestyle_text,

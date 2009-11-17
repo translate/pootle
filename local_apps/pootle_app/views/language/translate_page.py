@@ -97,13 +97,13 @@ def get_page_links(request, store, pagesize, translations, item, first_item):
 
     lastitem = min(pofilelen - 1, first_item + pagesize - 1)
     if pofilelen > pagesize and not item == 0:
-        # l10n: noun (the start)
         pagelinks.append({"href": dispatch.translate(request, request.path_info, item=0),
+                          # l10n: navigation link
                           "text": _("Start")})
     if item > 0:
         linkitem = max(item - pagesize, 0)
-        # l10n: the parameter refers to the number of messages
         pagelinks.append({"href": dispatch.translate(request, request.path_info, item=linkitem),
+                          # l10n: the parameter refers to the number of messages
                           "text": _("Previous %d", (item - linkitem))})
 
     # l10n: the third parameter refers to the total number of messages in the file
@@ -114,14 +114,14 @@ def get_page_links(request, store, pagesize, translations, item, first_item):
     if item + len(translations) < pofilelen:
         linkitem = item + pagesize
         itemcount = min(pofilelen - linkitem, pagesize)
-        # l10n: the parameter refers to the number of messages
         pagelinks.append({"href": dispatch.translate(request, request.path_info, item=linkitem),
+                          # l10n: the parameter refers to the number of messages
                           "text": _("Next %d", itemcount)})
 
     if pofilelen > pagesize and (item + pagesize) < pofilelen:
-        # l10n: noun (the end)
         pagelinks.append({"href": dispatch.translate(request, request.path_info,
                                                      item=max(pofilelen - 1, 0)),
+                          # l10n: navigation link
                           "text": _("End")})
 
     for n, pagelink in enumerate(pagelinks):
@@ -533,7 +533,7 @@ def get_trans_review(request, store, item, trans, suggestions):
             "skip":      None,
             }
         suggitems.append(suggdict)
-    # l10n: verb
+    # l10n: Button that takes the user to the previous unit or page
     backbutton = {"item": item, "text": _("Back")}
     skipbutton = {"item": item, "text": _("Skip")}
     if suggitems:
@@ -922,10 +922,6 @@ def view(request, directory, store, item, stopped_by=None):
     # templatising
     templatename = "language/translatepage.html"
     instancetitle = _(settings.TITLE)
-    # l10n: first parameter: name of the installation (like "Pootle")
-    # l10n: second parameter: project name
-    # l10n: third parameter: target language
-    # l10n: fourth parameter: file name
     language_data = {"code": pagelayout.weblanguage(language.code),
                      "name": language.fullname,
                      "dir":  language_dir(language.code)}
@@ -954,20 +950,16 @@ def view(request, directory, store, item, stopped_by=None):
         "accept_title":              _("Accept suggestion"),
         "reject_title":              _("Reject suggestion"),
         "fuzzytext":                 _("Fuzzy"),
-        # l10n: Ajax link for suggestions.    %s is the number of suggestions
-        "viewsuggtext":              _("View Suggestions"),
         # l10n: Heading above the textarea for translator comments.
         "translator_comments_title": _("Translator Comments"),
         # l10n: Heading above the comments extracted from the programing source code
         "developer_comments_title":  _("Developer Comments"),
         # l10n: This heading refers to related translations and terminology
         "related_title":             _("Related"),
-        # l10n: text next to search field
         'search':                    search_forms.get_search_form(request),
         # general vars
         "instancetitle":             instancetitle,
         "permissions":               request.permissions,
-        # l10n: Text displayed when an AJAX petition is being made
         "canedit":                   check_permission("translate", request) or check_permission("suggest", request),
         "cantranslate":              check_permission("translate", request),
         "cansuggest":                check_permission("suggest", request),

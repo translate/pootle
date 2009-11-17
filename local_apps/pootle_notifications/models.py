@@ -26,14 +26,15 @@ from pootle_misc.baseurl import l
 class Notice(models.Model):
     directory = models.ForeignKey('pootle_app.Directory', db_index=True)
     message = models.TextField(_('Message'))
-    added = models.DateTimeField(_('added'), auto_now_add=True, null=True, db_index=True)
+    #l10n: The date that the news item was written
+    added = models.DateTimeField(_('Added'), auto_now_add=True, null=True, db_index=True)
 
     def __unicode__(self):
         return self.message
 
     def get_absolute_url(self):
         return l(self.directory.pootle_path + 'notices/%d' % self.id)
-        
+
     class Meta:
         ordering = ["-added"]
 

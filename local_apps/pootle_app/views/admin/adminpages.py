@@ -54,10 +54,10 @@ def required_depcheck():
 
     status, version = depcheck.test_django()
     if status:
-        text = _('Django version %s installed.', version)
+        text = _('Django version %s is installed.', version)
         state = 'good'
     else:
-        text = _('Django version %s installed, Pootle only works with 1.x series.')
+        text = _('Django version %s is installed. Pootle only works with the 1.x series.')
         stats = 'error'
     required.append({'dependency': 'django', 'state': state, 'text': text})
 
@@ -76,7 +76,7 @@ def optional_depcheck():
 
     if not depcheck.test_lxml():
         optional.append({'dependency': 'lxml',
-                            'text': _("Can't find lxml. Pootle uses lxml to make sure html tags inserted in news items are safe and correct.")})
+                            'text': _("Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news items are safe and correct.")})
 
     if not depcheck.test_levenshtein():
         optional.append({'dependency': 'levenshtein',

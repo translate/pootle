@@ -38,12 +38,11 @@ def view(request, language_code):
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    language.directory)
     if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have administration rights for this language."))
+        raise PermissionDenied(_("You do not have rights to administer this language."))
 
     permission_set_formset = process_permission_update(request, language.directory)
 
     template_vars = {
-        "norights_text":          _("You do not have the rights to administer this Language."),
         "language":               { 'code': language_code,
                                     'name': tr_lang(language.fullname) },
         "permissions_title":      _("User Permissions"),
