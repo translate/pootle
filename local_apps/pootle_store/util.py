@@ -78,6 +78,7 @@ def completestatssum(queryset, checker, empty_stats=None):
                        'translated': 0,
                        'untranslated': 0,
                        'errors': 0}
+    totals = empty_stats
     for item in queryset:
         try:
             totals = dictsum(totals, item.getcompletestats(checker))
