@@ -70,7 +70,7 @@ class Handler(object):
     def render_submit(self, action):
         return '<input type="submit" name="%(action_name)s" value="%(action_value)s" />' % {
             'action_name':  action[0],
-            'action_value': action[1] }
+            'action_value': unicode(action[1]) }
 
     def as_p(self):
         return mark_safe("""
