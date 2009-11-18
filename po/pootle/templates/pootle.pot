@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-17 22:14+0200\n"
+"POT-Creation-Date: 2009-11-18 02:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -989,7 +989,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:216
 #, python-format
-msgid "%d word need attention"
+msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
 msgstr[1] ""
@@ -1003,7 +1003,7 @@ msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:221
 #, python-format
-msgid "%d word need review"
+msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
 msgstr[1] ""
@@ -1401,21 +1401,6 @@ msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
 
-#: local_apps/pootle_misc/siteconfig.py:11
-msgid ""
-"<div dir=\"ltr\" lang=\"en\">This is a demo installation of Pootle.<br />\n"
-"You can also visit the official <a href=\"http://pootle.locamotion.org"
-"\">Pootle server</a>.\n"
-"The server administrator has not provided contact information or a "
-"description of this server.\n"
-"If you are the administrator for this server, edit this description in your "
-"preference file or in the administration interface.</div>"
-msgstr ""
-
-#: local_apps/pootle_misc/siteconfig.py:15 pootle/settings.py:43
-msgid "Pootle Demo"
-msgstr ""
-
 #: local_apps/pootle_misc/middleware/errorpages.py:44
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
@@ -1491,6 +1476,10 @@ msgstr ""
 
 #: local_apps/pootle_store/models.py:53
 msgid "Path"
+msgstr ""
+
+#: pootle/settings.py:43
+msgid "Pootle Demo"
 msgstr ""
 
 #. l10n: Change the language code (en) to your language code, and replace ltr with rtl if you language is written from right to left.
