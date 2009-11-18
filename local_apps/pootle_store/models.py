@@ -142,16 +142,21 @@ class Store(models.Model):
         return self.getsuggestions_unit(unit)
 
 
-    def addunitsuggestion(self, unit, newunit, username):
-        """adds suggestion for the given unit"""
-        if unit.target == newunit.target:
-            # matches translation don't add
-            return
+    def suggestion_is_unique(self, unit, newtarget):
+        """check for duplicate suggestions"""
+        if unit.target == newtarget:
+            return False
 
         for suggestion in self.getsuggestions_unit(unit):
-            if suggestion.target == newunit.target:
-                # duplicate suggestion don't add
-                return
+            if suggestion.target == newtarget:
+                return False
+
+        return True
+    
+    def addunitsuggestion(self, unit, newunit, username):
+        """adds suggestion for the given unit"""
+        if not self.suggestion_is_unique(unit, newunit.target):
+            return
 
         if self.file.store.suggestions_in_format:
             unit.addalttrans(newunit.target, origin=username)
@@ -165,17 +170,23 @@ class Store(models.Model):
     def addsuggestion(self, item, suggtarget, username, checker=None):
         """adds a new suggestion for the given item"""
         unit = self.file.getitem(item)
-        newpo = unit.copy()
-        newpo.target = suggtarget
-        newpo.markfuzzy(False)
-
-        self.initpending(create=True)
-        self.addunitsuggestion(unit, newpo, username)
-
+        
         if self.file.store.suggestions_in_format:
-            self.file.savestore()
+            # probably xliff, which can't do unit copies and doesn't
+            # need a unit to add suggestions anyway. so let's shortcut
+            # and insert suggestion here
+            if self.suggestion_is_unique(unit, suggtarget):
+                unit.addalttrans(suggtarget, origin=username)
+                self.file.savestore()
         else:
+            newpo = unit.copy()
+            newpo.target = suggtarget
+            newpo.markfuzzy(False)
+
+            self.initpending(create=True)
+            self.addunitsuggestion(unit, newpo, username)
             self.pending.savestore()
+        
         if checker is not None:
             self.file.reclassifyunit(item, checker)
 
