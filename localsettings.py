@@ -24,7 +24,7 @@ PODIRECTORY = working_path('po')
 
 # Set this to true to enable live translation of pootle UI. This is a good way
 # to learn how to use Pootle, but it has high impact on performance.
-LIVE_TRANSLATION = True
+LIVE_TRANSLATION = False
 
 
 # File parse pool settings
