@@ -87,7 +87,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
     def add_widgets(result, fields, form, link, zebra):
         result.append('<tr class="%s">\n' % zebra)
         for i, field in enumerate(fields):
-            result.append('<td>')
+            result.append('<td class="%s">' % field)
             # Include a hidden element containing the form's id to the
             # first column.
             if i == 0:
