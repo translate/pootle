@@ -165,10 +165,10 @@ class TranslationStoreFile(File):
         unit = self.getitem(item)
 
         if newvalues.has_key('target'):
-            if unit.hasplural():
-                unit.target = newvalues['target']
+            if not unit.hasplural() and not isinstance(newvalues['target'], basestring):
+                unit.target = newvalues['target'][0]
             else:
-                unit.target = newvalues['target'][0]            
+                unit.target = newvalues['target']
         if newvalues.has_key('fuzzy'):
             unit.markfuzzy(newvalues['fuzzy'])
         if newvalues.has_key('translator_comments'):
