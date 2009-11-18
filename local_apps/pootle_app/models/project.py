@@ -88,15 +88,15 @@ class Project(models.Model):
             return 'pot'
         else:
             return self.localfiletype
-        
+
     def file_belongs_to_project(self, filename, match_templates=True):
         """tests if filename matches project filetype (ie. extension),
         if match_templates is true will also check if file matches
         template filetype"""
-        
+
         return filename.endswith(os.path.extsep + self.localfiletype) or \
                match_templates and filename.endswith(os.path.extsep + self.get_template_filtetype())
-    
+
     def get_treestyle(self):
         """returns the real treestyle, if treestyle is set to auto it
         checks the project directory and tries to guess if it is gnu
@@ -104,15 +104,15 @@ class Project(models.Model):
 
         we are biased towards nongnu because it makes managing project
         from the web easier"""
-        
+
         if self.treestyle != "auto":
             return self.treestyle
         else:
             dirlisting = os.walk(self.get_real_path())
             dirpath, dirnames, filenames = dirlisting.next()
-            
+
             if not dirnames:
-                # no subdirectories                        
+                # no subdirectories
                 if filter(self.file_belongs_to_project, filenames):
                     # translation files found, assume gnu
                     return "gnu"
@@ -132,10 +132,10 @@ class Project(models.Model):
             # when unsure assume nongnu
             return "nongnu"
 
-    
+
 def create_project_directory(sender, instance, **kwargs):
     project_path = absolute_real_path(instance.code)
     if not os.path.exists(project_path):
         os.makedirs(project_path)
-    
+
 pre_save.connect(create_project_directory, sender=Project)
