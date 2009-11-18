@@ -25,7 +25,6 @@ import subprocess
 import zipfile
 
 from django import forms
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from translate.storage import factory, versioncontrol
@@ -61,13 +60,13 @@ def get_upload_path(translation_project, relative_root_dir, local_filename):
     """gets the path of a translation file being uploaded securely,
     creating directories as neccessary"""
     if os.path.basename(local_filename) != local_filename or local_filename.startswith("."):
-        raise ValueError(_("invalid/insecure file name: %s", local_filename))
+        raise ValueError(_("Invalid/insecure file name: %s", local_filename))
     # XXX: Leakage of the project layout information outside of
     # project_tree.py! The rest of Pootle shouldn't have to care
     # whether something is GNU-style or not.
     if translation_project.file_style == "gnu" and not translation_project.is_template_project:
         if local_filename != translation_project.language.code:
-            raise ValueError(_("invalid GNU-style file name %(local_filename)s: must match '%(langcode)s.%(filetype)s' or '%(langcode)s[_-][A-Z]{2,3}.%(filetype)s'",
+            raise ValueError(_("Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s.%(filetype)s'.",
                              { 'local_filename': local_filename,
                                'langcode': translation_project.language.code,
                                'filetype': translation_project.project.localfiletype,
@@ -205,19 +204,19 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
     if file_exists and overwrite == 'overwrite' and not check_permission('overwrite', request):
         raise PermissionError(_("You do not have rights to overwrite files here."))
     if not file_exists and not check_permission('administrate', request):
-        raise PermissionError(_("You do not have rights to upload new files here"))
+        raise PermissionError(_("You do not have rights to upload new files here."))
     if overwrite == 'merge' and not check_permission('translate', request):
-        raise PermissionError(_("You do not have rights to upload files here"))
+        raise PermissionError(_("You do not have rights to upload files here."))
     if overwrite == 'suggest' and not check_permission('suggest', request):
-        raise PermissionError(_("You do not have rights to upload files here"))
-    
+        raise PermissionError(_("You do not have rights to upload files here."))
+
     if not file_exists or overwrite == 'overwrite':
         overwrite_file(request, relative_root_dir, django_file, upload_path)
         return
-    
+
     store = Store.objects.get(file=upload_path)
     newstore = factory.getobject(django_file)
-    
+
     #FIXME: are we sure this is what we want to do? shouldn't we
     # diffrentiate between structure changing uploads and mere
     # pretranslate uploads?
@@ -248,7 +247,7 @@ class UploadHandler(view_handler.Handler):
 
     class Form(forms.Form):
         file = forms.FileField(required=False, label=_('File'))
-        overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect, label='', 
+        overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect, label='',
                                       choices=[('merge', _("Merge the file with the current file and turn conflicts into suggestions")),
                                                ('overwrite',  _("Overwrite the current file if it exists")),
                                                ('suggest', _("Add all new translations as suggestions"))])
