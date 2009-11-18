@@ -290,7 +290,8 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
             del self._stats[self.path]
         except KeyError:
             pass
-
+        translation_file_updated.send(sender=self, path=self.path)
+        
     store = property(_get_store)
 
 
