@@ -183,7 +183,6 @@ def get_header_plural(request, store):
 
 def ensure_trans_plurals(request, store, orig, trans):
     nplurals, plurals = get_header_plural(request, store)
-    nplurals = max(nplurals, 1)
     if len(orig) > 1:
         if len(trans) != nplurals:
             # Chop if in case it is too long
@@ -378,7 +377,8 @@ def get_trans_view(request, store, item, trans, textarea=False):
 
     else:
         # Error, problem with plurals perhaps?
-        transdict["text"] = ""
+        transdict["text"] = escapefunction(_("Translation not possible because plural information for your language is not available. Please contact the site administrator."))
+        transdict["error"] = True
     return transdict
 
 def get_trans_edit(request, store, item, trans):
@@ -410,7 +410,9 @@ def get_trans_edit(request, store, item, trans):
             # l10n: This is an error message that will display if the relevant problem occurs
             transdict["text"] = escape_for_textarea(_("Translation not possible because plural information for your language is not available. Please contact the site administrator."))
             textid = "trans%d" % item
+            transdict["error"] = True
             focusbox = textid
+            
 
         transdict["buttons"] = buttons
         transdict["focusbox"] = focusbox
@@ -659,7 +661,7 @@ def make_table(request, profile, store, item):
         if 'forms' in transmerge.keys():
             for fnum in range(len(transmerge['forms'])):
                 transreview['forms'][fnum].update(transmerge['forms'][fnum])
-        elif 'text' in transmerge.keys():
+        elif 'text' in transmerge and not transmerge.get('error', False):
             transreview['forms'][0]['text'] = transmerge['text']
 
         transmerge.update(transreview)
