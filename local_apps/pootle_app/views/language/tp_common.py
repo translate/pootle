@@ -247,7 +247,7 @@ class UploadHandler(view_handler.Handler):
 
     class Form(forms.Form):
         file = forms.FileField(required=False, label=_('File'))
-        overwrite = forms.ChoiceField(widget=forms.RadioSelect, label='', 
+        overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect, label='', 
                                       choices=[('merge', _("Merge the file with the current file and turn conflicts into suggestions")),
                                                ('overwrite',  _("Overwrite the current file if it exists")),
                                                ('suggest', _("Add all new translations as suggestions"))])
@@ -261,7 +261,7 @@ class UploadHandler(view_handler.Handler):
         self.form.title = _("Upload File")
 
     def do_upload(self, request, translation_project, directory):
-        if self.form.is_valid():
+        if self.form.is_valid() and 'file' in request.FILES:
             django_file = request.FILES['file']
             overwrite = self.form.cleaned_data['overwrite']
             scan_translation_project_files(translation_project)
