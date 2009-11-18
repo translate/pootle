@@ -204,7 +204,8 @@ def scan_translation_project_files(translation_project):
                       lambda filename: direct_language_match_filename(translation_project.language.code, filename))
     else:
         add_files(ignored_files, ext, real_path, directory)
-    deletefromcache(translation_project, ["getquickstats", "getcompletestats"])
+    for store in translation_project.stores.all():
+        store.file._delete_store_cache()
 
 
 def get_extension(language, project):
