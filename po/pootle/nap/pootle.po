@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-09-11 18:05+0000\n"
+"PO-Revision-Date: 2009-04-23 10:28+0200\n"
 "Last-Translator: Sabine Cretella <sabine_cretella@yahoo.it>\n"
 "Language-Team: Napulitano <napulitano@nap.i-iter.mobi>\n"
+"Language: nap\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -38,7 +40,7 @@ msgstr "Lengue"
 
 #: adminpages.py:48 adminpages.py:146 indexpage.py:94
 msgid "Projects"
-msgstr "Prugette"
+msgstr "Prugiette"
 
 #: adminpages.py:49
 msgid "General options"
@@ -162,7 +164,7 @@ msgstr "Tipo 'e documiento"
 
 #: adminpages.py:157
 msgid "Create MO Files"
-msgstr "Cria ô documiento MO"
+msgstr "Cria 'e documiente MO"
 
 #: adminpages.py:158
 msgid "Remove Project"
@@ -178,15 +180,15 @@ msgstr "Nomme 'e ll'utente"
 
 #: adminpages.py:219 users.py:403
 msgid "(add full name here)"
-msgstr "(nzerisce ôo nomme cumpleto ccà)"
+msgstr "(nzerisce 'o nomme cumpleto ccà)"
 
 #: adminpages.py:220 users.py:124
 msgid "Email Address"
-msgstr "Nnerizzo 'e posta elettronica"
+msgstr "Nnerizzo 'e posta alittronica"
 
 #: adminpages.py:220 users.py:406
 msgid "(add email here)"
-msgstr "(nzerisce ô nnerizzo 'e posta elettronica ccà)"
+msgstr "(nzerisce ô nnerizzo 'e posta alittronica ccà)"
 
 #: adminpages.py:221 users.py:130 users.py:188
 msgid "Password"
@@ -681,7 +683,7 @@ msgstr "%d/%d parole (%d%%) so’ tradotte"
 
 #: pagelayout.py:28
 msgid "All projects"
-msgstr "Tutte 'e pruggette"
+msgstr "Tutte 'e prugiette"
 
 #: pagelayout.py:29
 msgid "All languages"
@@ -1154,7 +1156,7 @@ msgstr "'O nomme utente ca vuò"
 
 #: users.py:125 users.py:429
 msgid "You must supply a valid email address"
-msgstr "He 'a nzerì nu nnerizzo 'e posta elettronica valeta"
+msgstr "He 'a nzerì nu nnerizzo 'e posta alittronica valeta"
 
 #: users.py:128
 msgid "Your full name"
@@ -1207,7 +1209,7 @@ msgstr "Dettaglie perzonale"
 
 #: users.py:186
 msgid "Email"
-msgstr "Nnerizzo 'e posta elettronica"
+msgstr "Nnerizzo 'e posta alittronica"
 
 #: users.py:190
 msgid "Translation Interface Configuration"
@@ -1223,7 +1225,7 @@ msgstr "Pruggette d’’e mmie"
 
 #: users.py:194
 msgid "My Languages"
-msgstr "Lengue d’’e mmie"
+msgstr "Lengue d''e mmie"
 
 #: users.py:196
 msgid "Home page"
@@ -1290,8 +1292,8 @@ msgstr "Si tiene nu prubblema cu ll'alleggistrazzione, pe piacere cuntatta "
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr "Chesto nomme utente nce sta ggià. Nu messaggio 'e posta elettronica vene "
-"mannata ô nnerizzo e-mail alleggistrato.\n"
+msgstr "Chesto nomme utente nce sta ggià. Nu messaggio 'e posta alittronica vene "
+"mannata ô nnerizzo 'e posta alittronica alleggistrato.\n"
 
 #: users.py:446
 #, python-format
@@ -1300,7 +1302,7 @@ msgstr "E mmo se <a href='%s'>trase</a>\n"
 
 #: users.py:452
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr "Cu chestu nnerizzo 'e posta elettronica è stato criato n' acciesso pe tte.\n"
+msgstr "Cu chestu nnerizzo 'e posta alittronica è stato criato n' acciesso pe tte.\n"
 
 #: users.py:454
 msgid "To activate your account, follow this link:\n"
@@ -1327,7 +1329,7 @@ msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr "Chistu messaggio vene mmiato pe cuntrollà ca 'o nnerizzo 'e posta "
-"elettronica è curretto. Si non vuò crià nu acciesso nun cunziderà a chistu "
+"alittronica è curretto. Si non vuò crià nu acciesso nun cunziderà a chistu "
 "messaggio.\n"
 
 #: users.py:465
@@ -1336,7 +1338,7 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
-"Ll'acciesso è stato criato. Mo vene nviata nu messaggio 'e posta elettronica "
+"Ll'acciesso è stato criato. Mo vene nviata nu messaggio 'e posta alittronica "
 "cu nu codece 'e attivazzione. Chistu codece ll’hê 'a nzerì ncopp'â <a "
 "href='%s'>paggena pe ll'attivazzione</a>."
 
@@ -1358,7 +1360,7 @@ msgstr "'A parola chiave d''a tuja è: %s\n"
 #: users.py:472
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr "'O nnerizzo 'e posta elettronica tuja è: %s\n"
+msgstr "'O nnerizzo 'e posta alittronica tuja è: %s\n"
 
 #: users.py:500
 msgid "Redirecting to Registration Page..."

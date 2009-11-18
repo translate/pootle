@@ -2,20 +2,20 @@
 # Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2009-08-31 19:53+0200\n"
+"Last-Translator: Fulup Jakez <fulup.jakez@ofis-bzh.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: br\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 1.2.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -23,270 +23,282 @@ msgstr ""
 #: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
 #: users.py:177
 msgid "Pootle Demo"
-msgstr ""
+msgstr "Diskouez petra eo pootle"
 
+# Ober gt an termen boas er meziantoù all
 #: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
 #: pagelayout.py:27
 msgid "Home"
-msgstr ""
+msgstr "Degemer"
 
 #: adminpages.py:46 adminpages.py:212
 msgid "Users"
-msgstr ""
+msgstr "Implijerien"
 
 #: adminpages.py:47 adminpages.py:87 indexpage.py:93
 msgid "Languages"
-msgstr ""
+msgstr "Yezhoù"
 
 #: adminpages.py:48 adminpages.py:146 indexpage.py:94
 msgid "Projects"
-msgstr ""
+msgstr "Raktresoù"
 
 #: adminpages.py:49
 msgid "General options"
-msgstr ""
+msgstr "Dibaboù hollek"
 
 #: adminpages.py:50 users.py:182
 msgid "Option"
-msgstr ""
+msgstr "Dibab"
 
 #: adminpages.py:51 users.py:183
 msgid "Current value"
-msgstr ""
+msgstr "Talvoudegezh a-vremañ"
 
 #: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
 #: users.py:197
 msgid "Save changes"
-msgstr ""
+msgstr "Enrollañ ar cheñchamantoù"
 
 #: adminpages.py:56
 msgid "Title"
-msgstr ""
+msgstr "Titl"
 
+# resisaat
 #: adminpages.py:57
 msgid "Description"
-msgstr ""
+msgstr "Deskrivadur"
 
+# kenkoulz mirout URL
 #: adminpages.py:58
 msgid "Base URL"
-msgstr ""
+msgstr "URL diazez"
 
+# tipo
 #: adminpages.py:59
 msgid "Home Page"
-msgstr ""
+msgstr "Pajenn Degemer"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Pajenn merañ Yezhoù Pootle"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
-msgstr ""
+msgstr "Pajenn verañ pennañ"
 
 #: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
-msgstr ""
+msgstr "Kod ISO"
 
 #: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
 #: users.py:127
 msgid "Full Name"
-msgstr ""
+msgstr "Anv klok"
 
+# krennañ
 #: adminpages.py:94
 msgid "(add language here)"
-msgstr ""
+msgstr "(Ouzhpennañ ur yezh amañ)"
 
+# ledanoc'h eo arouezennoù eget lizherennoù
 #: adminpages.py:95
 msgid "Special Chars"
-msgstr ""
+msgstr "Arouezennoù Ispisial"
 
 #: adminpages.py:95
 msgid "(special characters)"
-msgstr ""
+msgstr "(arouezennoù ispisial)"
 
 #: adminpages.py:96 indexpage.py:224
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Niver a Liesterioù"
 
+# tipo
 #: adminpages.py:96
 msgid "(number of plurals)"
-msgstr ""
+msgstr "(niver a liesterioù)"
 
 #: adminpages.py:97 indexpage.py:225
 msgid "Plural Equation"
-msgstr ""
+msgstr "Kevatalenn Liester"
 
+# ne gomprener ket petra a c'hall talvezout skrid par, eret eo ober gt un termen resis amañ
 #: adminpages.py:97
 msgid "(plural equation)"
-msgstr ""
+msgstr "(kevatalenn liester)"
 
 #: adminpages.py:98
 msgid "Remove Language"
-msgstr ""
+msgstr "Lemel kuit ar yezh"
 
 #. l10n: The parameter is a languagecode, projectcode or username
 #: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
 #, python-format
 msgid "Remove %s"
-msgstr ""
+msgstr "Lemel kuit %s"
 
 #: adminpages.py:132
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Pajenn verañ Raktresoù Pootle"
 
 #: adminpages.py:151
 msgid "Project Code"
-msgstr ""
+msgstr "Kod ar Raktres"
 
+# krennañ
 #: adminpages.py:153
 msgid "(add project here)"
-msgstr ""
+msgstr "(Ouzhpennañ ur raktres amañ)"
 
 #: adminpages.py:154
 msgid "Project Description"
-msgstr ""
+msgstr "Deskrivadur ar Raktres"
 
 #: adminpages.py:154
 msgid "(project description)"
-msgstr ""
+msgstr "(deskrivañ ar raktres)"
 
 #: adminpages.py:155
 msgid "Checker Style"
-msgstr ""
+msgstr "Gwirier Stil"
 
 #: adminpages.py:156
 msgid "File Type"
-msgstr ""
+msgstr "Seurt Restr"
 
 #: adminpages.py:157
 msgid "Create MO Files"
-msgstr ""
+msgstr "Krouiñ restroù MO"
 
 #: adminpages.py:158
 msgid "Remove Project"
-msgstr ""
+msgstr "Lemel ar raktres kuit"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Pajenn Verañ Implijerien Pootle"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
-msgstr ""
+msgstr "Anv Implijer"
 
 #: adminpages.py:219 users.py:403
 msgid "(add full name here)"
-msgstr ""
+msgstr "(Ouzhpennañ anv klok amañ)"
 
 #: adminpages.py:220 users.py:124
 msgid "Email Address"
-msgstr ""
+msgstr "Chomlec'h postel"
 
 #: adminpages.py:220 users.py:406
 msgid "(add email here)"
-msgstr ""
+msgstr "(ouzhpennañ ar postel amañ)"
 
 #: adminpages.py:221 users.py:130 users.py:188
 msgid "Password"
-msgstr ""
+msgstr "Ger-tremen"
 
 #: adminpages.py:221 users.py:400
 msgid "(add password here)"
-msgstr ""
+msgstr "(ouzhpennañ ar ger-tremen amañ)"
 
 #: adminpages.py:222
 msgid "Activated"
-msgstr ""
+msgstr "Gweredekaet"
 
 #: adminpages.py:222
 msgid "Activate New User"
-msgstr ""
+msgstr "Gweredekaat an Implijer Nevez"
 
 #: adminpages.py:223
 msgid "Remove User"
-msgstr ""
+msgstr "Dilemel an Implijer"
 
 #: adminpages.py:278
 msgid "Back to main page"
-msgstr ""
+msgstr "Distreiñ d'ar bajenn degemer"
 
 #: adminpages.py:279
 msgid "Existing languages"
-msgstr ""
+msgstr "Yezhoù zo anezho"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:283
 msgid "Update Languages"
-msgstr ""
+msgstr "Hizivaat ar Yezhoù"
 
 #: adminpages.py:284
 #, python-format
 msgid "Pootle Admin: %s"
-msgstr ""
+msgstr "Merer Pottle : %s"
 
 #: adminpages.py:285 adminpages.py:356
 msgid "You do not have the rights to administer this project."
-msgstr ""
+msgstr "N'oc'h ket aotreet da verañ ar raktres-mañ."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:289
 msgid "Update from templates"
-msgstr ""
+msgstr "Hizivaat diwar ar patromoù"
 
 #: adminpages.py:298
 msgid "Add Language"
-msgstr ""
+msgstr "Ouzhpennañ ur Yezh"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:336
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr ""
+msgstr "Merer Pootle : %s %s"
 
 #: adminpages.py:337
 msgid "Project home page"
-msgstr ""
+msgstr "Pajenn degemer ar raktres"
 
 #: adminpages.py:355
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr ""
+"N'haller ket kempenn gwirioù an anv implijer %s - n'eus ket eus an implijer-"
+"se"
 
 #: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
+"Ur raktres mod GNU eo hemañ (ur c'havlec'h hepken, restroù anvet dre yezh)."
 
 #: adminpages.py:374
 msgid "This is a standard style project (one directory per language)."
-msgstr ""
+msgstr "Ur raktres mod standard eo hemañ (ur c'havlec'h dre yezh)."
 
 #: adminpages.py:375
 msgid "User Permissions"
-msgstr ""
+msgstr "Aotreoù an Implijer"
 
 #: adminpages.py:377
 msgid "(select to add user)"
-msgstr ""
+msgstr "(diuzañ evit ouzhpennañ un implijer)"
 
 #: adminpages.py:378
 msgid "Rights"
-msgstr ""
+msgstr "Gwirioù"
 
 #: adminpages.py:379 indexpage.py:1008
 msgid "Remove"
-msgstr ""
+msgstr "Dilemel"
 
 #: adminpages.py:406
 msgid "Update Rights"
-msgstr ""
+msgstr "Hizivaat ar gwirioù"
 
 #: indexpage.py:58
 msgid "About Pootle"
-msgstr ""
+msgstr "Diwar-benn Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:60
@@ -297,6 +309,11 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
+"Ur porched web eeun eo <strong>Pootle</strong>. Talvezout a raio deoc'h da "
+"venveg <strong>treiñ</strong> ! Ur <strong>Meziant Frank</strong> eo Pootle; "
+"gallout a rit e bellgargañ hag ober gant ho stumm deoc'h hepken mar fell "
+"deoc'h. Gallout a rit kemer perzh en diorren e meur a vod ivez (n'eo ket dav "
+"gouzout programmiñ)."
 
 #: indexpage.py:61
 msgid ""
@@ -304,6 +321,10 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
+"Herberc'hiet eo ar raktres Pootle e-unan war <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> ma "
+"c'hallit kavout munudoù diwar-benn ar c'hod tarzh, ar rolloù-skignañ, hag "
+"all."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -313,10 +334,14 @@ msgid ""
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
+"Savet eo an anv war <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+"<b>L</b>ocalization <b>E</b>ngine (da lavaret eo Keflusker Lec'helaat "
+"Troidigezhioù Enlinenn Diazezet war PO), met marteze hoc'h eus ezhomm da "
+"lenn <a href=\"http://www.thechestnut.com/flumps.htm\">kement-mañ</a>."
 
 #: indexpage.py:65
 msgid "Versions"
-msgstr ""
+msgstr "Stummoù"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -326,38 +351,41 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
+"Treiñ a ra al lec'hienn-mañ :<br />Pootle %s<br />Translate Toolkit %s<br "
+"/>jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (war %s/%s)"
 
 #: indexpage.py:133
 #, python-format
 msgid "User Page for: %s"
-msgstr ""
+msgstr "Pajenn Implijer evit : %s"
 
 #: indexpage.py:135
 msgid "Change options"
-msgstr ""
+msgstr "Kemmañ an dibarzhioù"
 
 #: indexpage.py:136
 msgid "Admin page"
-msgstr ""
+msgstr "Pajenn verañ"
 
 #: indexpage.py:137 projects.py:149
 msgid "Administrate"
-msgstr ""
+msgstr "Merañ"
 
 #: indexpage.py:138
 msgid "Quick Links"
-msgstr ""
+msgstr "Liammoù Prim"
 
 #: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
+"Klikit war 'Kemmañ an dibarzhioù' ha diuzit un nebeud yezhoù ha raktresoù"
 
 #: indexpage.py:199
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d raktres, keidenn %d%% troet"
+msgstr[1] "%d raktresoù, keidenn %d%% troet"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -365,528 +393,529 @@ msgstr[1] ""
 #: indexpage.py:205 indexpage.py:268
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s : %s"
 
 #: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
 msgid "Admin"
-msgstr ""
+msgstr "Merer"
 
 #: indexpage.py:221
 msgid "Language Code"
-msgstr ""
+msgstr "Kod Yezh"
 
 #: indexpage.py:222
 msgid "Language Name"
-msgstr ""
+msgstr "Anv ar Yezh"
 
 #: indexpage.py:260
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d yezh, keidenn %d%% troet"
+msgstr[1] "%d yezhoù, keidenn%d%% troet"
 
 #: indexpage.py:273
 msgid "Language"
-msgstr ""
+msgstr "Yezh"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:354
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "%s: Raktres %s, Yezh %s"
 
 #. l10n: text next to search field
 #: indexpage.py:362 translatepage.py:145
 msgid "Search"
-msgstr ""
+msgstr "Klask"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Klask Pishoc'h"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "Dibosupl enporzhiañ ar restr, n'eus restr stag ebet"
 
 #: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
-msgstr ""
+msgstr "N'haller enporzhiañ nemet restroù PO ha restroù PO zipet"
 
 #: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
 msgid "Assign Strings"
-msgstr ""
+msgstr "Neudennadoù Deverket"
 
 #: indexpage.py:536 translatepage.py:239
 msgid "Assign Action"
-msgstr ""
+msgstr "Deverkañ an Ober"
 
 #: indexpage.py:537 translatepage.py:238
 msgid "Assign to User"
-msgstr ""
+msgstr "Deverkañ d'an Implijer"
 
 #: indexpage.py:543
 msgid "goals"
-msgstr ""
+msgstr "Palioù"
 
 #: indexpage.py:544
 msgid "Enter goal name"
-msgstr ""
+msgstr "Merkañ anv ar pal"
 
 #: indexpage.py:545
 msgid "Add Goal"
-msgstr ""
+msgstr "Ouzhpennañ ur Pal"
 
 #: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
-msgstr ""
+msgstr "Enporzhiañ ar Restr"
 
 #: indexpage.py:551
 msgid "Select file to upload"
-msgstr ""
+msgstr "Diuzañ ar restr da vezañ enporzhiet"
 
 #. l10n: radio button text
 #: indexpage.py:557 projects.py:141
 msgid "Overwrite"
-msgstr ""
+msgstr "Frikañ"
 
 #. l10n: tooltip
 #: indexpage.py:559
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "Frikañ ar restr red mar bez"
 
 #. l10n: radio button text
 #: indexpage.py:561
 msgid "Merge"
-msgstr ""
+msgstr "Kendeuziñ"
 
 #. l10n: tooltip
 #: indexpage.py:563
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
+"Kendeuziñ ar restr gant ar restr red ha treiñ an tabutoù da erbedadennoù"
 
 #: indexpage.py:666
 msgid "Not in a goal"
-msgstr ""
+msgstr "N'emañ ket en ur pal"
 
 #: indexpage.py:686
 msgid "Add User"
-msgstr ""
+msgstr "Ouzhpennañ un Implijer"
 
 #: indexpage.py:731
 msgid "PO file"
-msgstr ""
+msgstr "Restr PO"
 
 #: indexpage.py:735
 msgid "XLIFF file"
-msgstr ""
+msgstr "Restr XLIFF"
 
 #: indexpage.py:739
 msgid "Qt .ts file"
-msgstr ""
+msgstr "Restr Qt .ts"
 
 #: indexpage.py:743
 msgid "CSV file"
-msgstr ""
+msgstr "Restr CSV"
 
 #: indexpage.py:748
 msgid "MO file"
-msgstr ""
+msgstr "Restr MO"
 
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:754
 msgid "Update"
-msgstr ""
+msgstr "Hizivaat"
 
 #. l10n: Commit to version control (like CVS or Subversion)
 #: indexpage.py:760 projects.py:150
 msgid "Commit"
-msgstr ""
+msgstr "Evezhiadennoù an diorroer"
 
 #: indexpage.py:798
 msgid "All Strings"
-msgstr ""
+msgstr "An holl Neudennadoù"
 
 #: indexpage.py:799 pagelayout.py:249
 msgid "Untranslated"
-msgstr ""
+msgstr "Didro"
 
 #: indexpage.py:800
 msgid "Unassigned"
-msgstr ""
+msgstr "Hep deverk"
 
 #: indexpage.py:801
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "Hep deverk ha didro"
 
 #: indexpage.py:808
 msgid "Set Goal"
-msgstr ""
+msgstr "Sevel ur Pal"
 
 #: indexpage.py:812
 msgid "Select Multiple"
-msgstr ""
+msgstr "Diuzañ meur a hini"
 
 #: indexpage.py:814
 msgid "Assign To"
-msgstr ""
+msgstr "Deverkañ Da"
 
 #: indexpage.py:843
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "Diskouez an Arc'hwelioù Aozañ"
 
 #: indexpage.py:844
 msgid "Show Statistics"
-msgstr ""
+msgstr "Diskouez ar Stadegoù"
 
 #: indexpage.py:845
 msgid "Show Tracks"
-msgstr ""
+msgstr "Diskouez ar Roudoù"
 
 #: indexpage.py:845
 msgid "Hide Tracks"
-msgstr ""
+msgstr "Kuzhat ar Roudoù"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:847
 msgid "Show Checks"
-msgstr ""
+msgstr "Diskouez ar gwiriekadennoù"
 
 #: indexpage.py:847
 msgid "Hide Checks"
-msgstr ""
+msgstr "Kuzhat ar gwiriekadennoù"
 
 #: indexpage.py:848
 msgid "Show Goals"
-msgstr ""
+msgstr "Diskouez ar Palioù"
 
 #: indexpage.py:848
 msgid "Hide Goals"
-msgstr ""
+msgstr "Kuzhat ar Palioù"
 
 #: indexpage.py:849
 msgid "Show Assigns"
-msgstr ""
+msgstr "Diskouez an Deverkoù"
 
 #: indexpage.py:849
 msgid "Hide Assigns"
-msgstr ""
+msgstr "Kuzhat an Deverkoù"
 
 #: indexpage.py:858
 #, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "An holl Balioù : %s"
 
 #: indexpage.py:864
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Treiñ Ma Neudennadoù"
 
 #: indexpage.py:866
 msgid "View My Strings"
-msgstr ""
+msgstr "Gwelet Ma Neudennadoù"
 
 #: indexpage.py:871
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "N'eus neudennad ebet deverket deoc'h"
 
 #: indexpage.py:875
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Treiñ Prim Ma Neudennadoù"
 
 #: indexpage.py:879
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "N'eus neudennad didro ebet deverket deoc'h"
 
 #: indexpage.py:883
 msgid "Review Suggestions"
-msgstr ""
+msgstr "Adwelet ar C'hinnigoù"
 
 #: indexpage.py:885
 msgid "View Suggestions"
-msgstr ""
+msgstr "Gwelet ar C'hinnigoù"
 
 #: indexpage.py:890
 msgid "Quick Translate"
-msgstr ""
+msgstr "Treiñ Prim"
 
 #: indexpage.py:892
 msgid "View Untranslated"
-msgstr ""
+msgstr "Gwelet ar re zidro"
 
 #: indexpage.py:896
 msgid "No untranslated items"
-msgstr ""
+msgstr "Elfenn didro ebet"
 
 #: indexpage.py:899
 msgid "Translate All"
-msgstr ""
+msgstr "Treiñ pep tra"
 
 #: indexpage.py:914
 msgid "ZIP of goal"
-msgstr ""
+msgstr "ZIP ar pal"
 
 #: indexpage.py:916
 msgid "ZIP of folder"
-msgstr ""
+msgstr "ZIP ar renkell"
 
 #: indexpage.py:923
 msgid "Generate SDF"
-msgstr ""
+msgstr "Genel SDF"
 
 #: indexpage.py:976
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d neudennad (%d%%) faziek"
+msgstr[1] "%d neudennad (%d%%) faziek"
 
 #: indexpage.py:1003
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr ""
+msgstr "%d/%d ger (%d%%) deverket"
 
 #: indexpage.py:1004 indexpage.py:1006
 #, python-format
 msgid "[%d/%d strings]"
-msgstr ""
+msgstr "[%d/%d neudennad]"
 
 #: indexpage.py:1005 pagelayout.py:235
 #, python-format
 msgid "%d/%d words (%d%%) translated"
-msgstr ""
+msgstr "%d/%d ger (%d%%) troet"
 
 #: pagelayout.py:28
 msgid "All projects"
-msgstr ""
+msgstr "An holl raktresoù"
 
 #: pagelayout.py:29
 msgid "All languages"
-msgstr ""
+msgstr "An holl yezhoù"
 
 #: pagelayout.py:30
 msgid "My account"
-msgstr ""
+msgstr "Ma C'hont"
 
 #: pagelayout.py:32
 msgid "Docs & help"
-msgstr ""
+msgstr "Teulioù & skoazell"
 
 #: pagelayout.py:34
 msgid "Log out"
-msgstr ""
+msgstr "Kuitaat"
 
 #: pagelayout.py:35
 msgid "Log in"
-msgstr ""
+msgstr "Emlugañ"
 
 #. l10n: Verb, as in "to register"
 #: pagelayout.py:37
 msgid "Register"
-msgstr ""
+msgstr "Marilhañ"
 
 #: pagelayout.py:38
 msgid "Activate"
-msgstr ""
+msgstr "Gweredekaat"
 
 #: pagelayout.py:83
 msgid "Pootle Logo"
-msgstr ""
+msgstr "Logo Pootle"
 
 #: pagelayout.py:84
 msgid "About this Pootle server"
-msgstr ""
+msgstr "Diwar-benn ar servijer Pootle-mañ"
 
 #: pagelayout.py:160
 msgid "All goals"
-msgstr ""
+msgstr "An holl balioù"
 
 #: pagelayout.py:231
 #, python-format
 msgid "%d/%d files"
-msgstr ""
+msgstr "%d/%d restr"
 
 #: pagelayout.py:234
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d restr"
+msgstr[1] "%d restr"
 
 #: pagelayout.py:236
 #, python-format
 msgid "%d/%d strings"
-msgstr ""
+msgstr "%d/%d neudennad"
 
 #: pagelayout.py:242 users.py:184
 msgid "Name"
-msgstr ""
+msgstr "Anv"
 
 #: pagelayout.py:243
 msgid "Translated"
-msgstr ""
+msgstr "Troet"
 
 #: pagelayout.py:244
 msgid "Translated percentage"
-msgstr ""
+msgstr "Dregantad treiñ"
 
 #: pagelayout.py:245
 msgid "Translated words"
-msgstr ""
+msgstr "Gerioù troet"
 
 #: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
-msgstr ""
+msgstr "Faziek"
 
 #: pagelayout.py:247
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "Dregantad a fazioù"
 
 #: pagelayout.py:248
 msgid "Fuzzy words"
-msgstr ""
+msgstr "Gerioù faziek"
 
 #: pagelayout.py:250
 msgid "Untranslated percentage"
-msgstr ""
+msgstr "Dregantad a gemennoù didro"
 
 #: pagelayout.py:251
 msgid "Untranslated words"
-msgstr ""
+msgstr "Gerioù didro"
 
 #: pagelayout.py:252
 msgid "Total"
-msgstr ""
+msgstr "Hollad"
 
 #: pagelayout.py:253
 msgid "Total words"
-msgstr ""
+msgstr "Hollad ar gerioù"
 
 #. l10n: noun. The graphical representation of translation status
 #: pagelayout.py:255
 msgid "Graph"
-msgstr ""
+msgstr "Grafik"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "Mammenn an Destenn"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "Testenn Bal"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Evezhiadennoù"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Lec'hiadurioù"
 
 #: pootle.py:305
 msgid "Login failed"
-msgstr ""
+msgstr "C'hwitet emlugañ"
 
 #: pootle.py:349 pootle.py:380
 msgid "Redirecting to login..."
-msgstr ""
+msgstr "Oc'h adkas d'an emlugañ"
 
 #: pootle.py:352
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "Ret eo bezan luget evit mont d'ar bajenn degemer"
 
 #: pootle.py:365
 msgid "Personal details updated"
-msgstr ""
+msgstr "Hizivaet eo bet an titouroù personel"
 
 #: pootle.py:383
 msgid "Need to log in to access admin page"
-msgstr ""
+msgstr "Ret eo bezañ luget evit mont d'ar bajenn verañ"
 
 #: pootle.py:390
 msgid "Redirecting to home..."
-msgstr ""
+msgstr "Oc'h adkas d'an degemer..."
 
 #: pootle.py:393
 msgid "You do not have the rights to administer pootle."
-msgstr ""
+msgstr "N'hoc'h eus ket ar gwir da verañ Pootle."
 
 #. l10n: Verb
 #: projects.py:138
 msgid "View"
-msgstr ""
+msgstr "Gwelet"
 
 #: projects.py:139 translatepage.py:678
 msgid "Suggest"
-msgstr ""
+msgstr "Kinnig"
 
 #: projects.py:140
 msgid "Translate"
-msgstr ""
+msgstr "Treiñ"
 
 #. l10n: Verb
 #: projects.py:143
 msgid "Review"
-msgstr ""
+msgstr "Adwelet"
 
 #. l10n: Verb
 #: projects.py:145
 msgid "Archive"
-msgstr ""
+msgstr "Dielloù"
 
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:147
 msgid "Compile PO files"
-msgstr ""
+msgstr "Kempunañ ar restroù PO"
 
 #: projects.py:148
 msgid "Assign"
-msgstr ""
+msgstr "Deverkañ"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:230
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr ""
+msgstr "N'hallit ket dilemel an implijerien ''den ebet'' pe ''dre ziouer''"
 
 #: projects.py:382 projects.py:444
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da gemmañ ar palioù amañ"
 
 #: projects.py:510
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da enporzhiañ restroù amañ"
 
 #: projects.py:513
 msgid "You do not have rights to overwrite files here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da frikañ restroù amañ"
 
 #: projects.py:515
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da enporzhiañ restroù nevez amañ"
 
 #: projects.py:524
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da hizivaat restroù amañ"
 
 #: projects.py:555
 msgid "You do not have rights to commit files here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da embann restroù amañ"
 
 #: projects.py:977 projects.py:1019
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da da gemmañ an deverkoù amañ"
 
 #: projects.py:1219
 msgid "You do not have rights to change translations here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da gemmañ an troidigezhioù amañ"
 
 #: projects.py:1229
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da ginnig kemmoù amañ"
 
 #: projects.py:1245 projects.py:1263
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "N'oc'h ket aotreet da adwelet ar c'hinnigoù amañ"
 
 #: translatepage.py:103
 #, python-format
@@ -894,6 +923,8 @@ msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
+"%d/%d troet\n"
+"(%d troet, %d faziek)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -902,149 +933,149 @@ msgstr ""
 #: translatepage.py:113
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr ""
+msgstr "%s: o treiñ %s e %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:128
 msgid "Original"
-msgstr ""
+msgstr "Orin"
 
 #. l10n: Heading above the table column with the target language
 #: translatepage.py:130
 msgid "Translation"
-msgstr ""
+msgstr "Troidigezh"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Asantiñ d'ar c'hinnig"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Disteuler ar c'hinnig"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
 msgid "Translator comments"
-msgstr ""
+msgstr "Evezhiadennoù an Troer"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:139
 msgid "Developer comments"
-msgstr ""
+msgstr "Evezhiadennoù an Diorroer"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:141
 msgid "Related"
-msgstr ""
+msgstr "Kar"
 
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "O labourat..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Fazi : Un dra bennak a-dreuz zo bet"
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
 msgid "End of batch"
-msgstr ""
+msgstr "Dibenn ar pakad"
 
 #: translatepage.py:173
 msgid "Click here to return to the index"
-msgstr ""
+msgstr "Klikañ amañ da zistreiñ d'ar meneger"
 
 #. l10n: noun (the start)
 #: translatepage.py:187 translatepage.py:190
 msgid "Start"
-msgstr ""
+msgstr "Deroù"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:194 translatepage.py:197
 #, python-format
 msgid "Previous %d"
-msgstr ""
+msgstr "%d Kent"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:199
 #, python-format
 msgid "Items %d to %d of %d"
-msgstr ""
+msgstr "elfennoù %d eus %d diwar %d"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:204 translatepage.py:207
 #, python-format
 msgid "Next %d"
-msgstr ""
+msgstr "%d War-lerc'h "
 
 #. l10n: noun (the end)
 #: translatepage.py:210 translatepage.py:213
 msgid "End"
-msgstr ""
+msgstr "Dibenn"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: translatepage.py:230
 #, python-format
 msgid "checking %s"
-msgstr ""
+msgstr "o wiriañ %s"
 
 #: translatepage.py:398
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr ""
+msgstr "N'eus elfenn ebet o klotañ gant an enklask ('%s')"
 
 #: translatepage.py:400
 msgid "You have finished going through the items you selected"
-msgstr ""
+msgstr "Aet oc'h dre an holl elfennoù diuzet ganeoc'h"
 
 #: translatepage.py:643
 msgid "Singular"
-msgstr ""
+msgstr "Unander"
 
 #: translatepage.py:644
 msgid "Plural"
-msgstr ""
+msgstr "Liester"
 
 #. l10n: verb
 #: translatepage.py:658
 msgid "Edit"
-msgstr ""
+msgstr "Aozañ"
 
 #. l10n: verb
 #: translatepage.py:674
 msgid "Copy"
-msgstr ""
+msgstr "Eilañ"
 
 #: translatepage.py:675 translatepage.py:849
 msgid "Skip"
-msgstr ""
+msgstr "Dilezel"
 
 #. l10n: verb
 #: translatepage.py:677 translatepage.py:848 users.py:312
 msgid "Back"
-msgstr ""
+msgstr "Distreiñ"
 
 #: translatepage.py:679
 msgid "Submit"
-msgstr ""
+msgstr "Kas"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:682
 msgid "Grow"
-msgstr ""
+msgstr "Brasaat"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:684
 msgid "Shrink"
-msgstr ""
+msgstr "Krennañ"
 
 #: translatepage.py:706 translatepage.py:800 translatepage.py:837
 #: translatepage.py:870
 #, python-format
 msgid "Plural Form %d"
-msgstr ""
+msgstr "Stumm Lies %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:722
@@ -1052,227 +1083,235 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
+"Dibosupl treiñ rak n'eus tamm titour ebet diwar-benn al liester en ho yezh. "
+"Kit e darempred gant merour a lec'hienn."
 
 #: translatepage.py:804
 msgid "Current Translation:"
-msgstr ""
+msgstr "Troidigezh evit poent :"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
 #: translatepage.py:817
 #, python-format
 msgid "Suggestion %d by %s:"
-msgstr ""
+msgstr "Kinnig %d gant %s :"
 
 #: translatepage.py:819
 #, python-format
 msgid "Suggestion %d:"
-msgstr ""
+msgstr "Kinnig %d :"
 
 #. l10n: parameter: name of translator
 #: translatepage.py:823
 #, python-format
 msgid "Suggestion by %s:"
-msgstr ""
+msgstr "Kinnigoù gant %s :"
 
 #: translatepage.py:825
 msgid "Suggestion:"
-msgstr ""
+msgstr "Kinnig :"
 
 #: users.py:43
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
 msgstr ""
+"Ret eo deoc'h lakaat ur ger-tremen reizh ennañ %d arouezenn da nebeutañ."
 
 #: users.py:45
 msgid "The password is not the same as the confirmation."
-msgstr ""
+msgstr "N'eo ket heñvel ar ger-tremen ouzh hini ar gadarnadenn"
 
 #: users.py:60
 msgid "Login to Pootle"
-msgstr ""
+msgstr "Emlugañ e Pootle"
 
 #: users.py:66
 msgid "Username:"
-msgstr ""
+msgstr "Anv implijer :"
 
 #: users.py:68
 msgid "Password:"
-msgstr ""
+msgstr "Ger-termen :"
 
 #: users.py:69
 msgid "Language:"
-msgstr ""
+msgstr "Yezh :"
 
 #: users.py:71
 msgid "Login"
-msgstr ""
+msgstr "Emlugañ"
 
 #: users.py:77
 msgid "Default"
-msgstr ""
+msgstr "Dre ziouer"
 
 #: users.py:112
 msgid "Please enter your registration details"
-msgstr ""
+msgstr "Merkit ho titouroù marilhañ mar plij"
 
 #: users.py:115 users.py:475
 msgid "Pootle Registration"
-msgstr ""
+msgstr "Marilhañ Pootle"
 
 #: users.py:122 users.py:158
 msgid "Your requested username"
-msgstr ""
+msgstr "An anv implijer goulennet"
 
 #: users.py:125 users.py:429
 msgid "You must supply a valid email address"
-msgstr ""
+msgstr "Ret eo deoc'h merkañ ur chomlec'h postel reizh"
 
 #: users.py:128
 msgid "Your full name"
-msgstr ""
+msgstr "Hoc'h anv klok"
 
 #: users.py:131
 msgid "Your desired password"
-msgstr ""
+msgstr "Ar ger-tremen a fell deoc'h kaout"
 
 #: users.py:133 users.py:189
 msgid "Confirm password"
-msgstr ""
+msgstr "Kadarnaat ar ger-tremen"
 
 #: users.py:134
 msgid "Type your password again to ensure it is entered correctly"
-msgstr ""
+msgstr "Merkit ho ker-temen en-dro kement ha bezañ sur eo bet skrivet mat"
 
 #: users.py:136
 msgid "Register Account"
-msgstr ""
+msgstr "Enrollañ ar Gont"
 
 #: users.py:145
 msgid "Please enter your activation details"
-msgstr ""
+msgstr "Merkit ho titouroù gweredekaat mar plij"
 
 #: users.py:150
 msgid "Pootle Account Activation"
-msgstr ""
+msgstr "Gweredekaat Kont Pootle"
 
 #: users.py:160
 msgid "Activation Code"
-msgstr ""
+msgstr "Kod Gweredekaat"
 
 #: users.py:161
 msgid "The activation code you received"
-msgstr ""
+msgstr "Ar c'hod gweredekaat hoc'h eus resevet"
 
 #: users.py:163
 msgid "Activate Account"
-msgstr ""
+msgstr "Gweredekaat ar Gont"
 
 #: users.py:175
 #, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr "Dibarzhioù evit : %s"
 
 #: users.py:181
 msgid "Personal Details"
-msgstr ""
+msgstr "Titouroù Personel"
 
 #: users.py:186
 msgid "Email"
-msgstr ""
+msgstr "Postel"
 
 #: users.py:190
 msgid "Translation Interface Configuration"
-msgstr ""
+msgstr "Kefluniadur an Etrefas Treiñ"
 
 #: users.py:191
 msgid "User Interface language"
-msgstr ""
+msgstr "Yezh Etrefas an implijer"
 
 #: users.py:192
 msgid "My Projects"
-msgstr ""
+msgstr "Ma Raktresoù"
 
 #: users.py:194
 msgid "My Languages"
-msgstr ""
+msgstr "Ma Yezhoù"
 
 #: users.py:196
 msgid "Home page"
-msgstr ""
+msgstr "Pajenn degemer"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Yezh Treiñ all"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Hini ebet"
 
 #: users.py:257
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "Uhelder an Enmont (e linennoù)"
 
 #: users.py:258
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "Niver a linennoù er mod gwelet"
 
 #: users.py:259
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "Niver a linennoù er mod treiñ"
 
 #: users.py:307
 msgid "Error"
-msgstr ""
+msgstr "Fazi"
 
 #: users.py:359
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "Ret eo deoc'h bezañ merour evit kemmañ an implijerien"
 
 #: users.py:423
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
+"Lizhersifrennel e rank bezañ an anv implijer, ha kregiñ gant un arouezenn "
+"alfabetek."
 
 #: users.py:438
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
+msgstr "C'hwi (pe unan bennak all) en deus klasket enrollañ ur gont gant hoc'h anv "
+"implijer.\n"
 
 #: users.py:439
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
+msgstr "Ne stokomp ket ho ker-tremen a-vremañ, nemet un drailhenn anezhañ.\n"
 
 #: users.py:441
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr ""
+msgstr "Mar ne zeuit ket a-benn d'en em enollañ, kit e darempred gant %s.\n"
 
 #: users.py:443
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "Mar ne zeuit ket a-benn d'en em enollañ, kit e darempred gant merour al "
+"lec'hienn.\n"
 
 #: users.py:444
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
+msgstr "Krouet eo bet an anv implijer-se c'hoazh. Kaset e vo ur postel d'ar "
+"c'homlec'h postel enrollet.\n"
 
 #: users.py:446
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "o plediñ gant an <a href='%s'>emlugañ</a>\n"
 
 #: users.py:452
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "Krouet ez eus bet ur gont Pootle evidoc'h a ra gant ar chomlec'h postel-mañ.\n"
 
 #: users.py:454
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "Da weredekaat ho kont, klikit war al liamm-mañ :\n"
 
 #: users.py:460
 #, python-format
@@ -1280,18 +1319,23 @@ msgid ""
 "Your activation code is:\n"
 "%s\n"
 msgstr ""
+"Setu aze ho kod gweredekaat :\n"
+"%s\n"
 
 #: users.py:462
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "Ma n'hallit ker heuliañ  al liamm, merkit ar c'hod a-us war ar bajenn "
+"gweredekaat.\n"
 
 #: users.py:463
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
+msgstr "Kaset eo ar postel-mañ da wiriañ ha reizh eo ar chomlec'h postel e "
+"gwirionez. Mar ne fell ket deoc'h krouiñ ur gont, arabat ober netra gant ar "
+"gemennadenn.\n"
 
 #: users.py:465
 #, python-format
@@ -1299,58 +1343,61 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"Krouet eo ar gont. Postelet e vo deoc'h titouroù emlugañ hag ur c'hod "
+"gweredekaat. Merkit ho kod gweredekaat war ar <a href='%s'>bajenn "
+"gweredekaat</a>."
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "(Pe klikañ war al iamm gweredekaat er postel-mañ, hepmuiken)"
 
 #: users.py:469
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr ""
+msgstr "Setu aze hoc'h anv implijer : %s\n"
 
 #: users.py:471
 #, python-format
 msgid "Your password is: %s\n"
-msgstr ""
+msgstr "Ho ker-tremen : %s\n"
 
 #: users.py:472
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "Setu aze ho chomlec'h postel enrollet : %s\n"
 
 #: users.py:500
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "Oc'h adkas war-du ar bajenn Marilhañ..."
 
 #: users.py:524
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "Oc'h adkas war-du ar bajenn enrollañ..."
 
 #: users.py:527
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "Gweredekaet eo bet ho kont ! Oc'h adkas d'an enrollañ..."
 
 #: users.py:531
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "Direizh e oa an titouroù gweredekaat."
 
 #: users.py:532
 msgid "Activation Failed"
-msgstr ""
+msgstr "C'hwitet ar Gweredekaat"
 
 #: users.py:649
 msgid "Input height must be numeric"
-msgstr ""
+msgstr "Niverel e rank bezañ uhelder an enmont"
 
 #: users.py:650
 msgid "Input width must be numeric"
-msgstr ""
+msgstr "Niverel e rank bezañ ledander an enmont"
 
 #: users.py:651
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr ""
+msgstr "Niverel e rank bezañ an niver a linennoù diskwelet er mod gwelet"
 
 #: users.py:652
 msgid "The number of rows displayed in translate mode must be numeric"
-msgstr ""
+msgstr "Niverel e rank bezañ an niver a linennoù diskwelet er mod treiñ"

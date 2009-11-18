@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-10-18 19:07+0000\n"
-"Last-Translator: Bolorerdene Bundgaa <bolor@ariunbolor.org>\n"
+"PO-Revision-Date: 2009-05-29 12:26+0200\n"
+"Last-Translator: Bayarsaikhan Enkhtaivan <ebayaraa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: mn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.0-rc1\n"
+"X-Generator: Pootle 1.2.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -43,11 +44,11 @@ msgstr "Төслүүд"
 
 #: adminpages.py:49
 msgid "General options"
-msgstr "Ерөнхий тохиргоонууд"
+msgstr "Ерөнхий сонголтууд"
 
 #: adminpages.py:50 users.py:182
 msgid "Option"
-msgstr "Тохиргоо"
+msgstr "Сонголт"
 
 #: adminpages.py:51 users.py:183
 msgid "Current value"
@@ -56,7 +57,7 @@ msgstr "Одоогийн байдал"
 #: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
 #: users.py:197
 msgid "Save changes"
-msgstr "Өөрчилтууд хадгалах"
+msgstr "Өөрчлөлтүүд хадгалах"
 
 #: adminpages.py:56
 msgid "Title"
@@ -76,11 +77,11 @@ msgstr "Нүүр хуудас"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr "Пүүтл хэлний зохион байгуулагчын хуудас"
+msgstr "Пүүтл хэлний зохион байгуулагчийн хуудас"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
-msgstr "Гол зохион байгуулагчын хуудас"
+msgstr "Гол зохион байгуулагчийн хуудас"
 
 #: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
@@ -355,8 +356,8 @@ msgstr ""
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d төсөл, дунджаар %d%% орчуулагдсан"
+msgstr[1] "%d төсөл, дунджаар %d%% орчуулагдсан"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -438,11 +439,11 @@ msgstr "Зорилго Нэмэх"
 
 #: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
-msgstr "Файл шилжүүлэх"
+msgstr "Файл илгээх"
 
 #: indexpage.py:551
 msgid "Select file to upload"
-msgstr "Шилжүүлэх файл сонгох"
+msgstr "Илгээх файл сонгох"
 
 #. l10n: radio button text
 #: indexpage.py:557 projects.py:141
@@ -505,7 +506,7 @@ msgstr "Хадгалж оруулах"
 
 #: indexpage.py:798
 msgid "All Strings"
-msgstr ""
+msgstr "Бүх тэмдэгт мөр"
 
 #: indexpage.py:799 pagelayout.py:249
 msgid "Untranslated"
@@ -550,7 +551,7 @@ msgstr ""
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:847
 msgid "Show Checks"
-msgstr ""
+msgstr "Шалгалтууд харуулах"
 
 #: indexpage.py:847
 msgid "Hide Checks"
@@ -579,11 +580,11 @@ msgstr ""
 
 #: indexpage.py:864
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Миний тэмдэгт мөрийг орчуулах"
 
 #: indexpage.py:866
 msgid "View My Strings"
-msgstr ""
+msgstr "Тэмдэгт мөрүүдээ харах"
 
 #: indexpage.py:871
 msgid "No strings assigned to you"
@@ -611,7 +612,7 @@ msgstr "Түргэн орчуулах"
 
 #: indexpage.py:892
 msgid "View Untranslated"
-msgstr "Орчуулагдаагүй нь үзэх"
+msgstr "Орчуулагдаагүйг үзэх"
 
 #: indexpage.py:896
 msgid "No untranslated items"
@@ -637,8 +638,8 @@ msgstr "SDF Үүсгэх"
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d тэмдэгт мөр (%d%%) бүтэлгүйтсэн"
+msgstr[1] "%d тэмдэгт мөр (%d%%) бүтэлгүйтсэн"
 
 #: indexpage.py:1003
 #, python-format
@@ -648,12 +649,12 @@ msgstr ""
 #: indexpage.py:1004 indexpage.py:1006
 #, python-format
 msgid "[%d/%d strings]"
-msgstr ""
+msgstr "[%d/%d тэмдэгт мөрүүд]"
 
 #: indexpage.py:1005 pagelayout.py:235
 #, python-format
 msgid "%d/%d words (%d%%) translated"
-msgstr ""
+msgstr "%d/%d үгс (%d%%) орчуулагдсан"
 
 #: pagelayout.py:28
 msgid "All projects"
@@ -715,7 +716,7 @@ msgstr[1] "%d файлууд"
 #: pagelayout.py:236
 #, python-format
 msgid "%d/%d strings"
-msgstr ""
+msgstr "%d/%d тэмдэгт мөрүүд"
 
 #: pagelayout.py:242 users.py:184
 msgid "Name"
@@ -893,6 +894,8 @@ msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
+"%d/%d орчуулагдсан\n"
+"(%d орчуулагдаагүй, %d яг биш)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -924,12 +927,12 @@ msgstr ""
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
 msgid "Translator comments"
-msgstr "Орчуулагчын тайлбар"
+msgstr "Орчуулагчийн тайлбар"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:139
 msgid "Developer comments"
-msgstr "Боловсруулагчын тайлбар"
+msgstr "Боловсруулагчийн тайлбар"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:141
@@ -953,7 +956,7 @@ msgstr "Боодол дууслаа"
 
 #: translatepage.py:173
 msgid "Click here to return to the index"
-msgstr "Индекс руу буцахаар энд дарна уу"
+msgstr "Индекс руу буцахаар бол энд дарна уу"
 
 #. l10n: noun (the start)
 #: translatepage.py:187 translatepage.py:190
@@ -964,7 +967,7 @@ msgstr "Эхлэл"
 #: translatepage.py:194 translatepage.py:197
 #, python-format
 msgid "Previous %d"
-msgstr "Өмнөх"
+msgstr "Өмнөх %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:199
@@ -992,7 +995,7 @@ msgstr "%s шалгаж байна"
 #: translatepage.py:398
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr ""
+msgstr "Энэ ('%s') хайлтад үр дүн олдсонгүй."
 
 #: translatepage.py:400
 msgid "You have finished going through the items you selected"
@@ -1027,7 +1030,7 @@ msgstr "Өмнөх"
 
 #: translatepage.py:679
 msgid "Submit"
-msgstr "Батлаж оруулах"
+msgstr "Баталж оруулах"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:682
@@ -1043,7 +1046,7 @@ msgstr "Жижиг болгох"
 #: translatepage.py:870
 #, python-format
 msgid "Plural Form %d"
-msgstr "Олонтоо хэлбэр"
+msgstr "Олонтоо хэлбэр %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:722
@@ -1167,7 +1170,7 @@ msgstr "Таны хүлээн авсан идэвхжүүлэлтийн код"
 
 #: users.py:163
 msgid "Activate Account"
-msgstr "Данс идэвхэүүлэх"
+msgstr "Данс идэвхжүүлэх"
 
 #: users.py:175
 #, python-format
@@ -1318,9 +1321,7 @@ msgstr "Таны нууц үг : %s\n"
 #: users.py:472
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
-"Та %s\n"
-" э-шуудангын хаягаар бүртгүүлсэн"
+msgstr "Та энэ э-шуудангийн хаягаар бүртгүүлсэн: %s\n"
 
 #: users.py:500
 msgid "Redirecting to Registration Page..."

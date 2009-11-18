@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-09-05 09:15+0000\n"
-"Last-Translator: Cecilia Saltori <csaltori@gmail.com>\n"
+"PO-Revision-Date: 2008-12-29 09:11+0000\n"
+"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 1.2.1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -65,15 +66,15 @@ msgstr "Descrizione"
 
 #: adminpages.py:58
 msgid "Base URL"
-msgstr "URL Base"
+msgstr "URL base"
 
 #: adminpages.py:59
 msgid "Home Page"
-msgstr "Home Page"
+msgstr "Home page"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr "Pagina Amministrazione Lingue di Pootle"
+msgstr "Pagina amministrazione lingue di Pootle"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
@@ -86,15 +87,15 @@ msgstr "Codice ISO"
 #: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
 #: users.py:127
 msgid "Full Name"
-msgstr "Nome Completo"
+msgstr "Nome completo"
 
 #: adminpages.py:94
 msgid "(add language here)"
-msgstr "(aggiungi una lingua qui)"
+msgstr "(aggiungi una lingua)"
 
 #: adminpages.py:95
 msgid "Special Chars"
-msgstr "Caratteri Speciali"
+msgstr "Caratteri speciali"
 
 #: adminpages.py:95
 msgid "(special characters)"
@@ -102,19 +103,19 @@ msgstr "(caratteri speciali)"
 
 #: adminpages.py:96 indexpage.py:224
 msgid "Number of Plurals"
-msgstr "Numero di Plurali"
+msgstr "Numero di forme plurali"
 
 #: adminpages.py:96
 msgid "(number of plurals)"
-msgstr "(numero di plurali)"
+msgstr "(numero di forme plurali)"
 
 #: adminpages.py:97 indexpage.py:225
 msgid "Plural Equation"
-msgstr "Equazione dei Plurali"
+msgstr "Equazione delle forme plurali"
 
 #: adminpages.py:97
 msgid "(plural equation)"
-msgstr "(equazione dei plurali)"
+msgstr "(equazione delle forme plurali)"
 
 #: adminpages.py:98
 msgid "Remove Language"
@@ -132,19 +133,19 @@ msgstr "Standard"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr "Pagina Amministrazione Progetti Pootle"
+msgstr "Pagina amministrazione progetti di Pootle"
 
 #: adminpages.py:151
 msgid "Project Code"
-msgstr "Codice Progetto"
+msgstr "Codice progetto"
 
 #: adminpages.py:153
 msgid "(add project here)"
-msgstr "(aggiungi progetto qui)"
+msgstr "(aggiungi progetto)"
 
 #: adminpages.py:154
 msgid "Project Description"
-msgstr "Descrizione Progetto"
+msgstr "Descrizione progetto"
 
 #: adminpages.py:154
 msgid "(project description)"
@@ -152,23 +153,23 @@ msgstr "(descrizione progetto)"
 
 #: adminpages.py:155
 msgid "Checker Style"
-msgstr "Stile Controllo"
+msgstr "Stile controllo"
 
 #: adminpages.py:156
 msgid "File Type"
-msgstr "Tipo di File"
+msgstr "Tipo di file"
 
 #: adminpages.py:157
 msgid "Create MO Files"
-msgstr "Crea Files MO"
+msgstr "Crea file MO"
 
 #: adminpages.py:158
 msgid "Remove Project"
-msgstr "Rimuovi Progetto"
+msgstr "Rimuovi progetto"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr "Pagina Amministrazione Utenti Pootle"
+msgstr "Pagina amministrazione utenti di Pootle"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -176,15 +177,15 @@ msgstr "Nome utente"
 
 #: adminpages.py:219 users.py:403
 msgid "(add full name here)"
-msgstr "(aggiungi nome completo qui)"
+msgstr "(aggiungi nome completo)"
 
 #: adminpages.py:220 users.py:124
 msgid "Email Address"
-msgstr "Indirizzo Email"
+msgstr "Indirizzo e-mail"
 
 #: adminpages.py:220 users.py:406
 msgid "(add email here)"
-msgstr "(aggiungi email qui)"
+msgstr "(aggiungi e-mail)"
 
 #: adminpages.py:221 users.py:130 users.py:188
 msgid "Password"
@@ -192,7 +193,7 @@ msgstr "Password"
 
 #: adminpages.py:221 users.py:400
 msgid "(add password here)"
-msgstr "(aggiungi password qui)"
+msgstr "(aggiungi password)"
 
 #: adminpages.py:222
 msgid "Activated"
@@ -200,11 +201,11 @@ msgstr "Attivato"
 
 #: adminpages.py:222
 msgid "Activate New User"
-msgstr "Attiva Nuovo Utente"
+msgstr "Attiva nuovo utente"
 
 #: adminpages.py:223
 msgid "Remove User"
-msgstr "Rimuovi Utente"
+msgstr "Rimuovi utente"
 
 #: adminpages.py:278
 msgid "Back to main page"
@@ -217,7 +218,7 @@ msgstr "Lingue esistenti"
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:283
 msgid "Update Languages"
-msgstr "Aggiorna Lingue"
+msgstr "Aggiorna lingue"
 
 #: adminpages.py:284
 #, python-format
@@ -231,7 +232,7 @@ msgstr "Non si possiedono i diritti per amministrare questo progetto."
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:289
 msgid "Update from templates"
-msgstr "Aggiorna dai templates"
+msgstr "Aggiorna da template"
 
 #: adminpages.py:298
 msgid "Add Language"
@@ -241,7 +242,7 @@ msgstr "Aggiungi lingua"
 #: adminpages.py:336
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr "Pootle Amministratore: %s %s"
+msgstr "Amministrazione Pootle: %s %s"
 
 #: adminpages.py:337
 msgid "Project home page"
@@ -251,12 +252,12 @@ msgstr "Home page del progetto"
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr ""
-"Impossibile impostare i diritti per lo username %s - l'utente non esiste"
+"Impossibile impostare i diritti per il nome utente %s - l'utente non esiste"
 
 #: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
-"Questo è un progetto nello stile GNU (una directory, files identificati per "
+"Questo è un progetto nello stile GNU (una directory, file identificati per "
 "lingua)."
 
 #: adminpages.py:374
@@ -265,7 +266,7 @@ msgstr "Questo è un progetto nello stile standard (una directory per lingua)."
 
 #: adminpages.py:375
 msgid "User Permissions"
-msgstr "Permessi Utenti"
+msgstr "Permessi utenti"
 
 #: adminpages.py:377
 msgid "(select to add user)"
@@ -281,11 +282,11 @@ msgstr "Rimuovi"
 
 #: adminpages.py:406
 msgid "Update Rights"
-msgstr "Aggiorna Diritti"
+msgstr "Aggiorna permessi"
 
 #: indexpage.py:58
 msgid "About Pootle"
-msgstr "Info su Pootle"
+msgstr "Informazioni su Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:60
@@ -296,11 +297,11 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
-"<strong>Pootle</strong> è un semplice portale web che dovrebbe permettervi "
-"di <strong>tradurre</strong>! Poiché Pootle è <strong>Free "
-"Software</strong>, è possibile scaricarlo ed eseguire la vostra copia se "
-"volete. È anche possibile aiutare partecipando allo sviluppo in molti modi "
-"(non è necessario saper programmare)."
+"<strong>Pootle</strong> è un portale web di semplice utilizzo che consente "
+"di <strong>tradurre</strong>! Poiché Pootle è <strong>Software "
+"libero</strong>, chiunque può scaricarlo ed eseguire una propria "
+"installazione. È inoltre possibile aiutare il progetto partecipando in molti "
+"modi allo sviluppo (non è necessario saper programmare)."
 
 #: indexpage.py:61
 msgid ""
@@ -310,7 +311,7 @@ msgid ""
 msgstr ""
 "Lo stesso progetto Pootle è ospitato su <a "
 "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> dove "
-"è possibile trovare i dettagli su codice sorgente, mailing lists ecc."
+"è possibile trovare i dettagli su codice sorgente, mailing list, ecc."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -322,7 +323,7 @@ msgid ""
 msgstr ""
 "Il nome sta per<b>PO</b>-based<b>O</b>nline <b>T</b>ranslation "
 "/<b>L</b>ocalization <b>E</b>ngine (motore di traduzione e localizzazione "
-"basato su PO), ma forse potreste aver bisogno di leggere <a "
+"basato su PO), ma forse potrebbe essere utile leggere <a "
 "href=\"http://www.thechestnut.com/flumps.htm\">questo</a>."
 
 #: indexpage.py:65
@@ -337,8 +338,8 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
-"Questo sito sta eseguendo:<br />Pootle %s<br />Translate Toolkit %s<br "
-"/>jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+"Questo sito utilizza:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
 #: indexpage.py:133
 #, python-format
@@ -359,13 +360,11 @@ msgstr "Amministra"
 
 #: indexpage.py:138
 msgid "Quick Links"
-msgstr "Collegamenti Veloci"
+msgstr "Collegamenti veloci"
 
 #: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
-msgstr ""
-"Si prega di cliccare su 'Modifica opzioni' e selezionare alcune lingue e "
-"progetti"
+msgstr "Fare clic su 'Modifica opzioni' e selezionare alcune lingue e progetti"
 
 #: indexpage.py:199
 #, python-format
@@ -388,11 +387,11 @@ msgstr "Amministra"
 
 #: indexpage.py:221
 msgid "Language Code"
-msgstr "Codice Lingua"
+msgstr "Codice lingua"
 
 #: indexpage.py:222
 msgid "Language Name"
-msgstr "Nome Lingua"
+msgstr "Nome lingua"
 
 #: indexpage.py:260
 #, python-format
@@ -409,7 +408,7 @@ msgstr "Lingua"
 #: indexpage.py:354
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr "%s: Progetto %s, Lingua %s"
+msgstr "%s: progetto %s, lingua %s"
 
 #. l10n: text next to search field
 #: indexpage.py:362 translatepage.py:145
@@ -426,19 +425,19 @@ msgstr "Impossibile caricare il file, nessun file allegato"
 
 #: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
-msgstr "È possibile caricare solo files PO e zips di files PO"
+msgstr "È possibile caricare solo file PO e zip contenenti file PO"
 
 #: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
 msgid "Assign Strings"
-msgstr "Assegna Stringhe"
+msgstr "Assegna stringhe"
 
 #: indexpage.py:536 translatepage.py:239
 msgid "Assign Action"
-msgstr "Assegna Azione"
+msgstr "Assegna azione"
 
 #: indexpage.py:537 translatepage.py:238
 msgid "Assign to User"
-msgstr "Assegna all'Utente"
+msgstr "Assegna all'utente"
 
 #: indexpage.py:543
 msgid "goals"
@@ -454,7 +453,7 @@ msgstr "Aggiungere obiettivo"
 
 #: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
-msgstr "Carica File"
+msgstr "Carica file"
 
 #: indexpage.py:551
 msgid "Select file to upload"
@@ -488,7 +487,7 @@ msgstr "Nessun obiettivo"
 
 #: indexpage.py:686
 msgid "Add User"
-msgstr "Aggiungi Utente"
+msgstr "Aggiungi utente"
 
 #: indexpage.py:731
 msgid "PO file"
@@ -496,11 +495,11 @@ msgstr "File PO"
 
 #: indexpage.py:735
 msgid "XLIFF file"
-msgstr "XLIFF file"
+msgstr "File XLIFF"
 
 #: indexpage.py:739
 msgid "Qt .ts file"
-msgstr "Qt .ts file"
+msgstr "File Qt .ts"
 
 #: indexpage.py:743
 msgid "CSV file"
@@ -522,7 +521,7 @@ msgstr "Accetta"
 
 #: indexpage.py:798
 msgid "All Strings"
-msgstr "Tutte le Stringhe"
+msgstr "Tutte le stringhe"
 
 #: indexpage.py:799 pagelayout.py:249
 msgid "Untranslated"
@@ -534,40 +533,40 @@ msgstr "Non assegnate"
 
 #: indexpage.py:801
 msgid "Unassigned and Untranslated"
-msgstr "Non assegnate e Non tradotte"
+msgstr "Non assegnate e non tradotte"
 
 #: indexpage.py:808
 msgid "Set Goal"
-msgstr "Imposta Obiettivo"
+msgstr "Imposta obiettivo"
 
 #: indexpage.py:812
 msgid "Select Multiple"
-msgstr "Selezione Multipla"
+msgstr "Selezione multipla"
 
 #: indexpage.py:814
 msgid "Assign To"
-msgstr "Assegna A"
+msgstr "Assegna a"
 
 #: indexpage.py:843
 msgid "Show Editing Functions"
-msgstr "Mostra Funzioni di Modifica"
+msgstr "Mostra funzioni di modifica"
 
 #: indexpage.py:844
 msgid "Show Statistics"
-msgstr "Mostra Statistiche"
+msgstr "Mostra statistiche"
 
 #: indexpage.py:845
 msgid "Show Tracks"
-msgstr "Mostra Tracce"
+msgstr "Mostra percorsi"
 
 #: indexpage.py:845
 msgid "Hide Tracks"
-msgstr "Nascondi Tracce"
+msgstr "Nascondi percorsi"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:847
 msgid "Show Checks"
-msgstr "Mostra i controlli"
+msgstr "Mostra controlli"
 
 #: indexpage.py:847
 msgid "Hide Checks"
@@ -575,32 +574,32 @@ msgstr "Nascondi controlli"
 
 #: indexpage.py:848
 msgid "Show Goals"
-msgstr "Mostra Obiettivi"
+msgstr "Mostra obiettivi"
 
 #: indexpage.py:848
 msgid "Hide Goals"
-msgstr "Nascondi Obiettivi"
+msgstr "Nascondi obiettivi"
 
 #: indexpage.py:849
 msgid "Show Assigns"
-msgstr "Mostra Assegnazioni"
+msgstr "Mostra assegnazioni"
 
 #: indexpage.py:849
 msgid "Hide Assigns"
-msgstr "Nascondi Assegnazioni"
+msgstr "Nascondi assegnazioni"
 
 #: indexpage.py:858
 #, python-format
 msgid "All Goals: %s"
-msgstr "Tutti i Goals: %s"
+msgstr "Tutti gli obiettivi: %s"
 
 #: indexpage.py:864
 msgid "Translate My Strings"
-msgstr "Traduci le Mie Stringhe"
+msgstr "Traduci le mie stringhe"
 
 #: indexpage.py:866
 msgid "View My Strings"
-msgstr "Vedi le Mie Stringhe"
+msgstr "Visualizza le mie stringhe"
 
 #: indexpage.py:871
 msgid "No strings assigned to you"
@@ -608,7 +607,7 @@ msgstr "Nessuna stringa assegnata a te"
 
 #: indexpage.py:875
 msgid "Quick Translate My Strings"
-msgstr "Traduzione Veloce delle Mie Stringhe"
+msgstr "Traduzione rapida delle mie stringhe"
 
 #: indexpage.py:879
 msgid "No untranslated strings assigned to you"
@@ -620,7 +619,7 @@ msgstr "Rivedi i suggerimenti"
 
 #: indexpage.py:885
 msgid "View Suggestions"
-msgstr "Vedi i suggerimenti"
+msgstr "Visualizza i suggerimenti"
 
 #: indexpage.py:890
 msgid "Quick Translate"
@@ -628,7 +627,7 @@ msgstr "Traduzione veloce"
 
 #: indexpage.py:892
 msgid "View Untranslated"
-msgstr "Vedi le voci non tradotte"
+msgstr "Visualizza le voci non tradotte"
 
 #: indexpage.py:896
 msgid "No untranslated items"
@@ -636,7 +635,7 @@ msgstr "Non ci sono voci da tradurre"
 
 #: indexpage.py:899
 msgid "Translate All"
-msgstr "Traduci Tutto"
+msgstr "Traduci tutto"
 
 #: indexpage.py:914
 msgid "ZIP of goal"
@@ -686,7 +685,7 @@ msgstr "Il mio account"
 
 #: pagelayout.py:32
 msgid "Docs & help"
-msgstr "Documenti & aiuto"
+msgstr "Documenti e aiuto"
 
 #: pagelayout.py:34
 msgid "Log out"
@@ -711,7 +710,7 @@ msgstr "Logo di Pootle"
 
 #: pagelayout.py:84
 msgid "About this Pootle server"
-msgstr "Info su questo server Pootle"
+msgstr "Informazioni su questo server Pootle"
 
 #: pagelayout.py:160
 msgid "All goals"
@@ -720,14 +719,14 @@ msgstr "Tutti gli obiettivi"
 #: pagelayout.py:231
 #, python-format
 msgid "%d/%d files"
-msgstr "%d/%d files"
+msgstr "%d/%d file"
 
 #: pagelayout.py:234
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d file "
-msgstr[1] "%d files"
+msgstr[1] "%d file"
 
 #: pagelayout.py:236
 #, python-format
@@ -752,15 +751,15 @@ msgstr "Parole tradotte"
 
 #: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
-msgstr "Intelligente"
+msgstr "Dubbia"
 
 #: pagelayout.py:247
 msgid "Fuzzy percentage"
-msgstr "Percentuale intelligenti"
+msgstr "Percentuale dubbia"
 
 #: pagelayout.py:248
 msgid "Fuzzy words"
-msgstr "Parole intelligenti"
+msgstr "Termini dubbi"
 
 #: pagelayout.py:250
 msgid "Untranslated percentage"
@@ -805,7 +804,7 @@ msgstr "Login fallito"
 
 #: pootle.py:349 pootle.py:380
 msgid "Redirecting to login..."
-msgstr "Stai per essere reindirizzato al login..."
+msgstr "Reindirizzamento al login in corso..."
 
 #: pootle.py:352
 msgid "Need to log in to access home page"
@@ -821,11 +820,11 @@ msgstr "È necessario autenticarsi per accedere alla pagina di amministrazione"
 
 #: pootle.py:390
 msgid "Redirecting to home..."
-msgstr "Stai per essere reindirizzato alla home..."
+msgstr "Reindirizzamento alla home in corso..."
 
 #: pootle.py:393
 msgid "You do not have the rights to administer pootle."
-msgstr "Non si possiedono i diritti per amministrare pootle."
+msgstr "Non si possiedono i permessi per amministrare pootle."
 
 #. l10n: Verb
 #: projects.py:138
@@ -853,7 +852,7 @@ msgstr "Archivia"
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:147
 msgid "Compile PO files"
-msgstr "Compila i files PO"
+msgstr "Compila i file PO"
 
 #: projects.py:148
 msgid "Assign"
@@ -866,43 +865,48 @@ msgstr "Non è possibile rimuovere gli utenti \"nobody\" o \"default\""
 
 #: projects.py:382 projects.py:444
 msgid "You do not have rights to alter goals here"
-msgstr "Non si dispone dei diritti per alterare gli obiettivi qui"
+msgstr ""
+"Non si dispone dei permessi per modificare gli obiettivi in questa sezione"
 
 #: projects.py:510
 msgid "You do not have rights to upload files here"
-msgstr "Non si dispone dei diritti per caricare files qui"
+msgstr "Non si dispone dei permessi per caricare file in questa sezione"
 
 #: projects.py:513
 msgid "You do not have rights to overwrite files here"
-msgstr "Non si dispone dei diritti per sovrascrivere i files qui"
+msgstr "Non si dispone dei permessi per sovrascrivere file in questa sezione"
 
 #: projects.py:515
 msgid "You do not have rights to upload new files here"
-msgstr "Non si dispone dei diritti per caricare nuovi files qui"
+msgstr "Non si dispone dei permessi per caricare nuovi file in questa sezione"
 
 #: projects.py:524
 msgid "You do not have rights to update files here"
-msgstr "Non si dispone dei diritti per caricare files qui"
+msgstr "Non si dispone dei permessi per aggiornare file in questa sezione"
 
 #: projects.py:555
 msgid "You do not have rights to commit files here"
-msgstr "Non si dispone dei diritti per caricare files qui"
+msgstr ""
+"Non si dispone dei permessi per eseguire il commit di file in questa sezione"
 
 #: projects.py:977 projects.py:1019
 msgid "You do not have rights to alter assignments here"
-msgstr "Non si possiedono i diritti per alterare gli assegnamenti qui"
+msgstr ""
+"Non si dispone dei permessi per modificare le assegnazioni in questa sezione"
 
 #: projects.py:1219
 msgid "You do not have rights to change translations here"
-msgstr "Non si possiedono i diritti per modificare le traduzioni qui"
+msgstr ""
+"Non si dispone dei permessi per modificare le traduzioni in questa sezione"
 
 #: projects.py:1229
 msgid "You do not have rights to suggest changes here"
-msgstr "Non si possiedono i diritti per suggerire modifiche qui"
+msgstr "Non si dispone dei permessi per suggerire modifiche in questa sezione"
 
 #: projects.py:1245 projects.py:1263
 msgid "You do not have rights to review suggestions here"
-msgstr "Non si possiedono i diritti per rivedere i suggerimenti qui"
+msgstr ""
+"Non si dispone dei permessi per rivedere i suggerimenti in questa sezione"
 
 #: translatepage.py:103
 #, python-format
@@ -911,7 +915,7 @@ msgid ""
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d tradotti\n"
-"(%d non tradotti, %d fuzzy)"
+"(%d non tradotti, %d dubbi)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -920,7 +924,7 @@ msgstr ""
 #: translatepage.py:113
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "%s: traduce %s in %s: %s"
+msgstr "%s: traduzione %s in %s: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:128
@@ -943,22 +947,22 @@ msgstr "Rifiuta suggerimento"
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
 msgid "Translator comments"
-msgstr "Note del Traduttore"
+msgstr "Note del traduttore"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:139
 msgid "Developer comments"
-msgstr "Note dello Sviluppatore"
+msgstr "Note dello sviluppatore"
 
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:141
 msgid "Related"
-msgstr "Associato"
+msgstr "Correlazioni"
 
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr "Sto lavorando..."
+msgstr "Elaborazione in corso..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
@@ -968,11 +972,11 @@ msgstr "Errore: qualcosa non ha funzionato"
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
 msgid "End of batch"
-msgstr "Fine del batch"
+msgstr "Fine della procedura batch"
 
 #: translatepage.py:173
 msgid "Click here to return to the index"
-msgstr "Clicca qui per ritornare all'indice"
+msgstr "Fare clic qui per ritornare all'indice"
 
 #. l10n: noun (the start)
 #: translatepage.py:187 translatepage.py:190
@@ -983,7 +987,7 @@ msgstr "Inizio"
 #: translatepage.py:194 translatepage.py:197
 #, python-format
 msgid "Previous %d"
-msgstr "%d Precedenti"
+msgstr "%d precedenti"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: translatepage.py:199
@@ -1006,16 +1010,16 @@ msgstr "Fine"
 #: translatepage.py:230
 #, python-format
 msgid "checking %s"
-msgstr "sto controllando %s"
+msgstr "Controllo in corso di %s"
 
 #: translatepage.py:398
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr "Non ci sono voci corrispondenti a quella cercata('%s')"
+msgstr "Non sono presenti voci corrispondenti al criterio di ricerca ('%s')"
 
 #: translatepage.py:400
 msgid "You have finished going through the items you selected"
-msgstr "Hai concluso il percorso fra le voci selezionate"
+msgstr "Non sono presenti altri voci in base alla selezione"
 
 #: translatepage.py:643
 msgid "Singular"
@@ -1051,7 +1055,7 @@ msgstr "Accetta"
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:682
 msgid "Grow"
-msgstr "Aumenta"
+msgstr "Allarga"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:684
@@ -1062,7 +1066,7 @@ msgstr "Riduci"
 #: translatepage.py:870
 #, python-format
 msgid "Plural Form %d"
-msgstr "Forma Plurale %d"
+msgstr "Forma plurale %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:722
@@ -1070,12 +1074,12 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"Traduzione impossibile poichè le informazioni sul plurale per la tua lingua "
-"non sono disponibili. Si prega di contattare l'amministratore del sito."
+"Non è possibile tradurre in quanto non sono disponibili informazioni sulle "
+"forme plurali per la lingua in uso. Contattare l'amministratore del sito."
 
 #: translatepage.py:804
 msgid "Current Translation:"
-msgstr "Traduzione Corrente:"
+msgstr "Traduzione corrente:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
@@ -1102,7 +1106,7 @@ msgstr "Suggerimento:"
 #: users.py:43
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
-msgstr "Devi inserire una password valida di almeno %d caratteri."
+msgstr "È necessario inserire una password valida di almeno %d caratteri."
 
 #: users.py:45
 msgid "The password is not the same as the confirmation."
@@ -1134,7 +1138,7 @@ msgstr "Default"
 
 #: users.py:112
 msgid "Please enter your registration details"
-msgstr "Si prega di inserire i dettagli della propria registrazione"
+msgstr "Inserire i dettagli relativi alla propria registrazione"
 
 #: users.py:115 users.py:475
 msgid "Pootle Registration"
@@ -1142,19 +1146,19 @@ msgstr "Registrazione a Pootle"
 
 #: users.py:122 users.py:158
 msgid "Your requested username"
-msgstr "Il tuo nome utente richiesto"
+msgstr "Nome utente richiesto"
 
 #: users.py:125 users.py:429
 msgid "You must supply a valid email address"
-msgstr "Devi fornire un indirizzo email valido"
+msgstr "È necessario fornire un indirizzo e-mail valido"
 
 #: users.py:128
 msgid "Your full name"
-msgstr "Il tuo nome completo"
+msgstr "Nome completo"
 
 #: users.py:131
 msgid "Your desired password"
-msgstr "La tua password"
+msgstr "Password"
 
 #: users.py:133 users.py:189
 msgid "Confirm password"
@@ -1162,15 +1166,15 @@ msgstr "Conferma password"
 
 #: users.py:134
 msgid "Type your password again to ensure it is entered correctly"
-msgstr "Digita nuovamente la tua password per essere sicuro che sia corretta"
+msgstr "Digitare nuovamente la password per verificarne la correttezza"
 
 #: users.py:136
 msgid "Register Account"
-msgstr "Registra l'Account"
+msgstr "Registra l'account"
 
 #: users.py:145
 msgid "Please enter your activation details"
-msgstr "Inserire i dettagli della propria attivazione"
+msgstr "Inserire i dettagli relativi alla propria attivazione"
 
 #: users.py:150
 msgid "Pootle Account Activation"
@@ -1182,7 +1186,7 @@ msgstr "Codice di attivazione"
 
 #: users.py:161
 msgid "The activation code you received"
-msgstr "Il codice di attivazione che hai ricevuto"
+msgstr "Il codice di attivazione ricevuto"
 
 #: users.py:163
 msgid "Activate Account"
@@ -1195,15 +1199,15 @@ msgstr "Opzioni per: %s"
 
 #: users.py:181
 msgid "Personal Details"
-msgstr "Dettagli Personali"
+msgstr "Dettagli personali"
 
 #: users.py:186
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 #: users.py:190
 msgid "Translation Interface Configuration"
-msgstr "Configurazione Interfaccia Traduzione"
+msgstr "Configurazione interfaccia di traduzione"
 
 #: users.py:191
 msgid "User Interface language"
@@ -1211,11 +1215,11 @@ msgstr "Lingua dell'interfaccia utente"
 
 #: users.py:192
 msgid "My Projects"
-msgstr "Miei Progetti"
+msgstr "I miei progetti"
 
 #: users.py:194
 msgid "My Languages"
-msgstr "Mie Lingue"
+msgstr "Le mie lingue"
 
 #: users.py:196
 msgid "Home page"
@@ -1232,11 +1236,11 @@ msgstr "Nessuno"
 
 #: users.py:257
 msgid "Input Height (in lines)"
-msgstr "Altezza Input (in linee)"
+msgstr "Altezza input (in linee)"
 
 #: users.py:258
 msgid "Number of rows in view mode"
-msgstr "Numero di righe in modalità vista"
+msgstr "Numero di righe in modalità visualizzazione"
 
 #: users.py:259
 msgid "Number of rows in translate mode"
@@ -1248,81 +1252,82 @@ msgstr "Errore"
 
 #: users.py:359
 msgid "You need to be siteadmin to change users"
-msgstr "È necessario essere amministratore del sito pr modificare gli utenti"
+msgstr ""
+"È necessario essere amministratore del sito per poter modificare gli utenti"
 
 #: users.py:423
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
-"Il nome utente deve essere alfanumerico e deve iniziare con un carattere "
-"alfabetico."
+"Il nome utente deve contenere lettere o numeri e deve iniziare con un "
+"carattere alfabetico."
 
 #: users.py:438
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
-"Tu (o qualcun altro) ha tentato di registrare an account con il tuo nome "
-"utente."
+msgstr "Qualcun altro ha già cercato di registrare un account con questo nome "
+"utente.\n"
 
 #: users.py:439
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr "Non memorizziamo la tua password attuale ma solo una sua codifica."
+msgstr "Non viene memorizzata la password reale ma soltanto una stringa di controllo "
+"(hash).\n"
 
 #: users.py:441
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr "In caso di problemi con la registrazione, si prega di contattare %s."
+msgstr "In caso di problemi con la registrazione contattare %s.\n"
 
 #: users.py:443
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr "In caso di problemi con la registrazione, si prega di contattare "
-"l'amministratore del sito.\n"
+msgstr "In caso di problemi con la registrazione contattare l'amministratore del "
+"sito.\n"
 
 #: users.py:444
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr "Questo nome utente esiste già. Verrà inviata una email all'indirizzo email "
-"registrato.\n"
+msgstr "Questo nome utente è già presente. Verrà inviata una e-mail all'indirizzo "
+"e-mail registrato.\n"
 
 #: users.py:446
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr "Sto effettuando <a href='%s'>login</a>"
+msgstr "<a href='%s'>Login</a> in corso\n"
 
 #: users.py:452
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr "E' stato creato un account Pootle utilizzando questo indirizzo email.\n"
+msgstr "E' stato creato un account Pootle utilizzando questo indirizzo e-mail.\n"
 
 #: users.py:454
 msgid "To activate your account, follow this link:\n"
-msgstr "Per attivare il tuo account, segui questo link:"
+msgstr "Per attivare l'account, aprire questo collegamento:\n"
 
 #: users.py:460
 #, python-format
 msgid ""
 "Your activation code is:\n"
 "%s\n"
-msgstr "Il tuo codice di attivazione è:%s"
+msgstr ""
+"Il codice di attivazione è: \n"
+"%s\n"
 
 #: users.py:462
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
-"Se non riesci a seguire il link, inserisci il codice alla pagina di "
-"attivazione."
+msgstr "Se non è possibile aprire il collegamento, inserire il codice nella pagina "
+"di attivazione.\n"
 
 #: users.py:463
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
-"Questo messagio viene inviato per verificare che l'indirizzo email sia "
-"corretto. Se non vuoi registrare un account, puoi semplicemente ignorare il "
-"messaggio."
+msgstr "Questo messaggio viene inviato per verificare che l'indirizzo e-mail sia "
+"corretto. Se non di desidera registrare l'account, è sufficiente ignorare "
+"questo messaggio.\n"
 
 #: users.py:465
 #, python-format
@@ -1330,45 +1335,46 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
-"Account creato. Ti saranno inviati per email i dettagli del login e un "
-"codice di attivazione. Per favore inserisci il tuo codice di attivazione "
-"nella <a href='%s'>pagina di attivazione</a>."
+"Account creato. Saranno inviati per e-mail i dettagli del login e un codice "
+"di attivazione. Inserire il codice di attivazione nella <a href='%s'>pagina "
+"di attivazione</a>."
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"
-msgstr "(O sempliecemente clicca sul link nella email)"
+msgstr "(O semplicemente fare clic sul collegamento nella e-mail)"
 
 #: users.py:469
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr "Il tuo nome completo è: %s\n"
+msgstr "Il nome completo è: %s\n"
 
 #: users.py:471
 #, python-format
 msgid "Your password is: %s\n"
-msgstr "La tua password è: %s\n"
+msgstr "La password è: %s\n"
 
 #: users.py:472
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr "Il tuo indirizzo email registrato è: %s"
+msgstr "L'indirizzo e-mail registrato è: %s"
 
 #: users.py:500
 msgid "Redirecting to Registration Page..."
-msgstr "Stai per essere reindirizzato alla Pagina di Registrazione..."
+msgstr "Reindirizzamento alla pagina di registrazione in corso..."
 
 #: users.py:524
 msgid "Redirecting to login Page..."
-msgstr "Stai per essere reindirizzato alla Pagina di login..."
+msgstr "Reindirizzamento alla pagina di login in corso..."
 
 #: users.py:527
 msgid "Your account has been activated! Redirecting to login..."
 msgstr ""
-"Il tuo account è stato attivato! Stai per essere reindirizzato al login..."
+"L'account è stato attivato. Reindirizzamento alla pagina di login in "
+"corso..."
 
 #: users.py:531
 msgid "The activation information was not valid."
-msgstr "L'informazione di attivazione che hai inserito non era valida."
+msgstr "Il codice di attivazione inserito non è valido."
 
 #: users.py:532
 msgid "Activation Failed"
@@ -1384,12 +1390,14 @@ msgstr "La larghezza dell'input deve essere un numero"
 
 #: users.py:651
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr "Il numero di righe visualizzate in modalità vista deve essere numerico"
+msgstr ""
+"Il numero di righe mostrate in modalità visualizzazione deve essere un "
+"numero"
 
 #: users.py:652
 msgid "The number of rows displayed in translate mode must be numeric"
 msgstr ""
-"Il numero di righe visualizzate in modalità traduzione deve essere numerico"
+"Il numero di righe mostrate in modalità traduzione deve essere un numero"
 
 #~ msgid "Accept"
 #~ msgstr "Accetta"

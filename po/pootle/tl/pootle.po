@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-09-06 08:18+0000\n"
+"PO-Revision-Date: 2009-11-10 17:22+0200\n"
 "Last-Translator: Cindy Trinidad <cindytrinidad@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: tl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 1.2.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -373,8 +375,8 @@ msgstr ""
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d proyekto, karaniwan %d%% nasalin"
+msgstr[1] "%d mga proyekto, karaniwan %d%% nasalin"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -400,8 +402,8 @@ msgstr "Pangalan ng Lenguwahe"
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d wika, karaniwan %d%% naisalin"
+msgstr[1] "%d mga wika, karaniwan %d%% naisalin"
 
 #: indexpage.py:273
 msgid "Language"
@@ -657,8 +659,8 @@ msgstr "Gumawa ng SDF"
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d string (%d%%) hindi nagtagumpay"
+msgstr[1] "%d na mga string (%d%%) hindi nagtagumpay"
 
 #: indexpage.py:1003
 #, python-format
@@ -729,8 +731,8 @@ msgstr "%d/%d mga file"
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d file"
+msgstr[1] "%d mga file"
 
 #: pagelayout.py:236
 #, python-format

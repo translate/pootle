@@ -1,14 +1,13 @@
 # translation of pootle.po to English South Africa
 # Neville Makopo <neville@impilinux.co.za>, 2007.
-# Abe Mathibela <abe a-t translate - org - za>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-16 16:40+0200\n"
-"PO-Revision-Date: 2008-09-17 11:47+0200\n"
-"Last-Translator: Abe Mathibela <abe a-t translate - org - za>\n"
-"Language-Team: translate-discuss-st@lists.sourceforge.net\n"
+"POT-Creation-Date: 2008-08-19 12:36+0200\n"
+"PO-Revision-Date: 2007-06-12 15:09+0200\n"
+"Last-Translator: Neville Makopo <neville@impilinux.co.za>\n"
+"Language-Team: English South Africa <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"

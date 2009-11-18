@@ -1,12 +1,8 @@
-# Faroese translation of Pootle.
-# Copyright (C) 2008 Zuza Software Foundation (Translate.org.za)
-# This file is distributed under the same license as the Pootle package.
-# Jón Joensen, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-08-19 12:36+0200\n"
+"POT-Creation-Date: 2007-01-17 14:02+0200\n"
 "PO-Revision-Date: 2008-11-28 23:26+0000\n"
 "Last-Translator: Jón Joensen <jon@umseting.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,61 +11,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle 1.2.0-rc1\n"
 
-#: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
-#: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
-#: indexpage.py:139 indexpage.py:201 indexpage.py:264 indexpage.py:352
-#: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
-#: users.py:177
+#: translatepage.py:92 adminpages.py:35 adminpages.py:74 adminpages.py:130
+#: adminpages.py:192 adminpages.py:279 adminpages.py:339 pagelayout.py:70
+#: users.py:58 users.py:91 users.py:127 users.py:149 indexpage.py:73
+#: indexpage.py:96 indexpage.py:136 indexpage.py:194 indexpage.py:256
+#: indexpage.py:342
 msgid "Pootle Demo"
 msgstr "Pootle Demo"
 
-#: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
-#: pagelayout.py:27
+#: adminpages.py:43 adminpages.py:82 adminpages.py:138 adminpages.py:200
+#: pagelayout.py:36
 msgid "Home"
 msgstr "Heim"
 
-#: adminpages.py:46 adminpages.py:212
+#: adminpages.py:44 adminpages.py:202
 msgid "Users"
 msgstr "Brúkarir"
 
-#: adminpages.py:47 adminpages.py:87 indexpage.py:93
+#: adminpages.py:45 adminpages.py:84 indexpage.py:94
 msgid "Languages"
 msgstr "Tungumál"
 
-#: adminpages.py:48 adminpages.py:146 indexpage.py:94
+#: adminpages.py:46 adminpages.py:140 indexpage.py:95
 msgid "Projects"
 msgstr "Projekt"
 
-#: adminpages.py:49
+#: adminpages.py:47
 msgid "General options"
 msgstr "Vanligir møguleikar"
 
-#: adminpages.py:50 users.py:182
+#: adminpages.py:48 users.py:153
 msgid "Option"
 msgstr "Møguleiki"
 
-#: adminpages.py:51 users.py:183
+#: adminpages.py:49 users.py:154
 msgid "Current value"
 msgstr "Verandi virði"
 
-#: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
-#: users.py:197
+#: adminpages.py:50 adminpages.py:85 adminpages.py:141 adminpages.py:203
+#: users.py:168
 msgid "Save changes"
 msgstr "Goym broytingar"
 
-#: adminpages.py:56
+#: adminpages.py:54
 msgid "Title"
 msgstr "Heiti"
 
-#: adminpages.py:57
+#: adminpages.py:55
 msgid "Description"
 msgstr "Frágreiðing"
 
-#: adminpages.py:58
+#: adminpages.py:56
 msgid "Base URL"
 msgstr "Grund URL"
 
-#: adminpages.py:59
+#: adminpages.py:57
 msgid "Home Page"
 msgstr "Heimasíða"
 
@@ -77,58 +73,57 @@ msgstr "Heimasíða"
 msgid "Pootle Languages Admin Page"
 msgstr "Pootle mál fyrisitingarsíða"
 
-#: adminpages.py:86 adminpages.py:145 adminpages.py:211
+#: adminpages.py:83 adminpages.py:139 adminpages.py:201
 msgid "Main admin page"
 msgstr "Høvuðsfyrisitingarsíða"
 
-#: adminpages.py:92 adminpages.py:286
+#: adminpages.py:89
 msgid "ISO Code"
 msgstr "ISO Kota"
 
-#: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
-#: users.py:127
+#: adminpages.py:90 adminpages.py:146 adminpages.py:208 users.py:100
 msgid "Full Name"
 msgstr "Fult navn"
 
-#: adminpages.py:94
+#: adminpages.py:91
 msgid "(add language here)"
 msgstr "(skriva mál her)"
 
-#: adminpages.py:95
+#: adminpages.py:92
 msgid "Special Chars"
 msgstr "Serligir stavir"
 
-#: adminpages.py:95
+#: adminpages.py:92
 msgid "(special characters)"
 msgstr "(serligir stavir)"
 
-#: adminpages.py:96 indexpage.py:224
+#: adminpages.py:93 indexpage.py:217
 msgid "Number of Plurals"
 msgstr "Tal fyri fleirtal"
 
-#: adminpages.py:96
+#: adminpages.py:93
 msgid "(number of plurals)"
 msgstr "(tal fyri fleirtal)"
 
-#: adminpages.py:97 indexpage.py:225
+#: adminpages.py:94 indexpage.py:218
 msgid "Plural Equation"
 msgstr "Fleirtalsjavnvág"
 
-#: adminpages.py:97
+#: adminpages.py:94
 msgid "(plural equation)"
 msgstr "(fleirtalsjavnvág)"
 
-#: adminpages.py:98
+#: adminpages.py:95
 msgid "Remove Language"
 msgstr "Strika mál"
 
 #. l10n: The parameter is a languagecode, projectcode or username
-#: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
+#: adminpages.py:110 adminpages.py:173 adminpages.py:235 adminpages.py:405
 #, python-format
 msgid "Remove %s"
-msgstr "Strika %s"
+msgstr "Strika %"
 
-#: adminpages.py:132
+#: adminpages.py:128
 msgid "Standard"
 msgstr "Standardur"
 
@@ -136,23 +131,23 @@ msgstr "Standardur"
 msgid "Pootle Projects Admin Page"
 msgstr "Pootle projekt fyrisitingarsíða"
 
-#: adminpages.py:151
+#: adminpages.py:145
 msgid "Project Code"
 msgstr "Projekt kota"
 
-#: adminpages.py:153
+#: adminpages.py:147
 msgid "(add project here)"
 msgstr "(skriva projekt her)"
 
-#: adminpages.py:154
+#: adminpages.py:148
 msgid "Project Description"
 msgstr "Projektfrágreiðing"
 
-#: adminpages.py:154
+#: adminpages.py:148
 msgid "(project description)"
 msgstr "(projektfrágreiðing)"
 
-#: adminpages.py:155
+#: adminpages.py:149
 msgid "Checker Style"
 msgstr "Eftirlitisformur"
 
@@ -160,11 +155,11 @@ msgstr "Eftirlitisformur"
 msgid "File Type"
 msgstr "Fíluslag"
 
-#: adminpages.py:157
+#: adminpages.py:150
 msgid "Create MO Files"
 msgstr "Skapa MO fílur"
 
-#: adminpages.py:158
+#: adminpages.py:151
 msgid "Remove Project"
 msgstr "Strika projekt"
 
@@ -172,125 +167,125 @@ msgstr "Strika projekt"
 msgid "Pootle User Admin Page"
 msgstr "Pootle brúkara fyrisitingarsíða"
 
-#: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
+#: adminpages.py:356 users.py:94 users.py:130
 msgid "Username"
 msgstr "Brúkaranavn"
 
-#: adminpages.py:219 users.py:403
+#: adminpages.py:209 users.py:343
 msgid "(add full name here)"
 msgstr "(skriva fult navn her)"
 
-#: adminpages.py:220 users.py:124
+#: adminpages.py:210 users.py:97
 msgid "Email Address"
 msgstr "T-post bústaður"
 
-#: adminpages.py:220 users.py:406
+#: adminpages.py:210 users.py:346
 msgid "(add email here)"
 msgstr "(skriva t-post her)"
 
-#: adminpages.py:221 users.py:130 users.py:188
+#: adminpages.py:211 users.py:103 users.py:159
 msgid "Password"
 msgstr "Loyniorð"
 
-#: adminpages.py:221 users.py:400
+#: adminpages.py:211 users.py:340
 msgid "(add password here)"
 msgstr "(skriva loyniorð her)"
 
-#: adminpages.py:222
+#: adminpages.py:212
 msgid "Activated"
 msgstr "Virkið"
 
-#: adminpages.py:222
+#: adminpages.py:212
 msgid "Activate New User"
 msgstr "Ger nýggjan brúkara virknan"
 
-#: adminpages.py:223
+#: adminpages.py:213
 msgid "Remove User"
 msgstr "Strika brúkara"
 
-#: adminpages.py:278
+#: adminpages.py:267
 msgid "Back to main page"
 msgstr "Aftur til høvuðssíðu"
 
-#: adminpages.py:279
+#: adminpages.py:268
 msgid "Existing languages"
 msgstr "Verandi mál"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:283
+#: adminpages.py:272
 msgid "Update Languages"
 msgstr "Dagfør mál"
 
-#: adminpages.py:284
+#: adminpages.py:273
 #, python-format
 msgid "Pootle Admin: %s"
-msgstr "Pootle fyrisiting: %s"
+msgstr "Pootle fyrisiting: %"
 
-#: adminpages.py:285 adminpages.py:356
+#: adminpages.py:274 adminpages.py:336
 msgid "You do not have the rights to administer this project."
 msgstr "Tú hevur ikki rættindi til at fyrisita hetta projektið."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
-#: adminpages.py:289
+#: adminpages.py:276
 msgid "Update from templates"
 msgstr "Dagfør frá formi"
 
-#: adminpages.py:298
+#: adminpages.py:284
 msgid "Add Language"
 msgstr "Skriva tungumál"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
-#: adminpages.py:336
+#: adminpages.py:316
 #, python-format
 msgid "Pootle Admin: %s %s"
 msgstr "Pootle fyrisiting %s %s"
 
-#: adminpages.py:337
+#: adminpages.py:317
 msgid "Project home page"
 msgstr "Projektheimasíða"
 
-#: adminpages.py:355
+#: adminpages.py:335
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
 msgstr "Síggi ikki rættindi fyri brúkaranavn %s - brúkari er ikki til"
 
-#: adminpages.py:372
+#: adminpages.py:352
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
 "Hetta er eitt GNU-slag av projekti (ein leiðvísari, fílur nevndar eftir "
 "tungumáli)."
 
-#: adminpages.py:374
+#: adminpages.py:354
 msgid "This is a standard style project (one directory per language)."
 msgstr ""
 "Hetta er eitt vanligt slag av projekti (ein leiðvísari fyri tungumálið)."
 
-#: adminpages.py:375
+#: adminpages.py:355
 msgid "User Permissions"
 msgstr "Brúkaraloyvi"
 
-#: adminpages.py:377
+#: adminpages.py:357
 msgid "(select to add user)"
 msgstr "(vel legg afturat brúkara)"
 
-#: adminpages.py:378
+#: adminpages.py:358
 msgid "Rights"
 msgstr "Rættindi"
 
-#: adminpages.py:379 indexpage.py:1008
+#: adminpages.py:359 indexpage.py:988
 msgid "Remove"
 msgstr "Strika"
 
-#: adminpages.py:406
+#: adminpages.py:386
 msgid "Update Rights"
 msgstr "Dagfør rættindi"
 
-#: indexpage.py:58
+#: indexpage.py:61
 msgid "About Pootle"
 msgstr "Um Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:60
+#: indexpage.py:63
 msgid ""
 "<strong>Pootle</strong> is a simple web portal that should allow you to "
 "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
@@ -304,7 +299,7 @@ msgstr ""
 "vilt. Tú kanst eisini taka lut í menningini á nógvar hættir (tær nýtist ikki "
 "at duga at forrita)."
 
-#: indexpage.py:61
+#: indexpage.py:64
 msgid ""
 "The Pootle project itself is hosted at <a href=\"http://translate."
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
@@ -316,7 +311,7 @@ msgstr ""
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:64
+#: indexpage.py:67
 msgid ""
 "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
@@ -326,13 +321,13 @@ msgstr ""
 "<b>S</b>taðfestingar <b>M</b>askina, men tú hevur kanska brúk fyri at lesa "
 "<a href=\"http://www.thechestnut.com/flumps.htm\">hetta</a>."
 
-#: indexpage.py:65
+#: indexpage.py:68
 msgid "Versions"
 msgstr "Útgávur"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
-#: indexpage.py:68
+#: indexpage.py:71
 #, python-format
 msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
@@ -341,33 +336,33 @@ msgstr ""
 "Henda síðan koyrir:<br />Pootle %s<br />Umsetingartól %s<br />jTól %s<br "
 "/>Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
-#: indexpage.py:133
+#: indexpage.py:130
 #, python-format
 msgid "User Page for: %s"
 msgstr "Brúkarasíða fyri: %s"
 
-#: indexpage.py:135
+#: indexpage.py:132
 msgid "Change options"
 msgstr "Broyt møguleikar"
 
-#: indexpage.py:136
+#: indexpage.py:133
 msgid "Admin page"
 msgstr "Fyrisitingarsíða"
 
-#: indexpage.py:137 projects.py:149
+#: projects.py:145 indexpage.py:134
 msgid "Administrate"
 msgstr "Skipa fyri"
 
-#: indexpage.py:138
+#: indexpage.py:135
 msgid "Quick Links"
 msgstr "Skjótar leinkjur"
 
-#: indexpage.py:142
+#: indexpage.py:139
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
 "Vinarligast klikk á 'Broyt møguleikar' og vel okkurt tungumál og projekt"
 
-#: indexpage.py:199
+#: indexpage.py:192
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
@@ -377,42 +372,42 @@ msgstr[1] "%d projekt, miðal %d%% umsett"
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
 #. l10n: This is used as a page title. Most languages won't need to change this
-#: indexpage.py:205 indexpage.py:268
+#: indexpage.py:198 indexpage.py:260
 #, python-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
+#: pagelayout.py:40 pagelayout.py:162 indexpage.py:200 indexpage.py:262
 msgid "Admin"
 msgstr "Fyrisiting"
 
-#: indexpage.py:221
+#: indexpage.py:214
 msgid "Language Code"
 msgstr "Tungumálskota"
 
-#: indexpage.py:222
+#: indexpage.py:215
 msgid "Language Name"
 msgstr "Tungumálsnavn"
 
-#: indexpage.py:260
+#: indexpage.py:252
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
 msgstr[0] "%d tungumál, miðal %d%% umsett"
 msgstr[1] "%d tungumál, miðal %d%% umsett"
 
-#: indexpage.py:273
+#: indexpage.py:265
 msgid "Language"
 msgstr "Tungumál"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
-#: indexpage.py:354
+#: indexpage.py:344
 #, python-format
 msgid "%s: Project %s, Language %s"
 msgstr "%s: Projekt %s, Tungumál %s"
 
 #. l10n: text next to search field
-#: indexpage.py:362 translatepage.py:145
+#: translatepage.py:122 indexpage.py:352
 msgid "Search"
 msgstr "Leita"
 
@@ -420,365 +415,365 @@ msgstr "Leita"
 msgid "Advanced Search"
 msgstr ""
 
-#: indexpage.py:422
+#: indexpage.py:409
 msgid "Cannot upload file, no file attached"
 msgstr "Klárar ikki at leggja fílu upp, eingin fíla tilknýtt"
 
-#: indexpage.py:428
+#: indexpage.py:415
 msgid "Can only upload PO files and zips of PO files"
 msgstr "Kann bara leggja PO fílur og zip av PO fílum upp"
 
-#: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
+#: translatepage.py:202 translatepage.py:205 indexpage.py:522 indexpage.py:525
 msgid "Assign Strings"
 msgstr "Tilluta streingir"
 
-#: indexpage.py:536 translatepage.py:239
+#: translatepage.py:204 indexpage.py:523
 msgid "Assign Action"
 msgstr "Tilluta gerð"
 
-#: indexpage.py:537 translatepage.py:238
+#: translatepage.py:203 indexpage.py:524
 msgid "Assign to User"
 msgstr "Luta til brúkara"
 
-#: indexpage.py:543
+#: indexpage.py:530
 msgid "goals"
 msgstr "mál"
 
-#: indexpage.py:544
+#: indexpage.py:531
 msgid "Enter goal name"
 msgstr "skriva navn á máli"
 
-#: indexpage.py:545
+#: indexpage.py:532
 msgid "Add Goal"
 msgstr "Skriva mál"
 
-#: indexpage.py:550 indexpage.py:552
+#: indexpage.py:537 indexpage.py:539
 msgid "Upload File"
 msgstr "Send fílu upp"
 
-#: indexpage.py:551
+#: indexpage.py:538
 msgid "Select file to upload"
 msgstr "Vel fílu at send upp"
 
 #. l10n: radio button text
-#: indexpage.py:557 projects.py:141
+#: projects.py:138 indexpage.py:544
 msgid "Overwrite"
 msgstr "Skriva útyvir"
 
 #. l10n: tooltip
-#: indexpage.py:559
+#: indexpage.py:546
 msgid "Overwrite the current file if it exists"
 msgstr "Skriva yvir verandi fílu um hon er til"
 
 #. l10n: radio button text
-#: indexpage.py:561
+#: indexpage.py:548
 msgid "Merge"
 msgstr "Samein"
 
 #. l10n: tooltip
-#: indexpage.py:563
+#: indexpage.py:550
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr "Samein fíluna við verandi fílu og broyt ósambæri til uppskot"
 
-#: indexpage.py:666
+#: indexpage.py:653
 msgid "Not in a goal"
 msgstr "Ikki í einum máli"
 
-#: indexpage.py:686
+#: indexpage.py:673
 msgid "Add User"
 msgstr "Skriva brúkara"
 
-#: indexpage.py:731
+#: indexpage.py:711
 msgid "PO file"
 msgstr "PO fíla"
 
-#: indexpage.py:735
+#: indexpage.py:715
 msgid "XLIFF file"
 msgstr "XLIFF fíla"
 
-#: indexpage.py:739
+#: indexpage.py:719
 msgid "Qt .ts file"
 msgstr "Qt .ts fíla"
 
-#: indexpage.py:743
+#: indexpage.py:723
 msgid "CSV file"
 msgstr "CSV fíla"
 
-#: indexpage.py:748
+#: indexpage.py:728
 msgid "MO file"
 msgstr "MO fíla"
 
 #. l10n: Update from version control (like CVS or Subversion)
-#: indexpage.py:754
+#: indexpage.py:733
 msgid "Update"
 msgstr "Dagfør"
 
 #. l10n: Commit to version control (like CVS or Subversion)
-#: indexpage.py:760 projects.py:150
+#: projects.py:146 indexpage.py:738
 msgid "Commit"
 msgstr "Legg til"
 
-#: indexpage.py:798
+#: indexpage.py:775
 msgid "All Strings"
 msgstr "Allir streingir"
 
-#: indexpage.py:799 pagelayout.py:249
+#: pagelayout.py:240 indexpage.py:776
 msgid "Untranslated"
 msgstr "Ikki umsett"
 
-#: indexpage.py:800
+#: indexpage.py:777
 msgid "Unassigned"
 msgstr "Ikki tillutað"
 
-#: indexpage.py:801
+#: indexpage.py:778
 msgid "Unassigned and Untranslated"
 msgstr "Ikki tillutað og ikki umsett"
 
-#: indexpage.py:808
+#: indexpage.py:785
 msgid "Set Goal"
 msgstr "Set mál"
 
-#: indexpage.py:812
+#: indexpage.py:789
 msgid "Select Multiple"
 msgstr "Vel fleiri"
 
-#: indexpage.py:814
+#: indexpage.py:791
 msgid "Assign To"
 msgstr "Luta til"
 
-#: indexpage.py:843
+#: indexpage.py:820
 msgid "Show Editing Functions"
 msgstr "Vís rættingarfunkur"
 
-#: indexpage.py:844
+#: indexpage.py:821
 msgid "Show Statistics"
 msgstr "Vís hagtøl"
 
-#: indexpage.py:845
+#: indexpage.py:822
 msgid "Show Tracks"
 msgstr "Vís slóðir"
 
-#: indexpage.py:845
+#: indexpage.py:822
 msgid "Hide Tracks"
 msgstr "Krógva slóðir"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
-#: indexpage.py:847
+#: indexpage.py:824
 msgid "Show Checks"
 msgstr "Vís kanningar"
 
-#: indexpage.py:847
+#: indexpage.py:824
 msgid "Hide Checks"
 msgstr "Krógvan kanningar"
 
-#: indexpage.py:848
+#: indexpage.py:825
 msgid "Show Goals"
 msgstr "Vís mál"
 
-#: indexpage.py:848
+#: indexpage.py:825
 msgid "Hide Goals"
 msgstr "Krógva mál"
 
-#: indexpage.py:849
+#: indexpage.py:826
 msgid "Show Assigns"
 msgstr "Vís tillutingar"
 
-#: indexpage.py:849
+#: indexpage.py:826
 msgid "Hide Assigns"
 msgstr "Krógva tillutingar"
 
-#: indexpage.py:858
+#: indexpage.py:835
 #, python-format
 msgid "All Goals: %s"
 msgstr "Øll mál: %s"
 
-#: indexpage.py:864
+#: indexpage.py:841
 msgid "Translate My Strings"
 msgstr "Umset streingirnar hjá mær"
 
-#: indexpage.py:866
+#: indexpage.py:843
 msgid "View My Strings"
 msgstr "Vís streingirnar hjá mær"
 
-#: indexpage.py:871
+#: indexpage.py:848
 msgid "No strings assigned to you"
 msgstr "Eingir streingir eru lutaðir til tín"
 
-#: indexpage.py:875
+#: indexpage.py:852
 msgid "Quick Translate My Strings"
 msgstr "Snarumset streingirnar hjá mær"
 
-#: indexpage.py:879
+#: indexpage.py:856
 msgid "No untranslated strings assigned to you"
 msgstr "Eingin ikki umsettur strongur er lutaður til tín"
 
-#: indexpage.py:883
+#: indexpage.py:860
 msgid "Review Suggestions"
 msgstr "Gjøgnumgakk uppskot"
 
-#: indexpage.py:885
+#: indexpage.py:862
 msgid "View Suggestions"
 msgstr "Vís uppskot"
 
-#: indexpage.py:890
+#: indexpage.py:867
 msgid "Quick Translate"
 msgstr "Snarumset"
 
-#: indexpage.py:892
+#: indexpage.py:869
 msgid "View Untranslated"
 msgstr "Vís ikki umsett"
 
-#: indexpage.py:896
+#: indexpage.py:873
 msgid "No untranslated items"
 msgstr "Eingi ikki umsett punkt"
 
-#: indexpage.py:899
+#: indexpage.py:876
 msgid "Translate All"
 msgstr "Umset øll"
 
-#: indexpage.py:914
+#: indexpage.py:891
 msgid "ZIP of goal"
 msgstr "ZIP av málum"
 
-#: indexpage.py:916
+#: indexpage.py:893
 msgid "ZIP of folder"
 msgstr "ZIP av faldara"
 
-#: indexpage.py:923
+#: indexpage.py:900
 msgid "Generate SDF"
 msgstr "Framleið SDF"
 
-#: indexpage.py:976
+#: indexpage.py:953
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
 msgstr[0] "%d strongur (%d%%) miseudnaðist"
 msgstr[1] "%d streingir (%d%%) miseydnaðust"
 
-#: indexpage.py:1003
+#: indexpage.py:983
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
 msgstr "%d/%d orð (%d%%) tillutað"
 
-#: indexpage.py:1004 indexpage.py:1006
+#: indexpage.py:984 indexpage.py:986
 #, python-format
 msgid "[%d/%d strings]"
 msgstr "[%d/%d streingir]"
 
-#: indexpage.py:1005 pagelayout.py:235
+#: pagelayout.py:226 indexpage.py:985
 #, python-format
 msgid "%d/%d words (%d%%) translated"
 msgstr "%d/%d orð (%d%%) umsett"
 
-#: pagelayout.py:28
+#: pagelayout.py:37
 msgid "All projects"
 msgstr "Øll Projekt"
 
-#: pagelayout.py:29
+#: pagelayout.py:38
 msgid "All languages"
 msgstr "Øll tungumál"
 
-#: pagelayout.py:30
+#: pagelayout.py:39
 msgid "My account"
 msgstr "Mín konta"
 
-#: pagelayout.py:32
+#: pagelayout.py:41
 msgid "Docs & help"
 msgstr "Skjøl & hjálp"
 
-#: pagelayout.py:34
+#: pagelayout.py:42
 msgid "Log out"
 msgstr "Logga av"
 
-#: pagelayout.py:35
+#: pagelayout.py:43
 msgid "Log in"
 msgstr "Logga inn"
 
 #. l10n: Verb, as in "to register"
-#: pagelayout.py:37
+#: pagelayout.py:45
 msgid "Register"
 msgstr "Skráset"
 
-#: pagelayout.py:38
+#: pagelayout.py:46
 msgid "Activate"
 msgstr "Ger virkið"
 
-#: pagelayout.py:83
+#: pagelayout.py:74
 msgid "Pootle Logo"
 msgstr "Pootle eyðkennismerki"
 
-#: pagelayout.py:84
+#: pagelayout.py:77
 msgid "About this Pootle server"
 msgstr "Um henda Pootle ambætaran"
 
-#: pagelayout.py:160
+#: pagelayout.py:151
 msgid "All goals"
 msgstr "Øll mál"
 
-#: pagelayout.py:231
+#: pagelayout.py:222
 #, python-format
 msgid "%d/%d files"
 msgstr "%d/%d fílur"
 
-#: pagelayout.py:234
+#: pagelayout.py:225
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d fíla"
 msgstr[1] "%d fílur"
 
-#: pagelayout.py:236
+#: pagelayout.py:227
 #, python-format
 msgid "%d/%d strings"
 msgstr "%d/%d streingir"
 
-#: pagelayout.py:242 users.py:184
+#: pagelayout.py:233 users.py:155
 msgid "Name"
 msgstr "Navn"
 
-#: pagelayout.py:243
+#: pagelayout.py:234
 msgid "Translated"
 msgstr "Umsett"
 
-#: pagelayout.py:244
+#: pagelayout.py:235
 msgid "Translated percentage"
 msgstr "Umsett prosenttal"
 
-#: pagelayout.py:245
+#: pagelayout.py:236
 msgid "Translated words"
 msgstr "Umsett orð"
 
-#: pagelayout.py:246 translatepage.py:135
+#: pagelayout.py:237
 msgid "Fuzzy"
 msgstr "Óklár"
 
-#: pagelayout.py:247
+#: pagelayout.py:238
 msgid "Fuzzy percentage"
 msgstr "Óklárt prosenttal"
 
-#: pagelayout.py:248
+#: pagelayout.py:239
 msgid "Fuzzy words"
 msgstr "Óklár orð"
 
-#: pagelayout.py:250
+#: pagelayout.py:241
 msgid "Untranslated percentage"
 msgstr "Ikki umsett prosenttal"
 
-#: pagelayout.py:251
+#: pagelayout.py:242
 msgid "Untranslated words"
 msgstr "Ikki umsett orð"
 
-#: pagelayout.py:252
+#: pagelayout.py:243
 msgid "Total"
 msgstr "Tilsamans"
 
-#: pagelayout.py:253
+#: pagelayout.py:244
 msgid "Total words"
 msgstr "Orð tilsamans"
 
 #. l10n: noun. The graphical representation of translation status
-#: pagelayout.py:255
+#: pagelayout.py:246
 msgid "Graph"
 msgstr "Stabbamynd"
 
@@ -798,108 +793,108 @@ msgstr ""
 msgid "Locations"
 msgstr ""
 
-#: pootle.py:305
+#: pootle.py:275
 msgid "Login failed"
 msgstr "Tað miseydnaðist at logga inn"
 
-#: pootle.py:349 pootle.py:380
+#: pootle.py:319 pootle.py:350
 msgid "Redirecting to login..."
 msgstr "Visir aftur til innlogging..."
 
-#: pootle.py:352
+#: pootle.py:322
 msgid "Need to log in to access home page"
 msgstr "Tað er neyðugt at logga inn fyri at sleppa inn á heimasíðuna"
 
-#: pootle.py:365
+#: pootle.py:335
 msgid "Personal details updated"
 msgstr "Persónligir upplýsingar dagførdir"
 
-#: pootle.py:383
+#: pootle.py:353
 msgid "Need to log in to access admin page"
 msgstr "Tað er neyðugt at logga inn fyri at sleppa inn á fyrisitingarsíðu"
 
-#: pootle.py:390
+#: pootle.py:360
 msgid "Redirecting to home..."
 msgstr "Vísir aftur til heimasíðu..."
 
-#: pootle.py:393
+#: pootle.py:363
 msgid "You do not have the rights to administer pootle."
 msgstr "Tú hevur ikki rættindi at fyrisita Pootle"
 
 #. l10n: Verb
-#: projects.py:138
+#: projects.py:135
 msgid "View"
 msgstr "Vís"
 
-#: projects.py:139 translatepage.py:678
+#: projects.py:136 translatepage.py:572
 msgid "Suggest"
 msgstr "Skjót upp"
 
-#: projects.py:140
+#: projects.py:137
 msgid "Translate"
 msgstr "Umset"
 
 #. l10n: Verb
-#: projects.py:143
+#: projects.py:140
 msgid "Review"
 msgstr "Gjøgnumgongd"
 
 #. l10n: Verb
-#: projects.py:145
+#: projects.py:142
 msgid "Archive"
 msgstr "Savn"
 
 #. l10n: This refers to generating the binary .mo file
-#: projects.py:147
+#: projects.py:143
 msgid "Compile PO files"
 msgstr "Umset PO fílur"
 
-#: projects.py:148
+#: projects.py:144
 msgid "Assign"
 msgstr "Tilluta"
 
 #. l10n: Don't translate "nobody" or "default"
-#: projects.py:230
+#: projects.py:226
 msgid "You cannot remove the \"nobody\" or \"default\" user"
 msgstr "Tú kanst ikki strika \"ongin\" ella \"fráverandi\" brúkari"
 
-#: projects.py:382 projects.py:444
+#: projects.py:379 projects.py:441
 msgid "You do not have rights to alter goals here"
 msgstr "Tú hevur ikki rættindi til at broyta mál her"
 
-#: projects.py:510
+#: projects.py:504
 msgid "You do not have rights to upload files here"
 msgstr "Tú hevur ikki rættindi til at leggja fílur upp her"
 
-#: projects.py:513
+#: projects.py:507
 msgid "You do not have rights to overwrite files here"
 msgstr "Tú hevur ikki rættindi til at yvirskriva fílur her"
 
-#: projects.py:515
+#: projects.py:509
 msgid "You do not have rights to upload new files here"
 msgstr "Tú hevur ikki rættindi til at leggja nýggjafílur upp her"
 
-#: projects.py:524
+#: projects.py:518
 msgid "You do not have rights to update files here"
 msgstr "Tú hevur ikki rættindi til at dagføra fílur her"
 
-#: projects.py:555
+#: projects.py:588
 msgid "You do not have rights to commit files here"
 msgstr "Tú hevur ikki rættindi til at binda fílur her"
 
-#: projects.py:977 projects.py:1019
+#: projects.py:922 projects.py:963
 msgid "You do not have rights to alter assignments here"
 msgstr "Tú hevur ikki rættindi til at broyta tillutingar her"
 
-#: projects.py:1219
+#: projects.py:1167
 msgid "You do not have rights to change translations here"
 msgstr "Tú hevur ikki rættindi til at broyta umsetingar her"
 
-#: projects.py:1229
+#: projects.py:1177
 msgid "You do not have rights to suggest changes here"
 msgstr "Tú hevur ikki rættindi til at skjót broytingar upp her"
 
-#: projects.py:1245 projects.py:1263
+#: projects.py:1193 projects.py:1216
 msgid "You do not have rights to review suggestions here"
 msgstr "Tú hevur ikki rættindi til at gjøgnumganga uppskot her"
 
@@ -916,18 +911,18 @@ msgstr ""
 #. l10n: second parameter: project name
 #. l10n: third parameter: target language
 #. l10n: fourth parameter: file name
-#: translatepage.py:113
+#: translatepage.py:97
 #, python-format
 msgid "%s: translating %s into %s: %s"
 msgstr "%s: umsetir %s til %s: %s"
 
 #. l10n: Heading above the table column with the source language
-#: translatepage.py:128
+#: translatepage.py:111
 msgid "Original"
 msgstr "Upprunaligi"
 
 #. l10n: Heading above the table column with the target language
-#: translatepage.py:130
+#: translatepage.py:112
 msgid "Translation"
 msgstr "Umseting"
 
@@ -950,7 +945,7 @@ msgid "Developer comments"
 msgstr ""
 
 #. l10n: This heading refers to related translations and terminology
-#: translatepage.py:141
+#: translatepage.py:118
 msgid "Related"
 msgstr "Skylt við"
 
@@ -965,106 +960,106 @@ msgid "Error: Something went wrong."
 msgstr ""
 
 #. l10n: "batch" refers to the set of translations that were reviewed
-#: translatepage.py:171
+#: translatepage.py:136
 msgid "End of batch"
 msgstr "Endi á rúgvu"
 
-#: translatepage.py:173
+#: translatepage.py:138
 msgid "Click here to return to the index"
 msgstr "Klikka her fyri at venda aftur til yvirlitið"
 
 #. l10n: noun (the start)
-#: translatepage.py:187 translatepage.py:190
+#: translatepage.py:152 translatepage.py:155
 msgid "Start"
 msgstr "Byrja"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:194 translatepage.py:197
+#: translatepage.py:159 translatepage.py:162
 #, python-format
 msgid "Previous %d"
 msgstr "Fyrra %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
-#: translatepage.py:199
+#: translatepage.py:164
 #, python-format
 msgid "Items %d to %d of %d"
 msgstr "Punkt %d to %d of %d"
 
 #. l10n: the parameter refers to the number of messages
-#: translatepage.py:204 translatepage.py:207
+#: translatepage.py:169 translatepage.py:172
 #, python-format
 msgid "Next %d"
 msgstr "Næsta %d"
 
 #. l10n: noun (the end)
-#: translatepage.py:210 translatepage.py:213
+#: translatepage.py:175 translatepage.py:178
 msgid "End"
 msgstr "Liðugt"
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-#: translatepage.py:230
+#: translatepage.py:195
 #, python-format
 msgid "checking %s"
 msgstr "kannar %s"
 
-#: translatepage.py:398
+#: translatepage.py:337
 #, python-format
 msgid "There are no items matching that search ('%s')"
 msgstr "Tað eru eingi punkt, sum samsvara leitingini ('%s')"
 
-#: translatepage.py:400
+#: translatepage.py:339
 msgid "You have finished going through the items you selected"
 msgstr "Tú ert komin ígjøgnum øll punktini, tú hevur valt"
 
-#: translatepage.py:643
+#: translatepage.py:537
 msgid "Singular"
 msgstr "Eintal"
 
-#: translatepage.py:644
+#: translatepage.py:538
 msgid "Plural"
 msgstr "Fleirtal"
 
 #. l10n: verb
-#: translatepage.py:658
+#: translatepage.py:552
 msgid "Edit"
 msgstr "Rætta"
 
 #. l10n: verb
-#: translatepage.py:674
+#: translatepage.py:568
 msgid "Copy"
 msgstr "Avrita"
 
-#: translatepage.py:675 translatepage.py:849
+#: translatepage.py:569 translatepage.py:748
 msgid "Skip"
 msgstr "Leyp um"
 
 #. l10n: verb
-#: translatepage.py:677 translatepage.py:848 users.py:312
+#: translatepage.py:571 translatepage.py:747 users.py:252
 msgid "Back"
 msgstr "Aftur"
 
-#: translatepage.py:679
+#: translatepage.py:573
 msgid "Submit"
 msgstr "Send"
 
 #. l10n: action that increases the height of the textarea
-#: translatepage.py:682
+#: translatepage.py:576
 msgid "Grow"
 msgstr "Veks um"
 
 #. l10n: action that decreases the height of the textarea
-#: translatepage.py:684
+#: translatepage.py:578
 msgid "Shrink"
 msgstr "Minka"
 
-#: translatepage.py:706 translatepage.py:800 translatepage.py:837
-#: translatepage.py:870
+#: translatepage.py:605 translatepage.py:699 translatepage.py:736
+#: translatepage.py:769
 #, python-format
 msgid "Plural Form %d"
 msgstr "Fleirtalsformur %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
-#: translatepage.py:722
+#: translatepage.py:621
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
@@ -1072,151 +1067,151 @@ msgstr ""
 "Umseting er ikki møgulig tí fleirtalsformurin ikki er tøkur á tínum "
 "tungumáli. Set teg vinarligast í samband við fyrisitaran."
 
-#: translatepage.py:804
+#: translatepage.py:703
 msgid "Current Translation:"
 msgstr "Verandi umseting:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
-#: translatepage.py:817
+#: translatepage.py:716
 #, python-format
 msgid "Suggestion %d by %s:"
 msgstr "Uppskot %d frá %s:"
 
-#: translatepage.py:819
+#: translatepage.py:718
 #, python-format
 msgid "Suggestion %d:"
 msgstr "Uppskot %d:"
 
 #. l10n: parameter: name of translator
-#: translatepage.py:823
+#: translatepage.py:722
 #, python-format
 msgid "Suggestion by %s:"
 msgstr "Uppskot frá %s:"
 
-#: translatepage.py:825
+#: translatepage.py:724
 msgid "Suggestion:"
 msgstr "Uppskot:"
 
-#: users.py:43
+#: users.py:39
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
 msgstr "Tú mást skriva eitt loyniorð við minst %d stavum."
 
-#: users.py:45
+#: users.py:41
 msgid "The password is not the same as the confirmation."
 msgstr "Loyniorðið er ikki tað sama sum váttanin."
 
-#: users.py:60
+#: users.py:55
 msgid "Login to Pootle"
 msgstr "Logga inn til Pootle"
 
-#: users.py:66
+#: users.py:61
 msgid "Username:"
 msgstr "Brúkaranavn:"
 
-#: users.py:68
+#: users.py:63
 msgid "Password:"
 msgstr "Loyniorð:"
 
-#: users.py:69
+#: users.py:64
 msgid "Language:"
 msgstr "Tungumál"
 
-#: users.py:71
+#: adminpages.py:207 users.py:66
 msgid "Login"
 msgstr "Logga inn"
 
-#: users.py:77
+#: users.py:73
 msgid "Default"
 msgstr "Fráverandi"
 
-#: users.py:112
+#: users.py:85
 msgid "Please enter your registration details"
 msgstr "Vinarligast skriva skrásetingarstaklutir"
 
-#: users.py:115 users.py:475
+#: users.py:88 users.py:415
 msgid "Pootle Registration"
 msgstr "Pootle skráseting"
 
-#: users.py:122 users.py:158
+#: users.py:95 users.py:131
 msgid "Your requested username"
 msgstr "Ynskt brúkaranavn"
 
-#: users.py:125 users.py:429
+#: users.py:369
 msgid "You must supply a valid email address"
 msgstr "Tú mást skriva ein gilduga t-post addressu"
 
-#: users.py:128
+#: users.py:101
 msgid "Your full name"
 msgstr "Fulla navn tygara"
 
-#: users.py:131
+#: users.py:104
 msgid "Your desired password"
 msgstr "Ynskt loyniorð"
 
-#: users.py:133 users.py:189
+#: users.py:106 users.py:160
 msgid "Confirm password"
 msgstr "Vátta loyniorð"
 
-#: users.py:134
+#: users.py:107
 msgid "Type your password again to ensure it is entered correctly"
 msgstr "Skriva loyniorð umaftur og vissa teg um at tað er skrivað rætt"
 
-#: users.py:136
+#: users.py:109
 msgid "Register Account"
 msgstr "Skrásetingarkonta"
 
-#: users.py:145
+#: users.py:118
 msgid "Please enter your activation details"
 msgstr "Vinarligast skriva virkisstaklutir"
 
-#: users.py:150
+#: users.py:123
 msgid "Pootle Account Activation"
 msgstr "Ger Pootle konta virkna"
 
-#: users.py:160
+#: users.py:133
 msgid "Activation Code"
 msgstr "Virkiskota"
 
-#: users.py:161
+#: users.py:134
 msgid "The activation code you received"
 msgstr "Virkiskotan tú hevur fingið"
 
-#: users.py:163
+#: users.py:136
 msgid "Activate Account"
 msgstr "Ger kontu virkna"
 
-#: users.py:175
+#: users.py:147
 #, python-format
 msgid "Options for: %s"
 msgstr "Møguleikar fyri: %s"
 
-#: users.py:181
+#: users.py:152
 msgid "Personal Details"
 msgstr "Persónigir staklutir"
 
-#: users.py:186
+#: users.py:157
 msgid "Email"
 msgstr "T-postur"
 
-#: users.py:190
+#: users.py:161
 msgid "Translation Interface Configuration"
 msgstr "Uppseting av umsetingarmarkamóti"
 
-#: users.py:191
+#: users.py:162
 msgid "User Interface language"
 msgstr "Brúkara tungumálsmarkamót"
 
-#: users.py:192
+#: users.py:163
 msgid "My Projects"
 msgstr "Míni projekt"
 
-#: users.py:194
+#: users.py:165
 msgid "My Languages"
 msgstr "Tungumál"
 
-#: users.py:196
+#: users.py:167
 msgid "Home page"
 msgstr "Heimasíða"
 
@@ -1229,77 +1224,77 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: users.py:257
+#: users.py:203
 msgid "Input Height (in lines)"
 msgstr "Inntøkuhædd (í linjum)"
 
-#: users.py:258
+#: users.py:204
 msgid "Number of rows in view mode"
 msgstr "Nummar av røðum í vísihátti"
 
-#: users.py:259
+#: users.py:205
 msgid "Number of rows in translate mode"
 msgstr "Nummar av røðum í umsetingarhátti"
 
-#: users.py:307
+#: users.py:247
 msgid "Error"
 msgstr "Feilur"
 
-#: users.py:359
+#: users.py:299
 msgid "You need to be siteadmin to change users"
 msgstr "Tú mást vera síðufyrisitari fyri at broyta brúkarar"
 
-#: users.py:423
+#: users.py:363
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
 "Brúkaranavnið má vera alfanumeriskt, og má byrja við einum alfabetiskum "
 "stavi."
 
-#: users.py:438
+#: users.py:378
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
 msgstr "Tú (ella onkur annar) royndi at skráseta eina konta við tínum brúkaranavni.\n"
 
-#: users.py:439
+#: users.py:379
 msgid "We don't store your actual password but only a hash of it.\n"
 msgstr "Vit goyma ikki veruliga passorðið hjá tær, men bert aitt brongl av tí.\n"
 
-#: users.py:441
+#: users.py:381
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
 msgstr ""
 "Um tú hevur trupulleikar við skráseting, set teg vinarligast í samband við "
 "%s."
 
-#: users.py:443
+#: users.py:383
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
 msgstr "Um tú hevur trupulleikar við skráseting, set teg vinarligast í samband við "
-"síðufyrisitaran.\n"
+"síðufyrisitaran. \n"
 
-#: users.py:444
+#: users.py:384
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
 msgstr "Hatta brúkaranavnið er longu til. Ein t-postur verður sendur til skrásettu "
-"t-post addressuna.\n"
+"t-post addressuna. \n"
 
-#: users.py:446
+#: users.py:386
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
 msgstr "Heldur fram til <a href='%s'>logga á</a>\n"
 
-#: users.py:452
+#: users.py:392
 msgid "A Pootle account has been created for you using this email address.\n"
 msgstr "Ein pootle konta er gjørd til tín við hesari t-post addressu. \n"
 
-#: users.py:454
+#: users.py:394
 msgid "To activate your account, follow this link:\n"
 msgstr "Fyri at gera konta tína virkna, fylg hesari leinkju:\n"
 
-#: users.py:460
+#: users.py:400
 #, python-format
 msgid ""
 "Your activation code is:\n"
@@ -1308,22 +1303,22 @@ msgstr ""
 "Virkiskotan hjá tær er:\n"
 "%s\n"
 
-#: users.py:462
+#: users.py:402
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
 msgstr "Um tú ikki fært fylgt leinkjuni, vinarligast skriva omanfyristandani kotu á "
 "virkissíðuna.\n"
 
-#: users.py:463
+#: users.py:403
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
 msgstr ""
 "Hesi boðini eru send fyri at vátta at t-post addressan veruliga passar. Um "
-"tí ikki ynskir at stovna eina konta, so kanst tú bara lata sum einki."
+"tí ikki ynskir at stovna eina konta, so kanst tú bara lata sum einki.\\"
 
-#: users.py:465
+#: users.py:405
 #, python-format
 msgid ""
 "Account created. You will be emailed login details and an activation code. "
@@ -1332,60 +1327,104 @@ msgstr ""
 "Konta stovnað. Tú fært ein t-post við áloggingarupplýsingum og eina "
 "virkiskotu. Skriva vinarligast virkiskotuna á <a href='%s'>virkissíða</a>."
 
-#: users.py:467
+#: users.py:407
 msgid "(Or simply click on the activation link in the email)"
 msgstr "(Ella klikk bara á virkisskontuna í t-postinum)"
 
-#: users.py:469
+#: users.py:409
 #, python-format
 msgid "Your user name is: %s\n"
 msgstr "Brúkaranavnið hjá tær er: %s\n"
 
-#: users.py:471
+#: users.py:411
 #, python-format
 msgid "Your password is: %s\n"
 msgstr "Loyniorðið hjá tær er: %s\n"
 
-#: users.py:472
+#: users.py:412
 #, python-format
 msgid "Your registered email address is: %s\n"
 msgstr "Tín skrásetti t-post addressa er: %s\n"
 
-#: users.py:500
+#: users.py:436
 msgid "Redirecting to Registration Page..."
 msgstr "Vísir aftur til skrásetingarsíðu..."
 
-#: users.py:524
+#: users.py:460
 msgid "Redirecting to login Page..."
 msgstr "Vísir aftur til innloggingarsíðu"
 
-#: users.py:527
+#: users.py:463
 msgid "Your account has been activated! Redirecting to login..."
 msgstr "Kontan hjá tær er virkin! Vísir aftur til innlogging..."
 
-#: users.py:531
+#: users.py:467
 msgid "The activation information was not valid."
 msgstr "Virkisupplýsingarnir er ógildugir."
 
-#: users.py:532
+#: users.py:468
 msgid "Activation Failed"
 msgstr "Tað miseydnaðist at gera kontuna virkna"
 
-#: users.py:649
+#: users.py:577
 msgid "Input height must be numeric"
 msgstr "Inntøkuhæddin má vera í tølim"
 
-#: users.py:650
+#: users.py:578
 msgid "Input width must be numeric"
 msgstr "Inntøkuvíddin má vera í tølum"
 
-#: users.py:651
+#: users.py:579
 msgid "The number of rows displayed in view mode must be numeric"
 msgstr "Nummarið av røðum víst í vísihátti má vera í tølum"
 
-#: users.py:652
+#: users.py:580
 msgid "The number of rows displayed in translate mode must be numeric"
 msgstr "Nummarið av røðum víst í umsetingarhátti má vera í tølum"
 
 #~ msgid "Reset"
 #~ msgstr "Afturstilla"
+
+#: translatepage.py:80
+#, python-format
+msgid ""
+"%d/%d translated\n"
+"(%d blank, %d fuzzy)"
+msgstr ""
+"%d/%d umsett\n"
+"(%d blankt, %d óklárt)"
+
+#: translatepage.py:115
+msgid "Accept"
+msgstr "Góðtak"
+
+#: translatepage.py:116
+msgid "Reject"
+msgstr "Avvís"
+
+#. l10n: action that increases the width of the textarea
+#: translatepage.py:580
+msgid "Broaden"
+msgstr "Breiðka"
+
+#. l10n: action that decreases the width of the textarea
+#: translatepage.py:582
+msgid "Narrow"
+msgstr "Smalka"
+
+#. l10n: action that resets the size of the textarea
+#: translatepage.py:584
+msgid "Reset"
+msgstr "Afturstilla"
+
+#: pagelayout.py:75
+msgid "WordForge Translation Project"
+msgstr "WordForge umsetingar projekt"
+
+#: users.py:98
+msgid "Must be a valid email address"
+msgstr "Má vera ein gildug t-post addressa"
+
+#: users.py:203
+msgid "Input Width (in characters)"
+msgstr "Inntøkuvídd (í stavum)"

@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-09-27 04:38+0000\n"
+"PO-Revision-Date: 2009-04-18 08:00+0200\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: te\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.2.0-rc1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -540,15 +542,16 @@ msgstr "లక్ష్యాన్ని నిర్దేశించు"
 
 #: indexpage.py:812
 msgid "Select Multiple"
-msgstr ""
+msgstr "ఎక్కువ ఎంచుకోండి"
 
 #: indexpage.py:814
+#, fuzzy
 msgid "Assign To"
-msgstr ""
+msgstr "ఎవరికి అప్పగింపు"
 
 #: indexpage.py:843
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "సంపాదక విధులు చూపించు"
 
 #: indexpage.py:844
 msgid "Show Statistics"
@@ -556,11 +559,11 @@ msgstr "గణాంకాలు చూపించు"
 
 #: indexpage.py:845
 msgid "Show Tracks"
-msgstr ""
+msgstr "ట్రాకులు చూపించు"
 
 #: indexpage.py:845
 msgid "Hide Tracks"
-msgstr ""
+msgstr "ట్రాకులను దాచు"
 
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:847
@@ -606,7 +609,7 @@ msgstr "మీకు అప్పగించిన పదాలేమి లే
 
 #: indexpage.py:875
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "నా పదాల త్వరిత అనువాదం"
 
 #: indexpage.py:879
 msgid "No untranslated strings assigned to you"
@@ -638,7 +641,7 @@ msgstr "అన్నీ అనువదించండి"
 
 #: indexpage.py:914
 msgid "ZIP of goal"
-msgstr ""
+msgstr "లక్ష్యపు జిప్"
 
 #: indexpage.py:916
 msgid "ZIP of folder"
@@ -1129,7 +1132,7 @@ msgstr "ప్రవేశించు"
 
 #: users.py:77
 msgid "Default"
-msgstr ""
+msgstr "అప్రమేయం"
 
 #: users.py:112
 msgid "Please enter your registration details"

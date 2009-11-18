@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2007-10-02 15:00+0200\n"
-"Last-Translator: Serge Leblanc <serge.leblanc@wanadoo.fr>\n"
+"PO-Revision-Date: 2009-04-19 03:33+0200\n"
+"Last-Translator: Scott Davis <sjd@mail.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.2.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
 #: adminpages.py:292 adminpages.py:359 indexpage.py:70 indexpage.py:95
@@ -18,270 +19,272 @@ msgstr ""
 #: pagelayout.py:74 translatepage.py:108 users.py:63 users.py:118 users.py:154
 #: users.py:177
 msgid "Pootle Demo"
-msgstr "Pootle montro"
+msgstr "Pootle demonstraĵo"
 
 #: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
 #: pagelayout.py:27
 msgid "Home"
-msgstr ""
+msgstr "Hejmo"
 
 #: adminpages.py:46 adminpages.py:212
 msgid "Users"
-msgstr ""
+msgstr "Uzantoj"
 
 #: adminpages.py:47 adminpages.py:87 indexpage.py:93
 msgid "Languages"
-msgstr ""
+msgstr "Lingvoj"
 
 #: adminpages.py:48 adminpages.py:146 indexpage.py:94
 msgid "Projects"
-msgstr ""
+msgstr "Projektoj"
 
 #: adminpages.py:49
 msgid "General options"
-msgstr ""
+msgstr "Ĝeneralaj opcioj"
 
 #: adminpages.py:50 users.py:182
 msgid "Option"
-msgstr ""
+msgstr "Opcio"
 
 #: adminpages.py:51 users.py:183
 msgid "Current value"
-msgstr ""
+msgstr "Nuna valoro"
 
 #: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
 #: users.py:197
 msgid "Save changes"
-msgstr ""
+msgstr "Konservi ŝanĝojn"
 
 #: adminpages.py:56
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: adminpages.py:57
 msgid "Description"
-msgstr ""
+msgstr "Priskribo"
 
 #: adminpages.py:58
 msgid "Base URL"
-msgstr ""
+msgstr "Baza URLo"
 
 #: adminpages.py:59
 msgid "Home Page"
-msgstr ""
+msgstr "Hejmpaĝo"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Administra Paĝo de Pootle pri Lingvoj"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
 msgid "Main admin page"
-msgstr ""
+msgstr "Administra Ĉefpaĝo"
 
 #: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
-msgstr ""
+msgstr "Kodo ISO"
 
 #: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
 #: users.py:127
 msgid "Full Name"
-msgstr ""
+msgstr "Plena nomo"
 
 #: adminpages.py:94
 msgid "(add language here)"
-msgstr ""
+msgstr "(aldoni lingvon ĉi tie)"
 
 #: adminpages.py:95
 msgid "Special Chars"
-msgstr ""
+msgstr "Specialaj signoj"
 
 #: adminpages.py:95
 msgid "(special characters)"
-msgstr ""
+msgstr "(specialaj signoj)"
 
 #: adminpages.py:96 indexpage.py:224
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Nombro de Pluraloj"
 
 #: adminpages.py:96
 msgid "(number of plurals)"
-msgstr ""
+msgstr "(nombro de pluraloj)"
 
 #: adminpages.py:97 indexpage.py:225
 msgid "Plural Equation"
-msgstr ""
+msgstr "Priplurala ekvacio"
 
 #: adminpages.py:97
 msgid "(plural equation)"
-msgstr ""
+msgstr "(pliplurala ekvacio)"
 
 #: adminpages.py:98
 msgid "Remove Language"
-msgstr ""
+msgstr "Forigi lingvon"
 
 #. l10n: The parameter is a languagecode, projectcode or username
 #: adminpages.py:113 adminpages.py:181 adminpages.py:245 adminpages.py:425
 #, python-format
 msgid "Remove %s"
-msgstr ""
+msgstr "Forigu %s"
 
 #: adminpages.py:132
 msgid "Standard"
-msgstr ""
+msgstr "Norma"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Administra Paĝo pri Projektoj de Pootle"
 
 #: adminpages.py:151
 msgid "Project Code"
-msgstr ""
+msgstr "Projekta Kodo"
 
 #: adminpages.py:153
 msgid "(add project here)"
-msgstr ""
+msgstr "(aldoni projekton ĉi tie)"
 
 #: adminpages.py:154
 msgid "Project Description"
-msgstr ""
+msgstr "Projekta Priskribo"
 
 #: adminpages.py:154
 msgid "(project description)"
-msgstr ""
+msgstr "(projekta priskribo)"
 
 #: adminpages.py:155
 msgid "Checker Style"
-msgstr ""
+msgstr "Kontrolila Stilo"
 
 #: adminpages.py:156
 msgid "File Type"
-msgstr ""
+msgstr "Dosiertipo"
 
 #: adminpages.py:157
 msgid "Create MO Files"
-msgstr ""
+msgstr "Krei Dosierojn MO"
 
 #: adminpages.py:158
 msgid "Remove Project"
-msgstr ""
+msgstr "Forigi Projekton"
 
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Administra Paĝo de Pootle pri Uzantoj"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
-msgstr ""
+msgstr "Uzantonomo"
 
 #: adminpages.py:219 users.py:403
 msgid "(add full name here)"
-msgstr ""
+msgstr "(aldoni plenan nomon ĉi tie)"
 
 #: adminpages.py:220 users.py:124
 msgid "Email Address"
-msgstr ""
+msgstr "Retpoŝtadreso"
 
 #: adminpages.py:220 users.py:406
 msgid "(add email here)"
-msgstr ""
+msgstr "(aldoni retpoŝtadreson ĉi tie)"
 
 #: adminpages.py:221 users.py:130 users.py:188
 msgid "Password"
-msgstr ""
+msgstr "Pasvorto"
 
 #: adminpages.py:221 users.py:400
 msgid "(add password here)"
-msgstr ""
+msgstr "(aldonu pasvorton ĉi tie)"
 
 #: adminpages.py:222
 msgid "Activated"
-msgstr ""
+msgstr "Aktivigita"
 
 #: adminpages.py:222
 msgid "Activate New User"
-msgstr ""
+msgstr "Aktivigi Novan Uzanton"
 
 #: adminpages.py:223
 msgid "Remove User"
-msgstr ""
+msgstr "Forigi Uzanton"
 
 #: adminpages.py:278
 msgid "Back to main page"
-msgstr ""
+msgstr "Reen al la ĉefpaĝo"
 
 #: adminpages.py:279
 msgid "Existing languages"
-msgstr ""
+msgstr "Ekzistantaj lingvoj"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:283
 msgid "Update Languages"
-msgstr ""
+msgstr "Ĝisdatigi Lingvojn"
 
 #: adminpages.py:284
 #, python-format
 msgid "Pootle Admin: %s"
-msgstr ""
+msgstr "Administrado de Pootle: %s"
 
 #: adminpages.py:285 adminpages.py:356
 msgid "You do not have the rights to administer this project."
-msgstr ""
+msgstr "Vi ne rajtas administri ĉi tiun projekton."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:289
 msgid "Update from templates"
-msgstr ""
+msgstr "Ĝisdatigi el ŝablonoj"
 
 #: adminpages.py:298
 msgid "Add Language"
-msgstr ""
+msgstr "Aldoni Lingvon"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:336
 #, python-format
 msgid "Pootle Admin: %s %s"
-msgstr ""
+msgstr "Administrado de Pootle: %s %s"
 
 #: adminpages.py:337
 msgid "Project home page"
-msgstr ""
+msgstr "Projekta hejmpaĝo"
 
 #: adminpages.py:355
 #, python-format
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr ""
+msgstr "Ne eblas agordi la rajtojn de uzanto %s - uzanto mankas"
 
 #: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
 msgstr ""
+"Ĉi tiu estas GNU-stila projekto (unu dosierujo, dosieroj nomitaj laŭ "
+"lingvo)."
 
 #: adminpages.py:374
 msgid "This is a standard style project (one directory per language)."
-msgstr ""
+msgstr "Tiu ĉi estas projekto norm-stila (po unu dosierujo ĉiu lingvo)."
 
 #: adminpages.py:375
 msgid "User Permissions"
-msgstr ""
+msgstr "Uzantaj Permesoj"
 
 #: adminpages.py:377
 msgid "(select to add user)"
-msgstr ""
+msgstr "(elektu por aldoni uzanton)"
 
 #: adminpages.py:378
 msgid "Rights"
-msgstr ""
+msgstr "Rajtoj"
 
 #: adminpages.py:379 indexpage.py:1008
 msgid "Remove"
-msgstr ""
+msgstr "Forigi"
 
 #: adminpages.py:406
 msgid "Update Rights"
-msgstr ""
+msgstr "Ĝisdatigi Rajtojn"
 
 #: indexpage.py:58
 msgid "About Pootle"
-msgstr ""
+msgstr "Pri Pootle"
 
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
 #: indexpage.py:60
@@ -292,6 +295,11 @@ msgid ""
 "participate in the development in many ways (you don't have to be able to "
 "program)."
 msgstr ""
+"<strong>Pootle</strong> estas simpla retportalo kiu ebligos vin "
+"<strong>traduki</strong>! Ĉar Pootle estas <strong>Libera "
+"Programaro</strong>, vi povas elŝuti ĝin kaj lanĉi vian propran kopion se vi "
+"volas. Vi ankaŭ povas helpi partoprenante en la disvolvado per multaj "
+"manieroj (ne bezonatas ke vi sciu programi)."
 
 #: indexpage.py:61
 msgid ""
@@ -299,6 +307,9 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
+"La projekto Pootle mem estas gastigita en <a "
+"href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> kie "
+"vi povas trovi detalojn pri la fontkodo, retpoŝtlistojn, ktp."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -308,10 +319,14 @@ msgid ""
 "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
 "thechestnut.com/flumps.htm\">this</a>."
 msgstr ""
+"La nomo signifas (angle) <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+"<b>L</b>ocalization <b>E</b>ngine (PO-bazita Enreta Traduka / Asimilada "
+"Modulo), sed eble vi devas legi <a "
+"href=\"http://www.thechestnut.com/flumps.htm\">ĉi tion</a>."
 
 #: indexpage.py:65
 msgid "Versions"
-msgstr ""
+msgstr "Versioj"
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -321,19 +336,21 @@ msgid ""
 "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 msgstr ""
+"Ĉi tiu TTT-ejo uzas:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+"%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
 #: indexpage.py:133
 #, python-format
 msgid "User Page for: %s"
-msgstr ""
+msgstr "Uzanta Paĝo por: %s"
 
 #: indexpage.py:135
 msgid "Change options"
-msgstr ""
+msgstr "Ŝanĝu opciojn"
 
 #: indexpage.py:136
 msgid "Admin page"
-msgstr ""
+msgstr "Administra paĝo"
 
 #: indexpage.py:137 projects.py:149
 msgid "Administrate"
@@ -341,18 +358,19 @@ msgstr "Administru"
 
 #: indexpage.py:138
 msgid "Quick Links"
-msgstr ""
+msgstr "Oportunaj Ligiloj"
 
 #: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
 msgstr ""
+"Bonvolu alklaki 'Ŝanĝu opciojn' kaj elektu kelkajn lingvojn kaj projektojn"
 
 #: indexpage.py:199
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d projekto, averaĝe %d%% tradukita"
+msgstr[1] "%d projektoj, averaĝe %d%% tradukitaj"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -360,7 +378,7 @@ msgstr[1] ""
 #: indexpage.py:205 indexpage.py:268
 #, python-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: indexpage.py:207 indexpage.py:270 pagelayout.py:31 pagelayout.py:171
 msgid "Admin"
@@ -368,77 +386,77 @@ msgstr ""
 
 #: indexpage.py:221
 msgid "Language Code"
-msgstr ""
+msgstr "Lingvo-kodo"
 
 #: indexpage.py:222
 msgid "Language Name"
-msgstr ""
+msgstr "Lingvo-nomo"
 
 #: indexpage.py:260
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d lingvo, averaĝe %d%% tradukita"
+msgstr[1] "%d lingvoj, averaĝe %d%% tradukitaj"
 
 #: indexpage.py:273
 msgid "Language"
-msgstr ""
+msgstr "Lingvo"
 
 #. l10n: The first parameter is the name of the installation (like "Pootle")
 #: indexpage.py:354
 #, python-format
 msgid "%s: Project %s, Language %s"
-msgstr ""
+msgstr "%s: Projekto %s, Lingvo %s"
 
 #. l10n: text next to search field
 #: indexpage.py:362 translatepage.py:145
 msgid "Search"
-msgstr "Serĉu"
+msgstr "Serĉo"
 
 #: indexpage.py:363 translatepage.py:146
 msgid "Advanced Search"
-msgstr ""
+msgstr "Detala Serĉo"
 
 #: indexpage.py:422
 msgid "Cannot upload file, no file attached"
-msgstr ""
+msgstr "Ne povas alŝuti dosieron, mankas ligita dosiero "
 
 #: indexpage.py:428
 msgid "Can only upload PO files and zips of PO files"
-msgstr ""
+msgstr "Nur povas alŝuti PO-dosierojn kaj densigitajn PO-dosierojn"
 
 #: indexpage.py:535 indexpage.py:538 translatepage.py:237 translatepage.py:240
 msgid "Assign Strings"
-msgstr ""
+msgstr "Atribuu Signoĉenojn"
 
 #: indexpage.py:536 translatepage.py:239
 msgid "Assign Action"
-msgstr ""
+msgstr "Atribuu Agon"
 
 #: indexpage.py:537 translatepage.py:238
 msgid "Assign to User"
-msgstr ""
+msgstr "Atribuu al Uzanto"
 
 #: indexpage.py:543
 msgid "goals"
-msgstr ""
+msgstr "Celoj"
 
 #: indexpage.py:544
 msgid "Enter goal name"
-msgstr ""
+msgstr "Enigu celnomon"
 
 #: indexpage.py:545
 msgid "Add Goal"
-msgstr ""
+msgstr "Aldonu Celon"
 
 #: indexpage.py:550 indexpage.py:552
 msgid "Upload File"
-msgstr ""
+msgstr "Alŝutu dosieron"
 
 #: indexpage.py:551
 msgid "Select file to upload"
-msgstr ""
+msgstr "Elektu dosieron por alŝuti"
 
 #. l10n: radio button text
 #: indexpage.py:557 projects.py:141
@@ -448,72 +466,74 @@ msgstr "Anstataŭigu"
 #. l10n: tooltip
 #: indexpage.py:559
 msgid "Overwrite the current file if it exists"
-msgstr ""
+msgstr "Anstataŭigu la nunan dosieron, se ĝi ekzistas"
 
 #. l10n: radio button text
 #: indexpage.py:561
 msgid "Merge"
-msgstr ""
+msgstr "Kunigu"
 
 #. l10n: tooltip
 #: indexpage.py:563
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
+"Kunigu la dosieron en la nunan dosieron kaj prezenti konfliktojn, kiel "
+"sugestoj"
 
 #: indexpage.py:666
 msgid "Not in a goal"
-msgstr ""
+msgstr "Ne en iu celo"
 
 #: indexpage.py:686
 msgid "Add User"
-msgstr ""
+msgstr "Aldonu Uzanton"
 
 #: indexpage.py:731
 msgid "PO file"
-msgstr ""
+msgstr "PO-dosiero"
 
 #: indexpage.py:735
 msgid "XLIFF file"
-msgstr ""
+msgstr "XLIFF-dosiero"
 
 #: indexpage.py:739
 msgid "Qt .ts file"
-msgstr ""
+msgstr "Qt-dosiero .ts"
 
 #: indexpage.py:743
 msgid "CSV file"
-msgstr ""
+msgstr "CSV-dosiero"
 
 #: indexpage.py:748
 msgid "MO file"
-msgstr ""
+msgstr "MO-dosiero"
 
 #. l10n: Update from version control (like CVS or Subversion)
 #: indexpage.py:754
 msgid "Update"
-msgstr ""
+msgstr "Aktualigu"
 
 #. l10n: Commit to version control (like CVS or Subversion)
 #: indexpage.py:760 projects.py:150
 msgid "Commit"
-msgstr "Enmemorigu"
+msgstr "Enmetu"
 
 #: indexpage.py:798
 msgid "All Strings"
-msgstr ""
+msgstr "Ĉiuj Signoĉenoj"
 
 #: indexpage.py:799 pagelayout.py:249
 msgid "Untranslated"
-msgstr ""
+msgstr "Netradukitaj"
 
 #: indexpage.py:800
 msgid "Unassigned"
-msgstr ""
+msgstr "Neatribuita"
 
 #: indexpage.py:801
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "Neatribuita kaj Netradukita"
 
 #: indexpage.py:808
 msgid "Set Goal"
@@ -521,19 +541,19 @@ msgstr ""
 
 #: indexpage.py:812
 msgid "Select Multiple"
-msgstr ""
+msgstr "Elektu Opon"
 
 #: indexpage.py:814
 msgid "Assign To"
-msgstr ""
+msgstr "Atribuu al"
 
 #: indexpage.py:843
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "Montru Redaktajn Funkciojn "
 
 #: indexpage.py:844
 msgid "Show Statistics"
-msgstr ""
+msgstr "Montru Statistikon"
 
 #: indexpage.py:845
 msgid "Show Tracks"
@@ -546,84 +566,84 @@ msgstr ""
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:847
 msgid "Show Checks"
-msgstr ""
+msgstr "Montru Kontrolojn"
 
 #: indexpage.py:847
 msgid "Hide Checks"
-msgstr ""
+msgstr "Kaŝu Kontrolojn"
 
 #: indexpage.py:848
 msgid "Show Goals"
-msgstr ""
+msgstr "Montru Celojn"
 
 #: indexpage.py:848
 msgid "Hide Goals"
-msgstr ""
+msgstr "Kaŝu Celojn"
 
 #: indexpage.py:849
 msgid "Show Assigns"
-msgstr ""
+msgstr "Montru Atribuitaĵojn"
 
 #: indexpage.py:849
 msgid "Hide Assigns"
-msgstr ""
+msgstr "Kaŝu Atribuitaĵojn"
 
 #: indexpage.py:858
 #, python-format
 msgid "All Goals: %s"
-msgstr ""
+msgstr "Ĉiuj Celoj: %s"
 
 #: indexpage.py:864
 msgid "Translate My Strings"
-msgstr ""
+msgstr "Traduku Miajn Signoĉenojn"
 
 #: indexpage.py:866
 msgid "View My Strings"
-msgstr ""
+msgstr "Montru Miajn Signoĉenojn"
 
 #: indexpage.py:871
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "Neniuj signoĉenojn atribuitaj al vi"
 
 #: indexpage.py:875
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Rapide Traduku Miajn Signoĉenojn"
 
 #: indexpage.py:879
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "Ne signoĉenojn atribuitaj al vi, kiuj mankas tradukojn"
 
 #: indexpage.py:883
 msgid "Review Suggestions"
-msgstr ""
+msgstr "Revizii Sugestojn"
 
 #: indexpage.py:885
 msgid "View Suggestions"
-msgstr ""
+msgstr "Montri Sugestojn"
 
 #: indexpage.py:890
 msgid "Quick Translate"
-msgstr ""
+msgstr "Rapida Traduko"
 
 #: indexpage.py:892
 msgid "View Untranslated"
-msgstr ""
+msgstr "Montri Netradukitaj"
 
 #: indexpage.py:896
 msgid "No untranslated items"
-msgstr ""
+msgstr "Neniuj netradukitaj restas"
 
 #: indexpage.py:899
 msgid "Translate All"
-msgstr ""
+msgstr "Traduku Ĉiujn"
 
 #: indexpage.py:914
 msgid "ZIP of goal"
-msgstr ""
+msgstr "ZIP-densigitaĵo de celo"
 
 #: indexpage.py:916
 msgid "ZIP of folder"
-msgstr ""
+msgstr "ZIP-densigitaĵo de dosiero"
 
 #: indexpage.py:923
 msgid "Generate SDF"
@@ -633,179 +653,178 @@ msgstr ""
 #, python-format
 msgid "%d string (%d%%) failed"
 msgid_plural "%d strings (%d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d signoĉeno (%d%%) fiaskis"
+msgstr[1] "%d signoĉenoj (%d%%) fiaskis"
 
 #: indexpage.py:1003
 #, python-format
 msgid "%d/%d words (%d%%) assigned"
-msgstr ""
+msgstr "%d/%d vortoj (%d%%) atribuitaj"
 
 #: indexpage.py:1004 indexpage.py:1006
 #, python-format
 msgid "[%d/%d strings]"
-msgstr ""
+msgstr "[%d/%d signoĉenoj]"
 
 #: indexpage.py:1005 pagelayout.py:235
 #, python-format
 msgid "%d/%d words (%d%%) translated"
-msgstr ""
+msgstr "%d/%d vortoj (%d%%) tradukitaj"
 
 #: pagelayout.py:28
 msgid "All projects"
-msgstr ""
+msgstr "Ĉiuj projektoj"
 
 #: pagelayout.py:29
 msgid "All languages"
-msgstr ""
+msgstr "Ĉiuj lingvoj"
 
 #: pagelayout.py:30
 msgid "My account"
-msgstr ""
+msgstr "Mia konto"
 
 #: pagelayout.py:32
 msgid "Docs & help"
-msgstr ""
+msgstr "Dokumentaro kaj helpo"
 
 #: pagelayout.py:34
 msgid "Log out"
-msgstr ""
+msgstr "Adiaŭi"
 
 #: pagelayout.py:35
 msgid "Log in"
-msgstr ""
+msgstr "Saluti"
 
 #. l10n: Verb, as in "to register"
 #: pagelayout.py:37
 msgid "Register"
-msgstr ""
+msgstr "Registri"
 
 #: pagelayout.py:38
 msgid "Activate"
-msgstr ""
+msgstr "Aktiviĝi"
 
 #: pagelayout.py:83
 msgid "Pootle Logo"
-msgstr ""
+msgstr "Pootle-Emblemo"
 
 #: pagelayout.py:84
 msgid "About this Pootle server"
-msgstr ""
+msgstr "Pri ĉi tiu Pootle-servilo"
 
 #: pagelayout.py:160
 msgid "All goals"
-msgstr ""
+msgstr "Ĉiuj celoj"
 
 #: pagelayout.py:231
 #, python-format
 msgid "%d/%d files"
-msgstr ""
+msgstr "%d/%d dosieroj"
 
 #: pagelayout.py:234
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dosiero"
+msgstr[1] "%d dosieroj"
 
 #: pagelayout.py:236
 #, python-format
 msgid "%d/%d strings"
-msgstr ""
+msgstr "%d/%d signoĉenoj"
 
 #: pagelayout.py:242 users.py:184
 msgid "Name"
-msgstr ""
+msgstr "Nomo"
 
 #: pagelayout.py:243
-#, fuzzy
 msgid "Translated"
-msgstr "Traduku"
+msgstr "Tradukitaj"
 
 #: pagelayout.py:244
 msgid "Translated percentage"
-msgstr ""
+msgstr "Elcento tradukitaj"
 
 #: pagelayout.py:245
 msgid "Translated words"
-msgstr ""
+msgstr "Tradukitaj vortoj"
 
 #: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
-msgstr "Nebula"
+msgstr "Nebulaj"
 
 #: pagelayout.py:247
 msgid "Fuzzy percentage"
-msgstr ""
+msgstr "Elcento de nebulaj"
 
 #: pagelayout.py:248
 msgid "Fuzzy words"
-msgstr ""
+msgstr "Nebulaj vortoj"
 
 #: pagelayout.py:250
 msgid "Untranslated percentage"
-msgstr ""
+msgstr "Elcento de netradukitaj"
 
 #: pagelayout.py:251
 msgid "Untranslated words"
-msgstr ""
+msgstr "Netradukitaj vortoj"
 
 #: pagelayout.py:252
 msgid "Total"
-msgstr ""
+msgstr "Sumo"
 
 #: pagelayout.py:253
 msgid "Total words"
-msgstr ""
+msgstr "Sumo de vortoj"
 
 #. l10n: noun. The graphical representation of translation status
 #: pagelayout.py:255
 msgid "Graph"
-msgstr ""
+msgstr "Diagramo"
 
 #: pagelayout.py:293
 msgid "Source Text"
-msgstr ""
+msgstr "Fonta Teksto"
 
 #: pagelayout.py:297
 msgid "Target Text"
-msgstr ""
+msgstr "Cela Teksto"
 
 #: pagelayout.py:301
 msgid "Comments"
-msgstr ""
+msgstr "Komentoj"
 
 #: pagelayout.py:305
 msgid "Locations"
-msgstr ""
+msgstr "Lokaĵoj"
 
 #: pootle.py:305
 msgid "Login failed"
-msgstr ""
+msgstr "Saluto fiaskis"
 
 #: pootle.py:349 pootle.py:380
 msgid "Redirecting to login..."
-msgstr ""
+msgstr "Alidirektante al saluto..."
 
 #: pootle.py:352
 msgid "Need to log in to access home page"
-msgstr ""
+msgstr "Necesas saluton por atingi la hejmpaĝo"
 
 #: pootle.py:365
 msgid "Personal details updated"
-msgstr ""
+msgstr "Personajn detalojn aktualigitaj"
 
 #: pootle.py:383
 msgid "Need to log in to access admin page"
-msgstr ""
+msgstr "Necesas saluton por atingi la administra paĝo"
 
 #: pootle.py:390
 msgid "Redirecting to home..."
-msgstr ""
+msgstr "Alidirektante al hejmo..."
 
 #: pootle.py:393
 msgid "You do not have the rights to administer pootle."
-msgstr ""
+msgstr "Vi ne rajtas administri pootle-on."
 
 #. l10n: Verb
 #: projects.py:138
@@ -814,7 +833,7 @@ msgstr "Montru"
 
 #: projects.py:139 translatepage.py:678
 msgid "Suggest"
-msgstr "Sugestu"
+msgstr "Sugesti"
 
 #: projects.py:140
 msgid "Translate"
@@ -823,76 +842,75 @@ msgstr "Traduku"
 #. l10n: Verb
 #: projects.py:143
 msgid "Review"
-msgstr "Revuu"
+msgstr "Revizii"
 
 #. l10n: Verb
 #: projects.py:145
 msgid "Archive"
-msgstr "Arkivo"
+msgstr "Enarkivi"
 
 #. l10n: This refers to generating the binary .mo file
 #: projects.py:147
 msgid "Compile PO files"
-msgstr ""
+msgstr "Kompili PO-dosierojn"
 
 #: projects.py:148
 msgid "Assign"
-msgstr "Asignu"
+msgstr "Atribui"
 
 #. l10n: Don't translate "nobody" or "default"
 #: projects.py:230
 msgid "You cannot remove the \"nobody\" or \"default\" user"
-msgstr "Vi ne povas forigi la \"nobody\"-an aŭ \"default\"-an uzanton"
+msgstr "Vi ne povas forigi uzantojn aŭ \"nobody\" aŭ \"default\""
 
 #: projects.py:382 projects.py:444
 msgid "You do not have rights to alter goals here"
-msgstr ""
+msgstr "Vi ne rajtas ŝanĝi celojn ĉi tie"
 
 #: projects.py:510
 msgid "You do not have rights to upload files here"
-msgstr ""
+msgstr "Vi ne rajtas alŝuti dosierojn ĉi tie"
 
 #: projects.py:513
 msgid "You do not have rights to overwrite files here"
-msgstr ""
+msgstr "Vi ne rajtas anstataŭigi dosierojn ĉi tie"
 
 #: projects.py:515
 msgid "You do not have rights to upload new files here"
-msgstr ""
+msgstr "Vi ne rajtas alŝuti novajn dosierojn ĉi tie"
 
 #: projects.py:524
 msgid "You do not have rights to update files here"
-msgstr ""
+msgstr "Vi ne rajtas ŝanĝi dosierojn ĉi tie"
 
 #: projects.py:555
 msgid "You do not have rights to commit files here"
-msgstr ""
+msgstr "Vi ne rajtas enmeti dosierojn ĉi tie"
 
 #: projects.py:977 projects.py:1019
 msgid "You do not have rights to alter assignments here"
-msgstr ""
+msgstr "Vi ne rajtas ŝanĝi atribuaĵojn ĉi tie"
 
 #: projects.py:1219
 msgid "You do not have rights to change translations here"
-msgstr ""
+msgstr "Vi ne rajtas ŝanĝi tradukojn ĉi tie"
 
 #: projects.py:1229
 msgid "You do not have rights to suggest changes here"
-msgstr ""
+msgstr "Vi ne rajtas sugesti ŝanĝojn ĉi tie"
 
 #: projects.py:1245 projects.py:1263
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Vi ne rajtas revizii sugestojn ĉi tie"
 
 #: translatepage.py:103
 #, python-format
-#, fuzzy
 msgid ""
 "%d/%d translated\n"
 "(%d untranslated, %d fuzzy)"
 msgstr ""
 "%d/%d tradukitaj\n"
-"(%d malplenaj, %d nebulaj)"
+"(%d netradukitaj, %d nebulaj)"
 
 #. l10n: first parameter: name of the installation (like "Pootle")
 #. l10n: second parameter: project name
@@ -901,7 +919,7 @@ msgstr ""
 #: translatepage.py:113
 #, python-format
 msgid "%s: translating %s into %s: %s"
-msgstr "%s: traduki %s en %s: %s"
+msgstr "%s: tradukante %s en %s-n: %s"
 
 #. l10n: Heading above the table column with the source language
 #: translatepage.py:128
@@ -915,16 +933,16 @@ msgstr "Tradukado"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Akcepti sugeston"
 
 #: translatepage.py:134
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Malakcepti sugeston"
 
 #. l10n: Heading above the textarea for translator comments.
 #: translatepage.py:137
 msgid "Translator comments"
-msgstr "Komentoj de la tradukanto"
+msgstr "Komentoj de tradukanto"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: translatepage.py:139
@@ -934,17 +952,17 @@ msgstr "Komentoj de la programisto"
 #. l10n: This heading refers to related translations and terminology
 #: translatepage.py:141
 msgid "Related"
-msgstr "Pri"
+msgstr "Rilata"
 
 #. l10n: Text displayed when an AJAX petition is being made
 #: translatepage.py:155
 msgid "Working..."
-msgstr ""
+msgstr "Funkciante..."
 
 #. l10n: Text displayed in an alert box when an AJAX petition has failed
 #: translatepage.py:157
 msgid "Error: Something went wrong."
-msgstr ""
+msgstr "Eraro: Io fuŝas."
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
@@ -970,7 +988,7 @@ msgstr "%d antaŭaj"
 #: translatepage.py:199
 #, python-format
 msgid "Items %d to %d of %d"
-msgstr ""
+msgstr "Mesaĝoj %d al %d el %d"
 
 #. l10n: the parameter refers to the number of messages
 #: translatepage.py:204 translatepage.py:207
@@ -987,63 +1005,63 @@ msgstr "Fino"
 #: translatepage.py:230
 #, python-format
 msgid "checking %s"
-msgstr ""
+msgstr "kontrolante %s"
 
 #: translatepage.py:398
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr ""
+msgstr "Nenio konformas al ĉi tiu serĉo ('%s')"
 
 #: translatepage.py:400
 msgid "You have finished going through the items you selected"
-msgstr ""
+msgstr "Vi kompletas tiujn, kiujn vi elektis"
 
 #: translatepage.py:643
 msgid "Singular"
-msgstr ""
+msgstr "Ununombra"
 
 #: translatepage.py:644
 msgid "Plural"
-msgstr ""
+msgstr "Multnombra"
 
 #. l10n: verb
 #: translatepage.py:658
 msgid "Edit"
-msgstr ""
+msgstr "Redakti"
 
 #. l10n: verb
 #: translatepage.py:674
 msgid "Copy"
-msgstr ""
+msgstr "Kopii"
 
 #: translatepage.py:675 translatepage.py:849
 msgid "Skip"
-msgstr ""
+msgstr "Salti"
 
 #. l10n: verb
 #: translatepage.py:677 translatepage.py:848 users.py:312
 msgid "Back"
-msgstr ""
+msgstr "Reveni"
 
 #: translatepage.py:679
 msgid "Submit"
-msgstr ""
+msgstr "Sendi"
 
 #. l10n: action that increases the height of the textarea
 #: translatepage.py:682
 msgid "Grow"
-msgstr ""
+msgstr "Kreskigi"
 
 #. l10n: action that decreases the height of the textarea
 #: translatepage.py:684
 msgid "Shrink"
-msgstr ""
+msgstr "Ŝrumpi"
 
 #: translatepage.py:706 translatepage.py:800 translatepage.py:837
 #: translatepage.py:870
 #, python-format
 msgid "Plural Form %d"
-msgstr ""
+msgstr "Multnombra Formo %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: translatepage.py:722
@@ -1051,227 +1069,231 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
+"Traduko mankas pro tio, ke informo pri multnombreco mankas. Bonvolu kontakti "
+"la administranton de la TTT-ejo."
 
 #: translatepage.py:804
 msgid "Current Translation:"
-msgstr ""
+msgstr "Nuna Traduko:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
 #: translatepage.py:817
 #, python-format
 msgid "Suggestion %d by %s:"
-msgstr ""
+msgstr "Sugesto %d de %s:"
 
 #: translatepage.py:819
 #, python-format
 msgid "Suggestion %d:"
-msgstr ""
+msgstr "Sugesto %d:"
 
 #. l10n: parameter: name of translator
 #: translatepage.py:823
 #, python-format
 msgid "Suggestion by %s:"
-msgstr ""
+msgstr "Sugesto de %s:"
 
 #: translatepage.py:825
 msgid "Suggestion:"
-msgstr ""
+msgstr "Sugesto:"
 
 #: users.py:43
 #, python-format
 msgid "You must supply a valid password of at least %d characters."
-msgstr ""
+msgstr "Vi devas doni validan pasvorton de ne malpli ol %d signoj."
 
 #: users.py:45
 msgid "The password is not the same as the confirmation."
-msgstr ""
+msgstr "La pasvorto ne egalas al la konfirmo."
 
 #: users.py:60
 msgid "Login to Pootle"
-msgstr ""
+msgstr "Saluti al Pootle"
 
 #: users.py:66
 msgid "Username:"
-msgstr ""
+msgstr "Uzanta nomo:"
 
 #: users.py:68
 msgid "Password:"
-msgstr ""
+msgstr "Pasvorto:"
 
 #: users.py:69
 msgid "Language:"
-msgstr ""
+msgstr "Lingvo:"
 
 #: users.py:71
 msgid "Login"
-msgstr ""
+msgstr "Saluti"
 
 #: users.py:77
 msgid "Default"
-msgstr ""
+msgstr "Defaŭlto"
 
 #: users.py:112
 msgid "Please enter your registration details"
-msgstr ""
+msgstr "Bonvolu enigu viajn registrajn detalojn"
 
 #: users.py:115 users.py:475
 msgid "Pootle Registration"
-msgstr ""
+msgstr "Pootle-Registrado"
 
 #: users.py:122 users.py:158
 msgid "Your requested username"
-msgstr ""
+msgstr "Via petita uzanta nomo"
 
 #: users.py:125 users.py:429
 msgid "You must supply a valid email address"
-msgstr ""
+msgstr "Vi devas doni validan retpoŝtan adreson"
 
 #: users.py:128
 msgid "Your full name"
-msgstr ""
+msgstr "Via tuta nomo"
 
 #: users.py:131
 msgid "Your desired password"
-msgstr ""
+msgstr "Vi pasvorto dezirata"
 
 #: users.py:133 users.py:189
 msgid "Confirm password"
-msgstr ""
+msgstr "Konfirmu pasvorton"
 
 #: users.py:134
 msgid "Type your password again to ensure it is entered correctly"
-msgstr ""
+msgstr "Retajpi vian pasvorton por certas, ke ĝi estas ĝuste enigita"
 
 #: users.py:136
 msgid "Register Account"
-msgstr ""
+msgstr "Registru Konton"
 
 #: users.py:145
 msgid "Please enter your activation details"
-msgstr ""
+msgstr "Bonvolu enigi viajn akitivigitajn detalojn "
 
 #: users.py:150
 msgid "Pootle Account Activation"
-msgstr ""
+msgstr "Aktivigado de Pootle-Konto"
 
 #: users.py:160
 msgid "Activation Code"
-msgstr ""
+msgstr "Aktivigita Kodo"
 
 #: users.py:161
 msgid "The activation code you received"
-msgstr ""
+msgstr "La aktivigita kodo, kiun vi ricevis"
 
 #: users.py:163
 msgid "Activate Account"
-msgstr ""
+msgstr "Aktivigi Konton"
 
 #: users.py:175
 #, python-format
 msgid "Options for: %s"
-msgstr ""
+msgstr "Opcioj por: %s"
 
 #: users.py:181
 msgid "Personal Details"
-msgstr ""
+msgstr "Personaj Detaloj"
 
 #: users.py:186
 msgid "Email"
-msgstr ""
+msgstr "Retpoŝto"
 
 #: users.py:190
 msgid "Translation Interface Configuration"
-msgstr ""
+msgstr "Agordi Interfacon de Tradukado"
 
 #: users.py:191
 msgid "User Interface language"
-msgstr ""
+msgstr "Lingvo de Uzanta Interfaco"
 
 #: users.py:192
 msgid "My Projects"
-msgstr ""
+msgstr "Miaj Projektoj"
 
 #: users.py:194
 msgid "My Languages"
-msgstr ""
+msgstr "Miaj Lingvoj"
 
 #: users.py:196
 msgid "Home page"
-msgstr ""
+msgstr "Hejmpaĝo"
 
 #: users.py:202
 msgid "Alternative Source Language"
-msgstr ""
+msgstr "Alternativa Font-Lingvo"
 
 #. l10n: 'None' is displayed as the first item in the alternative source languages list and disables the feature.
 #: users.py:240
 msgid "None"
-msgstr ""
+msgstr "Nenio"
 
 #: users.py:257
 msgid "Input Height (in lines)"
-msgstr ""
+msgstr "Enigu Altecon (en linioj)"
 
 #: users.py:258
 msgid "Number of rows in view mode"
-msgstr ""
+msgstr "Nombro de horizontaloj en reĝimo montri"
 
 #: users.py:259
 msgid "Number of rows in translate mode"
-msgstr ""
+msgstr "Nombro de horizontaloj en reĝimo traduki"
 
 #: users.py:307
 msgid "Error"
-msgstr ""
+msgstr "Eraro"
 
 #: users.py:359
 msgid "You need to be siteadmin to change users"
-msgstr ""
+msgstr "Vi devas esti la administranto de la TTT-ejo por ŝanĝi uzantojn"
 
 #: users.py:423
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
-msgstr ""
+msgstr "Uzanta nomo devas esti litercifera kaj la unua signo devas esti litero."
 
 #: users.py:438
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
+msgstr "Vi (aŭ iu) registris konton kun via uzanta nomo.\n"
 
 #: users.py:439
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
+msgstr "Ni ne surdiskigis vian veran pasvorton, nur haketaĵon el ĝi.\n"
 
 #: users.py:441
 #, python-format
 msgid "If you have a problem with registration, please contact %s.\n"
-msgstr ""
+msgstr "Se vi havas problemon pri registrado, bonvolu kontakti %s.\n"
 
 #: users.py:443
 msgid ""
 "If you have a problem with registration, please contact the site "
 "administrator.\n"
-msgstr ""
+msgstr "Se vi havas problemon pri registrado, bonvolu kontakti la administranton de "
+"la TTT-ejo.\n"
 
 #: users.py:444
 msgid ""
 "That username already exists. An email will be sent to the registered email "
 "address.\n"
-msgstr ""
+msgstr "Tiu uzanta nomo jam ekzistas. Mesaĝo sendiĝos al la registrita "
+"retpoŝt-adreso.\n"
 
 #: users.py:446
 #, python-format
 msgid "Proceeding to <a href='%s'>login</a>\n"
-msgstr ""
+msgstr "Irante al <a href='%s'>saluto</a>\n"
 
 #: users.py:452
 msgid "A Pootle account has been created for you using this email address.\n"
-msgstr ""
+msgstr "Pootle-konto kreiĝis por vi uzante ĉi tiun retpoŝt-adreson."
 
 #: users.py:454
 msgid "To activate your account, follow this link:\n"
-msgstr ""
+msgstr "Por aktivigi vian konton, sekvu ĉi tiun ligilon:\n"
 
 #: users.py:460
 #, python-format
@@ -1279,18 +1301,22 @@ msgid ""
 "Your activation code is:\n"
 "%s\n"
 msgstr ""
+"Via aktiviga kodo estas:\n"
+"%s\n"
 
 #: users.py:462
 msgid ""
 "If you are unable to follow the link, please enter the above code at the "
 "activation page.\n"
-msgstr ""
+msgstr "Se vi ne povas sekvi la ligilon, bonvolu enigi la supran kodon al la "
+"aktiviga paĝo.\n"
 
 #: users.py:463
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message.\n"
-msgstr ""
+msgstr "Vi ricevis ĉi tiun mesaĝon por kontroli, ke la retpoŝto adreso vere estas "
+"ĝusta. Se vi ne volis registri konton, vi povas nur ignori la mesaĝon.\n"
 
 #: users.py:465
 #, python-format
@@ -1298,61 +1324,64 @@ msgid ""
 "Account created. You will be emailed login details and an activation code. "
 "Please enter your activation code on the <a href='%s'>activation page</a>."
 msgstr ""
+"Konto kreitiĝis. Vi ricevos retpoŝte kaj detalojn pri salutado kaj aktivigan "
+"kodon. Bonvolu enigi vian akivigan kodon al la <a href='%s'>aktiviga "
+"paĝo</a>."
 
 #: users.py:467
 msgid "(Or simply click on the activation link in the email)"
-msgstr ""
+msgstr "(Aŭ nur alklaku la aktivigan ligilon en la mesaĝon)"
 
 #: users.py:469
 #, python-format
 msgid "Your user name is: %s\n"
-msgstr ""
+msgstr "Vi uzanta nomo estas: %s\n"
 
 #: users.py:471
 #, python-format
 msgid "Your password is: %s\n"
-msgstr ""
+msgstr "Via pasvorto estas: %s\n"
 
 #: users.py:472
 #, python-format
 msgid "Your registered email address is: %s\n"
-msgstr ""
+msgstr "Via registrita retpoŝta adreso estas: %s\n"
 
 #: users.py:500
 msgid "Redirecting to Registration Page..."
-msgstr ""
+msgstr "Alidirektante al Registrada Paĝo..."
 
 #: users.py:524
 msgid "Redirecting to login Page..."
-msgstr ""
+msgstr "Alidirektante al saluta Paĝo..."
 
 #: users.py:527
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "Via konto aktiviĝis! Alidirektante al saluto..."
 
 #: users.py:531
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "La aktiviga informo ne validis."
 
 #: users.py:532
 msgid "Activation Failed"
-msgstr ""
+msgstr "Aktivado Fiaskis"
 
 #: users.py:649
 msgid "Input height must be numeric"
-msgstr ""
+msgstr "Enigita alteco devas esti cifera"
 
 #: users.py:650
 msgid "Input width must be numeric"
-msgstr ""
+msgstr "Enigita largeco devas esti cifera"
 
 #: users.py:651
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr ""
+msgstr "La nombro de horizontaloj montrota en montra reĝimo devas esti cifera"
 
 #: users.py:652
 msgid "The number of rows displayed in translate mode must be numeric"
-msgstr ""
+msgstr "La nombro de horizontaloj montrota en traduka reĝimo devas esti cifera"
 
 #~ msgid "Accept"
 #~ msgstr "Akceptu"

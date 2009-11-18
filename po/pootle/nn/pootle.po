@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-11-13 06:03+0000\n"
+"PO-Revision-Date: 2009-02-28 04:15+0200\n"
 "Last-Translator: Simon Hansen <simonboba@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.0-rc1\n"
+"X-Generator: Pootle 1.2.1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -561,7 +562,7 @@ msgstr "Gøym spor"
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:847
 msgid "Show Checks"
-msgstr "Syn feilsjekking"
+msgstr "Vis feilsjekking"
 
 #: indexpage.py:847
 msgid "Hide Checks"
@@ -824,7 +825,7 @@ msgstr "Du har ikkje løyve til å administrere Pootle."
 #. l10n: Verb
 #: projects.py:138
 msgid "View"
-msgstr "Syn"
+msgstr "Vis"
 
 #: projects.py:139 translatepage.py:678
 msgid "Suggest"

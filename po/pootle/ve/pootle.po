@@ -918,7 +918,6 @@ msgstr "%d/%d translated(%d blank, %d fuzzy)"
 #. l10n: fourth parameter: file name
 #: translatepage.py:113
 #, python-format
-#, fuzzy
 msgid "%s: translating %s into %s: %s"
 msgstr "Pootle: translating %s into %s: %s"
 

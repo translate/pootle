@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-04-16 10:13+0000\n"
-"Last-Translator: amran abdullah <am@uum.edu.my>\n"
+"PO-Revision-Date: 2008-12-02 23:47+0000\n"
+"Last-Translator: Siti Rusni Hanafiah <Siti.Rusni@excite.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.1.0\n"
+"X-Generator: Pootle 1.2.1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -21,9 +22,9 @@ msgstr ""
 msgid "Pootle Demo"
 msgstr "Demo Pootle"
 
+# Laman Utama
 #: adminpages.py:45 adminpages.py:85 adminpages.py:144 adminpages.py:210
 #: pagelayout.py:27
-#, fuzzy
 msgid "Home"
 msgstr "Muka Depan"
 
@@ -40,7 +41,6 @@ msgid "Projects"
 msgstr "Projek"
 
 #: adminpages.py:49
-#, fuzzy
 msgid "General options"
 msgstr "Pilihan Umum"
 
@@ -77,10 +77,10 @@ msgstr "Halaman Utama"
 msgid "Pootle Languages Admin Page"
 msgstr "Halaman Pengurus Bahasa Pootle"
 
+# Laman Utama Pentadbir
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
-#, fuzzy
 msgid "Main admin page"
-msgstr "Halaman Pentadbir utama"
+msgstr "Halaman Pentadbir Utama"
 
 #: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
@@ -119,8 +119,8 @@ msgstr "Persamaan Plural"
 msgid "(plural equation)"
 msgstr "(persamaan plural)"
 
+# Sisih bahasa
 #: adminpages.py:98
-#, fuzzy
 msgid "Remove Language"
 msgstr "Buang bahasa"
 

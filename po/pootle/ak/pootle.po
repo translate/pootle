@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-19 12:36+0200\n"
-"PO-Revision-Date: 2008-09-12 23:54+0000\n"
-"Last-Translator: Jojoo Imbeah <jojoo.imbeah@suuch.com>\n"
+"PO-Revision-Date: 2009-10-08 22:14+0200\n"
+"Last-Translator: kasahorow <kasahorow@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ak\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 1.2.1\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: adminpages.py:37 adminpages.py:76 adminpages.py:135 adminpages.py:201
@@ -28,24 +29,23 @@ msgstr "Fie"
 
 #: adminpages.py:46 adminpages.py:212
 msgid "Users"
-msgstr ""
+msgstr "Adehye"
 
 #: adminpages.py:47 adminpages.py:87 indexpage.py:93
 msgid "Languages"
-msgstr "Kasa"
+msgstr "Akasa"
 
 #: adminpages.py:48 adminpages.py:146 indexpage.py:94
 msgid "Projects"
 msgstr "Nkɔsodwuma"
 
 #: adminpages.py:49
-#, fuzzy
 msgid "General options"
-msgstr "Nea Epɛ"
+msgstr "Nea wo pɛ"
 
 #: adminpages.py:50 users.py:182
 msgid "Option"
-msgstr "Kwan"
+msgstr "Option"
 
 #: adminpages.py:51 users.py:183
 msgid "Current value"
@@ -54,19 +54,20 @@ msgstr "Sesei de"
 #: adminpages.py:52 adminpages.py:88 adminpages.py:147 adminpages.py:213
 #: users.py:197
 msgid "Save changes"
-msgstr "Tim nsesa nyina"
+msgstr "Tim nsesa nyinara"
 
 #: adminpages.py:56
 msgid "Title"
-msgstr ""
+msgstr "Taetel"
 
+# Nkyerɛmu rekɛyɛ sɛ "explanation" sen sɛ "description"
 #: adminpages.py:57
 msgid "Description"
-msgstr ""
+msgstr "Nkyerɛmu"
 
 #: adminpages.py:58
 msgid "Base URL"
-msgstr ""
+msgstr "Aseɛhɔ URL"
 
 # thinking of a way to translate page
 #: adminpages.py:59
@@ -75,12 +76,11 @@ msgstr "Fie Krataafa"
 
 #: adminpages.py:77
 msgid "Pootle Languages Admin Page"
-msgstr ""
+msgstr "Admin Krataafa Ma Pootle Akasa"
 
 #: adminpages.py:86 adminpages.py:145 adminpages.py:211
-#, fuzzy
 msgid "Main admin page"
-msgstr "Nsesa fa"
+msgstr "Admin krataafa titiriw"
 
 #: adminpages.py:92 adminpages.py:286
 msgid "ISO Code"
@@ -89,7 +89,7 @@ msgstr "ISO Kood"
 #: adminpages.py:93 adminpages.py:152 adminpages.py:218 adminpages.py:287
 #: users.py:127
 msgid "Full Name"
-msgstr "Wodin Nyinara"
+msgstr "Wo Din Nyinara"
 
 #: adminpages.py:94
 msgid "(add language here)"
@@ -97,11 +97,12 @@ msgstr "(fa kasa ka ho wɔ ha)"
 
 #: adminpages.py:95
 msgid "Special Chars"
-msgstr ""
+msgstr "Chars Soronko"
 
+# * kasafua foforo. karakta = character. nkarakta = characters. yay!
 #: adminpages.py:95
 msgid "(special characters)"
-msgstr ""
+msgstr "(nkarakta soronko)"
 
 #: adminpages.py:96 indexpage.py:224
 msgid "Number of Plurals"
@@ -111,16 +112,16 @@ msgstr "Ɔdodow Nɔmba"
 msgid "(number of plurals)"
 msgstr "(ɔdodow nɔmba)"
 
+# "Equation" ne Akan ne sɛn? *kasafua foforo equation = ikuwehyɛn; equations = nkuwehyɛn
 #: adminpages.py:97 indexpage.py:225
 msgid "Plural Equation"
-msgstr ""
+msgstr "Ɔdodow Ikuwehyɛn"
 
 #: adminpages.py:97
 msgid "(plural equation)"
-msgstr ""
+msgstr "(ɔdodow ikuwehyɛn)"
 
 #: adminpages.py:98
-#, fuzzy
 msgid "Remove Language"
 msgstr "Yi dɛm kasa yi"
 
@@ -130,14 +131,16 @@ msgstr "Yi dɛm kasa yi"
 msgid "Remove %s"
 msgstr "Yi %s"
 
+# Kasafua bi wɔ hɔ a yɛbɛtumi de ahyɛ anan mu?
 #: adminpages.py:132
 msgid "Standard"
-msgstr ""
+msgstr "Standaad"
 
 #: adminpages.py:136
 msgid "Pootle Projects Admin Page"
-msgstr ""
+msgstr "Admin Krataafa Ma Pootle Nkɔsondwuma"
 
+# Wo tumi kyerɛw "project" sɛ "nkɔsodwuma" anaaso "projɛkt"
 #: adminpages.py:151
 msgid "Project Code"
 msgstr "Nkɔsodwuma Kood"
@@ -158,22 +161,24 @@ msgstr "(nkɔsodwuma nkyerɛmu)"
 msgid "Checker Style"
 msgstr "Checker Style"
 
+# Fantefo ka ne sɛ "horow", Twi fo ka no sɛ "hodoɔ"
 #: adminpages.py:156
 msgid "File Type"
-msgstr ""
+msgstr "Fael Hodoɔ"
 
+# Kasafua fofor bi wɔ hɔ ma "create"? bɔ? heyhyɛ? yɛ?
 #: adminpages.py:157
 msgid "Create MO Files"
-msgstr ""
+msgstr "Hyehyɛ MO Mfael"
 
 #: adminpages.py:158
-#, fuzzy
 msgid "Remove Project"
-msgstr "Yi nkɔsodwuma yi fi mu"
+msgstr "Yi Nkɔsodwuma Yi Fi Mu"
 
+# "User" kyerɛ dɛn? Mede "Dehye" rehyɛ hɔ seisei
 #: adminpages.py:202
 msgid "Pootle User Admin Page"
-msgstr ""
+msgstr "Admin Krataafa Ma Pootle Dehye"
 
 #: adminpages.py:217 adminpages.py:376 users.py:121 users.py:157
 msgid "Username"
@@ -181,7 +186,7 @@ msgstr "Agodin"
 
 #: adminpages.py:219 users.py:403
 msgid "(add full name here)"
-msgstr ""
+msgstr "(fa wo edin nyinara ka ho wɔ ha)"
 
 #: adminpages.py:220 users.py:124
 msgid "Email Address"
@@ -197,45 +202,41 @@ msgstr "Ehintasɛmfua"
 
 #: adminpages.py:221 users.py:400
 msgid "(add password here)"
-msgstr ""
+msgstr "(kyerɛw wo ehintasɛmfua wɔ ha)"
 
 #: adminpages.py:222
-#, fuzzy
 msgid "Activated"
-msgstr "Nyan"
+msgstr "Wo Enyan No"
 
 #: adminpages.py:222
 msgid "Activate New User"
-msgstr ""
+msgstr "Nyan Dehye Foforo"
 
 #: adminpages.py:223
-#, fuzzy
 msgid "Remove User"
-msgstr "Yi %s"
+msgstr "Yi Dehye Fi Hɔ"
 
 #: adminpages.py:278
 msgid "Back to main page"
-msgstr ""
+msgstr "San ekyiri kɔ krataafa titiriw"
 
 #: adminpages.py:279
 msgid "Existing languages"
-msgstr ""
+msgstr "Akasa a wɔwɔ hɔ seisei"
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:283
 msgid "Update Languages"
-msgstr ""
+msgstr "Tu Akasa Yinom Mpon"
 
 #: adminpages.py:284
 #, python-format
-#, fuzzy
 msgid "Pootle Admin: %s"
-msgstr "Pootle nsesa fa"
+msgstr "Pootle Admin: %s"
 
 #: adminpages.py:285 adminpages.py:356
-#, fuzzy
 msgid "You do not have the rights to administer this project."
-msgstr "Enyi tumi dɛ ebɛ sesa pootle."
+msgstr "Wo nni tumi sɛ wo bɛ sesa pootle."
 
 #. l10n: This refers to updating the translation files from the templates like with .pot files
 #: adminpages.py:289
@@ -244,23 +245,23 @@ msgstr ""
 
 #: adminpages.py:298
 msgid "Add Language"
-msgstr ""
+msgstr "Fa Kasa Ka Ho"
 
 #. l10n: This is the page title. The first parameter is the language name, the second parameter is the project name
 #: adminpages.py:336
 #, python-format
-#, fuzzy
 msgid "Pootle Admin: %s %s"
-msgstr "Pootle nsesa fa"
+msgstr "Pootle Admin: %s %s"
 
 #: adminpages.py:337
 msgid "Project home page"
-msgstr ""
+msgstr "Nkɔsodwuma fie krataafa"
 
 #: adminpages.py:355
 #, python-format
+#, fuzzy
 msgid "Cannot set rights for username %s - user does not exist"
-msgstr ""
+msgstr "Cannot set rights for username %s - dehye biara nni hɔ te saa."
 
 #: adminpages.py:372
 msgid "This is a GNU-style project (one directory, files named per language)."
@@ -276,15 +277,15 @@ msgstr ""
 
 #: adminpages.py:377
 msgid "(select to add user)"
-msgstr ""
+msgstr "(fa iyi sɛ wopɛ sɛ wo de dehye no ka ho a)"
 
 #: adminpages.py:378
 msgid "Rights"
-msgstr ""
+msgstr "Tumi"
 
 #: adminpages.py:379 indexpage.py:1008
 msgid "Remove"
-msgstr ""
+msgstr "Yi"
 
 #: adminpages.py:406
 msgid "Update Rights"
@@ -314,9 +315,9 @@ msgid ""
 "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 "details about source code, mailing lists etc."
 msgstr ""
-"Pootle ne nkɔsodwuma no ankasa de ɔwɔ <a "
+"Pootle nkɔsodwuma no ankasa de ɔwɔ <a "
 "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> Hɔ na "
-"ebenya nkɔsodwuma no ho kɔmputa kasa-nkyerɛwee, dawurbɔ, etc."
+"wo benya nkɔsodwuma wɔn ho kɔmputa kasa-nkyerɛwee, dawurbɔ emel, etc."
 
 #. l10n: If your language uses right-to-left layout and you leave the English untranslated, consider enclosing the necessary text with <span dir="ltr">.......</span> to help browsers to display it correctly.
 #. l10n: Take care to use HTML tags correctly. A markup error could cause a display error.
@@ -346,11 +347,11 @@ msgstr ""
 #: indexpage.py:133
 #, python-format
 msgid "User Page for: %s"
-msgstr "Agodini Fa: %s"
+msgstr "Dehye Krataafa Ma: %s"
 
 #: indexpage.py:135
 msgid "Change options"
-msgstr "Sesa nea epɛ"
+msgstr "Sesa nea wo pɛ"
 
 #: indexpage.py:136
 msgid "Admin page"
@@ -366,14 +367,14 @@ msgstr "Ntɛmtɛmara"
 
 #: indexpage.py:142
 msgid "Please click on 'Change options' and select some languages and projects"
-msgstr "Mia 'Sesa nea epɛ' na fa kasahorow na nkɔsodwuma biara epɛ"
+msgstr "Mia 'Sesa nea wo pɛ' na fa kasahorow ne nkɔsodwuma biara a wo pɛ"
 
 #: indexpage.py:199
 #, python-format
 msgid "%d project, average %d%% translated"
 msgid_plural "%d projects, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d projɛkt, average %d%% na wɔakyerɛ ase"
+msgstr[1] "%d nkɔsodwuma, average %d%% na wɔakyerɛ ase"
 
 #. l10n: The first parameter is the name of the installation
 #. l10n: The second parameter is the name of the project/language
@@ -389,12 +390,10 @@ msgid "Admin"
 msgstr ""
 
 #: indexpage.py:221
-#, fuzzy
 msgid "Language Code"
-msgstr "Kasa"
+msgstr "Kasa Kood"
 
 #: indexpage.py:222
-#, fuzzy
 msgid "Language Name"
 msgstr "Kasa"
 
@@ -402,8 +401,8 @@ msgstr "Kasa"
 #, python-format
 msgid "%d language, average %d%% translated"
 msgid_plural "%d languages, average %d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d kasa, average %d%% na wɔakyerɛ ase"
+msgstr[1] "%d akasa, average %d%% na wɔakyerɛ ase"
 
 #: indexpage.py:273
 #, fuzzy
@@ -530,37 +529,37 @@ msgid "All Strings"
 msgstr ""
 
 #: indexpage.py:799 pagelayout.py:249
-#, fuzzy
 msgid "Untranslated"
-msgstr "Kyerɛ Ni Nyinaa Ase"
+msgstr "Wɔnnkyerɛɛ ase"
 
 #: indexpage.py:800
 msgid "Unassigned"
-msgstr ""
+msgstr "Wɔmmfa nhyɛɛ obiara ne nsa"
 
 #: indexpage.py:801
 msgid "Unassigned and Untranslated"
-msgstr ""
+msgstr "Wɔmmfa Nnhyɛɛ Obiara Nsa na Wɔnnkyerɛɛ Ase"
 
 #: indexpage.py:808
 msgid "Set Goal"
-msgstr ""
+msgstr "Si Wo Eni So Ade"
 
 #: indexpage.py:812
 msgid "Select Multiple"
-msgstr ""
+msgstr "Fa Pii Wɔ Mu"
 
 #: indexpage.py:814
 msgid "Assign To"
-msgstr ""
+msgstr "Fa Hyɛ Ne Nsa"
 
+# Kasafua bi wɔ hɔ ma "Functions" anaa?
 #: indexpage.py:843
 msgid "Show Editing Functions"
-msgstr ""
+msgstr "Da Nsesae Mfankhyɛn Edi"
 
 #: indexpage.py:844
 msgid "Show Statistics"
-msgstr ""
+msgstr "Kyerɛ Statistiks"
 
 #: indexpage.py:845
 msgid "Show Tracks"
@@ -573,11 +572,11 @@ msgstr ""
 #. l10n: "Checks" are quality checks that Pootle performs on translations to test for common mistakes
 #: indexpage.py:847
 msgid "Show Checks"
-msgstr "Kyerɛ nea ehia Yieyɛ"
+msgstr "Kyerɛ Yieyɛ a Pootle Betumi Ayɛ"
 
 #: indexpage.py:847
 msgid "Hide Checks"
-msgstr "Suma nea ehia Yieyɛ"
+msgstr "Suma Yieyɛ a Pootle Betumi Ayɛ"
 
 #: indexpage.py:848
 msgid "Show Goals"
@@ -610,15 +609,15 @@ msgstr ""
 
 #: indexpage.py:871
 msgid "No strings assigned to you"
-msgstr ""
+msgstr "Wɔnnfaa strings biara nnhyɛɛ wo nsa"
 
 #: indexpage.py:875
 msgid "Quick Translate My Strings"
-msgstr ""
+msgstr "Kyerɛ Me Strings Ase Ntɛmara"
 
 #: indexpage.py:879
 msgid "No untranslated strings assigned to you"
-msgstr ""
+msgstr "Wɔnnfaa strings biara a wɔnnkyerɛɛ ase nnhyɛɛ wo nsa"
 
 #: indexpage.py:883
 msgid "Review Suggestions"
@@ -642,7 +641,7 @@ msgstr ""
 
 #: indexpage.py:899
 msgid "Translate All"
-msgstr "Kyerɛ Ni Nyinaa Ase"
+msgstr "Kyerɛ No Nyinara Ase"
 
 #: indexpage.py:914
 msgid "ZIP of goal"
@@ -682,28 +681,24 @@ msgid "%d/%d words (%d%%) translated"
 msgstr "%d/%d nkasamu (%d%%) ne nkyerɛase di mu"
 
 #: pagelayout.py:28
-#, fuzzy
 msgid "All projects"
-msgstr "%s nkɔsodwuma"
+msgstr "Nkɔsodwuma nyinara"
 
 #: pagelayout.py:29
-#, fuzzy
 msgid "All languages"
-msgstr "%s kasa"
+msgstr "Akasa nyinara"
 
 #: pagelayout.py:30
 msgid "My account"
-msgstr ""
+msgstr "Me akawnt"
 
 #: pagelayout.py:32
-#, fuzzy
 msgid "Docs & help"
-msgstr "Nkrataa / Mboa"
+msgstr "Nkrataa a wɔma mboa"
 
 #: pagelayout.py:34
-#, fuzzy
 msgid "Log out"
-msgstr "Pue"
+msgstr "Bae-bae"
 
 #: pagelayout.py:35
 #, fuzzy
@@ -754,9 +749,8 @@ msgid "Name"
 msgstr ""
 
 #: pagelayout.py:243
-#, fuzzy
 msgid "Translated"
-msgstr "Kyerɛ Ni Nyinaa Ase"
+msgstr "Kyerɛ No Nyinara Ase"
 
 #: pagelayout.py:244
 #, fuzzy
@@ -764,9 +758,8 @@ msgid "Translated percentage"
 msgstr "Hwɛ Nea Ehia Nkyerɛase"
 
 #: pagelayout.py:245
-#, fuzzy
 msgid "Translated words"
-msgstr "Kyerɛ Ni Nyinaa Ase"
+msgstr "Kyerɛ No Nyinara Ase"
 
 #: pagelayout.py:246 translatepage.py:135
 msgid "Fuzzy"
@@ -956,9 +949,8 @@ msgstr "Odikamfo"
 
 #. l10n: Heading above the table column with the target language
 #: translatepage.py:130
-#, fuzzy
 msgid "Translation"
-msgstr "Kyerɛ Ni Nyinaa Ase"
+msgstr "Kyerɛ No Nyinara Ase"
 
 #: translatepage.py:133
 msgid "Accept suggestion"
@@ -995,13 +987,12 @@ msgstr ""
 
 #. l10n: "batch" refers to the set of translations that were reviewed
 #: translatepage.py:171
-#, fuzzy
 msgid "End of batch"
-msgstr "Asekyerɛ wɔ krataafa yi so hɔn ewiei"
+msgstr "Asekyerɛ wɔ krataafa yi so wɔn ewiei"
 
 #: translatepage.py:173
 msgid "Click here to return to the index"
-msgstr "Klik ha na san kɔ indeks"
+msgstr "Klik ha na san kɔ indɛks"
 
 #. l10n: noun (the start)
 #: translatepage.py:187 translatepage.py:190
@@ -1040,7 +1031,7 @@ msgstr "rehwɛ %s"
 #: translatepage.py:398
 #, python-format
 msgid "There are no items matching that search ('%s')"
-msgstr "Biribiara nni hɔ a wɔne no yɛ pɛ ('%s')"
+msgstr "Biribiara nni hɔ a wɔne ('%s') yɛ pɛ wɔ wo nhwehwɛ no mu"
 
 #: translatepage.py:400
 msgid "You have finished going through the items you selected"
@@ -1250,9 +1241,8 @@ msgid "My Projects"
 msgstr "Me Nkɔsodwuma"
 
 #: users.py:194
-#, fuzzy
 msgid "My Languages"
-msgstr "Kasa"
+msgstr "Me akasa"
 
 #: users.py:196
 msgid "Home page"
@@ -1286,22 +1276,25 @@ msgstr ""
 #: users.py:359
 msgid "You need to be siteadmin to change users"
 msgstr ""
+"Ɛwɔ sɛ wowɔ websaet hene tumi ansaana wo etum asesa woho ayɛ dehye foforo"
 
 #: users.py:423
 msgid ""
 "Username must be alphanumeric, and must start with an alphabetic character."
 msgstr ""
 "Ma wo din a wode ba ha no nyɛ nɔmbas ne nkasafua a wɔakeka abɔ mu, na ɛwɔ sɛ "
-"kasafua di wo din no enim."
+"akyerɛwamba di wo din no enim."
 
 #: users.py:438
 msgid ""
 "You (or someone else) attempted to register an account with your username.\n"
-msgstr ""
+msgstr "Wo yɛɛ sɛ wo de wodin bɛsan ebuei akawnt, anaaso obi foforo yɛɛ sɛ ɔbɛyɛ "
+"dɛmara.\n"
 
 #: users.py:439
 msgid "We don't store your actual password but only a hash of it.\n"
-msgstr ""
+msgstr "Yɛmmfa wo ehintasɛmfua no ara ankasa nnsie na mbom yɛde ne hahye na yɛde "
+"sie.\n"
 
 #: users.py:441
 #, python-format
@@ -1390,32 +1383,32 @@ msgstr ""
 
 #: users.py:527
 msgid "Your account has been activated! Redirecting to login..."
-msgstr ""
+msgstr "Yekenyane wo akawnt no! Yerekɔ mu..."
 
 #: users.py:531
 msgid "The activation information was not valid."
-msgstr ""
+msgstr "Wo nkenyanee ho nsɛm no enndi nokware."
 
 #: users.py:532
-#, fuzzy
 msgid "Activation Failed"
-msgstr "Nkenyane Kood"
+msgstr "Nkenyanee Annkɔ Yie"
 
 #: users.py:649
 msgid "Input height must be numeric"
-msgstr ""
+msgstr "Ɛwɔ sɛ wo kyerɛw nɔmba de kyerɛ input height"
 
 #: users.py:650
 msgid "Input width must be numeric"
-msgstr ""
+msgstr "Ɛwɔ sɛ wo kyerɛw nɔmba de kyerɛ input width"
 
 #: users.py:651
 msgid "The number of rows displayed in view mode must be numeric"
-msgstr ""
+msgstr "Ɛwɔ sɛ wo kyerɛw nɔmba de kyerɛ number of rows displayed in view mode"
 
 #: users.py:652
 msgid "The number of rows displayed in translate mode must be numeric"
 msgstr ""
+"Ɛwɔ sɛ wo kyerɛw numba de hyerɛ number of rows displayed in translate mode"
 
 #~ msgid "Accept"
 #~ msgstr "Gye to mu"

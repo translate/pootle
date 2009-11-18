@@ -894,7 +894,7 @@ msgstr "Sie haben keine Berechtigung hier neue Dateien hochzuladen"
 msgid "You do not have rights to update files here"
 msgstr "Sie haben keine Berechtigung hier Dateien zu aktualisieren"
 
-# "commit" -> "übertragen" (transfer, transmit, convey)
+# "commit" -&amp;gt; "übertragen" (transfer, transmit, convey)
 #: projects.py:555
 msgid "You do not have rights to commit files here"
 msgstr "Sie haben keine Berechtigung hier Dateien zu übertragen"
