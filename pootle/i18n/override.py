@@ -55,7 +55,7 @@ def supported_langs():
             # Language is never created before PootleProfile and all
             # ManyToMany relations work fine
             from pootle_app.models import PootleProfile, Language
-            return [(language.code, language.fullname) for language in Language.objects.exclude(code='template')]
+            return [(data.normalize_code(language.code), language.fullname) for language in Language.objects.exclude(code='template')]
         except Exception:
             pass
     return settings.LANGUAGES
@@ -111,7 +111,7 @@ def get_lang_from_http_header(request, supported):
         if accept_lang == '*':
             return None
         #normalized = data.normalize_code(accept_lang)
-        normalized = data.simplify_to_common(accept_lang)
+        normalized = data.normalize_code(data.simplify_to_common(accept_lang, supported))
         if normalized in ['en-us', 'en']:
             return None
         if normalized in supported:
@@ -162,7 +162,7 @@ def override_gettext(real_translation):
     translation.gettext_lazy = lazy(real_translation.gettext, str)
     translation.ugettext_lazy = lazy(real_translation.ugettext, unicode)
     translation.ngettext_lazy = lazy(real_translation.ngettext, str)
-    translation.ungettext_lazy = lazy(real_translation.ungettext, unicode)    
+    translation.ungettext_lazy = lazy(real_translation.ungettext, unicode)
 
 def get_language_bidi():
     """override for django's get_language_bidi that's aware of more
