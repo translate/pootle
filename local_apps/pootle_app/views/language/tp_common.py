@@ -61,16 +61,17 @@ def get_upload_path(translation_project, relative_root_dir, local_filename):
     """gets the path of a translation file being uploaded securely,
     creating directories as neccessary"""
     if os.path.basename(local_filename) != local_filename or local_filename.startswith("."):
-        raise ValueError("invalid/insecure file name: %s" % local_filename)
+        raise ValueError(_("invalid/insecure file name: %s", local_filename))
     # XXX: Leakage of the project layout information outside of
     # project_tree.py! The rest of Pootle shouldn't have to care
     # whether something is GNU-style or not.
     if translation_project.file_style == "gnu" and not translation_project.is_template_project:
         if local_filename != translation_project.language.code:
-            raise ValueError("invalid GNU-style file name %s: must match '%s.%s' or '%s[_-][A-Z]{2,3}.%s'" %
-                             (local_filename, translation_project.language.code,
-                              translation_project.project.localfiletype,
-                              translation_project.language.code, translation_project.project.localfiletype))
+            raise ValueError(_("invalid GNU-style file name %(local_filename)s: must match '%(langcode)s.%(filetype)s' or '%(langcode)s[_-][A-Z]{2,3}.%(filetype)s'",
+                             { 'local_filename': local_filename,
+                               'langcode': translation_project.language.code,
+                               'filetype': translation_project.project.localfiletype,
+                               }))
     dir_path = os.path.join(translation_project.real_path, unix_to_host_path(relative_root_dir))
     return relative_real_path(os.path.join(dir_path, local_filename))
 
