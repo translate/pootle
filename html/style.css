@@ -1132,39 +1132,48 @@ table.sortable th
 
 /* PAGER */
 
-div.pager
+ul.pager
 {
     font-size: 85%;
-    text-align: center;
 }
 
-div.pager a,
-div.pager a:visited
+ul.pager li
+{
+    float: left;
+}
+
+html[dir="rtl"] ul.pager li
+{
+    float: right;
+}
+
+ul.pager li a,
+ul.pager li a:visited
 {
     border: 1px solid #76b0bf;
     text-decoration: none;
 }
 
-div.pager a:hover
+ul.pager li a:hover
 {
     background-color: #76b0bf;
     color: #ffffff;
 }
 
-div.pager a,
-div.pager span
+ul.pager li span.current-link,
+ul.pager li a
 {
     margin: 0.1em;
     padding: 0.2em 0.5em;
 }
 
-div.pager a.nth-link,
-div.pager a.prevnext-link
+ul.pager li a.nth-link,
+ul.pager li a.prevnext-link
 {
     font-weight: bold;
 }
 
-div.pager span.current-link
+ul.pager li span.current-link
 {
     background-color: #76b0bf;
     color: #ffffff;
