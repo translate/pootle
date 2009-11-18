@@ -702,6 +702,16 @@ def create_default_languages():
     zh_TW.specialchars = u"←→↔×÷©…—‘’“”「」『』【】《》"
     zh_TW.save()
 
+    # import languages from toolkit
+    from translate.lang import data
+    for code, props in data.languages.items():
+        try:
+            lang, created = Language.objects.get_or_create(code=code, fullname=props[0],
+                                             nplurals=props[1], pluralequation=props[2])
+        except:
+            pass
+
+
 def create_default_admin():
     """Create the default user(s) for Pootle. You definitely want to change
     the admin account so that your default install is not accessible with the
