@@ -148,6 +148,12 @@ def xliff_link(request, path_obj):
 
         }
 
+def download_link(request, path_obj):
+    return {
+        'href': '/export/%s' % path_obj.file.name,
+        'text': _('Download'),
+        }
+    
 def commit_link(request, path_obj):
     if check_permission('commit', request) and versioncontrol.hasversioning(request.translation_project.abs_real_path):
         link = dispatch.commit(request, path_obj)
@@ -178,14 +184,12 @@ def _gen_link_list(request, path_obj, linkfuncs):
 
 def store_translate_links(request, path_obj, filetype):
     """returns a list of links for store items in translate tab"""
-    linkfuncs = [quick_link, translate_all_link, update_link, commit_link]
-    linkfuncs.append(filetype == "po" and po_link or xliff_link)
+    linkfuncs = [quick_link, translate_all_link, update_link, commit_link, download_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
 def store_review_links(request, path_obj, filetype):
     """returns a list of links for store items in review tab"""
-    linkfuncs = [review_link, update_link, commit_link]
-    linkfuncs.append(filetype == "po" and po_link or xliff_link)
+    linkfuncs = [review_link, update_link, commit_link, download_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
 def directory_translate_links(request, path_obj):

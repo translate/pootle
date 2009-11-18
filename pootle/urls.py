@@ -36,14 +36,11 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^django_admin/(.*)',   admin.site.root),
 
-    #(r'^(?P<path>doc/.*)$',   'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     # Static and media files
     (r'^html/(?P<path>.*)$',  'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^(favicon.ico)$',      'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
-
-    ## Django Registration urls
-    #(r'^accounts/', include('registration.urls')),
+    (r'^export/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.PODIRECTORY}),
 
     # Pootle urls
     (r'',                     include('pootle_app.urls')),
