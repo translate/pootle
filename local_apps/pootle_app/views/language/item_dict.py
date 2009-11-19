@@ -98,7 +98,7 @@ def review_link(request, path_obj):
                 text = _('Review Suggestions')
             else:
                 text = _('View Suggestions')
-                return { 
+            return { 
                     'href': dispatch.translate(request, path_obj.pootle_path, match_names=['check-hassuggestion']),
                     'text': text }
     except IOError:
@@ -111,10 +111,10 @@ def quick_link(request, path_obj):
                 text = _('Quick Translate')
             else:
                 text = _('View Untranslated')
-                return {
+            return {
                     'href': dispatch.translate(request, path_obj.pootle_path, match_names=['fuzzy', 'untranslated']),
                     'text': text }
-    except:
+    except IOError:
         pass
 
 def translate_all_link(request, path_obj):
