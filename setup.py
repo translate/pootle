@@ -192,7 +192,6 @@ class PootleBuildMo(DistutilsBuild):
 class PootleBuild(DistutilsBuild):
     """make sure build_mo is run when build is run"""
     def run(self):
-        self.run_command('build_mo')
         DistutilsBuild.run(self)
 
 
