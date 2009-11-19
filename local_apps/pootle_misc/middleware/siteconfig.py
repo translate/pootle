@@ -22,6 +22,9 @@ from django.http import HttpResponse
 from pootle_misc import siteconfig
 from pootle_misc import dbinit
 
+"""some unused http status code to mark the need to auto install"""
+
+INSTALL_STATUS_CODE = 613
 class SiteConfigMiddleware(object):
     """
     This middleware does two things, it reload djblet siteconfigs on
@@ -35,6 +38,7 @@ class SiteConfigMiddleware(object):
 
     """
     def process_request(self, request):
+        """load site config, return a dummy response if database seems uninitialized"""
         #FIXME: can't we find a more efficient method?
         try:
             siteconfig.load_site_config()
@@ -46,4 +50,23 @@ class SiteConfigMiddleware(object):
             # poking-the-duck-until-it-quacks-like-a-duck-test
             
             if e.__class__.__name__ in ['OperationalError', 'ProgrammingError']:
-                return HttpResponse(dbinit.staggered_install(e))
+                # we can't build the database here cause caching
+                # middleware won't allow progressive loading of
+                # response so instead return an empty response marked
+                # with special status code INSTALL_STATUS_CODE
+                
+                response = HttpResponse()
+                response.status_code = 613
+                response.exception = e
+                return response
+            
+    def process_response(self, request, response):
+        """ this should be the last response processor to run, detect
+        dummy response with INSTALL_STATUS_CODE status code and start
+        db install process"""
+        
+        if response.status_code == 613:
+            return HttpResponse(dbinit.staggered_install(response.exception))
+        else:
+            return response
+            
