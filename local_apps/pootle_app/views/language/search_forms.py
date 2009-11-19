@@ -59,9 +59,20 @@ class AdvancedSearchForm(forms.Form):
 
 # TBD: Init the search forms from a SearchState object?
 def get_search_form(request, search_text=None):
+
+    search_form = None
+    advanced_search_form = None
+    
     if request.method == 'POST':
+        search_form = SearchForm(data=request.POST, initial={'title': _('Search'), 'text': search_text or ''})
+        if not search_form.is_valid():
+            search_form = None
         advanced_search_form = AdvancedSearchForm(data=request.POST)
-    else:
+        if not advanced_search_form.is_valid():
+            advanced_search_form = None
+    
+    if search_form is None or advanced_search_form is None:
+        search_form = SearchForm(initial={'title': _('Search'), 'text': search_text or ''})
         advanced_search_form = AdvancedSearchForm()
 
     return  {
