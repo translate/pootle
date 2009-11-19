@@ -80,8 +80,8 @@ def main():
     (options, args) = parser.parse_args()
     if options.action != 'runwebserver':
         options.servertype = 'dummy'
-
-    print "Starting server, listening on port %d." % options.port
+    else:
+        print "Starting server, listening on port %d." % options.port
     run_pootle(options, args)
 
 if __name__ == '__main__':
