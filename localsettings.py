@@ -59,6 +59,8 @@ CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
 # Uncomment this if you're using memcached as CACHE_BACKEND and running under Django 1.1
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
+# To improve performance anonymous users get cached copies of most pages. This variable controls how old the cached copy can be
+CACHE_MIDDLEWARE_SECONDS = 600
 
 # Set this to False. DEBUG mode is only needed when testing beta's or
 # hacking pootle

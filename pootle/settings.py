@@ -91,7 +91,7 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     # Uncomment to use pagecahing
-    #'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
+    'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
     'pootle_misc.middleware.errorpages.ErrorPagesMiddleware',
     'pootle_misc.middleware.baseurl.BaseUrlMiddleware',
     'pootle_misc.middleware.siteconfig.SiteConfigMiddleware',
@@ -103,8 +103,10 @@ MIDDLEWARE_CLASSES = (
     'pootle.middleware.check_cookies.CheckCookieMiddleware',
     'pootle.middleware.profile.ProfilerMiddleware',
     # Uncomment to use pagecaching
-    #'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
+    'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
 )
+
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 ROOT_URLCONF = 'pootle.urls'
 
