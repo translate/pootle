@@ -45,10 +45,7 @@ def users_from_submissions(subs):
 def gen_top_stat(data, header_label):
     return {
         'data':        data,
-        'headerlabel': header_label,
-        'ranklabel':   _('Rank'),
-        'namelabel':   _('Name'),
-        'vallabel':    header_label }
+        'headerlabel': header_label }
 
 def limit(query):
     return query[:5]
@@ -66,20 +63,11 @@ def gentopstats(narrow_search_results):
 
     The output of this function looks something like this:
       {'data':        [],
-       'headerlabel': u'Suggestions',
-       'namelabel':   u'Name',
-       'ranklabel':   u'Rank',
-       'vallabel':    u'Suggestions'},
+       'headerlabel': u'Suggestions'},
       {'data':        [],
-       'headerlabel': u'Reviews',
-       'namelabel':   u'Name',
-       'ranklabel':   u'Rank',
-       'vallabel':    u'Reviews'},
+       'headerlabel': u'Reviews'},
       {'data':        [],
-       'headerlabel': u'Submissions',
-       'namelabel':   u'Name',
-       'ranklabel':   u'Rank',
-       'vallabel':    u'Submissions'}]
+       'headerlabel': u'Submissions'}]
     """
     top_sugg   = limit(narrow_search_results(Suggestion.objects.get_top_suggesters()))
     top_review = limit(narrow_search_results(Suggestion.objects.get_top_reviewers()))
