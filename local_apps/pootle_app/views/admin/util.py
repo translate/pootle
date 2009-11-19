@@ -197,7 +197,7 @@ def edit(request, template, model_class,
             "objects": objects,
             "text": {
                 "home": _("Home"),
-                "title": model_args['title'],
+                "title": model_args.get('title', ''),
                 "savechanges": _("Save Changes"),
                 "submitname": model_args['submitname'],
                 "formid": model_args['formid'],
