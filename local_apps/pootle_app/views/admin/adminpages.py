@@ -138,8 +138,7 @@ def optimal_depcheck():
 def view(request, path):
     siteconfig = load_site_config()
     if request.POST:
-        post = request.POST.copy()
-        setting_form = GeneralSettingsForm(siteconfig, data=post)
+        setting_form = GeneralSettingsForm(siteconfig, data=request.POST)
         if setting_form.is_valid():
             setting_form.save()
             load_site_config()
