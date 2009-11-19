@@ -954,12 +954,18 @@ html[dir="rtl"] div#depchecks ul li.error
     background-position: right;
 }
 
-/* ADMIN LANGUAGES */
+/* ADMIN LANGUAGES, FILES */
 
 td.fullname input,
-td.pluralequation input
+td.pluralequation input,
+td.pootle_path
 {
     direction: ltr;
+}
+
+html[dir="rtl"] td.pootle_path
+{
+    text-align: right;
 }
 
 
