@@ -8,7 +8,11 @@
 {% block bodyclass %}dashboard{% endblock %}
 
 {% block breadcrumb_content %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Dashboard{% endblocktrans %}
+{% ifequal user profile.user %}
+    {% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Dashboard{% endblocktrans %}
+{% else %}
+    {{ profile.user }}
+{% endifequal %}
 {% endblock %}
 
 {% block content %}
