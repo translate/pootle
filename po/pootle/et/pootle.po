@@ -2792,18 +2792,3 @@ msgstr "Logi sisse"
 
 #~ msgid "Pootle Admin Page"
 #~ msgstr "Pootle Administreerimise Leht"
-
-#~ msgid "Broaden"
-#~ msgstr "Laienda"
-
-#~ msgid "Narrow"
-#~ msgstr "Kitsenda"
-
-#~ msgid "Reset"
-#~ msgstr "Lähtesta"
-
-#~ msgid "Must be a valid email address"
-#~ msgstr "Emaili aadress peab olema kehtiv"
-
-#~ msgid "Input Width (in characters)"
-#~ msgstr "Sisestuslaius (tähemärkides)"

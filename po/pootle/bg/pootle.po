@@ -2729,6 +2729,3 @@ msgstr ""
 #, fuzzy
 #~ msgid "Narrow"
 #~ msgstr "стрелка"
-
-#~ msgid "Reset"
-#~ msgstr "Анулиране"

@@ -2716,12 +2716,6 @@ msgstr ""
 #~ msgid "Narrow"
 #~ msgstr "Smalka"
 
-#~ msgid "Reset"
-#~ msgstr "Afturstilla"
-
-#~ msgid "WordForge Translation Project"
-#~ msgstr "WordForge umsetingar projekt"
-
 #~ msgid "Must be a valid email address"
 #~ msgstr "Má vera ein gildug t-post addressa"
 
