@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n baseurl %}
+
+{% block title %}
+{% blocktrans with block.super as prevtitle %}{{ prevtitle }}{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+<div class="documentation" lang="en" dir="LTR">
+{% ifequal params.docfile "howto.html" %}
+  {% include "docs/howto.html" %}
+{% else %}
+  {% ifequal params.docfile "resources.html" %}
+     {% include "docs/resources.html" %}
+  {% else %}
+     {% include "docs/index.html" %}
+  {% endifequal %}
+{% endifequal %}
+</div>
+{% endblock %}

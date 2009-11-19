@@ -40,8 +40,10 @@ urlpatterns = patterns('',
     (r'^html/(?P<path>.*)$',  'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^(favicon.ico)$',      'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
+    # direct download of translation files
     (r'^export/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.PODIRECTORY}),
-
+    # documentation
+    (r'^docs/(?P<docfile>.*)$', 'django.views.generic.simple.direct_to_template', {'template': "docs.html"}),
     # Pootle urls
     (r'',                     include('pootle_app.urls')),
 )
