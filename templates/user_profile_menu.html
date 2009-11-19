@@ -3,20 +3,20 @@
 <div id="submenu" lang="{{ LANGUAGE_CODE }}">
     <div id="submenu-tabs">
         {% ifequal user profile.user %}
-        <a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard" title="{% trans 'General Stats and Quick Links' %}">{% trans "Dashboard" %}</a>
-        <a href='{{ "/accounts/edit/"|l }}' class="settings" title="{% trans 'Configure Your Translation Preferences' %}">{% trans "Settings" %}</a>
-        <a href='{{ "/accounts/personal/edit/"|l }}' class="profile" title="{% trans 'Change Your Personal Information' %}">{% trans "Profile" %}</a>
-        <a href='{{ "/accounts/password/change/"|l }}' class="password" title="{% trans 'Change Your Password' %}">{% trans "Password" %}</a>
+        <a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard" title="{% trans 'Overview of your account' %}">{% trans "Dashboard" %}</a>
+        <a href='{{ "/accounts/edit/"|l }}' class="settings" title="{% trans 'Configure your translation preferences' %}">{% trans "Settings" %}</a>
+        <a href='{{ "/accounts/personal/edit/"|l }}' class="profile" title="{% trans 'Change your personal information' %}">{% trans "Profile" %}</a>
+        <a href='{{ "/accounts/password/change/"|l }}' class="password" title="{% trans 'Change your password' %}">{% trans "Password" %}</a>
         {% endifequal %}
         {% comment %}
         Oh yeah, Django doesn't allow if a == b or not c expressions,
         so we are forced to do this stupid things.
         {% endcomment %}
         {% if not profile.user %}
-        <a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard" title="{% trans 'General Stats and Quick Links' %}">{% trans "Dashboard" %}</a>
-        <a href='{{ "/accounts/edit/"|l }}' class="settings" title="{% trans 'Configure Your Translation Preferences' %}">{% trans "Settings" %}</a>
-        <a href='{{ "/accounts/personal/edit/"|l }}' class="profile" title="{% trans 'Change Your Personal Information' %}">{% trans "Profile" %}</a>
-        <a href='{{ "/accounts/password/change/"|l }}' class="password" title="{% trans 'Change Your Password' %}">{% trans "Password" %}</a>
+        <a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard" title="{% trans 'Overview of your account' %}">{% trans "Dashboard" %}</a>
+        <a href='{{ "/accounts/edit/"|l }}' class="settings" title="{% trans 'Configure your translation preferences' %}">{% trans "Settings" %}</a>
+        <a href='{{ "/accounts/personal/edit/"|l }}' class="profile" title="{% trans 'Change your personal information' %}">{% trans "Profile" %}</a>
+        <a href='{{ "/accounts/password/change/"|l }}' class="password" title="{% trans 'Change your password' %}">{% trans "Password" %}</a>
         {% endif %}
     </div>
 </div>
