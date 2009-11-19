@@ -92,6 +92,8 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     # Uncomment to use pagecahing
     'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
+    'django.middleware.http.ConditionalGetMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
     'pootle_misc.middleware.errorpages.ErrorPagesMiddleware',
     'pootle_misc.middleware.baseurl.BaseUrlMiddleware',
     'pootle_misc.middleware.siteconfig.SiteConfigMiddleware',
