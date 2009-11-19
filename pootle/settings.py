@@ -103,7 +103,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     #'django.middleware.transaction.TransactionMiddleware',
     'pootle.middleware.check_cookies.CheckCookieMiddleware',
-    'pootle.middleware.profile.ProfilerMiddleware',
+    #'pootle.middleware.profile.ProfilerMiddleware',
     # Uncomment to use pagecaching
     'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
 )
