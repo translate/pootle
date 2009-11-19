@@ -81,7 +81,7 @@ CACHE_MIDDLEWARE_SECONDS = 600
 
 # Set this to False. DEBUG mode is only needed when testing beta's or
 # hacking pootle
-DEBUG = True
+DEBUG = False
 
 
 # Use the commented definition to authenticate first with an LDAP system and
