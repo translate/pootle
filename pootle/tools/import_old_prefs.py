@@ -14,6 +14,7 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from pootle_app.models.project import Project
 from pootle_app.models.language import Language
+from pootle_misc.siteconfig import load_site_config
 from pootle.legacy.jToolkit import prefs
 
 import sys
@@ -54,6 +55,7 @@ def main():
 def set_up_db_then_import_languages_then_users(oldprefs, parsed_users):
     '''oldprefs and parsed_users are jToolkit prefs.PrefsParser
     objects.'''
+    import_sitesettings(oldprefs)
     import_languages(oldprefs)
     import_projects(oldprefs)
     import_users(parsed_users)
@@ -90,6 +92,13 @@ def try_type(try_me, value):
     assert type(value) == try_me
     return value
 
+def import_sitesettings(parsed_data):
+    data = parsed_data.__root__._assignments
+    siteconfig = load_site_config()
+    siteconfig.set('TITLE', data.get('Pootle.title'))
+    siteconfig.set('DESCRIPTION',  data.get('Pootle.description'))
+    siteconfig.save()
+    
 def import_languages(parsed_data):
     data = parsed_data.__root__._assignments # Is this really the right way?
     prefix = 'Pootle.languages.'
