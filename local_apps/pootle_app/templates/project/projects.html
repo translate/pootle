@@ -27,12 +27,16 @@
             <tr class="{% cycle 'even' 'odd' %}">
                 <td class="project"><a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}" title="{{ item.description }}">{{ item.name }}</a></td>
                 <td>
-                    <span class="graph" title="{{ item.completed_title }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-                    <span class="translated" style="width: {{ item.transper }}px"> </span>
-                    {% if item.fuzzy %}<span class="fuzzy" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper }}px; width: {{ item.fuzzyper }}px"> </span>{% endif %}
-                    {% if item.untrans %}<span class="untranslated" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper|add:item.fuzzyper }}px; width: {{ item.untransper }}px"> </span>{% endif %}
-                    </span>
-                    <span class="sortkey">{{ item.transper }}</span>
+                    <div class="sortkey">{{ item.transper }}</div>
+                    <div class="graph" title="{{ item.completed_title }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+                        <div class="translated" style="width: {{ item.transper }}px"></div>
+                        {% if item.fuzzy %}
+                        <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper }}px; width: {{ item.fuzzyper }}px"></div>
+                        {% endif %}
+                        {% if item.untrans %}
+                        <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper|add:item.fuzzyper }}px; width: {{ item.untransper }}px"></div>
+                        {% endif %}
+                    </div>
                 </td>
                 <td>{{ item.lastactivity }}</td>
             </tr>

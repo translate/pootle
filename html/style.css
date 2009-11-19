@@ -1069,19 +1069,18 @@ img.error
  * Pretty Graphs, mostly from http://l10n.gnome.org/
  */
 
-span.graph
+div.graph
 {
     height: 14px;
     width: 100px;
-    border: 0px solid black;
+    border: 0 none;
     position: relative;
-    padding: 1px;
 }
 
-span.translated
+div.translated
 {
     position: absolute;
-    top: 5px;
+    top: 2px;
     height: 100%;
     background: #448844;
     background: url('images/green-bar.png');
@@ -1089,10 +1088,10 @@ span.translated
     color: black;
 }
 
-span.goodchange
+div.goodchange
 {
     position: absolute;
-    top: 5px;
+    top: 2px;
     height: 100%;
     background: #55DD55;
     background: url('images/cyan-bar.png');
@@ -1100,10 +1099,10 @@ span.goodchange
     color: black;
 }
 
-span.fuzzy
+div.fuzzy
 {
     position: absolute;
-    top: 5px;
+    top: 2px;
     height: 100%;
     background: #4444AA;
     background: url('images/purple-bar.png');
@@ -1111,23 +1110,23 @@ span.fuzzy
     color: black;
 }
 
-span.untranslated
+div.untranslated
 {
     position: absolute;
     height: 100%;
-    top: 5px;
+    top: 2px;
     background: #FF4444;
     background: url('images/red-bar.png');
     background-repeat: repeat-x;
     color: black;
 }
 
-span.graph[dir="ltr"] span.translated
+div.graph[dir="ltr"] div.translated
 {
     left: 0%;
 }
 
-span.graph[dir="rtl"] span.translated
+div.graph[dir="rtl"] div.translated
 {
     right: 0%;
 }

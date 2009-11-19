@@ -12,12 +12,16 @@
 </td>
 {% if item.data %}
 <td class="stats-graph">
-    <span class="sortkey">{{ item.data.translatedpercentage }}</span>
-    <span class="graph" title="{{ item.tooltip }}">
-    <span class="translated" style="width: {{ item.data.translatedpercentage }}px;"> </span>
-    {% if item.data.fuzzysourcewords %}<span class="fuzzy" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage }}px; width: {{ item.data.fuzzypercentage }}px;"> </span>{% endif %}
-    {% if item.data.untranslatedsourcewords %}<span class="untranslated" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage|add:item.data.fuzzypercentage }}px; width: {{ item.data.untranslatedpercentage }}px;"> </span>{% endif %}
-    </span>
+    <div class="sortkey">{{ item.data.translatedpercentage }}</div>
+    <div class="graph" title="{{ item.tooltip }}">
+        <div class="translated" style="width: {{ item.data.translatedpercentage }}px;"></div>
+        {% if item.data.fuzzysourcewords %}
+        <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage }}px; width: {{ item.data.fuzzypercentage }}px;"></div>
+        {% endif %}
+        {% if item.data.untranslatedsourcewords %}
+        <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage|add:item.data.fuzzypercentage }}px; width: {{ item.data.untranslatedpercentage }}px;"></div>
+        {% endif %}
+    </div>
 </td>
 <td class="stats">
     <ul>
