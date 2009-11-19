@@ -61,7 +61,6 @@ def view(request, project_code):
     model_args = {}
     model_args['project'] = { 'code': current_project.code,
                               'name': current_project.fullname }
-    model_args['title'] = _("Project Admin: %s", current_project.fullname)
     model_args['formid'] = "translation-projects"
     model_args['submitname'] = "changetransprojects"
     link = lambda instance: '<a href="%s">%s</a>' % (l(instance.pootle_path + 'admin_permissions.html'), instance.language)
