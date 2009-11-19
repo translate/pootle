@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-18 02:25+0200\n"
+"POT-Creation-Date: 2009-11-19 01:18+0200\n"
 "PO-Revision-Date: 2007-11-16 15:54+0100\n"
 "Last-Translator: Alf@net <alfanet@anafa.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -660,13 +660,13 @@ msgid "Copy"
 msgstr "Roy"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:212
-#: local_apps/pootle_app/views/language/translate_page.py:538
+#: local_apps/pootle_app/views/language/translate_page.py:540
 msgid "Skip"
 msgstr "jàll"
 
 #. l10n: Button that takes the user to the previous unit or page
 #: local_apps/pootle_app/templates/language/translatepage.html:215
-#: local_apps/pootle_app/views/language/translate_page.py:537
+#: local_apps/pootle_app/views/language/translate_page.py:539
 msgid "Back"
 msgstr "Dellu"
 
@@ -890,7 +890,7 @@ msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
 
 #: local_apps/pootle_app/views/index/index.py:60
-#: local_apps/pootle_app/views/language/item_dict.py:240
+#: local_apps/pootle_app/views/language/item_dict.py:244
 #, python-format
 msgid "%(percentage)d%% complete"
 msgstr ""
@@ -991,35 +991,39 @@ msgid "Download XLIFF"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:154
+msgid "Download"
+msgstr ""
+
+#: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Commit to VCS"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:164
+#: local_apps/pootle_app/views/language/item_dict.py:170
 msgid "Update from VCS"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:216
+#: local_apps/pootle_app/views/language/item_dict.py:220
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:220
+#: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:221
+#: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:247
+#: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
 #: local_apps/pootle_app/views/project/project_language_index.py:51
 #, python-format
@@ -1055,7 +1059,7 @@ msgid "Translated words"
 msgstr "Baat yu ñu tekki"
 
 #: local_apps/pootle_app/views/language/project_index.py:46
-#: local_apps/pootle_app/views/language/translate_page.py:952
+#: local_apps/pootle_app/views/language/translate_page.py:954
 msgid "Fuzzy"
 msgstr "Ci misal"
 
@@ -1121,6 +1125,18 @@ msgstr "Xool"
 msgid "Advanced Search"
 msgstr ""
 
+#: local_apps/pootle_app/views/language/tp_common.py:63
+#, python-format
+msgid "Invalid/insecure file name: %s"
+msgstr ""
+
+#: local_apps/pootle_app/views/language/tp_common.py:69
+#, python-format
+msgid ""
+"Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
+"%(filetype)s'."
+msgstr ""
+
 #: local_apps/pootle_app/views/language/tp_common.py:98
 msgid "Error while extracting archive"
 msgstr ""
@@ -1131,12 +1147,14 @@ msgid "You do not have rights to overwrite files here."
 msgstr "Mayuŋ la nga enresistere fi ay dosie"
 
 #: local_apps/pootle_app/views/language/tp_common.py:207
-msgid "You do not have rights to upload new files here"
+#, fuzzy
+msgid "You do not have rights to upload new files here."
 msgstr "Mayuŋ la fi nga jàllale ay fisie yu bess"
 
 #: local_apps/pootle_app/views/language/tp_common.py:209
 #: local_apps/pootle_app/views/language/tp_common.py:211
-msgid "You do not have rights to upload files here"
+#, fuzzy
+msgid "You do not have rights to upload files here."
 msgstr "Amulo sañ sañu jàllale ay dencukaay"
 
 #: local_apps/pootle_app/views/language/tp_common.py:231
@@ -1211,24 +1229,25 @@ msgstr "%d yu topp"
 msgid "End"
 msgstr "Jeexital"
 
-#: local_apps/pootle_app/views/language/translate_page.py:274
+#: local_apps/pootle_app/views/language/translate_page.py:273
 msgid "Singular"
 msgstr "Benn"
 
-#: local_apps/pootle_app/views/language/translate_page.py:275
+#: local_apps/pootle_app/views/language/translate_page.py:274
 msgid "Plural"
 msgstr "Ay"
 
-#: local_apps/pootle_app/views/language/translate_page.py:361
+#: local_apps/pootle_app/views/language/translate_page.py:360
 #: local_apps/pootle_app/views/language/translate_page.py:395
-#: local_apps/pootle_app/views/language/translate_page.py:487
-#: local_apps/pootle_app/views/language/translate_page.py:524
-#: local_apps/pootle_app/views/language/translate_page.py:599
+#: local_apps/pootle_app/views/language/translate_page.py:489
+#: local_apps/pootle_app/views/language/translate_page.py:526
+#: local_apps/pootle_app/views/language/translate_page.py:601
 #, python-format
 msgid "Plural Form %d"
 msgstr "Ay %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
+#: local_apps/pootle_app/views/language/translate_page.py:380
 #: local_apps/pootle_app/views/language/translate_page.py:411
 msgid ""
 "Translation not possible because plural information for your language is not "
@@ -1237,60 +1256,60 @@ msgstr ""
 "Tekki bi mënul nekk ndax te lepp lu nga jota xam ci sa làkk noppi gul. Mangi "
 "ley ñaax nga guiss ku wutu situ  intarnet bi."
 
-#: local_apps/pootle_app/views/language/translate_page.py:491
+#: local_apps/pootle_app/views/language/translate_page.py:493
 msgid "Current Translation:"
 msgstr "Tekki bu ñu ama gum :"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
-#: local_apps/pootle_app/views/language/translate_page.py:504
+#: local_apps/pootle_app/views/language/translate_page.py:506
 #, python-format
 msgid "Suggestion %(suggid)d by %(user)s:"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:506
+#: local_apps/pootle_app/views/language/translate_page.py:508
 #, python-format
 msgid "Suggestion %d:"
 msgstr "Xelal %d:"
 
 #. l10n: parameter: name of translator
-#: local_apps/pootle_app/views/language/translate_page.py:510
+#: local_apps/pootle_app/views/language/translate_page.py:512
 #, python-format
 msgid "Suggestion by %s:"
 msgstr "Xelal ci %s :"
 
-#: local_apps/pootle_app/views/language/translate_page.py:512
+#: local_apps/pootle_app/views/language/translate_page.py:514
 msgid "Suggestion:"
 msgstr "Xelal :"
 
-#: local_apps/pootle_app/views/language/translate_page.py:542
+#: local_apps/pootle_app/views/language/translate_page.py:544
 #, python-format
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:863
+#: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:865
+#: local_apps/pootle_app/views/language/translate_page.py:867
 msgid "End of Quality Check Review."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:868
+#: local_apps/pootle_app/views/language/translate_page.py:870
 msgid "No file matched your query."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:869
+#: local_apps/pootle_app/views/language/translate_page.py:871
 msgid "End of results."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:882
+#: local_apps/pootle_app/views/language/translate_page.py:884
 msgid "You do not have rights to access view mode."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:912
+#: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
 msgid ""
 "%(translated)d/%(total)d translated\n"
@@ -1298,47 +1317,47 @@ msgid ""
 msgstr ""
 
 #. l10n: Heading above the table column with the source language
-#: local_apps/pootle_app/views/language/translate_page.py:945
+#: local_apps/pootle_app/views/language/translate_page.py:947
 msgid "Original"
 msgstr "Piir"
 
 #. l10n: Heading above the table column with the target language
-#: local_apps/pootle_app/views/language/translate_page.py:947
+#: local_apps/pootle_app/views/language/translate_page.py:949
 msgid "Translation"
 msgstr "Tekki"
 
-#: local_apps/pootle_app/views/language/translate_page.py:950
+#: local_apps/pootle_app/views/language/translate_page.py:952
 msgid "Accept suggestion"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:951
+#: local_apps/pootle_app/views/language/translate_page.py:953
 msgid "Reject suggestion"
 msgstr ""
 
 #. l10n: Heading above the textarea for translator comments.
-#: local_apps/pootle_app/views/language/translate_page.py:954
+#: local_apps/pootle_app/views/language/translate_page.py:956
 #, fuzzy
 msgid "Translator Comments"
 msgstr "Tekki kaddu yi"
 
 #. l10n: Heading above the comments extracted from the programing source code
-#: local_apps/pootle_app/views/language/translate_page.py:956
+#: local_apps/pootle_app/views/language/translate_page.py:958
 #, fuzzy
 msgid "Developer Comments"
 msgstr "Leeral jangat yi"
 
 #. l10n: This heading refers to related translations and terminology
-#: local_apps/pootle_app/views/language/translate_page.py:958
+#: local_apps/pootle_app/views/language/translate_page.py:960
 msgid "Related"
 msgstr "Lu bokk ci"
 
 #. l10n: Button label
-#: local_apps/pootle_app/views/language/translate_page.py:967
+#: local_apps/pootle_app/views/language/translate_page.py:969
 msgid "Accept"
 msgstr "Nangu"
 
 #. l10n: Button label
-#: local_apps/pootle_app/views/language/translate_page.py:969
+#: local_apps/pootle_app/views/language/translate_page.py:971
 msgid "Reject"
 msgstr "Bañ"
 

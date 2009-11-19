@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-18 02:25+0200\n"
+"POT-Creation-Date: 2009-11-19 01:18+0200\n"
 "PO-Revision-Date: 2008-04-03 02:34-0400\n"
 "Last-Translator: Usman Mansoor Ansari <jalalkut@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -662,13 +662,13 @@ msgid "Copy"
 msgstr "كاپي"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:212
-#: local_apps/pootle_app/views/language/translate_page.py:538
+#: local_apps/pootle_app/views/language/translate_page.py:540
 msgid "Skip"
 msgstr "پرېښودل"
 
 #. l10n: Button that takes the user to the previous unit or page
 #: local_apps/pootle_app/templates/language/translatepage.html:215
-#: local_apps/pootle_app/views/language/translate_page.py:537
+#: local_apps/pootle_app/views/language/translate_page.py:539
 msgid "Back"
 msgstr "شا"
 
@@ -858,13 +858,15 @@ msgid "Password"
 msgstr "تېرنويى"
 
 #: local_apps/pootle_app/views/admin/util.py:38
+#, fuzzy
 msgid "You do not have rights to administer Pootle."
-msgstr ""
+msgstr "تاسې دا رښته نلرئ چې ددې پروژې پازوالي وكړئ"
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
+#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr ""
+msgstr "تاسې دا رښته نلرئ چې ددې پروژې پازوالي وكړئ"
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
@@ -890,7 +892,7 @@ msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
 
 #: local_apps/pootle_app/views/index/index.py:60
-#: local_apps/pootle_app/views/language/item_dict.py:240
+#: local_apps/pootle_app/views/language/item_dict.py:244
 #, python-format
 msgid "%(percentage)d%% complete"
 msgstr ""
@@ -991,35 +993,39 @@ msgid "Download XLIFF"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:154
+msgid "Download"
+msgstr ""
+
+#: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Commit to VCS"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:164
+#: local_apps/pootle_app/views/language/item_dict.py:170
 msgid "Update from VCS"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:216
+#: local_apps/pootle_app/views/language/item_dict.py:220
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:220
+#: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:221
+#: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:247
+#: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
 #: local_apps/pootle_app/views/project/project_language_index.py:51
 #, python-format
@@ -1055,7 +1061,7 @@ msgid "Translated words"
 msgstr "ژباړل شوي ويى"
 
 #: local_apps/pootle_app/views/language/project_index.py:46
-#: local_apps/pootle_app/views/language/translate_page.py:952
+#: local_apps/pootle_app/views/language/translate_page.py:954
 msgid "Fuzzy"
 msgstr "شكي"
 
@@ -1094,8 +1100,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "تاسې دا رښته نلرئ چې دلته ژباړې بدلې كړئ"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1121,6 +1128,18 @@ msgstr "پلټون"
 msgid "Advanced Search"
 msgstr ""
 
+#: local_apps/pootle_app/views/language/tp_common.py:63
+#, python-format
+msgid "Invalid/insecure file name: %s"
+msgstr ""
+
+#: local_apps/pootle_app/views/language/tp_common.py:69
+#, python-format
+msgid ""
+"Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
+"%(filetype)s'."
+msgstr ""
+
 #: local_apps/pootle_app/views/language/tp_common.py:98
 msgid "Error while extracting archive"
 msgstr ""
@@ -1131,12 +1150,14 @@ msgid "You do not have rights to overwrite files here."
 msgstr "تاسې دا رښته نلرئ چې دلته دوتنې پر-باندې-ليكل كړئ"
 
 #: local_apps/pootle_app/views/language/tp_common.py:207
-msgid "You do not have rights to upload new files here"
+#, fuzzy
+msgid "You do not have rights to upload new files here."
 msgstr "تاسې دا رښته نلرئ چې دلته نوې دوتنه ورلېښل كړئ"
 
 #: local_apps/pootle_app/views/language/tp_common.py:209
 #: local_apps/pootle_app/views/language/tp_common.py:211
-msgid "You do not have rights to upload files here"
+#, fuzzy
+msgid "You do not have rights to upload files here."
 msgstr "تاسې دا رښته نلرئ چې دلته دوتنه ورلېښل كړئ"
 
 #: local_apps/pootle_app/views/language/tp_common.py:231
@@ -1169,8 +1190,9 @@ msgid "Upload File"
 msgstr "دوتنه ورلېښل"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "تاسې دا رښته نلرئ چې دلته ژباړې بدلې كړئ"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1211,24 +1233,25 @@ msgstr "راتلونكې %d"
 msgid "End"
 msgstr "پاى"
 
-#: local_apps/pootle_app/views/language/translate_page.py:274
+#: local_apps/pootle_app/views/language/translate_page.py:273
 msgid "Singular"
 msgstr "يو"
 
-#: local_apps/pootle_app/views/language/translate_page.py:275
+#: local_apps/pootle_app/views/language/translate_page.py:274
 msgid "Plural"
 msgstr "ډېرى"
 
-#: local_apps/pootle_app/views/language/translate_page.py:361
+#: local_apps/pootle_app/views/language/translate_page.py:360
 #: local_apps/pootle_app/views/language/translate_page.py:395
-#: local_apps/pootle_app/views/language/translate_page.py:487
-#: local_apps/pootle_app/views/language/translate_page.py:524
-#: local_apps/pootle_app/views/language/translate_page.py:599
+#: local_apps/pootle_app/views/language/translate_page.py:489
+#: local_apps/pootle_app/views/language/translate_page.py:526
+#: local_apps/pootle_app/views/language/translate_page.py:601
 #, python-format
 msgid "Plural Form %d"
 msgstr ""
 
 #. l10n: This is an error message that will display if the relevant problem occurs
+#: local_apps/pootle_app/views/language/translate_page.py:380
 #: local_apps/pootle_app/views/language/translate_page.py:411
 msgid ""
 "Translation not possible because plural information for your language is not "
@@ -1237,61 +1260,63 @@ msgstr ""
 "دا ژپاړه اوس لپاره شوني نه ده ڼ ستاسي په زپه معلومات كم دي ڼ مهرباني وكري د "
 "سايت له مدير سره په اړيكه شي."
 
-#: local_apps/pootle_app/views/language/translate_page.py:491
+#: local_apps/pootle_app/views/language/translate_page.py:493
 msgid "Current Translation:"
 msgstr "روانه ژباړه"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
-#: local_apps/pootle_app/views/language/translate_page.py:504
+#: local_apps/pootle_app/views/language/translate_page.py:506
 #, python-format
 msgid "Suggestion %(suggid)d by %(user)s:"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:506
+#: local_apps/pootle_app/views/language/translate_page.py:508
 #, python-format
 #, fuzzy
 msgid "Suggestion %d:"
 msgstr "وړانديز:"
 
 #. l10n: parameter: name of translator
-#: local_apps/pootle_app/views/language/translate_page.py:510
-#, python-format
-msgid "Suggestion by %s:"
-msgstr ""
-
 #: local_apps/pootle_app/views/language/translate_page.py:512
+#, python-format
+#, fuzzy
+msgid "Suggestion by %s:"
+msgstr "وړانديز:"
+
+#: local_apps/pootle_app/views/language/translate_page.py:514
 msgid "Suggestion:"
 msgstr "وړانديز:"
 
-#: local_apps/pootle_app/views/language/translate_page.py:542
+#: local_apps/pootle_app/views/language/translate_page.py:544
 #, python-format
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:863
+#: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:865
+#: local_apps/pootle_app/views/language/translate_page.py:867
 msgid "End of Quality Check Review."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:868
+#: local_apps/pootle_app/views/language/translate_page.py:870
 msgid "No file matched your query."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:869
+#: local_apps/pootle_app/views/language/translate_page.py:871
 msgid "End of results."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:882
+#: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "تاسې دا رښته نلرئ چې دلته ژباړې بدلې كړئ"
 
-#: local_apps/pootle_app/views/language/translate_page.py:912
+#: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
 msgid ""
 "%(translated)d/%(total)d translated\n"
@@ -1299,47 +1324,47 @@ msgid ""
 msgstr ""
 
 #. l10n: Heading above the table column with the source language
-#: local_apps/pootle_app/views/language/translate_page.py:945
+#: local_apps/pootle_app/views/language/translate_page.py:947
 msgid "Original"
 msgstr "اصلي"
 
 #. l10n: Heading above the table column with the target language
-#: local_apps/pootle_app/views/language/translate_page.py:947
+#: local_apps/pootle_app/views/language/translate_page.py:949
 msgid "Translation"
 msgstr "ژباړه"
 
-#: local_apps/pootle_app/views/language/translate_page.py:950
+#: local_apps/pootle_app/views/language/translate_page.py:952
 msgid "Accept suggestion"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:951
+#: local_apps/pootle_app/views/language/translate_page.py:953
 msgid "Reject suggestion"
 msgstr ""
 
 #. l10n: Heading above the textarea for translator comments.
-#: local_apps/pootle_app/views/language/translate_page.py:954
+#: local_apps/pootle_app/views/language/translate_page.py:956
 #, fuzzy
 msgid "Translator Comments"
 msgstr "د ژباړن څرګندونې"
 
 #. l10n: Heading above the comments extracted from the programing source code
-#: local_apps/pootle_app/views/language/translate_page.py:956
+#: local_apps/pootle_app/views/language/translate_page.py:958
 #, fuzzy
 msgid "Developer Comments"
 msgstr "د پراخوونكي څرګندونې"
 
 #. l10n: This heading refers to related translations and terminology
-#: local_apps/pootle_app/views/language/translate_page.py:958
+#: local_apps/pootle_app/views/language/translate_page.py:960
 msgid "Related"
 msgstr "اړوند"
 
 #. l10n: Button label
-#: local_apps/pootle_app/views/language/translate_page.py:967
+#: local_apps/pootle_app/views/language/translate_page.py:969
 msgid "Accept"
 msgstr "منل"
 
 #. l10n: Button label
-#: local_apps/pootle_app/views/language/translate_page.py:969
+#: local_apps/pootle_app/views/language/translate_page.py:971
 msgid "Reject"
 msgstr "ردول"
 
@@ -2026,8 +2051,9 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
+#, fuzzy
 msgid "Log In."
-msgstr ""
+msgstr "ننوتون"
 
 #~ msgid "View"
 #~ msgstr "ليد"

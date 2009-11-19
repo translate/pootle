@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-18 02:25+0200\n"
-"PO-Revision-Date: 2009-11-02 18:54+0200\n"
+"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"PO-Revision-Date: 2009-11-18 13:09+0200\n"
 "Last-Translator: Pheledi <pheledi@mosekolatranslation.co.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nso\n"
@@ -79,7 +79,7 @@ msgstr ""
 #: strings.py:26
 #, fuzzy
 msgid "e-mail address"
-msgstr "Aterese ya Emeile"
+msgstr "Aterese ya imeile"
 
 #: strings.py:27
 msgid "active"
@@ -115,7 +115,7 @@ msgstr "Leina la modiriši"
 #: external_apps/registration/forms.py:39
 #, fuzzy
 msgid "email address"
-msgstr "Aterese ya Emeile"
+msgstr "Aterese ya imeile"
 
 #: external_apps/registration/forms.py:41
 #, fuzzy
@@ -180,7 +180,7 @@ msgstr ""
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
-msgstr "Leina"
+msgstr "Sehlogo"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
@@ -256,7 +256,7 @@ msgstr ""
 #: local_apps/pootle_app/models/language.py:41
 #: local_apps/pootle_app/models/project.py:59
 msgid "Full Name"
-msgstr "Leina ka Botlalo"
+msgstr "Leina ka botlalo"
 
 #: local_apps/pootle_app/models/language.py:43
 msgid "Enter any special characters that users might find difficult to type"
@@ -279,11 +279,11 @@ msgstr ""
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
-msgstr "Palo ya Bontši"
+msgstr "Palo ya tše dintši"
 
 #: local_apps/pootle_app/models/language.py:50
 msgid "Plural Equation"
-msgstr "Tekanyetšo ya Bontši"
+msgstr "Tekanyetšo ya tše dintši"
 
 #: local_apps/pootle_app/models/profile.py:72
 #: local_apps/pootle_app/views/index/login.py:67
@@ -345,7 +345,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
-msgstr "Mohuta wa Faele"
+msgstr "Mohuta wa faele"
 
 #: local_apps/pootle_app/models/project.py:63
 msgid "Project Tree Style"
@@ -666,13 +666,14 @@ msgid "Copy"
 msgstr "Kopiša"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:212
-#: local_apps/pootle_app/views/language/translate_page.py:538
+#: local_apps/pootle_app/views/language/translate_page.py:540
 msgid "Skip"
 msgstr "Taboga"
 
+#. #-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#
 #. l10n: Button that takes the user to the previous unit or page
 #: local_apps/pootle_app/templates/language/translatepage.html:215
-#: local_apps/pootle_app/views/language/translate_page.py:537
+#: local_apps/pootle_app/views/language/translate_page.py:539
 msgid "Back"
 msgstr "Morago"
 
@@ -896,7 +897,7 @@ msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
 
 #: local_apps/pootle_app/views/index/index.py:60
-#: local_apps/pootle_app/views/language/item_dict.py:240
+#: local_apps/pootle_app/views/language/item_dict.py:244
 #, python-format
 msgid "%(percentage)d%% complete"
 msgstr ""
@@ -997,35 +998,39 @@ msgid "Download XLIFF"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:154
+msgid "Download"
+msgstr ""
+
+#: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Commit to VCS"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:164
+#: local_apps/pootle_app/views/language/item_dict.py:170
 msgid "Update from VCS"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:216
+#: local_apps/pootle_app/views/language/item_dict.py:220
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:220
+#: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:221
+#: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:247
+#: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
 #: local_apps/pootle_app/views/project/project_language_index.py:51
 #, python-format
@@ -1061,7 +1066,7 @@ msgid "Translated words"
 msgstr "Mantšu ao a fetoletšwego"
 
 #: local_apps/pootle_app/views/language/project_index.py:46
-#: local_apps/pootle_app/views/language/translate_page.py:952
+#: local_apps/pootle_app/views/language/translate_page.py:954
 msgid "Fuzzy"
 msgstr "Tše sa hlakago"
 
@@ -1127,6 +1132,18 @@ msgstr "Nyaka"
 msgid "Advanced Search"
 msgstr ""
 
+#: local_apps/pootle_app/views/language/tp_common.py:63
+#, python-format
+msgid "Invalid/insecure file name: %s"
+msgstr ""
+
+#: local_apps/pootle_app/views/language/tp_common.py:69
+#, python-format
+msgid ""
+"Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
+"%(filetype)s'."
+msgstr ""
+
 #: local_apps/pootle_app/views/language/tp_common.py:98
 msgid "Error while extracting archive"
 msgstr ""
@@ -1137,12 +1154,14 @@ msgid "You do not have rights to overwrite files here."
 msgstr "Ga o na ditokelo tša go ngwala godimo ga difaele mo"
 
 #: local_apps/pootle_app/views/language/tp_common.py:207
-msgid "You do not have rights to upload new files here"
+#, fuzzy
+msgid "You do not have rights to upload new files here."
 msgstr "Ga o na ditokelo tša go laolla difaele tše mpsha mo"
 
 #: local_apps/pootle_app/views/language/tp_common.py:209
 #: local_apps/pootle_app/views/language/tp_common.py:211
-msgid "You do not have rights to upload files here"
+#, fuzzy
+msgid "You do not have rights to upload files here."
 msgstr "Ga o na ditokelo tša go laolla difaele mo"
 
 #: local_apps/pootle_app/views/language/tp_common.py:231
@@ -1217,24 +1236,25 @@ msgstr "%d e latelago"
 msgid "End"
 msgstr "Bofelo"
 
-#: local_apps/pootle_app/views/language/translate_page.py:274
+#: local_apps/pootle_app/views/language/translate_page.py:273
 msgid "Singular"
 msgstr "Botee"
 
-#: local_apps/pootle_app/views/language/translate_page.py:275
+#: local_apps/pootle_app/views/language/translate_page.py:274
 msgid "Plural"
 msgstr "Bontši"
 
-#: local_apps/pootle_app/views/language/translate_page.py:361
+#: local_apps/pootle_app/views/language/translate_page.py:360
 #: local_apps/pootle_app/views/language/translate_page.py:395
-#: local_apps/pootle_app/views/language/translate_page.py:487
-#: local_apps/pootle_app/views/language/translate_page.py:524
-#: local_apps/pootle_app/views/language/translate_page.py:599
+#: local_apps/pootle_app/views/language/translate_page.py:489
+#: local_apps/pootle_app/views/language/translate_page.py:526
+#: local_apps/pootle_app/views/language/translate_page.py:601
 #, python-format
 msgid "Plural Form %d"
 msgstr "Sebopego sa Bontši %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
+#: local_apps/pootle_app/views/language/translate_page.py:380
 #: local_apps/pootle_app/views/language/translate_page.py:411
 msgid ""
 "Translation not possible because plural information for your language is not "
@@ -1243,60 +1263,60 @@ msgstr ""
 "Phetolelo ga e kgonege ka gobane tshedimošo ya bontši ga e hwetšagale ka "
 "leleme la gago. Hle ikgokaganye le molaodi wa saete."
 
-#: local_apps/pootle_app/views/language/translate_page.py:491
+#: local_apps/pootle_app/views/language/translate_page.py:493
 msgid "Current Translation:"
 msgstr "Phetolelo ya Gona bjale:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
-#: local_apps/pootle_app/views/language/translate_page.py:504
+#: local_apps/pootle_app/views/language/translate_page.py:506
 #, python-format
 msgid "Suggestion %(suggid)d by %(user)s:"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:506
+#: local_apps/pootle_app/views/language/translate_page.py:508
 #, python-format
 msgid "Suggestion %d:"
 msgstr "Tšhišinyo ya bo-%d:"
 
 #. l10n: parameter: name of translator
-#: local_apps/pootle_app/views/language/translate_page.py:510
+#: local_apps/pootle_app/views/language/translate_page.py:512
 #, python-format
 msgid "Suggestion by %s:"
 msgstr "Tšhišinyo ka %s:"
 
-#: local_apps/pootle_app/views/language/translate_page.py:512
+#: local_apps/pootle_app/views/language/translate_page.py:514
 msgid "Suggestion:"
 msgstr "Tšhišinyo:"
 
-#: local_apps/pootle_app/views/language/translate_page.py:542
+#: local_apps/pootle_app/views/language/translate_page.py:544
 #, python-format
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
 msgstr[1] ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:863
+#: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:865
+#: local_apps/pootle_app/views/language/translate_page.py:867
 msgid "End of Quality Check Review."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:868
+#: local_apps/pootle_app/views/language/translate_page.py:870
 msgid "No file matched your query."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:869
+#: local_apps/pootle_app/views/language/translate_page.py:871
 msgid "End of results."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:882
+#: local_apps/pootle_app/views/language/translate_page.py:884
 msgid "You do not have rights to access view mode."
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:912
+#: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
 msgid ""
 "%(translated)d/%(total)d translated\n"
@@ -1304,47 +1324,47 @@ msgid ""
 msgstr ""
 
 #. l10n: Heading above the table column with the source language
-#: local_apps/pootle_app/views/language/translate_page.py:945
+#: local_apps/pootle_app/views/language/translate_page.py:947
 msgid "Original"
 msgstr "Ya mathomo"
 
 #. l10n: Heading above the table column with the target language
-#: local_apps/pootle_app/views/language/translate_page.py:947
+#: local_apps/pootle_app/views/language/translate_page.py:949
 msgid "Translation"
 msgstr "Phetolelo"
 
-#: local_apps/pootle_app/views/language/translate_page.py:950
+#: local_apps/pootle_app/views/language/translate_page.py:952
 msgid "Accept suggestion"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/translate_page.py:951
+#: local_apps/pootle_app/views/language/translate_page.py:953
 msgid "Reject suggestion"
 msgstr ""
 
 #. l10n: Heading above the textarea for translator comments.
-#: local_apps/pootle_app/views/language/translate_page.py:954
+#: local_apps/pootle_app/views/language/translate_page.py:956
 #, fuzzy
 msgid "Translator Comments"
 msgstr "Ditlhaloso tša mofetoledi"
 
 #. l10n: Heading above the comments extracted from the programing source code
-#: local_apps/pootle_app/views/language/translate_page.py:956
+#: local_apps/pootle_app/views/language/translate_page.py:958
 #, fuzzy
 msgid "Developer Comments"
 msgstr "Ditlhaloso tša motšweletši"
 
 #. l10n: This heading refers to related translations and terminology
-#: local_apps/pootle_app/views/language/translate_page.py:958
+#: local_apps/pootle_app/views/language/translate_page.py:960
 msgid "Related"
 msgstr "Tswalanego"
 
 #. l10n: Button label
-#: local_apps/pootle_app/views/language/translate_page.py:967
+#: local_apps/pootle_app/views/language/translate_page.py:969
 msgid "Accept"
 msgstr "Amogela"
 
 #. l10n: Button label
-#: local_apps/pootle_app/views/language/translate_page.py:969
+#: local_apps/pootle_app/views/language/translate_page.py:971
 msgid "Reject"
 msgstr "Gana"
 
@@ -1771,7 +1791,7 @@ msgstr ""
 #: templates/profiles/edit_personal.html:29
 #, fuzzy
 msgid "Email address"
-msgstr "Aterese ya Emeile"
+msgstr "Aterese ya imeile"
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
@@ -1999,7 +2019,7 @@ msgstr ""
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
 msgid "Email Address"
-msgstr "Aterese ya Emeile"
+msgstr "Aterese ya imeile"
 
 #: templates/registration/registration_complete.html:5
 msgid "Registration Complete"
@@ -2040,31 +2060,34 @@ msgstr ""
 #~ msgstr "Boleng bja gona bjale"
 
 #~ msgid "Base URL"
-#~ msgstr "URL ya Motheo"
+#~ msgstr "URL ya motheo"
 
 #~ msgid "Home Page"
-#~ msgstr "Letlakala la Gae"
+#~ msgstr "Letlakala la gae"
+
+#~ msgid "Pootle Languages Admin Page"
+#~ msgstr "Letlakala la taolo ya maleme a Pootle"
 
 #~ msgid "Main admin page"
-#~ msgstr "Letlakala la taolo e kgolo"
+#~ msgstr "Letlakala le legolo la taolo"
 
 #~ msgid "ISO Code"
 #~ msgstr "Khoutu ya ISO"
 
 #~ msgid "(add language here)"
-#~ msgstr "(oketša leleme mo)"
+#~ msgstr "(tsenya leleme mo)"
 
 #~ msgid "Special Chars"
 #~ msgstr "Ditlhaka tše Kgethegilego"
 
 #~ msgid "(number of plurals)"
-#~ msgstr "(palo ya bontši)"
+#~ msgstr "(palo ya tše dintši)"
 
 #~ msgid "(plural equation)"
-#~ msgstr "(tekanyetšo ya bontši)"
+#~ msgstr "(tekanyetšo ya tše dintši)"
 
 #~ msgid "Remove Language"
-#~ msgstr "Tloša Leleme"
+#~ msgstr "Tloša leleme"
 
 #, python-format
 #~ msgid "Remove %s"
@@ -2073,44 +2096,50 @@ msgstr ""
 #~ msgid "Standard"
 #~ msgstr "Motheo"
 
+#~ msgid "Pootle Projects Admin Page"
+#~ msgstr "Letlakala la taolo ya diprojeke la Pootle"
+
 #~ msgid "Project Code"
-#~ msgstr "Khoutu ya Projeke"
+#~ msgstr "Khoutu ya projeke"
 
 #~ msgid "(add project here)"
-#~ msgstr "(oketša projeke mo)"
+#~ msgstr "(tsenya projeke mo)"
 
 #~ msgid "Project Description"
-#~ msgstr "Tlhaloso ya Projeke"
+#~ msgstr "Tlhaloso ya projeke"
 
 #~ msgid "(project description)"
 #~ msgstr "(tlhaloso ya projeke)"
 
 #~ msgid "Checker Style"
-#~ msgstr "Setaele sa Molekodi"
+#~ msgstr "Setaele sa molekodi"
 
 #~ msgid "Create MO Files"
-#~ msgstr "Hlama Difaele tša MO"
+#~ msgstr "Hlola difaele tša MO"
 
 #~ msgid "Remove Project"
-#~ msgstr "Tloša Projeke"
+#~ msgstr "Tloša projeke"
+
+#~ msgid "Pootle User Admin Page"
+#~ msgstr "Letlakala la taolo ya modiriši la Pootle"
 
 #~ msgid "(add full name here)"
-#~ msgstr "(oketša leina ka botlalo mo)"
+#~ msgstr "(tsenya leina ka botlalo mo)"
 
 #~ msgid "(add email here)"
-#~ msgstr "(oketša emeile mo)"
+#~ msgstr "(tsenya imeile mo)"
 
 #~ msgid "(add password here)"
-#~ msgstr "(oketša lentšuphetišo mo)"
+#~ msgstr "(tsenya lentšuphetišo mo)"
 
 #~ msgid "Activated"
 #~ msgstr "Diragaditšwe"
 
 #~ msgid "Activate New User"
-#~ msgstr "Diragatša Modiriši yo Moswa"
+#~ msgstr "Diragatša modiriši yo moswa"
 
 #~ msgid "Remove User"
-#~ msgstr "Tloša Modiriši"
+#~ msgstr "Tloša modiriši"
 
 #~ msgid "Back to main page"
 #~ msgstr "Morago letlakaleng le legolo"
@@ -2119,18 +2148,18 @@ msgstr ""
 #~ msgstr "Maleme ao a lego gona"
 
 #~ msgid "Update Languages"
-#~ msgstr "Mpshafatša Maleme"
+#~ msgstr "Mpshafatša maleme"
 
 #, python-format
 #~ msgid "Pootle Admin: %s"
-#~ msgstr "Bolaodi bja Pootle: %s"
+#~ msgstr "Taolo ya Pootle: %s"
 
 #~ msgid "Add Language"
-#~ msgstr "Oketša Leleme"
+#~ msgstr "Tsenya leleme"
 
 #, python-format
 #~ msgid "Pootle Admin: %s %s"
-#~ msgstr "Bolaodi bja Pootle: %s %s"
+#~ msgstr "Taolo ya Pootle: %s %s"
 
 #, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
