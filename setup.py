@@ -21,12 +21,10 @@
 import glob
 import os
 import os.path as path
-import sys
 import re
 from distutils import util
 from distutils.command.build import build as DistutilsBuild
 from distutils.command.install import install as DistutilsInstall
-from distutils.dist import Distribution as DistutilsDistribution
 from distutils.core import setup
 
 from pootle.__version__ import sver as pootle_version
@@ -167,7 +165,6 @@ def list_tree(target_base, root):
 class PootleBuildMo(DistutilsBuild):
     def build_mo(self):
         """Compile .mo files from available .po files"""
-        import glob
         import subprocess
         import gettext
         from translate.storage import factory
@@ -177,9 +174,9 @@ class PootleBuildMo(DistutilsBuild):
             lang = path.split(path.split(po_filename)[0])[1]
             lang_dir = path.join('mo', lang, 'LC_MESSAGES')
             mo_filename = path.join(lang_dir, 'django.mo')
-            
+
             try:
-                store = factory.getobject(po_filename)            
+                store = factory.getobject(po_filename)
                 gettext.c2py(store.getheaderplural()[1])
                 if not path.exists(lang_dir):
                     os.makedirs(lang_dir)
@@ -187,7 +184,7 @@ class PootleBuildMo(DistutilsBuild):
                 subprocess.Popen(['msgfmt', '-c', '--strict', '-o', mo_filename, po_filename])
             except Exception, e:
                 print "skipping %s, probably invalid header: %s" % (lang, e)
-                
+
     def run(self):
         self.build_mo()
 
