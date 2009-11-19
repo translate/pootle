@@ -2,7 +2,11 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Dashboard{% endblocktrans %}
+{% ifequal user profile.user %}
+    {% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Dashboard{% endblocktrans %}
+{% else %}
+    {% blocktrans with settings.TITLE as prevtitle and profile.user as username %}{{ prevtitle }}: Users » {{ username }}{% endblocktrans %}
+{% endifequal %}
 {% endblock %}
 
 {% block bodyclass %}dashboard{% endblock %}
