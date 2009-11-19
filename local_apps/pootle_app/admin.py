@@ -22,6 +22,7 @@ import re
 
 from translate.lang.data import langcode_re
 
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django import forms
