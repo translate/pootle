@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"POT-Creation-Date: 2009-11-20 01:27+0200\n"
 "PO-Revision-Date: 2009-10-08 22:14+0200\n"
 "Last-Translator: kasahorow <kasahorow@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,7 +91,6 @@ msgstr ""
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
-msgstr[1] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -163,15 +162,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:39
+#: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:65
+#: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:77
+#: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
 msgstr ""
 
@@ -460,7 +459,7 @@ msgstr "Agodin"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
 msgstr ""
 
@@ -547,29 +546,29 @@ msgid "Language"
 msgstr "Kasa"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:58
+#: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:59
+#: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:57
+#: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "Nkɔsodwuma"
 
-#: local_apps/pootle_app/templates/index/index.html:82
+#: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:85
+#: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -609,7 +608,7 @@ msgstr "Dintwerɛw"
 msgid "Error"
 msgstr ""
 
-#: local_apps/pootle_app/templates/language/item_summary.html:28
+#: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
 msgstr ""
 
@@ -700,26 +699,17 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:49
-msgid "Rank"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:50
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:77
 #, fuzzy
 msgid "Suggestions"
 msgstr "Nsusui:"
 
-#: local_apps/pootle_app/views/top_stats.py:90
+#: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
 msgid "Reviews"
 msgstr "Hwɛ mu"
 
-#: local_apps/pootle_app/views/top_stats.py:91
+#: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr ""
 
@@ -860,7 +850,7 @@ msgid "Users"
 msgstr "Adehye"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "Ehintasɛmfua"
@@ -871,8 +861,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "Enyi tumi dɛ ebɛ sesa pootle."
 
 #: local_apps/pootle_app/views/admin/util.py:50
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "Enyi tumi dɛ ebɛ sesa pootle."
 
@@ -922,7 +911,7 @@ msgid "Default"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
 msgstr ""
 
@@ -949,11 +938,10 @@ msgstr "(fa iyi sɛ wopɛ sɛ wo de dehye no ka ho a)"
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -963,10 +951,9 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
-msgid "%(checks)d string (%(checkspercent)d%%) failed"
-msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgid "%(checks)d string, %(checkspercent)d%% failed"
+msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
 msgid "Review Suggestions"
@@ -1017,21 +1004,18 @@ msgstr ""
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
@@ -1040,7 +1024,6 @@ msgstr[1] ""
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 #, fuzzy
@@ -1052,12 +1035,15 @@ msgstr "Wo nni tumi sɛ wo bɛ sesa pootle."
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:27
+#: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
+msgstr ""
+
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:44
@@ -1110,8 +1096,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "Wonni kwan sɛ wobesesa nkyerɛase wɔ ha"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1129,11 +1116,13 @@ msgstr ""
 msgid "Locations"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/search_forms.py:69
+#: local_apps/pootle_app/views/language/search_forms.py:67
+#: local_apps/pootle_app/views/language/search_forms.py:75
+#: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
 msgstr "Hwehwɛ"
 
-#: local_apps/pootle_app/views/language/search_forms.py:71
+#: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
 msgstr ""
 
@@ -1199,8 +1188,9 @@ msgid "Upload File"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "Wonni kwan sɛ wobesesa nkyerɛase wɔ ha"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1299,7 +1289,6 @@ msgstr "Nsusui:"
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
@@ -1318,8 +1307,9 @@ msgid "End of results."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "Wonni kwan sɛ wobesesa nkyerɛase wɔ ha"
 
 #: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
@@ -1399,17 +1389,11 @@ msgstr ""
 msgid "Initialize"
 msgstr ""
 
-#: local_apps/pootle_app/views/project/project_admin.py:64
-#, python-format
-msgid "Project Admin: %s"
-msgstr ""
-
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbinit.py:43
 msgid "Pootle: Install"
@@ -1604,19 +1588,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage your users"
+msgid "Manage the users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Administrate the available languages"
+msgid "Manage the languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage The available projects"
+msgid "Manage the projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Administrate the default permissions"
+msgid "Manage the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1651,6 +1635,11 @@ msgstr "Kɔ Mu"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "Ɔfa dɛm Pootle server yi ho"
+
+#: templates/docs.html:5
+#, python-format
+msgid "%(prevtitle)s: Help"
+msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1738,32 +1727,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
-msgid "General Stats and Quick Links"
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
-msgid "Configure Your Translation Preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
-msgid "Change Your Personal Information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
-msgid "Change Your Password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1831,25 +1820,30 @@ msgstr "Me Nkɔsodwuma"
 msgid "Alternative Source Languages"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:17
+#: templates/profiles/profile_detail.html:8
+#, python-format
+msgid "%(prevtitle)s: Users » %(username)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "Ntɛmtɛmara"
 
-#: templates/profiles/profile_detail.html:45
+#: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:47
+#: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:57
+#: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
 msgstr ""
 
@@ -1877,18 +1871,15 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:9
-msgid "Account Activated."
-msgstr ""
-
-#: templates/registration/activate.html:11
+#: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in</a>."
+"proceed to log in."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
@@ -1916,11 +1907,8 @@ msgid "Pootle registration"
 msgstr "Pootle Dintwerɛw"
 
 #: templates/registration/password_change_done.html:5
-msgid "Password Changed"
-msgstr ""
-
 #: templates/registration/password_change_done.html:15
-msgid "Password Changed."
+msgid "Password Changed"
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2059,8 +2047,9 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
+#, fuzzy
 msgid "Log In."
-msgstr ""
+msgstr "Kɔ Mu"
 
 #~ msgid "General options"
 #~ msgstr "Nea wo pɛ"
@@ -2099,7 +2088,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "Yi dɛm kasa yi"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "Yi %s"
 
@@ -2164,18 +2152,15 @@ msgstr ""
 #~ msgid "Update Languages"
 #~ msgstr "Tu Akasa Yinom Mpon"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Pootle Admin: %s"
 
 #~ msgid "Add Language"
 #~ msgstr "Fa Kasa Ka Ho"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Pootle Admin: %s %s"
 
-#, python-format
 #, fuzzy
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr "Cannot set rights for username %s - dehye biara nni hɔ te saa."
@@ -2188,35 +2173,35 @@ msgstr ""
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
-#~ "<strong>Pootel</strong> yɛ intanɛt adeyɛbea a ɔtum boa wo ma <strong>ekyerɛ "
-#~ "nkasafuwa ase</strong>!Ɔnam sɛ Pootle yɛ <strong>Adeyɛde ɔyɛ Kwa</strong> "
-#~ "nti no, ebotum atwe esian na ede ayɛ wo edwuma biara a epɛ. Ebotum so aboa "
-#~ "ne mpontu wɔ akwan pii mu (onhia dɛ ebohu kɔmputa kasa ne nkyerɛwee)."
+#~ "<strong>Pootel</strong> yɛ intanɛt adeyɛbea a ɔtum boa wo ma "
+#~ "<strong>ekyerɛ nkasafuwa ase</strong>!Ɔnam sɛ Pootle yɛ <strong>Adeyɛde "
+#~ "ɔyɛ Kwa</strong> nti no, ebotum atwe esian na ede ayɛ wo edwuma biara a "
+#~ "epɛ. Ebotum so aboa ne mpontu wɔ akwan pii mu (onhia dɛ ebohu kɔmputa "
+#~ "kasa ne nkyerɛwee)."
 
 #~ msgid ""
 #~ "The Pootle project itself is hosted at <a href=\"http://translate."
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "Pootle nkɔsodwuma no ankasa de ɔwɔ <a "
-#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> Hɔ na "
-#~ "wo benya nkɔsodwuma wɔn ho kɔmputa kasa-nkyerɛwee, dawurbɔ emel, etc."
+#~ "Pootle nkɔsodwuma no ankasa de ɔwɔ <a href=\"http://translate.sourceforge."
+#~ "net/\">translate.sourceforge.net</a> Hɔ na wo benya nkɔsodwuma wɔn ho "
+#~ "kɔmputa kasa-nkyerɛwee, dawurbɔ emel, etc."
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
-#~ "Din no kyerɛ--wɔ borɔfo mu--<b>PO</b>-based <b>O</b>nline <b>T</b>ranslation "
-#~ "/ <b>L</b>ocalization <b>E</b>ngine, anhwɛ a <a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">eyi</a> so bɔ boa."
+#~ "Din no kyerɛ--wɔ borɔfo mu--<b>PO</b>-based <b>O</b>nline <b>T</"
+#~ "b>ranslation / <b>L</b>ocalization <b>E</b>ngine, anhwɛ a <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">eyi</a> so bɔ boa."
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "Dehye Krataafa Ma: %s"
 
@@ -2226,16 +2211,15 @@ msgstr ""
 #~ msgid "Admin page"
 #~ msgstr "Nsesa fa"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
 #~ msgstr "Mia 'Sesa nea wo pɛ' na fa kasahorow ne nkɔsodwuma biara a wo pɛ"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d projɛkt, average %d%% na wɔakyerɛ ase"
 #~ msgstr[1] "%d nkɔsodwuma, average %d%% na wɔakyerɛ ase"
 
-#, python-format
 #, fuzzy
 #~ msgid "%s: %s"
 #~ msgstr "%s(%s)"
@@ -2246,7 +2230,6 @@ msgstr ""
 #~ msgid "Language Name"
 #~ msgstr "Kasa"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d kasa, average %d%% na wɔakyerɛ ase"
@@ -2321,18 +2304,15 @@ msgstr ""
 #~ msgid "ZIP of folder"
 #~ msgstr "folder ne zip"
 
-#, python-format
 #, fuzzy
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d nkasamu (%d%%) anyɛ yie"
 
-#, python-format
 #, fuzzy
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d nkasamu (%d%%) ne nkyerɛase di mu"
 
-#, python-format
 #, fuzzy
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d nkasamu (%d%%) ne nkyerɛase di mu"
@@ -2372,7 +2352,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "Worenntumi nnsesa botae biara wɔ ha"
 
-#, python-format
 #, fuzzy
 #~ msgid ""
 #~ "%d/%d translated\n"
@@ -2381,7 +2360,6 @@ msgstr ""
 #~ "%d/%d a ne nkyerɛase ewie\n"
 #~ "(%d enwiei, %d yɛ naa)"
 
-#, python-format
 #, fuzzy
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "Pootle: worekyerɛ %s ase sɛ %s: %s"
@@ -2392,11 +2370,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "Klik ha na san kɔ indɛks"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "Ndeɛma %d kɔ si %d wɔ %d mu"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "Biribiara nni hɔ a wɔne ('%s') yɛ pɛ wɔ wo nhwehwɛ no mu"
 
@@ -2412,7 +2388,6 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "Mia kyerɛwbea no mu"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "Nsusui a %d ɔfi %s hɔ:"
 
@@ -2460,7 +2435,6 @@ msgstr ""
 #~ msgid "Activate Account"
 #~ msgstr "Kenyan Wo Dintwerɛw"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "Agodini apɛde: %s"
 
@@ -2472,21 +2446,24 @@ msgstr ""
 #~ "Ɛwɔ sɛ wowɔ websaet hene tumi ansaana wo etum asesa woho ayɛ dehye foforo"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
 #~ msgstr ""
-#~ "Ma wo din a wode ba ha no nyɛ nɔmbas ne nkasafua a wɔakeka abɔ mu, na ɛwɔ sɛ "
-#~ "akyerɛwamba di wo din no enim."
+#~ "Ma wo din a wode ba ha no nyɛ nɔmbas ne nkasafua a wɔakeka abɔ mu, na ɛwɔ "
+#~ "sɛ akyerɛwamba di wo din no enim."
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
-#~ msgstr "Wo yɛɛ sɛ wo de wodin bɛsan ebuei akawnt, anaaso obi foforo yɛɛ sɛ ɔbɛyɛ "
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
+#~ msgstr ""
+#~ "Wo yɛɛ sɛ wo de wodin bɛsan ebuei akawnt, anaaso obi foforo yɛɛ sɛ ɔbɛyɛ "
 #~ "dɛmara.\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
-#~ msgstr "Yɛmmfa wo ehintasɛmfua no ara ankasa nnsie na mbom yɛde ne hahye na yɛde "
+#~ msgstr ""
+#~ "Yɛmmfa wo ehintasɛmfua no ara ankasa nnsie na mbom yɛde ne hahye na yɛde "
 #~ "sie.\n"
 
-#, python-format
 #, fuzzy
 #~ msgid "Your password is: %s\n"
 #~ msgstr "Ehintasɛmfua a epɛ"
@@ -2507,7 +2484,8 @@ msgstr ""
 #~ msgstr "Ɛwɔ sɛ wo kyerɛw nɔmba de kyerɛ input width"
 
 #~ msgid "The number of rows displayed in view mode must be numeric"
-#~ msgstr "Ɛwɔ sɛ wo kyerɛw nɔmba de kyerɛ number of rows displayed in view mode"
+#~ msgstr ""
+#~ "Ɛwɔ sɛ wo kyerɛw nɔmba de kyerɛ number of rows displayed in view mode"
 
 #~ msgid "The number of rows displayed in translate mode must be numeric"
 #~ msgstr ""

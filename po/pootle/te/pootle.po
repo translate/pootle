@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"POT-Creation-Date: 2009-11-20 01:27+0200\n"
 "PO-Revision-Date: 2009-04-18 08:00+0200\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,7 +94,6 @@ msgstr ""
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
-msgstr[1] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -166,15 +165,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:39
+#: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:65
+#: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:77
+#: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
 msgstr ""
 
@@ -458,7 +457,7 @@ msgstr "వాడుకరిపేరు"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
 msgstr ""
 
@@ -544,29 +543,29 @@ msgid "Language"
 msgstr "భాష"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:58
+#: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:59
+#: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:57
+#: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "ప్రాజెక్టులు"
 
-#: local_apps/pootle_app/templates/index/index.html:82
+#: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:85
+#: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -605,7 +604,7 @@ msgstr "నమోదవ్వండి"
 msgid "Error"
 msgstr "పొరపాటు"
 
-#: local_apps/pootle_app/templates/language/item_summary.html:28
+#: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
 msgstr ""
 
@@ -696,26 +695,17 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:49
-msgid "Rank"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:50
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr "పేరు"
-
-#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:77
 #, fuzzy
 msgid "Suggestions"
 msgstr "సూచన:"
 
-#: local_apps/pootle_app/views/top_stats.py:90
+#: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
 msgid "Reviews"
 msgstr "సమీక్షించు"
 
-#: local_apps/pootle_app/views/top_stats.py:91
+#: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr ""
 
@@ -856,7 +846,7 @@ msgid "Users"
 msgstr "వాడుకరులు"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "సంకేతపదం"
@@ -867,8 +857,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "పూటిలుని నిర్వహించే అధికారం మీకు లేదు."
 
 #: local_apps/pootle_app/views/admin/util.py:50
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "పూటిలుని నిర్వహించే అధికారం మీకు లేదు."
 
@@ -918,7 +907,7 @@ msgid "Default"
 msgstr "అప్రమేయం"
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
 msgstr ""
 
@@ -949,7 +938,7 @@ msgstr[1] "%d ఫైళ్ళు"
 
 #: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -959,10 +948,9 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
-msgid "%(checks)d string (%(checkspercent)d%%) failed"
-msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgid "%(checks)d string, %(checkspercent)d%% failed"
+msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
 msgid "Review Suggestions"
@@ -1013,21 +1001,18 @@ msgstr ""
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
@@ -1036,7 +1021,6 @@ msgstr[1] ""
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 #, fuzzy
@@ -1048,13 +1032,16 @@ msgstr "ఈ ప్రాజెక్టుని నిర్వహించే 
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:27
+#: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
 msgstr "నిర్వహణ"
+
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
+msgstr "పేరు"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 msgid "Translated percentage"
@@ -1104,8 +1091,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "ఇక్కడ అనువాదాలని మార్చే అధికారం మీకు లేదు"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1123,11 +1111,13 @@ msgstr "వ్యాఖ్యలు"
 msgid "Locations"
 msgstr "ప్రాంతాలు"
 
-#: local_apps/pootle_app/views/language/search_forms.py:69
+#: local_apps/pootle_app/views/language/search_forms.py:67
+#: local_apps/pootle_app/views/language/search_forms.py:75
+#: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
 msgstr "అన్వేషణ"
 
-#: local_apps/pootle_app/views/language/search_forms.py:71
+#: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
 msgstr "నిశిత అన్వేషణ"
 
@@ -1193,8 +1183,9 @@ msgid "Upload File"
 msgstr "ఫైలుని ఎగుమతించు"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "ఇక్కడ అనువాదాలని మార్చే అధికారం మీకు లేదు"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1259,8 +1250,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"మీ భాషకి సంబంధించి బహువచన సమాచారం అందుబాటులో లేనందున అనువాదం అసాధ్యం. దయచేసి "
-"సైటు నిర్వాహకున్ని సంప్రదించండి."
+"మీ భాషకి సంబంధించి బహువచన సమాచారం అందుబాటులో లేనందున అనువాదం అసాధ్యం. దయచేసి సైటు నిర్వాహకున్ని "
+"సంప్రదించండి."
 
 #: local_apps/pootle_app/views/language/translate_page.py:493
 msgid "Current Translation:"
@@ -1293,7 +1284,6 @@ msgstr "సూచన:"
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
@@ -1312,8 +1302,9 @@ msgid "End of results."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "ఇక్కడ అనువాదాలని మార్చే అధికారం మీకు లేదు"
 
 #: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
@@ -1391,17 +1382,11 @@ msgstr "మూసలనుండి తాజాకరించు"
 msgid "Initialize"
 msgstr ""
 
-#: local_apps/pootle_app/views/project/project_admin.py:64
-#, python-format
-msgid "Project Admin: %s"
-msgstr ""
-
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbinit.py:43
 msgid "Pootle: Install"
@@ -1597,19 +1582,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage your users"
+msgid "Manage the users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Administrate the available languages"
+msgid "Manage the languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage The available projects"
+msgid "Manage the projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Administrate the default permissions"
+msgid "Manage the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1644,6 +1629,11 @@ msgstr "లోనికి ప్రవేశించండి"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "ఈ పూటిల్ సర్వర్ గురించి"
+
+#: templates/docs.html:5
+#, python-format
+msgid "%(prevtitle)s: Help"
+msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1731,32 +1721,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
-msgid "General Stats and Quick Links"
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
-msgid "Configure Your Translation Preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
-msgid "Change Your Personal Information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
-msgid "Change Your Password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1825,25 +1815,30 @@ msgstr "నా ప్రాజెక్టులు"
 msgid "Alternative Source Languages"
 msgstr "ప్రత్యామ్నాయ మూల భాష"
 
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:17
+#: templates/profiles/profile_detail.html:8
+#, python-format
+msgid "%(prevtitle)s: Users » %(username)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "త్వరిత లింకులు"
 
-#: templates/profiles/profile_detail.html:45
+#: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:47
+#: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:57
+#: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
 msgstr ""
 
@@ -1871,18 +1866,15 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:9
-msgid "Account Activated."
-msgstr ""
-
-#: templates/registration/activate.html:11
+#: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in</a>."
+"proceed to log in."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
@@ -1907,8 +1899,9 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "ఈమెయిలు చిరునామా సరైనదని నిర్ధారించుకోడానికి ఈ సందేశం పంపించాము. మీరు ఖాతాని "
-"నమోదు చేసుకోవద్దనుకుంటే, మీ సందేశాన్ని పట్టించుకోకండి.\n"
+msgstr ""
+"ఈమెయిలు చిరునామా సరైనదని నిర్ధారించుకోడానికి ఈ సందేశం పంపించాము. మీరు ఖాతాని నమోదు చేసుకోవద్దనుకుంటే, మీ "
+"సందేశాన్ని పట్టించుకోకండి.\n"
 
 #: templates/registration/activation_email_subject.txt:2
 #, fuzzy
@@ -1916,11 +1909,8 @@ msgid "Pootle registration"
 msgstr "పూటిల్ నమోదు"
 
 #: templates/registration/password_change_done.html:5
-msgid "Password Changed"
-msgstr ""
-
 #: templates/registration/password_change_done.html:15
-msgid "Password Changed."
+msgid "Password Changed"
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2058,8 +2048,9 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
+#, fuzzy
 msgid "Log In."
-msgstr ""
+msgstr "లోనికి ప్రవేశించండి"
 
 #~ msgid "General options"
 #~ msgstr "సాధారణ ఎంపికలు"
@@ -2097,7 +2088,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "భాషని తొలగించండి"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "%sని తొలగించు"
 
@@ -2159,22 +2149,20 @@ msgstr ""
 #~ msgid "Update Languages"
 #~ msgstr "భాషలని తాజాకరించు"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "పూటిల్ నిర్వహణ: %s"
 
 #~ msgid "Add Language"
 #~ msgstr "భాషని చేర్చండి"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "పూటిల్ నిర్వహణ: %s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr "%s అనే వాడుకరికి హక్కులు ఇవ్వలేము - వాడుకరి లేనే లేరు"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr "ఇది గ్నూ-తరహా ప్రాజెక్టు (ఒక సంచయం, భాష పేరుతో ఫైళ్ళు)"
 
 #~ msgid "Rights"
@@ -2185,48 +2173,45 @@ msgstr ""
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
-#~ "<strong>పూటిల్</strong> అనేది <strong>అనువాదాలకు</strong> వీలుకల్పించే ఓ "
-#~ "సరళమైన అంతర్జాల నెలవు! పూటిల్ <strong>స్వేచ్ఛా మృదు పరికరం</strong> కనుక, "
-#~ "మీరు దీన్ని దిగుమతి చేసుకుని మీ స్వంతంగా నడుపుకోవచ్చు. చాలా విధాలుగా దీని "
-#~ "వికాసంలో మీరు పాలుపంచుకోవచ్చు (మీరు ప్రోగ్రాములు రాయడం వచ్చివుండనక్కరలేదు)."
+#~ "<strong>పూటిల్</strong> అనేది <strong>అనువాదాలకు</strong> వీలుకల్పించే ఓ సరళమైన "
+#~ "అంతర్జాల నెలవు! పూటిల్ <strong>స్వేచ్ఛా మృదు పరికరం</strong> కనుక, మీరు దీన్ని దిగుమతి "
+#~ "చేసుకుని మీ స్వంతంగా నడుపుకోవచ్చు. చాలా విధాలుగా దీని వికాసంలో మీరు పాలుపంచుకోవచ్చు (మీరు "
+#~ "ప్రోగ్రాములు రాయడం వచ్చివుండనక్కరలేదు)."
 
 #~ msgid ""
 #~ "The Pootle project itself is hosted at <a href=\"http://translate."
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "పూటిల్ ప్రాజెక్టు <a "
-#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> వద్ద "
-#~ "కొలువై ఉంది. అక్కడ మీరు దీని మూల సంకేతం, మెయిలింగు జాబితాలు లాంటి వివరాలు "
-#~ "పొందవచ్చు."
+#~ "పూటిల్ ప్రాజెక్టు <a href=\"http://translate.sourceforge.net/\">translate."
+#~ "sourceforge.net</a> వద్ద కొలువై ఉంది. అక్కడ మీరు దీని మూల సంకేతం, మెయిలింగు జాబితాలు లాంటి "
+#~ "వివరాలు పొందవచ్చు."
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
-#~ "పూటిల్ అంటే <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-#~ "<b>L</b>ocalization <b>E</b>ngine, కానీ మీరు <a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">ఇది</a> కూడా చదువవచ్చు."
+#~ "పూటిల్ అంటే <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+#~ "b>ocalization <b>E</b>ngine, కానీ మీరు <a href=\"http://www.thechestnut.com/"
+#~ "flumps.htm\">ఇది</a> కూడా చదువవచ్చు."
 
 #~ msgid "Versions"
 #~ msgstr "సంచికలు"
 
-#, python-format
 #, fuzzy
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
-#~ "ఈ సైటు నడుస్తున్నది:<br />పూటిల్ %s<br />అనువాద పనిముట్లు %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />పైథాన్ %s (on %s/%s)"
+#~ "ఈ సైటు నడుస్తున్నది:<br />పూటిల్ %s<br />అనువాద పనిముట్లు %s<br />jToolkit %s<br /"
+#~ ">Kid %s<br />ElementTree %s<br />పైథాన్ %s (on %s/%s)"
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "వాడుకరి పేజీ: %s"
 
@@ -2236,17 +2221,15 @@ msgstr ""
 #~ msgid "Admin page"
 #~ msgstr "నిర్వహణ పేజీ"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
-#~ msgstr ""
-#~ "'ఎంపికలను మార్చండి' పై నొక్కి కొన్ని భాషలను మరియు ప్రాజెక్టులను ఎంచుకోండి"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
+#~ msgstr "'ఎంపికలను మార్చండి' పై నొక్కి కొన్ని భాషలను మరియు ప్రాజెక్టులను ఎంచుకోండి"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d ప్రాజెక్టు, సగటు %d%% అనువాదమయ్యాయి"
 #~ msgstr[1] "%d ప్రాజెక్టులు, సగటు %d%% అనువాదమయ్యాయి"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s: %s"
 
@@ -2256,13 +2239,11 @@ msgstr ""
 #~ msgid "Language Name"
 #~ msgstr "భాష పేరు"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d భాష, సగటు %d%% అనువాదమయ్యాయి"
 #~ msgstr[1] "%d భాషలు, సగటు %d%% అనువాదమయ్యాయి"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "%s: ప్రాజెక్టు %s, భాష %s"
 
@@ -2366,7 +2347,6 @@ msgstr ""
 #~ msgid "Hide Assigns"
 #~ msgstr "అప్పగింతలను దాచు"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "అన్ని లక్ష్యాలు: %s"
 
@@ -2397,21 +2377,17 @@ msgstr ""
 #~ msgid "Generate SDF"
 #~ msgstr "SDF తయారుచేయి"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d పదం (%d%%) విఫలం"
 #~ msgstr[1] "%d పదాలు (%d%%) విఫలం"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d పదాలు (%d%%) అన్యాక్రాంతమయ్యాయి"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d పదాలు]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d పదాలు (%d%%) అనువాదమయ్యాయి"
 
@@ -2433,11 +2409,9 @@ msgstr ""
 #~ msgid "All goals"
 #~ msgstr "అన్ని లక్ష్యాలు"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d/%d ఫైళ్ళు"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "%d/%d పదాలు"
 
@@ -2477,7 +2451,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "ఇక్కడ అప్పగింతలు మార్చడానికి మీకు అధికారం లేదు"
 
-#, python-format
 #~ msgid ""
 #~ "%d/%d translated\n"
 #~ "(%d untranslated, %d fuzzy)"
@@ -2485,7 +2458,6 @@ msgstr ""
 #~ "%d/%d అనువాదమయ్యాయి\n"
 #~ "(%d అనువాదం కాలేదు, %d సందేహాత్మకం)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s: %sని %s లోనికి అనువదిస్తున్నారు: %s"
 
@@ -2501,11 +2473,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "తిరిగి సూచికకి వెళ్ళడానికి ఇక్కడ నొక్కండి"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "%d నుండి %d వరకు, మొత్తం %d లో"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "ఆ అన్వేషణ ('%s') కి సరిపోలిన అంశాలేమీ లేవు"
 
@@ -2521,11 +2491,9 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "తగ్గించు"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "%s యొక్క సూచన %d:"
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "కనీసం %d అక్షరాలున్న సరైన సంకేతపదం ఇవ్వండి."
 
@@ -2577,7 +2545,6 @@ msgstr ""
 #~ msgid "Activate Account"
 #~ msgstr "ఖాతాని చేతనం చేయ్యండి"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "%s యొక్క ఎంపికలు "
 
@@ -2609,19 +2576,18 @@ msgstr ""
 #~ msgstr "వాడుకరులను మార్చడానికి మీరు సైటు నిర్వాహకుడయి ఉండాలి"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
-#~ msgstr ""
-#~ "వాడుకరిపేరులో అక్షరాలు మరియు అంకెలు మాత్రమే ఉండాలి, మరియు ఖచ్చితంగా అక్షరంతో "
-#~ "మొదలవ్వాలి."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
+#~ msgstr "వాడుకరిపేరులో అక్షరాలు మరియు అంకెలు మాత్రమే ఉండాలి, మరియు ఖచ్చితంగా అక్షరంతో మొదలవ్వాలి."
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
 #~ msgstr "మీ వాడుకరిపేరుతో మీరు (లేదా మరెవరో) ఖాతాని నమోదుచేయడానికి ప్రయత్నించారు.\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
 #~ msgstr "మీ అసలు సంకేతపదాన్ని కాకుండా దాని హాష్ ని మాత్రమే భద్రపరుస్తాము.\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "సైటులో నమోదుచేసుకోవడంలో సమస్యలుంటే, దయచేసి %s ని సంప్రదించండి.\n"
 
@@ -2631,11 +2597,10 @@ msgstr ""
 #~ msgstr "సైటులో నమోదుచేసుకోవడంలో సమస్యలుంటే, దయచేసి సైటు నిర్వాహకుడిని సంప్రదించండి.\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
 #~ msgstr "ఆ వాడుకరి పేరు ఇప్పటికే ఉంది. నమోదైన ఈమెయిలు చిరునామాకి ఓ సందేశం పంపిస్తాం.\n"
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "<a href='%s'>ప్రవేశము</a>నకు వెళ్తున్నాం\n"
 
@@ -2644,26 +2609,23 @@ msgstr ""
 #~ "activation page.\n"
 #~ msgstr "ఈ లింకుని మీరు అనుసరించలేకపోతే, దయచేసి పై సంకేతాన్ని చేతనపు పేజీలో ఇవ్వండి.\n"
 
-#, python-format
 #~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
 #~ msgstr ""
-#~ "ఖాతాని సృష్టించాం. ప్రవేశపు వివరాలని మరియు చేతనపు సంకేతాన్ని మీకు ఈమెయిలు "
-#~ "చేస్తాం. మీ చేతనపు సంకేతాన్ని <a href='%s'>చేతనపు పేజీ</a>లో ఇవ్వండి."
+#~ "ఖాతాని సృష్టించాం. ప్రవేశపు వివరాలని మరియు చేతనపు సంకేతాన్ని మీకు ఈమెయిలు చేస్తాం. మీ చేతనపు "
+#~ "సంకేతాన్ని <a href='%s'>చేతనపు పేజీ</a>లో ఇవ్వండి."
 
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "(లేదా తేలికగా ఈమెయిలులోని చేతనపు లింకుని నొక్కండి)"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "మీ వాడుకరి పేరు: %s\n"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "మీ సంకేతపదం: %s\n"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "మీరు నమోదుచేసిన ఈమెయిలు చిరునామా: %s\n"
 

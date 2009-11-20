@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"POT-Creation-Date: 2009-11-20 01:27+0200\n"
 "PO-Revision-Date: 2008-08-28 04:07+0000\n"
 "Last-Translator: Aijin Kim <aijin.kim@sun.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,15 +162,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:39
+#: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:65
+#: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:77
+#: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
 msgstr ""
 
@@ -454,7 +454,7 @@ msgstr "아이디"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
 msgstr ""
 
@@ -540,29 +540,29 @@ msgid "Language"
 msgstr "언어"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:58
+#: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:59
+#: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:57
+#: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "프로젝트"
 
-#: local_apps/pootle_app/templates/index/index.html:82
+#: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:85
+#: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -601,7 +601,7 @@ msgstr "등록"
 msgid "Error"
 msgstr "오류"
 
-#: local_apps/pootle_app/templates/language/item_summary.html:28
+#: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
 msgstr ""
 
@@ -692,26 +692,17 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:49
-msgid "Rank"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:50
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr "이름"
-
-#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:77
 #, fuzzy
 msgid "Suggestions"
 msgstr "제안:"
 
-#: local_apps/pootle_app/views/top_stats.py:90
+#: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
 msgid "Reviews"
 msgstr "검토"
 
-#: local_apps/pootle_app/views/top_stats.py:91
+#: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr ""
 
@@ -852,7 +843,7 @@ msgid "Users"
 msgstr "사용자"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "비밀번호"
@@ -863,8 +854,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "Pootle을 관리할 권한이 없습니다."
 
 #: local_apps/pootle_app/views/admin/util.py:50
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "Pootle을 관리할 권한이 없습니다."
 
@@ -914,7 +904,7 @@ msgid "Default"
 msgstr "기본값"
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
 msgstr ""
 
@@ -944,7 +934,7 @@ msgstr[0] "%d개의 파일"
 
 #: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -954,8 +944,8 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
-msgid "%(checks)d string (%(checkspercent)d%%) failed"
-msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgid "%(checks)d string, %(checkspercent)d%% failed"
+msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
 msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
@@ -1041,9 +1031,13 @@ msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:27
+#: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
 msgstr "관리"
+
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
+msgstr "이름"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 msgid "Translated percentage"
@@ -1093,8 +1087,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "여기 있는 번역을 변경할 권한이 없습니다"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1112,11 +1107,13 @@ msgstr "주석"
 msgid "Locations"
 msgstr "위치"
 
-#: local_apps/pootle_app/views/language/search_forms.py:69
+#: local_apps/pootle_app/views/language/search_forms.py:67
+#: local_apps/pootle_app/views/language/search_forms.py:75
+#: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
 msgstr "찾기"
 
-#: local_apps/pootle_app/views/language/search_forms.py:71
+#: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
 msgstr "고급 검색"
 
@@ -1182,8 +1179,9 @@ msgid "Upload File"
 msgstr "파일 올리기"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "여기 있는 번역을 변경할 권한이 없습니다"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1247,7 +1245,9 @@ msgstr "복수 형태 %d개"
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
-msgstr "이 언어에 대한 복수형 정보가 없기 때문에 번역할 수 없습니다. 사이트 관리자에게 문의하십시오."
+msgstr ""
+"이 언어에 대한 복수형 정보가 없기 때문에 번역할 수 없습니다. 사이트 관리자에"
+"게 문의하십시오."
 
 #: local_apps/pootle_app/views/language/translate_page.py:493
 msgid "Current Translation:"
@@ -1298,8 +1298,9 @@ msgid "End of results."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "여기 있는 번역을 변경할 권한이 없습니다"
 
 #: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
@@ -1375,11 +1376,6 @@ msgstr "템플리트에서 업데이트"
 
 #: local_apps/pootle_app/views/project/project_admin.py:43
 msgid "Initialize"
-msgstr ""
-
-#: local_apps/pootle_app/views/project/project_admin.py:64
-#, python-format
-msgid "Project Admin: %s"
 msgstr ""
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
@@ -1582,19 +1578,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage your users"
+msgid "Manage the users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Administrate the available languages"
+msgid "Manage the languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage The available projects"
+msgid "Manage the projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Administrate the default permissions"
+msgid "Manage the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1629,6 +1625,11 @@ msgstr "로그인"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "이 Pootle 서버의 정보"
+
+#: templates/docs.html:5
+#, python-format
+msgid "%(prevtitle)s: Help"
+msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1716,32 +1717,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
-msgid "General Stats and Quick Links"
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
-msgid "Configure Your Translation Preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
-msgid "Change Your Personal Information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
-msgid "Change Your Password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1810,25 +1811,30 @@ msgstr "내 프로젝트"
 msgid "Alternative Source Languages"
 msgstr "얼터너티브 소스 언어"
 
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:17
+#: templates/profiles/profile_detail.html:8
+#, python-format
+msgid "%(prevtitle)s: Users » %(username)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "빠른 링크"
 
-#: templates/profiles/profile_detail.html:45
+#: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:47
+#: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:57
+#: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
 msgstr ""
 
@@ -1856,18 +1862,15 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:9
-msgid "Account Activated."
-msgstr ""
-
-#: templates/registration/activate.html:11
+#: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in</a>."
+"proceed to log in."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
@@ -1892,8 +1895,9 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "이 메시지는 전자메일 주소가 정말로 맞는지 검증하기 위하여 보내졌습니다. 계정을 등록하고 싶지 않다면, 그냥 이 메시지를 무시해 "
-"주십시오.\n"
+msgstr ""
+"이 메시지는 전자메일 주소가 정말로 맞는지 검증하기 위하여 보내졌습니다. 계정"
+"을 등록하고 싶지 않다면, 그냥 이 메시지를 무시해 주십시오.\n"
 
 #: templates/registration/activation_email_subject.txt:2
 #, fuzzy
@@ -1901,11 +1905,8 @@ msgid "Pootle registration"
 msgstr "Pootle 등록"
 
 #: templates/registration/password_change_done.html:5
-msgid "Password Changed"
-msgstr ""
-
 #: templates/registration/password_change_done.html:15
-msgid "Password Changed."
+msgid "Password Changed"
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2043,8 +2044,9 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
+#, fuzzy
 msgid "Log In."
-msgstr ""
+msgstr "로그인"
 
 #~ msgid "General options"
 #~ msgstr "일반적인 선택사항"
@@ -2082,7 +2084,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "언어 지우기"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "%s 지우기"
 
@@ -2143,22 +2144,21 @@ msgstr ""
 #~ msgid "Update Languages"
 #~ msgstr "언어 업데이트"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Pootle 관리: %s"
 
 #~ msgid "Add Language"
 #~ msgstr "언어 추가"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Pootle 관리: %s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
-#~ msgstr "아이디 %s에 대해 권한을 설정할 수 없습니다 - 사용자가 존재하지 않습니다"
+#~ msgstr ""
+#~ "아이디 %s에 대해 권한을 설정할 수 없습니다 - 사용자가 존재하지 않습니다"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr "GNU 스타일 프로젝트입니다. (디렉토리 1개, 각 언어마다 파일)"
 
 #~ msgid "Rights"
@@ -2169,45 +2169,46 @@ msgstr ""
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
-#~ "<strong>Pootle</strong>은 간단한 웹 포탈로 여기에서 <strong>번역</strong>을 할 수 있습니다! "
-#~ "Pootle은 <strong>자유 소프트웨어</strong>이므로, 얼마든지 Pootle을 내려받아서 자기만의 Pootle을 실행할 수 "
-#~ "있습니다. 또 여러가지 방법으로 개발에 참여하실 수 있습니다. (프로그래밍을 몰라도 참여할 수 있습니다.)"
+#~ "<strong>Pootle</strong>은 간단한 웹 포탈로 여기에서 <strong>번역</strong>"
+#~ "을 할 수 있습니다! Pootle은 <strong>자유 소프트웨어</strong>이므로, 얼마든"
+#~ "지 Pootle을 내려받아서 자기만의 Pootle을 실행할 수 있습니다. 또 여러가지 "
+#~ "방법으로 개발에 참여하실 수 있습니다. (프로그래밍을 몰라도 참여할 수 있습"
+#~ "니다.)"
 
 #~ msgid ""
 #~ "The Pootle project itself is hosted at <a href=\"http://translate."
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "이 Pootle 프로젝트는 <a "
-#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a>에서 "
-#~ "호스팅하고 여기에서 소스코드와 메일링 리스트 등의 정보를 얻을 수 있습니다."
+#~ "이 Pootle 프로젝트는 <a href=\"http://translate.sourceforge.net/"
+#~ "\">translate.sourceforge.net</a>에서 호스팅하고 여기에서 소스코드와 메일"
+#~ "링 리스트 등의 정보를 얻을 수 있습니다."
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
 #~ "Pootle이라는 이름은 <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-#~ "<b>L</b>ocalization <b>E</b>ngine을 뜻합니다. 하지만 <a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">이 페이지</a>를 읽어 보십시오."
+#~ "<b>L</b>ocalization <b>E</b>ngine을 뜻합니다. 하지만 <a href=\"http://www."
+#~ "thechestnut.com/flumps.htm\">이 페이지</a>를 읽어 보십시오."
 
 #~ msgid "Versions"
 #~ msgstr "버전"
 
-#, python-format
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
-#~ "이 사이트에서 실행중인 프로그램: <br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "이 사이트에서 실행중인 프로그램: <br />Pootle %s<br />Translate Toolkit %"
+#~ "s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%"
+#~ "s)"
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "다음 사용자의 페이지: %s"
 
@@ -2217,15 +2218,14 @@ msgstr ""
 #~ msgid "Admin page"
 #~ msgstr "관리 페이지"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
 #~ msgstr "'설정 바꾸기'를 눌러 언어와 프로젝트를 선택하십시오"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d개의 프로젝트, 평균 %d%% 번역됨"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s: %s"
 
@@ -2235,12 +2235,10 @@ msgstr ""
 #~ msgid "Language Name"
 #~ msgstr "언어 이름"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d개 언어, 평균 %d%% 번역됨"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "%s: 프로젝트 %s, 언어 %s"
 
@@ -2352,7 +2350,6 @@ msgstr ""
 #~ msgid "Hide Assigns"
 #~ msgstr "할당 감추기"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "모든 목표: %s"
 
@@ -2383,20 +2380,16 @@ msgstr ""
 #~ msgid "Generate SDF"
 #~ msgstr "SDF 생성"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d개의 문자열 (%d%%) 걸림"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d개 단어 (%d%%) 할당됨"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d개 문자열]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d개 단어 (%d%%) 번역됨"
 
@@ -2418,11 +2411,9 @@ msgstr ""
 #~ msgid "All goals"
 #~ msgstr "모든 목표"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d/%d개 파일"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "%d/%d개 문자열"
 
@@ -2468,7 +2459,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "여기 있는 할당된 임무를 변경할 권한이 없습니다"
 
-#, python-format
 #~ msgid ""
 #~ "%d/%d translated\n"
 #~ "(%d untranslated, %d fuzzy)"
@@ -2476,7 +2466,6 @@ msgstr ""
 #~ "%d/%d개 번역됨\n"
 #~ "(번역 안 됨 %d개, 모호한 항목 %d개)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s: %s을(를) %s(으)로 번역: %s"
 
@@ -2492,11 +2481,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "색인으로 가려면 여기를 누르세요"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "%d에서 %d번째 항목 (전체 %d개)"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "('%s') 해당하는 항목을 찾을 수 없습니다"
 
@@ -2512,11 +2499,9 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "줄이기"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "%s의 제안 %d"
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "최소한 길이가 %d 문자인 올바른 비밀번호를 입력해야 합니다."
 
@@ -2568,7 +2553,6 @@ msgstr ""
 #~ msgid "Activate Account"
 #~ msgstr "계정 활성화"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "설정: %s"
 
@@ -2603,17 +2587,20 @@ msgstr ""
 #~ msgstr "사용자를 바꾸려면 사이트 관리자여야 합니다"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
 #~ msgstr "아이디는 알파벳과 숫자여야 하고, 알파벳으로 시작해야 합니다."
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
-#~ msgstr "당신의 아이디로 (본인 아니면 다른 누군가가) 계정 등록을 시도했습니다.\n"
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
+#~ msgstr ""
+#~ "당신의 아이디로 (본인 아니면 다른 누군가가) 계정 등록을 시도했습니다.\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
-#~ msgstr "이 사이트는 비밀번호의 실제 값을 저장하지 않고 해시된 값만을 저장합니다.\n"
+#~ msgstr ""
+#~ "이 사이트는 비밀번호의 실제 값을 저장하지 않고 해시된 값만을 저장합니다.\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "등록에 문제가 있으면 %s에게 연락하십시오.\n"
 
@@ -2623,39 +2610,38 @@ msgstr ""
 #~ msgstr "등록에 문제가 있으면 사이트 관리자에게 연락하십시오.\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
-#~ msgstr "그 아이디는 이미 사용중입니다. 등록된 전자메일 주소로 메일을 보냈습니다.\n"
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
+#~ msgstr ""
+#~ "그 아이디는 이미 사용중입니다. 등록된 전자메일 주소로 메일을 보냈습니다.\n"
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "<a href='%s'>로그인</a>으로 계속\n"
 
 #~ msgid ""
 #~ "If you are unable to follow the link, please enter the above code at the "
 #~ "activation page.\n"
-#~ msgstr "이 링크를 열 수 없다면, 활성화 페이지에서 위의 코드를 입력하십시오.\n"
-
-#, python-format
-#~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
 #~ msgstr ""
-#~ "계정이 만들어졌습니다. 로그인 정보와 활성화 코드를 전자메일로 받게 될 것입니다. 받은 해당 활성화 코드를 <a href='%s'>활성화 "
-#~ "페이지</a>에서 입력하십시오."
+#~ "이 링크를 열 수 없다면, 활성화 페이지에서 위의 코드를 입력하십시오.\n"
+
+#~ msgid ""
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
+#~ msgstr ""
+#~ "계정이 만들어졌습니다. 로그인 정보와 활성화 코드를 전자메일로 받게 될 것입"
+#~ "니다. 받은 해당 활성화 코드를 <a href='%s'>활성화 페이지</a>에서 입력하십"
+#~ "시오."
 
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "(아니면 전자메일에 들어 있는 활성화 링크를 누르십시오.)"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "당신의 아이디는: %s\n"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "당신의 비밀번호는: %s\n"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "등록한 전자메일 주소는: %s\n"
 

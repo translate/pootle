@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"POT-Creation-Date: 2009-11-20 01:27+0200\n"
 "PO-Revision-Date: 2008-10-29 00:39+0000\n"
 "Last-Translator: Bo Peterburg <bopeterb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,7 +92,6 @@ msgstr ""
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
-msgstr[1] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -164,15 +163,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:39
+#: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:65
+#: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:77
+#: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
 msgstr ""
 
@@ -455,7 +454,7 @@ msgstr "Ainm Úsáideora"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
 msgstr ""
 
@@ -541,29 +540,29 @@ msgid "Language"
 msgstr "Béarla"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:58
+#: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:59
+#: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:57
+#: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "Tionscadail"
 
-#: local_apps/pootle_app/templates/index/index.html:82
+#: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:85
+#: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -602,7 +601,7 @@ msgstr "Cláraigh"
 msgid "Error"
 msgstr "Botún"
 
-#: local_apps/pootle_app/templates/language/item_summary.html:28
+#: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
 msgstr ""
 
@@ -693,26 +692,17 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:49
-msgid "Rank"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:50
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr "Ainm"
-
-#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:77
 #, fuzzy
 msgid "Suggestions"
 msgstr "Moladh"
 
-#: local_apps/pootle_app/views/top_stats.py:90
+#: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
 msgid "Reviews"
 msgstr "Aithbhreithnigh"
 
-#: local_apps/pootle_app/views/top_stats.py:91
+#: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr ""
 
@@ -853,7 +843,7 @@ msgid "Users"
 msgstr "Úsáideoirí"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "Focal Faire"
@@ -864,8 +854,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "Níl aon cearta agat pootle a riar."
 
 #: local_apps/pootle_app/views/admin/util.py:50
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "Níl aon cearta agat pootle a riar."
 
@@ -915,7 +904,7 @@ msgid "Default"
 msgstr "Réamhshocrú"
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
 msgstr ""
 
@@ -948,7 +937,7 @@ msgstr[2] "%d comhaid"
 
 #: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -958,10 +947,9 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
-msgid "%(checks)d string (%(checkspercent)d%%) failed"
-msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgid "%(checks)d string, %(checkspercent)d%% failed"
+msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
 msgid "Review Suggestions"
@@ -1012,21 +1000,18 @@ msgstr ""
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
@@ -1035,7 +1020,6 @@ msgstr[1] ""
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 #, fuzzy
@@ -1047,13 +1031,16 @@ msgstr "Níl na cearta agat chun an tionscadal seo a riar."
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:27
+#: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
 msgstr "Riarachán"
+
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
+msgstr "Ainm"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 msgid "Translated percentage"
@@ -1103,8 +1090,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "Níl cearta agat aistriúcháin a athrú anseo"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1122,11 +1110,13 @@ msgstr ""
 msgid "Locations"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/search_forms.py:69
+#: local_apps/pootle_app/views/language/search_forms.py:67
+#: local_apps/pootle_app/views/language/search_forms.py:75
+#: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
 msgstr "Cuardaigh"
 
-#: local_apps/pootle_app/views/language/search_forms.py:71
+#: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
 msgstr "Cuardach Casta"
 
@@ -1192,8 +1182,9 @@ msgid "Upload File"
 msgstr "Uasluchtaigh Comhad"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "Níl cearta agat aistriúcháin a athrú anseo"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1292,7 +1283,6 @@ msgstr "Moladh"
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
@@ -1311,8 +1301,9 @@ msgid "End of results."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "Níl cearta agat aistriúcháin a athrú anseo"
 
 #: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
@@ -1390,17 +1381,11 @@ msgstr "Nuashonraigh ó chláir gabhála"
 msgid "Initialize"
 msgstr ""
 
-#: local_apps/pootle_app/views/project/project_admin.py:64
-#, python-format
-msgid "Project Admin: %s"
-msgstr ""
-
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbinit.py:43
 msgid "Pootle: Install"
@@ -1596,19 +1581,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage your users"
+msgid "Manage the users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Administrate the available languages"
+msgid "Manage the languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage The available projects"
+msgid "Manage the projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Administrate the default permissions"
+msgid "Manage the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1643,6 +1628,11 @@ msgstr "Sínigh isteach"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "Maidir leis an freastalaí Pootle seo"
+
+#: templates/docs.html:5
+#, python-format
+msgid "%(prevtitle)s: Help"
+msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1730,32 +1720,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
-msgid "General Stats and Quick Links"
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
-msgid "Configure Your Translation Preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
-msgid "Change Your Personal Information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
-msgid "Change Your Password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1823,25 +1813,30 @@ msgstr "Mo Chuid Tionscadail"
 msgid "Alternative Source Languages"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:17
+#: templates/profiles/profile_detail.html:8
+#, python-format
+msgid "%(prevtitle)s: Users » %(username)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "Mear Naisc"
 
-#: templates/profiles/profile_detail.html:45
+#: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:47
+#: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:57
+#: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
 msgstr ""
 
@@ -1869,24 +1864,22 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:9
-msgid "Account Activated."
-msgstr ""
-
-#: templates/registration/activate.html:11
+#: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in</a>."
+"proceed to log in."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
 #, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Chruthaíodh cuntas Pootle duit ag baint feidhm as an seoladh ríomhphoist "
+msgstr ""
+"Chruthaíodh cuntas Pootle duit ag baint feidhm as an seoladh ríomhphoist "
 "seo.\n"
 
 #: templates/registration/activation_email.txt:3
@@ -1906,7 +1899,8 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "Seoltar an teachtaireacht seo chun deimhniú go bhfuil an seoladh ríomhphoist "
+msgstr ""
+"Seoltar an teachtaireacht seo chun deimhniú go bhfuil an seoladh ríomhphoist "
 "ceart. Mura theastaíonn uait cuntas a chlárú, ná bac leis an "
 "teachtaireacht.\n"
 
@@ -1916,11 +1910,8 @@ msgid "Pootle registration"
 msgstr "Clárú Pootle"
 
 #: templates/registration/password_change_done.html:5
-msgid "Password Changed"
-msgstr ""
-
 #: templates/registration/password_change_done.html:15
-msgid "Password Changed."
+msgid "Password Changed"
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2058,8 +2049,9 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
+#, fuzzy
 msgid "Log In."
-msgstr ""
+msgstr "Sínigh isteach"
 
 #~ msgid "General options"
 #~ msgstr "Roghanna coiteann"
@@ -2097,7 +2089,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "Bain an Béarla"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "Bain %s"
 
@@ -2155,26 +2146,24 @@ msgstr ""
 #~ msgid "Update Languages"
 #~ msgstr "Nuashonraigh na Béarlaí"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Riarachán Pootle: %s"
 
 #~ msgid "Add Language"
 #~ msgstr "Cuir Béarla Leis"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Riarachán Pootle: %s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr ""
 #~ "Ní féidir cearta don t-ainm úsáideora %s a shocrú - níl an duine seo ann"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr ""
-#~ "Is tionscadal de chineál GNU é seo (comhadlann amháin, comhaid ainmnithe de "
-#~ "réir an béarla)."
+#~ "Is tionscadal de chineál GNU é seo (comhadlann amháin, comhaid ainmnithe "
+#~ "de réir an béarla)."
 
 #~ msgid "Rights"
 #~ msgstr "Cearta"
@@ -2184,15 +2173,15 @@ msgstr ""
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
 #~ "Is tairseach gréasáin simplí é <strong>Pootle</strong> a ligeann duit "
-#~ "<strong>aistriú</strong>! De bharr gur <strong>Oideasra Saor In "
-#~ "Aisce</strong> é Pootle, is féidir leat é a íosluchtú agus do leagan féin de "
-#~ "a rith más mian leat. Is féidir cabhrú leis an fhorbairt freisin ar mórán "
+#~ "<strong>aistriú</strong>! De bharr gur <strong>Oideasra Saor In Aisce</"
+#~ "strong> é Pootle, is féidir leat é a íosluchtú agus do leagan féin de a "
+#~ "rith más mian leat. Is féidir cabhrú leis an fhorbairt freisin ar mórán "
 #~ "bealaí (ní gá duit bheith in ann ríomhoideas a chruthú)."
 
 #~ msgid "Versions"
@@ -2204,11 +2193,9 @@ msgstr ""
 #~ msgid "Admin page"
 #~ msgstr "Lch Riaracháin"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s: %s"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "%s: Tionscadal %s, Béarla %s"
 
@@ -2290,7 +2277,6 @@ msgstr ""
 #~ msgid "Hide Assigns"
 #~ msgstr "Folaigh Sannaithe"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "Gach Sprioc: %s"
 
@@ -2321,22 +2307,18 @@ msgstr ""
 #~ msgid "Generate SDF"
 #~ msgstr "Cruthaigh SDF"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d teaghráin (%d%%) teipthe"
 #~ msgstr[1] "%d teaghráin (%d%%) teipthe"
 #~ msgstr[2] "%d teaghráin (%d%%) teipthe"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d focail (%d%%) sannta"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d teaghráin]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d focail (%d%%) aistrithe"
 
@@ -2358,11 +2340,9 @@ msgstr ""
 #~ msgid "All goals"
 #~ msgstr "Gach sprioc"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d/%d comhaid"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "%d/%d teaghráin"
 
@@ -2406,7 +2386,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "Níl cearta agat sannacháin a athrú anseo"
 
-#, python-format
 #, fuzzy
 #~ msgid ""
 #~ "%d/%d translated\n"
@@ -2415,7 +2394,6 @@ msgstr ""
 #~ "%d/%d aistrithe\n"
 #~ "(%d bán, %d doiléir)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s: ag aistriú %s go %s: %s"
 
@@ -2425,11 +2403,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "Brúigh anseo chun filleadh chuig an treorán"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "Míreanna %d go dtí %d de %d"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "Níl míreanna ar bith ag comhoiriúnú leis an cuardach ('%s')"
 
@@ -2445,11 +2421,9 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "Laghdaigh"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "Moladh %d ó %s:"
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr ""
 #~ "Caithfear focal faire seasmhach ar a laghad %d litreacha ar fhad a "
@@ -2484,8 +2458,8 @@ msgstr ""
 
 #~ msgid "Type your password again to ensure it is entered correctly"
 #~ msgstr ""
-#~ "Clóscríobh d'fhocal faire arís chun cinntiú go bhfuil sé clóscríofa i gceart "
-#~ "agat"
+#~ "Clóscríobh d'fhocal faire arís chun cinntiú go bhfuil sé clóscríofa i "
+#~ "gceart agat"
 
 #~ msgid "Register Account"
 #~ msgstr "Cláraigh an Cuntas"
@@ -2505,7 +2479,6 @@ msgstr ""
 #~ msgid "Activate Account"
 #~ msgstr "Gníomhachtaigh an Cuntas"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "Roghanna do: %s"
 
@@ -2537,48 +2510,53 @@ msgstr ""
 #~ msgstr "Caithfidh tú bheith i bhfeighil an láithréan chun daoine a athrú"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
 #~ msgstr ""
 #~ "Ní mór litreacha agus uimhreacha amháin a bheith san ainm úsáideora, agus "
 #~ "caithfidh sé tosú le litir."
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
-#~ msgstr "Rinne tusa (nó duine eile) iarracht cuntas a chlárú le d'ainm úsáideora.\n"
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
+#~ msgstr ""
+#~ "Rinne tusa (nó duine eile) iarracht cuntas a chlárú le d'ainm úsáideora.\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
 #~ msgstr "Ní chuirimid ach hais de d'fhocal faire i dtaisce.\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "Má tá fadhb agat leis an clárúchán, déan teagmháil le %s.\n"
 
 #~ msgid ""
 #~ "If you have a problem with registration, please contact the site "
 #~ "administrator.\n"
-#~ msgstr "Má tá fadhb agat leis an clárúchán, déan teagmháil le riarthóir an "
+#~ msgstr ""
+#~ "Má tá fadhb agat leis an clárúchán, déan teagmháil le riarthóir an "
 #~ "láithreáin.\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
-#~ msgstr "Tá an ainm úsáideora sin ann cheana. Seolfar ríomhphost chuig an seoladh "
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
+#~ msgstr ""
+#~ "Tá an ainm úsáideora sin ann cheana. Seolfar ríomhphost chuig an seoladh "
 #~ "ríomhphoist atá cláraithe.\n"
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "Ag bualadh chun <a href='%s'>sínigh isteach</a>\n"
 
 #~ msgid ""
 #~ "If you are unable to follow the link, please enter the above code at the "
 #~ "activation page.\n"
-#~ msgstr "Mura bhféidir leat an nasc a leanúint, cuir isteach an tagairt thuas sa "
+#~ msgstr ""
+#~ "Mura bhféidir leat an nasc a leanúint, cuir isteach an tagairt thuas sa "
 #~ "leathanach ghníomhachtú.\n"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
 #~ msgstr ""
 #~ "Chruthaíodh an cuntas. Seolfar sonraí síniú isteach agus tagairt "
 #~ "ghníomhachtú i ríomhphost. Cuir isteach do thagairt ghníomhachtú ar an "
@@ -2587,15 +2565,12 @@ msgstr ""
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "(Nó brúigh ar an nasc gníomhachtú sa ríomhphost)"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "Sé d'ainm úsáideora ná: %s\n"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "Sé d'fhocal faire ná: %s\n"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "Sé do sheoladh ríomhphoist atá cláraithe ná: %s\n"
 

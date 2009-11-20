@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"POT-Creation-Date: 2009-11-20 01:27+0200\n"
 "PO-Revision-Date: 2009-04-19 03:33+0200\n"
 "Last-Translator: Scott Davis <sjd@mail.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,7 +90,6 @@ msgstr ""
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
-msgstr[1] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -162,15 +161,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:39
+#: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:65
+#: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:77
+#: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
 msgstr ""
 
@@ -453,7 +452,7 @@ msgstr "Uzantonomo"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
 msgstr ""
 
@@ -539,29 +538,29 @@ msgid "Language"
 msgstr "Lingvo"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:58
+#: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:59
+#: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:57
+#: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "Projektoj"
 
-#: local_apps/pootle_app/templates/index/index.html:82
+#: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:85
+#: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -600,7 +599,7 @@ msgstr "Registri"
 msgid "Error"
 msgstr "Eraro"
 
-#: local_apps/pootle_app/templates/language/item_summary.html:28
+#: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
 msgstr ""
 
@@ -665,7 +664,6 @@ msgstr "Kopii"
 msgid "Skip"
 msgstr "Salti"
 
-#. #-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#
 #. l10n: Button that takes the user to the previous unit or page
 #: local_apps/pootle_app/templates/language/translatepage.html:215
 #: local_apps/pootle_app/views/language/translate_page.py:539
@@ -692,26 +690,17 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:49
-msgid "Rank"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:50
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr "Nomo"
-
-#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:77
 #, fuzzy
 msgid "Suggestions"
 msgstr "Sugesto:"
 
-#: local_apps/pootle_app/views/top_stats.py:90
+#: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
 msgid "Reviews"
 msgstr "Revizii"
 
-#: local_apps/pootle_app/views/top_stats.py:91
+#: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr ""
 
@@ -852,7 +841,7 @@ msgid "Users"
 msgstr "Uzantoj"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "Pasvorto"
@@ -863,8 +852,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "Vi ne rajtas administri pootle-on."
 
 #: local_apps/pootle_app/views/admin/util.py:50
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "Vi ne rajtas administri pootle-on."
 
@@ -914,7 +902,7 @@ msgid "Default"
 msgstr "Defaŭlto"
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
 msgstr ""
 
@@ -945,7 +933,7 @@ msgstr[1] "%d dosieroj"
 
 #: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -955,10 +943,9 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
-msgid "%(checks)d string (%(checkspercent)d%%) failed"
-msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgid "%(checks)d string, %(checkspercent)d%% failed"
+msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
 msgid "Review Suggestions"
@@ -1009,21 +996,18 @@ msgstr ""
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
@@ -1032,7 +1016,6 @@ msgstr[1] ""
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 #, fuzzy
@@ -1044,13 +1027,16 @@ msgstr "Vi ne rajtas administri ĉi tiun projekton."
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:27
+#: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
 msgstr ""
+
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
+msgstr "Nomo"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 msgid "Translated percentage"
@@ -1100,8 +1086,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "Vi ne rajtas ŝanĝi tradukojn ĉi tie"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1119,11 +1106,13 @@ msgstr "Komentoj"
 msgid "Locations"
 msgstr "Lokaĵoj"
 
-#: local_apps/pootle_app/views/language/search_forms.py:69
+#: local_apps/pootle_app/views/language/search_forms.py:67
+#: local_apps/pootle_app/views/language/search_forms.py:75
+#: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
 msgstr "Serĉo"
 
-#: local_apps/pootle_app/views/language/search_forms.py:71
+#: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
 msgstr "Detala Serĉo"
 
@@ -1191,8 +1180,9 @@ msgid "Upload File"
 msgstr "Alŝutu dosieron"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "Vi ne rajtas ŝanĝi tradukojn ĉi tie"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1291,7 +1281,6 @@ msgstr "Sugesto:"
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
@@ -1310,8 +1299,9 @@ msgid "End of results."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "Vi ne rajtas ŝanĝi tradukojn ĉi tie"
 
 #: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
@@ -1389,17 +1379,11 @@ msgstr "Ĝisdatigi el ŝablonoj"
 msgid "Initialize"
 msgstr ""
 
-#: local_apps/pootle_app/views/project/project_admin.py:64
-#, python-format
-msgid "Project Admin: %s"
-msgstr ""
-
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbinit.py:43
 msgid "Pootle: Install"
@@ -1595,19 +1579,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage your users"
+msgid "Manage the users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Administrate the available languages"
+msgid "Manage the languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage The available projects"
+msgid "Manage the projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Administrate the default permissions"
+msgid "Manage the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1642,6 +1626,11 @@ msgstr "Saluti"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "Pri ĉi tiu Pootle-servilo"
+
+#: templates/docs.html:5
+#, python-format
+msgid "%(prevtitle)s: Help"
+msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1729,32 +1718,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
-msgid "General Stats and Quick Links"
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
-msgid "Configure Your Translation Preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
-msgid "Change Your Personal Information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
-msgid "Change Your Password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1823,25 +1812,30 @@ msgstr "Miaj Projektoj"
 msgid "Alternative Source Languages"
 msgstr "Alternativa Font-Lingvo"
 
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:17
+#: templates/profiles/profile_detail.html:8
+#, python-format
+msgid "%(prevtitle)s: Users » %(username)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "Oportunaj Ligiloj"
 
-#: templates/profiles/profile_detail.html:45
+#: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:47
+#: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:57
+#: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
 msgstr ""
 
@@ -1869,18 +1863,15 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:9
-msgid "Account Activated."
-msgstr ""
-
-#: templates/registration/activate.html:11
+#: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in</a>."
+"proceed to log in."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
@@ -1905,7 +1896,8 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "Vi ricevis ĉi tiun mesaĝon por kontroli, ke la retpoŝto adreso vere estas "
+msgstr ""
+"Vi ricevis ĉi tiun mesaĝon por kontroli, ke la retpoŝto adreso vere estas "
 "ĝusta. Se vi ne volis registri konton, vi povas nur ignori la mesaĝon.\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -1914,11 +1906,8 @@ msgid "Pootle registration"
 msgstr "Pootle-Registrado"
 
 #: templates/registration/password_change_done.html:5
-msgid "Password Changed"
-msgstr ""
-
 #: templates/registration/password_change_done.html:15
-msgid "Password Changed."
+msgid "Password Changed"
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2056,8 +2045,9 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
+#, fuzzy
 msgid "Log In."
-msgstr ""
+msgstr "Saluti"
 
 #~ msgid "General options"
 #~ msgstr "Ĝeneralaj opcioj"
@@ -2095,7 +2085,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "Forigi lingvon"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "Forigu %s"
 
@@ -2156,22 +2145,20 @@ msgstr ""
 #~ msgid "Update Languages"
 #~ msgstr "Ĝisdatigi Lingvojn"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Administrado de Pootle: %s"
 
 #~ msgid "Add Language"
 #~ msgstr "Aldoni Lingvon"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Administrado de Pootle: %s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr "Ne eblas agordi la rajtojn de uzanto %s - uzanto mankas"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr ""
 #~ "Ĉi tiu estas GNU-stila projekto (unu dosierujo, dosieroj nomitaj laŭ "
 #~ "lingvo)."
@@ -2184,48 +2171,46 @@ msgstr ""
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
 #~ "<strong>Pootle</strong> estas simpla retportalo kiu ebligos vin "
-#~ "<strong>traduki</strong>! Ĉar Pootle estas <strong>Libera "
-#~ "Programaro</strong>, vi povas elŝuti ĝin kaj lanĉi vian propran kopion se vi "
-#~ "volas. Vi ankaŭ povas helpi partoprenante en la disvolvado per multaj "
-#~ "manieroj (ne bezonatas ke vi sciu programi)."
+#~ "<strong>traduki</strong>! Ĉar Pootle estas <strong>Libera Programaro</"
+#~ "strong>, vi povas elŝuti ĝin kaj lanĉi vian propran kopion se vi volas. "
+#~ "Vi ankaŭ povas helpi partoprenante en la disvolvado per multaj manieroj "
+#~ "(ne bezonatas ke vi sciu programi)."
 
 #~ msgid ""
 #~ "The Pootle project itself is hosted at <a href=\"http://translate."
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "La projekto Pootle mem estas gastigita en <a "
-#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> kie "
-#~ "vi povas trovi detalojn pri la fontkodo, retpoŝtlistojn, ktp."
+#~ "La projekto Pootle mem estas gastigita en <a href=\"http://translate."
+#~ "sourceforge.net/\">translate.sourceforge.net</a> kie vi povas trovi "
+#~ "detalojn pri la fontkodo, retpoŝtlistojn, ktp."
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
-#~ "La nomo signifas (angle) <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-#~ "<b>L</b>ocalization <b>E</b>ngine (PO-bazita Enreta Traduka / Asimilada "
-#~ "Modulo), sed eble vi devas legi <a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">ĉi tion</a>."
+#~ "La nomo signifas (angle) <b>PO</b>-based <b>O</b>nline <b>T</"
+#~ "b>ranslation / <b>L</b>ocalization <b>E</b>ngine (PO-bazita Enreta "
+#~ "Traduka / Asimilada Modulo), sed eble vi devas legi <a href=\"http://www."
+#~ "thechestnut.com/flumps.htm\">ĉi tion</a>."
 
 #~ msgid "Versions"
 #~ msgstr "Versioj"
 
-#, python-format
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
-#~ "Ĉi tiu TTT-ejo uzas:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "Ĉi tiu TTT-ejo uzas:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "Uzanta Paĝo por: %s"
 
@@ -2235,17 +2220,16 @@ msgstr ""
 #~ msgid "Admin page"
 #~ msgstr "Administra paĝo"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
 #~ msgstr ""
 #~ "Bonvolu alklaki 'Ŝanĝu opciojn' kaj elektu kelkajn lingvojn kaj projektojn"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d projekto, averaĝe %d%% tradukita"
 #~ msgstr[1] "%d projektoj, averaĝe %d%% tradukitaj"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s: %s"
 
@@ -2255,13 +2239,11 @@ msgstr ""
 #~ msgid "Language Name"
 #~ msgstr "Lingvo-nomo"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d lingvo, averaĝe %d%% tradukita"
 #~ msgstr[1] "%d lingvoj, averaĝe %d%% tradukitaj"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "%s: Projekto %s, Lingvo %s"
 
@@ -2364,7 +2346,6 @@ msgstr ""
 #~ msgid "Hide Assigns"
 #~ msgstr "Kaŝu Atribuitaĵojn"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "Ĉiuj Celoj: %s"
 
@@ -2392,21 +2373,17 @@ msgstr ""
 #~ msgid "ZIP of folder"
 #~ msgstr "ZIP-densigitaĵo de dosiero"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d signoĉeno (%d%%) fiaskis"
 #~ msgstr[1] "%d signoĉenoj (%d%%) fiaskis"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d vortoj (%d%%) atribuitaj"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d signoĉenoj]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d vortoj (%d%%) tradukitaj"
 
@@ -2428,11 +2405,9 @@ msgstr ""
 #~ msgid "All goals"
 #~ msgstr "Ĉiuj celoj"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d/%d dosieroj"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "%d/%d signoĉenoj"
 
@@ -2478,7 +2453,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "Vi ne rajtas ŝanĝi atribuaĵojn ĉi tie"
 
-#, python-format
 #~ msgid ""
 #~ "%d/%d translated\n"
 #~ "(%d untranslated, %d fuzzy)"
@@ -2486,7 +2460,6 @@ msgstr ""
 #~ "%d/%d tradukitaj\n"
 #~ "(%d netradukitaj, %d nebulaj)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s: tradukante %s en %s-n: %s"
 
@@ -2502,11 +2475,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "Klaku ĉi tie por reveni al la indekso"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "Mesaĝoj %d al %d el %d"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "Nenio konformas al ĉi tiu serĉo ('%s')"
 
@@ -2522,11 +2493,9 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "Ŝrumpi"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "Sugesto %d de %s:"
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "Vi devas doni validan pasvorton de ne malpli ol %d signoj."
 
@@ -2578,7 +2547,6 @@ msgstr ""
 #~ msgid "Activate Account"
 #~ msgstr "Aktivigi Konton"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "Opcioj por: %s"
 
@@ -2613,63 +2581,64 @@ msgstr ""
 #~ msgstr "Vi devas esti la administranto de la TTT-ejo por ŝanĝi uzantojn"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
-#~ msgstr "Uzanta nomo devas esti litercifera kaj la unua signo devas esti litero."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
+#~ msgstr ""
+#~ "Uzanta nomo devas esti litercifera kaj la unua signo devas esti litero."
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
 #~ msgstr "Vi (aŭ iu) registris konton kun via uzanta nomo.\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
 #~ msgstr "Ni ne surdiskigis vian veran pasvorton, nur haketaĵon el ĝi.\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "Se vi havas problemon pri registrado, bonvolu kontakti %s.\n"
 
 #~ msgid ""
 #~ "If you have a problem with registration, please contact the site "
 #~ "administrator.\n"
-#~ msgstr "Se vi havas problemon pri registrado, bonvolu kontakti la administranton de "
-#~ "la TTT-ejo.\n"
+#~ msgstr ""
+#~ "Se vi havas problemon pri registrado, bonvolu kontakti la administranton "
+#~ "de la TTT-ejo.\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
-#~ msgstr "Tiu uzanta nomo jam ekzistas. Mesaĝo sendiĝos al la registrita "
-#~ "retpoŝt-adreso.\n"
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
+#~ msgstr ""
+#~ "Tiu uzanta nomo jam ekzistas. Mesaĝo sendiĝos al la registrita retpoŝt-"
+#~ "adreso.\n"
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "Irante al <a href='%s'>saluto</a>\n"
 
 #~ msgid ""
 #~ "If you are unable to follow the link, please enter the above code at the "
 #~ "activation page.\n"
-#~ msgstr "Se vi ne povas sekvi la ligilon, bonvolu enigi la supran kodon al la "
+#~ msgstr ""
+#~ "Se vi ne povas sekvi la ligilon, bonvolu enigi la supran kodon al la "
 #~ "aktiviga paĝo.\n"
 
-#, python-format
 #~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
 #~ msgstr ""
-#~ "Konto kreitiĝis. Vi ricevos retpoŝte kaj detalojn pri salutado kaj aktivigan "
-#~ "kodon. Bonvolu enigi vian akivigan kodon al la <a href='%s'>aktiviga "
-#~ "paĝo</a>."
+#~ "Konto kreitiĝis. Vi ricevos retpoŝte kaj detalojn pri salutado kaj "
+#~ "aktivigan kodon. Bonvolu enigi vian akivigan kodon al la <a href='%"
+#~ "s'>aktiviga paĝo</a>."
 
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "(Aŭ nur alklaku la aktivigan ligilon en la mesaĝon)"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "Vi uzanta nomo estas: %s\n"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "Via pasvorto estas: %s\n"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "Via registrita retpoŝta adreso estas: %s\n"
 
@@ -2695,7 +2664,9 @@ msgstr ""
 #~ msgstr "Enigita largeco devas esti cifera"
 
 #~ msgid "The number of rows displayed in view mode must be numeric"
-#~ msgstr "La nombro de horizontaloj montrota en montra reĝimo devas esti cifera"
+#~ msgstr ""
+#~ "La nombro de horizontaloj montrota en montra reĝimo devas esti cifera"
 
 #~ msgid "The number of rows displayed in translate mode must be numeric"
-#~ msgstr "La nombro de horizontaloj montrota en traduka reĝimo devas esti cifera"
+#~ msgstr ""
+#~ "La nombro de horizontaloj montrota en traduka reĝimo devas esti cifera"

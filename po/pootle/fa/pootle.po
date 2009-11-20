@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"POT-Creation-Date: 2009-11-20 01:27+0200\n"
 "PO-Revision-Date: 2008-08-29 11:11+0000\n"
 "Last-Translator: Mohammad Ebrahim Mohammadi Panah <mebrahim@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,15 +161,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:39
+#: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:65
+#: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:77
+#: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
 msgstr ""
 
@@ -452,7 +452,7 @@ msgstr "نام کاربر"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
 msgstr ""
 
@@ -538,29 +538,29 @@ msgid "Language"
 msgstr "زبان"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:58
+#: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:59
+#: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:57
+#: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "پروژه‌ها"
 
-#: local_apps/pootle_app/templates/index/index.html:82
+#: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:85
+#: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -599,7 +599,7 @@ msgstr "ثبت نام"
 msgid "Error"
 msgstr "خطا"
 
-#: local_apps/pootle_app/templates/language/item_summary.html:28
+#: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
 msgstr ""
 
@@ -690,26 +690,17 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:49
-msgid "Rank"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:50
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr "نام"
-
-#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:77
 #, fuzzy
 msgid "Suggestions"
 msgstr "پیشنهاد:"
 
-#: local_apps/pootle_app/views/top_stats.py:90
+#: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
 msgid "Reviews"
 msgstr "بازبینی"
 
-#: local_apps/pootle_app/views/top_stats.py:91
+#: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr ""
 
@@ -850,7 +841,7 @@ msgid "Users"
 msgstr "کاربران"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "گذرواژه"
@@ -861,8 +852,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "شما حق مدیریت پوتل را ندارید."
 
 #: local_apps/pootle_app/views/admin/util.py:50
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "شما حق مدیریت پوتل را ندارید."
 
@@ -912,7 +902,7 @@ msgid "Default"
 msgstr "پیش‌فرض"
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
 msgstr ""
 
@@ -942,7 +932,7 @@ msgstr[0] "%d پرونده"
 
 #: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -952,8 +942,8 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
-msgid "%(checks)d string (%(checkspercent)d%%) failed"
-msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgid "%(checks)d string, %(checkspercent)d%% failed"
+msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
 msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
@@ -1039,9 +1029,13 @@ msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:27
+#: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
 msgstr "مدیر"
+
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
+msgstr "نام"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 msgid "Translated percentage"
@@ -1091,8 +1085,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "شما این جا حق تغییر دادن ترجمه‌ها را ندارید"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1110,11 +1105,13 @@ msgstr "نظرات"
 msgid "Locations"
 msgstr "مکان‌ها"
 
-#: local_apps/pootle_app/views/language/search_forms.py:69
+#: local_apps/pootle_app/views/language/search_forms.py:67
+#: local_apps/pootle_app/views/language/search_forms.py:75
+#: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
 msgstr "جستجو"
 
-#: local_apps/pootle_app/views/language/search_forms.py:71
+#: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
 msgstr "جستجوی پیشرفته"
 
@@ -1181,8 +1178,9 @@ msgid "Upload File"
 msgstr "بالاگذاری پرونده"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "شما این جا حق تغییر دادن ترجمه‌ها را ندارید"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1247,8 +1245,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"ترجمه ممکن نیست، زیرا اطلاعات حالت جمع برای زبان شما در اختیار نیست. لطفاً "
-"با مدیر سایت تماس بگیرید."
+"ترجمه ممکن نیست، زیرا اطلاعات حالت جمع برای زبان شما در اختیار نیست. لطفاً با "
+"مدیر سایت تماس بگیرید."
 
 #: local_apps/pootle_app/views/language/translate_page.py:493
 msgid "Current Translation:"
@@ -1299,8 +1297,9 @@ msgid "End of results."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "شما این جا حق تغییر دادن ترجمه‌ها را ندارید"
 
 #: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
@@ -1376,11 +1375,6 @@ msgstr "از روی قالب‌ها به روز کن"
 
 #: local_apps/pootle_app/views/project/project_admin.py:43
 msgid "Initialize"
-msgstr ""
-
-#: local_apps/pootle_app/views/project/project_admin.py:64
-#, python-format
-msgid "Project Admin: %s"
 msgstr ""
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
@@ -1583,19 +1577,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage your users"
+msgid "Manage the users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Administrate the available languages"
+msgid "Manage the languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage The available projects"
+msgid "Manage the projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Administrate the default permissions"
+msgid "Manage the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1630,6 +1624,11 @@ msgstr "ورود"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "دربارهٔ این خادم پوتل"
+
+#: templates/docs.html:5
+#, python-format
+msgid "%(prevtitle)s: Help"
+msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1717,32 +1716,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
-msgid "General Stats and Quick Links"
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
-msgid "Configure Your Translation Preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
-msgid "Change Your Personal Information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
-msgid "Change Your Password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1811,25 +1810,30 @@ msgstr "پروژه‌های من"
 msgid "Alternative Source Languages"
 msgstr "زبان مبدأ دیگر"
 
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:17
+#: templates/profiles/profile_detail.html:8
+#, python-format
+msgid "%(prevtitle)s: Users » %(username)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "پیوندهای سریع"
 
-#: templates/profiles/profile_detail.html:45
+#: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:47
+#: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:57
+#: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
 msgstr ""
 
@@ -1857,18 +1861,15 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:9
-msgid "Account Activated."
-msgstr ""
-
-#: templates/registration/activate.html:11
+#: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in</a>."
+"proceed to log in."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
@@ -1893,7 +1894,8 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "این پیغام برای حصول اطمینان از صحت نشانی رایانامه فرستاده شده است. اگر شما "
+msgstr ""
+"این پیغام برای حصول اطمینان از صحت نشانی رایانامه فرستاده شده است. اگر شما "
 "نمی‌خواستید حسابی ثبت کنید می‌توانید به سادگی این پیغام را نادیده بگیرید.\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -1902,11 +1904,8 @@ msgid "Pootle registration"
 msgstr "ثبت نام در پوتل"
 
 #: templates/registration/password_change_done.html:5
-msgid "Password Changed"
-msgstr ""
-
 #: templates/registration/password_change_done.html:15
-msgid "Password Changed."
+msgid "Password Changed"
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2044,8 +2043,9 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
+#, fuzzy
 msgid "Log In."
-msgstr ""
+msgstr "ورود"
 
 #~ msgid "General options"
 #~ msgstr "انتخاب‌های عمومی"
@@ -2083,7 +2083,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "زبان را حذف کن"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "%s را حذف کن"
 
@@ -2144,22 +2143,20 @@ msgstr ""
 #~ msgid "Update Languages"
 #~ msgstr "زبان‌ها را به روز کن"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "مدیر پوتل: %s"
 
 #~ msgid "Add Language"
 #~ msgstr "زبان اضافه کن"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "مدیر پوتل: %s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr "نمی‌توان حقوق کاربر %s را ثبت کرد - کاربر وجود ندارد"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr ""
 #~ "این پروژه به شیوهٔ GNU است (یک شاخه، پرونده‌ها بر اساس زبان نام گذاری "
 #~ "می‌شوند)."
@@ -2172,50 +2169,47 @@ msgstr ""
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
 #~ "<strong>پوتل</strong> یک درگاه سادهٔ وب است که باید به شما کمک کند که "
-#~ "<strong>ترجمه کنید</strong>! از آن جا که پوتل یک <strong>نرم‌افزار "
-#~ "آزاد</strong> است، شما می‌توانید آن را بارگیری کنید و اگر مایلید نسخهٔ "
-#~ "خودتان را اجرا نمایید. شما همچنین می‌توانید به روش‌های متعددی در توسعهٔ آن "
-#~ "مشارکت کنید (شما مجبور نیستید بتوانید برنامه بنویسید)."
+#~ "<strong>ترجمه کنید</strong>! از آن جا که پوتل یک <strong>نرم‌افزار آزاد</"
+#~ "strong> است، شما می‌توانید آن را بارگیری کنید و اگر مایلید نسخهٔ خودتان را "
+#~ "اجرا نمایید. شما همچنین می‌توانید به روش‌های متعددی در توسعهٔ آن مشارکت کنید "
+#~ "(شما مجبور نیستید بتوانید برنامه بنویسید)."
 
 #~ msgid ""
 #~ "The Pootle project itself is hosted at <a href=\"http://translate."
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "خود پروژهٔ پوتل در <a "
-#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> "
-#~ "میزبانی می‌شود. در آن‌ جا می‌توانید جزئیات کد منبع، فهرست‌های نامه‌نگاری و "
-#~ "غیره را بیابید."
+#~ "خود پروژهٔ پوتل در <a href=\"http://translate.sourceforge.net/\">translate."
+#~ "sourceforge.net</a> میزبانی می‌شود. در آن‌ جا می‌توانید جزئیات کد منبع، "
+#~ "فهرست‌های نامه‌نگاری و غیره را بیابید."
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
-#~ "نام پوتل نماینده‌ی<span dir=\"ltr\"> <b>PO</b>-based <b>O</b>nline "
-#~ "<b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine</span> (موتور برخط "
-#~ "ترجمه/محلی‌سازی مبتنی بر PO) است، ولی ممکن است لازم باشد که <a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">این مطلب</a> را هم بخوانید."
+#~ "نام پوتل نماینده‌ی<span dir=\"ltr\"> <b>PO</b>-based <b>O</b>nline <b>T</"
+#~ "b>ranslation / <b>L</b>ocalization <b>E</b>ngine</span> (موتور برخط ترجمه/"
+#~ "محلی‌سازی مبتنی بر PO) است، ولی ممکن است لازم باشد که <a href=\"http://www."
+#~ "thechestnut.com/flumps.htm\">این مطلب</a> را هم بخوانید."
 
 #~ msgid "Versions"
 #~ msgstr "نسخه‌ها"
 
-#, python-format
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
-#~ "نرم‌افزار این پایگاه: <div align=\"left\"><span dir=\"ltr\"><br />Pootle %s<br "
-#~ "/>Translate Toolkit %s<br />jToolkit %s<br />Kid %s<br />ElementTree %s<br "
-#~ "/>Python %s (on %s/%s)</span></div>"
+#~ "نرم‌افزار این پایگاه: <div align=\"left\"><span dir=\"ltr\"><br />Pootle %"
+#~ "s<br />Translate Toolkit %s<br />jToolkit %s<br />Kid %s<br />ElementTree "
+#~ "%s<br />Python %s (on %s/%s)</span></div>"
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "صفحهٔ کاربر برای: %s"
 
@@ -2225,15 +2219,15 @@ msgstr ""
 #~ msgid "Admin page"
 #~ msgstr "صفحهٔ مدیریت"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
-#~ msgstr "لطفاً روی «تغییر انتخاب‌ها» کلیک کنید و تعدادی زبان و پروژه انتخاب کنید"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
+#~ msgstr ""
+#~ "لطفاً روی «تغییر انتخاب‌ها» کلیک کنید و تعدادی زبان و پروژه انتخاب کنید"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d پروژه، به طور متوسط %%%d ترجمه شده است"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s: %s"
 
@@ -2243,12 +2237,10 @@ msgstr ""
 #~ msgid "Language Name"
 #~ msgstr "نام زبان"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d زبان، به طور متوسط %%%d ترجمه شده است"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "%s: پروژهٔ %s، زبان %s"
 
@@ -2257,8 +2249,7 @@ msgstr ""
 
 #~ msgid "Can only upload PO files and zips of PO files"
 #~ msgstr ""
-#~ "فقط می‌توان پرونده‌های PO و پرونده‌های ZIP حاوی پرونده‌های PO را بالاگذاری "
-#~ "کرد"
+#~ "فقط می‌توان پرونده‌های PO و پرونده‌های ZIP حاوی پرونده‌های PO را بالاگذاری کرد"
 
 #~ msgid "Assign Strings"
 #~ msgstr "رشته‌ها را واگذار کن"
@@ -2362,7 +2353,6 @@ msgstr ""
 #~ msgid "Hide Assigns"
 #~ msgstr "پنهان‌سازی واگذاری‌ها"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "همهٔ اهداف"
 
@@ -2393,20 +2383,16 @@ msgstr ""
 #~ msgid "Generate SDF"
 #~ msgstr "SDF تولید کن"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d رشته (%%%d) ناموفق بود"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d تا از %d کلمه (%%%d) واگذار شده‌اند"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d تا از %d رشته]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d تا از %d کلمه (%%%d) ترجمه شده است"
 
@@ -2428,11 +2414,9 @@ msgstr ""
 #~ msgid "All goals"
 #~ msgstr "همهٔ اهداف"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d تا از %d پرونده"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "%d تا از %d رشته"
 
@@ -2478,7 +2462,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "شما این جا حق تغییر واگذاری‌ها را ندارید"
 
-#, python-format
 #~ msgid ""
 #~ "%d/%d translated\n"
 #~ "(%d untranslated, %d fuzzy)"
@@ -2486,7 +2469,6 @@ msgstr ""
 #~ "%d تا از %d تا ترجمه‌شده\n"
 #~ "(%d تا ترجمه‌نشده، %d تا فازی)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "پوتل: درحال ترجمهٔ %s به %s: %s"
 
@@ -2502,11 +2484,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "برای بازگشت به صفحهٔ اصلی این جا کلیک کنید"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "موارد %d تا %d از %d تا"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "هیچ نتیجه ای مطابق جستجو شما یافت نشد ('%s')"
 
@@ -2522,11 +2502,9 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "کاهش ارتفاع"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "پیشنهاد %d از %s:"
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "شما باید یک گذرواژهٔ معتبر به طول حداقل %d حرف وارد کنید."
 
@@ -2578,7 +2556,6 @@ msgstr ""
 #~ msgid "Activate Account"
 #~ msgstr "حساب را فعال کن"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "انتخاب‌ها برای: %s"
 
@@ -2613,18 +2590,22 @@ msgstr ""
 #~ msgstr "شما باید مدیر پایگاه باشید تا بتوانید کاربران را تغییر دهید"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
 #~ msgstr "نام کاربر باید حرفی-عددی باشد و با یک حرف شروع شود"
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
-#~ msgstr "شما (یا شخصی دیگر) سعی کرده‌اید(کرده‌است) یک حساب با نام کاربر شما ثبت کند.\n"
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
+#~ msgstr ""
+#~ "شما (یا شخصی دیگر) سعی کرده‌اید(کرده‌است) یک حساب با نام کاربر شما ثبت "
+#~ "کند.\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
-#~ msgstr "ما گذرواژهٔ شما را نگه‌داری نمی‌کنیم، بلکه فقط شکلی درهم‌ریخته از آن را "
-#~ "ذخیره می‌کنیم.\n"
+#~ msgstr ""
+#~ "ما گذرواژهٔ شما را نگه‌داری نمی‌کنیم، بلکه فقط شکلی درهم‌ریخته از آن را ذخیره "
+#~ "می‌کنیم.\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "اگر شما مشکلی با ثبت نام دارید لطفاً با %s تماس بگیرید.\n"
 
@@ -2634,26 +2615,26 @@ msgstr ""
 #~ msgstr "اگر شما مشکلی با ثبت نام دارید لطفاً با مدیر پایگاه تماس بگیرید.\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
 #~ msgstr ""
 #~ "این نام کاربر قبلاً انتخاب شده است. یک رایانامه به نشانی رایانامهٔ ثبت شده "
 #~ "فرستاده خواهد ‌شد."
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "ره‌سپار <a href='%s'>ورود</a> می‌شویم\n"
 
 #~ msgid ""
 #~ "If you are unable to follow the link, please enter the above code at the "
 #~ "activation page.\n"
-#~ msgstr "اگر شما نمی‌توانید پیوند را دنبال کنید، لطفاً کد بالا را در صفحهٔ فعال‌سازی "
+#~ msgstr ""
+#~ "اگر شما نمی‌توانید پیوند را دنبال کنید، لطفاً کد بالا را در صفحهٔ فعال‌سازی "
 #~ "وارد کنید.\n"
 
-#, python-format
 #~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
 #~ msgstr ""
 #~ "حساب ساخته شد. رایانامه‌ای حاوی جزئیات ورود و کد فعال‌سازی به شما فرستاده "
 #~ "خواهد شد. لطفاً کد فعال‌سازی خود را در <a href='%s'>صفحهٔ فعال‌سازی</a> وارد "
@@ -2662,15 +2643,12 @@ msgstr ""
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "(یا به سادگی روی پیوند فعال‌سازی داخل رایانامه کلیک کنید)"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "نام شما: %s\n"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "گذرواژهٔ شما: %s\n"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "نشانی رایانامهٔ ثبت شدهٔ شما: %s\n"
 

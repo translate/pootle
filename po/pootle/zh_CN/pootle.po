@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"POT-Creation-Date: 2009-11-20 01:27+0200\n"
 "PO-Revision-Date: 2009-10-05 17:33+0200\n"
 "Last-Translator: Cliff Peng <szhairui@sina.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,15 +161,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:39
+#: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:65
+#: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:77
+#: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
 msgstr ""
 
@@ -452,7 +452,7 @@ msgstr "用户名"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
 msgstr ""
 
@@ -538,29 +538,29 @@ msgid "Language"
 msgstr "语言"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:58
+#: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:59
+#: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:57
+#: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "项目"
 
-#: local_apps/pootle_app/templates/index/index.html:82
+#: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:85
+#: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -599,7 +599,7 @@ msgstr "注册"
 msgid "Error"
 msgstr "错误"
 
-#: local_apps/pootle_app/templates/language/item_summary.html:28
+#: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
 msgstr ""
 
@@ -690,26 +690,17 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:49
-msgid "Rank"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:50
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr "姓名"
-
-#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:77
 #, fuzzy
 msgid "Suggestions"
 msgstr "建议："
 
-#: local_apps/pootle_app/views/top_stats.py:90
+#: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
 msgid "Reviews"
 msgstr "检查"
 
-#: local_apps/pootle_app/views/top_stats.py:91
+#: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr ""
 
@@ -850,7 +841,7 @@ msgid "Users"
 msgstr "用户"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "密码"
@@ -861,8 +852,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "你还没有管理pootle的权限"
 
 #: local_apps/pootle_app/views/admin/util.py:50
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "你还没有管理pootle的权限"
 
@@ -912,7 +902,7 @@ msgid "Default"
 msgstr "默认"
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
 msgstr ""
 
@@ -942,7 +932,7 @@ msgstr[0] "%d个文件"
 
 #: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -952,8 +942,8 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
-msgid "%(checks)d string (%(checkspercent)d%%) failed"
-msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgid "%(checks)d string, %(checkspercent)d%% failed"
+msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
 msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
@@ -1039,9 +1029,13 @@ msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:27
+#: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
 msgstr "管理"
+
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
+msgstr "姓名"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 msgid "Translated percentage"
@@ -1091,8 +1085,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "你没有在此更改译文的权限"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1110,11 +1105,13 @@ msgstr "注释"
 msgid "Locations"
 msgstr "定位"
 
-#: local_apps/pootle_app/views/language/search_forms.py:69
+#: local_apps/pootle_app/views/language/search_forms.py:67
+#: local_apps/pootle_app/views/language/search_forms.py:75
+#: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
 msgstr "搜索"
 
-#: local_apps/pootle_app/views/language/search_forms.py:71
+#: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
 msgstr "高级搜索"
 
@@ -1180,8 +1177,9 @@ msgid "Upload File"
 msgstr "上载文件"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "你没有在此更改译文的权限"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1296,8 +1294,9 @@ msgid "End of results."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "你没有在此更改译文的权限"
 
 #: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
@@ -1373,11 +1372,6 @@ msgstr "从模板更新"
 
 #: local_apps/pootle_app/views/project/project_admin.py:43
 msgid "Initialize"
-msgstr ""
-
-#: local_apps/pootle_app/views/project/project_admin.py:64
-#, python-format
-msgid "Project Admin: %s"
 msgstr ""
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
@@ -1580,19 +1574,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage your users"
+msgid "Manage the users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Administrate the available languages"
+msgid "Manage the languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage The available projects"
+msgid "Manage the projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Administrate the default permissions"
+msgid "Manage the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1627,6 +1621,11 @@ msgstr "登录"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "关于本Pootle服务器"
+
+#: templates/docs.html:5
+#, python-format
+msgid "%(prevtitle)s: Help"
+msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1714,32 +1713,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
-msgid "General Stats and Quick Links"
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
-msgid "Configure Your Translation Preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
-msgid "Change Your Personal Information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
-msgid "Change Your Password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1808,25 +1807,30 @@ msgstr "我的项目"
 msgid "Alternative Source Languages"
 msgstr "可选源语言"
 
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:17
+#: templates/profiles/profile_detail.html:8
+#, python-format
+msgid "%(prevtitle)s: Users » %(username)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "快速连接"
 
-#: templates/profiles/profile_detail.html:45
+#: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:47
+#: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:57
+#: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
 msgstr ""
 
@@ -1854,18 +1858,15 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:9
-msgid "Account Activated."
-msgstr ""
-
-#: templates/registration/activate.html:11
+#: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in</a>."
+"proceed to log in."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
@@ -1890,7 +1891,9 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "发送本信息的目的是为了验证email地址是否正确。如果你不想注册，只需忽略本信息。\n"
+msgstr ""
+"发送本信息的目的是为了验证email地址是否正确。如果你不想注册，只需忽略本信"
+"息。\n"
 
 #: templates/registration/activation_email_subject.txt:2
 #, fuzzy
@@ -1898,11 +1901,8 @@ msgid "Pootle registration"
 msgstr "Pootle注册"
 
 #: templates/registration/password_change_done.html:5
-msgid "Password Changed"
-msgstr ""
-
 #: templates/registration/password_change_done.html:15
-msgid "Password Changed."
+msgid "Password Changed"
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2040,8 +2040,9 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
+#, fuzzy
 msgid "Log In."
-msgstr ""
+msgstr "登录"
 
 #~ msgid "General options"
 #~ msgstr "常规选项"
@@ -2079,7 +2080,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "移除语言"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "移除%s"
 
@@ -2140,22 +2140,20 @@ msgstr ""
 #~ msgid "Update Languages"
 #~ msgstr "更新语言"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Pootle管理员：%s"
 
 #~ msgid "Add Language"
 #~ msgstr "添加语言"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Pootle管理员：%s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr "不能为用户%s设置权限——该用户不存在"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr "这是一个GNU风格的项目(每种语言对应一个目录，一个文件)"
 
 #~ msgid "Rights"
@@ -2166,43 +2164,42 @@ msgstr ""
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
-#~ "<strong>Pootle</strong>是一个简单的web portal，它可以帮助你<strong>翻译</strong>！因为Pootle是<"
-#~ "strong>自由软件</strong>，所以如果你愿意，你可以下载它并运行你自己的副本。你也可以以多种方式帮忙参与开发(你不需要会编程)。"
+#~ "<strong>Pootle</strong>是一个简单的web portal，它可以帮助你<strong>翻译</"
+#~ "strong>！因为Pootle是<strong>自由软件</strong>，所以如果你愿意，你可以下载"
+#~ "它并运行你自己的副本。你也可以以多种方式帮忙参与开发(你不需要会编程)。"
 
 #~ msgid ""
 #~ "The Pootle project itself is hosted at <a href=\"http://translate."
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "Pootle项目本身位于<a href=\"http://translate.sourceforge.net/\">translate.sourceforg"
-#~ "e.net</a>，你可以在那里找到有关源代码，邮件列表等的详细信息。"
+#~ "Pootle项目本身位于<a href=\"http://translate.sourceforge.net/\">translate."
+#~ "sourceforge.net</a>，你可以在那里找到有关源代码，邮件列表等的详细信息。"
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
 #~ "项目的名字代表的是<b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-#~ "<b>L</b>ocalization <b>E</b>ngine，但是你或许需要读一读<a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">这个</a>。"
+#~ "<b>L</b>ocalization <b>E</b>ngine，但是你或许需要读一读<a href=\"http://"
+#~ "www.thechestnut.com/flumps.htm\">这个</a>。"
 
 #~ msgid "Versions"
 #~ msgstr "版本"
 
-#, python-format
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
-#~ "这个网站运行着的是：<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br "
-#~ "/>Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "这个网站运行着的是：<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "%s的用户页："
 
@@ -2212,15 +2209,14 @@ msgstr ""
 #~ msgid "Admin page"
 #~ msgstr "管理页面"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
 #~ msgstr "请点击“更改选项”并选择一些语言和项目"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d个项目，平均%d%%已经翻译"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s：%s"
 
@@ -2230,12 +2226,10 @@ msgstr ""
 #~ msgid "Language Name"
 #~ msgstr "语言名称"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d种语言，平均%d%%已经翻译"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "%s：项目 %s，语言 %s"
 
@@ -2347,7 +2341,6 @@ msgstr ""
 #~ msgid "Hide Assigns"
 #~ msgstr "隐藏分配"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "所有目标：%s"
 
@@ -2378,20 +2371,16 @@ msgstr ""
 #~ msgid "Generate SDF"
 #~ msgstr "生成SDF"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d字符串(%d%%)失败"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d单词(%d%%)已分配"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d条字符串]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d个单词(%d%%)已经翻译"
 
@@ -2413,11 +2402,9 @@ msgstr ""
 #~ msgid "All goals"
 #~ msgstr "所有目标"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d/%d个文件"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "%d/%d个字符串"
 
@@ -2464,7 +2451,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "你没有在此改变任务分配的权限"
 
-#, python-format
 #~ msgid ""
 #~ "%d/%d translated\n"
 #~ "(%d untranslated, %d fuzzy)"
@@ -2472,7 +2458,6 @@ msgstr ""
 #~ "%d/%d已经翻译\n"
 #~ "(%d条未译，%d条模糊)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s：将%s翻译为%s：%s"
 
@@ -2488,11 +2473,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "点击这里返回索引页"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "第%d至%d条 共%d条"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "没有与('%s')相匹配的条目"
 
@@ -2508,11 +2491,9 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "缩小译文区"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "建议%d，来自%s："
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "你必须提供一个至少含有%d个字符的有效密码。"
 
@@ -2564,7 +2545,6 @@ msgstr ""
 #~ msgid "Activate Account"
 #~ msgstr "激活帐户"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "%s的选项："
 
@@ -2599,17 +2579,18 @@ msgstr ""
 #~ msgstr "你需要成为网站管理员才能更改用户"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
 #~ msgstr "用户名只能包含字母和数字，且必须以字母开头"
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
 #~ msgstr "你（或者其他人）尝试使用你的用户名注册帐户。\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
 #~ msgstr "我们并未保存你的实际密码，而只是它的hash值。\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "如果你在注册时遇到了问题，请联系%s。\n"
 
@@ -2619,11 +2600,10 @@ msgstr ""
 #~ msgstr "如果你在注册时遇到了问题，请联系站点管理员。\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
 #~ msgstr "这个用户名已经存在。已经给相应的注册email地址发了一封email。\n"
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "下面开始<a href='%s'>登录</a>"
 
@@ -2632,24 +2612,23 @@ msgstr ""
 #~ "activation page.\n"
 #~ msgstr "如果你打不开这个链接，请在激活页面输入上面的代码。\n"
 
-#, python-format
 #~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
-#~ msgstr "帐户已经创立。登录详细信息和激活代码将会通过email发送给你。请在<a href='%s'>激活页面</a>上输入你的激活代码。"
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
+#~ msgstr ""
+#~ "帐户已经创立。登录详细信息和激活代码将会通过email发送给你。请在<a href='%"
+#~ "s'>激活页面</a>上输入你的激活代码。"
 
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "（或者点击email里的激活连接）"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "您的用户名是：%s\n"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "您的密码是：%s\n"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "您注册的email地址是：%s\n"
 

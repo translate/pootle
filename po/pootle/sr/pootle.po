@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"POT-Creation-Date: 2009-11-20 01:27+0200\n"
 "PO-Revision-Date: 2009-01-05 09:12+0000\n"
 "Last-Translator: Natasa Cubrilovic <serbianteacher@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,15 +164,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:39
+#: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:65
+#: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:77
+#: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
 msgstr ""
 
@@ -455,7 +455,7 @@ msgstr "Корисничко име"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
 msgstr ""
 
@@ -541,29 +541,29 @@ msgid "Language"
 msgstr "Језик"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:58
+#: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:59
+#: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:57
+#: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "Пројекти"
 
-#: local_apps/pootle_app/templates/index/index.html:82
+#: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:85
+#: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -602,7 +602,7 @@ msgstr "Упишите се"
 msgid "Error"
 msgstr "Грешка"
 
-#: local_apps/pootle_app/templates/language/item_summary.html:28
+#: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
 msgstr ""
 
@@ -693,26 +693,17 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:49
-msgid "Rank"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:50
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr "Име"
-
-#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:77
 #, fuzzy
 msgid "Suggestions"
 msgstr "Предлог:"
 
-#: local_apps/pootle_app/views/top_stats.py:90
+#: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
 msgid "Reviews"
 msgstr "Прегледај"
 
-#: local_apps/pootle_app/views/top_stats.py:91
+#: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr ""
 
@@ -853,7 +844,7 @@ msgid "Users"
 msgstr "Корисници"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "Лозинка"
@@ -864,8 +855,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "Немате права да управљате Pootle."
 
 #: local_apps/pootle_app/views/admin/util.py:50
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "Немате права да руководите pootle."
 
@@ -915,7 +905,7 @@ msgid "Default"
 msgstr "Подразумевано"
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
 msgstr ""
 
@@ -947,7 +937,7 @@ msgstr[2] "%d датотека"
 
 #: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -957,8 +947,8 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
-msgid "%(checks)d string (%(checkspercent)d%%) failed"
-msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgid "%(checks)d string, %(checkspercent)d%% failed"
+msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -1056,9 +1046,13 @@ msgstr[2] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:27
+#: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
 msgstr "Управник"
+
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
+msgstr "Име"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 msgid "Translated percentage"
@@ -1108,8 +1102,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "Немате права да промените преводе овде"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1127,11 +1122,13 @@ msgstr "Коментари"
 msgid "Locations"
 msgstr "Локације"
 
-#: local_apps/pootle_app/views/language/search_forms.py:69
+#: local_apps/pootle_app/views/language/search_forms.py:67
+#: local_apps/pootle_app/views/language/search_forms.py:75
+#: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
 msgstr "Тражи"
 
-#: local_apps/pootle_app/views/language/search_forms.py:71
+#: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
 msgstr "Напредна претрага"
 
@@ -1197,8 +1194,9 @@ msgid "Upload File"
 msgstr "Постави датотеку"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "Немате права да промените преводе овде"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1317,8 +1315,9 @@ msgid "End of results."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "Немате права да промените преводе овде"
 
 #: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
@@ -1394,11 +1393,6 @@ msgstr "Освежи из шаблона"
 
 #: local_apps/pootle_app/views/project/project_admin.py:43
 msgid "Initialize"
-msgstr ""
-
-#: local_apps/pootle_app/views/project/project_admin.py:64
-#, python-format
-msgid "Project Admin: %s"
 msgstr ""
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
@@ -1603,19 +1597,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage your users"
+msgid "Manage the users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Administrate the available languages"
+msgid "Manage the languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage The available projects"
+msgid "Manage the projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Administrate the default permissions"
+msgid "Manage the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1649,6 +1643,11 @@ msgstr "Пријавите се"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "О овом Pootle серверу"
+
+#: templates/docs.html:5
+#, python-format
+msgid "%(prevtitle)s: Help"
+msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1736,32 +1735,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
-msgid "General Stats and Quick Links"
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
-msgid "Configure Your Translation Preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
-msgid "Change Your Personal Information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
-msgid "Change Your Password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1830,25 +1829,30 @@ msgstr "Моји пројекти"
 msgid "Alternative Source Languages"
 msgstr "Други изворни језик"
 
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:17
+#: templates/profiles/profile_detail.html:8
+#, python-format
+msgid "%(prevtitle)s: Users » %(username)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "Брзе пречице"
 
-#: templates/profiles/profile_detail.html:45
+#: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:47
+#: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:57
+#: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
 msgstr ""
 
@@ -1876,18 +1880,15 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:9
-msgid "Account Activated."
-msgstr ""
-
-#: templates/registration/activate.html:11
+#: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in</a>."
+"proceed to log in."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
@@ -1910,7 +1911,8 @@ msgstr "Код за активацију"
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "Ова порука је послана да се провери исправност ел. адресе. Ако нисте хтели "
+msgstr ""
+"Ова порука је послана да се провери исправност ел. адресе. Ако нисте хтели "
 "да отворине налог, можете једноставно занемарити ову поруку.\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -1919,11 +1921,8 @@ msgid "Pootle registration"
 msgstr "Pootle регистрација"
 
 #: templates/registration/password_change_done.html:5
-msgid "Password Changed"
-msgstr ""
-
 #: templates/registration/password_change_done.html:15
-msgid "Password Changed."
+msgid "Password Changed"
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2101,7 +2100,6 @@ msgstr "Пријавите се"
 #~ msgid "Remove Language"
 #~ msgstr "Уклони језик"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "Уклони %s"
 
@@ -2162,23 +2160,22 @@ msgstr "Пријавите се"
 #~ msgid "Update Languages"
 #~ msgstr "Освежи језике"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Pootle одржавање: %s %s"
 
 #~ msgid "Add Language"
 #~ msgstr "Додај језик"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Pootle одржавање: %s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr "Не могу да подесим права за корисничко име %s - корисник не постоји"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
-#~ msgstr "Ово је пројекат типа GNU (једна фасцикла, датотеке назване по језику)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
+#~ msgstr ""
+#~ "Ово је пројекат типа GNU (једна фасцикла, датотеке назване по језику)."
 
 #~ msgid "Rights"
 #~ msgstr "Права"
@@ -2188,14 +2185,14 @@ msgstr "Пријавите се"
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
-#~ "<strong>Pootle</strong> је једноставна  мрежна страна који вам дозвољава да "
-#~ "<strong>преводите</strong>! Пошто је Pootle <strong>Слободни "
-#~ "програм</strong>, можете га преузети и користити свој, само ваш, Pootle ако "
+#~ "<strong>Pootle</strong> је једноставна  мрежна страна који вам дозвољава "
+#~ "да <strong>преводите</strong>! Пошто је Pootle <strong>Слободни програм</"
+#~ "strong>, можете га преузети и користити свој, само ваш, Pootle ако "
 #~ "желите. Можете такође да помогнете у развоју и на многе друге начине (не "
 #~ "морате да будете програмер)."
 
@@ -2204,33 +2201,30 @@ msgstr "Пријавите се"
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "Pootle се налази на <a "
-#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> "
-#~ "страници где можете наћи детаље у вези изворног кода, дописног друштва преко "
-#~ "е-поште, итд."
+#~ "Pootle се налази на <a href=\"http://translate.sourceforge.net/"
+#~ "\">translate.sourceforge.net</a> страници где можете наћи детаље у вези "
+#~ "изворног кода, дописног друштва преко е-поште, итд."
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
-#~ "Име долази од <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-#~ "<b>L</b>ocalization <b>E</b>ngine, PO-базирани мрежни преводиоц локализатор, "
-#~ "али можда ћете морати да прочитате и: <a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">ово</a>."
+#~ "Име долази од <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+#~ "b>ocalization <b>E</b>ngine, PO-базирани мрежни преводиоц локализатор, "
+#~ "али можда ћете морати да прочитате и: <a href=\"http://www.thechestnut."
+#~ "com/flumps.htm\">ово</a>."
 
 #~ msgid "Versions"
 #~ msgstr "Издања"
 
-#, python-format
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
-#~ "Ова мрежна страница користи:<br />Pootle %s<br />Translate Toolkit %s<br "
-#~ "/>jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "Ова мрежна страница користи:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "Корисничка страница за:%s"
 
@@ -2240,17 +2234,17 @@ msgstr "Пријавите се"
 #~ msgid "Admin page"
 #~ msgstr "Страна за управљање"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
-#~ msgstr "Молимо притисните „Промени поставке“ и изаберите неке језике и пројекте"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
+#~ msgstr ""
+#~ "Молимо притисните „Промени поставке“ и изаберите неке језике и пројекте"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d пројекат, просек %d%% преведено"
 #~ msgstr[1] "%d пројекта, просек %d%% преведено"
 #~ msgstr[2] "%d пројеката, просек %d%% преведено"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s %s"
 
@@ -2260,14 +2254,12 @@ msgstr "Пријавите се"
 #~ msgid "Language Name"
 #~ msgstr "Име Језика"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d језик, просек %d%% преведено"
 #~ msgstr[1] "%d језика, просек %d%% преведено"
 #~ msgstr[2] "%d језика, просек %d%% преведено"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "Pootle: Пројекат %s, Језик %s"
 
@@ -2379,7 +2371,6 @@ msgstr "Пријавите се"
 #~ msgid "Hide Assigns"
 #~ msgstr "Сакриј додељене задатке"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "Сви циљеви: %s"
 
@@ -2410,22 +2401,18 @@ msgstr "Пријавите се"
 #~ msgid "Generate SDF"
 #~ msgstr "Направи PDF"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d низ (%d%%) неуспешно"
 #~ msgstr[1] "%d низа (%d%%) неуспешно"
 #~ msgstr[2] "%d низова (%d%%) неуспешно"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d речи (%d%%) дедељено"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d низова]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d речи (%d%%) преведено"
 
@@ -2450,11 +2437,9 @@ msgstr "Пријавите се"
 #~ msgid "All goals"
 #~ msgstr "Сви циљеви"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d/%d датотека"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "[%d/%d низова знакова]"
 
@@ -2500,7 +2485,6 @@ msgstr "Пријавите се"
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "Немате права да мењате додељене задатке овде"
 
-#, python-format
 #, fuzzy
 #~ msgid ""
 #~ "%d/%d translated\n"
@@ -2509,7 +2493,6 @@ msgstr "Пријавите се"
 #~ "%d/%d преведено\n"
 #~ "(%d празно, %d нејасно)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "Путл: преводим %s у %s: %s"
 
@@ -2525,11 +2508,9 @@ msgstr "Пријавите се"
 #~ msgid "Click here to return to the index"
 #~ msgstr "Притисните овде да се вратите на индекс"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "Ставке %d до %d од %d"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "Нема ставких са које подударају претрагу („%s“)"
 
@@ -2545,11 +2526,9 @@ msgstr "Пријавите се"
 #~ msgid "Shrink"
 #~ msgstr "Смањи"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "Предлог %d од %s:"
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "Морате уписати исправну лозинку од најмање %d знакова"
 
@@ -2601,7 +2580,6 @@ msgstr "Пријавите се"
 #~ msgid "Activate Account"
 #~ msgstr "Активирајте рачун"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "Поставке за: %s"
 
@@ -2636,67 +2614,67 @@ msgstr "Пријавите се"
 #~ msgstr "Морате бити управник веб странице да би променили кориснике"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
 #~ msgstr ""
 #~ "Корисничко име се мора састојати од бројева и слова, а мора почети са "
 #~ "словом."
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
-#~ msgstr "Ви (или неко други) сте покушали да направите налог са вашим корисничким "
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
+#~ msgstr ""
+#~ "Ви (или неко други) сте покушали да направите налог са вашим корисничким "
 #~ "именом.\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
 #~ msgstr "Ми не чувамо вашу лозинку веч само хаш лозинке.\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "Ако имате проблем са отварањем налога, контактирајте %s.\n"
 
 #~ msgid ""
 #~ "If you have a problem with registration, please contact the site "
 #~ "administrator.\n"
-#~ msgstr "Ако имате проблема са отварањем налога, контактираје администратора "
+#~ msgstr ""
+#~ "Ако имате проблема са отварањем налога, контактираје администратора "
 #~ "странице.\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
 #~ msgstr ""
 #~ "То корисничко име већ постоји. Порука ће бити послана на регистровану ел. "
 #~ "адресу."
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "Настављам на <a href='%s'>страницу за пријаву</a>\n"
 
 #~ msgid ""
 #~ "If you are unable to follow the link, please enter the above code at the "
 #~ "activation page.\n"
-#~ msgstr "Ако нисту у могућности да пратите везу, молим да унесете код изнад на "
+#~ msgstr ""
+#~ "Ако нисту у могућности да пратите везу, молим да унесете код изнад на "
 #~ "страници за активирање.\n"
 
-#, python-format
 #~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
 #~ msgstr ""
-#~ "Налог је направљен. Биће вам послана ел. порука са детаљима за пријављивање "
-#~ "и код за активацију. Молим да унесете код за активацију на <a "
-#~ "href='%s'>страници за активацију</a>."
+#~ "Налог је направљен. Биће вам послана ел. порука са детаљима за "
+#~ "пријављивање и код за активацију. Молим да унесете код за активацију на "
+#~ "<a href='%s'>страници за активацију</a>."
 
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "(Или једноставно притисните на везу за активацију у овој поруци)"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "Ваше пуно име"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "Ваша жељена лозинка"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "Ваша регистрована ел. адреса је: %s\n"
 

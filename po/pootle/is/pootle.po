@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-19 01:18+0200\n"
+"POT-Creation-Date: 2009-11-20 01:27+0200\n"
 "PO-Revision-Date: 2009-11-06 14:50+0200\n"
 "Last-Translator: Kristján Bjarni Guðmundsson <kristjanbjarni@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,7 +91,6 @@ msgstr ""
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
-msgstr[1] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -163,15 +162,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:39
+#: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:65
+#: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:77
+#: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
 msgstr ""
 
@@ -454,7 +453,7 @@ msgstr "Notandi"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
 msgstr ""
 
@@ -540,29 +539,29 @@ msgid "Language"
 msgstr "Tungumál"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:58
+#: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:59
+#: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:57
+#: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "Verkefni"
 
-#: local_apps/pootle_app/templates/index/index.html:82
+#: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:85
+#: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -601,7 +600,7 @@ msgstr "Nýr notandi"
 msgid "Error"
 msgstr "Villa"
 
-#: local_apps/pootle_app/templates/language/item_summary.html:28
+#: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
 msgstr ""
 
@@ -692,26 +691,17 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:49
-msgid "Rank"
-msgstr ""
-
-#: local_apps/pootle_app/views/top_stats.py:50
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr "Nafn"
-
-#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:77
 #, fuzzy
 msgid "Suggestions"
 msgstr "Uppástunga:"
 
-#: local_apps/pootle_app/views/top_stats.py:90
+#: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
 msgid "Reviews"
 msgstr "Endurskoða"
 
-#: local_apps/pootle_app/views/top_stats.py:91
+#: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr ""
 
@@ -852,7 +842,7 @@ msgid "Users"
 msgstr "Notendur"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "Lykilorð"
@@ -863,8 +853,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "Þú hefur ekki réttindi til að stjórna Pootle."
 
 #: local_apps/pootle_app/views/admin/util.py:50
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "Þú hefur ekki réttindi til að stjórna pootle."
 
@@ -914,7 +903,7 @@ msgid "Default"
 msgstr "Frumgildi"
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
 msgstr ""
 
@@ -945,7 +934,7 @@ msgstr[1] "%d skrár"
 
 #: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -955,10 +944,9 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
-msgid "%(checks)d string (%(checkspercent)d%%) failed"
-msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgid "%(checks)d string, %(checkspercent)d%% failed"
+msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
 msgid "Review Suggestions"
@@ -1009,21 +997,18 @@ msgstr ""
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
@@ -1032,7 +1017,6 @@ msgstr[1] ""
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 #, fuzzy
@@ -1044,13 +1028,16 @@ msgstr "Þú hefur ekki heimild til að stjórna þessu verkefni."
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:27
+#: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
 msgstr "Stjórnandi"
+
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
+msgstr "Nafn"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 msgid "Translated percentage"
@@ -1100,8 +1087,9 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:86
+#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr ""
+msgstr "Þú hefur ekki réttindi til að breyta þýðingum hérna"
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1119,11 +1107,13 @@ msgstr "Athugasemdir"
 msgid "Locations"
 msgstr "Staðsetningar"
 
-#: local_apps/pootle_app/views/language/search_forms.py:69
+#: local_apps/pootle_app/views/language/search_forms.py:67
+#: local_apps/pootle_app/views/language/search_forms.py:75
+#: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
 msgstr "Leit"
 
-#: local_apps/pootle_app/views/language/search_forms.py:71
+#: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
 msgstr "Ítarleg leit"
 
@@ -1175,8 +1165,7 @@ msgstr ""
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
-"Fella saman skrá við núverandi skrá og breyta því sem stangast á í "
-"uppástungu"
+"Fella saman skrá við núverandi skrá og breyta því sem stangast á í uppástungu"
 
 #: local_apps/pootle_app/views/language/tp_common.py:252
 msgid "Overwrite the current file if it exists"
@@ -1191,8 +1180,9 @@ msgid "Upload File"
 msgstr "Hlaða inn skrá"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
+#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr ""
+msgstr "Þú hefur ekki réttindi til að breyta þýðingum hérna"
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 #, fuzzy
@@ -1291,7 +1281,6 @@ msgstr "Uppástunga:"
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
@@ -1310,8 +1299,9 @@ msgid "End of results."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:884
+#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr ""
+msgstr "Þú hefur ekki réttindi til að breyta þýðingum hérna"
 
 #: local_apps/pootle_app/views/language/translate_page.py:914
 #, python-format
@@ -1389,17 +1379,11 @@ msgstr "Uppfæra af skrá"
 msgid "Initialize"
 msgstr ""
 
-#: local_apps/pootle_app/views/project/project_admin.py:64
-#, python-format
-msgid "Project Admin: %s"
-msgstr ""
-
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbinit.py:43
 msgid "Pootle: Install"
@@ -1595,19 +1579,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage your users"
+msgid "Manage the users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Administrate the available languages"
+msgid "Manage the languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage The available projects"
+msgid "Manage the projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Administrate the default permissions"
+msgid "Manage the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1641,6 +1625,11 @@ msgstr "Skrá inn"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "Um þennan Pootle þjón"
+
+#: templates/docs.html:5
+#, python-format
+msgid "%(prevtitle)s: Help"
+msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1728,32 +1717,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
-msgid "General Stats and Quick Links"
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
 msgstr ""
 
-#: templates/user_profile_menu.html:5
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
-msgid "Configure Your Translation Preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
-msgid "Change Your Personal Information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
-msgid "Change Your Password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1822,25 +1811,30 @@ msgstr "Verkefnin mín"
 msgid "Alternative Source Languages"
 msgstr "Vara frummál"
 
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:17
+#: templates/profiles/profile_detail.html:8
+#, python-format
+msgid "%(prevtitle)s: Users » %(username)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "Flýtileiðir"
 
-#: templates/profiles/profile_detail.html:45
+#: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:47
+#: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:57
+#: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
 msgstr ""
 
@@ -1868,18 +1862,15 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:9
-msgid "Account Activated."
-msgstr ""
-
-#: templates/registration/activate.html:11
+#: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in</a>."
+"proceed to log in."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
@@ -1904,7 +1895,8 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "Þessi skilaboð eru send til að staðfesta að póstfang þitt sé rétt. Ef þú "
+msgstr ""
+"Þessi skilaboð eru send til að staðfesta að póstfang þitt sé rétt. Ef þú "
 "vildir ekki skrá aðgang, getur þú hunsað þessi skilaboð.\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -1913,11 +1905,8 @@ msgid "Pootle registration"
 msgstr "Skráning í Pootle"
 
 #: templates/registration/password_change_done.html:5
-msgid "Password Changed"
-msgstr ""
-
 #: templates/registration/password_change_done.html:15
-msgid "Password Changed."
+msgid "Password Changed"
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2095,7 +2084,6 @@ msgstr "Skrá inn"
 #~ msgid "Remove Language"
 #~ msgstr "Fjarlægja tungumál"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "Fjarlægja %s"
 
@@ -2156,23 +2144,22 @@ msgstr "Skrá inn"
 #~ msgid "Update Languages"
 #~ msgstr "Uppfæra tungumál"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Pootle stjórnandi: %s"
 
 #~ msgid "Add Language"
 #~ msgstr "Bæta við tungumáli"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Pootle Stjórnandi: %s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr "Get ekki sett réttindi fyrir notanda %s - notandi er ekki til"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
-#~ msgstr "Þetta er GNU-legt verkefni (ein mappa, skrár nefndar eftir tungumálum)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
+#~ msgstr ""
+#~ "Þetta er GNU-legt verkefni (ein mappa, skrár nefndar eftir tungumálum)."
 
 #~ msgid "Rights"
 #~ msgstr "Réttindi"
@@ -2182,15 +2169,15 @@ msgstr "Skrá inn"
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
-#~ "<strong>Pootle</strong> er einfalt vefkerfi sem ætti að gera þér kleyft að "
-#~ "<strong>þýða ýmis forrit</strong>! Þar sem Pootle er <strong>frjáls "
-#~ "hugbúnaður</strong>, þú getur hlaðið því niður og keyrt þitt eigið eintak ef "
-#~ "þú vilt. Þú getur líka hjálpað til við þróunina á margan hátt "
+#~ "<strong>Pootle</strong> er einfalt vefkerfi sem ætti að gera þér kleyft "
+#~ "að <strong>þýða ýmis forrit</strong>! Þar sem Pootle er <strong>frjáls "
+#~ "hugbúnaður</strong>, þú getur hlaðið því niður og keyrt þitt eigið eintak "
+#~ "ef þú vilt. Þú getur líka hjálpað til við þróunina á margan hátt "
 #~ "(forritunarkunnátta er ekki nauðsynleg)."
 
 #~ msgid ""
@@ -2198,31 +2185,29 @@ msgstr "Skrá inn"
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "Pootle verkefnið sjálft er vistað á <a "
-#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> en "
-#~ "þar getur þú fundið upplýsingar varðandi frumkóða, póstlista ofl."
+#~ "Pootle verkefnið sjálft er vistað á <a href=\"http://translate."
+#~ "sourceforge.net/\">translate.sourceforge.net</a> en þar getur þú fundið "
+#~ "upplýsingar varðandi frumkóða, póstlista ofl."
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
 #~ "Nafnið stendur fyrir <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-#~ "<b>L</b>ocalization <b>E</b>ngine, en þú gætir þurft að lesa <a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">þetta</a>."
+#~ "<b>L</b>ocalization <b>E</b>ngine, en þú gætir þurft að lesa <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">þetta</a>."
 
 #~ msgid "Versions"
 #~ msgstr "Útgáfur"
 
-#, python-format
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
-#~ "Þessi vefur keyrir:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (á %s/%s)"
+#~ "Þessi vefur keyrir:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (á %s/%s)"
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "Notendasíða fyrir: %s"
 
@@ -2232,17 +2217,16 @@ msgstr "Skrá inn"
 #~ msgid "Admin page"
 #~ msgstr "Stjórnsíða"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
 #~ msgstr ""
 #~ "Vinsamlegast smelltu á 'Breyta stillingum' og veldu tungumál og verkefni"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d verkefni, meðaltal %d%% þýtt"
 #~ msgstr[1] "%d verkefni, meðaltal %d%% þýdd"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s: %s"
 
@@ -2252,13 +2236,11 @@ msgstr "Skrá inn"
 #~ msgid "Language Name"
 #~ msgstr "Tungumál"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d tungumál, meðaltal %d%% þýdd"
 #~ msgstr[1] "%d tungumál, meðaltal %d%% þýtt"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "%s: Verkefni %s, Tungumál %s"
 
@@ -2370,7 +2352,6 @@ msgstr "Skrá inn"
 #~ msgid "Hide Assigns"
 #~ msgstr "Fela úthlutanir"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "Öll takmörk: %s"
 
@@ -2401,21 +2382,17 @@ msgstr "Skrá inn"
 #~ msgid "Generate SDF"
 #~ msgstr "Búa til SDF"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d strengur (%d%%) mistókst"
 #~ msgstr[1] "%d strengir (%d%%) mistókust"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d orð (%d%%) úthlutuð"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d strengir]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d orð (%d%%) þýdd"
 
@@ -2440,11 +2417,9 @@ msgstr "Skrá inn"
 #~ msgid "All goals"
 #~ msgstr "Öll takmörk"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d/%d skrár"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "%d/%d strengir"
 
@@ -2490,7 +2465,6 @@ msgstr "Skrá inn"
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "Þú hefur ekki réttindi til að breyta úthlutunum hérna"
 
-#, python-format
 #~ msgid ""
 #~ "%d/%d translated\n"
 #~ "(%d untranslated, %d fuzzy)"
@@ -2498,7 +2472,6 @@ msgstr "Skrá inn"
 #~ "%d/%d þýddir\n"
 #~ "(%d tómir, %d óljósir)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s: er að þýða %s í %s: %s"
 
@@ -2514,11 +2487,9 @@ msgstr "Skrá inn"
 #~ msgid "Click here to return to the index"
 #~ msgstr "Smelltu hér til að fara á upphafssíðu"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "Hlutir %d til %d af %d"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "Engir hlutir passa við leitina ('%s')"
 
@@ -2534,11 +2505,9 @@ msgstr "Skrá inn"
 #~ msgid "Shrink"
 #~ msgstr "Minnka"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "Uppástunga %d frá %s:"
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "Þú verður að skrá gilt lykilorð með að minnsta kosti %d stöfum."
 
@@ -2571,7 +2540,8 @@ msgstr "Skrá inn"
 
 #~ msgid "Type your password again to ensure it is entered correctly"
 #~ msgstr ""
-#~ "Sláðu inn lykilorðið aftur til að tryggja að það hafi verið slegið inn rétt"
+#~ "Sláðu inn lykilorðið aftur til að tryggja að það hafi verið slegið inn "
+#~ "rétt"
 
 #~ msgid "Register Account"
 #~ msgstr "Virkja aðgang"
@@ -2591,7 +2561,6 @@ msgstr "Skrá inn"
 #~ msgid "Activate Account"
 #~ msgstr "Virkja aðgang"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "Stillingar fyrir: %s"
 
@@ -2626,47 +2595,53 @@ msgstr "Skrá inn"
 #~ msgstr "Þú þarft að vera vef-ofurpaur til að breyta notendum"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
-#~ msgstr "Notanda nafnið verður að vera staftöluorð og verður að byrja á bókstaf."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
+#~ msgstr ""
+#~ "Notanda nafnið verður að vera staftöluorð og verður að byrja á bókstaf."
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
-#~ msgstr "Þú (eða einhver annar) reyndi að búa til aðgang með þínu notandanafni.\n"
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
+#~ msgstr ""
+#~ "Þú (eða einhver annar) reyndi að búa til aðgang með þínu notandanafni.\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
-#~ msgstr "Við vistum ekki lykilorðið þitt heldur einungis reiknuðum kóða(hash) út frá "
-#~ "því.\n"
+#~ msgstr ""
+#~ "Við vistum ekki lykilorðið þitt heldur einungis reiknuðum kóða(hash) út "
+#~ "frá því.\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "Ef þú átt í vandræðum með skráningu, hafðu samband við %s.\n"
 
 #~ msgid ""
 #~ "If you have a problem with registration, please contact the site "
 #~ "administrator.\n"
-#~ msgstr "Ef þú átt í vandræðum með skráningu, hafðu samband við umsjónarmann "
+#~ msgstr ""
+#~ "Ef þú átt í vandræðum með skráningu, hafðu samband við umsjónarmann "
 #~ "síðunnar.\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
-#~ msgstr "Þetta notandanafn er nú þegar til. Tölvupóstur hefur verið sendur á skráð "
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
+#~ msgstr ""
+#~ "Þetta notandanafn er nú þegar til. Tölvupóstur hefur verið sendur á skráð "
 #~ "netfang.\n"
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "Fer yfir á <a href='%s'>innskráning</a>\n"
 
 #~ msgid ""
 #~ "If you are unable to follow the link, please enter the above code at the "
 #~ "activation page.\n"
-#~ msgstr "Ef þú getur ekki fylgt hlekknum, vinsamlegast sláðu inn kóðann hér að ofan á "
-#~ "virkjunarsíðunni.\n"
+#~ msgstr ""
+#~ "Ef þú getur ekki fylgt hlekknum, vinsamlegast sláðu inn kóðann hér að "
+#~ "ofan á virkjunarsíðunni.\n"
 
-#, python-format
 #~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
 #~ msgstr ""
 #~ "Aðgangur hefur verið búinn til. Þú færð innskráningarupplýsingar ásamt "
 #~ "virkjunarkóða sendar í pósti. Vinsamlegast sláðu virkjanakóðann á <a "
@@ -2675,15 +2650,12 @@ msgstr "Skrá inn"
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "(Eða einfaldlega smelltu á virkjunarhlekkinn í póstinum)"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "Notanda nafn þitt er: %s\n"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "Lykilorðið þitt er: %s\n"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "Skráð póstfang er: %s\n"
 
