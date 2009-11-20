@@ -143,23 +143,26 @@ function mouseClick()
 function copyorigtranslation(elementNumber)
 {
 	var i = 0;
-	var enelement = document.getElementById("orig-pure" + elementNumber + "-" + 0);
+    var enelement = document.getElementById("orig-pure" + elementNumber + "-" + 0);
+    var envalue = enelement.value.replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
 	//no plurals
 	var trelement = document.getElementById("areatrans" + elementNumber );
 	if (trelement){
-		trelement.value = enelement.value.replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
+		trelement.value = envalue;
 		trelement.focus();
 		return;
 	}
 
 	//plurals
-	trelement = document.getElementById("areatrans" + elementNumber + "." + i );
+	trelement = document.getElementById("areatrans" + elementNumber + "-" + i );
+    var enplelement = document.getElementById("orig-pure" + elementNumber + "-" + 1);
+    var enplvalue = enplelement.value.replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
 	while (trelement)
 	{
 		trelement.focus(); //it will go to the last one
-		trelement.value = enelement.value.replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
+		trelement.value = i == 0 ? envalue : enplvalue;
 		i++;
-		trelement = document.getElementById("areatrans" + elementNumber + "." + i );
+		trelement = document.getElementById("areatrans" + elementNumber + "-" + i );
 	}
 }
 
