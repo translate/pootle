@@ -96,7 +96,7 @@ class PootleProfile(models.Model):
         userstatistics = []
         userstatistics.append({'text': _('Suggestions Accepted'), 'count': _get_suggestions(self, "accepted").count()})
         userstatistics.append({'text': _('Suggestions Pending'), 'count': _get_suggestions(self, "pending").count()})
-        userstatistics.append({'text': _('Suggestions Reviewed'), 'count': _get_suggestions(self, "reviewed").count()})
+        userstatistics.append({'text': _('Suggestions Reviewed'), 'count': self.suggestions_reviewer_set.count()})
         userstatistics.append({'text': _('Submissions Made'), 'count': self.submission_set.count()})
         return userstatistics
 
