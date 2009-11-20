@@ -44,7 +44,7 @@ $(document).ready(function() {
 /* REVIEWING SUGGESTIONS */
 
   function geturl(node, action) {
-    pofilename = escape($("input[name='store']").val())
+    pofilename = escape($("input[name='path']").val())
     item_sugg_chain = $(node).attr("id").replace(action, "");
     item_sugg = item_sugg_chain.split("-", 1);
     itemid = item_sugg[0];
