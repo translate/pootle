@@ -174,7 +174,7 @@ class TranslationStoreFile(File):
         if newvalues.has_key('translator_comments'):
             unit.removenotes()
             if newvalues['translator_comments']:
-                unit.addnote(newvalues['translator_comments'])
+                unit.addnote(newvalues['translator_comments'], origin="translator")
 
         had_header = True
         if isinstance(self.store, po.pofile):
