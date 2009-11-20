@@ -65,7 +65,7 @@ def lang_choices():
     """generated locale choices for drop down lists in forms"""
     choices = []
     for code, name in supported_langs():
-        tr_name = data.tr_lang(code)(name)
+        tr_name = data.tr_lang(translation.to_locale(code))(name)
         if tr_name != name:
             # We have to use the LRO (left-to-right override) to ensure that 
             # brackets in the English part of the name is rendered correctly
