@@ -1,4 +1,8 @@
 
+/*
+ * TODO: this code may have a better life if we migrate it to jQuery.
+ */
+
 function copyorigtranslation(elementNumber)
 {
 	var i = 0;
