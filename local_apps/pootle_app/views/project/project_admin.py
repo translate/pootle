@@ -20,6 +20,7 @@
 
 from django.utils.translation import ugettext as _
 from django import forms
+from django.forms.models import BaseModelFormSet
 
 from pootle_misc.baseurl import l
 
@@ -27,6 +28,17 @@ from pootle_app.models import Project, TranslationProject
 from pootle_app import project_tree
 from pootle_app.views.admin import util
 
+class TranslationProjectFormSet(BaseModelFormSet):
+    def save_existing(self, form, instance, commit=True):
+        result = super(TranslationProjectFormSet, self).save_existing(form, instance, commit)
+        form.process_extra_fields()
+        return result
+
+    def save_new(self, form, commit=True):
+        result = super(TranslationProjectFormSet, self).save_new(form, commit)
+        form.process_extra_fields()
+        return result
+    
 @util.user_is_admin
 def view(request, project_code):
     current_project = Project.objects.get(code=project_code)
@@ -46,14 +58,13 @@ def view(request, project_code):
         class Meta:
             prefix="existing_language"        
 
-        def save(self, commit=True):
+        def process_extra_fields(self):
             if self.instance.pk is not None:
                 if self.cleaned_data['initialize']:
                     self.instance.initialize()
 
                 if self.cleaned_data['update']:
                     project_tree.convert_templates(template_translation_project, self.instance)
-            super(TranslationProjectForm, self).save(commit)
             
             
     queryset = TranslationProject.objects.filter(project=current_project).order_by('pootle_path')
@@ -65,5 +76,5 @@ def view(request, project_code):
     model_args['submitname'] = "changetransprojects"
     link = lambda instance: '<a href="%s">%s</a>' % (l(instance.pootle_path + 'admin_permissions.html'), instance.language)
     return util.edit(request, 'project/project_admin.html', TranslationProject, model_args, link, linkfield="language",
-                     queryset=queryset, can_delete=True, form=TranslationProjectForm)
+                     queryset=queryset, can_delete=True, form=TranslationProjectForm, formset=TranslationProjectFormSet)
 
