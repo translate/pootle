@@ -68,11 +68,10 @@ approach for this.
 
     <h2>{% trans "Latest News" %} {{ name }}</h2>
 {% if notices %}
-    <ul>
-        {% for notice in notices %}
-        <li>{{ notice.message|safe|linebreaks|clean }}</li>
-        {% endfor %}
-     </ul>
+    {% for notice in notices %}
+    <div class="newsitem">{{ notice.message|safe|linebreaks|clean }}</div>
+    <div class="newsitem-sep"></div>
+    {% endfor %}
 {% else %}
     <p>{% trans "No news yet." %}</p>
 {% endif %}

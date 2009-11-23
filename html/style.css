@@ -973,6 +973,12 @@ html[dir="rtl"] td.pootle_path
  * SUMMARIES
  */
 
+div.newsitem-sep
+{
+    border-bottom: 1px solid #ddd;
+    margin: 1.5em 0 2em;
+}
+
 #translationsummarylegend div img
 {
     vertical-align:middle;
