@@ -2,7 +2,7 @@
 
 <!-- itemblock -->
 <div class="contentsitem" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <img src="{% filter m %}/images/{{ item.icon }}.png{% endfilter %}"
+    <img src="{% filter m %}images/{{ item.icon }}.png{% endfilter %}"
     class="icon" alt="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
   
     {% if item.title %}
