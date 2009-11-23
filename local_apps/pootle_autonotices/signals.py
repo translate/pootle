@@ -115,7 +115,8 @@ def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
 ##### Store events #####
 
 def unit_updated(sender, oldstats, newstats, **kwargs):
-    if oldstats == newstats:
+    if oldstats == newstats or oldstats['translatedsourcewords'] == oldstats['totalsourcewords']:
+        # file did not change or is already at 100%
         return
     
     if newstats['translatedsourcewords'] == newstats['totalsourcewords']:
