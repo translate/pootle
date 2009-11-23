@@ -3,7 +3,7 @@
 
   This README is an attempt to keep the house clean under the 'js' directory.
 
-  Last update: 2009/10/16
+  Last update: 2009/11/23
 
 /*****************************************************************************/
 
@@ -12,11 +12,10 @@ Directory contents
 + js/
 
   - autoexpand.js :
-    Autoexpanding textarea code and other functions used throughout
-    the translate page (writespecial, copyoriginaltranslation).
+    Several functions used throughout the translate page
+    (writespecial, copyoriginaltranslation).
 
-    Autoexpanding functions may not be needed and other functions can
-    be rewritten using jQuery.
+    These functions can be rewritten using jQuery.
 
   - correctpng.js :
     Fixes for IE 5.5 & 6 to correctly handle PNG transparencies.
