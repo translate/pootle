@@ -40,7 +40,7 @@ def get_item_summary(request, quick_stats, path_obj):
     state            = dispatch.CommonState(request.GET)
     file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
     # The translated word counts
-    word_stats = _("%(translated)d/%(total)d words, %(translatedpercent)d%% translated",
+    word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
                    {"translated": translated_words,
                     "total": total_words,
                     "translatedpercent": quick_stats['translatedpercentage']}
@@ -77,8 +77,8 @@ def getcheckdetails(request, path_obj, url_opts={}):
                 continue
             checkcount = property_stats[checkname]
             if total and checkcount:
-                stats = ungettext('%(checks)d string, %(checkspercent)d%% failed',
-                                  '%(checks)d strings, %(checkspercent)d%% failed', checkcount,
+                stats = ungettext('%(checks)d string (%(checkspercent)d%%) failed',
+                                  '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
                                   {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
                                   )
                 checklink = {'href': dispatch.review(request, path_obj.pootle_path, match_names=[checkname]),
