@@ -281,6 +281,8 @@ def make_store_item(request, store, links_required=None):
         item['actions'] = store_review_links(request, store)
     else:
         item['actions'] = []
+    item['href_todo'] = dispatch.review(request, store.pootle_path,
+                                        match_names=['fuzzy,untranslated'])
     item.update({
             'icon':   'file',
             'isfile': True })
