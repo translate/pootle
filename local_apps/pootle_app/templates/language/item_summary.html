@@ -26,7 +26,7 @@
 <td class="stats">
     <ul>
         {% if item.data.untranslatedsourcewords or item.data.fuzzysourcewords %}
-        <li class="todo"><a href="{% filter l %}{{ item.href }}{{ "translate.html?match_names=fuzzy,untranslated&editing=1&view_mode=review"|force_escape }}{% endfilter %}" title="{{ item.todo_tooltip }}">{{ item.todo_text }}</a></li>
+        <li class="todo"><a href="{% filter l %}{% if not item.isfile %}{{ item.href }}{% endif %}{{ "translate.html?match_names=fuzzy,untranslated&editing=1&view_mode=review"|force_escape }}{% endfilter %}" title="{{ item.todo_tooltip }}">{{ item.todo_text }}</a></li>
         {% endif %}
         {% ifequal item.data.translatedsourcewords item.data.totalsourcewords %}
         <li class="complete">{% trans "Complete" %}</li>
