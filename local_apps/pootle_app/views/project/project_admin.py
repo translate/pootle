@@ -60,10 +60,10 @@ def view(request, project_code):
 
         def process_extra_fields(self):
             if self.instance.pk is not None:
-                if self.cleaned_data['initialize']:
+                if self.cleaned_data.get('initialize', None):
                     self.instance.initialize()
 
-                if self.cleaned_data['update']:
+                if self.cleaned_data.get('update', None):
                     project_tree.convert_templates(template_translation_project, self.instance)
             
             
