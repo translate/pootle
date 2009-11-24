@@ -530,7 +530,6 @@ def get_trans_review(request, store, item, trans, suggestions):
             "author":    suggestedby,
             "forms":     forms,
             "suggid":    "%d-%d" % (item, suggid),
-            "canreview": check_permission("review", request),
             "back":      None,
             "skip":      None,
             }
@@ -965,6 +964,7 @@ def view(request, directory, store, item, stopped_by=None):
         "canedit":                   check_permission("translate", request) or check_permission("suggest", request),
         "cantranslate":              check_permission("translate", request),
         "cansuggest":                check_permission("suggest", request),
+        "canreview":                 check_permission("review", request),
         # l10n: Button label
         "accept_button":             _("Accept"),
         # l10n: Button label

@@ -183,7 +183,7 @@
                                           <div lang="{{ language.code }}" dir="{{ language.dir }}">{{ form.diff|safe }}</div>
                                           <input type="hidden" id="{{ form.suggid }}" name="{{ form.suggid }}" value="{{ form.value }}" />
                                       {% endfor %}
-                                      {% if sugg.canreview %}
+                                      {% if canreview %}
                                           <a title="{{ accept_title }}" accesskey="a" id="accept{{ sugg.suggid }}" class="acceptsugg"><img src='{{ "images/tick.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
                                           <a title="{{ reject_title }}" accesskey="r" id="reject{{ sugg.suggid }}" class="rejectsugg"><img src='{{ "images/cross.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
                                       {% endif %}
