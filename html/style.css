@@ -1053,7 +1053,42 @@ div.item-statistics
     color: #4B4740;
     font-family: Georgia, serif;
     font-size: 1.5em;
+}
+
+div.item-statistics p
+{
     line-height: 2;
+}
+
+div.item-statistics dl
+{
+    margin: 0;
+}
+
+div.item-statistics dl dt
+{
+    clear: left;
+    float: left;
+    text-align: right;
+    width: 100px;
+}
+
+html[dir="rtl"] div.item-statistics dl dt
+{
+    clear: right;
+    float: right;
+    text-align: left;
+}
+
+div.item-statistics dl dd
+{
+    line-height: inherit;
+    margin: 0 0 0 110px;
+}
+
+html[dir="rtl"] div.item-statistics dl dd
+{
+    margin: 0 110px 0 0;
 }
 
 div.small

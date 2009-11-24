@@ -5,10 +5,14 @@
 {% block itemstats %}
 <!-- itemstats -->
 <div class="item-statistics small" lang="{{ LANGUAGE_CODE }}">
-    {{ item.stats.summary|safe }}
-    {% for check in item.stats.checks %}
-    <br /><a href="{{ check.href|l }}">{{ check.text }}</a> {{ check.stats }}
-    {% endfor %}
+    <p>{{ item.stats.summary|safe }}</p>
+    {% if item.stats.checks %}
+    <dl>
+        {% for check in item.stats.checks %}
+        <dt><a href="{{ check.href|l }}">{{ check.text }}</a></dt><dd>{{ check.stats }}</dd>
+        {% endfor %}
+    </dl>
+    {% endif %}
 </div>
 <!-- /itemstats -->
 {% endblock itemstats %}
