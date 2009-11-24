@@ -315,7 +315,7 @@ class Store(models.Model):
         header = self.file.store.header()
         newheader = newfile.header()
         if header is None and not newheader is None:
-            header = self.file.store.UnitClass('', encoding=self.encoding)
+            header = self.file.store.UnitClass('', encoding=self.file.store._encoding)
             header.target = ''
         if header:
             header._initallcomments(blankall=True)
