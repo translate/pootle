@@ -329,9 +329,8 @@ def unescape_submition(text):
 def get_edit_link(request, store, item):
     """gets a link to edit the given item, if the user has permission"""
     if check_permission("translate", request) or check_permission("suggest", request):
-        # l10n: verb
-        return {"href": dispatch.translate(request, request.path_info,
-                                           view_mode='translate', item=item, match_names=[]),
+        return {"href": dispatch.translate(request, store.pootle_path, view_mode='translate',
+                                           item=item, match_names=[]),
                 "linkid": "editlink%d" % item }
     else:
         return {}
