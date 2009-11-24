@@ -105,6 +105,7 @@ class Store(models.Model):
             # really exist
             if os.path.exists(self.pending.path):
                 # pending file exists
+                self.pending._update_store_cache()
                 return
             elif not create:
                 # pending file doesn't exist anymore
@@ -123,6 +124,7 @@ class Store(models.Model):
         if os.path.exists(pending_path):
             self.pending = pending_name
             self.save()
+            self.pending._update_store_cache()
             translation_file_updated.connect(self.handle_file_update, sender=self.pending)
 
     def getsuggestions_unit(self, unit):

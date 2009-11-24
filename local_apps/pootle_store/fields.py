@@ -161,7 +161,9 @@ class TranslationStoreFile(File):
     def updateunit(self, item, newvalues, checker, user=None, language=None):
         """Updates a translation with a new target value, comments, or fuzzy
         state."""
-
+        # operation replaces file, make sure we have latest copy
+        oldstats = self.getquickstats()
+        self._update_store_cache()
         unit = self.getitem(item)
 
         if newvalues.has_key('target'):
@@ -193,7 +195,6 @@ class TranslationStoreFile(File):
                 
             self.store.updateheader(add=True, **headerupdates)
 
-        oldstats = self.getquickstats()
         self.savestore()
         if not had_header:
             # if new header was added item indeces will be incorrect, flush stats caches
