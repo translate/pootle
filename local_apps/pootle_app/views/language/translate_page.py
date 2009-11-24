@@ -391,9 +391,6 @@ def get_trans_edit(request, store, item, trans):
             textid = "trans%d" % item
             transdict["error"] = True
             focusbox = textid
-            
-
-        transdict["buttons"] = buttons
         transdict["focusbox"] = focusbox
     else:
         # TODO: work out how to handle this (move it up?)
