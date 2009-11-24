@@ -112,7 +112,7 @@
                                   {% if form.title %}
                                   <span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ form.title }}</span><br />
                                   {% endif %}
-                                  <span class="{{ form.editclass }} translation-text" lang="{{ altsrc.languagecode }}" dir="{{ altsrc.dir }}">{{ form.text|safe }}</span>
+                                  <span class="translation-text" lang="{{ altsrc.languagecode }}" dir="{{ altsrc.dir }}">{{ form.text|safe }}</span>
                                   {% if form.title %}
                                   <br/>
                                   {% endif %}
@@ -257,12 +257,12 @@
                           <!--! Normal view mode -->
                               <div dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" class="{{ item.state_class }}">
                                   {% if not item.trans.isplural %}
-                                  <div dir="{{ language.dir }}" lang="{{ language.code }}" class="{{ item.trans.editclass }} translation-text" id="{{ item.trans.itemid }}">{{ item.trans.text|safe }}</div>
+                                  <div dir="{{ language.dir }}" lang="{{ language.code }}" class="translation-text" id="{{ item.trans.itemid }}">{{ item.trans.text|safe }}</div>
                                   {% else %}
                                   <div>
                                       {% for form in item.trans.forms %}
                                       <span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ form.title }}</span><br />
-                                      <span class="{{ form.editclass }} translation-text">{{ form.text|safe }}</span><br />
+                                      <span class="translation-text">{{ form.text|safe }}</span><br />
                                       {% endfor %}
                                   </div>
                                   {% endif %}
