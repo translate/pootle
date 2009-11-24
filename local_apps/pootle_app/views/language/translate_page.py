@@ -346,35 +346,14 @@ def get_trans_view(request, store, item, trans, textarea=False):
     editlink = get_edit_link(request, store, item)
     transdict = {"editlink": editlink}
 
-    cansugg  = check_permission("suggest",  request)
-    cantrans = check_permission("translate", request)
-    ables = ""
-    if cansugg:
-        ables = "suggestable " + ables
-    if cantrans:
-        ables = "submitable "  + ables
-
     if len(trans) > 1:
         forms = []
         for pluralitem, pluraltext in enumerate(trans):
             form = {"title": _("Plural Form %d", pluralitem), "n": pluralitem, "text": escapefunction(pluraltext)}
-            editclass = ""
-            if cantrans or cansugg:
-                # Some claim string concatenation is slow, so we rewrite the
-                # commented line as a single string with formatting:
-                #editclass = ables + "edittrans" + str(item) + "p" + str(pluralitem)
-                editclass = "%sedittrans%sp%s" % (ables, str(item), str(pluralitem))
-            form["editclass"] = editclass
-
             forms.append(form)
         transdict["forms"] = forms
     elif trans:
         transdict["text"] = escapefunction(trans[0])
-        editclass = ""
-        if cantrans or cansugg:
-            editclass = ables+"edittrans"+str(item)
-        transdict["editclass"] = editclass
-
     else:
         # Error, problem with plurals perhaps?
         transdict["text"] = escapefunction(_("Translation not possible because plural information for your language is not available. Please contact the site administrator."))
