@@ -27,7 +27,6 @@ configuration override outside of the code."""
 import logging
 import os
 
-from translate.lang import data
 from pootle.install_dirs import *
 
 INTERNAL_IPS = ('127.0.0.1',)

@@ -21,8 +21,6 @@
 from translate.lang import data as langdata
 
 from django.utils import translation
-from django.utils.translation import trans_real
-from django.utils.functional import lazy
 
 # override gettext function that handle variable errors more
 # gracefully.

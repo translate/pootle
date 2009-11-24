@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db                import models
-from django.db.models.signals import pre_delete, pre_save
+from django.db.models.signals import pre_save
 from pootle_store.util import dictsum, statssum, completestatssum
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
@@ -139,15 +139,6 @@ class Directory(models.Model):
                     aux_dir = aux_dir.parent
                 return aux_dir.translationproject
     
-def delete_children(sender, instance, **kwargs):
-    """Before deleting a directory, delete all its children."""
-    for child_store in instance.child_stores.all():
-        child_store.delete()
-
-    for child_dir in instance.child_dirs.all():
-        child_dir.delete()
-
-#pre_delete.connect(delete_children, sender=Directory)
 
 def set_directory_pootle_path(sender, instance, **kwargs):
     if instance.parent is not None:

@@ -82,7 +82,7 @@ def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwar
     message = 'Updated <a href="%s">%s</a> from version control<br />' % (sender.get_absolute_url(), sender.fullname)
     message += stats_message("Before update", oldstats) + "<br />"
     if not remotestats == newstats:
-        message +=stats_message("Remote copy", remotestats) + "<br />"
+        message += stats_message("Remote copy", remotestats) + "<br />"
     message += stats_message("After update", newstats)
     new_object(True, message, sender.directory)
 

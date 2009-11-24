@@ -19,7 +19,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
-from django.shortcuts import get_object_or_404
 
 from pootle_app.models import Directory
 

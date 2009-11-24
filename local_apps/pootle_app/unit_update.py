@@ -21,7 +21,6 @@
 
 import datetime
 
-from django.db.models import ObjectDoesNotExist
 from django.utils.translation import ugettext as _
 
 from pootle_app.models             import Suggestion, Submission

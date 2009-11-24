@@ -317,8 +317,6 @@ def import_users(parsed_users):
     # Groan - figure out the usernames
     usernames = (key.split('.')[0] for key in data)
     for username in (as_unicode(username) for username in usernames):
-        must_add_user_object = True
-
         # Check if we already exist:
         try:
             user = User.objects.get(username=username)

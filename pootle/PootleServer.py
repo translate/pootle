@@ -22,9 +22,7 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-import logging
 import optparse
-from wsgiref.simple_server import make_server
 
 import django
 from django.core.servers.basehttp import AdminMediaHandler

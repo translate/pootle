@@ -48,7 +48,7 @@ def render_pager(pager):
         result += '<li><a href="?page=%d" class="prevnext-link">%s</a></li>' % (pager.next_page_number(),  _('Next'))
         result += '<li><a href="?page=%d" class="nth-link">%s</a></li>' % (pager.paginator.num_pages, _('Last'))
 
-    result +='</ul>'
+    result += '</ul>'
     return mark_safe(result)
 
 register = template.Library()

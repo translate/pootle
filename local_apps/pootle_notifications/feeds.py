@@ -19,12 +19,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.exceptions import PermissionDenied
-from django.contrib.syndication.feeds import Feed, FeedDoesNotExist
-from django.http import HttpResponse, Http404,  HttpResponseForbidden
-from django.utils.translation import ugettext as _
+from django.contrib.syndication.feeds import Feed
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-
-from pootle.i18n.gettext import tr_lang
 
 from pootle_misc.baseurl import l
 from pootle_app.models import Directory

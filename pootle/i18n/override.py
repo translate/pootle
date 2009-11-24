@@ -30,7 +30,6 @@ from django.utils.translation import trans_real
 from django.utils.functional import lazy
 
 from pootle.i18n import gettext
-from pootle.i18n import  gettext_live
 
 from translate.lang import data
 
