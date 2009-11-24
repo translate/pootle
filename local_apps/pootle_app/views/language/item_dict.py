@@ -109,7 +109,7 @@ def quick_link(request, path_obj):
             else:
                 text = _('View Untranslated')
             return {
-                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['fuzzy', 'untranslated']),
+                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['check-isfuzzy', 'untranslated']),
                     'text': text }
     except IOError:
         pass
@@ -282,7 +282,7 @@ def make_store_item(request, store, links_required=None):
     else:
         item['actions'] = []
     item['href_todo'] = dispatch.review(request, store.pootle_path,
-                                        match_names=['fuzzy,untranslated'])
+                                        match_names=['check-isfuzzy,untranslated'])
     item.update({
             'icon':   'file',
             'isfile': True })

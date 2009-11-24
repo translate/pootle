@@ -833,7 +833,7 @@ def get_position(request, next_store_item, prev_store_item):
 def get_failure_message(request):
     # We are reviewing a check
     if 'match_names' in request.GET:
-        if request.GET['match_names'] == u'fuzzy,untranslated':
+        if request.GET['match_names'] == u'check-isfuzzy,untranslated':
             return _("End of Quick Translate.")
         else:
             return _("End of Quality Check Review.")
