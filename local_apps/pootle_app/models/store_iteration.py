@@ -23,7 +23,6 @@ import bisect
 
 from pootle_store.models      import Store
 from pootle_app.models.search     import Search
-from pootle_app import url_manip
 
 def member(sorted_set, element):
     """Check whether element appears in sorted_set."""
@@ -94,6 +93,6 @@ def get_prev_match(path_obj, starting_store=None, last_index=-1, search=Search()
         return path_obj, search.next_matches(path_obj, last_index).next()
 
 
-def iter_stores(directory, search=Search()):
+def iter_stores(directory):
     return Store.objects.filter(pootle_path__startswith=directory.pootle_path).order_by('pootle_path')
 

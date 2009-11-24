@@ -21,7 +21,6 @@
 from django.conf import settings
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
-from pootle_app.models.profile import get_profile
 
 def get_title():
     return _(settings.TITLE)
@@ -46,7 +45,7 @@ def weblanguage(language):
     return language.replace('_', '-')
 
 
-def completetemplatevars(templatevars, request, bannerheight=135):
+def completetemplatevars(templatevars, request):
     """fill out default values for template variables"""
 
     if not 'instancetitle' in templatevars:

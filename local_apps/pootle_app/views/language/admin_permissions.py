@@ -23,11 +23,10 @@ from django import forms
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
-from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from pootle_app.models.profile import PootleProfile, get_profile
+from pootle_app.models.profile import PootleProfile
 from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, get_matching_permissions
 from pootle_app.views.language import navbar_dict
 from pootle_app.views.language import search_forms

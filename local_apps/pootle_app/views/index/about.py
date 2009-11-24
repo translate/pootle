@@ -19,7 +19,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import sys
-import os
 
 from django.utils.translation import ugettext as _
 

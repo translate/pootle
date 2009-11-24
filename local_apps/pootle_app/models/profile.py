@@ -103,7 +103,6 @@ class PootleProfile(models.Model):
     def getquicklinks(self):
         """gets a set of quick links to user's project-languages"""
         from pootle_app.models.translation_project import TranslationProject
-        from pootle_app.models.language import Language
         from pootle_app.models.permissions import check_profile_permission
         quicklinks = []
         # TODO: This can be done MUCH more efficiently with a bit of

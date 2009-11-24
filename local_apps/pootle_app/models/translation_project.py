@@ -26,13 +26,11 @@ import logging
 
 from django.conf                   import settings
 from django.db                     import models
-from django.db.models.signals      import pre_delete, post_init, pre_save, post_save, post_delete
+from django.db.models.signals      import post_init, pre_save, post_save, post_delete
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
-from translate.convert import po2csv, po2xliff, xliff2po, po2ts, po2oo
-from translate.tools   import pogrep
 from translate.search  import match, indexing
 from translate.storage import base, versioncontrol
 
@@ -494,7 +492,7 @@ class TranslationProject(models.Model):
 
     ##############################################################################################
 
-
+    #FIXME: we should cache results to ease live translation
     def translate_message(self, singular, plural=None, n=1):
         for store in self.stores:
             store.file.store.require_index()
@@ -515,26 +513,6 @@ class TranslationProject(models.Model):
             return plural
         else:
             return singular
-
-
-    def gettext(self, message):
-        """uses the project as a live translator for the given message"""
-        return str(self._find_matching_unit(message))
-
-    def ugettext(self, message):
-        """gets the translation of the message by searching through
-        all the pofiles (unicode version)"""
-        return unicode(self._find_matching_unit(message))
-
-    def ngettext(self, singular, plural, n):
-        """gets the plural translation of the message by searching
-        through all the pofiles"""
-        return str(self._find_matching_unit(singular, plural, n))
-
-    def ungettext(self, singular, plural, n):
-        """gets the plural translation of the message by searching
-        through all the pofiles (unicode version)"""
-        return unicode(self._find_matching_unit(singular, plural, n))
 
 
 def stats_message(version, stats):

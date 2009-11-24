@@ -25,7 +25,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals           import pre_delete, post_save
 
 from pootle_app.lib.util import RelatedManager
-from pootle_app.models.profile import PootleProfile
 from pootle_app.models.directory import Directory
 
 def get_pootle_permission(codename):
@@ -45,6 +44,10 @@ def get_pootle_permissions(codenames=None):
     return dict((permission.codename, permission) for permission in permissions)
 
 def get_permission_set_by_username(username, directory):
+    try:
+        return PermissionSet.objects.get(profile__user__username=username, directory=directory)
+    except PermissionSet.DoesNotExist:
+        pass
     try:
         return PermissionSet.objects.get(profile__user__username='default', directory=directory)
     except PermissionSet.DoesNotExist:
@@ -127,7 +130,7 @@ class PermissionSet(models.Model):
         unique_together = ('profile', 'directory')
         app_label = "pootle_app"
 
-    profile                = models.ForeignKey(PootleProfile, db_index=True)
+    profile                = models.ForeignKey('pootle_app.PootleProfile', db_index=True)
     directory              = models.ForeignKey(Directory, db_index=True, related_name='permission_sets')
     positive_permissions   = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_positive')
     negative_permissions   = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_negative')
@@ -139,7 +142,7 @@ class PermissionSetCache(models.Model):
         app_label = "pootle_app"
         
 
-    profile                = models.ForeignKey(PootleProfile, db_index=True)
+    profile                = models.ForeignKey('pootle_app.PootleProfile', db_index=True)
     directory              = models.ForeignKey(Directory, db_index=True, related_name='permission_set_caches')
     permissions            = models.ManyToManyField(Permission, related_name='cached_permissions', db_index=True)
 

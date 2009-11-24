@@ -21,8 +21,6 @@
 """Helper functions for the rendering of several items on the index views and
 similar pages."""
 
-import itertools
-
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 
@@ -37,7 +35,6 @@ def get_item_summary(request, quick_stats, path_obj):
     translated_words = quick_stats['translatedsourcewords']
     total_words      = quick_stats['totalsourcewords']
     num_stores       = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
-    state            = dispatch.CommonState(request.GET)
     file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
     # The translated word counts
     word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
@@ -63,7 +60,7 @@ def get_item_stats(request, quick_stats, path_obj, show_checks=False):
         result['checks'] = getcheckdetails(request, path_obj)
     return result
 
-def getcheckdetails(request, path_obj, url_opts={}):
+def getcheckdetails(request, path_obj):
     """return a list of strings describing the results of
     checks"""
     checklinks = []
@@ -182,12 +179,12 @@ def _gen_link_list(request, path_obj, linkfuncs):
             links.append(link)
     return links
 
-def store_translate_links(request, path_obj, filetype):
+def store_translate_links(request, path_obj):
     """returns a list of links for store items in translate tab"""
     linkfuncs = [quick_link, translate_all_link, update_link, commit_link, download_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
-def store_review_links(request, path_obj, filetype):
+def store_review_links(request, path_obj):
     """returns a list of links for store items in review tab"""
     linkfuncs = [review_link, update_link, commit_link, download_link]
     return _gen_link_list(request, path_obj, linkfuncs)
@@ -274,14 +271,14 @@ def make_directory_item(request, directory, links_required=None):
             'isdir':  True })
     return item
 
-def make_store_item(request, store, filetype, links_required=None):
+def make_store_item(request, store, links_required=None):
     action = dispatch.translate(request, store.pootle_path)
     show_checks = links_required == 'review'
     item = make_generic_item(request, store, action, show_checks)
     if links_required == 'translate':
-        item['actions'] = store_translate_links(request, store, filetype)
+        item['actions'] = store_translate_links(request, store)
     elif links_required == 'review':
-        item['actions'] = store_review_links(request, store, filetype)
+        item['actions'] = store_review_links(request, store)
     else:
         item['actions'] = []
     item.update({

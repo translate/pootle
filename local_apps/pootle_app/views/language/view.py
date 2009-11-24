@@ -26,6 +26,7 @@ from django.http import HttpResponse
 from django.utils import simplejson
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext as _N
+from django.core.exceptions import PermissionDenied
 
 from pootle_misc.baseurl           import redirect
 from pootle_app.models             import TranslationProject, Directory, store_iteration
@@ -41,8 +42,8 @@ from pootle_app.views.language.tp_review import view as tp_review_view
 from pootle_app.views.language.admin_permissions import view as tp_admin_permissions_view
 from pootle_app.views.language.admin_files import view as tp_admin_files_view
 
-from project_index import view as project_index_view
-from translate_page import find_and_display
+from pootle_app.views.language.project_index import view as project_index_view
+from pootle_app.views.language.translate_page import find_and_display
 from pootle_app.views.language import search_forms
 
 def get_translation_project(f):
@@ -157,7 +158,7 @@ def export_zip(request, translation_project, file_path):
         path_obj = Directory.objects.get(pootle_path=pootle_path)
     except Directory.DoesNotExist:
         path_obj = get_object_or_404(Store, pootle_path=pootle_path[:-1])
-    stores = store_iteration.iter_stores(path_obj, search_forms.search_from_request(request))
+    stores = store_iteration.iter_stores(path_obj)
     archivecontents = translation_project.get_archive(stores)
     response = HttpResponse(archivecontents, content_type="application/zip")
     if file_path.endswith("/"):
@@ -217,17 +218,6 @@ def handle_suggestions(request, translation_project, file_path, item):
     pootle_path = translation_project.pootle_path + file_path
     store = Store.objects.get(pootle_path=pootle_path)
 
-    def getpendingsuggestions(item):
-        """Gets pending suggestions for item in pofilename."""
-        itemsuggestions = []
-        suggestions = store.getsuggestions(item)
-        for suggestion in suggestions:
-            if suggestion.hasplural():
-                itemsuggestions.append(suggestion.target.strings)
-            else:
-                itemsuggestions.append([suggestion.target])
-        return itemsuggestions
-
     response = {}
     # Decode JSON data sent via POST
     data = simplejson.loads(request.POST.get("data", "{}"))
@@ -261,11 +251,10 @@ def handle_suggestions(request, translation_project, file_path, item):
 
         for sugg in reversed(rejects):
             try:
-                unit_update.reject_suggestion(store,int(item), int(sugg["id"]),
+                unit_update.reject_suggestion(store, int(item), int(sugg["id"]),
                                               sugg["newtrans"], request)
                 reject_count += 1
                 response["del_ids"].append((int(item), sugg["id"]))
-                pending = getpendingsuggestions(int(item))
             except ValueError, e:
                 # Probably an issue with "item". The exception might tell us
                 # everything we need, while no error will probably help the user

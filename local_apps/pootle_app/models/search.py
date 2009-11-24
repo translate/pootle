@@ -120,7 +120,7 @@ class Search(object):
         self.match_names     = match_names
         self.search_text     = search_text
         if search_fields is None:
-            search_fiels = ['source', 'target']
+            search_fields = ['source', 'target']
         self.search_fields   = search_fields
         self.translation_project = translation_project
 

@@ -21,10 +21,10 @@
 
 from django.db                import models
 
-import custom_sql_util
-from translation_project import TranslationProject
-from suggestion import Suggestion
-from profile import PootleProfile
+from pootle_app.models import custom_sql_util
+from pootle_app.models.translation_project import TranslationProject
+from pootle_app.models.suggestion import Suggestion
+from pootle_app.models.profile import PootleProfile
 
 class SubmissionManager(models.Manager):
     def get_top_submitters(self):
@@ -50,8 +50,6 @@ class SubmissionManager(models.Manager):
         objects, without knowing which. But we're not interested in
         the Submission objects anyway.
         """
-        from profile import PootleProfile
-
         fields = {
             'profile_id': custom_sql_util.primary_key_name(PootleProfile),
             'submitter':  custom_sql_util.field_name(Submission, 'submitter'),

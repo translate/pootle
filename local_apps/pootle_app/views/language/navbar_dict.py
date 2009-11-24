@@ -22,14 +22,14 @@
 
 from django.utils.translation import ugettext as _
 
+from pootle.i18n.gettext import tr_lang
+
 from pootle_app import url_manip
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch
+from pootle_app.views.language import item_dict
 from pootle_app.views.language.item_dict import directory_translate_links, directory_review_links
 
-from pootle.i18n.gettext import tr_lang
-
-import item_dict
 
 def make_directory_pathlinks(request, project_url, url, links):
     if url != project_url:
@@ -47,7 +47,6 @@ def make_store_pathlinks(request, project_url, store, links):
 
 def make_directory_actions(request, links_required=None):
     directory = request.translation_project.directory
-    filetype = request.translation_project.project.localfiletype
     if links_required == 'translate':
         return directory_translate_links(request, directory)
     elif links_required == 'review':
@@ -87,8 +86,7 @@ def make_directory_navbar_dict(request, directory, links_required=None):
     return result
 
 def make_store_navbar_dict(request, store):
-    filetype = request.translation_project.project.localfiletype
-    result = item_dict.make_store_item(request, store, filetype)
+    result = item_dict.make_store_item(request, store)
     project_url = request.translation_project.directory.pootle_path
     path_links = make_store_pathlinks(request, project_url, store, [])
     result.update({

@@ -27,7 +27,7 @@ from pootle_app.models.profile import get_profile
 from pootle_app.views.index.index import getprojects
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.views.top_stats import gentopstats
-from pootle_app.models import Directory, Suggestion, Submission
+from pootle_app.models import Directory
 
 def view(request):
     request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)

@@ -44,10 +44,9 @@ def top_stats(translation_project):
 
 def get_children(request, translation_project, directory, links_required=None):
     search = search_forms.search_from_request(request)
-    filetype = translation_project.project.localfiletype
     return [item_dict.make_directory_item(request, child_dir, links_required=links_required)
             for child_dir in directory.child_dirs.all()] + \
-           [item_dict.make_store_item(request, child_store, filetype, links_required=links_required)
+           [item_dict.make_store_item(request, child_store, links_required=links_required)
             for child_store in directory.filter_stores(search).all()]
 
 def unix_to_host_path(p):
@@ -238,7 +237,7 @@ class UpdateHandler(view_handler.Handler):
         return {}
 
     @classmethod
-    def must_display(self, request, *args, **kwargs):
+    def must_display(cls, request, *args, **kwargs):
         return check_permission('commit', request) and \
             versioncontrol.hasversioning(request.translation_project.abs_real_path)
 
@@ -252,7 +251,7 @@ class UploadHandler(view_handler.Handler):
                                                ('overwrite',  _("Overwrite the current file if it exists")),
                                                ('suggest', _("Add all new translations as suggestions"))])
     @classmethod
-    def must_display(self, request, *args, **kwargs):
+    def must_display(cls, request, *args, **kwargs):
         return check_permission('translate', request)
 
     def __init__(self, data, request, *args, **kwargs):

@@ -3,9 +3,12 @@ from django.forms.util import ValidationError
 from django.utils.safestring import mark_safe
 
 
-class FormError(ValidationError): pass
-class SubmitError(FormError): pass
-class HandlerError(FormError): pass
+class FormError(ValidationError):
+    pass
+class SubmitError(FormError):
+    pass
+class HandlerError(FormError):
+    pass
 
 
 class View(object):
@@ -54,7 +57,7 @@ class Handler(object):
     actions = [] # This should be all
 
     @classmethod
-    def must_display(self, request, *args, **kwargs):
+    def must_display(cls, request, *args, **kwargs):
         return True
 
     def __init__(self, data, request, *args, **kwargs):

@@ -19,13 +19,11 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.db import connection
-
 def table_name(table):
     return table._meta.db_table
 
-def field_name(table, field_name):
-    return '%s.%s' % (table_name(table), table._meta.get_field(field_name).column)
+def field_name(table, fieldname):
+    return '%s.%s' % (table_name(table), table._meta.get_field(fieldname).column)
 
 def primary_key_name(table):
     return field_name(table, table._meta.pk.name)

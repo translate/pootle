@@ -56,7 +56,7 @@ def view(request, project_code):
         project = forms.ModelChoiceField(queryset=Project.objects.filter(pk=current_project.pk),
                                          initial=current_project.pk, widget=forms.HiddenInput)
         class Meta:
-            prefix="existing_language"        
+            prefix = "existing_language"
 
         def process_extra_fields(self):
             if self.instance.pk is not None:

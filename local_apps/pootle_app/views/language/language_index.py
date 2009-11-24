@@ -29,7 +29,7 @@ from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle_app.views import pagelayout
 from pootle_app.views.top_stats import gentopstats
-from pootle_app.models import Suggestion, Submission, Language
+from pootle_app.models import Language
 
 from pootle.i18n.gettext import tr_lang
 

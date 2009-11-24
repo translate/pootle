@@ -35,17 +35,16 @@ from django.utils.translation import ungettext
 from translate.storage import po
 from translate.misc.multistring import multistring
 
-from pootle_app.views import pagelayout
-from pootle_app.models import TranslationProject, Directory
-from pootle_store.models import Store
-from pootle_app.models.profile import get_profile
-from pootle_app import unit_update, url_manip
-from pootle_app.models import permissions
-from pootle_app.models.permissions import check_permission
-
 from pootle.i18n.gettext import tr_lang, language_dir
 
-import dispatch, navbar_dict, search_forms
+from pootle_store.models import Store
+
+from pootle_app.views import pagelayout
+from pootle_app.models import TranslationProject, Directory
+from pootle_app.models.profile import get_profile
+from pootle_app import unit_update
+from pootle_app.models.permissions import check_permission
+from pootle_app.views.language import dispatch, navbar_dict, search_forms
 
 xml_re = re.compile("&lt;.*?&gt;")
 
@@ -55,7 +54,7 @@ def oddoreven(polarity):
     elif polarity % 2 == 1:
         return "odd"
 
-def get_alt_projects(request, store):
+def get_alt_projects(request):
     # do we have enabled alternative source language?
     if settings.ENABLE_ALT_SRC:
         # try to get the project if the user has chosen an alternate source language
@@ -139,7 +138,7 @@ def get_display_rows(profile):
     return min(rowsdesired, maximum)
 
 def get_units(store, item_start, item_stop):
-    return [store.file.store.units[index] for index in store.file.total[max(item_start,0):item_stop]]
+    return [store.file.store.units[index] for index in store.file.total[max(item_start, 0):item_stop]]
 
 def get_translations(request, profile, store, item):
     """gets the list of translations desired for the view, and sets editable and firstitem parameters"""
@@ -224,7 +223,7 @@ def replace_in_seq(text, *replacements):
         text = text.replace(original, replacement)
     return text
 
-def escape_text(text, fancy_spaces=True, stripescapes=False):
+def escape_text(text, fancyspaces=True, stripescapes=False):
     """Replace special characters &, <, >, add and handle escapes if asked."""
     text = replace_in_seq(text,
                           ("&", "&amp;"), # Must be done first!
@@ -252,7 +251,7 @@ def escape_text(text, fancy_spaces=True, stripescapes=False):
     if text.endswith("<br />\n"):
         text = text[:-len("<br />\n")]
 
-    if fancy_spaces:
+    if fancyspaces:
         text = add_fancy_spaces(text)
     return text
 
@@ -565,9 +564,7 @@ def get_alt_src_dict(request, store, unit, alt_project):
                 "available":    True })
         translated_store = get_translated_store(alt_project, store)
         if translated_store is not None:
-            #FIXME: we should bundle the makeindex thing into a property
-            if not hasattr(translated_store.file.store, "sourceindex"):
-                translated_store.file.store.makeindex()
+            translated_store.file.store.require_index()
 
             translated_unit = translated_store.file.store.findunit(unit.source)
             if translated_unit is not None and translated_unit.istranslated():
@@ -592,7 +589,7 @@ def get_alt_src_dict(request, store, unit, alt_project):
 
 def get_alt_src_list(request, store, unit):
     return [get_alt_src_dict(request, store, unit, alt_project)
-            for alt_project in get_alt_projects(request, store)]
+            for alt_project in get_alt_projects(request)]
 
 def make_table(request, profile, store, item):
     editable, first_item, translations = get_translations(request, profile, store, item)
@@ -859,7 +856,7 @@ def view(request, directory, store, item, stopped_by=None):
         raise PermissionDenied(_('You do not have rights to access view mode.'))
 
     if store is not None:
-        formaction = dispatch.translate(request, request.path_info, store=store.pootle_path ,item=0)
+        formaction = dispatch.translate(request, request.path_info, store=store.pootle_path, item=0)
         store_path = store.pootle_path
     else:
         formaction = ''
@@ -878,7 +875,6 @@ def view(request, directory, store, item, stopped_by=None):
     else:
         items, translations, first_item = [], [], -1
         navbar = navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')
-    mainstats = ""
     pagelinks = None
     rows, icon = get_rows_and_icon(request, profile)
     navbar["icon"] = icon
@@ -886,26 +882,13 @@ def view(request, directory, store, item, stopped_by=None):
         postats = store.getquickstats()
         untranslated, fuzzy = postats["total"] - postats["translated"], postats["fuzzy"]
         translated, total = postats["translated"], postats["total"]
-        mainstats = _("%(translated)d/%(total)d translated\n(%(untranslated)d untranslated, %(fuzzy)d fuzzy)",
-                      {
-                          "translated": translated,
-                          "total": total,
-                          "untranslated": untranslated,
-                          "fuzzy": fuzzy,
-                       }
-        )
         pagelinks = get_page_links(request, store, rows, translations, item, first_item)
 
     # templatising
-    templatename = "language/translatepage.html"
     instancetitle = _(settings.TITLE)
     language_data = {"code": pagelayout.weblanguage(language.code),
                      "name": language.fullname,
                      "dir":  language_dir(language.code)}
-    stats = {"summary": mainstats,
-             "checks":  [],
-             "tracks":  [],
-             }
     templatevars = {
         "title_path":                store_path,
         "project":                   {"code": project.code,

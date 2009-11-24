@@ -21,12 +21,10 @@
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
 
 from pootle_app.models.directory import Directory
 from pootle_app.views.language.admin_permissions import process_update as process_permission_update
-
-from util import user_is_admin
+from pootle_app.views.admin.util import user_is_admin
 
 @user_is_admin
 def view(request):

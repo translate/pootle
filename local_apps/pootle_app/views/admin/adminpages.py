@@ -21,7 +21,7 @@
 
 from django.utils.translation import ugettext as _
 
-from util import user_is_admin
+from pootle_app.views.admin.util import user_is_admin
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
@@ -58,7 +58,7 @@ def required_depcheck():
         state = 'good'
     else:
         text = _('Django version %s is installed. Pootle only works with the 1.x series.')
-        stats = 'error'
+        state = 'error'
     required.append({'dependency': 'django', 'state': state, 'text': text})
 
     return required

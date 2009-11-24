@@ -25,7 +25,7 @@ from django.utils.safestring import mark_safe
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.forms.util import ErrorList
-from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from django.core.paginator import Paginator
 
 from pootle_misc.baseurl import l
 from pootle_app.models.permissions import get_matching_permissions, check_permission

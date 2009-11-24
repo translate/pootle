@@ -25,14 +25,12 @@ from django.core.exceptions import PermissionDenied
 
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
-from pootle_app.project_tree import scan_translation_project_files
 from pootle_app.views.base import BaseView
 from pootle_app.views.language import tp_common
-from pootle_app.views import pagelayout
 
 from pootle.i18n.gettext import tr_lang
 
-import dispatch, navbar_dict, item_dict, search_forms
+from pootle_app.views.language import dispatch, navbar_dict, search_forms
 
 ################################################################################
 

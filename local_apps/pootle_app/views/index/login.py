@@ -27,15 +27,12 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-
-from pootle.i18n.gettext import tr_lang
-from pootle.i18n.override import lang_choices
-
-from pootle_app.models import Language
-from pootle_misc.baseurl import redirect
-from pootle_app.views               import pagelayout
 from django.utils.encoding import iri_to_uri
 from django.utils.http import urlquote
+
+from pootle.i18n.override import lang_choices
+
+from pootle_misc.baseurl import redirect
 
 def redirect_after_login(request):
     redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, None)
