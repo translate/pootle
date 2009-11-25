@@ -279,4 +279,4 @@ class UploadHandler(view_handler.Handler):
             newstats = translation_project.getquickstats()
             post_file_upload.send(sender=translation_project, user=request.user, oldstats=oldstats,
                                   newstats=newstats, archive=archive)
-        return {}
+        return {'upload': self}
