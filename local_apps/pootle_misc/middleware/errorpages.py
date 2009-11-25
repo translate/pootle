@@ -28,6 +28,7 @@ from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.conf import settings
+from django.core.mail import mail_admins
 
 from pootle_misc.baseurl import l
 
@@ -48,14 +49,23 @@ class ErrorPagesMiddleware(object):
                                       RequestContext(request)))
         else:
             #FIXME: implement better 500
-            traceback.print_exc(file=sys.stderr)
+            tb = traceback.format_exc()
+            print >> sys.stderr, tb
             if not settings.DEBUG:
                 try:
                     templatevars = {'exception': unicode(exception)}
                     if hasattr(exception, 'filename'):
                         templatevars['fserror'] = _('Error accessing %(filename)s, Filesystem sent error: %(errormsg)s',
                                                     {'filename': exception.filename, 'errormsg': exception.strerror})
-                        
+
+                    # send email to admins with details about exception
+                    subject = 'Error (%s IP): %s' % ((request.META.get('REMOTE_ADDR') in settings.INTERNAL_IPS and 'internal' or 'EXTERNAL'), request.path)
+                    try:
+                        request_repr = repr(request)
+                    except:
+                        request_repr = "Request repr() unavailable"
+                    message = "%s\n\n%s\n\n%s" % (unicode(exception), tb, request_repr)
+                    mail_admins(subject, message, fail_silently=True)
                     return HttpResponseServerError(render_to_string('500.html', templatevars,
                                                                     RequestContext(request)))
                 except:
