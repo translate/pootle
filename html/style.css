@@ -1570,7 +1570,7 @@ textarea.translation
 {
     width: 99%;
     min-height: 3em;
-    padding: 5px 0 !important;
+    padding: 0 0 5px !important;
     margin: 0 auto 0.5em;
 }
 
