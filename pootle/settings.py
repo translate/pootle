@@ -145,8 +145,6 @@ AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
 
 ENABLE_ALT_SRC = True
 
-CAN_REGISTER = True
-
 # django-registration configs
 ACCOUNT_ACTIVATION_DAYS = 10
 

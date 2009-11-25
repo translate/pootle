@@ -107,3 +107,7 @@ AUTH_LDAP_FIELDS = {
         #'last_name':'',
         #'email':''
         }
+
+# set this to False to disable user registration, admins will still be
+# able to create user accounts
+CAN_REGISTER = True
