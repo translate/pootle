@@ -16,9 +16,9 @@ UNICODE_RTL = /^[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFE
 		var obj = $(this);
 		var text = obj.text().replace(NOT_UNICODE_LETTER, "");
 		if (text && UNICODE_RTL.test(text))
-		    obj.attr("dir", "RTL");
+		    obj.css("direction", "rtl");
 		else
-		    obj.attr("dir", "LTR");
+		    obj.css("direction", "ltr");
 	    });
     };
 })(jQuery);
