@@ -128,7 +128,7 @@ def get_permission_data(directory):
 
     # Get all profile objects which do not have PermissionSet objects
     # in the current 'translation_project' pointing to them.
-    profiles_without_permissions = [profile for profile in PootleProfile.objects.all()
+    profiles_without_permissions = [profile for profile in PootleProfile.objects.all().order_by('user__username')
                                     if profile not in profile_permission_sets]
 
     # Build a list of initial data to be fed to a formset. Each entry
