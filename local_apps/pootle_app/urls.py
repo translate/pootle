@@ -20,12 +20,19 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf.urls.defaults import *
+from django.conf import settings
 
 urlpatterns = patterns('',
     (r'^accounts/login/$',    'pootle_app.views.index.login.view'),
     (r'^accounts/logout/$',   'pootle_app.views.index.logout.view'),
     (r'^accounts/personal/edit/$',   'pootle_app.views.profile.view.edit_personal_info'),
-    (r'^accounts/',           include('registration.urls')),
+)
+
+# Onle include registration urls if registration is enabled
+if settings.CAN_REGISTER:
+    urlpatterns += patterns('', (r'^accounts/', include('registration.urls')))
+
+urlpatterns += patterns('',
     (r'^accounts/',           include('profiles.urls')),
     (r'^admin',               include('pootle_app.views.admin.urls')),
     (r'^projects',            include('pootle_app.views.project.urls')),
