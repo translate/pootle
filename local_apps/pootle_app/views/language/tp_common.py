@@ -26,12 +26,13 @@ import zipfile
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import PermissionDenied
 
 from translate.storage import factory, versioncontrol
 
 from pootle_app.lib import view_handler
 from pootle_app.project_tree import scan_translation_project_files
-from pootle_app.models.permissions import check_permission, PermissionError
+from pootle_app.models.permissions import check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.views.language import item_dict
 from pootle_app.views.language import search_forms
@@ -201,13 +202,13 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
 
     file_exists = os.path.exists(absolute_real_path(upload_path))
     if file_exists and overwrite == 'overwrite' and not check_permission('overwrite', request):
-        raise PermissionError(_("You do not have rights to overwrite files here."))
+        raise PermissionDenied(_("You do not have rights to overwrite files here."))
     if not file_exists and not check_permission('administrate', request):
-        raise PermissionError(_("You do not have rights to upload new files here."))
+        raise PermissionDenied(_("You do not have rights to upload new files here."))
     if overwrite == 'merge' and not check_permission('translate', request):
-        raise PermissionError(_("You do not have rights to upload files here."))
+        raise PermissionDenied(_("You do not have rights to upload files here."))
     if overwrite == 'suggest' and not check_permission('suggest', request):
-        raise PermissionError(_("You do not have rights to upload files here."))
+        raise PermissionDenied(_("You do not have rights to upload files here."))
 
     if not file_exists or overwrite == 'overwrite':
         overwrite_file(request, relative_root_dir, django_file, upload_path)

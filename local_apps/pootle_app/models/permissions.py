@@ -146,8 +146,6 @@ class PermissionSetCache(models.Model):
     directory              = models.ForeignKey(Directory, db_index=True, related_name='permission_set_caches')
     permissions            = models.ManyToManyField(Permission, related_name='cached_permissions', db_index=True)
 
-class PermissionError(Exception):
-    pass
 
 def nuke_permission_set_caches(profile, directory):
     """Delete all PermissionSetCache objects matching the current

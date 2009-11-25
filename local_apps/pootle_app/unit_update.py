@@ -22,11 +22,11 @@
 import datetime
 
 from django.utils.translation import ugettext as _
+from django.core.exceptions import PermissionDenied
 
 from pootle_app.models             import Suggestion, Submission
 from pootle_app.models.profile     import get_profile
-from pootle_app.models.permissions import check_permission, PermissionError
-
+from pootle_app.models.permissions import check_permission
 
 def _suggestion_hash(store, item, trans):
     # since django's IntegerField is always 32 bit on mysql we cast to
@@ -35,7 +35,7 @@ def _suggestion_hash(store, item, trans):
 
 def suggest_translation(store, item, trans, request):
     if not check_permission("suggest", request):
-        raise PermissionError(_("You do not have rights to suggest changes here"))
+        raise PermissionDenied(_("You do not have rights to suggest changes here"))
     translation_project = request.translation_project
     s = Suggestion(
         creation_time       = datetime.datetime.utcnow(),
@@ -54,7 +54,7 @@ def update_translation(store, item, newvalues, request, suggestion=None):
     """updates a translation with a new value..."""
 
     if not check_permission("translate", request):
-        raise PermissionError(_("You do not have rights to change translations here"))
+        raise PermissionDenied(_("You do not have rights to change translations here"))
 
     translation_project = request.translation_project
 
@@ -86,7 +86,7 @@ def update_suggestion(state, store, item, newtrans, request):
 def reject_suggestion(store, item, suggitem, newtrans, request):
     """rejects the suggestion and removes it from the pending file"""
     if not check_permission("review", request):
-        raise PermissionError(_("You do not have rights to review suggestions here"))
+        raise PermissionDenied(_("You do not have rights to review suggestions here"))
 
     update_suggestion('rejected', store, item, newtrans, request)
     # Deletes the suggestion from the .pending file
@@ -96,7 +96,7 @@ def reject_suggestion(store, item, suggitem, newtrans, request):
 def accept_suggestion(store, item, suggitem, newtrans, request):
     """accepts the suggestion into the main pofile"""
     if not check_permission("review", request):
-        raise PermissionError(_("You do not have rights to review suggestions here"))
+        raise PermissionDenied(_("You do not have rights to review suggestions here"))
 
     suggestion = update_suggestion('accepted', store, item, newtrans, request)
 

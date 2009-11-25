@@ -31,7 +31,7 @@ from django.core.exceptions import PermissionDenied
 from pootle_misc.baseurl           import redirect
 from pootle_app.models             import TranslationProject, Directory, store_iteration
 from pootle_store.models import Store
-from pootle_app.models.permissions import get_matching_permissions, PermissionError, check_permission
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile     import get_profile
 from pootle_app.views.language     import dispatch
 from pootle_app.convert            import convert_table
@@ -77,23 +77,21 @@ def translation_project_admin_files(request, translation_project):
 @get_translation_project
 @set_request_context
 def translate_page(request, translation_project, dir_path):
-    try:
-        def next_store_item(search, store_name, item):
-            return store_iteration.get_next_match(directory,
-                                                  store_name,
-                                                  item,
-                                                  search)
+    def next_store_item(search, store_name, item):
+        return store_iteration.get_next_match(directory,
+                                              store_name,
+                                              item,
+                                              search)
 
-        def prev_store_item(search, store_name, item):
-            return store_iteration.get_prev_match(directory,
-                                                  store_name,
-                                                  item,
-                                                  search)
+    def prev_store_item(search, store_name, item):
+        return store_iteration.get_prev_match(directory,
+                                              store_name,
+                                              item,
+                                              search)
 
-        directory = translation_project.directory.get_relative(dir_path)
-        return find_and_display(request, directory, next_store_item, prev_store_item)
-    except PermissionError, msg:
-        raise PermissionDenied(msg)
+    directory = translation_project.directory.get_relative(dir_path)
+    return find_and_display(request, directory, next_store_item, prev_store_item)
+
 
 @get_translation_project
 @set_request_context
@@ -104,34 +102,32 @@ def project_index(request, translation_project, dir_path):
 def handle_translation_file(request, translation_project, file_path):
     pootle_path = translation_project.directory.pootle_path + (file_path or '')
     store = get_object_or_404(Store, pootle_path=pootle_path)
-    try:
-        def get_item(itr, item):
-            try:
-                return itr.next()
-            except StopIteration:
-                return item
+    def get_item(itr, item):
+        try:
+            return itr.next()
+        except StopIteration:
+            return item
 
-        def next_store_item(search, store_name, item):
-            if 0 <= item < store.getquickstats()['total']:
-                return store, get_item(search.next_matches(store, item), item - 1)
-            else:
-                return store, store.getquickstats()['total'] - 1
+    def next_store_item(search, store_name, item):
+        if 0 <= item < store.getquickstats()['total']:
+            return store, get_item(search.next_matches(store, item), item - 1)
+        else:
+            return store, store.getquickstats()['total'] - 1
 
-        def prev_store_item(search, store_name, item):
-            if store.getquickstats()['total'] > item > 0:
-                return store, get_item(search.prev_matches(store, item), item + 1)
-            else:
-                return store, 0
+    def prev_store_item(search, store_name, item):
+        if store.getquickstats()['total'] > item > 0:
+            return store, get_item(search.prev_matches(store, item), item + 1)
+        else:
+            return store, 0
 
-        return find_and_display(request, store.parent, next_store_item, prev_store_item)
-    except PermissionError, e:
-        raise PermissionDenied(e.args[0])
+    return find_and_display(request, store.parent, next_store_item, prev_store_item)
+
 
 @get_translation_project
 @set_request_context
 def commit_file(request, translation_project, file_path):
     if not check_permission("commit", request):
-        raise PermissionError(_("You do not have rights to commit files here"))
+        raise PermissionDenied(_("You do not have rights to commit files here"))
     pootle_path = translation_project.directory.pootle_path + file_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.commitpofile(request, store)
@@ -141,7 +137,7 @@ def commit_file(request, translation_project, file_path):
 @set_request_context
 def update_file(request, translation_project, file_path):
     if not check_permission("commit", request):
-        raise PermissionError(_("You do not have rights to update files here"))
+        raise PermissionDenied(_("You do not have rights to update files here"))
     pootle_path = translation_project.directory.pootle_path + file_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.update_file(request, store)
@@ -245,7 +241,7 @@ def handle_suggestions(request, translation_project, file_path, item):
                 # Probably an issue with "item". The exception might tell us
                 # everything we need, while no error will probably help the user
                 response["message"] = e
-            except PermissionError, e:
+            except PermissionDenied, e:
                 response["message"] = e
 
 
@@ -259,7 +255,7 @@ def handle_suggestions(request, translation_project, file_path, item):
                 # Probably an issue with "item". The exception might tell us
                 # everything we need, while no error will probably help the user
                 response["message"] = e
-            except PermissionError, e:
+            except PermissionDenied, e:
                 response["message"] = e
 
         response["status"] = (reject_candidates == reject_count and
