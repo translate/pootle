@@ -36,15 +36,15 @@ class View(object):
 
     def __call__(self, request, *args, **kwargs):
         template_vars = {}
-        if request.method == 'POST':
-            action = self.find_post_handler_action(request)
-            form = self.handlers[action](request.POST, request, *args, **kwargs)
-            template_vars.update(form.dispatch(action, request, *args, **kwargs))
         for form_name, form_class in self.forms.iteritems():
             if form_class.must_display(request, *args, **kwargs):
                 template_vars[form_name] = form_class(None, request, *args, **kwargs)
             else:
                 template_vars[form_name] = None
+        if request.method == 'POST':
+            action = self.find_post_handler_action(request)
+            form = self.handlers[action](request.POST, request, *args, **kwargs)
+            template_vars.update(form.dispatch(action, request, *args, **kwargs))
         return self.GET(template_vars, request, *args, **kwargs)
 
     def GET(self, template_vars, request, *args, **kwargs):
