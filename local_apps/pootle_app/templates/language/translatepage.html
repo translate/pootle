@@ -307,14 +307,10 @@
                           {% endif %}
                       </td>
                       <td class="translate-translation {{ item.polarity }} comments" lang="{{ LANGUAGE_CODE }}">
-                        <div>{{ translator_comments_title }}</div>
-                        {% if not reviewmode %}
-                        <textarea dir="{{ language.dir }}" lang="{{ language.code }}" name="translator_comments{{ item.itemid }}"
-                              id="translator_comments{{ item.itemid }}" rows="2"
-                              class="comments expanding">{{ item.translator_comments|safe }}</textarea>
-                        {% else %}
-                        <div class="translator-comments">{{ item.translator_comments|safe }}</div>
-                        {% endif %}
+                          <div>{{ translator_comments_title }}</div>
+                          <textarea dir="{{ language.dir }}" lang="{{ language.code }}" name="translator_comments{{ item.itemid }}"
+                                    id="translator_comments{{ item.itemid }}" rows="2"
+                                    class="comments expanding">{{ item.translator_comments|safe }}</textarea>
                       </td>
                   </tr>
                   {% endif %}
