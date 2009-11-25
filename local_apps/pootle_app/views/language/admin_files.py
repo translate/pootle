@@ -34,7 +34,6 @@ class StoreFormset(BaseModelFormSet):
     def save_existing_objects(self, commit=True):
         result = super(StoreFormset, self).save_existing_objects(commit)
         for store in self.deleted_objects:
-            print store
             #hackish: we disabled deleting files when field is
             # deleted except for when value is being overwritten, but
             # this form is the only place in pootle where actual file
