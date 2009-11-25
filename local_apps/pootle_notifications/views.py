@@ -62,9 +62,12 @@ def view(request, path):
                                      'name': tr_lang(directory.language.fullname)}
     else:
         template_vars['is_language'] = False
-        template_vars['search'] = search_forms.get_search_form(request)
-        request.translation_project = directory.get_translationproject()
-        template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
+        try:
+            template_vars['search'] = search_forms.get_search_form(request)
+            request.translation_project = directory.get_translationproject()
+            template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
+        except:
+            pass
 
     return render_to_response('notices.html', template_vars, context_instance=RequestContext(request))
 
