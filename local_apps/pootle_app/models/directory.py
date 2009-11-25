@@ -119,11 +119,11 @@ class Directory(models.Model):
 
     def is_language(self):
         """does this directory point at a language"""
-        return len(self.pootle_path[1:-1].split('/')) == 1
+        return len(self.pootle_path.split('/')) == 3
 
     def is_translationproject(self):
         """does this directory point at a translation project"""
-        return len(self.pootle_path[1:-1].split('/')) == 2
+        return len(self.pootle_path.split('/')) == 4
 
     def get_translationproject(self):
         """returns the translation project belonging to this directory."""
