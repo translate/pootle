@@ -84,7 +84,7 @@ approach for this.
 <script type="text/javascript" src='{{ "js/jquery/jquery.bidi.js"|m }}'></script>
 <script type="text/javascript">
  $(document).ready(function() {
- 	$(".newsitem").filter(":not([dir])").bidi();
+ 	$(".newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl").filter(":not([dir])").bidi();
  	});
 </script>
 {% endblock %}
