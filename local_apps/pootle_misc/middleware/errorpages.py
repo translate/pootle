@@ -53,7 +53,7 @@ class ErrorPagesMiddleware(object):
             print >> sys.stderr, tb
             if not settings.DEBUG:
                 try:
-                    templatevars = {'exception': unicode(exception)}
+                    templatevars = {'exception': unicode(exception.args[0])}
                     if hasattr(exception, 'filename'):
                         templatevars['fserror'] = _('Error accessing %(filename)s, Filesystem sent error: %(errormsg)s',
                                                     {'filename': exception.filename, 'errormsg': exception.strerror})
@@ -64,7 +64,7 @@ class ErrorPagesMiddleware(object):
                         request_repr = repr(request)
                     except:
                         request_repr = "Request repr() unavailable"
-                    message = "%s\n\n%s\n\n%s" % (unicode(exception), tb, request_repr)
+                    message = "%s\n\n%s\n\n%s" % (unicode(exception.args[0]), tb, request_repr)
                     mail_admins(subject, message, fail_silently=True)
                     return HttpResponseServerError(render_to_string('500.html', templatevars,
                                                                     RequestContext(request)))
