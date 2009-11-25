@@ -56,7 +56,7 @@ class SiteConfigMiddleware(object):
                 # with special status code INSTALL_STATUS_CODE
                 
                 response = HttpResponse()
-                response.status_code = 613
+                response.status_code = INSTALL_STATUS_CODE
                 response.exception = e
                 return response
             
@@ -65,7 +65,7 @@ class SiteConfigMiddleware(object):
         dummy response with INSTALL_STATUS_CODE status code and start
         db install process"""
         
-        if response.status_code == 613:
+        if response.status_code == INSTALL_STATUS_CODE:
             return HttpResponse(dbinit.staggered_install(response.exception))
         else:
             return response
