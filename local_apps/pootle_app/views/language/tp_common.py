@@ -64,7 +64,7 @@ def get_upload_path(translation_project, relative_root_dir, local_filename):
     # project_tree.py! The rest of Pootle shouldn't have to care
     # whether something is GNU-style or not.
     if translation_project.file_style == "gnu" and not translation_project.is_template_project:
-        if local_filename != translation_project.language.code:
+        if os.path.splitext(local_filename)[0] != translation_project.language.code:
             raise ValueError(_("Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s.%(filetype)s'.",
                              { 'local_filename': local_filename,
                                'langcode': translation_project.language.code,
