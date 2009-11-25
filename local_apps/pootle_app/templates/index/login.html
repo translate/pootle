@@ -26,9 +26,11 @@
 <p><a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a></p>
 </div>
 
+{% if settings.CAN_REGISTER %}
 <h2 class="registerlink">{% trans "Don't have an account yet?" %}
     <a href='{{ "/accounts/register"|l }}' title="{% trans 'Register.' %}">{% trans 'Register.' %}</a>
 </h2>
+{% endif %}
 {% endblock content %}
 
 {% block scripts_extra %}
