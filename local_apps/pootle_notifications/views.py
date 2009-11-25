@@ -54,7 +54,7 @@ def view(request, path):
         template_vars['form'] = handle_form(request, directory)
         template_vars['title'] = directory_to_title(request, directory)
 
-    template_vars['notices'] = Notice.objects.filter(directory=directory)
+    template_vars['notices'] = Notice.objects.filter(directory=directory)[:30]
 
     if directory.is_language():
         template_vars['is_language'] = True
