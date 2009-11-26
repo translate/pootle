@@ -415,7 +415,7 @@ def highlight_diffs(text, diffs, issrc=True):
     textpos = 0
     spanempty = False
     for i, switch, tag in diffswitches:
-        textsection = escape_text(text[textpos:i])
+        textsection = escape_text(text[textpos:i], fancyspaces=False)
         textdiff += textsection
         if textsection:
             spanempty = False
@@ -434,7 +434,7 @@ def highlight_diffs(text, diffs, issrc=True):
                 textdiff += "()"
             textdiff += "</span>"
         textpos = i
-    textdiff += escape_text(text[textpos:])
+    textdiff += escape_text(text[textpos:], fancyspaces=False)
     return textdiff
 
 def get_diff_codes(cmp1, cmp2):
