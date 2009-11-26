@@ -79,10 +79,10 @@ $(document).ready(function() {
                // Remove processed suggestion
                $.each(rdata.del_ids, function() {
                  var deleted = this[0] + "-" + this[1];
-                 $("#suggestion" + deleted).fadeOut(1000);
+                 $("#suggestion" + deleted).fadeOut(500);
                });
                // If it's an accept, then update the textareas
-               if (rdata.accepted_id) {
+               if (rdata.hasOwnProperty("accepted_id")) {
                  var textareas = $("#translate-suggestion-container").siblings("textarea");
                  var accepted= rdata.accepted_id[0] + "-" + rdata.accepted_id[1];
                  var inputs = $("#suggestion" + accepted + " .translate-suggestion").children().siblings("input");
@@ -90,9 +90,25 @@ $(document).ready(function() {
                    $(this).val(inputs.eq(i).val());
                  });
                }
+               // If there are no more suggestions left, remove
+               // the current translation block.
+               if (!rdata.diffs.hasOwnProperty("0")) {
+                 $("#translate-original-container").fadeOut(500);
+               }
+               // Update current diff otherwise
+               else {
+                 var current = $("#translate-original-container .translate-original-block");
+                 var forms = rdata.diffs;
+                 $.each(current, function() {
+                   var insertat = $("div", this);
+                   $.each(forms, function() {
+                     $(insertat).html(this.diff);
+                   });
+                 });
+               }
              }
              $("div#translate-suggestion-container:first").prepend(
-              '<h1 id="response">' + rdata.message + '</h1>'
+              '<h2 id="response">' + rdata.message + '</h2>'
               );
            }, "json");
   }

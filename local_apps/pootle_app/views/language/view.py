@@ -46,6 +46,10 @@ from pootle_app.views.language.project_index import view as project_index_view
 from pootle_app.views.language.translate_page import find_and_display
 from pootle_app.views.language import search_forms
 
+from pootle_app.views.language.translate_page import get_diff_codes
+from pootle_app.views.language.translate_page import highlight_diffs
+from pootle_app.views.language.translate_page import get_string_array
+
 def get_translation_project(f):
     def decorated_f(request, language_code, project_code, *args, **kwargs):
         translation_project = get_object_or_404(TranslationProject, language__code=language_code, project__code=project_code)
@@ -209,10 +213,48 @@ def handle_suggestions(request, translation_project, file_path, item):
                     Possible values: "error", "success".
         * "message": Status message of the transaction. Depending on the status
                     it will display an error message, or the number of
-                    suggestions rejected/accepted."""
-    # TODO: finish this function and return nice diffs
+                    suggestions rejected/accepted.
+        * "diffs": Updated diff for the current translation after performing
+                   an action. If there are no suggestions pending, an empty
+                   dict will be returned."""
     pootle_path = translation_project.pootle_path + file_path
     store = Store.objects.get(pootle_path=pootle_path)
+    item = int(item)
+
+    def get_pending_suggestions(item):
+        """Gets pending suggestions for item in pofilename."""
+        itemsuggestions = []
+        suggestions = store.getsuggestions(item)
+        for suggestion in suggestions:
+            if suggestion.hasplural():
+                itemsuggestions.append(suggestion.target.strings)
+            else:
+                itemsuggestions.append([suggestion.target])
+        return itemsuggestions
+
+    def get_updated_diffs(trans, suggestions):
+        """Returns the diff between the current translation and the
+           suggestions available after performing an accept/reject
+           action.
+           If no suggestions are available anymore, just return an
+           empty list."""
+        # No suggestions left, no output at all
+        if len(suggs) == 0:
+            return []
+        else:
+            diffcodes = {}
+            forms = []
+            for pluralitem, pluraltrans in enumerate(trans):
+                pluraldiffcodes = [get_diff_codes(pluraltrans,
+                                                  suggestion[pluralitem])
+                                   for suggestion in suggestions]
+                diffcodes[pluralitem] = pluraldiffcodes
+                combineddiffs = reduce(list.__add__, pluraldiffcodes, [])
+                transdiff = highlight_diffs(pluraltrans, combineddiffs,
+                                            issrc=True)
+                form = { "diff": transdiff }
+                forms.append(form)
+            return forms
 
     response = {}
     # Decode JSON data sent via POST
@@ -222,7 +264,6 @@ def handle_suggestions(request, translation_project, file_path, item):
         response["message"] = _("No suggestion data given.")
     else:
         response["del_ids"] = []
-        #FIXME: handle plurals
         rejects = data.get("rejects", [])
         reject_candidates = len(rejects)
         reject_count = 0
@@ -232,10 +273,10 @@ def handle_suggestions(request, translation_project, file_path, item):
 
         for sugg in accepts:
             try:
-                unit_update.accept_suggestion(store, int(item), int(sugg["id"]),
+                unit_update.accept_suggestion(store, item, int(sugg["id"]),
                                               sugg["newtrans"], request)
-                response["del_ids"].append((int(item), sugg["id"]))
-                response["accepted_id"] = (int(item), sugg["id"])
+                response["del_ids"].append((item, sugg["id"]))
+                response["accepted_id"] = (item, sugg["id"])
                 accept_count += 1
             except ValueError, e:
                 # Probably an issue with "item". The exception might tell us
@@ -272,10 +313,13 @@ def handle_suggestions(request, translation_project, file_path, item):
                           "%d suggestions rejected.",
                           reject_count, reject_count)
             response["message"] = amsg + rmsg
+            # Get updated diffs
+            current_trans = get_string_array(store.file.getitem(item).target)
+            suggs = get_pending_suggestions(item)
+            response["diffs"] = get_updated_diffs(current_trans, suggs)
 
     response = simplejson.dumps(response, indent=4)
-    # TODO: change mimetype to something more appropriate once all works fine
-    return HttpResponse(response, mimetype="text/plain")
+    return HttpResponse(response, mimetype="application/json")
 
 @get_translation_project
 @set_request_context
