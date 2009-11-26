@@ -207,19 +207,18 @@ class PootleInstall(DistutilsInstall):
 
         if not path.isfile(install_dirs_py_path):
             raise Exception('install_dirs.py file should exist, but does not. o_O (%s)' % (install_dirs_py_path))
+        conf_dir = path.abspath(path.join(self.install_base, INSTALL_CONFIG_DIR))
+        data_dir = path.abspath(path.join(self.install_base, INSTALL_DATA_DIR))
+        work_dir = path.abspath(path.join(self.install_base, INSTALL_WORKING_DIR))
 
-        conf_dir = path.abspath(path.join(self.install_data, INSTALL_CONFIG_DIR))
-        data_dir = path.abspath(path.join(self.install_data, INSTALL_DATA_DIR))
-        work_dir = path.abspath(path.join(self.install_data, INSTALL_WORKING_DIR))
-
-        if self.root:
-            # We use distutils.util.change_root, because INSTALL_CONFIG_DIR
-            # and INSTALL_WORKING_DIR are absolute paths and stays that way when
-            # used with os.path.join() as above. This also means that data_dir
-            # should be changed here if the value # of INSTALL_DATA_DIR becomes
-            # an absolute path.
-            conf_dir = util.change_root(self.root, INSTALL_CONFIG_DIR)
-            work_dir = util.change_root(self.root, INSTALL_WORKING_DIR)
+        #if self.root:
+        #    # We use distutils.util.change_root, because INSTALL_CONFIG_DIR
+        #    # and INSTALL_WORKING_DIR are absolute paths and stays that way when
+        #    # used with os.path.join() as above. This also means that data_dir
+        #    # should be changed here if the value # of INSTALL_DATA_DIR becomes
+        #    # an absolute path.
+        #    conf_dir = util.change_root(self.root, INSTALL_CONFIG_DIR)
+        #    work_dir = util.change_root(self.root, INSTALL_WORKING_DIR)
 
         # Replace directory variables in settings.py to reflect the current installation
         lines = open(install_dirs_py_path).readlines()
