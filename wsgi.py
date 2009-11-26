@@ -23,10 +23,15 @@
 import os
 
 # this part is only required when running from checkout instead of an install
-import sys
-ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0, ROOT_DIR) # Top level directory
-import syspath_override
+try:
+    import sys
+    ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+    sys.path.insert(0, ROOT_DIR) # Top level directory
+    import syspath_override
+except ImportError:
+    # not running from checkout
+    pass
+
 # comment the above lines if running from install
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
