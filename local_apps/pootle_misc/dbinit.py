@@ -33,13 +33,38 @@ def header(exception):
     text = """
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-    <html><head>
+    <html>
+    <head>
     <title>%(title)s</title>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <style type="text/css">
+    body
+    {
+        background-color: #ffffff;
+        color: #000000;
+        font-family: Georgia, serif;
+        margin: 40px auto;
+        width: 740px;
+    }
+    h1
+    {
+        font-size: 185%%;
+    }
+    ul
+    {
+        list-style-type: square;
+    }
+    .error
+    {
+        background-color: inherit;
+        color: #d54e21;
+        font-weight: bold;
+    }
+    </style>
     </head>
     <body>
     <h1>%(title)s</h1>
-    <p>%(msg)s</p>
+    <p class="error">%(msg)s</p>
     """ % {'title': _('Pootle: Install'),
            'msg': _('Error: "%s" while attempting to access the Pootle database, will try to initialize database.', exception)}
     return text
@@ -60,7 +85,7 @@ def initdb():
 
 def stats_start():
     text = u"""
-    <p>%s
+    <p>%s</p>
     <ul>
     """ % _('Calculating translation statistics, this will take a few minutes')
     return text
@@ -82,7 +107,7 @@ def stats_project(project):
 def stats_end():
     text = u"""
     </ul>
-    %s</p>
+    <p>%s</p>
     """ % _('Done calculating statistics for default languages and projects')
     return text
     
