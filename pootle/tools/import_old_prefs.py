@@ -226,6 +226,8 @@ def create_database_user(data, user_name):
                 #                                                     default = 'hash'),
                 is_superuser   = try_type(bool, _get_user_attribute(data, user_name, 'rights.siteadmin',
                                                                     unicode_me=False, default=0)))
+    # django admin only accessible to users with is_staff bit set
+    user.is_staff = user.is_superuser
     # We have to save the user to ensure that an associated PootleProfile is created...
     user.save()
     logging.log(logging.INFO, 'Created a user object for %s', user_name)

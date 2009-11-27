@@ -56,17 +56,29 @@ class BaseUserFormSet(BaseModelFormSet):
         del form.fields['set_password']
         return password
 
-    def save_password(self, instance, password, commit=True):
+    def save_extra(self, instance, password, commit=True):
+        """process fields that require behavior different from model default"""
+        changed = False
+        # don't store plain text password, use set_password method to
+        # set encrypted password
         if password != '':
             instance.set_password(password)
-            if commit:
-                instance.save()
+            changed = True
+        # no point in seperating admin rights from access to
+        # django_admin, make sure the two bits are in synch
+        if instance.is_staff != instance.is_superuser:
+            instance.is_staff = instance.is_superuser
+            changed = True
+            
+        if commit and changed:
+            instance.save()
+            
         return instance
 
     def save_existing(self, form, instance, commit=True):
         password = self.del_field(form)
-        return self.save_password(super(BaseUserFormSet, self).save_existing(form, instance, commit), password, commit)
+        return self.save_extra(super(BaseUserFormSet, self).save_existing(form, instance, commit), password, commit)
 
     def save_new(self, form, commit=True):
         password = self.del_field(form)
-        return self.save_password(super(BaseUserFormSet, self).save_new(form, commit), password, commit)
+        return self.save_extra(super(BaseUserFormSet, self).save_new(form, commit), password, commit)
