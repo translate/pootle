@@ -41,7 +41,7 @@ def limit(query):
 
 def make_project_item(translation_project):
     project = translation_project.project
-    href = '%s/' % project.code
+    href = translation_project.pootle_path
     projectstats = add_percentages(translation_project.getquickstats())
     info = {
         'code': project.code,
