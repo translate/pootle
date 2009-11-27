@@ -2,16 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 01:27+0200\n"
-"PO-Revision-Date: 2008-08-28 21:59+0000\n"
+"POT-Creation-Date: 2009-11-23 14:10+0200\n"
+"PO-Revision-Date: 2009-11-20 05:36+0200\n"
 "Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 2.0.0-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -103,7 +104,7 @@ msgstr ""
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Зберегти"
 
 #: external_apps/registration/forms.py:36
 #, fuzzy
@@ -116,9 +117,8 @@ msgid "email address"
 msgstr "Адреса електронної пошти"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Пароль"
+msgstr "пароль"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
@@ -150,7 +150,7 @@ msgstr ""
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "користувач"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
@@ -465,7 +465,7 @@ msgstr ""
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 msgid "Delete"
-msgstr ""
+msgstr "Вилучити"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
