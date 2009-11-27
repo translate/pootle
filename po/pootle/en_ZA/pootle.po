@@ -19,13 +19,15 @@ msgstr ""
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Enter a valid email address."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"That email address doesn't have an associated user account. Are you sure "
+"you've registered?"
 
 #: strings.py:11
 msgid "This field is required."
@@ -65,24 +67,24 @@ msgstr ""
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "First name"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "Last name"
 
 #: strings.py:26
 msgid "e-mail address"
-msgstr ""
+msgstr "Email address"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "Active"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "Administrator"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -103,19 +105,19 @@ msgstr ""
 
 #: external_apps/registration/forms.py:36
 msgid "username"
-msgstr ""
+msgstr "Username"
 
 #: external_apps/registration/forms.py:39
 msgid "email address"
-msgstr ""
+msgstr "Email address"
 
 #: external_apps/registration/forms.py:41
 msgid "password"
-msgstr ""
+msgstr "Password"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "Password (again)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
@@ -493,7 +495,7 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:47
 msgid "Optimizations"
-msgstr ""
+msgstr "Optimisations"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -815,6 +817,8 @@ msgid ""
 "Running in live translation mode. Live translation is useful as a tool to "
 "learn about Pootle and localization, but has high impact on performance."
 msgstr ""
+"Running in live translation mode. Live translation is useful as a tool to "
+"learn about Pootle and localisation, but has high impact on performance."
 
 #: local_apps/pootle_app/views/admin/adminprojects.py:30
 #: local_apps/pootle_app/views/index/index.py:103
@@ -1348,7 +1352,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/project/project_admin.py:43
 msgid "Initialize"
-msgstr ""
+msgstr "Initialise"
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
@@ -1367,6 +1371,8 @@ msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
 "initialize database."
 msgstr ""
+"Error: \"%s\" while attempting to access the Pootle database, will try to "
+"initialise database."
 
 #: local_apps/pootle_misc/dbinit.py:50
 msgid "Creating database tables..."
@@ -1398,6 +1404,7 @@ msgstr ""
 msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
+"Initialised database, you will be redirected to the front page in 10 seconds"
 
 #: local_apps/pootle_misc/middleware/errorpages.py:44
 #, python-format
@@ -1958,6 +1965,8 @@ msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"We've emailed you instructions for setting your password to the email "
+"address you submitted. You should receive it shortly."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -1965,6 +1974,8 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
@@ -1984,6 +1995,8 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
