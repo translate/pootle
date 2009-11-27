@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 01:27+0200\n"
+"POT-Creation-Date: 2009-11-27 11:15+0200\n"
 "PO-Revision-Date: 2008-09-21 07:51+0000\n"
 "Last-Translator: Praveen Arimbrathodiyil <pravi.a@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,6 +93,7 @@ msgstr ""
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
+msgstr[1] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -855,6 +856,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "പൂട്ടില്‍ മേല്‍നോട്ടം വഹിക്കുവാന്‍ നിങ്ങള്‍ക്കധികാരമില്ല."
 
 #: local_apps/pootle_app/views/admin/util.py:50
+#, python-format
 #, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "പൂട്ടില്‍ മേല്‍നോട്ടം വഹിക്കുവാന്‍ നിങ്ങള്‍ക്കധികാരമില്ല."
@@ -934,9 +936,9 @@ msgid_plural "%d files"
 msgstr[0] "%d ഫയല്‍"
 msgstr[1] "%d ഫയലുകള്‍"
 
-#: local_apps/pootle_app/views/language/item_dict.py:43
+#: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
-msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
+msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -944,11 +946,12 @@ msgstr ""
 msgid "%(translated)d/%(total)d strings"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:80
+#: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
-msgid "%(checks)d string, %(checkspercent)d%% failed"
-msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
+msgid "%(checks)d string (%(checkspercent)d%%) failed"
+msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
 msgid "Review Suggestions"
@@ -999,18 +1002,21 @@ msgstr ""
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
@@ -1019,6 +1025,7 @@ msgstr[0] ""
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 #, fuzzy
@@ -1030,6 +1037,7 @@ msgstr "ഈ പദ്ധതി കൈകാര്യം ചെയ്യുവാ
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
@@ -1248,8 +1256,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"ബഹുവചന വിവരങ്ങള്‍ ലഭ്യമല്ലാത്തതിനാല്‍ പരിഭാഷ നടത്തുവാന്‍ സാധ്യമല്ല. ദയവായി സൈറ്റ് കാര്യക്കാരനെ "
-"കാണുക."
+"ബഹുവചന വിവരങ്ങള്‍ ലഭ്യമല്ലാത്തതിനാല്‍ പരിഭാഷ നടത്തുവാന്‍ സാധ്യമല്ല. ദയവായി "
+"സൈറ്റ് കാര്യക്കാരനെ കാണുക."
 
 #: local_apps/pootle_app/views/language/translate_page.py:493
 msgid "Current Translation:"
@@ -1282,6 +1290,7 @@ msgstr "നിര്‍ദ്ദേശം:"
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
@@ -1303,13 +1312,6 @@ msgstr ""
 #, fuzzy
 msgid "You do not have rights to access view mode."
 msgstr "പരിഭാഷകള്‍ മാറ്റുവാനുള്ള അധികാരങ്ങള്‍ നിങ്ങള്‍ക്കില്ല"
-
-#: local_apps/pootle_app/views/language/translate_page.py:914
-#, python-format
-msgid ""
-"%(translated)d/%(total)d translated\n"
-"(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
-msgstr ""
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:947
@@ -1385,6 +1387,7 @@ msgstr ""
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_misc/dbinit.py:43
 msgid "Pootle: Install"
@@ -1878,7 +1881,8 @@ msgstr ""
 #: templates/registration/activation_email.txt:2
 #, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "ഈ ഈ-മെയ്‍ല്‍ വിലാസത്തിലേക്കായി ഒരു പൂട്ടില്‍ അക്കൌണ്ട് ഉണ്ടാക്കിയിരിക്കുന്നു.\n"
+msgstr "ഈ ഈ-മെയ്‍ല്‍ വിലാസത്തിലേക്കായി ഒരു പൂട്ടില്‍ അക്കൌണ്ട് "
+"ഉണ്ടാക്കിയിരിക്കുന്നു.\n"
 
 #: templates/registration/activation_email.txt:3
 #, fuzzy
@@ -1897,9 +1901,8 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr ""
-"ഈ-മെയില്‍ വിലാസം ശരിക്കുള്ളതാണോ എന്നെറിയാന്‍ അയച്ച സന്ദേശം ആണിത്. രജിസ്റ്റര്‍ ചെയ്യുവാന്‍ ആഗ്രഹം "
-"ഇല്ല എങ്കില്‍, ഇതിനെ പറ്റി മറന്നേക്കൂ. \n"
+msgstr "ഈ-മെയില്‍ വിലാസം ശരിക്കുള്ളതാണോ എന്നെറിയാന്‍ അയച്ച സന്ദേശം ആണിത്. "
+"രജിസ്റ്റര്‍ ചെയ്യുവാന്‍ ആഗ്രഹം ഇല്ല എങ്കില്‍, ഇതിനെ പറ്റി മറന്നേക്കൂ. \n"
 
 #: templates/registration/activation_email_subject.txt:2
 #, fuzzy
@@ -2006,6 +2009,26 @@ msgid ""
 "address you submitted. You should receive it shortly."
 msgstr ""
 
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:8
+#, python-format
+msgid "Your username is %(user)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:10
+msgid "Thank you for using Pootle!"
+msgstr ""
+
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
@@ -2018,11 +2041,8 @@ msgid "Email Address"
 msgstr "ഈ-മെയ്‍ല്‍ വിലാസം"
 
 #: templates/registration/registration_complete.html:5
-msgid "Registration Complete"
-msgstr ""
-
 #: templates/registration/registration_complete.html:9
-msgid "Registration Complete."
+msgid "Registration Complete"
 msgstr ""
 
 #: templates/registration/registration_complete.html:10

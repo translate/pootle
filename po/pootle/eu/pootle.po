@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-23 14:10+0200\n"
+"POT-Creation-Date: 2009-11-27 11:15+0200\n"
 "PO-Revision-Date: 2009-11-24 20:47+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -998,7 +998,7 @@ msgid_plural "%d files"
 msgstr[0] "fitxategi %d"
 msgstr[1] "%d fitxategi"
 
-#: local_apps/pootle_app/views/language/item_dict.py:43
+#: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr "%(total)d/%(translated)d hitz itzulita (%%%(translatedpercent)d)"
@@ -1008,7 +1008,7 @@ msgstr "%(total)d/%(translated)d hitz itzulita (%%%(translatedpercent)d)"
 msgid "%(translated)d/%(total)d strings"
 msgstr "%(total)d/%(translated)d kate"
 
-#: local_apps/pootle_app/views/language/item_dict.py:80
+#: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
@@ -1367,15 +1367,6 @@ msgstr "Emaitzen amaiera."
 #: local_apps/pootle_app/views/language/translate_page.py:884
 msgid "You do not have rights to access view mode."
 msgstr "Ez daukazu ikusteko modua atzitzeko baimenik."
-
-#: local_apps/pootle_app/views/language/translate_page.py:914
-#, python-format
-msgid ""
-"%(translated)d/%(total)d translated\n"
-"(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
-msgstr ""
-"%(total)d/%(translated)d itzulita\n"
-"(%(untranslated)d itzuli gabe, %(fuzzy)d zalantzan)"
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:947
@@ -2097,8 +2088,8 @@ msgstr "Zoaz ondorengo orrira eta aukeratu pasahitz berria:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
-msgid "Your username is %(user.username)s."
-msgstr "Zure erabiltzaile-izena %(user.username)s da."
+msgid "Your username is %(user)s."
+msgstr ""
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
@@ -2145,6 +2136,18 @@ msgstr "Kontua baduzula?"
 #: templates/registration/registration_form.html:41
 msgid "Log In."
 msgstr "Hasi saioa."
+
+#, python-format
+#~ msgid ""
+#~ "%(translated)d/%(total)d translated\n"
+#~ "(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
+#~ msgstr ""
+#~ "%(total)d/%(translated)d itzulita\n"
+#~ "(%(untranslated)d itzuli gabe, %(fuzzy)d zalantzan)"
+
+#, python-format
+#~ msgid "Your username is %(user.username)s."
+#~ msgstr "Zure erabiltzaile-izena %(user.username)s da."
 
 #~ msgid "Rank"
 #~ msgstr "Rankiña"

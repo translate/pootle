@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-23 14:10+0200\n"
+"POT-Creation-Date: 2009-11-27 11:15+0200\n"
 "PO-Revision-Date: 2009-11-24 15:38+0200\n"
 "Last-Translator: Pheledi <pheledi@mosekolatranslation.co.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -403,8 +403,9 @@ msgstr "Paletšwe ke go mpshafatša %s go dirišwa taolo ya kgatišo"
 
 #: local_apps/pootle_app/models/translation_project.py:273
 #, python-format
+#, fuzzy
 msgid "Updated file %s from version control"
-msgstr ""
+msgstr "Mpshafatša difaele tše %s go tšwa go taolo ya kgatišo"
 
 #: local_apps/pootle_app/models/translation_project.py:284
 #: local_apps/pootle_app/views/language/view.py:133
@@ -955,7 +956,7 @@ msgid_plural "%d files"
 msgstr[0] "faele e %d"
 msgstr[1] "difaele tše %d"
 
-#: local_apps/pootle_app/views/language/item_dict.py:43
+#: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr ""
@@ -965,7 +966,7 @@ msgstr ""
 msgid "%(translated)d/%(total)d strings"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:80
+#: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
@@ -1179,8 +1180,9 @@ msgid "You do not have rights to upload files here."
 msgstr "Ga o na ditokelo tša go laolla difaele mo"
 
 #: local_apps/pootle_app/views/language/tp_common.py:231
+#, fuzzy
 msgid "Update all from version control"
-msgstr ""
+msgstr "Mpshafatša difaele tše %s go tšwa go taolo ya kgatišo"
 
 #: local_apps/pootle_app/views/language/tp_common.py:246
 msgid "Upload"
@@ -1332,13 +1334,6 @@ msgstr ""
 msgid "You do not have rights to access view mode."
 msgstr "Ga o na ditokelo tša go fetoša diphetolelo mo"
 
-#: local_apps/pootle_app/views/language/translate_page.py:914
-#, python-format
-msgid ""
-"%(translated)d/%(total)d translated\n"
-"(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
-msgstr ""
-
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:947
 msgid "Original"
@@ -1397,8 +1392,9 @@ msgid "No suggestion data given."
 msgstr ""
 
 #: local_apps/pootle_app/views/language/view.py:284
+#, fuzzy
 msgid "Suggestion accepted."
-msgstr ""
+msgstr "Ditšhišinyo tše amogetšwego"
 
 #: local_apps/pootle_app/views/project/project_admin.py:40
 msgid "Update from templates"
@@ -1797,12 +1793,14 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/edit_personal.html:19
+#, fuzzy
 msgid "First Name"
-msgstr ""
+msgstr "Leina"
 
 #: templates/profiles/edit_personal.html:24
+#, fuzzy
 msgid "Last Name"
-msgstr ""
+msgstr "Sefane"
 
 #: templates/profiles/edit_personal.html:29
 #, fuzzy
@@ -1874,12 +1872,14 @@ msgid "Profiles list"
 msgstr ""
 
 #: templates/profiles/profile_list.html:12
+#, fuzzy
 msgid "First name"
-msgstr ""
+msgstr "Leina"
 
 #: templates/profiles/profile_list.html:13
+#, fuzzy
 msgid "Last name"
-msgstr ""
+msgstr "Sefane"
 
 #: templates/registration/activate.html:5
 #: templates/registration/password_change_done.html:5
@@ -2038,7 +2038,7 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
-msgid "Your username is %(user.username)s."
+msgid "Your username is %(user)s."
 msgstr ""
 
 #: templates/registration/password_reset_email.html:10
@@ -2074,8 +2074,9 @@ msgid "Fill in the following form to get started translating."
 msgstr ""
 
 #: templates/registration/registration_form.html:30
+#, fuzzy
 msgid "Password (again)"
-msgstr ""
+msgstr "lentšuphetišo (gape)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"

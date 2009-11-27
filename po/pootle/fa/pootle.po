@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 01:27+0200\n"
+"POT-Creation-Date: 2009-11-27 11:15+0200\n"
 "PO-Revision-Date: 2008-08-29 11:11+0000\n"
 "Last-Translator: Mohammad Ebrahim Mohammadi Panah <mebrahim@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -852,6 +852,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "شما حق مدیریت پوتل را ندارید."
 
 #: local_apps/pootle_app/views/admin/util.py:50
+#, python-format
 #, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "شما حق مدیریت پوتل را ندارید."
@@ -930,9 +931,9 @@ msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d پرونده"
 
-#: local_apps/pootle_app/views/language/item_dict.py:43
+#: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
-msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
+msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -940,10 +941,10 @@ msgstr ""
 msgid "%(translated)d/%(total)d strings"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:80
+#: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
-msgid "%(checks)d string, %(checkspercent)d%% failed"
-msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
+msgid "%(checks)d string (%(checkspercent)d%%) failed"
+msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
@@ -1245,8 +1246,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"ترجمه ممکن نیست، زیرا اطلاعات حالت جمع برای زبان شما در اختیار نیست. لطفاً با "
-"مدیر سایت تماس بگیرید."
+"ترجمه ممکن نیست، زیرا اطلاعات حالت جمع برای زبان شما در اختیار نیست. لطفاً "
+"با مدیر سایت تماس بگیرید."
 
 #: local_apps/pootle_app/views/language/translate_page.py:493
 msgid "Current Translation:"
@@ -1300,13 +1301,6 @@ msgstr ""
 #, fuzzy
 msgid "You do not have rights to access view mode."
 msgstr "شما این جا حق تغییر دادن ترجمه‌ها را ندارید"
-
-#: local_apps/pootle_app/views/language/translate_page.py:914
-#, python-format
-msgid ""
-"%(translated)d/%(total)d translated\n"
-"(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
-msgstr ""
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:947
@@ -1894,8 +1888,7 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr ""
-"این پیغام برای حصول اطمینان از صحت نشانی رایانامه فرستاده شده است. اگر شما "
+msgstr "این پیغام برای حصول اطمینان از صحت نشانی رایانامه فرستاده شده است. اگر شما "
 "نمی‌خواستید حسابی ثبت کنید می‌توانید به سادگی این پیغام را نادیده بگیرید.\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -2003,6 +1996,26 @@ msgid ""
 "address you submitted. You should receive it shortly."
 msgstr ""
 
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:8
+#, python-format
+msgid "Your username is %(user)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:10
+msgid "Thank you for using Pootle!"
+msgstr ""
+
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
@@ -2015,11 +2028,8 @@ msgid "Email Address"
 msgstr "نشانی رایانامه"
 
 #: templates/registration/registration_complete.html:5
-msgid "Registration Complete"
-msgstr ""
-
 #: templates/registration/registration_complete.html:9
-msgid "Registration Complete."
+msgid "Registration Complete"
 msgstr ""
 
 #: templates/registration/registration_complete.html:10

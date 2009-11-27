@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-23 14:10+0200\n"
+"POT-Creation-Date: 2009-11-27 11:15+0200\n"
 "PO-Revision-Date: 2009-11-21 09:57+0200\n"
 "Last-Translator: Tom <nednilrev@mail.ru>\n"
 "Language-Team: TT(Tom's Team)<verlinden.tom@gmail.com>\n"
@@ -1002,7 +1002,7 @@ msgid_plural "%d files"
 msgstr[0] "%d bestand"
 msgstr[1] "%d bestanden"
 
-#: local_apps/pootle_app/views/language/item_dict.py:43
+#: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr "%(translated)d/%(total)d woorden (%(translatedpercent)d%%) vertaald"
@@ -1012,7 +1012,7 @@ msgstr "%(translated)d/%(total)d woorden (%(translatedpercent)d%%) vertaald"
 msgid "%(translated)d/%(total)d strings"
 msgstr "%(translated)d/%(total)d tekenreeksen"
 
-#: local_apps/pootle_app/views/language/item_dict.py:80
+#: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
@@ -1377,15 +1377,6 @@ msgstr "Einde resultaten."
 #: local_apps/pootle_app/views/language/translate_page.py:884
 msgid "You do not have rights to access view mode."
 msgstr "U hebt niet de nodige rechten voor toegang tot de bekijkmodus."
-
-#: local_apps/pootle_app/views/language/translate_page.py:914
-#, python-format
-msgid ""
-"%(translated)d/%(total)d translated\n"
-"(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
-msgstr ""
-"%(translated)d/%(total)d vertaald\n"
-"(%(untranslated)d onvertaald, %(fuzzy)d wazig)"
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:947
@@ -2115,8 +2106,8 @@ msgstr "Ga a.u.b. naar de volgende pagina en kies een nieuw wachtwoord:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
-msgid "Your username is %(user.username)s."
-msgstr "Uw gebruikersnaam is %(user.username)s."
+msgid "Your username is %(user)s."
+msgstr ""
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
@@ -2163,6 +2154,18 @@ msgstr "Hebt u al een account?"
 #: templates/registration/registration_form.html:41
 msgid "Log In."
 msgstr "Meld u aan."
+
+#, python-format
+#~ msgid ""
+#~ "%(translated)d/%(total)d translated\n"
+#~ "(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
+#~ msgstr ""
+#~ "%(translated)d/%(total)d vertaald\n"
+#~ "(%(untranslated)d onvertaald, %(fuzzy)d wazig)"
+
+#, python-format
+#~ msgid "Your username is %(user.username)s."
+#~ msgstr "Uw gebruikersnaam is %(user.username)s."
 
 #~ msgid "General options"
 #~ msgstr "Algemene opties"

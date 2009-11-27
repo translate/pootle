@@ -3,15 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 01:27+0200\n"
+"POT-Creation-Date: 2009-11-27 11:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==0 || ( n%100>1 && n%"
-"100<11) ? 1 : (n%100>10 && n%100<20 ) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==0 || ( n%100>1 && n%100<11) "
+"? 1 : (n%100>10 && n%100<20 ) ? 2 : 3);\n"
 "X-Generator: Pootle 0.10rc1\n"
 
 #: strings.py:8
@@ -856,6 +856,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "M'għandekx jedd tamministra lil pootle."
 
 #: local_apps/pootle_app/views/admin/util.py:50
+#, python-format
 #, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "M'għandekx jedd tamministra lil pootle."
@@ -937,9 +938,9 @@ msgstr[1] "%d fajls"
 msgstr[2] "%d-il fajl"
 msgstr[3] "%d fajl"
 
-#: local_apps/pootle_app/views/language/item_dict.py:43
+#: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
-msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
+msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -947,10 +948,10 @@ msgstr ""
 msgid "%(translated)d/%(total)d strings"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:80
+#: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
-msgid "%(checks)d string, %(checkspercent)d%% failed"
-msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
+msgid "%(checks)d string (%(checkspercent)d%%) failed"
+msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -1327,13 +1328,6 @@ msgstr ""
 #, fuzzy
 msgid "You do not have rights to access view mode."
 msgstr "M'għandekx jedd tibdel traduzzjonijiet hawn"
-
-#: local_apps/pootle_app/views/language/translate_page.py:914
-#, python-format
-msgid ""
-"%(translated)d/%(total)d translated\n"
-"(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
-msgstr ""
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:947
@@ -1921,8 +1915,7 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr ""
-"Dan il-messaġġ intbagħat biex jivverifika li l-indirizz ta' l-imejl huwa "
+msgstr "Dan il-messaġġ intbagħat biex jivverifika li l-indirizz ta' l-imejl huwa "
 "korrett. Jekk ma xtaqtx tirreġistra kont, tista' tinjora dan il-messaġġ.\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -2029,6 +2022,26 @@ msgid ""
 "address you submitted. You should receive it shortly."
 msgstr ""
 
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:8
+#, python-format
+msgid "Your username is %(user)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:10
+msgid "Thank you for using Pootle!"
+msgstr ""
+
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
@@ -2041,11 +2054,8 @@ msgid "Email Address"
 msgstr "Indirizz tal-imejl"
 
 #: templates/registration/registration_complete.html:5
-msgid "Registration Complete"
-msgstr ""
-
 #: templates/registration/registration_complete.html:9
-msgid "Registration Complete."
+msgid "Registration Complete"
 msgstr ""
 
 #: templates/registration/registration_complete.html:10

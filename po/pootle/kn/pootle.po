@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 01:27+0200\n"
+"POT-Creation-Date: 2009-11-27 11:15+0200\n"
 "PO-Revision-Date: 2009-01-20 04:38+0200\n"
 "Last-Translator: Raghunath K <iLoveKannada@in.com>\n"
 "Language-Team: Shankar Gowda MBN <kn@li.org>\n"
@@ -94,6 +94,7 @@ msgstr ""
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
+msgstr[1] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -854,6 +855,7 @@ msgid "You do not have rights to administer Pootle."
 msgstr "ನಮ್ಮಲ್ಲಿ ಪುಟಲ್ ನ ನಿರ್ವಹಣೆಗೆ ಹಕ್ಕುಗಿಲ್ಲ."
 
 #: local_apps/pootle_app/views/admin/util.py:50
+#, python-format
 #, fuzzy, python-format
 msgid "You do not have rights to administer %s."
 msgstr "ನಮ್ಮಲ್ಲಿ ಪುಟಲ್ ನ ನಿರ್ವಹಣೆಗೆ ಹಕ್ಕುಗಿಲ್ಲ."
@@ -933,9 +935,9 @@ msgid_plural "%d files"
 msgstr[0] "%d ಕಡತ"
 msgstr[1] "%d ಕಡತಗಳು "
 
-#: local_apps/pootle_app/views/language/item_dict.py:43
+#: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
-msgid "%(translated)d/%(total)d words, %(translatedpercent)d%% translated"
+msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -943,11 +945,12 @@ msgstr ""
 msgid "%(translated)d/%(total)d strings"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:80
+#: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
-msgid "%(checks)d string, %(checkspercent)d%% failed"
-msgid_plural "%(checks)d strings, %(checkspercent)d%% failed"
+msgid "%(checks)d string (%(checkspercent)d%%) failed"
+msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:98
 msgid "Review Suggestions"
@@ -998,18 +1001,21 @@ msgstr ""
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:224
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:225
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:251
 #: local_apps/pootle_app/views/language/language_index.py:57
@@ -1018,6 +1024,7 @@ msgstr[0] ""
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 #, fuzzy
@@ -1029,6 +1036,7 @@ msgstr "ನಮ್ಮಲ್ಲಿ ಪುಟಲ್ ನ ನಿರ್ವಹಣೆಗ
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
@@ -1165,7 +1173,8 @@ msgstr ""
 #: local_apps/pootle_app/views/language/tp_common.py:251
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr "ಚಾಲ್ತಿ ಕಡಿತವನ್ನು ವಿಲೀನಗೊಳಿಸಿ ಮತ್ತು ತಿಕ್ಕಾಟ ರಚನೆಗಳನ್ನೂ ಸೂಚನೆಯಾಗಿ ಪರಿವರ್ತಿಸು"
+msgstr ""
+"ಚಾಲ್ತಿ ಕಡಿತವನ್ನು ವಿಲೀನಗೊಳಿಸಿ ಮತ್ತು ತಿಕ್ಕಾಟ ರಚನೆಗಳನ್ನೂ ಸೂಚನೆಯಾಗಿ ಪರಿವರ್ತಿಸು"
 
 #: local_apps/pootle_app/views/language/tp_common.py:252
 msgid "Overwrite the current file if it exists"
@@ -1236,6 +1245,7 @@ msgstr "ಬಹುವಚನ"
 #: local_apps/pootle_app/views/language/translate_page.py:489
 #: local_apps/pootle_app/views/language/translate_page.py:526
 #: local_apps/pootle_app/views/language/translate_page.py:601
+#, python-format
 #, fuzzy, python-format
 msgid "Plural Form %d"
 msgstr "ಬಹುವಚನ ಬರುವ"
@@ -1247,8 +1257,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"ನಮ್ಮ ಭಾಷೆಯಲ್ಲಿ ಬಹುವಚನಗಳು ಇಲ್ಲದ ಕಾರಣ, ಪದಗಳನ್ನು ಭಾಷಾಂತರಿಸಲು ಸಾದ್ಯವಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು "
-"ಸೈಟೆ ನಿರ್ವಾಹಕನ್ನು ಸಂಪರ್ಕಿಸಿ."
+"ನಮ್ಮ ಭಾಷೆಯಲ್ಲಿ ಬಹುವಚನಗಳು ಇಲ್ಲದ ಕಾರಣ, ಪದಗಳನ್ನು ಭಾಷಾಂತರಿಸಲು ಸಾದ್ಯವಾಗುತ್ತಿಲ್ಲ. "
+"ದಯವಿಟ್ಟು ಸೈಟೆ ನಿರ್ವಾಹಕನ್ನು ಸಂಪರ್ಕಿಸಿ."
 
 #: local_apps/pootle_app/views/language/translate_page.py:493
 msgid "Current Translation:"
@@ -1281,6 +1291,7 @@ msgstr "ಸೂಚನೆ :"
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:865
 msgid "End of Quick Translate."
@@ -1302,13 +1313,6 @@ msgstr ""
 #, fuzzy
 msgid "You do not have rights to access view mode."
 msgstr "ಇಲ್ಲಿ ನಮ್ಮ ಭಾಷಾಂತರಿಸಿದ ಪದಗಳನ್ನು ಬದಲಾವಣೆಮಾಡಲು ಅನುಮತಿಯಿಲ್ಲ"
-
-#: local_apps/pootle_app/views/language/translate_page.py:914
-#, python-format
-msgid ""
-"%(translated)d/%(total)d translated\n"
-"(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
-msgstr ""
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:947
@@ -1384,6 +1388,7 @@ msgstr ""
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_misc/dbinit.py:43
 msgid "Pootle: Install"
@@ -1896,9 +1901,8 @@ msgstr ""
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr ""
-"ಈ ಸಂದೇಶವು ಸತ್ಯಶೊಧನೆಗೆ ಪ್ರಮಾನಿಸಲು ನಿಮ್ಮ ವಿದ್ಯುನ್ಮಾಮ ಅಂಚೆಗೆ ಕಳುಹಿಸಲಾಗಿದೆ. ನಿಮ್ಮ "
-"ಖಾತೆಯನ್ನು ನೋಂದಾವಣಿ ಮಾಡುತ್ತಿದ್ದರೆ, ಈ ಸಂದೇಶವನ್ನು ಅಲಕ್ಷಿಯ ಮಾಡಬಹುದು.\n"
+msgstr "ಈ ಸಂದೇಶವು ಸತ್ಯಶೊಧನೆಗೆ ಪ್ರಮಾನಿಸಲು ನಿಮ್ಮ ವಿದ್ಯುನ್ಮಾಮ ಅಂಚೆಗೆ ಕಳುಹಿಸಲಾಗಿದೆ. "
+"ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನೋಂದಾವಣಿ ಮಾಡುತ್ತಿದ್ದರೆ, ಈ ಸಂದೇಶವನ್ನು ಅಲಕ್ಷಿಯ ಮಾಡಬಹುದು.\n"
 
 #: templates/registration/activation_email_subject.txt:2
 #, fuzzy
@@ -2005,6 +2009,26 @@ msgid ""
 "address you submitted. You should receive it shortly."
 msgstr ""
 
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:8
+#, python-format
+msgid "Your username is %(user)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:10
+msgid "Thank you for using Pootle!"
+msgstr ""
+
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
@@ -2017,11 +2041,8 @@ msgid "Email Address"
 msgstr "ವಿದ್ಯುನ್ಮಾಮ ಅಂಚೆಯ ವಿಳಾಸ"
 
 #: templates/registration/registration_complete.html:5
-msgid "Registration Complete"
-msgstr ""
-
 #: templates/registration/registration_complete.html:9
-msgid "Registration Complete."
+msgid "Registration Complete"
 msgstr ""
 
 #: templates/registration/registration_complete.html:10
