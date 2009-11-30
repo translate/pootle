@@ -760,6 +760,17 @@ p.about
     list-style-position: inside;
 }
 
+.documentation ol li
+{
+    list-style-type: inherit;
+    list-style-position: inside;
+}
+
+p.top
+{
+    margin-left: 2em;
+}
+
 
 /*
  * TABBED MENU
