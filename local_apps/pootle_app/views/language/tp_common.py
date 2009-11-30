@@ -245,17 +245,21 @@ class UpdateHandler(view_handler.Handler):
 class UploadHandler(view_handler.Handler):
     actions = [('do_upload', _('Upload'))]
 
-    class Form(forms.Form):
-        file = forms.FileField(required=True, label=_('File'))
-        overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect, label='',
-                                      choices=[('merge', _("Merge the file with the current file and turn conflicts into suggestions")),
-                                               ('overwrite',  _("Overwrite the current file if it exists")),
-                                               ('suggest', _("Add all new translations as suggestions"))])
     @classmethod
     def must_display(cls, request, *args, **kwargs):
         return check_permission('translate', request)
 
     def __init__(self, request, data=None, files=None):
+        choices = [('merge', _("Merge the file with the current file and turn conflicts into suggestions")),
+                   ('suggest', _("Add all new translations as suggestions"))]
+        if check_permission('overwrite', request):
+            choices.insert(0, ('overwrite',  _("Overwrite the current file if it exists")))
+
+        class UploadForm(forms.Form):
+            file = forms.FileField(required=True, label=_('File'))
+            overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect, label='', choices=choices)
+            
+        self.Form = UploadForm
         super(UploadHandler, self).__init__(request, data, files)
         self.form.allow_overwrite = check_permission('overwrite', request)
         self.form.title = _("Upload File")
