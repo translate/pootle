@@ -53,6 +53,12 @@ Directory contents
 
   + jquery/
 
+    - jquery.bidi.js:
+      jQuery plugin used to automatically set line direction of news
+      item based on their content.
+
+      http://plugins.jquery.com/project/bidi
+
     - jquery.textarea-expander.js :
       jQuery plugin used in the translate page textareas.
 
