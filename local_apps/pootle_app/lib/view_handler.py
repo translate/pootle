@@ -38,12 +38,12 @@ class View(object):
         template_vars = {}
         for form_name, form_class in self.forms.iteritems():
             if form_class.must_display(request, *args, **kwargs):
-                template_vars[form_name] = form_class(None, request, *args, **kwargs)
+                template_vars[form_name] = form_class(request)
             else:
                 template_vars[form_name] = None
         if request.method == 'POST':
             action = self.find_post_handler_action(request)
-            form = self.handlers[action](request.POST, request, *args, **kwargs)
+            form = self.handlers[action](request, data=request.POST, files=request.FILES)
             template_vars.update(form.dispatch(action, request, *args, **kwargs))
         return self.GET(template_vars, request, *args, **kwargs)
 
@@ -60,11 +60,8 @@ class Handler(object):
     def must_display(cls, request, *args, **kwargs):
         return True
 
-    def __init__(self, data, request, *args, **kwargs):
-        self.form = self.Form(data=data, initial=self.initial(request, *args, **kwargs))
-
-    def initial(self, request, *args, **kwargs):
-        return {}
+    def __init__(self, request, data=None, files=None):
+        self.form = self.Form(data=data, files=files)
 
     def dispatch(self, action, request, *args, **kwargs): 
         handler = getattr(self, action)

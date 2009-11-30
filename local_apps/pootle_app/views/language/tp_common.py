@@ -255,8 +255,8 @@ class UploadHandler(view_handler.Handler):
     def must_display(cls, request, *args, **kwargs):
         return check_permission('translate', request)
 
-    def __init__(self, data, request, *args, **kwargs):
-        super(UploadHandler, self).__init__(data, request, *args, **kwargs)
+    def __init__(self, request, data=None, files=None):
+        super(UploadHandler, self).__init__(request, data, files)
         self.form.allow_overwrite = check_permission('overwrite', request)
         self.form.title = _("Upload File")
 
