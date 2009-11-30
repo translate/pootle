@@ -180,7 +180,7 @@ class AdminTests(PootleTestCase):
         
         response = self.client.get("/fish/")
         self.assertContains(response, '<a href="/fish/">fish</a>')
-        self.assertContains(response, '<a href="pootle/">Pootle</a>')
+        self.assertContains(response, '<a href="/fish/pootle/">Pootle</a>')
         self.assertContains(response, "1 project, 0% translated")
 
     def test_upload_new_file(self):
