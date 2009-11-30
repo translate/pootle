@@ -732,9 +732,32 @@ html[dir="rtl"] .module-primary .hd h2
 /*
  * ABOUT PAGE
  */
+
 p.about
 {
     margin-bottom: 1em;
+}
+
+
+/*
+ * DOCUMENTATION
+ */
+
+.documentation
+{
+    margin: 2em;
+}
+
+.documentation p
+{
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+.documentation ul li
+{
+    list-style-type: square;
+    list-style-position: inside;
 }
 
 
