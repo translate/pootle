@@ -69,10 +69,10 @@ def view(request):
 
                 if request.session.test_cookie_worked():
                     request.session.delete_test_cookie()
-
-                language = request.POST.get('language') # FIXME: validation missing
+                    
+                language = request.POST.get('language')
+                request.session['django_language'] = language
                 response = redirect_after_login(request)
-                response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
                 return response
         else:
             form = LangAuthenticationForm(request)
