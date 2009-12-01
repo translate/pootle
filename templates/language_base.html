@@ -3,7 +3,7 @@
 {% load baseurl i18n %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle and language.name as langname %}{{ prevtitle }}: {{ langname }}{% endblocktrans %}
+{{ block.super }}: {{ language.name }}
 {% endblock %}
 
 {% block extra_head %}

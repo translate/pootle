@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }}: Projects{% endblocktrans %}
+{{ block.super }}: {% trans "Projects" %}
 {% endblock %}
 
 {% block breadcrumbs %}

@@ -2,13 +2,13 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Projects{% endblocktrans %}
+{{ block.super }} » {% trans "Projects" %}
 {% endblock %}
 
 {% block bodyclass %}adminprojects{% endblock %}
 
 {% block breadcrumb_content %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Projects{% endblocktrans %}
+{{ block.super }} » {% trans "Projects" %}
 {% endblock %}
 
 {% block section_description %}{% trans "Here you can add, edit, and delete all the available projects in this Pootle server." %}{% endblock %}

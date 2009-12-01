@@ -2,13 +2,13 @@
 {% load i18n %}
  
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Translation Settings{% endblocktrans %}
+{{ block.super }} » {% trans "Translation Settings" %}
 {% endblock %}
 
 {% block bodyclass %}settings{% endblock %}
 
 {% block breadcrumb_content %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Translation Settings{% endblocktrans %}
+{{ block.super }} » {% trans "Translation Settings" %}
 {% endblock %}
 
 {% block section_description %}{% trans "Here you can configure the settings related to the translation interface as well as your language preferences." %}{% endblock %}

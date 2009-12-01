@@ -6,7 +6,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle and project.name as projectname %}{{ prevtitle }} » {{ projectname }}{% endblocktrans %}
+{{ block.super }} » {{ project.name }}
 {% endblock %}
 
 {% block body.id %}projectindex{% endblock body.id %}

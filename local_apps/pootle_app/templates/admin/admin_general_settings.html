@@ -2,13 +2,13 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » General Settings{% endblocktrans %}
+{{ block.super }} » {% trans "General Settings" %}
 {% endblock %}
 
 {% block bodyclass %}admingeneral{% endblock %}
 
 {% block breadcrumb_content %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » General Settings{% endblocktrans %}
+{{ block.super }} » {% trans "General Settings" %}
 {% endblock %}
 
 {% block section_description %}{% trans "Configure here the general settings for your site." %}{% endblock %}

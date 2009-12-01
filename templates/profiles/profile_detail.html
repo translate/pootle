@@ -3,9 +3,9 @@
 
 {% block title %}
 {% ifequal user profile.user %}
-    {% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Dashboard{% endblocktrans %}
+    {{ block.super }} » {% trans "Dashboard" %}
 {% else %}
-    {% blocktrans with settings.TITLE as prevtitle and profile.user as username %}{{ prevtitle }}: Users » {{ username }}{% endblocktrans %}
+    {{ settings.TITLE }}: {% trans "Users" %} » {{ username }}
 {% endifequal %}
 {% endblock %}
 
@@ -13,7 +13,7 @@
 
 {% block breadcrumb_content %}
 {% ifequal user profile.user %}
-    {% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Dashboard{% endblocktrans %}
+    {{ block.super }} » {% trans "Dashboard" %}
 {% else %}
     {{ profile.user }}
 {% endifequal %}

@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }}: My Account{% endblocktrans %}
+{{ block.super }}: {% trans "My Account" %}
 {% endblock %}
 
 {% block breadcrumbs %}

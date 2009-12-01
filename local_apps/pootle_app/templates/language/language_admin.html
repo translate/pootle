@@ -3,7 +3,7 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Permissions{% endblocktrans %}
+{{ block.super }} » {% trans "Permissions" %}
 {% endblock %}
 
 {% block bodyclass %}languageadmin{% endblock %}

@@ -4,7 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }}: About{% endblocktrans %}
+{{ block.super }}: {% trans "About" %}
 {% endblock %}
 
 {% block body.id %}about{% endblock body.id %}

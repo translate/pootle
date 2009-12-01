@@ -3,7 +3,7 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Files{% endblocktrans %}
+{{ block.super }} » {% trans "Files" %}
 {% endblock %}
 
 {% block bodyclass %}tpadminfiles{% endblock %}

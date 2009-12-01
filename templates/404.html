@@ -2,7 +2,7 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }}: Page Not Found{% endblocktrans %}
+{{ block.super }}: {% trans "Page Not Found" %}
 {% endblock %}
 
 {% block content %}

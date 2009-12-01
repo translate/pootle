@@ -2,9 +2,9 @@
 
 {% for item in navitems %}
     {% if item.path.language %}<a href="{{ item.path.language.href|l }}">{{ item.path.language.text }}</a>{% endif %}
-    {% if item.path.project %}{% trans " » " %}<a href="{{ item.path.project.href|l }}">{{ item.path.project.text }}</a>{% endif %}
+    {% if item.path.project %} » <a href="{{ item.path.project.href|l }}">{{ item.path.project.text }}</a>{% endif %}
     {% for pathlink in item.path.pathlinks %}
-    {% if forloop.first %}{% trans " » " %}{% endif %}
+    {% if forloop.first %} » {% endif %}
     <a href="{{ pathlink.href|l }}">{{ pathlink.text }}</a>{{ pathlink.sep }}
     {% endfor %}
 {% endfor %}

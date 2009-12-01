@@ -2,13 +2,13 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Languages{% endblocktrans %}
+{{ block.super }} » {% trans "Languages" %}
 {% endblock %}
 
 {% block bodyclass %}adminlanguages{% endblock %}
 
 {% block breadcrumb_content %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Languages{% endblocktrans %}
+{{ block.super }} » {% trans "Languages" %}
 {% endblock %}
 
 {% block section_description %}{% trans "Here you can add, edit, and delete all the available languages in this Pootle server." %}{% endblock %}

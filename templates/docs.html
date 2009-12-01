@@ -2,7 +2,7 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }}: Help{% endblocktrans %}
+{{ block.super }}: {% trans "Help" %}
 {% endblock %}
 
 {% block content %}

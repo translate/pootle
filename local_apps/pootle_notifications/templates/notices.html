@@ -12,9 +12,9 @@ approach for this.
 
 {% block title %}
 {% if is_language %}
-{% blocktrans with block.super as prevtitle and language.name as langname %}{{ prevtitle }}: {{ langname }} » News{% endblocktrans %}
+{{ block.super }}: {{ language.name }} » {% trans "News" %}
 {% else %}
-{% blocktrans with block.super as prevtitle and navitems.0.path.language.text as langname and navitems.0.path.project.text as projectname %}{{ prevtitle }}: {{ langname }} » {{ projectname }} » News{% endblocktrans %}
+{{ block.super }}: {{ navitems.0.path.language.text }} » {{ navitems.0.path.project.text }} » {% trans "News" %}
 {% endif %}
 {% endblock %}
 

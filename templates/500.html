@@ -2,7 +2,7 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }}: Server Error{% endblocktrans %}
+{{ block.super }}: {% trans "Server Error" %}
 {% endblock %}
 
 {% block content %}

@@ -2,13 +2,13 @@
 {% load i18n %}
  
 {% block title %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Profile{% endblocktrans %}
+{{ block.super }} » {% trans "Profile" %}
 {% endblock %}
 
 {% block bodyclass %}profile{% endblock %}
 
 {% block breadcrumb_content %}
-{% blocktrans with block.super as prevtitle %}{{ prevtitle }} » Profile{% endblocktrans %}
+{{ block.super }} » {% trans "Profile" %}
 {% endblock %}
 
 {% block section_description %}{% trans "Here you can change your personal details. This information will be used in the header of the translation files." %}{% endblock %}

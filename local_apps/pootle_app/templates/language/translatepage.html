@@ -6,7 +6,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block title %}
-{% blocktrans with block.super as prevtitle and title_path as filepath %}{{ prevtitle }} » Translate » {{ filepath }}{% endblocktrans %}
+{{ block.super }} » {% trans "Translate" %} » {{ title_path }}
 {% endblock %}
 
 {% block body.id %}translatepage{% endblock body.id %}
