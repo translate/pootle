@@ -76,6 +76,13 @@ def lang_choices():
     return choices
 
 
+def get_lang_from_session(request, supported):
+    if hasattr(request, 'session'):
+        lang_code = request.session.get('django_language', None)
+        if lang_code and lang_code in supported:
+            return lang_code
+    return None
+
 def get_lang_from_cookie(request, supported):
     """See if the user's browser sent a cookie with a her preferred
     language."""
@@ -125,7 +132,8 @@ def get_language_from_request(request):
 
     If all fails, try fall back to default language."""
     supported = dict(supported_langs())
-    for lang_getter in (get_lang_from_cookie,
+    for lang_getter in (get_lang_from_session,
+                        get_lang_from_cookie,
                         get_lang_from_prefs,
                         get_lang_from_http_header):
         lang = lang_getter(request, supported)
