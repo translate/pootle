@@ -141,7 +141,7 @@ def test_debug():
 
 def test_webserver():
     """test that webserver is apache"""
-    return 'apache' in sys.modules or '_apache' in sys.modules
+    return 'apache' in sys.modules or '_apache' in sys.modules or 'mod_wsgi' in sys.modules
 
 def test_livetranslation():
     return not settings.LIVE_TRANSLATION
