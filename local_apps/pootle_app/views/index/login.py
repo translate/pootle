@@ -54,16 +54,9 @@ def language_list(request):
 
 
 def view(request):
-    request_code = data.normalize_code(request.LANGUAGE_CODE)
-    if request_code in ["en", "en-us", settings.LANGUAGE_CODE]:
-        preferred_language = ""
-    else:
-        preferred_language = request_code
-
     class LangAuthenticationForm(AuthenticationForm):
         language = forms.ChoiceField(label=_('Interface Language'), choices=language_list(request),
-                                     initial=preferred_language, required=False)
-
+                                     initial="", required=False)
 
     if request.user.is_authenticated():
         return redirect_after_login(request)
