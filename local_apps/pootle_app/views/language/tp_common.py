@@ -257,7 +257,8 @@ class UploadHandler(view_handler.Handler):
 
         class UploadForm(forms.Form):
             file = forms.FileField(required=True, label=_('File'))
-            overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect, label='', choices=choices)
+            overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect,
+                                          label='', choices=choices, initial='merge')
             
         self.Form = UploadForm
         super(UploadHandler, self).__init__(request, data, files)
