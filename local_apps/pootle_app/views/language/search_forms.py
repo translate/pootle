@@ -20,7 +20,7 @@
 
 """Helper methods for search functionality."""
 
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.utils.safestring import mark_safe
 from pootle_app.models.search import Search
