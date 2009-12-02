@@ -45,6 +45,8 @@ def make_language_item(request, translation_project):
         'href': href,
         'title': tr_lang(translation_project.language.fullname),
         'data': projectstats,
+        'tooltip': _('%(percentage)d%% complete' %
+                     {'percentage': projectstats['translatedpercentage']})
     }
     errors = projectstats.get('errors', 0)
     if errors:

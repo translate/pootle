@@ -51,6 +51,8 @@ def make_project_item(translation_project):
         'description': project.description,
         'data': projectstats,
         'isproject': True,
+        'tooltip': _('%(percentage)d%% complete' %
+                     {'percentage': projectstats['translatedpercentage']})
     }
     errors = projectstats.get('errors', 0)
     if errors:
