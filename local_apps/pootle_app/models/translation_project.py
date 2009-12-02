@@ -517,7 +517,7 @@ class TranslationProject(models.Model):
 
 def stats_message(version, stats):
     return "%s: %d of %d messages translated (%d fuzzy)." % \
-           (version, stats["translated"], stats["total"], stats["fuzzy"])
+           (version, stats.get("translated", 0), stats.get("total", 0), stats.get("fuzzy", 0))
 
 def set_data(sender, instance, **kwargs):
     project_dir = instance.project.get_real_path()
