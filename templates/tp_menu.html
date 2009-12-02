@@ -8,7 +8,7 @@
         <a href='{{ "notices"|l }}' class="tpnews" title="{% trans 'Translation project news' %}">{% trans "News" %}</a>
         <a href='{{ "edit.html"|l }}' class="tptranslate" title="{% trans 'Translate this project' %}">{% trans "Translate" %}</a>
         <a href='{{ "review.html"|l }}' class="tpreview" title="{% trans 'Quality checks and review suggestions' %}">{% trans "Review" %}</a>
-        {% if request.permissions.administrate %}
+        {% if user.is_superuser or request.permissions.administrate %}
         <a href='{{ "admin_permissions.html"|l }}' class="tpadminpermissions admintab" title="{% trans 'Administrate your project permissions' %}">{% trans "Permissions" %}</a>
         <a href='{{ "admin_files.html"|l }}' class="tpadminfiles admintab" title="{% trans 'Administrate your project files' %}">{% trans "Files" %}</a>
         {% endif %}
