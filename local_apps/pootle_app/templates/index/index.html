@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load i18n baseurl notification_tags %}
+{% load i18n baseurl notification_tags cleanhtml %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -12,7 +12,7 @@
 {% block body.id %}frontpage{% endblock body.id %}
 
 {% block precontent %}
-<div class="intro">{{ description|safe }}</div>
+<div class="intro">{{ description|safe|linebreaks|clean }}</div>
 {% endblock precontent %}
 
 {% block content %}

@@ -1,6 +1,6 @@
 {% extends "project_base.html" %}
 
-{% load i18n baseurl %}
+{% load i18n baseurl cleanhtml %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -19,7 +19,7 @@
 
 {% block content %}
 <div class="intro">
-    {{ description|safe }}
+    {{ description|safe|linebreaks|clean }}
 </div>
 
 <div class="item-statistics" lang="{{ LANGUAGE_CODE }}">{{ project.stats }}</div>
