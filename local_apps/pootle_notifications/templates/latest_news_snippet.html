@@ -3,7 +3,7 @@
 <ul>
 {% if news_items %}
     {% for item in news_items %}
-    <li>{{ item.message|clean }}</li>
+    <li class="newsitem">{{ item.message|clean }}</li>
     {% endfor %}
 {% else %}
     <li>{% trans "No news yet." %}</li>
