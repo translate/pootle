@@ -1,6 +1,6 @@
 {% extends "tp_base_extended.html" %}
 
-{% load i18n %}
+{% load i18n baseurl %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -65,3 +65,8 @@
 
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
+
+{% block scripts_extra %}
+{{ block.super }}
+<script type="text/javascript" src='{{ "js/sorttable.js"|m }}'></script>
+{% endblock %}

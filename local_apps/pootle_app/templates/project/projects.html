@@ -55,4 +55,6 @@
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
 
-
+{% block scripts_extra %}
+<script type="text/javascript" src='{{ "js/sorttable.js"|m }}'></script>
+{% endblock %}
