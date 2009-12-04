@@ -86,7 +86,7 @@
 {% endblock content %}
 
 {% block postcontent %}
-<div class="module latestnews" lang="{{ LANGUAGE_CODE }}">
+<div class="module latestnews{% if moreprojects %} first{% endif %}" lang="{{ LANGUAGE_CODE }}">
     <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
     <div class="bd">
         {% render_latest_news "" 5 %}
