@@ -1936,7 +1936,8 @@ html[dir="rtl"] div.suggestions ul li
     font-size: large;
 }
 
-:lang(ja), :lang(ko)
+:lang(ja),
+:lang(ko)
 {
     font-size: medium;
 }
@@ -1967,5 +1968,23 @@ html[dir="rtl"] div.suggestions ul li
 {
     text-decoration: none;
     color: #606047;
+}
+
+/* FIX FOR HEADING SIZES */
+
+h2:lang(bn),
+h2:lang(ja),
+h2:lang(ko),
+h2:lang(zh)
+{
+    font-size: 170%;
+}
+
+h2:lang(bn) a,
+h2:lang(ja) a,
+h2:lang(ko) a,
+h2:lang(zh) a
+{
+    font-size: 100%;
 }
 
