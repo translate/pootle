@@ -53,8 +53,10 @@ def view(request, path):
     if check_permission('administrate', request):
         template_vars['form'] = handle_form(request, directory)
         template_vars['title'] = directory_to_title(request, directory)
-
-    template_vars['notices'] = Notice.objects.filter(directory=directory)[:30]
+    if request.GET.get('all', False):
+        template_vars['notices'] = Notice.objects.filter(directory__pootle_path__startswith=directory.pootle_path).select_related('directory')[:30]
+    else:
+        template_vars['notices'] = Notice.objects.filter(directory=directory).select_related('directory')[:30]
 
     if directory.is_language():
         template_vars['is_language'] = True

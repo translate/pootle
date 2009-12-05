@@ -50,6 +50,7 @@ class NoticeFeed(Feed):
     def __init__(self, slug, request, directory):
         self.link = l(directory.pootle_path)
         self.directory = directory
+        self.recusrive = request.GET.get('all', False)
         super(NoticeFeed, self).__init__(slug, request)
         
     def get_object(self, bits):
@@ -59,7 +60,10 @@ class NoticeFeed(Feed):
         return directory_to_title(self.request, directory)
 
     def items(self, directory):
-        return Notice.objects.filter(directory=directory).select_related('directory')[:30]
+        if self.recusrive:
+            return Notice.objects.filter(directory__pootle_path__startswith=directory.pootle_path).select_related('directory')[:30]
+        else:
+            return Notice.objects.filter(directory=directory).select_related('directory')[:30]
 
     def item_pubdate(self, item):
         return item.added
