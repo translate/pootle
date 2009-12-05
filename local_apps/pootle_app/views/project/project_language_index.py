@@ -26,7 +26,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from pootle_app.models              import Project
+from pootle_app.models              import Project, Submission
 from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle.i18n.gettext import tr_lang
@@ -37,6 +37,12 @@ from pootle_app.views import pagelayout
 def limit(query):
     return query[:5]
 
+def get_last_action(translation_project):
+    try:
+        return Submission.objects.filter(translation_project=translation_project).latest()
+    except Submission.DoesNotExist:
+        return ''
+
 def make_language_item(request, translation_project):
     href = '/%s/%s/' % (translation_project.language.code, translation_project.project.code)
     projectstats = add_percentages(translation_project.getquickstats())
@@ -45,6 +51,7 @@ def make_language_item(request, translation_project):
         'href': href,
         'title': tr_lang(translation_project.language.fullname),
         'data': projectstats,
+        'lastactivity': get_last_action(translation_project),
         'tooltip': _('%(percentage)d%% complete' %
                      {'percentage': projectstats['translatedpercentage']})
     }

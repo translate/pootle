@@ -20,12 +20,14 @@
                 <th class="stats">{{ statsheadings.progress }}</th>
                 <th class="stats sorttable_numeric">{{ statsheadings.summary }}</th>
                 <th class="stats">{{ statsheadings.totalwords }}</th>
+                <th>{% trans 'Last Activity' %}</th>
             </tr>
         </thead>
         <tbody class="stats">
         {% for item in projects %}
             <tr class="item {% cycle 'even' 'odd' %}" title="{{ item.description|striptags }}">
             {% include "language/item_summary.html" %}
+	    <td>{{ item.lastactivity }}</td>
             </tr>
         {% endfor %}
         </tbody>

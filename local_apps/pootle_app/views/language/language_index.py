@@ -29,7 +29,7 @@ from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import nice_percentage, add_percentages, stats_descriptions
 from pootle_app.views import pagelayout
 from pootle_app.views.top_stats import gentopstats
-from pootle_app.models import Language
+from pootle_app.models import Language, Submission
 
 from pootle.i18n.gettext import tr_lang
 
@@ -38,6 +38,12 @@ from pootle_app.models.profile import get_profile
 
 def limit(query):
     return query[:5]
+
+def get_last_action(translation_project):
+    try:
+        return Submission.objects.filter(translation_project=translation_project).latest()
+    except Submission.DoesNotExist:
+        return ''
 
 def make_project_item(translation_project):
     project = translation_project.project
@@ -50,6 +56,7 @@ def make_project_item(translation_project):
         'title': project.fullname,
         'description': project.description,
         'data': projectstats,
+        'lastactivity': get_last_action(translation_project),
         'isproject': True,
         'tooltip': _('%(percentage)d%% complete' %
                      {'percentage': projectstats['translatedpercentage']})
