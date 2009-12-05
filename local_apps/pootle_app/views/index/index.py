@@ -67,7 +67,7 @@ def getlanguages(request):
     def get_last_action(item):
         try:
             return Submission.objects.filter(translation_project__language=item).latest()
-        except:
+        except Submission.DoesNotExist:
             return ''
 
     return get_items(request, Language, get_last_action, tr_lang)
@@ -76,7 +76,7 @@ def getprojects(request):
     def get_last_action(item):
         try:
             return Submission.objects.filter(translation_project__project=item).latest()
-        except:
+        except Submission.DoesNotExist:
             return ''
 
     return get_items(request, Project, get_last_action, lambda name: name)
