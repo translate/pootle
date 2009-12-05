@@ -37,6 +37,14 @@ class PootleOptionParser(optparse.OptionParser):
     def __init__(self):
         optparse.OptionParser.__init__(self)
         self.set_default('instance', 'Pootle')
+        self.add_option('',
+             '--version',
+             dest='action',
+             action='store_const',
+             const='version',
+             default='runwebserver',
+             help="show version information then exit",
+        )               
         self.add_option(
             '',
             '--refreshstats',
@@ -58,10 +66,18 @@ class PootleOptionParser(optparse.OptionParser):
 
 def checkversions():
     """Checks that version dependencies are met."""
-    if not hasattr(toolkitversion, 'build') or toolkitversion.ver < (1,4,1):
-        raise RuntimeError('requires Translate Toolkit version >= 1.4.1.  Current installed version is: %s'
+    if not hasattr(toolkitversion, 'build') or toolkitversion.ver < (1,5,0):
+        raise RuntimeError('requires Translate Toolkit version >= 1.5.0.  Current installed version is: %s'
                             % toolkitversion.sver)
 
+def display_versions():
+    from pootle.__version__ import sver as pootle_ver
+    from translate.__version__ import sver as translate_ver
+    from django import get_version as django_ver
+    print "Pootle %s" % pootle_ver
+    print "Translate Toolkit %s" % translate_ver
+    print "Django %s" % django_ver()
+    
 def run_pootle(options, args):
     """Run the requested action."""
     if options.action == 'runwebserver':
@@ -70,6 +86,8 @@ def run_pootle(options, args):
         wsgi.launch_server('0.0.0.0', options.port, handler)
     elif options.action == 'refreshstats':
         call_command('refresh_stats')
+    elif options.action == 'version':
+        display_versions()
 
 def main():
     # run the web server
