@@ -82,14 +82,14 @@ th
 {
     font-family: Georgia, serif;
     font-size: 110%;
-    padding: 0 0 7px 0;
+    padding: 0 4px 7px 4px;
     background-color: inherit;
     color: #4b4742;
 }
 
 td
 {
-    padding: 5px 0;
+    padding: 5px 4px 5px 4px;
     font-size: 85%;
 }
 
