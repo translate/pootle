@@ -163,6 +163,19 @@ def create_default_languages():
     zh_TW.specialchars = u"←→↔×÷©…—‘’“”「」『』【】《》"
     zh_TW.save()
 
+    ca_valencia = Language(code='ca@valencia')
+    ca_valencia.fullname = u'Catalan (Valencia)'
+    ca_valencia.nplurals = '2'
+    ca_valencia.pluralequation = '(n != 1)'
+    ca_valencia.save()
+
+    son = Language(code='son')
+    son.fullname = u'Songhai languages'
+    son.nplurals = '1'
+    son.pluralequation = '0'
+    son.specialchars = u'ɲŋšžãõẽĩƝŊŠŽÃÕẼĨ'
+    son.save()
+    
     # import languages from toolkit
     from translate.lang import data
     for code, props in data.languages.items():
