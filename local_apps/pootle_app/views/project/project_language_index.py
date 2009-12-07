@@ -52,7 +52,7 @@ def make_language_item(request, translation_project):
         'title': tr_lang(translation_project.language.fullname),
         'data': projectstats,
         'lastactivity': get_last_action(translation_project),
-        'tooltip': _('%(percentage)d%% complete' %
+        'tooltip': _('%(percentage)d%% complete',
                      {'percentage': projectstats['translatedpercentage']})
     }
     errors = projectstats.get('errors', 0)
