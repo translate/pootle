@@ -1,0 +1,75 @@
+#!/bin/bash
+
+package=xx$(egrep "^DOMAIN" Makevars | sed "s/DOMAIN = //g")xx
+potfile=${package}.pot
+
+lang=$(echo $1 |sed "s/\.po$//")
+lang=${lang:-de_DE}
+export LANGUAGE=../../../../../../../../$(pwd)/mo/$lang:$lang
+echo "LANGUAGE=$LANGUAGE"
+
+litedir=lite
+
+if [ $lang == "de_DE" ]; then
+	./intltool-update --pot --gettext-package=$package
+	podebug --rewrite=xxx -f "" --progress=none $potfile $lang.po
+	podebug --rewrite=xxx -f "" --ignore=gtk --progress=none $litedir/gtk20/gtk20.pot $litedir/gtk20/$lang.po
+	podebug --rewrite=xxx -f "" --progress=none $litedir/gtkspell/gtkspell.pot $litedir/gtkspell/$lang.po
+	# Prepare 639 by copying French (which is always 100%), turning it into English
+	# and then making it xxx
+	msgunfmt /usr/share/locale/fr/LC_MESSAGES/iso_639.mo > $litedir/iso_639/$lang.fr.po
+	podebug --rewrite=en -f "" --progress=none $litedir/iso_639/$lang.fr.po $litedir/iso_639/$lang.en.po
+	podebug --rewrite=xxx -f "" --progress=none $litedir/iso_639/$lang.en.po $litedir/iso_639/$lang.po
+	rm $litedir/iso_639/$lang.*.po
+	# Do the same for 3166 as 639
+	msgunfmt /usr/share/locale/fr/LC_MESSAGES/iso_3166.mo > $litedir/iso_3166/$lang.fr.po
+	podebug --rewrite=en -f "" --progress=none $litedir/iso_3166/$lang.fr.po $litedir/iso_3166/$lang.en.po
+	podebug --rewrite=xxx -f "" --progress=none $litedir/iso_3166/$lang.en.po $litedir/iso_3166/$lang.po
+	rm $litedir/iso_3166/$lang.*.po
+fi
+
+	language=$lang
+	modir=mo/$language/LC_MESSAGES
+
+	gtklite=$litedir/gtk20/$language.po
+	gtkreal=/usr/share/locale/$language/LC_MESSAGES/gtk20.mo
+
+	gtkspell=$litedir/gtkspell/$language.po
+	gtkspellreal=/usr/share/locale/$language/LC_MESSAGES/gtkspell.mo
+
+	iso639lite=$litedir/iso_639/$language.po
+	iso639=/usr/share/locale/$language/LC_MESSAGES/iso_639.mo
+
+	iso3166lite=$litedir/iso_3166/$language.po
+	iso3166=/usr/share/locale/$language/LC_MESSAGES/iso_3166.mo
+	mkdir -p $modir
+	msgfmt -o $modir/virtaal.mo $lang.po
+        if [ -f $gtklite ]; then
+		msgfmt -o $modir/gtk20.mo $gtklite
+	elif [ -f $gtkreal ]; then
+		cp $gtkreal $modir
+	fi
+        if [ -f $gtkspell ]; then
+		msgfmt -o $modir/gtkspell.mo $gtkspell
+	elif [ -f $gtkspellreal ]; then
+		cp $gtkspellreal $modir
+	fi
+        if [ -f $iso639lite ]; then
+		msgfmt -o $modir/iso_639.mo $iso639lite
+	elif [ -f $iso639 ]; then
+		cp $iso639 $modir
+	fi
+        if [ -f $iso3166lite ]; then
+		msgfmt -o $modir/iso_3166.mo $iso3166lite
+	elif [ -f $iso3166 ]; then
+		cp $iso3166 $modir
+	fi
+
+# This assumes that the following executable is in your PATH
+# Always show --help text for review:
+echo
+virtaal --help
+echo
+virtaal
+rm -f $potfile
+rm -rf mo de_DE.po $litedir/*/de_DE.po

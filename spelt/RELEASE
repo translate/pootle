@@ -1,0 +1,33 @@
+RELEASE NOTES FOR SPELT 0.1
+===========================
+
+
+Short Description
+-----------------
+Spelt is used to classify words from a language database according to their roots. The language database is an XML-based format that is only used by Spelt to classify unclassified words.
+
+
+Features
+--------
+This is the first official release of Spelt. Here are some of the currently supported features:
+- Loading a language database.
+- Saving a language database.
+- Marking surface forms as "ignored".
+- Marking surface forms as "rejected".
+- Associating a surface form with a root (with a predefined part-of-speech).
+- Adding new roots with one of the predefined parts-of-speech.
+- Changing the part-of-speech associated with a root.
+- Importing lists of words to be used as surface forms.
+- Recording the user making changes to the database.
+- Auto-completion for roots, even if there are tens of thousands of roots available.
+- Auto-completion for parts-of-speech.
+
+Possible future features:
+- Integration with spell checkers
+- Searching
+- Reviewing changes made to a language database.
+
+
+Documentation
+-------------
+Please see http://translate.sourceforge.net/wiki/spelt/index for complete and up-to-date documentation regarding Spelt.

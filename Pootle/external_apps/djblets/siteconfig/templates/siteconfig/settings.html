@@ -1,0 +1,59 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia admin_list djblets_utils i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/forms.css{% endblock %}
+
+{% block title %}{{form.Meta.title}} {{block.super}}{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}djblets/css/admin.css" />
+{{block.super}}
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+
+{%  if form.error_dict %}
+ <p class="errornote">
+  {% blocktrans count form.error_dict.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+ </p>
+{%  endif %}
+
+{% if saved %}
+ <ul class="messagelist">
+  <li>{% trans "The settings have been saved." %}</li>
+ </ul>
+{% endif %}
+
+ <h1>{{form.Meta.title}}</h1>
+
+ <form action="." method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+{% if form.Meta.fieldsets %}
+{%  for fieldset in form.Meta.fieldsets %}
+  <fieldset class="module aligned{% if fieldset.classes %}{% for class in fieldset.classes %} {{class}}{% endfor %}{% endif %}"{% if fieldset.id %} id="fieldset_{{fieldset.id}}"{% endif %}>
+{% if fieldset.title %}<h2>{{fieldset.title}}</h2>{% endif %}
+{%   if fieldset.description %}
+   <div class="description">
+    {{fieldset.description|paragraphs}}
+   </div>
+{% endif %}
+{%   for fieldname in fieldset.fields %}
+{%    with form|getitem:fieldname as field %}
+{%     include "siteconfig/settings_field.html" %}
+{%    endwith %}
+{%   endfor %}
+  </fieldset>
+{%  endfor %}
+{% else %}
+  <fieldset class="module aligned">
+{%   for field in form %}
+{%    include "siteconfig/settings_field.html" %}
+{%   endfor %}
+  </fieldset>
+{% endif %}
+  <div class="submit-row">
+   <input type="submit" value="{% trans "Save" %}" class="default" />
+   <div style="clear: both"></div>
+  </div>
+ </form>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+Updating translations
+---------------------
+from po/
+
+./intltool-update --pot
+./intltool-update xy
+
+Generating the .xml and .desktop files
+--------------------------------------
+from package /
+
+./maketranslations
+
+This will use the .po files and .xml.in and 
+.desktop.in to create a .xml and .desktop file
+
+Lite Versions
+-------------
+For languages with no upstream translations of certain packages we
+include a 'lite' version. This contains only the strings needed
+by Virtaal, nothing more.  Translating these will ensure that
+the user has an end to end localised experience.
+
+Do not translate these if upstream exists.  We'll package upstream
+package translation rather then your lite versions if they exist. Ideally
+you should get these light versions upstreamed.
+
+Currently we translate lite versions for:
+* GTK - http://l10n.gnome.org/module/gtk+ (scroll down to UI translations)
+* gtkspell - http://translationproject.org/domain/gtkspell.html

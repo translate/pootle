@@ -1,0 +1,5 @@
+This directory (mo) contains compiled localization files needed to run
+pootle in your local language.
+
+you can populate this directory by running the setup.py command
+build_mo.

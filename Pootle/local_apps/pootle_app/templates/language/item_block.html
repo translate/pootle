@@ -1,0 +1,26 @@
+{% load i18n baseurl %}
+
+<!-- itemblock -->
+<div class="contentsitem" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <img src="{% filter m %}images/{{ item.icon }}.png{% endfilter %}"
+    class="icon" alt="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
+  
+    {% if item.title %}
+    <h3 class="title">
+    <a href="{{ item.href|l }}">{{ item.title }}</a>
+    {% if item.data.errors %}
+    <img src="{{ "images/error.png"|m }}" alt="{% trans 'Error' %}"
+         title="{{ item.errortooltip }}" class="error" />
+    {% endif %}
+    </h3>
+    {% endif %}
+
+    {% if item.actions %}
+    <div id="actionlinks" class="item-description">
+        {% for link in item.actions %}
+        <a href="{{ link.href|l }}" title="{{ link.title }}">{{ link.text }}</a>{% if not forloop.last %} | {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+<!-- /itemblock -->

@@ -1,0 +1,94 @@
+Pootle: a web translation and translation management engine
+===========================================================
+
+* How it works
+* References
+* Requirement
+* Installing and running
+* Bug reporting/Feature requests
+* Notes
+* Assignments
+
+How it works
+------------
+Pootle can host a number of translation projects for a number of languages.  It
+allows a team to manage their files, permissions, projects, and also allows for
+translation on-line.  Files can be downloaded for offline translation and later
+uploaded again.
+
+Pootle tries to lower the barrier of entry,  but also provides tools  to enable
+teams to work towards higher quality while welcoming newcomers.
+
+References
+----------
+Web: http://translate.sourceforge.net/wiki/pootle/index
+Bugzilla: http://bugs.locamotion.org/
+Mailing List: https://lists.sourceforge.net/lists/listinfo/translate-pootle
+IRC: #pootle on irc.freenode.org
+
+Requirements
+------------
+Pootle usually requires the latest Translate Toolkit package:
+http://translate.sourceforge.net/
+Note all the optional dependencies of the Translate Toolkit for optimal
+performance and functionality in Pootle.
+
+Python version 2.4 or later is required.
+
+Pootle requires Django (at least version 1.0)
+(http://www.djangoproject.com/)
+Django applications can run under Apache using mod_python or mod_wsgi,
+but they're also bundled with a standalone webserver that can be run
+from the command line.  Pootle works well on all Django deployment
+scenarios. The standalone server is the easiest to set up and
+get running, whereas Apache will give the best performance.
+
+To run Pootle you need to have Django 1.0 installed properly
+
+       tar xzvf Django-1.0.2-final.tar.gz
+       cd Django-1.0.2-final
+       sudo python setup.py install
+
+you can also install Django using easy_install
+
+       easy_install django
+
+The commandline utilities "zip" and "unzip" can speed up handling of ZIP files.
+For integration with a version control system, the relevant version control
+command line client must be installed and accessible from the PATH.
+
+Installation of an indexing engine (PyLucene or Xapian) is optional, but helps
+to speed up searching. Note that Xapian before version 1.0.13 is incompatible
+with Apache, and Pootle will not enable Xapian indexing if running under
+mod_python or mod_wsgi with problematic versions.
+
+Further performance might be displayed on the admin page if Pootle detects
+anything non-optimal.
+
+
+Installing and running
+----------------------
+Check the INSTALL file.
+
+
+Bug Reporting/Feature requests
+------------------------------
+You can always report bugs or feature requests on the mailing list but because
+of the increase in users and the fact that bug reports do go missing it is
+probably best to place your bug report in Bugzilla: http://bugs.locamotion.org/
+
+If you have a traceback or a patch then please include it. Also please be quite
+specific about how the bug occured and what you expected to happen.
+
+If this is a feature request then try to be specific about how you think this
+feature should work.
+
+Notes
+-----
+Files should be reindexed automatically. To ensure that all statistics and
+indices are up to date for the current projects and languages, run
+        PootleServer --refreshstats
+
+Assignments
+-----------
+Goals and assignments don't work at the moment, but should be re-instated soon.

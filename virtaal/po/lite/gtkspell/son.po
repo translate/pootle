@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtkspell 2.0.12\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-13 22:39+0200\n"
+"PO-Revision-Date: 2009-11-08 23:42+0200\n"
+"Last-Translator: Mohomodou Houssouba <mh@bollag-areal.ch>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: son\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.2.1\n"
+
+#: ../gtkspell/gtkspell.c:384
+msgid "<i>(no suggestions)</i>"
+msgstr "<i>(honnandiyan kul ši<i>"
+
+#: ../gtkspell/gtkspell.c:398
+msgid "More..."
+msgstr "Bešere..."
+
+#. + Add to Dictionary
+#: ../gtkspell/gtkspell.c:424
+#, c-format
+msgid "Add \"%s\" to Dictionary"
+msgstr "\"%s\" tonton kamasu ga"
+
+#. - Ignore All
+#: ../gtkspell/gtkspell.c:435
+msgid "Ignore All"
+msgstr "Kul muray"
+
+#: ../gtkspell/gtkspell.c:468
+msgid "Spelling Suggestions"
+msgstr "Boŋhantum honnandiyaney"
+
+# New menu entry added in v2.0.15 (no available current POT file)
+msgid "Languages"
+msgstr "Šenney"

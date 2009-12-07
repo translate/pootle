@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Jannis Leidel <jannis@leidel.info>, 2007.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: django-registration 0.3 \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-19 19:30-0500\n"
+"PO-Revision-Date: 2007-09-29 16:50+0200\n"
+"Last-Translator: Jannis Leidel <jannis@leidel.info>\n"
+"Language-Team: Deutsch <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:38
+msgid "username"
+msgstr "Benutzername"
+
+#: forms.py:41
+msgid "email address"
+msgstr "E-Mail-Adresse"
+
+#: forms.py:43
+msgid "password"
+msgstr "Passwort"
+
+#: forms.py:45
+msgid "password (again)"
+msgstr "Passwort (wiederholen)"
+
+#: forms.py:54
+msgid "Usernames can only contain letters, numbers and underscores"
+msgstr "Benutzernamen können nur Buchstaben, Zahlen und Unterstriche enthalten"
+
+#: forms.py:59
+msgid "This username is already taken. Please choose another."
+msgstr "Dieser Benutzername ist schon vergeben. Bitte einen anderen wählen."
+
+#: forms.py:68
+msgid "You must type the same password each time"
+msgstr "Bitte das gleiche Passwort zur Überprüfung nochmal eingeben"
+
+#: forms.py:96
+msgid "I have read and agree to the Terms of Service"
+msgstr "Ich habe die Nutzungsvereinbarung gelesen und stimme ihr zu"
+
+#: forms.py:105
+msgid "You must agree to the terms to register"
+msgstr "Sie müssen der Nutzungsvereinbarung zustimmen, um sich zu registrieren"
+
+#: forms.py:124
+msgid ""
+"This email address is already in use. Please supply a different email "
+"address."
+msgstr ""
+"Diese E-Mail-Adresse wird schon genutzt. Bitte geben Sie eine andere "
+"E-Mail-Adresse an."
+
+#: forms.py:149
+msgid ""
+"Registration using free email addresses is prohibited. Please supply a "
+"different email address."
+msgstr ""
+"Die Registrierung mit einer kostenlosen E-Mail-Adresse ist untersagt. Bitte "
+"geben Sie eine andere E-Mail-Adresse an."
+
+#: models.py:188
+msgid "user"
+msgstr "Benutzer"
+
+#: models.py:189
+msgid "activation key"
+msgstr "Aktivierungsschlüssel"
+
+#: models.py:194
+msgid "registration profile"
+msgstr "Registrierungsprofil"
+
+#: models.py:195
+msgid "registration profiles"
+msgstr "Registrierungsprofile"

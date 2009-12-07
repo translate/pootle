@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='utf-8'?>
+<language_database lang="en_GB">
+    <sources>
+        <source id="1" date="1216112141" import_user_id="2">
+            <name>Wikipedia - English Language</name>
+            <filename>english_lang.txt</filename>
+            <description>A few words from the Wikipedia article
+				"English language".
+				(http://en.wikipedia.org/wiki/English_language)</description>
+        </source>
+    </sources>
+
+    <users>
+        <user id="2">
+            <name>Walter</name>
+        </user>
+    </users>
+
+    <parts_of_speech>
+        <part_of_speech id="33">
+            <name>Adjective</name>
+            <shortcut>aj</shortcut>
+        </part_of_speech>
+
+        <part_of_speech id="11">
+            <name>Noun</name>
+            <shortcut>n1</shortcut>
+            <remarks>This is some arbitrary remarks about the part-of-speech
+				and is not used by Spelt itself (yet).</remarks>
+        </part_of_speech>
+
+        <part_of_speech id="22">
+            <name>Verb</name>
+            <shortcut>ver</shortcut>
+        </part_of_speech>
+
+        <part_of_speech id="44">
+            <name>Preposition</name>
+            <shortcut>pre</shortcut>
+        </part_of_speech>
+
+        <part_of_speech id="55">
+            <name>Indefinite article</name>
+            <shortcut>iart</shortcut>
+        </part_of_speech>
+
+        <part_of_speech id="66">
+            <name>Particle</name>
+            <shortcut>par</shortcut>
+        </part_of_speech>
+
+        <part_of_speech id="77">
+            <name>Adverb</name>
+            <shortcut>adv</shortcut>
+        </part_of_speech>
+
+        <part_of_speech id="88">
+            <name>Determiner</name>
+            <shortcut>det</shortcut>
+        </part_of_speech>
+
+        <part_of_speech id="99">
+            <name>Pronoun</name>
+            <shortcut>pro</shortcut>
+        </part_of_speech>
+
+        <part_of_speech id="111">
+            <name>Proper noun</name>
+            <shortcut>pn</shortcut>
+        </part_of_speech>
+
+        <part_of_speech id="222">
+            <name>Conjunction</name>
+            <shortcut>cj</shortcut>
+        </part_of_speech>
+    </parts_of_speech>
+
+    <roots>
+        <root id="1" pos_id="11" user_id="2" date="1216112153">
+            <value>number</value>
+        </root>
+
+        <root id="2" pos_id="11" user_id="2" date="1216112210">
+            <value>profession</value>
+        </root>
+
+        <root id="3" pos_id="22" user_id="2" date="1216112249">
+            <value>occupy</value>
+        </root>
+
+        <root id="4" pos_id="22" user_id="2" date="1216112254">
+            <value>have</value>
+        </root>
+
+        <root id="5" pos_id="33" user_id="2" date="1216112260">
+            <value>such</value>
+        </root>
+
+        <root id="6" pos_id="11" user_id="2" date="1216112270">
+            <value>medicine</value>
+        </root>
+    </roots>
+
+    <surface_forms>
+        <surface_form id="17" user_id="2" date="1216113913" source_id="1" root_id="1">
+            <value>number</value>
+            <status>classified</status>
+        </surface_form>
+
+        <surface_form id="22" user_id="2" date="1216113926" source_id="1" root_id="2">
+            <value>professions</value>
+            <status>classified</status>
+        </surface_form>
+
+        <surface_form id="18" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>occupations</value>
+            <status>ignored</status>
+        </surface_form>
+
+        <surface_form id="11" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>has</value>
+            <status>ignored</status>
+        </surface_form>
+
+        <surface_form id="19" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>of</value>
+            <status>rejected</status>
+        </surface_form>
+
+        <surface_form id="16" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>medicine</value>
+            <status>ignored</status>
+        </surface_form>
+
+        <surface_form id="15" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>level</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="6" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>become</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="26" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>to</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="1" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>A</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="20" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>over</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="5" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>basic</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="25" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>such</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="23" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>requirement</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="3" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>as</value>
+            <status>rejected</status>
+        </surface_form>
+
+        <surface_form id="4" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>at</value>
+            <status>ignored</status>
+        </surface_form>
+
+        <surface_form id="10" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>field</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="24" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>speak</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="7" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>billion</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="27" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>working</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="12" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>in</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="13" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>knowledge</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="21" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>people</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="14" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>least</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="8" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>consequence</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="9" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>English</value>
+            <status>todo</status>
+        </surface_form>
+
+        <surface_form id="2" user_id="2" date="1216112141" source_id="1" root_id="0">
+            <value>and</value>
+            <status>todo</status>
+        </surface_form>
+    </surface_forms>
+</language_database>

@@ -1,0 +1,6 @@
+# Set the Pootle port
+#PORT=8080
+
+# Pootle log file
+#LOGFILE=/var/log/pootle/access.log
+#ERRORFILE=/var/log/pootle/errors.log

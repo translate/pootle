@@ -1,0 +1,38 @@
+{% load i18n baseurl %}
+
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block itemstats %}
+<td class="stats-name">
+    <a href="{{ item.href|l }}">{{ item.title }}</a>
+    {% if item.data.errors %}
+    <img src="{{ "images/error.png"|m }}" alt="{% trans 'Error' %}"
+         title="{{ item.errortooltip }}" class="error" />
+    {% endif %}
+</td>
+{% if item.data %}
+<td class="stats-graph">
+    <div class="sortkey">{{ item.data.translatedpercentage }}</div>
+    <div class="graph" title="{{ item.tooltip }}">
+        <div class="translated" style="width: {{ item.data.translatedpercentage }}px;"></div>
+        {% if item.data.fuzzysourcewords %}
+        <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage }}px; width: {{ item.data.fuzzypercentage }}px;"></div>
+        {% endif %}
+        {% if item.data.untranslatedsourcewords %}
+        <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage|add:item.data.fuzzypercentage }}px; width: {{ item.data.untranslatedpercentage }}px;"></div>
+        {% endif %}
+    </div>
+</td>
+<td class="stats">
+    <ul>
+        {% if item.data.untranslatedsourcewords or item.data.fuzzysourcewords %}
+        <li class="todo"><a href="{% filter l %}{% if item.isfile %}{{ item.href_todo }}{% else %}{{ item.href }}{{ "translate.html?match_names=check-isfuzzy,untranslated&view_mode=review"|force_escape }}{% endif %}{% endfilter %}" title="{{ item.todo_tooltip }}">{{ item.todo_text }}</a></li>
+        {% endif %}
+        {% ifequal item.data.translatedsourcewords item.data.totalsourcewords %}
+        <li class="complete">{% trans "Complete" %}</li>
+        {% endifequal %}
+    </ul>
+</td>
+<td class="stats-words">{{ item.data.totalsourcewords }}</td>
+{% endif %}
+{% endblock itemstats %}

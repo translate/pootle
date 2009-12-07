@@ -1,0 +1,24 @@
+Thanks for downloading django-registration.
+
+To install it, run the following command inside this directory:
+
+    python setup.py install
+
+If you have the Python ``easy_install`` utility available, you can
+also type the following to download and install in one step::
+
+   easy_install django-registration
+
+Or if you're using ``pip``::
+
+    pip install django-registration
+
+Or if you'd prefer you can simply place the included ``registration``
+directory somewhere on your Python path, or symlink to it from
+somewhere on your Python path; this is useful if you're working from a
+Mercurial checkout.
+
+Note that this application requires Python 2.3 or later, and a
+functional installation of Django 1.0 or newer. You can obtain Python
+from http://www.python.org/ and Django from
+http://www.djangoproject.com/.

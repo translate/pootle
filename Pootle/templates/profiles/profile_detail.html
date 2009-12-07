@@ -1,0 +1,77 @@
+{% extends "user_profile_base.html"  %}
+{% load i18n baseurl %}
+
+{% block title %}
+{% ifequal user profile.user %}
+    {{ block.super }} » {% trans "Dashboard" %}
+{% else %}
+    {{ settings.TITLE }}: {% trans "Users" %} » {{ username }}
+{% endifequal %}
+{% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block breadcrumb_content %}
+{% ifequal user profile.user %}
+    {{ block.super }} » {% trans "Dashboard" %}
+{% else %}
+    {{ profile.user }}
+{% endifequal %}
+{% endblock %}
+
+{% block content %}
+<div class="module first" lang="{{ LANGUAGE_CODE }}">
+    <div class="hd">
+        <h2>{% trans "Quick Links" %}</h2>
+    </div>
+    <div class="bd">
+    {% if profile.getquicklinks %}
+        {% for language in profile.getquicklinks %}
+        <dl class="languagelist">
+            <dt class="language">
+                <a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a>
+                {% ifequal user profile.user %}
+                {% if language.islangadmin %}
+                    <span class="adminlink">(<a href="{% filter l %}/{{ language.code }}/admin.html{% endfilter %}">{% trans "Admin" %}</a>)</span>
+                {% endif %}
+                {% endifequal %}
+            </dt>
+            {% for project in language.projects %}
+            <dd>
+            <a href="{% filter l %}/{{ language.code }}/{{ project.code }}/{% endfilter %}">{{ project.name }}</a>
+            {% ifequal user profile.user %}
+            {% if project.isprojectadmin %}
+                <span class="adminlink">(<a href="{% filter l %}/{{ language.code }}/{{ project.code }}/admin_permissions.html{% endfilter %}">{% trans "Permissions" %}</a> | <a href="{% filter l %}/{{ language.code }}/{{ project.code }}/admin_files.html{% endfilter %}">{% trans "Files" %}</a>)</span>
+            {% endif %}
+            {% endifequal %}
+            </dd>
+            {% endfor %}
+        </dl>
+        {% endfor %}
+    {% else %}
+        {% ifequal user profile.user %}
+        <p><a href='{{ "/accounts/edit/"|l }}'>{% trans "No languages or projects selected. Choose yours now." %}</a></p>
+        {% else %}
+        {% trans "This user has not selected languages or projects yet." %}
+        {% endifequal %}
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block postcontent %}
+<div class="module" lang="{{ LANGUAGE_CODE }}">
+    <div class="hd">
+        <h2>{% trans "User Statistics" %}</h2>
+    </div>
+    <div class="bd">
+        <table>
+            {% for stat in profile.getuserstatistics %}
+            <tr>
+                <th scope="row">{{ stat.text }}</th><td>{{ stat.count }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

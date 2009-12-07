@@ -1,0 +1,226 @@
+accessibility	source\helper\accessiblestrings.src	0	string	RID_STR_ACC_NAME_BROWSEBUTTON				13691	en-US	Browse				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_OPEN				13691	en-US	Open				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_INSERT				13691	en-US	Apply				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_PLAY				13691	en-US	Play				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_PAUSE				13691	en-US	Pause				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_STOP				13691	en-US	Stop				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ENDLESS				13691	en-US	Repeat				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_MUTE				13691	en-US	Mute				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM				13691	en-US	View				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM_50				13691	en-US	50%				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM_100				13691	en-US	100%				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM_200				13691	en-US	200%				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM_FIT				13691	en-US	Scaled				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_MEDIAPLAYER				13691	en-US	Media Player				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	string	AVMEDIA_STR_INSERTMEDIA_DLG				13691	en-US	Insert Movie and Sound				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	string	AVMEDIA_STR_OPENMEDIA_DLG				13691	en-US	Open Movie and Sound				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	string	AVMEDIA_STR_ALL_MEDIAFILES				13691	en-US	All movie and sound files				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	string	AVMEDIA_STR_ALL_FILES				13691	en-US	All files (*.*)				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	errorbox	AVMEDIA_ERR_URL				13691	en-US	The format of the selected file is not supported.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_FILTER_ALLFILES				13691	en-US	<All>				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NOMODULE				13691	en-US	< No Module >				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_WRONGPASSWORD				13691	en-US	Incorrect Password				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_OPEN				13691	en-US	Load				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SAVE				13691	en-US	Save				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SOURCETOBIG				13691	en-US	The source text is too large and can be neither compiled nor saved.\nDelete some of the comments or transfer some methods into another module.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ERROROPENSTORAGE				13691	en-US	Error opening file				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ERROROPENLIB				13691	en-US	Error loading library				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NOLIBINSTORAGE				13691	en-US	The file does not contain any BASIC libraries				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_BADSBXNAME				13691	en-US	Invalid Name				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_LIBNAMETOLONG				13691	en-US	A library name can have up to 30 characters.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ERRORCHOOSEMACRO				13691	en-US	Macros from other documents are not accessible.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_LIBISREADONLY				13691	en-US	This library is read-only.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_REPLACELIB				13691	en-US	'XX' cannot be replaced.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_IMPORTNOTPOSSIBLE				13691	en-US	'XX' cannot be added.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NOIMPORT				13691	en-US	'XX' was not added.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ENTERPASSWORD				13691	en-US	Enter password for 'XX'				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SBXNAMEALLREADYUSED				13691	en-US	Name already exists				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SIGNED				13691	en-US	(Signed)				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SBXNAMEALLREADYUSED2				13691	en-US	Object with same name already exists				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_FILEEXISTS				13691	en-US	The 'XX' file already exists				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTRUNMACRO				13691	en-US	For security reasons, you cannot run this macro.\n\nFor more information, check the security settings.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_COMPILEERROR				13691	en-US	Compile Error: 				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_RUNTIMEERROR				13691	en-US	Runtime Error: #				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SEARCHNOTFOUND				13691	en-US	Search key not found				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SEARCHFROMSTART				13691	en-US	Search to last module complete. Continue at first module?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SEARCHREPLACES				13691	en-US	Search key replaced XX times				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_COULDNTREAD				13691	en-US	The file could not be read				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_COULDNTWRITE				13691	en-US	The file could not be saved				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTCHANGENAMESTDLIB				13691	en-US	The name of the default library cannot be changed.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTCHANGENAMEREFLIB				13691	en-US	The name of a referenced library cannot be changed.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTUNLOADSTDLIB				13691	en-US	The default library cannot be deactivated				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_GENERATESOURCE				13691	en-US	Generating source				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_FILENAME				13691	en-US	File name:				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_APPENDLIBS				13691	en-US	Import Libraries				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELMACRO				13691	en-US	Do you want to delete the macro XX ?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELDIALOG				13691	en-US	Do you want to delete the XX dialog?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELLIB				13691	en-US	Do you want to delete the XX library?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELLIBREF				13691	en-US	Do you want to delete the reference to the XX library?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELMODULE				13691	en-US	Do you want to delete the XX module?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_OBJNOTFOUND				13691	en-US	Object or method not found				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_BASIC				13691	en-US	BASIC				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_LINE				13691	en-US	Ln				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_COLUMN				13691	en-US	Col				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_DOC				13691	en-US	Document				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_BASICIDE_OBJECTBAR				13691	en-US	Macro Bar				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTCLOSE				13691	en-US	The window cannot be closed while BASIC is running.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_REPLACESTDLIB				13691	en-US	The default library cannot be replaced.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_REFNOTPOSSIBLE				13691	en-US	Reference to 'XX' not possible.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_WATCHNAME				13691	en-US	Watch				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_WATCHVARIABLE				13691	en-US	Variable				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_WATCHVALUE				13691	en-US	Value				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_WATCHTYPE				13691	en-US	Type				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_STACKNAME				13691	en-US	Call Stack				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_INITIDE				13691	en-US	BASIC Initialization				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_STDMODULENAME				13691	en-US	Module				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_STDDIALOGNAME				13691	en-US	Dialog				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_STDLIBNAME				13691	en-US	Library				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NEWLIB				13691	en-US	New Library				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NEWMOD				13691	en-US	New Module				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NEWDLG				13691	en-US	New Dialog				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ALL				13691	en-US	All				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_PAGE				13691	en-US	Page				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_MACRONAMEREQ				13691	en-US	A name must be entered.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_WILLSTOPPRG				13691	en-US	You will have to restart the program after this edit.\nContinue?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SEARCHALLMODULES				13691	en-US	Do you want to replace the text in all active modules?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	imagebutton	RID_IMGBTN_REMOVEWATCH		HID_BASICIDE_REMOVEWATCH		80	en-US	-		Remove Watch		2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_REMOVEWATCH				80	en-US	Watch:				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_STACK				80	en-US	Calls: 				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_USERMACROS				80	en-US	My Macros				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_USERDIALOGS				80	en-US	My Dialogs				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_USERMACROSDIALOGS				80	en-US	My Macros & Dialogs				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SHAREMACROS				80	en-US	%PRODUCTNAME Macros				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SHAREDIALOGS				80	en-US	%PRODUCTNAME Dialogs				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SHAREMACROSDIALOGS				80	en-US	%PRODUCTNAME Macros & Dialogs				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_BRKPROPS	RID_ACTIV	HID_BASICIDE_ACTIV		13691	en-US	Active				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_BRKPROPS	RID_BRKPROPS	HID_BASICIDE_BRKPROPS		13691	en-US	Properties...				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menu	RID_POPUP_BRKPROPS				80	en-US	Properties				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_BRKDLG	RID_BRKDLG	HID_BASICIDE_BRKDLG		13691	en-US	Manage Breakpoints...				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menu	RID_POPUP_BRKDLG				80	en-US	Manage Breakpoints				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR.RID_INSERT	SID_BASICIDE_NEWMODULE	SID_BASICIDE_NEWMODULE		0	en-US	BASIC Module				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR.RID_INSERT	SID_BASICIDE_NEWDIALOG	SID_BASICIDE_NEWDIALOG		0	en-US	BASIC Dialog				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	RID_INSERT			13691	en-US	Insert				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	SID_BASICIDE_DELETECURRENT	SID_BASICIDE_DELETECURRENT		13691	en-US	Delete				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	SID_BASICIDE_RENAMECURRENT	SID_BASICIDE_RENAMECURRENT		13691	en-US	Rename				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	SID_BASICIDE_HIDECURPAGE	SID_BASICIDE_HIDECURPAGE		13691	en-US	Hide				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	SID_BASICIDE_MODULEDLG	SID_BASICIDE_MODULEDLG		13691	en-US	Modules...				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_DLGED	SID_SHOW_PROPERTYBROWSER	SID_SHOW_PROPERTYBROWSER		13691	en-US	Properties...				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYREPLACEMACRO				80	en-US	Do you want to overwrite the XX macro?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_TRANSLATION_NOTLOCALIZED				80	en-US	<Not localized>				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_TRANSLATION_DEFAULT				80	en-US	[Default Language]				2002-02-02 02:02:02
+basctl	source\basicide\brkdlg.src	0	pushbutton	RID_BASICIDE_BREAKPOINTDLG	RID_PB_NEW			50	en-US	New				2002-02-02 02:02:02
+basctl	source\basicide\brkdlg.src	0	pushbutton	RID_BASICIDE_BREAKPOINTDLG	RID_PB_DEL			50	en-US	Delete				2002-02-02 02:02:02
+basctl	source\basicide\brkdlg.src	0	checkbox	RID_BASICIDE_BREAKPOINTDLG	RID_CHKB_ACTIVE			40	en-US	Active				2002-02-02 02:02:02
+basctl	source\basicide\brkdlg.src	0	fixedtext	RID_BASICIDE_BREAKPOINTDLG	RID_FT_PASS			35	en-US	Pass Count:				2002-02-02 02:02:02
+basctl	source\basicide\brkdlg.src	0	fixedtext	RID_BASICIDE_BREAKPOINTDLG	RID_FT_BRKPOINTS			40	en-US	Breakpoints				2002-02-02 02:02:02
+basctl	source\basicide\brkdlg.src	0	modaldialog	RID_BASICIDE_BREAKPOINTDLG				178	en-US	Manage Breakpoints				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	fixedtext	RID_MACROCHOOSER	RID_TXT_MACROSIN			100	en-US	Existing macros ~in:				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	fixedtext	RID_MACROCHOOSER	RID_TXT_MACRONAME			100	en-US	~Macro name				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	fixedtext	RID_MACROCHOOSER	RID_TXT_MACROFROM			100	en-US	Macro ~from				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	fixedtext	RID_MACROCHOOSER	RID_TXT_SAVEMACRO			100	en-US	Save m~acro in				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	fixedtext	RID_MACROCHOOSER	RID_TXT_DESCRIPTION			100	en-US	De~scription				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	pushbutton	RID_MACROCHOOSER	RID_PB_RUN			50	en-US	R~un				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	cancelbutton	RID_MACROCHOOSER	RID_PB_CLOSE			50	en-US	Close				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	pushbutton	RID_MACROCHOOSER	RID_PB_ASSIGN			50	en-US	~Assign...				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	pushbutton	RID_MACROCHOOSER	RID_PB_EDIT			50	en-US	~Edit				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	pushbutton	RID_MACROCHOOSER	RID_PB_NEWLIB			50	en-US	New ~Library				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	pushbutton	RID_MACROCHOOSER	RID_PB_NEWMOD			50	en-US	New M~odule				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	pushbutton	RID_MACROCHOOSER	RID_PB_DEL			50	en-US	~Delete				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	pushbutton	RID_MACROCHOOSER	RID_PB_ORG			50	en-US	~Organizer...				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	modaldialog	RID_MACROCHOOSER				287	en-US	%PRODUCTNAME Basic Macros				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	string	RID_STR_STDMACRONAME				287	en-US	Macro				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	string	RID_STR_BTNDEL				287	en-US	~Delete				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	string	RID_STR_BTNNEW				287	en-US	~New				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	string	RID_STR_CLOSE				287	en-US	Close				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	string	RID_STR_CHOOSE				287	en-US	Choose				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	string	RID_STR_RUN				287	en-US	Run				2002-02-02 02:02:02
+basctl	source\basicide\macrodlg.src	0	string	RID_STR_RECORD				287	en-US	~Save				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pageitem	RID_TD_ORGANIZE.RID_TC_ORGANIZE	RID_TP_MOD			0	en-US	Modules				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pageitem	RID_TD_ORGANIZE.RID_TC_ORGANIZE	RID_TP_DLG			0	en-US	Dialogs				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pageitem	RID_TD_ORGANIZE.RID_TC_ORGANIZE	RID_TP_LIB			0	en-US	Libraries				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	tabdialog	RID_TD_ORGANIZE				13691	en-US	%PRODUCTNAME Basic Macro Organizer				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	fixedtext	RID_TP_MODULS	RID_STR_LIB			130	en-US	M~odule				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_MODULS	RID_PB_EDIT			60	en-US	~Edit				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	cancelbutton	RID_TP_MODULS	RID_PB_CLOSE			60	en-US	Close				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_MODULS	RID_PB_NEWMOD			60	en-US	~New...				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_MODULS	RID_PB_NEWDLG			60	en-US	~New...				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_MODULS	RID_PB_DELETE			60	en-US	~Delete				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	fixedtext	RID_TP_DLGS	RID_STR_LIB			130	en-US	Dialog				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_DLGS	RID_PB_EDIT			60	en-US	~Edit				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	cancelbutton	RID_TP_DLGS	RID_PB_CLOSE			60	en-US	Close				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_DLGS	RID_PB_NEWMOD			60	en-US	~New...				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_DLGS	RID_PB_NEWDLG			60	en-US	~New...				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_DLGS	RID_PB_DELETE			60	en-US	~Delete				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	fixedtext	RID_TP_LIBS	RID_STR_BASICS			130	en-US	L~ocation				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	fixedtext	RID_TP_LIBS	RID_STR_LIB			130	en-US	~Library				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_LIBS	RID_PB_EDIT			60	en-US	~Edit				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	cancelbutton	RID_TP_LIBS	RID_PB_CLOSE			60	en-US	Close				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_LIBS	RID_PB_PASSWORD			60	en-US	~Password...				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_LIBS	RID_PB_NEWLIB			60	en-US	~New...				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_LIBS	RID_PB_APPEND			60	en-US	~Import...				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_LIBS	RID_PB_EXPORT			60	en-US	E~xport...				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	pushbutton	RID_TP_LIBS	RID_PB_DELETE			60	en-US	~Delete				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	fixedline	RID_DLG_LIBS	RID_FL_OPTIONS			156	en-US	Options				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	checkbox	RID_DLG_LIBS	RID_CB_REF			146	en-US	Insert as reference (read-only)				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	checkbox	RID_DLG_LIBS	RID_CB_REPL			146	en-US	Replace existing libraries				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	fixedtext	RID_DLG_NEWLIB	RID_FT_NEWLIB			100	en-US	~Name:				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	radiobutton	RID_DLG_EXPORT	RB_EXPORTASPACKAGE			103	en-US	Export as ~extension				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	radiobutton	RID_DLG_EXPORT	RB_EXPORTASBASIC			103	en-US	Export as BASIC library				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	modaldialog	RID_DLG_EXPORT				115	en-US	Export Basic library				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	string	RID_STR_EXPORTPACKAGE				115	en-US	Export library as extension				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	string	RID_STR_EXPORTBASIC				115	en-US	Export as BASIC library				2002-02-02 02:02:02
+basctl	source\basicide\moduldlg.src	0	string	RID_STR_PACKAGE_BUNDLE				115	en-US	Extension				2002-02-02 02:02:02
+basctl	source\basicide\moptions.src	0	fixedtext	RID_MACROOPTIONS	RID_FT_DESCR			69	en-US	Description				2002-02-02 02:02:02
+basctl	source\basicide\moptions.src	0	fixedline	RID_MACROOPTIONS	RID_FL_HELP			212	en-US	Help information				2002-02-02 02:02:02
+basctl	source\basicide\moptions.src	0	fixedtext	RID_MACROOPTIONS	RID_FT_HELPID			80	en-US	Help ID				2002-02-02 02:02:02
+basctl	source\basicide\moptions.src	0	fixedtext	RID_MACROOPTIONS	RID_FT_HELPNAME			80	en-US	Help file name				2002-02-02 02:02:02
+basctl	source\basicide\moptions.src	0	modaldialog	RID_MACROOPTIONS				224	en-US	Description				2002-02-02 02:02:02
+basctl	source\basicide\objdlg.src	0	toolboxitem	RID_BASICIDE_OBJCAT.RID_TB_TOOLBOX	TBITEM_SHOW	HID_BASICIDE_OBJCAT_SHOW		13691	en-US	Show				2002-02-02 02:02:02
+basctl	source\basicide\objdlg.src	0	floatingwindow	RID_BASICIDE_OBJCAT				191	en-US	Objects				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	string	RID_TBXCONTROLS	RID_TOOLBOX			13691	en-US	Controls				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	floatingwindow	RID_TBXCONTROLS		HID_BASICIDE_CONTROLS		13691	en-US	Controls				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_PUSHBUTTON	SID_INSERT_PUSHBUTTON		0	en-US	Button				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_CHECKBOX	SID_INSERT_CHECKBOX		0	en-US	Check Box				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_FIXEDTEXT	SID_INSERT_FIXEDTEXT		0	en-US	Label field				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_LISTBOX	SID_INSERT_LISTBOX		0	en-US	List Box				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_HSCROLLBAR	SID_INSERT_HSCROLLBAR		0	en-US	Horizontal Scroll Bar				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_GROUPBOX	SID_INSERT_GROUPBOX		0	en-US	Group Box				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_HFIXEDLINE	SID_INSERT_HFIXEDLINE		0	en-US	Horizontal Line				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_DATEFIELD	SID_INSERT_DATEFIELD		0	en-US	Date Field				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_NUMERICFIELD	SID_INSERT_NUMERICFIELD		0	en-US	Numeric Field				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_FORMATTEDFIELD	SID_INSERT_FORMATTEDFIELD		0	en-US	Formatted Field				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_FILECONTROL	SID_INSERT_FILECONTROL		0	en-US	File Selection				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_TREECONTROL	SID_INSERT_TREECONTROL		0	en-US	Tree Control				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_SHOW_PROPERTYBROWSER	SID_SHOW_PROPERTYBROWSER		0	en-US	Properties				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_IMAGECONTROL	SID_INSERT_IMAGECONTROL		0	en-US	Image Control				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_RADIOBUTTON	SID_INSERT_RADIOBUTTON		0	en-US	Option Button				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_EDIT	SID_INSERT_EDIT		0	en-US	Text Box				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_COMBOBOX	SID_INSERT_COMBOBOX		0	en-US	Combo Box				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_VSCROLLBAR	SID_INSERT_VSCROLLBAR		0	en-US	Vertical Scroll Bar				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_PROGRESSBAR	SID_INSERT_PROGRESSBAR		0	en-US	Progress Bar				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_VFIXEDLINE	SID_INSERT_VFIXEDLINE		0	en-US	Vertical Line				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_TIMEFIELD	SID_INSERT_TIMEFIELD		0	en-US	Time Field				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_CURRENCYFIELD	SID_INSERT_CURRENCYFIELD		0	en-US	Currency Field				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_PATTERNFIELD	SID_INSERT_PATTERNFIELD		0	en-US	Pattern Field				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_INSERT_SELECT	SID_INSERT_SELECT		0	en-US	Select				2002-02-02 02:02:02
+basctl	source\basicide\tbxctl.src	0	toolboxitem	RID_TOOLBOX	SID_DIALOG_TESTMODE	SID_DIALOG_TESTMODE		0	en-US	Activate Test Mode				2002-02-02 02:02:02
+basctl	source\dlged\dlgresid.src	0	string	RID_STR_BRWTITLE_PROPERTIES				13691	en-US	Properties: 				2002-02-02 02:02:02
+basctl	source\dlged\dlgresid.src	0	string	RID_STR_BRWTITLE_NO_PROPERTIES				13691	en-US	No Control marked				2002-02-02 02:02:02
+basctl	source\dlged\dlgresid.src	0	string	RID_STR_BRWTITLE_MULTISELECT				13691	en-US	Multiselection				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	fixedtext	RID_DLG_MANAGE_LANGUAGE	FT_LANGUAGE			0	en-US	Present Languages				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	pushbutton	RID_DLG_MANAGE_LANGUAGE	PB_ADD_LANG			0	en-US	Add...				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	pushbutton	RID_DLG_MANAGE_LANGUAGE	PB_DEL_LANG			0	en-US	Delete				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	pushbutton	RID_DLG_MANAGE_LANGUAGE	PB_MAKE_DEFAULT			0	en-US	Default				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	fixedtext	RID_DLG_MANAGE_LANGUAGE	FT_INFO			0	en-US	The default language is used if no localization for a user interface locale is present. Furthermore all strings from the default language are copied to resources of newly added languages.				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	okbutton	RID_DLG_MANAGE_LANGUAGE	PB_CLOSE			0	en-US	~Close				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	string	RID_DLG_MANAGE_LANGUAGE	STR_DEF_LANG			0	en-US	[Default Language]				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	string	RID_DLG_MANAGE_LANGUAGE	STR_DELETE			0	en-US	~Delete				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	string	RID_DLG_MANAGE_LANGUAGE	STR_CREATE_LANG			0	en-US	<Press 'Add' to create language resources>				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	modaldialog	RID_DLG_MANAGE_LANGUAGE		HID_BASICIDE_MANAGE_LANGUAGE		0	en-US	Manage User Interface Languages [$1]				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	querybox	RID_QRYBOX_LANGUAGE				0	en-US	You are about to delete the resources for the selected language(s). All user interface strings for this language(s) will be deleted.\n\nDo you want to delete the resources of the selected language(s)?			Delete Language Resources	2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	fixedtext	RID_DLG_SETDEF_LANGUAGE	FT_DEF_LANGUAGE			0	en-US	Default language				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	fixedtext	RID_DLG_SETDEF_LANGUAGE	FT_DEF_INFO			0	en-US	Select a language to define the default user interface language. All currently present strings will be assigned to the resources created for the selected language.				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	string	RID_DLG_SETDEF_LANGUAGE	STR_ADDLANG_TITLE			0	en-US	Add User Interface Languages				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	string	RID_DLG_SETDEF_LANGUAGE	STR_ADDLANG_LABEL			0	en-US	Available Languages				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	string	RID_DLG_SETDEF_LANGUAGE	STR_ADDLANG_INFO			0	en-US	Select languages to be added. Resources for these languages will be created in the library. Strings of the current default user interface language will be copied to these new resources by default.				2002-02-02 02:02:02
+basctl	source\dlged\managelang.src	0	modaldialog	RID_DLG_SETDEF_LANGUAGE		HID_BASICIDE_SETDEFAULT_LANGUAGE		0	en-US	Set Default User Interface Language				2002-02-02 02:02:02

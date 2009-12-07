@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n baseurl %}
+
+{% block title %}
+{{ block.super }}: {% trans "Server Error" %}
+{% endblock %}
+
+{% block content %}
+<div class="general-message" lang="{{ LANGUAGE_CODE }}">
+  <h2>{% trans 'Server Error' %}</h2>
+  <p>{% trans "An error has occurred. Thank you for your patience." %}</p>
+  {% if fserror %}
+  <p class="exception">{{ fserror }}</p>
+  {% else %}
+  <p class="exception">{{ exception }}</p>
+  {% endif %}
+</div>
+{% endblock %}

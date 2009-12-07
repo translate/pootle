@@ -1,0 +1,21 @@
+#!/bin/bash
+
+packagename=$(egrep "^X-PACKAGENAME" Makevars | sed "s/X-PACKAGENAME = //g")
+package=$(egrep "^DOMAIN" Makevars | sed "s/DOMAIN = //g")
+
+XGETTEXT_ARGS='\
+--add-comments=l10n \
+--copyright-holder="Zuza Software Foundation (Translate.org.za)" \
+--package-name "'$packagename'" \
+--package-version `egrep "^ver " ../'$package'/__version__.py | sed "s/ver = //;s/\"//g"` \
+'
+export XGETTEXT_ARGS
+
+# Hack around the fact that intltool-update does not do --previous
+if [ $# -eq 1 -a -f $1.po ]; then
+	# We are trying to update an existing translation
+	# intltool-update xy ==> intltool-update --pot && intltool-update --dist xy
+	intltool-update --pot && msgmerge --previous --update $1.po $package.pot
+else
+	intltool-update $*
+fi

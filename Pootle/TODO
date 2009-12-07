@@ -1,0 +1,67 @@
+current tasks:
+  assigning stuff to people (package + email too)
+  - upload completed work (by maintainer)
+  - what has been returned, what hasn't
+  - ability to send work to people
+  - let maintainer add people manually
+  priorities (directory/file order)
+  process (administrators/translators/reviewers)
+  locking
+  allow search to display only items related to search (no context)
+  add ability to email bug report
+
+requirements for translatathon:
+  relate assignments to rights (people can only translate what they're assigned)
+   - both translation and review
+  attribution (based on login)
+    ? where to put it
+    - last translator
+    - comment with everyone at top of po file
+    - comment in suggestion
+  translation review cycle
+    - comment to explain rejection
+
+other:
+  move the sidebar to be like distributed proofreaders (at the top, small)
+  test with apache multiprocess
+  store a history file
+  maybe have a separate file to track who translated each string
+  display results of checks for each string on submission
+  handle project versions
+  a reviewer can mark a string as fuzzy but not provide a translation (in
+    order to browse and fixup things like af KDE.
+  integrate with KBabel/POEdit
+  create .qm (compiled Qt .ts files).  See lrelease which is GPL'd for Qt .qm files
+  create XPI files automatically when updates are made
+  Add X-Poedit style tags in the header when you download so that people using
+    this PO editor don't have to configure everything
+  stats:
+    percentage change.  So you can see if a language/project is active or not.
+  if there is only one .PO file for a project then merge the header bar and the
+    PO file bar to make it less clutered and more logical.
+  goto a specific message.  Maybe a better thing to have a bar graph showing
+    what bits aren't translated and jump straight to that.
+  localisation: create a fallback mechanism so you can set a number of
+    languages: Bambara, French then default to English.
+
+feedback from Durban translatathon:
+  regenerate Pootle PO files on web
+  autocreate POT files when packaging
+  automatic tips for things like accelerators
+  tutorial PO file
+
+new:
+    ? able to have multiple pot repositories
+  new rights model:
+    maintainer of a whole project (all languages)
+    global goals for all languages
+    let people "take" a file (self-assign) if not being managed
+  let setting up project be totally automatic...
+
+suggestions from list:
+  search and replace across a whole file
+  translator comments / tagging of strings
+  drop-down list for languages (improve selection)
+  simple way to see the plural definition for a language
+  validate plurals against KBabel/msginit entries
+

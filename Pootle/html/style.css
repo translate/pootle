@@ -1,0 +1,1991 @@
+
+/*
+ * BASIC ELEMENT STYLING
+ */
+
+html
+{
+    color: #000;
+    background: #FFF;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background: #FFF;
+    color: #000;
+    width: 100%;
+
+    font-family: sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1.231;
+}
+
+a:link
+{
+    text-decoration: none;
+    background-color: inherit;
+    color: #0489b7;
+}
+
+a:visited
+{
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+a:active
+{
+    text-decoration: underline;
+}
+
+p,
+dd
+{
+    line-height: 1.5;
+}
+
+strong
+{
+    font-weight: bold;
+}
+
+em
+{
+    font-style: italic;
+}
+
+abbr,
+acronym
+{
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+
+p,
+fieldset,
+pre
+{
+    margin-bottom: 1em;
+}
+
+th
+{
+    font-family: Georgia, serif;
+    font-size: 110%;
+    padding: 0 0 7px 0;
+    background-color: inherit;
+    color: #4b4742;
+}
+
+td
+{
+    padding: 5px 0;
+    font-size: 85%;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: 100%;
+    background-color: inherit;
+    color: #4b4740;
+}
+
+h1
+{
+    font-size: 185%;
+}
+
+h2
+{
+    font-size: 170%;
+}
+
+h3
+{
+    font-size: 150%;
+}
+
+h4
+{
+    font-size: 137%;
+}
+
+h5
+{
+    font-size: 110%;
+}
+
+h6
+{
+    font-size: 100%;
+}
+
+body, div,
+ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+pre, code,
+form, fieldset, legend, input, textarea,
+p, blockquote
+{
+    margin: 0;
+    padding: 0;
+}
+
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: inherit;
+}
+
+fieldset,
+img
+{
+    border: 0;
+}
+
+address, caption, cite, code, dfn,
+em, strong,
+th, var
+{
+    font-style: normal;
+    font-weight: normal;
+}
+
+li
+{
+    list-style: none;
+}
+
+caption,
+th
+{
+    text-align: left;
+}
+
+html[dir="rtl"] caption,
+html[dir="rtl"] th
+{
+    text-align: right;
+}
+
+q:before,
+q:after
+{
+    content: '';
+}
+
+abbr,
+acronym
+{
+    border: 0;
+    font-variant: normal;
+}
+
+sup
+{
+    vertical-align: text-top;
+}
+
+sub
+{
+    vertical-align: text-bottom;
+}
+
+input,
+textarea,
+select
+{
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+legend
+{ 
+    background-color: inherit;
+    color: #000;
+}
+
+pre, code, kbd, samp, tt
+{
+    font-family: monospace;
+    line-height: 100%;
+}
+
+#ft
+{
+    clear: both;
+}
+
+#bd:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+
+/*
+ * MAIN DIVs
+ */
+
+#wrapper,
+#doc
+{
+    width: 100%;
+}
+
+#doc:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#nav-access
+{
+    position: absolute;
+    top: -1000px;
+}
+
+html[dir="ltr"] #nav-access
+{
+    left: -1000px;
+}
+
+html[dir="rtl"] #nav-access
+{
+    right: -1000px;
+}
+
+#precontent,
+#content,
+#postcontent
+{
+    margin: 0 1em;
+}
+
+
+/*
+ * HEADER
+ */
+
+#header
+{
+    background: #1e4262 url(images/header-background.png) top left repeat;
+    color: #000;
+}
+
+#header h1
+{
+    width: 100%;
+    margin: 0;
+    padding: 5px 0 0 0;
+    height: 48px;
+    line-height: 48px;
+}
+
+#header h1 a
+{
+    background: url(images/logo.png) left 50% no-repeat;
+    padding: 0;
+    padding-left: 60px;
+    margin: 0 20px;
+    font-family: Arial, sans-serif;
+    font-size: 150%;
+}
+
+html[dir="rtl"] #header h1 a
+{
+    padding-left: 0;
+    padding-right: 60px;
+    background: url(images/logo.png) right 50% no-repeat;
+}
+
+#header h1 a:link,
+#header h1 a:visited
+{ 
+    color: #fff; 
+}
+
+#header h1 a:active
+{
+    text-decoration: none;
+}
+
+#header h1 a:hover
+{
+    text-decoration: none;
+}
+
+#nav-main
+{
+    width: 100%;
+    background: transparent url(images/header-background-bottom.png) bottom left repeat-x;
+    height: 1.6em;
+}
+
+#nav-main ul
+{
+    float: right;
+    margin-right: 5px;
+}
+
+html[dir="rtl"] #nav-main ul
+{
+    float: left;
+    margin-left: 5px;
+}
+
+#nav-main ul li
+{
+    float: left;
+}
+
+html[dir="rtl"] #nav-main ul li
+{
+    float: right;
+}
+
+#nav-main ul li a
+{
+    padding: 0 15px 0.5em 15px;
+    display: block;
+    font-weight: bold;
+    font-size: 95%;
+}
+
+#nav-main ul li a:link,
+#nav-main ul li a:visited
+{
+    text-decoration: none;
+    color: #fff;
+}
+
+#nav-main ul li a:hover
+{
+    color: #86d0e8;
+}
+
+
+/*
+ * MENUBAR
+ */
+
+.menubar
+{
+    visibility: visible;
+    position: static;
+}
+
+.menubar ul,
+.menubar li,
+.menubar h6
+{
+    margin: 0;
+    padding: 0;
+}
+
+.menubar>.bd>ul:after
+{
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    line-height: 0;
+}
+
+
+/*
+ * FOOTER
+ */
+
+#footer
+{
+    background: #fff url(images/footer-border.png) top center repeat-x;
+    text-align: center;
+    color: #898378;
+    clear: both;
+    font-size: 90%;
+    height: 40px;
+    padding: 35px 0 0 0;
+}
+
+#footer-contents
+{
+    margin: 0 auto;
+    width: 90%;
+}
+
+#footer .nav li
+{
+    display: inline;
+}
+
+#footer .nav li:after
+{
+    content:  "|";
+    margin: 0 10px;
+}
+
+#footer .nav li:last-child:after
+{
+    content: '';
+    margin: 0;
+}
+
+#footer a:link,
+#footer a:visited
+{
+    color: #898378;
+}
+
+#footer a:hover,
+#footer a:active
+{
+    color: #69645c;
+}
+
+
+/*
+ * MESSAGES
+ */
+
+#site-message
+{
+    background-color: #ffe;
+    border: 1px solid #fc9;
+    margin-bottom: 2em;
+    padding: 10px 25px;
+}
+
+#site-message .success
+{
+    color: #3f3;
+}
+
+#site-message .error
+{
+    color: #f33;
+}
+
+.hide
+{
+    display: none;
+}
+
+.general-message
+{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.general-message h2
+{
+    margin-bottom: 0.7em;
+}
+
+p.help,
+span.help_text
+{
+    font-size: 85%;
+    font-style: italic;
+}
+
+/* FORM ERRORS */
+
+ul.errorlist
+{
+    margin: 0;
+    padding: 0;
+}
+
+.errorlist li
+{
+    color: #f33;
+    background-color: #ffe;
+    border: 1px solid #fc9;
+    margin-bottom: 0.5em;
+    padding: 10px 25px;
+}
+
+/* TITLES */
+
+h1.title,
+h2.title,
+h3.title
+{
+    padding: 0.2em 0 !important;
+}
+
+
+/*
+ * PAGE BODY
+ */
+
+#body
+{
+    margin: 0;
+    padding: 10px;
+    background: #fff url(images/page-bg.jpg) top left repeat-x;
+    clear: both;
+}
+
+#body:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.intro
+{
+    margin: 0.5em 1em;
+    margin-right: 25%;
+    margin-bottom: 1.5em;
+    line-height: 1.3em;
+}
+
+.module table, 
+.module-primary table
+{
+    width: 100%;
+}
+
+td.language
+{
+    padding-left: 5px;
+}
+
+tr.even, 
+td.even, 
+li.even
+{
+    background: #f7f7f5;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.module
+{
+    width: 48%;
+    float: right;
+    margin: 0;
+}
+
+html[dir="rtl"] .module
+{
+    float: left;
+}
+
+.module.first
+{
+    float: left;
+}
+
+html[dir="rtl"] .module.first
+{
+    float: right;
+}
+
+.module .hd h2, 
+.module-primary .hd h2
+{
+    margin: 0;
+    margin-left: 0.5em;
+    color: #afaba3;
+    border-bottom: 2px solid #afaba3;
+}
+
+html[dir="rtl"] .module .hd h2,
+html[dir="rtl"] .module-primary .hd h2
+{
+    margin-left: 0;
+    margin-right: 0.5em;
+}
+
+.module .bd,
+.module-primary .bd
+{
+    margin: 1em;
+}
+
+.module .nomargin,
+.module-primary .nomargin
+{
+    margin: 0;
+}
+
+.module .bd h2, 
+.module-primary .bd h2
+{
+    font-size: 165%;
+    color: #4b4742;
+    margin-bottom: 10px;
+}
+
+.module .bd h3, 
+.module-primary .bd h3
+{
+    font-size: 120%;
+}
+
+/* UPLOAD FORM / UPDATE FROM VCS*/
+
+div#upload p,
+div#upload ul,
+div#update p
+{
+    font-size: 85%;
+    margin-bottom: 0.5em;
+}
+
+
+/*
+ * LOGIN/REGISTER PAGE
+ */
+
+#login,
+#register
+{
+    width: 30em;
+    margin: 2em auto;
+    border: 2px solid #ccc;
+    padding: 1em;
+    background-color: #e5edef;
+    text-align: left;
+}
+
+#login[dir="rtl"],
+#register[dir="rtl"]
+{
+    text-align: right;
+}
+
+#login h2,
+#register h2
+{
+    margin-bottom: 0.7em;
+}
+
+#login p,
+#register p
+{
+    margin-bottom: 1em;
+}
+
+
+#loginform,
+#registerform
+{
+    font-size: 85%;
+}
+
+#login input[type="text"],
+#login input[type="password"],
+#login select,
+#register input[type="text"],
+#register input[type="password"]
+{
+    width: 97%;
+}
+
+#login .submit,
+#register .submit
+{
+    margin-bottom: 0;
+    text-align: right;
+}
+
+#login[dir="rtl"] .submit,
+#register[dir="rtl"] .submit
+{
+    text-align: left;
+}
+
+.loginlink,
+.registerlink
+{
+    width: 20em;
+    margin: 0 auto 8em;
+    padding: 0 1em;
+    font-size: 137%;
+    text-align: center;
+}
+
+
+/*
+ * ABOUT PAGE
+ */
+
+p.about
+{
+    margin-bottom: 1em;
+}
+
+
+/*
+ * DOCUMENTATION
+ */
+
+.documentation
+{
+    margin: 2em;
+}
+
+.documentation p
+{
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+.documentation ul li
+{
+    list-style-type: square;
+    list-style-position: inside;
+}
+
+.documentation ol li
+{
+    list-style-type: inherit;
+    list-style-position: inside;
+}
+
+p.top
+{
+    margin-left: 2em;
+}
+
+
+/*
+ * TABBED MENU
+ */
+
+div#submenu
+{
+    border-bottom: 1px solid #afaba3;
+    clear: both;
+    height: 34px;
+    margin-bottom: 1.2em;
+}
+
+div#submenu-tabs
+{
+    float: left;
+    font-weight: bold;
+}
+
+html[dir="rtl"] div#submenu-tabs
+{
+    float: right;
+}
+
+div#submenu-tabs a
+{
+    background-color: inherit;
+    border: 1px solid transparent;
+    color: #4b4740;
+    display: block;
+    float: left;
+    font-size: 90%;
+    height: 24px;
+    line-height: 22px;
+    margin: 8px 4px 0;
+    padding: 0 11px;
+    text-decoration: none;
+}
+
+html[dir="rtl"] div#submenu-tabs a
+{
+    float: right;
+}
+
+div#submenu-tabs a:hover
+{
+    background-color: #ffffff !important;
+    border-color: #777777 #777777 #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    line-height: 20px;
+    margin-top: 9px;
+}
+
+div#submenu-tabs a.admintab:hover
+{
+    background-color: #d54e21 !important;
+    border-bottom-color: #d54e21 !important;
+    color: #ffffff;
+}
+
+div#submenu-tabs a:visited
+{
+    background-color: inherit;
+    color: #4b4740;
+}
+
+body.dashboard div#submenu-tabs a.dashboard,
+body.settings div#submenu-tabs a.settings,
+body.profile div#submenu-tabs a.profile,
+body.password div#submenu-tabs a.password,
+body.admingeneral div#submenu-tabs a.admingeneral,
+body.adminusers div#submenu-tabs a.adminusers,
+body.adminlanguages div#submenu-tabs a.adminlanguages,
+body.adminprojects div#submenu-tabs a.adminprojects,
+body.adminpermissions div#submenu-tabs a.adminpermissions,
+body.projectoverview div#submenu-tabs a.projectoverview,
+body.projectadmin div#submenu-tabs a.projectadmin,
+body.languageoverview div#submenu-tabs a.languageoverview,
+body.languagenews div#submenu-tabs a.languagenews,
+body.languageadmin div#submenu-tabs a.languageadmin,
+body.tpoverview div#submenu-tabs a.tpoverview,
+body.tpnews div#submenu-tabs a.tpnews,
+body.tptranslate div#submenu-tabs a.tptranslate,
+body.tpreview div#submenu-tabs a.tpreview,
+body.tpadminpermissions div#submenu-tabs a.tpadminpermissions,
+body.tpadminfiles div#submenu-tabs a.tpadminfiles
+{
+    background-color: #ffffff;
+    border-color: #777777 #777777 #fff;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    font-size: 120%;
+    height: 30px;
+    line-height: 28px;
+    margin-top: 3px;
+    padding: 0 11px;
+}
+
+
+/*
+ * SETTINGS PAGE
+ */
+
+div.settings-container
+{
+    display: block;
+    margin: 0 auto 2em;
+}
+
+div.centered
+{
+    width: 95%;
+}
+
+.settings-container h2
+{
+    margin-bottom: 0.7em;
+}
+
+.settings-container p
+{
+    margin-bottom: 1em;
+}
+
+.settings-container form label,
+.settings-container form input,
+.settings-container form select
+{
+    font-size: 85%;
+}
+
+.settings-container input,
+.settings-container select,
+.settings-container textarea,
+#login input[type="text"],
+#login input[type="password"],
+#login select,
+#register input[type="text"],
+#register input[type="password"]
+{
+    display: block;
+}
+
+.settings-container table
+{
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.settings-container td
+{
+    font-size: inherit;
+}
+
+div#settings
+{
+    margin-bottom: 2em;
+}
+
+/* ADMIN DEPENDENCY CHECKS */
+
+div#depchecks ul
+{
+    margin-bottom: 1em;
+}
+
+div#depchecks ul#optional,
+div#depchecks ul#optimal
+{
+    font-style: italic;
+    background-color: inherit;
+    color: #4B4740;
+}
+
+div#depchecks ul li
+{
+    background-repeat: no-repeat;
+    padding: 0 2em;
+}
+
+div#depchecks ul li.good
+{
+    background-image: url('images/good.png');
+    background-position: left;
+}
+
+html[dir="rtl"] div#depchecks ul li.good
+{
+    background-position: right;
+}
+
+div#depchecks ul li.warning
+{
+    background-image: url('images/warning.png');
+    background-position: left;
+}
+
+html[dir="rtl"] div#depchecks ul li.warning
+{
+    background-position: right;
+}
+
+div#depchecks ul li.error
+{
+    background-image: url('images/error.png');
+    background-position: left;
+    font-weight: bold;
+    color: #d54e21;
+}
+
+html[dir="rtl"] div#depchecks ul li.error
+{
+    background-position: right;
+}
+
+/* ADMIN LANGUAGES, FILES */
+
+td.fullname input,
+td.pluralequation input,
+td.pootle_path
+{
+    direction: ltr;
+}
+
+html[dir="rtl"] td.pootle_path
+{
+    text-align: right;
+}
+
+
+/*
+ * SUMMARIES
+ */
+
+div.newsitem-sep
+{
+    border-bottom: 1px solid #ddd;
+    margin: 1.5em 0 2em;
+}
+
+#translationsummarylegend div img
+{
+    vertical-align:middle;
+    width: 25px;
+    height: 15px;
+    padding: 0px 5px;
+}
+
+div.latestnews ul
+{
+    margin: 0 1em;
+}
+
+div.latestnews li
+{
+    list-style-type: square;
+}
+
+div.latestnews p.subscribe
+{
+    background-image: url('images/feed.png');
+    background-repeat: no-repeat;
+    line-height: 3;
+    /* ltr */
+    background-position: right center;
+    text-align: right;
+    padding-right: 2em;
+}
+
+html[dir="rtl"] div.latestnews p.subscribe
+{
+    /* undo ltr */
+    padding-right: 0;
+    /* rtl */
+    background-position: left center;
+    text-align: left;
+    padding-left: 2em;
+}
+
+div.topcontributors
+{
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+table.topcontributors
+{
+    margin: 0 0.5em;
+    width: 30%;
+    display: inline-table;
+}
+
+table.topcontributors th
+{
+    font-size: 120%;
+}
+
+table.topcontributors td
+{
+    font-size: inherit;
+    padding: 0 0.5em;
+}
+
+td.stats-name
+{
+    font-weight: bold;
+}
+
+div.item-statistics
+{
+    background-color: inherit;
+    color: #4B4740;
+    font-family: Georgia, serif;
+    font-size: 1.5em;
+}
+
+div.item-statistics p
+{
+    line-height: 2;
+}
+
+div.item-statistics dl
+{
+    margin: 0;
+}
+
+div.item-statistics dl dt
+{
+    clear: left;
+    float: left;
+    text-align: right;
+    width: 100px;
+}
+
+html[dir="rtl"] div.item-statistics dl dt
+{
+    clear: right;
+    float: right;
+    text-align: left;
+}
+
+div.item-statistics dl dd
+{
+    line-height: inherit;
+    margin: 0 0 0 110px;
+}
+
+html[dir="rtl"] div.item-statistics dl dd
+{
+    margin: 0 110px 0 0;
+}
+
+div.small
+{
+    font-size: 1em;
+}
+
+td.stats-words
+{
+    text-align: right;
+    padding-right: 10px;
+}
+
+img.error
+{
+    vertical-align: middle;
+}
+
+/* 
+ * Pretty Graphs, mostly from http://l10n.gnome.org/
+ */
+
+div.graph
+{
+    height: 14px;
+    width: 100px;
+    border: 0 none;
+    position: relative;
+}
+
+div.translated
+{
+    position: absolute;
+    top: 2px;
+    height: 100%;
+    background: #448844;
+    background: url('images/green-bar.png');
+    background-repeat: repeat-x;
+    color: black;
+}
+
+div.goodchange
+{
+    position: absolute;
+    top: 2px;
+    height: 100%;
+    background: #55DD55;
+    background: url('images/cyan-bar.png');
+    background-repeat: repeat-x;
+    color: black;
+}
+
+div.fuzzy
+{
+    position: absolute;
+    top: 2px;
+    height: 100%;
+    background: #4444AA;
+    background: url('images/purple-bar.png');
+    background-repeat: repeat-x;
+    color: black;
+}
+
+div.untranslated
+{
+    position: absolute;
+    height: 100%;
+    top: 2px;
+    background: #FF4444;
+    background: url('images/red-bar.png');
+    background-repeat: repeat-x;
+    color: black;
+}
+
+div.graph[dir="ltr"] div.translated
+{
+    left: 0%;
+}
+
+div.graph[dir="rtl"] div.translated
+{
+    right: 0%;
+}
+
+/* SORTABLE */
+
+table.sortable th
+{
+    cursor: pointer;
+}
+
+.sortkey
+{
+    display: none;
+}
+
+/* PAGER */
+
+ul.pager
+{
+    font-size: 85%;
+}
+
+ul.pager li
+{
+    float: left;
+}
+
+html[dir="rtl"] ul.pager li
+{
+    float: right;
+}
+
+ul.pager li a,
+ul.pager li a:visited
+{
+    border: 1px solid #76b0bf;
+    text-decoration: none;
+}
+
+ul.pager li a:hover
+{
+    background-color: #76b0bf;
+    color: #ffffff;
+}
+
+ul.pager li span.current-link,
+ul.pager li a
+{
+    margin: 0.1em;
+    padding: 0.2em 0.5em;
+}
+
+ul.pager li a.nth-link,
+ul.pager li a.prevnext-link
+{
+    font-weight: bold;
+}
+
+ul.pager li span.current-link
+{
+    background-color: #76b0bf;
+    color: #ffffff;
+    border: 1px solid #76b0bf;
+    font-weight: bold;
+}
+
+
+/*
+ * NAVIGATION BAR
+ */
+
+.title a
+{
+    unicode-bidi: embed;
+}
+
+div#nav-secondary
+{
+    padding: 0.6em 1em;
+}
+
+div#breadcrumbs
+{
+    float: right;
+    margin-right: 5em;
+}
+
+html[dir="rtl"] div#breadcrumbs
+{
+    float: left;
+    margin-right: 0;
+    margin-left: 5em;
+}
+
+/* SEARCH */
+
+div#search
+{
+    float: right;
+    padding: 3px;
+    position: relative;
+}
+
+div#search[dir="rtl"]
+{
+    float: left;
+}
+
+div#search input[type=text]
+{
+    border: 1px solid #76b0bf;
+    height: 16px;
+    width: 145px;
+    padding: 1px;
+}
+
+div#search .advancedlink
+{
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    margin: 0 0 0 -5px;
+    top: -2px;
+    position: relative;
+    cursor: pointer;
+}
+
+div#search[dir="rtl"] .advancedlink
+{
+    margin: 0 -5px 0 0;
+}
+
+div.advancedsearch
+{
+    background-color: #ffffff;
+    border-bottom: 1px solid #76b0bf;
+    border-left: 1px solid #76b0bf;
+    border-right: 1px solid #76b0bf;
+    overflow: auto;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 8px;
+    position: absolute;
+    z-index: 2;
+    display: none;
+    margin-top: 0;
+    width: 155px;
+}
+
+#search[dir="rtl"] div.advancedsearch
+{
+    padding-left: 8px;
+    padding-right: 3px;
+}
+
+div.nodefaultsearch
+{
+    background-color: #f1f3f5 !important;
+}
+
+label.inputHint
+{
+    display: none;
+}
+
+.togglesearch
+{
+    cursor: pointer;
+    vertical-align: text-top;
+}
+
+/* Fix for Opera + RTL */
+div#search[dir="rtl"] .togglesearch
+{
+    margin-left: -5px;
+}
+
+/* FILENAMES, STATS */
+
+.icon
+{
+    float: left;
+    margin-right: 8px;
+}
+
+.icon[dir="rtl"]
+{
+    float: right;
+    margin-left: 8px;
+}
+
+.translations-nav
+{
+    clear: both;
+    margin-top: 1em;
+}
+
+.translations-nav:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.translations-nav li
+{
+    float: left;
+    padding: 0 0 0 9px;
+}
+
+html[dir="rtl"] .translations-nav li
+{
+    float: right;
+    padding: 0 9px 0 0;
+}
+
+.translations-nav li:after
+{
+    content:  "|";
+    margin: 0 0 0 10px;
+}
+
+html[dir="rtl"] .translations-nav li:after
+{
+    content:  "|";
+    margin: 0 10px 0 0;
+}
+
+.translations-nav li:last-child:after,
+html[dir="rtl"] .translations-nav li:last-child:after
+{
+    content: '';
+    margin: 0;
+}
+
+.translations-nav a:link
+{
+    color: #807970;
+}
+
+.translations-nav a:visited
+{
+    color: #807970;
+}
+
+.translations-nav .important
+{
+    font-weight: bold;
+}
+
+/* CHECKS */
+
+div.check
+{
+    margin: 1em;
+    float: right
+}
+
+html[dir="rtl"] div.check
+{
+    float: left;
+}
+
+.checkinfo
+{
+    vertical-align: top;
+}
+
+
+/*
+ * TRANSLATE PAGE
+ */
+
+table.translate-table
+{
+    width: 80%;
+    margin-top: 1em;
+    table-layout: fixed;
+}
+
+div.translation-action
+{
+    min-height: 1.5em;
+    height: 0px;
+    text-align: center;
+    width: 100%
+}
+
+th.translate-original,
+th.translate-translation
+{
+    width: 48.5%;
+}
+
+th.translate-edit
+{
+    width: 3%;
+}
+
+table[dir="rtl"] td.translate-original
+{
+    padding-left: 5px;
+}
+
+.translation-text
+{
+    max-width: 100%;
+    min-height: 1.5em;
+    overflow: auto;
+    padding: 1px 10px;
+    line-height: 1.3;
+}
+
+.translation-text-headers
+{
+    font-weight: bolder;
+    color: #006699;
+}
+
+.translation-space
+{
+    padding: 0 4px 2px;
+    margin: 0 0.2em;
+    background-image: url('images/squiggle.png');
+    background-repeat: repeat-x;
+    background-position: text-bottom;
+    vertical-align: text-top;
+}
+
+/* ORIGINAL */
+
+.translate-focus div.translate-original
+{
+    border: 1px solid black;
+    padding: 5px 0;
+    min-height: 3em;
+    background-color: #ebebeb;
+    color: #000;
+}
+
+div.translate-original
+{
+    min-height: 1.5em;
+}
+
+table td.translate-original
+{
+    padding-right: 5px;
+}
+
+.translate-locations
+{
+    font-family: monospace;
+    font-size: 75%;
+    background: transparent url('images/script_code.png') no-repeat;
+    background-position: 5px center;
+    border: 1px solid #ddd;
+    overflow: auto;
+    padding: 5px 25px;
+}
+
+.developer-comments
+{
+    background: #ffe url('images/information.png') no-repeat;
+    background-position: 5px center;
+    border: 1px solid #fc9;
+    overflow: auto;
+    margin-bottom: 0.5em;
+    padding: 5px 25px;
+}
+
+.translate-context
+{
+    background: #eee url('images/context.png') no-repeat;
+    background-position: 5px center;
+    font-family: monospace;
+    margin-top: 0.5em;
+    overflow: auto;
+    border: 1px solid #fff;
+    padding: 5px 25px;
+}
+
+/* TRANSLATION */
+
+td.translate-focus
+{
+    border-top:2px solid #000000;
+    padding-top:.5em;
+    padding-bottom:.5em;
+    padding-left:.5em;
+    vertical-align: top;
+}
+
+textarea.translation
+{
+    width: 99%;
+    min-height: 3em;
+    padding: 0 0 5px !important;
+    margin: 0 auto 0.5em;
+}
+
+td.comments
+{
+    padding: .5em;
+    border-bottom: 2px solid #000000;
+    vertical-align: top;
+}
+
+textarea.comments
+{
+    max-width: 100%;
+    width: 100%;
+    min-height: 3em;
+}
+
+.altsrclangname
+{
+    padding-top: 10px;
+}
+
+/* TM */
+
+.sidebar
+{
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-bottom: 10px;
+    width: 20%;
+    /* ltr: */
+    right: 0px;
+}
+
+.sidebar[dir="rtl"]
+{
+    /* undo ltr: */
+    right: auto;
+    border-left: none;
+    /* rtl: */
+    left: 0px;
+    border-right: 1px dotted #999;
+}
+
+.sidetitle
+{
+    color: #004077;
+    font-size: small;
+    font-weight: bolder;
+    padding: 2px;
+    letter-spacing: .1em;
+    border-bottom: 1px solid #999;
+    text-align: center;
+    text-transform: lowercase;
+}
+
+#tm
+{
+    position: absolute;
+}
+
+.tm-unit
+{
+    margin: 5px 0px 5px 0px;
+    padding: 0px 2px 0px 0px;
+    background-color: #F7F7F7;
+    position: relative;
+    cursor: pointer;
+}
+
+.tm-original
+{
+    font-weight: bolder;
+}
+
+.tm-translation
+{
+    font-style: oblique;
+}
+
+.tm-translation[dir="rtl"]
+{
+    text-align: right;
+}
+
+/* SUGGESTIONS */
+
+#translate-original-container,
+#translate-suggestion-container
+{
+    margin-bottom: 10px;
+}
+
+.translate-suggestion-block
+{
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.translate-suggestion-block .rejectsugg img
+{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.translate-suggestion-block .rejectsugg img[dir="rtl"]
+{
+    left: 0px;
+    right: auto;
+}
+
+.translate-suggestion-block .acceptsugg img
+{
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.translate-suggestion-block .acceptsugg img[dir="rtl"]
+{
+    left: 20px;
+    right: auto;
+}
+
+.translate-suggestion
+{
+    background-color: #DDD;
+}
+
+
+/* CONTROLS */
+
+.translate-buttons-block
+{
+    margin-bottom: 5px;
+}
+
+.translate-fuzzy-block
+{
+}
+
+input.fuzzycheck
+{
+    vertical-align: text-top;
+}
+
+.translate-specialchars-block
+{
+    line-height: 150%;
+}
+
+/* DIFF */
+
+.translate-diff-replace
+{
+    background-color: #ffff00;
+    border: 1px solid #f0f000;
+}
+
+.translate-diff-delete
+{
+    background-color: #ff8000;
+    border: 1px solid #f07000;
+}
+
+.translate-diff-insert
+{
+    background-color: #80ff00;
+    border: 1px solid #70f000;
+}
+
+/* HIGHLIGHT */
+
+.translation-highlight-escape
+{
+    color: purple;
+}
+
+.translation-highlight-html
+{
+    color: #A00000;
+}
+
+/* FUZZY TRANSLATION */
+
+div.translate-translation {
+    min-height: 1.5em;
+}
+
+.translate-translation-fuzzy[dir="ltr"]
+{
+    color: #666;
+    border-left: 4px solid #AAA;
+    padding-left: 3px;
+}
+
+.translate-translation-fuzzy[dir="rtl"]
+{
+    color: #666;
+    border-right: 4px solid #AAA;
+    padding-right: 3px;
+}
+
+textarea.translate-translation-fuzzy
+{
+    color: black;
+    border-left: 6px groove gray;
+    padding-left: 3px;
+}
+
+/* INLINE SUGGESTIONS */
+
+ul.sugglist
+{
+    clear: both;
+}
+
+a.sugglink[dir="ltr"]
+{
+    float: right;
+    padding-right: 1em;
+}
+
+a.sugglink[dir="rtl"]
+{
+    float: left;
+    padding-left: 1em;
+}
+
+span.suggauthor[dir="ltr"]
+{
+    float: right;
+}
+
+span.suggauthor[dir="rtl"]
+{
+    float: left;
+}
+
+div.suggestions
+{
+    font-style: italic;
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+
+div.suggestions ul li
+{
+    padding-left: 0.5em;
+}
+
+html[dir="rtl"] div.suggestions ul li
+{
+    padding-left: 0;
+    padding-right: 0.5em;
+}
+
+
+/*
+ * LANGUAGE SPECIFIC SETTINGS
+ */
+
+/*
+ * Language codes that are styled with right-to-left (rtl) layout:
+ *
+ * ar (Arabic)
+ * arc (Aramaic)
+ * dv (Dhivehi)
+ * fa (Persian)
+ * he (Hebrew)
+ * ks (Kashmir)
+ * ps (Pashto)
+ * ur (Urdu)
+ * yi (Yiddish)
+ *
+ * See: http://translate.sourceforge.net/wiki/l10n/displaysettings
+ * Also see: pagelayout.py::languagedir()
+ *
+ */
+
+/* Doesn't work: [dir="rtl"] */
+*:lang(ar), *:lang(arc), *:lang(dv), *:lang(fa), *:lang(he), *:lang(ks), *:lang(ps), *:lang(ur), *:lang(yi)
+{
+    /* If any styling is necessary for the rtl languages, add it here */
+    direction: rtl;
+}
+
+:lang(ak)
+{
+    font-family: Lucida, "DejaVu Sans", inherit;
+}
+
+:lang(ar)
+{
+    font-family: "Tahoma 12", Nazli, KacstOne, "DejaVu Sans", inherit;
+}
+
+:lang(bn)
+{
+    font-family: FreeSans, MuktiNarrow, Vrinda, inherit;
+    font-size: medium;
+    line-height: 110%;
+}
+
+:lang(el)
+{
+    font-family: "DejaVu Sans", inherit;
+}
+
+:lang(fa)
+{
+    font-family: Terafik, Traffic, Roya, Nazli, Nazanin, sans;
+    font-size: large;
+}
+
+:lang(ja),
+:lang(ko)
+{
+    font-size: medium;
+}
+
+:lang(zh)
+{
+    font-size: large;
+}
+
+:lang(km)
+{
+    font-family: "Khmer OS System", "Khmer OS", "Khmer Kampongtrach", "CDT Khmer", inherit;
+    line-height: 170%;
+}
+
+:lang(vi)
+{
+    font-family: "Lucida Grande", "Vu Phu Tho", "DejaVu Sans", inherit;
+}
+
+:lang(vi) a:hover[href]
+{
+    text-decoration: none;
+    color: #606047;
+}
+
+:lang(vi) a:active[href]
+{
+    text-decoration: none;
+    color: #606047;
+}
+
+/* FIX FOR HEADING SIZES */
+
+h2:lang(bn),
+h2:lang(ja),
+h2:lang(ko),
+h2:lang(zh)
+{
+    font-size: 170%;
+}
+
+h2:lang(bn) a,
+h2:lang(ja) a,
+h2:lang(ko) a,
+h2:lang(zh) a
+{
+    font-size: 100%;
+}
+

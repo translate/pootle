@@ -1,0 +1,232 @@
+=============================
+django-registration changelog
+=============================
+
+
+Version 0.7, 6 November 2008:
+-----------------------------
+
+* Project hosting moved from Google Code to Bitbucket, and from a
+  Subversion repository to Mercurial.
+
+* Added test suite.
+
+* Full Django 1.0 compatibility.
+
+* Registration and activation views now accept an ``extra_context``
+  argument, identical to the way that argument works in Django's
+  generic views.
+
+* Added a custom management command for cleaning up expired
+  registrations; you can now run ``manage.py cleanupregistration`` to
+  handle this.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: The "username" field in
+  ``RegistrationForm`` is now a ``RegexField``.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: Removed the standalone script for
+  deleting expired user registrations; use the new management command
+  instead.
+
+
+Version 0.6, 29 July 2008:
+--------------------------
+
+* Packaged from revision 166 in Subversion.
+
+* Fixed a multiple-objects exception in
+  ``RegistrationFormUniqueEmail`` when multiple users already have the
+  same email address.
+
+* Changed the ``success_url`` of the ``register()`` view to use
+  reverse URL resolution.
+
+* Added an ``extra_context`` argument to the ``register`` and
+  ``activate`` views, mimicking its functionality in Django's generic
+  views.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: Switched the admin declaration to be
+  compliant with the newforms-admin refactor; the admin declaration
+  now lives in ``registration/admin.py``.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: Switched form imports from using
+  ``django.newforms`` to using ``django.forms``; the old style now
+  raises a deprecation warning on Django trunk and on Django 1.0
+  alpha.
+
+
+Version 0.5, 4 June 2008:
+-------------------------
+
+* Packaged from revision 155 in Subversion.
+
+* Added Serbian translation.
+
+* Added Italian translation.
+
+* Username/email uniqueness checks are now case-insensitive. This is
+  potentially backwards-incompatible if you relied on them being
+  case-sensitive, but I don't know of any reason why you'd be doing
+  that.
+
+* Included forms now use lazy translations.
+
+* The ``register`` view can now handle files submitted for use in form
+  processing.
+
+* Reactivation of a manually-deactivated account is now prevented by
+  changing the activation key, on successful activation, to a dummy
+  string which will fail on subsequent activation attempts.
+
+
+Version 0.4p2, 10 Feburary 2008:
+--------------------------------
+
+* Added Brazilian Portuguese translation.
+
+* Added Japanese translation.
+
+* Added Hebrew translation.
+
+* Minor documentation fixes.
+
+
+Version 0.4p1, 16 December 2007:
+--------------------------------
+
+* Packaged from revision 129 in Subversion.
+
+* Added Polish translation.
+
+
+Version 0.4, 8 December 2007:
+-----------------------------
+
+* Packaged from revision 122 in Subversion.
+
+* Added Greek translation.
+
+* Added Russian translation.
+
+* Changed ``maxlength`` to ``max_length`` now that Django issues a
+  deprecation warning for it.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: Changed the password validation to be
+  on ``clean()`` instead of ``clean_password2()``. This means that
+  errors from this must be accessed via ``non_field_errors()``.
+
+
+Version 0.3p5, 6 October 2007:
+------------------------------
+
+* Packaged from revision 112 in Subversion.
+
+* Added German translation.
+
+* Fixed a mismatch between the default ``RegistrationForm``'s maximum
+  length on email addresses and the actual maximum length on Django's
+  ``User`` model.
+
+* Fixed a situation where bad input for the ``password1`` field on
+  ``RegistrationForm`` could cause validation of ``password2`` to fail
+  with an exception.
+
+
+Version 0.3p4, 4 October 2007:
+------------------------------
+
+* Packaged from revision 101 in Subversion.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: In response to larger numbers of
+  complaints from people trying to use the example templates as-is,
+  the example templates have been removed.
+
+
+Version 0.3p2, 23 September 2007:
+---------------------------------
+
+* Packaged from revision 100 in Subversion.
+
+* Fixed ``activate`` view to actually take the ``template_name``
+  argument.
+
+
+Version 0.3p1, 22 September 2007:
+---------------------------------
+
+* Packaged from revision 99 in Subversion.
+
+* Fixed a typo in docs/overview.txt.
+
+* Fixed a typo in bin/delete_expired_users.py.
+
+* Added French translation.
+
+
+Version 0.3, 19 September 2007:
+-------------------------------
+
+Packaged from revision 89 in Subversion; download at
+http://django-registration.googlecode.com/files/registration-0.3.tar.gz
+
+* Changed ``register`` and ``activate`` views to accept
+  ``template_name`` keyword argument for selecting a custom template.
+
+* Changed ``register`` view to accept ``form_class`` keyword
+  argument specifying the form to use.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: Changed
+  ``RegistrationManager.create_inactive_user`` to use a template for
+  the subject of the activation email.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: Removed the ``tos`` field from
+  ``RegistrationForm``; if you were relying on it, switch to using
+  ``RegistrationFormTermsOfService`` instead.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: The activation email template now
+  receives the current ``Site`` object as the context variable
+  ``site``, and the ``current_site`` variable, which only held the
+  domain, is no longer available.
+
+* Added script ``bin/delete_expired_users.py`` with instructions on
+  how to use it as a cron job to clean up expired/inactive accounts.
+
+* Marked strings for translation and added ``locale`` directory so
+  that translations can be added.
+
+* Updated to deal with merge of Django's Unicode branch into trunk;
+  now using Unicode-aware functions everywhere.
+
+
+Version 0.2, 29 May 2007:
+-------------------------
+
+Packaged from revision 76 in Subversion; download at
+http://django-registration.googlecode.com/files/registration-0.2.tar.gz
+
+* Added ability to specify a callback in
+  ``RegistrationManager.create_inactive_user`` or in the ``register``
+  view to enable creation of site-specific user profile.
+
+* Separated out the logic of creating the profile into a new method on
+  ``RegistrationManager``: ``create_profile``.
+
+* Added URLConf support for various useful views in
+  ``django.contrib.auth``.
+
+* BACKWARDS-INCOMPATIBLE CHANGE: removed the ``key_generated`` field
+  from ``RegistrationProfile``; activation key expiration is now
+  calculated based on the ``date_joined`` field in the ``User`` model.
+  Drop the ``key_generated`` column from your database when upgrading
+  from 0.1.
+
+
+Version 0.1, 23 May 2007:
+-------------------------
+
+Packaged from revision 56 in Subversion; download at
+http://django-registration.googlecode.com/files/registration-0.1.tar.gz
+
+* First packaged version using distutils.
+
+* Added docs/ directory and overview. 

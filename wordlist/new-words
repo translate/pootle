@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+
+
+flag=""
+for param in $*
+do
+	case $param in
+		-i|--input-file) flag="input";;
+		-o|--output-file) flag="output";;
+		-r|--remove-list) flag="remove";;
+		-s|--spell-check) flag="spell";;
+		-*) echo "Error: $param is an invalid option"
+			exit 1;;
+		*)
+			case $flag in
+				input) input=`echo $input $param`;;
+				output) output=$param;;
+				remove) remove=`echo $remove $param`;;
+				spell) spell=`echo $spell $param`;;
+				*) echo "Error: $param is an invalid option";;
+			esac
+	esac
+done
+
+
+tmp_input=`mktemp`
+cat $input | sed "s/^[[:space:][:digit:]]*//g" | sort --unique > $tmp_input
+
+if [ "$remove" != "" ]; then
+	# Prepare the global removal list
+	tmp_remove=`mktemp`
+	sort --unique $remove > $tmp_remove
+	working=`mktemp`
+	# Find words that are only in the new list
+	comm -2 -3 $tmp_input $tmp_remove > $working
+	mv $working $tmp_input
+	rm $tmp_remove 
+fi 
+
+# Run these through the spellcheckers to make sure they're not from another language
+if [ "$spell" != "" ]; then
+	working=`mktemp`
+	for lang in $spell
+	do
+		cat $tmp_input | aspell -l --mode=none --master=$spell > $working
+		mv $working $tmp_input
+	done
+fi 
+
+# TODO Restore freqeuncies
+#echo "egrep -f $tmp_input $input | sort --general-numeric-sort > $output"
+
+#Cleanup
+mv $tmp_input $output
+
+# Stats
+echo Statistics
+echo Input: `cat $input | wc -l`
+echo Output: `cat $output | wc -l`

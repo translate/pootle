@@ -1,0 +1,11 @@
+{% extends "tp_base.html"  %}
+
+{% block innernav %}
+<!-- Navigation bar -->
+<div id="innernav" class="navbar">
+    {% for item in navitems %}
+    {% include "language/item_block.html" %}
+    {% include "language/item_stats.html" %}
+    {% endfor %}
+</div>
+{% endblock %}

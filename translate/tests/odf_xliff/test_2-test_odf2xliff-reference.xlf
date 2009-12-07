@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.1" version="1.1">
+  <file original="NoName" source-language="en" datatype="plaintext">
+    <body>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]">
+        <source>This &lt;g id="42"&gt;is a&lt;/g&gt; test&lt;x id="49"/&gt;, hooray.</source>
+        <note>References: 50</note>
+      </trans-unit>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note-citation[0]">
+        <source>1</source>
+        <note>References: 43</note>
+      </trans-unit>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note-body[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]">
+        <source>A test is a thing which is, well, you know, a test!</source>
+        <note>References: 44</note>
+      </trans-unit>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note-body[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[1]">
+        <source>And blah, &lt;x id="46"/&gt;, blah, blah.</source>
+        <note>References: 47</note>
+      </trans-unit>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-row[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-cell[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]">
+        <source>&lt;g id="54"&gt;This &lt;/g&gt;&lt;g id="55"&gt;is&lt;/g&gt;&lt;g id="56"&gt; a&lt;/g&gt; cell&lt;x id="60"/&gt;.</source>
+        <note>References: 61</note>
+      </trans-unit>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-row[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-cell[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note-citation[0]">
+        <source>2</source>
+        <note>References: 57</note>
+      </trans-unit>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-row[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-cell[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}note-body[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]">
+        <source>I'm sure that you know by know just how comprehensive my definition of the word “cell” will be.</source>
+        <note>References: 58</note>
+      </trans-unit>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-row[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-cell[1]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]">
+        <source>The table </source>
+        <note>References: 63</note>
+      </trans-unit>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-row[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-cell[1]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-row[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-cell[0]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[0]">
+        <source>This is a small table.</source>
+        <note>References: 65</note>
+      </trans-unit>
+      <trans-unit id="{urn:oasis:names:tc:opendocument:xmlns:office:1.0}document-content[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body[0]/{urn:oasis:names:tc:opendocument:xmlns:office:1.0}text[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-row[0]/{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-cell[1]/{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p[1]">
+        <source>is a rather small table.</source>
+        <note>References: 69</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

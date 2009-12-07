@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n baseurl %}
+
+{% block title %}
+{{ block.super }}: {% trans "Login" %}
+{% endblock %}
+
+{% block content %}
+<div id="login" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <h2>{% trans 'Login to Pootle' %}</h2>
+    <form method="post" action='{{ "/accounts/login/"|l }}' 
+      name="loginform" id="loginform">
+    {% if form.errors %}
+    <div id="site-message">
+        <div class="error">
+        {% trans "Your username and password didn't match. Please try again." %}
+        </div>
+    </div>
+    {% endif %}
+    {{ form.as_p }}
+	<p class="submit">
+        <input type="submit" name="login" value="{% trans 'Login' %}" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </p>
+</form>
+<p><a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a></p>
+</div>
+
+{% if settings.CAN_REGISTER %}
+<h2 class="registerlink">{% trans "Don't have an account yet?" %}
+    <a href='{{ "/accounts/register"|l }}' title="{% trans 'Register.' %}">{% trans 'Register.' %}</a>
+</h2>
+{% endif %}
+{% endblock content %}
+
+{% block scripts_extra %}
+  <script>
+    $(document).ready(function () {
+        $("#id_username").focus();
+    });
+  </script>
+{% endblock scripts_extra %}

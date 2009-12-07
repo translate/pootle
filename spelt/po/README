@@ -1,0 +1,15 @@
+Updating translations
+---------------------
+from po/
+
+./intltool-update --pot
+./intltool-update xy
+
+Generating the .xml and .desktop files
+--------------------------------------
+from package /
+
+./maketranslations
+
+This will use the .po files and .xml.in and 
+.desktop.in to create a .xml and .desktop file

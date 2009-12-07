@@ -1,0 +1,41 @@
+Pootle Credits
+==============
+
+See the README file for an explanation of what Pootle is. See the ChangeLog (or
+svn history) for more detailed credits.  These are people who have contributed 
+documentation or code, but bug reports are also a valuable contribution!  Many 
+people have contributed suggestions etc on the translate-pootle list and these 
+are also appreciated.  Thank you for the many translators who translated the 
+Pootle interface.  If you've been left out, let us know!
+
+Alphabetical Order of Contributors
+----------------------------------
+
+Ahmed Toulan (أحمد طولون) (OpenCraft): development
+Alaa Abd El Fataah (علاء عبد الفتاح): development
+Abel Cheung (張國冠): feedback and patches for Chinese and CJK locales
+Andreas Pauley: development
+Behnam Esfahbod (بهنام اسفهبد): initial RTL testing and feedback
+Capel Brunker: development
+Charl van Niekerk: user interface improvements and testing
+Clytie Siddall: testing and feedback
+David Fraser: main initial development
+Daniel Schafer (Mozilla): development (Mozootle)
+Djihed Afifi (عفيفي جهاد): user interface improvements
+Dwayne Bailey: lots of different areas
+Friedel Wolff: development
+Gasper Zejn: user interface improvements
+Julen Ruiz Aizpuru: GSoC 2008, development
+Lars Kruse: improvements in several areas, testing, bug reports, patches
+Lucas Vieites: original Pootle SVG logo
+Matt Chisholm: bug fixes
+Miklos Vajna: patches and testing of version control
+Mohamed El-Sawy (محمد الصاوي) (OpenCraft): development
+Munzir Taha (منذر طه): initial RTL testing and feedback
+Nicolas François: Performance and customisability
+Sayamindu Dasgupta (সায়মিন্দু দাশগুপ্ত): Alternative source language
+Simos Xenitellis (Σίμος Ξενιτέλλης): user interface improvements
+Walter Leibbrandt: development
+Wil Clouser (Mozilla): debugging, testing, development (Mozootle)
+Wynand Winterbach: development
+Youssef Chahibi (يوسف الشهيبي): initial RTL testing and feedback
