@@ -43,16 +43,6 @@ other:
     what bits aren't translated and jump straight to that.
   localisation: create a fallback mechanism so you can set a number of
     languages: Bambara, French then default to English.
-  three column translation: English, Other language, Destination Language.  So
-    that a French speaker can translate into Bambarra with little English
-
-bugs:
-  currently project codes cannot have a dash "-" in them eg kde-i18n.  Either
-    we should allow or warn when starting pootle. (check, should be fixed)
-  items inside the current group should have "group=" in link so clicking "remove" on assignment doesn't jump out of group
-
-assignment:
-  create user groups, assign to a group
 
 feedback from Durban translatathon:
   regenerate Pootle PO files on web
@@ -61,21 +51,16 @@ feedback from Durban translatathon:
   tutorial PO file
 
 new:
-  add more management of pot files
-    - rights
-    - uploading, updating from CVS etc
     ? able to have multiple pot repositories
   new rights model:
     maintainer of a whole project (all languages)
     global goals for all languages
-    admins for a whole language - accept translators etc
     let people "take" a file (self-assign) if not being managed
   let setting up project be totally automatic...
 
 suggestions from list:
   search and replace across a whole file
   translator comments / tagging of strings
-  translation of language names (do the whole iso codes list)
   drop-down list for languages (improve selection)
   simple way to see the plural definition for a language
   validate plurals against KBabel/msginit entries

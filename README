@@ -62,6 +62,9 @@ to speed up searching. Note that Xapian before version 1.0.13 is incompatible
 with Apache, and Pootle will not enable Xapian indexing if running under
 mod_python or mod_wsgi with problematic versions.
 
+Further performance might be displayed on the admin page if Pootle detects
+anything non-optimal.
+
 
 Installing and running
 ----------------------

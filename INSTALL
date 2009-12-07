@@ -73,6 +73,10 @@ Manual preparation
 Common problems
 ---------------
 
-If you get an error such as sqlite3.OperationalError: unable to open database file, then DATABASE_NAME in pootle/settings.py is pointing at an invalid directory. The default directory name is 'dbs' - ensure that this exists.
+If you get an error such as
+    sqlite3.OperationalError: unable to open database file
+then DATABASE_NAME in pootle/settings.py is pointing at an invalid directory.
+The default directory name is 'dbs' - ensure that this exists, and is writable
+for the user running Pootle.
 
 
