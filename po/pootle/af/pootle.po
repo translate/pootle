@@ -2,22 +2,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-27 11:15+0200\n"
-"PO-Revision-Date: 2009-11-25 17:32+0200\n"
 "Last-Translator: F Wolff <friedel@translate.org.za>\n"
+"POT-Creation-Date: 2009-12-01 19:27+0200\n"
+"PO-Revision-Date: 2009-12-03 00:16+0200\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.0-rc1\n"
+"X-Generator: Pootle 2.0.0-rc2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr "Hou \"Control\" of die Appelknoppie op 'n Mac in om meer as een te kies."
+msgstr ""
+"Hou \"Control\" in (of die Appelknoppie op 'n Mac) om meer as een te kies."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
@@ -197,16 +198,16 @@ msgstr ""
 "Die beskrywing en instruksies wat op die voorblad en aangaade-bladsy "
 "vertoon. Maak seker dat dit geldige HTML is."
 
-#: local_apps/pootle_app/unit_update.py:39
+#: local_apps/pootle_app/unit_update.py:38
 msgid "You do not have rights to suggest changes here"
 msgstr "U het nie die regte om veranderings hier voor te stel nie."
 
-#: local_apps/pootle_app/unit_update.py:58
+#: local_apps/pootle_app/unit_update.py:57
 msgid "You do not have rights to change translations here"
 msgstr "U het nie die regte om vertalings hier te verander nie."
 
-#: local_apps/pootle_app/unit_update.py:90
-#: local_apps/pootle_app/unit_update.py:100
+#: local_apps/pootle_app/unit_update.py:95
+#: local_apps/pootle_app/unit_update.py:105
 msgid "You do not have rights to review suggestions here"
 msgstr "U het nie die regte om voorstelle hier na te gaan nie."
 
@@ -292,7 +293,7 @@ msgid "Plural Equation"
 msgstr "Meervoudvergelyking"
 
 #: local_apps/pootle_app/models/profile.py:72
-#: local_apps/pootle_app/views/index/login.py:67
+#: local_apps/pootle_app/views/index/login.py:58
 #: templates/profiles/edit_profile.html:27
 msgid "Interface Language"
 msgstr "Koppelvlaktaal"
@@ -365,40 +366,40 @@ msgstr "Projekboomstyl"
 msgid "Ignore Files"
 msgstr "Geïgnoreerde lêers"
 
-#: local_apps/pootle_app/models/suggestion.py:57
+#: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
 msgstr ""
 
-#: local_apps/pootle_app/models/suggestion.py:58
+#: local_apps/pootle_app/models/suggestion.py:55
 msgid "Accepted"
 msgstr "Aanvaar"
 
-#: local_apps/pootle_app/models/suggestion.py:59
+#: local_apps/pootle_app/models/suggestion.py:56
 msgid "Rejected"
 msgstr "Verwerp"
 
-#: local_apps/pootle_app/models/translation_project.py:239
-#: local_apps/pootle_app/models/translation_project.py:266
+#: local_apps/pootle_app/models/translation_project.py:237
+#: local_apps/pootle_app/models/translation_project.py:264
 msgid "You do not have rights to update from version control here"
 msgstr "U het nie toestemming om hier van weergawebeheer op te dateer nie"
 
-#: local_apps/pootle_app/models/translation_project.py:255
+#: local_apps/pootle_app/models/translation_project.py:253
 #, python-format
 msgid "Updated %s files from version control"
 msgstr "%s lêers opgedateer vanaf weergawebeheer"
 
-#: local_apps/pootle_app/models/translation_project.py:271
+#: local_apps/pootle_app/models/translation_project.py:269
 #, python-format
 msgid "Failed to update %s from version control"
 msgstr "Kon nie %s opdateer vanaf weergawebeheer nie"
 
-#: local_apps/pootle_app/models/translation_project.py:273
+#: local_apps/pootle_app/models/translation_project.py:271
 #, python-format
 msgid "Updated file %s from version control"
 msgstr "Die lêer %s is opgedateer vanaf weergawebeheer"
 
-#: local_apps/pootle_app/models/translation_project.py:284
-#: local_apps/pootle_app/views/language/view.py:133
+#: local_apps/pootle_app/models/translation_project.py:282
+#: local_apps/pootle_app/views/language/view.py:134
 msgid "You do not have rights to commit files here"
 msgstr "U het nie regte om lêerweergawes hier in te stuur nie."
 
@@ -407,7 +408,7 @@ msgid "Top Contributors"
 msgstr "Topbydraers"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
-#: local_apps/pootle_app/views/language/project_index.py:43
+#: local_apps/pootle_app/views/language/project_index.py:41
 msgid "Translated"
 msgstr "Vertaal"
 
@@ -417,7 +418,7 @@ msgstr "Moet nagegaan word"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:109
-#: local_apps/pootle_app/views/language/project_index.py:49
+#: local_apps/pootle_app/views/language/project_index.py:47
 #: local_apps/pootle_app/views/project/project_language_index.py:83
 #: local_apps/pootle_app/views/project/projects_index.py:43
 msgid "Untranslated"
@@ -425,9 +426,11 @@ msgstr "Onvertaald"
 
 #: local_apps/pootle_app/templates/admin/admin_general_languages.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_languages.html:11
-#, python-format
-msgid "%(prevtitle)s » Languages"
-msgstr "%(prevtitle)s » Tale"
+#: local_apps/pootle_app/views/admin/adminlanguages.py:30
+#: local_apps/pootle_app/views/index/index.py:101
+#: templates/admin_profile_menu.html:7
+msgid "Languages"
+msgstr "Tale"
 
 #: local_apps/pootle_app/templates/admin/admin_general_languages.html:14
 msgid ""
@@ -439,11 +442,16 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
+#: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:6
+#: local_apps/pootle_app/templates/language/language_admin.html:25
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:6
-#, python-format
-msgid "%(prevtitle)s » Permissions"
-msgstr "%(prevtitle)s » Toestemmings"
+#: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
+#: local_apps/pootle_app/views/language/admin_permissions.py:100
+#: templates/admin_profile_menu.html:9 templates/language_menu.html:10
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
+msgid "Permissions"
+msgstr "Toestemmings"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
@@ -456,8 +464,8 @@ msgstr ""
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
-#: local_apps/pootle_app/views/language/admin_permissions.py:101
-#: local_apps/pootle_app/views/language/admin_permissions.py:249
+#: local_apps/pootle_app/views/language/admin_permissions.py:100
+#: local_apps/pootle_app/views/language/admin_permissions.py:248
 #: local_apps/pootle_app/views/language/language_admin.py:49
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:15
@@ -467,16 +475,7 @@ msgstr "Gebruikersnaam"
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
-#: local_apps/pootle_app/views/language/admin_permissions.py:101
-#: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
-msgid "Permissions"
-msgstr "Toestemmings"
-
-#: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
-#: local_apps/pootle_app/templates/language/language_admin.html:25
-#: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
-#: local_apps/pootle_app/views/language/admin_permissions.py:101
+#: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
 msgstr "Skrap"
 
@@ -487,9 +486,13 @@ msgstr "Dateer regte op"
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
-#, python-format
-msgid "%(prevtitle)s » Projects"
-msgstr "%(prevtitle)s » Projekte"
+#: local_apps/pootle_app/templates/project/projects.html:9
+#: local_apps/pootle_app/views/admin/adminprojects.py:30
+#: local_apps/pootle_app/views/index/index.py:103
+#: local_apps/pootle_app/views/project/projects_index.py:37
+#: templates/admin_profile_menu.html:8 templates/project_base.html:6
+msgid "Projects"
+msgstr "Projekte"
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:14
 msgid ""
@@ -501,9 +504,8 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
-#, python-format
-msgid "%(prevtitle)s » General Settings"
-msgstr "%(prevtitle)s » Algemene instellings"
+msgid "General Settings"
+msgstr "Algemene instellings"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
@@ -523,9 +525,11 @@ msgstr "Optimering"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
-#, python-format
-msgid "%(prevtitle)s » Users"
-msgstr "%(prevtitle)s » Gebruikers"
+#: local_apps/pootle_app/views/admin/adminusers.py:32
+#: templates/admin_profile_menu.html:6
+#: templates/profiles/profile_detail.html:8
+msgid "Users"
+msgstr "Gebruikers"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:14
 msgid ""
@@ -536,9 +540,8 @@ msgstr ""
 "Pootle-bediener."
 
 #: local_apps/pootle_app/templates/index/about.html:7
-#, python-format
-msgid "%(prevtitle)s: About"
-msgstr "%(prevtitle)s: Aangaande"
+msgid "About"
+msgstr "Aangaande"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
@@ -589,9 +592,9 @@ msgid "Subscribe to the RSS feed."
 msgstr "Skryf in vir die RSS-voer."
 
 #: local_apps/pootle_app/templates/index/login.html:5
-#, python-format
-msgid "%(prevtitle)s: Login"
-msgstr "%(prevtitle)s: Meld aan"
+#: local_apps/pootle_app/templates/index/login.html:22
+msgid "Login"
+msgstr "Meld aan"
 
 #: local_apps/pootle_app/templates/index/login.html:10
 msgid "Login to Pootle"
@@ -601,19 +604,15 @@ msgstr "Meld aan by Pootle"
 msgid "Your username and password didn't match. Please try again."
 msgstr "Die gebruikernaam en wagwoord het nie gepas nie. Probeer gerus weer."
 
-#: local_apps/pootle_app/templates/index/login.html:22
-msgid "Login"
-msgstr "Meld aan"
-
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
 msgstr "Wagwoord vergeet?"
 
-#: local_apps/pootle_app/templates/index/login.html:29
+#: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
 msgstr "Nog nie 'n rekening nie?"
 
-#: local_apps/pootle_app/templates/index/login.html:30
+#: local_apps/pootle_app/templates/index/login.html:31
 msgid "Register."
 msgstr "Registreer."
 
@@ -626,11 +625,6 @@ msgstr "Fout"
 msgid "Complete"
 msgstr "Voltooid"
 
-#: local_apps/pootle_app/templates/language/item_title.html:5
-#: local_apps/pootle_app/templates/language/item_title.html:7
-msgid " » "
-msgstr " » "
-
 #: local_apps/pootle_app/templates/language/language_admin.html:20
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
@@ -642,9 +636,10 @@ msgid "Update Permissions"
 msgstr "Dateer toestemmings op"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:6
-#, python-format
-msgid "%(prevtitle)s » Files"
-msgstr "%(prevtitle)s » Lêers"
+#: local_apps/pootle_app/views/language/admin_files.py:62
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
+msgid "Files"
+msgstr "Lêers"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""
@@ -652,71 +647,57 @@ msgid ""
 "also want to <a href=\"?scan_files=1\">rescan the project files</a> or <a "
 "href=\"?template_update=1\">update the files from templates</a>."
 msgstr ""
-"Hier kan die beskikbare lêers in die vertaalprojek geskrap word. Dalk wil "
+"Hier kan die beskikbare lêers in die vertaalprojek geskrap word. Dalk wil u "
 "ook die <a href=\"?scan_files=1\">projeklêers nuut deursoek</a> of <a "
-"href=\"?template_update=1\">opdateer van die sjanblone</a>."
+"href=\"?template_update=1\">opdateer van die sjablone</a>."
 
 #: local_apps/pootle_app/templates/language/tp_review.html:6
-#, python-format
-msgid "%(prevtitle)s » Review"
-msgstr "%(prevtitle)s » Gaan na"
+#: templates/tp_menu.html:10
+msgid "Review"
+msgstr "Sien na"
 
 #: local_apps/pootle_app/templates/language/tp_translate.html:6
-#, python-format
-msgid "%(prevtitle)s » Translate"
-msgstr "%(prevtitle)s » Vertaal"
-
 #: local_apps/pootle_app/templates/language/translatepage.html:9
-#, python-format
-msgid "%(prevtitle)s » Translate » %(filepath)s"
-msgstr "%(prevtitle)s » Vertaal » %(filepath)s"
+#: templates/tp_menu.html:9
+msgid "Translate"
+msgstr "Vertaal"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:80
 msgid "Edit translation"
 msgstr "Redigeer vertaling"
 
-#: local_apps/pootle_app/templates/language/translatepage.html:201
+#: local_apps/pootle_app/templates/language/translatepage.html:203
 msgid "Submit"
 msgstr "Dien in"
 
-#: local_apps/pootle_app/templates/language/translatepage.html:204
+#: local_apps/pootle_app/templates/language/translatepage.html:206
 msgid "Suggest"
 msgstr "Stel voor"
 
-#: local_apps/pootle_app/templates/language/translatepage.html:209
+#: local_apps/pootle_app/templates/language/translatepage.html:211
 msgid "Copy"
 msgstr "Kopieer"
 
-#: local_apps/pootle_app/templates/language/translatepage.html:212
-#: local_apps/pootle_app/views/language/translate_page.py:540
+#: local_apps/pootle_app/templates/language/translatepage.html:214
+#: local_apps/pootle_app/views/language/translate_page.py:513
 msgid "Skip"
 msgstr "Slaan oor"
 
+#. #-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#
 #. l10n: Button that takes the user to the previous unit or page
-#: local_apps/pootle_app/templates/language/translatepage.html:215
-#: local_apps/pootle_app/views/language/translate_page.py:539
+#: local_apps/pootle_app/templates/language/translatepage.html:217
+#: local_apps/pootle_app/views/language/translate_page.py:512
 msgid "Back"
 msgstr "Terug"
 
-#: local_apps/pootle_app/templates/project/project.html:9
-#, python-format
-msgid "%(prevtitle)s » %(projectname)s"
-msgstr "%(prevtitle)s » %(projectname)s"
-
 #: local_apps/pootle_app/templates/project/project_admin.html:8
-#, python-format
-msgid "%(prevtitle)s » %(projectname)s » Administrate"
-msgstr "%(prevtitle)s » %(projectname)s » Administreer"
+#: templates/project_menu.html:9 templates/tp_base_admin.html:8
+msgid "Administrate"
+msgstr "Administreer"
 
 #: local_apps/pootle_app/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "Hier kan mens byvoeg, redigeer of skrap aan die tale in hierdie projek."
-
-#: local_apps/pootle_app/templates/project/projects.html:9
-#: templates/project_base.html:6
-#, python-format
-msgid "%(prevtitle)s: Projects"
-msgstr "%(prevtitle)s: Projekte"
 
 #: local_apps/pootle_app/views/top_stats.py:77
 msgid "Suggestions"
@@ -729,12 +710,6 @@ msgstr "Nagesien"
 #: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
 msgstr "Vertalings ingedien"
-
-#: local_apps/pootle_app/views/admin/adminlanguages.py:30
-#: local_apps/pootle_app/views/index/index.py:101
-#: templates/admin_profile_menu.html:7
-msgid "Languages"
-msgstr "Tale"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
@@ -887,18 +862,6 @@ msgstr ""
 "'n manier om oor Pootle en lokalisering te leer, maar het 'n hoë impak op "
 "werkverrigting."
 
-#: local_apps/pootle_app/views/admin/adminprojects.py:30
-#: local_apps/pootle_app/views/index/index.py:103
-#: local_apps/pootle_app/views/project/projects_index.py:37
-#: templates/admin_profile_menu.html:8
-msgid "Projects"
-msgstr "Projekte"
-
-#: local_apps/pootle_app/views/admin/adminusers.py:32
-#: templates/admin_profile_menu.html:6
-msgid "Users"
-msgstr "Gebruikers"
-
 #: local_apps/pootle_app/views/admin/adminusers.py:52
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
@@ -931,14 +894,14 @@ msgstr "Tuisblad"
 msgid "Save Changes"
 msgstr "Stoor veranderinge"
 
-#: local_apps/pootle_app/views/index/about.py:49
+#: local_apps/pootle_app/views/index/about.py:48
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
 "Pootle %(pootle_ver)s word aangedryf deur Translate Toolkit %(toolkit_ver)s"
 
 #: local_apps/pootle_app/views/index/index.py:60
-#: local_apps/pootle_app/views/language/item_dict.py:244
+#: local_apps/pootle_app/views/language/item_dict.py:253
 #, python-format
 msgid "%(percentage)d%% complete"
 msgstr "%(percentage)d%% voltooi"
@@ -955,34 +918,29 @@ msgstr "Vertalings is volledig"
 msgid "Translations need to be checked (they are marked fuzzy)"
 msgstr "Vertalings moet nagegaan word (hulle is wasig gemerk)"
 
-#: local_apps/pootle_app/views/index/login.py:49
+#: local_apps/pootle_app/views/index/login.py:46
 msgid "Default"
 msgstr "Verstek"
 
-#: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
-msgid "Files"
-msgstr "Lêers"
-
-#: local_apps/pootle_app/views/language/admin_permissions.py:240
+#: local_apps/pootle_app/views/language/admin_permissions.py:239
 msgid "This is a GNU-style project (files named per language code)."
 msgstr "Hierdie projek is in GNU-styl (lêers volgens taalkode genoem)."
 
-#: local_apps/pootle_app/views/language/admin_permissions.py:242
+#: local_apps/pootle_app/views/language/admin_permissions.py:241
 msgid "This is a standard style project (one directory per language)."
 msgstr "Hierdie is 'n standaardstyl projek (een gids per taal)."
 
-#: local_apps/pootle_app/views/language/admin_permissions.py:248
+#: local_apps/pootle_app/views/language/admin_permissions.py:247
 #: local_apps/pootle_app/views/language/language_admin.py:48
 msgid "User Permissions"
 msgstr "Gebruikersregte"
 
-#: local_apps/pootle_app/views/language/admin_permissions.py:251
+#: local_apps/pootle_app/views/language/admin_permissions.py:250
 #: local_apps/pootle_app/views/language/language_admin.py:51
 msgid "(select to add user)"
 msgstr "(kies om gebruiker by te voeg)"
 
-#: local_apps/pootle_app/views/language/item_dict.py:41
+#: local_apps/pootle_app/views/language/item_dict.py:38
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
@@ -994,7 +952,7 @@ msgstr[1] "%d lêers"
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr "%(translated)d/%(total)d woorde (%(translatedpercent)d%%) vertaal"
 
-#: local_apps/pootle_app/views/language/item_dict.py:49
+#: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
 msgid "%(translated)d/%(total)d strings"
 msgstr "%(translated)d/%(total)d stringe"
@@ -1006,72 +964,72 @@ msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] "%(checks)d string (%(checkspercent)d%%) het misluk"
 msgstr[1] "%(checks)d stringe (%(checkspercent)d%%) het misluk"
 
-#: local_apps/pootle_app/views/language/item_dict.py:98
+#: local_apps/pootle_app/views/language/item_dict.py:95
 msgid "Review Suggestions"
 msgstr "Gaan voorstelle na"
 
-#: local_apps/pootle_app/views/language/item_dict.py:100
+#: local_apps/pootle_app/views/language/item_dict.py:97
 msgid "View Suggestions"
 msgstr "Wys voorstelle"
 
-#: local_apps/pootle_app/views/language/item_dict.py:111
+#: local_apps/pootle_app/views/language/item_dict.py:108
 msgid "Quick Translate"
 msgstr "Snel-vertaal"
 
-#: local_apps/pootle_app/views/language/item_dict.py:113
+#: local_apps/pootle_app/views/language/item_dict.py:110
 msgid "View Untranslated"
 msgstr "Wys onvertaalde"
 
-#: local_apps/pootle_app/views/language/item_dict.py:124
+#: local_apps/pootle_app/views/language/item_dict.py:121
 msgid "Translate All"
 msgstr "Vertaal alles"
 
-#: local_apps/pootle_app/views/language/item_dict.py:128
+#: local_apps/pootle_app/views/language/item_dict.py:125
 msgid "ZIP of directory"
 msgstr "ZIP van gids"
 
-#: local_apps/pootle_app/views/language/item_dict.py:139
+#: local_apps/pootle_app/views/language/item_dict.py:136
 msgid "Download PO"
 msgstr "Laai PO af"
 
-#: local_apps/pootle_app/views/language/item_dict.py:143
+#: local_apps/pootle_app/views/language/item_dict.py:140
 msgid "Download XLIFF"
 msgstr "Laai XLIFF af"
 
-#: local_apps/pootle_app/views/language/item_dict.py:154
+#: local_apps/pootle_app/views/language/item_dict.py:151
 msgid "Download"
 msgstr "Laai af"
 
-#: local_apps/pootle_app/views/language/item_dict.py:160
+#: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Commit to VCS"
 msgstr "Dien in by weergawebeheer"
 
-#: local_apps/pootle_app/views/language/item_dict.py:170
+#: local_apps/pootle_app/views/language/item_dict.py:167
 msgid "Update from VCS"
 msgstr "Dateer op vanaf weegawebeheer"
 
-#: local_apps/pootle_app/views/language/item_dict.py:220
+#: local_apps/pootle_app/views/language/item_dict.py:229
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] "%d woord het aandag nodig"
 msgstr[1] "%d woorde het aandag nodig"
 
-#: local_apps/pootle_app/views/language/item_dict.py:224
+#: local_apps/pootle_app/views/language/item_dict.py:233
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] "%d woord onvertaald"
 msgstr[1] "%d woorde onvertaald"
 
-#: local_apps/pootle_app/views/language/item_dict.py:225
+#: local_apps/pootle_app/views/language/item_dict.py:234
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] "%d woord moet nagegaan word"
 msgstr[1] "%d woorde moet nagegaan word"
 
-#: local_apps/pootle_app/views/language/item_dict.py:251
+#: local_apps/pootle_app/views/language/item_dict.py:260
 #: local_apps/pootle_app/views/language/language_index.py:57
 #: local_apps/pootle_app/views/project/project_language_index.py:51
 #, python-format
@@ -1091,63 +1049,63 @@ msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d projek, %(average)d%% vertaald"
 msgstr[1] "%(projects)d projekte, %(average)d%% vertaald"
 
-#: local_apps/pootle_app/views/language/navbar_dict.py:61
+#: local_apps/pootle_app/views/language/navbar_dict.py:60
 #: local_apps/pootle_app/views/project/project_language_index.py:76
 #: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
 msgstr "Admin"
 
-#: local_apps/pootle_app/views/language/project_index.py:42
+#: local_apps/pootle_app/views/language/project_index.py:40
 msgid "Name"
 msgstr "Naam"
 
-#: local_apps/pootle_app/views/language/project_index.py:44
+#: local_apps/pootle_app/views/language/project_index.py:42
 msgid "Translated percentage"
 msgstr "Vertaalpersentasie"
 
-#: local_apps/pootle_app/views/language/project_index.py:45
+#: local_apps/pootle_app/views/language/project_index.py:43
 msgid "Translated words"
 msgstr "Vertaalde woorde"
 
-#: local_apps/pootle_app/views/language/project_index.py:46
-#: local_apps/pootle_app/views/language/translate_page.py:954
+#: local_apps/pootle_app/views/language/project_index.py:44
+#: local_apps/pootle_app/views/language/translate_page.py:911
 msgid "Fuzzy"
 msgstr "Wasig"
 
-#: local_apps/pootle_app/views/language/project_index.py:47
+#: local_apps/pootle_app/views/language/project_index.py:45
 msgid "Fuzzy percentage"
 msgstr "Wasigpersentasie"
 
-#: local_apps/pootle_app/views/language/project_index.py:48
+#: local_apps/pootle_app/views/language/project_index.py:46
 msgid "Fuzzy words"
 msgstr "Wasige woorde"
 
-#: local_apps/pootle_app/views/language/project_index.py:50
+#: local_apps/pootle_app/views/language/project_index.py:48
 msgid "Untranslated percentage"
 msgstr "Onvertaalde persentasie"
 
-#: local_apps/pootle_app/views/language/project_index.py:51
+#: local_apps/pootle_app/views/language/project_index.py:49
 msgid "Untranslated words"
 msgstr "Onvertaalde woorde"
 
-#: local_apps/pootle_app/views/language/project_index.py:52
+#: local_apps/pootle_app/views/language/project_index.py:50
 msgid "Total"
 msgstr "Totaal"
 
-#: local_apps/pootle_app/views/language/project_index.py:53
+#: local_apps/pootle_app/views/language/project_index.py:51
 msgid "Total Words"
 msgstr "Totale woorde"
 
 #. l10n: noun. The graphical representation of translation status
-#: local_apps/pootle_app/views/language/project_index.py:55
+#: local_apps/pootle_app/views/language/project_index.py:53
 msgid "Progress"
 msgstr "Vordering"
 
-#: local_apps/pootle_app/views/language/project_index.py:56
+#: local_apps/pootle_app/views/language/project_index.py:54
 msgid "Summary"
 msgstr "Opsomming"
 
-#: local_apps/pootle_app/views/language/project_index.py:86
+#: local_apps/pootle_app/views/language/project_index.py:84
 msgid "You do not have rights to access this translation project."
 msgstr "U het nie toegangsregte vir hierdie vertaalprojek nie."
 
@@ -1216,26 +1174,26 @@ msgstr "Dateer alles op vanaf weergawebeheer"
 msgid "Upload"
 msgstr "Laai op"
 
-#: local_apps/pootle_app/views/language/tp_common.py:249
-msgid "File"
-msgstr "Lêer"
-
-#: local_apps/pootle_app/views/language/tp_common.py:251
+#: local_apps/pootle_app/views/language/tp_common.py:253
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
 "Maak 'n samevoeging van die lêer met die huidige lêer en verander konflikte "
 "na voorstelle"
 
-#: local_apps/pootle_app/views/language/tp_common.py:252
-msgid "Overwrite the current file if it exists"
-msgstr "Oorskryf die huidige lêer as dit bestaan"
-
-#: local_apps/pootle_app/views/language/tp_common.py:253
+#: local_apps/pootle_app/views/language/tp_common.py:254
 msgid "Add all new translations as suggestions"
 msgstr "Voeg alle nuwe vertalings as voorstelle by"
 
-#: local_apps/pootle_app/views/language/tp_common.py:261
+#: local_apps/pootle_app/views/language/tp_common.py:256
+msgid "Overwrite the current file if it exists"
+msgstr "Oorskryf die huidige lêer as dit bestaan"
+
+#: local_apps/pootle_app/views/language/tp_common.py:259
+msgid "File"
+msgstr "Lêer"
+
+#: local_apps/pootle_app/views/language/tp_common.py:265
 msgid "Upload File"
 msgstr "Laai lêer op"
 
@@ -1248,59 +1206,59 @@ msgid "You do not have rights to access translation mode."
 msgstr "U het nie vertaalregte nie."
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
-#: local_apps/pootle_app/views/language/translate_page.py:79
+#: local_apps/pootle_app/views/language/translate_page.py:78
 #, python-format
 msgid "checking %s"
 msgstr "gaan tans %s na"
 
 #. l10n: navigation link
-#: local_apps/pootle_app/views/language/translate_page.py:102
+#: local_apps/pootle_app/views/language/translate_page.py:101
 msgid "Start"
 msgstr "Begin"
 
 #. l10n: the parameter refers to the number of messages
-#: local_apps/pootle_app/views/language/translate_page.py:107
+#: local_apps/pootle_app/views/language/translate_page.py:106
 #, python-format
 msgid "Previous %d"
 msgstr "Vorige %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
-#: local_apps/pootle_app/views/language/translate_page.py:110
+#: local_apps/pootle_app/views/language/translate_page.py:109
 #, python-format
 msgid "Items %(first)d to %(last)d of %(total)d"
 msgstr "Items %(first)d tot %(last)d van %(total)d"
 
 #. l10n: the parameter refers to the number of messages
-#: local_apps/pootle_app/views/language/translate_page.py:119
+#: local_apps/pootle_app/views/language/translate_page.py:118
 #, python-format
 msgid "Next %d"
 msgstr "Volgende %d"
 
 #. l10n: navigation link
-#: local_apps/pootle_app/views/language/translate_page.py:125
+#: local_apps/pootle_app/views/language/translate_page.py:124
 msgid "End"
 msgstr "Einde"
 
-#: local_apps/pootle_app/views/language/translate_page.py:273
+#: local_apps/pootle_app/views/language/translate_page.py:272
 msgid "Singular"
 msgstr "Enkelvoud"
 
-#: local_apps/pootle_app/views/language/translate_page.py:274
+#: local_apps/pootle_app/views/language/translate_page.py:273
 msgid "Plural"
 msgstr "Meervoud"
 
-#: local_apps/pootle_app/views/language/translate_page.py:360
-#: local_apps/pootle_app/views/language/translate_page.py:395
-#: local_apps/pootle_app/views/language/translate_page.py:489
-#: local_apps/pootle_app/views/language/translate_page.py:526
-#: local_apps/pootle_app/views/language/translate_page.py:601
+#: local_apps/pootle_app/views/language/translate_page.py:350
+#: local_apps/pootle_app/views/language/translate_page.py:372
+#: local_apps/pootle_app/views/language/translate_page.py:463
+#: local_apps/pootle_app/views/language/translate_page.py:500
+#: local_apps/pootle_app/views/language/translate_page.py:572
 #, python-format
 msgid "Plural Form %d"
 msgstr "Meervoudsvorm %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
-#: local_apps/pootle_app/views/language/translate_page.py:380
-#: local_apps/pootle_app/views/language/translate_page.py:411
+#: local_apps/pootle_app/views/language/translate_page.py:357
+#: local_apps/pootle_app/views/language/translate_page.py:388
 msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
@@ -1308,123 +1266,123 @@ msgstr ""
 "Vertaling onmoontlik omdat meervoudinligting vir u taal nie beskikbaar is "
 "nie. Kontak asseblief die werfadministrateur."
 
-#: local_apps/pootle_app/views/language/translate_page.py:493
+#: local_apps/pootle_app/views/language/translate_page.py:467
 msgid "Current Translation:"
 msgstr "Huidige vertaling:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
-#: local_apps/pootle_app/views/language/translate_page.py:506
+#: local_apps/pootle_app/views/language/translate_page.py:480
 #, python-format
 msgid "Suggestion %(suggid)d by %(user)s:"
 msgstr "Voorstel %(suggid)d deur %(user)s:"
 
-#: local_apps/pootle_app/views/language/translate_page.py:508
+#: local_apps/pootle_app/views/language/translate_page.py:482
 #, python-format
 msgid "Suggestion %d:"
 msgstr "Voorstel %d:"
 
 #. l10n: parameter: name of translator
-#: local_apps/pootle_app/views/language/translate_page.py:512
+#: local_apps/pootle_app/views/language/translate_page.py:486
 #, python-format
 msgid "Suggestion by %s:"
 msgstr "Voorstel deur %s:"
 
-#: local_apps/pootle_app/views/language/translate_page.py:514
+#: local_apps/pootle_app/views/language/translate_page.py:488
 msgid "Suggestion:"
 msgstr "Voorstel:"
 
-#: local_apps/pootle_app/views/language/translate_page.py:544
+#: local_apps/pootle_app/views/language/translate_page.py:517
 #, python-format
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
 msgstr[0] "%d voorstel"
 msgstr[1] "%d voorstelle"
 
-#: local_apps/pootle_app/views/language/translate_page.py:865
+#: local_apps/pootle_app/views/language/translate_page.py:836
 msgid "End of Quick Translate."
 msgstr "Einde van snelvertaling."
 
-#: local_apps/pootle_app/views/language/translate_page.py:867
+#: local_apps/pootle_app/views/language/translate_page.py:838
 msgid "End of Quality Check Review."
 msgstr "Einde van nagaan van kwaliteittoetse."
 
-#: local_apps/pootle_app/views/language/translate_page.py:870
+#: local_apps/pootle_app/views/language/translate_page.py:841
 msgid "No file matched your query."
 msgstr "Geen lêer pas by die soektog nie."
 
-#: local_apps/pootle_app/views/language/translate_page.py:871
+#: local_apps/pootle_app/views/language/translate_page.py:842
 msgid "End of results."
 msgstr "Einde van resultate."
 
-#: local_apps/pootle_app/views/language/translate_page.py:884
+#: local_apps/pootle_app/views/language/translate_page.py:855
 msgid "You do not have rights to access view mode."
 msgstr "U het nie bekykregte nie."
 
 #. l10n: Heading above the table column with the source language
-#: local_apps/pootle_app/views/language/translate_page.py:947
+#: local_apps/pootle_app/views/language/translate_page.py:904
 msgid "Original"
 msgstr "Oorspronklike"
 
 #. l10n: Heading above the table column with the target language
-#: local_apps/pootle_app/views/language/translate_page.py:949
+#: local_apps/pootle_app/views/language/translate_page.py:906
 msgid "Translation"
 msgstr "Vertaling"
 
-#: local_apps/pootle_app/views/language/translate_page.py:952
+#: local_apps/pootle_app/views/language/translate_page.py:909
 msgid "Accept suggestion"
 msgstr "Aanvaar voorstel"
 
-#: local_apps/pootle_app/views/language/translate_page.py:953
+#: local_apps/pootle_app/views/language/translate_page.py:910
 msgid "Reject suggestion"
 msgstr "Verwerp voorstel"
 
 #. l10n: Heading above the textarea for translator comments.
-#: local_apps/pootle_app/views/language/translate_page.py:956
+#: local_apps/pootle_app/views/language/translate_page.py:913
 msgid "Translator Comments"
 msgstr "Vertalerkommentaar"
 
 #. l10n: Heading above the comments extracted from the programing source code
-#: local_apps/pootle_app/views/language/translate_page.py:958
+#: local_apps/pootle_app/views/language/translate_page.py:915
 msgid "Developer Comments"
 msgstr "Programmeerderkommentaar"
 
 #. l10n: This heading refers to related translations and terminology
-#: local_apps/pootle_app/views/language/translate_page.py:960
+#: local_apps/pootle_app/views/language/translate_page.py:917
 msgid "Related"
 msgstr "Verwant"
 
 #. l10n: Button label
-#: local_apps/pootle_app/views/language/translate_page.py:969
+#: local_apps/pootle_app/views/language/translate_page.py:927
 msgid "Accept"
 msgstr "Aanvaar"
 
 #. l10n: Button label
-#: local_apps/pootle_app/views/language/translate_page.py:971
+#: local_apps/pootle_app/views/language/translate_page.py:929
 msgid "Reject"
 msgstr "Verwerp"
 
-#: local_apps/pootle_app/views/language/view.py:143
+#: local_apps/pootle_app/views/language/view.py:144
 msgid "You do not have rights to update files here"
 msgstr "U het nie regte om lêers hier op te dateer nie."
 
-#: local_apps/pootle_app/views/language/view.py:154
+#: local_apps/pootle_app/views/language/view.py:155
 msgid "You do not have the right to create ZIP archives."
 msgstr "U het nie regte om ZIP-argiewe te skep nie."
 
-#: local_apps/pootle_app/views/language/view.py:236
+#: local_apps/pootle_app/views/language/view.py:264
 msgid "No suggestion data given."
 msgstr "Geen voorsteldata is gegee nie."
 
-#: local_apps/pootle_app/views/language/view.py:284
+#: local_apps/pootle_app/views/language/view.py:310
 msgid "Suggestion accepted."
 msgstr "Voorstel aanvaar."
 
-#: local_apps/pootle_app/views/project/project_admin.py:40
+#: local_apps/pootle_app/views/project/project_admin.py:52
 msgid "Update from templates"
 msgstr "Dateer op vanaf sjablone"
 
-#: local_apps/pootle_app/views/project/project_admin.py:43
+#: local_apps/pootle_app/views/project/project_admin.py:55
 msgid "Initialize"
 msgstr "Inisialiseer"
 
@@ -1435,11 +1393,11 @@ msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "%(languages)d taal, %(average)d%% vertaal"
 msgstr[1] "%(languages)d tale, %(average)d%% vertaal"
 
-#: local_apps/pootle_misc/dbinit.py:43
+#: local_apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
 msgstr "Pootle: installasie"
 
-#: local_apps/pootle_misc/dbinit.py:44
+#: local_apps/pootle_misc/dbinit.py:69
 #, python-format
 msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
@@ -1448,45 +1406,45 @@ msgstr ""
 "Fout: \"%s\" tydens poging om toegang tot Pootle-databasis te kry. Sal nou "
 "probeer om die databasis te inisialiseer."
 
-#: local_apps/pootle_misc/dbinit.py:50
+#: local_apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
 msgstr "Skep tans databasistabelle..."
 
-#: local_apps/pootle_misc/dbinit.py:57
+#: local_apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
 msgstr "Skep tans verstek tale, projekte en admin-gebruiker"
 
-#: local_apps/pootle_misc/dbinit.py:65
+#: local_apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
 msgstr "Bereken tans vertaalstatistiek. Dit gaan 'n paar minute neem."
 
-#: local_apps/pootle_misc/dbinit.py:71
+#: local_apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
 msgstr "%(language)s is %(percent)d%% voltooid"
 
-#: local_apps/pootle_misc/dbinit.py:78
+#: local_apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
 msgstr "Projek %(project)s is %(percent)d%% voltooid"
 
-#: local_apps/pootle_misc/dbinit.py:86
+#: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
 msgstr "Klaar met statistiekberekening vir verstek tale en projekte"
 
-#: local_apps/pootle_misc/dbinit.py:95
+#: local_apps/pootle_misc/dbinit.py:120
 msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
 "Databasis is geïnsialiseer. U sal aangestuur word na die voorblad oor 10 "
 "sekondes."
 
-#: local_apps/pootle_misc/middleware/errorpages.py:44
+#: local_apps/pootle_misc/middleware/errorpages.py:45
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr "U moet <a href=\"%(login_link)s\">aanmeld</a> vir toegang tot dié bladsy."
 
-#: local_apps/pootle_misc/middleware/errorpages.py:56
+#: local_apps/pootle_misc/middleware/errorpages.py:58
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
@@ -1518,39 +1476,35 @@ msgstr "Boodskap"
 msgid "Added"
 msgstr "Bygevoeg"
 
-#: local_apps/pootle_notifications/views.py:80
+#: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(language)s"
 msgstr "Nuus vir %(language)s"
 
-#: local_apps/pootle_notifications/views.py:89
+#: local_apps/pootle_notifications/views.py:92
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
 msgstr "Nuus vir die %(project)s-projek in %(language)s"
 
-#: local_apps/pootle_notifications/views.py:93
+#: local_apps/pootle_notifications/views.py:96
 #, python-format
 msgid "News for %(path)s"
 msgstr "Nuus vir %(path)s"
 
-#: local_apps/pootle_notifications/views.py:119
+#: local_apps/pootle_notifications/views.py:122
 msgid "View News Item"
 msgstr "Lees nuusitem"
 
 #: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
-#: local_apps/pootle_notifications/templates/notices.html:77
+#: local_apps/pootle_notifications/templates/notices.html:76
 msgid "No news yet."
 msgstr "Nog geen nuus nie."
 
 #: local_apps/pootle_notifications/templates/notices.html:15
-#, python-format
-msgid "%(prevtitle)s: %(langname)s » News"
-msgstr "%(prevtitle)s: %(langname)s » Nuus"
-
 #: local_apps/pootle_notifications/templates/notices.html:17
-#, python-format
-msgid "%(prevtitle)s: %(langname)s » %(projectname)s » News"
-msgstr "%(prevtitle)s: %(langname)s » %(projectname)s » Nuus"
+#: templates/language_menu.html:8 templates/tp_menu.html:8
+msgid "News"
+msgstr "Nuus"
 
 #: local_apps/pootle_notifications/templates/notices.html:64
 msgid "Publish"
@@ -1560,12 +1514,12 @@ msgstr "Publiseer"
 msgid "Path"
 msgstr "Pad"
 
-#: pootle/settings.py:43
+#: pootle/settings.py:42
 msgid "Pootle Demo"
 msgstr "Pootle-demonstrasie"
 
 #. l10n: Change the language code (en) to your language code, and replace ltr with rtl if you language is written from right to left.
-#: pootle/settings.py:46
+#: pootle/settings.py:45
 msgid ""
 "<div dir=\"ltr\" lang=\"en\">\n"
 "<h2 class=\"title\">This is a demo installation of Pootle.</h2>\n"
@@ -1585,12 +1539,7 @@ msgstr ""
 "redigeer die beskrywing in die voorkeurlêer of administrasiekoppelvlak. </p>\n"
 "</div>"
 
-#: templates/403.html:5
-#, python-format
-msgid "%(prevtitle)s: Permission Denied"
-msgstr "%(prevtitle)s: Toegang geweier"
-
-#: templates/403.html:10
+#: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
 msgstr "Toegang geweier"
 
@@ -1598,12 +1547,7 @@ msgstr "Toegang geweier"
 msgid "You don't have permission to access this page."
 msgstr "U het nie toegangsregte vir hierdie bladsy nie."
 
-#: templates/404.html:5
-#, python-format
-msgid "%(prevtitle)s: Page Not Found"
-msgstr "%(prevtitle)s: Bladsy nie gevind nie"
-
-#: templates/404.html:10
+#: templates/404.html:5 templates/404.html.py:10
 msgid "Page Not Found"
 msgstr "Bladsy nie gevind nie"
 
@@ -1611,12 +1555,7 @@ msgstr "Bladsy nie gevind nie"
 msgid "We're sorry, but the requested page could not be found."
 msgstr "Jammer, maar die aangevraagde bladsy kon nie gevind word nie."
 
-#: templates/500.html:5
-#, python-format
-msgid "%(prevtitle)s: Server Error"
-msgstr "%(prevtitle)s: Bedienerfout"
-
-#: templates/500.html:10
+#: templates/500.html:5 templates/500.html.py:10
 msgid "Server Error"
 msgstr "Bedienerfout"
 
@@ -1624,12 +1563,7 @@ msgstr "Bedienerfout"
 msgid "An error has occurred. Thank you for your patience."
 msgstr "'n Fout het voorgekom. Dankie vir u geduld."
 
-#: templates/admin_profile_base.html:5
-#, python-format
-msgid "%(prevtitle)s: Administration"
-msgstr "%(prevtitle)s: Administrasie"
-
-#: templates/admin_profile_base.html:10
+#: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
 msgid "Administration"
 msgstr "Administrasie"
 
@@ -1661,11 +1595,12 @@ msgstr "Bestuur die verstek toestemmings"
 msgid "skip to navigation"
 msgstr "gaan direk na navigering"
 
-#: templates/base.html:45 templates/base.html.py:106
+#: templates/base.html:45 templates/base.html.py:106 templates/docs.html:5
 msgid "Help"
 msgstr "Hulp"
 
-#: templates/base.html:50 templates/user_profile_base.html:10
+#: templates/base.html:50 templates/user_profile_base.html:5
+#: templates/user_profile_base.html:10
 msgid "My Account"
 msgstr "My rekening"
 
@@ -1686,16 +1621,6 @@ msgstr "Teken in"
 msgid "About this Pootle Server"
 msgstr "Aangaande dié Pootle-bediener"
 
-#: templates/docs.html:5
-#, python-format
-msgid "%(prevtitle)s: Help"
-msgstr "%(prevtitle)s: Hulp"
-
-#: templates/language_base.html:6
-#, python-format
-msgid "%(prevtitle)s: %(langname)s"
-msgstr "%(prevtitle)s: %(langname)s"
-
 #: templates/language_menu.html:7
 msgid "Language main page"
 msgstr "Hoofblad vir die taal"
@@ -1709,10 +1634,6 @@ msgstr "Oorsig"
 msgid "Language news"
 msgstr "Nuus oor dié taal"
 
-#: templates/language_menu.html:8 templates/tp_menu.html:8
-msgid "News"
-msgstr "Nuus"
-
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
 msgstr "Administreer die taaltoestemmings"
@@ -1724,20 +1645,6 @@ msgstr "Projektuisblad"
 #: templates/project_menu.html:9
 msgid "Administrate your project"
 msgstr "Administreer die projek"
-
-#: templates/project_menu.html:9
-msgid "Administrate"
-msgstr "Administreer"
-
-#: templates/tp_base.html:6
-#, python-format
-msgid "%(prevtitle)s: %(langname)s » %(projectname)s"
-msgstr "%(prevtitle)s: %(langname)s » %(projectname)s"
-
-#: templates/tp_base_admin.html:8
-#, python-format
-msgid "%(prevtitle)s » Administrate"
-msgstr "%(prevtitle)s » Administreer"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -1751,17 +1658,9 @@ msgstr "Nuus vir die vertaalprojek"
 msgid "Translate this project"
 msgstr "Vertaal hierdie projek"
 
-#: templates/tp_menu.html:9
-msgid "Translate"
-msgstr "Vertaal"
-
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
 msgstr "Kwaliteittoetse en nagaan van voorstelle"
-
-#: templates/tp_menu.html:10
-msgid "Review"
-msgstr "Sien na"
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
@@ -1771,16 +1670,13 @@ msgstr "Administreer die projektoestemmings"
 msgid "Administrate your project files"
 msgstr "Administreer die projeklêers"
 
-#: templates/user_profile_base.html:5
-#, python-format
-msgid "%(prevtitle)s: My Account"
-msgstr "%(prevtitle)s: My rekening"
-
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
 msgstr "Oorsig oor u rekening"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
 msgstr "Tuisblad"
 
@@ -1797,6 +1693,8 @@ msgid "Change your personal information"
 msgstr "Verander u persoonlike inligting"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+#: templates/profiles/edit_personal.html:5
+#: templates/profiles/edit_personal.html:11
 msgid "Profile"
 msgstr "Profiel"
 
@@ -1811,12 +1709,6 @@ msgstr "Django-werfadministrasie"
 #: templates/admin/base_site.html:7
 msgid "Django administration"
 msgstr "Django-administrasie"
-
-#: templates/profiles/edit_personal.html:5
-#: templates/profiles/edit_personal.html:11
-#, python-format
-msgid "%(prevtitle)s » Profile"
-msgstr "%(prevtitle)s » Profiel"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
@@ -1840,9 +1732,8 @@ msgstr "E-posadres"
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
-#, python-format
-msgid "%(prevtitle)s » Translation Settings"
-msgstr "%(prevtitle)s » Vertaalopstelling"
+msgid "Translation Settings"
+msgstr "Vertaalopstelling"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
@@ -1872,17 +1763,6 @@ msgstr "My projekte"
 msgid "Alternative Source Languages"
 msgstr "Alternatiewe brontale"
 
-#: templates/profiles/profile_detail.html:6
-#: templates/profiles/profile_detail.html:16
-#, python-format
-msgid "%(prevtitle)s » Dashboard"
-msgstr "%(prevtitle)s » Tuisblad"
-
-#: templates/profiles/profile_detail.html:8
-#, python-format
-msgid "%(prevtitle)s: Users » %(username)s"
-msgstr "%(prevtitle)s: Gebruikers » %(username)s"
-
 #: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
 msgstr "Snelskakels"
@@ -1910,17 +1790,6 @@ msgstr "Naam"
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
 msgstr "Van"
-
-#: templates/registration/activate.html:5
-#: templates/registration/password_change_done.html:5
-#: templates/registration/password_reset_complete.html:4
-#: templates/registration/password_reset_confirm.html:5
-#: templates/registration/password_reset_done.html:5
-#: templates/registration/password_reset_form.html:5
-#: templates/registration/registration_complete.html:5
-#: templates/registration/registration_form.html:4
-msgid ": "
-msgstr ": "
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
@@ -1972,9 +1841,8 @@ msgstr "U wagwoord is suksesvol verander."
 
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11
-#, python-format
-msgid "%(prevtitle)s » Change Password"
-msgstr "%(prevtitle)s » Verander wagwoord"
+msgid "Change Password"
+msgstr "Verander wagwoord"
 
 #: templates/registration/password_change_form.html:15
 msgid ""
@@ -2086,7 +1954,7 @@ msgstr "Gaan gerus na die volgende bladsy en kies 'n nuwe wagwoord:"
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "U gebruikernaam is %(user)s."
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
@@ -2135,12 +2003,138 @@ msgid "Log In."
 msgstr "Meld aan"
 
 #, python-format
+#~ msgid "%(prevtitle)s » Languages"
+#~ msgstr "%(prevtitle)s » Tale"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Permissions"
+#~ msgstr "%(prevtitle)s » Toestemmings"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Projects"
+#~ msgstr "%(prevtitle)s » Projekte"
+
+#, python-format
+#~ msgid "%(prevtitle)s » General Settings"
+#~ msgstr "%(prevtitle)s » Algemene instellings"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Users"
+#~ msgstr "%(prevtitle)s » Gebruikers"
+
+#, python-format
+#~ msgid "%(prevtitle)s: About"
+#~ msgstr "%(prevtitle)s: Aangaande"
+
+#, python-format
+#~ msgid "%(prevtitle)s: Login"
+#~ msgstr "%(prevtitle)s: Meld aan"
+
+#~ msgid " » "
+#~ msgstr " » "
+
+#, python-format
+#~ msgid "%(prevtitle)s » Files"
+#~ msgstr "%(prevtitle)s » Lêers"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Review"
+#~ msgstr "%(prevtitle)s » Gaan na"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Translate"
+#~ msgstr "%(prevtitle)s » Vertaal"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Translate » %(filepath)s"
+#~ msgstr "%(prevtitle)s » Vertaal » %(filepath)s"
+
+#, python-format
+#~ msgid "%(prevtitle)s » %(projectname)s"
+#~ msgstr "%(prevtitle)s » %(projectname)s"
+
+#, python-format
+#~ msgid "%(prevtitle)s » %(projectname)s » Administrate"
+#~ msgstr "%(prevtitle)s » %(projectname)s » Administreer"
+
+#, python-format
+#~ msgid "%(prevtitle)s: Projects"
+#~ msgstr "%(prevtitle)s: Projekte"
+
+#, python-format
 #~ msgid ""
 #~ "%(translated)d/%(total)d translated\n"
 #~ "(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
 #~ msgstr ""
 #~ "%(translated)d/%(total)d vertaal\n"
 #~ "(%(untranslated)d onvertaal, %(fuzzy)d wasig)"
+
+#, python-format
+#~ msgid "%(prevtitle)s: %(langname)s » News"
+#~ msgstr "%(prevtitle)s: %(langname)s » Nuus"
+
+#, python-format
+#~ msgid "%(prevtitle)s: %(langname)s » %(projectname)s » News"
+#~ msgstr "%(prevtitle)s: %(langname)s » %(projectname)s » Nuus"
+
+#, python-format
+#~ msgid "%(prevtitle)s: Permission Denied"
+#~ msgstr "%(prevtitle)s: Toegang geweier"
+
+#, python-format
+#~ msgid "%(prevtitle)s: Page Not Found"
+#~ msgstr "%(prevtitle)s: Bladsy nie gevind nie"
+
+#, python-format
+#~ msgid "%(prevtitle)s: Server Error"
+#~ msgstr "%(prevtitle)s: Bedienerfout"
+
+#, python-format
+#~ msgid "%(prevtitle)s: Administration"
+#~ msgstr "%(prevtitle)s: Administrasie"
+
+#, python-format
+#~ msgid "%(prevtitle)s: Help"
+#~ msgstr "%(prevtitle)s: Hulp"
+
+#, python-format
+#~ msgid "%(prevtitle)s: %(langname)s"
+#~ msgstr "%(prevtitle)s: %(langname)s"
+
+#, python-format
+#~ msgid "%(prevtitle)s: %(langname)s » %(projectname)s"
+#~ msgstr "%(prevtitle)s: %(langname)s » %(projectname)s"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Administrate"
+#~ msgstr "%(prevtitle)s » Administreer"
+
+#, python-format
+#~ msgid "%(prevtitle)s: My Account"
+#~ msgstr "%(prevtitle)s: My rekening"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Profile"
+#~ msgstr "%(prevtitle)s » Profiel"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Translation Settings"
+#~ msgstr "%(prevtitle)s » Vertaalopstelling"
+
+#, python-format
+#~ msgid "%(prevtitle)s » Dashboard"
+#~ msgstr "%(prevtitle)s » Tuisblad"
+
+#, python-format
+#~ msgid "%(prevtitle)s: Users » %(username)s"
+#~ msgstr "%(prevtitle)s: Gebruikers » %(username)s"
+
+#~ msgid ": "
+#~ msgstr ": "
+
+#, python-format
+#~ msgid "%(prevtitle)s » Change Password"
+#~ msgstr "%(prevtitle)s » Verander wagwoord"
 
 #, python-format
 #~ msgid "Your username is %(user.username)s."

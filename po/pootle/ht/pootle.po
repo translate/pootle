@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-27 11:15+0200\n"
+"POT-Creation-Date: 2009-11-19 01:18+0200\n"
 "PO-Revision-Date: 2008-06-05 20:03-0400\n"
 "Last-Translator: masterches <chesmaster@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,15 +164,15 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:40
+#: local_apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:66
+#: local_apps/pootle_app/admin.py:65
 msgid "Project code may only contain letters, numbers and _"
 msgstr ""
 
-#: local_apps/pootle_app/admin.py:78
+#: local_apps/pootle_app/admin.py:77
 msgid "Advanced Options"
 msgstr ""
 
@@ -455,7 +455,7 @@ msgstr "non itilizatè"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:101
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
-#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
+#: templates/tp_menu.html:12 templates/profiles/profile_detail.html:36
 msgid "Permissions"
 msgstr ""
 
@@ -541,29 +541,29 @@ msgid "Language"
 msgstr "Lang"
 
 #: local_apps/pootle_app/templates/index/index.html:27
-#: local_apps/pootle_app/templates/index/index.html:62
+#: local_apps/pootle_app/templates/index/index.html:58
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:28
-#: local_apps/pootle_app/templates/index/index.html:63
+#: local_apps/pootle_app/templates/index/index.html:59
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:61
+#: local_apps/pootle_app/templates/index/index.html:57
 #: local_apps/pootle_app/templates/project/projects.html:22
 #, fuzzy
 msgid "Project"
 msgstr "Pwojè"
 
-#: local_apps/pootle_app/templates/index/index.html:90
+#: local_apps/pootle_app/templates/index/index.html:82
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
 msgstr ""
 
-#: local_apps/pootle_app/templates/index/index.html:93
+#: local_apps/pootle_app/templates/index/index.html:85
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
@@ -602,7 +602,7 @@ msgstr "Anregistre"
 msgid "Error"
 msgstr "Erè"
 
-#: local_apps/pootle_app/templates/language/item_summary.html:32
+#: local_apps/pootle_app/templates/language/item_summary.html:28
 msgid "Complete"
 msgstr ""
 
@@ -693,17 +693,26 @@ msgstr ""
 msgid "%(prevtitle)s: Projects"
 msgstr ""
 
-#: local_apps/pootle_app/views/top_stats.py:77
+#: local_apps/pootle_app/views/top_stats.py:49
+msgid "Rank"
+msgstr ""
+
+#: local_apps/pootle_app/views/top_stats.py:50
+#: local_apps/pootle_app/views/language/project_index.py:42
+msgid "Name"
+msgstr "Non"
+
+#: local_apps/pootle_app/views/top_stats.py:89
 #, fuzzy
 msgid "Suggestions"
 msgstr "Sijesyon:"
 
-#: local_apps/pootle_app/views/top_stats.py:78
+#: local_apps/pootle_app/views/top_stats.py:90
 #, fuzzy
 msgid "Reviews"
 msgstr "Revize"
 
-#: local_apps/pootle_app/views/top_stats.py:79
+#: local_apps/pootle_app/views/top_stats.py:91
 msgid "Submissions"
 msgstr ""
 
@@ -844,7 +853,7 @@ msgid "Users"
 msgstr "Itilizatè"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
 #: templates/registration/registration_form.html:25
 msgid "Password"
 msgstr "Mo pas"
@@ -856,7 +865,7 @@ msgstr "Ou pa gen privilèj pou administre poutòl"
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
-#, fuzzy, python-format
+#, fuzzy
 msgid "You do not have rights to administer %s."
 msgstr "Ou pa gen privilèj pou administre poutòl"
 
@@ -906,7 +915,7 @@ msgid "Default"
 msgstr "Defo"
 
 #: local_apps/pootle_app/views/language/admin_files.py:63
-#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:36
 msgid "Files"
 msgstr ""
 
@@ -930,15 +939,15 @@ msgstr "(Seleksyone pou ajoute itilizatè)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:41
 #, python-format
-#, fuzzy, python-format
+#, fuzzy
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "Sengilye %d fichye"
 msgstr[1] "Pliryèl %d fichye yo"
 
-#: local_apps/pootle_app/views/language/item_dict.py:40
+#: local_apps/pootle_app/views/language/item_dict.py:43
 #, python-format
-msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
+msgid "%(translated)d/%(total)d words, (%(translatedpercent)d%%) translated"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:49
@@ -946,7 +955,7 @@ msgstr ""
 msgid "%(translated)d/%(total)d strings"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:77
+#: local_apps/pootle_app/views/language/item_dict.py:80
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
@@ -1041,13 +1050,9 @@ msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:61
 #: local_apps/pootle_app/views/project/project_language_index.py:76
-#: templates/base.html:47 templates/profiles/profile_detail.html:35
+#: templates/base.html:47 templates/profiles/profile_detail.html:27
 msgid "Admin"
 msgstr "Administratè"
-
-#: local_apps/pootle_app/views/language/project_index.py:42
-msgid "Name"
-msgstr "Non"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 msgid "Translated percentage"
@@ -1117,13 +1122,11 @@ msgstr ""
 msgid "Locations"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/search_forms.py:67
-#: local_apps/pootle_app/views/language/search_forms.py:75
-#: local_apps/pootle_app/views/language/search_forms.py:80
+#: local_apps/pootle_app/views/language/search_forms.py:69
 msgid "Search"
 msgstr "Chache"
 
-#: local_apps/pootle_app/views/language/search_forms.py:82
+#: local_apps/pootle_app/views/language/search_forms.py:71
 msgid "Advanced Search"
 msgstr ""
 
@@ -1313,6 +1316,13 @@ msgstr ""
 msgid "You do not have rights to access view mode."
 msgstr "Ou pakapab chanje tradiksyon yo la"
 
+#: local_apps/pootle_app/views/language/translate_page.py:914
+#, python-format
+msgid ""
+"%(translated)d/%(total)d translated\n"
+"(%(untranslated)d untranslated, %(fuzzy)d fuzzy)"
+msgstr ""
+
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:947
 msgid "Original"
@@ -1380,6 +1390,11 @@ msgstr "Mete ajou a pati de modèl yo"
 
 #: local_apps/pootle_app/views/project/project_admin.py:43
 msgid "Initialize"
+msgstr ""
+
+#: local_apps/pootle_app/views/project/project_admin.py:64
+#, python-format
+msgid "Project Admin: %s"
 msgstr ""
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
@@ -1583,19 +1598,19 @@ msgid "General"
 msgstr ""
 
 #: templates/admin_profile_menu.html:6
-msgid "Manage the users"
+msgid "Manage your users"
 msgstr ""
 
 #: templates/admin_profile_menu.html:7
-msgid "Manage the languages"
+msgid "Administrate the available languages"
 msgstr ""
 
 #: templates/admin_profile_menu.html:8
-msgid "Manage the projects"
+msgid "Manage The available projects"
 msgstr ""
 
 #: templates/admin_profile_menu.html:9
-msgid "Manage the default permissions"
+msgid "Administrate the default permissions"
 msgstr ""
 
 #: templates/base.html:37
@@ -1630,11 +1645,6 @@ msgstr "Louvri sesyon"
 #, fuzzy
 msgid "About this Pootle Server"
 msgstr "sou sèvè poutòl sa"
-
-#: templates/docs.html:5
-#, python-format
-msgid "%(prevtitle)s: Help"
-msgstr ""
 
 #: templates/language_base.html:6
 #, python-format
@@ -1722,32 +1732,32 @@ msgstr ""
 msgid "%(prevtitle)s: My Account"
 msgstr ""
 
-#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
-msgid "Overview of your account"
+#: templates/user_profile_menu.html:5
+msgid "General Stats and Quick Links"
 msgstr ""
 
-#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+#: templates/user_profile_menu.html:5
 msgid "Dashboard"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
-msgid "Configure your translation preferences"
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
+msgid "Configure Your Translation Preferences"
 msgstr ""
 
-#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:16
 msgid "Settings"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
-msgid "Change your personal information"
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
+msgid "Change Your Personal Information"
 msgstr ""
 
-#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:17
 msgid "Profile"
 msgstr ""
 
-#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
-msgid "Change your password"
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:18
+msgid "Change Your Password"
 msgstr ""
 
 #: templates/admin/base_site.html:4
@@ -1815,30 +1825,25 @@ msgstr "Pwojè m' yo"
 msgid "Alternative Source Languages"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:6
-#: templates/profiles/profile_detail.html:16
+#: templates/profiles/profile_detail.html:5
+#: templates/profiles/profile_detail.html:11
 #, python-format
 msgid "%(prevtitle)s » Dashboard"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:8
-#, python-format
-msgid "%(prevtitle)s: Users » %(username)s"
-msgstr ""
-
-#: templates/profiles/profile_detail.html:25
+#: templates/profiles/profile_detail.html:17
 msgid "Quick Links"
 msgstr "Lenk rapid yo"
 
-#: templates/profiles/profile_detail.html:53
+#: templates/profiles/profile_detail.html:45
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:55
+#: templates/profiles/profile_detail.html:47
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:65
+#: templates/profiles/profile_detail.html:57
 msgid "User Statistics"
 msgstr ""
 
@@ -1866,15 +1871,18 @@ msgid ": "
 msgstr ""
 
 #: templates/registration/activate.html:5
-#: templates/registration/activate.html:9
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:10
+#: templates/registration/activate.html:9
+msgid "Account Activated."
+msgstr ""
+
+#: templates/registration/activate.html:11
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in."
+"proceed to log in</a>."
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
@@ -1908,8 +1916,11 @@ msgid "Pootle registration"
 msgstr "Registrasyon poutòl"
 
 #: templates/registration/password_change_done.html:5
-#: templates/registration/password_change_done.html:15
 msgid "Password Changed"
+msgstr ""
+
+#: templates/registration/password_change_done.html:15
+msgid "Password Changed."
 msgstr ""
 
 #: templates/registration/password_change_done.html:16
@@ -2007,26 +2018,6 @@ msgid ""
 "address you submitted. You should receive it shortly."
 msgstr ""
 
-#: templates/registration/password_reset_email.html:2
-#, python-format
-msgid ""
-"You're receiving this e-mail because you requested a password reset for your "
-"user account at %(site_name)s."
-msgstr ""
-
-#: templates/registration/password_reset_email.html:4
-msgid "Please go to the following page and choose a new password:"
-msgstr ""
-
-#: templates/registration/password_reset_email.html:8
-#, python-format
-msgid "Your username is %(user)s."
-msgstr ""
-
-#: templates/registration/password_reset_email.html:10
-msgid "Thank you for using Pootle!"
-msgstr ""
-
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
@@ -2039,8 +2030,11 @@ msgid "Email Address"
 msgstr "Adrès Emèl"
 
 #: templates/registration/registration_complete.html:5
-#: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
+msgstr ""
+
+#: templates/registration/registration_complete.html:9
+msgid "Registration Complete."
 msgstr ""
 
 #: templates/registration/registration_complete.html:10
@@ -2095,6 +2089,7 @@ msgstr "Louvri sesyon"
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "Ou pakapab chanje tach yo la"
 
+#, python-format
 #~ msgid ""
 #~ "%d/%d translated\n"
 #~ "(%d blank, %d fuzzy)"
@@ -2102,6 +2097,7 @@ msgstr "Louvri sesyon"
 #~ "%d/%d tradwi\n"
 #~ "(%d vid, %d twoub)"
 
+#, python-format
 #, fuzzy
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s: tradiksyon %nan %s: %s"
@@ -2112,6 +2108,7 @@ msgstr "Louvri sesyon"
 #~ msgid "Click here to return to the index"
 #~ msgstr "Klike la pou retounen nan endèks la"
 
+#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "inite %d %d nan %d"
 
@@ -2124,6 +2121,7 @@ msgstr "Louvri sesyon"
 #~ msgid "Assign Action"
 #~ msgstr "Deziye yon aksyon"
 
+#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "Pa gen atik ki mache ak rechèch sa ('%s')"
 
@@ -2139,6 +2137,7 @@ msgstr "Louvri sesyon"
 #~ msgid "Shrink"
 #~ msgstr "Retresi"
 
+#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "Sijesyon %d pa %s:"
 
@@ -2175,6 +2174,7 @@ msgstr "Louvri sesyon"
 #~ msgid "Remove Language"
 #~ msgstr "Retire lang"
 
+#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "Retire %s"
 
@@ -2229,20 +2229,22 @@ msgstr "Louvri sesyon"
 #~ msgid "Update Languages"
 #~ msgstr "Mete lang yo ajou"
 
+#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Administrasyon Pootle :%s"
 
 #~ msgid "Add Language"
 #~ msgstr "Ajoute lang"
 
+#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Administratè poutòl: %s %s"
 
+#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr "Pa kapab etabli dwa itilizatè yo %s - itilizatè pa egziste"
 
-#~ msgid ""
-#~ "This is a GNU-style project (one directory, files named per language)."
+#~ msgid "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr "Sa se yon pwojè stil GNU (Yon repètwa, fichye pa lang)"
 
 #~ msgid "Rights"
@@ -2272,19 +2274,23 @@ msgstr "Louvri sesyon"
 #~ msgid "All goals"
 #~ msgstr "Tout objèktif yo"
 
+#, python-format
 #, fuzzy
 #~ msgid "%d/%d files"
 #~ msgstr "%d%d fichye"
 
+#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d mo yo (%d%%) tradwi"
 
+#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "%d/%d kòd"
 
 #~ msgid "Graph"
 #~ msgstr "Graf"
 
+#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "Ou dwe founi yon mo pas ki valab %d karaktè pou pi piti."
 
@@ -2336,6 +2342,7 @@ msgstr "Louvri sesyon"
 #~ msgid "Activate Account"
 #~ msgstr "aktive kont"
 
+#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "Opsyon pou: %s"
 
@@ -2367,23 +2374,20 @@ msgstr "Louvri sesyon"
 #~ msgstr "Ou bezwen administratè sit la pou ka chanje itilizatè yo"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic "
-#~ "character."
+#~ "Username must be alphanumeric, and must start with an alphabetic character."
 #~ msgstr ""
 #~ "Non itilizatè a dwe yon konbinezon chif ak lèt, epi li dwe kòmanse ak yon "
 #~ "karaktè alfabetik."
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your "
-#~ "username.\n"
-#~ msgstr ""
-#~ "Ou menm (oubyen yon lòt moun) te tante anrejistre yon kont ak non "
-#~ "itilizatè ou. \n"
+#~ "You (or someone else) attempted to register an account with your username.\n"
+#~ msgstr "Ou menm (oubyen yon lòt moun) te tante anrejistre yon kont ak non itilizatè "
+#~ "ou. \n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
-#~ msgstr ""
-#~ "Nou pa kenbe vrè mo pas ou, se sèlman yon ti moso ladan nou kenbe. \n"
+#~ msgstr "Nou pa kenbe vrè mo pas ou, se sèlman yon ti moso ladan nou kenbe. \n"
 
+#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr ""
 #~ "Si ou gen pwòblèm ak rejistrasyon, kontakte %s.\n"
@@ -2392,44 +2396,44 @@ msgstr "Louvri sesyon"
 #~ msgid ""
 #~ "If you have a problem with registration, please contact the site "
 #~ "administrator.\n"
-#~ msgstr ""
-#~ "Si ou gen pwoblèm ak rejistrasyon, kontakte administratè sit la souple.\n"
+#~ msgstr "Si ou gen pwoblèm ak rejistrasyon, kontakte administratè sit la souple.\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered "
-#~ "email address.\n"
-#~ msgstr ""
-#~ "Non itilizatè sa deja egziste. Yon Imail va ale jwenn adrès Imail ki te "
+#~ "That username already exists. An email will be sent to the registered email "
+#~ "address.\n"
+#~ msgstr "Non itilizatè sa deja egziste. Yon Imail va ale jwenn adrès Imail ki te "
 #~ "anrejistre-a. \n"
 
+#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "Kontinye <a href='%s'>louvri sesyon</a>\n"
 
 #~ msgid ""
 #~ "If you are unable to follow the link, please enter the above code at the "
 #~ "activation page.\n"
-#~ msgstr ""
-#~ "Si ou pakapab louvri lenk lan, rantre kòd ki anlè-a nan paj aktivasyon "
-#~ "an.\n"
+#~ msgstr "Si ou pakapab louvri lenk lan, rantre kòd ki anlè-a nan paj aktivasyon an.\n"
 
+#, python-format
 #~ msgid ""
-#~ "Account created. You will be emailed login details and an activation "
-#~ "code. Please enter your activation code on the <a href='%s'>activation "
-#~ "page</a>."
+#~ "Account created. You will be emailed login details and an activation code. "
+#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
 #~ msgstr ""
-#~ "Kont kreye. Ou va resevwa yon Imèl ki gen detay pou louvri kont kont lan "
-#~ "ak kod aktivasyon an. Rantre kod aktivasyon an nan <a href='%s'>paj "
+#~ "Kont kreye. Ou va resevwa yon Imèl ki gen detay pou louvri kont kont lan ak "
+#~ "kod aktivasyon an. Rantre kod aktivasyon an nan <a href='%s'>paj "
 #~ "aktivasyon</a>."
 
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "(oubyen senpleman, klike sou lenk aktivasyon an nan Imèl la)"
 
+#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "Non itilizatè ou se: %s\n"
 
+#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "Mo pas ou se: %s\n"
 
+#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "Imèl anrejistre ou se: %s\n"
 
@@ -2481,44 +2485,46 @@ msgstr "Louvri sesyon"
 #, fuzzy
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
-#~ "strong>, you can download it and run your own copy if you like. You can "
-#~ "also help participate in the development in many ways (you don't have to "
-#~ "be able to program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
+#~ "you can download it and run your own copy if you like. You can also help "
+#~ "participate in the development in many ways (you don't have to be able to "
+#~ "program)."
 #~ msgstr ""
-#~ "<Fò><poutòl</fò> se yon senp pòt wèb ki ta dwe pèmèt ou pou <fò>tradwi</"
-#~ "fò?! pwiske poutòl se <fò>yon program gratis</fò>, ou kapab telechaje l' "
-#~ "epi gen pwòp kopi pa ou. Ou kapab egalman paticipe nan developman sa nan "
-#~ "plizyè fason (Ou pa bezwen yon pwogramè)."
+#~ "<Fò><poutòl</fò> se yon senp pòt wèb ki ta dwe pèmèt ou pou <fò>tradwi</fò?! "
+#~ "pwiske poutòl se <fò>yon program gratis</fò>, ou kapab telechaje l' epi gen "
+#~ "pwòp kopi pa ou. Ou kapab egalman paticipe nan developman sa nan plizyè "
+#~ "fason (Ou pa bezwen yon pwogramè)."
 
 #~ msgid ""
 #~ "The Pootle project itself is hosted at <a href=\"http://translate."
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "Pwojè poutòl la pou kont li, li nan <a href=\"http://translate."
-#~ "sourceforge.net/\">translate.sourceforge.net</a> kote ou kapab jwenn "
-#~ "enfòmasyon sou kòd sous, lis mèl yo etc."
+#~ "Pwojè poutòl la pou kont li, li nan <a "
+#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> kote "
+#~ "ou kapab jwenn enfòmasyon sou kòd sous, lis mèl yo etc."
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
-#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
+#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
+#~ "thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
-#~ "Non an vle di <b>PO</b>-baz <b>O</b>nliy<b>T</b>radiksyon / <b>L</"
-#~ "b>okalizasyon <b>M</b>otè, men ou bezwen li <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">sa</a>."
+#~ "Non an vle di <b>PO</b>-baz <b>O</b>nliy<b>T</b>radiksyon / "
+#~ "<b>L</b>okalizasyon <b>M</b>otè, men ou bezwen li <a "
+#~ "href=\"http://www.thechestnut.com/flumps.htm\">sa</a>."
 
 #~ msgid "Versions"
 #~ msgstr "Vèsyon yo"
 
+#, python-format
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
-#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
+#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
-#~ "Sit sa ap mache:<br />poutòl %s<br /> tradwi toulkik %s<br />j toulkit %"
-#~ "s<br />timoun %s<br />anbranchman %s<br />Python %s (on %s/%s)"
+#~ "Sit sa ap mache:<br />poutòl %s<br /> tradwi toulkik %s<br />j toulkit %s<br "
+#~ "/>timoun %s<br />anbranchman %s<br />Python %s (on %s/%s)"
 
+#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "Paj itilizatè pou: %s"
 
@@ -2528,17 +2534,19 @@ msgstr "Louvri sesyon"
 #~ msgid "Admin page"
 #~ msgstr "Paj administratè"
 
-#~ msgid ""
-#~ "Please click on 'Change options' and select some languages and projects"
+#~ msgid "Please click on 'Change options' and select some languages and projects"
 #~ msgstr ""
 #~ "Silvouplè klike sou 'chanje opsyon' epi seleksyone kèk lang ak kèk pwojè"
 
+#, python-format
 #, fuzzy
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
-#~ msgstr[0] "Sengilye%dwojè, mwayèn %d%% tradwi"
+#~ msgstr[0] ""
+#~ "Sengilye%dwojè, mwayèn %d%% tradwi"
 #~ msgstr[1] "Pliriyèl%d pwojè yo, mwayèn %d%% tradwi"
 
+#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s: %s"
 
@@ -2548,12 +2556,15 @@ msgstr "Louvri sesyon"
 #~ msgid "Language Name"
 #~ msgstr "Non lang"
 
+#, python-format
 #, fuzzy
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
-#~ msgstr[0] "Sengilye%d lang, mwayèn %d%% tradwi"
+#~ msgstr[0] ""
+#~ "Sengilye%d lang, mwayèn %d%% tradwi"
 #~ msgstr[1] "Pliriyèl%d lang yo, mwayèn %d%% tradwi"
 
+#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "%s: Pwojè %s, Lang %s"
 
@@ -2650,6 +2661,7 @@ msgstr "Louvri sesyon"
 #~ msgid "Hide Assigns"
 #~ msgstr "Kache tach yo"
 
+#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "Tout objektif yo: %s"
 
@@ -2680,14 +2692,17 @@ msgstr "Louvri sesyon"
 #~ msgid "Generate SDF"
 #~ msgstr "Jenere SDF"
 
+#, python-format
 #, fuzzy
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "Sengilye%d kod (%d%%) rate"
 #~ msgstr[1] "Pliryèl%d kod yo (%d%%) rate"
 
+#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d mo (%d%%) asiye"
 
+#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d kod]"
