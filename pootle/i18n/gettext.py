@@ -49,7 +49,7 @@ def ngettext(singular, plural, number, vars=None):
 
 def tr_lang(language_name):
     """translate language name"""
-    language_code = translation.get_language()
+    language_code = translation.to_locale(translation.get_language())
     return langdata.tr_lang(language_code)(language_name)
 
 def language_dir(language_code):
