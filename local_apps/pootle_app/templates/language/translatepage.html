@@ -140,7 +140,8 @@
                               <div id="tm" class="sidebar" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
                                   <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{{ related_title }}</div>
                                   {% for unit in item.tm %}
-                                  <div class="tm-unit" title="{{ unit.getnotes }}" onclick="writespecial('{{ unit.target }}', '{{ item.trans.itemid }}');">
+                                  <div class="tm-unit writetm" title="{{ unit.getnotes }}">
+                                  <!-- writespecial('{{ unit.target }}', '{{ item.trans.itemid }}');" -->
                                       <span class="tm-original" dir="ltr" lang="en">{{ unit.source }}</span>
                                       <span class="tm-translation" dir="{{ language.dir }}" lang="{{ language.code }}">{{ unit.target }}</span>
                                   </div>
@@ -151,13 +152,13 @@
                               {% if not item.trans.isplural %}
                               <!--! No plurals -->
                               <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}"
-                                    class="translation expanding focused {{ item.state_class }}"
+                                    class="translation expanding focusthis {{ item.state_class }}"
                                     name="{{ item.trans.itemid }}" id="area{{ item.trans.itemid }}" rows="{{ item.trans.rows }}">{{ item.trans.text|safe }}</textarea>
                               {% else %}
                               <!--! with plurals -->
                               {% for form in item.trans.forms %}
                               <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ form.title }}</div>
-                                  <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}" class="translation expanding focused {{ item.state_class }}" name="{{ form.name }}" id="area{{ form.name }}" rows="{{ item.trans.rows }}">{{ form.text|safe }}</textarea>
+                                  <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}" class="translation expanding focusthis {{ item.state_class }}" name="{{ form.name }}" id="area{{ form.name }}" rows="{{ item.trans.rows }}">{{ form.text|safe }}</textarea>
                               {% endfor %}
                               {% endif %}
 
@@ -237,7 +238,8 @@
                               <div class="translate-specialchars-block" lang="{{ language.code }}">
                                   {% for specialchar in item.trans.buttons.specialchars %}
                                       {% if not specialchar.isspace %}
-                                      <a onclick="writespecial('{{ specialchar }}', '{{ item.trans.itemid }}'); return false;" href="#">{{ specialchar }}</a>
+                                      <a class="writespecial" href="#">{{ specialchar }}</a>
+<!-- onclick="writespecial('{{ specialchar }}', '{{ item.trans.itemid }}'); return false;" -->
                                       {% else %}
                                       <span class="extraspace"> </span>
                                       {% endif %}
@@ -245,6 +247,7 @@
                               </div>
                               {% endif %}
 
+{% comment %}
                               {% if canedit %}
                               <script type="text/javascript">
                                 <!--! //We should comment this for old browsers, but then kid doesn't evaluate the expression -->
@@ -254,6 +257,7 @@
                                 <!--! //-->
                               </script>
                               {% endif %}
+{% endcomment %}
                           <!--! End: Normal editing -->
                           {% else %}
                           <!--! Normal view mode -->

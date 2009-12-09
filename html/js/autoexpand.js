@@ -3,8 +3,28 @@
  * TODO: this code may have a better life if we migrate it to jQuery.
  */
 $(document).ready(function() {
-    $(".focused").focus(function(e) {
-        focusedElement = e.target;
+    // Pootle namespace
+    $.pootle = {};
+    // Set initial focus on page load
+    var initialFocus = $(".translate-original-focus textarea");
+    initialFocus.focus();
+    $.pootle.focusedElement = initialFocus.get(0);
+
+    // Update focus when appropriate
+    $(".focusthis").focus(function(e) {
+        $.pootle.focusedElement = e.target;
+    });
+
+    // Write TM results into the currently focused element
+    $(".writetm").click(function() {
+       var tmtext = $(".tm-translation", this).html();
+       writeintofocused(tmtext);
+    });
+
+    // Write special chars into the currently focused element
+    $(".writespecial").click(function() {
+       var specialtext = $(this).html();
+       writeintofocused(specialtext);
     });
 
 });
@@ -35,12 +55,10 @@ function copyorigtranslation(elementNumber)
 	}
 }
 
-function writespecial(specialchar, elementnumber)
+function writeintofocused(text)
 {
-        //elementnumber will be something like "trans4"
-	var element = document.getElementById("area" + elementnumber);
-	if (focusedElement)
-		insertatposition(focusedElement, specialchar, 0);
+	if ($.pootle.focusedElement)
+		insertatposition($.pootle.focusedElement, text, 0);
 }
 
 function insertatposition(element, text, rollback) 
