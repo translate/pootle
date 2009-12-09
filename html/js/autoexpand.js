@@ -18,13 +18,13 @@ $(document).ready(function() {
     // Write TM results into the currently focused element
     $(".writetm").click(function() {
        var tmtext = $(".tm-translation", this).html();
-       writeintofocused(tmtext);
+       $($.pootle.focusedElement).replaceSelection(tmtext);
     });
 
     // Write special chars into the currently focused element
     $(".writespecial").click(function() {
        var specialtext = $(this).html();
-       writeintofocused(specialtext);
+       $($.pootle.focusedElement).replaceSelection(specialtext);
     });
 
 });
@@ -52,33 +52,6 @@ function copyorigtranslation(elementNumber)
 		trelement.value = i == 0 ? envalue : enplvalue;
 		i++;
 		trelement = document.getElementById("areatrans" + elementNumber + "-" + i );
-	}
-}
-
-function writeintofocused(text)
-{
-	if ($.pootle.focusedElement)
-		insertatposition($.pootle.focusedElement, text, 0);
-}
-
-function insertatposition(element, text, rollback) 
-{
-	element.focus();
-	if (navigator && navigator.appName == "Microsoft Internet Explorer")
-	{
-		document.selection.createRange().text = text;
-	}
-	else
-	{
-		var wholetext = element.value;
-		var cursorposition = element.selectionStart;
-		var finalposition = cursorposition + text.length - rollback;
-
-		var before = wholetext.substr(0, cursorposition);
-		var after = wholetext.substr(cursorposition, wholetext.length);
-	
-		element.value = before + text + after;
-		element.setSelectionRange(finalposition, finalposition);
 	}
 }
 

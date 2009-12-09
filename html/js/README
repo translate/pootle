@@ -51,11 +51,17 @@ Directory contents
 
   + jquery/
 
-    - jquery.bidi.js:
+    - jquery.bidi.js :
       jQuery plugin used to automatically set line direction of news
       item based on their content.
 
       http://plugins.jquery.com/project/bidi
+
+    - jquery.fieldselection.js :
+      jQuery plugin to retrieve or replace text selections within
+      textareas.
+
+      http://laboratorium.0xab.cd/jquery/fieldselection/0.1.0/
 
     - jquery.textarea-expander.js :
       jQuery plugin used in the translate page textareas.
