@@ -141,7 +141,6 @@
                                   <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{{ related_title }}</div>
                                   {% for unit in item.tm %}
                                   <div class="tm-unit writetm" title="{{ unit.getnotes }}">
-                                  <!-- writespecial('{{ unit.target }}', '{{ item.trans.itemid }}');" -->
                                       <span class="tm-original" dir="ltr" lang="en">{{ unit.source }}</span>
                                       <span class="tm-translation" dir="{{ language.dir }}" lang="{{ language.code }}">{{ unit.target }}</span>
                                   </div>
@@ -239,7 +238,6 @@
                                   {% for specialchar in item.trans.buttons.specialchars %}
                                       {% if not specialchar.isspace %}
                                       <a class="writespecial" href="#">{{ specialchar }}</a>
-<!-- onclick="writespecial('{{ specialchar }}', '{{ item.trans.itemid }}'); return false;" -->
                                       {% else %}
                                       <span class="extraspace"> </span>
                                       {% endif %}
