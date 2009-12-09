@@ -246,18 +246,6 @@
                                   {% endfor %}
                               </div>
                               {% endif %}
-
-{% comment %}
-                              {% if canedit %}
-                              <script type="text/javascript">
-                                <!--! //We should comment this for old browsers, but then kid doesn't evaluate the expression -->
-                                $(document).ready(function(){
-                                document.forms.translate['{{ item.trans.focusbox }}'].focus();
-                                });
-                                <!--! //-->
-                              </script>
-                              {% endif %}
-{% endcomment %}
                           <!--! End: Normal editing -->
                           {% else %}
                           <!--! Normal view mode -->
