@@ -1,0 +1,21 @@
+=========================
+django-profiles changelog
+=========================
+
+
+Version 0.2, 6 November 2008:
+-----------------------------
+
+* Project hosting moved from Google Code to Bitbucket, and from a
+  Subversion repository to Mercurial.
+
+* Django 1.0 compatibility.
+
+* Views now accept an ``extra_context`` argument, identical to the way
+  that argument works in Django's generic views.
+
+
+Version 0.1, 24 November 2007:
+------------------------------
+
+* Initial release.

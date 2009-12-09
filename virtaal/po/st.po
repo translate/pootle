@@ -1,0 +1,1405 @@
+# Sotho translation of Virtaal.
+# Copyright (C) 2009 Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the Virtaal package.
+# Abe Mathibela <abe@mosekolatranslation.co.za>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: Virtaal 0.5\n"
+"Report-Msgid-Bugs-To: translate-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2009-11-06 16:54+0200\n"
+"PO-Revision-Date: 2009-11-11 14:32+0200\n"
+"Last-Translator: Abe Mathibela <abe@mosekolatranslation.co.za>\n"
+"Language-Team: translate-discuss-st@lists.sourceforge.net\n"
+"Language: st\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.1\n"
+
+#: ../share/applications/virtaal.desktop.in.h:1
+msgid ""
+"A translation tool to help a human translator translate files into other "
+"languages"
+msgstr ""
+"Thulusi ya ho fetolela e thusang mofetoledi wa motho ho fetolela difaele "
+"malemeng a mang"
+
+#: ../share/applications/virtaal.desktop.in.h:2
+msgid "Translation Tool"
+msgstr "Thulusi ya ho fetolela"
+
+#: ../share/applications/virtaal.desktop.in.h:3
+#: ../share/virtaal/virtaal.glade.h:49
+msgid "Virtaal"
+msgstr "Virtaal"
+
+#: ../share/virtaal/virtaal.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Difonte</b>"
+
+#: ../share/virtaal/virtaal.glade.h:2
+msgid "<b>Language Information</b>"
+msgstr "<b>Lesedi ka leleme</b>"
+
+#: ../share/virtaal/virtaal.glade.h:3
+msgid "<b>Options</b>"
+msgstr "<b>Dikgetho</b>"
+
+#: ../share/virtaal/virtaal.glade.h:4
+msgid "<b>Original</b>"
+msgstr "<b>Ya qalong</b>"
+
+#: ../share/virtaal/virtaal.glade.h:5
+msgid "<b>Translation</b>"
+msgstr "<b>Phetolelo</b>"
+
+#: ../share/virtaal/virtaal.glade.h:6
+msgid "<b>Translator Information</b>"
+msgstr "<b>Lesedi ka mofetoledi</b>"
+
+#: ../share/virtaal/virtaal.glade.h:7
+msgid "Add Missing Language"
+msgstr "Eketsa leleme le siyo"
+
+#: ../share/virtaal/virtaal.glade.h:8
+msgid "Add Term"
+msgstr "Eketsa lereo"
+
+#: ../share/virtaal/virtaal.glade.h:9
+msgid "Add URL"
+msgstr "Eketsa URL"
+
+#. l10n: This label refers to comments about a new term that is added
+#: ../share/virtaal/virtaal.glade.h:11
+msgid "C_omments"
+msgstr "_Dihlahiso"
+
+#: ../share/virtaal/virtaal.glade.h:12
+msgid ""
+"Depending on the translation task, the plural information might be optional."
+msgstr ""
+"Ho itsetlehile ka mosebetsi wa phetolelo, lesedi la bongata le ka nna la se "
+"hlokehe."
+
+#: ../share/virtaal/virtaal.glade.h:13
+msgid "E-mail address:"
+msgstr "Aterese ya emeile:"
+
+#. l10n: This tab label refers to the general preferences
+#: ../share/virtaal/virtaal.glade.h:15
+msgid "General"
+msgstr "Kakaretso"
+
+#: ../share/virtaal/virtaal.glade.h:16
+msgid "ISO code:"
+msgstr "Khoutu ya ISO:"
+
+#: ../share/virtaal/virtaal.glade.h:17
+msgid "Language name:"
+msgstr "Lebitso la leleme:"
+
+#. l10n: This label is for the name of the translator
+#: ../share/virtaal/virtaal.glade.h:19
+msgid "Name:"
+msgstr "Lebitso:"
+
+#: ../share/virtaal/virtaal.glade.h:20
+msgid "New Language Pair"
+msgstr "Para e ntjha ya leleme"
+
+#: ../share/virtaal/virtaal.glade.h:21
+msgid "Number of plurals:"
+msgstr "Nomoro ya bongata:"
+
+#: ../share/virtaal/virtaal.glade.h:22
+msgid "P_age Up"
+msgstr "L_eqephe hodimo"
+
+#. l10n: More information about placeables: http://translate.sourceforge.net/wiki/virtaal/placeables
+#: ../share/virtaal/virtaal.glade.h:24
+msgid "P_revious Placeable"
+msgstr "T_se behwang tse fetileng"
+
+#: ../share/virtaal/virtaal.glade.h:25
+msgid "Placeables"
+msgstr "Tse behwang"
+
+#: ../share/virtaal/virtaal.glade.h:26
+msgid ""
+"Placeables are special parts of the text that can be automatically "
+"highlighted and easily inserted into the translation."
+msgstr ""
+"Tse behwang ke dikarolo tse kgethehileng tsa mongolo tse ka qollwang ka ho "
+"iketsahallang fela mme di ka kenywa habonolo phetolelong."
+
+#: ../share/virtaal/virtaal.glade.h:27
+msgid "Plug-ins"
+msgstr "Dikgomaretso"
+
+#: ../share/virtaal/virtaal.glade.h:28
+msgid "Plural expression:"
+msgstr "Boipolelo ba bongata:"
+
+#: ../share/virtaal/virtaal.glade.h:29
+msgid "Put queries in quotes"
+msgstr "Etsa hore ditletlebo di be ka hara diqotso"
+
+#: ../share/virtaal/virtaal.glade.h:30
+msgid "Report a _Bug"
+msgstr "Tlale_ha tshisidi"
+
+#: ../share/virtaal/virtaal.glade.h:31
+msgid "Source text:"
+msgstr "Mongolo wa mohlodi:"
+
+#: ../share/virtaal/virtaal.glade.h:32
+msgid "Target text:"
+msgstr "Mongolo wa pakane:"
+
+#: ../share/virtaal/virtaal.glade.h:33
+msgid "Team:"
+msgstr "Sehlopha:"
+
+#: ../share/virtaal/virtaal.glade.h:34
+msgid "Terminology Files"
+msgstr "Difaele tsa mareo"
+
+#: ../share/virtaal/virtaal.glade.h:35
+msgid "Terminology _file:"
+msgstr "_Faele ya mareo:"
+
+#: ../share/virtaal/virtaal.glade.h:36
+msgid ""
+"The <b>Original</b> is the language from which you are translating, also "
+"called the source language.\n"
+"\n"
+"If you are translating from English to French then English would be your "
+"original or source language."
+msgstr ""
+"<b>Ya qalong</b> ke leleme leo o fetolelang ho tswa ho lona, hape le bitswa "
+"leleme la mohlodi.\n"
+"\n"
+"Haeba o fetolela ho tswa Senyesemaneng ho ya ho Sefora jwale Senyesemane ke "
+"leleme la qalaong kapa la mohlodi."
+
+#: ../share/virtaal/virtaal.glade.h:39
+msgid ""
+"The <b>Translation</b> is the language into which you are translating, also "
+"called the target language.\n"
+"\n"
+"If you are translating from English to French then French would be your "
+"translation or target language."
+msgstr ""
+"<b>Phetolelo</b> ke leleme leo o fetolelang ho lona, hape e bitswa leleme la "
+"pakane.\n"
+"\n"
+"Haeba o fetolela ho tswa Senyesemaneng ho ya ho Sefora jwale Sefora e tla ba "
+"leleme la hao la phetolelo kapa la pakane."
+
+#: ../share/virtaal/virtaal.glade.h:42
+msgid "The e-mail address stored in the file header"
+msgstr "Aterese ya emeile e bolokilweng sehlohwaneng sa faele"
+
+#: ../share/virtaal/virtaal.glade.h:43
+msgid "The name stored in the file header"
+msgstr "Lebitso le bolokilweng ka hara sehlohwana sa faele"
+
+#: ../share/virtaal/virtaal.glade.h:44
+msgid ""
+"The team information stored in the file header. This can be an e-mail "
+"address or a URL, for example."
+msgstr ""
+"Lesedi la sehlopha le bolokilweng ka hara sehlohwana sa faele. Kamohla, sena "
+"e ka ba aterese ya emeile kapa URL."
+
+#. l10n: Activating this menu item copies the whole source (or part thereof) to the target. The "copy" is not necessarily the same as the source: terminology placeables are translated when copied and language-specific punctionation changes are made automatically.
+#: ../share/virtaal/virtaal.glade.h:46
+msgid "Transfer From Source"
+msgstr "Fetisetsa ho tswa mohloding"
+
+#: ../share/virtaal/virtaal.glade.h:47
+msgid "URL:"
+msgstr "URL:"
+
+#: ../share/virtaal/virtaal.glade.h:48
+msgid "Use _Default Fonts"
+msgstr "Sebedisa _difonte tsa tlhokokgetho"
+
+#: ../share/virtaal/virtaal.glade.h:50
+msgid "Virtaal Preferences"
+msgstr "Tse lakatsehang tsa Virtaal"
+
+#: ../share/virtaal/virtaal.glade.h:51
+msgid "Web Look-ups"
+msgstr "Tse phetlang wepesaete"
+
+#: ../share/virtaal/virtaal.glade.h:52
+msgid "_Add Missing Language..."
+msgstr "_Eketsa leleme le siyo..."
+
+#: ../share/virtaal/virtaal.glade.h:53
+msgid "_Edit"
+msgstr "Hl_ophisa"
+
+#: ../share/virtaal/virtaal.glade.h:54
+msgid "_File"
+msgstr "_Faele"
+
+#: ../share/virtaal/virtaal.glade.h:55
+msgid "_Full Screen"
+msgstr "_Sekrini se tletseng"
+
+#: ../share/virtaal/virtaal.glade.h:56
+msgid "_Help"
+msgstr "T_huso"
+
+#: ../share/virtaal/virtaal.glade.h:57
+msgid "_Localization Guide"
+msgstr "T_ataiso ya haefatso"
+
+#: ../share/virtaal/virtaal.glade.h:58
+msgid "_Navigation"
+msgstr "_Thalatso"
+
+#: ../share/virtaal/virtaal.glade.h:59
+msgid "_Next Placeable"
+msgstr "_Se behwang se latelang"
+
+#: ../share/virtaal/virtaal.glade.h:60
+msgid "_Online Help"
+msgstr "_Thuso ya inthaneteng"
+
+#: ../share/virtaal/virtaal.glade.h:61
+msgid "_Page Down"
+msgstr "_Leqephe tlase"
+
+#: ../share/virtaal/virtaal.glade.h:62
+msgid "_Recent Files"
+msgstr "_Difaele tsa moraorao"
+
+#: ../share/virtaal/virtaal.glade.h:63
+msgid "_Tutorial"
+msgstr "_Serupelli"
+
+#: ../share/virtaal/virtaal.glade.h:64
+msgid "_Update to Template"
+msgstr "Be_hwa nakong ha khopi"
+
+#: ../share/virtaal/virtaal.glade.h:65
+msgid "_View"
+msgstr "_Sheba"
+
+#: ../virtaal/tips.py:27
+msgid ""
+"At the end of a translation, simply press <Enter> to continue with the next "
+"one."
+msgstr ""
+"Bofelong ba phetolelo, habonolofela tobetsa <Enter> hore o tswelepele le e "
+"latelang."
+
+#: ../virtaal/tips.py:28
+msgid ""
+"To copy the original string into the target field, simply press <Alt+Down>."
+msgstr ""
+"Ho kopisetsa kgole ya qalong lefelong la pakane, habonolofela tobetsa "
+"<Alt+tlase>."
+
+# Currently "E sa _hlakang"
+#. l10n: Refer to the translation of "Fuzzy" to find the appropriate shortcut key to recommend
+#: ../virtaal/tips.py:31
+msgid "To mark the current translation as fuzzy, simply press <Alt+U>."
+msgstr ""
+"Ho bontsha phetolelo ya honajwale e le e sa hlakang, habonolofela tobetsa "
+"<Alt+H>."
+
+#: ../virtaal/tips.py:32
+msgid "Use Ctrl+Up or Ctrl+Down to move between translations."
+msgstr ""
+"Sebedisa Ctrl+hodimo kapa Ctrl+tlase hore o tsamaye pakeng tsa diphetolelo."
+
+#: ../virtaal/tips.py:33
+msgid ""
+"Use Ctrl+PgUp or Ctrl+PgDown to move in large steps between translations."
+msgstr ""
+"Sebedisa Ctrl+PgUp kapa Ctrl+PgDown hore o tsamaye ka mehato e meholo "
+"pakeng tsa diphetolelo."
+
+#: ../virtaal/controllers/maincontroller.py:69
+#: ../virtaal/controllers/maincontroller.py:78
+#: ../virtaal/controllers/maincontroller.py:87
+msgid "Header information"
+msgstr "Lesedi la sehlohwana"
+
+#: ../virtaal/controllers/maincontroller.py:70
+msgid "Please enter your name"
+msgstr "Ka kopo kenya lebitso la hao"
+
+#: ../virtaal/controllers/maincontroller.py:79
+msgid "Please enter your e-mail address"
+msgstr "Ka kopo kenya aterese ya hao ya emeile"
+
+#: ../virtaal/controllers/maincontroller.py:88
+msgid "Please enter your team's information"
+msgstr "Ka kopo kenya lesedi ka sehlopha sa hao"
+
+#: ../virtaal/controllers/maincontroller.py:163
+#: ../virtaal/controllers/maincontroller.py:217
+msgid ""
+"You selected the currently open file for opening. Do you want to reload the "
+"file?"
+msgstr ""
+"O tshwaile faele e ntseng e bulehile hore e bulehe. Na o batla ho ntjhafatsa "
+"dikahare tsa faele?"
+
+#: ../virtaal/controllers/maincontroller.py:174
+#: ../virtaal/controllers/maincontroller.py:202
+#: ../virtaal/controllers/maincontroller.py:228
+#, python-format
+msgid ""
+"Could not open file.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Try opening a different file."
+msgstr ""
+"Hlolehile ho bula faele.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Leka ho bula faele e fapaneng."
+
+#: ../virtaal/controllers/maincontroller.py:183
+#, python-format
+msgid ""
+"Could not save file.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Try saving to a different location."
+msgstr ""
+"Hlolehile ho boloka faele.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Leka ho e bolokela sebakeng se fapaneng."
+
+#: ../virtaal/controllers/maincontroller.py:188
+#, python-format
+msgid ""
+"Could not save file.\n"
+"\n"
+"%(error_message)s"
+msgstr ""
+"Hlolehile ho boloka faele.\n"
+"\n"
+"%(error_message)s"
+
+#: ../virtaal/controllers/maincontroller.py:192
+msgid "Reload File"
+msgstr "Ntjhafatsa dikahare tsa faele"
+
+#: ../virtaal/controllers/maincontroller.py:192
+msgid "Reload file from last saved copy and lose all changes?"
+msgstr ""
+"Ntjhafatsa dikahare tsa faele ho tswa khoping e bolokilweng mme o lahlehelwe "
+"ke diphetoho?"
+
+#. l10n: See http://en.wikipedia.org/wiki/CamelCase
+#: ../virtaal/controllers/placeablescontroller.py:82
+msgid "CamelCase"
+msgstr "Khetse ya kamele"
+
+#: ../virtaal/controllers/placeablescontroller.py:83
+msgid ""
+"Words with internal capitalisation, such as some brand names and WikiWords"
+msgstr ""
+"Mantswe a nang le ho hodiswa ha mantswe, a kang mabitso a mefuta ya "
+"dihlahiswa le WikiWords"
+
+#: ../virtaal/controllers/placeablescontroller.py:86
+msgid "Capitals"
+msgstr "Mantswe a maholo"
+
+#. l10n: this refers to "UPPERCASE" / "CAPITAL" letters
+#: ../virtaal/controllers/placeablescontroller.py:88
+msgid "Words containing uppercase letters only"
+msgstr "Mantswe a nang le dihlaku tse kholo fela"
+
+#: ../virtaal/controllers/placeablescontroller.py:91
+msgid "Command Line Options"
+msgstr "Dikgetho tsa mola wa taelo"
+
+#: ../virtaal/controllers/placeablescontroller.py:92
+msgid "Application command line options, such as --help, -h and -I"
+msgstr "Dikgetho tsa mola wa taelo tsa sesebediswa, tse kang --thuso, -h le -I"
+
+#: ../virtaal/controllers/placeablescontroller.py:95
+msgid "E-mail"
+msgstr "E-meile"
+
+#: ../virtaal/controllers/placeablescontroller.py:96
+msgid "E-mail addresses"
+msgstr "Diaterese tsa e-meile"
+
+#: ../virtaal/controllers/placeablescontroller.py:99
+msgid "File Names"
+msgstr "Mabitso a faele"
+
+#: ../virtaal/controllers/placeablescontroller.py:100
+msgid "Paths referring to file locations"
+msgstr "Ditselana tse supang sebakeng sa faele"
+
+#: ../virtaal/controllers/placeablescontroller.py:103
+msgid "Placeholders (printf)"
+msgstr "Tse behwang (printf)"
+
+#: ../virtaal/controllers/placeablescontroller.py:104
+msgid "Placeholders used in \"printf\" strings"
+msgstr "Tse behwang tse sebediswang dikgoleng tsa \"printf\""
+
+#: ../virtaal/controllers/placeablescontroller.py:107
+msgid "Placeholders (Python)"
+msgstr "Tse behwang (Python)"
+
+#: ../virtaal/controllers/placeablescontroller.py:108
+msgid "Placeholders in Python strings"
+msgstr "Tse behwang dikgoleng tsa Python"
+
+#: ../virtaal/controllers/placeablescontroller.py:111
+msgid "Placeholders (Java)"
+msgstr "Tse behwang (Java)"
+
+#: ../virtaal/controllers/placeablescontroller.py:112
+msgid "Placeholders in Java strings"
+msgstr "Tse behwang dikgoleng tsa Java"
+
+#: ../virtaal/controllers/placeablescontroller.py:115
+msgid "Placeholders (Qt)"
+msgstr "Tse behwang (Qt)"
+
+#: ../virtaal/controllers/placeablescontroller.py:116
+msgid "Placeholders in Qt strings"
+msgstr "Tse behwang dikgoleng tsa Qt"
+
+#: ../virtaal/controllers/placeablescontroller.py:119
+msgid "Numbers"
+msgstr "Dinomoro"
+
+#. l10n: 'decimal fractions' refer to numbers like 0.2 or 499,99
+#: ../virtaal/controllers/placeablescontroller.py:121
+msgid "Integer numbers and decimal fractions"
+msgstr "Dinomoro tsa di intija le difrakshene tsa desimale"
+
+#: ../virtaal/controllers/placeablescontroller.py:124
+msgid "Punctuation"
+msgstr "Matshwao a puo"
+
+#: ../virtaal/controllers/placeablescontroller.py:125
+msgid "Symbols and less frequently used punctuation marks"
+msgstr "Matshwao le matshwao a puo a sebediswang hanyane"
+
+#: ../virtaal/controllers/placeablescontroller.py:128
+msgid "URLs"
+msgstr "DiURL"
+
+#: ../virtaal/controllers/placeablescontroller.py:129
+msgid "URLs, hostnames and IP addresses"
+msgstr "DiURL, mabitso a moamohedi le diaterese tsa IP"
+
+#. l10n: see http://en.wikipedia.org/wiki/Character_entity_reference
+#: ../virtaal/controllers/placeablescontroller.py:133
+msgid "XML Entities"
+msgstr "Dikemo tsa XML"
+
+#: ../virtaal/controllers/placeablescontroller.py:134
+msgid "Entity references, such as &amp; and &#169;"
+msgstr "Direferense tsa dikemo, tse kang &amp; le &#169;"
+
+#: ../virtaal/controllers/placeablescontroller.py:137
+msgid "XML Tags"
+msgstr "Ditheke tsa XML"
+
+#: ../virtaal/controllers/placeablescontroller.py:138
+msgid "XML tags, such as <b> and </i>"
+msgstr "Ditheke tsa XML, tse kang <b> le </i>"
+
+#: ../virtaal/controllers/placeablescontroller.py:152
+msgid "Spaces"
+msgstr "Dikgeo"
+
+#: ../virtaal/controllers/placeablescontroller.py:153
+msgid "Double spaces and spaces in unexpected positions"
+msgstr "Dikgeo tse habedi le dikgeo tse hara madulo a sa lebellwang"
+
+#: ../virtaal/controllers/placeablescontroller.py:154
+msgid "\"alt\" Attributes"
+msgstr "Ditshobotsi tsa \"alt\""
+
+#: ../virtaal/controllers/placeablescontroller.py:155
+msgid "Placeable for \"alt\" attributes (as found in HTML)"
+msgstr ""
+"Tse behwang bakeng sa ditshobotsi tsa \"alt\" (jwalekaha e fumanehile ho HTML)"
+
+#: ../virtaal/controllers/storecontroller.py:114
+msgid "The file contains nothing to translate."
+msgstr "Faele ena ha e na letho le ka fetolelwang."
+
+#. l10n: The heading of statistics before updating to the new template
+#: ../virtaal/controllers/storecontroller.py:162
+msgid "Before:"
+msgstr "Pele:"
+
+#. l10n: The heading of statistics after updating to the new template
+#: ../virtaal/controllers/storecontroller.py:164
+msgid "After:"
+msgstr "Morao:"
+
+#: ../virtaal/controllers/storecontroller.py:165
+#, python-format
+msgid "Translated: %d"
+msgstr "Fetoletswe: %d"
+
+#: ../virtaal/controllers/storecontroller.py:166
+#, python-format
+msgid "Fuzzy: %d"
+msgstr "E sa hlakang: %d"
+
+#: ../virtaal/controllers/storecontroller.py:167
+#, python-format
+msgid "Untranslated: %d"
+msgstr "E sa fetolelwang: %d"
+
+#: ../virtaal/controllers/storecontroller.py:168
+#, python-format
+msgid "Total: %d"
+msgstr "Tsohle: %d"
+
+#. l10n: this refers to updating a file to a new template (POT file)
+#: ../virtaal/controllers/storecontroller.py:186
+msgid "File Updated"
+msgstr "Faele e beilwe nakong"
+
+#: ../virtaal/modes/defaultmode.py:28
+msgid "All"
+msgstr "Kaofela"
+
+#: ../virtaal/modes/quicktransmode.py:31
+msgid "Incomplete"
+msgstr "Ha ya fella"
+
+#: ../virtaal/modes/searchmode.py:37 ../virtaal/modes/searchmode.py:64
+msgid "Search"
+msgstr "Fuputsa"
+
+#: ../virtaal/modes/searchmode.py:66
+msgid "_Case sensitive"
+msgstr "_E kgathalla boholo ba ditlhaku"
+
+#. l10n: To read about what regular expressions are, see
+#. http://en.wikipedia.org/wiki/Regular_expression
+#: ../virtaal/modes/searchmode.py:70
+msgid "_Regular expression"
+msgstr "_Boipolelo ba kamehla"
+
+#. l10n: This text label shows in front of the text box where the replacement
+#. text is typed. Keep in mind that the text box will appear after this text.
+#. If this sentence construction is hard to use, consdider translating this as
+#. "Replacement"
+#: ../virtaal/modes/searchmode.py:78
+msgid "Replace with"
+msgstr "Nkela bohato ka"
+
+#. l10n: Button text
+#: ../virtaal/modes/searchmode.py:81
+msgid "Replace"
+msgstr "Nkela bohato"
+
+#. l10n: Check box
+#: ../virtaal/modes/searchmode.py:84
+msgid "Replace _All"
+msgstr "_Nkela tsohle bohato"
+
+#: ../virtaal/plugins/autocompletor.py:216
+msgid "Automatically complete long words while you type"
+msgstr ""
+"Ka ho iketsahallang fela e qetella mantswe a malelele ha o ntse o thaepa"
+
+#: ../virtaal/plugins/autocompletor.py:217
+msgid "AutoCompletor"
+msgstr "Qetella ka ho iketsahallang"
+
+#: ../virtaal/plugins/autocorrector.py:262
+msgid "Automatically correct text while you type"
+msgstr "Ka ho iketsahallang e lokisa mongolo ha o ntse o thaepa"
+
+#: ../virtaal/plugins/autocorrector.py:263
+msgid "AutoCorrector"
+msgstr "Lokisa ka ho iketsahallang"
+
+#: ../virtaal/plugins/lookup/__init__.py:29
+msgid "Perform look-ups on selected text"
+msgstr "Phetlolla mengolo e kgethilweng"
+
+#: ../virtaal/plugins/lookup/__init__.py:30
+msgid "External Look-up"
+msgstr "Phetla bokantle"
+
+#. l10n: The 'services' here refer to different look-up plugins,
+#. such as web look-up, etc.
+#: ../virtaal/plugins/lookup/lookupview.py:58
+msgid "Select Look-up Services"
+msgstr "Kgetha ditshebeletso tsa ho phetla"
+
+#: ../virtaal/plugins/lookup/lookupview.py:59
+msgid "Select the services that should be used to perform look-ups"
+msgstr "Kgetha ditshebeletso tse lokelang ho sebediswa ho phetla"
+
+#: ../virtaal/plugins/lookup/lookupview.py:119
+#, python-format
+msgid "Look-up \"%(selection)s\""
+msgstr "Phetla \"%(selection)s\""
+
+#. l10n: plugin name
+#: ../virtaal/plugins/lookup/models/weblookup.py:40
+msgid "Web Look-up"
+msgstr "Ho phetla wepesaeteng"
+
+#: ../virtaal/plugins/lookup/models/weblookup.py:41
+msgid "Look-up the selected text on a web site"
+msgstr "Phetla mongolo o kgethilweng wepesaeteng"
+
+#. l10n: Try to keep this as short as possible. Feel free to transliterate.
+#: ../virtaal/plugins/lookup/models/weblookup.py:45
+#: ../virtaal/plugins/tm/models/google_translate.py:72
+msgid "Google"
+msgstr "Google"
+
+#: ../virtaal/plugins/lookup/models/weblookup.py:50
+msgid "Wikipedia"
+msgstr "Wikipedia"
+
+#: ../virtaal/plugins/lookup/models/weblookup.py:55
+#: ../virtaal/plugins/terminology/models/opentran.py:46
+#: ../virtaal/plugins/tm/models/opentran.py:32
+msgid "Open-Tran.eu"
+msgstr "Open-Tran.eu"
+
+#: ../virtaal/plugins/lookup/models/weblookup.py:171
+#: ../virtaal/views/widgets/selectview.py:77
+msgid "Name"
+msgstr "Lebitso"
+
+#: ../virtaal/plugins/lookup/models/weblookup.py:180
+msgid "URL"
+msgstr "DiURL"
+
+#. l10n: Whether the selected text should be surrounded by "quotes"
+#: ../virtaal/plugins/lookup/models/weblookup.py:191
+msgid "Quote Query"
+msgstr "Qotsa tletlebo"
+
+#: ../virtaal/plugins/migration.py:56
+msgid "Migrate settings from KBabel, Lokalize and/or Poedit to Virtaal."
+msgstr ""
+"Etsa hore diseting tse tswang ho KBabel, Lokalize le/kapa Poedit di fallele "
+"ho Virtaal."
+
+#: ../virtaal/plugins/migration.py:57
+msgid "Migration Assistant"
+msgstr "Mothusi wa ho falla"
+
+#: ../virtaal/plugins/migration.py:71
+msgid "Should Virtaal try to import settings and data from other applications?"
+msgstr ""
+"Na Virtaal e lokela ho leka ho hula diseting le boitsebiso ho tswa "
+"disebedisweng tse ding?"
+
+#: ../virtaal/plugins/migration.py:72
+msgid "Import data from other applications?"
+msgstr "Hula boitsebiso ho tswa ho disebediswa tse ding?"
+
+#: ../virtaal/plugins/migration.py:97
+msgid "Migration was successfully completed"
+msgstr "Ho falla ho phethilwe ka katleho"
+
+#: ../virtaal/plugins/migration.py:98
+msgid "The following items were migrated:"
+msgstr "Dintho tse latelang di ile tsa etswa hore di falle:"
+
+#: ../virtaal/plugins/migration.py:103
+msgid "Migration completed"
+msgstr "Ho falla ho phethilwe"
+
+#: ../virtaal/plugins/migration.py:105
+msgid "Virtaal was not able to migrate any settings or data"
+msgstr ""
+"Virtaal e hlolehile ho etsa hore diseting leha e le dife kapa boitsebiso bo "
+"falle"
+
+#: ../virtaal/plugins/migration.py:106
+msgid "Nothing migrated"
+msgstr "Ha ho letho le entsweng hore le falle"
+
+#: ../virtaal/plugins/migration.py:159
+msgid "Poedit settings"
+msgstr "Diseting tsa Poedit"
+
+#: ../virtaal/plugins/migration.py:188
+#, python-format
+msgid "Poedit's Translation Memory: %(database_language_code)s"
+msgstr "Polokelo ya phetolelo ya Poedit: %(database_language_code)s"
+
+#: ../virtaal/plugins/migration.py:213
+#, python-format
+msgid "KBabel's Translation Memory: %(database_language_code)s"
+msgstr "Polokelo ya phetolelo ya KBabel: %(database_language_code)s"
+
+#: ../virtaal/plugins/migration.py:231
+msgid "Lokalize settings"
+msgstr "Diseting tsa Lokalize"
+
+#: ../virtaal/plugins/migration.py:255
+#, python-format
+msgid "Lokalize's Translation Memory: %(database_name)s"
+msgstr "Polokelo ya phetolelo ya Lokalize: %(database_name)s"
+
+#: ../virtaal/plugins/terminology/__init__.py:27
+msgid "Terminology Help"
+msgstr "Thuso ya mareo"
+
+#: ../virtaal/plugins/terminology/__init__.py:28
+msgid "Terminology suggestions"
+msgstr "Dihlahiso tsa mareo"
+
+#: ../virtaal/plugins/terminology/models/autoterm.py:82
+msgid "Localization Terminology"
+msgstr "Mareo a haefatso"
+
+#: ../virtaal/plugins/terminology/models/autoterm.py:83
+msgid "Selected localization terminology"
+msgstr "Mareo a haefatso a kgethilweng"
+
+#: ../virtaal/plugins/terminology/models/localfile/__init__.py:42
+msgid "Local Files"
+msgstr "Difaele tsa lehae"
+
+#: ../virtaal/plugins/terminology/models/localfile/__init__.py:43
+msgid "Local terminology files"
+msgstr "Difaele tsa lehae tsa mareo"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:54
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:56
+msgid "Terminology _Files..."
+msgstr "Di_faele tsa mareo..."
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:62
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:64
+msgid "Add _Term..."
+msgstr "Eket_sa lereo..."
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:133
+msgid "File"
+msgstr "Faele"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:143
+msgid "Extendable"
+msgstr "Atolosehang"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:168
+msgid "Add Files"
+msgstr "Eketsa difaele"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:175
+#: ../virtaal/views/mainview.py:223
+msgid "All Supported Files"
+msgstr "Difaele tsohle tse tshehetswang"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:201
+#: ../virtaal/views/mainview.py:249
+msgid "All Files"
+msgstr "Difaele tsohle"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:244
+#, python-format
+msgid ""
+"Unable to load %(filename)s:\n"
+"\n"
+"%(errormsg)s"
+msgstr ""
+"Ha e kgone ho laisa %(filename)s:\n"
+"\n"
+"%(errormsg)s"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:245
+msgid "Error opening file"
+msgstr "Phoso ha ho bulwa faele"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:384
+#, python-format
+msgid "_Source term — %(langname)s"
+msgstr "Lereo la _mohlodi — %(langname)s"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:385
+#, python-format
+msgid "_Target term — %(langname)s"
+msgstr "Lereo la _pakane — %(langname)s"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:429
+msgid "Identical entry already exists."
+msgstr "Ho nale ntho e tshwanang."
+
+#. l10n: The variable is an existing term formatted for emphasis. The default is bold formatting, but you can remove/change the markup if needed. Leave it unchanged if you are unsure.
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:439
+#, python-format
+msgid "<b>%s</b>"
+msgstr "<b>%s</b>"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:440
+#, python-format
+msgid "Existing translations: %(translations)s"
+msgstr "Diphetolelo tse ntseng di le teng: %(translations)s"
+
+#: ../virtaal/plugins/terminology/models/opentran.py:47
+msgid "Terms from Open-Tran.eu"
+msgstr "Mareo ho tswa ho Open-Tran.eu"
+
+#: ../virtaal/plugins/terminology/termview.py:146
+msgid "Select Terminology Sources"
+msgstr "Tshwaya mehlodi ya mareo"
+
+#: ../virtaal/plugins/terminology/termview.py:147
+msgid "Select the sources of terminology suggestions"
+msgstr "Tshwaya mehlodi ya dihlahiso tsa mareo"
+
+#: ../virtaal/plugins/tm/__init__.py:27
+msgid "Translation Memory"
+msgstr "Polokelo ya phetolelo"
+
+#: ../virtaal/plugins/tm/__init__.py:28
+msgid "Translation memory suggestions"
+msgstr "Dihlahiso tsa polokelo ya phetolelo"
+
+#: ../virtaal/plugins/tm/models/currentfile.py:32
+msgid "Current File"
+msgstr "Faele ya honajwale"
+
+#: ../virtaal/plugins/tm/models/currentfile.py:33
+msgid "Translated units from the currently open file"
+msgstr "Dikarolwana tse fetoletsweng ho tswa faeleng ya honajwale e bulehileng"
+
+#. l10n: Try to keep this as short as possible.
+#: ../virtaal/plugins/tm/models/currentfile.py:82
+msgid "This file"
+msgstr "Faele ena"
+
+#. l10n: The name of Google Translate in your language (translated in most languages). See http://translate.google.com/
+#: ../virtaal/plugins/tm/models/google_translate.py:36
+msgid "Google Translate"
+msgstr "Google Translate"
+
+#: ../virtaal/plugins/tm/models/google_translate.py:37
+msgid "Unreviewed machine translations from Google's translation service"
+msgstr ""
+"Diphetolelo tse sa lekolwang tsa motjhini tse tswang tshebeletsong ya "
+"phetolelo ya Google"
+
+#. l10n: This is the name of a software library. You almost definitely don't want to translate this. The lower case 'l' is intentional.
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for vertical display optimization.
+#: ../virtaal/plugins/tm/models/libtranslate.py:45
+#: ../virtaal/plugins/tm/models/libtranslate.py:98
+msgid "libtranslate"
+msgstr "libtranslate"
+
+#: ../virtaal/plugins/tm/models/libtranslate.py:46
+msgid "Unreviewed machine translations from various services"
+msgstr ""
+"Diphetolelo tse sa lekolwang tsa motjhini tse tswang ditshebeletsong tse "
+"ding"
+
+#: ../virtaal/plugins/tm/models/localtm.py:37
+msgid "Local Translation Memory"
+msgstr "Polokelo ya lehae ya phetolelo"
+
+#: ../virtaal/plugins/tm/models/localtm.py:38
+msgid "Previous translations you have made"
+msgstr "Diphetolelo tsa nako e fetileng tseo o di entseng"
+
+#. l10n: Try to keep this as short as possible.
+#: ../virtaal/plugins/tm/models/localtm.py:40
+msgid "Local TM"
+msgstr "TM ya lehae"
+
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for vertical display optimization.
+#: ../virtaal/plugins/tm/models/moses.py:33
+#: ../virtaal/plugins/tm/models/moses.py:71
+msgid "Moses"
+msgstr "Moses"
+
+#: ../virtaal/plugins/tm/models/moses.py:34
+msgid "Unreviewed machine translations from a Moses server"
+msgstr "Diphetolelo tse sa lekolwang tsa motjhini tse tswang seabing sa Moses"
+
+#: ../virtaal/plugins/tm/models/opentran.py:33
+msgid "Previous translations for Free and Open Source Software"
+msgstr ""
+"Diphetolelo tsa nako e fetileng bakeng sa Sofotowere ya Tokoloho le ya "
+"Mehlodi e Bulehileng"
+
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for vertical display optimization.
+#: ../virtaal/plugins/tm/models/opentran.py:69
+#: ../virtaal/plugins/tm/models/opentran.py:71
+msgid "OpenTran"
+msgstr "OpenTran"
+
+#: ../virtaal/plugins/tm/models/remotetm.py:30
+msgid "Remote Server"
+msgstr "Seabi se hojana"
+
+#: ../virtaal/plugins/tm/models/remotetm.py:31
+msgid "A translation memory server"
+msgstr "Seabi sa polokelo ya phetolelo"
+
+#. l10n: Try to keep this as short as possible.
+#: ../virtaal/plugins/tm/models/remotetm.py:33
+msgid "Remote TM"
+msgstr "TM e hojana"
+
+#: ../virtaal/plugins/tm/models/tinytm.py:34
+msgid "TinyTM"
+msgstr "TinyTM"
+
+#: ../virtaal/plugins/tm/models/tinytm.py:35
+msgid "A TinyTM translation memory server"
+msgstr "Seabi sa polokelo ya phetolelo sa TinyTM"
+
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for optimal vertical display.
+#: ../virtaal/plugins/tm/models/apertium.py:35
+#: ../virtaal/plugins/tm/models/apertium.py:99
+msgid "Apertium"
+msgstr "Apertium"
+
+#: ../virtaal/plugins/tm/models/apertium.py:36
+msgid "Unreviewed machine translations from Apertium"
+msgstr "Diphetolelo tse sa lekolwang tsa motjhini tse tswang ho Apertium"
+
+#: ../virtaal/plugins/tm/tmview.py:99
+msgid "Translation _Suggestions"
+msgstr "Dihlahiso tsa _phetolelo"
+
+#: ../virtaal/plugins/tm/tmview.py:156
+#, python-format
+msgid "Ctrl+%(number_key)d"
+msgstr "Ctrl+%(number_key)d"
+
+#. l10n: The 'sources' here refer to different translation memory plugins,
+#. such as local tm, open-tran.eu, the current file, etc.
+#: ../virtaal/plugins/tm/tmview.py:179
+msgid "Select sources of Translation Memory"
+msgstr "Tswaya mehlodi ya polokelo ya phetolelo"
+
+#: ../virtaal/plugins/tm/tmview.py:180
+msgid "Select the sources that should be queried for translation memory"
+msgstr "Tswaya mehlodi e lokelwang ho botswa bakeng polokelo ya phetolelo"
+
+#. l10n: match quality column label
+#: ../virtaal/plugins/tm/tmwidgets.py:64
+msgid "%"
+msgstr "%"
+
+#: ../virtaal/plugins/tm/tmwidgets.py:66
+msgid "Matches"
+msgstr "Tse tshwanang"
+
+#: ../virtaal/plugins/tm/tmwidgets.py:67
+msgid "TM Source"
+msgstr "Mohlodi wa TM"
+
+#. l10n: This message allows you to customize the appearance of the match percentage. Most languages can probably leave it unchanged.
+#: ../virtaal/plugins/tm/tmwidgets.py:126
+#, python-format
+msgid "%(match_quality)s%%"
+msgstr "%(match_quality)s%%"
+
+#: ../virtaal/views/langview.py:65
+msgid "_New Language Pair..."
+msgstr "_Para e ntjha ya leleme..."
+
+#: ../virtaal/views/mainview.py:200
+msgid "Error"
+msgstr "Phoso"
+
+#: ../virtaal/views/mainview.py:216
+msgid "Choose a Translation File"
+msgstr "Kgetha faele ya phetolelo"
+
+#: ../virtaal/views/mainview.py:254
+msgid "Save"
+msgstr "Boloka"
+
+#: ../virtaal/views/mainview.py:268
+msgid ""
+"The current file has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"Faele ya honajwale e fetotswe.\n"
+"Na o batla ho boloka diphetoho tsa hao?"
+
+#: ../virtaal/views/mainview.py:271
+msgid "_Discard"
+msgstr "_Timetsa"
+
+#. l10n: This is the title of the main window of Virtaal
+#. %(modified_marker)s is a star that is displayed if the file is modified, and should be at the start of the window title
+#. %(current_file)s is the file name of the current file
+#. most languages will not need to change this
+#: ../virtaal/views/mainview.py:301
+#, python-format
+msgid "%(modified_marker)s%(current_file)s - Virtaal"
+msgstr "%(modified_marker)s%(current_file)s - Virtaal"
+
+#: ../virtaal/views/mainview.py:326
+msgid "Please enter the number of noun forms (plurals) to use"
+msgstr "Ka kopo kenya mefuta e leng ka bong (bongata) ho e sebedisa"
+
+#: ../virtaal/views/mainview.py:332
+msgid "Please enter the plural equation to use"
+msgstr "Ka kopo kenya ekweishene ya bongata e tla sebediswa"
+
+#. l10n: This refers to the 'mode' that determines how Virtaal moves
+#. between units.
+#: ../virtaal/views/modeview.py:62
+msgid "N_avigation:"
+msgstr "Th_alatso:"
+
+#: ../virtaal/views/unitview.py:603
+msgid "F_uzzy"
+msgstr "E sa _hlakang"
+
+#: ../virtaal/views/widgets/aboutdialog.py:35
+msgid "Copyright © 2007-2009 Zuza Software Foundation"
+msgstr "Ditokelo tsa khatiso © Motheo wa Zuza wa Sofotowere wa 2007-2009"
+
+#. l10n: Please retain the literal name "Virtaal", but feel free to
+#. additionally transliterate the name and to add a translation of "For Language", which is what the name means.
+#: ../virtaal/views/widgets/aboutdialog.py:38
+msgid "Virtaal is a program for doing translation."
+msgstr "Virtaal ke lenaneo la ho fetolela."
+
+#: ../virtaal/views/widgets/aboutdialog.py:39
+msgid ""
+"The initial focus is on software translation (localization or l10n), but we "
+"definitely intend it to be useful as a general purpose tool for Computer "
+"Aided Translation (CAT)."
+msgstr ""
+"Maikemisetso a pele a tsamaisana le taba ya ho fetolela sofotowere (haefatso "
+"kapa l10n), empa ka ho hlaka re ikemiseditse hore e be thulusi ya bohlokwa "
+"ya merero e akaretsang bakeng sa Phetolelo e Thuswang ke Khomphyutha (CAT)."
+
+#: ../virtaal/views/widgets/aboutdialog.py:53
+msgid "Virtaal website"
+msgstr "Wepesaete ya Virtaal"
+
+#: ../virtaal/views/widgets/aboutdialog.py:62
+msgid "We thank our donors:"
+msgstr "Re leboha batshehetsi ba rona ba ditjhelete:"
+
+#: ../virtaal/views/widgets/aboutdialog.py:63
+msgid "The International Development Research Centre"
+msgstr "Senthara ya Phuputso le ya Tswetsopele ya Matjhaba"
+
+#: ../virtaal/views/widgets/aboutdialog.py:65
+msgid "Mozilla Corporation"
+msgstr "Khoporeishene ya Mozilla"
+
+#. l10n: Rather than translating, fill in the names of the translators
+#: ../virtaal/views/widgets/aboutdialog.py:69
+msgid "translator-credits"
+msgstr "Abe Mathibela"
+
+#: ../virtaal/views/widgets/langadddialog.py:103
+msgid "Language code must be an ASCII string."
+msgstr "Khoutu ya puo e lokela ho ba kgoele ya ASCII."
+
+#: ../virtaal/views/widgets/langadddialog.py:106
+msgid "Language code must be at least 2 characters long."
+msgstr "Khoutu ya puo e lokela hore bonyane e be bolele ba dihlaku tse 2."
+
+#: ../virtaal/views/widgets/langselectdialog.py:79
+#: ../virtaal/views/widgets/langselectdialog.py:86
+msgid "Language"
+msgstr "Puo"
+
+#. l10n: This is the column heading for the language code
+#: ../virtaal/views/widgets/langselectdialog.py:94
+#: ../virtaal/views/widgets/langselectdialog.py:101
+msgid "Code"
+msgstr "Khoutu"
+
+#: ../virtaal/views/widgets/selectview.py:69
+msgid "Enabled"
+msgstr "Sebedisehile"
+
+#: ../virtaal/views/widgets/selectview.py:118
+msgid "Configure..."
+msgstr "Seta..."
+
+#: ../virtaal/models/storemodel.py:105
+#, python-format
+msgid "The file \"%s\" does not exist."
+msgstr "Faele \"%s\" ha e teng."
+
+#: ../virtaal/models/storemodel.py:107
+#, python-format
+msgid "\"%s\" is not a usable file."
+msgstr "\"%s\" ha se faele e sebedisehang."
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:1
+msgid "C++ RC File"
+msgstr "Faele ya C++ RC"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:2
+msgid "Gettext Translation Template"
+msgstr "Khopi ya phetolelo ya Gettext"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:3
+msgid "INI"
+msgstr "INI"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:4
+msgid "INI File"
+msgstr "Faele ya INI"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:5
+msgid "Initialization"
+msgstr "Qadisofaele"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:6
+msgid "Java Properties File"
+msgstr "Faele ya ditshobotsi tsa Java"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:7
+msgid "JavaScript error message file"
+msgstr "Faele ya melaetsa e phoso ya JavaScript"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:8
+msgid "OpenOffice.org Translation File"
+msgstr "Faele ya phetolelo ya OpenOffice.org"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:9
+msgid "Qt Linguist Translation File"
+msgstr "Faele ya phetolelo ya Qt Linguist"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:10
+msgid "Qt Message File"
+msgstr "Faele ya melaetsa ya Qt"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:11
+msgid "Qt Phrase Book"
+msgstr "Buka ya dipolelwana ya Qt"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:12
+msgid "RC"
+msgstr "RC"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:13
+msgid "Resource Compiler"
+msgstr "Resource Compiler"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:14
+msgid "TBX"
+msgstr "TBX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:15
+msgid "TBX Glossary"
+msgstr "Mantswe a TBX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:16
+msgid "TMX"
+msgstr "TMX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:17
+msgid "TMX Translation Memory"
+msgstr "Polokelo ya phetolelo ya TMX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:18
+msgid "Tcl Translation File"
+msgstr "Faele ya phetolelo ya Tcl"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:19
+msgid "TermBase eXchange"
+msgstr "TermBase eXchange"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:20
+msgid "Trados Tag Editor"
+msgstr "Sehlophisi sa theke sa Trados"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:21
+msgid "Translation Memory eXchange"
+msgstr "Translation Memory eXchange"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:22
+msgid "Wordfast Translation Memory"
+msgstr "Polokelo ya phetolelo ya Wordfast"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:23
+msgid "XLIFF"
+msgstr "XLIFF"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:24
+msgid "XLIFF Translation File"
+msgstr "Faele ya phetolelo ya XLIFF"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:25
+msgid "XML Localization Interchange File Format"
+msgstr "Mofuta wa faele wa karolelano ya haefatso wa XML"
+
+#: ../devsupport/tmp_strings.py:23
+msgid "Gettext PO file"
+msgstr "Faele ya Gettext PO"
+
+#: ../devsupport/tmp_strings.py:24
+msgid "Gettext MO file"
+msgstr "Faele ya Gettext MO"
+
+#: ../devsupport/tmp_strings.py:25
+msgid "Qt .qm file"
+msgstr "Faele ya Qt .qm"
+
+#: ../bin/virtaal:70
+#, c-format
+msgid "%prog [options] [translation_file]"
+msgstr "%prog [dikgetho] [faele_ya_phetolelo]"
+
+#: ../bin/virtaal:73
+msgid "PROFILE"
+msgstr "PROFILE"
+
+#: ../bin/virtaal:75
+msgid "perform profiling, storing the result to the supplied filename."
+msgstr "etsa porofaele, o boloke dipholo ho lebitsofaele le fuweng."
+
+#: ../bin/virtaal:77
+msgid "LOG"
+msgstr "LOG"
+
+#: ../bin/virtaal:78
+msgid "turn on logging, storing the result to the supplied filename."
+msgstr ""
+"qadisa ho etsa tlaleho, o boloke maphumela lebitsong la faele le fanweng."
+
+#: ../bin/virtaal:80
+msgid "CONFIG"
+msgstr "CONFIG"
+
+#: ../bin/virtaal:81
+msgid "use the configuration file given by the supplied filename."
+msgstr "sebedisa faele ya ho seta e fanweng ka lebitso la faele le fanweng."
+
+#: ../bin/virtaal:84
+msgid "enable debugging features"
+msgstr "etsa hore ditshobotsi tsa ho ntsha ditshisidi di sebedisehe"
+
+#: ../bin/virtaal:109
+msgid "Could not open log file '%(filename)s'"
+msgstr "Ha e kgone ho bula faele ya loko '%(filename)s'"
+
+#: ../bin/virtaal:117
+msgid "Could not read configuration file '%(filename)s'"
+msgstr "Ha e kgone ho bala faele ya disetwa '%(filename)s'"
+
+#: ../bin/virtaal:121
+msgid "invalid number of arguments"
+msgstr "nomoro e siko ya diphehisano"
+
+#: ../bin/virtaal:150
+msgid "Could not open profile file '%(filename)s'"
+msgstr "Ha e kgone ho bula faele ya profaele '%(filename)s'"
+
+#: ../devsupport/optparse.py:134
+#, python-format
+msgid "no such option: %s"
+msgstr "ha hona kgetho e jwalo: %s"
+
+#: ../devsupport/optparse.py:145
+#, python-format
+msgid "ambiguous option: %s (%s?)"
+msgstr "kgetho tse habedi: %s (%s?)"
+
+#: ../devsupport/optparse.py:368
+#, python-format
+msgid "Usage: %s\n"
+msgstr "Tshebediso: %s\n"
+
+#: ../devsupport/optparse.py:387
+msgid "Usage"
+msgstr "Tshebediso"
+
+#: ../devsupport/optparse.py:412
+msgid "integer"
+msgstr "intija"
+
+#: ../devsupport/optparse.py:413
+msgid "long integer"
+msgstr "intija e telele"
+
+#: ../devsupport/optparse.py:414
+msgid "floating-point"
+msgstr "ntlha e phaphamalang"
+
+#: ../devsupport/optparse.py:415
+msgid "complex"
+msgstr "rarahaneng"
+
+#: ../devsupport/optparse.py:423
+#, python-format
+msgid "option %s: invalid %s value: %r"
+msgstr "kgetho %s: e siko %s boleng: %r"
+
+#: ../devsupport/optparse.py:431
+#, python-format
+msgid "option %s: invalid choice: %r (choose from %s)"
+msgstr "kgetho %s: tlhopho e siko: %r (tlhopha ho tswa ho %s)"
+
+#: ../devsupport/optparse.py:1246
+msgid "show this help message and exit"
+msgstr "bontsha molaetsa ona wa thuso mme o tswe"
+
+#: ../devsupport/optparse.py:1251
+msgid "show program's version number and exit"
+msgstr "bontsha nomoro ya tokollo ya lenaneo mme o tswe"
+
+#: ../devsupport/optparse.py:1274
+msgid "%prog [options]"
+msgstr "%prog [dikgetho]"
+
+#: ../devsupport/optparse.py:1484 ../devsupport/optparse.py:1523
+#, python-format
+msgid "%s option requires an argument"
+msgstr "kgetho ya %s e hloka phehisano"
+
+#: ../devsupport/optparse.py:1486 ../devsupport/optparse.py:1525
+#, python-format
+msgid "%s option requires %d arguments"
+msgstr "kgetho ya %s e hloka diphehisano tse %d"
+
+#: ../devsupport/optparse.py:1495
+#, python-format
+msgid "%s option does not take a value"
+msgstr "kgetho ya %s ha e nke boleng"
+
+#: ../devsupport/optparse.py:1612
+msgid "Options"
+msgstr "Dikgetho"
+
+#~ msgid "Local translation files"
+#~ msgstr "Difaele tsa selehae tsa phetolelo"
+
+#~ msgid "Currently open file"
+#~ msgstr "Faele e butsweng honajwale"
+
+#~ msgid "Machine Translation with libtranslate"
+#~ msgstr "Phetolelo ya Motjhini le libtranslate"
+
+#~ msgid "Unreviewed machine translations"
+#~ msgstr "Diphetolelo tsa motjhini tse e-so hlahlobjwe"

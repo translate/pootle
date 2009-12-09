@@ -1,0 +1,26 @@
+The primary author of django-registration is James Bennett
+<james@b-list.org>, who may be found online at
+<http://www.b-list.org/>.
+
+
+Others who have contributed to the application:
+
+* Samuel Adam (French translation)
+* Jannis Leidel (German translation)
+* Rapahel Hertzog (helpful suggestions on packaging and distribution)
+* Panos Laganakos (Greek translation)
+* Ilya Filippov (Russian translation)
+* Jarek Zgoda (Polish translation)
+* Meir Kriheli (Hebrew translation)
+* Italo Maia (Brazilian Portuguese translation)
+* Shinya Okano (Japanese translation)
+* A. Al-Ibrahim (Arabic translation)
+* Ernesto Rico Schmidt (Spanish translation)
+* Vladislav Mitov (Bulgarian translation)
+* Leonardo Manuel Rocha (Argentinean Spanish translation)
+* Emil Stenström (Swedish translation)
+* Liang Feng (Chinese translations)
+* Nebojsa Djordjevic (Serbian translation)
+* Nicola Larosa (Italian translation)
+* Joost Cassee (Dutch translation)
+* Björn Kristinsson (Icelandic translation)

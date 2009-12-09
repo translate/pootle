@@ -1,0 +1,12 @@
+{% extends "base.html"  %}
+
+{% load i18n baseurl %}
+
+{% block title %}{{ block.super }}: {% trans "Registration Complete" %}{% endblock %}
+ 
+{% block content %}
+<div class="general-message">
+    <h2>{% trans "Registration Complete" %}</h2>
+    <p>{% trans "Please check your email to activate your account." %}
+</div>
+{% endblock %}

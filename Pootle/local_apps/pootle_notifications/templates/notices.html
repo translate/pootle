@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% comment %}
+Oh yeah, I know, this template code is horrible, and actually there are
+two templates into one. For the future we have to take a different
+approach for this.
+{% endcomment %}
+
+{% load i18n baseurl cleanhtml %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}
+{% if is_language %}
+{{ block.super }}: {{ language.name }} » {% trans "News" %}
+{% else %}
+{{ block.super }}: {{ navitems.0.path.language.text }} » {{ navitems.0.path.project.text }} » {% trans "News" %}
+{% endif %}
+{% endblock %}
+
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications.feeds.view path %}" />
+{% endblock %}
+
+{% block bodyclass %}
+{% if is_language %}languagenews{% else %}tpnews{% endif %}
+{% endblock %}
+
+{% block nav-secondary %}
+{% if is_language %}
+<div id="breadcrumbs">
+    <h2 class="title"><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></h2>
+</div>
+{% else %}
+
+{% block search %}
+{% include "language/search.html" %}
+{% endblock %}
+
+{% block breadcrumbs %}
+<div id="breadcrumbs">
+    <h2 class="title">{% include "language/item_title.html" %}</h2>
+</div>
+{% endblock %}
+{% endif %}
+{% endblock %}
+
+{% block precontent %}
+{% if is_language %}
+    {% include "language_menu.html" %}
+{% else %}
+    {% include "tp_menu.html" %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
+{% if form %}
+    <h2>{{ title }}</h2>
+    <p>{{ success }}</p>
+    <form method="post" action="">
+        {{ form.as_p }}
+        <p>
+            <input type="submit" value="{% trans "Publish" %}" />
+        </p>
+    </form>
+{% endif %}
+
+    <h2>{% trans "Latest News" %} {{ name }}</h2>
+{% if notices %}
+    {% for notice in notices %}
+    <div class="newsitem">{{ notice.message|safe|linebreaks|clean }}</div>
+    <div class="newsitem-sep"></div>
+    {% endfor %}
+{% else %}
+    <p>{% trans "No news yet." %}</p>
+{% endif %}
+</div>
+{% endblock %}
+
+{% if not is_language %}
+{% block scripts_extra %}
+<script type="text/javascript" src='{{ "js/search.js"|m }}'></script>
+<script type="text/javascript" src='{{ "js/jquery/jquery.bidi.js"|m }}'></script>
+<script type="text/javascript">
+ $(document).ready(function() {
+ 	$(".newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl").filter(":not([dir])").bidi();
+ 	});
+</script>
+{% endblock %}
+{% endif %}

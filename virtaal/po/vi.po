@@ -1,0 +1,1216 @@
+# Vietnamese translation for Virtaal.
+# Copyright © 2009 Free Software Foundation, Inc.
+# Clytie Siddall <clytie@riverland.net.au>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: virtaal 0.4.0\n"
+"Report-Msgid-Bugs-To: translate-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2009-07-15 18:41+0200\n"
+"PO-Revision-Date: 2009-10-02 13:45+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: LocFactoryEditor 1.8\n"
+
+#: ../share/applications/virtaal.desktop.in.h:1
+msgid ""
+"A translation tool to help a human translator translate files into other "
+"languages"
+msgstr "Một công cụ thông dịch để giúp con người dịch sang các ngôn ngữ khác"
+
+#: ../share/applications/virtaal.desktop.in.h:2
+msgid "Translation Tool"
+msgstr "Công cụ Dịch"
+
+# Tên: đừng dịch
+#: ../share/applications/virtaal.desktop.in.h:3
+#: ../share/virtaal/virtaal.glade.h:45
+msgid "Virtaal"
+msgstr "Virtaal"
+
+#: ../share/virtaal/virtaal.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Phông</b>"
+
+#: ../share/virtaal/virtaal.glade.h:2
+msgid "<b>Language Information</b>"
+msgstr "<b>Thông tin Ngôn ngữ</b>"
+
+#: ../share/virtaal/virtaal.glade.h:3
+msgid "<b>Original</b>"
+msgstr "<b>Gốc</b>"
+
+#: ../share/virtaal/virtaal.glade.h:4
+msgid "<b>Translation</b>"
+msgstr "<b>Dịch</b>"
+
+#: ../share/virtaal/virtaal.glade.h:5
+msgid "<b>Translator Information</b>"
+msgstr "<b>Thông tin Người dịch</b>"
+
+#: ../share/virtaal/virtaal.glade.h:6
+msgid "Add Missing Language"
+msgstr "Thêm ngôn ngữ còn thiếu"
+
+#: ../share/virtaal/virtaal.glade.h:7
+msgid "Add Term"
+msgstr "Thêm thuật ngữ"
+
+#. l10n: This label refers to comments about a new term that is added
+#: ../share/virtaal/virtaal.glade.h:9
+msgid "C_omments"
+msgstr "_Ghi chú"
+
+#: ../share/virtaal/virtaal.glade.h:10
+msgid ""
+"Depending on the translation task, the plural information might be optional."
+msgstr ""
+"Phụ thuộc vào công việc thông dịch, thông tin về cách ở số nhiều có thể vẫn "
+"còn tuỳ chọn."
+
+#: ../share/virtaal/virtaal.glade.h:11
+msgid "E-mail address:"
+msgstr "Địa chỉ thư :"
+
+#. l10n: This tab label refers to the general preferences
+#: ../share/virtaal/virtaal.glade.h:13
+msgid "General"
+msgstr "Chung"
+
+#: ../share/virtaal/virtaal.glade.h:14
+msgid "ISO code:"
+msgstr "Mã ISO:"
+
+#: ../share/virtaal/virtaal.glade.h:15
+msgid "Language name:"
+msgstr "Tên ngôn ngữ :"
+
+#. l10n: This label is for the name of the translator
+#: ../share/virtaal/virtaal.glade.h:17
+msgid "Name:"
+msgstr "Tên:"
+
+#: ../share/virtaal/virtaal.glade.h:18
+msgid "New Language Pair"
+msgstr "Cặp ngôn ngữ mới"
+
+#: ../share/virtaal/virtaal.glade.h:19
+msgid "Number of plurals:"
+msgstr "Số cách ở số nhiều :"
+
+#: ../share/virtaal/virtaal.glade.h:20
+msgid "P_age Up"
+msgstr "_Lên trang"
+
+#. l10n: More information about placeables: http://translate.sourceforge.net/wiki/virtaal/placeables
+#: ../share/virtaal/virtaal.glade.h:22
+msgid "P_revious Placeable"
+msgstr "Đoạn chèn t_rước"
+
+#: ../share/virtaal/virtaal.glade.h:23
+msgid "Placeables"
+msgstr "Đoạn chèn"
+
+#: ../share/virtaal/virtaal.glade.h:24
+msgid ""
+"Placeables are special parts of the text that can be automatically "
+"highlighted and easily inserted into the translation."
+msgstr ""
+"Đoạn chèn là phần văn bản đặc biệt có thể được tự động tô sáng và dễ chèn "
+"vào bản dịch."
+
+#: ../share/virtaal/virtaal.glade.h:25
+msgid "Plug-ins"
+msgstr "Phần bổ sung"
+
+#: ../share/virtaal/virtaal.glade.h:26
+msgid "Plural expression:"
+msgstr "Biểu thức cách ở số nhiều :"
+
+#: ../share/virtaal/virtaal.glade.h:27
+msgid "Report a _Bug"
+msgstr "Thông báo _lỗi"
+
+#: ../share/virtaal/virtaal.glade.h:28
+msgid "Source text:"
+msgstr "Văn bản nguồn:"
+
+#: ../share/virtaal/virtaal.glade.h:29
+msgid "Target text:"
+msgstr "Văn bản đích:"
+
+#: ../share/virtaal/virtaal.glade.h:30
+msgid "Team:"
+msgstr "Nhóm dịch:"
+
+#: ../share/virtaal/virtaal.glade.h:31
+msgid "Terminology Files"
+msgstr "Tập tin Thuật ngữ"
+
+#: ../share/virtaal/virtaal.glade.h:32
+msgid "Terminology _file:"
+msgstr "_Tập tin Thuật ngữ :"
+
+#: ../share/virtaal/virtaal.glade.h:33
+msgid ""
+"The <b>Original</b> is the language from which you are translating, also "
+"called the source language.\n"
+"\n"
+"If you are translating from English to French then English would be your "
+"original or source language."
+msgstr ""
+"<b>Gốc</b> là ngôn ngữ từ đó bạn dịch, cũng được gọi như là ngôn ngữ nguồn.\n"
+"\n"
+"Dịch từ tiếng Anh sang tiếng Việt thì tiếng Anh là ngôn ngữ nguồn hay gốc."
+
+#: ../share/virtaal/virtaal.glade.h:36
+msgid ""
+"The <b>Translation</b> is the language into which you are translating, also "
+"called the target language.\n"
+"\n"
+"If you are translating from English to French then French would be your "
+"translation or target language."
+msgstr ""
+"<b>Dịch</b> là ngôn ngữ sang đó bạn dịch, cũng được gọi như là ngôn ngữ "
+"đích.\n"
+"\n"
+"Dịch từ tiếng Anh sang tiếng Việt thì tiếng Việt là ngôn ngữ đích hay dịch."
+
+#: ../share/virtaal/virtaal.glade.h:39
+msgid "The e-mail address stored in the file header"
+msgstr "Địa chỉ thư điện tử được cất giữ trong phần đầu tập tin"
+
+#: ../share/virtaal/virtaal.glade.h:40
+msgid "The name stored in the file header"
+msgstr "Họ tên được cất giữ trong phần đầu tập tin"
+
+#: ../share/virtaal/virtaal.glade.h:41
+msgid ""
+"The team information stored in the file header. This can be an e-mail "
+"address or a URL, for example."
+msgstr ""
+"Thông tin về nhóm dịch (v.d. địa chỉ thư điện tử hay địa chỉ URL) cũng được "
+"cất giữ trong phần đầu tập tin. "
+
+#. l10n: Activating this menu item copies the whole source (or part thereof) to the target. The "copy" is not necessarily the same as the source: terminology placeables are translated when copied and language-specific punctionation changes are made automatically.
+#: ../share/virtaal/virtaal.glade.h:43
+msgid "Transfer From Source"
+msgstr "Chuyển từ Nguồn"
+
+#: ../share/virtaal/virtaal.glade.h:44
+msgid "Use _Default Fonts"
+msgstr "Dùng phông chữ _mặc định"
+
+#: ../share/virtaal/virtaal.glade.h:46
+msgid "Virtaal Preferences"
+msgstr "Tùy thích Virtaal"
+
+#: ../share/virtaal/virtaal.glade.h:47
+msgid "_Add Missing Language..."
+msgstr "Thê_m Ngôn ngữ còn thiếu..."
+
+#: ../share/virtaal/virtaal.glade.h:48
+msgid "_Edit"
+msgstr "_Sửa"
+
+#: ../share/virtaal/virtaal.glade.h:49
+msgid "_File"
+msgstr "_Tập tin"
+
+#: ../share/virtaal/virtaal.glade.h:50
+msgid "_Full Screen"
+msgstr "T_oàn màn hình"
+
+#: ../share/virtaal/virtaal.glade.h:51
+msgid "_Help"
+msgstr "Trợ g_iúp"
+
+#: ../share/virtaal/virtaal.glade.h:52
+msgid "_Localization Guide"
+msgstr "_Sổ tay Địa phương hoá"
+
+#: ../share/virtaal/virtaal.glade.h:53
+msgid "_Navigation"
+msgstr "_Duyệt"
+
+#: ../share/virtaal/virtaal.glade.h:54
+msgid "_Next Placeable"
+msgstr "Đoạn chè_n tiếp"
+
+#: ../share/virtaal/virtaal.glade.h:55
+msgid "_Online Help"
+msgstr "Trợ giúp trực tu_yến"
+
+#: ../share/virtaal/virtaal.glade.h:56
+msgid "_Page Down"
+msgstr "_Xuống trang"
+
+#: ../share/virtaal/virtaal.glade.h:57
+msgid "_Recent Files"
+msgstr "Tập tin _vừa mở"
+
+#: ../share/virtaal/virtaal.glade.h:58
+msgid "_Tutorial"
+msgstr "_Trợ lý"
+
+#: ../share/virtaal/virtaal.glade.h:59
+msgid "_Update to Template"
+msgstr "Cậ_p nhật lên mẫu"
+
+#: ../share/virtaal/virtaal.glade.h:60
+msgid "_View"
+msgstr "_Xem"
+
+#: ../virtaal/tips.py:27
+msgid ""
+"At the end of a translation, simply press <Enter> to continue with the next "
+"one."
+msgstr ""
+"Tới cuối chuỗi dịch thì đơn giản hãy bấm phím <Enter> để chuyển đổi sang "
+"chuỗi kế tiếp."
+
+#: ../virtaal/tips.py:28
+msgid ""
+"To copy the original string into the target field, simply press <Alt+Down>."
+msgstr ""
+"Để sao chép chuỗi gốc vào trường đích, đơn giản hãy bấm tổ hợp phím <Alt"
+"+Down>."
+
+#. l10n: Refer to the translation of "Fuzzy" to find the appropriate shortcut key to recommend
+#: ../virtaal/tips.py:31
+msgid "To mark the current translation as fuzzy, simply press <Alt+U>."
+msgstr ""
+"Để đánh dấu chuỗi dịch hiện thời như là « còn mờ » (fuzzy), đơn giản hãy bấm "
+"tổ hợp phím <Alt+M>."
+
+#: ../virtaal/tips.py:32
+msgid "Use Ctrl+Up or Ctrl+Down to move between translations."
+msgstr ""
+"Dùng tổ hợp phím Ctrl+Lên hay Ctrl+Xuống để di chuyển giữa các chuỗi dịch."
+
+#: ../virtaal/tips.py:33
+msgid ""
+"Use Ctrl+PgUp or Ctrl+PgDown to move in large steps between translations."
+msgstr ""
+"Dùng tổ hợp phím Ctrl+PgUp hay Ctrl+PgDn để di chuyển giữa các chuỗi dịch "
+"theo bước lớn hơn."
+
+#: ../virtaal/controllers/maincontroller.py:69
+#: ../virtaal/controllers/maincontroller.py:78
+#: ../virtaal/controllers/maincontroller.py:87
+msgid "Header information"
+msgstr "Thông tin ở phần đầu"
+
+#: ../virtaal/controllers/maincontroller.py:70
+msgid "Please enter your name"
+msgstr "Hãy gõ họ tên của bạn"
+
+#: ../virtaal/controllers/maincontroller.py:79
+msgid "Please enter your e-mail address"
+msgstr "Hãy gõ địa chỉ thư điện từ của bạn"
+
+#: ../virtaal/controllers/maincontroller.py:88
+msgid "Please enter your team's information"
+msgstr "Hãy gõ thông tin về nhóm dịch của bạn"
+
+#: ../virtaal/controllers/maincontroller.py:163
+#: ../virtaal/controllers/maincontroller.py:217
+msgid ""
+"You selected the currently open file for opening. Do you want to reload the "
+"file?"
+msgstr "Bạn đã chọn mở lại tập tin còn mở hiện thời. Muốn nạp lại nó không?"
+
+#: ../virtaal/controllers/maincontroller.py:174
+#: ../virtaal/controllers/maincontroller.py:202
+#: ../virtaal/controllers/maincontroller.py:228
+#, python-format
+msgid ""
+"Could not open file.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Try opening a different file."
+msgstr ""
+"Không thể mở tập tin.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Hãy thử mở một tập tin khác."
+
+#: ../virtaal/controllers/maincontroller.py:183
+#, python-format
+msgid ""
+"Could not save file.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Try saving to a different location."
+msgstr ""
+"Không thể lưu tập tin.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Hãy thử lưu vào một vị trí khác."
+
+#: ../virtaal/controllers/maincontroller.py:188
+#, python-format
+msgid ""
+"Could not save file.\n"
+"\n"
+"%(error_message)s"
+msgstr ""
+"Không thể lưu tập tin.\n"
+"\n"
+"%(error_message)s"
+
+#: ../virtaal/controllers/maincontroller.py:192
+msgid "Reload File"
+msgstr "Nạp lại tập tin"
+
+#: ../virtaal/controllers/maincontroller.py:192
+msgid "Reload file from last saved copy and lose all changes?"
+msgstr ""
+"Nạp lại tập tin từ bản sao đã lưu cuối mà mất tất cả các thay đổi mới làm "
+"không?"
+
+#: ../virtaal/controllers/placeablescontroller.py:81
+msgid "\"alt\" Attributes"
+msgstr "Thuộc tính « alt »"
+
+#: ../virtaal/controllers/placeablescontroller.py:82
+msgid "Placeable for \"alt\" attributes (as found in HTML)"
+msgstr "Đoạn chèn thuộc tính « alt » (dưới dạng mã HTML)"
+
+#. l10n: See http://en.wikipedia.org/wiki/CamelCase
+#: ../virtaal/controllers/placeablescontroller.py:86
+msgid "CamelCase"
+msgstr "ChữHoaNộiBộ"
+
+#: ../virtaal/controllers/placeablescontroller.py:87
+msgid ""
+"Words with internal capitalisation, such as some brand names and WikiWords"
+msgstr "Các từ viết chữ hoa nội bộ, chẳng hạn một số nhãn hiệu và TừWiki"
+
+#: ../virtaal/controllers/placeablescontroller.py:90
+msgid "Capitals"
+msgstr "CHỮ HOA"
+
+#. l10n: this refers to "UPPERCASE" / "CAPITAL" letters
+#: ../virtaal/controllers/placeablescontroller.py:92
+msgid "Words containing uppercase letters only"
+msgstr "Các từ chỉ viết chữ hoa"
+
+#: ../virtaal/controllers/placeablescontroller.py:95
+msgid "Command Line Options"
+msgstr "Tùy chọn Dòng lệnh"
+
+#: ../virtaal/controllers/placeablescontroller.py:96
+msgid "Application command line options, such as --help, -h and -I"
+msgstr ""
+"Các tuỳ chọn dòng lệnh của ứng dụng, v.d. « --help » (trợ giúp), « -h » và « -l "
+"»"
+
+#: ../virtaal/controllers/placeablescontroller.py:99
+msgid "E-mail"
+msgstr "Địa chỉ thư"
+
+#: ../virtaal/controllers/placeablescontroller.py:100
+msgid "E-mail addresses"
+msgstr "Các địa chỉ thư điện tử"
+
+#: ../virtaal/controllers/placeablescontroller.py:103
+msgid "File Names"
+msgstr "Tên tập tin"
+
+#: ../virtaal/controllers/placeablescontroller.py:104
+msgid "Paths referring to file locations"
+msgstr "Các đường dẫn dẫn đến vị trí tập tin"
+
+#: ../virtaal/controllers/placeablescontroller.py:107
+msgid "Placeholders (printf)"
+msgstr "Bộ giữ chỗ (printf)"
+
+#: ../virtaal/controllers/placeablescontroller.py:108
+msgid "Placeholders used in \"printf\" strings"
+msgstr "Các bộ giữ chỗ được sử dụng trong chuỗi dạng « printf » (v.d. %s, %d)"
+
+#: ../virtaal/controllers/placeablescontroller.py:111
+msgid "Placeholders (Python)"
+msgstr "Bộ giữ chỗ (Python)"
+
+#: ../virtaal/controllers/placeablescontroller.py:112
+msgid "Placeholders in Python strings"
+msgstr ""
+"Các bộ giữ chỗ được sử dụng trong chuỗi dạng Python (v.d. %(filename)s)"
+
+#: ../virtaal/controllers/placeablescontroller.py:115
+msgid "Placeholders (Java)"
+msgstr "Bộ giữ chỗ (Java)"
+
+#: ../virtaal/controllers/placeablescontroller.py:116
+msgid "Placeholders in Java strings"
+msgstr "Các bộ giữ chỗ được sử dụng trong chuỗi dạng Java"
+
+#: ../virtaal/controllers/placeablescontroller.py:119
+msgid "Numbers"
+msgstr "Số"
+
+#. l10n: 'decimal fractions' refer to numbers like 0.2 or 499,99
+#: ../virtaal/controllers/placeablescontroller.py:121
+msgid "Integer numbers and decimal fractions"
+msgstr "Các số nguyên và phân số thập phân"
+
+#: ../virtaal/controllers/placeablescontroller.py:124
+msgid "Punctuation"
+msgstr "Chấm câu"
+
+#: ../virtaal/controllers/placeablescontroller.py:125
+msgid "Symbols and less frequently used punctuation marks"
+msgstr "Các ký hiệu và dấu chấm câu ít thường dùng hơn"
+
+#: ../virtaal/controllers/placeablescontroller.py:128
+msgid "URLs"
+msgstr "URL"
+
+#: ../virtaal/controllers/placeablescontroller.py:129
+msgid "URLs, hostnames and IP addresses"
+msgstr "Các địa chỉ URL, tên máy và địa chỉ IP"
+
+#. l10n: see http://en.wikipedia.org/wiki/Character_entity_reference
+#: ../virtaal/controllers/placeablescontroller.py:133
+msgid "XML Entities"
+msgstr "Thực thể XML"
+
+#: ../virtaal/controllers/placeablescontroller.py:134
+msgid "Entity references, such as &amp; and &#169;"
+msgstr "Các tham chiếu thực thể (entity), v.d. « &amp; » và « &#169; »"
+
+#: ../virtaal/controllers/placeablescontroller.py:137
+msgid "XML Tags"
+msgstr "Thẻ XML"
+
+#: ../virtaal/controllers/placeablescontroller.py:138
+msgid "XML tags, such as <b> and </i>"
+msgstr ""
+"Các thẻ mã XML, v.d. <b> (bắt đầu in đậm) và </i> (kết thúc in nghiêng)"
+
+#: ../virtaal/controllers/placeablescontroller.py:148
+msgid "Spaces"
+msgstr "Dấu cách"
+
+#: ../virtaal/controllers/placeablescontroller.py:149
+msgid "Double spaces and spaces in unexpected positions"
+msgstr "Các dấu cách đôi và dấu cách ở vị trí bất thường"
+
+#: ../virtaal/controllers/storecontroller.py:114
+msgid "The file contains nothing to translate."
+msgstr "Tập tin không chứa gì cần dịch."
+
+#: ../virtaal/modes/defaultmode.py:28
+msgid "All"
+msgstr "Tất cả"
+
+#: ../virtaal/modes/quicktransmode.py:31
+msgid "Incomplete"
+msgstr "Chưa hoàn thành"
+
+#: ../virtaal/modes/searchmode.py:37 ../virtaal/modes/searchmode.py:64
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: ../virtaal/modes/searchmode.py:66
+msgid "_Case sensitive"
+msgstr "_Phân biệt chữ hoa/thường"
+
+#. l10n: To read about what regular expressions are, see
+#. http://en.wikipedia.org/wiki/Regular_expression
+#: ../virtaal/modes/searchmode.py:70
+msgid "_Regular expression"
+msgstr "_Biểu thức chính quy"
+
+#. l10n: This text label shows in front of the text box where the replacement
+#. text is typed. Keep in mind that the text box will appear after this text.
+#. If this sentence construction is hard to use, consdider translating this as
+#. "Replacement"
+#: ../virtaal/modes/searchmode.py:78
+msgid "Replace with"
+msgstr "Thay thế bằng"
+
+#. l10n: Button text
+#: ../virtaal/modes/searchmode.py:81
+msgid "Replace"
+msgstr "Thay thế"
+
+#. l10n: Check box
+#: ../virtaal/modes/searchmode.py:84
+msgid "Replace _All"
+msgstr "Th_ay thế tất cả"
+
+#: ../virtaal/plugins/autocompletor.py:218
+msgid "Automatically complete long words while you type"
+msgstr "Tự động điền nốt mỗi từ dài trong khi bạn gõ"
+
+#: ../virtaal/plugins/autocompletor.py:219
+msgid "AutoCompletor"
+msgstr "Bộ tự động điền nốt"
+
+#: ../virtaal/plugins/autocorrector.py:258
+msgid "Automatically correct text while you type"
+msgstr "Tự động sửa chữa lỗi gõ trong khi bạn gõ"
+
+#: ../virtaal/plugins/autocorrector.py:259
+msgid "AutoCorrector"
+msgstr "Bộ tự động sửa"
+
+#: ../virtaal/plugins/migration.py:56
+msgid "Migrate settings from KBabel, Lokalize and/or Poedit to Virtaal."
+msgstr "Nâng cấp lên Virtaal thiết lập của KBabel, Lokalize và/hay Poedit."
+
+#: ../virtaal/plugins/migration.py:57
+msgid "Migration Assistant"
+msgstr "Trợ lý Chuyển đổi"
+
+#: ../virtaal/plugins/migration.py:71
+msgid "Should Virtaal try to import settings and data from other applications?"
+msgstr "Virtaal có nên nhập thiết lập và dữ liệu từ các ứng dụng khách không?"
+
+#: ../virtaal/plugins/migration.py:72
+msgid "Import data from other applications?"
+msgstr "Nhập dữ liệu từ ứng dụng khác ?"
+
+#: ../virtaal/plugins/migration.py:97
+msgid "Migration was successfully completed"
+msgstr "Hoàn tất chạy tiến trình nâng cấp."
+
+#: ../virtaal/plugins/migration.py:98
+msgid "The following items were migrated:"
+msgstr "Những mục theo đây đã được chuyển sang Virtaal:"
+
+#: ../virtaal/plugins/migration.py:103
+msgid "Migration completed"
+msgstr "Hoàn tất nâng cấp"
+
+#: ../virtaal/plugins/migration.py:105
+msgid "Virtaal was not able to migrate any settings or data"
+msgstr "Virtaal đã không chuyển được thiết lập hay dữ liệu nào"
+
+#: ../virtaal/plugins/migration.py:106
+msgid "Nothing migrated"
+msgstr "Chưa chuyển gì"
+
+#: ../virtaal/plugins/migration.py:159
+msgid "Poedit settings"
+msgstr "Thiết lập Poedit"
+
+#: ../virtaal/plugins/migration.py:188
+#, python-format
+msgid "Poedit's Translation Memory: %(database_language_code)s"
+msgstr "Bản nhớ chuỗi dịch của Poedit: %(database_language_code)s"
+
+#: ../virtaal/plugins/migration.py:213
+#, python-format
+msgid "KBabel's Translation Memory: %(database_language_code)s"
+msgstr "Bản nhớ chuỗi dịch của KBabel: %(database_language_code)s"
+
+#: ../virtaal/plugins/migration.py:231
+msgid "Lokalize settings"
+msgstr "Thiết lập Localize"
+
+#: ../virtaal/plugins/migration.py:255
+#, python-format
+msgid "Lokalize's Translation Memory: %(database_name)s"
+msgstr "Bản nhớ chuỗi dịch của Localize: %(database_name)s"
+
+#: ../virtaal/plugins/terminology/__init__.py:27
+msgid "Terminology Help"
+msgstr "Trợ giúp về Thuật ngữ"
+
+#: ../virtaal/plugins/terminology/__init__.py:28
+msgid "Terminology suggestions"
+msgstr "Góp ý về thuật ngữ"
+
+#: ../virtaal/plugins/terminology/models/localfile/__init__.py:41
+msgid "Local file"
+msgstr "Tập tin trên máy"
+
+#: ../virtaal/plugins/terminology/models/localfile/__init__.py:42
+msgid "Local translation files"
+msgstr "Tập tin thông dịch cục bộ"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:52
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:54
+msgid "Terminology _Files..."
+msgstr "_Tập tin Thuật ngữ..."
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:60
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:62
+msgid "Add _Term..."
+msgstr "_Thêm thuật ngữ..."
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:130
+msgid "File"
+msgstr "Tập tin"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:139
+msgid "Extendable"
+msgstr "Mở rộng được"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:163
+msgid "Add Files"
+msgstr "Thêm tập tin"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:170
+#: ../virtaal/views/mainview.py:223
+msgid "All Supported Files"
+msgstr "Mọi tập tin đã hỗ trợ"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:196
+#: ../virtaal/views/mainview.py:249
+msgid "All Files"
+msgstr "Mọi tập tin"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:240
+#, python-format
+msgid ""
+"Unable to load %(filename)s:\n"
+"\n"
+"%(errormsg)s"
+msgstr ""
+"Không thể nạp %(filename)s:\n"
+"\n"
+"%(errormsg)s"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:241
+msgid "Error opening file"
+msgstr "Gặp lỗi khi mở tập tin"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:368
+#, python-format
+msgid "_Source term — %(langname)s"
+msgstr "Thuật ngữ _nguồn — %(langname)s"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:369
+#, python-format
+msgid "_Target term — %(langname)s"
+msgstr "_Thuật ngữ đích — %(langname)s"
+
+# Tên: đừng dịch
+#: ../virtaal/plugins/terminology/models/opentran.py:46
+#: ../virtaal/plugins/tm/models/opentran.py:32
+msgid "Open-Tran.eu"
+msgstr "Open-Tran.eu"
+
+#: ../virtaal/plugins/terminology/models/opentran.py:47
+msgid "Terms from Open-Tran.eu"
+msgstr "Các thuật ngữ từ Open-Tran.eu"
+
+#: ../virtaal/plugins/terminology/termview.py:144
+msgid "Select Terminology Sources"
+msgstr "Chọn nguồn thuật ngữ"
+
+#: ../virtaal/plugins/terminology/termview.py:145
+msgid "Select the sources of terminology suggestions"
+msgstr "Chọn các nguồn góp ý thuật ngữ"
+
+#: ../virtaal/plugins/tm/__init__.py:27
+msgid "Translation Memory"
+msgstr "Bản nhớ chuỗi dịch"
+
+#: ../virtaal/plugins/tm/__init__.py:28
+msgid "Translation memory suggestions"
+msgstr "Góp ý từ bản nhớ chuỗi dịch"
+
+#: ../virtaal/plugins/tm/models/currentfile.py:32
+msgid "Currently open file"
+msgstr "Tập tin mở hiện thời"
+
+#: ../virtaal/plugins/tm/models/currentfile.py:33
+msgid "Translated units from the current file"
+msgstr "Các mục dịch từ tập tin hiện thời"
+
+#. l10n: Try to keep this as short as possible.
+#: ../virtaal/plugins/tm/models/currentfile.py:82
+msgid "This file"
+msgstr "Tập tin này"
+
+#: ../virtaal/plugins/tm/models/libtranslate.py:44
+msgid "Machine Translation with libtranslate"
+msgstr "Dịch do Máy (dùng libtranslate)"
+
+#: ../virtaal/plugins/tm/models/libtranslate.py:45
+msgid "Unreviewed machine translations"
+msgstr "Bản dịch do máy chưa xem lại"
+
+# Tên: đừng dịch
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for vertical display optimization.
+#: ../virtaal/plugins/tm/models/libtranslate.py:97
+msgid "libtranslate"
+msgstr "libtranslate"
+
+#: ../virtaal/plugins/tm/models/localtm.py:37
+msgid "Local Translation Memory"
+msgstr "Bản nhớ chuỗi dịch cục bộ"
+
+#: ../virtaal/plugins/tm/models/localtm.py:38
+msgid "Previous translations you have made"
+msgstr "Các chuỗi dịch trước của bạn"
+
+#. l10n: Try to keep this as short as possible.
+#: ../virtaal/plugins/tm/models/localtm.py:40
+msgid "Local TM"
+msgstr "Cục bộ"
+
+#: ../virtaal/plugins/tm/models/opentran.py:33
+msgid "Previous translations for Free and Open Source Software"
+msgstr "Các chuỗi dịch trước cho Phần mềm Tự do và Nguồn mở"
+
+# Tên: đừng dịch
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for vertical display optimization.
+#: ../virtaal/plugins/tm/models/opentran.py:69
+#: ../virtaal/plugins/tm/models/opentran.py:71
+msgid "OpenTran"
+msgstr "OpenTran"
+
+#: ../virtaal/plugins/tm/models/remotetm.py:30
+msgid "Remote server"
+msgstr "Máy phục vụ ở xa"
+
+#: ../virtaal/plugins/tm/models/remotetm.py:31
+msgid "A translation memory server"
+msgstr "Một máy phục vụ bản nhớ chuỗi dịch"
+
+#. l10n: Try to keep this as short as possible.
+#: ../virtaal/plugins/tm/models/remotetm.py:33
+msgid "Remote TM"
+msgstr "Từ xa"
+
+# Tên: đừng dịch
+#: ../virtaal/plugins/tm/models/tinytm.py:34
+msgid "TinyTM"
+msgstr "TinyTM"
+
+#: ../virtaal/plugins/tm/models/tinytm.py:35
+msgid "A TinyTM translation memory server"
+msgstr "Một máy phục vụ bản nhớ chuỗi dịch TinyTM"
+
+# Tên: đừng dịch
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for optimal vertical display.
+#: ../virtaal/plugins/tm/models/apertium.py:35
+#: ../virtaal/plugins/tm/models/apertium.py:94
+msgid "Apertium"
+msgstr "Apertium"
+
+#: ../virtaal/plugins/tm/models/apertium.py:36
+msgid "Apertium Machine Translation"
+msgstr "Dịch do Máy Apertium"
+
+#: ../virtaal/plugins/tm/tmview.py:99
+msgid "Translation _Suggestions"
+msgstr "_Góp ý chuỗi dịch"
+
+# Biến: đừng dịch
+#: ../virtaal/plugins/tm/tmview.py:156
+#, python-format
+msgid "Ctrl+%(number_key)d"
+msgstr "Ctrl+%(number_key)d"
+
+#: ../virtaal/plugins/tm/tmview.py:177
+msgid "Select sources of Translation Memory"
+msgstr "Chọn nguồn bản nhớ chuỗi dịch"
+
+#: ../virtaal/plugins/tm/tmview.py:178
+msgid "Select the sources that should be queried for translation memory"
+msgstr "Chọn những nguồn cần hỏi về bản nhớ chuỗi dịch"
+
+# Biến: đừng dịch
+#. l10n: match quality column label
+#: ../virtaal/plugins/tm/tmwidgets.py:64
+msgid "%"
+msgstr "%"
+
+#: ../virtaal/plugins/tm/tmwidgets.py:66
+msgid "Matches"
+msgstr "Kết quả"
+
+#: ../virtaal/plugins/tm/tmwidgets.py:67
+msgid "TM Source"
+msgstr "Nguồn bản nhớ chuỗi dịch"
+
+# Biến: đừng dịch
+#. l10n: This message allows you to customize the appearance of the match percentage. Most languages can probably leave it unchanged.
+#: ../virtaal/plugins/tm/tmwidgets.py:124
+#, python-format
+msgid "%(match_quality)s%%"
+msgstr "%(match_quality)s%%"
+
+#: ../virtaal/views/langview.py:65
+msgid "_New Language Pair..."
+msgstr "Cặp _ngôn ngữ mới..."
+
+#: ../virtaal/views/mainview.py:200
+msgid "Error"
+msgstr "Lỗi"
+
+#: ../virtaal/views/mainview.py:216
+msgid "Choose a Translation File"
+msgstr "Chọn một tập tin thông dịch"
+
+#: ../virtaal/views/mainview.py:254
+msgid "Save"
+msgstr "Lưu"
+
+#: ../virtaal/views/mainview.py:268
+msgid ""
+"The current file has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"Tập tin hiện thời bị sửa đổi.\n"
+"Bạn có muốn lưu các thay đổi không?"
+
+#: ../virtaal/views/mainview.py:271
+msgid "_Discard"
+msgstr "_Hủy"
+
+# Biến: đừng dịch
+#. l10n: This is the title of the main window of Virtaal
+#. %(modified_marker)s is a star that is displayed if the file is modified, and should be at the start of the window title
+#. %(current_file)s is the file name of the current file
+#. most languages will not need to change this
+#: ../virtaal/views/mainview.py:301
+#, python-format
+msgid "%(modified_marker)s%(current_file)s - Virtaal"
+msgstr "%(modified_marker)s%(current_file)s - Virtaal"
+
+#: ../virtaal/views/mainview.py:326
+msgid "Please enter the number of noun forms (plurals) to use"
+msgstr "Hãy gõ số các dạng danh từ (cách ở số nhiều) cần dùng"
+
+#: ../virtaal/views/mainview.py:332
+msgid "Please enter the plural equation to use"
+msgstr "Hãy gõ biểu thức cách ở số nhiều cần dùng"
+
+#. l10n: This refers to the 'mode' that determines how Virtaal moves
+#. between units.
+#: ../virtaal/views/modeview.py:62
+msgid "N_avigation:"
+msgstr "Du_yệt:"
+
+#: ../virtaal/views/unitview.py:588
+msgid "F_uzzy"
+msgstr "_Mờ"
+
+#: ../virtaal/views/widgets/aboutdialog.py:35
+msgid "Copyright © 2007-2009 Zuza Software Foundation"
+msgstr "Tác quyền © năm 2007-2009 của Tổ chức Phần mềm Zuza"
+
+#. l10n: Please retain the literal name "Virtaal", but feel free to
+#. additionally transliterate the name and to add a translation of "For Language", which is what the name means.
+#: ../virtaal/views/widgets/aboutdialog.py:38
+msgid "Virtaal is a program for doing translation."
+msgstr "Virtaal là một chương trình thông dịch."
+
+#: ../virtaal/views/widgets/aboutdialog.py:39
+msgid ""
+"The initial focus is on software translation (localization or l10n), but we "
+"definitely intend it to be useful as a general purpose tool for Computer "
+"Aided Translation (CAT)."
+msgstr ""
+"Mục đích đầu tiên là công việc dịch phần mềm (địa phương hoá hay l10n), "
+"nhưng chúng tôi cũng dự định chương trình này có ích như là một công cụ "
+"thường dụng cho Thông dịch được Máy Hỗ trợ (CAT)."
+
+#: ../virtaal/views/widgets/aboutdialog.py:53
+msgid "Virtaal website"
+msgstr "Trang chủ Virtaal"
+
+#: ../virtaal/views/widgets/aboutdialog.py:62
+msgid "We thank our donors:"
+msgstr "Cám ơn các nhà quyên góp:"
+
+#: ../virtaal/views/widgets/aboutdialog.py:63
+msgid "International Development and Research Centre"
+msgstr "Trung tâm Quốc tế Phát triển và Nghiên cứu"
+
+#: ../virtaal/views/widgets/aboutdialog.py:65
+msgid "Mozilla Corporation"
+msgstr "Công ty Mozilla"
+
+#. l10n: Rather than translating, fill in the names of the translators
+#: ../virtaal/views/widgets/aboutdialog.py:69
+msgid "translator-credits"
+msgstr ""
+"Nhóm Việt hoá Phần mềm Tự do <http://vnoss.net/dokuwiki/doku.php?id=projects:"
+"l10n>"
+
+#: ../virtaal/views/widgets/langadddialog.py:103
+msgid "Language code must be an ASCII string."
+msgstr "Mã ngôn ngữ phải là một chuỗi dạng ASCII."
+
+#: ../virtaal/views/widgets/langadddialog.py:106
+msgid "Language code must be at least 2 characters long."
+msgstr ""
+"Mã ngôn ngữ phải có chiều dài ít nhất 2 ký tự (v.d. « vi » hay « zh_HK »)."
+
+#: ../virtaal/views/widgets/langselectdialog.py:79
+#: ../virtaal/views/widgets/langselectdialog.py:86
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+#. l10n: This is the column heading for the language code
+#: ../virtaal/views/widgets/langselectdialog.py:94
+#: ../virtaal/views/widgets/langselectdialog.py:101
+msgid "Code"
+msgstr "Mã"
+
+#: ../virtaal/views/widgets/selectview.py:67
+msgid "Enabled"
+msgstr "Đã bật"
+
+#: ../virtaal/views/widgets/selectview.py:75
+msgid "Name"
+msgstr "Tên"
+
+#: ../virtaal/views/widgets/selectview.py:113
+msgid "Configure..."
+msgstr "Cấu hình..."
+
+#: ../virtaal/models/storemodel.py:105
+#, python-format
+msgid "The file \"%s\" does not exist."
+msgstr "Tập tin « %s » không tồn tại."
+
+#: ../virtaal/models/storemodel.py:107
+#, python-format
+msgid "\"%s\" is not a usable file."
+msgstr "« %s » không phải là một tập tin có thể sử dụng."
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:1
+msgid "C++ RC File"
+msgstr "Tập tin tài nguyên C++ RC"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:2
+msgid "Gettext Translation Template"
+msgstr "Mẫu thông dịch Gettext"
+
+# Tên: đừng dịch
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:3
+msgid "INI"
+msgstr "INI"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:4
+msgid "INI File"
+msgstr "Tập tin dạng INI"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:5
+msgid "Initialization"
+msgstr "Sơ khởi"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:6
+msgid "Java Properties File"
+msgstr "Tập tin thuộc tính Java"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:7
+msgid "JavaScript error message file"
+msgstr "Tập tin thông điệp lỗi JavaScript"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:8
+msgid "OpenOffice.org Translation File"
+msgstr "Tập tin thông dịch OpenOffice.org (.sdf)"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:9
+msgid "Qt Linguist Translation File"
+msgstr "Tập tin thông dịch Qt Linguist (.ts)"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:10
+msgid "Qt Message File"
+msgstr "Tập tin thông điệp Qt"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:11
+msgid "Qt Phrase Book"
+msgstr "Sách cụm từ Qt"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:12
+msgid "RC"
+msgstr "RC"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:13
+msgid "Resource Compiler"
+msgstr "Bộ biên dịch tài nguyên"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:14
+msgid "TBX"
+msgstr "TBX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:15
+msgid "TBX Glossary"
+msgstr "Bản chú giải TBX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:16
+msgid "TMX"
+msgstr "TMX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:17
+msgid "TMX Translation Memory"
+msgstr "Bản nhớ chuỗi dịch dạng TMX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:18
+msgid "Tcl Translation File"
+msgstr "Tập tin thông dịch Tcl"
+
+# Tên: đừng dịch
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:19
+msgid "TermBase eXchange"
+msgstr "TermBase eXchange"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:20
+msgid "Trados Tag Editor"
+msgstr "Bộ sửa thẻ Trados"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:21
+msgid "Translation Memory eXchange"
+msgstr "Hoán đổi bản nhớ chuỗi dịch"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:22
+msgid "Wordfast Translation Memory"
+msgstr "Bản nhớ chuỗi dịch Wordfast"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:23
+msgid "XLIFF"
+msgstr "XLIFF"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:24
+msgid "XLIFF Translation File"
+msgstr "Tập tin thông dịch XLIFF"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:25
+msgid "XML Localization Interchange File Format"
+msgstr "Định dạng Tập tin Hoán đổi Địa phương hoá XML"
+
+#: ../bin/virtaal:70
+#, c-format
+msgid "%prog [options] [translation_file]"
+msgstr "%prog [tuỳ chọn ...] [tập_tin-thông_dịch]"
+
+#: ../bin/virtaal:73
+msgid "PROFILE"
+msgstr "HỒ SƠ"
+
+#: ../bin/virtaal:75
+msgid "perform profiling, storing the result to the supplied filename."
+msgstr "đo hiệu năng sử dụng, lưu kết quả vào tên tập tin đưa ra."
+
+#: ../bin/virtaal:77
+msgid "LOG"
+msgstr "GHI LƯU"
+
+#: ../bin/virtaal:78
+msgid "turn on logging, storing the result to the supplied filename."
+msgstr "hiệu lực chức năng ghi lưu, cũng lưu kết quả vào tên tập tin đưa ra."
+
+#: ../bin/virtaal:80
+msgid "CONFIG"
+msgstr "CẤU HÌNH"
+
+#: ../bin/virtaal:81
+msgid "use the configuration file given by the supplied filename."
+msgstr "dùng cấu hình được cung cấp bởi tên tập tin đưa ra."
+
+#: ../bin/virtaal:84
+msgid "enable debugging features"
+msgstr "bật tính năng gỡ rối"
+
+#: ../bin/virtaal:109
+msgid "Could not open log file '%(filename)s'"
+msgstr "Không thể mở tập tin « %(filename)s »"
+
+#: ../bin/virtaal:117
+msgid "Could not read configuration file '%(filename)s'"
+msgstr "Không thể đọc tập tin cấu hình « %(filename)s »"
+
+#: ../bin/virtaal:121
+msgid "invalid number of arguments"
+msgstr "sai đặt số các đối số"
+
+#: ../bin/virtaal:150
+msgid "Could not open profile file '%(filename)s'"
+msgstr "Không thể mở tập tin hồ sơ « %(filename)s »"
+
+#: ../devsupport/optparse.py:134
+#, python-format
+msgid "no such option: %s"
+msgstr "không có tuỳ chọn như vậy: %s"
+
+#: ../devsupport/optparse.py:145
+#, python-format
+msgid "ambiguous option: %s (%s?)"
+msgstr "đối số vẫn mơ hồ : %s (%s ?)"
+
+#: ../devsupport/optparse.py:368
+#, python-format
+msgid "Usage: %s\n"
+msgstr "Sử dụng: %s\n"
+
+#: ../devsupport/optparse.py:387
+msgid "Usage"
+msgstr "Sử dụng"
+
+#: ../devsupport/optparse.py:412
+msgid "integer"
+msgstr "số nguyên"
+
+#: ../devsupport/optparse.py:413
+msgid "long integer"
+msgstr "số nguyên dài"
+
+#: ../devsupport/optparse.py:414
+msgid "floating-point"
+msgstr "điểm phù động"
+
+#: ../devsupport/optparse.py:415
+msgid "complex"
+msgstr "số phức"
+
+#: ../devsupport/optparse.py:423
+#, python-format
+msgid "option %s: invalid %s value: %r"
+msgstr "tuỳ chọn %s: sai đặt giá trị %s: %r"
+
+#: ../devsupport/optparse.py:431
+#, python-format
+msgid "option %s: invalid choice: %r (choose from %s)"
+msgstr "tuỳ chọn %s: sai chọn: %r (hãy chọn trong %s)"
+
+#: ../devsupport/optparse.py:1246
+msgid "show this help message and exit"
+msgstr "hiển thị trợ giúp này, sau đó thoát"
+
+#: ../devsupport/optparse.py:1251
+msgid "show program's version number and exit"
+msgstr "hiển thị số thứ tự phiên bản của chương trình, sau đó thoát"
+
+#: ../devsupport/optparse.py:1274
+msgid "%prog [options]"
+msgstr "%prog [tuỳ chọn ...]"
+
+#: ../devsupport/optparse.py:1484 ../devsupport/optparse.py:1523
+#, python-format
+msgid "%s option requires an argument"
+msgstr "%s: tùy chọn cần thiết một đối số"
+
+#: ../devsupport/optparse.py:1486 ../devsupport/optparse.py:1525
+#, python-format
+msgid "%s option requires %d arguments"
+msgstr "%s: tùy chọn cần thiết %d đối số"
+
+#: ../devsupport/optparse.py:1495
+#, python-format
+msgid "%s option does not take a value"
+msgstr "tùy chọn %s không chấp nhận một giá trị"
+
+#: ../devsupport/optparse.py:1612
+msgid "Options"
+msgstr "Tuỳ chọn"

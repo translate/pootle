@@ -1,0 +1,29 @@
+{% extends "base.html"  %}
+
+{% load i18n baseurl %}
+
+{% block title %}
+{{ block.super }}: {{ navitems.0.path.language.text }} » {{ navitems.0.path.project.text }}
+{% endblock %}
+
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications.feeds.view feed_path %}" />
+{% endblock %}
+
+{% block search %}
+{% include "language/search.html" %}
+{% endblock %}
+
+{% block breadcrumbs %}
+<div id="breadcrumbs">
+    <h2 class="title">{% include "language/item_title.html" %}</h2>
+</div>
+{% endblock %}
+
+{% block precontent %}
+{% include "tp_menu.html" %}
+{% endblock %}
+
+{% block scripts_extra %}
+<script type="text/javascript" src='{{ "js/search.js"|m }}'></script>
+{% endblock %}

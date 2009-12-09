@@ -1,0 +1,1160 @@
+# Korean (ko) translation of Virtaal.
+# Copyright (C) 2009 Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the Virtaal package.
+# Jihui Choi <jihui.choi@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: Virtaal 0.4.0\n"
+"Report-Msgid-Bugs-To: translate-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2009-07-15 18:41+0200\n"
+"PO-Revision-Date: 2009-10-20 13:21-0700\n"
+"Last-Translator: \n"
+"Language-Team: Korean Team\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Virtaal 0.4.1\n"
+
+#: ../share/applications/virtaal.desktop.in.h:1
+msgid "A translation tool to help a human translator translate files into other languages"
+msgstr "이 프로그램은 여러가지 파일 내의 언어를 다른 언어로 번역하는데 도움을 주기 위한 프로그램입니다."
+
+#: ../share/applications/virtaal.desktop.in.h:2
+msgid "Translation Tool"
+msgstr "번역 도구"
+
+#: ../share/applications/virtaal.desktop.in.h:3
+#: ../share/virtaal/virtaal.glade.h:45
+msgid "Virtaal"
+msgstr "Virtaal"
+
+#: ../share/virtaal/virtaal.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>글꼴</b>"
+
+#: ../share/virtaal/virtaal.glade.h:2
+msgid "<b>Language Information</b>"
+msgstr "<b>언어 정보</b>"
+
+#: ../share/virtaal/virtaal.glade.h:3
+msgid "<b>Original</b>"
+msgstr "<b>원문</b>"
+
+#: ../share/virtaal/virtaal.glade.h:4
+msgid "<b>Translation</b>"
+msgstr "<b>번역문</b>"
+
+#: ../share/virtaal/virtaal.glade.h:5
+msgid "<b>Translator Information</b>"
+msgstr "<b>번역자 정보</b>"
+
+#: ../share/virtaal/virtaal.glade.h:6
+msgid "Add Missing Language"
+msgstr "누락된 언어 추가"
+
+#: ../share/virtaal/virtaal.glade.h:7
+msgid "Add Term"
+msgstr "용어 추가"
+
+#. l10n: This label refers to comments about a new term that is added
+#: ../share/virtaal/virtaal.glade.h:9
+msgid "C_omments"
+msgstr "설명(_O)"
+
+#: ../share/virtaal/virtaal.glade.h:10
+msgid "Depending on the translation task, the plural information might be optional."
+msgstr "번역 작업에 따라 다르긴 하지만, 복수형의 정보는 선택사항이다."
+
+#: ../share/virtaal/virtaal.glade.h:11
+msgid "E-mail address:"
+msgstr "이메일 주소:"
+
+#. l10n: This tab label refers to the general preferences
+#: ../share/virtaal/virtaal.glade.h:13
+msgid "General"
+msgstr "일반"
+
+#: ../share/virtaal/virtaal.glade.h:14
+msgid "ISO code:"
+msgstr "ISO 코드:"
+
+#: ../share/virtaal/virtaal.glade.h:15
+msgid "Language name:"
+msgstr "언어명:"
+
+#. l10n: This label is for the name of the translator
+#: ../share/virtaal/virtaal.glade.h:17
+msgid "Name:"
+msgstr "이름:"
+
+#: ../share/virtaal/virtaal.glade.h:18
+msgid "New Language Pair"
+msgstr "새 언어 쌍"
+
+#: ../share/virtaal/virtaal.glade.h:19
+msgid "Number of plurals:"
+msgstr "복수형의 수:"
+
+#: ../share/virtaal/virtaal.glade.h:20
+msgid "P_age Up"
+msgstr "페이지 위로(_A)"
+
+#. l10n: More information about placeables: http://translate.sourceforge.net/wiki/virtaal/placeables
+#: ../share/virtaal/virtaal.glade.h:22
+msgid "P_revious Placeable"
+msgstr "이전 고정 요소(_R)"
+
+#: ../share/virtaal/virtaal.glade.h:23
+msgid "Placeables"
+msgstr "고정 요소"
+
+#: ../share/virtaal/virtaal.glade.h:24
+msgid "Placeables are special parts of the text that can be automatically highlighted and easily inserted into the translation."
+msgstr "고정 요소는 텍스트의 특수한 부분으로, 자동으로 강조되며 쉽게 삽입이 가능합니다."
+
+#: ../share/virtaal/virtaal.glade.h:25
+msgid "Plug-ins"
+msgstr "플러그인"
+
+#: ../share/virtaal/virtaal.glade.h:26
+msgid "Plural expression:"
+msgstr "복수형 표현:"
+
+#: ../share/virtaal/virtaal.glade.h:27
+msgid "Report a _Bug"
+msgstr "버그 보고(_B)"
+
+#: ../share/virtaal/virtaal.glade.h:28
+msgid "Source text:"
+msgstr "원본 텍스트:"
+
+#: ../share/virtaal/virtaal.glade.h:29
+msgid "Target text:"
+msgstr "번역대상 텍스트:"
+
+#: ../share/virtaal/virtaal.glade.h:30
+msgid "Team:"
+msgstr "팀:"
+
+#: ../share/virtaal/virtaal.glade.h:31
+msgid "Terminology Files"
+msgstr "용어 파일"
+
+#: ../share/virtaal/virtaal.glade.h:32
+msgid "Terminology _file:"
+msgstr "용어 파일(_F):"
+
+#: ../share/virtaal/virtaal.glade.h:33
+msgid ""
+"The <b>Original</b> is the language from which you are translating, also called the source language.\n"
+"\n"
+"If you are translating from English to French then English would be your original or source language."
+msgstr ""
+"<b>원어</b>은 번역을 하려는 텍스트가 쓰여진 언어이며, 원본 언어라고도 합니다.\n"
+"\n"
+"예를 들어 영어로 된 텍스트를 한국어로 번역한다면, 영어가 바로 원문 또는 원본 언어입니다."
+
+#: ../share/virtaal/virtaal.glade.h:36
+msgid ""
+"The <b>Translation</b> is the language into which you are translating, also called the target language.\n"
+"\n"
+"If you are translating from English to French then French would be your translation or target language."
+msgstr ""
+"<b>번역어</b>는 최종적으로 번역을 하려는 언어이며, 대상 언어라고도 합니다.\n"
+"\n"
+"예를 들어 영어로 된 텍스트를 한국어로 번역한다면, 한국어가 바로 번역어 또는 대상 언어입니다."
+
+#: ../share/virtaal/virtaal.glade.h:39
+msgid "The e-mail address stored in the file header"
+msgstr "이메일 주소는 파일 헤더에 저장됩니다."
+
+#: ../share/virtaal/virtaal.glade.h:40
+msgid "The name stored in the file header"
+msgstr "이름은 파일 헤더에 저장됩니다."
+
+#: ../share/virtaal/virtaal.glade.h:41
+msgid "The team information stored in the file header. This can be an e-mail address or a URL, for example."
+msgstr ""
+"팀 정보는 파일 헤더에 저장됩니다. 이메일이나 URL 등을 추가할 수도 있습니다."
+
+#. l10n: Activating this menu item copies the whole source (or part thereof) to the target. The "copy" is not necessarily the same as the source: terminology placeables are translated when copied and language-specific punctionation changes are made automatically.
+#: ../share/virtaal/virtaal.glade.h:43
+msgid "Transfer From Source"
+msgstr "원문에서 가져오기"
+
+#: ../share/virtaal/virtaal.glade.h:44
+msgid "Use _Default Fonts"
+msgstr "기본 글꼴 사용(_D)"
+
+#: ../share/virtaal/virtaal.glade.h:46
+msgid "Virtaal Preferences"
+msgstr "Virtaal 기본 설정"
+
+#: ../share/virtaal/virtaal.glade.h:47
+msgid "_Add Missing Language..."
+msgstr "누락된 언어 추가(_A)..."
+
+#: ../share/virtaal/virtaal.glade.h:48
+msgid "_Edit"
+msgstr "편집(_E)"
+
+#: ../share/virtaal/virtaal.glade.h:49
+msgid "_File"
+msgstr "파일(_F)"
+
+#: ../share/virtaal/virtaal.glade.h:50
+msgid "_Full Screen"
+msgstr "전체 화면(_F)"
+
+#: ../share/virtaal/virtaal.glade.h:51
+msgid "_Help"
+msgstr "도움말(_H)"
+
+#: ../share/virtaal/virtaal.glade.h:52
+msgid "_Localization Guide"
+msgstr "지역화 안내(_L)"
+
+#: ../share/virtaal/virtaal.glade.h:53
+msgid "_Navigation"
+msgstr "네비게이션(_N)"
+
+#: ../share/virtaal/virtaal.glade.h:54
+msgid "_Next Placeable"
+msgstr "다음 고정 요소(_N)"
+
+#: ../share/virtaal/virtaal.glade.h:55
+msgid "_Online Help"
+msgstr "온라인 도움말(_O)"
+
+#: ../share/virtaal/virtaal.glade.h:56
+msgid "_Page Down"
+msgstr "페이지 아래로(_P)"
+
+#: ../share/virtaal/virtaal.glade.h:57
+msgid "_Recent Files"
+msgstr "최근 파일(_R)"
+
+#: ../share/virtaal/virtaal.glade.h:58
+msgid "_Tutorial"
+msgstr "강좌(_T)"
+
+#: ../share/virtaal/virtaal.glade.h:59
+msgid "_Update to Template"
+msgstr "템플릿 업데이트(_U)"
+
+#: ../share/virtaal/virtaal.glade.h:60
+msgid "_View"
+msgstr "보기(_V)"
+
+#: ../virtaal/tips.py:27
+msgid "At the end of a translation, simply press <Enter> to continue with the next one."
+msgstr "번역 후에는 <Enter> 키를 누르면 다음 번역문으로 이동합니다."
+
+#: ../virtaal/tips.py:28
+msgid "To copy the original string into the target field, simply press <Alt+Down>."
+msgstr "원문을 번역문 상자로 복사하려면 <Alt+↓> 을 누릅니다."
+
+#. l10n: Refer to the translation of "Fuzzy" to find the appropriate shortcut key to recommend
+#: ../virtaal/tips.py:31
+msgid "To mark the current translation as fuzzy, simply press <Alt+U>."
+msgstr "현재 번역을 모호한 번역으로 표시하려면 <Alt+U>를 누릅니다."
+
+#: ../virtaal/tips.py:32
+msgid "Use Ctrl+Up or Ctrl+Down to move between translations."
+msgstr "Ctrl+Up 과 Ctrl+Down 을 이용하여 페이지를 이동합니다."
+
+#: ../virtaal/tips.py:33
+msgid "Use Ctrl+PgUp or Ctrl+PgDown to move in large steps between translations."
+msgstr "Ctrl+PgUp 과 Ctrl+PgDown 을 이용하면 한번에 많은 페이지를 이동할 수 있습니다."
+
+#: ../virtaal/controllers/maincontroller.py:69
+#: ../virtaal/controllers/maincontroller.py:78
+#: ../virtaal/controllers/maincontroller.py:87
+msgid "Header information"
+msgstr "헤더 정보"
+
+#: ../virtaal/controllers/maincontroller.py:70
+msgid "Please enter your name"
+msgstr "이름을 입력하십시오."
+
+#: ../virtaal/controllers/maincontroller.py:79
+msgid "Please enter your e-mail address"
+msgstr "이메일 주소를 입력하십시오."
+
+#: ../virtaal/controllers/maincontroller.py:88
+msgid "Please enter your team's information"
+msgstr "팀 정보를 입력하십시오."
+
+#: ../virtaal/controllers/maincontroller.py:163
+#: ../virtaal/controllers/maincontroller.py:217
+msgid "You selected the currently open file for opening. Do you want to reload the file?"
+msgstr "현재 열려 있는 파일을 다시 열려고 합니다. 파일에서 내용을 다시 불러오겠습니까?"
+
+#: ../virtaal/controllers/maincontroller.py:174
+#: ../virtaal/controllers/maincontroller.py:202
+#: ../virtaal/controllers/maincontroller.py:228
+#, python-format
+msgid ""
+"Could not open file.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Try opening a different file."
+msgstr ""
+"파일을 열 수 없습니다.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"다른 파일로 다시 시도하십시오."
+
+#: ../virtaal/controllers/maincontroller.py:183
+#, python-format
+msgid ""
+"Could not save file.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Try saving to a different location."
+msgstr ""
+"파일을 저장할 수 없습니다.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"다른 위치에 저장하십시오."
+
+#: ../virtaal/controllers/maincontroller.py:188
+#, python-format
+msgid ""
+"Could not save file.\n"
+"\n"
+"%(error_message)s"
+msgstr ""
+"파일을 저장할 수 없습니다.\n"
+"\n"
+"%(error_message)s"
+
+#: ../virtaal/controllers/maincontroller.py:192
+msgid "Reload File"
+msgstr "파일 다시 불러오기"
+
+#: ../virtaal/controllers/maincontroller.py:192
+msgid "Reload file from last saved copy and lose all changes?"
+msgstr "파일을 다시 불러오면, 모든 변경 사항이 사라집니다."
+
+#: ../virtaal/controllers/placeablescontroller.py:81
+msgid "\"alt\" Attributes"
+msgstr "\"alt\" 속성"
+
+#: ../virtaal/controllers/placeablescontroller.py:82
+msgid "Placeable for \"alt\" attributes (as found in HTML)"
+msgstr "HTML의 속성인 \"alt\" 을 위한 고정 요소"
+
+#. l10n: See http://en.wikipedia.org/wiki/CamelCase
+#: ../virtaal/controllers/placeablescontroller.py:86
+msgid "CamelCase"
+msgstr "낙타표기법(Camelcase)"
+
+#: ../virtaal/controllers/placeablescontroller.py:87
+msgid "Words with internal capitalisation, such as some brand names and WikiWords"
+msgstr "상품명이나 위키주소와 같이 단어 중간에 대문자가 있는 단어"
+
+#: ../virtaal/controllers/placeablescontroller.py:90
+msgid "Capitals"
+msgstr "대문자"
+
+#. l10n: this refers to "UPPERCASE" / "CAPITAL" letters
+#: ../virtaal/controllers/placeablescontroller.py:92
+msgid "Words containing uppercase letters only"
+msgstr "대문자로만 되어 있는 단어"
+
+#: ../virtaal/controllers/placeablescontroller.py:95
+msgid "Command Line Options"
+msgstr "명령줄 옵션"
+
+#: ../virtaal/controllers/placeablescontroller.py:96
+msgid "Application command line options, such as --help, -h and -I"
+msgstr "응용 프로그램 명령줄 옵션. 예) --help, -h, -I"
+
+#: ../virtaal/controllers/placeablescontroller.py:99
+msgid "E-mail"
+msgstr "이메일"
+
+#: ../virtaal/controllers/placeablescontroller.py:100
+msgid "E-mail addresses"
+msgstr "이메일 주소"
+
+#: ../virtaal/controllers/placeablescontroller.py:103
+msgid "File Names"
+msgstr "파일명"
+
+#: ../virtaal/controllers/placeablescontroller.py:104
+msgid "Paths referring to file locations"
+msgstr "파일 위치를 가리키는 경로"
+
+#: ../virtaal/controllers/placeablescontroller.py:107
+msgid "Placeholders (printf)"
+msgstr "자리표시자 (printf)"
+
+#: ../virtaal/controllers/placeablescontroller.py:108
+msgid "Placeholders used in \"printf\" strings"
+msgstr "\"printf\" 문자열에 자리표시자 사용"
+
+#: ../virtaal/controllers/placeablescontroller.py:111
+msgid "Placeholders (Python)"
+msgstr "자리표시자 (Python)"
+
+#: ../virtaal/controllers/placeablescontroller.py:112
+msgid "Placeholders in Python strings"
+msgstr "Python 문자열의 자리표시자"
+
+#: ../virtaal/controllers/placeablescontroller.py:115
+msgid "Placeholders (Java)"
+msgstr "자리표시자 (Java)"
+
+#: ../virtaal/controllers/placeablescontroller.py:116
+msgid "Placeholders in Java strings"
+msgstr "Java 문자열의 자리표시자"
+
+#: ../virtaal/controllers/placeablescontroller.py:119
+msgid "Numbers"
+msgstr "숫자"
+
+#. l10n: 'decimal fractions' refer to numbers like 0.2 or 499,99
+#: ../virtaal/controllers/placeablescontroller.py:121
+msgid "Integer numbers and decimal fractions"
+msgstr "정수와 소수"
+
+#: ../virtaal/controllers/placeablescontroller.py:124
+msgid "Punctuation"
+msgstr "구두점"
+
+#: ../virtaal/controllers/placeablescontroller.py:125
+msgid "Symbols and less frequently used punctuation marks"
+msgstr "기호 및 사용 빈도가 적은 구두점"
+
+#: ../virtaal/controllers/placeablescontroller.py:128
+msgid "URLs"
+msgstr "URL"
+
+#: ../virtaal/controllers/placeablescontroller.py:129
+msgid "URLs, hostnames and IP addresses"
+msgstr "URLs, 호스트명과 IP 주소"
+
+#. l10n: see http://en.wikipedia.org/wiki/Character_entity_reference
+#: ../virtaal/controllers/placeablescontroller.py:133
+msgid "XML Entities"
+msgstr "XML 속성"
+
+#: ../virtaal/controllers/placeablescontroller.py:134
+msgid "Entity references, such as &amp; and &#169;"
+msgstr "&amp; 나 &#169; 와 같은 속성 참조"
+
+#: ../virtaal/controllers/placeablescontroller.py:137
+msgid "XML Tags"
+msgstr "XML 태그"
+
+#: ../virtaal/controllers/placeablescontroller.py:138
+msgid "XML tags, such as <b> and </i>"
+msgstr "<b> 나 </i> 와 같은 XML 태그"
+
+#: ../virtaal/controllers/placeablescontroller.py:148
+msgid "Spaces"
+msgstr "공백"
+
+#: ../virtaal/controllers/placeablescontroller.py:149
+msgid "Double spaces and spaces in unexpected positions"
+msgstr "연속된 공백과 불필요한 공백"
+
+#: ../virtaal/controllers/storecontroller.py:114
+msgid "The file contains nothing to translate."
+msgstr "파일에 번역할 내용이 없습니다."
+
+#: ../virtaal/modes/defaultmode.py:28
+msgid "All"
+msgstr "모두"
+
+#: ../virtaal/modes/quicktransmode.py:31
+msgid "Incomplete"
+msgstr "미완료"
+
+#: ../virtaal/modes/searchmode.py:37
+#: ../virtaal/modes/searchmode.py:64
+msgid "Search"
+msgstr "검색"
+
+#: ../virtaal/modes/searchmode.py:66
+msgid "_Case sensitive"
+msgstr "대/소문자 구분(_C)"
+
+#. l10n: To read about what regular expressions are, see
+#. http://en.wikipedia.org/wiki/Regular_expression
+#: ../virtaal/modes/searchmode.py:70
+msgid "_Regular expression"
+msgstr "정규 표현식(_R)"
+
+#. l10n: This text label shows in front of the text box where the replacement
+#. text is typed. Keep in mind that the text box will appear after this text.
+#. If this sentence construction is hard to use, consdider translating this as
+#. "Replacement"
+#: ../virtaal/modes/searchmode.py:78
+msgid "Replace with"
+msgstr "다음으로 바꾸기"
+
+#. l10n: Button text
+#: ../virtaal/modes/searchmode.py:81
+msgid "Replace"
+msgstr "바꾸기"
+
+#. l10n: Check box
+#: ../virtaal/modes/searchmode.py:84
+msgid "Replace _All"
+msgstr "모두 바꾸기(_A)"
+
+#: ../virtaal/plugins/autocompletor.py:218
+msgid "Automatically complete long words while you type"
+msgstr "긴 단어 입력시 자동 완성"
+
+#: ../virtaal/plugins/autocompletor.py:219
+msgid "AutoCompletor"
+msgstr "자동완성"
+
+#: ../virtaal/plugins/autocorrector.py:258
+msgid "Automatically correct text while you type"
+msgstr "입력시 자동교정"
+
+#: ../virtaal/plugins/autocorrector.py:259
+msgid "AutoCorrector"
+msgstr "자동교정"
+
+#: ../virtaal/plugins/migration.py:56
+msgid "Migrate settings from KBabel, Lokalize and/or Poedit to Virtaal."
+msgstr "KBabel, Lokalize, Poedit 등의 설정을 Virtaal 용으로 변환"
+
+#: ../virtaal/plugins/migration.py:57
+msgid "Migration Assistant"
+msgstr "변환 도우미"
+
+#: ../virtaal/plugins/migration.py:71
+msgid "Should Virtaal try to import settings and data from other applications?"
+msgstr "다른 프로그램에서 설정과 데이터를 가져오겠습니까?"
+
+#: ../virtaal/plugins/migration.py:72
+msgid "Import data from other applications?"
+msgstr "다른 프로그램에서 데이터 가져오기?"
+
+#: ../virtaal/plugins/migration.py:97
+msgid "Migration was successfully completed"
+msgstr "변환이 성공적으로 이루어졌습니다."
+
+#: ../virtaal/plugins/migration.py:98
+msgid "The following items were migrated:"
+msgstr "다음 항목이 변환되었습니다."
+
+#: ../virtaal/plugins/migration.py:103
+msgid "Migration completed"
+msgstr "변환 완료"
+
+#: ../virtaal/plugins/migration.py:105
+msgid "Virtaal was not able to migrate any settings or data"
+msgstr "설정값이나 데이터를 변환할 수 없습니다."
+
+#: ../virtaal/plugins/migration.py:106
+msgid "Nothing migrated"
+msgstr "변환된 것 없음"
+
+#: ../virtaal/plugins/migration.py:159
+msgid "Poedit settings"
+msgstr "Poedit 설정"
+
+#: ../virtaal/plugins/migration.py:188
+#, python-format
+msgid "Poedit's Translation Memory: %(database_language_code)s"
+msgstr "Poedit 번역 메모리: %(database_language_code)s"
+
+#: ../virtaal/plugins/migration.py:213
+#, python-format
+msgid "KBabel's Translation Memory: %(database_language_code)s"
+msgstr "KBabel 번역 메모리: %(database_language_code)s"
+
+#: ../virtaal/plugins/migration.py:231
+msgid "Lokalize settings"
+msgstr "Lokalize 설정"
+
+#: ../virtaal/plugins/migration.py:255
+#, python-format
+msgid "Lokalize's Translation Memory: %(database_name)s"
+msgstr "Lokalize 번역 메모리: %(database_name)s"
+
+#: ../virtaal/plugins/terminology/__init__.py:27
+msgid "Terminology Help"
+msgstr "용어 도움말"
+
+#: ../virtaal/plugins/terminology/__init__.py:28
+msgid "Terminology suggestions"
+msgstr "용어 제안"
+
+#: ../virtaal/plugins/terminology/models/localfile/__init__.py:41
+msgid "Local file"
+msgstr "로컬 파일"
+
+#: ../virtaal/plugins/terminology/models/localfile/__init__.py:42
+msgid "Local translation files"
+msgstr "로컬 번역 파일"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:52
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:54
+msgid "Terminology _Files..."
+msgstr "용어 파일(_F)..."
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:60
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:62
+msgid "Add _Term..."
+msgstr "용어 추가(_T)..."
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:130
+msgid "File"
+msgstr "파일"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:139
+msgid "Extendable"
+msgstr "확장 가능"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:163
+msgid "Add Files"
+msgstr "파일 추가"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:170
+#: ../virtaal/views/mainview.py:223
+msgid "All Supported Files"
+msgstr "지원하는 모든 파일"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:196
+#: ../virtaal/views/mainview.py:249
+msgid "All Files"
+msgstr "모든 파일"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:240
+#, python-format
+msgid ""
+"Unable to load %(filename)s:\n"
+"\n"
+"%(errormsg)s"
+msgstr ""
+"%(filename)s: 읽을 수 없음\n"
+"\n"
+"%(errormsg)s"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:241
+msgid "Error opening file"
+msgstr "파일 열기 오류"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:368
+#, python-format
+msgid "_Source term — %(langname)s"
+msgstr "원본 용어(_S) — %(langname)s"
+
+#: ../virtaal/plugins/terminology/models/localfile/localfileview.py:369
+#, python-format
+msgid "_Target term — %(langname)s"
+msgstr "대상 용어(_S) — %(langname)s"
+
+#: ../virtaal/plugins/terminology/models/opentran.py:46
+#: ../virtaal/plugins/tm/models/opentran.py:32
+msgid "Open-Tran.eu"
+msgstr "Open-Tran.eu"
+
+#: ../virtaal/plugins/terminology/models/opentran.py:47
+msgid "Terms from Open-Tran.eu"
+msgstr "Open-Tran.eu 의 용어"
+
+#: ../virtaal/plugins/terminology/termview.py:144
+msgid "Select Terminology Sources"
+msgstr "용어 원본에서 선택"
+
+#: ../virtaal/plugins/terminology/termview.py:145
+msgid "Select the sources of terminology suggestions"
+msgstr "용어 제안을 할 원본 선택"
+
+#: ../virtaal/plugins/tm/__init__.py:27
+msgid "Translation Memory"
+msgstr "번역 메모리"
+
+#: ../virtaal/plugins/tm/__init__.py:28
+msgid "Translation memory suggestions"
+msgstr "번역 메모리 제안"
+
+#: ../virtaal/plugins/tm/models/currentfile.py:32
+msgid "Currently open file"
+msgstr "현재 열린 파일"
+
+#: ../virtaal/plugins/tm/models/currentfile.py:33
+msgid "Translated units from the current file"
+msgstr "현재 파일에서 번역된 단위"
+
+#. l10n: Try to keep this as short as possible.
+#: ../virtaal/plugins/tm/models/currentfile.py:82
+msgid "This file"
+msgstr "이 파일"
+
+#: ../virtaal/plugins/tm/models/libtranslate.py:44
+msgid "Machine Translation with libtranslate"
+msgstr "libtranslate를 이용한 기계 번역"
+
+#: ../virtaal/plugins/tm/models/libtranslate.py:45
+msgid "Unreviewed machine translations"
+msgstr "리뷰하지 않은 기계 번역"
+
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for vertical display optimization.
+#: ../virtaal/plugins/tm/models/libtranslate.py:97
+msgid "libtranslate"
+msgstr "libtranslate"
+
+#: ../virtaal/plugins/tm/models/localtm.py:37
+msgid "Local Translation Memory"
+msgstr "로컬 번역 메모리"
+
+#: ../virtaal/plugins/tm/models/localtm.py:38
+msgid "Previous translations you have made"
+msgstr "이전 번역"
+
+#. l10n: Try to keep this as short as possible.
+#: ../virtaal/plugins/tm/models/localtm.py:40
+msgid "Local TM"
+msgstr "로컬 TM"
+
+#: ../virtaal/plugins/tm/models/opentran.py:33
+msgid "Previous translations for Free and Open Source Software"
+msgstr "자유/오픈 소스 소프트웨어의 이전 번역"
+
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for vertical display optimization.
+#: ../virtaal/plugins/tm/models/opentran.py:69
+#: ../virtaal/plugins/tm/models/opentran.py:71
+msgid "OpenTran"
+msgstr "OpenTran"
+
+#: ../virtaal/plugins/tm/models/remotetm.py:30
+msgid "Remote server"
+msgstr "원격 서버"
+
+#: ../virtaal/plugins/tm/models/remotetm.py:31
+msgid "A translation memory server"
+msgstr "번역 메모리 서버"
+
+#. l10n: Try to keep this as short as possible.
+#: ../virtaal/plugins/tm/models/remotetm.py:33
+msgid "Remote TM"
+msgstr "원격 TM"
+
+#: ../virtaal/plugins/tm/models/tinytm.py:34
+msgid "TinyTM"
+msgstr "TinyTM"
+
+#: ../virtaal/plugins/tm/models/tinytm.py:35
+msgid "A TinyTM translation memory server"
+msgstr "TinyTM 번역 메모리 서버"
+
+#. l10n: Try to keep this as short as possible. Feel free to transliterate in CJK languages for optimal vertical display.
+#: ../virtaal/plugins/tm/models/apertium.py:35
+#: ../virtaal/plugins/tm/models/apertium.py:94
+msgid "Apertium"
+msgstr "Apertium"
+
+#: ../virtaal/plugins/tm/models/apertium.py:36
+msgid "Apertium Machine Translation"
+msgstr "Apertium 기계 번역"
+
+#: ../virtaal/plugins/tm/tmview.py:99
+msgid "Translation _Suggestions"
+msgstr "번역 제안(_S)"
+
+#: ../virtaal/plugins/tm/tmview.py:156
+#, python-format
+msgid "Ctrl+%(number_key)d"
+msgstr "Ctrl+%(number_key)d"
+
+#: ../virtaal/plugins/tm/tmview.py:177
+msgid "Select sources of Translation Memory"
+msgstr "번역 메모리 선택"
+
+#: ../virtaal/plugins/tm/tmview.py:178
+msgid "Select the sources that should be queried for translation memory"
+msgstr "번역 메모리를 가져올 원본을 선택합니다."
+
+#. l10n: match quality column label
+#: ../virtaal/plugins/tm/tmwidgets.py:64
+msgid "%"
+msgstr "%"
+
+#: ../virtaal/plugins/tm/tmwidgets.py:66
+msgid "Matches"
+msgstr "일치"
+
+#: ../virtaal/plugins/tm/tmwidgets.py:67
+msgid "TM Source"
+msgstr "TM 원본"
+
+#. l10n: This message allows you to customize the appearance of the match percentage. Most languages can probably leave it unchanged.
+#: ../virtaal/plugins/tm/tmwidgets.py:124
+#, python-format
+msgid "%(match_quality)s%%"
+msgstr "%(match_quality)s%%"
+
+#: ../virtaal/views/langview.py:65
+msgid "_New Language Pair..."
+msgstr "새 언어 쌍(_L)..."
+
+#: ../virtaal/views/mainview.py:200
+msgid "Error"
+msgstr "오류"
+
+#: ../virtaal/views/mainview.py:216
+msgid "Choose a Translation File"
+msgstr "번역 파일 선택"
+
+#: ../virtaal/views/mainview.py:254
+msgid "Save"
+msgstr "저장"
+
+#: ../virtaal/views/mainview.py:268
+msgid ""
+"The current file has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"현재 파일은 수정되었습니다.\n"
+"변경 사항을 저장하겠습니까?"
+
+#: ../virtaal/views/mainview.py:271
+msgid "_Discard"
+msgstr "버리기(_D)"
+
+#. l10n: This is the title of the main window of Virtaal
+#. %(modified_marker)s is a star that is displayed if the file is modified, and should be at the start of the window title
+#. %(current_file)s is the file name of the current file
+#. most languages will not need to change this
+#: ../virtaal/views/mainview.py:301
+#, python-format
+msgid "%(modified_marker)s%(current_file)s - Virtaal"
+msgstr "%(modified_marker)s%(current_file)s - Virtaal"
+
+#: ../virtaal/views/mainview.py:326
+msgid "Please enter the number of noun forms (plurals) to use"
+msgstr "사용할 명사형의 수(복수형)를 입력하십시오."
+
+#: ../virtaal/views/mainview.py:332
+msgid "Please enter the plural equation to use"
+msgstr "사용할 복수형 계산식을 입력하십시오."
+
+#. l10n: This refers to the 'mode' that determines how Virtaal moves
+#. between units.
+#: ../virtaal/views/modeview.py:62
+msgid "N_avigation:"
+msgstr "네비게이션(_A):"
+
+#: ../virtaal/views/unitview.py:588
+msgid "F_uzzy"
+msgstr "모호한 본역(_U)"
+
+#: ../virtaal/views/widgets/aboutdialog.py:35
+msgid "Copyright © 2007-2009 Zuza Software Foundation"
+msgstr "저작권 © 2007-2009 Zuza Software Foundation"
+
+#. l10n: Please retain the literal name "Virtaal", but feel free to
+#. additionally transliterate the name and to add a translation of "For Language", which is what the name means.
+#: ../virtaal/views/widgets/aboutdialog.py:38
+msgid "Virtaal is a program for doing translation."
+msgstr "Virtaal은 번역을 위한 프로그램입니다."
+
+#: ../virtaal/views/widgets/aboutdialog.py:39
+msgid "The initial focus is on software translation (localization or l10n), but we definitely intend it to be useful as a general purpose tool for Computer Aided Translation (CAT)."
+msgstr "이 프로그램의 기본 목적은 프로그램 번역(지역화 또는 L10n)에 있지만, 최종 목적은 컴퓨터 관련 번역(CAT)에 범용으로 사용되는 프로그램이 되는 것입니다."
+
+#: ../virtaal/views/widgets/aboutdialog.py:53
+msgid "Virtaal website"
+msgstr "Virtaal 웹사이트"
+
+#: ../virtaal/views/widgets/aboutdialog.py:62
+msgid "We thank our donors:"
+msgstr "후원해주셔서 감사합니다."
+
+#: ../virtaal/views/widgets/aboutdialog.py:63
+msgid "International Development and Research Centre"
+msgstr "International Development Research Centre"
+
+#: ../virtaal/views/widgets/aboutdialog.py:65
+msgid "Mozilla Corporation"
+msgstr "Mozilla Corporation"
+
+#. l10n: Rather than translating, fill in the names of the translators
+#: ../virtaal/views/widgets/aboutdialog.py:69
+msgid "translator-credits"
+msgstr "최지희 <jihui.choi@gmail.com>"
+
+#: ../virtaal/views/widgets/langadddialog.py:103
+msgid "Language code must be an ASCII string."
+msgstr "언어 코드는 ASCII 문자열이어야합니다."
+
+#: ../virtaal/views/widgets/langadddialog.py:106
+msgid "Language code must be at least 2 characters long."
+msgstr "언어 코드는 최소 2글자 이상이어야 합니다."
+
+#: ../virtaal/views/widgets/langselectdialog.py:79
+#: ../virtaal/views/widgets/langselectdialog.py:86
+msgid "Language"
+msgstr "언어"
+
+#. l10n: This is the column heading for the language code
+#: ../virtaal/views/widgets/langselectdialog.py:94
+#: ../virtaal/views/widgets/langselectdialog.py:101
+msgid "Code"
+msgstr "코드"
+
+#: ../virtaal/views/widgets/selectview.py:67
+msgid "Enabled"
+msgstr "가능"
+
+#: ../virtaal/views/widgets/selectview.py:75
+msgid "Name"
+msgstr "이름"
+
+#: ../virtaal/views/widgets/selectview.py:113
+msgid "Configure..."
+msgstr "설정..."
+
+#: ../virtaal/models/storemodel.py:105
+#, python-format
+msgid "The file \"%s\" does not exist."
+msgstr "\"%s\" 파일이 존재하지 않습니다."
+
+#: ../virtaal/models/storemodel.py:107
+#, python-format
+msgid "\"%s\" is not a usable file."
+msgstr "\"%s\" 파일은 사용가능한 파일이 아닙니다."
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:1
+msgid "C++ RC File"
+msgstr "C++ RC 파일"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:2
+msgid "Gettext Translation Template"
+msgstr "Gettext 번역 템플릿"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:3
+msgid "INI"
+msgstr "INI"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:4
+msgid "INI File"
+msgstr "INI 파일"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:5
+msgid "Initialization"
+msgstr "초기화"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:6
+msgid "Java Properties File"
+msgstr "자바 속성 파일"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:7
+msgid "JavaScript error message file"
+msgstr "JavaScript 오류 메세지 파일"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:8
+msgid "OpenOffice.org Translation File"
+msgstr "오픈오피스 번역 파일"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:9
+msgid "Qt Linguist Translation File"
+msgstr "Qt Linguist 번역 파일"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:10
+msgid "Qt Message File"
+msgstr "Qt 메세지 파일"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:11
+msgid "Qt Phrase Book"
+msgstr "Qt 구문 모음"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:12
+msgid "RC"
+msgstr "RC"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:13
+msgid "Resource Compiler"
+msgstr "자원 컴파일러"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:14
+msgid "TBX"
+msgstr "TBX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:15
+msgid "TBX Glossary"
+msgstr "TBX 용어집"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:16
+msgid "TMX"
+msgstr "TMX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:17
+msgid "TMX Translation Memory"
+msgstr "TMX 번역 메모리"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:18
+msgid "Tcl Translation File"
+msgstr "Tcl 번역 파일"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:19
+msgid "TermBase eXchange"
+msgstr "TermBase eXchange"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:20
+msgid "Trados Tag Editor"
+msgstr "Trados 태그 편집기"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:21
+msgid "Translation Memory eXchange"
+msgstr "번역 메모리 eXchange"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:22
+msgid "Wordfast Translation Memory"
+msgstr "Wordfast 번역 메모리"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:23
+msgid "XLIFF"
+msgstr "XLIFF"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:24
+msgid "XLIFF Translation File"
+msgstr "XLIFF 번역 파일"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:25
+msgid "XML Localization Interchange File Format"
+msgstr "XML 지역화 교환 파일 형식"
+
+#: ../bin/virtaal:70
+#, c-format
+msgid "%prog [options] [translation_file]"
+msgstr "%prog [옵션] [번역 파일]"
+
+#: ../bin/virtaal:73
+msgid "PROFILE"
+msgstr "프로필"
+
+#: ../bin/virtaal:75
+msgid "perform profiling, storing the result to the supplied filename."
+msgstr "프로파일링을 수행하고 결과를 지정한 파일명으로 저장을 수행합니다."
+
+#: ../bin/virtaal:77
+msgid "LOG"
+msgstr "LOG"
+
+#: ../bin/virtaal:78
+msgid "turn on logging, storing the result to the supplied filename."
+msgstr "로그 기능을 켜고 결과를 지정한 파일명으로 저장합니다."
+
+#: ../bin/virtaal:80
+msgid "CONFIG"
+msgstr "CONFIG"
+
+#: ../bin/virtaal:81
+msgid "use the configuration file given by the supplied filename."
+msgstr "지정한 설정 파일 사용"
+
+#: ../bin/virtaal:84
+msgid "enable debugging features"
+msgstr "디버깅 기능 사용"
+
+#: ../bin/virtaal:109
+msgid "Could not open log file '%(filename)s'"
+msgstr "로그 파일을 열 수 없습니다. '%(filename)s'"
+
+#: ../bin/virtaal:117
+msgid "Could not read configuration file '%(filename)s'"
+msgstr "설정 파일을 읽을 수 없습니다. '%(filename)s'"
+
+#: ../bin/virtaal:121
+msgid "invalid number of arguments"
+msgstr "유효하지 않은 인수 개수"
+
+#: ../bin/virtaal:150
+msgid "Could not open profile file '%(filename)s'"
+msgstr "프로필 파일을 열 수 없습니다. '%(filename)s'"
+
+#: ../devsupport/optparse.py:134
+#, python-format
+msgid "no such option: %s"
+msgstr "해당 옵션이 없음: %s"
+
+#: ../devsupport/optparse.py:145
+#, python-format
+msgid "ambiguous option: %s (%s?)"
+msgstr "불분명한 옵션: %s (%s?)"
+
+#: ../devsupport/optparse.py:368
+#, python-format
+msgid "Usage: %s\n"
+msgstr "사용법: %s\n"
+
+#: ../devsupport/optparse.py:387
+msgid "Usage"
+msgstr "사용법"
+
+#: ../devsupport/optparse.py:412
+msgid "integer"
+msgstr "정수"
+
+#: ../devsupport/optparse.py:413
+msgid "long integer"
+msgstr "긴 정수"
+
+#: ../devsupport/optparse.py:414
+msgid "floating-point"
+msgstr "부동 소수점"
+
+#: ../devsupport/optparse.py:415
+msgid "complex"
+msgstr "소수"
+
+#: ../devsupport/optparse.py:423
+#, python-format
+msgid "option %s: invalid %s value: %r"
+msgstr "옵션 %s: 유효하지 않음 %s 값: %r"
+
+#: ../devsupport/optparse.py:431
+#, python-format
+msgid "option %s: invalid choice: %r (choose from %s)"
+msgstr "옵션 %s: 유효하지 않은 선택: %r (%s 에 선택)"
+
+#: ../devsupport/optparse.py:1246
+msgid "show this help message and exit"
+msgstr "이 도움말 메세지를 표시하고 종료"
+
+#: ../devsupport/optparse.py:1251
+msgid "show program's version number and exit"
+msgstr "프로그램 버전을 표시하고 종료"
+
+#: ../devsupport/optparse.py:1274
+msgid "%prog [options]"
+msgstr "%prog [옵션]"
+
+#: ../devsupport/optparse.py:1484
+#: ../devsupport/optparse.py:1523
+#, python-format
+msgid "%s option requires an argument"
+msgstr "%s 옵션에는 인수가 필요함"
+
+#: ../devsupport/optparse.py:1486
+#: ../devsupport/optparse.py:1525
+#, python-format
+msgid "%s option requires %d arguments"
+msgstr "%s 옵션에는 %d 인수가 필요함"
+
+#: ../devsupport/optparse.py:1495
+#, python-format
+msgid "%s option does not take a value"
+msgstr "%s 옵션은 값을 갖지 않습니다."
+
+#: ../devsupport/optparse.py:1612
+msgid "Options"
+msgstr "옵션"

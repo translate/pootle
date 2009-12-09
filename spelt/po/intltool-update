@@ -1,0 +1,9 @@
+#!/bin/bash
+
+packagename=$(egrep "^X-PACKAGENAME" Makevars | sed "s/X-PACKAGENAME = //g")
+package=$(egrep "^DOMAIN" Makevars | sed "s/DOMAIN = //g")
+
+XGETTEXT_ARGS='--copyright-holder="Zuza Software Foundation (Translate.org.za)"  --package-name "'$packagename'" --package-version `egrep "^ver " ../'$package'/__version__.py | sed "s/ver = //;s/\"//g"`'
+export XGETTEXT_ARGS
+
+intltool-update $*

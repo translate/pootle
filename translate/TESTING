@@ -1,0 +1,5 @@
+For testing we make use of the py.test from the py library.
+
+In any directory just excecute  py.test  optionally specifying the filename of 
+a specific test_....py file. The unit tests are packaged in the same directories
+as the code that is tested. The directory tests/ contain higher level tests.

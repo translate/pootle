@@ -1,0 +1,15 @@
+Index: trunk/virtaal/virtaal/MainWindow.py
+===================================================================
+--- trunk.orig/virtaal/virtaal/MainWindow.py
++++ trunk/virtaal/virtaal/MainWindow.py
+@@ -61,7 +61,9 @@ class VirTaal:
+     def __init__(self):
+             
+         #Set the Glade file
+-        self.gladefile = path.join(path.dirname(__file__), "data", "virtaal.glade")  
++        # Changed for RPM packaging
++        #self.gladefile = path.join(path.dirname(__file__), "data", "virtaal.glade")  
++        self.gladefile = "/usr/share/virtaal/virtaal.glade"
+         self.gui = gtk.glade.XML(self.gladefile) 
+         
+         #Create our dictionay and connect it

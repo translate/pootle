@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load i18n baseurl %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block title %}
+{{ block.super }}: {% trans "Projects" %}
+{% endblock %}
+
+{% block body.id %}projectsindex{% endblock body.id %}
+
+{% block content %}
+<div class="module first" lang="{{ LANGUAGE_CODE }}">
+    <div class="hd">
+        <h2>{{ projectlink }}</h2>
+    </div>
+    <div class="bd">
+        <table class="sortable">
+            <tr>
+                <th>{% trans 'Project' %}</th>
+                <th>{% trans 'Overall Completion' %}</th>
+                <th>{% trans 'Last Activity' %}</th>
+            </tr>
+            {% for item in projects %}
+            <tr class="{% cycle 'even' 'odd' %}">
+                <td class="project"><a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}" title="{{ item.description }}">{{ item.name }}</a></td>
+                <td>
+                    <div class="sortkey">{{ item.transper }}</div>
+                    <div class="graph" title="{{ item.completed_title }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+                        <div class="translated" style="width: {{ item.transper }}px"></div>
+                        {% if item.fuzzy %}
+                        <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper }}px; width: {{ item.fuzzyper }}px"></div>
+                        {% endif %}
+                        {% if item.untrans %}
+                        <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper|add:item.fuzzyper }}px; width: {{ item.untransper }}px"></div>
+                        {% endif %}
+                    </div>
+                </td>
+                <td>{{ item.lastactivity }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+{% block postcontent %}
+<div class="module first clear" lang="{{ LANGUAGE_CODE }}">
+    <div class="bd">
+    {% include "translation_summary_legend.html" %}
+    </div>
+</div>
+{% include "top_contributers_table.html" %}
+{% endblock postcontent %}
+
+{% block scripts_extra %}
+<script type="text/javascript" src='{{ "js/sorttable.js"|m }}'></script>
+{% endblock %}

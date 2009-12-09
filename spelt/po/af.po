@@ -1,0 +1,374 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Spelt 0.1\n"
+"Report-Msgid-Bugs-To: translate-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2008-08-19 13:20+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../share/spelt/spelt.desktop.in.h:1
+msgid "A tool to classify words for spell checker development."
+msgstr ""
+
+#: ../share/spelt/spelt.desktop.in.h:2 ../share/spelt/spelt.glade.h:28
+msgid "Spelt"
+msgstr "Spelt"
+
+#: ../share/spelt/spelt.desktop.in.h:3
+msgid "Word classifier"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:1
+msgid ""
+"\n"
+"Loading...\n"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:4
+msgid "<b>Current Word</b>"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:5
+msgid "<b>Load a language database</b>"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:6
+msgid "<b>Source information:</b>"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:7
+msgid "<b>Spelt configuration:</b>"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:8
+msgid "<b>User information</b>"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:9
+msgid "Add root"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:10
+msgid "Additional notes about the source"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:11
+msgid "Confirmation"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:12
+msgid "Description:"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:13
+msgid ""
+"Descriptive name of the source (eg. \"Wikipedia Science Article words\")"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:14
+msgid "File:"
+msgstr "Lêer:"
+
+#: ../share/spelt/spelt.glade.h:15
+msgid "Import words from another file/database"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:16
+msgid "Language database:"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:17
+msgid "Language of database:"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:18
+msgid "Load Language Database"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:19
+msgid "Modify root"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:20
+msgid "Name:"
+msgstr "Naam:"
+
+#: ../share/spelt/spelt.glade.h:21
+msgid "New Source..."
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:22
+msgid "Part of speech:"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:23
+msgid ""
+"Please enter your name below and specify your user ID if it\n"
+"was not found automatically."
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:25
+msgid "Please fill in the fields below to describe the new source."
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:26
+msgid "Please select the language database to load in the form below"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:27
+msgid "Root:"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:29
+msgid "Spelt - Initial Configuration"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:30
+msgid "The file that holds the source's content."
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:31
+msgid "User Info"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:32
+msgid "User name:"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:33
+msgid "Word:"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:34
+msgid "[Some status message here]"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:35
+msgid "_Database"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:36
+msgid "_E-mail database..."
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:37
+msgid "_File"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:38
+msgid "_Help"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:39
+msgid "_Ignore"
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:40
+msgid "_Import words..."
+msgstr ""
+
+#: ../share/spelt/spelt.glade.h:41
+msgid "_Reject"
+msgstr ""
+
+#: ../share/spelt/spelt-mimetype.xml.in.h:1
+msgid "Spelt XML Language Database"
+msgstr ""
+
+#: ../share/spelt/spelt-mimetype.xml.in.h:2
+msgid "XLDB"
+msgstr ""
+
+#: ../spelt/common/config.py:66
+msgid "Could not get locale"
+msgstr ""
+
+#: ../spelt/gui/dlg_dbload.py:185
+msgid ""
+"Error opening language database:\n"
+"\n"
+msgstr ""
+
+#: ../spelt/gui/edit_area.py:68
+msgid "No part-of-speech specified."
+msgstr ""
+
+#. If we get here, we have a new part of speech
+#: ../spelt/gui/edit_area.py:96
+msgid "Part of speech not found."
+msgstr ""
+
+#: ../spelt/gui/edit_area.py:111
+msgid "A root must be specified."
+msgstr ""
+
+#: ../spelt/gui/edit_area.py:180
+#, python-format
+msgid "No root object found with ID %d"
+msgstr ""
+
+#: ../spelt/gui/gui.py:81 ../spelt/gui/gui.py:178
+msgid "Select language database to open"
+msgstr ""
+
+#: ../spelt/gui/gui.py:87
+msgid "Save as..."
+msgstr "Stoor as..."
+
+#: ../spelt/gui/gui.py:93
+msgid "All files"
+msgstr ""
+
+#: ../spelt/gui/gui.py:97
+msgid "Language Database"
+msgstr ""
+
+#: ../spelt/gui/gui.py:148
+msgid "© Copyright 2007-2008 Zuza Software Foundation"
+msgstr ""
+
+#: ../spelt/gui/gui.py:150
+msgid ""
+"A tool to categorize words from a language database according to its root."
+msgstr ""
+
+#: ../spelt/gui/gui.py:154
+msgid "Spelt website"
+msgstr ""
+
+#: ../spelt/gui/gui.py:156
+msgid "translator-credits"
+msgstr ""
+
+#: ../spelt/gui/gui.py:176
+msgid "All work done!"
+msgstr ""
+
+#: ../spelt/gui/gui.py:191
+msgid "Save..."
+msgstr ""
+
+#: ../spelt/gui/gui.py:262
+msgid "Error!"
+msgstr ""
+
+#: ../spelt/gui/gui.py:268
+msgid "Information"
+msgstr ""
+
+#: ../spelt/gui/gui.py:274
+msgid "Prompt"
+msgstr ""
+
+#: ../spelt/gui/gui.py:284
+msgid ""
+"There are unsaved changes.\n"
+"\n"
+"Save before exiting?"
+msgstr ""
+
+#: ../spelt/gui/gui.py:285
+msgid "Save changes?"
+msgstr ""
+
+#: ../spelt/gui/menu.py:65
+msgid "Please fill in a name for the source"
+msgstr ""
+
+#: ../spelt/gui/menu.py:108
+msgid "Save language database changes?"
+msgstr ""
+
+#: ../spelt/gui/menu.py:109
+msgid ""
+"The language database you are\n"
+"currently working with has changed.\n"
+"\n"
+"Save changes?"
+msgstr ""
+
+#: ../spelt/gui/menu.py:118
+#, python-format
+msgid "File does not exist: \"%s\""
+msgstr ""
+
+#: ../spelt/gui/menu.py:132
+msgid "Error saving database!"
+msgstr ""
+
+#: ../spelt/gui/menu.py:133
+#, python-format
+msgid "Error saving database: \"%s\""
+msgstr ""
+
+#: ../spelt/gui/menu.py:146
+#, python-format
+msgid ""
+"File \"%s\" already exists.\n"
+"\n"
+"Overwrite?"
+msgstr ""
+
+#: ../spelt/gui/menu.py:152
+#, python-format
+msgid "Error saving database to file %s"
+msgstr ""
+
+#: ../spelt/gui/menu.py:153
+#, python-format
+msgid "Error saving database to %s: %s"
+msgstr ""
+
+#: ../spelt/gui/menu.py:165
+msgid "Unable to save database before e-mailing!"
+msgstr ""
+
+#: ../spelt/gui/menu.py:166
+#, python-format
+msgid "Unable to save database before e-mailing: \"%s\""
+msgstr ""
+
+#: ../spelt/gui/menu.py:169
+msgid "Language database: "
+msgstr ""
+
+#: ../spelt/gui/menu.py:176
+msgid "Open word list..."
+msgstr ""
+
+#: ../spelt/gui/wordlist.py:105
+msgid "Surface Form"
+msgstr ""
+
+#: ../spelt/models/langdb.py:269
+#, python-format
+msgid "Invalid root tag: %s"
+msgstr ""
+
+#: ../spelt/models/langdb.py:272
+msgid "No language code specified in database!"
+msgstr ""
+
+#: ../spelt/models/langdb.py:282
+#, python-format
+msgid "No top-level \"%s\" XML element."
+msgstr ""
+
+#: ../spelt/models/model_factory.py:52
+#, python-format
+msgid "Invalid XML element with tag \"%s\""
+msgstr ""
+
+#: ../spelt/spelt.py:77
+msgid "Could not find Glade file: "
+msgstr ""

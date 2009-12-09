@@ -1,0 +1,18 @@
+{% load i18n baseurl %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block itemstats %}
+<!-- itemstats -->
+<div class="item-statistics small" lang="{{ LANGUAGE_CODE }}">
+    <p>{{ item.stats.summary|safe }}</p>
+    {% if item.stats.checks %}
+    <dl>
+        {% for check in item.stats.checks %}
+        <dt><a href="{{ check.href|l }}">{{ check.text }}</a></dt><dd>{{ check.stats }}</dd>
+        {% endfor %}
+    </dl>
+    {% endif %}
+</div>
+<!-- /itemstats -->
+{% endblock itemstats %}

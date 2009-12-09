@@ -1,0 +1,13 @@
+[encoding: UTF-8]
+share/spelt/spelt.desktop.in
+share/spelt/spelt.glade
+share/spelt/spelt-mimetype.xml.in
+spelt/common/config.py
+spelt/gui/dlg_dbload.py
+spelt/gui/edit_area.py
+spelt/gui/gui.py
+spelt/gui/menu.py
+spelt/gui/wordlist.py
+spelt/models/langdb.py
+spelt/models/model_factory.py
+spelt/spelt.py

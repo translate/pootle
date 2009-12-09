@@ -1,0 +1,38 @@
+{% extends "tp_base_extended.html" %}
+
+{% load i18n %}
+
+{% block title %}
+{{ block.super }} » {% trans "Review" %}
+{% endblock %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block bodyclass %}tpreview{% endblock bodyclass %}
+
+{% block breadcrumbs_content %}
+{% include "language/item_title.html" %}
+{% endblock %}
+
+{% block content %}
+{% if children %}
+<!-- The review view -->
+{% for item in children %}
+<div class="module-primary" lang="{{ LANGUAGE_CODE }}">
+    <div class="bd">
+        {% if item.isdir or item.isfile %}
+        <div class="item {% cycle 'even' 'odd' %}">
+        {% include "language/item_block.html" %}
+        {% include "language/item_stats.html" %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock content %}
+
+{% block postcontent %}
+{% include "top_contributers_table.html" %}
+{% endblock postcontent %}

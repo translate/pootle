@@ -1,0 +1,72 @@
+Index: setup.py
+===================================================================
+--- setup.py	(revision 6974)
++++ setup.py	(working copy)
+@@ -43,6 +43,7 @@
+                   ('convert', 'txt2po'), ('convert', 'po2txt'),
+                   ('convert', 'ts2po'),  ('convert', 'po2ts'),
+                   ('convert', 'html2po'), ('convert', 'po2html'),
++                  ('convert', 'ini2po'), ('convert', 'po2ini'),
+                   ('convert', 'php2po'), ('convert', 'po2php'),
+                   ('convert', 'xliff2po'), ('convert', 'po2xliff'),
+                   ('convert', 'odf2po'),
+--- /dev/null	2008-02-14 08:44:04.514011082 +0200
++++ translate/convert/ini2po	2007-12-06 07:54:25.000000000 +0200
+@@ -0,0 +1,27 @@
++#!/usr/bin/env python
++# 
++# Copyright 2002, 2003 Zuza Software Foundation
++# 
++# This file is part of translate.
++#
++# translate is free software; you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation; either version 2 of the License, or
++# (at your option) any later version.
++# 
++# translate is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License
++# along with translate; if not, write to the Free Software
++# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
++
++"""simple script to convert a .ini file to a gettext .po localization file"""
++
++from translate.convert import ini2po
++
++if __name__ == '__main__':
++  ini2po.main()
++
+--- /dev/null	2008-02-14 08:44:04.514011082 +0200
++++ translate/convert/po2ini	2007-12-06 07:54:25.000000000 +0200
+@@ -0,0 +1,27 @@
++#!/usr/bin/env python
++# 
++# Copyright 2007 Zuza Software Foundation
++# 
++# This file is part of translate.
++#
++# translate is free software; you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation; either version 2 of the License, or
++# (at your option) any later version.
++# 
++# translate is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License
++# along with translate; if not, write to the Free Software
++# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
++
++"""simple script to convert a gettext .po localization file to a .ini file"""
++
++from translate.convert import po2ini
++
++if __name__ == '__main__':
++  po2ini.main()
++

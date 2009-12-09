@@ -1,0 +1,754 @@
+# Swahili (sw) localisation of Virtaal.
+# Copyright (C) 2009 Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the Virtaal package.
+# Emanuel Feruzi <emanuel.feruzi@trilabs.co.tz>, 2009
+msgid ""
+msgstr ""
+"Project-Id-Version: Virtaal 0.3beta1\n"
+"Report-Msgid-Bugs-To: translate-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2009-01-30 15:39+0200\n"
+"PO-Revision-Date: 2009-06-18 12:44+0200\n"
+"Last-Translator: Emanuel Feruzi <emanuel.feruzi@trilabs.co.tz>\n"
+"Language-Team: tzLUG Translators\n"
+"Language: sw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Virtaal 0.3.1\n"
+
+#: ../share/applications/virtaal.desktop.in.h:1
+msgid ""
+"A translation tool to help a human translator translate files into other "
+"languages"
+msgstr ""
+"Kifaa cha kutafsiria cha kuwasaidia watafsiri wa kibiinadamu kutafsiri "
+"mafaili kwenda kwenye lugha nyingine"
+
+#: ../share/applications/virtaal.desktop.in.h:2
+msgid "Translation Tool"
+msgstr "Kifaa cha Kutafsiri"
+
+#: ../share/applications/virtaal.desktop.in.h:3
+#: ../share/virtaal/virtaal.glade.h:23
+msgid "Virtaal"
+msgstr "Virtaal"
+
+#: ../share/virtaal/virtaal.glade.h:1
+msgid "<b>Language information</b>"
+msgstr "<b>Habari za Lugha</b>"
+
+#: ../share/virtaal/virtaal.glade.h:2
+msgid "<b>Original</b>"
+msgstr "<b>Asilia</b>"
+
+#: ../share/virtaal/virtaal.glade.h:3
+msgid "<b>Translation</b>"
+msgstr "<b>Tafsiri</b>"
+
+#: ../share/virtaal/virtaal.glade.h:4
+msgid ""
+"Depending on the translation task, the plural information might be optional."
+msgstr "Kutegemeana na tafsiri, habari za wingi sinaweza kuwa si lazima."
+
+#: ../share/virtaal/virtaal.glade.h:5
+msgid "General"
+msgstr "Kawaida"
+
+#: ../share/virtaal/virtaal.glade.h:6
+msgid "ISO code:"
+msgstr "Kodi ta ISO:"
+
+#: ../share/virtaal/virtaal.glade.h:7
+msgid "Language name:"
+msgstr "Jina la lugha:"
+
+#: ../share/virtaal/virtaal.glade.h:8
+msgid "Languages"
+msgstr "Lugha"
+
+#: ../share/virtaal/virtaal.glade.h:9
+msgid "Missing Language"
+msgstr "Lugha Inakosekana"
+
+#: ../share/virtaal/virtaal.glade.h:10
+msgid "New Language Pair"
+msgstr "Jozi ya Lugha Mpya"
+
+#: ../share/virtaal/virtaal.glade.h:11
+msgid "Number of plurals:"
+msgstr "Numba za wingi:"
+
+#: ../share/virtaal/virtaal.glade.h:12
+msgid "P_age Up"
+msgstr "U_kurasa Juu"
+
+#: ../share/virtaal/virtaal.glade.h:13
+msgid "Personal Information"
+msgstr "Taarifa Binafsi"
+
+#: ../share/virtaal/virtaal.glade.h:14
+msgid "Plug-ins"
+msgstr ""
+
+#: ../share/virtaal/virtaal.glade.h:15
+msgid "Plural expression:"
+msgstr ""
+
+#: ../share/virtaal/virtaal.glade.h:16
+msgid "Report a _Bug"
+msgstr ""
+
+#: ../share/virtaal/virtaal.glade.h:17
+msgid ""
+"The <b>Original</b> is the language from which you are translating, also "
+"called the source language.\n"
+"\n"
+"If you are translating from English to French then English would be your "
+"original or source language."
+msgstr ""
+
+#: ../share/virtaal/virtaal.glade.h:20
+msgid ""
+"The <b>Translation</b> is the language into which you are translating, also "
+"called the target language.\n"
+"\n"
+"If you are translating from English to French then French would be your "
+"translation or target language."
+msgstr ""
+
+#: ../share/virtaal/virtaal.glade.h:24
+msgid "Virtaal Preferences"
+msgstr "Mapendekezo ya Virtaal"
+
+#: ../share/virtaal/virtaal.glade.h:25
+msgid "_Edit"
+msgstr "_Hariri"
+
+#: ../share/virtaal/virtaal.glade.h:26
+msgid "_File"
+msgstr "_Faili"
+
+#: ../share/virtaal/virtaal.glade.h:27
+msgid "_Full Screen"
+msgstr "_Scrini Nzima"
+
+#: ../share/virtaal/virtaal.glade.h:28
+msgid "_Help"
+msgstr "_Msaada"
+
+#: ../share/virtaal/virtaal.glade.h:29
+msgid "_Localization Guide"
+msgstr "_Muoongozo wa Kuswahilisha"
+
+#: ../share/virtaal/virtaal.glade.h:31
+msgid "_Missing Language..."
+msgstr "_Lugha Inakosekana..."
+
+#: ../share/virtaal/virtaal.glade.h:32
+msgid "_Navigation"
+msgstr "_Urambaza"
+
+#: ../share/virtaal/virtaal.glade.h:33
+msgid "_Online Help"
+msgstr "_Msaada wa Mkondoni"
+
+#: ../share/virtaal/virtaal.glade.h:34
+msgid "_Page Down"
+msgstr "_Ukurasa Chini"
+
+#: ../share/virtaal/virtaal.glade.h:35
+msgid "_Recent Files"
+msgstr ""
+
+#: ../share/virtaal/virtaal.glade.h:36
+msgid "_Tutorial"
+msgstr ""
+
+#: ../share/virtaal/virtaal.glade.h:37
+msgid "_Update to template"
+msgstr "_Sasisha kwenye templeti"
+
+#: ../share/virtaal/virtaal.glade.h:38
+msgid "_View"
+msgstr "_Angalia"
+
+#: ../virtaal/tips.py:27
+msgid ""
+"At the end of a translation, simply press <Enter> to continue with the next "
+"one."
+msgstr ""
+
+#: ../virtaal/tips.py:28
+msgid ""
+"To copy the original string into the target field, simply press <Alt+Down>."
+msgstr ""
+
+#. l10n: Refer to the translation of "Fuzzy" to find the appropriate shortcut key to recommend
+#: ../virtaal/tips.py:31
+msgid "To mark the current translation as fuzzy, simply press <Alt+U>."
+msgstr ""
+
+#: ../virtaal/tips.py:32
+msgid "Use Ctrl+Up or Ctrl+Down to move between translations."
+msgstr ""
+
+#: ../virtaal/tips.py:33
+msgid ""
+"Use Ctrl+PgUp or Ctrl+PgDown to move in large steps between translations."
+msgstr ""
+
+#: ../virtaal/controllers/maincontroller.py:62
+#: ../virtaal/controllers/maincontroller.py:71
+#: ../virtaal/controllers/maincontroller.py:80
+msgid "Header information"
+msgstr ""
+
+#: ../virtaal/controllers/maincontroller.py:63
+msgid "Please enter your name"
+msgstr "Tafadhali ingiza jina lako"
+
+#: ../virtaal/controllers/maincontroller.py:72
+msgid "Please enter your e-mail address"
+msgstr "Tafadhali ingiza barua-e yako"
+
+#: ../virtaal/controllers/maincontroller.py:81
+msgid "Please enter your team's information"
+msgstr "Tafadhali ingiza taarifa za timu yako"
+
+#: ../virtaal/controllers/maincontroller.py:149
+#: ../virtaal/controllers/maincontroller.py:194
+msgid ""
+"You selected the currently open file for opening. Do you want to reload the "
+"file?"
+msgstr ""
+
+#: ../virtaal/controllers/maincontroller.py:160
+#: ../virtaal/controllers/maincontroller.py:205
+#, python-format
+msgid ""
+"Could not open file.\n"
+"%(error_message)s\n"
+"\n"
+"Try opening a different file."
+msgstr ""
+
+#: ../virtaal/controllers/maincontroller.py:169
+#, python-format
+msgid ""
+"Could not save file.\n"
+"\n"
+"%(error_message)s\n"
+"\n"
+"Try saving at a different location."
+msgstr ""
+
+#: ../virtaal/controllers/maincontroller.py:174
+#, python-format
+msgid ""
+"Could not save file.\n"
+"\n"
+"%(error_message)s"
+msgstr ""
+
+#: ../virtaal/controllers/maincontroller.py:178
+msgid "Reload File"
+msgstr "Pakia upya faili"
+
+#: ../virtaal/controllers/maincontroller.py:178
+msgid "Reload file from last saved copy and lose all changes?"
+msgstr ""
+
+#: ../virtaal/controllers/storecontroller.py:110
+msgid "The file contains nothing to translate."
+msgstr ""
+
+#: ../virtaal/modes/defaultmode.py:28
+msgid "All"
+msgstr "Zote"
+
+#: ../virtaal/modes/quicktransmode.py:31
+msgid "Incomplete"
+msgstr ""
+
+#: ../virtaal/modes/searchmode.py:37 ../virtaal/modes/searchmode.py:64
+msgid "Search"
+msgstr "Tafuta"
+
+#: ../virtaal/modes/searchmode.py:66
+msgid "_Case sensitive"
+msgstr ""
+
+#: ../virtaal/modes/searchmode.py:68
+msgid "_Regular expression"
+msgstr ""
+
+#: ../virtaal/modes/searchmode.py:72
+msgid "Replace with"
+msgstr ""
+
+#: ../virtaal/modes/searchmode.py:74
+msgid "Replace"
+msgstr ""
+
+#: ../virtaal/modes/searchmode.py:76
+msgid "Replace _All"
+msgstr ""
+
+#: ../virtaal/views/prefsview.py:65
+msgid "Enabled"
+msgstr ""
+
+#: ../virtaal/views/prefsview.py:66
+msgid "Name"
+msgstr "Jina"
+
+#: ../virtaal/plugins/autocompletor.py:321
+msgid "AutoCompletor"
+msgstr ""
+
+#: ../virtaal/plugins/autocorrector.py:246
+msgid "AutoCorrector"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:56
+msgid "Migration assistant"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:70
+msgid "Should Virtaal try to import settings and data from other applications?"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:71
+msgid "Import data from other applications?"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:96
+msgid "Migration was successfully completed"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:97
+msgid "The following items were migrated:"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:102
+msgid "Migration completed"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:104
+msgid "Virtaal was not able to migrate any settings or data"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:105
+msgid "Nothing migrated"
+msgstr "Hakuna kilicho hamishwa"
+
+#: ../virtaal/plugins/migration.py:158
+msgid "Poedit settings"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:187
+#, python-format
+msgid "Poedit's Translation Memory: %(database_language_code)s"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:212
+#, python-format
+msgid "KBabel's Translation Memory: %(database_language_code)s"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:230
+msgid "Lokalize settings"
+msgstr ""
+
+#: ../virtaal/plugins/migration.py:254
+#, python-format
+msgid "Lokalize's Translation Memory: %(database_name)s"
+msgstr ""
+
+#: ../virtaal/plugins/tm/__init__.py:27
+msgid "Translation Memory"
+msgstr "Kumbukumbu ya Tafsiri"
+
+#: ../virtaal/plugins/tm/models/currentfile.py:32
+msgid "Currently open file"
+msgstr ""
+
+#: ../virtaal/plugins/tm/models/libtranslate.py:41
+msgid "Machine Translation with libtranslate"
+msgstr ""
+
+#: ../virtaal/plugins/tm/models/localtm.py:37
+msgid "Local Translation Memory"
+msgstr ""
+
+#: ../virtaal/plugins/tm/models/opentran.py:32
+msgid "Open-Tran.eu"
+msgstr ""
+
+#: ../virtaal/plugins/tm/models/remotetm.py:30
+msgid "Remote server"
+msgstr ""
+
+#: ../virtaal/plugins/tm/models/tinytm.py:34
+msgid "TinyTM"
+msgstr "TinyTM"
+
+#: ../virtaal/plugins/tm/tmview.py:94
+msgid "Available _Suggestions"
+msgstr ""
+
+#: ../virtaal/plugins/tm/tmview.py:150
+#, python-format
+msgid "Ctrl+%(number_key)d"
+msgstr ""
+
+#. l10n: match quality column label
+#: ../virtaal/plugins/tm/tmwidgets.py:63
+msgid "%"
+msgstr "%"
+
+#: ../virtaal/plugins/tm/tmwidgets.py:65
+msgid "Matches"
+msgstr ""
+
+#: ../virtaal/plugins/tm/tmwidgets.py:120
+#, python-format
+msgid "%(match_quality)s%%"
+msgstr ""
+
+#: ../virtaal/views/langview.py:66
+msgid "_New Language Pair..."
+msgstr ""
+
+#: ../virtaal/views/mainview.py:198
+msgid "Error"
+msgstr "Hitilafu"
+
+#: ../virtaal/views/mainview.py:214
+msgid "Choose a translation file"
+msgstr "Chagua faili la tasfiri"
+
+#: ../virtaal/views/mainview.py:221
+msgid "All Supported Files"
+msgstr ""
+
+#: ../virtaal/views/mainview.py:247
+msgid "All Files"
+msgstr "Mafaili yote"
+
+#: ../virtaal/views/mainview.py:252
+msgid "Save"
+msgstr "Hifadhi"
+
+#: ../virtaal/views/mainview.py:266
+msgid ""
+"The current file has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+
+#: ../virtaal/views/mainview.py:269
+msgid "_Discard"
+msgstr ""
+
+#: ../virtaal/views/mainview.py:295
+#, python-format
+msgid "Virtaal - %(current_file)s %(modified_marker)s"
+msgstr ""
+
+#: ../virtaal/views/mainview.py:320
+msgid "Please enter the number of noun forms (plurals) to use"
+msgstr ""
+
+#: ../virtaal/views/mainview.py:326
+msgid "Please enter the plural equation to use"
+msgstr ""
+
+#. l10n: This refers to the 'mode' that determines how Virtaal moves
+#. between units.
+#: ../virtaal/views/modeview.py:62
+msgid "_Navigation: "
+msgstr "_Urambaza: "
+
+#: ../virtaal/views/unitview.py:498
+msgid "F_uzzy"
+msgstr ""
+
+#: ../virtaal/views/widgets/aboutdialog.py:35
+msgid "Copyright © 2007-2009 Zuza Software Foundation"
+msgstr "Hakimiliki © 2007-2009 Zuza Software Foundation"
+
+#. l10n: Please retain the literal name "Virtaal", but feel free to
+#. additionally transliterate the name and to add a translation of "For Language", which is what the name means.
+#: ../virtaal/views/widgets/aboutdialog.py:38
+msgid "Virtaal is a program for doing translation."
+msgstr "Virtaal ni programu kwa ajili ya kutafsiri."
+
+#: ../virtaal/views/widgets/aboutdialog.py:39
+msgid ""
+"The initial focus is on software translation (localization or l10n), but we "
+"definitely intend it to be useful as a general purpose tool for Computer "
+"Aided Translation (CAT)."
+msgstr ""
+
+#: ../virtaal/views/widgets/aboutdialog.py:53
+msgid "Virtaal website"
+msgstr "Tovuti ya Virtaal"
+
+#. l10n: Rather than translating, fill in the names of the translators
+#: ../virtaal/views/widgets/aboutdialog.py:62
+msgid "translator-credits"
+msgstr "Emanuel Feruzi"
+
+#: ../virtaal/views/widgets/langadddialog.py:102
+msgid "Language code must be an ASCII string."
+msgstr "Kodi ya lugha lazima iwe utungo wa ASCII."
+
+#: ../virtaal/views/widgets/langadddialog.py:105
+msgid "Language code must be at least 2 characters long."
+msgstr ""
+
+#: ../virtaal/views/widgets/langselectdialog.py:73
+#: ../virtaal/views/widgets/langselectdialog.py:79
+msgid "Language"
+msgstr "Lugha"
+
+#. l10n: This is the column heading for the language code
+#: ../virtaal/views/widgets/langselectdialog.py:86
+#: ../virtaal/views/widgets/langselectdialog.py:92
+msgid "Code"
+msgstr "Kodi"
+
+#: ../virtaal/models/storemodel.py:121
+#, python-format
+msgid "The file \"%s\" does not exist."
+msgstr ""
+
+#: ../virtaal/models/storemodel.py:123
+#, python-format
+msgid "\"%s\" is not a usable file."
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:1
+msgid "C++ RC File"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:2
+msgid "Gettext Translation Template"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:3
+msgid "INI"
+msgstr "INI"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:4
+msgid "INI File"
+msgstr "Faili la INI"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:5
+msgid "Initialization"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:6
+msgid "Java Properties File"
+msgstr "Sifa za faili la Java"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:7
+msgid "JavaScript error message file"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:8
+msgid "OpenOffice.org Translation File"
+msgstr "Faili la Tafsiri la OpenOffice.org"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:9
+msgid "Qt Linguist Translation File"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:10
+msgid "Qt Message File"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:11
+msgid "Qt Phrase Book"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:12
+msgid "RC"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:13
+msgid "Resource Compiler"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:14
+msgid "TBX"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:15
+msgid "TBX Glossary"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:16
+msgid "TMX"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:17
+msgid "TMX Translation Memory"
+msgstr "Kumbukumbu ya Tafsiri ya TMX"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:18
+msgid "Tcl Translation File"
+msgstr "Faili la Tafsiri la Tcl"
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:19
+msgid "TermBase eXchange"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:20
+msgid "Trados Tag Editor"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:21
+msgid "Translation Memory eXchange"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:22
+msgid "Wordfast Translation Memory"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:23
+msgid "XLIFF"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:24
+msgid "XLIFF Translation File"
+msgstr ""
+
+#: ../share/mime/packages/virtaal-mimetype.xml.in.h:25
+msgid "XML Localization Interchange File Format"
+msgstr ""
+
+#: ../bin/virtaal:36
+#, c-format
+msgid "%prog [options] [translation_file]"
+msgstr ""
+
+#: ../bin/virtaal:39
+msgid "PROFILE"
+msgstr ""
+
+#: ../bin/virtaal:41
+msgid "perform profiling, storing the result to the supplied filename."
+msgstr ""
+
+#: ../bin/virtaal:43
+msgid "LOG"
+msgstr ""
+
+#: ../bin/virtaal:44
+msgid "turn on logging, storing the result to the supplied filename."
+msgstr ""
+
+#: ../bin/virtaal:46
+msgid "CONFIG"
+msgstr ""
+
+#: ../bin/virtaal:47
+msgid "use the configuration file given by the supplied filename."
+msgstr ""
+
+#: ../bin/virtaal:50
+msgid "enable debugging features"
+msgstr ""
+
+#: ../bin/virtaal:71
+msgid "Could not open log file '%(filename)s'"
+msgstr ""
+
+#: ../bin/virtaal:79
+msgid "Could not read configuration file '%(filename)s'"
+msgstr ""
+
+#: ../bin/virtaal:83
+msgid "invalid number of arguments"
+msgstr ""
+
+#: ../bin/virtaal:112
+msgid "Could not open profile file '%(filename)s'"
+msgstr ""
+
+#: ../devsupport/optparse.py:134
+#, python-format
+msgid "no such option: %s"
+msgstr ""
+
+#: ../devsupport/optparse.py:145
+#, python-format
+msgid "ambiguous option: %s (%s?)"
+msgstr ""
+
+#: ../devsupport/optparse.py:368
+#, python-format
+msgid "Usage: %s\n"
+msgstr "Matumizi: %s\n"
+
+#: ../devsupport/optparse.py:387
+msgid "Usage"
+msgstr "Matumizi"
+
+#: ../devsupport/optparse.py:412
+msgid "integer"
+msgstr "namba"
+
+#: ../devsupport/optparse.py:413
+msgid "long integer"
+msgstr "namba ndefu"
+
+#: ../devsupport/optparse.py:414
+msgid "floating-point"
+msgstr ""
+
+#: ../devsupport/optparse.py:415
+msgid "complex"
+msgstr "thakili"
+
+#: ../devsupport/optparse.py:423
+#, python-format
+msgid "option %s: invalid %s value: %r"
+msgstr ""
+
+#: ../devsupport/optparse.py:431
+#, python-format
+msgid "option %s: invalid choice: %r (choose from %s)"
+msgstr ""
+
+#: ../devsupport/optparse.py:1246
+msgid "show this help message and exit"
+msgstr "onyesha ujumbe huu wa msaada na toka"
+
+#: ../devsupport/optparse.py:1251
+msgid "show program's version number and exit"
+msgstr ""
+
+#: ../devsupport/optparse.py:1274
+msgid "%prog [options]"
+msgstr ""
+
+#: ../devsupport/optparse.py:1484 ../devsupport/optparse.py:1523
+#, python-format
+msgid "%s option requires an argument"
+msgstr ""
+
+#: ../devsupport/optparse.py:1486 ../devsupport/optparse.py:1525
+#, python-format
+msgid "%s option requires %d arguments"
+msgstr ""
+
+#: ../devsupport/optparse.py:1495
+#, python-format
+msgid "%s option does not take a value"
+msgstr ""
+
+#: ../devsupport/optparse.py:1612
+msgid "Options"
+msgstr ""

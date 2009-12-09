@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<language_database lang="af">
+  <sources>
+    <source xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="1" date="123456" import_user_id="4">
+      <name>First source</name>
+      <filename>src1.txt</filename>
+      <description>This is a nice long description
+                of a source.</description>
+    </source>
+    <source xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="3" date="7654321" import_user_id="2">
+      <name>Second source</name>
+      <filename>2nd_src.txt</filename>
+      <description>This is the description for the second source with ID 3</description>
+    </source>
+  </sources>
+  <users>
+    <user xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="4">
+      <name>Bongâni</name>
+    </user>
+    <user xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="2">
+      <name>Walter</name>
+    </user>
+  </users>
+  <parts_of_speech>
+    <part_of_speech xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="123">
+      <name>Noun, ordinary</name>
+      <shortcut>n1</shortcut>
+      <remarks>Examples include "hond", "boom" and "appel"</remarks>
+    </part_of_speech>
+    <part_of_speech xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="125">
+      <name>Verb, 1st person singular, present tense</name>
+      <shortcut>v1sp</shortcut>
+      <remarks xsi:nil="true"/>
+    </part_of_speech>
+  </parts_of_speech>
+  <roots>
+    <root xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="25644" pos_id="123" user_id="2" date="123456">
+      <value>koeï</value>
+      <remarks>A cow</remarks>
+    </root>
+    <root xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="42394" pos_id="125" user_id="4" date="654321">
+      <value>boom</value>
+      <remarks xsi:nil="true"/>
+    </root>
+  </roots>
+  <surface_forms>
+    <surface_form xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="1" user_id="4" date="111111" source_id="1" root_id="25644">
+      <value>koeie</value>
+      <status>todo</status>
+    </surface_form>
+    <surface_form xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="3" user_id="4" date="111111" source_id="2">
+      <value>koeitjie</value>
+      <status>ignored</status>
+    </surface_form>
+    <surface_form xmlns:py="http://codespeak.net/lxml/objectify/pytype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="2" user_id="23" date="222222" source_id="3">
+      <value>varkies</value>
+      <status>todo</status>
+    </surface_form>
+  </surface_forms>
+</language_database>

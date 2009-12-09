@@ -1,0 +1,22 @@
+{% extends "admin_profile_base.html" %}
+{% load i18n baseurl %}
+
+{% block title %}
+{{ block.super }} » {% trans "Languages" %}
+{% endblock %}
+
+{% block bodyclass %}adminlanguages{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » {% trans "Languages" %}
+{% endblock %}
+
+{% block section_description %}{% trans "Here you can add, edit, and delete all the available languages in this Pootle server." %}{% endblock %}
+
+{% block section_body %}
+{% include "admin/admin_general.html" %}
+{% endblock %}
+
+{% block scripts_extra %}
+<script type="text/javascript" src='{{ "js/sorttable.js"|m }}'></script>
+{% endblock %}

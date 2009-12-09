@@ -1,0 +1,24 @@
+{% extends "base.html"  %}
+{% load i18n %}
+
+{% block title %}
+{{ block.super }}: {% trans "Administration" %}
+{% endblock %}
+
+{% block breadcrumbs %}
+<div id="breadcrumbs">
+    <h2 class="title">{% block breadcrumb_content %}{% trans "Administration" %}{% endblock %}</h2>
+</div>
+{% endblock %}
+
+{% block precontent %}
+{% include "admin_profile_menu.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
+    <p>{% block section_description %}{% endblock %}</p>
+
+    {% block section_body %}{% endblock %}
+</div>
+{% endblock %}

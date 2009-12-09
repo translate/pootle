@@ -1,0 +1,30 @@
+--- Pootle-1.3.0-beta4/localsettings.py.fedora-settings	2009-10-05 23:16:00.000000000 +0200
++++ Pootle-1.3.0-beta4/localsettings.py	2009-11-03 18:23:17.000000000 +0200
+@@ -22,7 +22,7 @@
+ PODIRECTORY = working_path('po')
+ 
+ # set this to true to enable live translation of pootle UI, a good way to learn how to use pootle. but has high impact on performance.
+-LIVE_TRANSLATION = True
++LIVE_TRANSLATION = False
+ 
+ 
+ # File parse pool settings
+@@ -42,14 +42,15 @@
+ # By default we use django's in memory cache which is only suitable
+ # for small deployments. memcached is prefered. for more info check
+ # http://docs.djangoproject.com/en/1.0/topics/cache/
+-CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
++# CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
+ 
+ # Uncomment to use memcached for caching
+-# CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
++CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
++SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+ 
+ # set this to False, DEBUG mode is only needed when testing beta's or
+ # hacking pootle
+-DEBUG = True
++DEBUG = False
+ 
+ 
+ # Use the commented definition to authenticate first with Mozilla's LDAP system and then to fall back

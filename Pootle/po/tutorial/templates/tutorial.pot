@@ -1,0 +1,160 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Translate tutorial 1.0\n"
+"Report-Msgid-Bugs-To: translate-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2008-11-25 10:03+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"X-Generator: Translate Toolkit 1.2.0\n"
+
+#. Welcome to the translate tutorial. You can do the first translation by typing just the translation for "Welcome".
+msgid "Welcome"
+msgstr ""
+
+#. Translate this slightly longer message, and try to see if your current editor supports spell checking for your language if you spell something wrong.
+msgid "This file gives help to learn about translation"
+msgstr ""
+
+#. This tutorial will show you some of the things you might want to give attention to while translating software programs. It will help you to avoid some problems, and to translate with higher quality.
+msgid "Quality is important"
+msgstr ""
+
+#. Some of the advice will only be relevant for some languages. For example, if your language doesn't use the Latin alphabet, some of the advice might not be relevant to translation in your language. For many languages, there are established rules of how to translate.
+msgid "Languages are different"
+msgstr ""
+
+#. The correct use of capital letters are important in many languages. Translate this message with careful attention to write "Pootle" with a capital letter.
+msgid "The product we use, is called Pootle"
+msgstr ""
+
+#. In this message the English uses a capital letter for almost every word. Almost no other language uses this style. Unless your language definitely needs to follow the English style (also called Title Case), translate this by following the normal capitalisation rules for your language. If your language does not use capital letters, simply translate it normally.
+msgid "Download the File Now"
+msgstr ""
+
+#. This is a simple message that starts with a capital letter in English. If your language uses capital letters, you almost definitely want to start your translation with a capital letter as well.
+msgid "Time"
+msgstr ""
+
+#. This is a simple message that starts with a lower case letter in English. If your language uses capital letters, you almost definitely want to start your translation with a lower case letter as well.
+msgid "later"
+msgstr ""
+
+#. This message is a question. Make sure that you use the correct question mark for your translation as well.
+msgid "What is your name?"
+msgstr ""
+
+#. This message is a label as part of a form. Note how it ends with a colon (:).
+msgid "Name:"
+msgstr ""
+
+#. This message ends with ... to indicate that clicking on this text will cause a dialogue to appear instead of just performing an action. Be sure to end your message with ... as well.
+msgid "Save As..."
+msgstr ""
+
+#. This message ends with a special character that looks like three dots. Copy and paste the character, or use the program function to copy the original string so that you have the special character in your translation. Don't just type three dot characters.
+msgid "Save As…"
+msgstr ""
+
+#. This message has two sentences. Translate them and make sure you start each with a capital letter if your language uses them, and end each sentence properly.
+msgid "Always try your best. Many people are available to learn from."
+msgstr ""
+
+#. This message marks the word "now" as important with bold tags. Leave the <b> and </b> in the translation around the part that corresponds to "now". Read more about XML markup here: http://en.wikipedia.org/wiki/XML
+msgid "Restart the program <b>now</b>"
+msgstr ""
+
+#. In this message, "%d" is a placeholder (variable) that represents a number. Make sure your translation contains %d somewhere. In this case it refers a number of files. When this message is used, the %d will be replaced with a number e.g. 'Number of files copied: 5'.
+msgid "Number of files copied: %d"
+msgstr ""
+
+#. In this message, "%d" refers again to the number of files, but note how the "(s)" is used to show that we don't know how many it will be. This is often hard to translate well. If you encounter this in software translation, you might want to hear from developers if this can be avoided. Read more about this and decide how to do it in your language: http://translate.sourceforge.net/wiki/guide/translation/plurals
+msgid "%d file(s) will be downloaded"
+msgstr ""
+
+#. In this message the proper way of translating plurals are seen. You need to enter between 1 and 6 different versions of the translation to ensure the correct grammar in your language. Read more about this here: http://translate.sourceforge.net/wiki/guide/translation/plurals
+msgid "%d file will be downloaded"
+msgid_plural "%d files will be downloaded"
+msgstr[0] ""
+msgstr[1] ""
+
+#. In this message, "%s" is a placeholder (variable) that represents a file name. Make sure your translation contains %s somewhere. When this message is used, the %s will be replaced with a file name e.g. 'The file will be saved as example.odt'.
+msgid "The file will be saved as %s"
+msgstr ""
+
+#. In this message the variable is surrounded by double quotes. Make sure your translation contains the variable %s and surround it similarly with quotes in the way required by your language. If your language uses the same quotes as English, type it exactly as shown for the English (it might be preceded by a slash. If your language uses different characters, you can just type them around the variable.
+msgid "The file \"%s\" was not saved"
+msgstr ""
+
+#. In this message, "%(name)s" is a placeholder (variable). Note that the 's' is part of the variable, and the whole variable from '%' to the 's' should appear unchanged in your translation somewhere. These type of variables give you an idea of what they will contain. In this case, it will contain a name.
+msgid "Welcome back, %(name)s"
+msgstr ""
+
+#. In this message the user of the software is asked to do something. Make sure you translate it by being as polite or respectful as is necessary for your culture.
+msgid "Please enter your password here"
+msgstr ""
+
+#. In this message there is reference to "Linux" (a product name). Many languages will not translate it, but your language might use a translitiration if you don't use the Latin script for your language.
+msgid "This software runs on Linux"
+msgstr ""
+
+#. This message refers to the website of the project. Make sure you keep it exactly as it is.
+msgid "Visit the project website at http://translate.sourceforge.net/"
+msgstr ""
+
+#. This message refers to a website with more information. Sometimes you might be allowed or encouraged to change the URL to a website in your language. In this case, replace the "en" at the start of the address to your language code so that the address points to the corresponding article in your language about XML.
+msgid "For more information about XML, visit http://en.wikipedia.org/wiki/XML"
+msgstr ""
+
+#. This translation contains an ambiguous word - it has two possible meanings. Make sure you can see the context information showing that this is a verb (an action as in "click here to view it").
+msgctxt "verb"
+msgid "View"
+msgstr ""
+
+#. This translation contains an ambiguous word - it has two possible meanings. Make sure you can see the context information showing that this is a noun (a thing as in "click to change the view to full screen"). If the software gives your previous translation as a suggestion, take care to only use it if it is definitely appropriate in this case as well.
+msgctxt "noun"
+msgid "View"
+msgstr ""
+
+#. This message has two lines. Make sure that you also have the marker between the two lines in your translation. In many programs you do that with a slash followed by 'n'.
+msgid ""
+"A camera has been connected to your computer.\n"
+"No photos were found on the camera."
+msgstr ""
+
+#. This message contains tab characters to separate some headings. Make sure you separate your translations in the same way. In many programs you do that with a slash followed by 't'.
+msgid "Heading 1\tHeading 2\tHeading 3"
+msgstr ""
+
+#. This message contains a large number that is formatted according to American convention. Translate this but be sure to format the number according to the convention for your language. You might need to change the comma (,) and full stop (.) to other characters, and you might need to use a different number system. Make sure that you understand the American formatting: the number is bigger than one thousand.
+msgid "It will take 1,234.56 hours to do"
+msgstr ""
+
+#. This message refers to miles. If the programmers encourage it, you might want to change this to kilometres in your translation, if kilometres are more commonly used in your language. Note that 1 mile is about 1.6 kilometres. Note that automated tests for "numbers" will complain if the number is changed, but in this case it is safe to do.
+msgid "The road is 10 miles long"
+msgstr ""
+
+#. This message contains a link that the user will be able to click on to visit the help page. Make sure you maintain the information between the angle brackets (<...>) correctly. The double quotes (") should never be changed in tags, even if your language uses a different type of quotation marks.
+msgid "Feel free to visit our <a href=\"http://translate.sourceforge.net/\">help page</a>"
+msgstr ""
+
+#. This message contains a similar link, but the programmers decided to rather insert the tags with variables so that translators can't change them. Make sure you position the two variables (%s) so that they correspond to the opening and closing tag of the previous translation.
+msgid "Feel free to visit our %shelp page%s"
+msgstr ""
+
+#. This message contains the <b> and </b> tags to emphasize a word, while everything is inside <p> and </p> tags. Make sure your whole translation is inside <p> and </p> tags.
+msgid "<p>Restart the program <b>now</b></p>"
+msgstr ""
+
+#. This message contains a similar link that is contained within <span> and </span>. Make sure you maintain all the tags (<...>) correctly, and that the link is contained completely inside the <span> and </span> tags in your translation. Make sure that the text inside the "a" tags correspond to "help page" and that your translation corresponding to the second sentence is contained in the <span> tags. Note how the full stop is still inside the </span> tag.
+msgid "The software has many features. <span class=\"info\">Feel free to visit our <a href=\"http://translate.sourceforge.net/\">help page</a>.</span>"
+msgstr ""
