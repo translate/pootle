@@ -109,6 +109,6 @@ def view(request):
                     ), 'untranslated': _('Untranslated')},
         }
     templatevars['moreprojects'] = len(templatevars['projects']) >\
-                                   len(templatevars['languages']),
+                                   len(templatevars['languages'])
 
     return render_to_response('index/index.html', templatevars, RequestContext(request))
