@@ -1,7 +1,4 @@
 
-/*
- * TODO: this code may have a better life if we migrate it to jQuery.
- */
 $(document).ready(function() {
     // Pootle namespace
     $.pootle = {};
@@ -27,31 +24,29 @@ $(document).ready(function() {
        $($.pootle.focusedElement).replaceSelection(specialtext);
     });
 
+    $(".copyoriginal").click(function() {
+       var transid = $(this).parent().parent().attr("id");
+       var elementNumber = transid.replace("trans", "")
+       var enelement = $("#orig-pure" + elementNumber + "-0");
+       var envalue = enelement.val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
+
+       // no plurals
+       var trelement = $("#areatrans" + elementNumber);
+       if (trelement.length != 0) {
+         trelement.val(envalue);
+         trelement.focus();
+         return;
+       }
+
+       //plurals
+       var trelements = $("[id^=areatrans" + elementNumber + "-]");
+       var enplelement = $("#orig-pure" + elementNumber + "-1");
+       var enplvalue = enplelement.val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
+       $.each(trelements, function(i) {
+         newval = i == 0 ? envalue : enplvalue;
+         $(this).val(newval);
+         $(this).focus();
+       });
+    });
+
 });
-
-function copyorigtranslation(elementNumber)
-{
-	var i = 0;
-    var enelement = document.getElementById("orig-pure" + elementNumber + "-" + 0);
-    var envalue = enelement.value.replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
-	//no plurals
-	var trelement = document.getElementById("areatrans" + elementNumber );
-	if (trelement){
-		trelement.value = envalue;
-		trelement.focus();
-		return;
-	}
-
-	//plurals
-	trelement = document.getElementById("areatrans" + elementNumber + "-" + i );
-    var enplelement = document.getElementById("orig-pure" + elementNumber + "-" + 1);
-    var enplvalue = enplelement.value.replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
-	while (trelement)
-	{
-		trelement.focus(); //it will go to the last one
-		trelement.value = i == 0 ? envalue : enplvalue;
-		i++;
-		trelement = document.getElementById("areatrans" + elementNumber + "-" + i );
-	}
-}
-

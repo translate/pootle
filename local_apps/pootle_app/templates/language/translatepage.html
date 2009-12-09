@@ -196,42 +196,39 @@
                               {% endif %}
 
                               <!--! Buttons, resize links, special characters -->
-                              <div lang="{{ LANGUAGE_CODE }}">
-                                  <div class="translate-buttons-block">
-                                  {% for button in item.trans.buttons.desired %}
-                                      {% ifequal button 'translate' %}
-                                      <input type="submit" name="submit{{ item.trans.buttons.item }}" accesskey="s" value="{% trans 'Submit' %}" />
-                                      {% endifequal %}
-                                      {% ifequal button 'suggest' %}
-                                      <input type="submit" name="submitsuggest{{ item.trans.buttons.item }}" accesskey="e" value="{% trans 'Suggest' %}" />
-                                      {% endifequal %}
-                                      {% ifequal button 'copy' %}
-                                      <input type="button" accesskey="c"
-                                         onclick="copyorigtranslation('{{ item.trans.buttons.item }}'); return false"
-                                         value="{% trans 'Copy' %}" />
-                                      {% endifequal %}
-                                      {% ifequal button 'skip' %}
-                                      <input type="submit" name="skip{{ item.trans.buttons.item }}" accesskey="k" value="{% trans 'Skip' %}" />
-                                      {% endifequal %}
-                                      {% ifequal button 'back' %}
-                                      <input type="submit" name="back{{ item.trans.buttons.item }}" accesskey="b" value="{% trans 'Back' %}" />
-                                      {% endifequal %}
-                                  {% endfor %}
-                                      <input type="hidden" name="store" value="{{ store }}" />
-				      <input type="hidden" name="path" value="{{ store|l }}" />
-                                  </div>
-                                  {% if cantranslate %}
-                                  <div class="translate-fuzzy-block">
-                                      <input type="checkbox" {% if item.fuzzy %}checked="checked"{% endif %} name="fuzzy{{ item.trans.buttons.item }}" accesskey="f" id="fuzzy{{ item.trans.buttons.item }}" class="fuzzycheck" />
-                                      <label for="fuzzy{{ item.trans.buttons.item }}">{{ fuzzytext }}</label>
-                                  </div>
-                                  {% else %}
-                                  <div class="translate-fuzzy-block">
-                                      <input type="checkbox" disabled="disabled" {% if item.fuzzy %}checked="checked"{% endif %} name="fuzzy{{ item.trans.buttons.item }}" id="fuzzy{{ item.trans.buttons.item }}" class="fuzzycheck" />
-                                      <label for="fuzzy{{ item.trans.buttons.item }}">{{ fuzzytext }}</label>
-                                  </div>
-                                  {% endif %}
+                              <div class="translate-buttons-block" lang="{{ LANGUAGE_CODE }}">
+                              {% for button in item.trans.buttons.desired %}
+                                  {% ifequal button 'translate' %}
+                                  <input type="submit" name="submit{{ item.trans.buttons.item }}" accesskey="s" value="{% trans 'Submit' %}" />
+                                  {% endifequal %}
+                                  {% ifequal button 'suggest' %}
+                                  <input type="submit" name="submitsuggest{{ item.trans.buttons.item }}" accesskey="e" value="{% trans 'Suggest' %}" />
+                                  {% endifequal %}
+                                  {% ifequal button 'copy' %}
+                                  <input type="button" accesskey="c"
+                                         class="copyoriginal" value="{% trans 'Copy' %}" />
+                                  {% endifequal %}
+                                  {% ifequal button 'skip' %}
+                                  <input type="submit" name="skip{{ item.trans.buttons.item }}" accesskey="k" value="{% trans 'Skip' %}" />
+                                  {% endifequal %}
+                                  {% ifequal button 'back' %}
+                                  <input type="submit" name="back{{ item.trans.buttons.item }}" accesskey="b" value="{% trans 'Back' %}" />
+                                  {% endifequal %}
+                              {% endfor %}
+                                  <input type="hidden" name="store" value="{{ store }}" />
+                  <input type="hidden" name="path" value="{{ store|l }}" />
                               </div>
+                              {% if cantranslate %}
+                              <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}">
+                                  <input type="checkbox" {% if item.fuzzy %}checked="checked"{% endif %} name="fuzzy{{ item.trans.buttons.item }}" accesskey="f" id="fuzzy{{ item.trans.buttons.item }}" class="fuzzycheck" />
+                                  <label for="fuzzy{{ item.trans.buttons.item }}">{{ fuzzytext }}</label>
+                              </div>
+                              {% else %}
+                              <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}">
+                                  <input type="checkbox" disabled="disabled" {% if item.fuzzy %}checked="checked"{% endif %} name="fuzzy{{ item.trans.buttons.item }}" id="fuzzy{{ item.trans.buttons.item }}" class="fuzzycheck" />
+                                  <label for="fuzzy{{ item.trans.buttons.item }}">{{ fuzzytext }}</label>
+                              </div>
+                              {% endif %}
 
                               {% if item.trans.buttons.specialchars and canedit %}
                               <div class="translate-specialchars-block" lang="{{ language.code }}">
