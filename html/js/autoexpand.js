@@ -2,6 +2,12 @@
 /*
  * TODO: this code may have a better life if we migrate it to jQuery.
  */
+$(document).ready(function() {
+    $(".focused").focus(function(e) {
+        focusedElement = e.target;
+    });
+
+});
 
 function copyorigtranslation(elementNumber)
 {
@@ -27,12 +33,6 @@ function copyorigtranslation(elementNumber)
 		i++;
 		trelement = document.getElementById("areatrans" + elementNumber + "-" + i );
 	}
-}
-
-var focusedElement;
-function setfocusedelement(element)
-{
-	focusedElement = element;
 }
 
 function writespecial(specialchar, elementnumber)

@@ -151,13 +151,13 @@
                               {% if not item.trans.isplural %}
                               <!--! No plurals -->
                               <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}"
-                                    onfocus="setfocusedelement(this);" class="translation expanding {{ item.state_class }}"
+                                    class="translation expanding focused {{ item.state_class }}"
                                     name="{{ item.trans.itemid }}" id="area{{ item.trans.itemid }}" rows="{{ item.trans.rows }}">{{ item.trans.text|safe }}</textarea>
                               {% else %}
                               <!--! with plurals -->
                               {% for form in item.trans.forms %}
                               <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ form.title }}</div>
-                                  <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}" onfocus="setfocusedelement(this);" class="translation expanding {{ item.state_class }}" name="{{ form.name }}" id="area{{ form.name }}" rows="{{ item.trans.rows }}">{{ form.text|safe }}</textarea>
+                                  <textarea {% if not canedit %}readonly="readonly"{% endif %} dir="{{ language.dir }}" lang="{{ language.code }}" class="translation expanding focused {{ item.state_class }}" name="{{ form.name }}" id="area{{ form.name }}" rows="{{ item.trans.rows }}">{{ form.text|safe }}</textarea>
                               {% endfor %}
                               {% endif %}
 
