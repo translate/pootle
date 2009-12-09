@@ -118,7 +118,7 @@ class Store(models.Model):
             # we only create the file if asked, typically before
             # adding a suggestion
             store = po.pofile()
-            store.makeheader(charset='UTF-8', encoding='8bit')
+            store.updateheader(add=True, **store.makeheaderdict(charset='UTF-8', encoding='8bit'))
             store.savefile(pending_path)
 
         if os.path.exists(pending_path):
