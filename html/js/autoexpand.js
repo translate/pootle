@@ -4,8 +4,8 @@ $(document).ready(function() {
 
     // Set initial focus on page load
     var initialFocus = $(".translate-original-focus textarea");
-    initialFocus.focus();
     $.pootle.focusedElement = initialFocus.get(0);
+    $.pootle.focusedElement.focus();
 
     // Update focus when appropriate
     $(".focusthis").focus(function(e) {
