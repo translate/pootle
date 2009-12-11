@@ -174,7 +174,7 @@ def import_projects(parsed_data):
                                              prefix=prefix)
 
         # checkstyle
-        db_proj.checkstyle = _get_attribute(data, proj, 'checkstyle',
+        db_proj.checkstyle = _get_attribute(data, proj, 'checkerstyle',
                                             unicode_me = False, prefix=prefix)
 
         # localfiletype
