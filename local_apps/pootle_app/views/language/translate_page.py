@@ -193,7 +193,7 @@ def get_string_array(string):
     if isinstance(string, multistring):
         return string.strings
     else:
-        return [string]
+        return [string or u""]
 
 def fancy_spaces(string):
     """Returns the fancy spaces that are easily visible."""
