@@ -182,7 +182,7 @@ def process_update(request, directory):
         for form in formset.forms:
             # If the user toggled the 'delete' checkbox, we'll roast
             # the corresponding PermissionSet
-            if form['delete'].data:
+            if form.cleaned_data['delete']:
                 deleted_forms.append(form)
             # Otherwise, if the form contains any changed data, we'll
             # have to update and save it.
@@ -191,12 +191,12 @@ def process_update(request, directory):
         return deleted_forms, changed_forms
 
     def get_permission_set(form):
+            permission_set = PermissionSet(profile_id=int(form.cleaned_data['profiles']), directory=directory)
         if form.is_new_user():
-            permission_set = PermissionSet(profile_id=int(form['profiles'].data), directory=directory)
             permission_set.save()
             return permission_set
+            return PermissionSet.objects.get(pk=form.cleaned_data['id'])
         else:
-            return PermissionSet.objects.get(pk=form['id'].data)
 
     if request.method == 'POST':
         permission_set_formset = PermissionSetFormSet(data=request.POST, initial=get_permission_data(directory))
@@ -216,7 +216,7 @@ def process_update(request, directory):
                 # PermissionSet) dict. We get the permission codenames
                 # from form['permissions'].data.
                 
-                permission_set.positive_permissions = [pootle_permissions[codename] for codename in form['permissions'].data]
+                permission_set.positive_permissions = [pootle_permissions[codename] for codename in form.cleaned_data['permissions']]
                 permission_set.save()
 
             return PermissionSetFormSet(initial=get_permission_data(directory))
