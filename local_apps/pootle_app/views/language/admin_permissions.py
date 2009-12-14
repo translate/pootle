@@ -169,8 +169,8 @@ def get_permission_data(directory):
         permission_data.append({'id':           None,
                                 'permissions':  [permission for permission in default_permissions],
                                 'username':     '',
-                                'profiles':     u'None',
-                                'profile_data': [(u'None', '')] + [(profile.id, profile.user.username)
+                                'profiles':     None,
+                                'profile_data': [(None, '')] + [(profile.id, profile.user.username)
                                                                    for profile in profiles_without_permissions],
                                 'new':          True})
     return permission_data
@@ -191,12 +191,12 @@ def process_update(request, directory):
         return deleted_forms, changed_forms
 
     def get_permission_set(form):
+        if form.is_new_user() and form.cleaned_data['profiles'].isdigit():
             permission_set = PermissionSet(profile_id=int(form.cleaned_data['profiles']), directory=directory)
-        if form.is_new_user():
             permission_set.save()
             return permission_set
+        elif form.cleaned_data['id'] is not None:
             return PermissionSet.objects.get(pk=form.cleaned_data['id'])
-        else:
 
     if request.method == 'POST':
         permission_set_formset = PermissionSetFormSet(data=request.POST, initial=get_permission_data(directory))
@@ -212,6 +212,8 @@ def process_update(request, directory):
 
             for form in changed_forms:
                 permission_set = get_permission_set(form)
+                if permission_set is None:
+                    continue
                 # pootle_permissions is a (permission codename ->
                 # PermissionSet) dict. We get the permission codenames
                 # from form['permissions'].data.
