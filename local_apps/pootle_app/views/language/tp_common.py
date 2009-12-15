@@ -23,6 +23,7 @@ import os
 import StringIO
 import subprocess
 import zipfile
+import datetime
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
@@ -32,6 +33,8 @@ from translate.storage import factory, versioncontrol
 
 from pootle_app.lib import view_handler
 from pootle_app.project_tree import scan_translation_project_files
+from pootle_app.models import Submission
+from pootle_app.models.profile     import get_profile
 from pootle_app.models.permissions import check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.views.language import item_dict
@@ -283,6 +286,14 @@ class UploadHandler(view_handler.Handler):
                 upload_file(request, relative_root_dir, django_file, overwrite)
             scan_translation_project_files(translation_project)
             newstats = translation_project.getquickstats()
+
+            # create a submission, doesn't fix stats but at least
+            # shows up in last activity column
+            s = Submission(creation_time=datetime.datetime.utcnow(),
+                           translation_project=translation_project,
+                           submitter=get_profile(request.user))
+            s.save()
+            
             post_file_upload.send(sender=translation_project, user=request.user, oldstats=oldstats,
                                   newstats=newstats, archive=archive)
         return {'upload': self}
