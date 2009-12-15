@@ -265,16 +265,15 @@ class TranslationProject(models.Model):
 
         try:
             oldstats, remotestats, newstats = self.update_file_from_version_control(store)
+            request.user.message_set.create(message=unicode(_("Updated file %s from version control", store.file.name)))
+            request.user.message_set.create(message=stats_message("working copy", oldstats))
+            request.user.message_set.create(message=stats_message("remote copy", remotestats))
+            request.user.message_set.create(message=stats_message("merged copy", newstats))
+            post_vc_update.send(sender=self, oldstats=oldstats, remotestats=remotestats, newstats=newstats)
         except VersionControlError:
             request.user.message_set.create(message=unicode(_("Failed to update %s from version control", store.file.name)))
         
-        request.user.message_set.create(message=unicode(_("Updated file %s from version control", store.file.name)))
-        request.user.message_set.create(message=stats_message("working copy", oldstats))
-        request.user.message_set.create(message=stats_message("remote copy", remotestats))
-        request.user.message_set.create(message=stats_message("merged copy", newstats))
-        
         project_tree.scan_translation_project_files(self)
-        post_vc_update.send(sender=self, oldstats=oldstats, remotestats=remotestats, newstats=newstats)
 
     def commitpofile(self, request, store):
         """commits an individual PO file to version control"""
