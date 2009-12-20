@@ -76,6 +76,7 @@ pre_save.connect(set_data_fields, sender=Target)
 
 class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
+    index = models.IntegerField(db_index=True)
     source_ref = models.ForeignKey("pootle_store.Source", db_index=True)
     target_ref = models.ForeignKey("pootle_store.Target", db_index=True)
     
@@ -511,13 +512,14 @@ class Store(models.Model, base.TranslationStore):
     def build(self, store):
         """store units in db"""
         self.units.delete()
-        for unit in store.units:
+        for index, unit in enumerate(store.units):
             if unit.istranslatable():
                 source = Source(text=unit.source)
                 source.save()
                 target = Target(text=unit.target)
                 target.save()                
                 newunit= Unit(store=self,
+                              index=index,
                               source_ref=source,
                               target_ref=target,
                               developer_comment=unit.getnotes(origin="developer"),
@@ -531,7 +533,7 @@ class Store(models.Model, base.TranslationStore):
                 newunit.save()
                 
     def _get_units(self):
-        return self.unit_set.all()
+        return self.unit_set.order_by('index')
     units=property(_get_units)
 
     def output(self, file=None):
