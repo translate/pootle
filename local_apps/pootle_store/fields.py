@@ -28,15 +28,53 @@ import tempfile
 
 from django.conf import settings
 from django.core.files import File
+from django.db import models
 from django.db.models.fields.files import FieldFile, FileField
 from django.utils.thread_support import currentThread
 
 from translate.storage import factory, statsdb, po, poheader
 from translate.misc.lru import LRUCachingDict
+from translate.misc.multistring import multistring
 
 from pootle_store.signals import translation_file_updated, post_unit_update
 
 from pootle.__version__ import sver as pootle_version
+
+
+################# String #############################
+
+SEPERATOR = "__\0__\0__\0__"
+
+class MultiStringField(models.Field):
+    description = "a field imitating translate.misc.multistring used for plurals"
+    __metaclass__ = models.SubfieldBase
+    
+    def __init__(self, *args, **kwargs):
+        super(MultiStringField, self).__init__(*args, **kwargs)
+
+    def get_internal_type(self):
+        return "TextField"
+
+    def to_python(self, value):
+        if isinstance(value, multistring):
+            return value
+        elif isinstance(value, basestring):
+            return multistring(value.split(SEPERATOR))
+        else:
+            return multistring(value)
+            
+    def get_db_prep_value(self, value):
+        #FIXME: maybe we need to override get_db_prep_save instead?
+        return SEPERATOR.join(value.strings)
+            
+    def get_db_prep_lookup(self, lookup_type, value):
+        if lookup_type in ('exact', 'iexact'):
+            return self.get_db_prep_value(value)
+        else:
+            return value
+    
+
+################# File ###############################
 
 x_generator = "Pootle %s" % pootle_version
 

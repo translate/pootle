@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import md5
 import os
 import logging
 import re
@@ -26,14 +27,164 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
+from django.db.models.signals import pre_save, post_init, post_delete
 
-from translate.storage import po
+from translate.storage import base, statsdb, po
 
 from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
-from pootle_store.fields  import TranslationStoreField
+
+from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.signals import translation_file_updated
+
+############### Unit ####################
+class Text(models.Model):
+    class Meta(object):
+        abstract = True
+        
+    text = MultiStringField(null=True)
+
+    # inherited
+    language = models.CharField(max_length=255)
+    
+    # auto generated fields
+    hash = models.CharField(max_length=32, db_index=True)
+    wordcount = models.SmallIntegerField()
+    length = models.SmallIntegerField(db_index=True)
+
+    def _init_data_fields(self):
+        self.hash = md5.md5(self.text.encode("utf-8")).hexdigest()
+        self.wordcount = statsdb.wordcount(self.text)
+        self.length = len(self.text)
+
+    def __unicode__(self):
+        return unicode(self.text)
+
+
+def set_data_fields(sender, instance, **kwargs):
+    instance._init_data_fields()
+    
+class Source(Text):
+    pass
+pre_save.connect(set_data_fields, sender=Source)
+
+class Target(Text):
+    pass
+pre_save.connect(set_data_fields, sender=Target)
+
+
+class Unit(models.Model, base.TranslationUnit):
+    store = models.ForeignKey("pootle_store.Store", db_index=True)
+    source_ref = models.ForeignKey("pootle_store.Source", db_index=True)
+    target_ref = models.ForeignKey("pootle_store.Target", db_index=True)
+    
+    developer_comment = models.TextField(null=True)
+    translator_comment = models.TextField(null=True)
+    locations = models.TextField(null=True)
+    context = models.TextField(null=True)
+    fuzzy = models.BooleanField(default=False)
+    obsolete = models.BooleanField(default=False)
+    unitid = models.TextField()
+
+    def init_nondb_state(self):
+        self._rich_source = None
+        self._rich_target = None
+        self.unitclass = po.pounit
+        self._encoding = 'UTF-8'
+        
+    def _get_source(self):
+        if self.source_ref is None:
+            return None
+        return self.source_ref.text
+
+    def _set_source(self, value):
+        if self._source is None:
+            source = Source(text=value)
+            source.save()
+            self.source_ref = source
+            self.save()
+        else:
+            self.source_ref.text = value
+            self.source_ref.save()
+
+    _source = property(_get_source, _set_source)
+
+    def _get_target(self):
+        if self.target_ref is None:
+            return None
+        return self.target_ref.text
+
+    def _set_target(self, value):
+        if self.target_ref is None:
+            target = Target(text=value)
+            target.save()
+            self.target_ref = target
+            self.save()
+        else:
+            self.target_ref.text = value
+            self.target_ref.save()
+        
+    _target = property(_get_target, _set_target)
+
+
+    def convert(self, unitclass):
+        return unitclass.buildfromunit(self)
+
+    def __repr__(self):
+        return u'<%s: %s>' % (self.__class__.__name__, self.source)
+    
+    def __unicode__(self):
+        return unicode(str(self.convert(self.unitclass)).decode(self._encoding))
+                       
+    def getnotes(self, origin=None):
+        if origin == None:
+            return self.translator_comment + self.developer_comment
+        elif origin == "translator":
+            return self.translator_comment
+        elif origin in ["programmer", "developer", "source code"]:
+            return self.developer_comment
+        else:
+            raise ValueError("Comment type not valid")
+
+    def addnote(self, text, origin=None, position="append"):
+        if not (text and text.strip()):
+            return
+        if origin in ["programmer", "developer", "source code"]:
+            self.developer_comment = text
+        else:
+            self.translator_comment = text
+            
+    def getid(self):
+        return self.unitid
+
+    def getlocations(self):
+        return self.locations
+
+    def addlocation(self, location):
+        self.locations.append(location + "\n")
+
+    def getcontext(self):
+        return self.context
+
+    def isfuzzy(self):
+        return self.fuzzy
+
+    def markfuzzy(self, value=True):
+        self.fuzzy = value
+
+def clean_orphaned_text(sender, instance, **kwargs):
+    if instance.source_ref.unit_set.count() == 0:
+        instance.source_ref.delete()
+    if instance.target_ref.unit_set.count() == 0:
+        instance.target_ref.delete()
+post_delete.connect(clean_orphaned_text, sender=Unit)
+
+def init_baseunit(sender, instance, **kwargs):
+    instance.init_nondb_state()
+post_init.connect(init_baseunit, sender=Unit)
+
+###################### Store ###########################
 
 # custom storage otherwise djago assumes all files are uploads headed to
 # media dir
@@ -42,16 +193,18 @@ fs = FileSystemStorage(location=settings.PODIRECTORY)
 # regexp to parse suggester name from msgidcomment
 suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 
-class Store(models.Model):
+class Store(models.Model, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
+    UnitClass = Unit
+    Name = "Model Store"
     is_dir = False
 
-    file        = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False, editable=False)
-    pending     = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False)
-    tm          = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs, editable=False)
-    parent      = models.ForeignKey(Directory, related_name='child_stores', db_index=True, editable=False)
+    file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False, editable=False)
+    pending = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False)
+    tm = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs, editable=False)
+    parent = models.ForeignKey(Directory, related_name='child_stores', db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_("Path"))
-    name        = models.CharField(max_length=128, null=False, editable=False)
+    name = models.CharField(max_length=128, null=False, editable=False)
 
     class Meta:
         ordering = ['pootle_path']
@@ -350,6 +503,51 @@ class Store(models.Model):
                           if suggestpo.getlocations() == locations]
             return suggestpos
         return []
+
+
+    def parse(self):
+        self.build(self.file.store)
+        
+    def build(self, store):
+        """store units in db"""
+        self.units.delete()
+        for unit in store.units:
+            if unit.istranslatable():
+                source = Source(text=unit.source)
+                source.save()
+                target = Target(text=unit.target)
+                target.save()                
+                newunit= Unit(store=self,
+                              source_ref=source,
+                              target_ref=target,
+                              developer_comment=unit.getnotes(origin="developer"),
+                              translator_comment=unit.getnotes(origin="translator"),
+                              locations="\n".join(unit.getlocations()),
+                              context=unit.getcontext(),
+                              fuzzy=unit.isfuzzy(),
+                              obsolete=unit.isobsolete(),
+                              unitid=unit.getid(),
+                              )
+                newunit.save()
+                
+    def _get_units(self):
+        return self.unit_set.all()
+    units=property(_get_units)
+
+    def output(self, file=None):
+        if file is None:
+            file = self.file
+        store = factory.getobject(self.file)
+        self.require_index()
+        for unit in store.units:
+            uid = unit.getid()
+            match =  self.id_index.get(uid, None)
+            if match is not None:
+                unit.merge(match)
+        print store
+        
+        
+
 
 def set_store_pootle_path(sender, instance, **kwargs):
     instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
