@@ -36,7 +36,7 @@ from pootle_misc.baseurl import redirect
 
 def redirect_after_login(request):
     redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, None)
-    if redirect_to is None or '://' in redirect_to or ' ' in redirect_to:
+    if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
         redirect_to = iri_to_uri('/accounts/%s/' % urlquote(request.user.username))
     return redirect(redirect_to)
 
