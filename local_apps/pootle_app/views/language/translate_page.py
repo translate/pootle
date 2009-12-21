@@ -283,7 +283,7 @@ def get_terminology(request, store, item):
     try:
         term_matcher = request.translation_project.gettermmatcher()
         if term_matcher is not None:
-            return term_matcher.matches(store.file.getitem(item).source)
+            return term_matcher.matches(store.getitem(item).source)
         else:
             return []
     except:

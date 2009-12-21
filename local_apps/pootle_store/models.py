@@ -294,7 +294,7 @@ class Store(models.Model, base.TranslationStore):
         return []
     
     def getsuggestions(self, item):
-        unit = self.file.getitem(item)
+        unit = self.getitem(item)
         return self.getsuggestions_unit(unit)
 
 
@@ -325,7 +325,7 @@ class Store(models.Model, base.TranslationStore):
 
     def addsuggestion(self, item, suggtarget, username, checker=None):
         """adds a new suggestion for the given item"""
-        unit = self.file.getitem(item)
+        unit = self.getitem(item)
         
         if self.file.store.suggestions_in_format:
             # probably xliff, which can't do unit copies and doesn't
@@ -349,7 +349,7 @@ class Store(models.Model, base.TranslationStore):
 
     def _deletesuggestion(self, item, suggestion):
         if self.file.store.suggestions_in_format:
-            unit = self.file.getitem(item)
+            unit = self.getitem(item)
             unit.delalttrans(suggestion)
         else:
             try:
@@ -496,7 +496,7 @@ class Store(models.Model, base.TranslationStore):
 
         self.inittm()
         if self.tm:
-            unit = self.file.getitem(item)
+            unit = self.getitem(item)
             locations = unit.getlocations()
             # TODO: review the matching method. We can't simply use the
             # location index, because we want multiple matches.

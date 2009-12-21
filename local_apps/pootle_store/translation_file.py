@@ -126,7 +126,7 @@ class TranslationStoreFile(File):
     def reclassifyunit(self, item, checker):
         """Reclassifies all the information in the database and self._stats
         about the given unit."""
-        unit = self.getitem(item)
+        unit = self.instance.getitem(item)
         state = self._statscache.recacheunit(self.path, checker, unit)
         #FIXME: can't we use state to update stats cache instead of invalidating it?
         self._stats[self.path] = StatsTuple()
@@ -138,10 +138,6 @@ class TranslationStoreFile(File):
         return self.getstats()['total']
     total = property(_get_total)
 
-    def getitem(self, item):
-        """Returns a single unit based on the item number."""
-        return self.store.units[self.total[item]]
-
     def getitemslen(self):
         """The number of items in the file."""
         return self.getquickstats()['total']
@@ -152,7 +148,7 @@ class TranslationStoreFile(File):
         # operation replaces file, make sure we have latest copy
         oldstats = self.getquickstats()
         self._update_store_cache()
-        unit = self.getitem(item)
+        unit = self.instance.getitem(item)
 
         if newvalues.has_key('target'):
             if not unit.hasplural() and not isinstance(newvalues['target'], basestring):

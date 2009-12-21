@@ -419,7 +419,7 @@ class TranslationProject(models.Model):
                 items = range(store.file.getitemslen())
             addlist = []
             for itemno in items:
-                unit = store.file.getitem(itemno)
+                unit = store.getitem(itemno)
                 doc = {"pofilename": store.pootle_path, "pomtime": str(pomtime), "itemno": str(itemno)}
                 if unit.hasplural():
                     orig = "\n".join(unit.source.strings)

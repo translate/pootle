@@ -486,7 +486,7 @@ msgstr "resto"
         self.assertContains(response, '<input type="checkbox" checked="checked" name="fuzzy0" accesskey="f" id="fuzzy0" class="fuzzycheck" />')
 
         store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
-        self.assertTrue(store.file.getitem(0).isfuzzy())
+        self.assertTrue(store.getitem(0).isfuzzy())
 
         # Submit the translation again, without the fuzzy checkbox checked
         submit_dict = {
@@ -501,7 +501,7 @@ msgstr "resto"
         # Fetch the page once more and check that the fuzzy checkbox is NOT checked.
         response = self.client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
         self.assertContains(response, '<input type="checkbox"  name="fuzzy0" accesskey="f" id="fuzzy0" class="fuzzycheck" />')
-        self.assertFalse(store.file.getitem(0).isfuzzy())
+        self.assertFalse(store.getitem(0).isfuzzy())
         
     def test_submit_translator_comments(self):
         """Tests that we can edit translator comments."""
@@ -517,7 +517,7 @@ msgstr "resto"
                                     QUERY_STRING='view_mode=translate')
 
         store = Store.objects.get(pootle_path='/af/pootle/pootle.po')
-        self.assertEqual(store.file.getitem(0).getnotes(), 'goodbye\nand thanks for all the fish')
+        self.assertEqual(store.getitem(0).getnotes(), 'goodbye\nand thanks for all the fish')
 
 
 class NonprivTests(PootleTestCase):

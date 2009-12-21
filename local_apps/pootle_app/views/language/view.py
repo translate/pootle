@@ -314,7 +314,7 @@ def handle_suggestions(request, translation_project, file_path, item):
                           reject_count, reject_count)
             response["message"] = amsg + rmsg
             # Get updated diffs
-            current_trans = get_string_array(store.file.getitem(item).target)
+            current_trans = get_string_array(store.getitem(item).target)
             suggs = get_pending_suggestions(item)
             response["diffs"] = get_updated_diffs(current_trans, suggs)
 
