@@ -31,7 +31,6 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
 
     def test_update_plural_target(self):
-        import ipdb; ipdb.set_trace()
         self.store.file.updateunit(2, newvalues={'target': [u'samaka', u'samak']}, checker=UnitChecker())
         dbunit = self.store.getitem(2)
         storeunit = dbunit.getorig()
