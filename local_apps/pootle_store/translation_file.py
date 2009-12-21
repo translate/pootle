@@ -149,7 +149,6 @@ class TranslationStoreFile(File):
         oldstats = self.getquickstats()
         self._update_store_cache()
         unit = self.instance.getitem(item)
-
         if newvalues.has_key('target'):
             if not unit.hasplural() and not isinstance(newvalues['target'], basestring):
                 unit.target = newvalues['target'][0]
@@ -161,6 +160,9 @@ class TranslationStoreFile(File):
             unit.removenotes()
             if newvalues['translator_comments']:
                 unit.addnote(newvalues['translator_comments'], origin="translator")
+                
+        unit.save()
+        unit.sync(unit.getorig())
 
         had_header = True
         if isinstance(self.store, po.pofile):
@@ -179,8 +181,6 @@ class TranslationStoreFile(File):
                 
             self.store.updateheader(add=True, **headerupdates)
 
-        unit.save()
-        unit.sync(unit.getorig())
         self.savestore()
         if not had_header:
             # if new header was added item indeces will be incorrect, flush stats caches
