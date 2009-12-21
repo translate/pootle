@@ -556,7 +556,7 @@ class Store(models.Model, base.TranslationStore):
 
 def set_store_pootle_path(sender, instance, **kwargs):
     instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
-models.signals.pre_save.connect(set_store_pootle_path, sender=Store)
+pre_save.connect(set_store_pootle_path, sender=Store)
 
 def store_post_init(sender, instance, **kwargs):
     translation_file_updated.connect(instance.handle_file_update, sender=instance.file)
@@ -565,8 +565,8 @@ def store_post_init(sender, instance, **kwargs):
         # invalidating stats that are not affected by suggestions
         translation_file_updated.connect(instance.handle_file_update, sender=instance.pending)
 
-models.signals.post_init.connect(store_post_init, sender=Store)
+post_init.connect(store_post_init, sender=Store)
 
 def store_post_delete(sender, instance, **kwargs):
     deletefromcache(instance, ["getquickstats", "getcompletestats"])
-models.signals.post_delete.connect(store_post_delete, sender=Store)
+post_delete.connect(store_post_delete, sender=Store)
