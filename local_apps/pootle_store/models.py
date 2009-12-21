@@ -134,6 +134,9 @@ class Unit(models.Model, base.TranslationUnit):
     def markfuzzy(self, value=True):
         self.fuzzy = value
 
+    def hasplural(self):
+        return len(self.source.strings) > 1
+    
     def getorig(self):
         return self.store.file.store.units[self.index]
     
