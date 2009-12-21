@@ -179,6 +179,8 @@ class TranslationStoreFile(File):
                 
             self.store.updateheader(add=True, **headerupdates)
 
+        unit.save()
+        unit.sync(unit.getorig())
         self.savestore()
         if not had_header:
             # if new header was added item indeces will be incorrect, flush stats caches
@@ -211,3 +213,5 @@ class TranslationStoreFile(File):
     def getpomtime(self):
         return statsdb.get_mod_info(self.path)
 
+
+    
