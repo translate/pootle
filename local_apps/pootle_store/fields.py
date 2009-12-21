@@ -57,6 +57,8 @@ class MultiStringField(models.Field):
             return None
         elif isinstance(value, basestring):
             return multistring(value.split(SEPERATOR))
+        elif isinstance(value, dict):
+            return multistring([val for key, val in sorted(value.items())])
         else:
             return multistring(value)
             
