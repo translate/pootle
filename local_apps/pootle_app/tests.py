@@ -2,7 +2,6 @@ import tempfile
 import shutil
 import urlparse
 import os
-import StringIO
 import zipfile
 
 from translate.misc import wStringIO
@@ -185,7 +184,7 @@ class AdminTests(PootleTestCase):
 
     def test_upload_new_file(self):
         """Tests that we can upload a new file into a project."""
-        pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rest"\n')
+        pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rest"\n')
         pocontent.name = "test_new_upload.po"
     
         post_dict = {
@@ -205,7 +204,7 @@ class AdminTests(PootleTestCase):
 
     def test_upload_suggestions(self):
         """Tests that we can upload when we only have suggest rights."""
-        pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "samaka"\n')
+        pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "samaka"\n')
         pocontent.name = "pootle.po"
     
         post_dict = {
@@ -223,7 +222,7 @@ class AdminTests(PootleTestCase):
 
     def test_upload_overwrite(self):
         """Tests that we can overwrite a file in a project."""    
-        pocontent = StringIO.StringIO('#: test.c\nmsgid "fish"\nmsgstr ""\n#: test.c\nmsgid "test"\nmsgstr "barf"\n\n')
+        pocontent = wStringIO.StringIO('#: test.c\nmsgid "fish"\nmsgstr ""\n#: test.c\nmsgid "test"\nmsgstr "barf"\n\n')
         pocontent.name = "pootle.po"
     
         post_dict = {
@@ -270,7 +269,7 @@ class AdminTests(PootleTestCase):
 
     def test_upload_over_file(self):
         """Tests that we can upload a new version of a file into a project."""
-        pocontent = StringIO.StringIO('''#: fish.c
+        pocontent = wStringIO.StringIO('''#: fish.c
 msgid "fish"
 msgstr ""
         
@@ -287,7 +286,7 @@ msgstr "resto"
             }
         response = self.client.post("/af/pootle/", post_dict)
     
-        pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "blo3"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
+        pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "blo3"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
         pocontent.name = "pootle.po"
 
         post_dict = {
@@ -309,7 +308,7 @@ msgstr "resto"
 
     def test_upload_new_xliff_file(self):
         """Tests that we can upload a new XLIFF file into a project."""
-        xliffcontent = StringIO.StringIO('''<?xml version='1.0' encoding='utf-8'?>
+        xliffcontent = wStringIO.StringIO('''<?xml version='1.0' encoding='utf-8'?>
         <xliff xmlns="urn:oasis:names:tc:xliff:document:1.1" version="1.1">
         <file original="" source-language="en-US" datatype="po">
         <body>
@@ -339,7 +338,7 @@ msgstr "resto"
 
     def test_upload_xliff_over_file(self):
         """Tests that we can upload a new version of a XLIFF file into a project."""
-        pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n')
+        pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n')
         pocontent.name = "test_upload_xliff.po"
         post_dict = {
             'file': pocontent,
@@ -348,7 +347,7 @@ msgstr "resto"
             }
         response = self.client.post("/ar/pootle/", post_dict)
 
-        xlfcontent = StringIO.StringIO('''<?xml version="1.0" encoding="utf-8"?>
+        xlfcontent = wStringIO.StringIO('''<?xml version="1.0" encoding="utf-8"?>
         <xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
         <file datatype="po" original="test_existing.po" source-language="en-US">
         <body>
@@ -410,7 +409,7 @@ msgstr "resto"
 
     def test_submit_plural_translation(self):
         """Tests that we can submit a translation with plurals."""
-        pocontent = StringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n')
+        pocontent = wStringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n')
         pocontent.name = 'test_plural_submit.po'
 
         post_dict = {
@@ -438,7 +437,7 @@ msgstr "resto"
     def test_submit_plural_to_singular_lang(self):
         """Tests that we can submit a translation with plurals to a language without plurals."""
         
-        pocontent = StringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n')
+        pocontent = wStringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n')
         pocontent.name = 'test_plural_submit.po'
 
         post_dict = {
