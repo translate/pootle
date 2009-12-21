@@ -142,7 +142,10 @@ class Unit(models.Model, base.TranslationUnit):
     
     def sync(self, unit):
         """sync in file unit with translations from db"""
-        unit.target = self.target
+        if unit.hasplural():
+            unit.target = self.target.strings
+        else:
+            unit.target = self.target
         unit.addnote(self.getnotes(origin="translator"),
                      origin="translator", position="replace")
         unit.markfuzzy(self.isfuzzy())
