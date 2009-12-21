@@ -95,6 +95,9 @@ class TranslationStoreFile(File):
         return self.name
     path = property(_guess_path)
     
+    def _flush_stats(self):
+        """flush cached stats"""
+        self._stats[self.path] = StatsTuple()
         
     def getquickstats(self):
         """Returns the quick statistics (totals only)."""

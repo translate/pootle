@@ -33,7 +33,7 @@ from translate.misc.lru import LRUCachingDict
 from translate.misc.multistring import multistring
 
 from pootle_store.signals import translation_file_updated
-from pootle_store.translation_file import TranslationStoreFile, StatsTuple
+from pootle_store.translation_file import TranslationStoreFile
 
 
 ################# String #############################
@@ -122,7 +122,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
                 logging.debug("cache miss for %s", self.path)
                 self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore), mod_info)
                 self._store_cache[self.path] = self._store_tuple
-                self._stats[self.path] = StatsTuple()
+                self._flush_stats()
                 translation_file_updated.send(sender=self, path=self.path)
 
 
