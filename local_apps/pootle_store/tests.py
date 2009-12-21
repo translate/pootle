@@ -6,7 +6,7 @@ from pootle_store.models import Store
 
 class UnitTests(PootleTestCase):
     def setUp(self):
-        super(StoreTests, self).setUp()
+        super(UnitTests, self).setUp()
         self.store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
 
     def test_getorig(self):
