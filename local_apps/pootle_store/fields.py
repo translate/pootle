@@ -38,7 +38,7 @@ from pootle_store.translation_file import TranslationStoreFile, StatsTuple
 
 ################# String #############################
 
-SEPERATOR = "__\0__\0__\0__"
+SEPERATOR = "__%$%__%$%__%$%__"
 
 class MultiStringField(models.Field):
     description = "a field imitating translate.misc.multistring used for plurals"
