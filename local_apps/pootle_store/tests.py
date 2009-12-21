@@ -39,6 +39,11 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.target.strings, storeunit.target.strings)
         pofile = factory.getobject(self.store.file.path)
         self.assertEqual(dbunit.target.strings, pofile.units[dbunit.index].target.strings)
+
+        self.assertEqual(dbunit.target, u'samaka')
+        self.assertEqual(dbunit.target, storeunit.target)
+        self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
+
         
     def test_update_fuzzy(self):
         self.store.file.updateunit(0, newvalues={'fuzzy': True}, checker=UnitChecker())
