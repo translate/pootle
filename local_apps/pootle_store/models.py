@@ -133,7 +133,19 @@ class Unit(models.Model, base.TranslationUnit):
     def markfuzzy(self, value=True):
         self.fuzzy = value
 
+    def update(self, unit):
+        """update indb translation from file"""
+        self.source = unit.source
+        self.target = unit.target
+        self.developer_comment = unit.getnotes(origin="developer")
+        self.translator_comment = unit.getnotes(origin="translator")
+        self.locations = "\n".join(unit.getlocations())
+        self.context = unit.getcontext()
+        self.fuzzy = unit.isfuzzy()
+        self.obsolete = unit.isobsolete()
+        self.unitid = unit.getid()
 
+        
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
 post_init.connect(init_baseunit, sender=Unit)
@@ -458,37 +470,17 @@ class Store(models.Model, base.TranslationStore):
             return suggestpos
         return []
 
-
-    def parse(self):
-        self.build(self.file.store)
-        
-    def build(self, store):
-        """store units in db"""
-        self.units.delete()
-        for index, unit in enumerate(store.units):
-            if unit.istranslatable():
-                source = Source(text=unit.source)
-                source.save()
-                target = Target(text=unit.target)
-                target.save()                
-                newunit= Unit(store=self,
-                              index=index,
-                              source_ref=source,
-                              target_ref=target,
-                              developer_comment=unit.getnotes(origin="developer"),
-                              translator_comment=unit.getnotes(origin="translator"),
-                              locations="\n".join(unit.getlocations()),
-                              context=unit.getcontext(),
-                              fuzzy=unit.isfuzzy(),
-                              obsolete=unit.isobsolete(),
-                              unitid=unit.getid(),
-                              )
-                newunit.save()
-                
     def _get_units(self):
         return self.unit_set.order_by('index')
     units=property(_get_units)
 
+    def update(self):
+        """update db with units from file"""
+        for index, unit in enumerate(self.file.store.units):
+            if unit.istranslatable():
+                newunit, created = Unit.objects.get_or_create(store=self, index=index)
+                newunit.update(unit)
+                newunit.save()
     def output(self, file=None):
         if file is None:
             file = self.file
