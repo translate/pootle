@@ -21,20 +21,14 @@
 """Utility classes for handling translation files."""
 
 import os
-import time
 
 from django.core.files import File
 from django.conf import settings
 from django.utils.thread_support import currentThread
 
-from translate.storage import statsdb, factory, poheader, po
+from translate.storage import statsdb, factory
 from translate.misc.lru import LRUCachingDict
 
-from pootle.__version__ import sver as pootle_version
-
-from pootle_store.signals import post_unit_update
-
-x_generator = "Pootle %s" % pootle_version
 
 class StatsTuple(object):
     """Encapsulates stats in the in memory cache, needed
@@ -144,55 +138,6 @@ class TranslationStoreFile(File):
     def getitemslen(self):
         """The number of items in the file."""
         return self.getquickstats()['total']
-
-    def updateunit(self, item, newvalues, checker, user=None, language=None):
-        """Updates a translation with a new target value, comments, or fuzzy
-        state."""
-        # operation replaces file, make sure we have latest copy
-        oldstats = self.getquickstats()
-        self._update_store_cache()
-        unit = self.instance.getitem(item)
-        if newvalues.has_key('target'):
-            if not unit.hasplural() and not isinstance(newvalues['target'], basestring):
-                unit.target = newvalues['target'][0]
-            else:
-                unit.target = newvalues['target']
-        if newvalues.has_key('fuzzy'):
-            unit.markfuzzy(newvalues['fuzzy'])
-        if newvalues.has_key('translator_comments'):
-            unit.removenotes()
-            if newvalues['translator_comments']:
-                unit.addnote(newvalues['translator_comments'], origin="translator")
-                
-        unit.save()
-        unit.sync(unit.getorig())
-
-        had_header = True
-        if isinstance(self.store, po.pofile):
-            had_header = self.store.header()
-            po_revision_date = time.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
-            headerupdates = {'PO_Revision_Date': po_revision_date,
-                             'X_Generator': x_generator}
-
-            if language is not None:
-                headerupdates['Language'] = language.code
-                if language.nplurals and language.pluralequation:
-                    self.store.updateheaderplural(language.nplurals, language.pluralequation)
-
-            if user is not None:
-                headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
-                
-            self.store.updateheader(add=True, **headerupdates)
-
-        self.savestore()
-        if not had_header:
-            # if new header was added item indeces will be incorrect, flush stats caches
-            self._stats[self.path] = StatsTuple()            
-        else:
-            self.reclassifyunit(item, checker)
-        newstats = self.getquickstats()
-        post_unit_update.send(sender=self.instance, oldstats=oldstats, newstats=newstats)
-
 
     def addunit(self, unit):
         """Wrapper around TranslationStore.addunit that updates sourceindex on

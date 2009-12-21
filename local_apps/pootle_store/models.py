@@ -22,6 +22,7 @@ import md5
 import os
 import logging
 import re
+import time
 
 from django.db import models
 from django.conf import settings
@@ -30,14 +31,16 @@ from django.core.files.storage import FileSystemStorage
 from django.db.models.signals import pre_save, post_save, post_init, post_delete
 from django.db.transaction import commit_on_success
 
-from translate.storage import base, statsdb, po
+from translate.storage import base, statsdb, po, poheader
+
+from pootle.__version__ import sver as pootle_version
 
 from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
 
 from pootle_store.fields  import TranslationStoreField, MultiStringField
-from pootle_store.signals import translation_file_updated
+from pootle_store.signals import translation_file_updated, post_unit_update
 
 ############### Unit ####################
 
@@ -170,12 +173,29 @@ class Unit(models.Model, base.TranslationUnit):
         self.obsolete = unit.isobsolete()
         self.unitid = unit.getid()
 
+    def update_from_form(self, newvalues):
+        """update the unit with a new target, value, comments or fuzzy state"""
+        if newvalues.has_key('target'):
+            if not self.hasplural() and not isinstance(newvalues['target'], basestring):
+                self.target = newvalues['target'][0]
+            else:
+                self.target = newvalues['target']
+                
+        if newvalues.has_key('fuzzy'):
+            self.markfuzzy(newvalues['fuzzy'])
+            
+        if newvalues.has_key('translator_comments'):
+            self.addnote(newvalues['translator_comments'],
+                         origin="translator", position="replace")
         
+
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
 post_init.connect(init_baseunit, sender=Unit)
 
 ###################### Store ###########################
+
+x_generator = "Pootle %s" % pootle_version
 
 # custom storage otherwise djago assumes all files are uploads headed to
 # media dir
@@ -521,6 +541,47 @@ class Store(models.Model, base.TranslationStore):
     def getitem(self, item):
         """Returns a single unit based on the item number."""
         return self.units[item]
+
+    def updateheader(self, user=None, language=None):
+        had_header = False
+        if isinstance(self.file.store, po.pofile):
+            had_header = self.file.store.header()
+            po_revision_date = time.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
+            headerupdates = {'PO_Revision_Date': po_revision_date,
+                             'X_Generator': x_generator}
+
+            if language is not None:
+                headerupdates['Language'] = language.code
+                if language.nplurals and language.pluralequation:
+                    self.file.store.updateheaderplural(language.nplurals, language.pluralequation)
+
+            if user is not None:
+                headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
+                
+            self.file.store.updateheader(add=True, **headerupdates)
+        return had_header
+    
+    def updateunit(self, item, newvalues, checker, user=None, language=None):
+        """Updates a translation with a new target value, comments, or fuzzy
+        state."""
+        # operation replaces file, make sure we have latest copy
+        oldstats = self.getquickstats()
+        self.file._update_store_cache()
+        
+        unit = self.getitem(item)
+        unit.update_from_form(newvalues)
+        unit.save()
+        
+        unit.sync(unit.getorig())
+        had_header = self.updateheader(user, language)
+        self.file.savestore()
+        if not had_header:
+            # if new header was added item indeces will be incorrect, flush stats caches
+            self.file._flush_stats()
+        else:
+            self.file.reclassifyunit(item, checker)
+        newstats = self.getquickstats()
+        post_unit_update.send(sender=self, oldstats=oldstats, newstats=newstats)
 
 
 def set_store_pootle_path(sender, instance, **kwargs):
