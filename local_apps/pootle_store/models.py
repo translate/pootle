@@ -27,8 +27,8 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
+from django.db.models.signals import pre_save, post_save, post_init, post_delete
 from django.db.transaction import commit_on_success
-from django.db.models.signals import pre_save, post_init, post_delete
 
 from translate.storage import base, statsdb, po
 
@@ -505,6 +505,7 @@ def set_store_pootle_path(sender, instance, **kwargs):
     instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
 pre_save.connect(set_store_pootle_path, sender=Store)
 
+
 def store_post_init(sender, instance, **kwargs):
     translation_file_updated.connect(instance.handle_file_update, sender=instance.file)
     if instance.pending is not None:
@@ -513,6 +514,10 @@ def store_post_init(sender, instance, **kwargs):
         translation_file_updated.connect(instance.handle_file_update, sender=instance.pending)
 
 post_init.connect(store_post_init, sender=Store)
+
+def store_post_save(sender, instance, **kwargs):
+    instance.update()
+post_save.connect(store_post_save, sender=Store)
 
 def store_post_delete(sender, instance, **kwargs):
     deletefromcache(instance, ["getquickstats", "getcompletestats"])
