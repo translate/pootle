@@ -27,6 +27,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
+from django.db.transaction import commit_on_success
 from django.db.models.signals import pre_save, post_init, post_delete
 
 from translate.storage import base, statsdb, po
@@ -474,6 +475,7 @@ class Store(models.Model, base.TranslationStore):
         return self.unit_set.order_by('index')
     units=property(_get_units)
 
+    @commit_on_success
     def update(self):
         """update db with units from file"""
         for index, unit in enumerate(self.file.store.units):
