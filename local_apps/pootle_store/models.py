@@ -517,9 +517,6 @@ class Store(models.Model, base.TranslationStore):
             if match is not None:
                 match.sync(unit)
         
-    def output(self):
-        self.syncfile(self)
-        print store
 
     def getitem(self, item):
         """Returns a single unit based on the item number."""
