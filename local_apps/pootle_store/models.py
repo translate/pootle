@@ -39,47 +39,22 @@ from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.signals import translation_file_updated
 
 ############### Unit ####################
-class Text(models.Model):
-    class Meta(object):
-        abstract = True
-        
-    text = MultiStringField(null=True)
-
-    # inherited
-    language = models.CharField(max_length=255)
-    
-    # auto generated fields
-    hash = models.CharField(max_length=32, db_index=True)
-    wordcount = models.SmallIntegerField()
-    length = models.SmallIntegerField(db_index=True)
-
-    def _init_data_fields(self):
-        self.hash = md5.md5(self.text.encode("utf-8")).hexdigest()
-        self.wordcount = statsdb.wordcount(self.text)
-        self.length = len(self.text)
-
-    def __unicode__(self):
-        return unicode(self.text)
-
-
-def set_data_fields(sender, instance, **kwargs):
-    instance._init_data_fields()
-    
-class Source(Text):
-    pass
-pre_save.connect(set_data_fields, sender=Source)
-
-class Target(Text):
-    pass
-pre_save.connect(set_data_fields, sender=Target)
-
 
 class Unit(models.Model, base.TranslationUnit):
+    class Meta:
+        ordering = ['store', 'index']
+        unique_together = ('store', 'index')
+        
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
-    source_ref = models.ForeignKey("pootle_store.Source", db_index=True)
-    target_ref = models.ForeignKey("pootle_store.Target", db_index=True)
-    
+
+    source_f = MultiStringField(null=True)
+    target_f = MultiStringField(null=True)
+
+    hash = models.CharField(max_length=32, db_index=True)
+    wordcount = models.SmallIntegerField(default=0)
+    length = models.SmallIntegerField(db_index=True, default=0)
+
     developer_comment = models.TextField(null=True)
     translator_comment = models.TextField(null=True)
     locations = models.TextField(null=True)
@@ -95,40 +70,24 @@ class Unit(models.Model, base.TranslationUnit):
         self._encoding = 'UTF-8'
         
     def _get_source(self):
-        if self.source_ref is None:
-            return None
-        return self.source_ref.text
+        return self.source_f
 
     def _set_source(self, value):
-        if self._source is None:
-            source = Source(text=value)
-            source.save()
-            self.source_ref = source
-            self.save()
-        else:
-            self.source_ref.text = value
-            self.source_ref.save()
-
+        self.source_f = value
+        self.hash = md5.md5(self.source_f.encode("utf-8")).hexdigest()
+        self.wordcount = statsdb.wordcount(self.source_f)
+        self.length = len(self.source_f)
+            
     _source = property(_get_source, _set_source)
 
     def _get_target(self):
-        if self.target_ref is None:
-            return None
-        return self.target_ref.text
+        return self.target_f
 
     def _set_target(self, value):
-        if self.target_ref is None:
-            target = Target(text=value)
-            target.save()
-            self.target_ref = target
-            self.save()
-        else:
-            self.target_ref.text = value
-            self.target_ref.save()
-        
+        self.target_f = value
+
     _target = property(_get_target, _set_target)
-
-
+    
     def convert(self, unitclass):
         return unitclass.buildfromunit(self)
 
@@ -174,12 +133,6 @@ class Unit(models.Model, base.TranslationUnit):
     def markfuzzy(self, value=True):
         self.fuzzy = value
 
-def clean_orphaned_text(sender, instance, **kwargs):
-    if instance.source_ref.unit_set.count() == 0:
-        instance.source_ref.delete()
-    if instance.target_ref.unit_set.count() == 0:
-        instance.target_ref.delete()
-post_delete.connect(clean_orphaned_text, sender=Unit)
 
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
