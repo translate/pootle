@@ -134,6 +134,16 @@ class Unit(models.Model, base.TranslationUnit):
     def markfuzzy(self, value=True):
         self.fuzzy = value
 
+    def getorig(self):
+        return self.store.file.store.units[self.index]
+    
+    def sync(self, unit):
+        """sync in file unit with translations from db"""
+        unit.target = self.target
+        unit.addnote(self.getnotes(origin="translator"),
+                     origin="translator", position="replace")
+        unit.markfuzzy(self.isfuzzy())
+
     def update(self, unit):
         """update indb translation from file"""
         self.source = unit.source
@@ -483,19 +493,20 @@ class Store(models.Model, base.TranslationStore):
                 newunit, created = Unit.objects.get_or_create(store=self, index=index)
                 newunit.update(unit)
                 newunit.save()
-    def output(self, file=None):
-        if file is None:
-            file = self.file
-        store = factory.getobject(self.file)
+    
+    def sync(self):
+        """sync file with translations from db"""
         self.require_index()
-        for unit in store.units:
+        for unit in self.file.store.units:
             uid = unit.getid()
             match =  self.id_index.get(uid, None)
             if match is not None:
-                unit.merge(match)
+                match.sync(unit)
+        
+    def output(self):
+        self.syncfile(self)
         print store
-        
-        
+
     def getitem(self, item):
         """Returns a single unit based on the item number."""
         return self.units[item]
