@@ -53,6 +53,8 @@ class MultiStringField(models.Field):
     def to_python(self, value):
         if isinstance(value, multistring):
             return value
+        if value is None:
+            return None
         elif isinstance(value, basestring):
             return multistring(value.split(SEPERATOR))
         else:
@@ -60,7 +62,10 @@ class MultiStringField(models.Field):
             
     def get_db_prep_value(self, value):
         #FIXME: maybe we need to override get_db_prep_save instead?
-        return SEPERATOR.join(value.strings)
+        if value is not None:
+            return SEPERATOR.join(value.strings)
+        else:
+            return None
             
     def get_db_prep_lookup(self, lookup_type, value):
         if lookup_type in ('exact', 'iexact'):
