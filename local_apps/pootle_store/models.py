@@ -549,6 +549,9 @@ class Store(models.Model, base.TranslationStore):
         print store
         
         
+    def getitem(self, item):
+        """Returns a single unit based on the item number."""
+        return self.units[item]
 
 
 def set_store_pootle_path(sender, instance, **kwargs):
