@@ -138,7 +138,15 @@ class Unit(models.Model, base.TranslationUnit):
         return len(self.source.strings) > 1
     
     def getorig(self):
-        return self.store.file.store.units[self.index]
+        unit = self.store.file.store.units[self.index]
+        if self.getid() == unit.getid():
+            return unit
+        #FIXME: if we are here, file changed structure and we need to update indeces
+        logging.debug("incorrect unit index %d for %s in file %s", unit.index, unit, unit.store.file)
+        self.store.file.store.require_index()
+        unit = self.store.file.store.findid(self.getid())
+        return unit
+    
     
     def sync(self, unit):
         """sync in file unit with translations from db"""
