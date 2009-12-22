@@ -53,12 +53,15 @@ class Unit(models.Model, base.TranslationUnit):
     index = models.IntegerField(db_index=True)
 
     source_f = MultiStringField(null=True)
+    source_hash = models.CharField(max_length=32, db_index=True)
+    source_wordcount = models.SmallIntegerField(default=0)
+    source_length = models.SmallIntegerField(db_index=True, default=0)
+
     target_f = MultiStringField(null=True)
-
-    hash = models.CharField(max_length=32, db_index=True)
-    wordcount = models.SmallIntegerField(default=0)
-    length = models.SmallIntegerField(db_index=True, default=0)
-
+    target_hash = models.CharField(max_length=32, db_index=True)
+    target_wordcount = models.SmallIntegerField(default=0)
+    target_length = models.SmallIntegerField(db_index=True, default=0)
+    
     developer_comment = models.TextField(null=True)
     translator_comment = models.TextField(null=True)
     locations = models.TextField(null=True)
@@ -78,9 +81,9 @@ class Unit(models.Model, base.TranslationUnit):
 
     def _set_source(self, value):
         self.source_f = value
-        self.hash = md5.md5(self.source_f.encode("utf-8")).hexdigest()
-        self.wordcount = statsdb.wordcount(self.source_f)
-        self.length = len(self.source_f)
+        self.source_hash = md5.md5(self.source_f.encode("utf-8")).hexdigest()
+        self.source_wordcount = statsdb.wordcount(self.source_f)
+        self.source_length = len(self.source_f)
             
     _source = property(_get_source, _set_source)
 
@@ -89,6 +92,9 @@ class Unit(models.Model, base.TranslationUnit):
 
     def _set_target(self, value):
         self.target_f = value
+        self.target_hash = md5.md5(self.target_f.encode("utf-8")).hexdigest()
+        self.target_wordcount = statsdb.wordcount(self.target_f)
+        self.target_length = len(self.target_f)
 
     _target = property(_get_target, _set_target)
     
