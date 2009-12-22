@@ -250,28 +250,38 @@ class Store(models.Model, base.TranslationStore):
 
     @getfromcache
     def getquickstats(self):
-        total_query = self.units
-        total = total_query.count()
-        totalsourcewords = sum_column(total_query, 'source_wordcount')
-        untranslated_query = self.units.filter(target_length=0)
-        untranslated = untranslated_query.count()
-        untranslatedsourcewords = sum_column(untranslated_query, 'source_wordcount')
-        fuzzy_query = self.units.filter(fuzzy=True)
-        fuzzy = fuzzy_query.count()
-        fuzzysourcewords = sum_column(fuzzy_query, 'source_wordcount')
-        translated_query = self.units.filter(target_length__gt=0)
-        translated = translated_query.count()
-        translatedsourcewords = sum_column(translated_query, 'source_wordcount')
-        translatedtargetwords = sum_column(translated_query, 'target_wordcount')
-        return {'total': total,
-                'totalsourcewords': totalsourcewords,
-                'untranslated': untranslated,
-                'untranslatedsourcewords': untranslatedsourcewords,
-                'fuzzy': fuzzy,
-                'fuzzysourcewords': fuzzysourcewords,
-                'translated': translated,
-                'translatedsourcewords': translatedsourcewords,
-                'translatedtargetwords': translatedtargetwords}
+        total = sum_column(self.units,
+                           ['source_wordcount'], count=True)
+        untranslated = sum_column(self.units.filter(target_length=0),
+                                  ['source_wordcount'], count=True)
+        fuzzy = sum_column(self.units.filter(fuzzy=True),
+                           ['source_wordcount'], count=True)
+        translated = sum_column(self.units.filter(target_length__gt=0),
+                                ['source_wordcount', 'target_wordcount'], count=True)
+        result = {}
+        result['total'] = total['count']
+        if result['total'] == 0:
+            result['totalsourcewords'] = 0
+        else:
+            result['totalsourcewords'] = total['source_wordcount']
+        result['fuzzy'] = fuzzy['count']
+        if result['fuzzy'] == 0:
+            result['fuzzysourcewords'] = 0
+        else:
+            result['fuzzysourcewords'] = fuzzy['source_wordcount']
+        result['untranslated'] = untranslated['count']
+        if result['untranslated'] == 0:
+            result['untranslatedsourcewords'] = 0
+        else:
+            result['untranslatedsourcewords'] = untranslated['source_wordcount']
+        result['translated'] = translated['count']
+        if result['translated'] == 0:
+            result['translatedsourcewords'] = 0
+            result['translatedtargetwords'] = 0
+        else:
+            result['translatedsourcewords'] = translated['source_wordcount']
+            result['translatedtargetwords'] = translated['target_wordcount']
+        return result
         
     @getfromcache
     def getcompletestats(self, checker):

@@ -19,15 +19,28 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from django.db.models import Sum
+    raise ImportError
+    from django.db.models import Sum, Count
+    
+    def sum_column(queryset, columns, count=False):
+        arg_dict = {}
+        if count:
+            arg_dict['count'] = Count('id')
+        
+        for column in columns:
+            arg_dict[column] = Sum(column)
+        
+        return  queryset.aggregate(**arg_dict)
 
-    def sum_column(queryset, column):
-        result = queryset.aggregate(result=Sum(column))['result']
-        if result is None:
-            return 0
-        else:
-            return result
 except ImportError:
-    def sum_column(queryset, column):
-        return sum(queryset.values_list(column, flat=True))
+    from pootle_store.util import dictsum
+    
+    def sum_column(queryset, columns, count=False):
+        initial = {}
+        for column in columns:
+            initial[column] = 0
+        
+        result = reduce(dictsum, queryset.values(*columns), initial)
+        result['count'] = queryset.count()
+        return result
 
