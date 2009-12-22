@@ -93,3 +93,21 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.getnotes(origin="translator"), pofile.units[dbunit.index].getnotes(origin="translator"))
     
     
+class StoreTests(PootleTestCase):
+    def setUp(self):
+        super(StoreTests, self).setUp()
+        self.store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+
+    def test_quickstats(self):
+        dbstats = self.store.getquickstats()
+        filestats = self.store.file.getquickstats()
+
+        self.assertEqual(dbstats['total'], filestats['total'])
+        self.assertEqual(dbstats['totalsourcewords'], filestats['totalsourcewords'])
+        self.assertEqual(dbstats['untranslated'], filestats['untranslated'])
+        self.assertEqual(dbstats['untranslatedsourcewords'], filestats['untranslatedsourcewords'])
+        self.assertEqual(dbstats['fuzzy'], filestats['fuzzy'])
+        self.assertEqual(dbstats['fuzzysourcewords'], filestats['fuzzysourcewords'])
+        self.assertEqual(dbstats['translated'], filestats['translated'])
+        self.assertEqual(dbstats['translatedsourcewords'], filestats['translatedsourcewords'])
+        self.assertEqual(dbstats['translatedtargetwords'], filestats['translatedtargetwords'])
