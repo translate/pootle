@@ -31,11 +31,13 @@ from django.core.files.storage import FileSystemStorage
 from django.db.models.signals import pre_save, post_save, post_init, post_delete
 from django.db.transaction import commit_on_success
 
+
 from translate.storage import base, statsdb, po, poheader
 
 from pootle.__version__ import sver as pootle_version
 
 from pootle_misc.util import getfromcache, deletefromcache
+from pootle_misc.aggregate import sum_column
 from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
 
@@ -251,6 +253,30 @@ class Store(models.Model, base.TranslationStore):
         # convert result to normal dicts for later operations
         return dict(self.file.getquickstats())
 
+    def _getquickstats(self):
+        total_query = self.units
+        total = total_query.count()
+        totalsourcewords = sum_column(total_query, 'source_wordcount')
+        untranslated_query = self.units.filter(target_length=0)
+        untranslated = untranslated_query.count()
+        untranslatedsourcewords = sum_column(untranslated_query, 'source_wordcount')
+        fuzzy_query = self.units.filter(fuzzy=True)
+        fuzzy = fuzzy_query.count()
+        fuzzysourcewords = sum_column(fuzzy_query, 'source_wordcount')
+        translated_query = self.units.filter(target_length__gt=0)
+        translated = translated_query.count()
+        translatedsourcewords = sum_column(translated_query, 'source_wordcount')
+        translatedtargetwords = sum_column(translated_query, 'target_wordcount')
+        return {'total': total,
+                'totalsourcewords': totalsourcewords,
+                'untranslated': untranslated,
+                'untranslatedsourcewords': untranslatedsourcewords,
+                'fuzzy': fuzzy,
+                'fuzzysourcewords': fuzzysourcewords,
+                'translated': translated,
+                'translatedsourcewords': translatedsourcewords,
+                'translatedtargetwords': translatedtargetwords}
+        
     @getfromcache
     def getcompletestats(self, checker):
         #FIXME: figure out our own checker?
