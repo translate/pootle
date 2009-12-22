@@ -16,6 +16,9 @@ class UnitTests(PootleTestCase):
 
     def test_convert(self):
         for dbunit in self.store.units.iterator():
+            if dbunit.hasplural() and not dbunit.istranslated():
+                # skip untranslated plural units, they will always look different
+                continue
             storeunit = dbunit.getorig()
             newunit = dbunit.convert(self.store.file.store.UnitClass)
             self.assertEqual(str(newunit), str(storeunit))
