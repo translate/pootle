@@ -51,10 +51,10 @@ class MultiStringField(models.Field):
         return "TextField"
 
     def to_python(self, value):
-        if isinstance(value, multistring):
-            return value
         if value is None:
             return None
+        elif isinstance(value, multistring):
+            return value
         elif isinstance(value, basestring):
             return multistring(value.split(SEPERATOR))
         elif isinstance(value, dict):
