@@ -185,11 +185,6 @@ class TranslationStoreField(FileField):
 
     attr_class = TranslationStoreFieldFile
 
-    #def formfield(self, **kwargs):
-    #    defaults = {'form_class': FileField}
-    #    defaults.update(kwargs)
-    #    return super(TranslationStoreField, self).formfield(**defaults)
-
     def __init__(self, ignore=None, **kwargs):
         """ignore: postfix to be stripped from filename when trying to
         determine file format for parsing, useful for .pending files"""
