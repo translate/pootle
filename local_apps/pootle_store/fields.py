@@ -40,6 +40,17 @@ from pootle_store.translation_file import TranslationStoreFile
 
 SEPERATOR = "__%$%__%$%__%$%__"
 
+def list_empty(strings):
+    """check if list is exclusively made of empty strings.
+
+    useful for detecting empty multistrings and storing them as a
+    simple empty string in db."""
+    
+    for string in strings:
+        if len(string) > 0:
+            return False
+    return True
+        
 class MultiStringField(models.Field):
     description = "a field imitating translate.misc.multistring used for plurals"
     __metaclass__ = models.SubfieldBase
@@ -64,10 +75,18 @@ class MultiStringField(models.Field):
             
     def get_db_prep_value(self, value):
         #FIXME: maybe we need to override get_db_prep_save instead?
-        if value is not None:
-            return SEPERATOR.join(value.strings)
-        else:
+        if value is None:
             return None
+        elif isinstance(value, multistring):
+            if list_empty(value.strings):
+                return ''
+            else:
+                return SEPERATOR.join(value.strings)
+        elif isinstance(value, list):
+            if list_empty(value):
+                return ''
+            else:
+                return SEPERATOR.join(value)
             
     def get_db_prep_lookup(self, lookup_type, value):
         if lookup_type in ('exact', 'iexact'):
