@@ -250,10 +250,6 @@ class Store(models.Model, base.TranslationStore):
 
     @getfromcache
     def getquickstats(self):
-        # convert result to normal dicts for later operations
-        return dict(self.file.getquickstats())
-
-    def _getquickstats(self):
         total_query = self.units
         total = total_query.count()
         totalsourcewords = sum_column(total_query, 'source_wordcount')
