@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import md5
 import os
 import logging
 import re
@@ -33,6 +32,7 @@ from django.db.transaction import commit_on_success
 
 
 from translate.storage import base, statsdb, po, poheader
+from translate.misc.hash import md5_f
 
 from pootle.__version__ import sver as pootle_version
 
@@ -90,7 +90,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def _set_source(self, value):
         self.source_f = value
-        self.source_hash = md5.md5(self.source_f.encode("utf-8")).hexdigest()
+        self.source_hash = md5_f(self.source_f.encode("utf-8")).hexdigest()
         self.source_wordcount = count_words(self.source_f.strings)
         self.source_length = len(self.source_f)
             
@@ -101,7 +101,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def _set_target(self, value):
         self.target_f = value
-        self.target_hash = md5.md5(self.target_f.encode("utf-8")).hexdigest()
+        self.target_hash = md5_f(self.target_f.encode("utf-8")).hexdigest()
         self.target_wordcount = count_words(self.target_f.strings)
         self.target_length = len(self.target_f)
 
