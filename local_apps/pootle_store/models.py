@@ -141,7 +141,9 @@ class Unit(models.Model, base.TranslationUnit):
         return self.locations.split('\n')
 
     def addlocation(self, location):
-        self.locations.append(location + "\n")
+        if self.locations is None:
+            self.locations = ''
+        self.locations += location + "\n"
 
     def getcontext(self):
         return self.context
