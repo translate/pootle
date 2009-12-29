@@ -255,6 +255,32 @@ class Store(models.Model, base.TranslationStore):
     def get_absolute_url(self):
         return l(self.pootle_path)
 
+    @commit_on_success
+    def update(self):
+        """update db with units from file"""
+        for index, unit in enumerate(self.file.store.units):
+            if unit.istranslatable():
+                newunit, created = Unit.objects.get_or_create(store=self, index=index)
+                newunit.update(unit)
+                newunit.save()
+    
+    def sync(self):
+        """sync file with translations from db"""
+        self.require_index()
+        for unit in self.file.store.units:
+            uid = unit.getid()
+            match =  self.id_index.get(uid, None)
+            if match is not None:
+                match.sync(unit)
+
+######################## TranslationStore #########################
+    def _get_units(self):
+        return self.unit_set.order_by('index')
+    units=property(_get_units)
+
+    
+############################### Stats ############################
+
     @getfromcache
     def getquickstats(self):
         total = sum_column(self.units,
@@ -297,6 +323,161 @@ class Store(models.Model, base.TranslationStore):
         for key, value in self.file.getcompletestats(checker).iteritems():
             stats[key] = len(value)
         return stats
+
+################################ Translation #############################
+
+    def getitem(self, item):
+        """Returns a single unit based on the item number."""
+        return self.units[item]
+
+
+    def mergefile(self, newfile, username, allownewstrings, suggestions, notranslate, obsoletemissing):
+        """make sure each msgid is unique ; merge comments etc from
+        duplicates into original"""
+        self.file._update_store_cache()
+        self.require_index()
+        newfile.require_index()
+
+        old_ids = set(self.id_index.keys())
+        new_ids = set(newfile.id_index.keys())
+
+        if allownewstrings:
+            new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
+            for unit in new_units:
+                self.file.store.addunit(self.file.store.UnitClass.buildfromunit(unit))
+
+        if obsoletemissing:
+            old_units = (self.file.store.findid(uid) for uid in old_ids - new_ids)
+            for unit in old_units:
+                unit.makeobsolete()
+
+        if notranslate or suggestions:
+            self.initpending(create=True)
+
+        shared_units = ((self.file.store.findid(uid), newfile.findid(uid)) for uid in old_ids & new_ids)
+        for oldunit, newunit in shared_units:
+            if not newunit.istranslated():
+                continue
+
+            if notranslate or oldunit.istranslated() and suggestions:
+                self.addunitsuggestion(oldunit, newunit, username)
+            else:
+                oldunit.merge(newunit)
+
+        if (suggestions or notranslate) and not self.file.store.suggestions_in_format:
+            self.pending.savestore()
+
+        if not isinstance(newfile, po.pofile) or notranslate or suggestions:
+            # TODO: We don't support updating the header yet.
+            self.file.savestore()
+            return
+
+        # Let's update selected header entries. Only the ones
+        # listed below, and ones that are empty in self can be
+        # updated. The check in header_order is just a basic
+        # sanity check so that people don't insert garbage.
+        updatekeys = [
+            'Content-Type',
+            'POT-Creation-Date',
+            'Last-Translator',
+            'Project-Id-Version',
+            'PO-Revision-Date',
+            'Language-Team',
+            ]
+        headerstoaccept = {}
+        ownheader = self.file.store.parseheader()
+        for (key, value) in newfile.parseheader().items():
+            if key in updatekeys or (not key in ownheader
+                                     or not ownheader[key]) and key in po.pofile.header_order:
+                headerstoaccept[key] = value
+            self.file.store.updateheader(add=True, **headerstoaccept)
+
+        # Now update the comments above the header:
+        header = self.file.store.header()
+        newheader = newfile.header()
+        if header is None and not newheader is None:
+            header = self.file.store.UnitClass('', encoding=self.file.store._encoding)
+            header.target = ''
+        if header:
+            header._initallcomments(blankall=True)
+            if newheader:
+                for i in range(len(header.allcomments)):
+                    header.allcomments[i].extend(newheader.allcomments[i])
+
+        self.file.savestore()
+
+
+    def updateheader(self, user=None, language=None):
+        had_header = False
+        if isinstance(self.file.store, po.pofile):
+            had_header = self.file.store.header()
+            po_revision_date = time.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
+            headerupdates = {'PO_Revision_Date': po_revision_date,
+                             'X_Generator': x_generator}
+
+            if language is not None:
+                headerupdates['Language'] = language.code
+                if language.nplurals and language.pluralequation:
+                    self.file.store.updateheaderplural(language.nplurals, language.pluralequation)
+
+            if user is not None:
+                headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
+                
+            self.file.store.updateheader(add=True, **headerupdates)
+        return had_header
+    
+    def updateunit(self, item, newvalues, checker, user=None, language=None):
+        """Updates a translation with a new target value, comments, or fuzzy
+        state."""
+        # operation replaces file, make sure we have latest copy
+        oldstats = self.getquickstats()
+        self.file._update_store_cache()
+        
+        unit = self.getitem(item)
+        unit.update_from_form(newvalues)
+        unit.save()
+        
+        unit.sync(unit.getorig())
+        had_header = self.updateheader(user, language)
+        self.file.savestore()
+        if not had_header:
+            # if new header was added item indeces will be incorrect, flush stats caches
+            self.file._flush_stats()
+        else:
+            self.file.reclassifyunit(item, checker)
+        newstats = self.getquickstats()
+        post_unit_update.send(sender=self, oldstats=oldstats, newstats=newstats)
+
+
+############################ Translation Memory ##########################
+
+    def inittm(self):
+        """initialize translation memory file if needed"""
+        if self.tm and os.path.exists(self.tm.path):
+            return
+
+        tm_filename = self.file.path + os.extsep + 'tm'
+        if os.path.exists(tm_filename):
+            self.tm = tm_filename
+            self.save()
+
+    def gettmsuggestions(self, item):
+        """find all the tmsuggestion items submitted for the given
+        item"""
+
+        self.inittm()
+        if self.tm:
+            unit = self.getitem(item)
+            locations = unit.getlocations()
+            # TODO: review the matching method. We can't simply use the
+            # location index, because we want multiple matches.
+            suggestpos = [suggestpo for suggestpo in self.tm.store.units
+                          if suggestpo.getlocations() == locations]
+            return suggestpos
+        return []
+
+
+############################## Suggestions #################################
 
     def initpending(self, create=False):
         """initialize pending translations file if needed"""
@@ -458,181 +639,11 @@ class Store(models.Model, base.TranslationStore):
                 return suggestedby.group(1)
         return None
 
-
-    def mergefile(self, newfile, username, allownewstrings, suggestions, notranslate, obsoletemissing):
-        """make sure each msgid is unique ; merge comments etc from
-        duplicates into original"""
-        self.file._update_store_cache()
-        self.file.store.require_index()
-        newfile.require_index()
-
-        old_ids = set(self.file.store.id_index.keys())
-        new_ids = set(newfile.id_index.keys())
-
-        if allownewstrings:
-            new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
-            for unit in new_units:
-                self.file.store.addunit(self.file.store.UnitClass.buildfromunit(unit))
-
-        if obsoletemissing:
-            old_units = (self.file.store.findid(uid) for uid in old_ids - new_ids)
-            for unit in old_units:
-                unit.makeobsolete()
-
-        if notranslate or suggestions:
-            self.initpending(create=True)
-
-        shared_units = ((self.file.store.findid(uid), newfile.findid(uid)) for uid in old_ids & new_ids)
-        for oldunit, newunit in shared_units:
-            if not newunit.istranslated():
-                continue
-
-            if notranslate or oldunit.istranslated() and suggestions:
-                self.addunitsuggestion(oldunit, newunit, username)
-            else:
-                oldunit.merge(newunit)
-
-        if (suggestions or notranslate) and not self.file.store.suggestions_in_format:
-            self.pending.savestore()
-
-        if not isinstance(newfile, po.pofile) or notranslate or suggestions:
-            # TODO: We don't support updating the header yet.
-            self.file.savestore()
-            return
-
-        # Let's update selected header entries. Only the ones
-        # listed below, and ones that are empty in self can be
-        # updated. The check in header_order is just a basic
-        # sanity check so that people don't insert garbage.
-        updatekeys = [
-            'Content-Type',
-            'POT-Creation-Date',
-            'Last-Translator',
-            'Project-Id-Version',
-            'PO-Revision-Date',
-            'Language-Team',
-            ]
-        headerstoaccept = {}
-        ownheader = self.file.store.parseheader()
-        for (key, value) in newfile.parseheader().items():
-            if key in updatekeys or (not key in ownheader
-                                     or not ownheader[key]) and key in po.pofile.header_order:
-                headerstoaccept[key] = value
-            self.file.store.updateheader(add=True, **headerstoaccept)
-
-        # Now update the comments above the header:
-        header = self.file.store.header()
-        newheader = newfile.header()
-        if header is None and not newheader is None:
-            header = self.file.store.UnitClass('', encoding=self.file.store._encoding)
-            header.target = ''
-        if header:
-            header._initallcomments(blankall=True)
-            if newheader:
-                for i in range(len(header.allcomments)):
-                    header.allcomments[i].extend(newheader.allcomments[i])
-
-        self.file.savestore()
-
-
-    def inittm(self):
-        """initialize translation memory file if needed"""
-        if self.tm and os.path.exists(self.tm.path):
-            return
-
-        tm_filename = self.file.path + os.extsep + 'tm'
-        if os.path.exists(tm_filename):
-            self.tm = tm_filename
-            self.save()
-
-    def gettmsuggestions(self, item):
-        """find all the tmsuggestion items submitted for the given
-        item"""
-
-        self.inittm()
-        if self.tm:
-            unit = self.getitem(item)
-            locations = unit.getlocations()
-            # TODO: review the matching method. We can't simply use the
-            # location index, because we want multiple matches.
-            suggestpos = [suggestpo for suggestpo in self.tm.store.units
-                          if suggestpo.getlocations() == locations]
-            return suggestpos
-        return []
-
-    def _get_units(self):
-        return self.unit_set.order_by('index')
-    units=property(_get_units)
-
-    @commit_on_success
-    def update(self):
-        """update db with units from file"""
-        for index, unit in enumerate(self.file.store.units):
-            if unit.istranslatable():
-                newunit, created = Unit.objects.get_or_create(store=self, index=index)
-                newunit.update(unit)
-                newunit.save()
-    
-    def sync(self):
-        """sync file with translations from db"""
-        self.require_index()
-        for unit in self.file.store.units:
-            uid = unit.getid()
-            match =  self.id_index.get(uid, None)
-            if match is not None:
-                match.sync(unit)
-        
-
-    def getitem(self, item):
-        """Returns a single unit based on the item number."""
-        return self.units[item]
-
-    def updateheader(self, user=None, language=None):
-        had_header = False
-        if isinstance(self.file.store, po.pofile):
-            had_header = self.file.store.header()
-            po_revision_date = time.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
-            headerupdates = {'PO_Revision_Date': po_revision_date,
-                             'X_Generator': x_generator}
-
-            if language is not None:
-                headerupdates['Language'] = language.code
-                if language.nplurals and language.pluralequation:
-                    self.file.store.updateheaderplural(language.nplurals, language.pluralequation)
-
-            if user is not None:
-                headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
-                
-            self.file.store.updateheader(add=True, **headerupdates)
-        return had_header
-    
-    def updateunit(self, item, newvalues, checker, user=None, language=None):
-        """Updates a translation with a new target value, comments, or fuzzy
-        state."""
-        # operation replaces file, make sure we have latest copy
-        oldstats = self.getquickstats()
-        self.file._update_store_cache()
-        
-        unit = self.getitem(item)
-        unit.update_from_form(newvalues)
-        unit.save()
-        
-        unit.sync(unit.getorig())
-        had_header = self.updateheader(user, language)
-        self.file.savestore()
-        if not had_header:
-            # if new header was added item indeces will be incorrect, flush stats caches
-            self.file._flush_stats()
-        else:
-            self.file.reclassifyunit(item, checker)
-        newstats = self.getquickstats()
-        post_unit_update.send(sender=self, oldstats=oldstats, newstats=newstats)
-
+########################### Signals ###############################
 
 def set_store_pootle_path(sender, instance, **kwargs):
     instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
 pre_save.connect(set_store_pootle_path, sender=Store)
-
 
 def store_post_init(sender, instance, **kwargs):
     translation_file_updated.connect(instance.handle_file_update, sender=instance.file)
