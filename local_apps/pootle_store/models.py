@@ -189,6 +189,8 @@ class Unit(models.Model, base.TranslationUnit):
         unit.addnote(self.getnotes(origin="translator"),
                      origin="translator", position="replace")
         unit.markfuzzy(self.isfuzzy())
+        if self.isobsolete():
+            unit.makeobsolete()
 
     def update(self, unit):
         """update indb translation from file"""
