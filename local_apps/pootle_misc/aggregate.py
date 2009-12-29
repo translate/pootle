@@ -19,7 +19,14 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from django.db.models import Sum, Count
+    from django.db.models import Sum, Count, Max
+
+    def max_column(queryset, column, default):
+        result = queryset.aggregate(result=Max(column))['result']
+        if result is None:
+            return default
+        else:
+            return result
     
     def sum_column(queryset, columns, count=False):
         arg_dict = {}
@@ -31,8 +38,16 @@ try:
         
         return  queryset.aggregate(**arg_dict)
 
+    
 except ImportError:
     from pootle_store.util import dictsum
+
+    def max_column(queryset, column, default):
+        try:
+            return max(queryset.values_list(column, flat=True))
+        except ValueError:
+            return default
+        
     
     def sum_column(queryset, columns, count=False):
         initial = {}
@@ -42,4 +57,5 @@ except ImportError:
         result = reduce(dictsum, queryset.values(*columns), initial)
         result['count'] = queryset.count()
         return result
+
 
