@@ -156,6 +156,18 @@ class Unit(models.Model, base.TranslationUnit):
 
     def hasplural(self):
         return len(self.source.strings) > 1
+
+    def isobsolete(self):
+        return self.obsolete
+
+    def makeobsolete(self):
+        self.obsolete = True
+
+    @classmethod
+    def buildfromunit(cls, unit):
+        newunit = cls()
+        newunit.update(unit)
+        return newunit
     
     def getorig(self):
         unit = self.store.file.store.units[self.index]
