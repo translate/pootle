@@ -19,7 +19,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 try:
-    raise ImportError
     from django.db.models import Sum, Count
     
     def sum_column(queryset, columns, count=False):
