@@ -370,17 +370,17 @@ class Store(models.Model, base.TranslationStore):
         if allownewstrings:
             new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
             for unit in new_units:
-                self.file.store.addunit(self.file.store.UnitClass.buildfromunit(unit))
+                self.addunit(unit)
 
         if obsoletemissing:
-            old_units = (self.file.store.findid(uid) for uid in old_ids - new_ids)
+            old_units = (self.findid(uid) for uid in old_ids - new_ids)
             for unit in old_units:
                 unit.makeobsolete()
 
         if notranslate or suggestions:
             self.initpending(create=True)
 
-        shared_units = ((self.file.store.findid(uid), newfile.findid(uid)) for uid in old_ids & new_ids)
+        shared_units = ((self.findid(uid), newfile.findid(uid)) for uid in old_ids & new_ids)
         for oldunit, newunit in shared_units:
             if not newunit.istranslated():
                 continue
@@ -393,6 +393,7 @@ class Store(models.Model, base.TranslationStore):
         if (suggestions or notranslate) and not self.file.store.suggestions_in_format:
             self.pending.savestore()
 
+        self.sync()
         if not isinstance(newfile, po.pofile) or notranslate or suggestions:
             # TODO: We don't support updating the header yet.
             self.file.savestore()
