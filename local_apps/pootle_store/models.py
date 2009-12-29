@@ -37,7 +37,7 @@ from translate.misc.hash import md5_f
 from pootle.__version__ import sver as pootle_version
 
 from pootle_misc.util import getfromcache, deletefromcache
-from pootle_misc.aggregate import sum_column
+from pootle_misc.aggregate import sum_column, max_column
 from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
 
@@ -288,11 +288,21 @@ class Store(models.Model, base.TranslationStore):
                 match.sync(unit)
 
 ######################## TranslationStore #########################
+
     def _get_units(self):
         return self.unit_set.order_by('index')
     units=property(_get_units)
 
-    
+    def addunit(self, unit, index=None):
+        if index is None:
+            index = max_column(self.units, 'index', -1) + 1
+
+        newunit = Unit(store=self, index=index)
+        newunit.update(unit)
+        newunit.save()
+
+        self.file.addunit(self.file.store.UnitClass.buildfromunit(unit))
+        
 ############################### Stats ############################
 
     @getfromcache
