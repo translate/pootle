@@ -138,7 +138,7 @@ class Unit(models.Model, base.TranslationUnit):
         return self.unitid
 
     def getlocations(self):
-        return self.locations
+        return self.locations.split('\n')
 
     def addlocation(self, location):
         self.locations.append(location + "\n")
