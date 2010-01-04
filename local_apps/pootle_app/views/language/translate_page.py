@@ -138,7 +138,7 @@ def get_display_rows(profile):
     return min(rowsdesired, maximum)
 
 def get_units(store, item_start, item_stop):
-    return [store.file.store.units[index] for index in store.file.total[max(item_start, 0):item_stop]]
+    return store.units[max(item_start, 0):item_stop]
 
 def get_translations(request, profile, store, item):
     """gets the list of translations desired for the view, and sets editable and firstitem parameters"""

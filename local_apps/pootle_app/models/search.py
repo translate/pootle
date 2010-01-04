@@ -67,7 +67,7 @@ def narrow_to_search_text(total, store, translatables, search):
         grepfilter = pogrep.GrepFilter(search.search_text, search.search_fields, ignorecase=True)
         # ...then filter the items using the grepper.
         return (item for item in translatables 
-                if grepfilter.filterunit(store.file.store.units[item]))
+                if grepfilter.filterunit(store.units[item]))
 
     elif search.search_results is not None:
         mapped_indices = [total[item] for item in search.search_results[store.pootle_path]]
