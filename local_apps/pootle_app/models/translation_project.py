@@ -472,7 +472,7 @@ class TranslationProject(models.Model):
             newmtime = termbase.pomtime
             if newmtime != self.non_db_state.termmatchermtime:
                 if self.is_terminology_project:
-                    return match.terminologymatcher([store.file.store for store in self.stores.all()]), newmtime
+                    return match.terminologymatcher(self.stores.all()), newmtime
                 else:
                     return match.terminologymatcher(termbase), newmtime
 
