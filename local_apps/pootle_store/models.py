@@ -57,7 +57,7 @@ class Unit(models.Model, base.TranslationUnit):
     class Meta:
         ordering = ['store', 'index']
         unique_together = ('store', 'index')
-        
+
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
 
@@ -70,7 +70,7 @@ class Unit(models.Model, base.TranslationUnit):
     target_hash = models.CharField(max_length=32, db_index=True)
     target_wordcount = models.SmallIntegerField(default=0)
     target_length = models.SmallIntegerField(db_index=True, default=0)
-    
+
     developer_comment = models.TextField(null=True)
     translator_comment = models.TextField(null=True)
     locations = models.TextField(null=True)
@@ -84,7 +84,7 @@ class Unit(models.Model, base.TranslationUnit):
         self._rich_target = None
         self.unitclass = po.pounit
         self._encoding = 'UTF-8'
-        
+
     def _get_source(self):
         return self.source_f
 
@@ -93,7 +93,7 @@ class Unit(models.Model, base.TranslationUnit):
         self.source_hash = md5_f(self.source_f.encode("utf-8")).hexdigest()
         self.source_wordcount = count_words(self.source_f.strings)
         self.source_length = len(self.source_f)
-            
+
     _source = property(_get_source, _set_source)
 
     def _get_target(self):
@@ -106,16 +106,16 @@ class Unit(models.Model, base.TranslationUnit):
         self.target_length = len(self.target_f)
 
     _target = property(_get_target, _set_target)
-    
+
     def convert(self, unitclass):
         return unitclass.buildfromunit(self)
 
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.source)
-    
+
     def __unicode__(self):
         return unicode(str(self.convert(self.unitclass)).decode(self._encoding))
-                       
+
     def getnotes(self, origin=None):
         if origin == None:
             return self.translator_comment + self.developer_comment
@@ -133,7 +133,7 @@ class Unit(models.Model, base.TranslationUnit):
             self.developer_comment = text
         else:
             self.translator_comment = text
-            
+
     def getid(self):
         return self.unitid
 
@@ -220,15 +220,15 @@ class Unit(models.Model, base.TranslationUnit):
                 self.target = newvalues['target'][0]
             else:
                 self.target = newvalues['target']
-                
+
         if newvalues.has_key('fuzzy'):
             self.markfuzzy(newvalues['fuzzy'])
-            
+
         if newvalues.has_key('translator_comments'):
             self.addnote(newvalues['translator_comments'],
                          origin="translator", position="replace")
-        
 
+    
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
 post_init.connect(init_baseunit, sender=Unit)
@@ -288,7 +288,7 @@ class Store(models.Model, base.TranslationStore):
                 newunit, created = Unit.objects.get_or_create(store=self, index=index)
                 newunit.update(unit)
                 newunit.save()
-    
+
     def sync(self):
         """sync file with translations from db"""
         self.require_index()
@@ -313,7 +313,7 @@ class Store(models.Model, base.TranslationStore):
         newunit.save()
 
         self.file.addunit(self.file.store.UnitClass.buildfromunit(unit))
-        
+
 ############################### Stats ############################
 
     @getfromcache
@@ -350,7 +350,7 @@ class Store(models.Model, base.TranslationStore):
             result['translatedsourcewords'] = translated['source_wordcount']
             result['translatedtargetwords'] = translated['target_wordcount']
         return result
-        
+
     @getfromcache
     def getcompletestats(self, checker):
         #FIXME: figure out our own checker?
@@ -458,21 +458,21 @@ class Store(models.Model, base.TranslationStore):
 
             if user is not None:
                 headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
-                
+
             self.file.store.updateheader(add=True, **headerupdates)
         return had_header
-    
+
     def updateunit(self, item, newvalues, checker, user=None, language=None):
         """Updates a translation with a new target value, comments, or fuzzy
         state."""
         # operation replaces file, make sure we have latest copy
         oldstats = self.getquickstats()
         self.file._update_store_cache()
-        
+
         unit = self.getitem(item)
         unit.update_from_form(newvalues)
         unit.save()
-        
+
         unit.sync(unit.getorig())
         had_header = self.updateheader(user, language)
         self.file.savestore()
@@ -564,7 +564,7 @@ class Store(models.Model, base.TranslationStore):
                 if suggestions is not None:
                     return suggestions
         return []
-    
+
     def getsuggestions(self, item):
         unit = self.getitem(item)
         return self.getsuggestions_unit(unit)
@@ -580,7 +580,7 @@ class Store(models.Model, base.TranslationStore):
                 return False
 
         return True
-    
+
     def addunitsuggestion(self, unit, newunit, username):
         """adds suggestion for the given unit"""
         if not self.suggestion_is_unique(unit, newunit.target):
@@ -598,7 +598,7 @@ class Store(models.Model, base.TranslationStore):
     def addsuggestion(self, item, suggtarget, username, checker=None):
         """adds a new suggestion for the given item"""
         unit = self.getitem(item)
-        
+
         if self.file.store.suggestions_in_format:
             # probably xliff, which can't do unit copies and doesn't
             # need a unit to add suggestions anyway. so let's shortcut
@@ -614,7 +614,7 @@ class Store(models.Model, base.TranslationStore):
             self.initpending(create=True)
             self.addunitsuggestion(unit, newpo, username)
             self.pending.savestore()
-        
+
         if checker is not None:
             self.file.reclassifyunit(item, checker)
 
