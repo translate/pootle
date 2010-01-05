@@ -494,11 +494,11 @@ class TranslationProject(models.Model):
     #FIXME: we should cache results to ease live translation
     def translate_message(self, singular, plural=None, n=1):
         for store in self.stores:
-            store.file.store.require_index()
-            unit = store.file.store.findunit(singular)
+            unit = store.findunit(singular)
             if unit is not None and unit.istranslated():
                 if unit.hasplural() and n != 1:
-                    nplural, pluralequation = store.file.store.getheaderplural()
+                    nplural = self.language.nplurals
+                    pluralequation = self.language.pluralequation
                     if pluralequation:
                         pluralfn = gettext.c2py(pluralequation)
                         target =  unit.target.strings[pluralfn(n)]
