@@ -168,7 +168,16 @@ class Unit(models.Model, base.TranslationUnit):
         newunit = cls()
         newunit.update(unit)
         return newunit
-    
+
+    def findunit(self, source):
+        # find using hash instead of index
+        source_hash = md5_f(source.encode("utf-8")).hexdigest()
+        try:
+            return self.units.get(source_hash=source_hash)
+        except Unit.DoesNotExist:
+            return None
+
+
     def getorig(self):
         unit = self.store.file.store.units[self.index]
         if self.getid() == unit.getid():
@@ -178,8 +187,8 @@ class Unit(models.Model, base.TranslationUnit):
         self.store.file.store.require_index()
         unit = self.store.file.store.findid(self.getid())
         return unit
-    
-    
+
+
     def sync(self, unit):
         """sync in file unit with translations from db"""
         if unit.hasplural():
