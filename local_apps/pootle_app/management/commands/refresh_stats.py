@@ -53,7 +53,7 @@ class Command(NoArgsCommand):
                 # translation project no longer exists
                 translation_project.delete()
                 continue
-            
+
             # rescan translation_projects
             project_tree.scan_translation_project_files(translation_project)
             if recompute:
@@ -68,7 +68,7 @@ class Command(NoArgsCommand):
             # initialized. The indexer will update the text index of the
             # TranslationProject if it is out of date.
             translation_project.indexer
-            
+
             logging.info("Updating stats for %s", translation_project.fullname)
             translation_project.getcompletestats()
-
+            translation_project.getquickstats()
