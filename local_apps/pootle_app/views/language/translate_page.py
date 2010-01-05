@@ -166,17 +166,19 @@ def get_header_plural(request, store):
     nplurals = request.translation_project.language.nplurals
     plurals = request.translation_project.language.pluralequation
 
-    try:
-        # get plural information from Store
-        snplurals, splurals = store.file.store.getheaderplural()
-        if snplurals and snplurals.isdigit():
-            # file has plural information
-            #FIXME: should we check if file has correct language headers
-            nplurals = int(snplurals)
-            plurals = splurals
-    except:
-        # not a POHeader store
-        pass
+    #FIXME: what if file has different opinion about plurals
+    
+    #try:
+    #    # get plural information from Store
+    #    snplurals, splurals = store.file.store.getheaderplural()
+    #    if snplurals and snplurals.isdigit():
+    #        # file has plural information
+    #        #FIXME: should we check if file has correct language headers
+    #        nplurals = int(snplurals)
+    #        plurals = splurals
+    #except:
+    #    # not a POHeader store
+    #    pass
 
     return nplurals, plurals
 
