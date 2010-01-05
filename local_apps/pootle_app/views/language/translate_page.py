@@ -565,27 +565,25 @@ def get_alt_src_dict(request, store, unit, alt_project):
                 "available":    True })
         translated_store = get_translated_store(alt_project, store)
         if translated_store is not None:
-            translated_store.file.store.require_index()
+            try:
+                translated_unit = translated_store.units.get(source_hash=unit.source_hash)
 
-            translated_unit = translated_store.file.store.findunit(unit.source)
-            if translated_unit is not None and translated_unit.istranslated():
-                if unit.hasplural():
-                    unit_dict = {
-                        "forms":     [{"title": _("Plural Form %d", i),
-                                       "n":     i,
-                                       "text":  escape_text(text)}
-                                      for i, text in enumerate(translated_unit.target.strings)],
-                        "isplural":  True }
+                if translated_unit.istranslated():
+                    if unit.hasplural():
+                        unit_dict = {
+                            "forms":     [{"title": _("Plural Form %d", i), "n": i, "text": escape_text(text)}
+                                          for i, text in enumerate(translated_unit.target.strings)],
+                            "isplural":  True }
+                    else:
+                        unit_dict = {
+                            "text":      escape_text(translated_unit.target),
+                            "isplural":  False }
+                    alt_src_dict.update(unit_dict)
                 else:
-                    unit_dict = {
-                        "text":      escape_text(translated_unit.target),
-                        "isplural":  False }
-
-                alt_src_dict.update(unit_dict)
-            else:
+                    alt_src_dict["available"] = False
+            except:
+                #FIXME: specify exception
                 alt_src_dict["available"] = False
-        else:
-            alt_src_dict["available"] = False
     return alt_src_dict
 
 def get_alt_src_list(request, store, unit):
