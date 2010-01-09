@@ -60,6 +60,8 @@ class Unit(models.Model, base.TranslationUnit):
 
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
+    unitid = models.TextField()
+    unitid_hash = models.CharField(max_length=32, db_index=True)
 
     source_f = MultiStringField(null=True)
     source_hash = models.CharField(max_length=32, db_index=True)
@@ -76,7 +78,7 @@ class Unit(models.Model, base.TranslationUnit):
     context = models.TextField(null=True)
     fuzzy = models.BooleanField(default=False)
     obsolete = models.BooleanField(default=False)
-    unitid = models.TextField()
+
 
     def init_nondb_state(self):
         self._rich_source = None
@@ -175,6 +177,15 @@ class Unit(models.Model, base.TranslationUnit):
         except Unit.DoesNotExist:
             return None
 
+    def findid(self, id):
+        unitid_hash = md5_f(id.encode("utf-8")).hexdigest()
+        try:
+            return self.units.get(unitid_hash=unitid_hash)
+        except Unit.DoesNotExist:
+            return None
+
+    def getids(self):
+        return self.units.values_list('unitid', flat=True)
 
     def getorig(self):
         unit = self.store.file.store.units[self.index]
@@ -210,6 +221,8 @@ class Unit(models.Model, base.TranslationUnit):
         self.fuzzy = unit.isfuzzy()
         self.obsolete = unit.isobsolete()
         self.unitid = unit.getid()
+        self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
+
 
     def update_from_form(self, newvalues):
         """update the unit with a new target, value, comments or fuzzy state"""
@@ -226,7 +239,7 @@ class Unit(models.Model, base.TranslationUnit):
             self.addnote(newvalues['translator_comments'],
                          origin="translator", position="replace")
 
-    
+
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
 post_init.connect(init_baseunit, sender=Unit)
@@ -282,7 +295,7 @@ class Store(models.Model, base.TranslationStore):
     def update(self):
         """update db with units from file"""
         empty = self.units.count() == 0
-        
+
         for index, unit in enumerate(self.file.store.units):
             if unit.istranslatable():
                 newunit = Unit(store=self, index=index)
@@ -292,7 +305,6 @@ class Store(models.Model, base.TranslationStore):
                     if id_query:
                         newunit.id = id_query[0]
                 newunit.save()
-
 
     def sync(self):
         """sync file with translations from db"""
