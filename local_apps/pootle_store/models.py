@@ -374,12 +374,8 @@ class Store(models.Model, base.TranslationStore):
     def mergefile(self, newfile, username, allownewstrings, suggestions, notranslate, obsoletemissing):
         """make sure each msgid is unique ; merge comments etc from
         duplicates into original"""
-        self.file._update_store_cache()
-        self.require_index()
-        newfile.require_index()
-
-        old_ids = set(self.id_index.keys())
-        new_ids = set(newfile.id_index.keys())
+        old_ids = set(self.getids())
+        new_ids = set(newfile.getids())
 
         if allownewstrings:
             new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
