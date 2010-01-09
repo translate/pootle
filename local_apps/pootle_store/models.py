@@ -322,15 +322,14 @@ class Store(models.Model, base.TranslationStore):
             oldunit.index = unit.index
             oldunit.update(unit)
             oldunit.save()
-            
+
     def sync(self):
         """sync file with translations from db"""
-        self.require_index()
-        for unit in self.file.store.units:
-            uid = unit.getid()
-            match =  self.id_index.get(uid, None)
+        self.file.store.require_index()
+        for unit in self.units:
+            match = self.file.store.findid(unit.getid())
             if match is not None:
-                match.sync(unit)
+                unit.sync(match)
 
 ######################## TranslationStore #########################
 
