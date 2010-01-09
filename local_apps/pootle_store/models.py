@@ -294,18 +294,35 @@ class Store(models.Model, base.TranslationStore):
     @commit_on_success
     def update(self):
         """update db with units from file"""
-        empty = self.units.count() == 0
+        old_ids = set(self.getids())
+        if not old_ids:
+            # no existing units in db, probably file hasn't been parsed before
+            # no point in merging, add units directly
+            for index, unit in enumerate(self.file.store.units):
+                if unit.istranslatable():
+                    newunit = Unit(store=self, index=index)
+                    newunit.update(unit)
+                    newunit.save()
+            return
 
-        for index, unit in enumerate(self.file.store.units):
-            if unit.istranslatable():
-                newunit = Unit(store=self, index=index)
-                newunit.update(unit)
-                if not empty:
-                    id_query = Unit.objects.values_list('id', flat=True).filter(store=self, index=index)
-                    if id_query:
-                        newunit.id = id_query[0]
-                newunit.save()
+        new_ids = set(self.file.store.getids())
 
+        obsolete_units = (self.findid(uid) for uid in old_ids - new_ids)
+        for unit in obsolete_units:
+            unit.delete()
+
+        new_units = (self.file.store.findid(uid) for uid in new_ids - old_ids)
+        for unit in new_units:
+            newunit = Unit(store=self, index=unit.index)
+            newunit.update(unit)
+            newunit.save()
+
+        shared_units = ((self.findid(uid), self.file.store.findid(uid)) for uid in old_ids & new_ids)
+        for oldunit, unit in shared_units:
+            oldunit.index = unit.index
+            oldunit.update(unit)
+            oldunit.save()
+            
     def sync(self):
         """sync file with translations from db"""
         self.require_index()
