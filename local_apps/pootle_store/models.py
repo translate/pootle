@@ -721,8 +721,9 @@ def store_post_init(sender, instance, **kwargs):
 
 post_init.connect(store_post_init, sender=Store)
 
-def store_post_save(sender, instance, **kwargs):
-    instance.update()
+def store_post_save(sender, instance, created, **kwargs):
+    if created:
+        instance.update()
 post_save.connect(store_post_save, sender=Store)
 
 def store_post_delete(sender, instance, **kwargs):
