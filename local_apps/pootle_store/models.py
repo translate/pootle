@@ -283,11 +283,18 @@ class Store(models.Model, base.TranslationStore):
     @commit_on_success
     def update(self):
         """update db with units from file"""
+        empty = self.units.count() == 0
+        
         for index, unit in enumerate(self.file.store.units):
             if unit.istranslatable():
-                newunit, created = Unit.objects.get_or_create(store=self, index=index)
+                newunit = Unit(store=self, index=index)
                 newunit.update(unit)
+                if not empty:
+                    id_query = Unit.objects.values_list('id', flat=True).filter(store=self, index=index)
+                    if id_query:
+                        newunit.id = id_query[0]
                 newunit.save()
+
 
     def sync(self):
         """sync file with translations from db"""
