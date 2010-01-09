@@ -56,7 +56,7 @@ def count_words(strings):
 class Unit(models.Model, base.TranslationUnit):
     class Meta:
         ordering = ['store', 'index']
-        #unique_together = ('store', 'unitid_hash')
+        unique_together = ('store', 'index')
 
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
