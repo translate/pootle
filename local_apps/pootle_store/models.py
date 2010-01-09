@@ -398,7 +398,7 @@ class Store(models.Model, base.TranslationStore):
         """Returns a single unit based on the item number."""
         return self.units[item]
 
-
+    @commit_on_success
     def mergefile(self, newfile, username, allownewstrings, suggestions, notranslate, obsoletemissing):
         """make sure each msgid is unique ; merge comments etc from
         duplicates into original"""
@@ -414,6 +414,7 @@ class Store(models.Model, base.TranslationStore):
             old_units = (self.findid(uid) for uid in old_ids - new_ids)
             for unit in old_units:
                 unit.makeobsolete()
+                unit.save()
 
         if notranslate or suggestions:
             self.initpending(create=True)
@@ -427,6 +428,7 @@ class Store(models.Model, base.TranslationStore):
                 self.addunitsuggestion(oldunit, newunit, username)
             else:
                 oldunit.merge(newunit)
+                oldunit.save()
 
         if (suggestions or notranslate) and not self.file.store.suggestions_in_format:
             self.pending.savestore()
