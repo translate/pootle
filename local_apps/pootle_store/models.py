@@ -67,7 +67,6 @@ class Unit(models.Model, base.TranslationUnit):
     source_length = models.SmallIntegerField(db_index=True, default=0)
 
     target_f = MultiStringField(null=True)
-    target_hash = models.CharField(max_length=32, db_index=True)
     target_wordcount = models.SmallIntegerField(default=0)
     target_length = models.SmallIntegerField(db_index=True, default=0)
 
@@ -101,7 +100,6 @@ class Unit(models.Model, base.TranslationUnit):
 
     def _set_target(self, value):
         self.target_f = value
-        self.target_hash = md5_f(self.target_f.encode("utf-8")).hexdigest()
         self.target_wordcount = count_words(self.target_f.strings)
         self.target_length = len(self.target_f)
 
