@@ -44,7 +44,7 @@ class StatsTuple(object):
 class TranslationStoreFile(File):
     """A mixin for use alongside django.core.files.base.File, which provides
     additional features for dealing with translation files."""
-    
+
     _stats = LRUCachingDict(settings.PARSE_POOL_SIZE * 5, settings.PARSE_POOL_CULL_FREQUENCY)
     __statscache = {}
 
@@ -88,11 +88,18 @@ class TranslationStoreFile(File):
         #FIXME: is name the best substitute for path?
         return self.name
     path = property(_guess_path)
-    
+
+    def _get_realpath(self):
+        """return realpath resolving symlinks if neccessary"""
+        if not hasattr(self, "_realpath"):
+            self._realpath = os.path.realpath(self.path)
+        return self._realpath
+    realpath = property(_get_realpath)
+
     def _flush_stats(self):
         """flush cached stats"""
         self._stats[self.path] = StatsTuple()
-        
+
     def getquickstats(self):
         """Returns the quick statistics (totals only)."""
         stats_tuple = self._stats.setdefault(self.path, StatsTuple())
@@ -159,7 +166,6 @@ class TranslationStoreFile(File):
             self.store.remove_unit_from_index(unit)
 
     def getpomtime(self):
-        return statsdb.get_mod_info(self.path)
+        return statsdb.get_mod_info(self.realpath)
 
 
-    
