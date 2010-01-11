@@ -54,15 +54,15 @@ class StoreTuple(object):
     """Encapsulates toolkit stores in the in memory cache, needed
     since LRUCachingDict is based on a weakref.WeakValueDictionary
     which cannot reference normal tuples"""
-    def __init__(self, store, mod_info):
+    def __init__(self, store, mod_info, realpath):
         self.store = store
         self.mod_info = mod_info
-            
+        self.realpath = realpath
 
 class TranslationStoreFile(File):
     """A mixin for use alongside django.core.files.base.File, which provides
     additional features for dealing with translation files."""
-    
+
     _stats = LRUCachingDict(settings.PARSE_POOL_SIZE * 5, settings.PARSE_POOL_CULL_FREQUENCY)
     __statscache = {}
 
@@ -106,8 +106,14 @@ class TranslationStoreFile(File):
         #FIXME: is name the best substitute for path?
         return self.name
     path = property(_guess_path)
-    
-        
+
+    def _get_realpath(self):
+        """return realpath resolving symlinks if neccessary"""
+        if not hasattr(self, "_realpath"):
+            self._realpath = os.path.realpath(self.path)
+        return self._realpath
+    realpath = property(_get_realpath)
+
     def getquickstats(self):
         """Returns the quick statistics (totals only)."""
         stats_tuple = self._stats.setdefault(self.path, StatsTuple())
@@ -192,13 +198,13 @@ class TranslationStoreFile(File):
 
             if user is not None:
                 headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
-                
+
             self.store.updateheader(add=True, **headerupdates)
 
         self.savestore()
         if not had_header:
             # if new header was added item indeces will be incorrect, flush stats caches
-            self._stats[self.path] = StatsTuple()            
+            self._stats[self.path] = StatsTuple()
         else:
             self.reclassifyunit(item, checker)
         newstats = self.getquickstats()
@@ -225,7 +231,7 @@ class TranslationStoreFile(File):
             self.store.remove_unit_from_index(unit)
 
     def getpomtime(self):
-        return statsdb.get_mod_info(self.path)
+        return statsdb.get_mod_info(self.realpath)
 
 
 class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
@@ -239,6 +245,14 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     # uses a different method
     path = property(FieldFile._get_path)
 
+    def _get_cached_realpath(self):
+        """get real path from cache before attempting to check for symlinks"""
+        if not hasattr(self, "_store_tuple"):
+            return self._get_realpath()
+        else:
+            return self._store_tuple.realpath
+    realpath = property(_get_cached_realpath)
+    
     def _get_store(self):
         """Get translation store from dictionary cache, populate if store not
         already cached."""
@@ -246,7 +260,6 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         if not hasattr(self, "_store_tuple"):
             self._update_store_cache()
         return self._store_tuple.store
-
 
     def _update_store_cache(self):
         """Add translation store to dictionary cache, replace old cached
@@ -260,7 +273,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
                     raise KeyError
             except KeyError:
                 logging.debug("cache miss for %s", self.path)
-                self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore), mod_info)
+                self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore), mod_info, self.realpath)
                 self._store_cache[self.path] = self._store_tuple
                 self._stats[self.path] = StatsTuple()
                 translation_file_updated.send(sender=self, path=self.path)
@@ -295,7 +308,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         except KeyError:
             pass
         translation_file_updated.send(sender=self, path=self.path)
-        
+
     store = property(_get_store)
 
 
@@ -305,7 +318,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
         #FIXME: what if the file was modified before we save
         self.store.savefile(tmpfilename)
-        shutil.move(tmpfilename, self.path)
+        shutil.move(tmpfilename, self.realpath)
         self._touch_store_cache()
 
     def save(self, name, content, save=True):
