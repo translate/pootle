@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: F Wolff <friedel@translate.org.za>\n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-12-03 00:16+0200\n"
+"PO-Revision-Date: 2009-12-19 21:37+0200\n"
+"Last-Translator: Wynand Winterbach <wynand@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.0-rc2\n"
+"X-Generator: Pootle 2.0.0\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -134,7 +134,7 @@ msgstr "Die wagwoorde moet ooreenstem"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "Ek het die gebruiksvoorwaardes (Terms of Service) gelees en aanvaar."
 
 #: external_apps/registration/forms.py:107
 msgid ""
@@ -368,7 +368,7 @@ msgstr "Geïgnoreerde lêers"
 
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr ""
+msgstr "Hangend"
 
 #: local_apps/pootle_app/models/suggestion.py:55
 msgid "Accepted"
@@ -1781,7 +1781,7 @@ msgstr "Gebruiker se statistiek"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
+msgstr "Profiellys"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"

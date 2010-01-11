@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-04-19 03:33+0200\n"
-"Last-Translator: Scott Davis <sjd@mail.org>\n"
+"PO-Revision-Date: 2009-12-15 16:01+0200\n"
+"Last-Translator: Michael <haikara90@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.0.0\n"
 
 #: strings.py:8
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Tajpi validan retadreson"
 
 #: strings.py:10
 msgid ""
@@ -47,30 +47,30 @@ msgstr ""
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Aldoni"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Ŝanĝi"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Aldoni %(name)sn"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr ""
+msgstr "Montri rete"
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "propra nomo"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "familinomo"
 
 #: strings.py:26
 #, fuzzy
@@ -79,29 +79,29 @@ msgstr "Retpoŝtadreso"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "aktiva"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "administranta stato"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bonvolu korekti la eraron sube."
+msgstr[1] "Bonvolu korekti la erarojn sube."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "La agordoj estas konservitaj"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Konservi"
 
 #: external_apps/registration/forms.py:36
 #, fuzzy
@@ -120,7 +120,7 @@ msgstr "Pasvorto"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "Pasvorto (denove)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
@@ -816,9 +816,8 @@ msgstr "Vi ne rajtas administri pootle-on."
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "Vi ne rajtas administri pootle-on."
+msgstr "Vi ne rajtas administri %s"
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
@@ -1751,16 +1750,12 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Pootle-konto kreiĝis por vi uzante ĉi tiun retpoŝt-adreson."
 
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "Por aktivigi vian konton, sekvu ĉi tiun ligilon:\n"
+msgstr "Por aktivigi vian konton, sekvu ĉi tiun ligilon:"
 
 #: templates/registration/activation_email.txt:6
-#, fuzzy
 msgid "Your activation code is:"
-msgstr ""
-"Via aktiviga kodo estas:\n"
-"%s\n"
+msgstr "Via aktiviga kodo estas:"
 
 #: templates/registration/activation_email.txt:9
 #, fuzzy

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-12-05 19:03+0200\n"
+"PO-Revision-Date: 2010-01-03 07:05+0200\n"
 "Last-Translator: Seanán <seananoc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ga\n"
@@ -15,12 +15,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
-"X-Generator: Pootle 2.0.0-rc2\n"
+"X-Generator: Pootle 2.0.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
+"Coinnigh síos \"Control\", nó \"Command\" ar Mac, chun níos mó ná ceann amháin a "
+"roghnú."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
@@ -1263,7 +1265,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:842
 msgid "End of results."
-msgstr ""
+msgstr "Deireadh na dtorthaí."
 
 #: local_apps/pootle_app/views/language/translate_page.py:855
 #, fuzzy
@@ -1554,9 +1556,8 @@ msgid "Register"
 msgstr "Cláraigh"
 
 #: templates/base.html:56
-#, fuzzy
 msgid "Log In"
-msgstr "Sínigh isteach"
+msgstr "Tosaigh Dreas"
 
 #: templates/base.html:107
 #, fuzzy
@@ -1934,9 +1935,8 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
-#, fuzzy
 msgid "Log In."
-msgstr "Sínigh isteach"
+msgstr "Tosaigh Dreas."
 
 #~ msgid "General options"
 #~ msgstr "Roghanna coiteann"
