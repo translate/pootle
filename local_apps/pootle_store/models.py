@@ -239,6 +239,12 @@ class Unit(models.Model, base.TranslationUnit):
             self.addnote(newvalues['translator_comments'],
                          origin="translator", position="replace")
 
+    def get_checker(self):
+        """propogate checker from parent store"""
+        if not hasattr(self, '_checker'):
+            self._checker = self.store.checker
+        return self._checker
+    checker = property(get_checker)
 
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
@@ -705,6 +711,14 @@ class Store(models.Model, base.TranslationStore):
             if suggestedby:
                 return suggestedby.group(1)
         return None
+
+    def get_checker(self):
+        """propogate checker from parent TranslationProject"""
+        #FIXME: hackish and slow
+        if not hasattr(self, "_checker"):
+            self._checker = self.parent.get_translationproject().checker
+        return self._checker
+    checker = property(get_checker)
 
 ########################### Signals ###############################
 
