@@ -37,12 +37,21 @@ from translate.misc.hash import md5_f
 from pootle.__version__ import sver as pootle_version
 
 from pootle_misc.util import getfromcache, deletefromcache
-from pootle_misc.aggregate import sum_column, max_column
+from pootle_misc.aggregate import sum_column, max_column, group_by_count
 from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
 
 from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.signals import translation_file_updated, post_unit_update
+
+############### Quality Check #############
+
+class QualityCheck(models.Model):
+    name = models.CharField(max_length=64, db_index=True)
+    unit = models.ForeignKey("pootle_store.Unit", db_index=True)
+    message = models.TextField()
+    def __unicode__(self):
+        return self.name
 
 ############### Unit ####################
 
@@ -51,7 +60,6 @@ def count_words(strings):
     for string in strings:
         wordcount += statsdb.wordcount(string)
     return wordcount
-
 
 class Unit(models.Model, base.TranslationUnit):
     class Meta:
@@ -239,6 +247,12 @@ class Unit(models.Model, base.TranslationUnit):
             self.addnote(newvalues['translator_comments'],
                          origin="translator", position="replace")
 
+    def update_qualitychecks(self, checker):
+        """run quality checks and store result in database"""
+        self.qualitycheck_set.all().delete()
+        for name, message in checker.run_filters(self).items():
+            self.qualitycheck_set.create(name=name, message=message)
+
     def get_checker(self):
         """propogate checker from parent store"""
         if not hasattr(self, '_checker'):
@@ -249,6 +263,10 @@ class Unit(models.Model, base.TranslationUnit):
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
 post_init.connect(init_baseunit, sender=Unit)
+
+def unit_post_save(sender, instance, created, **kwargs):
+    instance.update_qualitychecks(instance.checker)
+post_save.connect(unit_post_save, sender=Unit)
 
 ###################### Store ###########################
 
