@@ -409,12 +409,9 @@ class Store(models.Model, base.TranslationStore):
         return result
 
     @getfromcache
-    def getcompletestats(self, checker):
-        #FIXME: figure out our own checker?
-        stats = {}
-        for key, value in self.file.getcompletestats(checker).iteritems():
-            stats[key] = len(value)
-        return stats
+    def getcompletestats(self):
+        queryset = QualityCheck.objects.filter(unit__store=self)
+        return group_by_count(queryset, 'name')
 
 ################################ Translation #############################
 
