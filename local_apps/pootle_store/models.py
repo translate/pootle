@@ -39,7 +39,6 @@ from pootle.__version__ import sver as pootle_version
 from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
-from pootle_app.models.directory import Directory
 
 from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.signals import translation_file_updated, post_unit_update
@@ -289,7 +288,7 @@ class Store(models.Model, base.TranslationStore):
     file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False, editable=False)
     pending = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False)
     tm = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs, editable=False)
-    parent = models.ForeignKey(Directory, related_name='child_stores', db_index=True, editable=False)
+    parent = models.ForeignKey('pootle_app.Directory', related_name='child_stores', db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_("Path"))
     name = models.CharField(max_length=128, null=False, editable=False)
 
