@@ -23,6 +23,8 @@ import os
 
 from django.conf import settings
 
+from pootle_misc.aggregate import sum_column
+
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
 
@@ -81,3 +83,38 @@ def completestatssum(queryset, empty_stats=None):
         except:
             totals['errors'] += 1
     return totals
+
+def calculate_stats(units):
+    """calculate translation statistics for given unit queryset"""
+    total = sum_column(units,
+                       ['source_wordcount'], count=True)
+    untranslated = sum_column(units.filter(target_length=0),
+                              ['source_wordcount'], count=True)
+    fuzzy = sum_column(units.filter(fuzzy=True),
+                       ['source_wordcount'], count=True)
+    translated = sum_column(units.filter(target_length__gt=0),
+                            ['source_wordcount', 'target_wordcount'], count=True)
+    result = {}
+    result['total'] = total['count']
+    if result['total'] == 0:
+        result['totalsourcewords'] = 0
+    else:
+        result['totalsourcewords'] = total['source_wordcount']
+    result['fuzzy'] = fuzzy['count']
+    if result['fuzzy'] == 0:
+        result['fuzzysourcewords'] = 0
+    else:
+        result['fuzzysourcewords'] = fuzzy['source_wordcount']
+    result['untranslated'] = untranslated['count']
+    if result['untranslated'] == 0:
+        result['untranslatedsourcewords'] = 0
+    else:
+        result['untranslatedsourcewords'] = untranslated['source_wordcount']
+    result['translated'] = translated['count']
+    if result['translated'] == 0:
+        result['translatedsourcewords'] = 0
+        result['translatedtargetwords'] = 0
+    else:
+        result['translatedsourcewords'] = translated['source_wordcount']
+        result['translatedtargetwords'] = translated['target_wordcount']
+    return result

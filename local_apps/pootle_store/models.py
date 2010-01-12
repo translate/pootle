@@ -37,12 +37,13 @@ from translate.misc.hash import md5_f
 from pootle.__version__ import sver as pootle_version
 
 from pootle_misc.util import getfromcache, deletefromcache
-from pootle_misc.aggregate import sum_column, max_column, group_by_count
+from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
 
 from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.signals import translation_file_updated, post_unit_update
+from pootle_store.util import calculate_stats
 
 ############### Quality Check #############
 
@@ -375,38 +376,7 @@ class Store(models.Model, base.TranslationStore):
 
     @getfromcache
     def getquickstats(self):
-        total = sum_column(self.units,
-                           ['source_wordcount'], count=True)
-        untranslated = sum_column(self.units.filter(target_length=0),
-                                  ['source_wordcount'], count=True)
-        fuzzy = sum_column(self.units.filter(fuzzy=True),
-                           ['source_wordcount'], count=True)
-        translated = sum_column(self.units.filter(target_length__gt=0),
-                                ['source_wordcount', 'target_wordcount'], count=True)
-        result = {}
-        result['total'] = total['count']
-        if result['total'] == 0:
-            result['totalsourcewords'] = 0
-        else:
-            result['totalsourcewords'] = total['source_wordcount']
-        result['fuzzy'] = fuzzy['count']
-        if result['fuzzy'] == 0:
-            result['fuzzysourcewords'] = 0
-        else:
-            result['fuzzysourcewords'] = fuzzy['source_wordcount']
-        result['untranslated'] = untranslated['count']
-        if result['untranslated'] == 0:
-            result['untranslatedsourcewords'] = 0
-        else:
-            result['untranslatedsourcewords'] = untranslated['source_wordcount']
-        result['translated'] = translated['count']
-        if result['translated'] == 0:
-            result['translatedsourcewords'] = 0
-            result['translatedtargetwords'] = 0
-        else:
-            result['translatedsourcewords'] = translated['source_wordcount']
-            result['translatedtargetwords'] = translated['target_wordcount']
-        return result
+        return calculate_stats(self.units)
 
     @getfromcache
     def getcompletestats(self):
