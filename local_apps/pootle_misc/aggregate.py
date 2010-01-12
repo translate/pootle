@@ -27,18 +27,21 @@ try:
             return default
         else:
             return result
-    
+
     def sum_column(queryset, columns, count=False):
         arg_dict = {}
         if count:
             arg_dict['count'] = Count('id')
-        
+
         for column in columns:
             arg_dict[column] = Sum(column)
-        
+
         return  queryset.aggregate(**arg_dict)
 
-    
+    def group_by_count(queryset, column):
+        result = queryset.values(column).annotate(count=Count(column))
+        return dict((item[column], item['count']) for item in result)
+
 except ImportError:
     from pootle_store.util import dictsum
 
@@ -47,15 +50,22 @@ except ImportError:
             return max(queryset.values_list(column, flat=True))
         except ValueError:
             return default
-        
-    
+
+
     def sum_column(queryset, columns, count=False):
         initial = {}
         for column in columns:
             initial[column] = 0
-        
+
         result = reduce(dictsum, queryset.values(*columns), initial)
         result['count'] = queryset.count()
+        return result
+
+    def group_by_count(queryset, column):
+        result = {}
+        for item in queryset.values_list(column, flat=True):
+            result.setdefault(item, 0)
+            result[item] += 1
         return result
 
 
