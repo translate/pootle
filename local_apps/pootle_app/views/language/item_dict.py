@@ -65,21 +65,20 @@ def getcheckdetails(request, path_obj):
     checks"""
     checklinks = []
     try:
-        property_stats = path_obj.getcompletestats(request.translation_project.checker)
-        total = property_stats['total']
+        property_stats = path_obj.getcompletestats()
+        quick_stats = path_obj.getquickstats()
+        total = quick_stats['total']
         keys = property_stats.keys()
         keys.sort()
         for checkname in keys:
-            if not checkname.startswith('check-'):
-                continue
             checkcount = property_stats[checkname]
             if total and checkcount:
                 stats = ungettext('%(checks)d string (%(checkspercent)d%%) failed',
                                   '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
                                   {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
                                   )
-                checklink = {'href': dispatch.review(request, path_obj.pootle_path, match_names=[checkname]),
-                             'text': checkname.replace('check-', '', 1),
+                checklink = {'href': dispatch.review(request, path_obj.pootle_path, match_names=['check-%s' % checkname]),
+                             'text': checkname,
                              'stats': stats}
                 checklinks += [checklink]
     except IOError:
@@ -90,7 +89,7 @@ def getcheckdetails(request, path_obj):
 
 def review_link(request, path_obj):
     try:
-        if path_obj.getcompletestats(request.translation_project.checker).get('check-hassuggestion', 0):
+        if path_obj.getcompletestats().get('check-hassuggestion', 0):
             if check_permission('translate', request):
                 text = _('Review Suggestions')
             else:
@@ -109,7 +108,7 @@ def quick_link(request, path_obj):
             else:
                 text = _('View Untranslated')
             return {
-                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['check-isfuzzy', 'untranslated']),
+                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['isfuzzy', 'untranslated']),
                     'text': text }
     except IOError:
         pass
@@ -294,7 +293,7 @@ def make_store_item(request, store, links_required=None):
     else:
         item['actions'] = []
     item['href_todo'] = dispatch.review(request, store.pootle_path,
-                                        match_names=['check-isfuzzy,untranslated'])
+                                        match_names=['isfuzzy,untranslated'])
     item.update({
             'icon':   'file',
             'isfile': True })

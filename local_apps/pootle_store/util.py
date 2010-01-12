@@ -69,19 +69,15 @@ def statssum(queryset, empty_stats=None):
             totals['errors'] += 1
     return totals
 
-def completestatssum(queryset, checker, empty_stats=None):
+def completestatssum(queryset, empty_stats=None):
     if empty_stats is None:
         empty_stats = {u'check-hassuggestion': 0,
-                       u'check-isfuzzy': 0,
-                       'fuzzy': 0,
-                       'total': 0,
-                       'translated': 0,
-                       'untranslated': 0,
+                       u'isfuzzy': 0,
                        'errors': 0}
     totals = empty_stats
     for item in queryset:
         try:
-            totals = dictsum(totals, item.getcompletestats(checker))
+            totals = dictsum(totals, item.getcompletestats())
         except:
             totals['errors'] += 1
     return totals

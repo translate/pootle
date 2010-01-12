@@ -72,7 +72,7 @@ def add_file_links(request, store):
             checknames = \
             ["<a href='http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%(checkname)s' \
             title='%(checkname)s' target='_blank'>%(checkname)s</a>" % \
-            {"checkname": matchname.replace("check-", "", 1)} for matchname in state.match_names]
+            {"checkname": matchname} for matchname in state.match_names]
             # TODO: put the following parameter in quotes, since it will be foreign in all target languages
             # l10n: the parameter is the name of one of the quality checks, like "fuzzy"
             template_vars["checking_text"] = _("checking %s", ", ".join(checknames))
@@ -832,7 +832,7 @@ def get_position(request, next_store_item, prev_store_item):
 def get_failure_message(request):
     # We are reviewing a check
     if 'match_names' in request.GET:
-        if request.GET['match_names'] == u'check-isfuzzy,untranslated':
+        if request.GET['match_names'] == u'isfuzzy,untranslated':
             return _("End of Quick Translate.")
         else:
             return _("End of Quality Check Review.")

@@ -144,8 +144,8 @@ class Search(object):
             # properties. In this case, we know that last_item is the
             # sought after item, unless of course item >= number of
             # units
-            stats = store.getcompletestats(self.translation_project.checker)
-            if last_index < stats['total']:
+            total = store.getquickstats()['total']
+            if last_index < total:
                 return iter([last_index])
             else:
                 return iter([])
@@ -182,7 +182,7 @@ class Search(object):
             # into the file, we want to include the very last element
             # of stats['total'] as well when searching. Thus
             # [0:len(stats['total'])] gives us what we need.
-            stats = store.getcompletestats(self.translation_project.checker)
+            stats = store.getquickstats()
             last_index = stats['total'] - 1
         return self._all_matches(store, last_index, (0, last_index + 1), lambda x: reversed(list(x)))
 

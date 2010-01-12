@@ -55,7 +55,7 @@ class Directory(models.Model):
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
 
     objects = DirectoryManager()
-        
+
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative
         to this directory, recurse the path and return the object
@@ -111,9 +111,9 @@ class Directory(models.Model):
         return stats
 
     @getfromcache
-    def getcompletestats(self, checker):
-        file_result = completestatssum(self.child_stores.all(), checker)
-        dir_result  = completestatssum(self.child_dirs.all(), checker)
+    def getcompletestats(self):
+        file_result = completestatssum(self.child_stores.all())
+        dir_result  = completestatssum(self.child_dirs.all())
         stats = dictsum(file_result, dir_result)
         return stats
 
@@ -136,9 +136,10 @@ class Directory(models.Model):
                 aux_dir = self
                 while not aux_dir.is_translationproject() and\
                     aux_dir.parent is not None:
+
                     aux_dir = aux_dir.parent
                 return aux_dir.translationproject
-    
+
 
 def set_directory_pootle_path(sender, instance, **kwargs):
     if instance.parent is not None:

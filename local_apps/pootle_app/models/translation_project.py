@@ -156,20 +156,11 @@ class TranslationProject(models.Model):
     @getfromcache
     def getcompletestats(self):
         if not self.is_template_project:
-            return self.directory.getcompletestats(self.checker)
+            return self.directory.getcompletestats()
         else:
             #FIXME: Hackish return empty_stats to avoid messing up
             # with project and language stats
-            empty_stats = {'fuzzy': 0,
-                           'fuzzysourcewords': 0,
-                           'review': 0,
-                           'total': 0,
-                           'totalsourcewords': 0,
-                           'translated': 0,
-                           'translatedsourcewords': 0,
-                           'translatedtargetwords': 0,
-                           'untranslated': 0,
-                           'untranslatedsourcewords': 0}
+            empty_stats = {}
             return empty_stats
 
     def _get_indexer(self):
