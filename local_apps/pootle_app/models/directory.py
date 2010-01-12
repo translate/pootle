@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,9 +21,13 @@
 
 from django.db                import models
 from django.db.models.signals import pre_save
-from pootle_store.util import dictsum, statssum, completestatssum
+
+from pootle_store.util import calculate_stats
+from pootle_store.models import Unit, QualityCheck
+
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
+from pootle_misc.aggregate import group_by_count
 
 class DirectoryManager(models.Manager):
     def get_query_set(self):
@@ -103,19 +107,13 @@ class Directory(models.Model):
     def getquickstats(self):
         """calculate aggregate stats for all directory based on stats
         of all descenging stores and dirs"""
-
         #FIXME: can we replace this with a quicker path query? 
-        file_result = statssum(self.child_stores.all())
-        dir_result  = statssum(self.child_dirs.all())
-        stats = dictsum(file_result, dir_result)
-        return stats
+        return calculate_stats(Unit.objects.filter(store__pootle_path__startswith=self.pootle_path))
 
     @getfromcache
     def getcompletestats(self):
-        file_result = completestatssum(self.child_stores.all())
-        dir_result  = completestatssum(self.child_dirs.all())
-        stats = dictsum(file_result, dir_result)
-        return stats
+        queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path)
+        return group_by_count(queryset, 'name')
 
     def is_language(self):
         """does this directory point at a language"""
