@@ -39,6 +39,7 @@ from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 from pootle_store.models           import Store
 from pootle_store.util             import relative_real_path, absolute_real_path, dictsum
+from pootle_store.util import empty_quickstats, empty_completestats
 
 from pootle_app.lib.util           import RelatedManager
 from pootle_app.models.project     import Project
@@ -136,41 +137,17 @@ class TranslationProject(models.Model):
 
     @getfromcache
     def getquickstats(self):
-        if not self.is_template_project:
-            return self.directory.getquickstats()
-        else:
-            #FIXME: Hackish return empty_stats to avoid messing up
-            # with project and language stats
-            empty_stats = {'fuzzy': 0,
-                           'fuzzysourcewords': 0,
-                           'review': 0,
-                           'total': 0,
-                           'totalsourcewords': 0,
-                           'translated': 0,
-                           'translatedsourcewords': 0,
-                           'translatedtargetwords': 0,
-                           'untranslated': 0,
-                           'untranslatedsourcewords': 0}
-            return empty_stats
+        if self.is_template_project:
+            return empty_quickstats
+
+        return self.directory.getquickstats()
 
     @getfromcache
     def getcompletestats(self):
-        if not self.is_template_project:
-            return self.directory.getcompletestats(self.checker)
-        else:
-            #FIXME: Hackish return empty_stats to avoid messing up
-            # with project and language stats
-            empty_stats = {'fuzzy': 0,
-                           'fuzzysourcewords': 0,
-                           'review': 0,
-                           'total': 0,
-                           'totalsourcewords': 0,
-                           'translated': 0,
-                           'translatedsourcewords': 0,
-                           'translatedtargetwords': 0,
-                           'untranslated': 0,
-                           'untranslatedsourcewords': 0}
-            return empty_stats
+        if self.is_template_project:
+            return empty_completestats
+
+        return self.directory.getcompletestats(self.checker)
 
     def _get_indexer(self):
         if self.non_db_state._indexing_enabled:
@@ -216,7 +193,7 @@ class TranslationProject(models.Model):
             logging.error("near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
             working_copy.save()
             raise VersionControlError
-        
+
         #FIXME: try to avoid merging if file was not updated
         logging.debug("merging %s with version control update", store.file.path)
         store.mergefile(working_copy, "versionmerge", allownewstrings=False, suggestions=True, notranslate=False, obsoletemissing=False)
@@ -228,7 +205,7 @@ class TranslationProject(models.Model):
 
         newstats = store.getquickstats()
         return oldstats, remotestats, newstats
-    
+
     def update_project(self, request):
         """updates project translation files from version control,
         retaining uncommitted translations"""
@@ -238,7 +215,7 @@ class TranslationProject(models.Model):
 
         old_stats = self.getquickstats()
         remote_stats = {}
-        
+
         stores = self.stores.all()
         for store in stores:
             try:
@@ -272,7 +249,7 @@ class TranslationProject(models.Model):
             post_vc_update.send(sender=self, oldstats=oldstats, remotestats=remotestats, newstats=newstats)
         except VersionControlError:
             request.user.message_set.create(message=unicode(_("Failed to update %s from version control", store.file.name)))
-        
+
         project_tree.scan_translation_project_files(self)
 
     def commitpofile(self, request, store):
@@ -447,7 +424,7 @@ class TranslationProject(models.Model):
     ##############################################################################################
 
     is_terminology_project = property(lambda self: self.project.code == "terminology")
-    is_template_project = property(lambda self: self.language.code == 'templates')
+    is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
 
     stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.pootle_path))
 

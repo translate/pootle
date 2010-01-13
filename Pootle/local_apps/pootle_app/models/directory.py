@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -22,6 +22,7 @@
 from django.db                import models
 from django.db.models.signals import pre_save
 from pootle_store.util import dictsum, statssum, completestatssum
+from pootle_store.util import empty_quickstats, empty_completestats
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 
@@ -55,7 +56,7 @@ class Directory(models.Model):
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
 
     objects = DirectoryManager()
-        
+
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative
         to this directory, recurse the path and return the object
@@ -103,6 +104,10 @@ class Directory(models.Model):
     def getquickstats(self):
         """calculate aggregate stats for all directory based on stats
         of all descenging stores and dirs"""
+        if self.is_template_project:
+            #FIXME: Hackish return empty_stats to avoid messing up
+            # with project and language stats
+            return empty_quickstats
 
         #FIXME: can we replace this with a quicker path query? 
         file_result = statssum(self.child_stores.all())
@@ -112,6 +117,9 @@ class Directory(models.Model):
 
     @getfromcache
     def getcompletestats(self, checker):
+        if self.is_template_project:
+            return empty_completestats
+
         file_result = completestatssum(self.child_stores.all(), checker)
         dir_result  = completestatssum(self.child_dirs.all(), checker)
         stats = dictsum(file_result, dir_result)
@@ -124,6 +132,8 @@ class Directory(models.Model):
     def is_translationproject(self):
         """does this directory point at a translation project"""
         return self.pootle_path.count('/') == 3
+
+    is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
 
     def get_translationproject(self):
         """returns the translation project belonging to this directory."""
@@ -138,7 +148,7 @@ class Directory(models.Model):
                     aux_dir.parent is not None:
                     aux_dir = aux_dir.parent
                 return aux_dir.translationproject
-    
+
 
 def set_directory_pootle_path(sender, instance, **kwargs):
     if instance.parent is not None:
@@ -147,5 +157,3 @@ def set_directory_pootle_path(sender, instance, **kwargs):
         instance.pootle_path = '/'
 
 pre_save.connect(set_directory_pootle_path, sender=Directory)
-
-
