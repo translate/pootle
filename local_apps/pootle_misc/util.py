@@ -49,4 +49,6 @@ def deletefromcache(sender, functions, **kwargs):
             cache.delete(path + ":"+func)
         path_parts = path_parts[:-1]
         path = "/".join(path_parts) + "/"
-        
+
+def dictsum(x, y):
+    return dict( (n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y) )

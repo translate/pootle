@@ -35,10 +35,10 @@ from translate.search  import match, indexing
 from translate.storage import base, versioncontrol
 
 from pootle.scripts                import hooks
-from pootle_misc.util import getfromcache
+from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.baseurl import l
 from pootle_store.models           import Store
-from pootle_store.util             import relative_real_path, absolute_real_path, dictsum
+from pootle_store.util             import relative_real_path, absolute_real_path
 
 from pootle_app.lib.util           import RelatedManager
 from pootle_app.models.project     import Project
@@ -207,7 +207,7 @@ class TranslationProject(models.Model):
             logging.error("near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
             working_copy.save()
             raise VersionControlError
-        
+
         #FIXME: try to avoid merging if file was not updated
         logging.debug("merging %s with version control update", store.file.path)
         store.mergefile(working_copy, "versionmerge", allownewstrings=False, suggestions=True, notranslate=False, obsoletemissing=False)
@@ -219,7 +219,7 @@ class TranslationProject(models.Model):
 
         newstats = store.getquickstats()
         return oldstats, remotestats, newstats
-    
+
     def update_project(self, request):
         """updates project translation files from version control,
         retaining uncommitted translations"""
@@ -229,7 +229,7 @@ class TranslationProject(models.Model):
 
         old_stats = self.getquickstats()
         remote_stats = {}
-        
+
         stores = self.stores.all()
         for store in stores:
             try:
@@ -263,7 +263,7 @@ class TranslationProject(models.Model):
             post_vc_update.send(sender=self, oldstats=oldstats, remotestats=remotestats, newstats=newstats)
         except VersionControlError:
             request.user.message_set.create(message=unicode(_("Failed to update %s from version control", store.file.name)))
-        
+
         project_tree.scan_translation_project_files(self)
 
     def commitpofile(self, request, store):

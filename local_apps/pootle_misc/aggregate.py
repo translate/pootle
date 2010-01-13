@@ -43,7 +43,7 @@ try:
         return dict((item[column], item['count']) for item in result)
 
 except ImportError:
-    from pootle_store.util import dictsum
+    from pootle_misc.util import dictsum
 
     def max_column(queryset, column, default):
         try:

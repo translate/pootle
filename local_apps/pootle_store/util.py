@@ -24,6 +24,7 @@ import os
 from django.conf import settings
 
 from pootle_misc.aggregate import sum_column
+from pootle_misc.util import dictsum
 
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
@@ -47,8 +48,6 @@ def absolute_real_path(p):
     else:
         return p
 
-def dictsum(x, y):
-    return dict( (n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y) )
 
 def statssum(queryset, empty_stats=None):
     if empty_stats is None:
