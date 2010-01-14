@@ -250,9 +250,10 @@ class Unit(models.Model, base.TranslationUnit):
             self.addnote(newvalues['translator_comments'],
                          origin="translator", position="replace")
 
-    def update_qualitychecks(self, checker):
+    def update_qualitychecks(self, checker, created=False):
         """run quality checks and store result in database"""
-        self.qualitycheck_set.all().delete()
+        if not created:
+            self.qualitycheck_set.all().delete()
         for name, message in checker.run_filters(self).items():
             self.qualitycheck_set.create(name=name, message=message)
 
@@ -268,7 +269,7 @@ def init_baseunit(sender, instance, **kwargs):
 post_init.connect(init_baseunit, sender=Unit)
 
 def unit_post_save(sender, instance, created, **kwargs):
-    instance.update_qualitychecks(instance.checker)
+    instance.update_qualitychecks(instance.checker, created)
 post_save.connect(unit_post_save, sender=Unit)
 
 ###################### Store ###########################
