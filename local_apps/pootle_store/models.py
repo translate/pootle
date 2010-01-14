@@ -180,24 +180,6 @@ class Unit(models.Model, base.TranslationUnit):
         newunit.update(unit)
         return newunit
 
-    def findunit(self, source):
-        # find using hash instead of index
-        source_hash = md5_f(source.encode("utf-8")).hexdigest()
-        try:
-            return self.units.get(source_hash=source_hash)
-        except Unit.DoesNotExist:
-            return None
-
-    def findid(self, id):
-        unitid_hash = md5_f(id.encode("utf-8")).hexdigest()
-        try:
-            return self.units.get(unitid_hash=unitid_hash)
-        except Unit.DoesNotExist:
-            return None
-
-    def getids(self):
-        return self.units.values_list('unitid', flat=True)
-
     def getorig(self):
         unit = self.store.file.store.units[self.index]
         if self.getid() == unit.getid():
@@ -207,7 +189,6 @@ class Unit(models.Model, base.TranslationUnit):
         self.store.file.store.require_index()
         unit = self.store.file.store.findid(self.getid())
         return unit
-
 
     def sync(self, unit):
         """sync in file unit with translations from db"""
@@ -233,7 +214,6 @@ class Unit(models.Model, base.TranslationUnit):
         self.obsolete = unit.isobsolete()
         self.unitid = unit.getid()
         self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
-
 
     def update_from_form(self, newvalues):
         """update the unit with a new target, value, comments or fuzzy state"""
@@ -375,6 +355,24 @@ class Store(models.Model, base.TranslationStore):
         newunit.save()
 
         self.file.addunit(self.file.store.UnitClass.buildfromunit(unit))
+
+    def findunit(self, source):
+        # find using hash instead of index
+        source_hash = md5_f(source.encode("utf-8")).hexdigest()
+        try:
+            return self.units.get(source_hash=source_hash)
+        except Unit.DoesNotExist:
+            return None
+
+    def findid(self, id):
+        unitid_hash = md5_f(id.encode("utf-8")).hexdigest()
+        try:
+            return self.units.get(unitid_hash=unitid_hash)
+        except Unit.DoesNotExist:
+            return None
+
+    def getids(self):
+        return self.units.values_list('unitid', flat=True)
 
 ############################### Stats ############################
 
