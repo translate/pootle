@@ -22,11 +22,11 @@
 from django.db                import models
 from django.db.models.signals import pre_save
 
-from pootle_store.util import empty_quickstats, empty_completestats
+from pootle_store.util import empty_quickstats, empty_completestats, statssum, completestatssum
 from pootle_store.util import calculate_stats
 from pootle_store.models import Unit, QualityCheck
 
-from pootle_misc.util import getfromcache
+from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.baseurl import l
 from pootle_misc.aggregate import group_by_count
 
@@ -112,15 +112,24 @@ class Directory(models.Model):
             #FIXME: Hackish return empty_stats to avoid messing up
             # with project and language stats
             return empty_quickstats
-        #FIXME: can we replace this with a quicker path query? 
-        return calculate_stats(Unit.objects.filter(store__pootle_path__startswith=self.pootle_path))
+        #FIXME: can we replace this with a quicker path query?
+        file_result = statssum(self.child_stores.all())
+        dir_result  = statssum(self.child_dirs.all())
+        stats = dictsum(file_result, dir_result)
+        return stats
+
+        #return calculate_stats(Unit.objects.filter(store__pootle_path__startswith=self.pootle_path))
 
     @getfromcache
     def getcompletestats(self):
         if self.is_template_project:
             return empty_completestats
-        queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path)
-        return group_by_count(queryset, 'name')
+        file_result = completestatssum(self.child_stores.all())
+        dir_result  = completestatssum(self.child_dirs.all())
+        stats = dictsum(file_result, dir_result)
+        return stats
+        #queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path)
+        #return group_by_count(queryset, 'name')
 
 
     def is_language(self):
