@@ -5,15 +5,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-12-01 20:20+0200\n"
-"Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
+"PO-Revision-Date: 2010-01-10 15:58+0200\n"
+"Last-Translator:  <th.groskamp@quicknet.nl>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.0-rc2\n"
+"X-Generator: Pootle 2.0.0\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -66,7 +66,7 @@ msgstr "Wijzigen"
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr "Een %(name)s toevoegen"
+msgstr "%(name)s toevoegen"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
@@ -275,7 +275,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/language.py:44
 msgid "Special Characters"
-msgstr "Speciale Tekens"
+msgstr "Speciale tekens"
 
 #: local_apps/pootle_app/models/language.py:46
 msgid ""
@@ -622,7 +622,7 @@ msgstr "Hebt u nog geen account?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
 msgid "Register."
-msgstr "Registreer u."
+msgstr "Registreren."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -867,9 +867,9 @@ msgid ""
 "Running in live translation mode. Live translation is useful as a tool to "
 "learn about Pootle and localization, but has high impact on performance."
 msgstr ""
-"Pootle draait in 'live vertaling'-modus. Live vertaling is handig om meer te "
-"weten te komen over Pootle en localisatie, maar het heeft een grote impact "
-"op de prestaties."
+"Pootle draait in de modus 'live vertalen'. Live vertalen is handig om meer "
+"te weten te komen over Pootle en localisatie, maar het heeft een grote "
+"impact op de prestaties."
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
@@ -1225,7 +1225,7 @@ msgstr "U hebt niet de nodige rechten voor toegang tot de vertaalmodus."
 #: local_apps/pootle_app/views/language/translate_page.py:78
 #, python-format
 msgid "checking %s"
-msgstr "Bezig met controleren van %s"
+msgstr "controleren van %s"
 
 #. l10n: navigation link
 #: local_apps/pootle_app/views/language/translate_page.py:101

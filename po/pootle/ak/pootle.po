@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-12-07 06:53+0200\n"
+"PO-Revision-Date: 2009-12-31 17:42+0200\n"
 "Last-Translator: kasahorow <kasahorow@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ak\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.0.0-rc2\n"
+"X-Generator: Pootle 2.0.0\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: strings.py:8
@@ -945,7 +945,7 @@ msgstr[1] "mfael %d"
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr "akasafua %(translated)d/%(total)d akyerɛ ase (%(translatedprecent)d%%)"
+msgstr "akasafua %(translated)d/%(total)d akyerɛ ase (%(translatedpercent)d%%)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
@@ -1612,7 +1612,7 @@ msgstr "Kɔ Mu"
 
 #: templates/base.html:107
 msgid "About this Pootle Server"
-msgstr "Fa dɛm Pootle Sɛɛva yi ho"
+msgstr "Fa Pootle Sɛɛva yi ho"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1629,122 +1629,123 @@ msgstr "Kasa nkaebɔ"
 
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
-msgstr ""
+msgstr "Di panindwuma wɔ wo akasa wɔn akwanya so"
 
 #: templates/project_menu.html:7
-#, fuzzy
 msgid "Project main page"
-msgstr "Nkɔsodwuma fie krataafa"
+msgstr "Nkɔsodwuma krataafa titiriw"
 
 #: templates/project_menu.html:9
 msgid "Administrate your project"
-msgstr ""
+msgstr "Di panindwuma wɔ wo nkɔsodwuma so"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
-msgstr ""
+msgstr "Asekyerɛ nkɔsodwuma ne krataafa titiriw"
 
 #: templates/tp_menu.html:8
 msgid "Translation project news"
-msgstr ""
+msgstr "Asekyerɛ nkɔsodwuma nkaebɔ"
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr ""
+msgstr "Kyerɛ nkɔsodwuma yi ase"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
-msgstr ""
+msgstr "Hwɛ sɛnea asekyerɛ no di mu fa na san hwɛ adwenkyerɛ a binom ayɛ"
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "Di panindwuma wɔ wo nkɔsodwuma n'akwanya"
 
 #: templates/tp_menu.html:13
 msgid "Administrate your project files"
-msgstr ""
+msgstr "Di panindwuma wɔ wo nkɔsodwuma mfael so"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
-msgstr ""
+msgstr "Wo akawnt ovaviw"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 #: templates/profiles/profile_detail.html:6
 #: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
-msgstr ""
+msgstr "Kyerɛ wo asekyerɛ apɛde"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr ""
+msgstr "Nhyehyɛe"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
-msgstr ""
+msgstr "Sesa wo ho nsɛm"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr ""
+msgstr "Profael"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
-msgstr ""
+msgstr "Sesa wo ehintasɛmfua"
 
 #: templates/admin/base_site.html:4
 msgid "Django site admin"
-msgstr ""
+msgstr "Django saet admin"
 
 #: templates/admin/base_site.html:7
 msgid "Django administration"
-msgstr ""
+msgstr "Django so panindwuma"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
+"Wo betumi asesa wo ho nsɛm wɔ ha. Wɔde infɔmehyɛn yi bɛhyɛ wo asekyerɛ mfael "
+"wɔn nhɛda mu."
 
 #: templates/profiles/edit_personal.html:19
 msgid "First Name"
-msgstr ""
+msgstr "Edikan Din"
 
 #: templates/profiles/edit_personal.html:24
 msgid "Last Name"
-msgstr ""
+msgstr "Ebusua Din"
 
 #: templates/profiles/edit_personal.html:29
-#, fuzzy
 msgid "Email address"
-msgstr "Emel"
+msgstr "Emel adrɛs"
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr ""
+msgstr "Asekyerɛ Nhyehɛe"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
 msgstr ""
+"Wo betumi ayɛ nhyehyɛe fa wo asekyerɛ intafes anaaso wo kasa apɛde wɔ ha."
 
 #: templates/profiles/edit_profile.html:19
 msgid "Number of Rows"
-msgstr ""
+msgstr "Roo Dodow"
 
 #: templates/profiles/edit_profile.html:23
 msgid "Input Height"
-msgstr ""
+msgstr "Soro-tenten ma Nhyɛmu"
 
 #: templates/profiles/edit_profile.html:31
 msgid "My Languages"
-msgstr "Me akasa"
+msgstr "Me Akasa"
 
 #: templates/profiles/edit_profile.html:36
 msgid "My Projects"
@@ -1752,7 +1753,7 @@ msgstr "Me Nkɔsodwuma"
 
 #: templates/profiles/edit_profile.html:41
 msgid "Alternative Source Languages"
-msgstr ""
+msgstr "Akasa a wo de Wɔn bedi dwuma sɛ wo Sɔɔs"
 
 #: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
@@ -1760,47 +1761,47 @@ msgstr "Ntɛmtɛmara"
 
 #: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
-msgstr ""
+msgstr "Wɔmmfaa akasa anaaso nkɔsodwuma biara. Fa wo de seiseiara."
 
 #: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
-msgstr ""
+msgstr "Dehye yi nnya mmfaa akasa anaaso nkɔsodwuma biara."
 
 #: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
-msgstr ""
+msgstr "Nkontaabu fa Dehye ho"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
+msgstr "Mprofael list"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr ""
+msgstr "Edikan din"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr ""
+msgstr "Ebusua din"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
 msgid "Account Activated"
-msgstr ""
+msgstr "Ekenyan Akawnt"
 
 #: templates/registration/activate.html:10
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
-msgstr ""
+msgstr "Ekenyan Akawnt no ama \"%(account)s\". Wo betumi akɔ wo enim akɔyɛ lɔgin."
 
 #: templates/registration/activation_email.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr ""
+msgstr "Wɔde emel adrɛs yi ayɛ Pootle akawnt am wo."
 
 #: templates/registration/activation_email.txt:3
 msgid "To activate your account, follow this link:"
-msgstr ""
+msgstr "Sɛ wo pɛ sɛ wo kenyan wo akawnt a, di link yi so:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -1811,6 +1812,8 @@ msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
 msgstr ""
+"Wɔsoma nkrato yi de hwɛ sɛ emel adres no di mu a. Sɛ nna wo mmpɛ sɛ wo bɛbue "
+"akwant a, ɛnnkasa nkrato yi ho."
 
 #: templates/registration/activation_email_subject.txt:2
 msgid "Pootle registration"
@@ -1819,47 +1822,49 @@ msgstr "Pootle dinkyerɛw"
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:15
 msgid "Password Changed"
-msgstr ""
+msgstr "Asesa Ehintasɛmfua"
 
 #: templates/registration/password_change_done.html:16
 msgid "Your password was changed successfully."
-msgstr ""
+msgstr "Wɔsesaa wo ehintasɛmfua no konimdimu."
 
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11
 msgid "Change Password"
-msgstr ""
+msgstr "Sesa Ehintasɛmfua"
 
 #: templates/registration/password_change_form.html:15
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"Yɛsrɛ wo ɛnam banbɔ ho nsɛm nti, kyerɛw wo ehintasɛmfua dadaw no na kyerɛw "
+"wo ehintasɛmfua foforo no mprenu sɛnea yebetumi agye ato mu sɛ wo kyerɛɛw "
+"wɔn yie."
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr ""
+msgstr "Ehintasɛmfua Dadaw"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
-msgstr ""
+msgstr "Ehintasɛmfua Foforo"
 
 #: templates/registration/password_change_form.html:33
-#, fuzzy
 msgid "Confirm password"
-msgstr "Ehintasɛmfua a epɛ"
+msgstr "Foa ehintasɛmfua so"
 
 #: templates/registration/password_change_form.html:38
 msgid "Change My Password"
-msgstr ""
+msgstr "Sesa Me Ehintasɛmfua"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "Ahyɛ Ehintasɛmfua foforo"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "Ehintasɛmfua ne Nsesae Ewie."
 
 #: templates/registration/password_reset_complete.html:10
 #, python-format
@@ -1867,6 +1872,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
+"Wɔahyɛ wo ehintasɛmfua no. Wo betumi atoa so na wo <a href=\"%"
+"(login_url)s\">akɔ mu</a> seiseiara."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_done.html:5
@@ -1874,47 +1881,52 @@ msgstr ""
 #: templates/registration/password_reset_form.html:5
 #: templates/registration/password_reset_form.html:9
 msgid "Reset Password"
-msgstr ""
+msgstr "San-hyɛ Ehintasɛmfua"
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter New Password."
-msgstr ""
+msgstr "Kyerɛw Ehintasɛmfua Foforo."
 
 #: templates/registration/password_reset_confirm.html:12
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
+"Yɛsrɛ wo kyerɛw wo ehintasɛmfua no mprenu ama yetumi agye ato mu sɛ wo "
+"kyerɛɛw no yie."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr ""
+msgstr "Ehintasɛmfua Foforo"
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
-msgstr "Ehintasɛmfua a epɛ"
+msgstr "Foa Ehintasɛmfua so"
 
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr ""
+msgstr "San-hyɛ Me Ehintasɛmfua"
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "Ehintasɛmfua Nsesae Annkɔ yie."
 
 #: templates/registration/password_reset_confirm.html:32
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Link a wɔde yɛ ehintasɛmfua nsesae no nndi mu, a etumi ba no sɛ wo de edi "
+"dwuma dadaw. Yɛsrɛ wo sɛ san bisa ehintasɛmfua nsesae."
 
 #: templates/registration/password_reset_done.html:11
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"Yɛnam emel adrɛs a wo de maa yɛn so akyerɛw wo emel a akwankyerɛ fa sɛnea wo "
+"bɛsesa wo ehintasɛmfua wɔ mu. Wo nsa bɛka no a ɛrennkyɛ koraa."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -1922,55 +1934,59 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"Wo nsa aka emel yi efiri sɛ wo bisaa sɛ wo bɛsesa wo ehintasɛmfua wɔ %"
+"(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Yɛsrɛ wo kɔ krataafa yi so na fa ehintasɛmfua foforo:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "Wo agodin yɛ %(user)s."
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Yɛda wo ase sɛ wo de Pootle edi dwuma!"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Wo were efiri wo ehintasɛmfua anaa? Kyerɛw wo emel adrɛs wɔ famu ha, na "
+"yɛbɛfa emel so akra wo akwankyerɛ a wo bɛfa so de ahyɛ ehintasɛmfua foforo."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
 msgid "Email Address"
-msgstr "Emel"
+msgstr "Emel Adrɛs"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "Ewie Dinkyerɛw"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "Yɛsrɛ wo hwɛ sɛ wo nsa aka emel a wo de bɛkenyan wo akawnt."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "Kyerɛw wo Din fa yɛ Pootle Akawnt Foforo"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "Hyɛ fɔɔm yi so ma ama wo ahyɛ ase sɛ wo reyɛ asekyerɛ ara no no."
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"
-msgstr ""
+msgstr "Ehintasɛmfua (bio)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr ""
+msgstr "Wo wɔ akawnt dadaw?"
 
 #: templates/registration/registration_form.html:41
 msgid "Log In."

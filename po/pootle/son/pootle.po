@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-12-04 23:23+0200\n"
+"PO-Revision-Date: 2009-12-07 18:10+0200\n"
 "Last-Translator: Mohomodou  <mh@bollag-areal.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: son\n"
@@ -15,12 +15,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.0.0-rc2\n"
+"X-Generator: Pootle 2.0.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr "\"Dabari\" dii ganda, wala \"Juwal\" Mac ga, ka suuba hinna kaŋ bisa affoo."
+msgstr ""
+"\"Dabari\" dii ganda, wala \"Juwal\" Mac ga, ka suuba hinna kaŋ ga bisa affoo."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
@@ -45,7 +46,7 @@ msgstr "Cimandi hinnaa woo goo nda harfu %(max)d (a goo nda %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr "Gaabu nda m'itaaga tonton."
+msgstr "Gaabu nda m'itaaga tonton"
 
 #: strings.py:14
 msgid "Save and continue editing"
@@ -63,7 +64,7 @@ msgstr "Barmay"
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr "%(maa)ɲey tonton"
+msgstr "%(name)s tonton"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
@@ -133,7 +134,7 @@ msgstr "War ga hima ka šennikufal follokaa hantum cee foo kul"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr "Ay caw nda yadda goy kalimawey ga."
+msgstr "Ay caw nda yadda goy kalimawey ga"
 
 #: external_apps/registration/forms.py:107
 msgid ""
@@ -195,11 +196,11 @@ msgid ""
 "sure to use valid HTML."
 msgstr ""
 "Šilbayyan nda yaamarey kaŋ cebandi jinehere moɲoo ga nda fahami moɲoo ga. "
-"Alhakiika ka HTML boryo goyandi"
+"Alhakiika ka HTML boryo goyandi."
 
 #: local_apps/pootle_app/unit_update.py:38
 msgid "You do not have rights to suggest changes here"
-msgstr "War ši nda fondo ka barmayyaŋ honnandi ne."
+msgstr "War ši nda fondo ka barmayyaŋ honnandi ne"
 
 #: local_apps/pootle_app/unit_update.py:57
 msgid "You do not have rights to change translations here"
@@ -396,7 +397,7 @@ msgstr "Mongu ka %s taagandi dumi dabaroo boŋ"
 #: local_apps/pootle_app/models/translation_project.py:271
 #, python-format
 msgid "Updated file %s from version control"
-msgstr "%s tuku taagante dumi dabaroo boŋ"
+msgstr "Tuku %s taagante dumi dabaroo boŋ"
 
 #: local_apps/pootle_app/models/translation_project.py:282
 #: local_apps/pootle_app/views/language/view.py:134
@@ -614,7 +615,7 @@ msgstr "Ši nda kontu jina?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
 msgid "Register."
-msgstr "Maa-hantum"
+msgstr "Maa-hantum."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -720,7 +721,7 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
-"Translate Toolkit dumi %s (jisanta) sinjandi. Pootle ga dumi %(waažibante) "
+"Translate Toolkit dumi %(installed)s sinjandi. Pootle ga dumi %(required)s "
 "waažibandi."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:48
@@ -925,7 +926,7 @@ msgstr "Woo ti GNU-fasal porože (tuku maaɲey šenni ašariya bande)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:241
 msgid "This is a standard style project (one directory per language)."
-msgstr "Woo ti dumi tabatante porože (fooloɲaa foo šenni foo se)"
+msgstr "Woo ti dumi tabatante porože (fooloɲaa foo šenni foo se)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:247
 #: local_apps/pootle_app/views/language/language_admin.py:48
@@ -946,7 +947,7 @@ msgstr[0] "tuku %d"
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr "kalima %(translated)d/%(total)d (%(translatedpercent)d%% berante)"
+msgstr "kalima %(translated)d/%(total)d (%(translatedpercent)d%%) berante"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
@@ -957,7 +958,7 @@ msgstr "tenjiri %(translated)d/%(total)d"
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
-msgstr[0] "tenjiri %(checks)d (%(checkspercent)d%%)d kay"
+msgstr[0] "tenjiri %(checks)d (%(checkspercent)d%%) ga laybu"
 
 #: local_apps/pootle_app/views/language/item_dict.py:95
 msgid "Review Suggestions"
@@ -1364,7 +1365,7 @@ msgstr "Honnandiyan bayhaya kul mana noondi."
 
 #: local_apps/pootle_app/views/language/view.py:310
 msgid "Suggestion accepted."
-msgstr "Honnandiyan yaddandi"
+msgstr "Honnandiyan yaddandi."
 
 #: local_apps/pootle_app/views/project/project_admin.py:52
 msgid "Update from templates"
@@ -1518,8 +1519,8 @@ msgstr ""
 "<div dir=\"ltr\" lang=\"en\">\n"
 "<h2 class=\"title\">Woo ti Pootle sinjiyan cebe-haya.</h2>\n"
 "<p class=\"about\">War ga hin ka dii alhukum<a "
-"href=\"http://pootle.locamotion.org\">Pootle feršikaa</a>. Feršikaw juwal mana "
-"ciyari alhabar noo wala šilbayyan feršikaa se. Nda war ti feršikaa woo "
+"href=\"http://pootle.locamotion.org\">Pootle feršikaa</a>. Feršikaw juwalkaa "
+"mana ciyari alhabar noo wala šilbayyan feršikaa se. Nda war ti feršikaa woo "
 "juwalkaa, šilbayyanoo woo fasal war ibaayey tukoo ra wala juwalyan dii-"
 "feddoo ra.</p>\n"
 "</div>"
@@ -1554,7 +1555,7 @@ msgstr "Juwalyan"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
-msgstr "Hankul kayandiyaney hanse ne nungoo woo se."
+msgstr "Hankul kayandiyaney hanse ne nungoo woo se"
 
 #: templates/admin_profile_menu.html:5
 msgid "General"
@@ -1935,7 +1936,7 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr "Taare wa goy jine moɲoo do nda war ma šennikufal taaga suuba."
+msgstr "Taare wa goy jine moɲoo do nda war ma šennikufal taaga suuba:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
