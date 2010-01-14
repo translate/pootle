@@ -36,6 +36,7 @@ from translate.misc.hash import md5_f
 
 from pootle.__version__ import sver as pootle_version
 
+from pootle_app.lib.util import RelatedManager
 from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
@@ -47,6 +48,7 @@ from pootle_store.util import calculate_stats
 ############### Quality Check #############
 
 class QualityCheck(models.Model):
+    objects = RelatedManager()
     name = models.CharField(max_length=64, db_index=True)
     unit = models.ForeignKey("pootle_store.Unit", db_index=True)
     message = models.TextField()
@@ -62,6 +64,7 @@ def count_words(strings):
     return wordcount
 
 class Unit(models.Model, base.TranslationUnit):
+    objects = RelatedManager()
     class Meta:
         ordering = ['store', 'index']
         #unique_together = ('store', 'unitid_hash')
@@ -281,6 +284,7 @@ suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 
 class Store(models.Model, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
+    objects = RelatedManager()
     UnitClass = Unit
     Name = "Model Store"
     is_dir = False
