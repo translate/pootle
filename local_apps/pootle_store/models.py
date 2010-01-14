@@ -204,16 +204,44 @@ class Unit(models.Model, base.TranslationUnit):
 
     def update(self, unit):
         """update indb translation from file"""
-        self.source = unit.source
-        self.target = unit.target
-        self.developer_comment = unit.getnotes(origin="developer")
-        self.translator_comment = unit.getnotes(origin="translator")
-        self.locations = "\n".join(unit.getlocations())
-        self.context = unit.getcontext()
-        self.fuzzy = unit.isfuzzy()
-        self.obsolete = unit.isobsolete()
-        self.unitid = unit.getid()
-        self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
+        changed = False
+        if self.hasplural() != unit.hasplural():
+            self.source = unit.source
+            self.target = unit.target
+            changed = True
+        else:
+            if self.source != unit.source:
+                self.source = unit.source
+                changed = True
+            if self.target != unit.target:
+                self.target = unit.target
+                changed = True
+        notes = unit.getnotes(origin="developer")
+        if self.developer_comment != notes:
+            self.developer_comment = notes
+            changed = True
+        notes = unit.getnotes(origin="translator")
+        if self.translator_comment != notes:
+            self.translator_comment = notes
+            changed = True
+        locations = "\n".join(unit.getlocations())
+        if self.locations != locations:
+            self.locations = locations
+            changed = True
+        if self.context != unit.getcontext():
+            self.context = unit.getcontext()
+            changed = True
+        if self.isfuzzy() != unit.isfuzzy():
+            self.fuzzy = unit.isfuzzy()
+            changed = True
+        if self.isobsolete() != unit.isobsolete():
+            self.obsolete = unit.isobsolete()
+            changed = True
+        if self.unitid != unit.getid():
+            self.unitid = unit.getid()
+            self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
+            changed = True
+        return changed
 
     def update_from_form(self, newvalues):
         """update the unit with a new target, value, comments or fuzzy state"""
@@ -329,8 +357,9 @@ class Store(models.Model, base.TranslationStore):
         shared_units = ((self.findid(uid), self.file.store.findid(uid)) for uid in old_ids & new_ids)
         for oldunit, unit in shared_units:
             oldunit.index = unit.index
-            oldunit.update(unit)
-            oldunit.save()
+            changed = oldunit.update(unit)
+            if changed:
+                oldunit.save()
 
     def sync(self):
         """sync file with translations from db"""
