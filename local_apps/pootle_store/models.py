@@ -166,7 +166,7 @@ class Unit(models.Model, base.TranslationUnit):
         self.fuzzy = value
 
     def hasplural(self):
-        return len(self.source.strings) > 1
+        return self.source is not None and len(self.source.strings) > 1
 
     def isobsolete(self):
         return self.obsolete
