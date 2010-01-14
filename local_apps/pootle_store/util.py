@@ -74,7 +74,7 @@ empty_completestats = {u'check-hassuggestion': 0,
                        u'isfuzzy': 0,
                        'errors': 0}
 
-def completestatssum(queryset, checker, empty_stats=empty_completestats):
+def completestatssum(queryset, empty_stats=empty_completestats):
     totals = empty_stats
     for item in queryset:
         try:
