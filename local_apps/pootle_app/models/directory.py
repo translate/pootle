@@ -22,6 +22,7 @@
 from django.db                import models
 from django.db.models.signals import pre_save
 
+from pootle_store.util import empty_quickstats, empty_completestats
 from pootle_store.util import calculate_stats
 from pootle_store.models import Unit, QualityCheck
 
@@ -107,13 +108,20 @@ class Directory(models.Model):
     def getquickstats(self):
         """calculate aggregate stats for all directory based on stats
         of all descenging stores and dirs"""
+        if self.is_template_project:
+            #FIXME: Hackish return empty_stats to avoid messing up
+            # with project and language stats
+            return empty_quickstats
         #FIXME: can we replace this with a quicker path query? 
         return calculate_stats(Unit.objects.filter(store__pootle_path__startswith=self.pootle_path))
 
     @getfromcache
     def getcompletestats(self):
+        if self.is_template_project:
+            return empty_completestats
         queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path)
         return group_by_count(queryset, 'name')
+
 
     def is_language(self):
         """does this directory point at a language"""
@@ -122,6 +130,8 @@ class Directory(models.Model):
     def is_translationproject(self):
         """does this directory point at a translation project"""
         return self.pootle_path.count('/') == 3
+
+    is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
 
     def get_translationproject(self):
         """returns the translation project belonging to this directory."""
@@ -146,5 +156,3 @@ def set_directory_pootle_path(sender, instance, **kwargs):
         instance.pootle_path = '/'
 
 pre_save.connect(set_directory_pootle_path, sender=Directory)
-
-

@@ -39,6 +39,7 @@ from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.baseurl import l
 from pootle_store.models           import Store
 from pootle_store.util             import relative_real_path, absolute_real_path
+from pootle_store.util import empty_quickstats, empty_completestats
 
 from pootle_app.lib.util           import RelatedManager
 from pootle_app.models.project     import Project
@@ -136,32 +137,17 @@ class TranslationProject(models.Model):
 
     @getfromcache
     def getquickstats(self):
-        if not self.is_template_project:
-            return self.directory.getquickstats()
-        else:
-            #FIXME: Hackish return empty_stats to avoid messing up
-            # with project and language stats
-            empty_stats = {'fuzzy': 0,
-                           'fuzzysourcewords': 0,
-                           'review': 0,
-                           'total': 0,
-                           'totalsourcewords': 0,
-                           'translated': 0,
-                           'translatedsourcewords': 0,
-                           'translatedtargetwords': 0,
-                           'untranslated': 0,
-                           'untranslatedsourcewords': 0}
-            return empty_stats
+        if self.is_template_project:
+            return empty_quickstats
+
+        return self.directory.getquickstats()
 
     @getfromcache
     def getcompletestats(self):
-        if not self.is_template_project:
-            return self.directory.getcompletestats()
-        else:
-            #FIXME: Hackish return empty_stats to avoid messing up
-            # with project and language stats
-            empty_stats = {}
-            return empty_stats
+        if self.is_template_project:
+            return empty_completestats
+
+        return self.directory.getcompletestats()
 
     def _get_indexer(self):
         if self.non_db_state._indexing_enabled:
@@ -438,7 +424,7 @@ class TranslationProject(models.Model):
     ##############################################################################################
 
     is_terminology_project = property(lambda self: self.project.code == "terminology")
-    is_template_project = property(lambda self: self.language.code == 'templates')
+    is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
 
     stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.pootle_path))
 
