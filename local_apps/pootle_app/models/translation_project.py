@@ -343,7 +343,7 @@ class TranslationProject(models.Model):
             self.update_index(indexer, store, optimize=False)
 
 
-    def update_index(self, indexer, store, items=None, optimize=True):
+    def update_index(self, indexer, store, item=None, optimize=True):
         """updates the index with the contents of pofilename (limit to items if given)
 
         There are three reasons for calling this function:
@@ -352,15 +352,15 @@ class TranslationProject(models.Model):
             2. translating a unit via the web interface
                     -> (re)index only the specified unit(s)
 
-        The argument L{items} should be None for 1.
+        The argument L{item} should be None for 1.
 
         known problems:
             1. This function should get called, when the po file changes externally.
                  WARNING: You have to stop the pootle server before manually changing
                  po files, if you want to keep the index database in sync.
 
-        @param items: list of unit numbers within the po file OR None (=rebuild all)
-        @type items: [int]
+        @param items: item number within the po file OR None (=rebuild all)
+        @type item: int
         @param optimize: should the indexing database be optimized afterwards
         @type optimize: bool
         """
@@ -376,28 +376,28 @@ class TranslationProject(models.Model):
             gooditemsnum = indexer.get_query_result(gooditemsquery).get_matches_count()
             # if there is at least one up-to-date indexing item, then the po file
             # was not changed externally -> no need to update the database
-            if (gooditemsnum > 0) and (not items):
+            units = None
+            if (gooditemsnum > 0) and (not item):
                 # nothing to be done
                 return
-            elif items:
-                # Update only specific items - usually single translation via the web
+            elif item is not None:
+                # Update only specific item - usually translation via the web
                 # interface. All other items should still be up-to-date (even with an
                 # older pomtime).
-                # delete the relevant items from the database
-                itemsquery = indexer.make_query([("itemno", str(itemno)) for itemno in items], False)
+                # delete the relevant item from the database
+                unit = store.getitem(item)
+                units = [unit]
+                itemsquery = indexer.make_query([("itemno", str(unit.index))], False)
                 indexer.delete_doc([pofilenamequery, itemsquery])
             else:
-                # (items is None)
+                # (item is None)
                 # The po file is not indexed - or it was changed externally 
                 # delete all items of this file
                 indexer.delete_doc({"pofilename": store.pootle_path})
-            if items is None:
-                # rebuild the whole index
-                items = range(store.file.getitemslen())
+                units = store.units
             addlist = []
-            for itemno in items:
-                unit = store.getitem(itemno)
-                doc = {"pofilename": store.pootle_path, "pomtime": str(pomtime), "itemno": str(itemno)}
+            for unit in units:
+                doc = {"pofilename": store.pootle_path, "pomtime": str(pomtime), "itemno": str(unit.index)}
                 if unit.hasplural():
                     orig = "\n".join(unit.source.strings)
                     trans = "\n".join(unit.target.strings)

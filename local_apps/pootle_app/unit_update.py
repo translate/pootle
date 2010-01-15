@@ -70,10 +70,10 @@ def update_translation(store, item, newvalues, request, suggestion=None):
         # FIXME: making from_suggestion OneToOne was a mistake since
         # we can't distinguish between identical suggestions.
         pass
-    
+
     store.updateunit(item, newvalues, translation_project.checker,
                           user=request.user, language=translation_project.language)
-    translation_project.update_index(translation_project.indexer, store, [item])
+    translation_project.update_index(translation_project.indexer, store, item)
 
 
 def update_suggestion(state, store, item, newtrans, request):
@@ -110,4 +110,3 @@ def accept_suggestion(store, item, suggitem, newtrans, request):
     update_translation(store, item, new_values, request, suggestion)
     store.deletesuggestion(item, suggitem, newtrans,
                            request.translation_project.checker)
-    
