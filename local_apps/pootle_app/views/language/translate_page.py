@@ -141,7 +141,8 @@ def get_units(store, item_start, item_stop):
     return store.units[max(item_start, 0):item_stop]
 
 def get_translations(request, profile, store, item):
-    """gets the list of translations desired for the view, and sets editable and firstitem parameters"""
+    """gets the list of translations desired for the view, and sets
+    editable and firstitem parameters"""
     state = dispatch.TranslatePageState(request.GET)
     if store is None:
         # editable, first item, items
@@ -167,7 +168,7 @@ def get_header_plural(request, store):
     plurals = request.translation_project.language.pluralequation
 
     #FIXME: what if file has different opinion about plurals
-    
+
     #try:
     #    # get plural information from Store
     #    snplurals, splurals = store.file.store.getheaderplural()

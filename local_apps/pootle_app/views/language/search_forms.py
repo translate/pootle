@@ -43,11 +43,11 @@ class AdvancedSearchForm(forms.Form):
     target = forms.BooleanField(label=_('Target Text'), required=False, initial=True)
     notes = forms.BooleanField(label=_('Comments'), required=False, initial= False)
     locations = forms.BooleanField(label=_('Locations'), required=False, initial=False)
-    
+
     def as_hidden(self):
         """Brain dead Django mungles rendering of checkboxes if initial values are routed via as_hidden
         check http://code.djangoproject.com/ticket/9336 for more info"""
-        
+
         def field_hidden(field):
             if field.data:
                 return '<input type="hidden" name="%s" value="True" id="id_%s" />' % (field.name, field.name)
@@ -62,7 +62,7 @@ def get_search_form(request, search_text=None):
 
     search_form = None
     advanced_search_form = None
-    
+
     if request.method == 'POST':
         search_form = SearchForm(data=request.POST, initial={'title': _('Search'), 'text': search_text or ''})
         if not search_form.is_valid():
@@ -70,7 +70,7 @@ def get_search_form(request, search_text=None):
         advanced_search_form = AdvancedSearchForm(data=request.POST)
         if not advanced_search_form.is_valid():
             advanced_search_form = None
-    
+
     if search_form is None or advanced_search_form is None:
         search_form = SearchForm(initial={'title': _('Search'), 'text': search_text or ''})
         advanced_search_form = AdvancedSearchForm()
@@ -99,7 +99,7 @@ def search_from_request(request):
     kwargs = {}
     kwargs['match_names']         = get_list(request, 'match_names')
     #FIXME: use cleaned_data
-    kwargs['search_text']         = search['search_form']['text'].data    
+    kwargs['search_text']         = search['search_form']['text'].data
     kwargs['search_fields']       = as_search_field_list(search['advanced_search_form'])
     kwargs['translation_project'] = request.translation_project
     return Search(**kwargs)
