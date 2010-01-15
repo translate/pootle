@@ -77,7 +77,7 @@ def getcheckdetails(request, path_obj):
                                   '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
                                   {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
                                   )
-                checklink = {'href': dispatch.review(request, path_obj.pootle_path, match_names=['check-%s' % checkname]),
+                checklink = {'href': dispatch.review(request, path_obj.pootle_path, match_names=[checkname]),
                              'text': checkname,
                              'stats': stats}
                 checklinks += [checklink]
