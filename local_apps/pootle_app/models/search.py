@@ -59,35 +59,6 @@ def intersect(set_a, set_b):
             if member(set_b, element):
                 yield element
 
-
-def narrow_to_search_text(total, store, translatables, search):
-    if search.search_text not in (None, '') and search.search_results is None:
-        # We'll get here if the user is searching for a piece of text and if no indexer
-        # (such as Xapian or Lucene) is usable. First build a grepper...
-        grepfilter = pogrep.GrepFilter(search.search_text, search.search_fields, ignorecase=True)
-        # ...then filter the items using the grepper.
-        return (item for item in translatables 
-                if grepfilter.filterunit(store.units[item]))
-
-    elif search.search_results is not None:
-        mapped_indices = [total[item] for item in search.search_results[store.pootle_path]]
-        return intersect(mapped_indices, translatables)
-    else:
-        return translatables
-
-
-def narrow_to_matches(stats, translatables, search):
-    if len(search.match_names) > 0:
-        matches = reduce(set.__or__,
-                         (set(stats[match_name])
-                          for match_name in search.match_names
-                          if match_name in stats),
-                         set())
-        return intersect(sorted(matches), translatables)
-    else:
-        return translatables
-
-
 def search_results_to_dict(hits):
     result_dict = {}
     for doc in hits:
@@ -149,17 +120,39 @@ class Search(object):
                 return iter([last_index])
             else:
                 return iter([])
-        else:
-            if self.search_results is not None and \
-                    store.pootle_path not in self.search_results:
+        if self.search_results is not None:
+            if store.pootle_path not in self.search_results:
                 return iter([])
+            else:
+                result = store.units.filter(index__in=self.search_results[store.pootle_path])
+        else:
+            result = store.units
 
-            stats = store.file.getcompletestats(self.translation_project.checker)
-            total = stats['total']
-            result = total[range[0]:range[1]]
-            result = narrow_to_matches(stats, result, self)
-            result = narrow_to_search_text(total, store, result, self)
-            return (bisect.bisect_left(total, item) for item in transform(result))
+        total = store.units.values_list('index', flat=True)
+        if range[0] is not None:
+            begin = store.getitem(range[0]).index
+            if range[1] is not None:
+                end = store.getitem(range[1]).index
+                result = result.filter(index__range=(begin, end))
+            else:
+                result = result.filter(index__gte=begin)
+        elif range[1] is not None:
+            end = store.getitem(range[1]).index
+            result = result.filter(index__lt=end)
+
+        if self.match_names:
+            result = result.filter(qualitycheck__name__in=self.match_names)
+
+        if self.search_text not in (None, '') and self.search_results is None:
+            print "no search indexing"
+            # We'll get here if the user is searching for a piece of text and if no indexer
+            # (such as Xapian or Lucene) is usable. First build a grepper...
+            grepfilter = pogrep.GrepFilter(self.search_text, self.search_fields, ignorecase=True)
+            # ...then filter the items using the grepper.
+            result = (unit.index for unit in result if grepfilter.filterunit(unit))
+        else:
+            result = result.values_list('index', flat=True).iterator()
+        return (bisect.bisect_left(total, item) for item in transform(result))
 
     def next_matches(self, store, last_index):
         # stats['total'] is an array of indices into the units array
