@@ -24,7 +24,7 @@ from django.db.models.signals import pre_save
 
 from pootle_store.util import empty_quickstats, empty_completestats, statssum, completestatssum
 from pootle_store.util import calculate_stats
-from pootle_store.models import Unit, QualityCheck
+from pootle_store.models import Unit, QualityCheck, Suggestion
 
 from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.baseurl import l
@@ -131,6 +131,9 @@ class Directory(models.Model):
         #queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path)
         #return group_by_count(queryset, 'name')
 
+    def has_suggestions(self):
+        """check if any child store has suggestions"""
+        return Suggestion.objects.filter(unit__store__pootle_path__startswith=self.pootle_path).count() > 0
 
     def is_language(self):
         """does this directory point at a language"""

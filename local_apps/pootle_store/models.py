@@ -33,6 +33,7 @@ from django.db.transaction import commit_on_success
 
 from translate.storage import base, statsdb, po, poheader
 from translate.misc.hash import md5_f
+from translate.misc.multistring import multistring
 
 from pootle.__version__ import sver as pootle_version
 
@@ -55,6 +56,33 @@ class QualityCheck(models.Model):
     message = models.TextField()
     def __unicode__(self):
         return self.name
+
+################# Suggestion ################
+
+class Suggestion(models.Model, base.TranslationUnit):
+    """suggested translation for unit, provided by users or
+    automatically generated after a merge"""
+    objects = RelatedManager()
+    class Meta:
+        unique_together = ('unit', 'target_hash')
+
+    target_f = MultiStringField()
+    target_hash = models.CharField(max_length=32, db_index=True)
+    unit = models.ForeignKey('pootle_store.Unit')
+    user = models.ForeignKey('pootle_app.PootleProfile', null=True)
+
+    def __unicode__(self):
+        return unicode(self.target)
+
+    def _get_target(self):
+        return self.target_f
+
+    def _set_target(self, value):
+        self.target_f = value
+        self.target_hash = md5_f(self.target_f.encode("utf-8")).hexdigest()
+
+    _target = property(_get_target, _set_target)
+    _source = property(lambda self: self.unit._source)
 
 ############### Unit ####################
 
@@ -264,6 +292,15 @@ class Unit(models.Model, base.TranslationUnit):
         newunit.update(unit)
         return newunit
 
+    def addalttrans(self, txt):
+        self.add_suggestion(txt)
+
+    def getalttrans(self):
+        return self.get_suggestions()
+
+    def delalttrans(self, alternative):
+        alternative.delete()
+
 ###################### Translation ################################
     def update_from_form(self, newvalues):
         """update the unit with a new target, value, comments or fuzzy state"""
@@ -280,7 +317,49 @@ class Unit(models.Model, base.TranslationUnit):
             self.addnote(newvalues['translator_comments'],
                          origin="translator", position="replace")
 
+##################### Suggestions #################################
+    def get_suggestions(self):
+        return self.suggestion_set.all()
 
+    def get_suggestion(self, item, translation):
+        translation = multistring(translation)
+        try:
+            suggestion = self.get_suggestions()[item]
+            if suggestion.target == translation:
+                return suggestion
+        except IndexError:
+            pass
+
+        try:
+            suggestion = self.suggestion_set.get(target_hash=md5_f(translation.encode("utf-8")).hexdigest())
+            return suggestion
+        except Suggestion.DoesNotExist:
+            pass
+
+
+    def add_suggestion(self, translation, user=None):
+        suggestion = Suggestion(unit=self, user=user)
+        suggestion.target = translation
+        try:
+            suggestion.save()
+        except:
+            # probably duplicate suggestion
+            return None
+        return suggestion
+
+    def accept_suggestion(self, item, translation):
+        suggestion = self.get_suggestion(item, translation)
+        if suggestion is None:
+            return
+        self.target = suggestion.target
+        self.save()
+        suggestion.delete()
+
+    def reject_suggestion(self, item, translation):
+        suggestion = self.get_suggestion(item, translation)
+        if suggestion is None:
+            return
+        suggestion.delete()
 
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
@@ -413,6 +492,8 @@ class Store(models.Model, base.TranslationStore):
     def getids(self):
         return self.units.values_list('unitid', flat=True)
 
+    suggestions_in_format = True
+
 ############################### Stats ############################
 
     @getfromcache
@@ -433,6 +514,10 @@ class Store(models.Model, base.TranslationStore):
             self._checker = self.parent.get_translationproject().checker
         return self._checker
     checker = property(get_checker)
+
+    def has_suggestions(self):
+        """check if any unit in store has suggestions"""
+        return Suggestion.objects.filter(unit__store=self).count() > 0
 
 ################################ Translation #############################
 
