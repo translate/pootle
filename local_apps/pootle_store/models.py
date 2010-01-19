@@ -48,6 +48,7 @@ from pootle_store.util import calculate_stats
 ############### Quality Check #############
 
 class QualityCheck(models.Model):
+    """database cache of results of qualitychecks on unit"""
     objects = RelatedManager()
     name = models.CharField(max_length=64, db_index=True)
     unit = models.ForeignKey("pootle_store.Unit", db_index=True)
@@ -127,58 +128,6 @@ class Unit(models.Model, base.TranslationUnit):
     def __unicode__(self):
         return unicode(str(self.convert(self.unitclass)).decode(self._encoding))
 
-    def getnotes(self, origin=None):
-        if origin == None:
-            return self.translator_comment + self.developer_comment
-        elif origin == "translator":
-            return self.translator_comment
-        elif origin in ["programmer", "developer", "source code"]:
-            return self.developer_comment
-        else:
-            raise ValueError("Comment type not valid")
-
-    def addnote(self, text, origin=None, position="append"):
-        if not (text and text.strip()):
-            return
-        if origin in ["programmer", "developer", "source code"]:
-            self.developer_comment = text
-        else:
-            self.translator_comment = text
-
-    def getid(self):
-        return self.unitid
-
-    def getlocations(self):
-        return self.locations.split('\n')
-
-    def addlocation(self, location):
-        if self.locations is None:
-            self.locations = ''
-        self.locations += location + "\n"
-
-    def getcontext(self):
-        return self.context
-
-    def isfuzzy(self):
-        return self.fuzzy
-
-    def markfuzzy(self, value=True):
-        self.fuzzy = value
-
-    def hasplural(self):
-        return self.source is not None and len(self.source.strings) > 1
-
-    def isobsolete(self):
-        return self.obsolete
-
-    def makeobsolete(self):
-        self.obsolete = True
-
-    @classmethod
-    def buildfromunit(cls, unit):
-        newunit = cls()
-        newunit.update(unit)
-        return newunit
 
     def getorig(self):
         unit = self.store.file.store.units[self.index]
@@ -246,6 +195,76 @@ class Unit(models.Model, base.TranslationUnit):
             changed = True
         return changed
 
+    def update_qualitychecks(self, checker, created=False):
+        """run quality checks and store result in database"""
+        if not created:
+            self.qualitycheck_set.all().delete()
+        for name, message in checker.run_filters(self).items():
+            self.qualitycheck_set.create(name=name, message=message)
+
+    def get_checker(self):
+        """propogate checker from parent store"""
+        if not hasattr(self, '_checker'):
+            self._checker = self.store.checker
+        return self._checker
+    checker = property(get_checker)
+
+##################### TranslationUnit ############################
+
+    def getnotes(self, origin=None):
+        if origin == None:
+            return self.translator_comment + self.developer_comment
+        elif origin == "translator":
+            return self.translator_comment
+        elif origin in ["programmer", "developer", "source code"]:
+            return self.developer_comment
+        else:
+            raise ValueError("Comment type not valid")
+
+    def addnote(self, text, origin=None, position="append"):
+        if not (text and text.strip()):
+            return
+        if origin in ["programmer", "developer", "source code"]:
+            self.developer_comment = text
+        else:
+            self.translator_comment = text
+
+    def getid(self):
+        return self.unitid
+
+    def getlocations(self):
+        return self.locations.split('\n')
+
+    def addlocation(self, location):
+        if self.locations is None:
+            self.locations = ''
+        self.locations += location + "\n"
+
+    def getcontext(self):
+        return self.context
+
+    def isfuzzy(self):
+        return self.fuzzy
+
+    def markfuzzy(self, value=True):
+        self.fuzzy = value
+
+    def hasplural(self):
+        return self.source is not None and len(self.source.strings) > 1
+
+    def isobsolete(self):
+        return self.obsolete
+
+    def makeobsolete(self):
+        self.obsolete = True
+
+    @classmethod
+    def buildfromunit(cls, unit):
+        newunit = cls()
+        newunit.update(unit)
+        return newunit
+
+###################### Translation ################################
     def update_from_form(self, newvalues):
         """update the unit with a new target, value, comments or fuzzy state"""
         if newvalues.has_key('target'):
@@ -261,19 +280,7 @@ class Unit(models.Model, base.TranslationUnit):
             self.addnote(newvalues['translator_comments'],
                          origin="translator", position="replace")
 
-    def update_qualitychecks(self, checker, created=False):
-        """run quality checks and store result in database"""
-        if not created:
-            self.qualitycheck_set.all().delete()
-        for name, message in checker.run_filters(self).items():
-            self.qualitycheck_set.create(name=name, message=message)
 
-    def get_checker(self):
-        """propogate checker from parent store"""
-        if not hasattr(self, '_checker'):
-            self._checker = self.store.checker
-        return self._checker
-    checker = property(get_checker)
 
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
@@ -410,12 +417,22 @@ class Store(models.Model, base.TranslationStore):
 
     @getfromcache
     def getquickstats(self):
+        """calculate translation statistics"""
         return calculate_stats(self.units)
 
     @getfromcache
     def getcompletestats(self):
+        """report result of quality checks"""
         queryset = QualityCheck.objects.filter(unit__store=self)
         return group_by_count(queryset, 'name')
+
+    def get_checker(self):
+        """propogate checker from parent TranslationProject"""
+        #FIXME: hackish and slow
+        if not hasattr(self, "_checker"):
+            self._checker = self.parent.get_translationproject().checker
+        return self._checker
+    checker = property(get_checker)
 
 ################################ Translation #############################
 
@@ -730,14 +747,6 @@ class Store(models.Model, base.TranslationStore):
             if suggestedby:
                 return suggestedby.group(1)
         return None
-
-    def get_checker(self):
-        """propogate checker from parent TranslationProject"""
-        #FIXME: hackish and slow
-        if not hasattr(self, "_checker"):
-            self._checker = self.parent.get_translationproject().checker
-        return self._checker
-    checker = property(get_checker)
 
 ########################### Signals ###############################
 
