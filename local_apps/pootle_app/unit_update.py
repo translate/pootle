@@ -37,18 +37,17 @@ def suggest_translation(store, item, trans, request):
     if not check_permission("suggest", request):
         raise PermissionDenied(_("You do not have rights to suggest changes here"))
     translation_project = request.translation_project
+    unit = store.getitem(item)
+    profile = get_profile(request.user)
+    unit.add_suggestion(trans, profile)
     s = Suggestion(
         creation_time       = datetime.datetime.utcnow(),
         translation_project = translation_project,
-        suggester           = get_profile(request.user),
+        suggester           = profile,
         unit                = _suggestion_hash(store, item, trans),
         state               = 'pending',
         )
     s.save()
-    store.addsuggestion(item, trans, s.suggester.user.username,
-                        translation_project.checker)
-    #FIXME: we don't handle identical suggestions
-
 
 def update_translation(store, item, newvalues, request, suggestion=None):
     """updates a translation with a new value..."""
@@ -96,8 +95,8 @@ def reject_suggestion(store, item, suggitem, newtrans, request):
 
     update_suggestion('rejected', store, item, newtrans, request)
     # Deletes the suggestion from the .pending file
-    store.deletesuggestion(item, suggitem, newtrans,
-                           request.translation_project.checker)
+    unit = store.getitem(item)
+    unit.reject_suggestion(suggitem, newtrans)
 
 def accept_suggestion(store, item, suggitem, newtrans, request):
     """accepts the suggestion into the main pofile"""
@@ -107,6 +106,6 @@ def accept_suggestion(store, item, suggitem, newtrans, request):
     suggestion = update_suggestion('accepted', store, item, newtrans, request)
 
     new_values = {"target": newtrans, "fuzzy": False}
-    update_translation(store, item, new_values, request, suggestion)
-    store.deletesuggestion(item, suggitem, newtrans,
-                           request.translation_project.checker)
+    unit = store.getitem(item)
+    unit.accept_suggestion(suggitem, newtrans)
+    

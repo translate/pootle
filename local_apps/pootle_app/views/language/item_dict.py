@@ -89,13 +89,13 @@ def getcheckdetails(request, path_obj):
 
 def review_link(request, path_obj):
     try:
-        if path_obj.getcompletestats().get('check-hassuggestion', 0):
+        if path_obj.has_suggestions():
             if check_permission('translate', request):
                 text = _('Review Suggestions')
             else:
                 text = _('View Suggestions')
             return { 
-                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['check-hassuggestion']),
+                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['hassuggestion']),
                     'text': text }
     except IOError:
         pass

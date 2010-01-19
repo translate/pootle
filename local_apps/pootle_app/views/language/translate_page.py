@@ -474,8 +474,7 @@ def get_trans_review(request, store, item, trans, suggestions):
         "itemid":        "trans%d" % item,
         }
     suggitems = []
-    for suggid, msgstr in enumerate(suggestions):
-        suggestedby = store.getsuggester(item, suggid)
+    for suggid, (msgstr, suggestedby) in enumerate(suggestions):
         if len(suggestions) > 1:
             if suggestedby:
                 # l10n: First parameter: number
@@ -597,7 +596,7 @@ def make_table(request, profile, store, item):
     items = []
     suggestions = {}
     if (state.view_mode in ('review', 'translate')):
-        suggestions = {item: store.getsuggestions(item)}
+        suggestions = {item: store.getitem(item).get_suggestions()}
     for row, unit in enumerate(translations):
         tmsuggestions = []
         orig = get_string_array(unit.source)
@@ -605,7 +604,7 @@ def make_table(request, profile, store, item):
         item = first_item + row
         origdict = getorigdict(item, orig, item == editable)
         transmerge = {}
-        suggestions[item] = store.getsuggestions(item)
+        suggestions[item] = unit.get_suggestions()
 
         message_context = ""
         if item == editable:
@@ -626,9 +625,9 @@ def make_table(request, profile, store, item):
         itemsuggestions = []
         for suggestion in suggestions[item]:
             if suggestion.hasplural():
-                itemsuggestions.append(suggestion.target.strings)
+                itemsuggestions.append((suggestion.target.strings, unicode(suggestion.user)))
             else:
-                itemsuggestions.append([suggestion.target])
+                itemsuggestions.append(([suggestion.target], unicode(suggestion.user)))
         transreview = get_trans_review(request, store, item, trans, itemsuggestions)
         if 'forms' in transmerge.keys():
             for fnum in range(len(transmerge['forms'])):

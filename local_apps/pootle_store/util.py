@@ -70,8 +70,7 @@ def statssum(queryset, empty_stats=empty_quickstats):
             totals['errors'] += 1
     return totals
 
-empty_completestats = {u'check-hassuggestion': 0,
-                       u'isfuzzy': 0,
+empty_completestats = {u'isfuzzy': 0,
                        'errors': 0}
 
 def completestatssum(queryset, empty_stats=empty_completestats):
