@@ -145,7 +145,11 @@ class Search(object):
                 suggestions = result.exclude(suggestion=None)
             else:
                 suggestions = result.none()
-            result = result.filter(qualitycheck__name__in=self.match_names) | suggestions
+            if 'untranslated' in self.match_names:
+                untranslated = result.filter(target_length=0)
+            else:
+                untranslated = result.none()
+            result = result.filter(qualitycheck__name__in=self.match_names) | suggestions | untranslated
 
         if self.search_text not in (None, '') and self.search_results is None:
             print "no search indexing"
