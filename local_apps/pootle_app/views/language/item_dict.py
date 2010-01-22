@@ -151,7 +151,7 @@ def download_link(request, path_obj):
         }
 
 def commit_link(request, path_obj):
-    if check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
+    if path_obj.abs_real_path and check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
         link = dispatch.commit(request, path_obj)
         text = _('Commit to VCS')
         return {
@@ -161,7 +161,7 @@ def commit_link(request, path_obj):
         }
 
 def update_link(request, path_obj):
-    if check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
+    if path_obj.abs_real_path and check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
         link = dispatch.update(request, path_obj)
         text = _('Update from VCS')
         return {
