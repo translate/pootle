@@ -62,7 +62,7 @@ class MultiStringField(models.Field):
 
     def to_python(self, value):
         if value is None:
-            return u""
+            return multistring("")
         elif isinstance(value, multistring):
             return value
         elif isinstance(value, basestring):
