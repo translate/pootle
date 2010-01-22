@@ -241,7 +241,12 @@ class Unit(models.Model, base.TranslationUnit):
 
     def getnotes(self, origin=None):
         if origin == None:
-            return self.translator_comment + self.developer_comment
+            notes = ''
+            if self.translator_comment is not None:
+                notes += self.translator_comment
+            if self.developer_comment is not None:
+                notes += self.developer_comment
+            return self.developer_comment
         elif origin == "translator":
             return self.translator_comment
         elif origin in ["programmer", "developer", "source code"]:
