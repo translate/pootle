@@ -247,7 +247,7 @@ class Unit(models.Model, base.TranslationUnit):
                 notes += self.translator_comment
             if self.developer_comment is not None:
                 notes += self.developer_comment
-            return self.developer_comment
+            return notes
         elif origin == "translator":
             return self.translator_comment
         elif origin in ["programmer", "developer", "source code"]:
