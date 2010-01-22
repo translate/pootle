@@ -119,7 +119,6 @@ class Unit(models.Model, base.TranslationUnit):
     fuzzy = models.BooleanField(default=False)
     obsolete = models.BooleanField(default=False)
 
-
     def init_nondb_state(self):
         self._rich_source = None
         self._rich_target = None
@@ -411,7 +410,8 @@ class Store(models.Model, base.TranslationStore):
         deletefromcache(self, ["getquickstats", "getcompletestats"])
 
     def _get_abs_real_path(self):
-        return self.file.path
+        if self.file:
+            return self.file.path
 
     abs_real_path = property(_get_abs_real_path)
 
@@ -658,7 +658,8 @@ class Store(models.Model, base.TranslationStore):
         """initialize translation memory file if needed"""
         if self.tm and os.path.exists(self.tm.path):
             return
-
+        if not self.file:
+            return
         tm_filename = self.file.path + os.extsep + 'tm'
         if os.path.exists(tm_filename):
             self.tm = tm_filename
@@ -858,7 +859,7 @@ def store_post_init(sender, instance, **kwargs):
 post_init.connect(store_post_init, sender=Store)
 
 def store_post_save(sender, instance, created, **kwargs):
-    if created:
+    if created and instance.file:
         instance.update()
 post_save.connect(store_post_save, sender=Store)
 
