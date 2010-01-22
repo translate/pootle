@@ -227,6 +227,8 @@ class Unit(models.Model, base.TranslationUnit):
         """run quality checks and store result in database"""
         if not created:
             self.qualitycheck_set.all().delete()
+        if not self.target:
+            return
         for name, message in checker.run_filters(self).items():
             self.qualitycheck_set.create(name=name, message=message)
 
