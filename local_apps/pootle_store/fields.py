@@ -45,16 +45,15 @@ def list_empty(strings):
 
     useful for detecting empty multistrings and storing them as a
     simple empty string in db."""
-    
     for string in strings:
         if len(string) > 0:
             return False
     return True
-        
+
 class MultiStringField(models.Field):
     description = "a field imitating translate.misc.multistring used for plurals"
     __metaclass__ = models.SubfieldBase
-    
+
     def __init__(self, *args, **kwargs):
         super(MultiStringField, self).__init__(*args, **kwargs)
 
@@ -63,7 +62,7 @@ class MultiStringField(models.Field):
 
     def to_python(self, value):
         if value is None:
-            return None
+            return u""
         elif isinstance(value, multistring):
             return value
         elif isinstance(value, basestring):
@@ -89,7 +88,7 @@ class MultiStringField(models.Field):
                 return SEPERATOR.join(value)
         else:
             return value
-            
+
     def get_db_prep_lookup(self, lookup_type, value):
         if lookup_type in ('exact', 'iexact') or not isinstance(value, basestring):
             value = self.get_db_prep_value(value)
@@ -126,7 +125,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         else:
             return self._store_tuple.realpath
     realpath = property(_get_cached_realpath)
-    
+
     def _get_store(self):
         """Get translation store from dictionary cache, populate if store not
         already cached."""
@@ -184,7 +183,6 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         translation_file_updated.send(sender=self, path=self.path)
 
     store = property(_get_store)
-
 
     def savestore(self):
         """Saves to temporary file then moves over original file. This
