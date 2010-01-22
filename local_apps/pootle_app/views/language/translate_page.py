@@ -89,7 +89,7 @@ def get_page_links(request, store, pagesize, translations, item, first_item):
     """gets links to other pages of items, based on the given baselink"""
 
     pagelinks = []
-    pofilelen = store.file.getitemslen()
+    pofilelen = store.units.count()
 
     if pofilelen <= pagesize or item is None:
         return pagelinks
@@ -155,7 +155,7 @@ def get_translations(request, profile, store, item):
         before = (rows / 2) - 1
         first_item = max(item - before, 0)
         last_item = first_item + rows
-        pofilelen = store.file.getitemslen()
+        pofilelen = store.units.count()
         if last_item > pofilelen:
             last_item = pofilelen
             first_item = max(last_item - rows, 0)
