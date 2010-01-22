@@ -266,6 +266,8 @@ class Unit(models.Model, base.TranslationUnit):
         return self.unitid
 
     def getlocations(self):
+        if self.locations is None:
+            return []
         return self.locations.split('\n')
 
     def addlocation(self, location):
