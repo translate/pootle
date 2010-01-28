@@ -20,7 +20,18 @@
 
 from django.conf import settings
 
-def sitesettings(request):
+
+
+def pootle_context(request):
     """exposes settings to templates"""
     #FIXME: maybe we should expose relevant settings only?
-    return {'settings': settings }
+    context = {
+        'pootle_profile': request.profile,
+        'pootle_context': request.pootle_context,
+        'settings': {
+            'TITLE': settings.TITLE,
+            'DESCRIPTION': settings.DESCRIPTION,
+            'CAN_REGISTER': settings.CAN_REGISTER,
+        },
+    }
+    return context
