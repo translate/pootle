@@ -22,7 +22,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db                import models
 from django.db.models.signals import pre_save, post_delete
 
-from pootle.i18n.gettext import tr_lang
+from pootle.i18n.gettext import tr_lang, language_dir
 
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
@@ -68,6 +68,10 @@ class Language(models.Model):
     def localname(self):
         """localized fullname"""
         return tr_lang(self.fullname)
+
+    def get_direction(self):
+        """returns language direction"""
+        return language_dir(self.code)
 
     def translated_percentage(self):
         return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
