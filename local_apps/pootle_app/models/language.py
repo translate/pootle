@@ -53,7 +53,7 @@ class Language(models.Model):
     pootle_path = property(lambda self: '/%s/' % self.code)
 
     def __repr__(self):
-        return self.fullname
+        return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
 
     def __unicode__(self):
         return self.localname()
