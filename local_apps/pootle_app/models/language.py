@@ -56,7 +56,7 @@ class Language(models.Model):
         return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
 
     def __unicode__(self):
-        return self.localname()
+        return u"%s - %s" % (self.localname(), self.code)
 
     @getfromcache
     def getquickstats(self):
@@ -67,7 +67,7 @@ class Language(models.Model):
 
     def localname(self):
         """localized fullname"""
-        return u"%s - %s" % (tr_lang(self.fullname), self.code)
+        return tr_lang(self.fullname)
 
     def translated_percentage(self):
         return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
