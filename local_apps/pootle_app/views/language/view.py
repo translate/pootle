@@ -104,7 +104,7 @@ def project_index(request, translation_project, dir_path):
     return project_index_view(request, translation_project, directory)
 
 def handle_translation_file(request, translation_project, file_path):
-    pootle_path = translation_project.directory.pootle_path + (file_path or '')
+    pootle_path = translation_project.pootle_path + (file_path or '')
     store = get_object_or_404(Store, pootle_path=pootle_path)
     def get_item(itr, item):
         try:
