@@ -62,15 +62,15 @@ class MultiStringField(models.Field):
 
     def to_python(self, value):
         if value is None:
-            return multistring("")
+            return multistring("", encoding="UTF-8")
         elif isinstance(value, multistring):
             return value
         elif isinstance(value, basestring):
-            return multistring(value.split(SEPERATOR))
+            return multistring(value.split(SEPERATOR), encoding="UTF-8")
         elif isinstance(value, dict):
-            return multistring([val for key, val in sorted(value.items())])
+            return multistring([val for key, val in sorted(value.items())], encoding="UTF-8")
         else:
-            return multistring(value)
+            return multistring(value, encoding="UTF-8")
 
     def get_db_prep_value(self, value):
         #FIXME: maybe we need to override get_db_prep_save instead?
