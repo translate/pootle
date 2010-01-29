@@ -98,26 +98,26 @@ class Unit(models.Model, base.TranslationUnit):
         ordering = ['store', 'index']
         #unique_together = ('store', 'unitid_hash')
 
-    store = models.ForeignKey("pootle_store.Store", db_index=True)
-    index = models.IntegerField(db_index=True)
-    unitid = models.TextField()
-    unitid_hash = models.CharField(max_length=32, db_index=True)
+    store = models.ForeignKey("pootle_store.Store", db_index=True, editable=False)
+    index = models.IntegerField(db_index=True, editable=False)
+    unitid = models.TextField(editable=False)
+    unitid_hash = models.CharField(max_length=32, db_index=True, editable=False)
 
     source_f = MultiStringField(null=True)
-    source_hash = models.CharField(max_length=32, db_index=True)
-    source_wordcount = models.SmallIntegerField(default=0)
-    source_length = models.SmallIntegerField(db_index=True, default=0)
+    source_hash = models.CharField(max_length=32, db_index=True, editable=False)
+    source_wordcount = models.SmallIntegerField(default=0, editable=False)
+    source_length = models.SmallIntegerField(db_index=True, default=0, editable=False)
 
     target_f = MultiStringField(null=True)
-    target_wordcount = models.SmallIntegerField(default=0)
-    target_length = models.SmallIntegerField(db_index=True, default=0)
+    target_wordcount = models.SmallIntegerField(default=0, editable=False)
+    target_length = models.SmallIntegerField(db_index=True, default=0, editable=False)
 
     developer_comment = models.TextField(null=True)
     translator_comment = models.TextField(null=True)
-    locations = models.TextField(null=True)
-    context = models.TextField(null=True)
+    locations = models.TextField(null=True, editable=False)
+    context = models.TextField(null=True, editable=False)
     fuzzy = models.BooleanField(default=False)
-    obsolete = models.BooleanField(default=False)
+    obsolete = models.BooleanField(default=False, editable=False)
 
     def init_nondb_state(self):
         self._rich_source = None
