@@ -22,10 +22,6 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('pootle_app.views.language',
-    (r'^(?P<language_code>[^/]*)([/](index.html)?)?$',
-     'language_index.language_index'),
-    (r'^(?P<language_code>[^/]*)/admin.html$',
-     'language_admin.view'),
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_permissions.html$',
      'view.translation_project_admin_permissions'),
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_files.html$',
