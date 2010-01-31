@@ -25,7 +25,10 @@ from django.utils.translation import ungettext
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django import forms
+from django.forms.models import BaseModelFormSet
 
+from pootle_misc.baseurl import l
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_app.views.language.project_index import get_stats_headings
@@ -33,6 +36,13 @@ from pootle_app.views.language.item_dict import add_percentages, stats_descripti
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.top_stats import gentopstats
 from pootle_app.views import pagelayout
+from pootle_translationproject.models import TranslationProject
+from pootle_app import project_tree
+from pootle_app.views.admin import util
+from pootle_profile.models import get_profile
+from pootle_app.views.index.index import getprojects
+from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models import Directory
 
 
 def limit(query):
@@ -63,14 +73,15 @@ def make_language_item(request, translation_project):
     return info
 
 
-def view(request, project_code, _path_var):
+def project_language_index(request, project_code):
+    """page listing all languages added to project"""
     project = get_object_or_404(Project, code=project_code)
     translation_projects = project.translationproject_set.all()
     items = [make_language_item(request, translation_project) for translation_project in translation_projects]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
     languagecount = len(translation_projects)
     totals = add_percentages(project.getquickstats())
-    average = totals['translatedpercentage'] 
+    average = totals['translatedpercentage']
 
     topstats = gentopstats(lambda query: query.filter(translation_project__project__code=project_code))
 
@@ -92,5 +103,71 @@ def view(request, project_code, _path_var):
                     'fuzzy': _('Translations need to be checked (they are marked fuzzy)'
                     ), 'untranslated': _('Untranslated')},
     }
-    
     return render_to_response('project/project.html', templatevars, context_instance=RequestContext(request))
+
+
+class TranslationProjectFormSet(BaseModelFormSet):
+    def save_existing(self, form, instance, commit=True):
+        result = super(TranslationProjectFormSet, self).save_existing(form, instance, commit)
+        form.process_extra_fields()
+        return result
+
+    def save_new(self, form, commit=True):
+        result = super(TranslationProjectFormSet, self).save_new(form, commit)
+        form.process_extra_fields()
+        return result
+
+@util.user_is_admin
+def project_admin(request, project_code):
+    """adding and deleting project languages"""
+    current_project = Project.objects.get(code=project_code)
+    try:
+        template_translation_project = TranslationProject.objects.get(project=current_project, language__code='templates')
+    except TranslationProject.DoesNotExist:
+        template_translation_project = None
+
+    class TranslationProjectForm(forms.ModelForm):
+        if template_translation_project is not None:
+            update = forms.BooleanField(required=False, label=_("Update from templates"))
+        #FIXME: maybe we can detect if initialize is needed to avoid
+        # displaying it when not relevant
+        initialize = forms.BooleanField(required=False, label=_("Initialize"))
+        project = forms.ModelChoiceField(queryset=Project.objects.filter(pk=current_project.pk),
+                                         initial=current_project.pk, widget=forms.HiddenInput)
+        class Meta:
+            prefix = "existing_language"
+
+        def process_extra_fields(self):
+            if self.instance.pk is not None:
+                if self.cleaned_data.get('initialize', None):
+                    self.instance.initialize()
+
+                if self.cleaned_data.get('update', None):
+                    project_tree.convert_templates(template_translation_project, self.instance)
+
+    queryset = TranslationProject.objects.filter(project=current_project).order_by('pootle_path')
+    model_args = {}
+    model_args['project'] = { 'code': current_project.code,
+                              'name': current_project.fullname }
+    model_args['formid'] = "translation-projects"
+    model_args['submitname'] = "changetransprojects"
+    link = lambda instance: '<a href="%s">%s</a>' % (l(instance.pootle_path + 'admin_permissions.html'), instance.language)
+    return util.edit(request, 'project/project_admin.html', TranslationProject, model_args, link, linkfield="language",
+                     queryset=queryset, can_delete=True, form=TranslationProjectForm, formset=TranslationProjectFormSet)
+
+
+def projects_index(request):
+    """page listing all projects"""
+    request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    topstats = gentopstats(lambda query: query)
+
+    templatevars = {
+        'projectlink': _('Projects'),
+        'projects': getprojects(request),
+        'topstats': topstats,
+        'instancetitle': pagelayout.get_title(),
+        'translationlegend': {'translated': _('Translations are complete'),
+                    'fuzzy': _('Translations need to be checked (they are marked fuzzy)'
+                    ), 'untranslated': _('Untranslated')},
+        }
+    return render_to_response('project/projects.html', templatevars, RequestContext(request))
