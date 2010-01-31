@@ -18,42 +18,76 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from translate.lang import data
-
 from django import forms
 from django.utils.translation import ugettext as _
-from django.conf import settings
-from django.contrib.auth import REDIRECT_FIELD_NAME, login
+from django.contrib import auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.encoding import iri_to_uri
 from django.utils.http import urlquote
+from django.forms import ModelForm
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.forms.fields import email_re
+from django.forms.util import ErrorList
 
 from pootle.i18n.override import lang_choices
 
 from pootle_misc.baseurl import redirect
 
+
+def is_valid_email(email):
+    return (email_re.match(email) is not None)
+
+class UserForm(ModelForm):
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        email = cleaned_data.get("email")
+
+        if not email or not is_valid_email(email):
+            msg = _('Enter a valid e-mail address.')
+            self._errors["email"] = ErrorList([msg])
+
+        # Always return the full collection of cleaned data.
+        return cleaned_data
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+@login_required
+def edit_personal_info(request):
+    if request.POST:
+        post = request.POST.copy()
+        user_form = UserForm(post, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            response = redirect('/accounts/'+request.user.username)
+    else:
+        user_form = UserForm(instance=request.user)
+    template_vars = { "form": user_form }
+    response = render_to_response('profiles/edit_personal.html', template_vars , context_instance=RequestContext(request))
+    return response
+
+
 def redirect_after_login(request):
-    redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, None)
+    redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, None)
     if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
         redirect_to = iri_to_uri('/accounts/%s/' % urlquote(request.user.username))
     return redirect(redirect_to)
-
 
 def language_list(request):
     """returns the list of localised language names, with 'default'"""
     tr_default = _("Default")
     if tr_default != "Default":
         tr_default = u"%s | \u202dDefault" % tr_default
-    
     choices = lang_choices()
     choices.insert(0, ('', tr_default))
     return choices
 
 
-
-def view(request):
+def login(request):
     class LangAuthenticationForm(AuthenticationForm):
         language = forms.ChoiceField(label=_('Interface Language'), choices=language_list(request),
                                      initial="", required=False)
@@ -65,11 +99,10 @@ def view(request):
             form = LangAuthenticationForm(request, data=request.POST)
             # do login here
             if form.is_valid():
-                login(request, form.get_user())
+                auth.login(request, form.get_user())
 
                 if request.session.test_cookie_worked():
                     request.session.delete_test_cookie()
-                    
                 language = request.POST.get('language')
                 request.session['django_language'] = language
                 response = redirect_after_login(request)
@@ -82,3 +115,8 @@ def view(request):
             }
         return render_to_response("index/login.html", context, context_instance=RequestContext(request))
 
+
+def logout(request):
+    from django.contrib.auth import logout
+    logout(request)
+    return redirect('/')

@@ -32,6 +32,6 @@ urlpatterns = patterns('pootle_app.views.language',
      'view.update_file'),
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.+)/export/(?P<format>.+)$',
      'view.export'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.+)?$',
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.+)$',
      'view.handle_file'),
 )
