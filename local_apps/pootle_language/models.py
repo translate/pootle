@@ -27,7 +27,6 @@ from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 
-from pootle_app.models.directory import Directory
 from pootle_app.lib.util import RelatedManager
 
 class Language(models.Model):
@@ -49,7 +48,7 @@ class Language(models.Model):
     nplurals       = models.SmallIntegerField(default=0, choices=nplural_choices, verbose_name=_("Number of Plurals"), help_text=plurals_help_text)
 
     pluralequation = models.CharField(max_length=255, blank=True, verbose_name=_("Plural Equation"), help_text=plurals_help_text)
-    directory = models.OneToOneField(Directory, db_index=True, editable=False)
+    directory = models.OneToOneField('pootle_app.Directory', db_index=True, editable=False)
 
     pootle_path = property(lambda self: '/%s/' % self.code)
 
@@ -79,6 +78,7 @@ class Language(models.Model):
 
 def set_data(sender, instance, **kwargs):
     # create corresponding directory object
+    from pootle_app.models.directory import Directory
     instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
 
 pre_save.connect(set_data, sender=Language)
