@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of Pootle.
 #
 # Pootle is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # Pootle is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -26,7 +26,7 @@ from django.utils.safestring import mark_safe
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from pootle_app.models.profile import PootleProfile
+from pootle_profile.models import PootleProfile
 from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, get_matching_permissions
 from pootle_app.views.language import navbar_dict
 from pootle_app.views.language import search_forms
@@ -217,7 +217,7 @@ def process_update(request, directory):
                 # pootle_permissions is a (permission codename ->
                 # PermissionSet) dict. We get the permission codenames
                 # from form['permissions'].data.
-                
+
                 permission_set.positive_permissions = [pootle_permissions[codename] for codename in form.cleaned_data['permissions']]
                 permission_set.save()
 

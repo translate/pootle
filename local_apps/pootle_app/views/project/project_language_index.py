@@ -26,7 +26,8 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from pootle_app.models              import Project, Submission
+from pootle_project.models import Project
+from pootle_statistics.models import Submission
 from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle.i18n.gettext import tr_lang

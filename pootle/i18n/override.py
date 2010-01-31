@@ -53,7 +53,7 @@ def supported_langs():
             # first initializing the PootleProfile model, this way
             # Language is never created before PootleProfile and all
             # ManyToMany relations work fine
-            from pootle_app.models import PootleProfile, Language
+            from pootle_language.models import Language
             return [(trans_real.to_language(language.code), language.fullname) for language in Language.objects.exclude(code='template')]
         except Exception:
             pass

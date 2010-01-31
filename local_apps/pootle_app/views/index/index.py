@@ -24,8 +24,11 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from pootle_app.models.profile import get_profile
-from pootle_app.models import Project, Directory, Submission, Language
+from pootle_profile.models import get_profile
+from pootle_app.models import Directory
+from pootle_statistics.models import Submission
+from pootle_language.models import Language
+from pootle_project.models import Project
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.views import pagelayout
 from pootle_app.views.top_stats import gentopstats

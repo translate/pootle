@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of Pootle.
 #
 # Pootle is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # Pootle is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,7 +21,8 @@
 
 from django.utils.translation import ugettext as _
 
-from pootle_app.models import Suggestion, Submission
+from pootle_app.models import Suggestion
+from pootle_statistics.models import Submission
 
 def map_num_contribs(sub, user):
     user.num_contribs = sub.num_contribs

@@ -36,6 +36,7 @@ class Project(models.Model):
     class Meta:
         app_label = "pootle_app"
         ordering = ['code']
+        db_table = 'pootle_app_project'
 
     code_help_text = _('A short code for the project. This should only contain ASCII characters, numbers, and the underscore (_) character.')
     description_help_text = _('A description of this project. This is useful to give more information or instructions. This field should be valid HTML.')

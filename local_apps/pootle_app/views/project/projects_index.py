@@ -23,7 +23,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from pootle_app.views import pagelayout
-from pootle_app.models.profile import get_profile
+from pootle_profile.models import get_profile
 from pootle_app.views.index.index import getprojects
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.views.top_stats import gentopstats

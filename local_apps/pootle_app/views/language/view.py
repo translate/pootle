@@ -33,7 +33,7 @@ from pootle_app.models             import Directory, store_iteration
 from pootle_translationproject.models import TranslationProject
 from pootle_store.models import Store
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.models.profile     import get_profile
+from pootle_profile.models import get_profile
 from pootle_app.views.language     import dispatch
 from pootle_app.convert            import convert_table
 from pootle_app                    import unit_update

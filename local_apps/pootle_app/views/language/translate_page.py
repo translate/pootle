@@ -42,7 +42,7 @@ from pootle_store.models import Store
 from pootle_app.views import pagelayout
 from pootle_app.models import Directory
 from pootle_translationproject.models import TranslationProject
-from pootle_app.models.profile import get_profile
+from pootle_profile.models import get_profile
 from pootle_app import unit_update
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch, navbar_dict, search_forms

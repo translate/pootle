@@ -24,7 +24,7 @@ from django.forms.models import BaseModelFormSet
 
 from pootle_misc.baseurl import l
 
-from pootle_app.models import Project
+from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 from pootle_app import project_tree
 from pootle_app.views.admin import util

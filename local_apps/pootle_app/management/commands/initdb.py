@@ -58,7 +58,7 @@ def create_default_projects():
     """Create the default projects that we host. You might want to add your
     projects here, although you can also add things through the web interface
     later."""
-    from pootle_app.models import Project
+    from pootle_project.models import Project
 
     pootle = Project(code=u"pootle")
     pootle.fullname = u"Pootle"
@@ -79,7 +79,7 @@ def create_default_projects():
 def create_default_languages():
     """Create the default languages. We afford this priviledge to languages
     with reasonably complete interface translations for Pootle."""
-    from pootle_app.models import Language
+    from pootle_language.models import Language
 
     af = Language(code="af")
     af.fullname = u"Afrikaans"
@@ -175,7 +175,7 @@ def create_default_languages():
     son.pluralequation = '0'
     son.specialchars = u'ɲŋšžãõẽĩƝŊŠŽÃÕẼĨ'
     son.save()
-    
+
     # import languages from toolkit
     from translate.lang import data
     for code, props in data.languages.items():

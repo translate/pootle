@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2008 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -31,10 +31,10 @@ from pootle.i18n.override import lang_choices
 
 from pootle_misc.baseurl import l
 
-from pootle_app.models.language import Language
-from pootle_app.models.project import Project
+from pootle_language.models import Language
+from pootle_project.models import Project
 
-        
+
 class PootleUserManager(UserManager):
     """A manager class which is meant to replace the manager class for the User model. This manager
     hides the 'nobody' and 'default' users for normal queries, since they are special users. Code
@@ -56,11 +56,12 @@ class PootleProfileManager(models.Manager):
     def get_query_set(self):
         return super(PootleProfileManager, self).get_query_set().select_related(
             'languages', 'projects', 'alt_src_langs')
-    
+
 class PootleProfile(models.Model):
     objects = PootleProfileManager()
     class Meta:
         app_label = "pootle_app"
+        db_table = 'pootle_app_pootleprofile'
 
     # This is the only required field
     user = models.OneToOneField(User, unique=True, db_index=True)

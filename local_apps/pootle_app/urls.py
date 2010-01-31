@@ -37,6 +37,7 @@ urlpatterns += patterns('',
     (r'^admin',               include('pootle_app.views.admin.urls')),
     (r'^projects',            include('pootle_app.views.project.urls')),
     (r'',                     include('pootle_notifications.urls')),
+    (r'',                     include('pootle_terminology.urls')),
     (r'',                     include('pootle_app.views.index.urls')),
     (r'',                     include('pootle_app.views.language.urls')),
 )

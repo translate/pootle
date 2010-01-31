@@ -42,8 +42,8 @@ from pootle_store.util             import relative_real_path, absolute_real_path
 from pootle_store.util import empty_quickstats, empty_completestats
 
 from pootle_app.lib.util           import RelatedManager
-from pootle_app.models.project     import Project
-from pootle_app.models.language    import Language
+from pootle_project.models     import Project
+from pootle_language.models    import Language
 from pootle_app.models.directory   import Directory
 from pootle_app                    import project_tree
 from pootle_app.models.permissions import check_permission

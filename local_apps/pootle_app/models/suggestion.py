@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -23,7 +23,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from pootle_app.models import custom_sql_util
-from pootle_app.models.profile import PootleProfile
+from pootle_profile.models import PootleProfile
 
 class SuggestionManager(models.Manager):
     def _get_top_results(self, profile_field):
@@ -55,7 +55,7 @@ class Suggestion(models.Model):
                      ('accepted', _('Accepted')),
                      ('rejected', _('Rejected')),
                      ]
-        
+
     creation_time       = models.DateTimeField(auto_now_add=True, db_index=True)
     translation_project = models.ForeignKey('pootle_app.TranslationProject', db_index=True)
     suggester           = models.ForeignKey(PootleProfile, null=True, related_name='suggestions_suggester_set', db_index=True)

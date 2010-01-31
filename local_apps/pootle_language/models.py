@@ -35,6 +35,7 @@ class Language(models.Model):
     class Meta:
         app_label = "pootle_app"
         ordering = ['code']
+        db_table = 'pootle_app_language'
 
     code_help_text = _('ISO 639 language code for the language, possibly followed by an underscore (_) and an ISO 3166 country code. <a href="http://www.w3.org/International/articles/language-tags/">More information</a>')
     code           = models.CharField(max_length=50, null=False, unique=True, db_index=True, verbose_name=_("Code"), help_text=code_help_text)

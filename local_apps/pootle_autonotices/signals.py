@@ -25,7 +25,7 @@ import logging
 
 from pootle_notifications.models import Notice
 from pootle_app.models import Directory
-from pootle_app.models.profile import get_profile
+from pootle_profile.models import get_profile
 
 ##### Model Events #####
 

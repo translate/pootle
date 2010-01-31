@@ -33,8 +33,8 @@ from translate.storage import factory, versioncontrol
 
 from pootle_app.lib import view_handler
 from pootle_app.project_tree import scan_translation_project_files
-from pootle_app.models import Submission
-from pootle_app.models.profile     import get_profile
+from pootle_statistics.models import Submission
+from pootle_profile.models import get_profile
 from pootle_app.models.permissions import check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.views.language import item_dict
@@ -154,7 +154,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
     # uploaded file.
     if not os.path.exists(upload_dir):
         os.makedirs(upload_dir)
-        
+
     # Get the file extensions of the uploaded filename and the
     # current translation project
     _upload_base, upload_ext = os.path.splitext(django_file.name)
@@ -182,7 +182,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         newstore = factory.getobject(django_file)
         #FIXME: maybe there is a faster way to do this?
         store.mergefile(newstore, request.user.username, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
-    
+
 def upload_file(request, relative_root_dir, django_file, overwrite):
     # for some reason factory checks explicitly for file existance and
     # if file is open, which makes it impossible to work with Django's
@@ -262,7 +262,7 @@ class UploadHandler(view_handler.Handler):
             file = forms.FileField(required=True, label=_('File'))
             overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect,
                                           label='', choices=choices, initial='merge')
-            
+
         self.Form = UploadForm
         super(UploadHandler, self).__init__(request, data, files)
         self.form.allow_overwrite = check_permission('overwrite', request)
@@ -293,7 +293,7 @@ class UploadHandler(view_handler.Handler):
                            translation_project=translation_project,
                            submitter=get_profile(request.user))
             s.save()
-            
+
             post_file_upload.send(sender=translation_project, user=request.user, oldstats=oldstats,
                                   newstats=newstats, archive=archive)
         return {'upload': self}

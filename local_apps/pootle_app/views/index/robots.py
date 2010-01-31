@@ -19,7 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.http import HttpResponse
-from pootle_app.models import Language
+from pootle_language.models import Language
 
 def view(request):
     """generates the robots.txt file"""

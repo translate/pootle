@@ -26,7 +26,7 @@ from django.shortcuts import get_object_or_404
 from pootle_misc.baseurl import l
 from pootle_app.models import Directory
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.models.profile import get_profile
+from pootle_profile.models import get_profile
 
 from pootle_notifications.models import Notice
 from pootle_notifications.views import directory_to_title

@@ -28,8 +28,9 @@ from django.contrib.auth.models import User
 from django import forms
 from django.contrib import admin
 
-from pootle_app.models import Language, Project
-from pootle_app.models.profile import PootleProfile
+from pootle_language.models import Language
+from pootle_project.models import Project
+from pootle_profile.models import PootleProfile
 
 
 ### Language

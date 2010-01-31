@@ -24,7 +24,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.models.profile import get_profile
+from pootle_profile.models import get_profile
 from pootle_app.views.base import BaseView
 from pootle_app.views.language import navbar_dict
 from pootle_app.views.language import search_forms

@@ -24,7 +24,7 @@ from django.db                import models
 from pootle_app.models import custom_sql_util
 from pootle_translationproject.models import TranslationProject
 from pootle_app.models.suggestion import Suggestion
-from pootle_app.models.profile import PootleProfile
+from pootle_profile.models import PootleProfile
 
 class SubmissionManager(models.Manager):
     def get_top_submitters(self):
@@ -68,6 +68,7 @@ class Submission(models.Model):
     class Meta:
         app_label = "pootle_app"
         get_latest_by = "creation_time"
+        db_table = 'pootle_app_submission'
 
     creation_time       = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(TranslationProject, db_index=True)

@@ -21,12 +21,12 @@
 import sys
 
 from django.core.management import call_command
-from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 
 from pootle.i18n.gettext import ugettext as _
 
-from pootle_app.models import Language, Project
+from pootle_language.models import Language
+from pootle_project.models import Project
 
 
 def header(exception):
@@ -110,8 +110,7 @@ def stats_end():
     <p>%s</p>
     """ % _('Done calculating statistics for default languages and projects')
     return text
-    
-    
+
 def footer():
     text = """
     <p>%(endmsg)s</p>

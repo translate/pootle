@@ -5,7 +5,8 @@ from translate.misc import wStringIO
 
 from pootle.tests import PootleTestCase, formset_dict
 
-from pootle_app.models import Project, Language
+from pootle_project.models import Project
+from pootle_language.models import Language
 from pootle_store.models import Store
 
 

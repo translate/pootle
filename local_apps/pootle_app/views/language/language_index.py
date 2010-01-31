@@ -29,12 +29,13 @@ from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import nice_percentage, add_percentages, stats_descriptions
 from pootle_app.views import pagelayout
 from pootle_app.views.top_stats import gentopstats
-from pootle_app.models import Language, Submission
+from pootle_language.models import Language
+from pootle_statistics.models import Submission
 
 from pootle.i18n.gettext import tr_lang
 
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.models.profile import get_profile
+from pootle_profile.models import get_profile
 
 def limit(query):
     return query[:5]

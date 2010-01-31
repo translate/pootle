@@ -24,8 +24,9 @@ import datetime
 from django.utils.translation import ugettext as _
 from django.core.exceptions import PermissionDenied
 
-from pootle_app.models             import Suggestion, Submission
-from pootle_app.models.profile     import get_profile
+from pootle_app.models             import Suggestion
+from pootle_statistics.models import Submission
+from pootle_profile.models import get_profile
 from pootle_app.models.permissions import check_permission
 
 def _suggestion_hash(store, item, trans):
@@ -108,4 +109,3 @@ def accept_suggestion(store, item, suggitem, newtrans, request):
     new_values = {"target": newtrans, "fuzzy": False}
     unit = store.getitem(item)
     unit.accept_suggestion(suggitem, newtrans)
-    
