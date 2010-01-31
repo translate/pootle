@@ -46,6 +46,7 @@ urlpatterns = patterns('',
     (r'^docs/(?P<docfile>.*)$', 'django.views.generic.simple.direct_to_template', {'template': "docs.html"}),
     # Pootle urls
     (r'^projects/', include('pootle_project.urls')),
+    (r'', include('pootle_translationproject.urls')),
     (r'', include('pootle_app.urls')),
     (r'', include('pootle_language.urls')),
 )

@@ -29,26 +29,40 @@ from django.utils.translation import ungettext as _N
 from django.core.exceptions import PermissionDenied
 
 from pootle_misc.baseurl           import redirect
-from pootle_app.models             import Directory, store_iteration
 from pootle_translationproject.models import TranslationProject
 from pootle_store.models import Store
 from pootle_app.models.permissions import get_matching_permissions, check_permission
+from pootle_app.models import store_iteration
 from pootle_profile.models import get_profile
 from pootle_app.views.language     import dispatch
 from pootle_app.convert            import convert_table
 from pootle_app                    import unit_update
 
-from pootle_app.views.language.tp_translate import view as tp_translate_view
-from pootle_app.views.language.tp_review import view as tp_review_view
-from pootle_app.views.language.admin_permissions import view as tp_admin_permissions_view
-from pootle_app.views.language.admin_files import view as tp_admin_files_view
-
-from pootle_app.views.language.project_index import view as project_index_view
 from pootle_app.views.language.translate_page import find_and_display
 
 from pootle_app.views.language.translate_page import get_diff_codes
 from pootle_app.views.language.translate_page import highlight_diffs
 from pootle_app.views.language.translate_page import get_string_array
+
+def get_stats_headings():
+    """returns a dictionary of localised headings"""
+    return {
+        "name":                   _("Name"),
+        "translated":             _("Translated"),
+        "translatedpercentage":   _("Translated percentage"),
+        "translatedwords":        _("Translated words"),
+        "fuzzy":                  _("Fuzzy"),
+        "fuzzypercentage":        _("Fuzzy percentage"),
+        "fuzzywords":             _("Fuzzy words"),
+        "untranslated":           _("Untranslated"),
+        "untranslatedpercentage": _("Untranslated percentage"),
+        "untranslatedwords":      _("Untranslated words"),
+        "total":                  _("Total"),
+        "totalwords":             _("Total Words"),
+        # l10n: noun. The graphical representation of translation status
+        "progress":               _("Progress"),
+        "summary":                _("Summary")
+        }
 
 def get_translation_project(f):
     def decorated_f(request, language_code, project_code, *args, **kwargs):
@@ -70,16 +84,6 @@ def set_request_context(f):
 
 @get_translation_project
 @set_request_context
-def translation_project_admin_permissions(request, translation_project):
-    return tp_admin_permissions_view(request, translation_project)
-
-@get_translation_project
-@set_request_context
-def translation_project_admin_files(request, translation_project):
-    return tp_admin_files_view(request, translation_project)
-
-@get_translation_project
-@set_request_context
 def translate_page(request, translation_project, dir_path):
     def next_store_item(search, store_name, item):
         return store_iteration.get_next_match(directory,
@@ -95,13 +99,6 @@ def translate_page(request, translation_project, dir_path):
 
     directory = translation_project.directory.get_relative(dir_path)
     return find_and_display(request, directory, next_store_item, prev_store_item)
-
-
-@get_translation_project
-@set_request_context
-def project_index(request, translation_project, dir_path):
-    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
-    return project_index_view(request, translation_project, directory)
 
 def handle_translation_file(request, translation_project, file_path):
     pootle_path = translation_project.pootle_path + (file_path or '')
@@ -146,28 +143,6 @@ def update_file(request, translation_project, file_path):
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.update_file(request, store)
     return redirect(dispatch.show_directory(request, translation_project.directory.pootle_path))
-
-@get_translation_project
-@set_request_context
-def export_zip(request, translation_project, file_path):
-    if not check_permission("archive", request):
-        return redirect(translation_project.pootle_path,
-                        message=_('You do not have the right to create ZIP archives.'))
-    pootle_path = translation_project.pootle_path + (file_path or '')
-    try:
-        path_obj = Directory.objects.get(pootle_path=pootle_path)
-    except Directory.DoesNotExist:
-        path_obj = get_object_or_404(Store, pootle_path=pootle_path[:-1])
-    stores = store_iteration.iter_stores(path_obj)
-    archivecontents = translation_project.get_archive(stores)
-    response = HttpResponse(archivecontents, content_type="application/zip")
-    if file_path.endswith("/"):
-        file_path = file_path[:-1]
-    fish, file_path = os.path.split(file_path)
-    archivename = '%s-%s' % (translation_project.project.code, translation_project.language.code)
-    archivename += file_path + '.zip'
-    response['Content-Disposition'] = 'attachment; filename=%s' % archivename
-    return response
 
 MIME_TYPES = {
     "po":  "text/x-gettext-translation; charset=%(encoding)s",
@@ -321,14 +296,3 @@ def handle_suggestions(request, translation_project, file_path, item):
     response = simplejson.dumps(response, indent=4)
     return HttpResponse(response, mimetype="application/json")
 
-@get_translation_project
-@set_request_context
-def tp_translate(request, translation_project, dir_path):
-    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
-    return tp_translate_view(request, translation_project, directory)
-
-@get_translation_project
-@set_request_context
-def tp_review(request, translation_project, dir_path):
-    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
-    return tp_review_view(request, translation_project, directory)

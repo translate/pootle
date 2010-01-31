@@ -23,14 +23,9 @@ from django import forms
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 
 from pootle_profile.models import PootleProfile
 from pootle_app.models.permissions import get_pootle_permissions, PermissionSet, get_matching_permissions
-from pootle_app.views.language import navbar_dict
-from pootle_app.views.language import search_forms
-from pootle_app.views.admin import util
 
 class PermissionSetForm(forms.Form):
     """A PermissionSetForm represents a PermissionSet to the user.
@@ -229,29 +224,3 @@ def process_update(request, directory):
             return permission_set_formset
     else:
         return PermissionSetFormSet(initial=get_permission_data(directory))
-
-
-@util.has_permission('administrate')
-def view(request, translation_project):
-    language               = translation_project.language
-    project                = translation_project.project
-    permission_set_formset = process_update(request, translation_project.directory)
-
-    if translation_project.file_style == "gnu":
-        filestyle_text = _("This is a GNU-style project (files named per language code).")
-    else:
-        filestyle_text = _("This is a standard style project (one directory per language).")
-
-    template_vars = {
-        "project":                project,
-        "language":               language,
-        "filestyle_text":         filestyle_text,
-        "permissions_title":      _("User Permissions"),
-        "username_title":         _("Username"),
-        "permission_set_formset": permission_set_formset,
-        "adduser_text":           _("(select to add user)"),
-        "search":                 search_forms.get_search_form(request),
-        "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
-        "feed_path":              translation_project.directory.pootle_path[1:],
-    }
-    return render_to_response("language/tp_admin_permissions.html", template_vars, context_instance=RequestContext(request))

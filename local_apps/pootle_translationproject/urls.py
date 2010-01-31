@@ -20,18 +20,17 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf.urls.defaults import *
-
-urlpatterns = patterns('pootle_app.views.language',
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)translate.html$',
-     'view.translate_page'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.+)/review/(?P<item>\d+)/?$',
-     'view.handle_suggestions'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)/commit$',
-     'view.commit_file'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)/update$',
-     'view.update_file'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.+)/export/(?P<format>.+)$',
-     'view.export'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.+)?$',
-     'view.handle_file'),
+urlpatterns = patterns('pootle_translationproject.views',
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_permissions.html$',
+     'tp_admin_permissions'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_files.html$',
+     'tp_admin_files'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(index.html)?$',
+     'tp_overview'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>.*)edit.html$',
+     'tp_translate'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>.*)review.html$',
+     'tp_review'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
+     'export_zip'),
 )

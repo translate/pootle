@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2008-2009 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,30 +18,242 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import logging
 import os
+import logging
 import StringIO
 import subprocess
 import zipfile
 import datetime
 
-from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+from django.utils.translation import ugettext as _
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.forms.models import BaseModelFormSet
+from django import forms
 
 from translate.storage import factory, versioncontrol
 
-from pootle_app.lib import view_handler
-from pootle_app.project_tree import scan_translation_project_files
-from pootle_statistics.models import Submission
-from pootle_profile.models import get_profile
-from pootle_app.models.permissions import check_permission
+from pootle.i18n.gettext import tr_lang
+
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
-from pootle_app.views.language import item_dict
-from pootle_app.views.language import search_forms
+from pootle_app.models             import Directory, store_iteration
+
+from pootle_app.lib import view_handler
+from pootle_app.project_tree import scan_translation_project_files, convert_templates
+
 from pootle_app.views.top_stats import gentopstats
+from pootle_app.views.base import BaseView
+from pootle_app.views.language import navbar_dict, search_forms, dispatch, item_dict
+from pootle_app.views.language.view import get_stats_headings
+from pootle_app.views.admin import util
+from pootle_app.views.language.admin_permissions import process_update
+
+
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
+from pootle_statistics.models import Submission
+from pootle_profile.models import get_profile
+from pootle_misc.baseurl           import redirect
+
+from pootle_translationproject.models import TranslationProject
+
+from pootle_app.views.language.view import get_translation_project, set_request_context
+
+class TPTranslateView(BaseView):
+    def GET(self, template_vars, request, translation_project, directory):
+        template_vars = super(TPTranslateView, self).GET(template_vars, request)
+        request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
+        project  = translation_project.project
+        language = translation_project.language
+
+        template_vars.update({
+            'project':               {"code": project.code,  "name": project.fullname},
+            'language':              {"code": language.code, "name": tr_lang(language.fullname)},
+            'search':                search_forms.get_search_form(request),
+            'children':              get_children(request, translation_project, directory, links_required='translate'),
+            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')],
+            'feed_path':             directory.pootle_path[1:],
+            'topstats':              top_stats(translation_project),
+            })
+        return template_vars
+
+@get_translation_project
+@set_request_context
+def tp_translate(request, translation_project, dir_path):
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   translation_project.directory)
+    if not check_permission("view", request):
+        raise PermissionDenied(_("You do not have rights to access translation mode."))
+
+    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
+
+    view_obj = TPTranslateView(forms=dict(upload=UploadHandler,
+                                          update=UpdateHandler))
+    return render_to_response("language/tp_translate.html",
+                         view_obj(request, translation_project, directory),
+                              context_instance=RequestContext(request))
+
+
+class TPReviewView(BaseView):
+    def GET(self, template_vars, request, translation_project, directory):
+        template_vars = super(TPReviewView, self).GET(template_vars, request)
+        request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
+        project  = translation_project.project
+        language = translation_project.language
+
+        template_vars.update({
+            'project':               {"code": project.code,  "name": project.fullname},
+            'language':              {"code": language.code, "name": tr_lang(language.fullname)},
+            'search':                search_forms.get_search_form(request),
+            'children':              get_children(request, translation_project, directory, links_required='review'),
+            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review')],
+            'topstats':              top_stats(translation_project),
+            'feed_path':             directory.pootle_path[1:],
+            })
+        return template_vars
+
+@get_translation_project
+@set_request_context
+def tp_review(request, translation_project, dir_path):
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   translation_project.directory)
+    if not check_permission("view", request):
+        raise PermissionDenied(_("You do not have rights to access review mode."))
+
+    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
+    view_obj = TPReviewView({})
+    return render_to_response("language/tp_review.html",
+                              view_obj(request, translation_project, directory),
+                              context_instance=RequestContext(request))
+
+@get_translation_project
+@set_request_context
+@util.has_permission('administrate')
+def tp_admin_permissions(request, translation_project):
+    language               = translation_project.language
+    project                = translation_project.project
+    permission_set_formset = process_update(request, translation_project.directory)
+
+    if translation_project.file_style == "gnu":
+        filestyle_text = _("This is a GNU-style project (files named per language code).")
+    else:
+        filestyle_text = _("This is a standard style project (one directory per language).")
+
+    template_vars = {
+        "project":                project,
+        "language":               language,
+        "filestyle_text":         filestyle_text,
+        "permissions_title":      _("User Permissions"),
+        "username_title":         _("Username"),
+        "permission_set_formset": permission_set_formset,
+        "adduser_text":           _("(select to add user)"),
+        "search":                 search_forms.get_search_form(request),
+        "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
+        "feed_path":              translation_project.directory.pootle_path[1:],
+    }
+    return render_to_response("language/tp_admin_permissions.html", template_vars, context_instance=RequestContext(request))
+
+
+class StoreFormset(BaseModelFormSet):
+    def save_existing_objects(self, commit=True):
+        result = super(StoreFormset, self).save_existing_objects(commit)
+        for store in self.deleted_objects:
+            #hackish: we disabled deleting files when field is
+            # deleted except for when value is being overwritten, but
+            # this form is the only place in pootle where actual file
+            # system files should be deleted
+            store.file.storage.delete(store.file.name)
+        return result
+
+@get_translation_project
+@set_request_context
+@util.has_permission('administrate')
+def tp_admin_files(request, translation_project):
+    queryset = translation_project.stores
+    try:
+        template_translation_project = TranslationProject.objects.get(project=translation_project.project,
+                                                                      language__code='templates')
+        if 'template_update' in request.GET:
+            convert_templates(template_translation_project, translation_project)
+    except TranslationProject.DoesNotExist:
+        pass
+
+    if 'scan_files' in request.GET:
+        scan_translation_project_files(translation_project)
+
+
+    model_args = {}
+    model_args['title'] = _("Files")
+    model_args['submitname'] = "changestores"
+    model_args['formid'] = "stores"
+    model_args['search'] = search_forms.get_search_form(request)
+    model_args['navitems'] = [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)]
+    model_args['feed_path'] = translation_project.directory.pootle_path[1:]
+    link = "%s"
+    return util.edit(request, 'language/tp_admin_files.html', Store, model_args,
+                     link, linkfield='pootle_path', queryset=queryset,
+                     formset=StoreFormset, can_delete=True, extra=0)
+
+class ProjectIndexView(BaseView):
+    def GET(self, template_vars, request, translation_project, directory):
+        template_vars = super(ProjectIndexView, self).GET(template_vars, request)
+        request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
+        state    = dispatch.ProjectIndexState(request.GET)
+        project  = translation_project.project
+        language = translation_project.language
+
+        template_vars.update({
+            'project':               {"code": project.code,  "name": project.fullname},
+            'language':              {"code": language.code, "name": tr_lang(language.fullname)},
+            'search':                search_forms.get_search_form(request),
+            'children':              get_children(request, translation_project, directory),
+            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
+            'stats_headings':        get_stats_headings(),
+            'editing':               state.editing,
+            'topstats':              top_stats(translation_project),
+            'feed_path':             directory.pootle_path[1:],
+            })
+        return template_vars
+
+@get_translation_project
+@set_request_context
+def tp_overview(request, translation_project, dir_path):
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   translation_project.directory)
+    if not check_permission("view", request):
+        raise PermissionDenied(_("You do not have rights to access this translation project."))
+    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
+    view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
+                                           update=UpdateHandler))
+    return render_to_response("language/tp_overview.html",
+                              view_obj(request, translation_project, directory),
+                              context_instance=RequestContext(request))
+
+@get_translation_project
+@set_request_context
+def export_zip(request, translation_project, file_path):
+    if not check_permission("archive", request):
+        return redirect(translation_project.pootle_path,
+                        message=_('You do not have the right to create ZIP archives.'))
+    pootle_path = translation_project.pootle_path + (file_path or '')
+    try:
+        path_obj = Directory.objects.get(pootle_path=pootle_path)
+    except Directory.DoesNotExist:
+        path_obj = get_object_or_404(Store, pootle_path=pootle_path[:-1])
+    stores = store_iteration.iter_stores(path_obj)
+    archivecontents = translation_project.get_archive(stores)
+    response = HttpResponse(archivecontents, content_type="application/zip")
+    if file_path.endswith("/"):
+        file_path = file_path[:-1]
+    fish, file_path = os.path.split(file_path)
+    archivename = '%s-%s' % (translation_project.project.code, translation_project.language.code)
+    archivename += file_path + '.zip'
+    response['Content-Disposition'] = 'attachment; filename=%s' % archivename
+    return response
 
 def top_stats(translation_project):
     return gentopstats(lambda query: query.filter(translation_project=translation_project))

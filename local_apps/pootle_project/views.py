@@ -31,7 +31,7 @@ from django.forms.models import BaseModelFormSet
 from pootle_misc.baseurl import l
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
-from pootle_app.views.language.project_index import get_stats_headings
+from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.top_stats import gentopstats
