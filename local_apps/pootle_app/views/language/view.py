@@ -29,7 +29,8 @@ from django.utils.translation import ungettext as _N
 from django.core.exceptions import PermissionDenied
 
 from pootle_misc.baseurl           import redirect
-from pootle_app.models             import TranslationProject, Directory, store_iteration
+from pootle_app.models             import Directory, store_iteration
+from pootle_translationproject.models import TranslationProject
 from pootle_store.models import Store
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile     import get_profile
@@ -44,7 +45,6 @@ from pootle_app.views.language.admin_files import view as tp_admin_files_view
 
 from pootle_app.views.language.project_index import view as project_index_view
 from pootle_app.views.language.translate_page import find_and_display
-from pootle_app.views.language import search_forms
 
 from pootle_app.views.language.translate_page import get_diff_codes
 from pootle_app.views.language.translate_page import highlight_diffs

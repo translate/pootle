@@ -62,7 +62,7 @@ def new_translationproject(sender, instance, created=False, **kwargs):
 
 ##### TranslationProject Events #####
 
-from pootle_app.models.translation_project import stats_message
+from pootle_translationproject.models import stats_message
 
 def updated_from_template(sender, oldstats, newstats, **kwargs):
     if oldstats == newstats:

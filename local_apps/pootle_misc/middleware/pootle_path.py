@@ -18,7 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle_app.models import Project, Language, TranslationProject
+from pootle_app.models import Project, Language
+from pootle_translationproject.models import TranslationProject
 from pootle_app.models.profile import get_profile
 
 class PootlePathMiddleware(object):

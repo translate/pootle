@@ -26,9 +26,8 @@ from pootle_app.models.submission          import Submission
 from pootle_app.models.suggestion          import Suggestion
 from pootle_app.models.directory           import Directory
 from pootle_app.models.permissions         import PermissionSet, PermissionSetCache
-from pootle_app.models.translation_project import TranslationProject
 
 __all__ = ["PootleProfile", "Language", "Project", "Submission", "Suggestion",
-           "Directory", "PermissionSet", "PermissionSetCache", "TranslationProject"]
+           "Directory", "PermissionSet", "PermissionSetCache"]
 
 

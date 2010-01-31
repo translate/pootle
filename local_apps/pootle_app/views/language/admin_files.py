@@ -26,7 +26,7 @@ from pootle_app.views.admin import util
 from pootle_app.views.language import search_forms
 from pootle_app.views.language import navbar_dict
 from pootle_store.models import Store
-from pootle_app.models.translation_project import TranslationProject
+from pootle_translationproject.models import TranslationProject
 from pootle_app import project_tree
 
 

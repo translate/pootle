@@ -24,7 +24,8 @@ from django.forms.models import BaseModelFormSet
 
 from pootle_misc.baseurl import l
 
-from pootle_app.models import Project, TranslationProject
+from pootle_app.models import Project
+from pootle_translationproject.models import TranslationProject
 from pootle_app import project_tree
 from pootle_app.views.admin import util
 
@@ -38,7 +39,7 @@ class TranslationProjectFormSet(BaseModelFormSet):
         result = super(TranslationProjectFormSet, self).save_new(form, commit)
         form.process_extra_fields()
         return result
-    
+
 @util.user_is_admin
 def view(request, project_code):
     current_project = Project.objects.get(code=project_code)
@@ -65,10 +66,8 @@ def view(request, project_code):
 
                 if self.cleaned_data.get('update', None):
                     project_tree.convert_templates(template_translation_project, self.instance)
-            
-            
+
     queryset = TranslationProject.objects.filter(project=current_project).order_by('pootle_path')
-    
     model_args = {}
     model_args['project'] = { 'code': current_project.code,
                               'name': current_project.fullname }

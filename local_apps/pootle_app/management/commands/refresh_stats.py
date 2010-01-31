@@ -26,7 +26,7 @@ from optparse import make_option
 
 from django.core.management.base import NoArgsCommand
 
-from pootle_app.models import TranslationProject
+from pootle_translationproject.models import TranslationProject
 from pootle_app import project_tree
 
 class Command(NoArgsCommand):

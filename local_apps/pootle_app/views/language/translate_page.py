@@ -40,7 +40,8 @@ from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_store.models import Store
 
 from pootle_app.views import pagelayout
-from pootle_app.models import TranslationProject, Directory
+from pootle_app.models import Directory
+from pootle_translationproject.models import TranslationProject
 from pootle_app.models.profile import get_profile
 from pootle_app import unit_update
 from pootle_app.models.permissions import check_permission

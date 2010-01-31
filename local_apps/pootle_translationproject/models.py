@@ -87,6 +87,7 @@ class TranslationProject(models.Model):
     class Meta:
         unique_together = ('language', 'project')
         app_label = "pootle_app"
+        db_table = 'pootle_app_translationproject'
 
     language   = models.ForeignKey(Language, db_index=True)
     project    = models.ForeignKey(Project,  db_index=True)

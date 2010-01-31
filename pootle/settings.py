@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'pootle_app',
     'pootle_misc',
     'pootle_store',
+    'pootle_translationproject',
     'pootle_notifications',
     'pootle_autonotices',
     'registration',

@@ -9,7 +9,7 @@ from django.http import QueryDict
 from django.core.management import call_command
 from django.contrib.auth.models import User
 
-from pootle_app.models.translation_project import scan_translation_projects
+from pootle_translationproject.models import scan_translation_projects
 from pootle_store.models import fs
 
 
@@ -30,7 +30,7 @@ class PootleTestCase(TestCase):
         self.testpodir = tempfile.mkdtemp()
         settings.PODIRECTORY = self.testpodir
         fs.location = self.testpodir
-        
+
         gnu = os.path.join(self.testpodir, "terminology")
         os.mkdir(gnu)
         potfile = file(os.path.join(gnu, "terminology.pot"), 'w')
@@ -90,7 +90,7 @@ msgstr[1] ""
 
         #FIXME: replace initdb with a fixture
         call_command('initdb')
-        
+
         self._setup_test_users()
         scan_translation_projects()
 

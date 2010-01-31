@@ -18,10 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.db.models.signals      import pre_delete, post_init, pre_save, post_save
+from django.db.models.signals      import post_save
 from django.contrib.auth.models import User
 
-from pootle_app.models import Language, Project, TranslationProject
+from pootle_app.models import Language, Project
+from pootle_translationproject.models import TranslationProject
 import signals
 
 post_save.connect(signals.new_language, sender=Language)

@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -22,7 +22,7 @@
 from django.db                import models
 
 from pootle_app.models import custom_sql_util
-from pootle_app.models.translation_project import TranslationProject
+from pootle_translationproject.models import TranslationProject
 from pootle_app.models.suggestion import Suggestion
 from pootle_app.models.profile import PootleProfile
 
@@ -33,7 +33,7 @@ class SubmissionManager(models.Manager):
         there will be no entry for that user) where the order is
         descending in the number of suggestion contributions from the
         users.
-        
+
         One would expect us to return a list of PootleProfiles instead
         of a list of Submissions. This would be ideal, but if we are
         to allow code to further filter the top suggestion results
@@ -78,5 +78,3 @@ class Submission(models.Model):
 
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"), unicode(self.submitter))
-
-
