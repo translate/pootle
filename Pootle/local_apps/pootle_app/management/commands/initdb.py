@@ -168,6 +168,10 @@ def create_default_languages():
     son.specialchars = u'ɲŋšžãõẽĩƝŊŠŽÃÕẼĨ'
     son.save()
 
+    lg = Language(code='lg')
+    lg.fullname = u'Ganda'
+    lg.save()
+
     # import languages from toolkit
     from translate.lang import data
     for code, props in data.languages.items():
