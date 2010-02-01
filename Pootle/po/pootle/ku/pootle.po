@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2008-09-04 22:09+0000\n"
+"PO-Revision-Date: 2010-01-15 15:27+0200\n"
 "Last-Translator: Erdal Ronahi <erdal.ronahi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ku\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!= 1);\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 2.0.0\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: strings.py:8
@@ -47,17 +48,17 @@ msgstr ""
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Lêzêdekirin"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Guherandin"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Hêmaneke ji kategoriya \"%(name)s\" lê zêde bike"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
@@ -66,20 +67,19 @@ msgstr ""
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "nav"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "paşnav"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "Navnîşana e-peyam"
+msgstr "navnîşana e-peyam"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "çalak"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
@@ -89,38 +89,35 @@ msgstr ""
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Çewtiya jêr sererast bike."
+msgstr[1] "Çewtiyên jêr sererast bike."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Mîheng hatin tomarkirin."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Tomarkirin"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Navê bikarhêner"
+msgstr "navê bikarhêner"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "Navnîşana e-peyam"
+msgstr "navnîşana e-peyam"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Şîfre"
+msgstr "şîfre"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "şîfre (dîsa)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
@@ -148,7 +145,7 @@ msgstr ""
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "bikarhêner"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
@@ -180,11 +177,11 @@ msgstr "Sernivîs"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Navê vê pêşkêşkera Pootleyê"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
-msgstr "Daxûyanî"
+msgstr "Rave"
 
 #: local_apps/pootle_app/forms.py:35
 msgid ""
@@ -247,7 +244,7 @@ msgstr ""
 #: local_apps/pootle_app/models/language.py:40
 #: local_apps/pootle_app/models/project.py:58
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: local_apps/pootle_app/models/language.py:41
 #: local_apps/pootle_app/models/project.py:59
@@ -259,9 +256,8 @@ msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 
 #: local_apps/pootle_app/models/language.py:44
-#, fuzzy
 msgid "Special Characters"
-msgstr "(tîpên taybet)"
+msgstr "Tîpên taybet"
 
 #: local_apps/pootle_app/models/language.py:46
 msgid ""
@@ -271,7 +267,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/language.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "Nenas"
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
@@ -285,19 +281,19 @@ msgstr "Hevkêşeya Pirjimaran"
 #: local_apps/pootle_app/views/index/login.py:58
 #: templates/profiles/edit_profile.html:27
 msgid "Interface Language"
-msgstr ""
+msgstr "Zimanê navruyê"
 
 #: local_apps/pootle_app/models/profile.py:97
 msgid "Suggestions Accepted"
-msgstr ""
+msgstr "Pêşniyazên pejirandî"
 
 #: local_apps/pootle_app/models/profile.py:98
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "Pêşniyazên li bendê"
 
 #: local_apps/pootle_app/models/profile.py:99
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "Pêşniyazên berçavan derbaskirî"
 
 #: local_apps/pootle_app/models/profile.py:100
 msgid "Submissions Made"
@@ -317,11 +313,11 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:48
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: local_apps/pootle_app/models/project.py:49
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
@@ -337,7 +333,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
-msgstr ""
+msgstr "Kontrolên kalîteyê"
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
@@ -353,17 +349,15 @@ msgstr ""
 
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr ""
+msgstr "Li bendê"
 
 #: local_apps/pootle_app/models/suggestion.py:55
-#, fuzzy
 msgid "Accepted"
-msgstr "Bipejirîne"
+msgstr "Hate pejiradin"
 
 #: local_apps/pootle_app/models/suggestion.py:56
-#, fuzzy
 msgid "Rejected"
-msgstr "Nepejirîne"
+msgstr "Nehate pejirandin"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
@@ -436,7 +430,7 @@ msgstr ""
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
 #: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "Destûr"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
@@ -460,7 +454,7 @@ msgstr "Navê bikarhêner"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
-msgstr ""
+msgstr "Jêbirin"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
@@ -486,7 +480,7 @@ msgstr ""
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr ""
+msgstr "Mîhengên giştî"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
@@ -521,7 +515,7 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
-msgstr ""
+msgstr "Der barê de"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
@@ -554,14 +548,13 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
 msgstr "Proje"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
-msgstr ""
+msgstr "Nûçeyên dawî"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
@@ -582,16 +575,15 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Şîfreya xwe winda kir?"
 
 #: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Hesaba te hê tune?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Xwê tomar bike"
+msgstr "Xwe tomar bike."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -600,7 +592,7 @@ msgstr "Çewtî"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr ""
+msgstr "Temam"
 
 #: local_apps/pootle_app/templates/language/language_admin.html:20
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -608,13 +600,13 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/language/language_admin.html:32
 msgid "Update Permissions"
-msgstr ""
+msgstr "Destûran rojane bike"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:6
 #: local_apps/pootle_app/views/language/admin_files.py:62
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "Pel"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""
@@ -636,7 +628,7 @@ msgstr "Wergerîne"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:80
 msgid "Edit translation"
-msgstr ""
+msgstr "Wegerê sererast bike"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:203
 msgid "Submit"
@@ -672,9 +664,8 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
 
 #: local_apps/pootle_app/views/top_stats.py:77
-#, fuzzy
 msgid "Suggestions"
-msgstr "Pêşniyar:"
+msgstr "Pêşniyaz"
 
 #: local_apps/pootle_app/views/top_stats.py:78
 #, fuzzy
@@ -688,7 +679,7 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Guhertoya %s a Translate Toolkit saz bû."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:42
 #, python-format
@@ -699,7 +690,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/admin/adminpages.py:48
 msgid "SQLite is installed."
-msgstr ""
+msgstr "SQLite saz bû."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:51
 msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
@@ -810,15 +801,13 @@ msgid "Password"
 msgstr "Şîfre"
 
 #: local_apps/pootle_app/views/admin/util.py:38
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
-msgstr "Mafên tê yên admin ên Pootle tune."
+msgstr "Mafên te yên admin ên Pootle tune."
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "Mafên tê yên admin ên Pootle tune."
+msgstr "Mafên te yên admin ên %s tune."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
@@ -834,7 +823,6 @@ msgid "Home"
 msgstr "Destpêk"
 
 #: local_apps/pootle_app/views/admin/util.py:201
-#, fuzzy
 msgid "Save Changes"
 msgstr "Guherandinan tomar bike"
 
@@ -929,19 +917,19 @@ msgstr "Hemû biwergerîne"
 
 #: local_apps/pootle_app/views/language/item_dict.py:125
 msgid "ZIP of directory"
-msgstr ""
+msgstr "ZIP a peldankê"
 
 #: local_apps/pootle_app/views/language/item_dict.py:136
 msgid "Download PO"
-msgstr ""
+msgstr "PO daxe"
 
 #: local_apps/pootle_app/views/language/item_dict.py:140
 msgid "Download XLIFF"
-msgstr ""
+msgstr "XLIFF daxe"
 
 #: local_apps/pootle_app/views/language/item_dict.py:151
 msgid "Download"
-msgstr ""
+msgstr "Daxistin"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Commit to VCS"
@@ -962,8 +950,8 @@ msgstr[1] ""
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d peyv newergerandî"
+msgstr[1] "%d peyv newergerandî"
 
 #: local_apps/pootle_app/views/language/item_dict.py:234
 #, python-format
@@ -982,9 +970,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
-#, fuzzy
 msgid "You do not have rights to administer this language."
-msgstr "Mafên tê yên admin ên vê projeyê tune."
+msgstr "Mafên tê yên admin ên vî zimanî tune."
 
 #: local_apps/pootle_app/views/language/language_index.py:80
 #, python-format
@@ -1044,16 +1031,15 @@ msgstr "Hemû gotin"
 #. l10n: noun. The graphical representation of translation status
 #: local_apps/pootle_app/views/language/project_index.py:53
 msgid "Progress"
-msgstr ""
+msgstr "Pêşketin"
 
 #: local_apps/pootle_app/views/language/project_index.py:54
 msgid "Summary"
-msgstr ""
+msgstr "Kurte"
 
 #: local_apps/pootle_app/views/language/project_index.py:84
-#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr "Mafê guherandina wergerên a te li vir tune"
+msgstr "Mafê gihiştina vê projeya wergerandinê te tune."
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1098,20 +1084,17 @@ msgid "Error while extracting archive"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/tp_common.py:205
-#, fuzzy
 msgid "You do not have rights to overwrite files here."
-msgstr "Mafê nivîsandina ser pelan ê te li vir tune"
+msgstr "Mafê nivîsandina ser pelan ê te li vir tune."
 
 #: local_apps/pootle_app/views/language/tp_common.py:207
-#, fuzzy
 msgid "You do not have rights to upload new files here."
-msgstr "Mafê te tuneye ku li vir tu pelên nû bar bikî"
+msgstr "Mafê te tuneye ku li vir tu pelên nû bar bikî."
 
 #: local_apps/pootle_app/views/language/tp_common.py:209
 #: local_apps/pootle_app/views/language/tp_common.py:211
-#, fuzzy
 msgid "You do not have rights to upload files here."
-msgstr "Mafê te tuneye ku li vir tu pelan bar bikî"
+msgstr "Mafê te tuneye ku li vir tu pelan bar bikî."
 
 #: local_apps/pootle_app/views/language/tp_common.py:231
 msgid "Update all from version control"
@@ -1119,7 +1102,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/tp_common.py:246
 msgid "Upload"
-msgstr ""
+msgstr "Şandin"
 
 #: local_apps/pootle_app/views/language/tp_common.py:253
 msgid ""
@@ -1136,7 +1119,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/tp_common.py:259
 msgid "File"
-msgstr ""
+msgstr "Pel"
 
 #: local_apps/pootle_app/views/language/tp_common.py:265
 msgid "Upload File"
@@ -1145,12 +1128,11 @@ msgstr "Pelî hilkişîne"
 #: local_apps/pootle_app/views/language/tp_review.py:57
 #, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr "Mafê guherandina wergerên a te li vir tune"
+msgstr "Mafê guherandina wergerên a te li vir tune."
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
-#, fuzzy
 msgid "You do not have rights to access translation mode."
-msgstr "Mafê guherandina wergerên a te li vir tune"
+msgstr "Mafê gihiştina moda wergeran a te li vir tune."
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: local_apps/pootle_app/views/language/translate_page.py:78
@@ -1173,7 +1155,7 @@ msgstr "%d yên berê"
 #: local_apps/pootle_app/views/language/translate_page.py:109
 #, python-format
 msgid "Items %(first)d to %(last)d of %(total)d"
-msgstr ""
+msgstr "Hêmanên %(first)d ta %(last)d ji %(total)d"
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:118
@@ -1243,8 +1225,8 @@ msgstr "Pêşniyar:"
 #, python-format
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pêşniyaz"
+msgstr[1] "%d pêşniyaz"
 
 #: local_apps/pootle_app/views/language/translate_page.py:836
 msgid "End of Quick Translate."
@@ -1260,12 +1242,12 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:842
 msgid "End of results."
-msgstr ""
+msgstr "Dawiya encaman."
 
 #: local_apps/pootle_app/views/language/translate_page.py:855
 #, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr "Mafê guherandina wergerên a te li vir tune"
+msgstr "Mafê guherandina wergerên a te li vir tune."
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:904
@@ -1287,15 +1269,13 @@ msgstr "Pêşniyazê nepejirîne"
 
 #. l10n: Heading above the textarea for translator comments.
 #: local_apps/pootle_app/views/language/translate_page.py:913
-#, fuzzy
 msgid "Translator Comments"
-msgstr "Şîroveyên Wergêran"
+msgstr "Şîroveyên wergêran"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: local_apps/pootle_app/views/language/translate_page.py:915
-#, fuzzy
 msgid "Developer Comments"
-msgstr "Şîroveyên Pêşdebiran"
+msgstr "Şîroveyên pêşdebiran"
 
 #. l10n: This heading refers to related translations and terminology
 #: local_apps/pootle_app/views/language/translate_page.py:917
@@ -1397,33 +1377,33 @@ msgstr ""
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "Ser"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 msgid "Previous"
-msgstr ""
+msgstr "Paş"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 msgid "Next"
-msgstr ""
+msgstr "Pêş"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 msgid "Last"
-msgstr ""
+msgstr "Dawî"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
-msgstr ""
+msgstr "Peyam"
 
 #. l10n: The date that the news item was written
 #: local_apps/pootle_notifications/models.py:30
 msgid "Added"
-msgstr ""
+msgstr "Lêzêdekirî"
 
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(language)s"
-msgstr ""
+msgstr "Nûçeyên %(language)s"
 
 #: local_apps/pootle_notifications/views.py:92
 #, python-format
@@ -1442,21 +1422,21 @@ msgstr ""
 #: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: local_apps/pootle_notifications/templates/notices.html:76
 msgid "No news yet."
-msgstr ""
+msgstr "Nûçe hê tune."
 
 #: local_apps/pootle_notifications/templates/notices.html:15
 #: local_apps/pootle_notifications/templates/notices.html:17
 #: templates/language_menu.html:8 templates/tp_menu.html:8
 msgid "News"
-msgstr ""
+msgstr "Nûçê"
 
 #: local_apps/pootle_notifications/templates/notices.html:64
 msgid "Publish"
-msgstr ""
+msgstr "Weşandin"
 
 #: local_apps/pootle_store/models.py:53
 msgid "Path"
-msgstr ""
+msgstr "Rêç"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1500,9 +1480,8 @@ msgid "An error has occurred. Thank you for your patience."
 msgstr ""
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
-#, fuzzy
 msgid "Administration"
-msgstr "Rê ve bibe"
+msgstr "Rêveberî"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
@@ -1510,7 +1489,7 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:5
 msgid "General"
-msgstr ""
+msgstr "Giştî"
 
 #: templates/admin_profile_menu.html:6
 msgid "Manage the users"
@@ -1534,18 +1513,16 @@ msgstr ""
 
 #: templates/base.html:45 templates/base.html.py:106 templates/docs.html:5
 msgid "Help"
-msgstr ""
+msgstr "Alîkarî"
 
 #: templates/base.html:50 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
-#, fuzzy
 msgid "My Account"
 msgstr "Hesaba min"
 
 #: templates/base.html:51
-#, fuzzy
 msgid "Log Out"
-msgstr "Derkeve"
+msgstr "Derketin"
 
 #: templates/base.html:54 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:35
@@ -1553,12 +1530,10 @@ msgid "Register"
 msgstr "Xwê tomar bike"
 
 #: templates/base.html:56
-#, fuzzy
 msgid "Log In"
-msgstr "Têkeve"
+msgstr "Têketin"
 
 #: templates/base.html:107
-#, fuzzy
 msgid "About this Pootle Server"
 msgstr "Di der barê vê pêşkêşkera Pootleyê de"
 
@@ -1573,14 +1548,13 @@ msgstr ""
 
 #: templates/language_menu.html:8
 msgid "Language news"
-msgstr ""
+msgstr "Nûçêyên zimanî"
 
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
 msgstr ""
 
 #: templates/project_menu.html:7
-#, fuzzy
 msgid "Project main page"
 msgstr "Malpera projeyê"
 
@@ -1628,7 +1602,7 @@ msgstr ""
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr ""
+msgstr "Mîheng"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
@@ -1638,7 +1612,7 @@ msgstr ""
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr ""
+msgstr "Profîl"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
@@ -1667,14 +1641,13 @@ msgid "Last Name"
 msgstr ""
 
 #: templates/profiles/edit_personal.html:29
-#, fuzzy
 msgid "Email address"
 msgstr "Navnîşana e-peyam"
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr ""
+msgstr "Mîhengên wergerandinê"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
@@ -1699,9 +1672,8 @@ msgid "My Projects"
 msgstr "Projeyên min"
 
 #: templates/profiles/edit_profile.html:41
-#, fuzzy
 msgid "Alternative Source Languages"
-msgstr "Zimanê Çavkaniya Alternatîf"
+msgstr "Zimanên çavkaniya alternatîf"
 
 #: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
@@ -1721,15 +1693,15 @@ msgstr ""
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
+msgstr "Lîsteya profîlan"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr ""
+msgstr "Nav"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr ""
+msgstr "Paşnav"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
@@ -1744,21 +1716,16 @@ msgid ""
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
-#, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Hesabekî Pootle ji bo te bi vê navnîşana e-peyamê hat afirandin.\n"
+msgstr "Hesabeke Pootle ji bo te bi vê navnîşana e-peyamê hat afirandin."
 
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "Ji bo çalakkirina hesabê xwe, vê lînkê bişopîne:\n"
+msgstr "Ji bo çalakkirina hesabê xwe, vê lînkê bişopîne:"
 
 #: templates/registration/activation_email.txt:6
-#, fuzzy
 msgid "Your activation code is:"
-msgstr ""
-"Koda aktîfkirinê ya te:\n"
-"%s\n"
+msgstr "Koda aktîfkirinê ya te:"
 
 #: templates/registration/activation_email.txt:9
 msgid ""
@@ -1767,7 +1734,6 @@ msgid ""
 msgstr ""
 
 #: templates/registration/activation_email_subject.txt:2
-#, fuzzy
 msgid "Pootle registration"
 msgstr "Tomara Pootle"
 
@@ -1842,10 +1808,9 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr ""
+msgstr "Şîfreya nû"
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
 msgstr "Şîfreyê piştrast bike"
 
@@ -1927,9 +1892,8 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
-#, fuzzy
 msgid "Log In."
-msgstr "Têkeve"
+msgstr "Têkeve."
 
 #~ msgid "General options"
 #~ msgstr "Vebijêrkên giştî"
