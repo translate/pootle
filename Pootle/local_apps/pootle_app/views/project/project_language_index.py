@@ -25,14 +25,16 @@ from django.utils.translation import ungettext
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.exceptions import PermissionDenied
 
-from pootle_app.models              import Project, Submission
+from pootle_app.models import Project, Submission, Directory
 from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.top_stats import gentopstats
 from pootle_app.views import pagelayout
-
+from pootle_app.models.permissions import get_matching_permissions, check_permission
+from pootle_app.models.profile import get_profile
 
 def limit(query):
     return query[:5]
@@ -61,8 +63,10 @@ def make_language_item(request, translation_project):
     info.update(stats_descriptions(projectstats))
     return info
 
-
 def view(request, project_code, _path_var):
+    request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    if not check_permission('view', request):
+        raise PermissionDenied
     project = get_object_or_404(Project, code=project_code)
     translation_projects = project.translationproject_set.all()
     items = [make_language_item(request, translation_project) for translation_project in translation_projects]

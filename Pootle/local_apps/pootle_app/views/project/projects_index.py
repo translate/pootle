@@ -21,16 +21,19 @@
 from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.exceptions import PermissionDenied
 
 from pootle_app.views import pagelayout
 from pootle_app.models.profile import get_profile
 from pootle_app.views.index.index import getprojects
-from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.views.top_stats import gentopstats
 from pootle_app.models import Directory
 
 def view(request):
     request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    if not check_permission('view', request):
+        raise PermissionDenied
     topstats = gentopstats(lambda query: query)
 
     templatevars = {
