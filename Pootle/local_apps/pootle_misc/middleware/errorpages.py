@@ -40,7 +40,9 @@ class ErrorPagesMiddleware(object):
         if isinstance(exception, Http404):
             pass
         elif isinstance(exception, PermissionDenied):
-            templatevars = { 'permission_error': unicode(exception.args[0]) }
+            templatevars = {}
+            if len(exception.args) > 0:
+                templatevars['permission_error'] = unicode(exception.args[0]) 
             if not request.user.is_authenticated():
                 login_msg = _('You need to <a href="%(login_link)s">login</a> to access this page.' % {
                     'login_link': l("/accounts/login/") })
@@ -53,7 +55,10 @@ class ErrorPagesMiddleware(object):
             print >> sys.stderr, tb
             if not settings.DEBUG:
                 try:
-                    templatevars = {'exception': unicode(exception.args[0])}
+                    templatevars = {}
+                    if len(exception.args) > 0:
+                        templatevars['exception'] = unicode(exception.args[0])
+                    
                     if hasattr(exception, 'filename'):
                         templatevars['fserror'] = _('Error accessing %(filename)s, Filesystem sent error: %(errormsg)s',
                                                     {'filename': exception.filename, 'errormsg': exception.strerror})
