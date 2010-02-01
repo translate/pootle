@@ -96,25 +96,17 @@ def create_default_languages():
     ak.nplurals = u'2'
     ak.save()
 
-# Español
-# Spanish (Argentina)
-#    es_AR = Language(code="es_AR")
-#    es_AR.fullname = u'Spanish; Castilian (Argentina)'
-#    es_AR.nplurals = '2'
-#    es_AR.pluralequation = '(n != 1)'
-#    es_AR.save()
-
     # Haitian Creole
     ht = Language(code="ht")
     ht.fullname = u'Haitian; Haitian Creole'
     ht.nplurals = '2'
-    ht.pluralequation = '(n !=1)'
+    ht.pluralequation = '(n != 1)'
     ht.save()
 
     # Sesotho sa Leboa
     # Northern Sotho
     nso = Language(code="nso")
-    nso.fullname = u'Northern Sotho'
+    nso.fullname = u'Pedi; Sepedi; Northern Sotho": u"Northern Sotho'
     nso.nplurals = '2'
     nso.pluralequation = '(n > 1)'
     nso.specialchars = "šŠ"
