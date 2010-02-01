@@ -26,6 +26,12 @@ urlpatterns = patterns('',
     (r'^accounts/login/$',    'pootle_app.views.index.login.view'),
     (r'^accounts/logout/$',   'pootle_app.views.index.logout.view'),
     (r'^accounts/personal/edit/$',   'pootle_app.views.profile.view.edit_personal_info'),
+    (r'^accounts/password/change/$', 'django.contrib.auth.views.password_change'),
+    (r'^accounts/password/change/done/$', 'django.contrib.auth.views.password_change_done'),
+    (r'^accounts/password/reset/$', 'django.contrib.auth.views.password_reset'),
+    (r'^accounts/password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm'),
+    (r'^accounts/password/reset/complete/$', 'django.contrib.auth.views.password_reset_complete'),
+    (r'^accounts/password/reset/done/$', 'django.contrib.auth.views.password_reset_done'),
 )
 
 # Onle include registration urls if registration is enabled
