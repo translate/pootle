@@ -739,8 +739,7 @@ def handle_submits(last_item, request, store, submits, skips, translations, comm
             newvalues["fuzzy"] = True
 
         translator_comments = comments.get(item)
-        if translator_comments:
-            newvalues["translator_comments"] = translator_comments
+        newvalues["translator_comments"] = translator_comments
 
         unit_update.update_translation(store, item, newvalues, request)
         last_item = item
