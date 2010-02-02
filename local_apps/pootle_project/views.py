@@ -27,6 +27,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django import forms
 from django.forms.models import BaseModelFormSet
+from django.core.exceptions import PermissionDenied
 
 from pootle_misc.baseurl import l
 from pootle_project.models import Project
@@ -41,7 +42,7 @@ from pootle_app import project_tree
 from pootle_app.views.admin import util
 from pootle_profile.models import get_profile
 from pootle_app.views.index.index import getprojects
-from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models import Directory
 
 
@@ -75,6 +76,10 @@ def make_language_item(request, translation_project):
 
 def project_language_index(request, project_code):
     """page listing all languages added to project"""
+    request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    if not check_permission('view', request):
+        raise PermissionDenied
+
     project = get_object_or_404(Project, code=project_code)
     translation_projects = project.translationproject_set.all()
     items = [make_language_item(request, translation_project) for translation_project in translation_projects]
@@ -159,6 +164,9 @@ def project_admin(request, project_code):
 def projects_index(request):
     """page listing all projects"""
     request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    if not check_permission('view', request):
+        raise PermissionDenied
+
     topstats = gentopstats(lambda query: query)
 
     templatevars = {
