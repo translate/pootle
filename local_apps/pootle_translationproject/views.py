@@ -93,7 +93,7 @@ def tp_translate(request, translation_project, dir_path):
 
     view_obj = TPTranslateView(forms=dict(upload=UploadHandler,
                                           update=UpdateHandler))
-    return render_to_response("language/tp_translate.html",
+    return render_to_response("translation_project/tp_translate.html",
                          view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))
 
@@ -126,7 +126,7 @@ def tp_review(request, translation_project, dir_path):
 
     directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
     view_obj = TPReviewView({})
-    return render_to_response("language/tp_review.html",
+    return render_to_response("translation_project/tp_review.html",
                               view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))
 
@@ -155,7 +155,7 @@ def tp_admin_permissions(request, translation_project):
         "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
         "feed_path":              translation_project.directory.pootle_path[1:],
     }
-    return render_to_response("language/tp_admin_permissions.html", template_vars, context_instance=RequestContext(request))
+    return render_to_response("translation_project/tp_admin_permissions.html", template_vars, context_instance=RequestContext(request))
 
 
 class StoreFormset(BaseModelFormSet):
@@ -194,7 +194,7 @@ def tp_admin_files(request, translation_project):
     model_args['navitems'] = [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)]
     model_args['feed_path'] = translation_project.directory.pootle_path[1:]
     link = "%s"
-    return util.edit(request, 'language/tp_admin_files.html', Store, model_args,
+    return util.edit(request, 'translation_project/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,
                      formset=StoreFormset, can_delete=True, extra=0)
 
@@ -229,7 +229,7 @@ def tp_overview(request, translation_project, dir_path):
     directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
                                            update=UpdateHandler))
-    return render_to_response("language/tp_overview.html",
+    return render_to_response("translation_project/tp_overview.html",
                               view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))
 
