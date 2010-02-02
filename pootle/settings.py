@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'pootle_statistics',
     'pootle_notifications',
     'pootle_autonotices',
+    'pootle_terminology',
     'registration',
     'profiles',
     'djblets.siteconfig',

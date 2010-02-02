@@ -1,0 +1,45 @@
+{% extends "tp_base_extended.html" %}
+{% load i18n render_pager baseurl store_tags %}
+
+{% block title %}
+{{ translation_project.fullname }} Terminology Management
+{% endblock %}
+
+{% block content %}
+<div class="module-primary">
+  <div class="nomargin">
+    {% if store %}
+    <p class="message"><a href='{{ "extract"|l }}'>{% trans "You can regenrate the glossary from scratch." %}</a></p>
+    <form action="" method="post">
+      {{ formset.management_form }}
+      <table callpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+	<tr lang="{{ LANGUAGE_CODE }}">
+	  <th colspan="1" rowspan="1" class="translate-table-title translate-edit"></th>
+	  <th colspan="1" rowspan="1" class="translate-table-title translate-original">{{ original_title }}</th>
+	  <th colspan="1" rowspan="1" class="translate-table-title translate-translation">{{ translation_title }}</th>
+	</tr>
+	{% for form in formset.forms %}
+	<tr class="{% cycle 'even' 'odd' %}">
+	  <td>{% for hidden_field in form.hidden_fields %}{{ hidden_field }}{% endfor %}
+	    {{ form.DELETE }}
+	  </td>
+	  <td colspan="1" rowspan="1">{% render_source form.instance %}</td>
+	  <td colspan="1" rowspan="1">{% render_target form.instance %}</td>
+	</tr>
+	<tr class="{% cycle 'even' 'odd' %}">
+	  <td></td>
+	  <td>{% render_developer_notes form.instance %}</td>
+	  <td>{% render_translator_notes form.instance %}</td>
+	</tr>
+	{% endfor %}
+      </table>
+      <p><input type="submit" name="submit" value="{% trans "Submit" %}" /></p>
+    </form>
+    {{ pager|render_pager }}
+    {% else %}
+      <p class="message error">{% trans "Glossary is Empty" %}</p>
+      <p class="message"><a href="{% filter l %}{{ translation_project.pootle_path }}terminology/extract/{% endfilter %}">{% trans "Generate Glossary" %}</a></p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
