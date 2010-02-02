@@ -26,12 +26,14 @@ urlpatterns = patterns('pootle_profile.views',
     (r'^login/?$',    'login'),
     (r'^logout/?$',   'logout'),
     (r'^personal/edit/?$',   'edit_personal_info'),
-    (r'^password/change/$', 'django.contrib.auth.views.password_change'),
-    (r'^password/change/done/$', 'django.contrib.auth.views.password_change_done'),
-    (r'^password/reset/$', 'django.contrib.auth.views.password_reset'),
-    (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm'),
-    (r'^password/reset/complete/$', 'django.contrib.auth.views.password_reset_complete'),
-    (r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_done'),
+)
+urlpatterns += patterns('django.contrib.auth.views',
+    (r'^password/change/$', 'password_change'),
+    (r'^password/change/done/$', 'password_change_done'),
+    (r'^password/reset/$', 'password_reset'),
+    (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'password_reset_confirm'),
+    (r'^password/reset/complete/$', 'password_reset_complete'),
+    (r'^password/reset/done/$', 'password_reset_done'),
 )
 
 # Onle include registration urls if registration is enabled
