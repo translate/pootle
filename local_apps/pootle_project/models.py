@@ -47,7 +47,10 @@ class Project(models.Model):
     checker_choices.extend([(checker, checker) for checker in checkers])
     local_choices = (
             ('po', _('Gettext PO')),
-            ('xlf', _('XLIFF'))
+            ('xlf', _('XLIFF')),
+            ('ts', _('Qt TS')),
+            ('tmx', _('TMX')),
+            ('tbx', _('TBX')),
     )
     treestyle_choices = (
             # TODO: check that the None is stored and handled correctly
