@@ -57,7 +57,8 @@ def extract(request, translation_project):
             if store.name == 'pootle-terminology.po':
                 continue
             extractor.processunits(store.units, store.pootle_path)
-        termunits = extractor.extract_terms(create_termunit=create_termunit)
+        terms = extractor.extract_terms(create_termunit=create_termunit)
+        termunits = extractor.filter_terms(terms)
         store, created = Store.objects.get_or_create(parent=translation_project.directory, name="pootle-terminology.po")
         if not created:
             store.units.delete()
@@ -70,7 +71,6 @@ def extract(request, translation_project):
         template_vars['store'] = store
         template_vars['termcount'] = len(termunits)
         return redirect(translation_project.pootle_path + 'terminology/manage/')
-    
     return render_to_response("terminology/extract.html", template_vars, context_instance=RequestContext(request))
 
 @get_translation_project
