@@ -691,8 +691,7 @@ class Store(models.Model, base.TranslationStore):
         if self.file.store.suggestions_in_format:
             # suggestions can be stored in the translation file itself
             return
-
-        pending_name = self.file.name + os.extsep + 'pending'
+        pending_name = os.extsep.join(self.file.name.split(os.extsep)[:-1] + ['po', 'pending'])
         pending_path = os.path.join(settings.PODIRECTORY, pending_name)
         if self.pending:
             # pending file already referencing in db, but does it
@@ -775,11 +774,10 @@ class Store(models.Model, base.TranslationStore):
                 unit.addalttrans(suggtarget, origin=username)
                 self.file.savestore()
         else:
-            newpo = unit.copy()
+            self.initpending(create=True)
+            newpo = self.pending.store.UnitClass.buildfromunit(unit)
             newpo.target = suggtarget
             newpo.markfuzzy(False)
-
-            self.initpending(create=True)
             self.addunitsuggestion(unit, newpo, username)
             self.pending.savestore()
 
