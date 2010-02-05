@@ -54,6 +54,8 @@ class Project(models.Model):
             ('srt', _('subtitles: SubRip')),
             ('ssa', _('subtitles: Sub Station Alpha')),
             ('sub', _('subtitles: MicroDVD')),
+            ('properties', _('Java properties')),
+            ('php', _('PHP arrays')),
     )
     treestyle_choices = (
             # TODO: check that the None is stored and handled correctly

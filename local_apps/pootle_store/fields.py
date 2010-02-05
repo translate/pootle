@@ -37,7 +37,10 @@ from pootle_store.translation_file import TranslationStoreFile
 
 
 def get_factory_classes():
-    factory_classes = {}
+    from translate.storage.properties import propfile
+    from translate.storage.php import phpfile
+
+    factory_classes = {'properties': propfile, 'php': phpfile}
     factory_classes.update(factory.classes)
     try:
         from translate.storage.subtitles import SubtitleFile
