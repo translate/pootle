@@ -39,6 +39,13 @@ from pootle_store.translation_file import TranslationStoreFile
 def get_factory_classes():
     factory_classes = {}
     factory_classes.update(factory.classes)
+    try:
+        from translate.storage.subtitles import SubtitleFile
+        factory_classes['srt'] = SubtitleFile
+        factory_classes['sub'] = SubtitleFile
+        factory_classes['ssa'] = SubtitleFile
+    except ImportError:
+        pass
     return factory_classes
 
 ################# String #############################

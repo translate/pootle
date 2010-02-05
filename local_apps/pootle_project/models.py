@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -51,6 +51,9 @@ class Project(models.Model):
             ('ts', _('Qt TS')),
             ('tmx', _('TMX')),
             ('tbx', _('TBX')),
+            ('srt', _('subtitles: SubRip')),
+            ('ssa', _('subtitles: Sub Station Alpha')),
+            ('sub', _('subtitles: MicroDVD')),
     )
     treestyle_choices = (
             # TODO: check that the None is stored and handled correctly
