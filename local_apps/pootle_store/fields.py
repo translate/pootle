@@ -36,6 +36,11 @@ from pootle_store.signals import translation_file_updated
 from pootle_store.translation_file import TranslationStoreFile
 
 
+def get_factory_classes():
+    factory_classes = {}
+    factory_classes.update(factory.classes)
+    return factory_classes
+
 ################# String #############################
 
 SEPERATOR = "__%$%__%$%__%$%__"
@@ -146,7 +151,8 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
                     raise KeyError
             except KeyError:
                 logging.debug("cache miss for %s", self.path)
-                self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore), mod_info, self.realpath)
+                self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore, classes=get_factory_classes()),
+                                               mod_info, self.realpath)
                 self._store_cache[self.path] = self._store_tuple
                 self._flush_stats()
                 translation_file_updated.send(sender=self, path=self.path)
