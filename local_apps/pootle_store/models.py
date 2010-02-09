@@ -69,7 +69,7 @@ class Suggestion(models.Model, base.TranslationUnit):
     target_f = MultiStringField()
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
-    user = models.ForeignKey('pootle_app.PootleProfile', null=True)
+    user = models.ForeignKey('pootle_profile.PootleProfile', null=True)
 
     def __unicode__(self):
         return unicode(self.target)

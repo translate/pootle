@@ -57,7 +57,7 @@ class Suggestion(models.Model):
                      ]
 
     creation_time       = models.DateTimeField(auto_now_add=True, db_index=True)
-    translation_project = models.ForeignKey('pootle_app.TranslationProject', db_index=True)
+    translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', db_index=True)
     suggester           = models.ForeignKey(PootleProfile, null=True, related_name='suggestions_suggester_set', db_index=True)
     reviewer            = models.ForeignKey(PootleProfile, null=True, related_name='suggestions_reviewer_set', db_index=True)
     review_time         = models.DateTimeField(null=True, db_index=True)

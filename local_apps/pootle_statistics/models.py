@@ -23,7 +23,6 @@ from django.db                import models
 
 from pootle_app.models import custom_sql_util
 from pootle_translationproject.models import TranslationProject
-from pootle_app.models.suggestion import Suggestion
 from pootle_profile.models import PootleProfile
 
 class SubmissionManager(models.Manager):
@@ -72,7 +71,7 @@ class Submission(models.Model):
     creation_time       = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(TranslationProject, db_index=True)
     submitter           = models.ForeignKey(PootleProfile, null=True, db_index=True)
-    from_suggestion     = models.OneToOneField(Suggestion, null=True, db_index=True)
+    from_suggestion     = models.OneToOneField('pootle_app.Suggestion', null=True, db_index=True)
 
     objects = SubmissionManager()
 
