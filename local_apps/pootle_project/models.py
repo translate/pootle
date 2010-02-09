@@ -76,7 +76,7 @@ class Project(models.Model):
 
     @getfromcache
     def getquickstats(self):
-        return statssum(self.translationproject_set.all())
+        return statssum(self.translationproject_set.iterator())
 
     def translated_percentage(self):
         return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))

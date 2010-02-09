@@ -88,8 +88,8 @@ def get_matching_permissions_recurse(profile, directory):
     permission_set = get_matching_permission_set(profile, directory)
     if permission_set is not None:
         permissions.update((permission.codename, permission)
-                           for permission in permission_set.positive_permissions.all())
-        for permission in permission_set.negative_permissions.all():
+                           for permission in permission_set.positive_permissions.iterator())
+        for permission in permission_set.negative_permissions.iterator():
             if permission.codename in permissions:
                 del permissions[permission.codename]
     return permissions
@@ -97,7 +97,7 @@ def get_matching_permissions_recurse(profile, directory):
 def get_matching_permissions(profile, directory):
     try:
         cached_permission_set = PermissionSetCache.objects.get(profile=profile, directory=directory)
-        return dict((permission.codename, permission) for permission in cached_permission_set.permissions.all())
+        return dict((permission.codename, permission) for permission in cached_permission_set.permissions.iterator())
     except PermissionSetCache.DoesNotExist:
         permissions = get_matching_permissions_recurse(profile, directory)
         # Ensure that administrative superusers always get admin rights
@@ -148,14 +148,14 @@ class PermissionSetCache(models.Model):
 def nuke_permission_set_caches(profile, directory):
     """Delete all PermissionSetCache objects matching the current
     profile and whose directories are subdirectories of directory."""
-    for permission_set_cache in PermissionSetCache.objects.filter(profile=profile, directory__pootle_path__startswith=directory.pootle_path):
+    for permission_set_cache in PermissionSetCache.objects.filter(profile=profile, directory__pootle_path__startswith=directory.pootle_path).iterator():
         permission_set_cache.delete()
 
 def void_cached_permissions(sender, instance, **kwargs):
     if instance.profile.user.username == 'default':
         profile_to_permission_set = dict((permission_set.profile, permission_set) for permission_set
-                                            in PermissionSet.objects.filter(directory=instance.directory))
-        for permission_set_cache in PermissionSetCache.objects.filter(directory=instance.directory):
+                                            in PermissionSet.objects.filter(directory=instance.directory).iterator())
+        for permission_set_cache in PermissionSetCache.objects.filter(directory=instance.directory).iterator():
             if permission_set_cache.profile not in profile_to_permission_set:
                 nuke_permission_set_caches(permission_set_cache.profile, instance.directory)
     else:

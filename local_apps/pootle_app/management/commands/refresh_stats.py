@@ -48,7 +48,7 @@ class Command(NoArgsCommand):
         TranslationStoreFieldFile._store_cache.cullsize = 2
 
 
-        for translation_project in TranslationProject.objects.filter(real_path__startswith=refresh_path):
+        for translation_project in TranslationProject.objects.filter(real_path__startswith=refresh_path).iterator():
             if not os.path.isdir(translation_project.abs_real_path):
                 # translation project no longer exists
                 translation_project.delete()
@@ -57,7 +57,7 @@ class Command(NoArgsCommand):
             # rescan translation_projects
             project_tree.scan_translation_project_files(translation_project)
             if recompute:
-                for store in translation_project.stores.all():
+                for store in translation_project.stores.iterator():
                     # We force stats and indexing information to be recomputed by
                     # updating the mtimes of the files whose information we want
                     # to update.

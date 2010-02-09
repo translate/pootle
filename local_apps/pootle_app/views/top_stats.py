@@ -31,17 +31,17 @@ def map_num_contribs(sub, user):
 def suggesters_from_suggestions(sugs):
     """Get the Users associated with the Suggestions. Also assign
     the num_contribs attribute from the Suggestion to the User"""
-    return [map_num_contribs(sug, sug.suggester.user) for sug in sugs if sug.suggester]
+    return (map_num_contribs(sug, sug.suggester.user) for sug in sugs.iterator() if sug.suggester)
 
 def reviewers_from_suggestions(sugs):
     """Get the Users associated with the Suggestions. Also assign
     the num_contribs attribute from the Suggestion to the User"""
-    return [map_num_contribs(sug, sug.reviewer.user) for sug in sugs if sug.reviewer]
+    return (map_num_contribs(sug, sug.reviewer.user) for sug in sugs.iterator() if sug.reviewer)
 
 def users_from_submissions(subs):
     """Get the Users associated with the Submissions. Also assign
     the num_contribs attribute from the Submission to the User"""
-    return [map_num_contribs(sub, sub.submitter.user) for sub in subs]
+    return (map_num_contribs(sub, sub.submitter.user) for sub in subs.iterator())
 
 def gen_top_stat(data, header_label):
     return {

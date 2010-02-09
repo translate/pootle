@@ -75,9 +75,9 @@ def language_index(request, language_code):
     if not check_permission("view", request):
         raise PermissionDenied
 
-    projects = language.translationproject_set.all().order_by('project__fullname')
+    projects = language.translationproject_set.order_by('project__fullname')
     projectcount = len(projects)
-    items = (make_project_item(translate_project) for translate_project in projects)
+    items = (make_project_item(translate_project) for translate_project in projects.iterator())
 
     totals = language.getquickstats()
     average = nice_percentage(totals['translatedsourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))

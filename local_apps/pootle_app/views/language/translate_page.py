@@ -59,7 +59,7 @@ def get_alt_projects(request):
     # do we have enabled alternative source language?
     if settings.ENABLE_ALT_SRC:
         # try to get the project if the user has chosen an alternate source language
-        return TranslationProject.objects.filter(language__in=get_profile(request.user).alt_src_langs.all(),
+        return TranslationProject.objects.filter(language__in=get_profile(request.user).alt_src_langs.iterator(),
                                                  project=request.translation_project.project_id)
     else:
         return TranslationProject.objects.none()
@@ -589,7 +589,7 @@ def get_alt_src_dict(request, store, unit, alt_project):
 
 def get_alt_src_list(request, store, unit):
     return [get_alt_src_dict(request, store, unit, alt_project)
-            for alt_project in get_alt_projects(request)]
+            for alt_project in get_alt_projects(request).iterator()]
 
 def make_table(request, profile, store, item):
     editable, first_item, translations = get_translations(request, profile, store, item)

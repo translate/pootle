@@ -81,7 +81,7 @@ def project_language_index(request, project_code):
         raise PermissionDenied
 
     project = get_object_or_404(Project, code=project_code)
-    translation_projects = project.translationproject_set.all()
+    translation_projects = project.translationproject_set.iterator()
     items = [make_language_item(request, translation_project) for translation_project in translation_projects]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
     languagecount = len(translation_projects)

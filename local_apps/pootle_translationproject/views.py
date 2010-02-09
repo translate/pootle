@@ -261,9 +261,9 @@ def top_stats(translation_project):
 def get_children(request, translation_project, directory, links_required=None):
     search = search_forms.search_from_request(request)
     return [item_dict.make_directory_item(request, child_dir, links_required=links_required)
-            for child_dir in directory.child_dirs.all()] + \
+            for child_dir in directory.child_dirs.iterator()] + \
            [item_dict.make_store_item(request, child_store, links_required=links_required)
-            for child_store in directory.filter_stores(search).all()]
+            for child_store in directory.filter_stores(search).iterator()]
 
 def unix_to_host_path(p):
     return os.sep.join(p.split('/'))

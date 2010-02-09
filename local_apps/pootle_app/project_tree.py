@@ -131,8 +131,8 @@ def add_items(fs_items, db_items, create_db_item):
 
 def add_files(ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True):
     files, dirs = split_files_and_dirs(ignored_files, ext, real_dir, file_filter)
-    existing_stores = dict((store.name, store) for store in db_dir.child_stores.all())
-    existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.all())
+    existing_stores = dict((store.name, store) for store in db_dir.child_stores.iterator())
+    existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.iterator())
     add_items(files, existing_stores,
               lambda name: Store(file = relative_real_path(os.path.join(real_dir, name)),
                                  parent    = db_dir,
@@ -203,7 +203,7 @@ def scan_translation_project_files(translation_project):
                       lambda filename: direct_language_match_filename(translation_project.language.code, filename))
     else:
         add_files(ignored_files, ext, real_path, directory)
-    for store in translation_project.stores.all():
+    for store in translation_project.stores.iterator():
         store.file._delete_store_cache()
 
 
@@ -258,7 +258,7 @@ def get_translated_name(translation_project, store):
 
 def convert_templates(template_translation_project, translation_project):
     oldstats = translation_project.getquickstats()
-    for store in template_translation_project.stores.all():
+    for store in template_translation_project.stores.iterator():
         if translation_project.file_style == 'gnu':
             new_store_path = get_translated_name_gnu(translation_project, store)
         else:

@@ -44,7 +44,7 @@ def get_items(request, model, get_last_action, name_func):
     if not check_permission('view', request):
         return items
 
-    for item in model.objects.all():
+    for item in model.objects.iterator():
         stats = item.getquickstats()
         stats = add_percentages(stats)
 

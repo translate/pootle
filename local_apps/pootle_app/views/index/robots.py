@@ -23,7 +23,7 @@ from pootle_language.models import Language
 
 def view(request):
     """generates the robots.txt file"""
-    langcodes = [language.code for language in Language.objects.all()]
+    langcodes = [language.code for language in Language.objects.iterator()]
     content = "User-agent: *\n"
     for langcode in langcodes + ["accounts"]:
         content += "Disallow: /%s/\n" % langcode

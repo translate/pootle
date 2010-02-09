@@ -113,8 +113,8 @@ class Directory(models.Model):
             # with project and language stats
             return empty_quickstats
         #FIXME: can we replace this with a quicker path query?
-        file_result = statssum(self.child_stores.all())
-        dir_result  = statssum(self.child_dirs.all())
+        file_result = statssum(self.child_stores.iterator())
+        dir_result  = statssum(self.child_dirs.iterator())
         stats = dictsum(file_result, dir_result)
         return stats
 
@@ -124,8 +124,8 @@ class Directory(models.Model):
     def getcompletestats(self):
         if self.is_template_project:
             return empty_completestats
-        file_result = completestatssum(self.child_stores.all())
-        dir_result  = completestatssum(self.child_dirs.all())
+        file_result = completestatssum(self.child_stores.iterator())
+        dir_result  = completestatssum(self.child_dirs.iterator())
         stats = dictsum(file_result, dir_result)
         return stats
         #queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path)

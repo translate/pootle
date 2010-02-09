@@ -117,13 +117,13 @@ def get_id(permission_set, profile_dict):
 
 def get_permission_data(directory):
     # Get all the PermissionSet objects associated with the current directory
-    permission_sets = PermissionSet.objects.filter(directory=directory)
+    permission_sets = PermissionSet.objects.filter(directory=directory).iterator()
     profile_permission_sets = dict((permission_set.profile, permission_set)
                                    for permission_set in permission_sets)
 
     # Get all profile objects which do not have PermissionSet objects
     # in the current 'translation_project' pointing to them.
-    profiles_without_permissions = [profile for profile in PootleProfile.objects.all().order_by('user__username')
+    profiles_without_permissions = [profile for profile in PootleProfile.objects.order_by('user__username').iterator()
                                     if profile not in profile_permission_sets]
 
     # Build a list of initial data to be fed to a formset. Each entry
@@ -142,7 +142,7 @@ def get_permission_data(directory):
     # possibly be removed without having Django complain, but that's
     # for someone else to try).
     permission_data = [{'id':           get_id(permission_set, profile_permission_sets),
-                        'permissions':  [permission.codename for permission in permission_set.positive_permissions.all()],
+                        'permissions':  [permission.codename for permission in permission_set.positive_permissions.iterator()],
                         'username':     permission_set.profile.user.username,
                         'profiles':     permission_set.profile.id,
                         'profile_data': [(permission_set.profile.id, permission_set.profile.user.username)]}

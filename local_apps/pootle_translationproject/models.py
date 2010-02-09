@@ -74,8 +74,8 @@ def create_translation_project(language, project):
             return None
 
 def scan_translation_projects():
-    for language in Language.objects.all():
-        for project in Project.objects.all():
+    for language in Language.objects.iterator():
+        for project in Project.objects.iterator():
             create_translation_project(language, project)
 
 class VersionControlError(Exception):
@@ -216,8 +216,7 @@ class TranslationProject(models.Model):
         old_stats = self.getquickstats()
         remote_stats = {}
 
-        stores = self.stores.all()
-        for store in stores:
+        for store in self.stores.iterator():
             try:
                 oldstats, remotestats, newstats = self.update_file_from_version_control(store)
                 remote_stats = dictsum(remote_stats, remotestats)
@@ -449,7 +448,7 @@ class TranslationProject(models.Model):
             newmtime = termbase.pomtime
             if newmtime != self.non_db_state.termmatchermtime:
                 if self.is_terminology_project:
-                    return match.terminologymatcher(self.stores.all()), newmtime
+                    return match.terminologymatcher(self.stores.iterator()), newmtime
                 else:
                     return match.terminologymatcher(termbase), newmtime
 
@@ -516,13 +515,13 @@ def add_pomtime(sender, instance, **kwargs):
 post_init.connect(add_pomtime, sender=TranslationProject)
 
 def scan_languages(sender, instance, **kwargs):
-    for language in Language.objects.all():
+    for language in Language.objects.iterator():
         create_translation_project(language, instance)
 
 post_save.connect(scan_languages, sender=Project)
 
 def scan_projects(sender, instance, **kwargs):
-    for project in Project.objects.all():
+    for project in Project.objects.iterator():
         create_translation_project(instance, project)
 
 post_save.connect(scan_projects, sender=Language)
