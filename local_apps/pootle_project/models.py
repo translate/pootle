@@ -34,7 +34,6 @@ from pootle_misc.baseurl import l
 
 class Project(models.Model):
     class Meta:
-        app_label = "pootle_app"
         ordering = ['code']
         db_table = 'pootle_app_project'
 

@@ -60,7 +60,6 @@ class PootleProfileManager(models.Manager):
 class PootleProfile(models.Model):
     objects = PootleProfileManager()
     class Meta:
-        app_label = "pootle_app"
         db_table = 'pootle_app_pootleprofile'
 
     # This is the only required field

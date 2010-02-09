@@ -66,7 +66,6 @@ class SubmissionManager(models.Manager):
 
 class Submission(models.Model):
     class Meta:
-        app_label = "pootle_app"
         get_latest_by = "creation_time"
         db_table = 'pootle_app_submission'
 

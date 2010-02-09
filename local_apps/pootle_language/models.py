@@ -32,7 +32,6 @@ from pootle_app.lib.util import RelatedManager
 class Language(models.Model):
     objects = RelatedManager()
     class Meta:
-        app_label = "pootle_app"
         ordering = ['code']
         db_table = 'pootle_app_language'
 
