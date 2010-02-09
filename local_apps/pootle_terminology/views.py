@@ -70,7 +70,7 @@ def extract(request, translation_project):
                 unit.add_suggestion(suggestion)
         template_vars['store'] = store
         template_vars['termcount'] = len(termunits)
-        return redirect(translation_project.pootle_path + 'terminology/manage/')
+        return redirect(translation_project.pootle_path + 'terminology_manage.html')
     return render_to_response("terminology/extract.html", template_vars, context_instance=RequestContext(request))
 
 @get_translation_project

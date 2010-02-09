@@ -9,7 +9,7 @@
 <div class="module-primary">
   <div class="nomargin">
     {% if store %}
-    <p class="message"><a href='{{ "extract"|l }}'>{% trans "You can regenrate the glossary from scratch." %}</a></p>
+    <p class="message"><a href='{{ "terminology_extract.html"|l }}'>{% trans "You can regenrate the glossary from scratch." %}</a></p>
     <form action="" method="post">
       {{ formset.management_form }}
       <table callpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
@@ -38,7 +38,7 @@
     {{ pager|render_pager }}
     {% else %}
       <p class="message error">{% trans "Glossary is Empty" %}</p>
-      <p class="message"><a href="{% filter l %}{{ translation_project.pootle_path }}terminology/extract/{% endfilter %}">{% trans "Generate Glossary" %}</a></p>
+      <p class="message"><a href='{{ "terminology_extract.html"|l }}'>{% trans "Generate Glossary" %}</a></p>
     {% endif %}
   </div>
 </div>
