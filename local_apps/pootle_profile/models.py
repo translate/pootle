@@ -28,11 +28,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 
 from pootle.i18n.override import lang_choices
-
 from pootle_misc.baseurl import l
-
-from pootle_language.models import Language
-from pootle_project.models import Project
 
 
 class PootleUserManager(UserManager):
@@ -76,7 +72,7 @@ class PootleProfile(models.Model):
         return self.user.username
     def get_absolute_url(self):
         return l('/accounts/%s/' % self.user.username)
-    
+
     def _get_status(self):
         #FIXME: what's this for?
         return "Foo"
@@ -102,22 +98,11 @@ class PootleProfile(models.Model):
 
     def getquicklinks(self):
         """gets a set of quick links to user's project-languages"""
-        from pootle_translationproject.models import TranslationProject
         from pootle_app.models.permissions import check_profile_permission
         quicklinks = []
-        # TODO: This can be done MUCH more efficiently with a bit of
-        # query forethought.  Why don't we just select all the
-        # TranslationProject objects from the database which match the
-        # user's Languages and Projects? This should be efficient.
-        #
-        # But this will only work once we move TranslationProject
-        # wholly to the DB (and away from its current brain damaged
-        # half-non-db/half-db implementation).
-        
-        for language in Language.objects.filter(user_languages=self):
+        for language in self.languages.iterator():
             langlinks = []
-            for translation_project in TranslationProject.objects.filter(
-                language=language, project__pootleprofile=self):
+            for translation_project in language.translationproject_set.filter(project__in=self.projects.iterator()).iterator():
                 isprojectadmin = check_profile_permission(self, 'administrate',
                                                           translation_project.directory)
 
