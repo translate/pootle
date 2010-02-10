@@ -46,6 +46,14 @@ from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.signals import translation_file_updated, post_unit_update
 from pootle_store.util import calculate_stats
 
+# Store States
+NEW = 0
+"""store just created, not parsed yet"""
+PARSED = 1
+"""store just parsed, units added but no quality checks where run"""
+CHECKED = 2
+"""quality checks run"""
+
 ############### Quality Check #############
 
 class QualityCheck(models.Model):
@@ -222,10 +230,9 @@ class Unit(models.Model, base.TranslationUnit):
             changed = True
         return changed
 
-    def update_qualitychecks(self, checker, created=False):
+    def update_qualitychecks(self, checker):
         """run quality checks and store result in database"""
-        if not created:
-            self.qualitycheck_set.all().delete()
+        self.qualitycheck_set.all().delete()
         if not self.target:
             return
         for name, message in checker.run_filters(self).items():
@@ -374,7 +381,8 @@ def init_baseunit(sender, instance, **kwargs):
 post_init.connect(init_baseunit, sender=Unit)
 
 def unit_post_save(sender, instance, created, **kwargs):
-    instance.update_qualitychecks(instance.checker, created)
+    if not instance.store.state < CHECKED:
+        instance.update_qualitychecks(instance.checker, created)
 post_save.connect(unit_post_save, sender=Unit)
 
 ###################### Store ###########################
@@ -401,7 +409,7 @@ class Store(models.Model, base.TranslationStore):
     parent = models.ForeignKey('pootle_app.Directory', related_name='child_stores', db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_("Path"))
     name = models.CharField(max_length=128, null=False, editable=False)
-
+    state = models.IntegerField(null=False, default=NEW, editable=False)
     class Meta:
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
@@ -426,12 +434,18 @@ class Store(models.Model, base.TranslationStore):
     def get_absolute_url(self):
         return l(self.pootle_path)
 
+    def require_units(self):
+        """make sure file is parsed and units are created"""
+        if self.state < PARSED:
+            self.update()
+            self.state = PARSED
+            self.save()
+
     @commit_on_success
     def update(self):
         """update db with units from file"""
-        old_ids = set(self.getids())
-        if not old_ids:
-            # no existing units in db, probably file hasn't been parsed before
+        if self.state < PARSED:
+            # no existing units in db, file hasn't been parsed before
             # no point in merging, add units directly
             for index, unit in enumerate(self.file.store.units):
                 if unit.istranslatable():
@@ -439,7 +453,7 @@ class Store(models.Model, base.TranslationStore):
                     newunit.update(unit)
                     newunit.save()
             return
-
+        old_ids = set(self.getids())
         new_ids = set(self.file.store.getids())
 
         obsolete_units = (self.findid(uid) for uid in old_ids - new_ids)
@@ -459,6 +473,18 @@ class Store(models.Model, base.TranslationStore):
             if changed:
                 oldunit.save()
 
+    def require_qualitychecks(self):
+        """make sure quality checks are run"""
+        if self.state < CHECKED:
+            self.update_qualitychecks()
+            self.state = CHECKED
+            self.save()
+
+    @commit_on_success
+    def update_qualitychecks(self):
+        for unit in self.units.iterator():
+            unit.update_qualitychecks(self.checker)
+
     def sync(self):
         """sync file with translations from db"""
         self.file.store.require_index()
@@ -470,6 +496,7 @@ class Store(models.Model, base.TranslationStore):
 ######################## TranslationStore #########################
 
     def _get_units(self):
+        self.require_units()
         return self.unit_set.order_by('index')
     units=property(_get_units)
 
@@ -513,6 +540,7 @@ class Store(models.Model, base.TranslationStore):
     @getfromcache
     def getcompletestats(self):
         """report result of quality checks"""
+        self.require_qualitychecks()
         queryset = QualityCheck.objects.filter(unit__store=self)
         return group_by_count(queryset, 'name')
 
@@ -855,11 +883,6 @@ def store_post_init(sender, instance, **kwargs):
         translation_file_updated.connect(instance.handle_file_update, sender=instance.pending)
 
 post_init.connect(store_post_init, sender=Store)
-
-def store_post_save(sender, instance, created, **kwargs):
-    if created and instance.file:
-        instance.update()
-post_save.connect(store_post_save, sender=Store)
 
 def store_post_delete(sender, instance, **kwargs):
     deletefromcache(instance, ["getquickstats", "getcompletestats"])
