@@ -120,7 +120,7 @@ def footer():
     return text
 
 def staggered_install(exception):
-    """Initialize the pootle database without displaying progress
+    """Initialize the pootle database while displaying progress
     reports for each step"""
 
     # django's syncdb command prints progress repots to stdout, but
