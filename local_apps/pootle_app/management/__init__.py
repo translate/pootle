@@ -30,6 +30,8 @@ from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_profile.models import PootleProfile
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
+from pootle.__version__ import build as code_buildversion
+from pootle_misc import siteconfig
 
 
 def create_essential_users():
@@ -84,19 +86,19 @@ def create_pootle_permission_sets():
     ('nobody') and for the logged in user ('default')."""
     nobody = PootleProfile.objects.get(user__username='nobody')
     default = PootleProfile.objects.get(user__username='default')
-    
+
     view = get_pootle_permission('view')
     suggest = get_pootle_permission('suggest')
     translate = get_pootle_permission('translate')
     archive = get_pootle_permission('archive')
-    
+
     # Default permissions for tree root
     root = Directory.objects.root
     permission_set, created = PermissionSet.objects.get_or_create(profile=nobody, directory=root)
     if created:
         permission_set.positive_permissions = [view, suggest]
         permission_set.save()
-    
+
     permission_set, created = PermissionSet.objects.get_or_create(profile=default, directory=root)
     if created:
         permission_set.positive_permissions = [view, suggest, translate, archive]
@@ -143,5 +145,8 @@ def post_syncdb_handler(sender, created_models, **kwargs):
         create_pootle_permissions()
         create_pootle_permission_sets()
 
-    
+    config = siteconfig.load_site_config()
+    config.set('BUILDVERSION', code_buildversion)
+    config.save()
+
 post_syncdb.connect(post_syncdb_handler, sender=pootle_app.models)
