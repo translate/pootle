@@ -148,7 +148,7 @@ INSTALLED_APPS = (
     'djblets.util',
 )
 
-AUTH_PROFILE_MODULE = "pootle_app.PootleProfile"
+AUTH_PROFILE_MODULE = "pootle_profile.PootleProfile"
 
 ENABLE_ALT_SRC = True
 
