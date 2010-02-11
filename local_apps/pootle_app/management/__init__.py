@@ -19,7 +19,9 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.db.models.signals import post_syncdb
+import logging
+
+from django.db.models.signals import post_syncdb, pre_delete, post_delete
 from django.utils.translation import ugettext_noop as _
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
@@ -52,7 +54,7 @@ def create_essential_users():
     # system: we need a way to store default rights for users. We use the
     # default user for this.
     #
-    # In a future version of Pootle we should think about using Django's 
+    # In a future version of Pootle we should think about using Django's
     # groups to do better permissions handling.
     default, created = User.objects.get_or_create(username=u"default",
                  first_name=u"any authenticated user",
@@ -63,7 +65,9 @@ def create_essential_users():
 
 def create_pootle_permissions():
     """define Pootle's directory level permissions"""
-    pootle_content_type, created = ContentType.objects.get_or_create(name="pootle", app_label="pootle_app", model="")
+    pootle_content_type, created = ContentType.objects.get_or_create(app_label="pootle_app", model="directory")
+    pootle_content_type.name = 'pootle'
+    pootle_content_type.save()
     view, created = Permission.objects.get_or_create(name=_("Can view a translation project"),
                                                      content_type=pootle_content_type, codename="view")
     suggest, created = Permission.objects.get_or_create(name=_("Can make a suggestion for a translation"),
@@ -144,9 +148,27 @@ def post_syncdb_handler(sender, created_models, **kwargs):
     if PermissionSet in created_models:
         create_pootle_permissions()
         create_pootle_permission_sets()
-
     config = siteconfig.load_site_config()
     config.set('BUILDVERSION', code_buildversion)
     config.save()
-
 post_syncdb.connect(post_syncdb_handler, sender=pootle_app.models)
+
+permission_queryset = None
+def fix_permission_content_type_pre(sender, instance, **kwargs):
+    if instance.name == 'pootle' and instance.model == "":
+        logging.debug("Fixing permissions content types")
+        global permission_queryset
+        permission_queryset = [permission for permission in Permission.objects.filter(content_type=instance)]
+pre_delete.connect(fix_permission_content_type_pre, sender=ContentType)
+
+def fix_permission_content_type_post(sender, instance, **kwargs):
+    global permission_queryset
+    if permission_queryset is not None:
+        dir_content_type = ContentType.objects.get(app_label='pootle_app', model='directory')
+        dir_content_type.name = 'pootle'
+        dir_content_type.save()
+        for permission in permission_queryset:
+            permission.content_type = dir_content_type
+            permission.save()
+        permission_queryset = None
+post_delete.connect(fix_permission_content_type_post, sender=ContentType)
