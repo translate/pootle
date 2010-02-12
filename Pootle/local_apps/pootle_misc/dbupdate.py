@@ -21,14 +21,10 @@
 import sys
 
 from django.core.management import call_command
-from django.contrib.auth.models import User
 
 from pootle.i18n.gettext import ugettext as _
 
-from pootle_app.models import Language, Project
-
-
-def header(exception):
+def header(db_buildversion):
     text = """
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -64,52 +60,30 @@ def header(exception):
     <body>
     <h1>%(title)s</h1>
     <p class="error">%(msg)s</p>
-    """ % {'title': _('Pootle: Install'),
-           'msg': _('Error: "%s" while attempting to access the Pootle database, will try to initialize database.', exception)}
+    """ % {'title': _('Pootle: Update'),
+           'msg': _('Database tables at build version "%d", will try to update database.', db_buildversion)}
     return text
 
 def syncdb():
     text = u"""
     <p>%s</p>
-    """ % _('Creating database tables...')
+    """ % _('Creating missing database tables...')
     call_command('syncdb', interactive=False)
     return text
 
-def initdb():
-    text = u"""
+def update_permissions_20030():
+    text = """
     <p>%s</p>
-    """ % _('Creating default languages, projects and admin user')
-    call_command('initdb')
+    """ % _('Fixing permission table...')
+    from django.contrib.auth.models import Permission
+    from django.contrib.contenttypes.models import ContentType
+    contenttype, created = ContentType.objects.get_or_create(app_label="pootle_app", model="directory")
+    for permission in Permission.objects.filter(content_type__name='pootle').iterator():
+        permission.content_type = contenttype
+        permission.save()
+    contenttype.name = 'pootle'
+    contenttype.save()
     return text
-
-def stats_start():
-    text = u"""
-    <p>%s</p>
-    <ul>
-    """ % _('Calculating translation statistics, this will take a few minutes')
-    return text
-
-def stats_language(language):
-    text = u"""
-    <li>%s</li>
-    """ % _('%(language)s is %(percent)d%% complete',
-            {'language': language.localname(), 'percent': language.translated_percentage()})
-    return text
-
-def stats_project(project):
-    text = u"""
-    <li>%s</li>
-    """ % _('Project %(project)s is %(percent)d%% complete',
-            {'project': project.fullname, 'percent': project.translated_percentage()})
-    return text
-
-def stats_end():
-    text = u"""
-    </ul>
-    <p>%s</p>
-    """ % _('Done calculating statistics for default languages and projects')
-    return text
-
 
 def footer():
     text = """
@@ -119,42 +93,25 @@ def footer():
     """  % { 'endmsg': _('Initialized database, you will be redirected to the front page in 10 seconds') }
     return text
 
-def staggered_install(exception):
-    """Initialize the pootle database without displaying progress
-    reports for each step"""
+def staggered_update(db_buildversion):
+    """Update pootle database, while displaying progress report for each step"""
 
-    # django's syncdb command prints progress repots to stdout, but
+    # django's syncdb command prints progress reports to stdout, but
     # mod_wsgi doesn't like stdout, so we reroute to stderr
     stdout = sys.stdout
     sys.stdout = sys.stderr
 
-    yield header(exception)
+    yield header(db_buildversion)
 
-    # try to build the database tables
+    ############## version specific updates ############
+
+    if db_buildversion < 20030:
+        yield update_permissions_20030()
+
+    # build missing tables
     yield syncdb()
 
-    # if this is a fresh install we should add some default languages
-    # and projects and a default admin account to make pootle more
-    # usable out of the box
-    #
-    # if there are no user accounts apart from defaults then assume
-    # it's fresh install
-    if User.objects.hide_defaults().count() == 0:
-        yield initdb()
-
-    # first time to visit the front page all stats for projects and
-    # languages will be calculated which can take forever, since users
-    # don't like webpages that take forever let's precalculate the
-    # stats here
-    yield stats_start()
-    for language in Language.objects.all():
-        yield stats_language(language)
-    for project in Project.objects.all():
-        yield stats_project(project)
-    yield stats_end()
-
     yield footer()
-
     # bring back stdout
     sys.stdout = stdout
     return

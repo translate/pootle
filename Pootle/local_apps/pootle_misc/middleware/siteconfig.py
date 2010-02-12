@@ -21,10 +21,22 @@
 from django.http import HttpResponse
 from pootle_misc import siteconfig
 from pootle_misc import dbinit
+from pootle_misc import dbupdate
 
-"""some unused http status code to mark the need to auto install"""
+from pootle.__version__ import build as code_buildversion
 
 INSTALL_STATUS_CODE = 613
+"""some unused http status code to mark the need to auto install"""
+
+UPDATE_STATUS_CODE = 614
+"""some unused http status code to mark the need to update database"""
+
+DEFAULT_BUILDVERSION = 20000
+"""Build version referering to Pootle version 2.0.
+   we'll assume db represents version 2.0 if no build version is stored.
+"""
+
+
 class SiteConfigMiddleware(object):
     """
     This middleware does two things, it reload djblet siteconfigs on
@@ -41,32 +53,42 @@ class SiteConfigMiddleware(object):
         """load site config, return a dummy response if database seems uninitialized"""
         #FIXME: can't we find a more efficient method?
         try:
-            siteconfig.load_site_config()
+            config = siteconfig.load_site_config()
+            db_buildversion = config.get('BUILDVERSION', DEFAULT_BUILDVERSION)
+            if db_buildversion < code_buildversion:
+                response = HttpResponse()
+                response.status_code = UPDATE_STATUS_CODE
+                response.db_buildversion = db_buildversion
+                return response
+
         except Exception, e:
             #HACKISH: since exceptions thrown by different databases
             # do not share the same class heirarchy (DBAPI2 sucks) we
             # have to check the class name instead (since python uses
             # duck typing I will call this
             # poking-the-duck-until-it-quacks-like-a-duck-test
-            
+
             if e.__class__.__name__ in ['OperationalError', 'ProgrammingError']:
                 # we can't build the database here cause caching
                 # middleware won't allow progressive loading of
                 # response so instead return an empty response marked
                 # with special status code INSTALL_STATUS_CODE
-                
+
                 response = HttpResponse()
                 response.status_code = INSTALL_STATUS_CODE
                 response.exception = e
                 return response
-            
+
+
     def process_response(self, request, response):
         """ this should be the last response processor to run, detect
         dummy response with INSTALL_STATUS_CODE status code and start
         db install process"""
-        
+
         if response.status_code == INSTALL_STATUS_CODE:
             return HttpResponse(dbinit.staggered_install(response.exception))
+        elif response.status_code == UPDATE_STATUS_CODE:
+            return HttpResponse(dbupdate.staggered_update(response.db_buildversion))
         else:
             return response
-            
+
