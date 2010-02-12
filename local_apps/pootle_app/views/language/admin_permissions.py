@@ -117,9 +117,9 @@ def get_id(permission_set, profile_dict):
 
 def get_permission_data(directory):
     # Get all the PermissionSet objects associated with the current directory
-    permission_sets = PermissionSet.objects.filter(directory=directory).iterator()
+    permission_sets = PermissionSet.objects.filter(directory=directory)
     profile_permission_sets = dict((permission_set.profile, permission_set)
-                                   for permission_set in permission_sets)
+                                   for permission_set in permission_sets.iterator())
 
     # Get all profile objects which do not have PermissionSet objects
     # in the current 'translation_project' pointing to them.
