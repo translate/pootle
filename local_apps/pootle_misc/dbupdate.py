@@ -75,6 +75,20 @@ def syncdb():
     call_command('syncdb', interactive=False)
     return text
 
+def update_permissions_20030():
+    text = """
+    <p>%s</p>
+    """ % _('Fixing permission table...')
+    from django.contrib.auth.models import Permission
+    from django.contrib.contenttypes.models import ContentType
+    contenttype, created = ContentType.objects.get_or_create(app_label="pootle_app", model="directory")
+    for permission in Permission.objects.filter(content_type__name='pootle').iterator():
+        permission.content_type = contenttype
+        permission.save()
+    contenttype.name = 'pootle'
+    contenttype.save()
+    return text
+
 def update_tables_21000():
     text = u"""
     <p>%s</p>
@@ -131,10 +145,10 @@ def staggered_update(db_buildversion):
 
     yield header(db_buildversion)
 
-    # build missing tables
-    yield syncdb()
-
     ############## version specific updates ############
+
+    if db_buildversion < 20030:
+        yield update_permissions_20030()
 
     if db_buildversion < 21000:
         yield update_tables_21000()
@@ -142,6 +156,9 @@ def staggered_update(db_buildversion):
         for store in Store.objects.iterator():
             yield parse_store(store)
         yield parse_end()
+
+    # build missing tables
+    yield syncdb()
 
     yield footer()
     # bring back stdout
