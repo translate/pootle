@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Zuza Software Foundation
-# 
+#
 # This file is part of Pootle.
 #
 # Pootle is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # Pootle is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -51,7 +51,7 @@ def get_store(request):
             return request.POST['store']
         else:
             return request.GET.get('store', '')
-    
+
     else:
         return request.path_info
 
@@ -71,7 +71,7 @@ def translate(request, path, **kwargs):
         path = path + 'translate.html'
     else:
         params.store = None
-        
+
     if (check_permission('translate', request) or check_permission('suggest', request)) and \
            'view_mode' not in kwargs:
         params.view_mode = 'translate'
@@ -91,7 +91,7 @@ def review(request, path, **kwargs):
         path = path + 'translate.html'
     else:
         params.store = None
-        
+
     if 'view_mode' not in kwargs:
         params.view_mode = 'review'
     return url_manip.make_url(path, params.encode())
@@ -128,3 +128,8 @@ def commit(request, path_obj):
 def update(request, path_obj):
     params = ProjectIndexState(request.GET).encode()
     return  url_manip.make_url(path_obj.pootle_path + '/update', params)
+
+def terminology(request, path_obj):
+    translation_project = path_obj.get_translationproject()
+    return translation_project.pootle_path + 'terminology_manage.html'
+
