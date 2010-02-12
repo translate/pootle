@@ -29,6 +29,8 @@ from django.contrib.contenttypes.models import ContentType
 import pootle_app.models
 from pootle_app.models import PootleProfile, Directory, Language, Project
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
+from pootle.__version__ import build as code_buildversion
+from pootle_misc import siteconfig
 
 
 def create_essential_users():
@@ -143,6 +145,10 @@ def post_syncdb_handler(sender, created_models, **kwargs):
     if PermissionSet in created_models:
         create_pootle_permissions()
         create_pootle_permission_sets()
+    config = siteconfig.load_site_config()
+    config.set('BUILDVERSION', code_buildversion)
+    config.save()
+
 post_syncdb.connect(post_syncdb_handler, sender=pootle_app.models)
 
 permission_queryset = None
