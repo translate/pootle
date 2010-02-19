@@ -34,22 +34,7 @@ from translate.misc.multistring import multistring
 
 from pootle_store.signals import translation_file_updated
 from pootle_store.translation_file import TranslationStoreFile
-
-
-def get_factory_classes():
-    from translate.storage.properties import propfile
-    from translate.storage.php import phpfile
-
-    factory_classes = {'properties': propfile, 'php': phpfile}
-    factory_classes.update(factory.classes)
-    try:
-        from translate.storage.subtitles import SubtitleFile
-        factory_classes['srt'] = SubtitleFile
-        factory_classes['sub'] = SubtitleFile
-        factory_classes['ssa'] = SubtitleFile
-    except ImportError:
-        pass
-    return factory_classes
+from pootle_store.filetypes import factory_classes
 
 ################# String #############################
 
@@ -161,7 +146,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
                     raise KeyError
             except KeyError:
                 logging.debug("cache miss for %s", self.path)
-                self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore, classes=get_factory_classes()),
+                self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore, classes=factory_classes),
                                                mod_info, self.realpath)
                 self._store_cache[self.path] = self._store_tuple
                 self._flush_stats()

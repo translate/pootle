@@ -29,6 +29,7 @@ from translate.filters import checks
 from translate.lang.data import langcode_re
 
 from pootle_store.util import absolute_real_path, statssum
+from pootle_store.filetypes import filetype_choices
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 
@@ -44,18 +45,7 @@ class Project(models.Model):
     checkers = list(checks.projectcheckers.keys())
     checkers.sort()
     checker_choices.extend([(checker, checker) for checker in checkers])
-    local_choices = (
-            ('po', _('Gettext PO')),
-            ('xlf', _('XLIFF')),
-            ('ts', _('Qt TS')),
-            ('tmx', _('TMX')),
-            ('tbx', _('TBX')),
-            ('srt', _('subtitles: SubRip')),
-            ('ssa', _('subtitles: Sub Station Alpha')),
-            ('sub', _('subtitles: MicroDVD')),
-            ('properties', _('Java properties')),
-            ('php', _('PHP arrays')),
-    )
+    local_choices = filetype_choices
     treestyle_choices = (
             # TODO: check that the None is stored and handled correctly
             ('auto', _('Automatic detection (slower)')),
