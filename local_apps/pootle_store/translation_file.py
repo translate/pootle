@@ -29,6 +29,7 @@ from django.utils.thread_support import currentThread
 from translate.storage import statsdb, factory
 from translate.misc.lru import LRUCachingDict
 
+from pootle_store.filetypes import factory_classes
 
 class StatsTuple(object):
     """Encapsulates stats in the in memory cache, needed
@@ -67,7 +68,7 @@ class TranslationStoreFile(File):
             #some weird reason, so we sprinkle with opens to make sure
             #things workout
             self.open()
-            self._store = factory.getobject(self)
+            self._store = factory.getobject(self, classes=factory_classes)
             self.open()
         return self._store
     store = property(_get_store)

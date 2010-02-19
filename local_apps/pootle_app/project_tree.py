@@ -26,6 +26,7 @@ from translate.convert import pot2po
 
 from pootle_store.models      import Store
 from pootle_store.util import absolute_real_path, relative_real_path
+from pootle_store.filetypes import factory_classes
 from pootle_app.models.directory  import Directory
 from pootle_app.models.signals import post_template_update
 
@@ -232,7 +233,7 @@ def convert_template(template_path, target_path):
     template_file = open(template_path, "rb")
     target_file   = cStringIO.StringIO()
     original_file = read_original_target(target_path)
-    pot2po.convertpot(template_file, target_file, original_file)
+    pot2po.convertpot(template_file, target_file, original_file, classes=factory_classes)
     try:
         output_file = open(target_path, "wb")
         output_file.write(target_file.getvalue())

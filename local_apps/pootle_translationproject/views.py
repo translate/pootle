@@ -55,6 +55,7 @@ from pootle_app.views.language.admin_permissions import process_update
 
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
+from pootle_store.filetypes import factory_classes
 from pootle_statistics.models import Submission
 from pootle_profile.models import get_profile
 from pootle_misc.baseurl           import redirect
@@ -384,14 +385,14 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         # If the extension of the uploaded file does not match the
         # extension of the current translation project, we create
         # an empty file (with the right extension)...
-        empty_store = factory.getobject(absolute_real_path(upload_path))
+        empty_store = factory.getobject(absolute_real_path(upload_path), classes=factory_classes)
         # And save it...
         empty_store.save()
         scan_translation_project_files(request.translation_project)
         # Then we open this newly created file and merge the
         # uploaded file into it.
         store = Store.objects.get(file=upload_path)
-        newstore = factory.getobject(django_file)
+        newstore = factory.getobject(django_file, classes=factory_classes)
         #FIXME: maybe there is a faster way to do this?
         store.mergefile(newstore, request.user.username, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
 
@@ -430,7 +431,7 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
         return
 
     store = Store.objects.get(file=upload_path)
-    newstore = factory.getobject(django_file)
+    newstore = factory.getobject(django_file, classes=factory_classes)
 
     #FIXME: are we sure this is what we want to do? shouldn't we
     # diffrentiate between structure changing uploads and mere
