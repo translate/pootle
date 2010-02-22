@@ -130,21 +130,22 @@ def add_items(fs_items, db_items, create_db_item):
 
     return items
 
-def add_files(ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True):
+def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True):
     files, dirs = split_files_and_dirs(ignored_files, ext, real_dir, file_filter)
     existing_stores = dict((store.name, store) for store in db_dir.child_stores.iterator())
     existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.iterator())
     add_items(files, existing_stores,
               lambda name: Store(file = relative_real_path(os.path.join(real_dir, name)),
                                  parent    = db_dir,
-                                 name      = name))
+                                 name      = name,
+                                 translation_project = translation_project))
 
     db_subdirs = add_items(dirs, existing_dirs,
                            lambda name: Directory(name=name, parent=db_dir))
 
     for db_subdir in db_subdirs:
         fs_subdir = os.path.join(real_dir, db_subdir.name)
-        add_files(ignored_files, ext, fs_subdir, db_subdir, file_filter)
+        add_files(translation_project, ignored_files, ext, fs_subdir, db_subdir, file_filter)
 
 
 def translation_project_should_exist(language, project):
@@ -197,13 +198,13 @@ def scan_translation_project_files(translation_project):
 
     if translation_project.file_style == 'gnu':
         if translation_project.is_template_project:
-            add_files(ignored_files, ext, real_path, directory,
+            add_files(translation_project, ignored_files, ext, real_path, directory,
                       lambda filename: match_template_filename(project, filename))
         else:
-            add_files(ignored_files, ext, real_path, directory,
+            add_files(translation_project, ignored_files, ext, real_path, directory,
                       lambda filename: direct_language_match_filename(translation_project.language.code, filename))
     else:
-        add_files(ignored_files, ext, real_path, directory)
+        add_files(translation_project, ignored_files, ext, real_path, directory)
     for store in translation_project.stores.iterator():
         store.file._delete_store_cache()
 
