@@ -97,6 +97,9 @@ def update_tables_21000():
     table_name = Store._meta.db_table
     field = Store._meta.get_field('state')
     db.add_column(table_name, field.name, field)
+    field = Store._meta.get_field('translation_project')
+    field.null = True
+    db.add_column(table_name, field.name, field)
     return text
 
 def parse_start():
@@ -154,6 +157,8 @@ def staggered_update(db_buildversion):
         yield update_tables_21000()
         yield parse_start()
         for store in Store.objects.iterator():
+            store.translation_project = store.parent.get_translationproject()
+            store.save()
             yield parse_store(store)
         yield parse_end()
 
