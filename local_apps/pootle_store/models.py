@@ -672,11 +672,6 @@ class Store(models.Model, base.TranslationStore):
         unit.sync(unit.getorig())
         had_header = self.updateheader(user)
         self.file.savestore()
-        if not had_header:
-            # if new header was added item indeces will be incorrect, flush stats caches
-            self.file._flush_stats()
-        else:
-            self.file.reclassifyunit(item, checker)
         newstats = self.getquickstats()
         post_unit_update.send(sender=self, oldstats=oldstats, newstats=newstats)
 
@@ -810,10 +805,6 @@ class Store(models.Model, base.TranslationStore):
             self.addunitsuggestion(unit, newpo, username)
             self.pending.savestore()
 
-        if checker is not None:
-            self.file.reclassifyunit(item, checker)
-
-
     def _deletesuggestion(self, item, suggestion):
         if self.file.store.suggestions_in_format:
             unit = self.getitem(item)
@@ -853,8 +844,6 @@ class Store(models.Model, base.TranslationStore):
             self.file.savestore()
         else:
             self.pending.savestore()
-        self.file.reclassifyunit(item, checker)
-
 
     def getsuggester(self, item, suggitem):
         """returns who suggested the given item's suggitem if
