@@ -420,12 +420,10 @@ class TranslationProject(models.Model):
             indexer.delete_doc({"pofilename": store.pootle_path})
             logging.error("Not indexing %s, since it is corrupt", store.pootle_path)
 
-    ##############################################################################################
+    ########################################################################################
 
     is_terminology_project = property(lambda self: self.project.code == "terminology")
     is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
-
-    stores = property(lambda self: Store.objects.filter(pootle_path__startswith=self.pootle_path))
 
     def gettermbase(self, make_matcher):
         """returns this project's terminology store"""
@@ -469,7 +467,7 @@ class TranslationProject(models.Model):
 
     #FIXME: we should cache results to ease live translation
     def translate_message(self, singular, plural=None, n=1):
-        for store in self.stores:
+        for store in self.stores.iterator():
             unit = store.findunit(singular)
             if unit is not None and unit.istranslated():
                 if unit.hasplural() and n != 1:
