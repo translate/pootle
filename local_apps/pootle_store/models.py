@@ -230,20 +230,15 @@ class Unit(models.Model, base.TranslationUnit):
             changed = True
         return changed
 
-    def update_qualitychecks(self, checker):
+    def update_qualitychecks(self, created=False):
         """run quality checks and store result in database"""
-        self.qualitycheck_set.all().delete()
+        if not created:
+            self.qualitycheck_set.all().delete()
         if not self.target:
             return
-        for name, message in checker.run_filters(self).items():
+        for name, message in self.store.translation_project.checker.run_filters(self).items():
             self.qualitycheck_set.create(name=name, message=message)
 
-    def get_checker(self):
-        """propogate checker from parent store"""
-        if not hasattr(self, '_checker'):
-            self._checker = self.store.checker
-        return self._checker
-    checker = property(get_checker)
 
 ##################### TranslationUnit ############################
 
@@ -382,7 +377,7 @@ post_init.connect(init_baseunit, sender=Unit)
 
 def unit_post_save(sender, instance, created, **kwargs):
     if not instance.store.state < CHECKED:
-        instance.update_qualitychecks(instance.checker, created)
+        instance.update_qualitychecks(created)
 post_save.connect(unit_post_save, sender=Unit)
 
 ###################### Store ###########################
@@ -484,7 +479,7 @@ class Store(models.Model, base.TranslationStore):
     @commit_on_success
     def update_qualitychecks(self):
         for unit in self.units.iterator():
-            unit.update_qualitychecks(self.checker)
+            unit.update_qualitychecks()
 
     def sync(self):
         """sync file with translations from db"""
@@ -544,14 +539,6 @@ class Store(models.Model, base.TranslationStore):
         self.require_qualitychecks()
         queryset = QualityCheck.objects.filter(unit__store=self)
         return group_by_count(queryset, 'name')
-
-    def get_checker(self):
-        """propogate checker from parent TranslationProject"""
-        #FIXME: hackish and slow
-        if not hasattr(self, "_checker"):
-            self._checker = self.parent.get_translationproject().checker
-        return self._checker
-    checker = property(get_checker)
 
     def has_suggestions(self):
         """check if any unit in store has suggestions"""
@@ -785,8 +772,7 @@ class Store(models.Model, base.TranslationStore):
                 newunit.msgidcomment = 'suggested by %s [%d]' % (username, hash(newunit.target))
             self.pending.addunit(newunit)
 
-
-    def addsuggestion(self, item, suggtarget, username, checker=None):
+    def addsuggestion(self, item, suggtarget, username):
         """adds a new suggestion for the given item"""
         unit = self.getitem(item)
 
@@ -816,7 +802,7 @@ class Store(models.Model, base.TranslationStore):
                 logging.error('Found an index error attempting to delete a suggestion: %s', suggestion)
                 return  # TODO: Print a warning for the user.
 
-    def deletesuggestion(self, item, suggitem, newtrans, checker):
+    def deletesuggestion(self, item, suggitem, newtrans):
         """removes the suggestion from the pending file"""
         suggestions = self.getsuggestions(item)
 

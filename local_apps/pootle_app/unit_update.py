@@ -71,8 +71,7 @@ def update_translation(store, item, newvalues, request, suggestion=None):
         # we can't distinguish between identical suggestions.
         pass
 
-    store.updateunit(item, newvalues, translation_project.checker,
-                          user=request.user, language=translation_project.language)
+    store.updateunit(item, newvalues, user=request.user)
     translation_project.update_index(translation_project.indexer, store, item)
 
 
