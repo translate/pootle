@@ -639,7 +639,7 @@ class Store(models.Model, base.TranslationStore):
         self.file.savestore()
 
 
-    def updateheader(self, user=None, language=None):
+    def updateheader(self, user=None):
         had_header = False
         if isinstance(self.file.store, po.pofile):
             had_header = self.file.store.header()
@@ -647,10 +647,10 @@ class Store(models.Model, base.TranslationStore):
             headerupdates = {'PO_Revision_Date': po_revision_date,
                              'X_Generator': x_generator}
 
-            if language is not None:
-                headerupdates['Language'] = language.code
-                if language.nplurals and language.pluralequation:
-                    self.file.store.updateheaderplural(language.nplurals, language.pluralequation)
+            language = self.translation_project.language
+            headerupdates['Language'] = language.code
+            if language.nplurals and language.pluralequation:
+                self.file.store.updateheaderplural(language.nplurals, language.pluralequation)
 
             if user is not None:
                 headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
@@ -658,7 +658,7 @@ class Store(models.Model, base.TranslationStore):
             self.file.store.updateheader(add=True, **headerupdates)
         return had_header
 
-    def updateunit(self, item, newvalues, checker, user=None, language=None):
+    def updateunit(self, item, newvalues, user=None):
         """Updates a translation with a new target value, comments, or fuzzy
         state."""
         # operation replaces file, make sure we have latest copy
@@ -670,7 +670,7 @@ class Store(models.Model, base.TranslationStore):
         unit.save()
 
         unit.sync(unit.getorig())
-        had_header = self.updateheader(user, language)
+        had_header = self.updateheader(user)
         self.file.savestore()
         if not had_header:
             # if new header was added item indeces will be incorrect, flush stats caches
