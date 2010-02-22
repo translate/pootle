@@ -73,5 +73,9 @@ def get_filetype_choices():
 filetype_choices = get_filetype_choices()
 
 def get_factory_classes():
-    return dict(((format[0], format[2]) for format in supported_formats))
+    classes = dict(((format[0], format[2]) for format in supported_formats))
+    # add template formats manually
+    from translate.storage.po import pofile
+    classes['pot'] = pofile
+    return classes
 factory_classes = get_factory_classes()
