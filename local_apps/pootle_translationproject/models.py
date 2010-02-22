@@ -37,7 +37,9 @@ from translate.storage import base, versioncontrol
 from pootle.scripts                import hooks
 from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.baseurl import l
-from pootle_store.models           import Store
+from pootle_misc.aggregate import group_by_count
+from pootle_store.util import calculate_stats
+from pootle_store.models           import Store, Unit, QualityCheck, PARSED, CHECKED
 from pootle_store.util             import relative_real_path, absolute_real_path
 from pootle_store.util import empty_quickstats, empty_completestats
 
@@ -139,15 +141,18 @@ class TranslationProject(models.Model):
     def getquickstats(self):
         if self.is_template_project:
             return empty_quickstats
-
-        return self.directory.getquickstats()
+        for store in self.stores.filter(state__lt=PARSED).iterator():
+            store.require_units()
+        return calculate_stats(Unit.objects.filter(store__translation_project=self))
 
     @getfromcache
     def getcompletestats(self):
         if self.is_template_project:
             return empty_completestats
+        for store in self.stores.filter(state__lt=CHECKED).iterator():
+            store.require_qualitychecks()
+        return group_by_count(QualityCheck.objects.filter(unit__store__translation_project=self))
 
-        return self.directory.getcompletestats()
 
     def _get_indexer(self):
         if self.non_db_state._indexing_enabled:

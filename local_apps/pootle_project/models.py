@@ -28,7 +28,8 @@ from django.db                import models
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
-from pootle_store.util import absolute_real_path, statssum
+from pootle_store.models import Store, Unit, PARSED
+from pootle_store.util import absolute_real_path, calculate_stats
 from pootle_store.filetypes import filetype_choices
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
@@ -66,7 +67,9 @@ class Project(models.Model):
 
     @getfromcache
     def getquickstats(self):
-        return statssum(self.translationproject_set.iterator())
+        for store in Store.objects.filter(translation_project__project=self, state__lt=PARSED).iterator():
+            store.require_units()
+        return calculate_stats(Unit.objects.filter(store__translation_project__project=self))
 
     def translated_percentage(self):
         return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
