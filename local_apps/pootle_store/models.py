@@ -512,6 +512,15 @@ class Store(models.Model, base.TranslationStore):
             if match is not None:
                 unit.sync(match)
 
+    def convert(self, fileclass):
+        """export to fileclass"""
+        output = fileclass()
+        output.settargetlanguage(self.translation_project.language.code)
+        #FIXME: we should add some headers
+        for unit in self.units.iterator():
+            output.addunit(unit.convert(output.UnitClass))
+        return output
+
 ######################## TranslationStore #########################
 
     def _get_units(self):
