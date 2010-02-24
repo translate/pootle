@@ -155,7 +155,23 @@ class Unit(models.Model, base.TranslationUnit):
     _target = property(_get_target, _set_target)
 
     def convert(self, unitclass):
-        return unitclass.buildfromunit(self)
+        """convert to a unit of type unitclass retaining as much
+        information from the database as the target format can support"""
+        newunit = unitclass(self.source)
+        newunit.target = self.target
+        newunit.markfuzzy(self.isfuzzy())
+        locations = self.getlocations()
+        if locations:
+            newunit.addlocations(locations)
+        notes = self.getnotes(origin="developer")
+        if notes:
+            newunit.addnote(notes, origin="developer")
+        notes = self.getnotes(origin="translator")
+        if notes:
+            newunit.addnote(notes, origin="translator")
+        newunit.setid(self.getid())
+        newunit.setcontext(self.getcontext())
+        return newunit
 
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.source)
