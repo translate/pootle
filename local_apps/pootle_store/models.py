@@ -268,6 +268,10 @@ class Unit(models.Model, base.TranslationUnit):
     def getid(self):
         return self.unitid
 
+    def setid(self, value):
+        self.unitid = value
+        self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
+
     def getlocations(self):
         if self.locations is None:
             return []
@@ -280,6 +284,9 @@ class Unit(models.Model, base.TranslationUnit):
 
     def getcontext(self):
         return self.context
+
+    def setcontext(self, value):
+        self.context = value
 
     def isfuzzy(self):
         return self.fuzzy
