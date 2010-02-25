@@ -113,7 +113,7 @@ class AdminTests(PootleTestCase):
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertEqual(store.file.read(), pocontent.getvalue())
 
-        download = self.client.get("/ar/pootle/test_new_upload.po/export/po")
+        download = self.client.get("/export/pootle/ar/test_new_upload.po")
         self.assertEqual(download.content, pocontent.getvalue())
 
     def test_upload_suggestions(self):
@@ -177,7 +177,7 @@ class AdminTests(PootleTestCase):
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertEqual(store.file.read(), po_content_1)
 
-        download = self.client.get("/ar/pootle/test_archive_2.po/export/po")
+        download = self.client.get("/export/pootle/ar/test_archive_2.po")
         self.assertEqual(po_content_2, download.content)
 
 
