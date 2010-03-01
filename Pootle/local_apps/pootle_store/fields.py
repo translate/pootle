@@ -196,9 +196,11 @@ class TranslationStoreFile(File):
                 if language.nplurals and language.pluralequation:
                     self.store.updateheaderplural(language.nplurals, language.pluralequation)
 
-            if user is not None:
-                headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name, user.email)
-
+            if user is not None and user.is_authenticated():
+                headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name or user.username, user.email)
+            else:
+                #FIXME: maybe insert settings.TITLE or domain here?
+                headerupdates['Last_Translator'] = 'Anonymous Pootle User'
             self.store.updateheader(add=True, **headerupdates)
 
         self.savestore()
