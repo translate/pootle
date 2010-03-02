@@ -516,6 +516,9 @@ def add_pomtime(sender, instance, **kwargs):
 post_init.connect(add_pomtime, sender=TranslationProject)
 
 def scan_languages(sender, instance, **kwargs):
+    # deleting Directories will automatically clean up all auto
+    # generated objects prior to regenerating them
+    Directory.objects.filter(translationproject__project=instance).delete()
     for language in Language.objects.all():
         create_translation_project(language, instance)
 
