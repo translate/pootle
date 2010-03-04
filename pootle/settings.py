@@ -152,6 +152,9 @@ AUTH_PROFILE_MODULE = "pootle_profile.PootleProfile"
 
 ENABLE_ALT_SRC = True
 
+# number of rows in top contributors table
+TOPSTAT_SIZE = 5
+
 # django-registration configs
 ACCOUNT_ACTIVATION_DAYS = 10
 

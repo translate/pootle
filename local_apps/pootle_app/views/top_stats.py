@@ -20,48 +20,31 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.utils.translation import ugettext as _
+from django.contrib.auth.models import User
+from django.conf import settings
 
-from pootle_app.models import Suggestion
-from pootle_statistics.models import Submission
+from pootle_misc.aggregate import group_by_sort
 
-def map_num_contribs(sub, user):
-    user.num_contribs = sub.num_contribs
-    return user
+def gentopstats_root():
+    """
+    Generate the top contributor stats to be displayed for an entire
+    Pootle installation.
+    """
+    top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__isnull=False),
+                               'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+    top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__isnull=False),
+                               'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
+    top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__isnull=False),
+                               'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
 
-def suggesters_from_suggestions(sugs):
-    """Get the Users associated with the Suggestions. Also assign
-    the num_contribs attribute from the Suggestion to the User"""
-    return (map_num_contribs(sug, sug.suggester.user) for sug in sugs.iterator() if sug.suggester)
+    return [
+        {'data': top_sugg, 'headerlabel': _('Suggestions')},
+        {'data': top_review, 'headerlabel': _('Reviews')},
+        {'data': top_sub, 'headerlabel': _('Submissions')} ]
 
-def reviewers_from_suggestions(sugs):
-    """Get the Users associated with the Suggestions. Also assign
-    the num_contribs attribute from the Suggestion to the User"""
-    return (map_num_contribs(sug, sug.reviewer.user) for sug in sugs.iterator() if sug.reviewer)
-
-def users_from_submissions(subs):
-    """Get the Users associated with the Submissions. Also assign
-    the num_contribs attribute from the Submission to the User"""
-    return (map_num_contribs(sub, sub.submitter.user) for sub in subs.iterator())
-
-def gen_top_stat(data, header_label):
-    return {
-        'data':        data,
-        'headerlabel': header_label }
-
-def limit(query):
-    return query[:5]
-
-def gentopstats(narrow_search_results):
+def gentopstats_language(language):
     """Generate the top contributor stats to be displayed
     for an entire Pootle installation, a language or a project.
-    'narrow_search_results' is a function taking a Django
-    query and should filter the results to give the results
-    for a particular project or language (or whatever is required).
-    For example the narrowing function
-        lambda query: query.filter(project='pootle', language='en')
-    will get the top contributor results for the project 'pootle'
-    in the language 'en'.
-
     The output of this function looks something like this:
       {'data':        [],
        'headerlabel': u'Suggestions'},
@@ -70,11 +53,61 @@ def gentopstats(narrow_search_results):
       {'data':        [],
        'headerlabel': u'Submissions'}]
     """
-    top_sugg   = limit(narrow_search_results(Suggestion.objects.get_top_suggesters()))
-    top_review = limit(narrow_search_results(Suggestion.objects.get_top_reviewers()))
-    top_sub    = limit(narrow_search_results(Submission.objects.get_top_submitters()))
+    top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__language=language),
+                               'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+    top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project__language=language),
+                               'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
+    top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project__language=language),
+                               'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
 
     return [
-        gen_top_stat(suggesters_from_suggestions(top_sugg),   _('Suggestions')),
-        gen_top_stat(reviewers_from_suggestions(top_review), _('Reviews')),
-        gen_top_stat(users_from_submissions(top_sub),    _('Submissions')) ]
+        {'data': top_sugg, 'headerlabel': _('Suggestions')},
+        {'data': top_review, 'headerlabel': _('Reviews')},
+        {'data': top_sub, 'headerlabel': _('Submissions')} ]
+
+def gentopstats_project(project):
+    """Generate the top contributor stats to be displayed
+    for an entire Pootle installation, a language or a project.
+    The output of this function looks something like this:
+      {'data':        [],
+       'headerlabel': u'Suggestions'},
+      {'data':        [],
+       'headerlabel': u'Reviews'},
+      {'data':        [],
+       'headerlabel': u'Submissions'}]
+    """
+    top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__project=project),
+                               'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+    top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project__project=project),
+                               'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
+    top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project__project=project),
+                               'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
+
+    return [
+        {'data': top_sugg, 'headerlabel': _('Suggestions')},
+        {'data': top_review, 'headerlabel': _('Reviews')},
+        {'data': top_sub, 'headerlabel': _('Submissions')} ]
+
+def gentopstats_translation_project(translation_project):
+    """Generate the top contributor stats to be displayed
+    for an entire Pootle installation, a language or a project.
+    The output of this function looks something like this:
+      {'data':        [],
+       'headerlabel': u'Suggestions'},
+      {'data':        [],
+       'headerlabel': u'Reviews'},
+      {'data':        [],
+       'headerlabel': u'Submissions'}]
+    """
+    top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project=translation_project),
+                               'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+    top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project=translation_project),
+                               'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
+    top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project=translation_project),
+                               'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
+
+    return [
+        {'data': top_sugg, 'headerlabel': _('Suggestions')},
+        {'data': top_review, 'headerlabel': _('Reviews')},
+        {'data': top_sub, 'headerlabel': _('Submissions')} ]
+
