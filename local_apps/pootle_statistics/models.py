@@ -21,59 +21,21 @@
 
 from django.db                import models
 
-from pootle_app.models import custom_sql_util
-from pootle_translationproject.models import TranslationProject
-from pootle_profile.models import PootleProfile
-
-class SubmissionManager(models.Manager):
-    def get_top_submitters(self):
-        """Return a list of Submissions, where each Submission represents a
-        user profile (note that if a user has never made suggestions,
-        there will be no entry for that user) where the order is
-        descending in the number of suggestion contributions from the
-        users.
-
-        One would expect us to return a list of PootleProfiles instead
-        of a list of Submissions. This would be ideal, but if we are
-        to allow code to further filter the top suggestion results
-        using criteria from the Submission model, then we have to
-        return a list of Submissions.
-
-        The number of contributions from a profile is stored in the
-        attribute 'num_contribs' and the profile is stored in
-        'submitter'.
-
-        Please note that the Submission objects returned here are
-        useless.  That is, they are valid Submission objects, but for
-        a user with 10 suggestions, we'll be given one of these
-        objects, without knowing which. But we're not interested in
-        the Submission objects anyway.
-        """
-        fields = {
-            'profile_id': custom_sql_util.primary_key_name(PootleProfile),
-            'submitter':  custom_sql_util.field_name(Submission, 'submitter'),
-        }
-        # select_related('submitter__user') will let Django also
-        # select the PootleProfile and its related User along with the
-        # Submission objects in the query. We do this, since we almost
-        # certainly want to get this information after calling
-        # get_top_submitters.
-        return self.extra(select = {'num_contribs': 'COUNT(%(profile_id)s)' % fields},
-                          tables = [custom_sql_util.table_name(PootleProfile)],
-                          where  = ["%(profile_id)s = %(submitter)s GROUP BY %(profile_id)s" % fields]
-                          ).order_by('-num_contribs').select_related('submitter__user')
+from pootle_app.lib.util import RelatedManager
 
 class Submission(models.Model):
     class Meta:
         get_latest_by = "creation_time"
         db_table = 'pootle_app_submission'
 
+    objects = RelatedManager()
+
     creation_time       = models.DateTimeField(db_index=True)
-    translation_project = models.ForeignKey(TranslationProject, db_index=True)
-    submitter           = models.ForeignKey(PootleProfile, null=True, db_index=True)
+    translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', db_index=True)
+    submitter           = models.ForeignKey('pootle_profile.PootleProfile', null=True, db_index=True)
     from_suggestion     = models.OneToOneField('pootle_app.Suggestion', null=True, db_index=True)
 
-    objects = SubmissionManager()
 
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"), unicode(self.submitter))
+
