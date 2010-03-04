@@ -88,11 +88,10 @@ class PootleProfile(models.Model):
 
     def getuserstatistics(self):
         """ get user statistics for user statistics links"""
-        from pootle_app.models.suggestion import _get_suggestions
         userstatistics = []
-        userstatistics.append({'text': _('Suggestions Accepted'), 'count': _get_suggestions(self, "accepted").count()})
-        userstatistics.append({'text': _('Suggestions Pending'), 'count': _get_suggestions(self, "pending").count()})
-        userstatistics.append({'text': _('Suggestions Reviewed'), 'count': self.suggestions_reviewer_set.count()})
+        userstatistics.append({'text': _('Suggestions Accepted'), 'count': self.suggester.filter(state='accepted').count()})
+        userstatistics.append({'text': _('Suggestions Pending'), 'count': self.suggester.filter(state='pending').count()})
+        userstatistics.append({'text': _('Suggestions Reviewed'), 'count': self.reviewer.count()})
         userstatistics.append({'text': _('Submissions Made'), 'count': self.submission_set.count()})
         return userstatistics
 
