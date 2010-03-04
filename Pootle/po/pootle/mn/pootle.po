@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-05-29 12:26+0200\n"
-"Last-Translator: Bayarsaikhan Enkhtaivan <ebayaraa@yahoo.com>\n"
+"PO-Revision-Date: 2010-02-11 07:00+0200\n"
+"Last-Translator: cris anderson <anderson861@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.0.2\n"
 
 #: strings.py:8
 msgid ""
@@ -24,7 +24,7 @@ msgstr ""
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Эмайл хаягаа оруулна уу."
 
 #: strings.py:10
 msgid ""
@@ -51,17 +51,17 @@ msgstr ""
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Нэмэх"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Өөрчлөх"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "%(name)s нэмэх"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
@@ -70,25 +70,24 @@ msgstr ""
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "өөрийн нэр"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "овогийн нэр"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "Э-майл хаяг"
+msgstr "э-майл хаяг"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "идэвхтэй"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "Захирагч"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -105,26 +104,23 @@ msgstr ""
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Хадгалах"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Хэрэглэгчийн нэр"
+msgstr "хэрэглэгчийн нэр"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "Э-майл хаяг"
+msgstr "э-майл хаяг"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Нууц үг"
+msgstr "нууц үг"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "нууц үг (дахиад)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
@@ -152,11 +148,11 @@ msgstr ""
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "хэрэглэгч"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr ""
+msgstr "идэвхжүүлтийн түлхүүр"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
@@ -263,9 +259,8 @@ msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 
 #: local_apps/pootle_app/models/language.py:44
-#, fuzzy
 msgid "Special Characters"
-msgstr "(онцгой үсгүүд)"
+msgstr "Онцгой Үсгүүд"
 
 #: local_apps/pootle_app/models/language.py:46
 msgid ""
@@ -275,7 +270,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/language.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "Мэдэхгүй"
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
@@ -325,7 +320,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:49
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
@@ -360,14 +355,12 @@ msgid "Pending"
 msgstr ""
 
 #: local_apps/pootle_app/models/suggestion.py:55
-#, fuzzy
 msgid "Accepted"
-msgstr "Зөвшөөрөх"
+msgstr "Зөвшөөрөгдсөн"
 
 #: local_apps/pootle_app/models/suggestion.py:56
-#, fuzzy
 msgid "Rejected"
-msgstr "Үл Зөвшөөрөх"
+msgstr "Үл Зөвшөөрөгдсөн"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
@@ -464,7 +457,7 @@ msgstr "Хэрэглэгчийн нэр"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
-msgstr ""
+msgstr "Устгах"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
@@ -501,7 +494,6 @@ msgid "Dependency Checks"
 msgstr ""
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:39
-#, fuzzy
 msgid "Optional"
 msgstr "Сонголт"
 
@@ -558,9 +550,8 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
-msgstr "Төслүүд"
+msgstr "Төсөл"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
@@ -593,9 +584,8 @@ msgid "Don't have an account yet?"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Бүртгүүлэх"
+msgstr "Бүртгүүлэх."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -676,14 +666,12 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
 
 #: local_apps/pootle_app/views/top_stats.py:77
-#, fuzzy
 msgid "Suggestions"
-msgstr "Санал:"
+msgstr "Санлууд"
 
 #: local_apps/pootle_app/views/top_stats.py:78
-#, fuzzy
 msgid "Reviews"
-msgstr "Шалгаж үзэх"
+msgstr "Шалгаж үзсэн"
 
 #: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
@@ -814,15 +802,13 @@ msgid "Password"
 msgstr "Нууц үг"
 
 #: local_apps/pootle_app/views/admin/util.py:38
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
 msgstr "Та Пүүтл зохион байгуулах эрхгүй."
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "Та Пүүтл зохион байгуулах эрхгүй."
+msgstr "Та %s зохион байгуулах эрхгүй."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
@@ -838,9 +824,8 @@ msgid "Home"
 msgstr "Нүүр хуудас"
 
 #: local_apps/pootle_app/views/admin/util.py:201
-#, fuzzy
 msgid "Save Changes"
-msgstr "Өөрчлөлтүүд хадгалах"
+msgstr "Өөрчлөлтүүд Хадгалах"
 
 #: local_apps/pootle_app/views/index/about.py:48
 #, python-format
@@ -986,9 +971,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
-#, fuzzy
 msgid "You do not have rights to administer this language."
-msgstr "Та энэ төсөл зохион байгуулах эрхгүй."
+msgstr "Та энэ хэл зохион байгуулах эрхгүй."
 
 #: local_apps/pootle_app/views/language/language_index.py:80
 #, python-format
@@ -1041,9 +1025,8 @@ msgid "Total"
 msgstr "Нийт"
 
 #: local_apps/pootle_app/views/language/project_index.py:51
-#, fuzzy
 msgid "Total Words"
-msgstr "Нийт үгс"
+msgstr "Нийт Үгс"
 
 #. l10n: noun. The graphical representation of translation status
 #: local_apps/pootle_app/views/language/project_index.py:53
@@ -1284,13 +1267,11 @@ msgstr ""
 
 #. l10n: Heading above the textarea for translator comments.
 #: local_apps/pootle_app/views/language/translate_page.py:913
-#, fuzzy
 msgid "Translator Comments"
 msgstr "Орчуулагчийн тайлбар"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: local_apps/pootle_app/views/language/translate_page.py:915
-#, fuzzy
 msgid "Developer Comments"
 msgstr "Боловсруулагчийн тайлбар"
 
@@ -1497,9 +1478,8 @@ msgid "An error has occurred. Thank you for your patience."
 msgstr ""
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
-#, fuzzy
 msgid "Administration"
-msgstr "Зохион байгуулах"
+msgstr "Зохион байгуулалт"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
@@ -1535,12 +1515,10 @@ msgstr ""
 
 #: templates/base.html:50 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
-#, fuzzy
 msgid "My Account"
 msgstr "Миний данс"
 
 #: templates/base.html:51
-#, fuzzy
 msgid "Log Out"
 msgstr "Гарах"
 
@@ -1550,12 +1528,10 @@ msgid "Register"
 msgstr "Бүртгүүлэх"
 
 #: templates/base.html:56
-#, fuzzy
 msgid "Log In"
 msgstr "Нэвтрэх"
 
 #: templates/base.html:107
-#, fuzzy
 msgid "About this Pootle Server"
 msgstr "Энэ Пүүтл сэрвэрийн тухай"
 
@@ -1577,7 +1553,6 @@ msgid "Administrate your language permissions"
 msgstr ""
 
 #: templates/project_menu.html:7
-#, fuzzy
 msgid "Project main page"
 msgstr "Төслийн нүүр хуудас"
 
@@ -1664,7 +1639,6 @@ msgid "Last Name"
 msgstr ""
 
 #: templates/profiles/edit_personal.html:29
-#, fuzzy
 msgid "Email address"
 msgstr "Э-майл хаяг"
 
@@ -1758,7 +1732,6 @@ msgid ""
 msgstr ""
 
 #: templates/registration/activation_email_subject.txt:2
-#, fuzzy
 msgid "Pootle registration"
 msgstr "Пүүтл бүртгүүлэл"
 
@@ -1836,7 +1809,6 @@ msgid "New Password"
 msgstr ""
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
 msgstr "Нууц үг дахиад"
 
@@ -1918,9 +1890,8 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
-#, fuzzy
 msgid "Log In."
-msgstr "Нэвтрэх"
+msgstr "Нэвтрэх."
 
 #~ msgid "General options"
 #~ msgstr "Ерөнхий сонголтууд"
