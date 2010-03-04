@@ -27,14 +27,14 @@ from pootle_app.views import pagelayout
 from pootle_app.models.profile import get_profile
 from pootle_app.views.index.index import getprojects
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.views.top_stats import gentopstats
+from pootle_app.views.top_stats import gentopstats_root
 from pootle_app.models import Directory
 
 def view(request):
     request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
     if not check_permission('view', request):
         raise PermissionDenied
-    topstats = gentopstats(lambda query: query)
+    topstats = gentopstats_root()
 
     templatevars = {
         'projectlink': _('Projects'),

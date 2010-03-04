@@ -23,7 +23,7 @@ from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from django.conf import settings
 
-from pootle_app.models import Suggestion, Submission
+from pootle_misc.aggregate import group_by_sort
 
 def gentopstats_root():
     """

@@ -31,7 +31,7 @@ from pootle_app.models import Project, Submission, Directory
 from pootle_app.views.language.project_index import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle.i18n.gettext import tr_lang
-from pootle_app.views.top_stats import gentopstats
+from pootle_app.views.top_stats import gentopstats_project
 from pootle_app.views import pagelayout
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.profile import get_profile
@@ -75,7 +75,7 @@ def view(request, project_code, _path_var):
     totals = add_percentages(project.getquickstats())
     average = totals['translatedpercentage'] 
 
-    topstats = gentopstats(lambda query: query.filter(translation_project__project__code=project_code))
+    topstats = gentopstats_project(project)
 
     templatevars = {
         'project': {
@@ -95,5 +95,4 @@ def view(request, project_code, _path_var):
                     'fuzzy': _('Translations need to be checked (they are marked fuzzy)'
                     ), 'untranslated': _('Untranslated')},
     }
-    
     return render_to_response('project/project.html', templatevars, context_instance=RequestContext(request))
