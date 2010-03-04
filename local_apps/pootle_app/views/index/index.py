@@ -24,6 +24,7 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+
 from pootle_profile.models import get_profile
 from pootle_app.models import Directory
 from pootle_statistics.models import Submission
@@ -31,7 +32,7 @@ from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.views import pagelayout
-from pootle_app.views.top_stats import gentopstats
+from pootle_app.views.top_stats import gentopstats_root
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.language.item_dict import add_percentages
 
@@ -87,7 +88,8 @@ def getprojects(request):
 
 def view(request):
     request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
-    topstats = gentopstats(lambda query: query)
+
+    topstats = gentopstats_root()
 
     templatevars = {
         'description': pagelayout.get_description(),

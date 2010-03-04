@@ -35,7 +35,7 @@ from pootle_statistics.models import Submission
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle.i18n.gettext import tr_lang
-from pootle_app.views.top_stats import gentopstats
+from pootle_app.views.top_stats import gentopstats_project
 from pootle_app.views import pagelayout
 from pootle_translationproject.models import TranslationProject
 from pootle_app import project_tree
@@ -88,7 +88,7 @@ def project_language_index(request, project_code):
     totals = add_percentages(project.getquickstats())
     average = totals['translatedpercentage']
 
-    topstats = gentopstats(lambda query: query.filter(translation_project__project__code=project_code))
+    topstats = gentopstats_project(project)
 
     templatevars = {
         'project': {

@@ -45,7 +45,7 @@ from pootle_app.models             import Directory, store_iteration
 from pootle_app.lib import view_handler
 from pootle_app.project_tree import scan_translation_project_files, convert_templates
 
-from pootle_app.views.top_stats import gentopstats
+from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_app.views.base import BaseView
 from pootle_app.views.language import navbar_dict, search_forms, dispatch, item_dict
 from pootle_app.views.language.view import get_stats_headings
@@ -78,7 +78,7 @@ class TPTranslateView(BaseView):
             'children':              get_children(request, translation_project, directory, links_required='translate'),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')],
             'feed_path':             directory.pootle_path[1:],
-            'topstats':              top_stats(translation_project),
+            'topstats':              gentopstats_translation_project(translation_project),
             })
         return template_vars
 
@@ -112,7 +112,7 @@ class TPReviewView(BaseView):
             'search':                search_forms.get_search_form(request),
             'children':              get_children(request, translation_project, directory, links_required='review'),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review')],
-            'topstats':              top_stats(translation_project),
+            'topstats':              gentopstats_translation_project(translation_project),
             'feed_path':             directory.pootle_path[1:],
             })
         return template_vars
@@ -215,7 +215,7 @@ class ProjectIndexView(BaseView):
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
             'stats_headings':        get_stats_headings(),
             'editing':               state.editing,
-            'topstats':              top_stats(translation_project),
+            'topstats':              gentopstats_translation_project(translation_project),
             'feed_path':             directory.pootle_path[1:],
             })
         return template_vars
@@ -256,8 +256,6 @@ def export_zip(request, translation_project, file_path):
     response['Content-Disposition'] = 'attachment; filename=%s' % archivename
     return response
 
-def top_stats(translation_project):
-    return gentopstats(lambda query: query.filter(translation_project=translation_project))
 
 def get_children(request, translation_project, directory, links_required=None):
     search = search_forms.search_from_request(request)
