@@ -58,8 +58,8 @@ class Suggestion(models.Model):
 
     creation_time       = models.DateTimeField(auto_now_add=True, db_index=True)
     translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', db_index=True)
-    suggester           = models.ForeignKey(PootleProfile, null=True, related_name='suggestions_suggester_set', db_index=True)
-    reviewer            = models.ForeignKey(PootleProfile, null=True, related_name='suggestions_reviewer_set', db_index=True)
+    suggester           = models.ForeignKey(PootleProfile, null=True, related_name='suggester', db_index=True)
+    reviewer            = models.ForeignKey(PootleProfile, null=True, related_name='reviewer', db_index=True)
     review_time         = models.DateTimeField(null=True, db_index=True)
     unit                = models.IntegerField(null=False, db_index=True)
     state               = models.CharField(max_length=16, default='pending', null=False, choices=state_choices, db_index=True)
