@@ -14,7 +14,7 @@
             {% for user in stats.data %}
             <tr class="{% cycle 'even' 'odd' %}">
                 <td class="stats-name">{{ user.username }}</td>
-                <td class="stats-words">{{ user.num_contribs }}</td>
+                <td class="stats-words">{{ user.count }}</td>
             </tr>
             {% endfor %}
         </table>
