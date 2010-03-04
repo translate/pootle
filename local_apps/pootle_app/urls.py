@@ -23,7 +23,6 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
     (r'^admin',               include('pootle_app.views.admin.urls')),
-    (r'',                     include('pootle_notifications.urls')),
     (r'',                     include('pootle_app.views.index.urls')),
     (r'',                     include('pootle_app.views.language.urls')),
 )
