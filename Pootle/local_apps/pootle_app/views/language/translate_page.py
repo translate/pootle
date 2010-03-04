@@ -565,7 +565,7 @@ def get_alt_src_dict(request, store, unit, alt_project):
         if translated_store is not None:
             translated_store.file.store.require_index()
 
-            translated_unit = translated_store.file.store.findunit(unit.source)
+            translated_unit = translated_store.file.store.findid(unit.getid())
             if translated_unit is not None and translated_unit.istranslated():
                 if unit.hasplural():
                     unit_dict = {
