@@ -68,10 +68,9 @@ def view(request, project_code, _path_var):
     if not check_permission('view', request):
         raise PermissionDenied
     project = get_object_or_404(Project, code=project_code)
-    translation_projects = project.translationproject_set.all()
-    items = [make_language_item(request, translation_project) for translation_project in translation_projects]
+    items = [make_language_item(request, translation_project) for translation_project in project.translationproject_set.iterator()]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
-    languagecount = len(translation_projects)
+    languagecount = len(items)
     totals = add_percentages(project.getquickstats())
     average = totals['translatedpercentage'] 
 

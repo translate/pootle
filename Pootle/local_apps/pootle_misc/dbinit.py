@@ -147,9 +147,9 @@ def staggered_install(exception):
     # don't like webpages that take forever let's precalculate the
     # stats here
     yield stats_start()
-    for language in Language.objects.all():
+    for language in Language.objects.iterator():
         yield stats_language(language)
-    for project in Project.objects.all():
+    for project in Project.objects.iterator():
         yield stats_project(project)
     yield stats_end()
 

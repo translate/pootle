@@ -31,10 +31,8 @@ from pootle.i18n.override import lang_choices
 
 from pootle_misc.baseurl import l
 
-from pootle_app.models.language import Language
 from pootle_app.models.project import Project
 
-        
 class PootleUserManager(UserManager):
     """A manager class which is meant to replace the manager class for the User model. This manager
     hides the 'nobody' and 'default' users for normal queries, since they are special users. Code
@@ -56,7 +54,7 @@ class PootleProfileManager(models.Manager):
     def get_query_set(self):
         return super(PootleProfileManager, self).get_query_set().select_related(
             'languages', 'projects', 'alt_src_langs')
-    
+
 class PootleProfile(models.Model):
     objects = PootleProfileManager()
     class Meta:
@@ -67,16 +65,16 @@ class PootleProfile(models.Model):
 
     unit_rows       = models.SmallIntegerField(default=10)
     input_height    = models.SmallIntegerField(default=5)
-    languages       = models.ManyToManyField(Language, blank=True, limit_choices_to=~Q(code='templates'), related_name="user_languages", db_index=True)
+    languages       = models.ManyToManyField('pootle_app.Language', blank=True, limit_choices_to=~Q(code='templates'), related_name="user_languages", db_index=True)
     projects        = models.ManyToManyField(Project, blank=True, db_index=True)
     ui_lang         = models.CharField(max_length=50, blank=True, null=True, choices=(choice for choice in lang_choices()), verbose_name=_('Interface Language'))
-    alt_src_langs   = models.ManyToManyField(Language, blank=True, db_index=True, limit_choices_to=~Q(code='templates'), related_name="user_alt_src_langs")
+    alt_src_langs   = models.ManyToManyField('pootle_app.Language', blank=True, db_index=True, limit_choices_to=~Q(code='templates'), related_name="user_alt_src_langs")
 
     def __unicode__(self):
         return self.user.username
     def get_absolute_url(self):
         return l('/accounts/%s/' % self.user.username)
-    
+
     def _get_status(self):
         #FIXME: what's this for?
         return "Foo"
@@ -101,7 +99,6 @@ class PootleProfile(models.Model):
 
     def getquicklinks(self):
         """gets a set of quick links to user's project-languages"""
-        from pootle_app.models.translation_project import TranslationProject
         from pootle_app.models.permissions import check_profile_permission
         quicklinks = []
         # TODO: This can be done MUCH more efficiently with a bit of
@@ -112,11 +109,10 @@ class PootleProfile(models.Model):
         # But this will only work once we move TranslationProject
         # wholly to the DB (and away from its current brain damaged
         # half-non-db/half-db implementation).
-        
-        for language in Language.objects.filter(user_languages=self):
+
+        for language in self.languages.iterator():
             langlinks = []
-            for translation_project in TranslationProject.objects.filter(
-                language=language, project__pootleprofile=self):
+            for translation_project in language.translationproject_set.filter(project__in=self.projects.iterator()).iterator():
                 isprojectadmin = check_profile_permission(self, 'administrate',
                                                           translation_project.directory)
 

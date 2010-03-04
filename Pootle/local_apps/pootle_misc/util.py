@@ -49,4 +49,3 @@ def deletefromcache(sender, functions, **kwargs):
             cache.delete(path + ":"+func)
         path_parts = path_parts[:-1]
         path = "/".join(path_parts) + "/"
-        

@@ -156,7 +156,7 @@ def fix_permission_content_type_pre(sender, instance, **kwargs):
     if instance.name == 'pootle' and instance.model == "":
         logging.debug("Fixing permissions content types")
         global permission_queryset
-        permission_queryset = [permission for permission in Permission.objects.filter(content_type=instance)]
+        permission_queryset = [permission for permission in Permission.objects.filter(content_type=instance).iterator()]
 pre_delete.connect(fix_permission_content_type_pre, sender=ContentType)
 
 def fix_permission_content_type_post(sender, instance, **kwargs):

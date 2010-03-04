@@ -62,7 +62,7 @@ empty_quickstats = {'fuzzy': 0,
 
 def statssum(queryset, empty_stats=empty_quickstats):
     totals = empty_stats
-    for item in queryset:
+    for item in queryset.iterator():
         try:
             totals = dictsum(totals, item.getquickstats())
         except:
@@ -79,7 +79,7 @@ empty_completestats = {u'check-hassuggestion': 0,
 
 def completestatssum(queryset, checker, empty_stats=empty_completestats):
     totals = empty_stats
-    for item in queryset:
+    for item in queryset.iterator():
         try:
             totals = dictsum(totals, item.getcompletestats(checker))
         except:

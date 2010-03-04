@@ -44,6 +44,3 @@ class Suggestion(models.Model):
 
     objects = RelatedManager()
 
-def _get_suggestions(profile, status):
-    return Suggestion.objects.filter(suggester=profile, state=status)
-
