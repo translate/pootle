@@ -1,3 +1,0 @@
-- Add normalization of Unicode with tests. Copy normalization function from Toolkit.
-- Confirm that "str(exc)" is not problematic for printing exceptions.
-- Autosave database.
