@@ -20,8 +20,6 @@
 
 """helper functions for translation file formats support"""
 
-from translate.storage import factory
-
 from django.utils.translation import ugettext_lazy as _
 
 def get_supported_formats():
