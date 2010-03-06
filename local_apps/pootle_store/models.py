@@ -557,6 +557,9 @@ class Store(models.Model, base.TranslationStore):
             return None
 
     def findid(self, id):
+        if hasattr(self, "id_index"):
+            return self.id_index.get(id, None)
+
         unitid_hash = md5_f(id.encode("utf-8")).hexdigest()
         try:
             return self.units.get(unitid_hash=unitid_hash)
@@ -564,7 +567,12 @@ class Store(models.Model, base.TranslationStore):
             return None
 
     def getids(self):
-        return self.units.values_list('unitid', flat=True)
+        if hasattr(self, "id_index"):
+            return self.id_index.keys()
+        elif hasattr(self, "dbid_index"):
+            return self.dbid_index.values()
+        else:
+            return self.units.values_list('unitid', flat=True)
 
     suggestions_in_format = True
 
