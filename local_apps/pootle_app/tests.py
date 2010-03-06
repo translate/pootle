@@ -11,14 +11,6 @@ from pootle_store.models import Store
 
 
 class AnonTests(PootleTestCase):
-    def test_login(self):
-        """Checks that login works and sets cookies"""
-        response = self.client.get('/')
-        self.assertContains(response, "Log In")
-
-        response = self.client.post('/accounts/login/', {'username':'admin', 'password':'admin'})
-        self.assertRedirects(response, '/accounts/admin/')
-
     def test_admin_not_logged(self):
         """checks that admin pages are not accessible without login"""
         response = self.client.get("/admin/")
@@ -29,17 +21,6 @@ class AdminTests(PootleTestCase):
     def setUp(self):
         super(AdminTests, self).setUp()
         self.client.login(username='admin', password='admin')
-
-    def test_logout(self):
-        """tests login and logout links"""
-        response = self.client.get('/')
-        self.assertContains(response, "Log Out")
-
-        response = self.client.get("/accounts/logout/")
-        self.assertRedirects(response, '/')
-
-        response = self.client.get('/')
-        self.assertContains(response, "Log In")
 
     def test_admin_rights(self):
         """checks that admin user can access admin pages"""
