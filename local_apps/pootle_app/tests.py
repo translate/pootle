@@ -155,6 +155,9 @@ class AdminTests(PootleTestCase):
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertEqual(store.file.read(), po_content_1)
 
+        store = Store.objects.get(pootle_path="/ar/pootle/test_archive_2.po")
+        self.assertTrue(os.path.isfile(store.file.path))
+        self.assertEqual(store.file.read(), po_content_2)
 
     def test_upload_over_file(self):
         """Tests that we can upload a new version of a file into a project."""
