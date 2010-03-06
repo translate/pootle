@@ -176,8 +176,8 @@ msgstr "resto"
         suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin [1963585124]\\n"\n"test"\nmsgstr "blo3"\n'
         store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
         self.assertTrue(store.file.read().find(mergedcontent) >= 0)
-        self.assertTrue(os.path.isfile(store.pending.path))
-        self.assertTrue(store.pending.read().find(suggestedcontent) >= 0)
+        suggestions = [str(sug) for sug in store.findunit('test').get_suggestions()]
+        self.assertTrue("blo3" in suggestions)
 
 
     def test_upload_new_xliff_file(self):
@@ -256,13 +256,11 @@ msgstr "resto"
         mergedcontent = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#~ msgid "tadpole"\n#~ msgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
         suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin [595179475]\\n"\n"test"\nmsgstr "rested"\n'
         store = Store.objects.get(pootle_path="/ar/pootle/test_upload_xliff.po")
-
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertTrue(store.file.read().find(mergedcontent) >= 0)
 
-        self.assertTrue(os.path.isfile(store.pending.path))
-        self.assertTrue(store.pending.read().find(suggestedcontent) >= 0)
-
+        suggestions = [str(sug) for sug in store.findunit('test').get_suggestions()]
+        self.assertTrue('rested' in suggestions)
 
     def test_submit_translation(self):
         """Tests that we can translate units."""
@@ -419,4 +417,6 @@ class NonprivTests(PootleTestCase):
         # We test with 'in' since the header is added
         store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
         self.assertFalse('msgstr "samaka"' in store.file.read())
+        suggestions = [str(sug) for sug in store.findunit('test').get_suggestions()]
+        self.assertTrue('samaka' in suggestions)
 
