@@ -49,7 +49,7 @@ class PootleTestCase(TestCase):
         nongnu_af = os.path.join(nongnu, "af")
         os.mkdir(nongnu_af)
         pofile = file(os.path.join(nongnu_af, "pootle.po"), 'w')
-        pofile.write('''msgid ""
+        pofile.write(r'''msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
