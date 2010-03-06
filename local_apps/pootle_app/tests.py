@@ -94,9 +94,6 @@ class AdminTests(PootleTestCase):
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertEqual(store.file.read(), pocontent.getvalue())
 
-        download = self.client.get("/export/pootle/ar/test_new_upload.po")
-        self.assertEqual(download.content, pocontent.getvalue())
-
     def test_upload_suggestions(self):
         """Tests that we can upload when we only have suggest rights."""
         pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "samaka"\n')
@@ -157,9 +154,6 @@ class AdminTests(PootleTestCase):
         store = Store.objects.get(pootle_path="/ar/pootle/test_archive_1.po")
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertEqual(store.file.read(), po_content_1)
-
-        download = self.client.get("/export/pootle/ar/test_archive_2.po")
-        self.assertEqual(po_content_2, download.content)
 
 
     def test_upload_over_file(self):
