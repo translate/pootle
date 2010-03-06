@@ -45,6 +45,7 @@ from pootle_misc.baseurl import l
 from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.signals import translation_file_updated, post_unit_update
 from pootle_store.util import calculate_stats
+from pootle_store.filetypes import factory_classes
 
 # Store States
 NEW = 0
@@ -456,7 +457,7 @@ class Store(models.Model, base.TranslationStore):
     def require_units(self):
         """make sure file is parsed and units are created"""
         if self.state < PARSED:
-            self.update()
+            self.update(update_structure=True, update_translation=True, conservative=False)
             self.state = PARSED
             self.save()
 
@@ -473,36 +474,42 @@ class Store(models.Model, base.TranslationStore):
                 yield unit
 
     @commit_on_success
-    def update(self):
+    def update(self, update_structure=False, update_translation=False, conservative=True):
         """update db with units from file"""
         if self.state < PARSED:
             # no existing units in db, file hasn't been parsed before
             # no point in merging, add units directly
             for index, unit in enumerate(self.file.store.units):
                 if unit.istranslatable():
-                    newunit = Unit(store=self, index=index)
-                    newunit.update(unit)
-                    newunit.save()
+                    self.addunit(unit, index)
             return
-        old_ids = set(self.getids())
+
+        self.require_dbid_index(update=True)
+        old_ids = set(self.dbid_index.keys())
         new_ids = set(self.file.store.getids())
 
-        obsolete_units = (self.findid(uid) for uid in old_ids - new_ids)
-        for unit in obsolete_units:
-            unit.delete()
+        if update_structure:
+            obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
+            for unit in self.findid_bulk(obsolete_dbids):
+                if not unit.istranslate() or not conservative:
+                    #FIXME: make obselete instead?
+                    unit.delete()
 
-        new_units = (self.file.store.findid(uid) for uid in new_ids - old_ids)
-        for unit in new_units:
-            newunit = Unit(store=self, index=unit.index)
-            newunit.update(unit)
-            newunit.save()
+            new_units = (self.file.store.findid(uid) for uid in new_ids - old_ids)
+            for unit in new_units:
+                self.addunit(unit, unit.index)
 
-        shared_units = ((self.findid(uid), self.file.store.findid(uid)) for uid in old_ids & new_ids)
-        for oldunit, unit in shared_units:
-            oldunit.index = unit.index
-            changed = oldunit.update(unit)
-            if changed:
-                oldunit.save()
+        if update_translation:
+            shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
+
+            for unit in self.findid_bulk(shared_dbids):
+                newunit = self.file.store.findid(unit.getid())
+                changed = unit.update(newunit)
+                if update_structure and unit.index != newunit.index:
+                    unit.index = newunit.index
+                    changed = True
+                if changed:
+                    unit.save()
 
     def require_qualitychecks(self):
         """make sure quality checks are run"""
@@ -516,13 +523,47 @@ class Store(models.Model, base.TranslationStore):
         for unit in self.units.iterator():
             unit.update_qualitychecks()
 
-    def sync(self):
+    def sync(self, update_structure=False, update_translation=False, conservative=True, create=False):
         """sync file with translations from db"""
-        self.file.store.require_index()
-        for unit in self.units:
-            match = self.file.store.findid(unit.getid())
-            if match is not None:
-                unit.sync(match)
+        if self.file is None and create:
+            # file doesn't exist let's create it
+            storeclass = factory_classes[self.translation_project.project.localfiletype]
+            store_path = os.path.join(settings.PODIRECTORY, self.translation_project.real_path, self.name)
+            store = self.convert(storeclass)
+            store.savefile(store_path)
+            self.file = store_path
+            self.save()
+            return
+
+        self.require_dbid_index(update=True)
+        old_ids = set(self.file.store.getids())
+        new_ids = set(self.dbid_index.keys())
+
+        if update_structure:
+            obsolete_units = (self.file.store.findid(uid) for uid in old_ids - new_ids)
+            for unit in obsolete_units:
+                if not unit.istranslated():
+                    del unit
+                elif not conservative:
+                    unit.makeobsolete()
+                    if not unit.isobsolete():
+                        #FIXME: need a better
+                        del unit
+
+            new_dbids = [self.dbid_index.get(uid) for uid in new_ids - old_ids]
+            for unit in self.findid_bulk(new_dbids):
+                newunit = unit.convert(self.file.store.UnitClass)
+                self.file.store.addunit(newunit)
+
+        if update_translation:
+            shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
+            for unit in self.findid_bulk(shared_dbids):
+                match = self.file.store.findid(unit.getid())
+                if match is not None:
+                    unit.sync(match)
+
+        #FIXME update headers here
+        self.file.savestore()
 
     def convert(self, fileclass):
         """export to fileclass"""
@@ -635,6 +676,7 @@ class Store(models.Model, base.TranslationStore):
                 oldunit.merge(newunit)
                 oldunit.save()
 
+        self.sync(update_structure=True, update_translation=True, conservative=False, create=True)
 
     def updateheader(self, user=None):
         had_header = False
