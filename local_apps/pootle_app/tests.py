@@ -94,24 +94,6 @@ class AdminTests(PootleTestCase):
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertEqual(store.file.read(), pocontent.getvalue())
 
-    def test_upload_suggestions(self):
-        """Tests that we can upload when we only have suggest rights."""
-        pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "samaka"\n')
-        pocontent.name = "pootle.po"
-
-        post_dict = {
-            'file': pocontent,
-            'overwrite': 'merge',
-            'do_upload': 'upload',
-            }
-        response = self.client.post("/af/pootle/", post_dict)
-
-        # Check that the orignal file didn't take the new suggestion.
-        # We test with 'in' since the header is added
-        store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
-        self.assertFalse('msgstr "samaka"' in store.file.read())
-        self.assertTrue('msgstr "samaka"' in store.pending.read())
-
     def test_upload_overwrite(self):
         """Tests that we can overwrite a file in a project."""
         pocontent = wStringIO.StringIO('#: test.c\nmsgid "fish"\nmsgstr ""\n#: test.c\nmsgid "test"\nmsgstr "barf"\n\n')
@@ -420,3 +402,21 @@ class NonprivTests(PootleTestCase):
         """checks that non privileged users cannot access admin pages"""
         response = self.client.get('/admin/')
         self.assertContains(response, '', status_code=403)
+
+    def test_upload_suggestions(self):
+        """Tests that we can upload when we only have suggest rights."""
+        pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "samaka"\n')
+        pocontent.name = "pootle.po"
+
+        post_dict = {
+            'file': pocontent,
+            'overwrite': 'merge',
+            'do_upload': 'upload',
+            }
+        response = self.client.post("/af/pootle/", post_dict)
+
+        # Check that the orignal file didn't take the new suggestion.
+        # We test with 'in' since the header is added
+        store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+        self.assertFalse('msgstr "samaka"' in store.file.read())
+
