@@ -460,6 +460,18 @@ class Store(models.Model, base.TranslationStore):
             self.state = PARSED
             self.save()
 
+    def require_dbid_index(self, update=False):
+        """build a quick mapping index between unit ids and database ids"""
+        if update or not hasattr(self, "dbid_index"):
+            self.dbid_index = dict(self.units.values_list('unitid', 'id'))
+
+    def findid_bulk(self, ids):
+        chunks = 200
+        for i in xrange(0, len(ids), chunks):
+            units = self.units.filter(id__in=ids[i:i+chunks])
+            for unit in units.iterator():
+                yield unit
+
     @commit_on_success
     def update(self):
         """update db with units from file"""
