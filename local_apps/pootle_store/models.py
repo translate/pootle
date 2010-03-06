@@ -548,8 +548,6 @@ class Store(models.Model, base.TranslationStore):
         newunit.update(unit)
         newunit.save()
 
-        self.file.addunit(self.file.store.UnitClass.buildfromunit(unit))
-
     def findunit(self, source):
         # find using hash instead of index
         source_hash = md5_f(source.encode("utf-8")).hexdigest()
