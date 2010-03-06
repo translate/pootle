@@ -129,9 +129,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
     def _get_store(self):
         """Get translation store from dictionary cache, populate if store not
         already cached."""
-        #FIXME: when do we detect that file changed?
-        if not hasattr(self, "_store_tuple"):
-            self._update_store_cache()
+        self._update_store_cache()
         return self._store_tuple.store
 
     def _update_store_cache(self):
