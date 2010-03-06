@@ -604,7 +604,8 @@ class Store(models.Model, base.TranslationStore):
     def mergefile(self, newfile, username, allownewstrings, suggestions, notranslate, obsoletemissing):
         """make sure each msgid is unique ; merge comments etc from
         duplicates into original"""
-        old_ids = set(self.getids())
+        self.require_dbid_index(update=True)
+        old_ids = set(self.dbid_index.keys())
         new_ids = set(newfile.getids())
 
         if allownewstrings:
@@ -613,67 +614,26 @@ class Store(models.Model, base.TranslationStore):
                 self.addunit(unit)
 
         if obsoletemissing:
-            old_units = (self.findid(uid) for uid in old_ids - new_ids)
-            for unit in old_units:
-                unit.makeobsolete()
-                unit.save()
+            obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
+            for unit in self.findid_bulk(obsolete_dbids):
+                if unit.istranslated():
+                    unit.makeobsolete()
+                    unit.save()
+                else:
+                    unit.delete()
 
-        if notranslate or suggestions:
-            self.initpending(create=True)
-
-        shared_units = ((self.findid(uid), newfile.findid(uid)) for uid in old_ids & new_ids)
-        for oldunit, newunit in shared_units:
+        shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
+        for oldunit in self.findid_bulk(shared_dbids):
+            newunit = newfile.findid(oldunit.getid())
             if not newunit.istranslated():
                 continue
 
             if notranslate or oldunit.istranslated() and suggestions:
-                self.addunitsuggestion(oldunit, newunit, username)
+                #FIXME: add a user argument
+                oldunit.add_suggestion(newunit.target, None)
             else:
                 oldunit.merge(newunit)
                 oldunit.save()
-
-        if (suggestions or notranslate) and not self.file.store.suggestions_in_format:
-            self.pending.savestore()
-
-        self.sync()
-        if not isinstance(newfile, po.pofile) or notranslate or suggestions:
-            # TODO: We don't support updating the header yet.
-            self.file.savestore()
-            return
-
-        # Let's update selected header entries. Only the ones
-        # listed below, and ones that are empty in self can be
-        # updated. The check in header_order is just a basic
-        # sanity check so that people don't insert garbage.
-        updatekeys = [
-            'Content-Type',
-            'POT-Creation-Date',
-            'Last-Translator',
-            'Project-Id-Version',
-            'PO-Revision-Date',
-            'Language-Team',
-            ]
-        headerstoaccept = {}
-        ownheader = self.file.store.parseheader()
-        for (key, value) in newfile.parseheader().items():
-            if key in updatekeys or (not key in ownheader
-                                     or not ownheader[key]) and key in po.pofile.header_order:
-                headerstoaccept[key] = value
-            self.file.store.updateheader(add=True, **headerstoaccept)
-
-        # Now update the comments above the header:
-        header = self.file.store.header()
-        newheader = newfile.header()
-        if header is None and not newheader is None:
-            header = self.file.store.UnitClass('', encoding=self.file.store._encoding)
-            header.target = ''
-        if header:
-            header._initallcomments(blankall=True)
-            if newheader:
-                for i in range(len(header.allcomments)):
-                    header.allcomments[i].extend(newheader.allcomments[i])
-
-        self.file.savestore()
 
 
     def updateheader(self, user=None):
