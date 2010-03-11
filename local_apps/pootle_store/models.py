@@ -386,6 +386,10 @@ class Unit(models.Model, base.TranslationUnit):
             return
         self.target = suggestion.target
         self.save()
+        if settings.AUTOSYNC:
+            self.sync(self.getorig())
+            self.store.updateheader(suggestion.user)
+            self.file.savestore()
         suggestion.delete()
 
     def reject_suggestion(self, item, translation):
@@ -704,15 +708,16 @@ class Store(models.Model, base.TranslationStore):
         state."""
         # operation replaces file, make sure we have latest copy
         oldstats = self.getquickstats()
-        self.file._update_store_cache()
 
         unit = self.getitem(item)
         unit.update_from_form(newvalues)
         unit.save()
 
-        unit.sync(unit.getorig())
-        had_header = self.updateheader(user)
-        self.file.savestore()
+        if settings.AUTOSYNC:
+            unit.sync(unit.getorig())
+            self.updateheader(user)
+            self.file.savestore()
+
         newstats = self.getquickstats()
         post_unit_update.send(sender=self, oldstats=oldstats, newstats=newstats)
 

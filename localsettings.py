@@ -111,3 +111,11 @@ AUTH_LDAP_FIELDS = {
 # set this to False to disable user registration, admins will still be
 # able to create user accounts
 CAN_REGISTER = True
+
+# set this to True if you want translation files to be updated
+# immediatly.
+# note that this negatively affects performance and
+# should be avoided unless another application needs direct access to
+# the files.
+
+AUTOSYNC = False
