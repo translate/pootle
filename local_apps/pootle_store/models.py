@@ -582,7 +582,7 @@ class Store(models.Model, base.TranslationStore):
 
     def addunit(self, unit, index=None):
         if index is None:
-            index = max_column(self.units, 'index', -1) + 1
+            index = max_column(self.unit_set.all(), 'index', -1) + 1
 
         newunit = Unit(store=self, index=index)
         newunit.update(unit)
