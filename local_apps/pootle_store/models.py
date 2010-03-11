@@ -456,7 +456,7 @@ class Store(models.Model, base.TranslationStore):
 
     def require_units(self):
         """make sure file is parsed and units are created"""
-        if self.state < PARSED:
+        if self.state < PARSED and self.unit_set.count() == 0:
             self.update(update_structure=True, update_translation=True, conservative=False)
             self.state = PARSED
             self.save()
