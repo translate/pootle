@@ -105,7 +105,7 @@ class Unit(models.Model, base.TranslationUnit):
     objects = RelatedManager()
     class Meta:
         ordering = ['store', 'index']
-        #unique_together = ('store', 'unitid_hash')
+        unique_together = ('store', 'unitid_hash')
 
     store = models.ForeignKey("pootle_store.Store", db_index=True, editable=False)
     index = models.IntegerField(db_index=True, editable=False)
