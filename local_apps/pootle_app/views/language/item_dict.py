@@ -155,7 +155,7 @@ def xliff_link(request, path_obj):
 
 def download_link(request, path_obj):
     return {
-        'href': '/export/%s' % path_obj.file.name,
+        'href': '%s/download/' % path_obj.pootle_path,
         'text': _('Download'),
         }
 

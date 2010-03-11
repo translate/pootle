@@ -25,12 +25,16 @@ from translate.storage.xliff import xlifffile
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 
+from pootle_misc.baseurl import redirect
+
 from pootle_store.models import Store
 
 def export_as_xliff(request, pootle_path):
+    #FIXME: cache this
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
+
     outputstore = store.convert(xlifffile)
     outputstore.switchfile(store.name, createifmissing=True)
     encoding = getattr(store.file.store, "encoding", "UTF-8")
@@ -40,3 +44,10 @@ def export_as_xliff(request, pootle_path):
     filename += os.path.extsep + 'xlf'
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
     return response
+
+def download(request, pootle_path):
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    store = get_object_or_404(Store, pootle_path=pootle_path)
+    store.sync(update_translation=True, create=True)
+    return redirect('/export/' + store.real_path)
