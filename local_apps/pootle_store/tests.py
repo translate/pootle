@@ -24,6 +24,7 @@ class UnitTests(PootleTestCase):
 
     def test_update_target(self):
         self.store.updateunit(0, newvalues={'target': u'samaka'})
+        self.store.sync(update_translation=True)
         dbunit = self.store.getitem(0)
         storeunit = dbunit.getorig()
 
@@ -34,6 +35,7 @@ class UnitTests(PootleTestCase):
 
     def test_update_plural_target(self):
         self.store.updateunit(2, newvalues={'target': [u'samaka', u'samak']})
+        self.store.sync(update_translation=True)
         dbunit = self.store.getitem(2)
         storeunit = dbunit.getorig()
 
@@ -48,6 +50,7 @@ class UnitTests(PootleTestCase):
 
     def test_update_plural_target_dict(self):
         self.store.updateunit(2, newvalues={'target': {0: u'samaka', 1: u'samak'}})
+        self.store.sync(update_translation=True)
         dbunit = self.store.getitem(2)
         storeunit = dbunit.getorig()
 
@@ -62,6 +65,7 @@ class UnitTests(PootleTestCase):
 
     def test_update_fuzzy(self):
         self.store.updateunit(0, newvalues={'fuzzy': True})
+        self.store.sync(update_translation=True)
         dbunit = self.store.getitem(0)
         storeunit = dbunit.getorig()
 
@@ -71,6 +75,7 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.isfuzzy(), pofile.units[dbunit.index].isfuzzy())
 
         self.store.updateunit(0, newvalues={'fuzzy': False})
+        self.store.sync(update_translation=True)
         dbunit = self.store.getitem(0)
         storeunit = dbunit.getorig()
 
@@ -81,6 +86,7 @@ class UnitTests(PootleTestCase):
 
     def test_update_comment(self):
         self.store.updateunit(0, newvalues={'translator_comments': u'7amada'})
+        self.store.sync(update_translation=True)
         dbunit = self.store.getitem(0)
         storeunit = dbunit.getorig()
 

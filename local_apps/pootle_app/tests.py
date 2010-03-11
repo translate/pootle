@@ -275,7 +275,7 @@ msgstr "resto"
                                     QUERY_STRING='view_mode=translate')
 
         self.assertContains(response, 'submitted translation')
-
+        response = self.client.get("/af/pootle/pootle.po/download")
         store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
         self.assertTrue(store.file.read().find('submitted translation') >= 0)
 
@@ -327,10 +327,10 @@ msgstr "resto"
         submit_dict.update(formset_dict([]))
         response = self.client.post("/ja/pootle/test_plural_submit.po", submit_dict,
                                     QUERY_STRING='view_mode=translate')
-
         self.assertContains(response, 'just fish')
 
         expectedcontent = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "just fish"\n'
+        response = self.client.get('/ja/pootle/test_plural_submit.po/download')
         store = Store.objects.get(pootle_path="/ja/pootle/test_plural_submit.po")
         self.assertTrue(store.file.read().find(expectedcontent) >= 0)
 

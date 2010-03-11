@@ -142,10 +142,10 @@ def paginate(request, queryset):
         page = 1
     # page value too large
     page = min(page, paginator.num_pages)
-    
+
     return paginator.page(page)
 
-    
+
 def process_modelformset(request, model_class, queryset, **kwargs):
     """With the Django model class 'model_class' and the Django form class 'form_class',
     construct a Django formset which can manipulate """
@@ -163,7 +163,7 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     if queryset is None:
         queryset = model_class.objects.all()
 
-    
+
     # If the request is a POST, we want to possibly update our data
     if request.method == 'POST':
         # Create a formset from all the 'model_class' instances whose values will
