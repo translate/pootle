@@ -370,7 +370,6 @@ class Unit(models.Model, base.TranslationUnit):
         except Suggestion.DoesNotExist:
             pass
 
-
     def add_suggestion(self, translation, user=None):
         suggestion = Suggestion(unit=self, user=user)
         suggestion.target = translation
@@ -458,8 +457,6 @@ class Store(models.Model, base.TranslationStore):
         """make sure file is parsed and units are created"""
         if self.state < PARSED and self.unit_set.count() == 0:
             self.update(update_structure=True, update_translation=True, conservative=False)
-            self.state = PARSED
-            self.save()
 
     def require_dbid_index(self, update=False):
         """build a quick mapping index between unit ids and database ids"""
@@ -479,6 +476,8 @@ class Store(models.Model, base.TranslationStore):
         if self.state < PARSED:
             # no existing units in db, file hasn't been parsed before
             # no point in merging, add units directly
+            self.state = PARSED
+            self.save()
             for index, unit in enumerate(self.file.store.units):
                 if unit.istranslatable():
                     self.addunit(unit, index)
@@ -515,11 +514,12 @@ class Store(models.Model, base.TranslationStore):
         """make sure quality checks are run"""
         if self.state < CHECKED:
             self.update_qualitychecks()
-            self.state = CHECKED
-            self.save()
 
     @commit_on_success
     def update_qualitychecks(self):
+        if self.state < CHECKED:
+            self.state = CHECKED
+            self.save()
         for unit in self.units.iterator():
             unit.update_qualitychecks()
 
@@ -547,7 +547,6 @@ class Store(models.Model, base.TranslationStore):
                 elif not conservative:
                     unit.makeobsolete()
                     if not unit.isobsolete():
-                        #FIXME: need a better
                         del unit
 
             new_dbids = [self.dbid_index.get(uid) for uid in new_ids - old_ids]
