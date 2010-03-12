@@ -130,14 +130,23 @@ class Search(object):
 
         total = store.units.values_list('index', flat=True)
         if range[0] is not None:
-            begin = store.getitem(range[0]).index
+            try:
+                begin = store.getitem(range[0]).index
+            except IndexError:
+                raise StopIteration
             if range[1] is not None:
-                end = store.getitem(range[1]).index
+                try:
+                    end = store.getitem(range[1]).index
+                except IndexError:
+                    raise StopIteration
                 result = result.filter(index__range=(begin, end))
             else:
                 result = result.filter(index__gte=begin)
         elif range[1] is not None:
-            end = store.getitem(range[1]).index
+            try:
+                end = store.getitem(range[1]).index
+            except IndexError:
+                raise StopIteration
             result = result.filter(index__lt=end)
 
         if self.match_names:
