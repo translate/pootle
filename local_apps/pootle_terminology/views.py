@@ -33,6 +33,7 @@ from pootle_misc.baseurl import redirect
 def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, filecounts):
     termunit = Unit()
     termunit.source = term
+    termunit.setid(term)
     if unit is not None:
         termunit.merge(unit)
     termunit.pending_suggestions = []
