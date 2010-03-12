@@ -30,7 +30,7 @@ from translate.lang.data import langcode_re
 
 from pootle_store.models import Store, Unit, PARSED
 from pootle_store.util import absolute_real_path, calculate_stats
-from pootle_store.filetypes import filetype_choices
+from pootle_store.filetypes import filetype_choices, factory_classes
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 
@@ -89,6 +89,10 @@ class Project(models.Model):
             return 'pot'
         else:
             return self.localfiletype
+
+    def get_file_class(self):
+        """returns the TranslationStore subclass required for parsing Project files"""
+        return factory_classes[self.localfiletype]
 
     def file_belongs_to_project(self, filename, match_templates=True):
         """tests if filename matches project filetype (ie. extension),

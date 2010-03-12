@@ -650,7 +650,10 @@ class Store(models.Model, base.TranslationStore):
         duplicates into original"""
         self.require_dbid_index(update=True)
         old_ids = set(self.dbid_index.keys())
-        new_ids = set(newfile.getids())
+        if issubclass(self.translation_project.project.get_file_class(),  newfile.__class__):
+            new_ids = set(newfile.getids())
+        else:
+            new_ids = set(newfile.getids(self.name))
 
         if allownewstrings:
             new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
