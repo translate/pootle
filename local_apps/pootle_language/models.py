@@ -26,8 +26,8 @@ from pootle.i18n.gettext import tr_lang, language_dir
 
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
-from pootle_store.util import calculate_stats
-from pootle_store.models import Store, Unit, PARSED
+from pootle_store.util import statssum
+from pootle_store.models import Store, PARSED
 from pootle_app.lib.util import RelatedManager
 
 class Language(models.Model):
@@ -62,7 +62,7 @@ class Language(models.Model):
     def getquickstats(self):
         for store in Store.objects.filter(translation_project__language=self, state__lt=PARSED).iterator():
             store.require_units()
-        return calculate_stats(Unit.objects.filter(store__translation_project__language=self))
+        return statssum(self.translationproject_set.iterator())
 
     def get_absolute_url(self):
         return l(self.pootle_path)
