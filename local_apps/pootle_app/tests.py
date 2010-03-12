@@ -223,7 +223,7 @@ msgstr "resto"
 
         xlfcontent = wStringIO.StringIO('''<?xml version="1.0" encoding="utf-8"?>
         <xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
-        <file datatype="po" original="test_existing.po" source-language="en-US">
+        <file datatype="po" original="test_upload_xliff.po" source-language="en-US">
         <body>
             <trans-unit id="test" xml:space="preserve" approved="yes">
                 <source>test</source>
@@ -253,7 +253,7 @@ msgstr "resto"
 
         # NOTE: this is what we do currently: any altered strings become suggestions.
         # It may be a good idea to change this
-        mergedcontent = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#~ msgid "tadpole"\n#~ msgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
+        mergedcontent = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
         suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin [595179475]\\n"\n"test"\nmsgstr "rested"\n'
         store = Store.objects.get(pootle_path="/ar/pootle/test_upload_xliff.po")
         self.assertTrue(os.path.isfile(store.file.path))
