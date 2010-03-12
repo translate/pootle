@@ -153,6 +153,9 @@ def staggered_update(db_buildversion):
     if db_buildversion < 20030:
         yield update_permissions_20030()
 
+    # build missing tables
+    yield syncdb()
+
     if db_buildversion < 21000:
         yield update_tables_21000()
         yield parse_start()
@@ -161,9 +164,6 @@ def staggered_update(db_buildversion):
             store.save()
             yield parse_store(store)
         yield parse_end()
-
-    # build missing tables
-    yield syncdb()
 
     yield footer()
     # bring back stdout
