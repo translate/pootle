@@ -174,7 +174,7 @@ class StoreFormset(BaseModelFormSet):
 @set_request_context
 @util.has_permission('administrate')
 def tp_admin_files(request, translation_project):
-    queryset = translation_project.stores
+    queryset = translation_project.stores.all()
     try:
         template_translation_project = TranslationProject.objects.get(project=translation_project.project,
                                                                       language__code='templates')
