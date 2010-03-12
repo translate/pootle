@@ -443,10 +443,10 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
     # pretranslate uploads?
     suggestions = overwrite == 'merge'
     notranslate = overwrite == 'suggest'
-    allownewstrings = check_permission('overwrite', request) or check_permission('administrate', request) or check_permission('commit', request)
-    obsoletemissing = allownewstrings and overwrite == 'merge'
+    #allownewstrings = check_permission('overwrite', request) or check_permission('administrate', request) or check_permission('commit', request)
+    #obsoletemissing = allownewstrings and overwrite == 'merge'
     store.mergefile(newstore, request.user.username, suggestions=suggestions, notranslate=notranslate,
-                    allownewstrings=allownewstrings, obsoletemissing=obsoletemissing)
+                    allownewstrings=False, obsoletemissing=False)
 
 class UpdateHandler(view_handler.Handler):
     actions = [('do_update', _('Update all from version control'))]
