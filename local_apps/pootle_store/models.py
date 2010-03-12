@@ -529,7 +529,7 @@ class Store(models.Model, base.TranslationStore):
 
     def sync(self, update_structure=False, update_translation=False, conservative=True, create=False):
         """sync file with translations from db"""
-        if self.file is None and create:
+        if not self.file and create:
             # file doesn't exist let's create it
             storeclass = factory_classes[self.translation_project.project.localfiletype]
             store_path = os.path.join(settings.PODIRECTORY, self.translation_project.real_path, self.name)
