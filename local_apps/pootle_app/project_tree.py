@@ -132,7 +132,7 @@ def add_items(fs_items, db_items, create_db_item):
 
 def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True):
     files, dirs = split_files_and_dirs(ignored_files, ext, real_dir, file_filter)
-    existing_stores = dict((store.name, store) for store in db_dir.child_stores.iterator())
+    existing_stores = dict((store.name, store) for store in db_dir.child_stores.exclude(file='').iterator())
     existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.iterator())
     add_items(files, existing_stores,
               lambda name: Store(file = relative_real_path(os.path.join(real_dir, name)),
