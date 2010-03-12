@@ -137,6 +137,16 @@ class TranslationProject(models.Model):
 
     non_db_state = property(_get_non_db_state)
 
+    def update(self, conservative=True):
+        """update all stores to reflect state on disk"""
+        for store in self.stores.filter(state__gte=PARSED).iterator():
+            store.update(update_translation=True, update_structure=not conservative, conservative=conservative)
+
+    def sync(self, conservative=True):
+        """sync unsaved work on all stores to disk"""
+        for store in self.stores.filter(state__gte=PARSED).iterator():
+            store.sync(update_translation=True, update_structure=not conservative, conservative=conservative, create=True)
+
     @getfromcache
     def getquickstats(self):
         if self.is_template_project:
