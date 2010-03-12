@@ -27,7 +27,7 @@ from translate.tools.poterminology import TerminologyExtractor
 
 from pootle_app.views.language.view import get_translation_project
 from pootle_app.views.admin.util import has_permission, paginate
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store, Unit, PARSED
 from pootle_misc.baseurl import redirect
 
 def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, filecounts):
@@ -62,9 +62,14 @@ def extract(request, translation_project):
             extractor.processunits(store.units, store.pootle_path)
         terms = extractor.extract_terms(create_termunit=create_termunit)
         termunits = extractor.filter_terms(terms)
-        store, created = Store.objects.get_or_create(parent=translation_project.directory, name="pootle-terminology.po")
-        if not created:
+        store, created = Store.objects.get_or_create(parent=translation_project.directory, translation_project=translation_project,
+                                                     name="pootle-terminology.po")
+        if created:
+            store.state = PARSED
+            store.save()
+        else:
             store.units.delete()
+
         for score, unit in termunits:
             unit.store = store
             unit.index = score
