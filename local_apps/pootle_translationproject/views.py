@@ -379,6 +379,13 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
             outfile.write(django_file.read())
         finally:
             outfile.close()
+            try:
+                #FIXME: we need a way to delay reparsing
+                store = Store.objects.get(file=upload_path)
+                store.update(update_structure=True, update_translation=True, conservative=False)
+            except Store.DoesNotExist:
+                # newfile, delay parsing
+                pass
     else:
         # If the extension of the uploaded file does not match the
         # extension of the current translation project, we create
