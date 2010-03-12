@@ -139,12 +139,12 @@ class TranslationProject(models.Model):
 
     def update(self, conservative=True):
         """update all stores to reflect state on disk"""
-        for store in self.stores.filter(state__gte=PARSED).iterator():
+        for store in self.stores.exclude(file='').filter(state__gte=PARSED).iterator():
             store.update(update_translation=True, update_structure=not conservative, conservative=conservative)
 
     def sync(self, conservative=True):
         """sync unsaved work on all stores to disk"""
-        for store in self.stores.filter(state__gte=PARSED).iterator():
+        for store in self.stores.exclude(file='').filter(state__gte=PARSED).iterator():
             store.sync(update_translation=True, update_structure=not conservative, conservative=conservative, create=True)
 
     @getfromcache
