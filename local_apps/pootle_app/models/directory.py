@@ -23,12 +23,10 @@ from django.db                import models
 from django.db.models.signals import pre_save
 
 from pootle_store.util import empty_quickstats, empty_completestats, statssum, completestatssum
-from pootle_store.util import calculate_stats
-from pootle_store.models import Unit, QualityCheck, Suggestion
+from pootle_store.models import Suggestion
 
 from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.baseurl import l
-from pootle_misc.aggregate import group_by_count
 
 class DirectoryManager(models.Manager):
     def get_query_set(self):
