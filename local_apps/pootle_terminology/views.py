@@ -21,6 +21,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.forms.models import modelformset_factory
+from django.db.transaction import commit_on_success
 
 from translate.tools.poterminology import TerminologyExtractor
 
@@ -46,6 +47,7 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, fil
         termunit.addnote("(poterminology) %s (%d)\n" % (filename, count), 'translator')
     return termunit
 
+@commit_on_success
 @get_translation_project
 @has_permission('administrate')
 def extract(request, translation_project):
