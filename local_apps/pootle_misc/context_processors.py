@@ -26,8 +26,6 @@ def pootle_context(request):
     """exposes settings to templates"""
     #FIXME: maybe we should expose relevant settings only?
     context = {
-        'pootle_profile': request.profile,
-        'pootle_context': request.pootle_context,
         'settings': {
             'TITLE': settings.TITLE,
             'DESCRIPTION': settings.DESCRIPTION,

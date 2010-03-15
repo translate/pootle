@@ -23,6 +23,7 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 
 from pootle_store.models import Unit
+from pootle_profile.models import get_profile
 
 register = template.Library()
 
@@ -70,7 +71,8 @@ def render_source(context, unit, editable=False):
                      'sources': pluralize_source(unit),
                      }
     if editable:
-        template_vars['altsrcs'] = find_altsrcs(unit, context['pootle_profile'])
+        profile = get_profile(context['user'])
+        template_vars['altsrcs'] = find_altsrcs(unit, profile)
 
     return template_vars
 
@@ -78,7 +80,7 @@ def render_source(context, unit, editable=False):
 def render_target(context, unit):
     template_vars = {'unit': unit,
                      'targets': pluralize_target(unit),
-                     'language': context['pootle_context']['language'],
+                     'language': unit.store.translation_project.language,
                      }
     suggcount = unit.get_suggestions().count()
     template_vars['suggcount'] = suggcount
@@ -95,7 +97,7 @@ def render_developer_notes(context, unit, editable=False):
 @register.inclusion_tag('unit/translator_notes.html', takes_context=True)
 def render_translator_notes(context, unit, editable=False):
     template_vars = {'unit': unit,
-                     'language': context['pootle_context']['language'],
+                     'language': unit.store.translation_project.language,
                      'editable': editable,
                      }
     return template_vars

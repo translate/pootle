@@ -101,7 +101,6 @@ MIDDLEWARE_CLASSES = (
     'pootle_misc.middleware.errorpages.ErrorPagesMiddleware',
     'django.middleware.common.CommonMiddleware',
     #'django.middleware.transaction.TransactionMiddleware',
-    'pootle_misc.middleware.pootle_path.PootlePathMiddleware',
     'pootle.middleware.check_cookies.CheckCookieMiddleware',
     #'pootle.middleware.profile.ProfilerMiddleware',
     # Uncomment to use pagecaching
