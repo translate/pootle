@@ -81,10 +81,16 @@ def collect_options():
     }
     package_dir = {
         'pootle_app':   'local_apps/pootle_app',
-        'pootle_store': 'local_apps/pootle_store',
+        'pootle_autonotices': 'local_apps/pootle_autonotices',
+        'pootle_language': 'local_apps/pootle_language',
         'pootle_misc':  'local_apps/pootle_misc',
         'pootle_notifications': 'local_apps/pootle_notifications',
-        'pootle_autonotices': 'local_apps/pootle_autonotices',
+        'pootle_profile': 'local_apps/pootle_profile',
+        'pootle_project': 'local_apps/pootle_project',
+        'pootle_statistics': 'local_apps/pootle_statistics',
+        'pootle_store': 'local_apps/pootle_store',
+        'pootle_terminology': 'local_apps/pootle_terminology',
+        'pootle_translationproject': 'local_apps/pootle_translationproject',
         'registration': 'external_apps/registration',
         'profiles':     'external_apps/profiles',
         'djblets':      'external_apps/djblets',
