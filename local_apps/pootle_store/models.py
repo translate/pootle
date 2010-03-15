@@ -23,7 +23,7 @@ import logging
 import re
 import time
 
-from django.db import models
+from django.db import models, IntegrityError
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
@@ -44,7 +44,7 @@ from pootle_misc.baseurl import l
 
 from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.signals import translation_file_updated, post_unit_update
-from pootle_store.util import calculate_stats
+from pootle_store.util import calculate_stats, empty_quickstats
 from pootle_store.filetypes import factory_classes
 
 # Store States
@@ -625,7 +625,18 @@ class Store(models.Model, base.TranslationStore):
     @getfromcache
     def getquickstats(self):
         """calculate translation statistics"""
-        return calculate_stats(self.units)
+        try:
+            return calculate_stats(self.units)
+        except IntegrityError:
+            logging.info("Duplicate IDs in %s", self.abs_real_path)
+        except base.ParseError, e:
+            logging.info("Failed to parse %s\n%s", self.abs_real_path, e)
+        except (IOError, OSError), e:
+            logging.info("Can't access %s\n%s", self.abs_real_path, e)
+        stats = {}
+        stats.update(empty_quickstats)
+        stats['errors'] += 1
+        return stats
 
     @getfromcache
     def getcompletestats(self):
