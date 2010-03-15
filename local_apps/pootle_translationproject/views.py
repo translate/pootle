@@ -185,7 +185,7 @@ def tp_admin_files(request, translation_project):
 
     if 'scan_files' in request.GET:
         scan_translation_project_files(translation_project)
-        for store in translation_project.stores.iterator():
+        for store in translation_project.stores.exclude(file='').iterator():
             store.sync(update_translation=True)
             store.update(update_structure=True, update_translation=True) 
 
