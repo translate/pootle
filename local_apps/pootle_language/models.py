@@ -60,8 +60,6 @@ class Language(models.Model):
 
     @getfromcache
     def getquickstats(self):
-        for store in Store.objects.filter(translation_project__language=self, state__lt=PARSED).iterator():
-            store.require_units()
         return statssum(self.translationproject_set.iterator())
 
     def get_absolute_url(self):

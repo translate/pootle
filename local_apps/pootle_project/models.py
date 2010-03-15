@@ -67,8 +67,6 @@ class Project(models.Model):
 
     @getfromcache
     def getquickstats(self):
-        for store in Store.objects.filter(translation_project__project=self, state__lt=PARSED).iterator():
-            store.require_units()
         return statssum(self.translationproject_set.iterator())
 
     def translated_percentage(self):
