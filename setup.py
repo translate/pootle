@@ -76,7 +76,12 @@ def collect_options():
     package_data = {
         '':           ['*.html', '*.txt', '*.xml', '*.css', '*.js'],
         'pootle_app': expand_tree_globs('local_apps/pootle_app', ['templates'], ['*.html']),
+        'pootle_language': expand_tree_globs('local_apps/pootle_language', ['templates'], ['*.html']),
         'pootle_notifications': expand_tree_globs('local_apps/pootle_notifications', ['templates'], ['*.html']),
+        'pootle_project': expand_tree_globs('local_apps/pootle_project', ['templates'], ['*.html']),
+        'pootle_store': expand_tree_globs('local_apps/pootle_store', ['templates'], ['*.html']),
+        'pootle_terminology': expand_tree_globs('local_apps/pootle_terminology', ['templates'], ['*.html']),
+        'pootle_translationproject': expand_tree_globs('local_apps/pootle_translationproject', ['templates'], ['*.html']),
         'djblets':    expand_tree_globs('external_apps/djblets', ['siteconfig', 'util'], ['*.html']),
     }
     package_dir = {

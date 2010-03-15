@@ -1,6 +1,11 @@
 graft html
 graft local_apps/pootle_app/templates
+graft local_apps/pootle_language/templates
 graft local_apps/pootle_notifications/templates
+graft local_apps/pootle_project/templates
+graft local_apps/pootle_store/templates
+graft local_apps/pootle_terminology/templates
+graft local_apps/pootle_translationproject/templates
 graft po
 graft mo
 graft templates
