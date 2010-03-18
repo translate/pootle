@@ -117,12 +117,12 @@ class Unit(models.Model, base.TranslationUnit):
     source_wordcount = models.SmallIntegerField(default=0, editable=False)
     source_length = models.SmallIntegerField(db_index=True, default=0, editable=False)
 
-    target_f = MultiStringField(null=True)
+    target_f = MultiStringField(null=True, blank=True)
     target_wordcount = models.SmallIntegerField(default=0, editable=False)
     target_length = models.SmallIntegerField(db_index=True, default=0, editable=False)
 
-    developer_comment = models.TextField(null=True)
-    translator_comment = models.TextField(null=True)
+    developer_comment = models.TextField(null=True, blank=True)
+    translator_comment = models.TextField(null=True, blank=True)
     locations = models.TextField(null=True, editable=False)
     context = models.TextField(null=True, editable=False)
     fuzzy = models.BooleanField(default=False)
