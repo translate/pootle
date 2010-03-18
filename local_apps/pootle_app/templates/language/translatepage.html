@@ -214,6 +214,9 @@
                                   {% ifequal button 'back' %}
                                   <input type="submit" name="back{{ item.trans.buttons.item }}" accesskey="b" value="{% trans 'Back' %}" />
                                   {% endifequal %}
+                                  {% ifequal button 'googletranslate' %}
+                                  <input type="submit" class="googletranslate" name="googleapi{{ item.trans.buttons.item }}" value="{% trans 'Google Translate' %}"/>
+                                  {% endifequal %}
                               {% endfor %}
                                   <input type="hidden" name="store" value="{{ store }}" />
                   <input type="hidden" name="path" value="{{ store|l }}" />
@@ -322,6 +325,10 @@
 {% block scripts_extra %}
 {{ block.super }}
 <script src='{{ "js/json2.min.js"|m }}' type="text/javascript"></script>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+	google.load("language", "1");
+</script>
 <script src='{{ "js/translatepage.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.fieldselection.js"|m }}' type="text/javascript"></script>
 {% endblock scripts_extra %}

@@ -93,6 +93,55 @@ $.pootle = {};
     $(this).parent().parent().parent().find("textarea").toggleClass("translate-translation-fuzzy");
   });
 
+/*
+ * GOOGLE TRANSLATE
+ */
+  $(".googletranslate").click(function(){
+    var id = this.name.replace("googleapi", "");
+    var orig = $("#orig" + id);
+    var area = $("#areatrans" + id);
+    var orig = orig.find("div.translation-text");
+    var orig_text = orig.html();
+    var lang_from = orig.attr("lang");
+    var lang_to = area.attr("lang");
+	
+    // The printf regex based on http://phpjs.org/functions/sprintf:522
+    var c_printf_pattern = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
+    var csharp_string_format_pattern = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
+    var percent_number_pattern = /%\d+/g;
+    var pos = 0;
+    var argument_subs = new Array();
+    var collectArguments = function (substring) {
+      if (substring == '%%') {return '%%';}
+      argument_subs[pos] = substring;
+      substitute_string = "__" + pos + "__";
+      pos = pos + 1;
+      return substitute_string;
+    }
+    orig_text = orig_text.replace(c_printf_pattern, collectArguments);
+    orig_text = orig_text.replace(csharp_string_format_pattern, collectArguments);
+    orig_text = orig_text.replace(percent_number_pattern, collectArguments);
+	
+    var content = new Object()
+    content.text = orig_text
+    content.type = "text"
+    google.language.translate(content, lang_from, lang_to, function(result) {
+      if (result.translation) {
+        var translation = result.translation;
+        for (var i=0; i<argument_subs.length; i++) 
+          translation = translation.replace("__" + i + "__", argument_subs[i]); 
+        area.val(translation);
+        area.addClass("translate-translation-fuzzy");
+        var checkbox = $("input.fuzzycheck");
+        checkbox.attr("checked", "checked");
+        area.focus();
+        keepstate = true; 
+      } else {
+        alert("Google Translate Error: " + result.error.message); 
+      }
+  });
+	return false;
+  });
 
 /*
  * SUGGESTIONS

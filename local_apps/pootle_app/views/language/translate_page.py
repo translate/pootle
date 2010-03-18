@@ -370,7 +370,7 @@ def get_trans_edit(request, store, item, trans):
         transdict = { "rows": profile.input_height }
         focusbox = ""
         if len(trans) > 1:
-            buttons = get_trans_buttons(request, request.translation_project, item, ["translate", "suggest", "copy", "skip", "back"])
+            buttons = get_trans_buttons(request, request.translation_project, item, ["translate", "suggest", "copy", "skip", "back", "googletranslate"])
             forms = []
             for pluralitem, pluraltext in enumerate(trans):
                 pluralform = _("Plural Form %d", pluralitem)
@@ -381,7 +381,7 @@ def get_trans_edit(request, store, item, trans):
                     focusbox = textid
             transdict["forms"] = forms
         elif trans:
-            buttons = get_trans_buttons(request, request.translation_project, item, ["translate", "suggest", "copy", "skip", "back"])
+            buttons = get_trans_buttons(request, request.translation_project, item, ["translate", "suggest", "copy", "skip", "back", "googletranslate"])
             transdict["text"] = escape_for_textarea(trans[0])
             textid = "trans%d" % item
             focusbox = textid
