@@ -18,14 +18,66 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from difflib import SequenceMatcher
+from django.utils.safestring import mark_safe
+
 from django import template
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
+from django.core.exceptions import  ObjectDoesNotExist
 
+from pootle_app.models.permissions import  check_permission
 from pootle_store.models import Unit
 from pootle_profile.models import get_profile
+from pootle_misc.templatetags.cleanhtml import fancy_escape
 
 register = template.Library()
+
+def find_altsrcs(unit, profile):
+    altsrcs = []
+    path_fragments = unit.store.pootle_path.split('/')
+    for language in profile.alt_src_langs.iterator():
+        try:
+            path_fragments[1] = language.code
+            pootle_path = '/'.join(path_fragments)
+            altunit = Unit.objects.get(unitid_hash=unit.unitid_hash, target_length__gt=0,
+                                       store__pootle_path=pootle_path)
+            altsrcs.append((language, altunit))
+        except Unit.DoesNotExist:
+            pass
+    return altsrcs
+
+def highlight_diffs(old, new):
+    """Highlights the differences between old and new. The differences
+    are highlighted such that they show what would be required to
+    transform old into new.
+    """
+
+    textdiff = ""
+    for tag, i1, i2, j1, j2 in SequenceMatcher(None, old, new).get_opcodes():
+        if tag == 'equal':
+            textdiff += fancy_escape(old[i1:i2])
+        if tag == "insert":
+            textdiff += '<span class="translate-diff-insert">%s</span>' % fancy_escape(new[j1:j2])
+        if tag == "delete":
+            textdiff += '<span class="translate-diff-delete">%s</span>' % fancy_escape(old[i1:i2])
+        if tag == "replace":
+            # We don't show text that was removed as part of a change:
+            #textdiff += "<span>%s</span>" % fance_escape(a[i1:i2])}
+            textdiff += '<span class="translate-diff-replace">%s</span>' % fancy_escape(new[j1:j2])
+    return mark_safe(textdiff)
+
+def get_sugg_list(unit):
+    """get suggested translations for given unit with the localized
+    title string for each suggestions"""
+    # this function is only needed to avoid translations strings with
+    # variables in templates, since template translation is not safe
+    # and might fail on livetranslation
+    sugg_list = []
+    for i, sugg in enumerate(unit.get_suggestions().iterator()):
+        title = _("Suggestion %(i)d by %(user)s:", {'i': i, 'user': sugg.user})
+        sugg_list.append((sugg, title))
+    return sugg_list
 
 @register.filter('pluralize_source')
 def pluralize_source(unit):
@@ -57,19 +109,16 @@ def pluralize_target(unit, nplurals=None):
     else:
         return [(unit.target, None)]
 
-def find_altsrcs(unit, profile):
-    altsrcs = []
-    path_fragments = unit.store.pootle_path.split('/')
-    for language in profile.alt_src_langs.iterator():
-        try:
-            path_fragments[1] = language.code
-            pootle_path = '/'.join(path_fragments)
-            altunit = Unit.objects.get(unitid_hash=unit.unitid_hash, target_length__gt=0,
-                                       store__pootle_path=pootle_path)
-            altsrcs.append((language, altunit, pluralize_target(altunit)))
-        except Unit.DoesNotExist:
-            pass
-    return altsrcs
+@register.filter('pluralize_diff_sugg')
+def pluralize_diff_sugg(sugg):
+    unit = sugg.unit
+    if unit.hasplural():
+        forms = []
+        for i, target in enumerate(sugg.target.strings):
+            forms.append((target, highlight_diffs(unit.target.strings[i], target), _('Plural Form %d', i)))
+        return forms
+    else:
+        return [(sugg.target, highlight_diffs(unit.target, sugg.target), None)]
 
 @register.inclusion_tag('unit/source.html', takes_context=True)
 def render_source(context, unit, editable=False):
@@ -109,3 +158,20 @@ def render_translator_notes(context, unit, editable=False):
                      }
     return template_vars
 
+
+@register.inclusion_tag('unit/edit.html', takes_context=True)
+def render_unit_edit(context, form):
+    request = context['request']
+    profile = get_profile(context['user'])
+    unit = form.instance
+    template_vars = {'unit': unit,
+                     'form': form,
+                     'store': form.instance.store,
+                     'language': form.instance.store.translation_project.language,
+                     "cantranslate": check_permission("translate", request),
+                     "cansuggest": check_permission("suggest", request),
+                     "canreview": check_permission("review", request),
+                     'altsrcs': find_altsrcs(unit, profile),
+                     "suggestions": get_sugg_list(unit),
+                     }
+    return template_vars
