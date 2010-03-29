@@ -1,29 +1,28 @@
 {% load i18n %}
 <!--! Cell with original -->
-<div class="translate-original {% if editable %}translate-focus{% endif %}">
-  <div class="translate-original {% if editable %}translate-original-focus{% endif %}">
-    {% for source, title in sources %}
-      {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-      <div class="translation-text" lang="en">{{ source|safe }}</div>
-    {% endfor %}
-  </div>
-  {% if altsrcs %}
-  <!--! Alternative source language translation (if enabled and available) -->
-    <div class="altsrcs">
-    {% for altlang, altunit, targets in altsrcs %}
-      <div class="translation-text-headers altsrclangname" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">{{ altlang.localname }}</div>
-      <div id="unit-{{ altunit.id }}" class="translate-original {% if editable %}translate-original-focus{% endif %}">
-        {% for target, title in targets %}
-          {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-          <div class="translation-text" lang="{{ altlang.code }}" dir="{{ altlang.get_direction }}">{{ target|safe }}</div>
-        {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
-  {% endif %}
-  {% if unit.getcontext %}
-  <div class="translate-context">
-      {{ unit.getcontext }}
-  </div>
-  {% endif %}
+<div class="translate-original {% if editable %}translate-original-focus{% endif %}">
+  {% for source, title in sources %}
+  {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
+  <div class="translation-text" lang="en">{{ source|safe }}</div>
+  {% endfor %}
 </div>
+{% if altsrcs %}
+<!--! Alternative source language translation (if enabled and available) -->
+<div class="altsrcs">
+  {% for altlang, altunit, targets in altsrcs %}
+  <div class="translation-text-headers altsrclangname" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">{{ altlang.localname }}</div>
+  <div id="unit-{{ altunit.id }}" class="translate-original {% if editable %}translate-original-focus{% endif %}">
+    {% for target, title in targets %}
+    {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
+    <div class="translation-text" lang="{{ altlang.code }}" dir="{{ altlang.get_direction }}">{{ target|safe }}</div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% if unit.getcontext %}
+<div class="translate-context">
+  {{ unit.getcontext }}
+</div>
+{% endif %}
+
