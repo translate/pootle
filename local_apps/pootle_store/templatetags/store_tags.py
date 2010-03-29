@@ -37,6 +37,11 @@ def pluralize_source(unit):
 @register.filter('pluralize_target')
 def pluralize_target(unit, nplurals=None):
     if unit.hasplural():
+        if nplurals is None:
+            try:
+                nplurals = unit.store.translation_project.language.nplurals
+            except ObjectDoesNotExist:
+                pass
         forms = []
         if nplurals is None:
             for i, target in enumerate(unit.target.strings):
