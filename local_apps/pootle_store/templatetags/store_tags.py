@@ -27,12 +27,14 @@ from pootle_profile.models import get_profile
 
 register = template.Library()
 
+@register.filter('pluralize_source')
 def pluralize_source(unit):
     if unit.hasplural():
         return [(unit.source.strings[0], _('Singular')), (unit.source.strings[1], _('Plural'))]
     else:
         return [(unit.source, None)]
 
+@register.filter('pluralize_target')
 def pluralize_target(unit, nplurals=None):
     if unit.hasplural():
         forms = []
