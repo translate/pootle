@@ -398,6 +398,15 @@ class Unit(models.Model, base.TranslationUnit):
             return
         suggestion.delete()
 
+    def get_terminology(self):
+        """get terminology suggestions"""
+        #FIXME: need to cache terminology matcher?
+        matcher = self.store.translation_project.gettermmatcher()
+        if matcher is not None:
+            return matcher.matches(self.source)
+        else:
+            return []
+
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
 post_init.connect(init_baseunit, sender=Unit)
