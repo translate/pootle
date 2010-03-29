@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 """Form fields required for handling translation files"""
+import re
 
 from django import forms
 from django.utils.translation import get_language, ugettext as _
@@ -27,6 +28,37 @@ from django.utils.safestring import mark_safe
 from translate.misc.multistring import multistring
 
 from pootle_store.models import Unit
+
+############## text cleanup and highlighting #########################
+FORM_RE = re.compile('\r\n|\r|\n|\t')
+def highlight_whitespace(text):
+    """make whitespace chars visible"""
+    def replace(match):
+        submap = {
+            '\r\n': '\\r\\n\n',
+            '\r': '\\r\n',
+            '\n': '\\n\n',
+            '\t': '\\t\t'
+            }
+        return submap[match.group()]
+    return FORM_RE.sub(replace, text)
+
+FORM_UNRE = re.compile('\r|\n|\t|\\r|\\n|\\t|\\\\\\\\')
+def unhighlight_whitespace(text):
+    """replace visible whitespace with proper whitespace"""
+    def replace(match):
+        print match.group()
+        submap = {
+            '\t': '',
+            '\n': '',
+            '\r': '',
+            '\\t': '\t',
+            '\\n': '\n',
+            '\\r': '\r',
+            '\\\\': '\\',
+            }
+        return submap[match.group()]
+    return FORM_UNRE.sub(replace, text)
 
 class MultiStringWidget(forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
@@ -49,10 +81,13 @@ class MultiStringWidget(forms.MultiWidget):
         if value is None:
             return [None] * len(self.widgets)
         elif isinstance(value, multistring):
-            return value.strings
+            return [highlight_whitespace(string) for string in value.strings]
+        elif isinstance(value, list):
+            return [highlight_whitespace(string) for string in value]
+        elif isinstance(value, basestring):
+            return [highlight_whitespace(value)]
         else:
-            print value
-            return value
+            raise ValueError
 
 class HiddenMultiStringWidget(MultiStringWidget):
     """uses hidden input instead of text areas"""
@@ -82,7 +117,7 @@ class MultiStringFormField(forms.MultiValueField):
         super(MultiStringFormField, self).__init__(fields=fields, *args, **kwargs)
 
     def compress(self, data_list):
-        return data_list
+        return [unhighlight_whitespace(string) for string in data_list]
 
 
 def unit_form_factory(language, snplurals=1):
