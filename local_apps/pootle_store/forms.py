@@ -29,6 +29,8 @@ from translate.misc.multistring import multistring
 from pootle_store.models import Unit
 
 class MultiStringWidget(forms.MultiWidget):
+    """Custom Widget for editing multistrings, expands number of text
+    area based on number of plural forms"""
     def __init__(self, attrs=None, nplurals=1):
         widgets = [forms.Textarea(attrs=attrs) for i in xrange(nplurals)]
         super(MultiStringWidget, self).__init__(widgets, attrs)
@@ -52,9 +54,30 @@ class MultiStringWidget(forms.MultiWidget):
             print value
             return value
 
+class HiddenMultiStringWidget(MultiStringWidget):
+    """uses hidden input instead of text areas"""
+    def __init__(self, attrs=None, nplurals=1):
+        widgets = [forms.HiddenInput(attrs=attrs) for i in xrange(nplurals)]
+        super(MultiStringWidget, self).__init__(widgets, attrs)
+
+    def format_output(self, rendered_widgets):
+        return super(MultiStringWidget, self).format_output(rendered_widgets)
+
+    def __call__(self):
+        #HACKISH: Django is inconsistent in how it handles
+        # Field.widget and Field.hidden_widget, it expects widget to
+        # be an instantiated object and hidden_widget to be a class,
+        # since we need to specify nplurals at run time we can let
+        # django instantiate hidden_widget.
+        #
+        # making the object callable let's us get away with forcing an
+        # object where django expects a class
+        return self
+
 class MultiStringFormField(forms.MultiValueField):
-    def __init__(self, nplurals=1, *args, **kwargs):
-        self.widget = MultiStringWidget(nplurals=nplurals)
+    def __init__(self, nplurals=1, attrs=None, *args, **kwargs):
+        self.widget = MultiStringWidget(nplurals=nplurals, attrs=attrs)
+        self.hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
         fields = [forms.CharField() for i in range(nplurals)]
         super(MultiStringFormField, self).__init__(fields=fields, *args, **kwargs)
 
@@ -62,11 +85,36 @@ class MultiStringFormField(forms.MultiValueField):
         return data_list
 
 
-def unit_form_factory(snplurals=1, tnplurals=1):
+def unit_form_factory(language, snplurals=1):
+    if snplurals > 1:
+        tnplurals = language.nplurals
+    else:
+        tnplurals = 1
+    target_attrs = {
+        'lang': language.code,
+        'dir': language.get_direction(),
+        'class': 'translation expanding focusthis',
+        'rows': 5,
+        }
+
+    comment_attrs = {
+        'lang': language.code,
+        'dir': language.get_direction(),
+        'class': 'comments expanding',
+        'rows': 2,
+        }
+
+    fuzzy_attrs = {
+        'accesskey': 'f',
+        'class': 'fuzzycheck',
+        }
+
     class UnitForm(forms.ModelForm):
-        source_f = MultiStringFormField(nplurals=snplurals, required=False)
-        target_f = MultiStringFormField(nplurals=tnplurals, required=False)
         class Meta:
             model = Unit
 
+        source_f = MultiStringFormField(nplurals=snplurals, required=False)
+        target_f = MultiStringFormField(nplurals=tnplurals, required=False, attrs=target_attrs)
+        fuzzy = forms.BooleanField(widget=forms.CheckboxInput(attrs=fuzzy_attrs))
+        translator_comment = forms.CharField(required=False, widget=forms.Textarea(attrs=comment_attrs))
     return UnitForm
