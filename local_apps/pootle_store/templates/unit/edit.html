@@ -1,9 +1,4 @@
 {% load i18n baseurl store_tags cleanhtml %}
-<td>
-  <a href="{% url unit-edit store.pootle_path unit.index %}" id="editlink{{ unit.index }}" title="{% trans 'Edit translation' %}">
-    <div class="translation-action">{{ unit.index }}</div>
-  </a>
-</td>
 <!--! Cell with original -->
 <td colspan="1" rowspan="1" class="translate-original comments translate-focus" dir="ltr">
   {{ form.source_f.as_hidden }}
