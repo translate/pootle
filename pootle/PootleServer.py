@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2009 Zuza Software Foundation
+# Copyright 2004-2010 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -44,7 +44,7 @@ class PootleOptionParser(optparse.OptionParser):
              const='version',
              default='runwebserver',
              help="show version information then exit",
-        )               
+        )
         self.add_option(
             '',
             '--refreshstats',
@@ -66,9 +66,11 @@ class PootleOptionParser(optparse.OptionParser):
 
 def checkversions():
     """Checks that version dependencies are met."""
+    # Old versions of the toolkit might not have .build or .sver, so we try to
+    # be careful here so that our check doesn't cause an exception.
     if not hasattr(toolkitversion, 'build') or toolkitversion.ver < (1,5,0):
         raise RuntimeError('requires Translate Toolkit version >= 1.5.0.  Current installed version is: %s'
-                            % toolkitversion.sver)
+                            % getattr(toolkitversion, "sver", toolkitversion.ver)
 
 def display_versions():
     from pootle.__version__ import sver as pootle_ver
@@ -77,7 +79,7 @@ def display_versions():
     print "Pootle %s" % pootle_ver
     print "Translate Toolkit %s" % translate_ver
     print "Django %s" % django_ver()
-    
+
 def run_pootle(options, args):
     """Run the requested action."""
     if options.action == 'runwebserver':
