@@ -175,3 +175,16 @@ def render_unit_edit(context, form):
                      "suggestions": get_sugg_list(unit),
                      }
     return template_vars
+
+@register.inclusion_tag('unit/view.html', takes_context=True)
+def render_unit_view(context, unit, show_comments=False):
+    request = context['request']
+    template_vars = {'unit': unit,
+                     'language': unit.store.translation_project.language,
+                     'show_comments': show_comments,
+                     }
+    suggcount = unit.get_suggestions().count()
+    template_vars['suggcount'] = suggcount
+    if suggcount:
+        template_vars['suggtext'] = ungettext('%(count)s suggestion', '%(count)s suggestions', suggcount, {'count': suggcount})
+    return template_vars

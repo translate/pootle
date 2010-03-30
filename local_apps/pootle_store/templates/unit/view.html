@@ -1,0 +1,53 @@
+{% load i18n store_tags cleanhtml %}
+<!--! Cell with original -->
+<td colspan="1" rowspan="1" class="translate-original" dir="ltr">
+  <div id="orig{{unit.index}}" class="translate-original">
+    {% for source, title in unit|pluralize_source %}
+    {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
+    <div class="translation-text" lang="en">{{ source|fancy_highlight }}</div>
+    {% endfor %}
+  </div>
+  {% if unit.getcontext %}
+  <div class="translate-context">
+    {{ unit.getcontext }}
+  </div>
+  {% endif %}
+  {% if show_comments %}
+  <div class="translate-original comments">
+    {% if unit.developer_comment %}
+    <div title="{% trans "Developer Comments"}" class="developer-comments" lang="en" dir="ltr">{{ unit.developer_comment }}</div>
+    {% endif %}
+    {% if unit.locations %}
+    <div class="translate-locations" lang="en" dir="ltr">{{ unit.locations }}</div>
+    {% endif %}
+  </div>
+  {% endif %}
+</td>
+<td colspan="1" rowspan="1" class="translate-translation">
+  <div id="trans{{unit.index}}" class="translate-translation {% if unit.isfuzzy %}translate-translation-fuzzy{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <!--! Normal view mode -->
+    {% for target, title in unit|pluralize_target %}
+    {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
+    <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text">{{ target|fancy_highlight }}</div>
+    {% endfor %}
+    {% if suggcount %}
+    <a href="#" class="sugglink"><span class="scount">{{ suggtext }}</span></a>
+    <div class="suggestions">
+      <ul class="sugglist">
+	{% for sugg in unit.get_suggestions %}
+	<li><span class="suggauthor" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">({{ sugg.user }})</span>
+          <ul>{% for target in sugg.target.strings %}
+            <li>{{ target }}</li>
+            {% endfor %}</ul>
+	</li>
+	{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+  {% if show_comments and unit.translator_comment %}
+  <div class="translate-translation comments" lang="{{ LANGUAGE_CODE }}">
+    <div title="{% trans "Translator Comments" %}" class="translator-comments" dir="{{ language.dir }}" lang="{{ language.code }}">{{ unit.translator_comment }}</div>
+  </div>
+  {% endif %}
+</td>
