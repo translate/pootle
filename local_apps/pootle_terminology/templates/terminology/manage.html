@@ -23,13 +23,7 @@
 	  <td>{% for hidden_field in form.hidden_fields %}{{ hidden_field }}{% endfor %}
 	    {{ form.DELETE }}
 	  </td>
-	  <td colspan="1" rowspan="1">{% render_source form.instance %}</td>
-	  <td colspan="1" rowspan="1">{% render_target form.instance %}</td>
-	</tr>
-	<tr class="{% cycle 'even' 'odd' %}">
-	  <td></td>
-	  <td>{% render_developer_notes form.instance %}</td>
-	  <td>{% render_translator_notes form.instance %}</td>
+	  {% render_unit_view form.instance 1 %}
 	</tr>
 	{% endfor %}
       </table>
