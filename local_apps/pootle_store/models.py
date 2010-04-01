@@ -108,7 +108,7 @@ class Unit(models.Model, base.TranslationUnit):
         unique_together = ('store', 'unitid_hash')
 
     store = models.ForeignKey("pootle_store.Store", db_index=True, editable=False)
-    index = models.IntegerField(db_index=True, editable=False)
+    index = models.IntegerField(db_index=True)
     unitid = models.TextField(editable=False)
     unitid_hash = models.CharField(max_length=32, db_index=True, editable=False)
 

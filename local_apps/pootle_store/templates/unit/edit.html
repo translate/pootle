@@ -1,6 +1,8 @@
 {% load i18n baseurl store_tags cleanhtml %}
 <!--! Cell with original -->
 <td colspan="1" rowspan="1" class="translate-original comments translate-focus" dir="ltr">
+  {{ form.id.as_hidden }}
+  {{ form.index.as_hidden }}
   {{ form.source_f.as_hidden }}
   <div class="translate-original translate-original-focus">
     {% for source, title in unit|pluralize_source %}
