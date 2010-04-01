@@ -234,11 +234,9 @@ def convert_template(template_path, target_path):
     target_file   = cStringIO.StringIO()
     original_file = read_original_target(target_path)
     pot2po.convertpot(template_file, target_file, original_file, classes=factory_classes)
-    try:
-        output_file = open(target_path, "wb")
-        output_file.write(target_file.getvalue())
-    finally:
-        output_file.close()
+    output_file = open(target_path, "wb")
+    output_file.write(target_file.getvalue())
+    output_file.close()
 
 def get_translated_name_gnu(translation_project, store):
     path_parts = store.file.path.split(os.sep)
