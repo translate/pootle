@@ -25,9 +25,9 @@ from django.utils.safestring import mark_safe
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.forms.util import ErrorList
-from django.core.paginator import Paginator
 
 from pootle_misc.baseurl import l
+from pootle_misc.util import paginate
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_profile.models import get_profile
 
@@ -130,21 +130,6 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         result.append('</td>\n')
         result.append('</tr>\n')
     return u''.join(result)
-
-
-def paginate(request, queryset):
-    paginator = Paginator(queryset, 30)
-
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        # wasn't an int use 1
-        page = 1
-    # page value too large
-    page = min(page, paginator.num_pages)
-
-    return paginator.page(page)
-
 
 def process_modelformset(request, model_class, queryset, **kwargs):
     """With the Django model class 'model_class' and the Django form class 'form_class',

@@ -26,7 +26,8 @@ from django.db.transaction import commit_on_success
 from translate.tools.poterminology import TerminologyExtractor
 
 from pootle_app.views.language.view import get_translation_project
-from pootle_app.views.admin.util import has_permission, paginate
+from pootle_app.views.admin.util import has_permission
+from pootle_misc.util import paginate
 from pootle_store.models import Store, Unit, PARSED
 from pootle_misc.baseurl import redirect
 

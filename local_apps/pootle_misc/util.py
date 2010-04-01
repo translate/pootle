@@ -18,9 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from django.core.cache import cache
 from django.conf import settings
-import logging
+from django.core.paginator import Paginator
 
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
@@ -52,3 +54,18 @@ def deletefromcache(sender, functions, **kwargs):
 
 def dictsum(x, y):
     return dict( (n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y) )
+
+
+def paginate(request, queryset, items=30, page=None):
+    paginator = Paginator(queryset, items)
+
+    if not page:
+        try:
+            page = int(request.GET.get('page', 1))
+        except ValueError:
+            # wasn't an int use 1
+            page = 1
+    # page value too large
+    page = min(page, paginator.num_pages)
+
+    return paginator.page(page)
