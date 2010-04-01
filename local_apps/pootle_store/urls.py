@@ -24,4 +24,5 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('pootle_store.views',
     (r'^(?P<pootle_path>.*)/export/xlf/?$', 'export_as_xliff'),
     (r'^(?P<pootle_path>.*)/download/?$', 'download'),
+    (r'^(?P<pootle_path>.*)/translate/?$', 'translate'),
 )

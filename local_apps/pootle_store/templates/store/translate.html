@@ -1,0 +1,85 @@
+{% extends "tp_base_extended.html" %}
+{% load i18n render_pager baseurl store_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block title %}
+{{ block.super }} » {% trans "Translate" %} » {{ store }}
+{% endblock %}
+
+{% block body.id %}translatepage{% endblock body.id %}
+
+{% block bodyclass %}{% if checking_text %}tpreview{% else %}tptranslate{% endif %}{% endblock %}
+
+{% block extra_head %}
+<script src='{{ "js/jquery/jquery.textarea-expander.js"|m }}' type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready (function() {
+     $('textarea.expanding').TextAreaExpander('20', '100');
+  });
+</script>
+{% endblock extra_head %}
+
+{% block breadcrumbs_content %}
+{% include "language/item_title.html" %}
+{% endblock %}
+
+{% block innernav %}
+<!--! Navigation bar -->
+<div id="innernav" class="navbar">
+    {% for item in navitems %}
+    {% include "language/item_block.html" %}
+    {% include "language/item_stats.html" %}
+    {% endfor %}
+</div><!--innernav-->
+{% endblock innernav %}
+
+{% block precontent %}
+{{ block.super }}
+{% if checking_text %}
+<div class="check">
+    <img src='{{ "images/help.png"|m }}' class="checkinfo" />
+    <span>{{ checking_text|safe }}</span>
+</div>
+{% endif %}
+{% endblock precontent %}
+
+{% block content %}
+<div class="translate-form">
+  <form action="{{store.pootle_path|l}}/translate" method="post" name="translate" id="translate">
+    <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <tr lang="{{ LANGUAGE_CODE }}">
+        <th colspan="1" rowspan="1" class="translate-table-title translate-edit"></th>
+        <th colspan="1" rowspan="1" class="translate-table-title translate-original">{% trans "Original" %}</th>
+        <th colspan="1" rowspan="1" class="translate-table-title translate-translation">{% trans "Translation" %}</th>
+      </tr>
+      {% for unit in pager.object_list %}
+      <tr class="{% cycle 'even' 'odd' %}">
+	<td>
+	  <a href="{{store.pootle_path|l}}/translate?unit={{unit.id}}" id="editlink{{ unit.index }}" title="{% trans 'Edit translation' %}">
+	    <div class="translation-action">{{ unit.index }}</div>
+	  </a>
+	</td>
+	{% ifequal unit form.instance %}
+	{% render_unit_edit form %}
+	{% else %}
+	{% render_unit_view unit %}
+	{% endifequal %}
+      </tr>
+      {% endfor %}
+    </table>
+  </form>
+</div>
+{{ pager|render_pager }}
+{% endblock %}
+
+{% block scripts_extra %}
+{{ block.super }}
+<script src='{{ "js/json2.min.js"|m }}' type="text/javascript"></script>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+	google.load("language", "1");
+</script>
+<script src='{{ "js/translatepage.js"|m }}' type="text/javascript"></script>
+<script src='{{ "js/jquery/jquery.fieldselection.js"|m }}' type="text/javascript"></script>
+{% endblock scripts_extra %}
