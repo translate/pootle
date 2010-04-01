@@ -161,7 +161,6 @@ class Search(object):
             result = result.filter(qualitycheck__name__in=self.match_names) | suggestions | untranslated
 
         if self.search_text not in (None, '') and self.search_results is None:
-            print "no search indexing"
             # We'll get here if the user is searching for a piece of text and if no indexer
             # (such as Xapian or Lucene) is usable. First build a grepper...
             grepfilter = pogrep.GrepFilter(self.search_text, self.search_fields, ignorecase=True)

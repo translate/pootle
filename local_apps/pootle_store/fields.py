@@ -92,7 +92,6 @@ class MultiStringField(models.Field):
     def get_db_prep_lookup(self, lookup_type, value):
         if lookup_type in ('exact', 'iexact') or not isinstance(value, basestring):
             value = self.get_db_prep_value(value)
-        print lookup_type, repr(value)
         return super(MultiStringField, self).get_db_prep_lookup(lookup_type, value)
 
 ################# File ###############################

@@ -47,7 +47,6 @@ FORM_UNRE = re.compile('\r|\n|\t|\\r|\\n|\\t|\\\\\\\\')
 def unhighlight_whitespace(text):
     """replace visible whitespace with proper whitespace"""
     def replace(match):
-        print match.group()
         submap = {
             '\t': '',
             '\n': '',
