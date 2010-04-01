@@ -458,7 +458,7 @@ def get_trans_review(request, store, item, trans, suggestions):
                 suggestion[pluralitem] = pluralsugg.decode("utf-8")
     forms = []
     for pluralitem, pluraltrans in enumerate(trans):
-        pluraldiffcodes = [get_diff_codes(pluraltrans, suggestion[pluralitem]) for suggestion in suggestions]
+        pluraldiffcodes = [get_diff_codes(pluraltrans, suggestion[0][pluralitem]) for suggestion, name in suggestions]
         diffcodes[pluralitem] = pluraldiffcodes
         combineddiffs = reduce(list.__add__, pluraldiffcodes, [])
         transdiff = highlight_diffs(pluraltrans, combineddiffs, issrc=True)
@@ -491,7 +491,7 @@ def get_trans_review(request, store, item, trans, suggestions):
                 suggtitle = _("Suggestion:")
         forms = []
         for pluralitem, pluraltrans in enumerate(trans):
-            pluralsuggestion = msgstr[pluralitem]
+            pluralsuggestion = msgstr[0][pluralitem]
             suggdiffcodes = diffcodes[pluralitem][suggid]
             suggdiff = highlight_diffs(pluralsuggestion, suggdiffcodes, issrc=False)
             if isinstance(pluralsuggestion, str):
