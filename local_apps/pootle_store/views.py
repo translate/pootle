@@ -59,7 +59,37 @@ def download(request, pootle_path):
     store.sync(update_translation=True, create=True)
     return redirect('/export/' + store.real_path)
 
-    step_queryset = store.units
+def get_step_query(request, units_queryset):
+    """Narrows down unit query to units matching conditions in GET and POST"""
+    if 'unit' in request.GET or 'page' in request.GET:
+        return units_queryset
+
+    if 'unitstates' in request.GET:
+        unitstates = request.GET['unitstates'].split(',')
+        if unitstates:
+            state_queryset = units_queryset.none()
+            for unitstate in unitstates:
+                if unitstate == 'untranslated':
+                    state_queryset = state_queryset | units_queryset.filter(target_length=0)
+                elif unitstate == 'translated':
+                    state_queryset = state_queryset | units_queryset.filter(target_length__gt=0, fuzzy=False)
+                elif unitstate == 'fuzzy':
+                    state_queryset = state_queryset | units_queryset.filter(fuzzy=True)
+            units_queryset = state_queryset
+
+    if 'matchnames' in request.GET:
+        matchnames = request.GET['matchnames'].split(',')
+        if matchnames:
+            match_queryset = units_queryset.none()
+            if 'hassuggestion' in matchnames:
+                match_queryset = units_queryset.exclude(suggestion=None)
+                matchnames.remove('hassuggestion')
+            if matchnames:
+                match_queryset = match_queryset | units_queryset.filter(qualitycheck__name__in=matchnames)
+            units_queryset = match_queryset
+
+    return units_queryset.distinct()
+
 def get_current_units(request, step_queryset):
     """returns current active unit, and in case of POST previously active unit"""
     edit_unit = None
@@ -133,6 +163,7 @@ def translate_page(request, units_queryset):
     cansuggest = check_permission("suggest", request)
     translation_project = request.translation_project
     language = translation_project.language
+    step_queryset = get_step_query(request, units_queryset)
 
     try:
         prev_unit, edit_unit, pager = get_current_units(request, step_queryset)
