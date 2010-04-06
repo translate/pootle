@@ -1,0 +1,33 @@
+{% extends "tp_base_extended.html" %}
+{% load i18n baseurl  %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block title %}
+{{ block.super }} » {% trans "Translate" %}
+{% endblock %}
+
+{% block body.id %}translatepage{% endblock body.id %}
+
+{% block bodyclass %}{% if checking_text %}tpreview{% else %}tptranslate{% endif %}{% endblock %}
+
+{% block breadcrumbs_content %}
+{% include "language/item_title.html" %}
+{% endblock %}
+
+{% block innernav %}
+<!--! Navigation bar -->
+<div id="innernav" class="navbar">
+    {% for item in navitems %}
+    {% include "language/item_block.html" %}
+    {% include "language/item_stats.html" %}
+    {% endfor %}
+</div><!--innernav-->
+{% endblock innernav %}
+
+
+{% block content %}
+<p class="notice">
+{{ endmessage }}
+</p>
+{% endblock content %}
