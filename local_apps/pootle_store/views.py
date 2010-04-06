@@ -196,6 +196,14 @@ def translate_page(request, units_queryset):
         page = store.units.filter(index__lt=edit_unit.index).count() / 10 + 1
         pager = paginate(request, store.units, items=10, page=page)
 
+    # caluclate url querystring so state is retained on POST
+    # we can't just use request URL cause unit and page GET vars cancel state
+    GET_vars = []
+    if 'unitstates' in request.GET:
+        GET_vars.append('unitstates=%s' % request.GET['unitstates'])
+    if 'matchnames' in request.GET:
+        GET_vars.append('matchnames=%s' % request.GET['matchnames'])
+
     context = {
         'form': form,
         'unit': edit_unit,
@@ -203,6 +211,7 @@ def translate_page(request, units_queryset):
         'pager': pager,
         'language': language,
         'translation_project': store.translation_project,
+        'GET_state': '&'.join(GET_vars),
         }
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
 
