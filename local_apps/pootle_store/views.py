@@ -26,6 +26,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.translation import ugettext as _
 
 from pootle_misc.baseurl import redirect
 from pootle_app.models.permissions import get_matching_permissions, check_permission
@@ -97,12 +98,35 @@ def get_current_units(request, step_queryset):
             #FIXME: maybe we want to retain the show end of query behavior?
             if back:
                 edit_unit = prev_unit
+            else:
+                raise StopIteration
 
     if edit_unit is None:
         # all methods failed, get first unit in queryset
         edit_unit = step_queryset.iterator().next()
 
     return prev_unit, edit_unit, pager
+
+def translate_end(request, translation_project):
+    """render a message at end of review, translate or search action"""
+    if request.POST:
+        # end of iteration
+        if 'matchnames' in request.GET:
+            message = _("No more matching strings to review.")
+        else:
+            message = _("No more matching strings to translate.")
+    else:
+        if 'matchnames' in request.GET:
+            message = _("No matching strings to review.")
+        else:
+            message = _("No matching strings to translate.")
+
+    context = {
+        'endmessage': message,
+        'translation_project': translation_project,
+        }
+    return render_to_response('store/translate_end.html', context, context_instance=RequestContext(request))
+
 
 def translate_page(request, units_queryset):
     cantranslate = check_permission("translate", request)
