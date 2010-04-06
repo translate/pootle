@@ -58,35 +58,23 @@ def download(request, pootle_path):
     store.sync(update_translation=True, create=True)
     return redirect('/export/' + store.real_path)
 
-def translate(request, pootle_path):
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    store = get_object_or_404(Store, pootle_path=pootle_path)
-    request.translation_project = store.translation_project
-    profile = get_profile(request.user)
-    request.permissions = get_matching_permissions(profile, request.translation_project.directory)
-    cantranslate = check_permission("translate", request)
-    cansuggest = check_permission("suggest", request)
-
-    # figure unit stepping query set
     step_queryset = store.units
-
-    # which unit needs editing?
-    prev_unit = None
+def get_current_units(request, step_queryset):
+    """returns current active unit, and in case of POST previously active unit"""
     edit_unit = None
+    prev_unit = None
     pager = None
-    form = None
     # GET gets priority
     if 'unit' in request.GET:
         # load a specific unit in GET
         try:
             edit_id = int(request.GET['unit'])
-            edit_unit = store.units.get(id=edit_id)
+            edit_unit = step_queryset.get(id=edit_id)
         except (Unit.DoesNotExist, ValueError):
             pass
     elif 'page' in request.GET:
         # load first unit in a specific page
-        pager = paginate(request, store.units, items=10)
+        pager = paginate(request, step_queryset, items=10)
         edit_unit = pager.object_list[0]
     elif 'id' in request.POST and 'index' in request.POST:
         # GET doesn't specify a unit try POST
@@ -104,35 +92,52 @@ def translate(request, pootle_path):
                 break
             if unit.id == prev_id:
                 prev_unit = unit
-
-        # time to process POST submission
-        if prev_unit is not None and \
-               ((cantranslate and 'submit' in request.POST) or \
-                (cansuggest and 'suggest' in request.POST)):
-            form_class = unit_form_factory(store.translation_project.language, len(prev_unit.source.strings))
-            form = form_class(request.POST, instance=prev_unit)
-            if form.is_valid():
-                if cantranslate and 'submit' in request.POST:
-                    form.save()
-                elif cansuggest:
-                    prev_unit.add_suggestion(form.cleaned_data['target_f'], profile)
-            else:
-                # form failed, don't skip to next unit so we can display form errors
-                edit_unit = prev_unit
-
-            if edit_unit is None:
-                # probably prev_unit was last unit in chain.
-                #FIXME: maybe we want to retain the show end of query behavior?
+        if edit_unit is None and prev_unit is not None:
+            # probably prev_unit was last unit in chain.
+            #FIXME: maybe we want to retain the show end of query behavior?
+            if back:
                 edit_unit = prev_unit
 
     if edit_unit is None:
+        # all methods failed, get first unit in queryset
         edit_unit = step_queryset.iterator().next()
 
-    if edit_unit is not prev_unit:
-        form_class = unit_form_factory(store.translation_project.language, len(edit_unit.source.strings))
+    return prev_unit, edit_unit, pager
+
+def translate_page(request, units_queryset):
+    cantranslate = check_permission("translate", request)
+    cansuggest = check_permission("suggest", request)
+    translation_project = request.translation_project
+    language = translation_project.language
+
+    try:
+        prev_unit, edit_unit, pager = get_current_units(request, step_queryset)
+    except StopIteration:
+        return translate_end(request, translation_project)
+
+    # time to process POST submission
+    form = None
+    if request.POST and prev_unit is not None and \
+           ((cantranslate and 'submit' in request.POST) or \
+            (cansuggest and 'suggest' in request.POST)):
+        form_class = unit_form_factory(language, len(prev_unit.source.strings))
+        form = form_class(request.POST, instance=prev_unit)
+        if form.is_valid():
+            if cantranslate and 'submit' in request.POST:
+                form.save()
+            elif cansuggest:
+                prev_unit.add_suggestion(form.cleaned_data['target_f'], get_profile(request.user))
+        else:
+            # form failed, don't skip to next unit
+            edit_unit = prev_unit
+
+    # only create form for edit_unit if prev_unit was processed successfully
+    if form is None or form.is_valid():
+        form_class = unit_form_factory(language, len(edit_unit.source.strings))
         form = form_class(instance=edit_unit)
 
     if pager is None:
+        store = edit_unit.store
         page = store.units.filter(index__lt=edit_unit.index).count() / 10 + 1
         pager = paginate(request, store.units, items=10, page=page)
 
@@ -141,7 +146,16 @@ def translate(request, pootle_path):
         'unit': edit_unit,
         'store': store,
         'pager': pager,
-        'language': store.translation_project.language,
+        'language': language,
         'translation_project': store.translation_project,
         }
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
+
+def translate(request, pootle_path):
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    store = get_object_or_404(Store, pootle_path=pootle_path)
+    request.translation_project = store.translation_project
+    request.permissions = get_matching_permissions(get_profile(request.user), request.translation_project.directory)
+
+    return translate_page(request, store.units)
