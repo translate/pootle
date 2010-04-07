@@ -93,6 +93,7 @@
       {% endif %}
       <input type="hidden" name="store" value="{{ store }}" />
       <input type="hidden" name="path" value="{{ store|l }}" />
+      <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
     </div>
     <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}">
       {{ form.fuzzy }} {{ form.fuzzy.label_tag }}

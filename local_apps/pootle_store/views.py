@@ -111,11 +111,16 @@ def get_current_units(request, step_queryset):
         # GET doesn't specify a unit try POST
         prev_id = int(request.POST['id'])
         prev_index = int(request.POST['index'])
+        pootle_path = request.POST['pootle_path']
         back = request.POST.get('back', False)
         if back:
-            queryset = step_queryset.filter(index__lte=prev_index).order_by('-index')
+            queryset = step_queryset.filter(store__pootle_path=pootle_path,
+                                            index__lte=prev_index).order_by('-store__pootle_path', '-index') | \
+                       step_queryset.filter(store__pootle_path__lt=pootle_path)
         else:
-            queryset = step_queryset.filter(index__gte=prev_index).order_by('index')
+            queryset = step_queryset.filter(store__pootle_path=pootle_path,
+                                            index__gte=prev_index).order_by('store__pootle_path', 'index') | \
+                       step_queryset.filter(store__pootle_path__gt=pootle_path)
 
         for unit in queryset.iterator():
             if edit_unit is None and prev_unit is not None:
