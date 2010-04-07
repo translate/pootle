@@ -46,7 +46,7 @@
 
 {% block content %}
 <div class="translate-form">
-  <form action="{% if GET_state %}?{{ GET_state }}{% endif %}" method="post" name="translate" id="translate">
+  <form action="?{{ GET_state }}" method="post" name="translate" id="translate">
     <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
       <tr lang="{{ LANGUAGE_CODE }}">
         <th colspan="1" rowspan="1" class="translate-table-title translate-edit"></th>
