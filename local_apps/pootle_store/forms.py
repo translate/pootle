@@ -30,7 +30,7 @@ from translate.misc.multistring import multistring
 from pootle_store.models import Unit
 
 ############## text cleanup and highlighting #########################
-FORM_RE = re.compile('\r\n|\r|\n|\t')
+FORM_RE = re.compile('\r\n|\r|\n|\t|\\\\')
 def highlight_whitespace(text):
     """make whitespace chars visible"""
     def replace(match):
@@ -38,12 +38,13 @@ def highlight_whitespace(text):
             '\r\n': '\\r\\n\n',
             '\r': '\\r\n',
             '\n': '\\n\n',
-            '\t': '\\t\t'
+            '\t': '\\t\t',
+            '\\': '\\\\',
             }
         return submap[match.group()]
     return FORM_RE.sub(replace, text)
 
-FORM_UNRE = re.compile('\r|\n|\t|\\r|\\n|\\t|\\\\\\\\')
+FORM_UNRE = re.compile('\r|\n|\t|\\\\r|\\\\n|\\\\t|\\\\\\\\')
 def unhighlight_whitespace(text):
     """replace visible whitespace with proper whitespace"""
     def replace(match):
