@@ -33,4 +33,6 @@ urlpatterns = patterns('pootle_translationproject.views',
      'tp_review'),
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
      'export_zip'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/translate_me.html$',
+     'translate'),
 )

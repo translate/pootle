@@ -41,10 +41,8 @@ from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models             import Directory, store_iteration
-
 from pootle_app.lib import view_handler
 from pootle_app.project_tree import scan_translation_project_files, convert_templates
-
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_app.views.base import BaseView
 from pootle_app.views.language import navbar_dict, search_forms, dispatch, item_dict
@@ -53,9 +51,10 @@ from pootle_app.views.admin import util
 from pootle_app.views.language.admin_permissions import process_update
 
 
-from pootle_store.models import Store
+from pootle_store.models import Store, Unit
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
+from pootle_store.views import translate_page
 from pootle_statistics.models import Submission
 from pootle_profile.models import get_profile
 from pootle_misc.baseurl           import redirect
@@ -518,3 +517,9 @@ class UploadHandler(view_handler.Handler):
             post_file_upload.send(sender=translation_project, user=request.user, oldstats=oldstats,
                                   newstats=newstats, archive=archive)
         return {'upload': self}
+
+@get_translation_project
+@set_request_context
+def translate(request, translation_project):
+    units_queryset = Unit.objects.filter(store__translation_project=translation_project)
+    return translate_page(request, units_queryset)
