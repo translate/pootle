@@ -34,7 +34,7 @@ from pootle_misc.util import paginate
 from pootle_profile.models import get_profile
 
 from pootle_store.models import Store, Unit
-from pootle_store.forms import unit_form_factory
+from pootle_store.forms import unit_form_factory, SearchForm
 
 def export_as_xliff(request, pootle_path):
     #FIXME: cache this
@@ -58,6 +58,29 @@ def download(request, pootle_path):
     store = get_object_or_404(Store, pootle_path=pootle_path)
     store.sync(update_translation=True, create=True)
     return redirect('/export/' + store.real_path)
+
+####################### Translate Page ##############################
+
+def get_search_step_query(translation_project, form, units_queryset):
+    """Narrows down units query to units matching search string"""
+    if translation_project.indexer is None:
+        return None
+
+    searchparts = []
+    for word in form.cleaned_data['search'].split():
+        # Generate a list for the query based on the selected fields
+        querylist = [(field, word) for field in form.cleaned_data['sfields']]
+        textquery = translation_project.indexer.make_query(querylist, False)
+        searchparts.append(textquery)
+
+    paths = units_queryset.order_by().values_list('store__pootle_path', flat=True).distinct()
+    querylist = [('pofilename', pootle_path) for pootle_path in paths.iterator()]
+    pathquery = translation_project.indexer.make_query(querylist, False)
+    searchparts.append(pathquery)
+    limitedquery = translation_project.indexer.make_query(searchparts, True)
+    result = translation_project.indexer.search(limitedquery, ['dbid'])
+    dbids = (int(item['dbid'][0]) for item in result)
+    return units_queryset.filter(id__in=dbids)
 
 def get_step_query(request, units_queryset):
     """Narrows down unit query to units matching conditions in GET and POST"""
@@ -168,7 +191,21 @@ def translate_page(request, units_queryset):
     cansuggest = check_permission("suggest", request)
     translation_project = request.translation_project
     language = translation_project.language
-    step_queryset = get_step_query(request, units_queryset)
+
+    step_queryset = None
+
+    # Process search first
+    search_form = None
+    if 'search' in request.GET and 'sfields' in request.GET:
+        search_form = SearchForm(request.GET)
+        if search_form.is_valid():
+            step_queryset = get_search_step_query(request.translation_project, search_form, units_queryset)
+    else:
+        search_form = SearchForm()
+
+    # which units are we interested in?
+    if step_queryset is None:
+        step_queryset = get_step_query(request, units_queryset)
 
     try:
         prev_unit, edit_unit, pager = get_current_units(request, step_queryset)
@@ -211,6 +248,7 @@ def translate_page(request, units_queryset):
 
     context = {
         'form': form,
+        'search_form': search_form,
         'unit': edit_unit,
         'store': store,
         'pager': pager,
