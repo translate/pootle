@@ -20,6 +20,26 @@
 </script>
 {% endblock extra_head %}
 
+{% block search %}
+<div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <form action="?" method="get" id="searchform">
+    {{ search_form.search }}
+    <a class="advancedlink">
+      {% if LANGUAGE_BIDI %}
+      <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ search.advanced_search_title }}" title="{{ search.advanced_search_title }}" class="togglesearch" />
+      <img src='{{ "images/sarrow_up_rtl.png"|m }}' alt="{{ search.advanced_search_title }}" title="{{ search.advanced_search_title }}" class="togglesearch" style="display: none;"/>
+      {% else %}
+      <img src='{{ "images/sarrow_down.png"|m }}' alt="{{ search.advanced_search_title }}" title="{{ search.advanced_search_title }}" class="togglesearch" />
+      <img src='{{ "images/sarrow_up.png"|m }}' alt="{{ search.advanced_search_title }}" title="{{ search.advanced_search_title }}" class="togglesearch" style="display: none;"/>
+      {% endif %}
+    </a>
+    <div class="advancedsearch">
+      {{ search_form.sfields }}
+    </div>
+  </form>
+</div>
+{% endblock %}
+
 {% block breadcrumbs_content %}
 {% include "language/item_title.html" %}
 {% endblock %}
