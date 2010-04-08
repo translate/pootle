@@ -348,12 +348,15 @@ class TranslationProject(models.Model):
         index.set_field_analyzers({
                         "pofilename": index.ANALYZER_EXACT,
                         "itemno": index.ANALYZER_EXACT,
-                        "pomtime": index.ANALYZER_EXACT})
+                        "pomtime": index.ANALYZER_EXACT,
+                        "dbid": index.ANALYZER_EXACT,
+                        })
         return index
 
     def init_index(self, indexer):
         """initializes the search index"""
-        for store in Store.objects.filter(pootle_path__startswith=self.pootle_path):
+        #FIXME: stop relying on pomtime so virtual files can be searchable?
+        for store in self.stores.exclude(file='').iterator():
             self.update_index(indexer, store, optimize=False)
 
 
@@ -411,7 +414,11 @@ class TranslationProject(models.Model):
                 units = store.units
             addlist = []
             for unit in units:
-                doc = {"pofilename": store.pootle_path, "pomtime": str(pomtime), "itemno": str(unit.index)}
+                doc = {"pofilename": store.pootle_path,
+                       "pomtime": str(pomtime),
+                       "itemno": str(unit.index),
+                       "dbid": str(unit.id),
+                       }
                 if unit.hasplural():
                     orig = "\n".join(unit.source.strings)
                     trans = "\n".join(unit.target.strings)
