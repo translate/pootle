@@ -204,10 +204,10 @@ def translate_page(request, units_queryset):
     # caluclate url querystring so state is retained on POST
     # we can't just use request URL cause unit and page GET vars cancel state
     GET_vars = []
-    if 'unitstates' in request.GET:
-        GET_vars.append('unitstates=%s' % request.GET['unitstates'])
-    if 'matchnames' in request.GET:
-        GET_vars.append('matchnames=%s' % request.GET['matchnames'])
+    for key, values in request.GET.iterlists():
+        if key not in ('page', 'unit'):
+            for value in values:
+                GET_vars.append('%s=%s' % (key, value))
 
     context = {
         'form': form,
