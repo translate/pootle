@@ -30,6 +30,7 @@ def pootle_context(request):
             'TITLE': settings.TITLE,
             'DESCRIPTION': settings.DESCRIPTION,
             'CAN_REGISTER': settings.CAN_REGISTER,
+            'SCRIPT_NAME': settings.SCRIPT_NAME,
         },
     }
     return context
