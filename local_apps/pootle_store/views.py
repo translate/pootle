@@ -27,6 +27,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from django.core.exceptions import PermissionDenied
 
 from pootle_misc.baseurl import redirect
 from pootle_app.models.permissions import get_matching_permissions, check_permission
@@ -214,9 +215,12 @@ def translate_page(request, units_queryset):
 
     # time to process POST submission
     form = None
-    if request.POST and prev_unit is not None and \
-           ((cantranslate and 'submit' in request.POST) or \
-            (cansuggest and 'suggest' in request.POST)):
+    if prev_unit is not None and ('submit' in request.POST or 'suggest' in request.POST):
+        # check permissions
+        if 'submit'  in request.POST and not cantranslate or \
+           'suggest' in request.POST and not cansuggest:
+            raise PermissionDenied
+
         form_class = unit_form_factory(language, len(prev_unit.source.strings))
         form = form_class(request.POST, instance=prev_unit)
         if form.is_valid():
