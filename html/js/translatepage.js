@@ -40,29 +40,21 @@ $.pootle = {};
  */
 
   $(".copyoriginal").click(function() {
-    var transid = $(this).parent().parent().attr("id");
-    var elementNumber = transid.replace("trans", "")
-    var enelement = $("#orig-pure" + elementNumber + "-0");
-    var envalue = enelement.val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
+	  var source =  $("#id_source_f_0").val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
+	  var splural_element = $("#id_source_f_1");
+	  if (splural_element.length != 0) {
+	      var source_plural = splural_element.val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
+	  } else {
+	      var source_plural = source;
+	  }
 
-    // no plurals
-    var trelement = $("#areatrans" + elementNumber);
-    if (trelement.length != 0) {
-      trelement.val(envalue);
-      trelement.focus();
-      return;
-    }
-
-    // plurals
-    var trelements = $("[id^=areatrans" + elementNumber + "-]");
-    var enplelement = $("#orig-pure" + elementNumber + "-1");
-    var enplvalue = enplelement.val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
-    $.each(trelements, function(i) {
-      newval = i == 0 ? envalue : enplvalue;
-      $(this).val(newval);
-      $(this).focus();
-    });
-  });
+	  var targets = $("[id^=id_target_f_]");
+	  $.each(targets, function(i) {
+		  newval = i == 0 ? source : source_plural;
+		  $(this).val(newval);
+		  $(this).focus();
+	      });
+      });
 
 
 /*
