@@ -89,11 +89,10 @@ $.pootle = {};
  */
   $(".googletranslate").click(function(){
     var id = this.name.replace("googleapi", "");
-    var orig = $("#orig" + id);
-    var area = $("#areatrans" + id);
-    var orig = orig.find("div.translation-text");
-    var orig_text = orig.html();
-    var lang_from = orig.attr("lang");
+    var orig = $("#id_source_f_0");
+    var area = $("#id_target_f_0");
+    var orig_text = orig.val();
+    var lang_from = "en";
     var lang_to = area.attr("lang");
 	
     // The printf regex based on http://phpjs.org/functions/sprintf:522
