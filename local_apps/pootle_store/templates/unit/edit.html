@@ -62,13 +62,13 @@
         <strong>{{ sugtitle }}</strong>
         <div class="translate-suggestion">
           {% for target, diff, title in sugg|pluralize_diff_sugg %}
-          {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
-          <div lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ diff }}</div>
-          <input type="hidden" id="sugg-{{sugg.id }}" name="sugg-{{ sugg.id }}" value="{{ target }}" />
+            {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
+            <div class="suggdiff" id="suffdiff-{{sugg.id}}" lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ diff }}</div>
           {% endfor %}
           {% if canreview %}
-          <a title="{{ accept_title }}" accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/tick.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-          <a title="{{ reject_title }}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/cross.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+            <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
+            <a title="{{ accept_title }}" accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/tick.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+            <a title="{{ reject_title }}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/cross.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
           {% endif %}
         </div>
       </div>

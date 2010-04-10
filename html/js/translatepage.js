@@ -94,7 +94,7 @@ $.pootle = {};
     var orig_text = orig.val();
     var lang_from = "en";
     var lang_to = area.attr("lang");
-	
+
     // The printf regex based on http://phpjs.org/functions/sprintf:522
     var c_printf_pattern = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
     var csharp_string_format_pattern = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
@@ -111,23 +111,23 @@ $.pootle = {};
     orig_text = orig_text.replace(c_printf_pattern, collectArguments);
     orig_text = orig_text.replace(csharp_string_format_pattern, collectArguments);
     orig_text = orig_text.replace(percent_number_pattern, collectArguments);
-	
+
     var content = new Object()
     content.text = orig_text
     content.type = "text"
     google.language.translate(content, lang_from, lang_to, function(result) {
       if (result.translation) {
         var translation = result.translation;
-        for (var i=0; i<argument_subs.length; i++) 
-          translation = translation.replace("__" + i + "__", argument_subs[i]); 
+        for (var i=0; i<argument_subs.length; i++)
+          translation = translation.replace("__" + i + "__", argument_subs[i]);
         area.val(translation);
         area.parent().parent().addClass("translate-translation-fuzzy");
         var checkbox = $("input.fuzzycheck");
         checkbox.attr("checked", "checked");
         area.focus();
-        keepstate = true; 
+        keepstate = true;
       } else {
-        alert("Google Translate Error: " + result.error.message); 
+        alert("Google Translate Error: " + result.error.message);
       }
   });
 	return false;
@@ -146,33 +146,6 @@ $.pootle = {};
   $(".sugglist").hide();
 
 /* REVIEWING SUGGESTIONS */
-
-  function geturl(node, action) {
-    pofilename = escape($("input[name='path']").val())
-    item_sugg_chain = $(node).attr("id").replace(action, "");
-    item_sugg = item_sugg_chain.split("-", 1);
-    itemid = item_sugg[0];
-    url = pofilename + "/review/" + itemid + "/";
-    return url;
-  }
-
-  /*
-   * Returns an array (list) of suggestion objects
-   */
-  function getsuggs(nodes, action) {
-    var suggs = [];
-    $.each(nodes, function() {
-        item_sugg_chain = $(this).attr("id").replace(action, "");
-        item_sugg = item_sugg_chain.split("-", 2);
-        suggid = item_sugg[1];
-	newtrans = $(this).siblings("input").map(function() {
-		return $(this).attr("value");
-	    }).get();
-        sugg = {id: suggid, newtrans: newtrans};
-        suggs.push(sugg);
-        });
-    return suggs;
-  }
 
   function handlesuggestions(url, data) {
     $.post(url,
@@ -217,28 +190,32 @@ $.pootle = {};
            }, "json");
   }
 
-  $("#translate-suggestion-container").click(function(event) {
-    if ($(event.target).parent().is(".rejectsugg")) {
-      var data = {}
-      var ref = $(event.target).parent();
-      var url = geturl(ref, "reject");
-      data.rejects = getsuggs(ref, "reject");
+    $("#translate-suggestion-container .rejectsugg").click(function() {
+	var element = $(this).parent().parent();
+	var uid = $('.translate-original input#id_id').val();
+	var suggid = $(this).siblings("input.suggid").val();
+	var url = l('/suggestion/reject/') + uid + '/' + suggid;
+	$.post(url, {'reject': 1},
+	       function(rdata) {
+		   $("#response").remove();
+		   element.fadeOut(500);
+	       }, "json");
+	return false;
+    });
 
-      handlesuggestions(url, data);
-
-      return false;
-    }
-
-    if ($(event.target).parent().is(".acceptsugg")) {
-      var data = {}
-      var ref = $(event.target).parent();
-      var url = geturl(ref, "accept");
-      data.accepts = getsuggs(ref, "accept");
-
-      handlesuggestions(url, data);
-
-      return false;
-      }
-  });
-
+    $("#translate-suggestion-container .acceptsugg").click(function() {
+	var element = $(this).parent().parent();
+	var uid = $('.translate-original input#id_id').val();
+	var suggid = $(this).siblings("input.suggid").val();
+	var url = l('/suggestion/accept/') + uid + '/' + suggid;
+	$.post(url, {'accept': 1},
+	       function(rdata) {
+		   $("#response").remove();
+		   $.each(rdata.newtargets, function(i) {
+		       $("textarea#id_target_f_" + i).val(this).focus();
+		   });
+		   element.fadeOut(500);
+	       }, "json");
+	return false;
+    });
 });

@@ -380,23 +380,29 @@ class Unit(models.Model, base.TranslationUnit):
             return None
         return suggestion
 
-    def accept_suggestion(self, item, translation):
-        suggestion = self.get_suggestion(item, translation)
-        if suggestion is None:
-            return
+    def accept_suggestion(self, suggid):
+        try:
+            suggestion = self.suggestion_set.get(id=suggid)
+        except Suggestion.DoesNotExist:
+            return False
+
         self.target = suggestion.target
         self.save()
         if settings.AUTOSYNC:
+            #FIXME: update alttrans
             self.sync(self.getorig())
             self.store.updateheader(suggestion.user)
             self.file.savestore()
         suggestion.delete()
+        return True
 
-    def reject_suggestion(self, item, translation):
-        suggestion = self.get_suggestion(item, translation)
-        if suggestion is None:
-            return
+    def reject_suggestion(self, suggid):
+        try:
+            suggestion = self.suggestion_set.get(id=suggid)
+        except Suggestion.DoesNotExist:
+            return False
         suggestion.delete()
+        return True
 
     def get_terminology(self):
         """get terminology suggestions"""

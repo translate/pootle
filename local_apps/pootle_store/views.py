@@ -28,14 +28,16 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.core.exceptions import PermissionDenied
+from django.utils import simplejson
+
 
 from pootle_misc.baseurl import redirect
-from pootle_app.models.permissions import get_matching_permissions, check_permission
+from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
 from pootle_misc.util import paginate
 from pootle_profile.models import get_profile
 
 from pootle_store.models import Store, Unit
-from pootle_store.forms import unit_form_factory, SearchForm
+from pootle_store.forms import unit_form_factory, SearchForm, highlight_whitespace
 
 def export_as_xliff(request, pootle_path):
     #FIXME: cache this
@@ -270,3 +272,38 @@ def translate(request, pootle_path):
     request.permissions = get_matching_permissions(get_profile(request.user), request.translation_project.directory)
 
     return translate_page(request, store.units)
+
+def reject_suggestion(request, uid, suggid):
+    unit = get_object_or_404(Unit, id=uid)
+    directory = unit.store.parent
+    if not check_profile_permission(get_profile(request.user), 'review', directory):
+        raise PermissionDenied
+
+    response = {
+        'udbid': unit.id,
+        'sugid': suggid,
+        }
+    if request.POST.get('reject'):
+        response['success'] = unit.reject_suggestion(suggid)
+
+    response = simplejson.dumps(response, indent=4)
+    return HttpResponse(response, mimetype="application/json")
+
+
+def accept_suggestion(request, uid, suggid):
+    unit = get_object_or_404(Unit, id=uid)
+    directory = unit.store.parent
+    if not check_profile_permission(get_profile(request.user), 'review', directory):
+        raise PermissionDenied
+
+    response = {
+        'udbid': unit.id,
+        'sugid': suggid,
+        }
+
+    if request.POST.get('accept'):
+        response['success'] = unit.accept_suggestion(suggid)
+        response['newtargets'] = [highlight_whitespace(target) for target in unit.target.strings]
+
+    response = simplejson.dumps(response, indent=4)
+    return HttpResponse(response, mimetype="application/json")
