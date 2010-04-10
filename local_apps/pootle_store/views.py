@@ -237,8 +237,8 @@ def translate_page(request, units_queryset):
         form_class = unit_form_factory(language, len(edit_unit.source.strings))
         form = form_class(instance=edit_unit)
 
+    store = edit_unit.store
     if pager is None:
-        store = edit_unit.store
         page = store.units.filter(index__lt=edit_unit.index).count() / 10 + 1
         pager = paginate(request, store.units, items=10, page=page)
 
