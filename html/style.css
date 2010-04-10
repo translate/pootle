@@ -1825,7 +1825,7 @@ div.translate-translation {
     padding-right: 3px;
 }
 
-textarea.translate-translation-fuzzy
+.translate-translation-fuzzy textarea
 {
     color: black;
     border-left: 6px groove gray;

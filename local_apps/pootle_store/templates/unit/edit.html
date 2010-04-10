@@ -39,7 +39,7 @@
   </div>
 </td>
 <!--! Cell with translation (view/suggest/review/edit) -->
-<td colspan="1" rowspan="1" class="translate-translation comments translate-focus">
+<td colspan="1" rowspan="1" class="translate-translation comments translate-focus {% if unit.fuzzy %}translate-translation-fuzzy{% endif %}">
   <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus">
     <!--! Translation memory -->
     <div id="tm" class="sidebar" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">

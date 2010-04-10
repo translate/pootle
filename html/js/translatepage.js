@@ -82,15 +82,14 @@ $.pootle = {};
       checkbox.removeAttr("checked");
       checkbox.parent().animate({ backgroundColor: "#dafda5 !important" }, "slow")
                        .animate({ backgroundColor: "#ffffff !important" }, "slow");
-      $("textarea.translate-translation-fuzzy").each(function () {
-        $(this).removeClass("translate-translation-fuzzy");
-      });
+      $(this).parent().parent().removeClass("translate-translation-fuzzy");
       keepstate = true;
     }
   });
+
   $("input.fuzzycheck").click(function() {
     keepstate = true;
-    $(this).parent().parent().parent().find("textarea").toggleClass("translate-translation-fuzzy");
+    $(this).parent().parent().parent().toggleClass("translate-translation-fuzzy");
   });
 
 /*
@@ -131,7 +130,7 @@ $.pootle = {};
         for (var i=0; i<argument_subs.length; i++) 
           translation = translation.replace("__" + i + "__", argument_subs[i]); 
         area.val(translation);
-        area.addClass("translate-translation-fuzzy");
+        area.parent().parent().addClass("translate-translation-fuzzy");
         var checkbox = $("input.fuzzycheck");
         checkbox.attr("checked", "checked");
         area.focus();
