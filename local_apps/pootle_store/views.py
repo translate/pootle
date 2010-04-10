@@ -137,13 +137,13 @@ def get_current_units(request, step_queryset):
         pootle_path = request.POST['pootle_path']
         back = request.POST.get('back', False)
         if back:
-            queryset = step_queryset.filter(store__pootle_path=pootle_path,
-                                            index__lte=prev_index).order_by('-store__pootle_path', '-index') | \
-                       step_queryset.filter(store__pootle_path__lt=pootle_path)
+            queryset = (step_queryset.filter(store__pootle_path=pootle_path, index__lte=prev_index) | \
+                        step_queryset.filter(store__pootle_path__lt=pootle_path)
+                        ).order_by('-store__pootle_path', '-index')
         else:
-            queryset = step_queryset.filter(store__pootle_path=pootle_path,
-                                            index__gte=prev_index).order_by('store__pootle_path', 'index') | \
-                       step_queryset.filter(store__pootle_path__gt=pootle_path)
+            queryset = (step_queryset.filter(store__pootle_path=pootle_path, index__gte=prev_index) | \
+                        step_queryset.filter(store__pootle_path__gt=pootle_path)
+                        ).order_by('store__pootle_path', 'index')
 
         for unit in queryset.iterator():
             if edit_unit is None and prev_unit is not None:
