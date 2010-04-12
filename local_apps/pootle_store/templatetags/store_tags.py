@@ -82,9 +82,9 @@ def get_sugg_list(unit):
 @register.filter('pluralize_source')
 def pluralize_source(unit):
     if unit.hasplural():
-        return [(unit.source.strings[0], _('Singular')), (unit.source.strings[1], _('Plural'))]
+        return [(0, unit.source.strings[0], _('Singular')), (1, unit.source.strings[1], _('Plural'))]
     else:
-        return [(unit.source, None)]
+        return [(0, unit.source, None)]
 
 @register.filter('pluralize_target')
 def pluralize_target(unit, nplurals=None):
@@ -97,17 +97,17 @@ def pluralize_target(unit, nplurals=None):
         forms = []
         if nplurals is None:
             for i, target in enumerate(unit.target.strings):
-                forms.append((target, _('Plural Form %d', i)))
+                forms.append((i, target, _('Plural Form %d', i)))
         else:
             for i in range(nplurals):
                 try:
                     target = unit.target.strings[i]
                 except IndexError:
                     target = ''
-                forms.append((target, _('Plural Form %d', i)))
+                forms.append((i, target, _('Plural Form %d', i)))
         return forms
     else:
-        return [(unit.target, None)]
+        return [(0, unit.target, None)]
 
 @register.filter('pluralize_diff_sugg')
 def pluralize_diff_sugg(sugg):
@@ -115,10 +115,10 @@ def pluralize_diff_sugg(sugg):
     if unit.hasplural():
         forms = []
         for i, target in enumerate(sugg.target.strings):
-            forms.append((target, highlight_diffs(unit.target.strings[i], target), _('Plural Form %d', i)))
+            forms.append((i, target, highlight_diffs(unit.target.strings[i], target), _('Plural Form %d', i)))
         return forms
     else:
-        return [(sugg.target, highlight_diffs(unit.target, sugg.target), None)]
+        return [(0, sugg.target, highlight_diffs(unit.target, sugg.target), None)]
 
 @register.inclusion_tag('unit/source.html', takes_context=True)
 def render_source(context, unit, editable=False):

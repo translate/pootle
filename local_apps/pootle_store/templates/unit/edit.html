@@ -5,7 +5,7 @@
   {{ form.index.as_hidden }}
   {{ form.source_f.as_hidden }}
   <div class="translate-original translate-original-focus">
-    {% for source, title in unit|pluralize_source %}
+    {% for i, source, title in unit|pluralize_source %}
     {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
     <div class="translation-text" lang="en">{{ source|fancy_highlight }}</div>
     {% endfor %}
@@ -16,7 +16,7 @@
     {% for altlang, altunit in altsrcs %}
     <div class="translation-text-headers altsrclangname" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">{{ altlang.localname }}</div>
     <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus">
-      {% for target, title in altunit|pluralize_target %}
+      {% for i, target, title in altunit|pluralize_target %}
       {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
       <div class="translation-text" lang="{{ altlang.code }}" dir="{{ altlang.get_direction }}">{{ target|fancy_highlight }}</div>
       {% endfor %}
@@ -61,7 +61,7 @@
       <div id="suggestion{{ sugg.id }}" class="translate-suggestion-block">
         <strong>{{ sugtitle }}</strong>
         <div class="translate-suggestion">
-          {% for target, diff, title in sugg|pluralize_diff_sugg %}
+          {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
             {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
             <div class="suggdiff" id="suffdiff-{{sugg.id}}" lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ diff }}</div>
           {% endfor %}
