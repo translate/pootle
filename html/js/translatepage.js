@@ -211,9 +211,14 @@ $.pootle = {};
 	$.post(url, {'accept': 1},
 	       function(rdata) {
 		   $("#response").remove();
-		   $.each(rdata.newtargets, function(i) {
-		       $("textarea#id_target_f_" + i).val(this).focus();
+		   $.each(rdata.newtargets, function(i, target) {
+		       $("textarea#id_target_f_" + i).val(target).focus();
 		   });
+		   $.each(rdata.newdiffs, function(suggid, sugg) {
+			   $.each(sugg, function(i, target) {
+				   $("#suggdiff-" + suggid + "-" + i).html(target);
+			       });
+		       });
 		   element.fadeOut(500);
 	       }, "json");
 	return false;

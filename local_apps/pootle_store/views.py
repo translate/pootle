@@ -38,6 +38,7 @@ from pootle_profile.models import get_profile
 
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, SearchForm, highlight_whitespace
+from pootle_store.templatetags.store_tags import highlight_diffs
 
 def export_as_xliff(request, pootle_path):
     #FIXME: cache this
@@ -289,7 +290,6 @@ def reject_suggestion(request, uid, suggid):
     response = simplejson.dumps(response, indent=4)
     return HttpResponse(response, mimetype="application/json")
 
-
 def accept_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
@@ -304,6 +304,12 @@ def accept_suggestion(request, uid, suggid):
     if request.POST.get('accept'):
         response['success'] = unit.accept_suggestion(suggid)
         response['newtargets'] = [highlight_whitespace(target) for target in unit.target.strings]
+        response['newdiffs'] = {}
+        for sugg in unit.get_suggestions():
+            response['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i], target) \
+                                             for i, target in enumerate(sugg.target.strings)]
 
     response = simplejson.dumps(response, indent=4)
+    print response
     return HttpResponse(response, mimetype="application/json")
+
