@@ -63,7 +63,7 @@
         <div class="translate-suggestion">
           {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
             {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
-            <div class="suggdiff" id="suffdiff-{{sugg.id}}" lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ diff }}</div>
+            <div class="suggdiff" id="suggdiff-{{sugg.id}}-{{i}}" lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ diff }}</div>
           {% endfor %}
           {% if canreview %}
             <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
