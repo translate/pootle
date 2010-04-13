@@ -80,6 +80,13 @@ class Directory(models.Model):
         else:
             return self
 
+    def _get_stores(self):
+        """queryset with all descending stores"""
+        from pootle_store.models import Store
+        return Store.object.filter(pootle_path__startswith=self.pootle_path)
+
+    stores = property(_get_stores)
+
     def filter_stores(self, search=None, starting_store=None):
         if search is None:
             return filter_next_store(self.child_stores, starting_store)
