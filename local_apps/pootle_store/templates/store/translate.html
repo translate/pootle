@@ -41,7 +41,11 @@
 {% endblock %}
 
 {% block breadcrumbs_content %}
-{% include "language/item_title.html" %}
+<a href="{{ language.pootle_path|l }}">{{ language.localname }}</a> » <a href="{{ translation_project.project.pootle_path|l }}">{{ translation_project.project }}</a> » 
+{% for ancestor in store.ancestors %}
+<a href="{{ ancestor.pootle_path|l}}">{{ ancestor.name }}</a> / 
+{% endfor %}
+<a href="{{ store.pootle_path|l}}/translate">{{ store.name }}</a>
 {% endblock %}
 
 {% block innernav %}
