@@ -59,10 +59,14 @@
 
 {% block precontent %}
 {{ block.super }}
-{% if checking_text %}
+{% if checks %}
 <div class="check">
+  {% for check in checks %}
+  <p>
     <img src='{{ "images/help.png"|m }}' class="checkinfo" />
-    <span>{{ checking_text|safe }}</span>
+    {{ check|safe }}
+  </p>
+  {% endfor %}
 </div>
 {% endif %}
 {% endblock precontent %}

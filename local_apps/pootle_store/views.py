@@ -253,6 +253,12 @@ def translate_page(request, units_queryset):
             for value in values:
                 GET_vars.append('%s=%s' % (key, value))
 
+    # links for quality check documentation
+    checks = []
+    for check in request.GET.getlist('matchnames'):
+        link = '<a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%s">%s</a>' % (check, check)
+        checks.append(_('checking %s', link))
+
     context = {
         'form': form,
         'search_form': search_form,
@@ -262,6 +268,7 @@ def translate_page(request, units_queryset):
         'language': language,
         'translation_project': store.translation_project,
         'GET_state': '&'.join(GET_vars),
+        'checks': checks,
         }
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
 
