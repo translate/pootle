@@ -761,36 +761,6 @@ class Store(models.Model, base.TranslationStore):
         newstats = self.getquickstats()
         post_unit_update.send(sender=self, oldstats=oldstats, newstats=newstats)
 
-
-############################ Translation Memory ##########################
-
-    def inittm(self):
-        """initialize translation memory file if needed"""
-        if self.tm and os.path.exists(self.tm.path):
-            return
-        if not self.file:
-            return
-        tm_filename = self.file.path + os.extsep + 'tm'
-        if os.path.exists(tm_filename):
-            self.tm = tm_filename
-            self.save()
-
-    def gettmsuggestions(self, item):
-        """find all the tmsuggestion items submitted for the given
-        item"""
-
-        self.inittm()
-        if self.tm:
-            unit = self.getitem(item)
-            locations = unit.getlocations()
-            # TODO: review the matching method. We can't simply use the
-            # location index, because we want multiple matches.
-            suggestpos = [suggestpo for suggestpo in self.tm.store.units
-                          if suggestpo.getlocations() == locations]
-            return suggestpos
-        return []
-
-
 ############################## Suggestions #################################
 
     def initpending(self, create=False):

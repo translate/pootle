@@ -39,12 +39,6 @@ class DirectoryManager(models.Manager):
 
     root = property(_get_root)
 
-def filter_next_store(query, store_name):
-    if store_name is None:
-        return query
-    else:
-        return query.filter(name__gte=store_name)
-
 class Directory(models.Model):
     class Meta:
         ordering = ['name']
@@ -86,14 +80,6 @@ class Directory(models.Model):
         return Store.object.filter(pootle_path__startswith=self.pootle_path)
 
     stores = property(_get_stores)
-
-    def filter_stores(self, search=None, starting_store=None):
-        if search is None:
-            return filter_next_store(self.child_stores, starting_store)
-        elif search.contains_only_file_specific_criteria():
-            return filter_next_store(self.child_stores, starting_store)
-        else:
-            raise Exception("Can't filter on unit-specific information")
 
     def get_or_make_subdir(self, child_name):
         try:

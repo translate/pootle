@@ -39,19 +39,12 @@ def make_directory_pathlinks(request, project_url, url, links):
     else:
         return list(reversed(links))
 
-def make_store_pathlinks(request, project_url, store, links):
-    links = make_directory_pathlinks(request, project_url, url_manip.parent(store.pootle_path), [])
-    links.append({'href': dispatch.translate(request, store.pootle_path),
-                  'text': store.name})
-    return links
-
 def make_directory_actions(request, links_required=None):
     directory = request.translation_project.directory
     if links_required == 'translate':
         return directory_translate_links(request, directory)
     elif links_required == 'review':
         return directory_review_links(request, directory)
-        
 
 def make_navbar_path_dict(request, path_links=None):
     def make_admin(request):
@@ -82,16 +75,5 @@ def make_directory_navbar_dict(request, directory, links_required=None):
     result.update({
             'path':    make_navbar_path_dict(request, path_links),
             'actions': actions })
-    del result['title']
-    return result
-
-def make_store_navbar_dict(request, store):
-    result = item_dict.make_store_item(request, store)
-    project_url = request.translation_project.directory.pootle_path
-    path_links = make_store_pathlinks(request, project_url, store, [])
-    result.update({
-            'path':    make_navbar_path_dict(request, path_links),
-            'actions': {},
-    })
     del result['title']
     return result

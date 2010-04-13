@@ -137,13 +137,6 @@ def zip_link(request, path_obj):
             'text':  text,
             }
 
-def po_link(request, path_obj):
-    href = dispatch.export(request, path_obj.pootle_path, 'po')
-    return {
-        'href':  href,
-        'text':  _('Download PO'),
-        }
-
 def xliff_link(request, path_obj):
     text = _('Download XLIFF')
     href = dispatch.export(request, path_obj.pootle_path, 'xlf')

@@ -1,6 +1,0 @@
-{% load i18n %}
-<div class="translate-translation comments" lang="{{ LANGUAGE_CODE }}">
-  {% if unit.translator_comment %}
-  <div title="{% trans "Translator Comments" %}" class="translator-comments" dir="{{ language.dir }}" lang="{{ language.code }}">{{ unit.translator_comment|safe }}</div>
-  {% endif %}
-</div>

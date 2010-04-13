@@ -143,10 +143,6 @@ class TranslationStoreFile(File):
         return self.getstats()['total']
     total = property(_get_total)
 
-    def getitemslen(self):
-        """The number of items in the file."""
-        return self.getquickstats()['total']
-
     def addunit(self, unit):
         """Wrapper around TranslationStore.addunit that updates sourceindex on
         the fly.

@@ -30,10 +30,8 @@ from pootle.i18n.gettext import tr_lang
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_profile.models import get_profile
-
-from pootle_app.views.language import search_forms
 from pootle_app.views.language import navbar_dict
+from pootle_profile.models import get_profile
 
 from pootle_notifications.models import Notice
 
@@ -65,7 +63,6 @@ def view(request, path):
     else:
         template_vars['is_language'] = False
         try:
-            template_vars['search'] = search_forms.get_search_form(request)
             request.translation_project = directory.get_translationproject()
             template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
         except:

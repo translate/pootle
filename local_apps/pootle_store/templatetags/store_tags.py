@@ -141,44 +141,6 @@ def pluralize_diff_sugg(sugg):
     else:
         return [(0, sugg.target, highlight_diffs(unit.target, sugg.target), None)]
 
-@register.inclusion_tag('unit/source.html', takes_context=True)
-def render_source(context, unit, editable=False):
-    template_vars = {'unit': unit,
-                     'editable': editable,
-                     'sources': pluralize_source(unit),
-                     }
-    if editable:
-        profile = get_profile(context['user'])
-        template_vars['altsrcs'] = find_altsrcs(unit, profile)
-
-    return template_vars
-
-@register.inclusion_tag('unit/target.html', takes_context=True)
-def render_target(context, unit):
-    template_vars = {'unit': unit,
-                     'targets': pluralize_target(unit),
-                     'language': unit.store.translation_project.language,
-                     }
-    suggcount = unit.get_suggestions().count()
-    template_vars['suggcount'] = suggcount
-    if suggcount:
-        template_vars['suggtext'] = ungettext('%(count)s suggestion', '%(count)s suggestions', suggcount, {'count': suggcount})
-    return template_vars
-
-@register.inclusion_tag('unit/developer_notes.html', takes_context=True)
-def render_developer_notes(context, unit, editable=False):
-    template_vars = {'unit': unit,
-                    }
-    return template_vars
-
-@register.inclusion_tag('unit/translator_notes.html', takes_context=True)
-def render_translator_notes(context, unit, editable=False):
-    template_vars = {'unit': unit,
-                     'language': unit.store.translation_project.language,
-                     'editable': editable,
-                     }
-    return template_vars
-
 
 @register.inclusion_tag('unit/edit.html', takes_context=True)
 def render_unit_edit(context, form):

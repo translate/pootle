@@ -28,16 +28,6 @@ def get_title():
 def get_description():
     return _(settings.DESCRIPTION)
 
-def getdoclang(language):
-    """Get the language code that the docs should be displayed in."""
-
-    # TODO: Determine the available languages programmatically.
-    available_languages = ['en']
-    if language in available_languages:
-        return language
-    else:
-        return 'en'
-
 def weblanguage(language):
     """Reformats the language code from locale style (pt_BR) to web
     style (pt-br)"""
