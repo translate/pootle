@@ -26,7 +26,7 @@ def render_pager(pager):
     """Render a pager block with next and previous links"""
     if not pager.has_other_pages():
         return ""
-    
+
     result = '<ul class="pager">'
     if pager.has_previous():
         result += '<li><a href="?page=1" class="nth-link">%s</a></li>' % _('First')
@@ -46,11 +46,10 @@ def render_pager(pager):
 
     if pager.has_next():
         result += '<li><a href="?page=%d" class="prevnext-link">%s</a></li>' % (pager.next_page_number(),  _('Next'))
-        result += '<li><a href="?page=%d" class="nth-link">%s</a></li>' % (pager.paginator.num_pages, _('Last'))
+        result += '<li><a href="?page=%d" class="nth-link">%s</a></li>' % (pager.paginator.num_pages, _('Last (%d)', pager.paginator.num_pages))
 
     result += '</ul>'
     return mark_safe(result)
 
 register = template.Library()
 register.filter('render_pager', render_pager)
-
