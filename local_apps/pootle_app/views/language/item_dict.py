@@ -77,7 +77,7 @@ def getcheckdetails(request, path_obj):
                                   '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
                                   {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
                                   )
-                checklink = {'href': dispatch.review(request, path_obj.pootle_path, match_names=[checkname]),
+                checklink = {'href': dispatch.translate(request, path_obj.pootle_path, matchnames=[checkname]),
                              'text': checkname,
                              'stats': stats}
                 checklinks += [checklink]
@@ -95,7 +95,7 @@ def review_link(request, path_obj):
             else:
                 text = _('View Suggestions')
             return { 
-                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['hassuggestion']),
+                    'href': dispatch.translate(request, path_obj.pootle_path, matchnames=['hassuggestion']),
                     'text': text }
     except IOError:
         pass
@@ -108,7 +108,7 @@ def quick_link(request, path_obj):
             else:
                 text = _('View Untranslated')
             return {
-                    'href': dispatch.translate(request, path_obj.pootle_path, match_names=['isfuzzy', 'untranslated']),
+                    'href': dispatch.translate(request, path_obj.pootle_path, unitstates=['fuzzy', 'untranslated']),
                     'text': text }
     except IOError:
         pass
@@ -116,7 +116,7 @@ def quick_link(request, path_obj):
 def translate_all_link(request, path_obj):
     #FIXME: what permissions to check for here?
     return {
-        'href': dispatch.translate(request, path_obj.pootle_path, match_names=[]),
+        'href': dispatch.translate(request, path_obj.pootle_path, matchnames=[]),
         'text': _('Translate All') }
 
 def terminology_link(request, path_obj):
@@ -301,8 +301,8 @@ def make_store_item(request, store, links_required=None):
         item['actions'] = store_review_links(request, store)
     else:
         item['actions'] = []
-    item['href_todo'] = dispatch.review(request, store.pootle_path,
-                                        match_names=['isfuzzy,untranslated'])
+    item['href_todo'] = dispatch.translate(request, store.pootle_path,
+                                        unitstates=['isfuzzy,untranslated'])
     item.update({
             'icon':   'file',
             'isfile': True })

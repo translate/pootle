@@ -36,13 +36,9 @@ class ProjectIndexState(CommonState):
 ################################################################################
 
 class TranslatePageState(CommonState):
-    # Display state
-    view_mode     = url_state.ChoiceValue('view_mode', ('view', 'review', 'translate', 'raw'))
-    # Position state
-    store         = url_state.Value('store')
-    item          = url_state.IntValue('item', 0)
     # Search state
-    match_names   = url_state.ListValue('match_names')
+    matchnames   = url_state.ListValue('matchnames')
+    unitstates   = url_state.ListValue('unitstates')
 
 def get_store(request):
     basename = url_manip.basename(request.path_info)
@@ -70,30 +66,7 @@ def translate(request, path, **kwargs):
     if path[-1] == '/':
         path = path + 'translate.html'
     else:
-        params.store = None
-
-    if (check_permission('translate', request) or check_permission('suggest', request)) and \
-           'view_mode' not in kwargs:
-        params.view_mode = 'translate'
-    return url_manip.make_url(path, params.encode())
-
-def review(request, path, **kwargs):
-    params = TranslatePageState(request.GET, **kwargs)
-    # In Pootle, URLs ending in translate.html are used when the user
-    # translates all files in a directory (for example, if the user is
-    # going through all fuzzy translations in a directory). If this is
-    # the case, we need to pass the current store name in the 'store'
-    # GET variable so that Pootle will know where to continue from
-    # when the user clicks submit/skip/suggest on a translation
-    # unit. But otherwise the store name is the last component of the
-    # path name and we don't need to pass the 'store' GET variable.
-    if path[-1] == '/':
-        path = path + 'translate.html'
-    else:
-        params.store = None
-
-    if 'view_mode' not in kwargs:
-        params.view_mode = 'review'
+        path = path + '/translate/'
     return url_manip.make_url(path, params.encode())
 
 def show_directory(request, directory_path, **kwargs):
