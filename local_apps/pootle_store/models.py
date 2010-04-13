@@ -592,6 +592,17 @@ class Store(models.Model, base.TranslationStore):
             output.addunit(unit.convert(output.UnitClass))
         return output
 
+    def ancestors(self):
+        """return list of ancestor directories excluding TranslationProject and above"""
+        parents = []
+        parent = self.parent
+        while parent != self.translation_project.directory:
+            parents.append(parent)
+            parent = parent.parent
+
+        parents.reverse()
+        return parents
+
 ######################## TranslationStore #########################
 
     def _get_units(self):
