@@ -51,10 +51,9 @@
 {% block innernav %}
 <!--! Navigation bar -->
 <div id="innernav" class="navbar">
-    {% for item in navitems %}
-    {% include "language/item_block.html" %}
-    {% include "language/item_stats.html" %}
-    {% endfor %}
+  <div class="item-statistics small" lang="{{ LANGUAGE_CODE }}">
+    <p> {{ store|stat_summary }}</p>
+  </div>
 </div><!--innernav-->
 {% endblock innernav %}
 

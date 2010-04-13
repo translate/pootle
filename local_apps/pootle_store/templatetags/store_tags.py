@@ -79,6 +79,27 @@ def get_sugg_list(unit):
         sugg_list.append((sugg, title))
     return sugg_list
 
+@register.filter('stat_summary')
+def stat_summary(store):
+    stats = store.getquickstats()
+    # The translated word counts
+    words_percent = stats['translatedsourcewords'] / (stats['totalsourcewords'] or 1) * 100
+    word_stats = _("Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%",
+                   {"translated": stats['translatedsourcewords'],
+                    "total": stats['totalsourcewords'],
+                    "translatedpercent": words_percent})
+    word_stats = '<span class="word-statistics">%s</span>' % word_stats
+
+    # The translated unit counts
+    strings_percent = stats['translated'] / (stats['total'] or 1) * 100
+    string_stats = _("Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%",
+                          {"translated": stats['translated'],
+                           "total": stats['total'],
+                          "translatedpercent": strings_percent})
+    string_stats = '<span class="string-statistics">%s</span>' % string_stats
+    # The whole string of stats
+    return mark_safe('%s &nbsp;&nbsp; %s' % (word_stats, string_stats))
+
 @register.filter('pluralize_source')
 def pluralize_source(unit):
     if unit.hasplural():
