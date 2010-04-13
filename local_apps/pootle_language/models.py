@@ -27,7 +27,6 @@ from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 from pootle_store.util import statssum
-from pootle_store.models import Store, PARSED
 from pootle_app.lib.util import RelatedManager
 
 class Language(models.Model):

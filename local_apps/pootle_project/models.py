@@ -28,7 +28,6 @@ from django.db                import models
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
-from pootle_store.models import Store, PARSED
 from pootle_store.util import absolute_real_path, statssum
 from pootle_store.filetypes import filetype_choices, factory_classes
 from pootle_misc.util import getfromcache
