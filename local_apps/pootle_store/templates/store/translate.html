@@ -23,7 +23,7 @@
 {% block search %}
 <div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
   <form action="?" method="get" id="searchform">
-    {{ search_form.search }}
+    <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
     <a class="advancedlink">
       {% if LANGUAGE_BIDI %}
       <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ search.advanced_search_title }}" title="{{ search.advanced_search_title }}" class="togglesearch" />
