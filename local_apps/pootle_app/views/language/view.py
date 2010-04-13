@@ -30,7 +30,8 @@ from django.core.exceptions import PermissionDenied
 
 from pootle_misc.baseurl           import redirect
 from pootle_translationproject.models import TranslationProject
-from pootle_store.models import Store
+from pootle_store.models import Store, Unit
+from pootle_store.views import translate_page
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models import store_iteration
 from pootle_profile.models import get_profile
@@ -84,6 +85,10 @@ def set_request_context(f):
 
 @get_translation_project
 @set_request_context
+def translate(request, translation_project, dir_path):
+    pootle_path = translation_project.pootle_path + dir_path
+    units_query = Unit.objects.filter(store__pootle_path__startswith=pootle_path)
+    return translate_page(request, units_query)
 def translate_page(request, translation_project, dir_path):
     def next_store_item(search, store_name, item):
         return store_iteration.get_next_match(directory,
