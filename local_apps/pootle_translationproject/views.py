@@ -40,28 +40,27 @@ from pootle.i18n.gettext import tr_lang
 
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
-from pootle_app.models             import Directory, store_iteration
+from pootle_app.models             import Directory
 from pootle_app.lib import view_handler
 from pootle_app.project_tree import scan_translation_project_files, convert_templates
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_app.views.base import BaseView
-from pootle_app.views.language import navbar_dict, search_forms, dispatch, item_dict
+from pootle_app.views.language import navbar_dict, dispatch, item_dict
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
 from pootle_app.views.language.admin_permissions import process_update
-
+from pootle_app.views.language.view import get_translation_project, set_request_context
 
 from pootle_store.models import Store, Unit
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
+from pootle_store.forms import SearchForm
 from pootle_statistics.models import Submission
 from pootle_profile.models import get_profile
-from pootle_misc.baseurl           import redirect
 
 from pootle_translationproject.models import TranslationProject
 
-from pootle_app.views.language.view import get_translation_project, set_request_context
 
 class TPTranslateView(BaseView):
     def GET(self, template_vars, request, translation_project, directory):
@@ -73,7 +72,7 @@ class TPTranslateView(BaseView):
         template_vars.update({
             'project':               {"code": project.code,  "name": project.fullname},
             'language':              {"code": language.code, "name": tr_lang(language.fullname)},
-            'search':                search_forms.get_search_form(request),
+            'search_form':           SearchForm(),
             'children':              get_children(request, translation_project, directory, links_required='translate'),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')],
             'feed_path':             directory.pootle_path[1:],
@@ -108,7 +107,7 @@ class TPReviewView(BaseView):
         template_vars.update({
             'project':               {"code": project.code,  "name": project.fullname},
             'language':              {"code": language.code, "name": tr_lang(language.fullname)},
-            'search':                search_forms.get_search_form(request),
+            'search_form':           SearchForm(),
             'children':              get_children(request, translation_project, directory, links_required='review'),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review')],
             'topstats':              gentopstats_translation_project(translation_project),
@@ -151,7 +150,7 @@ def tp_admin_permissions(request, translation_project):
         "username_title":         _("Username"),
         "permission_set_formset": permission_set_formset,
         "adduser_text":           _("(select to add user)"),
-        "search":                 search_forms.get_search_form(request),
+        'search_form':           SearchForm(),
         "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
         "feed_path":              translation_project.directory.pootle_path[1:],
     }
@@ -193,7 +192,7 @@ def tp_admin_files(request, translation_project):
     model_args['title'] = _("Files")
     model_args['submitname'] = "changestores"
     model_args['formid'] = "stores"
-    model_args['search'] = search_forms.get_search_form(request)
+    model_args['search_form'] = SearchForm()
     model_args['navitems'] = [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)]
     model_args['feed_path'] = translation_project.directory.pootle_path[1:]
     link = "%s"
@@ -212,7 +211,7 @@ class ProjectIndexView(BaseView):
         template_vars.update({
             'project':               {"code": project.code,  "name": project.fullname},
             'language':              {"code": language.code, "name": tr_lang(language.fullname)},
-            'search':                search_forms.get_search_form(request),
+            'search_form':           SearchForm(),
             'children':              get_children(request, translation_project, directory),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
             'stats_headings':        get_stats_headings(),
@@ -240,31 +239,26 @@ def tp_overview(request, translation_project, dir_path):
 @set_request_context
 def export_zip(request, translation_project, file_path):
     if not check_permission("archive", request):
-        return redirect(translation_project.pootle_path,
-                        message=_('You do not have the right to create ZIP archives.'))
+        raise PermissionDenied(_('You do not have the right to create ZIP archives.'))
+    translation_project.sync()
     pootle_path = translation_project.pootle_path + (file_path or '')
-    try:
-        path_obj = Directory.objects.get(pootle_path=pootle_path)
-    except Directory.DoesNotExist:
-        path_obj = get_object_or_404(Store, pootle_path=pootle_path[:-1])
-    stores = store_iteration.iter_stores(path_obj)
+    stores = Store.objects.filter(pootle_path__startswith=pootle_path).exclude(file='')
     archivecontents = translation_project.get_archive(stores)
     response = HttpResponse(archivecontents, content_type="application/zip")
     if file_path.endswith("/"):
         file_path = file_path[:-1]
     fish, file_path = os.path.split(file_path)
     archivename = '%s-%s' % (translation_project.project.code, translation_project.language.code)
-    archivename += file_path + '.zip'
+    archivename += '-' + file_path.replace('/', '-') + '.zip'
     response['Content-Disposition'] = 'attachment; filename=%s' % archivename
     return response
 
 
 def get_children(request, translation_project, directory, links_required=None):
-    search = search_forms.search_from_request(request)
     return [item_dict.make_directory_item(request, child_dir, links_required=links_required)
             for child_dir in directory.child_dirs.iterator()] + \
            [item_dict.make_store_item(request, child_store, links_required=links_required)
-            for child_store in directory.filter_stores(search).iterator()]
+            for child_store in directory.child_stores.iterator()]
 
 def unix_to_host_path(p):
     return os.sep.join(p.split('/'))
