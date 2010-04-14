@@ -30,20 +30,6 @@
     {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
     <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text">{{ target|fancy_highlight }}</div>
     {% endfor %}
-    {% if suggcount %}
-    <a href="#" class="sugglink"><span class="scount">{{ suggtext }}</span></a>
-    <div class="suggestions">
-      <ul class="sugglist">
-	{% for sugg in unit.get_suggestions %}
-	<li><span class="suggauthor" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">({{ sugg.user }})</span>
-          <ul>{% for target in sugg.target.strings %}
-            <li>{{ target }}</li>
-            {% endfor %}</ul>
-	</li>
-	{% endfor %}
-      </ul>
-    </div>
-    {% endif %}
   </div>
   {% if show_comments and unit.translator_comment %}
   <div class="translate-translation comments" lang="{{ LANGUAGE_CODE }}">

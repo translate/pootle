@@ -161,8 +161,4 @@ def render_unit_view(context, unit, show_comments=False):
                      'language': unit.store.translation_project.language,
                      'show_comments': show_comments,
                      }
-    suggcount = unit.get_suggestions().count()
-    template_vars['suggcount'] = suggcount
-    if suggcount:
-        template_vars['suggtext'] = ungettext('%(count)s suggestion', '%(count)s suggestions', suggcount, {'count': suggcount})
     return template_vars
