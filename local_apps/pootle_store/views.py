@@ -23,7 +23,7 @@ import os
 from translate.storage.xliff import xlifffile
 
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -279,7 +279,11 @@ def translate_page(request, units_queryset):
 def translate(request, pootle_path):
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
-    store = get_object_or_404(Store, pootle_path=pootle_path)
+    try:
+        store = Store.objects.select_related('translation_project', 'translation_project__directory',
+                                             'translation_project__language', 'translation_project__project', 'parent').get(pootle_path=pootle_path)
+    except Store.DoesNotExist:
+        raise Http404
     request.translation_project = store.translation_project
     request.permissions = get_matching_permissions(get_profile(request.user), request.translation_project.directory)
 
@@ -321,6 +325,5 @@ def accept_suggestion(request, uid, suggid):
                                              for i, target in enumerate(sugg.target.strings)]
 
     response = simplejson.dumps(response, indent=4)
-    print response
     return HttpResponse(response, mimetype="application/json")
 
