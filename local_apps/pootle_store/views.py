@@ -193,6 +193,7 @@ def translate_end(request, translation_project):
 def translate_page(request, units_queryset):
     cantranslate = check_permission("translate", request)
     cansuggest = check_permission("suggest", request)
+    canreview = check_permission("review", request)
     translation_project = request.translation_project
     language = translation_project.language
 
@@ -260,9 +261,12 @@ def translate_page(request, units_queryset):
         checks.append(_('checking %s', link))
 
     context = {
+        'cantranslate': cantranslate,
+        'cansuggest': cansuggest,
+        'canreview': canreview,
         'form': form,
         'search_form': search_form,
-        'unit': edit_unit,
+        'edit_unit': edit_unit,
         'store': store,
         'pager': pager,
         'language': language,

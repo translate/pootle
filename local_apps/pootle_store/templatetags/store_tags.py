@@ -142,14 +142,17 @@ def render_unit_edit(context, form):
     request = context['request']
     profile = get_profile(context['user'])
     unit = form.instance
+    store = context['store']
+    translation_project = context['translation_project']
+    project = translation_project.project
     template_vars = {'unit': unit,
                      'form': form,
-                     'store': form.instance.store,
-                     'language': form.instance.store.translation_project.language,
-                     "cantranslate": check_permission("translate", request),
-                     "cansuggest": check_permission("suggest", request),
-                     "canreview": check_permission("review", request),
-                     'altsrcs': find_altsrcs(unit, profile),
+                     'store': store,
+                     'language': context['language'],
+                     "cantranslate": context['cantranslate'],
+                     "cansuggest": context['cansuggest'],
+                     "canreview": context['canreview'],
+                     'altsrcs': find_altsrcs(unit, profile, store=store, project=project),
                      "suggestions": get_sugg_list(unit),
                      }
     return template_vars
@@ -158,7 +161,7 @@ def render_unit_edit(context, form):
 def render_unit_view(context, unit, show_comments=False):
     request = context['request']
     template_vars = {'unit': unit,
-                     'language': unit.store.translation_project.language,
+                     'language': context['language'],
                      'show_comments': show_comments,
                      }
     return template_vars
