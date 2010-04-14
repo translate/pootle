@@ -353,7 +353,7 @@ class Unit(models.Model, base.TranslationUnit):
 
 ##################### Suggestions #################################
     def get_suggestions(self):
-        return self.suggestion_set.all()
+        return self.suggestion_set.select_related('user').all()
 
     def get_suggestion(self, item, translation):
         translation = multistring(translation)
