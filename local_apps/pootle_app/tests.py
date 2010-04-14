@@ -10,6 +10,20 @@ from pootle_language.models import Language
 from pootle_store.models import Store
 
 
+def unit_dict(pootle_path):
+    """prepare a translation submission dictioanry with values from
+    first unit in store corresponding to pootle_path"""
+    store = Store.objects.get(pootle_path=pootle_path)
+    unit = store.units[0]
+    result = {'id': unit.id,
+              'index': unit.index,
+              'pootle_path': pootle_path,
+              }
+    for i, source in enumerate(unit.source.strings):
+        result["source_f_%d" % i] = source
+    return result
+
+
 class AnonTests(PootleTestCase):
     def test_admin_not_logged(self):
         """checks that admin pages are not accessible without login"""
@@ -264,24 +278,22 @@ msgstr "resto"
 
     def test_submit_translation(self):
         """Tests that we can translate units."""
-
+        pootle_path="/af/pootle/pootle.po"
         submit_dict = {
-            'trans0': 'submitted translation',
-            'submit0': 'Submit',
-            'store': '/af/pootle/pootle.po',
+            'target_f_0': 'submitted translation',
+            'submit': 'Submit',
             }
-        submit_dict.update(formset_dict([]))
-        response = self.client.post("/af/pootle/pootle.po", submit_dict,
-                                    QUERY_STRING='view_mode=translate')
+        submit_dict.update(unit_dict(pootle_path))
+        response = self.client.post(pootle_path + "/translate", submit_dict)
 
         self.assertContains(response, 'submitted translation')
-        response = self.client.get("/af/pootle/pootle.po/download")
-        store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+        response = self.client.get(pootle_path + "/download")
+        store = Store.objects.get(pootle_path=pootle_path)
         self.assertTrue(store.file.read().find('submitted translation') >= 0)
 
     def test_submit_plural_translation(self):
         """Tests that we can submit a translation with plurals."""
-        pocontent = wStringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n')
+        pocontent = wStringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n\nmsgid "no fish"\nmsgstr ""\n')
         pocontent.name = 'test_plural_submit.po'
 
         post_dict = {
@@ -291,16 +303,15 @@ msgstr "resto"
             }
         response = self.client.post("/ar/pootle/", post_dict)
 
+        pootle_path = '/ar/pootle/test_plural_submit.po'
         submit_dict = {
-            'trans0-0': 'a fish',
-            'trans0-1': 'some fish',
-            'trans0-2': 'lots of fish',
-            'submit0': 'Submit',
-            'store': '/ar/pootle/test_plural_submit.po',
+            'target_f_0': 'a fish',
+            'target_f_1': 'some fish',
+            'target_f_2': 'lots of fish',
+            'submit': 'Submit',
             }
-        submit_dict.update(formset_dict([]))
-        response = self.client.post("/ar/pootle/test_plural_submit.po", submit_dict,
-                                    QUERY_STRING='view_mode=translate')
+        submit_dict.update(unit_dict(pootle_path))
+        response = self.client.post(pootle_path + "/translate", submit_dict)
 
         self.assertContains(response, 'a fish')
         self.assertContains(response, 'some fish')
@@ -309,7 +320,7 @@ msgstr "resto"
     def test_submit_plural_to_singular_lang(self):
         """Tests that we can submit a translation with plurals to a language without plurals."""
 
-        pocontent = wStringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n')
+        pocontent = wStringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n\nmsgid "no fish"\nmsgstr ""\n')
         pocontent.name = 'test_plural_submit.po'
 
         post_dict = {
@@ -318,20 +329,19 @@ msgstr "resto"
             'do_upload': 'upload',
             }
         response = self.client.post("/ja/pootle/", post_dict)
-
+        pootle_path = "/ja/pootle/test_plural_submit.po"
         submit_dict = {
-            'trans0': 'just fish',
-            'submit0': 'Submit',
-            'store': '/ja/pootle/test_plural_submit.po',
+            'target_f_0': 'just fish',
+            'submit': 'Submit',
             }
-        submit_dict.update(formset_dict([]))
-        response = self.client.post("/ja/pootle/test_plural_submit.po", submit_dict,
-                                    QUERY_STRING='view_mode=translate')
+        submit_dict.update(unit_dict(pootle_path))
+        response = self.client.post(pootle_path + "/translate", submit_dict)
+
         self.assertContains(response, 'just fish')
 
         expectedcontent = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "just fish"\n'
-        response = self.client.get('/ja/pootle/test_plural_submit.po/download')
-        store = Store.objects.get(pootle_path="/ja/pootle/test_plural_submit.po")
+        response = self.client.get(pootle_path+'/download')
+        store = Store.objects.get(pootle_path=pootle_path)
         self.assertTrue(store.file.read().find(expectedcontent) >= 0)
 
 
@@ -339,56 +349,49 @@ msgstr "resto"
         """Tests that we can mark a unit as fuzzy."""
 
         # Fetch the page and check that the fuzzy checkbox is NOT checked.
-
-        response = self.client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
-        self.assertContains(response, '<input type="checkbox"  name="fuzzy0" accesskey="f" id="fuzzy0" class="fuzzycheck" />')
-
+        pootle_path = '/af/pootle/pootle.po'
+        unit_d = unit_dict(pootle_path)
+        response = self.client.get(pootle_path + '/translate')
+        self.assertContains(response, '<input id="id_fuzzy" accesskey="f" type="checkbox" class="fuzzycheck" name="fuzzy" />')
         submit_dict = {
-            'trans0': 'fuzzy translation',
-            'fuzzy0': 'on',
-            'submit0': 'Submit',
-            'store': '/af/pootle/pootle.po',
+            'target_f_0': 'fuzzy translation',
+            'fuzzy': 'on',
+            'submit': 'Submit',
             }
-        submit_dict.update(formset_dict([]))
-        response = self.client.post("/af/pootle/pootle.po", submit_dict,
-                                    QUERY_STRING='view_mode=translate')
+        submit_dict.update(unit_d)
+        response = self.client.post(pootle_path + "/translate", submit_dict)
         # Fetch the page again and check that the fuzzy checkbox IS checked.
-        response = self.client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
-        self.assertContains(response, '<input type="checkbox" checked="checked" name="fuzzy0" accesskey="f" id="fuzzy0" class="fuzzycheck" />')
+        response = self.client.get(pootle_path + "/translate")
+        self.assertContains(response, '<input checked="checked" name="fuzzy" accesskey="f" class="fuzzycheck" type="checkbox" id="id_fuzzy" />')
 
-        store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
-        self.assertTrue(store.getitem(0).isfuzzy())
+        store = Store.objects.get(pootle_path=pootle_path)
+        self.assertTrue(store.units[0].isfuzzy())
 
         # Submit the translation again, without the fuzzy checkbox checked
         submit_dict = {
-            'trans0': 'fuzzy translation',
-            'fuzzy0': '',
-            'submit0': 'Submit',
-            'store': '/af/pootle/pootle.po',
+            'target_f_0': 'fuzzy translation',
+            'fuzzy': '',
+            'submit': 'Submit',
             }
-        submit_dict.update(formset_dict([]))
-        response = self.client.post("/af/pootle/pootle.po", submit_dict,
-                                    QUERY_STRING='view_mode=translate')
+        submit_dict.update(unit_d)
+        response = self.client.post(pootle_path + "/translate", submit_dict)
         # Fetch the page once more and check that the fuzzy checkbox is NOT checked.
-        response = self.client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
-        self.assertContains(response, '<input type="checkbox"  name="fuzzy0" accesskey="f" id="fuzzy0" class="fuzzycheck" />')
-        self.assertFalse(store.getitem(0).isfuzzy())
+        response = self.client.get(pootle_path + "/translate")
+        self.assertContains(response, '<input id="id_fuzzy" accesskey="f" type="checkbox" class="fuzzycheck" name="fuzzy" />')
+        self.assertFalse(store.units[0].isfuzzy())
 
     def test_submit_translator_comments(self):
         """Tests that we can edit translator comments."""
-
+        pootle_path = '/af/pootle/pootle.po'
         submit_dict = {
-            'trans0': 'fish',
-            'translator_comments0': 'goodbye\nand thanks for all the fish',
-            'submit0': 'Submit',
-            'store': '/af/pootle/pootle.po',
+            'target_f_0': 'fish',
+            'translator_comment': 'goodbye\nand thanks for all the fish',
+            'submit': 'Submit',
             }
-        submit_dict.update(formset_dict([]))
-        response = self.client.post("/af/pootle/pootle.po", submit_dict,
-                                    QUERY_STRING='view_mode=translate')
-
-        store = Store.objects.get(pootle_path='/af/pootle/pootle.po')
-        self.assertEqual(store.getitem(0).getnotes(), 'goodbye\nand thanks for all the fish')
+        submit_dict.update(unit_dict(pootle_path))
+        response = self.client.post(pootle_path + "/translate", submit_dict)
+        store = Store.objects.get(pootle_path=pootle_path)
+        self.assertEqual(store.units[0].getnotes(), 'goodbye\nand thanks for all the fish')
 
 
 class NonprivTests(PootleTestCase):
