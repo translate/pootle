@@ -33,18 +33,13 @@ from pootle_misc.templatetags.cleanhtml import fancy_escape
 
 register = template.Library()
 
-def find_altsrcs(unit, profile):
-    altsrcs = []
-    path_fragments = unit.store.pootle_path.split('/')
-    for language in profile.alt_src_langs.iterator():
-        try:
-            path_fragments[1] = language.code
-            pootle_path = '/'.join(path_fragments)
-            altunit = Unit.objects.get(unitid_hash=unit.unitid_hash, target_length__gt=0,
-                                       store__pootle_path=pootle_path)
-            altsrcs.append((language, altunit))
-        except Unit.DoesNotExist:
-            pass
+def find_altsrcs(unit, profile, store=None, project=None):
+    store = store or unit.store
+    project = project or store.translation_project.project
+    altsrcs = Unit.objects.filter(unitid_hash=unit.unitid_hash, store__name=store.name,
+                                 store__translation_project__project=project,
+                                 store__translation_project__language__in=profile.alt_src_langs.all(),
+                                 target_length__gt=0).select_related('store__translation_project__language')
     return altsrcs
 
 def highlight_diffs(old, new):

@@ -13,12 +13,12 @@
   {% if altsrcs %}
   <!--! Alternative source language translation (if enabled and available) -->
   <div class="altsrcs">
-    {% for altlang, altunit in altsrcs %}
-    <div class="translation-text-headers altsrclangname" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">{{ altlang.localname }}</div>
+    {% for altunit in altsrcs %}
+    <div class="translation-text-headers altsrclangname" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">{{ altunit.store.translation_project.language.localname }}</div>
     <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus">
       {% for i, target, title in altunit|pluralize_target %}
       {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-      <div class="translation-text" lang="{{ altlang.code }}" dir="{{ altlang.get_direction }}">{{ target|fancy_highlight }}</div>
+      <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}">{{ target|fancy_highlight }}</div>
       {% endfor %}
     </div>
     {% endfor %}
