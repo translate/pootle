@@ -29,6 +29,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
 from django.db.models.signals import pre_save, post_save, post_init, post_delete
 from django.db.transaction import commit_on_success
+from django.core.cache import cache
 
 
 from translate.storage import base, statsdb, po, poheader
@@ -406,12 +407,17 @@ class Unit(models.Model, base.TranslationUnit):
 
     def get_terminology(self):
         """get terminology suggestions"""
-        #FIXME: need to cache terminology matcher?
-        matcher = self.store.translation_project.gettermmatcher()
-        if matcher is not None:
-            return matcher.matches(self.source)
-        else:
-            return []
+        key = 'terminology_%d' % self.id
+        result = cache.get(key)
+        if result is None:
+            print "terminology miss"
+            matcher = self.store.translation_project.gettermmatcher()
+            if matcher is not None:
+                result = matcher.matches(self.source)
+            else:
+                result = []
+            cache.set(key, result, settings.OBJECT_CACHE_TIMEOUT)
+        return result
 
 def init_baseunit(sender, instance, **kwargs):
     instance.init_nondb_state()
