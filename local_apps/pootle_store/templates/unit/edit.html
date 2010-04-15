@@ -10,7 +10,6 @@
     <div class="translation-text" lang="en">{{ source|fancy_highlight }}</div>
     {% endfor %}
   </div>
-  {% if altsrcs %}
   <!--! Alternative source language translation (if enabled and available) -->
   <div class="altsrcs">
     {% for altunit in altsrcs %}
@@ -23,7 +22,6 @@
     </div>
     {% endfor %}
   </div>
-  {% endif %}
   {% if unit.getcontext %}
   <div class="translate-context">
     {{ unit.getcontext }}
