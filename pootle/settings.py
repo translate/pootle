@@ -223,3 +223,15 @@ else:
             format =  '%(asctime)s %(levelname)s %(message)s',
             )
 
+
+template_cache = {}
+def cache_templates(f):
+    def decorated_f(template_name):
+        if template_name not in template_cache:
+            print "template cache miss"
+            template_cache[template_name] = f(template_name)
+        return template_cache[template_name]
+    return decorated_f
+
+from django.template import loader
+loader.get_template = cache_templates(loader.get_template)
