@@ -34,10 +34,12 @@ register = template.Library()
 def find_altsrcs(unit, profile, store=None, project=None):
     store = store or unit.store
     project = project or store.translation_project.project
-    altsrcs = Unit.objects.filter(unitid_hash=unit.unitid_hash, store__name=store.name,
+    altsrcs = Unit.objects.filter(unitid_hash=unit.unitid_hash,
                                  store__translation_project__project=project,
                                  store__translation_project__language__in=profile.alt_src_langs.all(),
                                  target_length__gt=0).select_related('store', 'store__translation_project', 'store__translation_project__language')
+    if project.get_treestyle() == 'nongnu':
+        altsrcs = altsrcs.filter(store__name=store.name)
     return altsrcs
 
 def highlight_diffs(old, new):
