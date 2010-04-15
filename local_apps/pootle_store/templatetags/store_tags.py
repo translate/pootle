@@ -23,10 +23,8 @@ from django.utils.safestring import mark_safe
 
 from django import template
 from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext
 from django.core.exceptions import  ObjectDoesNotExist
 
-from pootle_app.models.permissions import  check_permission
 from pootle_store.models import Unit
 from pootle_profile.models import get_profile
 from pootle_misc.templatetags.cleanhtml import fancy_escape
@@ -39,7 +37,7 @@ def find_altsrcs(unit, profile, store=None, project=None):
     altsrcs = Unit.objects.filter(unitid_hash=unit.unitid_hash, store__name=store.name,
                                  store__translation_project__project=project,
                                  store__translation_project__language__in=profile.alt_src_langs.all(),
-                                 target_length__gt=0).select_related('store__translation_project__language')
+                                 target_length__gt=0).select_related('store', 'store__translation_project', 'store__translation_project__language')
     return altsrcs
 
 def highlight_diffs(old, new):

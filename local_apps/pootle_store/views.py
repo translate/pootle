@@ -190,7 +190,7 @@ def translate_end(request, translation_project):
     return render_to_response('store/translate_end.html', context, context_instance=RequestContext(request))
 
 
-def translate_page(request, units_queryset):
+def translate_page(request, units_queryset, store=None):
     cantranslate = check_permission("translate", request)
     cansuggest = check_permission("suggest", request)
     canreview = check_permission("review", request)
@@ -241,7 +241,9 @@ def translate_page(request, units_queryset):
         form_class = unit_form_factory(language, len(edit_unit.source.strings))
         form = form_class(instance=edit_unit)
 
-    store = edit_unit.store
+    if store is None:
+        store = edit_unit.store
+
     if pager is None:
         page = store.units.filter(index__lt=edit_unit.index).count() / 10 + 1
         pager = paginate(request, store.units, items=10, page=page)
@@ -270,7 +272,7 @@ def translate_page(request, units_queryset):
         'store': store,
         'pager': pager,
         'language': language,
-        'translation_project': store.translation_project,
+        'translation_project': translation_project,
         'GET_state': '&'.join(GET_vars),
         'checks': checks,
         }
@@ -287,7 +289,7 @@ def translate(request, pootle_path):
     request.translation_project = store.translation_project
     request.permissions = get_matching_permissions(get_profile(request.user), request.translation_project.directory)
 
-    return translate_page(request, store.units)
+    return translate_page(request, store.units, store=store)
 
 def reject_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
