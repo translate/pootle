@@ -54,38 +54,9 @@
 {% endblock precontent %}
 
 {% block content %}
-<div class="nomargin translation-nav">
-  {{ pager|render_pager }}
-</div><br />
-<div class="translate-form">
-  <form action="?{{ GET_state }}" method="post" name="translate" id="translate">
-    <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-      <tr lang="{{ LANGUAGE_CODE }}">
-        <th colspan="1" rowspan="1" class="translate-table-title translate-edit"></th>
-        <th colspan="1" rowspan="1" class="translate-table-title translate-original">{% trans "Original" %}</th>
-        <th colspan="1" rowspan="1" class="translate-table-title translate-translation">{% trans "Translation" %}</th>
-      </tr>
-      {% for unit in pager.object_list %}
-      <tr class="{% cycle 'even' 'odd' %}">
-	<td>
-	  <a href="{{store.pootle_path|l}}/translate?unit={{unit.id}}" id="editlink{{ unit.index }}" title="{% trans 'Edit translation' %}">
-	    <div class="translation-action">{{ unit.index }}</div>
-	  </a>
-	</td>
-	{% ifequal unit form.instance %}
-	{% render_unit_edit form %}
-	{% else %}
-	{% render_unit_view unit %}
-	{% endifequal %}
-      </tr>
-      {% endfor %}
-    </table>
-  </form>
-</div>
-<br />
-<div class="nomargin translation-nav">
-{{ pager|render_pager }}
-</div>
+<form action="?{{ GET_state }}" method="post" name="translate" id="translate">
+{% translate_table %}
+</form>
 {% endblock %}
 
 {% block scripts_extra %}

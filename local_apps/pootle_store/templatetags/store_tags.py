@@ -165,3 +165,8 @@ def render_unit_view(context, unit, show_comments=False):
                      'show_comments': show_comments,
                      }
     return template_vars
+
+@register.inclusion_tag('store/translate_table.html', takes_context=True)
+def translate_table(context):
+    return context
+
