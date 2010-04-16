@@ -29,6 +29,7 @@ from translate.filters import checks
 from translate.lang.data import langcode_re
 
 from pootle_store.util import absolute_real_path, statssum
+from pootle_misc.aggregate import max_column
 from pootle_store.models import Unit
 from pootle_store.filetypes import filetype_choices, factory_classes
 from pootle_misc.util import getfromcache
@@ -66,7 +67,7 @@ class Project(models.Model):
         return self.fullname
 
     def get_mtime(self):
-        return Unit.objects.filter(store__translation_project__project=self).order_by('-mtime').values_list('mtime', flat=True)[0]
+        return max_column(Unit.objects.filter(store__translation_project__project=self), 'mtime', None)
 
     @getfromcache
     def getquickstats(self):

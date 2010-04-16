@@ -25,6 +25,7 @@ from django.db.models.signals import pre_save, post_delete
 from pootle.i18n.gettext import tr_lang, language_dir
 
 from pootle_misc.util import getfromcache
+from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_store.util import statssum
 from pootle_store.models import Unit
@@ -59,7 +60,7 @@ class Language(models.Model):
         return u"%s - %s" % (self.localname(), self.code)
 
     def get_mtime(self):
-        return Unit.objects.filter(store__translation_project__language=self).order_by('-mtime').values_list('mtime', flat=True)[0]
+        return max_column(Unit.objects.filter(store__translation_project__language=self), 'mtime', None)
 
     @getfromcache
     def getquickstats(self):

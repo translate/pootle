@@ -37,7 +37,7 @@ from translate.storage import base, versioncontrol
 from pootle.scripts                import hooks
 from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.baseurl import l
-from pootle_misc.aggregate import group_by_count
+from pootle_misc.aggregate import group_by_count, max_column
 from pootle_store.util import calculate_stats
 from pootle_store.models           import Store, Unit, QualityCheck, PARSED, CHECKED
 from pootle_store.util             import relative_real_path, absolute_real_path
@@ -147,7 +147,7 @@ class TranslationProject(models.Model):
             store.sync(update_translation=True, update_structure=not conservative, conservative=conservative, create=True)
 
     def get_mtime(self):
-        return Unit.objects.filter(store__translation_project=self).order_by('-mtime').values_list('mtime', flat=True)[0]
+        return max_column(Unit.objects.filter(store__translation_project=self), 'mtime', None)
 
     def require_units(self):
         """makes sure all stores are parsed"""

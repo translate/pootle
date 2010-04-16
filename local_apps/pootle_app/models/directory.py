@@ -26,6 +26,7 @@ from pootle_store.util import empty_quickstats, empty_completestats, statssum, c
 from pootle_store.models import Suggestion, Unit
 
 from pootle_misc.util import getfromcache, dictsum
+from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 
 class DirectoryManager(models.Manager):
@@ -75,7 +76,7 @@ class Directory(models.Model):
             return self
 
     def get_mtime(self):
-        return Unit.objects.filter(store__pootle_path__startswith=self.pootle_path).order_by('-mtime').values_list('mtime', flat=True)[0]
+        return max_column(Unit.objects.filter(store__pootle_path__startswith=self.pootle_path), 'mtime', None)
 
     def _get_stores(self):
         """queryset with all descending stores"""

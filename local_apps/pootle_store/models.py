@@ -458,7 +458,7 @@ class Store(models.Model, base.TranslationStore):
         unique_together = ('parent', 'name')
 
     def get_mtime(self):
-        return self.units.order_by('-mtime').values_list('mtime', flat=True)[0]
+        return max_column(self.units, 'mtime', None)
 
     def handle_file_update(self, sender, **kwargs):
         deletefromcache(self, ["getquickstats", "getcompletestats"])
