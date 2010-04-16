@@ -29,7 +29,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.core.exceptions import PermissionDenied
 from django.utils import simplejson
-
+from django.views.decorators.cache import never_cache
 
 from pootle_misc.baseurl import redirect
 from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
@@ -278,6 +278,7 @@ def translate_page(request, units_queryset, store=None):
         }
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
 
+@never_cache
 def translate(request, pootle_path):
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
