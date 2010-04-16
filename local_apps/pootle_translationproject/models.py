@@ -479,6 +479,7 @@ class TranslationProject(models.Model):
                     return match.terminologymatcher(termbase), newmtime
 
         if self.non_db_state.termmatcher is None:
+            self.require_units()
             try:
                 self.non_db_state.termmatcher, self.non_db_state.termmatchermtime = self.gettermbase(make_matcher)
             except StopIteration:
