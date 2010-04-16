@@ -27,6 +27,7 @@ from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 from pootle_store.util import statssum
+from pootle_store.models import Unit
 from pootle_app.lib.util import RelatedManager
 
 class Language(models.Model):
@@ -56,6 +57,9 @@ class Language(models.Model):
 
     def __unicode__(self):
         return u"%s - %s" % (self.localname(), self.code)
+
+    def get_mtime(self):
+        return Unit.objects.filter(store__translation_project__language=self).order_by('-mtime').values_list('mtime', flat=True)[0]
 
     @getfromcache
     def getquickstats(self):

@@ -147,6 +147,9 @@ class TranslationProject(models.Model):
         for store in self.stores.exclude(file='').filter(state__gte=PARSED).iterator():
             store.sync(update_translation=True, update_structure=not conservative, conservative=conservative, create=True)
 
+    def get_mtime(self):
+        return Unit.objects.filter(store__translation_project=self).order_by('-mtime').values_list('mtime', flat=True)[0]
+
     @getfromcache
     def getquickstats(self):
         if self.is_template_project:
