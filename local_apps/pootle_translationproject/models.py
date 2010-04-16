@@ -26,7 +26,7 @@ import logging
 
 from django.conf                   import settings
 from django.db                     import models
-from django.db.models.signals      import post_init, pre_save, post_save, post_delete
+from django.db.models.signals      import pre_save, post_save, post_delete
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 
@@ -49,7 +49,6 @@ from pootle_language.models    import Language
 from pootle_app.models.directory   import Directory
 from pootle_app                    import project_tree
 from pootle_app.models.permissions import check_permission
-from translate.storage import statsdb
 from pootle_app.models.signals import post_vc_update, post_vc_commit
 
 
@@ -389,7 +388,7 @@ class TranslationProject(models.Model):
             return False
         # check if the pomtime in the index == the latest pomtime
         try:
-            pomtime = str(hash(statsdb.get_mod_info(store.file.path))**2)
+            pomtime = str(hash(store.get_mtime())**2)
             pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)], True)
             pomtimequery = indexer.make_query([("pomtime", pomtime)], True)
             gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
@@ -468,7 +467,7 @@ class TranslationProject(models.Model):
     def gettermmatcher(self):
         """returns the terminology matcher"""
         def make_matcher(termbase):
-            newmtime = termbase.pomtime
+            newmtime = termbase.get_mtime()
             if newmtime != self.non_db_state.termmatchermtime:
                 if self.is_terminology_project:
                     return match.terminologymatcher(self.stores.iterator()), newmtime
@@ -531,11 +530,6 @@ pre_save.connect(set_data, sender=TranslationProject)
 def delete_directory(sender, instance, **kwargs):
     instance.directory.delete()
 post_delete.connect(delete_directory, sender=TranslationProject)
-
-def add_pomtime(sender, instance, **kwargs):
-    instance.pomtime = 0
-
-post_init.connect(add_pomtime, sender=TranslationProject)
 
 def scan_languages(sender, instance, **kwargs):
     for language in Language.objects.iterator():
