@@ -47,11 +47,12 @@ try:
 
 except ImportError:
     from pootle_misc.util import dictsum
+    from django.core.exceptions import ObjectDoesNotExist
 
     def max_column(queryset, column, default):
         try:
-            return max(queryset.values_list(column, flat=True))
-        except ValueError:
+            return queryset.order_by('-'+column).values_list(column, flat=True)[0]
+        except ObjectDoesNotExist:
             return default
 
 
