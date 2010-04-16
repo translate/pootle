@@ -149,12 +149,16 @@ class TranslationProject(models.Model):
     def get_mtime(self):
         return Unit.objects.filter(store__translation_project=self).order_by('-mtime').values_list('mtime', flat=True)[0]
 
+    def require_units(self):
+        """makes sure all stores are parsed"""
+        for store in self.stores.filter(state__lt=PARSED).iterator():
+            store.require_units()
+
     @getfromcache
     def getquickstats(self):
         if self.is_template_project:
             return empty_quickstats
-        for store in self.stores.filter(state__lt=PARSED).iterator():
-            store.require_units()
+        self.require_units()
         return calculate_stats(Unit.objects.filter(store__translation_project=self))
 
     @getfromcache
