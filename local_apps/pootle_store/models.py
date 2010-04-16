@@ -127,6 +127,11 @@ class Unit(models.Model, base.TranslationUnit):
     fuzzy = models.BooleanField(default=False)
     obsolete = models.BooleanField(default=False, editable=False)
 
+    mtime = models.DateTimeField(auto_now=True, auto_now_add=True, db_index=True, editable=False)
+
+    def get_mtime(self):
+        return self.mtime
+
     def init_nondb_state(self):
         self._rich_source = None
         self._rich_target = None
@@ -450,6 +455,9 @@ class Store(models.Model, base.TranslationStore):
     class Meta:
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
+
+    def get_mtime(self):
+        return self.units.order_by('-mtime').values_list('mtime', flat=True)[0]
 
     def handle_file_update(self, sender, **kwargs):
         deletefromcache(self, ["getquickstats", "getcompletestats"])
