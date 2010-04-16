@@ -31,6 +31,7 @@ def pootle_context(request):
             'DESCRIPTION': settings.DESCRIPTION,
             'CAN_REGISTER': settings.CAN_REGISTER,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
+            'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
         },
     }
     return context
