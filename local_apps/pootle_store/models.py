@@ -379,6 +379,7 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.target = translation
         try:
             suggestion.save()
+            self.save()
         except:
             # probably duplicate suggestion
             return None
