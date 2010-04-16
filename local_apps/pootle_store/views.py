@@ -283,8 +283,7 @@ def translate(request, pootle_path):
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
     try:
-        store = Store.objects.select_related('translation_project', 'translation_project__directory',
-                                             'translation_project__language', 'translation_project__project', 'parent').get(pootle_path=pootle_path)
+        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
     except Store.DoesNotExist:
         raise Http404
     request.translation_project = store.translation_project
