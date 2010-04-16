@@ -1,5 +1,5 @@
 {% extends "tp_base_extended.html" %}
-{% load i18n render_pager baseurl store_tags %}
+{% load i18n baseurl store_tags cache %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
@@ -23,11 +23,13 @@
 {% block search_action %}?{% endblock %}
 
 {% block breadcrumbs_content %}
+{% cache settings.CACHE_TIMEOUT tr_bread store.id LANGUAGE_CODE %}
 <a href="{{ language.pootle_path|l }}">{{ language.localname }}</a> » <a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a> » 
 {% for ancestor in store.ancestors %}
 <a href="{{ ancestor.pootle_path|l}}">{{ ancestor.name }}</a> / 
 {% endfor %}
 <a href="{{ store.pootle_path|l}}/translate">{{ store.name }}</a>
+{% endcache %}
 {% endblock %}
 
 {% block innernav %}
@@ -55,7 +57,9 @@
 
 {% block content %}
 <form action="?{{ GET_state }}" method="post" name="translate" id="translate">
+{% cache settings.CACHE_TIMEOUT translate_table edit_unit.id store.get_mtime cantranslate cansuggest canreview LANGUAGE_CODE %}
 {% translate_table %}
+{% endcache %}
 </form>
 {% endblock %}
 
@@ -69,3 +73,4 @@
 <script src='{{ "js/translatepage.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.fieldselection.js"|m }}' type="text/javascript"></script>
 {% endblock scripts_extra %}
+
