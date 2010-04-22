@@ -32,7 +32,6 @@ from django.db.transaction import commit_on_success
 
 from translate.storage import base, statsdb, po, poheader
 from translate.misc.hash import md5_f
-from translate.misc.multistring import multistring
 
 from pootle.__version__ import sver as pootle_version
 
@@ -42,7 +41,7 @@ from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 
 from pootle_store.fields  import TranslationStoreField, MultiStringField
-from pootle_store.signals import translation_file_updated, post_unit_update
+from pootle_store.signals import translation_file_updated
 from pootle_store.util import calculate_stats, empty_quickstats
 from pootle_store.filetypes import factory_classes
 
@@ -354,40 +353,10 @@ class Unit(models.Model, base.TranslationUnit):
     def delalttrans(self, alternative):
         alternative.delete()
 
-###################### Translation ################################
-    def update_from_form(self, newvalues):
-        """update the unit with a new target, value, comments or fuzzy state"""
-        if newvalues.has_key('target'):
-            if not self.hasplural() and not isinstance(newvalues['target'], basestring):
-                self.target = newvalues['target'][0]
-            else:
-                self.target = newvalues['target']
-
-        if newvalues.has_key('fuzzy'):
-            self.markfuzzy(newvalues['fuzzy'])
-
-        if newvalues.has_key('translator_comments'):
-            self.addnote(newvalues['translator_comments'],
-                         origin="translator", position="replace")
-
 ##################### Suggestions #################################
     def get_suggestions(self):
         return self.suggestion_set.select_related('user').all()
 
-    def get_suggestion(self, item, translation):
-        translation = multistring(translation)
-        try:
-            suggestion = self.get_suggestions()[item]
-            if suggestion.target == translation:
-                return suggestion
-        except IndexError:
-            pass
-
-        try:
-            suggestion = self.suggestion_set.get(target_hash=md5_f(translation.encode("utf-8")).hexdigest())
-            return suggestion
-        except Suggestion.DoesNotExist:
-            pass
 
     def add_suggestion(self, translation, user=None):
         suggestion = Suggestion(unit=self, user=user)
@@ -766,24 +735,6 @@ class Store(models.Model, base.TranslationStore):
             self.file.store.updateheader(add=True, **headerupdates)
         return had_header
 
-    def updateunit(self, item, newvalues, user=None):
-        """Updates a translation with a new target value, comments, or fuzzy
-        state."""
-        # operation replaces file, make sure we have latest copy
-        oldstats = self.getquickstats()
-
-        unit = self.getitem(item)
-        unit.update_from_form(newvalues)
-        unit.save()
-
-        if settings.AUTOSYNC:
-            unit.sync(unit.getorig())
-            self.updateheader(user)
-            self.file.savestore()
-
-        newstats = self.getquickstats()
-        post_unit_update.send(sender=self, oldstats=oldstats, newstats=newstats)
-
 ############################## Suggestions #################################
 
     def initpending(self, create=False):
@@ -835,54 +786,6 @@ class Store(models.Model, base.TranslationStore):
                     return suggestions
         return []
 
-    def getsuggestions(self, item):
-        unit = self.getitem(item)
-        return self.getsuggestions_unit(unit)
-
-
-    def suggestion_is_unique(self, unit, newtarget):
-        """check for duplicate suggestions"""
-        if unit.target == newtarget:
-            return False
-
-        for suggestion in self.getsuggestions_unit(unit):
-            if suggestion.target == newtarget:
-                return False
-
-        return True
-
-    def addunitsuggestion(self, unit, newunit, username):
-        """adds suggestion for the given unit"""
-        if not self.suggestion_is_unique(unit, newunit.target):
-            return
-
-        if self.file.store.suggestions_in_format:
-            unit.addalttrans(newunit.target, origin=username)
-        else:
-            newunit = self.pending.store.UnitClass.buildfromunit(newunit)
-            if username is not None:
-                newunit.msgidcomment = 'suggested by %s [%d]' % (username, hash(newunit.target))
-            self.pending.addunit(newunit)
-
-    def addsuggestion(self, item, suggtarget, username):
-        """adds a new suggestion for the given item"""
-        unit = self.getitem(item)
-
-        if self.file.store.suggestions_in_format:
-            # probably xliff, which can't do unit copies and doesn't
-            # need a unit to add suggestions anyway. so let's shortcut
-            # and insert suggestion here
-            if self.suggestion_is_unique(unit, suggtarget):
-                unit.addalttrans(suggtarget, origin=username)
-                self.file.savestore()
-        else:
-            self.initpending(create=True)
-            newpo = self.pending.store.UnitClass.buildfromunit(unit)
-            newpo.target = suggtarget
-            newpo.markfuzzy(False)
-            self.addunitsuggestion(unit, newpo, username)
-            self.pending.savestore()
-
     def _deletesuggestion(self, item, suggestion):
         if self.file.store.suggestions_in_format:
             unit = self.getitem(item)
@@ -893,35 +796,6 @@ class Store(models.Model, base.TranslationStore):
             except ValueError:
                 logging.error('Found an index error attempting to delete a suggestion: %s', suggestion)
                 return  # TODO: Print a warning for the user.
-
-    def deletesuggestion(self, item, suggitem, newtrans):
-        """removes the suggestion from the pending file"""
-        suggestions = self.getsuggestions(item)
-
-        try:
-            # first try to use index
-            suggestion = self.getsuggestions(item)[suggitem]
-            if suggestion.hasplural() and suggestion.target.strings == newtrans or \
-                   not suggestion.hasplural() and suggestion.target == newtrans[0]:
-                self._deletesuggestion(item, suggestion)
-            else:
-                # target doesn't match suggested translation, index is
-                # incorrect
-                raise IndexError
-        except IndexError:
-            logging.debug('Found an index error attempting to delete suggestion %d\n looking for item by target', suggitem)
-            # see if we can find the correct suggestion by searching
-            # for target text
-            for suggestion in suggestions:
-                if suggestion.hasplural() and suggestion.target.strings == newtrans or \
-                       not suggestion.hasplural() and suggestion.target == newtrans[0]:
-                    self._deletesuggestion(item, suggestion)
-                    break
-
-        if self.file.store.suggestions_in_format:
-            self.file.savestore()
-        else:
-            self.pending.savestore()
 
     def getsuggester(self, item, suggitem):
         """returns who suggested the given item's suggitem if
@@ -942,15 +816,6 @@ class Store(models.Model, base.TranslationStore):
 def set_store_pootle_path(sender, instance, **kwargs):
     instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
 pre_save.connect(set_store_pootle_path, sender=Store)
-
-def store_post_init(sender, instance, **kwargs):
-    translation_file_updated.connect(instance.handle_file_update, sender=instance.file)
-    if instance.pending is not None:
-        #FIXME: we probably want another method for pending, to avoid
-        # invalidating stats that are not affected by suggestions
-        translation_file_updated.connect(instance.handle_file_update, sender=instance.pending)
-
-post_init.connect(store_post_init, sender=Store)
 
 def store_post_delete(sender, instance, **kwargs):
     deletefromcache(instance, ["getquickstats", "getcompletestats"])
