@@ -260,6 +260,10 @@ class Unit(models.Model, base.TranslationUnit):
             self.unitid = unit.getid()
             self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
             changed = True
+        if hasattr(unit, 'getalttrans'):
+            for suggestion in unit.getalttrans():
+                self.add_suggestion(suggestion.target, touch=False)
+                changed = True
         return changed
 
     def update_qualitychecks(self, created=False):
