@@ -345,8 +345,8 @@ class Unit(models.Model, base.TranslationUnit):
         newunit.update(unit)
         return newunit
 
-    def addalttrans(self, txt):
-        self.add_suggestion(txt)
+    def addalttrans(self, txt, origin=None):
+        self.add_suggestion(txt, user=origin)
 
     def getalttrans(self):
         return self.get_suggestions()
