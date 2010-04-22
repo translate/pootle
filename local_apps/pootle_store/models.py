@@ -357,13 +357,14 @@ class Unit(models.Model, base.TranslationUnit):
     def get_suggestions(self):
         return self.suggestion_set.select_related('user').all()
 
+    def add_suggestion(self, translation, user=None, touch=True):
 
-    def add_suggestion(self, translation, user=None):
         suggestion = Suggestion(unit=self, user=user)
         suggestion.target = translation
         try:
             suggestion.save()
-            self.save()
+            if touch:
+                self.save()
         except:
             # probably duplicate suggestion
             return None
