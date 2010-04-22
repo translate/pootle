@@ -378,12 +378,12 @@ class Unit(models.Model, base.TranslationUnit):
 
         self.target = suggestion.target
         self.save()
+        suggestion.delete()
         if settings.AUTOSYNC:
             #FIXME: update alttrans
             self.sync(self.getorig())
             self.store.updateheader(suggestion.user)
             self.file.savestore()
-        suggestion.delete()
         return True
 
     def reject_suggestion(self, suggid):
