@@ -176,6 +176,9 @@ class Unit(models.Model, base.TranslationUnit):
             newunit.addnote(notes, origin="translator")
         newunit.setid(self.getid())
         newunit.setcontext(self.getcontext())
+        if hasattr(newunit, "addalttrans"):
+            for suggestion in self.get_suggestions().iterator():
+                newunit.addalttrans(suggestion.target, origin=unicode(suggestion.user))
         return newunit
 
     def __repr__(self):
@@ -206,6 +209,14 @@ class Unit(models.Model, base.TranslationUnit):
         unit.markfuzzy(self.isfuzzy())
         if self.isobsolete():
             unit.makeobsolete()
+
+        if hasattr(unit, 'addalttrans') and self.get_suggestions().count():
+            alttranslist = [alttrans.target for alttrans in unit.getalttrans()]
+            for suggestion in self.get_suggestions().iterator():
+                if suggestion.target in alttranslist:
+                    # don't add duplicate suggestion
+                    continue
+                unit.addalttrans(suggestion.target, unicode(suggestion.user))
 
     def update(self, unit):
         """update indb translation from file"""
