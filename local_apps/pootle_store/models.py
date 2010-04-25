@@ -411,7 +411,12 @@ post_init.connect(init_baseunit, sender=Unit)
 
 def unit_post_save(sender, instance, created, **kwargs):
     if not instance.store.state < CHECKED:
+        # update quality checks
         instance.update_qualitychecks(created)
+    if not created and instance.store:
+        # flush caches
+        deletefromcache(instance.store,
+                        ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
 post_save.connect(unit_post_save, sender=Unit)
 
 ###################### Store ###########################
@@ -448,9 +453,6 @@ class Store(models.Model, base.TranslationStore):
     def get_mtime(self):
         return max_column(self.units, 'mtime', None)
 
-    def handle_file_update(self, sender, **kwargs):
-        deletefromcache(self, ["getquickstats", "getcompletestats"])
-
     def _get_abs_real_path(self):
         if self.file:
             return self.file.path
@@ -472,6 +474,8 @@ class Store(models.Model, base.TranslationStore):
         """make sure file is parsed and units are created"""
         if self.state < PARSED and self.unit_set.count() == 0:
             self.update(update_structure=True, update_translation=True, conservative=False)
+            # new units, let's flush cache
+            deletefromcache(self, ["getquickstats", "get_mtime", "has_suggestions"])
 
     def require_dbid_index(self, update=False):
         """build a quick mapping index between unit ids and database ids"""
@@ -529,6 +533,8 @@ class Store(models.Model, base.TranslationStore):
         """make sure quality checks are run"""
         if self.state < CHECKED:
             self.update_qualitychecks()
+            # new qualitychecks, let's flush cache
+            deletefromcache(self, ["getcompletestats"])
 
     @commit_on_success
     def update_qualitychecks(self):
