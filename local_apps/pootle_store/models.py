@@ -417,6 +417,10 @@ def unit_post_save(sender, instance, created, **kwargs):
         # flush caches
         deletefromcache(instance.store,
                         ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
+    if not created and instance.store and instance.store.translation_project:
+        store = instance.store
+        translation_project = store.translation_project
+        translation_project.update_index(translation_project.indexer, store, instance.id)
 post_save.connect(unit_post_save, sender=Unit)
 
 ###################### Store ###########################
@@ -474,8 +478,12 @@ class Store(models.Model, base.TranslationStore):
         """make sure file is parsed and units are created"""
         if self.state < PARSED and self.unit_set.count() == 0:
             self.update(update_structure=True, update_translation=True, conservative=False)
+            if self.translation_project:
+                # update search index
+                self.translation_project.update_index(self.translation_project.indexer, self)
             # new units, let's flush cache
             deletefromcache(self, ["getquickstats", "get_mtime", "has_suggestions"])
+
 
     def require_dbid_index(self, update=False):
         """build a quick mapping index between unit ids and database ids"""
