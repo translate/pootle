@@ -366,7 +366,7 @@ class TranslationProject(models.Model):
     def init_index(self, indexer):
         """initializes the search index"""
         #FIXME: stop relying on pomtime so virtual files can be searchable?
-        for store in self.stores.exclude(file='').iterator():
+        for store in self.stores.iterator():
             self.update_index(indexer, store, optimize=False)
 
 
