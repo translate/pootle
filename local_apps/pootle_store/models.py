@@ -444,6 +444,7 @@ class Store(models.Model, base.TranslationStore):
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
 
+    @getfromcache
     def get_mtime(self):
         return max_column(self.units, 'mtime', None)
 
@@ -666,6 +667,7 @@ class Store(models.Model, base.TranslationStore):
         queryset = QualityCheck.objects.filter(unit__store=self)
         return group_by_count(queryset, 'name')
 
+    @getfromcache
     def has_suggestions(self):
         """check if any unit in store has suggestions"""
         return Suggestion.objects.filter(unit__store=self).count() > 0

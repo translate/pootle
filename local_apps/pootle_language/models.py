@@ -59,6 +59,7 @@ class Language(models.Model):
     def __unicode__(self):
         return u"%s - %s" % (self.localname(), self.code)
 
+    @getfromcache
     def get_mtime(self):
         return max_column(Unit.objects.filter(store__translation_project__language=self), 'mtime', None)
 

@@ -75,6 +75,7 @@ class Directory(models.Model):
         else:
             return self
 
+    @getfromcache
     def get_mtime(self):
         return max_column(Unit.objects.filter(store__pootle_path__startswith=self.pootle_path), 'mtime', None)
 

@@ -66,6 +66,7 @@ class Project(models.Model):
     def __unicode__(self):
         return self.fullname
 
+    @getfromcache
     def get_mtime(self):
         return max_column(Unit.objects.filter(store__translation_project__project=self), 'mtime', None)
 

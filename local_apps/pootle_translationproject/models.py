@@ -146,6 +146,7 @@ class TranslationProject(models.Model):
         for store in self.stores.exclude(file='').filter(state__gte=PARSED).iterator():
             store.sync(update_translation=True, update_structure=not conservative, conservative=conservative, create=True)
 
+    @getfromcache
     def get_mtime(self):
         return max_column(Unit.objects.filter(store__translation_project=self), 'mtime', None)
 
