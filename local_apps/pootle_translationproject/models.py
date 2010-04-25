@@ -32,7 +32,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
 from translate.search  import match, indexing
-from translate.storage import base, versioncontrol
+from translate.storage import versioncontrol
 
 from pootle.scripts                import hooks
 from pootle_misc.util import getfromcache, dictsum
@@ -370,7 +370,7 @@ class TranslationProject(models.Model):
             self.update_index(indexer, store, optimize=False)
 
 
-    def update_index(self, indexer, store, item=None, optimize=True):
+    def update_index(self, indexer, store, unitid=None, optimize=True):
         """updates the index with the contents of pofilename (limit to items if given)
 
         There are three reasons for calling this function:
@@ -386,8 +386,8 @@ class TranslationProject(models.Model):
                  WARNING: You have to stop the pootle server before manually changing
                  po files, if you want to keep the index database in sync.
 
-        @param items: item number within the po file OR None (=rebuild all)
-        @type item: int
+        @param unitid: pk of unit within the po file OR None (=rebuild all)
+        @type unitid: int
         @param optimize: should the indexing database be optimized afterwards
         @type optimize: bool
         """
@@ -395,62 +395,57 @@ class TranslationProject(models.Model):
         if indexer == None:
             return False
         # check if the pomtime in the index == the latest pomtime
-        try:
-            pomtime = str(hash(store.get_mtime())**2)
-            pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)], True)
-            pomtimequery = indexer.make_query([("pomtime", pomtime)], True)
-            gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
-            gooditemsnum = indexer.get_query_result(gooditemsquery).get_matches_count()
-            # if there is at least one up-to-date indexing item, then the po file
-            # was not changed externally -> no need to update the database
-            units = None
-            if (gooditemsnum > 0) and (not item):
-                # nothing to be done
-                return
-            elif item is not None:
-                # Update only specific item - usually translation via the web
-                # interface. All other items should still be up-to-date (even with an
-                # older pomtime).
-                # delete the relevant item from the database
-                unit = store.getitem(item)
-                units = [unit]
-                itemsquery = indexer.make_query([("itemno", str(unit.index))], False)
-                indexer.delete_doc([pofilenamequery, itemsquery])
-            else:
-                # (item is None)
-                # The po file is not indexed - or it was changed externally 
-                # delete all items of this file
-                indexer.delete_doc({"pofilename": store.pootle_path})
-                units = store.units
-            addlist = []
-            for unit in units:
-                doc = {"pofilename": store.pootle_path,
-                       "pomtime": str(pomtime),
-                       "itemno": str(unit.index),
-                       "dbid": str(unit.id),
-                       }
-                if unit.hasplural():
-                    orig = "\n".join(unit.source.strings)
-                    trans = "\n".join(unit.target.strings)
-                else:
-                    orig = unit.source
-                    trans = unit.target
-                doc["source"] = orig
-                doc["target"] = trans
-                doc["notes"] = unit.getnotes()
-                doc["locations"] = unit.getlocations()
-                addlist.append(doc)
-            if addlist:
-                indexer.begin_transaction()
-                try:
-                    for add_item in addlist:
-                        indexer.index_document(add_item)
-                finally:
-                    indexer.commit_transaction()
-                    indexer.flush(optimize=optimize)
-        except (base.ParseError, IOError, OSError):
+        pomtime = str(hash(store.get_mtime())**2)
+        pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)], True)
+        pomtimequery = indexer.make_query([("pomtime", pomtime)], True)
+        gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
+        gooditemsnum = indexer.get_query_result(gooditemsquery).get_matches_count()
+        # if there is at least one up-to-date indexing item, then the po file
+        # was not changed externally -> no need to update the database
+        units = None
+        if (gooditemsnum > 0) and (not unitid):
+            # nothing to be done
+            return
+        elif unitid is not None:
+            # Update only specific item - usually translation via the web
+            # interface. All other items should still be up-to-date (even with an
+            # older pomtime).
+            # delete the relevant item from the database
+            units = store.units.filter(id=unitid)
+            itemsquery = indexer.make_query([("dbid", str(unitid))], False)
+            indexer.delete_doc([pofilenamequery, itemsquery])
+        else:
+            # (item is None)
+            # The po file is not indexed - or it was changed externally 
+            # delete all items of this file
             indexer.delete_doc({"pofilename": store.pootle_path})
-            logging.error("Not indexing %s, since it is corrupt", store.pootle_path)
+            units = store.units
+        addlist = []
+        for unit in units:
+            doc = {"pofilename": store.pootle_path,
+                   "pomtime": pomtime,
+                   "itemno": str(unit.index),
+                   "dbid": str(unit.id),
+                   }
+            if unit.hasplural():
+                orig = "\n".join(unit.source.strings)
+                trans = "\n".join(unit.target.strings)
+            else:
+                orig = unit.source
+                trans = unit.target
+            doc["source"] = orig
+            doc["target"] = trans
+            doc["notes"] = unit.getnotes()
+            doc["locations"] = unit.getlocations()
+            addlist.append(doc)
+        if addlist:
+            indexer.begin_transaction()
+            try:
+                for add_item in addlist:
+                    indexer.index_document(add_item)
+            finally:
+                indexer.commit_transaction()
+                indexer.flush(optimize=optimize)
 
     ########################################################################################
 
