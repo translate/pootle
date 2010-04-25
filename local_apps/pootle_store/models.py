@@ -594,16 +594,23 @@ class Store(models.Model, base.TranslationStore):
             output.addunit(unit.convert(output.UnitClass))
         return output
 
-    def ancestors(self):
+    def ancestors(self, only_dirs=True):
         """return list of ancestor directories excluding TranslationProject and above"""
+        path_parts = self.pootle_path.split('/')
         parents = []
-        parent = self.parent
-        while parent != self.translation_project.directory:
-            parents.append(parent)
-            parent = parent.parent
+        if only_dirs:
+            # skip language, and translation_project directories
+            start = 4
+        else:
+            start = 2
 
-        parents.reverse()
-        return parents
+        for i in xrange(start, len(path_parts)):
+            path = '/'.join(path_parts[:i]) + '/'
+            parents.append(path)
+        from pootle_app.models.directory import Directory
+        if parents:
+            return Directory.objects.filter(pootle_path__in=parents).order_by('-pootle_path')
+        return Directory.objects.none()
 
 ######################## TranslationStore #########################
 
