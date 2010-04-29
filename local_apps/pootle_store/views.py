@@ -65,10 +65,26 @@ def download(request, pootle_path):
 
 ####################### Translate Page ##############################
 
+def get_non_indexed_search_step_query(form, units_queryset):
+    result = units_queryset
+    for word in form.cleaned_data['search'].split():
+        subresult = units_queryset.none()
+        if 'source' in form.cleaned_data['sfields']:
+            subresult = subresult | units_queryset.filter(source_f__contains=word)
+        if 'target' in form.cleaned_data['sfields']:
+            subresult = subresult | units_queryset.filter(target_f__contains=word)
+        if 'notes' in form.cleaned_data['sfields']:
+            subresult = subresult | units_queryset.filter(developer_comment__contains=word) | \
+                     units_queryset.filter(translator_comment__contains=word)
+        if 'locations' in form.cleaned_data['sfields']:
+            subresult = subresult | units_queryset.filter(locations__contains=word)
+        result = subresult & result
+    return result
+
 def get_search_step_query(translation_project, form, units_queryset):
     """Narrows down units query to units matching search string"""
     if translation_project.indexer is None:
-        return None
+        return get_non_indexed_search_step_query(form, units_queryset)
 
     searchparts = []
     for word in form.cleaned_data['search'].split():
