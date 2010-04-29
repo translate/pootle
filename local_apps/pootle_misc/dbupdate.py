@@ -26,7 +26,9 @@ from pootle.i18n.gettext import ugettext as _
 from pootle.i18n.gettext import ungettext
 
 from pootle_store.models import Store
-
+from pootle_language.models import Language
+from pootle_project.models import Project
+from pootle_misc.dbinit import stats_start, stats_language, stats_project, stats_end
 
 def header(db_buildversion):
     text = """
@@ -184,6 +186,17 @@ def staggered_update(db_buildversion):
             yield parse_store(store)
             yield import_suggestions(store)
         yield parse_end()
+
+    # first time to visit the front page all stats for projects and
+    # languages will be calculated which can take forever, since users
+    # don't like webpages that take forever let's precalculate the
+    # stats here (copied from dbinit)
+    yield stats_start()
+    for language in Language.objects.iterator():
+        yield stats_language(language)
+    for project in Project.objects.iterator():
+        yield stats_project(project)
+    yield stats_end()
 
     yield footer()
     # bring back stdout
