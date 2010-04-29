@@ -844,5 +844,5 @@ def set_store_pootle_path(sender, instance, **kwargs):
 pre_save.connect(set_store_pootle_path, sender=Store)
 
 def store_post_delete(sender, instance, **kwargs):
-    deletefromcache(instance, ["getquickstats", "getcompletestats"])
+    deletefromcache(instance, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
 post_delete.connect(store_post_delete, sender=Store)
