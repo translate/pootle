@@ -787,7 +787,7 @@ class Store(models.Model, base.TranslationStore):
     def import_pending(self):
         """import suggestions from legacy .pending files, into database"""
         self.init_pending()
-        if self.pending is None:
+        if not self.pending:
             return
 
         for sugg in [sugg for sugg in self.pending.store.units if sugg.istranslatable() and sugg.istranslated()]:
