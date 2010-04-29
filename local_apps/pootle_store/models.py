@@ -691,7 +691,7 @@ class Store(models.Model, base.TranslationStore):
     @getfromcache
     def has_suggestions(self):
         """check if any unit in store has suggestions"""
-        return Suggestion.objects.filter(unit__store=self).count() > 0
+        return Suggestion.objects.filter(unit__store=self).count()
 
 ################################ Translation #############################
 
