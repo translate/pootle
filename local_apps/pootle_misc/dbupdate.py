@@ -129,6 +129,7 @@ def import_suggestions(store):
 
 def parse_store(store):
     try:
+        store.require_units()
         count = store.getquickstats()['total']
         text = u"""
         <li>%s</li>
