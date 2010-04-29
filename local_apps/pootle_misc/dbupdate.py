@@ -109,6 +109,24 @@ def parse_start():
     """ % _('importing units into database, this will take a few minutes.')
     return text
 
+def import_suggestions(store):
+    try:
+        store.import_pending()
+        count = store.has_suggestions()
+        if count:
+            text = u"""
+            <li>%s</li>
+            """ % ungettext('imported %(count)d suggestion from %(store)s',
+                            'imported %(count)d suggestions from %(store)s',
+                            count, {'count': count, 'store': store.pootle_path})
+        else:
+            text = ""
+    except:
+        text = u"""
+        <li>%s</li>
+        """ % _('Failed to import suggestions from %s', store.pootle_path)
+    return text
+
 def parse_store(store):
     try:
         count = store.getquickstats()['total']
@@ -163,6 +181,7 @@ def staggered_update(db_buildversion):
             store.translation_project = store.parent.get_translationproject()
             store.save()
             yield parse_store(store)
+            yield import_suggestions(store)
         yield parse_end()
 
     yield footer()

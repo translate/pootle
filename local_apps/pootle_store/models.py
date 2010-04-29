@@ -41,7 +41,6 @@ from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 
 from pootle_store.fields  import TranslationStoreField, MultiStringField
-from pootle_store.signals import translation_file_updated
 from pootle_store.util import calculate_stats, empty_quickstats
 from pootle_store.filetypes import factory_classes
 
@@ -761,80 +760,62 @@ class Store(models.Model, base.TranslationStore):
             self.file.store.updateheader(add=True, **headerupdates)
         return had_header
 
-############################## Suggestions #################################
+############################## Pending Files #################################
 
-    def initpending(self, create=False):
+    def init_pending(self):
         """initialize pending translations file if needed"""
-        #FIXME: we parse file just to find if suggestions can be
-        #stored in format, maybe we should store TranslationStore
-        #class and query it for such info
-        if self.file.store.suggestions_in_format:
-            # suggestions can be stored in the translation file itself
-            return
-        pending_name = os.extsep.join(self.file.name.split(os.extsep)[:-1] + ['po', 'pending'])
-        pending_path = os.path.join(settings.PODIRECTORY, pending_name)
         if self.pending:
-            # pending file already referencing in db, but does it
+            # pending file already referenced in db, but does it
             # really exist
             if os.path.exists(self.pending.path):
                 # pending file exists
-                self.pending._update_store_cache()
                 return
-            elif not create:
+            else:
                 # pending file doesn't exist anymore
                 self.pending = None
                 self.save()
 
+        pending_name = os.extsep.join(self.file.name.split(os.extsep)[:-1] + ['po', 'pending'])
+        pending_path = os.path.join(settings.PODIRECTORY, pending_name)
+
         # check if pending file already exists, just in case it was
         # added outside of pootle
-        if not os.path.exists(pending_path) and create:
-            # we only create the file if asked, typically before
-            # adding a suggestion
-            store = po.pofile()
-            store.updateheader(add=True, **store.makeheaderdict(charset='UTF-8', encoding='8bit'))
-            store.savefile(pending_path)
-
         if os.path.exists(pending_path):
             self.pending = pending_name
             self.save()
-            self.pending._update_store_cache()
-            translation_file_updated.connect(self.handle_file_update, sender=self.pending)
 
-    def getsuggestions_unit(self, unit):
-        if self.file.store.suggestions_in_format:
-            return unit.getalttrans()
+    def import_pending(self):
+        """import suggestions from legacy .pending files, into database"""
+        self.init_pending()
+        if self.pending is None:
+            return
+
+        for sugg in [sugg for sugg in self.pending.store.units if sugg.istranslatable() and sugg.istranslated()]:
+            if not sugg.istranslatable() or not sugg.istranslated():
+                continue
+            unit = self.findunit(sugg.source)
+            if unit:
+                suggester = self.getsuggester_from_pending(sugg)
+                unit.add_suggestion(sugg.target, suggester, touch=False)
+                self.pending.store.units.remove(sugg)
+        if len(self.pending.store.units) >  1:
+            self.pending.savestore()
         else:
-            self.initpending()
-            if self.pending:
-                self.pending.store.require_index()
-                suggestions = self.pending.store.findunits(unit.source)
-                if suggestions is not None:
-                    return suggestions
-        return []
+            self.pending.delete()
+            self.pending = None
+            self.save()
 
-    def _deletesuggestion(self, item, suggestion):
-        if self.file.store.suggestions_in_format:
-            unit = self.getitem(item)
-            unit.delalttrans(suggestion)
-        else:
-            try:
-                self.pending.removeunit(suggestion)
-            except ValueError:
-                logging.error('Found an index error attempting to delete a suggestion: %s', suggestion)
-                return  # TODO: Print a warning for the user.
-
-    def getsuggester(self, item, suggitem):
+    def getsuggester_from_pending(self, unit):
         """returns who suggested the given item's suggitem if
         recorded, else None"""
-
-        unit = self.getsuggestions(item)[suggitem]
-        if self.file.store.suggestions_in_format:
-            return unit.xmlelement.get('origin')
-
-        else:
-            suggestedby = suggester_regexp.search(unit.msgidcomment)
-            if suggestedby:
-                return suggestedby.group(1)
+        suggestedby = suggester_regexp.search(unit.msgidcomment)
+        if suggestedby:
+            username = suggestedby.group(1)
+            from pootle_profile.models import PootleProfile
+            try:
+                return PootleProfile.objects.get(user__username=username)
+            except PootleProfile.DoesNotExist:
+                pass
         return None
 
 ########################### Signals ###############################
