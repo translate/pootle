@@ -102,13 +102,14 @@ def manage(request, translation_project):
             formset = UnitFormSet(request.POST, queryset=objects.object_list)
             if formset.is_valid():
                 formset.save()
+
         #FIXME: we should display errors if formset is not valid
         objects = paginate(request, store.units)
         formset = UnitFormSet(queryset=objects.object_list)
         template_vars["formset"] =  formset
         template_vars["pager"] = objects
         template_vars["store"] = store
-    except:
+    except Store.DoesNotExist:
         pass
 
     return render_to_response("terminology/manage.html", template_vars,
