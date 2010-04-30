@@ -1,6 +1,6 @@
 {% extends "base.html"  %}
 
-{% load i18n baseurl %}
+{% load i18n baseurl translation_project_tags cache %}
 
 {% block title %}
 {{ block.super }}: {{ navitems.0.path.language.text }} » {{ navitems.0.path.project.text }}
@@ -11,23 +11,9 @@
 {% endblock %}
 
 {% block search %}
-<div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-  <form action="{% block search_action %}translate.html{% endblock %}" method="get" id="searchform">
-    <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
-    <a class="advancedlink">
-      {% if LANGUAGE_BIDI %}
-      <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ search.advanced_search_title }}" title="{{ search.advanced_search_title }}" class="togglesearch" />
-      <img src='{{ "images/sarrow_up_rtl.png"|m }}' alt="{{ search.advanced_search_title }}" title="{{ search.advanced_search_title }}" class="togglesearch" style="display: none;"/>
-      {% else %}
-      <img src='{{ "images/sarrow_down.png"|m }}' alt="{{ search.advanced_search_title }}" title="{{ search.advanced_search_title }}" class="togglesearch" />
-      <img src='{{ "images/sarrow_up.png"|m }}' alt="{{ search.advanced_search_title }}" title="{{ search.advanced_search_title }}" class="togglesearch" style="display: none;"/>
-      {% endif %}
-    </a>
-    <div class="advancedsearch">
-      {{ search_form.sfields }}
-    </div>
-  </form>
-</div>
+{% cache settings.CACHE_TIMEOUT tp_search translation_project.id LANGUAGE_CODE %}
+{% render_search %}
+{% endcache %}
 {% endblock %}
 
 {% block breadcrumbs %}

@@ -1,5 +1,5 @@
 {% extends "tp_base_extended.html" %}
-{% load i18n baseurl store_tags cache %}
+{% load i18n baseurl store_tags translation_project_tags cache %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
@@ -20,13 +20,15 @@
 </script>
 {% endblock extra_head %}
 
-{% block search_action %}?{% endblock %}
+{% block search %}
+{% render_search search_form "?" %}
+{% endblock %}
 
 {% block breadcrumbs_content %}
 {% cache settings.CACHE_TIMEOUT tr_bread store.id LANGUAGE_CODE %}
-<a href="{{ language.pootle_path|l }}">{{ language.localname }}</a> » <a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a> » 
+<a href="{{ language.pootle_path|l }}">{{ language.localname }}</a> » <a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a> »
 {% for ancestor in store.ancestors %}
-<a href="{{ ancestor.pootle_path|l}}">{{ ancestor.name }}</a> / 
+<a href="{{ ancestor.pootle_path|l}}">{{ ancestor.name }}</a> /
 {% endfor %}
 <a href="{{ store.pootle_path|l}}/translate">{{ store.name }}</a>
 {% endcache %}
