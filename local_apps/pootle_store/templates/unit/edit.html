@@ -1,4 +1,6 @@
 {% load i18n baseurl store_tags cleanhtml %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <!--! Cell with original -->
 <td colspan="1" rowspan="1" class="translate-original comments translate-focus" dir="ltr">
   {{ form.id.as_hidden }}

@@ -1,4 +1,6 @@
 {% load i18n render_pager baseurl store_tags cache %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <div class="nomargin translation-nav">
   {{ pager|render_pager }}
 </div><br />
