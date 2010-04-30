@@ -189,12 +189,14 @@ def edit(request, template, model_class,
                 "error_msg":  msg,
             }
     }
-    if model_args.get("project", None):
+    if 'translation_project' in model_args:
+        template_vars['translation_project'] = model_args['translation_project']
+    if 'project' in model_args:
         template_vars["project"] = model_args['project']
-    if model_args.get("search", None):
-        template_vars["search"] = model_args['search']
-    if model_args.get("navitems", None):
+    if 'language' in model_args:
+        template_vars['language'] = model_args['language']
+    if 'navitems' in model_args:
         template_vars["navitems"] = model_args['navitems']
-    if model_args.get("feed_path", None):
+    if 'feed_path' in model_args:
         template_vars["feed_path"] = model_args['feed_path']
     return render_to_response(template, template_vars, context_instance=RequestContext(request))
