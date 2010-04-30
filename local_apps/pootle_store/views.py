@@ -35,9 +35,10 @@ from pootle_misc.baseurl import redirect
 from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
 from pootle_misc.util import paginate
 from pootle_profile.models import get_profile
+from pootle_translationproject.forms import SearchForm
 
 from pootle_store.models import Store, Unit
-from pootle_store.forms import unit_form_factory, SearchForm, highlight_whitespace
+from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import highlight_diffs
 
 def export_as_xliff(request, pootle_path):

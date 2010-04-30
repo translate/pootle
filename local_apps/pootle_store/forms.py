@@ -154,13 +154,3 @@ def unit_form_factory(language, snplurals=1):
         fuzzy = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs=fuzzy_attrs))
         translator_comment = forms.CharField(required=False, widget=forms.Textarea(attrs=comment_attrs))
     return UnitForm
-
-
-class SearchForm(forms.Form):
-    search = forms.CharField(widget=forms.TextInput(attrs={'size': '15'}))
-    sfields = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple,
-                                              choices=(('source', _('Source Text')),
-                                                       ('target', _('Target Text')),
-                                                       ('notes',  _('Comments')),
-                                                       ('locations', _('Locations'))),
-                                              initial=['source','target'])
