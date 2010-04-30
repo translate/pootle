@@ -4,14 +4,13 @@
 
 <div id="submenu" lang="{{ LANGUAGE_CODE }}">
     <div id="submenu-tabs">
-        <a href='{{ "."|l }}' class="tpoverview" title="{% trans 'Translation project main page' %}">{% trans "Overview" %}</a>
-        <a href='{{ "notices"|l }}' class="tpnews" title="{% trans 'Translation project news' %}">{% trans "News" %}</a>
-        <a href='{{ "edit.html"|l }}' class="tptranslate" title="{% trans 'Translate this project' %}">{% trans "Translate" %}</a>
-        <a href='{{ "review.html"|l }}' class="tpreview" title="{% trans 'Quality checks and review suggestions' %}">{% trans "Review" %}</a>
+        <a href='{{ directory.pootle_path|l }}' class="tpoverview" title="{% trans 'Translation project main page' %}">{% trans "Overview" %}</a>
+        <a href='{{ directory.pootle_path|l }}notices' class="tpnews" title="{% trans 'Translation project news' %}">{% trans "News" %}</a>
+        <a href='{{ directory.pootle_path|l }}edit.html' class="tptranslate" title="{% trans 'Translate this project' %}">{% trans "Translate" %}</a>
+        <a href='{{ directory.pootle_path|l }}review.html' class="tpreview" title="{% trans 'Quality checks and review suggestions' %}">{% trans "Review" %}</a>
         {% if user.is_superuser or request.permissions.administrate %}
-        <a href='{{ "admin_permissions.html"|l }}' class="tpadminpermissions admintab" title="{% trans 'Administrate your project permissions' %}">{% trans "Permissions" %}</a>
-        <a href='{{ "admin_files.html"|l }}' class="tpadminfiles admintab" title="{% trans 'Administrate your project files' %}">{% trans "Files" %}</a>
+        <a href='{{ translation_project.pootle_path|l }}admin_permissions.html' class="tpadminpermissions admintab" title="{% trans 'Administrate your project permissions' %}">{% trans "Permissions" %}</a>
+        <a href='{{ translation_project.pootle_path|l }}admin_files.html' class="tpadminfiles admintab" title="{% trans 'Administrate your project files' %}">{% trans "Files" %}</a>
         {% endif %}
     </div>
 </div>
-
