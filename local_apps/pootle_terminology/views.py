@@ -89,6 +89,7 @@ def manage(request, translation_project):
         "translation_project": translation_project,
         "language": translation_project.language,
         "project": translation_project.project,
+        "directory": translation_project.directory,
         }
     try:
         store = Store.objects.get(pootle_path=translation_project.pootle_path + 'pootle-terminology.po')
