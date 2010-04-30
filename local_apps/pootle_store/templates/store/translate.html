@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block breadcrumbs_content %}
-{% cache settings.CACHE_TIMEOUT tr_bread store.id LANGUAGE_CODE %}
+{% cache settings.CACHE_TIMEOUT store_bread store.id LANGUAGE_CODE %}
 <a href="{{ language.pootle_path|l }}">{{ language.localname }}</a> » <a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a> »
 {% for ancestor in store.ancestors %}
 <a href="{{ ancestor.pootle_path|l}}">{{ ancestor.name }}</a> /
