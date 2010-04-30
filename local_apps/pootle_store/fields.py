@@ -23,6 +23,7 @@
 import logging
 import shutil
 import tempfile
+import os
 
 from django.conf import settings
 from django.db import models
@@ -33,7 +34,6 @@ from translate.misc.lru import LRUCachingDict
 from translate.misc.multistring import multistring
 
 from pootle_store.signals import translation_file_updated
-from pootle_store.translation_file import TranslationStoreFile
 from pootle_store.filetypes import factory_classes
 
 ################# String #############################
@@ -106,16 +106,26 @@ class StoreTuple(object):
         self.mod_info = mod_info
         self.realpath = realpath
 
-class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
+class TranslationStoreFieldFile(FieldFile):
     """FieldFile is the File-like object of a FileField, that is found in a
     TranslationStoreField."""
 
     _store_cache = LRUCachingDict(settings.PARSE_POOL_SIZE, settings.PARSE_POOL_CULL_FREQUENCY)
 
-    # redundant redefinition of path to be the same as defined in
-    # FieldFile, added here for clarity since TranslationStoreFile
-    # uses a different method
-    path = property(FieldFile._get_path)
+    def getpomtime(self):
+        file_stat = os.stat(self.realpath)
+        return file_stat.st_mtime, file_stat.st_size
+
+    def _get_filename(self):
+        return os.path.basename(self.name)
+    filename = property(_get_filename)
+
+    def _get_realpath(self):
+        """return realpath resolving symlinks if neccessary"""
+        if not hasattr(self, "_realpath"):
+            self._realpath = os.path.realpath(self.path)
+        return self._realpath
+    realpath = property(_get_realpath)
 
     def _get_cached_realpath(self):
         """get real path from cache before attempting to check for symlinks"""
@@ -146,7 +156,6 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
                 self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore, classes=factory_classes),
                                                mod_info, self.realpath)
                 self._store_cache[self.path] = self._store_tuple
-                self._flush_stats()
                 translation_file_updated.send(sender=self, path=self.path)
 
 
@@ -174,10 +183,6 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         except AttributeError:
             pass
 
-        try:
-            del self._stats[self.path]
-        except KeyError:
-            pass
         translation_file_updated.send(sender=self, path=self.path)
 
     store = property(_get_store)
