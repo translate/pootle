@@ -148,7 +148,7 @@ def unit_form_factory(language, snplurals=1):
         class Meta:
             model = Unit
 
-        id = forms.IntegerField()
+        id = forms.IntegerField(required=False)
         source_f = MultiStringFormField(nplurals=snplurals, required=False)
         target_f = MultiStringFormField(nplurals=tnplurals, required=False, attrs=target_attrs)
         fuzzy = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs=fuzzy_attrs))

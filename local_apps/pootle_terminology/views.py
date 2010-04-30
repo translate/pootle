@@ -93,7 +93,7 @@ def manage(request, translation_project):
     try:
         store = Store.objects.get(pootle_path=translation_project.pootle_path + 'pootle-terminology.po')
         UnitFormSet = modelformset_factory(Unit, can_delete=True, extra=0,
-                                           exclude=["source_f", "target_f", "developer_comment", "translator_comment", "fuzzy"])
+                                           exclude=["index", "id", "source_f", "target_f", "developer_comment", "translator_comment", "fuzzy"])
 
 
         if request.method == 'POST' and request.POST['submit']:
@@ -101,6 +101,7 @@ def manage(request, translation_project):
             formset = UnitFormSet(request.POST, queryset=objects.object_list)
             if formset.is_valid():
                 formset.save()
+        #FIXME: we should display errors if formset is not valid
         objects = paginate(request, store.units)
         formset = UnitFormSet(queryset=objects.object_list)
         template_vars["formset"] =  formset
