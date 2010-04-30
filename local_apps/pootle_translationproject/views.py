@@ -36,8 +36,6 @@ from django import forms
 
 from translate.storage import factory, versioncontrol
 
-from pootle.i18n.gettext import tr_lang
-
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models             import Directory
@@ -55,7 +53,6 @@ from pootle_store.models import Store, Unit
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
-from pootle_store.forms import SearchForm
 from pootle_statistics.models import Submission
 from pootle_profile.models import get_profile
 
@@ -70,9 +67,9 @@ class TPTranslateView(BaseView):
         language = translation_project.language
 
         template_vars.update({
-            'project':               {"code": project.code,  "name": project.fullname},
-            'language':              {"code": language.code, "name": tr_lang(language.fullname)},
-            'search_form':           SearchForm(),
+            'translation_project': translation_project,
+            'project': project,
+            'language': language,
             'children':              get_children(request, translation_project, directory, links_required='translate'),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')],
             'feed_path':             directory.pootle_path[1:],
@@ -105,9 +102,9 @@ class TPReviewView(BaseView):
         language = translation_project.language
 
         template_vars.update({
-            'project':               {"code": project.code,  "name": project.fullname},
-            'language':              {"code": language.code, "name": tr_lang(language.fullname)},
-            'search_form':           SearchForm(),
+            'translation_project': translation_project,
+            'project': project,
+            'language': language,
             'children':              get_children(request, translation_project, directory, links_required='review'),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review')],
             'topstats':              gentopstats_translation_project(translation_project),
@@ -143,6 +140,7 @@ def tp_admin_permissions(request, translation_project):
         filestyle_text = _("This is a standard style project (one directory per language).")
 
     template_vars = {
+        'translation_project': translation_project,
         "project":                project,
         "language":               language,
         "filestyle_text":         filestyle_text,
@@ -150,7 +148,6 @@ def tp_admin_permissions(request, translation_project):
         "username_title":         _("Username"),
         "permission_set_formset": permission_set_formset,
         "adduser_text":           _("(select to add user)"),
-        'search_form':           SearchForm(),
         "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
         "feed_path":              translation_project.directory.pootle_path[1:],
     }
@@ -188,13 +185,16 @@ def tp_admin_files(request, translation_project):
             store.update(update_structure=True, update_translation=True) 
 
 
-    model_args = {}
-    model_args['title'] = _("Files")
-    model_args['submitname'] = "changestores"
-    model_args['formid'] = "stores"
-    model_args['search_form'] = SearchForm()
-    model_args['navitems'] = [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)]
-    model_args['feed_path'] = translation_project.directory.pootle_path[1:]
+    model_args = {
+        'title': _("Files"),
+        'submitname': "changestores",
+        'formid': "stores",
+        'navitems': [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
+        'feed_path': translation_project.directory.pootle_path[1:],
+        'translation_project': translation_project,
+        'language': translation_project.language,
+        'project': translation_project.project,
+        }
     link = "%s"
     return util.edit(request, 'translation_project/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,
@@ -209,9 +209,9 @@ class ProjectIndexView(BaseView):
         language = translation_project.language
 
         template_vars.update({
-            'project':               {"code": project.code,  "name": project.fullname},
-            'language':              {"code": language.code, "name": tr_lang(language.fullname)},
-            'search_form':           SearchForm(),
+            'translation_project': translation_project,
+            'project': project,
+            'language': language,
             'children':              get_children(request, translation_project, directory),
             'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
             'stats_headings':        get_stats_headings(),
