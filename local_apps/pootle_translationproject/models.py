@@ -25,7 +25,7 @@ import zipfile
 import logging
 
 from django.conf                   import settings
-from django.db                     import models
+from django.db                     import models, IntegrityError
 from django.db.models.signals      import pre_save, post_save, post_delete
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
@@ -33,6 +33,7 @@ from django.utils.translation import ugettext_lazy as _
 from translate.filters import checks
 from translate.search  import match, indexing
 from translate.storage import versioncontrol
+from translate.storage.base import ParseError
 
 from pootle.scripts                import hooks
 from pootle_misc.util import getfromcache, dictsum
@@ -152,15 +153,30 @@ class TranslationProject(models.Model):
 
     def require_units(self):
         """makes sure all stores are parsed"""
+        errors = 0
         for store in self.stores.filter(state__lt=PARSED).iterator():
-            store.require_units()
+            try:
+                store.require_units()
+            except IntegrityError:
+                logging.info("Duplicate IDs in %s", store.abs_real_path)
+                errors += 1
+            except ParseError, e:
+                logging.info("Failed to parse %s\n%s", store.abs_real_path, e)
+                errors += 1
+            except (IOError, OSError), e:
+                logging.info("Can't access %s\n%s", store.abs_real_path, e)
+                errors += 1
+        return errors
+
 
     @getfromcache
     def getquickstats(self):
         if self.is_template_project:
             return empty_quickstats
-        self.require_units()
-        return calculate_stats(Unit.objects.filter(store__translation_project=self))
+        errors = self.require_units()
+        stats = calculate_stats(Unit.objects.filter(store__translation_project=self))
+        stats['errors'] = errors
+        return stats
 
     @getfromcache
     def getcompletestats(self):
