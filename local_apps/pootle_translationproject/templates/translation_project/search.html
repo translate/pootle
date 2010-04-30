@@ -1,0 +1,22 @@
+{% load i18n baseurl %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+<div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <form action="{{ search_action }}" method="get" id="searchform">
+    <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
+    <a class="advancedlink">
+      {% if LANGUAGE_BIDI %}
+      <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
+      <img src='{{ "images/sarrow_up_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
+      {% else %}
+      <img src='{{ "images/sarrow_down.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
+      <img src='{{ "images/sarrow_up.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
+      {% endif %}
+    </a>
+    <div class="advancedsearch">
+      {{ search_form.sfields }}
+    </div>
+  </form>
+</div>
