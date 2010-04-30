@@ -45,7 +45,6 @@ class Directory(models.Model):
         ordering = ['name']
         app_label = "pootle_app"
 
-
     is_dir = True
 
     name        = models.CharField(max_length=255, null=False)
@@ -126,6 +125,23 @@ class Directory(models.Model):
         return stats
         #queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path)
         #return group_by_count(queryset, 'name')
+
+    def trail(self, only_dirs=True):
+        """return list of ancestor directories excluding TranslationProject and above"""
+        path_parts = self.pootle_path.split('/')
+        parents = []
+        if only_dirs:
+            # skip language, and translation_project directories
+            start = 4
+        else:
+            start = 2
+
+        for i in xrange(start, len(path_parts)):
+            path = '/'.join(path_parts[:i]) + '/'
+            parents.append(path)
+        if parents:
+            return Directory.objects.filter(pootle_path__in=parents).order_by('-pootle_path')
+        return Directory.objects.none()
 
     def has_suggestions(self):
         """check if any child store has suggestions"""
