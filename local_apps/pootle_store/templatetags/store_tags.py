@@ -168,5 +168,6 @@ def render_unit_view(context, unit, show_comments=False):
 
 @register.inclusion_tag('store/translate_table.html', takes_context=True)
 def translate_table(context):
+    """encapsulate translate_table in a tag to avoid parsing template
+    when cache will be used"""
     return context
-
