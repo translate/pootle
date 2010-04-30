@@ -1605,6 +1605,7 @@ table td.translate-original
 td.translate-focus
 {
     border-top:2px solid #000000;
+    border-bottom: 2px solid #000000;
     padding-top:.5em;
     padding-bottom:.5em;
     padding-left:.5em;
@@ -1619,18 +1620,17 @@ textarea.translation
     margin: 0 auto 0.5em;
 }
 
-td.comments
+.comments
 {
     padding: .5em;
-    border-bottom: 2px solid #000000;
     vertical-align: top;
 }
 
 textarea.comments
 {
-    max-width: 100%;
-    width: 100%;
+    width: 99%;
     min-height: 3em;
+    padding: 0 0 5px !important;
 }
 
 .altsrclangname
