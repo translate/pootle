@@ -189,12 +189,15 @@ def edit(request, template, model_class,
                 "error_msg":  msg,
             }
     }
+    #FIXME: this should be done through an extra context argument
     if 'translation_project' in model_args:
         template_vars['translation_project'] = model_args['translation_project']
     if 'project' in model_args:
         template_vars["project"] = model_args['project']
     if 'language' in model_args:
         template_vars['language'] = model_args['language']
+    if 'directory' in model_args:
+        template_vars['directory'] = model_args['directory']
     if 'navitems' in model_args:
         template_vars["navitems"] = model_args['navitems']
     if 'feed_path' in model_args:

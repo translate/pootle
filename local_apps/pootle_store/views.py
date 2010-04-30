@@ -290,6 +290,8 @@ def translate_page(request, units_queryset, store=None):
         'pager': pager,
         'language': language,
         'translation_project': translation_project,
+        'project': translation_project.project,
+        'directory': store.parent,
         'GET_state': '&'.join(GET_vars),
         'checks': checks,
         }
