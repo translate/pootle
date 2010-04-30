@@ -85,7 +85,11 @@ def extract(request, translation_project):
 @get_translation_project
 @has_permission('administrate')
 def manage(request, translation_project):
-    template_vars = {"translation_project": translation_project}
+    template_vars = {
+        "translation_project": translation_project,
+        "language": translation_project.language,
+        "project": translation_project.project,
+        }
     try:
         store = Store.objects.get(pootle_path=translation_project.pootle_path + 'pootle-terminology.po')
         UnitFormSet = modelformset_factory(Unit, can_delete=True, extra=0,
