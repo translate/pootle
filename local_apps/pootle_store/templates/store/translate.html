@@ -68,7 +68,7 @@
 {% block scripts_extra %}
 {{ block.super }}
 <script src='{{ "js/json2.min.js"|m }}' type="text/javascript"></script>
-<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="{% if request.is_secure %}https://{% else %}http://{% endif %}www.google.com/jsapi" type="text/javascript"></script>
 <script type="text/javascript">
 	google.load("language", "1");
 </script>
