@@ -204,6 +204,9 @@ def translate_end(request, translation_project):
     context = {
         'endmessage': message,
         'translation_project': translation_project,
+        'language': translation_project.language,
+        'project': translation_project.project,
+        'directory': translation_project.directory,
         }
     return render_to_response('store/translate_end.html', context, context_instance=RequestContext(request))
 
