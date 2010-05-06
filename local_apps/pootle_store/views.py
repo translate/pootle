@@ -172,17 +172,18 @@ def get_current_units(request, step_queryset):
                 break
             if unit.id == prev_id:
                 prev_unit = unit
-        if edit_unit is None and prev_unit is not None:
-            # probably prev_unit was last unit in chain.
-            #FIXME: maybe we want to retain the show end of query behavior?
-            if back:
-                edit_unit = prev_unit
-            else:
-                raise StopIteration
 
     if edit_unit is None:
-        # all methods failed, get first unit in queryset
-        edit_unit = step_queryset.iterator().next()
+        if prev_unit is not None:
+            # probably prev_unit was last unit in chain.
+            if back:
+                edit_unit = prev_unit
+        else:
+            # all methods failed, get first unit in queryset
+            try:
+                edit_unit = step_queryset.iterator().next()
+            except StopIteration:
+                pass
 
     return prev_unit, edit_unit, pager
 
@@ -229,10 +230,7 @@ def translate_page(request, units_queryset, store=None):
     if step_queryset is None:
         step_queryset = get_step_query(request, units_queryset)
 
-    try:
-        prev_unit, edit_unit, pager = get_current_units(request, step_queryset)
-    except StopIteration:
-        return translate_end(request, translation_project)
+    prev_unit, edit_unit, pager = get_current_units(request, step_queryset)
 
     # time to process POST submission
     form = None
@@ -252,6 +250,10 @@ def translate_page(request, units_queryset, store=None):
         else:
             # form failed, don't skip to next unit
             edit_unit = prev_unit
+
+    if edit_unit is None:
+        # no more units to step through, display end of translation message
+        return translate_end(request, translation_project)
 
     # only create form for edit_unit if prev_unit was processed successfully
     if form is None or form.is_valid():
