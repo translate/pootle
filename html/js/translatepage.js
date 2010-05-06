@@ -93,7 +93,7 @@ $.pootle = {};
     var area = $("#id_target_f_0");
     var orig_text = orig.val();
     var lang_from = "en";
-    var lang_to = area.attr("lang");
+    var lang_to = area.attr("lang").replace('_', '-');
 
     // The printf regex based on http://phpjs.org/functions/sprintf:522
     var c_printf_pattern = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
