@@ -206,7 +206,7 @@ def nice_percentage(percentage):
     might be misleading."""
     # Let's try to be clever and make sure than anything above 0.0 and below 0.5
     # will show as at least 1%, and anything above 99.5% and less than 100% will
-    # show as 100%.
+    # show as 99%.
     if 99 < percentage < 100:
         return 99
     if 0 < percentage < 1:
