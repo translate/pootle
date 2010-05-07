@@ -1,17 +1,17 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2010-05-07 17:40+0200\n"
 "Last-Translator: Shumani Mercy Ṋevhulaudzi <NevhulaudziS@saps.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ve\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.10rc2\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: strings.py:8
@@ -1147,7 +1147,7 @@ msgstr ""
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: local_apps/pootle_app/views/language/translate_page.py:78
-#, python-format
+#, python-format, fuzzy
 msgid "checking %s"
 msgstr "U sedza"
 
@@ -1158,7 +1158,7 @@ msgstr "Thomani"
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:106
-#, python-format
+#, python-format, fuzzy
 msgid "Previous %d"
 msgstr "Yo fhelaho"
 
@@ -1170,7 +1170,7 @@ msgstr ""
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:118
-#, python-format
+#, python-format, fuzzy
 msgid "Next %d"
 msgstr "Tshitevhelaho"
 

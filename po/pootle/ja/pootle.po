@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.0.0\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -1736,16 +1736,16 @@ msgstr "ユーザ名 \"%(account)s\" のアカウントが有効になりまし�
 
 #: templates/registration/activation_email.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Pootle のアカウントがこのメールアドレスで作成されました。\n"
+msgstr "Pootle のアカウントがこのメールアドレスで作成されました。"
 
 #: templates/registration/activation_email.txt:3
 msgid "To activate your account, follow this link:"
-msgstr "アカウントを有効にするには、次のリンクをクリックしてください:\n"
+msgstr "アカウントを有効にするには、次のリンクをクリックしてください:"
 
 # \n の改行コードは英文どおりに入れておいた方がいいと思いました。
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
-msgstr "あなたの有効化コード:\n"
+msgstr "あなたの有効化コード:"
 
 #: templates/registration/activation_email.txt:9
 msgid ""
@@ -1865,7 +1865,7 @@ msgstr "あなたのユーザアカウント %(site_name)s に対してパスワ
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr "次のページを開いて新しいパスワードを設定してください:\n"
+msgstr "次のページを開いて新しいパスワードを設定してください:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format

@@ -6,11 +6,12 @@ msgstr ""
 "PO-Revision-Date: 2008-04-20 03:33+0100\n"
 "Last-Translator: tegegne tefera <tefera@mekuria.com>\n"
 "Language-Team: Amharic\n"
+"Language: am\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.0beta2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -1217,7 +1218,7 @@ msgstr "ብዙ"
 #: local_apps/pootle_app/views/language/translate_page.py:463
 #: local_apps/pootle_app/views/language/translate_page.py:500
 #: local_apps/pootle_app/views/language/translate_page.py:572
-#, python-format
+#, python-format, fuzzy
 msgid "Plural Form %d"
 msgstr "ብዙ-ቤት"
 
