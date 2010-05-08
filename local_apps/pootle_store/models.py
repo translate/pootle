@@ -132,18 +132,35 @@ class Unit(models.Model, base.TranslationUnit):
 
     def init_nondb_state(self):
         self._rich_source = None
+        self._source_updated = False
         self._rich_target = None
+        self._target_updated = False
         self.unitclass = po.pounit
         self._encoding = 'UTF-8'
 
+    def save(self, *args, **kwargs):
+        if self._source_updated:
+            # update source related fields
+            self.source_hash = md5_f(self.source_f.encode("utf-8")).hexdigest()
+            self.source_wordcount = count_words(self.source_f.strings)
+            self.source_length = len(self.source_f)
+
+        if self._target_updated:
+            # update target related fields
+            self.target_wordcount = count_words(self.target_f.strings)
+            self.target_length = len(self.target_f)
+
+        super(Unit, self).save(*args, **kwargs)
+
+        # done processing source/target update remove flag
+        self._source_updated = False
+        self._target_updated = False
     def _get_source(self):
         return self.source_f
 
     def _set_source(self, value):
         self.source_f = value
-        self.source_hash = md5_f(self.source_f.encode("utf-8")).hexdigest()
-        self.source_wordcount = count_words(self.source_f.strings)
-        self.source_length = len(self.source_f)
+        self._source_updated = True
 
     _source = property(_get_source, _set_source)
 
@@ -152,8 +169,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def _set_target(self, value):
         self.target_f = value
-        self.target_wordcount = count_words(self.target_f.strings)
-        self.target_length = len(self.target_f)
+        self._target_updated = True
 
     _target = property(_get_target, _set_target)
 
