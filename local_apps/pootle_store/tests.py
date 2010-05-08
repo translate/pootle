@@ -103,8 +103,9 @@ class StoreTests(PootleTestCase):
         self.store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
 
     def test_quickstats(self):
+        statscache = statsdb.StatsCache()
         dbstats = self.store.getquickstats()
-        filestats = self.store.file.getquickstats()
+        filestats = statscache.filetotals(self.store.file.path)
 
         self.assertEqual(dbstats['total'], filestats['total'])
         self.assertEqual(dbstats['totalsourcewords'], filestats['totalsourcewords'])
