@@ -3,7 +3,7 @@
 {% load i18n baseurl translation_project_tags cache %}
 
 {% block title %}
-{{ block.super }}: {{ navitems.0.path.language.text }} » {{ navitems.0.path.project.text }}
+{{ block.super }}: {{ translation_project.fullname }}
 {% endblock %}
 
 {% block extra_head %}
