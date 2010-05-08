@@ -30,8 +30,8 @@
   </div>
   {% endif %}
   <div class="comments">
-    {% if unit.developer_comments %}
-    <div title="{{ developer_comments_title }}" class="developer-comments" lang="en" dir="ltr">{{ unit.developer_comments|safe }}</div>
+    {% if unit.developer_comment %}
+    <div title="{{ developer_comments_title }}" class="developer-comments" lang="en" dir="ltr">{{ unit.developer_comment|safe }}</div>
     {% endif %}
     {% if unit.locations %}
     <div class="translate-locations" lang="en" dir="ltr">{{ unit.locations }}</div>
