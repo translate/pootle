@@ -46,7 +46,8 @@ def view(request, path):
     if not check_permission('view', request):
         raise PermissionDenied
 
-    template_vars = {'path': path}
+    template_vars = {'path': path,
+                     'directory': directory}
 
     if check_permission('administrate', request):
         template_vars['form'] = handle_form(request, directory)
@@ -65,6 +66,9 @@ def view(request, path):
         try:
             request.translation_project = directory.get_translationproject()
             template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
+            template_vars['translation_project'] = request.translation_project
+            template_vars['language'] = request.translation_project.language
+            template_vars['project'] = request.translation_project.project
         except:
             pass
 
