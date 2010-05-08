@@ -153,4 +153,17 @@ def unit_form_factory(language, snplurals=1):
         target_f = MultiStringFormField(nplurals=tnplurals, required=False, attrs=target_attrs)
         fuzzy = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs=fuzzy_attrs))
         translator_comment = forms.CharField(required=False, widget=forms.Textarea(attrs=comment_attrs))
+
+        def clean_source_f(self):
+            value = self.cleaned_data['source_f']
+            if self.instance.source.strings != value:
+                self.instance._source_updated = True
+            return value
+
+        def clean_target_f(self):
+            value = self.cleaned_data['target_f']
+            if self.instance.target.strings != value:
+                self.instance._target_updated = True
+            return value
+
     return UnitForm
