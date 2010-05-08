@@ -54,7 +54,14 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, fil
 @has_permission('administrate')
 def extract(request, translation_project):
     """generate glossary of common keywords and phrases from translation project"""
-    template_vars = {'translation_project': translation_project}
+    template_vars = {
+        'translation_project': translation_project,
+        'language': translation_project.language,
+        'project': translation_project.project,
+        'directory': translation_project.directory,
+
+        }
+
     if request.method == 'POST' and request.POST['extract']:
         extractor = TerminologyExtractor()
         for store in translation_project.stores.iterator():
