@@ -20,7 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db                import models
-from django.db.models.signals import pre_save
 
 from pootle_store.util import empty_quickstats, empty_completestats, statssum, completestatssum
 from pootle_store.models import Suggestion, Unit
@@ -52,6 +51,14 @@ class Directory(models.Model):
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
 
     objects = DirectoryManager()
+
+    def save(self, *args, **kwargs):
+        if self.parent is not None:
+            self.pootle_path = self.parent.pootle_path + self.name + '/'
+        else:
+            self.pootle_path = '/'
+
+        super(Directory, self).save(*args, **kwargs)
 
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative
@@ -171,12 +178,3 @@ class Directory(models.Model):
 
                     aux_dir = aux_dir.parent
                 return aux_dir.translationproject
-
-
-def set_directory_pootle_path(sender, instance, **kwargs):
-    if instance.parent is not None:
-        instance.pootle_path = '%s%s/' % (instance.parent.pootle_path, instance.name)
-    else:
-        instance.pootle_path = '/'
-
-pre_save.connect(set_directory_pootle_path, sender=Directory)

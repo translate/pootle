@@ -21,7 +21,6 @@
 
 import os
 
-from django.db.models.signals import pre_save
 from django.utils.translation import ugettext_lazy as _
 from django.db                import models
 
@@ -65,6 +64,14 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.fullname
+
+    def save(self, *args, **kwargs):
+        # create file system directory if needed
+        project_path = self.get_real_path()
+        if not os.path.exists(project_path):
+            os.makedirs(project_path)
+
+        super(Project, self).save(*args, **kwargs)
 
     @getfromcache
     def get_mtime(self):
@@ -140,10 +147,3 @@ class Project(models.Model):
             # when unsure assume nongnu
             return "nongnu"
 
-
-def create_project_directory(sender, instance, **kwargs):
-    project_path = absolute_real_path(instance.code)
-    if not os.path.exists(project_path):
-        os.makedirs(project_path)
-
-pre_save.connect(create_project_directory, sender=Project)

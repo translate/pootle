@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2008 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -22,7 +22,6 @@
 from django.db import models
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from django.db.models.signals           import pre_delete, post_save
 
 from pootle_app.lib.util import RelatedManager
 
@@ -74,7 +73,7 @@ def get_matching_permissions_recurse(profile, directory):
     which we are building and use the negative permissions associated
     with the root directory to remove permissions from the permissions
     dictionary.
-    
+
     Once this has been done for the root directory, we recurse one
     level up and do the same to the child directory and so on until we
     reach the directory from which we started this process. By that
@@ -134,6 +133,23 @@ class PermissionSet(models.Model):
     positive_permissions   = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_positive')
     negative_permissions   = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_negative')
 
+    def void_permission_set_cache(self):
+        """Delete all PermissionSetCache objects matching the current
+        profile and whose directories are subdirectories of directory."""
+        if self.profile.user.username == 'default':
+            #FIXME: why the special treatement for default user?
+            PermissionSetCache.objects.filter(directory__pootle_path__startswith=self.directory.pootle_path).delete()
+        else:
+            PermissionSetCache.objects.filter(directory__pootle_path__startswith=self.directory.pootle_path, profile=self.profile).delete()
+
+    def save(self, *args, **kwargs):
+        super(PermissionSet, self).save(*args, **kwargs)
+        self.void_permission_set_cache()
+
+    def delete(self, *args, **kwargs):
+        super(PermissionSet, self).delete(*args, **kwargs)
+        self.void_permission_set_cache()
+
 class PermissionSetCache(models.Model):
     objects = RelatedManager()
     class Meta:
@@ -143,23 +159,3 @@ class PermissionSetCache(models.Model):
     profile                = models.ForeignKey('pootle_profile.PootleProfile', db_index=True)
     directory              = models.ForeignKey('pootle_app.Directory', db_index=True, related_name='permission_set_caches')
     permissions            = models.ManyToManyField(Permission, related_name='cached_permissions', db_index=True)
-
-
-def nuke_permission_set_caches(profile, directory):
-    """Delete all PermissionSetCache objects matching the current
-    profile and whose directories are subdirectories of directory."""
-    for permission_set_cache in PermissionSetCache.objects.filter(profile=profile, directory__pootle_path__startswith=directory.pootle_path).iterator():
-        permission_set_cache.delete()
-
-def void_cached_permissions(sender, instance, **kwargs):
-    if instance.profile.user.username == 'default':
-        profile_to_permission_set = dict((permission_set.profile, permission_set) for permission_set
-                                            in PermissionSet.objects.filter(directory=instance.directory).iterator())
-        for permission_set_cache in PermissionSetCache.objects.filter(directory=instance.directory).iterator():
-            if permission_set_cache.profile not in profile_to_permission_set:
-                nuke_permission_set_caches(permission_set_cache.profile, instance.directory)
-    else:
-        nuke_permission_set_caches(instance.profile, instance.directory)
-
-post_save.connect(void_cached_permissions, sender=PermissionSet)
-pre_delete.connect(void_cached_permissions, sender=PermissionSet)

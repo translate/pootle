@@ -27,7 +27,6 @@ from django.db import models, IntegrityError
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
-from django.db.models.signals import pre_save, post_save, post_init, post_delete
 from django.db.transaction import commit_on_success
 
 from translate.storage import base, statsdb, po, poheader
@@ -130,7 +129,8 @@ class Unit(models.Model, base.TranslationUnit):
     def get_mtime(self):
         return self.mtime
 
-    def init_nondb_state(self):
+    def __init__(self, *args, **kwargs):
+        super(Unit, self).__init__(*args, **kwargs)
         self._rich_source = None
         self._source_updated = False
         self._rich_target = None
@@ -152,9 +152,22 @@ class Unit(models.Model, base.TranslationUnit):
 
         super(Unit, self).save(*args, **kwargs)
 
+        if self.store.state >= CHECKED and (self._source_updated or self._target_updated):
+            #FIXME: are we sure only source and target affect quality checks?
+            self.update_qualitychecks()
+
         # done processing source/target update remove flag
         self._source_updated = False
         self._target_updated = False
+
+        if self.store.state >= PARSED:
+            # updated caches
+            store = self.store
+            translation_project = store.translation_project
+            translation_project.update_index(translation_project.indexer, store, self.id)
+            deletefromcache(store,
+                            ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
+
     def _get_source(self):
         return self.source_f
 
@@ -420,24 +433,6 @@ class Unit(models.Model, base.TranslationUnit):
             result = []
         return result
 
-def init_baseunit(sender, instance, **kwargs):
-    instance.init_nondb_state()
-post_init.connect(init_baseunit, sender=Unit)
-
-def unit_post_save(sender, instance, created, **kwargs):
-    if not instance.store.state < CHECKED:
-        # update quality checks
-        instance.update_qualitychecks(created)
-    if not created and instance.store:
-        # flush caches
-        deletefromcache(instance.store,
-                        ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
-    if not created and instance.store and instance.store.translation_project:
-        store = instance.store
-        translation_project = store.translation_project
-        translation_project.update_index(translation_project.indexer, store, instance.id)
-post_save.connect(unit_post_save, sender=Unit)
-
 ###################### Store ###########################
 
 x_generator = "Pootle %s" % pootle_version
@@ -467,6 +462,14 @@ class Store(models.Model, base.TranslationStore):
     class Meta:
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
+
+    def save(self, *args, **kwargs):
+        self.pootle_path = self.parent.pootle_path + self.name
+        super(Store, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        super(Store, self).delete(*args, **kwargs)
+        deletefromcache(self, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
 
     @getfromcache
     def get_mtime(self):
@@ -834,12 +837,3 @@ class Store(models.Model, base.TranslationStore):
                 pass
         return None
 
-########################### Signals ###############################
-
-def set_store_pootle_path(sender, instance, **kwargs):
-    instance.pootle_path = '%s%s' % (instance.parent.pootle_path, instance.name)
-pre_save.connect(set_store_pootle_path, sender=Store)
-
-def store_post_delete(sender, instance, **kwargs):
-    deletefromcache(instance, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
-post_delete.connect(store_post_delete, sender=Store)

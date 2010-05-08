@@ -26,7 +26,7 @@ import logging
 
 from django.conf                   import settings
 from django.db                     import models, IntegrityError
-from django.db.models.signals      import pre_save, post_save, post_delete
+from django.db.models.signals      import post_save
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 
@@ -98,6 +98,17 @@ class TranslationProject(models.Model):
 
     def __unicode__(self):
         return self.pootle_path
+
+    def save(self, *args, **kwargs):
+        project_dir = self.project.get_real_path()
+        self.abs_real_path = project_tree.get_translation_project_dir(self.language, project_dir, self.file_style, make_dirs=True)
+        self.directory = self.language.directory.get_or_make_subdir(self.project.code)
+        self.pootle_path = self.directory.pootle_path
+        super(TranslationProject, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        super(TranslationProject, self).delete(*args, **kwargs)
+        self.directory.delete()
 
     def get_absolute_url(self):
         return l(self.pootle_path)
@@ -536,29 +547,12 @@ def stats_message(version, stats):
     return "%s: %d of %d messages translated (%d fuzzy)." % \
            (version, stats.get("translated", 0), stats.get("total", 0), stats.get("fuzzy", 0))
 
-def set_data(sender, instance, **kwargs):
-    project_dir = instance.project.get_real_path()
-    ext         = project_tree.get_extension(instance.language, instance.project)
-    instance.abs_real_path = project_tree.get_translation_project_dir(instance.language, project_dir, instance.file_style, make_dirs=True)
-    instance.directory = Directory.objects.root\
-        .get_or_make_subdir(instance.language.code)\
-        .get_or_make_subdir(instance.project.code)
-    instance.pootle_path = instance.directory.pootle_path
-
-pre_save.connect(set_data, sender=TranslationProject)
-
-def delete_directory(sender, instance, **kwargs):
-    instance.directory.delete()
-post_delete.connect(delete_directory, sender=TranslationProject)
-
 def scan_languages(sender, instance, **kwargs):
     for language in Language.objects.iterator():
         create_translation_project(language, instance)
-
 post_save.connect(scan_languages, sender=Project)
 
 def scan_projects(sender, instance, **kwargs):
     for project in Project.objects.iterator():
         create_translation_project(instance, project)
-
 post_save.connect(scan_projects, sender=Language)

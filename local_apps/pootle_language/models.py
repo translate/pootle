@@ -20,7 +20,6 @@
 
 from django.utils.translation import ugettext_lazy as _
 from django.db                import models
-from django.db.models.signals import pre_save, post_delete
 
 from pootle.i18n.gettext import tr_lang, language_dir
 
@@ -53,6 +52,16 @@ class Language(models.Model):
 
     pootle_path = property(lambda self: '/%s/' % self.code)
 
+    def save(self, *args, **kwargs):
+        # create corresponding directory object
+        from pootle_app.models.directory import Directory
+        self.directory = Directory.objects.root.get_or_make_subdir(self.code)
+        super(Language, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        super(Language, self).delete(*args, **kwargs)
+        self.directory.delete()
+
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
 
@@ -81,13 +90,3 @@ class Language(models.Model):
     def translated_percentage(self):
         return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
 
-def set_data(sender, instance, **kwargs):
-    # create corresponding directory object
-    from pootle_app.models.directory import Directory
-    instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
-
-pre_save.connect(set_data, sender=Language)
-
-def delete_directory(sender, instance, **kwargs):
-    instance.directory.delete()
-post_delete.connect(delete_directory, sender=Language)
