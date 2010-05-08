@@ -1,4 +1,5 @@
 from translate.storage import factory
+from translate.storage import statsdb
 
 from pootle.tests import PootleTestCase
 from pootle_store.models import Store
@@ -7,6 +8,18 @@ class UnitTests(PootleTestCase):
     def setUp(self):
         super(UnitTests, self).setUp()
         self.store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+
+    def _update_translation(self, item, newvalues):
+        unit = self.store.getitem(item)
+        if 'target' in newvalues:
+            unit.target = newvalues['target']
+        if 'fuzzy' in newvalues:
+            unit.fuzzy = newvalues['fuzzy']
+        if 'translator_comment' in newvalues:
+            unit.translator_comment = newvalues['translator_comment']
+        unit.save()
+        self.store.sync(update_translation=True)
+        return self.store.getitem(item)
 
     def test_getorig(self):
         for dbunit in self.store.units.iterator():
@@ -23,9 +36,7 @@ class UnitTests(PootleTestCase):
             self.assertEqual(str(newunit), str(storeunit))
 
     def test_update_target(self):
-        self.store.updateunit(0, newvalues={'target': u'samaka'})
-        self.store.sync(update_translation=True)
-        dbunit = self.store.getitem(0)
+        dbunit = self._update_translation(0, {'target': u'samaka'})
         storeunit = dbunit.getorig()
 
         self.assertEqual(dbunit.target, u'samaka')
@@ -34,9 +45,7 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
 
     def test_update_plural_target(self):
-        self.store.updateunit(2, newvalues={'target': [u'samaka', u'samak']})
-        self.store.sync(update_translation=True)
-        dbunit = self.store.getitem(2)
+        dbunit = self._update_translation(2, {'target': [u'samaka', u'samak']})
         storeunit = dbunit.getorig()
 
         self.assertEqual(dbunit.target.strings, [u'samaka', u'samak'])
@@ -49,9 +58,7 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
 
     def test_update_plural_target_dict(self):
-        self.store.updateunit(2, newvalues={'target': {0: u'samaka', 1: u'samak'}})
-        self.store.sync(update_translation=True)
-        dbunit = self.store.getitem(2)
+        dbunit = self._update_translation(2, {'target': {0: u'samaka', 1: u'samak'}})
         storeunit = dbunit.getorig()
 
         self.assertEqual(dbunit.target.strings, [u'samaka', u'samak'])
@@ -64,9 +71,7 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
 
     def test_update_fuzzy(self):
-        self.store.updateunit(0, newvalues={'fuzzy': True})
-        self.store.sync(update_translation=True)
-        dbunit = self.store.getitem(0)
+        dbunit = self._update_translation(0, {'fuzzy': True})
         storeunit = dbunit.getorig()
 
         self.assertTrue(dbunit.isfuzzy())
@@ -74,9 +79,7 @@ class UnitTests(PootleTestCase):
         pofile = factory.getobject(self.store.file.path)
         self.assertEqual(dbunit.isfuzzy(), pofile.units[dbunit.index].isfuzzy())
 
-        self.store.updateunit(0, newvalues={'fuzzy': False})
-        self.store.sync(update_translation=True)
-        dbunit = self.store.getitem(0)
+        dbunit = self._update_translation(0, {'fuzzy': False})
         storeunit = dbunit.getorig()
 
         self.assertFalse(dbunit.isfuzzy())
@@ -85,9 +88,7 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.isfuzzy(), pofile.units[dbunit.index].isfuzzy())
 
     def test_update_comment(self):
-        self.store.updateunit(0, newvalues={'translator_comments': u'7amada'})
-        self.store.sync(update_translation=True)
-        dbunit = self.store.getitem(0)
+        dbunit = self._update_translation(0, {'translator_comment': u'7amada'})
         storeunit = dbunit.getorig()
 
         self.assertEqual(dbunit.getnotes(origin="translator"), u'7amada')
