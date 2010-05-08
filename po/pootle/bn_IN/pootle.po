@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-11-30 16:50+0200\n"
+"PO-Revision-Date: 2010-05-08 02:05+0200\n"
 "Last-Translator: sankarshan <sankarshan.mukhopadhyay@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_IN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.0-rc2\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: strings.py:8
 msgid ""
@@ -910,7 +910,7 @@ msgstr "%(translated)d/%(total)d বাক্য বা স্ট্রীং"
 
 #: local_apps/pootle_app/views/language/item_dict.py:77
 #: local_apps/pootle_app/views/language/item_dict.py:80
-#, python-format
+#, python-format, fuzzy
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] "%(checks)d স্ট্রীং (%(checkspercent)d%%) সমস্যা হয়েছে"

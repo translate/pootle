@@ -886,7 +886,7 @@ msgid "(select to add user)"
 msgstr "(pilih untuk menambahkan pengguna)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
-#, python-format
+#, python-format, fuzzy
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "Tunggal%d berkasJamak%d berkas"

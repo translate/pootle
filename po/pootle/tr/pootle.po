@@ -888,7 +888,6 @@ msgstr "(kullancı eklemek için seç)"
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d dosya"
-msgstr[1] "%d dosya"
 
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format

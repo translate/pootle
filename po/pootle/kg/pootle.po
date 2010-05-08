@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2006-11-21 00:12+0100\n"
+"PO-Revision-Date: 2010-05-07 18:30+0200\n"
 "Last-Translator: Nsiangani Kusimbiko <kibavuidi.nsiangani@free.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: kg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 0.10.1\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: strings.py:8
 msgid ""
@@ -1165,7 +1166,7 @@ msgstr "ngiantukulu"
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:106
-#, python-format
+#, python-format, fuzzy
 msgid "Previous %d"
 msgstr "yilutidi"
 
@@ -1177,7 +1178,7 @@ msgstr ""
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:118
-#, python-format
+#, python-format, fuzzy
 msgid "Next %d"
 msgstr "meti landa"
 

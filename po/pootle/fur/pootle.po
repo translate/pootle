@@ -1156,7 +1156,7 @@ msgstr "No tu âs i dirits par gambiâ lis traduzions ca"
 #: local_apps/pootle_app/views/language/translate_page.py:78
 #, python-format
 msgid "checking %s"
-msgstr "daûr a controlâ"
+msgstr "daûr a controlâ %s"
 
 #. l10n: navigation link
 #: local_apps/pootle_app/views/language/translate_page.py:101

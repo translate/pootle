@@ -1067,9 +1067,9 @@ msgstr[2] "%d słów wymaga przeglądu"
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] "Wystąpił błąd podczas czytania %1 pliku"
-msgstr[1] "Wystąpił błąd podczas czytania %1 plików"
-msgstr[2] "Wystąpił błąd podczas czytania %1 plików"
+msgstr[0] "Wystąpił błąd podczas odczytu %d pliku"
+msgstr[1] "Wystąpił błąd podczas odczytu %d plików"
+msgstr[2] "Wystąpił błąd podczas odczytu %d plików"
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 msgid "You do not have rights to administer this language."
@@ -1437,8 +1437,8 @@ msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
 "initialize database."
 msgstr ""
-"Wystąpił błąd w trakcie łączenia z bazą danych programu Pootle, nastąpi "
-"próba zainicjalizowania bazy danych."
+"Wystąpił błąd o treści \"%s\" w trakcie łączenia z bazą danych programu "
+"Pootle, nastąpi próba zainicjalizowania bazy danych."
 
 #: local_apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
@@ -1846,11 +1846,11 @@ msgstr ""
 
 #: templates/registration/activation_email.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Twoje Konto Pootle zostało utworzone przy użyciu tego adresu e-mail.\n"
+msgstr "Twoje Konto Pootle zostało utworzone przy użyciu tego adresu e-mail."
 
 #: templates/registration/activation_email.txt:3
 msgid "To activate your account, follow this link:"
-msgstr "Aby aktywować swoje konto, należy kliknąć następujący odnośnik:\n"
+msgstr "Aby aktywować swoje konto, należy kliknąć następujący odnośnik:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

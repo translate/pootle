@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2008-12-02 17:56+0000\n"
+"PO-Revision-Date: 2010-05-08 02:30+0200\n"
 "Last-Translator: Yannis Kaskamanidis <ttnfy17@sch.gr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: el\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -885,7 +885,7 @@ msgid "(select to add user)"
 msgstr "(επιλέξτε για να προσθέσετε ένα χρήστη)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
-#, python-format
+#, python-format, fuzzy
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d αρχεία"

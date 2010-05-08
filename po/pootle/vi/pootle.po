@@ -892,7 +892,6 @@ msgstr "(chọn để thêm người dùng)"
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "%d tập tin"
-msgstr[1] "%d tập tin"
 
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
@@ -1199,7 +1198,7 @@ msgstr "Ở số nhiều"
 #: local_apps/pootle_app/views/language/translate_page.py:463
 #: local_apps/pootle_app/views/language/translate_page.py:500
 #: local_apps/pootle_app/views/language/translate_page.py:572
-#, python-format
+#, python-format, fuzzy
 msgid "Plural Form %d"
 msgstr "Dạng số nhiều"
 
