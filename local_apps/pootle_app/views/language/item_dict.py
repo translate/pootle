@@ -295,7 +295,7 @@ def make_store_item(request, store, links_required=None):
     else:
         item['actions'] = []
     item['href_todo'] = dispatch.translate(request, store.pootle_path,
-                                        unitstates=['isfuzzy,untranslated'])
+                                        unitstates=['fuzzy,untranslated'])
     item.update({
             'icon':   'file',
             'isfile': True })
