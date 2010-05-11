@@ -42,15 +42,19 @@
 <td colspan="1" rowspan="1" class="translate-translation comments translate-focus {% if unit.fuzzy %}translate-translation-fuzzy{% endif %}">
   <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus">
     <!--! Translation memory -->
+    {% with unit.get_terminology as terms %}
+    {% if terms %}
     <div id="tm" class="sidebar" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
       <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Related" %}</div>
-      {% for term in unit.get_terminology %}
+      {% for term in terms %}
       <div class="tm-unit writetm" title="{{ unit.getnotes }}">
         <span class="tm-original" dir="ltr" lang="en">{{ term.source }}</span>
         <span class="tm-translation" dir="{{ language.dir }}" lang="{{ language.code }}">{{ term.target }}</span>
       </div>
       {% endfor %}
     </div>
+    {% endif %}
+    {% endwith %}
 
     <!--! Begin: Normal editing -->
     {{ form.target_f }}
