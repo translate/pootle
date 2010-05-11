@@ -90,7 +90,7 @@ def calculate_stats(units):
                               ['source_wordcount'], count=True)
     fuzzy = sum_column(units.filter(fuzzy=True),
                        ['source_wordcount'], count=True)
-    translated = sum_column(units.filter(target_length__gt=0),
+    translated = sum_column(units.filter(target_length__gt=0, fuzzy=False),
                             ['source_wordcount', 'target_wordcount'], count=True)
     result = {}
     result['total'] = total['count']
