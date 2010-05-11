@@ -31,7 +31,7 @@
   {% endif %}
   <div class="comments">
     {% if unit.developer_comment %}
-    <div title="{{ developer_comments_title }}" class="developer-comments" lang="en" dir="ltr">{{ unit.developer_comment|safe }}</div>
+    <div title="{{ developer_comments_title }}" class="developer-comments" lang="en" dir="ltr">{{ unit.developer_comment|linebreaks }}</div>
     {% endif %}
     {% if unit.locations %}
     <div class="translate-locations" lang="en" dir="ltr">{{ unit.locations }}</div>
@@ -116,6 +116,6 @@
   </div>
   <div class="translate-translation comments" lang="{{ LANGUAGE_CODE }}">
     <div>{{ form.translator_comment.label_tag }}</div>
-    {{ form.translator_comment }}
+    {{ form.translator_comment|linebreaks }}
   </div>
 </td>
