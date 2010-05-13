@@ -44,6 +44,7 @@ from pootle_store.util import calculate_stats, empty_quickstats
 from pootle_store.filetypes import factory_classes
 
 # Store States
+LOCKED = -1
 NEW = 0
 """store just created, not parsed yet"""
 PARSED = 1
@@ -518,15 +519,27 @@ class Store(models.Model, base.TranslationStore):
     @commit_on_success
     def update(self, update_structure=False, update_translation=False, conservative=True):
         """update db with units from file"""
+        if self.state == LOCKED:
+            # file currently being updated
+            #FIXME: shall we idle wait for lock to be released first? what about stale locks?
+            logging.info("attemped to update %s while locked", self.pootle_path)
+            return
+
         if self.state < PARSED:
             # no existing units in db, file hasn't been parsed before
             # no point in merging, add units directly
-            self.state = PARSED
+            self.state = LOCKED
             self.save()
             for index, unit in enumerate(self.file.store.units):
                 if unit.istranslatable():
                     self.addunit(unit, index)
+            self.state = PARSED
+            self.save()
             return
+
+        oldstate = self.state
+        self.state = LOCKED
+        self.save()
 
         self.require_dbid_index(update=True)
         old_ids = set(self.dbid_index.keys())
@@ -554,6 +567,9 @@ class Store(models.Model, base.TranslationStore):
                     changed = True
                 if changed:
                     unit.save()
+
+        self.state = oldstate
+        self.save()
 
     def require_qualitychecks(self):
         """make sure quality checks are run"""
