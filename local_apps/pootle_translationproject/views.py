@@ -199,7 +199,7 @@ def tp_admin_files(request, translation_project):
         'project': translation_project.project,
         'directory': translation_project.directory,
         }
-    link = "%s"
+    link = "%s/translate/"
     return util.edit(request, 'translation_project/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,
                      formset=StoreFormset, can_delete=True, extra=0)
