@@ -488,7 +488,7 @@ class TranslationProject(models.Model):
         else:
             termfilename = "pootle-terminology." + self.project.localfiletype
             try:
-                store = Store.objects.get(pootle_path=termfilename)
+                store = self.stores.get(name=termfilename)
                 return make_matcher(store)
             except Store.DoesNotExist:
                 pass
