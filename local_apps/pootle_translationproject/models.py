@@ -476,7 +476,7 @@ class TranslationProject(models.Model):
 
     ########################################################################################
 
-    is_terminology_project = property(lambda self: self.project.code == "terminology")
+    is_terminology_project = property(lambda self: self.pootle_path.endswith('/terminology/'))
     is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
 
     def gettermbase(self, make_matcher):
