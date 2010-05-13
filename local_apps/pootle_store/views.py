@@ -49,7 +49,6 @@ def export_as_xliff(request, pootle_path):
 
     outputstore = store.convert(xlifffile)
     outputstore.switchfile(store.name, createifmissing=True)
-    encoding = getattr(store.file.store, "encoding", "UTF-8")
     content_type = "application/x-xliff; charset=UTF-8"
     response = HttpResponse(str(outputstore), content_type=content_type)
     filename, ext = os.path.splitext(store.name)
