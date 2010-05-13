@@ -68,7 +68,7 @@ def optional_depcheck():
 
     if not depcheck.test_unzip():
         optional.append({'dependency': 'unzip',
-                         'text': _('''Can't find the unzip command. Uploading archives is faster if "unzip" is available.''')})
+                         'text': _('Can\'t find the unzip command. Uploading archives is faster if "unzip" is available.')})
 
     if not depcheck.test_iso_codes():
         optional.append({'dependency': 'iso-codes',
@@ -76,7 +76,10 @@ def optional_depcheck():
 
     if not depcheck.test_lxml():
         optional.append({'dependency': 'lxml',
-                            'text': _("Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news items are safe and correct.")})
+                            'text': _("Can't find lxml. Pootle uses lxml to parse XML based formats like XLIFF and Qt TS and to make sure HTML tags inserted in news items are safe and correct.")})
+    if not depcheck.test_gaupol():
+        optional.append({'dependency': 'gaupol',
+                         'text': _("Can't find Gaupol. Pootle uses Gaupol's parser to support subtitles formats")})
 
     if not depcheck.test_levenshtein():
         optional.append({'dependency': 'levenshtein',

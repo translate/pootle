@@ -91,6 +91,12 @@ def test_indexer():
     from translate.search.indexing import _get_available_indexers
     return [indexer.__module__.split('.')[-1] for indexer in _get_available_indexers()]
 
+def test_gaupol():
+    try:
+        import gaupol
+        return True
+    except ImportError:
+        return False
 
 ######################
 # test optimal setup #
@@ -145,5 +151,3 @@ def test_webserver():
 
 def test_livetranslation():
     return not settings.LIVE_TRANSLATION
-
-
