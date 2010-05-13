@@ -479,43 +479,31 @@ class TranslationProject(models.Model):
     is_terminology_project = property(lambda self: self.pootle_path.endswith('/terminology/'))
     is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
 
-    def gettermbase(self, make_matcher):
-        """returns this project's terminology store"""
-        if self.is_terminology_project:
-            query = self.stores
-            if query.count() > 0:
-                return make_matcher(self)
-        else:
-            termfilename = "pootle-terminology." + self.project.localfiletype
-            try:
-                store = self.stores.get(name=termfilename)
-                return make_matcher(store)
-            except Store.DoesNotExist:
-                pass
-        raise StopIteration()
-
     def gettermmatcher(self):
         """returns the terminology matcher"""
-        def make_matcher(termbase):
-            newmtime = termbase.get_mtime()
-            if newmtime != self.non_db_state.termmatchermtime:
-                if self.is_terminology_project:
-                    return match.terminologymatcher(self.stores.iterator()), newmtime
-                else:
-                    return match.terminologymatcher(termbase), newmtime
+        if self.is_terminology_project:
+            if self.non_db_state.termmatcher is None:
+                self.require_units()
 
-        if self.non_db_state.termmatcher is None:
-            self.require_units()
+            newmtime = self.get_mtime()
+            if newmtime != self.non_db_state.termmatchermtime:
+                self.non_db_state.termmatcher = match.terminologymatcher(self.stores.iterator())
+                self.non_db_state.termmatchermtime = newmtime
+        else:
             try:
-                self.non_db_state.termmatcher, self.non_db_state.termmatchermtime = self.gettermbase(make_matcher)
-            except StopIteration:
-                if not self.is_terminology_project:
-                    try:
-                        termproject = TranslationProject.objects.get(language=self.language_id, project__code='terminology')
-                        self.non_db_state.termmatcher = termproject.gettermmatcher()
-                        self.non_db_state.termmatchermtime = termproject.non_db_state.termmatchermtime
-                    except TranslationProject.DoesNotExist:
-                        pass
+                termfilename = "pootle-terminology." + self.project.localfiletype
+                store = self.stores.get(name=termfilename)
+                newmtime = store.get_mtime()
+                if newmtime != self.non_db_state.termmatchermtime:
+                    self.non_db_state.termmatcher = match.terminologymatcher(store)
+                    self.non_db_state.termmatchermtime = newmtime
+            except Store.DoesNotExist:
+                try:
+                    termproject = TranslationProject.objects.get(language=self.language_id, project__code='terminology')
+                    self.non_db_state.termmatcher = termproject.gettermmatcher()
+                    self.non_db_state.termmatchermtime = termproject.non_db_state.termmatchermtime
+                except TranslationProject.DoesNotExist:
+                    pass
         return self.non_db_state.termmatcher
 
     ##############################################################################################
