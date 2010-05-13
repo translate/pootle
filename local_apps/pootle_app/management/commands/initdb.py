@@ -106,7 +106,7 @@ def create_default_languages():
     # Sesotho sa Leboa
     # Northern Sotho
     nso = Language(code="nso")
-    nso.fullname = u'Pedi; Sepedi; Northern Sotho": u"Northern Sotho'
+    nso.fullname = u'Pedi; Sepedi; Northern Sotho'
     nso.nplurals = '2'
     nso.pluralequation = '(n > 1)'
     nso.specialchars = "šŠ"
