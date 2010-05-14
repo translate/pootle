@@ -147,10 +147,11 @@ def xliff_link(request, path_obj):
         }
 
 def download_link(request, path_obj):
-    return {
-        'href': '%s/download/' % path_obj.pootle_path,
-        'text': _('Download'),
-        }
+    if path_obj.file != "":
+        return {
+            'href': '%s/download/' % path_obj.pootle_path,
+            'text': _('Download'),
+            }
 
 def commit_link(request, path_obj):
     if path_obj.abs_real_path and check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
