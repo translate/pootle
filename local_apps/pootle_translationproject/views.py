@@ -431,33 +431,44 @@ def upload_file(request, directory, django_file, overwrite):
     # setting _closed to False should work around this
     #FIXME: hackish, does this have any undesirable side effect?
     if getattr(django_file, '_closed', None) is None:
-        django_file._closed = False
+        try:
+            django_file._closed = False
+        except AttributeError:
+            pass
     # factory also checks for _mode
     if getattr(django_file, '_mode', None) is None:
-        django_file._mode = 1
+        try:
+            django_file._mode = 1
+        except AttributeError:
+            pass
     # mode is an attribute not a property in Django 1.1
     if getattr(django_file, 'mode', None) is None:
         django_file.mode = 1
 
     local_filename = get_local_filename(translation_project, django_file.name)
+    pootle_path = directory.pootle_path + local_filename
     # The full filesystem path to 'local_filename'
     upload_path    = get_upload_path(translation_project, relative_root_dir, local_filename)
 
+    try:
+        store = translation_project.stores.get(pootle_path=pootle_path)
+    except Store.DoesNotExist:
+        store = None
+
     file_exists = os.path.exists(absolute_real_path(upload_path))
-    if file_exists and overwrite == 'overwrite' and not check_permission('overwrite', request):
+    if store is not None and overwrite == 'overwrite' and not check_permission('overwrite', request):
         raise PermissionDenied(_("You do not have rights to overwrite files here."))
-    if not file_exists and not check_permission('administrate', request):
+    if store is None and not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to upload new files here."))
     if overwrite == 'merge' and not check_permission('translate', request):
         raise PermissionDenied(_("You do not have rights to upload files here."))
     if overwrite == 'suggest' and not check_permission('suggest', request):
         raise PermissionDenied(_("You do not have rights to upload files here."))
 
-    if not file_exists or overwrite == 'overwrite':
+    if store is None or (overwrite == 'overwrite' and store.file != ""):
         overwrite_file(request, relative_root_dir, django_file, upload_path)
         return
 
-    store = Store.objects.get(file=upload_path)
     newstore = factory.getobject(django_file, classes=factory_classes)
 
     #FIXME: are we sure this is what we want to do? shouldn't we
