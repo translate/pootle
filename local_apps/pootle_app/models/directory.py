@@ -93,12 +93,8 @@ class Directory(models.Model):
     stores = property(_get_stores)
 
     def get_or_make_subdir(self, child_name):
-        try:
-            return self.child_dirs.get(name=child_name)
-        except Directory.DoesNotExist:
-            child_dir = Directory(name=child_name, parent=self)
-            child_dir.save()
-            return child_dir
+        child_dir, created = Directory.objects.get_or_create(name=child_name, parent=self)
+        return child_dir
 
     def __unicode__(self):
         return self.pootle_path
