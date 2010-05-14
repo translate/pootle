@@ -114,13 +114,12 @@ def create_pootle_permission_sets():
     #override with no permissions for templates language
     permission_set, created = PermissionSet.objects.get_or_create(profile=nobody, directory=templates)
     if created:
-        #FIXME should we set everything as negative?
-        permission_set.negative_permissions = [suggest]
+        permission_set.positive_permissions = [view]
         permission_set.save()
 
     permission_set, created = PermissionSet.objects.get_or_create(profile=default, directory=templates)
     if created:
-        permission_set.negative_permissions = [suggest, translate]
+        permission_set.positive_permissions = [view]
         permission_set.save()
 
 def create_root_directory():
