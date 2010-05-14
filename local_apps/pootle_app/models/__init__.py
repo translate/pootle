@@ -21,8 +21,8 @@
 
 from pootle_app.models.suggestion import Suggestion
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import PermissionSet, PermissionSetCache
+from pootle_app.models.permissions import PermissionSet
 
-__all__ = ["Suggestion", "Directory", "PermissionSet", "PermissionSetCache"]
+__all__ = ["Suggestion", "Directory", "PermissionSet"]
 
 
