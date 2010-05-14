@@ -588,14 +588,15 @@ class Store(models.Model, base.TranslationStore):
 
     def sync(self, update_structure=False, update_translation=False, conservative=True, create=False):
         """sync file with translations from db"""
-        if not self.file and create:
-            # file doesn't exist let's create it
-            storeclass = factory_classes[self.translation_project.project.localfiletype]
-            store_path = os.path.join(settings.PODIRECTORY, self.translation_project.real_path, self.name)
-            store = self.convert(storeclass)
-            store.savefile(store_path)
-            self.file = store_path
-            self.save()
+        if not self.file:
+            if create:
+                # file doesn't exist let's create it
+                storeclass = factory_classes[self.translation_project.project.localfiletype]
+                store_path = os.path.join(settings.PODIRECTORY, self.translation_project.real_path, self.name)
+                store = self.convert(storeclass)
+                store.savefile(store_path)
+                self.file = store_path
+                self.save()
             return
 
         self.require_dbid_index(update=True)
