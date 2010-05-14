@@ -407,9 +407,11 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         #FIXME: maybe there is a faster way to do this?
         store.mergefile(newstore, request.user.username, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
 
-def upload_file(request, relative_root_dir, django_file, overwrite):
+def upload_file(request, directory, django_file, overwrite):
+    translation_project = request.translation_project
+    relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
     # for some reason factory checks explicitly for file existance and
-    # if file is open, which makes it impossible to work with Django's
+    # if file is open, which makes it difficult to work with Django's
     # in memory uploads.
     #
     # setting _closed to False should work around this
@@ -423,9 +425,9 @@ def upload_file(request, relative_root_dir, django_file, overwrite):
     if getattr(django_file, 'mode', None) is None:
         django_file.mode = 1
 
-    local_filename = get_local_filename(request.translation_project, django_file.name)
+    local_filename = get_local_filename(translation_project, django_file.name)
     # The full filesystem path to 'local_filename'
-    upload_path    = get_upload_path(request.translation_project, relative_root_dir, local_filename)
+    upload_path    = get_upload_path(translation_project, relative_root_dir, local_filename)
 
     file_exists = os.path.exists(absolute_real_path(upload_path))
     if file_exists and overwrite == 'overwrite' and not check_permission('overwrite', request):
@@ -501,13 +503,12 @@ class UploadHandler(view_handler.Handler):
             # The URL relative to the URL of the translation project. Thus, if
             # directory.pootle_path == /af/pootle/foo/bar, then
             # relative_root_dir == foo/bar.
-            relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
             if django_file.name.endswith('.zip'):
                 archive = True
-                upload_archive(request, relative_root_dir, django_file, overwrite)
+                upload_archive(request, directory, django_file, overwrite)
             else:
                 archive = False
-                upload_file(request, relative_root_dir, django_file, overwrite)
+                upload_file(request, directory, django_file, overwrite)
             scan_translation_project_files(translation_project)
             newstats = translation_project.getquickstats()
 
