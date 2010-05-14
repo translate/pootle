@@ -319,7 +319,8 @@ def unzip_external(request, relative_root_dir, django_file, overwrite):
         for basedir, dirs, files in os.walk(tempdir):
             for fname in files:
                 # Read the contents of a file...
-                fcontents = open(os.path.join(basedir, fname), 'rb').read()
+                newfile = StringIO.StringIO(open(os.path.join(basedir, fname), 'rb').read())
+                newfile.name = os.path.basename(fname)
                 # Get the filesystem path relative to the temporary directory
                 relative_host_dir = basedir[len(tempdir)+len(os.sep):]
                 # Construct a full UNIX path relative to the current
@@ -329,7 +330,7 @@ def unzip_external(request, relative_root_dir, django_file, overwrite):
                 # ZIP file.
                 sub_relative_root_dir = os.path.join(relative_root_dir, host_to_unix_path(relative_host_dir))
                 try:
-                    upload_file(request, sub_relative_root_dir, fname, fcontents, overwrite)
+                    upload_file(request, target_dir, newfile, overwrite)
                 except ValueError, e:
                     logging.error("error adding %s\t%s", fname, e)
     finally:
