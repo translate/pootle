@@ -20,6 +20,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models
+from django.core.cache import cache
+from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 
@@ -40,16 +42,34 @@ def get_pootle_permissions(codenames=None):
         permissions = Permission.objects.filter(content_type=content_type)
     return dict((permission.codename, permission) for permission in permissions)
 
+def get_permissions_by_username(username, directory):
+    pootle_path = directory.pootle_path
+    key = 'Permissions:%s' % username
+    permissions_cache = cache.get(key, {})
+    if pootle_path not in permissions_cache:
+        try:
+            permissionset = PermissionSet.objects.filter(
+                directory__in=directory.trail(only_dirs=False),
+                profile__user__username=username).order_by('-directory__pootle_path')[0]
+            permissions_cache[pootle_path] = permissionset.to_dict()
+        except IndexError:
+            permissions_cache[pootle_path] = None
+        cache.set(key, permissions_cache, settings.OBJECT_CACHE_TIMEOUT)
+
+    return permissions_cache[pootle_path]
+
 def get_matching_permissions(profile, directory):
-    permission_query = PermissionSet.objects.filter(directory__in=directory.trail(only_dirs=False)).order_by('-directory__pootle_path')
     if profile.user.is_authenticated():
-        user_query = permission_query.filter(profile=profile)
-        if user_query.count():
-            return user_query[0].to_dict()
-        else:
-            return permission_query.filter(profile__user__username='default')[0].to_dict()
-    else:
-        return permission_query.filter(profile__user__usernae='nobody')[0].to_dict()
+        permissions = get_permissions_by_username(profile.user.username, directory)
+        if permissions is not None:
+            return permissions
+
+        permissions = get_permissions_by_username('default', directory)
+        if permissions is not None:
+            return permissions
+
+    permissions = get_permissions_by_username('nobody', directory)
+    return permissions
 
 def check_profile_permission(profile, permission_codename, directory):
     """it checks if current user has the permission the perform C{permission_codename}"""
@@ -82,3 +102,13 @@ class PermissionSet(models.Model):
 
     def to_dict(self):
         return dict((permission.codename, permission) for permission in self.positive_permissions.iterator())
+
+    def save(self, *args, **kwargs):
+        super(PermissionSet, self).save(*args, **kwargs)
+        key = 'Permissions:%s' % self.profile.user.username
+        cache.delete(key)
+
+    def delete(self, *args, **kwargs):
+        super(PermissionSet, self).delete(*args, **kwargs)
+        key = 'Permissions:%s' % self.profile.user.username
+        cache.delete(key)
