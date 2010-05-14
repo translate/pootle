@@ -771,7 +771,7 @@ class Store(models.Model, base.TranslationStore):
                 oldunit.merge(newunit)
                 oldunit.save()
 
-        self.sync(update_structure=True, update_translation=True, conservative=False, create=True)
+        self.sync(update_structure=True, update_translation=True, conservative=False, create=False)
 
     def updateheader(self, user=None):
         had_header = False

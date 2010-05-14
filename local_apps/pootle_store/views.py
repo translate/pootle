@@ -60,7 +60,7 @@ def download(request, pootle_path):
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
-    store.sync(update_translation=True, create=True)
+    store.sync(update_translation=True)
     return redirect('/export/' + store.real_path)
 
 ####################### Translate Page ##############################
