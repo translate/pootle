@@ -300,7 +300,9 @@ def get_local_filename(translation_project, upload_filename):
                                }))
     return local_filename
 
-def unzip_external(request, relative_root_dir, django_file, overwrite):
+def unzip_external(request, directory, django_file, overwrite):
+    translation_project = request.translation_project
+    relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
     from tempfile import mkdtemp, mkstemp
     # Make a temporary directory to hold a zip file and its unzipped contents
     tempdir = mkdtemp(prefix='pootle')
@@ -322,13 +324,17 @@ def unzip_external(request, relative_root_dir, django_file, overwrite):
                 newfile = StringIO.StringIO(open(os.path.join(basedir, fname), 'rb').read())
                 newfile.name = os.path.basename(fname)
                 # Get the filesystem path relative to the temporary directory
-                relative_host_dir = basedir[len(tempdir)+len(os.sep):]
+                subdir = host_to_unix_path(basedir[len(tempdir)+len(os.sep):])
+                if subdir:
+                    target_dir = directory.get_or_make_subdir(subdir)
+                else:
+                    target_dir = directory
                 # Construct a full UNIX path relative to the current
                 # translation project URL by attaching a UNIXified
                 # 'relative_host_dir' to the root relative path
                 # (i.e. the path from which the user is uploading the
                 # ZIP file.
-                sub_relative_root_dir = os.path.join(relative_root_dir, host_to_unix_path(relative_host_dir))
+                sub_relative_root_dir = os.path.join(relative_root_dir, subdir)
                 try:
                     upload_file(request, target_dir, newfile, overwrite)
                 except ValueError, e:
@@ -339,7 +345,9 @@ def unzip_external(request, relative_root_dir, django_file, overwrite):
         os.unlink(tempzipname)
         shutil.rmtree(tempdir)
 
-def unzip_python(request, relative_root_dir, django_file, overwrite):
+def unzip_python(request, directory, django_file, overwrite):
+    translation_project = request.translation_project
+    relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
     django_file.seek(0)
     archive = zipfile.ZipFile(django_file, 'r')
     # TODO: find a better way to return errors...
@@ -347,10 +355,15 @@ def unzip_python(request, relative_root_dir, django_file, overwrite):
         for filename in archive.namelist():
             try:
                 if filename[-1] != '/':
-                    sub_relative_root_dir = os.path.join(relative_root_dir, os.path.dirname(filename))
+                    subdir = host_to_unix_path(os.path.dirname(filename))
+                    if subdir:
+                        target_dir = directory.gt_or_make_subdir(subdir)
+                    else:
+                        target_dir = directory
+                    sub_relative_root_dir = os.path.join(relative_root_dir, subdir)
                     newfile = StringIO.StringIO(archive.read(filename))
                     newfile.name = os.path.basename(filename)
-                    upload_file(request, sub_relative_root_dir, newfile, overwrite)
+                    upload_file(request, target_dir, newfile, overwrite)
             except ValueError, e:
                 logging.error("error adding %s\t%s", filename, e)
     finally:
@@ -359,6 +372,7 @@ def unzip_python(request, relative_root_dir, django_file, overwrite):
 def upload_archive(request, directory, django_file, overwrite):
     # First we try to use "unzip" from the system, otherwise fall back to using
     # the slower zipfile module
+    translation_project = request.translation_project
     try:
         unzip_external(request, directory, django_file, overwrite)
     except:
