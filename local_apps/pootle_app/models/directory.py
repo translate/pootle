@@ -141,7 +141,7 @@ class Directory(models.Model):
             # skip language, and translation_project directories
             start = 4
         else:
-            start = 2
+            start = 1
 
         for i in xrange(start, len(path_parts)):
             path = '/'.join(path_parts[:i]) + '/'
