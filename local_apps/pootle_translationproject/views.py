@@ -274,6 +274,18 @@ def host_to_unix_path(p):
 def get_upload_path(translation_project, relative_root_dir, local_filename):
     """gets the path of a translation file being uploaded securely,
     creating directories as neccessary"""
+    dir_path = os.path.join(translation_project.real_path, unix_to_host_path(relative_root_dir))
+    return relative_real_path(os.path.join(dir_path, local_filename))
+
+def get_local_filename(translation_project, upload_filename):
+    base, ext = os.path.splitext(upload_filename)
+    new_ext = translation_project.project.localfiletype
+    if new_ext == 'po' and translation_project.is_template_project:
+        new_ext = 'pot'
+    local_filename =  '%s.%s' % (base, new_ext)
+
+    # check if name is valid
+
     if os.path.basename(local_filename) != local_filename or local_filename.startswith("."):
         raise ValueError(_("Invalid/insecure file name: %s", local_filename))
     # XXX: Leakage of the project layout information outside of
@@ -286,15 +298,7 @@ def get_upload_path(translation_project, relative_root_dir, local_filename):
                                'langcode': translation_project.language.code,
                                'filetype': translation_project.project.localfiletype,
                                }))
-    dir_path = os.path.join(translation_project.real_path, unix_to_host_path(relative_root_dir))
-    return relative_real_path(os.path.join(dir_path, local_filename))
-
-def get_local_filename(translation_project, upload_filename):
-    base, ext = os.path.splitext(upload_filename)
-    new_ext = translation_project.project.localfiletype
-    if new_ext == 'po' and translation_project.is_template_project:
-        new_ext = 'pot'
-    return '%s.%s' % (base, new_ext)
+    return local_filename
 
 def unzip_external(request, relative_root_dir, django_file, overwrite):
     from tempfile import mkdtemp, mkstemp
