@@ -9,7 +9,7 @@
 
 {% block body.id %}translatepage{% endblock body.id %}
 
-{% block bodyclass %}{% if checking_text %}tpreview{% else %}tptranslate{% endif %}{% endblock %}
+{% block bodyclass %}{% if checks %}tpreview{% else %}tptranslate{% endif %}{% endblock %}
 
 {% block extra_head %}
 <script src='{{ "js/jquery/jquery.textarea-expander.js"|m }}' type="text/javascript"></script>
