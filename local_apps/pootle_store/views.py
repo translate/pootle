@@ -200,12 +200,18 @@ def translate_end(request, translation_project):
         else:
             message = _("No matching strings to translate.")
 
+    if 'search' in request.GET and 'sfields' in request.GET:
+        search_form = SearchForm(request.GET)
+    else:
+        search_form = SearchForm()
+
     context = {
         'endmessage': message,
         'translation_project': translation_project,
         'language': translation_project.language,
         'project': translation_project.project,
         'directory': translation_project.directory,
+        'search_form': search_form,
         }
     return render_to_response('store/translate_end.html', context, context_instance=RequestContext(request))
 

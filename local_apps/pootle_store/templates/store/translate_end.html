@@ -1,5 +1,5 @@
 {% extends "tp_base_extended.html" %}
-{% load i18n baseurl  %}
+{% load i18n baseurl translation_project_tags  %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
@@ -10,6 +10,10 @@
 {% block body.id %}translatepage{% endblock body.id %}
 
 {% block bodyclass %}{% if checking_text %}tpreview{% else %}tptranslate{% endif %}{% endblock %}
+
+{% block search %}
+{% render_search search_form "?" %}
+{% endblock %}
 
 {% block content %}
 <p class="notice">
