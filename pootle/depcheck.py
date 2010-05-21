@@ -31,7 +31,7 @@ from django.conf import settings
 def test_translate():
     try:
         from translate.__version__ import ver, sver
-        if ver >= (1, 5, 0):
+        if ver >= (1, 7, 0):
             return True, sver
         else:
             return False, sver
