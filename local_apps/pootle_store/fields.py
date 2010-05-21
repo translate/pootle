@@ -61,7 +61,7 @@ class MultiStringField(models.Field):
         return "TextField"
 
     def to_python(self, value):
-        if value is None:
+        if not value:
             return multistring("", encoding="UTF-8")
         elif isinstance(value, multistring):
             return value
