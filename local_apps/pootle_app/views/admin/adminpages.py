@@ -43,15 +43,6 @@ def required_depcheck():
         state = 'error'
     required.append({'dependency': 'translate', 'state': state, 'text': text })
 
-    status = depcheck.test_sqlite()
-    if status:
-        text = _('SQLite is installed.')
-        state = 'good'
-    else:
-        text = _('SQLite is missing. Pootle requires SQLite for translation statistics.')
-        state = 'error'
-    required.append({'dependency': 'sqlite', 'state': state, 'text': text })
-
     status, version = depcheck.test_django()
     if status:
         text = _('Django version %s is installed.', version)
