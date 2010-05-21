@@ -9,12 +9,12 @@
     <div class="translation-text" lang="en">{{ source|fancy_highlight }}</div>
     {% endfor %}
   </div>
+  {% if show_comments %}
   {% if unit.getcontext %}
   <div class="translate-context">
     {{ unit.getcontext }}
   </div>
   {% endif %}
-  {% if show_comments %}
   <div class="translate-original comments">
     {% if unit.developer_comment %}
     <div title="{% trans "Developer Comments"}" class="developer-comments" lang="en" dir="ltr">{{ unit.developer_comment|linebreaks }}</div>
