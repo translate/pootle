@@ -24,14 +24,20 @@ $.pootle = {};
 
   // Write TM results into the currently focused element
   $(".writetm").click(function() {
-    var tmtext = $(".tm-translation", this).html();
-    $($.pootle.focusedElement).replaceSelection(tmtext);
+    var tmtext = $(".tm-translation", this).text();
+    var element = $($.pootle.focusedElement);
+    var start = element.caret().start + tmtext.length;
+    element.val(element.caret().replace(tmtext));
+    element.caret(start, start);
   });
 
   // Write special chars into the currently focused element
   $(".writespecial").click(function() {
-    var specialtext = $(this).html();
-    $($.pootle.focusedElement).replaceSelection(specialtext);
+    var specialtext = $(this).text();
+    var element = $($.pootle.focusedElement);
+    var start = element.caret().start + specialtext.length;
+    element.val(element.caret().replace(specialtext));
+    element.caret(start, start);
   });
 
 
