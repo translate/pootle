@@ -143,7 +143,7 @@ class Directory(models.Model):
             path = '/'.join(path_parts[:i]) + '/'
             parents.append(path)
         if parents:
-            return Directory.objects.filter(pootle_path__in=parents).order_by('-pootle_path')
+            return Directory.objects.filter(pootle_path__in=parents).order_by('pootle_path')
         return Directory.objects.none()
 
     def has_suggestions(self):
