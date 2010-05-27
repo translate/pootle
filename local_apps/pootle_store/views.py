@@ -27,7 +27,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.utils import simplejson
 from django.views.decorators.cache import never_cache
 
@@ -36,6 +36,7 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_misc.util import paginate
 from pootle_profile.models import get_profile
 from pootle_translationproject.forms import SearchForm
+from pootle_app.models import Suggestion as SuggestionStat
 
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
@@ -257,6 +258,10 @@ def translate_page(request, units_queryset, store=None):
                 #HACKISH: django 1.2 stupidly modifies instance on model form validation, reload unit from db
                 prev_unit = Unit.objects.get(id=prev_unit.id)
                 prev_unit.add_suggestion(form.cleaned_data['target_f'], get_profile(request.user))
+                SuggestionStat.objects.get_or_create(translation_project=translation_project,
+                                                           suggester=get_profile(request.user),
+                                                           state='pending',
+                                                           unit=prev_unit.id)
         else:
             # form failed, don't skip to next unit
             edit_unit = prev_unit
@@ -325,6 +330,7 @@ def translate(request, pootle_path):
 def reject_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
+    translation_project = unit.store.translation_project
     if not check_profile_permission(get_profile(request.user), 'review', directory):
         raise PermissionDenied
 
@@ -333,7 +339,22 @@ def reject_suggestion(request, uid, suggid):
         'sugid': suggid,
         }
     if request.POST.get('reject'):
+        try:
+            sugg = unit.suggestion_set.get(id=suggid)
+        except ObjectDoesNotExist:
+            sugg = None
+
         response['success'] = unit.reject_suggestion(suggid)
+
+        if sugg is not None and response['success']:
+            #FIXME: we need a totally different model for tracking stats, this is just lame
+            suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
+                                                            suggester=sugg.user,
+                                                            state='pending',
+                                                            unit=unit.id)
+            suggstat.reviewer = get_profile(request.user)
+            suggstat.state = 'rejected'
+            suggstat.save()
 
     response = simplejson.dumps(response, indent=4)
     return HttpResponse(response, mimetype="application/json")
@@ -341,6 +362,8 @@ def reject_suggestion(request, uid, suggid):
 def accept_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
+    translation_project = unit.store.translation_project
+
     if not check_profile_permission(get_profile(request.user), 'review', directory):
         raise PermissionDenied
 
@@ -350,12 +373,27 @@ def accept_suggestion(request, uid, suggid):
         }
 
     if request.POST.get('accept'):
+        try:
+            sugg = unit.suggestion_set.get(id=suggid)
+        except ObjectDoesNotExist:
+            sugg = None
+
         response['success'] = unit.accept_suggestion(suggid)
         response['newtargets'] = [highlight_whitespace(target) for target in unit.target.strings]
         response['newdiffs'] = {}
         for sugg in unit.get_suggestions():
             response['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i], target) \
                                              for i, target in enumerate(sugg.target.strings)]
+
+        if sugg is not None and response['success']:
+            #FIXME: we need a totally different model for tracking stats, this is just lame
+            suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
+                                                            suggester=sugg.user,
+                                                            state='pending',
+                                                            unit=unit.id)
+            suggstat.reviewer = get_profile(request.user)
+            suggstat.state = 'accepted'
+            suggstat.save()
 
     response = simplejson.dumps(response, indent=4)
     return HttpResponse(response, mimetype="application/json")
