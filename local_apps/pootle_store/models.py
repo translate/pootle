@@ -646,7 +646,7 @@ class Store(models.Model, base.TranslationStore):
 
     def _get_units(self):
         self.require_units()
-        return self.unit_set.order_by('index').select_related('store__translation_project')
+        return self.unit_set.filter(obsolete=False).order_by('index').select_related('store__translation_project')
     units=property(_get_units)
 
     def addunit(self, unit, index=None):
