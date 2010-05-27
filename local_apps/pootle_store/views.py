@@ -36,6 +36,7 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_misc.util import paginate
 from pootle_profile.models import get_profile
 from pootle_translationproject.forms import SearchForm
+from pootle_statistics.models import Submission
 from pootle_app.models import Suggestion as SuggestionStat
 
 from pootle_store.models import Store, Unit
@@ -254,6 +255,9 @@ def translate_page(request, units_queryset, store=None):
         if form.is_valid():
             if cantranslate and 'submit' in request.POST:
                 form.save()
+                sub = Submission(translation_project=translation_project,
+                                 submitter=get_profile(request.user))
+                sub.save()
             elif cansuggest and 'suggest' in request.POST:
                 #HACKISH: django 1.2 stupidly modifies instance on model form validation, reload unit from db
                 prev_unit = Unit.objects.get(id=prev_unit.id)
@@ -394,6 +398,11 @@ def accept_suggestion(request, uid, suggid):
             suggstat.reviewer = get_profile(request.user)
             suggstat.state = 'accepted'
             suggstat.save()
+
+            sub = Submission(translation_project=translation_project,
+                             submitter=get_profile(request.user),
+                             from_suggestion=suggstat)
+            sub.save()
 
     response = simplejson.dumps(response, indent=4)
     return HttpResponse(response, mimetype="application/json")
