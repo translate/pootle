@@ -253,7 +253,7 @@ def translate_page(request, units_queryset, store=None):
         if form.is_valid():
             if cantranslate and 'submit' in request.POST:
                 form.save()
-            elif cansuggest:
+            elif cansuggest and 'suggest' in request.POST:
                 prev_unit.add_suggestion(form.cleaned_data['target_f'], get_profile(request.user))
         else:
             # form failed, don't skip to next unit
