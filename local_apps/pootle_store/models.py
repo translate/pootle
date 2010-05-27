@@ -410,7 +410,7 @@ class Unit(models.Model, base.TranslationUnit):
         self.target = suggestion.target
         self.save()
         suggestion.delete()
-        if settings.AUTOSYNC:
+        if settings.AUTOSYNC and self.file:
             #FIXME: update alttrans
             self.sync(self.getorig())
             self.store.updateheader(suggestion.user)
