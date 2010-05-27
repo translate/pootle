@@ -254,6 +254,8 @@ def translate_page(request, units_queryset, store=None):
             if cantranslate and 'submit' in request.POST:
                 form.save()
             elif cansuggest and 'suggest' in request.POST:
+                #HACKISH: django 1.2 stupidly modifies instance on model form validation, reload unit from db
+                prev_unit = Unit.objects.get(id=prev_unit.id)
                 prev_unit.add_suggestion(form.cleaned_data['target_f'], get_profile(request.user))
         else:
             # form failed, don't skip to next unit
