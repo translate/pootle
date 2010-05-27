@@ -30,7 +30,7 @@ class Submission(models.Model):
 
     objects = RelatedManager()
 
-    creation_time       = models.DateTimeField(db_index=True)
+    creation_time       = models.DateTimeField(auto_now_add=True, db_index=True)
     translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', db_index=True)
     submitter           = models.ForeignKey('pootle_profile.PootleProfile', null=True, db_index=True)
     from_suggestion     = models.OneToOneField('pootle_app.Suggestion', null=True, db_index=True)
