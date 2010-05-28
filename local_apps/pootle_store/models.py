@@ -586,11 +586,12 @@ class Store(models.Model, base.TranslationStore):
 
     @commit_on_success
     def update_qualitychecks(self):
+        for unit in self.units.iterator():
+            unit.update_qualitychecks()
+
         if self.state < CHECKED:
             self.state = CHECKED
             self.save()
-        for unit in self.units.iterator():
-            unit.update_qualitychecks()
 
     def sync(self, update_structure=False, update_translation=False, conservative=True, create=False):
         """sync file with translations from db"""
