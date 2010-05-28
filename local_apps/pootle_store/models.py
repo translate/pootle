@@ -534,11 +534,21 @@ class Store(models.Model, base.TranslationStore):
         if self.state < PARSED:
             # no existing units in db, file hasn't been parsed before
             # no point in merging, add units directly
+            oldstate = self.state
             self.state = LOCKED
             self.save()
-            for index, unit in enumerate(self.file.store.units):
-                if unit.istranslatable():
-                    self.addunit(unit, index)
+            try:
+                for index, unit in enumerate(self.file.store.units):
+                    if unit.istranslatable():
+                        self.addunit(unit, index)
+            except:
+                # something broke, delete any units that got created
+                # and return store state to its original value
+                self.unit_set.delete()
+                self.state = oldstate
+                self.save()
+                raise
+
             self.state = PARSED
             self.save()
             return
