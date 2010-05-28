@@ -739,41 +739,61 @@ class Store(models.Model, base.TranslationStore):
     def mergefile(self, newfile, username, allownewstrings, suggestions, notranslate, obsoletemissing):
         """make sure each msgid is unique ; merge comments etc from
         duplicates into original"""
-        self.require_dbid_index(update=True)
-        old_ids = set(self.dbid_index.keys())
-        if issubclass(self.translation_project.project.get_file_class(),  newfile.__class__):
-            new_ids = set(newfile.getids())
-        else:
-            new_ids = set(newfile.getids(self.name))
+        if self.state == LOCKED:
+            # file currently being updated
+            #FIXME: shall we idle wait for lock to be released first? what about stale locks?
+            logging.info("attemped to merge %s while locked", self.pootle_path)
+            return
 
-        if allownewstrings:
-            new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
-            for unit in new_units:
-                self.addunit(unit)
+        # must be done before locking the file in case it wasn't already parsed
+        self.require_units()
 
-        if obsoletemissing:
-            obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
-            for unit in self.findid_bulk(obsolete_dbids):
-                if unit.istranslated():
-                    unit.makeobsolete()
-                    unit.save()
-                else:
-                    unit.delete()
-
-        shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
-        for oldunit in self.findid_bulk(shared_dbids):
-            newunit = newfile.findid(oldunit.getid())
-            if not newunit.istranslated():
-                continue
-
-            if notranslate or oldunit.istranslated() and suggestions:
-                #FIXME: add a user argument
-                oldunit.add_suggestion(newunit.target, None)
+        # lock store
+        oldstate = self.state
+        self.state = LOCKED
+        self.save()
+        try:
+            self.require_dbid_index(update=True)
+            old_ids = set(self.dbid_index.keys())
+            if issubclass(self.translation_project.project.get_file_class(),  newfile.__class__):
+                new_ids = set(newfile.getids())
             else:
-                oldunit.merge(newunit)
-                oldunit.save()
+                new_ids = set(newfile.getids(self.name))
 
-        self.sync(update_structure=True, update_translation=True, conservative=False, create=False)
+            if allownewstrings:
+                new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
+                for unit in new_units:
+                    self.addunit(unit)
+
+            if obsoletemissing:
+                obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
+                for unit in self.findid_bulk(obsolete_dbids):
+                    if unit.istranslated():
+                        unit.makeobsolete()
+                        unit.save()
+                    else:
+                        unit.delete()
+
+            shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
+            for oldunit in self.findid_bulk(shared_dbids):
+                newunit = newfile.findid(oldunit.getid())
+                if not newunit.istranslated():
+                    continue
+
+                if notranslate or oldunit.istranslated() and suggestions:
+                    #FIXME: add a user argument
+                    oldunit.add_suggestion(newunit.target, None)
+                else:
+                    oldunit.merge(newunit)
+                    oldunit.save()
+
+            self.sync(update_structure=True, update_translation=True, conservative=False, create=False)
+
+        finally:
+            # unlock store
+            self.state = oldstate
+            self.save()
+
 
     def updateheader(self, user=None):
         had_header = False
