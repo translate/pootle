@@ -265,7 +265,7 @@ class Unit(models.Model, base.TranslationUnit):
             if self.target != unit.target:
                 wordcount = self.target_wordcount
                 self.target = unit.target
-                if not (wordcount == self.target_wordcount == 0):
+                if not (wordcount == count_words(self.target_f.strings) == 0):
                     #FIXME: we need to do this cause we discard nplurals for empty plurals
                     changed = True
         notes = unit.getnotes(origin="developer")
