@@ -472,6 +472,12 @@ class Store(models.Model, base.TranslationStore):
     def save(self, *args, **kwargs):
         self.pootle_path = self.parent.pootle_path + self.name
         super(Store, self).save(*args, **kwargs)
+        if self.state >= PARSED:
+            if self.translation_project:
+                # update search index
+                self.translation_project.update_index(self.translation_project.indexer, self)
+            # new units, let's flush cache
+            deletefromcache(self, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
 
     def delete(self, *args, **kwargs):
         super(Store, self).delete(*args, **kwargs)
@@ -502,11 +508,6 @@ class Store(models.Model, base.TranslationStore):
         """make sure file is parsed and units are created"""
         if self.state < PARSED and self.unit_set.count() == 0:
             self.update(update_structure=True, update_translation=True, conservative=False)
-            if self.translation_project:
-                # update search index
-                self.translation_project.update_index(self.translation_project.indexer, self)
-            # new units, let's flush cache
-            deletefromcache(self, ["getquickstats", "get_mtime", "has_suggestions"])
 
 
     def require_dbid_index(self, update=False):
