@@ -553,39 +553,41 @@ class Store(models.Model, base.TranslationStore):
             self.save()
             return
 
+        # lock store
         oldstate = self.state
         self.state = LOCKED
         self.save()
+        try:
+            self.require_dbid_index(update=True)
+            old_ids = set(self.dbid_index.keys())
+            new_ids = set(self.file.store.getids())
 
-        self.require_dbid_index(update=True)
-        old_ids = set(self.dbid_index.keys())
-        new_ids = set(self.file.store.getids())
+            if update_structure:
+                obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
+                for unit in self.findid_bulk(obsolete_dbids):
+                    if not unit.istranslated() or not conservative:
+                        #FIXME: make obselete instead?
+                        unit.delete()
 
-        if update_structure:
-            obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
-            for unit in self.findid_bulk(obsolete_dbids):
-                if not unit.istranslated() or not conservative:
-                    #FIXME: make obselete instead?
-                    unit.delete()
+                new_units = (self.file.store.findid(uid) for uid in new_ids - old_ids)
+                for unit in new_units:
+                    self.addunit(unit, unit.index)
 
-            new_units = (self.file.store.findid(uid) for uid in new_ids - old_ids)
-            for unit in new_units:
-                self.addunit(unit, unit.index)
+            if update_translation:
+                shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
 
-        if update_translation:
-            shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
-
-            for unit in self.findid_bulk(shared_dbids):
-                newunit = self.file.store.findid(unit.getid())
-                changed = unit.update(newunit)
-                if update_structure and unit.index != newunit.index:
-                    unit.index = newunit.index
-                    changed = True
-                if changed:
-                    unit.save()
-
-        self.state = oldstate
-        self.save()
+                for unit in self.findid_bulk(shared_dbids):
+                    newunit = self.file.store.findid(unit.getid())
+                    changed = unit.update(newunit)
+                    if update_structure and unit.index != newunit.index:
+                        unit.index = newunit.index
+                        changed = True
+                    if changed:
+                        unit.save()
+        finally:
+            # unlock store
+            self.state = oldstate
+            self.save()
 
     def require_qualitychecks(self):
         """make sure quality checks are run"""
