@@ -103,7 +103,8 @@ def unzip_external(request, relative_root_dir, django_file, overwrite):
         for basedir, dirs, files in os.walk(tempdir):
             for fname in files:
                 # Read the contents of a file...
-                fcontents = open(os.path.join(basedir, fname), 'rb').read()
+                newfile = StringIO.StringIO(open(os.path.join(basedir, fname), 'rb').read())
+                newfile.name = os.path.basename(fname)
                 # Get the filesystem path relative to the temporary directory
                 relative_host_dir = basedir[len(tempdir)+len(os.sep):]
                 # Construct a full UNIX path relative to the current
@@ -113,7 +114,7 @@ def unzip_external(request, relative_root_dir, django_file, overwrite):
                 # ZIP file.
                 sub_relative_root_dir = os.path.join(relative_root_dir, host_to_unix_path(relative_host_dir))
                 try:
-                    upload_file(request, sub_relative_root_dir, fname, fcontents, overwrite)
+                    upload_file(request, sub_relative_root_dir, newfile, overwrite)
                 except ValueError, e:
                     logging.error("error adding %s\t%s", fname, e)
     finally:
@@ -154,7 +155,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
     # uploaded file.
     if not os.path.exists(upload_dir):
         os.makedirs(upload_dir)
-        
+
     # Get the file extensions of the uploaded filename and the
     # current translation project
     _upload_base, upload_ext = os.path.splitext(django_file.name)
@@ -182,7 +183,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         newstore = factory.getobject(django_file)
         #FIXME: maybe there is a faster way to do this?
         store.mergefile(newstore, request.user.username, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
-    
+
 def upload_file(request, relative_root_dir, django_file, overwrite):
     # for some reason factory checks explicitly for file existance and
     # if file is open, which makes it impossible to work with Django's
@@ -262,7 +263,7 @@ class UploadHandler(view_handler.Handler):
             file = forms.FileField(required=True, label=_('File'))
             overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect,
                                           label='', choices=choices, initial='merge')
-            
+
         self.Form = UploadForm
         super(UploadHandler, self).__init__(request, data, files)
         self.form.allow_overwrite = check_permission('overwrite', request)
@@ -293,7 +294,7 @@ class UploadHandler(view_handler.Handler):
                            translation_project=translation_project,
                            submitter=get_profile(request.user))
             s.save()
-            
+
             post_file_upload.send(sender=translation_project, user=request.user, oldstats=oldstats,
                                   newstats=newstats, archive=archive)
         return {'upload': self}
