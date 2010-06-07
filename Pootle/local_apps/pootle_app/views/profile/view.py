@@ -22,32 +22,14 @@
 
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext as _
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
-from django.forms.fields import email_re
-from django.forms.util import ErrorList
 
 from pootle_misc.baseurl import redirect
 
-def is_valid_email(email):
-    return (email_re.match(email) is not None)
-
 class UserForm(ModelForm):
-
-    def clean(self):
-        cleaned_data = self.cleaned_data
-        email = cleaned_data.get("email")
-
-        if not email or not is_valid_email(email):
-            msg = _('Enter a valid e-mail address.')
-            self._errors["email"] = ErrorList([msg])
-
-        # Always return the full collection of cleaned data.
-        return cleaned_data
-
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
