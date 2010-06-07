@@ -113,12 +113,16 @@ def handle_translation_file(request, translation_project, file_path):
             return item
 
     def next_store_item(search, store_name, item):
+        if store.getquickstats()['total'] == 0:
+            raise StopIteration
         if 0 <= item < store.getquickstats()['total']:
             return store, get_item(search.next_matches(store, item), item - 1)
         else:
             return store, store.getquickstats()['total'] - 1
 
     def prev_store_item(search, store_name, item):
+        if store.getquickstats()['total'] == 0:
+            raise StopIteration
         if store.getquickstats()['total'] > item > 0:
             return store, get_item(search.prev_matches(store, item), item + 1)
         else:
