@@ -20,11 +20,14 @@
 
 from django.core.cache import cache
 from django.conf import settings
+from django.utils.encoding import iri_to_uri
+
 import logging
+
 
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
-        key = instance.pootle_path + ":" + function.__name__
+        key = iri_to_uri(instance.pootle_path + ":" + function.__name__)
         result = cache.get(key)
         if result is None:
             logging.debug("cache miss for %s", key)
@@ -34,7 +37,7 @@ def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     return _getfromcache
 
 def deletefromcache(sender, functions, **kwargs):
-    path = sender.pootle_path
+    path = iri_to_uri(sender.pootle_path)
     path_parts = path.split("/")
 
     # clean project cache
