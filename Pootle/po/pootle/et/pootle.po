@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2008-05-26 09:01+0000\n"
-"Last-Translator: Henrik Pihl <ahvenas@gmail.com>\n"
+"PO-Revision-Date: 2010-05-13 18:45+0200\n"
+"Last-Translator: glen <glen@delfi.ee>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.1.0\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -1215,7 +1216,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:467
 msgid "Current Translation:"
-msgstr "<b>Hetke tõlge:</b>"
+msgstr "Hetke tõlge:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator

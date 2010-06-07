@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-12-07 18:10+0200\n"
+"PO-Revision-Date: 2010-05-14 15:47+0200\n"
 "Last-Translator: Mohomodou  <mh@bollag-areal.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: son\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.0.0\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: strings.py:8
 msgid ""
@@ -377,7 +377,7 @@ msgstr "Yaddante"
 
 #: local_apps/pootle_app/models/suggestion.py:56
 msgid "Rejected"
-msgstr "Mogante"
+msgstr "Mongante"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
@@ -1555,11 +1555,11 @@ msgstr "Juwalyan"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
-msgstr "Hankul kayandiyaney hanse ne nungoo woo se"
+msgstr "Yamma kayandiyaney hanse ne nungoo woo se"
 
 #: templates/admin_profile_menu.html:5
 msgid "General"
-msgstr "Hankul"
+msgstr "Yamma"
 
 #: templates/admin_profile_menu.html:6
 msgid "Manage the users"
@@ -1767,7 +1767,7 @@ msgstr "Goykaw kabu-izey"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr "Alhaaley maašeedaa"
+msgstr "Alhaaley maašeeda"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2010-01-21 11:30+0200\n"
-"Last-Translator: Andrej Dundović <adundovi@gmail.com>\n"
+"PO-Revision-Date: 2010-03-26 18:23+0200\n"
+"Last-Translator: gorostas <odmoriti.oko@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -12,13 +12,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"Držite \"Control\" ili \"Command\" na Macu kako bi ste odabrali više od jedne "
+"Držite \"Control\" ili \"Command\" na Macu kako biste odabrali više od jedne "
 "opcije."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
@@ -30,153 +30,155 @@ msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"Navedena e-mail adresa nema vezani korisnički račun. Sigurni ste da ste već "
+"registrirani ?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Ovo polje je obavezno."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
+"Osigurajte da ova vrijednost ima najmanje %(max)d karaktera (sada ima %"
+"(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Spremiti i dodati drugi"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Spremi i nastavi editirati"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Promijeni"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Dodajte %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr ""
+msgstr "Pogledajte na stranici"
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "ime"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "prezime"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "Adresa e-pošte"
+msgstr "adresa e-pošte"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "aktivan"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "status super korisnika"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Molimo ispravite grešku ispod"
+msgstr[1] "Molimo ispravite greške ispod"
 msgstr[2] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Postavke su spremljene."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Spremiti"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Korisničko ime"
+msgstr "korisničko ime"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "Adresa e-pošte"
+msgstr "adresa e-pošte"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Zaporka"
+msgstr "zaporka"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "zaporka (ponovite)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "To korisničko ime je već zauzeto. Molimo izaberite drugo."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "Morate oba puta unijeti istu zaporku."
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "Pročitao sam i slažem se sa uvjetima."
 
 #: external_apps/registration/forms.py:107
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
-msgstr ""
+msgstr "Ta e-mail adresa je već zauzeta. Molimo unesite drugu e-mail adresu."
 
 #: external_apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
+"Registracija koristeći besplatne e-mail adrese je zabranjena. Molimo unesite "
+"drugačiju e-mail adresu."
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "korisnik"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr ""
+msgstr "aktivacijski ključ"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "registracijski profil"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr ""
+msgstr "registracijski profili"
 
 #: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "Jezični kod ne zadovoljava uvijete ISO konvencije"
 
 #: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "Projektni kod može samo sadržavati slova, brojeve i _"
 
 #: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
-msgstr ""
+msgstr "Napredne opcije"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
@@ -184,7 +186,7 @@ msgstr "Naslov"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Ime ovog Pootle servera"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
@@ -1848,43 +1850,48 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter New Password."
-msgstr ""
+msgstr "Unesite novu zaporku."
 
 #: templates/registration/password_reset_confirm.html:12
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
+"Molimo unesite novu zaporku dvaput kako bismo potvrdili da ste je točno "
+"unijeli."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr ""
+msgstr "Nova zaporka"
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
 msgstr "Potvrdite zaporku"
 
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr ""
+msgstr "Resetiranje zaporke."
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "Neuspješno resetiranje zaporke."
 
 #: templates/registration/password_reset_confirm.html:32
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Veza za resetiranje zaporke nije valjana, moguće zato što je već "
+"iskorištena. Molimo zatražite novo resetiranje zaporke."
 
 #: templates/registration/password_reset_done.html:11
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"Uputu za postavljanje zaporke smo vam poslali na adresu e-pošte koju ste "
+"prijavili. Trebala bi vam stići uskoro."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -1892,25 +1899,29 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"Ovu poruku ste primili jer ste zatražili resetiranje zaporke za svoj račun "
+"na %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Molimo posjetite sljedeću stranicu i izaberite novu zaporku:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "Vaše korisničko ime je %(user)s."
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Hvala što koristite Pootle!"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Zaboravili ste zaporku? Unesite adresu svoje e-pošte i poslat ćemo vam uputu "
+"kako postaviti novu."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
@@ -1920,27 +1931,27 @@ msgstr "Adresa e-pošte"
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "Registracija je gotova"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "Molimo provjerite svoju e-poštu kako biste aktivirali račun."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "Registrirajte novi Pootle račun"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "Ispunite sljedeći obrazac kako biste počeli prevoditi."
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"
-msgstr ""
+msgstr "Lozinka (ponovo)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr ""
+msgstr "Već imate račun?"
 
 #: templates/registration/registration_form.html:41
 #, fuzzy

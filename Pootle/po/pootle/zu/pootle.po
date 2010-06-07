@@ -3,34 +3,39 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2008-09-01 13:36+0000\n"
-"Last-Translator: F Wolff <friedel@translate.org.za>\n"
+"PO-Revision-Date: 2010-05-24 18:17+0200\n"
+"Last-Translator: admin <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
+"Ukuze ukhethe okungaphezu kokukodwa cindezela u-\"control\" noma u-\"command\" "
+"kwi-Mac."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Faka i-imeyli address esemthethweni."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"Leyo imeyli address ayinayo ikhawunti yomsebenzisi. Uqinisekile ukuthi "
+"ubhalisile?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Le ndawo iyadingeka."
 
 #: strings.py:12
 #, python-format
@@ -39,25 +44,25 @@ msgstr ""
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Gcina bese wengeza okunye"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Gcina bese uyaqhubeka uhlele"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Yongeza"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Shintsha"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Yongeza %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
@@ -66,31 +71,30 @@ msgstr ""
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "Igama"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "isibongo"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "Ikheli le Emeil"
+msgstr "ikheli le-imeyli"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "iyasebenza"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "umhleli"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uyacelwa ukuba ulungise iphutha elingenzansi."
+msgstr[1] "Uyacelwa ukuba ulungise amaphutha angenzansi."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -101,54 +105,55 @@ msgstr ""
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Gcina"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Igama Loyisebenzisayo"
+msgstr "Igama lomsebenzisi"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "Ikheli le Emeil"
+msgstr "ikheli le-imeyli"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
 msgstr "Igama lokungena"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "igama lokungena (futhi)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "Leli gama lokungena selithathiwe. Uyacelwa ukuba ukhethe elinye."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "Kumele ngaso sonke isikhathi ubhale igama lokungena elifanayo."
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "Ngiyifundile futhi ngiyavumelana nemigomo yesevisi."
 
 #: external_apps/registration/forms.py:107
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
 msgstr ""
+"Leli kheli le imayli seliyasetshenziswa vele. UYacelwa ukuthi usinikeze "
+"ikheli le imeyli elihlukile."
 
 #: external_apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
+"Akuvumelekile ukubhalisa usebenzisa ikheli le imeyli lamahhala. Uyacelwa "
+"ukuba unikeze ikheli le imeyli ilihlukile."
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "umsebenzisi"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
@@ -156,11 +161,11 @@ msgstr ""
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "iprofayli yokubhalisa"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr ""
+msgstr "Amaprofayli okubhalisa"
 
 #: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
@@ -168,7 +173,7 @@ msgstr ""
 
 #: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "Ikhodi yeprojekthi ingaba kuphela nosonhlamvukazi, izinmaba kanye"
 
 #: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
@@ -203,11 +208,11 @@ msgstr ""
 #: local_apps/pootle_app/unit_update.py:95
 #: local_apps/pootle_app/unit_update.py:105
 msgid "You do not have rights to review suggestions here"
-msgstr ""
+msgstr "Awunalo ilungelo lokuhlola imibono lapha"
 
 #: local_apps/pootle_app/management/__init__.py:62
 msgid "Can view a translation project"
-msgstr ""
+msgstr "Ngavula iprojekthi yesihumusho"
 
 #: local_apps/pootle_app/management/__init__.py:64
 msgid "Can make a suggestion for a translation"
@@ -223,15 +228,15 @@ msgstr ""
 
 #: local_apps/pootle_app/management/__init__.py:70
 msgid "Can review translations"
-msgstr ""
+msgstr "Ungakwazi ukuhlola izihumusho"
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "Ngalayisha imiqulu yamaprojekthi ezihumusho"
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "Ngakwazi ukuqondisa iprojekthi yokuhumusha"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can commit to version control"
@@ -270,11 +275,11 @@ msgstr ""
 
 #: local_apps/pootle_app/models/language.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "Akwaziwa"
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Inani lobuningi"
 
 #: local_apps/pootle_app/models/language.py:50
 msgid "Plural Equation"
@@ -288,25 +293,27 @@ msgstr ""
 
 #: local_apps/pootle_app/models/profile.py:97
 msgid "Suggestions Accepted"
-msgstr ""
+msgstr "Imibono yamukelwe"
 
 #: local_apps/pootle_app/models/profile.py:98
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "Imibono isaqhubeka"
 
 #: local_apps/pootle_app/models/profile.py:99
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "Imibono ihloliwe"
 
 #: local_apps/pootle_app/models/profile.py:100
 msgid "Submissions Made"
-msgstr ""
+msgstr "Kulethiwe"
 
 #: local_apps/pootle_app/models/project.py:40
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
+"Ikhodi emfushane yeprojekthi. Lokhu kufanele kube nezimpawu ze ASCII, "
+"izinamba kanye nezimpawu(_) zokudwebela ngaphansi."
 
 #: local_apps/pootle_app/models/project.py:41
 msgid ""
@@ -320,7 +327,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:49
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
@@ -328,15 +335,15 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:54
 msgid "GNU style: files named by language code"
-msgstr ""
+msgstr "isitayela se-GNU: amafayela aqanjwe ngamakhodi olimi"
 
 #: local_apps/pootle_app/models/project.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr ""
+msgstr "Okungeyona i-GNU: Ulimi ngalunye ohlwini lwalo lamafayela"
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
-msgstr ""
+msgstr "Ukubhekisiswa kwekhethelo"
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
@@ -348,41 +355,39 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:64
 msgid "Ignore Files"
-msgstr ""
+msgstr "Ziba amafayela"
 
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr ""
+msgstr "Qhubekayo"
 
 #: local_apps/pootle_app/models/suggestion.py:55
-#, fuzzy
 msgid "Accepted"
-msgstr "Yamukela"
+msgstr "Kwamukelekile"
 
 #: local_apps/pootle_app/models/suggestion.py:56
-#, fuzzy
 msgid "Rejected"
-msgstr "Yala"
+msgstr "Kwaliwe"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
 msgid "You do not have rights to update from version control here"
-msgstr ""
+msgstr "Awunamalungelo okuvuselela kwi-version control lapha"
 
 #: local_apps/pootle_app/models/translation_project.py:253
 #, python-format
 msgid "Updated %s files from version control"
-msgstr ""
+msgstr "amafayela avuselelwe %s esuswa ekulawulweni kwezinguquko"
 
 #: local_apps/pootle_app/models/translation_project.py:269
 #, python-format
 msgid "Failed to update %s from version control"
-msgstr ""
+msgstr "Ihlulekile ukuvuselela amafayela %s esuswa ku-version control"
 
 #: local_apps/pootle_app/models/translation_project.py:271
 #, python-format
 msgid "Updated file %s from version control"
-msgstr ""
+msgstr "amafayela avuselelwe %s esuswa ekulawulweni kwezinguquko"
 
 #: local_apps/pootle_app/models/translation_project.py:282
 #: local_apps/pootle_app/views/language/view.py:134
@@ -391,7 +396,7 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr ""
+msgstr "Ababambiqhaza abaphezulu"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/project_index.py:41
@@ -400,7 +405,7 @@ msgstr "Ahumushiwe"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr ""
+msgstr "Izidingo zihloliwe"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:109
@@ -423,6 +428,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"Lapha unganezela, uhlele, futhi ususe zonke izilimi ezikhona kuleseva ka-"
+"Pootle."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
@@ -435,13 +442,16 @@ msgstr ""
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
 #: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "Izimvume"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
+#, fuzzy
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"Lapha unganezela, uhlele futhi ususe izimvume ezenzeke ngephutha kuleseva "
+"kaPootle"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
@@ -452,14 +462,14 @@ msgstr ""
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:15
 msgid "Username"
-msgstr "Igama Loyisebenzisayo"
+msgstr "Igama lomsebenzisi"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
-msgstr ""
+msgstr "Susa"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
@@ -474,26 +484,28 @@ msgstr ""
 #: local_apps/pootle_app/views/project/projects_index.py:37
 #: templates/admin_profile_menu.html:8 templates/project_base.html:6
 msgid "Projects"
-msgstr "Imiklamo"
+msgstr "Imiklamo/amaprojekthi"
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:14
 msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
+"Lapha unganezela, uhlele futhi ususe zonke izilimi ezikhona kulesi siphakeli "
+"sika-Pootle."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr ""
+msgstr "Amasethimgi avamile"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr ""
+msgstr "Hlanganisela lapha isiza sakho amasethingi avamile."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:32
 msgid "Dependency Checks"
-msgstr ""
+msgstr "Ukuhlolwa kokuncikile"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:39
 #, fuzzy
@@ -517,10 +529,12 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"Lapha unganezela, uhlele futhi bonke abasebenzisi abakhona kuleseva ka-"
+"Pootle."
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
-msgstr ""
+msgstr "Nge"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
@@ -549,7 +563,7 @@ msgstr ""
 #: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
-msgstr ""
+msgstr "Okugcine ukwenziwa"
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
@@ -560,15 +574,15 @@ msgstr "Imiklamo"
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
-msgstr ""
+msgstr "Izindaba ezintsha"
 
 #: local_apps/pootle_app/templates/index/index.html:93
+#, fuzzy
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "Joyina izindaba ze-RSS"
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
-#, fuzzy
 msgid "Login"
 msgstr "Ngena"
 
@@ -579,19 +593,20 @@ msgstr "Ngena kwi-Pootle"
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
+"Igama lakho lomsebenzisi negama lokungena akumeshi. UYacelwa ukuba uzame "
+"futhi."
 
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Ulahlekelwe igama lakho lokungena?"
 
 #: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Awukabi nayo ikhawunti?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Bhalisa"
+msgstr "Bhalisa."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -600,21 +615,21 @@ msgstr "Iphutha"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr ""
+msgstr "Qeda"
 
 #: local_apps/pootle_app/templates/language/language_admin.html:20
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr ""
+msgstr "Ngenzansi unganezela, uhlele futhi ususe izimvume zalolu limi."
 
 #: local_apps/pootle_app/templates/language/language_admin.html:32
 msgid "Update Permissions"
-msgstr ""
+msgstr "Vuselela izimvume"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:6
 #: local_apps/pootle_app/views/language/admin_files.py:62
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "Amafayela"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""
@@ -626,7 +641,7 @@ msgstr ""
 #: local_apps/pootle_app/templates/language/tp_review.html:6
 #: templates/tp_menu.html:10
 msgid "Review"
-msgstr ""
+msgstr "Hlola"
 
 #: local_apps/pootle_app/templates/language/tp_translate.html:6
 #: local_apps/pootle_app/templates/language/translatepage.html:9
@@ -636,7 +651,7 @@ msgstr "Ukuhumusha"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:80
 msgid "Edit translation"
-msgstr ""
+msgstr "Hlela isihumusho"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:203
 msgid "Submit"
@@ -644,7 +659,7 @@ msgstr "Thumela"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:206
 msgid "Suggest"
-msgstr ""
+msgstr "Beka umbono"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:211
 msgid "Copy"
@@ -665,29 +680,28 @@ msgstr "Hlehla"
 #: local_apps/pootle_app/templates/project/project_admin.html:8
 #: templates/project_menu.html:9 templates/tp_base_admin.html:8
 msgid "Administrate"
-msgstr ""
+msgstr "Qondisa"
 
 #: local_apps/pootle_app/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
 
 #: local_apps/pootle_app/views/top_stats.py:77
-#, fuzzy
 msgid "Suggestions"
-msgstr "Imibono:"
+msgstr "Imibono."
 
 #: local_apps/pootle_app/views/top_stats.py:78
 msgid "Reviews"
-msgstr ""
+msgstr "Hlola"
 
 #: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
-msgstr ""
+msgstr "Okulethiwe"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Humusha uhlelo lwe-Toolkit  %s olufakiwe"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:42
 #, python-format
@@ -698,21 +712,24 @@ msgstr ""
 
 #: local_apps/pootle_app/views/admin/adminpages.py:48
 msgid "SQLite is installed."
-msgstr ""
+msgstr "I-SQLite ifakiwe."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:51
 msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
 msgstr ""
+"i-SQLite iyashoda. I-Pootle idinga iSQLite ukuze ibone izitathistikhi "
+"zokuhumusha."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:57
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "uhlelo lweDjango %s lufakiwe."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:60
 #, python-format
 msgid "Django version %s is installed. Pootle only works with the 1.x series."
 msgstr ""
+"Uhlelo lweDjango %s lufakiwe. I-Pootle isebenza kuphela ngesirizi ye-1.x"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:71
 msgid ""
@@ -725,18 +742,24 @@ msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
+"Isijumbu samakhodi e-ISO asitholakali. I-Pootle isebenzisa amakhodi e-ISO "
+"ukuhumusha amagama ezilimi."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:79
 msgid ""
 "Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news "
 "items are safe and correct."
 msgstr ""
+"I-lmxl ayitholakali. I-Pootle isebenzisa i-lmxl ukuqinisekisa ukuthi "
+"izindaba ezifakwa kuma-tags e-HTML ziphephile futhi ziliqinoso."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:83
 msgid ""
 "Can't find python-levenshtein package. Updating from templates is faster "
 "with python-levenshtein."
 msgstr ""
+"Isijumbu se-python-levenshtein asitholakali.Ukuvuselela uthathela "
+"kumatempleythi kuyashesha uma usebenzisa i-python-levenshtein."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:87
 msgid ""
@@ -810,16 +833,16 @@ msgstr "Igama lokungena"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
-msgstr ""
+msgstr "Awunamalungelo okuphatha i-Pootle."
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
 msgid "You do not have rights to administer %s."
-msgstr ""
+msgstr "Awunamalungelo okuphatha i-%s."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
-msgstr ""
+msgstr "Akukho mafayela kule projekthi."
 
 #: local_apps/pootle_app/views/admin/util.py:179
 msgid "There are errors in the form. Please review the problems below."
@@ -868,6 +891,8 @@ msgstr ""
 #: local_apps/pootle_app/views/language/admin_permissions.py:241
 msgid "This is a standard style project (one directory per language)."
 msgstr ""
+"Lesi isitayela esivamile seprojekthi (uhlu lwamafayela ngalunye ulimi "
+"ngalunye)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:247
 #: local_apps/pootle_app/views/language/language_admin.py:48
@@ -884,7 +909,7 @@ msgstr "(khetha ukufaka umsebenzisi)"
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "Ifayela eli-%d"
-msgstr[1] "Amafayela ama-%d"
+msgstr[1] "Amafayela angu-%d"
 
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
@@ -913,7 +938,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:108
 msgid "Quick Translate"
-msgstr ""
+msgstr "Humusha ngokushesha"
 
 #: local_apps/pootle_app/views/language/item_dict.py:110
 msgid "View Untranslated"
@@ -925,7 +950,7 @@ msgstr "Humusha onke"
 
 #: local_apps/pootle_app/views/language/item_dict.py:125
 msgid "ZIP of directory"
-msgstr ""
+msgstr "I-ZIP yohlu lwamafayela"
 
 #: local_apps/pootle_app/views/language/item_dict.py:136
 msgid "Download PO"
@@ -1154,9 +1179,9 @@ msgstr "Ekuqaleni"
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:106
-#, python-format
+#, python-format, fuzzy
 msgid "Previous %d"
-msgstr ""
+msgstr "Adlule"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: local_apps/pootle_app/views/language/translate_page.py:109
@@ -1166,9 +1191,9 @@ msgstr ""
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:118
-#, python-format
+#, python-format, fuzzy
 msgid "Next %d"
-msgstr ""
+msgstr "Okulandelayo"
 
 #. l10n: navigation link
 #: local_apps/pootle_app/views/language/translate_page.py:124
@@ -1390,11 +1415,11 @@ msgstr ""
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 msgid "Previous"
-msgstr ""
+msgstr "Dlule"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 msgid "Next"
-msgstr ""
+msgstr "Okulandelayo"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 msgid "Last"
@@ -1522,15 +1547,14 @@ msgstr ""
 
 #: templates/base.html:45 templates/base.html.py:106 templates/docs.html:5
 msgid "Help"
-msgstr ""
+msgstr "Usizo"
 
 #: templates/base.html:50 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
 msgid "My Account"
-msgstr ""
+msgstr "I-akhawunti yami"
 
 #: templates/base.html:51
-#, fuzzy
 msgid "Log Out"
 msgstr "Phuma"
 
@@ -1555,7 +1579,7 @@ msgstr ""
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
 msgid "Overview"
-msgstr ""
+msgstr "Okufingqiwe"
 
 #: templates/language_menu.html:8
 msgid "Language news"
@@ -1563,7 +1587,7 @@ msgstr ""
 
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
-msgstr ""
+msgstr "Qondisa izimvume zolimi lwakho"
 
 #: templates/project_menu.html:7
 #, fuzzy
@@ -1572,7 +1596,7 @@ msgstr "Ikhasi lasekhaya lomklamo"
 
 #: templates/project_menu.html:9
 msgid "Administrate your project"
-msgstr ""
+msgstr "Qondisa iprojekthi yakho"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -1592,15 +1616,15 @@ msgstr ""
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "Qondisa izimvume zeprojekthi yakho"
 
 #: templates/tp_menu.html:13
 msgid "Administrate your project files"
-msgstr ""
+msgstr "Qondisa amafayela eprojekthi yakho"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
-msgstr ""
+msgstr "Okufingqiwe nge-akhawunti yakho"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 #: templates/profiles/profile_detail.html:6
@@ -1780,9 +1804,8 @@ msgid "New password"
 msgstr ""
 
 #: templates/registration/password_change_form.html:33
-#, fuzzy
 msgid "Confirm password"
-msgstr "Qinisekisa Igama Lokungena:"
+msgstr "Qinisekisa Igama Lokungena"
 
 #: templates/registration/password_change_form.html:38
 msgid "Change My Password"
@@ -1826,9 +1849,8 @@ msgid "New Password"
 msgstr ""
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
-msgstr "Qinisekisa Igama Lokungena:"
+msgstr "Qinisekisa igama lokungena"
 
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20

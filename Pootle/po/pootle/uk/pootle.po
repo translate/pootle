@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-12-04 14:38+0200\n"
+"PO-Revision-Date: 2010-03-20 12:14+0200\n"
 "Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.0-rc2\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -815,7 +815,7 @@ msgid ""
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
 "Використовується СУБД sqlite3. SQLite підходить лише для невеликих "
-"всановлень з малою кількістю користувачів. Pootle буде мати більшу "
+"встановлень з малою кількістю користувачів. Pootle буде мати більшу "
 "продуктивність при використанні СУБД MySQL, але спершу потрібно встановити "
 "пакунок python-MySQLdb."
 
@@ -1557,8 +1557,8 @@ msgstr ""
 "<p class=\"about\">Ви також можете відвідати офіційний <a "
 "href=\"http://pootle.locamotion.org\">Pootle-сервер</a>. Адміністратор сервера "
 "не надав контактну інформацію чи опис цього сервера. Якщо ж Ви "
-"адміністратор цього сервера, поредагуйте опис у Вашому файлі з "
-"налаштуваннями або ж у інтерфейсі управління.</p>\n"
+"адміністратор цього сервера, змініть опис у Вашому файлі з налаштуваннями "
+"або ж у інтерфейсі управління.</p>\n"
 "</div>"
 
 #: templates/403.html:5 templates/403.html.py:10
@@ -1591,7 +1591,7 @@ msgstr "Керування"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
-msgstr "Настроїти основні налаштування для сайту"
+msgstr "Змінити основні налаштування для сайту"
 
 #: templates/admin_profile_menu.html:5
 msgid "General"
