@@ -68,7 +68,7 @@ class SiteConfigMiddleware(object):
             # duck typing I will call this
             # poking-the-duck-until-it-quacks-like-a-duck-test
 
-            if e.__class__.__name__ in ['OperationalError', 'ProgrammingError']:
+            if e.__class__.__name__ in ('OperationalError', 'ProgrammingError', 'DatabaseError'):
                 # we can't build the database here cause caching
                 # middleware won't allow progressive loading of
                 # response so instead return an empty response marked
