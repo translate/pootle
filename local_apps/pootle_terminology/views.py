@@ -110,7 +110,7 @@ def manage(request, translation_project):
     try:
         store = Store.objects.get(pootle_path=translation_project.pootle_path + 'pootle-terminology.po')
         UnitFormSet = modelformset_factory(Unit, can_delete=True, extra=0,
-                                           exclude=["index", "id", "source_f", "target_f", "developer_comment", "translator_comment", "fuzzy"])
+                                           exclude=["index", "id", "source_f", "target_f", "developer_comment", "translator_comment", "state"])
 
 
         if request.method == 'POST' and request.POST['submit']:

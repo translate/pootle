@@ -26,6 +26,7 @@ from django.utils.translation import ugettext as _
 from django.core.exceptions import  ObjectDoesNotExist
 
 from pootle_store.models import Unit
+from pootle_store.util import TRANSLATED
 from pootle_profile.models import get_profile
 from pootle_misc.templatetags.cleanhtml import fancy_escape
 
@@ -37,7 +38,7 @@ def find_altsrcs(unit, profile, store=None, project=None):
     altsrcs = Unit.objects.filter(unitid_hash=unit.unitid_hash,
                                  store__translation_project__project=project,
                                  store__translation_project__language__in=profile.alt_src_langs.all(),
-                                 target_length__gt=0).select_related('store', 'store__translation_project', 'store__translation_project__language')
+                                 state=TRANSLATED).select_related('store', 'store__translation_project', 'store__translation_project__language')
     if project.get_treestyle() == 'nongnu':
         altsrcs = altsrcs.filter(store__name=store.name)
     return altsrcs

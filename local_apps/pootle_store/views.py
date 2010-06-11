@@ -42,6 +42,7 @@ from pootle_app.models import Suggestion as SuggestionStat
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import highlight_diffs
+from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
 
 def export_as_xliff(request, pootle_path):
     #FIXME: cache this
@@ -115,11 +116,11 @@ def get_step_query(request, units_queryset):
             state_queryset = units_queryset.none()
             for unitstate in unitstates:
                 if unitstate == 'untranslated':
-                    state_queryset = state_queryset | units_queryset.filter(target_length=0)
+                    state_queryset = state_queryset | units_queryset.filter(state=UNTRANSLATED)
                 elif unitstate == 'translated':
-                    state_queryset = state_queryset | units_queryset.filter(target_length__gt=0, fuzzy=False)
+                    state_queryset = state_queryset | units_queryset.filter(state=TRANSLATED)
                 elif unitstate == 'fuzzy':
-                    state_queryset = state_queryset | units_queryset.filter(fuzzy=True)
+                    state_queryset = state_queryset | units_queryset.filter(state=FUZZY)
             units_queryset = state_queryset
 
     if 'matchnames' in request.GET:
