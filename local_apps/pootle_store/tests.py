@@ -14,7 +14,7 @@ class UnitTests(PootleTestCase):
         if 'target' in newvalues:
             unit.target = newvalues['target']
         if 'fuzzy' in newvalues:
-            unit.fuzzy = newvalues['fuzzy']
+            unit.markfuzzy(newvalues['fuzzy'])
         if 'translator_comment' in newvalues:
             unit.translator_comment = newvalues['translator_comment']
         unit.save()

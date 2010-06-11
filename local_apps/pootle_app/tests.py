@@ -352,17 +352,17 @@ msgstr "resto"
         pootle_path = '/af/pootle/pootle.po'
         unit_d = unit_dict(pootle_path)
         response = self.client.get(pootle_path + '/translate')
-        self.assertContains(response, '<input id="id_fuzzy" accesskey="f" type="checkbox" class="fuzzycheck" name="fuzzy" />')
+        self.assertContains(response, '<input id="id_state" accesskey="f" type="checkbox" class="fuzzycheck" name="state" />')
         submit_dict = {
             'target_f_0': 'fuzzy translation',
-            'fuzzy': 'on',
+            'state': 'on',
             'submit': 'Submit',
             }
         submit_dict.update(unit_d)
         response = self.client.post(pootle_path + "/translate", submit_dict)
         # Fetch the page again and check that the fuzzy checkbox IS checked.
         response = self.client.get(pootle_path + "/translate")
-        self.assertContains(response, '<input checked="checked" name="fuzzy" accesskey="f" class="fuzzycheck" type="checkbox" id="id_fuzzy" />')
+        self.assertContains(response, '<input checked="checked" name="state" accesskey="f"')
 
         store = Store.objects.get(pootle_path=pootle_path)
         self.assertTrue(store.units[0].isfuzzy())
@@ -370,14 +370,14 @@ msgstr "resto"
         # Submit the translation again, without the fuzzy checkbox checked
         submit_dict = {
             'target_f_0': 'fuzzy translation',
-            'fuzzy': '',
+            'state': '',
             'submit': 'Submit',
             }
         submit_dict.update(unit_d)
         response = self.client.post(pootle_path + "/translate", submit_dict)
         # Fetch the page once more and check that the fuzzy checkbox is NOT checked.
         response = self.client.get(pootle_path + "/translate")
-        self.assertContains(response, '<input id="id_fuzzy" accesskey="f" type="checkbox" class="fuzzycheck" name="fuzzy" />')
+        self.assertContains(response, '<input name="state" accesskey="f" value="200" class="fuzzycheck" type="checkbox" id="id_state" />')
         self.assertFalse(store.units[0].isfuzzy())
 
     def test_submit_translator_comments(self):
