@@ -26,6 +26,16 @@ from django.conf import settings
 from pootle_misc.aggregate import sum_column
 from pootle_misc.util import dictsum
 
+# Unit States
+OBSOLETE = -100
+"""unit is no longer part of store"""
+UNTRANSLATED = 0
+"""empty unit"""
+FUZZY = 50
+"""marked as fuzzy, typically means translation needs more work"""
+TRANSLATED = 200
+"""unit is fully translated"""
+
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
 
@@ -86,11 +96,11 @@ def calculate_stats(units):
     """calculate translation statistics for given unit queryset"""
     total = sum_column(units,
                        ['source_wordcount'], count=True)
-    untranslated = sum_column(units.filter(target_length=0),
+    untranslated = sum_column(units.filter(state=UNTRANSLATED),
                               ['source_wordcount'], count=True)
-    fuzzy = sum_column(units.filter(fuzzy=True),
+    fuzzy = sum_column(units.filter(state=FUZZY),
                        ['source_wordcount'], count=True)
-    translated = sum_column(units.filter(target_length__gt=0, fuzzy=False),
+    translated = sum_column(units.filter(state=TRANSLATED),
                             ['source_wordcount', 'target_wordcount'], count=True)
     result = {}
     result['total'] = total['count']

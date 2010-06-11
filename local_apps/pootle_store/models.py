@@ -41,10 +41,12 @@ from pootle_misc.baseurl import l
 
 from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.util import calculate_stats, empty_quickstats
+from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.filetypes import factory_classes
 
 # Store States
 LOCKED = -1
+"""store being modified"""
 NEW = 0
 """store just created, not parsed yet"""
 PARSED = 1
@@ -122,8 +124,8 @@ class Unit(models.Model, base.TranslationUnit):
     translator_comment = models.TextField(null=True, blank=True)
     locations = models.TextField(null=True, editable=False)
     context = models.TextField(null=True, editable=False)
-    fuzzy = models.BooleanField(default=False)
-    obsolete = models.BooleanField(default=False, editable=False)
+
+    state = models.IntegerField(null=False, default=UNTRANSLATED)
 
     mtime = models.DateTimeField(auto_now=True, auto_now_add=True, db_index=True, editable=False)
 
@@ -150,6 +152,11 @@ class Unit(models.Model, base.TranslationUnit):
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
             self.target_length = len(self.target_f)
+            if self.target_wordcount:
+                if self.state == UNTRANSLATED:
+                    self.state = TRANSLATED
+            elif self.state > FUZZY:
+                self.state = UNTRANSLATED
 
         super(Unit, self).save(*args, **kwargs)
 
@@ -284,10 +291,13 @@ class Unit(models.Model, base.TranslationUnit):
             self.context = unit.getcontext()
             changed = True
         if self.isfuzzy() != unit.isfuzzy():
-            self.fuzzy = unit.isfuzzy()
+            self.markfuzzy(unit.isfuzzy())
             changed = True
         if self.isobsolete() != unit.isobsolete():
-            self.obsolete = unit.isobsolete()
+            if unit.isobsoltete():
+                self.makeobsolete()
+            else:
+                self.resurrect()
             changed = True
         if self.unitid != unit.getid():
             self.unitid = unit.getid()
@@ -358,19 +368,29 @@ class Unit(models.Model, base.TranslationUnit):
         self.context = value
 
     def isfuzzy(self):
-        return self.fuzzy
+        return self.state == FUZZY
 
     def markfuzzy(self, value=True):
-        self.fuzzy = value
+        if self.state <= OBSOLETE:
+            return
+
+        if value:
+            self.state = FUZZY
+        elif self.state <= FUZZY:
+            if count_words(self.target_f.strings):
+                self.state = TRANSLATED
+            else:
+                self.state = UNTRANSLATED
 
     def hasplural(self):
         return self.source is not None and len(self.source.strings) > 1
 
     def isobsolete(self):
-        return self.obsolete
+        return self.state == OBSOLETE
 
     def makeobsolete(self):
-        self.obsolete = True
+        if self.state > OBSOLETE:
+            self.state = OBSOLETE
 
     @classmethod
     def buildfromunit(cls, unit):
@@ -544,7 +564,7 @@ class Store(models.Model, base.TranslationStore):
             except:
                 # something broke, delete any units that got created
                 # and return store state to its original value
-                self.unit_set.delete()
+                self.unit_set.all().delete()
                 self.state = oldstate
                 self.save()
                 raise
@@ -660,7 +680,7 @@ class Store(models.Model, base.TranslationStore):
 
     def _get_units(self):
         self.require_units()
-        return self.unit_set.filter(obsolete=False).order_by('index').select_related('store__translation_project')
+        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index').select_related('store__translation_project')
     units=property(_get_units)
 
     def addunit(self, unit, index=None):
@@ -721,13 +741,13 @@ class Store(models.Model, base.TranslationStore):
     def getcompletestats(self):
         """report result of quality checks"""
         self.require_qualitychecks()
-        queryset = QualityCheck.objects.filter(unit__store=self)
+        queryset = QualityCheck.objects.filter(unit__store=self, unit__state__gt=UNTRANSLATED)
         return group_by_count(queryset, 'name')
 
     @getfromcache
     def has_suggestions(self):
         """check if any unit in store has suggestions"""
-        return Suggestion.objects.filter(unit__store=self).count()
+        return Suggestion.objects.filter(unit__store=self, unit__state__gt=OBSOLETE).count()
 
 ################################ Translation #############################
 
