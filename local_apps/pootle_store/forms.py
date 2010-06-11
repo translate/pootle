@@ -28,6 +28,7 @@ from django.utils.safestring import mark_safe
 from translate.misc.multistring import multistring
 
 from pootle_store.models import Unit
+from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 ############## text cleanup and highlighting #########################
 FORM_RE = re.compile('\r\n|\r|\n|\t|\\\\')
@@ -151,7 +152,8 @@ def unit_form_factory(language, snplurals=1):
         id = forms.IntegerField(required=False)
         source_f = MultiStringFormField(nplurals=snplurals, required=False)
         target_f = MultiStringFormField(nplurals=tnplurals, required=False, attrs=target_attrs)
-        fuzzy = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs=fuzzy_attrs))
+        state = forms.BooleanField(required=False, label=_('Fuzzy'), widget=forms.CheckboxInput(attrs=fuzzy_attrs,
+                                                                              check_test=lambda x: x == FUZZY))
         translator_comment = forms.CharField(required=False, widget=forms.Textarea(attrs=comment_attrs))
 
         def clean_source_f(self):
@@ -165,5 +167,14 @@ def unit_form_factory(language, snplurals=1):
             if self.instance.target.strings != value:
                 self.instance._target_updated = True
             return value
+
+        def clean_state(self):
+            value = self.cleaned_data['state']
+            if value:
+                return FUZZY
+            elif self.instance.state != FUZZY:
+                return self.instance.state
+            else:
+                return TRANSLATED
 
     return UnitForm

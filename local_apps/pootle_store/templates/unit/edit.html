@@ -39,7 +39,7 @@
   </div>
 </td>
 <!--! Cell with translation (view/suggest/review/edit) -->
-<td colspan="1" rowspan="1" class="translate-translation comments translate-focus {% if unit.fuzzy %}translate-translation-fuzzy{% endif %}">
+<td colspan="1" rowspan="1" class="translate-translation comments translate-focus {% if unit.isfuzzy %}translate-translation-fuzzy{% endif %}">
   <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus">
     <!--! Translation memory -->
     {% with unit.get_terminology as terms %}
@@ -100,7 +100,7 @@
       <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
     </div>
     <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}">
-      {{ form.fuzzy }} {{ form.fuzzy.label_tag }}
+      {{ form.state }} {{ form.state.label_tag }}
     </div>
     {% if cantranslate or cansuggest %}
     <div class="translate-specialchars-block" lang="{{ language.code }}">
