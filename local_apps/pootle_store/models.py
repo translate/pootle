@@ -392,6 +392,18 @@ class Unit(models.Model, base.TranslationUnit):
         if self.state > OBSOLETE:
             self.state = OBSOLETE
 
+    def resurrect(self):
+        if self.state > OBSOLETE:
+            return
+
+        if count_words(self.target_f.strings):
+            self.state = TRANSLATED
+        else:
+            self.state = UNTRANSLATED
+
+    def istranslated(self):
+        return self.state >= TRANSLATED
+
     @classmethod
     def buildfromunit(cls, unit):
         newunit = cls()
