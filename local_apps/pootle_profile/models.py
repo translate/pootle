@@ -85,6 +85,10 @@ class PootleProfile(models.Model):
             return self.user
         else:
             return AnonymousUser()
+    pootle_user = property(_get_pootle_user)
+
+    def get_unit_rows(self):
+        return min(max(self.unit_rows, 5), 49)
 
     def getuserstatistics(self):
         """ get user statistics for user statistics links"""
@@ -119,7 +123,6 @@ class PootleProfile(models.Model):
             quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict['name'])
         return quicklinks
 
-    pootle_user = property(_get_pootle_user)
 
 
 def create_pootle_profile(sender, instance, **kwargs):
