@@ -11,7 +11,7 @@
         <th colspan="1" rowspan="1" class="translate-table-title translate-original">{% trans "Original" %}</th>
         <th colspan="1" rowspan="1" class="translate-table-title translate-translation">{% trans "Translation" %}</th>
       </tr>
-      {% for unit in pager.object_list %}
+      {% for unit in units %}
       <tr class="{% cycle 'even' 'odd' %}">
 	<td>
 	  <a href="{{store.pootle_path|l}}/translate?unit={{unit.id}}" id="editlink{{ unit.index }}" title="{% trans 'Edit translation' %}">

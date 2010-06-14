@@ -151,7 +151,9 @@ def get_current_units(request, step_queryset):
             pass
     elif 'page' in request.GET:
         # load first unit in a specific page
-        pager = paginate(request, step_queryset, items=10)
+        profile = get_profile(request.user)
+        unit_rows = profile.get_unit_rows()
+        pager = paginate(request, step_queryset, items=unit_rows)
         edit_unit = pager.object_list[0]
     elif 'id' in request.POST and 'index' in request.POST:
         # GET doesn't specify a unit try POST
@@ -225,6 +227,8 @@ def translate_page(request, units_queryset, store=None):
     canreview = check_permission("review", request)
     translation_project = request.translation_project
     language = translation_project.language
+    # shouldn't we globalize profile context
+    profile = get_profile(request.user)
 
     step_queryset = None
 
@@ -283,9 +287,35 @@ def translate_page(request, units_queryset, store=None):
     if store is None:
         store = edit_unit.store
 
+
+    unit_rows = profile.get_unit_rows()
+    preceding = store.units.filter(index__lt=edit_unit.index).count()
+
+    # regardless of the query used to step through units, we will
+    # display units in their original context, and display a pager for
+    # the store not for the unit_step query
     if pager is None:
-        page = store.units.filter(index__lt=edit_unit.index).count() / 10 + 1
-        pager = paginate(request, store.units, items=10, page=page)
+        page = preceding / unit_rows + 1
+        pager = paginate(request, store.units, items=unit_rows, page=page)
+    units = pager.object_list
+
+    # we always display the active unit in the middle of the page to
+    # provide context for translators
+    context_rows = (unit_rows - 1) / 2
+    if preceding > context_rows:
+        unit_position = preceding % unit_rows
+        if unit_position < context_rows:
+            # units too close to the top of the batch
+            offset = unit_rows - (context_rows - unit_position)
+            units_query = store.units[offset:]
+            page = preceding / unit_rows
+            units = paginate(request, units_query, items=unit_rows, page=page).object_list
+        elif unit_position >= unit_rows - context_rows:
+            # units too close to the bottom of the batch
+            offset = context_rows - (unit_rows - unit_position - 1)
+            units_query = store.units[offset:]
+            page = preceding / unit_rows + 1
+            units = paginate(request, units_query, items=unit_rows, page=page).object_list
 
     # caluclate url querystring so state is retained on POST
     # we can't just use request URL cause unit and page GET vars cancel state
@@ -310,6 +340,7 @@ def translate_page(request, units_queryset, store=None):
         'edit_unit': edit_unit,
         'store': store,
         'pager': pager,
+        'units': units,
         'language': language,
         'translation_project': translation_project,
         'project': translation_project.project,
