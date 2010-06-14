@@ -29,7 +29,6 @@ from django.utils.http import urlquote
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.forms.util import ErrorList
 
 from pootle.i18n.override import lang_choices
 
