@@ -163,7 +163,7 @@ class Unit(models.Model, base.TranslationUnit):
         if settings.AUTOSYNC and self.store.file and self.store.state >= PARSED:
             #FIXME: last translator information is lost
             self.sync(self.getorig())
-            self.file.savestore()
+            self.store.file.savestore()
 
         if self.store.state >= CHECKED and (self._source_updated or self._target_updated):
             #FIXME: are we sure only source and target affect quality checks?
