@@ -1628,9 +1628,10 @@ textarea.translation
     vertical-align: top;
 }
 
-textarea.comments
+.comments textarea
 {
     width: 99%;
+    height: 3em;
     min-height: 3em;
     padding: 0 0 5px !important;
 }
