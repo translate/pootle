@@ -152,6 +152,7 @@ def unit_form_factory(language, snplurals=1):
     class UnitForm(forms.ModelForm):
         class Meta:
             model = Unit
+            exclude = ['store']
 
         id = forms.IntegerField(required=False)
         source_f = MultiStringFormField(nplurals=snplurals, required=False, textarea=False)
