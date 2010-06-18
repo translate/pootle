@@ -1,16 +1,15 @@
 $(document).ready(function() {
 
 /* Pootle namespace */
-$.pootle = {};
+  $.pootle = {};
 
 /*
  * FOCUS
  */
 
   // Set initial focus on page load
-  var initialFocus = $(".translate-original-focus textarea");
+  var initialFocus = $(".translate-original-focus textarea").focus();
   $.pootle.focusedElement = initialFocus.get(0);
-  $.pootle.focusedElement.focus();
 
   // Update focus when appropriate
   $(".focusthis").focus(function(e) {
