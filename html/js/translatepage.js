@@ -144,11 +144,11 @@ $(document).ready(function() {
 
 /* INLINE SUGGESTIONS */
 
-  $(".sugglink").click(function(event){
+  $(".collapse").click(function(event){
       event.preventDefault();
-      $(this).siblings(".suggestions").children(".sugglist").toggle();
+      $(this).parent().siblings().slideToggle('fast');
   });
-  $(".sugglist").hide();
+  $(".collapse").parent().siblings().hide();
 
 /* REVIEWING SUGGESTIONS */
 
