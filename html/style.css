@@ -1234,6 +1234,8 @@ table.sortable th
 ul.pager
 {
     font-size: 85%;
+    margin: 10px;
+    padding: 5px;
 }
 
 ul.pager li
