@@ -18,17 +18,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django import forms
 from django.forms.models import modelformset_factory
 from django.db.transaction import commit_on_success
 
 from translate.tools.poterminology import TerminologyExtractor
 
 from pootle_app.views.language.view import get_translation_project
-from pootle_app.views.admin.util import has_permission
+from pootle_app.views.admin import util
 from pootle_misc.util import paginate
 from pootle_store.models import Store, Unit, PARSED, LOCKED
+from pootle_store.forms import unit_form_factory
 from pootle_misc.baseurl import redirect
 
 def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, filecounts):
@@ -51,7 +54,7 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, fil
 
 @commit_on_success
 @get_translation_project
-@has_permission('administrate')
+@util.has_permission('administrate')
 def extract(request, translation_project):
     """generate glossary of common keywords and phrases from translation project"""
     template_vars = {
@@ -99,34 +102,52 @@ def extract(request, translation_project):
     return render_to_response("terminology/extract.html", template_vars, context_instance=RequestContext(request))
 
 @get_translation_project
-@has_permission('administrate')
+@util.has_permission('administrate')
 def manage(request, translation_project):
     template_vars = {
         "translation_project": translation_project,
         "language": translation_project.language,
         "project": translation_project.project,
         "directory": translation_project.directory,
+        'formid': 'terminology-manage',
+        'submitname': 'changeterminology'
         }
     try:
-        store = Store.objects.get(pootle_path=translation_project.pootle_path + 'pootle-terminology.po')
-        UnitFormSet = modelformset_factory(Unit, can_delete=True, extra=0,
-                                           exclude=["index", "id", "source_f", "target_f", "developer_comment", "translator_comment", "state"])
+        term_store = Store.objects.get(pootle_path=translation_project.pootle_path + 'pootle-terminology.po')
+        template_vars['store'] = term_store
 
+        #HACKISH: Django won't allow excluding form fields already defined in parent class, manually extra fields.
+        unit_form_class = unit_form_factory(translation_project.language, 1)
+        del(unit_form_class.base_fields['target_f'])
+        del(unit_form_class.base_fields['id'])
+        del(unit_form_class.base_fields['translator_comment'])
+        del(unit_form_class.base_fields['state'])
+        del(unit_form_class.declared_fields['target_f'])
+        del(unit_form_class.declared_fields['id'])
+        del(unit_form_class.declared_fields['translator_comment'])
+        del(unit_form_class.declared_fields['state'])
 
-        if request.method == 'POST' and request.POST['submit']:
-            objects = paginate(request, store.units)
-            formset = UnitFormSet(request.POST, queryset=objects.object_list)
-            if formset.is_valid():
-                formset.save()
+        class TermUnitForm(unit_form_class):
+            # set store for new terms
+            store = forms.ModelChoiceField(queryset=Store.objects.filter(pk=term_store.pk), initial=term_store.pk, widget=forms.HiddenInput)
+            index = forms.IntegerField(required=False, widget=forms.HiddenInput)
 
-        #FIXME: we should display errors if formset is not valid
-        objects = paginate(request, store.units)
-        formset = UnitFormSet(queryset=objects.object_list)
-        template_vars["formset"] =  formset
-        template_vars["pager"] = objects
-        template_vars["store"] = store
+            def clean_index(self):
+                # assign new terms an index value
+                value = self.cleaned_data['index']
+                if self.instance.id is None:
+                    value = term_store.max_index() + 1
+                return value
+
+            def clean_source_f(self):
+                value = super(TermUnitForm, self).clean_source_f()
+                if value:
+                    self.instance.setid(value[0])
+                return value
+
+        return util.edit(request, 'terminology/manage.html', Unit, template_vars, None, None,
+                         queryset=term_store.units, can_delete=True, form=TermUnitForm,
+                         exclude=['state', 'target_f', 'id', 'translator_comment'])
     except Store.DoesNotExist:
-        pass
-
-    return render_to_response("terminology/manage.html", template_vars,
-                              context_instance=RequestContext(request))
+        return render_to_response("terminology/manage.html", template_vars,
+                                  context_instance=RequestContext(request))
