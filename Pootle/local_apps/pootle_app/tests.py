@@ -34,7 +34,7 @@ class PootleTestCase(TestCase):
         self.testpodir = tempfile.mkdtemp()
         settings.PODIRECTORY = self.testpodir
         fs.location = self.testpodir
-        
+
         gnu = os.path.join(self.testpodir, "terminology")
         os.mkdir(gnu)
         potfile = file(os.path.join(gnu, "terminology.pot"), 'w')
@@ -80,7 +80,7 @@ msgstr "rest"
 
         #FIXME: replace initdb with a fixture
         call_command('initdb')
-        
+
         self._setup_test_users()
         scan_translation_projects()
 
@@ -95,7 +95,7 @@ msgstr "rest"
             scheme, netloc, path, query, fragment = urlparse.urlsplit(new_response['location'])
             new_response = self.client.get(path, QueryDict(query))
         return new_response
-    
+
 class AnonTests(PootleTestCase):
     def test_login(self):
         """Checks that login works and sets cookies"""
@@ -110,7 +110,7 @@ class AnonTests(PootleTestCase):
         response = self.client.get("/admin/")
         self.assertContains(response, '', status_code=403)
 
-        
+
 class AdminTests(PootleTestCase):
     def setUp(self):
         super(AdminTests, self).setUp()
@@ -132,29 +132,29 @@ class AdminTests(PootleTestCase):
         response = self.client.get('/')
         self.assertContains(response, "<a href='/admin/'>Admin</a>")
         response = self.client.get('/admin/')
-        self.assertContains(response, 'General Settings')        
+        self.assertContains(response, 'General Settings')
 
     def test_add_project(self):
         """Checks that we can add a project successfully."""
-    
+
         response = self.client.get("/admin/projects.html")
         self.assertContains(response, "<a href='/projects/pootle/admin.html'>pootle</a>")
         self.assertContains(response, "<a href='/projects/terminology/admin.html'>terminology</a>")
 
         add_dict = {
-            "code": "testproject",                                       
-            "localfiletype": "xlf",                                     
-            "fullname": "Test Project",                                
+            "code": "testproject",
+            "localfiletype": "xlf",
+            "fullname": "Test Project",
             "checkstyle": "standard",
             "treestyle": "gnu",
             }
-    
+
         response = self.client.post("/admin/projects.html", formset_dict([add_dict]))
         self.assertContains(response, "<a href='/projects/testproject/admin.html'>testproject</a>")
-    
+
         # check for the actual model
         testproject = Project.objects.get(code="testproject")
-        
+
         self.assertTrue(testproject)
         self.assertEqual(testproject.fullname, add_dict['fullname'])
         self.assertEqual(testproject.checkstyle, add_dict['checkstyle'])
@@ -166,7 +166,7 @@ class AdminTests(PootleTestCase):
         its page when there are no files."""
         fish = Language(code="fish", fullname="fish")
         fish.save()
-            
+
         response = self.client.get("/projects/pootle/admin.html")
         self.assertContains(response, "fish")
 
@@ -177,7 +177,7 @@ class AdminTests(PootleTestCase):
             }
         response = self.client.post("/projects/pootle/admin.html", formset_dict([add_dict]))
         self.assertContains(response, '/fish/pootle/')
-        
+
         response = self.client.get("/fish/")
         self.assertContains(response, '<a href="/fish/">fish</a>')
         self.assertContains(response, '<a href="/fish/pootle/">Pootle</a>')
@@ -187,19 +187,19 @@ class AdminTests(PootleTestCase):
         """Tests that we can upload a new file into a project."""
         pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "rest"\n')
         pocontent.name = "test_new_upload.po"
-    
+
         post_dict = {
             'file': pocontent,
             'overwrite': 'merge',
             'do_upload': 'upload',
             }
         response = self.client.post("/ar/pootle/", post_dict)
-        
+
         self.assertContains(response, 'href="/ar/pootle/test_new_upload.po')
         store = Store.objects.get(pootle_path="/ar/pootle/test_new_upload.po")
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertEqual(store.file.read(), pocontent.getvalue())
-    
+
         download = self.client.get("/ar/pootle/test_new_upload.po/export/po")
         self.assertEqual(download.content, pocontent.getvalue())
 
@@ -207,7 +207,7 @@ class AdminTests(PootleTestCase):
         """Tests that we can upload when we only have suggest rights."""
         pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "samaka"\n')
         pocontent.name = "pootle.po"
-    
+
         post_dict = {
             'file': pocontent,
             'overwrite': 'merge',
@@ -222,10 +222,10 @@ class AdminTests(PootleTestCase):
         self.assertTrue('msgstr "samaka"' in store.pending.read())
 
     def test_upload_overwrite(self):
-        """Tests that we can overwrite a file in a project."""    
+        """Tests that we can overwrite a file in a project."""
         pocontent = StringIO.StringIO('#: test.c\nmsgid "fish"\nmsgstr ""\n#: test.c\nmsgid "test"\nmsgstr "barf"\n\n')
         pocontent.name = "pootle.po"
-    
+
         post_dict = {
             'file': pocontent,
             'overwrite': 'overwrite',
@@ -273,7 +273,7 @@ class AdminTests(PootleTestCase):
         pocontent = StringIO.StringIO('''#: fish.c
 msgid "fish"
 msgstr ""
-        
+
 #: test.c
 msgid "test"
 msgstr "resto"
@@ -286,7 +286,7 @@ msgstr "resto"
             'do_upload': 'upload',
             }
         response = self.client.post("/af/pootle/", post_dict)
-    
+
         pocontent = StringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "blo3"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
         pocontent.name = "pootle.po"
 
@@ -331,7 +331,7 @@ msgstr "resto"
             'overwrite': 'overwrite',
             'do_upload': 'upload',
             }
-        
+
         response = self.client.post("/ar/pootle/", post_dict)
         self.assertContains(response,' href="/ar/pootle/test_new_xliff_upload.po')
 
@@ -370,7 +370,7 @@ msgstr "resto"
         </file>
         </xliff>''')
         xlfcontent.name = "test_upload_xliff.xlf"
-    
+
         post_dict = {
             'file': xlfcontent,
             'overwrite': 'merge',
@@ -383,13 +383,13 @@ msgstr "resto"
         mergedcontent = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#~ msgid "tadpole"\n#~ msgstr "fish"\n\n#: toad.c\nmsgid "slink"\nmsgstr "stink"\n'
         suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin [595179475]\\n"\n"test"\nmsgstr "rested"\n'
         store = Store.objects.get(pootle_path="/ar/pootle/test_upload_xliff.po")
-        
+
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertTrue(store.file.read().find(mergedcontent) >= 0)
 
         self.assertTrue(os.path.isfile(store.pending.path))
         self.assertTrue(store.pending.read().find(suggestedcontent) >= 0)
-        
+
 
     def test_submit_translation(self):
         """Tests that we can translate units."""
@@ -402,7 +402,7 @@ msgstr "resto"
         submit_dict.update(formset_dict([]))
         response = self.client.post("/af/pootle/pootle.po", submit_dict,
                                     QUERY_STRING='view_mode=translate')
-    
+
         self.assertContains(response, 'submitted translation')
 
         store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
@@ -434,10 +434,10 @@ msgstr "resto"
         self.assertContains(response, 'a fish')
         self.assertContains(response, 'some fish')
         self.assertContains(response, 'lots of fish')
-        
+
     def test_submit_plural_to_singular_lang(self):
         """Tests that we can submit a translation with plurals to a language without plurals."""
-        
+
         pocontent = StringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n')
         pocontent.name = 'test_plural_submit.po'
 
@@ -468,10 +468,9 @@ msgstr "resto"
         """Tests that we can mark a unit as fuzzy."""
 
         # Fetch the page and check that the fuzzy checkbox is NOT checked.
-    
         response = self.client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
         self.assertContains(response, '<input type="checkbox"  name="fuzzy0" accesskey="f" id="fuzzy0" class="fuzzycheck" />')
-    
+
         submit_dict = {
             'trans0': 'fuzzy translation',
             'fuzzy0': 'on',
@@ -502,7 +501,7 @@ msgstr "resto"
         response = self.client.get("/af/pootle/pootle.po", {'view_mode': 'translate'})
         self.assertContains(response, '<input type="checkbox"  name="fuzzy0" accesskey="f" id="fuzzy0" class="fuzzycheck" />')
         self.assertFalse(store.file.getitem(0).isfuzzy())
-        
+
     def test_submit_translator_comments(self):
         """Tests that we can edit translator comments."""
 
@@ -524,11 +523,8 @@ class NonprivTests(PootleTestCase):
     def setUp(self):
         super(NonprivTests, self).setUp()
         self.client.login(username='nonpriv', password='nonpriv')
-        
+
     def test_non_admin_rights(self):
         """checks that non privileged users cannot access admin pages"""
         response = self.client.get('/admin/')
         self.assertContains(response, '', status_code=403)
-        
-        
-
