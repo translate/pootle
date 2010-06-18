@@ -48,7 +48,6 @@ class Directory(models.Model):
         ordering = ['name']
         app_label = "pootle_app"
 
-
     is_dir = True
 
     name        = models.CharField(max_length=255, null=False)
@@ -124,6 +123,23 @@ class Directory(models.Model):
         dir_result  = completestatssum(self.child_dirs.all(), checker)
         stats = dictsum(file_result, dir_result)
         return stats
+
+    def trail(self, only_dirs=True):
+        """return list of ancestor directories excluding TranslationProject and above"""
+        path_parts = self.pootle_path.split('/')
+        parents = []
+        if only_dirs:
+            # skip language, and translation_project directories
+            start = 4
+        else:
+            start = 2
+
+        for i in xrange(start, len(path_parts)):
+            path = '/'.join(path_parts[:i]) + '/'
+            parents.append(path)
+        if parents:
+            return Directory.objects.filter(pootle_path__in=parents).order_by('-pootle_path')
+        return Directory.objects.none()
 
     def is_language(self):
         """does this directory point at a language"""
