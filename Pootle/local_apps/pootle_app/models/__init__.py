@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2008 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -25,10 +25,8 @@ from pootle_app.models.profile             import PootleProfile
 from pootle_app.models.submission          import Submission
 from pootle_app.models.suggestion          import Suggestion
 from pootle_app.models.directory           import Directory
-from pootle_app.models.permissions         import PermissionSet, PermissionSetCache
+from pootle_app.models.permissions         import PermissionSet
 from pootle_app.models.translation_project import TranslationProject
 
 __all__ = ["PootleProfile", "Language", "Project", "Submission", "Suggestion",
            "Directory", "PermissionSet", "PermissionSetCache", "TranslationProject"]
-
-
