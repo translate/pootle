@@ -1509,6 +1509,11 @@ table.translate-table
     table-layout: fixed;
 }
 
+table.translate-table td
+{
+    vertical-align: top;
+}
+
 div.translation-action
 {
     min-height: 1.5em;
