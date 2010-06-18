@@ -58,6 +58,11 @@ class Language(models.Model):
     def __unicode__(self):
         return self.localname()
 
+    def delete(self, *args, **kwargs):
+        directory = self.directory
+        super(Language, self).delete(*args, **kwargs)
+        directory.delete()
+
     @getfromcache
     def getquickstats(self):
         return self.directory.getquickstats()
@@ -77,7 +82,3 @@ def set_data(sender, instance, **kwargs):
     instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
 
 pre_save.connect(set_data, sender=Language)
-
-def delete_directory(sender, instance, **kwargs):
-    instance.directory.delete()
-post_delete.connect(delete_directory, sender=Language)
