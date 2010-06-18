@@ -695,9 +695,13 @@ class Store(models.Model, base.TranslationStore):
         return self.unit_set.filter(state__gt=OBSOLETE).order_by('index').select_related('store__translation_project')
     units=property(_get_units)
 
+    def max_index(self):
+        """Largest unit index"""
+        return max_column(self.unit_set.all(), 'index', -1)
+
     def addunit(self, unit, index=None):
         if index is None:
-            index = max_column(self.unit_set.all(), 'index', -1) + 1
+            index = self.max_index() + 1
 
         newunit = Unit(store=self, index=index)
         newunit.update(unit)
