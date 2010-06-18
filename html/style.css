@@ -1145,6 +1145,10 @@ div.small
     font-size: 1em;
 }
 
+.tiny {
+    font-size: 0.9em;
+}
+
 td.stats-words
 {
     text-align: right;
