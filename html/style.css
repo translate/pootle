@@ -136,11 +136,16 @@ body, div,
 ul, ol, li,
 h1, h2, h3, h4, h5, h6,
 pre, code,
-form, fieldset, legend, input, textarea,
+form, fieldset, legend,
 p, blockquote
 {
     margin: 0;
-    padding: 0;
+    padding: 0px;
+}
+
+input, textarea {
+    margin: 0;
+    padding 1px;
 }
 
 table
