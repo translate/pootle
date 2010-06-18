@@ -35,7 +35,7 @@ from pootle_statistics.models import Submission
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle.i18n.gettext import tr_lang
-from pootle_app.views.top_stats import gentopstats_project
+from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_app.views import pagelayout
 from pootle_translationproject.models import TranslationProject
 from pootle_app import project_tree
@@ -167,7 +167,7 @@ def projects_index(request):
     if not check_permission('view', request):
         raise PermissionDenied
 
-    topstats = gentopstats(lambda query: query)
+    topstats = gentopstats_root()
 
     templatevars = {
         'projectlink': _('Projects'),
