@@ -64,8 +64,13 @@ def unhighlight_whitespace(text):
 class MultiStringWidget(forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
     area based on number of plural forms"""
-    def __init__(self, attrs=None, nplurals=1):
-        widgets = [forms.Textarea(attrs=attrs) for i in xrange(nplurals)]
+    def __init__(self, attrs=None, nplurals=1, textarea=True):
+        if textarea:
+            widget = forms.Textarea
+        else:
+            widget = forms.TextInput
+
+        widgets = [widget(attrs=attrs) for i in xrange(nplurals)]
         super(MultiStringWidget, self).__init__(widgets, attrs)
 
     def format_output(self, rendered_widgets):
@@ -111,8 +116,8 @@ class HiddenMultiStringWidget(MultiStringWidget):
         return self
 
 class MultiStringFormField(forms.MultiValueField):
-    def __init__(self, nplurals=1, attrs=None, *args, **kwargs):
-        self.widget = MultiStringWidget(nplurals=nplurals, attrs=attrs)
+    def __init__(self, nplurals=1, attrs=None, textarea=True, *args, **kwargs):
+        self.widget = MultiStringWidget(nplurals=nplurals, attrs=attrs, textarea=textarea)
         self.hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
         fields = [forms.CharField() for i in range(nplurals)]
         super(MultiStringFormField, self).__init__(fields=fields, *args, **kwargs)
@@ -132,7 +137,6 @@ def unit_form_factory(language, snplurals=1):
         'class': 'translation expanding focusthis',
         'rows': 5,
         }
-
     comment_attrs = {
         'lang': language.code,
         'dir': language.get_direction(),
@@ -150,7 +154,7 @@ def unit_form_factory(language, snplurals=1):
             model = Unit
 
         id = forms.IntegerField(required=False)
-        source_f = MultiStringFormField(nplurals=snplurals, required=False)
+        source_f = MultiStringFormField(nplurals=snplurals, required=False, textarea=False)
         target_f = MultiStringFormField(nplurals=tnplurals, required=False, attrs=target_attrs)
         state = forms.BooleanField(required=False, label=_('Fuzzy'), widget=forms.CheckboxInput(attrs=fuzzy_attrs,
                                                                               check_test=lambda x: x == FUZZY))
