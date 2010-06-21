@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import sys
+import logging
 
 from django.core.management import call_command
 
@@ -74,6 +75,7 @@ def syncdb():
     text = u"""
     <p>%s</p>
     """ % _('Creating missing database tables...')
+    logging.info("Creating missing database tables")
     call_command('syncdb', interactive=False)
     return text
 
@@ -81,6 +83,7 @@ def update_permissions_20030():
     text = """
     <p>%s</p>
     """ % _('Fixing permission table...')
+    logging.info("Fixing permission table")
     from django.contrib.auth.models import Permission
     from django.contrib.contenttypes.models import ContentType
     contenttype, created = ContentType.objects.get_or_create(app_label="pootle_app", model="directory")
@@ -95,6 +98,7 @@ def update_tables_21000():
     text = u"""
     <p>%s</p>
     """ % _('Updating existing database tables...')
+    logging.info("Updating existing database tables")
     from south.db import db
     table_name = Store._meta.db_table
     field = Store._meta.get_field('state')
@@ -113,6 +117,7 @@ def parse_start():
 
 def import_suggestions(store):
     try:
+        logging.info("Importing suggestions for %s if any.", store.real_path)
         store.import_pending()
         count = store.has_suggestions()
         if count:
@@ -131,6 +136,7 @@ def import_suggestions(store):
 
 def parse_store(store):
     try:
+        logging.info("Importing units from %s", store.real_path)
         store.require_units()
         count = store.getquickstats()['total']
         text = u"""
