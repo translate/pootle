@@ -61,6 +61,8 @@ class TranslationProjectNonDBState(object):
         self.termmatchermtime = None
         self._indexing_enabled = True
         self._index_initialized = False
+        self.indexer = None
+
 
 translation_project_non_db_state = {}
 
@@ -199,19 +201,18 @@ class TranslationProject(models.Model):
 
 
     def _get_indexer(self):
-        if self.non_db_state._indexing_enabled:
+        if self.non_db_state.indexer is None and self.non_db_state._indexing_enabled:
             try:
                 indexer = self.make_indexer()
                 if not self.non_db_state._index_initialized:
                     self.init_index(indexer)
                     self.non_db_state._index_initialized = True
-                return indexer
+                self.non_db_state.indexer =  indexer
             except Exception, e:
                 logging.warning("Could not initialize indexer for %s in %s: %s", self.project.code, self.language.code, str(e))
                 self.non_db_state._indexing_enabled = False
-                return None
-        else:
-            return None
+
+        return self.non_db_state.indexer
 
     indexer = property(_get_indexer)
 
