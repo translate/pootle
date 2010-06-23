@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
+import logging
 
 from translate.storage.xliff import xlifffile
 
@@ -87,6 +88,7 @@ def get_non_indexed_search_step_query(form, units_queryset):
 def get_search_step_query(translation_project, form, units_queryset):
     """Narrows down units query to units matching search string"""
     if translation_project.indexer is None:
+        logging.debug("No indexer for %s, using database search", translation_project)
         return get_non_indexed_search_step_query(form, units_queryset)
 
     searchparts = []
@@ -95,6 +97,9 @@ def get_search_step_query(translation_project, form, units_queryset):
         querylist = [(field, word) for field in form.cleaned_data['sfields']]
         textquery = translation_project.indexer.make_query(querylist, False)
         searchparts.append(textquery)
+
+    logging.debug("Found %s indexer for %s, using indexed search",
+                  translation_project.indexer.INDEX_DIRECTORY_NAME, translation_project)
 
     paths = units_queryset.order_by().values_list('store__pootle_path', flat=True).distinct()
     querylist = [('pofilename', pootle_path) for pootle_path in paths.iterator()]
