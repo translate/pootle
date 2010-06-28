@@ -29,6 +29,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.core.cache import cache
+from django.conf import settings
 from django.utils import simplejson
 from django.views.decorators.cache import never_cache
 
@@ -87,27 +89,34 @@ def get_non_indexed_search_step_query(form, units_queryset):
 
 def get_search_step_query(translation_project, form, units_queryset):
     """Narrows down units query to units matching search string"""
+
     if translation_project.indexer is None:
         logging.debug("No indexer for %s, using database search", translation_project)
         return get_non_indexed_search_step_query(form, units_queryset)
 
-    searchparts = []
-    for word in form.cleaned_data['search'].split():
-        # Generate a list for the query based on the selected fields
-        querylist = [(field, word) for field in form.cleaned_data['sfields']]
-        textquery = translation_project.indexer.make_query(querylist, False)
-        searchparts.append(textquery)
-
     logging.debug("Found %s indexer for %s, using indexed search",
                   translation_project.indexer.INDEX_DIRECTORY_NAME, translation_project)
 
+    word_querylist = []
+    for word in form.cleaned_data['search'].split():
+        # Generate a list for the query based on the selected fields
+        word_querylist = [(field, word) for field in form.cleaned_data['sfields']]
     paths = units_queryset.order_by().values_list('store__pootle_path', flat=True).distinct()
-    querylist = [('pofilename', pootle_path) for pootle_path in paths.iterator()]
-    pathquery = translation_project.indexer.make_query(querylist, False)
-    searchparts.append(pathquery)
-    limitedquery = translation_project.indexer.make_query(searchparts, True)
-    result = translation_project.indexer.search(limitedquery, ['dbid'])
-    dbids = (int(item['dbid'][0]) for item in result)
+    path_querylist = [('pofilename', pootle_path) for pootle_path in paths.iterator()]
+    cache_key = "search:%s" % str(hash((repr(path_querylist), translation_project.get_mtime(), repr(word_querylist))))
+
+    dbids = cache.get(cache_key)
+    if dbids is None:
+        searchparts = []
+        textquery = translation_project.indexer.make_query(word_querylist, False)
+        searchparts.append(textquery)
+        pathquery = translation_project.indexer.make_query(path_querylist, False)
+        searchparts.append(pathquery)
+        limitedquery = translation_project.indexer.make_query(searchparts, True)
+
+        result = translation_project.indexer.search(limitedquery, ['dbid'])
+        dbids = [int(item['dbid'][0]) for item in result[:999]]
+        cache.set(cache_key, dbids, settings.OBJECT_CACHE_TIMEOUT)
     return units_queryset.filter(id__in=dbids)
 
 def get_step_query(request, units_queryset):
