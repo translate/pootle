@@ -18,12 +18,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from django.http import HttpResponse
+
 from pootle_misc import siteconfig
 from pootle_misc import dbinit
 from pootle_misc import dbupdate
 
 from pootle.__version__ import build as code_buildversion
+from translate.__version__ import build as code_tt_buildversion
 
 INSTALL_STATUS_CODE = 613
 """some unused http status code to mark the need to auto install"""
@@ -32,10 +36,14 @@ UPDATE_STATUS_CODE = 614
 """some unused http status code to mark the need to update database"""
 
 DEFAULT_BUILDVERSION = 20000
-"""Build version referering to Pootle version 2.0.
+"""Build version referring to Pootle version 2.0.
    we'll assume db represents version 2.0 if no build version is stored.
 """
 
+DEFAULT_TT_BUILDVERSION = 12005
+"""Build version referring to Translate Toolkit version 1.7.0.
+   we'll assume db represents version 1.7.0 if no build version is stored.
+"""
 
 class SiteConfigMiddleware(object):
     """
@@ -60,6 +68,16 @@ class SiteConfigMiddleware(object):
                 response.status_code = UPDATE_STATUS_CODE
                 response.db_buildversion = db_buildversion
                 return response
+
+            db_tt_buildversion = config.get('TT_BUILDVERSION', DEFAULT_TT_BUILDVERSION)
+            if db_tt_buildversion < code_tt_buildversion:
+                """Toolkit build version changed. clear stale quality checks data"""
+                logging.info("New Translate Toolkit version, flushing quality checks")
+                from pootle_store.models import Store, QualityCheck, CHECKED, PARSED
+                Store.objects.filter(state=CHECKED).update(state=PARSED)
+                QualityCheck.objects.all().delete()
+                config.set('TT_BUILDVERSION', code_tt_buildversion)
+                config.save()
 
         except Exception, e:
             #HACKISH: since exceptions thrown by different databases
