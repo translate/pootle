@@ -32,9 +32,10 @@ from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_profile.models import PootleProfile
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
-from pootle.__version__ import build as code_buildversion
 from pootle_misc import siteconfig
 
+from pootle.__version__ import build as code_buildversion
+from translate.__version__ import build as code_tt_buildversion
 
 def create_essential_users():
     """Create default and nobody User instances required for pootle permission system"""
@@ -149,6 +150,7 @@ def post_syncdb_handler(sender, created_models, **kwargs):
         create_pootle_permission_sets()
     config = siteconfig.load_site_config()
     config.set('BUILDVERSION', code_buildversion)
+    config.set('TT_BUILDVERSION', code_tt_buildversion)
     config.save()
 post_syncdb.connect(post_syncdb_handler, sender=pootle_app.models)
 
