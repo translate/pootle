@@ -26,6 +26,7 @@ from django.core.management import call_command
 from pootle.i18n.gettext import ugettext as _
 from pootle.i18n.gettext import ungettext
 
+from pootle_app.models import Directory
 from pootle_store.models import Store
 from pootle_language.models import Language
 from pootle_project.models import Project
@@ -185,6 +186,7 @@ def staggered_update(db_buildversion):
 
     if db_buildversion < 21000:
         yield update_tables_21000()
+        Directory.objects.root.get_or_make_subdir('projects')
         yield parse_start()
         for store in Store.objects.iterator():
             store.translation_project = store.parent.get_translationproject()

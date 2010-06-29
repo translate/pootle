@@ -125,8 +125,8 @@ def create_pootle_permission_sets():
 
 def create_root_directory():
     """Create root Directory item."""
-    directory, created = Directory.objects.get_or_create(name='')
-
+    root, created = Directory.objects.get_or_create(name='')
+    projects, created = Directory.objects.get_or_create(name='projects', parent=root)
 
 def create_template_language():
     """template language is used to give users access to the untranslated template files"""

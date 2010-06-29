@@ -36,8 +36,11 @@ class DirectoryManager(models.Manager):
 
     def _get_root(self):
         return self.get(parent=None)
-
     root = property(_get_root)
+
+    def _get_projects(self):
+        return self.get(pootle_path='/projects/')
+    projects = property(_get_projects)
 
 class Directory(models.Model):
     class Meta:
