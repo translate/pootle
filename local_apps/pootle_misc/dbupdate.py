@@ -107,6 +107,11 @@ def update_tables_21000():
     field = Store._meta.get_field('translation_project')
     field.null = True
     db.add_column(table_name, field.name, field)
+
+    table_name = Project._meta.db_table
+    field = Project._meta.get_field('directory')
+    field.null = True
+    db.add_column(table_name, field.name, field)
     return text
 
 def parse_start():
@@ -187,6 +192,10 @@ def staggered_update(db_buildversion):
     if db_buildversion < 21000:
         yield update_tables_21000()
         Directory.objects.root.get_or_make_subdir('projects')
+        for project in Project.objects.iterator():
+            # saving should force project to update it's directory property
+            project.save()
+
         yield parse_start()
         for store in Store.objects.iterator():
             store.translation_project = store.parent.get_translationproject()

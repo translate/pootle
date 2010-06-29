@@ -61,6 +61,7 @@ class Project(models.Model):
     localfiletype  = models.CharField(max_length=50, default="po", choices=local_choices, verbose_name=_('File Type'))
     treestyle      = models.CharField(max_length=20, default='auto', choices=treestyle_choices, verbose_name=_('Project Tree Style'))
     ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="", verbose_name=_('Ignore Files'))
+    directory = models.OneToOneField('pootle_app.Directory', db_index=True, editable=False)
 
     def __unicode__(self):
         return self.fullname
@@ -70,8 +71,14 @@ class Project(models.Model):
         project_path = self.get_real_path()
         if not os.path.exists(project_path):
             os.makedirs(project_path)
+        from pootle_app.models.directory import Directory
+        self.directory = Directory.objects.projects.get_or_make_subdir(self.code)
 
         super(Project, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        super(Project, self).delete(*args, **kwargs)
+        self.directory.delete()
 
     @getfromcache
     def get_mtime(self):
