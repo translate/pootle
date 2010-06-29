@@ -1,0 +1,34 @@
+{% extends "project_base.html" %}
+
+{% load i18n baseurl %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}
+{{ block.super }} » {{ project.name }} » {% trans "Permissions" %}
+{% endblock %}
+
+{% block bodyclass %}projectadmin{% endblock %}
+
+{% block breadcrumbs_content %}
+<a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.fullname }}</a>
+{% endblock breadcrumbs_content %}
+
+{% block content %}
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
+<form action="" method="post" name="permissionsform" id="permissionsform">
+    {{ permission_set_formset.management_form }}
+    <table cellpadding="1" cellspacing="1">
+        <tr>
+            <th>{% trans "Username" %}</th><th>{% trans "Permissions" %}</th><th>{% trans "Delete" %}</th>
+        </tr>
+        {% for form in permission_set_formset.forms %}
+        {{ form.as_table }}
+        {% endfor %}
+    </table>
+    <p>
+        <input type="submit" name="doupdaterights" value="{% trans 'Update Rights' %}" />
+    </p>
+</form>
+</div>
+{% endblock %}
