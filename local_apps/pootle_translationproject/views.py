@@ -152,7 +152,7 @@ def tp_admin_permissions(request, translation_project):
         "permission_set_formset": permission_set_formset,
         "adduser_text":           _("(select to add user)"),
         "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
-        "feed_path":              translation_project.directory.pootle_path[1:],
+        "feed_path":              translation_project.pootle_path[1:],
     }
     return render_to_response("translation_project/tp_admin_permissions.html", template_vars, context_instance=RequestContext(request))
 
