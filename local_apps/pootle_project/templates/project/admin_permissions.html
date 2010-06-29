@@ -8,7 +8,7 @@
 {{ block.super }} » {{ project.name }} » {% trans "Permissions" %}
 {% endblock %}
 
-{% block bodyclass %}projectadmin{% endblock %}
+{% block bodyclass %}projectperm{% endblock %}
 
 {% block breadcrumbs_content %}
 <a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.fullname }}</a>
