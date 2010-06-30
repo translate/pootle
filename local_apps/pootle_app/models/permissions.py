@@ -59,7 +59,6 @@ def get_permissions_by_username(username, directory):
                     permissionset = PermissionSet.objects.get(directory__pootle_path=project_path, profile__user__username=username)
                 except PermissionSet.DoesNotExist:
                     pass
-            print permissionset
             permissions_cache[pootle_path] = permissionset.to_dict()
         except IndexError:
             permissions_cache[pootle_path] = None
