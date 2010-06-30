@@ -43,7 +43,7 @@ from pootle_app.views.admin import util
 from pootle_profile.models import get_profile
 from pootle_app.views.index.index import getprojects
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.views.language.admin_permissions import process_update
+from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.models import Directory
 
 
@@ -172,19 +172,12 @@ def project_admin_permissions(request, project_code):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to administer this project."))
 
-    permission_set_formset = process_update(request, project.directory)
-
     template_vars = {
         "project":                project,
         "directory":              project.directory,
-        "permissions_title":      _("User Permissions"),
-        "username_title":         _("Username"),
-        "permission_set_formset": permission_set_formset,
-        "adduser_text":           _("(select to add user)"),
         "feed_path":              project.pootle_path[1:],
     }
-    return render_to_response("project/admin_permissions.html", template_vars,
-                              context_instance=RequestContext(request))
+    return admin_permissions(request, project.directory, "project/admin_permissions.html", template_vars)
 
 def projects_index(request):
     """page listing all projects"""

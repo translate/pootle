@@ -46,7 +46,7 @@ from pootle_app.views.base import BaseView
 from pootle_app.views.language import navbar_dict, dispatch, item_dict
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
-from pootle_app.views.language.admin_permissions import process_update
+from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.language.view import get_translation_project, set_request_context
 
 from pootle_store.models import Store, Unit
@@ -134,27 +134,17 @@ def tp_review(request, translation_project, dir_path):
 def tp_admin_permissions(request, translation_project):
     language               = translation_project.language
     project                = translation_project.project
-    permission_set_formset = process_update(request, translation_project.directory)
-
-    if translation_project.file_style == "gnu":
-        filestyle_text = _("This is a GNU-style project (files named per language code).")
-    else:
-        filestyle_text = _("This is a standard style project (one directory per language).")
 
     template_vars = {
         'translation_project': translation_project,
         "project":                project,
         "language":               language,
         "directory":              translation_project.directory,
-        "filestyle_text":         filestyle_text,
-        "permissions_title":      _("User Permissions"),
-        "username_title":         _("Username"),
-        "permission_set_formset": permission_set_formset,
-        "adduser_text":           _("(select to add user)"),
         "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
         "feed_path":              translation_project.pootle_path[1:],
     }
-    return render_to_response("translation_project/tp_admin_permissions.html", template_vars, context_instance=RequestContext(request))
+    return admin_permissions(request, translation_project.directory, "translation_project/tp_admin_permissions.html",
+                             template_vars)
 
 
 class StoreFormset(BaseModelFormSet):
@@ -186,7 +176,6 @@ def tp_admin_files(request, translation_project):
         for store in translation_project.stores.exclude(file='').iterator():
             store.sync(update_translation=True)
             store.update(update_structure=True, update_translation=True, conservative=False)
-
 
     model_args = {
         'title': _("Files"),

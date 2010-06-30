@@ -34,7 +34,7 @@ from pootle_statistics.models import Submission
 from pootle.i18n.gettext import tr_lang
 
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.views.language.admin_permissions import process_update as process_permission_update
+from pootle_app.views.admin.permissions import admin_permissions
 from pootle_profile.models import get_profile
 
 def limit(query):
@@ -107,17 +107,10 @@ def language_admin(request, language_code):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to administer this language."))
 
-    permission_set_formset = process_permission_update(request, language.directory)
-
     template_vars = {
         "language":               { 'code': language_code,
                                     'name': tr_lang(language.fullname) },
-        "permissions_title":      _("User Permissions"),
-        "username_title":         _("Username"),
-        "permission_set_formset": permission_set_formset,
-        "adduser_text":           _("(select to add user)"),
-        "hide_fileadmin_links":   True,
+        "directory":              language.directory,
         "feed_path":              '%s/' % language.code,
     }
-    return render_to_response("language/language_admin.html", template_vars,
-                              context_instance=RequestContext(request))
+    return admin_permissions(request, language.directory, "language/language_admin.html", template_vars)

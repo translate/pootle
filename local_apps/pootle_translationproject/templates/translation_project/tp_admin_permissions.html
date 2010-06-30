@@ -8,21 +8,9 @@
 
 {% block bodyclass %}tpadminpermissions{% endblock %}
 
-{% block section_description %}{{ filestyle_text }}{% endblock %}
-
 {% block section_body %}
-<form action="" method="post" name="permissionsform" id="permissionsform">
-    {{ permission_set_formset.management_form }}
-    <table cellpadding="1" cellspacing="1">
-        <tr>
-            <th>{% trans "Username" %}</th><th>{% trans "Permissions" %}</th><th>{% trans "Delete" %}</th>
-        </tr>
-        {% for form in permission_set_formset.forms %}
-        {{ form.as_table }}
-        {% endfor %}
-    </table>
-    <p>
-        <input type="submit" name="doupdaterights" value="{% trans 'Update Rights' %}" />
-    </p>
-</form>
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
+    <p>{% trans "Below you can add, edit, and delete the permissions for this translation project." %}</p>
+    {% include "admin/admin_general.html" %}
+</div>
 {% endblock %}
