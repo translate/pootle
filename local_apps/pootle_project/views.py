@@ -77,11 +77,11 @@ def make_language_item(request, translation_project):
 
 def project_language_index(request, project_code):
     """page listing all languages added to project"""
-    request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    project = get_object_or_404(Project, code=project_code)
+    request.permissions = get_matching_permissions(get_profile(request.user), project.directory)
     if not check_permission('view', request):
         raise PermissionDenied
 
-    project = get_object_or_404(Project, code=project_code)
     translation_projects = project.translationproject_set.all()
     items = [make_language_item(request, translation_project) for translation_project in translation_projects.iterator()]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
@@ -123,10 +123,13 @@ class TranslationProjectFormSet(BaseModelFormSet):
         form.process_extra_fields()
         return result
 
-@util.user_is_admin
 def project_admin(request, project_code):
     """adding and deleting project languages"""
     current_project = Project.objects.get(code=project_code)
+    request.permissions = get_matching_permissions(get_profile(request.user), current_project.directory)
+    if not check_permission('administrate', request):
+        raise PermissionDenied(_("You do not have rights to administer this project."))
+
     try:
         template_translation_project = TranslationProject.objects.get(project=current_project, language__code='templates')
     except TranslationProject.DoesNotExist:
