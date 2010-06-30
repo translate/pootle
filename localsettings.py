@@ -112,6 +112,10 @@ AUTH_LDAP_FIELDS = {
 # able to create user accounts
 CAN_REGISTER = True
 
+# set this to True to enable spam prevention through captcha, only
+# useful for public Pootle instances.
+USE_CAPTCHA = False
+
 # set this to True if you want translation files to be updated
 # immediatly.
 # note that this negatively affects performance and

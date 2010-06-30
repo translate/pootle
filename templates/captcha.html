@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n baseurl %}
+
+{% block title %}
+{{ block.super }}: {% trans "Are You Human" %}
+{% endblock %}
+
+{% block content %}
+<div>
+  <form method="post" action="">
+    {% for field, value in post_data.iteritems %}
+      {% ifnotequal field "captcha" %}<input type="hidden" name="{{ field|escape }}" value="{{ value|escape }}" />{% endifnotequal %}
+    {% endfor %}
+    <h3>{% trans "Are You Human?" %}</h3>
+    <p>{% trans "Due to increased attacks by spam bots and other scripts we have to verify that submissions are made by human users." %}</p>
+    <p>{% trans "Please answer this simple mathematical question." %}</p>
+    <p>
+      {{ form.knotty_question|safe }}
+      {{ form }}
+      <input type="submit" class="button" value="Confirm" />
+    </p>
+  </form>
+</div>
+{% endblock content %}
