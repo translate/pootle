@@ -9,12 +9,6 @@ Directory contents
 -------------------
 + js/
 
-  - autoexpand.js :
-    Several functions used throughout the translate page
-    (writespecial, copyoriginaltranslation).
-
-    These functions can be rewritten using jQuery.
-
   - correctpng.js :
     Fixes for IE 5.5 & 6 to correctly handle PNG transparencies.
 
@@ -49,6 +43,10 @@ Directory contents
     2. Handles suggestions doing XMLHttpRequest calls using jQuery and
     sending/receiving data in JSON format.
 
+    3. Makes Google Translate API calls through its AJAX API.
+
+    4. Includes several functions for handling actions in the translate page.
+
   + jquery/
 
     - jquery.bidi.js :
@@ -62,6 +60,12 @@ Directory contents
       textareas.
 
       http://laboratorium.0xab.cd/jquery/fieldselection/0.1.0/
+
+    - jquery.caret.js :
+      jQuery plugin to write text on top of the selected text or just after
+      the caret position.
+
+      http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
 
     - jquery.textarea-expander.js :
       jQuery plugin used in the translate page textareas.
