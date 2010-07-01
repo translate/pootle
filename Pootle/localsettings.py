@@ -30,7 +30,7 @@ STATS_DB_PATH = working_path('dbs/stats.db') # None means the default path
 PODIRECTORY = working_path('po')
 
 # Live translation means that the project called "Pootle" is used to provide
-# the localised versions of Pootle. Set this to true to enable live translation
+# the localised versions of Pootle. Set this to True to enable live translation
 # of pootle UI. This is a good way to learn how to use Pootle, but it has high
 # impact on performance.
 LIVE_TRANSLATION = False
