@@ -47,7 +47,6 @@ from pootle_app.models.language    import Language
 from pootle_app.models.directory   import Directory
 from pootle_app                    import project_tree
 from pootle_app.models.permissions import check_permission
-from translate.storage import statsdb
 from pootle_app.models.signals import post_vc_update, post_vc_commit
 
 
@@ -376,7 +375,7 @@ class TranslationProject(models.Model):
             return False
         # check if the pomtime in the index == the latest pomtime
         try:
-            pomtime = str(hash(statsdb.get_mod_info(store.file.path))**2)
+            pomtime = str(hash(store.pomtime)**2)
             pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)], True)
             pomtimequery = indexer.make_query([("pomtime", pomtime)], True)
             gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)

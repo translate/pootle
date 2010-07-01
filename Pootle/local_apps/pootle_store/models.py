@@ -70,6 +70,10 @@ class Store(models.Model):
 
     real_path = property(_get_real_path)
 
+    def _get_pomtime(self):
+        return self.file.getpomtime()
+    pomtime = property(_get_pomtime)
+
     def __unicode__(self):
         return self.name
 
@@ -137,7 +141,7 @@ class Store(models.Model):
                 if suggestions is not None:
                     return suggestions
         return []
-    
+
     def getsuggestions(self, item):
         unit = self.file.getitem(item)
         return self.getsuggestions_unit(unit)
@@ -153,7 +157,7 @@ class Store(models.Model):
                 return False
 
         return True
-    
+
     def addunitsuggestion(self, unit, newunit, username):
         """adds suggestion for the given unit"""
         if not self.suggestion_is_unique(unit, newunit.target):
@@ -171,7 +175,7 @@ class Store(models.Model):
     def addsuggestion(self, item, suggtarget, username, checker=None):
         """adds a new suggestion for the given item"""
         unit = self.file.getitem(item)
-        
+
         if self.file.store.suggestions_in_format:
             # probably xliff, which can't do unit copies and doesn't
             # need a unit to add suggestions anyway. so let's shortcut
@@ -186,7 +190,7 @@ class Store(models.Model):
             newpo.markfuzzy(False)
             self.addunitsuggestion(unit, newpo, username)
             self.pending.savestore()
-        
+
         if checker is not None:
             self.file.reclassifyunit(item, checker)
 
