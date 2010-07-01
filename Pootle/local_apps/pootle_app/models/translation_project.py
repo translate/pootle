@@ -26,7 +26,7 @@ import logging
 
 from django.conf                   import settings
 from django.db                     import models
-from django.db.models.signals      import post_init, pre_save, post_save, post_delete
+from django.db.models.signals      import post_init, pre_save, post_save
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 
@@ -99,6 +99,11 @@ class TranslationProject(models.Model):
 
     def get_absolute_url(self):
         return l(self.pootle_path)
+
+    def delete(self, *args, **kwargs):
+        directory = self.directory
+        super(TranslationProject, self).delete(*args, **kwargs)
+        directory.delete()
 
     fullname = property(lambda self: "%s [%s]" % (self.project.fullname, self.language.fullname))
     def _get_abs_real_path(self):
@@ -508,13 +513,8 @@ def set_data(sender, instance, **kwargs):
 
 pre_save.connect(set_data, sender=TranslationProject)
 
-def delete_directory(sender, instance, **kwargs):
-    instance.directory.delete()
-post_delete.connect(delete_directory, sender=TranslationProject)
-
 def add_pomtime(sender, instance, **kwargs):
     instance.pomtime = 0
-
 post_init.connect(add_pomtime, sender=TranslationProject)
 
 
