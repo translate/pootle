@@ -45,21 +45,21 @@ $(document).ready(function() {
  */
 
   $(".copyoriginal").click(function() {
-	  var source =  $("#id_source_f_0").val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
-	  var splural_element = $("#id_source_f_1");
-	  if (splural_element.length != 0) {
-	      var source_plural = splural_element.val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
-	  } else {
-	      var source_plural = source;
-	  }
+      var source =  $("#id_source_f_0").val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
+      var splural_element = $("#id_source_f_1");
+      if (splural_element.length != 0) {
+        var source_plural = splural_element.val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
+      } else {
+        var source_plural = source;
+      }
 
-	  var targets = $("[id^=id_target_f_]");
-	  $.each(targets, function(i) {
-		  newval = i == 0 ? source : source_plural;
-		  $(this).val(newval);
-		  $(this).focus();
-	      });
+      var targets = $("[id^=id_target_f_]");
+      $.each(targets, function(i) {
+          newval = i == 0 ? source : source_plural;
+          $(this).val(newval);
+          $(this).focus();
       });
+  });
 
 
 /*
@@ -107,7 +107,9 @@ $(document).ready(function() {
     var pos = 0;
     var argument_subs = new Array();
     var collectArguments = function (substring) {
-      if (substring == '%%') {return '%%';}
+      if (substring == '%%') {
+        return '%%';
+      }
       argument_subs[pos] = substring;
       substitute_string = "__" + pos + "__";
       pos = pos + 1;
@@ -134,8 +136,8 @@ $(document).ready(function() {
       } else {
         alert("Google Translate Error: " + result.error.message);
       }
-  });
-	return false;
+    });
+    return false;
   });
 
 /*
@@ -144,9 +146,9 @@ $(document).ready(function() {
 
 /* INLINE SUGGESTIONS */
 
-  $(".collapse").click(function(event){
-      event.preventDefault();
-      $(this).parent().siblings().slideToggle('fast');
+  $(".collapse").click(function(event) {
+    event.preventDefault();
+    $(this).parent().siblings().slideToggle('fast');
   });
   $(".collapse").parent().siblings().hide();
 
@@ -196,36 +198,37 @@ $(document).ready(function() {
   }
 
     $("#translate-suggestion-container .rejectsugg").click(function() {
-	var element = $(this).parent().parent();
-	var uid = $('.translate-original input#id_id').val();
-	var suggid = $(this).siblings("input.suggid").val();
-	var url = l('/suggestion/reject/') + uid + '/' + suggid;
-	$.post(url, {'reject': 1},
-	       function(rdata) {
-		   $("#response").remove();
-		   element.fadeOut(500);
-	       }, "json");
-	return false;
+      var element = $(this).parent().parent();
+      var uid = $('.translate-original input#id_id').val();
+      var suggid = $(this).siblings("input.suggid").val();
+      var url = l('/suggestion/reject/') + uid + '/' + suggid;
+      $.post(url, {'reject': 1},
+             function(rdata) {
+               $("#response").remove();
+               element.fadeOut(500);
+             }, "json");
+      return false;
     });
 
     $("#translate-suggestion-container .acceptsugg").click(function() {
-	var element = $(this).parent().parent();
-	var uid = $('.translate-original input#id_id').val();
-	var suggid = $(this).siblings("input.suggid").val();
-	var url = l('/suggestion/accept/') + uid + '/' + suggid;
-	$.post(url, {'accept': 1},
-	       function(rdata) {
-		   $("#response").remove();
-		   $.each(rdata.newtargets, function(i, target) {
-		       $("textarea#id_target_f_" + i).val(target).focus();
-		   });
-		   $.each(rdata.newdiffs, function(suggid, sugg) {
-			   $.each(sugg, function(i, target) {
-				   $("#suggdiff-" + suggid + "-" + i).html(target);
-			       });
-		       });
-		   element.fadeOut(500);
-	       }, "json");
-	return false;
+      var element = $(this).parent().parent();
+      var uid = $('.translate-original input#id_id').val();
+      var suggid = $(this).siblings("input.suggid").val();
+      var url = l('/suggestion/accept/') + uid + '/' + suggid;
+      $.post(url, {'accept': 1},
+             function(rdata) {
+               $("#response").remove();
+               $.each(rdata.newtargets, function(i, target) {
+                 $("textarea#id_target_f_" + i).val(target).focus();
+               });
+               $.each(rdata.newdiffs, function(suggid, sugg) {
+                 $.each(sugg, function(i, target) {
+                   $("#suggdiff-" + suggid + "-" + i).html(target);
+                 });
+               });
+               element.fadeOut(500);
+             }, "json");
+      return false;
     });
+
 });
