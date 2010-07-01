@@ -457,7 +457,7 @@ class TranslationProject(models.Model):
                 if self.is_terminology_project:
                     return match.terminologymatcher([store.file.store for store in self.stores.iterator()]), newmtime
                 else:
-                    return match.terminologymatcher(termbase), newmtime
+                    return match.terminologymatcher([termbase.file.store]), newmtime
 
         if self.non_db_state.termmatcher is None:
             try:
