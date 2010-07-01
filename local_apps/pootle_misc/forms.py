@@ -27,8 +27,16 @@ class GroupedModelChoiceField(forms.ModelChoiceField):
         self.querysets = querysets
 
     def _get_choices(self):
+        orig_queryset = self.queryset
+        orig_empty_label = self.empty_label
+        if self.empty_label is not None:
+            yield (u"", self.empty_label)
+            self.empty_label = None
+
         for title, queryset in self.querysets:
             self.queryset = queryset
             yield (title, [choice for choice in super(GroupedModelChoiceField, self).choices])
 
+        self.queryset = orig_queryset
+        self.empty_label = orig_empty_label
     choices = property(_get_choices, forms.ModelChoiceField._set_choices)
