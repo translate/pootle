@@ -9,7 +9,7 @@ from django.http import QueryDict
 from django.core.management import call_command
 from django.contrib.auth.models import User
 
-from pootle_translationproject.models import scan_translation_projects, translation_project_non_db_state
+from pootle_translationproject.models import scan_translation_projects, TranslationProject
 from pootle_store.models import fs
 
 
@@ -30,7 +30,7 @@ class PootleTestCase(TestCase):
         self.testpodir = tempfile.mkdtemp()
         settings.PODIRECTORY = self.testpodir
         fs.location = self.testpodir
-        translation_project_non_db_state.clear()
+        TranslationProject._non_db_state_cache.clear()
 
         gnu = os.path.join(self.testpodir, "terminology")
         os.mkdir(gnu)

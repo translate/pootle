@@ -34,6 +34,7 @@ from translate.filters import checks
 from translate.search  import match, indexing
 from translate.storage import versioncontrol
 from translate.storage.base import ParseError
+from translate.misc.lru import LRUCachingDict
 
 from pootle.scripts                import hooks
 from pootle_misc.util import getfromcache, dictsum
@@ -64,8 +65,6 @@ class TranslationProjectNonDBState(object):
         self.indexer = None
 
 
-translation_project_non_db_state = {}
-
 def create_translation_project(language, project):
     if project_tree.translation_project_should_exist(language, project):
         try:
@@ -86,6 +85,8 @@ class VersionControlError(Exception):
     pass
 
 class TranslationProject(models.Model):
+    _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE, settings.PARSE_POOL_CULL_FREQUENCY)
+
     objects = RelatedManager()
     index_directory  = ".translation_index"
     class Meta:
@@ -144,9 +145,14 @@ class TranslationProject(models.Model):
         return False
 
     def _get_non_db_state(self):
-        if self.id not in translation_project_non_db_state:
-            translation_project_non_db_state[self.id] = TranslationProjectNonDBState(self)
-        return translation_project_non_db_state[self.id]
+        if not hasattr(self, "_non_db_state"):
+            try:
+                self._non_db_state = self._non_db_state_cache[self.id]
+            except KeyError:
+                self._non_db_state = TranslationProjectNonDBState(self)
+                self._non_db_state_cache[self.id] = TranslationProjectNonDBState(self)
+
+        return self._non_db_state
 
     non_db_state = property(_get_non_db_state)
 
