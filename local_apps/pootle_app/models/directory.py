@@ -157,9 +157,12 @@ class Directory(models.Model):
         """does this directory point at a language"""
         return self.pootle_path.count('/') == 2
 
+    def is_project(self):
+        return self.pootle_path.startswith('/projects/') and self.pootle_path.count('/') == 3
+
     def is_translationproject(self):
         """does this directory point at a translation project"""
-        return self.pootle_path.count('/') == 3
+        return self.pootle_path.count('/') == 3 and not self.pootle_path.startswith('/projects/')
 
     is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
 
