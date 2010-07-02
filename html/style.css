@@ -1769,6 +1769,11 @@ textarea.translation
     background-color: #DDD;
 }
 
+/* MACHINE TRANSLATION */
+div#translate-mt
+{
+    display: inline;
+}
 
 /* CONTROLS */
 

@@ -7,6 +7,14 @@ google.setOnLoadCallback(function() {
   var target_lang = $("#id_target_f_0").attr("lang").replace('_', '-');
 
   if (google.language.isTranslatable(target_lang)) {
+    // Add the Google Translate button
+    translate_button = document.createElement("input");
+    translate_button.setAttribute("type", "submit");
+    translate_button.setAttribute("class", "googletranslate");
+    translate_button.setAttribute("name", "googleapi");
+    translate_button.setAttribute("value", "Google Translate");
+    $("div#translate-mt").append(translate_button);
+
     $(".googletranslate").click(function(){
       var id = this.name.replace("googleapi", "");
       var orig = $("#id_source_f_0");
@@ -54,8 +62,6 @@ google.setOnLoadCallback(function() {
       });
       return false;
     });
-  } else {
-    $("input.googletranslate").hide();
   }
 
 });

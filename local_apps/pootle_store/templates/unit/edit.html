@@ -92,13 +92,7 @@
       {% endif %}
       <input type="submit" name="skip" accesskey="k" value="{% trans 'Skip' %}" />
       <input type="submit" name="back" accesskey="b" value="{% trans 'Back' %}" />
-      {% if cansuggest or cantranslate %}
-        {% for backend in settings.MT_BACKENDS %}
-          {% ifequal backend 'GOOGLE_TRANSLATE' %}
-            <input type="submit" class="googletranslate" name="googleapi" value="{% trans 'Google Translate' %}"/>
-          {% endifequal %}
-        {% endfor %}
-      {% endif %}
+      <div id="translate-mt"></div>
       <input type="hidden" name="store" value="{{ store }}" />
       <input type="hidden" name="path" value="{{ store|l }}" />
       <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
