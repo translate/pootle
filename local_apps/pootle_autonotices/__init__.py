@@ -41,3 +41,10 @@ post_vc_commit.connect(signals.committed_to_version_control)
 post_template_update.connect(signals.updated_from_template)
 post_file_upload.connect(signals.file_uploaded)
 
+try:
+    from django.db.models.signals import m2m_changed
+    from pootle_profile.models import PootleProfile
+    m2m_changed.connect(signals.user_joined_project, sender=PootleProfile.projects.through)
+    m2m_changed.connect(signals.user_joined_language, sender=PootleProfile.languages.through)
+except ImportError:
+    pass
