@@ -35,7 +35,11 @@ class GroupedModelChoiceField(forms.ModelChoiceField):
 
         for title, queryset in self.querysets:
             self.queryset = queryset
-            yield (title, [choice for choice in super(GroupedModelChoiceField, self).choices])
+            if title is None:
+                for choice in super(GroupedModelChoiceField, self).choices:
+                    yield choice
+            else:
+                yield (title, [choice for choice in super(GroupedModelChoiceField, self).choices])
 
         self.queryset = orig_queryset
         self.empty_label = orig_empty_label
