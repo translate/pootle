@@ -47,7 +47,7 @@ def admin_permissions(request, current_directory, template, context):
     if project is not None:
         querysets.append((_('Project Members'), base_queryset.filter(projects=project).order_by('user')))
     if language is not None:
-        querysets.append((_('Language Members'), base_queryset.filter(languages=language).order_by('user')))
+        querysets.append((_('Language Members'), base_queryset.filter(languages=language).order_by('user__username')))
     querysets.append((_('All Users'), base_queryset.order_by('user')))
 
     class PermissionSetForm(forms.ModelForm):
