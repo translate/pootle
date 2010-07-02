@@ -57,8 +57,11 @@ def new_translationproject(sender, instance, created=False, **kwargs):
     message = 'New project <a href="%s">%s</a> added to language <a href="%s">%s</a>.' % (
         instance.get_absolute_url(), instance.project.fullname,
         instance.language.get_absolute_url(), instance.language.fullname)
-    new_object(created, message, instance.directory.parent)
-
+    new_object(created, message, instance.language.directory)
+    message = 'New language <a href="%s">%s</a> added to project <a href="%s">%s</a>.' % (
+        instance.get_absolute_url(), instance.language.fullname,
+        instance.project.get_absolute_url(), instance.project.fullname)
+    new_object(created, message, instance.project.directory)
 
 def unit_updated(sender, instance, created=False, **kwargs):
     if not created:
