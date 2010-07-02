@@ -45,7 +45,10 @@ def admin_permissions(request, current_directory, template, context):
     base_queryset = PootleProfile.objects.filter(user__is_active=1).exclude(id__in=current_directory.permission_sets.values_list('profile_id', flat=True))
     querysets = []
     if project is not None:
-        querysets.append((_('Project Members'), base_queryset.filter(projects=project).order_by('user')))
+        if language is not None:
+            querysets.append((_('Project Members'), base_queryset.filter(projects=project, languages=language).order_by('user__username')))
+        else:
+            querysets.append((_('Project Members'), base_queryset.filter(projects=project).order_by('user__username')))
     if language is not None:
         querysets.append((_('Language Members'), base_queryset.filter(languages=language).order_by('user__username')))
     querysets.append((_('All Users'), base_queryset.order_by('user')))
