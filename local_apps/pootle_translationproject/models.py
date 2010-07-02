@@ -110,8 +110,9 @@ class TranslationProject(models.Model):
         super(TranslationProject, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
+        directory = self.directory
         super(TranslationProject, self).delete(*args, **kwargs)
-        self.directory.delete()
+        directory.delete()
 
     def get_absolute_url(self):
         return l(self.pootle_path)

@@ -59,8 +59,9 @@ class Language(models.Model):
         super(Language, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
+        directory = self.directory
         super(Language, self).delete(*args, **kwargs)
-        self.directory.delete()
+        directory.delete()
 
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.fullname)

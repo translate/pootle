@@ -77,8 +77,9 @@ class Project(models.Model):
         super(Project, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
+        directory = self.directory
         super(Project, self).delete(*args, **kwargs)
-        self.directory.delete()
+        directory.delete()
 
     @getfromcache
     def get_mtime(self):
