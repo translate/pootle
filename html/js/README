@@ -75,3 +75,8 @@ Directory contents
     - jquery.min.js :
       The jQuery library, version 1.3.2, minified.
 
+  + mt/
+
+    - google-translate.js :
+      Script to load translation suggestions using the Google Translate service.
+
