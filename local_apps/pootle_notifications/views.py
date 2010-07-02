@@ -57,12 +57,7 @@ def view(request, path):
     else:
         template_vars['notices'] = Notice.objects.filter(directory=directory).select_related('directory')[:30]
 
-    if directory.is_language():
-        template_vars['is_language'] = True
-        template_vars['language'] = {'code': directory.language.code,
-                                     'name': tr_lang(directory.language.fullname)}
-    else:
-        template_vars['is_language'] = False
+    if not directory.is_language() and not directory.is_project():
         try:
             request.translation_project = directory.get_translationproject()
             template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
@@ -79,23 +74,19 @@ def directory_to_title(request, directory):
     TranslationProject and returns appropriate string for use in
     titles"""
 
-    try:
+    if directory.is_language():
         trans_vars = {
             'language': tr_lang(directory.language.fullname),
             }
         return _('News for %(language)s', trans_vars)
-    except ObjectDoesNotExist:
-        pass
-
-    try:
+    elif directory.is_project():
+        return _('News for %(project)s', {'project': directory.project.fullname})
+    elif directory.is_translationproject():
         trans_vars = {
             'language': tr_lang(directory.translationproject.language.fullname),
             'project': directory.translationproject.project.fullname,
             }
         return _('News for the %(project)s project in %(language)s', trans_vars)
-    except ObjectDoesNotExist:
-        pass
-
     return _('News for %(path)s',
              {'path': directory.pootle_path})
 

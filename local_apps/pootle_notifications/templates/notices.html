@@ -11,11 +11,17 @@ approach for this.
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-{% if is_language %}
-{{ block.super }}: {{ language.name }} » {% trans "News" %}
+{{ block.super }}:
+{% if directory.is_language %}
+  {{ directory.language.name }}
 {% else %}
-{{ block.super }}: {{ navitems.0.path.language.text }} » {{ navitems.0.path.project.text }} » {% trans "News" %}
+  {% if directory.is_project %}
+    {{ directory.project.fullname }}
+  {% else %}
+    {{ navitems.0.path.language.text }} » {{ navitems.0.path.project.text }} » {% trans "News" %}
+  {% endif %}
 {% endif %}
+» {% trans "News" %}
 {% endblock %}
 
 {% block extra_head %}
@@ -23,29 +29,38 @@ approach for this.
 {% endblock %}
 
 {% block bodyclass %}
-{% if is_language %}languagenews{% else %}tpnews{% endif %}
+{% if directory.is_language %}languagenews{% else %}tpnews{% endif %}
 {% endblock %}
 
 {% block nav-secondary %}
-{% if is_language %}
+{% if directory.is_language %}
 <div id="breadcrumbs">
-    <h2 class="title"><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></h2>
+    <h2 class="title"><a href="{% filter l %}/{{ directory.language.code }}/{% endfilter %}">{{ directory.language.name }}</a></h2>
 </div>
 {% else %}
-
-{% block breadcrumbs %}
-<div id="breadcrumbs">
-    <h2 class="title">{% include "language/item_title.html" %}</h2>
-</div>
-{% endblock %}
+    {% if directory.is_project %}
+    <div id="breadcrumbs">
+        <h2 class="title"><a href="{% filter l %}/projects/{{ directory.project.code }}/{% endfilter %}">{{ directory.project.fullname }}</a></h2>
+    </div>
+    {% else %}
+    {% block breadcrumbs %}
+    <div id="breadcrumbs">
+      <h2 class="title">{% include "language/item_title.html" %}</h2>
+    </div>
+    {% endblock %}
+    {% endif %}
 {% endif %}
 {% endblock %}
 
 {% block precontent %}
-{% if is_language %}
+{% if directory.is_language %}
     {% include "language_menu.html" %}
 {% else %}
-    {% include "tp_menu.html" %}
+    {% if directory.is_project %}
+        {% include "project_menu.html" %}
+    {% else %}
+        {% include "tp_menu.html" %}
+    {% endif %}
 {% endif %}
 {% endblock %}
 
@@ -75,7 +90,7 @@ approach for this.
 </div>
 {% endblock %}
 
-{% if not is_language %}
+{% if not directory.is_language %}
 {% block scripts_extra %}
 <script type="text/javascript" src='{{ "js/jquery/jquery.bidi.js"|m }}'></script>
 <script type="text/javascript">
