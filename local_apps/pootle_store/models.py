@@ -177,7 +177,7 @@ class Unit(models.Model, base.TranslationUnit):
             # updated caches
             store = self.store
             translation_project = store.translation_project
-            translation_project.update_index(translation_project.indexer, store, self.id)
+            #translation_project.update_index(translation_project.indexer, store, self.id)
             deletefromcache(store,
                             ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
 
@@ -505,9 +505,9 @@ class Store(models.Model, base.TranslationStore):
         self.pootle_path = self.parent.pootle_path + self.name
         super(Store, self).save(*args, **kwargs)
         if self.state >= PARSED:
-            if self.translation_project:
+            #if self.translation_project:
                 # update search index
-                self.translation_project.update_index(self.translation_project.indexer, self)
+                #self.translation_project.update_index(self.translation_project.indexer, self)
             # new units, let's flush cache
             deletefromcache(self, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
 
