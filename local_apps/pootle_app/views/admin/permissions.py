@@ -57,8 +57,7 @@ def admin_permissions(request, current_directory, template, context):
 
         directory = forms.ModelChoiceField(queryset=Directory.objects.filter(pk=current_directory.pk),
                                            initial=current_directory.pk, widget=forms.HiddenInput)
-        profile = GroupedModelChoiceField(querysets=querysets, queryset=base_queryset,
-                                          empty_label=None, required=True)
+        profile = GroupedModelChoiceField(querysets=querysets, queryset=base_queryset, required=True)
         positive_permissions = PermissionFormField(label=_('Permissions'), queryset=permission_queryset, required=False)
 
     link = lambda instance: unicode(instance.profile)
