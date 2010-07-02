@@ -60,6 +60,18 @@ def new_translationproject(sender, instance, created=False, **kwargs):
     new_object(created, message, instance.directory.parent)
 
 
+def unit_updated(sender, instance, created=False, **kwargs):
+    if not created:
+        store = instance.store
+        stats = instance.store.getquickstats()
+        if stats['total'] - stats['translated'] == 1 and instance.istranslated():
+            # by the end of this we will be 100%
+            translation_project = store.translation_project
+            directory = translation_project.directory
+            message = '<a href="%s">%s</a> fully translated</a> <br />' % (store.get_absolute_url(), store.name)
+            message += stats_message("Project now at", translation_project.getquickstats())
+            new_object(True, message, directory)
+
 ##### TranslationProject Events #####
 
 from pootle_translationproject.models import stats_message
@@ -111,19 +123,6 @@ def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
     new_object(True, message, sender.directory)
 
 
-##### Store events #####
 
-def unit_updated(sender, oldstats, newstats, **kwargs):
-    if oldstats == newstats or oldstats['translatedsourcewords'] == oldstats['totalsourcewords']:
-        # file did not change or is already at 100%
-        return
 
-    if newstats['translatedsourcewords'] == newstats['totalsourcewords']:
-        # find parent translation project
-        directory = sender.parent
-        while not directory.is_translationproject() and not directory == Directory.objects.root:
-            directory = directory.parent
 
-        message = '<a href="%s">%s</a> fully translated</a> <br />' % (sender.get_absolute_url(), sender.name)
-        message += stats_message("Project now at", directory.getquickstats())
-        new_object(True, message, directory)

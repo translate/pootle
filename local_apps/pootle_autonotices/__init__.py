@@ -18,18 +18,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.db.models.signals      import post_save
+from django.db.models.signals      import post_save, pre_save
 from django.contrib.auth.models import User
 
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
-import signals
+from pootle_store.models import Unit
+
+from pootle_autonotices import signals
 
 post_save.connect(signals.new_language, sender=Language)
 post_save.connect(signals.new_project, sender=Project)
 post_save.connect(signals.new_user, sender=User)
 post_save.connect(signals.new_translationproject, sender=TranslationProject)
+pre_save.connect(signals.unit_updated, sender=Unit)
 
 from pootle_app.models.signals import post_vc_update, post_vc_commit
 from pootle_app.models.signals import post_template_update, post_file_upload
@@ -38,5 +41,3 @@ post_vc_commit.connect(signals.committed_to_version_control)
 post_template_update.connect(signals.updated_from_template)
 post_file_upload.connect(signals.file_uploaded)
 
-from pootle_store.signals import post_unit_update
-post_unit_update.connect(signals.unit_updated)
