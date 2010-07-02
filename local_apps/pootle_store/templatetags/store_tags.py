@@ -155,6 +155,7 @@ def render_unit_edit(context, form):
                      "canreview": context['canreview'],
                      'altsrcs': find_altsrcs(unit, profile, store=store, project=project),
                      "suggestions": get_sugg_list(unit),
+                     "settings": context['settings'],
                      }
     return template_vars
 

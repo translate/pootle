@@ -121,5 +121,13 @@ USE_CAPTCHA = False
 # note that this negatively affects performance and
 # should be avoided unless another application needs direct access to
 # the files.
-
 AUTOSYNC = False
+
+# Set the backends you want to use to enable translation suggestions
+# through several online services. To disable this feature completely
+# just set an empty tuple () to the MT_BACKENDS setting.
+#
+# Available options are:
+# 'GOOGLE_TRANSLATE': Google Translate service.
+#
+MT_BACKENDS = ()

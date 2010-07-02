@@ -64,10 +64,12 @@
 {% block scripts_extra %}
 {{ block.super }}
 <script src='{{ "js/json2.min.js"|m }}' type="text/javascript"></script>
-<script src="{% if request.is_secure %}https://{% else %}http://{% endif %}www.google.com/jsapi" type="text/javascript"></script>
-<script type="text/javascript">
-	google.load("language", "1");
-</script>
+{% for backend in settings.MT_BACKENDS %}
+  {% ifequal backend 'GOOGLE_TRANSLATE' %}
+    <script src="{% if request.is_secure %}https://{% else %}http://{% endif %}www.google.com/jsapi" type="text/javascript"></script>
+    <script src='{{ "js/mt/google-translate.js"|m }}' type="text/javascript"></script>
+  {% endifequal %}
+{% endfor %}
 <script src='{{ "js/translatepage.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.fieldselection.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.caret.js"|m }}' type="text/javascript"></script>
