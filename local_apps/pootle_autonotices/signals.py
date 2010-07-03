@@ -89,6 +89,12 @@ def updated_from_template(sender, oldstats, newstats, **kwargs):
     new_object(True, message, sender.directory)
 
 def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwargs):
+    if sender.is_template_project:
+        # add template news to project instead of translation project
+        directory = sender.project.directory
+    else:
+        directory = sender.directory
+
     if oldstats == newstats:
         # nothing changed, no need to report
         return
@@ -98,7 +104,7 @@ def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwar
     if not remotestats == newstats:
         message += stats_message("Remote copy", remotestats) + " <br />"
     message += stats_message("After update", newstats)
-    new_object(True, message, sender.directory)
+    new_object(True, message, directory)
 
 def committed_to_version_control(sender, store, stats, user, success, **kwargs):
     message = '<a href="%s">%s</a> committed <a href="%s">%s</a> to version control' % (
@@ -108,6 +114,12 @@ def committed_to_version_control(sender, store, stats, user, success, **kwargs):
     new_object(success, message, sender.directory)
 
 def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
+    if sender.is_template_project:
+        # add template news to project instead of translation project
+        directory = sender.project.directory
+    else:
+        directory = sender.directory
+
     if oldstats == newstats:
         logging.debug("file uploaded but stats didn't change")
         return
@@ -123,10 +135,7 @@ def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
 
     message += stats_message('Before upload', oldstats) + ' <br />'
     message += stats_message('After upload', newstats) + ' <br />'
-    new_object(True, message, sender.directory)
-
-
-
+    new_object(True, message, directory)
 
 
 ##### Profile Events #####
