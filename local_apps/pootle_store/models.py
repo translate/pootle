@@ -564,6 +564,7 @@ class Store(models.Model, base.TranslationStore):
             return
 
         if self.state < PARSED:
+            logging.debug("Parsing %s", self.pootle_path)
             # no existing units in db, file hasn't been parsed before
             # no point in merging, add units directly
             oldstate = self.state
@@ -586,6 +587,7 @@ class Store(models.Model, base.TranslationStore):
             return
 
         # lock store
+        logging.debug("Updating %s", self.pootle_path)
         oldstate = self.state
         self.state = LOCKED
         self.save()
@@ -630,6 +632,7 @@ class Store(models.Model, base.TranslationStore):
 
     @commit_on_success
     def update_qualitychecks(self):
+        logging.debug("Updating quality checks for %s", self.pootle_path)
         for unit in self.units.iterator():
             unit.update_qualitychecks()
 
@@ -642,6 +645,7 @@ class Store(models.Model, base.TranslationStore):
         if not self.file:
             if create:
                 # file doesn't exist let's create it
+                logging.debug("Creating file %s", self.pootle_path)
                 storeclass = factory_classes[self.translation_project.project.localfiletype]
                 store_path = os.path.join(settings.PODIRECTORY, self.translation_project.real_path, self.name)
                 store = self.convert(storeclass)
@@ -650,6 +654,7 @@ class Store(models.Model, base.TranslationStore):
                 self.save()
             return
 
+        logging.debug("Syncing %s", self.pootle_path)
         self.require_dbid_index(update=True)
         old_ids = set(self.file.store.getids())
         new_ids = set(self.dbid_index.keys())
@@ -681,6 +686,7 @@ class Store(models.Model, base.TranslationStore):
 
     def convert(self, fileclass):
         """export to fileclass"""
+        logging.debug("Converting %s to %s", self.pootle_path, fileclass)
         output = fileclass()
         output.settargetlanguage(self.translation_project.language.code)
         #FIXME: we should add some headers
@@ -783,6 +789,7 @@ class Store(models.Model, base.TranslationStore):
 
         # must be done before locking the file in case it wasn't already parsed
         self.require_units()
+        logging.debug("merging %s", self.pootle_path)
 
         # lock store
         oldstate = self.state
@@ -910,4 +917,3 @@ class Store(models.Model, base.TranslationStore):
             except PootleProfile.DoesNotExist:
                 pass
         return None
-

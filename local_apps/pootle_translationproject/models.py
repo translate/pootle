@@ -388,6 +388,7 @@ class TranslationProject(models.Model):
         the TranslationProject (it is cached!), it may NOT be part of the Project object,
         but should be used via a short living local variable.
         """
+        logging.debug("Loading indexer for %s", self.pootle_path)
         indexdir = os.path.join(self.abs_real_path, self.index_directory)
         index = indexing.get_indexer(indexdir)
         index.set_field_analyzers({
@@ -453,6 +454,7 @@ class TranslationProject(models.Model):
             # (item is None)
             # The po file is not indexed - or it was changed externally 
             # delete all items of this file
+            logging.debug("Updating %s indexer for file %s", self.pootle_path, store.pootle_path) 
             indexer.delete_doc({"pofilename": store.pootle_path})
             units = store.units
         addlist = []
