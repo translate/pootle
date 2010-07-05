@@ -132,7 +132,10 @@ def pluralize_diff_sugg(sugg):
     if unit.hasplural():
         forms = []
         for i, target in enumerate(sugg.target.strings):
-            forms.append((i, target, highlight_diffs(unit.target.strings[i], target), _('Plural Form %d', i)))
+            if i < len(unit.target.strings):
+                forms.append((i, target, highlight_diffs(unit.target.strings[i], target), _('Plural Form %d', i)))
+            else:
+                forms.append((i, target, highlight_diffs('', target), _('Plural Form %d', i)))
         return forms
     else:
         return [(0, sugg.target, highlight_diffs(unit.target, sugg.target), None)]
