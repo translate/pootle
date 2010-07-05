@@ -63,10 +63,10 @@ def new_translationproject(sender, instance, created=False, **kwargs):
         instance.project.get_absolute_url(), instance.project.fullname)
     new_object(created, message, instance.project.directory)
 
-def unit_updated(sender, instance, created=False, **kwargs):
-    if not created:
+def unit_updated(sender, instance, **kwargs):
+    if instance.id is not None:
         store = instance.store
-        stats = instance.store.getquickstats()
+        stats = store.getquickstats()
         if stats['total'] - stats['translated'] == 1 and instance.istranslated():
             # by the end of this we will be 100%
             translation_project = store.translation_project
