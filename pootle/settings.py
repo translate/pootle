@@ -96,6 +96,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.gzip.GZipMiddleware',
+    'django.contrib.csrf.middleware.CsrfMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.locale.LocaleMiddleware',
