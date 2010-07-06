@@ -850,15 +850,14 @@ class Store(models.Model, base.TranslationStore):
             shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
             for oldunit in self.findid_bulk(shared_dbids):
                 newunit = newfile.findid(oldunit.getid())
-                if not newunit.istranslated():
-                    continue
-
                 if notranslate or oldunit.istranslated() and suggestions:
-                    #FIXME: add a user argument
-                    oldunit.add_suggestion(newunit.target, None)
+                    if newunit.istranslated():
+                        #FIXME: add a user argument
+                        oldunit.add_suggestion(newunit.target, None)
                 else:
-                    oldunit.merge(newunit)
-                    oldunit.save()
+                    changed = oldunit.merge(newunit)
+                    if changed:
+                        oldunit.save()
 
             self.sync(update_structure=True, update_translation=True, conservative=False, create=False)
 
