@@ -123,11 +123,12 @@ USE_CAPTCHA = False
 # the files.
 AUTOSYNC = False
 
-# Set the backends you want to use to enable translation suggestions
-# through several online services. To disable this feature completely
-# just set an empty tuple () to the MT_BACKENDS setting.
-#
+# Set the backends you want to use to enable translation suggestions through
+# several online services. To disable this feature completely just comment all
+# the lines to set an empty list [] to the MT_BACKENDS setting.
 # Available options are:
 # 'GOOGLE_TRANSLATE': Google Translate service.
 #
-MT_BACKENDS = ()
+MT_BACKENDS = [
+#        'GOOGLE_TRANSLATE',
+]
