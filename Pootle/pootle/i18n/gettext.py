@@ -57,6 +57,6 @@ def language_dir(language_code):
     shortcode = language_code[:3]
     if not shortcode.isalpha():
         shortcode = language_code[:2]
-    if shortcode in ["ar", "arc", "dv", "fa", "he", "ks", "ps", "ur", "yi", "nqo"]:
+    if shortcode in ["ar", "arc", "dv", "fa", "he", "ks", "ps", "ug", "ur", "yi", "nqo"]:
         return "rtl"
     return "ltr"
