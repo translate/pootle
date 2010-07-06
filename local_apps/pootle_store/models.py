@@ -419,6 +419,36 @@ class Unit(models.Model, base.TranslationUnit):
     def delalttrans(self, alternative):
         alternative.delete()
 
+    def merge(self, unit, overwrite=False, comments=True, authoritative=False):
+        changed = False
+        if comments:
+            notes = unit.getnotes(origin="translator")
+            if notes and self.translator_comment != notes:
+                self.translator_comment = notes
+                changed = True
+
+        if not bool(unit.target):
+            # no translation in new unit bail out
+            return changed
+
+        if bool(self.target) and not overwrite:
+            # won't replace existing translation unless overwrite is
+            # true
+            return changed
+
+        if self.istranslated() and not unit.istranslated():
+            # current translation more trusted
+            return changed
+
+        self.target = unit.target
+        if self.source != unit.source:
+            self.markfuzzy()
+        else:
+            self.markfuzzy(unit.isfuzzy())
+        changed = True
+
+        return changed
+
 ##################### Suggestions #################################
     def get_suggestions(self):
         return self.suggestion_set.select_related('user').all()
