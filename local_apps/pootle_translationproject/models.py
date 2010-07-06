@@ -313,7 +313,7 @@ class TranslationProject(models.Model):
         if not check_permission("commit", request):
             raise PermissionDenied(_("You do not have rights to commit files here"))
 
-        stats = store.file.getquickstats()
+        stats = store.getquickstats()
         author = request.user.username
         message = stats_message("Commit from %s by user %s." % (settings.TITLE, author), stats)
 	# Try to append email as well, since some VCS does not allow omitting it (ie. Git).
