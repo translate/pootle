@@ -258,7 +258,7 @@ def get_translated_name(translation_project, store):
 def convert_templates(template_translation_project, translation_project):
     translation_project.sync()
     oldstats = translation_project.getquickstats()
-    for store in template_translation_project.stores.iterator():
+    for store in template_translation_project.stores.exclude(file='').iterator():
         if translation_project.file_style == 'gnu':
             new_store_path = get_translated_name_gnu(translation_project, store)
         else:
