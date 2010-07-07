@@ -243,6 +243,7 @@ class TranslationProject(models.Model):
             logging.debug("updating %s from version control", store.file.path)
             versioncontrol.updatefile(store.file.path)
             store.file._delete_store_cache()
+            store.update(update_structure=True, update_translation=True, conservative=False)
             remotestats = store.getquickstats()
         except Exception, e:
             #something wrong, file potentially modified, bail out
@@ -313,6 +314,7 @@ class TranslationProject(models.Model):
         if not check_permission("commit", request):
             raise PermissionDenied(_("You do not have rights to commit files here"))
 
+        store.sync(update_structure=True, update_translation=True, conservative=False)
         stats = store.getquickstats()
         author = request.user.username
         message = stats_message("Commit from %s by user %s." % (settings.TITLE, author), stats)
