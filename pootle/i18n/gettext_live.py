@@ -25,7 +25,7 @@ _translation_project_cache = {}
 
 def get_live_translation(language_code):
     from django.db import models
-    TranslationProject = models.get_model('pootle_app', 'TranslationProject')
+    TranslationProject = models.get_model('pootle_translationproject', 'TranslationProject')
     global _translation_project_cache
 
     if not language_code in _translation_project_cache:
