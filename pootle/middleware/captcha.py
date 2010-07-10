@@ -154,12 +154,38 @@ class MathCaptchaForm(forms.Form):
             self.reset_captcha()
         return super(MathCaptchaForm, self).clean()
 
-
+URL_RE = re.compile('http://|https://', re.I)
 class CaptchaMiddleware:
+
     def process_request(self, request):
         if not settings.USE_CAPTCHA or not request.POST or \
                request.path.find('accounts/login') > -1 or request.session.get('ishuman', False):
             return
+
+        if request.user.is_authenticated():
+            if 'target_f_0' not in request.POST and 'translator_comment' not in request.POST or \
+                   'submit' not in request.POST and 'suggest' not in request.POST:
+                return
+
+            # we are in translate page users introducing new urls in
+            # target or comment field are suspect even if authenticated
+            try:
+                target_urls = len(URL_RE.findall(request.POST['target_f_0']))
+            except KeyError:
+                target_urls = 0
+
+            try:
+                comment_urls = len(URL_RE.findall(request.POST['translator_comment']))
+            except KeyError:
+                comment_urls = 0
+
+            try:
+                source_urls = len(URL_RE.findall(request.POST['source_f_0']))
+            except KeyError:
+                source_urls = 0
+
+            if comment_urls == 0 and (target_urls == 0 or target_urls == source_urls):
+                return
 
         if 'captcha_answer' in request.POST:
             form =  MathCaptchaForm(request.POST)
