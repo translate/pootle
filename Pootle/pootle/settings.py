@@ -103,6 +103,7 @@ MIDDLEWARE_CLASSES = (
     'pootle_misc.middleware.errorpages.ErrorPagesMiddleware',
     'django.middleware.common.CommonMiddleware',
     'pootle.middleware.check_cookies.CheckCookieMiddleware',
+    'pootle.middleware.captcha.CaptchaMiddleware',
     #'pootle.middleware.profile.ProfilerMiddleware',
     # Uncomment to use pagecaching
     'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST

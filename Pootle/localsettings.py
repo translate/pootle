@@ -111,3 +111,7 @@ AUTH_LDAP_FIELDS = {
 # set this to False to disable user registration, admins will still be
 # able to create user accounts
 CAN_REGISTER = True
+
+# set this to True to enable spam prevention through captcha, only
+# useful for public Pootle instances.
+USE_CAPTCHA = False
