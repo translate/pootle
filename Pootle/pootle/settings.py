@@ -156,6 +156,14 @@ ACCOUNT_ACTIVATION_DAYS = 10
 # keep stats cache for roughly a month
 OBJECT_CACHE_TIMEOUT = 2500000
 
+# localsettings defaults
+LIVE_TRANSLATION = False
+PARSE_POOL_SIZE = 40
+PARSE_POOL_CULL_FREQUENCY = 4
+DEBUG = False
+CAN_REGISTER = True
+USE_CAPTCHA = False
+
 execfile(config_path("localsettings.py"))
 
 if LIVE_TRANSLATION:
