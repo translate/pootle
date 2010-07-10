@@ -158,7 +158,7 @@ class MathCaptchaForm(forms.Form):
 class CaptchaMiddleware:
     def process_request(self, request):
         if not settings.USE_CAPTCHA or not request.POST or \
-               request.user.is_authenticated() or request.session.get('ishuman', False):
+               request.path.find('accounts/login') > -1 or request.session.get('ishuman', False):
             return
 
         if 'captcha_answer' in request.POST:
