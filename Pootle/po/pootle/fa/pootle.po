@@ -3,88 +3,93 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2008-08-29 11:11+0000\n"
-"Last-Translator: Mohammad Ebrahim Mohammadi Panah <mebrahim@gmail.com>\n"
+"PO-Revision-Date: 2010-06-19 15:41+0200\n"
+"Last-Translator: iroveb <irdavidnet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 2.0.4\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
+"برای انتخاب بیش از یک مورد، روی Mac کلید «Control» یا «Command» را پایین نگه "
+"دارید."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "یک نشانی رایانامهٔ معتبر وارد کنید."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"این نشانی رایانامه هیچ حساب کاربری مرتبطی ندارد. آیا مطمئنید که ثبت نام "
+"کرده‌اید؟"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "این مورد لازم است."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
+"مطمئن شوید که این مقدار حداکثر %(max)d حرف داشته باشد. (%(length)d تا دارد)"
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "ذخیره و افزودن یکی دیگر"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "ذخیره و ادامهٔ ویرایش"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "افزودن"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "تغییر"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "افزودن %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr ""
+msgstr "مشاهده در پایگاه"
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "نام"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "نام خانوادگی"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
 msgstr "نشانی رایانامه"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "فعال"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "وضعیت ابرکاربر"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -93,85 +98,86 @@ msgstr[0] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "تنظیمات ذخیره شد."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "ذخیره"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "نام کاربر"
+msgstr "نام کاربری"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
 msgstr "نشانی رایانامه"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
 msgstr "گذرواژه"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "گذرواژه (دوباره)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "این نام کاربری قبلاً گرفته شده است. لطفاً یکی دیگر انتخاب کنید."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "باید هر بار گذرواژه‌ای یک‌سان را وارد کنید"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "من شرایط خدمت را خوانده‌ام و آن را می‌پذیرم"
 
 #: external_apps/registration/forms.py:107
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
 msgstr ""
+"این نشانی رایانامه قبلاً استفاده شده است. لطفاً یک نشانی رایانامهٔ دیگر "
+"بدهید."
 
 #: external_apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
+"ثبت نام توسط نشانی‌های رایانامهٔ رایگان ممنوع است. لطفاً یک نشانی رایانامهٔ "
+"دیگر بدهید."
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "کاربر"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr ""
+msgstr "کلید فعال‌سازی"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "پروندهٔ ثبت نام"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr ""
+msgstr "پرونده‌های ثبت نام"
 
 #: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "کد زبان از قرارداد ایزو پی‌روی نمی‌کند"
 
 #: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "کد پروژه فقط می‌تواند شامل حروف، اعداد و ـ بشود"
 
 #: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
-msgstr ""
+msgstr "انتخاب‌های پیش‌رفته"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
@@ -179,7 +185,7 @@ msgstr "عنوان"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "نام این خادم پوتل"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
@@ -190,6 +196,8 @@ msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
+"توضیح و دستورالعمل‌های نمایش داد ‌شده در صفحهٔ اول و صفحهٔ درباره. فقط از "
+"HTML معتبر استفاده کنید."
 
 #: local_apps/pootle_app/unit_update.py:38
 msgid "You do not have rights to suggest changes here"
@@ -206,35 +214,35 @@ msgstr "شما این جا حق بازبینی پیشنهاد‌ها را ندا
 
 #: local_apps/pootle_app/management/__init__.py:62
 msgid "Can view a translation project"
-msgstr ""
+msgstr "می‌تواند یک پروژهٔ ترجمه را ببیند"
 
 #: local_apps/pootle_app/management/__init__.py:64
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "می‌تواند پیش‌نهادی برای یک ترجمه بدهد"
 
 #: local_apps/pootle_app/management/__init__.py:66
 msgid "Can submit a translation"
-msgstr ""
+msgstr "می‌تواند یک ترجمه ارائه دهد"
 
 #: local_apps/pootle_app/management/__init__.py:68
 msgid "Can overwrite translations on uploading files"
-msgstr ""
+msgstr "می‌تواند هنگام بالاگذاری پرونده‌ها ترجمه‌ها را بازنویسی کند"
 
 #: local_apps/pootle_app/management/__init__.py:70
 msgid "Can review translations"
-msgstr ""
+msgstr "می‌تواند ترجمه‌ها را بازبینی کند"
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "می‌تواند بایگانی‌های پروژه‌های ترجمه را پایین‌گذاری کند"
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "می‌تواند یک پروژهٔ ترجمه را راه‌بری کند"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can commit to version control"
-msgstr ""
+msgstr "می‌تواند به مهار نسخه اعمال کند"
 
 #: local_apps/pootle_app/models/language.py:39
 msgid ""
@@ -246,7 +254,7 @@ msgstr ""
 #: local_apps/pootle_app/models/language.py:40
 #: local_apps/pootle_app/models/project.py:58
 msgid "Code"
-msgstr ""
+msgstr "کد"
 
 #: local_apps/pootle_app/models/language.py:41
 #: local_apps/pootle_app/models/project.py:59
@@ -255,12 +263,11 @@ msgstr "نام کامل"
 
 #: local_apps/pootle_app/models/language.py:43
 msgid "Enter any special characters that users might find difficult to type"
-msgstr ""
+msgstr "هر نویسهٔ ویژه‌ای را که ممکن است ورودش برای کاربران سخت باشد، وارد کنید"
 
 #: local_apps/pootle_app/models/language.py:44
-#, fuzzy
 msgid "Special Characters"
-msgstr "(حروف ویژه)"
+msgstr "نویسه‌های ویژه"
 
 #: local_apps/pootle_app/models/language.py:46
 msgid ""
@@ -270,7 +277,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/language.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "نامعلوم"
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
@@ -284,23 +291,23 @@ msgstr "معادلهٔ جمع"
 #: local_apps/pootle_app/views/index/login.py:58
 #: templates/profiles/edit_profile.html:27
 msgid "Interface Language"
-msgstr ""
+msgstr "زبان واسط"
 
 #: local_apps/pootle_app/models/profile.py:97
 msgid "Suggestions Accepted"
-msgstr ""
+msgstr "پیش‌نهادات پذیرفته شده"
 
 #: local_apps/pootle_app/models/profile.py:98
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "پیش‌نهادات معلق"
 
 #: local_apps/pootle_app/models/profile.py:99
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "پیش‌نهادات بازبینی شده"
 
 #: local_apps/pootle_app/models/profile.py:100
 msgid "Submissions Made"
-msgstr ""
+msgstr "ارائه‌های انجام شده"
 
 #: local_apps/pootle_app/models/project.py:40
 msgid ""
@@ -316,15 +323,15 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:48
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: local_apps/pootle_app/models/project.py:49
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
-msgstr ""
+msgstr "تشخیص خودکار (کندتر)"
 
 #: local_apps/pootle_app/models/project.py:54
 msgid "GNU style: files named by language code"
@@ -336,7 +343,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
-msgstr ""
+msgstr "بررسی‌های کیفیت"
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
@@ -344,54 +351,52 @@ msgstr "نوع پرونده"
 
 #: local_apps/pootle_app/models/project.py:63
 msgid "Project Tree Style"
-msgstr ""
+msgstr "سبک درخت پروژه"
 
 #: local_apps/pootle_app/models/project.py:64
 msgid "Ignore Files"
-msgstr ""
+msgstr "چشم‌پوشی از پرونده‌ها"
 
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr ""
+msgstr "معلق"
 
 #: local_apps/pootle_app/models/suggestion.py:55
-#, fuzzy
 msgid "Accepted"
-msgstr "قبول"
+msgstr "پذیرفته شده"
 
 #: local_apps/pootle_app/models/suggestion.py:56
-#, fuzzy
 msgid "Rejected"
-msgstr "رد"
+msgstr "رد شده"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
 msgid "You do not have rights to update from version control here"
-msgstr ""
+msgstr "شما این‌جا اجازهٔ به‌هنگام کردن از مهار نسخه را ندارید"
 
 #: local_apps/pootle_app/models/translation_project.py:253
 #, python-format
 msgid "Updated %s files from version control"
-msgstr ""
+msgstr "پرونده‌های %s از مهار نسخه به‌هنگام شد"
 
 #: local_apps/pootle_app/models/translation_project.py:269
 #, python-format
 msgid "Failed to update %s from version control"
-msgstr ""
+msgstr "ناتوان از به‌هنگام کردن %s از مهار نسخه"
 
 #: local_apps/pootle_app/models/translation_project.py:271
 #, python-format
 msgid "Updated file %s from version control"
-msgstr ""
+msgstr "پروندهٔ %s از مهار نسخه به‌هنگام شد"
 
 #: local_apps/pootle_app/models/translation_project.py:282
 #: local_apps/pootle_app/views/language/view.py:134
 msgid "You do not have rights to commit files here"
-msgstr "شما این جا حق اعزام پرونده‌ها را ندارید"
+msgstr "شما این جا اجازهٔ اعزام پرونده‌ها را ندارید"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr ""
+msgstr "برترین کمک‌کننده‌ها"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/project_index.py:41
@@ -400,7 +405,7 @@ msgstr "ترجمه‌شده"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr ""
+msgstr "نیازمند بازبینی"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:109
@@ -423,6 +428,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"این‌جا می‌توانید همهٔ زبان‌های موجود در این خادم پوتل را بیفزایید، ویرایش "
+"کنید و حذف نمایید."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
@@ -435,13 +442,15 @@ msgstr ""
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
 #: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "اجازه‌ها"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"این‌جا می‌توانید اجازه‌های پیش‌فرض در این خادم پوتل را بیفزایید، ویرایش کنید "
+"و حذف نمایید."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
@@ -452,19 +461,19 @@ msgstr ""
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:15
 msgid "Username"
-msgstr "نام کاربر"
+msgstr "نام کاربری"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
 msgid "Update Rights"
-msgstr "حقوق را به روز کن"
+msgstr "به‌هنگام‌سازی اجازه‌ها"
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -481,28 +490,29 @@ msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
+"این‌جا می‌توانید همهٔ پروژه‌های این خادم پوتل را بیفزایید، ویرایش کنید و حذف "
+"نمایید."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr ""
+msgstr "تنظیمات عمومی"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr ""
+msgstr "این‌جا تنظیمات عمومی پایگاه‌تان را پیکربندی کنید."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:32
 msgid "Dependency Checks"
-msgstr ""
+msgstr "بررسی‌های وابستگی‌ها"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:39
-#, fuzzy
 msgid "Optional"
-msgstr "انتخاب"
+msgstr "اختیاری"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:47
 msgid "Optimizations"
-msgstr ""
+msgstr "بهینه‌سازی"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -517,10 +527,12 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"این‌جا می‌توانید همهٔ کاربران این خادم پوتل را بیفزایید، ویرایش کنید و حذف "
+"نمایید."
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
-msgstr ""
+msgstr "درباره"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
@@ -543,28 +555,27 @@ msgstr "زبان"
 #: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
-msgstr ""
+msgstr "پیش‌رفت سرتاسری"
 
 #: local_apps/pootle_app/templates/index/index.html:28
 #: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
-msgstr ""
+msgstr "آخرین فعالیت"
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
-msgstr "پروژه‌ها"
+msgstr "پروژه"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
-msgstr ""
+msgstr "آخرین اخبار"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "عضویت در خوراک RSS"
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
@@ -577,20 +588,19 @@ msgstr "ورود به پوتل"
 
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "نام کاربری و گذرواژه‌تان با هم نخواند. لطفاً دوباره تلاش کنید."
 
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
-msgstr ""
+msgstr "گذرواژه‌تان را از دست داده‌اید؟"
 
 #: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "هنوز حساب ندارید؟"
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "ثبت نام"
+msgstr "ثبت نام."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -599,21 +609,22 @@ msgstr "خطا"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr ""
+msgstr "کامل"
 
 #: local_apps/pootle_app/templates/language/language_admin.html:20
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
+"در زیر می‌توانید اجازه‌های این زبان را بیفزایید، ویرایش کنید و حذف نمایید."
 
 #: local_apps/pootle_app/templates/language/language_admin.html:32
 msgid "Update Permissions"
-msgstr ""
+msgstr "به‌هنگام‌سازی اجازه‌ها"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:6
 #: local_apps/pootle_app/views/language/admin_files.py:62
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "پرونده‌ها"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""
@@ -635,7 +646,7 @@ msgstr "ترجمه"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:80
 msgid "Edit translation"
-msgstr ""
+msgstr "ویرایش ترجمه"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:203
 msgid "Submit"
@@ -669,25 +680,24 @@ msgstr "مدیریت"
 #: local_apps/pootle_app/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
+"این‌جا می‌توانید زبان‌های این پروژه را بیفزایید، ویرایش کنید و حذف نمایید."
 
 #: local_apps/pootle_app/views/top_stats.py:77
-#, fuzzy
 msgid "Suggestions"
-msgstr "پیشنهاد:"
+msgstr "پیش‌نهادها"
 
 #: local_apps/pootle_app/views/top_stats.py:78
-#, fuzzy
 msgid "Reviews"
-msgstr "بازبینی"
+msgstr "بازبینی‌ها"
 
 #: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
-msgstr ""
+msgstr "ارائه‌ها"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Translate Toolkit نسخهٔ %s نصب است."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:42
 #, python-format
@@ -695,10 +705,12 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
+"Translate Toolkit نسخهٔ %(installed)s نصب است. پوتل نسخهٔ %(required)s را "
+"لازم دارد."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:48
 msgid "SQLite is installed."
-msgstr ""
+msgstr "SQLite نصب است."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:51
 msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
@@ -1665,7 +1677,7 @@ msgstr "نشانی رایانامه"
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr ""
+msgstr "تنظیمات ترجمه"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
@@ -1675,7 +1687,7 @@ msgstr ""
 
 #: templates/profiles/edit_profile.html:19
 msgid "Number of Rows"
-msgstr ""
+msgstr "تعداد سطور"
 
 #: templates/profiles/edit_profile.html:23
 msgid "Input Height"
@@ -1716,16 +1728,16 @@ msgstr ""
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr ""
+msgstr "نام"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr ""
+msgstr "نام خانوادگی"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
 msgid "Account Activated"
-msgstr ""
+msgstr "حساب کاربری شما فعال گردید"
 
 #: templates/registration/activate.html:10
 #, python-format
@@ -1767,16 +1779,16 @@ msgstr "ثبت نام در پوتل"
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:15
 msgid "Password Changed"
-msgstr ""
+msgstr "گذرواژه تغییر یافت"
 
 #: templates/registration/password_change_done.html:16
 msgid "Your password was changed successfully."
-msgstr ""
+msgstr "گذرواژه شما با موفقیت تغییر یافت."
 
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11
 msgid "Change Password"
-msgstr ""
+msgstr "تغییر گذرواژه"
 
 #: templates/registration/password_change_form.html:15
 msgid ""
@@ -1786,11 +1798,11 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr ""
+msgstr "گذرواژه قدیمی"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
-msgstr ""
+msgstr "گذرواژه جدید"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm password"
@@ -1798,15 +1810,15 @@ msgstr "تایید گذرواژه"
 
 #: templates/registration/password_change_form.html:38
 msgid "Change My Password"
-msgstr ""
+msgstr "تعویض گذرواژه من"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "تعویض گذرواژه"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "تعویض گذرواژه کامل انجام شد."
 
 #: templates/registration/password_reset_complete.html:10
 #, python-format
@@ -1821,11 +1833,11 @@ msgstr ""
 #: templates/registration/password_reset_form.html:5
 #: templates/registration/password_reset_form.html:9
 msgid "Reset Password"
-msgstr ""
+msgstr "تعویض گذرواژه"
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter New Password."
-msgstr ""
+msgstr "گذرواژه جدید را وارد کنید."
 
 #: templates/registration/password_reset_confirm.html:12
 msgid ""
@@ -1835,7 +1847,7 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr ""
+msgstr "گذرواژه جدید"
 
 #: templates/registration/password_reset_confirm.html:21
 #, fuzzy
@@ -1845,23 +1857,27 @@ msgstr "تایید گذرواژه"
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr ""
+msgstr "تعویض گذرواژه"
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "تعویض گذرواژه انجام نشد."
 
 #: templates/registration/password_reset_confirm.html:32
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"پیوند تعویض گذرواژه اشتباه بود، ممکن است قبلاً استفاده شده باشد. لطفاً "
+"درخواستی جدید برای تعویض گذرواژه بدهید."
 
 #: templates/registration/password_reset_done.html:11
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"ما رایانامه ی آموزشی را برای مقرر کردن گذرواژه تازه به رایانامه ی ارائه شده "
+"فرستادیم. شما آن را به زودی دریافت خواهید کرد."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -1872,7 +1888,7 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "به صفحه ذکر شده بروید و یک گذرواژه جدید انتخاب کنید:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
@@ -1881,13 +1897,15 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "متشکریم از این که از پوتل استفاده می کنید!"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"گذرواژه خود را فراموش کرده اید؟ ایمیل خود را در کادر زیر وارد کنید، و ما "
+"رایانامه ی آموزشی را برای مقرر کردن گذرواژه تازه می فرستیم."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
@@ -1897,27 +1915,27 @@ msgstr "نشانی رایانامه"
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "ثبت نام کامل شد"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "لطفاً ایمیل خود را چک کنید تا حساب کاربر خود را فعال نمایید."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "یک حساب کاربری پوتل جدید ثبت کنید"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "فرم زیر را شروع به پر کردن کنید تا ترجمه را آغاز کنید."
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"
-msgstr ""
+msgstr "گذرواژه (دوباره)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr ""
+msgstr "قبلاً یک حساب کاربری داشته اید ؟"
 
 #: templates/registration/registration_form.html:41
 #, fuzzy

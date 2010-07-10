@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2010-05-31 08:28+0200\n"
+"PO-Revision-Date: 2010-06-26 15:28+0200\n"
 "Last-Translator: Gunleif <fo.umseting@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fo\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.3\n"
+"X-Generator: Pootle 2.0.4\n"
 
 #: strings.py:8
 msgid ""
@@ -695,6 +695,8 @@ msgstr "Fyrisit"
 #: local_apps/pootle_app/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
+"Her kannst tú leggja til, ritstjórna ella strika tungumál fyri hesa "
+"verkætlan."
 
 #: local_apps/pootle_app/views/top_stats.py:77
 msgid "Suggestions"
@@ -745,30 +747,42 @@ msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
+"Kann ikki finna stýriboð til unzip. Uppsendan av søvnum er skjótari um "
+"\"unzip\" er til taks."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:75
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
+"Kann ikki finna pakkan við ISOkotum. Pootle nýtur ISOkotur til at umseta "
+"nøvn á tungumálum."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:79
+#, fuzzy
 msgid ""
 "Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news "
 "items are safe and correct."
 msgstr ""
+"Kann ikki finna lxml. Pootle nýtur lxml til at tryggja innsett HTML spjøldur "
+"í tíðindaliðir eru trygg og røtt."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:83
+#, fuzzy
 msgid ""
 "Can't find python-levenshtein package. Updating from templates is faster "
 "with python-levenshtein."
 msgstr ""
+"Kann ikki finna python-levensthein pakkan. Dagføring úr formum er skjótari "
+"við python-levensthein."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:87
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
+"eingin tekst forstílaramotorur funnin. Leitingar eru skjótari um ein "
+"forstílaramotorur sum Xapian ella Lucene eru innlagdir"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:97
 msgid ""

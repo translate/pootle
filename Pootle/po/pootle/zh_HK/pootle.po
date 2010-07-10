@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2006-09-25 21:18+0200\n"
-"Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
+"PO-Revision-Date: 2010-07-02 11:53+0200\n"
+"Last-Translator: Ken <kenchoy@team4x.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 0.10.1rc1\n"
+"X-Generator: Pootle 2.0.4\n"
 
 #: strings.py:8
 msgid ""
@@ -102,17 +103,14 @@ msgid "Save"
 msgstr ""
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "用戶"
+msgstr "用戶名稱"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
 msgstr "電郵地址"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
 msgstr "密碼"
 
@@ -354,14 +352,12 @@ msgid "Pending"
 msgstr ""
 
 #: local_apps/pootle_app/models/suggestion.py:55
-#, fuzzy
 msgid "Accepted"
-msgstr "接受"
+msgstr "己接受"
 
 #: local_apps/pootle_app/models/suggestion.py:56
-#, fuzzy
 msgid "Rejected"
-msgstr "棄用"
+msgstr "已拒絕"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
@@ -495,7 +491,6 @@ msgid "Dependency Checks"
 msgstr ""
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:39
-#, fuzzy
 msgid "Optional"
 msgstr "選項"
 
@@ -552,14 +547,13 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
 msgstr "計劃"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
-msgstr ""
+msgstr "最新消息"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
@@ -587,7 +581,6 @@ msgid "Don't have an account yet?"
 msgstr ""
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
 msgstr "登記戶口"
 
@@ -670,12 +663,10 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
 
 #: local_apps/pootle_app/views/top_stats.py:77
-#, fuzzy
 msgid "Suggestions"
-msgstr "建議翻譯:"
+msgstr "建議翻譯"
 
 #: local_apps/pootle_app/views/top_stats.py:78
-#, fuzzy
 msgid "Reviews"
 msgstr "審核"
 
@@ -808,15 +799,13 @@ msgid "Password"
 msgstr "密碼"
 
 #: local_apps/pootle_app/views/admin/util.py:38
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
 msgstr "你沒有足夠權限管理 Pootle。"
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "你沒有足夠權限管理 Pootle。"
+msgstr "你沒有足夠權限管理 %s 。"
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
@@ -832,7 +821,6 @@ msgid "Home"
 msgstr "首頁"
 
 #: local_apps/pootle_app/views/admin/util.py:201
-#, fuzzy
 msgid "Save Changes"
 msgstr "儲存變更"
 
@@ -904,7 +892,6 @@ msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:95
-#, fuzzy
 msgid "Review Suggestions"
 msgstr "顯示建議"
 
@@ -1029,7 +1016,6 @@ msgid "Total"
 msgstr "總數"
 
 #: local_apps/pootle_app/views/language/project_index.py:51
-#, fuzzy
 msgid "Total Words"
 msgstr "總字數"
 
@@ -1043,7 +1029,6 @@ msgid "Summary"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/project_index.py:84
-#, fuzzy
 msgid "You do not have rights to access this translation project."
 msgstr "你沒有足夠權限更改翻譯"
 
@@ -1090,18 +1075,15 @@ msgid "Error while extracting archive"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/tp_common.py:205
-#, fuzzy
 msgid "You do not have rights to overwrite files here."
 msgstr "你沒有足夠權限提交檔案"
 
 #: local_apps/pootle_app/views/language/tp_common.py:207
-#, fuzzy
 msgid "You do not have rights to upload new files here."
 msgstr "你沒有足夠權限上傳新的檔案"
 
 #: local_apps/pootle_app/views/language/tp_common.py:209
 #: local_apps/pootle_app/views/language/tp_common.py:211
-#, fuzzy
 msgid "You do not have rights to upload files here."
 msgstr "你沒有足夠權限上傳檔案"
 
@@ -1268,21 +1250,21 @@ msgstr "翻譯"
 
 #: local_apps/pootle_app/views/language/translate_page.py:909
 msgid "Accept suggestion"
-msgstr ""
+msgstr "接受建議"
 
 #: local_apps/pootle_app/views/language/translate_page.py:910
 msgid "Reject suggestion"
-msgstr ""
+msgstr "拒絕建議"
 
 #. l10n: Heading above the textarea for translator comments.
 #: local_apps/pootle_app/views/language/translate_page.py:913
 msgid "Translator Comments"
-msgstr ""
+msgstr "翻譯人員意見"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: local_apps/pootle_app/views/language/translate_page.py:915
 msgid "Developer Comments"
-msgstr ""
+msgstr "開發人員意見"
 
 #. l10n: This heading refers to related translations and terminology
 #: local_apps/pootle_app/views/language/translate_page.py:917
@@ -1313,7 +1295,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/view.py:310
 msgid "Suggestion accepted."
-msgstr ""
+msgstr "建議已接受"
 
 #: local_apps/pootle_app/views/project/project_admin.py:52
 msgid "Update from templates"
@@ -1321,7 +1303,7 @@ msgstr "由模板更新"
 
 #: local_apps/pootle_app/views/project/project_admin.py:55
 msgid "Initialize"
-msgstr ""
+msgstr "起始化"
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
@@ -1331,7 +1313,7 @@ msgstr[0] ""
 
 #: local_apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
-msgstr ""
+msgstr "Pootle: 安裝"
 
 #: local_apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1729,25 +1711,22 @@ msgid ""
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
-#, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "已經用這個電子郵件地址成功建立 Pootle 戶口。\n"
+msgstr "已經用這個電子郵件地址成功建立 Pootle 戶口。"
 
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "要啟用戶口，請瀏覽這個鏈結：\n"
+msgstr "要啟用戶口，請瀏覽這個鏈結："
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
 msgstr ""
 
 #: templates/registration/activation_email.txt:9
-#, fuzzy
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "本訊息是用來驗證電郵地址是否正確的。如果你不想登記户口，請忽略這段訊息。\n"
+msgstr "本訊息是用來驗證電郵地址是否正確的。如果你不想登記户口，請忽略這段訊息。"
 
 #: templates/registration/activation_email_subject.txt:2
 #, fuzzy
@@ -1871,7 +1850,7 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "感謝使用 Pootle ！"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
@@ -1887,11 +1866,11 @@ msgstr "電郵地址"
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "注冊完成"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "請檢查電郵並啟動帳戶"
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
@@ -1910,7 +1889,6 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:41
-#, fuzzy
 msgid "Log In."
 msgstr "登入"
 
