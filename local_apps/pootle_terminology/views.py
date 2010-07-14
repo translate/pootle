@@ -83,9 +83,10 @@ def extract(request, translation_project):
         if not created:
             store.units.delete()
 
-        for score, unit in termunits:
+        for index, (score, unit) in enumerate(termunits):
             unit.store = store
-            unit.index = score
+            unit.index = index
+            #FIXME: what to do with score?
             unit.save()
             for suggestion in unit.pending_suggestions:
                 unit.add_suggestion(suggestion)
