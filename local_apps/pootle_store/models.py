@@ -354,7 +354,7 @@ class Unit(models.Model, base.TranslationUnit):
     def getlocations(self):
         if self.locations is None:
             return []
-        return self.locations.split('\n')
+        return filter(None, self.locations.split('\n'))
 
     def addlocation(self, location):
         if self.locations is None:
