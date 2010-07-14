@@ -18,18 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django import forms
-from django.forms.models import modelformset_factory
 from django.db.transaction import commit_on_success
 
 from translate.tools.poterminology import TerminologyExtractor
 
 from pootle_app.views.language.view import get_translation_project
 from pootle_app.views.admin import util
-from pootle_misc.util import paginate
 from pootle_store.models import Store, Unit, PARSED, LOCKED
 from pootle_store.forms import unit_form_factory
 from pootle_misc.baseurl import redirect
@@ -72,7 +69,7 @@ def extract(request, translation_project):
                 continue
             extractor.processunits(store.units, store.pootle_path)
         terms = extractor.extract_terms(create_termunit=create_termunit)
-        termunits = extractor.filter_terms(terms)
+        termunits = extractor.filter_terms(terms, nonstopmin=2)
         store, created = Store.objects.get_or_create(parent=translation_project.directory, translation_project=translation_project,
                                                      name="pootle-terminology.po")
         # lock file
