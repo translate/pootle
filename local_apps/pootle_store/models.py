@@ -125,7 +125,7 @@ class Unit(models.Model, base.TranslationUnit):
     locations = models.TextField(null=True, editable=False)
     context = models.TextField(null=True, editable=False)
 
-    state = models.IntegerField(null=False, default=UNTRANSLATED)
+    state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
 
     mtime = models.DateTimeField(auto_now=True, auto_now_add=True, db_index=True, editable=False)
 
@@ -526,7 +526,7 @@ class Store(models.Model, base.TranslationStore):
     translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', related_name='stores', db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_("Path"))
     name = models.CharField(max_length=128, null=False, editable=False)
-    state = models.IntegerField(null=False, default=NEW, editable=False)
+    state = models.IntegerField(null=False, default=NEW, editable=False, db_index=True)
     class Meta:
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
