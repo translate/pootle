@@ -1,12 +1,12 @@
 # This file contains the configuration settings for the Pootle server.
 #
-# It is in Python sytax. Everything after '#' is ignored as comments.
+# It is in Python syntax. Everything after '#' is ignored as comments.
 
 # Import some helper functions:
 from pootle.install_dirs import *
 
 # Mail server settings
-#Example for Google as an external SMPT server
+#Example for Google as an external SMTP server
 #DEFAULT_FROM_EMAIL = 'DEFAULT_USER@YOUR_DOMAIN.com'
 #EMAIL_HOST_USER = 'USER@YOUR_DOMAIN.com'
 #EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD'
@@ -30,7 +30,7 @@ STATS_DB_PATH = working_path('dbs/stats.db') # None means the default path
 PODIRECTORY = working_path('po')
 
 # Live translation means that the project called "Pootle" is used to provide
-# the localised versions of Pootle. Set this to true to enable live translation
+# the localised versions of Pootle. Set this to True to enable live translation
 # of pootle UI. This is a good way to learn how to use Pootle, but it has high
 # impact on performance.
 LIVE_TRANSLATION = False
@@ -54,7 +54,7 @@ PARSE_POOL_CULL_FREQUENCY = 4
 # Cache Backend settings
 #
 # By default we use Django's in memory cache which is only suitable
-# for small deployments. memcached is prefered. For more info, check
+# for small deployments. memcached is preferred. For more info, check
 # http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
 CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
 
@@ -80,7 +80,7 @@ CACHE_MIDDLEWARE_SECONDS = 600
 
 
 # Set this to False. DEBUG mode is only needed when testing beta's or
-# hacking pootle
+# hacking Pootle.
 DEBUG = False
 
 
@@ -99,7 +99,7 @@ AUTH_LDAP_ANON_PASS = ''
 AUTH_LDAP_BASE_DN = ''
 # What are we filtering on?  %s will be the username (must be in the string)
 AUTH_LDAP_FILTER = ''
-# This is a mapping of pootle field names to LDAP fields.  The key is pootle's name, the value should be your LDAP field name.  If you don't use the field
+# This is a mapping of Pootle field names to LDAP fields.  The key is Pootle's name, the value should be your LDAP field name.  If you don't use the field
 # or don't want to automatically retrieve these fields from LDAP comment them out.  The only required field is 'dn'.
 AUTH_LDAP_FIELDS = {
         'dn':'dn',
