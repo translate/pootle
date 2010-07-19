@@ -1637,18 +1637,14 @@ textarea.translation
     margin: 0 auto 0.5em;
 }
 
-.comments
+div.comments
 {
     padding: .5em;
-    vertical-align: top;
 }
 
-.comments textarea
+div.comments textarea
 {
-    width: 99%;
-    height: 3em;
-    min-height: 3em;
-    padding: 0 0 5px !important;
+    vertical-align: top;
 }
 
 .altsrclangname

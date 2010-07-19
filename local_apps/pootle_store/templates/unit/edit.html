@@ -113,7 +113,11 @@
     {% endif %}
   </div>
   <div class="translate-translation comments" lang="{{ LANGUAGE_CODE }}">
-    <div>{{ form.translator_comment.label_tag }}</div>
-    {{ form.translator_comment }}
+    {% if form.initial.translator_comment %}
+    <div>{{ form.translator_comment.label_tag }} {{ form.translator_comment }}</div>
+    {% else %}
+    <p class="tiny"><a href="#" class="collapse">{% trans "Add Comment" %}</a></p>
+    <div>{{ form.translator_comment }}</div>
+    {% endif %}
   </div>
 </td>

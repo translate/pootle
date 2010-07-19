@@ -141,7 +141,7 @@ def unit_form_factory(language, snplurals=1):
         'lang': language.code,
         'dir': language.get_direction(),
         'class': 'comments expanding',
-        'rows': 2,
+        'rows': 1,
         }
 
     fuzzy_attrs = {
