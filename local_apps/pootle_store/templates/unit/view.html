@@ -3,7 +3,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <!--! Cell with original -->
 <td colspan="1" rowspan="1" class="translate-original" dir="ltr">
-  <div id="orig{{unit.index}}" class="translate-original">
+  <div id="orig{{ unit.index }}" class="translate-original">
     {% for i, source, title in unit|pluralize_source %}
     {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
     <div class="translation-text" lang="en">{{ source|fancy_highlight }}</div>
@@ -26,7 +26,7 @@
   {% endif %}
 </td>
 <td colspan="1" rowspan="1" class="translate-translation">
-  <div id="trans{{unit.index}}" class="translate-translation {% if unit.isfuzzy %}translate-translation-fuzzy{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <div id="trans{{ unit.index }}" class="translate-translation {% if unit.isfuzzy %}translate-translation-fuzzy{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <!--! Normal view mode -->
     {% for i, target, title in unit|pluralize_target %}
     {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}

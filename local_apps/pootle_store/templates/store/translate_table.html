@@ -14,7 +14,7 @@
       {% for unit in units %}
       <tr class="{% cycle 'even' 'odd' %}">
         <td>
-          <a href="{{store.pootle_path|l}}/translate?unit={{unit.id}}" id="editlink{{ unit.index }}" title="{% trans 'Edit translation' %}">
+          <a href="{{ store.pootle_path|l }}/translate?unit={{ unit.id }}" id="editlink{{ unit.index }}" title="{% trans 'Edit translation' %}">
           <div class="translation-action">{{ unit.index }}</div>
           </a>
         </td>
