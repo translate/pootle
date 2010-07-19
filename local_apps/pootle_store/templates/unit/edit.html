@@ -15,7 +15,7 @@
   <!--! Alternative source language translation (if enabled and available) -->
   <div class="altsrcs">
     {% for altunit in altsrcs %}
-    <div class="translation-text-headers altsrclangname" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">{{ altunit.store.translation_project.language.localname }}</div>
+    {% if not altsrcs|length_is:"1" %}<div class="translation-text-headers altsrclangname" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">{{ altunit.store.translation_project.language.localname }}</div>{% endif %}
     <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus">
       {% for i, target, title in altunit|pluralize_target %}
       {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
