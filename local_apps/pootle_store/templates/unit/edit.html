@@ -29,14 +29,16 @@
     {{ unit.getcontext }}
   </div>
   {% endif %}
+  {% if unit.developer_comment or unit.locations %}
   <div class="comments">
     {% if unit.developer_comment %}
-    <div title="{{ developer_comments_title }}" class="developer-comments" lang="en" dir="ltr">{{ unit.developer_comment|linebreaks }}</div>
+    <div class="developer-comments" lang="en" dir="ltr"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|linebreaks }}</div>
     {% endif %}
-    {% if unit.locations %}
+    {% if unit.locations and not unit.developer_comment %}
     <div class="translate-locations" lang="en" dir="ltr">{{ unit.locations }}</div>
     {% endif %}
   </div>
+  {% endif %}
 </td>
 <!--! Cell with translation (view/suggest/review/edit) -->
 <td colspan="1" rowspan="1" class="translate-translation comments translate-focus {% if unit.isfuzzy %}translate-translation-fuzzy{% endif %}">
