@@ -1505,8 +1505,7 @@ html[dir="rtl"] div.check
 
 table.translate-table
 {
-    width: 80%;
-    margin-top: 1em;
+    width: 100%;
     table-layout: fixed;
 }
 
@@ -1562,6 +1561,30 @@ table[dir="rtl"] td.translate-original
     background-repeat: repeat-x;
     background-position: text-bottom;
     vertical-align: text-top;
+}
+
+/* TRANSLATION UNIT LAYOUT */
+
+div.translate-container
+{
+    position: relative;
+}
+
+div.translate-left
+{
+    float: left;
+    width: 24%;
+}
+
+div.translate-middle
+{
+}
+
+div.translate-right
+{
+    position: absolute;
+    right: 10px;
+    bottom: 30px;
 }
 
 /* ORIGINAL */
@@ -1625,13 +1648,14 @@ td.translate-focus
     border-bottom: 2px solid #000000;
     padding-top:.5em;
     padding-bottom:.5em;
-    padding-left:.5em;
     vertical-align: top;
 }
 
+div.translate-original,
 textarea.translation
 {
-    width: 99%;
+    display: block;
+    width: 50%;
     min-height: 3em;
     padding: 0 0 5px !important;
     margin: 0 auto 0.5em;
@@ -1640,6 +1664,8 @@ textarea.translation
 div.comments
 {
     padding: .5em;
+    width: 50%;
+    margin: 0 auto;
 }
 
 div.comments textarea
@@ -1656,24 +1682,7 @@ div.comments textarea
 
 .sidebar
 {
-    padding-right: 10px;
-    padding-left: 10px;
-    margin-left: 0px;
-    margin-right: 0px;
     padding-bottom: 10px;
-    width: 20%;
-    /* ltr: */
-    right: 0px;
-}
-
-.sidebar[dir="rtl"]
-{
-    /* undo ltr: */
-    right: auto;
-    border-left: none;
-    /* rtl: */
-    left: 0px;
-    border-right: 1px dotted #999;
 }
 
 .sidetitle
@@ -1690,7 +1699,7 @@ div.comments textarea
 
 #tm
 {
-    position: absolute;
+    position: relative;
 }
 
 .tm-unit
