@@ -391,12 +391,23 @@ class TranslationProject(models.Model):
                 # older pomtime).
                 # delete the relevant items from the database
                 itemsquery = indexer.make_query([("itemno", str(itemno)) for itemno in items], False)
-                indexer.delete_doc([pofilenamequery, itemsquery])
+                indexer.begin_transaction()
+                try:
+                    indexer.delete_doc([pofilenamequery, itemsquery])
+                finally:
+                    indexer.commit_transaction()
+                    indexer.flush(optimize=optimize)
+
             else:
                 # (items is None)
                 # The po file is not indexed - or it was changed externally 
                 # delete all items of this file
-                indexer.delete_doc({"pofilename": store.pootle_path})
+                indexer.begin_transaction()
+                try:
+                    indexer.delete_doc({"pofilename": store.pootle_path})
+                finally:
+                    indexer.commit_transaction()
+                    indexer.flush(optimize=optimize)
             if items is None:
                 # rebuild the whole index
                 items = range(store.file.getitemslen())
@@ -424,8 +435,13 @@ class TranslationProject(models.Model):
                     indexer.commit_transaction()
                     indexer.flush(optimize=optimize)
         except (base.ParseError, IOError, OSError):
-            indexer.delete_doc({"pofilename": store.pootle_path})
-            logging.error("Not indexing %s, since it is corrupt", store.pootle_path)
+            indexer.begin_transaction()
+            try:
+                indexer.delete_doc({"pofilename": store.pootle_path})
+                logging.error("Not indexing %s, since it is corrupt", store.pootle_path)
+            finally:
+                indexer.commit_transaction()
+                indexer.flush(optimize=optimize)
 
     ##############################################################################################
 
