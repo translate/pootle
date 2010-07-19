@@ -127,8 +127,16 @@ AUTOSYNC = False
 # several online services. To disable this feature completely just comment all
 # the lines to set an empty list [] to the MT_BACKENDS setting.
 # Available options are:
+# 'APERTIUM': Apertium service. For this service you need to set the
+#             APERTIUM_API_KEY setting as well.
 # 'GOOGLE_TRANSLATE': Google Translate service.
 #
 MT_BACKENDS = [
+#        'APERTIUM',
 #        'GOOGLE_TRANSLATE',
 ]
+
+# API key for the Apertium online Machine Translation service. Get your key at
+# http://api.apertium.org/register.jsp
+# and paste it in the setting below.
+#APERTIUM_API_KEY = ''

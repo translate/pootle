@@ -361,6 +361,8 @@ def translate_page(request, units_queryset, store=None):
         'directory': store.parent,
         'GET_state': '&'.join(GET_vars),
         'checks': checks,
+        'MT_BACKENDS': settings.MT_BACKENDS,
+        'APERTIUM_API_KEY': settings.APERTIUM_API_KEY,
         }
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
 

@@ -66,10 +66,14 @@
 {{ block.super }}
 <script src='{{ "js/json2.min.js"|m }}' type="text/javascript"></script>
 {% if cansuggest or cantranslate %}
-  {% for backend in settings.MT_BACKENDS %}
+  {% for backend in MT_BACKENDS %}
     {% ifequal backend 'GOOGLE_TRANSLATE' %}
       <script src="{% if request.is_secure %}https://{% else %}http://{% endif %}www.google.com/jsapi" type="text/javascript"></script>
       <script src='{{ "js/mt/google-translate.js"|m }}' type="text/javascript"></script>
+    {% endifequal %}
+    {% ifequal backend 'APERTIUM' %}
+      <script src="http://api.apertium.org/JSLibrary.jsp{% if APERTIUM_API_KEY %}?key={{ APERTIUM_API_KEY }}{% endif %}" type="text/javascript"></script>
+      <script src='{{ "js/mt/apertium.js"|m }}' type="text/javascript"></script>
     {% endifequal %}
   {% endfor %}
 {% endif %}
