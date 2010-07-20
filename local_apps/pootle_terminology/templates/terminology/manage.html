@@ -4,8 +4,10 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block title %}
-{{ translation_project.fullname }} Terminology Management
+{{ block.super }} » {% trans "Manage Terminology" %}
 {% endblock %}
+
+{% block bodyclass %}tptranslate{% endblock bodyclass %}
 
 {% block content %}
 <div class="module-primary">
