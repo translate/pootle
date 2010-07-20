@@ -1618,6 +1618,7 @@ table td.translate-original
     border: 1px solid #ddd;
     overflow: auto;
     padding: 5px 25px;
+    margin-bottom: 0.5em;
 }
 
 .developer-comments
@@ -1672,7 +1673,6 @@ div.comments textarea
 
 .altsrclangname
 {
-    padding-top: 10px;
 }
 
 /* TM */
