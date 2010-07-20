@@ -19,7 +19,12 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import re
-import sha
+try:
+    import hashlib
+    sha_f = hashlib.sha1
+except ImportError:
+    import sha
+    sha_f = sha.new
 import base64
 import time
 from random import randint
@@ -97,7 +102,7 @@ class MathCaptchaForm(forms.Form):
         plain = [getattr(settings, 'SITE_URL', ''), settings.SECRET_KEY,\
                  q, a, expires]
         plain = "".join([str(p) for p in plain])
-        return sha.new(plain).hexdigest()
+        return sha_f(plain).hexdigest()
 
     @property
     def plain_question(self):
