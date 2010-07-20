@@ -478,13 +478,18 @@ class TranslationProject(models.Model):
             doc["locations"] = unit.getlocations()
             addlist.append(doc)
         if addlist:
-            indexer.begin_transaction()
             try:
+                indexer.begin_transaction()
                 for add_item in addlist:
                     indexer.index_document(add_item)
-            finally:
                 indexer.commit_transaction()
                 indexer.flush(optimize=optimize)
+            except Exception, e:
+                logging.error("Error opening indexer for %s:\n%s", self, e)
+                try:
+                    indexer.cancel_transaction()
+                except:
+                    pass
 
     ########################################################################################
 
