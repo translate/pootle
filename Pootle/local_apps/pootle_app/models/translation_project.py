@@ -385,29 +385,20 @@ class TranslationProject(models.Model):
             if (gooditemsnum > 0) and (not items):
                 # nothing to be done
                 return
-            elif items:
+
+            indexer.begin_transaction()
+            if items:
                 # Update only specific items - usually single translation via the web
                 # interface. All other items should still be up-to-date (even with an
                 # older pomtime).
                 # delete the relevant items from the database
                 itemsquery = indexer.make_query([("itemno", str(itemno)) for itemno in items], False)
-                try:
-                    indexer.begin_transaction()
-                    indexer.delete_doc([pofilenamequery, itemsquery])
-                finally:
-                    indexer.commit_transaction()
-                    indexer.flush(optimize=optimize)
-
+                indexer.delete_doc([pofilenamequery, itemsquery])
             else:
                 # (items is None)
                 # The po file is not indexed - or it was changed externally 
                 # delete all items of this file
-                try:
-                    indexer.begin_transaction()
-                    indexer.delete_doc({"pofilename": store.pootle_path})
-                finally:
-                    indexer.commit_transaction()
-                    indexer.flush(optimize=optimize)
+                indexer.delete_doc({"pofilename": store.pootle_path})
             if items is None:
                 # rebuild the whole index
                 items = range(store.file.getitemslen())
@@ -427,23 +418,26 @@ class TranslationProject(models.Model):
                 doc["locations"] = unit.getlocations()
                 addlist.append(doc)
             if addlist:
-                try:
-                    indexer.begin_transaction()
-                    for add_item in addlist:
-                        indexer.index_document(add_item)
-                finally:
-                    indexer.commit_transaction()
-                    indexer.flush(optimize=optimize)
+                for add_item in addlist:
+                    indexer.index_document(add_item)
+
+            indexer.commit_transaction()
+            indexer.flush(optimize=optimize)
         except (base.ParseError, IOError, OSError):
             logging.error("Not indexing %s, since it is corrupt", store.pootle_path)
             try:
                 indexer.begin_transaction()
                 indexer.delete_doc({"pofilename": store.pootle_path})
-            finally:
                 indexer.commit_transaction()
                 indexer.flush(optimize=optimize)
+            except:
+                pass
         except Exception, e:
             logging.error("Error openining indexer for %s: %s", self, e)
+            try:
+                indexer.cancel_transaction()
+            except:
+                pass
 
     ##############################################################################################
 
