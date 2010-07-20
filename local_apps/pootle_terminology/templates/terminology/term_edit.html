@@ -7,7 +7,7 @@
     {{ form.source_f }}
   </div>
   <div class="translate-original comments">
-    <p class="tiny"><a href="#" class="collapse">{% trans "Description..." %}</a></p>
+    <p class="tiny"><a class="collapse">{% trans "Description..." %}</a></p>
     {{ form.developer_comment }}
   </div>
 </td>
@@ -25,7 +25,7 @@
   </div>
   {% endif %}
   <div class="translate-translation comments" lang="{{ LANGUAGE_CODE }}">
-    <p class="tiny"><a href="#" class="collapse">{% trans "Details..." %}</a></p>
+    <p class="tiny"><a class="collapse">{% trans "Details..." %}</a></p>
     {% if unit.translator_comment %}
     <div title="{% trans "Translator Comments" %}" class="translator-comments" dir="{{ language.dir }}" lang="{{ language.code }}">{{ unit.translator_comment|linebreaks }}</div>
     {% endif %}

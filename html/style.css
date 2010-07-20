@@ -26,6 +26,7 @@ body
     line-height: 1.231;
 }
 
+a,
 a:link
 {
     text-decoration: none;
@@ -1814,7 +1815,8 @@ input.fuzzycheck
     left: 5px;
 }
 
-a.copyoriginal
+a.copyoriginal,
+a.collapse
 {
     cursor: pointer;
 }
