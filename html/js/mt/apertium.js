@@ -6,16 +6,9 @@ $(document).ready(function() {
   var target_lang = $("#id_target_f_0").attr("lang").replace('_', '-');
 
   if (apertium.isTranslatable(target_lang)) {
-    // Add the Google Translate button
-    translate_button = document.createElement("input");
-    translate_button.setAttribute("type", "submit");
-    translate_button.setAttribute("class", "apertium");
-    translate_button.setAttribute("name", "apertium");
-    translate_button.setAttribute("value", "Apertium");
-    $("div#translate-mt").append(translate_button);
+    $.pootle.addMTButton("apertium", "/html/images/apertium.png", "Apertium");
 
     $(".apertium").click(function(){
-      var id = this.name.replace("apertium", "");
       var orig = $("#id_source_f_0");
       var area = $("#id_target_f_0");
       var orig_text = orig.val();

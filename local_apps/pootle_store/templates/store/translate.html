@@ -65,6 +65,9 @@
 {% block scripts_extra %}
 {{ block.super }}
 <script src='{{ "js/json2.min.js"|m }}' type="text/javascript"></script>
+<script src='{{ "js/translatepage.js"|m }}' type="text/javascript"></script>
+<script src='{{ "js/jquery/jquery.fieldselection.js"|m }}' type="text/javascript"></script>
+<script src='{{ "js/jquery/jquery.caret.js"|m }}' type="text/javascript"></script>
 {% if cansuggest or cantranslate %}
   {% for backend in MT_BACKENDS %}
     {% ifequal backend 'GOOGLE_TRANSLATE' %}
@@ -77,8 +80,5 @@
     {% endifequal %}
   {% endfor %}
 {% endif %}
-<script src='{{ "js/translatepage.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.fieldselection.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.caret.js"|m }}' type="text/javascript"></script>
 {% endblock scripts_extra %}
 

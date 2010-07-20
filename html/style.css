@@ -1773,12 +1773,6 @@ div.comments textarea
     background-color: #DDD;
 }
 
-/* MACHINE TRANSLATION */
-div#translate-mt
-{
-    display: inline;
-}
-
 /* CONTROLS */
 
 .translate-buttons-block
@@ -1816,6 +1810,7 @@ input.fuzzycheck
 }
 
 a.copyoriginal,
+a.translate-mt,
 a.collapse
 {
     cursor: pointer;

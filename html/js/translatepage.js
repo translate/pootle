@@ -189,4 +189,14 @@ $(document).ready(function() {
   });
   $(".collapse").parent().siblings().hide();
 
+  $.pootle.addMTButton = function(aclass, imgfn, tooltip) {
+      var a = document.createElement("a");
+      a.setAttribute("class", "translate-mt " + aclass);
+      var img = document.createElement("img");
+      img.setAttribute("src", imgfn);
+      img.setAttribute("title", tooltip);
+      a.appendChild(img);
+      $(".translate-toolbar").prepend(a);
+  };
+
 });
