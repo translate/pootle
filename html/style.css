@@ -1597,6 +1597,7 @@ div.translate-right
     min-height: 3em;
     background-color: #ebebeb;
     color: #000;
+    position: relative;
 }
 
 div.translate-original
@@ -1798,6 +1799,24 @@ input.fuzzycheck
 .translate-specialchars-block
 {
     line-height: 150%;
+}
+
+.translate-toolbar
+{
+    position: absolute;
+    top: 5px;
+    /* LTR */
+    right: 5px;
+}
+
+.translation-text[dir="rtl"] + .translate-toolbar
+{
+    left: 5px;
+}
+
+a.copyoriginal
+{
+    cursor: pointer;
 }
 
 /* DIFF */

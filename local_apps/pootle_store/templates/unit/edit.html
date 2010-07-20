@@ -50,6 +50,11 @@
           {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
           <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}">{{ target|fancy_highlight }}</div>
           {% endfor %}
+          {% if cansuggest or cantranslate %}
+          <div class="translate-toolbar">
+            <a class="copyoriginal"><img src="{{ 'images/copy.png'|m }}" title="{% trans 'Copy into translation area' %}" /></a>
+          </div>
+          {% endif %}
         </div>
         {% endfor %}
       </div>
@@ -59,6 +64,11 @@
         {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
         <div class="translation-text" lang="en">{{ source|fancy_highlight }}</div>
         {% endfor %}
+        {% if cansuggest or cantranslate %}
+        <div class="translate-toolbar">
+          <a class="copyoriginal"><img src="{{ 'images/copy.png'|m }}" title="{% trans 'Copy into translation area' %}" /></a>
+        </div>
+        {% endif %}
       </div>
       <!-- Buttons, resize links, special characters -->
       <div class="translate-buttons-block" lang="{{ LANGUAGE_CODE }}">
@@ -67,9 +77,6 @@
         {% endif %}
         {% if cansuggest %}
         <input type="submit" name="suggest" accesskey="e" value="{% trans 'Suggest' %}" />
-        {% endif %}
-        {% if cansuggest or cantranslate %}
-        <input type="button" accesskey="c" class="copyoriginal" value="{% trans 'Copy' %}" />
         {% endif %}
         <input type="submit" name="skip" accesskey="k" value="{% trans 'Skip' %}" />
         <input type="submit" name="back" accesskey="b" value="{% trans 'Back' %}" />

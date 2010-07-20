@@ -45,18 +45,19 @@ $(document).ready(function() {
  * COPY ORIGINAL TRANSLATION
  */
 
-  $(".copyoriginal").click(function() {
-      var source =  $("#id_source_f_0").val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
-      var splural_element = $("#id_source_f_1");
-      if (splural_element.length != 0) {
-        var source_plural = splural_element.val().replace("\n", "\\n\n", "g").replace("\t", "\\t", "g");
-      } else {
-        var source_plural = source;
-      }
+  $("a.copyoriginal").click(function() {
+      var sources = $(".translation-text", $(this).parent().parent());
+      var clean_sources = [];
+      $.each(sources, function(i) {
+          clean_sources[i] = $(this).text()
+                                    .replace("\n", "\\n\n", "g")
+                                    .replace("\t", "\\t", "g");
+      });
 
       var targets = $("[id^=id_target_f_]");
+      var max = clean_sources.length;
       $.each(targets, function(i) {
-          newval = i == 0 ? source : source_plural;
+          newval = i < max ? clean_sources[i] : clean_sources[max];
           $(this).val(newval);
           $(this).focus();
       });
