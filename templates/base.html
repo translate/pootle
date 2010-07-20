@@ -22,15 +22,15 @@
         <link rel="shortcut icon" href="{{ "favicon.ico"|m }}" />
         {% endblock favicon %}
         {% block js %}
-	<script type="text/javascript">
-	  function l(path) {
-	     var basepath = "{{ SCRIPT_NAME  }}";
-	     if (path[0] == '/') {
-	        return basepath + path;
-	     }
-	     return path;
-	  };
-	</script>
+        <script type="text/javascript">
+          function l(path) {
+            var basepath = "{{ SCRIPT_NAME  }}";
+            if (path[0] == '/') {
+              return basepath + path;
+            }
+            return path;
+          };
+        </script>
         <script type="text/javascript" src="{{ "js/jquery/jquery.min.js"|m }}"></script>
         {% endblock js %}
         {% block extra_head %}<!-- extra scripts and links -->{% endblock %}
