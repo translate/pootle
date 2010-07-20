@@ -3,6 +3,7 @@ $(document).ready(function() {
 /* Pootle namespace */
   $.pootle = {};
 
+
 /*
  * FOCUS
  */
@@ -93,17 +94,10 @@ $(document).ready(function() {
     $(this).parent().parent().parent().toggleClass("translate-translation-fuzzy");
   });
 
+
 /*
  * SUGGESTIONS
  */
-
-/* INLINE SUGGESTIONS */
-
-  $(".collapse").click(function(event) {
-    event.preventDefault();
-    $(this).parent().siblings().slideToggle('fast');
-  });
-  $(".collapse").parent().siblings().hide();
 
 /* REVIEWING SUGGESTIONS */
 
@@ -183,5 +177,16 @@ $(document).ready(function() {
              }, "json");
       return false;
     });
+
+
+/*
+ * HELPER FUNCTIONS
+ */
+
+  $(".collapse").click(function(event) {
+    event.preventDefault();
+    $(this).parent().siblings().slideToggle('fast');
+  });
+  $(".collapse").parent().siblings().hide();
 
 });
