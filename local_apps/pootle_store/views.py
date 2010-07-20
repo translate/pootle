@@ -21,7 +21,7 @@
 import os
 import logging
 
-from translate.storage.xliff import xlifffile
+from translate.storage.poxliff import PoXliffFile
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, Http404
@@ -53,7 +53,7 @@ def export_as_xliff(request, pootle_path):
         pootle_path = '/' + pootle_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
 
-    outputstore = store.convert(xlifffile)
+    outputstore = store.convert(PoXliffFile)
     outputstore.switchfile(store.name, createifmissing=True)
     content_type = "application/x-xliff; charset=UTF-8"
     response = HttpResponse(str(outputstore), content_type=content_type)
