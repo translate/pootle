@@ -391,8 +391,8 @@ class TranslationProject(models.Model):
                 # older pomtime).
                 # delete the relevant items from the database
                 itemsquery = indexer.make_query([("itemno", str(itemno)) for itemno in items], False)
-                indexer.begin_transaction()
                 try:
+                    indexer.begin_transaction()
                     indexer.delete_doc([pofilenamequery, itemsquery])
                 finally:
                     indexer.commit_transaction()
@@ -402,8 +402,8 @@ class TranslationProject(models.Model):
                 # (items is None)
                 # The po file is not indexed - or it was changed externally 
                 # delete all items of this file
-                indexer.begin_transaction()
                 try:
+                    indexer.begin_transaction()
                     indexer.delete_doc({"pofilename": store.pootle_path})
                 finally:
                     indexer.commit_transaction()
@@ -427,18 +427,18 @@ class TranslationProject(models.Model):
                 doc["locations"] = unit.getlocations()
                 addlist.append(doc)
             if addlist:
-                indexer.begin_transaction()
                 try:
+                    indexer.begin_transaction()
                     for add_item in addlist:
                         indexer.index_document(add_item)
                 finally:
                     indexer.commit_transaction()
                     indexer.flush(optimize=optimize)
         except (base.ParseError, IOError, OSError):
-            indexer.begin_transaction()
+            logging.error("Not indexing %s, since it is corrupt", store.pootle_path)
             try:
+                indexer.begin_transaction()
                 indexer.delete_doc({"pofilename": store.pootle_path})
-                logging.error("Not indexing %s, since it is corrupt", store.pootle_path)
             finally:
                 indexer.commit_transaction()
                 indexer.flush(optimize=optimize)
