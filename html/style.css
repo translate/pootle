@@ -1573,18 +1573,19 @@ div.translate-container
 div.translate-left
 {
     float: left;
-    width: 24%;
+    width: 24.5%;
 }
 
 div.translate-middle
 {
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
 }
 
 div.translate-right
 {
-    position: absolute;
-    right: 10px;
-    bottom: 30px;
+    width: 24.5%;
 }
 
 /* ORIGINAL */
@@ -1651,11 +1652,10 @@ td.translate-focus
     vertical-align: top;
 }
 
-div.translate-original,
-textarea.translation
+td.translate-full div.translate-original,
+td.translate-full textarea.translation
 {
-    display: block;
-    width: 50%;
+    width: 100%;
     min-height: 3em;
     padding: 0 0 5px !important;
     margin: 0 auto 0.5em;
@@ -1663,9 +1663,6 @@ textarea.translation
 
 div.comments
 {
-    padding: .5em;
-    width: 50%;
-    margin: 0 auto;
 }
 
 div.comments textarea
@@ -1784,7 +1781,9 @@ div#translate-mt
 
 .translate-buttons-block
 {
-    margin-bottom: 5px;
+    left: 101%;
+    position: absolute;
+    white-space: nowrap;
 }
 
 .translate-fuzzy-block

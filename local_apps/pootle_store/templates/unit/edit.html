@@ -23,29 +23,7 @@
       {% endif %}
       {% endwith %}
     </div>
-    <div class="translate-right">
-      <!-- Buttons, resize links, special characters -->
-      <div class="translate-buttons-block" lang="{{ LANGUAGE_CODE }}">
-        {% if cantranslate %}
-        <input type="submit" name="submit" accesskey="s" value="{% trans 'Submit' %}" />
-        {% endif %}
-        {% if cansuggest %}
-        <input type="submit" name="suggest" accesskey="e" value="{% trans 'Suggest' %}" />
-        {% endif %}
-        {% if cansuggest or cantranslate %}
-        <input type="button" accesskey="c" class="copyoriginal" value="{% trans 'Copy' %}" />
-        {% endif %}
-        <input type="submit" name="skip" accesskey="k" value="{% trans 'Skip' %}" />
-        <input type="submit" name="back" accesskey="b" value="{% trans 'Back' %}" />
-        <div id="translate-mt"></div>
-        <input type="hidden" name="store" value="{{ store }}" />
-        <input type="hidden" name="path" value="{{ store|l }}" />
-        <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
-        <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}">
-          {{ form.state }} {{ form.state.label_tag }}
-        </div>
-      </div>
-    </div>
+    <div class="translate-right"></div>
     <div class="translate-middle">
       <!-- Context information and comments -->
       {% if unit.getcontext %}
@@ -81,6 +59,27 @@
         {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
         <div class="translation-text" lang="en">{{ source|fancy_highlight }}</div>
         {% endfor %}
+      </div>
+      <!-- Buttons, resize links, special characters -->
+      <div class="translate-buttons-block" lang="{{ LANGUAGE_CODE }}">
+        {% if cantranslate %}
+        <input type="submit" name="submit" accesskey="s" value="{% trans 'Submit' %}" />
+        {% endif %}
+        {% if cansuggest %}
+        <input type="submit" name="suggest" accesskey="e" value="{% trans 'Suggest' %}" />
+        {% endif %}
+        {% if cansuggest or cantranslate %}
+        <input type="button" accesskey="c" class="copyoriginal" value="{% trans 'Copy' %}" />
+        {% endif %}
+        <input type="submit" name="skip" accesskey="k" value="{% trans 'Skip' %}" />
+        <input type="submit" name="back" accesskey="b" value="{% trans 'Back' %}" />
+        <div id="translate-mt"></div>
+        <input type="hidden" name="store" value="{{ store }}" />
+        <input type="hidden" name="path" value="{{ store|l }}" />
+        <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
+        <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}">
+          {{ form.state }} {{ form.state.label_tag }}
+        </div>
       </div>
       <!-- Translation -->
       <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus">
