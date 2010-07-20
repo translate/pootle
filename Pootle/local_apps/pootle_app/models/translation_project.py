@@ -442,6 +442,8 @@ class TranslationProject(models.Model):
             finally:
                 indexer.commit_transaction()
                 indexer.flush(optimize=optimize)
+        except Exception, e:
+            logging.error("Error openining indexer for %s: %s", self, e)
 
     ##############################################################################################
 
