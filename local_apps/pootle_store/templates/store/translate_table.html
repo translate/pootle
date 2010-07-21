@@ -13,7 +13,7 @@
       </tr>
       {% for unit in units %}
       <tr class="{% cycle 'even' 'odd' %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
-        <td>
+        <td{% ifequal unit form.instance %} class="translate-focus"{% endifequal %}>
           <a href="{{ store.pootle_path|l }}/translate?unit={{ unit.id }}" id="editlink{{ unit.index }}" title="{% trans 'Edit translation' %}">
           <div class="translation-action">{{ unit.index }}</div>
           </a>
