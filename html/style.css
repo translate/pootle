@@ -1782,7 +1782,7 @@ td.translate-full textarea.translation
 {
     left: 101%;
     position: absolute;
-    margin: 0 10px;
+    margin: 0 5px;
 }
 
 .translate-buttons-block[dir="rtl"]
@@ -1794,7 +1794,6 @@ td.translate-full textarea.translation
 .translate-buttons-block input
 {
     margin-top: 0.3em;
-    min-height: 16px;
 }
 
 .translate-buttons-block .submit
@@ -1835,6 +1834,7 @@ div#prevnext .next,
     background-color: inherit;
     background-repeat: no-repeat;
     cursor: pointer;
+    min-height: 16px;
 }
 
 div#prevnext .previous
