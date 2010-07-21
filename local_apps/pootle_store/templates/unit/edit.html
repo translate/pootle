@@ -93,6 +93,25 @@
           <input type="submit" class="previous" name="back" tabindex="9" accesskey="b" value="{% trans 'Previous' %}" title="{% trans 'Go to the previous unit' %}" />
           <input type="submit" class="next" name="skip" tabindex="14" accesskey="k" value="{% trans 'Next' %}" title="{% trans 'Go to the next unit' %}" />
         </div>
+        {% if cantranslate or cansuggest %}
+        <div class="translate-specialchars-block" lang="{{ language.code }}">
+          {% for specialchar in language.specialchars %}
+          {% if not specialchar.isspace %}
+          <a class="writespecial" href="#">{{ specialchar }}</a>
+          {% else %}
+          <span class="extraspace"> </span>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="translate-translation comments" lang="{{ LANGUAGE_CODE }}">
+          {% if form.initial.translator_comment %}
+          <div>{{ form.translator_comment.label_tag }} {{ form.translator_comment }}</div>
+          {% else %}
+          <p class="tiny"><a class="collapse" tabindex="15">{% trans "Add Comment" %}</a></p>
+          <div>{{ form.translator_comment }}</div>
+          {% endif %}
+        </div>
         {% if suggestions %}
         <!-- (Re)view suggestions while editing -->
         <div id="translate-suggestion-container">
@@ -114,25 +133,6 @@
           {% endfor %}
         </div>
         {% endif %}
-        {% if cantranslate or cansuggest %}
-        <div class="translate-specialchars-block" lang="{{ language.code }}">
-          {% for specialchar in language.specialchars %}
-          {% if not specialchar.isspace %}
-          <a class="writespecial" href="#">{{ specialchar }}</a>
-          {% else %}
-          <span class="extraspace"> </span>
-          {% endif %}
-          {% endfor %}
-        </div>
-        {% endif %}
-        <div class="translate-translation comments" lang="{{ LANGUAGE_CODE }}">
-          {% if form.initial.translator_comment %}
-          <div>{{ form.translator_comment.label_tag }} {{ form.translator_comment }}</div>
-          {% else %}
-          <p class="tiny"><a class="collapse" tabindex="15">{% trans "Add Comment" %}</a></p>
-          <div>{{ form.translator_comment }}</div>
-          {% endif %}
-        </div>
       </div>
     </div>
   </div>
