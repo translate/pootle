@@ -1793,6 +1793,7 @@ div#prevnext .previous,
 div#prevnext .next
 {
     border: none;
+    color: #0489b7;
     padding: 0 2em;
     background-color: inherit;
     background-repeat: no-repeat;
@@ -1801,7 +1802,6 @@ div#prevnext .next
 
 div#prevnext .previous
 {
-    color: #0489b7;
     background-image: url('images/prev.png');
     background-position: left;
     float: left;
@@ -1831,7 +1831,6 @@ div#prevnext[dir="rtl"] .previous:focus
 
 div#prevnext .next
 {
-    color: #0489b7;
     background-image: url('images/next.png');
     background-position: right;
     float: right;
