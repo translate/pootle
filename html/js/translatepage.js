@@ -146,7 +146,7 @@ $(document).ready(function() {
 
     $("#translate-suggestion-container .rejectsugg").click(function() {
       var element = $(this).parent().parent();
-      var uid = $('.translate-original input#id_id').val();
+      var uid = $('.translate-container input#id_id').val();
       var suggid = $(this).siblings("input.suggid").val();
       var url = l('/suggestion/reject/') + uid + '/' + suggid;
       $.post(url, {'reject': 1},
@@ -159,7 +159,7 @@ $(document).ready(function() {
 
     $("#translate-suggestion-container .acceptsugg").click(function() {
       var element = $(this).parent().parent();
-      var uid = $('.translate-original input#id_id').val();
+      var uid = $('.translate-container input#id_id').val();
       var suggid = $(this).siblings("input.suggid").val();
       var url = l('/suggestion/accept/') + uid + '/' + suggid;
       $.post(url, {'accept': 1},
