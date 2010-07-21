@@ -71,7 +71,7 @@ def get_sugg_list(unit):
     # and might fail on livetranslation
     sugg_list = []
     for i, sugg in enumerate(unit.get_suggestions().iterator()):
-        title = _("Suggestion %(i)d by %(user)s:", {'i': i, 'user': sugg.user})
+        title = _("Suggestion %(i)d by %(user)s:", {'i': i+1, 'user': sugg.user})
         sugg_list.append((sugg, title))
     return sugg_list
 
