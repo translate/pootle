@@ -1996,6 +1996,11 @@ div.translate-translation {
     padding-left: 3px;
 }
 
+textarea.translation
+{
+    resize: vertical;
+}
+
 /* INLINE SUGGESTIONS */
 
 ul.sugglist
