@@ -7,7 +7,7 @@
     {{ form.id.as_hidden }}
     {{ form.index.as_hidden }}
     {{ form.source_f.as_hidden }}
-    <div class="translate-left">
+    <div class="translate-{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}">
       <!-- Terminology suggestions -->
       {% with unit.get_terminology as terms %}
       {% if terms %}
@@ -23,7 +23,7 @@
       {% endif %}
       {% endwith %}
     </div>
-    <div class="translate-right"></div>
+    <div class="translate-{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}"></div>
     <div class="translate-middle">
       <!-- Context information and comments -->
       {% if unit.getcontext %}
@@ -71,7 +71,7 @@
         {% endif %}
       </div>
       <!-- Buttons, resize links, special characters -->
-      <div class="translate-buttons-block" lang="{{ LANGUAGE_CODE }}">
+      <div class="translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
         {% if cantranslate %}
         <input type="submit" name="submit" tabindex="11" accesskey="s" value="{% trans 'Submit' %}" />
         {% endif %}

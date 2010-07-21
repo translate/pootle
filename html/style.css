@@ -1586,6 +1586,7 @@ div.translate-middle
 
 div.translate-right
 {
+    float: right;
     width: 24.5%;
 }
 
@@ -1727,9 +1728,9 @@ div.comments textarea
 
 /* SUGGESTIONS */
 
-#translate-original-container,
 #translate-suggestion-container
 {
+    clear: both;
     margin-bottom: 10px;
 }
 
@@ -1780,6 +1781,12 @@ div.comments textarea
     left: 101%;
     position: absolute;
     white-space: nowrap;
+}
+
+.translate-buttons-block[dir="rtl"]
+{
+    left: auto;
+    right: 101%;
 }
 
 div#prevnext .previous,
