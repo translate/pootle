@@ -73,13 +73,11 @@
       <!-- Buttons, resize links, special characters -->
       <div class="translate-buttons-block" lang="{{ LANGUAGE_CODE }}">
         {% if cantranslate %}
-        <input type="submit" name="submit" accesskey="s" value="{% trans 'Submit' %}" />
+        <input type="submit" name="submit" tabindex="11" accesskey="s" value="{% trans 'Submit' %}" />
         {% endif %}
         {% if cansuggest %}
-        <input type="submit" name="suggest" accesskey="e" value="{% trans 'Suggest' %}" />
+        <input type="submit" name="suggest" tabindex="12" accesskey="e" value="{% trans 'Suggest' %}" />
         {% endif %}
-        <input type="submit" name="skip" accesskey="k" value="{% trans 'Skip' %}" />
-        <input type="submit" name="back" accesskey="b" value="{% trans 'Back' %}" />
         <input type="hidden" name="store" value="{{ store }}" />
         <input type="hidden" name="path" value="{{ store|l }}" />
         <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
@@ -91,6 +89,10 @@
       <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus">
         <!-- Begin: Normal editing -->
         {{ form.target_f }}
+        <div id="prevnext" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+          <input type="submit" class="previous" name="back" tabindex="9" accesskey="b" value="{% trans 'Previous' %}" title="{% trans 'Go to the previous unit' %}" />
+          <input type="submit" class="next" name="skip" tabindex="14" accesskey="k" value="{% trans 'Next' %}" title="{% trans 'Go to the next unit' %}" />
+        </div>
         {% if suggestions %}
         <!-- (Re)view suggestions while editing -->
         <div id="translate-suggestion-container">
@@ -127,7 +129,7 @@
           {% if form.initial.translator_comment %}
           <div>{{ form.translator_comment.label_tag }} {{ form.translator_comment }}</div>
           {% else %}
-          <p class="tiny"><a class="collapse">{% trans "Add Comment" %}</a></p>
+          <p class="tiny"><a class="collapse" tabindex="15">{% trans "Add Comment" %}</a></p>
           <div>{{ form.translator_comment }}</div>
           {% endif %}
         </div>

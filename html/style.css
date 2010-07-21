@@ -1782,6 +1782,77 @@ div.comments textarea
     white-space: nowrap;
 }
 
+div#prevnext .previous,
+div#prevnext .next
+{
+    padding: 0 2em;
+    background-color: inherit;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+div#prevnext .previous
+{
+    color: #0489b7;
+    border: none;
+    background-image: url('images/prev.png');
+    background-position: left;
+    float: left;
+}
+
+div#prevnext[dir="rtl"] .previous
+{
+    background-image: url('images/next.png');
+    background-position: right;
+    float: right;
+}
+
+div#prevnext .previous:hover,
+div#prevnext .previous:active,
+div#prevnext .previous:focus
+{
+    background-image: url('images/prev2.png');
+    text-decoration: underline;
+}
+
+div#prevnext[dir="rtl"] .previous:hover,
+div#prevnext[dir="rtl"] .previous:active,
+div#prevnext[dir="rtl"] .previous:focus
+{
+    background-image: url('images/next2.png');
+}
+
+div#prevnext .next
+{
+    color: #0489b7;
+    border: none;
+    background-image: url('images/next.png');
+    background-position: right;
+    float: right;
+}
+
+div#prevnext[dir="rtl"] .next
+{
+    background-image: url('images/prev.png');
+    background-position: left;
+    float: left;
+}
+
+div#prevnext .next:hover,
+div#prevnext .next:active,
+div#prevnext .next:focus
+{
+    background-image: url('images/next2.png');
+    text-decoration: underline;
+}
+
+div#prevnext[dir="rtl"] .next:hover,
+div#prevnext[dir="rtl"] .next:active,
+div#prevnext[dir="rtl"] .next:focus
+{
+    background-image: url('images/prev2.png');
+}
+
 .translate-fuzzy-block
 {
 }
