@@ -136,17 +136,20 @@ def unit_form_factory(language, snplurals=1):
         'dir': language.get_direction(),
         'class': 'translation expanding focusthis',
         'rows': 5,
+        'tabindex': 10,
         }
     comment_attrs = {
         'lang': language.code,
         'dir': language.get_direction(),
         'class': 'comments expanding',
         'rows': 1,
+        'tabindex': 15,
         }
 
     fuzzy_attrs = {
         'accesskey': 'f',
         'class': 'fuzzycheck',
+        'tabindex': 13,
         }
 
     class UnitForm(forms.ModelForm):
