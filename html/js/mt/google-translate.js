@@ -7,7 +7,16 @@ google.setOnLoadCallback(function() {
   var target_lang = $("#id_target_f_0").attr("lang").replace('_', '-');
 
   if (google.language.isTranslatable(target_lang)) {
-    $.pootle.addMTButton("googletranslate", "/html/images/google-translate.png", "Google Translate");
+    var sources = $(".translation-text", $(".translate-toolbar").parent());
+    $(sources).each(function() {
+      var source = $(this).attr("lang");
+      if (google.language.isTranslatable(source)) {
+        $.pootle.addMTButton($(this).siblings(".translate-toolbar"),
+                             "googletranslate",
+                             "/html/images/google-translate.png",
+                             "Google Translate");
+      }
+    });
 
     $(".googletranslate").click(function(){
       var orig = $("#id_source_f_0");

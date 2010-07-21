@@ -6,7 +6,10 @@ $(document).ready(function() {
   var target_lang = $("#id_target_f_0").attr("lang").replace('_', '-');
 
   if (apertium.isTranslatable(target_lang)) {
-    $.pootle.addMTButton("apertium", "/html/images/apertium.png", "Apertium");
+    $.pootle.addMTButton($(".translate-toolbar"),
+                         "apertium",
+                         "/html/images/apertium.png",
+                         "Apertium");
 
     $(".apertium").click(function(){
       var orig = $("#id_source_f_0");
