@@ -1645,6 +1645,17 @@ table td.translate-original
     padding: 5px 25px;
 }
 
+div.translator-comments
+{
+    text-align: center;
+}
+
+div.translator-comments textarea
+{
+    vertical-align: top;
+}
+
+
 /* TRANSLATION */
 
 td.translate-focus
@@ -1663,15 +1674,6 @@ td.translate-full textarea.translation
     min-height: 3em;
     padding: 0 0 5px !important;
     margin: 0 auto 0.5em;
-}
-
-div.comments
-{
-}
-
-div.comments textarea
-{
-    vertical-align: top;
 }
 
 .altsrclangname
@@ -1907,6 +1909,12 @@ input.fuzzycheck
 .translate-specialchars-block
 {
     line-height: 150%;
+    float: left;
+}
+
+div#prevnext[dir="rtl"] + .translate-specialchars-block
+{
+    float: right;
 }
 
 .translate-toolbar
