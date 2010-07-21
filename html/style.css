@@ -1780,7 +1780,7 @@ div.comments textarea
 {
     left: 101%;
     position: absolute;
-    white-space: nowrap;
+    margin: 0 10px;
 }
 
 .translate-buttons-block[dir="rtl"]
@@ -1789,8 +1789,43 @@ div.comments textarea
     right: 101%;
 }
 
+.translate-buttons-block input
+{
+    margin-top: 0.3em;
+    min-height: 16px;
+}
+
+.translate-buttons-block .submit
+.translate-buttons-block .suggest
+{
+    background-position: left;
+    display: block;
+}
+
+.translate-buttons-block .submit
+{
+    background-image: url('images/good.png');
+}
+
+.translate-buttons-block .suggest
+{
+    background-image: url('images/suggest.png');
+}
+
+.translate-buttons-block .submit:hover,
+.translate-buttons-block .submit:active,
+.translate-buttons-block .submit:focus,
+.translate-buttons-block .suggest:hover,
+.translate-buttons-block .suggest:active,
+.translate-buttons-block .suggest:focus
+{
+    text-decoration: underline;
+}
+
 div#prevnext .previous,
-div#prevnext .next
+div#prevnext .next,
+.translate-buttons-block .submit,
+.translate-buttons-block .suggest
 {
     border: none;
     color: #0489b7;
@@ -1858,13 +1893,15 @@ div#prevnext[dir="rtl"] .next:focus
     background-image: url('images/prev2.png');
 }
 
-.translate-fuzzy-block
+.translate-fuzzy-block label
 {
+    padding: 0 0.5em;
+    vertical-align: middle;
 }
 
 input.fuzzycheck
 {
-    vertical-align: text-top;
+    vertical-align: text-bottom;
 }
 
 .translate-specialchars-block
