@@ -851,7 +851,7 @@ class Store(models.Model, base.TranslationStore):
             else:
                 new_ids = set(newfile.getids(self.name))
 
-            if allownewstrings:
+            if (not monolingual or self.translation_project.is_template_project) and allownewstrings:
                 new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
                 for unit in new_units:
                     self.addunit(unit)
