@@ -26,39 +26,39 @@ def get_supported_formats():
     formats = []
     # Bilingual formats
     from translate.storage.po import pofile
-    formats.append(('po', _('Gettext PO'), pofile))
+    formats.append(('po', _('Gettext PO'), pofile, 'bilingual'))
     try:
         from translate.storage.xliff import xlifffile
-        formats.append(('xlf', _('XLIFF'), xlifffile))
+        formats.append(('xlf', _('XLIFF'), xlifffile, 'bilingual'))
     except ImportError:
         pass
     try:
         from translate.storage.ts2 import tsfile
-        formats.append(('ts', _('Qt ts'), tsfile))
+        formats.append(('ts', _('Qt ts'), tsfile, 'bilingual'))
     except ImportError:
         pass
     try:
         from translate.storage.tmx import tmxfile
-        formats.append(('tmx', _('TMX'), tmxfile))
+        formats.append(('tmx', _('TMX'), tmxfile, 'bilingual'))
     except ImportError:
         pass
     try:
         from translate.storage.tbx import tbxfile
-        formats.append(('tbx', _('TBX'), tbxfile))
+        formats.append(('tbx', _('TBX'), tbxfile, 'bilingual'))
     except ImportError:
         pass
 
     # Monolingual formats
     from translate.storage.properties import propfile
-    formats.append(('properties',  _('Java Properties'), propfile))
+    formats.append(('properties',  _('Java Properties'), propfile, 'monolingual'))
     from translate.storage.php import phpfile
-    formats.append(('php', _('PHP arrays'), phpfile))
+    formats.append(('php', _('PHP arrays'), phpfile, 'monolingual'))
     try:
         from translate.storage.subtitles import SubRipFile, MicroDVDFile, AdvSubStationAlphaFile, SubStationAlphaFile
-        formats.append(('srt', _('subtitles: SubRip (srt)'), SubRipFile))
-        formats.append(('sub', _('subtitles: MicroDVD (sub)'), MicroDVDFile))
-        formats.append(('ssa', _('subtitles: Substation Alpha (ssa)'), SubStationAlphaFile))
-        formats.append(('ass', _('subtitles: Advanded Substation Alpha (ass)'), AdvSubStationAlphaFile))
+        formats.append(('srt', _('subtitles: SubRip (srt)'), SubRipFile, 'monolingual'))
+        formats.append(('sub', _('subtitles: MicroDVD (sub)'), MicroDVDFile, 'monolingual'))
+        formats.append(('ssa', _('subtitles: Substation Alpha (ssa)'), SubStationAlphaFile, 'monolingual'))
+        formats.append(('ass', _('subtitles: Advanded Substation Alpha (ass)'), AdvSubStationAlphaFile, 'monolingual'))
     except ImportError:
         pass
 
@@ -77,3 +77,7 @@ def get_factory_classes():
     classes['pot'] = pofile
     return classes
 factory_classes = get_factory_classes()
+
+def is_monolingual(klass):
+    classes = dict(((format[2], format[3]) for format in supported_formats))
+    return classes[klass] == 'monolingual'
