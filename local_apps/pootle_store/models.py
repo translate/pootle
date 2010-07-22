@@ -787,6 +787,10 @@ class Store(models.Model, base.TranslationStore):
         else:
             return self.units.values_list('unitid', flat=True)
 
+    def header(self):
+        #FIXME: we should store some metadata in db
+        if self.file and hasattr(self.file, 'header'):
+            return self.file.header()
 
 ############################### Stats ############################
 
