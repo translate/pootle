@@ -189,7 +189,7 @@ class Unit(models.Model, base.TranslationUnit):
         if self.store.state >= PARSED:
             # updated caches
             store = self.store
-            translation_project = store.translation_project
+            #translation_project = store.translation_project
             #translation_project.update_index(translation_project.indexer, store, self.id)
             deletefromcache(store,
                             ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
@@ -742,6 +742,8 @@ class Store(models.Model, base.TranslationStore):
 
 ######################## TranslationStore #########################
 
+    suggestions_in_format = True
+
     def _get_units(self):
         self.require_units()
         return self.unit_set.filter(state__gt=OBSOLETE).order_by('index').select_related('store__translation_project')
@@ -785,7 +787,6 @@ class Store(models.Model, base.TranslationStore):
         else:
             return self.units.values_list('unitid', flat=True)
 
-    suggestions_in_format = True
 
 ############################### Stats ############################
 
