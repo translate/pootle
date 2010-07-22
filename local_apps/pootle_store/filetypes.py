@@ -80,4 +80,4 @@ factory_classes = get_factory_classes()
 
 def is_monolingual(klass):
     classes = dict(((format[2], format[3]) for format in supported_formats))
-    return classes[klass] == 'monolingual'
+    return classes.get(klass, 'bilingual') == 'monolingual'
