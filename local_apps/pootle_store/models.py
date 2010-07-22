@@ -42,7 +42,7 @@ from pootle_misc.baseurl import l
 from pootle_store.fields  import TranslationStoreField, MultiStringField
 from pootle_store.util import calculate_stats, empty_quickstats
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
-from pootle_store.filetypes import factory_classes
+from pootle_store.filetypes import factory_classes, is_monolingual
 
 # Store States
 LOCKED = -1
@@ -94,11 +94,24 @@ class Suggestion(models.Model, base.TranslationUnit):
 
 ############### Unit ####################
 
+def fix_monolingual(oldunit, newunit, monolingual=None):
+    """hackish workaround for monolingual files always having only source and no target.
+
+    we compare monolingual unit with corresponding bilingual unit, if
+    sources differ assume monolingual source is actually a translation"""
+
+    if monolingual is None:
+        monolingual = is_monolingual(type(newunit._store))
+    if monolingual and newunit.source != oldunit.source:
+        newunit.target = newunit.source
+        newunit.source = oldunit.source
+
 def count_words(strings):
     wordcount = 0
     for string in strings:
         wordcount += statsdb.wordcount(string)
     return wordcount
+
 
 class Unit(models.Model, base.TranslationUnit):
     objects = RelatedManager()
@@ -622,6 +635,7 @@ class Store(models.Model, base.TranslationStore):
         self.state = LOCKED
         self.save()
         try:
+            monolingual = is_monolingual(type(self.file.store))
             self.require_dbid_index(update=True)
             old_ids = set(self.dbid_index.keys())
             new_ids = set(self.file.store.getids())
@@ -642,6 +656,8 @@ class Store(models.Model, base.TranslationStore):
 
                 for unit in self.findid_bulk(shared_dbids):
                     newunit = self.file.store.findid(unit.getid())
+                    if monolingual and not self.translation_project.is_template_project:
+                        fix_monolingual(unit, newunit, monolingual)
                     changed = unit.update(newunit)
                     if update_structure and unit.index != newunit.index:
                         unit.index = newunit.index
@@ -811,6 +827,8 @@ class Store(models.Model, base.TranslationStore):
     def mergefile(self, newfile, username, allownewstrings, suggestions, notranslate, obsoletemissing):
         """make sure each msgid is unique ; merge comments etc from
         duplicates into original"""
+
+        monolingual = is_monolingual(type(newfile))
         if self.state == LOCKED:
             # file currently being updated
             #FIXME: shall we idle wait for lock to be released first? what about stale locks?
@@ -850,6 +868,8 @@ class Store(models.Model, base.TranslationStore):
             shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
             for oldunit in self.findid_bulk(shared_dbids):
                 newunit = newfile.findid(oldunit.getid())
+                if monolingual and not self.translation_project.is_template_project:
+                    fix_monolingual(oldunit, newunit, monolingual)
                 if notranslate or oldunit.istranslated() and suggestions:
                     if newunit.istranslated():
                         #FIXME: add a user argument
