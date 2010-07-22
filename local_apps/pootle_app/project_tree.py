@@ -26,7 +26,7 @@ from translate.convert import pot2po
 
 from pootle_store.models      import Store
 from pootle_store.util import absolute_real_path, relative_real_path
-from pootle_store.filetypes import factory_classes
+from pootle_store.filetypes import factory_classes, is_monolingual
 from pootle_app.models.directory  import Directory
 from pootle_app.models.signals import post_template_update
 
@@ -228,15 +228,25 @@ def read_original_target(target_path):
     except:
         return None
 
-def convert_template(template_path, target_path):
-    ensure_target_dir_exists(target_path)
-    template_file = open(template_path, "rb")
-    target_file   = cStringIO.StringIO()
-    original_file = read_original_target(target_path)
-    pot2po.convertpot(template_file, target_file, original_file, classes=factory_classes)
-    output_file = open(target_path, "wb")
-    output_file.write(target_file.getvalue())
-    output_file.close()
+def convert_template(template_store, target_path, monolingual=False):
+    abs_target_path = absolute_real_path(target_path)
+    ensure_target_dir_exists(abs_target_path)
+    if template_store.file:
+        template_file = template_store.file.store
+    else:
+        template_file = template_store
+
+    try:
+        store = Store.objects.get(file=target_path)
+        if monolingual:
+            original_file = store
+        else:
+            original_file = store.file.store
+    except Store.DoesNotExist:
+        original_file = None
+
+    output_file = pot2po.convert_stores(template_file, original_file, classes=factory_classes)
+    output_file.savefile(abs_target_path)
 
 def get_translated_name_gnu(translation_project, store):
     path_parts = store.file.path.split(os.sep)
@@ -253,17 +263,19 @@ def get_translated_name(translation_project, store):
     # replace extension
     path_parts[-1] = name + '.' + translation_project.project.localfiletype
 
-    return absolute_real_path(os.sep.join(path_parts))
+    return relative_real_path(os.sep.join(path_parts))
 
 def convert_templates(template_translation_project, translation_project):
-    translation_project.sync()
+    monolingual = is_monolingual(translation_project.project.get_file_class())
+    if not monolingual:
+        translation_project.sync()
     oldstats = translation_project.getquickstats()
     for store in template_translation_project.stores.exclude(file='').iterator():
         if translation_project.file_style == 'gnu':
             new_store_path = get_translated_name_gnu(translation_project, store)
         else:
             new_store_path = get_translated_name(translation_project, store)
-        convert_template(store.file.path, new_store_path)
+        convert_template(store, new_store_path, monolingual)
     scan_translation_project_files(translation_project)
     translation_project.update(conservative=False)
     newstats = translation_project.getquickstats()
