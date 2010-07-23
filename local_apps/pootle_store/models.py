@@ -326,7 +326,8 @@ class Unit(models.Model, base.TranslationUnit):
             changed = True
         if hasattr(unit, 'getalttrans'):
             for suggestion in unit.getalttrans():
-                self.add_suggestion(suggestion.target, touch=False)
+                if suggestion.source == self.source:
+                    self.add_suggestion(suggestion.target, touch=False)
                 changed = True
         return changed
 
