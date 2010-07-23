@@ -82,16 +82,14 @@ $(document).ready(function() {
     if (!keepstate && $(this).attr("defaultValue") != $(this).val()) {
       var checkbox = $("input.fuzzycheck[checked]");
       checkbox.removeAttr("checked");
-      checkbox.parent().animate({ backgroundColor: "#dafda5 !important" }, "slow")
-                       .animate({ backgroundColor: "#ffffff !important" }, "slow");
-      $(this).parent().parent().removeClass("translate-translation-fuzzy");
+      $("tr.translate-translation-fuzzy").removeClass("translate-translation-fuzzy");
       keepstate = true;
     }
   });
 
   $("input.fuzzycheck").click(function() {
     keepstate = true;
-    $(this).parent().parent().parent().toggleClass("translate-translation-fuzzy");
+    $("tr.translate-translation-row").toggleClass("translate-translation-fuzzy");
   });
 
 
