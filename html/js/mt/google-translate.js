@@ -54,11 +54,9 @@ google.setOnLoadCallback(function() {
           for (var i=0; i<argument_subs.length; i++)
             translation = translation.replace("__" + i + "__", argument_subs[i]);
           area.val(translation);
-          area.parent().parent().addClass("translate-translation-fuzzy");
-          var checkbox = $("input.fuzzycheck");
-          checkbox.attr("checked", "checked");
           area.focus();
-          keepstate = true;
+          $.pootle.toggleFuzzy(true);
+          $.pootle.toggleFuzzyBox(true);
         } else {
           alert("Google Translate Error: " + result.error.message);
         }

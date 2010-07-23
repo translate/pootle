@@ -80,17 +80,45 @@ $(document).ready(function() {
   var keepstate = false;
   $("textarea.translation").bind("keyup blur", function() {
     if (!keepstate && $(this).attr("defaultValue") != $(this).val()) {
-      var checkbox = $("input.fuzzycheck[checked]");
-      checkbox.removeAttr("checked");
-      $("tr.translate-translation-fuzzy").removeClass("translate-translation-fuzzy");
-      keepstate = true;
+      $.pootle.toggleFuzzy(false);
+      $.pootle.toggleFuzzyBox(false);
     }
   });
 
   $("input.fuzzycheck").click(function() {
-    keepstate = true;
-    $("tr.translate-translation-row").toggleClass("translate-translation-fuzzy");
+    $.pootle.toggleFuzzy(false);
   });
+
+  $.pootle.toggleFuzzy = function(checkBefore) {
+    keepstate = true;
+    if (checkBefore && $.pootle.isFuzzy()) {
+        return;
+    }
+    $("tr.translate-translation-row").toggleClass("translate-translation-fuzzy");
+  };
+
+  $.pootle.toggleFuzzyBox = function(checkBefore) {
+    if (checkBefore && $.pootle.isFuzzy()) {
+        return;
+    }
+    var checkbox = $("input.fuzzycheck");
+    var checked = checkbox.attr("checked");
+    if (checked == undefined || checked == false) {
+      checkbox.attr("checked", "checked");
+    } else {
+      checkbox.removeAttr("checked");
+    }
+  };
+
+  $.pootle.isFuzzy = function() {
+    var checkbox = $("input.fuzzycheck");
+    var checked = checkbox.attr("checked");
+    if (checked == undefined || checked == false) {
+      return false;
+    } else {
+      return true;
+    }
+  };
 
 
 /*
@@ -200,8 +228,9 @@ $(document).ready(function() {
   $.pootle.normalize_code = function(locale) {
       var clean = locale.replace('_', '-')
       var atIndex = locale.indexOf("@");
-      if (atIndex != -1)
-        clean = clean.slice(0, atIndex)
+      if (atIndex != -1) {
+        clean = clean.slice(0, atIndex);
+      }
       return clean;
   };
 
