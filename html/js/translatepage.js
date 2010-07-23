@@ -234,4 +234,14 @@ $(document).ready(function() {
       return clean;
   };
 
+  $.pootle.collectArguments = function(substring) {
+    if (substring == '%%') {
+      return '%%';
+    }
+    argument_subs[pos] = substring;
+    substitute_string = "__" + pos + "__";
+    pos = pos + 1;
+    return substitute_string;
+  };
+
 });

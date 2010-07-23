@@ -24,18 +24,9 @@ $(document).ready(function() {
       var percent_number_pattern = /%\d+/g;
       var pos = 0;
       var argument_subs = new Array();
-      var collectArguments = function (substring) {
-        if (substring == '%%') {
-          return '%%';
-        }
-        argument_subs[pos] = substring;
-        substitute_string = "__" + pos + "__";
-        pos = pos + 1;
-        return substitute_string;
-      }
-      source_text = source_text.replace(c_printf_pattern, collectArguments);
-      source_text = source_text.replace(csharp_string_format_pattern, collectArguments);
-      source_text = source_text.replace(percent_number_pattern, collectArguments);
+      source_text = source_text.replace(c_printf_pattern, $.pootle.collectArguments);
+      source_text = source_text.replace(csharp_string_format_pattern, $.pootle.collectArguments);
+      source_text = source_text.replace(percent_number_pattern, $.pootle.collectArguments);
 
       var content = new Object()
       content.text = source_text;
