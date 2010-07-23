@@ -555,6 +555,12 @@ class Store(models.Model, base.TranslationStore):
     def save(self, *args, **kwargs):
         self.pootle_path = self.parent.pootle_path + self.name
         super(Store, self).save(*args, **kwargs)
+        if hasattr(self, '_units'):
+            index = self.max_index() + 1
+            for i, unit in enumerate(self._units):
+                unit.store = self
+                unit.index = index + i
+                unit.save()
         if self.state >= PARSED:
             #if self.translation_project:
                 # update search index
@@ -767,6 +773,9 @@ class Store(models.Model, base.TranslationStore):
     suggestions_in_format = True
 
     def _get_units(self):
+        if hasattr(self, '_units'):
+            return self._units
+
         self.require_units()
         return self.unit_set.filter(state__gt=OBSOLETE).order_by('index').select_related('store__translation_project')
     units=property(_get_units)
@@ -781,7 +790,17 @@ class Store(models.Model, base.TranslationStore):
 
         newunit = Unit(store=self, index=index)
         newunit.update(unit)
-        newunit.save()
+        if self.id:
+            newunit.save()
+        else:
+            # we can't save the unit if the store is not in the
+            # database already, so let's keep it in temporary list
+            if not hasattr(self, '_units'):
+                class FakeQuerySet(list):
+                    def iterator(self):
+                        return self.__iter__()
+                self._units = FakeQuerySet()
+            self._units.append(newunit)
 
     def findunit(self, source):
         # find using hash instead of index
@@ -801,7 +820,9 @@ class Store(models.Model, base.TranslationStore):
         except Unit.DoesNotExist:
             return None
 
-    def getids(self):
+    def getids(self, filename=None):
+        if hasattr(self, "_units"):
+            self.makeindex()
         if hasattr(self, "id_index"):
             return self.id_index.keys()
         elif hasattr(self, "dbid_index"):
