@@ -1664,10 +1664,10 @@ div.translator-comments textarea
 
 td.translate-focus
 {
-    border-top:2px solid #000000;
+    border-top: 2px solid #000000;
     border-bottom: 2px solid #000000;
-    padding-top:.5em;
-    padding-bottom:.5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
     vertical-align: top;
 }
 
@@ -1979,18 +1979,9 @@ div.translate-translation {
     min-height: 1.5em;
 }
 
-.translate-translation-fuzzy[dir="ltr"]
+tr.translate-translation-fuzzy td.translate-focus
 {
-    color: #666;
-    border-left: 4px solid #AAA;
-    padding-left: 3px;
-}
-
-.translate-translation-fuzzy[dir="rtl"]
-{
-    color: #666;
-    border-right: 4px solid #AAA;
-    padding-right: 3px;
+    border-color: #AAAAAA;
 }
 
 .translate-translation-fuzzy textarea.translation
