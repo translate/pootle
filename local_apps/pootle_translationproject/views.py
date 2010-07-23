@@ -155,7 +155,8 @@ class StoreFormset(BaseModelFormSet):
             # deleted except for when value is being overwritten, but
             # this form is the only place in pootle where actual file
             # system files should be deleted
-            store.file.storage.delete(store.file.name)
+            if store.file:
+                store.file.storage.delete(store.file.name)
         return result
 
 @get_translation_project
