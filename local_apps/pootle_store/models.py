@@ -27,6 +27,7 @@ from django.db import models, IntegrityError
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.transaction import commit_on_success
 
 from translate.storage import base, statsdb, po, poheader
@@ -151,7 +152,6 @@ class Unit(models.Model, base.TranslationUnit):
         self._source_updated = False
         self._rich_target = None
         self._target_updated = False
-        self.unitclass = po.pounit
         self._encoding = 'UTF-8'
 
     def save(self, *args, **kwargs):
@@ -234,6 +234,11 @@ class Unit(models.Model, base.TranslationUnit):
                 newunit.addalttrans(suggestion.target, origin=unicode(suggestion.user))
         return newunit
 
+    def get_unit_class(self):
+        try:
+            return self.store.get_file_class().UnitClass
+        except ObjectDoesNotExist:
+            return po.pounit
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.source)
 
@@ -692,8 +697,8 @@ class Store(models.Model, base.TranslationStore):
             if create:
                 # file doesn't exist let's create it
                 logging.debug("Creating file %s", self.pootle_path)
-                storeclass = factory_classes[self.translation_project.project.localfiletype]
-                store_path = os.path.join(settings.PODIRECTORY, self.translation_project.real_path, self.name)
+                storeclass = self.get_file_class()
+                store_path = os.path.join(self.translation_project.abs_real_path, self.name)
                 store = self.convert(storeclass)
                 store.savefile(store_path)
                 self.file = store_path
@@ -729,6 +734,15 @@ class Store(models.Model, base.TranslationStore):
 
         #FIXME update headers here
         self.file.savestore()
+
+    def get_file_class(self):
+        try:
+            return self.translation_project.project.get_file_class()
+        except ObjectDoesNotExist:
+            if self.name:
+                name, ext = os.path.splitext(self.name)
+                return factory_classes[ext]
+        return factory_classes['po']
 
     def convert(self, fileclass):
         """export to fileclass"""
