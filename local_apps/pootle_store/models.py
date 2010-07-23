@@ -239,11 +239,14 @@ class Unit(models.Model, base.TranslationUnit):
             return self.store.get_file_class().UnitClass
         except ObjectDoesNotExist:
             return po.pounit
-    def __repr__(self):
-        return u'<%s: %s>' % (self.__class__.__name__, self.source)
 
     def __unicode__(self):
-        return unicode(str(self.convert(self.unitclass)).decode(self._encoding))
+        #FIXME: consider using unit id instead?
+        return unicode(self.source)
+
+    def __str__(self):
+        unitclass = self.get_unit_class()
+        return str(self.convert(unitclass))
 
 
     def getorig(self):
@@ -578,9 +581,6 @@ class Store(models.Model, base.TranslationStore):
 
     real_path = property(_get_real_path)
 
-    def __unicode__(self):
-        return self.pootle_path
-
     def get_absolute_url(self):
         return l(self.pootle_path)
 
@@ -753,6 +753,14 @@ class Store(models.Model, base.TranslationStore):
         for unit in self.units.iterator():
             output.addunit(unit.convert(output.UnitClass))
         return output
+
+    def __unicode__(self):
+        return unicode(self.pootle_path)
+
+    def __str__(self):
+        storeclass = self.get_file_class()
+        store = self.convert(storeclass)
+        return str(store)
 
 ######################## TranslationStore #########################
 
