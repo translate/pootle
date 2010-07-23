@@ -1981,8 +1981,23 @@ a.collapse
 
 /* FUZZY TRANSLATION */
 
-div.translate-translation {
+div.translate-translation
+{
     min-height: 1.5em;
+}
+
+tr.translate-translation-fuzzy td.translate-translation[dir="ltr"]
+{
+    color: #666666;
+    border-left: 4px solid #AAAAAA;
+    padding-left: 3px;
+}
+
+tr.translate-translation-fuzzy td.translate-translation[dir="rtl"]
+{
+    color: #666666;
+    border-right: 4px solid #AAAAAA;
+    padding-right: 3px;
 }
 
 tr.translate-translation-fuzzy td.translate-focus
