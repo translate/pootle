@@ -35,7 +35,7 @@ class DirectoryManager(models.Manager):
         return super(DirectoryManager, self).get_query_set().select_related('parent')
 
     def _get_root(self):
-        return self.get(parent=None)
+        return self.get(pootle_path='/')
     root = property(_get_root)
 
     def _get_projects(self):
