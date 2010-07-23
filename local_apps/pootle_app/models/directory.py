@@ -168,7 +168,7 @@ class Directory(models.Model):
 
     def get_translationproject(self):
         """returns the translation project belonging to this directory."""
-        if self.is_language():
+        if self.is_language() or self.is_project():
             return None
         else:
             if self.is_translationproject():
