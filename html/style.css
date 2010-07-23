@@ -1800,11 +1800,17 @@ td.translate-full textarea.translation
     margin-top: 0.3em;
 }
 
-.translate-buttons-block .submit
+.translate-buttons-block .submit,
 .translate-buttons-block .suggest
 {
     background-position: left;
     display: block;
+}
+
+.translate-buttons-block[dir="rtl"] .submit,
+.translate-buttons-block[dir="rtl"] .suggest
+{
+    background-position: right;
 }
 
 .translate-buttons-block .submit
