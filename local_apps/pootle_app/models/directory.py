@@ -180,3 +180,16 @@ class Directory(models.Model):
 
                     aux_dir = aux_dir.parent
                 return aux_dir.translationproject
+
+    def get_real_path(self):
+        """physical filesystem path for directory"""
+        if self.is_project():
+            return self.project.code
+
+        translation_project = self.get_translationproject()
+        if self.is_translationproject():
+            return translation_project.real_path
+
+        if translation_project:
+            path_prefix = self.pootle_path[len(translation_project.pootle_path)-1:-1]
+            return translation_project.real_path + path_prefix
