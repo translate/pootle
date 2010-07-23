@@ -229,6 +229,7 @@ def read_original_target(target_path):
         return None
 
 def convert_template(template_store, target_path, monolingual=False):
+    """run pot2po to update or initialize file on target_path with template_store"""
     abs_target_path = absolute_real_path(target_path)
     ensure_target_dir_exists(abs_target_path)
     if template_store.file:
@@ -244,9 +245,17 @@ def convert_template(template_store, target_path, monolingual=False):
             original_file = store.file.store
     except Store.DoesNotExist:
         original_file = None
+        store = None
 
     output_file = pot2po.convert_stores(template_file, original_file, classes=factory_classes)
     output_file.savefile(abs_target_path)
+
+    # pot2po modifies its input stores so clear caches is needed
+    if template_store.file:
+        template_store.file._delete_store_cache()
+    if store and store.file:
+        store.file._delete_store_cache()
+
 
 def get_translated_name_gnu(translation_project, store):
     path_parts = store.file.path.split(os.sep)
