@@ -197,4 +197,12 @@ $(document).ready(function() {
       element.prepend(a);
   };
 
+  $.pootle.normalize_code = function(locale) {
+      var clean = locale.replace('_', '-')
+      var atIndex = locale.indexOf("@");
+      if (atIndex != -1)
+        clean = clean.slice(0, atIndex)
+      return clean;
+  };
+
 });

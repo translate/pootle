@@ -19,11 +19,12 @@ google.setOnLoadCallback(function() {
     });
 
     $(".googletranslate").click(function(){
-      var orig = $("#id_source_f_0");
       var area = $("#id_target_f_0");
-      var orig_text = orig.val();
-      var lang_from = "en";
-      var lang_to = area.attr("lang").replace('_', '-');
+      var source = $(this).parent().siblings(".translation-text");
+      var source_text = source.text();
+      var lang_from = $.pootle.normalize_code(source.attr("lang"));
+      /*var lang_from = "en";*/
+      var lang_to = $.pootle.normalize_code(area.attr("lang"));
 
       // The printf regex based on http://phpjs.org/functions/sprintf:522
       var c_printf_pattern = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
@@ -40,12 +41,12 @@ google.setOnLoadCallback(function() {
         pos = pos + 1;
         return substitute_string;
       }
-      orig_text = orig_text.replace(c_printf_pattern, collectArguments);
-      orig_text = orig_text.replace(csharp_string_format_pattern, collectArguments);
-      orig_text = orig_text.replace(percent_number_pattern, collectArguments);
+      source_text = source_text.replace(c_printf_pattern, collectArguments);
+      source_text = source_text.replace(csharp_string_format_pattern, collectArguments);
+      source_text = source_text.replace(percent_number_pattern, collectArguments);
 
       var content = new Object()
-      content.text = orig_text;
+      content.text = source_text;
       content.type = "text";
       google.language.translate(content, lang_from, lang_to, function(result) {
         if (result.translation) {
