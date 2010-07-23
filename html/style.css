@@ -1612,6 +1612,13 @@ table td.translate-original
     padding-right: 5px;
 }
 
+.translate-locations,
+.developer-comments,
+.translate-context
+{
+    margin-bottom: 0.5em;
+}
+
 .translate-locations
 {
     font-family: monospace;
@@ -1621,7 +1628,6 @@ table td.translate-original
     border: 1px solid #ddd;
     overflow: auto;
     padding: 5px 25px;
-    margin-bottom: 0.5em;
 }
 
 .developer-comments
@@ -1630,7 +1636,6 @@ table td.translate-original
     background-position: 5px center;
     border: 1px solid #fc9;
     overflow: auto;
-    margin-bottom: 0.5em;
     padding: 5px 25px;
 }
 
@@ -1639,7 +1644,6 @@ table td.translate-original
     background: #eee url('images/context.png') no-repeat;
     background-position: 5px center;
     font-family: monospace;
-    margin-top: 0.5em;
     overflow: auto;
     border: 1px solid #fff;
     padding: 5px 25px;
