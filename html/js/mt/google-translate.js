@@ -23,7 +23,6 @@ google.setOnLoadCallback(function() {
       var source = $(this).parent().siblings(".translation-text");
       var source_text = source.text();
       var lang_from = $.pootle.normalize_code(source.attr("lang"));
-      /*var lang_from = "en";*/
       var lang_to = $.pootle.normalize_code(area.attr("lang"));
 
       // The printf regex based on http://phpjs.org/functions/sprintf:522
