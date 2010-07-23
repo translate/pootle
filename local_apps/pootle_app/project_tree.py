@@ -19,12 +19,11 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
-import cStringIO
 
 from translate.lang    import data as langdata
 from translate.convert import pot2po
 
-from pootle_store.models      import Store
+from pootle_store.models      import Store, PARSED
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes, is_monolingual
 from pootle_app.models.directory  import Directory
@@ -228,18 +227,17 @@ def read_original_target(target_path):
     except:
         return None
 
-def convert_template(template_store, target_path, monolingual=False):
+def convert_template(translation_project, template_store, target_pootle_path, target_path, monolingual=False):
     """run pot2po to update or initialize file on target_path with template_store"""
-    abs_target_path = absolute_real_path(target_path)
-    ensure_target_dir_exists(abs_target_path)
+    ensure_target_dir_exists(target_path)
     if template_store.file:
         template_file = template_store.file.store
     else:
         template_file = template_store
 
     try:
-        store = Store.objects.get(file=target_path)
-        if monolingual:
+        store = Store.objects.get(pootle_path=target_pootle_path)
+        if not store.file or monolingual:
             original_file = store
         else:
             original_file = store.file.store
@@ -248,7 +246,16 @@ def convert_template(template_store, target_path, monolingual=False):
         store = None
 
     output_file = pot2po.convert_stores(template_file, original_file, classes=factory_classes)
-    output_file.savefile(abs_target_path)
+    if template_store.file:
+        output_file.savefile(target_path)
+    elif store:
+        store.mergefile(output_file, '', allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=True)
+    else:
+        output_file.translation_project = translation_project
+        output_file.name = template_store.name
+        output_file.parent = translation_project.directory
+        output_file.state = PARSED
+        output_file.save()
 
     # pot2po modifies its input stores so clear caches is needed
     if template_store.file:
@@ -258,33 +265,47 @@ def convert_template(template_store, target_path, monolingual=False):
 
 
 def get_translated_name_gnu(translation_project, store):
-    path_parts = store.file.path.split(os.sep)
-    path_parts[-1] =  "%s.%s" % (translation_project.language.code,
-                                 translation_project.project.localfiletype)
-    return os.sep.join(path_parts)
+    pootle_path_parts = store.pootle_path.split('/')
+    pootle_path_parts[1] = translation_project.language.code
+    if store.file:
+        path_parts = store.file.path.split(os.sep)
+        name = translation_project.language.code + os.extsep + translation_project.project.localfiletype
+        path_parts[-1] =  name
+        pootle_path_parts[-1] = name
+    else:
+        path_parts = store.parent.get_real_path().split(os.sep)
+        path_parts.append(store.name)
+    return '/'.join(pootle_path_parts), os.sep.join(path_parts)
 
 def get_translated_name(translation_project, store):
     name, ext = os.path.splitext(store.name)
-    path_parts = store.file.name.split(os.sep)
+
+    if store.file:
+        path_parts = store.file.name.split(os.sep)
+    else:
+        path_parts = store.parent.get_real_path().split(os.sep)
+        path_parts.append(store.name)
+    pootle_path_parts = store.pootle_path.split('/')
 
     # replace language code
     path_parts[1] = translation_project.language.code
+    pootle_path_parts[1] = translation_project.language.code
     # replace extension
     path_parts[-1] = name + '.' + translation_project.project.localfiletype
-
-    return relative_real_path(os.sep.join(path_parts))
+    pootle_path_parts[-1] = name + '.' + translation_project.project.localfiletype
+    return '/'.join(pootle_path_parts), absolute_real_path(os.sep.join(path_parts))
 
 def convert_templates(template_translation_project, translation_project):
     monolingual = is_monolingual(translation_project.project.get_file_class())
     if not monolingual:
         translation_project.sync()
     oldstats = translation_project.getquickstats()
-    for store in template_translation_project.stores.exclude(file='').iterator():
+    for store in template_translation_project.stores.iterator():
         if translation_project.file_style == 'gnu':
-            new_store_path = get_translated_name_gnu(translation_project, store)
+            new_pootle_path, new_path = get_translated_name_gnu(translation_project, store)
         else:
-            new_store_path = get_translated_name(translation_project, store)
-        convert_template(store, new_store_path, monolingual)
+            new_pootle_path, new_path = get_translated_name(translation_project, store)
+        convert_template(translation_project, store, new_pootle_path, new_path, monolingual)
     scan_translation_project_files(translation_project)
     translation_project.update(conservative=False)
     newstats = translation_project.getquickstats()
