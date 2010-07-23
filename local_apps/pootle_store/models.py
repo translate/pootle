@@ -754,7 +754,10 @@ class Store(models.Model, base.TranslationStore):
         """export to fileclass"""
         logging.debug("Converting %s to %s", self.pootle_path, fileclass)
         output = fileclass()
-        output.settargetlanguage(self.translation_project.language.code)
+        try:
+            output.settargetlanguage(self.translation_project.language.code)
+        except ObjectDoesNotExist:
+            pass
         #FIXME: we should add some headers
         for unit in self.units.iterator():
             output.addunit(unit.convert(output.UnitClass))
