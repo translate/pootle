@@ -1821,6 +1821,7 @@ td.translate-full textarea.translation
 .translate-buttons-block[dir="rtl"] .submit,
 .translate-buttons-block[dir="rtl"] .suggest
 {
+    padding: 2px 23px 2px 5px;
     background-position: right;
 }
 
