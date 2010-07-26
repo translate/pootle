@@ -77,7 +77,7 @@ $(document).ready(function() {
  *  to get the textarea's element ID and select the checkbox to
  *  remove the "checked" attribute according to that value.
  */
-  var keepstate = false;
+  keepstate = false;
   $("textarea.translation").bind("keyup blur", function() {
     if (!keepstate && $(this).attr("defaultValue") != $(this).val()) {
       $.pootle.toggleFuzzy(false);
@@ -101,12 +101,10 @@ $(document).ready(function() {
     if (checkBefore && $.pootle.isFuzzy()) {
         return;
     }
-    var checkbox = $("input.fuzzycheck");
-    var checked = checkbox.attr("checked");
-    if (checked == undefined || checked == false) {
-      checkbox.attr("checked", "checked");
-    } else {
+    if ($.pootle.isFuzzy()) {
       checkbox.removeAttr("checked");
+    } else {
+      checkbox.attr("checked", "checked");
     }
   };
 
