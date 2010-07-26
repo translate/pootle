@@ -1799,14 +1799,23 @@ td.translate-full textarea.translation
 
 .translate-buttons-block input
 {
-    margin-top: 0.3em;
+    margin-bottom: 0.3em;
 }
 
 .translate-buttons-block .submit,
 .translate-buttons-block .suggest
 {
-    background-position: left;
+    background-position: 5px 50%;
     display: block;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    background-color: #ddd;
+    border-color: #ddd #ddd #ccc;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    padding: 2px 5px 2px 23px;
+    text-shadow: 1px 1px 0 #FFFFFF;
 }
 
 .translate-buttons-block[dir="rtl"] .submit,
@@ -1832,7 +1841,16 @@ td.translate-full textarea.translation
 .translate-buttons-block .suggest:active,
 .translate-buttons-block .suggest:focus
 {
-    text-decoration: underline;
+    border-color: #999;
+}
+
+div#prevnext .previous,
+div#prevnext .next
+{
+    border: none;
+    color: #0489b7;
+    padding: 0 2em;
+    background-color: inherit;
 }
 
 div#prevnext .previous,
@@ -1840,10 +1858,6 @@ div#prevnext .next,
 .translate-buttons-block .submit,
 .translate-buttons-block .suggest
 {
-    border: none;
-    color: #0489b7;
-    padding: 0 2em;
-    background-color: inherit;
     background-repeat: no-repeat;
     cursor: pointer;
     min-height: 16px;
@@ -1915,7 +1929,7 @@ div#prevnext[dir="rtl"] .next:focus
 
 input.fuzzycheck
 {
-    vertical-align: text-bottom;
+    vertical-align: middle;
 }
 
 .translate-specialchars-block
