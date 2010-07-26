@@ -144,7 +144,8 @@ p, blockquote
     padding: 0px;
 }
 
-input, textarea {
+input, textarea
+{
     margin: 0;
     padding 1px;
 }
@@ -1032,7 +1033,7 @@ div.newsitem-sep
 
 #translationsummarylegend div img
 {
-    vertical-align:middle;
+    vertical-align: middle;
     width: 25px;
     height: 15px;
     padding: 0px 5px;
@@ -1147,7 +1148,8 @@ div.small
     font-size: 1em;
 }
 
-.tiny {
+.tiny
+{
     font-size: 0.9em;
 }
 
