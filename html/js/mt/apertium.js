@@ -25,6 +25,7 @@ $(document).ready(function() {
       var argument_subs = new Array();
 
       $(sources).each(function(j) {
+        var source_text = $(this).text();
         source_text = source_text.replace(c_printf_pattern, $.pootle.collectArguments);
         source_text = source_text.replace(csharp_string_format_pattern, $.pootle.collectArguments);
         source_text = source_text.replace(percent_number_pattern, $.pootle.collectArguments);
