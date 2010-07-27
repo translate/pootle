@@ -63,6 +63,8 @@ $(document).ready(function() {
           newval = i < max ? clean_sources[i] : clean_sources[max];
           $(this).val(newval);
           $(this).focus();
+          $.pootle.toggleFuzzy(true);
+          $.pootle.toggleFuzzyBox(true);
       });
   });
 
@@ -98,6 +100,7 @@ $(document).ready(function() {
   };
 
   $.pootle.toggleFuzzyBox = function(checkBefore) {
+    var checkbox = $("input.fuzzycheck");
     if (checkBefore && $.pootle.isFuzzy()) {
         return;
     }
