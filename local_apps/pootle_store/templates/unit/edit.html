@@ -23,23 +23,26 @@
       {% endif %}
       {% endwith %}
     </div>
-    <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}"></div>
-    <div class="translate-middle">
+    <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
+      {% if unit.qualitycheck_set.all %}
       <!-- Quality Checks -->
       <div id="translate-checks-block" lang="en" dir="ltr">
-	<h3 class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Quality Checks" %}</h3>
-	<ul class="checks">
-	{% for check in unit.qualitycheck_set.iterator %}
-	<li class="check">
-	  <a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}">{{ check.name }}</a>
-          {% if canreview %}
-          <input type="hidden" class="checkid" name="checkid" value="{{ check.id }}" />
-          <a title='{% trans "reject qualitycheck"' class="rejectcheck"><img src='{{ "images/cross.png"|m }}' /></a>
-          {% endif %}
-	</li>
-	{% endfor %}
-	</ul>
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Failing Checks" %}</div>
+          <ul class="checks">
+          {% for check in unit.qualitycheck_set.iterator %}
+          <li class="check">
+            <a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}">{{ check.name }}</a>
+            {% if canreview %}
+            <input type="hidden" class="checkid" name="checkid" value="{{ check.id }}" />
+            <a title="{% trans "Discard check as false positive" %}" class="rejectcheck"><img src='{{ "images/cross.png"|m }}' /></a>
+            {% endif %}
+          </li>
+          {% endfor %}
+          </ul>
       </div>
+      {% endif %}
+    </div>
+    <div class="translate-middle">
       <!-- Context information and comments -->
       {% if unit.getcontext %}
       <div class="translate-context">

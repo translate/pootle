@@ -1501,6 +1501,22 @@ html[dir="rtl"] div.check
     vertical-align: top;
 }
 
+#translate-checks-block
+{
+    margin: 0 5px;
+}
+
+#translate-checks-block li
+{
+    display: inline;
+}
+
+#translate-checks-block .rejectcheck img
+{
+    vertical-align: middle;
+    cursor: pointer;
+}
+
 
 /*
  * TRANSLATE PAGE
@@ -1702,7 +1718,6 @@ td.translate-full textarea.translation
     letter-spacing: .1em;
     border-bottom: 1px solid #999;
     text-align: center;
-    text-transform: lowercase;
 }
 
 #tm
@@ -1783,18 +1798,6 @@ td.translate-full textarea.translation
 }
 
 /* CONTROLS */
-
-#translate-checks-block
-{
-    left: 101%;
-    position: absolute;
-    margin: 0 5px;
-    width: 40%;
-}
-
-#translate-checks-block li {
-    display: inline;
-}
 
 .translate-buttons-block
 {
