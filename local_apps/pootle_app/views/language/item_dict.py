@@ -138,19 +138,32 @@ def zip_link(request, path_obj):
             }
 
 def xliff_link(request, path_obj):
-    text = _('Download XLIFF')
+    if path_obj.translation_project.project.is_monolingual():
+        text = _('Translate offline')
+        tooltip = _('Download XLIFF file for offline translation')
+    else:
+        text = _('Download XLIFF')
+        tooltip = _('Download XLIFF file for offline translation')
     href = dispatch.export(request, path_obj.pootle_path, 'xlf')
     return {
         'href':  href,
         'text':  text,
-
+        'title': tooltip,
         }
 
 def download_link(request, path_obj):
     if path_obj.file != "":
+        if path_obj.translation_project.project.is_monolingual():
+            text = _('Export')
+            tooltip = _('Export translations')
+        else:
+            text = _('Download')
+            tooltip = _('Download file')
+
         return {
             'href': '%s/download/' % path_obj.pootle_path,
-            'text': _('Download'),
+            'text': text,
+            'title': tooltip,
             }
 
 def commit_link(request, path_obj):
