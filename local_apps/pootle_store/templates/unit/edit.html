@@ -30,7 +30,13 @@
 	<h3 class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Quality Checks" %}</h3>
 	<ul class="checks">
 	{% for check in unit.qualitycheck_set.iterator %}
-	<li class="check"><a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}">{{ check.name }}</a></li>
+	<li class="check">
+	  <a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}">{{ check.name }}</a>
+          {% if canreview %}
+          <input type="hidden" class="checkid" name="checkid" value="{{ check.id }}" />
+          <a title='{% trans "reject qualitycheck"' class="rejectcheck"><img src='{{ "images/cross.png"|m }}' /></a>
+          {% endif %}
+	</li>
 	{% endfor %}
 	</ul>
       </div>

@@ -455,3 +455,27 @@ def accept_suggestion(request, uid, suggid):
     response = simplejson.dumps(response, indent=4)
     return HttpResponse(response, mimetype="application/json")
 
+
+def reject_qualitycheck(request, uid, checkid):
+    unit = get_object_or_404(Unit, id=uid)
+    directory = unit.store.parent
+    if not check_profile_permission(get_profile(request.user), 'review', directory):
+        raise PermissionDenied
+
+    response = {
+        'udbid': unit.id,
+        'checkid': checkid,
+        }
+    if request.POST.get('reject'):
+        try:
+            check = unit.qualitycheck_set.get(id=checkid)
+            check.delete()
+            # update timestamp
+            unit.save()
+            response['success'] = True
+        except ObjectDoesNotExist:
+            check = None
+            response['success'] = False
+
+    response = simplejson.dumps(response, indent=4)
+    return HttpResponse(response, mimetype="application/json")

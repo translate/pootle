@@ -205,6 +205,18 @@ $(document).ready(function() {
       return false;
     });
 
+    $("#translate-checks-block .rejectcheck").click(function() {
+      var element = $(this).parent();
+      var checkid = $(this).siblings("input.checkid").val();
+      var uid = $('.translate-container input#id_id').val();
+      var url = l('/qualitycheck/reject/') + uid + '/' + checkid;
+      $.post(url, {'reject': 1},
+             function(rdata) {
+               $("#response").remove();
+               element.fadeOut(500);
+             }, "json");
+      return false;
+    });
 
 /*
  * HELPER FUNCTIONS
