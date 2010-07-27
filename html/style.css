@@ -1789,6 +1789,7 @@ td.translate-full textarea.translation
     left: 101%;
     position: absolute;
     margin: 0 5px;
+    width: 40%;
 }
 
 #translate-checks-block li {
