@@ -15,35 +15,9 @@
 
 {% block section_body %}
 <form method="post" action="">
-    <p>
-        <label for="id_unit_rows">{% trans 'Number of Rows' %}</label>
-        {{ form.unit_rows }}
-    </p>
-    <p>
-        <label for="id_input_height">{% trans 'Input Height' %}</label>
-        {{ form.input_height }}
-    </p>
-    <p>
-        <label for="id_ui_lang">{% trans 'Interface Language' %}</label>
-        {{ form.ui_lang }}
-    </p>
-    <p>
-        <label for="id_languages">{% trans 'My Languages' %}</label>
-        {{ form.languages}}
-        <span class="help_text">{{ form.languages.help_text }}</span>
-    </p>
-    <p>
-        <label for="id_projects">{% trans 'My Projects' %}</label>
-        {{ form.projects }}
-        <span class="help_text">{{ form.projects.help_text }}</span>
-    </p>
-    <p>
-        <label for="id_alt_src_langs">{% trans 'Alternative Source Languages' %}</label>
-        {{ form.alt_src_langs }}
-        <span class="help_text">{{ form.alt_src_langs.help_text }}</span>
-    </p>
-    <p>
-        <input type="submit" value="{% trans 'Save' %} "/>
-    </p>
+  {{form.as_p}}
+  <p>
+    <input type="submit" value="{% trans 'Save' %} "/>
+  </p>
 </form>
 {% endblock %}
