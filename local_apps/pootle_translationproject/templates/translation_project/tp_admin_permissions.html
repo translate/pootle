@@ -10,7 +10,10 @@
 
 {% block section_body %}
 <div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
-    <p>{% trans "Below you can add, edit, and delete the permissions for this translation project." %}</p>
+    <p class="info">{% trans "Below you can add, edit, and delete the permissions for this translation project." %}</p>
+    <p class="help">
+      {% trans "The user “nobody” refers to any user that is not logged in (an anonymous, unidentified user). The user “default” refers to the rights that all logged in users will have by default, unless other specific rights were assigned to them." %}
+    </p>
     {% include "admin/admin_general.html" %}
 </div>
 {% endblock %}

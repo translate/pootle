@@ -14,5 +14,8 @@
 {% block section_description %}{% trans "Here you can add, edit, and delete the default permissions in this Pootle server." %}{% endblock %}
 
 {% block section_body %}
+    <p class="help">
+      {% trans "The user “nobody” refers to any user that is not logged in (an anonymous, unidentified user). The user “default” refers to the rights that all logged in users will have by default, unless other specific rights were assigned to them." %}
+    </p>
     {% include "admin/admin_general.html" %}
 {% endblock %}
