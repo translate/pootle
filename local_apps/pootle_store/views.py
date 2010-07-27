@@ -190,6 +190,12 @@ def get_current_units(request, step_queryset):
                 break
             if unit.id == prev_id:
                 prev_unit = unit
+            elif unit.index > prev_index or back and unit.index < prev_index:
+                logging.debug("submitting to a unit no longer part of step query, %s:%d", (pootle_path, prev_id))
+                # prev_unit no longer part of the query, load it directly
+                edit_unit = unit
+                prev_unit = Unit.objects.get(store__pootle_path=pootle_path, id=prev_id)
+                break
 
     if edit_unit is None:
         if prev_unit is not None:
