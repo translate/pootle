@@ -30,7 +30,7 @@ from translate.lang.data import langcode_re
 from pootle_store.util import absolute_real_path, statssum
 from pootle_misc.aggregate import max_column
 from pootle_store.models import Unit
-from pootle_store.filetypes import filetype_choices, factory_classes
+from pootle_store.filetypes import filetype_choices, factory_classes, is_monolingual
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 
@@ -111,6 +111,10 @@ class Project(models.Model):
     def get_file_class(self):
         """returns the TranslationStore subclass required for parsing Project files"""
         return factory_classes[self.localfiletype]
+
+    def is_monolingual(self):
+        """is this a monolingual project"""
+        return is_monolingual(self.get_file_class())
 
     def file_belongs_to_project(self, filename, match_templates=True):
         """tests if filename matches project filetype (ie. extension),

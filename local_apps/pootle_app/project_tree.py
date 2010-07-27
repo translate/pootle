@@ -25,7 +25,7 @@ from translate.convert import pot2po
 
 from pootle_store.models      import Store, PARSED
 from pootle_store.util import absolute_real_path, relative_real_path
-from pootle_store.filetypes import factory_classes, is_monolingual
+from pootle_store.filetypes import factory_classes
 from pootle_app.models.directory  import Directory
 from pootle_app.models.signals import post_template_update
 
@@ -296,7 +296,7 @@ def get_translated_name(translation_project, store):
     return '/'.join(pootle_path_parts), absolute_real_path(os.sep.join(path_parts))
 
 def convert_templates(template_translation_project, translation_project):
-    monolingual = is_monolingual(translation_project.project.get_file_class())
+    monolingual = translation_project.project.is_monolingual()
     if not monolingual:
         translation_project.sync()
     oldstats = translation_project.getquickstats()
