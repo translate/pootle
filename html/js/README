@@ -43,9 +43,7 @@ Directory contents
     2. Handles suggestions doing XMLHttpRequest calls using jQuery and
     sending/receiving data in JSON format.
 
-    3. Makes Google Translate API calls through its AJAX API.
-
-    4. Includes several functions for handling actions in the translate page.
+    3. Includes several functions for handling actions in the translate page.
 
   + jquery/
 
@@ -76,6 +74,9 @@ Directory contents
       The jQuery library, version 1.4.2, minified.
 
   + mt/
+
+    - apertium.js :
+      Script to load translation suggestions using the Apertium service.
 
     - google-translate.js :
       Script to load translation suggestions using the Google Translate service.
