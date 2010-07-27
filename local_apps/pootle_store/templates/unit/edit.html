@@ -25,6 +25,15 @@
     </div>
     <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}"></div>
     <div class="translate-middle">
+      <!-- Quality Checks -->
+      <div class="translate-checks-block" lang="en" dir="ltr">
+	<h3 class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Quality Checks" %}</h3>
+	<ul class="checks">
+	{% for check in unit.qualitycheck_set.iterator %}
+	<li class="check"><a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}">{{ check.name }}</a></li>
+	{% endfor %}
+	</ul>
+      </div>
       <!-- Context information and comments -->
       {% if unit.getcontext %}
       <div class="translate-context">
