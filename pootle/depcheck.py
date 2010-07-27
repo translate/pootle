@@ -75,10 +75,13 @@ def test_iso_codes():
 
 def test_lxml():
     try:
-        from lxml.html.clean import clean_html
-        return True
+        from lxml.etree import LXML_VERSION, __version__
+        if LXML_VERSION >= (2, 1, 4, 0):
+            return True, __version__
+        else:
+            return False, __version__
     except ImportError:
-        return False
+        return None, None
 
 def test_levenshtein():
     try:

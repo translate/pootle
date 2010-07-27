@@ -52,6 +52,17 @@ def required_depcheck():
         state = 'error'
     required.append({'dependency': 'django', 'state': state, 'text': text})
 
+    status, version = depcheck.test_lxml()
+    if status:
+        text = _('lxml version %s installed.', version)
+        state = 'good'
+    elif version is not None:
+        text = _('lxml version %(installed)s. Pootle requires version %(required)s for parsing and exporting XML translation formats', {'installed': version, 'required': "2.1.4"})
+        state = 'error'
+    else:
+        text = _('lxml not installed, Pootle requires lxml for parsing and exporting XML translation formats')
+        state = 'error'
+    required.append({'dependency': 'lxml', 'state': state, 'text': text})
     return required
 
 def optional_depcheck():
@@ -65,9 +76,6 @@ def optional_depcheck():
         optional.append({'dependency': 'iso-codes',
                            'text': _("Can't find the ISO codes package. Pootle uses ISO codes to translate language names.")})
 
-    if not depcheck.test_lxml():
-        optional.append({'dependency': 'lxml',
-                            'text': _("Can't find lxml. Pootle uses lxml to parse XML based formats like XLIFF and Qt TS and to make sure HTML tags inserted in news items are safe and correct.")})
     if not depcheck.test_gaupol():
         optional.append({'dependency': 'gaupol',
                          'text': _("Can't find Gaupol. Pootle uses Gaupol's parser to support subtitles formats")})
