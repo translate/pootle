@@ -34,10 +34,11 @@ register = template.Library()
 
 def find_altsrcs(unit, profile, store=None, project=None):
     store = store or unit.store
-    project = project or store.translation_project.project
+    translation_project = store.translation_project
+    project = project or translation_project.project
     altsrcs = Unit.objects.filter(unitid_hash=unit.unitid_hash,
                                  store__translation_project__project=project,
-                                 store__translation_project__language__in=profile.alt_src_langs.all(),
+                                 store__translation_project__language__in=profile.alt_src_langs.exclude(id=translation_project.language_id),
                                  state=TRANSLATED).select_related('store', 'store__translation_project', 'store__translation_project__language')
     if project.get_treestyle() == 'nongnu':
         altsrcs = altsrcs.filter(store__name=store.name)
@@ -143,7 +144,6 @@ def pluralize_diff_sugg(sugg):
 
 @register.inclusion_tag('unit/edit.html', takes_context=True)
 def render_unit_edit(context, form):
-    request = context['request']
     profile = get_profile(context['user'])
     unit = form.instance
     store = context['store']
@@ -163,7 +163,6 @@ def render_unit_edit(context, form):
 
 @register.inclusion_tag('unit/view.html', takes_context=True)
 def render_unit_view(context, unit, show_comments=False):
-    request = context['request']
     template_vars = {'unit': unit,
                      'language': context['language'],
                      'show_comments': show_comments,
