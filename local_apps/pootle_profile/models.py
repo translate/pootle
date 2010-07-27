@@ -61,8 +61,8 @@ class PootleProfile(models.Model):
     # This is the only required field
     user = models.OneToOneField(User, unique=True, db_index=True)
 
-    unit_rows       = models.SmallIntegerField(default=10)
-    input_height    = models.SmallIntegerField(default=5)
+    unit_rows       = models.SmallIntegerField(default=9)
+    input_height    = models.SmallIntegerField(default=5, editable=False)
     languages       = models.ManyToManyField('pootle_language.Language', blank=True, limit_choices_to=~Q(code='templates'), related_name="user_languages", db_index=True)
     projects        = models.ManyToManyField('pootle_project.Project', blank=True, db_index=True)
     ui_lang         = models.CharField(max_length=50, blank=True, null=True, choices=(choice for choice in lang_choices()), verbose_name=_('Interface Language'))
