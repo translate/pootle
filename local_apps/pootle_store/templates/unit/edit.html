@@ -26,7 +26,7 @@
     <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}"></div>
     <div class="translate-middle">
       <!-- Quality Checks -->
-      <div class="translate-checks-block" lang="en" dir="ltr">
+      <div id="translate-checks-block" lang="en" dir="ltr">
 	<h3 class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Quality Checks" %}</h3>
 	<ul class="checks">
 	{% for check in unit.qualitycheck_set.iterator %}

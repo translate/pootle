@@ -1784,14 +1784,14 @@ td.translate-full textarea.translation
 
 /* CONTROLS */
 
-.translate-checks-block
+#translate-checks-block
 {
     left: 101%;
     position: absolute;
     margin: 0 5px;
 }
 
-.translate-checks-block li {
+#translate-checks-block li {
     display: inline;
 }
 
