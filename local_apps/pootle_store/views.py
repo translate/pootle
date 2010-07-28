@@ -314,13 +314,6 @@ def translate_page(request, units_queryset, store=None):
             # form failed, don't skip to next unit
             edit_unit = prev_unit
 
-    print edit_unit
-    if edit_unit is not None:
-        print edit_unit.id, edit_unit.index
-    print prev_unit
-    if prev_unit is not None:
-        print prev_unit.id, prev_unit.index
-
     if edit_unit is None:
         # no more units to step through, display end of translation message
         return translate_end(request, translation_project)
