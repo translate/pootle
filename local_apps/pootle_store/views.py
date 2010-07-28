@@ -360,6 +360,8 @@ def translate_page(request, units_queryset, store=None):
             units_query = store.units[offset:]
             page = store_preceding / unit_rows + 1
             units = paginate(request, units_query, items=unit_rows, page=page).object_list
+        else:
+            units = pager.object_list
     else:
         units = store.units[:unit_rows]
 
