@@ -56,7 +56,7 @@ class MathCaptchaForm(forms.Form):
     A_RE = re.compile("^(\d+)$")
 
     captcha_answer = forms.CharField(max_length = 2, required=True,
-        widget = forms.TextInput(attrs={'size':'2'}))
+        widget = forms.TextInput(attrs={'size':'2'}), label='')
     captcha_token = forms.CharField(max_length=200, required=True,
         widget=forms.HiddenInput())
 
