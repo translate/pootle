@@ -58,10 +58,11 @@ def get_alt_projects(request):
     # do we have enabled alternative source language?
     if settings.ENABLE_ALT_SRC:
         # try to get the project if the user has chosen an alternate source language
-        return TranslationProject.objects.filter(language__in=get_profile(request.user).alt_src_langs.iterator(),
+        alt_src_langs = get_profile(request.user).alt_src_langs.exclude(id=request.translation_project.language_id)
+        if alt_src_langs.count():
+            return TranslationProject.objects.filter(language__in=alt_src_langs,
                                                  project=request.translation_project.project_id)
-    else:
-        return TranslationProject.objects.none()
+    return TranslationProject.objects.none()
 
 def add_file_links(request, store):
     """adds a section on the current file, including any checks happening"""
