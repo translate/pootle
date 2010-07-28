@@ -126,17 +126,17 @@ AUTOSYNC = False
 # Set the backends you want to use to enable translation suggestions through
 # several online services. To disable this feature completely just comment all
 # the lines to set an empty list [] to the MT_BACKENDS setting.
+#
+# The second parameter for each backend option is the API key, which will
+# be used in case the service supports using an API key.
+#
 # Available options are:
 # 'APERTIUM': Apertium service. For this service you need to set the
-#             APERTIUM_API_KEY setting as well.
+#             API key as well.
+#             Get your key at http://api.apertium.org/register.jsp
 # 'GOOGLE_TRANSLATE': Google Translate service.
 #
 MT_BACKENDS = [
-#        'APERTIUM',
-#        'GOOGLE_TRANSLATE',
+#        ('APERTIUM', ''),
+#        ('GOOGLE_TRANSLATE', ''),
 ]
-
-# API key for the Apertium online Machine Translation service. Get your key at
-# http://api.apertium.org/register.jsp
-# and paste it in the setting below.
-#APERTIUM_API_KEY = ''
