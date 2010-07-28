@@ -1,3 +1,43 @@
+Requirements
+------------
+Pootle usually requires the latest Translate Toolkit package:
+http://translate.sourceforge.net/
+Note all the optional dependencies of the Translate Toolkit for optimal
+performance and functionality in Pootle.
+
+Python version 2.4 or later is required.
+
+Pootle requires Django (at least version 1.0)
+(http://www.djangoproject.com/)
+Django applications can run under Apache using mod_python or mod_wsgi,
+but they're also bundled with a standalone webserver that can be run
+from the command line.  Pootle works well on all Django deployment
+scenarios. The standalone server is the easiest to set up and
+get running, whereas Apache will give the best performance.
+
+To run Pootle you need to have Django 1.0 installed properly
+
+       tar xzvf Django-1.0.2-final.tar.gz
+       cd Django-1.0.2-final
+       sudo python setup.py install
+
+you can also install Django using easy_install
+
+       easy_install django
+
+The commandline utilities "zip" and "unzip" can speed up handling of ZIP files.
+For integration with a version control system, the relevant version control
+command line client must be installed and accessible from the PATH.
+
+Installation of an indexing engine (PyLucene or Xapian) is optional, but helps
+to speed up searching. Note that Xapian before version 1.0.13 is incompatible
+with Apache, and Pootle will not enable Xapian indexing if running under
+mod_python or mod_wsgi with problematic versions.
+
+Further performance might be displayed on the admin page if Pootle detects
+anything non-optimal.
+
+
 Installation
 ------------
 Pootle works perfectly directly from the source files without installation.
@@ -15,68 +55,4 @@ If you want to install Pootle into your system, run
 For installation under apache, see this page:
         http://translate.sourceforge.net/wiki/pootle/apache
 and check the notes below about manually preparing your database.
-
-
-Running
--------
-To run Pootle from sources, just run
-
-        ./PootleServer
-
-After installation with setup.py, PootleServer should also be accessible from
-the installation.
-
-If you are more familiar with Django projects, you can look into the manage.py
-commands as well.
-
-Use --help to see the other options. The defaults will generally work.
-
-Now visit http://localhost:8000/ and begin translating.
-
-To stop the server, press Ctrl-C.
-
-It is not recommended to run Pootle as the root user.
-
-Pootle can run under Apache using mod_python or mod_wsgi, but this requires
-modifications to Apache's config files. Check
-        http://translate.sourceforge.net/wiki/pootle/apache
-for detailed instructions
-
-
-Manual preparation
-------------------
-
-1. ./manage.py syncdb
-
-   At this step, you will be asked to create a superuser.
-   This user will be the administrator for your Pootle
-   installation.
-
-2. ./manage.py initdb
-
-   This step fills the database with initial data needed
-   to run Pootle.
-
-3. ./manage.py refresh_stats
-   Precalculate statisstics and indexes for existing translation projects.
-   This step is not strictly required, but without it Pootle will feel a bit
-   sluggish and slow when visiting accessing a page for the first time.
-
-4. ./manage.py runserver
-
-   You can now visit your Pootle installation at 
-   http://localhost:8000. Note that the first time will
-   take a few moments to load, since Pootle needs to pre-compute
-   stats data for the translation files.
-
-
-Common problems
----------------
-
-If you get an error such as
-    sqlite3.OperationalError: unable to open database file
-then DATABASE_NAME in pootle/settings.py is pointing at an invalid directory.
-The default directory name is 'dbs' - ensure that this exists, and is writable
-for the user running Pootle.
-
 

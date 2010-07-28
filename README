@@ -2,12 +2,14 @@ Pootle: a web translation and translation management engine
 ===========================================================
 
 * How it works
-* References
-* Requirement
-* Installing and running
-* Bug reporting/Feature requests
+* Running
+* Manual preparation
 * Notes
 * Assignments
+* Common problems
+* Bug reporting/Feature requests
+* References
+
 
 How it works
 ------------
@@ -19,56 +21,78 @@ uploaded again.
 Pootle tries to lower the barrier of entry,  but also provides tools  to enable
 teams to work towards higher quality while welcoming newcomers.
 
-References
-----------
-Web: http://translate.sourceforge.net/wiki/pootle/index
-Bugzilla: http://bugs.locamotion.org/
-Mailing List: https://lists.sourceforge.net/lists/listinfo/translate-pootle
-IRC: #pootle on irc.freenode.org
 
-Requirements
-------------
-Pootle usually requires the latest Translate Toolkit package:
-http://translate.sourceforge.net/
-Note all the optional dependencies of the Translate Toolkit for optimal
-performance and functionality in Pootle.
+Running
+-------
+To run Pootle from sources, just run
 
-Python version 2.4 or later is required.
+        ./PootleServer
 
-Pootle requires Django (at least version 1.0)
-(http://www.djangoproject.com/)
-Django applications can run under Apache using mod_python or mod_wsgi,
-but they're also bundled with a standalone webserver that can be run
-from the command line.  Pootle works well on all Django deployment
-scenarios. The standalone server is the easiest to set up and
-get running, whereas Apache will give the best performance.
+After installation with setup.py, PootleServer should also be accessible from
+the installation.
 
-To run Pootle you need to have Django 1.0 installed properly
+If you are more familiar with Django projects, you can look into the manage.py
+commands as well.
 
-       tar xzvf Django-1.0.2-final.tar.gz
-       cd Django-1.0.2-final
-       sudo python setup.py install
+Use --help to see the other options. The defaults will generally work.
 
-you can also install Django using easy_install
+Now visit http://localhost:8000/ and begin translating.
 
-       easy_install django
+To stop the server, press Ctrl-C.
 
-The commandline utilities "zip" and "unzip" can speed up handling of ZIP files.
-For integration with a version control system, the relevant version control
-command line client must be installed and accessible from the PATH.
+It is not recommended to run Pootle as the root user.
 
-Installation of an indexing engine (PyLucene or Xapian) is optional, but helps
-to speed up searching. Note that Xapian before version 1.0.13 is incompatible
-with Apache, and Pootle will not enable Xapian indexing if running under
-mod_python or mod_wsgi with problematic versions.
-
-Further performance might be displayed on the admin page if Pootle detects
-anything non-optimal.
+Pootle can run under Apache using mod_python or mod_wsgi, but this requires
+modifications to Apache's config files. Check
+        http://translate.sourceforge.net/wiki/pootle/apache
+for detailed instructions
 
 
-Installing and running
-----------------------
-Check the INSTALL file.
+Manual preparation
+------------------
+1. ./manage.py syncdb
+
+   At this step, you will be asked to create a superuser.
+   This user will be the administrator for your Pootle
+   installation.
+
+2. ./manage.py initdb
+
+   This step fills the database with initial data needed
+   to run Pootle.
+
+3. ./manage.py refresh_stats
+   Precalculate statisstics and indexes for existing translation projects.
+   This step is not strictly required, but without it Pootle will feel a bit
+   sluggish and slow when visiting accessing a page for the first time.
+
+4. ./manage.py runserver
+
+   You can now visit your Pootle installation at 
+   http://localhost:8000. Note that the first time will
+   take a few moments to load, since Pootle needs to pre-compute
+   stats data for the translation files.
+
+
+Notes
+-----
+Files should be reindexed automatically. To ensure that all statistics and
+indices are up to date for the current projects and languages, run
+        PootleServer --refreshstats
+
+
+Assignments
+-----------
+Goals and assignments don't work at the moment, but should be re-instated soon.
+
+
+Common problems
+---------------
+If you get an error such as
+    sqlite3.OperationalError: unable to open database file
+then DATABASE_NAME in pootle/settings.py is pointing at an invalid directory.
+The default directory name is 'dbs' - ensure that this exists, and is writable
+for the user running Pootle.
 
 
 Bug Reporting/Feature requests
@@ -83,12 +107,11 @@ specific about how the bug occured and what you expected to happen.
 If this is a feature request then try to be specific about how you think this
 feature should work.
 
-Notes
------
-Files should be reindexed automatically. To ensure that all statistics and
-indices are up to date for the current projects and languages, run
-        PootleServer --refreshstats
 
-Assignments
------------
-Goals and assignments don't work at the moment, but should be re-instated soon.
+References
+----------
+Web: http://translate.sourceforge.net/wiki/pootle/index
+Bugzilla: http://bugs.locamotion.org/
+Mailing List: https://lists.sourceforge.net/lists/listinfo/translate-pootle
+IRC: #pootle on irc.freenode.org
+
