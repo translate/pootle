@@ -71,6 +71,10 @@ def download(request, pootle_path):
 
 ####################### Translate Page ##############################
 
+def get_alt_src_langs(request, profile, language):
+    langs = profile.alt_src_langs.exclude(id=language.id)
+    return langs
+
 def get_non_indexed_search_step_query(form, units_queryset):
     result = units_queryset
     for word in form.cleaned_data['search'].split():
@@ -351,7 +355,14 @@ def translate_page(request, units_queryset, store=None):
         link = '<a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%s">%s</a>' % (check, check)
         checks.append(_('checking %s', link))
 
+    # precalculate alternative source languages
+    alt_src_langs = get_alt_src_langs(request, profile, language)
+    alt_src_codes = alt_src_langs.values_list('code', flat=True)
+
     context = {
+        'unit_rows': unit_rows,
+        'alt_src_langs': alt_src_langs,
+        'alt_src_codes': alt_src_codes,
         'cantranslate': cantranslate,
         'cansuggest': cansuggest,
         'canreview': canreview,

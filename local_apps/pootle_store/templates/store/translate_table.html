@@ -19,7 +19,7 @@
           </a>
         </td>
         {% ifequal unit form.instance %}
-          {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview LANGUAGE_CODE %}
+          {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview alt_src_codes LANGUAGE_CODE %}
           {% render_unit_edit form %}
           {% endcache %}
         {% else %}
