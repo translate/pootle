@@ -1,15 +1,10 @@
-{% extends "tp_base_extended.html" %}
-{% load i18n render_pager baseurl store_tags %}
-
-{% block title %}
-{{ translation_project.fullname }} Terminology Management
-{% endblock %}
+{% extends "tp_base_terminology.html" %}
+{% load i18n %}
 
 {% block content %}
-<div class="module-primary">
-  <div class="nomargin">
-    <p>{% trans "Are you sure you want to regenerate the glossary? any existing terms and their translations will be deleted" %}</p>
-    <form action="" method="post"><p><input type="submit" name="extract" value="{% trans "Extract" %}" /></p></form>
-  </div>
+<div class="general-message" lang="{{ LANGUAGE_CODE }}">
+  <h2>{% trans "Regenerate Glossary" %}</h2>
+  <p>{% trans "Are you sure you want to regenerate the glossary? Any existing terms and their translations will be deleted." %}</p>
+  <form action="" method="post"><p><input type="submit" name="extract" value="{% trans 'Extract' %}" /></p></form>
 </div>
-{% endblock %}
+{% endblock content %}

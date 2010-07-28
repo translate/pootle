@@ -667,7 +667,8 @@ html[dir="rtl"] .module-primary .hd h2
 div#upload p,
 div#upload ul,
 div#update p,
-p.captcha
+p.captcha,
+.general-message input
 {
     font-size: 85%;
     margin-bottom: 0.5em;
