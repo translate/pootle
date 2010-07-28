@@ -169,7 +169,7 @@ def get_step_query(request, units_queryset):
 
     return units_queryset.distinct()
 
-def get_current_units(request, step_queryset):
+def get_current_units(request, step_queryset, units_queryset):
     """returns current active unit, and in case of POST previously active unit"""
     edit_unit = None
     prev_unit = None
@@ -186,7 +186,7 @@ def get_current_units(request, step_queryset):
         # load first unit in a specific page
         profile = get_profile(request.user)
         unit_rows = profile.get_unit_rows()
-        pager = paginate(request, step_queryset, items=unit_rows)
+        pager = paginate(request, units_queryset, items=unit_rows)
         edit_unit = pager.object_list[0]
     elif 'id' in request.POST and 'index' in request.POST:
         # GET doesn't specify a unit try POST
@@ -284,7 +284,7 @@ def translate_page(request, units_queryset, store=None):
     if step_queryset is None:
         step_queryset = get_step_query(request, units_queryset)
 
-    prev_unit, edit_unit, pager = get_current_units(request, step_queryset)
+    prev_unit, edit_unit, pager = get_current_units(request, step_queryset, units_queryset)
 
     # time to process POST submission
     form = None
@@ -314,6 +314,13 @@ def translate_page(request, units_queryset, store=None):
             # form failed, don't skip to next unit
             edit_unit = prev_unit
 
+    print edit_unit
+    if edit_unit is not None:
+        print edit_unit.id, edit_unit.index
+    print prev_unit
+    if prev_unit is not None:
+        print prev_unit.id, prev_unit.index
+
     if edit_unit is None:
         # no more units to step through, display end of translation message
         return translate_end(request, translation_project)
@@ -325,36 +332,43 @@ def translate_page(request, units_queryset, store=None):
 
     if store is None:
         store = edit_unit.store
-
+        pager_query = units_queryset
+        preceding = (pager_query.filter(store=store, index__lt=edit_unit.index) | \
+                     pager_query.filter(store__pootle_path__lt=store.pootle_path)).distinct().count()
+        store_preceding = store.units.filter(index__lt=edit_unit.index).count()
+    else:
+        pager_query = store.units
+        preceding = pager_query.filter(index__lt=edit_unit.index).count()
+        store_preceding = preceding
 
     unit_rows = profile.get_unit_rows()
-    preceding = store.units.filter(index__lt=edit_unit.index).count()
 
     # regardless of the query used to step through units, we will
     # display units in their original context, and display a pager for
     # the store not for the unit_step query
     if pager is None:
         page = preceding / unit_rows + 1
-        pager = paginate(request, store.units, items=unit_rows, page=page)
-    units = pager.object_list
+        pager = paginate(request, pager_query, items=unit_rows, page=page)
 
     # we always display the active unit in the middle of the page to
     # provide context for translators
     context_rows = (unit_rows - 1) / 2
-    if preceding > context_rows:
-        unit_position = preceding % unit_rows
+    if store_preceding > context_rows:
+        unit_position = store_preceding % unit_rows
         if unit_position < context_rows:
             # units too close to the top of the batch
             offset = unit_rows - (context_rows - unit_position)
             units_query = store.units[offset:]
-            page = preceding / unit_rows
+            page = store_preceding / unit_rows
             units = paginate(request, units_query, items=unit_rows, page=page).object_list
         elif unit_position >= unit_rows - context_rows:
             # units too close to the bottom of the batch
             offset = context_rows - (unit_rows - unit_position - 1)
             units_query = store.units[offset:]
-            page = preceding / unit_rows + 1
+            page = store_preceding / unit_rows + 1
             units = paginate(request, units_query, items=unit_rows, page=page).object_list
+    else:
+        units = store.units[:unit_rows]
 
     # caluclate url querystring so state is retained on POST
     # we can't just use request URL cause unit and page GET vars cancel state
