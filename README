@@ -36,16 +36,19 @@ commands as well.
 
 Use --help to see the other options. The defaults will generally work.
 
-Now visit http://localhost:8000/ and begin translating.
+Now visit http://localhost:8000/ to try out Pootle.
 
 To stop the server, press Ctrl-C.
 
-It is not recommended to run Pootle as the root user.
+It is not recommended to run Pootle as the root user.  For any non-trivial
+installation of Pootle, ensure that you use a database server (not SQLite) and
+use memcached.  Other important information about optimisation is available in
+the Pootle documenation:
+       http://translate.sourceforge.net/wiki/pootle/optimisation
 
-Pootle can run under Apache using mod_python or mod_wsgi, but this requires
-modifications to Apache's config files. Check
+Pootle can run under Apache using mod_python or mod_wsgi. Check this page for
+detailed instructions:
         http://translate.sourceforge.net/wiki/pootle/apache
-for detailed instructions
 
 
 Manual preparation

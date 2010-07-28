@@ -7,7 +7,7 @@ performance and functionality in Pootle.
 
 Python version 2.4 or later is required.
 
-Pootle requires Django (at least version 1.0)
+Pootle requires Django (at least version 1.1)
 (http://www.djangoproject.com/)
 Django applications can run under Apache using mod_python or mod_wsgi,
 but they're also bundled with a standalone webserver that can be run
@@ -15,10 +15,10 @@ from the command line.  Pootle works well on all Django deployment
 scenarios. The standalone server is the easiest to set up and
 get running, whereas Apache will give the best performance.
 
-To run Pootle you need to have Django 1.0 installed properly
+To run Pootle you need to have Django installed properly
 
-       tar xzvf Django-1.0.2-final.tar.gz
-       cd Django-1.0.2-final
+       tar xzvf Django-1.2.1-final.tar.gz
+       cd Django-1.2.1-final
        sudo python setup.py install
 
 you can also install Django using easy_install
@@ -32,10 +32,13 @@ command line client must be installed and accessible from the PATH.
 Installation of an indexing engine (PyLucene or Xapian) is optional, but helps
 to speed up searching. Note that Xapian before version 1.0.13 is incompatible
 with Apache, and Pootle will not enable Xapian indexing if running under
-mod_python or mod_wsgi with problematic versions.
+mod_python or mod_wsgi with problematic versions. Ensure that xapian-check is
+installed if you want to use Xapian to allow Pootle to check if it is safe to
+use it.
 
-Further performance might be displayed on the admin page if Pootle detects
-anything non-optimal.
+Further information might be displayed on the admin page if Pootle detects
+anything non-optimal.  More information on optimisation and optional software:
+        http://translate.sourceforge.net/wiki/pootle/optimisation
 
 
 Installation
