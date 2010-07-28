@@ -41,13 +41,13 @@
 {% else %}
 <div class="general-message" lang="{{ LANGUAGE_CODE }}">
   <h2>{% trans "Glossary is Empty" %}</h2>
-  <p><a href='{{ "terminology_extract.html"|l }}'>{% trans "Generate Glossary" %}</a></p>
+  <p><a href="{{ "terminology_extract.html"|l }}">{% trans "Generate Glossary" %}</a></p>
 </div>
 {% endif %}
 {% endblock content %}
 
 {% block scripts_extra %}
-<script src='{{ "js/translatepage.js"|m }}' type="text/javascript"></script>
+<script src="{{ "js/translatepage.js"|m }}" type="text/javascript"></script>
 
 {{ block.super }}
 {% endblock %}
