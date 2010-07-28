@@ -1,6 +1,2 @@
-COPYING
 LICENSE
-MANIFEST.in
-README
-build
-setpath
+*.pyc
