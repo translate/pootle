@@ -22,12 +22,14 @@ import os
 import logging
 
 from translate.storage.poxliff import PoXliffFile
+from translate.lang import data
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
+from django.utils.translation import to_locale, ugettext as _
+from django.utils.translation.trans_real import parse_accept_lang_header
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
 from django.conf import settings
@@ -73,6 +75,19 @@ def download(request, pootle_path):
 
 def get_alt_src_langs(request, profile, language):
     langs = profile.alt_src_langs.exclude(id=language.id)
+    if not langs.count():
+        accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
+        codes = []
+        for accept_lang, unused in parse_accept_lang_header(accept):
+            if accept_lang == '*':
+                continue
+            normalized = to_locale(data.normalize_code(data.simplify_to_common(accept_lang)))
+            if normalized in ['en_US', 'en', language.code]:
+                continue
+            codes.append(normalized)
+        if codes:
+            from pootle_language.models import Language
+            langs = Language.objects.filter(code__in=codes)
     return langs
 
 def get_non_indexed_search_step_query(form, units_queryset):
