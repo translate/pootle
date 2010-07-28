@@ -1246,6 +1246,11 @@ table.sortable th
 
 /* PAGER */
 
+div.translation-nav
+{
+    margin-bottom: 1.3em;
+}
+
 ul.pager
 {
     font-size: 85%;

@@ -13,4 +13,6 @@
         <input type="submit" name="{{ text.submitname }}" value="{{ text.savechanges }}" />
     </p>
 </form>
-{{ objects|render_pager }}
+<div class="translation-nav">
+    {{ objects|render_pager }}
+</div>

@@ -8,7 +8,9 @@
 <div class="settings-container centered">
   <p class="message"><a href='{{ "terminology_extract.html"|l }}'>{% trans "You can regenerate the glossary from scratch." %}</a></p>
 
+  <div class="translation-nav">
   {{ objects|render_pager }}
+  </div>
 
   <div class="translate-form">
     <form action="" method="post">
@@ -32,7 +34,9 @@
     </form>
   </div>
 
+  <div class="translation-nav">
   {{ objects|render_pager }}
+  </div>
 </div>
 {% else %}
 <div class="general-message" lang="{{ LANGUAGE_CODE }}">
