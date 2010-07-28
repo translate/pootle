@@ -102,18 +102,20 @@ class PootleProfile(models.Model):
     def getquicklinks(self):
         """gets a set of quick links to user's project-languages"""
         from pootle_app.models.permissions import check_profile_permission
+        projects = self.projects.all()
         quicklinks = []
         for language in self.languages.iterator():
             langlinks = []
-            for translation_project in language.translationproject_set.filter(project__in=self.projects.iterator()).iterator():
-                isprojectadmin = check_profile_permission(self, 'administrate',
-                                                          translation_project.directory)
+            if projects.count():
+                for translation_project in language.translationproject_set.filter(project__in=self.projects.iterator()).iterator():
+                    isprojectadmin = check_profile_permission(self, 'administrate',
+                                                              translation_project.directory)
 
-                langlinks.append({
-                    'code': translation_project.project.code,
-                    'name': translation_project.project.fullname,
-                    'isprojectadmin': isprojectadmin,
-                    })
+                    langlinks.append({
+                        'code': translation_project.project.code,
+                        'name': translation_project.project.fullname,
+                        'isprojectadmin': isprojectadmin,
+                        })
 
             islangadmin = check_profile_permission(self, 'administrate', language.directory)
             quicklinks.append({'code': language.code,
