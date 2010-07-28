@@ -204,7 +204,7 @@ class TranslationProject(models.Model):
             return empty_completestats
         for store in self.stores.filter(state__lt=CHECKED).iterator():
             store.require_qualitychecks()
-        return group_by_count(QualityCheck.objects.filter(unit__store__translation_project=self))
+        return group_by_count(QualityCheck.objects.filter(unit__store__translation_project=self), 'name')
 
 
     def _get_indexer(self):
