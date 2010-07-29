@@ -136,7 +136,7 @@ def import_suggestions(store):
             text = ""
     except:
         text = u"""
-        <li>%s</li>
+        <li class="error">%s</li>
         """ % _('Failed to import suggestions from %s', store.pootle_path)
     return text
 
@@ -152,7 +152,7 @@ def parse_store(store):
                         count, {'count': count, 'store': store.pootle_path})
     except:
         text = u"""
-        <li>%s</li>
+        <li class="error">%s</li>
         """ % _('Failed to import units from %s', store.pootle_path)
     return text
 
