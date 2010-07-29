@@ -165,6 +165,9 @@ OBJECT_CACHE_TIMEOUT = 2500000
 
 # defaults for localsettings vars
 CONTACT_EMAIL = None
+USE_CAPTCHA = False
+AUTOSYNC = False
+MT_BACKENDS = ()
 execfile(config_path("localsettings.py"))
 
 if CONTACT_EMAIL:
