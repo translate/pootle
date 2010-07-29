@@ -96,9 +96,14 @@ def test_indexer():
 
 def test_gaupol():
     try:
-        import gaupol
+        import aeidon
         return True
     except ImportError:
+        try:
+            import gaupol
+            return True
+        except ImportError:
+            pass
         return False
 
 ######################
