@@ -220,6 +220,11 @@ select
     font-weight: inherit;
 }
 
+select[multiple]
+{
+    height: 100px;
+}
+
 legend
 { 
     background-color: inherit;
