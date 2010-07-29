@@ -1639,7 +1639,8 @@ table td.translate-original
 
 .translate-locations,
 .developer-comments,
-.translate-context
+.translate-context,
+.translator-comments
 {
     margin-bottom: 0.5em;
 }
@@ -1682,6 +1683,15 @@ div.translator-comments
 div.translator-comments textarea
 {
     vertical-align: top;
+}
+
+.terminology div.translator-comments
+{
+    background: #eaf0f4 url('images/user_comment.png') no-repeat;
+    background-position: 5px center;
+    border: 1px solid #d2e1ed;
+    overflow: auto;
+    padding: 5px 25px;
 }
 
 
@@ -1986,6 +1996,11 @@ a.collapse
     cursor: pointer;
 }
 
+.collapsethis
+{
+    display: none;
+}
+
 /* DIFF */
 
 .translate-diff-replace
@@ -2054,6 +2069,29 @@ tr.translate-translation-fuzzy td.translate-focus
 textarea.translation
 {
     resize: vertical;
+}
+
+/* TERMINOLOGY MANAGEMENT */
+
+td.translate-delete-terminology input
+{
+    display: block;
+    margin: 0 auto;
+}
+
+.translate-term-original
+{
+    padding: 0 10px;
+}
+
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
 }
 
 /* INLINE SUGGESTIONS */

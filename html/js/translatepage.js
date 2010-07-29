@@ -238,9 +238,8 @@ $(document).ready(function() {
 
   $(".collapse").click(function(event) {
     event.preventDefault();
-    $(this).parent().siblings().slideToggle('fast');
+    $(this).siblings(".collapsethis").slideToggle("fast");
   });
-  $(".collapse").parent().siblings().hide();
 
   $.pootle.addMTButton = function(element, aclass, imgfn, tooltip) {
       var a = document.createElement("a");

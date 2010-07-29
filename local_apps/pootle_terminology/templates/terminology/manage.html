@@ -15,7 +15,7 @@
   <div class="translate-form">
     <form action="" method="post">
       {{ formset.management_form }}
-      <table callpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
       <tr lang="{{ LANGUAGE_CODE }}">
         <th colspan="1" rowspan="1" class="translate-table-title translate-original">{% trans "Term" %}</th>
         <th colspan="1" rowspan="1" class="translate-table-title translate-translation">{% trans "Translation" %}</th>
@@ -24,7 +24,7 @@
       {% for form in formset.forms %}
       <tr class="{% cycle 'even' 'odd' %}">
         {% render_term_edit form %}
-        <td>{% for hidden_field in form.hidden_fields %}{{ hidden_field }}{% endfor %}
+        <td class="translate-delete-terminology">{% for hidden_field in form.hidden_fields %}{{ hidden_field }}{% endfor %}
           {{ form.DELETE }}
         </td>
       </tr>

@@ -1,33 +1,30 @@
-{% load i18n store_tags cleanhtml %}
+{% load i18n baseurl store_tags cleanhtml %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-<!--! Cell with original -->
-<td colspan="1" rowspan="1" class="translate-original" dir="ltr">
-  <div id="orig{{unit.index}}" class="translate-original translate-original-focus comments">
+<td colspan="1" rowspan="1" class="translate-original terminology" dir="ltr">
+  <!-- Original -->
+  <div id="orig{{unit.index}}" class="translate-term-original left">
     {{ form.source_f }}
   </div>
-  <div class="translate-original comments tiny">
-    <p class="tiny"><a class="collapse">{% trans "Description..." %}</a></p>
-    {{ form.developer_comment }}
-  </div>
+  <!-- Add description button -->
+  <a class="collapse left"><img src="{{ "images/comment_add.png"|m }}" title="{% trans "Description..." %}" /></a>
+  <div class="collapsethis tiny">{{ form.developer_comment }}</div>
 </td>
-<td colspan="1" rowspan="1" class="translate-translation">
-  <div id="trans{{unit.index}}" class="translate-translation {% if unit.isfuzzy %}translate-translation-fuzzy{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <!--! Normal view mode -->
-    {% for i, target, title in unit|pluralize_target %}
-    {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-    <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text">{{ target|fancy_highlight }}</div>
-    {% endfor %}
+<td colspan="1" rowspan="1" class="translate-translation terminology">
+  <!-- Additional information button -->
+  <a class="collapse tiny left"><img src="{{ "images/information.png"|m }}" title="{% trans "Details..." %}" /></a>
+  <div id="trans{{unit.index}}" class="translate-term-translation" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <!-- Translation -->
+    <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text">{{ unit.target|fancy_highlight }}</div>
   </div>
   {% if unit.getcontext %}
   <div class="translate-context">
     {{ unit.getcontext }}
   </div>
   {% endif %}
-  <div class="translate-translation comments tiny" lang="{{ LANGUAGE_CODE }}">
-    <p class="tiny"><a class="collapse">{% trans "Details..." %}</a></p>
+  <div class="collapsethis tiny" lang="{{ LANGUAGE_CODE }}">
     {% if unit.translator_comment %}
-    <div title="{% trans "Translator Comments" %}" class="translator-comments" dir="{{ language.dir }}" lang="{{ language.code }}">{{ unit.translator_comment|linebreaks }}</div>
+    <div title="{% trans "Translator Comments" %}" class="translator-comments tiny" dir="{{ language.dir }}" lang="{{ language.code }}">{{ unit.translator_comment }}</div>
     {% endif %}
     {% if unit.locations %}
     <div class="translate-locations" lang="en" dir="ltr">{{ unit.locations }}</div>
