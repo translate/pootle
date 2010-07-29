@@ -115,7 +115,7 @@
         <div class="translate-specialchars-block" lang="{{ language.code }}">
           {% for specialchar in language.specialchars %}
           {% if not specialchar.isspace %}
-          <a class="writespecial" href="#">{{ specialchar }}</a>
+          <a class="writespecial">{{ specialchar }}</a>
           {% else %}
           <span class="extraspace"> </span>
           {% endif %}

@@ -1994,7 +1994,8 @@ div#prevnext[dir="rtl"] + .translate-specialchars-block
 
 a.copyoriginal,
 a.translate-mt,
-a.collapse
+a.collapse,
+a.writespecial
 {
     cursor: pointer;
 }
