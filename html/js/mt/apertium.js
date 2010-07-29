@@ -11,7 +11,7 @@ $(document).ready(function() {
                          "/html/images/apertium.png",
                          "Apertium");
 
-    $(".apertium").click(function(){
+    $(".apertium").click(function() {
       var areas = $("[id^=id_target_f_]");
       var sources = $(this).parent().siblings(".translation-text");
       var lang_from = $.pootle.normalize_code(sources.eq(0).attr("lang"));
@@ -40,13 +40,12 @@ $(document).ready(function() {
               translation = translation.replace("__" + i + "__", argument_subs[i]);
             areas.eq(j).val(translation);
             areas.eq(j).focus();
-            $.pootle.toggleFuzzy(true);
-            $.pootle.toggleFuzzyBox(true);
           } else {
             alert("Apertium Error: " + result.error.message);
           }
         });
       });
+      $.pootle.goFuzzy();
       return false;
     });
   }
