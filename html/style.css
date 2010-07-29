@@ -1728,12 +1728,8 @@ td.translate-full textarea.translation
 
 .sidetitle
 {
-    color: #004077;
-    font-size: small;
-    font-weight: bolder;
-    padding: 2px;
     letter-spacing: .1em;
-    border-bottom: 1px solid #999;
+    padding-bottom: .2em;
     text-align: center;
 }
 
