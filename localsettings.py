@@ -7,13 +7,20 @@ from pootle.install_dirs import *
 
 # Mail settings
 
+# address used for messages sent by Pootle
+#DEFAULT_FROM_EMAIL = 'info@YOUR_DOMAIN.com'
+
 # address to recieve messages sent by contact form
 #CONTACT_EMAIL = 'info@YOUR_DOMAIN.com'
 
 
 # Mail server settings
+
+# by default Pootle uses smtp server on localhost, if the server is
+# not configured for sending emails use these settings to setup and
+# external outgoing SMTP server
+
 #Example for Google as an external SMTP server
-#DEFAULT_FROM_EMAIL = 'DEFAULT_USER@YOUR_DOMAIN.com'
 #EMAIL_HOST_USER = 'USER@YOUR_DOMAIN.com'
 #EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD'
 #EMAIL_HOST = 'smtp.gmail.com'
