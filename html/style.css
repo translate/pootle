@@ -1844,6 +1844,7 @@ td.translate-full textarea.translation
     color: #333;
     padding: 2px 5px 2px 23px;
     text-shadow: 1px 1px 0 #FFFFFF;
+    min-width: 100%;
 }
 
 .translate-buttons-block[dir="rtl"] .submit,
