@@ -58,16 +58,17 @@ def required_depcheck():
 
     status, version = depcheck.test_lxml()
     if status:
-        text = _('lxml version %s installed.', version)
+        text = _('lxml version %s is installed.', version)
         state = 'good'
     elif version is not None:
-        text = _('lxml version %(installed)s. Pootle requires version %(required)s for parsing and exporting XML translation formats', {'installed': version, 'required': "2.1.4"})
+        text = _('lxml version %(installed)s is installed. Pootle requires version %(required)s for XML format support.', {'installed': version, 'required': "2.1.4"})
         state = 'error'
     else:
-        text = _('lxml not installed, Pootle requires lxml for parsing and exporting XML translation formats')
+        text = _('lxml is not installed. Pootle requires lxml for XML format support.')
         state = 'error'
     required.append({'dependency': 'lxml', 'state': state, 'text': text})
     return required
+
 
 def optional_depcheck():
     optional = []
@@ -82,7 +83,7 @@ def optional_depcheck():
 
     if not depcheck.test_gaupol():
         optional.append({'dependency': 'gaupol',
-                         'text': _("Can't find Gaupol. Pootle uses Gaupol's parser to support subtitles formats")})
+                         'text': _("Can't find the aeidon package. Pootle requires Gaupol or aeidon to support subtitle formats.")})
 
     if not depcheck.test_levenshtein():
         optional.append({'dependency': 'levenshtein',
@@ -138,6 +139,7 @@ def optimal_depcheck():
                        'text': _("Running in live translation mode. Live translation is useful as a tool to learn about Pootle and localization, but has high impact on performance.")})
 
     return optimal
+
 
 def server_stats():
     result = cache.get("server_stats")

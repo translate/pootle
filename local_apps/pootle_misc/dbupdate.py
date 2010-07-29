@@ -69,7 +69,7 @@ def header(db_buildversion):
     <h1>%(title)s</h1>
     <p class="error">%(msg)s</p>
     """ % {'title': _('Pootle: Update'),
-           'msg': _('Database tables at build version "%d", will try to update database.', db_buildversion)}
+           'msg': _('Database tables are currently at build version %d. Pootle will now update the database.', db_buildversion)}
     return text
 
 def syncdb():
@@ -118,7 +118,7 @@ def parse_start():
     text = u"""
     <p>%s</p>
     <ul>
-    """ % _('importing units into database, this will take a few minutes.')
+    """ % _('Pootle will now import all the translations into the database. It could take a long time.')
     return text
 
 def import_suggestions(store):
@@ -129,8 +129,8 @@ def import_suggestions(store):
         if count:
             text = u"""
             <li>%s</li>
-            """ % ungettext('imported %(count)d suggestion from %(store)s',
-                            'imported %(count)d suggestions from %(store)s',
+            """ % ungettext('Imported %(count)d suggestion from %(store)s',
+                            'Imported %(count)d suggestions from %(store)s',
                             count, {'count': count, 'store': store.pootle_path})
         else:
             text = ""
@@ -147,8 +147,8 @@ def parse_store(store):
         count = store.getquickstats()['total']
         text = u"""
         <li>%s</li>
-        """ % ungettext('imported %(count)d unit from %(store)s',
-                        'imported %(count)d units from %(store)s',
+        """ % ungettext('Imported %(count)d unit from %(store)s',
+                        'Imported %(count)d units from %(store)s',
                         count, {'count': count, 'store': store.pootle_path})
     except:
         text = u"""
@@ -160,7 +160,7 @@ def parse_end():
     text = u"""
     </ul>
     <p>%s</p>
-    """ % _('Done importing units.')
+    """ % _('All translations are now imported.')
     return text
 
 def footer():
@@ -168,7 +168,7 @@ def footer():
     <p>%(endmsg)s</p>
     <div><script>setTimeout("location.reload()", 10000)</script></div>
     </body></html>
-    """  % { 'endmsg': _('Initialized database, you will be redirected to the front page in 10 seconds') }
+    """  % { 'endmsg': _('Pootle initialized the database. You will be redirected to the front page in 10 seconds.') }
     return text
 
 def staggered_update(db_buildversion):

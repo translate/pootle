@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2010 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -55,10 +55,10 @@ def get_supported_formats():
     formats.append(('php', _('PHP arrays'), phpfile, 'monolingual'))
     try:
         from translate.storage.subtitles import SubRipFile, MicroDVDFile, AdvSubStationAlphaFile, SubStationAlphaFile
-        formats.append(('srt', _('subtitles: SubRip (srt)'), SubRipFile, 'monolingual'))
-        formats.append(('sub', _('subtitles: MicroDVD (sub)'), MicroDVDFile, 'monolingual'))
-        formats.append(('ssa', _('subtitles: Substation Alpha (ssa)'), SubStationAlphaFile, 'monolingual'))
-        formats.append(('ass', _('subtitles: Advanded Substation Alpha (ass)'), AdvSubStationAlphaFile, 'monolingual'))
+        formats.append(('srt', _('Subtitles: SubRip (srt)'), SubRipFile, 'monolingual'))
+        formats.append(('sub', _('Subtitles: MicroDVD (sub)'), MicroDVDFile, 'monolingual'))
+        formats.append(('ssa', _('Subtitles: Substation Alpha (ssa)'), SubStationAlphaFile, 'monolingual'))
+        formats.append(('ass', _('Subtitles: Advanded Substation Alpha (ass)'), AdvSubStationAlphaFile, 'monolingual'))
     except ImportError:
         pass
 

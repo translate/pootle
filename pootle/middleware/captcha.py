@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2010 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -120,7 +120,7 @@ class MathCaptchaForm(forms.Form):
     def clean_captcha_token(self):
         t = self._parse_token(self.cleaned_data['captcha_token'])
         if time.time() > t['expires']:
-            raise forms.ValidationError("Captcha is expired.")
+            raise forms.ValidationError(_("Time to answer has expired"))
         self._plain_question = t['q']
         return t
 
@@ -132,14 +132,13 @@ class MathCaptchaForm(forms.Form):
                     'expires': float(data['expires']),
                     'sign': sign}
         except Exception, e:
-            import sys
-            sys.stderr.write("Captcha error: %r\n" % e)
-            raise forms.ValidationError("Invalid captcha!")
+            logging.info("Captcha error: %r" % e)
+            raise forms.ValidationError("Invalid captcha!") #l10n for bots? Rather not
 
     def clean_captcha_answer(self):
         a = self.A_RE.match(self.cleaned_data.get('captcha_answer'))
         if not a:
-            raise forms.ValidationError("Number is expected!")
+            raise forms.ValidationError(_("Enter a number"))
         return int(a.group(0))
 
     def clean(self):
@@ -154,7 +153,7 @@ class MathCaptchaForm(forms.Form):
             form_sign = self._sign(t['q'], cd['captcha_answer'],
                                    t['expires'])
             if form_sign != t['sign']:
-                self._errors['captcha_answer'] = ["Are you human?"]
+                self._errors['captcha_answer'] = [_("Incorrect")]
         else:
             self.reset_captcha()
         return super(MathCaptchaForm, self).clean()
@@ -172,7 +171,7 @@ class CaptchaMiddleware:
                    'submit' not in request.POST and 'suggest' not in request.POST:
                 return
 
-            # we are in translate page users introducing new urls in
+            # We are in translate page. Users introducing new URLs in the
             # target or comment field are suspect even if authenticated
             try:
                 target_urls = len(URL_RE.findall(request.POST['target_f_0']))
@@ -197,13 +196,12 @@ class CaptchaMiddleware:
             if form.is_valid():
                 request.session['ishuman'] = True
                 return
-            else:
-                raise PermissionDenied('CYLONS NOT ALLOWED')
+
         else:
             form = MathCaptchaForm()
-            ec = {
-                'form': form,
-                'url': request.path,
-                'post_data': request.POST,
-                }
-            return render_to_response('captcha.html', ec, context_instance=RequestContext(request))
+        ec = {
+            'form': form,
+            'url': request.path,
+            'post_data': request.POST,
+            }
+        return render_to_response('captcha.html', ec, context_instance=RequestContext(request))

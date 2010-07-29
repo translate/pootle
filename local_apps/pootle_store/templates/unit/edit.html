@@ -70,7 +70,7 @@
           {% endfor %}
           {% if cansuggest or cantranslate %}
           <div class="translate-toolbar">
-            <a class="copyoriginal"><img src='{{ "images/copy.png"|m }}' title="{% trans 'Copy into translation area' %}" /></a>
+            <a class="copyoriginal"><img src="{{ 'images/copy.png'|m }}" title="{% trans 'Copy into translation' %}" /></a>
           </div>
           {% endif %}
         </div>
@@ -84,7 +84,7 @@
         {% endfor %}
         {% if cansuggest or cantranslate %}
         <div class="translate-toolbar">
-          <a class="copyoriginal" accesskey="c"><img src='{{ "images/copy.png"|m }}' title="{% trans 'Copy into translation area' %}" /></a>
+          <a class="copyoriginal" accesskey="c"><img src="{{ 'images/copy.png'|m }}" title="{% trans 'Copy into translation' %}" /></a>
         </div>
         {% endif %}
       </div>
@@ -143,8 +143,8 @@
               {% endfor %}
               {% if canreview %}
                 <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-                <a title="{{ accept_title }}" accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/tick.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-                <a title="{{ reject_title }}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/cross.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+                <a title="{% trans 'Accept suggestion' %}" accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/tick.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+                <a title="{% trans 'Reject suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/cross.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
               {% endif %}
             </div>
           </div>
