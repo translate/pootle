@@ -89,7 +89,6 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    # Uncomment to use pagecahing
     'pootle_misc.middleware.baseurl.BaseUrlMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'pootle_misc.middleware.siteconfig.SiteConfigMiddleware',
@@ -105,7 +104,6 @@ MIDDLEWARE_CLASSES = (
     'pootle.middleware.check_cookies.CheckCookieMiddleware',
     'pootle.middleware.captcha.CaptchaMiddleware',
     #'pootle.middleware.profile.ProfilerMiddleware',
-    # Uncomment to use pagecaching
     'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
 )
 
