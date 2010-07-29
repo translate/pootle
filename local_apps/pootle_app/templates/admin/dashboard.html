@@ -2,68 +2,96 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{{ block.super }} » {% trans "General Settings" %}
+{{ block.super }} » {% trans "Dashboard" %}
 {% endblock %}
 
 {% block bodyclass %}admindashboard{% endblock %}
 
 {% block breadcrumb_content %}
-{{ block.super }} » {% trans "General Settings" %}
+{{ block.super }} » {% trans "Dashboard" %}
 {% endblock %}
 
-{% block section_description %}{% trans "Configure here the general settings for your site." %}{% endblock %}
+{% block section_description %}{% trans "The dashboard shows the most relevant information about your Pootle server." %}{% endblock %}
 
 {% block section_body %}
-<div id="support">
-  <h2>{% trans "Support" %}</h2>
-  {% blocktrans %}
-  <p> support text here</p>
-  <ul>
-    <li>relevant links here</li>
-    <li>and here</li>
-  </ul>
-  {% endblocktrans %}
+<div id="serverstats" class="module first" lang="{{ LANGUAGE_CODE }}">
+  <div class="hd">
+    <h2>{% trans "Server Statistics" %}</h2>
+  </div>
+  <div class="bd">
+    <table>
+      <tr>
+        <th scope="row">{% trans "Registered users" %}</th><td>{{ server_stats.user_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Projects with translations" %}</th><td>{{ server_stats.project_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Languages with translations" %}</th><td>{{ server_stats.language_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Files with translations" %}</th><td>{{ server_stats.store_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Translated Strings" %}</th><td>{{ server_stats.string_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Translated Words" %}</th><td>{{ server_stats.word_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Submissions" %}</th><td>{{ server_stats.submission_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Total suggestions" %}</th><td>{{ server_stats.suggestion_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Pending suggestions" %}</th><td>{{ server_stats.pending_count }}</td>
+      </tr>
+    </table>
+  </div>
 </div>
-<div id="serverstats">
-  <h2>{% trans "Server Statistics" %}</h2>
-  <dl>
-    <dt>{% trans "Registered users" %}</dt><dd>{{ server_stats.user_count }}</dd>
-    <dt>{% trans "Projects with translations" %}</dt><dd>{{ server_stats.project_count }}</dd>
-    <dt>{% trans "Languages with translations" %}</dt><dd>{{ server_stats.language_count }}</dd>
-    <dt>{% trans "Files with translations" %}</dt><dd>{{ server_stats.store_count }}</dd>
-    <dt>{% trans "Translated Strings" %}</dt><dd>{{ server_stats.string_count }}</dd>
-    <dt>{% trans "Translated Words" %}</dt><dd>{{ server_stats.word_count }}</dd>
-    <dt>{% trans "Submissions" %}</dt><dd>{{ server_stats.submission_count }}</dd>
-    <dt>{% trans "Total suggestions" %}</dt><dd>{{ server_stats.suggestion_count }}</dd>
-    <dt>{% trans "Pending suggestions" %}</dt><dd>{{ server_stats.pending_count }}</dd>
-  </dl>
+<div id="support" class="module" lang="{{ LANGUAGE_CODE }}">
+  <div class="hd">
+    <h2>{% trans "Support" %}</h2>
+  </div>
+  <div class="bd">
+    {% blocktrans %}
+    <p> support text here</p>
+    <ul>
+      <li>relevant links here</li>
+      <li>and here</li>
+    </ul>
+    {% endblocktrans %}
+  </div>
 </div>
-<div id="news">
-  <h2>{% trans "Pootle Alerts" %}</h2>
-INSERT RSS FEED HERE
-</div>
-<div id="depchecks">
+<div style="clear: left;"> </div>
+<div id="depchecks" class="module first" lang="{{ LANGUAGE_CODE }}">
+  <div class="hd">
     <h2>{% trans "Dependency Checks" %}</h2>
+  </div>
+  <div class="bd">
     <ul id="required">
-        {% for dep in required %}
-        <li class="{{ dep.state }} {{ dep.dependency }}">{{ dep.text }}</li>
-        {% endfor %}
+      {% for dep in required %}
+      <li class="{{ dep.state }} {{ dep.dependency }}">{{ dep.text }}</li>
+      {% endfor %}
     </ul>
     {% if optional %}
     <h3>{% trans "Optional" %}</h3>
     <ul id="optional">
-        {% for dep in optional %}
-        <li class="warning {{ dep.dependency }}">{{ dep.text }}</li>
-        {% endfor %}
+      {% for dep in optional %}
+      <li class="warning {{ dep.dependency }}">{{ dep.text }}</li>
+      {% endfor %}
     </ul>
     {% endif %}
     {% if optimal %}
     <h3>{% trans "Optimizations" %}</h3>
     <ul id="optimal">
-        {% for dep in optimal %}
-        <li class="warning {{ dep.dependency }}">{{ dep.text }}</li>
-        {% endfor %}
+      {% for dep in optimal %}
+      <li class="warning {{ dep.dependency }}">{{ dep.text }}</li>
+      {% endfor %}
     </ul>
     {% endif %}
+  </div>
 </div>
+{% include "admin/rss_widget.html" %}
 {% endblock %}

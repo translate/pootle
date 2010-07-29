@@ -61,17 +61,28 @@
 
 {% block postcontent %}
 <div class="module" lang="{{ LANGUAGE_CODE }}">
-    <div class="hd">
-        <h2>{% trans "User Statistics" %}</h2>
-    </div>
-    <div class="bd">
-        <table>
-            {% for stat in profile.getuserstatistics %}
-            <tr>
-                <th scope="row">{{ stat.text }}</th><td>{{ stat.count }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+  <div class="hd">
+    <h2>{% trans "User Statistics" %}</h2>
+  </div>
+  <div class="bd">
+    <table>
+      {% for stat in profile.getuserstatistics %}
+      <tr>
+        <th scope="row">{{ stat.text }}</th><td>{{ stat.count }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
 </div>
+{% if user.is_superuser %}
+<div style="clear: right;" />
+{% include "admin/rss_widget.html" %}
+{% endif %}
 {% endblock %}
+
+{% if user.is_superuser %}
+{% block scripts_extra %}
+{{ block.super }}
+<script type="text/javascript" src="{{ "js/admin.js"|m }}"></script>
+{% endblock %}
+{% endif %}

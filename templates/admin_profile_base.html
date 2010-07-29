@@ -1,5 +1,5 @@
 {% extends "base.html"  %}
-{% load i18n %}
+{% load i18n baseurl %}
 
 {% block title %}
 {{ block.super }}: {% trans "Administration" %}
@@ -21,4 +21,9 @@
 
     {% block section_body %}{% endblock %}
 </div>
+{% endblock %}
+
+{% block scripts_extra %}
+{{ block.super }}
+<script type="text/javascript" src="{{ "js/admin.js"|m }}"></script>
 {% endblock %}

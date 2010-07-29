@@ -1,0 +1,14 @@
+{% load i18n baseurl %}
+<div id="rss-alerts">
+  <div class="module" lang="{{ LANGUAGE_CODE }}">
+    <div class="hd">
+      <h2>{% trans "Pootle Alerts" %}</h2>
+    </div>
+    <div class="bd">
+      <div class="centered">
+        <img src="{{ "images/throbber.gif"|m }}" />
+        <h3>{% trans 'Loading Latest Updates...' %}</h3>
+      </div>
+    </div>
+  </div>
+</div>

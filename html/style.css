@@ -958,7 +958,12 @@ div#settings
     margin-bottom: 2em;
 }
 
-/* ADMIN DEPENDENCY CHECKS */
+
+/*
+ * ADMIN DASHBOARD
+ */
+
+/* DEPENDENCY CHECKS */
 
 div#depchecks ul
 {
@@ -1012,6 +1017,14 @@ div#depchecks ul li.error
 html[dir="rtl"] div#depchecks ul li.error
 {
     background-position: right;
+}
+
+/* ADMIN RSS NEWS FEED */
+
+#rss-alerts div.bd div.centered
+{
+    width: 100%;
+    text-align: center;
 }
 
 /* ADMIN LANGUAGES, FILES */
