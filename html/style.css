@@ -2094,53 +2094,6 @@ td.translate-delete-terminology input
     float: right;
 }
 
-/* INLINE SUGGESTIONS */
-
-ul.sugglist
-{
-    clear: both;
-}
-
-a.sugglink[dir="ltr"]
-{
-    float: right;
-    padding-right: 1em;
-}
-
-a.sugglink[dir="rtl"]
-{
-    float: left;
-    padding-left: 1em;
-}
-
-span.suggauthor[dir="ltr"]
-{
-    float: right;
-}
-
-span.suggauthor[dir="rtl"]
-{
-    float: left;
-}
-
-div.suggestions
-{
-    font-style: italic;
-    margin-bottom: 6px;
-    margin-top: 6px;
-}
-
-div.suggestions ul li
-{
-    padding-left: 0.5em;
-}
-
-html[dir="rtl"] div.suggestions ul li
-{
-    padding-left: 0;
-    padding-right: 0.5em;
-}
-
 
 /*
  * LANGUAGE SPECIFIC SETTINGS
