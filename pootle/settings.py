@@ -163,7 +163,12 @@ ACCOUNT_ACTIVATION_DAYS = 10
 # keep stats cache for roughly a month
 OBJECT_CACHE_TIMEOUT = 2500000
 
+# defaults for localsettings vars
+CONTACT_EMAIL = None
 execfile(config_path("localsettings.py"))
+
+if CONTACT_EMAIL:
+    MANAGERS += (('CONTACT', CONTACT_EMAIL),)
 
 if LIVE_TRANSLATION:
     # Look for localization files under PODIRECTORY/pootle

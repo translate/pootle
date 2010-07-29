@@ -5,6 +5,12 @@
 # Import some helper functions:
 from pootle.install_dirs import *
 
+# Mail settings
+
+# address to recieve messages sent by contact form
+#CONTACT_EMAIL = 'info@YOUR_DOMAIN.com'
+
+
 # Mail server settings
 #Example for Google as an external SMTP server
 #DEFAULT_FROM_EMAIL = 'DEFAULT_USER@YOUR_DOMAIN.com'
