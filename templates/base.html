@@ -64,6 +64,9 @@
                             {% endif %}
                             <li class="menubaritem"><a href='{{ "/accounts/login/"|l }}'>{% trans "Log In" %}</a></li>
                             {% endif %}
+			    {% if settings.CAN_CONTACT %}
+			    <li class="menubaritem"><a href='{{ "/contact/"|l }}'>{% trans "Contact" %}</a></li>
+			    {% endif %}
                         </ul>
                         {% endblock menu %}
                     </div>

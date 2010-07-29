@@ -168,6 +168,8 @@ CONTACT_EMAIL = None
 USE_CAPTCHA = False
 AUTOSYNC = False
 MT_BACKENDS = ()
+CAN_CONTACT = True
+
 execfile(config_path("localsettings.py"))
 
 if CONTACT_EMAIL:
