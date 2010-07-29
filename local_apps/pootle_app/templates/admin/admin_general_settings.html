@@ -20,29 +20,4 @@
   <input type="submit" value='{% trans "Save" %}' />
 </form>
 </div>
-<div id="depchecks">
-    <h2>{% trans "Dependency Checks" %}</h2>
-    <ul id="required">
-        {% for dep in required %}
-        <li class="{{ dep.state }} {{ dep.dependency }}">{{ dep.text }}</li>
-        {% endfor %}
-    </ul>
-    {% if optional %}
-    <h3>{% trans "Optional" %}</h3>
-    <ul id="optional">
-        {% for dep in optional %}
-        <li class="warning {{ dep.dependency }}">{{ dep.text }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% if optimal %}
-    <h3>{% trans "Optimizations" %}</h3>
-    <ul id="optimal">
-        {% for dep in optimal %}
-        <li class="warning {{ dep.dependency }}">{{ dep.text }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-</div>
 {% endblock %}
-

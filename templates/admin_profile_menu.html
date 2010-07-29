@@ -2,7 +2,8 @@
 
 <div id="submenu" lang="{{ LANGUAGE_CODE }}">
     <div id="submenu-tabs">
-        <a href='{{ "."|l }}' class="admingeneral" title="{% trans 'Configure the general settings for your site' %}">{% trans "General" %}</a>
+      <a href='{{ "/admin/"|l}}' class="admindashboard" title="{% trans 'Information and statistics about this Pootle server' %}">{% trans "Info" %}</a> 
+        <a href='{{ "/admin/general.html"|l }}' class="admingeneral" title="{% trans 'Configure the general settings for your site' %}">{% trans "General" %}</a>
         <a href='{{ "/admin/users.html"|l }}' class="adminusers" title="{% trans 'Manage the users' %}">{% trans "Users" %}</a>
         <a href='{{ "/admin/languages.html"|l }}' class="adminlanguages" title="{% trans 'Manage the languages' %}">{% trans "Languages" %}</a>
         <a href='{{ "/admin/projects.html"|l }}' class="adminprojects" title="{% trans 'Manage the projects' %}">{% trans "Projects" %}</a>
