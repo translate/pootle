@@ -44,8 +44,10 @@ urlpatterns = patterns('',
     (r'^export/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.PODIRECTORY}),
     # documentation
     (r'^docs/(?P<docfile>.*)$', 'django.views.generic.simple.direct_to_template', {'template': "docs.html"}),
-    # Pootle urls
+    # External Apps
+    (r'^contact/', include('contact_form_i18n.urls')),
     (r'^accounts/', include('pootle_profile.urls')),
+    # Pootle urls
     (r'^projects/', include('pootle_project.urls')),
     (r'', include('pootle_notifications.urls')),
     (r'', include('pootle_terminology.urls')),

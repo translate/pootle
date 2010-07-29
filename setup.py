@@ -97,6 +97,7 @@ def collect_options():
         'pootle_terminology': 'local_apps/pootle_terminology',
         'pootle_translationproject': 'local_apps/pootle_translationproject',
         'registration': 'external_apps/registration',
+        'contact_form_i18n': 'external_apps/contact_form_i18n',
         'profiles':     'external_apps/profiles',
         'djblets':      'external_apps/djblets',
     }
