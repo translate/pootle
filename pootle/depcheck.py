@@ -51,7 +51,7 @@ def test_sqlite():
 
 def test_django():
     from django import VERSION, get_version
-    if VERSION[0] == 1:
+    if VERSION >= (1,2,0):
         return True, get_version()
     else:
         return False, get_version()

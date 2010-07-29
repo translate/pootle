@@ -52,7 +52,7 @@ def required_depcheck():
         text = _('Django version %s is installed.', version)
         state = 'good'
     else:
-        text = _('Django version %s is installed. Pootle only works with the 1.x series.')
+        text = _('Django version %s is installed, but a higher version is highly recommended.', version)
         state = 'error'
     required.append({'dependency': 'django', 'state': state, 'text': text})
 
