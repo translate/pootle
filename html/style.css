@@ -1742,9 +1742,14 @@ td.translate-full textarea.translation
 {
     margin: 5px 0px 5px 0px;
     padding: 0px 2px 0px 0px;
-    background-color: #F7F7F7;
+    background-color: #FFFFFF;
     position: relative;
     cursor: pointer;
+}
+
+tr.odd .tm-unit
+{
+    background-color:  #F7F7F5;
 }
 
 .tm-original
