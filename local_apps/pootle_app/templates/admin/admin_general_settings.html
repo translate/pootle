@@ -16,16 +16,8 @@
 {% block section_body %}
 <div id="settings">
 <form action="" method="post">
-    {% for field in form %}
-    <p>
-        {{ field.label_tag }}
-        {{ field }}
-        {% if field.help_text %}
-        <span class="help_text">{{ field.help_text }}</span>
-        {% endif %}
-    </p>
-    {% endfor %}
-    <input type="submit" value='{% trans "Save" %}' />
+  {{ form.as_p }}
+  <input type="submit" value='{% trans "Save" %}' />
 </form>
 </div>
 <div id="depchecks">
