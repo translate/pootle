@@ -64,9 +64,6 @@
                             {% endif %}
                             <li class="menubaritem"><a href='{{ "/accounts/login/"|l }}'>{% trans "Log In" %}</a></li>
                             {% endif %}
-			    {% if settings.CAN_CONTACT %}
-			    <li class="menubaritem"><a href='{{ "/contact/"|l }}'>{% trans "Contact" %}</a></li>
-			    {% endif %}
                         </ul>
                         {% endblock menu %}
                     </div>
@@ -116,6 +113,9 @@
                 <ul class="nav">
                     <li><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
                     <li><a href='{{ "/docs/index.html"|l }}'>{% trans "Help" %}</a></li>
+                    {% if settings.CAN_CONTACT %}
+                    <li><a href='{{ "/contact/"|l }}'>{% trans "Contact Us" %}</a></li>
+                    {% endif %}
                     <li><a href='{{ "/about.html"|l }}'>{% trans "About this Pootle Server" %}</a></li>
                 </ul>
                 {% endblock footer %}
