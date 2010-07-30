@@ -1,5 +1,5 @@
 $(document).ready(function() {
-   var feed_url = "http://pootle.locamotion.org/dashboard/alerts.xml";
+   var feed_url = "http://fish.locamotion.org/dashboard/alerts.xml";
    /* Number of items to display */
    var n = 5;
    $.ajax({
