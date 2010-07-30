@@ -73,8 +73,10 @@ def download(request, pootle_path):
 
 ####################### Translate Page ##############################
 
-def get_alt_src_langs(request, profile, language):
-    langs = profile.alt_src_langs.exclude(id=language.id)
+def get_alt_src_langs(request, profile, translation_project):
+    language = translation_project.language
+    source_language = translation_project.project.source_language
+    langs = profile.alt_src_langs.exclude(id__in=(language.id, source_language.id))
     if not langs.count():
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
         codes = []
@@ -82,7 +84,8 @@ def get_alt_src_langs(request, profile, language):
             if accept_lang == '*':
                 continue
             normalized = to_locale(data.normalize_code(data.simplify_to_common(accept_lang)))
-            if normalized in ['en_US', 'en', language.code]:
+            code = to_locale(accept_lang)
+            if normalized in (source_language.code, language.code) or code in (source_language.code, language.code):
                 continue
             codes.append(normalized)
         if codes:
@@ -381,7 +384,7 @@ def translate_page(request, units_queryset, store=None):
         checks.append(_('checking %s', link))
 
     # precalculate alternative source languages
-    alt_src_langs = get_alt_src_langs(request, profile, language)
+    alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     alt_src_codes = alt_src_langs.values_list('code', flat=True)
 
     context = {
