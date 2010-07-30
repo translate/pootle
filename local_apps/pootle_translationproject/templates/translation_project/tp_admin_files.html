@@ -8,7 +8,14 @@
 
 {% block bodyclass %}tpadminfiles{% endblock %}
 
-{% block section_description %}{% blocktrans %}Here you can delete the available files in this translation project. You may also want to <a href="?scan_files=1">rescan the project files</a> or <a href="?template_update=1">update the files from templates</a>.{% endblocktrans %}{% endblock %}
+{% block section_description %}{% trans "Here you can manage the files in this translation project." %}
+<div id="filesmanage">
+  <form action="" method="post">
+    <input type="submit" name="template_update" value='{% trans "update files from templates" %}' /> <br/>
+    <input type="submit" name="scan_files" value='{% trans "rescan project files" %}' />
+  </form>
+</div>
+{% endblock %}
 
 {% block section_body %}
 {% include "admin/admin_general.html" %}

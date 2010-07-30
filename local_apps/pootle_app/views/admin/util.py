@@ -150,7 +150,7 @@ def process_modelformset(request, model_class, queryset, **kwargs):
 
 
     # If the request is a POST, we want to possibly update our data
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST:
         # Create a formset from all the 'model_class' instances whose values will
         # be updated using the contents of request.POST
         objects = paginate(request, queryset)

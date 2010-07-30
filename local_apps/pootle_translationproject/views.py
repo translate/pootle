@@ -40,7 +40,6 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models             import Directory
 from pootle_app.lib import view_handler
-from pootle_app.project_tree import scan_translation_project_files, convert_templates
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_app.views.base import BaseView
 from pootle_app.views.language import navbar_dict, dispatch, item_dict
@@ -55,9 +54,6 @@ from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
 from pootle_statistics.models import Submission
 from pootle_profile.models import get_profile
-
-from pootle_translationproject.models import TranslationProject
-
 
 class TPTranslateView(BaseView):
     def GET(self, template_vars, request, translation_project, directory):
@@ -164,19 +160,16 @@ class StoreFormset(BaseModelFormSet):
 @util.has_permission('administrate')
 def tp_admin_files(request, translation_project):
     queryset = translation_project.stores.all()
-    try:
-        template_translation_project = TranslationProject.objects.get(project=translation_project.project,
-                                                                      language__code='templates')
-        if 'template_update' in request.GET:
-            convert_templates(template_translation_project, translation_project)
-    except TranslationProject.DoesNotExist:
-        pass
+    if 'template_update' in request.POST:
+        translation_project.update_from_templates()
+        request.POST = {}
 
-    if 'scan_files' in request.GET:
+    if 'scan_files' in request.POST:
         translation_project.scan_files()
         for store in translation_project.stores.exclude(file='').iterator():
             store.sync(update_translation=True)
             store.update(update_structure=True, update_translation=True, conservative=False)
+        request.POST = {}
 
     model_args = {
         'title': _("Files"),
