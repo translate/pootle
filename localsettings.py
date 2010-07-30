@@ -7,20 +7,20 @@ from pootle.install_dirs import *
 
 # Mail settings
 
-# address used for messages sent by Pootle
+# Address used for messages sent by Pootle.
 #DEFAULT_FROM_EMAIL = 'info@YOUR_DOMAIN.com'
 
-# address to recieve messages sent by contact form
+# Address to receive messages sent by contact form.
 #CONTACT_EMAIL = 'info@YOUR_DOMAIN.com'
 
 
 # Mail server settings
 
-# by default Pootle uses smtp server on localhost, if the server is
+# By default Pootle uses SMTP server on localhost, if the server is
 # not configured for sending emails use these settings to setup and
-# external outgoing SMTP server
+# external outgoing SMTP server.
 
-#Example for Google as an external SMTP server
+# Example for Google as an external SMTP server
 #EMAIL_HOST_USER = 'USER@YOUR_DOMAIN.com'
 #EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD'
 #EMAIL_HOST = 'smtp.gmail.com'
@@ -121,17 +121,17 @@ AUTH_LDAP_FIELDS = {
         #'email':''
         }
 
-# set this to False to disable user registration, admins will still be
-# able to create user accounts
+# Set this to False to disable user registration, admins will still be
+# able to create user accounts.
 CAN_REGISTER = True
 
-# set this to True to enable spam prevention through captcha, only
+# Set this to True to enable spam prevention through captcha, only
 # useful for public Pootle instances.
 USE_CAPTCHA = False
 
-# set this to True if you want translation files to be updated
+# Set this to True if you want translation files to be updated
 # immediatly.
-# note that this negatively affects performance and
+# Note that this negatively affects performance and
 # should be avoided unless another application needs direct access to
 # the files.
 AUTOSYNC = False
