@@ -400,6 +400,7 @@ def translate_page(request, units_queryset, store=None):
         'language': language,
         'translation_project': translation_project,
         'project': translation_project.project,
+        'source_language': translation_project.project.source_language,
         'directory': store.parent,
         'GET_state': '&'.join(GET_vars),
         'checks': checks,

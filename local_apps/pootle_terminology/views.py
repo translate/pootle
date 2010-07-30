@@ -106,6 +106,7 @@ def manage(request, translation_project):
         "translation_project": translation_project,
         "language": translation_project.language,
         "project": translation_project.project,
+        "source_language": translation_project.project.source_language,
         "directory": translation_project.directory,
         'formid': 'terminology-manage',
         'submitname': 'changeterminology'

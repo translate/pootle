@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <!--! Cell with original -->
-<td colspan="2" rowspan="1" class="translate-full translate-focus" dir="ltr">
+<td colspan="2" rowspan="1" class="translate-full translate-focus" dir="{{ source_language.get_direction }}">
   <div class="translate-container">
     {{ form.id.as_hidden }}
     {{ form.index.as_hidden }}
@@ -15,8 +15,8 @@
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology" %}</div>
         {% for term in terms %}
         <div class="tm-unit writetm" title="{{ unit.getnotes }}">
-          <span class="tm-original" dir="ltr" lang="en">{{ term.source }}</span>
-          <span class="tm-translation" dir="{{ language.dir }}" lang="{{ language.code }}">{{ term.target }}</span>
+          <span class="tm-original" dir="{{ source_language.get_direction }}" lang="{{ source_language.code }}">{{ term.source }}</span>
+          <span class="tm-translation" dir="{{ language.get_direction }}" lang="{{ language.code }}">{{ term.target }}</span>
         </div>
         {% endfor %}
       </div>
@@ -26,7 +26,7 @@
     <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
       {% if unit.get_qualitychecks.count %}
       <!-- Quality Checks -->
-      <div id="translate-checks-block" lang="en" dir="ltr">
+      <div id="translate-checks-block" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">
           <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title='{% trans "Possible issues with the translation" %}'>{% trans "Failing Checks" %}</div>
           <ul class="checks">
           {% for check in unit.get_qualitychecks.iterator %}
@@ -52,7 +52,7 @@
       {% if unit.developer_comment or unit.locations %}
       <div class="comments">
         {% if unit.developer_comment %}
-        <div class="developer-comments" lang="en" dir="ltr"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|linebreaks }}</div>
+        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|linebreaks }}</div>
         {% endif %}
         {% if unit.locations and not unit.developer_comment %}
         <div class="translate-locations" lang="en" dir="ltr">{{ unit.locations }}</div>
@@ -80,7 +80,7 @@
       <div class="translate-original translate-original-focus">
         {% for i, source, title in unit|pluralize_source %}
         {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-        <div class="translation-text" lang="en">{{ source|fancy_highlight }}</div>
+        <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ source|fancy_highlight }}</div>
         {% endfor %}
         {% if cansuggest or cantranslate %}
         <div class="translate-toolbar">

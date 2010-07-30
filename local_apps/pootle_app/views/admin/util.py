@@ -196,6 +196,8 @@ def edit(request, template, model_class,
         template_vars["project"] = model_args['project']
     if 'language' in model_args:
         template_vars['language'] = model_args['language']
+    if 'source_language' in model_args:
+        template_vars['source_language'] = model_args['source_language']
     if 'directory' in model_args:
         template_vars['directory'] = model_args['directory']
     if 'navitems' in model_args:

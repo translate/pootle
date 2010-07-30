@@ -24,13 +24,10 @@ from pootle_profile.models import get_profile
 register = template.Library()
 @register.inclusion_tag('terminology/term_edit.html', takes_context=True)
 def render_term_edit(context, form):
-    request = context['request']
-    profile = get_profile(context['user'])
     unit = form.instance
-    translation_project = context['translation_project']
-    project = translation_project.project
     template_vars = {'unit': unit,
                      'form': form,
                      'language': context['language'],
+                     'source_language': context['source_language'],
                      }
     return template_vars

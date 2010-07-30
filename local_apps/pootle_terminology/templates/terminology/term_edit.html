@@ -1,7 +1,7 @@
 {% load i18n baseurl store_tags cleanhtml %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-<td colspan="1" rowspan="1" class="translate-original terminology" dir="ltr">
+<td colspan="1" rowspan="1" class="translate-original terminology" dir="{{ source_language.get_direction }}">
   <!-- Original -->
   <div id="orig{{unit.index}}" class="translate-term-original left">
     {{ form.source_f }}

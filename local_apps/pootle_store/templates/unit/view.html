@@ -2,11 +2,11 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <!--! Cell with original -->
-<td colspan="1" rowspan="1" class="translate-original" dir="ltr">
+<td colspan="1" rowspan="1" class="translate-original" dir="{{ souce_language.get_direction }}">
   <div id="orig{{ unit.index }}" class="translate-original">
     {% for i, source, title in unit|pluralize_source %}
     {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-    <div class="translation-text" lang="en">{{ source|fancy_highlight }}</div>
+    <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ source|fancy_highlight }}</div>
     {% endfor %}
   </div>
   {% if show_comments %}
@@ -17,7 +17,7 @@
   {% endif %}
   <div class="translate-original comments">
     {% if unit.developer_comment %}
-    <div title="{% trans "Developer Comments"}" class="developer-comments" lang="en" dir="ltr">{{ unit.developer_comment|linebreaks }}</div>
+    <div title="{% trans "Developer Comments"}" class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ unit.developer_comment|linebreaks }}</div>
     {% endif %}
     {% if unit.locations %}
     <div class="translate-locations" lang="en" dir="ltr">{{ unit.locations }}</div>

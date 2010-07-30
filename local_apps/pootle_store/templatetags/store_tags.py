@@ -154,9 +154,10 @@ def render_unit_edit(context, form):
                      'form': form,
                      'store': store,
                      'language': context['language'],
-                     "cantranslate": context['cantranslate'],
-                     "cansuggest": context['cansuggest'],
-                     "canreview": context['canreview'],
+                     'source_language': context['source_language'],
+                     'cantranslate': context['cantranslate'],
+                     'cansuggest': context['cansuggest'],
+                     'canreview': context['canreview'],
                      'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
                      "suggestions": get_sugg_list(unit),
                      }
@@ -166,6 +167,7 @@ def render_unit_edit(context, form):
 def render_unit_view(context, unit, show_comments=False):
     template_vars = {'unit': unit,
                      'language': context['language'],
+                     'source_language': context['source_language'],
                      'show_comments': show_comments,
                      }
     return template_vars
