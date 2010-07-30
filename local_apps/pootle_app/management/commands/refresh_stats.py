@@ -27,7 +27,6 @@ from optparse import make_option
 from django.core.management.base import NoArgsCommand
 
 from pootle_translationproject.models import TranslationProject
-from pootle_app import project_tree
 
 class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
@@ -55,7 +54,7 @@ class Command(NoArgsCommand):
                 continue
 
             # rescan translation_projects
-            project_tree.scan_translation_project_files(translation_project)
+            translation_project.scan_files()
             if recompute:
                 for store in translation_project.stores.iterator():
                     # We force stats and indexing information to be recomputed by

@@ -173,7 +173,7 @@ def tp_admin_files(request, translation_project):
         pass
 
     if 'scan_files' in request.GET:
-        scan_translation_project_files(translation_project)
+        translation_project.scan_files()
         for store in translation_project.stores.exclude(file='').iterator():
             store.sync(update_translation=True)
             store.update(update_structure=True, update_translation=True, conservative=False)
@@ -396,7 +396,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         empty_store = factory.getobject(absolute_real_path(upload_path), classes=factory_classes)
         # And save it...
         empty_store.save()
-        scan_translation_project_files(request.translation_project)
+        request.translation_project.scan_files()
         # Then we open this newly created file and merge the
         # uploaded file into it.
         store = Store.objects.get(file=upload_path)
@@ -505,7 +505,7 @@ class UploadHandler(view_handler.Handler):
         if self.form.is_valid() and 'file' in request.FILES:
             django_file = self.form.cleaned_data['file']
             overwrite = self.form.cleaned_data['overwrite']
-            scan_translation_project_files(translation_project)
+            translation_project.scan_files()
             oldstats = translation_project.getquickstats()
             # The URL relative to the URL of the translation project. Thus, if
             # directory.pootle_path == /af/pootle/foo/bar, then
@@ -516,7 +516,7 @@ class UploadHandler(view_handler.Handler):
             else:
                 archive = False
                 upload_file(request, directory, django_file, overwrite)
-            scan_translation_project_files(translation_project)
+            translation_project.scan_files()
             newstats = translation_project.getquickstats()
 
             # create a submission, doesn't fix stats but at least

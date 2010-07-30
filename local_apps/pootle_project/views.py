@@ -130,10 +130,7 @@ def project_admin(request, project_code):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to administer this project."))
 
-    try:
-        template_translation_project = TranslationProject.objects.get(project=current_project, language__code='templates')
-    except TranslationProject.DoesNotExist:
-        template_translation_project = None
+    template_translation_project = current_project.get_template_translationproject()
 
     class TranslationProjectForm(forms.ModelForm):
         if template_translation_project is not None:
@@ -151,8 +148,9 @@ def project_admin(request, project_code):
                 if self.cleaned_data.get('initialize', None):
                     self.instance.initialize()
 
-                if self.cleaned_data.get('update', None):
-                    project_tree.convert_templates(template_translation_project, self.instance)
+                if self.cleaned_data.get('update', None) or not self.instance.stores.count():
+                    print self.instance.stores.count()
+                    self.instance.update_from_templates()
 
     queryset = TranslationProject.objects.filter(project=current_project).order_by('pootle_path')
     model_args = {}
