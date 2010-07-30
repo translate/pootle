@@ -35,3 +35,5 @@ _("Optionally select the file you want to merge with. If not specified, the uplo
 
 # l10n: The language from which translation will happen
 _("Source Language")
+
+_("Android strings")
