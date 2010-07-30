@@ -47,6 +47,11 @@ def get_supported_formats():
         formats.append(('tbx', _('TBX'), tbxfile, 'bilingual'))
     except ImportError:
         pass
+    try:
+        from translate.storage.catkeys import CatkeysFile
+        formats.append(('catkeys', _('Haiku catkeys'), CatkeysFile, 'bilingual'))
+    except ImportError:
+        pass
 
     # Monolingual formats
     from translate.storage.properties import propfile
