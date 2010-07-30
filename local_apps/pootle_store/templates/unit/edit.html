@@ -24,12 +24,12 @@
       {% endwith %}
     </div>
     <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
-      {% if unit.qualitycheck_set.all %}
+      {% if unit.get_qualitychecks.count %}
       <!-- Quality Checks -->
       <div id="translate-checks-block" lang="en" dir="ltr">
           <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title='{% trans "Possible issues with the translation" %}'>{% trans "Failing Checks" %}</div>
           <ul class="checks">
-          {% for check in unit.qualitycheck_set.iterator %}
+          {% for check in unit.get_qualitychecks.iterator %}
           <li class="check">
             <a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}">{{ check.name }}</a>
             {% if canreview %}

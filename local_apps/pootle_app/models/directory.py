@@ -129,7 +129,7 @@ class Directory(models.Model):
         dir_result  = completestatssum(self.child_dirs.iterator())
         stats = dictsum(file_result, dir_result)
         return stats
-        #queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path)
+        #queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path, false_positive=False)
         #return group_by_count(queryset, 'name')
 
     def trail(self, only_dirs=True):

@@ -164,7 +164,8 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.exclude(suggestion=None)
                 matchnames.remove('hassuggestion')
             if matchnames:
-                match_queryset = match_queryset | units_queryset.filter(qualitycheck__name__in=matchnames)
+                match_queryset = match_queryset | units_queryset.filter(
+                    qualitycheck__false_positive=False, qualitycheck__name__in=matchnames)
             units_queryset = match_queryset
 
     return units_queryset.distinct()
@@ -510,7 +511,8 @@ def reject_qualitycheck(request, uid, checkid):
     if request.POST.get('reject'):
         try:
             check = unit.qualitycheck_set.get(id=checkid)
-            check.delete()
+            check.false_positive = True
+            check.save()
             # update timestamp
             unit.save()
             response['success'] = True

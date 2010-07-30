@@ -75,7 +75,7 @@ class SiteConfigMiddleware(object):
                 logging.info("New Translate Toolkit version, flushing quality checks")
                 from pootle_store.models import Store, QualityCheck, CHECKED, PARSED
                 Store.objects.filter(state=CHECKED).update(state=PARSED)
-                QualityCheck.objects.all().delete()
+                QualityCheck.objects.filter(false_positive=False).delete()
                 config.set('TT_BUILDVERSION', code_tt_buildversion)
                 config.save()
 

@@ -63,6 +63,7 @@ class QualityCheck(models.Model):
     name = models.CharField(max_length=64, db_index=True)
     unit = models.ForeignKey("pootle_store.Unit", db_index=True)
     message = models.TextField()
+    false_positive = models.BooleanField(default=False, db_index=True)
     def __unicode__(self):
         return self.name
 
@@ -340,6 +341,8 @@ class Unit(models.Model, base.TranslationUnit):
         for name, message in self.store.translation_project.checker.run_filters(self).items():
             self.qualitycheck_set.create(name=name, message=message)
 
+    def get_qualitychecks(self):
+        return self.qualitycheck_set.filter(false_positive=False)
 
 ##################### TranslationUnit ############################
 
@@ -866,7 +869,7 @@ class Store(models.Model, base.TranslationStore):
     def getcompletestats(self):
         """report result of quality checks"""
         self.require_qualitychecks()
-        queryset = QualityCheck.objects.filter(unit__store=self, unit__state__gt=UNTRANSLATED)
+        queryset = QualityCheck.objects.filter(unit__store=self, unit__state__gt=UNTRANSLATED, false_positive=False)
         return group_by_count(queryset, 'name')
 
     @getfromcache
