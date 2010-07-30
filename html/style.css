@@ -685,7 +685,8 @@ p.captcha,
  */
 
 #login,
-#register
+#register,
+#contact
 {
     width: 30em;
     margin: 2em auto;
@@ -696,26 +697,30 @@ p.captcha,
 }
 
 #login[dir="rtl"],
-#register[dir="rtl"]
+#register[dir="rtl"],
+#contact[dir="rtl"]
 {
     text-align: right;
 }
 
 #login h2,
-#register h2
+#register h2,
+#contact h2
 {
     margin-bottom: 0.7em;
 }
 
 #login p,
-#register p
+#register p,
+#contact p
 {
     margin-bottom: 1em;
 }
 
 
 #loginform,
-#registerform
+#registerform,
+#contactform
 {
     font-size: 85%;
 }
@@ -724,20 +729,25 @@ p.captcha,
 #login input[type="password"],
 #login select,
 #register input[type="text"],
-#register input[type="password"]
+#register input[type="password"],
+#contact input[type="text"],
+#contact input[type="password"],
+#contact textarea
 {
     width: 97%;
 }
 
 #login .submit,
-#register .submit
+#register .submit,
+#contact .submit
 {
     margin-bottom: 0;
     text-align: right;
 }
 
 #login[dir="rtl"] .submit,
-#register[dir="rtl"] .submit
+#register[dir="rtl"] .submit,
+#contact[dir="rtl"] .submit
 {
     text-align: left;
 }

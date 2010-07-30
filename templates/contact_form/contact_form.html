@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
 
-{% block title %}{{ block.super }}: {% trans "Contact us" %}{% endblock %}
+{% block title %}{{ block.super }}: {% trans "Contact Us" %}{% endblock %}
  
 {% block content %}
 <div id="contact" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <h2>{% trans "Contact us" %}</h2>
+    <h2>{% trans "Contact Us" %}</h2>
     <form method="post" action="" name="contactform" id="contactform">
       {{ form.as_p }}
       <p class="submit">
-        <input type="submit" name="register" value="{% trans 'Send' %}" />
+        <input type="submit" name="send" value="{% trans 'Send' %}" />
       </p>
     </form>
 </div>
