@@ -284,7 +284,7 @@ class TranslationProject(models.Model):
         project_tree.scan_translation_project_files(self)
         new_stats = self.getquickstats()
 
-        request.user.message_set.create(message=unicode(_("Updated %s files from version control", self.fullname)))
+        request.user.message_set.create(message=unicode(_('Updated project "%s" from version control', self.fullname)))
         request.user.message_set.create(message=stats_message("working copy", old_stats))
         request.user.message_set.create(message=stats_message("remote copy", remote_stats))
         request.user.message_set.create(message=stats_message("merged copy", new_stats))
