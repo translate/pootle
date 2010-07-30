@@ -732,9 +732,14 @@ class Store(models.Model, base.TranslationStore):
                 newunit = unit.convert(self.file.store.UnitClass)
                 self.file.store.addunit(newunit)
 
+        monolingual = is_monolingual(type(self.file.store))
+
         if update_translation:
             shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
             for unit in self.findid_bulk(shared_dbids):
+                #FIXME: use a better mechanism for handling states and different formats
+                if monolingual and not unit.istranslated():
+                    continue
                 match = self.file.store.findid(unit.getid())
                 if match is not None:
                     unit.sync(match)
