@@ -1651,7 +1651,6 @@ div.translate-right
 .translate-focus div.translate-original
 {
     border: 1px solid black;
-    padding: 5px 0;
     background-color: #ebebeb;
     color: #000;
     position: relative;
@@ -1742,7 +1741,7 @@ td.translate-full textarea.translation
 {
     width: 100%;
     min-height: 21px;
-    padding: 0 0 5px !important;
+    padding: 0 0 5px;
     margin: 0 auto 0.5em;
 }
 
@@ -2072,6 +2071,11 @@ a.writespecial
 div.translate-translation
 {
     min-height: 1.5em;
+}
+
+td.translate-full div.translate-translation
+{
+    margin-bottom: 15px;
 }
 
 tr.translate-translation-fuzzy td.translate-translation[dir="ltr"]
