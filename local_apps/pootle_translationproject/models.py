@@ -52,7 +52,9 @@ from pootle_app.models.directory   import Directory
 from pootle_app                    import project_tree
 from pootle_app.models.permissions import check_permission
 from pootle_app.models.signals import post_vc_update, post_vc_commit
-
+from pootle_app.models.signals import post_template_update
+from pootle_app.project_tree import add_files, match_template_filename, direct_language_match_filename
+from pootle_app.project_tree import convert_template, get_translated_name, get_translated_name_gnu
 
 class TranslationProjectNonDBState(object):
     def __init__(self, parent):
@@ -69,7 +71,7 @@ def create_translation_project(language, project):
     if project_tree.translation_project_should_exist(language, project):
         try:
             translation_project, created = TranslationProject.objects.get_or_create(language=language, project=project)
-            project_tree.scan_translation_project_files(translation_project)
+            translation_project.scan_files()
             return translation_project
         except OSError:
             return None
@@ -188,7 +190,6 @@ class TranslationProject(models.Model):
                 errors += 1
         return errors
 
-
     @getfromcache
     def getquickstats(self):
         if self.is_template_project:
@@ -207,6 +208,48 @@ class TranslationProject(models.Model):
         query = QualityCheck.objects.filter(unit__store__translation_project=self, false_positive=False)
         return group_by_count(query, 'name')
 
+    def update_from_templates(self):
+        """update translation project from templates"""
+        if self.is_template_project:
+            return
+        template_translation_project = self.project.get_template_translationproject()
+        if template_translation_project is None or template_translation_project == self:
+            return
+
+        monolingual = self.project.is_monolingual()
+
+        if not monolingual:
+            self.sync()
+        oldstats = self.getquickstats()
+        for store in template_translation_project.stores.iterator():
+            if self.file_style == 'gnu':
+                new_pootle_path, new_path = get_translated_name_gnu(self, store)
+            else:
+                new_pootle_path, new_path = get_translated_name(self, store)
+            convert_template(self, store, new_pootle_path, new_path, monolingual)
+        self.scan_files()
+        self.update(conservative=False)
+        newstats = self.getquickstats()
+        post_template_update.send(sender=self, oldstats=oldstats, newstats=newstats)
+
+    def scan_files(self):
+        """returns a list of po files for the project and language"""
+        ignored_files = set(p.strip() for p in self.project.ignoredfiles.split(','))
+        ext           = os.extsep + self.project.localfiletype
+
+        # scan for pots if template project
+        if self.is_template_project:
+            ext = os.extsep + self.project.get_template_filtetype()
+
+        if self.file_style == 'gnu':
+            if self.is_template_project:
+                add_files(self, ignored_files, ext, self.abs_real_path, self.directory,
+                          lambda filename: match_template_filename(self.project, filename))
+            else:
+                add_files(self, ignored_files, ext, self.abs_real_path, self.directory,
+                          lambda filename: direct_language_match_filename(self.language.code, filename))
+        else:
+                add_files(self, ignored_files, ext, self.abs_real_path, self.directory)
 
     def _get_indexer(self):
         if self.non_db_state.indexer is None and self.non_db_state._indexing_enabled:
@@ -282,7 +325,7 @@ class TranslationProject(models.Model):
             except VersionControlError:
                 pass
 
-        project_tree.scan_translation_project_files(self)
+        self.scan_files()
         new_stats = self.getquickstats()
 
         request.user.message_set.create(message=unicode(_('Updated project "%s" from version control', self.fullname)))
@@ -308,7 +351,7 @@ class TranslationProject(models.Model):
         except VersionControlError:
             request.user.message_set.create(message=unicode(_("Failed to update %s from version control", store.file.name)))
 
-        project_tree.scan_translation_project_files(self)
+        self.scan_files()
 
     def commitpofile(self, request, store):
         """commits an individual PO file to version control"""

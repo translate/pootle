@@ -27,7 +27,6 @@ from pootle_store.models      import Store, PARSED
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_app.models.directory  import Directory
-from pootle_app.models.signals import post_template_update
 
 def language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
@@ -183,30 +182,6 @@ def translation_project_should_exist(language, project):
 
     return False
 
-def scan_translation_project_files(translation_project):
-    """returns a list of po files for the project and language"""
-    project       = translation_project.project
-    real_path     = translation_project.abs_real_path
-    directory     = translation_project.directory
-    ignored_files = set(p.strip() for p in project.ignoredfiles.split(','))
-    ext           = os.extsep + project.localfiletype
-
-    # scan for pots if template project
-    if translation_project.is_template_project:
-        ext = os.extsep + project.get_template_filtetype()
-
-    if translation_project.file_style == 'gnu':
-        if translation_project.is_template_project:
-            add_files(translation_project, ignored_files, ext, real_path, directory,
-                      lambda filename: match_template_filename(project, filename))
-        else:
-            add_files(translation_project, ignored_files, ext, real_path, directory,
-                      lambda filename: direct_language_match_filename(translation_project.language.code, filename))
-    else:
-        add_files(translation_project, ignored_files, ext, real_path, directory)
-
-
-
 def get_extension(language, project):
     """file extension used for this project, returns pot if it's a po
     project and language is templates"""
@@ -294,20 +269,3 @@ def get_translated_name(translation_project, store):
     path_parts[-1] = name + '.' + translation_project.project.localfiletype
     pootle_path_parts[-1] = name + '.' + translation_project.project.localfiletype
     return '/'.join(pootle_path_parts), absolute_real_path(os.sep.join(path_parts))
-
-def convert_templates(template_translation_project, translation_project):
-    monolingual = translation_project.project.is_monolingual()
-    if not monolingual:
-        translation_project.sync()
-    oldstats = translation_project.getquickstats()
-    for store in template_translation_project.stores.iterator():
-        if translation_project.file_style == 'gnu':
-            new_pootle_path, new_path = get_translated_name_gnu(translation_project, store)
-        else:
-            new_pootle_path, new_path = get_translated_name(translation_project, store)
-        convert_template(translation_project, store, new_pootle_path, new_path, monolingual)
-    scan_translation_project_files(translation_project)
-    translation_project.update(conservative=False)
-    newstats = translation_project.getquickstats()
-    post_template_update.send(sender=translation_project, oldstats=oldstats, newstats=newstats)
-
