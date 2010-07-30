@@ -23,6 +23,7 @@ import os
 
 from django.utils.translation import ugettext_lazy as _
 from django.db                import models
+from django.core.exceptions import ObjectDoesNotExist
 
 from translate.filters import checks
 from translate.lang.data import langcode_re
@@ -160,3 +161,11 @@ class Project(models.Model):
             # when unsure assume nongnu
             return "nongnu"
 
+    def get_template_translationproject(self):
+        try:
+            return self.translationproject_set.get(language__code='templates')
+        except ObjectDoesNotExist:
+            try:
+                return self.translationproject_set.get(language=self.source_language_id)
+            except ObjectDoesNotExist:
+                pass
