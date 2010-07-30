@@ -27,14 +27,14 @@
       {% if unit.qualitycheck_set.all %}
       <!-- Quality Checks -->
       <div id="translate-checks-block" lang="en" dir="ltr">
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Failing Checks" %}</div>
+          <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title='{% trans "Possible issues with the translation" %}'>{% trans "Failing Checks" %}</div>
           <ul class="checks">
           {% for check in unit.qualitycheck_set.iterator %}
           <li class="check">
             <a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}">{{ check.name }}</a>
             {% if canreview %}
             <input type="hidden" class="checkid" name="checkid" value="{{ check.id }}" />
-            <a title="{% trans "Discard check as false positive" %}" class="rejectcheck"><img src='{{ "images/cross.png"|m }}' /></a>
+            <a title="{% trans "Remove quality check" %}" class="rejectcheck"><img src='{{ "images/cross.png"|m }}' /></a>
             {% endif %}
           </li>
           {% endfor %}
