@@ -1713,6 +1713,7 @@ div.translator-comments
 div.translator-comments textarea
 {
     vertical-align: top;
+    min-height: 1em;
 }
 
 .terminology div.translator-comments
