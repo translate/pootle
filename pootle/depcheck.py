@@ -159,3 +159,9 @@ def test_webserver():
 
 def test_livetranslation():
     return not settings.LIVE_TRANSLATION
+
+def test_from_email():
+    return not settings.DEFAULT_FROM_EMAIL
+
+def test_contact_email():
+    return not settings.CONTACT_EMAIL

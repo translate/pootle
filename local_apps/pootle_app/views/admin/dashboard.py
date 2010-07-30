@@ -129,6 +129,12 @@ def optimal_depcheck():
     if not depcheck.test_webserver():
         optimal.append({'dependency': 'webserver',
                         'text': _("For optimal performance, use Apache as the webserver.")})
+    if not depcheck.test_from_email():
+        optimal.append({'dependency': 'from_email',
+                        'text': _("You have not configured the default from email in localsettings.py, this email adress is used by pootle when sending registration emails. You should also review the mail server settings.")})
+    if not depcheck.test_contact_email():
+        optimal.append({'dependency': 'contact_email',
+                        'text': _("You have not configured a contact email in localsettings.py, users not be able to use the contact form to communicate with server admins.")})
 
     if not depcheck.test_debug():
         optimal.append({'dependency': 'debug',
