@@ -532,7 +532,6 @@ class TranslationProject(models.Model):
             unit = store.findunit(singular)
             if unit is not None and unit.istranslated():
                 if unit.hasplural() and n != 1:
-                    nplural = self.language.nplurals
                     pluralequation = self.language.pluralequation
                     if pluralequation:
                         pluralfn = gettext.c2py(pluralequation)

@@ -291,8 +291,6 @@ def get_local_filename(translation_project, upload_filename):
     return local_filename
 
 def unzip_external(request, directory, django_file, overwrite):
-    translation_project = request.translation_project
-    relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
     from tempfile import mkdtemp, mkstemp
     # Make a temporary directory to hold a zip file and its unzipped contents
     tempdir = mkdtemp(prefix='pootle')
@@ -324,7 +322,6 @@ def unzip_external(request, directory, django_file, overwrite):
                 # 'relative_host_dir' to the root relative path
                 # (i.e. the path from which the user is uploading the
                 # ZIP file.
-                sub_relative_root_dir = os.path.join(relative_root_dir, subdir)
                 try:
                     upload_file(request, target_dir, newfile, overwrite)
                 except ValueError, e:
@@ -336,8 +333,6 @@ def unzip_external(request, directory, django_file, overwrite):
         shutil.rmtree(tempdir)
 
 def unzip_python(request, directory, django_file, overwrite):
-    translation_project = request.translation_project
-    relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
     django_file.seek(0)
     archive = zipfile.ZipFile(django_file, 'r')
     # TODO: find a better way to return errors...
@@ -350,7 +345,6 @@ def unzip_python(request, directory, django_file, overwrite):
                         target_dir = directory.gt_or_make_subdir(subdir)
                     else:
                         target_dir = directory
-                    sub_relative_root_dir = os.path.join(relative_root_dir, subdir)
                     newfile = StringIO.StringIO(archive.read(filename))
                     newfile.name = os.path.basename(filename)
                     upload_file(request, target_dir, newfile, overwrite)
@@ -362,7 +356,6 @@ def unzip_python(request, directory, django_file, overwrite):
 def upload_archive(request, directory, django_file, overwrite):
     # First we try to use "unzip" from the system, otherwise fall back to using
     # the slower zipfile module
-    translation_project = request.translation_project
     try:
         unzip_external(request, directory, django_file, overwrite)
     except:
@@ -445,7 +438,6 @@ def upload_file(request, directory, django_file, overwrite):
     except Store.DoesNotExist:
         store = None
 
-    file_exists = os.path.exists(absolute_real_path(upload_path))
     if store is not None and overwrite == 'overwrite' and not check_permission('overwrite', request):
         raise PermissionDenied(_("You do not have rights to overwrite files here."))
     if store is None and not check_permission('administrate', request):
