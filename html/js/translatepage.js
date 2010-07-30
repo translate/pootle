@@ -179,9 +179,6 @@ $(document).ready(function() {
                  });
                }
              }
-             $("div#translate-suggestion-container:first").prepend(
-              '<h2 id="response">' + rdata.message + '</h2>'
-              );
            }, "json");
   }
 
