@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2010 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -160,9 +160,12 @@ def unit_form_factory(language, snplurals=1):
         id = forms.IntegerField(required=False)
         source_f = MultiStringFormField(nplurals=snplurals, required=False, textarea=False)
         target_f = MultiStringFormField(nplurals=tnplurals, required=False, attrs=target_attrs)
-        state = forms.BooleanField(required=False, label=_('Fuzzy'), widget=forms.CheckboxInput(attrs=fuzzy_attrs,
-                                                                              check_test=lambda x: x == FUZZY))
-        translator_comment = forms.CharField(required=False, widget=forms.Textarea(attrs=comment_attrs))
+        state = forms.BooleanField(required=False,
+                label=_('Fuzzy'),
+                widget=forms.CheckboxInput(attrs=fuzzy_attrs, check_test=lambda x: x == FUZZY))
+        translator_comment = forms.CharField(required=False,
+                widget=forms.Textarea(attrs=comment_attrs),
+                label=_("Translator comment"))
 
         def clean_source_f(self):
             value = self.cleaned_data['source_f']
