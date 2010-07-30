@@ -112,6 +112,10 @@ def update_tables_21000():
     field = Project._meta.get_field('directory')
     field.null = True
     db.add_column(table_name, field.name, field)
+    field = Project._meta.get_field('source_language')
+    en, created = Language.objects.get_or_create(code='en', fullname='English', nplurals=2)
+    field.default = en.id
+    db.add_column(table_name, field.name, field)
     return text
 
 def parse_start():
