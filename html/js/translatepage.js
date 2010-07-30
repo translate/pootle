@@ -236,6 +236,9 @@ $(document).ready(function() {
   $(".collapse").click(function(event) {
     event.preventDefault();
     $(this).siblings(".collapsethis").slideToggle("fast");
+    if ($("textarea", $(this).next("div.collapsethis")).length) {
+      $("textarea", $(this).next("div.collapsethis")).focus();
+    }
   });
 
   $.pootle.addMTButton = function(element, aclass, imgfn, tooltip) {
