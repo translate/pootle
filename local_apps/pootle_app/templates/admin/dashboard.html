@@ -19,31 +19,29 @@
   <div class="bd">
     <table>
       <tr>
-        <th scope="row">{% trans "Registered users" %}</th><td>{{ server_stats.user_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Projects with translations" %}</th><td>{{ server_stats.project_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Languages with translations" %}</th><td>{{ server_stats.language_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Files with translations" %}</th><td>{{ server_stats.store_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Translated Strings" %}</th><td>{{ server_stats.string_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Translated Words" %}</th><td>{{ server_stats.word_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Submissions" %}</th><td>{{ server_stats.submission_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Total suggestions" %}</th><td>{{ server_stats.suggestion_count }}</td>
+        <th scope="row">{% trans "Translated words" %}</th><td>{{ server_stats.word_count }}</td>
       </tr>
       <tr>
         <th scope="row">{% trans "Pending suggestions" %}</th><td>{{ server_stats.pending_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Users" %}</th><td>{{ server_stats.user_count }}</td>
+      </tr>
+      <tr>{% trans "More..." %}</tr>
+      <tr>
+        <th scope="row">{% trans "Active projects" %}</th><td>{{ server_stats.project_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Active languages" %}</th><td>{{ server_stats.language_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Files" %}</th><td>{{ server_stats.store_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Translated strings" %}</th><td>{{ server_stats.string_count }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Submissions" %}</th><td>{{ server_stats.submission_count }}</td>
       </tr>
     </table>
   </div>
