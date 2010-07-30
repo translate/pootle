@@ -11,8 +11,6 @@
 {{ block.super }} » {% trans "Dashboard" %}
 {% endblock %}
 
-{% block section_description %}{% trans "The dashboard shows the most relevant information about your Pootle server." %}{% endblock %}
-
 {% block section_body %}
 <div id="serverstats" class="module first" lang="{{ LANGUAGE_CODE }}">
   <div class="hd">
@@ -55,13 +53,14 @@
     <h2>{% trans "Support" %}</h2>
   </div>
   <div class="bd">
-    {% blocktrans %}
-    <p> support text here</p>
-    <ul>
-      <li>relevant links here</li>
-      <li>and here</li>
-    </ul>
-    {% endblocktrans %}
+      <p>{% trans "Pootle is developed by Translate.org.za and a community of passionate localization experts. We want Pootle to help your localization work reach its full potential." %}</p>
+      <p>You will find the following helpful for support:
+        <ul>
+            <li><a href="http://translate.sourceforge.net/wiki/pootle/index">{% trans "The Pootle documentation" %}</a></li>
+            <li><a href="http://translate.sourceforge.net/wiki/developers/mailing_lists">{% trans "The Pootle mailing list" %}</a></li>
+            <li><a href="http://translate.org.za/">Translate.org.za</a> {% trans "(commercial support)" %}</li>
+        </ul>
+      </p>
   </div>
 </div>
 <div style="clear: left;"> </div>
