@@ -74,16 +74,11 @@
     </table>
   </div>
 </div>
-{% if user.is_superuser %}
+{% if user.is_superuser %}{% ifequal user profile.user %}
 <div style="clear: right;" />
 {% include "admin/rss_widget.html" %}
-{% endif %}
+{% endifequal %}{% endif %}
 {% endblock %}
 
-{% if user.is_superuser %}{% ifequal user profile.user %}
-{% block scripts_extra %}
-{{ block.super }}
-<script type="text/javascript" src="http://fish.locamotion.org/dashboard/alerts.js"></script>
-{% endblock %}
-{% endifequal %}{% endif %}
+
 
