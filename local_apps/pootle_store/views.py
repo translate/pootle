@@ -75,9 +75,12 @@ def download(request, pootle_path):
 
 def get_alt_src_langs(request, profile, translation_project):
     language = translation_project.language
-    source_language = translation_project.project.source_language
-    langs = profile.alt_src_langs.exclude(id__in=(language.id, source_language.id))
-    if not langs.count():
+    project = translation_project.project
+    source_language = project.source_language
+
+    langs = profile.alt_src_langs.exclude(id__in=(language.id, source_language.id)).filter(translationproject__project=project)
+
+    if not profile.alt_src_langs.count():
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
         codes = []
         for accept_lang, unused in parse_accept_lang_header(accept):
