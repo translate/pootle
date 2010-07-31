@@ -71,7 +71,6 @@ def create_translation_project(language, project):
     if project_tree.translation_project_should_exist(language, project):
         try:
             translation_project, created = TranslationProject.objects.get_or_create(language=language, project=project)
-            translation_project.scan_files()
             return translation_project
         except OSError:
             return None
@@ -105,11 +104,14 @@ class TranslationProject(models.Model):
         return self.pootle_path
 
     def save(self, *args, **kwargs):
+        created = self.id is None
         project_dir = self.project.get_real_path()
         self.abs_real_path = project_tree.get_translation_project_dir(self.language, project_dir, self.file_style, make_dirs=True)
         self.directory = self.language.directory.get_or_make_subdir(self.project.code)
         self.pootle_path = self.directory.pootle_path
         super(TranslationProject, self).save(*args, **kwargs)
+        if created:
+            self.scan_files()
 
     def delete(self, *args, **kwargs):
         directory = self.directory
