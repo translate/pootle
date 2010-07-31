@@ -515,6 +515,8 @@ class Unit(models.Model, base.TranslationUnit):
         except Suggestion.DoesNotExist:
             return False
         suggestion.delete()
+        # update timestamp
+        self.save()
         return True
 
     def get_terminology(self):
