@@ -56,7 +56,7 @@
 
 {% block content %}
 <form action="?{{ GET_state }}" method="post" name="translate" id="translate">
-{% cache settings.CACHE_TIMEOUT translate_table edit_unit.id store.get_mtime cantranslate cansuggest canreview alt_src_codes unit_rows LANGUAGE_CODE %}
+{% cache settings.CACHE_TIMEOUT translate_table edit_unit.id store.get_mtime cantranslate cansuggest canreview alt_src_codes unit_rows profile.id LANGUAGE_CODE %}
 {% translate_table %}
 {% endcache %}
 </form>
