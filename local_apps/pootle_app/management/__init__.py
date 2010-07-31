@@ -123,6 +123,11 @@ def create_pootle_permission_sets():
         permission_set.positive_permissions = [view]
         permission_set.save()
 
+def require_english():
+    en, created = Language.objects.get_or_create(code="en", fullname=u"English",
+                                                 nplurals=2, pluralequation="(n != 1)")
+    return en
+
 def create_root_directory():
     """Create root Directory item."""
     root, created = Directory.objects.get_or_create(name='')
@@ -130,11 +135,15 @@ def create_root_directory():
 
 def create_template_language():
     """template language is used to give users access to the untranslated template files"""
-    templates, created = Language.objects.get_or_create(code="templates", fullname = u'Templates')
+    templates, created = Language.objects.get_or_create(code="templates", fullname=u'Templates')
+    require_english()
+
 
 def create_terminology_project():
     """terminology project is used to display terminology suggestions while translating"""
-    terminology, created = Project.objects.get_or_create(code="terminology", fullname=u"Terminology")
+    en = require_english()
+    terminology, created = Project.objects.get_or_create(code="terminology", fullname=u"Terminology",
+                                                         source_language=en)
 
 def post_syncdb_handler(sender, created_models, **kwargs):
     if PootleProfile in created_models:
