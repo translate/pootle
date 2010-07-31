@@ -540,7 +540,7 @@ class TranslationProject(models.Model):
     ########################################################################################
 
     is_terminology_project = property(lambda self: self.pootle_path.endswith('/terminology/'))
-    is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
+    is_template_project = property(lambda self: self == self.project.get_template_translationproject())
 
     def gettermmatcher(self):
         """returns the terminology matcher"""
