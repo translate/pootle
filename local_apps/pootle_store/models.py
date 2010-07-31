@@ -600,7 +600,12 @@ class Store(models.Model, base.TranslationStore):
     def require_units(self):
         """make sure file is parsed and units are created"""
         if self.state < PARSED and self.unit_set.count() == 0:
-            self.update(update_structure=True, update_translation=True, conservative=False)
+            if  self.file and is_monolingual(type(self.file.store)) and \
+                   not self.translation_project.is_template_project and \
+                   self.translation_project.project.get_template_translationproject():
+                self.translation_project.update_from_templates(pootle_path=self.pootle_path)
+            else:
+                self.update(update_structure=True, update_translation=True, conservative=False)
 
 
     def require_dbid_index(self, update=False):
