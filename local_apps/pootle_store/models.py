@@ -29,6 +29,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.transaction import commit_on_success
+from django.db import IntegrityError
 
 from translate.storage import base, statsdb, po, poheader
 from translate.misc.hash import md5_f
@@ -633,7 +634,10 @@ class Store(models.Model, base.TranslationStore):
             try:
                 for index, unit in enumerate(self.file.store.units):
                     if unit.istranslatable():
-                        self.addunit(unit, index)
+                        try:
+                            self.addunit(unit, index)
+                        except IntegrityError, e:
+                            logging.warning('Data integrity error while importing unit %s:\n%s', str(unit.getid()), str(e))
             except:
                 # something broke, delete any units that got created
                 # and return store state to its original value
