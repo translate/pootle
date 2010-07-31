@@ -621,14 +621,15 @@ class Store(models.Model, base.TranslationStore):
                 yield unit
 
     @commit_on_success
-    def update(self, update_structure=False, update_translation=False, conservative=True):
+    def update(self, update_structure=False, update_translation=False, conservative=True, store=None):
         """update db with units from file"""
         if self.state == LOCKED:
             # file currently being updated
             #FIXME: shall we idle wait for lock to be released first? what about stale locks?
             logging.info("attemped to update %s while locked", self.pootle_path)
             return
-
+        if store is None:
+            store = self.file.store
         if self.state < PARSED:
             logging.debug("Parsing %s", self.pootle_path)
             # no existing units in db, file hasn't been parsed before
@@ -637,7 +638,7 @@ class Store(models.Model, base.TranslationStore):
             self.state = LOCKED
             self.save()
             try:
-                for index, unit in enumerate(self.file.store.units):
+                for index, unit in enumerate(store.units):
                     if unit.istranslatable():
                         try:
                             self.addunit(unit, index)
@@ -661,10 +662,10 @@ class Store(models.Model, base.TranslationStore):
         self.state = LOCKED
         self.save()
         try:
-            monolingual = is_monolingual(type(self.file.store))
+            monolingual = is_monolingual(type(store))
             self.require_dbid_index(update=True)
             old_ids = set(self.dbid_index.keys())
-            new_ids = set(self.file.store.getids())
+            new_ids = set(store.getids())
 
             if update_structure:
                 obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
@@ -673,7 +674,7 @@ class Store(models.Model, base.TranslationStore):
                         #FIXME: make obselete instead?
                         unit.delete()
 
-                new_units = (self.file.store.findid(uid) for uid in new_ids - old_ids)
+                new_units = (store.findid(uid) for uid in new_ids - old_ids)
                 for unit in new_units:
                     self.addunit(unit, unit.index)
 
@@ -681,7 +682,7 @@ class Store(models.Model, base.TranslationStore):
                 shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
 
                 for unit in self.findid_bulk(shared_dbids):
-                    newunit = self.file.store.findid(unit.getid())
+                    newunit = store.findid(unit.getid())
                     if monolingual and not self.translation_project.is_template_project:
                         fix_monolingual(unit, newunit, monolingual)
                     changed = unit.update(newunit)
