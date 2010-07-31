@@ -81,19 +81,19 @@ def get_alt_src_langs(request, profile, translation_project):
     langs = profile.alt_src_langs.exclude(id__in=(language.id, source_language.id)).filter(translationproject__project=project)
 
     if not profile.alt_src_langs.count():
+        from pootle_language.models import Language
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
-        codes = []
         for accept_lang, unused in parse_accept_lang_header(accept):
             if accept_lang == '*':
                 continue
             normalized = to_locale(data.normalize_code(data.simplify_to_common(accept_lang)))
             code = to_locale(accept_lang)
-            if normalized in (source_language.code, language.code) or code in (source_language.code, language.code):
+            if normalized in ('en', 'en_US', source_language.code, language.code) or \
+                   code in ('en', 'en_US', source_language.code, language.code):
                 continue
-            codes.append(normalized)
-        if codes:
-            from pootle_language.models import Language
-            langs = Language.objects.filter(code__in=codes)
+            langs = Language.objects.filter(code__in=(normalized, code), translationproject__project=project)
+            if langs.count():
+                break
     return langs
 
 def get_non_indexed_search_step_query(form, units_queryset):
