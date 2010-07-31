@@ -210,7 +210,7 @@ class TranslationProject(models.Model):
         query = QualityCheck.objects.filter(unit__store__translation_project=self, false_positive=False)
         return group_by_count(query, 'name')
 
-    def update_from_templates(self):
+    def update_from_templates(self, pootle_path=None):
         """update translation project from templates"""
         if self.is_template_project:
             return
@@ -228,6 +228,8 @@ class TranslationProject(models.Model):
                 new_pootle_path, new_path = get_translated_name_gnu(self, store)
             else:
                 new_pootle_path, new_path = get_translated_name(self, store)
+            if pootle_path is not None and new_pootle_path != pootle_path:
+                continue
             convert_template(self, store, new_pootle_path, new_path, monolingual)
         self.scan_files()
         self.update(conservative=False)
