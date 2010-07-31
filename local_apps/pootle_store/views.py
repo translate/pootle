@@ -406,6 +406,7 @@ def translate_page(request, units_queryset, store=None):
         'language': language,
         'translation_project': translation_project,
         'project': translation_project.project,
+        'profile': profile,
         'source_language': translation_project.project.source_language,
         'directory': store.parent,
         'GET_state': '&'.join(GET_vars),
@@ -432,8 +433,6 @@ def reject_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
     translation_project = unit.store.translation_project
-    if not check_profile_permission(get_profile(request.user), 'review', directory):
-        raise PermissionDenied
 
     response = {
         'udbid': unit.id,
@@ -444,6 +443,11 @@ def reject_suggestion(request, uid, suggid):
             sugg = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
             sugg = None
+
+        profile = get_profile(request.user)
+        if not check_profile_permission(profile, 'review', directory) and \
+               (not request.user.is_authenticated() or sugg and sugg.user != profile):
+            raise PermissionDenied
 
         response['success'] = unit.reject_suggestion(suggid)
 

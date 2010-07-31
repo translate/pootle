@@ -153,6 +153,7 @@ def render_unit_edit(context, form):
     template_vars = {'unit': unit,
                      'form': form,
                      'store': store,
+                     'profile': context['profile'],
                      'language': context['language'],
                      'source_language': context['source_language'],
                      'cantranslate': context['cantranslate'],
