@@ -27,6 +27,9 @@
       <tr>
         <th scope="row">{% trans "Users" %}</th><td>{{ server_stats.user_count }}</td>
       </tr>
+      <tr>
+        <th scope="row">{% trans "Active Users" %}</th><td>{{ server_stats.user_active_count }}</td>
+      </tr>
       <tr>{% trans "More..." %}</tr>
       <tr>
         <th scope="row">{% trans "Active projects" %}</th><td>{{ server_stats.project_count }}</td>

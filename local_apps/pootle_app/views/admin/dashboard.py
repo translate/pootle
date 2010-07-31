@@ -31,7 +31,9 @@ from pootle import depcheck
 
 from pootle_app.views.admin.util import user_is_admin
 from pootle_misc.aggregate import sum_column
+from pootle_app.models import Suggestion as SuggestiontStat
 from pootle_store.models import Unit, Suggestion
+from pootle_profile.models import PootleProfile
 from pootle_store.util import TRANSLATED
 from pootle_statistics.models import Submission
 
@@ -157,12 +159,14 @@ def server_stats():
         result['store_count'] = unit_query.values('store').distinct().count()
         result['project_count'] = unit_query.values('store__translation_project__project').distinct().count()
         result['language_count'] = unit_query.values('store__translation_project__language').distinct().count()
-        sums = sum_column(unit_query, ('target_wordcount',), count=True)
+        sums = sum_column(unit_query, ('source_wordcount',), count=True)
         result['string_count'] = sums['count']
-        result['word_count'] = sums['target_wordcount']
-        result['submission_count'] = Submission.objects.count()
+        result['word_count'] = sums['source_wordcount']
+        result['submission_count'] = Submission.objects.count() + SuggestiontStat.objects.count()
         result['pending_count'] = Suggestion.objects.count()
-        result['user_count'] = User.objects.count()
+        result['user_count'] = User.objects.filter(is_active=True).count()
+        result['user_active_count'] = (PootleProfile.objects.filter(submission__isnull=False) | PootleProfile.objects.filter(suggestion__isnull=False) |\
+                                       PootleProfile.objects.filter(suggester__isnull=False)).order_by().distinct().count()
         cache.set("server_stats", result, settings.CACHE_MIDDLEWARE_SECONDS * 10)
     return result
 
