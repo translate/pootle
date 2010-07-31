@@ -322,7 +322,7 @@ class TranslationProject(models.Model):
         old_stats = self.getquickstats()
         remote_stats = {}
 
-        for store in self.stores.iterator():
+        for store in self.stores.exclude(file="").iterator():
             try:
                 oldstats, remotestats, newstats = self.update_file_from_version_control(store)
                 remote_stats = dictsum(remote_stats, remotestats)
