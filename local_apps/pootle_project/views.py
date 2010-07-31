@@ -149,7 +149,6 @@ def project_admin(request, project_code):
                     self.instance.initialize()
 
                 if self.cleaned_data.get('update', None) or not self.instance.stores.count():
-                    print self.instance.stores.count()
                     self.instance.update_from_templates()
 
     queryset = TranslationProject.objects.filter(project=current_project).order_by('pootle_path')
