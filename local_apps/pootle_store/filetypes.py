@@ -67,10 +67,10 @@ def get_supported_formats():
     formats.append(('php', _('PHP arrays'), phpfile, 'monolingual'))
     try:
         from translate.storage.subtitles import SubRipFile, MicroDVDFile, AdvSubStationAlphaFile, SubStationAlphaFile
-        formats.append(('srt', _('Subtitles: SubRip (srt)'), SubRipFile, 'monolingual'))
-        formats.append(('sub', _('Subtitles: MicroDVD (sub)'), MicroDVDFile, 'monolingual'))
-        formats.append(('ssa', _('Subtitles: Substation Alpha (ssa)'), SubStationAlphaFile, 'monolingual'))
-        formats.append(('ass', _('Subtitles: Advanded Substation Alpha (ass)'), AdvSubStationAlphaFile, 'monolingual'))
+        formats.append(('srt', _('Subtitles: srt'), SubRipFile, 'monolingual'))
+        formats.append(('sub', _('Subtitles: sub'), MicroDVDFile, 'monolingual'))
+        formats.append(('ssa', _('Subtitles: ssa'), SubStationAlphaFile, 'monolingual'))
+        formats.append(('ass', _('Subtitles: ass'), AdvSubStationAlphaFile, 'monolingual'))
     except ImportError:
         pass
 
