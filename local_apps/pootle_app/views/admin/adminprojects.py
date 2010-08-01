@@ -20,16 +20,33 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.utils.translation import ugettext as _
+from django import forms
+
 from pootle_app.views.admin import util
 from pootle_project.models import Project
+from pootle_language.models import Language
 from pootle_app.admin import MyProjectAdminForm
 
 @util.user_is_admin
 def view(request):
+    queryset = Language.objects.exclude(code='templates')
+    try:
+        default_lang = Language.objects.get(code='en')
+    except Language.DoesNotExist:
+        default_lang = queryset[0]
+
+
+    class ProjectForm(forms.ModelForm):
+        class Meta:
+            model = Project
+
+        source_language = forms.ModelChoiceField(label=_('Source Language'), initial=default_lang.pk,
+                                                 queryset=queryset)
+
     model_args = {}
     model_args['title'] = _("Projects")
     model_args['formid'] = "projects"
     model_args['submitname'] = "changeprojects"
     link = '/projects/%s/admin.html'
     return util.edit(request, 'admin/admin_general_projects.html', Project, model_args, link,
-              form=MyProjectAdminForm, exclude='description', can_delete=True)
+              form=ProjectForm, exclude='description', can_delete=True)
