@@ -20,6 +20,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import forms
+try:
+    from django.core.validators import EMPTY_VALUES
+except ImportError:
+    from django.forms.fields import EMPTY_VALUES
+
 
 class GroupedModelChoiceField(forms.ModelChoiceField):
     def __init__(self, querysets, *args, **kwargs):
@@ -44,3 +49,22 @@ class GroupedModelChoiceField(forms.ModelChoiceField):
         self.queryset = orig_queryset
         self.empty_label = orig_empty_label
     choices = property(_get_choices, forms.ModelChoiceField._set_choices)
+
+
+class LiberalModelChoiceField(forms.ModelChoiceField):
+    """
+    a ModelChoiceField that doesn't complain about choices not present in the queryset.
+
+    this is essentially a hack for admin pages. to be able to exclude
+    currently used choices from dropdowns without failing validation.
+    """
+
+    def clean(self, value):
+        if value in EMPTY_VALUES:
+            return None
+        try:
+            key = self.to_field_name or 'pk'
+            value = self.queryset.model.objects.get(**{key: value})
+        except self.queryset.model.DoesNotExist:
+            raise forms.ValidationError(self.error_messages['invalid_choice'])
+        return value

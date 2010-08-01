@@ -30,6 +30,7 @@ from django.forms.models import BaseModelFormSet
 from django.core.exceptions import PermissionDenied
 
 from pootle_misc.baseurl import l
+from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_app.views.language.view import get_stats_headings
@@ -37,8 +38,8 @@ from pootle_app.views.language.item_dict import add_percentages, stats_descripti
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_app.views import pagelayout
+from pootle_language.models import Language
 from pootle_translationproject.models import TranslationProject
-from pootle_app import project_tree
 from pootle_app.views.admin import util
 from pootle_profile.models import get_profile
 from pootle_app.views.index.index import getprojects
@@ -140,8 +141,11 @@ def project_admin(request, project_code):
         initialize = forms.BooleanField(required=False, label=_("Initialize"))
         project = forms.ModelChoiceField(queryset=Project.objects.filter(pk=current_project.pk),
                                          initial=current_project.pk, widget=forms.HiddenInput)
+        language = LiberalModelChoiceField(label=_("Language"),
+                                          queryset=Language.objects.exclude(translationproject__project=current_project))
         class Meta:
             prefix = "existing_language"
+            model = TranslationProject
 
         def process_extra_fields(self):
             if self.instance.pk is not None:
