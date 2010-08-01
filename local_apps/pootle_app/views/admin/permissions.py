@@ -30,7 +30,7 @@ from pootle_misc.forms import GroupedModelChoiceField
 
 class PermissionFormField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, instance):
-        return instance.name
+        return _(instance.name)
 
 def admin_permissions(request, current_directory, template, context):
     content_type = ContentType.objects.get(name='pootle', app_label='pootle_app')
