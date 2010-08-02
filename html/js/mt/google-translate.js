@@ -30,7 +30,7 @@ google.setOnLoadCallback(function() {
       if ($.pootle.isSupportedSource(pairs, source)) {
         $.pootle.addMTButton($(this).siblings(".translate-toolbar"),
                              "googletranslate",
-                             "/html/images/google-translate.png",
+                             m("images/google-translate.png"),
                              "Google Translate");
       }
     });

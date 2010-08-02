@@ -30,6 +30,9 @@
             }
             return path;
           };
+          function m(path) {
+            return l("{{ MEDIA_URL }}" + path);
+          }
         </script>
         <script type="text/javascript" src="{{ "js/jquery/jquery.min.js"|m }}"></script>
         {% endblock js %}

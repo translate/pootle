@@ -26,7 +26,7 @@ $(document).ready(function() {
       if ($.pootle.isSupportedPair(pairs, source, target_lang)) {
         $.pootle.addMTButton($(this).siblings(".translate-toolbar"),
                              "apertium",
-                             "/html/images/apertium.png",
+                             m("images/apertium.png"),
                              "Apertium");
       }
     });
