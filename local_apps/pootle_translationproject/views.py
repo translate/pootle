@@ -395,7 +395,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         store = Store.objects.get(file=upload_path)
         newstore = factory.getobject(django_file, classes=factory_classes)
         #FIXME: maybe there is a faster way to do this?
-        store.mergefile(newstore, request.user, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
+        store.mergefile(newstore, get_profile(request.user), allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
 
 def upload_file(request, directory, django_file, overwrite, store=None):
     translation_project = request.translation_project
@@ -456,7 +456,7 @@ def upload_file(request, directory, django_file, overwrite, store=None):
     notranslate = overwrite == 'suggest'
     #allownewstrings = check_permission('overwrite', request) or check_permission('administrate', request) or check_permission('commit', request)
     #obsoletemissing = allownewstrings and overwrite == 'merge'
-    store.mergefile(newstore, request.user, suggestions=suggestions, notranslate=notranslate,
+    store.mergefile(newstore, get_profile(request.user), suggestions=suggestions, notranslate=notranslate,
                     allownewstrings=False, obsoletemissing=False)
 
 class UpdateHandler(view_handler.Handler):

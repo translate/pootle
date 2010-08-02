@@ -508,7 +508,7 @@ class Unit(models.Model, base.TranslationUnit):
         if settings.AUTOSYNC and self.file:
             #FIXME: update alttrans
             self.sync(self.getorig())
-            self.store.update_store_header(user=suggestion.user)
+            self.store.update_store_header(profile=suggestion.user)
             self.file.savestore()
         return True
 
@@ -715,7 +715,7 @@ class Store(models.Model, base.TranslationStore):
             self.state = CHECKED
             self.save()
 
-    def sync(self, update_structure=False, update_translation=False, conservative=True, create=False, user=None):
+    def sync(self, update_structure=False, update_translation=False, conservative=True, create=False, profile=None):
         """sync file with translations from db"""
         if not self.file:
             if create:
@@ -727,7 +727,7 @@ class Store(models.Model, base.TranslationStore):
                 store.savefile(store_path)
                 self.file = store_path
                 self.save()
-                self.update_store_header(user=user)
+                self.update_store_header(profile=profile)
                 self.file.savestore()
             return
 
@@ -763,7 +763,7 @@ class Store(models.Model, base.TranslationStore):
                 if match is not None:
                     unit.sync(match)
 
-        self.update_store_header(user=user)
+        self.update_store_header(profile=profile)
         self.file.savestore()
 
     def get_file_class(self):
@@ -900,7 +900,7 @@ class Store(models.Model, base.TranslationStore):
         return self.units[item]
 
     @commit_on_success
-    def mergefile(self, newfile, user, allownewstrings, suggestions, notranslate, obsoletemissing):
+    def mergefile(self, newfile, profile, allownewstrings, suggestions, notranslate, obsoletemissing):
         """make sure each msgid is unique ; merge comments etc from
         duplicates into original"""
 
@@ -949,13 +949,13 @@ class Store(models.Model, base.TranslationStore):
                 if notranslate or oldunit.istranslated() and suggestions:
                     if newunit.istranslated():
                         #FIXME: add a user argument
-                        oldunit.add_suggestion(newunit.target, user)
+                        oldunit.add_suggestion(newunit.target, profile)
                 else:
                     changed = oldunit.merge(newunit)
                     if changed:
                         oldunit.save()
 
-            self.sync(update_structure=True, update_translation=True, conservative=False, create=False, user=user)
+            self.sync(update_structure=True, update_translation=True, conservative=False, create=False, profile=profile)
 
         finally:
             # unlock store
@@ -963,15 +963,15 @@ class Store(models.Model, base.TranslationStore):
             self.save()
 
 
-    def update_store_header(self, user=None):
+    def update_store_header(self, profile=None):
         language = self.translation_project.language
         source_language = self.translation_project.project.source_language
         self.file.store.settargetlanguage(language.code)
         self.file.store.setsourcelanguage(source_language.code)
 
         if isinstance(self.file.store, poheader.poheader):
-            if user is None:
                 mtime = self.get_mtime()
+            if profile is None:
                 try:
                     lastsubmit = self.translation_project.submission_set.latest()
                     if lastsubmit.submitter.user.username != 'nobody':
@@ -984,8 +984,8 @@ class Store(models.Model, base.TranslationStore):
             po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
             headerupdates = {'PO_Revision_Date': po_revision_date,
                              'X_Generator': x_generator}
-            if user is not None and user.is_authenticated():
-                headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name or user.username, user.email)
+            if profile and profile.user.is_authenticated():
+                headerupdates['Last_Translator'] = '%s <%s>' % (profile.user.first_name or profile.user.username, profile.user.email)
             else:
                 #FIXME: maybe insert settings.TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'
