@@ -1,5 +1,5 @@
 {% extends "user_profile_base_extended.html"  %}
-{% load i18n %}
+{% load i18n baseurl %}
  
 {% block title %}
 {{ block.super }} » {% trans "Translation Settings" %}
@@ -42,4 +42,8 @@
         <input type="submit" value="{% trans 'Save' %} "/>
     </p>
 </form>
+{% endblock %}
+
+{% block scripts_extra %}
+<script type="text/javascript" src="{{ "js/selectsort.js"|m }}"></script>
 {% endblock %}
