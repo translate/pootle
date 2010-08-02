@@ -22,6 +22,7 @@ import os
 import logging
 import re
 import time
+import datetime
 
 from django.db import models, IntegrityError
 from django.conf import settings
@@ -971,6 +972,8 @@ class Store(models.Model, base.TranslationStore):
 
         if isinstance(self.file.store, poheader.poheader):
             mtime = self.get_mtime()
+            if mtime is None:
+                mtime = datetime.datetime.now()
             if profile is None:
                 try:
                     lastsubmit = self.translation_project.submission_set.latest()
