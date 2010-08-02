@@ -5,11 +5,25 @@
 $(document).ready(function() {
   var target_lang = $.pootle.normalize_code($("#id_target_f_0").attr("lang"));
 
-  if (apertium.isTranslatable(target_lang)) {
+  var cookie_name = "apertium_pairs";
+  var cookie_options = {path: '/', expires: 15};
+  var pairs = $.cookie(cookie_name);
+  if (!pairs) {
+    pairs = apertium.getSupportedLanguagePairs();
+    pairs = $.map(pairs, function(obj, i) {
+      return {source: obj.sourceLanguage, target: obj.targetLanguage};
+    });
+    var cookie_data = JSON.stringify(pairs);
+    $.cookie(cookie_name, cookie_data, cookie_options);
+  } else {
+    pairs = $.parseJSON(pairs);
+  }
+
+  if ($.pootle.isSupportedTarget(pairs, target_lang)) {
     var sources = $(".translate-toolbar").prev(".translation-text");
     $(sources).each(function() {
       var source = $.pootle.normalize_code($(this).attr("lang"));
-      if (apertium.isTranslatablePair(source, target_lang)) {
+      if ($.pootle.isSupportedPair(pairs, source, target_lang)) {
         $.pootle.addMTButton($(this).siblings(".translate-toolbar"),
                              "apertium",
                              "/html/images/apertium.png",

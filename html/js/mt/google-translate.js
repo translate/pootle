@@ -6,11 +6,28 @@ google.load("language", "1");
 google.setOnLoadCallback(function() {
   var target_lang = $.pootle.normalize_code($("#id_target_f_0").attr("lang"));
 
-  if (google.language.isTranslatable(target_lang)) {
+  var cookie_name = "google_pairs";
+  var cookie_options = {path: '/', expires: 15};
+  var code_map = {'fl': 'tl', 'he': 'iw'};
+  var pairs = $.cookie(cookie_name);
+  if (!pairs) {
+    var pairs = [];
+    $.each(google.language.Languages, function(k, v) {
+      if (v != "" && google.language.isTranslatable(v)) {
+        pairs.push({source: v, target: v});
+      }
+    });
+    var cookie_data = JSON.stringify(pairs);
+    $.cookie(cookie_name, cookie_data, cookie_options);
+  } else {
+    pairs = $.parseJSON(pairs);
+  }
+
+  if ($.pootle.isSupportedTarget(pairs, target_lang)) {
     var sources = $(".translate-toolbar").prev(".translation-text");
     $(sources).each(function() {
       var source = $.pootle.normalize_code($(this).attr("lang"));
-      if (google.language.isTranslatable(source)) {
+      if ($.pootle.isSupportedSource(pairs, source)) {
         $.pootle.addMTButton($(this).siblings(".translate-toolbar"),
                              "googletranslate",
                              "/html/images/google-translate.png",

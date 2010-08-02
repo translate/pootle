@@ -241,6 +241,34 @@ $(document).ready(function() {
     }
   });
 
+  $.pootle.isSupportedSource = function(pairs, source) {
+    for (var i in pairs) {
+      if (source == pairs[i].source) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  $.pootle.isSupportedTarget = function(pairs, target) {
+    for (var i in pairs) {
+      if (target == pairs[i].target) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  $.pootle.isSupportedPair = function(pairs, source, target) {
+    for (var i in pairs) {
+      if (source == pairs[i].source &&
+          target == pairs[i].target) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   $.pootle.addMTButton = function(element, aclass, imgfn, tooltip) {
       var a = document.createElement("a");
       a.setAttribute("class", "translate-mt " + aclass);
