@@ -2025,12 +2025,14 @@ div#prevnext[dir="rtl"] + .translate-specialchars-block
 a.copyoriginal,
 a.translate-mt,
 a.collapse,
+a.slide,
 a.writespecial
 {
     cursor: pointer;
 }
 
-.collapsethis
+.collapsethis,
+.slidethis
 {
     display: none;
 }

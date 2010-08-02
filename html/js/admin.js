@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
-  $(".collapse").click(function(event) {
+  $(".slide").click(function(event) {
     event.preventDefault();
-    $("tbody.collapsethis").slideToggle("fast");
+    $("tbody.slidethis").slideDown("fast");
+    $(this).parents("tbody").remove();
   });
 
 });
