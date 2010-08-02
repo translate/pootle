@@ -960,26 +960,36 @@ class Store(models.Model, base.TranslationStore):
 
 
     def update_store_header(self, user=None):
-        had_header = False
-        if isinstance(self.file.store, po.pofile):
-            had_header = self.file.store.header()
-            po_revision_date = time.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
+        language = self.translation_project.language
+        source_language = self.translation_project.project.source_language
+        self.file.store.settargetlanguage(language.code)
+        self.file.store.setsourcelanguage(source_language.code)
+
+        if isinstance(self.file.store, poheader):
+            if user is None:
+                mtime = self.get_mtime()
+                try:
+                    lastsubmit = self.translation_project.submission_set.latest()
+                    if lastsubmit.submitter.user.username != 'nobody':
+                        user = lastsubmit.submitter
+                    #FIXME: maybe lastsubmit creation time is always better than mtime?
+                    mtime = lastsubmit.creation_time
+                except ObjectDoesNotExist:
+                    pass
+
+            po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
             headerupdates = {'PO_Revision_Date': po_revision_date,
                              'X_Generator': x_generator}
-
-            language = self.translation_project.language
-            headerupdates['Language'] = language.code
-            if language.nplurals and language.pluralequation:
-                self.file.store.updateheaderplural(language.nplurals, language.pluralequation)
-
             if user is not None and user.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % (user.first_name or user.username, user.email)
             else:
                 #FIXME: maybe insert settings.TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'
-
             self.file.store.updateheader(add=True, **headerupdates)
-        return had_header
+
+            if language.nplurals and language.pluralequation:
+                self.file.store.updateheaderplural(language.nplurals, language.pluralequation)
+
 
 ############################## Pending Files #################################
 
