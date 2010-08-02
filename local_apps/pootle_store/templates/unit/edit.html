@@ -126,8 +126,10 @@
           {% if form.initial.translator_comment %}
           <div>{{ form.translator_comment.label_tag }} {{ form.translator_comment }}</div>
           {% else %}
-          <a class="collapse tiny" tabindex="15">{% trans "Add Comment" %}</a>
-          <div class="collapsethis">{{ form.translator_comment }}</div>
+	    {% if cantranslate %}
+            <a class="collapse tiny" tabindex="15">{% trans "Add Comment" %}</a>
+            <div class="collapsethis">{{ form.translator_comment }}</div>
+	    {% endif %}
           {% endif %}
         </div>
         {% if suggestions %}
