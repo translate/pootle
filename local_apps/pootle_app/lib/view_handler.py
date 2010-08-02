@@ -67,16 +67,18 @@ class Handler(object):
         handler = getattr(self, action)
         return handler(request, *args, **kwargs)
 
-    def render_submit(self, action):
-        return '<input type="submit" name="%(action_name)s" value="%(action_value)s" />' % {
-            'action_name':  action[0],
-            'action_value': unicode(action[1]) }
+    def render_submits(self):
+        output = u""
+        for action in self.actions:
+            output += u'<input type="submit" name="%(action_name)s" value="%(action_value)s" />' % {
+                'action_name':  action[0], 'action_value': unicode(action[1]) }
+        return mark_safe(output)
 
     def as_p(self):
         return mark_safe("""
         %(inner_form)s
         <p>%(submits)s</p>""" % {
             'inner_form': self.form.as_p(),
-            'submits':    ''.join(self.render_submit(action) for action in self.actions) }
-                         )
+            'submits':    self.render_submits(),
+            })
 
