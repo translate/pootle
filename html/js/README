@@ -9,6 +9,9 @@ Directory contents
 -------------------
 + js/
 
+  - admin.js :
+    Code for tasks performed in the administration area.
+
   - correctpng.js :
     Fixes for IE 5.5 & 6 to correctly handle PNG transparencies.
 

@@ -18,34 +18,42 @@
   </div>
   <div class="bd">
     <table>
-      <tr>
-        <th scope="row">{% trans "Translated words" %}</th><td>{{ server_stats.word_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Pending suggestions" %}</th><td>{{ server_stats.pending_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Users" %}</th><td>{{ server_stats.user_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Active users" %}</th><td>{{ server_stats.user_active_count }}</td>
-      </tr>
-      <tr>{% trans "More..." %}</tr>
-      <tr>
-        <th scope="row">{% trans "Active projects" %}</th><td>{{ server_stats.project_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Active languages" %}</th><td>{{ server_stats.language_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Files" %}</th><td>{{ server_stats.store_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Translated strings" %}</th><td>{{ server_stats.string_count }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{% trans "Submissions" %}</th><td>{{ server_stats.submission_count }}</td>
-      </tr>
+      <tbody>
+        <tr>
+          <th scope="row">{% trans "Translated words" %}</th><td>{{ server_stats.word_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Pending suggestions" %}</th><td>{{ server_stats.pending_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Users" %}</th><td>{{ server_stats.user_count }}</td>
+        </tr>
+      </tbody>
+      <tbody class="collapsethis">
+        <tr>
+          <th scope="row">{% trans "Active users" %}</th><td>{{ server_stats.user_active_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Active projects" %}</th><td>{{ server_stats.project_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Active languages" %}</th><td>{{ server_stats.language_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Files" %}</th><td>{{ server_stats.store_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Translated strings" %}</th><td>{{ server_stats.string_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Submissions" %}</th><td>{{ server_stats.submission_count }}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td colspan="2"><a class="collapse tiny">{% trans "More..." %}</a></span></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>
@@ -95,4 +103,3 @@
 </div>
 {% include "admin/rss_widget.html" %}
 {% endblock %}
-
