@@ -1852,6 +1852,7 @@ tr.odd .tm-unit
     left: 101%;
     position: absolute;
     margin: 0 5px;
+    min-width: 110px;
 }
 
 .translate-buttons-block[dir="rtl"]
