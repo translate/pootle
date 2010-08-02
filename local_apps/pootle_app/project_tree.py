@@ -227,7 +227,7 @@ def convert_template(translation_project, template_store, target_pootle_path, ta
     if template_store.file:
         output_file.savefile(target_path)
     elif store:
-        store.mergefile(output_file, '', allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=True)
+        store.mergefile(output_file, None, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=True)
     else:
         output_file.translation_project = translation_project
         output_file.name = template_store.name

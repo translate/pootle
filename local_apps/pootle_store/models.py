@@ -900,7 +900,7 @@ class Store(models.Model, base.TranslationStore):
         return self.units[item]
 
     @commit_on_success
-    def mergefile(self, newfile, username, allownewstrings, suggestions, notranslate, obsoletemissing):
+    def mergefile(self, newfile, user, allownewstrings, suggestions, notranslate, obsoletemissing):
         """make sure each msgid is unique ; merge comments etc from
         duplicates into original"""
 

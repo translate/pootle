@@ -302,7 +302,7 @@ class TranslationProject(models.Model):
 
         #FIXME: try to avoid merging if file was not updated
         logging.debug("merging %s with version control update", store.file.path)
-        store.mergefile(working_copy, "versionmerge", allownewstrings=False, suggestions=True, notranslate=False, obsoletemissing=False)
+        store.mergefile(working_copy, None, allownewstrings=False, suggestions=True, notranslate=False, obsoletemissing=False)
 
         try:
             hooks.hook(self.project.code, "postupdate", store.file.path)
