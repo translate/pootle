@@ -17,7 +17,7 @@
 <div id="settings">
 <form action="" method="post">
     {% for field in form %}
-    <p>
+    <p> {{ field.errors }}
         {{ field.label_tag }}
         {{ field }}
         {% if field.help_text %}
