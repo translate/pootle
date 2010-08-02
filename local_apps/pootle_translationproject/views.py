@@ -486,8 +486,8 @@ class UploadHandler(view_handler.Handler):
                    ('suggest', _("Add all new translations as suggestions"))]
         if check_permission('overwrite', request):
             choices.insert(0, ('overwrite',  _("Overwrite the current file if it exists")))
-            translation_project = request.translation_project
 
+        translation_project = request.translation_project
         class UploadForm(forms.Form):
             file = forms.FileField(required=True, label=_('File'))
             overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect,
