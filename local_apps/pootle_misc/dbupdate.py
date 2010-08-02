@@ -204,14 +204,20 @@ def staggered_update(db_buildversion):
         Directory.objects.root.get_or_make_subdir('projects')
         for project in Project.objects.iterator():
             # saving should force project to update it's directory property
-            project.save()
+            try:
+                project.save()
+            except Exception, e:
+                logging.warning("something broke while upgrading %s:\n%s", project.pootle_path, str(e))
 
         yield parse_start()
         for store in Store.objects.iterator():
-            store.translation_project = store.parent.get_translationproject()
-            store.save()
-            yield parse_store(store)
-            yield import_suggestions(store)
+            try:
+                store.translation_project = store.parent.get_translationproject()
+                store.save()
+                yield parse_store(store)
+                yield import_suggestions(store)
+            except Exception, e:
+                logging.warning("something broke while upgrading %s:\n%s", store.pootle_path, str(e))
         yield parse_end()
 
     # first time to visit the front page all stats for projects and
