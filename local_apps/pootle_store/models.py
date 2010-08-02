@@ -970,7 +970,7 @@ class Store(models.Model, base.TranslationStore):
         self.file.store.setsourcelanguage(source_language.code)
 
         if isinstance(self.file.store, poheader.poheader):
-                mtime = self.get_mtime()
+            mtime = self.get_mtime()
             if profile is None:
                 try:
                     lastsubmit = self.translation_project.submission_set.latest()
