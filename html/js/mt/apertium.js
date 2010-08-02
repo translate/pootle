@@ -8,7 +8,7 @@ $(document).ready(function() {
   if (apertium.isTranslatable(target_lang)) {
     var sources = $(".translate-toolbar").prev(".translation-text");
     $(sources).each(function() {
-      var source = $(this).attr("lang");
+      var source = $.pootle.normalize_code($(this).attr("lang"));
       if (apertium.isTranslatablePair(source, target_lang)) {
         $.pootle.addMTButton($(this).siblings(".translate-toolbar"),
                              "apertium",

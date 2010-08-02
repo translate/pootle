@@ -9,7 +9,7 @@ google.setOnLoadCallback(function() {
   if (google.language.isTranslatable(target_lang)) {
     var sources = $(".translate-toolbar").prev(".translation-text");
     $(sources).each(function() {
-      var source = $(this).attr("lang");
+      var source = $.pootle.normalize_code($(this).attr("lang"));
       if (google.language.isTranslatable(source)) {
         $.pootle.addMTButton($(this).siblings(".translate-toolbar"),
                              "googletranslate",
