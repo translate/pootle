@@ -21,7 +21,6 @@
 import os
 import logging
 import re
-import time
 import datetime
 
 from django.db import models, IntegrityError
@@ -30,7 +29,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.transaction import commit_on_success
-from django.db import IntegrityError
 
 from translate.storage import base, statsdb, po, poheader
 from translate.misc.hash import md5_f
@@ -343,6 +341,8 @@ class Unit(models.Model, base.TranslationUnit):
         if not self.target:
             return
         for name, message in self.store.translation_project.checker.run_filters(self).items():
+            if name == 'isfuzzy':
+                continue
             self.qualitycheck_set.create(name=name, message=message)
 
     def get_qualitychecks(self):
