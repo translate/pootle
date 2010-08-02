@@ -959,7 +959,7 @@ class Store(models.Model, base.TranslationStore):
             self.save()
 
 
-    def updateheader(self, user=None):
+    def update_store_header(self, user=None):
         had_header = False
         if isinstance(self.file.store, po.pofile):
             had_header = self.file.store.header()
