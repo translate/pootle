@@ -955,7 +955,7 @@ class Store(models.Model, base.TranslationStore):
                     if changed:
                         oldunit.save()
 
-            self.sync(update_structure=True, update_translation=True, conservative=False, create=False)
+            self.sync(update_structure=True, update_translation=True, conservative=False, create=False, user=user)
 
         finally:
             # unlock store
