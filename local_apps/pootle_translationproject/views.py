@@ -492,7 +492,7 @@ class UploadHandler(view_handler.Handler):
             file = forms.FileField(required=True, label=_('File'))
             overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect,
                                           label='', choices=choices, initial='merge')
-            upload_to = forms.ModelChoiceField(required=False, label=_('Upload To'), queryset=translation_project.stores.all(),
+            upload_to = forms.ModelChoiceField(required=False, label=_('Upload to'), queryset=translation_project.stores.all(),
                                                help_text=_("Optionally select the file you want to merge with. If not specified, the uploaded file's name is used."))
 
         self.Form = UploadForm
