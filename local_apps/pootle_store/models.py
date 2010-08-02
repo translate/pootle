@@ -178,6 +178,7 @@ class Unit(models.Model, base.TranslationUnit):
         if settings.AUTOSYNC and self.store.file and self.store.state >= PARSED:
             #FIXME: last translator information is lost
             self.sync(self.getorig())
+            self.store.update_store_header()
             self.store.file.savestore()
 
         if self.store.state >= CHECKED and (self._source_updated or self._target_updated):
@@ -506,7 +507,7 @@ class Unit(models.Model, base.TranslationUnit):
         if settings.AUTOSYNC and self.file:
             #FIXME: update alttrans
             self.sync(self.getorig())
-            self.store.updateheader(suggestion.user)
+            self.store.update_store_header(user=suggestion.user)
             self.file.savestore()
         return True
 
@@ -713,7 +714,7 @@ class Store(models.Model, base.TranslationStore):
             self.state = CHECKED
             self.save()
 
-    def sync(self, update_structure=False, update_translation=False, conservative=True, create=False):
+    def sync(self, update_structure=False, update_translation=False, conservative=True, create=False, user=None):
         """sync file with translations from db"""
         if not self.file:
             if create:
@@ -725,6 +726,8 @@ class Store(models.Model, base.TranslationStore):
                 store.savefile(store_path)
                 self.file = store_path
                 self.save()
+                self.update_store_header(user=user)
+                self.file.savestore()
             return
 
         logging.debug("Syncing %s", self.pootle_path)
@@ -759,7 +762,7 @@ class Store(models.Model, base.TranslationStore):
                 if match is not None:
                     unit.sync(match)
 
-        #FIXME update headers here
+        self.update_store_header(user=user)
         self.file.savestore()
 
     def get_file_class(self):
