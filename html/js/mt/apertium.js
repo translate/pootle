@@ -6,10 +6,16 @@ $(document).ready(function() {
   var target_lang = $.pootle.normalize_code($("#id_target_f_0").attr("lang"));
 
   if (apertium.isTranslatable(target_lang)) {
-    $.pootle.addMTButton($(".translate-toolbar"),
-                         "apertium",
-                         "/html/images/apertium.png",
-                         "Apertium");
+    var sources = $(".translate-toolbar").prev(".translation-text");
+    $(sources).each(function() {
+      var source = $(this).attr("lang");
+      if (apertium.isTranslatablePair(source, target_lang)) {
+        $.pootle.addMTButton($(this).siblings(".translate-toolbar"),
+                             "apertium",
+                             "/html/images/apertium.png",
+                             "Apertium");
+      }
+    });
 
     $(".apertium").click(function() {
       var areas = $("[id^=id_target_f_]");
