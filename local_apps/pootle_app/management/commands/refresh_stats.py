@@ -68,6 +68,6 @@ class Command(NoArgsCommand):
             # TranslationProject if it is out of date.
             translation_project.indexer
 
-            logging.info("Updating stats for %s", translation_project.fullname)
+            logging.info("Updating stats for %s", translation_project.fullname.encode("utf-8"))
             translation_project.getcompletestats()
             translation_project.getquickstats()

@@ -45,5 +45,5 @@ class Command(NoArgsCommand):
 
 
         for translation_project in TranslationProject.objects.filter(real_path__startswith=update_path).iterator():
-            logging.info("Updating %s from templates", translation_project.fullname)
+            logging.info("Updating %s from templates", translation_project.fullname.encode("utf-8"))
             translation_project.update_from_templates()

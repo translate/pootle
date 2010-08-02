@@ -53,7 +53,7 @@ class Command(NoArgsCommand):
                 translation_project.delete()
                 continue
 
-            logging.info("saving new translation for %s", translation_project.fullname)
+            logging.info("saving new translation for %s", translation_project.fullname.encode("utf-8"))
             # sync new translations
             for store in translation_project.stores.exclude(file='').iterator():
                 store.sync(update_translation=True, conservative=not overwrite, update_structure=overwrite)
