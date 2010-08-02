@@ -2243,3 +2243,12 @@ h2:lang(zh) a
     font-size: 100%;
 }
 
+td.translate-full div.translate-translation:lang(bn),
+td.translate-full div.translate-translation:lang(fa),
+td.translate-full div.translate-translation:lang(ja),
+td.translate-full div.translate-translation:lang(ko),
+td.translate-full div.translate-translation:lang(zh)
+{
+    margin-bottom: 30px;
+}
+

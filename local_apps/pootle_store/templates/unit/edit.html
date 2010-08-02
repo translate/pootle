@@ -104,10 +104,10 @@
         </div>
       </div>
       <!-- Translation -->
-      <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus">
+      <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
         <!-- Begin: Normal editing -->
         {{ form.target_f }}
-        <div id="prevnext" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+        <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
           <input type="submit" class="previous" name="back" tabindex="9" accesskey="b" value="{% trans 'Previous' %}" title="{% trans 'Go to the previous unit' %}" />
           <input type="submit" class="next" name="skip" tabindex="14" accesskey="k" value="{% trans 'Next' %}" title="{% trans 'Go to the next unit' %}" />
         </div>
