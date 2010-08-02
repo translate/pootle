@@ -949,7 +949,7 @@ class Store(models.Model, base.TranslationStore):
                 if notranslate or oldunit.istranslated() and suggestions:
                     if newunit.istranslated():
                         #FIXME: add a user argument
-                        oldunit.add_suggestion(newunit.target, None)
+                        oldunit.add_suggestion(newunit.target, user)
                 else:
                     changed = oldunit.merge(newunit)
                     if changed:
