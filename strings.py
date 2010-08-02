@@ -29,10 +29,6 @@ _("active")
 # l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 _("superuser status")
 
-# l10n: For uploading to a specific filename
-_("Upload to")
-_("Optionally select the file you want to merge with. If not specified, the uploaded file's name is used.")
-
 # l10n: The language from which translation will happen
 _("Source Language")
 
