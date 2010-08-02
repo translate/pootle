@@ -397,9 +397,9 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         #FIXME: maybe there is a faster way to do this?
         store.mergefile(newstore, request.user.username, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
 
-def upload_file(request, directory, django_file, overwrite):
+def upload_file(request, directory, django_file, overwrite, store=None):
     translation_project = request.translation_project
-    relative_root_dir = directory.pootle_path[len(translation_project.directory.pootle_path):]
+    relative_root_dir = directory.pootle_path[len(translation_project.pootle_path):]
     # for some reason factory checks explicitly for file existance and
     # if file is open, which makes it difficult to work with Django's
     # in memory uploads.
@@ -422,14 +422,17 @@ def upload_file(request, directory, django_file, overwrite):
         django_file.mode = 1
 
     local_filename = get_local_filename(translation_project, django_file.name)
-    pootle_path = directory.pootle_path + local_filename
-    # The full filesystem path to 'local_filename'
-    upload_path    = get_upload_path(translation_project, relative_root_dir, local_filename)
-
-    try:
-        store = translation_project.stores.get(pootle_path=pootle_path)
-    except Store.DoesNotExist:
-        store = None
+    if store and store.file:
+        pootle_path = store.pootle_path
+        upload_path = store.real_path
+    else:
+        pootle_path = directory.pootle_path + local_filename
+        # The full filesystem path to 'local_filename'
+        upload_path    = get_upload_path(translation_project, relative_root_dir, local_filename)
+        try:
+            store = translation_project.stores.get(pootle_path=pootle_path)
+        except Store.DoesNotExist:
+            store = None
 
     if store is not None and overwrite == 'overwrite' and not check_permission('overwrite', request):
         raise PermissionDenied(_("You do not have rights to overwrite files here."))
@@ -483,11 +486,14 @@ class UploadHandler(view_handler.Handler):
                    ('suggest', _("Add all new translations as suggestions"))]
         if check_permission('overwrite', request):
             choices.insert(0, ('overwrite',  _("Overwrite the current file if it exists")))
+            translation_project = request.translation_project
 
         class UploadForm(forms.Form):
             file = forms.FileField(required=True, label=_('File'))
             overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect,
                                           label='', choices=choices, initial='merge')
+            upload_to = forms.ModelChoiceField(required=False, label=_('Upload To'), queryset=translation_project.stores.all(),
+                                               help_text=_("Optionally select the file you want to merge with. If not specified, the uploaded file's name is used."))
 
         self.Form = UploadForm
         super(UploadHandler, self).__init__(request, data, files)
@@ -498,6 +504,7 @@ class UploadHandler(view_handler.Handler):
         if self.form.is_valid() and 'file' in request.FILES:
             django_file = self.form.cleaned_data['file']
             overwrite = self.form.cleaned_data['overwrite']
+            upload_to = self.form.cleaned_data['upload_to']
             translation_project.scan_files()
             oldstats = translation_project.getquickstats()
             # The URL relative to the URL of the translation project. Thus, if
@@ -508,7 +515,7 @@ class UploadHandler(view_handler.Handler):
                 upload_archive(request, directory, django_file, overwrite)
             else:
                 archive = False
-                upload_file(request, directory, django_file, overwrite)
+                upload_file(request, directory, django_file, overwrite, store=upload_to)
             translation_project.scan_files()
             newstats = translation_project.getquickstats()
 
