@@ -976,13 +976,17 @@ class Store(models.Model, base.TranslationStore):
                 mtime = datetime.datetime.now()
             if profile is None:
                 try:
-                    lastsubmit = self.translation_project.submission_set.latest()
-                    if lastsubmit.submitter.user.username != 'nobody':
-                        user = lastsubmit.submitter
-                    #FIXME: maybe lastsubmit creation time is always better than mtime?
-                    mtime = lastsubmit.creation_time
+                    submit = self.translation_project.submission_set.filter(creation_time=mtime).latest()
+                    if submit.submitter.user.username != 'nobody':
+                        profile = submit.submitter
                 except ObjectDoesNotExist:
-                    pass
+                    try:
+                        lastsubmit = self.translation_project.submission_set.latest()
+                        if lastsubmit.submitter.user.username != 'nobody':
+                            profile = lastsubmit.submitter
+                        mtime = min(lastsubmit.creation_time, mtime)
+                    except ObjectDoesNotExist:
+                        pass
 
             po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
             headerupdates = {'PO_Revision_Date': po_revision_date,
