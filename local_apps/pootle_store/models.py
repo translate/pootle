@@ -175,7 +175,8 @@ class Unit(models.Model, base.TranslationUnit):
 
         super(Unit, self).save(*args, **kwargs)
 
-        if settings.AUTOSYNC and self.store.file and self.store.state >= PARSED:
+        if settings.AUTOSYNC and self.store.file and self.store.state >= PARSED and \
+               (self._target_updated or self._source_updated):
             #FIXME: last translator information is lost
             self.sync(self.getorig())
             self.store.update_store_header()
