@@ -109,19 +109,18 @@ def update_tables_21000():
     field = Store._meta.get_field('translation_project')
     field.null = True
     db.add_column(table_name, field.name, field)
-    db.create_index(table_name, (field.name,))
+    db.create_index(table_name, (field.name + '_id',))
 
     table_name = Project._meta.db_table
     field = Project._meta.get_field('directory')
     field.null = True
     db.add_column(table_name, field.name, field)
-    db.create_index(table_name, (field.name,), unique=True)
 
     field = Project._meta.get_field('source_language')
     en, created = Language.objects.get_or_create(code='en', fullname='English', nplurals=2)
     field.default = en.id
     db.add_column(table_name, field.name, field)
-    db.create_index(table_name, (field.name,))
+    db.create_index(table_name, (field.name + '_id',))
     return text
 
 def parse_start():
