@@ -72,7 +72,7 @@
       </p>
   </div>
 </div>
-<div style="clear: left;"> </div>
+<div style="clear: {% if LANGUAGE_BIDI %}right{% else %}left{% endif %};"></div>
 <div id="depchecks" class="module first" lang="{{ LANGUAGE_CODE }}">
   <div class="hd">
     <h2>{% trans "Dependency Checks" %}</h2>
