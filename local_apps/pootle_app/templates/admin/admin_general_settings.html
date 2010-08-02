@@ -16,6 +16,7 @@
 {% block section_body %}
 <div id="settings">
 <form action="" method="post">
+  {{ form.non_field_errors }}
     {% for field in form %}
     <p> {{ field.errors }}
         {{ field.label_tag }}

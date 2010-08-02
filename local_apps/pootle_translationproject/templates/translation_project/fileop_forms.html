@@ -6,6 +6,7 @@
     <div class="bd">
         <h2>{{ upload.form.title }}</h2>
         <form action="" method="post" id="uploadform" name="uploadform" enctype="multipart/form-data">
+	  {{ form.non_field_errors }}
 	  {% for field in upload.form %}
 	  <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
 	    {{ field.errors }}

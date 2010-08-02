@@ -15,32 +15,14 @@
 
 {% block section_body %}
 <form method="post" action="">
-    <p>
-        <label for="id_unit_rows">{% trans 'Number of Rows' %}</label>
-        {{ form.unit_rows }}
-    </p>
-    <p>
-        <label for="id_ui_lang">{% trans 'Interface Language' %}</label>
-        {{ form.ui_lang }}
-    </p>
-    <p>
-        <label for="id_languages">{% trans 'My Languages' %}</label>
-        {{ form.languages}}
-        <span class="help_text">{{ form.languages.help_text }}</span>
-    </p>
-    <p>
-        <label for="id_projects">{% trans 'My Projects' %}</label>
-        {{ form.projects }}
-        <span class="help_text">{{ form.projects.help_text }}</span>
-    </p>
-    <p>
-        <label for="id_alt_src_langs">{% trans 'Alternative Source Languages' %}</label>
-        {{ form.alt_src_langs }}
-        <span class="help_text">{{ form.alt_src_langs.help_text }}</span>
-    </p>
-    <p>
-        <input type="submit" value="{% trans 'Save' %} "/>
-    </p>
+  {{ form.non_field_errors }}
+  {% for field in form %}
+  <p>{{ field.errors }}
+    {{ field.label_tag }} {{ field }}
+    {% if field.help_text %}<span class="help_text">{{ field.help_text }}</span>{% endif %}
+  </p>
+  {% endfor %}
+  <p><input type="submit" value="{% trans 'Save' %} "/></p>
 </form>
 {% endblock %}
 
