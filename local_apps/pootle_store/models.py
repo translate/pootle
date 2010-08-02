@@ -969,7 +969,7 @@ class Store(models.Model, base.TranslationStore):
         self.file.store.settargetlanguage(language.code)
         self.file.store.setsourcelanguage(source_language.code)
 
-        if isinstance(self.file.store, poheader):
+        if isinstance(self.file.store, poheader.poheader):
             if user is None:
                 mtime = self.get_mtime()
                 try:
