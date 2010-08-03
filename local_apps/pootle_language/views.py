@@ -25,7 +25,8 @@ from django.template import RequestContext
 from django.core.exceptions import PermissionDenied
 
 from pootle_app.views.language.view import get_stats_headings
-from pootle_app.views.language.item_dict import nice_percentage, add_percentages, stats_descriptions
+from pootle_misc.util import nice_percentage, add_percentages
+from pootle_app.views.language.item_dict import  stats_descriptions
 from pootle_app.views import pagelayout
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
