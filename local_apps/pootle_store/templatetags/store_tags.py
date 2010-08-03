@@ -25,10 +25,14 @@ from django import template
 from django.utils.translation import ugettext as _
 from django.core.exceptions import  ObjectDoesNotExist
 
+from pootle_store.fields import list_empty
 from pootle_store.models import Unit
 from pootle_store.util import TRANSLATED
 from pootle_misc.templatetags.cleanhtml import fancy_escape
 from pootle_misc.util import add_percentages
+from pootle_misc.templatetags.cleanhtml import fancy_highlight
+
+from translate.misc.multistring import multistring
 
 register = template.Library()
 
@@ -42,6 +46,19 @@ def find_altsrcs(unit, alt_src_langs, store=None, project=None):
     if project.get_treestyle() == 'nongnu':
         altsrcs = altsrcs.filter(store__name=store.name)
     return altsrcs
+
+def call_highlight(old, new):
+    """Calls diff highlighting code only if the target is set.
+    Otherwise, highlight as a normal unit.
+    """
+    if isinstance(old, multistring):
+        old_value = old.strings
+    else:
+        old_value = old
+    if list_empty(old_value):
+        return fancy_highlight(new)
+    else:
+        return highlight_diffs(old, new)
 
 def highlight_diffs(old, new):
     """Highlights the differences between old and new. The differences
@@ -134,12 +151,12 @@ def pluralize_diff_sugg(sugg):
         forms = []
         for i, target in enumerate(sugg.target.strings):
             if i < len(unit.target.strings):
-                forms.append((i, target, highlight_diffs(unit.target.strings[i], target), _('Plural Form %d', i)))
+                forms.append((i, target, call_highlight(unit.target.strings[i], target), _('Plural Form %d', i)))
             else:
-                forms.append((i, target, highlight_diffs('', target), _('Plural Form %d', i)))
+                forms.append((i, target, call_highlight('', target), _('Plural Form %d', i)))
         return forms
     else:
-        return [(0, sugg.target, highlight_diffs(unit.target, sugg.target), None)]
+        return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
 
 
 @register.inclusion_tag('unit/edit.html', takes_context=True)
