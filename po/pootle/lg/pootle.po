@@ -62,7 +62,7 @@ msgstr "Kyuusa"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
-#, python-format
+#, fuzzy, python-format
 msgid "Add %(name)s"
 msgstr "Ggattako %(erinnya)s"
 
@@ -823,7 +823,7 @@ msgid "Translations need to be checked (they are marked fuzzy)"
 msgstr "Entafuta zeetaaga kukebera (ziragiddwa nga fuzzy)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
-#, python-format
+#, fuzzy, python-format
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "fayiro"
