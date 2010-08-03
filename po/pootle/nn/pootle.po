@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-11-29 14:53+0200\n"
+"PO-Revision-Date: 2010-03-25 16:40+0200\n"
 "Last-Translator: Simon <simonboba@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.0-rc2\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -38,15 +38,15 @@ msgstr "Dette feltet er påkravd."
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr ""
+msgstr "Sjå til at denne verdien har maks %(max)d teikn (den har %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Lagre og legg til ein ny"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Lagre og fortset endringa"
 
 #: strings.py:15
 msgid "Add"
@@ -65,7 +65,7 @@ msgstr "Legg til %(name)s"
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr ""
+msgstr "Vis på sida"
 
 #: strings.py:24
 msgid "first name"
@@ -96,7 +96,7 @@ msgstr[1] "Rett opp dei følgjande feila."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Lagra innstillingane."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
@@ -155,7 +155,7 @@ msgstr "aktiveringsnøkkel"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "registreringsprofil"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
@@ -567,7 +567,7 @@ msgstr ""
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
 msgid "Login"
-msgstr "Brukarnamn"
+msgstr "Logg inn"
 
 #: local_apps/pootle_app/templates/index/login.html:10
 msgid "Login to Pootle"

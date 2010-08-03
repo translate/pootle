@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-12-31 17:42+0200\n"
+"PO-Revision-Date: 2010-01-13 13:47+0200\n"
 "Last-Translator: kasahorow <kasahorow@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ak\n"
@@ -199,7 +199,7 @@ msgstr ""
 
 #: local_apps/pootle_app/unit_update.py:38
 msgid "You do not have rights to suggest changes here"
-msgstr "Wo nni ho kwan sɛ wo bɛkyerɛ w'adwen wɔ nsesae biara ho wɔ ha"
+msgstr "Wo nni ho kwan sɛ wo bɛkyerɛ wo adwen wɔ nsesae biara ho wɔ ha"
 
 #: local_apps/pootle_app/unit_update.py:57
 msgid "You do not have rights to change translations here"
@@ -1007,8 +1007,8 @@ msgstr "To so firi VCS"
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] "kasafua %d hia w'adwen"
-msgstr[1] "akasafua %d hia w'adwen"
+msgstr[0] "kasafua %d hia wo adwen"
+msgstr[1] "akasafua %d hia wo adwen"
 
 #: local_apps/pootle_app/views/language/item_dict.py:233
 #, python-format

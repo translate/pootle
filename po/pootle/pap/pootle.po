@@ -7,175 +7,176 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2008-09-16 20:41+0000\n"
-"Last-Translator: Urso Wieske <uwieske@gmail.com>\n"
+"PO-Revision-Date: 2010-03-22 14:13+0200\n"
+"Last-Translator: Richenel Ansano <richenel.ansano@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pap\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
+"Primi i tene \"Control\" òf \"Command\" na un kòmpiuter Mac pa selektá mas ku "
+"unu."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Pone un email bálido."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"E email ei no tin un kuenta di un uzadó mará n'e. Bo ta sigur ku bo a "
+"registrá?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "E informashon aki ta rekerí."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr ""
+msgstr "Sòru pa e balor aki tin porloménos %(max)d símbolo (e tin %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Ward'é i añadí otro."
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Ward'é i sigui redaktá."
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Añadí"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Kambia"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Añadí %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr ""
+msgstr "mira na e sitio"
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "nòmber dilanti"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "fam"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "Email Adres"
+msgstr "mail"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "aktivo"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "status di uzadó intensivo"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Por fabor korehí e eror menshoná aki bou"
+msgstr[1] "Por fabor korehí e eror menshoná aki bou"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "A kambia e konfigurashon."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Warda"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Username"
+msgstr "nòmber di uzadó"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "Email Adres"
+msgstr "mail"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Password"
+msgstr "kódigo sekreto"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "kódigo sekreto (atrobe)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "Otro usadó ta usa e nòmber aki kaba. Por fabor skohe otro nòmber."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "Bo metser taip mesun kódigo sekreto kada bia."
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "Mi a lesa i ta di akuerdo ku e Términonan di Servisio"
 
 #: external_apps/registration/forms.py:107
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
-msgstr ""
+msgstr "Ta usando e mail aki kaba. Por fabor yena un mail."
 
 #: external_apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
-msgstr ""
+msgstr "Ta prohibí pa registrá ku un mail gratis. Por fabor  yena un otro mail."
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "usadó"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr ""
+msgstr "yabi pa aktivá e programa"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "perfil di registrashon"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr ""
+msgstr "perfilnan di registrashon"
 
 #: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "E kódigo di idioma no ta segun konvenshonnan di ISO"
 
 #: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "Un kódigo di poryekto por konsistí solamente di lèter, number i _"
 
 #: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
-msgstr ""
+msgstr "Opshonnan avansá"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
@@ -183,7 +184,7 @@ msgstr "Título"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Nòmber di e sirbidó di Pootle aki"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
@@ -194,6 +195,8 @@ msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
+"Deskripshon i instrukshon ta na e página prinsipal i e pagina di informashon "
+"\"tokante nos\". Sòru pa usa HTML bálido."
 
 #: local_apps/pootle_app/unit_update.py:38
 msgid "You do not have rights to suggest changes here"
@@ -210,15 +213,15 @@ msgstr "Bo no tin derecho pa revisa sugerensianan aki"
 
 #: local_apps/pootle_app/management/__init__.py:62
 msgid "Can view a translation project"
-msgstr ""
+msgstr "Por mira un proyekto di tradukshon"
 
 #: local_apps/pootle_app/management/__init__.py:64
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Por sugerí un tradukshon"
 
 #: local_apps/pootle_app/management/__init__.py:66
 msgid "Can submit a translation"
-msgstr ""
+msgstr "Por someté un tradukshon."
 
 #: local_apps/pootle_app/management/__init__.py:68
 msgid "Can overwrite translations on uploading files"
@@ -226,15 +229,15 @@ msgstr ""
 
 #: local_apps/pootle_app/management/__init__.py:70
 msgid "Can review translations"
-msgstr ""
+msgstr "Por revisá tradukshon"
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "Por baha archivo di proyekto di tradukshon"
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "Por atministrá un proyekto di tradukshon"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can commit to version control"
@@ -250,31 +253,33 @@ msgstr ""
 #: local_apps/pootle_app/models/language.py:40
 #: local_apps/pootle_app/models/project.py:58
 msgid "Code"
-msgstr ""
+msgstr "Kódigo"
 
 #: local_apps/pootle_app/models/language.py:41
 #: local_apps/pootle_app/models/project.py:59
 msgid "Full Name"
-msgstr "Nomber kompleto"
+msgstr "Nòmber kompletu"
 
 #: local_apps/pootle_app/models/language.py:43
 msgid "Enter any special characters that users might find difficult to type"
-msgstr ""
+msgstr "Taip kualke signo speshal ku usadónan por haña difísil pa taip"
 
 #: local_apps/pootle_app/models/language.py:44
-#, fuzzy
 msgid "Special Characters"
-msgstr "(karakternan speshal)"
+msgstr "signonan speshal"
 
 #: local_apps/pootle_app/models/language.py:46
 msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
+"Pa mas informashon bai <a "
+"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\"> nos página "
+"wiki</a> tokante formanan plural. "
 
 #: local_apps/pootle_app/models/language.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "No konosí"
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
@@ -282,65 +287,69 @@ msgstr "Konteo di Pluralnan"
 
 #: local_apps/pootle_app/models/language.py:50
 msgid "Plural Equation"
-msgstr "Komparashon plural"
+msgstr "Fórmula plural"
 
 #: local_apps/pootle_app/models/profile.py:72
 #: local_apps/pootle_app/views/index/login.py:58
 #: templates/profiles/edit_profile.html:27
 msgid "Interface Language"
-msgstr ""
+msgstr "Idioma di konekshon"
 
 #: local_apps/pootle_app/models/profile.py:97
 msgid "Suggestions Accepted"
-msgstr ""
+msgstr "A aseptá e sugerenshanan"
 
 #: local_apps/pootle_app/models/profile.py:98
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "E sugerenshanan ta pendiente"
 
 #: local_apps/pootle_app/models/profile.py:99
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "A revisá e sugerenshanan"
 
 #: local_apps/pootle_app/models/profile.py:100
 msgid "Submissions Made"
-msgstr ""
+msgstr "A someté drentada"
 
 #: local_apps/pootle_app/models/project.py:40
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
+"Un kódigo kòrtiku pa e proyekto. Esaki por kontené únikamente signonan "
+"ASCII, number i e strepi abou (_)"
 
 #: local_apps/pootle_app/models/project.py:41
 msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. This field should be valid HTML."
 msgstr ""
+"Un deskripshon di e proyekto aki. Esaki ta útil pa por duna mas informashon "
+"o instrukshon. E area aki mester ta HTML bálido."
 
 #: local_apps/pootle_app/models/project.py:48
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: local_apps/pootle_app/models/project.py:49
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
-msgstr ""
+msgstr "Detekshon outomátiko (mas poko poko)"
 
 #: local_apps/pootle_app/models/project.py:54
 msgid "GNU style: files named by language code"
-msgstr ""
+msgstr "Estilo GNU: failnan nombrá segun kódigo di idioma"
 
 #: local_apps/pootle_app/models/project.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr ""
+msgstr "No-GNU: Kada idioma den su mes direktorio"
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
-msgstr ""
+msgstr "Chèkmentu di kalidat"
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
@@ -348,40 +357,38 @@ msgstr "Tipo di File"
 
 #: local_apps/pootle_app/models/project.py:63
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Estilo di Palu di Proyekto"
 
 #: local_apps/pootle_app/models/project.py:64
 msgid "Ignore Files"
-msgstr ""
+msgstr "Ignorá failnan"
 
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr ""
+msgstr "Pendiente"
 
 #: local_apps/pootle_app/models/suggestion.py:55
-#, fuzzy
 msgid "Accepted"
-msgstr "Aksepta"
+msgstr "Aseptá"
 
 #: local_apps/pootle_app/models/suggestion.py:56
-#, fuzzy
 msgid "Rejected"
-msgstr "Rechasa"
+msgstr "Rechasá"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
 msgid "You do not have rights to update from version control here"
-msgstr ""
+msgstr "Bo no tin outorisashon pa kambia e vershon di kontròl na e logá aki"
 
 #: local_apps/pootle_app/models/translation_project.py:253
 #, python-format
 msgid "Updated %s files from version control"
-msgstr ""
+msgstr "A kambia %s fail di vershon di kontròl"
 
 #: local_apps/pootle_app/models/translation_project.py:269
 #, python-format
 msgid "Failed to update %s from version control"
-msgstr ""
+msgstr "No a logra kambia %s di e vershon di kontròl"
 
 #: local_apps/pootle_app/models/translation_project.py:271
 #, python-format
@@ -396,7 +403,7 @@ msgstr "Bo no tin derecho pa komete files nan aki"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr ""
+msgstr "Kontribuidónan prinispal"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/project_index.py:41
@@ -405,7 +412,7 @@ msgstr "Tradusí"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr ""
+msgstr "Mester revisá"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:109
@@ -428,6 +435,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"Aki bo po añadí, redaktá i eliminá tur e idiomanan disponibel riba e sirbidó "
+"di Pootle aki."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
@@ -440,13 +449,15 @@ msgstr ""
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
 #: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "Pèrmit"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"Aki bo po añadí, redaktá i eliminá e pèrmitnan original riba e sirbidó di "
+"Pootle aki."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
@@ -464,7 +475,7 @@ msgstr "Username"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
-msgstr ""
+msgstr "Eliminá"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
@@ -486,6 +497,8 @@ msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
+"Aki bo po añadí, redaktá i eliminá tur e proyektonan disponibel riba e "
+"sirbidó di Pootle aki."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
@@ -507,7 +520,7 @@ msgstr "Opshon"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:47
 msgid "Optimizations"
-msgstr ""
+msgstr "Optimisashon"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -522,10 +535,12 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"Aki bo po añadí, redaktá i eliminá tur e usuarionan disponibel riba e "
+"sirbidó di Pootle aki."
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
-msgstr ""
+msgstr "Tokante e programa"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
@@ -554,22 +569,21 @@ msgstr ""
 #: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
-msgstr ""
+msgstr "Ultimo aktividat"
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
-msgstr "Proyektonan"
+msgstr "Proyekto"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
-msgstr ""
+msgstr "Ultimo notisia"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "Siskribí na e tapara di RSS."
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
@@ -583,19 +597,19 @@ msgstr "Login den Pootle"
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
+"Bo nòmber si usuario i kódigo sekreto no ta kuadra. Por fabor purba di nobo."
 
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Bo a pèrdè bo kódigo sekreto?"
 
 #: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Bo no tin kuenta ainda?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Registra"
+msgstr "Registrá."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -604,21 +618,21 @@ msgstr "Eror"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr ""
+msgstr "Kompletá"
 
 #: local_apps/pootle_app/templates/language/language_admin.html:20
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr ""
+msgstr "Aki 'bou bo por añadí, redaktá i eliminá e pèrmitnan pa e idioma aki."
 
 #: local_apps/pootle_app/templates/language/language_admin.html:32
 msgid "Update Permissions"
-msgstr ""
+msgstr "Aktualisá pèrmit"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:6
 #: local_apps/pootle_app/views/language/admin_files.py:62
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "Fail"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""
@@ -626,6 +640,10 @@ msgid ""
 "also want to <a href=\"?scan_files=1\">rescan the project files</a> or <a "
 "href=\"?template_update=1\">update the files from templates</a>."
 msgstr ""
+"Aki bo por eliminá e failnan di e proyekto di tradukshon aki . Kisas lo ta "
+"bonb tambe pa <a href=\"?scan_files=1\">bolbe skèn e failnan di e proyekto</a> "
+"o <a href=\"?template_update=1\">aktualisá e failnan uzando un di e "
+"skemanan</a>. "
 
 #: local_apps/pootle_app/templates/language/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -640,15 +658,15 @@ msgstr "Tradusí"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:80
 msgid "Edit translation"
-msgstr ""
+msgstr "Redaktá e tradukshon"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:203
 msgid "Submit"
-msgstr "Sometí"
+msgstr "Someté"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:206
 msgid "Suggest"
-msgstr "Suggerí"
+msgstr "Sugerí"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:211
 msgid "Copy"
@@ -673,26 +691,24 @@ msgstr "Administrá"
 
 #: local_apps/pootle_app/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr ""
+msgstr "Aki bo por añadí, redaktá o eliminá e idiomanan di e proyekto aki."
 
 #: local_apps/pootle_app/views/top_stats.py:77
-#, fuzzy
 msgid "Suggestions"
-msgstr "Sugerensia:"
+msgstr "Sugerensia"
 
 #: local_apps/pootle_app/views/top_stats.py:78
-#, fuzzy
 msgid "Reviews"
-msgstr "Revisá"
+msgstr "Revishonnan"
 
 #: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
-msgstr ""
+msgstr "Sumishonnan"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Vershon %s di e Pakete di Tradukshon ta instalá."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:42
 #, python-format
@@ -700,54 +716,65 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
+"Vershon %(installed)s di e Pakete di Tradukshon ta instalá. Pootle ta rekerí "
+"vershon %(required)s."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:48
 msgid "SQLite is installed."
-msgstr ""
+msgstr "SQLite ta instalá."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:51
 msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
-msgstr ""
+msgstr "SQLite no t'ei. Pootle ta rekerí SQLite pa stadístika di tradukshon."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:57
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "Verson %s di Django ta instalá."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:60
 #, python-format
 msgid "Django version %s is installed. Pootle only works with the 1.x series."
 msgstr ""
+"Verson %s di Django ta instalá. Pootle ta traha solamente ku e serie 1.x."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:71
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
-msgstr ""
+msgstr "No por haña e òrdu unzip. Bo por manda archivo mas lihé si tin \"unzip\"."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:75
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
+"No por haña e pakete di kódigo ISO. Pootle ta usa ISO pa trradus;i nòmber di "
+"idioma."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:79
 msgid ""
 "Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news "
 "items are safe and correct."
 msgstr ""
+"No por haña lxml. Pootle ta usa lxml pa sigurá ku etiketanan HTML poné den "
+"artíkulo di notisia ta sigur i korekto."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:83
 msgid ""
 "Can't find python-levenshtein package. Updating from templates is faster "
 "with python-levenshtein."
 msgstr ""
+"No por haña e pakete python-levenshtein. Aktualisashon di skema ta mas lihé "
+"si tin python-levenshtein."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:87
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
+"No por a haña un mashin di indeksá teksto. Buskamentu ta mas lihé si tin un "
+"mashin di indeksá manera Xapian o Lucene instalá."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:97
 msgid ""
@@ -755,6 +782,9 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine."
 msgstr ""
+"Ta usando e mashin di banko di dato sqlite3. SQLite ta usabel solamente pa "
+"instalashonnan chikí ku un kantidat chikí di usuario. Pootle lo funshoná "
+"mihó si tin un mashin di banko di dato MySQL."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:99
 msgid ""
@@ -762,24 +792,34 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
+"Ta usando e mashin di banko di dato sqlite3. SQLite ta usabel solamente pa "
+"instalashonnan chikí ku un kantidat chikí di usuario. Pootle lo funshoná "
+"mihó si tin un mashin di banko di dato MySQL pero bo mester instalá python-"
+"MySQLdb promé."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:107
 msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
 msgstr ""
+"Pootle ta konfigurá pa usa memcached komo caching di trasfondo pero e no por "
+"konektá ku e sirbidó di memcached. Aktualmente caching ta desabilitá."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:111
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cached_db as "
 "the session engine."
 msgstr ""
+"Pa funshonamentu óptimo usa django.contrib.sessions.backends.cached_db como "
+"e motor di seshon. "
 
 #: local_apps/pootle_app/views/admin/adminpages.py:113
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cache as the "
 "session engine."
 msgstr ""
+"Pa funshonamentu óptimo usa django.contrib.sessions.backends.cache como e "
+"motor di seshon."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:117
 msgid ""

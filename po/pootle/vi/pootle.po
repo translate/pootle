@@ -8,175 +8,177 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2008-09-20 11:13+0000\n"
-"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"PO-Revision-Date: 2010-05-08 02:41+0200\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.2.0-beta2\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr ""
+msgstr "Ẩn giữ phím Control (hay phím quả táo trên Mac) để chọn nhiều cái."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Hãy gõ một địa chỉ thư điện tử vẫn hợp lệ."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"Địa chỉ thư điện tử này không có một tài khoản người dùng tương ứng. Bạn đã "
+"đăng ký chưa?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Bắt buộc phải điền vào trường này."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr ""
+msgstr "Giá trị này có thể chứa nhiều nhất %(max)d ký tự (hiện có %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Lưu và thêm lại"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Lưu và tiếp tục sửa"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Thêm"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Đổi"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Thêm %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr ""
+msgstr "Xem tại chỗ"
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "tên"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "họ"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "Địa chỉ thư"
+msgstr "địa chỉ thư"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "hoạt động"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "quản trị"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
+msgstr[0] "Hãy sửa chữa lỗi nào dưới đây."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Thiết lập đã được lưu."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Lưu"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Tên người dùng"
+msgstr "tên người dùng"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "Địa chỉ thư"
+msgstr "địa chỉ thư"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Mật khẩu"
+msgstr "mật khẩu"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "mật khẩu (lại)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "Tên người dùng này đã được gán về trước. Hãy chọn một tên khác."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "Mỗi lần thì phải gõ cùng một mật khẩu"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "Tôi đã đọc và đồng ý với Điều khoản Dịch vụ"
 
 #: external_apps/registration/forms.py:107
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
 msgstr ""
+"Địa chỉ thư điện tử này đã được gán về trước. Hãy chọn một địa chỉ khác."
 
 #: external_apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
+"Không cho phép đăng ký với địa chỉ thư điện tử « dễ tạo ». Hãy cung cấp một "
+"địa chỉ khác."
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "người dùng"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr ""
+msgstr "khoá kích hoạt"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "hồ sơ đăng ký"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr ""
+msgstr "hồ sơ đăng ký"
 
 #: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "Mã ngôn ngữ này không tùy theo quy ước ISO"
 
 #: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "Mã dự án chỉ có thể chứa chữ cái, chữ số và dấu gạch dưới « _ »"
 
 #: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
-msgstr ""
+msgstr "Tuỳ chọn Cấp cao"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
@@ -184,7 +186,7 @@ msgstr "Tựa"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Tên cho trình phục vụ Pootle này"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
@@ -195,6 +197,8 @@ msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
+"Mô tả và chỉ dẫn được hiển thị trên trang chính và trang giới thiệu (cần "
+"phải dùng mã HTML đúng)."
 
 #: local_apps/pootle_app/unit_update.py:38
 msgid "You do not have rights to suggest changes here"
@@ -211,35 +215,35 @@ msgstr "Bạn không có quyền xem lại sự góp ý ở đây."
 
 #: local_apps/pootle_app/management/__init__.py:62
 msgid "Can view a translation project"
-msgstr ""
+msgstr "Có quyền xem dự án dịch"
 
 #: local_apps/pootle_app/management/__init__.py:64
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Có quyền đề nghị về chuỗi dịch"
 
 #: local_apps/pootle_app/management/__init__.py:66
 msgid "Can submit a translation"
-msgstr ""
+msgstr "Có quyền đệ trình chuỗi dịch"
 
 #: local_apps/pootle_app/management/__init__.py:68
 msgid "Can overwrite translations on uploading files"
-msgstr ""
+msgstr "Có quyền ghi đè lên chuỗi dịch khi tải lên tập tin"
 
 #: local_apps/pootle_app/management/__init__.py:70
 msgid "Can review translations"
-msgstr ""
+msgstr "Có quyền xem lại chuỗi dịch"
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "Có quyền tải xuống kho lưu dự án dịch"
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "Có quyền quản lý dự án dịch"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can commit to version control"
-msgstr ""
+msgstr "Có quyền gài vào kho điều khiển phiên bản"
 
 #: local_apps/pootle_app/models/language.py:39
 msgid ""
@@ -247,11 +251,14 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
+"Mã ngôn ngữ ISO 639 cho ngôn ngữ này, có thể với dấu gạch dưới « _ » và mã "
+"quốc gia  ISO 3166 theo sau (v.d. « vi », « zh_CN »). <a "
+"href=\"http://www.w3.org/International/articles/language-tags/\">Xem thêm</a>"
 
 #: local_apps/pootle_app/models/language.py:40
 #: local_apps/pootle_app/models/project.py:58
 msgid "Code"
-msgstr ""
+msgstr "Mã"
 
 #: local_apps/pootle_app/models/language.py:41
 #: local_apps/pootle_app/models/project.py:59
@@ -260,22 +267,24 @@ msgstr "Họ tên"
 
 #: local_apps/pootle_app/models/language.py:43
 msgid "Enter any special characters that users might find difficult to type"
-msgstr ""
+msgstr "Nhập bất cứ ký hiệu đặc biệt nào có thể là khó gõ cho người dùng"
 
 #: local_apps/pootle_app/models/language.py:44
-#, fuzzy
 msgid "Special Characters"
-msgstr "(ký tự đặc biệt)"
+msgstr "Ký tự đặc biệt"
 
 #: local_apps/pootle_app/models/language.py:46
 msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
+"Để tìm thêm thông tin, xem <a "
+"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">trang wiki "
+"Translate</a> về các cách ở số nhiều."
 
 #: local_apps/pootle_app/models/language.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "Không rõ"
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
@@ -289,59 +298,63 @@ msgstr "Biểu thức số nhiều"
 #: local_apps/pootle_app/views/index/login.py:58
 #: templates/profiles/edit_profile.html:27
 msgid "Interface Language"
-msgstr ""
+msgstr "Ngôn ngữ giao diện"
 
 #: local_apps/pootle_app/models/profile.py:97
 msgid "Suggestions Accepted"
-msgstr ""
+msgstr "Sự góp ý được chấp nhận"
 
 #: local_apps/pootle_app/models/profile.py:98
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "Sự góp ý bị hoãn"
 
 #: local_apps/pootle_app/models/profile.py:99
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "Sự góp ý được xem lại"
 
 #: local_apps/pootle_app/models/profile.py:100
 msgid "Submissions Made"
-msgstr ""
+msgstr "Chuỗi dịch được đệ trình"
 
 #: local_apps/pootle_app/models/project.py:40
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
+"Một mã ngắn cho dự án này. Giá trị này nên chỉ chứa ký tự ASCII, chữ số và "
+"dấu gạch dưới « _ »."
 
 #: local_apps/pootle_app/models/project.py:41
 msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. This field should be valid HTML."
 msgstr ""
+"Một mô tả về dự án này. Có ích để cung cấp thêm thông tin hay chỉ dẫn. "
+"Trường này nên chứa mã HTML đúng."
 
 #: local_apps/pootle_app/models/project.py:48
 msgid "Gettext PO"
-msgstr ""
+msgstr "PO Gettext"
 
 #: local_apps/pootle_app/models/project.py:49
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
-msgstr ""
+msgstr "Tự động phát hiện (chậm)"
 
 #: local_apps/pootle_app/models/project.py:54
 msgid "GNU style: files named by language code"
-msgstr ""
+msgstr "Kiểu GNU: tập tin đặt tên theo mã ngôn ngữ"
 
 #: local_apps/pootle_app/models/project.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr ""
+msgstr "Khác-GNU: mỗi ngôn ngữ có một thư mục riêng"
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
-msgstr ""
+msgstr "Kiểm tra chất lượng"
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
@@ -349,45 +362,43 @@ msgstr "Kiểu tập tin"
 
 #: local_apps/pootle_app/models/project.py:63
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Kiểu cây dự án"
 
 #: local_apps/pootle_app/models/project.py:64
 msgid "Ignore Files"
-msgstr ""
+msgstr "Bỏ qua tập tin"
 
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr ""
+msgstr "Bị hoãn"
 
 #: local_apps/pootle_app/models/suggestion.py:55
-#, fuzzy
 msgid "Accepted"
-msgstr "Chấp nhận"
+msgstr "Được chấp nhận"
 
 #: local_apps/pootle_app/models/suggestion.py:56
-#, fuzzy
 msgid "Rejected"
-msgstr "Từ chối"
+msgstr "Bị từ chối"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
 msgid "You do not have rights to update from version control here"
-msgstr ""
+msgstr "Ở đây thì bạn không có quyền cập nhật từ kho điều khiển phiên bản"
 
 #: local_apps/pootle_app/models/translation_project.py:253
 #, python-format
 msgid "Updated %s files from version control"
-msgstr ""
+msgstr "Đã cập nhật các tập tin %s từ kho điều khiển phiên bản"
 
 #: local_apps/pootle_app/models/translation_project.py:269
 #, python-format
 msgid "Failed to update %s from version control"
-msgstr ""
+msgstr "Lỗi cập nhật %s từ kho điều khiển phiên bản"
 
 #: local_apps/pootle_app/models/translation_project.py:271
 #, python-format
 msgid "Updated file %s from version control"
-msgstr ""
+msgstr "Đã cập nhật tập tin %s từ kho điều khiển phiên bản"
 
 #: local_apps/pootle_app/models/translation_project.py:282
 #: local_apps/pootle_app/views/language/view.py:134
@@ -396,7 +407,7 @@ msgstr "Bạn không có quyền chuyển/gửi tập tin vào đây."
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr ""
+msgstr "Người đóng góp tốt nhất"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/project_index.py:41
@@ -405,7 +416,7 @@ msgstr "Đã dịch"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr ""
+msgstr "Cần xem lại"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:109
@@ -428,6 +439,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"Ở đây thì bạn có khả năng thêm, chỉnh sửa hay xoá tất cả những ngôn ngữ sẵn "
+"sàng trên trình phục vụ Pootle này."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
@@ -440,13 +453,15 @@ msgstr ""
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
 #: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "Quyền hạn"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"Ở đây thì bạn có khả năng thêm, chỉnh sửa hay xoá những quyền truy cập mặc "
+"định đến trình phục vụ Pootle này."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
@@ -464,7 +479,7 @@ msgstr "Tên người dùng"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
-msgstr ""
+msgstr "Xoá"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
@@ -486,28 +501,31 @@ msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
+"Ở đây thì bạn có khả năng thêm, chỉnh sửa hay xoá tất cả những dự án sẵn "
+"sàng trên trình phục vụ Pootle này."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr ""
+msgstr "Thiết lập chung"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
 msgstr ""
+"Ở đây thì bạn có khả năng cấu hình các thiết lập chung về địa chỉ Web riêng "
+"của dự án này."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:32
 msgid "Dependency Checks"
-msgstr ""
+msgstr "Kiểm tra quan hệ phụ thuộc"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:39
-#, fuzzy
 msgid "Optional"
-msgstr "Tùy chọn"
+msgstr "Vẫn tùy chọn"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:47
 msgid "Optimizations"
-msgstr ""
+msgstr "Cách tối ưu"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -522,10 +540,12 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"Ở đây thì bạn có khả năng thêm, chỉnh sửa hay xoá tất cả những người dùng "
+"sẵn sàng trên trình phục vụ Pootle này."
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
-msgstr ""
+msgstr "Giới thiệu"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
@@ -539,6 +559,11 @@ msgid ""
 "Read more on the <a href=\"http://translate.sourceforge.net/\">project "
 "website</a>."
 msgstr ""
+"Trang chủ này đang chạy Pootle — phần mềm Web mạnh mẽ mà hỗ trợ nhóm dịch và "
+"quản trị tiến trình dịch. Công cụ cộng đồng này là Phần mềm Sử dụng Tự do "
+"thì bất cứ nhóm nào có quyền sử dụng nó và đóng góp cho cộng đồng Pootle. "
+"Xem thêm trên <a href=\"http://translate.sourceforge.net/\">trang chủ của Dự "
+"án Translate</a>."
 
 #: local_apps/pootle_app/templates/index/index.html:26
 msgid "Language"
@@ -548,28 +573,27 @@ msgstr "Ngôn ngữ"
 #: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
-msgstr ""
+msgstr "Dịch xong toán thể"
 
 #: local_apps/pootle_app/templates/index/index.html:28
 #: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
-msgstr ""
+msgstr "Hoạt động cuối"
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
 msgstr "Dự án"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
-msgstr ""
+msgstr "Tin tức"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "Đăng ký với nguồn tin RSS."
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
@@ -583,19 +607,20 @@ msgstr "Đăng nhập vào Pootle nhé"
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
+"Bạn đã gõ một tên người dùng và mật khẩu không tương ứng với nhau. Hãy thử "
+"lại."
 
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Mất mật khẩu ?"
 
 #: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Chưa có tài khoản ?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Đăng ký"
+msgstr "Đăng ký."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -604,21 +629,23 @@ msgstr "Lỗi"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr ""
+msgstr "Hoàn thành"
 
 #: local_apps/pootle_app/templates/language/language_admin.html:20
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
+"Dưới đây thì bạn có khả năng thêm, chỉnh sửa và xoá các quyền truy cập đến "
+"ngôn ngữ này."
 
 #: local_apps/pootle_app/templates/language/language_admin.html:32
 msgid "Update Permissions"
-msgstr ""
+msgstr "Cập nhật quyền hạn"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:6
 #: local_apps/pootle_app/views/language/admin_files.py:62
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "Tập tin"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""
@@ -626,6 +653,9 @@ msgid ""
 "also want to <a href=\"?scan_files=1\">rescan the project files</a> or <a "
 "href=\"?template_update=1\">update the files from templates</a>."
 msgstr ""
+"Ở đây thì bạn có khả năng xoá những tập tin sẵn sàng trong dự án dịch này. "
+"Cũng có thể <a href=\"?scan_files=1\">quét lại các tập tin dự án</a> hoặc <a "
+"href=\"?template_update=1\">cập nhật các tập tin từ mẫu</a>."
 
 #: local_apps/pootle_app/templates/language/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -640,7 +670,7 @@ msgstr "Dịch"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:80
 msgid "Edit translation"
-msgstr ""
+msgstr "Sửa chuỗi dịch"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:203
 msgid "Submit"
@@ -674,25 +704,25 @@ msgstr "Quản trị"
 #: local_apps/pootle_app/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
+"Ở đây thì bạn có khả năng thêm, chỉnh sửa hay xoá những ngôn ngữ cho dự án "
+"này."
 
 #: local_apps/pootle_app/views/top_stats.py:77
-#, fuzzy
 msgid "Suggestions"
-msgstr "Đề nghị:"
+msgstr "Góp ý"
 
 #: local_apps/pootle_app/views/top_stats.py:78
-#, fuzzy
 msgid "Reviews"
 msgstr "Xem lại"
 
 #: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
-msgstr ""
+msgstr "Đệ trình"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Công cụ Thông dịch (Translate Toolkit) phiên bản %s được cài đặt."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:42
 #, python-format
@@ -700,54 +730,70 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
+"Công cụ Thông dịch (Translate Toolkit) phiên bản %(installed)s được cài đặt. "
+"Pootle yêu cầu phiên bản %(required)s."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:48
 msgid "SQLite is installed."
-msgstr ""
+msgstr "SQLite được cài đặt."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:51
 msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
 msgstr ""
+"SQLite còn thiếu. Pootle yêu cầu phần mềm cơ sở dữ liệu SQLite để quản lý và "
+"cung cấp thống kê thông dịch."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:57
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "Django phiên bản %s được cài đặt."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:60
 #, python-format
 msgid "Django version %s is installed. Pootle only works with the 1.x series."
 msgstr ""
+"Django phiên bản %s được cài đặt. Pootle chỉ chạy được với Django phiên bản "
+"1.x."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:71
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
+"Không tìm thấy lệnh giải nén « unzip ». Có sẵn « unzip » thì tải lên bài một "
+"cách nhanh hơn."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:75
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
+"Không tìm thấy gói mã quốc tế « iso-codes ». Pootle dùng « iso-codes » để "
+"dịch các tên ngôn ngữ."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:79
 msgid ""
 "Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news "
 "items are safe and correct."
 msgstr ""
+"Không tìm thấy mô-đun Python « lxml ». Pootle dùng « lxml » để đảm bảo rằng "
+"các thẻ HTML được chèn vào bài báo vẫn là an toàn và đúng."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:83
 msgid ""
 "Can't find python-levenshtein package. Updating from templates is faster "
 "with python-levenshtein."
 msgstr ""
+"Không tìm thấy gói « python-levenshtein ». Có sẵn « python-levenshtein » thì "
+"cập nhật từ mẫu một cách nhanh hơn."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:87
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
+"Không tìm thấy cơ chế chỉ rõ văn bản. Cài đặt một cơ chế chỉ rõ như Xapian "
+"hay Lucene thì tìm kiếm nhanh hơn."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:97
 msgid ""
@@ -755,6 +801,9 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine."
 msgstr ""
+"Đang dùng cơ chế cơ sở dữ liệu sqlite3 mặc định. SQLite chỉ thích hợp với "
+"bản cài đặt nhỏ không có quá nhiều người dùng. Pootle có hiệu suất tốt hơn "
+"khi dùng cơ chế cơ sở dữ liệu MySQL."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:99
 msgid ""
@@ -762,50 +811,71 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
+"Đang dùng cơ chế cơ sở dữ liệu sqlite3 mặc định. SQLite chỉ thích hợp với "
+"bản cài đặt nhỏ không có quá nhiều người dùng. Pootle có hiệu suất tốt hơn "
+"khi dùng cơ chế cơ sở dữ liệu MySQL, nhưng trước hết bạn cần cài đặt mô-đun "
+"« python-MySQLdb »."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:107
 msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
 msgstr ""
+"Pootle được cấu hình để dùng trình nền « memcached » làm một hậu phương nhớ "
+"tạm, nhưng không thể kết nối tới trình phục vụ « memcached ». Chức năng nhớ "
+"tạm hiện thời bị tắt."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:111
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cached_db as "
 "the session engine."
 msgstr ""
+"Nhằm mục đích hiệu suất tối ưu, hãy dùng « "
+"django.contrib.sessions.backends.cached_db » làm cơ chế buổi hợp."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:113
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cache as the "
 "session engine."
 msgstr ""
+"Nhằm mục đích hiệu suất tối ưu, hãy dùng « "
+"django.contrib.sessions.backends.cache » làm cơ chế buổi hợp."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:117
 msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
 msgstr ""
+"Pootle được cấu hình để dùng trình nền « memcached » làm một hậu phương nhớ "
+"tạm, nhưng mà chưa cài đặt hỗ trợ Python cho « memcached ». Chức năng nhớ "
+"tạm hiện thời bị tắt."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:120
 msgid "For optimal performance, use memcached as the caching backend."
 msgstr ""
+"Nhằm mục đích hiệu suất tối ưu, hãy dùng « memcached » làm hậu phương nhớ "
+"tạm."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:124
 msgid "For optimal performance, use Apache as the webserver."
 msgstr ""
+"Nhằm mục đích hiệu suất tối ưu, hãy dùng « Apache » làm trình phục vụ Web."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:128
 msgid ""
 "Running in debug mode. Debug mode is only needed when developing Pootle. For "
 "optimal performance, disable debugging mode."
 msgstr ""
+"Đang chạy ở chế độ gỡ rối. Chế độ gỡ rối chỉ được yêu cầu khi phát triển "
+"Pootle. Nhằm mục đích hiệu suất tối ưu, hãy tắt chế độ gỡ rối."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:132
 msgid ""
 "Running in live translation mode. Live translation is useful as a tool to "
 "learn about Pootle and localization, but has high impact on performance."
 msgstr ""
+"Đang chạy ở chế độ dịch tại chỗ. Chế độ dịch tại chỗ giúp người dùng học "
+"hiểu về Pootle và quá trình địa phương hoá, dù rất giảm hiệu suất."
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
@@ -814,23 +884,21 @@ msgid "Password"
 msgstr "Mật khẩu"
 
 #: local_apps/pootle_app/views/admin/util.py:38
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
-msgstr "Bạn không có đủ quyền truy cập để quản lý Pootle."
+msgstr "Bạn không có quyền quản lý Pootle."
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "Bạn không quyền quản trị Pootle."
+msgstr "Bạn không có quyền quản trị %s."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
-msgstr ""
+msgstr "Không có tập tin nào trong dự án này."
 
 #: local_apps/pootle_app/views/admin/util.py:179
 msgid "There are errors in the form. Please review the problems below."
-msgstr ""
+msgstr "Gặp lỗi trong đơn này. Hãy xem lại vấn đề dưới đây."
 
 #: local_apps/pootle_app/views/admin/util.py:199 templates/base.html:39
 #: templates/base.html.py:44 templates/base.html:105
@@ -838,32 +906,31 @@ msgid "Home"
 msgstr "Trang chủ"
 
 #: local_apps/pootle_app/views/admin/util.py:201
-#, fuzzy
 msgid "Save Changes"
 msgstr "Lưu các thay đổi"
 
 #: local_apps/pootle_app/views/index/about.py:48
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
-msgstr ""
+msgstr "Pootle %(pootle_ver)s chạy bằng Translate Toolkit %(toolkit_ver)s"
 
 #: local_apps/pootle_app/views/index/index.py:60
 #: local_apps/pootle_app/views/language/item_dict.py:253
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr ""
+msgstr "%(percentage)d%% hoàn toàn"
 
 #: local_apps/pootle_app/views/index/index.py:107
 #: local_apps/pootle_app/views/project/project_language_index.py:81
 #: local_apps/pootle_app/views/project/projects_index.py:41
 msgid "Translations are complete"
-msgstr ""
+msgstr "Các chuỗi đã được dịch xong"
 
 #: local_apps/pootle_app/views/index/index.py:108
 #: local_apps/pootle_app/views/project/project_language_index.py:82
 #: local_apps/pootle_app/views/project/projects_index.py:42
 msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr ""
+msgstr "Có một số chuỗi dịch cần kiểm tra (đánh dấu « dịch mờ »)"
 
 #: local_apps/pootle_app/views/index/login.py:46
 msgid "Default"
@@ -871,7 +938,7 @@ msgstr "Mặc định"
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:239
 msgid "This is a GNU-style project (files named per language code)."
-msgstr ""
+msgstr "Đây là một dự án kiểu GNU (tập tin đặt tên theo mã ngôn ngữ)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:241
 msgid "This is a standard style project (one directory per language)."
@@ -896,18 +963,18 @@ msgstr[0] "%d tập tin"
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr ""
+msgstr "%(translated)d/%(total)d từ (%(translatedpercent)d%%) đã dịch"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
 msgid "%(translated)d/%(total)d strings"
-msgstr ""
+msgstr "%(translated)d/%(total)d chuỗi"
 
 #: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
-msgstr[0] ""
+msgstr[0] "%(checks)d chuỗi (%(checkspercent)d%%) bị lỗi"
 
 #: local_apps/pootle_app/views/language/item_dict.py:95
 msgid "Review Suggestions"
@@ -931,45 +998,45 @@ msgstr "Dịch tất cả"
 
 #: local_apps/pootle_app/views/language/item_dict.py:125
 msgid "ZIP of directory"
-msgstr ""
+msgstr "Kho nén ZIP của thư mục"
 
 #: local_apps/pootle_app/views/language/item_dict.py:136
 msgid "Download PO"
-msgstr ""
+msgstr "Tải về PO"
 
 #: local_apps/pootle_app/views/language/item_dict.py:140
 msgid "Download XLIFF"
-msgstr ""
+msgstr "Tải về XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:151
 msgid "Download"
-msgstr ""
+msgstr "Tải về"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Commit to VCS"
-msgstr ""
+msgstr "Gài vào VCS"
 
 #: local_apps/pootle_app/views/language/item_dict.py:167
 msgid "Update from VCS"
-msgstr ""
+msgstr "Cập nhật từ VCS"
 
 #: local_apps/pootle_app/views/language/item_dict.py:229
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] ""
+msgstr[0] "%d từ cần sự chú ý"
 
 #: local_apps/pootle_app/views/language/item_dict.py:233
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] ""
+msgstr[0] "%d từ chưa dịch"
 
 #: local_apps/pootle_app/views/language/item_dict.py:234
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] ""
+msgstr[0] "%d từ cần xem lại"
 
 #: local_apps/pootle_app/views/language/item_dict.py:260
 #: local_apps/pootle_app/views/language/language_index.py:57
@@ -977,18 +1044,17 @@ msgstr[0] ""
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] ""
+msgstr[0] "Gặp lỗi khi đọc %d tập tin"
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
-#, fuzzy
 msgid "You do not have rights to administer this language."
-msgstr "Bạn không có quyền quản trị dự án này."
+msgstr "Bạn không có quyền quản trị ngôn ngữ này."
 
 #: local_apps/pootle_app/views/language/language_index.py:80
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
+msgstr[0] "%(projects)d dự án, %(average)d%% đã dịch"
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:60
 #: local_apps/pootle_app/views/project/project_language_index.py:76
@@ -1034,23 +1100,21 @@ msgid "Total"
 msgstr "Tổng số"
 
 #: local_apps/pootle_app/views/language/project_index.py:51
-#, fuzzy
 msgid "Total Words"
 msgstr "Tổng từ"
 
 #. l10n: noun. The graphical representation of translation status
 #: local_apps/pootle_app/views/language/project_index.py:53
 msgid "Progress"
-msgstr ""
+msgstr "Tiến hành"
 
 #: local_apps/pootle_app/views/language/project_index.py:54
 msgid "Summary"
-msgstr ""
+msgstr "Tóm tắt"
 
 #: local_apps/pootle_app/views/language/project_index.py:84
-#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr "Bạn không có quyền sửa đổi bản dịch ở đây."
+msgstr "Bạn không có quyền truy cập đến dự án thông dịch này."
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1081,7 +1145,7 @@ msgstr "Tìm cấp cao"
 #: local_apps/pootle_app/views/language/tp_common.py:63
 #, python-format
 msgid "Invalid/insecure file name: %s"
-msgstr ""
+msgstr "Tên tập tin không hợp lệ / an toàn: %s"
 
 #: local_apps/pootle_app/views/language/tp_common.py:69
 #, python-format
@@ -1089,34 +1153,33 @@ msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
+"Tên tập tin kiểu GNU không hợp lệ: %(local_filename)s. Nó phải khớp với '%"
+"(langcode)s.%(filetype)s'."
 
 #: local_apps/pootle_app/views/language/tp_common.py:98
 msgid "Error while extracting archive"
-msgstr ""
+msgstr "Gặp lỗi khi giải nén kho"
 
 #: local_apps/pootle_app/views/language/tp_common.py:205
-#, fuzzy
 msgid "You do not have rights to overwrite files here."
-msgstr "Bạn không có quyền ghi đè lên tâp tin ở đây."
+msgstr "Bạn không có quyền ghi đè lên tập tin ở đây."
 
 #: local_apps/pootle_app/views/language/tp_common.py:207
-#, fuzzy
 msgid "You do not have rights to upload new files here."
 msgstr "Bạn không có quyền tải tập tin mới lên đây."
 
 #: local_apps/pootle_app/views/language/tp_common.py:209
 #: local_apps/pootle_app/views/language/tp_common.py:211
-#, fuzzy
 msgid "You do not have rights to upload files here."
 msgstr "Bạn không có quyền tải tập tin lên đây."
 
 #: local_apps/pootle_app/views/language/tp_common.py:231
 msgid "Update all from version control"
-msgstr ""
+msgstr "Cập nhật tất cả từ kho điều khiển phiên bản"
 
 #: local_apps/pootle_app/views/language/tp_common.py:246
 msgid "Upload"
-msgstr ""
+msgstr "Tải lên"
 
 #: local_apps/pootle_app/views/language/tp_common.py:253
 msgid ""
@@ -1127,7 +1190,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/tp_common.py:254
 msgid "Add all new translations as suggestions"
-msgstr ""
+msgstr "Thêm mỗi chuỗi dịch mới dưới dạng sự góp ý"
 
 #: local_apps/pootle_app/views/language/tp_common.py:256
 msgid "Overwrite the current file if it exists"
@@ -1135,21 +1198,19 @@ msgstr "Ghi đè lên tập tin hiện thời, nếu có"
 
 #: local_apps/pootle_app/views/language/tp_common.py:259
 msgid "File"
-msgstr ""
+msgstr "Tập tin"
 
 #: local_apps/pootle_app/views/language/tp_common.py:265
 msgid "Upload File"
 msgstr "Tải lên tập tin"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
-#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr "Bạn không có quyền sửa đổi bản dịch ở đây."
+msgstr "Bạn không có quyền truy cập đến chế độ xem lại."
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
-#, fuzzy
 msgid "You do not have rights to access translation mode."
-msgstr "Bạn không có quyền sửa đổi bản dịch ở đây."
+msgstr "Bạn không có quyền truy cập đến chế độ dịch."
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: local_apps/pootle_app/views/language/translate_page.py:78
@@ -1172,7 +1233,7 @@ msgstr "%d trước"
 #: local_apps/pootle_app/views/language/translate_page.py:109
 #, python-format
 msgid "Items %(first)d to %(last)d of %(total)d"
-msgstr ""
+msgstr "Items %(first)d đến %(last)d trên %(total)d"
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:118
@@ -1221,49 +1282,48 @@ msgstr "Dịch hiện thời:"
 #: local_apps/pootle_app/views/language/translate_page.py:480
 #, python-format
 msgid "Suggestion %(suggid)d by %(user)s:"
-msgstr ""
+msgstr "Sự góp ý %(suggid)d của %(user)s:"
 
 #: local_apps/pootle_app/views/language/translate_page.py:482
 #, python-format
 msgid "Suggestion %d:"
-msgstr "Đề nghị %d:"
+msgstr "Sự góp ý %d:"
 
 #. l10n: parameter: name of translator
 #: local_apps/pootle_app/views/language/translate_page.py:486
 #, python-format
 msgid "Suggestion by %s:"
-msgstr "Đề nghị do %s:"
+msgstr "Sự góp ý của %s:"
 
 #: local_apps/pootle_app/views/language/translate_page.py:488
 msgid "Suggestion:"
-msgstr "Đề nghị:"
+msgstr "Sự góp ý:"
 
 #: local_apps/pootle_app/views/language/translate_page.py:517
 #, python-format
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
-msgstr[0] ""
+msgstr[0] "%d sự góp ý"
 
 #: local_apps/pootle_app/views/language/translate_page.py:836
 msgid "End of Quick Translate."
-msgstr ""
+msgstr "Kết thúc Dịch Nhanh."
 
 #: local_apps/pootle_app/views/language/translate_page.py:838
 msgid "End of Quality Check Review."
-msgstr ""
+msgstr "Kết thúc Xem lại Kiểm tra Chất lượng."
 
 #: local_apps/pootle_app/views/language/translate_page.py:841
 msgid "No file matched your query."
-msgstr ""
+msgstr "Không có tập tin nào tương ứng với truy vấn của bạn."
 
 #: local_apps/pootle_app/views/language/translate_page.py:842
 msgid "End of results."
-msgstr ""
+msgstr "Hết kết quả."
 
 #: local_apps/pootle_app/views/language/translate_page.py:855
-#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr "Bạn không có quyền sửa đổi bản dịch ở đây."
+msgstr "Bạn không có quyền truy cập đến chế độ xem."
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:904
@@ -1285,13 +1345,11 @@ msgstr "Từ chối chuỗi góp"
 
 #. l10n: Heading above the textarea for translator comments.
 #: local_apps/pootle_app/views/language/translate_page.py:913
-#, fuzzy
 msgid "Translator Comments"
-msgstr "Ghi chú của dịch giả "
+msgstr "Chi chú của dịch giả "
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: local_apps/pootle_app/views/language/translate_page.py:915
-#, fuzzy
 msgid "Developer Comments"
 msgstr "Nhà phát triển ghi chú"
 
@@ -1316,33 +1374,33 @@ msgstr "Bạn không có quyền cập nhật tập tin ở đây."
 
 #: local_apps/pootle_app/views/language/view.py:155
 msgid "You do not have the right to create ZIP archives."
-msgstr ""
+msgstr "Bạn không có quyền tạo kho nén ZIP."
 
 #: local_apps/pootle_app/views/language/view.py:264
 msgid "No suggestion data given."
-msgstr ""
+msgstr "Chưa góp ý nào."
 
 #: local_apps/pootle_app/views/language/view.py:310
 msgid "Suggestion accepted."
-msgstr ""
+msgstr "Sự góp ý đã được chấp nhận."
 
 #: local_apps/pootle_app/views/project/project_admin.py:52
 msgid "Update from templates"
-msgstr "Cập nhật từ biểu mẫu"
+msgstr "Cập nhật từ mẫu"
 
 #: local_apps/pootle_app/views/project/project_admin.py:55
 msgid "Initialize"
-msgstr ""
+msgstr "Sơ khởi"
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] ""
+msgstr[0] "%(languages)d ngôn ngữ, %(average)d%% đã dịch"
 
 #: local_apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
-msgstr ""
+msgstr "Pootle: Cài đặt"
 
 #: local_apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1350,110 +1408,118 @@ msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
 "initialize database."
 msgstr ""
+"Lỗi: « %s » trong khi thử truy cập đến cơ sở dữ liệu Pootle, sẽ thử sơ khởi "
+"cơ sở dữ liệu."
 
 #: local_apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
-msgstr ""
+msgstr "Đang tạo các bảng cơ sở dữ liệu..."
 
 #: local_apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
-msgstr ""
+msgstr "Đang tạo các ngôn ngữ mặc định, các dự án và người dùng quản trị"
 
 #: local_apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
-msgstr ""
+msgstr "Đang tạo thống kê thông dịch (có thể mất vài phút)"
 
 #: local_apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr ""
+msgstr "%(language)s được dịch %(percent)d%%"
 
 #: local_apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr ""
+msgstr "Dự án %(project)s được dịch %(percent)d%%"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
-msgstr ""
+msgstr "Hoàn tất tính thống kê về các ngôn ngữ và dự án mặc định"
 
 #: local_apps/pootle_misc/dbinit.py:120
 msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
+"Đã sơ khởi cơ sở dữ liệu ; bạn sẽ được chuyển tiếp tới trang chính trong "
+"khoảng 10 giây"
 
 #: local_apps/pootle_misc/middleware/errorpages.py:45
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr ""
+"Bạn cần phải <a href=\"%(login_link)s\">đăng nhập</a> để truy cập đến trang "
+"này."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:58
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
+"Gặp lỗi khi truy cập đến %(filename)s: hệ thống tập tin đã gửi lỗi: %"
+"(errormsg)s"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "Đầu"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 msgid "Previous"
-msgstr ""
+msgstr "Trước"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 msgid "Next"
-msgstr ""
+msgstr "Tiếp"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 msgid "Last"
-msgstr ""
+msgstr "Cuối"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
-msgstr ""
+msgstr "Thông điệp"
 
 #. l10n: The date that the news item was written
 #: local_apps/pootle_notifications/models.py:30
 msgid "Added"
-msgstr ""
+msgstr "Đã thêm"
 
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(language)s"
-msgstr ""
+msgstr "Tin tức về %(language)s"
 
 #: local_apps/pootle_notifications/views.py:92
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr ""
+msgstr "Tin tức về dự án %(project)s bằng %(language)s"
 
 #: local_apps/pootle_notifications/views.py:96
 #, python-format
 msgid "News for %(path)s"
-msgstr ""
+msgstr "Tin tức về %(path)s"
 
 #: local_apps/pootle_notifications/views.py:122
 msgid "View News Item"
-msgstr ""
+msgstr "Xem bài tin"
 
 #: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: local_apps/pootle_notifications/templates/notices.html:76
 msgid "No news yet."
-msgstr ""
+msgstr "Chưa có tin tức."
 
 #: local_apps/pootle_notifications/templates/notices.html:15
 #: local_apps/pootle_notifications/templates/notices.html:17
 #: templates/language_menu.html:8 templates/tp_menu.html:8
 msgid "News"
-msgstr ""
+msgstr "Tin tức"
 
 #: local_apps/pootle_notifications/templates/notices.html:64
 msgid "Publish"
-msgstr ""
+msgstr "Xuất bản"
 
 #: local_apps/pootle_store/models.py:53
 msgid "Path"
-msgstr ""
+msgstr "Đường dẫn"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1471,76 +1537,81 @@ msgid ""
 "or in the administration interface.</p>\n"
 "</div>"
 msgstr ""
+"<div dir=\"ltr\" lang=\"vi\">\n"
+"<h2 class=\"title\">Đây là một bản cài đặt thao diễn của Pootle.</h2>\n"
+"<p class=\"about\">Bạn cũng có thể thăm <a "
+"href=\"http://pootle.locamotion.org\">máy phục vụ Pootle</a> chính thức. Trên "
+"máy này, quản trị chưa cung cấp thông tin liên lạc hay một mô tả về trình "
+"phục vụ này. Nếu bạn quản trị trình phục vụ này, hãy chỉnh sửa mô tả này "
+"trong tập tin tùy thích, hoặc trong giao diện quản trị.</p>\n"
+"</div>"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
-msgstr ""
+msgstr "Không đủ quyền"
 
 #: templates/403.html:14
 msgid "You don't have permission to access this page."
-msgstr ""
+msgstr "Bạn không có quyền truy cập đến trang này."
 
 #: templates/404.html:5 templates/404.html.py:10
 msgid "Page Not Found"
-msgstr ""
+msgstr "Không tìm thấy trang"
 
 #: templates/404.html:11
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Tiếc là không tìm thấy trang được yêu cầu."
 
 #: templates/500.html:5 templates/500.html.py:10
 msgid "Server Error"
-msgstr ""
+msgstr "Lỗi phục vụ"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Một lỗi đã xảy ra. Cám ơn bạn đã kiên nhẫn."
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
-#, fuzzy
 msgid "Administration"
 msgstr "Quản trị"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
-msgstr ""
+msgstr "Cấu hình các thiết lập chung về trang chủ"
 
 #: templates/admin_profile_menu.html:5
 msgid "General"
-msgstr ""
+msgstr "Chung"
 
 #: templates/admin_profile_menu.html:6
 msgid "Manage the users"
-msgstr ""
+msgstr "Quản lý các người dùng"
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the languages"
-msgstr ""
+msgstr "Quản lý các ngôn ngữ"
 
 #: templates/admin_profile_menu.html:8
 msgid "Manage the projects"
-msgstr ""
+msgstr "Quản lý các dự án"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage the default permissions"
-msgstr ""
+msgstr "Quản lý các quyền truy cập mặc định"
 
 #: templates/base.html:37
 msgid "skip to navigation"
-msgstr ""
+msgstr "nhảy tới cách duyệt"
 
 #: templates/base.html:45 templates/base.html.py:106 templates/docs.html:5
 msgid "Help"
-msgstr ""
+msgstr "Trợ giúp"
 
 #: templates/base.html:50 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
-#, fuzzy
 msgid "My Account"
 msgstr "Tài khoản tôi"
 
 #: templates/base.html:51
-#, fuzzy
 msgid "Log Out"
 msgstr "Đăng xuất"
 
@@ -1554,137 +1625,138 @@ msgid "Log In"
 msgstr "Đăng nhập"
 
 #: templates/base.html:107
-#, fuzzy
 msgid "About this Pootle Server"
 msgstr "Giới thiệu về trình phục vụ Pootle này"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr ""
+msgstr "Trang chính ngôn ngữ"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
 msgid "Overview"
-msgstr ""
+msgstr "Toán cảnh"
 
 #: templates/language_menu.html:8
 msgid "Language news"
-msgstr ""
+msgstr "Tin tức ngôn ngữ"
 
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
-msgstr ""
+msgstr "Quản lý các quyền truy cập đến ngôn ngữ của mình"
 
 #: templates/project_menu.html:7
-#, fuzzy
 msgid "Project main page"
-msgstr "Trang chủ Pootle"
+msgstr "Trang chủ dự án"
 
 #: templates/project_menu.html:9
 msgid "Administrate your project"
-msgstr ""
+msgstr "Quản lý dự án của mình"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
-msgstr ""
+msgstr "Trang chủ dự án dịch"
 
 #: templates/tp_menu.html:8
 msgid "Translation project news"
-msgstr ""
+msgstr "Tin tức dự án dịch"
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr ""
+msgstr "Dịch dự án này"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
-msgstr ""
+msgstr "Kiểm tra chất lượng và xem lại sự góp ý"
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "Quản lý các quyền truy cập đến dự án của mình"
 
 #: templates/tp_menu.html:13
 msgid "Administrate your project files"
-msgstr ""
+msgstr "Quản lý các tập tin của dự án của mình"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
-msgstr ""
+msgstr "Toán cảnh về tài khoản của mình"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 #: templates/profiles/profile_detail.html:6
 #: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "Bảng điều khiển"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
-msgstr ""
+msgstr "Cấu hình các thiết lập riêng về quá trình dịch"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr ""
+msgstr "Thiết lập"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
-msgstr ""
+msgstr "Thay đổi thông tin cá nhân về mình"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr ""
+msgstr "Hồ sơ"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
-msgstr ""
+msgstr "Thay đổi mật khẩu của mình"
 
 #: templates/admin/base_site.html:4
 msgid "Django site admin"
-msgstr ""
+msgstr "Quản trị Django cục bộ"
 
 #: templates/admin/base_site.html:7
 msgid "Django administration"
-msgstr ""
+msgstr "Quản trị Django"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
+"Ở đây thì bạn có khả năng thay đổi chi tiết cá nhân về mình. Thông tin này "
+"sẽ được chèn vào phần đầu của tập tin dịch."
 
 #: templates/profiles/edit_personal.html:19
 msgid "First Name"
-msgstr ""
+msgstr "Tên"
 
 #: templates/profiles/edit_personal.html:24
 msgid "Last Name"
-msgstr ""
+msgstr "Họ"
 
 #: templates/profiles/edit_personal.html:29
-#, fuzzy
 msgid "Email address"
 msgstr "Địa chỉ thư"
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr ""
+msgstr "Thiết lập Dịch"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
 msgstr ""
+"Ở đây thì bạn có khả năng cấu hình các thiết lập liên quan đến giao diện "
+"dịch, cũng như thông số về ngôn ngữ."
 
 #: templates/profiles/edit_profile.html:19
 msgid "Number of Rows"
-msgstr ""
+msgstr "Số các hàng"
 
 #: templates/profiles/edit_profile.html:23
 msgid "Input Height"
-msgstr ""
+msgstr "Độ cao nhập"
 
 #: templates/profiles/edit_profile.html:31
 msgid "My Languages"
@@ -1695,7 +1767,6 @@ msgid "My Projects"
 msgstr "Dự án tôi"
 
 #: templates/profiles/edit_profile.html:41
-#, fuzzy
 msgid "Alternative Source Languages"
 msgstr "Ngôn ngữ nguồn khác"
 
@@ -1705,32 +1776,32 @@ msgstr "Liên kết nhanh"
 
 #: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
-msgstr ""
+msgstr "Chưa chọn ngôn ngữ hay dự án nào. Chọn nhé."
 
 #: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
-msgstr ""
+msgstr "Người dùng này chưa chọn ngôn ngữ hay dự án nào."
 
 #: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
-msgstr ""
+msgstr "Thống kê Người dùng"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
+msgstr "Danh sách Hồ sơ"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr ""
+msgstr "Tên"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr ""
+msgstr "Họ"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
 msgid "Account Activated"
-msgstr ""
+msgstr "Tài khoản đã kích hoạt"
 
 #: templates/registration/activate.html:10
 #, python-format
@@ -1738,64 +1809,62 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
+"Tài khoản đã được kích hoạt cho tên người dùng « %(account)s ». Giờ bạn có "
+"khả năng đăng nhập."
 
 #: templates/registration/activation_email.txt:2
-#, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Một tài khoản Pootle đã được tạo cho bạn, dùng địa chỉ thư điện tử này.\n"
+msgstr "Một tài khoản Pootle đã được tạo cho bạn, dùng địa chỉ thư điện tử này."
 
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "Để kích hoạt tài khoản của bạn, hãy theo liên kết này:\n"
+msgstr "Để kích hoạt tài khoản của bạn, hãy theo liên kết này:"
 
 #: templates/registration/activation_email.txt:6
-#, fuzzy
 msgid "Your activation code is:"
-msgstr ""
-"Mã kích hoạt của bạn là:\n"
-"%s\n"
+msgstr "Mã kích hoạt của bạn là:"
 
 #: templates/registration/activation_email.txt:9
-#, fuzzy
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "Lá thư này được gởi để kiểm tra địa chỉ thư thật sự là đúng không. Nếu bạn "
-"không muốn đăng ký tài khoản, đơn giản có thể bỏ qua thư này.\n"
+msgstr ""
+"Lá thư này được gửi để kiểm tra địa chỉ thư điện tử thật sự là đúng. Nếu bạn "
+"không muốn đăng ký tài khoản, đơn giản có thể bỏ qua thư này."
 
 #: templates/registration/activation_email_subject.txt:2
-#, fuzzy
 msgid "Pootle registration"
 msgstr "Đăng ký với Pootle"
 
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:15
 msgid "Password Changed"
-msgstr ""
+msgstr "Mật khẩu đã thay đổi"
 
 #: templates/registration/password_change_done.html:16
 msgid "Your password was changed successfully."
-msgstr ""
+msgstr "Mật khẩu của bạn đã được thay đổi."
 
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11
 msgid "Change Password"
-msgstr ""
+msgstr "Đổi mật khẩu"
 
 #: templates/registration/password_change_form.html:15
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"Hãy gõ mật khẩu cũ, nhân danh sự an toàn, sau đó gõ hai lần mật khẩu mới để "
+"thẩm tra bạn đã gõ đúng."
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr ""
+msgstr "Mật khẩu cũ"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
-msgstr ""
+msgstr "Mật khẩu mới"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm password"
@@ -1803,15 +1872,15 @@ msgstr "Xác nhận mật khẩu"
 
 #: templates/registration/password_change_form.html:38
 msgid "Change My Password"
-msgstr ""
+msgstr "Đổi mật khẩu mình"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "Mật khẩu đã đặt lại"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "Hoàn tất đặt lại mật khẩu"
 
 #: templates/registration/password_reset_complete.html:10
 #, python-format
@@ -1819,6 +1888,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
+"Mật khẩu của bạn đã được đặt. Giờ bạn có thể <a href=\"%(login_url)s\">đăng "
+"nhập</a>."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_done.html:5
@@ -1826,47 +1897,50 @@ msgstr ""
 #: templates/registration/password_reset_form.html:5
 #: templates/registration/password_reset_form.html:9
 msgid "Reset Password"
-msgstr ""
+msgstr "Đặt lại mật khẩu"
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter New Password."
-msgstr ""
+msgstr "Gõ mật khẩu mới"
 
 #: templates/registration/password_reset_confirm.html:12
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr ""
+msgstr "Hãy gõ hai lần mật khẩu mới, để thẩm tra bạn đã gõ đúng."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr ""
+msgstr "Mật khẩu mới"
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
 msgstr "Xác nhận mật khẩu"
 
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr ""
+msgstr "Đặt lại mật khẩu mình"
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "Lỗi đặt lại mật khẩu."
 
 #: templates/registration/password_reset_confirm.html:32
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Liên kết đặt lại mật khẩu vẫn không hợp lệ, có thể là vì nó đã được dùng về "
+"trước. Hãy yêu cầu đặt lại mật khẩu một cách thêm nữa."
 
 #: templates/registration/password_reset_done.html:11
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"Chúng tôi đã gửi cho địa chỉ thư điện tử được bạn đệ trình một thư chứa chỉ "
+"dẫn về đặt mật khẩu. Bạn nên nhận nó sớm."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -1874,25 +1948,29 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"Bạn nhận được thư này vì bạn đã yêu cầu đặt lại mật khẩu cho tài khoản người "
+"dùng ở %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Hãy tiếp tới trang sau đây và chọn một mật khẩu mới:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "Tên người dùng của bạn là %(user)s."
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Cám ơn bạn đã sử dụng Pootle !"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Mất mật mật khẩu ? Chỉ gõ địa chỉ thư điện tử dưới đây, và chúng tôi sẽ gửi "
+"cho nó một thư chứa chỉ dẫn về đặt một mật khẩu mới."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
@@ -1902,32 +1980,31 @@ msgstr "Địa chỉ thư"
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "Hoàn tất đăng ký"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "Hãy kiểm tra lại hộp thư đến chứa thư để kích hoạt tài khoản."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "Đăng ký một tài khoản Pootle mới"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "Hãy điền vào đơn theo đây để bắt đầu dịch."
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"
-msgstr ""
+msgstr "Mật khẩu (lại)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr ""
+msgstr "Đã có một tài khoản ?"
 
 #: templates/registration/registration_form.html:41
-#, fuzzy
 msgid "Log In."
-msgstr "Đăng nhập"
+msgstr "Đăng nhập."
 
 #~ msgid "General options"
 #~ msgstr "Tủy chọn chung"

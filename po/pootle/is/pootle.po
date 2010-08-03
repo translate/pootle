@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-12-11 23:52+0200\n"
+"PO-Revision-Date: 2010-04-06 11:26+0200\n"
 "Last-Translator: Kristján Bjarni <kristjanbjarni@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
-"X-Generator: Pootle 2.0.0\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: strings.py:8
@@ -29,8 +29,8 @@ msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
-"Þetta tölvupóstfang er ekki tengt við notanda aðgang. Ertu viss um að þú "
-"hafi skráð þig inn?"
+"Þetta tölvupóstfang er ekki tengt við neinn notandaaðgang. Ertu viss um að "
+"þú hafi skráð þig inn?"
 
 #: strings.py:11
 msgid "This field is required."
@@ -1013,8 +1013,8 @@ msgstr "Uppfæra frá VCS"
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] "%d orð þarfnast aðgerðar"
-msgstr[1] "%d orð þarfnast aðgerða"
+msgstr[0] "%d orð þarf að athuga"
+msgstr[1] "%d orð þarf að athuga"
 
 #: local_apps/pootle_app/views/language/item_dict.py:233
 #, python-format
@@ -1204,7 +1204,7 @@ msgstr "Þú hefur ekki réttindi til að breyta þýðingum hérna."
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 msgid "You do not have rights to access translation mode."
-msgstr "Þú hefur ekki réttindi til að breyta þýðingum hérna."
+msgstr "Þú hefur ekki réttindi til að breyta þýðingum."
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: local_apps/pootle_app/views/language/translate_page.py:78
@@ -1265,7 +1265,7 @@ msgid ""
 "available. Please contact the site administrator."
 msgstr ""
 "Ekki hægt að þýða þar sem upplýsingar um fleirtölu fyrir þitt tungumál er "
-"ekki til staðar. Hafðu samband við umsjónamann."
+"ekki til staðar. Hafðu samband við umsjónarmann."
 
 #: local_apps/pootle_app/views/language/translate_page.py:467
 msgid "Current Translation:"
@@ -1462,7 +1462,7 @@ msgstr "Fyrri"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 msgid "Next"
-msgstr "Áfram"
+msgstr "Næsta"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 msgid "Last"
@@ -1603,7 +1603,7 @@ msgstr "Hjálp"
 #: templates/base.html:50 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
 msgid "My Account"
-msgstr "Minn aðgangur"
+msgstr "Aðgangurinn minn"
 
 #: templates/base.html:51
 msgid "Log Out"
@@ -1645,7 +1645,7 @@ msgstr "Heimasíða verkefnisins"
 
 #: templates/project_menu.html:9
 msgid "Administrate your project"
-msgstr "Stjórna þínu verkefni"
+msgstr "Stjórna eingin verkefni"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -1679,11 +1679,11 @@ msgstr "Yfirlit yfir þinn reikning"
 #: templates/profiles/profile_detail.html:6
 #: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
-msgstr "Mælaborð"
+msgstr "Stjórnborð"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
-msgstr "Stilltu þýðingarstillingar"
+msgstr "Breyta þýðingastillingunum þínum"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2010-01-02 12:05+0200\n"
+"PO-Revision-Date: 2010-01-20 12:20+0200\n"
 "Last-Translator: Łukasz <deejay1@srem.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.0\n"
+"X-Generator: Pootle 2.0.1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -138,7 +138,7 @@ msgstr "Za każdym razem nalezy podać identyczne hasło"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr "Zapoznano mnie z Warunkami Użytkowania i akceptuję je."
+msgstr "Zapoznano mnie z Warunkami Użytkowania i akceptuję je"
 
 #: external_apps/registration/forms.py:107
 msgid ""
@@ -602,7 +602,7 @@ msgstr "Najnowsze informacje"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr "Zapisz się do źródła RSS"
+msgstr "Zapisz się do źródła RSS."
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
@@ -627,7 +627,7 @@ msgstr "Brak konta?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
 msgid "Register."
-msgstr "Zarejestruj się"
+msgstr "Zarejestruj się."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -746,7 +746,7 @@ msgstr "SQLite jest zainstalowane."
 msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
 msgstr ""
 "Brak biblioteki SQLite. Program Pootle wymaga SQLite do prowadzenia "
-"statystyk tłumaczeń. "
+"statystyk tłumaczeń."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:57
 #, python-format
@@ -950,12 +950,12 @@ msgstr "Domyślny"
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:239
 msgid "This is a GNU-style project (files named per language code)."
-msgstr "To jest projekty w stylu GNU (pliki nazwane wg kodów językowych)"
+msgstr "To jest projekty w stylu GNU (pliki nazwane wg kodów językowych)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:241
 msgid "This is a standard style project (one directory per language)."
 msgstr ""
-"To jest projekt w stylu standardowym (oddzielny folder dla każdego języka)"
+"To jest projekt w stylu standardowym (oddzielny folder dla każdego języka)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:247
 #: local_apps/pootle_app/views/language/language_admin.py:48
@@ -1215,7 +1215,7 @@ msgstr "Złącz plik z obecnym plikiem i przedstaw konflikty jako propozycje"
 
 #: local_apps/pootle_app/views/language/tp_common.py:254
 msgid "Add all new translations as suggestions"
-msgstr "Dodaj wszystkie nowe tłumaczenia jako ugestie"
+msgstr "Dodaj wszystkie nowe tłumaczenia jako sugestie"
 
 #: local_apps/pootle_app/views/language/tp_common.py:256
 msgid "Overwrite the current file if it exists"
@@ -1405,7 +1405,7 @@ msgstr "Użytkownik nie posiada praw do tworzenia archiwów ZIP."
 
 #: local_apps/pootle_app/views/language/view.py:264
 msgid "No suggestion data given."
-msgstr "Nie podano żadnych sugestii. "
+msgstr "Nie podano żadnych sugestii."
 
 #: local_apps/pootle_app/views/language/view.py:310
 msgid "Suggestion accepted."
@@ -1464,7 +1464,7 @@ msgstr "Projekt %(project)s jest %(percent)d%% ukończony"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
-msgstr "Zakończono obliczanie statystyk dla domyślnych języków i projektów."
+msgstr "Zakończono obliczanie statystyk dla domyślnych języków i projektów"
 
 #: local_apps/pootle_misc/dbinit.py:120
 msgid ""
@@ -1567,12 +1567,13 @@ msgid ""
 "</div>"
 msgstr ""
 "<div dir=\"ltr\" lang=\"pl\">\n"
-"<h2 class=\"title\">To jest przykładowa instalacja programu Pootle.</h2><p "
-"class=\"about\">Można również odwiedzić oficjalny<a "
+"<h2 class=\"title\">To jest przykładowa instalacja programu Pootle.</h2>\n"
+"<p class=\"about\">Można również odwiedzić oficjalny<a "
 "href=\"http://pootle.locamotion.org\">serwer Pootle</a>. Administrator tego "
 "serwera nie podał informacji kontaktowych ani opisu tego serwera. Jeśli "
 "jesteś administratorem tego serwera, prosimy o podanie opisu w pliku "
-"ustawień lub za pomocą interfejsu administracyjnego.</p></div>"
+"ustawień lub za pomocą interfejsu administracyjnego.</p>\n"
+"</div>"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1802,7 +1803,7 @@ msgstr "Dodatkowe języki źródłowe"
 
 #: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
-msgstr "Skróty:"
+msgstr "Skróty"
 
 #: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
@@ -2004,7 +2005,7 @@ msgid ""
 "instructions for setting a new one."
 msgstr ""
 "Zapomniane hasło? Proszę podać swój adres e-mail poniżej, a zostaną na niego "
-"przesłane informacje o tym jak ustawić nowe,"
+"przesłane informacje o tym jak ustawić nowe."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20

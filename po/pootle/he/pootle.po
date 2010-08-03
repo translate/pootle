@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2008-10-24 07:55+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2010-03-23 11:58+0200\n"
+"Last-Translator: benb969 <benb969@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.0-rc1\n"
+"X-Generator: Pootle 2.0.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -39,11 +40,11 @@ msgstr ""
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "שמור והוסף אחר"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "שמור והמשך לערוך"
 
 #: strings.py:15
 msgid "Add"

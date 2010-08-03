@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-11-16 01:01+0200\n"
-"Last-Translator: Andrej Dundović <adundovi@gmail.com>\n"
+"PO-Revision-Date: 2010-07-16 04:11+0200\n"
+"Last-Translator: snjezana <snjezana@lavabit.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -12,169 +12,173 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
+"Držite \"Control\" ili \"Command\" na Mac-u kako biste odabrali više od jedne "
+"opcije."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Unesite valjanu e-mail adresu."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"Navedena e-mail adresa nema pridruženi korisnički račun. Jeste li sigurni da "
+"ste se već registrirali?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Ovo polje je obavezno."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
+"Osigurajte da ova vrijednost ima najmanje %(max)d karaktera (sada ima %"
+"(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Spremiti i dodati drugi"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Spremi i nastavi editirati"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Promijeni"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Dodajte %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr ""
+msgstr "Pogledajte na stranici"
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "ime"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "prezime"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "Adresa e-pošte"
+msgstr "e-mail adresa"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "aktivan"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "status super korisnika"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Molimo ispravite grešku ispod"
+msgstr[1] "Molimo ispravite greške ispod"
 msgstr[2] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Postavke su spremljene."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Spremiti"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Korisničko ime"
+msgstr "korisničko ime"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "Adresa e-pošte"
+msgstr "adresa e-pošte"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Zaporka"
+msgstr "zaporka"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "zaporka (ponovite)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "To korisničko ime je već zauzeto. Molimo izaberite drugo."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "Morate oba puta unijeti istu zaporku."
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "Pročitao sam i slažem se sa uvjetima."
 
 #: external_apps/registration/forms.py:107
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
-msgstr ""
+msgstr "Ta e-mail adresa je već zauzeta. Molimo unesite drugu e-mail adresu."
 
 #: external_apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
+"Registracija koristeći besplatne e-mail adrese je zabranjena. Molimo unesite "
+"drugačiju e-mail adresu."
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "korisnik"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr ""
+msgstr "aktivacijski ključ"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "registracijski profil"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr ""
+msgstr "registracijski profili"
 
 #: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "Jezični kod ne zadovoljava uvijete ISO konvencije"
 
 #: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "Projektni kod može samo sadržavati slova, brojeve i _"
 
 #: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
-msgstr ""
+msgstr "Napredne opcije"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
@@ -182,7 +186,7 @@ msgstr "Naslov"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Ime ovog Pootle servera"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
@@ -193,6 +197,8 @@ msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
+"Opis i upute prikazane na prednjoj stranici i na stranici o projektu. "
+"Uvjerite se da koristite ispravan HTML."
 
 #: local_apps/pootle_app/unit_update.py:38
 msgid "You do not have rights to suggest changes here"
@@ -209,35 +215,35 @@ msgstr "Nemate prava za ispitivanje prijedloga ovdje"
 
 #: local_apps/pootle_app/management/__init__.py:62
 msgid "Can view a translation project"
-msgstr ""
+msgstr "Možete pregledati projekt prevođenja"
 
 #: local_apps/pootle_app/management/__init__.py:64
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Možete dati prijedlog za prijevod"
 
 #: local_apps/pootle_app/management/__init__.py:66
 msgid "Can submit a translation"
-msgstr ""
+msgstr "Možete poslati prijevod"
 
 #: local_apps/pootle_app/management/__init__.py:68
 msgid "Can overwrite translations on uploading files"
-msgstr ""
+msgstr "Možete pisati preko prijevoda na uploadanim datotekama"
 
 #: local_apps/pootle_app/management/__init__.py:70
 msgid "Can review translations"
-msgstr ""
+msgstr "Možete pregledavati prijevode"
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "Možete preuzimati iz arhiva projekata prevođenja."
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "Možete administrirati projektom prevođenja"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can commit to version control"
-msgstr ""
+msgstr "Možete se posvetiti kontroli verzije"
 
 #: local_apps/pootle_app/models/language.py:39
 msgid ""
@@ -245,11 +251,14 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
+"ISO 639 jezični kod za jezik, nakon čega moguće slijedi povlaka (_) i ISO "
+"3166 kod države. <a href=\"http://www.w3.org/International/articles/language-"
+"tags/\">Više informacija</a>"
 
 #: local_apps/pootle_app/models/language.py:40
 #: local_apps/pootle_app/models/project.py:58
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: local_apps/pootle_app/models/language.py:41
 #: local_apps/pootle_app/models/project.py:59
@@ -259,21 +268,25 @@ msgstr "Puno ime"
 #: local_apps/pootle_app/models/language.py:43
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
+"Upišite bilo koji poseban znak zbog kojeg korisnici mogu imati poteškoća u "
+"pisanju"
 
 #: local_apps/pootle_app/models/language.py:44
-#, fuzzy
 msgid "Special Characters"
-msgstr "(posebni znakovi)"
+msgstr "Posebni znakovi"
 
 #: local_apps/pootle_app/models/language.py:46
 msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
+"Za više informacija, posjetite <a "
+"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">našu wiki "
+"stranicu</a> o oblicima množine."
 
 #: local_apps/pootle_app/models/language.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "Nepoznato"
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
@@ -287,59 +300,61 @@ msgstr "Jednadžba množine"
 #: local_apps/pootle_app/views/index/login.py:58
 #: templates/profiles/edit_profile.html:27
 msgid "Interface Language"
-msgstr ""
+msgstr "Jezik sučelja"
 
 #: local_apps/pootle_app/models/profile.py:97
 msgid "Suggestions Accepted"
-msgstr ""
+msgstr "Prihvaćenih prijedloga"
 
 #: local_apps/pootle_app/models/profile.py:98
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "Prijedloga na čekanju"
 
 #: local_apps/pootle_app/models/profile.py:99
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "Pregledanih prijedloga"
 
 #: local_apps/pootle_app/models/profile.py:100
 msgid "Submissions Made"
-msgstr ""
+msgstr "Podnesenih prijedloga"
 
 #: local_apps/pootle_app/models/project.py:40
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
-msgstr ""
+msgstr "Kratki kod projekta"
 
 #: local_apps/pootle_app/models/project.py:41
 msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. This field should be valid HTML."
 msgstr ""
+"Opis ovog projekta. Korisno dati više informacija ili uputa. Ovo polje mora "
+"biti valjanog HTML."
 
 #: local_apps/pootle_app/models/project.py:48
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: local_apps/pootle_app/models/project.py:49
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
-msgstr ""
+msgstr "Automatsko prepoznavanje (sporije)"
 
 #: local_apps/pootle_app/models/project.py:54
 msgid "GNU style: files named by language code"
-msgstr ""
+msgstr "GNU stil: datoteke nazvane prema jezičnom kodu"
 
 #: local_apps/pootle_app/models/project.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr ""
+msgstr "Non-GNU: Svaki jezik u svom vlastitom direktoriju"
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
-msgstr ""
+msgstr "Provjera kakvoće"
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
@@ -351,21 +366,19 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:64
 msgid "Ignore Files"
-msgstr ""
+msgstr "Ignoriraj datoteku"
 
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr ""
+msgstr "U tijeku"
 
 #: local_apps/pootle_app/models/suggestion.py:55
-#, fuzzy
 msgid "Accepted"
-msgstr "prihvati"
+msgstr "Prihvaćeno"
 
 #: local_apps/pootle_app/models/suggestion.py:56
-#, fuzzy
 msgid "Rejected"
-msgstr "odbaciti"
+msgstr "Odbijeno"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
@@ -394,7 +407,7 @@ msgstr "Nemate prava za predaju datoteka ovdje"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr ""
+msgstr "Najveći pridonositelji"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/project_index.py:41
@@ -403,7 +416,7 @@ msgstr "Prevedeno"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr ""
+msgstr "Zahtjeva pregled"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:109
@@ -426,6 +439,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"Ovdje možete dodavati, uređivati i brisati sve dostupne jezike u ovom Pootle "
+"serveru."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
@@ -438,13 +453,15 @@ msgstr ""
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
 #: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "Dozvole"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"Ovdje možete dodavati, uređivati i brisati zadane ovlasti u ovom Pootle "
+"serveru."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
@@ -462,7 +479,7 @@ msgstr "Korisničko ime"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
-msgstr ""
+msgstr "Obrišite"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
@@ -488,20 +505,19 @@ msgstr ""
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr ""
+msgstr "Opće postavke"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr ""
+msgstr "Konfiguriraj opće postavke za svoju stranicu."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:32
 msgid "Dependency Checks"
 msgstr ""
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:39
-#, fuzzy
 msgid "Optional"
-msgstr "Opcija"
+msgstr "Prema odabiru"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:47
 msgid "Optimizations"
@@ -546,24 +562,23 @@ msgstr "Jezik"
 #: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
-msgstr ""
+msgstr "Ukupno dovršeno"
 
 #: local_apps/pootle_app/templates/index/index.html:28
 #: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
-msgstr ""
+msgstr "Posljednja aktivnost"
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
-msgstr "Projekti"
+msgstr "Projekt"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
-msgstr ""
+msgstr "Posljednje vijesti"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
@@ -576,24 +591,23 @@ msgstr "Prijava"
 
 #: local_apps/pootle_app/templates/index/login.html:10
 msgid "Login to Pootle"
-msgstr "Prijavi se na Pootle"
+msgstr "Prijavite se na Pootle"
 
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Vaše korisničko ime i lozinka ne odgovaraju. Molimo pokušajte ponovo."
 
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Izgubili ste lozinku?"
 
 #: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Nemate još korisnički račun?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Registriraj se"
+msgstr "Registrirajte se."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -602,7 +616,7 @@ msgstr "Pogreška"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr ""
+msgstr "Završeno"
 
 #: local_apps/pootle_app/templates/language/language_admin.html:20
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -610,13 +624,13 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/language/language_admin.html:32
 msgid "Update Permissions"
-msgstr ""
+msgstr "Ažuriranje dozvola"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:6
 #: local_apps/pootle_app/views/language/admin_files.py:62
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "Datoteke"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""
@@ -638,7 +652,7 @@ msgstr "Prevedi"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:80
 msgid "Edit translation"
-msgstr ""
+msgstr "Uredi prijevod"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:203
 msgid "Submit"
@@ -671,26 +685,24 @@ msgstr "Administriraj"
 
 #: local_apps/pootle_app/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr ""
+msgstr "Ovdje možete dodati, urediti, ili obrisati jezik ovog projekta."
 
 #: local_apps/pootle_app/views/top_stats.py:77
-#, fuzzy
 msgid "Suggestions"
-msgstr "Prijedlog:"
+msgstr "Prijedlozi"
 
 #: local_apps/pootle_app/views/top_stats.py:78
-#, fuzzy
 msgid "Reviews"
-msgstr "Provjeri"
+msgstr "Provjere"
 
 #: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
-msgstr ""
+msgstr "Podnesci"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Prevedena Toolkit verzija %s instalirana."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:42
 #, python-format
@@ -812,15 +824,13 @@ msgid "Password"
 msgstr "Zaporka"
 
 #: local_apps/pootle_app/views/admin/util.py:38
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
-msgstr "Vi nemate prava za administriranje Pootle-a."
+msgstr "Nemate prava za administriranje Pootle-a."
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "Nemate prava da administrirate pootle."
+msgstr "Nemate prava za administriranje %s."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
@@ -836,9 +846,8 @@ msgid "Home"
 msgstr "Početna stranica"
 
 #: local_apps/pootle_app/views/admin/util.py:201
-#, fuzzy
 msgid "Save Changes"
-msgstr "Spremi promjene"
+msgstr "Spremite promjene"
 
 #: local_apps/pootle_app/views/index/about.py:48
 #, python-format
@@ -855,7 +864,7 @@ msgstr ""
 #: local_apps/pootle_app/views/project/project_language_index.py:81
 #: local_apps/pootle_app/views/project/projects_index.py:41
 msgid "Translations are complete"
-msgstr ""
+msgstr "Prijevod je završen"
 
 #: local_apps/pootle_app/views/index/index.py:108
 #: local_apps/pootle_app/views/project/project_language_index.py:82
@@ -896,12 +905,12 @@ msgstr[2] "%d datoteka"
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr ""
+msgstr "%(translated)d/%(total)d riječi (%(translatedpercent)d%%) prevedeno"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
 msgid "%(translated)d/%(total)d strings"
-msgstr ""
+msgstr "%(translated)d/%(total)d redova"
 
 #: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
@@ -933,19 +942,19 @@ msgstr "Prevedi sve"
 
 #: local_apps/pootle_app/views/language/item_dict.py:125
 msgid "ZIP of directory"
-msgstr ""
+msgstr "Direktorij u ZIP-u"
 
 #: local_apps/pootle_app/views/language/item_dict.py:136
 msgid "Download PO"
-msgstr ""
+msgstr "Skini PO"
 
 #: local_apps/pootle_app/views/language/item_dict.py:140
 msgid "Download XLIFF"
-msgstr ""
+msgstr "Skini XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:151
 msgid "Download"
-msgstr ""
+msgstr "Skidanje"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Commit to VCS"
@@ -990,17 +999,16 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
-#, fuzzy
 msgid "You do not have rights to administer this language."
-msgstr "Nemate prava administrirati ovaj projekt."
+msgstr "Nemate prava administrirati ovaj jezik."
 
 #: local_apps/pootle_app/views/language/language_index.py:80
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(projects)d projekt, %(average)d%% prevedeno"
+msgstr[1] "%(projects)d projekta, %(average)d%% prevedeno"
+msgstr[2] "%(projects)d projekata, %(average)d%% prevedeno"
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:60
 #: local_apps/pootle_app/views/project/project_language_index.py:76
@@ -1046,23 +1054,21 @@ msgid "Total"
 msgstr "Ukupno"
 
 #: local_apps/pootle_app/views/language/project_index.py:51
-#, fuzzy
 msgid "Total Words"
 msgstr "Ukupno riječi"
 
 #. l10n: noun. The graphical representation of translation status
 #: local_apps/pootle_app/views/language/project_index.py:53
 msgid "Progress"
-msgstr ""
+msgstr "Napredak"
 
 #: local_apps/pootle_app/views/language/project_index.py:54
 msgid "Summary"
-msgstr ""
+msgstr "Kratak pregled"
 
 #: local_apps/pootle_app/views/language/project_index.py:84
-#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr "Nemate prava za promijenu prijevoda ovdje"
+msgstr "Nemate pravo pristupa ovom projektu prevođenja."
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
@@ -1107,20 +1113,17 @@ msgid "Error while extracting archive"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/tp_common.py:205
-#, fuzzy
 msgid "You do not have rights to overwrite files here."
-msgstr "Nemate prava za prepisivanje datoteka ovdje"
+msgstr "Ovdje nemate pravo prebrisati datoteke."
 
 #: local_apps/pootle_app/views/language/tp_common.py:207
-#, fuzzy
 msgid "You do not have rights to upload new files here."
-msgstr "Nemate prava za slanje novih datoteka ovdje"
+msgstr "Ovdje nemate pravo uploadati nove datoteke."
 
 #: local_apps/pootle_app/views/language/tp_common.py:209
 #: local_apps/pootle_app/views/language/tp_common.py:211
-#, fuzzy
 msgid "You do not have rights to upload files here."
-msgstr "Nemate prava za slanje datoteka ovdje"
+msgstr "Ovdje nemate pravo uploadati datoteke."
 
 #: local_apps/pootle_app/views/language/tp_common.py:231
 msgid "Update all from version control"
@@ -1128,7 +1131,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/tp_common.py:246
 msgid "Upload"
-msgstr ""
+msgstr "Podigni na internet"
 
 #: local_apps/pootle_app/views/language/tp_common.py:253
 msgid ""
@@ -1139,7 +1142,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/tp_common.py:254
 msgid "Add all new translations as suggestions"
-msgstr ""
+msgstr "Dodaj sve nove prijevode kao prijedloge"
 
 #: local_apps/pootle_app/views/language/tp_common.py:256
 msgid "Overwrite the current file if it exists"
@@ -1147,21 +1150,19 @@ msgstr "Prepiši trenutnu datoteku ako postoji"
 
 #: local_apps/pootle_app/views/language/tp_common.py:259
 msgid "File"
-msgstr ""
+msgstr "Datoteka"
 
 #: local_apps/pootle_app/views/language/tp_common.py:265
 msgid "Upload File"
 msgstr "Pošalji datoteku"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
-#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr "Nemate prava za promijenu prijevoda ovdje"
+msgstr "Nemate pravo pristupa modu za pregledavanje."
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
-#, fuzzy
 msgid "You do not have rights to access translation mode."
-msgstr "Nemate prava za promijenu prijevoda ovdje"
+msgstr "Nemate pravo pristupa modu za prevođenje."
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: local_apps/pootle_app/views/language/translate_page.py:78
@@ -1268,16 +1269,15 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/translate_page.py:841
 msgid "No file matched your query."
-msgstr ""
+msgstr "Niti jedan unos ne odgovara Vašem upitu."
 
 #: local_apps/pootle_app/views/language/translate_page.py:842
 msgid "End of results."
-msgstr ""
+msgstr "Završetak pretrage."
 
 #: local_apps/pootle_app/views/language/translate_page.py:855
-#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr "Nemate prava za promijenu prijevoda ovdje"
+msgstr "Nemate pravo pristupa modu za gledanje."
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:904
@@ -1299,13 +1299,11 @@ msgstr "Odbačen prijedlog"
 
 #. l10n: Heading above the textarea for translator comments.
 #: local_apps/pootle_app/views/language/translate_page.py:913
-#, fuzzy
 msgid "Translator Comments"
 msgstr "Komentari prevoditelja"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: local_apps/pootle_app/views/language/translate_page.py:915
-#, fuzzy
 msgid "Developer Comments"
 msgstr "Komentari programera"
 
@@ -1316,19 +1314,17 @@ msgstr "Srodno"
 
 #. l10n: Button label
 #: local_apps/pootle_app/views/language/translate_page.py:927
-#, fuzzy
 msgid "Accept"
-msgstr "prihvati"
+msgstr "Prihvatite"
 
 #. l10n: Button label
 #: local_apps/pootle_app/views/language/translate_page.py:929
-#, fuzzy
 msgid "Reject"
-msgstr "odbaciti"
+msgstr "Odbacite"
 
 #: local_apps/pootle_app/views/language/view.py:144
 msgid "You do not have rights to update files here"
-msgstr "Nemate prava za ažuriranje datoteka ovdje"
+msgstr "Ovdje nemate pravo ažuriranja datoteka"
 
 #: local_apps/pootle_app/views/language/view.py:155
 msgid "You do not have the right to create ZIP archives."
@@ -1412,33 +1408,33 @@ msgstr ""
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "Prvi"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 msgid "Previous"
-msgstr ""
+msgstr "Prethodni"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 msgid "Next"
-msgstr ""
+msgstr "Slijedeći"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 msgid "Last"
-msgstr ""
+msgstr "Posljednji"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
-msgstr ""
+msgstr "Poruka"
 
 #. l10n: The date that the news item was written
 #: local_apps/pootle_notifications/models.py:30
 msgid "Added"
-msgstr ""
+msgstr "Dodan"
 
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(language)s"
-msgstr ""
+msgstr "Novosti vezane za %(language)s"
 
 #: local_apps/pootle_notifications/views.py:92
 #, python-format
@@ -1452,18 +1448,18 @@ msgstr ""
 
 #: local_apps/pootle_notifications/views.py:122
 msgid "View News Item"
-msgstr ""
+msgstr "Pogledajte novost"
 
 #: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: local_apps/pootle_notifications/templates/notices.html:76
 msgid "No news yet."
-msgstr ""
+msgstr "Još nema novosti."
 
 #: local_apps/pootle_notifications/templates/notices.html:15
 #: local_apps/pootle_notifications/templates/notices.html:17
 #: templates/language_menu.html:8 templates/tp_menu.html:8
 msgid "News"
-msgstr ""
+msgstr "Novosti"
 
 #: local_apps/pootle_notifications/templates/notices.html:64
 msgid "Publish"
@@ -1492,40 +1488,39 @@ msgstr ""
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
-msgstr ""
+msgstr "Pristup odbijen"
 
 #: templates/403.html:14
 msgid "You don't have permission to access this page."
-msgstr ""
+msgstr "Nemate dozvolu pristupa ovoj stranici."
 
 #: templates/404.html:5 templates/404.html.py:10
 msgid "Page Not Found"
-msgstr ""
+msgstr "Stranica nije pronađena"
 
 #: templates/404.html:11
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Žao nam je, ali tražena stranica se ne može pronaći."
 
 #: templates/500.html:5 templates/500.html.py:10
 msgid "Server Error"
-msgstr ""
+msgstr "Pogreška na serveru"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Došlo je do pogreške. Hvala vam za strpljenje."
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
-#, fuzzy
 msgid "Administration"
-msgstr "Administriraj"
+msgstr "Administriranje"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
-msgstr ""
+msgstr "Konfiguriraj opće postavke za vašu stranicu"
 
 #: templates/admin_profile_menu.html:5
 msgid "General"
-msgstr ""
+msgstr "Opće"
 
 #: templates/admin_profile_menu.html:6
 msgid "Manage the users"
@@ -1549,18 +1544,16 @@ msgstr ""
 
 #: templates/base.html:45 templates/base.html.py:106 templates/docs.html:5
 msgid "Help"
-msgstr ""
+msgstr "Pomoć"
 
 #: templates/base.html:50 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
-#, fuzzy
 msgid "My Account"
-msgstr "Moj račun"
+msgstr "Moj korisnički račun"
 
 #: templates/base.html:51
-#, fuzzy
 msgid "Log Out"
-msgstr "Odjava"
+msgstr "Odjavite se"
 
 #: templates/base.html:54 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:35
@@ -1569,32 +1562,30 @@ msgstr "Registriraj se"
 
 #: templates/base.html:56
 msgid "Log In"
-msgstr "Prijavi se"
+msgstr "Prijavite se"
 
 #: templates/base.html:107
-#, fuzzy
 msgid "About this Pootle Server"
-msgstr "O ovom Pootle poslužitelju"
+msgstr "O Pootle-ovom serveru"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr ""
+msgstr "Glavna stranica jezika"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
 msgid "Overview"
-msgstr ""
+msgstr "Pregled"
 
 #: templates/language_menu.html:8
 msgid "Language news"
-msgstr ""
+msgstr "Novosti o jezicima"
 
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
 msgstr ""
 
 #: templates/project_menu.html:7
-#, fuzzy
 msgid "Project main page"
 msgstr "Početna stranica projekta"
 
@@ -1612,7 +1603,7 @@ msgstr ""
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr ""
+msgstr "Prevedi ovaj projekt"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
@@ -1628,13 +1619,13 @@ msgstr ""
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
-msgstr ""
+msgstr "Pregled vašeg korisničkog računa"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 #: templates/profiles/profile_detail.html:6
 #: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "Korisnička ploča"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
@@ -1642,21 +1633,21 @@ msgstr ""
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr ""
+msgstr "Postavke"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
-msgstr ""
+msgstr "Promijeni svoje osobne informacije"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
-msgstr ""
+msgstr "Promijeni svoju zaporku"
 
 #: templates/admin/base_site.html:4
 msgid "Django site admin"
@@ -1671,38 +1662,41 @@ msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
+"Ovdje možete mijenjati Vaše osobne podatke. Ova informacija biti će "
+"korištena u zaglavlju datoteka za prevođenje."
 
 #: templates/profiles/edit_personal.html:19
 msgid "First Name"
-msgstr ""
+msgstr "Ime"
 
 #: templates/profiles/edit_personal.html:24
 msgid "Last Name"
-msgstr ""
+msgstr "Prezime"
 
 #: templates/profiles/edit_personal.html:29
-#, fuzzy
 msgid "Email address"
-msgstr "Adresa e-pošte"
+msgstr "Email adresa"
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr ""
+msgstr "Postavke prevođenja"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
 msgstr ""
+"Ovdje možete podesiti postavke koje se tiču sučelja prevođenja i Vaših "
+"jezičnih postavki."
 
 #: templates/profiles/edit_profile.html:19
 msgid "Number of Rows"
-msgstr ""
+msgstr "Broj redaka"
 
 #: templates/profiles/edit_profile.html:23
 msgid "Input Height"
-msgstr ""
+msgstr "Visina unosa"
 
 #: templates/profiles/edit_profile.html:31
 msgid "My Languages"
@@ -1713,9 +1707,8 @@ msgid "My Projects"
 msgstr "Moji projekti"
 
 #: templates/profiles/edit_profile.html:41
-#, fuzzy
 msgid "Alternative Source Languages"
-msgstr "Alternativni izvorni jezik"
+msgstr "Alternativni Izvorni jezici"
 
 #: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
@@ -1731,7 +1724,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
-msgstr ""
+msgstr "Statistika korisnika"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
@@ -1739,16 +1732,16 @@ msgstr ""
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr ""
+msgstr "Ime"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr ""
+msgstr "Prezime"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
 msgid "Account Activated"
-msgstr ""
+msgstr "Račun aktiviran"
 
 #: templates/registration/activate.html:10
 #, python-format
@@ -1758,60 +1751,60 @@ msgid ""
 msgstr ""
 
 #: templates/registration/activation_email.txt:2
-#, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Pootle račun je stvoren za vas korištenjem ove adrese e-pošte.\n"
+msgstr ""
+"Korisnički račun na Pootle-u stvoren je za vas korištenjem ove e-mail "
+"adrese."
 
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "Kako bi aktivirali račun, slijedite ovaj link:\n"
+msgstr "Kako biste aktivirali Vaš korisnički račun, slijedite ovaj link:"
 
 #: templates/registration/activation_email.txt:6
-#, fuzzy
 msgid "Your activation code is:"
-msgstr ""
-"Vaša aktivacijska šifra je:\n"
-"%s"
+msgstr "Vaš aktivacijski kod je:"
 
 #: templates/registration/activation_email.txt:9
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
 msgstr ""
+"Ova je poruka poslana kako bi potvrdili točnost adrese e-pošte. Ako ne "
+"želite registrirati račun, možete jednostavno ignorirati poruku."
 
 #: templates/registration/activation_email_subject.txt:2
-#, fuzzy
 msgid "Pootle registration"
 msgstr "Pootle registracija"
 
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:15
 msgid "Password Changed"
-msgstr ""
+msgstr "Zaporka je promijenjena"
 
 #: templates/registration/password_change_done.html:16
 msgid "Your password was changed successfully."
-msgstr ""
+msgstr "Vaša zaporka je uspješno izmjenjena."
 
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11
 msgid "Change Password"
-msgstr ""
+msgstr "Promijeni zaporku"
 
 #: templates/registration/password_change_form.html:15
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"Molimo, zbog sigurnosti unesite Vašu staru zaporku, a onda unesite Vašu novu "
+"zaporku dva puta tako da možemo provjeriti da li ste ju ispravno upisali."
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr ""
+msgstr "Stara zaporka"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
-msgstr ""
+msgstr "Nova zaporka"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm password"
@@ -1819,11 +1812,11 @@ msgstr "Potvrdite zaporku"
 
 #: templates/registration/password_change_form.html:38
 msgid "Change My Password"
-msgstr ""
+msgstr "Promijeni moju zaporku"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "Zaporka ponovno namještena"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
@@ -1846,43 +1839,48 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter New Password."
-msgstr ""
+msgstr "Unesite novu zaporku."
 
 #: templates/registration/password_reset_confirm.html:12
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
+"Molimo unesite novu zaporku dvaput kako bismo potvrdili da ste je točno "
+"unijeli."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr ""
+msgstr "Nova zaporka"
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
 msgstr "Potvrdite zaporku"
 
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr ""
+msgstr "Resetiranje zaporke."
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "Neuspješno resetiranje zaporke."
 
 #: templates/registration/password_reset_confirm.html:32
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Veza za resetiranje zaporke nije valjana, moguće zato što je već "
+"iskorištena. Molimo zatražite novo resetiranje zaporke."
 
 #: templates/registration/password_reset_done.html:11
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"Uputu za postavljanje zaporke smo vam poslali na adresu e-pošte koju ste "
+"prijavili. Trebala bi vam stići uskoro."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -1890,60 +1888,63 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"Ovu poruku ste primili jer ste zatražili resetiranje zaporke za svoj račun "
+"na %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Molimo posjetite sljedeću stranicu i izaberite novu zaporku:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "Vaše korisničko ime je %(user)s."
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Hvala što koristite Pootle!"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Zaboravili ste zaporku? Unesite adresu svoje e-pošte i poslat ćemo vam uputu "
+"kako postaviti novu."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
 msgid "Email Address"
-msgstr "Adresa e-pošte"
+msgstr "Email adresa"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "Registracija je gotova"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "Molimo provjerite svoju e-poštu kako biste aktivirali račun."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "Registrirajte novi Pootle korisnički račun"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "Ispunite sljedeći obrazac kako biste počeli prevoditi."
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"
-msgstr ""
+msgstr "Lozinka (ponovo)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr ""
+msgstr "Već imate korisnički račun?"
 
 #: templates/registration/registration_form.html:41
-#, fuzzy
 msgid "Log In."
-msgstr "Prijavi se"
+msgstr "Prijavite se"
 
 #~ msgid "General options"
 #~ msgstr "Opće opcije"

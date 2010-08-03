@@ -1,249 +1,252 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2010-02-03 11:49+0200\n"
-"Last-Translator:  <lauri.carlson@helsinki.fi>\n"
+"PO-Revision-Date: 2010-06-28 11:59+0200\n"
+"Last-Translator: OLWENY San James <sjolweny85@yahoo.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: fi\n"
+"Language: lg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.2\n"
+"X-Generator: Pootle 2.0.4\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"Pidä \"Ctrl\"-näppäin (tai \"Command\" Macissa) pohjassa valitaksesi useampia "
-"kohtia."
+"Kwatira wansi \"Control\", oba \"Command\" ku Mac, okulonda ekissukka mu kimu."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr "Anna kelvollinen sähköpostiosoite."
+msgstr ""
+"Yingiza endagiriro awafunirwa n'okusindikira obubaka ku mutimbagano entuufu."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
-"Sähköpostiosoitetta vastaavaa käyttäjätiliä ei löydy. Oletko varmasti "
-"rekisteröitynyt?"
+"Endagiriro ewafunirwa n'okusindikira obubaka ku mutimbagano eyo, terina "
+"akawunta egenderako. Okakasa weewandiisizza?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr "Tämä kenttä vaaditaan."
+msgstr "Ebbanga lino lyetaagisa."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr ""
-"Varmista että tämä arvo sisältää korkeintaan %(max)d merkkiä (pituus nyt %"
-"(length)d merkkiä)."
+msgstr "Kakasa nti omuwendo guno gulina %(max)d ennukuta (gulina %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr "Tallenna ja lisää toinen"
+msgstr "Tereka era oyongereko"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr "Tallenna ja jatka muokkaamista"
+msgstr "Tereka era ogende mu maaso n'okulongoosa"
 
 #: strings.py:15
 msgid "Add"
-msgstr "Lisää"
+msgstr "Ggattako"
 
 #: strings.py:16
 msgid "Change"
-msgstr "Muokkaa"
+msgstr "Kyuusa"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr "Lisää %(name)s"
+msgstr "Ggattako %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr "Näytä lopputulos"
+msgstr "Labira ku kibanja"
 
 #: strings.py:24
 msgid "first name"
-msgstr "etunimi"
+msgstr "erinnya erisooka"
 
 #: strings.py:25
 msgid "last name"
-msgstr "sukunimi"
+msgstr "erinnya ly'ekika"
 
 #: strings.py:26
 msgid "e-mail address"
-msgstr "sähköpostiosoite"
+msgstr "teeka endagiriro wofunira n'okuwerereza obubaka ku mutimbagano"
 
 #: strings.py:27
 msgid "active"
-msgstr "aktiivinen"
+msgstr "enkola"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr "ylläpitäjä"
+msgstr "embeera y'omukulu w'ebyuuma"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
+#, fuzzy
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "Korjaa alla oleva virhe."
-msgstr[1] "Korjaa alla olevat virheet."
+msgstr[0] "Bambi longoosa ensobi wa mmanga "
+msgstr[1] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr "Asetukset on tallennettu."
+msgstr "Entegeka ziterekeddwa."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr "Tallenna"
+msgstr "Tereka"
 
 #: external_apps/registration/forms.py:36
 msgid "username"
-msgstr "käyttäjätunnus"
+msgstr "erinnya ly'okozesa"
 
 #: external_apps/registration/forms.py:39
 msgid "email address"
-msgstr "sähköpostiosoite"
+msgstr "endagiriro wofunira n'okuwerereza obubaka ku mutimbagano"
 
 #: external_apps/registration/forms.py:41
 msgid "password"
-msgstr "salasana"
+msgstr "akasumuluzo"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr "salasana (uudestaan)"
+msgstr "akasumuluzo (ddamu)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr "Tämä käyttäjätunnus on jo käytössä. Valitse joku toinen käyttäjätunnus."
+msgstr "Akasumuluzo kano kaakozesebwa dda. Bambi londa akalala."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr "Salasanat eivät täsmänneet"
+msgstr "Oteekwa kuwandiika busumuluzo nga bufanagana buli mulundi"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr "Olen lukenut ja hyväksynyt palvelun käyttöehdot"
+msgstr "Nsomye era nzikkiriziganya n'Amateeka g'Empeereza"
 
 #: external_apps/registration/forms.py:107
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
 msgstr ""
-"Antamasi sähköpostiosoite on jo käytössä. Käytä jotain toista "
-"sähköpostiosoitetta."
+"Endagiriro eno okufunirwa n'okuwerereza obubaka ku mutimbagano yakozesebwa "
+"dda. Bambi wa endagiriro eyenjawulo."
 
 #: external_apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
-"Rekisteröinti ilmaissähköpostiosoitteilla on estetty. Käytä jotain toista "
-"sähköpostiosoitetta."
+"Okwewandiisa ng'okozesa endagiriro eyoobwereere tekukkirizibwa. Bambi wa "
+"endagiriro eyenjawulo."
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr "käyttäjä"
+msgstr "omukozesa"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr "aktivointiavain"
+msgstr "akasumulizo akazuukusa"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr "rekisteröintiprofiili"
+msgstr "ebikwata ku kwewandiisa"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr "rekisteröintiprofiilit"
+msgstr "ebikwata ku kwewandiisa"
 
 #: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
-msgstr "Kielikoodi ei ole ISO-standardien mukainen"
+msgstr "Omuwendo ogulaga olulimi tegugoberera mateeka ga ISO enkyuusa"
 
 #: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
-msgstr "Projektikoodi voi sisältää vain kirjaimia, numeroita ja _-merkin"
+msgstr "Omuwendo ogulaga omulimu guteekwa kubaamu nnukuta, miwendo na _"
 
 #: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
-msgstr "Lisäasetukset"
+msgstr "Ebyokweroboza Ebissukkulumu"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
-msgstr "Otsikko"
+msgstr "Omulamwa"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
-msgstr "Tämän Pootle-palvelimen nimi"
+msgstr "Erinnya ly'engabizi ya Pootle eno"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
-msgstr "Kuvaus"
+msgstr "Ennyinyonnyola"
 
 #: local_apps/pootle_app/forms.py:35
 msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
-"Etusivulla ja Tietoja-sivulla näytettävä kuvaus ja ohjeet. Käytä validia "
-"HTML-koodia."
+"Ennyinyonnyola n'ebiragiro ebiragiddwa ku muko ogusooka era bifa ku muko. "
+"Kakasa okukozesa HTML entuufu."
 
 #: local_apps/pootle_app/unit_update.py:38
 msgid "You do not have rights to suggest changes here"
-msgstr "Käyttäjäoikeuksillasi ei voi ehdottaa muutoksia täällä"
+msgstr "Tolina lukusa kuwa birowoozo bireeta nkyuukakyuuka wano"
 
 #: local_apps/pootle_app/unit_update.py:57
 msgid "You do not have rights to change translations here"
-msgstr "Käyttäjäoikeuksillasi ei voi muuttaa käännöksiä täällä"
+msgstr "Tolina lukusa kukyuusa bitafutiddwa wano"
 
 #: local_apps/pootle_app/unit_update.py:95
 #: local_apps/pootle_app/unit_update.py:105
 msgid "You do not have rights to review suggestions here"
-msgstr "Käyttäjäoikeuksillasi ei voi tarkastaa ehdotuksia täällä"
+msgstr "Tolina lukusa kukyuusa ndowooza wano"
 
 #: local_apps/pootle_app/management/__init__.py:62
 msgid "Can view a translation project"
-msgstr "Voi katsella käännösprojektia"
+msgstr "Asobola okulaba omulimu gw'entukyuusa"
 
 #: local_apps/pootle_app/management/__init__.py:64
 msgid "Can make a suggestion for a translation"
-msgstr "Voi tehdä käännösehdotuksia"
+msgstr "Asobola okuwa endowooza ku kyuusa"
 
 #: local_apps/pootle_app/management/__init__.py:66
 msgid "Can submit a translation"
-msgstr "Voi tehdä käännöksiä"
+msgstr "Asobola okuwaayo okukyuusa"
 
 #: local_apps/pootle_app/management/__init__.py:68
 msgid "Can overwrite translations on uploading files"
-msgstr "Voi korvata käännöksiä lähettäessään tiedoston"
+msgstr "Asobola okukyuusa ng'otikka fayiro"
 
 #: local_apps/pootle_app/management/__init__.py:70
 msgid "Can review translations"
-msgstr "Voi tarkastaa käännöksiä"
+msgstr "Osobola okweekeneenya mukukyuusa"
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can download archives of translation projects"
-msgstr "Voi ladata käännösprojektien arkistoja"
+msgstr "Osobola okuwanula etterekero ly'a pulojeti ezikyuusiddwa"
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can administrate a translation project"
-msgstr "Voi hallinnoida käännösprojektia"
+msgstr "Osobola okulabirira pulojeti y'enkyuusa"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can commit to version control"
-msgstr "Voi toimittaa muutoksia versiohallintaan"
+msgstr "Osobola okukirekera enfuga y'ekika"
 
 #: local_apps/pootle_app/models/language.py:39
 msgid ""
@@ -251,86 +254,89 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"Kielen ISO 639 -kielikoodi, mahdollisesti lisättynä alaviivalla (_) ja ISO "
-"3166 -maakoodilla. <a href=\"http://www.w3.org/International/articles"
-"/language-tags/\">Lisätietoja täältä</a>"
+"ISO 639 ennukuta eziraga olulimi, nga zigobererwa akasaze aka wansi (_) era "
+"ne ISO 3166 nnukuta eziraga ensi. <a "
+"href=\"http://www.w3.org/International/articles/language-tags/\">More "
+"information</a>"
 
 #: local_apps/pootle_app/models/language.py:40
 #: local_apps/pootle_app/models/project.py:58
 msgid "Code"
-msgstr "Koodi"
+msgstr "Ennukuta eziraga ekintu mu kyaama"
 
 #: local_apps/pootle_app/models/language.py:41
 #: local_apps/pootle_app/models/project.py:59
 msgid "Full Name"
-msgstr "Koko nimi"
+msgstr "Erinnya mu Bujjuvu"
 
 #: local_apps/pootle_app/models/language.py:43
 msgid "Enter any special characters that users might find difficult to type"
-msgstr "Lisää tähän erikoismerkit joiden kirjoittaminen saattaa olla hankalaa"
+msgstr ""
+"Yingiza ennukuta ez'enjawulo zonna abakozesa zebayinza okusangamu obuzibu "
+"okuwandiika"
 
 #: local_apps/pootle_app/models/language.py:44
 msgid "Special Characters"
-msgstr "Erikoismerkit"
+msgstr "Ennukuta ez'Enjawulo"
 
 #: local_apps/pootle_app/models/language.py:46
 msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
-"Lisätietoja monikkomuodoista löydät <a "
-"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">wiki-"
-"sivultamme</a>."
+"Okumanya ebisingawo, kyalira <a "
+"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">omuko gwaffe "
+"gwa wiki</a> mu bwiggi."
 
 #: local_apps/pootle_app/models/language.py:47
 msgid "Unknown"
-msgstr "Tuntematon"
+msgstr "Tekimanyiddwa"
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
-msgstr "Monikoiden määrä"
+msgstr "Omuwendo mu Bungi"
 
 #: local_apps/pootle_app/models/language.py:50
 msgid "Plural Equation"
-msgstr "Monikon kaava"
+msgstr "Obungi bw'Okugerageranya"
 
 #: local_apps/pootle_app/models/profile.py:72
 #: local_apps/pootle_app/views/index/login.py:58
 #: templates/profiles/edit_profile.html:27
 msgid "Interface Language"
-msgstr "Käyttöliittymän kieli"
+msgstr "Ebbibiro by'Olulimi"
 
 #: local_apps/pootle_app/models/profile.py:97
 msgid "Suggestions Accepted"
-msgstr "Hyväksyttyjä ehdotuksia"
+msgstr "Endowooza Zikkiriziddwa"
 
 #: local_apps/pootle_app/models/profile.py:98
 msgid "Suggestions Pending"
-msgstr "Tarkastamattomia ehdotuksia"
+msgstr "Endowooza Zikyalinda"
 
 #: local_apps/pootle_app/models/profile.py:99
 msgid "Suggestions Reviewed"
-msgstr "Tarkastettuja ehdotuksia"
+msgstr "Endowooza Zikebejjeddwa"
 
 #: local_apps/pootle_app/models/profile.py:100
 msgid "Submissions Made"
-msgstr "Lähetettyjä käännöksiä"
+msgstr "Okuwaayo Kukoleddwa"
 
 #: local_apps/pootle_app/models/project.py:40
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
-"Lyhyt koodi projektille. Koodin tulee sisältää ainoastaan ASCII-merkkejä, "
-"numeroita ja alaviiva (_)."
+"Omuwendo ogulaga omulimu omumpi. Guno gulina kubaamu nnukuta za ASCII, "
+"miwendo, n'akasaze aka wansi (_) mu nnukuta."
 
 #: local_apps/pootle_app/models/project.py:41
 msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. This field should be valid HTML."
 msgstr ""
-"Tämän projektin kuvaus. Tähän voi laittaa lisätietoja tai ohjeita. Tämän "
-"kentän tulisi olla validia HTML-koodia."
+"Ennyinyonnyola y'omulimu guno. Kino kiyamba okuwa amawulire agasingawo oba "
+"ebiragiro. Ebbanga lino lilina kuba HTML ntuufu."
 
 #: local_apps/pootle_app/models/project.py:48
 msgid "Gettext PO"
@@ -342,82 +348,81 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
-msgstr "Automaattinen tunnistus (hitaampi)"
+msgstr "Okunoonyereza okwekola kwokka (mpola)"
 
 #: local_apps/pootle_app/models/project.py:54
 msgid "GNU style: files named by language code"
-msgstr "GNU-tyyli: tiedostonimet kielikoodin mukaan"
+msgstr "Enkula ya GNU: fayiro ezituumiddwa emiwendo egiraga olulimi"
 
 #: local_apps/pootle_app/models/project.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr "Ei-GNU: Jokainen kieli omassa hakemistossaan"
+msgstr "Ebitali bya-GNU: Buli lulimi mu ndagiriro yalwo"
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
-msgstr "Laatutarkastukset"
+msgstr "Ekebera Omutindo"
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
-msgstr "Tiedostotyyppi"
+msgstr "Ekyikka kya Fayiro"
 
 #: local_apps/pootle_app/models/project.py:63
 msgid "Project Tree Style"
-msgstr "Projektipuun tyyli"
+msgstr "Endaga y'Omulimu mu Muti"
 
 #: local_apps/pootle_app/models/project.py:64
 msgid "Ignore Files"
-msgstr "Sivuuta tiedostot"
+msgstr "Ziimuula Fayiro"
 
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr "Odottaa hyväksymistä"
+msgstr "Okulinda"
 
 #: local_apps/pootle_app/models/suggestion.py:55
 msgid "Accepted"
-msgstr "Hyväksytty"
+msgstr "Ekkiriziddwa"
 
 #: local_apps/pootle_app/models/suggestion.py:56
 msgid "Rejected"
-msgstr "Hylätty"
+msgstr "Egaaniddwa"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
 msgid "You do not have rights to update from version control here"
-msgstr ""
-"Käyttäjäoikeuksillasi ei voi päivittää näitä tiedostoja versiohallinnasta"
+msgstr "Tolina lukusa wano kuzza buggya na nfuga ya kika"
 
 #: local_apps/pootle_app/models/translation_project.py:253
 #, python-format
 msgid "Updated %s files from version control"
-msgstr "Päivitettiin %s tiedostoa versiohallinnasta"
+msgstr "Za obuggya %s kuva mu fayiro okusinziira ku nfuga y'ekyikka"
 
 #: local_apps/pootle_app/models/translation_project.py:269
 #, python-format
 msgid "Failed to update %s from version control"
-msgstr "Tiedostoa %s ei voitu päivittää versiohallinnasta"
+msgstr "Eremereddwa okuzza obuggya %s fayiro okusinziira ku nfuga y'ekika"
 
 #: local_apps/pootle_app/models/translation_project.py:271
 #, python-format
 msgid "Updated file %s from version control"
-msgstr "Tiedosto %s päivitettiin versiohallinnasta"
+msgstr "Za buggya %s fayiro okusinziira ku nfuga y'ekika"
 
 #: local_apps/pootle_app/models/translation_project.py:282
 #: local_apps/pootle_app/views/language/view.py:134
 msgid "You do not have rights to commit files here"
-msgstr "Käyttäjäoikeuksillasi ei voi lähettää tiedostoja tänne"
+msgstr "Tolina lukusa kwogerera fayiro wano"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr "Ahkerimmat avustajat"
+msgstr "Abawagizi Abokuntikko"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/project_index.py:41
 msgid "Translated"
-msgstr "Käännetty"
+msgstr "kyavunuddwa"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr "Tarkastettavia"
+msgstr "Okwekebejja ebyeetaago"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:109
@@ -425,7 +430,7 @@ msgstr "Tarkastettavia"
 #: local_apps/pootle_app/views/project/project_language_index.py:83
 #: local_apps/pootle_app/views/project/projects_index.py:43
 msgid "Untranslated"
-msgstr "Kääntämättömät"
+msgstr "Tekikyuusiddwa"
 
 #: local_apps/pootle_app/templates/admin/admin_general_languages.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_languages.html:11
@@ -433,15 +438,15 @@ msgstr "Kääntämättömät"
 #: local_apps/pootle_app/views/index/index.py:101
 #: templates/admin_profile_menu.html:7
 msgid "Languages"
-msgstr "Kielet"
+msgstr "Ennimi"
 
 #: local_apps/pootle_app/templates/admin/admin_general_languages.html:14
 msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
-"Täällä voit lisätä, muuttaa ja poistaa tämän Pootle-palvelimen projektien "
-"kieliä."
+"Wano osobola okwongerako, okulongoosa, era n'okusiimula ennimu zonna eziri "
+"nfo ya poto."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
@@ -454,15 +459,15 @@ msgstr ""
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
 #: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr "Käyttöoikeudet"
+msgstr "Olukusa"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
-"Täällä voit lisätä, muuttaa ja poistaa tämän Pootle-palvelimen "
-"käyttöoikeuksia."
+"Wano osobola okwongerako, okulongoosa, era n'okusiimula olukusa lwonna oluli "
+"mu nfo ya poto eno."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
@@ -473,19 +478,19 @@ msgstr ""
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:15
 msgid "Username"
-msgstr "Käyttäjätunnus"
+msgstr "Erinnya ly'okozesa"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
-msgstr "Poista"
+msgstr "Sangula"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
 msgid "Update Rights"
-msgstr "Päivitä oikeudet"
+msgstr "Zza buggya by`Obunyiza"
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -495,35 +500,36 @@ msgstr "Päivitä oikeudet"
 #: local_apps/pootle_app/views/project/projects_index.py:37
 #: templates/admin_profile_menu.html:8 templates/project_base.html:6
 msgid "Projects"
-msgstr "Projektit"
+msgstr "Pulojeti"
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:14
 msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
-"Täällä voit lisätä, muuttaa ja poistaa tämän Pootle-palvelimen projekteja."
+"Wano osobola okwongerako, okulongoosa, era n'okusiimula eby'okukola byonna "
+"ebiri mu nfo ya poto eno."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr "Yleisasetukset"
+msgstr "Okuntegeka kwa Wamu"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr "Määritä täällä sivuston yleisasetukset."
+msgstr "Tegeka wano entegeka za wamu ez'ekibanja kyo."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:32
 msgid "Dependency Checks"
-msgstr "Riippuvuustarkistukset"
+msgstr "Okukebera okusinziira ku birala"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:39
 msgid "Optional"
-msgstr "Valinnaiset"
+msgstr "Kyeyagalire"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:47
 msgid "Optimizations"
-msgstr "Optimoinnit"
+msgstr "Okukozesa obulungi"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -531,21 +537,23 @@ msgstr "Optimoinnit"
 #: templates/admin_profile_menu.html:6
 #: templates/profiles/profile_detail.html:8
 msgid "Users"
-msgstr "Käyttäjät"
+msgstr "Abakozesa"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:14
 msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
-msgstr "Täällä voit hallinnoida tämän Pootle-palvelimen käyttäjiä."
+msgstr ""
+"Wano osobola okwongerako, okulongoosa, era n'okusiimula abokozesa bonna "
+"abali ku ngabizi ya Pootle eno."
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
-msgstr "Tietoja"
+msgstr "Bikwata"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
-msgstr "Tietoja Pootlesta"
+msgstr "Ebikwata ku Pootle"
 
 #: local_apps/pootle_app/templates/index/about.html:19
 msgid ""
@@ -555,89 +563,91 @@ msgid ""
 "Read more on the <a href=\"http://translate.sourceforge.net/\">project "
 "website</a>."
 msgstr ""
-"Tällä sivustolla käytetään Pootlea &mdash; tehokasta www-ohjelmistoa, jota "
-"käännösryhmät voivat hyödyntää kääntämisessä ja käännösten hallinnassa. Tämä "
-"yhteisötyökalu on vapaata ohjelmistoa, ja kaikki ryhmät voivat käyttää sitä "
-"ja osallistua Pootle-yhteisön toimintaan. Lue lisää <a "
-"href=\"http://translate.sourceforge.net/\">projektin www-sivustolta</a>."
+"Ekibanja kino kiddukanya poto &mdash; enteekateeka y'ekibanja ey'amaanyi "
+"okuyamba tiimu okukola entafuta n'ebikwata ku ntafuta. Enkola ya wamu eno ya "
+"bwereere, era buli tiimu esobola okugikozesa n'okujongerako. Soma "
+"ebisingawo ku <a href=\"http://translate.sourceforge.net/\">project "
+"website</a>."
 
 #: local_apps/pootle_app/templates/index/index.html:26
 msgid "Language"
-msgstr "Kieli"
+msgstr "Olulimi"
 
 #: local_apps/pootle_app/templates/index/index.html:27
 #: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
-msgstr "Yleistilanne"
+msgstr "Okumaliriza kwonna Wamu"
 
 #: local_apps/pootle_app/templates/index/index.html:28
 #: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
-msgstr "Viimeisimmät tapahtumat"
+msgstr "Omulimu Ogusembayo"
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
 msgid "Project"
-msgstr "Projekti"
+msgstr "Pulojeti"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
-msgstr "Tuoreimmat uutiset"
+msgstr "Amawulire Agakagwawo"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr "Tilaa RSS-syöte."
+msgstr "Wewandiise ku nkola ya RSS."
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
 msgid "Login"
-msgstr "Kirjaudu"
+msgstr "Yingizaamu"
 
 #: local_apps/pootle_app/templates/index/login.html:10
 msgid "Login to Pootle"
-msgstr "Kirjaudu Pootleen"
+msgstr "Yingira mu Pootle"
 
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
-msgstr "Käyttäjätunnus ja salasana eivät täsmää. Yritä uudelleen."
+msgstr "Erinnya lyo kozesa n'ebisumuluzo tebyakwataganye. Bambi ddamu ogezeeko."
 
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
-msgstr "Unohditko salasanasi?"
+msgstr "Wabuzizza Ekisumuluzo kyo?"
 
 #: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
-msgstr "Etkö omista vielä käyttäjätiliä?"
+msgstr "Tonnafu akawunta?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
 msgid "Register."
-msgstr "Rekisteröidy."
+msgstr "Wewandiise."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
 msgid "Error"
-msgstr "Virhe"
+msgstr "Ensobi"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr "Valmis"
+msgstr "Kiwedde"
 
 #: local_apps/pootle_app/templates/language/language_admin.html:20
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr "Täällä voit määritellä tämän kielen käyttöoikeudet."
+msgstr ""
+"Wammanga osobola okuggata, okulongoosa, era n'okusiimuula olukusa lw'olulimi "
+"luno."
 
 #: local_apps/pootle_app/templates/language/language_admin.html:32
 msgid "Update Permissions"
-msgstr "Päivitä oikeudet"
+msgstr "Za obuggya by'Olukusa"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:6
 #: local_apps/pootle_app/views/language/admin_files.py:62
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr "Tiedostot"
+msgstr "Fayiro"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""
@@ -645,74 +655,75 @@ msgid ""
 "also want to <a href=\"?scan_files=1\">rescan the project files</a> or <a "
 "href=\"?template_update=1\">update the files from templates</a>."
 msgstr ""
-"Täältä voit poistaa käännösprojektin tiedostoja. Voit myös <a "
-"href=\"?scan_files=1\">kartoittaa projektin tiedostot uudelleen</a> tai <a "
-"href=\"?template_update=1\">päivittää tiedostot mallineista</a>."
+"Wano osobola okusiimuula fayiro eziriwo mu mulimu gw'okutafuta. Oyinza "
+"okwagala oku <a href=\"?scan_files=1\">rescan the project files</a> or <a "
+"href=\"?template_update=1\">update the files from templates</a>."
 
 #: local_apps/pootle_app/templates/language/tp_review.html:6
 #: templates/tp_menu.html:10
 msgid "Review"
-msgstr "Tarkasta"
+msgstr "Weetegereze"
 
 #: local_apps/pootle_app/templates/language/tp_translate.html:6
 #: local_apps/pootle_app/templates/language/translatepage.html:9
 #: templates/tp_menu.html:9
 msgid "Translate"
-msgstr "Käännä"
+msgstr "Vunula"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:80
 msgid "Edit translation"
-msgstr "Muokkaa käännöstä"
+msgstr "Longoosa Ebivunule"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:203
 msgid "Submit"
-msgstr "Lähetä"
+msgstr "Waayo"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:206
 msgid "Suggest"
-msgstr "Ehdota"
+msgstr "W'endowooza"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:211
 msgid "Copy"
-msgstr "Kopioi"
+msgstr "Koppa"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:214
 #: local_apps/pootle_app/views/language/translate_page.py:513
 msgid "Skip"
-msgstr "Ohita"
+msgstr "Buuka"
 
 #. #-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#
 #. l10n: Button that takes the user to the previous unit or page
 #: local_apps/pootle_app/templates/language/translatepage.html:217
 #: local_apps/pootle_app/views/language/translate_page.py:512
 msgid "Back"
-msgstr "Takaisin"
+msgstr "Mabega"
 
 #: local_apps/pootle_app/templates/project/project_admin.html:8
 #: templates/project_menu.html:9 templates/tp_base_admin.html:8
 msgid "Administrate"
-msgstr "Hallinta"
+msgstr "Ddukanya"
 
 #: local_apps/pootle_app/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr "Täällä voit lisätä, muuttaa tai poistaa tämän projektin kieliä."
+msgstr ""
+"Wano osobola okugatta, okulongoosa, oba okusiimuula ennimi z'omulimu guno."
 
 #: local_apps/pootle_app/views/top_stats.py:77
 msgid "Suggestions"
-msgstr "Ehdotukset"
+msgstr "Ekirowoozo"
 
 #: local_apps/pootle_app/views/top_stats.py:78
 msgid "Reviews"
-msgstr "Tarkastukset"
+msgstr "Weetegereze"
 
 #: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
-msgstr "Käännökset"
+msgstr "Ebiwereddwayo"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr "Translate Toolkit versio %s asennettu."
+msgstr "Tafuta ekika kya tuulukiti %s etekeddwako."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:42
 #, python-format
@@ -720,67 +731,66 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
-"Translate Toolkit versio %(installed)s asennettu. Pootle vaatii version %"
-"(required)s."
+"Tafuta ekika kya tuulukiti %(installed)s kitekeddwako. Pootle yeetaaga ekika "
+"%(required)s."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:48
 msgid "SQLite is installed."
-msgstr "SQLite on asennettu."
+msgstr "SQLite eteekeddwako."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:51
 msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
-msgstr "SQLite puuttuu. Pootle tarvitsee SQLiten käännösten tilastointiin."
+msgstr "SQLite teriiko. Poto yeetaaga SQLite okusobola okutafuta emiwendo."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:57
 #, python-format
 msgid "Django version %s is installed."
-msgstr "Djangon versio %s on asennettu."
+msgstr "Django kye kyikka %s kiteekeddwako."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:60
 #, python-format
 msgid "Django version %s is installed. Pootle only works with the 1.x series."
-msgstr ""
-"Djangon versio %s on asennettu. Pootle toimii vain 1.x-sarjan versioilla."
+msgstr "Ekika kya Django %s kiteekeddwako. Poto akola na bika bya 1.x."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:71
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
-"Komentoa unzip ei löydy. Arkistojen lähettäminen nopeutuu jos \"unzip\" on "
-"käytettävissä."
+"Ekiragio kya Anizipu tekirabika. Okuwanika amaterekero kyanguwa ssinga "
+"\"unzip\" ebaawo."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:75
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
-"Pakettia ISO codes ei löytynyt. Pootle käyttää ISO-koodeja kielten nimien "
-"kääntämiseen."
+"Emiwendo gya ISO egikozesebwa tegirabika. Poto akozesa emiwendo gya ISO "
+"okutafuta amannya g'ennimi."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:79
 msgid ""
 "Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news "
 "items are safe and correct."
 msgstr ""
-"lxml-moduulia ei löytynyt. Pootle käyttää lxml:ää uutisiin lisättyjen HTML-"
-"muotoilukoodien turvallisuuden ja oikeellisuuden tarkistamiseen."
+"Tesobonde kuzula lxml. Pootle akozesa lxml okukakasa nti obubonero bwa HTML "
+"obuteekebwa mu bintu ebipya buli bulungi era butuufu."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:83
 msgid ""
 "Can't find python-levenshtein package. Updating from templates is faster "
 "with python-levenshtein."
 msgstr ""
-"Python-levenshtein-pakettia ei löytynyt. Päivitys mallineista sujuu "
-"nopeammin python-levenshteinin avustamana."
+"Python-levenshtein terabika. Okuzza obuggya ng'ogoberera endagiriro kyanguwa "
+"ne python-levenshtein."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:87
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
-"Tekstin indeksointimoottoria ei löytynyt. Haut nopeutuvat jos "
-"indeksointimoottori (kuten Xapian tai Lucene) on asennettuna."
+"Tewali text indexing engine found. Okunoonya kyanguwa ssinga indexing engine "
+"nga Xapian oba Lucene eteereddwako."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:97
 msgid ""
@@ -788,9 +798,9 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine."
 msgstr ""
-"Käytössä on oletuksena sqlite3-tietokantamoottori. SQLite soveltuu vain "
-"pieniin asennuksiin ja pienille käyttäjämäärille. Pootlen suorituskyky on "
-"parempi käytettäessä MySQL-tietokantaa."
+"Okukozesa yingini ya sqlite3. SQLite nungi kukozesa nga byoteekako bitono "
+"era nga nabakozesa ssi bangi. Poto ejja kusinga kukola bulungi ne yingini ya "
+"MySQL."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:99
 msgid ""
@@ -798,348 +808,353 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
-"Käytössä on oletuksena sqlite3-tietokantamoottori. SQLite soveltuu vain "
-"pieniin asennuksiin ja pienille käyttäjämäärille. Pootlen suorituskyky on "
-"parempi käytettäessä MySQL-tietokantaa, mutta sen käyttö edellyttää että "
-"python-MySQLdb on asennettuna."
+"Okukozesa yingini ya sqlite3. SQLite nungi kukozesa nga byoteekako bitono "
+"era nga nabakozesa ssi bangi. Poto ejja kusinga kukola bulungi ne yingini ya "
+"MySQL naye weetaaga okusooka okuteekako python-MySQLdb."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:107
 msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
 msgstr ""
-"Pootle on asetettu käyttämään memcached-välimuistia, mutta yhteyttä "
-"memcached-palvelimeen ei voitu muodostaa. Välimuisti ei ole käytössä tällä "
-"hetkellä."
+"Poto eteekebwateekebwa okukozesa memukachiti ng'etterekero, naye tesobola "
+"kuyunga ku nfo ya memuchiti. Obusobozi bw'okutereka kati bunafuyiziddwa."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:111
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cached_db as "
 "the session engine."
 msgstr ""
-"Jos haluat parantaa suorituskykyä, aseta "
-"django.contrib.sessions.backends.cached_db istunnonkäsittelijäksi."
+"Olw'enkola ennungi, kozesa django.contrib.sessions.backends.cached_db "
+"ng'ensinsikano."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:113
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cache as the "
 "session engine."
 msgstr ""
-"Jos haluat parantaa suorituskykyä, aseta "
-"django.contrib.sessions.backends.cache istunnonkäsittelijäksi."
+"Olw'enkola ennungi, kozesa django.contrib.sessions.backends.cached_db nga "
+"yingini y'ensinsikano."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:117
 msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
 msgstr ""
-"Pootle on asetettu käyttämään memcached:tä välimuistina, mutta memcached:n "
-"Python-moduulia ei ole asennettu. Välimuisti ei ole käytössä tällä hetkellä."
+"Poto eteekebwateekebwa okukozesa memukachiti ng'etterekero, naye obuyambi "
+"bwa Python eri memuchiti tebuteekedddwako. Obusobozi bw'okutereka kati "
+"bunafuyiziddwa."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:120
 msgid "For optimal performance, use memcached as the caching backend."
-msgstr "Suorituskyky paranee jos välimuistina käytetään memcached:tä."
+msgstr "Olw'empeereza ennungi, kozesa memuchiti ng'etterekero."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:124
 msgid "For optimal performance, use Apache as the webserver."
-msgstr "Suorituskyky paranee jos www-palvelimena käytetään Apachea."
+msgstr "Olw'empeereza ennungi, kozesa Apache ng'enfo egabirira."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:128
 msgid ""
 "Running in debug mode. Debug mode is only needed when developing Pootle. For "
 "optimal performance, disable debugging mode."
 msgstr ""
-"Vianjäljitystila on käytössä. Vianjäljitystilaa tarvitaan vain Pootlen "
-"kehitystyössä. Poista vianjäljitystila käytöstä suorituskyvyn "
-"parantamiseksi."
+"Enkozesa mu mbeera ya Dibaaga. Embeera ya Dibaaga yeetaagisa ng'okulakulanya "
+"poto. Olw'enkola enungi, nafuya embeera ya Dibaaga."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:132
 msgid ""
 "Running in live translation mode. Live translation is useful as a tool to "
 "learn about Pootle and localization, but has high impact on performance."
 msgstr ""
-"Live-käännöstila on käytössä. Live-käännöstila on käyttökelpoinen työkalu "
-"tutustuttaessa Pootleen ja kotoistamiseen, mutta se heikentää suorituskykyä "
-"merkittävästi."
+"Enkozesa mu mbeera y'entafuta. Entafuta y'embagirawo nnungi ng'ekyokukozesa "
+"okusoma ebikwata ku poto, naye erina kyekosa ku nkola."
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 #: templates/registration/registration_form.html:25
 msgid "Password"
-msgstr "Salasana"
+msgstr "Akasumuluzo"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
-msgstr "Sinulla ei ole Pootlen hallintaoikeuksia."
+msgstr "Tolina lukusa kuddukanya Pootle."
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
 msgid "You do not have rights to administer %s."
-msgstr "Sinulla ei ole %s-hallintaoikeuksia."
+msgstr "Tolina lukusa kuddukanya %s."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
-msgstr "Tämä projekti ei sisällä tiedostoja."
+msgstr "Tewali fayiro mu mulimu guno."
 
 #: local_apps/pootle_app/views/admin/util.py:179
 msgid "There are errors in the form. Please review the problems below."
-msgstr "Lomake sisältää virheitä. Tarkista alla mainitut ongelmat."
+msgstr "Mu mpapula mulimu ensobi. Bambi weekebejje ekizibu ekyo wammanga."
 
 #: local_apps/pootle_app/views/admin/util.py:199 templates/base.html:39
 #: templates/base.html.py:44 templates/base.html:105
 msgid "Home"
-msgstr "Etusivu"
+msgstr "Eka"
 
 #: local_apps/pootle_app/views/admin/util.py:201
 msgid "Save Changes"
-msgstr "Tallenna muutokset"
+msgstr "Tereka enkyuukakyuuka"
 
 #: local_apps/pootle_app/views/index/about.py:48
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
-"Pootle %(pootle_ver)s-version voimanlähteenä toimii Translate Toolkit %"
-"(toolkit_ver)s"
+"Poto %(pootle_ver)s ezzibwamu amaanyi tuulukiti y'entafuta %(toolkit_ver)s"
 
 #: local_apps/pootle_app/views/index/index.py:60
 #: local_apps/pootle_app/views/language/item_dict.py:253
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr "%(percentage)d%% käännetty"
+msgstr "%(percentage)d%% ewedde"
 
 #: local_apps/pootle_app/views/index/index.py:107
 #: local_apps/pootle_app/views/project/project_language_index.py:81
 #: local_apps/pootle_app/views/project/projects_index.py:41
 msgid "Translations are complete"
-msgstr "Käännökset ovat valmiita"
+msgstr "Entafuta ziwedde"
 
 #: local_apps/pootle_app/views/index/index.py:108
 #: local_apps/pootle_app/views/project/project_language_index.py:82
 #: local_apps/pootle_app/views/project/projects_index.py:42
 msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr "Joitain käännöksiä pitää tarkistaa (ne on merkitty sumeiksi)"
+msgstr "Entafuta zeetaaga kukebera (ziragiddwa nga fuzzy)"
 
 #: local_apps/pootle_app/views/index/login.py:46
 msgid "Default"
-msgstr "Oletus"
+msgstr "Kyakolerwamu"
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:239
 msgid "This is a GNU-style project (files named per language code)."
-msgstr "Tämä on GNU-tyylinen projekti (tiedostot nimetty kielen mukaan)."
+msgstr ""
+"Eno y'enkola ya GNU (fayiro ziweereddwa amannya okusinziira ku muwendo "
+"ogulaga buli lulimi)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:241
 msgid "This is a standard style project (one directory per language)."
-msgstr "Tämä on normaalityylinen projekti (yksi hakemisto per kieli)."
+msgstr "Eno y'enkola y'omutindo (endagiriro emu buli lulimi)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:247
 #: local_apps/pootle_app/views/language/language_admin.py:48
 msgid "User Permissions"
-msgstr "Käyttöoikeudet"
+msgstr "Olukusa lw'omukozesa"
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:250
 #: local_apps/pootle_app/views/language/language_admin.py:51
 msgid "(select to add user)"
-msgstr "(valitse lisätäksesi käyttäjän)"
+msgstr "(weroboze okugattako omukozesa)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
 #, python-format
+#, fuzzy
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] "%d tiedosto"
-msgstr[1] "%d tiedostoa"
+msgstr[0] "fayiro"
+msgstr[1] "zifayiro"
 
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr "%(translated)d/%(total)d sanaa (%(translatedpercent)d%%) käännetty"
+msgstr "%(translated)d/%(total)d bigambo (%(translatedpercent)d%%) bitafutiddwa"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
 msgid "%(translated)d/%(total)d strings"
-msgstr "%(translated)d/%(total)d merkkijonoa"
+msgstr "%(translated)d/%(total)d bulandira"
 
 #: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
+#, fuzzy
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
-msgstr[0] "%(checks)d merkkijono (%(checkspercent)d%%) ei läpäissyt tarkastusta"
-msgstr[1] "%(checks)d merkkijonoa (%(checkspercent)d%%) ei läpäissyt tarkastusta"
+msgstr[0] "%(checks)d kalandira (%(checkspercent)d%%) kagaanyi"
+msgstr[1] "%(checks)d kalandira (%(checkspercent)d%%) kagaanyi"
 
 #: local_apps/pootle_app/views/language/item_dict.py:95
 msgid "Review Suggestions"
-msgstr "Tarkasta ehdotuksia"
+msgstr "Wetegereze endowooza"
 
 #: local_apps/pootle_app/views/language/item_dict.py:97
 msgid "View Suggestions"
-msgstr "Katsele ehdotuksia"
+msgstr "Laba ebirowoozo"
 
 #: local_apps/pootle_app/views/language/item_dict.py:108
 msgid "Quick Translate"
-msgstr "Pikakäännös"
+msgstr "Okutafuta mu Bwangu"
 
 #: local_apps/pootle_app/views/language/item_dict.py:110
 msgid "View Untranslated"
-msgstr "Näytä kääntämättömät"
+msgstr "Laba ebitakyuusiddwa"
 
 #: local_apps/pootle_app/views/language/item_dict.py:121
 msgid "Translate All"
-msgstr "Käännä kaikki"
+msgstr "Kyuusa byonna"
 
 #: local_apps/pootle_app/views/language/item_dict.py:125
 msgid "ZIP of directory"
-msgstr "Hakemisto ZIP-tiedostona"
+msgstr "ZIP y'endagiriro"
 
 #: local_apps/pootle_app/views/language/item_dict.py:136
 msgid "Download PO"
-msgstr "Lataa PO-tiedosto"
+msgstr "Wanula PO"
 
 #: local_apps/pootle_app/views/language/item_dict.py:140
 msgid "Download XLIFF"
-msgstr "Lataa XLIFF-tiedosto"
+msgstr "Wanula XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:151
 msgid "Download"
-msgstr "Lataa"
+msgstr "Wanula"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Commit to VCS"
-msgstr "Toimita VCS-järjestelmään"
+msgstr "Weereza ku VCS"
 
 #: local_apps/pootle_app/views/language/item_dict.py:167
 msgid "Update from VCS"
-msgstr "Päivitä VCS-järjestelmästä"
+msgstr "Zza buggya okuva ku VCS"
 
 #: local_apps/pootle_app/views/language/item_dict.py:229
 #, python-format
+#, fuzzy
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] "%d sana kaipaa huomiota"
-msgstr[1] "%d sanaa kaipaa huomiota"
+msgstr[0] "%d kiganmo kyetaaga kukolwako"
+msgstr[1] "%d bigambo byetaaga kukolwako"
 
 #: local_apps/pootle_app/views/language/item_dict.py:233
 #, python-format
+#, fuzzy
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] "%d kääntämätön sana"
-msgstr[1] "%d kääntämätöntä sanaa"
+msgstr[0] "%d kigambo tekkivvuunuddwa"
+msgstr[1] "%d bigambo tebivvuunuddwa"
 
 #: local_apps/pootle_app/views/language/item_dict.py:234
 #, python-format
+#, fuzzy
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] "%d tarkastettava sana"
-msgstr[1] "%d tarkastettavaa sanaa"
+msgstr[0] "%d kigambo kyetaaga kwekebejja"
+msgstr[1] "%d bigambo byetaaga kwekebejja"
 
 #: local_apps/pootle_app/views/language/item_dict.py:260
 #: local_apps/pootle_app/views/language/language_index.py:57
 #: local_apps/pootle_app/views/project/project_language_index.py:51
 #, python-format
+#, fuzzy
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] "Virhe luettaessa %d tiedostoa"
-msgstr[1] "Virhe luettaessa %d tiedostoa"
+msgstr[0] "Nsobi mu kusoma %d fayiro"
+msgstr[1] "Nsobi mu kusoma %d fayiro"
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 msgid "You do not have rights to administer this language."
-msgstr "Sinulla ei ole tämän kielen ylläpito-oikeuksia."
+msgstr "Tolina lukusa kuddukanya lulimi luno."
 
 #: local_apps/pootle_app/views/language/language_index.py:80
 #, python-format
+#, fuzzy
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] "%(projects)d projekti, %(average)d%% käännetty"
-msgstr[1] "%(projects)d projektia, %(average)d%% käännetty"
+msgstr[0] "%(projects)d mirimu, %(average)d%% gitafutiddwa"
+msgstr[1] "%(projects)d mirimu, %(average)d%% gitafutiddwa"
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:60
 #: local_apps/pootle_app/views/project/project_language_index.py:76
 #: templates/base.html:47 templates/profiles/profile_detail.html:35
 msgid "Admin"
-msgstr "Hallinta"
+msgstr "Ewa ddukanyizibwa emirimu"
 
 #: local_apps/pootle_app/views/language/project_index.py:40
 msgid "Name"
-msgstr "Nimi"
+msgstr "Erinnya"
 
 #: local_apps/pootle_app/views/language/project_index.py:42
 msgid "Translated percentage"
-msgstr "Käännösprosentti"
+msgstr "Ettundutundu erikyusiddwa"
 
 #: local_apps/pootle_app/views/language/project_index.py:43
 msgid "Translated words"
-msgstr "Käännettyjä sanoja"
+msgstr "Ebigambo ebikyusiddwa"
 
 #: local_apps/pootle_app/views/language/project_index.py:44
 #: local_apps/pootle_app/views/language/translate_page.py:911
 msgid "Fuzzy"
-msgstr "Sumea"
+msgstr "Ky'amakulu mangi"
 
 #: local_apps/pootle_app/views/language/project_index.py:45
 msgid "Fuzzy percentage"
-msgstr "Sumeiden prosenttimäärä"
+msgstr "Eky'amakulu amangi ku kikumi"
 
 #: local_apps/pootle_app/views/language/project_index.py:46
 msgid "Fuzzy words"
-msgstr "Sumeita sanoja"
+msgstr "Ebigambo by'amakulu agawerako"
 
 #: local_apps/pootle_app/views/language/project_index.py:48
 msgid "Untranslated percentage"
-msgstr "Kääntämättömien prosenttimäärä"
+msgstr "Ettundutundu eritakyusiddwa"
 
 #: local_apps/pootle_app/views/language/project_index.py:49
 msgid "Untranslated words"
-msgstr "Kääntämättömiä sanoja"
+msgstr "Ebigambo ebitakyusiddwa"
 
 #: local_apps/pootle_app/views/language/project_index.py:50
 msgid "Total"
-msgstr "Yhteensä"
+msgstr "Omugatte"
 
 #: local_apps/pootle_app/views/language/project_index.py:51
 msgid "Total Words"
-msgstr "Sanoja yhteensä"
+msgstr "Omugatte gw'ebigambo"
 
 #. l10n: noun. The graphical representation of translation status
 #: local_apps/pootle_app/views/language/project_index.py:53
 msgid "Progress"
-msgstr "Tilanne"
+msgstr "Okugenda mu maaso"
 
 #: local_apps/pootle_app/views/language/project_index.py:54
 msgid "Summary"
-msgstr "Yhteenveto"
+msgstr "Mu bufunze"
 
 #: local_apps/pootle_app/views/language/project_index.py:84
 msgid "You do not have rights to access this translation project."
-msgstr "Sinulla ei ole tämän käännösprojektin käyttöoikeuksia."
+msgstr "Tolina lukusa kutuukirira mulimu gwa ntafuta guno."
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
-msgstr "Lähdeteksti"
+msgstr "Ebigambo mu Kaasangwawo"
 
 #: local_apps/pootle_app/views/language/search_forms.py:43
 msgid "Target Text"
-msgstr "Kohdeteksti"
+msgstr "Ebigambo mu kitafutiddwa"
 
 #: local_apps/pootle_app/views/language/search_forms.py:44
 msgid "Comments"
-msgstr "Kommentit"
+msgstr "Ebyogerwa"
 
 #: local_apps/pootle_app/views/language/search_forms.py:45
 msgid "Locations"
-msgstr "Sijainnit"
+msgstr "Gyebisangwa"
 
 #: local_apps/pootle_app/views/language/search_forms.py:67
 #: local_apps/pootle_app/views/language/search_forms.py:75
 #: local_apps/pootle_app/views/language/search_forms.py:80
 msgid "Search"
-msgstr "Haku"
+msgstr "Noonya"
 
 #: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
-msgstr "Tarkempi haku"
+msgstr "Okunoonya okwa waggulu"
 
 #: local_apps/pootle_app/views/language/tp_common.py:63
 #, python-format
 msgid "Invalid/insecure file name: %s"
-msgstr "Virheellinen/epäluotettava tiedostonimi: %s"
+msgstr "Erinnya lya fayiro ssi ttuufu/teryesigika: %s"
 
 #: local_apps/pootle_app/views/language/tp_common.py:69
 #, python-format
@@ -1147,104 +1162,104 @@ msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
-"Virheellinen GNU-tyylinen tiedostonimi: %(local_filename)s. Nimen pitää olla "
-"muodossa '%(langcode)s.%(filetype)s'."
+"Enkola y'erinnya lya GNU-ssi ntuufu: %(local_filename)s. Liteekwa ku "
+"kwatagana '%(langcode)s.%(filetype)s'."
 
 #: local_apps/pootle_app/views/language/tp_common.py:98
 msgid "Error while extracting archive"
-msgstr "Arkistoa purettaessa ilmeni virhe"
+msgstr "Ensobi mu kugezaako okufuna etterekero"
 
 #: local_apps/pootle_app/views/language/tp_common.py:205
 msgid "You do not have rights to overwrite files here."
-msgstr "Käyttäjäoikeuksillasi ei voi korvata näitä tiedostoja."
+msgstr "Tolina lukusa okujjawo fayiro eziri wano."
 
 #: local_apps/pootle_app/views/language/tp_common.py:207
 msgid "You do not have rights to upload new files here."
-msgstr "Käyttäjäoikeuksillasi ei voi lähettää uusia tiedostoja tänne."
+msgstr "Tolina lukusa kuzza buggya fayiro wano."
 
 #: local_apps/pootle_app/views/language/tp_common.py:209
 #: local_apps/pootle_app/views/language/tp_common.py:211
 msgid "You do not have rights to upload files here."
-msgstr "Käyttäjäoikeuksillasi ei voi lähettää tiedostoja tänne."
+msgstr "Tolina lukusa kuzza buggya fayiro wano."
 
 #: local_apps/pootle_app/views/language/tp_common.py:231
 msgid "Update all from version control"
-msgstr "Päivitä kaikki versiohallinnasta"
+msgstr "Za buggya zonnaa okusinziira ku nfuga y'ekika"
 
 #: local_apps/pootle_app/views/language/tp_common.py:246
 msgid "Upload"
-msgstr "Lähetä"
+msgstr "Wanika"
 
 #: local_apps/pootle_app/views/language/tp_common.py:253
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr "Yhdistä tiedosto nykyiseen ja muunna ristiriitaisuudet ehdotuksiksi"
+msgstr "Kwanaganya fayiro ne fayiro eno era obukubagano bufuule ebirowoozo"
 
 #: local_apps/pootle_app/views/language/tp_common.py:254
 msgid "Add all new translations as suggestions"
-msgstr "Lisää uudet käännökset ehdotuksina"
+msgstr "Ggatta ebitafutiddwa byonna ebimpya ng'ebirowoozo"
 
 #: local_apps/pootle_app/views/language/tp_common.py:256
 msgid "Overwrite the current file if it exists"
-msgstr "Korvaa nykyinen tiedosto, mikäli sellainen on olemassa"
+msgstr "Ssikiza fayiro eriwo bweba weeri"
 
 #: local_apps/pootle_app/views/language/tp_common.py:259
 msgid "File"
-msgstr "Tiedosto"
+msgstr "Fayiro"
 
 #: local_apps/pootle_app/views/language/tp_common.py:265
 msgid "Upload File"
-msgstr "Lähetä tiedosto"
+msgstr "Wanika fayiro"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
 msgid "You do not have rights to access review mode."
-msgstr "Sinulla ei ole tarkastusoikeuksia."
+msgstr "Tolina lukusa kutuuka ku mbeera ya kweekebejja."
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
 msgid "You do not have rights to access translation mode."
-msgstr "Sinulla ei ole käännösoikeuksia."
+msgstr "Tolina lukusa kukyuusa bitafutiddwa wano."
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: local_apps/pootle_app/views/language/translate_page.py:78
 #, python-format
 msgid "checking %s"
-msgstr "tarkistetaan %s"
+msgstr "kukebera %s"
 
 #. l10n: navigation link
 #: local_apps/pootle_app/views/language/translate_page.py:101
 msgid "Start"
-msgstr "Alkuun"
+msgstr "Tandika"
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:106
 #, python-format
 msgid "Previous %d"
-msgstr "Edelliset %d"
+msgstr "Ekivuddeko %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: local_apps/pootle_app/views/language/translate_page.py:109
 #, python-format
 msgid "Items %(first)d to %(last)d of %(total)d"
-msgstr "Kohdat %(first)d - %(last)d / %(total)d"
+msgstr "Ebintu %(first)d eri %(last)d ku %(total)d"
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:118
 #, python-format
 msgid "Next %d"
-msgstr "Seuraavat %d"
+msgstr "Ekiddako %d"
 
 #. l10n: navigation link
 #: local_apps/pootle_app/views/language/translate_page.py:124
 msgid "End"
-msgstr "Loppuun"
+msgstr "Enkomerero"
 
 #: local_apps/pootle_app/views/language/translate_page.py:272
 msgid "Singular"
-msgstr "Yksikkö"
+msgstr "Bumu"
 
 #: local_apps/pootle_app/views/language/translate_page.py:273
 msgid "Plural"
-msgstr "Monikko"
+msgstr "Bungi"
 
 #: local_apps/pootle_app/views/language/translate_page.py:350
 #: local_apps/pootle_app/views/language/translate_page.py:372
@@ -1253,7 +1268,7 @@ msgstr "Monikko"
 #: local_apps/pootle_app/views/language/translate_page.py:572
 #, python-format
 msgid "Plural Form %d"
-msgstr "Monikon muoto %d"
+msgstr "Mu Bungi %d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: local_apps/pootle_app/views/language/translate_page.py:357
@@ -1262,139 +1277,141 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"Käännös ei onnistu koska oman kielesi monikkotiedot puuttuvat. Ota yhteyttä "
-"sivuston ylläpitäjään."
+"Entafuta tesoboka kubanga olulimi lwo telulina bintu mu bungi. Tuukirira "
+"omukulu w'ekifo."
 
 #: local_apps/pootle_app/views/language/translate_page.py:467
 msgid "Current Translation:"
-msgstr "Nykyinen käännös:"
+msgstr "Okutafuta okuliwo:"
 
 #. l10n: First parameter: number
 #. l10n: Second parameter: name of translator
 #: local_apps/pootle_app/views/language/translate_page.py:480
 #, python-format
 msgid "Suggestion %(suggid)d by %(user)s:"
-msgstr "Ehdotuksen %(suggid)d tehnyt %(user)s:"
+msgstr "Ekirowoozo %(suggid)d okuva %(user)s:"
 
 #: local_apps/pootle_app/views/language/translate_page.py:482
 #, python-format
 msgid "Suggestion %d:"
-msgstr "Ehdotus %d:"
+msgstr "Ndowooza %d:"
 
 #. l10n: parameter: name of translator
 #: local_apps/pootle_app/views/language/translate_page.py:486
 #, python-format
 msgid "Suggestion by %s:"
-msgstr "Ehdottanut %s:"
+msgstr "Ekilowoozo kya %s:"
 
 #: local_apps/pootle_app/views/language/translate_page.py:488
 msgid "Suggestion:"
-msgstr "Ehdotus:"
+msgstr "Kirowoozo:"
 
 #: local_apps/pootle_app/views/language/translate_page.py:517
 #, python-format
+#, fuzzy
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
-msgstr[0] "%d ehdotus"
-msgstr[1] "%d ehdotusta"
+msgstr[0] "%d kirowoozo"
+msgstr[1] "%d birowoozo"
 
 #: local_apps/pootle_app/views/language/translate_page.py:836
 msgid "End of Quick Translate."
-msgstr "Pikakäännöksen loppu."
+msgstr "Enkomerero y'Entafuta Ennyangu."
 
 #: local_apps/pootle_app/views/language/translate_page.py:838
 msgid "End of Quality Check Review."
-msgstr "Laatutarkastuksen loppu."
+msgstr "Enkomerero y'Okwekebejja Omutindo."
 
 #: local_apps/pootle_app/views/language/translate_page.py:841
 msgid "No file matched your query."
-msgstr "Hakusi ei tuottanut osumia."
+msgstr "Tewali fayiro yatuukaganye na kibuuzo kyo."
 
 #: local_apps/pootle_app/views/language/translate_page.py:842
 msgid "End of results."
-msgstr "Ei muita tuloksia."
+msgstr "Enkomerero y'ebivuddemu."
 
 #: local_apps/pootle_app/views/language/translate_page.py:855
 msgid "You do not have rights to access view mode."
-msgstr "Sinulla ei ole katseluoikeuksia."
+msgstr "Tolina lukusa kutuuka ku mbeera ya kulaba."
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:904
 msgid "Original"
-msgstr "Alkuperäinen"
+msgstr "Kasangwawo"
 
 #. l10n: Heading above the table column with the target language
 #: local_apps/pootle_app/views/language/translate_page.py:906
 msgid "Translation"
-msgstr "Käännös"
+msgstr "Kitafutiddwa"
 
 #: local_apps/pootle_app/views/language/translate_page.py:909
 msgid "Accept suggestion"
-msgstr "Hyväksy ehdotus"
+msgstr "Kkiriza endowooza"
 
 #: local_apps/pootle_app/views/language/translate_page.py:910
 msgid "Reject suggestion"
-msgstr "Hylkää ehdotus"
+msgstr "Ggaana endowooza"
 
 #. l10n: Heading above the textarea for translator comments.
 #: local_apps/pootle_app/views/language/translate_page.py:913
 msgid "Translator Comments"
-msgstr "Kääntäjän kommentit"
+msgstr "Ebigambo by'omutafuta"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: local_apps/pootle_app/views/language/translate_page.py:915
 msgid "Developer Comments"
-msgstr "Kehittäjän kommentit"
+msgstr "Ebyogerwa omukulakulanya"
 
 #. l10n: This heading refers to related translations and terminology
 #: local_apps/pootle_app/views/language/translate_page.py:917
 msgid "Related"
-msgstr "Aiheeseen liittyvät"
+msgstr "Birina akakwate"
 
 #. l10n: Button label
 #: local_apps/pootle_app/views/language/translate_page.py:927
 msgid "Accept"
-msgstr "Hyväksy"
+msgstr "Kkiriza"
 
 #. l10n: Button label
 #: local_apps/pootle_app/views/language/translate_page.py:929
 msgid "Reject"
-msgstr "Hylkää"
+msgstr "Ggaana"
 
 #: local_apps/pootle_app/views/language/view.py:144
 msgid "You do not have rights to update files here"
-msgstr "Käyttäjäoikeuksillasi ei voi päivittää näitä tiedostoja"
+msgstr "Tolina lukusa kuzza buggya fayiro wano"
 
 #: local_apps/pootle_app/views/language/view.py:155
 msgid "You do not have the right to create ZIP archives."
-msgstr "Käyttäjäoikeuksillasi ei voi luoda ZIP-arkistoja."
+msgstr "Tolina lukusa kuteekawo materekero ga ZIP."
 
 #: local_apps/pootle_app/views/language/view.py:264
 msgid "No suggestion data given."
-msgstr "Ei ehdotuksia."
+msgstr "Tewali magezi gaweereddwa."
 
 #: local_apps/pootle_app/views/language/view.py:310
 msgid "Suggestion accepted."
-msgstr "Ehdotus hyväksytty."
+msgstr "Endowooza ekkiriziddwa."
 
 #: local_apps/pootle_app/views/project/project_admin.py:52
 msgid "Update from templates"
-msgstr "Päivitä mallineista"
+msgstr "Zza buggya okusinziira ku ndagiriro"
 
 #: local_apps/pootle_app/views/project/project_admin.py:55
 msgid "Initialize"
-msgstr "Alusta"
+msgstr "Tandisa"
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
+#, fuzzy
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] "%(languages)d kieli, %(average)d%% käännetty"
-msgstr[1] "%(languages)d kieltä, %(average)d%% käännetty"
+msgstr[0] "%(languages)d lulimi, %(average)d%% lukyusiddwa"
+msgstr[1] "%(languages)d ennimi, %(average)d%% zikyusiddwa"
 
 #: local_apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
-msgstr "Pootle: Asennus"
+msgstr "Poto: Teekako"
 
 #: local_apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1402,121 +1419,121 @@ msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
 "initialize database."
 msgstr ""
-"Virhe: \"%s\" yritettäessä kirjoittaa Pootlen tietokantaan, koitetaan alustaa "
-"tietokanta."
+"Nsobi: \"%s\" mu kugezaako okutuuka ku terekero lya poto, ojja kugezaako "
+"okutandisa etterekero."
 
 #: local_apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
-msgstr "Luodaan tietokantataulut..."
+msgstr "Teekawo amabanga g'etterekero..."
 
 #: local_apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
-msgstr "Luodaan oletuskielet, -projektit ja admin-käyttäjä"
+msgstr "Teekawo ennimi, emilimu n'omukozesa omukulu"
 
 #: local_apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
-msgstr "Lasketaan käännöstilastoja, tämä kestää muutaman minuutin"
+msgstr "Ebalirira miwendo gya ntafuta, kino kijja kutwala eddakiika eziwerako"
 
 #: local_apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr "%(language)s %(percent)d%% käännetty"
+msgstr "%(language)s lu %(percent)d%% wedde"
 
 #: local_apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr "Projektista %(project)s käännetty %(percent)d%%"
+msgstr "Mulimu %(project)s gu %(percent)d%% wedde"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
-msgstr "Oletuskielten ja -projektien tilastojen laskenta valmis"
+msgstr "Emalirizza okubalirira emiwendo gy'ennimi n'emirimu"
 
 #: local_apps/pootle_misc/dbinit.py:120
 msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
-"Tietokanta alustettu, uudelleenohjaus etusivulle tapahtuu 10 sekunnin "
-"kuluttua"
+"Etterekero litandisiddwa, ojja kuzzibwa ku muko ogusooka mu butikitiki nga "
+"10"
 
 #: local_apps/pootle_misc/middleware/errorpages.py:45
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr ""
-"Tälle sivulle pääsee vain <a href=\"%(login_link)s\">sisäänkirjautuneena</a>."
+"Weetaaga oku <a href=\"%(login_link)s\">yingira</a> okutuuka ku muko guno."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:58
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
-"Virhe avattaessa tiedostoa %(filename)s, tiedostojärjestelmän virheviesti "
-"oli: %(errormsg)s"
+"Nsobi mu kutuukirira %(filename)s, Nsobi evudde ku nsindika ya fayiro: %"
+"(errormsg)s"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr "Alkuun"
+msgstr "Kisooka"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 msgid "Previous"
-msgstr "Edellinen"
+msgstr "Ekivuddeko"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 msgid "Next"
-msgstr "Seuraava"
+msgstr "Ekiddako"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 msgid "Last"
-msgstr "Loppuun"
+msgstr "Ekisembayo"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
-msgstr "Viesti"
+msgstr "Obubaka"
 
 #. l10n: The date that the news item was written
 #: local_apps/pootle_notifications/models.py:30
 msgid "Added"
-msgstr "Lisätty"
+msgstr "Kyongeddwako"
 
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(language)s"
-msgstr "Uutiset kielelle %(language)s"
+msgstr "Mawulire ga %(language)s"
 
 #: local_apps/pootle_notifications/views.py:92
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr "%(project)s-projektin uutiset kielelle %(language)s"
+msgstr "Mawulire ga %(project)s mulimu mu %(language)s"
 
 #: local_apps/pootle_notifications/views.py:96
 #, python-format
 msgid "News for %(path)s"
-msgstr "Kohteen %(path)s uutiset"
+msgstr "Mawulire ga %(path)s"
 
 #: local_apps/pootle_notifications/views.py:122
 msgid "View News Item"
-msgstr "Lue uutisia"
+msgstr "Laba ekiri mu mawulire"
 
 #: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: local_apps/pootle_notifications/templates/notices.html:76
 msgid "No news yet."
-msgstr "Ei uutisia toistaiseksi."
+msgstr "Tewannaba mawulire."
 
 #: local_apps/pootle_notifications/templates/notices.html:15
 #: local_apps/pootle_notifications/templates/notices.html:17
 #: templates/language_menu.html:8 templates/tp_menu.html:8
 msgid "News"
-msgstr "Uutiset"
+msgstr "Mawulire"
 
 #: local_apps/pootle_notifications/templates/notices.html:64
 msgid "Publish"
-msgstr "Julkaise"
+msgstr "Fulumya"
 
 #: local_apps/pootle_store/models.py:53
 msgid "Path"
-msgstr "Polku"
+msgstr "Kkubo"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
-msgstr "Pootlen kokeiluversio"
+msgstr "Poto Alaga"
 
 #. l10n: Change the language code (en) to your language code, and replace ltr with rtl if you language is written from right to left.
 #: pootle/settings.py:45
@@ -1531,269 +1548,269 @@ msgid ""
 "</div>"
 msgstr ""
 "<div dir=\"ltr\" lang=\"en\">\n"
-"<h2 class=\"title\">Tämä on Pootlen esittelyasennus.</h2>\n"
-"<p class=\"about\">Voit tutustua myös viralliseen <a "
-"href=\"http://pootle.locamotion.org\">Pootle-palvelimeen</a>. Palvelimen "
-"ylläpitäjä ei ole lisännyt yhteystietoja tai kuvausta tälle palvelimelle. "
-"Jos olet tämän palvelimen ylläpitäjä, muokkaa tätä kuvausta "
-"asetustiedostosta tai hallintaliittymän kautta.</p>\n"
+"<h2 class=\"title\"> Eno yendaga y'okuteekako Pootle.</h2>\n"
+"<p class=\"about\"> Osobola n'okukyalira enfo ya Pootle <a "
+"href=\"http://pootle.locamotion.org\">entongole</a>. Omukulu w'enfo tawadde "
+"ndagiriro oba ennyinyonnyola y'enfo eno. Bwoba gwe mukulu w'enfo eno, "
+"longoosa ennyinyonnyola mu fayiro gyoyagala oba mukifo ky'omukulu. </p>\n"
 "</div>"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
-msgstr "Pääsy estetty"
+msgstr "Olukusa lummiddwa"
 
 #: templates/403.html:14
 msgid "You don't have permission to access this page."
-msgstr "Sinulla ei ole tämän sivun käyttöoikeuksia."
+msgstr "Tolina lukusa kutuuka ku muko guno."
 
 #: templates/404.html:5 templates/404.html.py:10
 msgid "Page Not Found"
-msgstr "Sivua ei löytynyt"
+msgstr "Omuko tegufunyise"
 
 #: templates/404.html:11
 msgid "We're sorry, but the requested page could not be found."
-msgstr "Valitettavasti pyytämääsi sivua ei löytynyt."
+msgstr "Tusonyiwe, naye omuko ogusabiddwa tegufunyise."
 
 #: templates/500.html:5 templates/500.html.py:10
 msgid "Server Error"
-msgstr "Palvelinvirhe"
+msgstr "Nsobi ya nfo"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
-msgstr "Tapahtui virhe. Kiitos kärsivällisyydestäsi."
+msgstr "Ensobi ebaddewo. Weebale obugumiikiriza."
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
 msgid "Administration"
-msgstr "Hallinta"
+msgstr "Okuddukanya"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
-msgstr "Määritä sivuston yleisasetukset"
+msgstr "Tegeka entegeka za wamu ez'ekibanja kyo"
 
 #: templates/admin_profile_menu.html:5
 msgid "General"
-msgstr "Yleiset"
+msgstr "Byawamu"
 
 #: templates/admin_profile_menu.html:6
 msgid "Manage the users"
-msgstr "Käyttäjien hallinta"
+msgstr "Kola ku bakozesa"
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the languages"
-msgstr "Kielten hallinta"
+msgstr "Kola ku nnimi"
 
 #: templates/admin_profile_menu.html:8
 msgid "Manage the projects"
-msgstr "Projektien hallinta"
+msgstr "Kola ku mirimu"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage the default permissions"
-msgstr "Oletuskäyttöoikeuksien hallinta"
+msgstr "Kola ku lukusa"
 
 #: templates/base.html:37
 msgid "skip to navigation"
-msgstr "siirry navigointiin"
+msgstr "buuka olage ku ndagiriro"
 
 #: templates/base.html:45 templates/base.html.py:106 templates/docs.html:5
 msgid "Help"
-msgstr "Ohje"
+msgstr "Buyambi"
 
 #: templates/base.html:50 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
 msgid "My Account"
-msgstr "Oma käyttäjätili"
+msgstr "Akawunta yange"
 
 #: templates/base.html:51
 msgid "Log Out"
-msgstr "Kirjaudu ulos"
+msgstr "Fuluma"
 
 #: templates/base.html:54 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:35
 msgid "Register"
-msgstr "Rekisteröidy"
+msgstr "Weewandiise"
 
 #: templates/base.html:56
 msgid "Log In"
-msgstr "Kirjaudu sisään"
+msgstr "Yingira"
 
 #: templates/base.html:107
 msgid "About this Pootle Server"
-msgstr "Tietoja tästä Pootle-palvelimesta"
+msgstr "Ebifa ku nfo egabirira poto eno"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr "Kielen pääsivu"
+msgstr "Omuko gw'olulimi omukulu"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
 msgid "Overview"
-msgstr "Yleiskatsaus"
+msgstr "Mu bufunze"
 
 #: templates/language_menu.html:8
 msgid "Language news"
-msgstr "Kielen uutisjulkaisut"
+msgstr "Amawulire g'olulimi"
 
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
-msgstr "Kielen käyttöoikeuksien hallinta"
+msgstr "Fuga olukusa lw'olulimi lwo"
 
 #: templates/project_menu.html:7
 msgid "Project main page"
-msgstr "Projektin pääsivu"
+msgstr "Omuko gw'omulimu omukulu"
 
 #: templates/project_menu.html:9
 msgid "Administrate your project"
-msgstr "Projektin hallinta"
+msgstr "Fuga omulimu gwo"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
-msgstr "Käännösprojektin pääsivu"
+msgstr "Omuko omukulu gw'omulimu gw'entafuta"
 
 #: templates/tp_menu.html:8
 msgid "Translation project news"
-msgstr "Käännösprojektin uutisia"
+msgstr "Amawulire g'omulimu gw'entafuta"
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr "Käännä tätä projektia"
+msgstr "Tafuta omulimu guno"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
-msgstr "Laatutarkastukset ja ehdotusten tarkastelu"
+msgstr "Okukebera omutindo n'okwekebejja ebirowoozo"
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
-msgstr "Projektin käyttöoikeuksien hallinta"
+msgstr "Fuga olukusa lw'omulimu gwo"
 
 #: templates/tp_menu.html:13
 msgid "Administrate your project files"
-msgstr "Projektin tiedostojen hallinta"
+msgstr "Fuga fayiro z'omulimu gwo"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
-msgstr "Käyttäjätilisi yleiskatsaus"
+msgstr "Ebifa ku akawunta yo"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 #: templates/profiles/profile_detail.html:6
 #: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
-msgstr "Yleiskatsaus"
+msgstr "Dashi boodi"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
-msgstr "Määritä käännösasetuksesi"
+msgstr "Tegeka bye weetaaga okutafuta"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr "Asetukset"
+msgstr "Entegeka"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
-msgstr "Muuta omia tietojasi"
+msgstr "Kyuusa ebikukwatako"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr "Profiili"
+msgstr "Mu bufunze"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
-msgstr "Vaihda salasana"
+msgstr "Kyuusa ekisumuluzo kyo"
 
 #: templates/admin/base_site.html:4
 msgid "Django site admin"
-msgstr "Django-sivuston ylläpito"
+msgstr "Django efuga ekibanja"
 
 #: templates/admin/base_site.html:7
 msgid "Django administration"
-msgstr "Djangon ylläpito"
+msgstr "Django enfuga"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
-"Täällä voit muuttaa omia tietojasi. Näitä tietoja käytetään "
-"käännöstiedostojen otsakkeessa."
+"Wano osobola okukyuusa ebikukwatako. Amawulire gano gajja kukozesebwa ku "
+"mitwe gya fayiro ezitafutwa."
 
 #: templates/profiles/edit_personal.html:19
 msgid "First Name"
-msgstr "Etunimi"
+msgstr "Erinnya erisooka"
 
 #: templates/profiles/edit_personal.html:24
 msgid "Last Name"
-msgstr "Sukunimi"
+msgstr "Erinnya ly'ekika"
 
 #: templates/profiles/edit_personal.html:29
 msgid "Email address"
-msgstr "Sähköpostiosoite"
+msgstr "Teeka endagiriro wofunira n'okuwerereza obubaka ku mutimbagano"
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr "Käännösasetukset"
+msgstr "Entegeka z'entafuta"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
 msgstr ""
-"Täällä voit määrittää käännöskäyttöliittymän asetukset ja kieliasetukset."
+"Wano osobola okuteekawo entegeka ezikwata ku w'otafutira era n'ennimi "
+"zoyagala."
 
 #: templates/profiles/edit_profile.html:19
 msgid "Number of Rows"
-msgstr "Rivien määrä"
+msgstr "Omuwendo gw'ennyiriri"
 
 #: templates/profiles/edit_profile.html:23
 msgid "Input Height"
-msgstr "Syöttötilan korkeus"
+msgstr "Obuwanvu obuteekebwamu"
 
 #: templates/profiles/edit_profile.html:31
 msgid "My Languages"
-msgstr "Omat kielet"
+msgstr "Ennimi zange"
 
 #: templates/profiles/edit_profile.html:36
 msgid "My Projects"
-msgstr "Omat projektit"
+msgstr "Omulimu gwange"
 
 #: templates/profiles/edit_profile.html:41
 msgid "Alternative Source Languages"
-msgstr "Vaihtoehtoiset lähdekielet"
+msgstr "Olulimi kaasangwawo olulala"
 
 #: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
-msgstr "Pikalinkit"
+msgstr "Emikutu egy'amangu"
 
 #: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
-msgstr "Kieliä tai projekteja ei ole valittuna. Valitse omasi nyt."
+msgstr "Tewali nnimi oba mirimu gilondeddwa. Londa ebibyo kati."
 
 #: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
-msgstr "Käyttäjä ei ole vielä valinnut kieliä tai projekteja."
+msgstr "Omukozesa ono tannalonda nnimi oba mirimu."
 
 #: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
-msgstr "Käyttäjän tilastot"
+msgstr "Emiwendo gy'abakozesa"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr "Profiililuettelo"
+msgstr "Olukalala olulaga ebifa ku mukozesa mu bufunze"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr "Etunimi"
+msgstr "Erinnya erisooka"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr "Sukunimi"
+msgstr "Erinnya ly'ekika"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
 msgid "Account Activated"
-msgstr "Käyttäjätili aktivoitu"
+msgstr "Akawunta ezuukusiddwa"
 
 #: templates/registration/activate.html:10
 #, python-format
@@ -1801,78 +1818,81 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
-"Käyttäjätunnukselle \"%(account)s\" on aktivoitu käyttäjätili. Voit kirjautua "
-"nyt sisään."
+"Akawunta ezuukusiddwa mu linnya \"%(account)s\". Osobola okugenda mu maaso "
+"n'okuyingizaamu."
 
 #: templates/registration/activation_email.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Sinulle on luotu Pootle-käyttäjätili tätä sähköpostiosoitetta käyttäen."
+msgstr ""
+"Akawunta ya Pootle ekugguliddwawo nga tukozesa endagiriro eno kwofunira "
+"obubaka."
 
 #: templates/registration/activation_email.txt:3
 msgid "To activate your account, follow this link:"
-msgstr "Aktivoidaksesi käyttäjätilisi, seuraa tätä linkkiä:"
+msgstr "Okuzuukusa akawunta yo, goberera omukutu guno:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
-msgstr "Aktivointikoodisi on:"
+msgstr "Omuwendo gwo oguzuukusa guli:"
 
 #: templates/registration/activation_email.txt:9
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
 msgstr ""
-"Tällä viestillä tarkistetaan että sähköpostiosoite on oikein. Mikäli et "
-"halunnut rekisteröidä käyttäjätiliä, voit unohtaa tämän viestin."
+"Obubaka buno buwerezeddwa okukakasa nti endagiriro wofunira obubaka ntuufu. "
+"Singa tewayagadde kuwandiisa akawunta, osobola okuziimuula bubaka bwofunye."
 
 #: templates/registration/activation_email_subject.txt:2
 msgid "Pootle registration"
-msgstr "Pootle-rekisteröinti"
+msgstr "Okuwandiisa kwa poto"
 
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:15
 msgid "Password Changed"
-msgstr "Salasana vaihdettu"
+msgstr "Ekisumuluzo ekikyuusiddwa"
 
 #: templates/registration/password_change_done.html:16
 msgid "Your password was changed successfully."
-msgstr "Salasanasi on vaihdettu onnistuneesti."
+msgstr "Ekisumuluzo kyo kya kyuusiddwa bulungi."
 
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11
 msgid "Change Password"
-msgstr "Vaihda salasana"
+msgstr "Kyuusa ekisumuluzo"
 
 #: templates/registration/password_change_form.html:15
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
-"Anna vanha salasanasi (turvallisuussyistä), ja syötä sen jälkeen uusi "
-"salasanasi kaksi kertaa jotta voimme tarkistaa että kirjoitit sen oikein."
+"Mwattu yingiza ekisumuluzo kyo ekikadde, olw'ebyokwerinda byo, oluvannyuma "
+"oyingize ekisumuluzo kyo ekipya emirundi ebiri tusobole okukakasa nti "
+"wakiwandiisemu bulungi."
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr "Vanha salasana"
+msgstr "Ekisumuluzo ekikadde"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
-msgstr "Uusi salasana"
+msgstr "Ekisumuluzo ekipya"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm password"
-msgstr "Vahvista salasana"
+msgstr "Kakasa obusumuluzo"
 
 #: templates/registration/password_change_form.html:38
 msgid "Change My Password"
-msgstr "Vaihda salasana"
+msgstr "Kyuusa ekisumuluzo kyange"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr "Salasanan nollaus"
+msgstr "Okuddamu okutegeka ekisumuluzo"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
-msgstr "Salasanan nollaus suoritettu."
+msgstr "Okuddamu okutegeka Ekisumuluzo Kuwedde."
 
 #: templates/registration/password_reset_complete.html:10
 #, python-format
@@ -1880,8 +1900,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
-"Salasanasi on asetettu. Voit siirtyä nyt <a href=\"%"
-"(login_url)s\">kirjautumiseen</a>."
+"Ekisumuluzo kyo kitegekeddwa. Osobola okugenda mu maaso <a href=\"%"
+"(login_url)s\">log in</a> kati."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_done.html:5
@@ -1889,52 +1909,54 @@ msgstr ""
 #: templates/registration/password_reset_form.html:5
 #: templates/registration/password_reset_form.html:9
 msgid "Reset Password"
-msgstr "Nollaa salasana"
+msgstr "Ddamu otegeke ekisumuluzo"
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter New Password."
-msgstr "Anna uusi salasana."
+msgstr "Yingiza Ekisumuluzo Ekipya."
 
 #: templates/registration/password_reset_confirm.html:12
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
-"Syötä uusi salasana kaksi kertaa, jotta voimme tarkistaa että kirjoitit sen "
-"oikein."
+"Mwattu yingiza ekisumuluzo kyo ekipya emirundi ebiri tusobole okukakasa nti "
+"okiwandiise bulungi."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr "Uusi salasana"
+msgstr "Ekisumuluzo ekipya"
 
 #: templates/registration/password_reset_confirm.html:21
 msgid "Confirm Password"
-msgstr "Vahvista salasana"
+msgstr "Kakasa obusumuluzo"
 
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr "Nollaa salasana"
+msgstr "Ddamu otegeke ekisumuluzo kyange"
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
-msgstr "Salasanan nollaus ei onnistunut."
+msgstr "Okuddamu okutegeka Ekisumuluzo Kulemereddwa."
 
 #: templates/registration/password_reset_confirm.html:32
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"Salasanan nollauslinkki oli virheellinen, mahdollisesti koska se on jo "
-"käytetty. Pyydä uutta salasanan nollausta."
+"Omukutu ogusobozesa okuddamu okutegeka ekisumuluzo gwabadde mukyamu, "
+"kiyinzika okuba olw'ensonga nti gwakozesebwa dda. Bambi saba okuddamu "
+"okutegeka ekisumuluzo bupya."
 
 #: templates/registration/password_reset_done.html:11
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
-"Olemme lähettäneet salasanasi asetusohjeet ilmoittamaasi "
-"sähköpostiosoitteeseen. Ohjeet ovat perillä piakkoin."
+"Tukuweerezza obubaka obukwata ku ndagiriro y'okwetegekera ekisumuluzo ku "
+"ndagiriro wofunira n'okuwerereza obubaka ku mutimbagano gye wawaayo. Ojja "
+"kubufuna mangu ddala."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -1942,730 +1964,60 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
-"Olet vastaanottanut tämän sähköpostin, koska pyysit %"
-"(site_name)s-käyttäjätilisi salasanan nollausta."
+"Ofuna obubaka buno kubanga wasaba okuddamu okutegeka ekisumuluzo kyo "
+"eky'erinnya ly'akawunta yo ku %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr "Siirry seuraavalle sivulle ja valitse uusi salasana:"
+msgstr "Mwattu genda ku muko oguddirira olonde ekisumuluzo ekipya:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr "Käyttäjätunnuksesi on %(user)s."
+msgstr "Erinnya lyokozesa lye %(user)s."
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr "Kiitos että käytit Pootlea!"
+msgstr "Weebale ku kozesa Pootle!"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Unohditko salasanasi? Anna sähköpostiosoitteesi, niin lähetämme uuden "
-"salasanan asetusohjeet."
+"Weerabidde ekisumuluzo kyo? Yingiza endagiriro yo wammanga, tujja "
+"kukuweereza endagiriro okutegeka ekipya."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
 msgid "Email Address"
-msgstr "Sähköpostiosoite"
+msgstr "Teeka endagiriro wofunira n'okuwerereza obubaka ku mutimbagano"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr "Rekisteröinti valmis"
+msgstr "Okwewandiisa kuwedde"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr "Tarkista sähköpostistasi käyttäjätilisi aktivointitiedot."
+msgstr "Mwattu kebera endagiriro yo okuzuukusa akawunta yo."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr "Rekisteröi uusi Pootle-käyttäjätili"
+msgstr "Wandiisa akawunta ya poto empya"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr "Täytä seuraava lomake aloittaaksesi kääntämisen."
+msgstr "Jjuzaamu empapula wammanga okutandika okutafuta."
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"
-msgstr "Salasana (uudestaan)"
+msgstr "Akasumuluzo (ddamu)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr "Oletko jo rekisteröinyt käyttäjätilin?"
+msgstr "Yafuna dda akawunta?"
 
 #: templates/registration/registration_form.html:41
 msgid "Log In."
-msgstr "Kirjaudu sisään."
-
-#~ msgid "General options"
-#~ msgstr "Yleiset asetukset"
-
-#~ msgid "Current value"
-#~ msgstr "Nykyinen arvo"
-
-#~ msgid "Base URL"
-#~ msgstr "Perus-URL"
-
-#~ msgid "Home Page"
-#~ msgstr "Kotisivu"
-
-#~ msgid "Pootle Languages Admin Page"
-#~ msgstr "Pootlen kieltenhallintasivu"
-
-#~ msgid "Main admin page"
-#~ msgstr "Hallinnan pääsivu"
-
-#~ msgid "ISO Code"
-#~ msgstr "ISO-koodi"
-
-#~ msgid "(add language here)"
-#~ msgstr "(lisää kieli tähän)"
-
-#~ msgid "Special Chars"
-#~ msgstr "Erikoismerkit"
-
-#~ msgid "(number of plurals)"
-#~ msgstr "(monikoiden määrä)"
-
-#~ msgid "(plural equation)"
-#~ msgstr "(monikon kaava)"
-
-#~ msgid "Remove Language"
-#~ msgstr "Poista kieli"
-
-#, python-format
-#~ msgid "Remove %s"
-#~ msgstr "Poista %s"
-
-#~ msgid "Standard"
-#~ msgstr "Normaali"
-
-#~ msgid "Pootle Projects Admin Page"
-#~ msgstr "Pootlen projektienhallintasivu"
-
-#~ msgid "Project Code"
-#~ msgstr "Projektin koodi"
-
-#~ msgid "(add project here)"
-#~ msgstr "(lisää projekti tähän)"
-
-#~ msgid "Project Description"
-#~ msgstr "Projektin kuvaus"
-
-#~ msgid "(project description)"
-#~ msgstr "(projektin kuvaus)"
-
-#~ msgid "Checker Style"
-#~ msgstr "Tarkistustyyli"
-
-#~ msgid "Create MO Files"
-#~ msgstr "Luo MO-tiedostot"
-
-#~ msgid "Remove Project"
-#~ msgstr "Poista projekti"
-
-#~ msgid "Pootle User Admin Page"
-#~ msgstr "Pootlen käyttäjähallintasivu"
-
-#~ msgid "(add full name here)"
-#~ msgstr "(lisää koko nimi tähän)"
-
-#~ msgid "(add email here)"
-#~ msgstr "(lisää sähköpostiosoite tähän)"
-
-#~ msgid "(add password here)"
-#~ msgstr "(lisää salasana tähän)"
-
-#~ msgid "Activated"
-#~ msgstr "Aktivoitu"
-
-#~ msgid "Activate New User"
-#~ msgstr "Aktivoi uusi käyttäjä"
-
-#~ msgid "Remove User"
-#~ msgstr "Poista käyttäjä"
-
-#~ msgid "Back to main page"
-#~ msgstr "Takaisin pääsivulle"
-
-#~ msgid "Existing languages"
-#~ msgstr "Nykyiset kielet"
-
-#~ msgid "Update Languages"
-#~ msgstr "Päivitä kielet"
-
-#, python-format
-#~ msgid "Pootle Admin: %s"
-#~ msgstr "Pootle-hallinta: %s"
-
-#~ msgid "Add Language"
-#~ msgstr "Lisää kieli"
-
-#, python-format
-#~ msgid "Pootle Admin: %s %s"
-#~ msgstr "Pootle-hallinta: %s %s"
-
-#, python-format
-#~ msgid "Cannot set rights for username %s - user does not exist"
-#~ msgstr "Käyttäjän %s oikeuksia ei voida asettaa - käyttäjää ei ole olemassa"
-
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
-#~ msgstr ""
-#~ "Tämä on GNU-tyylinen projekti (yksi hakemisto, tiedostonimet kielen mukaan)."
-
-#~ msgid "Rights"
-#~ msgstr "Oikeudet"
-
-#~ msgid "Remove"
-#~ msgstr "Poista"
-
-#~ msgid ""
-#~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
-#~ msgstr ""
-#~ "<strong>Pootle</strong> on yksinkertainen www-portaali jonka avulla voit "
-#~ "<strong>suomentaa</strong>! Koska Pootle on <strong>vapaata "
-#~ "ohjelmistoa</strong>, voit ladata sen verkosta ja käyttää omaa kopiotasi "
-#~ "niin kuin haluat. Voit myös osallistua kehitystyöhön monella eri tavalla "
-#~ "(ohjelmointitaidot eivät ole välttämättömiä)."
-
-#~ msgid ""
-#~ "The Pootle project itself is hosted at <a href=\"http://translate."
-#~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
-#~ "details about source code, mailing lists etc."
-#~ msgstr ""
-#~ "Itse Pootle-projektia isännöidään osoitteessa <a "
-#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a>, "
-#~ "mistä löytyy lisätietoa lähdekoodista, postituslistoista jne."
-
-#~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
-#~ msgstr ""
-#~ "Nimi Pootle tulee sanoista <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation "
-#~ "/ <b>L</b>ocalization <b>E</b>ngine, mutta kannattanee lukea <a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">tämä</a>."
-
-#~ msgid "Versions"
-#~ msgstr "Versiot"
-
-#, python-format
-#~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
-#~ msgstr ""
-#~ "Tällä sivustolla on käytössä:<br />Pootle %s<br />Translate Toolkit %s<br "
-#~ "/>jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (alustana "
-#~ "%s/%s)"
-
-#, python-format
-#~ msgid "User Page for: %s"
-#~ msgstr "Käyttäjän sivut: %s"
-
-#~ msgid "Change options"
-#~ msgstr "Vaihda asetuksia"
-
-#~ msgid "Admin page"
-#~ msgstr "Hallintasivu"
-
-#~ msgid "Please click on 'Change options' and select some languages and projects"
-#~ msgstr "Napsauta \"Vaihda asetuksia\" ja valitse haluamasi kielet ja projektit"
-
-#, python-format
-#~ msgid "%d project, average %d%% translated"
-#~ msgid_plural "%d projects, average %d%% translated"
-#~ msgstr[0] "%d projekti, keskimäärin %d%% käännetty"
-#~ msgstr[1] "%d projektia, keskimäärin %d%% käännetty"
-
-#, python-format
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "Language Code"
-#~ msgstr "Kielikoodi"
-
-#~ msgid "Language Name"
-#~ msgstr "Kielen nimi"
-
-#, python-format
-#~ msgid "%d language, average %d%% translated"
-#~ msgid_plural "%d languages, average %d%% translated"
-#~ msgstr[0] "%d kieli, keskimäärin %d%% käännetty"
-#~ msgstr[1] "%d kieltä, keskimäärin %d%% käännetty"
-
-#, python-format
-#~ msgid "%s: Project %s, Language %s"
-#~ msgstr "%s: Projekti %s, kieli %s"
-
-#~ msgid "Cannot upload file, no file attached"
-#~ msgstr "Tiedoston lähetys ei onnistu, liitetiedosto puuttuu"
-
-#~ msgid "Can only upload PO files and zips of PO files"
-#~ msgstr "Vain PO-tiedostoja ja zip-pakattuja PO-tiedostoja voi lähettää"
-
-#~ msgid "Assign Strings"
-#~ msgstr "Aseta tehtäväksi"
-
-#~ msgid "Assign Action"
-#~ msgstr "Osoitettava tehtävä"
-
-#~ msgid "Assign to User"
-#~ msgstr "Osoita käyttäjälle"
-
-#~ msgid "goals"
-#~ msgstr "tavoitteet"
-
-#~ msgid "Enter goal name"
-#~ msgstr "Anna tavoitteen nimi"
-
-#~ msgid "Add Goal"
-#~ msgstr "Lisää tavoite"
-
-#~ msgid "Select file to upload"
-#~ msgstr "Valitse lähetettävä tiedosto"
-
-#~ msgid "Overwrite"
-#~ msgstr "Korvaa"
-
-#~ msgid "Merge"
-#~ msgstr "Yhdistä"
-
-#~ msgid "Not in a goal"
-#~ msgstr "Ei kuulu tavoitteeseen"
-
-#~ msgid "Add User"
-#~ msgstr "Lisää käyttäjä"
-
-#~ msgid "PO file"
-#~ msgstr "PO-tiedosto"
-
-#~ msgid "XLIFF file"
-#~ msgstr "XLIFF-tiedosto"
-
-#~ msgid "Qt .ts file"
-#~ msgstr "Qt .ts -tiedosto"
-
-#~ msgid "CSV file"
-#~ msgstr "CSV-tiedosto"
-
-#~ msgid "MO file"
-#~ msgstr "MO-tiedosto"
-
-#~ msgid "Update"
-#~ msgstr "Päivitä"
-
-#~ msgid "Commit"
-#~ msgstr "Lähetys"
-
-#~ msgid "All Strings"
-#~ msgstr "Kaikki merkkijonot"
-
-#~ msgid "Unassigned"
-#~ msgstr "Asettamattomat"
-
-#~ msgid "Unassigned and Untranslated"
-#~ msgstr "Asettamattomat ja kääntämättömät"
-
-#~ msgid "Set Goal"
-#~ msgstr "Aseta tavoite"
-
-#~ msgid "Select Multiple"
-#~ msgstr "Valitse useita"
-
-#~ msgid "Assign To"
-#~ msgstr "Osoita käyttäjälle"
-
-#~ msgid "Show Editing Functions"
-#~ msgstr "Näytä muokkaustoiminnot"
-
-#~ msgid "Show Statistics"
-#~ msgstr "Näytä tilastot"
-
-#~ msgid "Show Tracks"
-#~ msgstr "Näytä seuranta"
-
-#~ msgid "Hide Tracks"
-#~ msgstr "Piilota seuranta"
-
-#~ msgid "Show Checks"
-#~ msgstr "Näytä tarkistukset"
-
-#~ msgid "Hide Checks"
-#~ msgstr "Piilota tarkistukset"
-
-#~ msgid "Show Goals"
-#~ msgstr "Näytä tavoitteet"
-
-#~ msgid "Hide Goals"
-#~ msgstr "Piilota tavoitteet"
-
-#~ msgid "Show Assigns"
-#~ msgstr "Näytä tehtäväosoitukset"
-
-#~ msgid "Hide Assigns"
-#~ msgstr "Piilota tehtäväosoitukset"
-
-#, python-format
-#~ msgid "All Goals: %s"
-#~ msgstr "Kaikki tavoitteet: %s"
-
-#~ msgid "Translate My Strings"
-#~ msgstr "Käännä omia merkkijonoja"
-
-#~ msgid "View My Strings"
-#~ msgstr "Näytä omat merkkijonot"
-
-#~ msgid "No strings assigned to you"
-#~ msgstr "Ei osoitettuja merkkijonoja"
-
-#~ msgid "Quick Translate My Strings"
-#~ msgstr "Omien merkkijonojen pikakäännös"
-
-#~ msgid "No untranslated strings assigned to you"
-#~ msgstr "Ei osoitettuja kääntämättömiä merkkijonoja"
-
-#~ msgid "No untranslated items"
-#~ msgstr "Ei kääntämättömiä kohtia"
-
-#~ msgid "ZIP of goal"
-#~ msgstr "Tavoite ZIP-tiedostona"
-
-#~ msgid "ZIP of folder"
-#~ msgstr "Kansio ZIP-tiedostona"
-
-#~ msgid "Generate SDF"
-#~ msgstr "Luo SDF"
-
-#, python-format
-#~ msgid "%d string (%d%%) failed"
-#~ msgid_plural "%d strings (%d%%) failed"
-#~ msgstr[0] "%d merkkijono (%d%%) epäonnistunut"
-#~ msgstr[1] "%d merkkijonoa (%d%%) epäonnistunut"
-
-#, python-format
-#~ msgid "%d/%d words (%d%%) assigned"
-#~ msgstr "%d/%d sanaa (%d%%) osoitettuna"
-
-#, python-format
-#~ msgid "[%d/%d strings]"
-#~ msgstr "[%d/%d merkkijonoa]"
-
-#, python-format
-#~ msgid "%d/%d words (%d%%) translated"
-#~ msgstr "%d/%d sanaa (%d%%) käännetty"
-
-#~ msgid "All projects"
-#~ msgstr "Kaikki projektit"
-
-#~ msgid "All languages"
-#~ msgstr "Kaikki kielet"
-
-#~ msgid "Docs & help"
-#~ msgstr "Dokumentit & ohjeet"
-
-#~ msgid "Activate"
-#~ msgstr "Aktivoi käyttäjätili"
-
-#~ msgid "Pootle Logo"
-#~ msgstr "Pootlen logo"
-
-#~ msgid "All goals"
-#~ msgstr "Kaikki tavoitteet"
-
-#, python-format
-#~ msgid "%d/%d files"
-#~ msgstr "%d/%d tiedostoa"
-
-#, python-format
-#~ msgid "%d/%d strings"
-#~ msgstr "%d/%d merkkijonoa"
-
-#~ msgid "Graph"
-#~ msgstr "Diagrammi"
-
-#~ msgid "Login failed"
-#~ msgstr "Kirjautuminen epäonnistui"
-
-#~ msgid "Redirecting to login..."
-#~ msgstr "Uudelleenohjataan kirjautumissivulle..."
-
-#~ msgid "Need to log in to access home page"
-#~ msgstr "Kotisivulle pääsee vain sisäänkirjautuneena"
-
-#~ msgid "Personal details updated"
-#~ msgstr "Omat tiedot päivitetty"
-
-#~ msgid "Need to log in to access admin page"
-#~ msgstr "Hallintasivulle pääsee vain sisäänkirjautuneena"
-
-#~ msgid "Redirecting to home..."
-#~ msgstr "Uudelleenohjataan kotisivulle..."
-
-#~ msgid "View"
-#~ msgstr "Katselu"
-
-#~ msgid "Archive"
-#~ msgstr "Arkistointi"
-
-#~ msgid "Compile PO files"
-#~ msgstr "PO-tiedostojen kääntö"
-
-#~ msgid "Assign"
-#~ msgstr "Tehtäväosoitus"
-
-#~ msgid "You cannot remove the \"nobody\" or \"default\" user"
-#~ msgstr "Käyttäjää \"nobody\" tai \"default\" ei voi poistaa"
-
-#~ msgid "You do not have rights to alter goals here"
-#~ msgstr "Käyttäjäoikeuksillasi ei voi muuttaa näitä tavoitteita"
-
-#~ msgid "You do not have rights to alter assignments here"
-#~ msgstr "Käyttäjäoikeuksillasi ei voi muuttaa näitä tehtäväosoituksia"
-
-#, python-format
-#~ msgid ""
-#~ "%d/%d translated\n"
-#~ "(%d untranslated, %d fuzzy)"
-#~ msgstr ""
-#~ "%d/%d käännetty\n"
-#~ " (%d kääntämätöntä, %d sumeata)"
-
-#, python-format
-#~ msgid "%s: translating %s into %s: %s"
-#~ msgstr "%s: käännetään %s kielelle %s: %s"
-
-#~ msgid "Working..."
-#~ msgstr "Suoritetaan..."
-
-#~ msgid "Error: Something went wrong."
-#~ msgstr "Virhe: Jotain meni pieleen."
-
-#~ msgid "End of batch"
-#~ msgstr "Eräajon loppu"
-
-#~ msgid "Click here to return to the index"
-#~ msgstr "Napsauttamalla tästä pääset aloitussivulle"
-
-#, python-format
-#~ msgid "Items %d to %d of %d"
-#~ msgstr "Osat %d - %d / %d"
-
-#, python-format
-#~ msgid "There are no items matching that search ('%s')"
-#~ msgstr "Hakua vastaavia kohteita ei löydy ('%s')"
-
-#~ msgid "You have finished going through the items you selected"
-#~ msgstr "Olet käynyt läpi valitsemasi kohdat"
-
-#~ msgid "Edit"
-#~ msgstr "Muokkaa"
-
-#~ msgid "Grow"
-#~ msgstr "Korota"
-
-#~ msgid "Shrink"
-#~ msgstr "Madalla"
-
-#, python-format
-#~ msgid "Suggestion %d by %s:"
-#~ msgstr "Ehdotuksen %d tehnyt %s:"
-
-#, python-format
-#~ msgid "You must supply a valid password of at least %d characters."
-#~ msgstr "Valitsemasi salasanan täytyy olla vähintään %d merkin pituinen."
-
-#~ msgid "The password is not the same as the confirmation."
-#~ msgstr "Salasana ei täsmää vahvistuksen kanssa."
-
-#~ msgid "Username:"
-#~ msgstr "Käyttäjätunnus:"
-
-#~ msgid "Password:"
-#~ msgstr "Salasana:"
-
-#~ msgid "Language:"
-#~ msgstr "Kieli:"
-
-#~ msgid "Please enter your registration details"
-#~ msgstr "Syötä rekisteröintitietosi"
-
-#~ msgid "Your requested username"
-#~ msgstr "Haluamasi käyttäjätunnus"
-
-#~ msgid "You must supply a valid email address"
-#~ msgstr "Antamasi sähköpostiosoitteen pitää olla oikea"
-
-#~ msgid "Your full name"
-#~ msgstr "Koko nimesi"
-
-#~ msgid "Your desired password"
-#~ msgstr "Toivomasi salasana"
-
-#~ msgid "Type your password again to ensure it is entered correctly"
-#~ msgstr "Kirjoita salasana uudelleen varmistaaksesi sen oikeinkirjoituksen"
-
-#~ msgid "Register Account"
-#~ msgstr "Rekisteröi käyttäjätili"
-
-#~ msgid "Please enter your activation details"
-#~ msgstr "Syötä aktivointitietosi"
-
-#~ msgid "Pootle Account Activation"
-#~ msgstr "Pootle-käyttäjätilin aktivointi"
-
-#~ msgid "Activation Code"
-#~ msgstr "Aktivointikoodi"
-
-#~ msgid "The activation code you received"
-#~ msgstr "Saamasi aktivointikoodi"
-
-#~ msgid "Activate Account"
-#~ msgstr "Aktivoi käyttäjätili"
-
-#, python-format
-#~ msgid "Options for: %s"
-#~ msgstr "Asetukset käyttäjälle: %s"
-
-#~ msgid "Personal Details"
-#~ msgstr "Omat tiedot"
-
-#~ msgid "Email"
-#~ msgstr "Sähköposti"
-
-#~ msgid "Translation Interface Configuration"
-#~ msgstr "Käännösliittymän asetukset"
-
-#~ msgid "User Interface language"
-#~ msgstr "Käyttöliittymän kieli"
-
-#~ msgid "Home page"
-#~ msgstr "Kotisivu"
-
-#~ msgid "None"
-#~ msgstr "ei mitään"
-
-#~ msgid "Input Height (in lines)"
-#~ msgstr "Syöttötilan korkeus (rivejä)"
-
-#~ msgid "Number of rows in view mode"
-#~ msgstr "Katselutilan rivimäärä"
-
-#~ msgid "Number of rows in translate mode"
-#~ msgstr "Käännöstilan rivimäärä"
-
-#~ msgid "You need to be siteadmin to change users"
-#~ msgstr "Käyttäjähallintaan tarvitaan ylläpitäjän oikeudet"
-
-#~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
-#~ msgstr ""
-#~ "Käyttäjätunnuksen tulee koostua kirjaimista ja numeroista ja sen täytyy "
-#~ "alkaa kirjaimella."
-
-#~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
-#~ msgstr "Sinä (tai joku muu) yritti rekisteröidä käyttäjätilin käyttäen sinun "
-#~ "käyttäjätunnustasi.\n"
-
-#~ msgid "We don't store your actual password but only a hash of it.\n"
-#~ msgstr "Emme tallenna varsinaista salasanaasi vaan ainoastaan sen hash-arvon.\n"
-
-#, python-format
-#~ msgid "If you have a problem with registration, please contact %s.\n"
-#~ msgstr "Jos sinulla on ongelmia rekisteröinnin kanssa, ota yhteyttä osoitteeseen %s.\n"
-
-#~ msgid ""
-#~ "If you have a problem with registration, please contact the site "
-#~ "administrator.\n"
-#~ msgstr "Jos sinulla on ongelmia rekisteröinnin kanssa, ota yhteyttä sivuston "
-#~ "ylläpitäjään.\n"
-
-#~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
-#~ msgstr "Valitsemasi käyttäjätunnus on jo käytössä. Tunnuksen varanneelle lähetetään "
-#~ "ilmoitus sähköpostitse.\n"
-
-#, python-format
-#~ msgid "Proceeding to <a href='%s'>login</a>\n"
-#~ msgstr "Jatketaan <a href='%s'>kirjautumiseen</a>\n"
-
-#~ msgid ""
-#~ "If you are unable to follow the link, please enter the above code at the "
-#~ "activation page.\n"
-#~ msgstr "Jos et pysty seuraamaan linkkiä, syötä yllä oleva koodi aktivointisivulla.\n"
-
-#, python-format
-#~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
-#~ msgstr ""
-#~ "Käyttäjätili luotu. Kirjautumistiedot ja aktivointikoodi lähetetään "
-#~ "sähköpostitse. Syötä aktivointikoodisi <a href='%s'>aktivointisivulla</a>."
-
-#~ msgid "(Or simply click on the activation link in the email)"
-#~ msgstr "(Tai napsauta sähköpostin sisältämää aktivointilinkkiä)"
-
-#, python-format
-#~ msgid "Your user name is: %s\n"
-#~ msgstr "Käyttäjätunnuksesi on: %s\n"
-
-#, python-format
-#~ msgid "Your password is: %s\n"
-#~ msgstr "Salasanasi on: %s\n"
-
-#, python-format
-#~ msgid "Your registered email address is: %s\n"
-#~ msgstr "Rekisteröimäsi sähköpostiosoite on: %s\n"
-
-#~ msgid "Redirecting to Registration Page..."
-#~ msgstr "Uudelleenohjataan rekisteröintisivulle..."
-
-#~ msgid "Redirecting to login Page..."
-#~ msgstr "Uudelleenohjataan kirjautumissivulle..."
-
-#~ msgid "Your account has been activated! Redirecting to login..."
-#~ msgstr "Käyttäjätilisi on aktivoitu! Uudelleenohjataan kirjautumissivulle..."
-
-#~ msgid "The activation information was not valid."
-#~ msgstr "Aktivointitieto ei kelpaa."
-
-#~ msgid "Activation Failed"
-#~ msgstr "Aktivointi epäonnistui"
-
-#~ msgid "Input height must be numeric"
-#~ msgstr "Syöttötilan korkeuden pitää olla numeroarvo"
-
-#~ msgid "Input width must be numeric"
-#~ msgstr "Syöttötilan leveyden pitää olla numeroarvo"
-
-#~ msgid "The number of rows displayed in view mode must be numeric"
-#~ msgstr "Katselutilan rivimäärän pitää olla numeroarvo"
-
-#~ msgid "The number of rows displayed in translate mode must be numeric"
-#~ msgstr "Käännöstilan rivimäärän pitää olla numeroarvo"
-
-#~ msgid "WordForge Translation Project"
-#~ msgstr "WordForge-käännösprojekti"
-
-#~ msgid "Broaden"
-#~ msgstr "Levennä"
-
-#~ msgid "Narrow"
-#~ msgstr "Kavenna"
-
-#~ msgid "Reset"
-#~ msgstr "Nollaa"
-
-#~ msgid "Must be a valid email address"
-#~ msgstr "Sähköpostiosoitteen pitää olla oikea"
-
-#~ msgid "Input Width (in characters)"
-#~ msgstr "Syöttötilan leveys (merkkejä)"
+msgstr "Yingira Mu."

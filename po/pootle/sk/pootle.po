@@ -8,177 +8,179 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2009-03-24 13:17+0200\n"
-"Last-Translator: Jozef Kutej <jozef@kutej.net>\n"
+"PO-Revision-Date: 2010-05-31 02:22+0200\n"
+"Last-Translator: hawer <sukenik.tom@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr ""
+msgstr "Podržte \"Ctrl\" alebo na Mac-och \"Command\" pre výber viacerých položiek."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Zadajte platnú emailovú adresu."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"Zadaná emailová adresa nezodpovedá žiadnemu účtu. Ste si istí, že ste sa "
+"zaregistrovali?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Toto pole je povinné."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
+"Táto hodnota nemôže obsahovať viac ako %(max)d znakov (momentálne má %"
+"(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Uložiť a pridať ďalšie"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Uložiť a pokračovať v úprave"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Pridať"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Zmeniť"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Pridať %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr ""
+msgstr "Zobraziť na stránke"
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "krstné meno"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "priezvisko"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "E-mailová adresa"
+msgstr "emailová adresa"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "aktívny"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "správca"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Opravte, prosím, nasledujúcu chybu."
+msgstr[1] "Opravte, prosím, nasledujúce chyby."
+msgstr[2] "Opravte, prosím, nasledujúce chyby."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Nastavenia boli uložené."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:28
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:46
 msgid "Save"
-msgstr ""
+msgstr "Uložiť"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Používateľské meno"
+msgstr "používateľské meno"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "E-mailová adresa"
+msgstr "emailová adresa"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Heslo"
+msgstr "heslo"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "heslo (znovu)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "Zadané používateľské meno sa už používa. Zvoľte si, prosím, iné."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "Treba vždy zadať to isté heslo"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "Prečítal/a som si podmienky používania a súhlasím s nimi"
 
 #: external_apps/registration/forms.py:107
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
-msgstr ""
+msgstr "Táto emailová adresa sa už používa. Zadajte, prosím, inú."
 
 #: external_apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
+"Registrácia na neplatenú emailovú adresu nie je povolená. Zadajte, prosím, "
+"inú."
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "používateľ"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr ""
+msgstr "aktivačný kľúč"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "registračný profil"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr ""
+msgstr "registračné profily"
 
 #: local_apps/pootle_app/admin.py:40
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "Kód jazyka nezodpovedá ISO norme"
 
 #: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "Kód projektu môže obsahovať len písmená, čísla a _"
 
 #: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
-msgstr ""
+msgstr "Pokročilé nastavenia"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
@@ -186,62 +188,64 @@ msgstr "Názov"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Meno tohto servera Pootle"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
-msgstr "Opis"
+msgstr "Popis"
 
 #: local_apps/pootle_app/forms.py:35
 msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
+"Tu zadajte popis a inštrukcie, ktoré sa zobrazia na hlavnej stránke a "
+"stránke s informáciami. Použite, prosím, platný HTML kód."
 
 #: local_apps/pootle_app/unit_update.py:38
 msgid "You do not have rights to suggest changes here"
-msgstr "Nemáte dostatočné práva pre navrhovanie zmien"
+msgstr "Nemáte dostatočné práva na navrhovanie zmien"
 
 #: local_apps/pootle_app/unit_update.py:57
 msgid "You do not have rights to change translations here"
-msgstr "Nemáte dostatočné práva pre zmenu prekladov"
+msgstr "Nemáte dostatočné práva na úpravu prekladov"
 
 #: local_apps/pootle_app/unit_update.py:95
 #: local_apps/pootle_app/unit_update.py:105
 msgid "You do not have rights to review suggestions here"
-msgstr "Nemáte dostatočné práva pre schaľovanie návrhov"
+msgstr "Nemáte dostatočné práva na schvaľovanie návrhov"
 
 #: local_apps/pootle_app/management/__init__.py:62
 msgid "Can view a translation project"
-msgstr ""
+msgstr "Môže zobraziť projekt prekladu"
 
 #: local_apps/pootle_app/management/__init__.py:64
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Môže navrhnúť potenciálny preklad"
 
 #: local_apps/pootle_app/management/__init__.py:66
 msgid "Can submit a translation"
-msgstr ""
+msgstr "Môže odoslať preklad"
 
 #: local_apps/pootle_app/management/__init__.py:68
 msgid "Can overwrite translations on uploading files"
-msgstr ""
+msgstr "Môže prepísať preklady nahratím súboru"
 
 #: local_apps/pootle_app/management/__init__.py:70
 msgid "Can review translations"
-msgstr ""
+msgstr "Môže kontrolovať preklady"
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "Môže sťahovať archívy prekladaných projektov"
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "Môže spravovať preklad"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can commit to version control"
-msgstr ""
+msgstr "Môže odoslať do systému na správu verzií"
 
 #: local_apps/pootle_app/models/language.py:39
 msgid ""
@@ -249,11 +253,14 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
+"Kód jazyka podľa ISO 639, za ním prípadne podtržník (_) a kód krajiny ISO "
+"3166. Viac informácií <a href=\"http://www.w3.org/International/articles"
+"/language-tags/\">tu</a>"
 
 #: local_apps/pootle_app/models/language.py:40
 #: local_apps/pootle_app/models/project.py:58
 msgid "Code"
-msgstr ""
+msgstr "Kód"
 
 #: local_apps/pootle_app/models/language.py:41
 #: local_apps/pootle_app/models/project.py:59
@@ -262,26 +269,28 @@ msgstr "Celé meno"
 
 #: local_apps/pootle_app/models/language.py:43
 msgid "Enter any special characters that users might find difficult to type"
-msgstr ""
+msgstr "Zadajte špeciálne znaky, ktoré môžu byť pre používateľa problémové"
 
 #: local_apps/pootle_app/models/language.py:44
-#, fuzzy
 msgid "Special Characters"
-msgstr "(špeciálne znaky)"
+msgstr "Špeciálne znaky"
 
 #: local_apps/pootle_app/models/language.py:46
 msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
+"Viac informácií o formách plurálu nájdete na <a "
+"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">našej wiki "
+"stránke</a>."
 
 #: local_apps/pootle_app/models/language.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "Neznáme"
 
 #: local_apps/pootle_app/models/language.py:48
 msgid "Number of Plurals"
-msgstr "Počet množných tvarov"
+msgstr "Počet tvarov plurálu"
 
 #: local_apps/pootle_app/models/language.py:50
 msgid "Plural Equation"
@@ -291,59 +300,63 @@ msgstr "Rovnica množných tvarov"
 #: local_apps/pootle_app/views/index/login.py:58
 #: templates/profiles/edit_profile.html:27
 msgid "Interface Language"
-msgstr ""
+msgstr "Jazyk prostredia"
 
 #: local_apps/pootle_app/models/profile.py:97
 msgid "Suggestions Accepted"
-msgstr ""
+msgstr "Prijaté návrhy"
 
 #: local_apps/pootle_app/models/profile.py:98
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "Čakajúce návrhy"
 
 #: local_apps/pootle_app/models/profile.py:99
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "Skontrolované návrhy"
 
 #: local_apps/pootle_app/models/profile.py:100
 msgid "Submissions Made"
-msgstr ""
+msgstr "Vykonané preklady"
 
 #: local_apps/pootle_app/models/project.py:40
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
+"Krátky kód označujúci projekt. Mal by obsahovať len znaky ASCII tabuľky, "
+"čísla a podtržník (_)."
 
 #: local_apps/pootle_app/models/project.py:41
 msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. This field should be valid HTML."
 msgstr ""
+"Charakteristika projektu. Tu môžete uviesť informácie alebo inštrukcie. "
+"Vyplňte toto pole platným HTML kódom."
 
 #: local_apps/pootle_app/models/project.py:48
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: local_apps/pootle_app/models/project.py:49
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
-msgstr ""
+msgstr "Automatická detekcia (pomalšie)"
 
 #: local_apps/pootle_app/models/project.py:54
 msgid "GNU style: files named by language code"
-msgstr ""
+msgstr "Štýl GNU: súbory nazvané podľa kódu jazyka"
 
 #: local_apps/pootle_app/models/project.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr ""
+msgstr "Iný ako GNU: Každý jazyk má svoje vlastné umiestnenie"
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
-msgstr ""
+msgstr "Kontrola kvality"
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
@@ -351,54 +364,58 @@ msgstr "Typ súboru"
 
 #: local_apps/pootle_app/models/project.py:63
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Typ stromovej štruktúry projektu"
 
 #: local_apps/pootle_app/models/project.py:64
 msgid "Ignore Files"
-msgstr ""
+msgstr "Ignorovať súbory"
 
+# že by "čakajúci"?
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr ""
+msgstr "Nevybavený"
 
 #: local_apps/pootle_app/models/suggestion.py:55
-#, fuzzy
 msgid "Accepted"
-msgstr "Prijať"
+msgstr "Prijaté"
 
 #: local_apps/pootle_app/models/suggestion.py:56
-#, fuzzy
 msgid "Rejected"
-msgstr "Zamietnuť"
+msgstr "Zamietnuté"
 
 #: local_apps/pootle_app/models/translation_project.py:237
 #: local_apps/pootle_app/models/translation_project.py:264
 msgid "You do not have rights to update from version control here"
 msgstr ""
+"Nemáte dostatočné práva na aktualizáciu prostredníctvom systému na správu "
+"verzií"
 
 #: local_apps/pootle_app/models/translation_project.py:253
 #, python-format
 msgid "Updated %s files from version control"
-msgstr ""
+msgstr "%s súborov aktualizovaných prostredníctvom systému na správu verzií"
 
 #: local_apps/pootle_app/models/translation_project.py:269
 #, python-format
 msgid "Failed to update %s from version control"
 msgstr ""
+"Nepodarilo sa aktualizovať %s súborov prostredníctvom systému na správu "
+"verzií"
 
 #: local_apps/pootle_app/models/translation_project.py:271
 #, python-format
 msgid "Updated file %s from version control"
-msgstr ""
+msgstr "Súbor %s bol aktualizovaný prostredníctvom systému na správu verzií"
 
+# netreba zmienku o systéme na správu súborov?
 #: local_apps/pootle_app/models/translation_project.py:282
 #: local_apps/pootle_app/views/language/view.py:134
 msgid "You do not have rights to commit files here"
-msgstr "Nemáte dostatočné práva pre commit súborov"
+msgstr "Nemáte dostatočné práva pre odoslanie súborov"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr ""
+msgstr "Najaktívnejší prispievatelia"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/project_index.py:41
@@ -407,7 +424,7 @@ msgstr "Preložené"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr ""
+msgstr "Čaká na kontrolu"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:109
@@ -430,6 +447,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"Tu môžete pridať, upraviť a vymazať všetky dostupné jazyky na serveri "
+"Pootle."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
@@ -442,13 +461,15 @@ msgstr ""
 #: templates/admin_profile_menu.html:9 templates/language_menu.html:10
 #: templates/tp_menu.html:12 templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "Oprávnenia"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"Tu môžete pridať, upraviť a vymazať základné oprávnenia na tomto serveri "
+"Pootle."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:21
 #: local_apps/pootle_app/templates/language/language_admin.html:25
@@ -466,7 +487,7 @@ msgstr "Používateľské meno"
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:18
 #: local_apps/pootle_app/views/language/admin_permissions.py:100
 msgid "Delete"
-msgstr ""
+msgstr "Vymazať"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:28
 #: local_apps/pootle_app/templates/language/tp_admin_permissions.html:25
@@ -488,28 +509,29 @@ msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
+"Tu môžete pridať, upraviť a vymazať všetky dostupné projekty na tomto "
+"serveri Pootle."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr ""
+msgstr "Všeobecné nastavenia"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr ""
+msgstr "Tu si môžete nakonfigurovať všeobecné nastavenia vašej stránky."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:32
 msgid "Dependency Checks"
-msgstr ""
+msgstr "Kontroly závislostí"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:39
-#, fuzzy
 msgid "Optional"
-msgstr "Možnosť"
+msgstr "Nepovinné"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:47
 msgid "Optimizations"
-msgstr ""
+msgstr "Optimalizácia"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -524,10 +546,12 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"Tu môžete pridať, upraviť a vymazať všetkých dostupných používateľov na "
+"serveri Pootle."
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
-msgstr ""
+msgstr "Informácie"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
@@ -541,6 +565,10 @@ msgid ""
 "Read more on the <a href=\"http://translate.sourceforge.net/\">project "
 "website</a>."
 msgstr ""
+"Táto stránka využíva Pootle &mdash; výkonný webový softvér umožňujúci tímovú "
+"tvorbu prekladov a ich manažment. Tento skupinový nástroj je zadarmo a "
+"dostupný pre každého, kto sa chce stať súčasťou komunity Pootle. Viac na <a "
+"href=\"http://translate.sourceforge.net/\">stránke nášho projektu</a>."
 
 #: local_apps/pootle_app/templates/index/index.html:26
 msgid "Language"
@@ -550,28 +578,27 @@ msgstr "Jazyk"
 #: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_app/templates/project/projects.html:23
 msgid "Overall Completion"
-msgstr ""
+msgstr "Celkový stav"
 
 #: local_apps/pootle_app/templates/index/index.html:28
 #: local_apps/pootle_app/templates/index/index.html:63
 #: local_apps/pootle_app/templates/project/projects.html:24
 msgid "Last Activity"
-msgstr ""
+msgstr "Posledná činnosť"
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_app/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
-msgstr "Projekty"
+msgstr "Projekt"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:69
 msgid "Latest News"
-msgstr ""
+msgstr "Najnovšie správy"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "Prihlásiť sa na odber RSS správ."
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
@@ -580,54 +607,58 @@ msgstr "Prihlásiť"
 
 #: local_apps/pootle_app/templates/index/login.html:10
 msgid "Login to Pootle"
-msgstr "Prihlásiť sa do Pootle"
+msgstr "Prihlásiť do Pootle"
 
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
+"Vaše používateľské meno a heslo nekorešpondujú. Skúste to, prosím, znovu."
 
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Zabudli ste heslo?"
 
 #: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Ešte nemáte účet?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Registrovať"
+msgstr "Registrovať."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
 msgid "Error"
-msgstr "Jazyky"
+msgstr "Chyba"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr ""
+msgstr "Hotovo"
 
 #: local_apps/pootle_app/templates/language/language_admin.html:20
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr ""
+msgstr "Tu môžete pridať, upraviť a vymazať oprávnenia pre tento jazyk."
 
 #: local_apps/pootle_app/templates/language/language_admin.html:32
 msgid "Update Permissions"
-msgstr ""
+msgstr "Upraviť oprávnenia"
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:6
 #: local_apps/pootle_app/views/language/admin_files.py:62
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "Súbory"
 
+# čo tu znamena  rescan ?
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""
 "Here you can delete the available files in this translation project. You may "
 "also want to <a href=\"?scan_files=1\">rescan the project files</a> or <a "
 "href=\"?template_update=1\">update the files from templates</a>."
 msgstr ""
+"Tu môžete vymazať súbory prekladu, <a href=\"?scan_files=1\">opätovne ich "
+"skontrolovať</a> alebo ich <a href=\"?template_update=1\">aktualizovať zo "
+"šablón</a>."
 
 # toto je fajn
 #: local_apps/pootle_app/templates/language/tp_review.html:6
@@ -643,11 +674,11 @@ msgstr "Preložiť"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:80
 msgid "Edit translation"
-msgstr ""
+msgstr "Upraviť preklad"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:203
 msgid "Submit"
-msgstr "Poslať"
+msgstr "Odoslať"
 
 #: local_apps/pootle_app/templates/language/translatepage.html:206
 msgid "Suggest"
@@ -676,27 +707,25 @@ msgstr "Spravovať"
 
 #: local_apps/pootle_app/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr ""
+msgstr "Tu môžete pridať, upraviť a vymazať jazyky pre tento projekt."
 
 #: local_apps/pootle_app/views/top_stats.py:77
-#, fuzzy
 msgid "Suggestions"
-msgstr "Návrh:"
+msgstr "Návrhy"
 
 # toto je fajn
 #: local_apps/pootle_app/views/top_stats.py:78
-#, fuzzy
 msgid "Reviews"
-msgstr "Skontrolovať"
+msgstr "Kontroly"
 
 #: local_apps/pootle_app/views/top_stats.py:79
 msgid "Submissions"
-msgstr ""
+msgstr "Príspevky"
 
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Inštalácia Translate Toolkit verzia %s bola úspešná."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:42
 #, python-format
@@ -704,54 +733,69 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
+"Nainštalovaný je Translate Toolkit verzia %(installed)s. Pootle si vyžaduje "
+"verziu %(required)s."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:48
 msgid "SQLite is installed."
-msgstr ""
+msgstr "SQLite je nainštalovaný."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:51
 msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
 msgstr ""
+"Nemáte nainštalovaný SQLite. Pootle si vyžaduje SQLite na výpočet štatistiky "
+"prekladov."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:57
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "Django verzia %s je nainštalovaný."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:60
 #, python-format
 msgid "Django version %s is installed. Pootle only works with the 1.x series."
 msgstr ""
+"Nainštalovaný je Django verzia %s. Práca s Pootle si vyžaduje sériu 1.x."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:71
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
+"Nemôžem nájsť program unzip. Nahrávanie archívov je rýchlejšie, ak je "
+"\"unzip\" dostupný."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:75
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
+"Nenašiel sa balíček kódov ISO. Pootle si vyžaduje kódy ISO na preklad názvov "
+"jazykov."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:79
 msgid ""
 "Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news "
 "items are safe and correct."
 msgstr ""
+"Nenašiel sa lxml. Pootle si vyžaduje lxml na kontrolu správnosti a "
+"bezpečnosti HTML tagov v novinkách."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:83
 msgid ""
 "Can't find python-levenshtein package. Updating from templates is faster "
 "with python-levenshtein."
 msgstr ""
+"Nenašiel sa balíček Python-levenshtein, ktorý umožňuje rýchlejšiu "
+"aktualizáciu zo šablón."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:87
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
+"Nenašiel sa modul na indexovanie textu. Inštalácia modulov ako Xapian alebo "
+"Lucene dokáže vyhľadávanie urýchliť."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:97
 msgid ""
@@ -759,6 +803,9 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine."
 msgstr ""
+"Momentálne využívate základný databázový systém sqlite3. SQLite je vhodný "
+"len pre malé inštalácie a nižší počet používateľov. Zvolením systému MySQL "
+"zvýšite výkon Pootle."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:99
 msgid ""
@@ -766,50 +813,66 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
+"Momentálne využívate základný databázový systém sqlite3. SQLite je vhodný "
+"len pre malé inštalácie a nižší počet používateľov. Systém SQLite zvýši "
+"výkon Pootle, treba však najprv nainštalovať python-MySQLdb."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:107
 msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
 msgstr ""
+"Pootle využíva memcached ako kešovací modul, nemôže sa však pripojiť k "
+"serveru memcached. Kešovanie je momentálne blokované."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:111
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cached_db as "
 "the session engine."
 msgstr ""
+"Najlepší výkon dosiahnete využitím modulu na správu relácií "
+"django.contrib.sessions.backends.cache."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:113
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cache as the "
 "session engine."
 msgstr ""
+"Najlepší výkon dosiahnete využitím modulu na správu relácií "
+"django.contrib.sessions.backends.cache."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:117
 msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
 msgstr ""
+"Pootle využíva memcached ako kešovací modul, chýba však Python podpora pre "
+"memcached. Kešovanie je momentálne blokované."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:120
 msgid "For optimal performance, use memcached as the caching backend."
-msgstr ""
+msgstr "Najlepší výkon dosiahnete využitím kešovacieho modulu memcached."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:124
 msgid "For optimal performance, use Apache as the webserver."
-msgstr ""
+msgstr "Najlepší výkon dosiahnete využitím webservera Apache."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:128
 msgid ""
 "Running in debug mode. Debug mode is only needed when developing Pootle. For "
 "optimal performance, disable debugging mode."
 msgstr ""
+"Pootle momentálne beží v debug móde, čo je potrebné len pri jeho vyvíjaní. "
+"Najlepší výkon dosiahnete opustením debug módu."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:132
 msgid ""
 "Running in live translation mode. Live translation is useful as a tool to "
 "learn about Pootle and localization, but has high impact on performance."
 msgstr ""
+"Pracujete v režime prekladania naživo. Prekladanie naživo je užitočné pri "
+"oboznamovaní sa so serverom Pootle a lokalizáciou, môže však mať negatívny "
+"dopad na váš výkon."
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
@@ -818,23 +881,22 @@ msgid "Password"
 msgstr "Heslo"
 
 #: local_apps/pootle_app/views/admin/util.py:38
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
-msgstr "Nemáte dostatočné práva na spravovanie pootle."
+msgstr "Nemáte dostatočné práva na spravovanie Pootle."
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "Nemáte dostatočné práva na spravovanie pootle."
+msgstr "Nemáte dostatočné práva na spravovanie %s."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
-msgstr ""
+msgstr "Tento projekt neobsahuje žiadne súbory."
 
 #: local_apps/pootle_app/views/admin/util.py:179
 msgid "There are errors in the form. Please review the problems below."
 msgstr ""
+"Pri vypĺňaní dotazníka došlo k chybám. Preverte, prosím, uvedené problémy."
 
 #: local_apps/pootle_app/views/admin/util.py:199 templates/base.html:39
 #: templates/base.html.py:44 templates/base.html:105
@@ -842,32 +904,31 @@ msgid "Home"
 msgstr "Domov"
 
 #: local_apps/pootle_app/views/admin/util.py:201
-#, fuzzy
 msgid "Save Changes"
 msgstr "Uložiť zmeny"
 
 #: local_apps/pootle_app/views/index/about.py:48
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
-msgstr ""
+msgstr "Pootle %(pootle_ver)s využíva Translate Toolkit %(toolkit_ver)s"
 
 #: local_apps/pootle_app/views/index/index.py:60
 #: local_apps/pootle_app/views/language/item_dict.py:253
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr ""
+msgstr "Hotovo na %(percentage)d%%"
 
 #: local_apps/pootle_app/views/index/index.py:107
 #: local_apps/pootle_app/views/project/project_language_index.py:81
 #: local_apps/pootle_app/views/project/projects_index.py:41
 msgid "Translations are complete"
-msgstr ""
+msgstr "Preklady sú hotové"
 
 #: local_apps/pootle_app/views/index/index.py:108
 #: local_apps/pootle_app/views/project/project_language_index.py:82
 #: local_apps/pootle_app/views/project/projects_index.py:42
 msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr ""
+msgstr "Preklady si vyžadujú kontrolu (sú označené ako približné)"
 
 #: local_apps/pootle_app/views/index/login.py:46
 msgid "Default"
@@ -875,11 +936,11 @@ msgstr "Predvolené"
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:239
 msgid "This is a GNU-style project (files named per language code)."
-msgstr ""
+msgstr "Toto je projekt v štýle GNU (súbory nazvané podľa kódu jazyka)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:241
 msgid "This is a standard style project (one directory per language)."
-msgstr "Toto je štandardný štýl projektu (pre každý jazyk jeden priečinok)."
+msgstr "Toto je štandardný štýl projektu (každý jazyk má vlastné umiestnenie)."
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:247
 #: local_apps/pootle_app/views/language/language_admin.py:48
@@ -902,20 +963,20 @@ msgstr[2] "%d súborov"
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr ""
+msgstr "%(translated)d/%(total)d (%(translatedpercent)d%%) preložených slov"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
 msgid "%(translated)d/%(total)d strings"
-msgstr ""
+msgstr "%(translated)d/%(total)d reťazcov"
 
 #: local_apps/pootle_app/views/language/item_dict.py:77
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "zlyhal %(checks)d (%(checkspercent)d%%) reťazec"
+msgstr[1] "zlyhali %(checks)d (%(checkspercent)d%%) reťazce"
+msgstr[2] "zlyhalo %(checks)d (%(checkspercent)d%%) reťazcov"
 
 #: local_apps/pootle_app/views/language/item_dict.py:95
 msgid "Review Suggestions"
@@ -939,51 +1000,53 @@ msgstr "Preložiť všetko"
 
 #: local_apps/pootle_app/views/language/item_dict.py:125
 msgid "ZIP of directory"
-msgstr ""
+msgstr "ZIP adresára"
 
 #: local_apps/pootle_app/views/language/item_dict.py:136
 msgid "Download PO"
-msgstr ""
+msgstr "Stiahnuť PO"
 
 #: local_apps/pootle_app/views/language/item_dict.py:140
 msgid "Download XLIFF"
-msgstr ""
+msgstr "Stiahnuť XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:151
 msgid "Download"
-msgstr ""
+msgstr "Stiahnuť"
 
+# VCS rozpísať?
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Commit to VCS"
-msgstr ""
+msgstr "Odoslať do systému na správu verzií"
 
 #: local_apps/pootle_app/views/language/item_dict.py:167
 msgid "Update from VCS"
-msgstr ""
+msgstr "Aktualizovať zo systému na správu verzií"
 
+# Nie je jasné, čo sa myslí pod "attention"
 #: local_apps/pootle_app/views/language/item_dict.py:229
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d slovo si vyžaduje pozornosť"
+msgstr[1] "%d slová si vyžaduje pozornosť"
+msgstr[2] "%d slov si vyžaduje pozornosť"
 
 #: local_apps/pootle_app/views/language/item_dict.py:233
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d nepreložené slovo"
+msgstr[1] "%d nepreložené slová"
+msgstr[2] "%d nepreložených slov"
 
 #: local_apps/pootle_app/views/language/item_dict.py:234
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d slovo si vyžaduje kontrolu"
+msgstr[1] "%d slová si vyžadujú kontrolu"
+msgstr[2] "%d slov si vyžaduje kontrolu"
 
 #: local_apps/pootle_app/views/language/item_dict.py:260
 #: local_apps/pootle_app/views/language/language_index.py:57
@@ -991,22 +1054,21 @@ msgstr[2] ""
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Chyba pri načítavaní %d súboru"
+msgstr[1] "Chyba pri načítavaní %d súborov"
+msgstr[2] "Chyba pri načítavaní %d súborov"
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
-#, fuzzy
 msgid "You do not have rights to administer this language."
-msgstr "Nemáte dostatočné práva na správu tohto projektu."
+msgstr "Nemáte dostatočné práva na spravovanie tohto jazyka."
 
 #: local_apps/pootle_app/views/language/language_index.py:80
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(projects)d projekt, hotový na %(average)d%%"
+msgstr[1] "%(projects)d projekty, hotové na %(average)d%%"
+msgstr[2] "%(projects)d projektov, hotových na %(average)d%%"
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:60
 #: local_apps/pootle_app/views/project/project_language_index.py:76
@@ -1020,7 +1082,7 @@ msgstr "Meno"
 
 #: local_apps/pootle_app/views/language/project_index.py:42
 msgid "Translated percentage"
-msgstr "Preložené v percentách"
+msgstr "Preložených percent"
 
 #: local_apps/pootle_app/views/language/project_index.py:43
 msgid "Translated words"
@@ -1029,19 +1091,19 @@ msgstr "Preložené slová"
 #: local_apps/pootle_app/views/language/project_index.py:44
 #: local_apps/pootle_app/views/language/translate_page.py:911
 msgid "Fuzzy"
-msgstr "Nepresné"
+msgstr "Približné"
 
 #: local_apps/pootle_app/views/language/project_index.py:45
 msgid "Fuzzy percentage"
-msgstr "Nepresné v percentách"
+msgstr "Percento približných prekladov"
 
 #: local_apps/pootle_app/views/language/project_index.py:46
 msgid "Fuzzy words"
-msgstr "Nepresné slová"
+msgstr "Približné preklady"
 
 #: local_apps/pootle_app/views/language/project_index.py:48
 msgid "Untranslated percentage"
-msgstr "Nepreložené v percentách"
+msgstr "Nepreložených percent"
 
 #: local_apps/pootle_app/views/language/project_index.py:49
 msgid "Untranslated words"
@@ -1052,39 +1114,37 @@ msgid "Total"
 msgstr "Celkom"
 
 #: local_apps/pootle_app/views/language/project_index.py:51
-#, fuzzy
 msgid "Total Words"
 msgstr "Slov celkom"
 
 #. l10n: noun. The graphical representation of translation status
 #: local_apps/pootle_app/views/language/project_index.py:53
 msgid "Progress"
-msgstr ""
+msgstr "Stav"
 
 #: local_apps/pootle_app/views/language/project_index.py:54
 msgid "Summary"
-msgstr ""
+msgstr "Zhrnutie"
 
 #: local_apps/pootle_app/views/language/project_index.py:84
-#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr "Nemáte dostatočné práva pre zmenu prekladov"
+msgstr "Nemáte dostatočné práva na účasť na tomto preklade."
 
 #: local_apps/pootle_app/views/language/search_forms.py:42
 msgid "Source Text"
-msgstr ""
+msgstr "Východiskový text"
 
 #: local_apps/pootle_app/views/language/search_forms.py:43
 msgid "Target Text"
-msgstr ""
+msgstr "Cieľový text"
 
 #: local_apps/pootle_app/views/language/search_forms.py:44
 msgid "Comments"
-msgstr ""
+msgstr "Komentáre"
 
 #: local_apps/pootle_app/views/language/search_forms.py:45
 msgid "Locations"
-msgstr ""
+msgstr "Umiestnenia"
 
 #: local_apps/pootle_app/views/language/search_forms.py:67
 #: local_apps/pootle_app/views/language/search_forms.py:75
@@ -1094,12 +1154,12 @@ msgstr "Hľadať"
 
 #: local_apps/pootle_app/views/language/search_forms.py:82
 msgid "Advanced Search"
-msgstr ""
+msgstr "Pokročilé vyhľadávanie"
 
 #: local_apps/pootle_app/views/language/tp_common.py:63
 #, python-format
 msgid "Invalid/insecure file name: %s"
-msgstr ""
+msgstr "Neplatný/nejednoznačný názov súboru: %s"
 
 #: local_apps/pootle_app/views/language/tp_common.py:69
 #, python-format
@@ -1107,34 +1167,33 @@ msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
+"Neplatný názov súboru v štýle GNU: %(local_filename)s. Musí sa zhodovať s '%"
+"(langcode)s.%(filetype)s'."
 
 #: local_apps/pootle_app/views/language/tp_common.py:98
 msgid "Error while extracting archive"
-msgstr ""
+msgstr "Chyba pri rozbaľovaní archívu"
 
 #: local_apps/pootle_app/views/language/tp_common.py:205
-#, fuzzy
 msgid "You do not have rights to overwrite files here."
-msgstr "Nemáte dostatočné práva pre prepisovanie súborov"
+msgstr "Nemáte dostatočné práva na prepisovanie súborov."
 
 #: local_apps/pootle_app/views/language/tp_common.py:207
-#, fuzzy
 msgid "You do not have rights to upload new files here."
-msgstr "Nemáte dostatočné práva pre nahrávanie nových súborov"
+msgstr "Nemáte dostatočné práva na nahrávanie nových súborov."
 
 #: local_apps/pootle_app/views/language/tp_common.py:209
 #: local_apps/pootle_app/views/language/tp_common.py:211
-#, fuzzy
 msgid "You do not have rights to upload files here."
-msgstr "Nemáte dostatočné práva pre nahrávanie súborov"
+msgstr "Nemáte dostatočné práva na nahrávanie súborov."
 
 #: local_apps/pootle_app/views/language/tp_common.py:231
 msgid "Update all from version control"
-msgstr ""
+msgstr "Aktualizovať všetko prostredníctvom systému na správu verzií"
 
 #: local_apps/pootle_app/views/language/tp_common.py:246
 msgid "Upload"
-msgstr ""
+msgstr "Upraviť"
 
 #: local_apps/pootle_app/views/language/tp_common.py:253
 msgid ""
@@ -1143,29 +1202,27 @@ msgstr "Zlúčiť súbor s aktuálnym súborom a z konfliktov vytvoriť návrhy"
 
 #: local_apps/pootle_app/views/language/tp_common.py:254
 msgid "Add all new translations as suggestions"
-msgstr ""
+msgstr "Pridať všetky nové preklady ako návrhy"
 
 #: local_apps/pootle_app/views/language/tp_common.py:256
 msgid "Overwrite the current file if it exists"
-msgstr "Prepísať aktuálny súbor ak existuje"
+msgstr "Prepísať aktuálny súbor, ak existuje"
 
 #: local_apps/pootle_app/views/language/tp_common.py:259
 msgid "File"
-msgstr ""
+msgstr "Súbor"
 
 #: local_apps/pootle_app/views/language/tp_common.py:265
 msgid "Upload File"
 msgstr "Nahrať súbor"
 
 #: local_apps/pootle_app/views/language/tp_review.py:57
-#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr "Nemáte dostatočné práva pre zmenu prekladov"
+msgstr "Nemáte dostatočné práva na kontrolu prekladov."
 
 #: local_apps/pootle_app/views/language/tp_translate.py:57
-#, fuzzy
 msgid "You do not have rights to access translation mode."
-msgstr "Nemáte dostatočné práva pre zmenu prekladov"
+msgstr "Nemáte dostatočné práva na prekladanie."
 
 #. l10n: the parameter is the name of one of the quality checks, like "fuzzy"
 #: local_apps/pootle_app/views/language/translate_page.py:78
@@ -1188,7 +1245,7 @@ msgstr "Predchádzajúcich %d"
 #: local_apps/pootle_app/views/language/translate_page.py:109
 #, python-format
 msgid "Items %(first)d to %(last)d of %(total)d"
-msgstr ""
+msgstr "Prvky %(first)d až %(last)d z %(total)d"
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:118
@@ -1225,8 +1282,8 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"Preklad nie je možný, pretože množné číslo pre váš jazyk nie je dostupné. "
-"Kontaktujte prosím správcu stránky."
+"Preklad nie je možný, pretože pre váš jazyk nie sú definované tvary množného "
+"čísla. Kontaktujte prosím správcu stránky."
 
 #: local_apps/pootle_app/views/language/translate_page.py:467
 msgid "Current Translation:"
@@ -1237,7 +1294,7 @@ msgstr "Aktuálny preklad:"
 #: local_apps/pootle_app/views/language/translate_page.py:480
 #, python-format
 msgid "Suggestion %(suggid)d by %(user)s:"
-msgstr ""
+msgstr "Návrh %(suggid)d podaný používateľom %(user)s:"
 
 #: local_apps/pootle_app/views/language/translate_page.py:482
 #, python-format
@@ -1258,30 +1315,29 @@ msgstr "Návrh:"
 #, python-format
 msgid "%d suggestion"
 msgid_plural "%d suggestions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d návrh"
+msgstr[1] "%d návrhy"
+msgstr[2] "%d návrhov"
 
 #: local_apps/pootle_app/views/language/translate_page.py:836
 msgid "End of Quick Translate."
-msgstr ""
+msgstr "Ukončiť rýchly preklad."
 
 #: local_apps/pootle_app/views/language/translate_page.py:838
 msgid "End of Quality Check Review."
-msgstr ""
+msgstr "Ukončiť kontrolu kvality."
 
 #: local_apps/pootle_app/views/language/translate_page.py:841
 msgid "No file matched your query."
-msgstr ""
+msgstr "Nenašli sa žiadne súbory."
 
 #: local_apps/pootle_app/views/language/translate_page.py:842
 msgid "End of results."
-msgstr ""
+msgstr "Koniec výsledkov."
 
 #: local_apps/pootle_app/views/language/translate_page.py:855
-#, fuzzy
 msgid "You do not have rights to access view mode."
-msgstr "Nemáte dostatočné práva pre zmenu prekladov"
+msgstr "Nemáte dostatočné práva na prezeranie prekladov."
 
 #. l10n: Heading above the table column with the source language
 #: local_apps/pootle_app/views/language/translate_page.py:904
@@ -1295,23 +1351,21 @@ msgstr "Preklad"
 
 #: local_apps/pootle_app/views/language/translate_page.py:909
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Prijať návrh"
 
 #: local_apps/pootle_app/views/language/translate_page.py:910
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Zamietnuť návrh"
 
 #. l10n: Heading above the textarea for translator comments.
 #: local_apps/pootle_app/views/language/translate_page.py:913
-#, fuzzy
 msgid "Translator Comments"
-msgstr "Komentáre prekladateľa"
+msgstr "Poznámky prekladateľa"
 
 #. l10n: Heading above the comments extracted from the programing source code
 #: local_apps/pootle_app/views/language/translate_page.py:915
-#, fuzzy
 msgid "Developer Comments"
-msgstr "Komentáre vývojára"
+msgstr "Poznámky vývojára"
 
 #. l10n: This heading refers to related translations and terminology
 #: local_apps/pootle_app/views/language/translate_page.py:917
@@ -1330,39 +1384,39 @@ msgstr "Zamietnuť"
 
 #: local_apps/pootle_app/views/language/view.py:144
 msgid "You do not have rights to update files here"
-msgstr "Nemáte dostatočné práva pre nahrávanie súborov"
+msgstr "Nemáte dostatočné práva na nahrávanie súborov"
 
 #: local_apps/pootle_app/views/language/view.py:155
 msgid "You do not have the right to create ZIP archives."
-msgstr ""
+msgstr "Nemáte právo na tvorbu ZIP archívov."
 
 #: local_apps/pootle_app/views/language/view.py:264
 msgid "No suggestion data given."
-msgstr ""
+msgstr "Žiadne návrhy."
 
 #: local_apps/pootle_app/views/language/view.py:310
 msgid "Suggestion accepted."
-msgstr ""
+msgstr "Návrh prijatý."
 
 #: local_apps/pootle_app/views/project/project_admin.py:52
 msgid "Update from templates"
-msgstr "Aktualizovať zo šablóny"
+msgstr "Aktualizovať zo šablón"
 
 #: local_apps/pootle_app/views/project/project_admin.py:55
 msgid "Initialize"
-msgstr ""
+msgstr "Zahájiť"
 
 #: local_apps/pootle_app/views/project/project_language_index.py:71
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(languages)d jazyk preložený na %(average)d%%"
+msgstr[1] "%(languages)d jazyky preložené na %(average)d%%"
+msgstr[2] "%(languages)d jazykov preložených na %(average)d%%"
 
 #: local_apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
-msgstr ""
+msgstr "Pootle: Inštalácia"
 
 #: local_apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1370,110 +1424,116 @@ msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
 "initialize database."
 msgstr ""
+"Pri pokuse o vstup do databázy Pootle nastala chyba: \"%s\". Databázu sa "
+"pokúsime inicializovať."
 
 #: local_apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
-msgstr ""
+msgstr "Vytvárajú sa databázové tabuľky..."
 
 #: local_apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
-msgstr ""
+msgstr "Vytvárajú sa základné jazyky, projekty a správca"
 
 #: local_apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
-msgstr ""
+msgstr "Vypočítavajú sa štatistiky prekladu, môže to potrvať niekoľko minúť"
 
 #: local_apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr ""
+msgstr "%(language)s je hotová/ý na %(percent)d%%"
 
 #: local_apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr ""
+msgstr "Projekt %(project)s je hotový na %(percent)d%%"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
-msgstr ""
+msgstr "Výpočet štatistiky základných jazykov a projektov je hotový"
 
 #: local_apps/pootle_misc/dbinit.py:120
 msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
-msgstr ""
+msgstr "Databáza spustená, do 10 sekúnd budete presmerovaný/á na hlavnú stránku"
 
 #: local_apps/pootle_misc/middleware/errorpages.py:45
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr ""
+"Na zobrazenie tejto stránky je potrebné <a href=\"%"
+"(login_link)s\">prihlásenie</a>."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:58
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
+"Chyba pri pokuse o prístup k súboru %(filename)s, systém na správu súborov "
+"hlási chybu: %(errormsg)s"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "Prvý"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 msgid "Previous"
-msgstr ""
+msgstr "Predchádzajúci"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 msgid "Next"
-msgstr ""
+msgstr "Nasledujúci"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 msgid "Last"
-msgstr ""
+msgstr "Posledný"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
-msgstr ""
+msgstr "Správa"
 
 #. l10n: The date that the news item was written
 #: local_apps/pootle_notifications/models.py:30
 msgid "Added"
-msgstr ""
+msgstr "Pridané"
 
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(language)s"
-msgstr ""
+msgstr "Novinky pre %(language)s"
 
 #: local_apps/pootle_notifications/views.py:92
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr ""
+msgstr "Novinky pre projekt %(project)s v %(language)s"
 
 #: local_apps/pootle_notifications/views.py:96
 #, python-format
 msgid "News for %(path)s"
-msgstr ""
+msgstr "Novinky pre %(path)s"
 
 #: local_apps/pootle_notifications/views.py:122
 msgid "View News Item"
-msgstr ""
+msgstr "Zobraziť novinku"
 
 #: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: local_apps/pootle_notifications/templates/notices.html:76
 msgid "No news yet."
-msgstr ""
+msgstr "Doposiaľ žiadne novinky."
 
 #: local_apps/pootle_notifications/templates/notices.html:15
 #: local_apps/pootle_notifications/templates/notices.html:17
 #: templates/language_menu.html:8 templates/tp_menu.html:8
 msgid "News"
-msgstr ""
+msgstr "Novinky"
 
 #: local_apps/pootle_notifications/templates/notices.html:64
 msgid "Publish"
-msgstr ""
+msgstr "Zverejniť"
 
 #: local_apps/pootle_store/models.py:53
 msgid "Path"
-msgstr ""
+msgstr "Cesta"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1491,76 +1551,81 @@ msgid ""
 "or in the administration interface.</p>\n"
 "</div>"
 msgstr ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2 class=\"title\">Toto je demo inštalácia Pootle.</h2>\n"
+"<p class=\"about\">Môžete tiež navštíviť oficiálny <a "
+"href=\"http://pootle.locamotion.org\">Pootle server</a>. Správca servera "
+"zatiaľ neposkytol žiadne kontaktné údaje či popis tohoto servera. Ak ste "
+"správcom tohoto servera, uveďte jeho popis v preferenciách alebo v "
+"správcovskom prostredí.</p>\n"
+"</div>"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
-msgstr ""
+msgstr "Prístup nepovolený"
 
 #: templates/403.html:14
 msgid "You don't have permission to access this page."
-msgstr ""
+msgstr "Nemáte právo na zobrazenie tejto stránky."
 
 #: templates/404.html:5 templates/404.html.py:10
 msgid "Page Not Found"
-msgstr ""
+msgstr "Stránka sa nenašla"
 
 #: templates/404.html:11
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Prepáčte, ale požadovaná stránka sa nenašla."
 
 #: templates/500.html:5 templates/500.html.py:10
 msgid "Server Error"
-msgstr ""
+msgstr "Chyba serveru"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Vyskytla sa chyba. Prosíme vás o trpezlivosť."
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
-#, fuzzy
 msgid "Administration"
-msgstr "Spravovať"
+msgstr "Administrácia"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
-msgstr ""
+msgstr "Nakonfigurujte si všeobecné nastavenia vašej stránky"
 
 #: templates/admin_profile_menu.html:5
 msgid "General"
-msgstr ""
+msgstr "Všeobecné"
 
 #: templates/admin_profile_menu.html:6
 msgid "Manage the users"
-msgstr ""
+msgstr "Správa používateľov"
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the languages"
-msgstr ""
+msgstr "Správa jazykov"
 
 #: templates/admin_profile_menu.html:8
 msgid "Manage the projects"
-msgstr ""
+msgstr "Správa projektov"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage the default permissions"
-msgstr ""
+msgstr "Správa základných oprávnení"
 
 #: templates/base.html:37
 msgid "skip to navigation"
-msgstr ""
+msgstr "prejsť na navigáciu"
 
 #: templates/base.html:45 templates/base.html.py:106 templates/docs.html:5
 msgid "Help"
-msgstr ""
+msgstr "Pomoc"
 
 #: templates/base.html:50 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
-#, fuzzy
 msgid "My Account"
 msgstr "Môj účet"
 
 #: templates/base.html:51
-#, fuzzy
 msgid "Log Out"
 msgstr "Odhlásiť"
 
@@ -1570,142 +1635,141 @@ msgid "Register"
 msgstr "Registrovať"
 
 #: templates/base.html:56
-#, fuzzy
 msgid "Log In"
 msgstr "Prihlásiť"
 
 #: templates/base.html:107
-#, fuzzy
 msgid "About this Pootle Server"
-msgstr "O tomto serveri Pootle"
+msgstr "O serveri Pootle"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr ""
+msgstr "Hlavná stránka jazyka"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
 msgid "Overview"
-msgstr ""
+msgstr "Prehľad"
 
 #: templates/language_menu.html:8
 msgid "Language news"
-msgstr ""
+msgstr "Jazykové novinky"
 
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
-msgstr ""
+msgstr "Spravovať jazykové oprávnenia"
 
 #: templates/project_menu.html:7
-#, fuzzy
 msgid "Project main page"
-msgstr "Domovská stránka projektu"
+msgstr "Hlavná stránka projektu"
 
 #: templates/project_menu.html:9
 msgid "Administrate your project"
-msgstr ""
+msgstr "Spravovať svoj projekt"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
-msgstr ""
+msgstr "Hlavná stránka prekladu"
 
 #: templates/tp_menu.html:8
 msgid "Translation project news"
-msgstr ""
+msgstr "Novinky v preklade"
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr ""
+msgstr "Preložiť tento projekt"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
-msgstr ""
+msgstr "Kontrola kvality a recenzia návrhov"
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "Spravovať projektové oprávnenia"
 
 #: templates/tp_menu.html:13
 msgid "Administrate your project files"
-msgstr ""
+msgstr "Spravovať súbory projektu"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
-msgstr ""
+msgstr "Prehľad vášho účtu"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 #: templates/profiles/profile_detail.html:6
 #: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "Palubná doska"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
-msgstr ""
+msgstr "Nastaviť preferencie pri prekladaní"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr ""
+msgstr "Nastavenia"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
-msgstr ""
+msgstr "Upraviť osobné údaje"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
-msgstr ""
+msgstr "Zmena hesla"
 
 #: templates/admin/base_site.html:4
 msgid "Django site admin"
-msgstr ""
+msgstr "Správca stránky Django"
 
 #: templates/admin/base_site.html:7
 msgid "Django administration"
-msgstr ""
+msgstr "Správa Django"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
+"Tu si môžete upraviť svoje osobné údaje. Dané informácie sa zobrazia v "
+"hlavičke súborov prekladu."
 
 #: templates/profiles/edit_personal.html:19
 msgid "First Name"
-msgstr ""
+msgstr "Meno"
 
 #: templates/profiles/edit_personal.html:24
 msgid "Last Name"
-msgstr ""
+msgstr "Priezvisko"
 
 #: templates/profiles/edit_personal.html:29
-#, fuzzy
 msgid "Email address"
-msgstr "E-mailová adresa"
+msgstr "Emailová adresa"
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr ""
+msgstr "Nastavenia prekladov"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
 msgstr ""
+"Tu si môžete nastaviť prekladateľské prostredie a vaše jazykové preferencie."
 
 #: templates/profiles/edit_profile.html:19
 msgid "Number of Rows"
-msgstr ""
+msgstr "Počet riadkov"
 
 #: templates/profiles/edit_profile.html:23
 msgid "Input Height"
-msgstr ""
+msgstr "Výška editačného poľa"
 
 #: templates/profiles/edit_profile.html:31
 msgid "My Languages"
@@ -1717,7 +1781,7 @@ msgstr "Moje projekty"
 
 #: templates/profiles/edit_profile.html:41
 msgid "Alternative Source Languages"
-msgstr ""
+msgstr "Alternatívne zdrojové jazyky"
 
 #: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
@@ -1725,32 +1789,32 @@ msgstr "Rýchle odkazy"
 
 #: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
-msgstr ""
+msgstr "Nemáte zvolené žiadne jazyky či projekty. Urobte tak teraz."
 
 #: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
-msgstr ""
+msgstr "Používateľ si zatiaľ nezvolil žiadne jazyky ani projekty."
 
 #: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
-msgstr ""
+msgstr "Štatistika používateľa"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
+msgstr "Zoznam profilov"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr ""
+msgstr "Meno"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr ""
+msgstr "Priezvisko"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
 msgid "Account Activated"
-msgstr ""
+msgstr "Účet bol aktivovaný"
 
 #: templates/registration/activate.html:10
 #, python-format
@@ -1758,65 +1822,64 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
+"Účet s používateľským menom \"%(account)s\" bol aktivovaný. Môžete sa "
+"prihlásiť."
 
 #: templates/registration/activation_email.txt:2
-#, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Bol pre vás vytvorený účet Pootle s použitím tejto e-mailovej adresy.\n"
+msgstr ""
+"S použitím tejto emailovej adresy bol pre vás vytvorený účet na serveri "
+"Pootle."
 
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "Pre aktivovanie vášho účtu kliknite na tento odkaz:\n"
+msgstr "Účet aktivujte kliknutím na nasledujúci odkaz:"
 
 #: templates/registration/activation_email.txt:6
-#, fuzzy
 msgid "Your activation code is:"
-msgstr ""
-"Váš aktivačný kód je:\n"
-"%s\n"
+msgstr "Váš aktivačný kód je:"
 
 #: templates/registration/activation_email.txt:9
-#, fuzzy
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "Táto e-mailová správa bola odoslaná pre overenie, že táto e-mailová adresa "
-"je v poriadku. Ak ste si neželali zaregistrovať účet, jednoducho túto správu "
-"ignorujte.\n"
+msgstr ""
+"Táto emailová správa bola odoslaná za účelom overenia platnosti adresy. Ak "
+"ste si neželali vytvoriť účet, jednoducho ju ignorujte."
 
 #: templates/registration/activation_email_subject.txt:2
-#, fuzzy
 msgid "Pootle registration"
-msgstr "Registrácia do Pootle"
+msgstr "Registrácia na Pootle"
 
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:15
 msgid "Password Changed"
-msgstr ""
+msgstr "Heslo bolo zmenené"
 
 #: templates/registration/password_change_done.html:16
 msgid "Your password was changed successfully."
-msgstr ""
+msgstr "Vaše heslo bolo úspešne zmenené."
 
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11
 msgid "Change Password"
-msgstr ""
+msgstr "Zmena hesla"
 
 #: templates/registration/password_change_form.html:15
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"Vrámci bezpečnosti zadajte staré heslo a potom dvakrát nové pre prípad "
+"preklepu."
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr ""
+msgstr "Staré heslo"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
-msgstr ""
+msgstr "Nové heslo"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm password"
@@ -1824,15 +1887,15 @@ msgstr "Potvrdiť heslo"
 
 #: templates/registration/password_change_form.html:38
 msgid "Change My Password"
-msgstr ""
+msgstr "Zmena hesla"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "Zmena hesla na pôvodné"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "Heslo bolo zmenené."
 
 #: templates/registration/password_reset_complete.html:10
 #, python-format
@@ -1840,6 +1903,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
+"Vaše heslo je odteraz platné. Môžete sa <a href=\"%"
+"(login_url)s\">prihlásiť</a>."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_done.html:5
@@ -1847,47 +1912,50 @@ msgstr ""
 #: templates/registration/password_reset_form.html:5
 #: templates/registration/password_reset_form.html:9
 msgid "Reset Password"
-msgstr ""
+msgstr "Zmena hesla na pôvodné"
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter New Password."
-msgstr ""
+msgstr "Nové heslo."
 
 #: templates/registration/password_reset_confirm.html:12
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr ""
+msgstr "Pre overenie vášho hesla ho zadajte, prosím, dvakrát."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr ""
+msgstr "Nové heslo"
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
 msgstr "Potvrdiť heslo"
 
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr ""
+msgstr "Zmena hesla"
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "Zmena hesla neúspešná."
 
 #: templates/registration/password_reset_confirm.html:32
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Odkaz na zmenu hesla je neplatný, zrejme už bol použitý. Požiadajte, prosím, "
+"o nový."
 
 #: templates/registration/password_reset_done.html:11
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"Na vami zadanú emailovú adresu sme odoslali inštrukcie na zmenu hesla. "
+"Skontrolujte si vašu emailovú schránku."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -1895,60 +1963,63 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"Tento email vám posielame na základe vašej požiadavky o zmenu hesla do "
+"používateľského konta na %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Na nasledujúcej stránke si, prosím, zvoľte nové heslo:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "Vaše používateľské meno je %(user)s."
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Ďakujeme, že používate Pootle!"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Zabudli ste heslo? Zadajte vašu emailovú adresu a my vám pošleme pokyny na "
+"nastavenie nového."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
 msgid "Email Address"
-msgstr "E-mailová adresa"
+msgstr "Emailová adresa"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "Registrácia dokončená"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "Vo vašej emailovej schránke nájdete správu s pokynmi na aktiváciu účtu."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "Vytvoriť nový účet na Pootle"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "Predtým, ako začnete prekladať, vyplňte nasledujúci dotazník."
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"
-msgstr ""
+msgstr "Heslo (znovu)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr ""
+msgstr "Máte už účet?"
 
 #: templates/registration/registration_form.html:41
-#, fuzzy
 msgid "Log In."
-msgstr "Prihlásiť"
+msgstr "Prihlásiť."
 
 #~ msgid "General options"
 #~ msgstr "Hlavné možnosti"

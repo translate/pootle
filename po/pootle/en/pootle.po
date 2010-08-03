@@ -1523,9 +1523,8 @@ msgid "Register"
 msgstr ""
 
 #: templates/base.html:56
-#, fuzzy
 msgid "Log In"
-msgstr "Skrá inn."
+msgstr ""
 
 #: templates/base.html:107
 msgid "About this Pootle Server"
@@ -1887,4 +1886,4 @@ msgstr ""
 
 #: templates/registration/registration_form.html:41
 msgid "Log In."
-msgstr "Skrá inn."
+msgstr ""
