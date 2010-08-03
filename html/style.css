@@ -1799,17 +1799,20 @@ tr.odd .tm-unit
 
 /* SUGGESTIONS */
 
+div.translator-comments + #translate-suggestion-container
+{
+    margin-top: 0.5em;
+}
+
 #translate-suggestion-container
 {
-    clear: both;
-    margin-bottom: 10px;
+    margin-top: 1.8em;
 }
 
 .translate-suggestion-block
 {
     position: relative;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 0.5em;
 }
 
 .translate-suggestion-block .rejectsugg img
