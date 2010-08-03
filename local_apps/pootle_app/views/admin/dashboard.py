@@ -165,8 +165,9 @@ def server_stats():
         result['submission_count'] = Submission.objects.count() + SuggestiontStat.objects.count()
         result['pending_count'] = Suggestion.objects.count()
         result['user_count'] = User.objects.filter(is_active=True).count()
-        result['user_active_count'] = (PootleProfile.objects.filter(submission__isnull=False) | PootleProfile.objects.filter(suggestion__isnull=False) |\
-                                       PootleProfile.objects.filter(suggester__isnull=False)).order_by().distinct().count()
+        result['user_active_count'] = (PootleProfile.objects.exclude(submission=None) |\
+                                       PootleProfile.objects.exclude(suggestion=None) |\
+                                       PootleProfile.objects.exclude(suggester=None)).order_by().count()
         cache.set("server_stats", result, settings.CACHE_MIDDLEWARE_SECONDS * 10)
     return result
 
