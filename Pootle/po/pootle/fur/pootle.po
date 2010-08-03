@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2010-03-26 00:54+0200\n"
-"Last-Translator: Andrea Decorte <adecorte@fastwebnet.it>\n"
+"PO-Revision-Date: 2010-07-08 01:30+0200\n"
+"Last-Translator: admin <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.3\n"
+"X-Generator: Pootle 2.0.4\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: strings.py:8
@@ -598,7 +598,7 @@ msgstr "No âstu ancjemò un profîl?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
 msgid "Register."
-msgstr "Regjistriti"
+msgstr ""
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -621,7 +621,7 @@ msgstr ""
 #: local_apps/pootle_app/views/language/admin_files.py:62
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr "Files"
+msgstr ""
 
 #: local_apps/pootle_app/templates/language/tp_admin_files.html:11
 msgid ""

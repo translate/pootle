@@ -2,25 +2,25 @@
 # Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2010-07-15 13:56+0200\n"
+"Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr ""
-"\"Control\" ياكى Mac نىڭ \"Command\" نى بېسىپ تۇرۇپ كۆپ تۈر تاللىغىلى بولىدۇ."
+msgstr "بىردىن كۆپ تۈر تاللاش ئۈچۈن \"Control\" ياكى Mac نىڭ \"Command\" نى بېسىڭ."
 
 #: strings.py:9 local_apps/pootle_app/views/profile/view.py:45
 msgid "Enter a valid e-mail address."
@@ -31,7 +31,7 @@ msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
-"بۇ ئېلخەت ئادرېسى ھېچقانداق ھېسابات بىلەن باغلانمىغان. سىز راستىنلا "
+"بۇ ئېلخەت مەنزىل ھېچقانداق ھېسابات بىلەن باغلانمىغان. سىز راستىنلا "
 "خەتلەتكەنمۇ؟"
 
 #: strings.py:11
@@ -63,7 +63,7 @@ msgstr "ئۆزگەرت"
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr " %(name)s قوش"
+msgstr "%(name)s قوش"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
@@ -171,7 +171,7 @@ msgstr "تىل كودى ISO ئۆلچىمىگە ئۇيغۇن ئەمەس"
 
 #: local_apps/pootle_app/admin.py:66
 msgid "Project code may only contain letters, numbers and _"
-msgstr "قۇرۇلۇش كودى پەقەت ھەرپ، سان ۋە ئاستى سىزىق(_)نى ئۆز ئىچىگە ئالىدۇ"
+msgstr "قۇرۇلۇش كودى پەقەت ھەرپ، سان ۋە ئاستى سىزىق _ نى ئۆز ئىچىگە ئالىدۇ"
 
 #: local_apps/pootle_app/admin.py:78
 msgid "Advanced Options"
@@ -196,8 +196,8 @@ msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
-"چۈشەندۈرۈش باش بەت ۋە ھەققىدە دېگەن بەتتە كۆرسىتىلىدۇ. توغرا بولغان HTML نى "
-"ئىشلىتىڭ"
+"چۈشەندۈرۈش ۋە بايان باش بەت ۋە ھەققىدە دېگەن بەتتە كۆرسىتىلىدۇ. توغرا بولغان "
+"HTML نى ئىشلىتىڭ"
 
 #: local_apps/pootle_app/unit_update.py:38
 #: projects.py:1151
@@ -297,7 +297,7 @@ msgstr "نامەلۇم"
 #: adminpages.py:93
 #: indexpage.py:217
 msgid "Number of Plurals"
-msgstr "جۈپ سانى"
+msgstr "كۆپلۈك سانى"
 
 #: local_apps/pootle_app/models/language.py:50
 #: adminpages.py:94
@@ -340,7 +340,7 @@ msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. This field should be valid HTML."
 msgstr ""
-"قۇرۇلۇشنىڭ چۈشەندۈرۈلۈشى.  تەپسىلىي چۈشەندۈرۈش ۋە كۆرسەتمىلەرنى يېزىڭ. چوقۇم "
+"قۇرۇلۇشنىڭ چۈشەندۈرۈلۈشى. تەپسىلىي چۈشەندۈرۈش ۋە كۆرسەتمىلەرنى يېزىڭ. چوقۇم "
 "توغرا بولغان HTML نى ئىشلەتمىسىڭىز بولمايدۇ."
 
 #: local_apps/pootle_app/models/project.py:48
@@ -361,7 +361,7 @@ msgstr "GNU ئۇسلۇب: ھۆججەت ئاتى تىل كودىدا ئاتالغ
 
 #: local_apps/pootle_app/models/project.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr "غەيرى GNU: ھەر بىر تىلنىڭ  ئۆزىنىڭ مۇندەرىجىسى بولىدۇ"
+msgstr "غەيرى GNU: ھەر بىر تىلنىڭ ئۆزىنىڭ مۇندەرىجىسى بولىدۇ"
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
@@ -410,7 +410,7 @@ msgstr "نەشر باشقۇرۇش سىستېمىسى ئارقىلىق %s نى ي
 #: local_apps/pootle_app/models/translation_project.py:271
 #, python-format
 msgid "Updated file %s from version control"
-msgstr "%s ھۆججەت نەشر باشقۇرۇش سىستېمىسى ئارقىلىق يېڭىلاندى"
+msgstr "ھۆججەت %s نەشر باشقۇرۇش سىستېمىسى ئارقىلىق يېڭىلاندى"
 
 #: local_apps/pootle_app/models/translation_project.py:282
 #: local_apps/pootle_app/views/language/view.py:134
@@ -426,7 +426,7 @@ msgstr "ئىلغار تۆھپىكارلار"
 #: local_apps/pootle_app/views/language/project_index.py:41
 #: pagelayout.py:240
 msgid "Translated"
-msgstr "تەرجىمە قىلىندى"
+msgstr "تەرجىمە قىلىنغان"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
@@ -440,7 +440,7 @@ msgstr "كۆزدىن كەچۈرۈش لازىم"
 #: pagelayout.py:246
 #: indexpage.py:786
 msgid "Untranslated"
-msgstr "تەرجىمە قىلىنمىغىنى"
+msgstr "تەرجىمە قىلىنمىغان"
 
 #: local_apps/pootle_app/templates/admin/admin_general_languages.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_languages.html:11
@@ -537,7 +537,7 @@ msgstr "ئادەتتىكى تەڭشەك"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr "بۇ يەردە مەزكۇر تور بېكەتنىڭ ئادەتتىكى تەڭشەكلىرىنى سەپلىيەلەيسىز"
+msgstr "بۇ يەردە مەزكۇر تور بېكەتنىڭ ئادەتتىكى تەڭشەكلىرىنى سەپلىيەلەيسىز."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:32
 msgid "Dependency Checks"
@@ -589,10 +589,9 @@ msgstr ""
 "بۇ بېكەتتە Pootle ئىجرا قىلىنىۋاتىدۇ&mdash; تور بېكەت ئاساسىدىكى كۈچلۈك "
 "بولغان بۇ يۇمشاق دېتال تەرجىمە قوشۇنىنىڭ تەرجىمە قىلىشى ۋە تەرجىمىنى "
 "باشقۇرۇشقا ياردەم بېرىدۇ. بۇ ئىجتىمائىي رايون قورالى ئەركىن يۇمشاق دېتال "
-"بولۇپ، ھەر قانداق قوشۇن ئەركىن ئىشلىتەلەيدۇ ھەمدە  Pootle ئىجتىمائىي "
-"رايونىغا تۆھپە قوشالايدۇ.  <a "
-"href=\"http://translate.sourceforge.net/\">قۇرۇلۇش تور بېكىتى </a> دىن تېخىمۇ "
-"بىلدۈرگۈ ئوقۇڭ."
+"بولۇپ، ھەر قانداق قوشۇن ئەركىن ئىشلىتەلەيدۇ ھەمدە Pootle ئىجتىمائىي رايونىغا "
+"تۆھپە قوشالايدۇ. <a href=\"http://translate.sourceforge.net/\">قۇرۇلۇش تور "
+"بېكىتى</a>دىن تېخىمۇ كۆپ بىلدۈرگۈ ئوقۇڭ."
 
 #: local_apps/pootle_app/templates/index/index.html:26
 #: indexpage.py:265
@@ -623,7 +622,7 @@ msgstr "ئەڭ يېڭى خەۋەرلەر"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr "RSS  قانالغا مۇشتەرى بولۇڭ."
+msgstr "RSS قانالغا مۇشتەرى بولۇڭ."
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
@@ -635,7 +634,7 @@ msgstr "كىر"
 #: local_apps/pootle_app/templates/index/login.html:10
 #: users.py:55
 msgid "Login to Pootle"
-msgstr "Pootle غا كىر"
+msgstr "Pootle غا تىزىمغا كىر"
 
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
@@ -685,8 +684,8 @@ msgid ""
 "href=\"?template_update=1\">update the files from templates</a>."
 msgstr ""
 "بۇ يەردە مەزكۇر تەرجىمە قۇرۇلۇشىدا ئىشلىتىلىۋاتقان ھۆججەتلەرنى ئۆچۈرەلەيسىز. "
-"زۆرۈر تېپىلغاندا <a href=\\\"?scan_files=1\\\">قۇرۇلۇش ھۆججەتلىرىنى قايتا "
-"ئىزدەش</a> ياكى <a href=\\\"?template_update=1\\\"> قېلىپتىن ھۆججەتنى "
+"زۆرۈر تېپىلغاندا <a href=\"?scan_files=1\">قۇرۇلۇش ھۆججەتلىرىنى قايتا "
+"ئىزدەش</a> ياكى <a href=\"?template_update=1\"> قېلىپتىن ھۆججەتنى "
 "يېڭىلاش</a>قىمۇ بولىدۇ"
 
 #. l10n: Verb
@@ -770,7 +769,7 @@ msgstr "تاپشۇرۇلغانلىرى"
 #: local_apps/pootle_app/views/admin/adminpages.py:39
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr "تەرجىمە قورال ساندۇقىنىڭ %s  نەشرى ئورنىتىلىپتۇ."
+msgstr "تەرجىمە قورال ساندۇقىنىڭ %s نەشرى ئورنىتىلىپتۇ."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:42
 #, python-format
@@ -778,8 +777,8 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
-"تەرجىمە قورال ساندۇقىنىڭ %s  نەشرى ئورنىتىلىپتۇ. Pootle غا زۆرۈر نەشرى %"
-"(required)s."
+"تەرجىمە قورال ساندۇقىنىڭ %(installed)s نەشرى ئورنىتىلىپتۇ. Pootle غا زۆرۈر "
+"نەشرى %(required)s."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:48
 msgid "SQLite is installed."
@@ -794,13 +793,13 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/adminpages.py:57
 #, python-format
 msgid "Django version %s is installed."
-msgstr "Django نىڭ  %s نەشرى ئورنىتىلغان."
+msgstr "Django نىڭ %s نەشرى ئورنىتىلغان."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:60
 #, python-format
 msgid "Django version %s is installed. Pootle only works with the 1.x series."
 msgstr ""
-"Django نىڭ  %s نەشرى ئورنىتىلغان. Pootle پەقەت 1.x نەشرى بىلەن ماسلىشىپ "
+"Django نىڭ %s نەشرى ئورنىتىلغان. Pootle پەقەت 1.x نەشرى بىلەن ماسلىشىپ "
 "خىزمەت قىلالايدۇ."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:71
@@ -832,7 +831,7 @@ msgid ""
 "Can't find python-levenshtein package. Updating from templates is faster "
 "with python-levenshtein."
 msgstr ""
-"python-levenshtein بوغچىسىنى تاپالمىدى. python-levenshtein ئىشلىتىلسە "
+"بوغچا python-levenshtein نى تاپالمىدى. python-levenshtein ئىشلىتىلسە "
 "قېلىپتىن يېڭىلاش تېخىمۇ تېزلىشىدۇ."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:87
@@ -840,7 +839,7 @@ msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
-"تېكست ئىندېكسلاش موتورى تېپىلمىدى.  Xapian ياكى Lucene غا ئوخشاش ئىندېكسلاش "
+"تېكست ئىندېكسلاش موتورى تېپىلمىدى. Xapian ياكى Lucene غا ئوخشاش ئىندېكسلاش "
 "موتورى ئورنىتىلسا ئىندېكسلاش تېخىمۇ تېزلىشىدۇ."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:97
@@ -850,7 +849,7 @@ msgid ""
 "the MySQL database engine."
 msgstr ""
 "كۆڭۈلدىكى sqlite3 ساندان موتورى ئىشلىتىلدى. SQLite پەقەت كىچىك ئورنىتىش ۋە "
-"ئاز ئىشلەتكۈچىلەرگە ماس كېلىدۇ.  Pootle مۇلازىمىتىر MySQL ساندان موتورى "
+"ئاز ئىشلەتكۈچىلەرگە ماس كېلىدۇ. Pootle مۇلازىمىتىر MySQL ساندان موتورى "
 "ئىشلەتسە ئۈنۈمى تېخىمۇ ياخشى بولىدۇ."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:99
@@ -860,16 +859,16 @@ msgid ""
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
 "كۆڭۈلدىكى sqlite3 ساندان موتورى ئىشلىتىلدى. SQLite پەقەت كىچىك ئورنىتىش ۋە "
-"ئاز ئىشلەتكۈچىلەرگە ماس كېلىدۇ.  Pootle مۇلازىمىتىر MySQL ساندان موتورى "
+"ئاز ئىشلەتكۈچىلەرگە ماس كېلىدۇ. Pootle مۇلازىمىتىر MySQL ساندان موتورى "
 "ئىشلەتسە ئۈنۈمى تېخىمۇ ياخشى بولىدۇ. ئەمما سىز ئالدى بىلەن python-MySQLdb "
-"ئورنىتىشىڭىز لازىم. "
+"ئورنىتىشىڭىز لازىم."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:107
 msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
 msgstr ""
-"Pootle دا memcached غەملەك ئاخىرى سۈپىتىدە سەپلەندى، ئەمما  memcached "
+"Pootle دا memcached غەملەك ئاخىرى سۈپىتىدە سەپلەندى، ئەمما memcached "
 "مۇلازىمىتىرغا ئۇلىنالمىدى. شۇڭلاشقا نۆۋەتتە غەملەك چەكلەندى."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:111
@@ -893,7 +892,7 @@ msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
 msgstr ""
-"Pootle دا  memcached نى غەملەك ئاخىرى سۈپىتىدە سەپلەندى، ئەمما memcached نىڭ "
+"Pootle دا memcached نى غەملەك ئاخىرى سۈپىتىدە سەپلەندى، ئەمما memcached نىڭ "
 "Python قوللىشى ئورنىتىلمىغان. شۇڭلاشقا نۆۋەتتە غەملەك چەكلەندى."
 
 #: local_apps/pootle_app/views/admin/adminpages.py:120
@@ -939,7 +938,7 @@ msgstr "pootle باشقۇرۇش ھوقۇقىڭىز يوق."
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
 msgid "You do not have rights to administer %s."
-msgstr "باشقۇرۇش ھوقۇقىڭىز يوق."
+msgstr "%s نى باشقۇرۇش ھوقۇقىڭىز يوق."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
@@ -968,7 +967,7 @@ msgstr "ئۆزگەرتكەننى ساقلا"
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
 "Pootle %(pootle_ver)s تەرجىمە قورالى Translate Toolkit %(toolkit_ver)s نى "
-"ئاساس قىلىدۇ "
+"ئاساس قىلىدۇ"
 
 #: local_apps/pootle_app/views/index/index.py:60
 #: local_apps/pootle_app/views/language/item_dict.py:253
@@ -1002,7 +1001,7 @@ msgstr "بۇ GNU ئۇسلۇبىدىكى قۇرۇلۇش (ھۆججەت تىل كو
 #: adminpages.py:359
 msgid "This is a standard style project (one directory per language)."
 msgstr ""
-"بۇ ئۆلچەملىك ئۇسلۇبتىكى قۇرۇلۇش ( ھەر بىر تىل بىر مۇندەرىجىگە ماس كېلىدۇ)"
+"بۇ ئۆلچەملىك ئۇسلۇبتىكى قۇرۇلۇش (ھەر بىر تىل بىر مۇندەرىجىگە ماس كېلىدۇ)"
 
 #: local_apps/pootle_app/views/language/admin_permissions.py:247
 #: local_apps/pootle_app/views/language/language_admin.py:48
@@ -1014,7 +1013,7 @@ msgstr "ئىشلەتكۈچى ھوقۇقى"
 #: local_apps/pootle_app/views/language/language_admin.py:51
 #: adminpages.py:362
 msgid "(select to add user)"
-msgstr "(قوشىدىغان ئىشلەتكۈچى تاللاڭ)"
+msgstr "(قوشىدىغان ئىشلەتكۈچىنى تاللاڭ)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
 #: pagelayout.py:231
@@ -1026,7 +1025,7 @@ msgstr[0] "%d ھۆججەت"
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr "%(translated)d/%(total)d سۆز (%(translatedpercent)d%%) تەرجىمە قىلىندى"
+msgstr "%(translated)d/%(total)d سۆز (%(translatedpercent)d%%) تەرجىمە قىلىنغان"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
@@ -1042,7 +1041,7 @@ msgstr[0] "%(checks)d ھەرپ تىزمىسى (%(checkspercent)d%%) خاتا"
 #: local_apps/pootle_app/views/language/item_dict.py:95
 #: indexpage.py:870
 msgid "Review Suggestions"
-msgstr "تەكلىپنى قايتا كۆرسەت"
+msgstr "تەكلىپنى قايتا تەكشۈر"
 
 #: local_apps/pootle_app/views/language/item_dict.py:97
 #: indexpage.py:872
@@ -1112,7 +1111,7 @@ msgstr[0] "%d سۆزنى قايتا تەكشۈرۈش زۆرۈر"
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] " %d ھۆججەت ئوقۇش خاتالىقى"
+msgstr[0] "%d ھۆججەت ئوقۇش خاتالىقى"
 
 #: local_apps/pootle_app/views/language/language_admin.py:41
 msgid "You do not have rights to administer this language."
@@ -1122,7 +1121,7 @@ msgstr "بۇ تىلنى باشقۇرۇش ھوقۇقىڭىز يوق."
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] "%d قۇرۇلۇش، %(average)d%% تەرجىمە قىلىندى"
+msgstr[0] "%(projects)d قۇرۇلۇش، %(average)d%% تەرجىمە قىلىندى"
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:60
 #: local_apps/pootle_app/views/project/project_language_index.py:76
@@ -1165,7 +1164,7 @@ msgstr "مۈجمەل پىرسەنتى"
 #: local_apps/pootle_app/views/language/project_index.py:46
 #: pagelayout.py:245
 msgid "Fuzzy words"
-msgstr "مۈجمەل سۆز"
+msgstr "مۈجمەل سۆزلەر"
 
 #: local_apps/pootle_app/views/language/project_index.py:48
 #: pagelayout.py:247
@@ -1213,7 +1212,7 @@ msgstr "ئىزاھاتلار"
 
 #: local_apps/pootle_app/views/language/search_forms.py:45
 msgid "Locations"
-msgstr "ئورنى "
+msgstr "ئورنى"
 
 #. l10n: text next to search field
 #: local_apps/pootle_app/views/language/search_forms.py:67
@@ -1273,8 +1272,7 @@ msgstr "يۈكلە"
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
-"بۇ ھۆججەتنى نۆۋەتتىكى ھۆججەت بىلەن بىرلەشتۈرۈپ، توقۇنۇشنى تەۋسىيىگە "
-"ئۆزگەرتىڭ."
+"بۇ ھۆججەتنى نۆۋەتتىكى ھۆججەت بىلەن بىرلەشتۈرۈپ، توقۇنۇشنى تەۋسىيىگە ئۆزگەرت."
 
 #: local_apps/pootle_app/views/language/tp_common.py:254
 msgid "Add all new translations as suggestions"
@@ -1309,7 +1307,7 @@ msgstr "سىزنىڭ تەرجىمە ھالىتىنى زىيارەت قىلىش �
 #: translatepage.py:204
 #, python-format
 msgid "checking %s"
-msgstr " %s تەكشۈرۈۋاتىدۇ"
+msgstr "%s تەكشۈرۈۋاتىدۇ"
 
 #. l10n: navigation link
 #. l10n: noun (the start)
@@ -1325,13 +1323,13 @@ msgstr "باشلا"
 #: translatepage.py:171
 #, python-format
 msgid "Previous %d"
-msgstr "ئالدى %d"
+msgstr "ئالدىنقى %d"
 
 #. l10n: the third parameter refers to the total number of messages in the file
 #: local_apps/pootle_app/views/language/translate_page.py:109
 #, python-format
 msgid "Items %(first)d to %(last)d of %(total)d"
-msgstr " %(first)d دىن %(last)d جەمئى %(total)d تۈر"
+msgstr "%(first)d دىن %(last)d جەمئى %(total)d تۈر"
 
 #. l10n: the parameter refers to the number of messages
 #: local_apps/pootle_app/views/language/translate_page.py:118
@@ -1339,7 +1337,7 @@ msgstr " %(first)d دىن %(last)d جەمئى %(total)d تۈر"
 #: translatepage.py:181
 #, python-format
 msgid "Next %d"
-msgstr "كەينى %d"
+msgstr "كېيىنكى %d"
 
 #. l10n: navigation link
 #. l10n: noun (the end)
@@ -1347,17 +1345,17 @@ msgstr "كەينى %d"
 #: translatepage.py:184
 #: translatepage.py:187
 msgid "End"
-msgstr "تامام"
+msgstr "ئاخىرى"
 
 #: local_apps/pootle_app/views/language/translate_page.py:272
 #: translatepage.py:578
 msgid "Singular"
-msgstr "تاق"
+msgstr "بىرلىك"
 
 #: local_apps/pootle_app/views/language/translate_page.py:273
 #: translatepage.py:579
 msgid "Plural"
-msgstr "جۈپ"
+msgstr "كۆپلۈك"
 
 #: local_apps/pootle_app/views/language/translate_page.py:350
 #: local_apps/pootle_app/views/language/translate_page.py:372
@@ -1370,7 +1368,7 @@ msgstr "جۈپ"
 #: translatepage.py:805
 #, python-format
 msgid "Plural Form %d"
-msgstr "جۈپ شەكلى%d"
+msgstr "كۆپلۈك شەكلى%d"
 
 #. l10n: This is an error message that will display if the relevant problem occurs
 #: local_apps/pootle_app/views/language/translate_page.py:357
@@ -1380,7 +1378,7 @@ msgid ""
 "Translation not possible because plural information for your language is not "
 "available. Please contact the site administrator."
 msgstr ""
-"تىلىڭىزنىڭ جۈپ سان شەكلى تەمىنلەنمىگەن، تەرجىمە قىلغىلى بولمايدۇ. بېكەت "
+"تىلىڭىزنىڭ كۆپلۈك شەكلى تەمىنلەنمىگەن، تەرجىمە قىلغىلى بولمايدۇ. بېكەت "
 "باشقۇرغۇچى بىلەن ئالاقىلىشىڭ."
 
 #: local_apps/pootle_app/views/language/translate_page.py:467
@@ -1393,13 +1391,13 @@ msgstr "نۆۋەتتىكى تەرجىمىسى:"
 #: local_apps/pootle_app/views/language/translate_page.py:480
 #, python-format
 msgid "Suggestion %(suggid)d by %(user)s:"
-msgstr "%(user)s نىڭ %(suggid)d تەكلىپى:"
+msgstr "ئىشلەتكۈچى %(user)s نىڭ %(suggid)d تەكلىپى:"
 
 #: local_apps/pootle_app/views/language/translate_page.py:482
 #: translatepage.py:754
 #, python-format
 msgid "Suggestion %d:"
-msgstr "%d تەكلىپ:"
+msgstr "تەكلىپ %d:"
 
 #. l10n: parameter: name of translator
 #: local_apps/pootle_app/views/language/translate_page.py:486
@@ -1518,7 +1516,7 @@ msgstr "دەسلەپلەشتۇر"
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] "%d تىل، %(average)d%% تەرجىمە قىلىندى"
+msgstr[0] "%(languages)d تىل، %(average)d%% تەرجىمە قىلىندى"
 
 #: local_apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
@@ -1555,11 +1553,11 @@ msgstr "%(language)s نىڭ تەرجىمىسى %(percent)d%% تاماملاند�
 #: local_apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr " %(project)s قۇرۇلۇش %(percent)d%% تاماملاندى"
+msgstr "%(project)s قۇرۇلۇش %(percent)d%% تاماملاندى"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
-msgstr "Done calculating statistics for default languages and projects"
+msgstr "كۆڭۈلدىكى تىل ۋە قۇرۇلۇشنىڭ ئىستاتىستىكا ئۇچۇرىنى ھېسابلاش تاماملاندى"
 
 #: local_apps/pootle_misc/dbinit.py:120
 msgid ""
@@ -1577,7 +1575,7 @@ msgstr ""
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
-" %(filename)s زىيارەت قىلغاندا خاتالىق كۆرۈلدى، ھۆججەت سىستېمىسى يوللىغان "
+"%(filename)s زىيارەت قىلغاندا خاتالىق كۆرۈلدى، ھۆججەت سىستېمىسى يوللىغان "
 "خاتالىق: %(errormsg)s"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
@@ -1608,12 +1606,12 @@ msgstr "قوشۇلغان"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(language)s"
-msgstr " %(language)s نىڭ خەۋەرلىرى"
+msgstr "%(language)s نىڭ خەۋەرلىرى"
 
 #: local_apps/pootle_notifications/views.py:92
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr " %(project)s قۇرۇلۇشنىڭ %(language)s خەۋەرلىرى"
+msgstr "%(project)s قۇرۇلۇشنىڭ %(language)s خەۋەرلىرى"
 
 #: local_apps/pootle_notifications/views.py:96
 #, python-format
@@ -1678,7 +1676,7 @@ msgid ""
 "</div>"
 msgstr ""
 "<div dir=\"rtl\" lang=\"ug\">\n"
-"<h2 class=\"title\">بۇ  Pootle نى قاچىلاشنىڭ ئۈلگە كۆرسىتىشى.</h2>\n"
+"<h2 class=\"title\">بۇ Pootle نى قاچىلاشنىڭ ئۈلگە كۆرسىتىشى.</h2>\n"
 "<p class=\"about\">سىز رەسمىي <a href=\"http://pootle.locamotion.org\">Pootle "
 "مۇلازىمىتىر</a>نى زىيارەت قىلسىڭىز بولىدۇ. مۇلازىمىتىر باشقۇرغۇچى مەزكۇر "
 "مۇلازىمىتىرنىڭ چۈشەندۈرۈش ياكى ئالاقە ئۇچۇرىنى تەمىنلىمىگەن. ئەگەر سىز "
@@ -1704,7 +1702,7 @@ msgstr "كەچۈرۈڭ، ئىلتىماس بېتى تېپىلمىدى."
 
 #: templates/500.html:5 templates/500.html.py:10
 msgid "Server Error"
-msgstr "مۇلازىمىتىر خاتالىقى "
+msgstr "مۇلازىمىتىر خاتالىقى"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
@@ -1768,7 +1766,7 @@ msgstr "تىزىمغا كىر"
 
 #: templates/base.html:107
 msgid "About this Pootle Server"
-msgstr " Pootle مۇلازىمىتىر ھەققىدە"
+msgstr "Pootle مۇلازىمىتىر ھەققىدە"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1954,7 +1952,7 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
-" \"%(account)s\" ئاتلىق ھېسابات ئاكتىپلاندى. تىزىمغا كىرىشنى "
+"ئىشلەتكۈچى ئاتى \"%(account)s\" بولغان ھېسابات ئاكتىپلاندى. تىزىمغا كىرىشنى "
 "داۋاملاشتۇرالايسىز."
 
 #: templates/registration/activation_email.txt:2
@@ -1967,7 +1965,7 @@ msgstr "ھېساباتىڭىزنى ئاكتىپلاشتا بۇ ئۇلانمىن�
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
-msgstr "ئاكتىپلاش كودىڭىز: "
+msgstr "ئاكتىپلاش كودىڭىز:"
 
 #: templates/registration/activation_email.txt:9
 msgid ""
@@ -2125,7 +2123,7 @@ msgstr ""
 #: adminpages.py:215
 #: users.py:101
 msgid "Email Address"
-msgstr "ئېلخەت ئادرېس"
+msgstr "ئېلخەت مەنزىل"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
@@ -2138,7 +2136,7 @@ msgstr "ئېلخەتلىرىڭىزنى تەكشۈرۈپ ھېساباتىڭىزن
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr " يېڭى Pootle ھېساتىدىن بىرنى خەتلە"
+msgstr "يېڭى Pootle ھېساتىدىن بىرنى خەتلە"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."

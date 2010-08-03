@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-01 19:27+0200\n"
-"PO-Revision-Date: 2010-07-10 13:08+0200\n"
+"PO-Revision-Date: 2010-07-16 04:11+0200\n"
 "Last-Translator: snjezana <snjezana@lavabit.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hr\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.4\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: strings.py:8
 msgid ""
@@ -334,7 +334,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/project.py:48
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: local_apps/pootle_app/models/project.py:49
 msgid "XLIFF"
@@ -342,19 +342,19 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_app/models/project.py:53
 msgid "Automatic detection (slower)"
-msgstr ""
+msgstr "Automatsko prepoznavanje (sporije)"
 
 #: local_apps/pootle_app/models/project.py:54
 msgid "GNU style: files named by language code"
-msgstr ""
+msgstr "GNU stil: datoteke nazvane prema jezičnom kodu"
 
 #: local_apps/pootle_app/models/project.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr ""
+msgstr "Non-GNU: Svaki jezik u svom vlastitom direktoriju"
 
 #: local_apps/pootle_app/models/project.py:61
 msgid "Quality Checks"
-msgstr ""
+msgstr "Provjera kakvoće"
 
 #: local_apps/pootle_app/models/project.py:62
 msgid "File Type"
@@ -370,7 +370,7 @@ msgstr "Ignoriraj datoteku"
 
 #: local_apps/pootle_app/models/suggestion.py:54
 msgid "Pending"
-msgstr ""
+msgstr "U tijeku"
 
 #: local_apps/pootle_app/models/suggestion.py:55
 msgid "Accepted"
@@ -1488,7 +1488,7 @@ msgstr ""
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
-msgstr ""
+msgstr "Pristup odbijen"
 
 #: templates/403.html:14
 msgid "You don't have permission to access this page."
@@ -1508,7 +1508,7 @@ msgstr "Pogreška na serveru"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Došlo je do pogreške. Hvala vam za strpljenje."
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
 msgid "Administration"
@@ -1516,11 +1516,11 @@ msgstr "Administriranje"
 
 #: templates/admin_profile_menu.html:5
 msgid "Configure the general settings for your site"
-msgstr ""
+msgstr "Konfiguriraj opće postavke za vašu stranicu"
 
 #: templates/admin_profile_menu.html:5
 msgid "General"
-msgstr ""
+msgstr "Opće"
 
 #: templates/admin_profile_menu.html:6
 msgid "Manage the users"
@@ -1603,7 +1603,7 @@ msgstr ""
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr ""
+msgstr "Prevedi ovaj projekt"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
@@ -1637,7 +1637,7 @@ msgstr "Postavke"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
-msgstr ""
+msgstr "Promijeni svoje osobne informacije"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 #: templates/profiles/edit_personal.html:5
@@ -1647,7 +1647,7 @@ msgstr "Profil"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
-msgstr ""
+msgstr "Promijeni svoju zaporku"
 
 #: templates/admin/base_site.html:4
 msgid "Django site admin"
@@ -1741,7 +1741,7 @@ msgstr "Prezime"
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
 msgid "Account Activated"
-msgstr ""
+msgstr "Račun aktiviran"
 
 #: templates/registration/activate.html:10
 #, python-format
@@ -1816,7 +1816,7 @@ msgstr "Promijeni moju zaporku"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "Zaporka ponovno namještena"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
