@@ -1916,7 +1916,13 @@ div#prevnext .next
     border: none;
     color: #0489b7;
     padding: 0 2em;
-    background-color: inherit;
+    background-color: #F7F7F5;
+}
+
+tr.odd div#prevnext .previous,
+tr.odd div#prevnext .next
+{
+    background-color: #FFFFFF;
 }
 
 div#prevnext .previous,
