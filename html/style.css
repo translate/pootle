@@ -2021,14 +2021,14 @@ div#prevnext[dir="rtl"] + .translate-specialchars-block
 .translate-toolbar
 {
     position: absolute;
-    top: 5px;
+    bottom: 0;
     /* LTR */
-    right: 5px;
+    right: 2px;
 }
 
 .translation-text[dir="rtl"] + .translate-toolbar
 {
-    left: 5px;
+    left: 2px;
 }
 
 a.copyoriginal,
