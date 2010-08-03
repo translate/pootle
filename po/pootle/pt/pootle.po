@@ -68,7 +68,7 @@ msgstr "Alterar"
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr "Adicionar %(nome)s"
+msgstr "Adicionar %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22

@@ -39,7 +39,7 @@ msgid "This field is required."
 msgstr "இக்கட்டம் அவசியம்"
 
 #: strings.py:12
-#, python-format
+#, python-format, fuzzy
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
 "இம்மதிப்பீட்டில் மிகஅதிகமான மற்றும் மிகநீளமான எழுத்துருக்கள் உள்ளதை "
@@ -63,7 +63,7 @@ msgstr ""
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
-#, python-format
+#, python-format, fuzzy
 msgid "Add %(name)s"
 msgstr "சேர் %(பெயர்)கள்"
 
@@ -595,12 +595,12 @@ msgid "Password"
 msgstr "கடவுச்சொல்"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:45
-#, python-format
+#, python-format, fuzzy
 msgid "Translate Toolkit version %s installed."
 msgstr "மொழிபெயர்ப்பு கருவிப்பட்டை பதிப்பை நிருவியாயிற்று"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:48
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
@@ -609,7 +609,7 @@ msgstr ""
 "பூட்டலுக்கு தேவையான பதிப்பு %(தேவை)."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:54
-#, python-format
+#, python-format, fuzzy
 msgid "Django version %s is installed."
 msgstr "டிஜாங்கோ (Django) பதிப்பு %கள் நிருவியாயிற்று"
 
@@ -1626,12 +1626,12 @@ msgid "Updated project \"%s\" from version control"
 msgstr "புதுப்பிக்கப்பட்ட பதிப்புக்கான கோப்புக்கள்"
 
 #: local_apps/pootle_translationproject/models.py:350
-#, python-format
+#, python-format, fuzzy
 msgid "Updated file %s from version control"
 msgstr "புதுப்பிக்கப்பட்ட பதிப்புக்கான கோப்புக்கள்"
 
 #: local_apps/pootle_translationproject/models.py:356
-#, python-format
+#, python-format, fuzzy
 msgid "Failed to update %s from version control"
 msgstr "புதுப்பிக்கப்படாத பதிப்புக்கான கோப்புக்கள்"
 
