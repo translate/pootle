@@ -154,6 +154,7 @@ def render_unit_edit(context, form):
                      'form': form,
                      'store': store,
                      'profile': context['profile'],
+                     'user': context['user'],
                      'language': context['language'],
                      'source_language': context['source_language'],
                      'cantranslate': context['cantranslate'],
