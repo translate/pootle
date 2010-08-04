@@ -1595,6 +1595,11 @@ table[dir="rtl"] td.translate-original
     padding-left: 5px;
 }
 
+.translate-view .translation-text
+{
+    padding-top: 1px;
+}
+
 .translation-text
 {
     max-width: 100%;
