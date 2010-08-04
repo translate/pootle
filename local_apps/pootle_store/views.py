@@ -383,7 +383,7 @@ def translate_page(request, units_queryset, store=None):
     # links for quality check documentation
     checks = []
     for check in request.GET.getlist('matchnames'):
-        link = '<a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%s">%s</a>' % (check, check)
+        link = '<a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%s" target="_blank">%s</a>' % (check, check)
         checks.append(_('checking %s', link))
 
     # precalculate alternative source languages

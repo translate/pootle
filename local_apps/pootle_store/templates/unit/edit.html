@@ -31,7 +31,7 @@
           <ul class="checks">
           {% for check in unit.get_qualitychecks.iterator %}
           <li class="check">
-            <a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}">{{ check.name }}</a>
+            <a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}" target="_blank">{{ check.name }}</a>
             {% if canreview %}
             <input type="hidden" class="checkid" name="checkid" value="{{ check.id }}" />
             <a title="{% trans "Remove quality check" %}" class="rejectcheck"><img src='{{ "images/cross.png"|m }}' /></a>
