@@ -99,10 +99,9 @@ def import_languages(parsed_data):
         # code:
         try:
             db_lang = Language.objects.get(code=lang)
-            logging.log(logging.INFO,
-                        'Already found a language named %s.\n'\
-                        'Data for this language are not imported.',
-                        lang)
+            logging.info('Already found a language named %s.\n'\
+                         'Data for this language are not imported.',
+                         lang)
             continue
         except Language.DoesNotExist:
             db_lang = Language(code=lang)
@@ -121,7 +120,7 @@ def import_languages(parsed_data):
 
         # specialchars
         db_lang.specialchars = _get_attribute(data, lang, 'specialchars')
-
+        logging.info("Creating language %s", db_lang)
         db_lang.save()
 
 @commit_on_success
@@ -176,6 +175,7 @@ def import_projects(parsed_data):
         db_proj.ignoredfiles = _get_attribute(data, proj, 'ignoredfiles',
                                default=u'', prefix=prefix)
 
+        logging.info("Creating project %s", db_proj)
         db_proj.save()
 
 def _get_user_attribute(data, user_name, attribute, unicode_me = True,
