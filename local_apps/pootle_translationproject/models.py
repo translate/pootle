@@ -251,7 +251,7 @@ class TranslationProject(models.Model):
             ext = os.extsep + self.project.get_template_filtetype()
 
         if self.file_style == 'gnu':
-            if self.is_template_project:
+            if self.pootle_path.startswith('/templates/'):
                 add_files(self, ignored_files, ext, self.abs_real_path, self.directory,
                           lambda filename: match_template_filename(self.project, filename))
             else:
