@@ -1051,6 +1051,18 @@ html[dir="rtl"] td.pootle_path
     text-align: right;
 }
 
+/* ADMIN TABLE BACKGROUNDS */
+
+.other-selected
+{
+    background-color: #8cb904 !important;
+}
+
+.delete-selected
+{
+    background-color: #D54E21 !important;
+}
+
 
 /*
  * SUMMARIES

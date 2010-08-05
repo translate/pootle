@@ -12,6 +12,12 @@ Directory contents
   - admin.js :
     Code for tasks performed in the administration area.
 
+    Also sorts select elements (both normal and multiple) where language names are
+    involved. This is done in JavaScript because currently it's not possible
+    to sort them within Django.
+    To sort a new select element, add the end of the element id to the 'ids'
+    array.
+
   - correctpng.js :
     Fixes for IE 5.5 & 6 to correctly handle PNG transparencies.
 
@@ -25,13 +31,6 @@ Directory contents
   - search.js :
     Code to handle the advanced search dropdown. May be merged with other code
     in the translate page.
-
-  - selectsort.js :
-    Sorts select elements (both normal and multiple) where language names are
-    involved. This is done in JavaScript because currently it's not possible
-    to sort them within Django.
-    To sort a new select element, add the end of the element id to the 'ids'
-    array.
 
   - sorttable.js :
     Sorts tables according to its values. Used in the homepage as well as on the
