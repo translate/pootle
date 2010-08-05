@@ -12,6 +12,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.db.transaction import commit_on_success
 
 from django.contrib.auth.models import User
+from pootle_app.management import require_english
 from pootle_project.models import Project
 from pootle_language.models import Language
 from pootle_misc.siteconfig import load_site_config
@@ -138,6 +139,7 @@ def import_projects(parsed_data):
     # Clean up 'pootle.fullname' into 'pootle'
     projs = set([key[len(prefix):].split('.')[0] for key in keys]) 
 
+    en = require_english()
     for proj in map(lambda s: unicode(s, 'utf-8'), projs):
         # id, for free
         # code:
@@ -149,7 +151,7 @@ def import_projects(parsed_data):
                         proj)
             continue
         except Project.DoesNotExist:
-            db_proj = Project(code=proj)
+            db_proj = Project(code=proj, source_language=en)
 
         # fullname
         db_proj.fullname = _get_attribute(data, proj, 'fullname', prefix=prefix)
