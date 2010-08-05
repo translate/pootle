@@ -6,19 +6,21 @@
 <div class="module-primary clear topcontributors" lang="{{ LANGUAGE_CODE }}">
     <div class="hd"><h2>{% trans 'Top Contributors' %}</h2></div>
     <div class="bd">
-        {% for stats in topstats %}
-        <table class="topcontributors">
-            <tr>
-                <th>{{ stats.headerlabel }}</th>
-            </tr>
-            {% for user in stats.data %}
-            <tr class="{% cycle 'even' 'odd' %}">
-                <td class="stats-name">{{ user.username }}</td>
-                <td class="stats-words">{{ user.count }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+      <table class="topcontributors">
+        <tr>
+          <th>{% trans "Suggestions" %}</th><th></th>
+	  <th>{% trans "Reviews" %}</th><th></th>
+	  <th>{% trans "Submissions" %}</th><th></th>
+        </tr>
+        {% for row in topstats %}
+        <tr class="{% cycle 'even' 'odd' %}">
+	  {% for user in row %}
+          <td class="stats-name">{{ user.username }}</td>
+          <td class="stats-words">{{ user.count }}</td>
+	  {% endfor %}
+        </tr>
         {% endfor %}
+      </table>
     </div>
     <div class="clear"></div>
 </div>

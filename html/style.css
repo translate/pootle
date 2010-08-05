@@ -1142,8 +1142,7 @@ div.topcontributors
 table.topcontributors
 {
     margin: 0 0.5em;
-    width: 30%;
-    display: inline-table;
+    width: 80%;
 }
 
 table.topcontributors th
