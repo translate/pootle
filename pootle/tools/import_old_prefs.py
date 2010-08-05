@@ -9,7 +9,7 @@ Permission is granted to redistribute this file under the GPLv2 or later,
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from django.db import transaction
+from django.db.transaction import commit_on_success
 
 from django.contrib.auth.models import User
 from pootle_project.models import Project
@@ -32,25 +32,7 @@ def main():
     parsed_oldprefs = prefs.PrefsParser(oldprefsfile)
     usersfile = sys.argv[2]
     parsed_users = prefs.PrefsParser(usersfile)
-    try:
-        try:
-            transaction.enter_transaction_management()
-            transaction.managed(True)
-
-            set_up_db_then_import_languages_then_users(parsed_oldprefs,
-                                                       parsed_users)
-        except:
-            if transaction.is_dirty():
-                transaction.rollback()
-            if transaction.is_managed():
-                transaction.leave_transaction_management()
-            raise
-    finally:
-        if transaction.is_managed():
-            if transaction.is_dirty():
-                transaction.commit()
-        if transaction.is_managed():
-            transaction.leave_transaction_management()
+    set_up_db_then_import_languages_then_users(parsed_oldprefs, parsed_users)
 
 def set_up_db_then_import_languages_then_users(oldprefs, parsed_users):
     '''oldprefs and parsed_users are jToolkit prefs.PrefsParser
@@ -92,6 +74,7 @@ def try_type(try_me, value):
     assert type(value) == try_me
     return value
 
+@commit_on_success
 def import_sitesettings(parsed_data):
     data = parsed_data.__root__._assignments
     siteconfig = load_site_config()
@@ -99,6 +82,7 @@ def import_sitesettings(parsed_data):
     siteconfig.set('DESCRIPTION',  data.get('Pootle.description'))
     siteconfig.save()
 
+@commit_on_success
 def import_languages(parsed_data):
     data = parsed_data.__root__._assignments # Is this really the right way?
     prefix = 'Pootle.languages.'
@@ -139,6 +123,7 @@ def import_languages(parsed_data):
 
         db_lang.save()
 
+@commit_on_success
 def import_projects(parsed_data):
     # This could prompt the user, asking:
     # "Want us to import projects? Say no if you have already 
@@ -312,6 +297,7 @@ def as_unicode(string):
     else:
         raise Exception('You must pass a string type')
 
+@commit_on_success
 def import_users(parsed_users):
     data = parsed_users.__root__._assignments # Is this really the
                                               # right way?
