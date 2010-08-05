@@ -831,13 +831,20 @@ class Store(models.Model, base.TranslationStore):
                 self._units = FakeQuerySet()
             self._units.append(newunit)
 
-    def findunit(self, source):
+    def findunits(self, source):
+        if hasattr(self, "sourceindex"):
+            return super(Store, self).findunit(source)
+
         # find using hash instead of index
         source_hash = md5_f(source.encode("utf-8")).hexdigest()
-        try:
-            return self.units.get(source_hash=source_hash)
-        except Unit.DoesNotExist:
-            return None
+        units = self.units.filter(source_hash=source_hash)
+        if units.count():
+            return units
+
+    def findunit(self, source):
+        units = self.findunits(source)
+        if units:
+            return units[0]
 
     def findid(self, id):
         if hasattr(self, "id_index"):
