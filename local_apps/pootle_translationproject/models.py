@@ -222,7 +222,10 @@ class TranslationProject(models.Model):
 
         if not monolingual:
             self.sync()
-        oldstats = self.getquickstats()
+
+        if pootle_path is None:
+            oldstats = self.getquickstats()
+
         for store in template_translation_project.stores.iterator():
             if self.file_style == 'gnu':
                 new_pootle_path, new_path = get_translated_name_gnu(self, store)
@@ -233,8 +236,10 @@ class TranslationProject(models.Model):
             convert_template(self, store, new_pootle_path, new_path, monolingual)
         self.scan_files()
         self.update(conservative=False)
-        newstats = self.getquickstats()
-        post_template_update.send(sender=self, oldstats=oldstats, newstats=newstats)
+
+        if pootle_path is None:
+            newstats = self.getquickstats()
+            post_template_update.send(sender=self, oldstats=oldstats, newstats=newstats)
 
     def scan_files(self):
         """returns a list of po files for the project and language"""
