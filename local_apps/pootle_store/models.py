@@ -598,7 +598,7 @@ class Store(models.Model, base.TranslationStore):
     real_path = property(_get_real_path)
 
     def get_absolute_url(self):
-        return l(self.pootle_path)
+        return l(self.pootle_path + '/translate/')
 
     def require_units(self):
         """make sure file is parsed and units are created"""
