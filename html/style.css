@@ -586,9 +586,21 @@ h3.title
     width: 100%;
 }
 
-td.language
+td.language,
+td.code,
+td.profile,
+td.username
 {
     padding-left: 5px;
+}
+
+html[dir="rtl"] td.language,
+html[dir="rtl"] td.code,
+html[dir="rtl"] td.profile,
+html[dir="rtl"] td.username
+{
+    padding-left: 0;
+    padding-right: 5px;
 }
 
 tr.even, 
@@ -1061,6 +1073,12 @@ html[dir="rtl"] td.pootle_path
 .delete-selected
 {
     background-color: #D54E21 !important;
+}
+
+.other-selected a,
+.delete-selected a
+{
+    color: #ffffff;
 }
 
 
