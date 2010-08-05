@@ -168,7 +168,7 @@ def server_stats():
         result['user_active_count'] = (PootleProfile.objects.exclude(submission=None) |\
                                        PootleProfile.objects.exclude(suggestion=None) |\
                                        PootleProfile.objects.exclude(suggester=None)).order_by().count()
-        cache.set("server_stats", result, settings.CACHE_MIDDLEWARE_SECONDS * 10)
+        cache.set("server_stats", result, 86400)
     return result
 
 @user_is_admin
