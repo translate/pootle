@@ -22,6 +22,7 @@
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.core.cache import cache
 
 from pootle_misc.aggregate import group_by_sort
 
@@ -30,17 +31,18 @@ def gentopstats_root():
     Generate the top contributor stats to be displayed for an entire
     Pootle installation.
     """
-    top_sugg   = group_by_sort(User.objects.exclude(pootleprofile__suggester=None),
-                               'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
-    top_review = group_by_sort(User.objects.exclude(pootleprofile__reviewer=None),
-                               'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
-    top_sub    = group_by_sort(User.objects.exclude(pootleprofile__submission=None),
-                               'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
-
-    return [
-        {'data': top_sugg, 'headerlabel': _('Suggestions')},
-        {'data': top_review, 'headerlabel': _('Reviews')},
-        {'data': top_sub, 'headerlabel': _('Submissions')} ]
+    key = "/:gentopstats"
+    result = cache.get(key)
+    if result is None:
+        top_sugg   = group_by_sort(User.objects.exclude(pootleprofile__suggester=None),
+                                   'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+        top_review = group_by_sort(User.objects.exclude(pootleprofile__reviewer=None),
+                                   'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
+        top_sub    = group_by_sort(User.objects.exclude(pootleprofile__submission=None),
+                                   'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
+        result = map(None, top_sugg, top_review, top_sub)
+        cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS * 3)
+    return result
 
 def gentopstats_language(language):
     """Generate the top contributor stats to be displayed
@@ -53,17 +55,19 @@ def gentopstats_language(language):
       {'data':        [],
        'headerlabel': u'Submissions'}]
     """
-    top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__language=language),
-                               'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
-    top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project__language=language),
-                               'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
-    top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project__language=language),
-                               'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
+    key = "%s:gentopstats" % language.pootle_path
+    result = cache.get(key)
+    if result is None:
+        top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__language=language),
+                                   'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+        top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project__language=language),
+                                   'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
+        top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project__language=language),
+                                   'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
 
-    return [
-        {'data': top_sugg, 'headerlabel': _('Suggestions')},
-        {'data': top_review, 'headerlabel': _('Reviews')},
-        {'data': top_sub, 'headerlabel': _('Submissions')} ]
+        result = map(None, top_sugg, top_review, top_sub)
+        cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS * 2)
+    return result
 
 def gentopstats_project(project):
     """Generate the top contributor stats to be displayed
@@ -76,17 +80,19 @@ def gentopstats_project(project):
       {'data':        [],
        'headerlabel': u'Submissions'}]
     """
-    top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__project=project),
-                               'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
-    top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project__project=project),
-                               'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
-    top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project__project=project),
-                               'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
+    key = "%s:gentopstats" % project.pootle_path
+    result = cache.get(key)
+    if result is None:
+        top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__project=project),
+                                   'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+        top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project__project=project),
+                                   'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
+        top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project__project=project),
+                                   'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
 
-    return [
-        {'data': top_sugg, 'headerlabel': _('Suggestions')},
-        {'data': top_review, 'headerlabel': _('Reviews')},
-        {'data': top_sub, 'headerlabel': _('Submissions')} ]
+        result = map(None, top_sugg, top_review, top_sub)
+        cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS * 2)
+    return result
 
 def gentopstats_translation_project(translation_project):
     """Generate the top contributor stats to be displayed
@@ -99,15 +105,16 @@ def gentopstats_translation_project(translation_project):
       {'data':        [],
        'headerlabel': u'Submissions'}]
     """
-    top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project=translation_project),
-                               'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
-    top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project=translation_project),
-                               'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
-    top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project=translation_project),
-                               'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
+    key = "%s:gentopstats" % translation_project.pootle_path
+    result = cache.get(key)
+    if result is None:
+        top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project=translation_project),
+                                   'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+        top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project=translation_project),
+                                   'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
+        top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project=translation_project),
+                                   'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
 
-    return [
-        {'data': top_sugg, 'headerlabel': _('Suggestions')},
-        {'data': top_review, 'headerlabel': _('Reviews')},
-        {'data': top_sub, 'headerlabel': _('Submissions')} ]
-
+        result = map(None, top_sugg, top_review, top_sub)
+        cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS)
+    return result
