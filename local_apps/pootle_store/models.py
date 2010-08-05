@@ -1026,6 +1026,7 @@ class Store(models.Model, base.TranslationStore):
             self.pending = pending_name
             self.save()
 
+    @commit_on_success
     def import_pending(self):
         """import suggestions from legacy .pending files, into database"""
         self.init_pending()
