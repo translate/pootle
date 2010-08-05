@@ -2094,8 +2094,8 @@ a.writespecial
 
 .translate-diff-delete
 {
-    background-color: #ff8000;
-    border: 1px solid #f07000;
+    background-color: #ccc;
+    text-decoration: line-through;
 }
 
 .translate-diff-insert
