@@ -12,9 +12,11 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.db.transaction import commit_on_success
 
 from django.contrib.auth.models import User
+
 from pootle_app.management import require_english
 from pootle_project.models import Project
 from pootle_language.models import Language
+from pootle_store.models import Store, NEW
 from pootle_misc.siteconfig import load_site_config
 from pootle.legacy.jToolkit import prefs
 
@@ -42,6 +44,26 @@ def set_up_db_then_import_languages_then_users(oldprefs, parsed_users):
     import_languages(oldprefs)
     import_projects(oldprefs)
     import_users(parsed_users)
+    import_pending()
+    import_units()
+
+def import_units():
+    """import units from files"""
+    for store in Store.objects.filter(state=NEW).iterator():
+        logging.info("Importing strings from %s", store.pootle_path.encode("utf-8"))
+        store.getquickstats()
+
+def import_pending():
+    """import stores with suggestions in pending files"""
+    for store in Store.objects.iterator():
+        store.init_pending()
+        if store.pending:
+            logging.info("Importing strings from %s", store.pootle_path.encode("utf-8"))
+            # pending file exists, let's parse first
+            store.getquickstats()
+            # now import suggestions
+            logging.info("Importing suggestions from %s", store.pootle_path.encode('utf-8'))
+            store.import_pending()
 
 def _get_attribute(data, name, attribute, unicode_me = True,
                    default = '', prefix='Pootle.languages.'):
