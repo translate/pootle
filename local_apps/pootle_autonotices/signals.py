@@ -26,6 +26,7 @@ import logging
 from pootle_notifications.models import Notice
 from pootle_app.models import Directory
 from pootle_profile.models import get_profile
+from pootle_store.models import Unit
 
 ##### Model Events #####
 
@@ -64,15 +65,24 @@ def new_translationproject(sender, instance, created=False, **kwargs):
     new_object(created, message, instance.project.directory)
 
 def unit_updated(sender, instance, **kwargs):
-    if instance.id is not None:
+    if instance.id is not None and instance.istranslated():
+        dbcopy = Unit.objects.get(id=instance.id)
+        if dbcopy.istranslated():
+            # unit state didn't change, let's quit
+            return
+
         store = instance.store
         stats = store.getquickstats()
-        if stats['total'] - stats['translated'] == 1 and instance.istranslated():
+        if stats['total'] - stats['translated'] == 1:
             # by the end of this we will be 100%
             translation_project = store.translation_project
             directory = translation_project.directory
             message = '<a href="%s">%s</a> fully translated</a> <br />' % (store.get_absolute_url(), store.name)
-            message += stats_message("Project now at", translation_project.getquickstats())
+            quickstats = translation_project.getquickstats()
+            quickstats['translated'] += 1
+            if dbcopy.isfuzzy():
+                quickstats['fuzzy'] -= 1
+            message += stats_message("Project now at", quickstats)
             new_object(True, message, directory)
 
 ##### TranslationProject Events #####
