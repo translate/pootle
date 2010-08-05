@@ -30,11 +30,11 @@ def gentopstats_root():
     Generate the top contributor stats to be displayed for an entire
     Pootle installation.
     """
-    top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__isnull=False),
+    top_sugg   = group_by_sort(User.objects.exclude(pootleprofile__suggester=None),
                                'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
-    top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__isnull=False),
+    top_review = group_by_sort(User.objects.exclude(pootleprofile__reviewer=None),
                                'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
-    top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__isnull=False),
+    top_sub    = group_by_sort(User.objects.exclude(pootleprofile__submission=None),
                                'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
 
     return [
