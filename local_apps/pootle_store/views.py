@@ -239,14 +239,15 @@ def get_current_units(request, step_queryset, units_queryset):
 
 def translate_end(request, translation_project):
     """render a message at end of review, translate or search action"""
+    checks = 'matchnames' in request.GET
     if request.POST:
         # end of iteration
-        if 'matchnames' in request.GET:
+        if checks:
             message = _("No more matching strings to review.")
         else:
             message = _("No more matching strings to translate.")
     else:
-        if 'matchnames' in request.GET:
+        if checks:
             message = _("No matching strings to review.")
         else:
             message = _("No matching strings to translate.")
@@ -263,6 +264,7 @@ def translate_end(request, translation_project):
         'project': translation_project.project,
         'directory': translation_project.directory,
         'search_form': search_form,
+        'checks': checks,
         }
     return render_to_response('store/translate_end.html', context, context_instance=RequestContext(request))
 
