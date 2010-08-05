@@ -49,22 +49,24 @@ $(document).ready(function() {
  */
 
   $("a.copyoriginal").click(function() {
-      var sources = $(".translation-text", $(this).parent().parent());
-      var clean_sources = [];
-      $.each(sources, function(i) {
-          clean_sources[i] = $(this).text()
-                                    .replace("\n", "\\n\n", "g")
-                                    .replace("\t", "\\t", "g");
-      });
+    var sources = $(".translation-text", $(this).parent().parent());
+    var clean_sources = [];
+    $.each(sources, function(i) {
+      clean_sources[i] = $(this).text()
+                                .replace("\n", "\\n\n", "g")
+                                .replace("\t", "\\t", "g");
+    });
 
-      var targets = $("[id^=id_target_f_]");
-      var max = clean_sources.length;
-      $.each(targets, function(i) {
-          newval = i < max ? clean_sources[i] : clean_sources[max];
-          $(this).val(newval);
-          $(this).focus();
-          $.pootle.goFuzzy();
-      });
+    var targets = $("[id^=id_target_f_]");
+    if (targets.length) {
+      var max = clean_sources.length - 1;
+      for (var i=0; i<targets.length; i++) {
+        var newval = clean_sources[i] || clean_sources[max];
+        $(targets.get(i)).val(newval);
+      }
+      $(targets).get(0).focus();
+      $.pootle.goFuzzy();
+    }
   });
 
 
