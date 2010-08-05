@@ -8,16 +8,16 @@
     <div class="bd">
       <table class="topcontributors">
         <tr>
-          <th>{% trans "Suggestions" %}</th><th></th>
-	  <th>{% trans "Reviews" %}</th><th></th>
-	  <th>{% trans "Submissions" %}</th><th></th>
+          <th colspan="2">{% trans "Suggestions" %}</th>
+          <th colspan="2">{% trans "Reviews" %}</th>
+          <th colspan="2">{% trans "Submissions" %}</th>
         </tr>
         {% for row in topstats %}
         <tr class="{% cycle 'even' 'odd' %}">
-	  {% for user in row %}
+          {% for user in row %}
           <td class="stats-name">{{ user.username }}</td>
           <td class="stats-words">{{ user.count }}</td>
-	  {% endfor %}
+          {% endfor %}
         </tr>
         {% endfor %}
       </table>

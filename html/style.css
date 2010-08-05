@@ -1141,19 +1141,24 @@ div.topcontributors
 
 table.topcontributors
 {
-    margin: 0 0.5em;
-    width: 80%;
+    width: 100%;
 }
 
 table.topcontributors th
 {
     font-size: 120%;
+    padding: 0 1em;
 }
 
 table.topcontributors td
 {
     font-size: inherit;
-    padding: 0 0.5em;
+    padding: 0 1em;
+}
+
+td.stats-words
+{
+    text-align: right;
 }
 
 td.stats-name
@@ -1213,12 +1218,6 @@ div.small
 .tiny
 {
     font-size: 0.9em;
-}
-
-td.stats-words
-{
-    text-align: right;
-    padding-right: 10px;
 }
 
 img.error
