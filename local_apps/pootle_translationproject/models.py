@@ -522,7 +522,7 @@ class TranslationProject(models.Model):
             indexer.delete_doc({"pofilename": store.pootle_path})
             units = store.units
         addlist = []
-        for unit in units:
+        for unit in units.iterator():
             doc = {"pofilename": store.pootle_path,
                    "pomtime": pomtime,
                    "itemno": str(unit.index),
