@@ -457,11 +457,20 @@ class TranslationProject(models.Model):
     def init_index(self, indexer):
         """initializes the search index"""
         #FIXME: stop relying on pomtime so virtual files can be searchable?
-        for store in self.stores.iterator():
-            self.update_index(indexer, store, optimize=False)
+        try:
+            indexer.begin_transaction()
+            for store in self.stores.iterator():
+                self.update_index(indexer, store)
+            indexer.commit_transaction()
+        except Exception, e:
+            logging.error("Error opening indexer for %s:\n%s", self, e)
+            try:
+                indexer.cancel_transaction()
+            except:
+                pass
 
 
-    def update_index(self, indexer, store, unitid=None, optimize=True):
+    def update_index(self, indexer, store, unitid=None):
         """updates the index with the contents of pofilename (limit to items if given)
 
         There are three reasons for calling this function:
@@ -507,9 +516,9 @@ class TranslationProject(models.Model):
             indexer.delete_doc([pofilenamequery, itemsquery])
         else:
             # (item is None)
-            # The po file is not indexed - or it was changed externally 
+            # The po file is not indexed - or it was changed externally
             # delete all items of this file
-            logging.debug("Updating %s indexer for file %s", self.pootle_path, store.pootle_path) 
+            logging.debug("Updating %s indexer for file %s", self.pootle_path, store.pootle_path)
             indexer.delete_doc({"pofilename": store.pootle_path})
             units = store.units
         addlist = []
@@ -531,18 +540,10 @@ class TranslationProject(models.Model):
             doc["locations"] = unit.getlocations()
             addlist.append(doc)
         if addlist:
-            try:
-                indexer.begin_transaction()
-                for add_item in addlist:
-                    indexer.index_document(add_item)
-                indexer.commit_transaction()
-                indexer.flush(optimize=optimize)
-            except Exception, e:
-                logging.error("Error opening indexer for %s:\n%s", self, e)
-                try:
-                    indexer.cancel_transaction()
-                except:
-                    pass
+            for add_item in addlist:
+                indexer.index_document(add_item)
+            indexer.flush()
+
 
     ########################################################################################
 
