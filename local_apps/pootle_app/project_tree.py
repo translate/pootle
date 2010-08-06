@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
+import logging
 
 from translate.lang    import data as langdata
 from translate.convert import pot2po
@@ -124,8 +125,10 @@ def add_items(fs_items, db_items, create_db_item):
     for name in items_to_create:
         item = create_db_item(name)
         items.append(item)
-        item.save()
-
+        try:
+            item.save()
+        except Exception, e:
+            logging.error('Error while adding %s:\n%s', item, e)
     return items
 
 def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True):
