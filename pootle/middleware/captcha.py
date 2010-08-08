@@ -162,8 +162,7 @@ URL_RE = re.compile('http://|https://', re.I)
 class CaptchaMiddleware:
 
     def process_request(self, request):
-        if not settings.USE_CAPTCHA or not request.POST or \
-               request.path.find('accounts/login') > -1 or request.session.get('ishuman', False):
+        if not settings.USE_CAPTCHA or not request.POST or request.session.get('ishuman', False):
             return
 
         if request.user.is_authenticated():
@@ -190,6 +189,10 @@ class CaptchaMiddleware:
 
             if comment_urls == 0 and (target_urls == 0 or target_urls == source_urls):
                 return
+
+        if request.path.endswith('accounts/login') or request.path.endswith('accounts/login/'):
+            # exclude login form
+            return
 
         if (request.path.endswith('/translate') or request.path.endswith('/translate/') or request.path.endswith('/translate.html')) and \
            ('back' in request.POST or 'skip' in request.POST) and \
