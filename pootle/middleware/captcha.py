@@ -191,6 +191,12 @@ class CaptchaMiddleware:
             if comment_urls == 0 and (target_urls == 0 or target_urls == source_urls):
                 return
 
+        if (request.path.endswith('/translate') or request.path.endswith('/translate/') or request.path.endswith('/translate.html')) and \
+           ('back' in request.POST or 'skip' in request.POST) and \
+           'submit' not in request.POST and 'suggest' not in request.POST:
+            # exclude skip and back, users don't expect these to be POST
+            return
+
         if 'captcha_answer' in request.POST:
             form =  MathCaptchaForm(request.POST)
             if form.is_valid():
