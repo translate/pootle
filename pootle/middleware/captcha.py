@@ -196,6 +196,9 @@ class CaptchaMiddleware:
             if form.is_valid():
                 request.session['ishuman'] = True
                 return
+            else:
+                # new question
+                form.reset_captcha()
 
         else:
             form = MathCaptchaForm()
