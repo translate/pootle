@@ -461,8 +461,8 @@ class TranslationProject(models.Model):
             indexer.begin_transaction()
             for store in self.stores.iterator():
                 self.update_index(indexer, store)
-            indexer.flush(optimize=True)
             indexer.commit_transaction()
+            indexer.flush(optimize=True)
         except Exception, e:
             logging.error("Error opening indexer for %s:\n%s", self, e)
             try:
