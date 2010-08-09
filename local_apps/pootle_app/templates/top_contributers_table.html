@@ -3,6 +3,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block top_contributers_table %}
+{% if topstats %}
 <div class="module-primary clear topcontributors" lang="{{ LANGUAGE_CODE }}">
     <div class="hd"><h2>{% trans 'Top Contributors' %}</h2></div>
     <div class="bd">
@@ -24,4 +25,5 @@
     </div>
     <div class="clear"></div>
 </div>
+{% endif %}
 {% endblock top_contributers_table %}
