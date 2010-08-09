@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import locale
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -34,6 +36,9 @@ class Notice(models.Model):
 
     def get_absolute_url(self):
         return l(self.directory.pootle_path + 'notices/%d' % self.id)
+
+    def get_date(self):
+        return self.added.strftime(locale.nl_langinfo(locale.D_T_FMT))
 
     class Meta:
         ordering = ["-added"]

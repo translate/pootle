@@ -80,7 +80,7 @@ approach for this.
     <h2>{% trans "Latest News" %} {{ name }}</h2>
 {% if notices %}
     {% for notice in notices %}
-    <div class="datetime"><small>{{ notice.added.ctime }}</small></div>
+    <div class="datetime"><small>{{ notice.get_date }}</small></div>
     <div class="newsitem">{{ notice.message|safe|linebreaks|clean }}</div>
     <div class="newsitem-sep"></div>
     {% endfor %}
