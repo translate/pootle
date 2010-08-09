@@ -24,6 +24,7 @@ import StringIO
 import subprocess
 import zipfile
 import datetime
+from tempfile import mkdtemp, mkstemp
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
@@ -284,7 +285,6 @@ def get_local_filename(translation_project, upload_filename):
     return local_filename
 
 def unzip_external(request, directory, django_file, overwrite):
-    from tempfile import mkdtemp, mkstemp
     # Make a temporary directory to hold a zip file and its unzipped contents
     tempdir = mkdtemp(prefix='pootle')
     # Make a temporary file to hold the zip file
@@ -299,13 +299,25 @@ def unzip_external(request, directory, django_file, overwrite):
         if subprocess.call(["unzip", tempzipname, "-d", tempdir]):
             raise zipfile.BadZipfile(_("Error while extracting archive"))
         # Enumerate the temporary directory...
+        maybe_skip = True
+        prefix = tempdir
         for basedir, dirs, files in os.walk(tempdir):
+            if maybe_skip and not files and len(dirs) == 1:
+                try:
+                    directory.child_dirs.get(name=dirs[0])
+                    maybe_skip = False
+                except Directory.DoesNotExist:
+                    prefix = os.path.join(basedir, dirs[0])
+                    continue
+            else:
+                maybe_skip = False
+
             for fname in files:
                 # Read the contents of a file...
                 newfile = StringIO.StringIO(open(os.path.join(basedir, fname), 'rb').read())
                 newfile.name = os.path.basename(fname)
                 # Get the filesystem path relative to the temporary directory
-                subdir = host_to_unix_path(basedir[len(tempdir)+len(os.sep):])
+                subdir = host_to_unix_path(basedir[len(prefix)+len(os.sep):])
                 if subdir:
                     target_dir = directory.get_or_make_subdir(subdir)
                 else:
@@ -330,10 +342,20 @@ def unzip_python(request, directory, django_file, overwrite):
     archive = zipfile.ZipFile(django_file, 'r')
     # TODO: find a better way to return errors...
     try:
+        prefix = ''
+        maybe_skip = True
         for filename in archive.namelist():
             try:
-                if filename[-1] != '/':
-                    subdir = host_to_unix_path(os.path.dirname(filename))
+                if filename[-1] == '/':
+                    if maybe_skip:
+                        try:
+                            directory.child_dirs.get(name=filename[:-1])
+                            maybe_skip = False
+                        except Directory.DoesNotExist:
+                            prefix = filename
+                else:
+                    maybe_skip = False
+                    subdir = host_to_unix_path(os.path.dirname(filename[len(prefix):]))
                     if subdir:
                         target_dir = directory.get_or_make_subdir(subdir)
                     else:
