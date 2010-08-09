@@ -27,12 +27,13 @@ except ImportError:
     sha_f = sha.new
 import base64
 import time
+import logging
 from random import randint
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django import forms
-from django.core.exceptions import PermissionDenied
+from django.utils.translation import ugettext as _
 from django.utils import simplejson
 from django.conf import settings
 
@@ -158,9 +159,15 @@ class MathCaptchaForm(forms.Form):
             self.reset_captcha()
         return super(MathCaptchaForm, self).clean()
 
-URL_RE = re.compile('http://|https://', re.I)
-class CaptchaMiddleware:
 
+URL_RE = re.compile('http://|https://', re.I)
+
+
+class CaptchaMiddleware:
+    """
+    Middle ware to display a captcha question to verify POST
+    submissions are made by humans
+    """
     def process_request(self, request):
         if not settings.USE_CAPTCHA or not request.POST or request.session.get('ishuman', False):
             return
