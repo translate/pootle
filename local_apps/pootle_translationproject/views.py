@@ -335,7 +335,7 @@ def unzip_python(request, directory, django_file, overwrite):
                 if filename[-1] != '/':
                     subdir = host_to_unix_path(os.path.dirname(filename))
                     if subdir:
-                        target_dir = directory.gt_or_make_subdir(subdir)
+                        target_dir = directory.get_or_make_subdir(subdir)
                     else:
                         target_dir = directory
                     newfile = StringIO.StringIO(archive.read(filename))
