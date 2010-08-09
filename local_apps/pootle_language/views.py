@@ -54,7 +54,6 @@ def make_project_item(translation_project):
     info = {
         'code': project.code,
         'href': href,
-        'icon': 'folder',
         'title': project.fullname,
         'description': project.description,
         'data': projectstats,
