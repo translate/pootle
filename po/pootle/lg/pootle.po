@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-06-28 09:59+0200\n"
+"PO-Revision-Date: 2010-08-04 17:11+0200\n"
 "Last-Translator: OLWENY San James <sjolweny85@yahoo.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #: strings.py:8
 msgid ""
@@ -62,7 +62,7 @@ msgstr "Kyuusa"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
-#, fuzzy, python-format
+#, python-format
 msgid "Add %(name)s"
 msgstr "Ggattako %(erinnya)s"
 
@@ -96,23 +96,23 @@ msgstr "embeera y'omukulu w'ebyuuma"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Ensibuko yo Lulimi"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Andriod ebigambo"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Erinnya lyo"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Wowereza no kufuna obubaka"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Obubaka bwo"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -334,6 +334,9 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Omukozesa \"nobody\" alabika kuba omukozesa ataberezidwa kuba nga taliko "
+"(omukozesa atategerekainyi). Omukozesa nga alina \"default\" kumanyidwa nga "
+"alina obunyiza, okujjawo nga aweredwa obunyiza obulala."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -389,9 +392,8 @@ msgid "Dashboard"
 msgstr "Dashi boodi"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Emiwendo gy'abakozesa"
+msgstr "Emiwendo y'Engabizi"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -400,19 +402,19 @@ msgstr "Ebigambo ebikyusiddwa"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Endowooza ekumirira"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Abakozesa abakola"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Pulojekiti ezinkola"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Ennimi ezogedwa"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -423,7 +425,7 @@ msgstr "Fayiro"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
 msgid "Translated strings"
-msgstr ""
+msgstr "Ebigambo ebivunule"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -435,11 +437,11 @@ msgstr "Ebiwereddwayo"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Ebisigawo..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Wagira"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -447,22 +449,25 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle todendwa ba Translate.org.za era kibiina kyaba kungu mu kukyuusa "
+"enteekateka za kompyuta. Twagala Pootle kubayaba mu milimo yo kukyuusa "
+"kutuka kubuwanguzi."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Ojjakuzuula obuwagizi obuddirira obuyaba:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Ebikwata ku Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Olukalala lwaba kozesa Pootle webafunira no kuwerereza obubaka"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(obuwagizi mu busuzuzi)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -478,7 +483,7 @@ msgstr "Okukozesa obulungi"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Okulabula kwa pootle"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -823,7 +828,7 @@ msgid "Translations need to be checked (they are marked fuzzy)"
 msgstr "Entafuta zeetaaga kukebera (ziragiddwa nga fuzzy)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "%d file"
 msgid_plural "%d files"
 msgstr[0] "fayiro"
@@ -1152,7 +1157,6 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1164,7 +1168,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format

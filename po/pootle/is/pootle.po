@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-04-06 09:26+0200\n"
+"PO-Revision-Date: 2010-08-06 22:12+0200\n"
 "Last-Translator: Kristján Bjarni <kristjanbjarni@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: strings.py:8
@@ -99,23 +99,23 @@ msgstr "kerfisstjórnandi"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Upphaflegt tungumál"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Android strengir"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Nafnið þitt"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Tölvupóstfangið þitt"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Þín skilaboð"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -232,7 +232,7 @@ msgstr "Getur skoðað þýðingarverkefni"
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can make a suggestion for a translation"
-msgstr "Getur sett inn uppástungu fyrir þýðingu"
+msgstr "Getur sett inn tillögu fyrir þýðingu"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can submit a translation"
@@ -317,7 +317,7 @@ msgstr ""
 #: templates/project_menu.html:11 templates/tp_menu.html:12
 #: templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr "Heimildir"
+msgstr "Aðgangsheimildir"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
@@ -337,6 +337,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Þegar talað er um notandann “nobody” er átt við hvaða notanda sem er ekki "
+"skráður inn (nafnlaus, óþekktur notandi). Notandinn “default” vísar til "
+"þeirra réttinda sem allir notendur hafa sjálfgefið, nema önnur tiltekin "
+"réttindi sé úthlutað."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -392,9 +396,8 @@ msgid "Dashboard"
 msgstr "Stjórnborð"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Tölfræði notanda"
+msgstr "Tölfræði vefþjóns"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -403,19 +406,19 @@ msgstr "Þýdd orð"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Tillögur í bið"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Virkir notendur"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Virk verkefni"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Virk tungumál"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -425,9 +428,8 @@ msgid "Files"
 msgstr "Skrár"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "Þýða mína strengi"
+msgstr "Þýddir strengir"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -439,11 +441,11 @@ msgstr "Sent inn"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Meira..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Aðstoð"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -451,22 +453,24 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle er þróað af Translate.org.za og af hópi ákafra þýðingarsérfræðinga. "
+"Við viljum að Pootle hjálpi þér sem best við þýðingar."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Eftirfarandi gæti verið hjálplegt fyrir meiri stuðning:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Pootle skjölun"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Pootle póstlistinn"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(fyrirtækjastuðningur)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -482,7 +486,7 @@ msgstr "Bestun"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Pootle aðvaranir"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -578,7 +582,7 @@ msgstr "Lokið"
 #: local_apps/pootle_app/views/top_stats.py:87
 #: local_apps/pootle_app/views/top_stats.py:110
 msgid "Suggestions"
-msgstr "Uppástungur"
+msgstr "Tillögur"
 
 #: local_apps/pootle_app/views/top_stats.py:42
 #: local_apps/pootle_app/views/top_stats.py:65
@@ -616,12 +620,12 @@ msgstr "Django útgáfa %s er uppsett."
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr ""
+msgstr "Django útgáfa %s er uppsett, en mælt er með nýrri útgáfu."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Django útgáfa %s er uppsett."
+msgstr "lxml útgáfa %s er uppsett."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -629,10 +633,12 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"lxml útgáfa %(installed)s er uppsett. Pootle þarfnast útgáfu %(required)s "
+"fyrir XML stuðning."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
-msgstr ""
+msgstr "lxml er ekki uppsett. Pootle þarfnast lxml fyrir XML stuðning."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -654,6 +660,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Finn ekki aeidon pakkann. Pootle þarfnast Gaupol eða aeidon að styðja við "
+"skjátexta."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -735,12 +743,16 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"\"Frá\" netfangið sem er notað til að senda skráningar tölvupóst er ekki "
+"tilgreindur. Skoðaðu einnig stillingar póstþjóns."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Ekkert tengiliðanetfang skilgreint. Tengiliðaspjaldið leyfir notendum að "
+"hafa samband við kerfisstjóra netþjóns."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -761,15 +773,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Þátttakendur verkefnis"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Þátttakendur tungumáls"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Allir notendur"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -848,11 +860,11 @@ msgstr[1] "%(checks)d strengir (%(checkspercent)d%%) mistókust"
 
 #: local_apps/pootle_app/views/language/item_dict.py:94
 msgid "Review Suggestions"
-msgstr "Skoða uppástungur"
+msgstr "Skoða tillögur"
 
 #: local_apps/pootle_app/views/language/item_dict.py:96
 msgid "View Suggestions"
-msgstr "Skoða uppástungur"
+msgstr "Skoða tillögut"
 
 #: local_apps/pootle_app/views/language/item_dict.py:107
 msgid "Quick Translate"
@@ -868,7 +880,7 @@ msgstr "Þýða allt"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Sýsla með orðasafn"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -876,24 +888,24 @@ msgstr "ZIP af möppu"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Þýða ótengdur"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Niðurhala XLIFF skrá til að þýða ótengdur"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
-msgstr "Hlaða niður XLIFF"
+msgstr "Hala niður XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Flytja út"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Flytja út þýðingar"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -901,7 +913,7 @@ msgstr "Hala niður"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Niðurhala skrá"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -1068,7 +1080,7 @@ msgstr "Þú hefur ekki heimild til að stjórna þessu verkefni."
 #: local_apps/pootle_language/templates/language/language_admin.html:13
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
-"Hér fyrir neðan geturðu bætt við, breytt, og eytt öllum aðgansheimildum "
+"Hér fyrir neðan geturðu bætt við, breytt, og eytt öllum aðgangsheimildum "
 "fyrir þetta tungumál."
 
 #: local_apps/pootle_misc/dbinit.py:68
@@ -1118,69 +1130,69 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Uppfærsla"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
 msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
-msgstr ""
+msgstr "Gagnagrunnstöflur eru í útgáfu %d. Pootle mun nú uppfæra gagnagrunninn."
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "Bý til gagnagrunnstöflur..."
+msgstr "Bý til þær gagnagrunnstöflur sem vantar..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Laga aðgangsheimildatöflu..."
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Uppfæri fyrirliggjandi gagnasafnstöflur..."
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"Pootle mun nú flytja inn allar þýðingar í gagnagrunninn. Þetta gæti tekið "
+"langan tíma."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Flutti inn %(count)d tillögu frá %(store)s"
+msgstr[1] "Flutti inn %(count)d tillögur frá %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Gat ekki flutt inn tillögur frá %s"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Flutti inn %(count)d einingu frá %(store)s"
+msgstr[1] "Flutti inn %(count)d einingar frá %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "Gat ekki flutt inn einingar frá %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Allar þýðingar hafa verið fluttar inn."
 
 #: local_apps/pootle_misc/dbupdate.py:180
-#, fuzzy
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
 msgstr ""
-"Frumstillti gagnagrunn, þú verður áframsendur á forsíðuna eftir 10 sekúndur"
+"Frumstillti gagnagrunn. Þú verður áframsendur á forsíðuna eftir 10 sekúndur."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
@@ -1212,7 +1224,7 @@ msgstr "Næsta"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Seinasta (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1231,7 +1243,7 @@ msgstr "Fréttir fyrir tungumál %(language)s"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Fréttir fyrir %(project)s"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1278,7 +1290,7 @@ msgstr "Frummál til vara"
 
 #: local_apps/pootle_profile/models.py:96
 msgid "Suggestions Accepted"
-msgstr "Tillöggur samþykktar"
+msgstr "Tillögur samþykktar"
 
 #: local_apps/pootle_profile/models.py:97
 msgid "Suggestions Pending"
@@ -1349,7 +1361,6 @@ msgstr[1] "%(languages)d tungumál, %(average)d%% búið að þýða"
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
 msgstr "Þú hefur ekki heimild til að stjórna þessu verkefni."
 
@@ -1362,11 +1373,10 @@ msgid "Initialize"
 msgstr "Frumstilla"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Hér fyrir neðan geturðu bætt við, breytt, og eytt öllum aðgansheimildum "
-"fyrir þetta tungumál."
+"Hér fyrir neðan geturðu bætt við, breytt, og eytt öllum aðgangsheimildum "
+"fyrir þetta verkefni."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
 #: templates/project_menu.html:10 templates/tp_base_admin.html:8
@@ -1388,49 +1398,49 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Java Properties"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "OS X strengir"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP fylki"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Skjátextar: srt"
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Skjátextar: sub"
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Skjátextar: ssa"
 
 #: local_apps/pootle_store/filetypes.py:73
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Skjátextar: ass"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1442,9 +1452,8 @@ msgid "Plural Form %d"
 msgstr "Fleirtala %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "Athugasemdir þýðanda"
+msgstr "Athugasemd þýðanda"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
@@ -1452,19 +1461,19 @@ msgstr "Slóð"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "Engir fleiri samsvarandi strengir til að endurskoða."
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "Engir fleiri samsvarandi strengir til að þýða."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "Engir samsvarandi strengir til að endurskoða."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "Engir samsvarandi strengir til að þýða."
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1480,7 +1489,7 @@ msgstr "Þýða"
 
 #: local_apps/pootle_store/templates/store/translate_table.html:11
 msgid "Original"
-msgstr "Upphaflegt"
+msgstr "Upphaflegur texti"
 
 #: local_apps/pootle_store/templates/store/translate_table.html:12
 #: local_apps/pootle_terminology/templates/terminology/manage.html:21
@@ -1493,24 +1502,24 @@ msgstr "Breyta þýðingu"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "Hugtakasafn"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Hugsanlegar villur í þýðingunni"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "Fell á prófi"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
 msgid "Remove quality check"
-msgstr ""
+msgstr "Fjarlægja gæðaprófun"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "Afrita yfir í þýðingu"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1523,28 +1532,27 @@ msgstr "Stinga uppá"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "Fara til baka á fyrri einingu"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "Fara yfir á næstu einingu"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "Bæta við athugasemd"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
-msgstr "Samþykkja uppástungu"
+msgstr "Samþykkja tillögu"
 
 #: local_apps/pootle_store/templates/unit/edit.html:149
 msgid "Reject suggestion"
-msgstr "Hafna uppástungu"
+msgstr "Hafna tillögu"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "Hafna uppástungu"
+msgstr "Fjarlægja tillögu"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1552,24 +1560,25 @@ msgid "Translator Comments"
 msgstr "Athugasemdir þýðanda"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, fuzzy
+#, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "Tilllaga %(suggid)d frá %(user)s:"
+msgstr "Tilllaga %(i)d frá %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "Tillaga frá %(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Búið að þýða orð: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr ""
+"Búið að þýða strengi: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1581,25 +1590,27 @@ msgstr "Fleirtala"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Endurgera orðasafn"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Ertu viss um að þú viljir endurgera orðasafn? Öllum þýðingum í orðasafni "
+"verður eytt."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Afþjappa"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Hægt er að endurgera orðasafn frá grunni."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "Orð"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
@@ -1607,20 +1618,19 @@ msgstr "Eyða"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Orðasafn er tómt"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Búa til orðasafn"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "Lýsing"
+msgstr "Lýsing..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "Nánar..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1645,9 +1655,9 @@ msgstr ""
 "Þú hefur ekki réttindi frá þessum stað til að uppfæra frá útgáfustýringu"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, fuzzy
+#, python-format, 
 msgid "Updated project \"%s\" from version control"
-msgstr "Uppfærði skrá %s frá útgáfustýringu"
+msgstr "Uppfærði verkefni \"%s\" frá útgáfustýringu"
 
 #: local_apps/pootle_translationproject/models.py:350
 #, python-format
@@ -1678,7 +1688,7 @@ msgstr "Þú hefur ekki leyfi til að búa til ZIP safn."
 #: local_apps/pootle_translationproject/views.py:273
 #, python-format
 msgid "Invalid/insecure file name: %s"
-msgstr "Ógilt/ótraust skráarnafn %s"
+msgstr "Ógilt/ótraust skráarnafn: %s"
 
 #: local_apps/pootle_translationproject/views.py:279
 #, python-format
@@ -1718,12 +1728,11 @@ msgstr "Hlaða inn"
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
-"Fella saman skrá við núverandi skrá og breyta því sem stangast á í "
-"uppástungu"
+"Fella saman skrá við núverandi skrá og breyta því sem stangast á í tillögur"
 
 #: local_apps/pootle_translationproject/views.py:486
 msgid "Add all new translations as suggestions"
-msgstr "Bæta við öllum nýjum þýðingum sem tillögum"
+msgstr "Bæta öllum nýjum þýðingum við sem tillögum"
 
 #: local_apps/pootle_translationproject/views.py:488
 msgid "Overwrite the current file if it exists"
@@ -1735,13 +1744,15 @@ msgstr "Skrá"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "Hlaða inn í"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Þú getur valið hvaða skrá á að fella saman við. Ef þetta er ekki skilgreint, "
+"verður skráarnafnið sjálft notað."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1753,24 +1764,22 @@ msgstr "Leit"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Hér geturðu sýslað með skrárnar í þessu þýðingarverkefni."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
-msgstr "Uppfæra af skrá"
+msgstr "Uppfæra skrár frá sniðmáti"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Endurlesa verkefnisskrár"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"Hér fyrir neðan geturðu bætt við, breytt, og eytt öllum aðgansheimildum "
+"Hér fyrir neðan geturðu bætt við, breytt, og eytt öllum aðgangsheimildum "
 "fyrir þetta tungumál."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
@@ -1779,7 +1788,6 @@ msgid "Review"
 msgstr "Endurskoða"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
 msgstr "Ítarleg leit"
 
@@ -1810,15 +1818,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Tími til að svara rann út"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Sláðu inn tölu"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Rangt"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1850,11 +1858,11 @@ msgstr "Kerfisstjórnun"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Upplýsingar um tölfræði um þennan Pootle netþjón"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Upplýsingar"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1909,7 +1917,7 @@ msgstr "Skrá inn"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Hafa samband"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1917,21 +1925,23 @@ msgstr "Um þennan Pootle þjón"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "Ertu maður?"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Til að vernda vefþjóninn gagnvart netárásum þurfum við staðfestingu á því að "
+"gagnasendingar séu frá raunverulegum notendum."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Vinsamlega svaraðu þessari spurningu:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Staðfesta"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1956,7 +1966,7 @@ msgstr "Heimasíða verkefnisins"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Verkefnisfréttir"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
@@ -1964,11 +1974,11 @@ msgstr "Stjórna eingin verkefni"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Sýsla með aðgangsheimildir að verkefni"
 
 #: templates/tp_base_terminology.html:5
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Sýsla með hugtakasafn"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -1988,7 +1998,7 @@ msgstr "Gæðaathuganir og endurskoða tillögur"
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
-msgstr "Stjórnaðu aðgangheimildum verkefnis"
+msgstr "Stjórnaðu aðgangsheimildum verkefnis"
 
 #: templates/tp_menu.html:13
 msgid "Administrate your project files"
@@ -2026,17 +2036,17 @@ msgstr "Django kerfisstjórnum"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Senda"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "Skilaboð send"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr " skilaboð frá %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""

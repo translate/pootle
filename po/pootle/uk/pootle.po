@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-03-20 10:14+0200\n"
+"PO-Revision-Date: 2010-08-04 22:17+0200\n"
 "Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -101,23 +101,23 @@ msgstr "статус суперкористувача"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Мова джерела"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Рядки для Android"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Ваше ім’я"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Ваша адреса електронної пошти"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Ваше повідомлення"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -341,6 +341,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Користувач „nobody“ відноситься до будь-якого користувача, який не увійшов в "
+"систему (анонімний, невідомий користувач). Користувач „default“ пов’язаний "
+"з правами, які типово надаються усім зареєстрованим користувачам, окрім інші "
+"особливих прав, наданих їм."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -396,9 +400,8 @@ msgid "Dashboard"
 msgstr "Панель керування"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Статистика користувача"
+msgstr "Статистика сервера"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -407,19 +410,19 @@ msgstr "Перекладених слів"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Нерозглянуті пропозиції"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Активні користувачі"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Активні проекти"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Активні мови"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -429,9 +432,8 @@ msgid "Files"
 msgstr "Файли"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "Переклад моїх рядків"
+msgstr "Перекладені рядки"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -443,11 +445,11 @@ msgstr "Затвердження"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Ще…"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Підтримка"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -455,22 +457,25 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle — результат роботи проекту Translate.org.za та спільноти закоханих у "
+"локалізацію фахівців. Ми хочемо, щоб Pootle зміг допомогти Вам досягти "
+"найвищої ефективності у Вашій перекладацькій справі."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Ви зможете знайти допомогу в одному з таких джерел інформації:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Документація для Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Список розсилання щодо Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(комерційна підтримка)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -487,7 +492,7 @@ msgstr "Оптимізації"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Попередження Pootle"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -625,11 +630,13 @@ msgstr "Встановлена версія Django – %s."
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"У системі встановлений пакунок Django версії %s, однак дуже бажано "
+"користуватися більш новішою версією."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Встановлена версія Django – %s."
+msgstr "Встановлена версія lxml — %s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -637,10 +644,12 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"Встановлено lxml версії %(installed)s. Pootle однак вимагає версію %"
+"(required)s для підтримки формату XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
-msgstr ""
+msgstr "lxml не встановлено. Pootle вимагає lxml для підтримки формату XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -663,6 +672,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Не вдалося знайти пакунок aeidon. Pootle вимагає Gaupol чи aeidon для "
+"підтримки форматів субтитрів."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -746,12 +757,16 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"Ви не визначили адресу, з якої потрібно висилати реєстраційні листи. Також "
+"перевірте правильність налаштувань поштового сервера."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Контактна адреса не визначена. Контактна форма дозволяє користувачам "
+"звертатися до адміністратора сервера."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -772,15 +787,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Учасники проекту"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Учасники мовного проекту"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Усі користувачі"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -882,7 +897,7 @@ msgstr "Перекладати усе"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Керування глосарієм"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -890,12 +905,12 @@ msgstr "ЗаZIPувати теку"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Переклад в оффлайні"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Звантажити XLIFF-файл для перекладу в оффлайні"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -903,11 +918,11 @@ msgstr "Завантажити XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Експортувати"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Експортувати переклади"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -915,7 +930,7 @@ msgstr "Звантажити"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Звантажити файл"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -1135,7 +1150,7 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: оновлення"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1143,64 +1158,66 @@ msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
+"Таблиці бази даних мають версію створення %d. Зараз Pootle оновить базу "
+"даних."
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "Створення таблиць бази даних…"
+msgstr "Створення відсутніх таблиць у базі даних…"
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Виправлення таблиці „permission“…"
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Оновлення існуючих таблиць бази даних…"
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"Зараз Pootle виконає імпортування усіх перекладів до бази даних. Це може "
+"зайняти деякий час."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Імпортовано %(count)d пропозицію з %(store)s"
+msgstr[1] "Імпортовано %(count)d пропозиції з %(store)s"
+msgstr[2] "Імпортовано %(count)d пропозицій з %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Не вдалося виконати імпортування пропозицій з %s"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Імпортована %(count)d одиниця з %(store)s"
+msgstr[1] "Імпортовано %(count)d одиниці з %(store)s"
+msgstr[2] "Імпортовано %(count)d одиниць з %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "Не вдалося виконати імпортування одиниць з %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Усі переклади імпортовані."
 
 #: local_apps/pootle_misc/dbupdate.py:180
-#, fuzzy
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
 msgstr ""
-"Ініціалізується база даних, Ви будете перенаправлені на головну сторінку "
-"протягом 10 секунд"
+"Pootle ініціалізує база даних. Ви будете перенаправлені на головну сторінку "
+"протягом 10 секунд."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
@@ -1232,7 +1249,7 @@ msgstr "Наступний"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Останні (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1251,7 +1268,7 @@ msgstr "Новини для мови %(language)s"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Новини проекту %(project)s"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1371,9 +1388,8 @@ msgstr[2] "%(languages)d мов, %(average)d%% перекладено"
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr "Ви не маєте прав на керування цією мовою."
+msgstr "Ви не маєте прав на керування цим проектом."
 
 #: local_apps/pootle_project/views.py:138
 msgid "Update from templates"
@@ -1384,10 +1400,10 @@ msgid "Initialize"
 msgstr "Ініціалізувати"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Нижче Ви можете додати, редагувати чи вилучати права доступу для цієї мови."
+"Нижче Ви можете додавати, редагувати чи вилучати права доступу для цього "
+"проекту."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
 #: templates/project_menu.html:10 templates/tp_base_admin.html:8
@@ -1408,15 +1424,15 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
@@ -1424,33 +1440,33 @@ msgstr ""
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Властивості Java"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "Рядки OS X"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP-масиви"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Субтитри: srt"
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Субтитри: sub"
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Субтитри: ssa"
 
 #: local_apps/pootle_store/filetypes.py:73
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Субтитри: ass"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1462,9 +1478,8 @@ msgid "Plural Form %d"
 msgstr "Форма множини %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "Коментарі перекладача"
+msgstr "Коментар перекладача"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
@@ -1472,19 +1487,19 @@ msgstr "Шлях"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "Більше немає рядків, які б потрібно було розглянути."
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "Більше немає рядків для перекладу."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "Немає рядків, які б потрібно було розглянути."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "Немає рядків для перекладу."
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1513,24 +1528,24 @@ msgstr "Редагування перекладу"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "Термінологія"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Можливі проблеми з перекладом"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "Перевірки з помилками"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
 msgid "Remove quality check"
-msgstr ""
+msgstr "Прибрати перевірку якості"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "Копіювати у переклад"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1543,15 +1558,15 @@ msgstr "Запропонувати"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "Перейти до попереднього рядка"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "Перейти до наступного рядка"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "Додати коментар"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1562,9 +1577,8 @@ msgid "Reject suggestion"
 msgstr "Відхилити пропозицію"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "Відхилити пропозицію"
+msgstr "Відхилити пропозицію перекладу"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1572,24 +1586,24 @@ msgid "Translator Comments"
 msgstr "Коментарі перекладача"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, fuzzy
+#, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "Пропозиція перекладу %(suggid)d користувача %(user)s:"
+msgstr "Пропозиція перекладу %(i)d від користувача %(user)s: "
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "Пропозиція від %(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Слів перекладено: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Рядків перекладено: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1601,25 +1615,27 @@ msgstr "Множина"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Перестворення ґлосарію"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Ви впевнені у необхідності перестворення глосарію? Усі наявні у ньому "
+"терміни та їх переклади будуть вилучені."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Витягти"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Ви можете перестворити глосарій з нуля."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "Термін"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
@@ -1627,20 +1643,19 @@ msgstr "Вилучити"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Глосарій порожній"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Створити глосарій"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "Опис"
+msgstr "Опис…"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "Подробиці…"
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1664,9 +1679,9 @@ msgid "You do not have rights to update from version control here"
 msgstr "Ви не маєте тут права на оновлення з системи контролю версій"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, fuzzy
+#, python-format, 
 msgid "Updated project \"%s\" from version control"
-msgstr "Оновлений файл %s з системи контролю версій"
+msgstr "Проект „%s“ оновлено із системи контролю версій"
 
 #: local_apps/pootle_translationproject/models.py:350
 #, python-format
@@ -1752,13 +1767,15 @@ msgstr "Файл"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "Вивантажити у "
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"За бажанням, виберіть файл, з яким Ви хочете виконати об’єднання. По "
+"умовчанню буде використано ім’я вивантажуваного файлу."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1770,24 +1787,23 @@ msgstr "Шукати"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Тут Ви можете працювати з файлами проекту."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
-msgstr "Оновити з шаблонів"
+msgstr "Оновити файли з шаблонів"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Пересканувати файли проекту"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"Нижче Ви можете додати, редагувати чи вилучати права доступу для цієї мови."
+"Нижче Ви можете додавати, редагувати чи вилучати права доступу щодо цього "
+"проекту."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -1795,9 +1811,8 @@ msgid "Review"
 msgstr "Розгляд"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
-msgstr "Докладний пошук"
+msgstr "Розширений пошук"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1826,15 +1841,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Час для відповіді минув"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Введіть число"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Невірно"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1866,11 +1881,11 @@ msgstr "Керування"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Інформація та статистичні дані щодо цього сервера Pootle"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Інформація"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1925,7 +1940,7 @@ msgstr "Вхід"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Зв’яжіться з нами"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1933,21 +1948,23 @@ msgstr "Про цей сервер під керуванням Pootle"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "Ви — людина?"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Для захисту сервера від атак ми змушені ввести перевірку того, чи не є "
+"користувачі роботами."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Будь ласка, дайте відповідь на таке питання:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Підтвердити"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1972,7 +1989,7 @@ msgstr "Домашня сторінка проекту"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Новини проекту"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
@@ -1980,11 +1997,11 @@ msgstr "Керування проектом"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Керування правами доступу щодо проекту"
 
 #: templates/tp_base_terminology.html:5
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Керування термінологією"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -2042,17 +2059,17 @@ msgstr "Керування Django"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Вислати"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "Повідомлення надіслано"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr " повідомлення від %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""

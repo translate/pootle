@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-04-02 18:43+0200\n"
+"PO-Revision-Date: 2010-08-09 12:38+0200\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "Language: lt\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -97,24 +97,27 @@ msgstr "Administratorius"
 #. l10n: The language from which translation will happen
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
+#, fuzzy
 msgid "Source Language"
-msgstr ""
+msgstr "Pradinė kalba"
 
 #: strings.py:35
+#, fuzzy
 msgid "Android strings"
-msgstr ""
+msgstr "„Android“ eilutės"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Jūsų vardas"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Jūsų el. pašto adresas"
 
 #: external_apps/contact_form_i18n/forms.py:148
+#, fuzzy
 msgid "Your message"
-msgstr ""
+msgstr "Jūsų pranešimas"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -337,6 +340,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Naudotoju „nobody“ laikomas bet kuris neprisijungęs ar neprisiregistravęs "
+"naudotojas. Naudotojui „default“ suteikite tas teises, kurias norite "
+"suteikti visiems prisijungusiems naudotojams, kuriems teisių nenurodysite "
+"atskirai."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -392,9 +399,8 @@ msgid "Dashboard"
 msgstr "Pultas"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Naudotojo statistika"
+msgstr "Serverio statistika"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -402,20 +408,24 @@ msgid "Translated words"
 msgstr "Išversti žodžiai"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
+#, fuzzy
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Pateikti pasiūlymai"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
+#, fuzzy
 msgid "Active users"
-msgstr ""
+msgstr "Aktyvūs naudotojai"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
+#, fuzzy
 msgid "Active projects"
-msgstr ""
+msgstr "Aktyvūs projektai"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
+#, fuzzy
 msgid "Active languages"
-msgstr ""
+msgstr "Aktyvios kalbos"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -427,7 +437,7 @@ msgstr "Failai"
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
 #, fuzzy
 msgid "Translated strings"
-msgstr "Versti mano eilutes"
+msgstr "Išverstos eilutės"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -438,35 +448,41 @@ msgid "Submissions"
 msgstr "Pateikti vertimai"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
+#, fuzzy
 msgid "More..."
-msgstr ""
+msgstr "Daugiau…"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Pagalba ir palaikymas"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
+#, fuzzy
 msgid ""
 "Pootle is developed by Translate.org.za and a community of passionate "
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"„Pootle“ sistemą kuria „Translate.org.za“ projektas ir lokalizavimo ekspertų "
+"bendruomenė. Mes siekiame, kad su „Pootle“ pagalba Jūsų lokalizavimas "
+"pasiektų pilną potencialą."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Prireikus pagalbos, Jums turėtų praversti šie šaltiniai:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "„Pootle“ dokumentacija"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "„Pootle“ el. pašto konferencija"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
+#, fuzzy
 msgid "(commercial support)"
-msgstr ""
+msgstr "(komercinis palaikymas)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -482,7 +498,7 @@ msgstr "Optimizacijos"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "„Pootle“ pranešimai"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -616,11 +632,13 @@ msgstr "Įdiegta „Django“ %s laida."
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"Įdiegta „Django“ %s laida, tačiau labai rekomenduotina naudoti naujesnę "
+"laidą."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Įdiegta „Django“ %s laida."
+msgstr "Įdiegta „lxml“ %s laida."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -628,10 +646,14 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"Įdiegta „lxml“ %(installed)s laida. Darbui su XML formato failais „Pootle“ "
+"reikalinga %(required)s laida."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
 msgstr ""
+"Neįdiegtas „lxml“ paketas. Jis būtinas, norint, kad „Pootle“ dirbtų su XML "
+"formato failais."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -654,6 +676,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Neaptiktas „aeidon“ paketas. „Gaupol“ arba „aeidon“ paketas būtinas, norint, "
+"kad „Pootle“ dirbtų su subtitrų failais."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -737,12 +761,16 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"Nenurodytas naujai prisiregistruojantiems naudotojams siunčiamų laiškų "
+"siuntėjo („from“) adresas. Be to, peržiūrėkite el. pašto serverio nuostatas."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Nenurodytas el. pašto adresas kontaktams. Jį nurodžius, naudotojai galės "
+"susisiekti su serverio administratoriais, pasinaudodami patogia forma."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -764,15 +792,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Projekto dalyviai"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Vertėjai į šią kalbą"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Visi naudotojai"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -875,7 +903,7 @@ msgstr "Versti viską"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Tvarkyti aiškinamąjį žodyną"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -883,12 +911,12 @@ msgstr "Aplanko ZIP archyvas"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Versti neprisijungus prie tinklo"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Parsisiųsti XLIFF failą vertimui neprisijungus prie tinklo"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -896,11 +924,11 @@ msgstr "Parsisiųsti XLIFF failą"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Eksportuoti"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Eksportuoti vertimus"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -908,7 +936,7 @@ msgstr "Parsisiųsti"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Parsisiųsti failą"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -1128,7 +1156,7 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "„Pootle“: atnaujinimas"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1136,64 +1164,66 @@ msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
+"Duomenų bazės lentelės šiuo metu atitinka %d laidą. Dabar „Pootle“ atnaujins "
+"duomenų bazę."
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "Kuriamos duomenų bazės lentelės…"
+msgstr "Kuriamos trūkstamos duomenų bazės lentelės…"
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Taisoma teisių lentelė…"
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Atnaujinamos turimos duomenų bazės lentelės…"
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"Dabar „Pootle“ importuos visus vertimus į duomenų bazę. Tai gali ilgokai "
+"užtrukti."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Importuotas %(count)d pasiūlymas iš %(store)s"
+msgstr[1] "Importuoti %(count)d pasiūlymai iš %(store)s"
+msgstr[2] "Importuota %(count)d pasiūlymų iš %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Nepavyko importuoti pasiūlymų iš %s"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Importuotas %(count)d vertimas iš %(store)s"
+msgstr[1] "Importuoti %(count)d vertimai iš %(store)s"
+msgstr[2] "Importuota %(count)d vertimų iš %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "Nepavyko importuoti vertimų iš %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Visi vertimai importuoti."
 
 #: local_apps/pootle_misc/dbupdate.py:180
-#, fuzzy
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
 msgstr ""
-"Duomenų bazė inicijuota, už 10 sekundžių Jūs būsite nukreipti į pradžios "
-"tinklalapį"
+"„Pootle“ sukūrė pradinę duomenų bazę, Už 10 sekundžių Jūs būsite nukreipti į "
+"pradžios tinklalapį."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
@@ -1225,7 +1255,7 @@ msgstr "Kitas"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Paskutinis (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1244,12 +1274,12 @@ msgstr "Naujienos apie %(language)s kalbą"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Naujienos apie „%(project)s“ projektą"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr "Naujienos apie projektą „%(project)s“ %(language)s kalba"
+msgstr "Naujienos apie „%(project)s“ projektą %(language)s kalba"
 
 #: local_apps/pootle_notifications/views.py:90
 #, python-format
@@ -1363,9 +1393,8 @@ msgstr[2] "%(languages)d kalbų, %(average)d%% išversta"
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr "Jums nesuteiktos teisės administuoti šią kalbą."
+msgstr "Jums nesuteiktos teisės administruoti šio projekto."
 
 #: local_apps/pootle_project/views.py:138
 msgid "Update from templates"
@@ -1376,9 +1405,8 @@ msgid "Initialize"
 msgstr "Inicijuoti"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "Žemiau galite pridėti, keisti ir šalinti teises šiai kalbai."
+msgstr "Žemiau galite pridėti, keisti ir šalinti teises šio projekto ribose."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
 #: templates/project_menu.html:10 templates/tp_base_admin.html:8
@@ -1399,49 +1427,49 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Java Properties"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "OS X Strings"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP masyvai"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Subtitrai: srt"
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Subtitrai: sub"
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Subtitrai: ssa"
 
 #: local_apps/pootle_store/filetypes.py:73
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Subtitrai: ass"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1453,9 +1481,8 @@ msgid "Plural Form %d"
 msgstr "Daugiskaitos forma %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "Vertėjo komentarai"
+msgstr "Vertėjo pastaba"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
@@ -1463,19 +1490,19 @@ msgstr "Kelias"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "Daugiau nėra peržiūros reikalaujančių eilučių."
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "Daugiau nėra verstinų eilučių."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "Nėra peržiūros reikalaujančių eilučių."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "Nėra verstinų eilučių."
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1504,11 +1531,11 @@ msgstr "Taisyti vertimą"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "Terminai"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Galimos vertimo problemos"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-05-12 09:38+0200\n"
+"PO-Revision-Date: 2010-08-03 19:23+0200\n"
 "Last-Translator: DiGro <th.groskamp@quicknet.nl>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -98,23 +98,24 @@ msgstr "beheerderstatus"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Brontaal"
 
 #: strings.py:35
+#, fuzzy
 msgid "Android strings"
-msgstr ""
+msgstr "Android tekenreeksen"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Uw naam"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Uw e-mailadres"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Uw bericht"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -334,6 +335,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"De gebruiker “niemand” verwijst naar een gebruiker die niet is ingelogd (een "
+"anonieme, niet geïdentificeerde gebruiker). De gebruiker “standaard” "
+"verwijst naar de rechten die alle ingelogde gebruikers standaard "
+"hebben,tenzij aan hen andere specifieke rechten werden toegekend."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -400,19 +405,22 @@ msgstr "Vertaalde woorden"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Wachtende suggesties"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
+#, fuzzy
 msgid "Active users"
-msgstr ""
+msgstr "Actieve gebruikers"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
+#, fuzzy
 msgid "Active projects"
-msgstr ""
+msgstr "Actieve projecten"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
+#, fuzzy
 msgid "Active languages"
-msgstr ""
+msgstr "Actieve talen"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -436,34 +444,40 @@ msgstr "Opgeslagen"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Meer..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Ondersteuning"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
+#, fuzzy
 msgid ""
 "Pootle is developed by Translate.org.za and a community of passionate "
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle is ontwikkeld door Translate.org.za en een gemeenchap van "
+"gepassioneerde experts in vertalingen. We willen dat Pootle helpt om uw "
+"vertalingswerk volledig tot zijn recht te laten komen."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "U zult het volgende handig vinden voor ondersteuning"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
+#, fuzzy
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "De documentatie voor Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "De mailinglijst voor Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
+#, fuzzy
 msgid "(commercial support)"
-msgstr ""
+msgstr "(commerciële ondersteuning)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -478,8 +492,9 @@ msgid "Optimizations"
 msgstr "Optimalisatie"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
+#, fuzzy
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Pootle waarschuwingen"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -612,10 +627,12 @@ msgid "Django version %s is installed."
 msgstr "Django versie %s is geïnstalleerd."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:57
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"Django versie %s is geïnstalleerd, maar een hogere versie wordt ten zeerste "
+"aanbevolen."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
 #, python-format, fuzzy
@@ -1165,7 +1182,6 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1177,7 +1193,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format

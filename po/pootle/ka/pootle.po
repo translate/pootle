@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2009-12-02 15:20+0200\n"
+"PO-Revision-Date: 2010-08-04 14:21+0200\n"
 "Last-Translator: Gia <giasher@telenet.ge>\n"
 "Language-Team: Georgian <www.gia.ge>\n"
 "Language: ka\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #: strings.py:8
 msgid ""
@@ -95,23 +95,23 @@ msgstr "სუპერვიზორის სტატუსი"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "პირველადი ენა"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "გადამოწმების ტექსტები"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "თქვენი სახელი"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "თქვენი ელფოსტა"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "თქვენი გზავნილი"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -326,6 +326,9 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"მონაწილე “არავინ” შეესაბამება ნებისმიერ მომხმარებელს, რომელიც სისტემაში არ "
+"შემოსულა (ანონიმური, გაურკვეველი...). მონაწილე “ნაგულისხმები” შეესაბამება "
+"სისტემაში შემოსულ მონაწილეს ნაგულისხმები უფლებებით, თუ სხვა არაა მითითებული."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -377,9 +380,8 @@ msgid "Dashboard"
 msgstr "პულტი"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "მონაწილის სტატისტიკა"
+msgstr "სერვერის სტატისტიკა"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -388,19 +390,19 @@ msgstr "თარგმნილი სიტყვები"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "დაყოვნებული შემოთავაზებები"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "აქტიური მონაწილეები"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "აქტიური პროექტები"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "აქტიური ენები"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -410,9 +412,8 @@ msgid "Files"
 msgstr "ფაილები"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "ჩემი სტრიქონების თარგმნა"
+msgstr "ნათარგმნი სტრიქონები"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -424,11 +425,11 @@ msgstr "გამოგზავნები"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "სხვა..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "მხარდაჭერა"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -436,22 +437,24 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle შექმნილია Translate.org.za გუნდისა და ლოკალიზაციის ექსპერტების მიერ. "
+"ჩვენი სურვილია, რომ Pootle დაგეხმაროთ და გაგიადვილოთ თარგმანი."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "აქ თქვენთვის სასარგებლო ინფორმაციას მოიძიებთ."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Pootle დოკუმენტაცია"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Pootle ფორუმები"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(კომერციული მომსახურება)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -467,7 +470,7 @@ msgstr "ოპტიმიზაციები"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Pootle გაფრთხილებები"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -600,12 +603,12 @@ msgstr "ჩადგმულია Django ვერსია %s."
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr ""
+msgstr "ჩადგმულია Django ვერსია %s, თუმცა მკაცრად რეკომენდებულია უფრო მაღალი."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "ჩადგმულია Django ვერსია %s."
+msgstr "ჩადგმულია lxml ვერსია %s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -613,10 +616,13 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"ჩადგმულია lxml ვერსია %s. XML ფორმატის მხარდასაჭერად Pootle-სთვის "
+"აუცილებელია ვერსია %(required)s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
 msgstr ""
+"lxml არ ჩადგმულა. XML ფორმატის მხარდასაჭერად Pootle-სთვის lxml აუცილებელია"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -639,6 +645,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"ვერ მოიძებნა aeidon პაკეტი. ქვესათაურების ფორმატის მხარდასაჭერად "
+"Pootle-სთვის აუცილებელია Gaupol ან aeidon."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -723,12 +731,16 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"მისამართი \"ვისგან\" ელფოსტის რეგისტრაციის გასაგზავნად არ მითითებულა. ასევე, "
+"გადახედეთ საფოსტო სერვერის პარამეტრებს."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"საკონტაქტო მისამართი არ მითითებულა. საკონტაქტო ფორმა მონაწილეების სერვერის "
+"ადმინებთან დაკავშირებას უზრუნველყოფს"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -750,15 +762,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "პროექტის მონაწილეები"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "ენის მონაწილეები"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "ყველა მონაწილე"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -855,7 +867,7 @@ msgstr "ყველას თარგმნა"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "სიტყვარის მართვა"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -863,12 +875,12 @@ msgstr "დასტის ZIP არქივი"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "თარგმნა ავტონომიურად"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "XLIFF ფაილის ჩამოტვირთვა ავტონომიური თარგმნისათვის"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -876,11 +888,11 @@ msgstr "XLIFF ფაილის ჩამოტვირთვა"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "ექსპორტი"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "თარგმანის ექსპორტი"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -888,7 +900,7 @@ msgstr "ჩამოტვირთვა"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "ფაილის ჩამოტვირთვა"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -1094,66 +1106,66 @@ msgstr "მონაცემთა ბაზის ინიციალიზ�
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: განახლება"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
 msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
-msgstr ""
+msgstr "მონაცემთა ბაზის ცხრილების ვერსიაა %d. Pootle ახლა მათ განაახლებს."
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "მონაცემთა ბაზის ცხრილების შექმნა..."
+msgstr "მონაცემთა ბაზის ახალი ცხრილების შექმნა..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "უფლებების ცხრილის განახლება..."
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "მონაცემთა ბაზის არსებული ცხრილების განახლება..."
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"Pootle ახლა ყველა თარგამნს მონცემთა ბაზაში გადმოიტანს. ამას შესაძლოა საკმაო "
+"დრო დასჭირდეს."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
+msgstr[0] "გადმოტანილია %(count)d შემოთავაზება - %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "ვერ ხერხდება შემოთავაზებათა იმპორტი - %s"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
+msgstr[0] "გადმოტანილია %(count)d ელემენტი - %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "ვერ ხერხდება ელემენტთა იმპორტი - %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "ყველა თარგმანი გადმოტანილია."
 
 #: local_apps/pootle_misc/dbupdate.py:180
-#, fuzzy
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
-msgstr "მონაცემთა ბაზის ინიციალიზება, თავფურცელზე 10 წამში გადამისამართდებით"
+msgstr "მონაცემთა ბაზის ინიციალიზება, თავფურცელზე 10 წამში გადამისამართდებით."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
@@ -1184,7 +1196,7 @@ msgstr "შემდეგი"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "ბოლო (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1203,7 +1215,7 @@ msgstr "სიახლეები ენისთვის %(language)s"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "სიახლეები - %(project)s"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1320,9 +1332,8 @@ msgstr[0] "%(languages)d ენა, ითარგმნა %(average)d%%"
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr "არ გაქვთ ამ ენის მართვის უფლება."
+msgstr "არ გაქვთ ამ პროექტის მართვის უფლება."
 
 #: local_apps/pootle_project/views.py:138
 msgid "Update from templates"
@@ -1333,9 +1344,8 @@ msgid "Initialize"
 msgstr "ინიციალიზება"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "აქ შეგიძლიათ ამ ენის უფლებების დამატება, რედაქცია და შეცვლა."
+msgstr "აქ შეგიძლიათ ამ პროექტისთვის უფლებების დამატება, რედაქცია და შეცვლა."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
 #: templates/project_menu.html:10 templates/tp_base_admin.html:8
@@ -1356,49 +1366,49 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku კლავიშები"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Java Properties"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "OS X ტექსტი"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP მასივები"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "ქვესათაურები: srt"
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "ქვესათაურები: sub"
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "ქვესათაურები: ssa"
 
 #: local_apps/pootle_store/filetypes.py:73
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "ქვესათაურები: ass"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1410,9 +1420,8 @@ msgid "Plural Form %d"
 msgstr "მრავლობითი ფორმა %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "მთარგმნელის შენიშვნები"
+msgstr "მთარგმნელის კომენტარი"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
@@ -1420,19 +1429,19 @@ msgstr "გეზი"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "გადასახედი სტრიქონები აღარ დარჩა."
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "სათარგმნი სტრიქონები აღარ დარჩა."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "გადასახედი სტრიქონები აღარაა."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "სათარგმნი სტრიქონები აღარაა."
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1461,24 +1470,24 @@ msgstr "თარგმანის რედაქცია"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "ტერმინოლოგია"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "შესაძლო პრობლემები თარგმნისას"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "არშემდგარი შემოწმებები"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
 msgid "Remove quality check"
-msgstr ""
+msgstr "ხარისხის შემოწმების ამორთვა"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "ასლის გადატანა სათარგმნ ველში"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1491,15 +1500,15 @@ msgstr "შემოთავაზება"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "გადასვლა წინა ელემენტზე"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "გადასვლა შემდეგ ელემენტზე"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "კომენტარის დამატება"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1510,9 +1519,8 @@ msgid "Reject suggestion"
 msgstr "შემოთავაზების უარყოფა"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "შემოთავაზების უარყოფა"
+msgstr "შემოთავაზების ამოშლა"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1520,24 +1528,25 @@ msgid "Translator Comments"
 msgstr "მთარგმნელის შენიშვნები"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, fuzzy
+#, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "შემოთავაზება %(suggid)d, ავტორი %(user)s:"
+msgstr "შემოთავაზება %(suggid)d მონაწილისგან %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "შემოთავაზება - %(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "ნათარგმნი სიტყვები: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr ""
+"ნათარგმნი სტრიქონები: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1549,25 +1558,27 @@ msgstr "მრავლობითი"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "სიტყვარის ხელახლა შექმნა"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"ნამდვილად გსურთ სიტყვარის ხელახლა შექმნა? არსებული ტერმინები და მათი "
+"თარგმანები წაიშლება."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "გახსნა"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "შეგიძლიათ სიტყვარის ნულიდან შექმნის დაწყება."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "ტერმინი"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
@@ -1575,20 +1586,19 @@ msgstr "წაშლა"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "სიტყვარი ცარიელია"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "სიტყვარის შექმნა"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "აღწერილობა"
+msgstr "აღწერილობა..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "დაწვრილებით..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1609,22 +1619,22 @@ msgstr "მდებარეობები"
 #: local_apps/pootle_translationproject/models.py:320
 #: local_apps/pootle_translationproject/models.py:346
 msgid "You do not have rights to update from version control here"
-msgstr "განახლების უფლება ძირეული ვერსიიდან აქ არ გაქვთ"
+msgstr "აქ არ გაქვთ განახლების უფლება ვერსიების საცავიდან"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, fuzzy
+#, python-format, 
 msgid "Updated project \"%s\" from version control"
-msgstr "განახლებული ფაილი %s ძირეული ვერსიიდან"
+msgstr "განახლებული პროექტი \"%s\" ვერსიების საცავიდან"
 
 #: local_apps/pootle_translationproject/models.py:350
 #, python-format
 msgid "Updated file %s from version control"
-msgstr "განახლებული ფაილი %s ძირეული ვერსიიდან"
+msgstr "განახლებული ფაილი %s ვერსიების საცავიდან"
 
 #: local_apps/pootle_translationproject/models.py:356
 #, python-format
 msgid "Failed to update %s from version control"
-msgstr "ვერ განახლდა %s ფაილი ძირეული ვერსიიდან"
+msgstr "ვერ ხერხდება ფაილის %s განახლება ვერსიების საცავიდან"
 
 #: local_apps/pootle_translationproject/views.py:83
 msgid "You do not have rights to access translation mode."
@@ -1701,13 +1711,15 @@ msgstr "ფაილი"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "ატვირთვა:"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"სურვილისამებრ, შეგიძლიათ შეარჩიოთ ფაილი შერწყმისათვის. თუ არ მიუთითებთ "
+"ატვირთული ფაილის სახელი გამოიყენება."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1719,23 +1731,23 @@ msgstr "ძიება"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "აქ ამ პროექტის ფაილების მართვა შეგიძლიათ."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
-msgstr "განახლება თარგებიდან"
+msgstr "ფაილების განახლება თარგებიდან"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "პროექტის ფაილების ხელახალი სკანირება."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr "აქ შეგიძლიათ ამ ენის უფლებების დამატება, რედაქცია და შეცვლა."
+msgstr ""
+"აქ შეგიძლიათ თარგმანის ამ პროექტისთვის უფლებების დამატება, რედაქცია და "
+"შეცვლა."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -1743,9 +1755,8 @@ msgid "Review"
 msgstr "გადახედვა"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
-msgstr "გაფართოებული ძიება"
+msgstr "ძიება კრიტერიუმებით"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1774,15 +1785,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "პასუხის ვადა გავიდა"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "შეიტანეთ რიცხვი"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "მცდარია"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1814,11 +1825,11 @@ msgstr "მართვა"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Pootle სერვერის მონაცემები და სტატისტიკა"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "ინფორმაცია"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1873,7 +1884,7 @@ msgstr "შესვლა"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "დაგვიკავშირდით"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1881,21 +1892,23 @@ msgstr "ამ Pootle სერვერის შესახებ"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "შემოწმება რობოტზე"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"სერვერის შეტევებისაგან დასაცავად ჩვენ ვამოწმებთ გზავნის თუ არა მონაცემებს "
+"ადამიანი."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "გთხოვთ უპასუხოთ ამ შეკითხვას."
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "დადასტურება"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1904,7 +1917,7 @@ msgstr "თავფურცლის ენა"
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
 msgid "Overview"
-msgstr "გადახედვა"
+msgstr "თავფურცელი"
 
 #: templates/language_menu.html:8
 msgid "Language news"
@@ -1920,7 +1933,7 @@ msgstr "პროექტის თავფურცელი"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "პროექტის სიახლეები"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
@@ -1928,11 +1941,11 @@ msgstr "თქვენი პროექტის მართვა"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "პროექტის უფლებების მართვა"
 
 #: templates/tp_base_terminology.html:5
 msgid "Manage Terminology"
-msgstr ""
+msgstr "ტერმინოლოგიის მართვა"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -1990,17 +2003,17 @@ msgstr "Django-ს მართვა"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "გაგზავნა"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "ტექსტი გაიგზავნა"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr "გზავნილი - %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""

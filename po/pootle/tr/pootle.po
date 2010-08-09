@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-01 18:21+0200\n"
+"PO-Revision-Date: 2010-08-07 22:57+0200\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -97,23 +97,23 @@ msgstr "Yönetici"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Kaynak Dil"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Android satırları"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Adınız"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Eposta adresiniz"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Mesajınız"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -334,6 +334,9 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"“nobody” kullanıcısı oturum açmamış herhangi bir kullanıcıya (isimsiz, "
+"tanımsız kullanıcı) aittir. “default” kullanıcısı oturum açmış, diğer belli "
+"haklar belirlenmezse varsayılan haklara sahip tüm kullanıcılara aittir."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -389,9 +392,8 @@ msgid "Dashboard"
 msgstr "Panel"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Kullanıcı İstatistikleri"
+msgstr "Sunucu İstatistikleri"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -400,19 +402,19 @@ msgstr "Çevrilmiş kelimeler"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Bekleyen öneriler"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Aktif kullanıcılar"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Aktif projeler"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Aktif diller"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -422,9 +424,8 @@ msgid "Files"
 msgstr "Dosyalar"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "Dizgilerimi Çevir"
+msgstr "Çevrilmiş satırlar"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -436,11 +437,11 @@ msgstr "Sunuşlar"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Daha fazla..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Destek"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -448,26 +449,29 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle Translate.org.za ve hırslı yerelleştirme uzmanları topluluğu "
+"tarafından geliştirilmektedir. Pootle'ın tam bir potansiyele ulaşan "
+"yerelleştirme işlerinize yardım etmesini istiyoruz."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Aşağıda destek için yardım bulacaksınız:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Pootle belgeleri"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Pootle postalama listesi"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(ticari destek)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
-msgstr "Bağımlılık Kontrolleri"
+msgstr "Bağımlılık Denetimleri"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:87
 msgid "Optional"
@@ -479,7 +483,7 @@ msgstr "Uyarlamalar"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Pootle Uyarıları"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -594,7 +598,7 @@ msgstr "Parola"
 #: local_apps/pootle_app/views/admin/dashboard.py:45
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr "Çeviri Araç Takımı sürüm %s kurulu."
+msgstr "Translate Toolkit sürüm %s kurulu."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
@@ -602,7 +606,7 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
-"Çeviri Araç Takımı sürüm %(installed)s kurulu. Pootle sürüm %(required)s "
+"Translate Toolkit sürüm %(installed)s kurulu. Pootle sürüm %(required)s "
 "gerektirir."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:54
@@ -614,12 +618,12 @@ msgstr "Django sürüm %s kurulu."
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr ""
+msgstr "Django sürüm %s kurulu ama daha yüksek sürümü son derece önerilir."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Django sürüm %s kurulu."
+msgstr "lxml sürüm %s kurulu."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -627,10 +631,12 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"lxml sürüm %(installed)s kurulu. XML biçimi desteği için Pootle sürüm %"
+"(required)s gerektirir."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
-msgstr ""
+msgstr "lxml kurulu değil. XML biçimi desteği için Pootle, lxml gerektirir."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -653,6 +659,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Aeidon paketi bulunamıyor. Pootle altbaşlık biçimlerini desteklemek için "
+"Gaupol ya da aeidon gerektirir."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -738,12 +746,16 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"\"Kimden\" adresi, belirlenmemiş kayıt epostalarını göndermek için kullanılır. "
+"Ayrıva posta sunucusu ayarlarınızı inceleyin."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"İletişim adresi belirlenmemiş. İletişim formu kullanıcıların sunucu "
+"yöneticileriyle iletişime geçmesine izin verecektir."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -766,15 +778,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Proje Üyeleri"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Dil Üyeleri"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Tüm Kullanıcılar"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -827,7 +839,7 @@ msgstr "Çeviriler tamamlandı"
 #: local_apps/pootle_project/views.py:110
 #: local_apps/pootle_project/views.py:197
 msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr "Çevirilerin kontrol edilmesi gerekir (belirsiz olarak işaretlenir)"
+msgstr "Çevirilerin denetlenmesi gerekir (belirsiz olarak işaretlenir)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
 #, python-format
@@ -843,13 +855,13 @@ msgstr "%(translated)d/%(total)d kelime (%%%(translatedpercent)d) çevrilmiş"
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
 msgid "%(translated)d/%(total)d strings"
-msgstr "%(translated)d/%(total)d karakter dizisi"
+msgstr "%(translated)d/%(total)d satır"
 
 #: local_apps/pootle_app/views/language/item_dict.py:76
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
-msgstr[0] "%(checks)d karakter dizisi (%%%(checkspercent)d) başarısız"
+msgstr[0] "%(checks)d satır (%%%(checkspercent)d) başarısız"
 
 #: local_apps/pootle_app/views/language/item_dict.py:94
 msgid "Review Suggestions"
@@ -873,7 +885,7 @@ msgstr "Tümünü Çevir"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Sözlüğü Yönet"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -881,12 +893,12 @@ msgstr "ZIP olarak İndir"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Çevrimdışı çevir"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Çevrimdışı çeviri için XLIFF dosyasını indir"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -894,11 +906,11 @@ msgstr "XLIFF olarak İndir"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Dışa aktar"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Çevirileri dışa aktar"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -906,7 +918,7 @@ msgstr "İndir"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Dosya indir"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -1114,7 +1126,7 @@ msgstr "Veritabanı başlatıldı, 10 saniye içinde ön sayfaya yönlendirilece
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Güncelle"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1122,58 +1134,62 @@ msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
+"Veritabanı tablolarının şu an yapım sürümü %d. Pootle şimdi veritabanını "
+"güncelleyecek."
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "Veritabanı tabloları oluşturuluyor..."
+msgstr "Eksik veritabanı tabloları oluşturuluyor..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "İzin tablosu onarılıyor..."
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Mevcut veritabanı tabloları güncelleniyor..."
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"Pootle şimdi tüm çevirileri veritabanına aktaracak. Bu biraz uzun zaman "
+"alabilir."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
+msgstr[0] "%(store)s'dan %(count)d öneri içe aktarıldı"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "%s'dan önerileri içe aktarma başarısız"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
+msgstr[0] "%(store)s'dan %(count)d birim içe aktarıldı"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "%s'dan birimleri içe aktarma başarısız"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Tüm çeviriler şimdi içe aktarıldı."
 
 #: local_apps/pootle_misc/dbupdate.py:180
-#, fuzzy
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
-msgstr "Veritabanı başlatıldı, 10 saniye içinde ön sayfaya yönlendirileceksiniz"
+msgstr ""
+"Pootle veritabanını başlattı, 10 saniye içinde ön sayfaya "
+"yönlendirileceksiniz."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
@@ -1205,7 +1221,7 @@ msgstr "Sonraki"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Son (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1224,7 +1240,7 @@ msgstr "%(language)s için haberler"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "%(project)s için haberler"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1319,7 +1335,7 @@ msgstr "GNU olmayan: Her dil kendi dizinindedir"
 
 #: local_apps/pootle_project/models.py:61
 msgid "Quality Checks"
-msgstr "Kalite Kontrolü"
+msgstr "Kalite Denetimleri"
 
 #: local_apps/pootle_project/models.py:62
 msgid "File Type"
@@ -1341,9 +1357,8 @@ msgstr[0] "%(languages)d dil, %%%(average)d çevrilmiş"
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr "Bu dili yönetme haklarına sahip değilsiniz."
+msgstr "Bu projeyi yönetme haklarına sahip değilsiniz."
 
 #: local_apps/pootle_project/views.py:138
 msgid "Update from templates"
@@ -1354,10 +1369,10 @@ msgid "Initialize"
 msgstr "Başlat"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Aşağıdan bu dil için izinleri ekleyebilir, düzenleyebilir ve silebilirsiniz."
+"Aşağıdan bu proje için izinleri ekleyebilir, düzenleyebilir ve "
+"silebilirsiniz."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
 #: templates/project_menu.html:10 templates/tp_base_admin.html:8
@@ -1380,49 +1395,49 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Java Özellikleri"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "OS X Satırları"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP sıralamaları"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Altyazılar: srt"
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Altyazılar: sub"
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Altyazılar: ssa"
 
 #: local_apps/pootle_store/filetypes.py:73
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Altyazılar: ass"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1434,9 +1449,8 @@ msgid "Plural Form %d"
 msgstr "Çoğul Biçim %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "Çevirmen Yorumları"
+msgstr "Çevirmen yorumu"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
@@ -1444,19 +1458,19 @@ msgstr "Yol"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "Daha fazla incelemek için eşleşen satır yok."
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "Daha fazla çevirmek için eşleşen satır yok."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "İncelemek için eşleşen satır yok."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "Çevirmek için eşleşen satır yok."
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1485,24 +1499,24 @@ msgstr "Çeviriyi düzenle"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "Terimler"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Çeviriyle ilgili olası sorunlar"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "Başarısız Denetimleri"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
 msgid "Remove quality check"
-msgstr ""
+msgstr "Kalite denetimini kaldır"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "Çeviri içine kopyala"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1515,15 +1529,15 @@ msgstr "Öner"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "Önceki birime git"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "Sonraki birime git"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "Yorum Ekle"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1534,9 +1548,8 @@ msgid "Reject suggestion"
 msgstr "Öneriyi reddet"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "Öneriyi reddet"
+msgstr "Öneriyi kaldır"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1544,24 +1557,24 @@ msgid "Translator Comments"
 msgstr "Çevirmen Yorumları"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, fuzzy
+#, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "Öneri %(suggid)d, Öneri Yapan %(user)s:"
+msgstr "%(user)s tarafından yapılan öneri %(i)d:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "%(user)s tarafından yapılan öneri"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Çevrilmiş Kelime: %(translated)d/%(total)d - %%%(translatedpercent)d"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Çevrilmiş Satır: %(translated)d/%(total)d - %%%(translatedpercent)d"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1573,25 +1586,27 @@ msgstr "Çoğul"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Sözlüğü Yeniden Oluştur"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Sözlüğü yeniden oluşturmak istediğinize emin misiniz? Herhangi bir mevcut "
+"terim ve çevirileri silinecektir."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Çıkart"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Sözlüğü baştan yeniden oluşturabilirsiniz."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "Terim"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
@@ -1599,20 +1614,19 @@ msgstr "Sil"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Sözlük Boş"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Sözlük Oluştur"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "Açıklama"
+msgstr "Açıklama..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "Ayrıntılar..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1636,9 +1650,9 @@ msgid "You do not have rights to update from version control here"
 msgstr "Buradaki sürüm denetiminden güncelleme yapma haklarına sahip değilsiniz"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, fuzzy
+#, python-format, 
 msgid "Updated project \"%s\" from version control"
-msgstr "Sürüm denetiminden %s dosya güncellendi"
+msgstr "Sürüm denetiminden güncellenen proje \"%s\""
 
 #: local_apps/pootle_translationproject/models.py:350
 #, python-format
@@ -1724,13 +1738,15 @@ msgstr "Dosya"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "Şuraya gönder"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Birleştirmek istediğiniz dosyayı isteğe bağlı olarak seçin. Eğer "
+"belirtilmemişse, gönderilmiş dosyanın adı kullanılır."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1742,24 +1758,23 @@ msgstr "Ara"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Burada, bu çeviri projesinde dosyaları yönetebilirsiniz."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
-msgstr "Şablonlardan güncelle"
+msgstr "Dosyaları şablonlardan güncelle"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Proje dosyalarını yeniden tara"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"Aşağıdan bu dil için izinleri ekleyebilir, düzenleyebilir ve silebilirsiniz."
+"Aşağıdan bu dil projesi için izinleri ekleyebilir, düzenleyebilir ve "
+"silebilirsiniz."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -1767,9 +1782,8 @@ msgid "Review"
 msgstr "İncele"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
-msgstr "Gelişmiş Arama"
+msgstr "Gelişmiş arama"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1798,15 +1812,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Yanıtlama zamanı süresi doldu"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Bir numara girin"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Doğru değil"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1838,11 +1852,11 @@ msgstr "Yönetim"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Bu Pootle sunucusu hakkında bilgi ve istatistikler"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Bilgi"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1897,7 +1911,7 @@ msgstr "Oturum Aç"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Bize Ulaşın"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1905,21 +1919,23 @@ msgstr "Bu Pootle Sunucusu Hakkında"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "İnsan Mısınız?"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Sunucuyu saldırılara karşı korumak için sunuşların insan kullanıcılar "
+"tarafından yapıldığını doğrulamak zorundayız."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Lütfen bu soruyu yanıtlayın:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Onayla"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1944,7 +1960,7 @@ msgstr "Proje ana sayfası"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Proje haberleri"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
@@ -1952,11 +1968,11 @@ msgstr "Projenizi yönetin"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Proje izinlerini yönet"
 
 #: templates/tp_base_terminology.html:5
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Terimleri Yönet"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -2014,17 +2030,17 @@ msgstr "Django yönetimi"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Gönder"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "İleti Gönderildi"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr "%(name)s tarafından ileti"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
@@ -2032,7 +2048,7 @@ msgid ""
 "the header of the translation files."
 msgstr ""
 "Buradan kişisel ayrıntılarınızı değiştirebilirsiniz. Bu bilgi çeviri "
-"dosyasının üstbilgisinde kullanılacaktır."
+"dosyasının başlığında kullanılacaktır."
 
 #: templates/profiles/edit_personal.html:19
 msgid "First Name"
@@ -2281,7 +2297,7 @@ msgstr "Kayıt Tamamlandı"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr "Lütfen hesabınızı etkinleştirmek için epostanızı kontrol edin."
+msgstr "Lütfen hesabınızı etkinleştirmek için epostanızı denetleyin."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"

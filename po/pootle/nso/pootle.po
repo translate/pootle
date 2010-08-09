@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-02-24 10:59+0200\n"
+"PO-Revision-Date: 2010-08-05 17:16+0200\n"
 "Last-Translator: Pheledi <pheledi@mosekolatranslation.co.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nso\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #: strings.py:8
 msgid ""
@@ -26,7 +26,7 @@ msgstr ""
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr "Tsenya aterese ya imeile yeo e šomago."
+msgstr "Tsenya aterese yeo e šomago ya imeile."
 
 #: strings.py:10
 msgid ""
@@ -44,7 +44,7 @@ msgstr "Lebala le le a nyakega."
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
-"Netefatša gore boleng bjo bo na le bontši bja ditlhaka tša %(max)d (bo na le "
+"Netefatša gore boleng bjo bo na le bontši bja ditlhaka tše %(max)d (bo na le "
 "%(length)d)."
 
 #: strings.py:13
@@ -76,15 +76,15 @@ msgstr "Lebelela saeteng"
 
 #: strings.py:24
 msgid "first name"
-msgstr "leina"
+msgstr "Leina"
 
 #: strings.py:25
 msgid "last name"
-msgstr "sefane"
+msgstr "Sefane"
 
 #: strings.py:26
 msgid "e-mail address"
-msgstr "aterese ya imeile"
+msgstr "Aterese ya imeile"
 
 #: strings.py:27
 msgid "active"
@@ -93,29 +93,29 @@ msgstr "dirago"
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr "taolo"
+msgstr "Molaodi"
 
 #. l10n: The language from which translation will happen
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Leleme la motheo"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Android strings"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Leina"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Aterese ya imeile"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Molaetša"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -136,11 +136,11 @@ msgstr "Boloka"
 
 #: external_apps/registration/forms.py:36
 msgid "username"
-msgstr "leina la modiriši"
+msgstr "Leina la modiriši"
 
 #: external_apps/registration/forms.py:39
 msgid "email address"
-msgstr "aterese ya imeile"
+msgstr "Aterese ya imeile"
 
 #: external_apps/registration/forms.py:41
 msgid "password"
@@ -156,7 +156,7 @@ msgstr "Leina le la modiriši le šetše le tšerwe. Hle kgetha le lengwe."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr "O swanetše go tlanya lentšuphetišo leo le swanago nako le nako"
+msgstr "Lentšuphetišo le swanetše go swana nako le nako"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
@@ -166,17 +166,15 @@ msgstr "Ke badile gape ke dumelelana le dipeelo tša tirelo"
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
-msgstr ""
-"Aterese ye ya imeile e šetše e dirišwa. Hle fana ka aterese e fapanego ya "
-"imeile."
+msgstr "Aterese ye ya imeile e šetše e dirišwa. Hle fana ka e nngwe."
 
 #: external_apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
-"Ngwadišo go dirišwa diaterese tša imeile tšeo di sa lefelelwego go "
-"ileditšwe. Hle fana ka aterese e fapanego ya imeile."
+"Ngwadišo go dirišwa diaterese tša imeile tšeo di sa lefelelwego e ileditšwe. "
+"Hle fana ka e nngwe."
 
 #: external_apps/registration/models.py:218
 msgid "user"
@@ -200,7 +198,7 @@ msgstr "Khoutu ya leleme ga e latele phetolelo ya ISO"
 
 #: local_apps/pootle_app/admin.py:67
 msgid "Project code may only contain letters, numbers and _"
-msgstr "Khoutu ya projeke e ka ba feela le maletere, dinomoro le"
+msgstr "Khoutu ya projeke e ka ba feela le maletere, dinomoro le _"
 
 #: local_apps/pootle_app/admin.py:79
 msgid "Advanced Options"
@@ -208,7 +206,7 @@ msgstr "Dikgetho tše gatetšego pele"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
-msgstr "Sehlogo"
+msgstr "Thaetlele"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
@@ -236,7 +234,7 @@ msgstr "O ka dira tšhišinyo ka ga phetolelo"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can submit a translation"
-msgstr "O ka iša phetolelo"
+msgstr "O ka romela phetolelo"
 
 #: local_apps/pootle_app/management/__init__.py:78
 msgid "Can overwrite translations on uploading files"
@@ -256,7 +254,7 @@ msgstr "O ka laola projeke ya phetolelo"
 
 #: local_apps/pootle_app/management/__init__.py:86
 msgid "Can commit to version control"
-msgstr "O ka itlama go taolo ya kgatišo"
+msgstr "O ka itlama go taolo ya tokollo"
 
 #: local_apps/pootle_app/models/suggestion.py:33
 msgid "Pending"
@@ -272,7 +270,7 @@ msgstr "Gannwe"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr "Batsenya-letsogo ba phagamego"
+msgstr "Batsenya-letsogo ba bagolo"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/view.py:39
@@ -281,7 +279,7 @@ msgstr "Fetoletšwego"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr "Di swanetše go boeletšwa"
+msgstr "Di hloka go boeletšwa"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:114
@@ -337,6 +335,11 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Lediriši la \"nobody\" le bolela ka modiriši ofe goba ofe yo a sa tsenago "
+"(modiriši yo a sa tsebjwego, a sa ipolelwago ka leina). Lediriši la "
+"\"default\" le bolela ka ditokelo tšeo badiriši bohle bao ba ingwadišitšego ba "
+"tla bago le tšona ka tirelwa, ka ntle le ge ba filwe ditokelo tše dingwe ka "
+"go lebanya."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -360,11 +363,11 @@ msgstr ""
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr "Dipeakanyo tša kakaretšo"
+msgstr "Dipeakanyo-kakaretšo"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr "Dira dipeakanyo tša kakaretšo tša saete ya gago mo."
+msgstr "Dira dipeakanyo-kakaretšo tša saete ya gago mo."
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -392,7 +395,6 @@ msgid "Dashboard"
 msgstr "Tešeboto"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
 msgstr "Dipalopalo tša modiriši"
 
@@ -403,19 +405,19 @@ msgstr "Mantšu ao a fetoletšwego"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Ditšhišinyo tše letetšwego"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Badiriši ba šomago"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Diprojeke tše šomago"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Maleme a šomago"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -426,7 +428,7 @@ msgstr "Difaele"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
 msgid "Translated strings"
-msgstr ""
+msgstr "Methaladi e fetoletšwego"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -438,11 +440,11 @@ msgstr "Tše rometšwego"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "... tše oketšegilego"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Thekgo"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -450,22 +452,25 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle e tšweleditšwe ke Translate.org.za le sehlopha sa ditsebi tša go "
+"gaefatša tšeo di nago le lerato. Re nyaka gore Pootle e thuše mošomo wa gago "
+"wa go gaefatša gore e be o tšwilego matsogo."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "O tla hwetša tše latelago e le thekgo e thušago:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Ditokumente tša Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Lenaneothomelo la Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(thekgo ya kgwebo)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -481,7 +486,7 @@ msgstr "Ditirišotlalo"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Ditemošo tša Pootle"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -515,7 +520,7 @@ msgstr "Leleme"
 #: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_project/templates/project/projects.html:23
 msgid "Overall Completion"
-msgstr "Phetho ya kakaretšo"
+msgstr "Phetho-kakaretšo"
 
 #: local_apps/pootle_app/templates/index/index.html:28
 #: local_apps/pootle_app/templates/index/index.html:63
@@ -619,11 +624,13 @@ msgstr "Go loketšwe tokollo ya %s ya Django."
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"Go loketšwe tokollo ya %s ya Django, eupša go eletšwa tokollo e phagamego "
+"kudu."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Go loketšwe tokollo ya %s ya Django."
+msgstr "Go loketšwe tokollo ya %s ya lxml."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -631,10 +638,13 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"Go loketšwe tokollo ya %(installed)s ya lxml. Pootle e nyaka tokollo ya %"
+"(required)s bakeng sa thekgo ya fomate ya XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
 msgstr ""
+"lxml ga ya lokelwa. Pootle e nyaka lxml bakeng sa thekgo ya fomate ya XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -657,6 +667,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Ga e kgone go hwetša sephuthelwana sa aeidon. Pootle e nyaka Gaupol goba "
+"aeidon go thekga difomate tša dihlogwana."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -745,12 +757,16 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"Aterese ya \"go tšwa go\" yeo e dirišitšwego go romela diimeile tša go "
+"ingwadiša ga ya laetšwa. Gape boeletša dipeakanyo tša seabi tša mangwalo."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Ga go a laetšwa aterese ya go ikgokaganya. Foromo ya go ikgokaganya e tla "
+"dumelela badiriši go ikgokaganya le balaodi ba seabi."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -773,15 +789,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Maloko a projeke"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Maloko a leleme"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Badiriši bohle"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -882,7 +898,7 @@ msgstr "Fetolela tšohle"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Laola lenaneo la mantšu"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -890,12 +906,12 @@ msgstr "ZIP ya tšhupetšo"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Fetolela o se inthaneteng"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Laolla faele ya XLIFF gore o e fetolele o se inthaneteng"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -903,11 +919,11 @@ msgstr "Laolla XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Romela"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Romela diphetolelo"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -915,11 +931,11 @@ msgstr "Laolla"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Laolla faele"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
-msgstr "Itlame go VCS"
+msgstr "Tlamelela go VCS"
 
 #: local_apps/pootle_app/views/language/item_dict.py:182
 msgid "Update from VCS"
@@ -1085,7 +1101,7 @@ msgstr "Ka mo tlase o ka oketša, lokiša le go phumola ditumelelo tša leleme l
 
 #: local_apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
-msgstr "Pootle: lokela"
+msgstr "Pootle: Lokela"
 
 #: local_apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1127,12 +1143,12 @@ msgstr "E feditše go hlakantšha dipalopalo tša maleme a tirelwa le diprojeke"
 msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
-"Thomološa dathapeisi, o tla lebišwa gape go letlakala la pele ka metsotswana "
-"e 10"
+"Dathapeisi e thomološitšwe, o tla lebišwa gape go letlakala la pele ka "
+"metsotswana e 10"
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Mpshafatšo"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1140,62 +1156,64 @@ msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
+"Mananeo a dathapeisi gonabjale a go tokollo ya go aga ya %d. Pootle bjale e "
+"tla mpshafatša dathapeisi."
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "Go hlama mananeo a dathapeisi..."
+msgstr "Go hlama mananeo a dathapeisi ao a sego gona..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Go lokiša lenaneo la tumelelo..."
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Go mpshafatša mananeo a dathapeisi ao a šetšego a le gona..."
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"Pootle bjale e tla amogela diphetolelo tšohle dathapeising. Go ka tšea nako "
+"e telele."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Amogetše tšhišinyo e %(count)d go tšwa go %(store)s"
+msgstr[1] "Amogetše ditšhišinyo tše %(count)d go tšwa go %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Paletšwe ke go amogela ditšhišinyo go tšwa go %s"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Amogetše yuniti e %(count)d go tšwa go %(store)s"
+msgstr[1] "Amogetše diyuniti tše %(count)d go tšwa go %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "Paletšwe ke go amogela diyuniti go tšwa go %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Diphetolelo tšohle bjale di amogetšwe."
 
 #: local_apps/pootle_misc/dbupdate.py:180
-#, fuzzy
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
 msgstr ""
-"Thomološa dathapeisi, o tla lebišwa gape go letlakala la pele ka metsotswana "
-"e 10"
+"Pootle e thomološitše dathapeisi. O tla lebišwa gape go letlakala la pele ka "
+"metsotswana e 10."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
@@ -1213,7 +1231,7 @@ msgstr ""
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr "Pele"
+msgstr "Mathomong"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
@@ -1228,7 +1246,7 @@ msgstr "Latelago"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "(%d) ya mafelelo"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1247,7 +1265,7 @@ msgstr "Ditaba tša %(language)s"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Ditaba tša %(project)s"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1365,9 +1383,8 @@ msgstr[1] "Maleme a %(languages)d, %(average)d%% tše fetoletšwego"
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr "Ga o na ditokelo tša go laola leleme le."
+msgstr "Ga o na ditokelo tša go laola projeke ye."
 
 #: local_apps/pootle_project/views.py:138
 msgid "Update from templates"
@@ -1378,9 +1395,9 @@ msgid "Initialize"
 msgstr "Thomološa"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "Ka mo tlase o ka oketša, lokiša le go phumola ditumelelo tša leleme le."
+msgstr ""
+"Ka mo tlase o ka oketša, lokiša le go phumola ditumelelo tša projeke ye."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
 #: templates/project_menu.html:10 templates/tp_base_admin.html:8
@@ -1401,49 +1418,49 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Dipharologantšho tša Java"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "OS X Strings"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "Difaele tša PHP array"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Mantšu a ka tlase: srt"
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Mantšu a ka tlase: sub"
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Mantšu a ka tlase: ssa"
 
 #: local_apps/pootle_store/filetypes.py:73
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Mantšu a ka tlase: ass"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1455,9 +1472,8 @@ msgid "Plural Form %d"
 msgstr "Sebopego sa bontši sa %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "Ditshwaotshwao tša mofetoledi"
+msgstr "Tshwaotshwao ya mofetoledi"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
@@ -1465,19 +1481,19 @@ msgstr "Tsejana"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "Ga go sa na methaladi e swanago yeo e ka boeletšwago."
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "Ga go sa na methaladi e swanago yeo e ka fetolelwago."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "Ga go na methaladi e swanago yeo e tla boeletšwago."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "Ga go na methaladi e swanago yeo e tla fetolelwago."
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1506,24 +1522,24 @@ msgstr "Lokiša phetolelo"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "Mareo"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Kgonagalo ya mathata a phetolelo"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "Ditekolo tšeo di palelwago"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
 msgid "Remove quality check"
-msgstr ""
+msgstr "Tloša tekolo ya khwaliti"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "Kopišetša phetolelong"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1536,15 +1552,15 @@ msgstr "Šišinya"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "E-ya yuniting e fetilego"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "E-ya yuniting e latelago"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "Tsenya tshwaotshwao"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1555,9 +1571,8 @@ msgid "Reject suggestion"
 msgstr "Gana tšhišinyo"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "Gana tšhišinyo"
+msgstr "Tloša tšhišinyo"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1565,24 +1580,26 @@ msgid "Translator Comments"
 msgstr "Ditshwaotshwao tša mofetoledi"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, fuzzy
+#, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "Tšhišinyo ya %(suggid)d ka %(user)s:"
+msgstr "Tšhišinyo ya %(i)d ka %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "Tšhišinyo ka %(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr ""
+"Mantšu ao a fetoletšwego: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr ""
+"Methaladi e fetoletšwego: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1594,25 +1611,27 @@ msgstr "Bontši"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Hlagiša lenaneo la mantšu ka leswa"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Na o kgodišegile gore o nyaka go hlagiša lenaneo la mantšu ka leswa? Mareo "
+"afe goba afe ao a šetšego a le gona le diphetolelo tša ona di tla phumolwa."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Hlahlamolla"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "O hlagiša lenaneo la mantšu ka leswa go tloga fase."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "Lereo"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
@@ -1620,20 +1639,19 @@ msgstr "Phumola"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Lenaneo la mantšu ga le na selo"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Hlagiša lenaneo la mantšu"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "Tlhaloso"
+msgstr "Tlhaloso..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "Dintlha..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1657,14 +1675,14 @@ msgid "You do not have rights to update from version control here"
 msgstr "Ga o na ditokelo tša go mpshafatša go tšwa taolong ya kgatišo"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, fuzzy
+#, python-format, 
 msgid "Updated project \"%s\" from version control"
-msgstr "Mpshafaditše faele e %s go tšwa go taolo ya kgatišo"
+msgstr "Mpshafaditše projeke ya \"%s\" go tšwa go taolo ya tokollo"
 
 #: local_apps/pootle_translationproject/models.py:350
 #, python-format
 msgid "Updated file %s from version control"
-msgstr "Mpshafaditše faele e %s go tšwa go taolo ya kgatišo"
+msgstr "Mpshafaditše faele ya %s go tšwa go taolo ya kgatišo"
 
 #: local_apps/pootle_translationproject/models.py:356
 #, python-format
@@ -1747,13 +1765,15 @@ msgstr "Faele"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "Hlahlela go"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Ka boikgethelo kgetha faele yeo o nyakago go kopanya le yona. Ge e sa "
+"laetšwa, go dirišwa leina la faele yeo e hlahletšwego."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1765,23 +1785,23 @@ msgstr "Nyaka"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Mo o ka laola difaele projekeng ye ya phetolelo."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
-msgstr "Mpshafatša go tšwa dithempoleiting"
+msgstr "Mpshafatša difaele go tšwa dithempoleiting"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Sekena difaele tša projeke ka leswa"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr "Ka mo tlase o ka oketša, lokiša le go phumola ditumelelo tša leleme le."
+msgstr ""
+"Ka mo tlase o ka oketša, lokiša le go phumola ditumelelo tša projeke ye ya "
+"phetolelo."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -1789,7 +1809,6 @@ msgid "Review"
 msgstr "Poeletšo"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
 msgstr "Nyako e gatetšego pele"
 
@@ -1820,15 +1839,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Nako ya go araba e fedile"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Tsenya nomoro"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Fošagetše"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1860,11 +1879,11 @@ msgstr "Taolo"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Tshedimošo le dipalopalo ka ga seabi se sa Pootle"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Tshedimošo"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1919,7 +1938,7 @@ msgstr "Tsena"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Ikgokaganye le rena"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1927,21 +1946,23 @@ msgstr "Ka ga seabi se sa Pootle"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "O motho?"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Gore re šireletše seabi kgahlanong le ditlhaselo re swanetše go kgonthišetša "
+"gore dithomelo di dirwa ke badiriši ba batho."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Hle araba potšišo ye:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Netefatša"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1966,7 +1987,7 @@ msgstr "Letlakala le legolo la projeke"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Ditaba tša projeke"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
@@ -1974,11 +1995,11 @@ msgstr "Laola projeke ya gago"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Laola ditumelelo tša projeke"
 
 #: templates/tp_base_terminology.html:5
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Laola mareo"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -2036,17 +2057,17 @@ msgstr "Taolo ya Django"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Romela"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "Molaetša o rometšwe"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr "Molaetša ka %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""

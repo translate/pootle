@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2009-12-08 08:04+0200\n"
+"PO-Revision-Date: 2010-08-06 09:46+0200\n"
 "Last-Translator: Fantu <fantonifabio@tiscali.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -99,7 +99,7 @@ msgstr "stato di amministratore"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Lingua di partenza"
 
 #: strings.py:35
 msgid "Android strings"
@@ -107,15 +107,15 @@ msgstr ""
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Il tuo nome"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Il tuo indirizzo email"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Il tuo messaggio"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -337,6 +337,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"L'utente \"nobody\" si riferisce a qualsiasi utente che non è connesso (un "
+"anonimo, di un utente non identificato). L'utente \"default\" si riferisce ai "
+"diritti che tutti gli utenti registrati avranno di default, a meno di altri "
+"diritti specifici sono stati loro assegnati."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -392,9 +396,8 @@ msgid "Dashboard"
 msgstr "Dashboard"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Statistiche utente"
+msgstr "Statistiche del server"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -403,19 +406,19 @@ msgstr "Parole tradotte"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Suggerimenti in attesa"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Utenti attivi"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Progetti attivi"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Lingue attive"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -425,9 +428,8 @@ msgid "Files"
 msgstr "File"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "Traduci le mie stringhe"
+msgstr "Stringhe tradotte"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -439,11 +441,11 @@ msgstr "Inserimenti"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Maggiori info..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Supporto"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -451,6 +453,9 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle è sviluppato da Translate.org.za e una comunità di esperti "
+"appassionati di localizzazione. Vogliamo Pootle per aiutare il vostro lavoro "
+"di localizzazione e raggiungere il suo pieno potenziale."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
@@ -458,15 +463,15 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "La documentazione di Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "La mailing list di Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(Supporto commerciale)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -482,7 +487,7 @@ msgstr "Ottimizzazioni"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Avvisi di Pootle"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -617,11 +622,13 @@ msgstr "Django versione %s è installato."
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"La versione di Django installata è %s, ma una versione maggiore è "
+"racomandata."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Django versione %s è installato."
+msgstr "lxml versione %s è installato."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -629,10 +636,13 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"lxml versione %(installed)s è installato. Pootle richiede la versione %"
+"(required)s per il supporto del formato XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
 msgstr ""
+"lxml non è installato. Pootle richiede lxml per il supporto del formato XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -655,6 +665,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Impossibile trovare il pacchetto aeidon. Pootle richiede Gaupol o aeidon per "
+"supportare formati di sottotitoli."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -747,6 +759,8 @@ msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Nessun indirizzo di contatto è specificato. Il modulo di contatto consentirà "
+"agli utenti di contattare gli amministratori del server."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -769,15 +783,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Membri del progetto"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Membri della lingua"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Tutti gli utenti"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -876,7 +890,7 @@ msgstr "Traduci tutto"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Gestione Glossario"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -884,12 +898,12 @@ msgstr "ZIP della cartella"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Traduci offline"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Scarica il file XLIFF per la traduzione offline"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -897,11 +911,11 @@ msgstr "Scarica XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Esporta"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Export traduzioni"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -909,7 +923,7 @@ msgstr "Scarica"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Scarica il file"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -1130,7 +1144,7 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Aggiornamento"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1163,7 +1177,6 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1175,7 +1188,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format

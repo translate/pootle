@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-02-21 09:23+0200\n"
+"PO-Revision-Date: 2010-08-04 04:29+0200\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: te\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #: strings.py:8
 msgid ""
@@ -94,7 +94,7 @@ msgstr "నిర్వాహకుని స్థితి"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "మూల భాష"
 
 #: strings.py:35
 msgid "Android strings"
@@ -102,15 +102,15 @@ msgstr ""
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "మీ పేరు"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "మీ ఈమెయిలు చిరునామా"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "మీ సందేశం"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -377,9 +377,8 @@ msgid "Dashboard"
 msgstr "నిర్వహణా కేంద్రం"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "వాడుకరి గణాంకాలు"
+msgstr "సర్వరు గణాంకాలు"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -388,31 +387,30 @@ msgstr "అనువదించిన పదాలు"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "వేచివున్న సలహాలు"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "క్రియాశీల వాడుకరులు"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "క్రియాశీల ప్రాజెక్టులు"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "క్రియాశీల భాషలు"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:6
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr "పైళ్ళు"
+msgstr "దస్త్రాలు"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "నా పదాలను అనువదించు"
+msgstr "అనువాదిత పదబంధాలు"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -424,11 +422,11 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "మరిన్ని..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "తోడ్పాటు"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -719,14 +717,13 @@ msgstr ""
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "భాష సభ్యులు"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "అందరు వాడుకరులు"
 
 #: local_apps/pootle_app/views/admin/util.py:38
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
 msgstr "పూటిలుని నిర్వహించే అధికారం మీకు లేదు."
 
@@ -799,7 +796,6 @@ msgstr "%(translated)d/%(total)d పదబంధాలు"
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:94
 msgid "Review Suggestions"
@@ -871,7 +867,6 @@ msgstr ""
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:248
 #, python-format
@@ -895,7 +890,6 @@ msgstr[1] "%d సమీక్షించాల్సిన పదాలు"
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:53
 #: local_apps/pootle_project/views.py:104 templates/base.html:59
@@ -1095,7 +1089,6 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1107,7 +1100,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
@@ -1151,7 +1143,7 @@ msgstr "తర్వాతి"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "చివరి (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1200,11 +1192,11 @@ msgstr "వార్తలు"
 
 #: local_apps/pootle_notifications/templates/notices.html:75
 msgid "Publish"
-msgstr ""
+msgstr "ప్రచురించు"
 
 #: local_apps/pootle_profile/models.py:64
 msgid "Number of Rows"
-msgstr ""
+msgstr "వరుసల సంఖ్య"
 
 #: local_apps/pootle_profile/models.py:68
 #: local_apps/pootle_profile/views.py:76
@@ -1284,7 +1276,6 @@ msgstr[1] "%(languages)d భాషలు, %(average)d%% అనువాదిత
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
 msgstr "ఈ భాషని నిర్వహించే అధికారం మీకు లేదు."
 
@@ -1373,9 +1364,8 @@ msgid "Plural Form %d"
 msgstr "బహువచన రూపం %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "అనువాదకుని వ్యాఖ్యలు"
+msgstr "అనువాదకుని వ్యాఖ్య"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
@@ -1424,7 +1414,7 @@ msgstr "అనువాదాన్ని మార్చు"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "పదజాలం"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
@@ -1441,7 +1431,7 @@ msgstr ""
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "అనువాదం లోనికి కాపీచేయి"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1462,7 +1452,7 @@ msgstr ""
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "వ్యాఖ్యని చేర్చండి"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1473,9 +1463,8 @@ msgid "Reject suggestion"
 msgstr "సలహాని తిరస్కరించు"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "సలహాని తిరస్కరించు"
+msgstr "సలహాని తొలగించు"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1495,12 +1484,12 @@ msgstr ""
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "అనువదించిన పదాలు: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "అనువదించిన పదబంధాలు: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1545,13 +1534,12 @@ msgid "Generate Glossary"
 msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "వివరణ"
+msgstr "వివరణ..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "వివరాలు..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1671,7 +1659,7 @@ msgstr ""
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
-msgstr "ఫైలుని ఎక్కించు"
+msgstr "దస్త్రాన్ని ఎక్కించు"
 
 #: local_apps/pootle_translationproject/templates/translation_project/search.html:8
 msgid "Search"
@@ -1702,7 +1690,6 @@ msgid "Review"
 msgstr "సమీక్షించు"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
 msgstr "నిశిత అన్వేషణ"
 
@@ -1766,11 +1753,11 @@ msgstr "నిర్వహించు"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "ఈ పూటిల్ సర్వరు గురించిన సమాచారము మరియు గణాంకాలు"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "సమాచారం"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1825,7 +1812,7 @@ msgstr "ప్రవేశించు"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "మమ్మల్ని సంప్రదించండి"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1843,15 +1830,15 @@ msgstr ""
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "ఈ ప్రశ్నకి జవాబివ్వండి:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "నిర్ధారించు"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr ""
+msgstr "భాష ప్రధాన పుట"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
@@ -1873,7 +1860,7 @@ msgstr "ప్రాజెక్టు మొదటి పేజీ"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "ప్రాజెక్టు వార్తలు"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"

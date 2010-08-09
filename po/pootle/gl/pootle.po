@@ -7,26 +7,26 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2009-12-01 18:13+0200\n"
-"Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
+"PO-Revision-Date: 2010-08-04 02:09+0200\n"
+"Last-Translator: Antón <meixome@certima.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"Manteña presionada \"Control\", ou \"Command\" nun Mac, para seleccionar máis ca "
+"Manteña presionada \"Cotrl\", ou \"Command\" nun Mac, para seleccionar máis ca "
 "unha."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr "Introduza un enderezo de correo correcto."
+msgstr "Introduza un enderezo de correo válido."
 
 #: strings.py:10
 msgid ""
@@ -72,7 +72,7 @@ msgstr "Engadir o %(name)s"
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr "Ver no web"
+msgstr "Ver no sitio"
 
 #: strings.py:24
 msgid "first name"
@@ -93,29 +93,29 @@ msgstr "activo"
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr "administrador"
+msgstr "status do administrador"
 
 #. l10n: The language from which translation will happen
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Idioma orixe"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Cadeas de Android"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "O seu nome"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "O seu enderezo de correo electrónico"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "A súa mensaxe"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -337,6 +337,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"O usuario “nobody” refírese a calquera usuario que non iniciase unha sesión "
+"(un usuaurio sen identificar, un anónimo). O usuario “predeterminado” "
+"refírese aos dereitos que todo usuario con sesión iniciada teña de modo "
+"predeterminado, non sendo que lle asignasen outros dereitos específicos."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -392,9 +396,8 @@ msgid "Dashboard"
 msgstr "Taboleiro de control"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Estatísticas de usuario"
+msgstr "Estatísticas do servidor"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -403,19 +406,19 @@ msgstr "Palabras traducidas"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Suxestións pendentes"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Usuarios activos"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Proxectos activos"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Idiomas activos"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -425,9 +428,8 @@ msgid "Files"
 msgstr "Ficheiros"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "Traducir as miñas cadeas"
+msgstr "Cadeas traducidas"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -439,11 +441,11 @@ msgstr "Envíos"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Máis..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Asistencia"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -451,22 +453,25 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle está a ser desenvolvido por Translate.org.za e unha comunidade de "
+"apaixonados expertos en localización. Queremos que Pootle axude a que o "
+"traballo de localización atinxa desenvolver todo o seu potencial."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Encontrará o seguinte como axuda para asistencia:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "A documentación de Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "A lista de correo de Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(asistencia comercial)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -482,7 +487,7 @@ msgstr "Optimizacións"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Alertas de Pootle"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -617,11 +622,13 @@ msgstr "Está instalada a versión %s de Django."
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"Está instalada a versión de %s de Django, mais recoméndase vivamente unha "
+"versión superior."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Está instalada a versión %s de Django."
+msgstr "Está instalada a versión %s de lxml."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -629,10 +636,13 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"está instalada a versión %(installed)s de lxml. Pootle precisa a versión %"
+"(required)s para admitir o formato XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
 msgstr ""
+"lxml non está instalado. Pootle precisa de lxml para admitir o formato XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -655,6 +665,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Non se pode encontrar o paquete aeidon. Pootle precisa de Gaupol ou aeidon "
+"para admitir formatos de subtitulación."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -740,12 +752,16 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"O enderezo \"from\" usado para enviar correos de rexistro non está "
+"específicado. Revise tamén a configuración do servidor de correo."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Non se especificou enderezo de contacto. O formulario de contacto "
+"permitiralles aos usuario contactar cos administradores do servidor."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -768,15 +784,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Membros do proxecto"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Membros do idioma"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Todos os usuarios"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -875,7 +891,7 @@ msgstr "Traducilo todo"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Xestionar o glosario"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -883,12 +899,12 @@ msgstr "ZIP do cartafol"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Traducir en desconexión"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Descargar o ficheiro XLIFF para traducir en desconexión"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -896,11 +912,11 @@ msgstr "Descargar o XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Exportar traducións"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -908,7 +924,7 @@ msgstr "Descargar"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Descargar o ficheiro"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -1124,7 +1140,7 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: actualizar"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1132,62 +1148,64 @@ msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
+"As táboas da base de datos teñen actualmente a versión de compilación %d. "
+"Pootle actualizará agora a base de datos."
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "Creación das táboas da base de datos..."
+msgstr "Creación das táboas perdidas da base de datos..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Estabelecendo os permisos da táboa..."
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Actualizando as táboas da base de datos existente..."
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"Pootle importará todas as traducións na base de datos. Podería levarlle "
+"bastante tempo."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Importada %(count)d suxestión de %(store)s"
+msgstr[1] "Importadas %(count)d suxestións de %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Fallou a importación de suxestión de %s"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Importada %(count)d unidade de %(store)s"
+msgstr[1] "Importadas %(count)d unidades de %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "Fallou a importación de unidades de %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Todas as traducións foron completamente importadas."
 
 #: local_apps/pootle_misc/dbupdate.py:180
-#, fuzzy
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
 msgstr ""
-"Base de datos inicializada, será redirixido á páxina principal en 10 "
-"segundos"
+"Pootle inicializou a base de datos. Será redirixido á páxina principal en 10 "
+"segundos."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
@@ -1220,7 +1238,7 @@ msgstr "Seguinte"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Último (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1239,7 +1257,7 @@ msgstr "Novas de %(language)s"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Novas de %(project)s"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1310,7 +1328,7 @@ msgid ""
 "numbers, and the underscore (_) character."
 msgstr ""
 "Un código curto do proxecto. Debería conter unicamente caracteres ASCII, "
-"números e (_), carácter de guión baixo."
+"números e o carácter de guión baixo (_)."
 
 #: local_apps/pootle_project/models.py:44
 msgid ""
@@ -1357,9 +1375,8 @@ msgstr[1] "%(languages)d idiomas, %(average)d%% traducido"
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr "Non ten permisos para administrar este idioma."
+msgstr "Non ten permisos para administrar este proxecto."
 
 #: local_apps/pootle_project/views.py:138
 msgid "Update from templates"
@@ -1370,9 +1387,8 @@ msgid "Initialize"
 msgstr "Inicialice"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "A seguir poderá engadir, editar e borrar os permisos para este idioma."
+msgstr "A seguir poderá engadir, editar e eliminar os permisos neste proxecto."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
 #: templates/project_menu.html:10 templates/tp_base_admin.html:8
@@ -1393,49 +1409,49 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Cadeas (catkeys) Haiku"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Properties de Java"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "Cadeas OS X"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "matrices de PHP"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Subtítulos: srt"
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Subtítulos: sub"
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Subtítulos: ssa"
 
 #: local_apps/pootle_store/filetypes.py:73
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Subtítulos: ass"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1447,9 +1463,8 @@ msgid "Plural Form %d"
 msgstr "Forma plural %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "Comentarios do tradutor"
+msgstr "Comentario do tradutor"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
@@ -1457,19 +1472,19 @@ msgstr "Camiño"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "Non hai máis cadeas para revisar."
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "Non hai máis cadeas para traducir."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "Non hai máis cadeas para revisar."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "Non hai máis cadeas para traducir."
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1498,24 +1513,24 @@ msgstr "Editar a tradución"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "Terminoloxía"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Posíbeis incidencias coa tradución"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "Control de fallos"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
 msgid "Remove quality check"
-msgstr ""
+msgstr "Borrar a comprobación de calidade"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "Copiar en tradución"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1528,15 +1543,15 @@ msgstr "Suxerir"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "Ir á unidade previa"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "Ir á unidade seguinte"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "Engadir comentario"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1547,9 +1562,8 @@ msgid "Reject suggestion"
 msgstr "Rexeitar suxestión"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "Rexeitar suxestión"
+msgstr "Borrar suxestión"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1557,24 +1571,24 @@ msgid "Translator Comments"
 msgstr "Comentarios do tradutor"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, fuzzy
+#, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
 msgstr "Suxestión %(suggid)d de %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "Suxestión de %(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Palabras traducidas: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Cadeas traducidas: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1586,46 +1600,47 @@ msgstr "Plural"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Rexerar glosario"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Está certo de querer rexerar o glosario? Eliminaranse todos os termos así "
+"como todas as traducións existentes."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Extraer"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Pode rexerar o glosario desde cero."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "Termo"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
-msgstr "Borrar"
+msgstr "Eliminar"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "O glosario está baleiro"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Xerar glosario"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "Descrición"
+msgstr "Descrición..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "Detalles..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1646,12 +1661,12 @@ msgstr "Localizacións"
 #: local_apps/pootle_translationproject/models.py:320
 #: local_apps/pootle_translationproject/models.py:346
 msgid "You do not have rights to update from version control here"
-msgstr "Non ten permisos aquí para actualizar desde o control de versión"
+msgstr "Non ten permisos para actualizar aquí desde o control de versión"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, fuzzy
+#, python-format, 
 msgid "Updated project \"%s\" from version control"
-msgstr "Ficheiro actualizado %s desde o control de versión"
+msgstr "Actualizado o proxecto \"%s\" desde o control de versión"
 
 #: local_apps/pootle_translationproject/models.py:350
 #, python-format
@@ -1661,7 +1676,7 @@ msgstr "Ficheiro actualizado %s desde o control de versión"
 #: local_apps/pootle_translationproject/models.py:356
 #, python-format
 msgid "Failed to update %s from version control"
-msgstr "Produciuse un erro ao actualizar %s desde o control de versión"
+msgstr "Fallou a actualización de %s desde o control de versión"
 
 #: local_apps/pootle_translationproject/views.py:83
 msgid "You do not have rights to access translation mode."
@@ -1737,13 +1752,15 @@ msgstr "Ficheiro"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "Cargar en"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Opcionalmente seleccione o ficheiro co que o quere fusionar. Se non o "
+"especifica, usarase o nome do ficheiro cargado."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1751,27 +1768,27 @@ msgstr "Cargar o ficheiro"
 
 #: local_apps/pootle_translationproject/templates/translation_project/search.html:8
 msgid "Search"
-msgstr "Busca"
+msgstr "Buscar"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Aquí pode xestionar os ficheiros deste proxecto de tradución."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
-msgstr "Actualizar a partir dos modelos"
+msgstr "Actualizar os ficheiros a partir dos modelos"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Reescanear os ficheiros do proxecto"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr "A seguir poderá engadir, editar e borrar os permisos para este idioma."
+msgstr ""
+"A seguir poderá engadir, editar e eliminar os permisos para este proxecto de "
+"tradución."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -1779,7 +1796,6 @@ msgid "Review"
 msgstr "Revisar"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
 msgstr "Busca avanzada"
 
@@ -1811,15 +1827,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Expirou o tempo de resposta"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Introduza un número"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Incorrecto"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1851,11 +1867,11 @@ msgstr "Administración"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Información e estatísticas verbo deste servidor Pootle"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1910,7 +1926,7 @@ msgstr "Iniciar a sesión"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Contacte connosco"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1918,21 +1934,23 @@ msgstr "Sobre este servidor de Pootle"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "É vostede humano?"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Para protexer o servidor contra ataques, temos de comprobar que os envíos "
+"son feitos por usuarios humanos."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Conteste, por favor, esta pregunta:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1957,7 +1975,7 @@ msgstr "Páxina principal do proxecto"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Novas do proxecto"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
@@ -1965,11 +1983,11 @@ msgstr "Administrar o seu proxecto"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Xestionar os permisos do proxecto"
 
 #: templates/tp_base_terminology.html:5
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Xestionar a terminoloxía"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -2027,17 +2045,17 @@ msgstr "Administración de Django"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "Mensaxe enviada"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr " message de %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""

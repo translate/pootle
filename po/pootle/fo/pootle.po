@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-07-30 21:56+0200\n"
+"PO-Revision-Date: 2010-08-05 23:49+0200\n"
 "Last-Translator: Gunleif <fo.umseting@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fo\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #: strings.py:8
 msgid ""
@@ -97,23 +97,23 @@ msgstr "alnýtara standur"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Keldumál"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Androidstreingir"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Títt navn"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Tín t-postadressa"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Tíni boð"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -388,9 +388,8 @@ msgid "Dashboard"
 msgstr "Tólbretti"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Hagfrøði um brúkara"
+msgstr "Ambætarahagfrøði"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -403,15 +402,15 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Virknir brúkarir"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Virknar verkætlanir"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Virkin mál"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -421,9 +420,8 @@ msgid "Files"
 msgstr "Fílur"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "Umset streingirnar hjá mær"
+msgstr "Umsettir streingir"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -435,7 +433,7 @@ msgstr "Innsendingar"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Meira..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
@@ -450,7 +448,7 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Hettar kann hjálpa tær við at fáa stuðul:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
@@ -1149,7 +1147,6 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1161,7 +1158,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
@@ -1196,12 +1192,12 @@ msgstr "Fyrst"
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Previous"
-msgstr "Fyrru"
+msgstr "Fyrra"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Next"
-msgstr "Næstu"
+msgstr "Næsta"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format

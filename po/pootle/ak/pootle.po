@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-01-13 11:47+0200\n"
+"PO-Revision-Date: 2010-08-07 23:53+0200\n"
 "Last-Translator: kasahorow <kasahorow@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ak\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: strings.py:8
@@ -96,23 +96,23 @@ msgstr "dehye kokroko tebea"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Sɔɔs Kasa"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Android nstreng"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Wo din"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Wo emel adrɛs"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Wo nkrato"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -333,6 +333,9 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Dehye a wɔfrɛ no \"nobody\" kyerɛ dehye biara a ɔmmbaa mu (dehye a obiara nnim "
+"no nipaban anaaso ne din mpo). \"default\" kyerɛ tumi a adehye a wɔaba mu no "
+"nyinara bɛwɔ ntɛmpa ara mu, sɛ mpo wɔmmfaa tumi foforo biara mma wɔn a."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -387,9 +390,8 @@ msgid "Dashboard"
 msgstr "Dashboard"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Nkontaabu fa Dehye ho"
+msgstr "Sɛɛva ho nkontaabu"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -398,19 +400,19 @@ msgstr "Akasafua a wɔakyerɛ ase"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Adwenkyerɛ a wɔaba na wɔretweɔn"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Adehye a wɔekyan wɔn ho"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Edwumadi a wosi so"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Akasa a wosi so"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -421,7 +423,7 @@ msgstr "Mfael"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
 msgid "Translated strings"
-msgstr ""
+msgstr "Nstreng a wɔakyerɛ ase"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -433,11 +435,11 @@ msgstr "Nsabmihyɛn"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Bio..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Mboa"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -445,26 +447,28 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Translate.org.za ne nipa a wɔaben wɔ lokalizehyɛn mu na wɔyɛ Pootle. Yɛ pɛ "
+"sɛ Pootle boa ma wo lokalizehyɛn dwumadi kɔ nkan, kɔ n'enim, kɔpem."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Wo behu sɛ yinom bɛboa wo:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Pootle ho nkrataa"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Pootle emel list"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(mboa a wotua ho kaw)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
-msgstr "Dependency Checks"
+msgstr "Dependency nhwehwɛmu"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:87
 msgid "Optional"
@@ -476,7 +480,7 @@ msgstr "Mpontu nsesae"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Pootle akɔkɔbɔ"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -610,12 +614,12 @@ msgstr "wɔeinstɔl Django vɛɛhyɛn %s."
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr ""
+msgstr "Einstɔl Django vɛɛhyɛn %s, naaso wo tuu vɛɛhyɛn no mpon a anka ɛbɛboa."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "wɔeinstɔl Django vɛɛhyɛn %s."
+msgstr "wɔeinstɔl lxml vɛɛhyɛn %s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -623,10 +627,12 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"wɔeinstɔl lxml vɛɛhyɛn %(installed)s. Pootle hia vɛɛhyɛn %(required)s ama "
+"wɔetumi asuo XML fɔɔmat mu."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
-msgstr ""
+msgstr "wɔnninstɔɔl lxml. Pootle hia lxml ama wɔetumi asuo XML fɔɔmat mu."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -646,6 +652,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Nntumi nnhu aeidon bɔho. Pootle hia Gaupol anaaso aeidon ama wɔetumi asuo "
+"subtitle mfɔɔmat ahorow mu."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -729,6 +737,8 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"\"From\" adrɛs a wɔde somaa dinkyerɛw emel no nni hɔ. Bio so, san-hwɛ emel "
+"sɛɛva ne nhyehyɛe."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
@@ -1144,7 +1154,6 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1156,7 +1165,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format

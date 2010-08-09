@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-01-03 05:05+0200\n"
+"PO-Revision-Date: 2010-08-03 18:56+0200\n"
 "Last-Translator: Seanán <seananoc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ga\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #: strings.py:8
 msgid ""
@@ -99,42 +99,41 @@ msgstr ""
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Teaghráin Android"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "D'ainm"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Do sheoladh ríomhphoist"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Do theachtaireacht"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ceart an botún thíos."
+msgstr[1] "Ceartaigh na botúin thíos."
+msgstr[2] "Ceartaigh na botúin thíos."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Taisceadh na socruithe."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "Taisc"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Ainm Úsáideora"
+msgstr "ainm úsáideora"
 
 #: external_apps/registration/forms.py:39
 msgid "email address"
@@ -238,7 +237,7 @@ msgstr ""
 
 #: local_apps/pootle_app/management/__init__.py:80
 msgid "Can review translations"
-msgstr ""
+msgstr "Is féidir leo athbhreithniú a dhéanamh ar aistriúcháin"
 
 #: local_apps/pootle_app/management/__init__.py:82
 msgid "Can download archives of translation projects"
@@ -266,7 +265,7 @@ msgstr "Diúltaithe"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr ""
+msgstr "Na Daoine A Rinne An Chuid Is Mó"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/view.py:39
@@ -386,11 +385,11 @@ msgstr ""
 #: templates/profiles/profile_detail.html:6
 #: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "Clár na Sonraí"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
 msgid "Server Statistics"
-msgstr ""
+msgstr "Staidreamh an Fhreastalaí"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -399,7 +398,7 @@ msgstr "Focail aistrithe"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Moltaí ar feitheamh"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
@@ -407,11 +406,11 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Tionscadail ghníomhacha"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Teangacha ghníomhacha"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -435,11 +434,11 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Tuilleadh..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Tacaíocht"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -577,9 +576,8 @@ msgstr "Moladh"
 #: local_apps/pootle_app/views/top_stats.py:65
 #: local_apps/pootle_app/views/top_stats.py:88
 #: local_apps/pootle_app/views/top_stats.py:111
-#, fuzzy
 msgid "Reviews"
-msgstr "Aithbhreithnigh"
+msgstr "Athbhreithnithe"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
@@ -804,7 +802,7 @@ msgstr[2] "%d comhaid"
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr ""
+msgstr "%(translated)d/%(total)d focail (%(translatedpercent)d%%) aistrithe"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
@@ -816,8 +814,6 @@ msgstr "%(translated)d/%(total)d teaghráin"
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:94
 msgid "Review Suggestions"
@@ -841,7 +837,7 @@ msgstr "Aistrigh Uile"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Bainistigh an Ghluais"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -874,7 +870,7 @@ msgstr "Íosluchtaigh"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Íosluchtaigh comhad"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -888,25 +884,21 @@ msgstr ""
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Caithfear %d fhocal a aistriú"
+msgstr[1] "Caithfear %d fhocal a aistriú"
+msgstr[2] "Caithfear %d bhfocal a aistriú"
 
 #: local_apps/pootle_app/views/language/item_dict.py:248
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:249
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:275
 #: local_apps/pootle_language/views.py:67
@@ -915,8 +907,6 @@ msgstr[2] ""
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:53
 #: local_apps/pootle_project/views.py:104 templates/base.html:59
@@ -1029,8 +1019,6 @@ msgstr "Cothromóid Iolrach"
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: local_apps/pootle_language/views.py:108
 #, fuzzy
@@ -1067,12 +1055,12 @@ msgstr ""
 #: local_apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr ""
+msgstr "Tá %(language)s %(percent)d%% críochnaithe"
 
 #: local_apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr ""
+msgstr "Tá an tionscadal %(project)s %(percent)d%% críochnaithe"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
@@ -1085,7 +1073,7 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Nuashonrú"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1117,8 +1105,6 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1130,8 +1116,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
@@ -1160,31 +1144,31 @@ msgstr ""
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "An Chéad"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Previous"
-msgstr ""
+msgstr "Roimhe"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Next"
-msgstr ""
+msgstr "Ar Aghaidh"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Deireadh (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
-msgstr ""
+msgstr "Teachtaireacht"
 
 #. l10n: The date that the news item was written
 #: local_apps/pootle_notifications/models.py:30
 msgid "Added"
-msgstr ""
+msgstr "Foilsithe"
 
 #: local_apps/pootle_notifications/views.py:81
 #, python-format
@@ -1194,12 +1178,12 @@ msgstr "Nuacht le haghaidh %(language)s"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Nuacht do %(project)s"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr ""
+msgstr "Nuacht don tionscadal %(project)s i %(language)s"
 
 #: local_apps/pootle_notifications/views.py:90
 #, python-format
@@ -1224,11 +1208,11 @@ msgstr "Nuacht"
 
 #: local_apps/pootle_notifications/templates/notices.html:75
 msgid "Publish"
-msgstr ""
+msgstr "Foilsigh"
 
 #: local_apps/pootle_profile/models.py:64
 msgid "Number of Rows"
-msgstr ""
+msgstr "Líon na Sraitheanna"
 
 #: local_apps/pootle_profile/models.py:68
 #: local_apps/pootle_profile/views.py:76
@@ -1245,7 +1229,7 @@ msgstr "Moltaí Glactha"
 
 #: local_apps/pootle_profile/models.py:97
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "Moltaí Ar Feitheamh"
 
 #: local_apps/pootle_profile/models.py:98
 msgid "Suggestions Reviewed"
@@ -1304,8 +1288,6 @@ msgstr ""
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
@@ -1347,12 +1329,14 @@ msgid "Qt ts"
 msgstr ""
 
 #: local_apps/pootle_store/filetypes.py:42
+#, fuzzy
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
+#, fuzzy
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
@@ -1360,13 +1344,13 @@ msgstr ""
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Airíonna Java"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "Teaghráin OS X"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
@@ -1404,7 +1388,7 @@ msgstr "Tráchtanna an aistritheora"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
-msgstr ""
+msgstr "Conair"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
@@ -1479,15 +1463,15 @@ msgstr "Mol"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "Téigh go dtí an t-aonad roimhe"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "Téigh go dtí an t-aonad ar aghaidh"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "Cuir Trácht Leis"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1516,17 +1500,17 @@ msgstr "Moladh %(suggid)d ó %(user)s:"
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "Moladh ó %(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Focail Aistrithe: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Teaghráin Aistrithe: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1548,15 +1532,15 @@ msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Bain"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Is féidir an ghluais a athchruthú ón tús."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "Téarma"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
@@ -1564,28 +1548,27 @@ msgstr "Scrios"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Tá an Ghluais folamh"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Cruthaigh Gluais"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "Cur Síos"
+msgstr "Cur Síos..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "Sonraí..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
-msgstr ""
+msgstr "Téacs Foinseach"
 
 #: local_apps/pootle_translationproject/forms.py:29
 msgid "Target Text"
-msgstr ""
+msgstr "Téacs Sprice"
 
 #: local_apps/pootle_translationproject/forms.py:30
 msgid "Comments"
@@ -1662,9 +1645,8 @@ msgstr "Níl cearta agat comhaid nua a uasluchtú anseo"
 
 #: local_apps/pootle_translationproject/views.py:442
 #: local_apps/pootle_translationproject/views.py:444
-#, fuzzy
 msgid "You do not have rights to upload files here."
-msgstr "Níl cearta agat comhaid a uasluchtú anseo"
+msgstr "Níl cearta agat comhaid a uasluchtú anseo."
 
 #: local_apps/pootle_translationproject/views.py:463
 msgid "Update all from version control"
@@ -1693,7 +1675,7 @@ msgstr "Comhad"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "Uasluchtaigh go"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
@@ -1761,7 +1743,7 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Cuir isteach uimhir"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
@@ -1769,7 +1751,7 @@ msgstr ""
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
-msgstr ""
+msgstr "Cead Diúltaithe"
 
 #: templates/403.html:14
 msgid "You don't have permission to access this page."
@@ -1777,7 +1759,7 @@ msgstr ""
 
 #: templates/404.html:5 templates/404.html.py:10
 msgid "Page Not Found"
-msgstr ""
+msgstr "Níor Aimsíodh An Leathanach"
 
 #: templates/404.html:11
 msgid "We're sorry, but the requested page could not be found."
@@ -1789,7 +1771,7 @@ msgstr ""
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Tharla botún. Go raibh maith agat as ucht bheith foighneach."
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
 #, fuzzy
@@ -1802,7 +1784,7 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Eolas"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1810,7 +1792,7 @@ msgstr "Cumraigh na socruithe coiteann do do shuíomh"
 
 #: templates/admin_profile_menu.html:6
 msgid "General"
-msgstr ""
+msgstr "Coiteann"
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the users"
@@ -1818,7 +1800,7 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:8
 msgid "Manage the languages"
-msgstr ""
+msgstr "Bainistigh na teangacha"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage the projects"
@@ -1826,7 +1808,7 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:10
 msgid "Manage the default permissions"
-msgstr ""
+msgstr "Bainistigh na ceadanna réamhshocraithe"
 
 #: templates/base.html:49
 msgid "skip to navigation"
@@ -1857,16 +1839,15 @@ msgstr "Tosaigh Dreas"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Déan Teagmháil Linn"
 
 #: templates/base.html:121
-#, fuzzy
 msgid "About this Pootle Server"
-msgstr "Maidir leis an freastalaí Pootle seo"
+msgstr "Maidir leis an bhfreastalaí Pootle seo"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "An Duine Thú?"
 
 #: templates/captcha.html:15
 msgid ""
@@ -1876,15 +1857,15 @@ msgstr ""
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Freagraigh an cheist seo le do thoil:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Deimhnigh"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr ""
+msgstr "Príomhleathanach an teanga"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
@@ -1930,7 +1911,7 @@ msgstr ""
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr ""
+msgstr "Aistrigh an tionscadal seo"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
@@ -1946,11 +1927,11 @@ msgstr ""
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
-msgstr ""
+msgstr "Forbhreathnú ar do chuntas"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
-msgstr ""
+msgstr "Cumraigh do shainroghanna aistriúcháin"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
@@ -1958,7 +1939,7 @@ msgstr "Socruithe"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
-msgstr ""
+msgstr "Athraigh d'eolas pearsanta"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 #: templates/profiles/edit_personal.html:5
@@ -1972,27 +1953,29 @@ msgstr "Athraigh d'fhocal faire"
 
 #: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
 msgid "Django administration"
-msgstr ""
+msgstr "Riar Django"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Seol"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "Tá an teachtaireacht seolta"
 
 #: templates/contact_form/contact_form_subject.txt:2
-#, python-format
+#, python-format, fuzzy
 msgid " message by %(name)s"
-msgstr ""
+msgstr " teachtaireacht ó %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
+"Is féidir do shonraí pearsanta a athrú anseo. Bainfear feidhm as an eolas "
+"seo i gceanntásc na gcomhad aistriúcháin."
 
 #: templates/profiles/edit_personal.html:19
 #, fuzzy
@@ -2116,10 +2099,13 @@ msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"Cuir isteach do sheanfhocal faire, ar mhaithe le slándáil, agus ansin cuir "
+"isteach do fhocal faire nua faoi dhó ionas gur féidir linn deimhniú gur "
+"clóscríobh tú i gceart é."
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr "Sean focal faire"
+msgstr "Seanfhocal faire"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
@@ -2208,7 +2194,7 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Téigh go dtí an leathanach seo a leanas agus roghnaigh focal faire nua:"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
@@ -2217,13 +2203,15 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Go raibh maith agat as ucht feidhm a bhaint as Pootle!"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Ar dhearmad tú d'fhocal faire? Cuir isteach do sheoladh ríomhphoist thíos "
+"agus seolaimid treoracha chugat conas ceann nua a shocrú."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
@@ -2233,28 +2221,27 @@ msgstr "Seoladh Ríomhphoist"
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "Clárú Críochnaithe"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "Féach ar do ríomhphoist chun do chuntas a ghníomhachtú."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "Cláraigh cuntas Pootle nua"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "Líon na nithe seo a leanas chun tosú ag aistriú."
 
 #: templates/registration/registration_form.html:30
-#, fuzzy
 msgid "Password (again)"
-msgstr "focal faire (arís)"
+msgstr "Focal faire (arís)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr ""
+msgstr "An bhfuil cuntas agat cheana féin?"
 
 #: templates/registration/registration_form.html:41
 msgid "Log In."
