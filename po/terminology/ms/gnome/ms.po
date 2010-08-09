@@ -14,12 +14,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Glosari GNOME\n"
 "POT-Creation-Date: 2002-09-08 01:52+0800\n"
-"PO-Revision-Date: 2003-11-16 19:53+0800\n"
-"Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
+"PO-Revision-Date: 2010-07-07 23:31+0200\n"
+"Last-Translator: admin <>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
+"Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #. "English Definition"
 msgid "Term"
@@ -27,7 +30,7 @@ msgstr "Istilah"
 
 #. "To terminate abruptly a processing activity in a computer system because it is impossible or undesirable for the activity to procees."
 msgid "abort"
-msgstr ""
+msgstr "Batal"
 
 #. "1. In character recognition systems a type of symbol that, unlike a letter or numeral, has no intrinsic meaning and must be defined before it can be interpreted. 2. In programming a data type defined by the operations that can be performed on objects of t"
 msgid "Abstract"
@@ -53,7 +56,7 @@ msgid "Active"
 msgstr "Aktif"
 
 msgid "Actor"
-msgstr "Pelakon"
+msgstr "Pelaku"
 
 #. "A disk drive mechanism for moving the read/write head(s) to the location of the desired track on a disk. "
 msgid "Actuator"
@@ -78,7 +81,7 @@ msgstr "Agregat"
 
 #. "A visual or auditory signal from a computer alerting the user to an error or hazardous situation."
 msgid "Alarm"
-msgstr ""
+msgstr "Pengera"
 
 #. "In an application such as a word processor, to position lines of type relative to some point, such as the page margin. The most common types of alignment are left- and right-aligned and centered. "
 msgid "Align"
@@ -105,11 +108,11 @@ msgstr "Analisis"
 
 #. "A tag in an HTML document that defines a section of text, an icon, or other element as a link to another element in the document or to another document or file. "
 msgid "Anchor"
-msgstr "Sauh"
+msgstr "Kait"
 
 #. "A logical operation combining the values of two bits (0, 1) or two Boolean values (false, true) that returns a value of 1 (true) if both input values are 1 (true) and returns a 0 (false) otherwise. "
 msgid "AND"
-msgstr "AND"
+msgstr "DAN"
 
 #. "The simulation of movement through a rapid succession of static images. "
 msgid "Animation"
@@ -117,7 +120,7 @@ msgstr "Animasi"
 
 #. "On the Internet, the standard login name used to obtain access to a public FTP file archive. "
 msgid "Anonymous"
-msgstr ""
+msgstr "Anu"
 
 #. "A setting that allows a modem to answer an incoming call automatically. It is used in all fax machines. "
 msgid "Answer mode"
@@ -125,11 +128,11 @@ msgstr "Mod jawapan"
 
 #. "A software technique (algorithm) for smoothing the jagged appearance of curved or diagonal lines caused by poor resolution on a display screen. "
 msgid "Antialiasing"
-msgstr ""
+msgstr "Nyahalias"
 
 #. "To place or insert as an attachment by adding data to the end of a file or database or extending a character string. To attach to the end of; most often used in reference to writing a file of adding to a string."
 msgid "Append"
-msgstr ""
+msgstr "Tokok"
 
 #. "An application working inside a small window in a panel. A program that can be downloaded over the Internet and executed on the recipient's machine. "
 msgid "Applet"
@@ -144,7 +147,7 @@ msgid "Application Launcher"
 msgstr "Pelancar Aplikasi"
 
 msgid "Applix"
-msgstr "Applix"
+msgstr "Apliks"
 
 msgid "Arc"
 msgstr "Arca"
@@ -162,11 +165,11 @@ msgstr "Hujah"
 
 #. "In programming, a list of data values, all of the same type, any element of which can be referenced by an expression consisting of the array name followed by an indexing expression. An arrangement of elements in one or more dimensions."
 msgid "Array"
-msgstr ""
+msgstr "Susunan"
 
 #. "The four directional keys on the numeri keypad."
 msgid "Arrow key"
-msgstr "Kekunci panah"
+msgstr "kunci arah"
 
 msgid "Article"
 msgstr "Artikel"
@@ -185,7 +188,7 @@ msgstr "nisbah aspek"
 
 #. "Without regular time relationship; unexpected and unpredictable with respect to the execution of a program's instructions. "
 msgid "Asynchronous"
-msgstr ""
+msgstr "Takberturut"
 
 #. "Any file accompanying an e-mail message in a special format so that it can be viewed or saved to disk independently of the main message body."
 msgid "Attachment"
@@ -193,7 +196,7 @@ msgstr "Sisipan"
 
 #. "In a database record, the name or structure of a field. In screen displays, an element of additional information stored with each character. In markup languages such as SGML and HTML, a name-value pair within a tagged element that modifies certain feature"
 msgid "Attribute"
-msgstr "Atribut"
+msgstr "Sifat"
 
 #. "Relating to frequencies within the range of perception by the human ear."
 msgid "Audio"
@@ -201,18 +204,18 @@ msgstr "Audio"
 
 #. "In a multiuser or network operating system, the process by which the system validates a user's logon information. "
 msgid "Authentication"
-msgstr "Autentikasi"
+msgstr "Pengesahan"
 
 #. "Traditionally, to author meant to write a literary work or journalistic piece. In a computer context it means to create a product for implementation via computer technology; to write a computer program or to create Web pages. "
 msgid "Author"
-msgstr "Penulis"
+msgstr "Pembangun"
 
 msgid "Autofill"
 msgstr "Auto-isi"
 
 #. "In processing, the accessibility of a computer system or resource, such as a printer, in terms of usage or of the percentage of the total amount of time the device is needed."
 msgid "Availability"
-msgstr ""
+msgstr "Kewujudan"
 
 msgid "Average"
 msgstr "Purata"
@@ -227,13 +230,13 @@ msgstr "Latar Belakang"
 
 #. "A duplicate copy of a program, a disk, or data, made either for archiving purposes or for safeguarding valuable files from loss should the active copy be damaged or destroyed. "
 msgid "Backup"
-msgstr ""
+msgstr "Salinan"
 
 #. "Adjustment of sources of sound so that the final transmission adheres to an artistic standard."
 msgid "Balance"
 msgstr "Imbangan"
 
-#. "In mathematics, a number that is raised to the power specified by an exponent. For example, in 23 = 2 � 2 � 2 = 8, the base is 2. "
+#. "In mathematics, a number that is raised to the power specified by an exponent. For example, in 23 = 2 Ã 2 Ã 2 = 8, the base is 2. "
 msgid "Base"
 msgstr "Asas"
 
@@ -280,7 +283,7 @@ msgstr "badan"
 
 #. "A type style that makes the text to which it is applied appear darker and heavier than the surrounding text. "
 msgid "Bold"
-msgstr ""
+msgstr "Tebal"
 
 #. "1. A marker inserted at a specific point in a document to which the user may wish to return for later reference. 2. In Netscape Navigator, a link to a Web page or other URL that a user has stored in a local file in order to return to it later. "
 msgid "book mark"
@@ -350,7 +353,7 @@ msgstr "C"
 
 #. "A short-term storage area in RAM or on the hard disk.  Many programs use caches to store recently-accessed files or other items."
 msgid "Cache"
-msgstr ""
+msgstr "Kitaran"
 
 #. "Any device that performs arithmetic operations on numbers. "
 msgid "Calculator"
@@ -374,7 +377,7 @@ msgid "Caption"
 msgstr "Kapsyen"
 
 msgid "Case Sensitive"
-msgstr "Sensitif huruf kecil/besar"
+msgstr "peka-huruf"
 
 #. "Groups of like settings in a property window."
 msgid "Categories"
@@ -412,15 +415,15 @@ msgstr "Set Aksara"
 
 #. "Real-time conversation via computer. "
 msgid "Chat"
-msgstr ""
+msgstr "Chat"
 
 #. "One of a set of bits that are added to a data message at its origin and scrutinized by the receiving process to determine whether an error has occurred during transmission. "
 msgid "Check bit"
-msgstr "Bit semak"
+msgstr "Bit-tanda"
 
 #. "A nonexclusive setting that shows a checkmark in a box when the setting is chosen. Check boxes are used to enable or disable one or more features or options from a set. "
 msgid "Checkbox"
-msgstr "Kekotak semak"
+msgstr "kotak-tanda"
 
 #. "In a tree structure, the relationship of a node to its immediate predecessor. "
 msgid "child"
@@ -438,7 +441,7 @@ msgid "Classification"
 msgstr "Klasifikasi"
 
 msgid "Clear"
-msgstr "Terang"
+msgstr "Bersih"
 
 #. "The temporary buffer into which text or other data can be copied, to be used later by pasting into a different location. Most applications support the clipboard either through native mouse-based cut and paste functionality of X Window System, or through s"
 msgid "Clipboard"
@@ -457,10 +460,10 @@ msgid "code segment"
 msgstr "segmen kod"
 
 msgid "Coefficient"
-msgstr ""
+msgstr "Koefisyen"
 
 msgid "Collaboration"
-msgstr ""
+msgstr "Kolaborasi"
 
 #. "In data handling, to merge items from two or more similar sets to create a combined set that maintains the order or sequence of items in the original sets."
 msgid "Collate"
@@ -476,11 +479,11 @@ msgstr "Arahan"
 
 #. "A string of text written in the command language and passed to the command interpreter for execution. It can contain a command followed by arguments, options, file names and other expressions."
 msgid "Command Line"
-msgstr "Baris Arahan"
+msgstr "Talian Arahan"
 
 #. "Parameters or arguments given on the UNIX command line after a program name, which tell the program how to run. "
 msgid "Command line options"
-msgstr "Opsyen baris arahan"
+msgstr "Pilihan talian arahan"
 
 msgid "Common properties"
 msgstr "Ciri-ciri umum"
@@ -491,7 +494,7 @@ msgstr "Banding"
 
 #. "To string together two or more sequences into one longer sequencce (for example, to combine the two strings 'hello' and 'there' into the single string 'hello there'). "
 msgid "Concatenate"
-msgstr ""
+msgstr "Cantum"
 
 #. "The state of an expression or a variable (for example, when a result can be either true or false, or equal or not equal)."
 msgid "Condition"
@@ -499,7 +502,7 @@ msgstr "Syarat"
 
 #. "A pipe containing electric wires or cables, in order to protect them against damage from external causes."
 msgid "Conduit"
-msgstr ""
+msgstr "Konduit"
 
 msgid "Confidential"
 msgstr "Sulit"
@@ -528,7 +531,7 @@ msgstr "Kandungan"
 
 #. "libgtop.pot"
 msgid "Continue"
-msgstr "Teruskan"
+msgstr "Terus"
 
 #. "Management of a computer and its processing abilities so as to maintain order as tasks and activities are carried out. In a graphical user interface, an object on the screen that can be manipulated by the user to perform an action. The most common control"
 msgid "Control"
@@ -556,7 +559,7 @@ msgstr "CORBA"
 
 #. "A file created to hold a memory image useful for debugging problems when a program malfunctions."
 msgid "Core file"
-msgstr "Fail core"
+msgstr "Fail tunjang"
 
 #. "A linear transformation which in the plane maps lines into points and lines into points and in space maps points into planes and planes into points."
 msgid "Correlation"
@@ -581,7 +584,7 @@ msgstr "CPU"
 
 #. "For a system or program, to fail to function correctly, resulting in the suspension of operation. A program crash results in the loss of all unsaved data and can leave the operating system unstable enough to require restarting the computer. A disk drive c"
 msgid "crash"
-msgstr "musnah"
+msgstr "punah"
 
 # Jahaman?
 msgid "Create"
@@ -596,14 +599,14 @@ msgstr "Ralat kritikal"
 
 #. "In computer graphics, to cut off part of an image, such as unneeded sections of a graphic or extra white space around the borders. "
 msgid "Crop"
-msgstr ""
+msgstr "Krop"
 
 msgid "Cross-reference"
 msgstr "Rujukan-silang"
 
 #. "Short for control. A designation used to label the Control key on computer keyboards. "
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 msgid "Cumulative"
 msgstr "Terhimpun"
@@ -621,10 +624,10 @@ msgstr "Keluk"
 
 #. "To modify or assemble hardware or software to suit the needs or preferences of the user. "
 msgid "Customize"
-msgstr "Personalisasi"
+msgstr "Menyesuai"
 
 msgid "custom window"
-msgstr "tetingkap tersendiri"
+msgstr "tetingkap suai"
 
 #. "To remove part of a document, usually placing it temporarily in memory or the clipboard so that the cut portion can be inserted (pasted) elsewhere. "
 msgid "Cut"
@@ -648,14 +651,14 @@ msgstr "Nyahpepijat"
 
 #. "The base-10 numbering system. "
 msgid "decimal"
-msgstr "desimal"
+msgstr "puluhan"
 
 msgid "Decrease"
-msgstr "Kurangkan"
+msgstr "Dikurang"
 
 #. "A choice made by a program when the user does not specify an alternative."
 msgid "Default"
-msgstr "Default"
+msgstr "Tersedia"
 
 #. "To eliminate text, a file, or part of a document with the intention of removing the information permanently. "
 msgid "Delete"
@@ -670,7 +673,7 @@ msgstr "Diterbit"
 
 #. "A sort that arranges items in descending order-for example, with Z preceding A and higher numbers preceding lower ones. "
 msgid "Descending sort"
-msgstr "Isihan menurun"
+msgstr "Turutan menurun"
 
 #. "A data structure that uniquely identifies a hardware device or software function. "
 msgid "Descriptor"
@@ -699,7 +702,7 @@ msgid "Device"
 msgstr "Peranti"
 
 msgid "Diagonal"
-msgstr ""
+msgstr "Melintang"
 
 msgid "Diagram"
 msgstr "Diagram"
@@ -759,7 +762,7 @@ msgstr "Paparan"
 
 #. "Loss or diminution of power."
 msgid "Dissipation"
-msgstr ""
+msgstr "Leraian"
 
 #. "To allocate among locations or facilities, as in a data-processing function."
 msgid "Distribute"
@@ -771,7 +774,7 @@ msgstr "Senarai pengagihan"
 
 #. "A technique used in computer graphics to create the illusion of varying shades of gray on a monochrome display or printer, or additional colors on a color display or printer. "
 msgid "Dithering"
-msgstr ""
+msgstr "Dithering"
 
 #. "An error condition caused by an attempt to divide a number by zero, which is mathematically undefined."
 msgid "Division by zero"
@@ -818,7 +821,7 @@ msgstr "Terminal dungu"
 
 #. "To copy."
 msgid "Duplicate..."
-msgstr ""
+msgstr "Salin"
 
 #. "Occurring immediately and concurrently or at the time of execution. It describes some action or event that occurs when and as needed. "
 msgid "Dynamic"
@@ -830,7 +833,7 @@ msgstr "Emel"
 
 #. "In communications, a signal transmitted back to the sender that is distinct from the original signal. Network connections can be tested by sending an echo back to the main computer."
 msgid "Echo"
-msgstr ""
+msgstr "Gema"
 
 #. "1. In computer graphics, one or more vestors defining a portion of an object. 2. In image processing, a set of valus determined to be the dividing line between one image and another image or an image and the background."
 msgid "Edge"
@@ -860,7 +863,7 @@ msgstr "Hidupkan"
 
 #. "A PostScript file format that can be used as an independent entity. The EPS image must be incorporated into the PostScript output of an application such as a desktop publisher. "
 msgid "Encapsulated Postscript"
-msgstr ""
+msgstr "EPS"
 
 #. "A correspondence between characters of some character set and character codes, i.e. internal computer presentation of the symbols. In order to be able to read a text file, you need to know its character set and encoding. In most encodings, each symbol is represented by one byte, which is equivalent to a number from 0 to 255; the characters corresponding to codes 0 to 127 coincide with the ASCII standard, while the characters with codes higher than 127 vary between encodin. The most common encoding is iso-8859-1; in addition to ASCII characters, it also contains accented letters covering most of Western European languages."
 msgid "Encoding"
@@ -899,11 +902,11 @@ msgstr "Pengecualian"
 
 #. "A logical operator that yields 'true' if and only if one of its operands is true and the other is false. "
 msgid "Exclusive OR"
-msgstr "OR ekslusif"
+msgstr "ATAU Eksklusif"
 
 #. "A program/file that can be run or processed or executed  by the computer without any further translation. The term usually applies to a compiled program translated into machine code in a format that can be loaded into memory and run by a computer's proces"
 msgid "executable file"
-msgstr "fail perlaksanaan"
+msgstr "fail penlaksana"
 
 #. "To run file as program. To perform an instruction. In programming, execution implies loading the machine code of the program into memory and then performing the instructions."
 msgid "Execute"
@@ -915,22 +918,22 @@ msgstr "Keluar"
 
 #. "A type of memory, up to 8 MB, that can be added to IBM PCs. Its use is defined by the Expanded Memory Specification (EMS). Expanded memory is not needed in Windows 9x, all versions of Windows NT, and Windows 2000. "
 msgid "Expanded memory"
-msgstr "Memori terkembang"
+msgstr "Memori tambahan"
 
 msgid "expected location"
 msgstr "lokasi dijangka"
 
 #. "Synonymous of Absolute state."
 msgid "Explicit state"
-msgstr "Keadaan eksplsit"
+msgstr "Keadaan jelas"
 
 #. "A numeric format that can be used to represent very large real numbers and very small real numbers. Synonymous of Floating-point representation."
 msgid "Exponential notation"
-msgstr "Notasi eksponen"
+msgstr "Notasi eksponential"
 
 #. "To move information from one system or program to another. Files that consist only of text can be exported in ASCII (plain text format). "
 msgid "Export"
-msgstr "Eksport"
+msgstr "Ekspot"
 
 #. "A language construct for computing a value from one  or moe operands."
 msgid "expression"
@@ -938,7 +941,7 @@ msgstr "ungkapan"
 
 #. "1. A set of characters added to a filename that serves to extend or clarify its meaning or to identify a file as a member of a category. 2. A program or program module that adds functionality to or extends the effectiveness of a program. "
 msgid "Extension"
-msgstr "Penghujungan"
+msgstr "Unjuran"
 
 #. "To select and remove from a set of items those items that meet some criteria. "
 msgid "Extract"
@@ -946,7 +949,7 @@ msgstr "Ekstrak"
 
 #. "In Microsoft Internet Explorer, a user-defined shortcut to a page on the World Wide Web, analogous to a bookmark in Netscape Navigator. "
 msgid "Favorite"
-msgstr "Kegemaran"
+msgstr "Gemar"
 
 #. "Short for facsimile. The transmission of text or graphics over telephone lines in digitized form. "
 msgid "Fax"
@@ -982,15 +985,15 @@ msgstr "Cari"
 
 #. "Software routines stored in read-only memory (ROM). "
 msgid "Firmware"
-msgstr ""
+msgstr "Firmwer"
 
 #. "Synonymous with Monospace Font. A font (set of characters in a particular style and size), similar to that used on a typewriter, in which each character occupies the same amount of horizontal space regardless of its width"
 msgid "Fixed Font"
-msgstr "Font Tetap"
+msgstr "Font Saiz-Sama"
 
 #. "The data type name used in some programming languages, notably C, to declare variables that can store floating-point numbers. "
 msgid "Float"
-msgstr "Apungan"
+msgstr "Apung"
 
 #. "A round piece of flexible plastic film coated with ferric oxide particles that can hold a magnetic field. When placed inside a disk drive, the floppy disk rotates to bring different areas, or sectors, of the disk surface under the drive's read/write head,"
 msgid "Floppy"
@@ -1014,7 +1017,7 @@ msgstr "Font"
 
 #. "One or more identifying lines printed at the bottom of a page. A footer may contain a folio (page number), a date, the author's name, and the document title. "
 msgid "Footer"
-msgstr "Pengaki"
+msgstr "Nota kaki"
 
 msgid "Forecast"
 msgstr "Ramalan"
@@ -1025,11 +1028,11 @@ msgstr "Latar Depan"
 
 #. " A system call to create a new process.  The new process is called a child process. The original process is called a parent process. "
 msgid "fork"
-msgstr "sepit"
+msgstr "cabangan"
 
 #. "A structured document with spaces reserved for entering information and often containing special coding as well. In some applications (especially databases), a structured window, box, or other self-contained presentation element with predefined areas for "
 msgid "Form"
-msgstr "Borang"
+msgstr "Bentuk"
 
 #. "The structure or appearance of a unit of data. The arrangement of data within a document file that typically permits the document to be read or written by a certain application. "
 msgid "Format"
@@ -1081,7 +1084,7 @@ msgstr "Geometri"
 
 #. "An FTP command that instructs the server to transfer a specified file to the client. "
 msgid "get"
-msgstr "ambil"
+msgstr "dapatkan"
 
 #. "Pertaining to an entire document, file, or program rather than to a restricted segment of it. "
 msgid "Global"
@@ -1101,7 +1104,7 @@ msgstr "GPL"
 
 #. "To capture graphical image data from a video camera or another full-motion video source and put it into memory. "
 msgid "Grab"
-msgstr "Genggam"
+msgstr "Ambil"
 
 #. "The rate of change of a quantity with distance."
 msgid "Gradient"
@@ -1133,7 +1136,7 @@ msgstr "GUI"
 
 #. "The blank space or inner margin between two facing pages of a bound document."
 msgid "Gutter"
-msgstr ""
+msgstr "Gutter"
 
 #. "A person, more commonly considered a cracker, who uses computer expertise for illicit ends, such as by gaining access to computer systems without permission and tampering with programs and data. "
 msgid "Hacker"
@@ -1145,7 +1148,7 @@ msgstr "Pengendali"
 
 #. "A series of signals acknowledging that communication or the transfer of information can take place between computers or other devices. "
 msgid "Handshake"
-msgstr "jabattangan"
+msgstr "persetujuan"
 
 #. "A device containing one or more inflexible platters coated with material in which data can be recorded magnetically, together with their read/write heads, the head-positioning mechanism, and the spindle motor in a sealed case that protects against outside"
 msgid "Hard Disk"
@@ -1156,7 +1159,7 @@ msgid "Header"
 msgstr "Pengepala"
 
 msgid "Headword"
-msgstr ""
+msgstr "Katadepan"
 
 msgid "Hello World"
 msgstr "Hello Dunia"
@@ -1171,11 +1174,11 @@ msgstr "Heks"
 
 #. "A file that, in order to protect it from deletion or modification, is not shown in the normal listing of the files contained in a directory. Such a file is often used to store code or data critical to the system configuration."
 msgid "Hidden file"
-msgstr "Fail Tersembunyi"
+msgstr "Fail Tersorok"
 
 #. "To temporarily remove the onscreen display of an application's active window while leaving the application running. "
 msgid "Hide"
-msgstr "Sembunyi"
+msgstr "Sorok"
 
 #. "A type of organization that, like a tree, branches into more specific units, each of which is 'owned' by the higher-level unit immediately above. "
 msgid "hierachy"
@@ -1191,15 +1194,15 @@ msgstr "Histogram"
 
 #. "A list of the user's actions within a program, such as commands entered in an operating system shell, menus passed through using Gopher, or links followed using a Web browser."
 msgid "History"
-msgstr "Sejarah"
+msgstr "Lampau"
 
 #. "A beginning position, such as the top left corner of a character-based display, the left end of a line of text, cell A1 of a spreadsheet, or the top of a document."
 msgid "Home"
-msgstr "Rumah"
+msgstr "Asal"
 
 #. "A directory assigned to the user by the system administrator. The home directory is the current directory when the user first logs in, and the user can return to it by entering the command cd (change directory) without a pathname. "
 msgid "Home directory"
-msgstr "Direktori rumah"
+msgstr "Direktori asal"
 
 #. "1. A document intended to serve as a starting point in a hypertext system, especially the World Wide Web. 2. An entry page for a set of Web pages and other files in a Web site. "
 msgid "Home Page"
@@ -1219,11 +1222,11 @@ msgstr "Nama hos"
 
 #. "Hot-keys are keyboard combinations used to do actions on a computer instead of using the mouse to do the same action. Hot-keys can speed up computer usage. Also known under the name <quote>keyboard shortcut</quote> or <quote>keyboard accelerator</quote>."
 msgid "Hot Key"
-msgstr ""
+msgstr "Kekunci pantas"
 
 #. "Any of various routines, such as updating the clock or performing garbage collection, designed to keep the system, the environment within which a program runs, or the data structures within a program in good working order."
 msgid "Housekeeping"
-msgstr ""
+msgstr "perkemas"
 
 #. "Acronym for Hypertext Markup Language. The markup language used for documents on the World Wide Web. HTML is an application of SGML (Standard Generalized Markup Language) that uses tags to mark elements, such as text and graphics, in a document to indicat"
 msgid "HTML"
@@ -1235,7 +1238,7 @@ msgstr "HTTP"
 
 #. "In the HSB color model, one of the three characteristics used to describe a color. Hue is the attribute that most readily distinguishes one color from other colors. It depends on the frequency of a light wave in the visible spectrum. "
 msgid "Hue"
-msgstr ""
+msgstr "Hue"
 
 #. "A piece of hardware that can be used both for providing data to a computer and for receiving data from it, depending on the current situation. "
 msgid "I/O subsystem"
@@ -1255,7 +1258,7 @@ msgstr "IDE"
 
 #. "Any text string used as a label, such as the name of a procedure or a variable in a program or the name attached to a hard disk or floppy disk. "
 msgid "Identifier"
-msgstr "Pengcam"
+msgstr "Penanda"
 
 #. "1. Operational but not in use. 2. Waiting for a command."
 msgid "Idle"
@@ -1275,18 +1278,18 @@ msgstr "Implementasi"
 
 #. "To bring information from one system or program into another. "
 msgid "Import"
-msgstr "Import"
+msgstr "Impot"
 
 #. "In an environment capable of displaying multiple on-screen windows, any window other than the one currently being used for work. "
 msgid "Inactive window"
-msgstr "Tetingkap tidak aktif"
+msgstr "Tetingkap tak aktif"
 
 msgid "Increase"
-msgstr "Naikkan"
+msgstr "Tambah"
 
 #. "An update of those files only that have changed since a specific date."
 msgid "Incremental update"
-msgstr "Pengemaskinian menaik"
+msgstr "Pengemaskinian menambah"
 
 #. "Displacement of the left or right edge of a block of text in relation to the margin or to other blocks of text. "
 msgid "Indent"
@@ -1320,7 +1323,7 @@ msgid "Input/output"
 msgstr "Input/output"
 
 msgid "insensitive version"
-msgstr "versi tidak sensitif"
+msgstr "versi tak sensitif"
 
 #. "A blinking vertical bar on the screen, such as in graphical user interfaces, that marks the location at which inserted text will appear. "
 msgid "Insertion point"
@@ -1343,7 +1346,7 @@ msgstr "Bersilang"
 
 #. "Synonymous with Rich Text Format. An adaptation of DCA (Document Content Architecture) that is used for transferring formatted text documents between applications, even those applications running on different platforms, "
 msgid "Interchange File Format"
-msgstr ""
+msgstr "Format Fail Pertukaran"
 
 #. "1. The point at which a connection is made between two elements so that they can work with each other or exchange information. 2. Software that enables a program to work with the user (the user interface, which can be a command-line interface, menu-driven"
 msgid "Interface"
@@ -1375,11 +1378,11 @@ msgid "Interval"
 msgstr "Selangmasa"
 
 msgid "Intuitive"
-msgstr "Sifat intiutif"
+msgstr "Intiutif"
 
 #. "Erroneous or unrecognizable because of a flaw in reasoning or an error in input. "
 msgid "Invalid"
-msgstr "tidak sah"
+msgstr "tak sah"
 
 #. "To reverse something or change it to its opposite. For example, to invert the colors on a monochrome display means to change light to dark and dark to light. "
 msgid "Invert"
@@ -1414,7 +1417,7 @@ msgstr "JPEG"
 
 #. "1. To align vertically. 2. To align lines of text evenly along both the left and right margins of a column by inserting extra space between the words in each line. "
 msgid "Justify"
-msgstr "Justifikasi"
+msgstr "tepat"
 
 #. "A desktop environment for UNIX and UNIX-like operating systems; one of two leading desktop environments for Linux (the other one is <link linkend='gnome'>GNOME</link>). For more infrmation visit <ulink type='http' url='http://www.kde.org'>KDE Web site</ul"
 msgid "KDE"
@@ -1484,11 +1487,11 @@ msgstr "Lapisan"
 
 #. "The overall plan or design of a document system. "
 msgid "Layout"
-msgstr "Susunatur"
+msgstr "Susun atur"
 
 #. "A paper format."
 msgid "Legal"
-msgstr ""
+msgstr "Legal"
 
 #. "The number of linear units of storage space occupied by an object, such as a file on disk or a data structure in a program."
 msgid "Length"
@@ -1496,7 +1499,7 @@ msgstr "Panjang"
 
 #. "A paper format"
 msgid "Letter"
-msgstr ""
+msgstr "Surat"
 
 #. "In programming, a collection of routines stored in a file. "
 msgid "Library"
@@ -1563,7 +1566,7 @@ msgid "Logout"
 msgstr "logkeluar"
 
 msgid "Look"
-msgstr ""
+msgstr "Rupa"
 
 #. "A function, often built into spreadsheet programs, in which a previously constructed table of values called a lookup table is searched for a desired item of information. "
 msgid "Lookup"
@@ -1686,7 +1689,7 @@ msgstr "kesalahan kecil"
 
 #. "An image that is an exact duplicate of the original with the exception that one dimension is reversed. "
 msgid "mirror"
-msgstr ""
+msgstr "kembar"
 
 #. "In multimedia applications, a device used to simultaneously combine and blend several inputs into one or two outputs."
 msgid "mixer device"
@@ -1785,7 +1788,7 @@ msgstr "Pengagihan normal"
 
 #. "Any computer designed to be moved easily. Notebooks or portable computers can be characterized by size and weight."
 msgid "Notebook"
-msgstr ""
+msgstr "Notbuk"
 
 #. "A window displayed when an application generates a warning or error message that requires action before the user can proceed."
 msgid "Notice"
@@ -1881,7 +1884,7 @@ msgid "Orthflow"
 msgstr ""
 
 msgid "Outline"
-msgstr ""
+msgstr "Garis kasar"
 
 #. "The results of processing, whether sent to the screen or printer, stored on disk as a file, or sent to another computer in a network."
 msgid "Output"
@@ -1909,7 +1912,7 @@ msgstr "Paket"
 
 #. "In data storage, the addition of one or more bits, usually zeros, to a block of data in order to fill it, to force the actual data bits into a certain position, or to prevent the data from duplicating a bit pattern that has an established meaning, such as"
 msgid "Padding"
-msgstr ""
+msgstr "selitan"
 
 #. "1. In word processing, the text and display elements to be printed on one side of a sheet of paper. 2. A fixed-size block of memory (8192 contiguous byte locations). 2.  A Web-page."
 msgid "Page"
@@ -1968,7 +1971,7 @@ msgid "Pearson Correlation"
 msgstr "Korelasi Pearson"
 
 msgid "pending signals"
-msgstr ""
+msgstr "isyarat menanti"
 
 #. "The length of time required for an oscillation to complete one full cycle. "
 msgid "Period"
@@ -2046,7 +2049,7 @@ msgstr "Poligon"
 
 #. "An open shape consisting of multiple connected segments. Polylines are used in CAD and other graphics programs. "
 msgid "Polyline"
-msgstr ""
+msgstr "Poligaris"
 
 msgid "Pooled Variance"
 msgstr ""
@@ -2077,7 +2080,7 @@ msgstr "Peti Pos"
 
 #. "A language for desribing printed pages, developed by <ulink type='http' url='http://www.adobe.com'>Adobe Corporation</ulink>. Can be used to describe both graphics and text, black and white or color. Postscript is the de-facto standard for quality printin Postscript files can  also be saved to disk; they usually have extension <filename>.ps</filename>. There is a number of utilities for viewing Postscript files, such as <application>gv</application> or <application>ggv</application>."
 msgid "postscript"
-msgstr ""
+msgstr "postscript"
 
 msgid "power management"
 msgstr "pengurusann kuasa"
@@ -2145,7 +2148,7 @@ msgstr "Pemproses"
 
 #. "Short for Prodigy Information Service. An online information service founded by IBM and Sears. "
 msgid "Prodigy"
-msgstr ""
+msgstr "Prodigy"
 
 #. "A sequence of instructions that can be executed by a computer. "
 msgid "Program"
@@ -2188,7 +2191,7 @@ msgid "Protocol"
 msgstr "Protokol"
 
 msgid "Provision"
-msgstr ""
+msgstr "Provisi"
 
 #. "A computer (or the software that runs on it) that acts as a barrier between a network and the Internet by presenting only a single network address to external sites. "
 msgid "Proxy"
@@ -2243,7 +2246,7 @@ msgstr "Pangkat"
 
 #. "Specified limit to operating conditions, e.g. current rating."
 msgid "Rating"
-msgstr ""
+msgstr "Pencapaian"
 
 msgid "Ratio"
 msgstr "Nisbah"
@@ -2293,11 +2296,11 @@ msgid "Rectangle"
 msgstr "Segi empat"
 
 msgid "Recurrence"
-msgstr ""
+msgstr "Munculan"
 
 #. "The ability of a routine to call itself. Recursion enables certain algorithms to be implemented with small, simple routines."
 msgid "Recursion"
-msgstr ""
+msgstr "Rikesi"
 
 msgid "Redisplay"
 msgstr "Ulangpapar"
@@ -2375,7 +2378,7 @@ msgid "Resident memory"
 msgstr "Memori mastautin"
 
 msgid "Residual"
-msgstr ""
+msgstr "Kerak"
 
 #. "To make an object or space larger or smaller. "
 msgid "Resize"
@@ -2407,7 +2410,7 @@ msgstr "Ulangi"
 
 #. "A key on a keyboard that is used to terminate input of a field or record or to execute the default action of a dialog box. "
 msgid "Return"
-msgstr ""
+msgstr "Kembali"
 
 #. "The reversal of light and dark in the display of selected characters on a video screen. "
 msgid "Reverse video"
@@ -2469,7 +2472,7 @@ msgstr "boleh diskala"
 
 #. "A factor, coefficient, or variable consisting of a single value (as opposed to a record, an array, or some other complex data structure). "
 msgid "Scalar"
-msgstr ""
+msgstr "Skala"
 
 #. "A horizontal or vertical line on a graph that shows minimum, maximum, and interval values for the data plotted."
 msgid "Scale"

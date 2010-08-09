@@ -8,12 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-glossary\n"
 "POT-Creation-Date: 2002-11-01 04:37+0100\n"
-"PO-Revision-Date: 2003-01-14 11:02+EDT\n"
-"Last-Translator: Ge'ez Frontier Foundation <locales@geez.org>\n"
+"PO-Revision-Date: 2010-07-15 15:14+0200\n"
+"Last-Translator: admin <>\n"
 "Language-Team: Amharic <locales@geez.org>\n"
+"Language: am\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #. "English Definition"
 msgid "Term"
@@ -29,10 +32,10 @@ msgstr ""
 
 #. "1. In applications, a key or key combination used to perform a defined function. Also called shortcut key. 2. A hardware device that speeds or enhances the operation of one or more subsystems, leading to improved program performance. "
 msgid "Accelerator"
-msgstr ""
+msgstr "1. አቋራጭ 2. አፍጣኝ "
 
 msgid "Accept"
-msgstr ""
+msgstr "ተቀበል"
 
 #. "1. The act of reading data from or writing data to memory. 2. Connection to the Internet or other network or system.  2. To gain entry to memory in order to read or write data."
 msgid "access"
@@ -61,25 +64,25 @@ msgid "Address"
 msgstr "አድራሻ"
 
 msgid "Adjust"
-msgstr ""
+msgstr "አስተካክል"
 
 #. "The performing of maintenance tasks on a system or network"
 msgid "Administration"
-msgstr ""
+msgstr "አስተዳደር"
 
 msgid "Aggregate"
 msgstr ""
 
 #. "A visual or auditory signal from a computer alerting the user to an error or hazardous situation."
 msgid "Alarm"
-msgstr ""
+msgstr "ማስጠንቀቂያ"
 
 #. "In an application such as a word processor, to position lines of type relative to some point, such as the page margin. The most common types of alignment are left- and right-aligned and centered. "
 msgid "Align"
 msgstr "በስርዓት ኰልኩል"
 
 msgid "Allow"
-msgstr ""
+msgstr "ፍቀድ"
 
 #. "A software product that is under development and has enough functionality to begin testing. "
 msgid "Alpha"
@@ -99,19 +102,20 @@ msgstr ""
 
 #. "A tag in an HTML document that defines a section of text, an icon, or other element as a link to another element in the document or to another document or file. "
 msgid "Anchor"
-msgstr ""
+msgstr "መልኅቅ"
 
 #. "A logical operation combining the values of two bits (0, 1) or two Boolean values (false, true) that returns a value of 1 (true) if both input values are 1 (true) and returns a 0 (false) otherwise. "
 msgid "AND"
 msgstr "እና"
 
 #. "The simulation of movement through a rapid succession of static images. "
+#, fuzzy
 msgid "Animation"
-msgstr ""
+msgstr "ተንቀሳቃሽ ምስሉን አ_ስኪድ"
 
 #. "On the Internet, the standard login name used to obtain access to a public FTP file archive. "
 msgid "Anonymous"
-msgstr ""
+msgstr "ስመድብቅ"
 
 #. "A setting that allows a modem to answer an incoming call automatically. It is used in all fax machines. "
 msgid "Answer mode"
@@ -160,7 +164,7 @@ msgstr ""
 
 #. "The four directional keys on the numeri keypad."
 msgid "Arrow key"
-msgstr ""
+msgstr "ቀስት መጥሪያ"
 
 msgid "Article"
 msgstr ""
@@ -183,7 +187,7 @@ msgstr ""
 
 #. "Any file accompanying an e-mail message in a special format so that it can be viewed or saved to disk independently of the main message body."
 msgid "Attachment"
-msgstr ""
+msgstr "አባሪ"
 
 #. "In a database record, the name or structure of a field. In screen displays, an element of additional information stored with each character. In markup languages such as SGML and HTML, a name-value pair within a tagged element that modifies certain feature"
 msgid "Attribute"
@@ -202,14 +206,14 @@ msgid "Author"
 msgstr "ደራሲ"
 
 msgid "Autofill"
-msgstr ""
+msgstr "በራስ ሙላ"
 
 #. "In processing, the accessibility of a computer system or resource, such as a printer, in terms of usage or of the percentage of the total amount of time the device is needed."
 msgid "Availability"
-msgstr ""
+msgstr "ተገኝነት"
 
 msgid "Average"
-msgstr ""
+msgstr "ማዕከላዊ"
 
 #. "In a chart or other two-dimensional system using coordinates, the horizontal line (x-axis) or vertical line (y-axis) that serves as a reference for plotting points. In a three-dimensional coordinate system, a third line (z-axis) is used to represent depth"
 msgid "Axis"
@@ -228,8 +232,9 @@ msgid "Balance"
 msgstr ""
 
 #. "In mathematics, a number that is raised to the power specified by an exponent. For example, in 23 = 2 =D7 2 =D7 2 = 8, the base is 2. "
+#, fuzzy
 msgid "Base"
-msgstr ""
+msgstr "የስረ-መሠረት ዱካ:"
 
 #. "An executable program, so called because the file containing the program consists of machine-readable binary digits, i.e. ones and zeroes."
 msgid "Binary"
@@ -253,7 +258,7 @@ msgstr ""
 
 #. "To not show or not display an image on part or all of the screen."
 msgid "Blank"
-msgstr ""
+msgstr "ባዶ"
 
 msgid "Blinking cursor"
 msgstr ""
@@ -265,12 +270,13 @@ msgstr ""
 msgid "Blocked"
 msgstr ""
 
+#, fuzzy
 msgid "Blur image"
-msgstr ""
+msgstr "_ምስል ክፈት"
 
 #. "1. In e-mail and Internet newsgroups, the content of a message. 2. In HTML, SGML, and XML, a section of a document that contains the content of the document, along with tags describing characteristics of the content."
 msgid "body"
-msgstr ""
+msgstr "ሰውነት"
 
 #. "A type style that makes the text to which it is applied appear darker and heavier than the surrounding text. "
 msgid "Bold"
@@ -286,11 +292,11 @@ msgstr "ቡልያን"
 
 #. "The boundary around a graphic image on screen. "
 msgid "Box"
-msgstr ""
+msgstr "ሳጥን"
 
 #. "A node intermediate between the root and the leaves in some types of logical tree structure, such as the directory tree "
 msgid "Branch"
-msgstr ""
+msgstr "ቅርንጫፍ"
 
 msgid "Bricks"
 msgstr ""
@@ -336,7 +342,7 @@ msgstr ""
 
 #. "8 bits, i.e. a sequence of 8 zeros and ones.There are 256 possible such sequences, so one can also say that one byte represents a number ranging from 0 to 255. Byte is the basic building block of filesystem: all files are composed of bytes. For text files, each byte represents one symbol."
 msgid "Byte"
-msgstr ""
+msgstr "ባይት"
 
 #. "Refers to the C programming language, developed by Bell Laboratories in the early 1980s."
 msgid "C"
@@ -348,7 +354,7 @@ msgstr ""
 
 #. "Any device that performs arithmetic operations on numbers. "
 msgid "Calculator"
-msgstr ""
+msgstr "አስሊ"
 
 #. "An application program in the form of an electronic calendar, commonly used for highlighting dates and scheduling appointments. "
 msgid "Calendar"
@@ -356,7 +362,7 @@ msgstr "ቀን መቁጠሪያ"
 
 #. "To establish a connection through a telecommunications network. "
 msgid "Call"
-msgstr ""
+msgstr "ጥሪ"
 
 msgid "Cancel"
 msgstr "ተወው"
@@ -368,7 +374,7 @@ msgid "Caption"
 msgstr "አርእስት"
 
 msgid "Case Sensitive"
-msgstr ""
+msgstr "ካፒታልና ስሞል የእንግሊዘኛ ፊደሎች የተለያየ እሴት አላቸው"
 
 #. "Groups of like settings in a property window."
 msgid "Categories"
@@ -401,12 +407,13 @@ msgid "char cell"
 msgstr ""
 
 #. "A collection of symbols, such as letters of one or several alphabets, digits, punctuation marks, etc. "
+#, fuzzy
 msgid "Character set"
-msgstr ""
+msgstr "የህትመት _ቅንጅት..."
 
 #. "Real-time conversation via computer. "
 msgid "Chat"
-msgstr ""
+msgstr "ውይይት"
 
 #. "One of a set of bits that are added to a data message at its origin and scrutinized by the receiving process to determine whether an error has occurred during transmission. "
 msgid "Check bit"
@@ -435,8 +442,9 @@ msgid "Clear"
 msgstr "ሰርዝ"
 
 #. "The temporary buffer into which text or other data can be copied, to be used later by pasting into a different location. Most applications support the clipboard either through native mouse-based cut and paste functionality of X Window System, or through s"
+#, fuzzy
 msgid "Clipboard"
-msgstr ""
+msgstr "የክሊፕቦርዱን ይዞታ ለጥፍ"
 
 #. "To change an open window into an icon on the desktop. To end an application's relationship with an open file so that the application will no longer be able to access the file without opening it again. To end a computer's connection with another computer o"
 msgid "Close"
@@ -447,8 +455,9 @@ msgid "code"
 msgstr "ኮድ"
 
 #. "1. A memory segment containing program instructions. 2. A named and segregated portion of a program's code typically performing a specific class of operations. "
+#, fuzzy
 msgid "code segment"
-msgstr ""
+msgstr "የረቂቅ-ስልት ፊደል-ኮድ:"
 
 msgid "Coefficient"
 msgstr ""
@@ -469,23 +478,26 @@ msgid "Command"
 msgstr "ትእዛዝ"
 
 #. "A string of text written in the command language and passed to the command interpreter for execution. It can contain a command followed by arguments, options, file names and other expressions."
+#, fuzzy
 msgid "Command Line"
-msgstr ""
+msgstr "የተንታኝ ትዕዛዝ:"
 
 #. "Parameters or arguments given on the UNIX command line after a program name, which tell the program how to run. "
+#, fuzzy
 msgid "Command line options"
-msgstr ""
+msgstr "&የመስመር ቁጥር አሰይ"
 
+#, fuzzy
 msgid "Common properties"
-msgstr ""
+msgstr "“%s” ምርጫዎች"
 
 #. "To check two items, such as words, files, or numeric values, so as to determine whether they are the same or different. "
 msgid "Compare"
-msgstr ""
+msgstr "አመሳክር"
 
 #. "To string together two or more sequences into one longer sequencce (for example, to combine the two strings 'hello' and 'there' into the single string 'hello there'). "
 msgid "Concatenate"
-msgstr ""
+msgstr "መቀጠል"
 
 #. "The state of an expression or a variable (for example, when a result can be either true or false, or equal or not equal)."
 msgid "Condition"
@@ -503,14 +515,14 @@ msgid "Configuration"
 msgstr "ምርጫዎች"
 
 msgid "Confirm"
-msgstr ""
+msgstr "አረጋግጥ"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "መስማማት"
 
 #. "A physical link via wire, radio, fiber-optic cable, or other medium between two or more communications devices."
 msgid "Connection"
-msgstr ""
+msgstr "ግንኙነት"
 
 #. "In programming, a restriction on the solutions that are acceptable for a problem."
 msgid "Constraint"
@@ -518,7 +530,7 @@ msgstr ""
 
 #. "The data that appears between the starting and ending tags of an element in an SGML or HTML document. "
 msgid "Content"
-msgstr ""
+msgstr "ይዘት"
 
 #. "libgtop.pot"
 msgid "Continue"
@@ -529,8 +541,9 @@ msgid "Control"
 msgstr "Control"
 
 #. "The process of changing from one form or format to another. Types of conversion include: data (changing the way information is represented), file (changing a file from one format to another), hardware (changing all or part of a computer system), media (tr"
+#, fuzzy
 msgid "Conversion"
-msgstr ""
+msgstr "አዲስ-መስመር መለወጥ"
 
 #. "On the World Wide Web, a block of data that a Web server stores on a client system. When a user returns to the same Web site, the browser sends a copy of the cookie back to the server. "
 msgid "cookie"
@@ -549,8 +562,9 @@ msgid "CORBA"
 msgstr "CORBA"
 
 #. "A file created to hold a memory image useful for debugging problems when a program malfunctions."
+#, fuzzy
 msgid "Core file"
-msgstr ""
+msgstr "ፋይል ክፈት"
 
 #. "A linear transformation which in the plane maps lines into points and lines into points and in space maps points into planes and planes into points."
 msgid "Correlation"
@@ -561,7 +575,7 @@ msgid "cos"
 msgstr "cos"
 
 msgid "Cost"
-msgstr ""
+msgstr "ወጪ"
 
 msgid "Count"
 msgstr "ቆጠራ"
@@ -584,8 +598,11 @@ msgid "Criteria range"
 msgstr ""
 
 #. "An error that suspends processing until the condition can be corrected either by software or by user intervention "
+#, fuzzy
 msgid "Critical error"
 msgstr ""
+"የGConf ብልሽት፦\n"
+"  %s"
 
 #. "In computer graphics, to cut off part of an image, such as unneeded sections of a graphic or extra white space around the borders. "
 msgid "Crop"
@@ -616,8 +633,9 @@ msgstr ""
 msgid "Customize"
 msgstr "አስተካክል"
 
+#, fuzzy
 msgid "custom window"
-msgstr ""
+msgstr "አዲስ መስኮት (_N)"
 
 #. "To remove part of a document, usually placing it temporarily in memory or the clipboard so that the cut portion can be inserted (pasted) elsewhere. "
 msgid "Cut"
@@ -644,7 +662,7 @@ msgid "decimal"
 msgstr "ቍጥሮች"
 
 msgid "Decrease"
-msgstr ""
+msgstr "አሳንስ"
 
 #. "A choice made by a program when the user does not specify an alternative."
 msgid "Default"
@@ -656,7 +674,7 @@ msgstr "አጥፉ"
 
 #. "The state in which one entity relies upon specific hardware, software, or specific events for its own definition or functionality. "
 msgid "Dependence"
-msgstr ""
+msgstr "ድጋፍ"
 
 msgid "Derived"
 msgstr ""
@@ -679,10 +697,10 @@ msgstr ""
 
 #. "The location (drive, folder, or directory) to which a file is copied or moved. "
 msgid "Destination"
-msgstr ""
+msgstr "መድረሻ"
 
 msgid "Destroy"
-msgstr ""
+msgstr "አጥፋ"
 
 msgid "Detection"
 msgstr ""
@@ -699,7 +717,7 @@ msgstr ""
 
 #. "To establish connection that uses the public switched telephone network rather than a dedicated circuit or some other type of private network."
 msgid "Dial"
-msgstr ""
+msgstr "ደውል"
 
 #. "In a graphical user interface, a special window displayed by the system or application to solicit a response from the user. "
 msgid "Dialog Box"
@@ -759,16 +777,18 @@ msgid "Distribute"
 msgstr ""
 
 #. "A list of recipients on an e-mail mailing list. "
+#, fuzzy
 msgid "Distribution list"
-msgstr ""
+msgstr "የሰነዶች ዝርዝር"
 
 #. "A technique used in computer graphics to create the illusion of varying shades of gray on a monochrome display or printer, or additional colors on a color display or printer. "
 msgid "Dithering"
 msgstr ""
 
 #. "An error condition caused by an attempt to divide a number by zero, which is mathematically undefined."
+#, fuzzy
 msgid "Division by zero"
-msgstr ""
+msgstr "ምልክቱ ዜሮ ስፋት አለው"
 
 #. "Direct Memory Access; Memory access that does not involve the microprocessor and is frequently used for data transfer directly between memory and an intelligent peripheral device, such as a disk drive."
 msgid "DMA"
@@ -841,7 +861,7 @@ msgstr "አውጣ"
 
 #. "A way of exchanging messages between users of computers connected to a network (local or Internet)."
 msgid "Electronic Mail"
-msgstr ""
+msgstr "የኤ-መልዕክት"
 
 #. "The process of a computer, device, or program imitating the function of another computer, device, or program."
 msgid "emulation"
@@ -891,12 +911,14 @@ msgid "Exception"
 msgstr ""
 
 #. "A logical operator that yields 'true' if and only if one of its operands is true and the other is false. "
+#, fuzzy
 msgid "Exclusive OR"
-msgstr ""
+msgstr "የትዕዛዝ ማስጫውን አሳይ ወይም ደብቅ"
 
 #. "A program/file that can be run or processed or executed  by the computer without any further translation. The term usually applies to a compiled program translated into machine code in a format that can be loaded into memory and run by a computer's proces"
+#, fuzzy
 msgid "executable file"
-msgstr ""
+msgstr "ፋይል ክፈት"
 
 #. "To run file as program. To perform an instruction. In programming, execution implies loading the machine code of the program into memory and then performing the instructions."
 msgid "Execute"
@@ -907,11 +929,13 @@ msgid "Exit"
 msgstr "ውጣ"
 
 #. "A type of memory, up to 8 MB, that can be added to IBM PCs. Its use is defined by the Expanded Memory Specification (EMS). Expanded memory is not needed in Windows 9x, all versions of Windows NT, and Windows 2000. "
+#, fuzzy
 msgid "Expanded memory"
-msgstr ""
+msgstr "ትርጉም አስታዋሽ"
 
+#, fuzzy
 msgid "expected location"
-msgstr ""
+msgstr "ቦታ ክፈት"
 
 #. "Synonymous of Absolute state."
 msgid "Explicit state"
@@ -963,7 +987,7 @@ msgstr ""
 
 #. "In computer graphics, the colored or patterned 'paint' inside an enclosed figure, such as a circle. "
 msgid "Fill"
-msgstr ""
+msgstr "ሙላ"
 
 #. "In communications and electronics, hardware or software that selectively passes certain elements of a signal and eliminates or minimizes others. "
 msgid "Filter"
@@ -978,8 +1002,9 @@ msgid "Firmware"
 msgstr ""
 
 #. "Synonymous with Monospace Font. A font (set of characters in a particular style and size), similar to that used on a typewriter, in which each character occupies the same amount of horizontal space regardless of its width"
+#, fuzzy
 msgid "Fixed Font"
-msgstr ""
+msgstr "ፊደል ቅርጽ ምረጥ"
 
 #. "The data type name used in some programming languages, notably C, to declare variables that can store floating-point numbers. "
 msgid "Float"
@@ -1057,8 +1082,9 @@ msgid "FTP"
 msgstr "FTP"
 
 #. "In a hierarchical filing system, a pathname containing all the possible components of a pathname, including the network share or drive and root directory, as well as any subdirectories and the file or object name. "
+#, fuzzy
 msgid "full pathname"
-msgstr ""
+msgstr "በሙሉ ስክሪን አሳይ"
 
 #. "1. The purpose of, or the action carried out by, a program or routine. 2. A general term for a subroutine. "
 msgid "Function"
@@ -1105,8 +1131,9 @@ msgid "Graph"
 msgstr ""
 
 #. "A visual computer environment that represents programs, files, and options with graphical images, such as icons, menus, and dialog boxes on the screen. "
+#, fuzzy
 msgid "Graphical user interface"
-msgstr ""
+msgstr "ቋንቋ| በተጠቃሚ የተመረጠ (%s)"
 
 #. "Two sets of lines or linear elements at right angles to each other. A spreadsheet is a grid of rows and columns."
 msgid "Grid"
@@ -1163,8 +1190,9 @@ msgid "Hex"
 msgstr "Hex"
 
 #. "A file that, in order to protect it from deletion or modification, is not shown in the normal listing of the files contained in a directory. Such a file is often used to store code or data critical to the system configuration."
+#, fuzzy
 msgid "Hidden file"
-msgstr ""
+msgstr "ፋይል ክፈት"
 
 #. "To temporarily remove the onscreen display of an application's active window while leaving the application running. "
 msgid "Hide"
@@ -1256,7 +1284,7 @@ msgstr ""
 
 #. "Not allowed, or leading to invalid results. For example, an illegal character in a word processing program would be one that the program cannot recognize; an illegal operation might be impossible for a program or system because of built-in constraints. "
 msgid "Illegal"
-msgstr ""
+msgstr "ሕገወጥ"
 
 #. "A stored description of a graphic picture, either as a set of brightness and color values of pixels or as a set of instructions for reproducing the picture. "
 msgid "Image"
@@ -1271,15 +1299,17 @@ msgid "Import"
 msgstr "ከውጭ አስገባ"
 
 #. "In an environment capable of displaying multiple on-screen windows, any window other than the one currently being used for work. "
+#, fuzzy
 msgid "Inactive window"
-msgstr ""
+msgstr "አዲስ መስኮት (_N)"
 
 msgid "Increase"
-msgstr ""
+msgstr "አሳድግ"
 
 #. "An update of those files only that have changed since a specific date."
+#, fuzzy
 msgid "Incremental update"
-msgstr ""
+msgstr "ማጠቃለያውን አሻሽል"
 
 #. "Displacement of the left or right edge of a block of text in relation to the margin or to other blocks of text. "
 msgid "Indent"
@@ -1312,8 +1342,9 @@ msgstr "ግብዓት"
 msgid "Input/output"
 msgstr "ግብዓት/ውጤት"
 
+#, fuzzy
 msgid "insensitive version"
-msgstr ""
+msgstr "የመርሃ-ግብሩ ስምና ዝርያ:"
 
 #. "A blinking vertical bar on the screen, such as in graphical user interfaces, that marks the location at which inserted text will appear. "
 msgid "Insertion point"
@@ -1335,8 +1366,9 @@ msgid "Intercept"
 msgstr ""
 
 #. "Synonymous with Rich Text Format. An adaptation of DCA (Document Content Architecture) that is used for transferring formatted text documents between applications, even those applications running on different platforms, "
+#, fuzzy
 msgid "Interchange File Format"
-msgstr ""
+msgstr "የመስመር ፈፃሜ አቀማመጥ-ዘዴ:"
 
 #. "1. The point at which a connection is made between two elements so that they can work with each other or exchange information. 2. Software that enables a program to work with the user (the user interface, which can be a command-line interface, menu-driven"
 msgid "Interface"
@@ -1350,7 +1382,7 @@ msgid "Internal error"
 msgstr "የውስጥ ብልሽት"
 
 msgid "International"
-msgstr ""
+msgstr "አለምዓቀፍ"
 
 #. "Internet is the network of millions of computers all around the world, connected to each other by some hardware means (cables, wires, phone lines, communication satellites) and communicating with each other using some standard protocols. Internet makes it"
 msgid "Internet"
@@ -1358,7 +1390,7 @@ msgstr "ኢንተርኔት"
 
 #. "A signal sent from an I/O device to the processor rwhen an error has occurred or when assistance is needed to complete the I/O. When the processor receives an interrupt, it suspends its current operations, saves the status of its work, and transfers contr"
 msgid "Interrupt"
-msgstr ""
+msgstr "አቋርጥ"
 
 #. "An operator in relational algebra, used in database management. Given two relations (tables), A and B, that have corresponding fields (columns) containing the same types of values, then INTERSECT A, B builds a third relation containing only those tuples ("
 msgid "Intersect"
@@ -1379,8 +1411,9 @@ msgid "Invert"
 msgstr ""
 
 #. "The reversal of light and dark in the display of selected characters on a video screen. "
+#, fuzzy
 msgid "Invert Selection"
-msgstr ""
+msgstr "የተመረጠውን ቁረጥ"
 
 msgid "Invisible"
 msgstr ""
@@ -1434,11 +1467,11 @@ msgstr "ቁልፍ ቃላት"
 
 #. "To stop or abort a process in a program or operating system. "
 msgid "Kill"
-msgstr ""
+msgstr "ግደል"
 
 #. "An application of such popularity and widespread standardization that it fuels sales of the hardware platform or operating system for which it was written. "
 msgid "Kill app"
-msgstr ""
+msgstr "ፕሮግራሙን ግደል"
 
 #. "A data unit of 1,024 bytes Abbreviated K, KB, or Kbyte. "
 msgid "Kilobyte"
@@ -1464,8 +1497,9 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #. "A symbol by which a program or application can be started."
+#, fuzzy
 msgid "launch icon"
-msgstr ""
+msgstr "ምልክትን የመጫን ስህተት: %s"
 
 #. "A program that organizes frequently used applications and programs and that allows the user to execute them with a single mouse click."
 msgid "Launcher"
@@ -1497,20 +1531,21 @@ msgstr ""
 
 #. "A legal contract between a software provider and a user specifying the rights of the user regarding the software. "
 msgid "License agreement"
-msgstr ""
+msgstr "የፕሮግራሙ ፈቃድ"
 
 msgid "Light precipitation"
 msgstr ""
 
 msgid "Limits"
-msgstr ""
+msgstr "ገደብ"
 
 #. "1. Any wire or wires, such as power lines and telephone lines, used to transmit electrical power or signals. 2. In communications, a connection, usually a physical wire or other cable, between sending and receiving (or calling and called) devices, includi"
 msgid "Line"
 msgstr "መስመር"
 
+#, fuzzy
 msgid "line arguments"
-msgstr ""
+msgstr "&የመስመር ቁጥር አሰይ"
 
 msgid "linear transfer"
 msgstr ""
@@ -1576,14 +1611,14 @@ msgstr "ፖስታ"
 
 #. "An application which a user reads and sends their e-mail with. Also called Mail User Agent (MUA)."
 msgid "Mail Client"
-msgstr ""
+msgstr "የኤ-መልዕክት ጠሪ"
 
 msgid "Mail server"
-msgstr ""
+msgstr "የኤ-መልዕክት ተጠሪ"
 
 #. "A protocol designator used in the HREF of a hyperlink that enables a user to send e-mail to someone. "
 msgid "Mail to"
-msgstr ""
+msgstr "ላክ ለ"
 
 #. "A disk storage area assigned to a network user for receipt of electronic messages. "
 msgid "Mailbox"
@@ -1591,11 +1626,11 @@ msgstr "የፖስታ ሳጥን"
 
 #. "The set of statements in a computer program at which execution of the program begins and that invokes the subroutines of the program."
 msgid "Main body"
-msgstr ""
+msgstr "ዋና ገጽ"
 
 #. "Online documentation for UNIX commands and programs and the UNIX library routines available for use in C programs. These documents, also found in the UNIX Programmer's Manual, can be displayed on a user's terminal or printed using the command man."
 msgid "Man Pages"
-msgstr ""
+msgstr "የመመሪያ ገጾች"
 
 #. "Any program that is designed to perform a certain set of housekeeping tasks related to computer operation, such as the maintenance of files. "
 msgid "Manager"
@@ -1606,7 +1641,7 @@ msgstr ""
 
 #. "see 'Man Pages'."
 msgid "Manual page"
-msgstr ""
+msgstr "የመመሪያ ገጾች"
 
 #. "In printing, those portions of a page-top, bottom, and sides-outside the main body of text."
 msgid "Margins"
@@ -1625,8 +1660,9 @@ msgid "MDI"
 msgstr "MDI"
 
 #. "The physical material, such as paper, disk, and tape, used for storing computer-based information. "
+#, fuzzy
 msgid "media type"
-msgstr ""
+msgstr "አርዕስት ትይብ"
 
 #. "The value in a series of observed values that has exactly as many observed values above it as there are below."
 msgid "Median"
@@ -1721,7 +1757,7 @@ msgstr ""
 
 #. "A command instructing the operating system to incorporate contents of a <link linkend='device'>device</link> (such as a hard drive or a CD-ROM) into the system's link <link linkend='filesystem'>file system</link>. Requires the device name (e.g. <filename>"
 msgid "Mount"
-msgstr ""
+msgstr "ጫን"
 
 #. "An small icon (usually an arrow) used to indicate the position of the mouse on the <link linkend='desktop'>desktop</link>."
 msgid "Mouse Cursor"
@@ -1762,18 +1798,20 @@ msgid "Network"
 msgstr "መረብ"
 
 msgid "News Site"
-msgstr ""
+msgstr "የዜና ገጽ"
 
+#, fuzzy
 msgid "NO-DAEMON"
-msgstr ""
+msgstr "ምንም ሰነድ አልተገኘም  በ:"
 
 #. "An addressable point on a network. A device, such as a client computer, a server, or a shared printer, that is connected to the network and is capable of communicating with other network devices. "
 msgid "node"
 msgstr ""
 
 #. "In statistics, a type of function that describes the probabilities of the possible values of a random variable. "
+#, fuzzy
 msgid "Normal distribution"
-msgstr ""
+msgstr "የተለመደ መጠን (_N)"
 
 #. "Any computer designed to be moved easily. Notebooks or portable computers can be characterized by size and weight."
 msgid "Notebook"
@@ -1781,7 +1819,7 @@ msgstr "መስታወሻ ደብተር"
 
 #. "A window displayed when an application generates a warning or error message that requires action before the user can proceed."
 msgid "Notice"
-msgstr ""
+msgstr "ማስታወቂያ"
 
 msgid "Notification"
 msgstr ""
@@ -1803,8 +1841,9 @@ msgid "Numeric"
 msgstr ""
 
 #. "Output from a compiler or an assembler, that was translated from the source code of a program and is itself executable machine code or is suitable for processing to produce excutable machine code. "
+#, fuzzy
 msgid "Object code"
-msgstr ""
+msgstr "የረቂቅ-ስልት ፊደል-ኮድ:"
 
 #. "Describing a style of text created by slanting a roman font to simulate italics."
 msgid "oblique"
@@ -1814,8 +1853,9 @@ msgid "Observations"
 msgstr ""
 
 #. "No longer required or outdated."
+#, fuzzy
 msgid "Obsolete"
-msgstr ""
+msgstr "%i አዲስ, %i ጊዜ-ያለፈበት"
 
 #. "In reference to a computing device or a program, unable to communicate with or be controlled by a computer. In reference to one or more computers, being disconnected from a network. "
 msgid "Offline"
@@ -1835,11 +1875,11 @@ msgstr "ክፈት"
 
 #. "Refers to software for which both the executable files and the source code can be freely redistributed and re-used in other products. This term was introduced by <ulink type='http' url='http://www.opensource.org/'>Open Source Intiative</ulink>; it is very"
 msgid "Open Source"
-msgstr ""
+msgstr "ክፍት ረቂቅ-ስልት"
 
 #. "The software that controls the allocation and usage of hardware resources such as memory, central processing unit (CPU) time, disk space, and peripheral devices. "
 msgid "Operating System"
-msgstr ""
+msgstr "ገዢ ስልት"
 
 #. "1. A specific action carried out by a computer in the process of executing a program. 2. In mathematics, an action performed on a set of entities that produces a new entity. "
 msgid "Operation"
@@ -1867,7 +1907,7 @@ msgstr "አቀማመጥ"
 
 #. "The location of the Cartesian coordinates from which the axes that define 2-D and 3-D-space originate. This is the location (0,0)."
 msgid "Origin"
-msgstr ""
+msgstr "ምንጭ"
 
 msgid "Orthflow"
 msgstr ""
@@ -1934,7 +1974,7 @@ msgstr ""
 
 #. "Hard disks and other similar devices can be 'divided' into parts which, for all practical purposes, can be used as separate disks; these parts are called partitions. For example, you can create partitions of differrent types (e.g., FAT32 used by Windows a"
 msgid "Partition"
-msgstr ""
+msgstr "ክፋይ"
 
 #. "A string of typable characters (letters, numbers, punctuation marks, etc.) used to authenticate a user's identity. Required for <link linkend='login'>logging in</link>."
 msgid "Password"
@@ -1979,11 +2019,12 @@ msgstr "የPerl ጽሑፍ"
 
 #. "In a networked or multiuser computer environment, the ability of a particular user to access a particular resource by means of his or her user account. Permissions are granted by the system administrator."
 msgid "Permission"
-msgstr ""
+msgstr "ፈቃድ"
 
 #. "Memory actually present in the system, as opposed to virtual memory. "
+#, fuzzy
 msgid "physical memory"
-msgstr ""
+msgstr "ትርጉም አስታዋሽ"
 
 msgid "picker button"
 msgstr ""
@@ -2044,7 +2085,7 @@ msgstr ""
 
 #. "In a graphical user interface, a menu that appears on-screen when a user selects a certain item. "
 msgid "popup menu"
-msgstr ""
+msgstr "ፖፕባይ ምናሌ"
 
 #. "An interface through which data is transferred between a computer and other devices (such as a printer, mouse, keyboard or monitor), a network, or a direct connection to another computer. "
 msgid "port"
@@ -2089,16 +2130,18 @@ msgid "Preview"
 msgstr "ቅድመ ዕይታ"
 
 #. "For pigments these are red, yellow and blue."
+#, fuzzy
 msgid "Primary Colors"
-msgstr ""
+msgstr "የራስን ቀለም ተጠቀም"
 
 #. "In computing, to send information to a printer. "
 msgid "Print"
 msgstr "አትም"
 
 #. "The area on the paper, excluding margins, where the printer can print data."
+#, fuzzy
 msgid "Print area"
-msgstr ""
+msgstr "ህትመት ተከላ"
 
 #. "A computer peripheral that puts text or a computer-generated image on paper or on another medium, such as a transparency film. "
 msgid "Printer"
@@ -2149,8 +2192,9 @@ msgstr "ይሻሻል"
 msgid "Progress Bar"
 msgstr ""
 
+#, fuzzy
 msgid "project"
-msgstr ""
+msgstr "መርሃ-ግብር አጥፋ"
 
 #. "Travel of a signal, such as an Internet packet, from its source to one or more destinations. "
 msgid "Propagation"
@@ -2161,8 +2205,9 @@ msgid "Properties"
 msgstr "ሁኔታዎች"
 
 #. "A set of characters in a particular style and size in which a variable amount of horizontal space is allotted to each letter or number. "
+#, fuzzy
 msgid "Proportional font"
-msgstr ""
+msgstr "ፊደል ቅርጽ ምረጥ"
 
 #. "Safeguarded against accidental erasure or change or from unwanted inspection of others."
 msgid "Protected"
@@ -2202,7 +2247,7 @@ msgstr ""
 
 #. "A line or list formed by items in a system waiting for service. "
 msgid "Queue"
-msgstr ""
+msgstr "ሰልፍ"
 
 #. "1. An FTP command that instructs the server to drop the current connection with the client from which it received the command. 2. A command in many applications for exiting the program."
 msgid "Quit"
@@ -2227,7 +2272,7 @@ msgstr ""
 
 #. "A block of cells selected for similar treatment in a spreadsheet. "
 msgid "Range"
-msgstr ""
+msgstr "ከ እስከ"
 
 msgid "Rank"
 msgstr ""
@@ -2240,11 +2285,13 @@ msgid "Ratio"
 msgstr ""
 
 #. "Unprocessed, typically unformatted, data, such as a stream of bits that has not been filtered for commands or special characters. "
+#, fuzzy
 msgid "Raw data"
-msgstr ""
+msgstr "የግል ሰነድ"
 
+#, fuzzy
 msgid "Raw memory"
-msgstr ""
+msgstr "ትርጉም አስታዋሽ"
 
 msgid "Readout"
 msgstr ""
@@ -2253,11 +2300,13 @@ msgid "ready..."
 msgstr ""
 
 #. "See Physical memory."
+#, fuzzy
 msgid "Real Memory"
-msgstr ""
+msgstr "ትርጉም አስታዋሽ"
 
+#, fuzzy
 msgid "real path"
-msgstr ""
+msgstr "የስረ-መሠረት ዱካ:"
 
 #. "Relating to a time frame imposed by external constraints. Real-time operations are those in which the machine's activities match the human perception of time."
 msgid "Real time"
@@ -2276,12 +2325,13 @@ msgid "Receive"
 msgstr ""
 
 #. "1. A data structure that is a collection of fields (elements), each with its own name and type. 2. To retain or write information, usually in a file."
+#, fuzzy
 msgid "Record"
-msgstr ""
+msgstr "ሜድያ|_ቅዳ"
 
 #. "A parallelogram whose angles are right angles."
 msgid "Rectangle"
-msgstr ""
+msgstr "አራት ማዕዘን"
 
 msgid "Recurrence"
 msgstr ""
@@ -2303,7 +2353,7 @@ msgstr "በድጋሚ ጀምር"
 
 #. "An area dedicated to or reserved for a particular purpose. "
 msgid "Region"
-msgstr ""
+msgstr "ቀጠና"
 
 #. "In statistics, an analysis of the degree to which variations in an independent variable affect a dependent variable (a variable whose value depends on the value of another variable)."
 msgid "Regression analysis"
@@ -2341,7 +2391,7 @@ msgstr "እንደገና ሰይም"
 
 #. "A command that causes all information  to be repeated."
 msgid "Repeat"
-msgstr ""
+msgstr "ድገም"
 
 #. "To put new data in the place of other data, usually after conducting a search for the data to be replaced. "
 msgid "Replace"
@@ -2349,7 +2399,7 @@ msgstr "ተካ"
 
 #. "The presentation of information about a given topic, typically in printed form. Reports prepared with computers and appropriate software can include text, graphics, and charts."
 msgid "Reports"
-msgstr ""
+msgstr "ሪፖርት"
 
 msgid "reserved blocks"
 msgstr ""
@@ -2360,10 +2410,11 @@ msgstr "እንደነበረ አድረግ"
 
 #. "Computer programs or data are resident as long as they remain on a certain storage device."
 msgid "Resident"
-msgstr ""
+msgstr "ነዋሪ"
 
+#, fuzzy
 msgid "Resident memory"
-msgstr ""
+msgstr "ትርጉም አስታዋሽ"
 
 msgid "Residual"
 msgstr ""
@@ -2414,11 +2465,11 @@ msgstr ""
 
 #. "The top level directory of a UNIX file system, containing all other files and directories. Root directory is denoted by a single slash (<filename>/</filename>)."
 msgid "Root Directory"
-msgstr ""
+msgstr "የስር ዶሴ"
 
 #. "The background of an X11 desktop, in which background images (<quote>wallpaper</quote>) or running programs may be displayed."
 msgid "Root Window"
-msgstr ""
+msgstr "የስር መስኮት"
 
 #. "To turn a model or other graphical image so that it is viewed at a different angle."
 msgid "Rotate"
@@ -2475,8 +2526,9 @@ msgid "Scan"
 msgstr ""
 
 #. "An operating-system process that starts and ends tasks (programs), manages concurrently running processes, and allocates system resources. "
+#, fuzzy
 msgid "schedule manager"
-msgstr ""
+msgstr "ማውጫዎች &አስተዳዳሪ"
 
 #. "A description of a database to a database management system (DBMS) in the language provided by the DBMS. A "
 msgid "schema"
@@ -2492,7 +2544,7 @@ msgstr "እስክሪን"
 
 #. "A program which blanks the screen or displays pretty or entertaining graphics after a period of inactivity on the console.  Originally intended to prevent burn-in of images on older cathode-ray tubes, screensavers are now used primarily for entertainment "
 msgid "Screen Saver"
-msgstr ""
+msgstr "ስክሪን ጠባቂ"
 
 #. "A program written in an interpreted language, i.e. a language where the commands are executed one by one as you enter them (as opposed to compiled languages, in which the whole program must first be translated into machine codes (compiled) to create an ex"
 msgid "Script"
@@ -2514,16 +2566,18 @@ msgstr "SCSI"
 msgid "Search"
 msgstr "ፈልግ"
 
+#, fuzzy
 msgid "Search Domains"
-msgstr ""
+msgstr "መፈለጊያ ዱካ"
 
 #. "The string of characters to be matched in a search-typically a text string."
 msgid "search string"
 msgstr "የሐረጉን አሰሳ"
 
 #. "Colors produced by mixing primary colors."
+#, fuzzy
 msgid "Secondary Colors"
-msgstr ""
+msgstr "የራስን ቀለም ተጠቀም"
 
 #. "A communications link that has been protected against unauthorized access, operation, or use by means of isolation from the public network, encryption, or other forms of control. "
 msgid "Secure channel"
@@ -2560,8 +2614,9 @@ msgid "Sense"
 msgstr ""
 
 #. "Capable ot receiving stimuli."
+#, fuzzy
 msgid "Sensitive"
-msgstr ""
+msgstr "ካፒታልና ስሞል የእንግሊዘኛ ፊደሎች የተለያየ እሴት አላቸው"
 
 #. "A punctuation character used to delimit charater strings."
 msgid "Separator"
@@ -2585,21 +2640,23 @@ msgstr "ምርጫዎች"
 
 #. "1. A computer along with all its devices. 2. The procedures involved in preparing a software program or application to operate within a computer."
 msgid "Setup"
-msgstr ""
+msgstr "ተከላ"
 
 msgid "Severity"
 msgstr ""
 
+#, fuzzy
 msgid "shaped text"
-msgstr ""
+msgstr "ት_ልቅ ጽሁፍ"
 
 #. "To make files, directories, or folders accessible to other users over a network."
 msgid "Share"
 msgstr ""
 
 #. "On a local area network, a directory on a disk that is located on a computer other than the one the user is operating and that can be accessed by all users on the network. "
+#, fuzzy
 msgid "Shared Memory"
-msgstr ""
+msgstr "ትርጉም አስታዋሽ"
 
 #. "Any of a number of UNIX programs which interpret commands typed by the user before passing them to the operating system and provide other features such as command history, aliasing, and scripting.  Examples include <command>bash</command> and <command>tcs"
 msgid "Shell"
@@ -2629,8 +2686,9 @@ msgid "signature"
 msgstr ""
 
 #. "A control in the upper right corner of the frame of a window. When the user clicks on the size box, the window toggles between the size the user has set for it by dragging and the maximum size. "
+#, fuzzy
 msgid "Size box"
-msgstr ""
+msgstr "የተለመደ መጠን (_N)"
 
 #. "The difference between what is and what should be-for example, the misalignment of a page that prevents accurate reproduction, or the difference between input and output when circuits do not respond evenly to a propagated signal."
 msgid "Skewness"
@@ -2651,7 +2709,7 @@ msgstr "ባሪያ"
 
 #. "1. In a multiprocessing environment, a temporary state of suspension during which a process remains in memory so that some event, such as an interrupt or call from another process, can 'awaken' it. 2. In programming, a state of suspension caused by a loop"
 msgid "Sleeping"
-msgstr ""
+msgstr "ተኝቷል"
 
 #. "A control used to set a value and give a visual indication of the setting"
 msgid "slider"
@@ -2666,7 +2724,7 @@ msgstr ""
 
 #. "A synonym for intelligent. "
 msgid "Smart"
-msgstr ""
+msgstr "ዘዴኛ"
 
 #. "A terminal that contains a microprocessor and random access memory (RAM) and that does some rudimentary processing without intervention from the host computer.  "
 msgid "Smart terminal"
@@ -2725,7 +2783,7 @@ msgstr "ምንጭ"
 
 #. "Human-readable program statements written by a programmer or developer in a high-level or assembly language that are not directly readable by a computer. Source code needs to be compiled into object code before it can be executed by a computer."
 msgid "Source code"
-msgstr ""
+msgstr "ረቂቅ-ስልት"
 
 #. "A character that is entered by pressing the Spacebar on the keyboard and that typically appears on the screen as a blank space."
 msgid "Space character"
@@ -2775,12 +2833,14 @@ msgstr "ጀምር"
 msgid "Startup"
 msgstr ""
 
+#, fuzzy
 msgid "startup files"
-msgstr ""
+msgstr "የቅርብ ፋይሎች"
 
 #. "The application that takes control of the system when the computer is turned on."
+#, fuzzy
 msgid "Startup Program"
-msgstr ""
+msgstr "የፕሮግራሙ ፈቃድ"
 
 #. "Synonymous with Status"
 msgid "State"
@@ -2808,7 +2868,7 @@ msgstr ""
 
 #. "In computing, any device in or on which information can be kept. Microcomputers have two main types of storage: random access memory (RAM) and disk drives and other external storage media. "
 msgid "Storage"
-msgstr ""
+msgstr "ማኅደር"
 
 #. "One or more lines drawn through a selected range of text, usually to show deletion or the intent to delete."
 msgid "Strikethrough"
@@ -2818,8 +2878,9 @@ msgstr "ስርዝ"
 msgid "String"
 msgstr "ሐረግ"
 
+#, fuzzy
 msgid "stripchart program"
-msgstr ""
+msgstr "የፕሮግራሙ ፈቃድ"
 
 msgid "structure diagram"
 msgstr ""
@@ -2837,7 +2898,7 @@ msgstr "ጉዳዩ"
 
 #. "A menu that resides within another menu."
 msgid "Submenu"
-msgstr ""
+msgstr "ንዑስ ምናሌ"
 
 #. "A function that passes a job, function or setting to the system for processing"
 msgid "Submit"
@@ -2867,7 +2928,7 @@ msgstr "ወደላይ ዝቅ ብሎ የተጻፈ ፊደል"
 
 #. "Assistance, such as technical advice provided to customers."
 msgid "Support"
-msgstr ""
+msgstr "ርዳታ"
 
 #. "To halt a process temporarily. "
 msgid "Suspend"
@@ -2878,8 +2939,9 @@ msgid "Swap"
 msgstr ""
 
 #. "1. A circuit element that has two states: on and off. 2. A control device that allows the user to choose one of two or more possible states. "
+#, fuzzy
 msgid "Switch level"
-msgstr ""
+msgstr "የደህነት ደረጃ፦ %s"
 
 #. "Short for symbolic link file. A file constructed with a proprietary Microsoft format, used primarily for exchanging spreadsheet data in such a way that formatting information and intercellular data value relationships are preserved."
 msgid "SYLK file"
@@ -2890,8 +2952,9 @@ msgid "Symbol"
 msgstr "ምልክት"
 
 #. "A file of special type which contains no data but instead, points to another file or directory. Equivalent to a shortcut under Windows."
+#, fuzzy
 msgid "Symbolic Link"
-msgstr ""
+msgstr "የተጎዳኘውን _ክፈት"
 
 msgid "Symmetric control"
 msgstr ""
@@ -2901,8 +2964,11 @@ msgid "Synchronize"
 msgstr ""
 
 #. "An error resulting from a statement that violates one or more of the grammatical rules of a language and is thus not 'legal'. "
+#, fuzzy
 msgid "Syntax error"
 msgstr ""
+"የGConf ብልሽት፦\n"
+"  %s"
 
 #. "Any collection of component elements that work together to perform a task. Examples are a hardware system consisting of a microprocessor, its allied chips and circuitry, input and output devices, and peripheral devices; an operating system consisting of a"
 msgid "System"
@@ -2910,11 +2976,12 @@ msgstr "ሲስተም"
 
 #. "The person responsible for administration and maintenance of a computer system."
 msgid "System Administrator"
-msgstr ""
+msgstr "ስርዓት አስተዳዳሪ"
 
 #. "A process that specifies the machines, devices and programs that form a particular processing system."
+#, fuzzy
 msgid "System Configuration"
-msgstr ""
+msgstr "የገዢ ስልት ቋንቋ(%s)"
 
 msgid "system settings"
 msgstr "የስይስተም ምርጫዎች"
@@ -2943,8 +3010,9 @@ msgid "tar archive"
 msgstr "የtar መዝገብ ቤት"
 
 #. "The file to which data is to be written, as in a copy operation. "
+#, fuzzy
 msgid "target file"
-msgstr ""
+msgstr "ፋይል ክፈት"
 
 #. "A stand-alone application or a subprogram that is run as an independent entity."
 msgid "task"
@@ -2962,16 +3030,18 @@ msgid "Telnet"
 msgstr "Telnet"
 
 #. "A file created either in memory or on disk, by the operating system or some other program, to be used during a session and then discarded. "
+#, fuzzy
 msgid "temp file"
-msgstr ""
+msgstr "ፋይል ክፈት"
 
 #. "1. In image processing, a pattern that can be used to identify or match a scanned image. 2. In spreadsheet programs, a predesigned spreadsheet that contains formulas, labels, and other elements.  3. In word processing and desktop publishing programs, a pr"
 msgid "Template"
 msgstr "ቲምፕሌት"
 
 #. "A region in memory or on a storage device that is temporarily allocated for use in storing intermediate data in a computational, sorting, or transfer operation."
+#, fuzzy
 msgid "temporary buffer"
-msgstr ""
+msgstr "<b>ጊዜያዊ ፋይሎች</b>"
 
 msgid "TERM variable"
 msgstr ""
@@ -2996,14 +3066,15 @@ msgid "Text"
 msgstr "ጽሑፍ"
 
 msgid "text area"
-msgstr ""
+msgstr "የጽሁፍ ቦታ"
 
 #. "A document file in ASCII format, containing characters, spaces, punctuation, carriage returns, and sometimes tabs and an end-of-file marker, but no formatting information. "
 msgid "Text only"
 msgstr "ጽሑፉን ብቻ"
 
+#, fuzzy
 msgid "textual name"
-msgstr ""
+msgstr "የተጠቃሚ ስም"
 
 #. "An integrated collection of graphical elements intended to give the desktop a certain look and feel.  Common theme components include matching backgrounds, icons, and window decorations. The look of GNOME desktop is determined by 2 themes: a GTK theme, which determines the look of application menus, toolbars and other widgets, and window manager theme, which determines  window borders, buttons, and window title font."
 msgid "Theme"
@@ -3021,16 +3092,18 @@ msgstr ""
 msgid "Tick"
 msgstr ""
 
+#, fuzzy
 msgid "Ticker Properties"
-msgstr ""
+msgstr "“%s” ምርጫዎች"
 
 #. "In computer-graphics programming, to fill adjacent blocks of pixels on the screen with a design or pattern without allowing any blocks to overlap."
 msgid "Tile"
 msgstr "ድርድር"
 
 #. "A calendar default that identifies whether times are shown acc. to a 12-hour clock or a 24-hour clock."
+#, fuzzy
 msgid "Time format"
-msgstr ""
+msgstr "የፋይል ፎርማቱ"
 
 #. "In computing, the timekeeping and datekeeping functions maintained by the computer's operating system, used most visibly as a means of 'stamping' files with the date and time of creation or last revision."
 msgid "time stamp"
@@ -3053,8 +3126,9 @@ msgstr ""
 msgid "Title"
 msgstr "አርእስት"
 
+#, fuzzy
 msgid "TODO List"
-msgstr ""
+msgstr "የሰነዶች ዝርዝር"
 
 #. "An electronic device with two states or a program option that can be turned on or off using the same action, such as a mouse click."
 msgid "toggle"
@@ -3079,7 +3153,7 @@ msgstr "ጉዳዩ"
 
 #. "The movement of data from one location to another. "
 msgid "Transfer"
-msgstr ""
+msgstr "አስተላልፍ"
 
 #. "A statement in a programming language that transfers the flow of execution to another location in the program. "
 msgid "Transfer statement"
@@ -3128,11 +3202,13 @@ msgstr ""
 msgid "Type"
 msgstr "ዓይነት"
 
+#, fuzzy
 msgid "type bindings"
-msgstr ""
+msgstr "አርዕስት ትይብ"
 
+#, fuzzy
 msgid "Type mismatch"
-msgstr ""
+msgstr "አርዕስት ትይብ"
 
 #. "To restore deleted information, usually the last item deleted. "
 msgid "Undelete"
@@ -3149,8 +3225,11 @@ msgstr "ወደ ነበረበት መልስ"
 msgid "Unexpected end"
 msgstr ""
 
+#, fuzzy
 msgid "unexpected error"
 msgstr ""
+"የGConf ብልሽት፦\n"
+"  %s"
 
 #. "A character set which strives to include all symbols in all human alphabets, and all special symbol used by people. It is a work in progress; the latest version of Unicode (3.0) includes 49,194 characters and covers languages ranging from English to Chine"
 msgid "Unicode"
@@ -3165,8 +3244,9 @@ msgid "UNIX"
 msgstr "ዩኒክስ"
 
 #. "A response to a request for a connection to a server that indicates that the network is unable to find the specified address. "
+#, fuzzy
 msgid "Unknown host"
-msgstr ""
+msgstr "የምስሉ ዓይነት አይታወቅም"
 
 #. "1. To remove a storage medium, such as a tape or disk, from its drive. 2. To remove software from system memory. "
 msgid "Unload"
@@ -3204,12 +3284,14 @@ msgid "User"
 msgstr "ተጠቃሚ"
 
 #. "Something determined by the user"
+#, fuzzy
 msgid "User defined"
-msgstr ""
+msgstr "ቋንቋ| በተጠቃሚ የተመረጠ (%s)"
 
 #. "gnome-core.pot"
+#, fuzzy
 msgid "user directory"
-msgstr ""
+msgstr "ዶሴ ይምረጡ"
 
 #. "The portion of a program with which a user interacts. Types of user interfaces, or UIs, include command-line interfaces, menu-driven interfaces, and graphical user interfaces. "
 msgid "User Interface"
@@ -3301,8 +3383,9 @@ msgid "Watch file"
 msgstr "ፋይሉን ይመልከቱ"
 
 #. "A document on the World Wide Web. A Web page consists of an HTML file, with associated files for graphics and scripts, in a particular directory on a particular machine (and thus identifiable by a URL). "
+#, fuzzy
 msgid "Web Page"
-msgstr ""
+msgstr "ማነሻ ገጽ"
 
 msgid "Weight"
 msgstr "ክብደት"
@@ -3334,8 +3417,9 @@ msgid "Workbook"
 msgstr ""
 
 #. "The directory in which the user's commands take place, unless another directory is specified."
+#, fuzzy
 msgid "working directory"
-msgstr ""
+msgstr "ዶሴ ይምረጡ"
 
 #. "The background screen area on which windows and icons are displayed."
 msgid "Workspaces"
@@ -3375,4 +3459,4 @@ msgstr ""
 
 #. "To enlarge a selected portion of a graphical image or document to fill a window or the screen. "
 msgid "Zoom"
-msgstr "ቅርበትና ርቀት"
+msgstr "አጉላ"

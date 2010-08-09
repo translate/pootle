@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-glossary\n"
 "POT-Creation-Date: 2006-02-09 18:39+0100\n"
-"PO-Revision-Date: 2006-07-02 12:07+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
+"PO-Revision-Date: 2010-07-02 11:45+0200\n"
+"Last-Translator: kkemenczy <kkemenczy@gmail.com>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
-"Plural-Forms:  nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #. "To terminate abruptly a processing activity in a computer system because it is impossible or undesirable for the activity to process."
 msgid "abort"
@@ -51,15 +52,16 @@ msgstr ""
 msgid "Actuator"
 msgstr ""
 
+# (a hozzáadás az addition, nem pedig add)
 msgid "Add"
-msgstr "Hozzáadás"
+msgstr "Hozzáad"
 
 #. "1. A number specifying a location in memory where data is stored. 2. A unique code that specifies a particular computer (node) or site on the Internet or other network. 3. A code used to specify an e-mail destination."
 msgid "Address"
 msgstr "Cím"
 
 msgid "Adjust"
-msgstr ""
+msgstr "Beállít"
 
 #. "The performing of maintenance tasks on a system or network"
 msgid "Administration"
@@ -67,7 +69,7 @@ msgstr "Adminisztráció"
 
 #. "A data type composed of multiple elements. An aggregate can be homogeneous (all elements have the same type) e.g. an array, a list in a functional language, a string of characters, a file; or it can be heterogeneous (elements can have different types) e.g. a structure. In most languages aggregates can contain elements which are themselves aggregates e.g. a list of lists."
 msgid "Aggregate"
-msgstr "Összetett"
+msgstr "Összetevő"
 
 #. "A visual or auditory signal from a computer alerting the user to an error or hazardous situation."
 msgid "Alarm"
@@ -145,7 +147,7 @@ msgid "archive"
 msgstr "archívum"
 
 msgid "area grid"
-msgstr ""
+msgstr "terület rács"
 
 #. "An item of information following a command. It may, for example, modify the command or identify a file to be affected."
 msgid "Argument"
@@ -584,7 +586,7 @@ msgid "Create"
 msgstr "Létrehozás"
 
 msgid "Criteria range"
-msgstr ""
+msgstr "Kritérium hatáskör"
 
 #. "An error that suspends processing until the condition can be corrected either by software or by user intervention."
 msgid "Critical error"
@@ -602,7 +604,7 @@ msgid "Ctrl"
 msgstr "Ctrl"
 
 msgid "Cumulative"
-msgstr ""
+msgstr "Összesített"
 
 #. "The flow of electric charge through a conductor, or the amount of such flow. Current is measured in amperes. Also used as a synonym to active."
 msgid "Current"
@@ -767,7 +769,7 @@ msgstr "Elosztás"
 
 #. "A list of recipients on an e-mail mailing list."
 msgid "Distribution list"
-msgstr ""
+msgstr "Terjesztési lista"
 
 #. "A technique used in computer graphics to create the illusion of varying shades of gray on a monochrome display or printer, or additional colors on a color display or printer."
 msgid "Dithering"
@@ -818,7 +820,7 @@ msgstr "Varázsló"
 
 #. "A terminal that does not contain an internal microprocessor."
 msgid "dumb Terminal"
-msgstr ""
+msgstr "néma terminál"
 
 #. "To copy."
 msgid "Duplicate..."
@@ -926,7 +928,7 @@ msgstr "elvárt hely"
 
 #. "Synonymous of Absolute state."
 msgid "Explicit state"
-msgstr ""
+msgstr "Abszolút érték"
 
 #. "A numeric format that can be used to represent very large real numbers and very small real numbers. Synonymous of Floating-point representation."
 msgid "Exponential notation"
@@ -1002,7 +1004,7 @@ msgstr "Floppy"
 
 #. "A method of tracing the movement of different types of information through a computer system, especially with regard to security and the controls applied to ensure the integrity of the information."
 msgid "Flow analysis"
-msgstr ""
+msgstr "Folyamat analízis"
 
 #. "A graphic map of the path of control or data through the operations in a program or an information-handling system."
 msgid "Flowchart"
@@ -1045,7 +1047,7 @@ msgstr "Képlet"
 
 #. "A mathematical method, developed by the French mathematician Jean-Baptiste-Joseph Fourier (1768-1830), for signal processing and signal generation tasks such as spectral analysis and image processing. It describes the strategy by which a periodic curve (a"
 msgid "Fourier Analysis"
-msgstr ""
+msgstr "Fourier analízis"
 
 #. "A division indicated by the division sign or by a stroke bar. The dividend and the divisor are called the numerator and denominator respectively."
 msgid "Fraction"
@@ -1160,7 +1162,7 @@ msgid "Header"
 msgstr "(1) Élőfej (2) Fejléc"
 
 msgid "Headword"
-msgstr ""
+msgstr "Kulcsszó"
 
 msgid "Hello World"
 msgstr "Szia Világ"
@@ -1227,7 +1229,7 @@ msgstr "Gyorsbillentyű"
 
 #. "Any of various routines, such as updating the clock or performing garbage collection, designed to keep the system, the environment within which a program runs, or the data structures within a program in good working order."
 msgid "Housekeeping"
-msgstr ""
+msgstr "Karbantartás"
 
 #. "Hypertext Markup Language; the language in which all the Web pages in the world are written. HTML can also be used for e-mails, which allows having nicely formatted e-mails, possibly including images and links. More information about HTML can be found on the Web page of <ulink type="http" url="http://www.w3c.org">World Wide Web Consortium</ulink>, which is the official maintainer of HTML standard."
 msgid "HTML"
@@ -1286,7 +1288,7 @@ msgstr "Növelés"
 
 #. "An update of those files only that have changed since a specific date."
 msgid "Incremental update"
-msgstr ""
+msgstr "Növekményes frissítés"
 
 #. "Displacement of the left or right edge of a block of text in relation to the margin or to other blocks of text."
 msgid "Indent"
@@ -1320,7 +1322,7 @@ msgid "Input/output"
 msgstr "Bemenet/kimenet"
 
 msgid "insensitive version"
-msgstr ""
+msgstr "nyers változat"
 
 #. "A blinking vertical bar on the screen, such as in graphical user interfaces, that marks the location at which inserted text will appear."
 msgid "Insertion point"
@@ -1343,7 +1345,7 @@ msgstr "Metszéspont"
 
 #. "Synonymous with Rich Text Format. An adaptation of DCA (Document Content Architecture) that is used for transferring formatted text documents between applications, even those applications running on different platforms."
 msgid "Interchange File Format"
-msgstr ""
+msgstr "Közbülső fájlformátum"
 
 #. "1. The point at which a connection is made between two elements so that they can work with each other or exchange information. 2. Software that enables a program to work with the user (the user interface, which can be a command-line interface, menu-driven"
 msgid "Interface"
@@ -1441,7 +1443,7 @@ msgid "Keyboard shortcut"
 msgstr "Gyorsbillentyűk"
 
 msgid "Keymap control"
-msgstr ""
+msgstr "Kiosztás vezérlés"
 
 #. "1. A characteristic word, phrase, or code that is stored in a key field and is used to conduct sorting or searching operations on records in a database. 2. Any of the set of words that composes a given programming language or set of operating-system routines."
 msgid "Keyword"
@@ -1515,7 +1517,7 @@ msgid "License agreement"
 msgstr "Licencegyezmény"
 
 msgid "Light precipitation"
-msgstr ""
+msgstr "Fényszóródás"
 
 msgid "Limits"
 msgstr "Korlátok"
@@ -1525,7 +1527,7 @@ msgid "Line"
 msgstr "Vonal"
 
 msgid "line arguments"
-msgstr ""
+msgstr "vonal paraméterek"
 
 msgid "linear transfer"
 msgstr "lineáris átvitel"
@@ -1602,7 +1604,7 @@ msgstr "Levelezőkiszolgáló"
 
 #. "A protocol designator used in the HREF of a hyperlink that enables a user to send e-mail to someone."
 msgid "Mail to"
-msgstr ""
+msgstr "Levélküldés"
 
 #. "The set of statements in a computer program at which execution of the program begins and that invokes the subroutines of the program."
 msgid "Main body"
@@ -1633,7 +1635,7 @@ msgstr "Jel"
 
 #. "The process of testing whether two data items are identical or of finding a data item that is identical to a key."
 msgid "matching"
-msgstr ""
+msgstr "egyezik"
 
 #. "Acronym for multiple-document interface. A user interface in an application that allows the user to have more than one document open at the same time."
 msgid "MDI"
@@ -1710,7 +1712,7 @@ msgstr "keverőeszköz"
 
 #. "The value of a series of observed values that is the most frequently observed, as exhibited by a frequency-distribution curve."
 msgid "Modal (value)"
-msgstr ""
+msgstr "Alak"
 
 #. "The operational state of a computer or a program."
 msgid "Mode"
@@ -1773,7 +1775,7 @@ msgstr "Nautilus"
 
 #. "See: Binomial distribution"
 msgid "Negative Binomial"
-msgstr ""
+msgstr "Negatív kéttagú"
 
 #. "A 32-bit bit mask which shows how an Internet address is to be divided into network, subnet and host parts."
 msgid "Netmask"
@@ -1787,18 +1789,18 @@ msgid "Network"
 msgstr "Hálózat"
 
 msgid "News Site"
-msgstr ""
+msgstr "Híroldal"
 
 msgid "NO-DAEMON"
 msgstr "NO-DAEMON"
 
 #. "An addressable point on a network. A device, such as a client computer, a server, or a shared printer, that is connected to the network and is capable of communicating with other network devices."
 msgid "node"
-msgstr ""
+msgstr "csomópont"
 
 #. "In statistics, a type of function that describes the probabilities of the possible values of a random variable."
 msgid "Normal distribution"
-msgstr ""
+msgstr "Normál terjesztés"
 
 #. "Any computer designed to be moved easily. Notebooks or portable computers can be characterized by size and weight."
 msgid "Notebook"
@@ -1806,7 +1808,7 @@ msgstr "Notebook"
 
 #. "A window displayed when an application generates a warning or error message that requires action before the user can proceed."
 msgid "Notice"
-msgstr ""
+msgstr "Figyelmeztetés"
 
 msgid "Notification"
 msgstr "Értesítés"
@@ -1815,13 +1817,13 @@ msgid "Number"
 msgstr "Szám"
 
 msgid "Number Converter"
-msgstr ""
+msgstr "Szám konvertáló"
 
 msgid "Numbered List"
 msgstr "Számozott lista"
 
 msgid "Number Theory"
-msgstr ""
+msgstr "Számelmélet"
 
 #. "Pertaining to the digits 0 to 9."
 msgid "Numeric"
@@ -1895,10 +1897,10 @@ msgid "Origin"
 msgstr "Eredet"
 
 msgid "Orthflow"
-msgstr ""
+msgstr "Folytonosság"
 
 msgid "Outline"
-msgstr ""
+msgstr "Körvonal"
 
 #. "The results of processing, whether sent to the screen or printer, stored on disk as a file, or sent to another computer in a network."
 msgid "Output"
@@ -1948,7 +1950,7 @@ msgid "Panel"
 msgstr "Panel"
 
 msgid "Panelize"
-msgstr ""
+msgstr "Paneloz"
 
 #. "In programming, a value that is given to a variable before an expression is evaluated by a program. A parameter can be text, a number, or an argument name assigned to a value that is passed from one routine to another."
 msgid "Parameter"
@@ -1982,14 +1984,14 @@ msgid "Pattern"
 msgstr "Minta"
 
 msgid "Peak indicator"
-msgstr ""
+msgstr "Csúcsérték jelző"
 
 #. "Statistical concept to describe the correlation coefficient between two variants."
 msgid "Pearson Correlation"
-msgstr ""
+msgstr "Pearson Korelláció"
 
 msgid "pending signals"
-msgstr ""
+msgstr "Várakozó jelek"
 
 #. "The length of time required for an oscillation to complete one full cycle."
 msgid "Period"
@@ -2055,7 +2057,7 @@ msgstr "Pont"
 
 #. "A mathematical curve often used in statistics and simulation to represent the likelihood of some event occurring when the average likelihood is known."
 msgid "Poisson distribution"
-msgstr ""
+msgstr "Poisson görbe"
 
 msgid "Policy"
 msgstr "Szabály"
@@ -2069,7 +2071,7 @@ msgid "Polyline"
 msgstr "Töröttvonal"
 
 msgid "Pooled Variance"
-msgstr ""
+msgstr "Közös előfordulás"
 
 #. "In a graphical user interface, a menu that appears on-screen when a user selects a certain item."
 msgid "popup menu"
@@ -2089,11 +2091,11 @@ msgstr "Postafiók"
 
 #. "The server and associated storage and mail handling services that provide the centralized location for collection and distribution of e-mail over a network."
 msgid "Post Office"
-msgstr ""
+msgstr "Levelező szolgáltatás"
 
 #. "A device or a software routine, such as a linker, that operates on data manipulated first by another processor."
 msgid "Post Processor"
-msgstr ""
+msgstr "Utófeldolgozó"
 
 #. "A language for describing printed pages, developed by <ulink type="http" url="http://www.adobe.com">Adobe Corporation</ulink>. Can be used to describe both graphics and text, black and white or color.Postscript is the de-facto standard for quality printing; almost all printing in UNIX is done by converting the data to be printed to Postscript before sending it to printer. If your printer does not have built-in Postscript capabilities, then your system is probably configured to convert Postscript to something you printer can print. Postscript files can also be saved to disk; they usually have extension .ps. There is a number of utilities for viewing Postscript files, such as gv or ggv."
 msgid "PostScript"
@@ -2183,7 +2185,7 @@ msgstr "projekt"
 
 #. "Travel of a signal, such as an Internet packet, from its source to one or more destinations."
 msgid "Propagation"
-msgstr ""
+msgstr "Terjesztés"
 
 #. "A characteristic or parameter of an object or device. Properties of a file, for example, include type, size, and creation date"
 msgid "Properties"
@@ -2208,7 +2210,7 @@ msgid "Protocol"
 msgstr "Protokoll"
 
 msgid "Provision"
-msgstr ""
+msgstr "Intézkedés"
 
 #. "A computer (or the software that runs on it) that acts as a barrier between a network and the Internet by presenting only a single network address to external sites."
 msgid "Proxy"
@@ -2238,10 +2240,10 @@ msgid "Quit"
 msgstr "Kilépés"
 
 msgid "Quoting"
-msgstr ""
+msgstr "Idézés"
 
 msgid "Radar map"
-msgstr ""
+msgstr "Radarkép"
 
 msgid "Radio"
 msgstr "Rádió"
@@ -2276,7 +2278,7 @@ msgid "Raw memory"
 msgstr "Nyers memória"
 
 msgid "Readout"
-msgstr ""
+msgstr "Kiolvasott adat"
 
 msgid "ready..."
 msgstr "kész..."
@@ -2336,7 +2338,7 @@ msgstr "Régió"
 
 #. "In statistics, an analysis of the degree to which variations in an independent variable affect a dependent variable (a variable whose value depends on the value of another variable)."
 msgid "Regression analysis"
-msgstr ""
+msgstr "Regresszió Analízis"
 
 msgid "regular"
 msgstr "szabályos"
@@ -2395,7 +2397,7 @@ msgid "Resident memory"
 msgstr "Rezidens memória"
 
 msgid "Residual"
-msgstr ""
+msgstr "Maradék"
 
 #. "To make an object or space larger or smaller."
 msgid "Resize"
@@ -2407,7 +2409,7 @@ msgstr "Felbontás"
 
 #. "The data structures, templates, definition procedures, management routines, icon maps, and so forth associated with a particular resource, such as a menu, window, or dialog box."
 msgid "Resource element"
-msgstr ""
+msgstr "Erőforrás elem"
 
 #. "Synonym of Reboot."
 msgid "Restart"
@@ -2427,11 +2429,11 @@ msgstr "Újra"
 
 #. "A key on a keyboard that is used to terminate input of a field or record or to execute the default action of a dialog box."
 msgid "Return"
-msgstr ""
+msgstr "Enter"
 
 #. "The reversal of light and dark in the display of selected characters on a video screen."
 msgid "Reverse video"
-msgstr ""
+msgstr "Fordított video"
 
 #. "To return to the last saved version of a document."
 msgid "Revert"
@@ -2447,7 +2449,7 @@ msgstr "Gyökérkönyvtár"
 
 #. "The background of an X11 desktop, in which background images ('wallpaper') or running programs may be displayed."
 msgid "Root Window"
-msgstr ""
+msgstr "Munkaasztal ablak"
 
 #. "To turn a model or other graphical image so that it is viewed at a different angle."
 msgid "Rotate"
@@ -2470,7 +2472,7 @@ msgstr "Minta"
 
 #. "In statistics, gathering data from a representative subset of a larger group. 2. The conversion of analog signals to digital format. 3. The frequency with which samples of a physical variable, such as sound, are taken."
 msgid "Sampling"
-msgstr ""
+msgstr "Mintavételezés"
 
 #. "In color graphics and printing, the amount of color in a specified hue."
 msgid "Saturation"
@@ -2497,7 +2499,7 @@ msgstr "Méretezés"
 
 #. "The amount by which a graphical image is enlarged or reduced."
 msgid "Scaling Factor"
-msgstr ""
+msgstr "Méretezés érték"
 
 #. "In optical technologies, to move a light-sensitive device across an image-bearing surface such as a page of text, converting the light and dark areas on the surface to binary digits that can be interpreted by a computer."
 msgid "Scan"
@@ -2505,7 +2507,7 @@ msgstr "Beolvasás"
 
 #. "An operating-system process that starts and ends tasks (programs), manages concurrently running processes, and allocates system resources."
 msgid "schedule manager"
-msgstr ""
+msgstr "feladatütemező"
 
 #. "A description of a database to a database management system (DBMS) in the language provided by the DBMS."
 msgid "schema"
@@ -2513,7 +2515,7 @@ msgstr "séma"
 
 #. "A floating-point method of representing a number, especially a very large or very small one, in which numbers are expressed as products consisting of a number between 1 and 10 multiplied by a power of 10."
 msgid "Scientific notation"
-msgstr ""
+msgstr "Tudományos megjegyzés"
 
 #. "The physical monitor device of a computer, consisting of a cathode ray tube, liquid crystal display, or similar means of displaying pixels; the visible picture displayed on the monitor."
 msgid "Screen"
@@ -2559,7 +2561,7 @@ msgid "Secure channel"
 msgstr "Biztonságos csatorna"
 
 msgid "Secure keyboard"
-msgstr ""
+msgstr "Biztonságos billentyűzet"
 
 #. "Protection of a computer system or network and its data from harm or loss."
 msgid "Security"
@@ -2586,7 +2588,7 @@ msgid "Send"
 msgstr "Küldés"
 
 msgid "Sense"
-msgstr ""
+msgstr "Jelentés"
 
 #. "Capable ot receiving stimuli."
 msgid "Sensitive"
@@ -2620,7 +2622,7 @@ msgid "Severity"
 msgstr "Súlyosság"
 
 msgid "shaped text"
-msgstr ""
+msgstr "formázott szöveg"
 
 #. "To make files, directories, or folders accessible to other users over a network."
 msgid "Share"
@@ -2655,24 +2657,24 @@ msgstr "aláírás"
 
 #. "A block of text that an e-mail client or a newsreader automatically places at the end of every message or article before the message or article is transmitted."
 msgid "signature block"
-msgstr ""
+msgstr "Automatikus aláírás"
 
 #. "A control in the upper right corner of the frame of a window. When the user clicks on the size box, the window toggles between the size the user has set for it by dragging and the maximum size."
 msgid "Size box"
-msgstr ""
+msgstr "Méretezőgomb"
 
 #. "The difference between what is and what should be-for example, the misalignment of a page that prevents accurate reproduction, or the difference between input and output when circuits do not respond evenly to a propagated signal."
 msgid "Skewness"
-msgstr ""
+msgstr "Ferdeség"
 
 msgid "Skip"
 msgstr "Kihagyás"
 
 msgid "Slant"
-msgstr ""
+msgstr "Dőlés"
 
 msgid "Slashed Cross"
-msgstr ""
+msgstr "Áthúzott kereszt"
 
 #. "Any device, including a computer, that is controlled by another computer, referred to as the master."
 msgid "slave"
@@ -2680,7 +2682,7 @@ msgstr "szolga"
 
 #. "1. In a multiprocessing environment, a temporary state of suspension during which a process remains in memory so that some event, such as an interrupt or call from another process, can 'awaken' it. 2. In programming, a state of suspension caused by a loop"
 msgid "Sleeping"
-msgstr ""
+msgstr "Várakozás"
 
 #. "A control that enables the user to set a value in a range."
 msgid "slider"
@@ -2703,7 +2705,7 @@ msgstr "Okos terminál"
 
 #. "1. To eliminate irregularities in statistical data by some process such as continuous averaging or by removing random (irrelevant) values. 2. In graphics, to remove jagged edges from a figure or line."
 msgid "smooth"
-msgstr ""
+msgstr "sima"
 
 #. "Simple Mail Transfer Protocol; a protocol used for exchanging electronic mail messages between machines on a network."
 msgid "SMTP"
@@ -2711,10 +2713,10 @@ msgstr "SMTP"
 
 #. "A copy of main memory or video memory at a given instant, sent to the printer or hard disk."
 msgid "Snap"
-msgstr ""
+msgstr "Csapás"
 
 msgid "Snooze"
-msgstr ""
+msgstr "Szundít"
 
 #. "A software endpoint for network communication."
 msgid "Socket"
@@ -2725,7 +2727,7 @@ msgstr "SOCKS-kiszolgáló"
 
 #. "A user-created display object that can be assigned an accelerator key combination and is linked to an operation or process."
 msgid "soft keys"
-msgstr ""
+msgstr "Parancsgombok"
 
 msgid "software bug"
 msgstr "szoftverhiba"
@@ -2734,11 +2736,11 @@ msgid "Software Foundation"
 msgstr "Szoftver Alapítvány"
 
 msgid "Solid lines"
-msgstr ""
+msgstr "Folyamatos vonalak"
 
 #. "A geometric shape or construction that has continuity in length, width, and depth and is treated by a program as if it had both surface and internal substance."
 msgid "Solid model"
-msgstr ""
+msgstr "Szilárd test"
 
 #. "To organize data, typically a set of records, in a particular order."
 msgid "Sort"
@@ -2769,7 +2771,7 @@ msgid "Special character"
 msgstr "Speciális karakter"
 
 msgid "Spell"
-msgstr ""
+msgstr "Helyesírás"
 
 #. "An application that employs a disk-based dictionary to check for misspellings in a document."
 msgid "Spell Checker"
@@ -2777,10 +2779,10 @@ msgstr "Helyesírás-ellenőrző"
 
 #. "To store a data document in a queue, where it awaits its turn to be printed."
 msgid "spool"
-msgstr ""
+msgstr "várakozósor"
 
 msgid "Stabilize"
-msgstr ""
+msgstr "Stabilizál"
 
 #. "A region of reserved memory in which programs store status data such as procedure and function call addresses, passed parameters, and sometimes local variables."
 msgid "Stack"
@@ -2792,7 +2794,7 @@ msgstr "Szabványos"
 
 #. "In statistics, a measure of the dispersion of a group of measurements relative to the mean (average) of that group."
 msgid "Standard deviation"
-msgstr ""
+msgstr "Átlagos szórás"
 
 msgid "Standby"
 msgstr "Készenlét"
@@ -2805,11 +2807,11 @@ msgid "Startup"
 msgstr "Indulás"
 
 msgid "startup files"
-msgstr ""
+msgstr "indító fájlok"
 
 #. "The application that takes control of the system when the computer is turned on."
 msgid "Startup Program"
-msgstr ""
+msgstr "Automatikus indítás"
 
 #. "Synonymous with Status"
 msgid "State"
@@ -2828,10 +2830,10 @@ msgid "statusbar"
 msgstr "állapotsor"
 
 msgid "step increment"
-msgstr ""
+msgstr "lépésköz"
 
 msgid "Stereotype"
-msgstr "Előítélet"
+msgstr "Sablon"
 
 msgid "sticky notes"
 msgstr "ragadós cetlik"
@@ -2852,10 +2854,10 @@ msgid "String"
 msgstr "Karakterlánc"
 
 msgid "stripchart program"
-msgstr ""
+msgstr "Diagramszerkesztő"
 
 msgid "structure diagram"
-msgstr ""
+msgstr "Struktúra diagram"
 
 msgid "Style"
 msgstr "Stílus"
@@ -2885,11 +2887,11 @@ msgid "Subscript"
 msgstr "Alsó index"
 
 msgid "subshell support"
-msgstr ""
+msgstr "alparancsértelmező-támogatás"
 
 #. "A sequential section of a string."
 msgid "substring"
-msgstr ""
+msgstr "karakterláncrész"
 
 msgid "Suffix"
 msgstr "Utótag"
@@ -2912,7 +2914,7 @@ msgstr "Lapozás (swap)"
 
 #. "1. A circuit element that has two states: on and off. 2. A control device that allows the user to choose one of two or more possible states."
 msgid "Switch level"
-msgstr ""
+msgstr "Kapcsolóállás"
 
 #. "Short for symbolic link file. A file constructed with a proprietary Microsoft format, used primarily for exchanging spreadsheet data in such a way that formatting information and intercellular data value relationships are preserved."
 msgid "SYLK file"
@@ -2927,7 +2929,7 @@ msgid "Symbolic link"
 msgstr "Szimbolikus link"
 
 msgid "Symmetric control"
-msgstr ""
+msgstr "Szimmetrikus vezérlés"
 
 #. "To cause to occur at the same time."
 msgid "Synchronize"
@@ -3430,4 +3432,3 @@ msgstr "Zip-meghajtó"
 #. "To enlarge a selected portion of a graphical image or document to fill a window or the screen."
 msgid "Zoom"
 msgstr "Nagyítás"
-

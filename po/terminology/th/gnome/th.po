@@ -18,12 +18,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thai Glossary\n"
 "POT-Creation-Date: 2003-05-10 19:32-0600\n"
-"PO-Revision-Date: 2004-03-06 23:58-0600\n"
-"Last-Translator: Paisa Seeluangsawat <paisa@users.sf.net>\n"
+"PO-Revision-Date: 2010-08-03 01:19+0200\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Thai <L10N@opentle.org>\n"
+"Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #. "English Definition"
 msgid "Term"
@@ -47,7 +50,7 @@ msgstr "ยอมรับ"
 
 #. "1. The act of reading data from or writing data to memory. 2. Connection to the Internet or other network or system.  2. To gain entry to memory in order to read or write data."
 msgid "access"
-msgstr ""
+msgstr "เข้าถึง"
 
 #. "A record of essential user information that is stored on the system.. Network accounts are created by network administrators and are used both to validate users and to administer policies-for example, permissions-related to each user."
 #, fuzzy
@@ -59,7 +62,7 @@ msgid "Active"
 msgstr "ใช้งานอยู่"
 
 msgid "Actor"
-msgstr ""
+msgstr "นักแสดง"
 
 #. "A disk drive mechanism for moving the read/write head(s) to the location of the desired track on a disk. "
 msgid "Actuator"
@@ -132,7 +135,7 @@ msgstr "นิรนาม, ผู้ไม่ประสงค์ออกน�
 
 #. "A setting that allows a modem to answer an incoming call automatically. It is used in all fax machines. "
 msgid "Answer mode"
-msgstr ""
+msgstr "โหมดตอบรับ"
 
 #. "A software technique (algorithm) for smoothing the jagged appearance of curved or diagonal lines caused by poor resolution on a display screen. "
 #, fuzzy
@@ -165,7 +168,7 @@ msgstr "Applix"
 
 #, fuzzy
 msgid "Arc"
-msgstr "Arc"
+msgstr "โค้ง"
 
 #. "A collection of several files bundled into one file by a program (such as ar, tar, bar or cpio) for shipment or archiving."
 #, fuzzy
@@ -242,7 +245,7 @@ msgstr "ค่าเฉลี่ย, เฉลี่ย"
 
 #. "In a chart or other two-dimensional system using coordinates, the horizontal line (x-axis) or vertical line (y-axis) that serves as a reference for plotting points. In a three-dimensional coordinate system, a third line (z-axis) is used to represent depth"
 msgid "Axis"
-msgstr ""
+msgstr "แกน"
 
 #. "In the context of processes or tasks that are part of an operating system or program, operating without interaction with the user while the user is working on another task. In the UNIX command line, the character <literal>&amp;</literal> appended to a command will make that command run in the background."
 msgid "Background"
@@ -276,7 +279,7 @@ msgstr ""
 
 #. "The minimal possible unit of information, a digit which can take values 0 or 1. Saying that the file has length n bits is equivalent to saying that it can be written as  a sequence of n zeros and ones."
 msgid "Bit"
-msgstr ""
+msgstr "บิต"
 
 #. "A data structure in memory that represents information in the form of a collection of individual bits. A bit map is used to represent a bit image. "
 msgid "Bitmap"
@@ -299,7 +302,7 @@ msgstr "ถูกกัน"
 
 #, fuzzy
 msgid "Blur image"
-msgstr "blurรูป"
+msgstr "blur รูป"
 
 #. "1. In e-mail and Internet newsgroups, the content of a message. 2. In HTML, SGML, and XML, a section of a document that contains the content of the document, along with tags describing characteristics of the content."
 msgid "body"
@@ -362,7 +365,7 @@ msgstr "กระตานข่าว"
 
 #. "A circuit over which data or power is transmitted. The bus connects the processor, disk-drive controller, memory, and input/output ports-and enables them to transfer information. "
 msgid "Bus"
-msgstr ""
+msgstr "บัส"
 
 #. "Temporarily performing a function or task."
 msgid "Busy"
@@ -408,7 +411,7 @@ msgid "Caption"
 msgstr "คำอธิบาย, คำอธิบายเฉพาะ, ป้ายคำอธิบาย, ป้ายบอก"
 
 msgid "Case Sensitive"
-msgstr ""
+msgstr "ตัวใหญ่-เล็ก ตรงกัน"
 
 #. "Groups of like settings in a property window."
 msgid "Categories"
@@ -495,7 +498,7 @@ msgid "code segment"
 msgstr ""
 
 msgid "Coefficient"
-msgstr ""
+msgstr "สัมประสิทธิ์"
 
 msgid "Collaboration"
 msgstr "ความร่วมมือ, ทำงานร่วมกัน"
@@ -558,7 +561,7 @@ msgstr "รับรอง"
 
 # การยืนยัน
 msgid "Confirmation"
-msgstr ""
+msgstr "การยึนยัน"
 
 #. "A physical link via wire, radio, fiber-optic cable, or other medium between two or more communications devices."
 #, fuzzy
@@ -718,7 +721,7 @@ msgstr "ลบ"
 # ขึ้นอยู่กับ
 #. "The state in which one entity relies upon specific hardware, software, or specific events for its own definition or functionality. "
 msgid "Dependence"
-msgstr ""
+msgstr "การพึ่งพา"
 
 #, fuzzy
 msgid "Derived"
@@ -776,7 +779,7 @@ msgstr "เครื่องมือโทรออก"
 # ตัวเลข.  Can Thai words distinguish between "number" and "digit"?
 #. "One of the characters used to indicate a whole number (unit) in a numbering system. In any numbering system, the number of possible digits is equal to the base used. For example, the decimal (base-10) system has 10 digits, 0 through 9."
 msgid "Digits"
-msgstr ""
+msgstr "หลัก"
 
 #. "One of three or four coordinates determining a position in space or in space and time."
 msgid "Dimension"
@@ -981,7 +984,7 @@ msgstr ""
 # ที่ปฏิบัติการได้
 #. "A program/file that can be run or processed or executed  by the computer without any further translation. The term usually applies to a compiled program translated into machine code in a format that can be loaded into memory and run by a computer's proces"
 msgid "executable file"
-msgstr ""
+msgstr "ไฟล์ที่เรียกใช้งานได้"
 
 #. "To run file as program. To perform an instruction. In programming, execution implies loading the machine code of the program into memory and then performing the instructions."
 #, fuzzy

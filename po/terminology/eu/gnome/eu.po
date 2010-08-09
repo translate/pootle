@@ -1,20 +1,22 @@
 # translation of glossary-gnome-118n.po to Basque
+# translation of glossary-gnome-118n-zuzenduta.po to Basque
 # Copyright (C) 2005 Free Software Foundation, Inc.
+# Hizkuntza Politikarako Sailburuordetza <hps@ej-gv.es>, 2005.
 # Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: glossary-gnome-118n\n"
 "POT-Creation-Date: 2005-04-11 13:00+0200\n"
-"PO-Revision-Date: 2005-03-11 19:03+0100\n"
-"Last-Translator: Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>\n"
+"PO-Revision-Date: 2009-12-02 10:32+0200\n"
+"Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #. "To terminate abruptly a processing activity in a computer system because it is impossible or undesirable for the activity to process."
 msgid "abort"
@@ -149,7 +151,7 @@ msgstr "areako sareta"
 
 #. "An item of information following a command. It may, for example, modify the command or identify a file to be affected."
 msgid "Argument"
-msgstr "Argumentu"
+msgstr "Argudio"
 
 #. "In programming, a list of data values, all of the same type, any element of which can be referenced by an expression consisting of the array name followed by an indexing expression. An arrangement of elements in one or more dimensions."
 msgid "Array"
@@ -378,10 +380,10 @@ msgstr "CD"
 
 #. "1. The intersection of a row and a column in a spreadsheet. 2. An addressable (named or numbered) storage unit for information."
 msgid "Cell"
-msgstr "Gelaxka:"
+msgstr "Gelaxka"
 
 msgid "Cellular"
-msgstr "Mugikor"
+msgstr "Mugikorra"
 
 #. "To align characters around a point located in the middle of a line, page, or other defined area."
 msgid "Center"

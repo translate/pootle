@@ -1,17 +1,21 @@
 # translation of GNOME glossary to Persian
 # Copyright (C) 2002 The FarsiWeb Project Group
 # Roozbeh Pournader <roozbeh@sharif.edu>, 2002
+# Mohammad Ebrahim Mohammadi Panah <mebrahim@gmail.com>, 2006
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME glossary\n"
 "POT-Creation-Date: 2002-08-15 18:22+0430\n"
-"PO-Revision-Date: 2002-08-16 16:10+0430\n"
-"Last-Translator: Roozbeh Pournader <roozbeh@sharif.edu>\n"
+"PO-Revision-Date: 2010-08-03 01:01+0200\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Persian <farsi@lists.sharif.edu>\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #. "English Definition"
 msgid "Term"
@@ -74,7 +78,7 @@ msgstr "هشدار"
 
 #. "In an application such as a word processor, to position lines of type relative to some point, such as the page margin. The most common types of alignment are left- and right-aligned and centered. "
 msgid "Align"
-msgstr "ردیف"
+msgstr "تراز"
 
 msgid "Allow"
 msgstr "اجازه دادن"
@@ -109,7 +113,7 @@ msgstr "پویانمایی"
 
 #. "On the Internet, the standard login name used to obtain access to a public FTP file archive. "
 msgid "Anonymous"
-msgstr "گمنامانه"
+msgstr "ناشناس"
 
 #. "A setting that allows a modem to answer an incoming call automatically. It is used in all fax machines. "
 msgid "Answer mode"
@@ -117,7 +121,7 @@ msgstr "حالت پاسخ"
 
 #. "A software technique (algorithm) for smoothing the jagged appearance of curved or diagonal lines caused by poor resolution on a display screen. "
 msgid "Antialiasing"
-msgstr "حذف لبه‌ی ناصاف"
+msgstr "حذف لبهٔ ناصاف"
 
 #. "To place or insert as an attachment by adding data to the end of a file or database or extending a character string. To attach to the end of; most often used in reference to writing a file of adding to a string."
 msgid "Append"
@@ -129,28 +133,28 @@ msgstr "برنامک"
 
 #. "A software program designed to assist in the performance of a specific task or for particlar user needs, such as word processing, accounting, or inventory management. "
 msgid "Application"
-msgstr "برنامه"
+msgstr "کاربردنامه"
 
 #. "A button in the panel which launches an application or executes a command when pressed."
 msgid "Application Launcher"
-msgstr "اجراکننده‌ی برنامه"
+msgstr "راه‌انداز کاربردنامه"
 
 msgid "Applix"
-msgstr ""
+msgstr "Applix"
 
 msgid "Arc"
 msgstr "کمان"
 
 #. "A collection of several files bundled into one file by a program (such as ar, tar, bar or cpio) for shipment or archiving."
 msgid "archive"
-msgstr "آرشیو"
+msgstr "بایگانی"
 
 msgid "area grid"
 msgstr "توری ناحیه"
 
 #. "An item of information following a command. It may, for example, modify the command or identify a file to be affected. "
 msgid "Argument"
-msgstr "آرگومان"
+msgstr "نشان‌وند"
 
 #. "In programming, a list of data values, all of the same type, any element of which can be referenced by an expression consisting of the array name followed by an indexing expression. An arrangement of elements in one or more dimensions."
 msgid "Array"
@@ -169,7 +173,7 @@ msgstr "ترتیب صعودی"
 
 #. "American Standard Code for Information Interchange; the standard describing a collection of characters and codes (i.e. sequences of zeros and ones, or numbers) assigned to them. ASCII characters  include Latin letters, common punctuation marks, some specific. When you see a mention of an 'ASCII file' or 'ASCII text' somewhere, it usually means a plain text file which only uses symbols defined in ASCII standard, with no formatting information such as fonts to be used. ASCII is defined as a standard of American National Standards Institute (ANSI); the offical reference is ANSI X3.4-1986."
 msgid "Ascii"
-msgstr "اسکی"
+msgstr "Ascii"
 
 #. "In computer displays and graphics, the ratio of the width of an image or image area to its height. The aspect ratio is an important factor in maintaining correct proportions when an image is printed, rescaled, or incorporated into another document."
 msgid "aspect ratio"
@@ -229,13 +233,14 @@ msgstr "موازنه"
 msgid "Base"
 msgstr "مبنا"
 
+# پیش‌نهاد فرهنگستان
 #. "An executable program, so called because the file containing the program consists of machine-readable binary digits, i.e. ones and zeroes."
 msgid "Binary"
-msgstr "دودویی"
+msgstr "دوگانی"
 
 #. "1. Language-dependent code that allows a software library to be called from that computer language. 2. The process during which a client finds out where a server is so that the client can receive services. "
 msgid "Binding"
-msgstr "مقیدسازی"
+msgstr "شیرازه"
 
 #. "In statistics, a list or a function that describes the probabilities of the possible values of a random variable chosen by means of a Bernoulli sampling process. Also called Bernoulli distribution."
 msgid "Binomial distribution"
@@ -261,10 +266,10 @@ msgstr "میان‌گیر بلوکی"
 
 #. "A signal that is prevented from being transmitted"
 msgid "Blocked"
-msgstr "بلوکه‌شده"
+msgstr "مسدود"
 
 msgid "Blur image"
-msgstr "محو کردن تصویر"
+msgstr "تار کردن تصویر"
 
 #. "1. In e-mail and Internet newsgroups, the content of a message. 2. In HTML, SGML, and XML, a section of a document that contains the content of the document, along with tags describing characteristics of the content."
 msgid "body"
@@ -272,11 +277,11 @@ msgstr "بدنه"
 
 #. "A type style that makes the text to which it is applied appear darker and heavier than the surrounding text. "
 msgid "Bold"
-msgstr "سیاه"
+msgstr "ضخیم"
 
 #. "1. A marker inserted at a specific point in a document to which the user may wish to return for later reference. 2. In Netscape Navigator, a link to a Web page or other URL that a user has stored in a local file in order to return to it later. "
 msgid "book mark"
-msgstr "چوب الف"
+msgstr "نشانک"
 
 #. "Characteristic of logical (true, false) values. "
 msgid "Boolean"
@@ -291,7 +296,7 @@ msgid "Branch"
 msgstr "شاخه"
 
 msgid "Bricks"
-msgstr ""
+msgstr "آجرها"
 
 #. "To scan a database, a list of files, or the Internet, either for a particular item or for anything that seems to be of interest. "
 msgid "Browse"
@@ -310,11 +315,11 @@ msgid "bug"
 msgstr "اشکال"
 
 msgid "Build"
-msgstr ""
+msgstr "ساخت"
 
 #. "A typographical symbol, such as a filled or empty circle, diamond, box, or asterisk, used to set off a small block of text or each item in a list. "
 msgid "Bullet"
-msgstr "بولت"
+msgstr "گِردک"
 
 #. "A computer system equipped with one or more modems or other means of network access that serves as an information and message-passing center for remote users. "
 msgid "Bulletin Board"
@@ -342,7 +347,7 @@ msgstr "C"
 
 #. "A short-term storage area in RAM or on the hard disk.  Many programs use caches to store recently-accessed files or other items."
 msgid "Cache"
-msgstr "حافظه‌ی نهان"
+msgstr "حافظهٔ نهان"
 
 #. "Any device that performs arithmetic operations on numbers. "
 msgid "Calculator"
@@ -374,7 +379,7 @@ msgstr "مقوله‌ها"
 
 #. "1. An individual compact disc, such as a CD-ROM. 2. Acronym for Carrier Detect, a signal sent from a modem to the attached computer to indicate that the modem is on line. "
 msgid "CD"
-msgstr "سی‌دی"
+msgstr "لوح فشرده"
 
 msgid "CDE panel"
 msgstr "تابلوی CDE"
@@ -384,7 +389,7 @@ msgid "Cell"
 msgstr "سلول"
 
 msgid "Cellular"
-msgstr ""
+msgstr "سلولی"
 
 #. "To align characters around a point located in the middle of a line, page, or other defined area."
 msgid "Center"
@@ -408,11 +413,11 @@ msgstr "گپ"
 
 #. "One of a set of bits that are added to a data message at its origin and scrutinized by the receiving process to determine whether an error has occurred during transmission. "
 msgid "Check bit"
-msgstr "بیت کنترل"
+msgstr "بیت بررسی"
 
 #. "A nonexclusive setting that shows a checkmark in a box when the setting is chosen. Check boxes are used to enable or disable one or more features or options from a set. "
 msgid "Checkbox"
-msgstr "جعبه‌ی نشان‌زنی"
+msgstr "جعبهٔ نشان‌زنی"
 
 #. "In a tree structure, the relationship of a node to its immediate predecessor. "
 msgid "child"
@@ -446,7 +451,7 @@ msgstr "کد"
 
 #. "1. A memory segment containing program instructions. 2. A named and segregated portion of a program's code typically performing a specific class of operations. "
 msgid "code segment"
-msgstr "قطعه‌ی کد"
+msgstr "قطعهٔ کد"
 
 msgid "Coefficient"
 msgstr "ضریب"
@@ -460,7 +465,7 @@ msgstr "تلفیق"
 
 #. "The result of two devices or network workstations trying to transmit signals at the exact same time on the same channel. "
 msgid "Collision"
-msgstr "تصادم"
+msgstr "تداخل"
 
 #. "An instruction to a computer program which causes an action to be carried out. Commands are usually either typed at the keyboard or chosen from a menu."
 msgid "Command"
@@ -532,15 +537,15 @@ msgstr "تبدیل"
 
 #. "On the World Wide Web, a block of data that a Web server stores on a client system. When a user returns to the same Web site, the browser sends a copy of the cookie back to the server. "
 msgid "cookie"
-msgstr ""
+msgstr "کلوچه"
 
 #. "To duplicate information and reproduce it in another part of a document, in a different file or memory location, or in a different medium. "
 msgid "Copy"
-msgstr "نسخه‌برداری"
+msgstr "رونوشت‌برداری"
 
 #. "A method of protecting the rights of an originator of a creative work, such as a text, a piece of music, a painting, or a computer program, through law. "
 msgid "Copyright"
-msgstr "حق نسخه‌برداری"
+msgstr "حق نشر"
 
 #. "Acronym for Common Object Request Broker Architecture. A specification developed by the Object Management Group in 1992 in which pieces of programs (objects) communicate with other objects in other programs, even if the two programs are written in differe"
 msgid "CORBA"
@@ -548,15 +553,15 @@ msgstr "CORBA"
 
 #. "A file created to hold a memory image useful for debugging problems when a program malfunctions."
 msgid "Core file"
-msgstr "پرونده‌ی تخلیه‌ی حافظه"
+msgstr "پروندهٔ تخلیهٔ حافظه"
 
 #. "A linear transformation which in the plane maps lines into points and lines into points and in space maps points into planes and planes into points."
 msgid "Correlation"
-msgstr "همبسته‌گی"
+msgstr "همبستگی"
 
 #. "An expression used to denote the power factor of a circuit, the power factor being equal to the cosine of the angle of the phase difference between the current and voltage in the circuit."
 msgid "cos"
-msgstr ""
+msgstr "کسینوس"
 
 msgid "Cost"
 msgstr "هزینه"
@@ -579,7 +584,7 @@ msgid "Create"
 msgstr "ایجاد"
 
 msgid "Criteria range"
-msgstr "دامنه‌ی معیارها"
+msgstr "دامنهٔ معیارها"
 
 #. "An error that suspends processing until the condition can be corrected either by software or by user intervention "
 msgid "Critical error"
@@ -615,7 +620,7 @@ msgid "Customize"
 msgstr "سفارشی‌سازی"
 
 msgid "custom window"
-msgstr "پنجره‌ی سفارشی"
+msgstr "پنجرهٔ سفارشی"
 
 #. "To remove part of a document, usually placing it temporarily in memory or the clipboard so that the cut portion can be inserted (pasted) elsewhere. "
 msgid "Cut"
@@ -639,14 +644,14 @@ msgstr "اشکال‌زدایی"
 
 #. "The base-10 numbering system. "
 msgid "decimal"
-msgstr "دهدهی"
+msgstr "ده‌دهی"
 
 msgid "Decrease"
 msgstr "کاستن"
 
 #. "A choice made by a program when the user does not specify an alternative."
 msgid "Default"
-msgstr "پیش‌فرض"
+msgstr "پیش‌گزیده"
 
 #. "To eliminate text, a file, or part of a document with the intention of removing the information permanently. "
 msgid "Delete"
@@ -654,7 +659,7 @@ msgstr "حذف"
 
 #. "The state in which one entity relies upon specific hardware, software, or specific events for its own definition or functionality. "
 msgid "Dependence"
-msgstr "وابسته‌گی"
+msgstr "وابستگی"
 
 msgid "Derived"
 msgstr "مشتق‌شده"
@@ -665,7 +670,7 @@ msgstr "مرتب‌سازی نزولی"
 
 #. "A data structure that uniquely identifies a hardware device or software function. "
 msgid "Descriptor"
-msgstr "توصیفگر"
+msgstr "توصیف‌گر"
 
 #. "The on-screen work area, on which windows, icons, and other graphical items may be placed."
 msgid "Desktop"
@@ -683,7 +688,7 @@ msgid "Destroy"
 msgstr "تخریب"
 
 msgid "Detection"
-msgstr "آشکارسازی"
+msgstr "تشخیص"
 
 #. "A piece of hardware with which the system interacts, such as a hard disk, modem, printer or mouse."
 msgid "Device"
@@ -701,7 +706,7 @@ msgstr "شماره‌گیری"
 
 #. "In a graphical user interface, a special window displayed by the system or application to solicit a response from the user. "
 msgid "Dialog Box"
-msgstr "جعبه‌ی محاوره"
+msgstr "جعبهٔ محاوره"
 
 msgid "Dialout Device"
 msgstr "دستگاه شماره‌گیری"
@@ -727,7 +732,7 @@ msgid "Disable"
 msgstr "از کار انداختن"
 
 msgid "Discard"
-msgstr "دور انداختن"
+msgstr "دور ریختن"
 
 #. "To break a communications link."
 msgid "Disconnect"
@@ -742,7 +747,7 @@ msgid "disk"
 msgstr "دیسک"
 
 msgid "Dismiss"
-msgstr ""
+msgstr "ترخیص"
 
 #. "A visual presentation of data. The visual output device of a computer."
 msgid "Display"
@@ -762,7 +767,7 @@ msgstr "فهرست توزیع"
 
 #. "A technique used in computer graphics to create the illusion of varying shades of gray on a monochrome display or printer, or additional colors on a color display or printer. "
 msgid "Dithering"
-msgstr ""
+msgstr "Dithering"
 
 #. "An error condition caused by an attempt to divide a number by zero, which is mathematically undefined."
 msgid "Division by zero"
@@ -778,7 +783,7 @@ msgstr "DNS"
 
 #. "A collction of one or more lines of text that can be named and stored as a separate item or file which can be retrieved."
 msgid "Document"
-msgstr "نوشتار"
+msgstr "سند"
 
 #. "In the Internet and other networks, a part of a naming hierarchy. The domain is the highest subdivision of a domain name in a network address, which identifies the type of entity owning the address (for example, .com for commercial users or the geographic"
 msgid "Domain"
@@ -794,7 +799,7 @@ msgstr "بارگیری"
 
 #. "In multimedia applications the area on the screen where drawing and editing functions are carried out"
 msgid "Drawing Area"
-msgstr "ناحیه‌ی ترسیم"
+msgstr "ناحیهٔ ترسیم"
 
 #. "To fix the position of an object that is being dragged by releasing the mouse button. To disconnect a communications line."
 msgid "Drop"
@@ -805,7 +810,7 @@ msgstr "دروئید"
 
 #. "A terminal that does not contain an internal microprocessor. "
 msgid "dumb Terminal"
-msgstr "پایانه‌ی ناهوشمند"
+msgstr "پایانهٔ ناهوشمند"
 
 #. "To copy."
 msgid "Duplicate..."
@@ -817,7 +822,7 @@ msgstr "پویا"
 
 #. "Short for electronic mail.  "
 msgid "E-mail"
-msgstr "پست الکترونیکی"
+msgstr "رایانامه"
 
 #. "In communications, a signal transmitted back to the sender that is distinct from the original signal. Network connections can be tested by sending an echo back to the main computer."
 msgid "Echo"
@@ -839,7 +844,7 @@ msgstr "بیرون دادن"
 
 #. "A way of exchanging messages between users of computers connected to a network (local or Internet)."
 msgid "Electronic Mail"
-msgstr "پست الکترونیکی"
+msgstr "رایانامه"
 
 #. "The process of a computer, device, or program imitating the function of another computer, device, or program."
 msgid "emulation"
@@ -862,7 +867,7 @@ msgstr "مهندسی"
 
 #. "In computer-aided design and object-oriented design, an item that can be treated as a unit and as a member of a particular category or type. In object-oriented programming, an entity is oart if the definition of a class of objects."
 msgid "Entity"
-msgstr "نهاد"
+msgstr "موجودیت"
 
 #. "A global 'setting', or configuration parameter, which is available to all applications. Each environment variable has a name and a value (which usually is a string of symbols or an integer number). Any application you run  can access any of the environmen To view all currenlty defined environment variables, use the command printenv (provided that you have GNU shell utils package installed). To modify a value of environment variable, use the command export NAME = VALUE;  if you are using bash shell or seten"
 msgid "environment variable"
@@ -894,7 +899,7 @@ msgstr "یای انحصاری"
 
 #. "A program/file that can be run or processed or executed  by the computer without any further translation. The term usually applies to a compiled program translated into machine code in a format that can be loaded into memory and run by a computer's proces"
 msgid "executable file"
-msgstr "پرونده‌ی اجرایی"
+msgstr "پروندهٔ اجرایی"
 
 #. "To run file as program. To perform an instruction. In programming, execution implies loading the machine code of the program into memory and then performing the instructions."
 msgid "Execute"
@@ -906,7 +911,7 @@ msgstr "خروج"
 
 #. "A type of memory, up to 8 MB, that can be added to IBM PCs. Its use is defined by the Expanded Memory Specification (EMS). Expanded memory is not needed in Windows 9x, all versions of Windows NT, and Windows 2000. "
 msgid "Expanded memory"
-msgstr "حافظه‌ی بسط‌یافته"
+msgstr "حافظهٔ بسط‌یافته"
 
 msgid "expected location"
 msgstr "مکان پیش‌بینی‌شده"
@@ -917,7 +922,7 @@ msgstr "وضعیت صریح"
 
 #. "A numeric format that can be used to represent very large real numbers and very small real numbers. Synonymous of Floating-point representation."
 msgid "Exponential notation"
-msgstr "نمادگذاری نمایی"
+msgstr "نمایش نمایی"
 
 #. "To move information from one system or program to another. Files that consist only of text can be exported in ASCII (plain text format). "
 msgid "Export"
@@ -941,7 +946,7 @@ msgstr "محبوب"
 
 #. "Short for facsimile. The transmission of text or graphics over telephone lines in digitized form. "
 msgid "Fax"
-msgstr "فاکس"
+msgstr "دورنگار"
 
 #. "1. A location in a record in which a particular type of data is stored. 2. A space in an on-screen form where the user can enter a specific item of information."
 msgid "Field"
@@ -957,7 +962,7 @@ msgstr "نام پرونده"
 
 #. "A collection of all the files and directories on a system arranged in a tree-like hierarchy."
 msgid "Filesystem"
-msgstr "سیستم پرونده‌ها"
+msgstr "سامانه پرونده‌ها"
 
 #. "In computer graphics, the colored or patterned 'paint' inside an enclosed figure, such as a circle. "
 msgid "Fill"
@@ -1005,7 +1010,7 @@ msgstr "قلم"
 
 #. "One or more identifying lines printed at the bottom of a page. A footer may contain a folio (page number), a date, the author's name, and the document title. "
 msgid "Footer"
-msgstr "پاصفحه"
+msgstr "پاورقی"
 
 msgid "Forecast"
 msgstr "پیش‌بینی"
@@ -1028,7 +1033,7 @@ msgstr "قالب"
 
 #. "A mathematical statement that describes the actions to be performed on numeric values. A formula sets up a calculation without regard to the actual values."
 msgid "Formula"
-msgstr "فرمول"
+msgstr "قاعده"
 
 #. "A mathematical method, developed by the French mathematician Jean-Baptiste-Joseph Fourier (1768-1830), for signal processing and signal generation tasks such as spectral analysis and image processing. It describes the strategy by which a periodic curve (a"
 msgid "Fourier Analysis"
@@ -1048,7 +1053,7 @@ msgstr "نرم‌افزار آزاد"
 
 #. "The measure of how often a periodic event occurs, such as a signal going through a complete cycle. Frequency is usually measured in hertz (Hz)."
 msgid "Frequency"
-msgstr "فرکانس"
+msgstr "بسامد"
 
 #. "A protocol for exchanging files over the Internet or local network. There is a number of utilities based on this protocol, such as gFTP; you can also use command ftp on the command line. In addition, most file managers and Web browsers have built-in FTP c"
 msgid "FTP"
@@ -1124,11 +1129,11 @@ msgstr "GUI"
 
 #. "The blank space or inner margin between two facing pages of a bound document."
 msgid "Gutter"
-msgstr ""
+msgstr "حاشیه"
 
 #. "A person, more commonly considered a cracker, who uses computer expertise for illicit ends, such as by gaining access to computer systems without permission and tampering with programs and data. "
 msgid "Hacker"
-msgstr "هکر"
+msgstr "رخنه‌گر"
 
 #. "Any token or pointer that a program can use to identify and access an object such as a device, a file, a window, a dialog box or any resource."
 msgid "Handle"
@@ -1162,7 +1167,7 @@ msgstr "شانزده‌شانزدهی"
 
 #. "A file that, in order to protect it from deletion or modification, is not shown in the normal listing of the files contained in a directory. Such a file is often used to store code or data critical to the system configuration."
 msgid "Hidden file"
-msgstr "پرونده‌ی مخفی"
+msgstr "پروندهٔ مخفی"
 
 #. "To temporarily remove the onscreen display of an application's active window while leaving the application running. "
 msgid "Hide"
@@ -1190,11 +1195,11 @@ msgstr "آغازه"
 
 #. "A directory assigned to the user by the system administrator. The home directory is the current directory when the user first logs in, and the user can return to it by entering the command cd (change directory) without a pathname. "
 msgid "Home directory"
-msgstr "شاخه‌ی آغازه"
+msgstr "شاخهٔ آغازه"
 
 #. "1. A document intended to serve as a starting point in a hypertext system, especially the World Wide Web. 2. An entry page for a set of Web pages and other files in a Web site. "
 msgid "Home Page"
-msgstr "صفحه‌ی آغازه"
+msgstr "صفحهٔ آغازه"
 
 #. "A computing milieu, usually within an organization, in which only one manufacturer's hardware and one manufacturer's software are used. "
 msgid "Homogeneous environment"
@@ -1270,7 +1275,7 @@ msgstr "وارد کردن"
 
 #. "In an environment capable of displaying multiple on-screen windows, any window other than the one currently being used for work. "
 msgid "Inactive window"
-msgstr "پنجره‌ی غیرفعال"
+msgstr "پنجرهٔ غیرفعال"
 
 msgid "Increase"
 msgstr "افزودن"
@@ -1289,7 +1294,7 @@ msgstr "نمایه"
 
 #. "A dial or light that displays information about the status of a device, such as a light connected to a disk drive that glows when the disk is being accessed."
 msgid "Indicator"
-msgstr "نشانه"
+msgstr "نشان‌گر"
 
 #. "The meaning of data as it is intended to be interpreted by people. Data consists of facts, which become information when they are seen in context and convey meaning to people. "
 msgid "Information"
@@ -1297,7 +1302,7 @@ msgstr "اطلاعات"
 
 #. "The process of assigning initial values to variables and data structures in a program to prepare them for operation."
 msgid "initialization"
-msgstr "راه‌اندازی | مقداردهی اولیه"
+msgstr "مقداردهی اولیه"
 
 msgid "Inode"
 msgstr "Inode"
@@ -1311,11 +1316,11 @@ msgid "Input/output"
 msgstr "ورودی/خروجی"
 
 msgid "insensitive version"
-msgstr "نسخه‌ی ناحساس"
+msgstr "نسخهٔ ناحساس"
 
 #. "A blinking vertical bar on the screen, such as in graphical user interfaces, that marks the location at which inserted text will appear. "
 msgid "Insertion point"
-msgstr "نقطه‌ی درج"
+msgstr "نقطهٔ درج"
 
 #. "To set in place and prepare for operation. Operating systems and application programs commonly include a disk-based installation, or setup, program that does most of the work of preparing the program to work with the computer, printer, and other devices. "
 msgid "Install"
@@ -1327,18 +1332,18 @@ msgstr "اشاره‌گر"
 
 #. "The conversational exchange of input and output, as when a user enters a question or command and the system immediately responds. "
 msgid "Interaction"
-msgstr "محاوره"
+msgstr "تعامل"
 
 msgid "Intercept"
-msgstr ""
+msgstr "قطع کردن"
 
 #. "Synonymous with Rich Text Format. An adaptation of DCA (Document Content Architecture) that is used for transferring formatted text documents between applications, even those applications running on different platforms, "
 msgid "Interchange File Format"
-msgstr ""
+msgstr "Interchange File Format"
 
 #. "1. The point at which a connection is made between two elements so that they can work with each other or exchange information. 2. Software that enables a program to work with the user (the user interface, which can be a command-line interface, menu-driven"
 msgid "Interface"
-msgstr "رابط"
+msgstr "واسط"
 
 msgid "Internal bug"
 msgstr "اشکال داخلی"
@@ -1366,7 +1371,7 @@ msgid "Interval"
 msgstr "بازه"
 
 msgid "Intuitive"
-msgstr ""
+msgstr "شهودی"
 
 #. "Erroneous or unrecognizable because of a flaw in reasoning or an error in input. "
 msgid "Invalid"
@@ -1393,7 +1398,7 @@ msgstr "IRC"
 
 #. "A replaceable disk drive developed by Iomega fpr storing large quantities of data (500MB)."
 msgid "Jaz Drive"
-msgstr "گرداننده‌ی دیسک Jaz"
+msgstr "رانهٔ Jaz"
 
 #. "A specified amount of processing performed as a unit by a computer. "
 msgid "Job"
@@ -1432,11 +1437,11 @@ msgstr "کلیدواژه"
 
 #. "To stop or abort a process in a program or operating system. "
 msgid "Kill"
-msgstr "خاموش کردن"
+msgstr "کشتن"
 
 #. "An application of such popularity and widespread standardization that it fuels sales of the hardware platform or operating system for which it was written. "
 msgid "Kill app"
-msgstr "برنامه‌ی محبوب"
+msgstr "برنامهٔ محبوب"
 
 #. "A data unit of 1,024 bytes Abbreviated K, KB, or Kbyte. "
 msgid "Kilobyte"
@@ -1447,7 +1452,7 @@ msgid "Label"
 msgstr "برچسب"
 
 msgid "Lambda"
-msgstr ""
+msgstr "لاندا"
 
 #. "A horizontal print orientation in which text or images are printed 'sideways'-s greater than the height. "
 msgid "Landscape"
@@ -1459,7 +1464,7 @@ msgstr "زبان"
 
 #. "A document preparation system based on TeX, developed by Leslie Lamport. By using simple, intuitive commands for text elements such as headers, LaTeX lets the user focus more on document content than document appearance. "
 msgid "LaTeX"
-msgstr "لاتک"
+msgstr "LaTeX"
 
 #. "A symbol by which a program or application can be started."
 msgid "launch icon"
@@ -1479,7 +1484,7 @@ msgstr "صفحه‌بندی"
 
 #. "A paper format."
 msgid "Legal"
-msgstr "Legal"
+msgstr "قانونی"
 
 #. "The number of linear units of storage space occupied by an object, such as a file on disk or a data structure in a program."
 msgid "Length"
@@ -1487,7 +1492,7 @@ msgstr "طول"
 
 #. "A paper format"
 msgid "Letter"
-msgstr "Letter"
+msgstr "نامه"
 
 #. "In programming, a collection of routines stored in a file. "
 msgid "Library"
@@ -1495,7 +1500,7 @@ msgstr "کتاب‌خانه"
 
 #. "A legal contract between a software provider and a user specifying the rights of the user regarding the software. "
 msgid "License agreement"
-msgstr ""
+msgstr "توافقنامهٔ مجوز"
 
 msgid "Light precipitation"
 msgstr ""
@@ -1508,7 +1513,7 @@ msgid "Line"
 msgstr "خط"
 
 msgid "line arguments"
-msgstr "آرگومان‌های خط"
+msgstr "نشان‌وندهای خط"
 
 msgid "linear transfer"
 msgstr "انتقال خطی"
@@ -1519,11 +1524,11 @@ msgstr "پیوند"
 
 #. "A free (as in GNU GPL) UNIX-like operating system, written in  collaboration by hundreds of developers all around the world, most of them volunteers. One of the most successful and famous  <link linkend='freesoftware'>free software</link> projects. Strictly speaking, the name 'Linux' only applies to the kernel of the operating system. Most of other tools and utilities necessary for system functioning came from GNU project, so the operating system should be properly called 'GNU/Linux'; however, for c. There is a tremendous amount of information about Linux available on the Internet; good starting points are <ulink type='http' url='http://www.linux.com'>www.linux.com</ulink>,       <ulink type='http' url='http://www.linux.org'>www.linux.org</ulink>."
 msgid "Linux"
-msgstr "لینکس"
+msgstr "لینوکس"
 
 #. "To place information from storage into memory for processing, if it is data, or for execution, if it is program code."
 msgid "load"
-msgstr "بار کردن"
+msgstr "بارگذاری"
 
 #. "1. In communications, a device that can be accessed directly rather than by means of a communications line. 2. In information processing, an operation performed by the computer at hand rather than by a remote computer. "
 msgid "Local"
@@ -1547,14 +1552,14 @@ msgstr "منطقی"
 
 #. "The process by which a user authenticates herself to a computer system, usually by typing in a username and password."
 msgid "Login"
-msgstr "ورود به سیستم"
+msgstr "ورود"
 
 #. "The process of terminating a session with a computer accessed through a communications line. "
 msgid "Logout"
-msgstr "خروج از سیستم"
+msgstr "خروج"
 
 msgid "Look"
-msgstr ""
+msgstr "ظاهر"
 
 #. "A function, often built into spreadsheet programs, in which a previously constructed table of values called a lookup table is searched for a desired item of information. "
 msgid "Lookup"
@@ -1574,10 +1579,10 @@ msgstr "نامه"
 
 #. "An application which a user reads and sends their e-mail with. Also called Mail User Agent (MUA)."
 msgid "Mail Client"
-msgstr "کارگیر نامه"
+msgstr "مخدوم نامه"
 
 msgid "Mail server"
-msgstr "کارگزار نامه"
+msgstr "خادم نامه"
 
 #. "A protocol designator used in the HREF of a hyperlink that enables a user to send e-mail to someone. "
 msgid "Mail to"
@@ -1585,11 +1590,11 @@ msgstr "نامه به"
 
 #. "A disk storage area assigned to a network user for receipt of electronic messages. "
 msgid "Mailbox"
-msgstr "جعبه نامه"
+msgstr "نامه‌دان"
 
 #. "The set of statements in a computer program at which execution of the program begins and that invokes the subroutines of the program."
 msgid "Main body"
-msgstr "بدنه‌ی اصلی"
+msgstr "بدنهٔ اصلی"
 
 #. "Online documentation for UNIX commands and programs and the UNIX library routines available for use in C programs. These documents, also found in the UNIX Programmer's Manual, can be displayed on a user's terminal or printed using the command man."
 msgid "Man Pages"
@@ -1604,7 +1609,7 @@ msgstr "دستی"
 
 #. "see 'Man Pages'."
 msgid "Manual page"
-msgstr "صفحه‌ی راهنما"
+msgstr "صفحهٔ راهنما"
 
 #. "In printing, those portions of a page-top, bottom, and sides-outside the main body of text."
 msgid "Margins"
@@ -1631,7 +1636,7 @@ msgid "Median"
 msgstr "میانه"
 
 msgid "Meeting"
-msgstr "جلسه"
+msgstr "ملاقات"
 
 #. "A device where information can be stored and retrieved. In the most general sense, memory can refer to external storage such as disk drives or tape drives; in common usage, it refers only to a computer's main memory."
 msgid "Memory"
@@ -1639,7 +1644,7 @@ msgstr "حافظه"
 
 #. "A list of possible actions or options available within a program."
 msgid "Menu"
-msgstr "منو"
+msgstr "گزینگان"
 
 #. "To combine two or more items, such as lists, in an ordered way and without changing the basic structure of either. "
 msgid "Merge"
@@ -1651,11 +1656,11 @@ msgstr "پیغام"
 
 #. "Data about data. For example, the title, subject, author, and size of a file constitute metadata about the file. "
 msgid "Metadata"
-msgstr "فوق‌داده"
+msgstr "فراداده"
 
 #. "A device-independent file for storing or display. "
 msgid "Metafile"
-msgstr "فوق‌پرونده"
+msgstr "فراپرونده"
 
 #. "A 'type' of the file, describing what kind of data and in which format this file contains; for example, MIME type <filename>image/jpeg</filename> is used for graphic files in JPEG format. Used by many applications (such as file manager) to determine what The acronym MIME stands for Multipurpose Internet Mail Extension, since originally it was used to describe types of files sent in e-mail."
 msgid "Mime Type"
@@ -1666,13 +1671,13 @@ msgstr "شمایل‌های کوچک"
 
 #. "In a graphical user interface, to hide a window without shutting down the program responsible for the window. "
 msgid "Minimize"
-msgstr "حداقل کردن"
+msgstr "کمینه کردن"
 
 msgid "minix"
-msgstr "مینیکس"
+msgstr "minix"
 
 msgid "minor faults"
-msgstr ""
+msgstr "عیب‌های جزئی"
 
 #. "An image that is an exact duplicate of the original with the exception that one dimension is reversed. "
 msgid "mirror"
@@ -1711,7 +1716,7 @@ msgstr "پیمانه"
 
 #. "The device on which images generated by the computer's video adapter are displayed. "
 msgid "Monitor"
-msgstr "نمایشگر"
+msgstr "نمایش‌گر"
 
 #. "A monitor that displays images in only one color: black on white "
 msgid "monochrome"
@@ -1723,11 +1728,11 @@ msgstr "سوار کردن"
 
 #. "An small icon (usually an arrow) used to indicate the position of the mouse on the <link linkend='desktop'>desktop</link>."
 msgid "Mouse Cursor"
-msgstr "مکان‌نمای ماوس"
+msgstr "مکان‌نمای موش‌واره"
 
 #. "A command or instruction to transfer information from one location to another. "
 msgid "Move"
-msgstr "نقل‌مکان"
+msgstr "نقل مکان"
 
 #. "Acronym for Microsoft"
 msgid "MS"
@@ -1743,17 +1748,17 @@ msgstr "MTU"
 
 #. "Nautilus is the next generation file manager for GNOME being written by Eazel."
 msgid "Nautilus"
-msgstr "ناتیلوس"
+msgstr "Nautilus"
 
 #. "See: Binomial distribution"
 msgid "Negative Binomial"
 msgstr "دوجمله‌ای منفی"
 
 msgid "Netmask"
-msgstr "نقاب شبکه"
+msgstr "Netmask"
 
 msgid "Netscape"
-msgstr "نت‌اسکیپ"
+msgstr "Netscape"
 
 #. "A group of computers and associated devices that are connected by communications facilities. "
 msgid "Network"
@@ -1775,14 +1780,14 @@ msgstr "توزیع نرمال"
 
 #. "Any computer designed to be moved easily. Notebooks or portable computers can be characterized by size and weight."
 msgid "Notebook"
-msgstr "دفتر یادداشت"
+msgstr "رایانهٔ کتابی"
 
 #. "A window displayed when an application generates a warning or error message that requires action before the user can proceed."
 msgid "Notice"
-msgstr ""
+msgstr "توجه"
 
 msgid "Notification"
-msgstr ""
+msgstr "تذکر"
 
 msgid "Number"
 msgstr "عدد"
@@ -1791,7 +1796,7 @@ msgid "Number Converter"
 msgstr "مبدل اعداد"
 
 msgid "Number Theory"
-msgstr "نظریه‌ی اعداد"
+msgstr "نظریهٔ اعداد"
 
 msgid "Numbered List"
 msgstr "فهرست شماره‌دار"
@@ -1817,15 +1822,15 @@ msgstr "مهجور"
 
 #. "In reference to a computing device or a program, unable to communicate with or be controlled by a computer. In reference to one or more computers, being disconnected from a network. "
 msgid "Offline"
-msgstr "منفصل"
+msgstr "برون‌خط"
 
 #. "In reference to a computing device or a program, activated and ready for operation; connected to or being controlled by a system. "
 msgid "Online"
-msgstr "متصل"
+msgstr "برخط"
 
 #. "Reciprocal of transmission ratio."
 msgid "Opacity"
-msgstr "تیره‌گی"
+msgstr "کدری"
 
 #. "Being accessible"
 msgid "Open"
@@ -1833,11 +1838,11 @@ msgstr "باز"
 
 #. "Refers to software for which both the executable files and the source code can be freely redistributed and re-used in other products. This term was introduced by <ulink type='http' url='http://www.opensource.org/'>Open Source Intiative</ulink>; it is very"
 msgid "Open Source"
-msgstr "متن باز"
+msgstr "بازمنبع"
 
 #. "The software that controls the allocation and usage of hardware resources such as memory, central processing unit (CPU) time, disk space, and peripheral devices. "
 msgid "Operating System"
-msgstr "سیستم‌عامل"
+msgstr "سامانهٔ عامل"
 
 #. "1. A specific action carried out by a computer in the process of executing a program. 2. In mathematics, an action performed on a set of entities that produces a new entity. "
 msgid "Operation"
@@ -1849,7 +1854,7 @@ msgstr "اختیاری"
 
 #. "A menu choice in many graphical user interface applications that allows the user to specify how the application will act each time it is used. "
 msgid "Options"
-msgstr "گزینه‌ها"
+msgstr "انتخاب‌ها"
 
 #. "A logical operation for combining two bits (0 or 1) or two Boolean values (false or true). If one or both values are 1 (true), it returns the value 1 (true). "
 msgid "OR"
@@ -1879,7 +1884,7 @@ msgstr "خروجی"
 
 #. "A text-entry mode in which newly typed characters replace existing characters under or to the left of the cursor insertion point. "
 msgid "Overwrite"
-msgstr "رونویسی"
+msgstr "بازنویسی"
 
 #. "The person who created a file or directory. "
 msgid "Owner"
@@ -1924,7 +1929,7 @@ msgid "Parameter"
 msgstr "پارامتر"
 
 msgid "Parcel"
-msgstr "بسته"
+msgstr "مرسوله"
 
 #. "To break input into smaller chunks so that a program can act upon the information."
 msgid "Parse"
@@ -1951,14 +1956,14 @@ msgid "Pattern"
 msgstr "الگو"
 
 msgid "Peak indicator"
-msgstr ""
+msgstr "قله‌نما"
 
 #. "Statistical concept to describe the correlation coefficient between two variants."
 msgid "Pearson Correlation"
-msgstr ""
+msgstr "همبستگی پیرسن"
 
 msgid "pending signals"
-msgstr ""
+msgstr "سیگنال‌های معلق"
 
 #. "The length of time required for an oscillation to complete one full cycle. "
 msgid "Period"
@@ -1969,11 +1974,11 @@ msgstr "متناوب"
 
 #. "Acronym for Practical Extraction and Report Language. An interpreted language, based on C and several UNIX utilities. "
 msgid "Perl"
-msgstr "پرل"
+msgstr "Perl"
 
 #. "A program in Perl is known as a script. "
 msgid "Perl Script"
-msgstr "دست‌نوشته‌ی پرل"
+msgstr "دست‌نوشتهٔ Perl"
 
 #. "In a networked or multiuser computer environment, the ability of a particular user to access a particular resource by means of his or her user account. Permissions are granted by the system administrator."
 msgid "Permission"
@@ -1981,7 +1986,7 @@ msgstr "اجازه"
 
 #. "Memory actually present in the system, as opposed to virtual memory. "
 msgid "physical memory"
-msgstr "حافظه‌ی فیزیکی"
+msgstr "حافظهٔ فیزیکی"
 
 msgid "picker button"
 msgstr ""
@@ -1994,7 +1999,7 @@ msgid "PID"
 msgstr "PID"
 
 msgid "Pilot device"
-msgstr "دستگاه نمونه"
+msgstr "دستگاه پایلوت"
 
 #. "1. Software connection between two programs. 2. The UNIX operator
 msgid "Pipe"
@@ -2006,7 +2011,7 @@ msgstr "نقطه"
 
 #. "A data structure that describes the pixel image of a graphic, including such features as color, image, resolution, dimensions, storage format, and number of bits used to describe each pixel. "
 msgid "Pixmap"
-msgstr "نقشه‌نقطه‌ای"
+msgstr "نقطه‌نگاشت"
 
 msgid "Place"
 msgstr "محل"
@@ -2020,7 +2025,7 @@ msgstr ""
 
 #. "1. A unit of measure used in printing, equal to approximately 1/72 of an inch. Character height and the amount of space (leading) between lines of text are usually specified in points. 2. A single pixel on the screen, identified by its row and column numb"
 msgid "Point"
-msgstr "پونت | نقطه"
+msgstr "نقطه"
 
 #. "A mathematical curve often used in statistics and simulation to represent the likelihood of some event occurring  when the average likelihood is known. "
 msgid "Poisson distribution"
@@ -2042,7 +2047,7 @@ msgstr ""
 
 #. "In a graphical user interface, a menu that appears on-screen when a user selects a certain item. "
 msgid "popup menu"
-msgstr "منوی واشو"
+msgstr "گزینگان بالاپر"
 
 #. "An interface through which data is transferred between a computer and other devices (such as a printer, mouse, keyboard or monitor), a network, or a direct connection to another computer. "
 msgid "port"
@@ -2050,7 +2055,7 @@ msgstr "درگاه"
 
 #. "A vertical print orientation in which the page or screen image is taller than it is wide. "
 msgid "Portrait"
-msgstr "پرتره‌ای"
+msgstr "چهره‌ای"
 
 #. "The server and associated storage and mail handling services that provide the centralized location for collection and distribution of e-mail over a network."
 msgid "Post Office"
@@ -2066,7 +2071,7 @@ msgstr "صندوق پستی"
 
 #. "A language for desribing printed pages, developed by <ulink type='http' url='http://www.adobe.com'>Adobe Corporation</ulink>. Can be used to describe both graphics and text, black and white or color. Postscript is the de-facto standard for quality printin Postscript files can  also be saved to disk; they usually have extension <filename>.ps</filename>. There is a number of utilities for viewing Postscript files, such as <application>gv</application> or <application>ggv</application>."
 msgid "postscript"
-msgstr "پست‌اسکریپت"
+msgstr "postscript"
 
 msgid "power management"
 msgstr "مدیریت برق"
@@ -2096,11 +2101,11 @@ msgstr "چاپ"
 
 #. "The area on the paper, excluding margins, where the printer can print data."
 msgid "Print area"
-msgstr "ناحیه‌ی چاپ"
+msgstr "ناحیهٔ چاپ"
 
 #. "A computer peripheral that puts text or a computer-generated image on paper or on another medium, such as a transparency film. "
 msgid "Printer"
-msgstr "چاپگر"
+msgstr "چاپ‌گر"
 
 #. "The relative ranking of items. Items with a higher priority have precedence in receiving the attention of the microprocessor and the use of system resources. "
 msgid "Priority"
@@ -2108,7 +2113,7 @@ msgstr "اولویت"
 
 #. "The concept that a user's data, such as stored files and e-mail, is not to be examined by anyone else without that user's permission. "
 msgid "Privacy"
-msgstr "زندگی خصوصی"
+msgstr "حریم خصوصی"
 
 #. "One of two keys in public key encryption. The user keeps the private key secret and uses it to encrypt digital signatures and to decrypt received messages.  "
 msgid "Private key"
@@ -2123,18 +2128,18 @@ msgstr "مشکل"
 
 #. "A task run by the operating system. UNIX is a multitasking sytem, so at any given moment there are many processes running. Usually, each command or application you start is run as a new process; some applications may run several processes. In addition, th. Each process has a unique ID number  (<acronym>PID</acronym>). You can view the list of all the processes running on your system using <application>GNOME System monitor (gtop)</application> or <application>Ktop</application>."
 msgid "Process"
-msgstr "فراروند"
+msgstr "فرایند"
 
 #. "The unique identification numer of a programm or part of a program."
 msgid "Process ID"
-msgstr "شناسه‌ی فراروند"
+msgstr "شناسهٔ فرایند"
 
 msgid "Processor"
 msgstr "پردازنده"
 
 #. "Short for Prodigy Information Service. An online information service founded by IBM and Sears. "
 msgid "Prodigy"
-msgstr "پرودیجی"
+msgstr "Prodigy"
 
 #. "A sequence of instructions that can be executed by a computer. "
 msgid "Program"
@@ -2185,7 +2190,7 @@ msgstr "وکیل"
 
 #. "A firewall component that manages Internet traffic to and from a local area network (LAN) and can provide other features, such as document caching and access control. "
 msgid "proxy server"
-msgstr "کارگزار وکیل"
+msgstr "خادم وکیل"
 
 msgid "Public"
 msgstr "عمومی"
@@ -2196,7 +2201,7 @@ msgstr "کلید عمومی"
 
 #. "A specific set of instructions for extracting particular data."
 msgid "Query"
-msgstr "پرس‌وجو"
+msgstr "جُستار"
 
 #. "A line or list formed by items in a system waiting for service. "
 msgid "Queue"
@@ -2204,20 +2209,20 @@ msgstr "صف"
 
 #. "1. An FTP command that instructs the server to drop the current connection with the client from which it received the command. 2. A command in many applications for exiting the program."
 msgid "Quit"
-msgstr "ترک"
+msgstr "خروج"
 
 msgid "Quoting"
 msgstr ""
 
 msgid "Radar map"
-msgstr "نقشه‌ی رادار"
+msgstr "نقشهٔ رادار"
 
 msgid "Radio"
 msgstr "رادیو"
 
 #. "In graphical user interfaces, a means of selecting one of several options, usually within a dialog box. A radio button appears as a small circle that, when selected, has a smaller, filled circle inside it. "
 msgid "Radio Button"
-msgstr "دکمه‌ی رادیویی"
+msgstr "دکمهٔ رادیویی"
 
 #. "Specifically, a reference to an arbitrary or unpredictable situation or event. "
 msgid "Random"
@@ -2242,7 +2247,7 @@ msgid "Raw data"
 msgstr "داده‌های خام"
 
 msgid "Raw memory"
-msgstr "حافظه‌ی خام"
+msgstr "حافظهٔ خام"
 
 msgid "Readout"
 msgstr "بازخوانی"
@@ -2252,7 +2257,7 @@ msgstr "آماده..."
 
 #. "See Physical memory."
 msgid "Real Memory"
-msgstr "حافظه‌ی واقعی"
+msgstr "حافظهٔ واقعی"
 
 msgid "real path"
 msgstr "مسیر واقعی"
@@ -2301,18 +2306,18 @@ msgstr "نوسازی"
 
 #. "An area dedicated to or reserved for a particular purpose. "
 msgid "Region"
-msgstr "ناحیه"
+msgstr "منطقه"
 
 #. "In statistics, an analysis of the degree to which variations in an independent variable affect a dependent variable (a variable whose value depends on the value of another variable)."
 msgid "Regression analysis"
 msgstr "تحلیل رگرسیون"
 
 msgid "regular"
-msgstr ""
+msgstr "منظم"
 
 #. "A pattern representaing a class of character strings."
 msgid "Regular expression"
-msgstr "عبارت باقاعده"
+msgstr "عبارت منظم"
 
 #. "To govern by a set of rules or to require the adherence to standards."
 msgid "Regulate"
@@ -2350,7 +2355,7 @@ msgid "Reports"
 msgstr "گزارش‌ها"
 
 msgid "reserved blocks"
-msgstr "بلوک‌های رزروشده"
+msgstr "بلوک‌های اختصاص‌یافته"
 
 #. "To restart a computer without turning off its power."
 msgid "Reset"
@@ -2361,9 +2366,8 @@ msgid "Resident"
 msgstr "مقیم"
 
 msgid "Resident memory"
-msgstr "حافظه‌ی مقیم"
+msgstr "حافظهٔ مقیم"
 
-#, fuzzy
 msgid "Residual"
 msgstr "باقی‌مانده"
 
@@ -2385,7 +2389,7 @@ msgstr "راه‌اندازی مجدد"
 
 #. "To take up a process exactly where it had benn interrupted or stopped."
 msgid "Resume"
-msgstr "از سر گیری"
+msgstr "ادامه"
 
 #. "To obtain a specific requested item or set of data by locating it and returning it to a program or to the user. "
 msgid "Retrieve"
@@ -2397,16 +2401,15 @@ msgstr "تلاش مجدد"
 
 #. "A key on a keyboard that is used to terminate input of a field or record or to execute the default action of a dialog box. "
 msgid "Return"
-msgstr "بازگشت"
+msgstr "Return"
 
 #. "The reversal of light and dark in the display of selected characters on a video screen. "
-#, fuzzy
 msgid "Reverse video"
 msgstr "نمایش معکوس"
 
 #. "To return to the last saved version of a document. "
 msgid "Revert"
-msgstr "بازگشت"
+msgstr "بازگردانی"
 
 #. "The privileged user on a UNIX system; has full control over the system and all files on it, including those of other users. Is typically used by system administartor for system maintenance"
 msgid "Root"
@@ -2414,11 +2417,11 @@ msgstr "Root"
 
 #. "The top level directory of a UNIX file system, containing all other files and directories. Root directory is denoted by a single slash (<filename>/</filename>)."
 msgid "Root Directory"
-msgstr "شاخه‌ی ریشه"
+msgstr "شاخهٔ ریشه"
 
 #. "The background of an X11 desktop, in which background images (<quote>wallpaper</quote>) or running programs may be displayed."
 msgid "Root Window"
-msgstr "پنجره‌ی ریشه"
+msgstr "پنجرهٔ ریشه"
 
 #. "To turn a model or other graphical image so that it is viewed at a different angle."
 msgid "Rotate"
@@ -2430,7 +2433,7 @@ msgstr "سطر"
 
 #. "A file containing in it in a packed form all the files comprising an application (executable files, documentation, configuration, etc.), plus some extra information about the application, such as a brief description and dependency information. The RPM for. RPM format was developed by <ulink type='http'  url='http://www.redhat.com'>Red Hat, Inc</ulink>; the acronym RPM stands for RPM Package Manager."
 msgid "RPM package"
-msgstr "بسته‌ی RPM"
+msgstr "بستهٔ RPM"
 
 #. "To execute a program."
 msgid "Run"
@@ -2456,7 +2459,7 @@ msgstr "SC/XSpread"
 
 #. "Of or relating to the characteristic of a piece of hardware or software or a network that makes it possible for it to expand-or shrink-to meet future needs and circumstances. "
 msgid "Scalable"
-msgstr ""
+msgstr "مقیاس‌پذیر"
 
 #. "A factor, coefficient, or variable consisting of a single value (as opposed to a record, an array, or some other complex data structure). "
 msgid "Scalar"
@@ -2464,7 +2467,7 @@ msgstr "عددی"
 
 #. "A horizontal or vertical line on a graph that shows minimum, maximum, and interval values for the data plotted."
 msgid "Scale"
-msgstr "مقیاس"
+msgstr "مقیاس‌نما"
 
 #. "The amount by which a graphical image is enlarged or reduced."
 msgid "Scaling Factor"
@@ -2480,7 +2483,7 @@ msgstr "مدیر زمان‌بندی"
 
 #. "A description of a database to a database management system (DBMS) in the language provided by the DBMS. A "
 msgid "schema"
-msgstr "شما"
+msgstr "شَما"
 
 #. "A floating-point method of representing a number, especially a very large or very small one, in which numbers are expressed as products consisting of a number between 1 and 10 multiplied by a power of 10. "
 msgid "Scientific notation"
@@ -2492,7 +2495,7 @@ msgstr "صفحه‌نمایش"
 
 #. "A program which blanks the screen or displays pretty or entertaining graphics after a period of inactivity on the console.  Originally intended to prevent burn-in of images on older cathode-ray tubes, screensavers are now used primarily for entertainment "
 msgid "Screen Saver"
-msgstr "محافظ صفحه‌نمایش"
+msgstr "محافظ صفحه"
 
 #. "A program written in an interpreted language, i.e. a language where the commands are executed one by one as you enter them (as opposed to compiled languages, in which the whole program must first be translated into machine codes (compiled) to create an ex"
 msgid "Script"
@@ -2519,7 +2522,7 @@ msgstr "دامنه‌های جستجو"
 
 #. "The string of characters to be matched in a search-typically a text string."
 msgid "search string"
-msgstr "رشته‌ی جستجو"
+msgstr "رشتهٔ مورد جستجو"
 
 #. "Colors produced by mixing primary colors."
 msgid "Secondary Colors"
@@ -2569,7 +2572,7 @@ msgstr "جداساز"
 
 #. "1. On a local area network (LAN), a computer running administrative software that controls access to the network and its resources and provides resources to computers functioning as workstations on the network. 2. On the Internet or other network, a compu"
 msgid "Server"
-msgstr "کارگزار"
+msgstr "خادم"
 
 #. "1. The time during which a program is running. In most interactive programs, a session is the time during which the program accepts input and processes information. 2. In communications, the time during which two computers maintain a connection. "
 msgid "Session"
@@ -2577,7 +2580,7 @@ msgstr "نشست"
 
 #. "1. To change the value of a bit to 1. 2. To establish a particular condition."
 msgid "Set"
-msgstr "یک کردن | تنظیم کردن"
+msgstr "مقرر کردن"
 
 #. "Controls for choosing predetermined values."
 msgid "Settings"
@@ -2588,7 +2591,7 @@ msgid "Setup"
 msgstr "برپاسازی"
 
 msgid "Severity"
-msgstr "جدیت"
+msgstr "شدت"
 
 msgid "shaped text"
 msgstr "متن شکل‌دار"
@@ -2599,7 +2602,7 @@ msgstr "به اشتراک گذاشتن"
 
 #. "On a local area network, a directory on a disk that is located on a computer other than the one the user is operating and that can be accessed by all users on the network. "
 msgid "Shared Memory"
-msgstr "حافظه‌ی اشتراکی"
+msgstr "حافظهٔ اشتراکی"
 
 #. "Any of a number of UNIX programs which interpret commands typed by the user before passing them to the operating system and provide other features such as command history, aliasing, and scripting.  Examples include <command>bash</command> and <command>tcs"
 msgid "Shell"
@@ -2614,7 +2617,7 @@ msgstr "نمایش"
 
 #. "To close a program or operating system in a manner ensuring that no data is lost."
 msgid "Shut Down"
-msgstr ""
+msgstr "خاموش کردن"
 
 #. "1. Any electrical quantity, such as voltage, current, or frequency, that can be used to transmit information. 2. A beep or tone from a computer's speaker or a prompt displayed on screen."
 msgid "Signal"
@@ -2630,7 +2633,7 @@ msgstr "امضا"
 
 #. "A control in the upper right corner of the frame of a window. When the user clicks on the size box, the window toggles between the size the user has set for it by dragging and the maximum size. "
 msgid "Size box"
-msgstr "جعبه‌ی اندازه"
+msgstr "جعبهٔ اندازه"
 
 #. "The difference between what is and what should be-for example, the misalignment of a page that prevents accurate reproduction, or the difference between input and output when circuits do not respond evenly to a propagated signal."
 msgid "Skewness"
@@ -2670,7 +2673,7 @@ msgstr "هوشمند"
 
 #. "A terminal that contains a microprocessor and random access memory (RAM) and that does some rudimentary processing without intervention from the host computer.  "
 msgid "Smart terminal"
-msgstr "پایانه‌ی هوشمند"
+msgstr "پایانهٔ هوشمند"
 
 #. "1. To eliminate irregularities in statistical data by some process such as continuous averaging or by removing random (irrelevant) values. 2. In graphics, to remove jagged edges from a figure or line. "
 msgid "smooth"
@@ -2692,7 +2695,7 @@ msgid "Socket"
 msgstr "سوکت"
 
 msgid "SOCKS Server"
-msgstr "کارگزار SOCKS"
+msgstr "خادم SOCKS"
 
 #. "A user-created display object that can be assigned an accelerator key combination and is linked to an operation or process."
 msgid "soft keys"
@@ -2725,19 +2728,19 @@ msgstr "مبدأ"
 
 #. "Human-readable program statements written by a programmer or developer in a high-level or assembly language that are not directly readable by a computer. Source code needs to be compiled into object code before it can be executed by a computer."
 msgid "Source code"
-msgstr "متن برنامه"
+msgstr "کد منبع"
 
 #. "A character that is entered by pressing the Spacebar on the keyboard and that typically appears on the screen as a blank space."
 msgid "Space character"
-msgstr "نویسه‌ی فاصله"
+msgstr "نویسهٔ فاصله"
 
 #. "Useless e-mail.  Spam normally comes in forms of chain-letters and advertisements for websites or services."
 msgid "Spam"
-msgstr ""
+msgstr "هرزنامه"
 
 #. "Any character that is not alphabetic, numeric, or the space character (for example, a punctuation character). "
 msgid "Special character"
-msgstr "نویسه‌ی ویژه"
+msgstr "نویسهٔ ویژه"
 
 msgid "Spell"
 msgstr "املا"
@@ -2766,7 +2769,7 @@ msgid "Standard deviation"
 msgstr "انحراف معیار"
 
 msgid "Standby"
-msgstr ""
+msgstr "کشیک"
 
 msgid "Start"
 msgstr "آغاز"
@@ -2780,7 +2783,7 @@ msgstr "پرونده‌های راه‌اندازی"
 
 #. "The application that takes control of the system when the computer is turned on."
 msgid "Startup Program"
-msgstr "برنامه‌ی راه‌اندازی"
+msgstr "برنامهٔ راه‌اندازی"
 
 #. "Synonymous with Status"
 msgid "State"
@@ -2801,18 +2804,18 @@ msgid "Stereotype"
 msgstr ""
 
 msgid "sticky notes"
-msgstr ""
+msgstr "یاداشت‌های چسبناک"
 
 msgid "Stock Ticker"
 msgstr ""
 
 #. "In computing, any device in or on which information can be kept. Microcomputers have two main types of storage: random access memory (RAM) and disk drives and other external storage media. "
 msgid "Storage"
-msgstr "حافظه"
+msgstr "انباره"
 
 #. "One or more lines drawn through a selected range of text, usually to show deletion or the intent to delete."
 msgid "Strikethrough"
-msgstr ""
+msgstr "خط‌خوردگی"
 
 #. "A data structure composed of a sequence of characters usually representing human-readable text."
 msgid "String"
@@ -2841,7 +2844,7 @@ msgstr "زیرمنو"
 
 #. "A function that passes a job, function or setting to the system for processing"
 msgid "Submit"
-msgstr "ارسال"
+msgstr "ارائه"
 
 #. "1. In general, a network that forms part of a larger network. 2. In terms of the ISO/OSI reference model, the subnet comprises the layers below the transport layer-that is, the network, data link, and physical layers."
 msgid "Subnet"
@@ -2878,13 +2881,12 @@ msgid "Swap"
 msgstr "مبادله"
 
 #. "1. A circuit element that has two states: on and off. 2. A control device that allows the user to choose one of two or more possible states. "
-#, fuzzy
 msgid "Switch level"
-msgstr "سوییچ"
+msgstr "سطح سوئیچ"
 
 #. "Short for symbolic link file. A file constructed with a proprietary Microsoft format, used primarily for exchanging spreadsheet data in such a way that formatting information and intercellular data value relationships are preserved."
 msgid "SYLK file"
-msgstr "پرونده‌ی SYLK"
+msgstr "پروندهٔ SYLK"
 
 #. "In programming, a name that represents a register, an absolute value, or a memory address (relative or absolute). "
 msgid "Symbol"
@@ -2892,7 +2894,7 @@ msgstr "نماد"
 
 #. "A file of special type which contains no data but instead, points to another file or directory. Equivalent to a shortcut under Windows."
 msgid "Symbolic Link"
-msgstr "پیوند نمادی"
+msgstr "پیوند نمادین"
 
 msgid "Symmetric control"
 msgstr "کنترل متقارن"
@@ -2907,18 +2909,18 @@ msgstr "خطای نحوی"
 
 #. "Any collection of component elements that work together to perform a task. Examples are a hardware system consisting of a microprocessor, its allied chips and circuitry, input and output devices, and peripheral devices; an operating system consisting of a"
 msgid "System"
-msgstr "سیستم"
+msgstr "سامانه"
 
 #. "The person responsible for administration and maintenance of a computer system."
 msgid "System Administrator"
-msgstr "مدیر سیستم"
+msgstr "مدیر سامانه"
 
 #. "A process that specifies the machines, devices and programs that form a particular processing system."
 msgid "System Configuration"
-msgstr "پیکربندی سیستم"
+msgstr "پیکربندی سامانه"
 
 msgid "system settings"
-msgstr "تنظیمات سیستم"
+msgstr "تنظیمات سامانه"
 
 #. "A character used to align lines and columns on screen and in print. "
 msgid "Tab"
@@ -2941,11 +2943,11 @@ msgstr "بلند"
 
 #. "A file created using the <command>tar</command> (Tape ARchive) program, which conglomerates multiple files, or even a whole directory tree, into one file for easy storage or transfer.  These archives are often compressed using the gzip program and given a"
 msgid "tar archive"
-msgstr "آرشیو tar"
+msgstr "بایگانی tar"
 
 #. "The file to which data is to be written, as in a copy operation. "
 msgid "target file"
-msgstr "پرونده‌ی هدف"
+msgstr "پروندهٔ هدف"
 
 #. "A stand-alone application or a subprogram that is run as an independent entity."
 msgid "task"
@@ -2960,11 +2962,11 @@ msgstr "TCP/IP"
 
 #. "A protocol allowing logging into your computer account  via Internet or local network from another computer; also, the command using this protocol.  For more information, see manual page for telnet."
 msgid "Telnet"
-msgstr "تلنت"
+msgstr "Telnet"
 
 #. "A file created either in memory or on disk, by the operating system or some other program, to be used during a session and then discarded. "
 msgid "temp file"
-msgstr "پرونده‌ی موقتی"
+msgstr "پروندهٔ موقتی"
 
 #. "1. In image processing, a pattern that can be used to identify or match a scanned image. 2. In spreadsheet programs, a predesigned spreadsheet that contains formulas, labels, and other elements.  3. In word processing and desktop publishing programs, a pr"
 msgid "Template"
@@ -2990,14 +2992,14 @@ msgid "Test"
 msgstr "آزمایش"
 
 msgid "Test Module"
-msgstr "پیمانه‌ی آزمایشی"
+msgstr "پیمانهٔ آزمایشی"
 
 #. "Data that consists of characters representing the words and symbols of human speech; usually, characters coded according to the ASCII standard."
 msgid "Text"
 msgstr "متن"
 
 msgid "text area"
-msgstr "ناحیه‌ی متن"
+msgstr "ناحیهٔ متن"
 
 #. "A document file in ASCII format, containing characters, spaces, punctuation, carriage returns, and sometimes tabs and an end-of-file marker, but no formatting information. "
 msgid "Text only"
@@ -3008,7 +3010,7 @@ msgstr "نام متنی"
 
 #. "An integrated collection of graphical elements intended to give the desktop a certain look and feel.  Common theme components include matching backgrounds, icons, and window decorations. The look of GNOME desktop is determined by 2 themes: a GTK theme, which determines the look of application menus, toolbars and other widgets, and window manager theme, which determines  window borders, buttons, and window title font."
 msgid "Theme"
-msgstr "تم"
+msgstr "زمینه"
 
 #. "In image processing, a specified gray level used for producing a binary image."
 msgid "Threshold"
@@ -3016,14 +3018,14 @@ msgstr "آستانه"
 
 #. "A miniature version of an image or electronic version of a page that is generally used to allow quick browsing through multiple images or pages. "
 msgid "Thumb Nails"
-msgstr ""
+msgstr "انگشتی"
 
 #. "1. A regular, rapidly recurring signal emitted by a clocking circuit; also, the interrupt generated by this signal. "
 msgid "Tick"
 msgstr "تیک"
 
 msgid "Ticker Properties"
-msgstr ""
+msgstr "مشخصه‌های تیک‌زن"
 
 #. "In computer-graphics programming, to fill adjacent blocks of pixels on the screen with a design or pattern without allowing any blocks to overlap."
 msgid "Tile"
@@ -3039,14 +3041,14 @@ msgstr "مهر زمانی"
 
 #. "An event that indicates that a predetermined amount of time has elapsed without some other expected event taking place. The time-out event is used to interrupt the process that had been waiting for the other expected event. "
 msgid "Timeout"
-msgstr "انقضای مدت"
+msgstr "اتمام زمان"
 
 #. "A register (high-speed memory circuit) or a special circuit, chip, or software routine used to measure time intervals."
 msgid "Timer"
 msgstr "زمان‌سنج"
 
 msgid "Timezone"
-msgstr ""
+msgstr "ناحیهٔ زمانی"
 
 msgid "Timing"
 msgstr "زمان‌بندی"
@@ -3055,7 +3057,7 @@ msgid "Title"
 msgstr "عنوان"
 
 msgid "TODO List"
-msgstr ""
+msgstr "فهرست انجام‌دادنی‌ها"
 
 #. "An electronic device with two states or a program option that can be turned on or off using the same action, such as a mouse click."
 msgid "toggle"
@@ -3065,7 +3067,7 @@ msgid "Tolerance"
 msgstr "تحمل"
 
 msgid "tool menu"
-msgstr "منوی ابزار"
+msgstr "گزینگان ابزار"
 
 #. "In an application in a graphical user interface, a row, column, or block of on-screen buttons or icons. When these buttons or icons are clicked on with the mouse, macros or certain functions of the application are activated. "
 msgid "Toolbar"
@@ -3076,7 +3078,7 @@ msgid "Tool"
 msgstr "ابزار"
 
 msgid "topic"
-msgstr ""
+msgstr "موضوع"
 
 #. "The movement of data from one location to another. "
 msgid "Transfer"
@@ -3096,7 +3098,7 @@ msgstr "ترجمه"
 
 #. "1. A path or link through which information passes between two devices. A channel can be either internal or external to a microcomputer. 2. In communications, a medium for transferring information. "
 msgid "transmission channel"
-msgstr "کانال مخابره"
+msgstr "کانال انتقال"
 
 #. "In computer use, describing a device, function, or part of a program that works so smoothly and easily that it is invisible to the user. "
 msgid "Transparent"
@@ -3108,14 +3110,14 @@ msgstr "ترانهاده"
 
 #. "An icon on the screen, resembling a garbage can. To delete a file or eject a diskette, the user drags the icon for the file or diskette to the Trash. "
 msgid "Trash"
-msgstr "زباله"
+msgstr "زباله‌دان"
 
 #. "A data structure containing zero or more nodes that are linked together in a hierarchical fashion. If there are any nodes, one node is the root; each node except the root is the child of one and only one other node; and each node has zero or more nodes as"
 msgid "Tree"
 msgstr "درخت"
 
 msgid "Trim"
-msgstr ""
+msgstr "چیدن"
 
 #. "Acronym for teletypewriter. A device for low-speed communications over a telephone line, consisting of a keyboard that sends a character code for each keystroke and a printer that prints characters as their codes are received. "
 msgid "Tty"
@@ -3133,7 +3135,7 @@ msgid "type bindings"
 msgstr ""
 
 msgid "Type mismatch"
-msgstr ""
+msgstr "ناهم‌خوانی نوع‌ها"
 
 #. "To restore deleted information, usually the last item deleted. "
 msgid "Undelete"
@@ -3145,7 +3147,7 @@ msgstr "زیرخط‌دار"
 
 #. "To reverse the last action-for example, to undo a deletion, thus restoring deleted text to a document. "
 msgid "Undo"
-msgstr "برگشت"
+msgstr "واگرد"
 
 msgid "Unexpected end"
 msgstr "پایان غیرمنتظره"
@@ -3155,7 +3157,7 @@ msgstr "خطای غیرمنتظره"
 
 #. "A character set which strives to include all symbols in all human alphabets, and all special symbol used by people. It is a work in progress; the latest version of Unicode (3.0) includes 49,194 characters and covers languages ranging from English to Chine"
 msgid "Unicode"
-msgstr "یونی‌کد"
+msgstr "Unicode"
 
 #. "To remove software completely from a system, including the elimination of files and components residing in system locations such as the Registry in Windows 9x, Windows NT, or Windows 2000. "
 msgid "Uninstall"
@@ -3163,7 +3165,7 @@ msgstr "عزل"
 
 #. "An operating system originally developed at Bell Labs in the early 1970s by Ken Thompson and Dennis Ritchie; any of a large number of operating systems sharing many features with the original UNIX operating system, such as Sun's Solaris or IBM's AIX. For legal reasons, operating systems such as FreeBSD and Linux can not be called UNIX, but they do share all important features with UNIX systems; thus, they are commonly called UNIX-like."
 msgid "UNIX"
-msgstr "یونیکس"
+msgstr "UNIX"
 
 #. "A response to a request for a connection to a server that indicates that the network is unable to find the specified address. "
 msgid "Unknown host"
@@ -3171,7 +3173,7 @@ msgstr "میزبان ناشناخته"
 
 #. "1. To remove a storage medium, such as a tape or disk, from its drive. 2. To remove software from system memory. "
 msgid "Unload"
-msgstr "خارج کردن"
+msgstr "باربَرداری"
 
 #. "A new file that has not yet been saved by the user unser a specific name."
 msgid "Untitled"
@@ -3190,11 +3192,11 @@ msgid "Uptime"
 msgstr "زمان کار"
 
 msgid "Urgent condition"
-msgstr ""
+msgstr "شرط ضروری"
 
 #. "An address or ocation of a document. Most common URL types are a Web address (such as http://www.gnome.org), a file on a FTP server (e.g., ftp://ftp.gnome.org/pub), or a file on your own local system (e.g., file:/usr/doc/). "
 msgid "URL"
-msgstr "نشانی اینترنتی"
+msgstr "URL"
 
 #. "Universal Serial Bus; an  interface for connecting various peripherals, from keyboard to digital cameras, to the computer. "
 msgid "USB"
@@ -3210,7 +3212,7 @@ msgstr "تعریف‌شده توسط کاربر"
 
 #. "gnome-core.pot"
 msgid "user directory"
-msgstr "شاخه‌ی کاربر"
+msgstr "شاخهٔ کاربر"
 
 #. "The portion of a program with which a user interacts. Types of user interfaces, or UIs, include command-line interfaces, menu-driven interfaces, and graphical user interfaces. "
 msgid "User Interface"
@@ -3244,7 +3246,7 @@ msgstr "فروشنده"
 
 #. "Displaying messages as English text rather than as concise (but cryptic) codes."
 msgid "VERBOSE"
-msgstr ""
+msgstr "مشروح"
 
 #. "To confirm either that a result is correct or that a procedure or sequence of operations has been performed."
 msgid "Verify"
@@ -3258,7 +3260,7 @@ msgid "Vertical"
 msgstr "عمودی"
 
 msgid "Vertical Alignment"
-msgstr "ردیف کردن عمودی"
+msgstr "هم‌ترازی عمودی"
 
 msgid "VFS"
 msgstr "VFS"
@@ -3289,7 +3291,7 @@ msgstr "تجسم"
 
 #. "1. A disk or tape that stores computer data. Sometimes, large hard disks are divided into several volumes, each of which is treated as a separate disk. 2. The loudness of an audio signal."
 msgid "Volume"
-msgstr "جلد | حجم"
+msgstr "حجم"
 
 #. "In a graphical user interface, a pattern or picture in the screen background that can be chosen by the user. "
 msgid "Wallpaper"
@@ -3298,20 +3300,19 @@ msgstr "کاغذ دیواری"
 msgid "Warning"
 msgstr "اخطار"
 
-#, fuzzy
 msgid "Watch file"
-msgstr "پرونده‌ی نظارت"
+msgstr "پروندهٔ نظارتی"
 
 #. "A document on the World Wide Web. A Web page consists of an HTML file, with associated files for graphics and scripts, in a particular directory on a particular machine (and thus identifiable by a URL). "
 msgid "Web Page"
-msgstr "صفحه‌ی وب"
+msgstr "صفحهٔ تاری"
 
 msgid "Weight"
 msgstr "وزن"
 
 #. "A single element of a graphical user interface, such as a button, scrollbar, or text input area."
 msgid "Widget"
-msgstr "ویجت"
+msgstr "عنصر"
 
 msgid "Width"
 msgstr "عرض"
@@ -3322,7 +3323,7 @@ msgstr "پنجره"
 
 #. "A program which extends the capabilities of the  <link linkend='xwin'>X Window System</link> by providing most of the user-friendly <link linkend='widget'>widgets</link> people expect from a windowing system, such as window borders, buttons and menus,  wa"
 msgid "Window Manager"
-msgstr "مدیر پنجره‌ها"
+msgstr "مدیر پنجره‌"
 
 #. "The native unit of storage on a particular machine. A word is the largest amount of data that can be handled by the microprocessor in one operation and also, as a rule, the width of the main data bus. "
 msgid "Word"
@@ -3337,7 +3338,7 @@ msgstr "دفتر کاری"
 
 #. "The directory in which the user's commands take place, unless another directory is specified."
 msgid "working directory"
-msgstr "شاخه‌ی کاری"
+msgstr "شاخهٔ کاری"
 
 #. "The background screen area on which windows and icons are displayed."
 msgid "Workspaces"
@@ -3355,7 +3356,7 @@ msgid "WVLAN"
 msgstr "WVLAN"
 
 msgid "X Align"
-msgstr ""
+msgstr "تزار X"
 
 msgid "XDMCP socket"
 msgstr "سوکت XDMCP"
@@ -3369,13 +3370,12 @@ msgid "zero"
 msgstr "صفر"
 
 msgid "Zigzagline"
-msgstr ""
+msgstr "خط کج و معوج"
 
 #. "A disk drive developed by Iomega that uses 3.5-inch removable disks (Zip disks) capable of storing 100 megabytes of data. "
 msgid "Zip Drive"
-msgstr "گرداننده‌ی دیسک Zip"
+msgstr "رانهٔ Zip"
 
 #. "To enlarge a selected portion of a graphical image or document to fill a window or the screen. "
 msgid "Zoom"
-msgstr "زوم"
-
+msgstr "بزرگ‌نمایی"

@@ -6,50 +6,54 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-glossary VERSION\n"
 "POT-Creation-Date: 2002-05-24 20:44+0300\n"
-"PO-Revision-Date: 2002-05-24 22:01+0200\n"
-"Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
+"PO-Revision-Date: 2010-08-05 18:26+0200\n"
+"Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: Ukrainian <LL@li.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
 
 #. "English Definition"
 msgid "Term"
-msgstr ""
+msgstr "Термін"
 
 #. "To terminate abruptly a processing activity in a computer system because it is impossible or undesirable for the activity to procees."
 msgid "abort"
-msgstr ""
+msgstr "відміна"
 
 #. "1. In character recognition systems a type of symbol that, unlike a letter or numeral, has no intrinsic meaning and must be defined before it can be interpreted. 2. In programming a data type defined by the operations that can be performed on objects of t"
 msgid "Abstract"
-msgstr ""
+msgstr "Резюме"
 
 #. "1. In applications, a key or key combination used to perform a defined function. Also called shortcut key. 2. A hardware device that speeds or enhances the operation of one or more subsystems, leading to improved program performance. "
 msgid "Accelerator"
-msgstr ""
+msgstr "Акселератор"
 
 msgid "Accept"
-msgstr ""
+msgstr "Прийняти"
 
 #. "1. The act of reading data from or writing data to memory. 2. Connection to the Internet or other network or system.  2. To gain entry to memory in order to read or write data."
 msgid "access"
-msgstr ""
+msgstr "доступ"
 
 #. "A record of essential user information that is stored on the system.. Network accounts are created by network administrators and are used both to validate users and to administer policies-for example, permissions-related to each user."
 msgid "Account"
-msgstr ""
+msgstr "Рахунок"
 
 #. "Pertaining to the device, program, file, or portion of the screen that is currently operational or subject to command operations. "
 msgid "Active"
-msgstr ""
+msgstr "Активний"
 
 msgid "Actor"
-msgstr ""
+msgstr "Актор"
 
 #. "A disk drive mechanism for moving the read/write head(s) to the location of the desired track on a disk. "
 msgid "Actuator"
-msgstr ""
+msgstr "Привід"
 
 msgid "Add"
 msgstr "Додати"
@@ -59,37 +63,38 @@ msgid "Address"
 msgstr "Адреса"
 
 msgid "Adjust"
-msgstr ""
+msgstr "Пристосувати"
 
 #. "The performing of maintenance tasks on a system or network"
 msgid "Administration"
 msgstr "Адміністрування"
 
 msgid "Aggregate"
-msgstr ""
+msgstr "Збирання"
 
 #. "A visual or auditory signal from a computer alerting the user to an error or hazardous situation."
+#, fuzzy
 msgid "Alarm"
-msgstr ""
+msgstr "Тривога"
 
 #. "In an application such as a word processor, to position lines of type relative to some point, such as the page margin. The most common types of alignment are left- and right-aligned and centered. "
 msgid "Align"
-msgstr ""
+msgstr "Вирівнювати"
 
 msgid "Allow"
-msgstr ""
+msgstr "Дозволяти"
 
 #. "A software product that is under development and has enough functionality to begin testing. "
 msgid "Alpha"
-msgstr ""
+msgstr "Альфа"
 
 #. "The high-order 8 bits of a 32-bit graphics pixel used to manipulate the remaining 24 bits for purposes of coloring or masking. In computer graphics, memory associated with each pixel used to store the fractional coverage of the pixel."
 msgid "alpha channel"
-msgstr ""
+msgstr "альфа канал"
 
 #. "Pertaining to a device or signal that is continuously varying in strength or quantity, such as voltage or audio, rather than based on discrete units, such as the binary digits 1 and 0. "
 msgid "Analog"
-msgstr ""
+msgstr "Аналог"
 
 #. "The evaluation of a situation or problem, including review from various aspects or points of view. In computing, analysis commonly involves such features as flow control, error control, and evaluation of efficiency."
 msgid "Analysis"
@@ -97,7 +102,7 @@ msgstr "Аналіз"
 
 #. "A tag in an HTML document that defines a section of text, an icon, or other element as a link to another element in the document or to another document or file. "
 msgid "Anchor"
-msgstr ""
+msgstr "Якір"
 
 #. "A logical operation combining the values of two bits (0, 1) or two Boolean values (false, true) that returns a value of 1 (true) if both input values are 1 (true) and returns a 0 (false) otherwise. "
 msgid "AND"
@@ -108,6 +113,7 @@ msgid "Animation"
 msgstr "Анімація"
 
 #. "On the Internet, the standard login name used to obtain access to a public FTP file archive. "
+#, fuzzy
 msgid "Anonymous"
 msgstr "Анонім"
 
@@ -121,7 +127,7 @@ msgstr "Згладжування"
 
 #. "To place or insert as an attachment by adding data to the end of a file or database or extending a character string. To attach to the end of; most often used in reference to writing a file of adding to a string."
 msgid "Append"
-msgstr ""
+msgstr "Приєднати"
 
 #. "An application working inside a small window in a panel. A program that can be downloaded over the Internet and executed on the recipient's machine. "
 msgid "Applet"
@@ -129,24 +135,25 @@ msgstr "Аплет"
 
 #. "A software program designed to assist in the performance of a specific task or for particlar user needs, such as word processing, accounting, or inventory management. "
 msgid "Application"
-msgstr "Додаток"
+msgstr "Застосунок"
 
 #. "A button in the panel which launches an application or executes a command when pressed."
+#, fuzzy
 msgid "Application Launcher"
-msgstr ""
+msgstr "Пускач програми"
 
 msgid "Applix"
 msgstr ""
 
 msgid "Arc"
-msgstr ""
+msgstr "Дуга"
 
 #. "A collection of several files bundled into one file by a program (such as ar, tar, bar or cpio) for shipment or archiving."
 msgid "archive"
 msgstr "архів"
 
 msgid "area grid"
-msgstr ""
+msgstr "решітка площі"
 
 #. "An item of information following a command. It may, for example, modify the command or identify a file to be affected. "
 msgid "Argument"
@@ -158,14 +165,14 @@ msgstr "Масив"
 
 #. "The four directional keys on the numeri keypad."
 msgid "Arrow key"
-msgstr ""
+msgstr "Клавіша стрілка"
 
 msgid "Article"
-msgstr ""
+msgstr "Параграф"
 
 #. "The arrangement of a sequence of items from lowest to highest, such as from 1 to 10 or from A to Z. "
 msgid "Ascending order"
-msgstr ""
+msgstr "В зростаючому напрямку"
 
 #. "American Standard Code for Information Interchange; the standard describing a collection of characters and codes (i.e. sequences of zeros and ones, or numbers) assigned to them. ASCII characters  include Latin letters, common punctuation marks, some specific. When you see a mention of an 'ASCII file' or 'ASCII text' somewhere, it usually means a plain text file which only uses symbols defined in ASCII standard, with no formatting information such as fonts to be used. ASCII is defined as a standard of American National Standards Institute (ANSI); the offical reference is ANSI X3.4-1986."
 msgid "Ascii"
@@ -173,11 +180,11 @@ msgstr "ASCII"
 
 #. "In computer displays and graphics, the ratio of the width of an image or image area to its height. The aspect ratio is an important factor in maintaining correct proportions when an image is printed, rescaled, or incorporated into another document."
 msgid "aspect ratio"
-msgstr ""
+msgstr "пропорції"
 
 #. "Without regular time relationship; unexpected and unpredictable with respect to the execution of a program's instructions. "
 msgid "Asynchronous"
-msgstr ""
+msgstr "Асинхронний"
 
 #. "Any file accompanying an e-mail message in a special format so that it can be viewed or saved to disk independently of the main message body."
 msgid "Attachment"
@@ -189,7 +196,7 @@ msgstr "Ознака"
 
 #. "Relating to frequencies within the range of perception by the human ear."
 msgid "Audio"
-msgstr ""
+msgstr "Аудіо"
 
 #. "In a multiuser or network operating system, the process by which the system validates a user's logon information. "
 msgid "Authentication"
@@ -200,14 +207,14 @@ msgid "Author"
 msgstr "Автор"
 
 msgid "Autofill"
-msgstr ""
+msgstr "Автозаповнення"
 
 #. "In processing, the accessibility of a computer system or resource, such as a printer, in terms of usage or of the percentage of the total amount of time the device is needed."
 msgid "Availability"
 msgstr "Доступність"
 
 msgid "Average"
-msgstr ""
+msgstr "Середнє"
 
 #. "In a chart or other two-dimensional system using coordinates, the horizontal line (x-axis) or vertical line (y-axis) that serves as a reference for plotting points. In a three-dimensional coordinate system, a third line (z-axis) is used to represent depth"
 msgid "Axis"
@@ -230,7 +237,7 @@ msgstr ""
 
 #. "An executable program, so called because the file containing the program consists of machine-readable binary digits, i.e. ones and zeroes."
 msgid "Binary"
-msgstr ""
+msgstr "Бінарний"
 
 #. "1. Language-dependent code that allows a software library to be called from that computer language. 2. The process during which a client finds out where a server is so that the client can receive services. "
 msgid "Binding"
@@ -238,7 +245,7 @@ msgstr ""
 
 #. "In statistics, a list or a function that describes the probabilities of the possible values of a random variable chosen by means of a Bernoulli sampling process. Also called Bernoulli distribution."
 msgid "Binomial distribution"
-msgstr ""
+msgstr "Біноміальне розподілення"
 
 #. "The minimal possible unit of information, a digit which can take values 0 or 1. Saying that the file has length n bits is equivalent to saying that it can be written as  a sequence of n zeros and ones."
 msgid "Bit"
@@ -271,15 +278,16 @@ msgstr "тіло"
 
 #. "A type style that makes the text to which it is applied appear darker and heavier than the surrounding text. "
 msgid "Bold"
-msgstr ""
+msgstr "Жирний"
 
 #. "1. A marker inserted at a specific point in a document to which the user may wish to return for later reference. 2. In Netscape Navigator, a link to a Web page or other URL that a user has stored in a local file in order to return to it later. "
 msgid "book mark"
-msgstr ""
+msgstr "Закладка"
 
+# або "булевий"
 #. "Characteristic of logical (true, false) values. "
 msgid "Boolean"
-msgstr ""
+msgstr "логічний"
 
 #. "The boundary around a graphic image on screen. "
 msgid "Box"
@@ -294,11 +302,11 @@ msgstr ""
 
 #. "To scan a database, a list of files, or the Internet, either for a particular item or for anything that seems to be of interest. "
 msgid "Browse"
-msgstr ""
+msgstr "Переглянути"
 
 #. "Software that lets a user view HTML documents and access files and software related to those documents. "
 msgid "Browser"
-msgstr ""
+msgstr "Програма-переглядач"
 
 #. "A region of memory reserved for use as an intermediate repository in which data is temporarily held while waiting to be transferred between two locations or devices. "
 msgid "Buffer"
@@ -306,10 +314,10 @@ msgstr "Буфер"
 
 #. "An error in coding or logic that causes a program to malfunction or to produce incorrect results. "
 msgid "bug"
-msgstr ""
+msgstr "помилка"
 
 msgid "Build"
-msgstr ""
+msgstr "Побудування"
 
 #. "A typographical symbol, such as a filled or empty circle, diamond, box, or asterisk, used to set off a small block of text or each item in a list. "
 msgid "Bullet"
@@ -325,7 +333,7 @@ msgstr "Шина"
 
 #. "Temporarily performing a function or task."
 msgid "Busy"
-msgstr ""
+msgstr "Зайнятий"
 
 #. "A graphic element in a dialog box that, when activated, performs a specified function. "
 msgid "Button"
@@ -373,7 +381,7 @@ msgstr "Категорії"
 
 #. "1. An individual compact disc, such as a CD-ROM. 2. Acronym for Carrier Detect, a signal sent from a modem to the attached computer to indicate that the modem is on line. "
 msgid "CD"
-msgstr ""
+msgstr "КД"
 
 msgid "CDE panel"
 msgstr "Панель CDE"
@@ -383,7 +391,7 @@ msgid "Cell"
 msgstr "Комірка"
 
 msgid "Cellular"
-msgstr ""
+msgstr "Комірковий"
 
 #. "To align characters around a point located in the middle of a line, page, or other defined area."
 msgid "Center"
@@ -391,7 +399,7 @@ msgstr ""
 
 #. "1. A path or link through which information passes between two devices. 2. In communications, a medium for transferring information. Depending on its type, a communications channel can carry information (data, sound, and/or video) in either analog or digi"
 msgid "Channel"
-msgstr ""
+msgstr "Канал"
 
 #. "A rectangular block of pixels that represents the space in which a given character is drawn on the screen. "
 msgid "char cell"
@@ -413,13 +421,16 @@ msgstr ""
 msgid "Checkbox"
 msgstr ""
 
+# інший варіант - дочірній
 #. "In a tree structure, the relationship of a node to its immediate predecessor. "
 msgid "child"
-msgstr ""
+msgstr "породжений"
 
+# інший варіант - дочірній процес
+# 
 #. "A process initiated by another process (the parent)."
 msgid "child process"
-msgstr ""
+msgstr "породжений процес"
 
 #. "In object-oriented programming, a generalized category that describes a group of more specific items, called objects, that can exist within it. "
 msgid "Class"
@@ -493,17 +504,17 @@ msgid "Conduit"
 msgstr ""
 
 msgid "Confidential"
-msgstr ""
+msgstr "конфіденційний"
 
 #. "In reference to a single microcomputer, the sum of a system's internal and external components, including memory, disk drives, keyboard, video, and generally less critical add-on hardware, such as a mouse, modem, or printer. Software (the operating system"
 msgid "Configuration"
 msgstr "Конфіґурація"
 
 msgid "Confirm"
-msgstr ""
+msgstr "підтверджувати"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Підтвердження"
 
 #. "A physical link via wire, radio, fiber-optic cable, or other medium between two or more communications devices."
 msgid "Connection"
@@ -511,11 +522,11 @@ msgstr "З'єднання"
 
 #. "In programming, a restriction on the solutions that are acceptable for a problem."
 msgid "Constraint"
-msgstr ""
+msgstr "Обмеження"
 
 #. "The data that appears between the starting and ending tags of an element in an SGML or HTML document. "
 msgid "Content"
-msgstr ""
+msgstr "Вміст"
 
 #. "libgtop.pot"
 msgid "Continue"
@@ -527,11 +538,11 @@ msgstr ""
 
 #. "The process of changing from one form or format to another. Types of conversion include: data (changing the way information is represented), file (changing a file from one format to another), hardware (changing all or part of a computer system), media (tr"
 msgid "Conversion"
-msgstr ""
+msgstr "Перетворення"
 
 #. "On the World Wide Web, a block of data that a Web server stores on a client system. When a user returns to the same Web site, the browser sends a copy of the cookie back to the server. "
 msgid "cookie"
-msgstr ""
+msgstr "Кука"
 
 #. "To duplicate information and reproduce it in another part of a document, in a different file or memory location, or in a different medium. "
 msgid "Copy"
@@ -539,7 +550,7 @@ msgstr "Скопіювати"
 
 #. "A method of protecting the rights of an originator of a creative work, such as a text, a piece of music, a painting, or a computer program, through law. "
 msgid "Copyright"
-msgstr ""
+msgstr "Авторське право"
 
 #. "Acronym for Common Object Request Broker Architecture. A specification developed by the Object Management Group in 1992 in which pieces of programs (objects) communicate with other objects in other programs, even if the two programs are written in differe"
 msgid "CORBA"
@@ -589,7 +600,7 @@ msgid "Crop"
 msgstr ""
 
 msgid "Cross-reference"
-msgstr ""
+msgstr "Перехресне посилання"
 
 #. "Short for control. A designation used to label the Control key on computer keyboards. "
 msgid "Ctrl"
@@ -719,7 +730,7 @@ msgstr "Напрямок"
 
 #. "A branch within UNIX's hierarchical file system; a 'folder' containing files or other directories (called 'subdirectories')."
 msgid "Directory"
-msgstr "Каталог"
+msgstr "Тека"
 
 #. "To suppress something or to prevent it from happening. Disabling is a method of controlling system functions by disallowing certain activities. "
 msgid "Disable"
@@ -1189,7 +1200,7 @@ msgstr ""
 
 #. "A directory assigned to the user by the system administrator. The home directory is the current directory when the user first logs in, and the user can return to it by entering the command cd (change directory) without a pathname. "
 msgid "Home directory"
-msgstr "Домашній каталог"
+msgstr "Домашня тека"
 
 #. "1. A document intended to serve as a starting point in a hypertext system, especially the World Wide Web. 2. An entry page for a set of Web pages and other files in a Web site. "
 msgid "Home Page"
@@ -2330,7 +2341,7 @@ msgstr ""
 
 #. "To delete permanently."
 msgid "Remove"
-msgstr "Видалити"
+msgstr "Вилучити"
 
 #. "A command in most file transfer protocol (FTP) clients and in many other systems that allows the user to assign a new name to a file or files."
 msgid "Rename"
@@ -2411,7 +2422,7 @@ msgstr ""
 
 #. "The top level directory of a UNIX file system, containing all other files and directories. Root directory is denoted by a single slash (<filename>/</filename>)."
 msgid "Root Directory"
-msgstr ""
+msgstr "Коренева тека"
 
 #. "The background of an X11 desktop, in which background images (<quote>wallpaper</quote>) or running programs may be displayed."
 msgid "Root Window"
@@ -2578,7 +2589,7 @@ msgstr ""
 
 #. "Controls for choosing predetermined values."
 msgid "Settings"
-msgstr "Параметри"
+msgstr "Налаштування"
 
 #. "1. A computer along with all its devices. 2. The procedures involved in preparing a software program or application to operate within a computer."
 msgid "Setup"
@@ -2826,7 +2837,7 @@ msgstr "Стиль"
 
 #. "A directory (logical grouping of related files) within another directory."
 msgid "Subdirectory"
-msgstr "Підкаталог"
+msgstr "Підтека"
 
 #. "Topic line in an e-mail message"
 msgid "Subject"
@@ -2914,7 +2925,7 @@ msgid "System Configuration"
 msgstr "Системна конфіґурація"
 
 msgid "system settings"
-msgstr "системні параметри"
+msgstr "налаштування системи"
 
 #. "A character used to align lines and columns on screen and in print. "
 msgid "Tab"
@@ -3206,7 +3217,7 @@ msgstr "Визначений користувачем"
 
 #. "gnome-core.pot"
 msgid "user directory"
-msgstr "каталог користувача"
+msgstr "тека користувача"
 
 #. "The portion of a program with which a user interacts. Types of user interfaces, or UIs, include command-line interfaces, menu-driven interfaces, and graphical user interfaces. "
 msgid "User Interface"
@@ -3332,7 +3343,7 @@ msgstr ""
 
 #. "The directory in which the user's commands take place, unless another directory is specified."
 msgid "working directory"
-msgstr "робочий каталог"
+msgstr "робоча тека"
 
 #. "The background screen area on which windows and icons are displayed."
 msgid "Workspaces"
@@ -3373,4 +3384,3 @@ msgstr ""
 #. "To enlarge a selected portion of a graphical image or document to fill a window or the screen. "
 msgid "Zoom"
 msgstr "Збільшити"
-
