@@ -24,11 +24,11 @@ google.setOnLoadCallback(function() {
   }
 
   if ($.pootle.isSupportedTarget(pairs, target_lang)) {
-    var sources = $(".translate-toolbar").prev(".translation-text");
+    var sources = $("div.placeholder").prev(".translation-text");
     $(sources).each(function() {
       var source = $.pootle.normalize_code($(this).attr("lang"));
       if ($.pootle.isSupportedSource(pairs, source)) {
-        $.pootle.addMTButton($(this).siblings(".translate-toolbar"),
+        $.pootle.addMTButton($(this).parent().siblings().children(".translate-toolbar"),
                              "googletranslate",
                              m("images/google-translate.png"),
                              "Google Translate");
@@ -37,7 +37,7 @@ google.setOnLoadCallback(function() {
 
     $(".googletranslate").click(function() {
       var areas = $("[id^=id_target_f_]");
-      var sources = $(this).parent().siblings(".translation-text");
+      var sources = $(this).parent().parent().siblings().children(".translation-text");
       var lang_from = $.pootle.normalize_code(sources.eq(0).attr("lang"));
       var lang_to = $.pootle.normalize_code(areas.eq(0).attr("lang"));
 

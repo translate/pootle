@@ -59,34 +59,45 @@
         {% endif %}
       </div>
       {% endif %}
-      <!-- Alternative source language translation -->
-      <div class="altsrcs">
+      <div class="sources">
+        <!-- Alternative source language translations -->
         {% for altunit in altsrcs %}
-        {% if not altsrcs|length_is:"1" %}<div class="translation-text-headers altsrclangname" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">{{ altunit.store.translation_project.language.localname }}</div>{% endif %}
-        <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus">
-          {% for i, target, title in altunit|pluralize_target %}
-          {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-          <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}">{{ target|fancy_highlight }}</div>
-          {% endfor %}
-          {% if cansuggest or cantranslate %}
-          <div class="translate-toolbar">
-            <a class="copyoriginal"><img src="{{ 'images/copy.png'|m }}" title="{% trans 'Copy into translation' %}" /></a>
+        <div class="source-language alternative">
+          <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+            <div class="language-name">{{ altunit.store.translation_project.language.localname }}</div>
+            {% if cansuggest or cantranslate %}
+            <div class="translate-toolbar">
+              <a class="copyoriginal"><img src="{{ 'images/copy.png'|m }}" title="{% trans 'Copy into translation' %}" /></a>
+            </div>
+            {% endif %}
           </div>
-          {% endif %}
+          <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus">
+            {% for i, target, title in altunit|pluralize_target %}
+            {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
+            <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}">{{ target|fancy_highlight }}</div>
+            {% endfor %}
+            <div class="placeholder"></div>
+          </div>
         </div>
         {% endfor %}
-      </div>
-      <!-- Original -->
-      <div class="translate-original translate-original-focus">
-        {% for i, source, title in unit|pluralize_source %}
-        {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-        <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ source|fancy_highlight }}</div>
-        {% endfor %}
-        {% if cansuggest or cantranslate %}
-        <div class="translate-toolbar">
-          <a class="copyoriginal" accesskey="c"><img src="{{ 'images/copy.png'|m }}" title="{% trans 'Copy into translation' %}" /></a>
+        <!-- Original -->
+        <div class="source-language original">
+          <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+            <div class="language-name">{{ source_language.localname }}</div>
+            {% if cansuggest or cantranslate %}
+            <div class="translate-toolbar">
+              <a class="copyoriginal" accesskey="c"><img src="{{ 'images/copy.png'|m }}" title="{% trans 'Copy into translation' %}" /></a>
+            </div>
+            {% endif %}
+          </div>
+          <div class="translate-original translate-original-focus">
+            {% for i, source, title in unit|pluralize_source %}
+            {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
+            <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ source|fancy_highlight }}</div>
+            {% endfor %}
+            <div class="placeholder"></div>
+          </div>
         </div>
-        {% endif %}
       </div>
       <!-- Buttons, resize links, special characters -->
       <div class="translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">

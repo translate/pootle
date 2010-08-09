@@ -1641,6 +1641,7 @@ table[dir="rtl"] td.translate-original
 {
     font-weight: bolder;
     color: #006699;
+    position: relative;
 }
 
 .translation-space
@@ -1681,12 +1682,49 @@ div.translate-right
 
 /* ORIGINAL */
 
-.translate-focus div.translate-original
+div.source-language > div.translation-text-headers
+{
+    min-height: 18px;
+}
+
+.translate-focus div.translate-original,
+div.language-name
 {
     border: 1px solid black;
     background-color: #ebebeb;
+    color: inherit;
+}
+
+div.language-name
+{
+    border-bottom: 1px solid #ebebeb;
+    padding: 1px 5px 0px;
+    display: inline-block;
+    position: absolute;
+    bottom: -1px;
+}
+
+div.translation-text-headers[dir="rtl"] div.language-name
+{
+    margin-right: -2px;
+}
+
+.translate-focus div.translate-original,
+{
     color: #000;
-    position: relative;
+}
+
+div.alternative div.translate-original,
+div.alternative div.language-name
+{
+    border: 1px solid #cccccc;
+    background-color: #dddddd;
+    color: inherit;
+}
+
+div.alternative div.language-name
+{
+    border-bottom: 1px solid #dddddd;
 }
 
 div.translate-original
@@ -1776,10 +1814,6 @@ td.translate-full textarea.translation
     min-height: 21px;
     padding: 0 0 5px;
     margin: 0 auto 0.5em;
-}
-
-.altsrclangname
-{
 }
 
 /* TM */
@@ -2058,13 +2092,14 @@ div#prevnext[dir="rtl"] + .translate-specialchars-block
 .translate-toolbar
 {
     position: absolute;
-    bottom: 0;
+    top: 1px;
     /* LTR */
     right: 2px;
 }
 
-.translation-text[dir="rtl"] + .translate-toolbar
+div.translation-text-headers[dir="rtl"] div.translate-toolbar
 {
+    right: auto;
     left: 2px;
 }
 

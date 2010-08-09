@@ -49,7 +49,7 @@ $(document).ready(function() {
  */
 
   $("a.copyoriginal").click(function() {
-    var sources = $(".translation-text", $(this).parent().parent());
+    var sources = $(".translation-text", $(this).parent().parent().parent());
     var clean_sources = [];
     $.each(sources, function(i) {
       clean_sources[i] = $(this).text()
