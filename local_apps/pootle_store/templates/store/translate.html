@@ -11,6 +11,11 @@
 
 {% block bodyclass %}{% if checks %}tpreview{% else %}tptranslate{% endif %}{% endblock %}
 
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href='{{ "translate.css"|m }}' />
+{% endblock css %}
+
 {% block extra_head %}
 <script src='{{ "js/jquery/jquery.textarea-expander.js"|m }}' type="text/javascript"></script>
 <script type="text/javascript">
