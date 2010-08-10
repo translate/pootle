@@ -63,13 +63,13 @@ def create_default_projects():
 
     en = require_english()
 
-    pootle = Project(code=u"pootle", source_language=en)
-    pootle.fullname = u"Pootle"
-    pootle.description = "<div dir='ltr' lang='en'>Interface translations for Pootle. <br /> See the <a href='http://pootle.locamotion.org'>official Pootle server</a> for the translations of Pootle.</div>"
-    pootle.checkstyle = "standard"
-    pootle.localfiletype = "po"
-    pootle.treestyle = "auto"
-    pootle.save()
+    #pootle = Project(code=u"pootle", source_language=en)
+    #pootle.fullname = u"Pootle"
+    #pootle.description = "<div dir='ltr' lang='en'>Interface translations for Pootle. <br /> See the <a href='http://pootle.locamotion.org'>official Pootle server</a> for the translations of Pootle.</div>"
+    #pootle.checkstyle = "standard"
+    #pootle.localfiletype = "po"
+    #pootle.treestyle = "auto"
+    #pootle.save()
 
     tutorial = Project(code=u"tutorial", source_language=en)
     tutorial.fullname = u"Tutorial"
