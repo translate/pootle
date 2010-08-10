@@ -3,6 +3,11 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href='{{ "translate.css"|m }}' />
+{% endblock css %}
+
 {% block content %}
 {% if formset %}
 <div class="settings-container centered">
@@ -47,7 +52,6 @@
 {% endblock content %}
 
 {% block scripts_extra %}
-<script src="{{ "js/translatepage.js"|m }}" type="text/javascript"></script>
-
 {{ block.super }}
+<script src="{{ "js/translatepage.js"|m }}" type="text/javascript"></script>
 {% endblock %}
