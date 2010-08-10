@@ -56,11 +56,22 @@ div.sources .translation-text
     padding: 5px 5px 1px;
 }
 
+div.translate-plural .translation-text
+{
+    padding: 1px 5px;
+}
+
 .translation-text-headers
 {
     font-weight: bolder;
     color: #006699;
     position: relative;
+}
+
+div.translate-plural .translation-text-headers
+{
+    font-weight: normal;
+    padding: 0px 5px;
 }
 
 .translation-space

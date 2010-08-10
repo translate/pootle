@@ -71,7 +71,7 @@
             </div>
             {% endif %}
           </div>
-          <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus">
+          <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
             {% for i, target, title in altunit|pluralize_target %}
             {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
             <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}">{{ target|fancy_highlight }}</div>
@@ -90,7 +90,7 @@
             </div>
             {% endif %}
           </div>
-          <div class="translate-original translate-original-focus">
+          <div class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
             {% for i, source, title in unit|pluralize_source %}
             {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
             <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ source|fancy_highlight }}</div>
