@@ -1158,6 +1158,7 @@ table.topcontributors td
 
 td.stats-words
 {
+    padding-right: 10px;
     text-align: right;
 }
 
