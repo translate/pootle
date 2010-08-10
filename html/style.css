@@ -1168,6 +1168,7 @@ html[dir="rtl"] td.pootle_path
     margin-bottom: 0.3em;
 }
 
+.common-buttons-block .news-publish,
 .common-buttons-block .password-change,
 .common-buttons-block .save
 {
@@ -1188,11 +1189,17 @@ html[dir="rtl"] td.pootle_path
     min-height: 16px;
 }
 
+.html[dir="rtl"] .news-publish,
 .html[dir="rtl"] .password-change,
 .html[dir="rtl"] .save
 {
     padding: 2px 23px 2px 5px;
     background-position: right;
+}
+
+.common-buttons-block .news-publish
+{
+    background-image: url('images/newspaper_go.png');
 }
 
 .common-buttons-block .password-change
@@ -1205,6 +1212,9 @@ html[dir="rtl"] td.pootle_path
     background-image: url('images/database_save.png');
 }
 
+.common-buttons-block .news-publish:hover,
+.common-buttons-block .news-publish:active,
+.common-buttons-block .news-publish:focus,
 .common-buttons-block .password-change:hover,
 .common-buttons-block .password-change:active,
 .common-buttons-block .password-change:focus,
