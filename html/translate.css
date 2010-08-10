@@ -159,34 +159,37 @@ table td.translate-original
     margin-bottom: 0.5em;
 }
 
-.translate-locations
+.translate-locations,
+.developer-comments,
+.translate-context
+{
+    overflow: auto;
+    padding: 5px 25px;
+}
+
+.translate-locations,
+.translate-context
 {
     font-family: monospace;
     font-size: 75%;
-    background: transparent url('images/script_code.png') no-repeat;
-    background-position: 5px center;
+}
+
+.translate-locations
+{
+    background: transparent url('images/script_code.png') no-repeat 5px center;
     border: 1px solid #ddd;
-    overflow: auto;
-    padding: 5px 25px;
 }
 
 .developer-comments
 {
-    background: #ffe url('images/information.png') no-repeat;
-    background-position: 5px center;
+    background: #ffe url('images/information.png') no-repeat 5px center;
     border: 1px solid #fc9;
-    overflow: auto;
-    padding: 5px 25px;
 }
 
 .translate-context
 {
-    background: #eee url('images/context.png') no-repeat;
-    background-position: 5px center;
-    font-family: monospace;
-    overflow: auto;
+    background: #eee url('images/context.png') no-repeat 5px center;
     border: 1px solid #fff;
-    padding: 5px 25px;
 }
 
 div.translator-comments
