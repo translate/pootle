@@ -1171,7 +1171,8 @@ html[dir="rtl"] td.pootle_path
 .common-buttons-block .news-publish,
 .common-buttons-block .password-change,
 .common-buttons-block .save,
-.common-buttons-block .upload
+.common-buttons-block .upload,
+.common-buttons-block .vcs-update
 {
     background-position: 5px 50%;
     display: block;
@@ -1193,7 +1194,8 @@ html[dir="rtl"] td.pootle_path
 .html[dir="rtl"] .news-publish,
 .html[dir="rtl"] .password-change,
 .html[dir="rtl"] .save,
-.html[dir="rtl"] .upload
+.html[dir="rtl"] .upload,
+.html[dir="rtl"] .vcs-update
 {
     padding: 2px 23px 2px 5px;
     background-position: right;
@@ -1219,6 +1221,11 @@ html[dir="rtl"] td.pootle_path
     background-image: url('images/arrow_up.png');
 }
 
+.common-buttons-block .vcs-update
+{
+    background-image: url('images/drive_network.png');
+}
+
 .common-buttons-block .news-publish:hover,
 .common-buttons-block .news-publish:active,
 .common-buttons-block .news-publish:focus,
@@ -1230,7 +1237,10 @@ html[dir="rtl"] td.pootle_path
 .common-buttons-block .save:focus,
 .common-buttons-block .upload:hover,
 .common-buttons-block .upload:active,
-.common-buttons-block .upload:focus
+.common-buttons-block .upload:focus,
+.common-buttons-block .vcs-update:hover,
+.common-buttons-block .vcs-update:active,
+.common-buttons-block .vcs-update:focus
 {
     border-color: #999;
 }
