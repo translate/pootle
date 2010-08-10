@@ -1585,7 +1585,7 @@ msgstr "Комментарии переводчика"
 #: local_apps/pootle_store/templatetags/store_tags.py:73
 #, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "Предложение перевода %(suggid)d пользователя %(user)s:"
+msgstr "Предложение перевода %(i)d пользователя %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format

@@ -618,7 +618,7 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
-"Je nainstalováno lxml verze %s, ale Pootle pro podporu XML formátu vyžaduje "
+"Je nainstalováno lxml verze %(installed)s, ale Pootle pro podporu XML formátu vyžaduje "
 "verzi %(required)s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69

@@ -68,7 +68,7 @@ msgstr "Alterar"
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr "Adicionar %(nome)s"
+msgstr "Adicionar %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
@@ -633,7 +633,7 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
-"Versão lxml %s está instalada. O Pootle requer a versão %(required)s para "
+"Versão lxml %(installed)s está instalada. O Pootle requer a versão %(required)s para "
 "suportar o formato XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69

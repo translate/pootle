@@ -616,7 +616,7 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
-"ჩადგმულია lxml ვერსია %s. XML ფორმატის მხარდასაჭერად Pootle-სთვის "
+"ჩადგმულია lxml ვერსია %(installed)s. XML ფორმატის მხარდასაჭერად Pootle-სთვის "
 "აუცილებელია ვერსია %(required)s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
@@ -1528,9 +1528,9 @@ msgid "Translator Comments"
 msgstr "მთარგმნელის შენიშვნები"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, 
+#, python-format
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "შემოთავაზება %(suggid)d მონაწილისგან %(user)s:"
+msgstr "შემოთავაზება %(i)d მონაწილისგან %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format

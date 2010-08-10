@@ -1573,7 +1573,7 @@ msgstr "Comentarios do tradutor"
 #: local_apps/pootle_store/templatetags/store_tags.py:73
 #, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "Suxestión %(suggid)d de %(user)s:"
+msgstr "Suxestión %(i)d de %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format

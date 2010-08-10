@@ -608,18 +608,18 @@ msgid ""
 msgstr ""
 
 #: local_apps/pootle_app/views/admin/dashboard.py:54
-#, python-format
+#, python-format, fuzzy
 msgid "Django version %s is installed."
 msgstr "Django verzija je instalirana."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:57
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr "Django verzija je instalirana, ali više se preporuča veća verzija."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format
+#, python-format, fuzzy
 msgid "lxml version %s is installed."
 msgstr "Instalirana je lxml verzja."
 
@@ -782,7 +782,7 @@ msgid "Save Changes"
 msgstr "Spremite promjene"
 
 #: local_apps/pootle_app/views/index/about.py:48
-#, python-format
+#, python-format, fuzzy
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr "Pootle %(pootle_ver)s pokrenut od Translate Toolkit-a %(toolkit_ver)a"
 
@@ -825,7 +825,7 @@ msgid "%(translated)d/%(total)d strings"
 msgstr "%(translated)d/%(total)d redova"
 
 #: local_apps/pootle_app/views/language/item_dict.py:76
-#, python-format
+#, python-format, fuzzy
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] "%(checks)d string (%(checkspercent)d%%) neuspjeli"
@@ -898,7 +898,7 @@ msgid "Update from VCS"
 msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:244
-#, python-format
+#, python-format, fuzzy
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] "%d riječ treba tvoju pozornost"
@@ -906,7 +906,7 @@ msgstr[1] "%d riječi treba tvoju pozornost"
 msgstr[2] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:248
-#, python-format
+#, python-format, fuzzy
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] "%d riječ je neprevedena"
@@ -914,7 +914,7 @@ msgstr[1] "%d riječi su neprevedene"
 msgstr[2] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:249
-#, python-format
+#, python-format, fuzzy
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] "%d riječ treba pregledati"
@@ -924,7 +924,7 @@ msgstr[2] ""
 #: local_apps/pootle_app/views/language/item_dict.py:275
 #: local_apps/pootle_language/views.py:67
 #: local_apps/pootle_project/views.py:74
-#, python-format
+#, python-format, fuzzy
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] "Pogreška pri čitanju %d datoteke"
@@ -1997,7 +1997,7 @@ msgstr "Poruka je poslana"
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr "poruka od % (name)s"
+msgstr "poruka od %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
