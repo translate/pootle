@@ -1,0 +1,6424 @@
+# translation of GlossaryV3Computer.csv.po to Khmer
+# Leang Chumsoben <soben@khmeros.info>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: GlossaryV3Computer.csv\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: Mon Jan 30 14:22:22 ICT 2006\n"
+"PO-Revision-Date: 2010-07-07 23:22+0200\n"
+"Last-Translator: admin <>\n"
+"Language-Team: Khmer <support@khmeros.info>\n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.1.0-beta2\n"
+
+msgid "3-D"
+msgstr "3-D"
+
+msgid "Abbreviation"
+msgstr "អក្សរ​សង្ខេប"
+
+msgid "Abort"
+msgstr "បោះបង់"
+
+msgid "Above"
+msgstr "ខាង​លើ"
+
+msgid "Absolute"
+msgstr "ដាច់​ខាត"
+
+msgid "Absolute Link"
+msgstr "តំណ​ពេញលេញ"
+
+msgid "Absolute Path"
+msgstr "ផ្លូវ​ពេញលេញ"
+
+msgid "Absolute URL"
+msgstr "URL ពេញលេញ"
+
+msgid "Absolute Value"
+msgstr "តម្លៃ​ដាច់​ខាត"
+
+msgid "Abstract"
+msgstr "អរូបី"
+
+msgid "Abstract"
+msgstr "អរូបី"
+
+msgid "Accelerator Board"
+msgstr "បន្ទះ​បង្កើន​ល្បឿន"
+
+msgid "Accelerator Card"
+msgstr "មើល Accelerator Board"
+
+msgid "Accelerator Key"
+msgstr "មើល Shortcut Key"
+
+msgid "Accent"
+msgstr "សង្កត់​​សម្លេង"
+
+msgid "Accent"
+msgstr "សង្កត់​​សម្លេង"
+
+msgid "Accept"
+msgstr "យល់ព្រម"
+
+msgid "Access"
+msgstr "ចូល​ដំណើរការ"
+
+msgid "Access Privileges"
+msgstr "សិទ្ធិ​ចូល​ដំណើរការ"
+
+msgid "Access Rights"
+msgstr "មើល Access Privileges"
+
+msgid "Access Speed"
+msgstr "ល្បឿន​ដំណើរការ"
+
+msgid "Access Time"
+msgstr "រយៈពេល​ដំណើរការ"
+
+msgid "Accessibility"
+msgstr "មធ្យោបាយ​ងាយស្រួល"
+
+msgid "Accessible"
+msgstr "អាច​ចូល​ដំណើរការ​បាន"
+
+msgid "Accessory"
+msgstr "ប្រដាប់​ប្រដា"
+
+msgid "Account"
+msgstr "គណនី"
+
+msgid "Action"
+msgstr "អំពើ"
+
+msgid "Activate"
+msgstr "ធ្វើ​ឲ្យ​សកម្ម"
+
+msgid "Active"
+msgstr "សកម្ម"
+
+msgid "Active Cell"
+msgstr "ក្រឡា​សកម្ម"
+
+msgid "Active Window"
+msgstr "បង្អួច​សកម្ម"
+
+msgid "Activity"
+msgstr "សកម្មភាព"
+
+msgid "Activity Indicator"
+msgstr "ទ្រនិច​បង្ហាញ​សកម្មភាព"
+
+msgid "Adapt"
+msgstr "សម្រួល"
+
+msgid "Adaptive"
+msgstr "អាច​ប្រែប្រួល"
+
+msgid "Adaptor"
+msgstr "អាដាប់ទ័រ"
+
+msgid "Add"
+msgstr "បន្ថែម"
+
+msgid "Add-In"
+msgstr "កម្មវិធី​បន្ថែម"
+
+msgid "Add-In"
+msgstr "កម្មវិធី​បន្ថែម"
+
+msgid "Add-On"
+msgstr "មើល Add-In"
+
+msgid "Address"
+msgstr "អាសយដ្ឋាន"
+
+msgid "Address Book"
+msgstr "សៀវភៅ​អាសយដ្ឋាន"
+
+msgid "Addressee"
+msgstr "អ្នក​ទទួល​សំបុត្រ"
+
+msgid "Addressing"
+msgstr "ការ​បំពេញ​អាសយដ្ឋាន"
+
+msgid "Adjacent"
+msgstr "ជាប់​គ្នា"
+
+msgid "Adjust"
+msgstr "លៃតម្រូវ"
+
+msgid "Administration"
+msgstr "ការ​គ្រប់គ្រង"
+
+msgid "Administrator"
+msgstr "អ្នក​គ្រប់គ្រង"
+
+msgid "Advance"
+msgstr "ទៅមុខ"
+
+msgid "Advanced"
+msgstr "កម្រិត​ខ្ពស់"
+
+msgid "Advisor"
+msgstr "ទីប្រឹក្សា"
+
+msgid "Agenda"
+msgstr "របៀបវារៈ"
+
+msgid "Agent"
+msgstr "ភ្នាក់ងារ"
+
+msgid "Aggregate Function"
+msgstr "អនុគមន៍​​ផ្ដុំ"
+
+msgid "Aging"
+msgstr "ចាស់"
+
+msgid "Agree"
+msgstr "យល់ព្រម"
+
+msgid "Agreement"
+msgstr "កិច្ច​ព្រមព្រៀង"
+
+msgid "Alert"
+msgstr "សញ្ញា​ព្រមាន"
+
+msgid "Alert"
+msgstr "សញ្ញា​ព្រមាន"
+
+msgid "Alert Box"
+msgstr "ប្រអប់​ព្រមាន"
+
+msgid "Algorithm"
+msgstr "ក្បួន​ដោះស្រាយ"
+
+msgid "Alias"
+msgstr "ឈ្មោះ​ក្លែងក្លាយ"
+
+msgid "Aliasing"
+msgstr "រឆេត​រឆូត"
+
+msgid "Align"
+msgstr "តម្រឹម"
+
+msgid "Allocate (Memory)"
+msgstr "បម្រុងទុក"
+
+msgid "Allocation (Memory)"
+msgstr "ការ​បម្រុងទុក"
+
+msgid "Allow"
+msgstr "អនុញ្ញាត"
+
+msgid "Alphabetical"
+msgstr "តាម​លំដាប់​អក្សរក្រម"
+
+msgid "Alphanumeric"
+msgstr "អក្សរ​ក្រម​លេខ"
+
+msgid "Alter"
+msgstr "ប្ដូរ"
+
+msgid "Alternate"
+msgstr "ជំនួស"
+
+msgid "Alternative Display"
+msgstr "បង្ហាញ​ជំនួស"
+
+msgid "Alternative Text"
+msgstr "អត្ថបទ​ជំនួស"
+
+msgid "Ambient"
+msgstr "ដែល​ព័ទ្ធ​ជុំវិញ"
+
+msgid "Analog"
+msgstr "អាណាឡូក"
+
+msgid "Analysis"
+msgstr "វិភាគ"
+
+msgid "Analyst"
+msgstr "អ្នក​វិភាគ"
+
+msgid "Analyze"
+msgstr "ធ្វើ​វិភាគ"
+
+msgid "Anchor"
+msgstr "បោះ​យុថ្កា"
+
+msgid "Anchor"
+msgstr "បោះ​យុថ្កា"
+
+msgid "Angle"
+msgstr "មុំ"
+
+msgid "Angle Bracket"
+msgstr "តង្កៀប​មុំ"
+
+msgid "Angled Line"
+msgstr "បន្ទាត់​កាច់"
+
+msgid "Animation"
+msgstr "ចលនា"
+
+msgid "Annotation"
+msgstr "ចំណារ​ពន្យល់"
+
+msgid "Announce"
+msgstr "ប្រកាស"
+
+msgid "Announcement"
+msgstr "សេចក្ដី​ប្រកាស"
+
+msgid "Annoy"
+msgstr "រំខាន"
+
+msgid "Annoying"
+msgstr "ដែល​រំខាន"
+
+msgid "Anonymous"
+msgstr "អនាមិក"
+
+msgid "Antenna"
+msgstr "អង់តែន"
+
+msgid "Anti-Aliasing"
+msgstr "ប្រឆាំង​រឆេត​រឆូត"
+
+msgid "Anti-Glare Screen"
+msgstr "អេក្រង់​ប្រឆាំង​ពន្លឺ"
+
+msgid "Anti-Virus Program"
+msgstr "កម្មវិធី​ប្រឆាំង​មេរោគ"
+
+msgid "Appear"
+msgstr "លេចឡើង"
+
+msgid "Appearance"
+msgstr "រូបរាង"
+
+msgid "Append"
+msgstr "បន្ថែម​ខាង​ចុង"
+
+msgid "Applet"
+msgstr "អាប់ភ្លេត"
+
+msgid "Application"
+msgstr "កម្មវិធី"
+
+msgid "Apply"
+msgstr "អនុវត្ដ"
+
+msgid "Approach"
+msgstr "របៀប​ដោះស្រាយ"
+
+msgid "Approximate"
+msgstr "ប្រហែល"
+
+msgid "Arc"
+msgstr "ធ្នូ"
+
+msgid "Archive"
+msgstr "ប័ណ្ណសារ"
+
+msgid "Archive"
+msgstr "ប័ណ្ណសារ"
+
+msgid "Area"
+msgstr "ផ្ទៃ"
+
+msgid "Argument"
+msgstr "អាគុយម៉ង់"
+
+msgid "Arrange"
+msgstr "រៀបចំ"
+
+msgid "Array"
+msgstr "អារេ"
+
+msgid "Arrow"
+msgstr "ព្រួញ"
+
+msgid "Arrow Down"
+msgstr "ព្រួញ​ចុះ​ក្រោម"
+
+msgid "Arrow Left"
+msgstr "ព្រួញ​ទៅ​ឆ្វេង"
+
+msgid "Arrow Right"
+msgstr "ព្រួញ​ទៅ​ស្ដាំ"
+
+msgid "Arrow Up"
+msgstr "ព្រួញ​ឡើង​លើ"
+
+msgid "Arrowend"
+msgstr "ចុង​ព្រួញ"
+
+msgid "Arrowhead"
+msgstr "ក្បាល​ព្រួញ"
+
+msgid "Article"
+msgstr "អត្ថបទ"
+
+msgid "Ascending (Order)"
+msgstr "ឡើង (លំដាប់)"
+
+msgid "Ask"
+msgstr "សួរ"
+
+msgid "Ask Every Time"
+msgstr "សួរ​គ្រប់ពេល"
+
+msgid "Aspect Ratio"
+msgstr "សមាមាត្រ"
+
+msgid "Assembling"
+msgstr "ការ​ផ្គុំ"
+
+msgid "Assign (Value)"
+msgstr "ផ្ដល់​តម្លៃ"
+
+msgid "Assignment (Home Work)"
+msgstr "កិច្ចការ"
+
+msgid "Assignment (Value)"
+msgstr "ការ​ផ្ដល់​តម្លៃ"
+
+msgid "Assistive"
+msgstr "ដែល​ជា​ជំនួយ"
+
+msgid "Associate"
+msgstr "ភ្ជាប់"
+
+msgid "Associated"
+msgstr "ដែល​ភ្ជាប់"
+
+msgid "Assume"
+msgstr "សន្មត"
+
+msgid "Asterisk"
+msgstr "សញ្ញា​ផ្កាយ"
+
+msgid "Asynchronous"
+msgstr "អសមកាល"
+
+msgid "Attach"
+msgstr "ភ្ជាប់​​ជាមួយ"
+
+msgid "Attached"
+msgstr "ដែល​ភ្ជាប់​ជាមួយ"
+
+msgid "Attachment"
+msgstr "ឯកសារ​ភ្ជាប់"
+
+msgid "Attempt"
+msgstr "ប៉ុនប៉ង"
+
+msgid "Attribute"
+msgstr "គុណលក្ខណៈ"
+
+msgid "Audio"
+msgstr "អូឌីយ៉ូ"
+
+msgid "Audio Output"
+msgstr "កន្លែង​បញ្ចេញ​អូឌីយ៉ូ"
+
+msgid "Authenticate"
+msgstr "ផ្ទៀងផ្ទាត់​ភាព​​ត្រឹមត្រូវ"
+
+msgid "Authentication"
+msgstr "ការ​ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
+
+msgid "Authorization"
+msgstr "សេចក្ដី​អនុញ្ញាត"
+
+msgid "Authorized"
+msgstr "ដែល​​មាន​សេចក្ដី​អនុញ្ញាត"
+
+msgid "Auto"
+msgstr "ស្វ័យប្រវត្តិ"
+
+msgid "Auto Completion"
+msgstr "ការ​បំពេញ​ស្វ័យប្រវត្តិ"
+
+msgid "Auto Configuration"
+msgstr "ការ​កំណត់​រចនា​សម្ព័ន្ធ​ស្វ័យប្រវត្តិ"
+
+msgid "Auto Detection"
+msgstr "ការ​រក​ឃើញ​ស្វ័យប្រវត្តិ"
+
+msgid "Auto Filter"
+msgstr "តម្រង​ស្វ័យប្រវត្តិ"
+
+msgid "Auto Fit To"
+msgstr "សម​ស្វ័យប្រវត្តិ​ទៅ​នឹង"
+
+msgid "Auto-Load"
+msgstr "ផ្ទុក​ស្វ័យប្រវត្តិ"
+
+msgid "AutoAbstract"
+msgstr "សេចក្ដី​សង្ខេប​ស្វ័យប្រវត្តិ"
+
+msgid "AutoAnswer"
+msgstr "ការ​ឆ្លើយ​​ស្វ័យប្រវត្តិ"
+
+msgid "AutoCorrect"
+msgstr "ការ​កែ​ស្វ័យប្រវត្តិ"
+
+msgid "AutoFormat"
+msgstr "ការ​ធ្វើ​​ទ្រង់ទ្រាយ​ស្វ័យប្រវត្តិ"
+
+msgid "AutoIncrement"
+msgstr "កើន​ស្វ័យប្រវត្តិ"
+
+msgid "AutoMail"
+msgstr "សំបុត្រ​ស្វ័យប្រវត្តិ"
+
+msgid "Automated Office"
+msgstr "ការិយាល័យ​ទំនើប"
+
+msgid "Automatic"
+msgstr "ស្វ័យប្រវត្តិ"
+
+msgid "Automation"
+msgstr "ស្វ័យ​ប្រតិកម្ម"
+
+msgid "Autopilot"
+msgstr "មើល Wizard"
+
+msgid "Autorun"
+msgstr "រត់​ស្វ័យប្រវត្តិ"
+
+msgid "Autosave"
+msgstr "រក្សាទុក​ស្វ័យប្រវត្តិ"
+
+msgid "Autoscroll"
+msgstr "រមូរ​ស្វ័យប្រវត្តិ"
+
+msgid "Autotext"
+msgstr "អត្ថបទ​ស្វ័យប្រវត្តិ"
+
+msgid "Availability"
+msgstr "ភាព​មាន"
+
+msgid "Available"
+msgstr "ដែល​អាច​រក​បាន"
+
+msgid "Average"
+msgstr "មធ្យម"
+
+msgid "Axis"
+msgstr "អ័ក្ស"
+
+msgid "Back"
+msgstr "ថយ​ក្រាយ"
+
+msgid "Back Door"
+msgstr "ទ្វារ​ក្រោយ"
+
+msgid "Back End"
+msgstr "កម្មវិធី​ខាងក្រោយ"
+
+msgid "Backbone"
+msgstr "ឆ្អឹង​ខ្នង"
+
+msgid "Background"
+msgstr "ផ្ទៃ​ខាង​ក្រោយ"
+
+msgid "Background Application"
+msgstr "កម្មវិធី​ខាង​ក្រោយ"
+
+msgid "Background Task"
+msgstr "ភារកិច្ច​ខាង​ក្រោយ"
+
+msgid "Backlog"
+msgstr "កិច្ចការ​​នៅ​​សល់"
+
+msgid "Backup"
+msgstr "ព័ត៌មាន​បម្រុង"
+
+msgid "Backup"
+msgstr "ព័ត៌មាន​បម្រុង"
+
+msgid "Backward"
+msgstr "ត្រឡប់​ទៅវិញ"
+
+msgid "Bad"
+msgstr "អាក្រក់"
+
+msgid "Bad Area"
+msgstr "តំបន់​ខូច"
+
+msgid "Bad Disk"
+msgstr "ថាស​ខូច"
+
+msgid "Bad Sector"
+msgstr "ផ្នែក​ខូច"
+
+msgid "Balance"
+msgstr "តុល្យភាព"
+
+msgid "Balance"
+msgstr "តុល្យភាព"
+
+msgid "Bandwidth (Digital Device)"
+msgstr "កម្រិត​បញ្ជូន"
+
+msgid "Bandwidth (Radio)"
+msgstr "កម្រិត​រលក"
+
+msgid "Banner"
+msgstr "បដា"
+
+msgid "Bar"
+msgstr "របារ"
+
+msgid "Bar Chart"
+msgstr "គំនូស​​តាង​​បង្គោល"
+
+msgid "Bar Code"
+msgstr "កូដ​ផលិតផល"
+
+msgid "Base"
+msgstr "គោល"
+
+msgid "Base 10"
+msgstr "គោល ១០"
+
+msgid "Base 16"
+msgstr "គោល ១៦"
+
+msgid "Base 2"
+msgstr "គោល ២"
+
+msgid "Base 8"
+msgstr "គោល ៨"
+
+msgid "Base Line"
+msgstr "បន្ទាត់​គោល"
+
+msgid "Batch File"
+msgstr "ឯកសារ​បាច់"
+
+msgid "BCC (Blind Carbon Copy)"
+msgstr "លាក់"
+
+msgid "Beamer"
+msgstr "ឧបករណ៍​បញ្ចាំង"
+
+msgid "Begin"
+msgstr "ចាប់ផ្ដើម"
+
+msgid "Begin of Word"
+msgstr "ដើម​ពាក្យ"
+
+msgid "Behavior"
+msgstr "ឥរិយាបថ"
+
+msgid "Behind"
+msgstr "ខាង​ក្រោយ"
+
+msgid "Below"
+msgstr "ខាង​ក្រោម"
+
+msgid "Bibliography"
+msgstr "គន្ថនិទ្ទេស"
+
+msgid "Binary Number"
+msgstr "ចំនួន​​គោល​ពីរ"
+
+msgid "Binary System"
+msgstr "ប្រព័ន្ធ​គោល​ពីរ"
+
+msgid "Bind"
+msgstr "ចង"
+
+msgid "Bit"
+msgstr "ប៊ីត"
+
+msgid "Bitmap"
+msgstr "រូបភាព"
+
+msgid "Blank"
+msgstr "ទទេ"
+
+msgid "Blank Document"
+msgstr "ឯកសារ​ទទេ"
+
+msgid "Blank Page"
+msgstr "ទំព័រ​ទទេ"
+
+msgid "Blend"
+msgstr "ល្បាយ"
+
+msgid "Blend"
+msgstr "ល្បាយ"
+
+msgid "Blink"
+msgstr "ភ្លឹបភ្លែតៗ"
+
+msgid "Block"
+msgstr "ប្លុក"
+
+msgid "Block"
+msgstr "ប្លុក"
+
+msgid "Blockquote"
+msgstr "សម្រង់​បណ្ដុំ"
+
+msgid "Blog"
+msgstr "មើល Weblog"
+
+msgid "Bluetooth"
+msgstr "ប្ល៊ូធូស"
+
+msgid "Blur"
+msgstr "ព្រិល"
+
+msgid "Blur"
+msgstr "ព្រិល"
+
+msgid "Board"
+msgstr "ក្ដារ"
+
+msgid "Body"
+msgstr "តួ"
+
+msgid "Bold"
+msgstr "ដិត"
+
+msgid "Book Excerpt"
+msgstr "សេចក្ដី​ដកស្រង់​សៀវភៅ"
+
+msgid "Bookmark"
+msgstr "ចំណាំ"
+
+msgid "Boolean"
+msgstr "ប៊ូលីន"
+
+msgid "Boot"
+msgstr "ចាប់ផ្ដើម​ឡើង"
+
+msgid "Border"
+msgstr "ស៊ុម"
+
+msgid "Border and Shading"
+msgstr "ស៊ុម និង ស្រមោល"
+
+msgid "Bottom"
+msgstr "បាត"
+
+msgid "Bound"
+msgstr "មើល Boundary"
+
+msgid "Boundary"
+msgstr "ព្រំដែន"
+
+msgid "Box"
+msgstr "ប្រអប់"
+
+msgid "Brace"
+msgstr "រ៉ាត់ ({ })"
+
+msgid "Bracket"
+msgstr "តង្កៀប ([ ])"
+
+msgid "Brand"
+msgstr "ម៉ាក"
+
+msgid "Break"
+msgstr "សញ្ញា​បញ្ឈប់"
+
+msgid "Break"
+msgstr "សញ្ញា​បញ្ឈប់"
+
+msgid "Breakpoint"
+msgstr "ចំណុច​ឈប់"
+
+msgid "Brief"
+msgstr "សង្ខេប"
+
+msgid "Brief"
+msgstr "សង្ខេប"
+
+msgid "Brightness"
+msgstr "ពន្លឺ"
+
+msgid "Bring Forward"
+msgstr "នាំ​មក​មុខ"
+
+msgid "Bring to Front"
+msgstr "នាំ​មក​មុខ​គេ"
+
+msgid "Broadband"
+msgstr "រលក​អាកាស​ធំ"
+
+msgid "Broadband Network"
+msgstr "បណ្ដាញ​រលក​អាកាស​ធំ"
+
+msgid "Broadcast"
+msgstr "ផ្សាយ"
+
+msgid "Brochure"
+msgstr "ប័ណ្ណ​ផ្សាយ​ពាណិជ្ជកម្ម"
+
+msgid "Broken"
+msgstr "ខូច"
+
+msgid "Browse"
+msgstr "រក​មើល"
+
+msgid "Browser"
+msgstr "កម្មវិធី​រុករក"
+
+msgid "Brush"
+msgstr "ច្រាស"
+
+msgid "Buffer"
+msgstr "សតិ​បណ្ដោះ​អាសន្ន"
+
+msgid "Bug"
+msgstr "កំហុស"
+
+msgid "Build"
+msgstr "ស្ថាបនា"
+
+msgid "Build ID"
+msgstr "លេខ​ស្ថាបនា"
+
+msgid "Built-In"
+msgstr "ជាប់"
+
+msgid "Bullet"
+msgstr "ចំណុច"
+
+msgid "Bulletin"
+msgstr "ព្រឹត្តិបត្រ"
+
+msgid "Bullets and Numbering"
+msgstr "ចំណុច និង លេខរៀង"
+
+msgid "Burn"
+msgstr "ដុត"
+
+msgid "Bus"
+msgstr "ខ្សែ​បញ្ជូន"
+
+msgid "Business Card"
+msgstr "នាម​ប័ណ្ណ"
+
+msgid "Button"
+msgstr "ប៊ូតុង"
+
+msgid "Byte"
+msgstr "បៃ"
+
+msgid "Cable Television"
+msgstr "ទូរទស្សន៍​ខ្សែ​កាប"
+
+msgid "Cache"
+msgstr "ឃ្លាំង​សម្ងាត់"
+
+msgid "Calculation"
+msgstr "គណនា"
+
+msgid "Calculator"
+msgstr "ម៉ាស៊ីន​គិត​លេខ"
+
+msgid "Call"
+msgstr "ហៅ"
+
+msgid "Callback"
+msgstr "ហៅ​ទៅ​វិញ"
+
+msgid "Callout"
+msgstr "ប៉ឺតប៉ោង"
+
+msgid "Cancel"
+msgstr "បោះបង់"
+
+msgid "Capability"
+msgstr "សមត្ថភាព"
+
+msgid "Capital Letter"
+msgstr "អក្សរពុម្ព"
+
+msgid "Capitalize"
+msgstr "សរសេរ​ជា​អក្សរពុម្ព"
+
+msgid "Caption"
+msgstr "ចំណងជើង"
+
+msgid "Card"
+msgstr "កាត"
+
+msgid "Carrier"
+msgstr "អ្នក​​ដឹក​ជញ្ជូន"
+
+msgid "Cascade"
+msgstr "ល្បាក់"
+
+msgid "Case"
+msgstr "ធុង"
+
+msgid "Case Sensitive"
+msgstr "ប្រកាន់​តួ​អក្សរ​តូច​ធំ"
+
+msgid "Case/Character (OOP)"
+msgstr "ប្ដូរ​លក្ខណៈ​អក្សរ"
+
+msgid "Cast Shadow"
+msgstr "ចោល​ស្រមោល"
+
+msgid "Catalog"
+msgstr "កាតាឡុក"
+
+msgid "Category"
+msgstr "ប្រភេទ"
+
+msgid "CC (Carbon Copy)"
+msgstr "ចម្លង"
+
+msgid "Cell"
+msgstr "ក្រឡា"
+
+msgid "Cell Pointer"
+msgstr "ទ្រនិច​ក្រឡា"
+
+msgid "Cell Reference"
+msgstr "សេចក្ដី​យោង​ក្រឡា"
+
+msgid "Center (Centre)"
+msgstr "កណ្ដាល"
+
+msgid "Centimeter (Centimetre)"
+msgstr "សង់ទីម៉ែត្រ"
+
+msgid "Central Processing Unit (CPU)"
+msgstr "ខួរ​ក្បាល"
+
+msgid "Centralized Network"
+msgstr "បណ្ដាញ​មជ្ឈការ"
+
+msgid "Centralized Processing"
+msgstr "ដំណើរការ​មជ្ឈការ"
+
+msgid "Certificate"
+msgstr "វិញ្ញាបនបត្រ"
+
+msgid "Certify"
+msgstr "បញ្ជាក់"
+
+msgid "Chairperson"
+msgstr "ប្រធាន"
+
+msgid "Change Case (Ms. Office)"
+msgstr "ប្ដូរ​លក្ខណៈ​អក្សរ"
+
+msgid "Channel"
+msgstr "ប៉ុស្តិ៍"
+
+msgid "Character"
+msgstr "តួអក្សរ"
+
+msgid "Character Set"
+msgstr "សំណុំ​តួអក្សរ"
+
+msgid "Charcoal Sketch"
+msgstr "គំនូស​វាស​ធ្យូង"
+
+msgid "Charset"
+msgstr "មើល Character Set"
+
+msgid "Chart"
+msgstr "គំនូសតាង"
+
+msgid "Chart Area"
+msgstr "ផ្ទៃ​គំនូសតាង"
+
+msgid "Chat"
+msgstr "ជជែក​កំសាន្ត"
+
+msgid "Chat Room"
+msgstr "បន្ទប់​ជជែក​កំសាន្ត"
+
+msgid "Check"
+msgstr "ពិនិត្យ​មើល"
+
+msgid "Check"
+msgstr "ពិនិត្យ​មើល"
+
+msgid "Checkbox"
+msgstr "ប្រអប់​ធីក"
+
+msgid "Checkerboard"
+msgstr "ក្ដារអុក"
+
+msgid "Checksum"
+msgstr "ឆេកសាំ"
+
+msgid "Chip"
+msgstr "បន្ទះ​សៀគ្វី​តូច"
+
+msgid "Chipset"
+msgstr "សំណុំ​បន្ទះ​សៀគ្វី​តូច"
+
+msgid "Choice"
+msgstr "ជម្រើស"
+
+msgid "Choose"
+msgstr "ជ្រើស"
+
+msgid "Chroma"
+msgstr "ក្រូម៉ា"
+
+msgid "Chrome"
+msgstr "ក្រូម"
+
+msgid "Cipher"
+msgstr "សរសេរ​សម្ងាត់"
+
+msgid "Circle"
+msgstr "ក្រឡឹង"
+
+msgid "Circular Reference"
+msgstr "យោង​ទៅ​ខ្លួន​ឯង"
+
+msgid "Class"
+msgstr "ថ្នាក់"
+
+msgid "Classification"
+msgstr "ចំណាត់ថ្នាក់"
+
+msgid "Clear"
+msgstr "ជម្រះ"
+
+msgid "Click"
+msgstr "ចុច"
+
+msgid "Client"
+msgstr "ម៉ាស៊ីន​ភ្ញៀវ"
+
+msgid "Client Side"
+msgstr "ខាង​ម៉ាស៊ីន​ភ្ញៀវ"
+
+msgid "Climate"
+msgstr "បរិយាកាស"
+
+msgid "Clip Art"
+msgstr "បន្ទប់​រូបភាព"
+
+msgid "Clipboard"
+msgstr "ក្ដារ​តម្បៀត​ខ្ទាស់"
+
+msgid "Clockwise"
+msgstr "ទ្រនិច​នាឡិកា"
+
+msgid "Clone"
+msgstr "ក្លូន"
+
+msgid "Close"
+msgstr "បិទ"
+
+msgid "Code"
+msgstr "កូដ"
+
+msgid "Collapse"
+msgstr "វេញ"
+
+msgid "Collate"
+msgstr "រៀប​តាម​លំដាប់"
+
+msgid "Collect"
+msgstr "ប្រមូល"
+
+msgid "Collection"
+msgstr "ការ​ប្រមូល"
+
+msgid "Color"
+msgstr "ពណ៌"
+
+msgid "Color Depth"
+msgstr "ជម្រៅ​ពណ៌"
+
+msgid "Color Palette"
+msgstr "ក្ដារ​លាយ​ពណ៌"
+
+msgid "Color Scheme"
+msgstr "ពណ៌​ចម្រុះ"
+
+msgid "Color Tolerance"
+msgstr "ភាព​ស្រដៀង​ពណ៌"
+
+msgid "Column"
+msgstr "ជួរ​ឈរ"
+
+msgid "Column Break"
+msgstr "ការ​បំបែក​ជួរ​ឈរ"
+
+msgid "Column Heading"
+msgstr "ក្បាល​ជួរ​ឈរ"
+
+msgid "Columnar "
+msgstr "រាងជួរឈរ"
+
+msgid "Combination"
+msgstr "បន្សំ"
+
+msgid "Combine"
+msgstr "ផ្សំ"
+
+msgid "Combo Box (Combination Box)"
+msgstr "ប្រអប់​បន្សំ"
+
+msgid "Command"
+msgstr "បញ្ជា"
+
+msgid "Command"
+msgstr "បញ្ជា"
+
+msgid "Command Line"
+msgstr "បន្ទាត់​ពាក្យ​បញ្ជា"
+
+msgid "Comments"
+msgstr "សេចក្ដី​អធិប្បាយ"
+
+msgid "Common"
+msgstr "ទូទៅ"
+
+msgid "Communication"
+msgstr "ទំនាក់​ទំនង"
+
+msgid "Compact"
+msgstr "បង្រួម"
+
+msgid "Compact"
+msgstr "បង្រួម"
+
+msgid "Compare"
+msgstr "ប្រៀបធៀប"
+
+msgid "Compatibility"
+msgstr "ភាព​ឆប​គ្នា"
+
+msgid "Compatible"
+msgstr "ដែល​ឆប​គ្នា"
+
+msgid "Compile"
+msgstr "ចងក្រង"
+
+msgid "Complementary Close"
+msgstr "បញ្ចប់​ដោយ​គួរសម"
+
+msgid "Completed"
+msgstr "បញ្ចប់​ទាំង​ស្រុង"
+
+msgid "Complex Text Layout"
+msgstr "ប្លង់​អត្ថបទ​ស្មុគ្រស្មាញ"
+
+msgid "Component"
+msgstr "សមាសភាគ"
+
+msgid "Compose"
+msgstr "តែង"
+
+msgid "Composer"
+msgstr "កម្មវិធី​តែង"
+
+msgid "Composition"
+msgstr "សមាសភាព"
+
+msgid "Compress"
+msgstr "បង្ហាប់"
+
+msgid "Compression"
+msgstr "ការ​បង្ហាប់"
+
+msgid "Compute"
+msgstr "គណនា"
+
+msgid "Computer"
+msgstr "កុំព្យូទ័រ"
+
+msgid "Concatenate"
+msgstr "ដាក់​បន្ត​គ្នា"
+
+msgid "Concatenation"
+msgstr "ការ​ដាក់​បន្ត​គ្នា"
+
+msgid "Concave"
+msgstr "ផត"
+
+msgid "Concordance"
+msgstr "មាលីសព្ទ"
+
+msgid "Concordant File"
+msgstr "ឯកសារ​មាលីសព្ទ"
+
+msgid "Condense"
+msgstr "បង្រួញ"
+
+msgid "Condensed"
+msgstr "ញឹក"
+
+msgid "Condensed Spacing"
+msgstr "គម្លាត​ញឹក"
+
+msgid "Condition"
+msgstr "លក្ខខណ្ឌ"
+
+msgid "Confidential"
+msgstr "សម្ងាត់"
+
+msgid "Confidentiality"
+msgstr "ភាព​សម្ងាត់"
+
+msgid "Configuration"
+msgstr "ការ​កំណត់​​រចនា​សម្ព័ន្ធ"
+
+msgid "Configure"
+msgstr "កំណត់​រចនា​សម្ព័ន្ធ"
+
+msgid "Confirm"
+msgstr "អះអាង"
+
+msgid "Confirmation"
+msgstr "ការ​អះអាង"
+
+msgid "Connect"
+msgstr "តភ្ជាប់"
+
+msgid "Connection"
+msgstr "ការ​តភ្ជាប់"
+
+msgid "Connection Pools"
+msgstr "អាង​ការ​តភ្ជាប់"
+
+msgid "Connector"
+msgstr "បន្ទាត់​​តភ្ជាប់"
+
+msgid "Consecutive Numbering"
+msgstr "លេខរៀង​ត​គ្នា"
+
+msgid "Consent"
+msgstr "ព្រម"
+
+msgid "Console"
+msgstr "កុងសូល"
+
+msgid "Consolidate"
+msgstr "បង្រួប​បង្រួម"
+
+msgid "Constant"
+msgstr "ថេរ"
+
+msgid "Constrain Proportion"
+msgstr "បង្ខំ​ឲ្យ​មាន​សមាមាត្រ"
+
+msgid "Constraint"
+msgstr "កម្រិត"
+
+msgid "Contact"
+msgstr "ទាក់ទង"
+
+msgid "Contain"
+msgstr "មាន"
+
+msgid "Container"
+msgstr "កុងតឺន័រ"
+
+msgid "Content"
+msgstr "មាតិកា"
+
+msgid "Context"
+msgstr "បរិបទ"
+
+msgid "Continue"
+msgstr "បន្ត"
+
+msgid "Continue Search Backward"
+msgstr "បន្ត​ស្វែងរក​ថយ​ក្រោយ"
+
+msgid "Continue Search Forward"
+msgstr "បន្ត​ស្វែងរក​ទៅ​មុខ"
+
+msgid "Contour"
+msgstr "វណ្ឌវង្ក"
+
+msgid "Contract"
+msgstr "កិច្ចសន្យា"
+
+msgid "Contract"
+msgstr "កិច្ចសន្យា"
+
+msgid "Contrast"
+msgstr "កម្រិត​ពណ៌"
+
+msgid "Contributor"
+msgstr "អ្នក​បរិច្ចាគ"
+
+msgid "Control"
+msgstr "ត្រួតត្រា"
+
+msgid "Control"
+msgstr "ត្រួតត្រា"
+
+msgid "Control Center"
+msgstr "មជ្ឈមណ្ឌល​បញ្ជា"
+
+msgid "Control Panel"
+msgstr "ផ្ទាំង​បញ្ជា"
+
+msgid "Controller"
+msgstr "ឧបករណ៍​បញ្ជា"
+
+msgid "Convene"
+msgstr "កោះ​ប្រជុំ"
+
+msgid "Convention"
+msgstr "សម្មតិកម្ម"
+
+msgid "Converge"
+msgstr "ជួប​គ្នា"
+
+msgid "Conversion"
+msgstr "ការ​បម្លែង"
+
+msgid "Convert"
+msgstr "បម្លែង"
+
+msgid "Converter"
+msgstr "កម្មវិធី​បម្លែង"
+
+msgid "Cookies"
+msgstr "ខូគី"
+
+msgid "Cool (Smiley)"
+msgstr "ត្រជាក់"
+
+msgid "Copy"
+msgstr "ច្បាប់​ចម្លង"
+
+msgid "Copy"
+msgstr "ច្បាប់​ចម្លង"
+
+msgid "Copyright"
+msgstr "រក្សា​សិទ្ធិ"
+
+msgid "Copyright Year"
+msgstr "ឆ្នាំ​រក្សា​សិទ្ធិ"
+
+msgid "Corner"
+msgstr "ជ្រុង"
+
+msgid "Corner Radius"
+msgstr "កាំ​ជ្រុង"
+
+msgid "Corner to Frame"
+msgstr "ជ្រុង​ទៅ​ស៊ុម"
+
+msgid "Correct"
+msgstr "កែ"
+
+msgid "Correct"
+msgstr "កែ"
+
+msgid "Correspondence"
+msgstr "ការ​ឆ្លើយឆ្លង"
+
+msgid "Correspondent"
+msgstr "អ្នក​ឆ្លើយឆ្លង"
+
+msgid "Corrupted File"
+msgstr "ឯកសារ​ខូច"
+
+msgid "Count"
+msgstr "រាប់"
+
+msgid "Count"
+msgstr "រាប់"
+
+msgid "Counter"
+msgstr "ច្រាស"
+
+msgid "Counter Variable"
+msgstr "អថេរ​រាប់"
+
+msgid "Counterfeit"
+msgstr "ក្លែង​បន្លំ"
+
+msgid "Counterfeit"
+msgstr "ក្លែង​បន្លំ"
+
+msgid "Crash"
+msgstr "គាំង"
+
+msgid "Crash"
+msgstr "គាំង"
+
+msgid "Create"
+msgstr "បង្កើត"
+
+msgid "Credential"
+msgstr "លិខិត​តែងតាំង"
+
+msgid "Credit Card"
+msgstr "ប័ណ្ណ​ឥណទាន"
+
+msgid "Criteria"
+msgstr "លក្ខណៈ​វិនិច្ឆ័យ"
+
+msgid "Critical"
+msgstr "សំខាន់​បំផុត"
+
+msgid "Crop"
+msgstr "ច្រឹប"
+
+msgid "Crop Tool"
+msgstr "ឧបករណ៍​ច្រឹប"
+
+msgid "Cross-reference"
+msgstr "សេចក្ដី​យោង​ឆ្លង"
+
+msgid "Cryptography"
+msgstr "កូដសាស្ត្រ"
+
+msgid "Curly Bracket"
+msgstr "រ៉ាត់ ({})"
+
+msgid "Currency"
+msgstr "រូបិយប័ណ្ណ"
+
+msgid "Current"
+msgstr "បច្ចុប្បន្ន"
+
+msgid "Current Cell"
+msgstr "ក្រឡា​បច្ចុប្បន្ន"
+
+msgid "Current Page"
+msgstr "ទំព័រ​បច្ចុប្បន្ន"
+
+msgid "Current Window"
+msgstr "បង្អួច​បច្ចុប្បន្ន"
+
+msgid "Cursor"
+msgstr "ទស្សន៍​ទ្រនិច"
+
+msgid "Curve"
+msgstr "ខ្សែ​កោង"
+
+msgid "Custom"
+msgstr "ផ្ទាល់​ខ្លួន"
+
+msgid "Customer"
+msgstr "អតិថិជន"
+
+msgid "Customization"
+msgstr "ការ​ប្ដូរ​តាម​បំណង"
+
+msgid "Customize"
+msgstr "ប្តួរ​តាម​បំណង"
+
+msgid "Cut"
+msgstr "កាត់"
+
+msgid "Cyberspace"
+msgstr "ពិភព​ទំនាក់​ទំនង"
+
+msgid "Cycle"
+msgstr "ខួប"
+
+msgid "Daemon"
+msgstr "ដេមិន"
+
+msgid "Damaged"
+msgstr "ខូចខាត"
+
+msgid "Dangerous"
+msgstr "គ្រោះថ្នាក់"
+
+msgid "Dash"
+msgstr "ដាច់ៗ"
+
+msgid "Dash Line"
+msgstr "បន្ទាត់​ដាច់ៗ"
+
+msgid "Data"
+msgstr "ទិន្នន័យ"
+
+msgid "Data Capture"
+msgstr "ការ​ចាប់​យក​ទិន្នន័យ"
+
+msgid "Data Source"
+msgstr "ប្រភព​ទិន្នន័យ"
+
+msgid "Data Type"
+msgstr "ប្រភេទ​ទិន្នន័យ"
+
+msgid "Database"
+msgstr "មូលដ្ឋាន​ទិន្នន័យ"
+
+msgid "Database Management"
+msgstr "ការ​គ្រប់គ្រង​មូលដ្ឋាន​ទិន្នន័យ"
+
+msgid "DataPilot"
+msgstr "អ្នក​ជំនួយការ​​ទិន្នន័យ"
+
+msgid "Date"
+msgstr "កាលបរិច្ឆេទ"
+
+msgid "Date Stamp"
+msgstr "ត្រា​កាលបរិច្ឆេទ"
+
+msgid "Deactivate"
+msgstr "ធ្វើ​ឲ្យ​អសកម្ម"
+
+msgid "Debug"
+msgstr "បំបាត់កំហុស"
+
+msgid "Decimal Precision"
+msgstr "ចំនួន​ខ្ទង់​ទសភាគ"
+
+msgid "Decimal Separator"
+msgstr "សញ្ញា​ក្បៀស"
+
+msgid "Declare (Variable)"
+msgstr "ប្រកាស (អថេរ)"
+
+msgid "Decode"
+msgstr "ឌិកូដ"
+
+msgid "Decoder"
+msgstr "ឌិកូឌ័រ"
+
+msgid "Decompress"
+msgstr "ពន្លា"
+
+msgid "Decorate"
+msgstr "តុបតែង"
+
+msgid "Decrease"
+msgstr "បន្ថយ"
+
+msgid "Decrypt"
+msgstr "ឌិគ្រីប"
+
+msgid "Default"
+msgstr "លំនាំដើម"
+
+msgid "Defective"
+msgstr "មិន​ពេញលេញ"
+
+msgid "Definition"
+msgstr "និយមន័យ"
+
+msgid "Defragmentation"
+msgstr "រៀបចំ​ឲ្យ​មាន​សណ្ដាប់ធ្នាប់"
+
+msgid "Degree"
+msgstr "អង្សា"
+
+msgid "Degree"
+msgstr "អង្សា"
+
+msgid "Deinstall"
+msgstr "លុប​កម្មវិធី"
+
+msgid "Delay"
+msgstr "ការ​ពន្យារ​ពេល"
+
+msgid "Delay"
+msgstr "ការ​ពន្យារ​ពេល"
+
+msgid "Delayed"
+msgstr "យឺត"
+
+msgid "Delete"
+msgstr "លុប"
+
+msgid "Delimit"
+msgstr "កំណត់​ព្រំដែន"
+
+msgid "Delimiter"
+msgstr "សញ្ញា​កំណត់​ព្រំដែន"
+
+msgid "Deliver"
+msgstr "បញ្ជូន​ទៅ​ដល់"
+
+msgid "Demilitarized Zone (DNS)"
+msgstr "តំបន់​ស"
+
+msgid "Demo (Demonstration)"
+msgstr "ការ​បង្ហាញ​សាកមើល"
+
+msgid "Demote"
+msgstr "បន្ថយ"
+
+msgid "Denied"
+msgstr "ត្រូវ​បាន​បដិសេធ"
+
+msgid "Denominator"
+msgstr "ភាគ​បែង"
+
+msgid "Denote"
+msgstr "តំណាង​ឲ្យ"
+
+msgid "Deny"
+msgstr "បដិសេធ"
+
+msgid "Department"
+msgstr "នាយកដ្ឋាន"
+
+msgid "Dependence"
+msgstr "អនិស្សរភាព"
+
+msgid "Descending (Order)"
+msgstr "ចុះ (លំដាប់)"
+
+msgid "Description"
+msgstr "ពិពណ៌នា"
+
+msgid "Deselect"
+msgstr "ដោះ​ជម្រើស"
+
+msgid "Design"
+msgstr "រចនា"
+
+msgid "Designation"
+msgstr "នាម​កត្តា"
+
+msgid "Designer"
+msgstr "អ្នក​រចនា"
+
+msgid "Desktop"
+msgstr "ផ្ទៃតុ"
+
+msgid "Desktop Computer"
+msgstr "កុំព្យូទ័រ​លើ​តុ"
+
+msgid "Destination"
+msgstr "ទិសដៅ"
+
+msgid "Detach"
+msgstr "ផ្ដាច់"
+
+msgid "Detail"
+msgstr "សេចក្ដី​លម្អិត"
+
+msgid "Detect and Repair"
+msgstr "រកឃើញ និង ជួសជុល"
+
+msgid "Detective"
+msgstr "អ្នក​អង្កេត"
+
+msgid "Developer"
+msgstr "អ្នក​បង្កើត"
+
+msgid "Developer"
+msgstr "អ្នក​បង្កើត"
+
+msgid "Development Cycle"
+msgstr "ខួប​អភិវឌ្ឍន៍"
+
+msgid "Device"
+msgstr "ឧបករណ៍"
+
+msgid "Diacritic, Diacritical Mark"
+msgstr "វណ្ណយុត្តិ"
+
+msgid "Diagonal Line"
+msgstr "អង្កត់​ទ្រូង"
+
+msgid "Diagram"
+msgstr "ដ្យាក្រាម"
+
+msgid "Dial"
+msgstr "ហៅ (ទូរស័ព្ទ)"
+
+msgid "Dial In"
+msgstr "ហៅ​ចូល"
+
+msgid "Dial-Up Access"
+msgstr "ចូល​ដំណើរការ​តាម​ទូរស័ព្ទ​លើ​តុ"
+
+msgid "Dialect"
+msgstr "គ្រាម​ភាសា"
+
+msgid "Dialer"
+msgstr "អ្នក​ហៅ"
+
+msgid "Dialog Box"
+msgstr "ប្រអប់"
+
+msgid "Dictation Software"
+msgstr "កម្មវិធី​សរសេរ​តាម​អាន"
+
+msgid "Digit"
+msgstr "តួ​លេខ"
+
+msgid "Digital"
+msgstr "ឌីជីថល"
+
+msgid "Digital Signature"
+msgstr "ហត្ថលេខា​ឌីជីថល"
+
+msgid "Dim"
+msgstr "ស្រអាប់"
+
+msgid "Dimension"
+msgstr "វិមាត្រ"
+
+msgid "Direct Access"
+msgstr "ការ​ចូល​ដំណើរការ​ផ្ទាល់"
+
+msgid "Direction"
+msgstr "ទិស"
+
+msgid "Directory"
+msgstr "ថត"
+
+msgid "Directory Server"
+msgstr "ម៉ាស៊ីន​បម្រើ​ថត"
+
+msgid "Disable"
+msgstr "មិន​អនុញ្ញាត"
+
+msgid "Disabled"
+msgstr "មិន​បាន​អនុញ្ញាត"
+
+msgid "Disc"
+msgstr "ថាស"
+
+msgid "Discard"
+msgstr "បោះចោល"
+
+msgid "Disclaim"
+msgstr "ប្រកែក"
+
+msgid "Disclaimer"
+msgstr "អ្នក​ប្រកែក"
+
+msgid "Disconnect"
+msgstr "ផ្ដាច់"
+
+msgid "Discontinue"
+msgstr "បញ្ឈប់"
+
+msgid "Discussion"
+msgstr "កិច្ច​ពិភាក្សា"
+
+msgid "Disk"
+msgstr "ថាស"
+
+msgid "Disk Drive"
+msgstr "ដ្រាយ​ថាស"
+
+msgid "Disk Space"
+msgstr "ទំហំ​ថាស"
+
+msgid "Diskette"
+msgstr "ថាស​តូច"
+
+msgid "Dispatch"
+msgstr "បញ្ជូន"
+
+msgid "Display"
+msgstr "ទិដ្ឋភាព"
+
+msgid "Display"
+msgstr "ទិដ្ឋភាព"
+
+msgid "Dissertation"
+msgstr "បរមាធិប្បាយ"
+
+msgid "Dissolve"
+msgstr "រំលាយ"
+
+msgid "Distance"
+msgstr "ចម្ងាយ"
+
+msgid "Distinct"
+msgstr "ខុសគ្នា"
+
+msgid "Distort"
+msgstr "បង្ខូច​ទ្រង់ទ្រាយ"
+
+msgid "Distribute"
+msgstr "ចែកចាយ"
+
+msgid "Distribute Columns Evenly"
+msgstr "ចែក​ជួរ​ឈរ​ស្មើៗ​គ្នា"
+
+msgid "Distribute Rows Evenly"
+msgstr "ចែក​ជួរ​ដេក​ស្មើៗ​គ្នា"
+
+msgid "Distribution"
+msgstr "ការ​ចែកចាយ"
+
+msgid "Distributor"
+msgstr "អ្នក​ចែកចាយ"
+
+msgid "Dithering"
+msgstr "ច្របល់"
+
+msgid "Dividend"
+msgstr "តំណាង​ចែក"
+
+msgid "Division Sign"
+msgstr "សញ្ញា​ចែក"
+
+msgid "Divisor"
+msgstr "តួ​ចែក"
+
+msgid "Dock"
+msgstr "ចូល​ផែ"
+
+msgid "Document"
+msgstr "ឯកសារ"
+
+msgid "Document Begin"
+msgstr "ដើម​ឯកសារ"
+
+msgid "Domain"
+msgstr "ដែន"
+
+msgid "Domestic"
+msgstr "ក្នុង​តំបន់"
+
+msgid "Done"
+msgstr "ធ្វើ​រួច"
+
+msgid "Dossier"
+msgstr "សំណុំរឿង"
+
+msgid "Dot"
+msgstr "ចំណុច"
+
+msgid "Dot"
+msgstr "ចំណុច"
+
+msgid "Dot Matrix Printer"
+msgstr "ម៉ាស៊ីន​បោះពុម្ព​ប្រើ​ម្ជុល"
+
+msgid "Dotted"
+msgstr "ចុច"
+
+msgid "Double"
+msgstr "ទ្វេ"
+
+msgid "Double Click"
+msgstr "ចុច​ទ្វេ​ដង"
+
+msgid "Double Line"
+msgstr "បន្ទាត់​ទ្វេ"
+
+msgid "Double Size"
+msgstr "ទំហំ​ទ្វេ"
+
+msgid "Double Strikethrough"
+msgstr "បន្ទាត់​ឆូត​ទ្វេ"
+
+msgid "Double Underline"
+msgstr "គូស​បន្ទាត់​ក្រោម​ពីរ​ជាន់"
+
+msgid "Double-sided"
+msgstr "សងខាង"
+
+msgid "Down Time"
+msgstr "ពេល​ខូច"
+
+msgid "Downgrade"
+msgstr "បន្ទាប"
+
+msgid "Download"
+msgstr "ទាញយក"
+
+msgid "Downward"
+msgstr "ទៅ​ក្រោម"
+
+msgid "Draft"
+msgstr "សេចក្ដី​ព្រាង"
+
+msgid "Drag"
+msgstr "អូស"
+
+msgid "Drawing Toolbar"
+msgstr "របារ​ឧបករណ៍​គូរ"
+
+msgid "Drive"
+msgstr "ដ្រាយ"
+
+msgid "Driver"
+msgstr "កម្មវិធី​បញ្ជា"
+
+msgid "Drop"
+msgstr "ទម្លាក់"
+
+msgid "Drop"
+msgstr "ទម្លាក់"
+
+msgid "Drop Cap"
+msgstr "អក្សរ​ធំ​ដើម​អត្ថបទ"
+
+msgid "Drop Down Menu"
+msgstr "ម៉ឺនុយ​​ធ្លាក់ចុះ"
+
+msgid "Drop Out"
+msgstr "បាត់បង់​សញ្ញា"
+
+msgid "Dumb Terminal"
+msgstr "ស្ថានីយ​ទទួល"
+
+msgid "Dummy"
+msgstr "អត់​ចេះ​សោះ"
+
+msgid "Duplex"
+msgstr "ដែល​មាន​ពីរ"
+
+msgid "Duplicate"
+msgstr "ស្ទួន"
+
+msgid "Duplicate"
+msgstr "ស្ទួន"
+
+msgid "Duration"
+msgstr "ថិរវេលា"
+
+msgid "DVD"
+msgstr "ឌីវីឌី"
+
+msgid "Dynamic"
+msgstr "ថាមវន្ត"
+
+msgid "E-Book (Electronic Book)"
+msgstr "សៀវភៅ​អេឡិចត្រូនិច"
+
+msgid "E-Commerce (Electronic Commerce)"
+msgstr "ពាណិជ្ជកម្ម​អេឡិចត្រូនិច"
+
+msgid "E-Mail (Email)"
+msgstr "អ៊ីមែល"
+
+msgid "E-Mail Address"
+msgstr "អាសយដ្ឋាន​អ៊ីមែល"
+
+msgid "E-Mail Client"
+msgstr "កម្មវិធី​អ៊ីមែល"
+
+msgid "E-Mail Server"
+msgstr "ម៉ាស៊ីន​បម្រើ​អ៊ីមែល"
+
+msgid "Edge"
+msgstr "គែម"
+
+msgid "Edit"
+msgstr "កែសម្រួល"
+
+msgid "Edition"
+msgstr "ស្នាដៃ"
+
+msgid "Editor"
+msgstr "កម្មវិធី​និពន្ធ"
+
+msgid "Editor"
+msgstr "កម្មវិធី​និពន្ធ"
+
+msgid "Effect"
+msgstr "ប្រសិទ្ធិភាព"
+
+msgid "Effect"
+msgstr "ប្រសិទ្ធិភាព"
+
+msgid "Eject (Disk)"
+msgstr "ច្រានចេញ"
+
+msgid "Elapse"
+msgstr "កន្លង​ទៅ"
+
+msgid "Elapsed"
+msgstr "ដែលកន្លង​ទៅ"
+
+msgid "Electronic Mail"
+msgstr "សំបុត្រ​អេឡិចត្រូនិច"
+
+msgid "Element"
+msgstr "ធាតុ"
+
+msgid "Embarrassed (Smiley)"
+msgstr "ខ្មាស​អៀន"
+
+msgid "Embed"
+msgstr "បង្កប់"
+
+msgid "Embedded"
+msgstr "ដែល​បង្កប់"
+
+msgid "Emboss"
+msgstr "ធ្វើ​ឲ្យ​ក្រឡោត"
+
+msgid "Emboss"
+msgstr "ធ្វើ​ឲ្យ​ក្រឡោត"
+
+msgid "Embossed"
+msgstr "លៀន"
+
+msgid "Emoticon"
+msgstr "សញ្ញាអារម្មណ៍"
+
+msgid "Emphasis"
+msgstr "ការ​សង្កត់ (សម្លេង)"
+
+msgid "Empty"
+msgstr "សម្អាត"
+
+msgid "Empty"
+msgstr "សម្អាត"
+
+msgid "Emulate"
+msgstr "ត្រាប់​តាម"
+
+msgid "Emulator"
+msgstr "វត្ថុ​ត្រាប់​តាម"
+
+msgid "Enable"
+msgstr "អនុញ្ញាត"
+
+msgid "Enabled"
+msgstr "បាន​អនុញ្ញាត"
+
+msgid "Encapsulate"
+msgstr "ស្រោប"
+
+msgid "Enclosing character"
+msgstr "តួអក្សរ​ព័ទ្ធ​ជុំ​វិញ"
+
+msgid "Enclosure"
+msgstr "អ្វី​ៗ​ភ្ជាប់​ជាមួយ​សំបុត្រ"
+
+msgid "Encode"
+msgstr "អ៊ិនកូដ"
+
+msgid "Encoder"
+msgstr "អ៊ិនកូឌ័រ"
+
+msgid "Encounter"
+msgstr "ជួប​ប្រទះ"
+
+msgid "Encrypt"
+msgstr "អ៊ិនគ្រីប"
+
+msgid "End"
+msgstr "ចុង"
+
+msgid "End User"
+msgstr "អ្នក​ប្រើ"
+
+msgid "Endless"
+msgstr "មិន​ចេះ​ចប់"
+
+msgid "Endnote"
+msgstr "លេខ​យោង​ចុង"
+
+msgid "Engraved"
+msgstr "លឹប"
+
+msgid "Enlarge"
+msgstr "ពង្រីក"
+
+msgid "Enter"
+msgstr "បញ្ចូល"
+
+msgid "Enter"
+msgstr "បញ្ចូល"
+
+msgid "Entertainment"
+msgstr "ការកំសាន្ត"
+
+msgid "Entire"
+msgstr "ទាំងមូល"
+
+msgid "Entire Column"
+msgstr "ជួរឈរ​ទាំងមូល"
+
+msgid "Entire Row"
+msgstr "ជួរដេក​ទាំងមូល"
+
+msgid "Entity"
+msgstr "អង្គភាព"
+
+msgid "Entry"
+msgstr "ធាតុ​បញ្ចូល"
+
+msgid "Equal Sign"
+msgstr "សញ្ញា​ស្មើ"
+
+msgid "Equalizer"
+msgstr "ធ្វើ​ឲ្យ​ស្មើ​គ្នា"
+
+msgid "Erase"
+msgstr "លុប"
+
+msgid "Error"
+msgstr "កំហុស"
+
+msgid "Error Checking"
+msgstr "ការ​ពិនិត្យ​កំហុស"
+
+msgid "Error Code"
+msgstr "លេខ​កំហុស"
+
+msgid "Error Handling"
+msgstr "ដោះស្រាយ​កំហុស"
+
+msgid "Escape"
+msgstr "គេច​ចេញ"
+
+msgid "Ethernet"
+msgstr "អ៊ីសឺរណិត"
+
+msgid "Euro Converter"
+msgstr "កម្មវិធី​បម្លែង​​អឺរ៉ូ"
+
+msgid "Evaluate"
+msgstr "វាយ​តម្លៃ"
+
+msgid "Evaluation"
+msgstr "ការ​វាយ​តម្លៃ"
+
+msgid "Evaluation Version"
+msgstr "កំណែ​សាកល្បង"
+
+msgid "Even Number"
+msgstr "លេខគូ"
+
+msgid "Even Page"
+msgstr "ទំព័រ​គូ"
+
+msgid "Evenly"
+msgstr "ស្មើៗគ្នា"
+
+msgid "Event"
+msgstr "ព្រឹត្តិការណ៍"
+
+msgid "Every Time"
+msgstr "គ្រប់ពេល"
+
+msgid "Examine"
+msgstr "ត្រួតពិនិត្យ"
+
+msgid "Exception"
+msgstr "ករណី​​លើកលែង"
+
+msgid "Executable"
+msgstr "ដែល​អាច​ប្រតិបត្តិ"
+
+msgid "Execute"
+msgstr "ប្រតិបត្តិ"
+
+msgid "Exit"
+msgstr "ចេញ"
+
+msgid "Expand"
+msgstr "ពង្រីក"
+
+msgid "Expand (Directory)"
+msgstr "បន្លាយ (ថត)"
+
+msgid "Expanded"
+msgstr "រង្វើល"
+
+msgid "Expanded Spacing"
+msgstr "គម្លាត​រង្វើល"
+
+msgid "Expected"
+msgstr "ដែល​រំពឹង"
+
+msgid "Expiration"
+msgstr "ការ​ផុត​កំណត់"
+
+msgid "Expire"
+msgstr "ផុត​កំណត់"
+
+msgid "Expired"
+msgstr "ដែល​ផុត​កំណត់"
+
+msgid "Explore"
+msgstr "រុករក"
+
+msgid "Explorer (Program)"
+msgstr "កម្មវិធី​រុករក"
+
+msgid "Export"
+msgstr "នាំចេញ"
+
+msgid "Expression"
+msgstr "កន្សោម"
+
+msgid "Extended Selection"
+msgstr "ជម្រើស​បន្ថែម"
+
+msgid "Extended Tips"
+msgstr "ព័ត៌មាន​ជំនួយ​បន្ថែម"
+
+msgid "Extension"
+msgstr "ផ្នែក​បន្ថែម"
+
+msgid "Extension (File)"
+msgstr "កន្ទុយ (ឯកសារ)"
+
+msgid "External"
+msgstr "ក្រៅ"
+
+msgid "Extracondensed"
+msgstr "ញឹក​​ខ្លាំង"
+
+msgid "Extract"
+msgstr "ស្រង់​ចេញ"
+
+msgid "Extraction"
+msgstr "ការ​ស្រង់​ចេញ"
+
+msgid "Extraexpanded"
+msgstr "រង្វើល​​​ខ្លាំង"
+
+msgid "Extrusion"
+msgstr "ការ​ហូត"
+
+msgid "Eyedropper"
+msgstr "ឧបករណ៍​ចាក់​ពណ៌"
+
+msgid "Facility Personnel"
+msgstr "បុគ្គលិក​បន្ទប់​ឧបករណ៍"
+
+msgid "Factory Setting"
+msgstr "ការ​កំណត់​ពី​រោងចក្រ"
+
+msgid "Fade In"
+msgstr "លេច​បន្ដិច​ម្ដង"
+
+msgid "Fade Out"
+msgstr "លិច​បន្ដិច​ម្ដង"
+
+msgid "Fade Out Color"
+msgstr "ពណ៌​លេចឡើង"
+
+msgid "Fail"
+msgstr "បរាជ័យ"
+
+msgid "Failure"
+msgstr "ភាព​បរាជ័យ"
+
+msgid "FAQ (Frequently Asked Question)"
+msgstr "សំណួរ​ដែល​សួរ​រឿយ​ៗ"
+
+msgid "Fast Forward"
+msgstr "ខារ​ទៅ​មុខ"
+
+msgid "Faster"
+msgstr "លឿន​ជាង"
+
+msgid "Fastest"
+msgstr "លឿន​បំផុត"
+
+msgid "Fatal"
+msgstr "ធ្ងន់ធ្ងរ"
+
+msgid "Favorite"
+msgstr "សំណព្វ"
+
+msgid "Favorite Folder"
+msgstr "ថត​សំណព្វ"
+
+msgid "Feature"
+msgstr "លក្ខណៈ​ពិសេស"
+
+msgid "Feed (Newsfeed)"
+msgstr "មតិ​ព័ត៌មាន "
+
+msgid "Feedback"
+msgstr "មតិអ្នកប្រើ"
+
+msgid "Feet"
+msgstr "ហ៊្វីតថ៍"
+
+msgid "Fetch"
+msgstr "ទៅ​ប្រមូល​យក"
+
+msgid "Field"
+msgstr "វាល"
+
+msgid "Figure"
+msgstr "រូបភាព​ពន្យល់"
+
+msgid "File"
+msgstr "ឯកសារ"
+
+msgid "File Browser"
+msgstr "កម្មវិធី​រុករក​ឯកសារ"
+
+msgid "File Input (Form HTML)"
+msgstr "មើល File Submission"
+
+msgid "File Name"
+msgstr "ឈ្មោះ​ឯកសារ"
+
+msgid "File Pointer"
+msgstr "ទ្រនិច​ឯកសារ"
+
+msgid "File Submission"
+msgstr "ការ​ដាក់​ស្នើ​ឯកសារ"
+
+msgid "File System"
+msgstr "ប្រព័ន្ធ​ឯកសារ"
+
+msgid "Filing Cabinet"
+msgstr "ទូ​ដាក់​ឯកសារ"
+
+msgid "Fill"
+msgstr "បំពេញ"
+
+msgid "Filled"
+msgstr "បាន​បំពេញ"
+
+msgid "Filter"
+msgstr "ត្រង"
+
+msgid "Filter"
+msgstr "ត្រង"
+
+msgid "Final Angle"
+msgstr "មុំ​បញ្ចប់"
+
+msgid "Find"
+msgstr "រក"
+
+msgid "Find Next"
+msgstr "រក​បន្ទាប់"
+
+msgid "Find Previous"
+msgstr "រក​ខាង​ដើម"
+
+msgid "Fine line"
+msgstr "បន្ទាត់​ល្មម"
+
+msgid "Finish"
+msgstr "បញ្ចប់"
+
+msgid "Firewall"
+msgstr "ជញ្ជាំងភ្លើង"
+
+msgid "Firmware"
+msgstr "កម្មវិធី​បង្កប់"
+
+msgid "First"
+msgstr "ដំបូង"
+
+msgid "First Name"
+msgstr "នាម​ខ្លួន"
+
+msgid "Fit"
+msgstr "សម"
+
+msgid "Fit on Screen"
+msgstr "ប៉ុន​អេក្រង់"
+
+msgid "Fit to Frame"
+msgstr "សម​ទៅ​នឹង​ស៊ុម"
+
+msgid "Fix"
+msgstr "ជួសជុល"
+
+msgid "Fixed"
+msgstr "ថេរ"
+
+msgid "Flag"
+msgstr "ទង់"
+
+msgid "Flash"
+msgstr "បញ្ចេញ​​ពន្លឺ"
+
+msgid "Flat"
+msgstr "រាបស្មើ"
+
+msgid "Flip"
+msgstr "ត្រឡប់"
+
+msgid "Floating Frame"
+msgstr "ស៊ុម​អណ្ដែត"
+
+msgid "Floating Point number"
+msgstr "ចំនួន​ពិត"
+
+msgid "Floor"
+msgstr "បាត"
+
+msgid "Floppy Disk Drive"
+msgstr "ដ្រាយ​ថាស​​ទន់"
+
+msgid "Flow Chart"
+msgstr "គំនូសតាង​​លំហូរ"
+
+msgid "Fly out"
+msgstr "ហោះ​ចេញ​ពី"
+
+msgid "Focal"
+msgstr "ដែល​ប្រសព្វ​គ្នា"
+
+msgid "Focus"
+msgstr "ផ្ដោត"
+
+msgid "Fold Mark"
+msgstr "ចំណុច​របត់"
+
+msgid "Folder"
+msgstr "ថត"
+
+msgid "Follow-up"
+msgstr "បន្ត​ពី"
+
+msgid "Font"
+msgstr "ពុម្ពអក្សរ"
+
+msgid "Font Color"
+msgstr "ពណ៌​ពុម្ពអក្សរ"
+
+msgid "Font Effect"
+msgstr "បែបផែន​ពុម្ពអក្សរ"
+
+msgid "Font Size"
+msgstr "ទំហំ​ពុម្ពអក្សរ"
+
+msgid "Font Style"
+msgstr "រចនាប័ទ្ម​ពុម្ពអក្សរ"
+
+msgid "Fontwork"
+msgstr "សិល្បៈ​អក្សរ"
+
+msgid "Foot"
+msgstr "ហ៊្វុតថ៍"
+
+msgid "Foot-In-Mouth (Smiley)"
+msgstr "រអៀស​ខ្លួន"
+
+msgid "Footer"
+msgstr "បាតកថា"
+
+msgid "Footnote"
+msgstr "លេខ​យោង"
+
+msgid "Force"
+msgstr "បង្ខំ"
+
+msgid "Foreground"
+msgstr "ផ្ទៃ​ខាង​មុខ"
+
+msgid "Foreground Application"
+msgstr "កម្មវិធី​ខាង​មុខ"
+
+msgid "Foreground Task"
+msgstr "ភារកិច្ច​ខាង​មុខ"
+
+msgid "Form"
+msgstr "សំណុំ​បែបបទ"
+
+msgid "Form Letter"
+msgstr "សំបុត្រ​សំណុំ​បែបបទ"
+
+msgid "Format"
+msgstr "ទ្រង់ទ្រាយ"
+
+msgid "Format"
+msgstr "ទ្រង់ទ្រាយ"
+
+msgid "Formatting Bar"
+msgstr "របារ​ទ្រង់ទ្រាយ"
+
+msgid "Formula"
+msgstr "រូបមន្ត"
+
+msgid "Formula Bar"
+msgstr "របារ​រូបមន្ត"
+
+msgid "Forward"
+msgstr "បញ្ជូន​បន្ត"
+
+msgid "Forward"
+msgstr "បញ្ជូន​បន្ត"
+
+msgid "Frame"
+msgstr "ស៊ុម"
+
+msgid "Frameset"
+msgstr "សំណុំ​ស៊ុម"
+
+msgid "Free News Letters"
+msgstr "សំបុត្រ​ព័ត៌មាន​ឥត​គិត​ថ្លៃ"
+
+msgid "Freeware"
+msgstr "កម្មវិធី​ប្រើ​ឥត​បង់​ថ្លៃ"
+
+msgid "Freeze"
+msgstr "បង្កក"
+
+msgid "Frequency"
+msgstr "ប្រេកង់"
+
+msgid "Front End"
+msgstr "ផ្នែក​ខាង​មុខ"
+
+msgid "Frown (Smiley)"
+msgstr "ពេបជ្រាយ"
+
+msgid "Full Control"
+msgstr "ត្រួតត្រា​ទាំងស្រុង"
+
+msgid "Full Duplex Transmission"
+msgstr "ការ​បញ្ជូន​ទ្វេ​ទិស​ក្នុង​ពេល​តែ​មួយ"
+
+msgid "Full Screen  "
+msgstr "ពេញ​អេក្រង់"
+
+msgid "Full Version"
+msgstr "កំណែ​ពេញលេញ"
+
+msgid "Fully Qualified Form"
+msgstr "ទម្រង់​ពេញ​លក្ខណៈ"
+
+msgid "Function"
+msgstr "មុខងារ"
+
+msgid "Function"
+msgstr "មុខងារ"
+
+msgid "Function bar"
+msgstr "របារ​មុខងារ"
+
+msgid "Fuzzy"
+msgstr "ស្រពិចស្រពិល"
+
+msgid "Gallery"
+msgstr "វិចិត្រសាល"
+
+msgid "Gamma"
+msgstr "ហ្គាម៉ា"
+
+msgid "Gap"
+msgstr "ចន្លោះ"
+
+msgid "Gateway"
+msgstr "ផ្លូវ​ចេញ​ចូល"
+
+msgid "Generate"
+msgstr "បង្កើត"
+
+msgid "Genre"
+msgstr "ប្រភេទ​តន្ត្រី"
+
+msgid "Geometric Shape"
+msgstr "រាង​ធរណីមាត្រ"
+
+msgid "Geometry"
+msgstr "ធរណីមាត្រ"
+
+msgid "Get"
+msgstr "យក"
+
+msgid "Gigabyte"
+msgstr "ជីកាបៃ"
+
+msgid "Global"
+msgstr "សកល"
+
+msgid "Glue Point"
+msgstr "ចំណុច​​​ភ្ជាប់"
+
+msgid "Go Back"
+msgstr "ត្រឡប់​ទៅ​ដើម"
+
+msgid "Go Forward"
+msgstr "ទៅ​មុខ"
+
+msgid "Goal Seek"
+msgstr "ដោះស្រាយ​សមីការ"
+
+msgid "Gouraud"
+msgstr "ហ៊្គូរោដ"
+
+msgid "Gradient"
+msgstr "ជម្រាល"
+
+msgid "Grammar"
+msgstr "វេយ្យាករណ៍"
+
+msgid "Graphic"
+msgstr "ក្រាហ្វិក"
+
+msgid "Graphic Design"
+msgstr "ការ​រចនា​ក្រាហ្វិក"
+
+msgid "Grayscale"
+msgstr "មាត្រដ្ឋាន​ប្រផេះ"
+
+msgid "Grid"
+msgstr "ក្រឡា​ចត្រង្គ"
+
+msgid "Gridline"
+msgstr "បន្ទាត់​ក្រឡា​ចត្រង្គ"
+
+msgid "Group"
+msgstr "ក្រុម"
+
+msgid "Group"
+msgstr "ក្រុម"
+
+msgid "Group Box"
+msgstr "ប្រអប់​ក្រុម"
+
+msgid "Guard"
+msgstr "ឆ្មាំ"
+
+msgid "Guest"
+msgstr "ភ្ញៀវ"
+
+msgid "Guide"
+msgstr "មគ្គុទ្ទេសក៍"
+
+msgid "Guideline "
+msgstr "គោលការណ៍​ណែនាំ"
+
+msgid "Half"
+msgstr "ពាក់​កណ្ដាល"
+
+msgid "Half Duplex Transmission"
+msgstr "ការ​បញ្ជូន​ឯកទិស​ក្នុង​ពេល​តែ​មួយ"
+
+msgid "Handle"
+msgstr "ដោះស្រាយ"
+
+msgid "Handle (Of Object)"
+msgstr "ចំណុច​ទាញ"
+
+msgid "Handler"
+msgstr "អ្នក​ដោះស្រាយ"
+
+msgid "Handout"
+msgstr "ប្លង់​បោះពុម្ព"
+
+msgid "Hang Up"
+msgstr "ព្យួរ"
+
+msgid "Hanging Indent"
+msgstr "ព្យួរ​ការ​ចូល​បន្ទាត់"
+
+msgid "Hard Disk"
+msgstr "ថាស​រឹង"
+
+msgid "Hardware"
+msgstr "ផ្នែក​រឹង"
+
+msgid "Hatch"
+msgstr "ឆ្នូតៗ"
+
+msgid "Hazardous"
+msgstr "គ្រោះថ្នាក់"
+
+msgid "Header"
+msgstr "បឋមកថា"
+
+msgid "Heading"
+msgstr "ក្បាល"
+
+msgid "Height"
+msgstr "កម្ពស់"
+
+msgid "Help"
+msgstr "ជំនួយ"
+
+msgid "Help"
+msgstr "ជំនួយ"
+
+msgid "Helper Application"
+msgstr "កម្មវិធី​ជំនួយ"
+
+msgid "Hexadecimal Number"
+msgstr "ចំនួន​គោល​ដប់​ប្រាំ​មួយ"
+
+msgid "Hibernate"
+msgstr "សម្ងំ"
+
+msgid "Hidden"
+msgstr "ដែល​លាក់"
+
+msgid "Hide"
+msgstr "លាក់"
+
+msgid "Hierarchy"
+msgstr "ឋានានុក្រម"
+
+msgid "High"
+msgstr "ខ្ពស់"
+
+msgid "High Priority"
+msgstr "អាទិភាព​ខ្ពស់"
+
+msgid "High Security"
+msgstr "សុវត្ថិភាព​ខ្ពស់"
+
+msgid "Higher"
+msgstr "ខ្ពស់​ជាង"
+
+msgid "Highest"
+msgstr "ខ្ពស់​បំផុត"
+
+msgid "Highlight"
+msgstr "ផ្នែក​សំខាន់"
+
+msgid "Highlight"
+msgstr "ផ្នែក​សំខាន់"
+
+msgid "Highlight Color"
+msgstr "ពណ៌​បន្លិច"
+
+msgid "History"
+msgstr "ប្រវត្តិ"
+
+msgid "Hold"
+msgstr "កាន់"
+
+msgid "Hold Down"
+msgstr "សង្កត់​ចុះ"
+
+msgid "Home"
+msgstr "ផ្ទះ"
+
+msgid "Home Directory"
+msgstr "ថត​ផ្ទះ"
+
+msgid "Home Page"
+msgstr "គេហទំព័រ"
+
+msgid "Hop"
+msgstr "ដំណាក់"
+
+msgid "Horizontal"
+msgstr "ផ្ដេក"
+
+msgid "Horizontal Line"
+msgstr "ខ្សែ​ផ្ដេក"
+
+msgid "Horizontal Ruler"
+msgstr "បន្ទាត់​ផ្ដេក"
+
+msgid "Horizontal Scrollbar"
+msgstr "របារ​រមូរ​ផ្ដេក"
+
+msgid "Host"
+msgstr "ម៉ាស៊ីន"
+
+msgid "Hostname"
+msgstr "ឈ្មោះ​ម៉ាស៊ីន"
+
+msgid "Hot List"
+msgstr "បញ្ជី​អាសយដ្ឋាន​សំខាន់"
+
+msgid "Hotkey"
+msgstr "គ្រាប់ចុច​ចង"
+
+msgid "HotPlug"
+msgstr "ដោត​ឆៅ"
+
+msgid "Hotspot"
+msgstr "ចំណុច​ក្ដៅ"
+
+msgid "Hue"
+msgstr "ភាព​លាំៗ​នៃ​ពណ៌"
+
+msgid "Hyperlink"
+msgstr "តំណ​ខ្ពស់"
+
+msgid "Hypertext"
+msgstr "អត្ថបទ​តភ្ជាប់​គ្មាន​លំដាប់"
+
+msgid "Hyphenate"
+msgstr "ភ្ជាប់​ដោយ​សហ​សញ្ញា"
+
+msgid "Hyphenation"
+msgstr "ការ​ដាក់​សហ​សញ្ញា"
+
+msgid "Icon"
+msgstr "រូបតំណាង"
+
+msgid "ID"
+msgstr "លេខ​សម្គាល់"
+
+msgid "Identifier"
+msgstr "គ្រឿង​សម្គាល់"
+
+msgid "Identity"
+msgstr "អត្ត​សញ្ញាណ"
+
+msgid "Idiom"
+msgstr "សំនួន​វោហារ"
+
+msgid "Idle"
+msgstr "ទំនេរ"
+
+msgid "Idle Time"
+msgstr "ពេល​ទំនេរ"
+
+msgid "Ignore"
+msgstr "មិន​អើពើ"
+
+msgid "Ignore All"
+msgstr "មិន​អើពើ​ទាំងអស់"
+
+msgid "Illumination"
+msgstr "ការ​បំភ្លឺ"
+
+msgid "Illustration"
+msgstr "រូបភាព​លម្អ"
+
+msgid "Image"
+msgstr "រូបភាព"
+
+msgid "Image Map"
+msgstr "ផែនទី​រូបភាព"
+
+msgid "Image Size"
+msgstr "ទំហំ​រូបភាព"
+
+msgid "Implement"
+msgstr "ប្រតិបត្តិ"
+
+msgid "Implementation"
+msgstr "ការ​ប្រតិបត្តិ"
+
+msgid "Implicit"
+msgstr "ទាំងស្រុង"
+
+msgid "Import"
+msgstr "នាំចូល"
+
+msgid "Important"
+msgstr "សំខាន់"
+
+msgid "Improper"
+msgstr "មិន​សមរម្យ"
+
+msgid "Improve"
+msgstr "ធ្វើ​ឲ្យ​ប្រសើរ"
+
+msgid "In Progress"
+msgstr "កំពុង​ដំណើរការ"
+
+msgid "Inactive"
+msgstr "អសកម្ម"
+
+msgid "Inbox"
+msgstr "ប្រអប់​ទទួល"
+
+msgid "Inch"
+msgstr "អ៊ិន្ឈ៍"
+
+msgid "Include"
+msgstr "រួមបញ្ចូល"
+
+msgid "Incoming"
+msgstr "មក​ដល់"
+
+msgid "Incoming Server"
+msgstr "ម៉ាស៊ីន​បម្រើ​ចូល"
+
+msgid "Incompatible"
+msgstr "ដែល​មិន​ឆប​គ្នា"
+
+msgid "Increase"
+msgstr "បង្កើន"
+
+msgid "Incrementally Search"
+msgstr "ស្វែងរក​បន្ថែម"
+
+msgid "Increments"
+msgstr "ចំនួន​បន្ថែម"
+
+msgid "Indent"
+msgstr "ចូល​បន្ទាត់"
+
+msgid "Indent Value"
+msgstr "តម្លៃ​ចូល​បន្ទាត់"
+
+msgid "Indentation"
+msgstr "ការ​ចូល​បន្ទាត់"
+
+msgid "Index"
+msgstr "លិបិក្រម"
+
+msgid "Index Mark"
+msgstr "សញ្ញា​សម្គាល់​លិបិក្រម"
+
+msgid "Indicator"
+msgstr "ទ្រនិច​បង្ហាញ"
+
+msgid "Infected"
+msgstr "ដែល​ឆ្លង"
+
+msgid "Infected File"
+msgstr "ឯកសារ​ឆ្លង​​មេរោគ"
+
+msgid "Infinity"
+msgstr "អនន្តភាព"
+
+msgid "Information"
+msgstr "ព័ត៌មាន"
+
+msgid "Information Technology"
+msgstr "បច្ចេកវិទ្យា​ព័ត៌មាន"
+
+msgid "Initial"
+msgstr "ដំបូង"
+
+msgid "Initialize (Computer)"
+msgstr "ចាប់ផ្ដើម"
+
+msgid "Initialize (Storage Medium)"
+msgstr "រៀបចំ"
+
+msgid "Initialize (Variable)"
+msgstr "ផ្ដល់​តម្លៃ​ចាប់ផ្ដើម"
+
+msgid "Initials"
+msgstr "អាទិ​សង្កេត"
+
+msgid "Initiate"
+msgstr "ផ្ដើម​ថ្មី"
+
+msgid "Initiation"
+msgstr "ការ​ចាប់ផ្ដើម"
+
+msgid "Inline"
+msgstr "ក្នុង​តួ"
+
+msgid "Inline Frame"
+msgstr "ស៊ុមក្នុង​តួ"
+
+msgid "Inline Frame"
+msgstr "ស៊ុមក្នុង​តួ"
+
+msgid "Inner"
+msgstr "ខាង​ក្នុង"
+
+msgid "Inner Join"
+msgstr "រួម​ខាង​ក្នុង"
+
+msgid "Innocent (Smiley)"
+msgstr "មិន​ដឹង​អី"
+
+msgid "Input"
+msgstr "ព័ត៌មាន​បញ្ចូល"
+
+msgid "Input"
+msgstr "ព័ត៌មាន​បញ្ចូល"
+
+msgid "Input Field"
+msgstr "វាល​​បញ្ចូល"
+
+msgid "Input Mask"
+msgstr "របាំង​បញ្ចូល"
+
+msgid "Input-Output Analysis"
+msgstr "វិភាគ​ព័ត៌មាន​ចេញ​ចូល"
+
+msgid "Inquire"
+msgstr "សួរ"
+
+msgid "Inscription"
+msgstr "ចំណារ"
+
+msgid "Insecure"
+msgstr "គ្មាន​សុវត្ថិភាព"
+
+msgid "Insert"
+msgstr "បញ្ចូល"
+
+msgid "Insert Data"
+msgstr "បញ្ចូល​ទិន្នន័យ"
+
+msgid "Insertion Point"
+msgstr "ទីតាំង​បញ្ចូល"
+
+msgid "Install"
+msgstr "ដំឡើង"
+
+msgid "Installer"
+msgstr "កម្មវិធី​ដំឡើង"
+
+msgid "Instance"
+msgstr "វត្ថុ"
+
+msgid "Instant Message"
+msgstr "សារ​បន្ទាន់"
+
+msgid "Instantiate"
+msgstr "បង្កើត​ភ្លាមៗ"
+
+msgid "Instruction"
+msgstr "សេចក្ដី​ណែនាំ"
+
+msgid "Insufficient"
+msgstr "មិន​គ្រប់គ្រាន់"
+
+msgid "Integrate"
+msgstr "រួមបញ្ចូល"
+
+msgid "Integrated Circuit"
+msgstr "សៀគ្វី​រួមបញ្ចូល​គ្នា"
+
+msgid "Integrated Desktop"
+msgstr "ផ្ទៃ​តុ​បញ្ចូល​គ្នា"
+
+msgid "Intensity"
+msgstr "អាំងតង់ស៊ីតេ"
+
+msgid "Interaction"
+msgstr "អន្តរកម្ម"
+
+msgid "Interactive"
+msgstr "អន្តរ​សកម្ម"
+
+msgid "Interactivity"
+msgstr "អន្តរ​សកម្មភាព"
+
+msgid "Interface"
+msgstr "ចំណុច​ប្រទាក់"
+
+msgid "Interlaced"
+msgstr "ត្របាញ់"
+
+msgid "Internal"
+msgstr "ខាង​ក្នុង"
+
+msgid "Internet"
+msgstr "អ៊ីនធឺណិត"
+
+msgid "Interoffice"
+msgstr "រវាង​ការិយាល័យ"
+
+msgid "Interrupt "
+msgstr "ផ្អាក"
+
+msgid "Intersect"
+msgstr "ប្រសព្វ"
+
+msgid "Intersection"
+msgstr "ការ​ប្រសព្វ"
+
+msgid "Interval"
+msgstr "ចន្លោះ​ពេល"
+
+msgid "Intruder"
+msgstr "អ្នក​ឈ្លានពាន"
+
+msgid "Invalid"
+msgstr "មិន​ត្រឹមត្រូវ"
+
+msgid "Invert"
+msgstr "ដាក់​បញ្ច្រាស"
+
+msgid "Invisible"
+msgstr "មើល​មិន​ឃើញ"
+
+msgid "Invoke"
+msgstr "ហៅ"
+
+msgid "Inward"
+msgstr "ចូល​ក្នុង"
+
+msgid "IP"
+msgstr "IP"
+
+msgid "IRC (Internet Relay Chat)"
+msgstr "IRC (ការ​ជជែក​កំសាន្ត​តាមអ៊ិនធឺណិត)"
+
+msgid "ISP (Internet Service Provider)"
+msgstr "ISP (អ្នកផ្ដល់​សេវា​អ៊ិនធឺណិត)"
+
+msgid "Issue to"
+msgstr "ចេញ​ឲ្យ"
+
+msgid "Italic"
+msgstr "ទ្រេត"
+
+msgid "Item"
+msgstr "ធាតុ"
+
+msgid "Jagged"
+msgstr "រឆេត​រឆូត"
+
+msgid "Job"
+msgstr "ការងារ"
+
+msgid "Join"
+msgstr "ត"
+
+msgid "Journal"
+msgstr "ទិនានុប្បវត្តិ"
+
+msgid "Jump"
+msgstr "លោត"
+
+msgid "Junk"
+msgstr "ឥត​បាន​ការ"
+
+msgid "Junk Mail"
+msgstr "សារ​ឥត​បាន​ការ"
+
+msgid "Justify"
+msgstr "តម្រឹម​សង​ខាង"
+
+msgid "KB"
+msgstr "គីឡូបៃ"
+
+msgid "Keep"
+msgstr "រក្សាទុក"
+
+msgid "Keep Ratio"
+msgstr "រក្សា​សមាមាត្រ"
+
+msgid "Keep Running"
+msgstr "ទុក​ឲ្យ​រត់​ដដែល"
+
+msgid "Kern"
+msgstr "សម្រួល​ចន្លោះ​តួ​អក្សរ"
+
+msgid "Kernel"
+msgstr "ខឺណែល"
+
+msgid "Key (Encryption)"
+msgstr "កូនសោ"
+
+msgid "Key (Searching)"
+msgstr "មើល Keyword"
+
+msgid "Key (Typing)"
+msgstr "គ្រាប់ចុច"
+
+msgid "Keyboard"
+msgstr "ក្ដារចុច"
+
+msgid "Keyboard Handling"
+msgstr "ការ​ប្រើ​ក្ដារចុច"
+
+msgid "Keystroke"
+msgstr "សង្កត់​គ្រាប់ចុច"
+
+msgid "Keyword"
+msgstr "ពាក្យ​គន្លឹះ"
+
+msgid "Kilobyte"
+msgstr "គីឡូបៃ"
+
+msgid "Label"
+msgstr "ស្លាក"
+
+msgid "Lag"
+msgstr "រយៈពេល​ខុស​គ្នា"
+
+msgid "LAN (Local Area Network)"
+msgstr "បណ្ដាញ​មូលដ្ឋាន"
+
+msgid "Landscape Orientation"
+msgstr "ទិស​ផ្ដេក"
+
+msgid "Landscape Paper"
+msgstr "ក្រដាស​ផ្ដេក"
+
+msgid "Language Pack"
+msgstr "កញ្ចប់​ភាសា"
+
+msgid "Laser"
+msgstr "ឡាស៊ែរ"
+
+msgid "Last"
+msgstr "ចុងក្រោយ"
+
+msgid "Last Name"
+msgstr "នាម​ត្រកូល"
+
+msgid "Lathe Object"
+msgstr "វត្ថុ​ក្រឡឹង"
+
+msgid "Laughing (Smiley)"
+msgstr "សើច"
+
+msgid "Launch"
+msgstr "បើក​ដំណើរការ (កម្មវិធី)"
+
+msgid "Layer"
+msgstr "ស្រទាប់"
+
+msgid "Layout"
+msgstr "ប្លង់"
+
+msgid "Leap year"
+msgstr "ឆ្នាំ​បង្គ្រប់"
+
+msgid "Left Join"
+msgstr "រួម​​​ឆ្វេង"
+
+msgid "Legend"
+msgstr "តាង"
+
+msgid "Length"
+msgstr "ប្រវែង"
+
+msgid "Letter"
+msgstr "សំបុត្រ"
+
+msgid "Letter-like Symbol"
+msgstr "និមិត្ត​សញ្ញា​ដូច​អក្សរ"
+
+msgid "Letterhead"
+msgstr "ក្បាល​លិខិត"
+
+msgid "Library"
+msgstr "បណ្ណាល័យ"
+
+msgid "License"
+msgstr "អាជ្ញាបណ្ណ"
+
+msgid "Light"
+msgstr "ស្រាល"
+
+msgid "Limit"
+msgstr "មើល Boundary"
+
+msgid "Line"
+msgstr "ជួរ"
+
+msgid "Line Begin (Begin of Line)"
+msgstr "ដើម​បន្ទាត់"
+
+msgid "Line Break"
+msgstr "ចុះ​បន្ទាត់"
+
+msgid "Line Color"
+msgstr "ពណ៌​បន្ទាត់"
+
+msgid "Line Joint"
+msgstr "សន្លាក់​បន្ទាត់"
+
+msgid "Line Skew"
+msgstr "ភាព​ឆៀង​របស់​បន្ទាត់"
+
+msgid "Line Weight"
+msgstr "កម្រាស់​បន្ទាត់"
+
+msgid "Linear"
+msgstr "លីនេអ៊ែរ"
+
+msgid "Link"
+msgstr "ភ្ជាប់"
+
+msgid "Link"
+msgstr "ភ្ជាប់"
+
+msgid "Lips are Sealed (Smiley)"
+msgstr "បិទ​បបូរ​មាត់"
+
+msgid "List"
+msgstr "បញ្ជី"
+
+msgid "List"
+msgstr "បញ្ជី"
+
+msgid "List Box"
+msgstr "ប្រអប់​បញ្ជី"
+
+msgid "Literal"
+msgstr "តម្លៃ​ត្រង់"
+
+msgid "Live Bookmark"
+msgstr "ចំណាំ​បន្ត​ផ្ទាល់"
+
+msgid "Live Mode"
+msgstr "របៀប​បន្ត​ផ្ទាល់"
+
+msgid "Load"
+msgstr "ផ្ទុក"
+
+msgid "Local"
+msgstr "មូលដ្ឋាន"
+
+msgid "Locate"
+msgstr "រក​ទីតាំង"
+
+msgid "Location"
+msgstr "ទីតាំង"
+
+msgid "Locked"
+msgstr "ជាប់​សោ"
+
+msgid "Locked File"
+msgstr "ឯកសារ​​ជាប់​សោ"
+
+msgid "Log"
+msgstr "ចុះ​កំណត់ហេតុ"
+
+msgid "Log"
+msgstr "ចុះ​កំណត់ហេតុ"
+
+msgid "Log File"
+msgstr "ឯកសារ​កំណត់ហេតុ"
+
+msgid "Log In"
+msgstr "ចូល"
+
+msgid "Log Off"
+msgstr "ចេញ"
+
+msgid "Log On"
+msgstr "មើល Log In"
+
+msgid "Log Out"
+msgstr "មើល Log Off"
+
+msgid "Logical"
+msgstr "សម"
+
+msgid "Logical Height"
+msgstr "កម្ពស់​សម"
+
+msgid "Logical Number"
+msgstr "ចំនួន​តក្ក"
+
+msgid "Logo"
+msgstr "ឡូហ្គោ"
+
+msgid "Look and Feel"
+msgstr "រូបរាង និង មុខងារ"
+
+msgid "Look for"
+msgstr "ស្វែង​រក"
+
+msgid "Look in"
+msgstr "មើល​ក្នុង"
+
+msgid "Look up"
+msgstr "រក​មើល"
+
+msgid "Loop"
+msgstr "រង្វិល​ជុំ"
+
+msgid "Loose"
+msgstr "ធូរ"
+
+msgid "Low"
+msgstr "ទាប"
+
+msgid "Lower"
+msgstr "ទាប​ជាង"
+
+msgid "Lowercase"
+msgstr "អក្សរ​តូច"
+
+msgid "Lowered Position"
+msgstr "ទីតាំង​ក្រោម​បន្តិច"
+
+msgid "Lowest"
+msgstr "ទាប​បំផុត"
+
+msgid "M.sec. (Millisecond)"
+msgstr "មិ.វិ. (មិល្លីវិនាទី)"
+
+msgid "Machine"
+msgstr "ម៉ាស៊ីន"
+
+msgid "Machine Language"
+msgstr "ភាសា​ម៉ាស៊ីន"
+
+msgid "Machine Operator"
+msgstr "អ្នក​បញ្ជា​ម៉ាស៊ីន"
+
+msgid "Macro"
+msgstr "ម៉ាក្រូ"
+
+msgid "Magenta"
+msgstr "ក្រហម​ស្វាយ"
+
+msgid "Magnetic Tape"
+msgstr "កាសែតម៉ាញេទិច"
+
+msgid "Mail"
+msgstr "សំបុត្រ"
+
+msgid "Mail Box"
+msgstr "ប្រអប់​សំបុត្រ"
+
+msgid "Mail Merge (Form Letter)"
+msgstr "សំបុត្រ​សំណុំ​បែបបទ"
+
+msgid "Mail Server"
+msgstr "ម៉ាស៊ីន​បម្រើ​សំបុត្រ"
+
+msgid "Mailing List"
+msgstr "បញ្ជី​សំបុត្រ​រួម"
+
+msgid "Main"
+msgstr "សំខាន់"
+
+msgid "Main Title"
+msgstr "ចំណង​ជើង​មេ"
+
+msgid "Main Toolbar"
+msgstr "របារ​ឧបករណ៍​មេ"
+
+msgid "Mainboard"
+msgstr "បន្ទះ​មេ"
+
+msgid "Maintain"
+msgstr "ថែទាំ"
+
+msgid "Maintainer"
+msgstr "អ្នក​ថែទាំ"
+
+msgid "Maintenance"
+msgstr "តំហែ​ទាំ"
+
+msgid "Major Gridline"
+msgstr "បន្ទាត់​រង្វើល"
+
+msgid "Major Interval"
+msgstr "ចន្លោះ​ធំ"
+
+msgid "Major Interval Mark"
+msgstr "ក្រិត​ចន្លោះ​ធំ"
+
+msgid "Malfunction"
+msgstr "ធ្វើការ​ខុស​ប្រក្រតី"
+
+msgid "Manage"
+msgstr "គ្រប់គ្រង"
+
+msgid "Management"
+msgstr "ការ​គ្រប់គ្រង"
+
+msgid "Management Information System"
+msgstr "ប្រព័ន្ធ​ព័ត៌មាន​គ្រប់គ្រង"
+
+msgid "Manager (Program)"
+msgstr "កម្មវិធី​គ្រប់គ្រង"
+
+msgid "Manual"
+msgstr "សៀវភៅ​ដៃ"
+
+msgid "Manual break"
+msgstr "ការ​បំបែក​ដោយ​ដៃ"
+
+msgid "Manufacturer"
+msgstr "ក្រុមហ៊ុន​ផលិត"
+
+msgid "Map"
+msgstr "ផ្គូផ្គង"
+
+msgid "Margin"
+msgstr "រឹម"
+
+msgid "Marginalia"
+msgstr "ចំណាំ​ក្នុង​រឹម"
+
+msgid "Mark"
+msgstr "សញ្ញា​សម្គាល់"
+
+msgid "Mark"
+msgstr "សញ្ញា​សម្គាល់"
+
+msgid "Marquee"
+msgstr "ម៉ារគី"
+
+msgid "Mask"
+msgstr "របាំង"
+
+msgid "Master"
+msgstr "មេ"
+
+msgid "Master Document"
+msgstr "ឯកសារ​មេ"
+
+msgid "Master Field"
+msgstr "វាល​មេ"
+
+msgid "Master Password"
+msgstr "ពាក្យ​សម្ងាត់​មេ"
+
+msgid "Match"
+msgstr "ផ្គូផ្គង"
+
+msgid "Match"
+msgstr "ផ្គូផ្គង"
+
+msgid "Match Case"
+msgstr "ករណី​ដំណូច"
+
+msgid "Maximize"
+msgstr "ពង្រីក​អតិបរមា"
+
+msgid "Maximum"
+msgstr "អតិបរមា"
+
+msgid "Measurement Unit"
+msgstr "ឯកតា​រង្វាស់"
+
+msgid "Media"
+msgstr "មេឌៀ"
+
+msgid "Megabyte"
+msgstr "មេកាបៃ"
+
+msgid "Membership"
+msgstr "សមាជិកភាព"
+
+msgid "Memo"
+msgstr "អនុស្សរណៈ"
+
+msgid "Memorandum"
+msgstr "មើល Memo"
+
+msgid "Memory"
+msgstr "សតិ"
+
+msgid "Menu"
+msgstr "ម៉ឺនុយ"
+
+msgid "Menu Bar"
+msgstr "របារ​ម៉ឺនុយ"
+
+msgid "Merge"
+msgstr "បញ្ចូល​ចូល​គ្នា"
+
+msgid "Message"
+msgstr "សារ"
+
+msgid "Message Box"
+msgstr "ប្រអប់​សារ"
+
+msgid "Meta"
+msgstr "មេតា"
+
+msgid "Metal"
+msgstr "លោហធាតុ"
+
+msgid "Method"
+msgstr "វិធីសាស្ត្រ"
+
+msgid "Metrics (Metric System)"
+msgstr "ប្រព័ន្ធ​ម៉ែត្រ"
+
+msgid "Middle"
+msgstr "កណ្ដាល"
+
+msgid "MIDI"
+msgstr "មីឌី"
+
+msgid "Migration"
+msgstr "ប្ដូរ​កន្លែង"
+
+msgid "Mile"
+msgstr "ម៉ាយល៍"
+
+msgid "Milligrams"
+msgstr "មិល្លីក្រាម"
+
+msgid "Millimeter"
+msgstr "មិល្លីម៉ែត្រ"
+
+msgid "Minimize"
+msgstr "បង្រួម​អប្បបរមា"
+
+msgid "Minimum"
+msgstr "អប្បបរមា"
+
+msgid "Minor Gridline"
+msgstr "បន្ទាត់​ក្រឡាចត្រង្គ​ញឹក"
+
+msgid "Minor Interval"
+msgstr "ចន្លោះ​តូច"
+
+msgid "Minor Interval Mark"
+msgstr "ក្រិត​ចន្លោះ​តូច"
+
+msgid "Minus Sign"
+msgstr "សញ្ញា​ដក"
+
+msgid "Minute"
+msgstr "កំណត់ហេតុ​ប្រជុំ"
+
+msgid "Mirror"
+msgstr "ឆ្លុះ"
+
+msgid "Mirror"
+msgstr "ឆ្លុះ"
+
+msgid "Misspell"
+msgstr "ប្រកប​ខុស"
+
+msgid "Mode"
+msgstr "របៀប"
+
+msgid "Model"
+msgstr "ម៉ូដែល"
+
+msgid "Modem"
+msgstr "ម៉ូដឹម"
+
+msgid "Moderator"
+msgstr "អន្តរការី"
+
+msgid "Modification"
+msgstr "កំណែប្រែ"
+
+msgid "Modify"
+msgstr "កែប្រែ"
+
+msgid "Module"
+msgstr "ម៉ូឌុល"
+
+msgid "Money-Mouth (Smiley)"
+msgstr "មាត់​លុយ"
+
+msgid "Monitor"
+msgstr "អ្នក​ត្រួត​ពិនិត្យ"
+
+msgid "Monitor"
+msgstr "អ្នក​ត្រួត​ពិនិត្យ"
+
+msgid "Monitor (Hardware)"
+msgstr "ម៉ូនីទ័រ"
+
+msgid "Monitor Program"
+msgstr "កម្មវិធី​ត្រួត​ពិនិត្យ"
+
+msgid "Mono"
+msgstr "ម៉ូណូ"
+
+msgid "More"
+msgstr "ច្រើន​ជាង"
+
+msgid "Morphing"
+msgstr "ការ​ប្លែង​រូបភាព"
+
+msgid "Mosaic"
+msgstr "មូសាអ៊ីក"
+
+msgid "Motion"
+msgstr "ចលនា"
+
+msgid "Mount"
+msgstr "ម៉ោន"
+
+msgid "Mouse"
+msgstr "កណ្តុរ"
+
+msgid "Mouse Pointer"
+msgstr "ព្រួញ​កណ្តុរ"
+
+msgid "Move"
+msgstr "ផ្លាស់ទី"
+
+msgid "Move Down"
+msgstr "ផ្លាស់ទី​ចុះ​ក្រោម"
+
+msgid "Move Up"
+msgstr "ផ្លាស់ទី​ឡើង​លើ"
+
+msgid "Movement"
+msgstr "ចលនា"
+
+msgid "Multi Operation"
+msgstr "ប្រមាណវិធី​ច្រើន"
+
+msgid "Multi-User System"
+msgstr "ប្រព័ន្ធ​ពហុ​អ្នក​ប្រើ"
+
+msgid "Multimedia"
+msgstr "ពហុ​ព័ត៌មាន"
+
+msgid "Multimeter"
+msgstr "ឧបករណ៍​ស្ទង់"
+
+msgid "Multiple"
+msgstr "ច្រើន"
+
+msgid "Multiplication Sign"
+msgstr "សញ្ញា​គុណ"
+
+msgid "Multiselection"
+msgstr "ពហុ​ជម្រើស"
+
+msgid "Multitasking"
+msgstr "ពហុ​ភារកិច្ច"
+
+msgid "Munger"
+msgstr "អ្នក​ផ្លាស់ប្ដូរ"
+
+msgid "Name"
+msgstr "ឈ្មោះ"
+
+msgid "Navigate"
+msgstr "រុករក"
+
+msgid "Navigation"
+msgstr "ការ​រុករក"
+
+msgid "Navigation Toolbar"
+msgstr "របារ​​រុករក"
+
+msgid "Navigator (Program)"
+msgstr "កម្មវិធី​រុករក"
+
+msgid "Negation"
+msgstr "អវិជ្ជមាន​កម្ម"
+
+msgid "Nested Table"
+msgstr "តារាង​ក្នុង"
+
+msgid "Netiquette"
+msgstr "អតិថិវិន័យ​បណ្ដាញ"
+
+msgid "Network"
+msgstr "បណ្ដាញ"
+
+msgid "Network Topology"
+msgstr "ក្បួន​ត​បណ្ដាញ"
+
+msgid "New"
+msgstr "ថ្មី"
+
+msgid "New Release"
+msgstr "ការ​ចេញ​ផ្សាយ​ថ្មី"
+
+msgid "News Server"
+msgstr "ម៉ាស៊ីន​បម្រើ​ព័ត៌មាន"
+
+msgid "Newsgroup"
+msgstr "វេទិកា​ព័ត៌មាន"
+
+msgid "Next"
+msgstr "បន្ទាប់"
+
+msgid "Nickname"
+msgstr "សម្មតិនាម"
+
+msgid "Node"
+msgstr "ថ្នាំង"
+
+msgid "Noise"
+msgstr "ជ្រៀតជ្រែក"
+
+msgid "Non-Breaking Hyphen"
+msgstr "សហ​សញ្ញា​មិន​បំបែក"
+
+msgid "Non-Breaking Space"
+msgstr "គម្លាត​មិន​បំបែក"
+
+msgid "Non-Convertible"
+msgstr "ដែល​មិន​អាច​បម្លែង"
+
+msgid "Non-Printing Character"
+msgstr "តួអក្សរ​មិន​បោះពុម្ព "
+
+msgid "Normal"
+msgstr "ធម្មតា"
+
+msgid "Not Enough Memory"
+msgstr "គ្មាន​សតិ​គ្រប់គ្រាន់"
+
+msgid "Not Found"
+msgstr "មិន​ឃើញ"
+
+msgid "Note"
+msgstr "ចំណាំ"
+
+msgid "Note Indicator"
+msgstr "ទ្រនិច​បង្ហាញ​ចំណាំ"
+
+msgid "Notice"
+msgstr "សម្គាល់"
+
+msgid "Notification"
+msgstr "ការ​ជូន​ដំណឹង"
+
+msgid "Notify"
+msgstr "ជូន​ដំណឹង"
+
+msgid "Null"
+msgstr "គ្មាន​សោះ"
+
+msgid "Number Pad"
+msgstr "បន្ទះ​លេខ"
+
+msgid "Numbering"
+msgstr "លេខរៀង"
+
+msgid "Numeral"
+msgstr "តួលេខ"
+
+msgid "Numerator"
+msgstr "ភាគ​យក"
+
+msgid "Numerical"
+msgstr "ជា​លេខ"
+
+msgid "Object (Goal)"
+msgstr "គោល​បំណង"
+
+msgid "Object (Subject)"
+msgstr "កម្មវត្ថុ"
+
+msgid "Object (Thing)"
+msgstr "វត្ថុ"
+
+msgid "Oblique"
+msgstr "បញ្ឆៀង"
+
+msgid "Obscure"
+msgstr "ធ្វើ​ឲ្យ​ស្មុគ្រស្មាញ"
+
+msgid "Occur"
+msgstr "កើតឡើង"
+
+msgid "Octal Number"
+msgstr "ចំនួន​គោល​ប្រាំបី"
+
+msgid "Odd Number"
+msgstr "លេខ​សេស"
+
+msgid "Offline"
+msgstr "ក្រៅ​បណ្ដាញ"
+
+msgid "Offset"
+msgstr "អុហ្វសិត"
+
+msgid "OK"
+msgstr "យល់ព្រម"
+
+msgid "On"
+msgstr "លើ"
+
+msgid "On Screen Keyboard"
+msgstr "ក្ដារ​ចុច​លើ​អេក្រង់"
+
+msgid "Online"
+msgstr "លើ​បណ្ដាញ"
+
+msgid "Online Help"
+msgstr "ជំនួយ​លើ​​បណ្ដាញ"
+
+msgid "Online Shopping"
+msgstr "ទិញ​តាម​បណ្ដាញ"
+
+msgid "Opacity"
+msgstr "ភាព​ស្រអាប់"
+
+msgid "Opaque"
+msgstr "ស្រអាប់"
+
+msgid "Open"
+msgstr "បើក"
+
+msgid "Operand"
+msgstr "អង្គ"
+
+msgid "Operating System"
+msgstr "ប្រព័ន្ធ​ប្រតិបត្តិការ"
+
+msgid "Operation"
+msgstr "ប្រតិបត្តិការ"
+
+msgid "Operation (Math)"
+msgstr "ប្រមាណវិធី"
+
+msgid "Operator"
+msgstr "(១) ការី  (២) សញ្ញា​ប្រមាណវិធី"
+
+msgid "Optimal"
+msgstr "ប្រសើរ​បំផុត"
+
+msgid "Optimal Wrap"
+msgstr "រុំ​ប្រសើរ​បំផុត"
+
+msgid "Optimize"
+msgstr "បង្កើន​ប្រសិទ្ធិភាព"
+
+msgid "Option"
+msgstr "ជម្រើស"
+
+msgid "Optional"
+msgstr "ស្រេច​ចិត្ត"
+
+msgid "Order"
+msgstr "បញ្ជា"
+
+msgid "Order"
+msgstr "បញ្ជា"
+
+msgid "Ordinal Number"
+msgstr "លេខ​លំដាប់"
+
+msgid "Organization"
+msgstr "អង្គការ"
+
+msgid "Organizer"
+msgstr "អ្នក​រៀបចំ"
+
+msgid "Orientation"
+msgstr "ទិស"
+
+msgid "Original"
+msgstr "ដើម"
+
+msgid "Orphan"
+msgstr "បន្ទាត់​កំព្រា"
+
+msgid "Outbox"
+msgstr "ប្រអប់​ចេញ"
+
+msgid "Outdated"
+msgstr "ហួស​សម័យ"
+
+msgid "Outer"
+msgstr "ខាង​ក្រៅ"
+
+msgid "Outer Join"
+msgstr "រួម​ខាង​ក្រៅ"
+
+msgid "Outgoing"
+msgstr "ចេញ"
+
+msgid "Outgoing Server"
+msgstr "ម៉ាស៊ីន​បម្រើ​ចេញ"
+
+msgid "Outline"
+msgstr "គ្រោង"
+
+msgid "Outline (Font Effect)"
+msgstr "គែម"
+
+msgid "Output"
+msgstr "ទិន្នផល"
+
+msgid "Outward"
+msgstr "ទៅ​ក្រៅ"
+
+msgid "Overflow"
+msgstr "លើស​​ចំណុះ"
+
+msgid "Overhang"
+msgstr "លយ​ចេញ"
+
+msgid "Overhead Sheet"
+msgstr "ក្រដាស​ស្លាយ"
+
+msgid "Overlap"
+msgstr "តម្រួត"
+
+msgid "Override"
+msgstr "បដិសេធ"
+
+msgid "Overview"
+msgstr "ទិដ្ឋភាព​ទូទៅ"
+
+msgid "Overwhelming"
+msgstr "លើសលុប"
+
+msgid "Overwrite"
+msgstr "សរសេរ​ជាន់​លើ"
+
+msgid "Owner"
+msgstr "ម្ចាស់​កម្មសិទ្ធិ"
+
+msgid "Pack"
+msgstr "ខ្ចប់"
+
+msgid "Package"
+msgstr "កញ្ចប់"
+
+msgid "Packet"
+msgstr "កញ្ចប់​​ព័ត៌មាន"
+
+msgid "Padding"
+msgstr "ចន្លោះ"
+
+msgid "Page"
+msgstr "ទំព័រ"
+
+msgid "Page Break"
+msgstr "ការ​បំបែក​ទំព័រ"
+
+msgid "Page Composer"
+msgstr "កម្មវិធី​រៀបចំ​ទំព័រ"
+
+msgid "Page Count"
+msgstr "ចំនួន​ទំព័រ"
+
+msgid "Page Down"
+msgstr "ទំព័រ​ក្រោម"
+
+msgid "Page Layout"
+msgstr "ប្លង់​​ទំព័រ"
+
+msgid "Page Number"
+msgstr "លេខ​ទំព័រ"
+
+msgid "Page Preview"
+msgstr "មើល​ទំព័រ​ជា​មុន"
+
+msgid "Page Setup"
+msgstr "ការ​រៀបចំ​ទំព័រ"
+
+msgid "Page Up"
+msgstr "ទំព័រ​លើ"
+
+msgid "Paginate"
+msgstr "បង់​លេខ​ទំព័រ"
+
+msgid "Paint"
+msgstr "គូរ"
+
+msgid "Paint Can"
+msgstr "កំប៉ុង​ទឹកថ្នាំ"
+
+msgid "Paintbrush"
+msgstr "ជក់"
+
+msgid "Pair"
+msgstr "គូ"
+
+msgid "Pane"
+msgstr "ស្លាប​ព្រិល"
+
+msgid "Panel"
+msgstr "បន្ទះ"
+
+msgid "Paragraph"
+msgstr "កថាខណ្ឌ"
+
+msgid "Paragraph Break"
+msgstr "ចុះ​បន្ទាត់​កថាខណ្ឌ"
+
+msgid "Paragraph Spacing​"
+msgstr "គម្លាត​កថាខណ្ឌ"
+
+msgid "Parallel"
+msgstr "ប៉ារ៉ាឡែល"
+
+msgid "Parameter"
+msgstr "ប៉ារ៉ាម៉ែត្រ"
+
+msgid "Parcel"
+msgstr "កញ្ចប់​ប្រៃសណីយ៍"
+
+msgid "Parent"
+msgstr "មេ"
+
+msgid "Parentheses"
+msgstr "វង់​ក្រចក"
+
+msgid "Parse"
+msgstr "ញែក"
+
+msgid "Pass"
+msgstr "ហុច"
+
+msgid "Pass count"
+msgstr "ចំនួន​ហុច"
+
+msgid "Passage"
+msgstr "វគ្គ"
+
+msgid "Passphrase"
+msgstr "ឃ្លា​សម្ងាត់"
+
+msgid "Password"
+msgstr "ពាក្យ​សម្ងាត់"
+
+msgid "Password Quality Meter"
+msgstr "ឧបករណ៍​​វាស់​​​គុណភាព​​​ពាក្យ​​​សម្ងាត់"
+
+msgid "Paste"
+msgstr "បិទ​ភ្ជាប់"
+
+msgid "Paste Special"
+msgstr "បិទ​ភ្ជាប់​ពិសេស"
+
+msgid "Patch"
+msgstr "បំណះ"
+
+msgid "Patch"
+msgstr "បំណះ"
+
+msgid "Path"
+msgstr "ផ្លូវ"
+
+msgid "Pathnames"
+msgstr "ឈ្មោះ​ផ្លូវ"
+
+msgid "Pattern"
+msgstr "លំនាំ"
+
+msgid "Pause"
+msgstr "ផ្អាក"
+
+msgid "Pause"
+msgstr "ផ្អាក"
+
+msgid "Peak"
+msgstr "កំពូល"
+
+msgid "Pend"
+msgstr "រង់ចាំ​ដោះស្រាយ"
+
+msgid "Pending"
+msgstr "មិន​ទាន់​សម្រេច"
+
+msgid "Peripheral"
+msgstr "គ្រឿង​កុំព្យូទ័រ"
+
+msgid "Permission"
+msgstr "សេចក្ដី​អនុញ្ញាត"
+
+msgid "Permutation"
+msgstr "ចំលាស់"
+
+msgid "Personal"
+msgstr "ផ្ទាល់​ខ្លួន"
+
+msgid "Personal Address Book"
+msgstr "សៀវភៅ​អាសយដ្ឋាន​ផ្ទាល់​ខ្លួន"
+
+msgid "Personal Profile"
+msgstr "ទម្រង់​ផ្ទាល់​ខ្លួន"
+
+msgid "Personalization"
+msgstr "បដិរូបកម្ម"
+
+msgid "Personalize"
+msgstr "តម្រូវ​តាម​បុគ្គល"
+
+msgid "Perspective"
+msgstr "យថាទស្សន៍"
+
+msgid "Phonetic"
+msgstr "នៃ​សូរសព្ទ"
+
+msgid "Photosensitivity"
+msgstr "ភាព​ប្រែប្រួល​រូបភាព"
+
+msgid "Picture Box"
+msgstr "ប្រអប់​រូបភាព"
+
+msgid "Pie"
+msgstr "ចំណិត"
+
+msgid "Pipe"
+msgstr "បំពង់"
+
+msgid "Pirate"
+msgstr "លួច"
+
+msgid "Pitch"
+msgstr "ជម្រេ"
+
+msgid "Pitch"
+msgstr "ជម្រេ"
+
+msgid "Pix Map"
+msgstr "ផែនទី​ចំណុច"
+
+msgid "Pixel"
+msgstr "ភីកសែល"
+
+msgid "Place"
+msgstr "ទីកន្លែង"
+
+msgid "Placeholder"
+msgstr "កន្លែង​ដាក់"
+
+msgid "Plain"
+msgstr "ធម្មតា"
+
+msgid "Plain Text"
+msgstr "អត្ថបទ​ធម្មតា"
+
+msgid "Play (Cd)"
+msgstr "ចាក់ (ស៊ីឌី)"
+
+msgid "Play a Sound"
+msgstr "បន្លឺ​សម្លេង"
+
+msgid "Playback"
+msgstr "ចាក់​សារ​ថ្មី"
+
+msgid "Plot"
+msgstr "គូស​ក្រាហ្វិក"
+
+msgid "Plotter"
+msgstr "ឧបករណ៍​គូស​ក្រាហ្វិក"
+
+msgid "Plug and Play"
+msgstr "ការ​ប្រមូល​ផ្ដុំ​ផ្នែក​រឹង​ស្វ័យប្រវត្តិ"
+
+msgid "Plug In"
+msgstr "កម្មវិធី​ជំនួយ"
+
+msgid "Plus Sign"
+msgstr "សញ្ញា​បូក"
+
+msgid "Polygon"
+msgstr "ពហុកោណ"
+
+msgid "Pool"
+msgstr "អាង"
+
+msgid "Pop Art"
+msgstr "សិល្បៈ​​ពេញ​និយម"
+
+msgid "Pop Up"
+msgstr "លេចឡើង"
+
+msgid "Popup Menu"
+msgstr "ម៉ឺនុយ​លេចឡើង"
+
+msgid "Popup Window"
+msgstr "បង្អួច​លេចឡើង"
+
+msgid "Port"
+msgstr "ច្រក"
+
+msgid "Portable"
+msgstr "ចល័ត"
+
+msgid "Portal"
+msgstr "ខ្លោង​ទ្វារ"
+
+msgid "Portrait Orientation"
+msgstr "ទិស​បញ្ឈរ"
+
+msgid "Portrait Paper"
+msgstr "ក្រដាស​បញ្ឈរ"
+
+msgid "Position"
+msgstr "ឋានៈ"
+
+msgid "Possible"
+msgstr "អាច​ធ្វើ​បាន"
+
+msgid "Post"
+msgstr "ប្រកាស"
+
+msgid "Post"
+msgstr "ប្រកាស"
+
+msgid "Postal Code"
+msgstr "លេខ​ប្រៃសណីយ៍"
+
+msgid "Poster"
+msgstr "ប័ណ្ណ​ប្រកាស"
+
+msgid "Posterize"
+msgstr "រូបភាព​ប័ណ្ណ​ប្រកាស"
+
+msgid "Postmaster"
+msgstr "អ្នក​គ្រប់គ្រង​ប្រៃសណីយ៍"
+
+msgid "Posture"
+msgstr "សណ្ឋាន"
+
+msgid "Power"
+msgstr "ស្វ័យ​គុណ"
+
+msgid "Prefer"
+msgstr "ចូលចិត្ត"
+
+msgid "Preference"
+msgstr "ចំណង់​ចំណូល​ចិត្ត"
+
+msgid "Preferred"
+msgstr "ដែល​ចូលចិត្ត​ជាង"
+
+msgid "Prefix"
+msgstr "បុព្វបទ"
+
+msgid "Preformat"
+msgstr "ទ្រង់ទ្រាយ​ជា​មុន"
+
+msgid "Preformatted Text"
+msgstr "អត្ថបទ​បាន​ធ្វើ​ទ្រង់ទ្រាយ​ជា​មុន"
+
+msgid "Prepare"
+msgstr "រៀបចំ"
+
+msgid "Prerequisite"
+msgstr "តម្រូវការ​ជា​មុន"
+
+msgid "Presentation"
+msgstr "ការ​បង្ហាញ"
+
+msgid "Preset"
+msgstr "កំណត់​ជា​មុន"
+
+msgid "Presiding"
+msgstr "ក្រោម​អធិបតីភាព"
+
+msgid "Press"
+msgstr "សង្កត់"
+
+msgid "Prevent"
+msgstr "រារាំង"
+
+msgid "Preview"
+msgstr "មើល​ជា​មុន"
+
+msgid "Previous"
+msgstr "មុន"
+
+msgid "Primary"
+msgstr "ចម្បង"
+
+msgid "Primary Key"
+msgstr "កូនសោ​សំខាន់"
+
+msgid "Principal"
+msgstr "គោលការណ៍"
+
+msgid "Print"
+msgstr "បោះពុម្ព"
+
+msgid "Print Optimized"
+msgstr "បោះពុម្ព​គុណភាព​ខ្ពស់"
+
+msgid "Print Page View"
+msgstr "បោះពុម្ព​ទិដ្ឋភាព​ទំព័រ"
+
+msgid "Print Preview"
+msgstr "មើល​មុន​បោះពុម្ព"
+
+msgid "Print Range"
+msgstr "ជួរ​បោះពុម្ព"
+
+msgid "Printer"
+msgstr "ម៉ាស៊ីន​បោះពុម្ព"
+
+msgid "Printout"
+msgstr "លទ្ធផល​បោះពុម្ព"
+
+msgid "Priority"
+msgstr "អាទិភាព"
+
+msgid "Privacy"
+msgstr "ភាព​ឯកជន"
+
+msgid "Private Key"
+msgstr "កូនសោ​ឯកជន"
+
+msgid "Privilege"
+msgstr "សិទ្ធិ"
+
+msgid "Probe"
+msgstr "ស្ទង់រក"
+
+msgid "Procedure"
+msgstr "បែបបទ"
+
+msgid "Proceed"
+msgstr "ធ្វើ​បន្ត"
+
+msgid "Process"
+msgstr "ដំណើរការ"
+
+msgid "Profile"
+msgstr "ទម្រង់"
+
+msgid "Profile Manager"
+msgstr "កម្មវិធី​គ្រប់គ្រង​ទម្រង់"
+
+msgid "Program"
+msgstr "កម្មវិធី"
+
+msgid "Programmer"
+msgstr "អ្នក​សរសេរ​កម្មវិធី"
+
+msgid "Progress"
+msgstr "វឌ្ឍនភាព"
+
+msgid "Progress Bar"
+msgstr "របារ​វឌ្ឍនភាព"
+
+msgid "Project"
+msgstr "គម្រោង"
+
+msgid "Projection"
+msgstr "ការ​បញ្ចាំង"
+
+msgid "Promote"
+msgstr "បង្កើន"
+
+msgid "Prompt"
+msgstr "ប្រអប់​បញ្ចូល"
+
+msgid "Property"
+msgstr "លក្ខណៈ​សម្បត្តិ"
+
+msgid "Proposal"
+msgstr "សំណើ"
+
+msgid "Protect"
+msgstr "ការពារ"
+
+msgid "Protected"
+msgstr "ដែល​ត្រូវ​បាន​ការពារ"
+
+msgid "Protection"
+msgstr "ការ​ការពារ"
+
+msgid "Protector"
+msgstr "អ្នក​ការពារ"
+
+msgid "Protocol"
+msgstr "ពិធីការ"
+
+msgid "Provider"
+msgstr "អ្នក​ផ្គត់ផ្គង់"
+
+msgid "Proxy"
+msgstr "ប្រូកស៊ី"
+
+msgid "Public"
+msgstr "សាធារណៈ"
+
+msgid "Public-Key"
+msgstr "កូនសោ​សាធារណៈ"
+
+msgid "Publish"
+msgstr "បោះពុម្ព​ផ្សាយ"
+
+msgid "Publisher"
+msgstr "អ្នក​បោះពុម្ព​ផ្សាយ"
+
+msgid "Pull"
+msgstr "ទាញ"
+
+msgid "Punctuation"
+msgstr "ការ​ដាក់​វណ្ណយុត្ត"
+
+msgid "Purchasing Form"
+msgstr "ពាក្យ​សុំ​ទិញ"
+
+msgid "Purge"
+msgstr "លុប​បំបាត់"
+
+msgid "Push"
+msgstr "រុញ"
+
+msgid "Put"
+msgstr "ដាក់"
+
+msgid "Quadratic"
+msgstr "បួន​ជ្រុង"
+
+msgid "Qualified"
+msgstr "ដែល​មាន​គុណភាព"
+
+msgid "Quality"
+msgstr "គុណភាព"
+
+msgid "Quantity"
+msgstr "បរិមាណ"
+
+msgid "Quarantine"
+msgstr "ដាក់​ឲ្យ​នៅ​ដាច់​ពី​គេ"
+
+msgid "Quartile"
+msgstr "ភាគបួន"
+
+msgid "Query"
+msgstr "សំណួរ"
+
+msgid "Query"
+msgstr "សំណួរ"
+
+msgid "Queue"
+msgstr "ដាក់​ជា​ជួរ"
+
+msgid "Queue"
+msgstr "ដាក់​ជា​ជួរ"
+
+msgid "Quick Launch Bar"
+msgstr "របារ​ចាប់ផ្ដើម​រហ័ស"
+
+msgid "Quick Launcher"
+msgstr "ឧបករណ៍​ចាប់ផ្ដើម​រហ័ស"
+
+msgid "Quit"
+msgstr "បោះបង់"
+
+msgid "Quota"
+msgstr "កូតា"
+
+msgid "Quotation"
+msgstr "មើល Quote"
+
+msgid "Quote"
+msgstr "ដកស្រង់"
+
+msgid "Quote"
+msgstr "ដកស្រង់"
+
+msgid "Radial"
+msgstr "មូល"
+
+msgid "Radio Button"
+msgstr "ប៊ូតុង​មូល"
+
+msgid "Radix"
+msgstr "គោល"
+
+msgid "Raise"
+msgstr "លើក​ឡើង​លើ"
+
+msgid "Raised Position"
+msgstr "ទីតាំង​លើ​បន្តិច"
+
+msgid "Random"
+msgstr "ចៃដន្យ"
+
+msgid "Range"
+msgstr "ជួរ"
+
+msgid "Rate"
+msgstr "អត្រា"
+
+msgid "Raw"
+msgstr "ឆៅ"
+
+msgid "Read"
+msgstr "អាន"
+
+msgid "Read-Only"
+msgstr "បាន​តែ​អាន"
+
+msgid "Readme"
+msgstr "អាន​ខ្ញុំ"
+
+msgid "Ready"
+msgstr "រួច​ហើយ"
+
+msgid "Real"
+msgstr "ពិត"
+
+msgid "Reboot"
+msgstr "ចាប់ផ្ដើម​ឡើង​វិញ"
+
+msgid "Recalculate Hard"
+msgstr "ខំ​គណនា​ឡើង​វិញ"
+
+msgid "Receipt"
+msgstr "បង្កាន់​ដៃ"
+
+msgid "Receive"
+msgstr "ទទួល"
+
+msgid "Recipient"
+msgstr "អ្នក​ទទួល"
+
+msgid "Recognize"
+msgstr "ទទួល​ស្គាល់"
+
+msgid "Recommend"
+msgstr "ផ្ដល់​អនុសាសន៍"
+
+msgid "Reconnect"
+msgstr "តភ្ជាប់​ឡើង​វិញ"
+
+msgid "Record"
+msgstr "កំណត់ត្រា"
+
+msgid "Record"
+msgstr "កំណត់ត្រា"
+
+msgid "Recover"
+msgstr "យក​បាន​វិញ"
+
+msgid "Recovery"
+msgstr "ការ​សង្គ្រោះ​ឯកសារ"
+
+msgid "Recreate"
+msgstr "បង្កើត​ឡើង​វិញ"
+
+msgid "Recursion"
+msgstr "ការ​ហៅ​ខ្លួន​ឯង"
+
+msgid "Recycle Bin"
+msgstr "ធុង​សំរាម"
+
+msgid "Redial"
+msgstr "ហៅ​ឡើង​វិញ (ទូរស័ព្ទ)"
+
+msgid "Redirect"
+msgstr "ប្ដូរ​ទិស"
+
+msgid "Redo"
+msgstr "ធ្វើ​វិញ"
+
+msgid "Reduce"
+msgstr "កាត់​បន្ថយ"
+
+msgid "Redundancy"
+msgstr "ភាព​ស្ទួន"
+
+msgid "Reestablish"
+msgstr "បង្កើត​ឡើង​វិញ"
+
+msgid "Reference"
+msgstr "សេចក្ដី​យោង"
+
+msgid "Reference Point"
+msgstr "ចំណុច​យោង"
+
+msgid "Referral"
+msgstr "ការ​ផ្ទេរ"
+
+msgid "Refresh"
+msgstr "ធ្វើ​ឲ្យ​ស្រស់"
+
+msgid "Refuse"
+msgstr "បដិសេធ"
+
+msgid "Regenerate"
+msgstr "បង្កើត​ឡើង​វិញ"
+
+msgid "Register"
+msgstr "ចុះ​ឈ្មោះ"
+
+msgid "Registration"
+msgstr "ការ​ចុះ​ឈ្មោះ"
+
+msgid "Registry"
+msgstr "បញ្ជី​ឈ្មោះ"
+
+msgid "Regular"
+msgstr "ធម្មតា"
+
+msgid "Rehearse Timing"
+msgstr "ពេលវេលា​​សម"
+
+msgid "Reinstall"
+msgstr "ដំឡើង​ឡើង​វិញ"
+
+msgid "Reject"
+msgstr "ច្រាន​ចោល"
+
+msgid "Relation"
+msgstr "ទំនាក់​ទំនង"
+
+msgid "Relative URL"
+msgstr "URL ទំនាក់ទំនង"
+
+msgid "Relay"
+msgstr "បញ្ជូន​ត"
+
+msgid "Relay"
+msgstr "បញ្ជូន​ត"
+
+msgid "Release"
+msgstr "បញ្ចេញ"
+
+msgid "Release"
+msgstr "បញ្ចេញ"
+
+msgid "Release Note"
+msgstr "កំណត់​ចំណាំ​ការ​ចេញផ្សាយ"
+
+msgid "Release Year"
+msgstr "ឆ្នាំ​ចេញ​ផ្សាយ"
+
+msgid "Relief"
+msgstr "ក្បាច់"
+
+msgid "Reload"
+msgstr "ផ្ទុក​ឡើង​វិញ"
+
+msgid "Remaining"
+msgstr "នៅ​សល់"
+
+msgid "Remark"
+msgstr "កំណត់​សម្គាល់"
+
+msgid "Remind"
+msgstr "រំលឹក"
+
+msgid "Reminder"
+msgstr "អ្នក​រំលឹក"
+
+msgid "Remote"
+msgstr "ឆ្ងាយ"
+
+msgid "Remote Access"
+msgstr "ការ​ចូល​ដំណើរការ​ពី​ចម្ងាយ"
+
+msgid "Remote Administration"
+msgstr "ការ​គ្រប់គ្រង​ពី​ចម្ងាយ"
+
+msgid "Remote Control"
+msgstr "ការ​បញ្ជា​ពី​ចម្ងាយ"
+
+msgid "Removable"
+msgstr "ចល័ត"
+
+msgid "Removable Disk"
+msgstr "ថាស​ចល័ត"
+
+msgid "Remove"
+msgstr "យក​ចេញ"
+
+msgid "Rename"
+msgstr "ប្ដូរ​ឈ្មោះ"
+
+msgid "Render"
+msgstr "បង្ហាញ"
+
+msgid "Renew"
+msgstr "បន្ត"
+
+msgid "Reopen"
+msgstr "បើក​ឡើង​វិញ"
+
+msgid "Repaginate"
+msgstr "បង់​លេខ​ទំព័រ​ឡើង​វិញ"
+
+msgid "Repair"
+msgstr "ជួសជុល"
+
+msgid "Repaired"
+msgstr "ដែល​ជួសជុល​រួច"
+
+msgid "Repeat"
+msgstr "ធ្វើ​ម្ដង​ទៀត"
+
+msgid "Replace"
+msgstr "ជំនួស"
+
+msgid "Replacement"
+msgstr "ការ​ជំនួស"
+
+msgid "Replacement Table"
+msgstr "តារាង​ជំនួស"
+
+msgid "Replicate"
+msgstr "ថត​ចម្លង"
+
+msgid "Replication"
+msgstr "ការ​ថត​ចម្លង"
+
+msgid "Reply"
+msgstr "ឆ្លើយតប"
+
+msgid "Report"
+msgstr "របាយការណ៍"
+
+msgid "Repository"
+msgstr "ឃ្លាំង"
+
+msgid "Request"
+msgstr "សំណើ"
+
+msgid "Request"
+msgstr "សំណើ"
+
+msgid "Require"
+msgstr "ទាមទារ"
+
+msgid "Requirement"
+msgstr "តម្រូវការ"
+
+msgid "Research"
+msgstr "ស្រាវជ្រាវ"
+
+msgid "Research"
+msgstr "ស្រាវជ្រាវ"
+
+msgid "Reset"
+msgstr "កំណត់​ឡើង​វិញ"
+
+msgid "Resize"
+msgstr "ប្ដូរ​ទំហំ"
+
+msgid "Resolution"
+msgstr "គុណភាព​បង្ហាញ"
+
+msgid "Resolver"
+msgstr "អ្នក​ដោះស្រាយ"
+
+msgid "Resource"
+msgstr "ធនធាន"
+
+msgid "Respond"
+msgstr "ឆ្លើយតប"
+
+msgid "Response"
+msgstr "ចម្លើយតប"
+
+msgid "Restart"
+msgstr "ចាប់ផ្ដើម​ឡើង​វិញ"
+
+msgid "Restore"
+msgstr "ស្ដារ"
+
+msgid "Restore Default"
+msgstr "ស្ដារ​លំនាំដើម"
+
+msgid "Restrict"
+msgstr "ដាក់​កម្រិត"
+
+msgid "Restricted"
+msgstr "ដែល​ត្រូវ​បាន​កម្រិត"
+
+msgid "Restriction"
+msgstr "កម្រិត"
+
+msgid "Result"
+msgstr "លទ្ធផល"
+
+msgid "ResultSet"
+msgstr "សំណុំ​លទ្ធផល"
+
+msgid "Resume"
+msgstr "ធ្វើ​បន្ត"
+
+msgid "Retrieve"
+msgstr "ទៅ​យក"
+
+msgid "Retry"
+msgstr "ព្យាយាម​ម្ដង​ទៀត"
+
+msgid "Return"
+msgstr "ត្រឡប់"
+
+msgid "Return Address"
+msgstr "អាសយដ្ឋាន​ត្រឡប់"
+
+msgid "Return Receipt"
+msgstr "បង្កាន់​ដៃ​ត្រឡប់"
+
+msgid "Reuse"
+msgstr "ប្រើ​ឡើង​វិញ"
+
+msgid "Reverse"
+msgstr "ដាក់​បញ្ច្រាស"
+
+msgid "Reverse"
+msgstr "ដាក់​បញ្ច្រាស"
+
+msgid "Revert"
+msgstr "ត្រឡប់​ទៅ​ដើម"
+
+msgid "Review"
+msgstr "ពិនិត្យ​ឡើង​វិញ"
+
+msgid "Revision"
+msgstr "ការ​ពិនិត្យ​ឡើង​វិញ"
+
+msgid "Revocation"
+msgstr "ការ​ដក​ហូត​វិញ"
+
+msgid "Revoke"
+msgstr "ដកហូត​វិញ"
+
+msgid "Rewind"
+msgstr "ខារ​ថយក្រោយ"
+
+msgid "Rhombus"
+msgstr "ចតុកោណ​ស្មើ"
+
+msgid "Rich Text"
+msgstr "អត្ថបទ​សម្បូរ​បែប"
+
+msgid "Rid"
+msgstr "កម្ចាត់"
+
+msgid "Right Join"
+msgstr "រួម​ខាង​ស្ដាំ"
+
+msgid "Ring"
+msgstr "កង"
+
+msgid "Rip"
+msgstr "ច្រៀក"
+
+msgid "Roll"
+msgstr "រមៀល"
+
+msgid "Roll Back"
+msgstr "រមៀល​ថយ"
+
+msgid "Roll Over"
+msgstr "ដាក់​លើ"
+
+msgid "Roll Up"
+msgstr "រមៀល​ឡើង"
+
+msgid "Root"
+msgstr "Root"
+
+msgid "Rotate"
+msgstr "បង្វិល"
+
+msgid "Rotation Angle"
+msgstr "មុំ​បង្វិល"
+
+msgid "Round"
+msgstr "បង្គត់"
+
+msgid "Round"
+msgstr "បង្គត់"
+
+msgid "Round Bracket"
+msgstr "វង់ក្រចក"
+
+msgid "Rounded Polygon"
+msgstr "ពហុកោណ​ជ្រុង​មូល"
+
+msgid "Rounded Rectangle"
+msgstr "ចតុកោណកែង​ជ្រុង​មូល"
+
+msgid "Route"
+msgstr "នាំផ្លូវ"
+
+msgid "Route"
+msgstr "នាំផ្លូវ"
+
+msgid "Routine"
+msgstr "ទម្រង់ការ"
+
+msgid "Row"
+msgstr "ជួរ​ដេក"
+
+msgid "Row Break"
+msgstr "ការ​បំបែក​ជួរ​ដេក"
+
+msgid "Row Heading"
+msgstr "ក្បាល​ជួរ​ដេក"
+
+msgid "Ruby (Phonetic Guide)"
+msgstr "មគ្គុទ្ទេសក៍​សូរសព្ទ"
+
+msgid "Rule"
+msgstr "ច្បាប់"
+
+msgid "Ruler"
+msgstr "បន្ទាត់"
+
+msgid "Run"
+msgstr "រត់"
+
+msgid "Run Level"
+msgstr "កម្រិត​រត់"
+
+msgid "Run-Time"
+msgstr "ពេល​រត់"
+
+msgid "Run-Time Error"
+msgstr "កំហុស​ពេល​រត់"
+
+msgid "Runaway"
+msgstr "មិន​អាច​បញ្ជា​បាន"
+
+msgid "Safe"
+msgstr "សុវត្ថិភាព"
+
+msgid "Safety"
+msgstr "សុវត្ថិភាព"
+
+msgid "Salmon"
+msgstr "ពណ៌​ស្លាទុំ"
+
+msgid "Salutation"
+msgstr "វន្ទនាការ"
+
+msgid "Salvage"
+msgstr "សង្គ្រោះ"
+
+msgid "Sample"
+msgstr "គំរូ"
+
+msgid "Saturation"
+msgstr "តិត្ថិភាព"
+
+msgid "Save"
+msgstr "រក្សាទុក"
+
+msgid "Save as"
+msgstr "រក្សាទុក​ជា"
+
+msgid "Scale"
+msgstr "មាត្រដ្ឋាន"
+
+msgid "Scan"
+msgstr "ស្កេន"
+
+msgid "Scanner"
+msgstr "ម៉ាស៊ីន​​ស្កេន"
+
+msgid "Scenario"
+msgstr "សាច់រឿង"
+
+msgid "Schedule"
+msgstr "កំណត់​ពេល"
+
+msgid "Schedule"
+msgstr "កំណត់​ពេល"
+
+msgid "Scheme"
+msgstr "គ្រោងការណ៍"
+
+msgid "Scope"
+msgstr "វិសាលភាព"
+
+msgid "Screen"
+msgstr "អេក្រង់"
+
+msgid "Screen Saver"
+msgstr "ធាតុ​រក្សា​អេក្រង់"
+
+msgid "Screen Tips"
+msgstr "ព័ត៌មាន​ជំនួយ​លើ​អេ​ក្រង់"
+
+msgid "Screenshot"
+msgstr "រូបថត​អេក្រង់"
+
+msgid "Screenshot"
+msgstr "រូបថត​អេក្រង់"
+
+msgid "Script"
+msgstr "ស្គ្រីប"
+
+msgid "Scroll"
+msgstr "រមូរ"
+
+msgid "Scroll Bar"
+msgstr "របារ​រមូរ"
+
+msgid "Scroll Horizontal"
+msgstr "រមូរ​ផ្ដេក"
+
+msgid "Search"
+msgstr "ស្វែងរក"
+
+msgid "Search Engine"
+msgstr "ម៉ាស៊ីន​ស្វែងរក"
+
+msgid "Search key"
+msgstr "ពាក្យ​ស្វែងរក"
+
+msgid "Sec. (Second)"
+msgstr "វិ."
+
+msgid "Secondary"
+msgstr "រង"
+
+msgid "Section"
+msgstr "ភាគ"
+
+msgid "Sector"
+msgstr "ចម្រៀក"
+
+msgid "Secure"
+msgstr "ដែល​មាន​សុវត្ថិភាព"
+
+msgid "Security"
+msgstr "សុវត្ថិភាព"
+
+msgid "Seek"
+msgstr "ស្វែងរក"
+
+msgid "Segment"
+msgstr "ច្រៀក"
+
+msgid "Segment"
+msgstr "ច្រៀក"
+
+msgid "Segmentation"
+msgstr "ការ​ចែក​ជា​ចម្រៀក"
+
+msgid "Select"
+msgstr "ជ្រើស"
+
+msgid "Select All"
+msgstr "ជ្រើស​ទាំងអស់"
+
+msgid "Selected Text"
+msgstr "អត្ថបទ​​ដែល​បាន​ជ្រើស"
+
+msgid "Selection"
+msgstr "ជម្រើស"
+
+msgid "Self-Extracting"
+msgstr "ការ​ស្រង់​ចេញ​ដោយ​ខ្លួន​ឯង"
+
+msgid "Semi"
+msgstr "កន្លះ"
+
+msgid "Semibold"
+msgstr "ដិត​ល្មម"
+
+msgid "Semicircle"
+msgstr "កន្លះ​រង្វង់"
+
+msgid "Semicolon"
+msgstr "សញ្ញា​​ចំណុច​ក្បៀស (;)"
+
+msgid "Semicondensed"
+msgstr "ញឹក​ល្មម"
+
+msgid "Semiexpanded"
+msgstr "រង្វើល​​ល្មម"
+
+msgid "Semilight"
+msgstr "ស្រាល​​ល្មម"
+
+msgid "Send"
+msgstr "ផ្ញើ"
+
+msgid "Send Backward"
+msgstr "បញ្ជូន​ទៅ​ក្រោយ"
+
+msgid "Send Immediately"
+msgstr "ផ្ញើ​ភ្លាមៗ"
+
+msgid "Send Later"
+msgstr "ផ្ញើ​ពេល​ក្រោយ"
+
+msgid "Send Now"
+msgstr "ផ្ញើ​ឥឡូវ"
+
+msgid "Send To Back"
+msgstr "បញ្ជូន​ទៅ​ក្រោយ​គេ"
+
+msgid "Send Unsent Messages"
+msgstr "ផ្ញើ​សារ​មិន​ទាន់​ផ្ញើ"
+
+msgid "Sender"
+msgstr "អ្នក​ផ្ញើ"
+
+msgid "Sequence"
+msgstr "លំដាប់"
+
+msgid "Sequential Access"
+msgstr "ចូល​ដំណើរការ​តាម​លំដាប់​លំដោយ"
+
+msgid "Serial"
+msgstr "សៀរៀល"
+
+msgid "Serial Number"
+msgstr "លេខ​សម្គាល់"
+
+msgid "Series"
+msgstr "ស៊េរី"
+
+msgid "Server"
+msgstr "ម៉ាស៊ីន​បម្រើ"
+
+msgid "Server Farm"
+msgstr "តំបន់​ម៉ាស៊ីន​បម្រើ"
+
+msgid "Server Name"
+msgstr "ឈ្មោះ​ម៉ាស៊ីន​បម្រើ"
+
+msgid "Server Side"
+msgstr "ខាង​ម៉ាស៊ីន​បម្រើ"
+
+msgid "Session"
+msgstr "សម័យ"
+
+msgid "Set"
+msgstr "កំណត់"
+
+msgid "Set up"
+msgstr "រៀបចំ"
+
+msgid "Setting"
+msgstr "ការ​កំណត់"
+
+msgid "Shadow"
+msgstr "ស្រមោល"
+
+msgid "Shape"
+msgstr "រាង"
+
+msgid "Share"
+msgstr "ចែក​រំលែក"
+
+msgid "Shared File"
+msgstr "ឯកសារ​រួម"
+
+msgid "Shareware"
+msgstr "កម្មវិធី​ប្រើ​សាកល្បង"
+
+msgid "Sharing"
+msgstr "ការ​ចែក​រំលែក"
+
+msgid "Sharpen"
+msgstr "ស្រួច"
+
+msgid "Shear"
+msgstr "កាត់"
+
+msgid "Sheet"
+msgstr "សន្លឹក"
+
+msgid "Shell"
+msgstr "សែល"
+
+msgid "Shell"
+msgstr "សែល"
+
+msgid "Shift"
+msgstr "អង្កិល"
+
+msgid "Shift (Key)"
+msgstr "ប្ដូរ"
+
+msgid "Shortcut"
+msgstr "ផ្លូវ​កាត់"
+
+msgid "Shortcut Key"
+msgstr "គ្រាប់​ចុច​ផ្លូវ​កាត់"
+
+msgid "Shred"
+msgstr "ច្រៀក"
+
+msgid "Shrink"
+msgstr "បង្រួញ"
+
+msgid "Shrink to Fit"
+msgstr "បង្រួញ​ឲ្យ​សម"
+
+msgid "Shrink to Fit Page Width"
+msgstr "បង្រួញ​តម្រូវ​តាម​ទទឹង​ទំព័រ"
+
+msgid "Shutdown"
+msgstr "បិទ"
+
+msgid "Sidebar"
+msgstr "របារ​ចំហៀង"
+
+msgid "Sign"
+msgstr "ចុះ​ហត្ថលេខា"
+
+msgid "Sign In"
+msgstr "ចូល"
+
+msgid "Sign Out"
+msgstr "ចេញ"
+
+msgid "Sign Up"
+msgstr "ចុះ​ឈ្មោះ"
+
+msgid "Signal"
+msgstr "សញ្ញា"
+
+msgid "Signature"
+msgstr "ហត្ថលេខា"
+
+msgid "Signer"
+msgstr "អ្នក​ចុះ​ហត្ថលេខា"
+
+msgid "Similarity Search"
+msgstr "ស្វែងរក​ភាព​ស្រដៀង​គ្នា"
+
+msgid "Simple"
+msgstr "សាមញ្ញ"
+
+msgid "Simulator"
+msgstr "កម្មវិធី​ក្លែង​ធ្វើ"
+
+msgid "Single-sided"
+msgstr "ម្ខាង"
+
+msgid "Site"
+msgstr "តំបន់​បណ្ដាញ"
+
+msgid "Site Manager"
+msgstr "កម្មវិធី​គ្រប់គ្រង​តំបន់​បណ្ដាញ"
+
+msgid "Size"
+msgstr "ទំហំ"
+
+msgid "Sizelimit"
+msgstr "ទំហំ​កំណត់"
+
+msgid "Skew"
+msgstr "ឆៀង"
+
+msgid "Skew"
+msgstr "ឆៀង"
+
+msgid "Skip"
+msgstr "រំលង"
+
+msgid "Slant"
+msgstr "ភាព​ទេរ"
+
+msgid "Slave"
+msgstr "កូន​ចៅ"
+
+msgid "Slave Field"
+msgstr "វាល​កូន​ចៅ"
+
+msgid "Slide (Presentation)"
+msgstr "ស្លាយ"
+
+msgid "Slide Show"
+msgstr "ការ​បញ្ចាំង​ស្លាយ"
+
+msgid "Slider"
+msgstr "គ្រាប់​រំកិល"
+
+msgid "Slogan"
+msgstr "ពាក្យ​ស្លោក"
+
+msgid "Slot"
+msgstr "រន្ធ"
+
+msgid "Slower"
+msgstr "យឺត​ជាង"
+
+msgid "Slowest"
+msgstr "យឺត​បំផុត"
+
+msgid "Small Capitals"
+msgstr "អក្សរ​​ពុម្ព​​តូច"
+
+msgid "Smart"
+msgstr "ឆ្លាត"
+
+msgid "Smile (Smiley)"
+msgstr "ការ​ញញឹម"
+
+msgid "Smiley"
+msgstr "សញ្ញា​​​អារម្មណ៍"
+
+msgid "Smooth"
+msgstr "រលូន"
+
+msgid "Smooth"
+msgstr "រលូន"
+
+msgid "Smooth End"
+msgstr "ការ​បញ្ចប់យ៉ាង​រលូន"
+
+msgid "Smooth Scroll"
+msgstr "រមូរ​រលូន"
+
+msgid "Smooth Start"
+msgstr "ការ​ចាប់ផ្ដើម​យ៉ាង​រលូន"
+
+msgid "SMS (Short Message)"
+msgstr "សារ​ខ្លី"
+
+msgid "Snap"
+msgstr "ខ្ទាស់"
+
+msgid "Snapshot"
+msgstr "រូបថត"
+
+msgid "Socket"
+msgstr "រន្ធ"
+
+msgid "Socket Number"
+msgstr "លេខ​​រន្ធ"
+
+msgid "Software"
+msgstr "ផ្នែក​ទន់"
+
+msgid "Solarization"
+msgstr "ពន្លឺ​ព្រះអាទិត្យ"
+
+msgid "Solid"
+msgstr "តាន់"
+
+msgid "Sort"
+msgstr "តម្រៀប"
+
+msgid "Sort by"
+msgstr "តម្រៀប​តាម"
+
+msgid "Source"
+msgstr "ប្រភព"
+
+msgid "Space (Disk)"
+msgstr "ទំហំ (ថាស)"
+
+msgid "Spacing"
+msgstr "គម្លាត"
+
+msgid "Spam"
+msgstr "សារ​ឥត​បាន​ការ"
+
+msgid "Span"
+msgstr "វិសាលភាព"
+
+msgid "Spawn"
+msgstr "បង្កើត"
+
+msgid "Speaker"
+msgstr "ធុងបាស"
+
+msgid "Specify"
+msgstr "បញ្ជាក់​លម្អិត"
+
+msgid "Spectral"
+msgstr "នៃ​វិសាលគម"
+
+msgid "Spectrum"
+msgstr "វិសាល​គម"
+
+msgid "Specular"
+msgstr "ឆ្លុះ"
+
+msgid "Speed"
+msgstr "ល្បឿន"
+
+msgid "Spell Checking"
+msgstr "ការ​ពិនិត្យ​អក្ខរាវិរុទ្ធ"
+
+msgid "Spellcheck"
+msgstr "ពិនិត្យ​​អក្ខរាវិរុទ្ធ"
+
+msgid "Spelling"
+msgstr "អក្ខរាវិរុទ្ធ"
+
+msgid "Spelling and Grammar"
+msgstr "អក្ខរាវិរុទ្ធ និង វេយ្យាករណ៏"
+
+msgid "Spin Button"
+msgstr "ប៊ូតុង​បង្កើន​បន្ថយ"
+
+msgid "Spiral"
+msgstr "គួច"
+
+msgid "Split"
+msgstr "ពុះ"
+
+msgid "Sponsor"
+msgstr "អ្នក​ធានា"
+
+msgid "Spool"
+msgstr "ស្ពូល"
+
+msgid "Spool File"
+msgstr "ឯកសារ​ស្ពូល"
+
+msgid "Spreadsheet"
+msgstr "សៀវភៅ​បញ្ជី"
+
+msgid "Stack"
+msgstr "ជង់"
+
+msgid "Stagger Even"
+msgstr "លេខ​សេស​ទាប​ជាង​លេខគូ"
+
+msgid "Stagger Odd"
+msgstr "លេខ​គូ​ទាប​ជាង​លេខ​សេស"
+
+msgid "Stalk"
+msgstr "ឈ្លបចាប់"
+
+msgid "Standalone"
+msgstr "ឈរ​តែ​ឯង"
+
+msgid "Standard"
+msgstr "ស្តង់ដារ"
+
+msgid "Standby"
+msgstr "រង់ចាំ"
+
+msgid "Start"
+msgstr "ចាប់ផ្ដើម"
+
+msgid "Start Angle"
+msgstr "មុំ​ចាប់ផ្ដើម"
+
+msgid "Start Menu"
+msgstr "ម៉ឺនុយ​ចាប់ផ្ដើម"
+
+msgid "Starting Page"
+msgstr "ទំព័រចាប់ផ្ដើម"
+
+msgid "Startup"
+msgstr "មើល Boot"
+
+msgid "Statement"
+msgstr "សេចក្ដីថ្លែង​ការណ៍"
+
+msgid "Static"
+msgstr "ឋិតិវន្ត"
+
+msgid "Stationery"
+msgstr "សម្ភារៈ​ការិយាល័យ"
+
+msgid "Stationery"
+msgstr "សម្ភារៈ​ការិយាល័យ"
+
+msgid "Statistics"
+msgstr "ស្ថិតិ"
+
+msgid "Status"
+msgstr "ស្ថានភាព"
+
+msgid "Status Bar"
+msgstr "របារ​ស្ថានភាព"
+
+msgid "Step"
+msgstr "ជំហាន"
+
+msgid "Stereo"
+msgstr "ស្តេរេអូ"
+
+msgid "Stock Chart"
+msgstr "គំនូស​តាង​សន្និធិ"
+
+msgid "Stop"
+msgstr "ឈប់"
+
+msgid "Stop"
+msgstr "ឈប់"
+
+msgid "Storage Device"
+msgstr "ឧបករណ៍​ផ្ទុក"
+
+msgid "Store"
+msgstr "ទុក"
+
+msgid "Stream"
+msgstr "ស្ទ្រីម"
+
+msgid "Stretch"
+msgstr "ទាញ​ឲ្យវែង"
+
+msgid "Stretch (Wallpaper)"
+msgstr "ប៉ុន​ទំហំ​ផ្ទៃ"
+
+msgid "Strict"
+msgstr "តឹង​រ៉ឹង"
+
+msgid "Strikethrough"
+msgstr "បន្ទាត់​ឆូត"
+
+msgid "String"
+msgstr "ខ្សែ​អក្សរ"
+
+msgid "Strip"
+msgstr "ច្បូត​ចេញ"
+
+msgid "Strip"
+msgstr "ច្បូត​ចេញ"
+
+msgid "Stroke"
+msgstr "ខ្វាច់"
+
+msgid "Structure"
+msgstr "រចនាសម្ព័ន្ធ"
+
+msgid "Style"
+msgstr "រចនាប័ទ្ម"
+
+msgid "Style and Formatting"
+msgstr "រចនាប័ទ្ម និង ទ្រង់ទ្រាយ"
+
+msgid "Stylesheet"
+msgstr "សន្លឹក​រចនាប័ទ្ម"
+
+msgid "Sub Menu"
+msgstr "ម៉ឺនុយ​រង"
+
+msgid "Subdirectory"
+msgstr "ថត​រង"
+
+msgid "Subdivision"
+msgstr "ផ្នែក​រង"
+
+msgid "Subfolder"
+msgstr "មើល Subdirectory"
+
+msgid "Subject"
+msgstr "ប្រធានបទ"
+
+msgid "Sublevel"
+msgstr "កម្រិត​រង"
+
+msgid "Submission"
+msgstr "ការ​ដាក់​ស្នើ"
+
+msgid "Submit"
+msgstr "ដាក់​ស្នើ"
+
+msgid "Subpoint"
+msgstr "ចំណុច​រង"
+
+msgid "Subroutine"
+msgstr "ទម្រង់ការ​រង"
+
+msgid "Subscribe"
+msgstr "ជាវ​ប្រចាំ"
+
+msgid "Subscript"
+msgstr "អក្សរ​តូច​ក្រោម"
+
+msgid "Subscription"
+msgstr "ការ​ជាវ​ប្រចាំ"
+
+msgid "Subtitle"
+msgstr "ចំណងជើង​រង"
+
+msgid "Subtotal"
+msgstr "សរុប​រង"
+
+msgid "Subtract"
+msgstr "ដក"
+
+msgid "Subtraction"
+msgstr "ការ​ដក"
+
+msgid "Subtree"
+msgstr "មែក​ធាង​រង"
+
+msgid "Succeed"
+msgstr "ជោគជ័យ"
+
+msgid "Successfully"
+msgstr "ដោយ​ជោគជ័យ"
+
+msgid "Suffix"
+msgstr "បច្ច័យ"
+
+msgid "Suggest"
+msgstr "ផ្ដល់​យោបល់"
+
+msgid "Suggestion"
+msgstr "ការ​ផ្ដល់​យោបល់"
+
+msgid "Suite"
+msgstr "ឈុត"
+
+msgid "Sum"
+msgstr "ផលបូក"
+
+msgid "Sum"
+msgstr "ផលបូក"
+
+msgid "Summarize"
+msgstr "សង្ខេប"
+
+msgid "Super User"
+msgstr "អ្នក​ប្រើ​ជាន់ខ្ពស់"
+
+msgid "Superordinate"
+msgstr "លំដាប់​ខ្ពស់​ជាង"
+
+msgid "Superscript"
+msgstr "អក្សរ​តូច​លើ"
+
+msgid "Supply"
+msgstr "ផ្គត់ផ្គង់"
+
+msgid "Support"
+msgstr "គាំទ្រ"
+
+msgid "Support"
+msgstr "គាំទ្រ"
+
+msgid "Surface"
+msgstr "ផ្ទៃ​ខាង​ក្រៅ"
+
+msgid "Surprise (Smiley)"
+msgstr "ភ្ញាក់ផ្អើល"
+
+msgid "Suspend"
+msgstr "ផ្អាក"
+
+msgid "Suspicious"
+msgstr "ដែល​មន្ទិល​សង្ស័យ"
+
+msgid "Swap"
+msgstr "ដូរ"
+
+msgid "Swap Memory"
+msgstr "សតិ​ស្វ៉ប"
+
+msgid "Switch"
+msgstr "កុងតាក់"
+
+msgid "Switch"
+msgstr "កុងតាក់"
+
+msgid "Switch Off"
+msgstr "បិទ"
+
+msgid "Switch On"
+msgstr "បើក"
+
+msgid "Symbol"
+msgstr "និមិត្ត​សញ្ញា"
+
+msgid "Symmetry"
+msgstr "ស៊ីមេទ្រី"
+
+msgid "Synchronization"
+msgstr "សមកាលកម្ម"
+
+msgid "Synchronize"
+msgstr "ធ្វើ​សមកាលកម្ម"
+
+msgid "Synonym"
+msgstr "វេវចនសព្ទ"
+
+msgid "Syntax"
+msgstr "វាក្យ​សម្ពន្ធ"
+
+msgid "System"
+msgstr "ប្រព័ន្ធ"
+
+msgid "System Administrator"
+msgstr "អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ"
+
+msgid "System Requirement"
+msgstr "តម្រូវការ​របស់​ប្រព័ន្ធ"
+
+msgid "System Unit"
+msgstr "ធុង​ប្រព័ន្ធ"
+
+msgid "Tab"
+msgstr "ផ្ទាំង"
+
+msgid "Tab (Key)"
+msgstr "ថេប"
+
+msgid "Table"
+msgstr "តារាង"
+
+msgid "Table of Contents"
+msgstr "តារាង​មាតិកា"
+
+msgid "Table Properties"
+msgstr "លក្ខណៈ​សម្បត្តិ​តារាង"
+
+msgid "Tag"
+msgstr "ស្លាក"
+
+msgid "Target"
+msgstr "គោល​ដៅ"
+
+msgid "Task List"
+msgstr "បញ្ជី​ភារកិច្ច"
+
+msgid "Task Pane"
+msgstr "ស្លាបព្រិល​ភារកិច្ច"
+
+msgid "Taskbar"
+msgstr "របារ​ភារកិច្ច"
+
+msgid "Telecommunication"
+msgstr "ទូរគមនាគមន៍"
+
+msgid "Teletype"
+msgstr "ទូរលិខ​អង្គុលីលេខ"
+
+msgid "Template"
+msgstr "ពុម្ព"
+
+msgid "Temporary"
+msgstr "បណ្ដោះ​អាសន្ន"
+
+msgid "Term"
+msgstr "ពាក្យ"
+
+msgid "Terminal"
+msgstr "ស្ថានីយ៍"
+
+msgid "Terminate"
+msgstr "បញ្ចប់​ដំណើរការ"
+
+msgid "Terminology"
+msgstr "ប្រជុំ​ស័ព្ទ​បច្ចេកទេស"
+
+msgid "Terms of Agreement"
+msgstr "លក្ខខណ្ឌ​កិច្ចព្រមព្រៀង"
+
+msgid "Test"
+msgstr "សាកល្បង"
+
+msgid "Text Box"
+msgstr "ប្រអប់​អត្ថបទ"
+
+msgid "Text Editor"
+msgstr "កម្មវិធី​និពន្ធ​អត្ថបទ"
+
+msgid "Text Flow"
+msgstr "លំហូរ​អត្ថបទ"
+
+msgid "Text Limit"
+msgstr "ព្រំដែន​អត្ថបទ"
+
+msgid "Texture"
+msgstr "វាយនភាព"
+
+msgid "Theme"
+msgstr "ស្បែក"
+
+msgid "Thesaurus"
+msgstr "កម្រង​វេវចនសព្ទ"
+
+msgid "Thesis"
+msgstr "និក្ខេបបទ"
+
+msgid "Thin"
+msgstr "ស្តើង"
+
+msgid "Thousands Separator"
+msgstr "សញ្ញា​បំបែក​ខ្ទង់​ពាន់"
+
+msgid "Thread"
+msgstr "ខ្សែ​ស្រឡាយ"
+
+msgid "Thread"
+msgstr "ខ្សែ​ស្រឡាយ"
+
+msgid "Threshold"
+msgstr "កម្រិត​ពន្លឺ"
+
+msgid "Thumbnail"
+msgstr "រូបភាព​តូច"
+
+msgid "Thumbprint"
+msgstr "ស្នាម​មេដៃ"
+
+msgid "Tight"
+msgstr "តឹង"
+
+msgid "Tilt"
+msgstr "ផ្អៀង"
+
+msgid "Time Limit"
+msgstr "ម៉ោង​កំណត់"
+
+msgid "Time Out"
+msgstr "អស់​ពេល"
+
+msgid "Time Out"
+msgstr "អស់​ពេល"
+
+msgid "Time Setting"
+msgstr "ការ​កំណត់​ពេលវេលា"
+
+msgid "Timer"
+msgstr "ឧបករណ៍​កំណត់​ពេល"
+
+msgid "Tint"
+msgstr "ពណ៌​ប្រឿងៗ"
+
+msgid "Tiny"
+msgstr "ល្អិត"
+
+msgid "Tips"
+msgstr "ព័ត៌មាន​ជំនួយ"
+
+msgid "Title"
+msgstr "ងារ"
+
+msgid "Title"
+msgstr "ងារ"
+
+msgid "Title Bar"
+msgstr "របារ​ចំណងជើង"
+
+msgid "Title Case"
+msgstr "អក្សរ​ធំ​នៅ​ដើម​ពាក្យ"
+
+msgid "To Do"
+msgstr "ត្រូវ​ធ្វើ"
+
+msgid "Toggle"
+msgstr "បិទ​បើក"
+
+msgid "Toggle"
+msgstr "បិទ​បើក"
+
+msgid "Token"
+msgstr "កាស"
+
+msgid "Tongue-Out"
+msgstr "លៀន​អណ្ដាត"
+
+msgid "Tool"
+msgstr "ឧបករណ៍"
+
+msgid "Toolbar"
+msgstr "របារ​ឧបករណ៍"
+
+msgid "Toolbox"
+msgstr "ប្រអប់​ឧបករណ៍"
+
+msgid "Toolbox"
+msgstr "ប្រអប់​ឧបករណ៍"
+
+msgid "Toolkit"
+msgstr "មើល Toolbox"
+
+msgid "Tooltip"
+msgstr "ព័ត៌មាន​ជំនួយ"
+
+msgid "Top"
+msgstr "កំពូល"
+
+msgid "Topic"
+msgstr "ប្រធានបទ"
+
+msgid "Topology"
+msgstr "ក្បួន​ត"
+
+msgid "Torus"
+msgstr "ថូរ៉ាស់"
+
+msgid "Trace"
+msgstr "ដាន"
+
+msgid "Trace"
+msgstr "ដាន"
+
+msgid "Track"
+msgstr "តាមដាន"
+
+msgid "Track"
+msgstr "តាមដាន"
+
+msgid "Trackball"
+msgstr "ឃ្លី"
+
+msgid "Traffic"
+msgstr "ចរាចរ"
+
+msgid "Transaction"
+msgstr "កិច្ចការ"
+
+msgid "Transfer"
+msgstr "ផ្ទេរ"
+
+msgid "Transform"
+msgstr "ប្លែង"
+
+msgid "Transformation"
+msgstr "ការ​ប្លែង​ភាព"
+
+msgid "Transition"
+msgstr "ដំណើរ​​ផ្លាស់ប្ដូរ"
+
+msgid "Transmission"
+msgstr "ការ​បញ្ជូន"
+
+msgid "Transmit"
+msgstr "បញ្ជូន"
+
+msgid "Transparency"
+msgstr "ភាព​​ថ្លា"
+
+msgid "Transparent"
+msgstr "ថ្លា"
+
+msgid "Transpose"
+msgstr "ផ្លាស់​កន្លែង"
+
+msgid "Trash"
+msgstr "សំរាម"
+
+msgid "Trash Can"
+msgstr "ធុង​សំរាម"
+
+msgid "Tree"
+msgstr "មែក​ធាង"
+
+msgid "Treeview"
+msgstr "ទិដ្ឋភាព​មែកធាង"
+
+msgid "Trial"
+msgstr "ការ​សាកល្បង"
+
+msgid "Trial Period"
+msgstr "រយៈពេល​សាកល្បង"
+
+msgid "Trigger"
+msgstr "គន្លឹះ"
+
+msgid "Trigger"
+msgstr "គន្លឹះ"
+
+msgid "Trim"
+msgstr "កាត់​តម្រឹម"
+
+msgid "Tristate"
+msgstr "ស្ថានភាព​បី"
+
+msgid "Troubleshoot"
+msgstr "ដោះស្រាយ​បញ្ហា"
+
+msgid "Troubleshooter"
+msgstr "អ្នក​ដោះស្រាយ​បញ្ហា"
+
+msgid "Troubleshooting"
+msgstr "ការ​ដោះស្រាយ​បញ្ហា"
+
+msgid "True Color"
+msgstr "ពណ៌​ធម្មជាតិ"
+
+msgid "Truncate"
+msgstr "កាត់​ឲ្យ​ខ្លី"
+
+msgid "Trust"
+msgstr "ជឿ​ទុកចិត្ត"
+
+msgid "Trust"
+msgstr "ជឿ​ទុកចិត្ត"
+
+msgid "Trusted"
+msgstr "ដែល​ជឿ​ទុកចិត្ត"
+
+msgid "Tuner"
+msgstr "ប្រដាប់​រាវ​ប៉ុស្តិ៍"
+
+msgid "Turquoise"
+msgstr "បៃតង​ខៀវ"
+
+msgid "Twip"
+msgstr "ធ្វីប"
+
+msgid "Type"
+msgstr "វាយ"
+
+msgid "Type"
+msgstr "វាយ"
+
+msgid "Typeface"
+msgstr "លក្ខណៈ​អក្សរ"
+
+msgid "Typography"
+msgstr "មុទ្ទវិទ្យា"
+
+msgid "Ultrabold"
+msgstr "ដិត​ជ្រុល"
+
+msgid "Ultracondensed"
+msgstr "ញឹក​ជ្រុល"
+
+msgid "Ultraexpanded"
+msgstr "រង្វើល​ជ្រុល"
+
+msgid "Ultralight"
+msgstr "ស្រាល​ជ្រុល"
+
+msgid "Ultralight"
+msgstr "ស្រាល​ជ្រុល"
+
+msgid "Unavailable"
+msgstr "ដែល​មិន​អាច​រក​បាន"
+
+msgid "Uncheck"
+msgstr "ដោះ​​ធីក"
+
+msgid "Undecided (Smiley)"
+msgstr "មិន​ទាន់​សម្រេច​ចិត្ត"
+
+msgid "Underline"
+msgstr "គូស​បន្ទាត់​ក្រោម"
+
+msgid "Undo"
+msgstr "មិន​ធ្វើ​វិញ"
+
+msgid "Undock"
+msgstr "ចេញ​ពី​ផែ"
+
+msgid "Unexpected"
+msgstr "ដែល​មិន​រំពឹង"
+
+msgid "Unfilled"
+msgstr "មិន​ទាន់​បំពេញ"
+
+msgid "Unformatted"
+msgstr "មិន​ទាន់​រៀបចំ"
+
+msgid "Ungroup"
+msgstr "បំបែក​ក្រុម"
+
+msgid "Uninstall (Program)"
+msgstr "លុប"
+
+msgid "Union"
+msgstr "សហភាព"
+
+msgid "Unitary"
+msgstr "រួម"
+
+msgid "Unknown"
+msgstr "មិន​ស្គាល់"
+
+msgid "Unlink"
+msgstr "មិន​តភ្ជាប់"
+
+msgid "Unload"
+msgstr "រើចេញ"
+
+msgid "Unmark"
+msgstr "ដោះ​សម្គាល់"
+
+msgid "Unmount"
+msgstr "អាន់ម៉ោន"
+
+msgid "Unnamed"
+msgstr "ដែល​គ្មាន​ឈ្មោះ"
+
+msgid "Unpack"
+msgstr "ស្រាយ"
+
+msgid "Unreachable"
+msgstr "មិន​អាច​ទៅ​ដល់"
+
+msgid "Unread"
+msgstr "មិន​ទាន់​អាន"
+
+msgid "Unreadable"
+msgstr "មិន​អាច​អាន​បាន"
+
+msgid "Unready"
+msgstr "មិន​ទាន់​ហើយ"
+
+msgid "Unsent"
+msgstr "មិន​ទាន់​ផ្ញើ"
+
+msgid "Unshade"
+msgstr "ដោះស្រមោល"
+
+msgid "Unsubscribe"
+msgstr "ឈប់​ជាវ"
+
+msgid "Unvisited"
+msgstr "មិន​ទាន់​​​ទស្សនា"
+
+msgid "Unzip"
+msgstr "ពន្លា"
+
+msgid "Update"
+msgstr "ធ្វើ​ឲ្យ​ទាន់​សម័យ"
+
+msgid "Updated"
+msgstr "ដែល​ទាន់​សម័យ"
+
+msgid "Upgrade"
+msgstr "ធ្វើ​ឲ្យ​ប្រសើរ"
+
+msgid "Upload"
+msgstr "ផ្ទុក​ឡើង"
+
+msgid "Upper"
+msgstr "លើ"
+
+msgid "Uppercase"
+msgstr "អក្សរធំ"
+
+msgid "Upright"
+msgstr "ត្រង់​ទៅលើ"
+
+msgid "Upward"
+msgstr "ទៅខាង​លើ"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "User"
+msgstr "អ្នកប្រើ"
+
+msgid "User Account"
+msgstr "គណនី​អ្នក​ប្រើ"
+
+msgid "User ID"
+msgstr "លេខ​សម្គាល់​អ្នក​ប្រើ"
+
+msgid "User Interface"
+msgstr "ចំណុច​ប្រទាក់​អ្នក​ប្រើ"
+
+msgid "User-Friendly"
+msgstr "ងាយស្រួល​ប្រើ"
+
+msgid "Username"
+msgstr "ឈ្មោះ​អ្នក​ប្រើ"
+
+msgid "Utility"
+msgstr "ឧបករណ៍​ប្រើប្រាស់"
+
+msgid "Valid"
+msgstr "ត្រឹមត្រូវ"
+
+msgid "Validate"
+msgstr "ធ្វើ​ឲ្យ​មាន​សុពលភាព"
+
+msgid "Validation"
+msgstr "សុពលកម្ម"
+
+msgid "Validity"
+msgstr "សុពលភាព"
+
+msgid "Value"
+msgstr "តម្លៃ"
+
+msgid "Variable"
+msgstr "អថេរ"
+
+msgid "Variation"
+msgstr "បំរែ​បំរួល"
+
+msgid "Vectorized Image"
+msgstr "រូបភាព​​កំណត់​ដោយ​វ៉ិចទ័រ"
+
+msgid "Vendor"
+msgstr "ក្រុមហ៊ុន​លក់"
+
+msgid "Verbose"
+msgstr "បង្ហាញ​ជា​អក្សរ"
+
+msgid "Verify"
+msgstr "ផ្ទៀងផ្ទាត់"
+
+msgid "Versions"
+msgstr "កំណែ"
+
+msgid "Vertical"
+msgstr "បញ្ឈរ"
+
+msgid "Video"
+msgstr "វីដេអូ"
+
+msgid "Video Conference"
+msgstr "សន្និសីទ​តាម​វីដេអូ"
+
+msgid "View"
+msgstr "មើល"
+
+msgid "View"
+msgstr "មើល"
+
+msgid "Viewer"
+msgstr "កម្មវិធី​មើល"
+
+msgid "Violate"
+msgstr "បំពាន"
+
+msgid "Violation"
+msgstr "ការបំពាន"
+
+msgid "Virtual Folder"
+msgstr "ថត​និម្មិត"
+
+msgid "Virus"
+msgstr "មេរោគ"
+
+msgid "Virus Definition"
+msgstr "និយមន័យ​មេរោគ"
+
+msgid "Visual"
+msgstr "នៃ​ចក្ខុ"
+
+msgid "Visual Aids"
+msgstr "ជំនួយ​រូបភាព"
+
+msgid "Visualization"
+msgstr "រូបភាព​មើលឃើញ"
+
+msgid "Visualizer"
+msgstr "ម៉ាកែត"
+
+msgid "Voice Chat"
+msgstr "ការ​ជជែក​កំសាន្ត​ជា​សម្លេង"
+
+msgid "Volatile Button"
+msgstr "ប៊ូតុង​មិន​ឋិតថេរ"
+
+msgid "Volume"
+msgstr "ភាគ"
+
+msgid "Volume"
+msgstr "ភាគ"
+
+msgid "Wallpaper"
+msgstr "ក្រដាស​បិទ​ជញ្ជាំង"
+
+msgid "WAN (Wide Area Network)"
+msgstr "បណ្ដាញ​​ធំ​ទូលាយ"
+
+msgid "Warn"
+msgstr "ព្រមាន"
+
+msgid "Warning"
+msgstr "ការ​ព្រមាន"
+
+msgid "Watch"
+msgstr "ឃ្លាំ​មើល"
+
+msgid "Watermark"
+msgstr "ព្រាលៗ"
+
+msgid "Way"
+msgstr "មធ្យោបាយ"
+
+msgid "Web"
+msgstr "បណ្ដាញ"
+
+msgid "Web Blog"
+msgstr "មើល Weblog"
+
+msgid "Web Layout"
+msgstr "ប្លង់ជា​បណ្ដាញ"
+
+msgid "Web Page"
+msgstr "ទំព័របណ្ដាញ"
+
+msgid "Web Portal"
+msgstr "ខ្លោង​ទ្វារ​បណ្ដាញ"
+
+msgid "Web Site"
+msgstr "តំបន់បណ្ដាញ"
+
+msgid "Webcasting"
+msgstr "ការ​ផ្សាយ​តាម​បណ្ដាញ "
+
+msgid "Weblog"
+msgstr "កំណត់ហេតុ​បណ្ដាញ"
+
+msgid "WebMail"
+msgstr "សំបុត្រ​បណ្ដាញ"
+
+msgid "Webmaster"
+msgstr "ប្រធាន​បណ្ដាញ"
+
+msgid "Webtop"
+msgstr "ផ្ទៃ​បណ្ដាញ"
+
+msgid "Western"
+msgstr "លោក​ខាង​លិច"
+
+msgid "Whole"
+msgstr "ទាំងមូល"
+
+msgid "Widget"
+msgstr "ធាតុ​ក្រាហ្វិក"
+
+msgid "Widow"
+msgstr "មេម៉ាយ"
+
+msgid "Width"
+msgstr "ទទឹង"
+
+msgid "Wildcard Character"
+msgstr "តួអក្សរ​ជំនួស"
+
+msgid "Window"
+msgstr "បង្អួច"
+
+msgid "Window Manager"
+msgstr "កម្មវិធី​គ្រប់គ្រង​បង្អួច"
+
+msgid "Wink (Smiley)"
+msgstr "មិចភ្នែក"
+
+msgid "Wipe"
+msgstr "លុប"
+
+msgid "Wizard"
+msgstr "អ្នក​ជំនួយការ"
+
+msgid "Word Art"
+msgstr "សិល្បៈ​អក្សរ"
+
+msgid "Word Count"
+msgstr "ចំនួន​ពាក្យ"
+
+msgid "Word Processing Program"
+msgstr "កម្មវិធី​វាយ​អត្ថបទ"
+
+msgid "Word Processor"
+msgstr "មើល Word Processing Program"
+
+msgid "Workbook"
+msgstr "សៀវភៅ​កិច្ចការ"
+
+msgid "Workday"
+msgstr "ថ្ងៃ​ធ្វើការ"
+
+msgid "Workgroup"
+msgstr "ក្រុម​ការងារ"
+
+msgid "Workplace"
+msgstr "កន្លែង​ធ្វើការ"
+
+msgid "Worksheet"
+msgstr "សន្លឹក​កិច្ចការ"
+
+msgid "Workspace"
+msgstr "តំបន់​ធ្វើការ"
+
+msgid "World Wide Web (WWW)"
+msgstr "វើលវ៉ាយវិប"
+
+msgid "Worm"
+msgstr "ដង្កូវ"
+
+msgid "Wrap"
+msgstr "រុំ"
+
+msgid "Wrap Through"
+msgstr "រុំ​កាត់"
+
+msgid "Write Protected"
+msgstr "ការពារ​មិន​ឲ្យ​សរសេរ​ចូល"
+
+msgid "Writing Aids"
+msgstr "ជំនួយ​សរសេរ"
+
+msgid "Yell (Smiley)"
+msgstr "ស្រែក"
+
+msgid "Yell (Smiley)"
+msgstr "ស្រែក"
+
+msgid "Yellow Pages"
+msgstr "ទំព័រ​លឿង"
+
+msgid "Zigzag"
+msgstr "ក្ងិចក្ងក់"
+
+msgid "Zip Disk"
+msgstr "ថាស​ហ្ស៊ីប"
+
+msgid "Zone"
+msgstr "តំបន់"
+
+msgid "Zoom"
+msgstr "ពង្រីក"
+
+msgid "Zoom In"
+msgstr "ពង្រីក"
+
+msgid "Zoom Out"
+msgstr "បង្រួម"
