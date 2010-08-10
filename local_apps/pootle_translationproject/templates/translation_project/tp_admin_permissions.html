@@ -1,6 +1,6 @@
 {% extends "tp_base_admin.html" %}
 
-{% load i18n %}
+{% load baseurl i18n %}
 
 {% block title %}
 {{ block.super }} » {% trans "Permissions" %}
@@ -16,4 +16,9 @@
     </p>
     {% include "admin/admin_general.html" %}
 </div>
+{% endblock %}
+
+{% block scripts_extra %}
+{{ block.super }}
+<script type="text/javascript" src='{{ "js/admin.js"|m }}'></script>
 {% endblock %}
