@@ -70,7 +70,7 @@ def test_unzip():
 
 def test_iso_codes():
     import gettext
-    languages = settings.LANGUAGES
+    languages = (lang[0] for lang in settings.LANGUAGES)
     if not languages:
         # There are no UI languages, which is a problem, but we won't complain
         # about that here.
