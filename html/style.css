@@ -1174,11 +1174,6 @@ div.item-statistics
     font-size: 1.5em;
 }
 
-div.item-statistics p
-{
-    line-height: 2;
-}
-
 div.item-statistics dl
 {
     margin: 0;

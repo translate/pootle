@@ -5,7 +5,13 @@
 {% block itemstats %}
 <!-- itemstats -->
 <div class="item-statistics small" lang="{{ LANGUAGE_CODE }}">
-    <p>{{ item.stats.summary|safe }}</p>
+    <div>
+    {% if not item.title %}
+    <img src="{% filter m %}images/{{ item.icon }}.png{% endfilter %}"
+    class="icon" alt="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
+    {% endif %}
+    {{ item.stats.summary|safe }}
+    </div>
     {% if item.stats.checks %}
     <dl>
         {% for check in item.stats.checks %}
