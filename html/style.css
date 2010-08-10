@@ -1168,6 +1168,7 @@ html[dir="rtl"] td.pootle_path
     margin-bottom: 0.3em;
 }
 
+.common-buttons-block .password-change,
 .common-buttons-block .save
 {
     background-position: 5px 50%;
@@ -1187,10 +1188,16 @@ html[dir="rtl"] td.pootle_path
     min-height: 16px;
 }
 
+.html[dir="rtl"] .password-change,
 .html[dir="rtl"] .save
 {
     padding: 2px 23px 2px 5px;
     background-position: right;
+}
+
+.common-buttons-block .password-change
+{
+    background-image: url('images/key_go.png');
 }
 
 .common-buttons-block .save
@@ -1198,6 +1205,9 @@ html[dir="rtl"] td.pootle_path
     background-image: url('images/database_save.png');
 }
 
+.common-buttons-block .password-change:hover,
+.common-buttons-block .password-change:active,
+.common-buttons-block .password-change:focus,
 .common-buttons-block .save:hover,
 .common-buttons-block .save:active,
 .common-buttons-block .save:focus
