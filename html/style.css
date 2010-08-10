@@ -1080,6 +1080,65 @@ html[dir="rtl"] td.pootle_path
     color: #ffffff;
 }
 
+/* ADMIN BUTTONS */
+
+.admin-buttons-block
+{
+    margin-bottom: 1em;
+}
+
+.admin-buttons-block input
+{
+    margin-bottom: 0.3em;
+}
+
+.admin-buttons-block .update,
+.admin-buttons-block .rescan
+{
+    background-position: 5px 50%;
+    display: block;
+    cursor: pointer;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    background-color: #ddd;
+    background-repeat: no-repeat;
+    border-color: #ddd #ddd #ccc;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    padding: 2px 5px 2px 23px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    min-width: 110px;
+    min-height: 16px;
+}
+
+.admin-buttons-block[dir="rtl"] .update,
+.admin-buttons-block[dir="rtl"] .rescan
+{
+    padding: 2px 23px 2px 5px;
+    background-position: right;
+}
+
+.admin-buttons-block .update
+{
+    background-image: url('images/page_refresh.png');
+}
+
+.admin-buttons-block .rescan
+{
+    background-image: url('images/arrow_refresh.png');
+}
+
+.admin-buttons-block .update:hover,
+.admin-buttons-block .update:active,
+.admin-buttons-block .update:focus,
+.admin-buttons-block .rescan:hover,
+.admin-buttons-block .rescan:active,
+.admin-buttons-block .rescan:focus
+{
+    border-color: #999;
+}
+
 
 /*
  * SUMMARIES
