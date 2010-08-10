@@ -70,7 +70,12 @@ def test_unzip():
 
 def test_iso_codes():
     import gettext
-    return len(gettext.find('iso_639', languages=(lang[0] for lang in settings.LANGUAGES), all=True)) > 0
+    languages = settings.LANGUAGES
+    if not languages:
+        # There are no UI languages, which is a problem, but we won't complain
+        # about that here.
+        languages = ['af', 'ar', 'fr']
+    return len(gettext.find('iso_639', languages=languages, all=True)) > 0
 
 
 def test_lxml():
