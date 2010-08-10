@@ -1170,7 +1170,8 @@ html[dir="rtl"] td.pootle_path
 
 .common-buttons-block .news-publish,
 .common-buttons-block .password-change,
-.common-buttons-block .save
+.common-buttons-block .save,
+.common-buttons-block .upload
 {
     background-position: 5px 50%;
     display: block;
@@ -1191,7 +1192,8 @@ html[dir="rtl"] td.pootle_path
 
 .html[dir="rtl"] .news-publish,
 .html[dir="rtl"] .password-change,
-.html[dir="rtl"] .save
+.html[dir="rtl"] .save,
+.html[dir="rtl"] .upload
 {
     padding: 2px 23px 2px 5px;
     background-position: right;
@@ -1212,6 +1214,11 @@ html[dir="rtl"] td.pootle_path
     background-image: url('images/database_save.png');
 }
 
+.common-buttons-block .upload
+{
+    background-image: url('images/arrow_up.png');
+}
+
 .common-buttons-block .news-publish:hover,
 .common-buttons-block .news-publish:active,
 .common-buttons-block .news-publish:focus,
@@ -1220,7 +1227,10 @@ html[dir="rtl"] td.pootle_path
 .common-buttons-block .password-change:focus,
 .common-buttons-block .save:hover,
 .common-buttons-block .save:active,
-.common-buttons-block .save:focus
+.common-buttons-block .save:focus,
+.common-buttons-block .upload:hover,
+.common-buttons-block .upload:active,
+.common-buttons-block .upload:focus
 {
     border-color: #999;
 }

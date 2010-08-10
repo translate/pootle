@@ -70,7 +70,7 @@ class Handler(object):
     def render_submits(self):
         output = u""
         for action in self.actions:
-            output += u'<input type="submit" name="%(action_name)s" value="%(action_value)s" />' % {
+            output += u'<input type="submit" class="upload" name="%(action_name)s" value="%(action_value)s" />' % {
                 'action_name':  action[0], 'action_value': unicode(action[1]) }
         return mark_safe(output)
 
