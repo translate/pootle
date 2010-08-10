@@ -1171,6 +1171,7 @@ html[dir="rtl"] td.pootle_path
 .common-buttons-block .news-publish,
 .common-buttons-block .password-change,
 .common-buttons-block .save,
+.common-buttons-block .term-extract,
 .common-buttons-block .upload,
 .common-buttons-block .vcs-update
 {
@@ -1194,6 +1195,7 @@ html[dir="rtl"] td.pootle_path
 .html[dir="rtl"] .news-publish,
 .html[dir="rtl"] .password-change,
 .html[dir="rtl"] .save,
+.html[dir="rtl"] .term-extract,
 .html[dir="rtl"] .upload,
 .html[dir="rtl"] .vcs-update
 {
@@ -1216,6 +1218,12 @@ html[dir="rtl"] td.pootle_path
     background-image: url('images/database_save.png');
 }
 
+.common-buttons-block .term-extract
+{
+    background-image: url('images/book_next.png');
+    margin: 0 auto;
+}
+
 .common-buttons-block .upload
 {
     background-image: url('images/arrow_up.png');
@@ -1235,6 +1243,9 @@ html[dir="rtl"] td.pootle_path
 .common-buttons-block .save:hover,
 .common-buttons-block .save:active,
 .common-buttons-block .save:focus,
+.common-buttons-block .term-extract:hover,
+.common-buttons-block .term-extract:active,
+.common-buttons-block .term-extract:focus,
 .common-buttons-block .upload:hover,
 .common-buttons-block .upload:active,
 .common-buttons-block .upload:focus,
