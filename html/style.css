@@ -1097,7 +1097,8 @@ html[dir="rtl"] td.pootle_path
 }
 
 .admin-buttons-block .update,
-.admin-buttons-block .rescan
+.admin-buttons-block .rescan,
+.admin-buttons-block .save
 {
     background-position: 5px 50%;
     display: block;
@@ -1116,8 +1117,9 @@ html[dir="rtl"] td.pootle_path
     min-height: 16px;
 }
 
-.admin-buttons-block[dir="rtl"] .update,
-.admin-buttons-block[dir="rtl"] .rescan
+.html[dir="rtl"] .update,
+.html[dir="rtl"] .rescan,
+.html[dir="rtl"] .save
 {
     padding: 2px 23px 2px 5px;
     background-position: right;
@@ -1133,12 +1135,72 @@ html[dir="rtl"] td.pootle_path
     background-image: url('images/arrow_refresh.png');
 }
 
+.admin-buttons-block .save
+{
+    background-image: url('images/database_save.png');
+}
+
 .admin-buttons-block .update:hover,
 .admin-buttons-block .update:active,
 .admin-buttons-block .update:focus,
 .admin-buttons-block .rescan:hover,
 .admin-buttons-block .rescan:active,
-.admin-buttons-block .rescan:focus
+.admin-buttons-block .rescan:focus,
+.admin-buttons-block .save:hover,
+.admin-buttons-block .save:active,
+.admin-buttons-block .save:focus
+{
+    border-color: #999;
+}
+
+/* COMMON BUTTONS
+ *  TODO: THIS DECLARATIONS ARE SEPARATE IN PURPOSE SO WE CAN MOVE
+ *  ADMIN CSS TO A SEPARATE FILE QUITE SOON
+ */
+
+.common-buttons-block
+{
+    margin-bottom: 1em;
+}
+
+.common-buttons-block input
+{
+    margin-bottom: 0.3em;
+}
+
+.common-buttons-block .save
+{
+    background-position: 5px 50%;
+    display: block;
+    cursor: pointer;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    background-color: #ddd;
+    background-repeat: no-repeat;
+    border-color: #ddd #ddd #ccc;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    padding: 2px 5px 2px 23px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    min-width: 110px;
+    min-height: 16px;
+}
+
+.html[dir="rtl"] .save
+{
+    padding: 2px 23px 2px 5px;
+    background-position: right;
+}
+
+.common-buttons-block .save
+{
+    background-image: url('images/database_save.png');
+}
+
+.common-buttons-block .save:hover,
+.common-buttons-block .save:active,
+.common-buttons-block .save:focus
 {
     border-color: #999;
 }

@@ -22,7 +22,9 @@
     {% if field.help_text %}<span class="help_text">{{ field.help_text }}</span>{% endif %}
   </p>
   {% endfor %}
-  <p><input type="submit" value="{% trans 'Save' %} "/></p>
+  <p class="common-buttons-block">
+      <input type="submit" class="save" value="{% trans 'Save' %} "/>
+  </p>
 </form>
 {% endblock %}
 
