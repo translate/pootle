@@ -18,8 +18,8 @@
     </div>
     {% endif %}
     {{ form.as_p }}
-    <p class="submit">
-        <input type="submit" name="login" value="{% trans 'Login' %}" />
+    <p class="common-buttons-block submit">
+        <input type="submit" class="login" name="login" value="{% trans 'Login' %}" />
         <input type="hidden" name="next" value="{{ next }}" />
     </p>
 </form>

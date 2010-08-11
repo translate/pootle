@@ -1166,6 +1166,7 @@ html[dir="rtl"] .save
     margin-bottom: 0.3em;
 }
 
+.common-buttons-block .login,
 .common-buttons-block .news-publish,
 .common-buttons-block .password-change,
 .common-buttons-block .save,
@@ -1188,6 +1189,7 @@ html[dir="rtl"] .save
     min-height: 16px;
 }
 
+html[dir="rtl"] .login,
 html[dir="rtl"] .news-publish,
 html[dir="rtl"] .password-change,
 html[dir="rtl"] .save,
@@ -1198,6 +1200,11 @@ html[dir="rtl"] .vcs-update input[type="submit"]
 {
     padding: 2px 23px 2px 5px;
     background-position: 95% center;
+}
+
+.common-buttons-block .login
+{
+    background-image: url('images/door_in.png');
 }
 
 .common-buttons-block .news-publish
@@ -1236,6 +1243,9 @@ html[dir="rtl"] .vcs-update input[type="submit"]
     background-image: url('images/drive_network.png');
 }
 
+.common-buttons-block .login:hover,
+.common-buttons-block .login:active,
+.common-buttons-block .login:focus,
 .common-buttons-block .news-publish:hover,
 .common-buttons-block .news-publish:active,
 .common-buttons-block .news-publish:focus,
