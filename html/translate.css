@@ -574,17 +574,9 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar
 
 a.copyoriginal,
 a.translate-mt,
-a.collapse,
-a.slide,
 a.writespecial
 {
     cursor: pointer;
-}
-
-.collapsethis,
-.slidethis
-{
-    display: none;
 }
 
 /* DIFF */

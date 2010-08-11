@@ -1720,6 +1720,23 @@ html[dir="rtl"] .translations-nav li:last-child:after
 
 
 /*
+ * MISC
+ */
+
+a.collapse,
+a.slide
+{
+    cursor: pointer;
+}
+
+.collapsethis,
+.slidethis
+{
+    display: none;
+}
+
+
+/*
  * LANGUAGE SPECIFIC SETTINGS
  */
 
