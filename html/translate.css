@@ -423,7 +423,7 @@ html[dir="rtl"] div.check
 .translate-buttons-block[dir="rtl"] .suggest
 {
     padding: 2px 23px 2px 5px;
-    background-position: right;
+    background-position: 95% center;
 }
 
 .translate-buttons-block .submit
@@ -481,7 +481,7 @@ div#prevnext .previous
 div#prevnext[dir="rtl"] .previous
 {
     background-image: url('images/next.png');
-    background-position: right;
+    background-position: 95% center;
     float: right;
 }
 
@@ -503,7 +503,7 @@ div#prevnext[dir="rtl"] .previous:focus
 div#prevnext .next
 {
     background-image: url('images/next.png');
-    background-position: right;
+    background-position: 95% center;
     float: right;
 }
 
