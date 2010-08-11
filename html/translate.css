@@ -444,6 +444,7 @@ html[dir="rtl"] div.check
 .translate-buttons-block .suggest:focus
 {
     border-color: #999;
+    border-style: solid;
 }
 
 div#prevnext .previous,
