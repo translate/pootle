@@ -5,7 +5,7 @@
 <div id="upload" class="module first clear" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">
         <h2>{{ upload.form.title }}</h2>
-        <form action="" method="post" id="uploadform" name="uploadform" enctype="multipart/form-data">
+        <form action="" method="post" class="upload" id="uploadform" name="uploadform" enctype="multipart/form-data">
           {{ form.non_field_errors }}
           {% for field in upload.form %}
           <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
@@ -23,7 +23,7 @@
 {% if update %}
 <div id="update" class="module first clear" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">
-        <form action="" method="post" name="updateform" enctype="multipart/form-data">
+        <form action="" method="post" class="vcs-update" name="updateform" enctype="multipart/form-data">
         {{ update.as_p }}
         </form>
     </div>
