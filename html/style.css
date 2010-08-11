@@ -1113,7 +1113,6 @@ html[dir="rtl"] td.pootle_path
     color: #333;
     padding: 2px 5px 2px 23px;
     text-shadow: 1px 1px 0 #FFFFFF;
-    min-width: 110px;
     min-height: 16px;
 }
 
@@ -1188,7 +1187,6 @@ html[dir="rtl"] td.pootle_path
     color: #333;
     padding: 2px 5px 2px 23px;
     text-shadow: 1px 1px 0 #FFFFFF;
-    min-width: 110px;
     min-height: 16px;
 }
 
