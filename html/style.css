@@ -1100,7 +1100,6 @@ html[dir="rtl"] td.pootle_path
 .admin-buttons-block .rescan,
 .admin-buttons-block .save
 {
-    display: block;
     cursor: pointer;
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
@@ -1170,11 +1169,11 @@ html[dir="rtl"] .save
 .common-buttons-block .news-publish,
 .common-buttons-block .password-change,
 .common-buttons-block .save,
+.common-buttons-block .send,
 .common-buttons-block .term-extract,
 .upload input[type="submit"],
 .vcs-update input[type="submit"]
 {
-    display: block;
     cursor: pointer;
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
@@ -1192,6 +1191,7 @@ html[dir="rtl"] .save
 html[dir="rtl"] .news-publish,
 html[dir="rtl"] .password-change,
 html[dir="rtl"] .save,
+html[dir="rtl"] .send,
 html[dir="rtl"] .term-extract,
 html[dir="rtl"] .upload input[type="submit"],
 html[dir="rtl"] .vcs-update input[type="submit"]
@@ -1213,6 +1213,11 @@ html[dir="rtl"] .vcs-update input[type="submit"]
 .common-buttons-block .save
 {
     background-image: url('images/database_save.png');
+}
+
+.common-buttons-block .send
+{
+    background-image: url('images/email_go.png');
 }
 
 .common-buttons-block .term-extract
@@ -1240,6 +1245,9 @@ html[dir="rtl"] .vcs-update input[type="submit"]
 .common-buttons-block .save:hover,
 .common-buttons-block .save:active,
 .common-buttons-block .save:focus,
+.common-buttons-block .send:hover,
+.common-buttons-block .send:active,
+.common-buttons-block .send:focus,
 .common-buttons-block .term-extract:hover,
 .common-buttons-block .term-extract:active,
 .common-buttons-block .term-extract:focus,
