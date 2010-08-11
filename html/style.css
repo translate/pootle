@@ -1100,19 +1100,18 @@ html[dir="rtl"] td.pootle_path
 .admin-buttons-block .rescan,
 .admin-buttons-block .save
 {
-    background-position: 5px 50%;
     display: block;
     cursor: pointer;
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
-    background-color: #ddd;
+    background-color: #ebebeb;
+    background-position: 5px 50%;
     background-repeat: no-repeat;
-    border-color: #ddd #ddd #ccc;
-    border-style: solid;
+    color: #000000;
+    border-color: #ccc #ccc #bbb;
+    border-style: outset;
     border-width: 1px;
-    color: #333;
     padding: 2px 5px 2px 23px;
-    text-shadow: 1px 1px 0 #FFFFFF;
     min-height: 16px;
 }
 
@@ -1150,6 +1149,7 @@ html[dir="rtl"] td.pootle_path
 .admin-buttons-block .save:focus
 {
     border-color: #999;
+    border-style: solid;
 }
 
 /* COMMON BUTTONS
@@ -1174,19 +1174,18 @@ html[dir="rtl"] td.pootle_path
 .upload input[type="submit"],
 .vcs-update input[type="submit"]
 {
-    background-position: 5px 50%;
     display: block;
     cursor: pointer;
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
-    background-color: #ddd;
+    background-color: #ebebeb;
+    background-position: 5px 50%;
     background-repeat: no-repeat;
-    border-color: #ddd #ddd #ccc;
-    border-style: solid;
+    color: #000000;
+    border-color: #ccc #ccc #bbb;
+    border-style: outset;
     border-width: 1px;
-    color: #333;
     padding: 2px 5px 2px 23px;
-    text-shadow: 1px 1px 0 #FFFFFF;
     min-height: 16px;
 }
 
@@ -1252,6 +1251,7 @@ html[dir="rtl"] td.pootle_path
 .vcs-update input[type="submit"]:focus
 {
     border-color: #999;
+    border-style: solid;
 }
 
 

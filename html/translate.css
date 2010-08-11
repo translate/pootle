@@ -407,18 +407,16 @@ html[dir="rtl"] div.check
 .translate-buttons-block .submit,
 .translate-buttons-block .suggest
 {
-    background-position: 5px 50%;
     display: block;
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
-    background-color: #ddd;
-    border-color: #ddd #ddd #ccc;
-    border-style: solid;
+    background-color: #ebebeb;
+    background-position: 5px 50%;
+    color: #000000;
+    border-color: #ccc #ccc #bbb;
+    border-style: outset;
     border-width: 1px;
-    color: #333;
     padding: 2px 5px 2px 23px;
-    text-shadow: 1px 1px 0 #FFFFFF;
-    min-width: 110px;
 }
 
 .translate-buttons-block[dir="rtl"] .submit,
