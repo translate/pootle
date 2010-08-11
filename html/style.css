@@ -1115,9 +1115,9 @@ html[dir="rtl"] td.pootle_path
     min-height: 16px;
 }
 
-.html[dir="rtl"] .update,
-.html[dir="rtl"] .rescan,
-.html[dir="rtl"] .save
+html[dir="rtl"] .update,
+html[dir="rtl"] .rescan,
+html[dir="rtl"] .save
 {
     padding: 2px 23px 2px 5px;
     background-position: right;
@@ -1189,12 +1189,12 @@ html[dir="rtl"] td.pootle_path
     min-height: 16px;
 }
 
-.html[dir="rtl"] .news-publish,
-.html[dir="rtl"] .password-change,
-.html[dir="rtl"] .save,
-.html[dir="rtl"] .term-extract,
-.html[dir="rtl"] .upload input[type="submit"],
-.html[dir="rtl"] .vcs-update input[type="submit"]
+html[dir="rtl"] .news-publish,
+html[dir="rtl"] .password-change,
+html[dir="rtl"] .save,
+html[dir="rtl"] .term-extract,
+html[dir="rtl"] .upload input[type="submit"],
+html[dir="rtl"] .vcs-update input[type="submit"]
 {
     padding: 2px 23px 2px 5px;
     background-position: right;
