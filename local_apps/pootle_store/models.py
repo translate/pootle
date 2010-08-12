@@ -962,8 +962,8 @@ class Store(models.Model, base.TranslationStore):
                     changed = oldunit.merge(newunit)
                     if changed:
                         oldunit.save()
-
-            self.sync(update_structure=True, update_translation=True, conservative=False, create=False, profile=profile)
+            if allownewstrings or obsoletemissing:
+                self.sync(update_structure=True, update_translation=True, conservative=False, create=False, profile=profile)
 
         finally:
             # unlock store
