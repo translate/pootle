@@ -469,6 +469,11 @@ def upload_file(request, directory, django_file, overwrite, store=None):
         overwrite_file(request, relative_root_dir, django_file, upload_path)
         return
 
+    if store.file and store.file.read() == django_file.read():
+        logging.debug("identical file uploaded to %s, not merging", store.pootle_path)
+        return
+
+    django_file.seek(0)
     newstore = factory.getobject(django_file, classes=factory_classes)
 
     #FIXME: are we sure this is what we want to do? shouldn't we
