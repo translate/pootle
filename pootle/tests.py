@@ -41,7 +41,7 @@ class PootleTestCase(TestCase):
         pofile.write('#: test.c\nmsgid "test"\nmsgstr "rest"\n')
         pofile.close()
 
-        nongnu = os.path.join(self.testpodir, "pootle")
+        nongnu = os.path.join(self.testpodir, "tutorial")
         os.mkdir(nongnu)
         nongnu_ar = os.path.join(nongnu, "ar")
         os.mkdir(nongnu_ar)
