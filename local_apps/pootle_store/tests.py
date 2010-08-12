@@ -7,7 +7,7 @@ from pootle_store.models import Store
 class UnitTests(PootleTestCase):
     def setUp(self):
         super(UnitTests, self).setUp()
-        self.store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+        self.store = Store.objects.get(pootle_path="/af/tutorial/pootle.po")
 
     def _update_translation(self, item, newvalues):
         unit = self.store.getitem(item)
@@ -100,7 +100,7 @@ class UnitTests(PootleTestCase):
 class StoreTests(PootleTestCase):
     def setUp(self):
         super(StoreTests, self).setUp()
-        self.store = Store.objects.get(pootle_path="/af/pootle/pootle.po")
+        self.store = Store.objects.get(pootle_path="/af/tutorial/pootle.po")
 
     def test_quickstats(self):
         statscache = statsdb.StatsCache()
