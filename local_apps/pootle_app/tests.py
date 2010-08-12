@@ -189,6 +189,7 @@ msgstr "resto"
         # It may be a good idea to change this
         mergedcontent = '#: fish.c\nmsgid "fish"\nmsgstr "stink"\n'
         pootle_path = "/af/tutorial/pootle.po"
+        response = self.client.get(pootle_path + "/download")
         store = Store.objects.get(pootle_path=pootle_path)
         self.assertTrue(store.file.read().find(mergedcontent) >= 0)
         suggestions = [str(sug) for sug in store.findunit('test').get_suggestions()]
