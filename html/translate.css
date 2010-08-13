@@ -39,7 +39,7 @@ table[dir="rtl"] td.translate-original
 
 .translate-view .translation-text
 {
-    padding-top: 1px;
+    padding: 1px 0;
     line-height: 1.3;
 }
 
