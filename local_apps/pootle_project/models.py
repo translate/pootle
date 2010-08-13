@@ -126,6 +126,28 @@ class Project(models.Model):
         return filename.endswith(os.path.extsep + self.localfiletype) or \
                match_templates and filename.endswith(os.path.extsep + self.get_template_filtetype())
 
+    def _detect_treestyle(self):
+        dirlisting = os.walk(self.get_real_path())
+        dirpath, dirnames, filenames = dirlisting.next()
+
+        if not dirnames:
+            # no subdirectories
+            if filter(self.file_belongs_to_project, filenames):
+                # translation files found, assume gnu
+                return "gnu"
+        else:
+            # there are subdirectories
+            if filter(lambda dirname: dirname == 'templates' or langcode_re.match(dirname), dirnames):
+                # found language dirs assume nongnu
+                return "nongnu"
+            else:
+                # no language subdirs found, look for any translation file
+                for dirpath, dirnames, filenames in os.walk(self.get_real_path()):
+                    if filter(self.file_belongs_to_project, filenames):
+                        return "gnu"
+        # unsure
+        return None
+
     def get_treestyle(self):
         """returns the real treestyle, if treestyle is set to auto it
         checks the project directory and tries to guess if it is gnu
@@ -137,29 +159,12 @@ class Project(models.Model):
         if self.treestyle != "auto":
             return self.treestyle
         else:
-            dirlisting = os.walk(self.get_real_path())
-            dirpath, dirnames, filenames = dirlisting.next()
+            detected = self._detect_treestyle()
+            if detected is not None:
+                return detected
 
-            if not dirnames:
-                # no subdirectories
-                if filter(self.file_belongs_to_project, filenames):
-                    # translation files found, assume gnu
-                    return "gnu"
-                else:
-                    # no subdirs and no translation files, assume nongnu
-                    return "nongnu"
-            else:
-                # there are subdirectories
-                if filter(lambda dirname: dirname == 'templates' or langcode_re.match(dirname), dirnames):
-                    # found language dirs assume nongnu
-                    return "nongnu"
-                else:
-                    # no language subdirs found, look for any translation file
-                    for dirpath, dirnames, filenames in os.walk(self.get_real_path()):
-                        if filter(self.file_belongs_to_project, filenames):
-                            return "gnu"
-            # when unsure assume nongnu
-            return "nongnu"
+        # when unsure return nongnu
+        return "nongnu"
 
     def get_template_translationproject(self):
         try:
