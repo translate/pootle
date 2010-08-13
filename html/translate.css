@@ -402,8 +402,7 @@ html[dir="rtl"] div.check
     margin-bottom: 0.3em;
 }
 
-.translate-buttons-block .submit,
-.translate-buttons-block .suggest
+.translate-buttons-block input[type="submit"]
 {
     display: block;
     -moz-border-radius: 5px 5px 5px 5px;
@@ -414,8 +413,7 @@ html[dir="rtl"] div.check
     padding: 2px 5px 2px 23px;
 }
 
-.translate-buttons-block[dir="rtl"] .submit,
-.translate-buttons-block[dir="rtl"] .suggest
+.translate-buttons-block[dir="rtl"] input[type"submit"]
 {
     padding: 2px 23px 2px 5px;
     background-position: 95% center;
@@ -431,12 +429,9 @@ html[dir="rtl"] div.check
     background-image: url('images/suggest.png');
 }
 
-.translate-buttons-block .submit:hover,
-.translate-buttons-block .submit:active,
-.translate-buttons-block .submit:focus,
-.translate-buttons-block .suggest:hover,
-.translate-buttons-block .suggest:active,
-.translate-buttons-block .suggest:focus
+.translate-buttons-block input[type="submit"]:hover,
+.translate-buttons-block input[type="submit"]:active,
+.translate-buttons-block input[type="submit"]:focus
 {
     border-color: #999;
     border-style: solid;

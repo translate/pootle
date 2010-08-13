@@ -1093,9 +1093,7 @@ html[dir="rtl"] td.pootle_path
     margin-bottom: 0.3em;
 }
 
-.admin-buttons-block .update,
-.admin-buttons-block .rescan,
-.admin-buttons-block .save
+.admin-buttons-block input[type="submit"]
 {
     cursor: pointer;
     -moz-border-radius: 5px 5px 5px 5px;
@@ -1108,9 +1106,7 @@ html[dir="rtl"] td.pootle_path
     min-height: 16px;
 }
 
-html[dir="rtl"] .update,
-html[dir="rtl"] .rescan,
-html[dir="rtl"] .save
+html[dir="rtl"] .admin-buttons-block input[type="submit"]
 {
     padding: 2px 23px 2px 5px;
     background-position: 95% center;
@@ -1131,15 +1127,9 @@ html[dir="rtl"] .save
     background-image: url('images/database_save.png');
 }
 
-.admin-buttons-block .update:hover,
-.admin-buttons-block .update:active,
-.admin-buttons-block .update:focus,
-.admin-buttons-block .rescan:hover,
-.admin-buttons-block .rescan:active,
-.admin-buttons-block .rescan:focus,
-.admin-buttons-block .save:hover,
-.admin-buttons-block .save:active,
-.admin-buttons-block .save:focus
+.admin-buttons-block input[type="submit"]:hover,
+.admin-buttons-block input[type="submit"]:active,
+.admin-buttons-block input[type="submit"]:focus
 {
     border-color: #999;
     border-style: solid;
@@ -1160,16 +1150,7 @@ html[dir="rtl"] .save
     margin-bottom: 0.3em;
 }
 
-.common-buttons-block .accept,
-.common-buttons-block .login,
-.common-buttons-block .news-publish,
-.common-buttons-block .password-change,
-.common-buttons-block .register,
-.common-buttons-block .save,
-.common-buttons-block .send,
-.common-buttons-block .term-extract,
-.upload input[type="submit"],
-.vcs-update input[type="submit"]
+.common-buttons-block input[type="submit"]
 {
     cursor: pointer;
     -moz-border-radius: 5px 5px 5px 5px;
@@ -1182,19 +1163,18 @@ html[dir="rtl"] .save
     min-height: 16px;
 }
 
-html[dir="rtl"] .accept,
-html[dir="rtl"] .login,
-html[dir="rtl"] .news-publish,
-html[dir="rtl"] .password-change,
-html[dir="rtl"] .register,
-html[dir="rtl"] .save,
-html[dir="rtl"] .send,
-html[dir="rtl"] .term-extract,
-html[dir="rtl"] .upload input[type="submit"],
-html[dir="rtl"] .vcs-update input[type="submit"]
+html[dir="rtl"] .common-buttons-block input[type="submit"]
 {
     padding: 2px 23px 2px 5px;
     background-position: 95% center;
+}
+
+.common-buttons-block input[type="submit"]:hover,
+.common-buttons-block input[type="submit"]:active,
+.common-buttons-block input[type="submit"]:focus
+{
+    border-color: #999;
+    border-style: solid;
 }
 
 .common-buttons-block .accept
@@ -1246,41 +1226,6 @@ html[dir="rtl"] .vcs-update input[type="submit"]
 .vcs-update input[type="submit"]
 {
     background-image: url('images/drive_network.png');
-}
-
-.common-buttons-block .accept:hover,
-.common-buttons-block .accept:active,
-.common-buttons-block .accept:focus,
-.common-buttons-block .login:hover,
-.common-buttons-block .login:active,
-.common-buttons-block .login:focus,
-.common-buttons-block .news-publish:hover,
-.common-buttons-block .news-publish:active,
-.common-buttons-block .news-publish:focus,
-.common-buttons-block .password-change:hover,
-.common-buttons-block .password-change:active,
-.common-buttons-block .password-change:focus,
-.common-buttons-block .register:hover,
-.common-buttons-block .register:active,
-.common-buttons-block .register:focus,
-.common-buttons-block .save:hover,
-.common-buttons-block .save:active,
-.common-buttons-block .save:focus,
-.common-buttons-block .send:hover,
-.common-buttons-block .send:active,
-.common-buttons-block .send:focus,
-.common-buttons-block .term-extract:hover,
-.common-buttons-block .term-extract:active,
-.common-buttons-block .term-extract:focus,
-.upload input[type="submit"]:hover,
-.upload input[type="submit"]:active,
-.upload input[type="submit"]:focus,
-.vcs-update input[type="submit"]:hover,
-.vcs-update input[type="submit"]:active,
-.vcs-update input[type="submit"]:focus
-{
-    border-color: #999;
-    border-style: solid;
 }
 
 
