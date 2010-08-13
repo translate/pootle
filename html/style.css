@@ -310,8 +310,6 @@ html[dir="rtl"] #nav-access
     width: 100%;
     margin: 0;
     padding: 5px 0 0 0;
-    height: 48px;
-    line-height: 48px;
 }
 
 #header h1 a
@@ -319,7 +317,7 @@ html[dir="rtl"] #nav-access
     background: url(images/logo.png) left 50% no-repeat;
     padding: 0;
     padding-left: 60px;
-    margin: 0 20px;
+    margin: 0 14px;
     font-family: Arial, sans-serif;
     font-size: 150%;
 }
@@ -556,9 +554,8 @@ h3.title
 #body
 {
     margin: 0;
-    padding: 10px;
+    padding: 5px 0px;
     background: #fff url(images/page-bg.jpg) top left repeat-x;
-    clear: both;
 }
 
 #body:after
@@ -830,7 +827,7 @@ div#submenu
     border-bottom: 1px solid #afaba3;
     clear: both;
     height: 34px;
-    margin-bottom: 1.2em;
+    margin-bottom: 8px;
 }
 
 div#submenu-tabs
@@ -1103,13 +1100,10 @@ html[dir="rtl"] td.pootle_path
     cursor: pointer;
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
-    background-color: #ebebeb;
+    border-radius: 5px 5px 5px 5px;
     background-position: 5px 50%;
     background-repeat: no-repeat;
-    color: #000000;
-    border-color: #ccc #ccc #bbb;
-    border-style: outset;
-    border-width: 1px;
+    border: 1px solid #ccc;
     padding: 2px 5px 2px 23px;
     min-height: 16px;
 }
@@ -1179,13 +1173,10 @@ html[dir="rtl"] .save
     cursor: pointer;
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
-    background-color: #ebebeb;
+    border-radius: 5px 5px 5px 5px;
     background-position: 5px 50%;
     background-repeat: no-repeat;
-    color: #000000;
-    border-color: #ccc #ccc #bbb;
-    border-style: outset;
-    border-width: 1px;
+    border: 1px solid #ccc;
     padding: 2px 5px 2px 23px;
     min-height: 16px;
 }
@@ -1366,6 +1357,11 @@ td.stats-words
 td.stats-name
 {
     font-weight: bold;
+}
+
+td.stats-name[dir="rtl"] a
+{
+    text-align: right !important;
 }
 
 div.item-statistics
@@ -1568,11 +1564,6 @@ ul.pager li span.current-link
     unicode-bidi: embed;
 }
 
-div#nav-secondary
-{
-    padding: 0.6em 1em;
-}
-
 div#breadcrumbs
 {
     float: right;
@@ -1591,7 +1582,7 @@ html[dir="rtl"] div#breadcrumbs
 div#search
 {
     float: right;
-    padding: 3px;
+    padding: 10px;
     position: relative;
 }
 
