@@ -1746,7 +1746,8 @@ a.slide
 
 :lang(ar)
 {
-    font-family: "Tahoma 12", Nazli, KacstOne, "DejaVu Sans", inherit;
+    font-family: sans-serif;
+    font-size: 1em;
 }
 
 :lang(bn)
