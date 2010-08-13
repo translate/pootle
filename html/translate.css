@@ -181,7 +181,7 @@ table td.translate-original
 .translate-context
 {
     overflow: auto;
-    padding: 5px 22px;
+    padding: 5px 5px 5px 22px;
 }
 
 .translate-locations,
