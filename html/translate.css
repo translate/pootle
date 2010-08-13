@@ -47,18 +47,16 @@ table[dir="rtl"] td.translate-original
     max-width: 100%;
     min-height: 1.5em;
     overflow: auto;
-    padding: 5px 10px 1px;
-    line-height: 1.3;
 }
 
 div.sources .translation-text
 {
-    padding: 5px 5px 1px;
+    padding: 1px;
 }
 
 div.translate-plural .translation-text
 {
-    padding: 1px 5px;
+    padding: 1px;
 }
 
 .translation-text-headers
@@ -174,7 +172,7 @@ table td.translate-original
 .translate-context,
 .translator-comments
 {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.1em;
 }
 
 .translate-locations,
@@ -182,7 +180,7 @@ table td.translate-original
 .translate-context
 {
     overflow: auto;
-    padding: 5px 25px;
+    padding: 5px 22px;
 }
 
 .translate-locations,
@@ -194,19 +192,19 @@ table td.translate-original
 
 .translate-locations
 {
-    background: transparent url('images/script_code.png') no-repeat 5px center;
+    background: transparent url('images/script_code.png') no-repeat 3px center;
     border: 1px solid #ddd;
 }
 
 .developer-comments
 {
-    background: #ffe url('images/information.png') no-repeat 5px center;
+    background: #ffe url('images/information.png') no-repeat 3px center;
     border: 1px solid #fc9;
 }
 
 .translate-context
 {
-    background: #eee url('images/context.png') no-repeat 5px center;
+    background: #eee url('images/context.png') no-repeat 3px center;
     border: 1px solid #fff;
 }
 
@@ -246,9 +244,9 @@ td.translate-full div.translate-original,
 td.translate-full textarea.translation
 {
     width: 100%;
-    min-height: 21px;
-    padding: 0 0 5px;
-    margin: 0 auto 0.5em;
+    min-height: 18px;
+    padding: 0;
+    margin: 0 auto 2px;
 }
 
 /* TM */
@@ -410,12 +408,9 @@ html[dir="rtl"] div.check
     display: block;
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
-    background-color: #ebebeb;
+    border-radius: 5px 5px 5px 5px;
     background-position: 5px 50%;
-    color: #000000;
-    border-color: #ccc #ccc #bbb;
-    border-style: outset;
-    border-width: 1px;
+    border: 1px solid #ccc;
     padding: 2px 5px 2px 23px;
 }
 
@@ -619,7 +614,7 @@ div.translate-translation
 
 td.translate-full div.translate-translation
 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 /* Special handling for languages with big fonts */
@@ -629,7 +624,7 @@ td.translate-full div.translate-translation:lang(ja),
 td.translate-full div.translate-translation:lang(ko),
 td.translate-full div.translate-translation:lang(zh)
 {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 tr.translate-translation-fuzzy td.translate-translation[dir="ltr"]
