@@ -1220,7 +1220,7 @@ html[dir="rtl"] .common-buttons-block input[type="submit"]
 
 .upload input[type="submit"]
 {
-    background-image: url('images/arrow_up.png');
+    background-image: url('images/page_get.png');
 }
 
 .vcs-update input[type="submit"]
