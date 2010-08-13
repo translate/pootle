@@ -6,7 +6,7 @@
 <td class="stats-name">
   {% if item.icon %}
     <img src="{% filter m %}images/{{ item.icon }}.png{% endfilter %}"
-    class="icon" alt="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
+    class="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
  {% endif %}
     <a href="{{ item.href|l }}">{{ item.title }}</a>
     {% if item.data.errors %}
