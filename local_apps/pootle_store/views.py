@@ -270,6 +270,9 @@ def translate_end(request, translation_project):
 
 
 def translate_page(request, units_queryset, store=None):
+    if not check_permission("view", request):
+        raise PermissionDenied(_("You do not have rights to access this translation project."))
+
     cantranslate = check_permission("translate", request)
     cansuggest = check_permission("suggest", request)
     canreview = check_permission("review", request)
