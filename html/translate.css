@@ -411,6 +411,7 @@ html[dir="rtl"] div.check
     background-position: 5px 50%;
     border: 1px solid #ccc;
     padding: 2px 5px 2px 23px;
+    min-width: 110px;
 }
 
 .translate-buttons-block[dir="rtl"] input[type"submit"]
