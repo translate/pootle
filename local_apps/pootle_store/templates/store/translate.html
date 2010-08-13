@@ -18,9 +18,11 @@
 
 {% block extra_head %}
 <script src='{{ "js/jquery/jquery.textarea-expander.js"|m }}' type="text/javascript"></script>
+<script src='{{ "js/jquery/jquery.scrollTo.min.js"|m }}' type="text/javascript"></script>
 <script type="text/javascript">
   $(document).ready (function() {
      $('textarea.expanding').TextAreaExpander('10', '100');
+     $.scrollTo('td.translate-full', {offset: {top:-100}});
   });
 </script>
 {% endblock extra_head %}

@@ -56,6 +56,9 @@ Directory contents
 
   + jquery/
 
+    - jquery.min.js :
+      The jQuery library, version 1.4.2, minified.
+
     - jquery.bidi.js :
       jQuery plugin used to automatically set line direction of news
       item based on their content.
@@ -74,13 +77,15 @@ Directory contents
 
       http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
 
+    - jquery.scrollTo.min.js :
+      Scrolls the viewport to the selected element.
+
+      http://flesler.blogspot.com/2007/10/jqueryscrollto.html
+
     - jquery.textarea-expander.js :
       jQuery plugin used in the translate page textareas.
 
       http://blogs.sitepointstatic.com/examples/tech/textarea-expander/jquery.textarea-expander.js
-
-    - jquery.min.js :
-      The jQuery library, version 1.4.2, minified.
 
   + mt/
 
