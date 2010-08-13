@@ -127,7 +127,7 @@ CAN_REGISTER = True
 
 # Set this to True to enable spam prevention through captcha, only
 # useful for public Pootle instances.
-USE_CAPTCHA = False
+USE_CAPTCHA = True
 
 # Set this to True if you want translation files to be updated
 # immediatly.
