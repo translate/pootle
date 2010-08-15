@@ -125,7 +125,6 @@ class TranslationStoreFieldFile(FieldFile):
         if not hasattr(self, "_realpath"):
             self._realpath = os.path.realpath(self.path)
         return self._realpath
-    realpath = property(_get_realpath)
 
     def _get_cached_realpath(self):
         """get real path from cache before attempting to check for symlinks"""
@@ -191,7 +190,7 @@ class TranslationStoreFieldFile(FieldFile):
         """Saves to temporary file then moves over original file. This
         way we avoid the need for locking."""
         tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
-        #FIXME: what if the file was modified before we save
+        os.close(tmpfile)
         self.store.savefile(tmpfilename)
         shutil.move(tmpfilename, self.realpath)
         self._touch_store_cache()
