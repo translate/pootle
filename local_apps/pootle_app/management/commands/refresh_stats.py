@@ -45,6 +45,8 @@ class Command(NoArgsCommand):
         from pootle_store.fields import  TranslationStoreFieldFile
         TranslationStoreFieldFile._store_cache.maxsize = 2
         TranslationStoreFieldFile._store_cache.cullsize = 2
+        TranslationProject._non_db_state_cache.maxsize = 2
+        TranslationProject._non_db_state_cache.cullsize = 2
 
 
         for translation_project in TranslationProject.objects.filter(real_path__startswith=refresh_path).iterator():
