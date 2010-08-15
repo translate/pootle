@@ -32,14 +32,11 @@ class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
         make_option('--directory', action='store', dest='directory', default='',
                     help='directory to refresh relative to po directory'),
-        make_option('--recompute', action='store_true', dest='recompute', default=False,
-                    help='Update the mtime of file, thereby forcing stats and index recomputation.'),
         )
     help = "Allow stats and text indices to be refreshed manually."
 
     def handle_noargs(self, **options):
         refresh_path = options.get('directory', '')
-        recompute = options.get('recompute', False)
 
         # reduce size of parse pool early on
         from pootle_store.fields import  TranslationStoreFieldFile
@@ -57,14 +54,6 @@ class Command(NoArgsCommand):
 
             # rescan translation_projects
             translation_project.scan_files()
-            if recompute:
-                for store in translation_project.stores.iterator():
-                    # We force stats and indexing information to be recomputed by
-                    # updating the mtimes of the files whose information we want
-                    # to update.
-                    logging.info("Resetting mtime for %s to now", store.real_path)
-                    os.utime(store.abs_real_path, None)
-
             # This will force the indexer of a TranslationProject to be
             # initialized. The indexer will update the text index of the
             # TranslationProject if it is out of date.
