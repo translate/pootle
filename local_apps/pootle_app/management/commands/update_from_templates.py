@@ -46,6 +46,6 @@ class Command(NoArgsCommand):
         TranslationProject._non_db_state_cache.cullsize = 2
 
 
-        for translation_project in TranslationProject.objects.filter(real_path__startswith=update_path).iterator():
+        for translation_project in TranslationProject.objects.filter(real_path__startswith=update_path).order_by('project__code', 'language__code').iterator():
             logging.info("Updating %s from templates", translation_project.fullname.encode("utf-8"))
             translation_project.update_from_templates()

@@ -46,7 +46,7 @@ class Command(NoArgsCommand):
         TranslationProject._non_db_state_cache.cullsize = 2
 
 
-        for translation_project in TranslationProject.objects.filter(real_path__startswith=refresh_path).iterator():
+        for translation_project in TranslationProject.objects.filter(real_path__startswith=refresh_path).order_by('project__code', 'language__code').iterator():
             if not os.path.isdir(translation_project.abs_real_path):
                 # translation project no longer exists
                 translation_project.delete()
