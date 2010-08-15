@@ -52,8 +52,6 @@ class Command(NoArgsCommand):
                 translation_project.delete()
                 continue
 
-            # rescan translation_projects
-            translation_project.scan_files()
             # This will force the indexer of a TranslationProject to be
             # initialized. The indexer will update the text index of the
             # TranslationProject if it is out of date.
