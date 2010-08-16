@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
+from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django import forms
@@ -145,6 +146,9 @@ def manage(request, translation_project):
             def clean_source_f(self):
                 value = super(TermUnitForm, self).clean_source_f()
                 if value:
+                    existing = term_store.findid(value[0])
+                    if existing and existing.id != self.instance.id:
+                        raise forms.ValidationError(_('Please correct the error below.'))
                     self.instance.setid(value[0])
                 return value
 
