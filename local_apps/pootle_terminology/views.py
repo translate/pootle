@@ -64,7 +64,7 @@ def extract(request, translation_project):
         }
 
     if request.method == 'POST' and request.POST['extract']:
-        extractor = TerminologyExtractor()
+        extractor = TerminologyExtractor(sourcelanguage=translation_project.project.sourcelanguage.code)
         for store in translation_project.stores.iterator():
             if store.name == 'pootle-terminology.po':
                 continue
