@@ -30,4 +30,12 @@
 
 {% block scripts_extra %}
 <script type="text/javascript" src="{{ "js/admin.js"|m }}"></script>
+{% if LANGUAGE_BIDI %}
+<script type="text/javascript" src='{{ "js/jquery/jquery.bidi.js"|m }}'></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("select#id_ui_lang option").filter(":not([dir])").bidi();
+});
+</script>
+{% endif %}
 {% endblock %}

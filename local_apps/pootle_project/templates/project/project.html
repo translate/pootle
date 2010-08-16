@@ -63,9 +63,9 @@
 {% if LANGUAGE_BIDI %}
 <script type="text/javascript" src='{{ "js/jquery/jquery.bidi.js"|m }}'></script>
 <script type="text/javascript">
- $(document).ready(function() {
- 	$(".intro").filter(":not([dir])").bidi();
- 	});
+$(document).ready(function() {
+  $(".intro, td.stats-name").filter(":not([dir])").bidi();
+});
 </script>
 {% endif %}
 {% endblock %}

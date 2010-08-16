@@ -1314,7 +1314,9 @@ td.stats-name
     font-weight: bold;
 }
 
-td.stats-name[dir="rtl"] a
+html[dir="rtl"] td.language,
+html[dir="rtl"] td.stats-name,
+html[dir="rtl"] select#id_ui_lang option
 {
     text-align: right !important;
 }
