@@ -522,12 +522,18 @@ class UploadHandler(view_handler.Handler):
             def label_from_instance(self, instance):
                 return _(instance.pootle_path[len(translation_project.pootle_path):])
 
+        class DirectoryFormField(forms.ModelChoiceField):
+            def label_from_instance(self, instance):
+                return _(instance.pootle_path[len(translation_project.pootle_path):])
+
         class UploadForm(forms.Form):
             file = forms.FileField(required=True, label=_('File'))
             overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect,
                                           label='', choices=choices, initial='merge')
             upload_to = StoreFormField(required=False, label=_('Upload to'), queryset=translation_project.stores.all(),
                                                help_text=_("Optionally select the file you want to merge with. If not specified, the uploaded file's name is used."))
+            upload_to_dir = DirectoryFormField(required=False, queryset=Directory.objects.filter(pootle_path__startswith=translation_project.pootle_path).exclude(pk=translation_project.directory.pk))
+
 
         self.Form = UploadForm
         super(UploadHandler, self).__init__(request, data, files)
@@ -539,6 +545,7 @@ class UploadHandler(view_handler.Handler):
             django_file = self.form.cleaned_data['file']
             overwrite = self.form.cleaned_data['overwrite']
             upload_to = self.form.cleaned_data['upload_to']
+            upload_to_dir = self.form.cleaned_data['upload_to_dir']
             translation_project.scan_files()
             oldstats = translation_project.getquickstats()
             # The URL relative to the URL of the translation project. Thus, if
@@ -546,7 +553,8 @@ class UploadHandler(view_handler.Handler):
             # relative_root_dir == foo/bar.
             if django_file.name.endswith('.zip'):
                 archive = True
-                upload_archive(request, directory, django_file, overwrite)
+                target_directory = upload_to_dir or directory
+                upload_archive(request, target_directory, django_file, overwrite)
             else:
                 archive = False
                 upload_file(request, directory, django_file, overwrite, store=upload_to)
