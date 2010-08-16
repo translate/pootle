@@ -46,4 +46,20 @@
 {% block scripts_extra %}
 {{ block.super }}
 <script type="text/javascript" src='{{ "js/sorttable.js"|m }}'></script>
+{% if upload %}
+<script type="text/javascript">
+$(document).ready(function() {
+  $("select#id_upload_to_dir").parent().hide();
+  $("input#id_file").change(function() {
+    if (/\.zip$/.test($(this).val())) {
+      $("select#id_upload_to").parent().hide();
+      $("select#id_upload_to_dir").parent().show();
+    } else {
+      $("select#id_upload_to_dir").parent().hide();
+      $("select#id_upload_to").parent().show();
+    }
+  });
+});
+</script>
+{% endif %}
 {% endblock %}

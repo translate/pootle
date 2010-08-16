@@ -28,3 +28,23 @@
 {% include "translation_project/fileop_forms.html" %}
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
+
+{% block scripts_extra %}
+{{ block.super }}
+{% if upload %}
+<script type="text/javascript">
+$(document).ready(function() {
+  $("select#id_upload_to_dir").parent().hide();
+  $("input#id_file").change(function() {
+    if (/\.zip$/.test($(this).val())) {
+      $("select#id_upload_to").parent().hide();
+      $("select#id_upload_to_dir").parent().show();
+    } else {
+      $("select#id_upload_to_dir").parent().hide();
+      $("select#id_upload_to").parent().show();
+    }
+  });
+});
+</script>
+{% endif %}
+{% endblock %}
