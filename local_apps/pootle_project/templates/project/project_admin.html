@@ -8,6 +8,11 @@
 {{ block.super }} » {{ project.name }} » {% trans "Administrate" %}
 {% endblock %}
 
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href='{{ "admin.css"|m }}' />
+{% endblock css %}
+
 {% block bodyclass %}projectadmin{% endblock %}
 
 {% block breadcrumbs_content %}

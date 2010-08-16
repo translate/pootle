@@ -5,6 +5,11 @@
 {{ block.super }}: {% trans "Administration" %}
 {% endblock %}
 
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href='{{ "admin.css"|m }}' />
+{% endblock css %}
+
 {% block breadcrumbs %}
 <div id="breadcrumbs">
     <h2 class="title">{% block breadcrumb_content %}{% trans "Administration" %}{% endblock %}</h2>

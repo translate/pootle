@@ -1,12 +1,17 @@
 {% extends "tp_base.html" %}
 
-{% load i18n %}
+{% load i18n baseurl %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
 {{ block.super }} » {% trans "Administrate" %}
 {% endblock %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href='{{ "admin.css"|m }}' />
+{% endblock css %}
 
 {% block content %}
 <div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
