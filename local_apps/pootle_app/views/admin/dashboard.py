@@ -160,7 +160,7 @@ def server_stats():
         result['language_count'] = unit_query.values('store__translation_project__language').distinct().count()
         sums = sum_column(unit_query, ('source_wordcount',), count=True)
         result['string_count'] = sums['count']
-        result['word_count'] = sums['source_wordcount']
+        result['word_count'] = sums['source_wordcount'] or 0
         result['submission_count'] = Submission.objects.count() + SuggestiontStat.objects.count()
         result['pending_count'] = Suggestion.objects.count()
         result['user_count'] = User.objects.filter(is_active=True).count()
