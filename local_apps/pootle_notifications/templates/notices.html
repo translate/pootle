@@ -9,6 +9,7 @@ approach for this.
 {% load i18n baseurl cleanhtml %}
 
 {% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block title %}
 {{ block.super }}:
@@ -90,13 +91,13 @@ approach for this.
 </div>
 {% endblock %}
 
-{% if not directory.is_language %}
 {% block scripts_extra %}
+{% if LANGUAGE_BIDI %}
 <script type="text/javascript" src='{{ "js/jquery/jquery.bidi.js"|m }}'></script>
 <script type="text/javascript">
  $(document).ready(function() {
  	$(".newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl").filter(":not([dir])").bidi();
  	});
 </script>
-{% endblock %}
 {% endif %}
+{% endblock %}

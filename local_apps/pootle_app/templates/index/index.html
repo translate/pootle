@@ -105,10 +105,12 @@
 
 {% block scripts_extra %}
 <script type="text/javascript" src='{{ "js/sorttable.js"|m }}'></script>
+{% if LANGUAGE_BIDI %}
 <script type="text/javascript" src='{{ "js/jquery/jquery.bidi.js"|m }}'></script>
 <script type="text/javascript">
  $(document).ready(function() {
  	$(".intro, li.newsitem, .newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl").filter(":not([dir])").bidi();
  	});
 </script>
+{% endif %}
 {% endblock %}
