@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django import forms
@@ -80,7 +81,10 @@ def extract(request, translation_project):
         if not created:
             store.units.delete()
 
-        for index, (score, unit) in enumerate(termunits):
+        # calculate maximum terms
+        maxunits = int(translation_project.getquickstats()['totalsourcewords'] * 0.02)
+        maxunits = min(max(settings.MIN_AUTOTERMS, maxunits), settings.MAX_AUTOTERMS)
+        for index, (score, unit) in enumerate(termunits[:maxunits]):
             unit.store = store
             unit.index = index
             #FIXME: what to do with score?

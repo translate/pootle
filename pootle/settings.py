@@ -162,6 +162,10 @@ ACCOUNT_ACTIVATION_DAYS = 10
 # keep stats cache for roughly a month
 OBJECT_CACHE_TIMEOUT = 2500000
 
+# terminology config
+MIN_AUTOTERMS = 60
+MAX_AUTOTERMS = 600
+
 # defaults for localsettings vars
 CONTACT_EMAIL = None
 USE_CAPTCHA = False
