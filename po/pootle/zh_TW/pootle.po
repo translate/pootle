@@ -7,20 +7,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-07-30 09:14+0200\n"
-"Last-Translator: admin <>\n"
+"PO-Revision-Date: 2010-08-15 08:39+0200\n"
+"Last-Translator: Language <langtechie@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-rc1\n"
 
+# PC鍵盤上顯示的是「Ctrl」，所以將原文Control改成Ctrl。
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr "按住Control或Mac的Command按鍵可以同時選取多個項目。"
+msgstr "按住Ctrl或Mac的Command鍵，可同時選取多個項目。"
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -93,23 +94,23 @@ msgstr "管理員狀態"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "來源語"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Android字串"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "你的姓名"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "你的電郵"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "你的訊息"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -171,9 +172,10 @@ msgstr "使用免費的電子郵件地址註冊是禁止的。請提供不同的
 msgid "user"
 msgstr "使用者"
 
+# 激活不是台灣用法，建議用「啟用」或「啟。動」
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr ""
+msgstr "啟用碼"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
@@ -320,6 +322,7 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"使用者「nobody」指任何未登入的使用者（匿名、身份不明者），使用者「default」則代表所有已登入使用者在沒有特殊權限的情況下所共有的的預設權限。"
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -371,30 +374,30 @@ msgid "Dashboard"
 msgstr "儀表板"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "使用者統計"
+msgstr "伺服器統計資料"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
 msgid "Translated words"
 msgstr "已翻譯字詞數"
 
+# This has two meanings: (1) suggestions that have been made but are pending approval; (2) Waiting for suggestions
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "待處理的翻譯建議"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "活動中的使用者"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "進行中的專案"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "使用中的語言"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -404,9 +407,8 @@ msgid "Files"
 msgstr "檔案"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "翻譯我的字句"
+msgstr "已翻譯的字串"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -418,34 +420,35 @@ msgstr "提交"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "更多資訊"
 
+# Not sure if this is synonymous to "Help"
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "支援"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
 "Pootle is developed by Translate.org.za and a community of passionate "
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
-msgstr ""
+msgstr "Pootle由Translate.org.za和一群熱心的軟體本土化專家所開發，我們希望藉以幫助你，使你的軟體本土化工作發揮最大的潛能。"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "你若需要幫助，以下資訊可作參考用："
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Pootle參考文件"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Pootle通信俱樂部"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "（商用支援）"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -461,7 +464,7 @@ msgstr "最佳化"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Pootle提醒"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -588,23 +591,23 @@ msgstr "已安裝 Django %s 版。"
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr ""
+msgstr "Django %s 版已安裝，但強力建議使用較新的版本。"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "已安裝 Django %s 版。"
+msgstr "已安裝 lxml %s 版。"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
 msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
-msgstr ""
+msgstr "已安裝lxml %(installed)s版，但Pootle需要%(required)s版以便支援XML格式。"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
-msgstr ""
+msgstr "未安裝lxml。Pootle需要lxml以便支援XML格式。"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -622,7 +625,7 @@ msgstr "找不到 ISO 代碼套件。Pootle 使用 ISO 代碼來翻譯語言名�
 msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
-msgstr ""
+msgstr "找不到 aeidon 軟體包。Pootle 需要 Gaupol 或 aeidon 以便支援字幕格式。"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -689,7 +692,7 @@ msgstr "為了最佳化效能，使用 Apache 做為網頁伺服器。"
 msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
-msgstr ""
+msgstr "尚未標明用以送出註冊通知的電郵的「from」地址，請一併檢查電郵伺服器設定。"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
@@ -712,15 +715,15 @@ msgstr "以翻譯模式執行。即時翻譯是用來學習 Pootle 和本地化�
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "專案成員"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "語言成員"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "所有使用者"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -817,7 +820,7 @@ msgstr "全部翻譯"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "管理詞彙表"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -825,12 +828,12 @@ msgstr "目錄的 ZIP"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "離線翻譯"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "下載XLIFF檔以便離線翻譯"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -838,11 +841,11 @@ msgstr "下載 XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "匯出"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "匯出翻譯"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -850,7 +853,7 @@ msgstr "下載"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "下載檔案"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -1053,7 +1056,7 @@ msgstr "已初始化資料庫，您會在 10 秒內被重新導向至首頁"
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle：更新"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1937,12 +1940,12 @@ msgstr ""
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "訊息已送出"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr " %(name)s所撰訊息"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
@@ -1990,8 +1993,9 @@ msgid "User Statistics"
 msgstr "使用者統計"
 
 #: templates/profiles/profile_list.html:7
+#, fuzzy
 msgid "Profiles list"
-msgstr ""
+msgstr "Profile 列表"
 
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:15

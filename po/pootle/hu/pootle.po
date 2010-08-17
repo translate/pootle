@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-04 15:45+0200\n"
+"PO-Revision-Date: 2010-08-10 10:17+0200\n"
 "Last-Translator: kkemenczy <kkemenczy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.0-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -99,13 +99,12 @@ msgstr "Admin"
 #. l10n: The language from which translation will happen
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
-#, fuzzy
 msgid "Source Language"
 msgstr "Forrásnyelv"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Android strings"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -116,7 +115,6 @@ msgid "Your email address"
 msgstr "E-mail cím"
 
 #: external_apps/contact_form_i18n/forms.py:148
-#, fuzzy
 msgid "Your message"
 msgstr "Az Ön üzenete"
 
@@ -159,7 +157,7 @@ msgstr "Ezt a felhasználónevet már használják. Válasszon egy másikat."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr "Ugyanazt a jelszót kell beírnia mindkét alkalommal."
+msgstr "Ugyanazt a jelszót kell beírnia mindkét alkalommal"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
@@ -338,6 +336,11 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"A „senki\" felhasználó kifejezés minden olyan felhasználóra utal, aki nincs "
+"bejelentkezve (névtelen, ismeretlen felhasználó). Az „alapértelmezett\" "
+"felhasználó kifejezés olyan jogokra utal, amely a jogokat minden "
+"bejelentkezett felhasználók alapértelmezés szerint megkap, kivéve, ha "
+"közvetlenül más jogokat nem kap."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -393,9 +396,8 @@ msgid "Dashboard"
 msgstr "Vezérlőpult"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Felhasználói statisztika"
+msgstr "Statisztika"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -404,19 +406,19 @@ msgstr "Lefordított szavak"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Függőben lévő javaslatok"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Aktív felhasználók"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Aktív projektek"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Aktív nyelveknek"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -426,9 +428,8 @@ msgid "Files"
 msgstr "Fájlok"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "Mondataim fordítása"
+msgstr "Lefordított üzenetek"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -440,11 +441,11 @@ msgstr "Fordítások"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Tovább…"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Támogatás"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -452,22 +453,25 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"A Pootle fordítódástámogató programot a Translate.org.za és a honosítási "
+"szakértők lelkes közössége fejleszti. Célunk, hogy a Pootle teljes mértékben "
+"alkalmazható legyen a honosítási feladatok elvégzésére."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Az alábbi támogatások érhetők el:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Pootle-dokumentáció"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Pootle levelezési lista"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(kereskedelmi támogatás)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -483,7 +487,7 @@ msgstr "Optimalizáció"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Pootle figyelmeztetések"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -613,18 +617,19 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/dashboard.py:54
 #, python-format
 msgid "Django version %s is installed."
-msgstr "A Django %s verzió van telepítve."
+msgstr "A Django %s verziója van telepítve."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:57
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"A Django %s verziója telepítve van, de frissebb verzió használata javasolt."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "A Django %s verzió van telepítve."
+msgstr "Az lxml %s verziója van telepítve."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -632,10 +637,14 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"Az lxml %(installed)s verziója van telepítve. A Pootle-rendszer számára a(z) "
+"%(required)s verzió szükséges az XML-formátum támogatásához."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
 msgstr ""
+"Az lxml nincs telepítve. A Pootle számára az lxml szükséges az XML-formátum "
+"támogatásához."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -658,6 +667,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Nem található az aeidon csomag. Pootle számára szükséges a Gaupol vagy az "
+"aeidon feliratformátum támogatásához."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -743,12 +754,16 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"Nincs beállítva a \"feladó\" e-mail cím, amely a regisztrációs leveleket "
+"küldi. Valamint tekintse át a levelezőkiszolgáló beállításait."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Nincs megadva kapcsolati e-mail cím. Az űrlapon keresztül vehetik fel a "
+"felhasználók a kapcsolatot az adminisztrátorokkal."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -770,15 +785,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Projekttagok"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Nyelvcsoport tagjai"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Minden felhasználó"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -879,7 +894,7 @@ msgstr "Fordítás"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Szótár kezelése"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -887,12 +902,12 @@ msgstr "Tömörített fájl (ZIP) a könyvtárból"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Offline fordítás"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "XLIFF-fájl letöltése offline fordítás céljából"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -900,11 +915,11 @@ msgstr "XLIFF letöltése"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Exportálás"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Fordítások exportálása"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -912,7 +927,7 @@ msgstr "Letöltés"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Fájl letöltése"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -1095,7 +1110,7 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
-msgstr "Adatbázistáblák létrehozása..."
+msgstr "Adatbázistáblák létrehozása…"
 
 #: local_apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
@@ -1113,7 +1128,7 @@ msgstr "a(z) %(language)s nyelv fordítása %(percent)d%%-ban kész"
 #: local_apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr "a(z) %(project)s projekt fordítása %(percent)d%% kész"
+msgstr "A(z) %(project)s projekt fordítása %(percent)d%%-a kész"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
@@ -1126,7 +1141,7 @@ msgstr "Adatbázis előkészítése, 10 másodperc múlva az oldal átirányít�
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Frissítés"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1134,58 +1149,64 @@ msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
+"Az adatbázistáblák a(z) %d verzióval készültek. A Pootle frissíti az "
+"adatbázist."
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "Adatbázistáblák létrehozása..."
+msgstr "Hiányzó adatbázistáblák létrehozása…"
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Jogosultsági táblák javítása…"
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Meglévő adatbázistáblák másolása…"
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"A Pootle az összes fordítást az adatbázisba importálja. Ez hosszú ideig is "
+"eltarthat."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
+msgstr[0] "%(count)d javaslat került importálásra, összes: %(store)s"
+msgstr[1] "%(count)d javaslat került importálásra, összes: %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Nem sikerült a javaslatok importálása innen: %s"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
+msgstr[0] "%(count)d importálva, összes: %(store)s"
+msgstr[1] "%(count)d importálva, összes: %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "Nem sikerült az importálás innen: %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Az összes fordítás importálása megtörtént."
 
 #: local_apps/pootle_misc/dbupdate.py:180
-#, fuzzy
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
-msgstr "Adatbázis előkészítése, 10 másodperc múlva az oldal átirányításra kerül"
+msgstr ""
+"A Pootle előkészítette az adatbázist. 10 másodperc múlva az oldal "
+"átirányításra kerül a kezdőlapra."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
@@ -1216,7 +1237,7 @@ msgstr "Következő"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Utolsó (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1235,7 +1256,7 @@ msgstr "%(language)s nyelv hírei"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "%(project)s projekt hírei"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1353,9 +1374,8 @@ msgstr[1] "%(languages)d nyelv, %(average)d%% lefordítva"
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr "Nincs joga a nyelv adminisztrációjához."
+msgstr "Nincs joga a projekt adminisztrációjához."
 
 #: local_apps/pootle_project/views.py:138
 msgid "Update from templates"
@@ -1366,10 +1386,9 @@ msgid "Initialize"
 msgstr "Előkészítés"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Itt adhatja hozzá, szerkesztheti és módosíthatja a nyelvhez tartozó "
+"Itt adhatja hozzá, szerkesztheti és módosíthatja a projekthez tartozó "
 "jogosultságot."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
@@ -1393,49 +1412,49 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Java Properties"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "OS X Strings"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP arrays"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Feliratok: srt"
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Feliratok: sub"
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Feliratok: ssa"
 
 #: local_apps/pootle_store/filetypes.py:73
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Feliratok: ass"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1447,9 +1466,8 @@ msgid "Plural Form %d"
 msgstr "Többszörös forma %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "Fordítói megjegyzések"
+msgstr "Fordítói megjegyzés"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
@@ -1457,19 +1475,19 @@ msgstr "Elérési útvonal"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "Nincs több lektorálásra váró üzenet."
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "Nincs több fordításra váró üzenet."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "Nincs lektorálásra váró üzenet."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "Nincs fordításra váró üzenet."
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1498,24 +1516,24 @@ msgstr "Fordítás szerkesztése"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "Terminológia"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Lehetséges problémák a fordítással"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "Hibás ellenőrzések"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
 msgid "Remove quality check"
-msgstr ""
+msgstr "Minőség-ellenőrzés eltávolítása"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "Másolás a fordításba"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1528,15 +1546,15 @@ msgstr "Javaslat"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "Ugrás az előzőre"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "Ugrás a következőre"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "Megjegyzés hozzáadása"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1547,9 +1565,8 @@ msgid "Reject suggestion"
 msgstr "Javaslat elutasítása"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "Javaslat elutasítása"
+msgstr "Javaslat eltávolítása"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1557,24 +1574,25 @@ msgid "Translator Comments"
 msgstr "Fordítói megjegyzések"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, fuzzy
+#, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
 msgstr "%(suggid)d javaslat a(z) %(user)s felhasználótól:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "%(user)s javaslatai"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Lefordított szavak: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr ""
+"Lefordított üzenetek: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1586,25 +1604,27 @@ msgstr "Többes szám"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Szótár újraépítése"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Biztos benne, hogy újraépíti a szótárt? Minden meglévő kifejezés és fordítás "
+"törlésre kerül."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Kicsomagolás"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Újraépítheti a szótárt."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "Kifejezés"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
@@ -1612,20 +1632,19 @@ msgstr "Törlés"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "A szótár üres"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Szótár létrehozása"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "Leírás"
+msgstr "Leírás…"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "Részletek…"
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1649,9 +1668,9 @@ msgid "You do not have rights to update from version control here"
 msgstr "Nincs joga frissíteni a verziókövető rendszerből"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, fuzzy
+#, python-format, 
 msgid "Updated project \"%s\" from version control"
-msgstr "%s fájl frissítése a verziókövető rendszerből"
+msgstr "\"%s\" projekt frissítése a verziókövető rendszerből"
 
 #: local_apps/pootle_translationproject/models.py:350
 #, python-format
@@ -1737,13 +1756,15 @@ msgstr "Fájl"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "Feltöltés"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Opcionálisan válassza ki a az egyesíteni kívánt fájlt. Ha nincs megadva, a "
+"feltöltött fájl nevét fogja használni."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1755,25 +1776,23 @@ msgstr "Keresés"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Itt kezelheti a fájlokat ebben a fordítási projektben."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
-msgstr "Aktualizálás sablonból"
+msgstr "Frissítés a sablonokból"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Projektfájlok átvizsgálása"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"Itt adhatja hozzá, szerkesztheti és módosíthatja a nyelvhez tartozó "
-"jogosultságot."
+"Itt adhatja hozzá, szerkesztheti és módosíthatja a fordítási projekthez "
+"tartozó jogosultságot."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -1781,9 +1800,8 @@ msgid "Review"
 msgstr "Lektorálás"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
-msgstr "Haladó keresés"
+msgstr "Speciális keresés"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1812,15 +1830,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "A válaszra szánt idő lejárt"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Írja be a számot"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Hibás"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1852,11 +1870,11 @@ msgstr "Adminisztráció"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Információ és statisztikák a Pootle-rendszerről"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1911,7 +1929,7 @@ msgstr "Bejelentkezés"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Kapcsolat"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1919,21 +1937,23 @@ msgstr "Névjegy"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "Ön ember?"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"A rendszer elleni támadások kivédése érdekében meg kell győződniük, hogy a "
+"emberi felhasználó használja-e a rendszert."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Válaszoljon erre a kérdésre:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Megerősítés"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1958,7 +1978,7 @@ msgstr "Projekt honlapja"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Projekt hírei"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
@@ -1966,11 +1986,11 @@ msgstr "Saját projekt adminisztrációja"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Projektjogosultságok kezelése"
 
 #: templates/tp_base_terminology.html:5
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Terminológia kezelése"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -2028,17 +2048,17 @@ msgstr "Django adminisztrátor"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Küldés"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "Üzenet elküldve"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr " %(name)s üzenete"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
@@ -2151,7 +2171,7 @@ msgstr "Jelszó megváltozott"
 
 #: templates/registration/password_change_done.html:16
 msgid "Your password was changed successfully."
-msgstr "A jelszó módosítása sikeresen megtörtént"
+msgstr "A jelszó módosítása sikeresen megtörtént."
 
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11

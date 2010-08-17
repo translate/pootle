@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-02-06 18:00+0200\n"
+"PO-Revision-Date: 2010-08-14 21:14+0200\n"
 "Last-Translator: Xandru <xandru@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-rc1\n"
 
 #: strings.py:8
 msgid ""
@@ -98,23 +98,23 @@ msgstr "alministrador"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Llingua Fonte"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Cadenes d'Android"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "El to nome"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "La to direición de corréu electrónicu"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "El to mensaxe"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -336,6 +336,11 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"L'usuariu \"nobody\" (naide) refierse a cualesquier usuariu que nun tea "
+"rexistráu (anónimu o ensin identificar). L'usuariu \"default\" "
+"(predetermináu)refierse a los drechos que cualesquier usuariu rexistráu tien "
+"de mou predetermináu, a nun ser que se-yos definan otros permisos "
+"específicos."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -391,9 +396,8 @@ msgid "Dashboard"
 msgstr "Tableru"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Estadístiques d'Usuariu"
+msgstr "Estadístiques del Sirvidor"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -402,19 +406,19 @@ msgstr "Pallabres traducíes"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Suxerencies pendientes"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Usuarios activos"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Proyeutos activos"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Llingües actives"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -425,7 +429,7 @@ msgstr "Ficheros"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
 msgid "Translated strings"
-msgstr ""
+msgstr "Cadenes tornaes"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -437,11 +441,11 @@ msgstr "Unvíos"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Más..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Sofitu"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -449,22 +453,25 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle ta desendolcáu por Translate.org y una comunidá d'apasionaos espertos "
+"llocalizadores. Queremos que Pootle t'aide a que'l trabayu de llocalización "
+"desendolque'l so potencial totalmente."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Darréu, aides y sofitu:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Documentación de Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Llista de corréu de Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(sofitu comercial)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -480,7 +487,7 @@ msgstr "Optimizaciones"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Alertes de Pootle"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -615,11 +622,13 @@ msgstr "Django instláu versión %s."
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"Ta instalada la versión %S de Django, pero encamiéntase una versión "
+"superior."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Django instláu versión %s."
+msgstr "Ta instalada la versión %s de lxml."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -1154,7 +1163,6 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1166,7 +1174,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
@@ -1478,7 +1485,7 @@ msgstr "verificando %s"
 #: local_apps/pootle_translationproject/templates/translation_project/tp_translate.html:6
 #: templates/tp_menu.html:9
 msgid "Translate"
-msgstr "Traduccir"
+msgstr "Traducir"
 
 #: local_apps/pootle_store/templates/store/translate_table.html:11
 msgid "Original"

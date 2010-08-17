@@ -1,10 +1,10 @@
-# Rimas Kudelis <rq@akl.lt>, 2009.
+# Rimas Kudelis <rq@akl.lt>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-09 12:38+0200\n"
+"PO-Revision-Date: 2010-08-12 23:04+0200\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "Language: lt\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.0-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -97,14 +97,12 @@ msgstr "Administratorius"
 #. l10n: The language from which translation will happen
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
-#, fuzzy
 msgid "Source Language"
 msgstr "Pradinė kalba"
 
 #: strings.py:35
-#, fuzzy
 msgid "Android strings"
-msgstr "„Android“ eilutės"
+msgstr "Android strings"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -115,9 +113,8 @@ msgid "Your email address"
 msgstr "Jūsų el. pašto adresas"
 
 #: external_apps/contact_form_i18n/forms.py:148
-#, fuzzy
 msgid "Your message"
-msgstr "Jūsų pranešimas"
+msgstr "Jūsų žinutė"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -457,15 +454,14 @@ msgid "Support"
 msgstr "Pagalba ir palaikymas"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
-#, fuzzy
 msgid ""
 "Pootle is developed by Translate.org.za and a community of passionate "
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
-"„Pootle“ sistemą kuria „Translate.org.za“ projektas ir lokalizavimo ekspertų "
-"bendruomenė. Mes siekiame, kad su „Pootle“ pagalba Jūsų lokalizavimas "
-"pasiektų pilną potencialą."
+"„Pootle“ sistemą kuria ir tobulina „Translate.org.za“ projektas ir "
+"lokalizavimo ekspertų bendruomenė. Mes siekiame, kad „Pootle“ Jūsų "
+"lokalizavimo darbams padėtų pasiekti pilną potencialą."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
@@ -480,7 +476,6 @@ msgid "The Pootle mailing list"
 msgstr "„Pootle“ el. pašto konferencija"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
-#, fuzzy
 msgid "(commercial support)"
 msgstr "(komercinis palaikymas)"
 
@@ -903,7 +898,7 @@ msgstr "Versti viską"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr "Tvarkyti aiškinamąjį žodyną"
+msgstr "Tvarkyti terminų žodyną"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -1539,16 +1534,16 @@ msgstr "Galimos vertimo problemos"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "Galimos problemos"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
 msgid "Remove quality check"
-msgstr ""
+msgstr "Pašalinti kokybės testą"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "Kopijuoti į vertimo lauką"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1561,15 +1556,15 @@ msgstr "Pasiūlyti"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "Grįžti prie ankstesnės eilutės vertimo"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "Pereiti į kitos eilutės vertimą"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "Pridėti pastabą"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1580,34 +1575,34 @@ msgid "Reject suggestion"
 msgstr "Atmesti pasiūlymą"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "Atmesti pasiūlymą"
+msgstr "Pašalinti pasiūlymą"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
 msgid "Translator Comments"
-msgstr "Vertėjo komentarai"
+msgstr "Vertėjų pastabos"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, fuzzy
+#, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "%(suggid)d pasiūlymas, kurį pateikė %(user)s:"
+msgstr "%(i)d pasiūlymas, kurį pateikė %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "Pasiūlymas, kurį pateikė %(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "Išversta žodžių – %(translated)d iš %(total)d (%(translatedpercent)d%%)"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr ""
+"Išversta eilučių – %(translated)d iš %(total)d (%(translatedpercent)d%%)"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1619,25 +1614,28 @@ msgstr "Daugiskaita"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Pergeneruoti terminų žodyną"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Ar tikrai norite pergeneruoti terminų žodyną? Visi jame esantys terminai ir "
+"vertimai bus pašalinti."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
+#, fuzzy
 msgid "Extract"
-msgstr ""
+msgstr "Išgauti"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Jūs galite pergeneruoti terminų žodyną nuo nulio."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "Terminas"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
@@ -1645,20 +1643,19 @@ msgstr "Šalinti"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Terminų žodynas šiuo metu tuščias"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Generuoti terminų žodyną"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "Aprašas"
+msgstr "Aprašas…"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "Išsamiau…"
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1670,7 +1667,7 @@ msgstr "Galutinis tekstas"
 
 #: local_apps/pootle_translationproject/forms.py:30
 msgid "Comments"
-msgstr "Komentarai"
+msgstr "Pastabos"
 
 #: local_apps/pootle_translationproject/forms.py:31
 msgid "Locations"
@@ -1682,9 +1679,9 @@ msgid "You do not have rights to update from version control here"
 msgstr "Jums nesuteiktos teisės atnaujinti failus iš versijų tvarkymo sistemos"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, fuzzy
+#, python-format, 
 msgid "Updated project \"%s\" from version control"
-msgstr "Failas „%s“ atnaujintas iš versijų tvarkymo sistemos"
+msgstr "Projektas „%s“ atnaujintas iš versijų tvarkymo sistemos"
 
 #: local_apps/pootle_translationproject/models.py:350
 #, python-format
@@ -1770,13 +1767,15 @@ msgstr "Failas"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "Įkelti į"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Jeigu norite, pasirinkite failą, su kuriuo norite sulieti įkeliamąjį. "
+"Nepasirinkus, bus naudojamas įkeliamojo failo vardas."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1788,23 +1787,22 @@ msgstr "Ieškoti"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Čia galite tvarkyti vertimo projektui priklausančius failus."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
-msgstr "Naujinti pagal šablonus"
+msgstr "Naujinti failus pagal šablonus"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Perskenuoti projekto failus"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr "Žemiau galite pridėti, keisti ir šalinti teises šiai kalbai."
+msgstr ""
+"Žemiau galite pridėti, keisti ir šalinti teises šio vertimo projekto ribose."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -1812,9 +1810,8 @@ msgid "Review"
 msgstr "Peržiūra"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
-msgstr "Išplėstinė paieška"
+msgstr "Patikslintoji paieška"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1833,9 +1830,9 @@ msgid ""
 "</div>"
 msgstr ""
 "<div dir=\"ltr\" lang=\"lt\">\n"
-"<h2 class=\"title\">Tai – demonstracinė „<span lang=\"en\">Pootle</span>“ "
-"įdiegtis.</h2>\n"
-"<p class=\"about\">Taip pat galite aplankyti oficialųjį <a "
+"<h2 class=\"title\">Šiame serveryje įdiegta „<span lang=\"en\">Pootle</span>“ "
+"sistema.</h2>\n"
+"<p class=\"about\">Jeigu norite, galite aplankyti oficialųjį <a "
 "href=\"http://pootle.locamotion.org\">„Pootle“ serverį</a>. Šio serverio "
 "administratorius nenurodė kontaktinių duomenų ar serverio aprašo. Jeigu Jūs "
 "esate šio serverio administratorius, šį aprašą galite redaguoti nuostatų "
@@ -1844,15 +1841,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Atsakymui skirtas laikas baigėsi"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Įveskite skaičių"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Atsakymas neteisingas"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1884,11 +1881,11 @@ msgstr "Administravimas"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Informacija apie šį „Pootle“ serverį ir jo statistika"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Informacija"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1943,7 +1940,7 @@ msgstr "Prisijungti"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Susisiekite su mumis"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1951,21 +1948,23 @@ msgstr "Apie šį „Pootle“ serverį"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "Ar Jūs tikrai žmogus?"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Siekiant apsaugoti serverį nuo atakų, mums būtina įsitikinti, kad pasiūlymus "
+"tikrai siunčia žmonės, o ne robotai."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Prašome atsakyti į klausimą:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Patvirtinti"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1990,7 +1989,7 @@ msgstr "Pradinis projekto tinklalapis"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Projekto naujienos"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
@@ -1998,11 +1997,12 @@ msgstr "Administruoti Jūsų projektą"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Tvarkyti teises šio projekto ribose"
 
 #: templates/tp_base_terminology.html:5
+#, fuzzy
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Tvarkyti terminyną"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -2060,17 +2060,17 @@ msgstr "„Django“ administravimas"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Išsiųsti"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "Žinutė išsiųsta"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr " pranešimas nuo %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
