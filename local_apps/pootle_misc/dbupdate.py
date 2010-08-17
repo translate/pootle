@@ -195,19 +195,18 @@ def staggered_update(db_buildversion):
     if db_buildversion < 20030:
         yield update_permissions_20030()
 
-    # build missing tables
-    yield syncdb()
-
     if db_buildversion < 21000:
         yield update_tables_21000()
+        logging.info("creating project directories")
         Directory.objects.root.get_or_make_subdir('projects')
         for project in Project.objects.iterator():
             # saving should force project to update it's directory property
             try:
                 project.save()
             except Exception, e:
-                logging.warning("something broke while upgrading %s:\n%s", project.pootle_path, str(e))
+                logging.warning("something broke while upgrading %s:\n%s", project, str(e))
 
+        logging.info("associating stores with translation projects")
         for store in Store.objects.iterator():
             try:
                 store.translation_project = store.parent.get_translationproject()
@@ -215,6 +214,10 @@ def staggered_update(db_buildversion):
             except Exception, e:
                 logging.warning("something broke while upgrading %s:\n%s", store.pootle_path, str(e))
 
+    # build missing tables
+    yield syncdb()
+
+    if db_buildversion < 21000:
         yield parse_start()
         for store in Store.objects.iterator():
             yield parse_store(store)
