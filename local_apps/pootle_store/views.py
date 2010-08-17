@@ -254,8 +254,8 @@ def get_current_units(request, step_queryset, units_queryset):
         else:
             # all methods failed, get first unit in queryset
             try:
-                edit_unit = step_queryset.iterator().next()
-            except StopIteration:
+                edit_unit = step_queryset[0:1][0]
+            except IndexError:
                 pass
 
     return prev_unit, edit_unit, pager
