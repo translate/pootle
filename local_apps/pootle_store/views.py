@@ -197,7 +197,7 @@ def get_step_query(request, units_queryset):
                     qualitycheck__false_positive=False, qualitycheck__name__in=matchnames)
             units_queryset = match_queryset
 
-    return units_queryset.distinct()
+    return units_queryset
 
 def get_current_units(request, step_queryset, units_queryset):
     """returns current active unit, and in case of POST previously active unit"""
@@ -362,7 +362,7 @@ def translate_page(request, units_queryset, store=None):
         store = edit_unit.store
         pager_query = units_queryset
         preceding = (pager_query.filter(store=store, index__lt=edit_unit.index) | \
-                     pager_query.filter(store__pootle_path__lt=store.pootle_path)).distinct().count()
+                     pager_query.filter(store__pootle_path__lt=store.pootle_path)).count()
         store_preceding = store.units.filter(index__lt=edit_unit.index).count()
     else:
         pager_query = store.units
