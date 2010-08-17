@@ -34,8 +34,8 @@ $(document).ready(function() {
     element.caret(start, start);
   });
 
-  // Write special chars into the currently focused element
-  $(".writespecial").click(function() {
+  // Write special chars, tags and escapes into the currently focused element
+  $(".writespecial, .translation-highlight-escape, .translation-highlight-html").click(function() {
     var specialtext = $(this).text();
     var element = $($.pootle.focusedElement);
     var start = element.caret().start + specialtext.length;
