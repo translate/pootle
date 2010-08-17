@@ -98,18 +98,35 @@ def get_alt_src_langs(request, profile, translation_project):
 
 def get_non_indexed_search_step_query(form, units_queryset):
     result = units_queryset
-    for word in form.cleaned_data['search'].split():
-        subresult = units_queryset.none()
-        if 'source' in form.cleaned_data['sfields']:
-            subresult = subresult | units_queryset.filter(source_f__contains=word)
-        if 'target' in form.cleaned_data['sfields']:
-            subresult = subresult | units_queryset.filter(target_f__contains=word)
-        if 'notes' in form.cleaned_data['sfields']:
-            subresult = subresult | units_queryset.filter(developer_comment__contains=word) | \
-                     units_queryset.filter(translator_comment__contains=word)
-        if 'locations' in form.cleaned_data['sfields']:
-            subresult = subresult | units_queryset.filter(locations__contains=word)
-        result = subresult & result
+    words = form.cleaned_data['search'].split()
+    result = units_queryset.none()
+
+    if 'source' in form.cleaned_data['sfields']:
+        subresult = units_queryset
+        for word in words:
+            subresult = subresult.filter(source_f__icontains=word)
+        result = result | subresult
+
+    if 'target' in form.cleaned_data['sfields']:
+        subresult = units_queryset
+        for word in words:
+            subresult = subresult.filter(target_f__icontains=word)
+        result = result | subresult
+
+    if 'notes' in form.cleaned_data['sfields']:
+        translator_subresult = units_queryset
+        developer_subresult = units_queryset
+        for word in words:
+            translator_subresult = translator_subresult.filter(translator_comment__icontains=word)
+            developer_subresult = developer_subresult.filter(developer_comment__icontains=word)
+        result = result | translator_subresult | developer_subresult
+
+    if 'locations' in form.cleaned_data['sfields']:
+        subresult = units_queryset
+        for word in words:
+            subresult = subresult.filter(locations__icontains=word)
+        result = result | subresult
+
     return result
 
 def get_search_step_query(translation_project, form, units_queryset):
