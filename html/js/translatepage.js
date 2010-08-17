@@ -35,7 +35,7 @@ $(document).ready(function() {
   });
 
   // Write special chars, tags and escapes into the currently focused element
-  $(".writespecial, .translation-highlight-escape, .translation-highlight-html").click(function() {
+  $(".writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").click(function() {
     var specialtext = $(this).text();
     var element = $($.pootle.focusedElement);
     var start = element.caret().start + specialtext.length;

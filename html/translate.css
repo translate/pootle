@@ -566,8 +566,8 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar
 a.copyoriginal,
 a.translate-mt,
 a.writespecial,
-.translation-highlight-escape,
-.translation-highlight-html
+.translate-full .translation-highlight-escape,
+.translate-full .translation-highlight-html
 {
     cursor: pointer;
 }
