@@ -45,9 +45,11 @@
     <div class="translate-middle">
       <!-- Context information and comments -->
       {% if unit.getcontext %}
+      {% ifnotequal unit.locations unit.context %}
       <div class="translate-context">
         {{ unit.getcontext }}
       </div>
+      {% endifnotequal %}
       {% endif %}
       {% if unit.developer_comment or unit.locations %}
       <div class="comments">
