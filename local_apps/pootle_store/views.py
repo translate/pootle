@@ -140,18 +140,24 @@ def get_search_step_query(translation_project, form, units_queryset):
                   translation_project.indexer.INDEX_DIRECTORY_NAME, translation_project)
 
     word_querylist = []
-    for word in form.cleaned_data['search'].split():
-        # Generate a list for the query based on the selected fields
-        word_querylist = [(field, word) for field in form.cleaned_data['sfields']]
+    words = form.cleaned_data['search'].split()
+    fields = form.cleaned_data['sfields']
     paths = units_queryset.order_by().values_list('store__pootle_path', flat=True).distinct()
     path_querylist = [('pofilename', pootle_path) for pootle_path in paths.iterator()]
-    cache_key = "search:%s" % str(hash((repr(path_querylist), translation_project.get_mtime(), repr(word_querylist))))
+    cache_key = "search:%s" % str(hash((repr(path_querylist), translation_project.get_mtime(), repr(words), repr(fields))))
 
     dbids = cache.get(cache_key)
     if dbids is None:
         searchparts = []
-        textquery = translation_project.indexer.make_query(word_querylist, False)
-        searchparts.append(textquery)
+        # Split the search expression into single words. Otherwise xapian and
+        # lucene would interprete the whole string as an "OR" combination of
+        # words instead of the desired "AND".
+        for word in words:
+            # Generate a list for the query based on the selected fields
+            word_querylist = [(field, word) for field in fields]
+            textquery = translation_project.indexer.make_query(word_querylist, False)
+            searchparts.append(textquery)
+
         pathquery = translation_project.indexer.make_query(path_querylist, False)
         searchparts.append(pathquery)
         limitedquery = translation_project.indexer.make_query(searchparts, True)
