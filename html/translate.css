@@ -146,14 +146,14 @@ div.translation-text-headers[dir="rtl"] div.language-name
 div.alternative div.translate-original,
 div.alternative div.language-name
 {
-    border: 1px solid #cccccc;
-    background-color: #dddddd;
+    border: 1px solid #ccc;
+    background-color: #ddd;
     color: inherit;
 }
 
 div.alternative div.language-name
 {
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #ddd;
 }
 
 div.translate-original
@@ -234,8 +234,8 @@ div.translator-comments textarea
 
 td.translate-focus
 {
-    border-top: 2px solid #000000;
-    border-bottom: 2px solid #000000;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
     padding-top: .5em;
     padding-bottom: .5em;
     vertical-align: top;
@@ -273,7 +273,7 @@ td.translate-full textarea.translation
 {
     margin: 5px 0px 5px 0px;
     padding: 0px 2px 0px 0px;
-    background-color: #FFFFFF;
+    background-color: #fff;
     position: relative;
     cursor: pointer;
 }
@@ -346,7 +346,7 @@ div.translator-comments + #translate-suggestion-container
 
 .translate-suggestion
 {
-    background-color: #DDD;
+    background-color: #ddd;
 }
 
 /* CHECKS */
@@ -451,7 +451,7 @@ div#prevnext .next
 tr.odd div#prevnext .previous,
 tr.odd div#prevnext .next
 {
-    background-color: #FFFFFF;
+    background-color: #fff;
 }
 
 div#prevnext .previous,
@@ -626,21 +626,21 @@ td.translate-full div.translate-translation:lang(zh)
 
 tr.translate-translation-fuzzy td.translate-translation[dir="ltr"]
 {
-    color: #666666;
-    border-left: 4px solid #AAAAAA;
+    color: #666;
+    border-left: 4px solid #aaa;
     padding-left: 3px;
 }
 
 tr.translate-translation-fuzzy td.translate-translation[dir="rtl"]
 {
     color: #666666;
-    border-right: 4px solid #AAAAAA;
+    border-right: 4px solid #aaa;
     padding-right: 3px;
 }
 
 tr.translate-translation-fuzzy td.translate-focus
 {
-    border-color: #AAAAAA;
+    border-color: #aaa;
 }
 
 .translate-translation-fuzzy textarea.translation

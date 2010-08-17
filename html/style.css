@@ -863,8 +863,8 @@ html[dir="rtl"] div#submenu-tabs a
 
 div#submenu-tabs a:hover
 {
-    background-color: #ffffff !important;
-    border-color: #777777 #777777 #ffffff;
+    background-color: #fff !important;
+    border-color: #777 #777 #fff;
     border-style: solid;
     border-width: 1px;
     line-height: 20px;
@@ -875,7 +875,7 @@ div#submenu-tabs a.admintab:hover
 {
     background-color: #d54e21 !important;
     border-bottom-color: #d54e21 !important;
-    color: #ffffff;
+    color: #fff;
 }
 
 div#submenu-tabs a:visited
@@ -907,8 +907,8 @@ body.tpreview div#submenu-tabs a.tpreview,
 body.tpadminpermissions div#submenu-tabs a.tpadminpermissions,
 body.tpadminfiles div#submenu-tabs a.tpadminfiles
 {
-    background-color: #ffffff;
-    border-color: #777777 #777777 #fff;
+    background-color: #fff;
+    border-color: #777 #777 #fff;
     border-style: solid;
     border-width: 1px;
     color: black;
@@ -995,7 +995,7 @@ div#settings
 .other-selected a,
 .delete-selected a
 {
-    color: #ffffff;
+    color: #fff;
 }
 
 /* COMMON BUTTONS */
@@ -1347,7 +1347,7 @@ ul.pager li a:visited
 ul.pager li a:hover
 {
     background-color: #76b0bf;
-    color: #ffffff;
+    color: #fff;
 }
 
 ul.pager li span.current-link,
@@ -1366,7 +1366,7 @@ ul.pager li a.prevnext-link
 ul.pager li span.current-link
 {
     background-color: #76b0bf;
-    color: #ffffff;
+    color: #fff;
     border: 1px solid #76b0bf;
     font-weight: bold;
 }
@@ -1435,7 +1435,7 @@ div#search[dir="rtl"] .advancedlink
 
 div.advancedsearch
 {
-    background-color: #ffffff;
+    background-color: #fff;
     border-bottom: 1px solid #76b0bf;
     border-left: 1px solid #76b0bf;
     border-right: 1px solid #76b0bf;
