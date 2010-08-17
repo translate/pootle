@@ -1,10 +1,9 @@
-# SOME DESCRIPTIVE TITLE.
+# Asturian translation of Pootle.
 # Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# This file is distributed under the same license as the Pootle package.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Pootle 2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
 "PO-Revision-Date: 2010-08-14 21:14+0200\n"
@@ -622,7 +621,7 @@ msgstr "Django instláu versión %s."
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
-"Ta instalada la versión %S de Django, pero encamiéntase una versión "
+"Ta instalada la versión %s de Django, pero encamiéntase una versión "
 "superior."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63

@@ -1,10 +1,9 @@
-# SOME DESCRIPTIVE TITLE.
+# Luganda translation of Pootle.
 # Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# This file is distributed under the same license as the Pootle package.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Pootle 2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
 "PO-Revision-Date: 2010-08-10 13:13+0200\n"
@@ -115,6 +114,7 @@ msgid "Your message"
 msgstr "Obubaka bwo"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
+#, fuzzy
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "Bambi longoosa ensobi wa mmanga "
@@ -844,7 +844,7 @@ msgid "%(translated)d/%(total)d strings"
 msgstr "%(translated)d/%(total)d bulandira"
 
 #: local_apps/pootle_app/views/language/item_dict.py:76
-#, python-format
+#, python-format, fuzzy
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 msgstr[0] "%(checks)d kalandira (%(checkspercent)d%%) kagaanyi"
@@ -916,21 +916,21 @@ msgid "Update from VCS"
 msgstr "Zza buggya okuva ku VCS"
 
 #: local_apps/pootle_app/views/language/item_dict.py:244
-#, python-format
+#, python-format, fuzzy
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] "%d kiganmo kyetaaga kukolwako"
 msgstr[1] "%d bigambo byetaaga kukolwako"
 
 #: local_apps/pootle_app/views/language/item_dict.py:248
-#, python-format
+#, python-format, fuzzy
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] "%d kigambo tekkivvuunuddwa"
 msgstr[1] "%d bigambo tebivvuunuddwa"
 
 #: local_apps/pootle_app/views/language/item_dict.py:249
-#, python-format
+#, python-format, fuzzy
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] "%d kigambo kyetaaga kwekebejja"
@@ -939,7 +939,7 @@ msgstr[1] "%d bigambo byetaaga kwekebejja"
 #: local_apps/pootle_app/views/language/item_dict.py:275
 #: local_apps/pootle_language/views.py:67
 #: local_apps/pootle_project/views.py:74
-#, python-format
+#, python-format, fuzzy
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] "Nsobi mu kusoma %d fayiro"
@@ -1059,7 +1059,7 @@ msgid "Plural Equation"
 msgstr "Obungi bw'Okugerageranya"
 
 #: local_apps/pootle_language/views.py:90
-#, python-format
+#, python-format, fuzzy
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d mirimu, %(average)d%% gitafutiddwa"
@@ -1152,7 +1152,7 @@ msgid ""
 msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:141
-#, python-format
+#, python-format, fuzzy
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
@@ -1163,7 +1163,7 @@ msgid "Failed to import suggestions from %s"
 msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:159
-#, python-format
+#, python-format, fuzzy
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
@@ -1345,7 +1345,7 @@ msgid "Ignore Files"
 msgstr "Ziimuula Fayiro"
 
 #: local_apps/pootle_project/views.py:99
-#, python-format
+#, python-format, fuzzy
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "%(languages)d lulimi, %(average)d%% lukyusiddwa"

@@ -1,7 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
+# Hungarian translation of Pootle.
 # Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# This file is distributed under the same license as the Pootle package.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -16,7 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.1.0-rc1\n"
-"Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
 msgid ""
@@ -1574,7 +1572,7 @@ msgid "Translator Comments"
 msgstr "Fordítói megjegyzések"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, 
+#, python-format, fuzzy
 msgid "Suggestion %(i)d by %(user)s:"
 msgstr "%(suggid)d javaslat a(z) %(user)s felhasználótól:"
 
