@@ -41,9 +41,9 @@ def fancy_escape(text):
             '\r': (escape_highlight % '\\r') + '<br/>\n',
             '\n': (escape_highlight % '\\n') + '<br/>\n',
             '\t': (escape_highlight % '\\t') + '\t',
-            '&': escape_highlight % '&amp;',
-            '<': escape_highlight % '&lt;',
-            '>': escape_highlight % '&gt;',
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
             }
         try:
             return submap[match.group()]
