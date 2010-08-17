@@ -668,6 +668,11 @@ td.translate-delete-terminology input
     padding: 0 10px;
 }
 
+.translate-term-translation
+{
+    padding: 0 25px;
+}
+
 .left
 {
     float: left;

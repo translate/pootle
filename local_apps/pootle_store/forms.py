@@ -166,6 +166,8 @@ def unit_form_factory(language, snplurals=1):
         translator_comment = forms.CharField(required=False,
                 widget=forms.Textarea(attrs=comment_attrs),
                 label=_("Translator comment"))
+        developer_comment = forms.CharField(required=False,
+                widget=forms.Textarea(attrs=comment_attrs))
 
         def clean_source_f(self):
             value = self.cleaned_data['source_f']

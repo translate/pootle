@@ -8,6 +8,15 @@
 <link rel="stylesheet" type="text/css" href='{{ "translate.css"|m }}' />
 {% endblock css %}
 
+{% block extra_head %}
+<script src='{{ "js/jquery/jquery.textarea-expander.js"|m }}' type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready (function() {
+     $('textarea.expanding').TextAreaExpander('10', '100');
+  });
+</script>
+{% endblock extra_head %}
+
 {% block content %}
 {% if formset %}
 <div class="settings-container centered">
