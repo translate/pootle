@@ -245,9 +245,9 @@ td.translate-full div.translate-original,
 td.translate-full textarea.translation
 {
     width: 100%;
-    min-height: 18px;
-    padding: 0;
-    margin: 0 auto 2px;
+    min-height: 21px;
+    padding: 1px 0 !important;
+    margin: 0 auto 0.5em;
 }
 
 /* TM */
