@@ -233,7 +233,8 @@ def get_current_units(request, step_queryset, units_queryset):
                         step_queryset.filter(store__pootle_path__gt=pootle_path)
                         ).order_by('store__pootle_path', 'index')
 
-        for unit in queryset.iterator():
+        #FIXME: instead of using an arbitrary limit it would be best to page through mother query
+        for unit in queryset[:64].iterator():
             if edit_unit is None and prev_unit is not None:
                 edit_unit = unit
                 break
