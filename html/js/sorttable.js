@@ -89,6 +89,11 @@ sorttable = {
 	      // make it clickable to sort
 	      headrow[i].sorttable_columnindex = i;
 	      headrow[i].sorttable_tbody = table.tBodies[0];
+        // Add unsorted icon
+        unsorted = document.createElement('img');
+        unsorted.className = "sorttable_unsorted";
+        unsorted.src = m('images/ascdesc.gif');
+        headrow[i].appendChild(unsorted);
 	      dean_addEvent(headrow[i],"click", function(e) {
 
           if (this.className.search(/\bsorttable_sorted\b/) != -1) {
@@ -98,9 +103,9 @@ sorttable = {
             this.className = this.className.replace('sorttable_sorted',
                                                     'sorttable_sorted_reverse');
             this.removeChild(document.getElementById('sorttable_sortfwdind'));
-            sortrevind = document.createElement('span');
+            sortrevind = document.createElement('img');
             sortrevind.id = "sorttable_sortrevind";
-            sortrevind.innerHTML = stIsIE ? '&nbsp<font face="webdings">5</font>' : '&nbsp;&#x25B4;';
+            sortrevind.src = m('images/desc.gif');
             this.appendChild(sortrevind);
             return;
           }
@@ -111,9 +116,9 @@ sorttable = {
             this.className = this.className.replace('sorttable_sorted_reverse',
                                                     'sorttable_sorted');
             this.removeChild(document.getElementById('sorttable_sortrevind'));
-            sortfwdind = document.createElement('span');
+            sortfwdind = document.createElement('img');
             sortfwdind.id = "sorttable_sortfwdind";
-            sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
+            sortfwdind.src = m('images/asc.gif');
             this.appendChild(sortfwdind);
             return;
           }
@@ -122,19 +127,28 @@ sorttable = {
           theadrow = this.parentNode;
           forEach(theadrow.childNodes, function(cell) {
             if (cell.nodeType == 1) { // an element
+              // Add unsorted icon if necessary as well
+              if (cell.className.search(/\b(sorttable_sorted|sorttable_sorted_reverse)\b/) != -1) {
+                unsorted = document.createElement('img');
+                unsorted.className = "sorttable_unsorted";
+                unsorted.src = m('images/ascdesc.gif');
+                cell.appendChild(unsorted);
+              }
               cell.className = cell.className.replace('sorttable_sorted_reverse','');
               cell.className = cell.className.replace('sorttable_sorted','');
             }
           });
+          unsorted = $('.sorttable_unsorted', this).get(0);
+          if (unsorted) { unsorted.parentNode.removeChild(unsorted); }
           sortfwdind = document.getElementById('sorttable_sortfwdind');
           if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
           sortrevind = document.getElementById('sorttable_sortrevind');
           if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
           
           this.className += ' sorttable_sorted';
-          sortfwdind = document.createElement('span');
+          sortfwdind = document.createElement('img');
           sortfwdind.id = "sorttable_sortfwdind";
-          sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
+          sortfwdind.src = m('images/asc.gif');
           this.appendChild(sortfwdind);
 
 	        // build an array to sort. This is a Schwartzian transform thing,

@@ -35,7 +35,8 @@ Directory contents
   - sorttable.js :
     Sorts tables according to its values. Used in the homepage as well as on the
     languages and projects listings. It has some customisations to support
-    zebra stripes once the sort is done (using jQuery).
+    zebra stripes once the sort is done (using jQuery). The icons used on the
+    table headings are custom code too.
     We may want to use a table sorter purely written in jQuery, such as
     tablesorter (http://tablesorter.com/docs/).
 
