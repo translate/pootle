@@ -11,7 +11,7 @@ $(document).ready(function() {
   if (!pairs) {
     pairs = apertium.getSupportedLanguagePairs();
     pairs = $.map(pairs, function(obj, i) {
-      return {source: obj.sourceLanguage, target: obj.targetLanguage};
+      return {source: obj.source, target: obj.target};
     });
     var cookie_data = JSON.stringify(pairs);
     $.cookie(cookie_name, cookie_data, cookie_options);
