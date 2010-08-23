@@ -139,6 +139,9 @@ def zip_link(request, path_obj):
             }
 
 def xliff_link(request, path_obj):
+    if path_obj.translation_project.project.localfiletype == 'xlf':
+        return
+
     if path_obj.translation_project.project.is_monolingual():
         text = _('Translate offline')
         tooltip = _('Download XLIFF file for offline translation')
