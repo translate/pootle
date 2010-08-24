@@ -420,7 +420,7 @@ class TranslationProject(models.Model):
             # The temporary file below is opened and immediately closed for security reasons
             fd, tempzipfile = tempfile.mkstemp(prefix='pootle', suffix='.zip')
             os.close(fd)
-            result = os.system("cd %s ; zip -r - %s > %s" % (self.abs_real_path, " ".join(store.abs_real_path[len(self.abs_real_path)+1:] for store in stores), tempzipfile))
+            result = os.system("cd %s ; zip -r - %s > %s" % (self.abs_real_path, " ".join(store.abs_real_path[len(self.abs_real_path)+1:] for store in stores.iterator()), tempzipfile))
             if result == 0:
                 if path is not None:
                     shutil.move(tempzipfile, path)
@@ -444,7 +444,7 @@ class TranslationProject(models.Model):
                 archivecontents = cStringIO.StringIO()
 
             archive = zipfile.ZipFile(archivecontents, 'w', zipfile.ZIP_DEFLATED)
-            for store in stores:
+            for store in stores.iterator():
                 archive.write(store.abs_real_path.encode('utf-8'), store.abs_real_path[len(self.abs_real_path)+1:].encode('utf-8'))
             archive.close()
             if path is not None:
