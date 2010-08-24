@@ -27,7 +27,8 @@ import datetime
 from tempfile import mkdtemp, mkstemp
 
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
+from django.conf import settings
+from django.core.cache import cache
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response
@@ -37,6 +38,7 @@ from django import forms
 
 from translate.storage import factory, versioncontrol
 
+from pootle_misc.baseurl import redirect
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models             import Directory
@@ -48,6 +50,7 @@ from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.language.view import get_translation_project, set_request_context
+from pootle_app.project_tree import ensure_target_dir_exists
 
 from pootle_store.models import Store, Unit
 from pootle_store.util import absolute_real_path, relative_real_path
@@ -233,17 +236,26 @@ def export_zip(request, translation_project, file_path):
         raise PermissionDenied(_('You do not have the right to create ZIP archives.'))
     translation_project.sync()
     pootle_path = translation_project.pootle_path + (file_path or '')
-    stores = Store.objects.filter(pootle_path__startswith=pootle_path).exclude(file='')
-    archivecontents = translation_project.get_archive(stores)
-    response = HttpResponse(archivecontents, content_type="application/zip")
-    if file_path.endswith("/"):
-        file_path = file_path[:-1]
-    fish, file_path = os.path.split(file_path)
-    archivename = '%s-%s' % (translation_project.project.code, translation_project.language.code)
-    archivename += '-' + file_path.replace('/', '-') + '.zip'
-    response['Content-Disposition'] = 'attachment; filename=%s' % archivename
-    return response
 
+    archivename = '%s-%s' % (translation_project.project.code, translation_project.language.code)
+    if file_path.endswith('/'):
+        file_path = file_path[:-1]
+
+    if file_path:
+        archivename += '-' + file_path.replace('/', '-')
+    archivename += '.zip'
+    export_path = os.path.join('POOTLE_EXPORT', translation_project.real_path, archivename)
+    abs_export_path = absolute_real_path(export_path)
+
+    key= "%s:export_zip" % pootle_path
+    last_export = cache.get(key)
+    if not (last_export and last_export == translation_project.get_mtime() and os.path.isfile(abs_export_path)):
+        ensure_target_dir_exists(abs_export_path)
+
+        stores = Store.objects.filter(pootle_path__startswith=pootle_path).exclude(file='')
+        translation_project.get_archive(stores, abs_export_path)
+        cache.set(key, translation_project.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
+    return redirect('/export/' + export_path)
 
 def get_children(request, translation_project, directory, links_required=None):
     return [item_dict.make_directory_item(request, child_dir, links_required=links_required)
