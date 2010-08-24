@@ -24,6 +24,7 @@ import re
 import datetime
 
 from django.db import models, IntegrityError
+from django.core.cache import cache
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
@@ -718,6 +719,11 @@ class Store(models.Model, base.TranslationStore):
 
     def sync(self, update_structure=False, update_translation=False, conservative=True, create=False, profile=None):
         """sync file with translations from db"""
+        key = "%s:sync" % self.pootle_path
+        last_sync = cache.get(key)
+        if last_sync and last_sync == self.get_mtime():
+            return
+
         if not self.file:
             if create:
                 # file doesn't exist let's create it
@@ -766,6 +772,7 @@ class Store(models.Model, base.TranslationStore):
 
         self.update_store_header(profile=profile)
         self.file.savestore()
+        cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
 
     def get_file_class(self):
         try:
