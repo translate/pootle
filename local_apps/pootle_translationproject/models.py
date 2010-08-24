@@ -23,6 +23,8 @@ import cStringIO
 import gettext
 import zipfile
 import logging
+import tempfile
+import shutil
 
 from django.conf                   import settings
 from django.db                     import models, IntegrityError
@@ -410,31 +412,52 @@ class TranslationProject(models.Model):
 
     ##############################################################################################
 
-    def get_archive(self, stores):
+    def get_archive(self, stores, path=None):
         """returns an archive of the given filenames"""
         tempzipfile = None
         try:
             # using zip command line is fast
-            from tempfile import mkstemp
             # The temporary file below is opened and immediately closed for security reasons
-            fd, tempzipfile = mkstemp(prefix='pootle', suffix='.zip')
+            fd, tempzipfile = tempfile.mkstemp(prefix='pootle', suffix='.zip')
             os.close(fd)
-            os.system("cd %s ; zip -r - %s > %s" % (self.abs_real_path, " ".join(store.abs_real_path[len(self.abs_real_path)+1:] for store in stores), tempzipfile))
-            filedata = open(tempzipfile, "r").read()
-            if filedata:
-                return filedata
+            result = os.system("cd %s ; zip -r - %s > %s" % (self.abs_real_path, " ".join(store.abs_real_path[len(self.abs_real_path)+1:] for store in stores), tempzipfile))
+            if result == 0:
+                if path is not None:
+                    shutil.move(tempzipfile, path)
+                    return
+                else:
+                    filedata = open(tempzipfile, "r").read()
+                    if filedata:
+                        return filedata
         finally:
             if tempzipfile is not None and os.path.exists(tempzipfile):
                 os.remove(tempzipfile)
 
         # but if it doesn't work, we can do it from python
-        archivecontents = cStringIO.StringIO()
-        archive = zipfile.ZipFile(archivecontents, 'w', zipfile.ZIP_DEFLATED)
-        for store in stores:
-            archive.write(store.abs_real_path.encode('utf-8'), store.abs_real_path[len(self.abs_real_path)+1:].encode('utf-8'))
-        archive.close()
-        return archivecontents.getvalue()
+        archivecontents = None
+        try:
+            if path is not None:
+                fd, tempzipfile = tempfile.mkstemp(prefix='pootle', suffix='.zip')
+                os.close(fd)
+                archivecontents = open(tempzipfile, "wb")
+            else:
+                archivecontents = cStringIO.StringIO()
 
+            archive = zipfile.ZipFile(archivecontents, 'w', zipfile.ZIP_DEFLATED)
+            for store in stores:
+                archive.write(store.abs_real_path.encode('utf-8'), store.abs_real_path[len(self.abs_real_path)+1:].encode('utf-8'))
+            archive.close()
+            if path is not None:
+                shutil.move(tempzipfile, path)
+            else:
+                return archivecontents.getvalue()
+        finally:
+            if tempzipfile is not None and  os.path.exists(tempzipfile):
+                os.remove(tempzipfile)
+            try:
+                archivecontents.close()
+            except:
+                pass
 
     ##############################################################################################
 
