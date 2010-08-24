@@ -265,15 +265,28 @@ class Unit(models.Model, base.TranslationUnit):
 
     def sync(self, unit):
         """sync in file unit with translations from db"""
+        changed = False
         if unit.hasplural():
-            unit.target = self.target.strings
+            if unit.target.strings != self.target.strings:
+                unit.target = self.target.strings
+                changed = True
         else:
-            unit.target = self.target
-        unit.addnote(self.getnotes(origin="translator"),
-                     origin="translator", position="replace")
-        unit.markfuzzy(self.isfuzzy())
-        if self.isobsolete():
+            if unit.target != self.target:
+                unit.target = self.target
+                changed = True
+
+        if unit.getnotes(origin="translator") != self.getnotes(origin="translator"):
+            unit.addnote(self.getnotes(origin="translator"),
+                         origin="translator", position="replace")
+            changed = True
+
+        if unit.isfuzzy() != self.isfuzzy():
+            unit.markfuzzy(self.isfuzzy())
+            changed = True
+
+        if self.isobsolete() and not unit.isobsolete():
             unit.makeobsolete()
+            changed = True
 
         if hasattr(unit, 'addalttrans') and self.get_suggestions().count():
             alttranslist = [alttrans.target for alttrans in unit.getalttrans()]
@@ -282,6 +295,8 @@ class Unit(models.Model, base.TranslationUnit):
                     # don't add duplicate suggestion
                     continue
                 unit.addalttrans(suggestion.target, unicode(suggestion.user))
+                changed = True
+        return changed
 
     def update(self, unit):
         """update indb translation from file"""
@@ -743,6 +758,8 @@ class Store(models.Model, base.TranslationStore):
         old_ids = set(self.file.store.getids())
         new_ids = set(self.dbid_index.keys())
 
+        file_changed = False
+
         if update_structure:
             obsolete_units = (self.file.store.findid(uid) for uid in old_ids - new_ids)
             for unit in obsolete_units:
@@ -752,11 +769,13 @@ class Store(models.Model, base.TranslationStore):
                     unit.makeobsolete()
                     if not unit.isobsolete():
                         del unit
+                file_changed = True
 
             new_dbids = [self.dbid_index.get(uid) for uid in new_ids - old_ids]
             for unit in self.findid_bulk(new_dbids):
                 newunit = unit.convert(self.file.store.UnitClass)
                 self.file.store.addunit(newunit)
+                file_changed = True
 
         monolingual = is_monolingual(type(self.file.store))
 
@@ -768,10 +787,14 @@ class Store(models.Model, base.TranslationStore):
                     continue
                 match = self.file.store.findid(unit.getid())
                 if match is not None:
-                    unit.sync(match)
+                    changed = unit.sync(match)
+                    if changed:
+                        file_changed = True
 
-        self.update_store_header(profile=profile)
-        self.file.savestore()
+        if file_changed:
+            self.update_store_header(profile=profile)
+            self.file.savestore()
+
         cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
 
     def get_file_class(self):
