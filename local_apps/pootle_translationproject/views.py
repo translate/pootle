@@ -407,6 +407,10 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
                 # newfile, delay parsing
                 pass
     else:
+        newstore = factory.getobject(django_file, classes=factory_classes)
+        if not newstore.units:
+            return
+
         # If the extension of the uploaded file does not match the
         # extension of the current translation project, we create
         # an empty file (with the right extension)...
@@ -417,7 +421,6 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         # Then we open this newly created file and merge the
         # uploaded file into it.
         store = Store.objects.get(file=upload_path)
-        newstore = factory.getobject(django_file, classes=factory_classes)
         #FIXME: maybe there is a faster way to do this?
         store.mergefile(newstore, get_profile(request.user), allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
 
