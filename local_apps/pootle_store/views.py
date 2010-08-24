@@ -20,6 +20,8 @@
 
 import os
 import logging
+import tempfile
+import shutil
 
 from translate.storage.poxliff import PoXliffFile
 from translate.lang import data
@@ -66,7 +68,10 @@ def export_as_xliff(request, pootle_path):
         ensure_target_dir_exists(abs_export_path)
         outputstore = store.convert(PoXliffFile)
         outputstore.switchfile(store.name, createifmissing=True)
-        outputstore.savefile(abs_export_path)
+        fd, tempstore = tempfile.mkstemp(prefix=store.name, suffix='.xlf')
+        os.close(fd)
+        outputstore.savefile(tempstore)
+        shutil.move(tempstore, abs_export_path)
         cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
     return redirect('/export/' + export_path)
 
