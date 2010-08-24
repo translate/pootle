@@ -24,6 +24,7 @@ import logging
 from translate.storage.poxliff import PoXliffFile
 from translate.lang import data
 
+from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
@@ -32,7 +33,6 @@ from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
-from django.conf import settings
 from django.utils import simplejson
 from django.views.decorators.cache import never_cache
 
@@ -43,26 +43,32 @@ from pootle_profile.models import get_profile
 from pootle_translationproject.forms import SearchForm
 from pootle_statistics.models import Submission
 from pootle_app.models import Suggestion as SuggestionStat
+from pootle_app.project_tree import ensure_target_dir_exists
 
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import highlight_diffs
-from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
+from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 
 def export_as_xliff(request, pootle_path):
-    #FIXME: cache this
+    """export given file to xliff for offline translation"""
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
 
-    outputstore = store.convert(PoXliffFile)
-    outputstore.switchfile(store.name, createifmissing=True)
-    content_type = "application/x-xliff; charset=UTF-8"
-    response = HttpResponse(str(outputstore), content_type=content_type)
-    filename, ext = os.path.splitext(store.name)
-    filename += os.path.extsep + 'xlf'
-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
-    return response
+    path, ext = os.path.splitext(store.real_path)
+    export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + 'xlf')
+    abs_export_path = absolute_real_path(export_path)
+
+    key = "%s:export_as_xliff"
+    last_export = cache.get(key)
+    if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
+        ensure_target_dir_exists(abs_export_path)
+        outputstore = store.convert(PoXliffFile)
+        outputstore.switchfile(store.name, createifmissing=True)
+        outputstore.savefile(abs_export_path)
+        cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
+    return redirect('/export/' + export_path)
 
 def download(request, pootle_path):
     if pootle_path[0] != '/':
