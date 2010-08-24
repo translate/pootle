@@ -79,6 +79,9 @@ class UnitTests(PootleTestCase):
         pofile = factory.getobject(self.store.file.path)
         self.assertEqual(dbunit.isfuzzy(), pofile.units[dbunit.index].isfuzzy())
 
+        import time
+        time.sleep(1)
+
         dbunit = self._update_translation(0, {'fuzzy': False})
         storeunit = dbunit.getorig()
 
