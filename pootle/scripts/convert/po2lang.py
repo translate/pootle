@@ -41,7 +41,7 @@ def main(argv=None):
     from translate.misc import stdiotell
     import sys
     sys.stdout = stdiotell.StdIOWrapper(sys.stdout)
-    formats = {"po":("lang",convertlang)}
+    formats = {"po": ("lang", convertlang)}
     parser = convert.ConvertOptionParser(formats, usepots=True, description=__doc__)
     parser.run(argv)
 

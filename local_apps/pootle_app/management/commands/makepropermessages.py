@@ -36,7 +36,7 @@ def handle_extensions(extensions=('html',)):
     """
     ext_list = []
     for ext in extensions:
-        ext_list.extend(ext.replace(' ','').split(','))
+        ext_list.extend(ext.replace(' ', '').split(','))
     for i, ext in enumerate(ext_list):
         if not ext.startswith('.'):
             ext_list[i] = '.%s' % ext_list[i]

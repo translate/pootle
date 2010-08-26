@@ -222,7 +222,7 @@ msgstr "resto"
             }
 
         response = self.client.post("/ar/tutorial/", post_dict)
-        self.assertContains(response,' href="/ar/tutorial/test_new_xliff_upload.po')
+        self.assertContains(response, ' href="/ar/tutorial/test_new_xliff_upload.po')
 
         #FIXME: test conversion?
 

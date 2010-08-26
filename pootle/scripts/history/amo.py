@@ -49,7 +49,7 @@ def initialize(projectdir, languagecode):
     sourcefile   = os.path.join(projectroot, 'en_US', 'LC_MESSAGES', 'messages.po')
 
     # Build our combined file
-    monopo2po.convertpo(open(sourcefile,"r"), open(combinedfile,"w"), open(mainfile,"r"))
+    monopo2po.convertpo(open(sourcefile, "r"), open(combinedfile, "w"), open(mainfile, "r"))
 
     # build .po files from the .thtml files in /pages/
     _init_pages(projectroot, languagecode)
@@ -136,7 +136,7 @@ def precommit(committedfile, author, message):
 
         # Update messages.po
         logger.debug("Converting po %s to %s" % (combinedfile, mainfile))
-        po2monopo.convertpo(open(combinedfile,"r"), open(mainfile,"w"))
+        po2monopo.convertpo(open(combinedfile, "r"), open(mainfile, "w"))
 
         # We want to commit messages.po
         return [mainfile]
@@ -151,7 +151,7 @@ def postcommit(committedfile, success):
 
         # Recreate messages-combined.po
         logger.debug("Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile))
-        monopo2po.convertpo(open(sourcefile,"r"), open(combinedfile,"w"), open(mainfile,"r"))
+        monopo2po.convertpo(open(sourcefile, "r"), open(combinedfile, "w"), open(mainfile, "r"))
 
 def preupdate(updatedfile):
     if os.path.basename(updatedfile) == "messages-combined.po":
@@ -173,4 +173,4 @@ def postupdate(updatedfile):
 
     # Create the new messages-combined.po file
     logger.debug("Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile))
-    monopo2po.convertpo(open(sourcefile,"r"), open(combinedfile,"w"), open(mainfile,"r"))
+    monopo2po.convertpo(open(sourcefile, "r"), open(combinedfile, "w"), open(mainfile, "r"))

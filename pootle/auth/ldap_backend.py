@@ -70,7 +70,7 @@ class LdapBackend(object):
                 user.password = 'LDAP_%s' % (User.objects.make_random_password(32))
                 for i in settings.AUTH_LDAP_FIELDS:
                     if i != 'dn' and len(settings.AUTH_LDAP_FIELDS[i]) > 0:
-                        setattr(user,i,result[0][1][settings.AUTH_LDAP_FIELDS[i]][0])
+                        setattr(user, i, result[0][1][settings.AUTH_LDAP_FIELDS[i]][0])
                 user.save()
                 return user
 

@@ -115,7 +115,7 @@ AUTH_LDAP_FILTER = ''
 # This is a mapping of Pootle field names to LDAP fields.  The key is Pootle's name, the value should be your LDAP field name.  If you don't use the field
 # or don't want to automatically retrieve these fields from LDAP comment them out.  The only required field is 'dn'.
 AUTH_LDAP_FIELDS = {
-        'dn':'dn',
+        'dn': 'dn',
         #'first_name':'',
         #'last_name':'',
         #'email':''

@@ -92,7 +92,7 @@ def get_sugg_list(unit):
         sugg_list.append((sugg, title))
     if len(sugg_list) == 1:
         sugg = sugg_list[0][0]
-        sugg_list = [(sugg,_(u"Suggestion by %(user)s", {'user': sugg.user}))]
+        sugg_list = [(sugg, _(u"Suggestion by %(user)s", {'user': sugg.user}))]
     return sugg_list
 
 @register.filter('stat_summary')

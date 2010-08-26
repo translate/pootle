@@ -29,4 +29,4 @@ class SearchForm(forms.Form):
                                                        ('target', _('Target Text')),
                                                        ('notes', _('Comments')),
                                                        ('locations', _('Locations'))),
-                                              initial=['source','target'])
+                                              initial=['source', 'target'])

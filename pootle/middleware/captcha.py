@@ -57,7 +57,7 @@ class MathCaptchaForm(forms.Form):
     A_RE = re.compile("^(\d+)$")
 
     captcha_answer = forms.CharField(max_length=2, required=True,
-        widget=forms.TextInput(attrs={'size':'2'}), label='')
+        widget=forms.TextInput(attrs={'size': '2'}), label='')
     captcha_token = forms.CharField(max_length=200, required=True,
         widget=forms.HiddenInput())
 
@@ -91,8 +91,8 @@ class MathCaptchaForm(forms.Form):
 
     def _generate_captcha(self):
         """Generate question and return it along with correct answer."""
-        a, b = randint(1,9), randint(1,9)
-        return ("%s+%s" % (a,b), a+b)
+        a, b = randint(1, 9), randint(1, 9)
+        return ("%s+%s" % (a, b), a+b)
 
     def _make_token(self, q, a, expires):
         data = base64.urlsafe_b64encode(\
@@ -116,7 +116,7 @@ class MathCaptchaForm(forms.Form):
         form of question is vary from request to request."""
         digits = self._plain_question.split('+')
         return "+".join(['<span class="captcha-random-%s">%s</span>' %\
-                         (randint(1,9), d) for d in digits])
+                         (randint(1, 9), d) for d in digits])
 
     def clean_captcha_token(self):
         t = self._parse_token(self.cleaned_data['captcha_token'])

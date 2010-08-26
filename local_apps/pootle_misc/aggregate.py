@@ -43,7 +43,7 @@ try:
         return dict((item[column], item['count']) for item in result)
 
     def group_by_sort(queryset, column, fields):
-        return queryset.annotate(count=Count(column)).order_by('-count').values('count',*fields)
+        return queryset.annotate(count=Count(column)).order_by('-count').values('count', *fields)
 
 except ImportError:
     from pootle_misc.util import dictsum

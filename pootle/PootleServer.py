@@ -68,7 +68,7 @@ def checkversions():
     """Checks that version dependencies are met."""
     # Old versions of the toolkit might not have .build or .sver, so we try to
     # be careful here so that our check doesn't cause an exception.
-    if not hasattr(toolkitversion, 'build') or toolkitversion.ver < (1,5,0):
+    if not hasattr(toolkitversion, 'build') or toolkitversion.ver < (1, 5, 0):
         raise RuntimeError('requires Translate Toolkit version >= 1.5.0.  Current installed version is: %s'
                             % getattr(toolkitversion, "sver", toolkitversion.ver))
 

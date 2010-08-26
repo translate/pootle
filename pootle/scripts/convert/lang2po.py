@@ -47,7 +47,7 @@ def main(argv=None):
     from translate.misc import stdiotell
     import sys
     sys.stdout = stdiotell.StdIOWrapper(sys.stdout)
-    formats = {"lang":("po",convertlang), "*":("po",convertlang)}
+    formats = {"lang": ("po", convertlang), "*": ("po", convertlang)}
     parser = convert.ConvertOptionParser(formats, usepots=True, description=__doc__)
     parser.add_option("", "--encoding", dest="encoding", default='utf-8', type="string",
     help="The encoding of the input file (default: UTF-8)")

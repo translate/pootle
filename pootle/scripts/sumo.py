@@ -21,7 +21,7 @@ def initialize(projectdir, languagecode):
     projectroot = os.path.join(settings.PODIRECTORY, os.path.split(projectdir)[0])
 
     # Temporary code.  Language codes come from pootle with underscores right now; they need to be dashes.
-    languagecode = languagecode.replace("_","-")
+    languagecode = languagecode.replace("_", "-")
 
     # Find the files we're working with
     tikifile = os.path.join(projectroot, languagecode, 'language.php')
@@ -29,7 +29,7 @@ def initialize(projectdir, languagecode):
 
     # Build our combined file
     print "Initializing %s to %s" % (tikifile, pofile)
-    tiki2po.converttiki(open(tikifile,"r"), open(pofile,"w"))
+    tiki2po.converttiki(open(tikifile, "r"), open(pofile, "w"))
 
 def precommit(committedfile, author, message):
     if os.path.basename(committedfile) == "language.po":
@@ -39,7 +39,7 @@ def precommit(committedfile, author, message):
 
         # Update tikifile with new strings
         print "Converting po to tiki: %s to %s" % (committedfile, tikifile)
-        po2tiki.convertpo(open(committedfile,"r"), open(tikifile,"w"))
+        po2tiki.convertpo(open(committedfile, "r"), open(tikifile, "w"))
 
         # We want to commit messages.php
         return [tikifile]
@@ -53,7 +53,7 @@ def postcommit(committedfile, success):
 
         # Recreate .po with any new strings in tikifile
         print "Converting tiki to po:  %s to %s" % (tikifile, committedfile)
-        tiki2po.converttiki(open(tikifile,"r"), open(committedfile,"w"))
+        tiki2po.converttiki(open(tikifile, "r"), open(committedfile, "w"))
 
 def preupdate(updatedfile):
     if os.path.basename(updatedfile) == "language.po":
@@ -72,4 +72,4 @@ def postupdate(updatedfile):
 
     # Recreate .po with any new strings in tikifile
     print "Converting tiki to po:  %s to %s" % (pofile, updatedfile)
-    tiki2po.converttiki(open(updatedfile,"r"), open(pofile,"w"))
+    tiki2po.converttiki(open(updatedfile, "r"), open(pofile, "w"))

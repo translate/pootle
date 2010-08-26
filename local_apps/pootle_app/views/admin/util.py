@@ -171,7 +171,7 @@ def process_modelformset(request, model_class, queryset, **kwargs):
 
 
 def edit(request, template, model_class,
-         model_args={'title':'','formid':'','submitname':''},
+         model_args={'title': '', 'formid': '', 'submitname': ''},
          link=None, linkfield='code', queryset=None, **kwargs):
 
     formset, msg, objects = process_modelformset(request, model_class, queryset=queryset, **kwargs)
