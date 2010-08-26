@@ -137,7 +137,7 @@ def import_languages(parsed_data):
                                     unicode_me=False, default=1))
 
         # pluralequation
-        db_lang.pluralequation = _get_attribute(data, 
+        db_lang.pluralequation = _get_attribute(data,
                                  lang, 'pluralequation', unicode_me=False)
 
         # specialchars
@@ -148,7 +148,7 @@ def import_languages(parsed_data):
 @commit_on_success
 def import_projects(parsed_data):
     # This could prompt the user, asking:
-    # "Want us to import projects? Say no if you have already 
+    # "Want us to import projects? Say no if you have already
     # added the projects to the new Pootle DB in the web UI."
 
     data = parsed_data.__root__._assignments # Is this really the right way?
@@ -158,7 +158,7 @@ def import_projects(parsed_data):
     keys = [key for key in data if key.startswith(prefix)]
 
     # Clean up 'pootle.fullname' into 'pootle'
-    projs = set([key[len(prefix):].split('.')[0] for key in keys]) 
+    projs = set([key[len(prefix):].split('.')[0] for key in keys])
 
     en = require_english()
     for proj in map(lambda s: unicode(s, 'utf-8'), projs):
@@ -268,7 +268,7 @@ def create_database_user(data, user_name):
         except Language.DoesNotExist:
             logging.log(logging.ERROR, "The user %(username)s has %(lang_code)s as his/her "\
                             "alternative source language, but %(lang_code)s is not "\
-                            "available in Pootle's language database", 
+                            "available in Pootle's language database",
                         dict(username=user.username, lang_code=raw_uilanguage))
     else:
         pass # leave it NULL
@@ -309,7 +309,7 @@ def augment_list(profile, data, model, user_property, property_name):
             # Oops. No Django object in 'model' has the code
             # 'code'. Tell the user that the necessary object should
             # be created.
-            logging.log(logging.ERROR, 
+            logging.log(logging.ERROR,
                         "Failed to add %(username)s to %(property_name)s ID "\
                             "%(code)s; you probably need to create it", log_args)
 

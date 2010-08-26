@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2006 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
@@ -44,7 +44,7 @@ def buildmatches(inputfile, outputfile, matcher):
     #Can't use the same name: it might open the existing file!
     outputfile = factory.getobject(outputfile, ignore=".tm")
     #TODO: Do something useful with current content if file exists
-    
+
     #inputfile.units.sort(match.sourcelen)
     try:
         for unit in inputfile.units:
@@ -64,7 +64,7 @@ def buildmatches(inputfile, outputfile, matcher):
         # Let's write what we have so far
         return outputfile
     return outputfile
-        
+
 def writematches(inputfile, outputfile, templatefile, tm=None, max_candidates=4, min_similarity=75, max_length=1000):
     if templatefile:
         raise Warning("Template ignored")

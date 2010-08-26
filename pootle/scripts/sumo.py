@@ -36,7 +36,7 @@ def precommit(committedfile, author, message):
 
     # Get the files we'll be using
     tikifile = os.path.join(os.path.dirname(committedfile), 'language.php')
-    
+
     # Update tikifile with new strings
     print "Converting po to tiki: %s to %s" % (committedfile, tikifile)
     po2tiki.convertpo(open(committedfile,"r"), open(tikifile,"w"))
@@ -47,7 +47,7 @@ def precommit(committedfile, author, message):
 
 def postcommit(committedfile, success):
   if os.path.basename(committedfile) == "language.po":
-    
+
     # Get the files we'll be using
     tikifile = os.path.join(os.path.dirname(committedfile), 'language.php')
 
@@ -60,7 +60,7 @@ def preupdate(updatedfile):
 
     # Get the files we'll be using
     tikifile = os.path.join(os.path.dirname(updatedfile), 'language.php')
-    
+
     # We want to update messages.po
     print "Updating %s" % tikifile
     return tikifile

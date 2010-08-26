@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-# This code is based on a Django snippet by the user sgb at 
+# This code is based on a Django snippet by the user sgb at
 # http://www.djangosnippets.org/snippets/727/
 
 import sys

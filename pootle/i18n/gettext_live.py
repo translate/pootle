@@ -52,7 +52,7 @@ def _translate_message(singular, plural, n):
     if live_translation is None:
         from django.conf import settings
         default_locale = translation.to_locale(settings.LANGUAGE_CODE)
-            
+
         if default_locale in ('en', 'en_US'):
             return _dummy_translate(singular, plural, n)
 

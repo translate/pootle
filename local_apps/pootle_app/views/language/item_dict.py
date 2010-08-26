@@ -95,7 +95,7 @@ def review_link(request, path_obj):
                 text = _('Review Suggestions')
             else:
                 text = _('View Suggestions')
-            return { 
+            return {
                     'href': dispatch.translate(request, path_obj.pootle_path, matchnames=['hassuggestion']),
                     'text': text }
     except IOError:

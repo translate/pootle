@@ -28,7 +28,7 @@ class BaseUrlMiddleware(object):
         if 'HTTP_HOST' in request.META:
             domain = request.META['HTTP_HOST']
 
-        if 'SCRIPT_NAME' in request.META: 
+        if 'SCRIPT_NAME' in request.META:
             settings.SCRIPT_NAME = request.META['SCRIPT_NAME']
             if domain is not None:
                 domain += request.META['SCRIPT_NAME']

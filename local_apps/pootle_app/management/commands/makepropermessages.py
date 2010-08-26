@@ -93,14 +93,14 @@ def make_messages(locale=None, domain='django', verbosity='1', all=False, extens
         xversion = (int(match.group('major')), int(match.group('minor')))
         if xversion < (0, 15):
             xgettext_reencodes_utf8 = True
- 
+
     languages = []
     if locale is not None:
         languages.append(locale)
     elif all:
-        locale_dirs = filter(os.path.isdir, glob.glob('%s/*' % localedir)) 
+        locale_dirs = filter(os.path.isdir, glob.glob('%s/*' % localedir))
         languages = [os.path.basename(l) for l in locale_dirs]
-    
+
     for locale in languages:
         if verbosity > 0:
             print "processing language", locale

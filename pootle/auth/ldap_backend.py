@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2009 Mozilla Corporation, Zuza Software Foundation
-# 
+#
 # This file is part of Pootle.
 #
 # Pootle is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # Pootle is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -29,7 +29,7 @@ from django.contrib.auth.models import User
 class LdapBackend(object):
     """
     This is a Django authentication module which implements LDAP
-    authentication. 
+    authentication.
 
     To use this module, simply add it to the tuple AUTHENTICATION_BACKENDS
     in settings.py.

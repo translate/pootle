@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2008 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -69,10 +69,10 @@ class BaseUserFormSet(BaseModelFormSet):
         if instance.is_staff != instance.is_superuser:
             instance.is_staff = instance.is_superuser
             changed = True
-            
+
         if commit and changed:
             instance.save()
-            
+
         return instance
 
     def save_existing(self, form, instance, commit=True):

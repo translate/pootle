@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2008 Zuza Software Foundation
-# 
+#
 # This file is part of Pootle.
 #
 # Pootle is free software; you can redistribute it and/or modify

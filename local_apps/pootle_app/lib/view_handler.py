@@ -63,7 +63,7 @@ class Handler(object):
     def __init__(self, request, data=None, files=None):
         self.form = self.Form(data=data, files=files)
 
-    def dispatch(self, action, request, *args, **kwargs): 
+    def dispatch(self, action, request, *args, **kwargs):
         handler = getattr(self, action)
         return handler(request, *args, **kwargs)
 

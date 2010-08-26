@@ -52,7 +52,7 @@ class NoticeFeed(Feed):
         self.directory = directory
         self.recusrive = request.GET.get('all', False)
         super(NoticeFeed, self).__init__(slug, request)
-        
+
     def get_object(self, bits):
         return self.directory
 

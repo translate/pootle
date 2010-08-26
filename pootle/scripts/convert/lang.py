@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
 # lang.py
-# Defines standard translation-toolkit structions for .lang files 
+# Defines standard translation-toolkit structions for .lang files
 
 # Author: Dan Schafer <dschafer@mozilla.com>
 # Date: 10 Jun 2008
 
 from translate.storage import base
-from translate.storage import txt 
+from translate.storage import txt
 
 class LangUnit(base.TranslationUnit):
   """This is just a normal unit with a weird string output"""

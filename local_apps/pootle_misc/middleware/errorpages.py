@@ -42,7 +42,7 @@ class ErrorPagesMiddleware(object):
         elif isinstance(exception, PermissionDenied):
             templatevars = {}
             if len(exception.args) > 0:
-                templatevars['permission_error'] = unicode(exception.args[0]) 
+                templatevars['permission_error'] = unicode(exception.args[0])
             if not request.user.is_authenticated():
                 login_msg = _('You need to <a href="%(login_link)s">login</a> to access this page.' % {
                     'login_link': l("/accounts/login/") })
@@ -58,7 +58,7 @@ class ErrorPagesMiddleware(object):
                     templatevars = {}
                     if len(exception.args) > 0:
                         templatevars['exception'] = unicode(exception.args[0])
-                    
+
                     if hasattr(exception, 'filename'):
                         templatevars['fserror'] = _('Error accessing %(filename)s, Filesystem sent error: %(errormsg)s',
                                                     {'filename': exception.filename, 'errormsg': exception.strerror})
@@ -75,4 +75,4 @@ class ErrorPagesMiddleware(object):
                                                                     RequestContext(request)))
                 except:
                     # let's not confuse things by throwing an exception here
-                    pass 
+                    pass
