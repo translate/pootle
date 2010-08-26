@@ -262,7 +262,7 @@ class TranslationProject(models.Model):
                 add_files(self, ignored_files, ext, self.abs_real_path, self.directory,
                           lambda filename: direct_language_match_filename(self.language.code, filename))
         else:
-                add_files(self, ignored_files, ext, self.abs_real_path, self.directory)
+            add_files(self, ignored_files, ext, self.abs_real_path, self.directory)
 
     def _get_indexer(self):
         if self.non_db_state.indexer is None and self.non_db_state._indexing_enabled:
