@@ -31,7 +31,7 @@ def stringeval(input):
   stringchar = input[0]
   if input[-1] != stringchar or stringchar not in ("'",'"'):
     # scratch your head
-    raise ValueError, "error parsing escaped string: %r" % input
+    raise ValueError("error parsing escaped string: %r" % input)
   return input[1:-1].replace(stringchar+stringchar,stringchar)
 
 def stringquote(input):
