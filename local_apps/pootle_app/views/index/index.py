@@ -110,8 +110,8 @@ def view(request):
         'topstats': topstats,
         'instancetitle': pagelayout.get_title(),
         'translationlegend': {'translated': _('Translations are complete'),
-                    'fuzzy': _('Translations need to be checked (they are marked fuzzy)'
-                    ), 'untranslated': _('Untranslated')},
+                              'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
+                              'untranslated': _('Untranslated')},
         }
     templatevars['moreprojects'] = len(templatevars['projects']) >\
                                    len(templatevars['languages'])

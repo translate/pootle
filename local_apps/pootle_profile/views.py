@@ -95,7 +95,7 @@ def login(request):
             form = LangAuthenticationForm(request)
         request.session.set_test_cookie()
         context = {
-            'form': form
+            'form': form,
             }
         return render_to_response("index/login.html", context, context_instance=RequestContext(request))
 

@@ -47,10 +47,10 @@ class LanguageAdmin(admin.ModelAdmin):
     list_display_links = ('code', 'fullname')
     fieldsets = (
         (None, {
-            'fields': ('code', 'fullname', 'specialchars')
+            'fields': ('code', 'fullname', 'specialchars'),
         }),
         ('Plural information', {
-            'fields': ('nplurals', 'pluralequation')
+            'fields': ('nplurals', 'pluralequation'),
         }),
     )
     form = MyLanguageAdminForm
@@ -74,11 +74,11 @@ class ProjectAdmin(admin.ModelAdmin):
     radio_fields = {"treestyle": admin.VERTICAL}
     fieldsets = (
         (None, {
-            'fields': ('code', 'fullname', 'description', 'localfiletype')
+            'fields': ('code', 'fullname', 'description', 'localfiletype'),
         }),
         (_('Advanced Options'), {
             'classes': ('collapse',),
-            'fields': ('treestyle', 'ignoredfiles')
+            'fields': ('treestyle', 'ignoredfiles'),
         }),
     )
     form = MyProjectAdminForm

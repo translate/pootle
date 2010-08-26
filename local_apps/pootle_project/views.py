@@ -67,7 +67,7 @@ def make_language_item(request, translation_project):
         'data': projectstats,
         'lastactivity': get_last_action(translation_project),
         'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': projectstats['translatedpercentage']})
+                     {'percentage': projectstats['translatedpercentage']}),
     }
     errors = projectstats.get('errors', 0)
     if errors:
@@ -98,7 +98,7 @@ def project_language_index(request, project_code):
           'name': project.fullname,
           'stats': ungettext('%(languages)d language, %(average)d%% translated',
                              '%(languages)d languages, %(average)d%% translated',
-                             languagecount, {"languages": languagecount, "average": average})
+                             languagecount, {"languages": languagecount, "average": average}),
         },
         'description': project.description,
         'adminlink': _('Admin'),
@@ -107,8 +107,8 @@ def project_language_index(request, project_code):
         'topstats': topstats,
         'statsheadings': get_stats_headings(),
         'translationlegend': {'translated': _('Translations are complete'),
-                    'fuzzy': _('Translations need to be checked (they are marked fuzzy)'
-                    ), 'untranslated': _('Untranslated')},
+                              'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
+                              'untranslated': _('Untranslated')},
     }
     return render_to_response('project/project.html', templatevars, context_instance=RequestContext(request))
 
@@ -194,7 +194,7 @@ def projects_index(request):
         'topstats': topstats,
         'instancetitle': pagelayout.get_title(),
         'translationlegend': {'translated': _('Translations are complete'),
-                    'fuzzy': _('Translations need to be checked (they are marked fuzzy)'
-                    ), 'untranslated': _('Untranslated')},
+                              'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
+                              'untranslated': _('Untranslated')},
         }
     return render_to_response('project/projects.html', templatevars, RequestContext(request))

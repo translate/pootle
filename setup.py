@@ -46,7 +46,7 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic"
     "Operating System :: OS Independent",
     "Operating System :: Microsoft :: Windows",
-    "Operating System :: Unix"
+    "Operating System :: Unix",
 ]
 pootle_description = "An online collaborative localization tool."
 pootle_description_long = """Pootle is used to create program translations.
@@ -67,7 +67,7 @@ def collect_options():
     data_files = [
         (INSTALL_CONFIG_DIR, ['localsettings.py']),
         (INSTALL_DOC_DIR, ['wsgi.py', 'ChangeLog', 'COPYING', 'README', 'INSTALL']),
-        (INSTALL_WORKING_DIR + '/dbs', []) # Create the empty "dbs" dir
+        (INSTALL_WORKING_DIR + '/dbs', []), # Create the empty "dbs" dir
     ] + list_tree(INSTALL_DATA_DIR, 'templates') + list_tree(INSTALL_DATA_DIR, 'html') + \
         list_tree(INSTALL_WORKING_DIR, 'po') + list_tree(INSTALL_DATA_DIR, 'mo')
 
@@ -162,10 +162,8 @@ def list_tree(target_base, root):
         if headlen < 0:
             headlen = len(dirpath) - len(root)
         dirpath = dirpath[headlen:]
-        tree.append((
-            path.join(target_base, dirpath),
-            [path.join(dirpath, f) for f in files]
-        ))
+        tree.append((path.join(target_base, dirpath),
+                     [path.join(dirpath, f) for f in files]))
 
     return tree
 
@@ -266,5 +264,5 @@ if __name__ == '__main__':
         platforms=["any"],
         classifiers=classifiers,
         cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo},
-        **collect_options()
+        **collect_options(),
     )

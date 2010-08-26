@@ -62,7 +62,7 @@ def make_navbar_path_dict(request, path_links=None):
                       'text': tr_lang(language.fullname)},
         'project':   {'href': dispatch.open_translation_project(request, language.code, project.code),
                       'text': project.fullname},
-        'pathlinks': path_links }
+        'pathlinks': path_links}
 
 def make_directory_navbar_dict(request, directory, links_required=None):
     result = item_dict.make_directory_item(request, directory, links_required)
@@ -74,6 +74,6 @@ def make_directory_navbar_dict(request, directory, links_required=None):
         actions = []
     result.update({
             'path': make_navbar_path_dict(request, path_links),
-            'actions': actions })
+            'actions': actions})
     del result['title']
     return result

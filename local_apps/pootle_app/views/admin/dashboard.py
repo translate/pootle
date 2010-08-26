@@ -46,7 +46,7 @@ def required_depcheck():
     else:
         text = _('Translate Toolkit version %(installed)s installed. Pootle requires version %(required)s.', {'installed': version, 'required': "1.7.0"})
         state = 'error'
-    required.append({'dependency': 'translate', 'state': state, 'text': text })
+    required.append({'dependency': 'translate', 'state': state, 'text': text})
 
     status, version = depcheck.test_django()
     if status:

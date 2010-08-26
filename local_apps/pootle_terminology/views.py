@@ -115,7 +115,7 @@ def manage(request, translation_project):
         "source_language": translation_project.project.source_language,
         "directory": translation_project.directory,
         'formid': 'terminology-manage',
-        'submitname': 'changeterminology'
+        'submitname': 'changeterminology',
         }
     try:
         term_store = Store.objects.get(pootle_path=translation_project.pootle_path + 'pootle-terminology.po')

@@ -44,8 +44,8 @@ class ErrorPagesMiddleware(object):
             if len(exception.args) > 0:
                 templatevars['permission_error'] = unicode(exception.args[0])
             if not request.user.is_authenticated():
-                login_msg = _('You need to <a href="%(login_link)s">login</a> to access this page.' % {
-                    'login_link': l("/accounts/login/") })
+                login_msg = _('You need to <a href="%(login_link)s">login</a> to access this page.' %
+                              {'login_link': l("/accounts/login/")})
                 templatevars["login_message"] = login_msg
             return HttpResponseForbidden(render_to_string('403.html', templatevars,
                                       RequestContext(request)))

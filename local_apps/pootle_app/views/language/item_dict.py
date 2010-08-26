@@ -41,13 +41,11 @@ def get_item_summary(request, quick_stats, path_obj):
     word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
                    {"translated": translated_words,
                     "total": total_words,
-                    "translatedpercent": quick_stats['translatedpercentage']}
-                   )
+                    "translatedpercent": quick_stats['translatedpercentage']})
     # The translated unit counts
     string_stats_text = _("%(translated)d/%(total)d strings",
                           {"translated": quick_stats['translated'],
-                           "total": quick_stats['total']}
-                          )
+                           "total": quick_stats['total']})
     string_stats = '<span class="string-statistics">[%s]</span>' % string_stats_text
     # The whole string of stats
     return '%s %s %s' % (file_stats, word_stats, string_stats)
@@ -76,8 +74,7 @@ def getcheckdetails(request, path_obj):
             if total and checkcount:
                 stats = ungettext('%(checks)d string (%(checkspercent)d%%) failed',
                                   '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
-                                  {"checks": checkcount, "checkspercent": (checkcount * 100) / total}
-                                  )
+                                  {"checks": checkcount, "checkspercent": (checkcount * 100) / total})
                 checklink = {'href': dispatch.translate(request, path_obj.pootle_path, matchnames=[checkname]),
                              'text': checkname,
                              'stats': stats}
@@ -97,7 +94,7 @@ def review_link(request, path_obj):
                 text = _('View Suggestions')
             return {
                     'href': dispatch.translate(request, path_obj.pootle_path, matchnames=['hassuggestion']),
-                    'text': text }
+                    'text': text}
     except IOError:
         pass
 
@@ -110,7 +107,7 @@ def quick_link(request, path_obj):
                 text = _('View Untranslated')
             return {
                     'href': dispatch.translate(request, path_obj.pootle_path, unitstates=['fuzzy', 'untranslated']),
-                    'text': text }
+                    'text': text}
     except IOError:
         pass
 
@@ -118,7 +115,7 @@ def translate_all_link(request, path_obj):
     #FIXME: what permissions to check for here?
     return {
         'href': dispatch.translate(request, path_obj.pootle_path, matchnames=[]),
-        'text': _('Translate All') }
+        'text': _('Translate All')}
 
 def terminology_link(request, path_obj):
     if check_permission('administrate', request):
@@ -281,7 +278,7 @@ def make_directory_item(request, directory, links_required=None):
         item['actions'] = []
     item.update({
             'icon': 'folder',
-            'isdir': True })
+            'isdir': True})
     return item
 
 def make_store_item(request, store, links_required=None):
@@ -298,5 +295,5 @@ def make_store_item(request, store, links_required=None):
                                         unitstates=['fuzzy,untranslated'])
     item.update({
             'icon': 'page',
-            'isfile': True })
+            'isfile': True})
     return item

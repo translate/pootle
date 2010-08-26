@@ -49,7 +49,7 @@ def get_stats_headings():
         "totalwords":             _("Total Words"),
         # l10n: noun. The graphical representation of translation status
         "progress":               _("Progress"),
-        "summary":                _("Summary")
+        "summary":                _("Summary"),
         }
 
 def get_translation_project(f):
