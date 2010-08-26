@@ -51,7 +51,7 @@ def view(request):
             "Django %s" % django.get_version(),
             "Python %s" % sys.version,
             "Running on %s" % sys.platform,
-        ])
+        ]),
     }
 
     return render_to_response('index/about.html', data, context_instance=RequestContext(request))
