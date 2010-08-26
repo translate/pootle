@@ -46,7 +46,8 @@ def view(request):
                       'traduire',
                       ],
         'pootle_version': _("Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s",
-            {'pootle_ver': pootleversion.sver, 'toolkit_ver': toolkitversion.sver}),
+                            {'pootle_ver': pootleversion.sver,
+                             'toolkit_ver': toolkitversion.sver}),
         'version_details': "\n".join([
             "Django %s" % django.get_version(),
             "Python %s" % sys.version,
