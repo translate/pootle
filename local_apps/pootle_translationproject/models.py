@@ -375,9 +375,9 @@ class TranslationProject(models.Model):
         stats = store.getquickstats()
         author = request.user.username
         message = stats_message("Commit from %s by user %s." % (settings.TITLE, author), stats)
-	# Try to append email as well, since some VCS does not allow omitting it (ie. Git).
-	if request.user.is_authenticated() and len(request.user.email):
-		author += " <%s>" % request.user.email
+        # Try to append email as well, since some VCS does not allow omitting it (ie. Git).
+        if request.user.is_authenticated() and len(request.user.email):
+            author += " <%s>" % request.user.email
 
         try:
             filestocommit = hooks.hook(self.project.code, "precommit", store.file.path, author=author, message=message)
