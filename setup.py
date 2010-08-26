@@ -48,8 +48,8 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Unix"
 ]
-pootle_description="An online collaborative localization tool."
-pootle_description_long="""Pootle is used to create program translations.
+pootle_description = "An online collaborative localization tool."
+pootle_description_long = """Pootle is used to create program translations.
 
 It uses the Translate Toolkit to get access to translation files and therefore
 can edit a variety of files (including PO and XLIFF files)."""
@@ -141,7 +141,7 @@ def find_packages(where='.', exclude=()):
     """
     from distutils.util import convert_path
     out = []
-    stack=[(convert_path(where), '')]
+    stack = [(convert_path(where), '')]
     while stack:
         where, prefix = stack.pop(0)
         for name in os.listdir(where):

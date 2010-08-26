@@ -44,7 +44,7 @@ def deletefromcache(sender, functions, **kwargs):
     if len(path_parts):
         key = "/projects/%s/" % path_parts[2]
         for func in functions:
-            cache.delete(key + ":"+func)
+            cache.delete(key + ":" + func)
 
     # clean store and directory cache
     while path_parts:

@@ -521,7 +521,7 @@ class TranslationProject(models.Model):
         if indexer == None:
             return False
         # check if the pomtime in the index == the latest pomtime
-        pomtime = str(hash(store.get_mtime())**2)
+        pomtime = str(hash(store.get_mtime()) ** 2)
         pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)], True)
         pomtimequery = indexer.make_query([("pomtime", pomtime)], True)
         gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)

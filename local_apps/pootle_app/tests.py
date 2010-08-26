@@ -280,7 +280,7 @@ msgstr "resto"
 
     def test_submit_translation(self):
         """Tests that we can translate units."""
-        pootle_path="/af/tutorial/pootle.po"
+        pootle_path = "/af/tutorial/pootle.po"
         submit_dict = {
             'target_f_0': 'submitted translation',
             'submit': 'Submit',

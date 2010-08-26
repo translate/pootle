@@ -837,7 +837,7 @@ class Store(models.Model, base.TranslationStore):
 
         self.require_units()
         return self.unit_set.filter(state__gt=OBSOLETE).order_by('index').select_related('store__translation_project')
-    units=property(_get_units)
+    units = property(_get_units)
 
     def max_index(self):
         """Largest unit index"""

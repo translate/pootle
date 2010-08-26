@@ -79,7 +79,7 @@ def _init_pages(projectroot, languagecode):
 
         converter = html2po.html2po()
         output = open(os.path.join(this_dir, page[:-6])+'.po', 'w')
-        print >>output, converter.convertfile(template, page, False)
+        print >> output, converter.convertfile(template, page, False)
 
         template.close()
         output.close()
