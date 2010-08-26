@@ -81,4 +81,3 @@ class Handler(object):
             'inner_form': self.form.as_p(),
             'submits':    self.render_submits(),
             })
-

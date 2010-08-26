@@ -67,4 +67,3 @@ class NoticeFeed(Feed):
 
     def item_pubdate(self, item):
         return item.added
-    

@@ -57,4 +57,3 @@ def completetemplatevars(templatevars, request):
     if 'search' not in templatevars:
         templatevars['search'] = None
     templatevars['message'] = escape(request.GET.get('message', ''))
-

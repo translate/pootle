@@ -42,6 +42,3 @@ class Suggestion(models.Model):
     review_time         = models.DateTimeField(null=True, db_index=True)
     unit                = models.IntegerField(null=False, db_index=True)
     state               = models.CharField(max_length=16, default='pending', null=False, choices=state_choices, db_index=True)
-
-
-

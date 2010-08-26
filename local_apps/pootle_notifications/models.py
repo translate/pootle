@@ -42,4 +42,3 @@ class Notice(models.Model):
 
     class Meta:
         ordering = ["-added"]
-

@@ -421,4 +421,3 @@ class NonprivTests(PootleTestCase):
         self.assertFalse('msgstr "samaka"' in store.file.read())
         suggestions = [str(sug) for sug in store.findunit('test').get_suggestions()]
         self.assertTrue('samaka' in suggestions)
-

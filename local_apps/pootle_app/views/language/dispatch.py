@@ -105,4 +105,3 @@ def update(request, path_obj):
 def terminology(request, path_obj):
     translation_project = path_obj.get_translationproject()
     return translation_project.pootle_path + 'terminology_manage.html'
-

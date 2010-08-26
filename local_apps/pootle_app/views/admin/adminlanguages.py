@@ -33,5 +33,3 @@ def view(request):
     link = '/%s/admin.html'
     return util.edit(request, 'admin/admin_general_languages.html', Language, model_args, link,
                      form=MyLanguageAdminForm, can_delete=True)
-    
-              

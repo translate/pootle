@@ -109,4 +109,3 @@ class SiteConfigMiddleware(object):
             return HttpResponse(dbupdate.staggered_update(response.db_buildversion))
         else:
             return response
-

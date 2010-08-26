@@ -233,4 +233,3 @@ class Command(BaseCommand):
             raise CommandError("JavaScript files should be examined by using the special 'djangojs' domain only.")
 
         make_messages(locale, domain, verbosity, process_all, extensions)
-

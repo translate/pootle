@@ -13,4 +13,3 @@ def source_path(filename):
     return os.path.join(SOURCE_DIR, filename)
 def working_path(filename):
     return os.path.join(WORKING_DIR, filename)
-

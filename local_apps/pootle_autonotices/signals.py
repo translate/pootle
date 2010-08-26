@@ -165,4 +165,3 @@ def user_joined_language(sender, instance, action, reverse, model, pk_set, **kwa
                 instance.get_absolute_url(), instance.user.username,
                 project.get_absolute_url(), project.fullname)
             new_object(True, message, project.directory)
-

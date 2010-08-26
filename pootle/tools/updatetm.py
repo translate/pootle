@@ -94,5 +94,3 @@ def main(argv=None):
         help="The maximum string length to consider")
     parser.passthrough.append("min_similarity")
     parser.run(argv)
-
-

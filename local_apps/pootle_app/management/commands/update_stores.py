@@ -62,4 +62,3 @@ class Command(NoArgsCommand):
             # update new translations
             for store in translation_project.stores.exclude(file='').iterator():
                 store.update(update_translation=not keep, conservative=keep, update_structure=True)
-

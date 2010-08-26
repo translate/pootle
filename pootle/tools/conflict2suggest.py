@@ -86,4 +86,3 @@ if __name__ == '__main__':
             processfile(filename)
         else:
             print >> sys.stderr, 'cannot process', filename
-

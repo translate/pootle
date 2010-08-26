@@ -72,4 +72,3 @@ def fancy_highlight(text):
 register = template.Library()
 register.filter('clean', stringfilter(clean_wrapper))
 register.filter('fancy_highlight', stringfilter(fancy_highlight))
-
