@@ -8,8 +8,6 @@
 # Author: Dan Schafer <dschafer@mozilla.com>
 # Date: 11 Jun 2008
 
-import sys
-
 from translate.storage import po
 
 
