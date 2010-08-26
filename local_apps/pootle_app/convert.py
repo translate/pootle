@@ -22,8 +22,8 @@
 from translate.convert import xliff2po, po2xliff, po2ts, xliff2oo, po2oo
 
 convert_table = {
-    ('po', 'oo'):  po2oo.convertoo,
-    ('po', 'ts'):  po2ts.convertpo,
+    ('po', 'oo'): po2oo.convertoo,
+    ('po', 'ts'): po2ts.convertpo,
     ('po', 'xlf'): po2xliff.convertpo,
     ('xlf', 'oo'): xliff2oo.convertoo,
     ('xlf', 'po'): xliff2po.convertxliff,

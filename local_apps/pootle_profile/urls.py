@@ -41,5 +41,5 @@ if settings.CAN_REGISTER:
     urlpatterns += patterns('', (r'', include('registration.urls')))
 
 urlpatterns += patterns('',
-    (r'',           include('profiles.urls')),
+    (r'', include('profiles.urls')),
 )

@@ -71,7 +71,7 @@ class Handler(object):
         output = u""
         for action in self.actions:
             output += u'<input type="submit" name="%(action_name)s" value="%(action_value)s" />' % {
-                'action_name':  action[0], 'action_value': unicode(action[1]) }
+                'action_name': action[0], 'action_value': unicode(action[1]) }
         return mark_safe(output)
 
     def as_p(self):
@@ -79,5 +79,5 @@ class Handler(object):
         %(inner_form)s
         <p class="common-buttons-block">%(submits)s</p>""" % {
             'inner_form': self.form.as_p(),
-            'submits':    self.render_submits(),
+            'submits': self.render_submits(),
             })

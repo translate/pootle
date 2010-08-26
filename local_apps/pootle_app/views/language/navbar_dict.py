@@ -73,7 +73,7 @@ def make_directory_navbar_dict(request, directory, links_required=None):
     else:
         actions = []
     result.update({
-            'path':    make_navbar_path_dict(request, path_links),
+            'path': make_navbar_path_dict(request, path_links),
             'actions': actions })
     del result['title']
     return result

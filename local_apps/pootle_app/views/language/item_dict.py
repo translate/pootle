@@ -55,7 +55,7 @@ def get_item_summary(request, quick_stats, path_obj):
 def get_item_stats(request, quick_stats, path_obj, show_checks=False):
     result = {
         'summary': get_item_summary(request, quick_stats, path_obj),
-        'checks':  [],
+        'checks': [],
         }
     if show_checks:
         result['checks'] = getcheckdetails(request, path_obj)
@@ -134,8 +134,8 @@ def zip_link(request, path_obj):
         text = _('ZIP of directory')
         link = dispatch.download_zip(request, path_obj)
         return {
-            'href':  link,
-            'text':  text,
+            'href': link,
+            'text': text,
             }
 
 def xliff_link(request, path_obj):
@@ -150,8 +150,8 @@ def xliff_link(request, path_obj):
         tooltip = _('Download XLIFF file for offline translation')
     href = dispatch.export(request, path_obj.pootle_path, 'xlf')
     return {
-        'href':  href,
-        'text':  text,
+        'href': href,
+        'text': text,
         'title': tooltip,
         }
 
@@ -280,8 +280,8 @@ def make_directory_item(request, directory, links_required=None):
     else:
         item['actions'] = []
     item.update({
-            'icon':   'folder',
-            'isdir':  True })
+            'icon': 'folder',
+            'isdir': True })
     return item
 
 def make_store_item(request, store, links_required=None):
@@ -297,6 +297,6 @@ def make_store_item(request, store, links_required=None):
     item['href_todo'] = dispatch.translate(request, store.pootle_path,
                                         unitstates=['fuzzy,untranslated'])
     item.update({
-            'icon':   'page',
+            'icon': 'page',
             'isfile': True })
     return item

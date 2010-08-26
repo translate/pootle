@@ -71,10 +71,10 @@ class TPTranslateView(BaseView):
             'project': project,
             'language': language,
             'directory': directory,
-            'children':              get_children(request, translation_project, directory, links_required='translate'),
-            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')],
-            'feed_path':             directory.pootle_path[1:],
-            'topstats':              gentopstats_translation_project(translation_project),
+            'children': get_children(request, translation_project, directory, links_required='translate'),
+            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')],
+            'feed_path': directory.pootle_path[1:],
+            'topstats': gentopstats_translation_project(translation_project),
             })
         return template_vars
 
@@ -107,10 +107,10 @@ class TPReviewView(BaseView):
             'project': project,
             'language': language,
             'directory': directory,
-            'children':              get_children(request, translation_project, directory, links_required='review'),
-            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review')],
-            'topstats':              gentopstats_translation_project(translation_project),
-            'feed_path':             directory.pootle_path[1:],
+            'children': get_children(request, translation_project, directory, links_required='review'),
+            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review')],
+            'topstats': gentopstats_translation_project(translation_project),
+            'feed_path': directory.pootle_path[1:],
             })
         return template_vars
 
@@ -137,11 +137,11 @@ def tp_admin_permissions(request, translation_project):
 
     template_vars = {
         'translation_project': translation_project,
-        "project":                project,
-        "language":               language,
-        "directory":              translation_project.directory,
-        "navitems":               [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
-        "feed_path":              translation_project.pootle_path[1:],
+        "project": project,
+        "language": language,
+        "directory": translation_project.directory,
+        "navitems": [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
+        "feed_path": translation_project.pootle_path[1:],
     }
     return admin_permissions(request, translation_project.directory, "translation_project/tp_admin_permissions.html",
                              template_vars)
@@ -206,12 +206,12 @@ class ProjectIndexView(BaseView):
             'project': project,
             'language': language,
             'directory': directory,
-            'children':              get_children(request, translation_project, directory),
-            'navitems':              [navbar_dict.make_directory_navbar_dict(request, directory)],
-            'stats_headings':        get_stats_headings(),
-            'editing':               state.editing,
-            'topstats':              gentopstats_translation_project(translation_project),
-            'feed_path':             directory.pootle_path[1:],
+            'children': get_children(request, translation_project, directory),
+            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory)],
+            'stats_headings': get_stats_headings(),
+            'editing': state.editing,
+            'topstats': gentopstats_translation_project(translation_project),
+            'feed_path': directory.pootle_path[1:],
             })
         return template_vars
 
@@ -401,7 +401,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
     # Get the file extensions of the uploaded filename and the
     # current translation project
     _upload_base, upload_ext = os.path.splitext(django_file.name)
-    _local_base,  local_ext  = os.path.splitext(upload_path)
+    _local_base, local_ext = os.path.splitext(upload_path)
     # If the extension of the uploaded file matches the extension
     # used in this translation project, then we simply write the
     # file to the disc.
@@ -529,7 +529,7 @@ class UploadHandler(view_handler.Handler):
         choices = [('merge', _("Merge the file with the current file and turn conflicts into suggestions")),
                    ('suggest', _("Add all new translations as suggestions"))]
         if check_permission('overwrite', request):
-            choices.insert(0, ('overwrite',  _("Overwrite the current file if it exists")))
+            choices.insert(0, ('overwrite', _("Overwrite the current file if it exists")))
 
         translation_project = request.translation_project
 

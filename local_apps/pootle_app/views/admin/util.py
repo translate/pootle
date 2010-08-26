@@ -186,7 +186,7 @@ def edit(request, template, model_class,
                 "savechanges": _("Save Changes"),
                 "submitname": model_args['submitname'],
                 "formid": model_args['formid'],
-                "error_msg":  msg,
+                "error_msg": msg,
             }
     }
     #FIXME: this should be done through an extra context argument

@@ -34,11 +34,11 @@ urlpatterns = patterns('',
     (r'^django_admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^django_admin/(.*)',   admin.site.root),
+    (r'^django_admin/(.*)', admin.site.root),
 
     # Static and media files
-    (r'^html/(?P<path>.*)$',  'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    (r'^(favicon.ico)$',      'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    (r'^html/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    (r'^(favicon.ico)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
     # direct download of translation files
     (r'^export/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.PODIRECTORY}),

@@ -74,7 +74,7 @@ def collect_options():
     packages = ['pootle'] + ['pootle.' + pkg for pkg in find_packages('pootle')] + \
             find_packages('local_apps') + find_packages('external_apps')
     package_data = {
-        '':           ['*.html', '*.txt', '*.xml', '*.css', '*.js'],
+        '': ['*.html', '*.txt', '*.xml', '*.css', '*.js'],
         'pootle_app': expand_tree_globs('local_apps/pootle_app', ['templates'], ['*.html']),
         'pootle_language': expand_tree_globs('local_apps/pootle_language', ['templates'], ['*.html']),
         'pootle_notifications': expand_tree_globs('local_apps/pootle_notifications', ['templates'], ['*.html']),
@@ -82,13 +82,13 @@ def collect_options():
         'pootle_store': expand_tree_globs('local_apps/pootle_store', ['templates'], ['*.html']),
         'pootle_terminology': expand_tree_globs('local_apps/pootle_terminology', ['templates'], ['*.html']),
         'pootle_translationproject': expand_tree_globs('local_apps/pootle_translationproject', ['templates'], ['*.html']),
-        'djblets':    expand_tree_globs('external_apps/djblets', ['siteconfig', 'util'], ['*.html']),
+        'djblets': expand_tree_globs('external_apps/djblets', ['siteconfig', 'util'], ['*.html']),
     }
     package_dir = {
-        'pootle_app':   'local_apps/pootle_app',
+        'pootle_app': 'local_apps/pootle_app',
         'pootle_autonotices': 'local_apps/pootle_autonotices',
         'pootle_language': 'local_apps/pootle_language',
-        'pootle_misc':  'local_apps/pootle_misc',
+        'pootle_misc': 'local_apps/pootle_misc',
         'pootle_notifications': 'local_apps/pootle_notifications',
         'pootle_profile': 'local_apps/pootle_profile',
         'pootle_project': 'local_apps/pootle_project',
@@ -98,16 +98,16 @@ def collect_options():
         'pootle_translationproject': 'local_apps/pootle_translationproject',
         'registration': 'external_apps/registration',
         'contact_form_i18n': 'external_apps/contact_form_i18n',
-        'profiles':     'external_apps/profiles',
-        'djblets':      'external_apps/djblets',
+        'profiles': 'external_apps/profiles',
+        'djblets': 'external_apps/djblets',
     }
     scripts = ['import_pootle_prefs', 'updatetm', 'PootleServer']
     options = {
-        'data_files':   data_files,
-        'packages':     packages,
+        'data_files': data_files,
+        'packages': packages,
         'package_data': package_data,
-        'package_dir':  package_dir,
-        'scripts':      scripts,
+        'package_dir': package_dir,
+        'scripts': scripts,
     }
     return options
 

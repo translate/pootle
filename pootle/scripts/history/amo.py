@@ -93,12 +93,12 @@ def _tidy_page(path):
 
     # set up some tidy options
     tidy_options = {
-        'char-encoding':  'utf8',
-        'enclose-text':   'yes',    # wrap loose text nodes in <p>
-        'show-body-only': 'auto',   # do not add <html> and <body> unless present in input
-        'indent':         'no',     # don't prettily indent output to make parsing easier
-        'tidy-mark':      'no',     # no creator meta-tag
-        'force-output':   'yes',    # some output is better than none, I hope
+        'char-encoding': 'utf8',
+        'enclose-text': 'yes',    # wrap loose text nodes in <p>
+        'show-body-only': 'auto', # do not add <html> and <body> unless present in input
+        'indent': 'no',           # don't prettily indent output to make parsing easier
+        'tidy-mark': 'no',        # no creator meta-tag
+        'force-output': 'yes',    # some output is better than none, I hope
         }
 
     # unicode files make utidylib cry :( so we need to be creative

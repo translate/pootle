@@ -102,7 +102,7 @@ def import_sitesettings(parsed_data):
     data = parsed_data.__root__._assignments
     siteconfig = load_site_config()
     siteconfig.set('TITLE', data.get('Pootle.title'))
-    siteconfig.set('DESCRIPTION',  data.get('Pootle.description'))
+    siteconfig.set('DESCRIPTION', data.get('Pootle.description'))
     siteconfig.save()
 
 @commit_on_success
@@ -342,7 +342,7 @@ def import_users(parsed_users):
 
         # ASSUMPTION: Someone has already created all the necessary projects
         # and languages in the web UI or through the earlier importer
-        augment_list(profile, data, Project,  'projects',  'project')
+        augment_list(profile, data, Project, 'projects', 'project')
         augment_list(profile, data, Language, 'languages', 'language')
         # We might have modified the profile, so save it in case.
         profile.save()

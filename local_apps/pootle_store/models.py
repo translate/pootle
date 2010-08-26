@@ -960,7 +960,7 @@ class Store(models.Model, base.TranslationStore):
         try:
             self.require_dbid_index(update=True)
             old_ids = set(self.dbid_index.keys())
-            if issubclass(self.translation_project.project.get_file_class(),  newfile.__class__):
+            if issubclass(self.translation_project.project.get_file_class(), newfile.__class__):
                 new_ids = set(newfile.getids())
             else:
                 new_ids = set(newfile.getids(self.name))

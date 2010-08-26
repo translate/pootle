@@ -108,8 +108,8 @@ def language_admin(request, language_code):
         raise PermissionDenied(_("You do not have rights to administer this language."))
 
     template_vars = {
-        "language":               language,
-        "directory":              language.directory,
-        "feed_path":              '%s/' % language.code,
+        "language": language,
+        "directory": language.directory,
+        "feed_path": '%s/' % language.code,
     }
     return admin_permissions(request, language.directory, "language/language_admin.html", template_vars)

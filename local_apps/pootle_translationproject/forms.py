@@ -27,6 +27,6 @@ class SearchForm(forms.Form):
     sfields = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple,
                                               choices=(('source', _('Source Text')),
                                                        ('target', _('Target Text')),
-                                                       ('notes',  _('Comments')),
+                                                       ('notes', _('Comments')),
                                                        ('locations', _('Locations'))),
                                               initial=['source','target'])

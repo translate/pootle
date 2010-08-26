@@ -45,7 +45,7 @@ def render_pager(pager):
         result += '<li>...</li>'
 
     if pager.has_next():
-        result += '<li><a href="?page=%d" class="prevnext-link">%s</a></li>' % (pager.next_page_number(),  _('Next'))
+        result += '<li><a href="?page=%d" class="prevnext-link">%s</a></li>' % (pager.next_page_number(), _('Next'))
         result += '<li><a href="?page=%d" class="nth-link">%s</a></li>' % (pager.paginator.num_pages, _('Last (%d)', pager.paginator.num_pages))
 
     result += '</ul>'

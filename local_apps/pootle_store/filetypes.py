@@ -55,12 +55,12 @@ def get_supported_formats():
 
     # Monolingual formats
     from translate.storage.properties import propfile
-    formats.append(('properties',  _('Java Properties'), propfile, 'monolingual'))
+    formats.append(('properties', _('Java Properties'), propfile, 'monolingual'))
     try:
         from translate.storage.properties import stringsfile
         #l10n: Don't translate "strings" unless you are sure these files have
         # another name in your language
-        formats.append(('strings',  _('OS X Strings'), stringsfile, 'monolingual'))
+        formats.append(('strings', _('OS X Strings'), stringsfile, 'monolingual'))
     except ImportError:
         pass
     from translate.storage.php import phpfile

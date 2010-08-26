@@ -174,9 +174,9 @@ def project_admin_permissions(request, project_code):
         raise PermissionDenied(_("You do not have rights to administer this project."))
 
     template_vars = {
-        "project":                project,
-        "directory":              project.directory,
-        "feed_path":              project.pootle_path[1:],
+        "project": project,
+        "directory": project.directory,
+        "feed_path": project.pootle_path[1:],
     }
     return admin_permissions(request, project.directory, "project/admin_permissions.html", template_vars)
 
