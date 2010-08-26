@@ -96,7 +96,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
             """
             'link' indicates whether we put the first field as a link or as widget
             """
-            if field == linkfield and linkfield in form.initial and link :
+            if field == linkfield and linkfield in form.initial and link:
                 if callable(link):
                     result.append(link(form.instance))
                     result.append(form[field].as_hidden())

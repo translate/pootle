@@ -113,8 +113,8 @@ def handle_form(request, current_directory):
 def view_notice_item(request, path, notice_id):
     notice = get_object_or_404(Notice, id=notice_id)
     template_vars = {
-            "title" : _("View News Item"),
-            "notice_message"  : notice.message,
+            "title": _("View News Item"),
+            "notice_message": notice.message,
             }
 
     return render_to_response('viewnotice.html', template_vars,

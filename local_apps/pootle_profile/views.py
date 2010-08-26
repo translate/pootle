@@ -51,7 +51,7 @@ def edit_personal_info(request):
     else:
         user_form = UserForm(instance=request.user)
     template_vars = { "form": user_form }
-    response = render_to_response('profiles/edit_personal.html', template_vars , context_instance=RequestContext(request))
+    response = render_to_response('profiles/edit_personal.html', template_vars, context_instance=RequestContext(request))
     return response
 
 

@@ -37,7 +37,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # dummy translate function so we can extract text
-_ = lambda x : x
+_ = lambda x: x
 
 TITLE = _("Pootle Demo")
 
