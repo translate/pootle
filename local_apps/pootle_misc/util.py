@@ -54,7 +54,7 @@ def deletefromcache(sender, functions, **kwargs):
         path = "/".join(path_parts) + "/"
 
 def dictsum(x, y):
-    return dict( (n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y) )
+    return dict((n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y))
 
 
 def paginate(request, queryset, items=30, page=None):

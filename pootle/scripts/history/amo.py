@@ -70,7 +70,7 @@ def _init_pages(projectroot, languagecode):
     # find all pages
     pages = os.listdir(enus_dir)
     thtml = re.compile("\.thtml$", re.IGNORECASE)
-    pages = [ f for f in pages if thtml.search(f) ]
+    pages = [f for f in pages if thtml.search(f)]
 
     for page in pages:
         # grab English template

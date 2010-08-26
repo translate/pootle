@@ -116,7 +116,7 @@ def footer():
     <p>%(endmsg)s</p>
     <div><script>setTimeout("location.reload()", 10000)</script></div>
     </body></html>
-    """  % { 'endmsg': _('Initialized database, you will be redirected to the front page in 10 seconds') }
+    """  % {'endmsg': _('Initialized database, you will be redirected to the front page in 10 seconds')}
     return text
 
 def staggered_install(exception):

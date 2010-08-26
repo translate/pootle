@@ -32,6 +32,6 @@ def render_latest_news(path, num):
     try:
         directory = Directory.objects.get(pootle_path='/%s' % path)
     except Directory.DoesNotExist:
-        return { 'news_items': None }
+        return {'news_items': None}
     news_items = Notice.objects.filter(directory=directory)[:num]
-    return { 'news_items': news_items }
+    return {'news_items': news_items}

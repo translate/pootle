@@ -292,10 +292,10 @@ def get_local_filename(translation_project, upload_filename):
     if translation_project.file_style == "gnu" and not translation_project.is_template_project:
         if os.path.splitext(local_filename)[0] != translation_project.language.code:
             raise ValueError(_("Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s.%(filetype)s'.",
-                             { 'local_filename': local_filename,
-                               'langcode': translation_project.language.code,
-                               'filetype': translation_project.project.localfiletype,
-                               }))
+                             {'local_filename': local_filename,
+                              'langcode': translation_project.language.code,
+                              'filetype': translation_project.project.localfiletype,
+                              }))
     return local_filename
 
 def unzip_external(request, directory, django_file, overwrite):
