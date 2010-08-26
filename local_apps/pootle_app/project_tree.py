@@ -136,10 +136,10 @@ def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_fi
     existing_stores = dict((store.name, store) for store in db_dir.child_stores.exclude(file='').iterator())
     existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.iterator())
     add_items(files, existing_stores,
-              lambda name: Store(file = relative_real_path(os.path.join(real_dir, name)),
-                                 parent    = db_dir,
-                                 name      = name,
-                                 translation_project = translation_project))
+              lambda name: Store(file=relative_real_path(os.path.join(real_dir, name)),
+                                 parent=db_dir,
+                                 name=name,
+                                 translation_project=translation_project))
 
     db_subdirs = add_items(dirs, existing_dirs,
                            lambda name: Directory(name=name, parent=db_dir))

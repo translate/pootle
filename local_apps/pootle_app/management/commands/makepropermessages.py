@@ -56,7 +56,7 @@ def make_messages(locale=None, domain='django', verbosity='1', all=False, extens
     if settings.configured:
         settings.USE_I18N = True
     else:
-        settings.configure(USE_I18N = True)
+        settings.configure(USE_I18N=True)
 
     from django.utils.translation import templatize
 

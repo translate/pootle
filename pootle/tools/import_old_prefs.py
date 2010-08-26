@@ -65,8 +65,8 @@ def import_pending():
             logging.info("Importing suggestions from %s", store.pootle_path.encode('utf-8'))
             store.import_pending()
 
-def _get_attribute(data, name, attribute, unicode_me = True,
-                   default = '', prefix='Pootle.languages.'):
+def _get_attribute(data, name, attribute, unicode_me=True,
+                   default='', prefix='Pootle.languages.'):
     raw_value = data.get(prefix + name + '.' + attribute, default)
     if unicode_me:
         assert type(raw_value) in types.StringTypes
@@ -134,11 +134,11 @@ def import_languages(parsed_data):
         # nplurals
         db_lang.nplurals = try_type(int,
                                     _get_attribute(data, lang, 'nplurals',
-                                    unicode_me = False, default=1))
+                                    unicode_me=False, default=1))
 
         # pluralequation
         db_lang.pluralequation = _get_attribute(data, 
-                                 lang, 'pluralequation', unicode_me = False)
+                                 lang, 'pluralequation', unicode_me=False)
 
         # specialchars
         db_lang.specialchars = _get_attribute(data, lang, 'specialchars')
@@ -183,7 +183,7 @@ def import_projects(parsed_data):
 
         # checkstyle
         db_proj.checkstyle = _get_attribute(data, proj, 'checkerstyle',
-                                            unicode_me = False, prefix=prefix)
+                                            unicode_me=False, prefix=prefix)
 
         # localfiletype
         db_proj.localfiletype = _get_attribute(data, proj, 'localfiletype',
@@ -191,7 +191,7 @@ def import_projects(parsed_data):
 
         # treestyle
         db_proj.treestyle = _get_attribute(data, proj, 'treestyle',
-                            unicode_me = False, default='auto', prefix=prefix)
+                            unicode_me=False, default='auto', prefix=prefix)
 
         # ignoredfiles
         db_proj.ignoredfiles = _get_attribute(data, proj, 'ignoredfiles',
@@ -200,8 +200,8 @@ def import_projects(parsed_data):
         logging.info("Creating project %s", db_proj)
         db_proj.save()
 
-def _get_user_attribute(data, user_name, attribute, unicode_me = True,
-                        default = ''):
+def _get_user_attribute(data, user_name, attribute, unicode_me=True,
+                        default=''):
     return _get_attribute(data, user_name, attribute, unicode_me, default,
                           prefix='')
 

@@ -26,13 +26,13 @@ from django.utils.translation import ugettext_lazy as _
 class GeneralSettingsForm(SiteSettingsForm):
     TITLE = forms.CharField(
         label=_("Title"),
-        help_text = _("The name for this Pootle server"),
+        help_text=_("The name for this Pootle server"),
         max_length=50,
         required=True,
     )
     DESCRIPTION = forms.CharField(
         label=_("Description"),
-        help_text = _("The description and instructions shown on the front page and about page. Be sure to use valid HTML."),
+        help_text=_("The description and instructions shown on the front page and about page. Be sure to use valid HTML."),
         max_length=1024,
         required=True,
         widget=forms.Textarea,

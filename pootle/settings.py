@@ -229,14 +229,14 @@ if TEMPLATE_DEBUG:
 
 if DEBUG:
     logging.basicConfig(
-            level = logging.DEBUG,
-            format =  '%(asctime)s %(levelname)s %(message)s',
+            level=logging.DEBUG,
+            format='%(asctime)s %(levelname)s %(message)s',
             )
 else:
     # Will log only CRITICAL errors to the console
     logging.basicConfig(
-            level = logging.INFO,
-            format =  '%(asctime)s %(levelname)s %(message)s',
+            level=logging.INFO,
+            format='%(asctime)s %(levelname)s %(message)s',
             )
 
 
