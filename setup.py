@@ -147,9 +147,9 @@ def find_packages(where='.', exclude=()):
         for name in os.listdir(where):
             fn = os.path.join(where,name)
             if ('.' not in name and os.path.isdir(fn) and
-                os.path.isfile(os.path.join(fn,'__init__.py'))
-            ):
-                out.append(prefix+name); stack.append((fn,prefix+name+'.'))
+                os.path.isfile(os.path.join(fn,'__init__.py'))):
+                out.append(prefix+name)
+                stack.append((fn,prefix+name+'.'))
     for pat in list(exclude)+['ez_setup']:
         from fnmatch import fnmatchcase
         out = [item for item in out if not fnmatchcase(item,pat)]
