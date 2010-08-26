@@ -264,5 +264,5 @@ if __name__ == '__main__':
         platforms=["any"],
         classifiers=classifiers,
         cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo},
-        **collect_options(),
+        **collect_options()
     )
