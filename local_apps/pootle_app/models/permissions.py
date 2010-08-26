@@ -98,12 +98,12 @@ class PermissionSet(models.Model):
         unique_together = ('profile', 'directory')
         app_label = "pootle_app"
 
-    profile                = models.ForeignKey('pootle_profile.PootleProfile', db_index=True)
-    directory              = models.ForeignKey('pootle_app.Directory', db_index=True, related_name='permission_sets')
-    positive_permissions   = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_positive')
+    profile              = models.ForeignKey('pootle_profile.PootleProfile', db_index=True)
+    directory            = models.ForeignKey('pootle_app.Directory', db_index=True, related_name='permission_sets')
+    positive_permissions = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_positive')
     # negative permissions are no longer used, kept around to scheme
     # compatibility with older versions
-    negative_permissions   = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_negative')
+    negative_permissions = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_negative')
 
     def __unicode__(self):
         return "%s : %s" % (self.profile.user.username, self.directory.pootle_path)

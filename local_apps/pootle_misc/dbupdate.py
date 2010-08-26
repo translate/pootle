@@ -177,7 +177,7 @@ def footer():
     <p>%(endmsg)s</p>
     <div><script>setTimeout("location.reload()", 10000)</script></div>
     </body></html>
-    """  % {'endmsg': _('Pootle initialized the database. You will be redirected to the front page in 10 seconds.')}
+    """ % {'endmsg': _('Pootle initialized the database. You will be redirected to the front page in 10 seconds.')}
     return text
 
 def staggered_update(db_buildversion):

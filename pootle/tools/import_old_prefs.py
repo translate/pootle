@@ -243,8 +243,8 @@ def create_database_user(data, user_name):
 
     # Profile information
     profile = user.get_profile()
-    profile.unit_rows      = try_type(int, _get_user_attribute(data, user_name, 'viewrows',
-                                                               unicode_me=False, default=10))
+    profile.unit_rows = try_type(int, _get_user_attribute(data, user_name, 'viewrows',
+                                                          unicode_me=False, default=10))
     # uilanguage
     raw_uilanguage = _get_user_attribute(data, user_name, 'uilanguages')
     assert ',' not in raw_uilanguage # just one value here

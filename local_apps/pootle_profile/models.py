@@ -61,12 +61,12 @@ class PootleProfile(models.Model):
     # This is the only required field
     user = models.OneToOneField(User, unique=True, db_index=True)
 
-    unit_rows       = models.SmallIntegerField(default=9, verbose_name=_("Number of Rows"))
-    input_height    = models.SmallIntegerField(default=5, editable=False)
-    languages       = models.ManyToManyField('pootle_language.Language', blank=True, limit_choices_to=~Q(code='templates'), related_name="user_languages", verbose_name=_("Languages"), db_index=True)
-    projects        = models.ManyToManyField('pootle_project.Project', blank=True, db_index=True, verbose_name=_("Projects"))
-    ui_lang         = models.CharField(max_length=50, blank=True, null=True, choices=(choice for choice in lang_choices()), verbose_name=_('Interface Language'))
-    alt_src_langs   = models.ManyToManyField('pootle_language.Language', blank=True, db_index=True, limit_choices_to=~Q(code='templates'), related_name="user_alt_src_langs", verbose_name=_("Alternative Source Languages"))
+    unit_rows     = models.SmallIntegerField(default=9, verbose_name=_("Number of Rows"))
+    input_height  = models.SmallIntegerField(default=5, editable=False)
+    languages     = models.ManyToManyField('pootle_language.Language', blank=True, limit_choices_to=~Q(code='templates'), related_name="user_languages", verbose_name=_("Languages"), db_index=True)
+    projects      = models.ManyToManyField('pootle_project.Project', blank=True, db_index=True, verbose_name=_("Projects"))
+    ui_lang       = models.CharField(max_length=50, blank=True, null=True, choices=(choice for choice in lang_choices()), verbose_name=_('Interface Language'))
+    alt_src_langs = models.ManyToManyField('pootle_language.Language', blank=True, db_index=True, limit_choices_to=~Q(code='templates'), related_name="user_alt_src_langs", verbose_name=_("Alternative Source Languages"))
 
     def __unicode__(self):
         return self.user.username

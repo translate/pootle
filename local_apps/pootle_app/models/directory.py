@@ -19,7 +19,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.db                import models
+from django.db import models
 
 from pootle_store.util import empty_quickstats, empty_completestats, statssum, completestatssum
 from pootle_store.models import Suggestion, Unit

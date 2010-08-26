@@ -91,15 +91,15 @@ class TranslationProject(models.Model):
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE, settings.PARSE_POOL_CULL_FREQUENCY)
 
     objects = RelatedManager()
-    index_directory  = ".translation_index"
+    index_directory = ".translation_index"
     class Meta:
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
 
-    language   = models.ForeignKey(Language, db_index=True)
-    project    = models.ForeignKey(Project, db_index=True)
-    real_path  = models.FilePathField(editable=False)
-    directory  = models.OneToOneField(Directory, db_index=True, editable=False)
+    language  = models.ForeignKey(Language, db_index=True)
+    project   = models.ForeignKey(Project, db_index=True)
+    real_path = models.FilePathField(editable=False)
+    directory = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, editable=False)
 
     def __unicode__(self):

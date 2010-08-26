@@ -37,7 +37,7 @@ class BaseUrlMiddleware(object):
             if request.is_secure():
                 settings.BASE_URL = 'https://' + domain
             else:
-                settings.BASE_URL = 'http://'  + domain
+                settings.BASE_URL = 'http://' + domain
 
             #FIXME: DIRTY HACK ALERT if this works then something is
             #wrong with the universe
