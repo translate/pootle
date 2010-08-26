@@ -133,8 +133,8 @@ def precommit(committedfile, author, message):
 
         # Get the files we'll be using
         (combinedfile, mainfile, sourcefile) = _getfiles(committedfile)
-        
-        # Update messages.po 
+
+        # Update messages.po
         logger.debug("Converting po %s to %s" % (combinedfile, mainfile))
         po2monopo.convertpo(open(combinedfile,"r"), open(mainfile,"w"))
 
@@ -149,7 +149,7 @@ def postcommit(committedfile, success):
         # Get the files we'll be using
         (combinedfile, mainfile, sourcefile) = _getfiles(committedfile)
 
-        # Recreate messages-combined.po 
+        # Recreate messages-combined.po
         logger.debug("Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile))
         monopo2po.convertpo(open(sourcefile,"r"), open(combinedfile,"w"), open(mainfile,"r"))
 
@@ -159,7 +159,7 @@ def preupdate(updatedfile):
 
         # Get the files we'll be using
         (combinedfile, mainfile, sourcefile) = _getfiles(updatedfile)
-        
+
         # We want to update messages.po
         logger.debug("Updating %s", mainfile)
         return mainfile
