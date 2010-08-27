@@ -345,10 +345,13 @@ def translate_page(request, units_queryset, store=None):
         form = form_class(request.POST, instance=prev_unit)
         if form.is_valid():
             if cantranslate and 'submit' in request.POST:
-                form.save()
-                sub = Submission(translation_project=translation_project,
-                                 submitter=get_profile(request.user))
-                sub.save()
+                if form.instance._target_updated or form.instance._translator_comment_updated or \
+                       form.instance._state_updated:
+                    form.save()
+                    sub = Submission(translation_project=translation_project,
+                                     submitter=get_profile(request.user))
+                    sub.save()
+
             elif cansuggest and 'suggest' in request.POST:
                 #HACKISH: django 1.2 stupidly modifies instance on model form validation, reload unit from db
                 prev_unit = Unit.objects.get(id=prev_unit.id)

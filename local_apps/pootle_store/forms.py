@@ -181,8 +181,21 @@ def unit_form_factory(language, snplurals=1):
                 self.instance._target_updated = True
             return value
 
+        def clean_translator_comment(self):
+            value = self.cleaned_data['translator_comment']
+            if self.instance.translator_comment != value:
+                self.instance._translator_comment_updated = True
+            else:
+                self.instance._translator_comment_updated = False
+            return value
+
         def clean_state(self):
             value = self.cleaned_data['state']
+            if self.instance.state != value:
+                self.instance._state_updated = True
+            else:
+                self.instance._state_updated = False
+
             if value:
                 return FUZZY
             elif self.instance.state != FUZZY:
