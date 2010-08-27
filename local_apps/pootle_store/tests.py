@@ -1,3 +1,5 @@
+import time
+
 from translate.storage import factory
 from translate.storage import statsdb
 
@@ -11,6 +13,7 @@ class UnitTests(PootleTestCase):
 
     def _update_translation(self, item, newvalues):
         unit = self.store.getitem(item)
+        time.sleep(1)
         if 'target' in newvalues:
             unit.target = newvalues['target']
         if 'fuzzy' in newvalues:
@@ -79,7 +82,6 @@ class UnitTests(PootleTestCase):
         pofile = factory.getobject(self.store.file.path)
         self.assertEqual(dbunit.isfuzzy(), pofile.units[dbunit.index].isfuzzy())
 
-        import time
         time.sleep(1)
 
         dbunit = self._update_translation(0, {'fuzzy': False})
