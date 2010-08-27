@@ -678,6 +678,9 @@ class Store(models.Model, base.TranslationStore):
             return
         if store is None:
             store = self.file.store
+
+        key = "%s:sync" % self.pootle_path
+
         if self.state < PARSED:
             logging.debug("Parsing %s", self.pootle_path)
             # no existing units in db, file hasn't been parsed before
@@ -702,6 +705,7 @@ class Store(models.Model, base.TranslationStore):
 
             self.state = PARSED
             self.save()
+            cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
             return
 
         # lock store
@@ -743,6 +747,8 @@ class Store(models.Model, base.TranslationStore):
             # unlock store
             self.state = oldstate
             self.save()
+            if update_structure and update_translation and not conservative:
+                cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
 
     def require_qualitychecks(self):
         """make sure quality checks are run"""
@@ -780,6 +786,7 @@ class Store(models.Model, base.TranslationStore):
                 self.save()
                 self.update_store_header(profile=profile)
                 self.file.savestore()
+                cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
             return
 
         logging.debug("Syncing %s", self.pootle_path)
