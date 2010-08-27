@@ -19,10 +19,12 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.cache import cache
+from django.utils import simplejson
 
 from django.contrib.auth.models import User
 
@@ -152,23 +154,32 @@ def server_stats():
     result = cache.get("server_stats")
     if result is None:
         result = {}
+        result['user_count'] = User.objects.filter(is_active=True).count()
+        result['submission_count'] = Submission.objects.count() + SuggestiontStat.objects.count()
+        result['pending_count'] = Suggestion.objects.count()
+        cache.set("server_stats", result, 86400)
+    return result
+
+@user_is_admin
+def server_stats_more(request):
+    result = cache.get("server_stats_more")
+    if result is None:
+        result = []
         unit_query = Unit.objects.filter(state__gte=TRANSLATED).exclude(
             store__translation_project__project__code__in=('pootle', 'tutorial', 'terminology')).exclude(
             store__translation_project__language__code='templates').order_by()
-        result['store_count'] = unit_query.values('store').distinct().count()
-        result['project_count'] = unit_query.values('store__translation_project__project').distinct().count()
-        result['language_count'] = unit_query.values('store__translation_project__language').distinct().count()
+        result.append((_('Files'), unit_query.values('store').distinct().count()))
+        result.append((_('Active projects'), unit_query.values('store__translation_project__project').distinct().count()))
+        result.append((_('Active languages'), unit_query.values('store__translation_project__language').distinct().count()))
         sums = sum_column(unit_query, ('source_wordcount',), count=True)
-        result['string_count'] = sums['count']
-        result['word_count'] = sums['source_wordcount'] or 0
-        result['submission_count'] = Submission.objects.count() + SuggestiontStat.objects.count()
-        result['pending_count'] = Suggestion.objects.count()
-        result['user_count'] = User.objects.filter(is_active=True).count()
-        result['user_active_count'] = (PootleProfile.objects.exclude(submission=None) |\
-                                       PootleProfile.objects.exclude(suggestion=None) |\
-                                       PootleProfile.objects.exclude(suggester=None)).order_by().count()
-        cache.set("server_stats", result, 86400)
-    return result
+        result.append((_('Translated strings'), sums['count']))
+        result.append((_('Translated words'), sums['source_wordcount'] or 0))
+        result.append((_('Active users'), (PootleProfile.objects.exclude(submission=None) |\
+                                          PootleProfile.objects.exclude(suggestion=None) |\
+                                          PootleProfile.objects.exclude(suggester=None)).order_by().count()))
+        cache.set("server_stats_more", result, 86400)
+    response = simplejson.dumps(result, indent=4)
+    return HttpResponse(response, mimetype="application/json")
 
 @user_is_admin
 def view(request):

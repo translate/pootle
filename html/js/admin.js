@@ -29,8 +29,16 @@ $(document).ready(function() {
   /* Sliding table within admin dashboard */
   $(".slide").click(function(event) {
     event.preventDefault();
-    $("tbody.slidethis").slideDown("fast");
-    $(this).parents("tbody").remove();
+    $.getJSON(l('/admin/stats/more'), function(data) {
+      var newstats = '';
+      $(data).each(function() {
+        newstats += '<tr><th scope="row">' + this[0] + '</th><td>'
+                    + this[1] + '</td></tr>';
+      });
+      $("tbody.slidethis").append(newstats);
+      $("tbody.slidethis").slideDown("fast");
+      $("tbody.slidethis").next("tbody").remove();
+    });
   });
 
   /* Sets background color to table rows when checking selects */
