@@ -65,15 +65,21 @@ class QualityCheck(models.Model):
     unit = models.ForeignKey("pootle_store.Unit", db_index=True)
     message = models.TextField()
     false_positive = models.BooleanField(default=False, db_index=True)
+
     def __unicode__(self):
         return self.name
 
 ################# Suggestion ################
 
+class SuggestionManager(RelatedManager):
+    def get_by_natural_key(self, target_hash, unitid_hash, pootle_path):
+        return self.get(target_hash=target_hash, unit__unitid_hash=unitid_hash,
+                 unit__store__pootle_path=pootle_path)
+
 class Suggestion(models.Model, base.TranslationUnit):
     """suggested translation for unit, provided by users or
     automatically generated after a merge"""
-    objects = RelatedManager()
+    objects = SuggestionManager()
     class Meta:
         unique_together = ('unit', 'target_hash')
 
@@ -81,6 +87,10 @@ class Suggestion(models.Model, base.TranslationUnit):
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
     user = models.ForeignKey('pootle_profile.PootleProfile', null=True)
+
+    def natural_key(self):
+        return (self.target_hash, self.unit.unitid_hash, self.unit.store.pootle_path)
+    natural_key.dependencies = ['pootle_store.Unit', 'pootle_store.Store']
 
     def __unicode__(self):
         return unicode(self.target)
@@ -115,9 +125,12 @@ def count_words(strings):
         wordcount += statsdb.wordcount(string)
     return wordcount
 
+class UnitManager(RelatedManager):
+    def get_by_natural_key(self, unitid_hash, pootle_path):
+        return self.get(unitid_hash=unitid_hash, store__pootle_path=pootle_path)
 
 class Unit(models.Model, base.TranslationUnit):
-    objects = RelatedManager()
+    objects = UnitManager()
     class Meta:
         ordering = ['store', 'index']
         unique_together = ('store', 'unitid_hash')
@@ -144,6 +157,10 @@ class Unit(models.Model, base.TranslationUnit):
     state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
 
     mtime = models.DateTimeField(auto_now=True, auto_now_add=True, db_index=True, editable=False)
+
+    def natural_key(self):
+        return (self.unitid_hash, self.store.pootle_path)
+    natural_key.dependencies = ['pootle_store.Store']
 
     def get_mtime(self):
         return self.mtime
@@ -559,12 +576,20 @@ fs = FileSystemStorage(location=settings.PODIRECTORY)
 # regexp to parse suggester name from msgidcomment
 suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 
+class StoreManager(RelatedManager):
+    def get_by_natural_key(self, pootle_path):
+        return self.get(pootle_path=pootle_path)
+
 class Store(models.Model, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
-    objects = RelatedManager()
+    objects = StoreManager()
     UnitClass = Unit
     Name = "Model Store"
     is_dir = False
+
+    class Meta:
+        ordering = ['pootle_path']
+        unique_together = ('parent', 'name')
 
     file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False, editable=False)
     pending = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False)
@@ -574,9 +599,10 @@ class Store(models.Model, base.TranslationStore):
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_("Path"))
     name = models.CharField(max_length=128, null=False, editable=False)
     state = models.IntegerField(null=False, default=NEW, editable=False, db_index=True)
-    class Meta:
-        ordering = ['pootle_path']
-        unique_together = ('parent', 'name')
+
+    def natural_key(self):
+        return (self.pootle_path,)
+    natural_key.dependencies = ['pootle_app.Directory']
 
     def save(self, *args, **kwargs):
         self.pootle_path = self.parent.pootle_path + self.name

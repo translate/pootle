@@ -30,8 +30,12 @@ from pootle_store.util import statssum
 from pootle_store.models import Unit
 from pootle_app.lib.util import RelatedManager
 
+class LanguageManager(RelatedManager):
+    def get_by_natural_key(self, code):
+        return self.get(code=code)
+
 class Language(models.Model):
-    objects = RelatedManager()
+    objects = LanguageManager()
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_language'
@@ -51,6 +55,10 @@ class Language(models.Model):
     directory = models.OneToOneField('pootle_app.Directory', db_index=True, editable=False)
 
     pootle_path = property(lambda self: '/%s/' % self.code)
+
+    def natural_key(self):
+        return (self.code,)
+    natural_key.dependencies = ['pootle_app.Directory']
 
     def save(self, *args, **kwargs):
         # create corresponding directory object

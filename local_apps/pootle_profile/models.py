@@ -53,6 +53,9 @@ class PootleProfileManager(models.Manager):
         return super(PootleProfileManager, self).get_query_set().select_related(
             'languages', 'projects', 'alt_src_langs')
 
+    def get_by_natural_key(self, username):
+        return self.get(user__username=username)
+
 class PootleProfile(models.Model):
     objects = PootleProfileManager()
     class Meta:
@@ -68,8 +71,13 @@ class PootleProfile(models.Model):
     ui_lang       = models.CharField(max_length=50, blank=True, null=True, choices=(choice for choice in lang_choices()), verbose_name=_('Interface Language'))
     alt_src_langs = models.ManyToManyField('pootle_language.Language', blank=True, db_index=True, limit_choices_to=~Q(code='templates'), related_name="user_alt_src_langs", verbose_name=_("Alternative Source Languages"))
 
+    def natural_key(self):
+        return (self.user.username,)
+    natural_key.dependencies = ['auth.User']
+
     def __unicode__(self):
         return self.user.username
+
     def get_absolute_url(self):
         return l('/accounts/%s/' % self.user.username)
 

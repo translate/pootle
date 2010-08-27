@@ -34,8 +34,14 @@ from pootle_store.models import Unit
 from pootle_store.filetypes import filetype_choices, factory_classes, is_monolingual
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
+from pootle_app.lib.util import RelatedManager
+
+class ProjectManager(RelatedManager):
+    def get_by_natural_key(self, code):
+        return self.get(code=code)
 
 class Project(models.Model):
+    objects = ProjectManager()
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_project'
@@ -64,6 +70,10 @@ class Project(models.Model):
     source_language  = models.ForeignKey('pootle_language.Language', db_index=True, verbose_name=_('Source Language'))
     ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="", verbose_name=_('Ignore Files'))
     directory = models.OneToOneField('pootle_app.Directory', db_index=True, editable=False)
+
+    def natural_key(self):
+        return (self.code,)
+    natural_key.dependencies = ['pootle_app.Directory']
 
     def __unicode__(self):
         return self.fullname
