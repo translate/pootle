@@ -516,6 +516,9 @@ class Unit(models.Model, base.TranslationUnit):
         return self.suggestion_set.select_related('user').all()
 
     def add_suggestion(self, translation, user=None, touch=True):
+        if not filter(None, translation):
+            return None
+
         if translation == self.target:
             return None
 
