@@ -630,12 +630,18 @@ def stats_message(version, stats):
     return "%s: %d of %d messages translated (%d fuzzy)." % \
            (version, stats.get("translated", 0), stats.get("total", 0), stats.get("fuzzy", 0))
 
-def scan_languages(sender, instance, **kwargs):
+def scan_languages(sender, instance, created=False, raw=False, **kwargs):
+    if not created or raw:
+        return
+
     for language in Language.objects.iterator():
         create_translation_project(language, instance)
 post_save.connect(scan_languages, sender=Project)
 
-def scan_projects(sender, instance, **kwargs):
+def scan_projects(sender, instance, created=False, raw=False, **kwargs):
+    if not created or raw:
+        return
+
     for project in Project.objects.iterator():
         create_translation_project(instance, project)
 post_save.connect(scan_projects, sender=Language)
