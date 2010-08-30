@@ -24,7 +24,7 @@
         {% block js %}
         <script type="text/javascript">
           function l(path) {
-            var basepath = "{{ SCRIPT_NAME  }}";
+            var basepath = "{{ settings.SCRIPT_NAME  }}";
             if (path[0] == '/') {
               return basepath + path;
             }
