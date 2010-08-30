@@ -20,7 +20,7 @@
 
 from django.conf import settings
 
-
+from pootle.__version__ import sver
 
 def pootle_context(request):
     """exposes settings to templates"""
@@ -33,6 +33,7 @@ def pootle_context(request):
             'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
             'MEDIA_URL': settings.MEDIA_URL,
+            'POOTLE_VERSION': sver,
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
         },
     }
