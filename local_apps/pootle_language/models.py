@@ -92,6 +92,7 @@ class Language(models.Model):
         """localized fullname"""
         return tr_lang(self.fullname)
     name = property(localname)
+
     def get_direction(self):
         """returns language direction"""
         return language_dir(self.code)
