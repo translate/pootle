@@ -173,6 +173,14 @@ AUTOSYNC = False
 MT_BACKENDS = ()
 CAN_CONTACT = True
 
+# By default Pootle sends only text emails. If your organization would
+# prefer to send mixed HTML/TEXT emails, set this to True, and update
+# activation_email.txt and activation_email.html in the templates/registration/
+# directory.
+# NOTE: Password reset emails will still be sent in plain text. This is a limitation
+# of the underlying system.
+EMAIL_SEND_HTML = False
+
 execfile(config_path("localsettings.py"))
 
 if CONTACT_EMAIL:

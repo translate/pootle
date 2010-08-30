@@ -117,20 +117,27 @@ class RegistrationManager(models.Manager):
         registration_profile = self.create_profile(new_user)
         
         if send_email:
-            from django.core.mail import send_mail
             current_site = Site.objects.get_current()
-            
             subject = render_to_string('registration/activation_email_subject.txt',
                                        { 'site': current_site })
             # Email subject *must not* contain newlines
             subject = ''.join(subject.splitlines())
-            
-            message = render_to_string('registration/activation_email.txt',
+            text_message = render_to_string('registration/activation_email.txt',
                                        { 'activation_key': registration_profile.activation_key,
                                          'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS,
                                          'site': current_site })
-            
-            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [new_user.email])
+            if not settings.EMAIL_SEND_HTML:
+                from django.core.mail import send_mail
+                send_mail(subject, text_message, settings.DEFAULT_FROM_EMAIL, [new_user.email])
+            else:
+                from django.core.mail import EmailMultiAlternatives
+                html_message = render_to_string("registration/activation_email.html",
+                                        { 'activation_key': registration_profile.activation_key,
+                                          'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS,
+                                          'site': current_site })
+				msg = EmailMultiAlternatives(subject, text_message, settings.DEFAULT_FROM_EMAIL, [new_user.email])
+				msg.attach_alternative(html_message, "text/html")
+				msg.send()
         user_registered.send(sender=self.model, user=new_user)
         return new_user
     create_inactive_user = transaction.commit_on_success(create_inactive_user)
