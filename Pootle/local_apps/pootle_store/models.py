@@ -32,6 +32,7 @@ from translate.storage import po
 from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.baseurl import l
 from pootle_app.models.directory import Directory
+from pootle_app.lib.util import RelatedManager
 from pootle_store.fields  import TranslationStoreField
 from pootle_store.signals import translation_file_updated
 
@@ -42,8 +43,15 @@ fs = FileSystemStorage(location=settings.PODIRECTORY)
 # regexp to parse suggester name from msgidcomment
 suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 
+class StoreManager(RelatedManager):
+    def get_by_natural_key(self, pootle_path):
+        return self.get(pootle_path=pootle_path)
+
+
 class Store(models.Model):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
+    objects = StoreManager()
+
     is_dir = False
 
     file        = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False, editable=False)
@@ -56,6 +64,10 @@ class Store(models.Model):
     class Meta:
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
+
+    def natural_key(self):
+        return (self.pootle_path,)
+    natural_key.dependencies = ['pootle_app.Directory']
 
     def handle_file_update(self, sender, **kwargs):
         deletefromcache(self, ["getquickstats", "getcompletestats"])

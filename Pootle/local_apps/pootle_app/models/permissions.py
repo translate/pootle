@@ -86,8 +86,13 @@ def check_permission(permission_codename, request):
         return True
     return permission_codename in request.permissions
 
+class PermissionSetManager(RelatedManager):
+    def get_by_natural_key(self, username, pootle_path):
+        return self.get(profile__user__username=username, directory__pootle_path=pootle_path)
+
+
 class PermissionSet(models.Model):
-    objects = RelatedManager()
+    objects = PermissionSetManager()
     class Meta:
         unique_together = ('profile', 'directory')
         app_label = "pootle_app"
@@ -98,6 +103,10 @@ class PermissionSet(models.Model):
     # negative permissions are no longer used, kept around to scheme
     # compatibility with older versions
     negative_permissions   = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_negative')
+
+    def natural_key(self):
+        return (self.profile.username, self.directory.pootle_path)
+    natural_key.dependencies = ['auth.User', 'pootle_app.Profile', 'pootle_app.Directory']
 
     def __unicode__(self):
         return "%s : %s" % (self.profile.user.username, self.directory.pootle_path)

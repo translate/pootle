@@ -80,8 +80,14 @@ def scan_translation_projects():
 class VersionControlError(Exception):
     pass
 
+
+class TranslationProjectManager(RelatedManager):
+    def get_by_natural_key(self, pootle_path):
+        return self.get(pootle_path=pootle_path)
+
 class TranslationProject(models.Model):
-    objects = RelatedManager()
+    objects = TranslationProjectManager()
+
     index_directory  = ".translation_index"
     class Meta:
         unique_together = ('language', 'project')
@@ -92,6 +98,10 @@ class TranslationProject(models.Model):
     real_path  = models.FilePathField(editable=False)
     directory  = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, editable=False)
+
+    def natural_key(self):
+        return (self.pootle_path,)
+    natural_key.dependencies = ['pootle_app.Directory', 'pootle_app.Language', 'pootle_app.Project']
 
     def __unicode__(self):
         return self.pootle_path

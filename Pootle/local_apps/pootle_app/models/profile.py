@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
+#
 # Copyright 2008 Zuza Software Foundation
-# 
+#
 # This file is part of translate.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # translate is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -51,6 +51,9 @@ class PootleUserManager(UserManager):
 User.objects.__class__ = PootleUserManager
 
 class PootleProfileManager(models.Manager):
+    def get_by_natural_key(self, username):
+        return self.get(user__username=username)
+
     def get_query_set(self):
         return super(PootleProfileManager, self).get_query_set().select_related(
             'languages', 'projects', 'alt_src_langs')
@@ -69,6 +72,10 @@ class PootleProfile(models.Model):
     projects        = models.ManyToManyField(Project, blank=True, db_index=True)
     ui_lang         = models.CharField(max_length=50, blank=True, null=True, choices=(choice for choice in lang_choices()), verbose_name=_('Interface Language'))
     alt_src_langs   = models.ManyToManyField('pootle_app.Language', blank=True, db_index=True, limit_choices_to=~Q(code='templates'), related_name="user_alt_src_langs")
+
+    def natural_key(self):
+        return (self.user.username,)
+    natural_key.dependencies = ['auth.User']
 
     def __unicode__(self):
         return self.user.username

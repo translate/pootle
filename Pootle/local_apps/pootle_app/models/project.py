@@ -32,7 +32,14 @@ from pootle_store.util import absolute_real_path, statssum
 from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 
+class ProjectManager(models.Manager):
+    def get_by_natural_key(self, code):
+        return self.get(code=code)
+
+
 class Project(models.Model):
+    objects = ProjectManager()
+
     class Meta:
         app_label = "pootle_app"
         ordering = ['code']
@@ -65,6 +72,9 @@ class Project(models.Model):
     localfiletype  = models.CharField(max_length=50, default="po", choices=local_choices, verbose_name=_('File Type'))
     treestyle      = models.CharField(max_length=20, default='auto', choices=treestyle_choices, verbose_name=_('Project Tree Style'))
     ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="", verbose_name=_('Ignore Files'))
+
+    def natural_key(self):
+        return (self.code,)
 
     def __unicode__(self):
         return self.fullname
@@ -140,5 +150,4 @@ def create_project_directory(sender, instance, **kwargs):
     project_path = absolute_real_path(instance.code)
     if not os.path.exists(project_path):
         os.makedirs(project_path)
-
 pre_save.connect(create_project_directory, sender=Project)
