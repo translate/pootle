@@ -77,8 +77,10 @@ class Language(models.Model):
     def translated_percentage(self):
         return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
 
-def set_data(sender, instance, **kwargs):
+def set_data(sender, instance, raw=False, **kwargs):
+    if instance.id or raw:
+        return
+
     # create corresponding directory object
     instance.directory = Directory.objects.root.get_or_make_subdir(instance.code)
-
 pre_save.connect(set_data, sender=Language)

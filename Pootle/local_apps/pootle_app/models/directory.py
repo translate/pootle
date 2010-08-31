@@ -166,7 +166,10 @@ class Directory(models.Model):
                 return aux_dir.translationproject
 
 
-def set_directory_pootle_path(sender, instance, **kwargs):
+def set_directory_pootle_path(sender, instance, raw=False, **kwargs):
+    if instance.id or raw:
+        return
+
     if instance.parent is not None:
         instance.pootle_path = '%s%s/' % (instance.parent.pootle_path, instance.name)
     else:
