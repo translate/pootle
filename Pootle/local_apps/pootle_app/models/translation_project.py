@@ -104,7 +104,7 @@ class TranslationProject(models.Model):
         super(TranslationProject, self).delete(*args, **kwargs)
         directory.delete()
 
-    fullname = property(lambda self: "%s [%s]" % (self.project.fullname, self.language.fullname))
+    fullname = property(lambda self: "%s [%s]" % (self.project.fullname, self.language))
     def _get_abs_real_path(self):
         return absolute_real_path(self.real_path)
 
