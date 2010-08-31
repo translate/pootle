@@ -254,7 +254,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         else:
             return self._store_tuple.realpath
     realpath = property(_get_cached_realpath)
-    
+
     def _get_store(self):
         """Get translation store from dictionary cache, populate if store not
         already cached."""
@@ -318,7 +318,7 @@ class TranslationStoreFieldFile(FieldFile, TranslationStoreFile):
         """Saves to temporary file then moves over original file. This
         way we avoid the need for locking."""
         tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
-        #FIXME: what if the file was modified before we save
+        os.close(tmpfile)
         self.store.savefile(tmpfilename)
         shutil.move(tmpfilename, self.realpath)
         self._touch_store_cache()
