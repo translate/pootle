@@ -84,7 +84,7 @@
       <script src='{{ "js/mt/google-translate.js"|m }}' type="text/javascript"></script>
     {% endifequal %}
     {% ifequal backend 'APERTIUM' %}
-      <script src="http://api.apertium.org/JSLibrary.jsp{% if apikey %}?key={{ apikey }}{% endif %}" type="text/javascript"></script>
+      <script src="http://api.apertium.org/JSLibrary.js{% if apikey %}?key={{ apikey }}{% endif %}" type="text/javascript"></script>
       <script src='{{ "js/mt/apertium.js"|m }}' type="text/javascript"></script>
     {% endifequal %}
   {% endfor %}
