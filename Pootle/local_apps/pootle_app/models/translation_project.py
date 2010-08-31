@@ -547,13 +547,18 @@ def project_cleanup(sender, instance, **kwargs):
         pass
 pre_save.connect(project_cleanup, sender=Project)
 
-def scan_languages(sender, instance, **kwargs):
+def scan_languages(sender, instance, created=False, raw=False, **kwargs):
+    if not created or raw:
+        return
+
     for language in Language.objects.iterator():
         create_translation_project(language, instance)
 post_save.connect(scan_languages, sender=Project)
 
-def scan_projects(sender, instance, **kwargs):
+def scan_projects(sender, instance, created=False, raw=False, **kwargs):
+    if not created or raw:
+        return
+
     for project in Project.objects.iterator():
         create_translation_project(instance, project)
-
 post_save.connect(scan_projects, sender=Language)
