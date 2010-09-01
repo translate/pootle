@@ -93,7 +93,7 @@ def check_permission(permission_codename, request):
     return permission_codename in request.permissions
 
 class PermissionSetManager(RelatedManager):
-    def get_by_natural_key(self, pootle_path, username):
+    def get_by_natural_key(self, username, pootle_path):
         return self.get(profile__user__username=username, directory__pootle_path=pootle_path)
 
 class PermissionSet(models.Model):
