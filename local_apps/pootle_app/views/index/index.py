@@ -113,7 +113,8 @@ def view(request):
                               'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
                               'untranslated': _('Untranslated')},
         }
+    visible_langs = [l for l in templatevars['languages'] if l['total'] != 0]
     templatevars['moreprojects'] = len(templatevars['projects']) >\
-                                   len(templatevars['languages'])
+                                   len(visible_langs)
 
     return render_to_response('index/index.html', templatevars, RequestContext(request))
