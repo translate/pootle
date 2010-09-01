@@ -506,7 +506,7 @@ def reject_suggestion(request, uid, suggid):
             suggstat.state = 'rejected'
             suggstat.save()
 
-    response = simplejson.dumps(response, indent=4)
+    response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
 def accept_suggestion(request, uid, suggid):
@@ -550,7 +550,7 @@ def accept_suggestion(request, uid, suggid):
                              from_suggestion=suggstat)
             sub.save()
 
-    response = simplejson.dumps(response, indent=4)
+    response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
 
@@ -576,5 +576,5 @@ def reject_qualitycheck(request, uid, checkid):
             check = None
             response['success'] = False
 
-    response = simplejson.dumps(response, indent=4)
+    response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
