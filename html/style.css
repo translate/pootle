@@ -146,7 +146,7 @@ p, blockquote
 input, textarea
 {
     margin: 0;
-    padding 1px;
+    padding: 1px;
 }
 
 table
