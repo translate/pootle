@@ -164,21 +164,30 @@ def server_stats():
 def server_stats_more(request):
     result = cache.get("server_stats_more")
     if result is None:
-        result = []
+        result = {}
         unit_query = Unit.objects.filter(state__gte=TRANSLATED).exclude(
             store__translation_project__project__code__in=('pootle', 'tutorial', 'terminology')).exclude(
             store__translation_project__language__code='templates').order_by()
-        result.append((_('Files'), unit_query.values('store').distinct().count()))
-        result.append((_('Active projects'), unit_query.values('store__translation_project__project').distinct().count()))
-        result.append((_('Active languages'), unit_query.values('store__translation_project__language').distinct().count()))
+        result['store_count'] = unit_query.values('store').distinct().count()
+        result['project_count'] = unit_query.values('store__translation_project__project').distinct().count()
+        result['language_count'] = unit_query.values('store__translation_project__language').distinct().count()
         sums = sum_column(unit_query, ('source_wordcount',), count=True)
-        result.append((_('Translated strings'), sums['count']))
-        result.append((_('Translated words'), sums['source_wordcount'] or 0))
-        result.append((_('Active users'), (PootleProfile.objects.exclude(submission=None) |\
-                                          PootleProfile.objects.exclude(suggestion=None) |\
-                                          PootleProfile.objects.exclude(suggester=None)).order_by().count()))
+        result['string_count'] = sums['count']
+        result['word_count'] = sums['source_wordcount'] or 0
+        result['user_active_count'] = (PootleProfile.objects.exclude(submission=None) |\
+                                       PootleProfile.objects.exclude(suggestion=None) |\
+                                       PootleProfile.objects.exclude(suggester=None)).order_by().count()
         cache.set("server_stats_more", result, 86400)
-    response = simplejson.dumps(result, indent=4)
+    stat_strings = {'store_count': _('Files'),
+                    'project_count': _('Active projects'),
+                    'language_count': _('Active languages'),
+                    'string_count': _('Translated strings'),
+                    'word_count': _('Translated words'),
+                    'user_active_count': _('Active users')}
+    response = []
+    for k in result.keys():
+        response.append((stat_strings[k], result[k]))
+    response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
 @user_is_admin
