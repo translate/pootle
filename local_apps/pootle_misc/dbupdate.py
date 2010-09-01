@@ -196,7 +196,11 @@ def staggered_update(db_buildversion):
         yield update_permissions_20030()
 
     if db_buildversion < 21000:
-        yield update_tables_21000()
+        try:
+            yield update_tables_21000()
+        except Exception, e:
+            logging.warning("something broke while upgrading database tables:\n%s", str(e))
+
         logging.info("creating project directories")
         Directory.objects.root.get_or_make_subdir('projects')
         for project in Project.objects.iterator():
@@ -215,13 +219,20 @@ def staggered_update(db_buildversion):
                 logging.warning("something broke while upgrading %s:\n%s", store.pootle_path, str(e))
 
     # build missing tables
-    yield syncdb()
+    try:
+        yield syncdb()
+    except Exception, e:
+        logging.warning("something broke while creating new database tables:\n%s", str(e))
 
     if db_buildversion < 21000:
         yield parse_start()
         for store in Store.objects.iterator():
-            yield parse_store(store)
-            yield import_suggestions(store)
+            try:
+                yield parse_store(store)
+                yield import_suggestions(store)
+            except Exception, e:
+                logging.warning("something broke while parsing %s:\n%s", store, str(e))
+
         yield parse_end()
 
     # first time to visit the front page all stats for projects and
