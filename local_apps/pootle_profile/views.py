@@ -76,6 +76,20 @@ def login(request):
         language = forms.ChoiceField(label=_('Interface Language'), choices=language_list(request),
                                      initial="", required=False)
 
+        def clean(self):
+            username = self.cleaned_data.get('username')
+            password = self.cleaned_data.get('password')
+
+            if username and password:
+                self.user_cache = auth.authenticate(username=username, password=password)
+                if self.user_cache is None:
+                    raise forms.ValidationError(_("Please enter a correct username and password. Note that both fields are case-sensitive."))
+                elif not self.user_cache.is_active:
+                    raise forms.ValidationError(_("This account is inactive."))
+
+            return self.cleaned_data
+
+
     if request.user.is_authenticated():
         return redirect_after_login(request)
     else:
@@ -85,15 +99,13 @@ def login(request):
             if form.is_valid():
                 auth.login(request, form.get_user())
 
-                if request.session.test_cookie_worked():
-                    request.session.delete_test_cookie()
                 language = request.POST.get('language')
                 request.session['django_language'] = language
                 response = redirect_after_login(request)
                 return response
         else:
             form = LangAuthenticationForm(request)
-        request.session.set_test_cookie()
+
         context = {
             'form': form,
             }
