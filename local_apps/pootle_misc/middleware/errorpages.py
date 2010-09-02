@@ -42,7 +42,7 @@ class ErrorPagesMiddleware(object):
         elif isinstance(exception, PermissionDenied):
             templatevars = {}
             if len(exception.args) > 0:
-                templatevars['permission_error'] = unicode(exception.args[0])
+                templatevars['permission_error'] = unicode(exception)
             if not request.user.is_authenticated():
                 login_msg = _('You need to <a href="%(login_link)s">login</a> to access this page.' %
                               {'login_link': l("/accounts/login/")})
