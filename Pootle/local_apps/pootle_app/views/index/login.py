@@ -20,7 +20,7 @@
 
 from django import forms
 from django.utils.translation import ugettext as _
-from django.contrib.auth import REDIRECT_FIELD_NAME, login
+from django.contrib.auth import REDIRECT_FIELD_NAME, login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -54,6 +54,19 @@ def view(request):
     class LangAuthenticationForm(AuthenticationForm):
         language = forms.ChoiceField(label=_('Interface Language'), choices=language_list(request),
                                      initial="", required=False)
+        def clean(self):
+            username = self.cleaned_data.get('username')
+            password = self.cleaned_data.get('password')
+
+            if username and password:
+                self.user_cache = authenticate(username=username, password=password)
+                if self.user_cache is None:
+                    raise forms.ValidationError(_("Please enter a correct username and password. Note that both fields are case-sensitive."))
+                elif not self.user_cache.is_active:
+                    raise forms.ValidationError(_("This account is inactive."))
+
+            return self.cleaned_data
+
 
     if request.user.is_authenticated():
         return redirect_after_login(request)
@@ -63,16 +76,13 @@ def view(request):
             # do login here
             if form.is_valid():
                 login(request, form.get_user())
-                if request.session.test_cookie_worked():
-                    request.session.delete_test_cookie()
-
                 language = request.POST.get('language')
                 request.session['django_language'] = language
                 response = redirect_after_login(request)
                 return response
         else:
             form = LangAuthenticationForm(request)
-        request.session.set_test_cookie()
+
         context = {
             'form': form
             }
