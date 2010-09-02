@@ -344,7 +344,7 @@ def unzip_external(request, directory, django_file, overwrite):
                 try:
                     upload_file(request, target_dir, newfile, overwrite)
                 except ValueError, e:
-                    logging.error("error adding %s\t%s", fname, e)
+                    logging.error(u"error adding %s\t%s", fname, e)
     finally:
         # Clean up temporary file and directory used in try-block
         import shutil
@@ -378,7 +378,7 @@ def unzip_python(request, directory, django_file, overwrite):
                     newfile.name = os.path.basename(filename)
                     upload_file(request, target_dir, newfile, overwrite)
             except ValueError, e:
-                logging.error("error adding %s\t%s", filename, e)
+                logging.error(u"error adding %s\t%s", filename, e)
     finally:
         archive.close()
 
@@ -487,7 +487,7 @@ def upload_file(request, directory, django_file, overwrite, store=None):
         return
 
     if store.file and store.file.read() == django_file.read():
-        logging.debug("identical file uploaded to %s, not merging", store.pootle_path)
+        logging.debug(u"identical file uploaded to %s, not merging", store.pootle_path)
         return
 
     django_file.seek(0)

@@ -275,7 +275,7 @@ class Unit(models.Model, base.TranslationUnit):
         if self.getid() == unit.getid():
             return unit
         #FIXME: if we are here, file changed structure and we need to update indeces
-        logging.debug("incorrect unit index %d for %s in file %s", unit.index, unit, unit.store.file)
+        logging.debug(u"incorrect unit index %d for %s in file %s", unit.index, unit, unit.store.file)
         self.store.file.store.require_index()
         unit = self.store.file.store.findid(self.getid())
         return unit
@@ -674,7 +674,7 @@ class Store(models.Model, base.TranslationStore):
         if self.state == LOCKED:
             # file currently being updated
             #FIXME: shall we idle wait for lock to be released first? what about stale locks?
-            logging.info("attemped to update %s while locked", self.pootle_path)
+            logging.info(u"attemped to update %s while locked", self.pootle_path)
             return
         if store is None:
             store = self.file.store
@@ -682,7 +682,7 @@ class Store(models.Model, base.TranslationStore):
         key = "%s:sync" % self.pootle_path
 
         if self.state < PARSED:
-            logging.debug("Parsing %s", self.pootle_path)
+            logging.debug(u"Parsing %s", self.pootle_path)
             # no existing units in db, file hasn't been parsed before
             # no point in merging, add units directly
             oldstate = self.state
@@ -694,7 +694,7 @@ class Store(models.Model, base.TranslationStore):
                         try:
                             self.addunit(unit, index)
                         except IntegrityError, e:
-                            logging.warning('Data integrity error while importing unit %s:\n%s', str(unit.getid()), str(e))
+                            logging.warning(u'Data integrity error while importing unit %s:\n%s', unit.getid(), e)
             except:
                 # something broke, delete any units that got created
                 # and return store state to its original value
@@ -709,7 +709,7 @@ class Store(models.Model, base.TranslationStore):
             return
 
         # lock store
-        logging.debug("Updating %s", self.pootle_path)
+        logging.debug(u"Updating %s", self.pootle_path)
         oldstate = self.state
         self.state = LOCKED
         self.save()
@@ -759,7 +759,7 @@ class Store(models.Model, base.TranslationStore):
 
     @commit_on_success
     def update_qualitychecks(self):
-        logging.debug("Updating quality checks for %s", self.pootle_path)
+        logging.debug(u"Updating quality checks for %s", self.pootle_path)
         for unit in self.units.iterator():
             unit.update_qualitychecks()
 
@@ -777,7 +777,7 @@ class Store(models.Model, base.TranslationStore):
         if not self.file:
             if create:
                 # file doesn't exist let's create it
-                logging.debug("Creating file %s", self.pootle_path)
+                logging.debug(u"Creating file %s", self.pootle_path)
                 storeclass = self.get_file_class()
                 store_path = os.path.join(self.translation_project.abs_real_path, self.name)
                 store = self.convert(storeclass)
@@ -789,7 +789,7 @@ class Store(models.Model, base.TranslationStore):
                 cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
             return
 
-        logging.debug("Syncing %s", self.pootle_path)
+        logging.debug(u"Syncing %s", self.pootle_path)
         self.require_dbid_index(update=True)
         old_ids = set(self.file.store.getids())
         new_ids = set(self.dbid_index.keys())
@@ -844,7 +844,7 @@ class Store(models.Model, base.TranslationStore):
 
     def convert(self, fileclass):
         """export to fileclass"""
-        logging.debug("Converting %s to %s", self.pootle_path, fileclass)
+        logging.debug(u"Converting %s to %s", self.pootle_path, fileclass)
         output = fileclass()
         try:
             output.settargetlanguage(self.translation_project.language.code)
@@ -945,11 +945,11 @@ class Store(models.Model, base.TranslationStore):
         try:
             return calculate_stats(self.units)
         except IntegrityError:
-            logging.info("Duplicate IDs in %s", self.abs_real_path)
+            logging.info(u"Duplicate IDs in %s", self.abs_real_path)
         except base.ParseError, e:
-            logging.info("Failed to parse %s\n%s", self.abs_real_path, e)
+            logging.info(u"Failed to parse %s\n%s", self.abs_real_path, e)
         except (IOError, OSError), e:
-            logging.info("Can't access %s\n%s", self.abs_real_path, e)
+            logging.info(u"Can't access %s\n%s", self.abs_real_path, e)
         stats = {}
         stats.update(empty_quickstats)
         stats['errors'] += 1
@@ -982,12 +982,12 @@ class Store(models.Model, base.TranslationStore):
         if self.state == LOCKED:
             # file currently being updated
             #FIXME: shall we idle wait for lock to be released first? what about stale locks?
-            logging.info("attemped to merge %s while locked", self.pootle_path)
+            logging.info(u"attemped to merge %s while locked", self.pootle_path)
             return
 
         # must be done before locking the file in case it wasn't already parsed
         self.require_units()
-        logging.debug("merging %s", self.pootle_path)
+        logging.debug(u"merging %s", self.pootle_path)
 
         # lock store
         oldstate = self.state

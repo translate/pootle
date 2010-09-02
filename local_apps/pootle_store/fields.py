@@ -151,7 +151,7 @@ class TranslationStoreFieldFile(FieldFile):
                     # if file is modified act as if it doesn't exist in cache
                     raise KeyError
             except KeyError:
-                logging.debug("cache miss for %s", self.path)
+                logging.debug(u"cache miss for %s", self.path)
                 self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore, classes=factory_classes),
                                                mod_info, self.realpath)
                 self._store_cache[self.path] = self._store_tuple

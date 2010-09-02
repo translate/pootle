@@ -55,10 +55,10 @@ class Command(NoArgsCommand):
                 translation_project.delete()
                 continue
 
-            logging.info("Scanning for new files in %s", translation_project)
+            logging.info(u"Scanning for new files in %s", translation_project)
             translation_project.scan_files()
 
-            logging.info("Updating translations from %s", translation_project)
+            logging.info(u"Updating translations from %s", translation_project)
             # update new translations
             for store in translation_project.stores.exclude(file='').iterator():
                 store.update(update_translation=not keep, conservative=keep, update_structure=True)

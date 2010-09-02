@@ -160,7 +160,7 @@ class TranslationProject(models.Model):
     checker = property(_get_checker)
 
     def filtererrorhandler(self, functionname, str1, str2, e):
-        logging.error("error in filter %s: %r, %r, %s", functionname, str1, str2, e)
+        logging.error(u"error in filter %s: %r, %r, %s", functionname, str1, str2, e)
         return False
 
     def _get_non_db_state(self):
@@ -196,13 +196,13 @@ class TranslationProject(models.Model):
             try:
                 store.require_units()
             except IntegrityError:
-                logging.info("Duplicate IDs in %s", store.abs_real_path)
+                logging.info(u"Duplicate IDs in %s", store.abs_real_path)
                 errors += 1
             except ParseError, e:
-                logging.info("Failed to parse %s\n%s", store.abs_real_path, e)
+                logging.info(u"Failed to parse %s\n%s", store.abs_real_path, e)
                 errors += 1
             except (IOError, OSError), e:
-                logging.info("Can't access %s\n%s", store.abs_real_path, e)
+                logging.info(u"Can't access %s\n%s", store.abs_real_path, e)
                 errors += 1
         return errors
 
@@ -283,7 +283,7 @@ class TranslationProject(models.Model):
                     self.non_db_state._index_initialized = True
                 self.non_db_state.indexer =  indexer
             except Exception, e:
-                logging.warning("Could not initialize indexer for %s in %s: %s", self.project.code, self.language.code, str(e))
+                logging.warning(u"Could not initialize indexer for %s in %s: %s", self.project.code, self.language.code, str(e))
                 self.non_db_state._indexing_enabled = False
 
         return self.non_db_state.indexer
@@ -307,7 +307,7 @@ class TranslationProject(models.Model):
         working_copy = store.file.store
 
         try:
-            logging.debug("updating %s from version control", store.file.path)
+            logging.debug(u"updating %s from version control", store.file.path)
             versioncontrol.updatefile(store.file.path)
             store.file._delete_store_cache()
             store.update(update_structure=True, update_translation=True, conservative=False)
@@ -315,12 +315,12 @@ class TranslationProject(models.Model):
         except Exception, e:
             #something wrong, file potentially modified, bail out
             #and replace with working copy
-            logging.error("near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
+            logging.error(u"near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
             working_copy.save()
             raise VersionControlError
 
         #FIXME: try to avoid merging if file was not updated
-        logging.debug("merging %s with version control update", store.file.path)
+        logging.debug(u"merging %s with version control update", store.file.path)
         store.mergefile(working_copy, None, allownewstrings=False, suggestions=True, notranslate=False, obsoletemissing=False)
 
         try:
@@ -402,7 +402,7 @@ class TranslationProject(models.Model):
                 versioncontrol.commitfile(file, message=message, author=author)
                 request.user.message_set.create(message="Committed file: <em>%s</em>" % file)
         except Exception, e:
-            logging.error("Failed to commit files: %s", e)
+            logging.error(u"Failed to commit files: %s", e)
             request.user.message_set.create(message="Failed to commit file: %s" % e)
             success = False
         try:
@@ -418,7 +418,7 @@ class TranslationProject(models.Model):
         try:
             hooks.hook(self.project.code, "initialize", self.real_path, self.language.code)
         except Exception, e:
-            logging.error("Failed to initialize (%s): %s", self.language.code, e)
+            logging.error(u"Failed to initialize (%s): %s", self.language.code, e)
 
     ##############################################################################################
 
@@ -478,7 +478,7 @@ class TranslationProject(models.Model):
         the TranslationProject (it is cached!), it may NOT be part of the Project object,
         but should be used via a short living local variable.
         """
-        logging.debug("Loading indexer for %s", self.pootle_path)
+        logging.debug(u"Loading indexer for %s", self.pootle_path)
         indexdir = os.path.join(self.abs_real_path, self.index_directory)
         index = indexing.get_indexer(indexdir)
         index.set_field_analyzers({
@@ -499,7 +499,7 @@ class TranslationProject(models.Model):
             indexer.commit_transaction()
             indexer.flush(optimize=True)
         except Exception, e:
-            logging.error("Error opening indexer for %s:\n%s", self, e)
+            logging.error(u"Error opening indexer for %s:\n%s", self, e)
             try:
                 indexer.cancel_transaction()
             except:
@@ -554,7 +554,7 @@ class TranslationProject(models.Model):
             # (item is None)
             # The po file is not indexed - or it was changed externally
             # delete all items of this file
-            logging.debug("Updating %s indexer for file %s", self.pootle_path, store.pootle_path)
+            logging.debug(u"Updating %s indexer for file %s", self.pootle_path, store.pootle_path)
             indexer.delete_doc({"pofilename": store.pootle_path})
             units = store.units
         addlist = []

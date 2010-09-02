@@ -132,7 +132,7 @@ def parse_start():
 
 def import_suggestions(store):
     try:
-        logging.info("Importing suggestions for %s if any.", store.real_path)
+        logging.info(u"Importing suggestions for %s if any.", store.real_path)
         store.import_pending()
         count = store.has_suggestions()
         if count:
@@ -151,7 +151,7 @@ def import_suggestions(store):
 
 def parse_store(store):
     try:
-        logging.info("Importing units from %s", store.real_path)
+        logging.info(u"Importing units from %s", store.real_path)
         store.require_units()
         count = store.getquickstats()['total']
         text = u"""
@@ -199,7 +199,7 @@ def staggered_update(db_buildversion):
         try:
             yield update_tables_21000()
         except Exception, e:
-            logging.warning("something broke while upgrading database tables:\n%s", str(e))
+            logging.warning(u"something broke while upgrading database tables:\n%s", e)
 
         logging.info("creating project directories")
         Directory.objects.root.get_or_make_subdir('projects')
@@ -208,7 +208,7 @@ def staggered_update(db_buildversion):
             try:
                 project.save()
             except Exception, e:
-                logging.warning("something broke while upgrading %s:\n%s", project, str(e))
+                logging.warning(u"something broke while upgrading %s:\n%s", project, e)
 
         logging.info("associating stores with translation projects")
         for store in Store.objects.iterator():
@@ -216,13 +216,13 @@ def staggered_update(db_buildversion):
                 store.translation_project = store.parent.get_translationproject()
                 store.save()
             except Exception, e:
-                logging.warning("something broke while upgrading %s:\n%s", store.pootle_path, str(e))
+                logging.warning(u"something broke while upgrading %s:\n%s", store.pootle_path, e)
 
     # build missing tables
     try:
         yield syncdb()
     except Exception, e:
-        logging.warning("something broke while creating new database tables:\n%s", str(e))
+        logging.warning(u"something broke while creating new database tables:\n%s", e)
 
     if db_buildversion < 21000:
         yield parse_start()
@@ -231,7 +231,7 @@ def staggered_update(db_buildversion):
                 yield parse_store(store)
                 yield import_suggestions(store)
             except Exception, e:
-                logging.warning("something broke while parsing %s:\n%s", store, str(e))
+                logging.warning(u"something broke while parsing %s:\n%s", store, e)
 
         yield parse_end()
 

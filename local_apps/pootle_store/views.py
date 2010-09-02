@@ -144,10 +144,10 @@ def get_search_step_query(translation_project, form, units_queryset):
     """Narrows down units query to units matching search string"""
 
     if translation_project.indexer is None:
-        logging.debug("No indexer for %s, using database search", translation_project)
+        logging.debug(u"No indexer for %s, using database search", translation_project)
         return get_non_indexed_search_step_query(form, units_queryset)
 
-    logging.debug("Found %s indexer for %s, using indexed search",
+    logging.debug(u"Found %s indexer for %s, using indexed search",
                   translation_project.indexer.INDEX_DIRECTORY_NAME, translation_project)
 
     word_querylist = []
@@ -252,7 +252,7 @@ def get_current_units(request, step_queryset, units_queryset):
             if unit.id == prev_id:
                 prev_unit = unit
             elif unit.index > prev_index or back and unit.index < prev_index:
-                logging.debug("submitting to a unit no longer part of step query, %s:%d", (pootle_path, prev_id))
+                logging.debug(u"submitting to a unit no longer part of step query, %s:%d", (pootle_path, prev_id))
                 # prev_unit no longer part of the query, load it directly
                 edit_unit = unit
                 prev_unit = Unit.objects.get(store__pootle_path=pootle_path, id=prev_id)

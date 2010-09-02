@@ -30,7 +30,7 @@ def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
         key = iri_to_uri(instance.pootle_path + ":" + function.__name__)
         result = cache.get(key)
         if result is None:
-            logging.debug("cache miss for %s", key)
+            logging.debug(u"cache miss for %s", key)
             result = function(instance, *args, **kwargs)
             cache.set(key, result, timeout)
         return result
