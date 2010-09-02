@@ -56,7 +56,6 @@ def admin_permissions(request, current_directory, template, context):
     class PermissionSetForm(forms.ModelForm):
         class Meta:
             model = PermissionSet
-            exclude = ['negative_permissions']
 
         directory = forms.ModelChoiceField(queryset=Directory.objects.filter(pk=current_directory.pk),
                                            initial=current_directory.pk, widget=forms.HiddenInput)

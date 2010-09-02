@@ -107,7 +107,7 @@ class PermissionSet(models.Model):
     positive_permissions = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_positive')
     # negative permissions are no longer used, kept around to scheme
     # compatibility with older versions
-    negative_permissions = models.ManyToManyField(Permission, db_index=True, related_name='permission_sets_negative')
+    negative_permissions = models.ManyToManyField(Permission, editable=False, related_name='permission_sets_negative')
 
     def natural_key(self):
         return (self.profile.user.username, self.directory.pootle_path)
