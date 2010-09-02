@@ -18,11 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from translate.lang import data
-
 from django import forms
 from django.utils.translation import ugettext as _
-from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render_to_response
@@ -46,7 +43,7 @@ def language_list(request):
     tr_default = _("Default")
     if tr_default != "Default":
         tr_default = u"%s | \u202dDefault" % tr_default
-    
+
     choices = lang_choices()
     choices.insert(0, ('', tr_default))
     return choices
@@ -66,10 +63,9 @@ def view(request):
             # do login here
             if form.is_valid():
                 login(request, form.get_user())
-
                 if request.session.test_cookie_worked():
                     request.session.delete_test_cookie()
-                    
+
                 language = request.POST.get('language')
                 request.session['django_language'] = language
                 response = redirect_after_login(request)
