@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+"""wrapper around Django 1.1+ aggregate query functions, with alternative implementation for Django 1.0"""
+
 try:
     from django.db.models import Sum, Count, Max
 
@@ -46,13 +48,15 @@ try:
         return queryset.annotate(count=Count(column)).order_by('-count').values('count', *fields)
 
 except ImportError:
+    # pure python alternative implementation of aggregate queries
+
     from pootle_misc.util import dictsum
     from django.core.exceptions import ObjectDoesNotExist
 
     def max_column(queryset, column, default):
         try:
             return queryset.order_by('-'+column).values_list(column, flat=True)[0]
-        except ObjectDoesNotExist:
+        except (IndexError, ObjectDoesNotExist):
             return default
 
 
