@@ -25,6 +25,7 @@ from django.db.models.signals import post_syncdb, pre_delete, post_delete
 from django.utils.translation import ugettext_noop as _
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
+from django.core.management import call_command
 
 import pootle_app.models
 from pootle_app.models import Directory
@@ -146,6 +147,12 @@ def create_terminology_project():
                                                          source_language=en)
 
 def post_syncdb_handler(sender, created_models, **kwargs):
+    try:
+        # create default cache table
+        call_command('createcachetable', 'pootlecache')
+    except:
+        pass
+
     if PootleProfile in created_models:
         create_essential_users()
     if Directory in created_models:
@@ -157,6 +164,7 @@ def post_syncdb_handler(sender, created_models, **kwargs):
     if PermissionSet in created_models:
         create_pootle_permissions()
         create_pootle_permission_sets()
+
     config = siteconfig.load_site_config()
     config.set('BUILDVERSION', code_buildversion)
     config.set('TT_BUILDVERSION', code_tt_buildversion)
