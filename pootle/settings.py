@@ -89,23 +89,23 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'pootle_misc.middleware.baseurl.BaseUrlMiddleware',
-    'django.middleware.transaction.TransactionMiddleware',
-    'pootle_misc.middleware.siteconfig.SiteConfigMiddleware',
-    'django.middleware.cache.UpdateCacheMiddleware', # THIS MUST BE FIRST
-    'django.middleware.http.ConditionalGetMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
-    'django.contrib.csrf.middleware.CsrfMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'pootle.middleware.setlocale.SetLocale',
-    'pootle_misc.middleware.errorpages.ErrorPagesMiddleware',
+    'pootle_misc.middleware.baseurl.BaseUrlMiddleware', # resolves paths
+    'django.middleware.transaction.TransactionMiddleware', # needs to be before anything that writes to the db
+    'pootle_misc.middleware.siteconfig.SiteConfigMiddleware', # must be early to detect the need to install or update schema, but must precede the cache middleware
+    'django.middleware.cache.UpdateCacheMiddleware', # must be as high as possible (see above)
+    'django.middleware.http.ConditionalGetMiddleware', # support for e-tag
+    'django.middleware.gzip.GZipMiddleware', # compress responses
+    'django.contrib.csrf.middleware.CsrfMiddleware', # protection against cross-site request forgery
+    'django.contrib.sessions.middleware.SessionMiddleware', # must be before authentication
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # must be before anything user-related
+    'django.middleware.locale.LocaleMiddleware', # user-related
+    'pootle.middleware.setlocale.SetLocale', # sets Python's locale based on request's locale for sorting, etc.
+    'pootle_misc.middleware.errorpages.ErrorPagesMiddleware', # nice 500 and 403 pages (must be after locale to have translated versions)
     'django.middleware.common.CommonMiddleware',
     #'pootle.middleware.check_cookies.CheckCookieMiddleware',
-    'pootle.middleware.captcha.CaptchaMiddleware',
+    'pootle.middleware.captcha.CaptchaMiddleware', # must be early in the response cycle (close to bottom)
     #'pootle.middleware.profile.ProfilerMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware' # THIS MUST BE LAST
+    'django.middleware.cache.FetchFromCacheMiddleware' # must be last in the request cycle (at the bottom)
 )
 
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
