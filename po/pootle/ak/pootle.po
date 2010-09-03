@@ -7,21 +7,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-07 23:53+0200\n"
-"Last-Translator: kasahorow <kasahorow@suuch.com>\n"
+"PO-Revision-Date: 2010-09-02 15:17+0200\n"
+"Last-Translator: Derrick Frimpong <flexyflame2006@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ak\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.1\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr "Mia \"Control\", anaaso \"Command\" wɔ Mac so sɛ wo pɛ sɛ wo paw bebree a."
+msgstr "Mea \"Control\", anaaso \"Command\" wɔ Mac so sɛ wo pɛ sɛ wo paw bebree a."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -745,6 +745,8 @@ msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Nkitahodeɛ biara nni hɔ. Nkitahodeɛ bea no bɛ ma wɔn a wɔ di duma no kwan "
+"ama wɔ ne server hyɛ so foɔ no adi nketaho."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -765,15 +767,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Dwumadi kuo ba"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Kasa kuo ba"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Dwumafoɔ Nyenaa"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -873,7 +875,7 @@ msgstr "Kyerɛ no Nyinara ase"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "Hwɛso bea"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -881,12 +883,12 @@ msgstr "Folda no ZIP"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "kyerɛ ase offline"
 
-#: local_apps/pootle_app/views/language/item_dict.py:143
+#: local_apps/pootle_app/views/language/item_dict.py:145
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Twe XLIFF fael ma offline nkyerase"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -894,11 +896,11 @@ msgstr "Twe XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Amane"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Amane nkyerɛkyerɛmu"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -906,10 +908,14 @@ msgstr "Twe"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Twe fael"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
-msgid "Commit to VCS"
+msgid "Download"
+msgstr "Twe"
+
+#: local_apps/pootle_app/views/language/item_dict.py:161
+msgid "Download file"
 msgstr "Kyerɛw kɔ VCS"
 
 #: local_apps/pootle_app/views/language/item_dict.py:182
@@ -1121,7 +1127,7 @@ msgstr "Einihyialaez databes, yɛde wo bɛkɔ kratafaa a ɛwɔ enim wɔ nsɛkɛn
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Nto so"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1233,6 +1239,8 @@ msgstr "%(language)s ne Nkaebɔ"
 #, python-format
 msgid "News for %(project)s"
 msgstr ""
+"Ho hia sɛ wo <a href=\"%(login_link)s\">bɛlɔgin</a> ansaana wo akɔ krataafa yi "
+"so."
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1387,15 +1395,15 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
@@ -1418,10 +1426,14 @@ msgstr ""
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
 msgstr ""
+"Kood tiawa ma nkɔsodwuma yi. Ɛwɔ sɛ ASCII nkarakta, nɔmba ne famudahye (_) "
+"pɛ na ɛwɔ mu."
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
 msgstr ""
+"Projɛkt yi ne nkyerɛmu. Wo tumi de ma infɔmehyɛn anaaso akwankyerɛ. Ɛwɔ sɛ "
+"fild yi yɛ HTML a odi mu."
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
@@ -1739,6 +1751,8 @@ msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"GNU-stael fael din a onndi mu: %(local_filename)s. Ɛwɔ sɛ ɔde '%(langcode)s."
+"%(filetype)s' fa."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1926,7 +1940,7 @@ msgstr ""
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Gyetom"
 
 #: templates/language_menu.html:7
 msgid "Language main page"

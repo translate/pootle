@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-10 10:17+0200\n"
+"PO-Revision-Date: 2010-08-19 08:55+0200\n"
 "Last-Translator: kkemenczy <kkemenczy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-rc1\n"
+"X-Generator: Pootle 2.1.1\n"
 
 #: strings.py:8
 msgid ""
@@ -567,7 +567,7 @@ msgstr "Még nem regisztrált?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
 msgid "Register."
-msgstr "Regisztráció"
+msgstr "Regisztráció."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -1572,9 +1572,9 @@ msgid "Translator Comments"
 msgstr "Fordítói megjegyzések"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format, fuzzy
+#, python-format, 
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "%(suggid)d javaslat a(z) %(user)s felhasználótól:"
+msgstr "%(i)d javaslat a(z) %(user)s felhasználótól:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format

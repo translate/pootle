@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-11 09:47+0200\n"
+"PO-Revision-Date: 2010-08-20 19:26+0200\n"
 "Last-Translator: Jussi <jta_l10n@dnainternet.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-rc1\n"
+"X-Generator: Pootle 2.1.0\n"
 
 #: strings.py:8
 msgid ""
@@ -103,7 +103,7 @@ msgstr "Lähdekieli"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Android-merkkijonot"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -631,10 +631,13 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"lxml versio %(installed)s on asennettu. Pootle vaatii version %(required)s "
+"tukeakseen XML-formaattia."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
 msgstr ""
+"lxml:ää ei ole asennettu. Pootle vaatii lxml:n tukeakseen XML-formaattia."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -751,6 +754,8 @@ msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Yhteysosoitetta ei ole määritetty. Palautelomake mahdollistaa käyttäjien "
+"yhteydenpidon palvelimen ylläpitäjien kanssa."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -892,10 +897,10 @@ msgstr "Hakemisto ZIP-tiedostona"
 msgid "Translate offline"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:143
+#: local_apps/pootle_app/views/language/item_dict.py:145
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Lataa XLIFF-tiedosto kääntääksesi yhteydettömässä tilassa."
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -1128,14 +1133,14 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Päivitys"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
 msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
-msgstr ""
+msgstr "Tietokannan taulut ovat versiota %d. Pootle päivittää nyt tietokannan."
 
 #: local_apps/pootle_misc/dbupdate.py:78
 msgid "Creating missing database tables..."
@@ -1153,7 +1158,7 @@ msgstr "Päivitetään nykyiset tietokantataulut..."
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
-msgstr ""
+msgstr "Pootle tuo kaikki käännökset tietokantaan. Tämä voi kestää kauan aikaa."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
@@ -1171,6 +1176,8 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
+"Tietokanta alustettu, uudelleenohjaus etusivulle tapahtuu 10 sekunnin "
+"kuluttua"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
@@ -1179,7 +1186,7 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Kaikki käännökset on tuotu."
 
 #: local_apps/pootle_misc/dbupdate.py:180
 msgid ""
@@ -1239,6 +1246,7 @@ msgstr "Uutiset kielelle %(language)s"
 #, python-format
 msgid "News for %(project)s"
 msgstr "%(project)s-projektin uutiset"
+"Tälle sivulle pääsee vain <a href=\"%(login_link)s\">sisäänkirjautuneena</a>."
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1458,10 +1466,14 @@ msgstr "Ei muita tarkastettavia merkkijonoja."
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
 msgstr "Ei muita käännettäviä merkkijonoja."
+"Lyhyt koodi projektille. Koodin tulee sisältää ainoastaan ASCII-merkkejä, "
+"numeroita ja alaviiva (_)."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
 msgstr "Hakusanan sisältäviä tarkastettavia merkkijonoja ei löytynyt."
+"Tämän projektin kuvaus. Tähän voi laittaa lisätietoja tai ohjeita. Tämän "
+"kentän tulisi olla validia HTML-koodia."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
@@ -1582,7 +1594,7 @@ msgstr "Monikko"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Sanaston uudelleenluonti"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
@@ -1595,10 +1607,12 @@ msgstr ""
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
 msgstr ""
+"Haluatko varmasti luoda sanaston uudelleen? Kaikki aiemmat termit ja niiden "
+"käännökset poistetaan."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Voit luoda sanaston uudelleen alusta."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
@@ -1763,7 +1777,7 @@ msgstr "Päivitä tiedostot mallineista"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Tutki projektitiedostot uudelleen"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
 msgid ""

@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-06 11:31+0200\n"
-"Last-Translator: Michal <michal@cihar.com>\n"
+"PO-Revision-Date: 2010-08-19 10:54+0200\n"
+"Last-Translator: Milan <milan.jaros@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.1\n"
 
 #: strings.py:8
 msgid ""
@@ -327,12 +327,17 @@ msgstr ""
 #: local_apps/pootle_language/templates/language/language_admin.html:16
 #: local_apps/pootle_project/templates/project/admin_permissions.html:21
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:15
+#, fuzzy
 msgid ""
 "The user “nobody” refers to any user that is not logged in (an anonymous, "
 "unidentified user). The user “default” refers to the rights that all logged "
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Pod pojmem uživatel \"nobody\" (nikdo) se rozumí jakýkoli uživatel, který není "
+"přihlášen (anonymní, neznámý uživatel). Uživatel \"default\" se odkazuje na "
+"práva, která budou mít všichni přihlášení uživatelé ve výchozím nastavení, "
+"dokud jim nebudou přiřazena jiná práva."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -440,11 +445,15 @@ msgid "Support"
 msgstr "Podpora"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
+#, fuzzy
 msgid ""
 "Pootle is developed by Translate.org.za and a community of passionate "
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle je vyvinut komunitou Translate.org a vášnivými odborníky na "
+"lokalizaci. Rádi bychom, abyste díky Pootle dosáhli plného potenciálu vaší "
+"práce."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
@@ -618,18 +627,22 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
-"Je nainstalováno lxml verze %(installed)s, ale Pootle pro podporu XML formátu vyžaduje "
-"verzi %(required)s."
+"Je nainstalováno lxml verze %(installed)s, ale Pootle pro podporu XML "
+"formátu vyžaduje verzi %(required)s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
+#, fuzzy
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
-msgstr ""
+msgstr "lxml není nainstalován. Pootle vyžaduje lxml pro podporu formátu XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
+#, fuzzy
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
+"Nemohu najít příkaz unzip. Nahrávání archivu je rychlejší, když je \"unzip\" k "
+"dispozici."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:84
 msgid ""
@@ -1042,8 +1055,9 @@ msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
 
 #: local_apps/pootle_misc/dbinit.py:68
+#, fuzzy
 msgid "Pootle: Install"
-msgstr ""
+msgstr "Pootle: Instalovat"
 
 #: local_apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1057,8 +1071,9 @@ msgid "Creating database tables..."
 msgstr "Vytvářím tabulky v databázi..."
 
 #: local_apps/pootle_misc/dbinit.py:82
+#, fuzzy
 msgid "Creating default languages, projects and admin user"
-msgstr ""
+msgstr "Vytvářím výchozí jazyky, projekty a správce."
 
 #: local_apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
@@ -1084,8 +1099,9 @@ msgid ""
 msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:71
+#, fuzzy
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Aktualizace"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1315,8 +1331,9 @@ msgid "Update from templates"
 msgstr "Aktualizovat z šablon"
 
 #: local_apps/pootle_project/views.py:141
+#, fuzzy
 msgid "Initialize"
-msgstr ""
+msgstr "Inicializovat"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -1370,20 +1387,24 @@ msgid "PHP arrays"
 msgstr ""
 
 #: local_apps/pootle_store/filetypes.py:70
+#, fuzzy
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Titulky: SRT"
 
 #: local_apps/pootle_store/filetypes.py:71
+#, fuzzy
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Titulky: SUB"
 
 #: local_apps/pootle_store/filetypes.py:72
+#, fuzzy
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Titulky: SSA"
 
 #: local_apps/pootle_store/filetypes.py:73
+#, fuzzy
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Titulky: ASS"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1545,7 +1566,7 @@ msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Získat"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
@@ -1553,19 +1574,21 @@ msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "Termín"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
 msgstr "Odstranit"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
+#, fuzzy
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Slovníček pojmů je prázdný"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
+#, fuzzy
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Vytvořit Slovníček pojmů"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
 msgid "Description..."
@@ -1683,7 +1706,7 @@ msgstr "Soubor"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "Nahrát do"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
@@ -1751,15 +1774,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Vložte číslo"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Chybný"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
-msgstr ""
+msgstr "Přístup zamítnut"
 
 #: templates/403.html:14
 msgid "You don't have permission to access this page."
@@ -1767,7 +1790,7 @@ msgstr ""
 
 #: templates/404.html:5 templates/404.html.py:10
 msgid "Page Not Found"
-msgstr ""
+msgstr "Stránka nebyla nalezena"
 
 #: templates/404.html:11
 msgid "We're sorry, but the requested page could not be found."
@@ -1775,7 +1798,7 @@ msgstr ""
 
 #: templates/500.html:5 templates/500.html.py:10
 msgid "Server Error"
-msgstr ""
+msgstr "Chyba na straně serveru"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
@@ -1791,7 +1814,7 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1799,27 +1822,27 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:6
 msgid "General"
-msgstr ""
+msgstr "Hlavní"
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the users"
-msgstr ""
+msgstr "Správa uživatelů"
 
 #: templates/admin_profile_menu.html:8
 msgid "Manage the languages"
-msgstr ""
+msgstr "Správa jazyků"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage the projects"
-msgstr ""
+msgstr "Správa projektů"
 
 #: templates/admin_profile_menu.html:10
 msgid "Manage the default permissions"
-msgstr ""
+msgstr "Spravovat výchozí povolení"
 
 #: templates/base.html:49
 msgid "skip to navigation"
-msgstr ""
+msgstr "Přeskočit na navigaci"
 
 #: templates/base.html:57 templates/base.html.py:117 templates/docs.html:5
 msgid "Help"
@@ -1846,7 +1869,7 @@ msgstr "Přihlásit"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontaktujte nás"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1854,7 +1877,7 @@ msgstr "O tomto Pootle serveru"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "Jste člověk?"
 
 #: templates/captcha.html:15
 msgid ""
@@ -1864,15 +1887,15 @@ msgstr ""
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Odpovězte, prosím, na tuto otázku:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdit"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr ""
+msgstr "Hlavní stránka jazyka"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7

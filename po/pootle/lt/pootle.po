@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-12 23:04+0200\n"
+"PO-Revision-Date: 2010-08-21 16:05+0200\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "Language: lt\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.0-rc1\n"
+"X-Generator: Pootle 2.1.0\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -402,25 +402,21 @@ msgstr "Serverio statistika"
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
 msgid "Translated words"
-msgstr "Išversti žodžiai"
+msgstr "Išversta žodžių"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
-#, fuzzy
 msgid "Pending suggestions"
-msgstr "Pateikti pasiūlymai"
+msgstr "Pateikta pasiūlymų"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
-#, fuzzy
 msgid "Active users"
 msgstr "Aktyvūs naudotojai"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
-#, fuzzy
 msgid "Active projects"
 msgstr "Aktyvūs projektai"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
-#, fuzzy
 msgid "Active languages"
 msgstr "Aktyvios kalbos"
 
@@ -432,9 +428,8 @@ msgid "Files"
 msgstr "Failai"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "Išverstos eilutės"
+msgstr "Išversta eilučių"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -445,9 +440,8 @@ msgid "Submissions"
 msgstr "Pateikti vertimai"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
-#, fuzzy
 msgid "More..."
-msgstr "Daugiau…"
+msgstr "Išsamiau…"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
@@ -1614,24 +1608,23 @@ msgstr "Daugiskaita"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr "Pergeneruoti terminų žodyną"
+msgstr "Terminų žodyno pergeneravimas"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
-"Ar tikrai norite pergeneruoti terminų žodyną? Visi jame esantys terminai ir "
-"vertimai bus pašalinti."
+"Ar tikrai norite naujai generuoti terminų žodyną? Visi jame jau esantys "
+"terminai ir vertimai bus pašalinti."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
-#, fuzzy
 msgid "Extract"
-msgstr "Išgauti"
+msgstr "Generuoti"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr "Jūs galite pergeneruoti terminų žodyną nuo nulio."
+msgstr "Jūs galite naujai sugeneruoti terminų žodyną nuo nulio."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
@@ -2000,9 +1993,8 @@ msgid "Manage project permissions"
 msgstr "Tvarkyti teises šio projekto ribose"
 
 #: templates/tp_base_terminology.html:5
-#, fuzzy
 msgid "Manage Terminology"
-msgstr "Tvarkyti terminyną"
+msgstr "Terminų žodyno tvarkymas"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"

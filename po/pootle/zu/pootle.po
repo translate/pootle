@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-05-24 16:17+0200\n"
-"Last-Translator: admin <>\n"
+"PO-Revision-Date: 2010-08-28 13:27+0200\n"
+"Last-Translator: rgmchunu <rgmchunu@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -345,7 +345,7 @@ msgstr ""
 #: local_apps/pootle_project/templates/project/projects.html:9
 #: templates/admin_profile_menu.html:9 templates/project_base.html:6
 msgid "Projects"
-msgstr "Imiklamo/amaprojekthi"
+msgstr "Amaprojekthi"
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:14
 msgid ""
@@ -497,6 +497,12 @@ msgid ""
 "Read more on the <a href=\"http://translate.sourceforge.net/\">project "
 "website</a>."
 msgstr ""
+"Le webhusayithi isebenzisa i-Pootle &mdash; okuyi-software enamandla yewebhu "
+"esiza amathimba ukuhumusha kanye nokuphathwa kokuhumusha. Leli thuluzi "
+"lomphakathi liyi-software etholakala mahhala, futhi noma yiliphi ithimba "
+"lingayisebenzisa ukuze libambe iqhaza emphakathini wePootle. Funda kabanzi "
+"kwi <a href=\"http://translate.sourceforge.net/\">webhusayithi "
+"yeprojekthi</a>."
 
 #: local_apps/pootle_app/templates/index/index.html:26
 #: local_apps/pootle_project/views.py:144
@@ -782,7 +788,7 @@ msgstr ""
 #: local_apps/pootle_project/views.py:69
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr ""
+msgstr "Iphelele ngo-%(percentage)d%%"
 
 #: local_apps/pootle_app/views/index/index.py:112
 #: local_apps/pootle_project/views.py:109
@@ -1023,8 +1029,8 @@ msgstr ""
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Iprojekthi eli-%(projects)d, %(average)d%% ahumushiwe"
+msgstr[1] "Amaprojekthi angu-%(projects)d, %(average)d%% ahumushiwe"
 
 #: local_apps/pootle_language/views.py:108
 #, fuzzy
@@ -1157,7 +1163,7 @@ msgstr ""
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Previous"
-msgstr "Dlule"
+msgstr "Okudlule"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
@@ -1167,7 +1173,7 @@ msgstr "Okulandelayo"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Elokugcina (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"

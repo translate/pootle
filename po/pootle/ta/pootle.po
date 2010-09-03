@@ -15,17 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.0-rc1\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"\"Mac\"ல் ஒன்றுக்கு மேல் தேர்தெடுக்க \"Crtl\" அல்லது \"Command\" பொத்தானை அமுக்கு"
+"\"Mac\"ல் ஒன்றுக்கு மேல் தேர்தெடுக்க \"Crtl\" அல்லது \"Command\" பொத்தானை அமுக்கு."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr "சரியான மின்மடலை சமர்ப்பி/ இடு"
+msgstr "சரியான மின்மடலை சமர்ப்பி/ இடு."
 
 #: strings.py:10
 msgid ""
@@ -36,14 +36,14 @@ msgstr ""
 
 #: strings.py:11
 msgid "This field is required."
-msgstr "இக்கட்டம் அவசியம்"
+msgstr "இக்கட்டம் அவசியம்."
 
 #: strings.py:12
-#, python-format, fuzzy
+#, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
 "இம்மதிப்பீட்டில் மிகஅதிகமான மற்றும் மிகநீளமான எழுத்துருக்கள் உள்ளதை "
-"உறுதிசெய்"
+"உறுதிசெய்."
 
 #: strings.py:13
 msgid "Save and add another"
@@ -59,11 +59,11 @@ msgstr "சேர்"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "மாற்று"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
-#, python-format, fuzzy
+#, python-format
 msgid "Add %(name)s"
 msgstr "சேர் %(பெயர்)கள்"
 
@@ -97,33 +97,33 @@ msgstr "நிர்வாகி"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "மூல மொழி"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "ஆன்ட்ராயட் Android சரங்கள்"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "உமது பெயர்"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "உமது மின்மடல் முகவரி"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "உமது தகவல்"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "கீழ்காணும் பிழையை சரி செய்"
-msgstr[1] "கீழ்காணும் பிழைகளை சரி செய்"
+msgstr[0] "கீழ்காணும் பிழையை சரி செய்."
+msgstr[1] "கீழ்காணும் பிழைகளை சரி செய்."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr "அமைப்புகள் சேமித்தாயிற்று"
+msgstr "அமைப்புகள் சேமித்தாயிற்று."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:29
@@ -133,16 +133,14 @@ msgid "Save"
 msgstr "சேமி"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "பயனர்பெயர்"
+msgstr "பயனர் பெயர்"
 
 #: external_apps/registration/forms.py:39
 msgid "email address"
 msgstr "மின்னஞ்சல் முகவரி/ மின்மடல்"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
 msgstr "கடவுச்சொல்"
 
@@ -157,11 +155,11 @@ msgstr ""
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr "அதே கடவுச்சொல்லை பதிவு செய்."
+msgstr "அதே கடவுச்சொல்லை பதிவு செய்"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr "நான் சேவை விதிமுறைகளை படித்து பின் ஒத்துக்கொள்கிறேன்."
+msgstr "நான் சேவை விதிமுறைகளை படித்து பின் ஒத்துக்கொள்கிறேன்"
 
 #: external_apps/registration/forms.py:107
 msgid ""
@@ -225,7 +223,8 @@ msgid ""
 "sure to use valid HTML."
 msgstr ""
 "முதற் மற்றும் அதுப்பற்றி பக்கங்களில் விவரிப்பு மற்றும் விதிமுறைகள் "
-"பார்வைக்கு இடப்பட்டுள்ளது. சரியான நிருபிக்கப்பட்ட \"HTML\" லை பயன்படுத்தவும்."
+"பார்வைக்கு இடப்பட்டுள்ளது. சரியான நிருபிக்கப்பட்ட எச்டிஎம்எல் HTML லை "
+"பயன்படுத்தவும்."
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can view a translation project"
@@ -326,7 +325,7 @@ msgid ""
 "server."
 msgstr ""
 "பூட்டலில் உள்ள உள்ளிருப்பு அனுமதிகளை நீங்கள் இங்கு சேர்க்கவும், திருத்தவும், "
-"நீக்கவும் செய்யலாம்"
+"நீக்கவும் செய்யலாம்."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:18
 #: local_apps/pootle_language/templates/language/language_admin.html:16
@@ -338,6 +337,9 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"\"nobody\" என்னும் பயனர் உள்ளீடு செய்யாத அனாமதேய பயனரை குறிக்கும். “default” "
+"என்பது  உள்ளீடு செய்த சராசரி பயனரை குறிக்கும். அவர்களுக்கு எவ்வித சிறப்பு "
+"உரிமையும் வழங்கப்படவில்லை. "
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -356,7 +358,7 @@ msgid ""
 "server."
 msgstr ""
 "பூட்டலில் உள்ள திட்டங்களை நீங்கள் இங்கு சேர்க்கவும், திருத்தவும், நீக்கவும் "
-"செய்யலாம்"
+"செய்யலாம்."
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
@@ -365,7 +367,7 @@ msgstr "பொதுவான அமைப்புகள்"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr "உங்கள் தளத்திற்கு தேவையான பொதுவான அமைப்புகளை இடவும்"
+msgstr "உங்கள் தளத்திற்கு தேவையான பொதுவான அமைப்புகளை இடவும்."
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -382,7 +384,7 @@ msgid ""
 "server."
 msgstr ""
 "பூட்டலில் உள்ள பயனர்களை நீங்கள் இங்கு சேர்க்கவும், திருத்தவும், நீக்கவும் "
-"செய்யலாம்"
+"செய்யலாம்."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:5
 #: local_apps/pootle_app/templates/admin/dashboard.html:11
@@ -390,11 +392,11 @@ msgstr ""
 #: templates/profiles/profile_detail.html:6
 #: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "மோதுபலகை"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
 msgid "Server Statistics"
-msgstr ""
+msgstr "வழங்கியின் புள்ளிவிவரங்கள்"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -403,19 +405,19 @@ msgstr "மொழி பெயர்க்கப்பட்ட சொற்க�
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "நிலுவையிலுள்ள பரிந்துரைகள்"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "செயலிலுள்ள பயனர்கள்"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "செயலிலுள்ள திட்டங்கள்"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "செயலிலுள்ள மொழிகள்"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -425,9 +427,8 @@ msgid "Files"
 msgstr "கோப்புகள்"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "என் சரங்களை மொழிபெயர்"
+msgstr "மொழிபெயர்க்கப்பட்ட சரங்கள்"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -439,11 +440,11 @@ msgstr "சமர்ப்பிப்புகள்"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "மேலும்..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "ஆதரவு"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -451,22 +452,25 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"பூட்டலை Translate.org.za என்னும் மொழிபெயர்ப்பு ஆர்வலர் குழுவால் "
+"உருவாக்கப்பட்டது. உமது மொழிபெயர்ப்புப்பணிகளுக்கு பூட்டல் முழுமையாக உதவ "
+"விரும்புகிறோம்."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "ஆதரவுக்கு இங்குள்ளது உதவியாக இருக்கும்:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "பூட்டலை ஆவணமாக்குதல்"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "பூட்டலின் மின்மடல் பட்டி"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(வர்த்தக உதவி)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -482,7 +486,7 @@ msgstr "உகப்பாக்கம்கள்"
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "பூட்டலின் விழிப்பு ஊக்கிகள்"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
@@ -537,7 +541,7 @@ msgstr "சமீபத்ய செய்தி"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr "ஆர்எஸ்எஸ் (RSS) செய்தியோடையை சந்தா செய்"
+msgstr "ஆர்எஸ்எஸ் RSS செய்தியோடையை சந்தா செய்."
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
@@ -561,9 +565,8 @@ msgid "Don't have an account yet?"
 msgstr "இன்னும் கணக்கு தொடங்கவல்லையா?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "பதிவுசெய்"
+msgstr "பதிவுசெய்."
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -595,34 +598,36 @@ msgid "Password"
 msgstr "கடவுச்சொல்"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:45
-#, python-format, fuzzy
+#, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr "மொழிபெயர்ப்பு கருவிப்பட்டை பதிப்பை நிருவியாயிற்று"
+msgstr "மொழிபெயர்ப்பு கருவிப்பட்டை பதிப்பு %s நிருவியாயிற்று."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:48
-#, python-format, fuzzy
+#, python-format
 msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
-"மொழிபெயர்ப்பு கருவிப்பட்டை பதிப்பு %((நிருவியாயிற்று) நிருவியாயிற்று. "
-"பூட்டலுக்கு தேவையான பதிப்பு %(தேவை)."
+"மொழிபெயர்ப்பு கருவிப்பட்டை பதிப்பு %(installed)s நிருவியாயிற்று. பூட்டலுக்கு "
+"தேவையான பதிப்பு %(required)s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:54
-#, python-format, fuzzy
+#, python-format
 msgid "Django version %s is installed."
-msgstr "டிஜாங்கோ (Django) பதிப்பு %கள் நிருவியாயிற்று"
+msgstr "டிஜாங்கோ Django பதிப்பு %s நிருவியாயிற்று."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:57
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"டிஜாங்கோ Django பதிப்பு %s நிருவியாயிற்று ஆனால் உயர்ந்த பதிப்பு "
+"பரிந்துரைக்கப்படுகிறது."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "டிஜாங்கோ (Django) பதிப்பு %கள் நிருவியாயிற்று"
+msgstr "எல்எக்ஸ்எம்எல் lxml பதிப்பு %s நிருவியாயிற்று."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -630,10 +635,14 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"எல்எக்ஸ்எம்எல் lxml பதிப்பு %(installed)s நிருவியாயிற்று. பூட்டலின் "
+"ஒருங்கிணைப்பு உதவி பதிப்புக்கு %(required)s எக்ஸ்எம்எல்லின் XML தேவை."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
 msgstr ""
+"எல்எக்ஸ்எம்எல் lxml பதிப்பு நிருவிப்படவில்லை. எக்ஸ்எம்எல்லின் "
+"XMLஒருங்கிணைப்பு உதவி பூட்டலின் எல்எக்ஸ்எம்எல் lxml பதிப்புக்குத்தேவை."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -641,14 +650,14 @@ msgid ""
 "available."
 msgstr ""
 "பல்லிணைவு பிறிக்கும் கட்டளையை காணவில்லை. பல்லிணைவு பிறிக்கும் கட்டளை "
-"கிடைத்தால் ஆவணக்காப்பககோப்புக்களை வேகமாக பதிவேற்றம் செய்யலாம்"
+"கிடைத்தால் ஆவணக்காப்பககோப்புக்களை வேகமாக பதிவேற்றம் செய்யலாம்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:84
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
-"ஐஎஸ்ஓ குறியீட்டுத்தொகுப்பை காணவில்லை. பூட்டல் மொழிபெயர்ப்புக்காக ஐஎஸ்ஓ "
+"ஐஎஸ்ஓ ISO குறியீட்டுத்தொகுப்பை காணவில்லை. பூட்டல் மொழிபெயர்ப்புக்காக ஐஎஸ்ஓ "
 "குறியீடுகளை பயன்படுத்துகிறது."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:88
@@ -656,20 +665,24 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"ஏய்டான் aeidon தொகுப்பு காணவில்லை. துணைஉரையை வடிவூட்டம் செய்ய பூட்டலுக்கு "
+"காப்போள் Gaupol அல்லது ஏய்டான் aeidon ஆதரவு தேவை."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
 "Can't find python-levenshtein package. Updating from templates is faster "
 "with python-levenshtein."
 msgstr ""
-"பைத்தான்-லவன்ஷ்டெயன் (python-levenshtein) தொகுப்பை காணவில்லை. முன்வடிவை "
-"வேகமாக பதிவேற்றம் செய்ய பைத்தான்-லவன்ஷ்டெயன் (python-levenshtein) தேவை."
+"பைத்தான்-லவன்ஷ்டெயன் python-levenshtein தொகுப்பை காணவில்லை. முன்வடிவை வேகமாக "
+"பதிவேற்றம் செய்ய பைத்தான்-லவன்ஷ்டெயன் python-levenshtein தேவை."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:96
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
+"உரை அகவரிசைப் படுத்தும் இயந்திரம் காணவில்லை. சாப்பியன் Xapian அல்லது லுசன் "
+"Lucene போன்ற உரை அகவரிசைப் படுத்தும் இயந்திரங்கள் தேடுதலை துரிதப்படுத்தும்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:106
 msgid ""
@@ -677,6 +690,9 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine."
 msgstr ""
+"சில பயனர்களின் சிறிய நிருவுதலுக்கே உள்ளிருப்பு தகவல் தளமான எஸ்க்யுலைட் "
+"SQLite உகந்த்து. பூட்டலின் தகவல் தளமான மைஎஸ்க்யுஎல் MySQL சிறப்பாக "
+"பணிசெய்யும்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:108
 msgid ""
@@ -684,94 +700,119 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
+"சில பயனர்களின் சிறிய நிருவுதலுக்கே உள்ளிருப்பு தகவல் தளமான எஸ்க்யுலைட் "
+"SQLite உகந்த்து. பூட்டலின் தகவல் தளமான மைஎஸ்க்யுஎல் MySQL சிறப்பாக "
+"பணிசெய்யும். இதற்கு முதலில் பைத்தான்-மைஎஸ்க்யுஎல் தகவல் தளத்தை python-"
+"MySQLdb நிருவ வேண்டும்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:116
 msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
 msgstr ""
+"பதுக்கு நினைவகத்திற்கு பூட்டல் மெம்காச்சை memcached தனித்து பயன் "
+"படுத்துகிறது ஆனால் மெம்காச்ச சர்வர்/வழங்கியுடன் தொடர்பு கொள்ள இயலாது. "
+"தற்போது பதுக்கு நினைவகம் செயலில் இல்லை."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:120
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cached_db as "
 "the session engine."
 msgstr ""
+"சிறந்த செயற்பாட்டிற்கு டிஜான்கோ.கான்டிரிப்.செசன்ஸ்.பேக்என்ட்ஸ்.காச்ட் தகவல் "
+"தளத்தை django.contrib.sessions.backends.cached_db பொறியாக உபயோகிக்கவும்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:122
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cache as the "
 "session engine."
 msgstr ""
+"சிறந்த செயற்பாட்டிற்கு டிஜான்கோ.கான்டிரிப்.செசன்ஸ்.பேக்என்ட்ஸ்.காச்ட் "
+"django.contrib.sessions.backends.cached பொறியாக உபயோகிக்கவும்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:126
 msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
 msgstr ""
+"பதுக்கு நினைவகத்திற்கு பூட்டல் மெம்காச்சை memcached தனித்து பயன் "
+"படுத்துகிறது ஆனால் மெம்காச்கான பைத்தான் உதவி நிருவப்படவில்லை. தற்போது "
+"பதுக்கு நினைவகம் செயலில் இல்லை."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:129
 msgid "For optimal performance, use memcached as the caching backend."
 msgstr ""
+"சிறந்த பதுக்கு நினைவக செயற்பாட்டிற்கு மெம்காச்சை memcached பயன் படுத்தவும்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:133
 msgid "For optimal performance, use Apache as the webserver."
 msgstr ""
+"சிறந்த இணைய வழங்கி webserver செயற்பாட்டிற்கு அப்பாச்சியை Apache பயன் "
+"பsடுத்தவும்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:136
 msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"பதிவு மின்மடல்களுக்கு விடுநர் \"from\" முகவரி குறிப்பிடப்படவில்லை. தயவு செய்து "
+"மின்மடல் வழங்கி அமைப்பை மீளாய்வு செய்யவும்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"பெறுநர் முகவரி குறிப்பிடப்படவில்லை. பெறுநர் முகவரிப்படிவம் மூலம் பயனர்கள் "
+"வழங்கி நிர்வாகிகளை தொடர்புகொள்ள இயலும்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
 "Running in debug mode. Debug mode is only needed when developing Pootle. For "
 "optimal performance, disable debugging mode."
 msgstr ""
+"குறைநிவர்த்தி செயல் இயங்குகிறது. சிறந்த செயற்பாட்டிற்கு குறைநிவர்த்தி செயலை "
+"நிற்கச்செய்யவும். பூட்டலை உருவாக்கும் போதுமட்டும் குறைநிவர்த்தி செயல் "
+"அவசயம்."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:147
 msgid ""
 "Running in live translation mode. Live translation is useful as a tool to "
 "learn about Pootle and localization, but has high impact on performance."
 msgstr ""
+"நேரடி மொழிபெயர்ப்பு செயல் இயங்குகிறது. இது பூட்டல் மற்றும் அதன் உள்மாற்ற "
+"செயற்பாட்டை அரிய உகந்த கருவியாகும். சிறந்த செயற்பாட்டிற்கு நேரடி "
+"மொழிபெயர்ப்பு செயலை நிற்கச்செய்யவும்."
 
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "திட்ட உறுப்பினர்கள்"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "மொழி உறுப்பினர்கள்"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "அனைத்து பயனர்கள்"
 
 #: local_apps/pootle_app/views/admin/util.py:38
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
-msgstr "உங்களுக்கு \"பூட்டில்\" ஐ நிருவகிக்க அதிகாரமில்லை"
+msgstr "உமக்கு பூட்டலை நிர்வகிக்க அனுமதியில்லை."
 
 #: local_apps/pootle_app/views/admin/util.py:50
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "உங்களுக்கு \"பூட்டில்\" ஐ நிருவகிக்க அதிகாரமில்லை"
+msgstr "உமக்கு நிர்வகிக்க %s அனுமதியில்லை."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
-msgstr ""
+msgstr "திட்டத்தில் கோப்புகள் இல்லை."
 
 #: local_apps/pootle_app/views/admin/util.py:164
 msgid "There are errors in the form. Please review the problems below."
-msgstr ""
+msgstr "படிவத்தில் பிழை உள்ளது. தயவு செய்து திருத்தம் செய்யவும்."
 
 #: local_apps/pootle_app/views/admin/util.py:184 templates/base.html:51
 #: templates/base.html.py:56
@@ -779,7 +820,6 @@ msgid "Home"
 msgstr "இல்லம்"
 
 #: local_apps/pootle_app/views/admin/util.py:186
-#, fuzzy
 msgid "Save Changes"
 msgstr "மாற்றங்களைச் சேமி"
 
@@ -787,6 +827,8 @@ msgstr "மாற்றங்களைச் சேமி"
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
+"மொழிபெயர்ப்பு கருவிபட்டை% (கருவிபட்டை_ பதிப்பு) யினால் பூட்டல் % "
+"(பூட்டல்_பதிப்பு) ஊக்கப்படுகறது"
 
 #: local_apps/pootle_app/views/index/index.py:64
 #: local_apps/pootle_app/views/language/item_dict.py:268
@@ -794,19 +836,19 @@ msgstr ""
 #: local_apps/pootle_project/views.py:69
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr ""
+msgstr "%(percentage)d%% நிறைவு"
 
 #: local_apps/pootle_app/views/index/index.py:112
 #: local_apps/pootle_project/views.py:109
 #: local_apps/pootle_project/views.py:196
 msgid "Translations are complete"
-msgstr ""
+msgstr "மொழிபெயர்ப்பு நிறைவுற்றது"
 
 #: local_apps/pootle_app/views/index/index.py:113
 #: local_apps/pootle_project/views.py:110
 #: local_apps/pootle_project/views.py:197
 msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr ""
+msgstr "மொழிபெயர்ப்புகள் சோதிக்கப்படவேண்டும் (சில சொற்கள் உறுதிசெய்யப்படவில்லை)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
 #, python-format
@@ -819,18 +861,20 @@ msgstr[1] "%d கோப்புகள்"
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr ""
+"%(translated)d/%(total)d வார்த்தைகள் (%(translatedpercent)d%%) "
+"மொழிபெயர்க்கப்பட்டது"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
 msgid "%(translated)d/%(total)d strings"
-msgstr ""
+msgstr "%(translated)d/%(total)d சரங்கள்"
 
 #: local_apps/pootle_app/views/language/item_dict.py:76
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(checks)d சரம் (%(checkspercent)d%%) தவறியது"
+msgstr[1] "%(checks)d சரங்கள் (%(checkspercent)d%%) தவறியது"
 
 #: local_apps/pootle_app/views/language/item_dict.py:94
 msgid "Review Suggestions"
@@ -854,69 +898,71 @@ msgstr "அனைத்தையும் மொழிபெயர்"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "அருஞ்சொற்பொருள் பட்டியலை நிர்வகி"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
-msgstr ""
+msgstr "கோப்பகத்தின் பல்லிணைப்பட்டி (ZIP)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "இணையதளத்துடன் இணையாத நிலையில் மொழி பெயர்"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
 msgstr ""
+"எக்ஸ்லிஃப் XLIFF கோப்பை இணையதளத்துடன் இணையாத நிலை மொழி "
+"பெயர்ப்புக்குபதிவிறக்கு "
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
-msgstr ""
+msgstr "எக்ஸ்லிஃப் XLIFF பை பதிவிறக்கு"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "ஏற்றுமதி செய்"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "மொழி பெயர்ப்புக்களை பதிவேற்று"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
-msgstr ""
+msgstr "இறக்குமதி செய்"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "கோப்புக்களை பதிவிறக்கு"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
-msgstr ""
+msgstr "வீசிஎஸ் VCSஸுடன் ஈடுபடு"
 
 #: local_apps/pootle_app/views/language/item_dict.py:182
 msgid "Update from VCS"
-msgstr ""
+msgstr "வீசிஎஸ் VCSஸிலிருந்து புதுபித்தல் செய்"
 
 #: local_apps/pootle_app/views/language/item_dict.py:244
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d கவனத்திற்குரிய வார்த்தை"
+msgstr[1] "%d கவனத்திற்குரிய வார்த்தைகள்"
 
 #: local_apps/pootle_app/views/language/item_dict.py:248
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d மொழிபெயர்க்கப்படாத வார்த்தை"
+msgstr[1] "%d மொழிபெயர்க்கப்படாத வார்த்தைகள்"
 
 #: local_apps/pootle_app/views/language/item_dict.py:249
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d மீளாய்வுக்குரிய வார்த்தை"
+msgstr[1] "%d மீளாய்வுக்குரிய வார்த்தைகள்"
 
 #: local_apps/pootle_app/views/language/item_dict.py:275
 #: local_apps/pootle_language/views.py:67
@@ -924,8 +970,8 @@ msgstr[1] ""
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "பிழைக்காட்டும் %d கோப்பு"
+msgstr[1] "பிழைக்காட்டும் %d கோப்புக்கள்"
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:53
 #: local_apps/pootle_project/views.py:104 templates/base.html:59
@@ -967,27 +1013,26 @@ msgid "Total"
 msgstr "மொத்தம்"
 
 #: local_apps/pootle_app/views/language/view.py:49
-#, fuzzy
 msgid "Total Words"
 msgstr "மொத்த சொற்கள்"
 
 #. l10n: noun. The graphical representation of translation status
 #: local_apps/pootle_app/views/language/view.py:51
 msgid "Progress"
-msgstr ""
+msgstr "முன்னேற்றம்"
 
 #: local_apps/pootle_app/views/language/view.py:52
 msgid "Summary"
-msgstr ""
+msgstr "சுருக்கம்"
 
 #: local_apps/pootle_app/views/language/view.py:84
 #: local_apps/pootle_translationproject/models.py:363
 msgid "You do not have rights to commit files here"
-msgstr "கோவைகளை இங்கு செயற்படுத்த உங்களுக்கு உரிமையில்லை"
+msgstr "கோப்புக்களை இங்கு செயற்படுத்த உங்களுக்கு உரிமையில்லை"
 
 #: local_apps/pootle_app/views/language/view.py:94
 msgid "You do not have rights to update files here"
-msgstr "கோவைகளை இங்கு படிவேற்றம் செய்வதற்கு உங்களுக்கு உரிமையில்லை"
+msgstr "கோப்புக்களை இங்கு பதிவேற்றம் செய்ய உங்களுக்கு உரிமையில்லை"
 
 #: local_apps/pootle_language/models.py:39
 msgid ""
@@ -995,9 +1040,10 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"மொழிக்குறியீட்டுக்கு ஐஎஸ்ஓ 639 _நாடு/தேச குறியீட்டுக்கு ஐஎஸ்ஓ 3166 <a "
-"href=\"http://www.w3.org/International/articles/language-tags/\"> மேற்தகவலரிய "
-"</a>"
+"ஐஎஸ்ஓ 639 மொழிக்குறியீடு மொழிக்கு, அதை தொடர்ந்து அடிகோடிட்டு (_) பின் ஐஎஸ்ஓ "
+"3166 நாடு/தேச குறியீட்டுக்கு. <a "
+"href=\"http://www.w3.org/International/articles/language-tags/\">More "
+"information</a>"
 
 #: local_apps/pootle_language/models.py:40
 #: local_apps/pootle_project/models.py:58
@@ -1023,9 +1069,9 @@ msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
-"மேலும் தகவலரிய, எமது ஙீக்கி பக்கத்தை பார்க்க <a "
+"மேலும் தகவலரிய, எமது வீக்கி பக்கத்தை பார்க்க <a "
 "href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\"> பன்மை "
-"படிவத்திற்கு </a>"
+"படிவத்திற்கு </a>."
 
 #: local_apps/pootle_language/models.py:47
 msgid "Unknown"
@@ -1043,11 +1089,10 @@ msgstr "பன்மைகளின் சமன்பாடு"
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(projects)d திட்டம், %(average)d%% மொழிபெயர்க்கப்பட்டது"
+msgstr[1] "%(projects)d திட்டங்கள், %(average)d%% மொழிபெயர்க்கப்பட்டது"
 
 #: local_apps/pootle_language/views.py:108
-#, fuzzy
 msgid "You do not have rights to administer this language."
 msgstr "இத்திட்டத்தை நிர்வகிக்கும் அனுமதி உங்களுக்கு இல்லை."
 
@@ -1055,11 +1100,11 @@ msgstr "இத்திட்டத்தை நிர்வகிக்கு�
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
 "இம்மொழிக்கான உள்ளிருப்பு அனுமதிகளை நீங்கள் இங்கு சேர்க்கவும், திருத்தவும், "
-"நீக்கவும் செய்யலாம்"
+"நீக்கவும் செய்யலாம்."
 
 #: local_apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
-msgstr ""
+msgstr "பூட்டல்: Install"
 
 #: local_apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1067,41 +1112,46 @@ msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
 "initialize database."
 msgstr ""
+"பிழை: \"%s\" while attempting to access the Pootle database, will try to "
+"initialize database."
 
 #: local_apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
-msgstr ""
+msgstr "தகவல்தள அட்டவணையை உருவாக்குகிறது..."
 
 #: local_apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
-msgstr ""
+msgstr "உள்ளிருப்பு மொழிகள், திட்டங்கள் மற்றும் நிர்வாக பயனரை உருவாக்குகிறது"
 
 #: local_apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
-msgstr ""
+msgstr "மொழி பெயர்ப்பு புள்ளிவிவரங்களை கணக்கிடுவதால் சில நிமிடங்கள் ஆகும்"
 
 #: local_apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr ""
+msgstr "%(language)s %(percent)d%% நிறைவு"
 
 #: local_apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr ""
+msgstr "திட்டம் %(project)s %(percent)d%% நிறைவு"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
 msgstr ""
+"உள்ளிருப்பு மொழிகள் மற்றும் திட்டங்களுக்கு புள்ளிவிவரங்கள் கணக்கிட்டாயிற்று"
 
 #: local_apps/pootle_misc/dbinit.py:119
 msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
+"தகவல்தளத்தை தொடங்கியாயிற்று, உம்மை இன்னும் 10 நொடிகளில் முதல் பக்கத்திற்கு "
+"திசை திருப்பி விடப்படும்"
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "பூட்டல்: பதிவேற்று"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1109,140 +1159,148 @@ msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
+"தற்போது தகவல்தளத்தை அட்டவணை கட்டுமான பதிப்பில் உள்ளது %d. பூட்டல் இப்போது "
+"தகவல்தளத்தை பதிவேற்றும்."
 
 #: local_apps/pootle_misc/dbupdate.py:78
 msgid "Creating missing database tables..."
-msgstr ""
+msgstr "விடுபட்ட தகவல்தள அட்டவணையை உருவாக்குகிறது..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "அனுமதி அட்டவணையை சரிசெய்கிறது..."
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "தற்போதிருக்கும் தகவல்தள அட்டவணைகளை பதிவேற்றுகிறது..."
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"பூட்டல் இப்போது அனைத்து மொழி பெயர்ப்புக்களையும் தகவல்தளத்தில் இறக்குகிறது. "
+"எனவே சிறிது நேரம் ஆகும்."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "இறக்குமதிசெய்யப்பட்ட %(count)d பரிந்துரையிலிருந்து %(store)s"
+msgstr[1] "இறக்குமதிசெய்யப்பட்ட %(count)d பரிந்துரைகளிலிருந்து %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "இறக்குமதிசெய்யப்படாத பரிந்துரைகளிலிருந்து %s"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "இறக்குமதிசெய்யப்பட்ட %(count)d பிரிவிலிருந்து %(store)s"
+msgstr[1] "இறக்குமதிசெய்யப்பட்ட %(count)d பிரிவுகளிலிருந்து %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "இறக்குமதிசெய்யப்படாத பிரிவுகளிலிருந்து %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "அனைத்து மொழி பெயர்ப்புக்களும் இறக்குமதிசெய்யப்பட்டது."
 
 #: local_apps/pootle_misc/dbupdate.py:180
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
 msgstr ""
+"பூட்டல் தகவல்தளத்தை தொடங்கிற்று. நீங்கள் இன்னும் 10 நொடிகளில் முகப்பு "
+"பக்கத்திற்கு திசைதிருப்பி விடப்படுவீர்."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
-msgstr ""
+msgstr "இப்பக்கத்தை அணுக <a href=\"%(login_link)s\">login</a> உமக்கு இது தேவை."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:63
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
+"அணுகதலில் பிழை %(filename)s, கோப்புஅமைப்பு பிழையை அனுப்பியுள்ளது: %"
+"(errormsg)s"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "முதல்"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Previous"
-msgstr ""
+msgstr "முன்னது"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Next"
-msgstr ""
+msgstr "அடுத்தது"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "கடைசி (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
-msgstr ""
+msgstr "தகவல்"
 
 #. l10n: The date that the news item was written
 #: local_apps/pootle_notifications/models.py:30
 msgid "Added"
-msgstr ""
+msgstr "கூட்டியாயிற்று"
 
 #: local_apps/pootle_notifications/views.py:81
 #, python-format
 msgid "News for %(language)s"
-msgstr ""
+msgstr "மொழிக்கான செய்திகள் %(language)s"
 
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "திட்டத்திற்கான செய்திகள் %(project)s"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr ""
+msgstr "திட்டத்திற்கான செய்திகள் %(project)s மொழிவாரியாக %(language)s"
 
 #: local_apps/pootle_notifications/views.py:90
 #, python-format
 msgid "News for %(path)s"
-msgstr ""
+msgstr "பாதைகளுக்குகான செய்திகள் %(path)s"
 
 #: local_apps/pootle_notifications/views.py:116
 msgid "View News Item"
-msgstr ""
+msgstr "பார்வைக்கு செய்திப்பகுதி"
 
 #: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: local_apps/pootle_notifications/templates/notices.html:88
 msgid "No news yet."
-msgstr ""
+msgstr "இன்னும் செய்தி இல்லை."
 
 #: local_apps/pootle_notifications/templates/notices.html:21
 #: local_apps/pootle_notifications/templates/notices.html:24
 #: templates/language_menu.html:8 templates/project_menu.html:8
 #: templates/tp_menu.html:8
 msgid "News"
-msgstr ""
+msgstr "செய்தி"
 
 #: local_apps/pootle_notifications/templates/notices.html:75
 msgid "Publish"
-msgstr ""
+msgstr "வெளியிடு"
 
 #: local_apps/pootle_profile/models.py:64
 msgid "Number of Rows"
-msgstr ""
+msgstr "வரிசைகளின் எண்ணிக்கை"
 
 #: local_apps/pootle_profile/models.py:68
 #: local_apps/pootle_profile/views.py:76
@@ -1250,7 +1308,6 @@ msgid "Interface Language"
 msgstr "இடைமுக மொழி"
 
 #: local_apps/pootle_profile/models.py:69
-#, fuzzy
 msgid "Alternative Source Languages"
 msgstr "வேறொரு மூல மொழி"
 
@@ -1320,12 +1377,11 @@ msgstr "கோப்புகளை புறக்கணி "
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(மொழிகள்)d மொழி, %(சராசரி)d%% மொழிபெயர்க்கப்பட்டவை"
+msgstr[1] "%(மொழிகள்)d மொழிகள், %(சராசரி)d%% மொழிபெயர்க்கப்பட்டவை"
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
-#, fuzzy
 msgid "You do not have rights to administer this project."
 msgstr "இத்திட்டத்தை நிர்வகிக்கும் அனுமதி உங்களுக்கு இல்லை."
 
@@ -1335,10 +1391,9 @@ msgstr "வார்ப்புருகளிலிருந்து பு�
 
 #: local_apps/pootle_project/views.py:141
 msgid "Initialize"
-msgstr ""
+msgstr "தொடங்குக"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
 "இம்மொழிக்கான உள்ளிருப்பு அனுமதிகளை நீங்கள் இங்கு சேர்க்கவும், திருத்தவும், "
@@ -1360,53 +1415,53 @@ msgstr "உரையை வாங்கு பிஓ"
 
 #: local_apps/pootle_store/filetypes.py:32
 msgid "XLIFF"
-msgstr "எக்ஸ்எல்எஃஎஃ"
+msgstr "எக்ஸ்எல்எஃஎஃ (XLIFF)"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "க்யூடி டிஎஸ் (Qt ts)"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "டிஎம்எக்ஸ் (TMX)"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "டிபிஎக்ஸ் (TBX)"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "ஐக்யூ காட்சாவிகள் "
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "ஜாவா உடமைகள்"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "ஓஎஸ் எக்ஸ் (OS X) சரங்கள்"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "பிஎச்பி (PHP) வரிசைகள்"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "துணை உரைகள்: srt"
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "துணை உரைகள்: sub"
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "துணை உரைகள்: ssa"
 
 #: local_apps/pootle_store/filetypes.py:73
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "துணை உரைகள்: ass"
 
 #: local_apps/pootle_store/forms.py:82
 #: local_apps/pootle_store/templatetags/store_tags.py:119
@@ -1418,29 +1473,28 @@ msgid "Plural Form %d"
 msgstr "பன்மை வடிவம் %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
 msgstr "மொழி பெயர்ப்பாளர் கருத்துரைகள்"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
-msgstr ""
+msgstr "பாதை"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "மீளாய்வு செய்ய இணையான சரங்கள் மேலும் இல்லை"
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "மொழிபெயர்க்க இணையான சரங்கள் மேலும் இல்லை"
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "மீளாய்வு செய்ய இணையான சரங்கள் இல்லை"
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "மொழிபெயர்க்க இணையான சரங்கள் இல்லை"
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1469,24 +1523,24 @@ msgstr "மொழி பெயர்ப்பை திருத்து"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
-msgstr ""
+msgstr "சொல்லியல்"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "மொழி பெயர்ப்பில் ஏற்படும் சாத்திய கூறுகள்"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "தவறுகின்ற ஆய்வுகள்"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
 msgid "Remove quality check"
-msgstr ""
+msgstr "தர ஆய்வை நீக்கு"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
 msgid "Copy into translation"
-msgstr ""
+msgstr "மொழி பெயர்ப்புக்குள் நகலெடு"
 
 #: local_apps/pootle_store/templates/unit/edit.html:94
 #: local_apps/pootle_terminology/templates/terminology/manage.html:33
@@ -1499,15 +1553,15 @@ msgstr "பரிந்துரை"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "முந்திய பகுதிக்கு செல்"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "அடுத்த பகுதிக்கு செல்"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "கருத்து தெரிவி"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1518,35 +1572,37 @@ msgid "Reject suggestion"
 msgstr "பரிந்துரையை நிராகரி"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "பரிந்துரையை நிராகரி"
+msgstr "பரிந்துரையை நிக்கு"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
-#, fuzzy
 msgid "Translator Comments"
 msgstr "மொழி பெயர்ப்பாளர் கருத்துரைகள்"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
 #, python-format
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr ""
+msgstr "% (பயனர்)கள் இன் அறிவுரை % (i)"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "% (பயனர்)கள் இன் அறிவுரை"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr ""
+"மொழிபெயர்க்கப்பட்ட வார்த்தைகள்: %(translated)d/%(total)d - %"
+"(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr ""
+"மொழிபெயர்க்கப்பட்ட சரங்கள்: %(translated)d/%(total)d - %(translatedpercent)d"
+"%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1558,25 +1614,27 @@ msgstr "பன்மை"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "அருஞ்சொற்பொருள் பட்டியலை புத்துயிரூட்டு"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"அருஞ்சொற்பொருள் பட்டியலை புத்துயிரூட்ட விருப்பமா? இருப்பிலிருக்கும் "
+"வார்த்தைகள் மற்றும் அதன் மொழிபெயர்ப்புகள் நீக்கப்படும்"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "பிரித்தெடு"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "அருஞ்சொற்பொருள் பட்டியலை முதலில் இருந்து தொடங்கலாம்"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
-msgstr ""
+msgstr "வார்த்தை"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
@@ -1584,28 +1642,27 @@ msgstr "நீக்கு"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "அருஞ்சொற்பொருள் பட்டியல் காலியாக உள்ளது"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "அருஞ்சொற்பொருள் பட்டியலை தொடங்குக"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "விவரம்"
+msgstr "விவரம்..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "கூடுதல் விவரங்கள்..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
-msgstr ""
+msgstr "மூல உரை"
 
 #: local_apps/pootle_translationproject/forms.py:29
 msgid "Target Text"
-msgstr ""
+msgstr "இலக்கு உரை"
 
 #: local_apps/pootle_translationproject/forms.py:30
 msgid "Comments"
@@ -1621,43 +1678,40 @@ msgid "You do not have rights to update from version control here"
 msgstr "உமக்கு இங்கு இப்பதிப்பை புதுப்பிக்க உரிமை இல்லை"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, fuzzy
+#, python-format, 
 msgid "Updated project \"%s\" from version control"
-msgstr "புதுப்பிக்கப்பட்ட பதிப்புக்கான கோப்புக்கள்"
+msgstr "புதுப்பிக்கப்பட்ட திட்ட \"%s\" பதிப்புக்கான கோப்புக்கள்"
 
 #: local_apps/pootle_translationproject/models.py:350
-#, python-format, fuzzy
+#, python-format
 msgid "Updated file %s from version control"
 msgstr "புதுப்பிக்கப்பட்ட பதிப்புக்கான கோப்புக்கள்"
 
 #: local_apps/pootle_translationproject/models.py:356
-#, python-format, fuzzy
+#, python-format
 msgid "Failed to update %s from version control"
 msgstr "புதுப்பிக்கப்படாத பதிப்புக்கான கோப்புக்கள்"
 
 #: local_apps/pootle_translationproject/views.py:83
-#, fuzzy
 msgid "You do not have rights to access translation mode."
-msgstr "இங்குள்ள மொழி மாற்றங்களை மாற்றுவதற்கு உங்களுக்கு உரிமையில்லை"
+msgstr "உமக்கு மொழி மாற்ற நிலையை அணுக  உரிமையில்லை"
 
 #: local_apps/pootle_translationproject/views.py:119
-#, fuzzy
 msgid "You do not have rights to access review mode."
-msgstr "இங்குள்ள மொழி மாற்றங்களை மாற்றுவதற்கு உங்களுக்கு உரிமையில்லை"
+msgstr "உமக்கு மீளாலும் நிலையை அணுக உரிமையில்லை"
 
 #: local_apps/pootle_translationproject/views.py:218
-#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr "இங்குள்ள மொழி மாற்றங்களை மாற்றுவதற்கு உங்களுக்கு உரிமையில்லை"
+msgstr "உமக்கு மொழி மாற்ற திட்டத்தை அணுக உரிமையில்லை"
 
 #: local_apps/pootle_translationproject/views.py:230
 msgid "You do not have the right to create ZIP archives."
-msgstr ""
+msgstr "உமக்கு கோப்புகளை குறுக்கி (ZIP) ஆவணக்காப்பகமாக்க அனுமதியில்லை."
 
 #: local_apps/pootle_translationproject/views.py:273
 #, python-format
 msgid "Invalid/insecure file name: %s"
-msgstr ""
+msgstr "செல்லாத/பாதுகாப்பில்லாத திட்டப்பெயர்; %கள்"
 
 #: local_apps/pootle_translationproject/views.py:279
 #, python-format
@@ -1665,35 +1719,33 @@ msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
+"செல்லாத ஜிஎன்யூ வகை திட்டப்பெயர்; %( திட்டப்பெயர்)கள். இவை %"
+"(மொழிக்குறியீடு)கள் %(திட்டப்பிரிவு)கள் உடன் பொருந்தவேண்டும்."
 
 #: local_apps/pootle_translationproject/views.py:300
 msgid "Error while extracting archive"
-msgstr ""
+msgstr "ஆவணக்காப்பக்கத்திலிருந்து பிரித்தெடுக்கும் போது ஏற்பட்ட பிழை"
 
 #: local_apps/pootle_translationproject/views.py:438
-#, fuzzy
 msgid "You do not have rights to overwrite files here."
 msgstr "கோவைகளை மேலெழுதுவதற்கு உங்களுக்கு உரிமையில்லை"
 
 #: local_apps/pootle_translationproject/views.py:440
-#, fuzzy
 msgid "You do not have rights to upload new files here."
-msgstr "புதிய கோவைகளை இங்கு படிவேற்றம் செய்வதற்கு உங்களுக்கு உரிமையில்லை"
+msgstr "புதிய கோப்புக்களை இங்கு பதிவேற்றம் செய்வதற்கு உமக்கு உரிமையில்லை"
 
 #: local_apps/pootle_translationproject/views.py:442
 #: local_apps/pootle_translationproject/views.py:444
-#, fuzzy
 msgid "You do not have rights to upload files here."
-msgstr "கோவைகளை இங்கு படிவேற்றம் செய்வதற்கு உங்களுக்கு உரிமையில்லை"
+msgstr "கோப்புக்களை இங்கு பதிவேற்ற உமக்கு உரிமையில்லை"
 
 #: local_apps/pootle_translationproject/views.py:463
-#, fuzzy
 msgid "Update all from version control"
 msgstr "புதுப்பிக்கப்பட்ட பதிப்புக்கான கோப்புக்கள்"
 
 #: local_apps/pootle_translationproject/views.py:478
 msgid "Upload"
-msgstr ""
+msgstr "பதிவேற்று"
 
 #: local_apps/pootle_translationproject/views.py:485
 msgid ""
@@ -1703,26 +1755,27 @@ msgstr ""
 
 #: local_apps/pootle_translationproject/views.py:486
 msgid "Add all new translations as suggestions"
-msgstr ""
+msgstr "அனைத்து புதுமொழிபெயர்ப்புக்களையும் அறிவுரைகளாக சேர்"
 
 #: local_apps/pootle_translationproject/views.py:488
 msgid "Overwrite the current file if it exists"
 msgstr "கோப்பு ஏற்கனவே உள்ளது என்றால் தற்போதய கோப்பை அதன் மேல்பதி"
 
 #: local_apps/pootle_translationproject/views.py:492
-#, fuzzy
 msgid "File"
 msgstr "கோப்புகள்"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "அதற்கு பதிவேற்று"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"இணைக்க விரும்பும் கோப்பை தேர்வு செய்யவும் இல்லையேல் பதிவேற்றய கோப்புப்பெயர் "
+"பயன்படுத்தபடும்"
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1734,19 +1787,17 @@ msgstr "தேடு"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "மொழி பெயர்ப்பு திட்ட கோப்புக்களை இங்கே மேலாய்வு செய்யலாம்"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
 msgstr "வார்ப்புருகளிலிருந்து புதுப்பி"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "திட்ட கோப்புக்களை மீண்டும் துழாவு"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
@@ -1760,7 +1811,6 @@ msgid "Review"
 msgstr "மீளாய்வு"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
 msgstr "மேம்பட்ட தேடல்"
 
@@ -1780,97 +1830,101 @@ msgid ""
 "or in the administration interface.</p>\n"
 "</div>"
 msgstr ""
+"<div dir=\"ltr\" lang=\"ta\">\n"
+"<h2 class=\"title\"> இது பூட்டலின் செயல்முறை நிருவுதல். </h2>\n"
+"<p class=\"about\"> நீர் இங்கே அதிகாரபூர்வ தகவல்தளத்தை பார்வையிடலாம் <a "
+"href=\"http://pootle.locamotion.org\">Pootle server</a>.இவ்வழங்கியின் நிர்வாகி "
+"தொடர்பு முகவரியையோ அல்லது இவ்வழங்கியின் செயல் விவரிப்பையோ தரவில்லை. நீர் "
+"இவ்வழங்கியின் நிர்வாகியாயின் உமது விருப்ப கோப்பில் செயல் விவரிப்பை அல்லது "
+"நிர்வாக இடைமுகத்தில் திருத்தவும்.</p>\n"
+"</div>"
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "பதிலலலிக்கும் நேரம் முடிவுற்றது"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "ஒரு எண்ணை இடு"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "தவறு"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
-msgstr ""
+msgstr "அனுமதி தரப்படவில்லை"
 
 #: templates/403.html:14
 msgid "You don't have permission to access this page."
-msgstr ""
+msgstr "உமக்கு இப்பக்கத்தை அணுக அனுமதியில்லை."
 
 #: templates/404.html:5 templates/404.html.py:10
 msgid "Page Not Found"
-msgstr ""
+msgstr "பக்கம் காணப்படவில்லை"
 
 #: templates/404.html:11
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "கோரிய பக்கம் காணப்படவில்லை. மன்னிக்கவும்"
 
 #: templates/500.html:5 templates/500.html.py:10
 msgid "Server Error"
-msgstr ""
+msgstr "வழங்கியில் பிழை"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "பிழை ஏற்பட்டுள்ளது. உமது பொறுமைக்கு நன்றி."
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
-#, fuzzy
 msgid "Administration"
-msgstr "நிர்வகி"
+msgstr "நிர்வாகம்"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "பூட்டல் வழங்கியின் தகவல் மற்றும் புள்ளிவிவரங்கள்."
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "தகவல்"
 
 #: templates/admin_profile_menu.html:6
-#, fuzzy
 msgid "Configure the general settings for your site"
 msgstr "உங்கள் தளத்திற்கு தேவையான பொதுவான அமைப்புகளை இடவும்"
 
 #: templates/admin_profile_menu.html:6
 msgid "General"
-msgstr ""
+msgstr "பொது"
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the users"
-msgstr ""
+msgstr "பயனர்களை மேலாள்"
 
 #: templates/admin_profile_menu.html:8
 msgid "Manage the languages"
-msgstr ""
+msgstr "மொழிகளை மேலாள்"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage the projects"
-msgstr ""
+msgstr "திட்டங்களை மேலாள்"
 
 #: templates/admin_profile_menu.html:10
 msgid "Manage the default permissions"
-msgstr ""
+msgstr "உள்ளிருப்பு அனுமதிகளை மேலாள்"
 
 #: templates/base.html:49
 msgid "skip to navigation"
-msgstr ""
+msgstr "ஓடல்/துழாவும் பக்கத்திற்கு தாவு"
 
 #: templates/base.html:57 templates/base.html.py:117 templates/docs.html:5
 msgid "Help"
-msgstr ""
+msgstr "உதவி"
 
 #: templates/base.html:62 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
-#, fuzzy
 msgid "My Account"
 msgstr "என் கணக்கு"
 
 #: templates/base.html:63
-#, fuzzy
 msgid "Log Out"
 msgstr "வெளியேறு"
 
@@ -1880,175 +1934,175 @@ msgid "Register"
 msgstr "பதிவுசெய்"
 
 #: templates/base.html:68
-#, fuzzy
 msgid "Log In"
-msgstr "உள்நுளை"
+msgstr "தொடங்குக"
 
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "தொடர்பு கொள்"
 
 #: templates/base.html:121
-#, fuzzy
 msgid "About this Pootle Server"
 msgstr "இப்பூட்டல் வழங்கியைப் பற்றி"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "நீங்கள் மனிதரா?"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"வழங்கியை தாக்குதலில் இருந்து காக்க உமது சமர்பிப்பை இயந்தரமானது அல்ல என "
+"உறுதிசெய்யப்படும்"
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "இவ்வினாவிற்கு பதிலலிக்கவும்"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "உறுதி செய்"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr ""
+msgstr "முக்கிய பக்க மொழி"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
 msgid "Overview"
-msgstr ""
+msgstr "மேலோட்டம்"
 
 #: templates/language_menu.html:8
 msgid "Language news"
-msgstr ""
+msgstr "மொழிச்செய்தி"
 
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
-msgstr ""
+msgstr "உமது மொழி அனுமதிகளை நிர்வகி"
 
 #: templates/project_menu.html:7
-#, fuzzy
 msgid "Project main page"
-msgstr "திட்ட அகப்பக்கம்"
+msgstr "திட்டத்தின் முக்கிய பக்கம்"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "திட்டச்செய்திகள்"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
-msgstr ""
+msgstr "உமது திட்டத்தை நிர்வகி"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "திட்ட அனுமதிகளை மேலாள்"
 
 #: templates/tp_base_terminology.html:5
 msgid "Manage Terminology"
-msgstr ""
+msgstr "சொல்லியலை மேலாள்"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
-msgstr ""
+msgstr "திட்டத்தின் முக்கிய பக்கத்தை மொழிபெயர்"
 
 #: templates/tp_menu.html:8
 msgid "Translation project news"
-msgstr ""
+msgstr "மொழிபெயர்ப்பு திட்டச்செய்தி"
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr ""
+msgstr "இத்திட்டத்தை மொழிபெயர்"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
-msgstr ""
+msgstr "தர ஆய்வு மற்றும் மீளாய்வுக்கான பரிந்துரைகள்"
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "உமது திட்ட அனுமதிகளை நிர்வகி"
 
 #: templates/tp_menu.html:13
 msgid "Administrate your project files"
-msgstr ""
+msgstr "உமது திட்ட கோப்புக்களை நிர்வகி"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
-msgstr ""
+msgstr "உமது கணக்கை மேலோட்டம் செய்"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
-msgstr ""
+msgstr "உமது மொழிபெயர்ப்பு விருப்பங்களை உருவாக்கு"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr ""
+msgstr "அமைவுகள்"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
-msgstr ""
+msgstr "உமது சொந்த தகவல்களை மாற்று"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr ""
+msgstr "விவரம்"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
-msgstr ""
+msgstr "உமது கடவுச்சொல்லை மாற்று"
 
 #: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
 msgid "Django administration"
-msgstr ""
+msgstr "டிஜாங்கோ (Django) நிர்வாகம்"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "அனுப்பு"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "தகவல் அனுப்பியாயிற்று"
 
 #: templates/contact_form/contact_form_subject.txt:2
-#, python-format
+#, python-format, fuzzy
 msgid " message by %(name)s"
-msgstr ""
+msgstr "தகவல் அனுப்பிய %(பெயர்)கள் "
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
+"இங்கே உமது சொந்த தகவலை மாற்றலாம். இத்தகவல் மொழிபெயர்ப்பு கோப்பின் தலைப்பாக "
+"பயன்படுத்தப்படும்."
 
 #: templates/profiles/edit_personal.html:19
-#, fuzzy
 msgid "First Name"
 msgstr "முதற்பெயர்"
 
 #: templates/profiles/edit_personal.html:24
-#, fuzzy
 msgid "Last Name"
 msgstr "கடைப்பெயர்"
 
 #: templates/profiles/edit_personal.html:29
-#, fuzzy
 msgid "Email address"
-msgstr "மின்னஞ்சல் முகவரி"
+msgstr "மின்மடல் "
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr ""
+msgstr "மொழிபெயர்ப்பு அமைவுகள்"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
 msgstr ""
+"இங்கே உமது மொழிபெயர்ப்பு இடைமுகம் மற்றும் மொழிவிருப்ப அமைவுகளை உருவாக்கலாம். "
+"இத்தகவல் மொழிபெயர்ப்பு கோப்பின் தலைப்பாக பயன்படுத்தப்படும்."
 
 #: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
@@ -2057,18 +2111,19 @@ msgstr "விரைவுச் சுட்டிகள்"
 #: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
+"மொழிகள் அல்லது திட்டங்கள் தெரிவு செய்யப்படவில்லை. இப்போது தெரிவு செய்யவும்"
 
 #: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
-msgstr ""
+msgstr "இப்பயனர் மொழிகள் அல்லது திட்டங்களை இன்னும் தெரிவு செய்யவில்லை. "
 
 #: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
-msgstr ""
+msgstr "பயனர் புள்ளிவிவரம்"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
+msgstr "விவரப்பட்டி"
 
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:15
@@ -2076,19 +2131,17 @@ msgid "Username"
 msgstr "பயனர்பெயர்"
 
 #: templates/profiles/profile_list.html:12
-#, fuzzy
 msgid "First name"
 msgstr "முதற்பெயர்"
 
 #: templates/profiles/profile_list.html:13
-#, fuzzy
 msgid "Last name"
 msgstr "கடைப்பெயர்"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
 msgid "Account Activated"
-msgstr ""
+msgstr "கணக்கு செயலாக்கப்பட்டது"
 
 #: templates/registration/activate.html:10
 #, python-format
@@ -2096,67 +2149,65 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
+"உமது கணக்கு பயனர்பெயர்\"%(கணக்கு)கள்\"காக செயலாக்கப்பட்டது. நீங்கள் "
+"தொடங்கலாம்."
 
 #: templates/registration/activation_email.txt:2
-#, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "இந்த மின்னஞ்சல் முகவரியை உபயோகித்து \"பூட்டில்\" கணக்கொன்று "
-"உருவாக்கப்பட்டுள்ளது.\n"
+msgstr ""
+"இந்த மின்னஞ்சல் முகவரியை உபயோகித்து \"பூட்டில்\" கணக்கொன்று "
+"உருவாக்கப்பட்டுள்ளது."
 
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "உங்கள் கணக்கை செயற்படுத்த இந்த இணைப்பைத் தொடரவும்:\n"
+msgstr "உமது கணக்கை செயலாக்க இவ்விணைப்பை தொடரவும்:"
 
 #: templates/registration/activation_email.txt:6
-#, fuzzy
 msgid "Your activation code is:"
-msgstr ""
-"உங்கள் செயற்படுத்தல் குறியீடு:\n"
-"%s\n"
-"ஆகும்."
+msgstr "உமது செயலாக்ககுறியீடு:"
 
 #: templates/registration/activation_email.txt:9
-#, fuzzy
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "இந்த செய்தி மின்னஞ்சல் முகவரி சரியானதா எனப் பார்ப்பதற்கு அனுப்பப் "
-"படுகின்றது. நீங்கள் கணக்கொன்றை பதிய விரும்பாவிட்டால் இந்த செய்தியை "
-"புறக்கணித்து விடுங்கள்.\n"
+msgstr ""
+"உமது மின்மடலை சரிபார்க்க இத்தகவல் அனுப்ப பட்டது. உமக்கு பதிவு செய்ய "
+"விருப்பம் இல்லையேல், இத்தகவலை புறக்கணிக்கவும்."
 
 #: templates/registration/activation_email_subject.txt:2
-#, fuzzy
 msgid "Pootle registration"
-msgstr "\"பூட்டில்\" பதிவு"
+msgstr "பூட்டில் பதிவு"
 
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:15
 msgid "Password Changed"
-msgstr ""
+msgstr "கடவுச்சொல் மாறியது"
 
 #: templates/registration/password_change_done.html:16
 msgid "Your password was changed successfully."
-msgstr ""
+msgstr "உமது கடவுச்சொல்லை மாற்றியாற்று"
 
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11
 msgid "Change Password"
-msgstr ""
+msgstr "கடவுச்சொல்லை மாற்று"
 
 #: templates/registration/password_change_form.html:15
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"பாதுகாப்புக்காக உமது பழைய கடவுச்சொல்லை இடவும் பின் உமது புதிய கடவுச்சொல்லை "
+"இருமுறை இடவும். பிழையில்லா தட்டச்சு செய்ததை உறுதி செய்யவே இருமுறை "
+"இடச்சொல்கிறோம்."
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr ""
+msgstr "பழைய கடவுச்சொல்"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
-msgstr ""
+msgstr "புதிய கடவுச்சொல்"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm password"
@@ -2164,15 +2215,15 @@ msgstr "கடவுச்சொல்லை உறுதிசெய்"
 
 #: templates/registration/password_change_form.html:38
 msgid "Change My Password"
-msgstr ""
+msgstr "எனது கடவுச்சொல்லை மாற்று"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "கடவுச்சொல்லை மீண்டும் நிறுவுதல்"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "கடவுச்சொல்லை மீண்டும் நிறுவுதல் நிறைவுற்றது"
 
 #: templates/registration/password_reset_complete.html:10
 #, python-format
@@ -2180,6 +2231,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
+"உமது கடவுச்சொல் அமைக்கப்பட்டது. இப்போது கடந்து <a href=\"%(login_url)s\">log "
+"in</a> செல்லலாம்"
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_done.html:5
@@ -2187,47 +2240,50 @@ msgstr ""
 #: templates/registration/password_reset_form.html:5
 #: templates/registration/password_reset_form.html:9
 msgid "Reset Password"
-msgstr ""
+msgstr "மீண்டும் கடவுச்சொல்லை நிறுவு"
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter New Password."
-msgstr ""
+msgstr "புதிய கடவுச்சொல்லை இடு"
 
 #: templates/registration/password_reset_confirm.html:12
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr ""
+msgstr "உமது புதிய கடவுச்சொல்லை சரிபார்க்க இருமுறை இடு"
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr ""
+msgstr "புதிய கடவுச்சொல்"
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
 msgstr "கடவுச்சொல்லை உறுதிசெய்"
 
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr ""
+msgstr "எனது கடவுச்சொல்லை மீண்டும் நிறுவு"
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "கடவுச்சொல்லை மீண்டும் நிறுவுதல் தடங்களுற்றது"
 
 #: templates/registration/password_reset_confirm.html:32
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"ஏற்கனவே கடவுச்சொல் பயனில் உள்ளதால், கடவுச்சொல்லை மீண்டும் நிறுவும் இணைப்பு "
+"செல்லவில்லை.புதிய கடவுச்சொல்லை மீண்டும் நிறுவ தயவு செய்து கோரவும்."
 
 #: templates/registration/password_reset_done.html:11
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"கடவுச்சொல் நிறுவும் வழிமுறைகளை உமது மின்மடலுக்கு அனுப்பியுள்ளோம். சிறிது "
+"நேரத்தில் உமக்கு தகவல் கிடைக்கும். "
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -2235,25 +2291,29 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"உமது %(site_name)s பயனர் கணக்கு கடவுச்சொல்லை மீண்டும் நிறுவ கோரியதால், "
+"இம்மின்மடலை பெறுகிறீர்கள்."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "இப்பக்கத்தின் வழி சென்று புதிய கடவுச்சொல் தேர்ந்தெடுக்கவும்"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "உமது பயனர்பெயர் %(user)s"
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "பூட்டலை பயனபடுத்தியதுக்கு நன்றி!"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"உமது கடவுச்சொல் நினைவில்லையா? கடவுச்சொல் நிறுவும் வழிமுறைகளை அனுப்ப உமது "
+"மின்மடல் முகவரியை இடு. "
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
@@ -2263,33 +2323,31 @@ msgstr "மின்னஞ்சல் முகவரி"
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "பதிவுசெய்தல் நிறைவுற்றது"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "உமது கணக்கை செயலாக்க உன் மின்மடலுக்கு செல்"
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "புதிய பூட்டல் கணக்கை பதிவு செய்"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "மொழிபெயர்ப்பை துவக்க கீழ்காணும் படிவத்தை நிறைவு செய்"
 
 #: templates/registration/registration_form.html:30
-#, fuzzy
 msgid "Password (again)"
 msgstr "கடவுச்சொல் (மீண்டும்)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr ""
+msgstr "ஏற்கனவே கணக்கு உள்ளதா?"
 
 #: templates/registration/registration_form.html:41
-#, fuzzy
 msgid "Log In."
-msgstr "உள்நுளை"
+msgstr "தொடங்கு/ உள்ளீடு"
 
 #~ msgid "You do not have rights to suggest changes here"
 #~ msgstr "இங்கு மாற்றங்களை முன் மொழிவதற்கு உங்களுக்கு உரிமையில்லை"
