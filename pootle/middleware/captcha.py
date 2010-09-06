@@ -100,7 +100,7 @@ class MathCaptchaForm(forms.Form):
         return self._sign(q, a, expires) + data
 
     def _sign(self, q, a, expires):
-        plain = [getattr(settings, 'SITE_URL', ''), settings.SECRET_KEY,\
+        plain = [getattr(settings, 'SITE_URL', ''), settings.SECRET_KEY,
                  q, a, expires]
         plain = "".join([str(p) for p in plain])
         return sha_f(plain).hexdigest()
