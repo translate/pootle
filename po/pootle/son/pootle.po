@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-09-02 09:02+0200\n"
+"PO-Revision-Date: 2010-09-03 16:53+0200\n"
 "Last-Translator: Mohomodou  <mh@bollag-areal.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: son\n"
@@ -331,9 +331,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"Goykaa kaŋ ga šilbay nda \"borokul\" ga cebe kaŋ a mana huru sankay ra (goykaw "
-"bila nda maa wala šilbay tana). \"Tilasu\" goykaw ga alhakey šilbay kaŋ "
-"goykey huru sankay ra nda tilasu, nda manti alhaku tana fooyaŋ noondi i se."
+"Goykaa kaŋ ga šilbay nda “nobody” ti affoo kul kaŋ mana huru sankaa ra "
+"(goykaw bila nda maa wala šilbay tana). Goykaa kaŋ ga šilbay nda “default” "
+"goo mda fondaa kaŋ ga too goykey kul ma hin ka huru sankaa ra, hala manti "
+"fondo cerecerante fooyaŋ bara i se."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -447,7 +448,7 @@ msgid ""
 "its full potential."
 msgstr ""
 "Translate.org.za nda berandiyan baykaw durkutanteyaŋ no ka Pootle cin. Ir ga "
-"boona Pootle ma war gaa war berandiyan goyoo ra, k'a too nga fellaa mee. "
+"boona Pootle ma war gaa war berandiyan goyoo ra, k'a too nga fellaa mee."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
@@ -616,9 +617,9 @@ msgid ""
 msgstr "Django dumoo %s sinjandi, ammaa dumi taagante ga yaamarandi."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy,
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Django dumi %s sinjandi."
+msgstr "lxml dumi %s sinjandi."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -791,7 +792,7 @@ msgstr "War ši nda fondo ka %s juwal."
 
 #: local_apps/pootle_app/views/admin/util.py:129
 msgid "No files in this project."
-msgstr "Tuku kul ši porožewoo woo ra."
+msgstr "Tukuyaŋ kul ši porožewoo woo ra."
 
 #: local_apps/pootle_app/views/admin/util.py:164
 msgid "There are errors in the form. Please review the problems below."
@@ -1211,7 +1212,7 @@ msgstr "Jine"
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr "(%d) koraa"
+msgstr "(%d) korawey"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1230,12 +1231,12 @@ msgstr "Alhabar taaga %(language)s se"
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
 msgid "News for %(project)s"
-msgstr "Alhabar %(project)s se"
+msgstr "Alhabar taaga %(project)s se"
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr "Alhabar taaga porože %(project)s %(language)s ra"
+msgstr "Alhabar taaga %(project)s porožewoo se %(language)s ra"
 
 #: local_apps/pootle_notifications/views.py:90
 #, python-format
@@ -1359,9 +1360,9 @@ msgid "Initialize"
 msgstr "Haŋakaari"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "Ne ganda war ga hin ka duɲeyaney tonton, fasal nda tuusu šennoo woo se."
+msgstr ""
+"Ne ganda war ga hin ka duɲeyaney tonton, fasal nda tuusu porožewoo woo se."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
 #: templates/project_menu.html:10 templates/tp_base_admin.html:8
@@ -1370,7 +1371,7 @@ msgstr "Juwal"
 
 #: local_apps/pootle_project/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr "Ne war ga hin ka šenney tonton, fasal wala tuusu porožewoo woo se."
+msgstr "Ne war ga hin ka šenney tonton, fasal wal'i tuusu porožewoo woo se."
 
 #: local_apps/pootle_store/filetypes.py:29
 msgid "Gettext PO"
@@ -1404,7 +1405,7 @@ msgstr "Java mayrawey"
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr "OS X tenjirey"
+msgstr "OS X Strings"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
@@ -1901,7 +1902,7 @@ msgstr "Hantum ir se"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
-msgstr "Feršikaa woo ga"
+msgstr "Pootle feršikaa woo ga"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
@@ -1913,7 +1914,7 @@ msgid ""
 "made by human users."
 msgstr ""
 "Ka feršikaa jejebu zanbarey ga, ir ga soobay ka koroši wala addamayze "
-"goykawyaŋ ka sanbarey tee. "
+"goykawyaŋ ka sanbarey tee."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
@@ -1942,7 +1943,7 @@ msgstr "War šenni duɲeyaney juwal"
 
 #: templates/project_menu.html:7
 msgid "Project main page"
-msgstr "Porože jinehune maa"
+msgstr "Porože moo boŋoo"
 
 #: templates/project_menu.html:8
 msgid "Project news"
@@ -1986,7 +1987,7 @@ msgstr "War porožewoo tukey juwal"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
-msgstr "War kontoo moo-daaru"
+msgstr "War kontoo moo-daaruyanoo"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"

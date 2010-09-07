@@ -466,38 +466,6 @@ msgstr ""
 msgid "About"
 msgstr "关于"
 
-#: local_apps/pootle_app/templates/admin/dashboard.html:68
-msgid "The Pootle documentation"
-msgstr ""
-
-#: local_apps/pootle_app/templates/admin/dashboard.html:69
-msgid "The Pootle mailing list"
-msgstr ""
-
-#: local_apps/pootle_app/templates/admin/dashboard.html:70
-msgid "(commercial support)"
-msgstr ""
-
-#: local_apps/pootle_app/templates/admin/dashboard.html:78
-msgid "Dependency Checks"
-msgstr "依赖检查"
-
-#: local_apps/pootle_app/templates/admin/dashboard.html:87
-msgid "Optional"
-msgstr "可选项"
-
-#: local_apps/pootle_app/templates/admin/dashboard.html:95
-msgid "Optimizations"
-msgstr "优化"
-
-#: local_apps/pootle_app/templates/admin/rss_widget.html:5
-msgid "Pootle Alerts"
-msgstr ""
-
-#: local_apps/pootle_app/templates/index/about.html:7
-msgid "About"
-msgstr "关于"
-
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
 msgstr "关于 Pootle"

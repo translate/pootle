@@ -897,7 +897,7 @@ msgstr "Hakemisto ZIP-tiedostona"
 msgid "Translate offline"
 msgstr ""
 
-#: local_apps/pootle_app/views/language/item_dict.py:145
+#: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
 msgstr "Lataa XLIFF-tiedosto kääntääksesi yhteydettömässä tilassa."
@@ -1176,8 +1176,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-"Tietokanta alustettu, uudelleenohjaus etusivulle tapahtuu 10 sekunnin "
-"kuluttua"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
@@ -1246,7 +1244,6 @@ msgstr "Uutiset kielelle %(language)s"
 #, python-format
 msgid "News for %(project)s"
 msgstr "%(project)s-projektin uutiset"
-"Tälle sivulle pääsee vain <a href=\"%(login_link)s\">sisäänkirjautuneena</a>."
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1466,14 +1463,10 @@ msgstr "Ei muita tarkastettavia merkkijonoja."
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
 msgstr "Ei muita käännettäviä merkkijonoja."
-"Lyhyt koodi projektille. Koodin tulee sisältää ainoastaan ASCII-merkkejä, "
-"numeroita ja alaviiva (_)."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
 msgstr "Hakusanan sisältäviä tarkastettavia merkkijonoja ei löytynyt."
-"Tämän projektin kuvaus. Tähän voi laittaa lisätietoja tai ohjeita. Tämän "
-"kentän tulisi olla validia HTML-koodia."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
@@ -1607,8 +1600,6 @@ msgstr ""
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
 msgstr ""
-"Haluatko varmasti luoda sanaston uudelleen? Kaikki aiemmat termit ja niiden "
-"käännökset poistetaan."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."

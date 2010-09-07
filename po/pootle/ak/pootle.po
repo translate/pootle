@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-09-02 15:17+0200\n"
-"Last-Translator: Derrick Frimpong <flexyflame2006@yahoo.com>\n"
+"PO-Revision-Date: 2010-09-07 12:11+0200\n"
+"Last-Translator: kasahorow <kasahorow@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ak\n"
 "MIME-Version: 1.0\n"
@@ -885,7 +885,7 @@ msgstr "Folda no ZIP"
 msgid "Translate offline"
 msgstr "kyerɛ ase offline"
 
-#: local_apps/pootle_app/views/language/item_dict.py:145
+#: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
 msgstr "Twe XLIFF fael ma offline nkyerase"
@@ -911,11 +911,7 @@ msgid "Download file"
 msgstr "Twe fael"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
-msgid "Download"
-msgstr "Twe"
-
-#: local_apps/pootle_app/views/language/item_dict.py:161
-msgid "Download file"
+msgid "Commit to VCS"
 msgstr "Kyerɛw kɔ VCS"
 
 #: local_apps/pootle_app/views/language/item_dict.py:182
@@ -1134,20 +1130,19 @@ msgstr "Nto so"
 msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
-msgstr ""
+msgstr "Databes mpono wɔ vɛɛhyɛn %d. Pootle bɛto databes no so seiseiara."
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "Rebɔ apono ama databes no..."
+msgstr "Rebɔ apono a wɔayera ama databes no..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Resiesie pon a ɔsie akwanya..."
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Reto databes apono so..."
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
@@ -1239,8 +1234,6 @@ msgstr "%(language)s ne Nkaebɔ"
 #, python-format
 msgid "News for %(project)s"
 msgstr ""
-"Ho hia sɛ wo <a href=\"%(login_link)s\">bɛlɔgin</a> ansaana wo akɔ krataafa yi "
-"so."
 
 #: local_apps/pootle_notifications/views.py:89
 #, python-format
@@ -1426,14 +1419,10 @@ msgstr ""
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
 msgstr ""
-"Kood tiawa ma nkɔsodwuma yi. Ɛwɔ sɛ ASCII nkarakta, nɔmba ne famudahye (_) "
-"pɛ na ɛwɔ mu."
 
 #: local_apps/pootle_store/filetypes.py:71
 msgid "Subtitles: sub"
 msgstr ""
-"Projɛkt yi ne nkyerɛmu. Wo tumi de ma infɔmehyɛn anaaso akwankyerɛ. Ɛwɔ sɛ "
-"fild yi yɛ HTML a odi mu."
 
 #: local_apps/pootle_store/filetypes.py:72
 msgid "Subtitles: ssa"
@@ -1751,8 +1740,6 @@ msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
-"GNU-stael fael din a onndi mu: %(local_filename)s. Ɛwɔ sɛ ɔde '%(langcode)s."
-"%(filetype)s' fa."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"

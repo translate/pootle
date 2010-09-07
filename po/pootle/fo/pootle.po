@@ -374,11 +374,10 @@ msgstr "Samanset tínar almennu instillingarnar á tínari síðu."
 msgid "Users"
 msgstr "Brúkarir"
 
-#: local_apps/pootle_app/templates/admin/dashboard.html:65
+#: local_apps/pootle_app/templates/admin/admin_general_users.html:14
 msgid ""
-"Pootle is developed by Translate.org.za and a community of passionate "
-"localization experts. We want Pootle to help your localization work reach "
-"its full potential."
+"Here you can add, edit, and delete all the available users in this Pootle "
+"server."
 msgstr ""
 "Her kannst tú leggja til, ritsjórna og strika allar tøkar brúkarar á hesum "
 "Pootle ambætaranum."
@@ -494,7 +493,6 @@ msgid "About Pootle"
 msgstr "Um Pootle"
 
 #: local_apps/pootle_app/templates/index/about.html:19
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -612,9 +610,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/admin/dashboard.py:54
 #, python-format
-msgid ""
-"lxml version %(installed)s is installed. Pootle requires version %(required)"
-"s for XML format support."
+msgid "Django version %s is installed."
 msgstr "Django útgáva %s er løgd inn."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:57
@@ -889,7 +885,7 @@ msgstr "ZIP av fíluskrá"
 msgid "Translate offline"
 msgstr "Umset avlínu"
 
-#: local_apps/pootle_app/views/language/item_dict.py:145
+#: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
 msgstr "Niðurtak XLIFF fílu til avlínutýðing"
@@ -915,11 +911,7 @@ msgid "Download file"
 msgstr "Tak fílu niður"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
-msgid "Download"
-msgstr "Tak niður"
-
-#: local_apps/pootle_app/views/language/item_dict.py:161
-msgid "Download file"
+msgid "Commit to VCS"
 msgstr "Gev upp til VCS"
 
 #: local_apps/pootle_app/views/language/item_dict.py:182
@@ -1243,8 +1235,6 @@ msgstr "Lagt til"
 #, python-format
 msgid "News for %(language)s"
 msgstr "Tíðindi um %(language)s"
-"Ein stutt kota fyri verkætlanina. Hon eigur bert at innihalda ASCII stavir, "
-"tøl og undirstriku (_) stavin."
 
 #: local_apps/pootle_notifications/views.py:83
 #, python-format
@@ -1264,15 +1254,11 @@ msgstr "Tíðindu um %(path)s"
 #: local_apps/pootle_notifications/views.py:116
 msgid "View News Item"
 msgstr "Hygg at tíðindaliði"
-"Niðanfyri kannst tú leggja til, ritstjórna og strika loyvini á hesum "
-"tungumáli."
 
 #: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: local_apps/pootle_notifications/templates/notices.html:88
 msgid "No news yet."
 msgstr "Eingi tíðindi enn."
-"Her kannst tú leggja til, ritstjórna ella strika tungumál fyri hesa "
-"verkætlan."
 
 #: local_apps/pootle_notifications/templates/notices.html:21
 #: local_apps/pootle_notifications/templates/notices.html:24
@@ -1677,13 +1663,10 @@ msgstr "Dagført fíluna %s við útgávu-eftirlitið (vcs)"
 #, python-format
 msgid "Failed to update %s from version control"
 msgstr "Miseydnaðist at dagføra %s við útgávu-eftirlitið (vcs)"
-"Tú hevur ikki atgongurættindi til at broyta umsetingar í hesari verkætlan."
 
 #: local_apps/pootle_translationproject/views.py:83
 msgid "You do not have rights to access translation mode."
 msgstr "Tú hevur ikki atgongurættindi til umsetinga stand."
-"Ógildugt GNU-háttað fílunavn: %(local_filename)s. Tað samsvarað við '%"
-"(langcode)s.%(filetype)s'."
 
 #: local_apps/pootle_translationproject/views.py:119
 msgid "You do not have rights to access review mode."
