@@ -39,7 +39,7 @@ msgid "This field is required."
 msgstr "இக்கட்டம் அவசியம்."
 
 #: strings.py:12
-#, python-format
+#, python-format, fuzzy
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
 "இம்மதிப்பீட்டில் மிகஅதிகமான மற்றும் மிகநீளமான எழுத்துருக்கள் உள்ளதை "
@@ -63,7 +63,7 @@ msgstr "மாற்று"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
-#, python-format
+#, python-format, fuzzy
 msgid "Add %(name)s"
 msgstr "சேர் %(பெயர்)கள்"
 
@@ -827,8 +827,6 @@ msgstr "மாற்றங்களைச் சேமி"
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
-"மொழிபெயர்ப்பு கருவிபட்டை% (கருவிபட்டை_ பதிப்பு) யினால் பூட்டல் % "
-"(பூட்டல்_பதிப்பு) ஊக்கப்படுகறது"
 
 #: local_apps/pootle_app/views/index/index.py:64
 #: local_apps/pootle_app/views/language/item_dict.py:268
@@ -1377,8 +1375,8 @@ msgstr "கோப்புகளை புறக்கணி "
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] "%(மொழிகள்)d மொழி, %(சராசரி)d%% மொழிபெயர்க்கப்பட்டவை"
-msgstr[1] "%(மொழிகள்)d மொழிகள், %(சராசரி)d%% மொழிபெயர்க்கப்பட்டவை"
+msgstr[0] ""
+msgstr[1] ""
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
@@ -1583,12 +1581,12 @@ msgstr "மொழி பெயர்ப்பாளர் கருத்து�
 #: local_apps/pootle_store/templatetags/store_tags.py:73
 #, python-format
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "% (பயனர்)கள் இன் அறிவுரை % (i)"
+msgstr ""
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr "% (பயனர்)கள் இன் அறிவுரை"
+msgstr ""
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
@@ -1678,17 +1676,17 @@ msgid "You do not have rights to update from version control here"
 msgstr "உமக்கு இங்கு இப்பதிப்பை புதுப்பிக்க உரிமை இல்லை"
 
 #: local_apps/pootle_translationproject/models.py:335
-#, python-format, 
+#, python-format, fuzzy
 msgid "Updated project \"%s\" from version control"
-msgstr "புதுப்பிக்கப்பட்ட திட்ட \"%s\" பதிப்புக்கான கோப்புக்கள்"
+msgstr "புதுப்பிக்கப்பட்ட பதிப்புக்கான கோப்புக்கள்"
 
 #: local_apps/pootle_translationproject/models.py:350
-#, python-format
+#, python-format, fuzzy
 msgid "Updated file %s from version control"
 msgstr "புதுப்பிக்கப்பட்ட பதிப்புக்கான கோப்புக்கள்"
 
 #: local_apps/pootle_translationproject/models.py:356
-#, python-format
+#, python-format, fuzzy
 msgid "Failed to update %s from version control"
 msgstr "புதுப்பிக்கப்படாத பதிப்புக்கான கோப்புக்கள்"
 
@@ -1711,7 +1709,7 @@ msgstr "உமக்கு கோப்புகளை குறுக்கி 
 #: local_apps/pootle_translationproject/views.py:273
 #, python-format
 msgid "Invalid/insecure file name: %s"
-msgstr "செல்லாத/பாதுகாப்பில்லாத திட்டப்பெயர்; %கள்"
+msgstr ""
 
 #: local_apps/pootle_translationproject/views.py:279
 #, python-format
@@ -1719,8 +1717,6 @@ msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
-"செல்லாத ஜிஎன்யூ வகை திட்டப்பெயர்; %( திட்டப்பெயர்)கள். இவை %"
-"(மொழிக்குறியீடு)கள் %(திட்டப்பிரிவு)கள் உடன் பொருந்தவேண்டும்."
 
 #: local_apps/pootle_translationproject/views.py:300
 msgid "Error while extracting archive"
@@ -2067,7 +2063,6 @@ msgid "Message Sent"
 msgstr "தகவல் அனுப்பியாயிற்று"
 
 #: templates/contact_form/contact_form_subject.txt:2
-#, python-format, fuzzy
 msgid " message by %(name)s"
 msgstr "தகவல் அனுப்பிய %(பெயர்)கள் "
 
@@ -2149,8 +2144,6 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
-"உமது கணக்கு பயனர்பெயர்\"%(கணக்கு)கள்\"காக செயலாக்கப்பட்டது. நீங்கள் "
-"தொடங்கலாம்."
 
 #: templates/registration/activation_email.txt:2
 msgid "A Pootle account has been created for you using this email address."
