@@ -154,7 +154,9 @@ def server_stats():
     result = cache.get("server_stats")
     if result is None:
         result = {}
-        result['user_count'] = User.objects.filter(is_active=True).count()
+        result['user_count'] = max(User.objects.filter(is_active=True).count()-2, 0)
+        # 'default' and 'nobody' might be counted
+        # FIXME: the special users should not be retuned with is_active
         result['submission_count'] = Submission.objects.count() + SuggestiontStat.objects.count()
         result['pending_count'] = Suggestion.objects.count()
         cache.set("server_stats", result, 86400)
