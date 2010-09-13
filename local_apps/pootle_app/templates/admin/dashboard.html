@@ -20,13 +20,13 @@
     <table>
       <tbody>
         <tr>
-          <th scope="row">{% trans "Submissions" %}</th><td>{{ server_stats.submission_count }}</td>
+          <th scope="row">{% trans "Submissions" %}</th><td class="stats-number">{{ server_stats.submission_count }}</td>
         </tr>
         <tr>
-          <th scope="row">{% trans "Pending suggestions" %}</th><td>{{ server_stats.pending_count }}</td>
+          <th scope="row">{% trans "Pending suggestions" %}</th><td class="stats-number">{{ server_stats.pending_count }}</td>
         </tr>
         <tr>
-          <th scope="row">{% trans "Users" %}</th><td>{{ server_stats.user_count }}</td>
+          <th scope="row">{% trans "Users" %}</th><td class="stats-number">{{ server_stats.user_count }}</td>
         </tr>
       </tbody>
       <tbody class="slidethis"></tbody>

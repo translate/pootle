@@ -17,7 +17,7 @@
         <tr class="{% cycle 'even' 'odd' %}">
           {% for user in row %}
           <td class="stats-name">{{ user.username }}</td>
-          <td class="stats-words">{{ user.count }}</td>
+          <td class="stats-number">{{ user.count }}</td>
           {% endfor %}
         </tr>
         {% endfor %}

@@ -41,8 +41,8 @@ $(document).ready(function() {
       success: function(data) {
         var newstats = '';
         $(data).each(function() {
-          newstats += '<tr><th scope="row">' + this[0] + '</th><td>'
-                      + this[1] + '</td></tr>';
+          newstats += '<tr><th scope="row">' + this[0] + '</th>'
+                      + '<td class="stats-number">' + this[1] + '</td></tr>';
         });
         $("tbody.slidethis").append(newstats);
         $("tbody.slidethis").slideDown("fast");
