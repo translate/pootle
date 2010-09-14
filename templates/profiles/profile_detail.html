@@ -68,7 +68,7 @@
     <table>
       {% for stat in profile.getuserstatistics %}
       <tr>
-        <th scope="row">{{ stat.text }}</th><td>{{ stat.count }}</td>
+        <th scope="row">{{ stat.text }}</th><td class="stats-number">{{ stat.count }}</td>
       </tr>
       {% endfor %}
     </table>
