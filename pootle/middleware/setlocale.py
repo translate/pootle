@@ -25,7 +25,7 @@ from django.utils import translation
 from django.conf import settings
 
 class SetLocale(object):
-    """sets python locale for each request"""
+    """Sets python locale for each request."""
     def process_request(self, request):
         #FIXME: some languages like arabic don't have a language only
         # locale for no good reason. we need a function to pick default
@@ -34,12 +34,12 @@ class SetLocale(object):
         try:
             locale.setlocale(locale.LC_ALL, (lang, 'UTF-8'))
         except:
-            logging.debug('failed to set locale to %s; using Pootle default', lang)
+            logging.debug('Failed to set locale to %s; using Pootle default', lang)
             lang = translation.to_locale(settings.LANGUAGE_CODE)
             try:
                 locale.setlocale(locale.LC_ALL, (lang, 'UTF-8'))
             except:
-                logging.debug('failed to set locale to pootle default (%s); loading system default', lang)
+                logging.debug('Failed to set locale to Pootle default (%s); loading system default', lang)
                 locale.setlocale(locale.LC_ALL, '')
 
     def process_response(self, request, response):
@@ -47,7 +47,7 @@ class SetLocale(object):
         try:
             locale.setlocale(locale.LC_ALL, (lang, 'UTF-8'))
         except:
-            logging.debug('failed to set locale to pootle default (%s); loading system default', lang)
+            logging.debug('Failed to set locale to Pootle default (%s); loading system default', lang)
             locale.setlocale(locale.LC_ALL, '')
         return response
 
@@ -56,5 +56,5 @@ class SetLocale(object):
         try:
             locale.setlocale(locale.LC_ALL, (lang, 'UTF-8'))
         except:
-            logging.debug('failed to set locale to pootle default (%s); loading system default', lang)
+            logging.debug('Failed to set locale to Pootle default (%s); loading system default', lang)
             locale.setlocale(locale.LC_ALL, '')
