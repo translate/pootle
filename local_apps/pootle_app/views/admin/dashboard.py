@@ -19,6 +19,8 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+import locale
+
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
@@ -149,6 +151,9 @@ def optimal_depcheck():
 
     return optimal
 
+def _format_numbers(dict):
+    for k in dict.keys():
+        dict[k] = locale.format("%d", dict[k], 1)
 
 def server_stats():
     result = cache.get("server_stats")
@@ -159,6 +164,7 @@ def server_stats():
         # FIXME: the special users should not be retuned with is_active
         result['submission_count'] = Submission.objects.count() + SuggestiontStat.objects.count()
         result['pending_count'] = Suggestion.objects.count()
+        _format_numbers(result)
         cache.set("server_stats", result, 86400)
     return result
 
@@ -179,6 +185,7 @@ def server_stats_more(request):
         result['user_active_count'] = (PootleProfile.objects.exclude(submission=None) |\
                                        PootleProfile.objects.exclude(suggestion=None) |\
                                        PootleProfile.objects.exclude(suggester=None)).order_by().count()
+        _format_numbers(result)
         cache.set("server_stats_more", result, 86400)
     stat_strings = {'store_count': _('Files'),
                     'project_count': _('Active projects'),
