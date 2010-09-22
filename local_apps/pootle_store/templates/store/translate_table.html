@@ -14,7 +14,7 @@
     [[if source.title]]
     <span class="translation-text-headers" lang="${source_lang}">${ source.title }</span>
     [[/if]]
-    <div lang="${source_lang}" dir="${source_dir}" class="translation-text">${source.text}</div>
+    <div lang="${source_lang}" dir="${source_dir}" class="translation-text">[[html source.text]]</div>
     [[/each]]
   </div>
 </td>
@@ -24,7 +24,7 @@
     [[if target.title]]
     <span class="translation-text-headers" lang="${target_lang}">${ target.title }</span>
     [[/if]]
-    <div lang="${target_lang}" class="translation-text" dir="${target_dir}">${target.text}</div>
+    <div lang="${target_lang}" class="translation-text" dir="${target_dir}">[[html target.text]]</div>
     [[/each]]
   </div>
 </td>

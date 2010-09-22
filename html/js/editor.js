@@ -5,7 +5,7 @@ $(document).ready(function() {
     stext = stext.replace(/\[\[/g, "{{").replace(/\]\]/g, "}}");
     $("script[type=text/x-jquery-template]").text(stext);
 
-    units = new Array();
+    units = {};
 
     $(document).ajaxStart(function() {
       $("#activity").show();
