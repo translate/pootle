@@ -50,7 +50,7 @@ from pootle_app.project_tree import ensure_target_dir_exists
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
-from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
+from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path, ajax_required
 
 def export_as_xliff(request, pootle_path):
     """export given file to xliff for offline translation"""
@@ -477,6 +477,7 @@ def translate(request, pootle_path):
 # Views used with XMLHttpRequest requests.
 #
 
+@ajax_required
 def get_view_unit(request, pootle_path, uid):
     """
     @return: An object in JSON notation that contains the source and target
@@ -515,6 +516,7 @@ def get_view_unit(request, pootle_path, uid):
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
+@ajax_required
 def get_edit_unit(request, pootle_path, uid):
     """
     @return: An object in JSON notation that contains the editing widget
@@ -550,6 +552,7 @@ def get_edit_unit(request, pootle_path, uid):
     return render_to_response('unit/edit.html', template_vars,
                               context_instance=RequestContext(request))
 
+@ajax_required
 def reject_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
@@ -585,6 +588,7 @@ def reject_suggestion(request, uid, suggid):
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
+@ajax_required
 def accept_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
@@ -630,6 +634,7 @@ def accept_suggestion(request, uid, suggid):
     return HttpResponse(response, mimetype="application/json")
 
 
+@ajax_required
 def reject_qualitycheck(request, uid, checkid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent

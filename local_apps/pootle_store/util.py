@@ -22,6 +22,7 @@
 import os
 
 from django.conf import settings
+from django.http import HttpResponseBadRequest
 
 from pootle_misc.aggregate import sum_column
 from pootle_misc.util import dictsum
@@ -126,3 +127,21 @@ def calculate_stats(units):
         result['translatedsourcewords'] = translated['source_wordcount']
         result['translatedtargetwords'] = translated['target_wordcount']
     return result
+
+def ajax_required(f):
+    """
+    AJAX request required decorator
+    use it in your views:
+
+    @ajax_required
+    def my_view(request):
+        ....
+
+    Taken from:
+    http://djangosnippets.org/snippets/771/
+    """
+    def wrapper(request, *args, **kwargs):
+        if not request.is_ajax():
+            return HttpResponseBadRequest("This must be an AJAX request.")
+        return f(request, *args, **kwargs)
+    return wrapper
