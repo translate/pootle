@@ -18,6 +18,21 @@ $(document).ready(function() {
     });
 
     /*
+     * Makes zebra stripes
+     */
+    function make_zebra(selector) {
+      /* Customisation for zebra tags */
+      var cls = "even";
+      var even = true;
+      $(selector).each(function() {
+          $(this).addClass(cls)
+          cls = even ? "odd" : "even";
+          $(this).removeClass(cls)
+          even = !even;
+      });
+    }
+
+    /*
      * Sets the view unit for unit 'uid'
      */
     var get_view_unit = function(store, uid, async) {
@@ -122,6 +137,7 @@ $(document).ready(function() {
       where.load(edit_url).hide().fadeIn("slow");
       $("#active_uid").text(uid);
       display_unit_views_for(store, uid);
+      make_zebra("table.translate-table tr[id]");
       // TODO: Update pager
       // TODO: make history really load a unit
       window.location.hash = "/u/" + uid;
