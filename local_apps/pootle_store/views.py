@@ -518,8 +518,9 @@ def get_view_unit(request, pootle_path, uid):
 def get_edit_unit(request, pootle_path, uid):
     """
     @return: An object in JSON notation that contains the editing widget
-    for unit C{uid}. This object also contains success status that
-    indicates if the unit has been succesfully retrieved or not.
+    for unit C{uid}.
+    This object also contains success status that indicates if the unit
+    has been succesfully retrieved or not.
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
