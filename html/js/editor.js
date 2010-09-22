@@ -133,14 +133,13 @@ $(document).ready(function() {
       var where = $("tr#row" + uid);
       where.children().remove();
       where.addClass("translate-translation-row");
-      // TODO: Retrieve previous and next units relative to uid
       where.load(edit_url).hide().fadeIn("slow");
-      $("#active_uid").text(uid);
       display_unit_views_for(store, uid);
-      make_zebra("table.translate-table tr[id]");
+      $("#active_uid").text(uid);
       // TODO: Update pager
       // TODO: make history really load a unit
       window.location.hash = "/u/" + uid;
+      $("table.translate-table").trigger("editor_ready");
     };
 
     $("a[id^=editlink]").live("click", function(e) {
@@ -155,7 +154,8 @@ $(document).ready(function() {
       }
     });
 
-    $("a[id^=editlink]").ajaxComplete(function() {
+    $("table.translate-table").bind("editor_ready", function() {
+      make_zebra("table.translate-table tr[id]");
       var maxheight = $(window).height() * 0.3;
       $('textarea.expanding').TextAreaExpander('10', maxheight);
       $.scrollTo('td.translate-full', {offset: {top:-100}});
