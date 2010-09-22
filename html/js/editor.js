@@ -50,6 +50,7 @@ $(document).ready(function() {
       where.children().remove();
       where.load(edit_url).hide().fadeIn("slow");
       $("#active_uid").text(uid);
+      window.location.hash = "/u/" + uid;
     };
 
     $("a[id^=editlink]").live("click", function(e) {
