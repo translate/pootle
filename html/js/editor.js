@@ -12,12 +12,32 @@ $(document).ready(function() {
     units = {};
     store_info = null;
 
+    /*
+     * XHR activity indicator
+     */
     $(document).ajaxStart(function() {
       $("#activity").show();
     });
     $(document).ajaxStop(function() {
       $("#activity").fadeOut("slow");
     });
+
+    /*
+     * History support
+     */
+    $.history.init(function(hash) {
+      var parts = hash.split("/");
+      switch (parts[0]) {
+        case "unit":
+          var store = $("div#store").text();
+          var uid = parts[1];
+          display_edit_unit(store, uid);
+        break;
+      }
+    }, {'unescape': true});
+
+    // Check first when loading the page
+    $.history.check();
 
     /*
      * Makes zebra stripes
@@ -108,6 +128,8 @@ $(document).ready(function() {
 
     var display_unit_views_for = function(store, uid) {
       var uids = get_view_units_for(store, uid);
+      // FIXME: This only works for visible units:
+      // -- what happens if we want to load a unit which is out of context?
       var where = $("tr#row" + uid);
       // Remove previous and next rows
       where.prevAll("tr[id]").fadeOut("slow").remove();
@@ -135,8 +157,6 @@ $(document).ready(function() {
     var display_edit_unit = function(store, uid) {
       display_unit_views_for(store, uid);
       load_edit_unit(store, uid);
-      // TODO: make history really load a unit
-      window.location.hash = "/u/" + uid;
     };
 
     $("a[id^=editlink]").live("click", function(e) {
@@ -144,8 +164,8 @@ $(document).ready(function() {
       var m = $(this).attr("id").match(/editlink([0-9]+)/);
       if (m) {
         var uid = m[1];
-        var store = $("div#store").text();
-        display_edit_unit(store, uid);
+        var newhash = "unit/" + uid;
+        $.history.load(newhash);
       }
     });
 
@@ -203,8 +223,6 @@ $(document).ready(function() {
       // Editing unit
       if (data.new_uid) {
         load_edit_unit(store, data.new_uid);
-        // TODO: make history really load a unit
-        window.location.hash = "/u/" + data.new_uid;
       }
     };
 
@@ -239,6 +257,7 @@ $(document).ready(function() {
     $("input.submit, input.suggest").live("click", process_submit);
 
     var goto_prevnext = function(e) {
+      e.preventDefault();
       var current = $("tr#row" + $("#active_uid").text());
       var prevnext_map = {previous: current.prev("tr[id]"), next: current.next("tr[id]")};
       var prevnext = prevnext_map[$(e.target).attr("class")];
@@ -246,8 +265,8 @@ $(document).ready(function() {
         var m = prevnext.attr("id").match(/row([0-9]+)/);
         if (m) {
           var uid = m[1];
-          var store = $("div#store").text();
-          display_edit_unit(store, uid);
+          var newhash = "unit/" + uid;
+          $.history.load(newhash);
         }
       }
     };
