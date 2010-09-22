@@ -168,7 +168,17 @@ $(document).ready(function() {
       $(".focusthis").focus();
     });
 
+    var update_pager = function(pager) {
+      if (pager) {
+        // XXX: For some reason replaceWith leaves a single element only
+        // Related: http://dev.jquery.com/ticket/5917
+        var newpager = $("#pager").tmpl({pager: pager}).get(0);
+        $("ul.pager").replaceWith(newpager);
+      }
+    };
+
     var display_next_unit = function(store, data) {
+      update_pager(data.pager);
       var prev_where = $("tr#row" + data.prev_unit.id);
       // Only remove first unit in the table if it's not the editing widget
       var first_in_table = $("table.translate-table tr[id]").first();

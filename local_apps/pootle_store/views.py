@@ -527,6 +527,26 @@ def _build_store_metadata(tp):
             "target_lang": tp.language.code,
             "target_dir": tp.language.get_direction()}
 
+def _build_pager_dict(pager):
+    """
+    Given a pager object C{pager}, retrieves all the information needed
+    to build a pager.
+    @return: A dictionary containing necessary pager information to build
+    a pager.
+    """
+    start = max(1, pager.number - 4)
+    end = min(pager.paginator.num_pages, pager.number + 4)
+    return {"has_previous": pager.has_previous(),
+            "pp_number": pager.previous_page_number(),
+            "number": pager.number,
+            "num_pages": pager.paginator.num_pages,
+            "pages": [i for i in range(start, end+1)],
+            "has_next": pager.has_next(),
+            "np_number": pager.next_page_number(),
+            "start": start,
+            "end": end,
+           }
+
 @ajax_required
 def get_view_unit(request, pootle_path, uid):
     """
@@ -677,6 +697,17 @@ def process_submit(request, pootle_path, uid, type):
                     SuggestionStat.objects.get_or_create(translation_project=translation_project,
                                                          suggester=get_profile(request.user),
                                                          state='pending', unit=unit.id)
+        # TODO: Once we allow filtering, unit.store.units has to be a qs
+        # containing the set of filtered units.
+        profile = get_profile(request.user)
+        unit_rows = profile.get_unit_rows()
+        preceding = unit.store.units.filter(index__lt=unit.index).count()
+        page = preceding / unit_rows + 1
+        pager = paginate(request, unit.store.units, items=unit_rows, page=page)
+        # XXX: Could we compare the current pager with the previous pager
+        # in order to not blindly return useless data?
+        response["pager"] = _build_pager_dict(pager)
+
         response["store"] = _build_store_metadata(translation_project)
         prev_unit = unit
         response["prev_unit"] = _build_units_list([prev_unit])[0]
@@ -689,8 +720,7 @@ def process_submit(request, pootle_path, uid, type):
         except Unit.DoesNotExist:
             response["new_uid"] = None
         try:
-            profile = get_profile(request.user)
-            units_after = (profile.get_unit_rows() - 1) / 2
+            units_after = (unit_rows - 1) / 2
             last_index = unit.index + units_after + 1
             last_unit = unit.store.units.get(index=last_index)
             response["last_unit"] = _build_units_list([last_unit])[0]
