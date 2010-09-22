@@ -14,7 +14,7 @@
       {% for unit in units %}
       <tr class="{% cycle 'even' 'odd' %}{% ifequal unit form.instance %} translate-translation-row{% endifequal %}{% if unit.isfuzzy %} translate-translation-fuzzy{% endif %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
         <td{% ifequal unit form.instance %} class="translate-focus"{% endifequal %}>
-          <a href="?unit={{ unit.id }}" id="editlink{{ unit.index }}" title="{% trans 'Edit translation' %}">
+          <a href="?unit={{ unit.id }}" id="editlink{{ unit.id }}" title="{% trans 'Edit translation' %}">
           <div class="translation-action">{{ unit.index }}</div>
           </a>
         </td>

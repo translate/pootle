@@ -477,6 +477,23 @@ def translate(request, pootle_path):
 # Views used with XMLHttpRequest requests.
 #
 
+def get_unit_view(request, pootle_path, uid):
+    response = {}
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    try:
+        unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
+        # FIXME: .target.strings doesn't assure we get the correct
+        # number of plurals. Check for the proper from at
+        # unit.store.translation_project.language.nplurals
+        response["unit"] = {"source": [s for s in unit.source.strings],
+                            "target": [t for t in unit.target.strings]}
+        response["success"] = True
+    except Unit.DoesNotExist:
+        response["success"] = False
+    response = simplejson.dumps(response)
+    return HttpResponse(response, mimetype="application/json")
+
 def reject_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
