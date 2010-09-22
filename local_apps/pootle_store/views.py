@@ -673,24 +673,29 @@ def process_submission(request, pootle_path, uid):
                              "source_dir": translation_project.project.source_language.get_direction(),
                              "target_lang": translation_project.language.code,
                              "target_dir": translation_project.language.get_direction()}
-        # Retrieve previous, new current and last units for the next view
-        # XXX: We should perhaps catch exceptions here: DoesNotExist, IndexError
         prev_unit = unit
-        new_index = unit.index + 1
-        new_unit = unit.store.units.get(index=new_index)
-        profile = get_profile(request.user)
-        units_after = (profile.get_unit_rows() - 1) / 2
-        last_index = unit.index + units_after + 1
-        last_unit = unit.store.units.get(index=last_index)
         response["prev_unit"] = _build_units_list([prev_unit])[0]
-        response["new_uid"] = new_unit.id
-        response["last_unit"] = _build_units_list([last_unit])[0]
+        try:
+            # FIXME: This will only work with consecuent units,
+            # so this won't work with filtered units
+            new_index = unit.index + 1
+            new_unit = unit.store.units.get(index=new_index)
+            response["new_uid"] = new_unit.id
+        except Unit.DoesNotExist:
+            response["new_uid"] = None
+        try:
+            profile = get_profile(request.user)
+            units_after = (profile.get_unit_rows() - 1) / 2
+            last_index = unit.index + units_after + 1
+            last_unit = unit.store.units.get(index=last_index)
+            response["last_unit"] = _build_units_list([last_unit])[0]
+        except Unit.DoesNotExist:
+            response["last_unit"] = None
         response["success"] = True
     else:
         # Form failed
         # XXX: We could also provide an error message
         response["success"] = False
-    # XXX: Could we perhaps include prev & last units in the new view?
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 

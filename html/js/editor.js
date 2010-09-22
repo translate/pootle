@@ -167,7 +167,6 @@ $(document).ready(function() {
     });
 
     var display_next_unit = function(store, data) {
-      var new_uid = data.new_uid;
       var prev_where = $("tr#row" + data.prev_unit.id);
       // Only remove first unit in the table if it's not the editing widget
       var first_in_table = $("table.translate-table tr[id]").first();
@@ -182,23 +181,27 @@ $(document).ready(function() {
       prev_where.children().fadeOut("slow").remove();
       $("#unit_view").tmpl({store: data.store, unit: data.prev_unit}).fadeIn("slow").appendTo(prev_where);
       // Last unit
-      var last_in_table = $("table.translate-table tr[id]").last();
-      var last_where = $("<tr></tr>").attr("id", "row" + data.last_unit.id);
-      last_where.insertAfter(last_in_table)
-      $("#unit_view").tmpl({store: data.store, unit: data.last_unit}).fadeIn("slow").appendTo(last_where);
+      if (data.last_unit) {
+        var last_in_table = $("table.translate-table tr[id]").last();
+        var last_where = $("<tr></tr>").attr("id", "row" + data.last_unit.id);
+        last_where.insertAfter(last_in_table)
+        $("#unit_view").tmpl({store: data.store, unit: data.last_unit}).fadeIn("slow").appendTo(last_where);
+      }
       // FIXME: refactor loading and displaying an edit unit
       // Editing unit
-      var edit_url = l(store + '/edit/' + new_uid);
-      var edit_where = $("tr#row" + new_uid);
-      edit_where.children().remove();
-      edit_where.addClass("translate-translation-row");
-      edit_where.load(edit_url, function() {
+      if (data.new_uid) {
+        var edit_url = l(store + '/edit/' + data.new_uid);
+        var edit_where = $("tr#row" + data.new_uid);
+        edit_where.children().remove();
+        edit_where.addClass("translate-translation-row");
+        edit_where.load(edit_url, function() {
+          $("table.translate-table").trigger("editor_ready");
+        }).hide().fadeIn("slow");
+        $("#active_uid").text(data.new_uid);
         $("table.translate-table").trigger("editor_ready");
-      }).hide().fadeIn("slow");
-      $("#active_uid").text(new_uid);
-      $("table.translate-table").trigger("editor_ready");
-      // TODO: make history really load a unit
-      window.location.hash = "/u/" + new_uid;
+        // TODO: make history really load a unit
+        window.location.hash = "/u/" + data.new_uid;
+      }
     };
 
     var process_submit = function(store, uid, type) {
