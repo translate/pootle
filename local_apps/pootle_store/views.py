@@ -480,8 +480,11 @@ def translate(request, pootle_path):
 def get_view_unit(request, pootle_path, uid):
     """
     @return: An object in JSON notation that contains the source and target
-    texts for unit C{uid}. This object also contains success status that
-    indicates if the unit has been succesfully retrieved or not.
+    texts for unit C{uid}.
+    This object also contains more information used for rendering the view
+    unit, such as the source/target language codes, direction of the text, ...
+    Success status that indicates if the unit has been succesfully
+    retrieved or not is returned as well.
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
