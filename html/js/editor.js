@@ -240,13 +240,15 @@ $(document).ready(function() {
 
     var goto_prevnext = function(e) {
       var current = $("tr#row" + $("#active_uid").text());
-      var prevnext_map = {previous: current.prev("tr"), next: current.next("tr")};
+      var prevnext_map = {previous: current.prev("tr[id]"), next: current.next("tr[id]")};
       var prevnext = prevnext_map[$(e.target).attr("class")];
-      var m = prevnext.attr("id").match(/row([0-9]+)/);
-      if (m) {
-        var uid = m[1];
-        var store = $("div#store").text();
-        display_edit_unit(store, uid);
+      if (prevnext.length) {
+        var m = prevnext.attr("id").match(/row([0-9]+)/);
+        if (m) {
+          var uid = m[1];
+          var store = $("div#store").text();
+          display_edit_unit(store, uid);
+        }
       }
     };
 
