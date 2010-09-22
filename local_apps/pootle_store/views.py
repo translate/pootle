@@ -477,41 +477,6 @@ def translate(request, pootle_path):
 # Views used with XMLHttpRequest requests.
 #
 
-@ajax_required
-def get_view_unit(request, pootle_path, uid):
-    """
-    @return: An object in JSON notation that contains the source and target
-    texts for unit C{uid}.
-    This object also contains more information used for rendering the view
-    unit, such as the source/target language codes, direction of the text, ...
-    Success status that indicates if the unit has been succesfully
-    retrieved or not is returned as well.
-    """
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    profile = get_profile(request.user)
-    if not check_profile_permission(profile, 'view', pootle_path):
-        # XXX: Shouldn't we return an error through JSON instead of
-        # raising an exception?
-        raise PermissionDenied
-
-    response = {}
-    try:
-        unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
-        translation_project = unit.store.translation_project
-        response["unit"] = {"id": uid,
-                            "source_lang": translation_project.project.source_language.code,
-                            "source_dir": translation_project.project.source_language.get_direction(),
-                            "target_lang": translation_project.language.code,
-                            "target_dir": translation_project.language.get_direction()}
-        response["unit"] = _build_units_list([unit])[0]
-        response["success"] = True
-    except Unit.DoesNotExist:
-        # XXX: We could also provide an error message
-        response["success"] = False
-    response = simplejson.dumps(response)
-    return HttpResponse(response, mimetype="application/json")
-
 def _filter_view_units(units_qs, current_index, limit):
     """
     Returns limit units before and after unit C{uid}.
@@ -561,6 +526,37 @@ def _build_store_metadata(tp):
             "source_dir": tp.project.source_language.get_direction(),
             "target_lang": tp.language.code,
             "target_dir": tp.language.get_direction()}
+
+@ajax_required
+def get_view_unit(request, pootle_path, uid):
+    """
+    @return: An object in JSON notation that contains the source and target
+    texts for unit C{uid}.
+    This object also contains more information used for rendering the view
+    unit, such as the source/target language codes, direction of the text, ...
+    Success status that indicates if the unit has been succesfully
+    retrieved or not is returned as well.
+    """
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    profile = get_profile(request.user)
+    if not check_profile_permission(profile, 'view', pootle_path):
+        # XXX: Shouldn't we return an error through JSON instead of
+        # raising an exception?
+        raise PermissionDenied
+
+    response = {}
+    try:
+        unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
+        translation_project = unit.store.translation_project
+        response["store"] = _build_store_metadata(translation_project)
+        response["unit"] = _build_units_list([unit])[0]
+        response["success"] = True
+    except Unit.DoesNotExist:
+        # XXX: We could also provide an error message
+        response["success"] = False
+    response = simplejson.dumps(response)
+    return HttpResponse(response, mimetype="application/json")
 
 @ajax_required
 def get_view_units_for(request, pootle_path, uid, limit=0):
