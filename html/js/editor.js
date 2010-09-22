@@ -63,6 +63,9 @@ $(document).ready(function() {
         async: async,
         success: function(data) {
           if (data.success) {
+            if (store == undefined) {
+              store = data.store;
+            }
             $.each(data.units.before, function() {
               units[this.id] = this;
               return_uids.before.push(this.id);
@@ -84,27 +87,23 @@ $(document).ready(function() {
     var display_unit_views_for = function(store, uid) {
       var uids = get_view_units_for(store, uid);
       var where = $("tr#row" + uid);
-      // Remove previous rows
-      $("tr#row" + uid).prevAll("tr[id]").fadeOut("slow").remove();
-      for (var i=0; i<uids.before.length; i++) {
+      // Remove previous and next rows
+      where.prevAll("tr[id]").fadeOut("slow").remove();
+      where.nextAll("tr[id]").fadeOut("slow").remove();
+      // Add rows with the newly retrieved data
+      for (var i=uids.before.length-1; i>=0; i--) {
         var _this = uids.before[i];
         var unit = units[_this];
-        // Add rows with the newly retrieved data
         var _where = $("<tr></tr>").attr("id", "row" + _this);
         _where.insertBefore(where)
-        // FIXME: pass store information as well
-        $("#unit_view").tmpl(unit).fadeIn("slow").appendTo(_where);
+        $("#unit_view").tmpl({store: store, unit: unit}).fadeIn("slow").appendTo(_where);
       }
-      // Remove next rows
-      $("tr#row" + uid).nextAll("tr[id]").fadeOut("slow").remove();
-      for (var i=0; i<uids.after.length; i++) {
+      for (var i=uids.after.length-1; i>=0; i--) {
         var _this = uids.after[i];
         var unit = units[_this];
-        // Add rows with the newly retrieved data
         var _where = $("<tr></tr>").attr("id", "row" + _this);
         _where.insertAfter(where)
-        // FIXME: pass store information as well
-        $("#unit_view").tmpl(unit).fadeIn("slow").appendTo(_where);
+        $("#unit_view").tmpl({store: store, unit: unit}).fadeIn("slow").appendTo(_where);
       }
     };
 
@@ -117,9 +116,9 @@ $(document).ready(function() {
       where.children().remove();
       where.addClass("translate-translation-row");
       // TODO: Retrieve previous and next units relative to uid
-      display_unit_views_for(store, uid);
       where.load(edit_url).hide().fadeIn("slow");
       $("#active_uid").text(uid);
+      display_unit_views_for(store, uid);
       // TODO: Update pager
       // TODO: make history really load a unit
       window.location.hash = "/u/" + uid;

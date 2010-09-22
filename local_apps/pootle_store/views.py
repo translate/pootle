@@ -522,7 +522,7 @@ def _filter_view_units(units_qs, current_index, limit):
     """
     #TODO: For now this filters in a simple manner, but we should
     # allow more complex filtering
-    before = units_qs.filter(index__lt=current_index)[:limit]
+    before = units_qs.filter(index__lt=current_index).order_by('-index')[:limit]
     after = units_qs.filter(index__gt=current_index)[:limit]
     return before, after
 
