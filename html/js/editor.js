@@ -232,4 +232,11 @@ $(document).ready(function() {
       var current_unit = $("#active_uid").text();
       process_submit(store, current_unit, 'submission');
     });
+
+    $("input.suggest").live("click", function(e) {
+      e.preventDefault();
+      var store = $("div#store").text();
+      var current_unit = $("#active_uid").text();
+      process_submit(store, current_unit, 'suggestion');
+    });
 });

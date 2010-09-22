@@ -633,7 +633,7 @@ def get_edit_unit(request, pootle_path, uid):
                               context_instance=RequestContext(request))
 
 @ajax_required
-def process_submission(request, pootle_path, uid):
+def process_submit(request, pootle_path, uid, type):
     """
     @return: An object in JSON notation that contains the previous
     and last units for the unit next to unit C{uid}.
@@ -641,7 +641,9 @@ def process_submission(request, pootle_path, uid):
     has been succesfully saved or not.
     """
     cantranslate = check_permission("translate", request)
-    if not cantranslate:
+    cansuggest = check_permission("suggest", request)
+    if type == 'submission' and not cantranslate or \
+       type == 'suggestion' and not cansuggest:
         # XXX: Shouldn't we return an error through JSON instead of
         # raising an exception?
         raise PermissionDenied
@@ -657,13 +659,24 @@ def process_submission(request, pootle_path, uid):
     form = form_class(request.POST, instance=unit)
     response = {}
     if form.is_valid():
-        if form.instance._target_updated or \
-           form.instance._translator_comment_updated or \
-           form.instance._state_updated:
-            form.save()
-            sub = Submission(translation_project=translation_project,
-                             submitter=get_profile(request.user))
-            sub.save()
+        if type == 'submission':
+            if form.instance._target_updated or \
+               form.instance._translator_comment_updated or \
+               form.instance._state_updated:
+                form.save()
+                sub = Submission(translation_project=translation_project,
+                                 submitter=get_profile(request.user))
+                sub.save()
+        elif type == 'suggestion':
+            if form.instance._target_updated:
+                #HACKISH: django 1.2 stupidly modifies instance on
+                # model form validation, reload unit from db
+                unit = Unit.objects.get(id=unit.id)
+                sugg = unit.add_suggestion(form.cleaned_data['target_f'], get_profile(request.user))
+                if sugg:
+                    SuggestionStat.objects.get_or_create(translation_project=translation_project,
+                                                         suggester=get_profile(request.user),
+                                                         state='pending', unit=unit.id)
         response["store"] = _build_store_metadata(translation_project)
         prev_unit = unit
         response["prev_unit"] = _build_units_list([prev_unit])[0]
