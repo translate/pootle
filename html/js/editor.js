@@ -8,7 +8,7 @@ $(document).ready(function() {
           var uid = m[1];
           // TODO: We should keep the store information stored
           // somewhere else in the DOM.
-          var store = $("input[name='store']").val();
+          var store = $("div#store").text();
           var view_url = l(store + '/unit/view/' + uid);
           $.getJSON(view_url, function(data) {
             if (data.success) {
