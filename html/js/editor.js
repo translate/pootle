@@ -170,10 +170,9 @@ $(document).ready(function() {
 
     var update_pager = function(pager) {
       if (pager) {
-        // XXX: For some reason replaceWith leaves a single element only
-        // Related: http://dev.jquery.com/ticket/5917
         var newpager = $("#pager").tmpl({pager: pager}).get(0);
-        $("ul.pager").replaceWith(newpager);
+        $("div.translation-nav").children().remove();
+        $("div.translation-nav").append(newpager);
       }
     };
 
