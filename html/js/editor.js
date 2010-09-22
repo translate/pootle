@@ -133,14 +133,7 @@ $(document).ready(function() {
     var get_edit_unit = function(store, uid) {
       display_unit_views_for(store, uid);
       var edit_url = l(store + '/edit/' + uid);
-      // FIXME: refactor loading and displaying an edit unit
-      var where = $("tr#row" + uid);
-      where.children().remove();
-      where.addClass("translate-translation-row");
-      where.load(edit_url, function() {
-        $("table.translate-table").trigger("editor_ready");
-      }).hide().fadeIn("slow");
-      $("#active_uid").text(uid);
+      load_edit_unit(uid);
       // TODO: Update pager
       // TODO: make history really load a unit
       window.location.hash = "/u/" + uid;
@@ -176,6 +169,17 @@ $(document).ready(function() {
       }
     };
 
+    var load_edit_unit = function(uid) {
+      var edit_url = l(store + '/edit/' + uid);
+      var edit_where = $("tr#row" + uid);
+      edit_where.children().remove();
+      edit_where.addClass("translate-translation-row");
+      edit_where.load(edit_url, function() {
+        $("table.translate-table").trigger("editor_ready");
+      }).hide().fadeIn("slow");
+      $("#active_uid").text(uid);
+    };
+
     var display_next_unit = function(store, data) {
       update_pager(data.pager);
       var prev_where = $("tr#row" + data.prev_unit.id);
@@ -198,18 +202,9 @@ $(document).ready(function() {
         last_where.insertAfter(last_in_table)
         $("#unit_view").tmpl({store: data.store, unit: data.last_unit}).fadeIn("slow").appendTo(last_where);
       }
-      // FIXME: refactor loading and displaying an edit unit
       // Editing unit
       if (data.new_uid) {
-        var edit_url = l(store + '/edit/' + data.new_uid);
-        var edit_where = $("tr#row" + data.new_uid);
-        edit_where.children().remove();
-        edit_where.addClass("translate-translation-row");
-        edit_where.load(edit_url, function() {
-          $("table.translate-table").trigger("editor_ready");
-        }).hide().fadeIn("slow");
-        $("#active_uid").text(data.new_uid);
-        $("table.translate-table").trigger("editor_ready");
+        load_edit_unit(data.new_uid);
         // TODO: make history really load a unit
         window.location.hash = "/u/" + data.new_uid;
       }
