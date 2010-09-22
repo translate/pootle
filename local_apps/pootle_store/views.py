@@ -516,6 +516,80 @@ def get_view_unit(request, pootle_path, uid):
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
+def _filter_view_units(units_qs, current_index, limit):
+    """
+    Returns limit units before and after unit C{uid}.
+    """
+    #TODO: For now this filters in a simple manner, but we should
+    # allow more complex filtering
+    before = units_qs.filter(index__lt=current_index)[:limit]
+    after = units_qs.filter(index__gt=current_index)[:limit]
+    return before, after
+
+def _build_units_list(units):
+    """
+    Given a list/queryset of units, builds a list with the unit data
+    contained in a dictionary ready to be returned as JSON.
+    """
+    return_units = []
+    for unit in units:
+        source_unit = []
+        target_unit = []
+        for i, source, title in pluralize_source(unit):
+            unit_dict = {'text': fancy_highlight(source)}
+            if title:
+                unit_dict["title"] = title
+            source_unit.append(unit_dict)
+        for i, target, title in pluralize_target(unit):
+            unit_dict = {'text': fancy_highlight(target)}
+            if title:
+                unit_dict["title"] = title
+            target_unit.append(unit_dict)
+        return_units.append({'id': unit.id,
+                             'source': source_unit,
+                             'target': target_unit})
+    return return_units
+
+@ajax_required
+def get_view_units_for(request, pootle_path, uid, limit=0):
+    """
+    @return: An object in JSON notation that contains the source and target
+    texts for units that will be displayed before and after unit C{uid}.
+    This object also contains more information used for rendering the view
+    unit, such as the source/target language codes, direction of the text, ...
+    Success status that indicates if the unit has been succesfully
+    retrieved or not is returned as well.
+    """
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    profile = get_profile(request.user)
+    if not check_profile_permission(profile, 'view', pootle_path):
+        raise PermissionDenied
+    if not limit:
+        limit = (profile.get_unit_rows() - 1) / 2
+
+    response = {}
+    try:
+        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
+        units_qs = store.units
+        current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
+
+        translation_project = store.translation_project
+        response["store"] = {"source_lang": translation_project.project.source_language.code,
+                             "source_dir": translation_project.project.source_language.get_direction(),
+                             "target_lang": translation_project.language.code,
+                             "target_dir": translation_project.language.get_direction()}
+
+        before, after = _filter_view_units(units_qs, current_unit.index, limit)
+        response["units"] = {}
+        response["units"]["before"] = _build_units_list(before)
+        response["units"]["after"] = _build_units_list(after)
+        response["success"] = True
+    except Store.DoesNotExist, Unit.DoesNotExist:
+        response["success"] = False
+    response = simplejson.dumps(response)
+    return HttpResponse(response, mimetype="application/json")
+
 @ajax_required
 def get_edit_unit(request, pootle_path, uid):
     """
