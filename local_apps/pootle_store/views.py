@@ -491,6 +491,8 @@ def get_view_unit(request, pootle_path, uid):
         pootle_path = '/' + pootle_path
     profile = get_profile(request.user)
     if not check_profile_permission(profile, 'view', pootle_path):
+        # XXX: Shouldn't we return an error through JSON instead of
+        # raising an exception?
         raise PermissionDenied
 
     response = {}
@@ -512,6 +514,7 @@ def get_view_unit(request, pootle_path, uid):
         response["unit"]["target"] = target_unit
         response["success"] = True
     except Unit.DoesNotExist:
+        # XXX: We could also provide an error message
         response["success"] = False
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
@@ -566,6 +569,8 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
         pootle_path = '/' + pootle_path
     profile = get_profile(request.user)
     if not check_profile_permission(profile, 'view', pootle_path):
+        # XXX: Shouldn't we return an error through JSON instead of
+        # raising an exception?
         raise PermissionDenied
     if not limit:
         limit = (profile.get_unit_rows() - 1) / 2
@@ -588,6 +593,7 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
         response["units"]["after"] = _build_units_list(after)
         response["success"] = True
     except Store.DoesNotExist, Unit.DoesNotExist:
+        # XXX: We could also provide an error message
         response["success"] = False
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
@@ -602,7 +608,8 @@ def get_edit_unit(request, pootle_path, uid):
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
-
+    # XXX: Shouldn't we return an error through JSON instead of
+    # returning a 404?
     unit = get_object_or_404(Unit, id=uid, store__pootle_path=pootle_path)
     translation_project = unit.store.translation_project
     language = translation_project.language
@@ -630,6 +637,8 @@ def get_edit_unit(request, pootle_path, uid):
 
 @ajax_required
 def reject_suggestion(request, uid, suggid):
+    # XXX: Shouldn't we return an error through JSON instead of
+    # returning a 404?
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
     translation_project = unit.store.translation_project
@@ -666,6 +675,8 @@ def reject_suggestion(request, uid, suggid):
 
 @ajax_required
 def accept_suggestion(request, uid, suggid):
+    # XXX: Shouldn't we return an error through JSON instead of
+    # returning a 404?
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
     translation_project = unit.store.translation_project
@@ -712,6 +723,8 @@ def accept_suggestion(request, uid, suggid):
 
 @ajax_required
 def reject_qualitycheck(request, uid, checkid):
+    # XXX: Shouldn't we return an error through JSON instead of
+    # returning a 404?
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
     if not check_profile_permission(get_profile(request.user), 'review', directory):
