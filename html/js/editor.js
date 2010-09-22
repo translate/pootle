@@ -132,7 +132,7 @@ $(document).ready(function() {
     /*
      * Sets the edit view for unit 'uid'
      */
-    var get_edit_unit = function(store, uid) {
+    var display_edit_unit = function(store, uid) {
       display_unit_views_for(store, uid);
       load_edit_unit(store, uid);
       // TODO: make history really load a unit
@@ -145,7 +145,7 @@ $(document).ready(function() {
       if (m) {
         var uid = m[1];
         var store = $("div#store").text();
-        get_edit_unit(store, uid);
+        display_edit_unit(store, uid);
       }
     });
 
@@ -246,7 +246,7 @@ $(document).ready(function() {
       if (m) {
         var uid = m[1];
         var store = $("div#store").text();
-        get_edit_unit(store, uid);
+        display_edit_unit(store, uid);
       }
     };
 
