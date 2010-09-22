@@ -1,26 +1,33 @@
 $(document).ready(function() {
 
-    var units = new Array();
+    units = new Array();
 
     /*
      * Sets the view unit for unit 'uid'
      */
-    var get_view_unit = function(store, uid) {
+    var get_view_unit = function(store, uid, async) {
+      var async = async == undefined ? false : async;
       if (units[uid] == undefined) {
         var view_url = l(store + '/view/' + uid);
-        $.getJSON(view_url, function(data) {
-          if (data.success) {
-            units[uid] = data.unit;
-          } else {
-            // TODO: provide a proper error message and not an alert
-            alert("Something went wrong");
-            return false;
+        $.ajax({
+          url: view_url,
+          dataType: 'json',
+          async: async,
+          success: function(data) {
+            if (data.success) {
+              units[uid] = data.unit;
+            } else {
+              // TODO: provide a proper error message and not an alert
+              alert("Something went wrong");
+              return false;
+            }
           }
         });
       }
     };
 
-    var display_unit_view = function(uid) {
+    var display_unit_view = function(store, uid) {
+      get_view_unit(store, uid);
       var unit = units[uid];
       var where = $("tr#row" + uid);
       where.children().remove();
@@ -38,14 +45,6 @@ $(document).ready(function() {
       $("#active_uid").text(uid);
     };
 
-    /*
-     * Restores the current edit unit into a view unit.
-     */
-    var restore_active_unit = function(store, uid) {
-      get_view_unit(store, uid);
-      display_unit_view(uid);
-    };
-
     $("a[id^=editlink]").live("click", function(e) {
       e.preventDefault();
       if (!$(this).parent().next("td").hasClass("translate-full")) {
@@ -55,7 +54,7 @@ $(document).ready(function() {
           var uid = m[1];
           var store = $("div#store").text();
           var active_uid = $("#active_uid").text();
-          restore_active_unit(store, active_uid);
+          display_unit_view(store, active_uid);
           get_edit_unit(store, uid);
         }
       }
