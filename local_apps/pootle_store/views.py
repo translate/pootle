@@ -616,7 +616,6 @@ def get_edit_unit(request, pootle_path, uid):
     store = unit.store
     profile = get_profile(request.user)
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
-    #alt_src_codes = alt_src_langs.values_list('code', flat=True)
     project = translation_project.project
     template_vars = {'unit': unit,
                      'form': form,
