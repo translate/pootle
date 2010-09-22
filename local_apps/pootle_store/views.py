@@ -837,6 +837,10 @@ def accept_suggestion(request, uid, suggid):
                                      submitter=get_profile(request.user),
                                      from_suggestion=suggstat)
                     sub.save()
+    except Unit.DoesNotExist:
+        json["success"] = False
+        json["msg"] = _("Unit %(uid)s does not exist.",
+                        {'uid': uid})
 
     response = simplejson.dumps(json)
     return HttpResponse(response, mimetype="application/json")
