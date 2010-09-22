@@ -582,6 +582,7 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
         current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
 
         translation_project = store.translation_project
+        # XXX: refactor getting store information
         response["store"] = {"source_lang": translation_project.project.source_language.code,
                              "source_dir": translation_project.project.source_language.get_direction(),
                              "target_lang": translation_project.language.code,
@@ -667,6 +668,23 @@ def process_submission(request, pootle_path, uid):
             sub = Submission(translation_project=translation_project,
                              submitter=get_profile(request.user))
             sub.save()
+        # XXX: refactor getting store information
+        response["store"] = {"source_lang": translation_project.project.source_language.code,
+                             "source_dir": translation_project.project.source_language.get_direction(),
+                             "target_lang": translation_project.language.code,
+                             "target_dir": translation_project.language.get_direction()}
+        # Retrieve previous, new current and last units for the next view
+        # XXX: We should perhaps catch exceptions here: DoesNotExist, IndexError
+        prev_unit = unit
+        new_index = unit.index + 1
+        new_unit = unit.store.units.get(index=new_index)
+        profile = get_profile(request.user)
+        units_after = (profile.get_unit_rows() - 1) / 2
+        last_index = unit.index + units_after + 1
+        last_unit = unit.store.units.get(index=last_index)
+        response["prev_unit"] = _build_units_list([prev_unit])[0]
+        response["new_uid"] = new_unit.id
+        response["last_unit"] = _build_units_list([last_unit])[0]
         response["success"] = True
     else:
         # Form failed

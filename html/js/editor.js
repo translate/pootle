@@ -129,17 +129,19 @@ $(document).ready(function() {
      * Sets the edit view for unit 'uid'
      */
     var get_edit_unit = function(store, uid) {
+      display_unit_views_for(store, uid);
       var edit_url = l(store + '/edit/' + uid);
+      // FIXME: refactor loading and displaying an edit unit
       var where = $("tr#row" + uid);
       where.children().remove();
       where.addClass("translate-translation-row");
-      where.load(edit_url).hide().fadeIn("slow");
-      display_unit_views_for(store, uid);
+      where.load(edit_url, function() {
+        $("table.translate-table").trigger("editor_ready");
+      }).hide().fadeIn("slow");
       $("#active_uid").text(uid);
       // TODO: Update pager
       // TODO: make history really load a unit
       window.location.hash = "/u/" + uid;
-      $("table.translate-table").trigger("editor_ready");
     };
 
     $("a[id^=editlink]").live("click", function(e) {
@@ -164,14 +166,39 @@ $(document).ready(function() {
       $(".focusthis").focus();
     });
 
-    var display_next_unit = function(store, uid, data) {
-      alert("successful submit");
-      // Go to the next unit, if any
-        // Remove first unit from the table
-        // Get prev unit in view
-        // Load next unit
-          // Update active_uid
-        // Get last unit in view
+    var display_next_unit = function(store, data) {
+      var new_uid = data.new_uid;
+      var prev_where = $("tr#row" + data.prev_unit.id);
+      // Only remove first unit in the table if it's not the editing widget
+      var first_in_table = $("table.translate-table tr[id]").first();
+      if (prev_where.get(0) != first_in_table.get(0)) {
+        // FIXME: We don't have to do this until the edit unit
+        // is on the center
+        $(first_in_table).remove();
+      }
+      // Previous unit
+      var prev_where = $("tr#row" + data.prev_unit.id);
+      prev_where.removeClass("translate-translation-row");
+      prev_where.children().fadeOut("slow").remove();
+      $("#unit_view").tmpl({store: data.store, unit: data.prev_unit}).fadeIn("slow").appendTo(prev_where);
+      // Last unit
+      var last_in_table = $("table.translate-table tr[id]").last();
+      var last_where = $("<tr></tr>").attr("id", "row" + data.last_unit.id);
+      last_where.insertAfter(last_in_table)
+      $("#unit_view").tmpl({store: data.store, unit: data.last_unit}).fadeIn("slow").appendTo(last_where);
+      // FIXME: refactor loading and displaying an edit unit
+      // Editing unit
+      var edit_url = l(store + '/edit/' + new_uid);
+      var edit_where = $("tr#row" + new_uid);
+      edit_where.children().remove();
+      edit_where.addClass("translate-translation-row");
+      edit_where.load(edit_url, function() {
+        $("table.translate-table").trigger("editor_ready");
+      }).hide().fadeIn("slow");
+      $("#active_uid").text(new_uid);
+      $("table.translate-table").trigger("editor_ready");
+      // TODO: make history really load a unit
+      window.location.hash = "/u/" + new_uid;
     };
 
     var process_submit = function(store, uid, type) {
@@ -186,7 +213,7 @@ $(document).ready(function() {
         async: false,
         success: function(data) {
           if (data.success) {
-            display_next_unit(store, uid, data);
+            display_next_unit(store, data);
           } else {
             // TODO: provide a proper error message and not an alert
             alert("Something went wrong");
