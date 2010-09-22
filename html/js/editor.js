@@ -154,10 +154,52 @@ $(document).ready(function() {
       }
     });
 
+    /*
+     * Stuff to be done when the editor is ready.
+     */
     $("table.translate-table").bind("editor_ready", function() {
       make_zebra("table.translate-table tr[id]");
       var maxheight = $(window).height() * 0.3;
       $('textarea.expanding').TextAreaExpander('10', maxheight);
       $(".focusthis").focus();
+    });
+
+    var display_next_unit = function(store, uid, data) {
+      alert("successful submit");
+      // Go to the next unit, if any
+        // Remove first unit from the table
+        // Get prev unit in view
+        // Load next unit
+          // Update active_uid
+        // Get last unit in view
+    };
+
+    var process_submit = function(store, uid, type) {
+      var submit_url = l(store + '/process/' + uid + '/' + type);
+      // Serialize data to be sent
+      var post_data = $("form#translate").serialize();
+      $.ajax({
+        url: submit_url,
+        type: 'POST',
+        data: post_data,
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+          if (data.success) {
+            display_next_unit(store, uid, data);
+          } else {
+            // TODO: provide a proper error message and not an alert
+            alert("Something went wrong");
+            return false;
+          }
+        }
+      });
+    };
+
+    $("input.submit").live("click", function(e) {
+      e.preventDefault();
+      var store = $("div#store").text();
+      var current_unit = $("#active_uid").text();
+      process_submit(store, current_unit, 'submission');
     });
 });

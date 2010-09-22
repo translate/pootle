@@ -636,6 +636,42 @@ def get_edit_unit(request, pootle_path, uid):
                               context_instance=RequestContext(request))
 
 @ajax_required
+def process_submission(request, pootle_path, uid):
+    cantranslate = check_permission("translate", request)
+    if not cantranslate:
+        # XXX: Shouldn't we return an error through JSON instead of
+        # raising an exception?
+        raise PermissionDenied
+
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    # XXX: Shouldn't we return an error through JSON instead of
+    # returning a 404?
+    unit = get_object_or_404(Unit, id=uid, store__pootle_path=pootle_path)
+    translation_project = unit.store.translation_project
+    language = translation_project.language
+    form_class = unit_form_factory(language, len(unit.source.strings))
+    form = form_class(request.POST, instance=unit)
+    response = {}
+    if form.is_valid():
+        if form.instance._target_updated or \
+           form.instance._translator_comment_updated or \
+           form.instance._state_updated:
+            form.save()
+            sub = Submission(translation_project=translation_project,
+                             submitter=get_profile(request.user))
+            sub.save()
+        response["success"] = True
+    else:
+        # Form failed
+        # XXX: We could also provide an error message
+        response["success"] = False
+    # XXX: Could we perhaps include prev & last units in the new view?
+    response = simplejson.dumps(response)
+    return HttpResponse(response, mimetype="application/json")
+
+
+@ajax_required
 def reject_suggestion(request, uid, suggid):
     # XXX: Shouldn't we return an error through JSON instead of
     # returning a 404?
