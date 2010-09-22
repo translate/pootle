@@ -604,6 +604,17 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
         units_qs = store.units
         current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
 
+        # TODO: Once we allow filtering, unit.store.units has to be a qs
+        # containing the set of filtered units.
+        profile = get_profile(request.user)
+        unit_rows = profile.get_unit_rows()
+        preceding = current_unit.store.units.filter(index__lt=current_unit.index).count()
+        page = preceding / unit_rows + 1
+        pager = paginate(request, current_unit.store.units, items=unit_rows, page=page)
+        # XXX: Could we compare the current pager with the previous pager
+        # in order to not blindly return useless data?
+        response["pager"] = _build_pager_dict(pager)
+
         translation_project = store.translation_project
         response["store"] = _build_store_metadata(translation_project)
         before, after = _filter_view_units(units_qs, current_unit.index, limit)

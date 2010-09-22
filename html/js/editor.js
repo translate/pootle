@@ -83,6 +83,8 @@ $(document).ready(function() {
         async: async,
         success: function(data) {
           if (data.success) {
+            // XXX: is this the right place for updating the pager?
+            update_pager(data.pager);
             if (store_info == null) {
               store_info = data.store;
             }
@@ -132,8 +134,7 @@ $(document).ready(function() {
      */
     var get_edit_unit = function(store, uid) {
       display_unit_views_for(store, uid);
-      var edit_url = l(store + '/edit/' + uid);
-      load_edit_unit(uid);
+      load_edit_unit(store, uid);
       // TODO: Update pager
       // TODO: make history really load a unit
       window.location.hash = "/u/" + uid;
@@ -145,8 +146,6 @@ $(document).ready(function() {
       if (m) {
         var uid = m[1];
         var store = $("div#store").text();
-        /*var active_uid = $("#active_uid").text();
-        display_unit_view(store, active_uid);*/
         get_edit_unit(store, uid);
       }
     });
@@ -169,7 +168,7 @@ $(document).ready(function() {
       }
     };
 
-    var load_edit_unit = function(uid) {
+    var load_edit_unit = function(store, uid) {
       var edit_url = l(store + '/edit/' + uid);
       var edit_where = $("tr#row" + uid);
       edit_where.children().remove();
@@ -204,7 +203,7 @@ $(document).ready(function() {
       }
       // Editing unit
       if (data.new_uid) {
-        load_edit_unit(data.new_uid);
+        load_edit_unit(store, data.new_uid);
         // TODO: make history really load a unit
         window.location.hash = "/u/" + data.new_uid;
       }
