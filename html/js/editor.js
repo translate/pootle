@@ -64,7 +64,7 @@ $(document).ready(function() {
       var where = $("tr#row" + uid);
       where.removeClass("translate-translation-row");
       where.children().fadeOut("slow").remove();
-      $("#unit_view").tmpl(unit).fadeIn("slow").appendTo(where);
+      $("#unit_view").tmpl(unit).appendTo(where);
     };
 
     /*
@@ -118,7 +118,7 @@ $(document).ready(function() {
         var unit = units[_this];
         var _where = $("<tr></tr>").attr("id", "row" + _this);
         _where.insertBefore(where)
-        $("#unit_view").tmpl({store: store_info, unit: unit}).fadeIn("slow").appendTo(_where);
+        $("#unit_view").tmpl({store: store_info, unit: unit}).appendTo(_where);
       }
       for (var i=uids.after.length-1; i>=0; i--) {
         var _this = uids.after[i];
@@ -135,7 +135,6 @@ $(document).ready(function() {
     var get_edit_unit = function(store, uid) {
       display_unit_views_for(store, uid);
       load_edit_unit(store, uid);
-      // TODO: Update pager
       // TODO: make history really load a unit
       window.location.hash = "/u/" + uid;
     };
@@ -193,13 +192,13 @@ $(document).ready(function() {
       var prev_where = $("tr#row" + data.prev_unit.id);
       prev_where.removeClass("translate-translation-row");
       prev_where.children().fadeOut("slow").remove();
-      $("#unit_view").tmpl({store: data.store, unit: data.prev_unit}).fadeIn("slow").appendTo(prev_where);
+      $("#unit_view").tmpl({store: data.store, unit: data.prev_unit}).appendTo(prev_where);
       // Last unit
       if (data.last_unit) {
         var last_in_table = $("table.translate-table tr[id]").last();
         var last_where = $("<tr></tr>").attr("id", "row" + data.last_unit.id);
         last_where.insertAfter(last_in_table)
-        $("#unit_view").tmpl({store: data.store, unit: data.last_unit}).fadeIn("slow").appendTo(last_where);
+        $("#unit_view").tmpl({store: data.store, unit: data.last_unit}).appendTo(last_where);
       }
       // Editing unit
       if (data.new_uid) {
@@ -209,7 +208,12 @@ $(document).ready(function() {
       }
     };
 
-    var process_submit = function(store, uid, type) {
+    var process_submit = function(e) {
+      e.preventDefault();
+      var store = $("div#store").text();
+      var uid = $("#active_uid").text();
+      var type_map = {submit: "submission", suggest: "suggestion"};
+      var type = type_map[$(e.target).attr("class")];
       var submit_url = l(store + '/process/' + uid + '/' + type);
       // Serialize data to be sent
       var post_data = $("form#translate").serialize();
@@ -229,19 +233,37 @@ $(document).ready(function() {
           }
         }
       });
+      return false;
     };
 
-    $("input.submit").live("click", function(e) {
-      e.preventDefault();
-      var store = $("div#store").text();
-      var current_unit = $("#active_uid").text();
-      process_submit(store, current_unit, 'submission');
+    $("input.submit, input.suggest").live("click", process_submit);
+
+    var goto_prevnext = function(e) {
+      var current = $("tr#row" + $("#active_uid").text());
+      var prevnext_map = {previous: current.prev("tr"), next: current.next("tr")};
+      var prevnext = prevnext_map[$(e.target).attr("class")];
+      var m = prevnext.attr("id").match(/row([0-9]+)/);
+      if (m) {
+        var uid = m[1];
+        var store = $("div#store").text();
+        get_edit_unit(store, uid);
+      }
+    };
+
+    $("input.previous, input.next").live("click", goto_prevnext);
+
+    // Bind hotkeys
+    shortcut.add('ctrl+return', function() {
+      $("input.submit").trigger("click");
+    });
+    shortcut.add('ctrl+shift+return', function() {
+      $("input.suggest").trigger("click");
+    });
+    shortcut.add('ctrl+up', function() {
+      $("input.previous").trigger("click");
+    });
+    shortcut.add('ctrl+down', function() {
+      $("input.next").trigger("click");
     });
 
-    $("input.suggest").live("click", function(e) {
-      e.preventDefault();
-      var store = $("div#store").text();
-      var current_unit = $("#active_uid").text();
-      process_submit(store, current_unit, 'suggestion');
-    });
 });
