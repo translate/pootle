@@ -504,14 +504,7 @@ def get_view_unit(request, pootle_path, uid):
                             "source_dir": translation_project.project.source_language.get_direction(),
                             "target_lang": translation_project.language.code,
                             "target_dir": translation_project.language.get_direction()}
-        source_unit = []
-        for i, source, title in pluralize_source(unit):
-            source_unit.append({'title': title, 'text': fancy_highlight(source)})
-        target_unit = []
-        for i, target, title in pluralize_target(unit):
-            target_unit.append({'title': title, 'text': fancy_highlight(target)})
-        response["unit"]["source"] = source_unit
-        response["unit"]["target"] = target_unit
+        response["unit"] = _build_units_list([unit])[0]
         response["success"] = True
     except Unit.DoesNotExist:
         # XXX: We could also provide an error message
@@ -535,6 +528,8 @@ def _build_units_list(units):
     """
     Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
+    @return: A list with unit id, source, and target texts. In case of
+    having plural forms, a title for the plural form is also provided.
     """
     return_units = []
     for unit in units:
@@ -554,6 +549,18 @@ def _build_units_list(units):
                              'source': source_unit,
                              'target': target_unit})
     return return_units
+
+def _build_store_metadata(tp):
+    """
+    Given a translation project C{tp}, retrieves all the metadata needed
+    to feed a unit with the information regarding the current store.
+    @return: A dictionary containing source/target language codes, and
+    source/target language directions.
+    """
+    return {"source_lang": tp.project.source_language.code,
+            "source_dir": tp.project.source_language.get_direction(),
+            "target_lang": tp.language.code,
+            "target_dir": tp.language.get_direction()}
 
 @ajax_required
 def get_view_units_for(request, pootle_path, uid, limit=0):
@@ -582,12 +589,7 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
         current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
 
         translation_project = store.translation_project
-        # XXX: refactor getting store information
-        response["store"] = {"source_lang": translation_project.project.source_language.code,
-                             "source_dir": translation_project.project.source_language.get_direction(),
-                             "target_lang": translation_project.language.code,
-                             "target_dir": translation_project.language.get_direction()}
-
+        response["store"] = _build_store_metadata(translation_project)
         before, after = _filter_view_units(units_qs, current_unit.index, limit)
         response["units"] = {}
         response["units"]["before"] = _build_units_list(before)
@@ -668,11 +670,7 @@ def process_submission(request, pootle_path, uid):
             sub = Submission(translation_project=translation_project,
                              submitter=get_profile(request.user))
             sub.save()
-        # XXX: refactor getting store information
-        response["store"] = {"source_lang": translation_project.project.source_language.code,
-                             "source_dir": translation_project.project.source_language.get_direction(),
-                             "target_lang": translation_project.language.code,
-                             "target_dir": translation_project.language.get_direction()}
+        response["store"] = _build_store_metadata(translation_project)
         prev_unit = unit
         response["prev_unit"] = _build_units_list([prev_unit])[0]
         try:
