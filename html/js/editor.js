@@ -42,6 +42,7 @@ $(document).ready(function() {
       get_view_unit(store, uid);
       var unit = units[uid];
       var where = $("tr#row" + uid);
+      where.removeClass("translate-translation-row");
       where.children().fadeOut("slow").remove();
       $("#unit_view").tmpl(unit).fadeIn("slow").appendTo(where);
     };
@@ -53,6 +54,7 @@ $(document).ready(function() {
       var edit_url = l(store + '/edit/' + uid);
       var where = $("tr#row" + uid);
       where.children().remove();
+      where.addClass("translate-translation-row");
       where.load(edit_url).hide().fadeIn("slow");
       $("#active_uid").text(uid);
       window.location.hash = "/u/" + uid;
