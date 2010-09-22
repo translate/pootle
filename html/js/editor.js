@@ -34,7 +34,7 @@
       switch (parts[0]) {
         case "unit":
           var store = $("div#store").text();
-          var uid = parts[1];
+          var uid = parseInt(parts[1]);
          pootle.editor.display_edit_unit(store, uid);
         break;
       }
