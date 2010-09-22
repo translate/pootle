@@ -16,7 +16,7 @@ $(document).ready(function() {
   }
 
   // Update focus when appropriate
-  $(".focusthis").focus(function(e) {
+  $(".focusthis").live("focus", function(e) {
     $.pootle.focusedElement = e.target;
   });
 

@@ -72,4 +72,11 @@ $(document).ready(function() {
         }
       }
     });
+
+    $("a[id^=editlink]").ajaxComplete(function() {
+      var maxheight = $(window).height() * 0.3;
+      $('textarea.expanding').TextAreaExpander('10', maxheight);
+      $.scrollTo('td.translate-full', {offset: {top:-100}});
+      $(".focusthis").focus();
+    });
 });
