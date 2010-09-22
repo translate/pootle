@@ -637,6 +637,12 @@ def get_edit_unit(request, pootle_path, uid):
 
 @ajax_required
 def process_submission(request, pootle_path, uid):
+    """
+    @return: An object in JSON notation that contains the previous
+    and last units for the unit next to unit C{uid}.
+    This object also contains success status that indicates if the submission
+    has been succesfully saved or not.
+    """
     cantranslate = check_permission("translate", request)
     if not cantranslate:
         # XXX: Shouldn't we return an error through JSON instead of
