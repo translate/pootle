@@ -10,12 +10,22 @@
 </td>
 <td dir="${source_dir}" class="translate-original" rowspan="1" colspan="1">
   <div class="translate-original translate-view" id="orig${id}">
-    <div lang="${source_lang}" dir="${source_dir}" class="translation-text">${source}</div>
+    [[each(i, source) source]]
+    [[if source.title]]
+    <span class="translation-text-headers" lang="${source_lang}">${ source.title }</span>
+    [[/if]]
+    <div lang="${source_lang}" dir="${source_dir}" class="translation-text">${source.text}</div>
+    [[/each]]
   </div>
 </td>
 <td dir="${target_dir}" class="translate-translation" rowspan="1" colspan="1">
-  <div dir="${target_dir}" class="translate-translation translate-view " id="trans${id}">
-    <div lang="${target_lang}" class="translation-text" dir="${target_dir}">${target}</div>
+  <div dir="${target_dir}" class="translate-translation translate-view" id="trans${id}">
+    [[each(i, target) target]]
+    [[if target.title]]
+    <span class="translation-text-headers" lang="${target_lang}">${ target.title }</span>
+    [[/if]]
+    <div lang="${target_lang}" class="translation-text" dir="${target_dir}">${target.text}</div>
+    [[/each]]
   </div>
 </td>
 </script>

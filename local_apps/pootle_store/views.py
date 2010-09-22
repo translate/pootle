@@ -49,7 +49,7 @@ from pootle_app.project_tree import ensure_target_dir_exists
 
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
-from pootle_store.templatetags.store_tags import find_altsrcs, get_sugg_list, highlight_diffs
+from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 
 def export_as_xliff(request, pootle_path):
@@ -495,26 +495,20 @@ def get_view_unit(request, pootle_path, uid):
     response = {}
     try:
         unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
-        # FIXME: .target.strings doesn't assure we get the correct
-        # number of plurals. Check for the proper from at
-        # unit.store.translation_project.language.nplurals
         translation_project = unit.store.translation_project
         response["unit"] = {"id": uid,
                             "source_lang": translation_project.project.source_language.code,
                             "source_dir": translation_project.project.source_language.get_direction(),
-                            "source": [s for s in unit.source.strings],
                             "target_lang": translation_project.language.code,
-                            "target_dir": translation_project.language.get_direction(),
-                            "target": [t for t in unit.target.strings]}
-        # FIXME: As stated before, we should get rid of checking for
-        # proper plural information, this should be handled transparently.
-        if unit.hasplural():
-            target_count = len(response["unit"]["target"])
-            plural_count = unit.store.translation_project.language.nplurals
-            if target_count < plural_count:
-                missing_count = plural_count - target_count
-                missing = ["" for m in range(missing_count)]
-                response["unit"]["target"].extend(missing)
+                            "target_dir": translation_project.language.get_direction()}
+        source_unit = []
+        for i, source, title in pluralize_source(unit):
+            source_unit.append({'title': title, 'text': fancy_highlight(source)})
+        target_unit = []
+        for i, target, title in pluralize_target(unit):
+            target_unit.append({'title': title, 'text': fancy_highlight(target)})
+        response["unit"]["source"] = source_unit
+        response["unit"]["target"] = target_unit
         response["success"] = True
     except Unit.DoesNotExist:
         response["success"] = False

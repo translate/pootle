@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+    // Ugly hack to avoid JS templates from being interpreted by Django.
+    var stext = $("script[type=text/x-jquery-template]").text();
+    stext = stext.replace(/\[\[/g, "{{").replace(/\]\]/g, "}}");
+    $("script[type=text/x-jquery-template]").text(stext);
+
     units = new Array();
 
     $(document).ajaxStart(function() {
