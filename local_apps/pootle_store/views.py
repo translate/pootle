@@ -478,6 +478,11 @@ def translate(request, pootle_path):
 #
 
 def get_unit_view(request, pootle_path, uid):
+    """
+    @return: An object in JSON notation that contains the source and target
+    texts for unit C{uid}. This object also contains success status that
+    indicates if the unit has been succesfully retrieved or not.
+    """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
     profile = get_profile(request.user)
