@@ -512,6 +512,15 @@ def get_unit_view(request, pootle_path, uid):
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
+def get_unit_edit(request, pootle_path, uid):
+    # FIXME: This only calls get_unit_view for now
+    """
+    @return: An object in JSON notation that contains the editing widget
+    for unit C{uid}. This object also contains success status that
+    indicates if the unit has been succesfully retrieved or not.
+    """
+    get_unit_view(request, pootle_path, uid)
+
 def reject_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
