@@ -8,23 +8,23 @@
     <img src="{{ 'images/pencil.png'|m }}" />
   </a>
 </td>
-<td dir="${source_dir}" class="translate-original" rowspan="1" colspan="1">
+<td dir="${store.source_dir}" class="translate-original" rowspan="1" colspan="1">
   <div class="translate-original translate-view" id="orig${id}">
     [[each(i, source) source]]
     [[if source.title]]
-    <span class="translation-text-headers" lang="${source_lang}">${ source.title }</span>
+    <span class="translation-text-headers" lang="${store.source_lang}">${ source.title }</span>
     [[/if]]
-    <div lang="${source_lang}" dir="${source_dir}" class="translation-text">[[html source.text]]</div>
+    <div lang="${store.source_lang}" dir="${store.source_dir}" class="translation-text">[[html source.text]]</div>
     [[/each]]
   </div>
 </td>
-<td dir="${target_dir}" class="translate-translation" rowspan="1" colspan="1">
-  <div dir="${target_dir}" class="translate-translation translate-view" id="trans${id}">
+<td dir="${store.target_dir}" class="translate-translation" rowspan="1" colspan="1">
+  <div dir="${store.target_dir}" class="translate-translation translate-view" id="trans${id}">
     [[each(i, target) target]]
     [[if target.title]]
     <span class="translation-text-headers" lang="${target_lang}">${ target.title }</span>
     [[/if]]
-    <div lang="${target_lang}" class="translation-text" dir="${target_dir}">[[html target.text]]</div>
+    <div lang="${store.target_lang}" class="translation-text" dir="${target_dir}">[[html target.text]]</div>
     [[/each]]
   </div>
 </td>
