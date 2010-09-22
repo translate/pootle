@@ -473,6 +473,10 @@ def translate(request, pootle_path):
 
     return translate_page(request, store.units, store=store)
 
+#
+# Views used with XMLHttpRequest requests.
+#
+
 def reject_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)
     directory = unit.store.parent
