@@ -1,11 +1,14 @@
 $(document).ready(function() {
 
+    // TODO: We must namespace all this stuff!!
+
     // Ugly hack to avoid JS templates from being interpreted by Django.
     var stext = $("script[type=text/x-jquery-template]").text();
     stext = stext.replace(/\[\[/g, "{{").replace(/\]\]/g, "}}");
     $("script[type=text/x-jquery-template]").text(stext);
 
     units = {};
+    store_info = null;
 
     $(document).ajaxStart(function() {
       $("#activity").show();
@@ -63,8 +66,8 @@ $(document).ready(function() {
         async: async,
         success: function(data) {
           if (data.success) {
-            if (store == undefined) {
-              store = data.store;
+            if (store_info == null) {
+              store_info = data.store;
             }
             $.each(data.units.before, function() {
               units[this.id] = this;
@@ -96,14 +99,14 @@ $(document).ready(function() {
         var unit = units[_this];
         var _where = $("<tr></tr>").attr("id", "row" + _this);
         _where.insertBefore(where)
-        $("#unit_view").tmpl({store: store, unit: unit}).fadeIn("slow").appendTo(_where);
+        $("#unit_view").tmpl({store: store_info, unit: unit}).fadeIn("slow").appendTo(_where);
       }
       for (var i=uids.after.length-1; i>=0; i--) {
         var _this = uids.after[i];
         var unit = units[_this];
         var _where = $("<tr></tr>").attr("id", "row" + _this);
         _where.insertAfter(where)
-        $("#unit_view").tmpl({store: store, unit: unit}).fadeIn("slow").appendTo(_where);
+        $("#unit_view").tmpl({store: store_info, unit: unit}).fadeIn("slow").appendTo(_where);
       }
     };
 
