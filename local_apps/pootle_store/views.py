@@ -477,7 +477,7 @@ def translate(request, pootle_path):
 # Views used with XMLHttpRequest requests.
 #
 
-def get_unit_view(request, pootle_path, uid):
+def get_view_unit(request, pootle_path, uid):
     """
     @return: An object in JSON notation that contains the source and target
     texts for unit C{uid}. This object also contains success status that
@@ -513,14 +513,12 @@ def get_unit_view(request, pootle_path, uid):
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
-def get_unit_edit(request, pootle_path, uid):
-    # FIXME: This only calls get_unit_view for now
+def get_edit_unit(request, pootle_path, uid):
     """
     @return: An object in JSON notation that contains the editing widget
     for unit C{uid}. This object also contains success status that
     indicates if the unit has been succesfully retrieved or not.
     """
-    #get_unit_view(request, pootle_path, uid)
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
 

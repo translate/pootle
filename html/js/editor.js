@@ -3,11 +3,11 @@ $(document).ready(function() {
     var units = new Array();
 
     /*
-     * Sets the unit view for unit 'uid'
+     * Sets the view unit for unit 'uid'
      */
-    var get_unit_view = function(store, uid) {
+    var get_view_unit = function(store, uid) {
       if (units[uid] == undefined) {
-        var view_url = l(store + '/unit/view/' + uid);
+        var view_url = l(store + '/view/' + uid);
         $.getJSON(view_url, function(data) {
           if (data.success) {
             units[uid] = data.unit;
@@ -30,8 +30,8 @@ $(document).ready(function() {
     /*
      * Sets the edit view for unit 'uid'
      */
-    var get_unit_edit = function(store, uid) {
-      var edit_url = l(store + '/unit/edit/' + uid);
+    var get_edit_unit = function(store, uid) {
+      var edit_url = l(store + '/edit/' + uid);
       var where = $("tr#row" + uid);
       where.children().remove();
       where.load(edit_url);
@@ -42,7 +42,7 @@ $(document).ready(function() {
      * Restores the current edit unit into a view unit.
      */
     var restore_active_unit = function(store, uid) {
-      get_unit_view(store, uid);
+      get_view_unit(store, uid);
       display_unit_view(uid);
     };
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
           var store = $("div#store").text();
           var active_uid = $("#active_uid").text();
           restore_active_unit(store, active_uid);
-          get_unit_edit(store, uid);
+          get_edit_unit(store, uid);
         }
       }
     });
