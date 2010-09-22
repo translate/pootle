@@ -45,7 +45,10 @@
 <!--! Navigation bar -->
 <div id="innernav" class="navbar">
   <div class="item-statistics small" lang="{{ LANGUAGE_CODE }}">
-    <p> {{ store|stat_summary }}</p>
+    {{ store|stat_summary }}
+    <div id="activity" style="display:none">
+      <img src="{{ 'images/activity.gif'|m }}" /> {% trans "Loading..." %}
+    </div>
   </div>
 </div><!--innernav-->
 {% endblock innernav %}

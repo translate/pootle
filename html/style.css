@@ -481,18 +481,15 @@ html[dir="rtl"] #nav-main ul li
 
 #activity
 {
-    position: fixed;
-    top: 0;
+    padding-right: 25px;
+    float: right;
 }
 
-#activity div
+html[dir="rtl"] #activity
 {
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    padding: 10px 25px 5px;
-    background-color: #fff;
-    color: #000;
+    padding-right: 0;
+    padding-left: 25px;
+    float: left;
 }
 
 #site-message
