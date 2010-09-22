@@ -25,20 +25,9 @@ $(document).ready(function() {
 
     var display_unit_view = function(uid) {
       var unit = units[uid];
-      var where = $("a#editlink" + uid).parent();
-      where.siblings().remove();
-      var source = '<td class="translate-original">',
-          target = '<td class="translate-translation">';
-      $(unit.source).each(function() {
-        source += '<div class="translation-text">' + this + '</div>';
-      });
-      source += '</td>';
-      $(unit.target).each(function() {
-        target += '<div class="translation-text">' + this + '</div>';
-      });
-      target += '</td>';
-      where.parent().append(source);
-      where.parent().append(target);
+      var where = $("a#editlink" + uid).closest("tr");
+      where.children().remove();
+      $("#unit_view").tmpl(unit).appendTo(where);
     };
 
     /*

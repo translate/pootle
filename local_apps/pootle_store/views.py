@@ -495,7 +495,8 @@ def get_unit_view(request, pootle_path, uid):
         # FIXME: .target.strings doesn't assure we get the correct
         # number of plurals. Check for the proper from at
         # unit.store.translation_project.language.nplurals
-        response["unit"] = {"source": [s for s in unit.source.strings],
+        response["unit"] = {"id": uid,
+                            "source": [s for s in unit.source.strings],
                             "target": [t for t in unit.target.strings]}
         # FIXME: As stated before, we should get rid of checking for
         # proper plural information, this should be handled transparently.

@@ -1,6 +1,24 @@
 {% load i18n render_pager baseurl store_tags cache %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
+<!-- JS templates: move from here when possible -->
+<script id="unit_view" type="text/x-jquery-template">
+<td>
+  <a title="Editatu itzulpena" id="editlink${id}" href="?unit=2921">
+    <div class="translation-action">${id}</div>
+  </a>
+</td>
+<td dir="" class="translate-original" rowspan="1" colspan="1">
+  <div class="translate-original translate-view" id="orig${id}">
+    <div lang="en" dir="ltr" class="translation-text">${source}</div>
+  </div>
+</td>
+<td dir="ltr" class="translate-translation" rowspan="1" colspan="1">
+  <div dir="ltr" class="translate-translation translate-view " id="trans${id}">
+    <div lang="eu" class="translation-text" dir="ltr">${target}</div>
+  </div>
+</td>
+</script>
 <div class="translation-nav">
   {{ pager|render_pager }}
 </div>
