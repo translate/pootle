@@ -493,6 +493,7 @@ def _build_units_list(units):
     """
     Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
+
     @return: A list with unit id, source, and target texts. In case of
     having plural forms, a title for the plural form is also provided.
     """
@@ -519,6 +520,7 @@ def _build_store_metadata(tp):
     """
     Given a translation project C{tp}, retrieves all the metadata needed
     to feed a unit with the information regarding the current store.
+
     @return: A dictionary containing source/target language codes, and
     source/target language directions.
     """
@@ -531,6 +533,7 @@ def _build_pager_dict(pager):
     """
     Given a pager object C{pager}, retrieves all the information needed
     to build a pager.
+
     @return: A dictionary containing necessary pager information to build
     a pager.
     """
@@ -552,6 +555,7 @@ def get_view_unit(request, pootle_path, uid):
     """
     @return: An object in JSON notation that contains the source and target
     texts for unit C{uid}.
+
     This object also contains more information used for rendering the view
     unit, such as the source/target language codes, direction of the text, ...
     Success status that indicates if the unit has been succesfully
@@ -585,8 +589,10 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
     """
     @return: An object in JSON notation that contains the source and target
     texts for units that will be displayed before and after unit C{uid}.
+
     This object also contains more information used for rendering the view
     unit, such as the source/target language codes, direction of the text, ...
+
     Success status that indicates if the unit has been succesfully
     retrieved or not is returned as well.
     """
@@ -641,7 +647,8 @@ def get_edit_unit(request, pootle_path, uid):
     """
     Given a store path C{pootle_path} and unit id C{uid}, gathers all the
     necessary information to build the editing widget.
-    @return: A templatised editing widget ready to be used.
+
+    @return: A templatised editing widget ready to be inserted.
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
@@ -675,6 +682,7 @@ def process_submit(request, pootle_path, uid, type):
     """
     @return: An object in JSON notation that contains the previous
     and last units for the unit next to unit C{uid}.
+
     This object also contains success status that indicates if the submission
     has been succesfully saved or not.
     """
