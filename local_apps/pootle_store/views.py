@@ -546,8 +546,7 @@ def get_edit_unit(request, pootle_path, uid):
                      'cansuggest': check_permission("suggest", request),
                      'canreview': check_permission("review", request),
                      'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
-               "suggestions": get_sugg_list(unit),
-              }
+                     'suggestions': get_sugg_list(unit)}
     return render_to_response('unit/edit.html', template_vars,
                               context_instance=RequestContext(request))
 
