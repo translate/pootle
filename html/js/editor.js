@@ -3,9 +3,11 @@ $(document).ready(function() {
     // TODO: We must namespace all this stuff!!
 
     // Ugly hack to avoid JS templates from being interpreted by Django.
-    var stext = $("script[type=text/x-jquery-template]").text();
-    stext = stext.replace(/\[\[/g, "{{").replace(/\]\]/g, "}}");
-    $("script[type=text/x-jquery-template]").text(stext);
+    $("script[type=text/x-jquery-template]").each(function() {
+      var stext = $(this).text();
+      stext = stext.replace(/\[\[/g, "{{").replace(/\]\]/g, "}}");
+      $(this).text(stext);
+    });
 
     units = {};
     store_info = null;
