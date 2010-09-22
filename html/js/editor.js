@@ -158,7 +158,6 @@ $(document).ready(function() {
       make_zebra("table.translate-table tr[id]");
       var maxheight = $(window).height() * 0.3;
       $('textarea.expanding').TextAreaExpander('10', maxheight);
-      $.scrollTo('td.translate-full', {offset: {top:-100}});
       $(".focusthis").focus();
     });
 });
