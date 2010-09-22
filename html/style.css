@@ -479,6 +479,22 @@ html[dir="rtl"] #nav-main ul li
  * MESSAGES
  */
 
+#activity
+{
+    position: fixed;
+    top: 0;
+}
+
+#activity div
+{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 25px 5px;
+    background-color: #fff;
+    color: #000;
+}
+
 #site-message
 {
     background-color: #ffe;

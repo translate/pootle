@@ -2,6 +2,13 @@ $(document).ready(function() {
 
     units = new Array();
 
+    $(document).ajaxStart(function() {
+      $("#activity").show();
+    });
+    $(document).ajaxStop(function() {
+      $("#activity").fadeOut("slow");
+    });
+
     /*
      * Sets the view unit for unit 'uid'
      */

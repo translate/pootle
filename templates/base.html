@@ -43,6 +43,9 @@
           class="{% block bodyclass %}{% endblock %}">
         {% block body %}
         <div id="wrapper">
+            <div id="activity" style="display:none">
+                <div><img src="{{ 'images/throbber.gif'|m }}" /> {% trans "Loading..." %}</div>
+            </div>
             <div id="header">
                 {% block header %}
                 <div id="nav-access">
