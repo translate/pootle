@@ -49,7 +49,7 @@ from pootle_app.project_tree import ensure_target_dir_exists
 
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
-from pootle_store.templatetags.store_tags import highlight_diffs
+from pootle_store.templatetags.store_tags import find_altsrcs, get_sugg_list, highlight_diffs
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 
 def export_as_xliff(request, pootle_path):
@@ -519,7 +519,35 @@ def get_unit_edit(request, pootle_path, uid):
     for unit C{uid}. This object also contains success status that
     indicates if the unit has been succesfully retrieved or not.
     """
-    get_unit_view(request, pootle_path, uid)
+    #get_unit_view(request, pootle_path, uid)
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+
+    unit = get_object_or_404(Unit, id=uid, store__pootle_path=pootle_path)
+    translation_project = unit.store.translation_project
+    language = translation_project.language
+    form_class = unit_form_factory(language, len(unit.source.strings))
+    form = form_class(instance=unit)
+    store = unit.store
+    profile = get_profile(request.user)
+    alt_src_langs = get_alt_src_langs(request, profile, translation_project)
+    #alt_src_codes = alt_src_langs.values_list('code', flat=True)
+    project = translation_project.project
+    template_vars = {'unit': unit,
+                     'form': form,
+                     'store': store,
+                     'profile': profile,
+#                     'user': context['user'],
+#                     'language': context['language'],
+#                     'source_language': context['source_language'],
+#                     'cantranslate': context['cantranslate'],
+#                     'cansuggest': context['cansuggest'],
+#                     'canreview': context['canreview'],
+                     'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
+               "suggestions": get_sugg_list(unit),
+              }
+    return render_to_response('unit/edit.html', template_vars,
+                              context_instance=RequestContext(request))
 
 def reject_suggestion(request, uid, suggid):
     unit = get_object_or_404(Unit, id=uid)

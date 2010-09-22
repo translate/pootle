@@ -11,7 +11,7 @@ $(document).ready(function() {
         $.getJSON(view_url, function(data) {
           if (data.success) {
             units[uid] = data.unit;
-            display_view_unit(units[uid]);
+            display_unit_view(uid);
           } else {
             // TODO: provide a proper error message and not an alert
             alert("Something went wrong");
@@ -19,21 +19,43 @@ $(document).ready(function() {
           }
         });
       } else {
-        display_view_unit(units[uid]);
+        display_unit_view(uid);
       }
     };
 
-    var display_view_unit = function(unit) {
+    var display_unit_view = function(uid) {
+      var unit = units[uid];
+      var where = $("a#editlink" + uid).parent();
+      where.siblings().remove();
+      var source = '<td class="translate-original">',
+          target = '<td class="translate-translation">';
       $(unit.source).each(function() {
-        alert(this);
+        source += '<div class="translation-text">' + this + '</div>';
       });
+      source += '</td>';
       $(unit.target).each(function() {
-        alert(this);
+        target += '<div class="translation-text">' + this + '</div>';
       });
-      // FIXME: This is only for the editing widget
-      var oldunit = $("td.translate-full").parent("tr");
-      oldunit.children().remove();
-      $(this).parent().siblings().remove();
+      target += '</td>';
+      where.parent().append(source);
+      where.parent().append(target);
+    };
+
+    /*
+     * Sets the edit view for unit 'uid'
+     */
+    var get_unit_edit = function(store, uid) {
+      var edit_url = l(store + '/unit/edit/' + uid);
+      var where = $("a#editlink" + uid).closest("tr");
+      where.children().remove();
+      where.load(edit_url);
+    };
+
+    /*
+     * Restores the current edit unit into a view unit.
+     */
+    var restore_active_unit = function(store, uid) {
+      get_unit_view(store, uid);
     };
 
     $("a[id^=editlink]").click(function(e) {
@@ -44,7 +66,10 @@ $(document).ready(function() {
         if (m) {
           var uid = m[1];
           var store = $("div#store").text();
-          get_unit_view(store, uid);
+          var active_a = $("td.translate-full").prev("td").children("a");
+          var active_uid = active_a.attr("id").match(/editlink([0-9]+)/)[1];
+          restore_active_unit(store, active_uid);
+          get_unit_edit(store, uid);
         }
       }
     });
