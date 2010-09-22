@@ -125,7 +125,7 @@ $(document).ready(function() {
         var unit = units[_this];
         var _where = $("<tr></tr>").attr("id", "row" + _this);
         _where.insertAfter(where)
-        $("#unit_view").tmpl({store: store_info, unit: unit}).fadeIn("slow").appendTo(_where);
+        $("#unit_view").tmpl({store: store_info, unit: unit}).appendTo(_where);
       }
     };
 
