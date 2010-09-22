@@ -175,7 +175,7 @@ $(document).ready(function() {
       edit_where.addClass("translate-translation-row");
       edit_where.load(edit_url, function() {
         $("table.translate-table").trigger("editor_ready");
-      }).hide().fadeIn("slow");
+      });
       $("#active_uid").text(uid);
     };
 
