@@ -604,10 +604,9 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
 @ajax_required
 def get_edit_unit(request, pootle_path, uid):
     """
-    @return: An object in JSON notation that contains the editing widget
-    for unit C{uid}.
-    This object also contains success status that indicates if the unit
-    has been succesfully retrieved or not.
+    Given a store path C{pootle_path} and unit id C{uid}, gathers all the
+    necessary information to build the editing widget.
+    @return: A templatised editing widget ready to be used.
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
