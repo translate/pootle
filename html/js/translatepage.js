@@ -26,7 +26,7 @@ $(document).ready(function() {
  */
 
   // Write TM results into the currently focused element
-  $(".writetm").click(function() {
+  $(".writetm").live("click", function() {
     var tmtext = $(".tm-translation", this).text();
     var element = $($.pootle.focusedElement);
     var start = element.caret().start + tmtext.length;
@@ -35,7 +35,7 @@ $(document).ready(function() {
   });
 
   // Write special chars, tags and escapes into the currently focused element
-  $(".writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").click(function() {
+  $(".writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", function() {
     var specialtext = $(this).text();
     var element = $($.pootle.focusedElement);
     var start = element.caret().start + specialtext.length;
@@ -48,7 +48,7 @@ $(document).ready(function() {
  * COPY ORIGINAL TRANSLATION
  */
 
-  $("a.copyoriginal").click(function() {
+  $("a.copyoriginal").live("click", function() {
     var sources = $(".translation-text", $(this).parent().parent().parent());
     var clean_sources = [];
     $.each(sources, function(i) {
@@ -75,13 +75,13 @@ $(document).ready(function() {
  */
 
   keepstate = false;
-  $("textarea.translation").bind("keyup blur", function() {
+  $("textarea.translation").live("keyup blur", function() {
     if (!keepstate && $(this).attr("defaultValue") != $(this).val()) {
       $.pootle.ungoFuzzy();
     }
   });
 
-  $("input.fuzzycheck").click(function() {
+  $("input.fuzzycheck").live("click", function() {
     if ($.pootle.isFuzzy()) {
       $.pootle.doFuzzyArea();
     } else {
@@ -184,7 +184,7 @@ $(document).ready(function() {
            }, "json");
   }
 
-    $("#translate-suggestion-container .rejectsugg").click(function() {
+    $("#translate-suggestion-container .rejectsugg").live("click", function() {
       var element = $(this).parent().parent();
       var uid = $('.translate-container input#id_id').val();
       var suggid = $(this).siblings("input.suggid").val();
@@ -197,7 +197,7 @@ $(document).ready(function() {
       return false;
     });
 
-    $("#translate-suggestion-container .acceptsugg").click(function() {
+    $("#translate-suggestion-container .acceptsugg").live("click", function() {
       var element = $(this).parent().parent();
       var uid = $('.translate-container input#id_id').val();
       var suggid = $(this).siblings("input.suggid").val();
@@ -218,7 +218,7 @@ $(document).ready(function() {
       return false;
     });
 
-    $("#translate-checks-block .rejectcheck").click(function() {
+    $("#translate-checks-block .rejectcheck").live("click", function() {
       var element = $(this).parent();
       var checkid = $(this).siblings("input.checkid").val();
       var uid = $('.translate-container input#id_id').val();
@@ -235,7 +235,7 @@ $(document).ready(function() {
  * HELPER FUNCTIONS
  */
 
-  $(".collapse").click(function(event) {
+  $(".collapse").live("click", function(event) {
     event.preventDefault();
     $(this).siblings(".collapsethis").slideToggle("fast");
     if ($("textarea", $(this).next("div.collapsethis")).length) {
