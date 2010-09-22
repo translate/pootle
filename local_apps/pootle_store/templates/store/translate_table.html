@@ -26,6 +26,7 @@
     <div id="store" class="hide">{{ store }}</div>
     <div id="path" class="hide">{{ store|l }}</div>
     <div id="pootle_path" class="hide">{{ store.pootle_path }}</div>
+    <div id="active_uid" class="hide">{{ form.instance.id }}</div>
     <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
       <tr lang="{{ LANGUAGE_CODE }}">
         <th colspan="1" rowspan="1" class="translate-table-title translate-edit"></th>
@@ -33,7 +34,7 @@
         <th colspan="1" rowspan="1" class="translate-table-title translate-translation"></th>
       </tr>
       {% for unit in units %}
-      <tr class="{% cycle 'even' 'odd' %}{% ifequal unit form.instance %} translate-translation-row{% endifequal %}{% if unit.isfuzzy %} translate-translation-fuzzy{% endif %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
+      <tr id="row{{ unit.id }}" class="{% cycle 'even' 'odd' %}{% ifequal unit form.instance %} translate-translation-row{% endifequal %}{% if unit.isfuzzy %} translate-translation-fuzzy{% endif %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
         <td{% ifequal unit form.instance %} class="translate-focus"{% endifequal %}>
           <a href="?unit={{ unit.id }}" id="editlink{{ unit.id }}" title="{% trans 'Edit translation' %}">
           <div class="translation-action">{{ unit.index }}</div>

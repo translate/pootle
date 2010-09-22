@@ -11,21 +11,18 @@ $(document).ready(function() {
         $.getJSON(view_url, function(data) {
           if (data.success) {
             units[uid] = data.unit;
-            display_unit_view(uid);
           } else {
             // TODO: provide a proper error message and not an alert
             alert("Something went wrong");
             return false;
           }
         });
-      } else {
-        display_unit_view(uid);
       }
     };
 
     var display_unit_view = function(uid) {
       var unit = units[uid];
-      var where = $("a#editlink" + uid).closest("tr");
+      var where = $("tr#row" + uid);
       where.children().remove();
       $("#unit_view").tmpl(unit).appendTo(where);
     };
@@ -35,9 +32,10 @@ $(document).ready(function() {
      */
     var get_unit_edit = function(store, uid) {
       var edit_url = l(store + '/unit/edit/' + uid);
-      var where = $("a#editlink" + uid).closest("tr");
+      var where = $("tr#row" + uid);
       where.children().remove();
       where.load(edit_url);
+      $("#active_uid").text(uid);
     };
 
     /*
@@ -45,9 +43,10 @@ $(document).ready(function() {
      */
     var restore_active_unit = function(store, uid) {
       get_unit_view(store, uid);
+      display_unit_view(uid);
     };
 
-    $("a[id^=editlink]").click(function(e) {
+    $("a[id^=editlink]").live("click", function(e) {
       e.preventDefault();
       if (!$(this).parent().next("td").hasClass("translate-full")) {
         // Retrieve unit i+1, if any
@@ -55,8 +54,7 @@ $(document).ready(function() {
         if (m) {
           var uid = m[1];
           var store = $("div#store").text();
-          var active_a = $("td.translate-full").prev("td").children("a");
-          var active_uid = active_a.attr("id").match(/editlink([0-9]+)/)[1];
+          var active_uid = $("#active_uid").text();
           restore_active_unit(store, active_uid);
           get_unit_edit(store, uid);
         }
