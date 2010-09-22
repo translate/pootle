@@ -13,23 +13,26 @@ table.translate-table td
     vertical-align: top;
 }
 
-div.translation-action
+td.translation-action
 {
     min-height: 1.5em;
-    height: 0px;
-    text-align: center;
-    width: 100%
+}
+
+td.translation-action img
+{
+    display: block;
+    margin: 0 auto;
 }
 
 th.translate-original,
 th.translate-translation
 {
-    width: 48.5%;
+    width: 49%;
 }
 
 th.translate-edit
 {
-    width: 3%;
+    width: 2%;
 }
 
 table[dir="rtl"] td.translate-original

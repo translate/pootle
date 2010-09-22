@@ -3,9 +3,9 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <!-- JS templates: move from here when possible -->
 <script id="unit_view" type="text/x-jquery-template">
-<td>
-  <a title="Editatu itzulpena" id="editlink${id}" href="?unit=2921">
-    <div class="translation-action">${id}</div>
+<td class="translation-action">
+  <a title="{% trans 'Edit translation' %}" id="editlink${id}" href="?unit=${id}">
+    <img src="{{ 'images/pencil.png'|m }}" />
   </a>
 </td>
 <td dir="" class="translate-original" rowspan="1" colspan="1">
@@ -35,11 +35,13 @@
       </tr>
       {% for unit in units %}
       <tr id="row{{ unit.id }}" class="{% cycle 'even' 'odd' %}{% ifequal unit form.instance %} translate-translation-row{% endifequal %}{% if unit.isfuzzy %} translate-translation-fuzzy{% endif %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
-        <td{% ifequal unit form.instance %} class="translate-focus"{% endifequal %}>
+        {% ifnotequal unit form.instance %}
+        <td class="translation-action">
           <a href="?unit={{ unit.id }}" id="editlink{{ unit.id }}" title="{% trans 'Edit translation' %}">
-          <div class="translation-action">{{ unit.index }}</div>
+          <img src="{{ 'images/pencil.png'|m }}" />
           </a>
         </td>
+        {% endifnotequal %}
         {% ifequal unit form.instance %}
           {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview alt_src_codes profile.id LANGUAGE_CODE %}
           {% render_unit_edit form %}

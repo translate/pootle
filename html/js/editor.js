@@ -30,8 +30,8 @@ $(document).ready(function() {
       get_view_unit(store, uid);
       var unit = units[uid];
       var where = $("tr#row" + uid);
-      where.children().remove();
-      $("#unit_view").tmpl(unit).appendTo(where);
+      where.children().fadeOut("slow").remove();
+      $("#unit_view").tmpl(unit).fadeIn("slow").appendTo(where);
     };
 
     /*
@@ -41,7 +41,7 @@ $(document).ready(function() {
       var edit_url = l(store + '/edit/' + uid);
       var where = $("tr#row" + uid);
       where.children().remove();
-      where.load(edit_url);
+      where.load(edit_url).hide().fadeIn("slow");
       $("#active_uid").text(uid);
     };
 
