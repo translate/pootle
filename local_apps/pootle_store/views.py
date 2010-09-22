@@ -478,9 +478,13 @@ def translate(request, pootle_path):
 #
 
 def get_unit_view(request, pootle_path, uid):
-    response = {}
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
+    profile = get_profile(request.user)
+    if not check_profile_permission(profile, 'view', pootle_path):
+        raise PermissionDenied
+
+    response = {}
     try:
         unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
         # FIXME: .target.strings doesn't assure we get the correct
@@ -488,6 +492,15 @@ def get_unit_view(request, pootle_path, uid):
         # unit.store.translation_project.language.nplurals
         response["unit"] = {"source": [s for s in unit.source.strings],
                             "target": [t for t in unit.target.strings]}
+        # FIXME: As stated before, we should get rid of checking for
+        # proper plural information, this should be handled transparently.
+        if unit.hasplural():
+            target_count = len(response["unit"]["target"])
+            plural_count = unit.store.translation_project.language.nplurals
+            if target_count < plural_count:
+                missing_count = plural_count - target_count
+                missing = ["" for m in range(missing_count)]
+                response["unit"]["target"].extend(missing)
         response["success"] = True
     except Unit.DoesNotExist:
         response["success"] = False
