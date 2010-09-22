@@ -8,14 +8,14 @@
     <img src="{{ 'images/pencil.png'|m }}" />
   </a>
 </td>
-<td dir="" class="translate-original" rowspan="1" colspan="1">
+<td dir="${source_dir}" class="translate-original" rowspan="1" colspan="1">
   <div class="translate-original translate-view" id="orig${id}">
-    <div lang="en" dir="ltr" class="translation-text">${source}</div>
+    <div lang="${source_lang}" dir="${source_dir}" class="translation-text">${source}</div>
   </div>
 </td>
-<td dir="ltr" class="translate-translation" rowspan="1" colspan="1">
-  <div dir="ltr" class="translate-translation translate-view " id="trans${id}">
-    <div lang="eu" class="translation-text" dir="ltr">${target}</div>
+<td dir="${target_dir}" class="translate-translation" rowspan="1" colspan="1">
+  <div dir="${target_dir}" class="translate-translation translate-view " id="trans${id}">
+    <div lang="${target_lang}" class="translation-text" dir="${target_dir}">${target}</div>
   </div>
 </td>
 </script>
