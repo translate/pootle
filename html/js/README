@@ -71,17 +71,22 @@ Directory contents
 
       http://plugins.jquery.com/project/bidi
 
+    - jquery.caret.js :
+      jQuery plugin to write text on top of the selected text or just after
+      the caret position.
+
+      http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
+
     - jquery.fieldselection.js :
       jQuery plugin to retrieve or replace text selections within
       textareas.
 
       http://laboratorium.0xab.cd/jquery/fieldselection/0.1.0/
 
-    - jquery.caret.js :
-      jQuery plugin to write text on top of the selected text or just after
-      the caret position.
+    - jquery.history.js :
+      Plugin to handle AJAX history using hashes.
 
-      http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
+      http://github.com/tkyk/jquery-history-plugin/
 
     - jquery.scrollTo.min.js :
       Scrolls the viewport to the selected element.
