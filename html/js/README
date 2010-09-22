@@ -55,6 +55,11 @@ Directory contents
 
     3. Includes several functions for handling actions in the translate page.
 
+  - shortcut.js :
+    Small library to ease adding keyboard shortcuts.
+
+    http://www.openjs.com/scripts/events/keyboard_shortcuts/
+
   + jquery/
 
     - jquery.min.js :
@@ -87,6 +92,11 @@ Directory contents
       jQuery plugin used in the translate page textareas.
 
       http://blogs.sitepointstatic.com/examples/tech/textarea-expander/jquery.textarea-expander.js
+
+    - jquery.tmpl.js :
+      jQuery templating engine.
+
+      http://github.com/nje/jquery-tmpl
 
   + mt/
 
