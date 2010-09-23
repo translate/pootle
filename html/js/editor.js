@@ -22,6 +22,7 @@
      * XHR activity indicator
      */
     $(document).ajaxStart(function() {
+      $("#xhr-error").hide();
       $("#xhr-activity").show();
     });
     $(document).ajaxStop(function() {
@@ -135,10 +136,12 @@
             return_uids.after.push(this.id);
           });
         } else {
-          // TODO: provide a proper error message and not an alert
-          alert("Something went wrong");
-          return false;
+          if (data.msg) {
+            $("#xhr-activity").hide();
+            $("#xhr-error span").text(data.msg).parent().show();
+          }
         }
+        return_uids.success = data.success;
       }
     });
     return return_uids;
@@ -146,26 +149,30 @@
 
   pootle.editor.display_unit_views_for = function(store, uid) {
     var uids = pootle.editor.get_view_units_for(store, uid);
-    // FIXME: This only works for visible units:
-    // -- what happens if we want to load a unit which is out of context?
-    var where = $("tr#row" + uid);
-    // Remove previous and next rows
-    where.prevAll("tr[id]").fadeOut("slow").remove();
-    where.nextAll("tr[id]").fadeOut("slow").remove();
-    // Add rows with the newly retrieved data
-    for (var i=uids.before.length-1; i>=0; i--) {
-      var _this = uids.before[i];
-      var unit = pootle.editor.units[_this];
-      var _where = $("<tr></tr>").attr("id", "row" + _this);
-      _where.insertBefore(where)
-      $("#unit_view").tmpl({store: pootle.editor.store_info, unit: unit}).appendTo(_where);
-    }
-    for (var i=uids.after.length-1; i>=0; i--) {
-      var _this = uids.after[i];
-      var unit = pootle.editor.units[_this];
-      var _where = $("<tr></tr>").attr("id", "row" + _this);
-      _where.insertAfter(where)
-      $("#unit_view").tmpl({store: pootle.editor.store_info, unit: unit}).appendTo(_where);
+    if (uids.success) {
+      // FIXME: This only works for visible units:
+      // -- what happens if we want to load a unit which is out of context?
+      var where = $("tr#row" + uid);
+      // Remove previous and next rows
+      where.prevAll("tr[id]").fadeOut("slow").remove();
+      where.nextAll("tr[id]").fadeOut("slow").remove();
+      // Add rows with the newly retrieved data
+      for (var i=uids.before.length-1; i>=0; i--) {
+        var _this = uids.before[i];
+        var unit = pootle.editor.units[_this];
+        var _where = $("<tr></tr>").attr("id", "row" + _this);
+        _where.insertBefore(where)
+        $("#unit_view").tmpl({store: pootle.editor.store_info, unit: unit}).appendTo(_where);
+      }
+      // FIXME: load view units and editor all at the same time
+      pootle.editor.load_edit_unit(store, uid);
+      for (var i=uids.after.length-1; i>=0; i--) {
+        var _this = uids.after[i];
+        var unit = pootle.editor.units[_this];
+        var _where = $("<tr></tr>").attr("id", "row" + _this);
+        _where.insertAfter(where)
+        $("#unit_view").tmpl({store: pootle.editor.store_info, unit: unit}).appendTo(_where);
+      }
     }
   };
 
@@ -174,7 +181,6 @@
    */
   pootle.editor.display_edit_unit = function(store, uid) {
     pootle.editor.display_unit_views_for(store, uid);
-    pootle.editor.load_edit_unit(store, uid);
   };
 
   /*

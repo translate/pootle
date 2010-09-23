@@ -88,13 +88,15 @@ div.translate-plural .translation-text-headers
 
 /* MESSAGES */
 
-#xhr-activity
+#xhr-activity,
+#xhr-error
 {
     padding-right: 25px;
     float: right;
 }
 
-html[dir="rtl"] #xhr-activity
+html[dir="rtl"] #xhr-activity,
+html[dir="rtl"] #xhr-error
 {
     padding-right: 0;
     padding-left: 25px;
