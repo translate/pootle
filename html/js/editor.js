@@ -22,10 +22,10 @@
      * XHR activity indicator
      */
     $(document).ajaxStart(function() {
-      $("#activity").show();
+      $("#xhr-activity").show();
     });
     $(document).ajaxStop(function() {
-      $("#activity").fadeOut("slow");
+      $("#xhr-activity").fadeOut("slow");
     });
 
     /* History support */

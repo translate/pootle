@@ -479,19 +479,6 @@ html[dir="rtl"] #nav-main ul li
  * MESSAGES
  */
 
-#activity
-{
-    padding-right: 25px;
-    float: right;
-}
-
-html[dir="rtl"] #activity
-{
-    padding-right: 0;
-    padding-left: 25px;
-    float: left;
-}
-
 #site-message
 {
     background-color: #ffe;
